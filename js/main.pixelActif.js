@@ -1,27 +1,25 @@
-debug = true;
-
 function stepperPixelsActifs(id){
 	$('#pixelsactifs1').modal('hide');
 	$('#pixelsactifs2').modal('hide');
 	$('#pixelsactifs3').modal('hide');
 }
 
-$(document).ready(function() {  
+$(document).ready(function() {  alert();
 	$("#tags,#actionType").select2(); 
 	//$("#type").select2({ allowClear : true }); 
-	/* l'appel direct à la fonction stepperPixelsActifs via un bouton ne marche pas, il faut passer par l'événement d'abord */
+	/* l'appel direct ï¿½ la fonction stepperPixelsActifs via un bouton ne marche pas, il faut passer par l'ï¿½vï¿½nement d'abord */
 	$('.modalNext').click(function(){
 		stepperPixelsActifs(this.href);
 	});
 	
-	/* Cacher la combo Représentant si citoyen est sélectionné */
+	/* Cacher la combo Reprï¿½sentant si citoyen est sï¿½lectionnï¿½ */
 	$('#genreType').change(function(){
 		if($(this).val()=="citizen")
 			$('#pilot').hide();
 		else
 			$('#pilot').show();
 	});
-	/* Appel depuis le bouton filtrer ListePixelsActifs.php : passe en url les paramètres du filtre */
+	/* Appel depuis le bouton filtrer ListePixelsActifs.php : passe en url les paramï¿½tres du filtre */
 	$('#filtrer').click(function(){
 		var urldeb =window.location.pathname;
 		
@@ -49,7 +47,7 @@ $(document).ready(function() {
 		$("#area").val($(this).text());
 	});
 	
-	/* Préparer envoi de la sauvegarde en BD  avec appel à save.php  */
+	/* Prï¿½parer envoi de la sauvegarde en BD  avec appel ï¿½ save.php  */
 	
 	$("#newPA").click(function(){
 		var pixelActifData = "";
@@ -84,7 +82,7 @@ $(document).ready(function() {
 		});
 	});	
 	
-	/* Définition des éléménts obligatoires */
+	/* Dï¿½finition des ï¿½lï¿½mï¿½nts obligatoires */
 	$('#register').validate(
 			 {
 		  rules: {
@@ -104,37 +102,3 @@ $(document).ready(function() {
 	});
 		
 });
-
-function scrollTo(id){
-	$('html, body').animate({
-		scrollTop: $(id).offset().top-50
-	 }, 1000);
-}
-function log(msg,type){
-	if(debug){
-	   try {
-	    /*if(type){
-	      switch(type){
-	        case 'info': console.info(msg); break;
-	        case 'warn': console.warn(msg); break;
-	        case 'debug': console.debug(msg); break;
-	        case 'error': console.error(msg); break;
-	        case 'dir': console.dir(msg); break;
-	        default : console.log(msg);
-	      }
-	    } else
-	          console.log(msg);*/
-	  } catch (e) { 
-	     //alert(msg);
-	  }
-	}
-}
-
-function isNumber(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-}
-/*
-function IsNumeric(input)
-{
-    return (input - 0) == input && (input+'').replace(/^\s+|\s+$/g, "").length > 0;
-} */

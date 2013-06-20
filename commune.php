@@ -46,7 +46,7 @@ include('./connect.php');
 		?>
 		<header class="ns">
 			<div class="wrapper just wf">
-				<a id="logo" class="ib" href="./regionDB.php">
+				<a id="logo" class="ib" href="./region.php">
 					<img src="img/logo/logo144.png"  onload="imgLoaded(this)"/>
 					<h1 class="ib"><strong>Pixel Humain </strong>: Commune <?php if( isset($_GET['cp']) ) echo "Bras Panon(97412)";?></h1> 
 				</a>
@@ -73,7 +73,7 @@ include('./connect.php');
 				</div>
 				<div class="group" id="Filters">
 					<div class="drop_down wf">
-						<span class="anim150">Annaire</span>
+						<span class="anim150">Annuaire</span>
 						<ul class="anim250">
 							<li class="active" data-filter="all" data-dimension="annuaire">Tout</li>
 							<li data-filter="societé" data-dimension="nature">Entreprise</li>
@@ -84,7 +84,7 @@ include('./connect.php');
 					<div class="drop_down wf">
 						<span class="anim150">Nature</span>
 						<ul class="anim250">
-							<li class="active" data-filter="all" data-dimension="nature">All</li>
+							<li class="active" data-filter="all" data-dimension="nature">Tout</li>
 							<li data-filter="mountains" data-dimension="nature">Montagne</li>
 							<li data-filter="waterfalls" data-dimension="nature">Cascade</li>
 							<li data-filter="river" data-dimension="nature">Rivière</li>
@@ -95,7 +95,7 @@ include('./connect.php');
 					<div class="drop_down wf">
 						<span class="anim150">Activité</span>
 						<ul class="anim250">
-							<li class="active" data-filter="all" data-dimension="recreation">All</li>
+							<li class="active" data-filter="all" data-dimension="recreation">Tout</li>
 							<li data-filter="camping" data-dimension="recreation">Camping</li>
 							<li data-filter="climbing" data-dimension="recreation">Grimpe</li>
 							<li data-filter="fishing" data-dimension="recreation">Peche</li>

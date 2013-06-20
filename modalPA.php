@@ -37,7 +37,7 @@
 								<option value="">Sélectionner un type</option>
 								<?php
 								// curseur de type tableau de valeurs avec 1 clé (findOne)  where array() (je prends tout) qui a plusieurs valeurs array('list')
-								$cursorTypes = $database->types->findOne( array(), array('list'));
+								$cursorTypes = $connection->pixelhumain->types->findOne( array(), array('list'));
 								
 								// Affichage d'un curseur de type tableau de valeurs. Je parcours le cursor, la clé est $c et la valeur est $type
 								foreach ($cursorTypes['list'] as $c=>$type):
@@ -92,7 +92,7 @@
 							<select id="actionType" class="span3" multiple  placeholder="Sélectionner une ou plusieurs thématique(s)">
 								<?php
 								// curseur de type tableau de valeurs avec 1 clé (findOne)  where array() (je prends tout) qui a plusieurs valeurs array('list')
-								$cursorTags = $database->tags->findOne( array(), array('list'));
+								$cursorTags = $connection->pixelhumain->tags->findOne( array(), array('list'));
 								
 								// Affichage d'un curseur de type tableau de valeurs. Je parcours le cursor, la clé est $c et la valeur est $tag
 								foreach ($cursorTags['list'] as $tag):

@@ -28,11 +28,11 @@ include('./connect.php');
         <link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/region.css">
 		<link rel="stylesheet" href="css/select2.css">
+		<link rel="stylesheet" href="css/mainPixelActif.css">
     </head>
     <body>
 		<!-- Mutualisation de code entre 2 fichiers index4.php et listePixelActifs.html => crée un html à part qui garantie unicité du code et on transforme le html père en .php car on utilise des fonctionnalité php "include" -->
-       <?php /*include('menuPH.html')?>
-	   <?php include('modalPA.php')*/?>
+       <?php include('modalCommune.php');?>
 		
 		<body>
 	<section>
@@ -51,7 +51,7 @@ include('./connect.php');
 					<h1 class="ib"><strong>Pixel Humain </strong>: Région Réunion (974 - <?php echo $ct->count();?> communes)</h1> 
 				</a>
 				
-				<a href="#" onclick="page = prompt('wiki page name ?'); window.location.href='getWikipediaInfobox.php?page='+page">
+				<a href="#addCommune" data-toggle="modal">
 					<div class="ib anim150 button">+ COMMUNE</div>
 				</a>
 			</div>
@@ -212,7 +212,7 @@ include('./connect.php');
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
 
         <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/old/main_live.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
 		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="js/select2.js"></script>
 		<script type="text/javascript" src="js/jquery.mixitup.min.js"></script>

@@ -1,15 +1,6 @@
 <?php
-try
-{
-    $connection = new Mongoclient('mongodb://pixelhumaindb:2210ph@ds049157.mongolab.com:49157/pixelhumain');
-    $database   = $connection->pixelhumain;
-    
-}
-catch(MongoConnectionException $e)
-{
-    die("Failed to connect to database ".$e->getMessage());
-}
-
+require_once('./config/configDB.php');
+include('./connect.php');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -40,8 +31,8 @@ catch(MongoConnectionException $e)
     </head>
     <body>
 		<!-- Mutualisation de code entre 2 fichiers index4.php et listePixelActifs.html => crée un html à part qui garantie unicité du code et on transforme le html père en .php car on utilise des fonctionnalité php "include" -->
-       <?php include('menuPH.html')?>
-	   <?php include('modalPA.php')?>
+       <?php include('./menuPH.html');?>
+	   <?php include('./modalPA.php');?>
 		
         <div class="container" id="accueil">
 			<?php 
@@ -59,7 +50,8 @@ catch(MongoConnectionException $e)
 				$query['actions.tags'] = array('$in' => $tagsSelected);
 			}
 			/// affichage de la valeur d'un objet  var_dump( $query);	d'une variable echo $var
-			$cursor = $database->pixelsactifs->find( $query );
+			
+			$cursor = $connection->pixelhumain->pixelsactifs->find( $query );
 			?>	
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
@@ -70,11 +62,11 @@ catch(MongoConnectionException $e)
 				</p>
 				<div class="controls controls-row">
 					<input type="text" class="span1" id="cpFilter" placeholder="CP" value="<?php if( isset($_GET['cp']) && is_numeric($_GET['cp'])) echo $_GET['cp'];?>" />
-					<!-- $collection_tags = $database->->selectCollection('tags'); 	-->
+					<!-- $collection_tags = $connection->pixelhumain->->selectCollection('tags'); 	-->
 					<select id="tags" class="span4" multiple  placeholder="Sélectionner une ou plusieurs thématique(s)">
 						<?php
 						// curseur de type tableau de valeurs avec 1 clé (findOne)  where array() (je prends tout) qui a plusieurs valeurs array('list')
-						$cursorTags = $database->tags->findOne( array(), array('list'));
+						$cursorTags = $connection->pixelhumain->tags->findOne( array(), array('list'));
 						
 						// Affichage d'un curseur de type tableau de valeurs. Je parcours le cursor, la clé est $c et la valeur est $tag
 						foreach ($cursorTags['list'] as $tag):
@@ -87,7 +79,7 @@ catch(MongoConnectionException $e)
 						<option value="">Sélectionner un type</option>
 						<?php
 						// curseur de type tableau de valeurs avec 1 clé (findOne)  where array() (je prends tout) qui a plusieurs valeurs array('list')
-						$cursorTypes = $database->types->findOne( array(), array('list'));
+						$cursorTypes = $connection->pixelhumain->types->findOne( array(), array('list'));
 						
 						// Affichage d'un curseur de type tableau de valeurs. Je parcours le cursor, la clé est $c et la valeur est $pixelactif
 						foreach ($cursorTypes['list'] as $c=>$type):
@@ -138,13 +130,14 @@ catch(MongoConnectionException $e)
 		
 		
 		
-	    <script src="js/vendor/jquery-1.8.3.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
-
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/old/main_live.js"></script>
-		<script src="js/jquery.validate.min.js"></script>
-		<script src="js/select2.js"></script>
+	    <script type="text/javascript" src="js/vendor/jquery-1.9.1.min.js"></script>
+        <script>window.jQuery || document.write('<script type="text/javascript" src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+		 <script type="text/javascript"  src="js/vendor/bootstrap.min.js"></script>
+        <script type="text/javascript"  src="js/main.js"></script>
+        
+		<script type="text/javascript"  src="js/jquery.validate.min.js"></script>
+		<script type="text/javascript"  src="js/select2.js"></script>
+		<script type="text/javascript"  src="js/main.pixelActif.js"></script>
 
         <script>
 			$('#particpateTabs a').click(function (e) {
