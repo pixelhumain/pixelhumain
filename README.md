@@ -22,6 +22,9 @@ Valorisation de la Collectivité
 * creation Pixel Actif 
 
 #Roadmap court terme 
-* Ajouter un Pixel Actif : Association, Entreprise, Collectivité, Citoyens
+* Ajouter un Pixel Actif 
+**Association, Entreprise, Collectivité, Citoyens
 * Pouvoir ajouter une commune 
-Permettre a ca
+**Il ya un (ou plusieurs,plus tard) représentant de Commune (citoyen ou collectivité)
+
+Quelques details techniques
