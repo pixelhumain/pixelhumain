@@ -1,8 +1,7 @@
 <?php
+require_once('./config/configDB.php');
 // Get this at your MongoLab.com user page
-$MONGOLAB_API_KEY = '50df35b6e4b00041a25dc111';
-$DB = 'pixelhumain';
-$COLLECTION = 'pixelsactifs';
+$url = "https://api.mongolab.com/api/1/databases/".$dbconfig['db']."/collections/pixelsactifs?apiKey=".$dbconfig['MONGOLAB_API_KEY'];
 
 $data = json_encode(
   array(
@@ -31,7 +30,7 @@ $data = json_encode(
   )
 );
 
-$url = "https://api.mongolab.com/api/1/databases/$DB/collections/$COLLECTION?apiKey=$MONGOLAB_API_KEY";
+
  
 try { 
   $ch = curl_init();

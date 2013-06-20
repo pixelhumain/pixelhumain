@@ -28,7 +28,6 @@ include('./connect.php');
         <link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/region.css">
 		<link rel="stylesheet" href="css/select2.css">
-		<link rel="stylesheet" href="css/mainPixelActif.css">
     </head>
     <body>
 		<!-- Mutualisation de code entre 2 fichiers index4.php et listePixelActifs.html => crée un html à part qui garantie unicité du code et on transforme le html père en .php car on utilise des fonctionnalité php "include" -->
