@@ -1,14 +1,6 @@
 ﻿<?php
 require_once('./config/configDB.php');
-try
-{
-    $connection = new Mongoclient($dbconfig['connectionString']); 
-}
-catch(MongoConnectionException $e)
-{
-    die("Failed to connect to database ".$e->getMessage());
-}
-
+include('./connect.php');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
