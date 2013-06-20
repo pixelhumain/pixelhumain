@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once('./config/configDB.php');
 include('./connect.php');
 ?>
@@ -126,7 +126,7 @@ include('./connect.php');
 			
 			<!-- BEGIN PARKS -->
 			<div id="InfoPanel" class="">
-				<h1>Bienvenu à la Réunion</h1>
+				<h1>Bienvenue à la Réunion</h1>
 				Si vous êtes réunionais découvrez votre pays
 				et pour les voyageurs vous etes 
 				au bon endroit pour decouvrir une île au 1001 couleurs.
