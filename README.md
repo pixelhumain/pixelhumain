@@ -1,4 +1,4 @@
-pixelhumain
+Pixel Humain
 ===========
 
 ##Installation
