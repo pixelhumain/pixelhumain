@@ -1,14 +1,6 @@
 ﻿<?php
 require_once('./config/configDB.php');
-try
-{
-    $connection = new Mongoclient($dbconfig['connectionString']);
-}
-catch(MongoConnectionException $e)
-{
-    die("Failed to connect to database ".$e->getMessage());
-}
-
+include('./connect.php');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -54,7 +46,7 @@ catch(MongoConnectionException $e)
 		?>
 		<header class="ns">
 			<div class="wrapper just wf">
-				<a id="logo" class="ib" href="./regionDB.php">
+				<a id="logo" class="ib" href="./region.php">
 					<img src="img/logo/logo144.png"  onload="imgLoaded(this)"/>
 					<h1 class="ib"><strong>Pixel Humain </strong>: Région Réunion (974 - <?php echo $ct->count();?> communes)</h1> 
 				</a>
