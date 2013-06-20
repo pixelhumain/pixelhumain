@@ -1,4 +1,4 @@
-pixelhumain
+Pixel Humain
 ===========
 
 ##Installation
@@ -13,7 +13,9 @@ get the dll from here https://github.com/mongodb/mongo-php-driver/downloads
 ```
 on mac  you'll have to simply get the .so that corresponds to your php install
 
-##Version 0.001
+##Version 0.001 
+
+    L'homme qui déplace une montagne commence par déplacer les petites pierres.- Confucius
 
 ###Valorisation de la Collectivité
 * page region 
