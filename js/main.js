@@ -1,9 +1,6 @@
 debug = true;
 
-$(document).ready(function() {  
-	
-		
-});
+
 
 function scrollTo(id){
 	$('html, body').animate({

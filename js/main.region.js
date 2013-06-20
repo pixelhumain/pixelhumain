@@ -18,6 +18,74 @@ function imgLoaded(img){
 // ON DOCUMENT READY:
 
 $(function(){
+	/* *************
+	 * ADd commune Form 
+	 */
+	$("#activities,#natures,#geoPosition").select2(); 
+	$("#wikipage").blur(function(){
+		var searchTerm=$("#wikipage").val();
+		var url="http://fr.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
+		
+		$.ajax({
+		    url: url,
+		    dataType: 'json',
+		    success: function( data ) {
+		    	if(data.error)
+		    		$("#wikipage").css("border","1px solid red");
+		    	else {
+			    	wikiHTML = data.parse.text["*"];
+					$wikiDOM = $("<document>"+wikiHTML+"</document>");
+			    	if($wikiDOM.find('.infobox'))
+			    		$("#wikipage").css("border","1px solid green");
+				    else
+				    	$("#wikipage").css("border","1px solid red");
+		    	}
+		    },
+		    error: function( data ) {
+		    	$("#wikipage").css("border","1px solid red");
+		    }
+		  });
+		
+	});
+	$("#imgGeo,#imgLogo,#imgValo").blur(function(){
+		var url = $(this).val();
+		
+		var _self = this;
+		$.ajax({
+		    url: url,
+		    success: function( ) {
+		    	$(_self).css("border","1px solid green");   
+		    },
+		    error: function( data ) {
+		    	$(_self).css("border","1px solid red");
+		    }
+		  });
+		
+	});
+	$("#submitCommune").click(function(){
+		var formData = "";
+		var inputs = $("#communeForm :input");
+		inputs.each(function(){
+			if(formData!="")formData += "&";
+			formData += this.id+"="+this.value;
+		});
+		
+		alert("submitCommune : " +formData );
+		 $.ajax({
+		  type: "POST",
+		  url: "saveCommune.php",
+		  data: formData,
+		  success: function(data){
+			if(data.result==true)
+				alert("SUCCESS");//window.location.reload();
+			else
+				alert("ERROR");
+		  },
+		  dataType: 'json'
+		});
+	});	
+	/* ************* */ 
+	
 	/*var searchTerm="Bras-Panon";
 	var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
 	$.getJSON(url,function(data){

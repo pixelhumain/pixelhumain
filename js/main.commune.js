@@ -18,6 +18,7 @@ function imgLoaded(img){
 // ON DOCUMENT READY:
 
 $(function(){
+	
 	/*var searchTerm="Bras-Panon";
 	var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
 	$.getJSON(url,function(data){

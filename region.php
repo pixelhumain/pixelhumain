@@ -3,10 +3,6 @@ require_once('./config/configDB.php');
 include('./connect.php');
 ?>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="fr"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -87,7 +83,7 @@ include('./connect.php');
 					<div class="drop_down wf">
 						<span class="anim150">Région</span>
 						<ul class="anim250">
-							<li class="active" data-filter="all" data-dimension="region">All</li>
+							<li class="active" data-filter="all" data-dimension="region">Tout</li>
 							
 							<li data-filter="northeast" data-dimension="region">Nord-Est</li>
 							<li data-filter="northwest" data-dimension="region">Nord-Ouest</li>
@@ -100,22 +96,23 @@ include('./connect.php');
 					<div class="drop_down wf">
 						<span class="anim150">Nature</span>
 						<ul class="anim250">
-							<li class="active" data-filter="all" data-dimension="nature">All</li>
-							<li data-filter="mountains" data-dimension="nature">Montagne</li>
-							<li data-filter="waterfalls" data-dimension="nature">Cascade</li>
-							<li data-filter="river" data-dimension="nature">Rivière</li>
-							<li data-filter="lagoon" data-dimension="nature">Lagon</li>
-							<li data-filter="sea" data-dimension="nature">Mer</li>
+							<li class="active" data-filter="all" data-dimension="nature">Tout</li>
+							<?php
+            				$cursorNature = $connection->pixelhumain->natures->findOne( array(), array('list'));
+            				foreach ($cursorNature['list'] as $a)
+            				    echo '<li data-filter="'.$a.'" data-dimension="nature">'.$a.'</li>';
+            				 ?>
 						</ul>
 					</div>
 					<div class="drop_down wf">
 						<span class="anim150">Activité</span>
 						<ul class="anim250">
-							<li class="active" data-filter="all" data-dimension="recreation">All</li>
-							<li data-filter="camping" data-dimension="recreation">Camping</li>
-							<li data-filter="climbing" data-dimension="recreation">Grimpe</li>
-							<li data-filter="fishing" data-dimension="recreation">Peche</li>
-							<li data-filter="swimming" data-dimension="recreation">PMT (Palme Masque Tuba)</li>
+							<li class="active" data-filter="all" data-dimension="recreation">Tout</li>
+							<?php 
+							$cursorActivities = $connection->pixelhumain->activities->findOne( array(), array('list'));
+            				foreach ($cursorActivities['list'] as $a)
+            				    echo '<li data-filter="'.$a.'" data-dimension="recreation">'.$a.'</li>';
+							?>
 						</ul>
 					</div>
 				</div>
@@ -150,7 +147,7 @@ include('./connect.php');
 				
 				<!-- BEGIN LIST OF PARKS (MANY OF THESE ELEMENTS ARE VISIBLE ONLY IN LIST MODE)-->
 				<?php foreach ($ct as $commune){?>
-				<li class="mix <?php echo $commune['geoPosition']?> <?php echo $commune['activity']?> " data-name="<?php echo $commune['name']?>" data-area="<?php echo $commune['superficie']?>">
+				<li class="mix <?php echo $commune['geoPosition']?> <?php echo $commune['activity']?> <?php echo $commune['natures']?>" data-name="<?php echo $commune['name']?>" data-area="<?php echo $commune['superficie']?>">
 					<div class="meta name">
 						<div class="img_wrapper">
 							<a href="./commune.php?cp=<?php echo $commune['codepostal']?>"><img src="<?php echo $commune['imgValo']?>" onload="imgLoaded(this)"/></a>
@@ -218,11 +215,7 @@ include('./connect.php');
 		<script type="text/javascript" src="js/main.region.js"></script>
 
         <script>
-			$('#particpateTabs a').click(function (e) {
-			  e.preventDefault();
-			  $(this).tab('show');
-			})
-		
+			
             /*var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';

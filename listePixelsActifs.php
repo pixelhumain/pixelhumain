@@ -140,11 +140,7 @@ include('./connect.php');
 		<script type="text/javascript"  src="js/main.pixelActif.js"></script>
 
         <script>
-			$('#particpateTabs a').click(function (e) {
-			  e.preventDefault();
-			  $(this).tab('show');
-			})
-		
+			
             /*var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';

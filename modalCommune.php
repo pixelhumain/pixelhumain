@@ -13,11 +13,36 @@
 		<h6>Ouvrez votre commune</h6>
 		<form id="communeForm" action="saveCommune.php" method="POST">
 			
-			<div class="controls">
-				<div class="controls controls-row">
-					<input type="text" class="span3" id="name" placeholder="Nom"/> 
-					<input type="text" class="span2" id="pilot" placeholder="Représentant"/>
-				</div>
+			<div class="controls-row">
+				<input type="text" class="span3" id="wikipage" placeholder="Nom de la page wikipedia"/> 
+				<input type="text" class="span3" id="imgGeo" placeholder="image Geographique URL"/> 
+				<br/>
+				<input type="text" class="span2" id="imgLogo" placeholder="image, Blason ou Logo URL"/>
+				<input type="text" class="span3" id="imgValo" placeholder="belle image locale URL"/> 
+				<br/>
+				<select id="geoPosition" class="span5" placeholder="Position dans la region">
+					<option value="northwest">Nord-Ouest</option>
+					<option value="northeast">Nord-Est</option>
+					<option value="center">Centre</option>
+					<option value="southwest">Sud-Ouest</option>
+					<option value="southeast">Sud-Est</option>
+				</select>
+				<br/><br/>
+				<select id="activities" class="span5" multiple  placeholder="Une ou plusieurs activités qu'on peut faire localement">
+					<?php
+					$cursorActivities = $connection->pixelhumain->activities->findOne( array(), array('list'));
+					foreach ($cursorActivities['list'] as $a)
+					    echo '<option value="'.$a.'">'.$a.'</option>';
+					?>
+				</select>
+				<br/><br/>
+				<select id="natures" class="span5" multiple  placeholder="Décriver la nature locale à visiter">
+					<?php
+					$cursorNature = $connection->pixelhumain->natures->findOne( array(), array('list'));
+					foreach ($cursorNature['list'] as $a)
+					    echo '<option value="'.$a.'">'.$a.'</option>';
+					?>
+				</select>
 			</div>
 		</form>
 		</div>
@@ -25,8 +50,7 @@
   </div>
   <div class="modal-footer">
 	<button id="modal1Close" class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
-	<a href="#activité" class="modalNext btn btn-primary" data-toggle="modal">Suivant<i class="icon-forward "></i></a>
-	<a href="#submit" class="modalNext btn btn-primary" data-toggle="modal">S'inscrire<i class="icon-forward "></i></a>
+	<a href="javascript:;" class="btn btn-primary" id="submitCommune">Enregistrer</a>
   </div>
   
 </div>
