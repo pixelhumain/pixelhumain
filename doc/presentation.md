@@ -1,4 +1,4 @@
-pixelhumain
+pixelhumain Version 1.0
 ===========
 
 #Installation
@@ -13,15 +13,7 @@ get the dll from here https://github.com/mongodb/mongo-php-driver/downloads
 ```
 on mac  you'll have to simply get the .so that corresponds to your php install
 
-#Version 0.001
-
-Valorisation de la Collectivité
-* page region 
-* page commune
-* création Commune
-* creation Pixel Actif 
-
-#Roadmap court terme 
-* Ajouter un Pixel Actif : Association, Entreprise, Collectivité, Citoyens
-* Pouvoir ajouter une commune 
-Permettre a ca
+Testing Lists 
+* project-parent
+* project
+* project-examples

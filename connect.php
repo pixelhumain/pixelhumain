@@ -1,7 +1,7 @@
 <?php 
 try
 {
-    $connection = new Mongoclient($dbconfig['connectionString']);
+    $connection = new Mongo($dbconfig['connectionString']);
 }
 catch(MongoConnectionException $e)
 {

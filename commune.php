@@ -73,14 +73,12 @@ include('./connect.php');
 				</div>
 				<div class="group" id="Filters">
 					<div class="drop_down wf">
-						<span class="anim150">Association & Entreprise </span>
+						<span class="anim150">Annaire</span>
 						<ul class="anim250">
-							<li class="active" data-filter="all" data-dimension="nature">All</li>
-							<li data-filter="mountains" data-dimension="nature">Montagne</li>
-							<li data-filter="waterfalls" data-dimension="nature">Cascade</li>
-							<li data-filter="river" data-dimension="nature">Rivière</li>
-							<li data-filter="lagoon" data-dimension="nature">Lagon</li>
-							<li data-filter="sea" data-dimension="nature">Mer</li>
+							<li class="active" data-filter="all" data-dimension="annuaire">Tout</li>
+							<li data-filter="societé" data-dimension="nature">Entreprise</li>
+							<li data-filter="association" data-dimension="nature">Association</li>
+							<li data-filter="collectivité" data-dimension="nature">Collectivité</li>
 						</ul>
 					</div>
 					<div class="drop_down wf">

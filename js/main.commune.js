@@ -69,10 +69,9 @@ $(function(){
 	
 	var $filters = $('#Filters').find('li'),
 		dimensions = {
-			region: 'all', // Create string for first dimension
+			annuaire: 'all', // Create string for first dimension
 			recreation: 'all', // Create string for second dimension
-			nature: 'all',
-			administration: 'all'
+			nature: 'all'
 		};
 		
 	// Bind checkbox click handlers:
@@ -119,10 +118,9 @@ $(function(){
 		dimensions[dimension] = filterString;
 		
 		// We now have two strings containing the filter arguments for each dimension:	
-		console.info('dimension 1: '+dimensions.region);
 		console.info('dimension 2: '+dimensions.recreation);
 		console.info('dimension 3: '+dimensions.nature);
-		console.info('dimension 4: '+dimensions.administration);
+		console.info('dimension 4: '+dimensions.annuaire);
 		
 		/*
 		*	We then send these strings to MixItUp using the filter method. We can send as
@@ -133,7 +131,7 @@ $(function(){
 		*	AND logic between dimensions. At least one dimension must pass for the element to show.
 		*/
 		
-		$('#Parks').mixitup('filter',[dimensions.region, dimensions.recreation,dimensions.nature,dimensions.administration])			
+		$('#Parks').mixitup('filter',[dimensions.annuaire, dimensions.recreation,dimensions.nature])			
 	});
 
 });
