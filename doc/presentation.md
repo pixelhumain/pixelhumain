@@ -1,16 +1,27 @@
 pixelhumain Version 0.01
 ===========
 
-##Architecture KISS
+##S'amuser dans le code
 
-*Serveur : Php 
-    ** open source
-    ** souplesse
-    ** language populaire donc plus suceptible d'interresser les devs
-*BDD : MongoDB hébergé chez MongoLab 
-    ** souplesse noSQL
-    ** s'adapte a tout les languages actuels
-    ** simplicité de lecture et d'utilisation
+  Le projet étant encore trés jeune , et orienté __"proof of concept"__
+  
+  On a volontairement choisit de travail en ** "souplesse et simplicité" ** pour s'amuser dans le code.
+  
+  Ne pas avoir de contrainte pour travailler en toute liberté et promouvoir la créativité
+
+##Architecture KISS (Keep It Simple & Short)
+
+Serveur : __Php__ :
+
+  * open source
+  * ouplesse
+  * language populaire donc plus suceptible d'interresser les devs
+ 
+BDD : __MongoDB__ hébergé chez __MongoLab__ :
+
+  * souplesse noSQL
+  * s'adapte a tout les languages actuels
+  * simplicité de lecture et d'utilisation
 
 
 ##Structure DB 
