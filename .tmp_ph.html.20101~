@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+        <title>Pixel Humain, démocratie participative Réunion, discussion , actions et réseau local</title>
+        <meta name="keywords" lang="fr" content="démocratie participative Réunion, discussion , actions et réseau local">
+		<meta name="description" content="Un projet citoyen de démocratie participative qui prend racine à la Réunion portée par l'association Open Atlas (loi 1901 , à but non lucratif). 
+								Une plateforme de discussions et actions citoyennes sur un réseau local (en cours construction). 
+								Une passerelle entre nous et entre l’État.
+								Objectifs de livraison (février - mars 2013)">
+		<meta name="publisher" content="Pixel Humain">
+		<meta name="author" lang="fr" content="Pixel Humain" />
+		<meta name="robots" content="Index,Follow" />
+		
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+		<link rel="shortcut icon" href="img/favicon.ico" />
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/main.css">        
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+		<!--img src="img/REGLE_G.png" class="navbar-fixed-top" alt="ruler"/-->
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <span class="brand" >Pixel Humain</span>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="#">Accueil</a></li>
+                            <li><a href="#about">Le Projet</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Discussion</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Nav header</li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!--form class="navbar-form pull-right">
+                            <input class="span2" type="text" placeholder="Email">
+                            <input class="span2" type="password" placeholder="Password">
+                            <button type="submit" class="btn">Sign in</button>
+                        </form-->
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+		
+        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+
+        <div class="container">
+
+            <!-- Main hero unit for a primary marketing message or call to action -->
+            <div class="hero-unit">
+                <h1 class="pull-right">Le Pixel Humain!</h1> 
+             
+				<img class="pull-left" src="img/logo/logo320.png" alt="Logo Pixel Humain"/>
+				
+				<p><br/>PixelHumain ou EchoLocal (nom a voter), <small>appartient aux citoyens</small></p>
+				<br/>
+				<p>Un projet citoyen de démocratie participative qui prend racine à la Réunion portée par l'association Open Atlas <small>(loi 1901 , à but non lucratif)</small>. </p>
+				<p>Une plateforme de discussions et actions citoyennes sur un réseau local (en cours construction). </p>
+				
+				
+				<p>On <span class="text-info">construit cette plateforme de facon participative</span>. </p>
+				<p class="text-info">Objectifs de livraison (février - mars 2013)</p>
+				<a class="btn btn-primary btn-large" href="#participer" role="button" data-toggle="modal"><i class="icon-user"></i> Participer, Partager, Parainer <i class="icon-forward "></i></a>
+								
+				<!-- Modal -->
+				
+				<div id="participer" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3 id="myModalLabel">Suivre le projet, Participer au réseau</h3>
+				  </div>
+				  <div class="modal-body">
+					
+					<ul id="particpateTabs" class="nav nav-tabs">
+						<li class="active"><a href="#you">Vous <small class="fsxs">Citoyen, Société, Association</small></a></li>
+						<li><a href="#sponsor">Votre Réseau <small class="fsxs">Amis, Sociétés, Associations</small></a></li>
+					</ul>
+					
+					<div class="tab-content">
+					  <div class="tab-pane active" id="you">
+						Objectif : Construction participative, partage et collaboration
+						<form>
+							<div class="controls">
+								<div class="controls controls-row">
+									<input type="text" class="span3" id="name" placeholder="Nom Prénom"/> 
+									<input type="text" class="span3" id="email" placeholder="Email"/>
+								</div>
+								<div class="controls controls-row">
+									<!--input type="text" class="span2"  id="address" placeholder="Adresse"/--> 
+									<input type="text" class="span3" id="city" placeholder="Ville"/>
+									<input type="text" class="span3" id="country" value="Réunion" placeholder="Pays"/>
+									<select id="type">
+									  <option>Citoyen</option>
+									  <option>Entrprise</option>
+									  <option>Association</option>
+									  <option>Pouvoir Public(Mairie,Région...)</option>
+									</select>
+									<label class="checkbox">
+									  <input type="checkbox" id="participate"> Je veux agir 
+									</label>
+								</div>
+							</div>
+						</form>
+						<p>
+						Devenir un Pixel, Vous permet d'etre au courant et surtout de donner votre avis et transmettre des idées. 
+						</p>
+						<p>
+						<small>Nous permettant de mieux construire sur des cas réel. On aimerait motiver le partage et la collaboration avec des aller retour constant, pour se rapprocher au mieux de la réalité.</small>
+						</p>
+					  </div>
+					  <div class="tab-pane" id="sponsor">
+						Objectif : Partagez, Connectez , Distribuer, Communiquez
+						<form>
+							<div class="controls">
+								<div class="controls controls-row">
+									<input type="text" class="span3" id="name" placeholder="Nom Prénom"/> 
+									<input type="text" class="span3" id="email" placeholder="Email"/>
+								</div>
+								<div class="controls controls-row">
+									<!--input type="text" class="span2"  id="address" placeholder="Adresse"/--> 
+									<input type="text" class="span3" id="city" placeholder="Ville"/>
+									<input type="text" class="span3" id="country" value="Réunion" placeholder="Pays"/>
+									<select id="type">
+									  <option>Citoyen</option>
+									  <option>Entrprise</option>
+									  <option>Association</option>
+									  <option>Pouvoir Public(Mairie,Région...)</option>
+									</select>
+								</div>
+							</div>
+						</form>
+						<p>
+						Parainer un voisin ou une entreprise, c'est la valoriser, la faire exister, et lui permettre de participer.
+						</p>
+						<p>
+						<small>Le Partage, c'est la base du réseau citoyen, tout le monde existe dans le monde réel, mais trop peu agisse en tant que citoyen parce qu'on ne savait pas comment.
+						<br/>Le Pixel Humain va tenter de résoudre ce vide. Un citoyen doit pour agir dans sa ville et une société doit etre connue pour son expertise.</small>
+						</p>
+					  </div>
+					</div>
+					
+					
+				  </div>
+				  <div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+					<button class="btn btn-primary">Enregistrer</button>
+				  </div>
+				</div>
+				<!-- Modal -->
+				
+			</div>
+			<div class="hero-unit">
+				<div class="accordion" id="accordion2">
+					
+				  <div class="accordion-group">
+					<div class="accordion-heading">
+					  <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+						1min pour comprendre <i class="icon-time pull-right"></i>
+					  </a>
+					</div>
+					<div id="collapseOne" class="accordion-body collapse ">
+					  <div class="accordion-inner">
+						<p>
+						Une plateforme de communication entre citoyens qui appartient aux citoyens, 
+						avec une approche serieuse,ouverte, collaborative avec les pouvoirs publiques.<br/>
+						Parce qu'on aimerait participer un peu plus dans notre ville et que tous ensemble, nous ne faisons qu'un.<br/>
+						<br/>
+						Concrètement :<br/> 
+						Nous aimerions améliorer l'image de la ville, lui donner un visage humain <br/>
+						En appliquant le système des réseaux sociaux du web à la collectivité<br/>
+						Pour une ville aussi connectée que Facebook et aussi ouverte que Wikipedia<br/>
+						Pour une Réflexion publique et une intelligence collective<br/>
+						<br/>
+						Repenser la ville via la participation citoyenne et la transparence<br/>
+						Offrir une Boite à idée : un Système décisionnel ouvert, participatif et démocratique <br/>
+						Proposer un Annuaire interactif des compétences locales pour particuliers et professionnels<br/>
+						</p>
+						
+						<blockquote >
+						<h3 class="text-info">Le Pixel Humain</h3>
+						<p>La société au pixel prêt sur Une Terre Net</p>
+						<p>Une intelligence collective & collaborative </p>
+						<p>L’Innovation au service de la société.</p>
+						<p class="text-info">“Venez mettre votre grain d’Xel ! ”</p>
+						</blockquote>
+						<a class="btn btn-primary btn-large pull-right">En Savoir Plus <i class="icon-forward icon-white"></i></a>
+					  </div>
+					</div>
+				  </div>
+				  
+				  <div class="accordion-group">
+						<div class="accordion-heading">
+						  <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordion2" href="#reseauTab">
+							Le Réseau à déja commencé. <i class="icon-random pull-right"></i>
+						  </a>
+						</div>
+						<div id="reseauTab" class="accordion-body collapse ">
+						  <div class="accordion-inner">
+							<p>On <span class="text-info">construit cette plateforme de facon participative</span>. 
+							<br/>Comment construire ? Sans les citoyens ca ne marchera. plus on est a réfléchir mieux ce sera.
+							<br/>Le Pixel Humain ne se fera pas tout seul, Vous pouvez contribuer à toute les etapes du projet.</p>
+							<img src="img/PHOTO_TIBOR2.png" class="pull-left" width="70px" height="70px"  title="Tibor Katelbach - Développeur et Chef de projet - 06 93 91 85 32" alt=""/>
+							<img src="img/PHOTO_STEPHANIE.png" class="pull-left" width="70px" height="70px" title="Stéphanie Lorente - Direction Graphique - 06 92 60 20 47" alt=""/>
+							<img src="img/PHOTO_ANONYMOUS.png" class="pull-left" width="70px" height="70px" title="Sylvain Barbot - D&eacute;veloppeur et Artisan Écologique" alt=""/>
+							<img src="img/PHOTO_ANONYMOUS.png" class="pull-left" width="70px" height="70px" title="Jerome Gontier - Contributeur" alt=""/>
+							<img src="img/PHOTO_ANONYMOUS.png" class="pull-left" width="70px" height="70px" title="Tatiana Riviére - Marketing" alt=""/>
+							<img src="img/PHOTO_ANONYMOUS.png" class="pull-left" width="70px" height="70px" title="Sebastien Marche - Financier" alt=""/>
+							<img src="img/PHOTO_ANONYMOUS.png" class="pull-left" width="70px" height="70px" title="Cedric Espinasse - Architecte" alt=""/>
+							<img src="img/PHOTO_ANONYMOUS.png" class="pull-left" width="70px" height="70px" title="Pierre Magnin - Médecin" alt=""/>
+
+							<div class="space20">&nbsp;</div>
+							<a class="btn btn-primary btn-large pull-right" href="#participer" role="button" data-toggle="modal"><i class="icon-user"></i> Participer, Partager, Parainer <i class="icon-forward "></i></a>
+							
+						  </div>
+						</div>
+					</div>
+					
+				  <div class="accordion-group">
+					<div class="accordion-heading">
+					  <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+						Nos outils collaboratifs <i class="icon-random pull-right"></i>
+					  </a>
+					  
+					</div>
+					<div id="collapseTwo" class="accordion-body collapse">
+					  <div class="accordion-inner">
+						<p>Pour le moment nos discussion se font sur une mailing Liste : <a href="https://groups.google.com/forum/?hl=fr&fromgroups=#!forum/pixelhumain" target="_blank" class="btn  btn-success">Rejoignez nous <i class="icon-forward icon-white"></i></a></p>
+						<p>Veille ,synthèse d'information partagé <a href="http://groups.diigo.com/group/pixelhumain" target="_blank" class="btn  btn-success">Groupe Pixel Humain sur Diigo <i class="icon-forward icon-white"></i></a></p>
+						<p>suivre notre Activité en cours et à venir <a href="https://trello.com/board/pixel-humain-echolocal/50a3e15a175358d65a0089ef" target="_blank" class="btn btn-success">Pixel Humain sur Trello <i class="icon-forward icon-white"></i></a></p>
+						<p>bientot le BLOG de travail et d'avancement </p>
+
+					  </div>
+					</div>
+				  </div>
+				  
+				  <div class="accordion-group">
+					<div class="accordion-heading">
+					  <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree">
+						Avancements et Directions <i class="icon-check pull-right"></i>
+					  </a>
+					  
+					</div>
+					<div id="collapseThree" class="accordion-body collapse">
+					  <div class="accordion-inner">
+						<p>En cours : Home Page + inscription réseau Alpha : Tibor </p>
+						<p>En cours : Détails des user Story : Tibor + Sylvain</p>
+						<p>En cours : Démarage du Schéma de Base de donnée : Tibor + Sylvain</p>
+						<p>En cours : Dossier Detaillé : Jerome</p>
+						<p>En cours : Préparation du Schema explicatif PH : Tibor et Steph</p>
+						<p>30/11/12 : Confirmation : 66% d'une aide citoyenne pourra etre deduite des impot par le citoyen</p>
+						<p>29/11/12 : Mailling Liste est en place <a href="https://groups.google.com/forum/?hl=fr&fromgroups=#!forum/pixelhumain" target="_blank" class="btn  btn-success">ici</a> </p>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				<blockquote>
+					<p>Vous avez des idées ou des envies n'hésitez pas, partagez les ou elles seront perdues(--Gandhi). 
+					<br/>Vous voulez participez, vous salir les mains, 
+					<br/>Devenir un Pixel Humain, rien de plus simple, suffit de se faire connaitre, on a plein de truc a faire dans le bac a sable.
+					<br/>Plus nombreux on ira plus vite.</p>
+				</blockquote>
+				
+			</div>
+			
+
+        </div> <!-- /container -->
+		<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="js/vendor/jquery-1.8.3.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+		<script src="js/vendor/underscore-min.js"></script>
+		<script src="js/vendor/backbone-min.js"></script>
+		<script src="js/vendor/backbone-localstorage.js"></script>
+        <script src="js/main.js"></script>
+
+        <script>
+			$('#particpateTabs a').click(function (e) {
+			  e.preventDefault();
+			  $(this).tab('show');
+			})
+		
+            /*var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));*/
+        </script>
+    </body>
+</html>
