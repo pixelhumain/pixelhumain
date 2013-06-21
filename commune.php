@@ -1,31 +1,12 @@
 ﻿<?php
 require_once('./config/configDB.php');
 include('./connect.php');
+$title = ( isset($_GET['cp']) ) ? "Commune "."Bras Panon(97412)" : " Page Commune ";
+$keywords = "keywords";
+$description = "description";
+include('struct_header.php');
 ?>
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="fr"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		
-        <title>Liste des Pixels Actifs</title>
-        <meta name="keywords" lang="fr" content="pixel actif">
-		<meta name="description" content="Liste des Pixels Actifs">
-		<meta name="publisher" content="Pixel Humain">
-		<meta name="author" lang="fr" content="Pixel Humain" />
-		<meta name="robots" content="Index,Follow" />
-		
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-		<!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
-		<link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
-		<link rel="shortcut icon" href="img/logo/favicon.gif" />
-        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-        <link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/region.css">
 		<link rel="stylesheet" href="css/select2.css">
     </head>
@@ -48,7 +29,7 @@ include('./connect.php');
 			<div class="wrapper just wf">
 				<a id="logo" class="ib" href="./region.php">
 					<img src="img/logo/logo144.png"  onload="imgLoaded(this)"/>
-					<h1 class="ib"><strong>Pixel Humain </strong>: Commune <?php if( isset($_GET['cp']) ) echo "Bras Panon(97412)";?></h1> 
+					<h1 class="ib"><strong>Pixel Humain </strong>: <?php echo $title;?></h1> 
 				</a>
 				
 				<a href="#" onclick="page = prompt('wiki page name ?'); window.location.href='getWikipediaInfobox.php?page='+page">
@@ -189,17 +170,13 @@ include('./connect.php');
 		
 		<!-- END FOOTER -->
 		
-	    <script type="text/javascript" src="js/vendor/jquery-1.9.1.min.js"></script>
+	    <?php include('struct_footer.php');?>
 		<script type="text/javascript" src="js/vendor/jquery-ui.sortable.min.js"></script>
 		<script type="text/javascript" src="js/vendor/jquery.ui.touch-punch.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
-
-        <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/old/main_live.js"></script>
-		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-		<script type="text/javascript" src="js/select2.js"></script>
-		<script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
-		<script type="text/javascript" src="js/main.commune.js"></script>
+		<script type="text/javascript" src="js/vendor/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="js/vendor/select2.js"></script>
+		<script type="text/javascript" src="js/vendor/jquery.mixitup.min.js"></script>
+		<script type="text/javascript" src="js/commune.js"></script>
 
         <script>
 			$('#particpateTabs a').click(function (e) {
