@@ -18,10 +18,10 @@ on mac  you'll have to simply get the .so that corresponds to your php install
     L'homme qui déplace une montagne commence par déplacer les petites pierres.- Confucius
 
 ###Valorisation de la Collectivité
-* page region 
-* page commune
-* création Commune
-* creation Pixel Actif 
+* page region : liste toutes les communes avec quelques details
+* page commune : liste toutes les activités locales, les elements naturels, propose un annuaire local
+* création Commune : définie par les infos wikipedia, des images, des activités, la natures 
+* creation Pixel Actif : défini par son type, son contact, son action locale
 
 ##Roadmap court terme 
 * Ajouter un Pixel Actif 
@@ -33,6 +33,11 @@ on mac  you'll have to simply get the .so that corresponds to your php install
 Prendre pour habitude d'écrire une doc ou corrigé une doc avant de se lancer dans le code.
 Ce qui permet d'éviter a se taper la fastidieuse tache d'ecriture d'une doc aprés coup.
 Ca permet aussi de tourner 7 fois autour de l'idée avant de perdre son temps a le coder.
+
+##Proof of concept First
+Une bonne facon de procéder pour proposer un nouveau module ou feature au PH, sans perdre de temps et aller droit au but 
+c'est de commencer par une version la plus light possible, pure front end, basé sur une structure JSON. 
+on peut ainsi en discuter, la modifier avant de l'intégrer dans le coeur applicatif.
 
 ##En savoir plus
 * [documentation technique](https://github.com/pixelhumain/pixelhumain/blob/master/doc/presentation.md)
