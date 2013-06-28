@@ -1,0 +1,510 @@
+2013/06/24 12:34:05 [info] [application] $_SERVER=array (
+  'ALCKPath' => 'C:\\Program Files\\Lenovo\\AutoLock',
+  'ALLUSERSPROFILE' => 'C:\\ProgramData',
+  'APPDATA' => 'C:\\Users\\oceatoon\\AppData\\Roaming',
+  'BIN_PATH' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\',
+  'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files',
+  'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files',
+  'CommonProgramW6432' => 'C:\\Program Files\\Common Files',
+  'COMMPath' => 'C:\\Program Files\\Lenovo\\Communications Utility',
+  'COMPUTERNAME' => 'OCEATOON-X220',
+  'ComSpec' => 'C:\\Windows\\system32\\cmd.exe',
+  'configsetroot' => 'C:\\Windows\\ConfigSetRoot',
+  'FP_NO_HOST_CHECK' => 'NO',
+  'HOMEDRIVE' => 'C:',
+  'HOMEPATH' => '\\Users\\oceatoon',
+  'LOCALAPPDATA' => 'C:\\Users\\oceatoon\\AppData\\Local',
+  'LOGONSERVER' => '\\\\OCEATOON-X220',
+  'NUMBER_OF_PROCESSORS' => '4',
+  'OS' => 'Windows_NT',
+  'Path' => 'C:\\Program Files\\Common Files\\Microsoft Shared\\Windows Live;C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\Windows Live;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\ThinkPad\\Bluetooth Software\\;C:\\Program Files\\ThinkPad\\Bluetooth Software\\syswow64;C:\\Program Files\\Broadcom\\WHL\\;C:\\Program Files\\Broadcom\\WHL\\syswow64;C:\\Program Files\\Broadcom\\WHL\\SysWow64\\;C:\\Program Files\\Broadcom\\WHL\\SysWow64\\syswow64;C:\\Program Files\\Common Files\\Lenovo;C:\\Program Files (x86)\\Windows Live\\Shared;C:\\SWTOOLS\\ReadyApps;C:\\Program Files (x86)\\Intel\\Services\\IPT\\;C:\\Program Files (x86)\\Common Files\\Lenovo;C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\php;C:\\ProgramData\\Composer\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files (x86)\\CineForm\\Tools;C:\\Program Files (x86)\\GoPro\\Tools;C:\\Program Files\\nodejs\\;C:\\Program Files (x86)\\Satsuki Decoder Pack\\Filtres;C:\\Users\\oceatoon\\AppData\\Roaming\\npm',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'PHP_COMMAND' => 'php.exe',
+  'PROCESSOR_ARCHITECTURE' => 'x86',
+  'PROCESSOR_ARCHITEW6432' => 'AMD64',
+  'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel',
+  'PROCESSOR_LEVEL' => '6',
+  'PROCESSOR_REVISION' => '2a07',
+  'ProgramData' => 'C:\\ProgramData',
+  'ProgramFiles' => 'C:\\Program Files (x86)',
+  'ProgramFiles(x86)' => 'C:\\Program Files (x86)',
+  'ProgramW6432' => 'C:\\Program Files',
+  'PROMPT' => '$P$G',
+  'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\',
+  'PUBLIC' => 'C:\\Users\\Public',
+  'READYAPPS' => 'C:\\SWTOOLS\\ReadyApps',
+  'SESSIONNAME' => 'Console',
+  'SSH_AGENT_PID' => '13500',
+  'SSH_AUTH_SOCK' => '/tmp/ssh-AEdEK13456/agent.13456',
+  'SWSHARE' => 'C:\\SWSHARE',
+  'SystemDrive' => 'C:',
+  'SystemRoot' => 'C:\\Windows',
+  'TEMP' => 'C:\\Users\\oceatoon\\AppData\\Local\\Temp',
+  'TMP' => 'C:\\Users\\oceatoon\\AppData\\Local\\Temp',
+  'TRPATH' => 'C:\\Program Files (x86)\\Lenovo\\Screen Reading Optimizer\\',
+  'TSMPATH' => 'C:\\Program Files\\ThinkPad\\UltraNav Utility',
+  'TVT' => 'C:\\Program Files (x86)\\Lenovo',
+  'TVTCOMMON' => 'C:\\Program Files (x86)\\Common Files\\Lenovo',
+  'USERDOMAIN' => 'OCEATOON-X220',
+  'USERNAME' => 'oceatoon',
+  'USERPROFILE' => 'C:\\Users\\oceatoon',
+  'windir' => 'C:\\Windows',
+  'windows_tracing_flags' => '3',
+  'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log',
+  'PHP_SELF' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'SCRIPT_NAME' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'SCRIPT_FILENAME' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'PATH_TRANSLATED' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'DOCUMENT_ROOT' => '',
+  'REQUEST_TIME' => 1372077245,
+  'argv' => 
+  array (
+    0 => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+    1 => 'migrate',
+  ),
+  'argc' => 2,
+)
+2013/06/24 12:34:06 [error] [exception.CDbException] could not find driver
+2013/06/24 12:34:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection.' in X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php:388
+Stack trace:
+#0 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php(331): CDbConnection->open()
+#1 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php(309): CDbConnection->setActive(true)
+#2 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\base\CModule.php(388): CDbConnection->init()
+#3 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(443): CModule->getComponent('db')
+#4 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(452): MigrateCommand->getDbConnection()
+#5 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(483): MigrateCommand->getMigrationHistory(-1)
+#6 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(85): MigrateCommand->getNewMigrations()
+#7 [internal function]: MigrateCommand->actionUp(Array)
+#8 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleCommand.php(173): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#9 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleCommandRunner.php(68): CConsoleCommand->run(Array)
+#10 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#11 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\base\CApplication.php(162): CConsoleApplication->processRequest()
+#12 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\yiic.php(34): CApplication->run()
+#13 X:\X_Dev\humanpixel\yii-1.1.13\phyii\console\yiic.php(15): require_once('X:\X_Dev\humanp...')
+#14 {main}
+---
+2013/06/24 12:37:32 [info] [application] $_SERVER=array (
+  'ALCKPath' => 'C:\\Program Files\\Lenovo\\AutoLock',
+  'ALLUSERSPROFILE' => 'C:\\ProgramData',
+  'APPDATA' => 'C:\\Users\\oceatoon\\AppData\\Roaming',
+  'BIN_PATH' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\',
+  'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files',
+  'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files',
+  'CommonProgramW6432' => 'C:\\Program Files\\Common Files',
+  'COMMPath' => 'C:\\Program Files\\Lenovo\\Communications Utility',
+  'COMPUTERNAME' => 'OCEATOON-X220',
+  'ComSpec' => 'C:\\Windows\\system32\\cmd.exe',
+  'configsetroot' => 'C:\\Windows\\ConfigSetRoot',
+  'FP_NO_HOST_CHECK' => 'NO',
+  'HOMEDRIVE' => 'C:',
+  'HOMEPATH' => '\\Users\\oceatoon',
+  'LOCALAPPDATA' => 'C:\\Users\\oceatoon\\AppData\\Local',
+  'LOGONSERVER' => '\\\\OCEATOON-X220',
+  'NUMBER_OF_PROCESSORS' => '4',
+  'OS' => 'Windows_NT',
+  'Path' => 'C:\\Program Files\\Common Files\\Microsoft Shared\\Windows Live;C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\Windows Live;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\ThinkPad\\Bluetooth Software\\;C:\\Program Files\\ThinkPad\\Bluetooth Software\\syswow64;C:\\Program Files\\Broadcom\\WHL\\;C:\\Program Files\\Broadcom\\WHL\\syswow64;C:\\Program Files\\Broadcom\\WHL\\SysWow64\\;C:\\Program Files\\Broadcom\\WHL\\SysWow64\\syswow64;C:\\Program Files\\Common Files\\Lenovo;C:\\Program Files (x86)\\Windows Live\\Shared;C:\\SWTOOLS\\ReadyApps;C:\\Program Files (x86)\\Intel\\Services\\IPT\\;C:\\Program Files (x86)\\Common Files\\Lenovo;C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\php;C:\\ProgramData\\Composer\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files (x86)\\CineForm\\Tools;C:\\Program Files (x86)\\GoPro\\Tools;C:\\Program Files\\nodejs\\;C:\\Program Files (x86)\\Satsuki Decoder Pack\\Filtres;C:\\Users\\oceatoon\\AppData\\Roaming\\npm',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'PHP_COMMAND' => 'php.exe',
+  'PROCESSOR_ARCHITECTURE' => 'x86',
+  'PROCESSOR_ARCHITEW6432' => 'AMD64',
+  'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel',
+  'PROCESSOR_LEVEL' => '6',
+  'PROCESSOR_REVISION' => '2a07',
+  'ProgramData' => 'C:\\ProgramData',
+  'ProgramFiles' => 'C:\\Program Files (x86)',
+  'ProgramFiles(x86)' => 'C:\\Program Files (x86)',
+  'ProgramW6432' => 'C:\\Program Files',
+  'PROMPT' => '$P$G',
+  'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\',
+  'PUBLIC' => 'C:\\Users\\Public',
+  'READYAPPS' => 'C:\\SWTOOLS\\ReadyApps',
+  'SESSIONNAME' => 'Console',
+  'SSH_AGENT_PID' => '13500',
+  'SSH_AUTH_SOCK' => '/tmp/ssh-AEdEK13456/agent.13456',
+  'SWSHARE' => 'C:\\SWSHARE',
+  'SystemDrive' => 'C:',
+  'SystemRoot' => 'C:\\Windows',
+  'TEMP' => 'C:\\Users\\oceatoon\\AppData\\Local\\Temp',
+  'TMP' => 'C:\\Users\\oceatoon\\AppData\\Local\\Temp',
+  'TRPATH' => 'C:\\Program Files (x86)\\Lenovo\\Screen Reading Optimizer\\',
+  'TSMPATH' => 'C:\\Program Files\\ThinkPad\\UltraNav Utility',
+  'TVT' => 'C:\\Program Files (x86)\\Lenovo',
+  'TVTCOMMON' => 'C:\\Program Files (x86)\\Common Files\\Lenovo',
+  'USERDOMAIN' => 'OCEATOON-X220',
+  'USERNAME' => 'oceatoon',
+  'USERPROFILE' => 'C:\\Users\\oceatoon',
+  'windir' => 'C:\\Windows',
+  'windows_tracing_flags' => '3',
+  'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log',
+  'PHP_SELF' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'SCRIPT_NAME' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'SCRIPT_FILENAME' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'PATH_TRANSLATED' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'DOCUMENT_ROOT' => '',
+  'REQUEST_TIME' => 1372077452,
+  'argv' => 
+  array (
+    0 => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+    1 => 'migrate',
+  ),
+  'argc' => 2,
+)
+2013/06/24 12:37:32 [error] [exception.CDbException] could not find driver
+2013/06/24 12:37:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection.' in X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php:388
+Stack trace:
+#0 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php(331): CDbConnection->open()
+#1 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php(309): CDbConnection->setActive(true)
+#2 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\base\CModule.php(388): CDbConnection->init()
+#3 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(443): CModule->getComponent('db')
+#4 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(452): MigrateCommand->getDbConnection()
+#5 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(483): MigrateCommand->getMigrationHistory(-1)
+#6 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(85): MigrateCommand->getNewMigrations()
+#7 [internal function]: MigrateCommand->actionUp(Array)
+#8 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleCommand.php(173): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#9 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleCommandRunner.php(68): CConsoleCommand->run(Array)
+#10 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#11 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\base\CApplication.php(162): CConsoleApplication->processRequest()
+#12 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\yiic.php(34): CApplication->run()
+#13 X:\X_Dev\humanpixel\yii-1.1.13\phyii\console\yiic.php(15): require_once('X:\X_Dev\humanp...')
+#14 {main}
+---
+2013/06/24 12:38:56 [info] [application] $_SERVER=array (
+  'ALCKPath' => 'C:\\Program Files\\Lenovo\\AutoLock',
+  'ALLUSERSPROFILE' => 'C:\\ProgramData',
+  'APPDATA' => 'C:\\Users\\oceatoon\\AppData\\Roaming',
+  'BIN_PATH' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\',
+  'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files',
+  'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files',
+  'CommonProgramW6432' => 'C:\\Program Files\\Common Files',
+  'COMMPath' => 'C:\\Program Files\\Lenovo\\Communications Utility',
+  'COMPUTERNAME' => 'OCEATOON-X220',
+  'ComSpec' => 'C:\\Windows\\system32\\cmd.exe',
+  'configsetroot' => 'C:\\Windows\\ConfigSetRoot',
+  'FP_NO_HOST_CHECK' => 'NO',
+  'HOMEDRIVE' => 'C:',
+  'HOMEPATH' => '\\Users\\oceatoon',
+  'LOCALAPPDATA' => 'C:\\Users\\oceatoon\\AppData\\Local',
+  'LOGONSERVER' => '\\\\OCEATOON-X220',
+  'NUMBER_OF_PROCESSORS' => '4',
+  'OS' => 'Windows_NT',
+  'Path' => 'C:\\Program Files\\Common Files\\Microsoft Shared\\Windows Live;C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\Windows Live;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\ThinkPad\\Bluetooth Software\\;C:\\Program Files\\ThinkPad\\Bluetooth Software\\syswow64;C:\\Program Files\\Broadcom\\WHL\\;C:\\Program Files\\Broadcom\\WHL\\syswow64;C:\\Program Files\\Broadcom\\WHL\\SysWow64\\;C:\\Program Files\\Broadcom\\WHL\\SysWow64\\syswow64;C:\\Program Files\\Common Files\\Lenovo;C:\\Program Files (x86)\\Windows Live\\Shared;C:\\SWTOOLS\\ReadyApps;C:\\Program Files (x86)\\Intel\\Services\\IPT\\;C:\\Program Files (x86)\\Common Files\\Lenovo;C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\php;C:\\ProgramData\\Composer\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files (x86)\\CineForm\\Tools;C:\\Program Files (x86)\\GoPro\\Tools;C:\\Program Files\\nodejs\\;C:\\Program Files (x86)\\Satsuki Decoder Pack\\Filtres;C:\\Users\\oceatoon\\AppData\\Roaming\\npm',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'PHP_COMMAND' => 'php.exe',
+  'PROCESSOR_ARCHITECTURE' => 'x86',
+  'PROCESSOR_ARCHITEW6432' => 'AMD64',
+  'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel',
+  'PROCESSOR_LEVEL' => '6',
+  'PROCESSOR_REVISION' => '2a07',
+  'ProgramData' => 'C:\\ProgramData',
+  'ProgramFiles' => 'C:\\Program Files (x86)',
+  'ProgramFiles(x86)' => 'C:\\Program Files (x86)',
+  'ProgramW6432' => 'C:\\Program Files',
+  'PROMPT' => '$P$G',
+  'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\',
+  'PUBLIC' => 'C:\\Users\\Public',
+  'READYAPPS' => 'C:\\SWTOOLS\\ReadyApps',
+  'SESSIONNAME' => 'Console',
+  'SSH_AGENT_PID' => '13500',
+  'SSH_AUTH_SOCK' => '/tmp/ssh-AEdEK13456/agent.13456',
+  'SWSHARE' => 'C:\\SWSHARE',
+  'SystemDrive' => 'C:',
+  'SystemRoot' => 'C:\\Windows',
+  'TEMP' => 'C:\\Users\\oceatoon\\AppData\\Local\\Temp',
+  'TMP' => 'C:\\Users\\oceatoon\\AppData\\Local\\Temp',
+  'TRPATH' => 'C:\\Program Files (x86)\\Lenovo\\Screen Reading Optimizer\\',
+  'TSMPATH' => 'C:\\Program Files\\ThinkPad\\UltraNav Utility',
+  'TVT' => 'C:\\Program Files (x86)\\Lenovo',
+  'TVTCOMMON' => 'C:\\Program Files (x86)\\Common Files\\Lenovo',
+  'USERDOMAIN' => 'OCEATOON-X220',
+  'USERNAME' => 'oceatoon',
+  'USERPROFILE' => 'C:\\Users\\oceatoon',
+  'windir' => 'C:\\Windows',
+  'windows_tracing_flags' => '3',
+  'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log',
+  'PHP_SELF' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'SCRIPT_NAME' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'SCRIPT_FILENAME' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'PATH_TRANSLATED' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'DOCUMENT_ROOT' => '',
+  'REQUEST_TIME' => 1372077536,
+  'argv' => 
+  array (
+    0 => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+    1 => 'migrate',
+  ),
+  'argc' => 2,
+)
+2013/06/24 12:38:56 [error] [exception.CDbException] could not find driver
+2013/06/24 12:38:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection.' in X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php:388
+Stack trace:
+#0 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php(331): CDbConnection->open()
+#1 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php(309): CDbConnection->setActive(true)
+#2 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\base\CModule.php(388): CDbConnection->init()
+#3 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(443): CModule->getComponent('db')
+#4 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(452): MigrateCommand->getDbConnection()
+#5 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(483): MigrateCommand->getMigrationHistory(-1)
+#6 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(85): MigrateCommand->getNewMigrations()
+#7 [internal function]: MigrateCommand->actionUp(Array)
+#8 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleCommand.php(173): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#9 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleCommandRunner.php(68): CConsoleCommand->run(Array)
+#10 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#11 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\base\CApplication.php(162): CConsoleApplication->processRequest()
+#12 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\yiic.php(34): CApplication->run()
+#13 X:\X_Dev\humanpixel\yii-1.1.13\phyii\console\yiic.php(15): require_once('X:\X_Dev\humanp...')
+#14 {main}
+---
+2013/06/24 14:03:21 [info] [application] $_SERVER=array (
+  'ALCKPath' => 'C:\\Program Files\\Lenovo\\AutoLock',
+  'ALLUSERSPROFILE' => 'C:\\ProgramData',
+  'APPDATA' => 'C:\\Users\\oceatoon\\AppData\\Roaming',
+  'BIN_PATH' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\',
+  'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files',
+  'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files',
+  'CommonProgramW6432' => 'C:\\Program Files\\Common Files',
+  'COMMPath' => 'C:\\Program Files\\Lenovo\\Communications Utility',
+  'COMPUTERNAME' => 'OCEATOON-X220',
+  'ComSpec' => 'C:\\Windows\\system32\\cmd.exe',
+  'configsetroot' => 'C:\\Windows\\ConfigSetRoot',
+  'FP_NO_HOST_CHECK' => 'NO',
+  'HOMEDRIVE' => 'C:',
+  'HOMEPATH' => '\\Users\\oceatoon',
+  'LOCALAPPDATA' => 'C:\\Users\\oceatoon\\AppData\\Local',
+  'LOGONSERVER' => '\\\\OCEATOON-X220',
+  'NUMBER_OF_PROCESSORS' => '4',
+  'OS' => 'Windows_NT',
+  'Path' => 'C:\\Program Files\\Common Files\\Microsoft Shared\\Windows Live;C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\Windows Live;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\ThinkPad\\Bluetooth Software\\;C:\\Program Files\\ThinkPad\\Bluetooth Software\\syswow64;C:\\Program Files\\Broadcom\\WHL\\;C:\\Program Files\\Broadcom\\WHL\\syswow64;C:\\Program Files\\Broadcom\\WHL\\SysWow64\\;C:\\Program Files\\Broadcom\\WHL\\SysWow64\\syswow64;C:\\Program Files\\Common Files\\Lenovo;C:\\Program Files (x86)\\Windows Live\\Shared;C:\\SWTOOLS\\ReadyApps;C:\\Program Files (x86)\\Intel\\Services\\IPT\\;C:\\Program Files (x86)\\Common Files\\Lenovo;C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\php;C:\\ProgramData\\Composer\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files (x86)\\CineForm\\Tools;C:\\Program Files (x86)\\GoPro\\Tools;C:\\Program Files\\nodejs\\;C:\\Program Files (x86)\\Satsuki Decoder Pack\\Filtres;C:\\Users\\oceatoon\\AppData\\Roaming\\npm',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'PHP_COMMAND' => 'php.exe',
+  'PROCESSOR_ARCHITECTURE' => 'x86',
+  'PROCESSOR_ARCHITEW6432' => 'AMD64',
+  'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel',
+  'PROCESSOR_LEVEL' => '6',
+  'PROCESSOR_REVISION' => '2a07',
+  'ProgramData' => 'C:\\ProgramData',
+  'ProgramFiles' => 'C:\\Program Files (x86)',
+  'ProgramFiles(x86)' => 'C:\\Program Files (x86)',
+  'ProgramW6432' => 'C:\\Program Files',
+  'PROMPT' => '$P$G',
+  'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\',
+  'PUBLIC' => 'C:\\Users\\Public',
+  'READYAPPS' => 'C:\\SWTOOLS\\ReadyApps',
+  'SESSIONNAME' => 'Console',
+  'SSH_AGENT_PID' => '13500',
+  'SSH_AUTH_SOCK' => '/tmp/ssh-AEdEK13456/agent.13456',
+  'SWSHARE' => 'C:\\SWSHARE',
+  'SystemDrive' => 'C:',
+  'SystemRoot' => 'C:\\Windows',
+  'TEMP' => 'C:\\Users\\oceatoon\\AppData\\Local\\Temp',
+  'TMP' => 'C:\\Users\\oceatoon\\AppData\\Local\\Temp',
+  'TRPATH' => 'C:\\Program Files (x86)\\Lenovo\\Screen Reading Optimizer\\',
+  'TSMPATH' => 'C:\\Program Files\\ThinkPad\\UltraNav Utility',
+  'TVT' => 'C:\\Program Files (x86)\\Lenovo',
+  'TVTCOMMON' => 'C:\\Program Files (x86)\\Common Files\\Lenovo',
+  'USERDOMAIN' => 'OCEATOON-X220',
+  'USERNAME' => 'oceatoon',
+  'USERPROFILE' => 'C:\\Users\\oceatoon',
+  'windir' => 'C:\\Windows',
+  'windows_tracing_flags' => '3',
+  'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log',
+  'PHP_SELF' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'SCRIPT_NAME' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'SCRIPT_FILENAME' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'PATH_TRANSLATED' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'DOCUMENT_ROOT' => '',
+  'REQUEST_TIME' => 1372082601,
+  'argv' => 
+  array (
+    0 => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+    1 => 'migrate',
+  ),
+  'argc' => 2,
+)
+2013/06/24 14:03:21 [error] [exception.CDbException] could not find driver
+2013/06/24 14:03:21 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection.' in X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php:388
+Stack trace:
+#0 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php(331): CDbConnection->open()
+#1 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php(309): CDbConnection->setActive(true)
+#2 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\base\CModule.php(388): CDbConnection->init()
+#3 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(443): CModule->getComponent('db')
+#4 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(452): MigrateCommand->getDbConnection()
+#5 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(483): MigrateCommand->getMigrationHistory(-1)
+#6 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(85): MigrateCommand->getNewMigrations()
+#7 [internal function]: MigrateCommand->actionUp(Array)
+#8 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleCommand.php(173): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#9 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleCommandRunner.php(68): CConsoleCommand->run(Array)
+#10 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#11 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\base\CApplication.php(162): CConsoleApplication->processRequest()
+#12 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\yiic.php(34): CApplication->run()
+#13 X:\X_Dev\humanpixel\yii-1.1.13\phyii\console\yiic.php(15): require_once('X:\X_Dev\humanp...')
+#14 {main}
+---
+2013/06/24 14:15:35 [info] [application] $_SERVER=array (
+  'ALCKPath' => 'C:\\Program Files\\Lenovo\\AutoLock',
+  'ALLUSERSPROFILE' => 'C:\\ProgramData',
+  'APPDATA' => 'C:\\Users\\oceatoon\\AppData\\Roaming',
+  'BIN_PATH' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\',
+  'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files',
+  'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files',
+  'CommonProgramW6432' => 'C:\\Program Files\\Common Files',
+  'COMMPath' => 'C:\\Program Files\\Lenovo\\Communications Utility',
+  'COMPUTERNAME' => 'OCEATOON-X220',
+  'ComSpec' => 'C:\\Windows\\system32\\cmd.exe',
+  'configsetroot' => 'C:\\Windows\\ConfigSetRoot',
+  'FP_NO_HOST_CHECK' => 'NO',
+  'HOMEDRIVE' => 'C:',
+  'HOMEPATH' => '\\Users\\oceatoon',
+  'LOCALAPPDATA' => 'C:\\Users\\oceatoon\\AppData\\Local',
+  'LOGONSERVER' => '\\\\OCEATOON-X220',
+  'NUMBER_OF_PROCESSORS' => '4',
+  'OS' => 'Windows_NT',
+  'Path' => 'C:\\Program Files\\Common Files\\Microsoft Shared\\Windows Live;C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\Windows Live;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\ThinkPad\\Bluetooth Software\\;C:\\Program Files\\ThinkPad\\Bluetooth Software\\syswow64;C:\\Program Files\\Broadcom\\WHL\\;C:\\Program Files\\Broadcom\\WHL\\syswow64;C:\\Program Files\\Broadcom\\WHL\\SysWow64\\;C:\\Program Files\\Broadcom\\WHL\\SysWow64\\syswow64;C:\\Program Files\\Common Files\\Lenovo;C:\\Program Files (x86)\\Windows Live\\Shared;C:\\SWTOOLS\\ReadyApps;C:\\Program Files (x86)\\Intel\\Services\\IPT\\;C:\\Program Files (x86)\\Common Files\\Lenovo;C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\php;C:\\ProgramData\\Composer\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files (x86)\\CineForm\\Tools;C:\\Program Files (x86)\\GoPro\\Tools;C:\\Program Files\\nodejs\\;C:\\Program Files (x86)\\Satsuki Decoder Pack\\Filtres;C:\\Users\\oceatoon\\AppData\\Roaming\\npm',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'PHP_COMMAND' => 'php.exe',
+  'PROCESSOR_ARCHITECTURE' => 'x86',
+  'PROCESSOR_ARCHITEW6432' => 'AMD64',
+  'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel',
+  'PROCESSOR_LEVEL' => '6',
+  'PROCESSOR_REVISION' => '2a07',
+  'ProgramData' => 'C:\\ProgramData',
+  'ProgramFiles' => 'C:\\Program Files (x86)',
+  'ProgramFiles(x86)' => 'C:\\Program Files (x86)',
+  'ProgramW6432' => 'C:\\Program Files',
+  'PROMPT' => '$P$G',
+  'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\',
+  'PUBLIC' => 'C:\\Users\\Public',
+  'READYAPPS' => 'C:\\SWTOOLS\\ReadyApps',
+  'SESSIONNAME' => 'Console',
+  'SSH_AGENT_PID' => '13500',
+  'SSH_AUTH_SOCK' => '/tmp/ssh-AEdEK13456/agent.13456',
+  'SWSHARE' => 'C:\\SWSHARE',
+  'SystemDrive' => 'C:',
+  'SystemRoot' => 'C:\\Windows',
+  'TEMP' => 'C:\\Users\\oceatoon\\AppData\\Local\\Temp',
+  'TMP' => 'C:\\Users\\oceatoon\\AppData\\Local\\Temp',
+  'TRPATH' => 'C:\\Program Files (x86)\\Lenovo\\Screen Reading Optimizer\\',
+  'TSMPATH' => 'C:\\Program Files\\ThinkPad\\UltraNav Utility',
+  'TVT' => 'C:\\Program Files (x86)\\Lenovo',
+  'TVTCOMMON' => 'C:\\Program Files (x86)\\Common Files\\Lenovo',
+  'USERDOMAIN' => 'OCEATOON-X220',
+  'USERNAME' => 'oceatoon',
+  'USERPROFILE' => 'C:\\Users\\oceatoon',
+  'windir' => 'C:\\Windows',
+  'windows_tracing_flags' => '3',
+  'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log',
+  'PHP_SELF' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'SCRIPT_NAME' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'SCRIPT_FILENAME' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'PATH_TRANSLATED' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'DOCUMENT_ROOT' => '',
+  'REQUEST_TIME' => 1372083335,
+  'argv' => 
+  array (
+    0 => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+    1 => 'migrate',
+  ),
+  'argc' => 2,
+)
+2013/06/24 14:15:35 [error] [exception.CDbException] could not find driver
+2013/06/24 14:15:35 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection.' in X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php:388
+Stack trace:
+#0 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php(331): CDbConnection->open()
+#1 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php(309): CDbConnection->setActive(true)
+#2 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\base\CModule.php(388): CDbConnection->init()
+#3 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(443): CModule->getComponent('db')
+#4 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(452): MigrateCommand->getDbConnection()
+#5 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(483): MigrateCommand->getMigrationHistory(-1)
+#6 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(85): MigrateCommand->getNewMigrations()
+#7 [internal function]: MigrateCommand->actionUp(Array)
+#8 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleCommand.php(173): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#9 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleCommandRunner.php(68): CConsoleCommand->run(Array)
+#10 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#11 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\base\CApplication.php(162): CConsoleApplication->processRequest()
+#12 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\yiic.php(34): CApplication->run()
+#13 X:\X_Dev\humanpixel\yii-1.1.13\phyii\console\yiic.php(15): require_once('X:\X_Dev\humanp...')
+#14 {main}
+---
+2013/06/24 14:17:25 [info] [application] $_SERVER=array (
+  'ALCKPath' => 'C:\\Program Files\\Lenovo\\AutoLock',
+  'ALLUSERSPROFILE' => 'C:\\ProgramData',
+  'APPDATA' => 'C:\\Users\\oceatoon\\AppData\\Roaming',
+  'BIN_PATH' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\',
+  'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files',
+  'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files',
+  'CommonProgramW6432' => 'C:\\Program Files\\Common Files',
+  'COMMPath' => 'C:\\Program Files\\Lenovo\\Communications Utility',
+  'COMPUTERNAME' => 'OCEATOON-X220',
+  'ComSpec' => 'C:\\Windows\\system32\\cmd.exe',
+  'configsetroot' => 'C:\\Windows\\ConfigSetRoot',
+  'FP_NO_HOST_CHECK' => 'NO',
+  'HOMEDRIVE' => 'C:',
+  'HOMEPATH' => '\\Users\\oceatoon',
+  'LOCALAPPDATA' => 'C:\\Users\\oceatoon\\AppData\\Local',
+  'LOGONSERVER' => '\\\\OCEATOON-X220',
+  'NUMBER_OF_PROCESSORS' => '4',
+  'OS' => 'Windows_NT',
+  'Path' => 'C:\\Program Files\\Common Files\\Microsoft Shared\\Windows Live;C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\Windows Live;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\ThinkPad\\Bluetooth Software\\;C:\\Program Files\\ThinkPad\\Bluetooth Software\\syswow64;C:\\Program Files\\Broadcom\\WHL\\;C:\\Program Files\\Broadcom\\WHL\\syswow64;C:\\Program Files\\Broadcom\\WHL\\SysWow64\\;C:\\Program Files\\Broadcom\\WHL\\SysWow64\\syswow64;C:\\Program Files\\Common Files\\Lenovo;C:\\Program Files (x86)\\Windows Live\\Shared;C:\\SWTOOLS\\ReadyApps;C:\\Program Files (x86)\\Intel\\Services\\IPT\\;C:\\Program Files (x86)\\Common Files\\Lenovo;C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\php;C:\\ProgramData\\Composer\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files (x86)\\CineForm\\Tools;C:\\Program Files (x86)\\GoPro\\Tools;C:\\Program Files\\nodejs\\;C:\\Program Files (x86)\\Satsuki Decoder Pack\\Filtres;C:\\Users\\oceatoon\\AppData\\Roaming\\npm',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'PHP_COMMAND' => 'php.exe',
+  'PROCESSOR_ARCHITECTURE' => 'x86',
+  'PROCESSOR_ARCHITEW6432' => 'AMD64',
+  'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel',
+  'PROCESSOR_LEVEL' => '6',
+  'PROCESSOR_REVISION' => '2a07',
+  'ProgramData' => 'C:\\ProgramData',
+  'ProgramFiles' => 'C:\\Program Files (x86)',
+  'ProgramFiles(x86)' => 'C:\\Program Files (x86)',
+  'ProgramW6432' => 'C:\\Program Files',
+  'PROMPT' => '$P$G',
+  'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\',
+  'PUBLIC' => 'C:\\Users\\Public',
+  'READYAPPS' => 'C:\\SWTOOLS\\ReadyApps',
+  'SESSIONNAME' => 'Console',
+  'SSH_AGENT_PID' => '13500',
+  'SSH_AUTH_SOCK' => '/tmp/ssh-AEdEK13456/agent.13456',
+  'SWSHARE' => 'C:\\SWSHARE',
+  'SystemDrive' => 'C:',
+  'SystemRoot' => 'C:\\Windows',
+  'TEMP' => 'C:\\Users\\oceatoon\\AppData\\Local\\Temp',
+  'TMP' => 'C:\\Users\\oceatoon\\AppData\\Local\\Temp',
+  'TRPATH' => 'C:\\Program Files (x86)\\Lenovo\\Screen Reading Optimizer\\',
+  'TSMPATH' => 'C:\\Program Files\\ThinkPad\\UltraNav Utility',
+  'TVT' => 'C:\\Program Files (x86)\\Lenovo',
+  'TVTCOMMON' => 'C:\\Program Files (x86)\\Common Files\\Lenovo',
+  'USERDOMAIN' => 'OCEATOON-X220',
+  'USERNAME' => 'oceatoon',
+  'USERPROFILE' => 'C:\\Users\\oceatoon',
+  'windir' => 'C:\\Windows',
+  'windows_tracing_flags' => '3',
+  'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log',
+  'PHP_SELF' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'SCRIPT_NAME' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'SCRIPT_FILENAME' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'PATH_TRANSLATED' => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+  'DOCUMENT_ROOT' => '',
+  'REQUEST_TIME' => 1372083445,
+  'argv' => 
+  array (
+    0 => 'X:\\X_Dev\\humanpixel\\yii-1.1.13\\phyii\\console\\yiic.php',
+    1 => 'migrate',
+  ),
+  'argc' => 2,
+)
+2013/06/24 14:17:25 [error] [exception.CDbException] could not find driver
+2013/06/24 14:17:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection.' in X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php:388
+Stack trace:
+#0 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php(331): CDbConnection->open()
+#1 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\db\CDbConnection.php(309): CDbConnection->setActive(true)
+#2 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\base\CModule.php(388): CDbConnection->init()
+#3 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(443): CModule->getComponent('db')
+#4 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(452): MigrateCommand->getDbConnection()
+#5 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(483): MigrateCommand->getMigrationHistory(-1)
+#6 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\cli\commands\MigrateCommand.php(85): MigrateCommand->getNewMigrations()
+#7 [internal function]: MigrateCommand->actionUp(Array)
+#8 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleCommand.php(173): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#9 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleCommandRunner.php(68): CConsoleCommand->run(Array)
+#10 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#11 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\base\CApplication.php(162): CConsoleApplication->processRequest()
+#12 X:\X_Dev\humanpixel\yii-1.1.13\phyii\common\lib\Yii\yiic.php(34): CApplication->run()
+#13 X:\X_Dev\humanpixel\yii-1.1.13\phyii\console\yiic.php(15): require_once('X:\X_Dev\humanp...')
+#14 {main}
+---
