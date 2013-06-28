@@ -1,1 +1,0 @@
-{ "options" : { "create" : "tags", "capped" : false, "autoIndexId" : true }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "pixelhumain.tags", "name" : "_id_" } ] }
