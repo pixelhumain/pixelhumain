@@ -58,19 +58,15 @@ return array(
 			),
 		),
 		*/
-		'db' => array(
+		/*'db' => array(
 			'connectionString' => $dbconfig['db.connectionString'],
 			'username' => $dbconfig['db.username'],
 			'password' => $dbconfig['db.password'],
 			'schemaCachingDuration' => YII_DEBUG ? 0 : 86400000, // 1000 days
 			'enableParamLogging' => YII_DEBUG,
 			'charset' => 'utf8'
-		),
-		'mongodb' => array(
-            'class' => 'EMongoClient',
-            'server' => $dbconfig['mongodb.server'].$dbconfig['mongodb.dbname'],
-            'db' => $dbconfig['mongodb.dbname']
-        ),
+		),*/
+		'mongodb' => $dbconfig,
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
@@ -103,6 +99,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'contact@pixelhumain.com',
 	),
 );

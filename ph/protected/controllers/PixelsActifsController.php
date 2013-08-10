@@ -50,6 +50,13 @@ class PixelsActifsController extends Controller {
                     Yii::app()->mongodb->pixelsactifs->insert($newAccount);
                     Yii::app()->session["userId"] = $newAccount["_id"]; 
                     //TODO : send validation mail
+                    $headers="From: Pixel Humain <contact@pixelhumain.com>\r\n".
+    					"Reply-To: contact@pixelhumain.com\r\n".
+    					"MIME-Version: 1.0\r\n".
+    					"Content-type: text/plain; charset=UTF-8";
+                    $body = "Bienvenue au Pixel Humain<br/>Merci de Valider votre inscription en cliquant le ien ci desous<br/>".
+                            "<a href='http://pixelhumain.com'>pixelhumain.com</a>";
+                    mail($_POST['registerEmail'],"Pixel Humain : Valider votre inscription",$body,$headers);
                     //TODO : add an admin notification
                     echo json_encode(array("result"=>true, "id"=>$newAccount["_id"]));
                }else
@@ -96,5 +103,16 @@ class PixelsActifsController extends Controller {
 		} else
 		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
 		exit;
+	}
+	/**
+	 * upon Registration a email is send to the new user's email 
+	 * he must click it to activate his account
+	 * This is cleared by removing the tobeactivated field in the pixelactifs collection
+	 */
+    public function actionValidation()
+	{
+	    //validate the activation code 
+	    //redirect to home page as a connected user 
+	    
 	}
 }

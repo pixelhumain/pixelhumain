@@ -11,6 +11,7 @@
                         <li><a href="index.php#infographic">Le Projet</a></li>
                         <li><a href="index.php#contact">Contact</a></li>
                         <li><a href="index.php?r=pixelsActifs">Réseau</a></li>
+                        <li><a href="index.php?r=financement">Pépète</a></li>
                         <?php if(!isset(Yii::app()->session["userId"])){?>
                         <li id="register">
                             <form id="registerForm" action="" class="navbar-form pull-right">
