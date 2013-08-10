@@ -15,7 +15,7 @@
             J'aimerais aussi vous aider sur le projet <input type="checkbox" id="registerHelpout">
             <div class="hidden" id="registerHelpoutWhat">
                 <?php 
-                  $cursor = Yii::app()->mongodb->jobTypes->findOne( array(), array('list'));
+                 /* $cursor = Yii::app()->mongodb->jobTypes->findOne( array(), array('list'));
                   $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                     'asDropDownList' => false,
                     'name' => 'helpJob',
@@ -25,7 +25,7 @@
                         'placeholder' => "Qu'aimeriez vous faire ?",
                         'width' => '40%',
                         'tokenSeparators' => array(',', ' ')
-                    )));
+                    )));*/
     		    ?>
 		    </div>
            </p>
