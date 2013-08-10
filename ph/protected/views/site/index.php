@@ -368,5 +368,3 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     </div>
 </div>
 <!-- /Modal Gallery fancy Box Like -->
-
-<?php phpinfo();?>
