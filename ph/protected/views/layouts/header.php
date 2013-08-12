@@ -40,3 +40,4 @@
         </div>
     </div>
 </header>
+<?php phpinfo()?>

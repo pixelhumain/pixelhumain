@@ -368,3 +368,27 @@ Stack trace:
 REQUEST_URI=/ph/index.php?r=pixelsActifs
 HTTP_REFERER=http://127.0.0.1/ph/index.php?r=financement
 ---
+2013/08/12 18:46:09 [error] [php] mail() [<a href='function.mail'>function.mail</a>]: Failed to connect to mailserver at &quot;ssl://smtp.googlemail.com&quot; port 465, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\PixelsActifsController.php:59)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): PixelsActifsController->runAction()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): PixelsActifsController->runActionWithFilters()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): PixelsActifsController->run()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php?r=pixelsactifs/register
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\PixelsActifsController.php (59)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/08/12 19:03:13 [error] [php] mail() [<a href='function.mail'>function.mail</a>]: Failed to connect to mailserver at &quot;ssl://smtp.googlemail.com&quot; port 465, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\PixelsActifsController.php:59)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): PixelsActifsController->runAction()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): PixelsActifsController->runActionWithFilters()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): PixelsActifsController->run()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php?r=pixelsactifs/register
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\PixelsActifsController.php (59)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)

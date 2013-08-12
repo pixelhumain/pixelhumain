@@ -25,6 +25,14 @@ class PixelsActifsController extends Controller {
 	public function actionGraph() {
 	    
 	}
+    public function actionActivate($user) {
+        $account = Yii::app()->mongodb->pixelsactifs->findOne(array("_id"=>new MongoId($user)));
+        if($account)
+            Yii::app()->session["userId"] = $newAccount["_id"];
+        
+        $this->redirect(Yii::app()->homeUrl);
+                
+	}
 /**
 	 * Register
 	 * on PH we registration requires only an email 
@@ -55,7 +63,7 @@ class PixelsActifsController extends Controller {
     					"MIME-Version: 1.0\r\n".
     					"Content-type: text/plain; charset=UTF-8";
                     $body = "Bienvenue au Pixel Humain<br/>Merci de Valider votre inscription en cliquant le ien ci desous<br/>".
-                            "<a href='http://pixelhumain.com'>pixelhumain.com</a>";
+                            "<a href='http://pixelhumain.com/index.php?r=pixelsactifs/activate/user/".$newAccount["_id"]."'>pixelhumain.com</a>";
                     mail($_POST['registerEmail'],"Pixel Humain : Valider votre inscription",$body,$headers);
                     //TODO : add an admin notification
                     echo json_encode(array("result"=>true, "id"=>$newAccount["_id"]));
