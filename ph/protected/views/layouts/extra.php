@@ -17,7 +17,7 @@
           	Je m'appel <input id="registerName" value="<?php if($account && isset($account['name']) )echo $account['name'] ?>"/>, <br/>
           	<?php 
                   $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                    'asDropDownList' => false,
+                    'asDropDownList' => true,
                     'name' => 'typePA',
                   	'id' => 'typePA',
                     'value'=>($account && isset($account['type']) ) ? $account['type'] : "citoyen",
