@@ -43,6 +43,7 @@
 		<script src="js/load-image.min.js"></script>
 		<script src="js/bootstrap-image-gallery.min.js"></script>
         <script src="js/d3.min.js"></script>
+        <script src="js/spin.min.js"></script>
         <script src="js/main.js"></script>
         
         <script>

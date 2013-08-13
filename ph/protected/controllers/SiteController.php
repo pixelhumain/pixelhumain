@@ -106,4 +106,5 @@ class SiteController extends Controller
 		Yii::app()->user->logout(true);
 		$this->redirect(Yii::app()->homeUrl);
 	}
+	
 }

@@ -3,7 +3,7 @@
     			
         <div class="navbar-inner">
             <div class="container">
-                <div class="pull-left brand title"><a href="index.php">Pixel Humain</a></div>
+                <div id="logo" class="pull-left brand title"><a id="logoLink" href="index.php">Pixel Humain</a></div>
     			<div class="pull-left yellowph fss p20 ml50">Version 0.001 Lecture Seule</div>
                 <div class="nav-collapse collapse pull-right">
                     <ul class="nav">
@@ -24,7 +24,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon Compte <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <!-- li><a href="#">Thématique</a></li-->
-								<li><a href="#">Mon Graph</a></li>
+								<li><a href="#">Mon PH</a></li>
                                 <li class="divider"></li>
                                 <li><a href="#participer"  target="_blank" role="button" data-toggle="modal">Mon compte</a></li>
                                 <li><a href="index.php?r=site/logout"  role="button" data-toggle="modal">Logout</a></li>
@@ -40,4 +40,3 @@
         </div>
     </div>
 </header>
-<?php phpinfo()?>

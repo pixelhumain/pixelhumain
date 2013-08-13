@@ -5,6 +5,7 @@ $(document).ready(function() {
 		  e.preventDefault();
 		  $(this).tab('show');
 		});*/
+	
 	/* *************************** */
 	/* Toile de delaunay en bg */
 	/* *************************** */
@@ -50,6 +51,7 @@ $(document).ready(function() {
 	$("#registerForm").submit( function(event){
 		log($(this).serialize());
 		event.preventDefault();
+		toggleSpinner();
 		$.ajax({
 		  type: "POST",
 		  url: "index.php?r=pixelsactifs/register",
@@ -63,6 +65,7 @@ $(document).ready(function() {
 				  $("#flashInfo .modal-body").html(data.msg);
 				  $("#flashInfo").modal('show');
 			  }
+			  toggleSpinner();
 		  },
 		  dataType: "json"
 		});
@@ -80,18 +83,17 @@ $(document).ready(function() {
 			params += "registerHelpout="+$("#registerHelpout").prop("checked")+"&";
 		if($("#helpJob").val())
 			params += "helpJob="+$("#helpJob").val();
+		toggleSpinner();
 		$.ajax({
 		  type: "POST",
 		  url: "index.php?r=pixelsactifs/register2",
 		  data: params,
 		  success: function(data){
-			  	  if($("#registerHelpout").prop("checked")){
-			  		$("#jobList").modal('show');
-			  	  }
-			  	  else {
-					  $("#flashInfo .modal-body").html(data.msg);
-					  $("#flashInfo").modal('show');
-			  	  }
+			  	  
+				  $("#flashInfo .modal-body").html(data.msg);
+				  $("#flashInfo").modal('show');
+			  	  
+			  	  toggleSpinner();
 		  },
 		  dataType: "json"
 		});
@@ -106,7 +108,32 @@ $(document).ready(function() {
 	
 	
 });
+function toggleSpinner(){
+	if($("#logoLink").length){
+		$("#logo").html('');
+		var spinner = new Spinner(spinner_opts).spin($("#logo")[0]);
+	} else 
+		$("#logo").html('<a id="logoLink" href="index.php">Pixel Humain</a>');
+}
 
+var spinner_opts = {
+  lines: 9, // The number of lines to draw
+  length: 6, // The length of each line
+  width: 5, // The line thickness
+  radius: 8, // The radius of the inner circle
+  corners: 1, // Corner roundness (0..1)
+  rotate: 47, // The rotation offset
+  direction: 1, // 1: clockwise, -1: counterclockwise
+  color: '#F7E400', // #rgb or #rrggbb
+  speed: 0.7, // Rounds per second
+  trail: 32, // Afterglow percentage
+  shadow: false, // Whether to render a shadow
+  hwaccel: false, // Whether to use hardware acceleration
+  className: 'spinner', // The CSS class to assign to the spinner
+  zIndex: 2e9, // The z-index (defaults to 2000000000)
+  top: '-7px', // Top position relative to parent in px
+  left: 'auto' // Left position relative to parent in px
+};
 /* *************************** */
 /* instance du menu questionnaire*/
 /* *************************** */

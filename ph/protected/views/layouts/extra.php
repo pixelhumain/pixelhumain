@@ -11,21 +11,39 @@
             <br/>En attendant vous pouvez compléter votre inscription ci-dessous</p>
             
           <p>
-          	Je m'appel <input id="registerName"/>, <br/>j'habite au code postal  <input id="registerCP"><br> 
-            J'aimerais aussi vous aider sur le projet <input type="checkbox" id="registerHelpout">
-            <div class="hidden" id="registerHelpoutWhat">
+          	<?php 
+          	    $account = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->pixelsactifs->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
+          	?>
+          	Je m'appel <input id="registerName" value="<?php if($account && isset($account['name']) )echo $account['name'] ?>"/>, <br/>
+          	<?php 
+                  $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
+                    'asDropDownList' => false,
+                    'name' => 'typePA',
+                  	'id' => 'typePA',
+                    'value'=>($account && isset($account['type']) ) ? $account['type'] : "citoyen",
+                    'pluginOptions' => array(
+                        'tags' => array("citoyen","association","entreprise","collectivité"),
+                        'placeholder' => "Vous êtes ?",
+                        'width' => '40%',
+                        'tokenSeparators' => array(',', ' ')
+                    )));
+    		    ?><br> 
+          	j'habite au code postal  <input id="registerCP"  value="<?php if($account && isset($account['cp']) )echo $account['cp'] ?>"><br> 
+            J'aimerais aussi vous aider sur le projet <input type="checkbox" id="registerHelpout" <?php if($account && isset($account['activeOnProject']) )echo "checked" ?>>
+            <div <?php if($account && (!isset($account['activeOnProject']) || !$account['activeOnProject']) ){ ?>class="hidden" <?php }?> id="registerHelpoutWhat">
                 <?php 
-                 /* $cursor = Yii::app()->mongodb->jobTypes->findOne( array(), array('list'));
+                  $cursor = Yii::app()->mongodb->jobTypes->findOne( array(), array('list'));
                   $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                     'asDropDownList' => false,
                     'name' => 'helpJob',
                   	'id' => 'helpJob',
+                    'value'=>($account && isset($account['positions']) ) ? implode(" ", $account['positions']) : "",
                     'pluginOptions' => array(
                         'tags' => $cursor['list'],
                         'placeholder' => "Qu'aimeriez vous faire ?",
                         'width' => '40%',
                         'tokenSeparators' => array(',', ' ')
-                    )));*/
+                    )));
     		    ?>
 		    </div>
            </p>

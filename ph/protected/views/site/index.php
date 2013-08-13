@@ -76,7 +76,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
               
     		  <div class="pull-left">
                   <a class="btn btn-primary btn-large homestead" href="http://blog.pixelhumain.com/" target="_blank"> BLOG </a>
-                  <a class="btn btn-primary btn-large homestead " href="http://groups.diigo.com/group/pixelhumain" target="_blank">Rercherche & Developpement</a>
+                  <a class="btn btn-primary btn-large homestead " href="http://groups.diigo.com/group/pixelhumain" target="_blank">Recherche & Developpement</a>
                   <a  href="https://www.facebook.com/groups/pixelhumain/" target="_blank"><img src="images/fb.jpg" style="vertical-align:middle" /></a>  
                   <a class="btn btn-primary btn-large homestead" href="https://trello.com/board/pixel-humain-echolocal/50a3e15a175358d65a0089ef" target="_blank">Plan d'action </a>
               </div>

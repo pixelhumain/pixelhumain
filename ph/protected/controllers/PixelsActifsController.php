@@ -25,15 +25,25 @@ class PixelsActifsController extends Controller {
 	public function actionGraph() {
 	    
 	}
+	/**
+	 * upon Registration a email is send to the new user's email 
+	 * he must click it to activate his account
+	 * This is cleared by removing the tobeactivated field in the pixelactifs collection
+	 */
     public function actionActivate($user) {
         $account = Yii::app()->mongodb->pixelsactifs->findOne(array("_id"=>new MongoId($user)));
-        if($account)
-            Yii::app()->session["userId"] = $newAccount["_id"];
+        if($account){
+            Yii::app()->session["userId"] = $user;
+            //remove tobeactivated attribute on account
+            Yii::app()->mongodb->pixelsactifs->update(array("_id"=>new MongoId($user)), array('$unset' => array("tobeactivated"=>"")));
+        }
+        //TODO : add notification to the cities,region,departement info panel
         
+        //TODO : redirect to monPH page , inciter le rezotage local
         $this->redirect(Yii::app()->homeUrl);
                 
 	}
-/**
+	/**
 	 * Register
 	 * on PH we registration requires only an email 
 	 * test exists 
@@ -53,19 +63,23 @@ class PixelsActifsController extends Controller {
                     $newAccount = array(
                     			'email'=>$_POST['registerEmail'],
                                 'tobeactivated' => true,
-                                'adminNotified' => false
+                                'adminNotified' => false,
+                                'created' => time()
                                 );
                     Yii::app()->mongodb->pixelsactifs->insert($newAccount);
                     Yii::app()->session["userId"] = $newAccount["_id"]; 
-                    //TODO : send validation mail
-                    $headers="From: Pixel Humain <contact@pixelhumain.com>\r\n".
-    					"Reply-To: contact@pixelhumain.com\r\n".
-    					"MIME-Version: 1.0\r\n".
-    					"Content-type: text/plain; charset=UTF-8";
-                    $body = "Bienvenue au Pixel Humain<br/>Merci de Valider votre inscription en cliquant le ien ci desous<br/>".
-                            "<a href='http://pixelhumain.com/index.php?r=pixelsactifs/activate/user/".$newAccount["_id"]."'>pixelhumain.com</a>";
-                    mail($_POST['registerEmail'],"Pixel Humain : Valider votre inscription",$body,$headers);
+                    //send validation mail
+                    //TODO : make emails as cron jobs
+                    $message = new YiiMailMessage;
+                    $message->view = 'validation';
+                    $message->setSubject('Confirmer votre compte Pixel Humain');
+                    $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
+                    $message->addTo("oceatoon@gmail.com");
+                    $message->from = Yii::app()->params['adminEmail'];
+                    Yii::app()->mail->send($message);
+                    
                     //TODO : add an admin notification
+                    
                     echo json_encode(array("result"=>true, "id"=>$newAccount["_id"]));
                }else
                    echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide."));
@@ -112,15 +126,6 @@ class PixelsActifsController extends Controller {
 		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
 		exit;
 	}
-	/**
-	 * upon Registration a email is send to the new user's email 
-	 * he must click it to activate his account
-	 * This is cleared by removing the tobeactivated field in the pixelactifs collection
-	 */
-    public function actionValidation()
-	{
-	    //validate the activation code 
-	    //redirect to home page as a connected user 
-	    
-	}
+	
+    
 }
