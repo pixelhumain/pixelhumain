@@ -5,7 +5,7 @@ $(document).ready(function() {
 		  e.preventDefault();
 		  $(this).tab('show');
 		});*/
-	TweenMax.staggerFromTo("#logoBanner", 7, {scaleX:0, scaleY:0}, {scaleX:1, scaleY:1},1);
+	TweenMax.staggerFromTo("#logoBanner", 3, {scaleX:0, scaleY:0}, {scaleX:1, scaleY:1},1);
 	initSequence();
 	/* *************************** */
 	/* Toile de delaunay en bg */
@@ -104,7 +104,9 @@ $(document).ready(function() {
 		  dataType: "json"
 		});
 	});
-	
+	$("#registerCP").blur(function(){
+		alert("#registerCP");
+	});
 	$("#registerHelpout").click(function(){
 		if($("#registerHelpout").prop("checked"))
 			$("#registerHelpoutWhat").removeClass("hidden");

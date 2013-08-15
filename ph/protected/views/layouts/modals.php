@@ -4,7 +4,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Inscription Réussit, Étape suivante ?</h3>
   </div>
-  <div class="modal-body" style="max-height:500px" >
+  <div class="modal-body" style="max-height:550px" >
   <p> Un mail de validation vous a été envoyé
    <br/>En attendant vous pouvez compléter votre inscription ci-dessous</p>
     <form id="register2" style="line-height:40px;">
@@ -14,6 +14,10 @@
           	    $account = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->pixelsactifs->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
           	?>
           	<table>
+          	<tr>
+              	<td class="txtright"></td>
+              	<td> <?php if($account && isset($account['email']) )echo $account['email'] ?></td>
+          	</tr>
           	<tr>
               	<td class="txtright">Je m'appel</td>
               	<td> <input id="registerName" name="registerName" value="<?php if($account && isset($account['name']) )echo $account['name'] ?>"/></td>
@@ -30,11 +34,25 @@
                         'pluginOptions' => array('width' => '150px')
                       ));
         		    ?></td>
-    		</tr>    
+    		</tr>   
     		<tr>
-        		<td class="txtright">j'habite au code postal</td>  
+              	<td class="txtright">j'habite en  </td>
+              	<td>
+    		<?php 
+                      $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
+                        'data' => OpenData::$phCountries, 
+                        'name' => 'countryPA',
+                      	'id' => 'countryPA',
+                        'value'=>($account && isset($account['country']) ) ? $account['country'] : "Réunion",
+                        'pluginOptions' => array('width' => '150px')
+                      ));
+        		    ?></td>
+        	</tr> 
+    		<tr>
+        		<td class="txtright">au code postal</td>  
         		<td><input id="registerCP" name="registerCP" class="span2" value="<?php if($account && isset($account['cp']) )echo $account['cp'] ?>"></td>
     		</tr>
+    		
     		<tr> 
                 <td class="txtright">J'aimerais aider le projet</td>
                 <td> <input type="checkbox" id="registerHelpout" name="registerHelpout" <?php if($account && isset($account['activeOnProject']) )echo "checked" ?>></td>

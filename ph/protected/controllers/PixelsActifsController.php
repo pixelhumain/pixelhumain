@@ -110,6 +110,7 @@ class PixelsActifsController extends Controller {
                   if( !empty($_POST['tagsPA']) )
                       $newInfos['tags'] = explode(",", $_POST['tagsPA']);
                   $newInfos['type']=$_POST['typePA'];
+                  $newInfos['country']=$_POST['countryPA'];
                   
                   //if a job in the list doesn't is new , add it to the jobType collection
                   $jobList = Yii::app()->mongodb->jobTypes->findOne(array("_id"=>new MongoId("5202375bc073efb084a9d2aa")));
