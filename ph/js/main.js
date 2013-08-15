@@ -74,25 +74,30 @@ $(document).ready(function() {
 	$("#register2").submit( function(event){
 		event.preventDefault();
 		$("#participer").modal('hide');
-		var params = "";
-		if($("#registerName").val())
-			params += "registerName="+$("#registerName").val()+"&";
-		if($("#registerCP").val())
-			params += "registerCP="+$("#registerCP").val()+"&";
-		if($("#registerHelpout").prop("checked"))
-			params += "registerHelpout="+$("#registerHelpout").prop("checked")+"&";
-		if($("#helpJob").val())
-			params += "helpJob="+$("#helpJob").val();
 		toggleSpinner();
 		$.ajax({
 		  type: "POST",
 		  url: "index.php?r=pixelsactifs/register2",
-		  data: params,
+		  data: $("#register2").serialize(),
 		  success: function(data){
-			  	  
 				  $("#flashInfo .modal-body").html(data.msg);
 				  $("#flashInfo").modal('show');
-			  	  
+			  	  toggleSpinner();
+		  },
+		  dataType: "json"
+		});
+	});
+	$("#inviteForm").submit( function(event){
+		event.preventDefault();
+		$("#invitation").modal('hide');
+		toggleSpinner();
+		$.ajax({
+		  type: "POST",
+		  url: "index.php?r=pixelsactifs/invitation",
+		  data: $("#inviteForm").serialize(),
+		  success: function(data){
+				  $("#flashInfo .modal-body").html(data.msg);
+				  $("#flashInfo").modal('show');
 			  	  toggleSpinner();
 		  },
 		  dataType: "json"

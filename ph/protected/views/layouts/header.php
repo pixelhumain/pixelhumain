@@ -15,7 +15,7 @@
                         <?php if(!isset(Yii::app()->session["userId"])){?>
                         <li id="register">
                             <form id="registerForm" action="" class="navbar-form pull-right">
-                                <input class="span2" type="text" id="registerEmail" placeholder="Email">
+                                <input class="span2" type="text" id="registerEmail" name="registerEmail" placeholder="Email">
                                 <a class="btn btn-warning" href="javascript:;" onclick="$('#registerForm').submit();return false;"  >S'inscrire </a>
                         	</form>
                         </li>
@@ -27,6 +27,7 @@
 								<li><a href="#">Mon PH</a></li>
                                 <li class="divider"></li>
                                 <li><a href="#participer"  target="_blank" role="button" data-toggle="modal">Mon compte</a></li>
+                                <li><a href="#invitation"  target="_blank" role="button" data-toggle="modal">Invitation</a></li>
                                 <li><a href="index.php?r=site/logout"  role="button" data-toggle="modal">Logout</a></li>
                                 
                             </ul>

@@ -5,10 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body>
-   
-
-  </body>
-  <body>
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
       <tr>
         <td align="left" valign="top">
@@ -16,10 +12,11 @@
         </td>
         <td align="left">
            <h3>Bienvenue au Pixel Humain !! </h3>
-           veuillez clicker sur le lien pour confirmer votre compte<br/>
+           Vous avez été invité au projet Pixel Humain par <?php echo $sponsorName?><br/>
+           Veuillez clicker sur le lien pour participer a cette initiative locale pour améliorer votre commune.<br/>
            ou copier le directement dans votre navigateur 
            <br/>
-           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/index.php?r=pixelsactifs/activate/user/<?php echo $user?>">Validation</a>
+           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/index.php?r=pixelsactifs/activate/user/<?php echo $user?>">Confirmer L'invitation</a>
         </td>
       </tr>
       </table>

@@ -324,10 +324,11 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                 </div>
                 
                 <div class="clear"></div>
-                <h2>Partenaire</h2>
+                <h2>Partenaire et Soutien</h2>
                 <div class="pull-left p10">
                     Démocratie Ouverte
                     <br/>Parlement et Citoyen
+                    <br/>Association Unit & Métis (représente 70 associations Réunionaises)
                 </div>
               </div>
             </div>
