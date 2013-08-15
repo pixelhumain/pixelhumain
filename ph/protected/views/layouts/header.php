@@ -3,15 +3,16 @@
     			
         <div class="navbar-inner">
             <div class="container">
-                <div id="logo" class="pull-left brand title"><a id="logoLink" href="index.php">Pixel Humain</a></div>
+                <div id="logo" class="pull-left brand title"><a id="logoLink" href="<?php echo Yii::app()->createUrl('')?>">Pixel Humain</a></div>
     			<div class="pull-left yellowph fss p20 ml50">Version 0.001 Lecture Seule</div>
                 <div class="nav-collapse collapse pull-right">
+                
                     <ul class="nav">
                         
-                        <li><a href="index.php#infographic">Le Projet</a></li>
-                        <li><a href="index.php#contact">Contact</a></li>
-                        <li><a href="index.php?r=pixelsActifs">Réseau</a></li>
-                        <li><a href="index.php?r=financement">Pépète</a></li>
+                        <li><a href="<?php echo Yii::app()->createUrl('index.php#infographic')?>">Le Projet</a></li>
+                        <li><a href="<?php echo Yii::app()->createUrl('index.php#contact')?>">Contact</a></li>
+                        <li><a href="<?php echo Yii::app()->createUrl('index.php/pixelsActifs')?>">Réseau</a></li>
+                        <li><a href="<?php echo Yii::app()->createUrl('index.php/financement')?>">Pépète</a></li>
                         <?php if(!isset(Yii::app()->session["userId"])){?>
                         <li id="register">
                             <form id="registerForm" action="" class="navbar-form pull-right">
@@ -28,7 +29,7 @@
                                 <li class="divider"></li>
                                 <li><a href="#participer"  target="_blank" role="button" data-toggle="modal">Mon compte</a></li>
                                 <li><a href="#invitation"  target="_blank" role="button" data-toggle="modal">Invitation</a></li>
-                                <li><a href="index.php?r=site/logout"  role="button" data-toggle="modal">Logout</a></li>
+                                <li><a href="<?php echo Yii::app()->createUrl('index.php/site/logout')?>"  role="button" data-toggle="modal">Logout</a></li>
                                 
                             </ul>
                         </li>

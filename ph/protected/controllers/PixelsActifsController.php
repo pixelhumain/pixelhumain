@@ -150,7 +150,6 @@ class PixelsActifsController extends Controller {
                 //the sponsored user allready exists 
                 //simply add it to the sponsors conenctions 
                 $where = array("_id" => new MongoId(Yii::app()->session["userId"]));	
-                
                 $connect = (isset($sponsor["connect"])) ? array_push($connect["connect"], $account["_id"]) : array($account["_id"]);
                 Yii::app()->mongodb->pixelsactifs->update($where, array('$set' => array("connect"=>$connect )));
                 echo json_encode(array("result"=>false, "id"=>"accountExist","msg"=>"Merci pour cette action de partage. "));
@@ -184,6 +183,11 @@ class PixelsActifsController extends Controller {
                     Yii::app()->mail->send($message);
                     
                     //TODO : add an admin notification
+                    
+                    //simply add it to the sponsors conenctions 
+                    $where = array("_id" => new MongoId(Yii::app()->session["userId"]));	
+                    $connect = (isset($sponsor["connect"])) ? array_push($connect["connect"], $account["_id"]) : array($account["_id"]);
+                    Yii::app()->mongodb->pixelsactifs->update($where, array('$set' => array("connect"=>$connect )));
                     
                     echo json_encode(array("result"=>true, "id"=>$newAccount["_id"],"msg"=>"Meci pour votre contribution.".
                     																		"<br/> Plus on est nombreux, mieux ca marchera.".

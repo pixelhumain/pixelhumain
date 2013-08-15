@@ -5,7 +5,8 @@ $(document).ready(function() {
 		  e.preventDefault();
 		  $(this).tab('show');
 		});*/
-	
+	TweenMax.staggerFromTo("#logoBanner", 7, {scaleX:0, scaleY:0}, {scaleX:1, scaleY:1},1);
+	initSequence();
 	/* *************************** */
 	/* Toile de delaunay en bg */
 	/* *************************** */
@@ -54,7 +55,7 @@ $(document).ready(function() {
 		toggleSpinner();
 		$.ajax({
 		  type: "POST",
-		  url: "index.php?r=pixelsactifs/register",
+		  url: "index.php/pixelsactifs/register",
 		  data: "registerEmail="+$("#registerEmail").val(),
 		  success: function(data){
 			  if(data.result){
@@ -77,7 +78,7 @@ $(document).ready(function() {
 		toggleSpinner();
 		$.ajax({
 		  type: "POST",
-		  url: "index.php?r=pixelsactifs/register2",
+		  url: "index.php/pixelsactifs/register2",
 		  data: $("#register2").serialize(),
 		  success: function(data){
 				  $("#flashInfo .modal-body").html(data.msg);
@@ -93,7 +94,7 @@ $(document).ready(function() {
 		toggleSpinner();
 		$.ajax({
 		  type: "POST",
-		  url: "index.php?r=pixelsactifs/invitation",
+		  url: "index.php/pixelsactifs/invitation",
 		  data: $("#inviteForm").serialize(),
 		  success: function(data){
 				  $("#flashInfo .modal-body").html(data.msg);
@@ -198,4 +199,13 @@ function log(msg,type){
 	     //alert(msg);
 	  }
 	}
+}
+/* ------------------------------- */
+
+function initSequence(){
+    $.each(initT, function(k,v){
+        log(k,'info');
+        v();
+    });
+    initT = null;
 }

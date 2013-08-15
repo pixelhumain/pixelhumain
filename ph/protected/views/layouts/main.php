@@ -27,24 +27,31 @@
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/mainph.css">
 
    <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-   <script src="js/jquery-1.8.3.min.js"></script>
+   <script src="<?php echo Yii::app()->createUrl('js/jquery-1.8.3.min.js')?>"></script>
+   <script>
+   var initT = new Object();
+   </script>
        <?php //Yii::app()->bootstrap->register(); ?>
 </head>
 
 <body>
 <?php $this->renderPartial('application.views.layouts.header');?>
 <?php echo $content; ?>
-<?php $this->renderPartial('application.views.layouts.extra');?>
+<?php $this->renderPartial('application.views.layouts.modals');?>
 <div class="clear"></div>
 <?php $this->renderPartial('application.views.layouts.footer');?>
-		
-		<script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-		<script src="js/load-image.min.js"></script>
-		<script src="js/bootstrap-image-gallery.min.js"></script>
-        <script src="js/d3.min.js"></script>
-        <script src="js/spin.min.js"></script>
-        <script src="js/main.js"></script>
+
+<?php 
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/TweenMax.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/modernizr-2.6.2-respond-1.1.0.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/load-image.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap-image-gallery.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/d3.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/spin.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/main.js' , CClientScript::POS_END);
+?>		
         
         <script>
 			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -33,7 +33,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                         <p>Un projet citoyen de démocratie participative qui prend racine à la Réunion portée par l'association Open Atlas <br/><small class="fsxs">(loi 19101, but non lucratif)</small>. </p>
                         <p>Une plateforme de discussions et actions citoyennes sur un réseau local <br/>(en cours construction, Recherche de financement). </p>
                     </div>
-                    <img class="pull-left" src="images/logo/logo320.png" alt="Logo Pixel Humain"/>
+                    <img class="pull-left" id="logoBanner" src="<?php echo Yii::app()->createUrl('images/logo/logo320.png')?>" alt="Logo Pixel Humain"/>
                 </div>
                 
                 <div class="item p40">
@@ -52,24 +52,24 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                         Bref reconnecter le virtuel et le réél, le Pixel et l'Humain.
                         </p>
                     </div>
-                    <img class="pull-right" src="images/logo/logo320.png" alt="Logo Pixel Humain"/>
+                    <img class="pull-right" src="<?php echo Yii::app()->createUrl('images/logo/logo320.png')?>" alt="Logo Pixel Humain"/>
                 </div>
                 
                 <div class="item p40">
                     <h2>Sur les épaules des géants!</h2> 
                     <div id="gallery" class="pull-right" data-toggle="modal-gallery" data-target="#modal-gallery" data-selector="a.gallery-item">
                         <div style="margin-bottom:10px;">
-                        <a class="gallery-item " href="images/AFF_TYPO.jpg" ><img src="images/AFF_TYPO.jpg" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO2.jpg" ><img src="images/AFF_TYPO2.jpg" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO3.jpg" ><img src="images/AFF_TYPO3.jpg" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO4.jpg" ><img src="images/AFF_TYPO4.jpg" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO5.jpg" ><img src="images/AFF_TYPO5.jpg" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO6.jpg" ><img src="images/AFF_TYPO6.jpg" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO7.jpg" ><img src="images/AFF_TYPO7.jpg" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO8.jpg" ><img src="images/AFF_TYPO8.jpg" width="100"/></a>
+                        <a class="gallery-item " href="images/AFF_TYPO.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO.jpg')?>" width="100"/></a>
+                        <a class="gallery-item " href="images/AFF_TYPO2.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO2.jpg')?>" width="100"/></a>
+                        <a class="gallery-item " href="images/AFF_TYPO3.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO3.jpg')?>" width="100"/></a>
+                        <a class="gallery-item " href="images/AFF_TYPO4.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO4.jpg')?>" width="100"/></a>
+                        <a class="gallery-item " href="images/AFF_TYPO5.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO5.jpg')?>" width="100"/></a>
+                        <a class="gallery-item " href="images/AFF_TYPO6.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO6.jpg')?>" width="100"/></a>
+                        <a class="gallery-item " href="images/AFF_TYPO7.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO7.jpg')?>" width="100"/></a>
+                        <a class="gallery-item " href="images/AFF_TYPO8.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO8.jpg')?>" width="100"/></a>
                         </div>
-                        <a class="gallery-item " href="images/AFF_TYPO9.jpg" ><img src="images/AFF_TYPO9.jpg" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO10.jpg" ><img src="images/AFF_TYPO10.jpg" width="100"/></a>
+                        <a class="gallery-item " href="images/AFF_TYPO9.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO9.jpg')?>" width="100"/></a>
+                        <a class="gallery-item " href="images/AFF_TYPO10.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO10.jpg')?>" width="100"/></a>
                     </div>
                 </div>
               </div>
@@ -77,7 +77,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     		  <div class="pull-left">
                   <a class="btn btn-primary btn-large homestead" href="http://blog.pixelhumain.com/" target="_blank"> BLOG </a>
                   <a class="btn btn-primary btn-large homestead " href="http://groups.diigo.com/group/pixelhumain" target="_blank">Recherche & Developpement</a>
-                  <a  href="https://www.facebook.com/groups/pixelhumain/" target="_blank"><img src="images/fb.jpg" style="vertical-align:middle" /></a>  
+                  <a  href="https://www.facebook.com/groups/pixelhumain/" target="_blank"><img src="<?php echo Yii::app()->createUrl('images/fb.jpg')?>" style="vertical-align:middle" /></a>  
                   <a class="btn btn-primary btn-large homestead" href="https://trello.com/board/pixel-humain-echolocal/50a3e15a175358d65a0089ef" target="_blank">Plan d'action </a>
               </div>
                 
@@ -229,7 +229,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                     <script type="text/template" id="users-collection-template">
                                 <ul  class="unstyled">
                                   <% _.each(users, function(user) { %>
-                                    <li class="pull-left"><img src="<%= user.avatar %>"  width="70px" height="70px"  title="<%= user.name %> - <%= user.email %>" alt=""/> </li>
+                                    <li class="pull-left"><img src="<?php echo Yii::app()->createUrl('<%= user.avatar %>')?>"  width="70px" height="70px"  title="<%= user.name %> - <%= user.email %>" alt=""/> </li>
                                   <% }); %>
                                 </ul>
                             </script>
@@ -295,10 +295,10 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                 </p>
                 
                 <h2>Bénévoles Actifs</h2>
-                <a href="http://oceatoon.org" target="_blank"><img src="images/oceatoon.png" /></a>
-                <a href="oceatoon.org" target="_blank"><img src="images/StephLorente.jpg" width="90" ></a>
-                <a href="oceatoon.org" target="_blank"><img src="images/JeremyLoreau.jpg" width="110"></a>
-                <a href="http://www.dittongraph.com/#showreel.html" target="_blank"><img src="images/dittongraph.jpg" width="110"></a>
+                <a href="http://oceatoon.org" target="_blank"><img src="<?php echo Yii::app()->createUrl('images/oceatoon.png')?>" /></a>
+                <a href="oceatoon.org" target="_blank"><img src="<?php echo Yii::app()->createUrl('images/StephLorente.jpg')?>" width="90" ></a>
+                <a href="oceatoon.org" target="_blank"><img src="<?php echo Yii::app()->createUrl('images/JeremyLoreau.jpg')?>" width="110"></a>
+                <a href="http://www.dittongraph.com/#showreel.html" target="_blank"><img src="<?php echo Yii::app()->createUrl('images/dittongraph.jpg')?>" width="110"></a>
                 
                 <div class="pull-left">
                     Sylvain Barbot
@@ -344,28 +344,13 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         
         
         <div class="center" id="infographic"> 
-            <img src="images/infographicPH.jpg"/>
+            <img src="<?php echo Yii::app()->createUrl('images/infographicPH.jpg')?>"/>
         </div>
     </div>
     
     <div class="hero-unit center">
-        <img src="images/gandhi.jpg" class="img-rounded" alt="Soyez le changement que vous voulez voir dans le monde. (--Mahatma Gandhi)"/>
+        <img src="<?php echo Yii::app()->createUrl('images/gandhi.jpg')?>" class="img-rounded" alt="Soyez le changement que vous voulez voir dans le monde. (--Mahatma Gandhi)"/>
         </div>
     
 </div> <!-- /container -->
 
-<!-- Modal Gallery fancy Box Like -->
-<div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
-    <div class="modal-header">
-        <a class="close" data-dismiss="modal">&times;</a>
-        <h3 class="modal-title"></h3>
-    </div>
-    <div class="modal-body"><div class="modal-image"></div></div>
-    <div class="modal-footer">
-        <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
-        <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
-        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
-        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
-    </div>
-</div>
-<!-- /Modal Gallery fancy Box Like -->
