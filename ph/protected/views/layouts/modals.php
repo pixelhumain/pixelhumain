@@ -188,3 +188,75 @@
     </div>
 </div>
 <!-- /Modal Gallery fancy Box Like -->
+
+<script>
+initT['modalsInit'] = function(){
+    /* *************************** */
+    /* resgistration Ajax Call*/
+    /* *************************** */
+    $("#registerForm").submit( function(event){
+    	log($(this).serialize());
+    	event.preventDefault();
+    	toggleSpinner();
+    	$.ajax({
+    	  type: "POST",
+    	  url: "index.php/pixelsactifs/register",
+    	  data: "registerEmail="+$("#registerEmail").val(),
+    	  success: function(data){
+    		  if(data.result){
+    			  $("#register").html('<a href="#participer"  target="_blank" role="button" data-toggle="modal">Bienvenue - Suite</a>');
+    			  $("#participer").modal('show');
+    		  }
+    		  else {
+    			  $("#flashInfo .modal-body").html(data.msg);
+    			  $("#flashInfo").modal('show');
+    		  }
+    		  toggleSpinner();
+    	  },
+    	  dataType: "json"
+    	});
+    
+    });
+    $("#register2").submit( function(event){
+    	event.preventDefault();
+    	$("#participer").modal('hide');
+    	toggleSpinner();
+    	$.ajax({
+    	  type: "POST",
+    	  url: "index.php/pixelsactifs/register2",
+    	  data: $("#register2").serialize(),
+    	  success: function(data){
+    			  $("#flashInfo .modal-body").html(data.msg);
+    			  $("#flashInfo").modal('show');
+    		  	  toggleSpinner();
+    	  },
+    	  dataType: "json"
+    	});
+    });
+    $("#inviteForm").submit( function(event){
+    	event.preventDefault();
+    	$("#invitation").modal('hide');
+    	toggleSpinner();
+    	$.ajax({
+    	  type: "POST",
+    	  url: "index.php/pixelsactifs/invitation",
+    	  data: $("#inviteForm").serialize(),
+    	  success: function(data){
+    			  $("#flashInfo .modal-body").html(data.msg);
+    			  $("#flashInfo").modal('show');
+    		  	  toggleSpinner();
+    	  },
+    	  dataType: "json"
+    	});
+    });
+    /*$("#registerCP").blur(function(){
+    	alert("#registerCP");
+    });*/
+    $("#registerHelpout").click(function(){
+    	if($("#registerHelpout").prop("checked"))
+    		$("#registerHelpoutWhat").removeClass("hidden");
+    	else
+    		$("#registerHelpoutWhat").addClass("hidden");
+    });
+};
+</script>

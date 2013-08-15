@@ -39,6 +39,8 @@ font-family: "Homestead";
             <h1>DU PIXEL HUMAIN</h1>
             <h2>QUI CHERCHE FINIT PAR TROUVER</h2>
         </div>
+        <div class="clear"></div>
+        <br/><br/>
     </div>
 </div>
 

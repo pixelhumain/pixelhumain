@@ -53,6 +53,11 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                         </p>
                     </div>
                     <img class="pull-right" src="<?php echo Yii::app()->createUrl('images/logo/logo320.png')?>" alt="Logo Pixel Humain"/>
+                    <script type="text/javascript">
+                    initT['imgZoom'] = function(){
+                    	TweenMax.staggerFromTo("#logoBanner", 3, {scaleX:0, scaleY:0}, {scaleX:1, scaleY:1},1);
+                    };
+                    </script>
                 </div>
                 
                 <div class="item p40">

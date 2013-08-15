@@ -25,7 +25,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon Compte <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <!-- li><a href="#">Thématique</a></li-->
-								<li><a href="<?php echo Yii::app()->createUrl('index.php/pixelactifs/graph')?>">Mon PH</a></li>
+								<li><a href="<?php echo Yii::app()->createUrl('index.php/statistics/graph')?>">Mon PH</a></li>
                                 <li class="divider"></li>
                                 <li><a href="#participer"  target="_blank" role="button" data-toggle="modal">Mon compte</a></li>
                                 <li><a href="#invitation"  target="_blank" role="button" data-toggle="modal">Invitation</a></li>

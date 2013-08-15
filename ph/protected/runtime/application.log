@@ -4917,3 +4917,94 @@ REQUEST_URI=/ph/index.php/financement
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php (130)
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php (112)
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\modals.php (14)
+2013/08/15 13:35:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "statisitics/graph".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statisitics/gra...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/statisitics/graph
+HTTP_REFERER=http://127.0.0.1/ph/index.php/pixelsActifs
+---
+2013/08/15 13:36:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "statisitics/graph".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statisitics/gra...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/statisitics/graph
+HTTP_REFERER=http://127.0.0.1/ph/index.php/pixelsActifs
+---
+2013/08/15 13:36:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "statisitics/graph".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statisitics/gra...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/statisitics/graph
+HTTP_REFERER=http://127.0.0.1/ph/index.php/pixelsActifs
+---
+2013/08/15 13:36:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "statisitics/graph".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statisitics/gra...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/statisitics/graph
+HTTP_REFERER=http://127.0.0.1/ph/index.php/pixelsActifs
+---
+2013/08/15 13:37:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "statisitics/graph".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statisitics/gra...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/statisitics/graph
+HTTP_REFERER=http://127.0.0.1/ph/index.php/pixelsActifs
+---
+2013/08/15 13:37:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "statisitics/graph".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statisitics/gra...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/statisitics/graph
+HTTP_REFERER=http://127.0.0.1/ph/index.php/pixelsActifs
+---
+2013/08/15 13:37:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "statisitics/graph".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statisitics/gra...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/statisitics/graph
+HTTP_REFERER=http://127.0.0.1/ph/index.php/pixelsActifs
+---
+2013/08/15 13:43:12 [error] [php] Undefined variable: message (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\statistics\graph.php:31)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): StatisticsController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): StatisticsController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\StatisticsController.php(16): StatisticsController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): StatisticsController->actionGraph()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): StatisticsController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): StatisticsController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): StatisticsController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/statistics/graph
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\statistics\graph.php (31)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\StatisticsController.php (16)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/08/15 14:20:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "flare.json".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('flare.json')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('flare.json')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statistics/flar...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/statistics/flare.json
+HTTP_REFERER=http://127.0.0.1/ph/index.php/statistics/graph
+---
