@@ -5008,3 +5008,123 @@ Stack trace:
 REQUEST_URI=/ph/index.php/statistics/flare.json
 HTTP_REFERER=http://127.0.0.1/ph/index.php/statistics/graph
 ---
+2013/08/15 18:19:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "flare.json".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('flare.json')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('flare.json')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statistics/flar...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/statistics/flare.json
+HTTP_REFERER=http://127.0.0.1/ph/index.php/statistics/graph
+---
+2013/08/15 18:29:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "texture-noise.png".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('texture-noise.p...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('texture-noise.p...')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statistics/text...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/statistics/texture-noise.png
+HTTP_REFERER=http://127.0.0.1/ph/index.php/statistics/graph
+---
+2013/08/15 19:09:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statistics/css/...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/statistics/css/d3.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/statistics/graph
+---
+2013/08/15 19:09:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('js')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('js')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statistics/js/d...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/statistics/js/d3.layout.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/statistics/graph
+---
+2013/08/15 19:09:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('js')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('js')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statistics/js/d...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/statistics/js/d3.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/statistics/graph
+---
+2013/08/15 19:09:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('js')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('js')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statistics/js/d...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/statistics/js/d3.layout.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/statistics/graph
+---
+2013/08/15 19:11:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "flare.json".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('flare.json')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('flare.json')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statistics/flar...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/statistics/flare.json
+HTTP_REFERER=http://127.0.0.1/ph/index.php/statistics/graph
+---
+2013/08/15 19:47:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "flare.json".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('flare.json')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('flare.json')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statistics/flar...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/statistics/flare.json
+HTTP_REFERER=http://127.0.0.1/ph/index.php/statistics/graph
+---
+2013/08/16 09:27:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "data".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('data')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('data')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('statistics/data')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/statistics/data
+---
+2013/08/16 09:27:49 [error] [php] Undefined variable: pa (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\StatisticsController.php:22)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): StatisticsController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): StatisticsController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): StatisticsController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/statistics/data
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\StatisticsController.php (22)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/08/16 09:27:58 [error] [php] Undefined index: cp (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\StatisticsController.php:22)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): StatisticsController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): StatisticsController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): StatisticsController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/statistics/data
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\StatisticsController.php (22)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)

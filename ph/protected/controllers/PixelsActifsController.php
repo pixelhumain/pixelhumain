@@ -22,9 +22,6 @@ class PixelsActifsController extends Controller {
 	public function actionIndex() {
 	    $this->render("index");
 	}
-	public function actionGraph() {
-	    
-	}
 	/**
 	 * upon Registration a email is send to the new user's email 
 	 * he must click it to activate his account

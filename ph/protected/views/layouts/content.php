@@ -44,6 +44,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/modernizr-2.6.2-respo
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/load-image.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap-image-gallery.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/d3.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/spin.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/main.js' , CClientScript::POS_END);
 ?>		

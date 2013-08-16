@@ -10,7 +10,7 @@ $(document).ready(function() {
 	/* *************************** */
 	/* Toile de delaunay en bg */
 	/* *************************** */
-	/*var w = 1000,
+	var w = 1000,
     h = 1000;
 
 	var vertices = d3.range(2000).map(function(d) {
@@ -33,7 +33,7 @@ $(document).ready(function() {
 	    .data(delaunay)
 	  .enter().append("path")
 	    .attr("class", function(d, i) { return "q" + (i % 9) + "-9"; })
-	    .attr("d", function(d) { return "M" + d.join("L") + "Z"; });*/
+	    .attr("d", function(d) { return "M" + d.join("L") + "Z"; });
 	/* *************************** */
 	
 	/* *************************** */

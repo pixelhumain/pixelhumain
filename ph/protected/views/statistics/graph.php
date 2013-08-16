@@ -1,7 +1,4 @@
 <?php
-$cs = Yii::app()->getClientScript();
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/d3.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/d3.layout.js' , CClientScript::POS_END);
 $this->pageTitle=Yii::app()->name . ' - Graph representation des pixels actifs distribué par Code Postal';
 ?>
 
@@ -17,122 +14,75 @@ h2 {
   
 }
 
-.chart {
-  position : relative;
-  top:0px;
-  left:0px;
-  display: block;
-  margin: auto;
-  margin-top: 60px;
-  font-size: 11px;
-}
-
-rect {
-  stroke: #eee;
-  fill: #aaa;
-  fill-opacity: .8;
-}
-
-rect.parent {
-  cursor: pointer;
-  fill: steelblue;
-}
-
-text {
-  pointer-events: none;
-}
 </style>
 
 <div class="container">
     <br/>
-    <!-- Main hero unit for a primary marketing message or call to action -->
-    
-        <h2>Graph des pixels actifs par Code Postal</h2>
+    <div class="hero-unit">
+        <h2>Graph des Thématiques</h2>
         
   
         <div id="graphBody">
-          <div id="footer">
-            d3.layout.partition
-            <div class="hint">click or option-click to descend or ascend</div>
-          </div>
         </div>
-
         <br/><br/>
-  
+  </div>
 </div>
 
 <script type="text/javascript">
 initT['animError'] = function(){
-(function ani(){
-	  TweenMax.staggerFromTo(".container h2", 4, {scaleX:0.4, scaleY:0.4}, {scaleX:1, scaleY:1},1);
+    (function ani(){
+    	  TweenMax.staggerFromTo(".container h2", 4, {scaleX:0.4, scaleY:0.4}, {scaleX:1, scaleY:1},1);
+    })();
 
-	  var w = 1120,
-	      h = 600,
-	      x = d3.scale.linear().range([0, w]),
-	      y = d3.scale.linear().range([0, h]);
+    var diameter = 960,
+    format = d3.format(",d"),
+    color = d3.scale.category20c();
 
-	  var vis = d3.select("#graphBody").append("div")
-	      .attr("class", "chart")
-	      .style("width", w + "px")
-	      .style("height", h + "px")
-	    .append("svg:svg")
-	      .attr("width", w)
-	      .attr("height", h);
+var bubble = d3.layout.pack()
+    .sort(null)
+    .size([diameter, diameter])
+    .padding(1.5);
 
-	  var partition = d3.layout.partition()
-	      .value(function(d) { return d.size; });
+var svgraph = d3.select("#graphBody").append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+    .attr("class", "bubble");
 
-	  d3.json("/ph/js/flare.json", function(root) {
-	    var g = vis.selectAll("g")
-	        .data(partition.nodes(root))
-	      .enter().append("svg:g")
-	        .attr("transform", function(d) { return "translate(" + x(d.y) + "," + y(d.x) + ")"; })
-	        .on("click", click);
+d3.json("/ph/js/flare.json", function(error, root) {
+  var node = svgraph.selectAll(".node")
+      .data(bubble.nodes(classes(root))
+      .filter(function(d) { return !d.children; }))
+    .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
-	    var kx = w / root.dx,
-	        ky = h / 1;
+  node.append("title")
+      .text(function(d) { return d.className + ": " + format(d.value); });
 
-	    g.append("svg:rect")
-	        .attr("width", root.dy * kx)
-	        .attr("height", function(d) { return d.dx * ky; })
-	        .attr("class", function(d) { return d.children ? "parent" : "child"; });
+  node.append("circle")
+      .attr("r", function(d) { return d.r; })
+      .style("fill", function(d) { return color(d.packageName); });
 
-	    g.append("svg:text")
-	        .attr("transform", transform)
-	        .attr("dy", ".35em")
-	        .style("opacity", function(d) { return d.dx * ky > 12 ? 1 : 0; })
-	        .text(function(d) { return d.name; })
+  node.append("text")
+      .attr("dy", ".3em")
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.className.substring(0, d.r / 3); });
+});
 
-	    d3.select(window)
-	        .on("click", function() { click(root); })
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
 
-	    function click(d) {
-	      if (!d.children) return;
+  function recurse(name, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+    else classes.push({packageName: name, className: node.name, value: node.size});
+  }
 
-	      kx = (d.y ? w - 40 : w) / (1 - d.y);
-	      ky = h / d.dx;
-	      x.domain([d.y, 1]).range([d.y ? 40 : 0, w]);
-	      y.domain([d.x, d.x + d.dx]);
+  recurse(null, root);
+  return {children: classes};
+}
 
-	      var t = g.transition()
-	          .duration(d3.event.altKey ? 7500 : 750)
-	          .attr("transform", function(d) { return "translate(" + x(d.y) + "," + y(d.x) + ")"; });
+d3.select(self.frameElement).style("height", diameter + "px");
 
-	      t.select("rect")
-	          .attr("width", d.dy * kx)
-	          .attr("height", function(d) { return d.dx * ky; });
-
-	      t.select("text")
-	          .attr("transform", transform)
-	          .style("opacity", function(d) { return d.dx * ky > 12 ? 1 : 0; });
-
-	      d3.event.stopPropagation();
-	    }
-
-	    function transform(d) {
-	      return "translate(8," + d.dx * ky / 2 + ")";
-	    }
-	  });
-	})();
 };
 </script>
