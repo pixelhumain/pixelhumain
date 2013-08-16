@@ -3,7 +3,7 @@ $this->pageTitle=Yii::app()->name . ' - Graph representation des pixels actifs d
 ?>
 
 <style>
-.container{
+.graph{
 font-family: "Homestead";
 }
 h2 {
@@ -16,31 +16,28 @@ h2 {
 
 .node {
   border: solid 1px white;
-  font: 10px sans-serif;
+  font: 14px sans-serif;
   line-height: 12px;
   overflow: hidden;
   position: absolute;
   text-indent: 2px;
+  color:#000;
 }
 
 </style>
 
 
-<div class="container">
-    <br/>
-    <div class="hero-unit">
-        <h2>Graph des pixels actifs par Code Postal</h2>
-        
-  
-        <div id="graphBody">
-        </div>
+
+<h2>Graph des pixels actifs par Code Postal</h2>
+
+
+<div id="graphBody">
+</div>
 <form>
   <label><input type="radio" name="mode" value="size" checked> Size</label>
   <label><input type="radio" name="mode" value="count"> Count</label>
 </form>
-        <br/><br/>
-  </div>
-</div>
+
 
 <script type="text/javascript">
 initT['animError'] = function(){
@@ -65,7 +62,7 @@ var div = d3.select("#graphBody").append("div")
 .style("left", margin.left + "px")
 .style("top", margin.top + "px");
 
-d3.json("/ph/js/flare.json", function(error, root) {
+d3.json("/ph/index.php/opendata/data", function(error, root) {
 var node = div.datum(root).selectAll(".node")
   .data(treemap.nodes)
 .enter().append("div")

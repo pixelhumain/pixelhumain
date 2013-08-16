@@ -12,20 +12,21 @@ class StatisticsController extends Controller {
 	public function actionIndex() {
 	    $this->render("index");
 	}
-	public function actionGraph() {
-	   //$this->layout='content';
-	    $this->render("graph".$_GET['num']);
-	}
-    public function actionData() {
-	   $pixelsactifs = Yii::app()->mongodb->pixelsactifs->find();
-	   $parent = array(); 
-	   $children = array();
-	   foreach ($pixelsactifs as $pa){
-	       $cp = (isset($pa["cp"])) ? $pa["cp"] : "none" ;
-	       if(!in_array($cp, $parent)){
-	           array_push($parent, $cp);
-	           echo $cp."<br/>";
-	       }
+	public function actionGraph($type) {
+	   switch ($type) {
+	       case "thematique":
+	           $page = "thematique";
+	           break;
+	       case "cp":
+	          $page = "cp";
+	           break;
+	       case "metier":
+	          $page = "metier";
+	           break;
+	       default:
+	          $page = "cp";
 	   }
+	   $this->render($page);
 	}
+    
 }
