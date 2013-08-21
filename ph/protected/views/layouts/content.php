@@ -35,12 +35,8 @@
 </head>
 
 <body>
-<div class="container graph">
-    <br/>
-    <div class="hero-unit">
+
 <?php echo $content; ?>
-	</div>
-	</div>
 <?php 
 $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/TweenMax.min.js' , CClientScript::POS_END);

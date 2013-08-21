@@ -1,4 +1,7 @@
 <?php
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/TweenMax.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/d3.min.js' , CClientScript::POS_END);
 $this->pageTitle=Yii::app()->name . ' - Graph representation des pixels actifs distribué par Code Postal';
 ?>
 
@@ -13,17 +16,36 @@ h2 {
   color: #324553;
   
 }
+circle {
+  fill: rgb(31, 119, 180);
+  fill-opacity: .25;
+  stroke: rgb(31, 119, 180);
+  stroke-width: 1px;
+}
 
+.leaf circle {
+  fill: #ff7f0e;
+  fill-opacity: 1;
+}
+
+text {
+  font: 10px sans-serif;
+}
+.graph{
+z-index:0;
+}
+#graphSVG{
+	position:relative;
+	z-index:10000;
+	height:1000px;
+}
 </style>
 
-<div class="container">
+<div class="container graph">
     <br/>
     <div class="hero-unit">
         <h2>Graph des Thématiques</h2>
-        
-  
         <div id=graphSVG></div>
-        <br/><br/>
   </div>
 </div>
 
@@ -40,13 +62,13 @@ var pack = d3.layout.pack()
     .size([diameter - 4, diameter - 4])
     .value(function(d) { return d.size; });
 
-var svg = d3.select("graphSVG").append("svg")
+var svg = d3.select("#graphSVG").append("svg")
     .attr("width", diameter)
     .attr("height", diameter)
   .append("g")
     .attr("transform", "translate(2,2)");
 
-d3.json("/ph/js/flare.json", function(error, root) {
+d3.json("/ph/index.php/opendata/cp", function(error, root) {
   var node = svg.datum(root).selectAll(".node")
       .data(pack.nodes)
     .enter().append("g")
@@ -66,7 +88,6 @@ d3.json("/ph/js/flare.json", function(error, root) {
 });
 
 d3.select(self.frameElement).style("height", diameter + "px");
-    
 
 };
 </script>

@@ -16,7 +16,7 @@ $ct = $region->find();
 <header class="ns">
 	<div class="wrapper just wf">
 		<a id="logo" class="ib" href="./decouvrir">
-			<img src="images/logo/logo144.png"  onload="imgLoaded(this)"/>
+			<img src="<?php echo Yii::app()->createUrl('images/logo/logo144.png')?>"  onload="imgLoaded(this)"/>
 			<h1 class="ib"><strong> </strong>Région Réunion (974 - <?php echo $ct->count();?> communes)</h1> 
 		</a>
 		
@@ -124,7 +124,7 @@ $ct = $region->find();
 		<li class="mix <?php echo $commune['geoPosition']?> <?php echo $commune['activity']?> <?php echo $commune['natures']?>" data-name="<?php echo $commune['name']?>" data-area="<?php echo $commune['superficie']?>">
 			<div class="meta name">
 				<div class="img_wrapper">
-					<a href="./decouvrir/type/commune/id/<?php echo $commune['codepostal']?>"><img src="<?php echo $commune['imgValo']?>" onload="imgLoaded(this)"/></a>
+					<a href="./decouvrir/type/commune/id/<?php echo $commune['codepostal']?>"><img src="<?php echo Yii::app()->createUrl($commune['imgValo'])?>" onload="imgLoaded(this)"/></a>
 				</div>
 				<div class="titles">
 					<h2><?php echo $commune['name']?></h2>

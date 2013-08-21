@@ -38,7 +38,9 @@ return array(
 			'ipFilters'=>array('127.0.0.1','::1'),
         	'generatorPaths' => array('bootstrap.gii'),
 		),
-		
+		/*'importcsv'=>array(
+            'path'=>'upload/importCsv/', // path to folder for saving csv file and file with import params
+        ),*/
 	),
 
 	// application components
@@ -61,9 +63,9 @@ return array(
 			),
 		),
 		/*'db' => array(
-			'connectionString' => $dbconfig['db.connectionString'],
-			'username' => $dbconfig['db.username'],
-			'password' => $dbconfig['db.password'],
+			'connectionString' => $mysqldbconfig['db.connectionString'],
+			'username' => $mysqldbconfig['db.username'],
+			'password' => $mysqldbconfig['db.password'],
 			'schemaCachingDuration' => YII_DEBUG ? 0 : 86400000, // 1000 days
 			'enableParamLogging' => YII_DEBUG,
 			'charset' => 'utf8'

@@ -13,7 +13,7 @@ $ct = $region->find();
 <header class="ns">
 	<div class="wrapper just wf">
 		<a id="logo" class="ib" href="./region.php">
-			<img src="img/logo/logo144.png"  onload="imgLoaded(this)"/>
+			<img src="<?php echo Yii::app()->createUrl('images/logo/logo144.png')?>"  onload="imgLoaded(this)"/>
 			<h1 class="ib"><strong>Pixel Humain </strong>: Région Réunion (974 - <?php echo $ct->count();?> communes)</h1> 
 		</a>
 		
@@ -33,8 +33,8 @@ $ct = $region->find();
 	
 	<nav class="controls just">
 		<div class="group" id="Sorts">
-			<div class="button " id="ToList"><i></i>List View</div>
-			<div class="button" id="ToGrid"><i></i>Grid View</div>
+			<div class="button " id="ToList"><a href="<?php echo Yii::app()->createUrl('index.php/decouvrir')?>">List View</a></div>
+			<div class="button" id="ToGrid"><a href="<?php echo Yii::app()->createUrl('index.php/decouvrir')?>">Grid View</a></div>
 			<div class="button active" id="ToMap"><i></i>Map View</div>
 		</div>
 		<div class="group" id="Filters">

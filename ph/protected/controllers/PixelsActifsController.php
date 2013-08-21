@@ -52,8 +52,10 @@ class PixelsActifsController extends Controller {
 	    if(Yii::app()->request->isAjaxRequest && isset($_POST['registerEmail']) && !empty($_POST['registerEmail']))
 		{
             $account = Yii::app()->mongodb->pixelsactifs->findOne(array("email"=>$_POST['registerEmail']));
-            if($account)
+            if($account){
+                Yii::app()->session["userId"] = $account["_id"]; 
                 echo json_encode(array("result"=>false, "id"=>"accountExist","msg"=>"Ce compte existe déjà."));
+            }
             else {
                 //validate isEmail
                if(preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$_POST['registerEmail'])) { 

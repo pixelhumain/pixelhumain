@@ -27,17 +27,21 @@ h2 {
 </style>
 
 
-
-<h2>Graph des pixels actifs par Code Postal</h2>
-
-
-<div id="graphBody">
-</div>
+<div class="container graph">
+    <br/>
+    <div class="hero-unit">
+        <h2>Graph des pixels actifs par Code Postal</h2>
+        
+  
+        <div id="graphBody">
+        </div>
 <form>
   <label><input type="radio" name="mode" value="size" checked> Size</label>
   <label><input type="radio" name="mode" value="count"> Count</label>
 </form>
-
+        <br/><br/>
+  </div>
+</div>
 
 <script type="text/javascript">
 initT['animError'] = function(){
@@ -62,7 +66,7 @@ var div = d3.select("#graphBody").append("div")
 .style("left", margin.left + "px")
 .style("top", margin.top + "px");
 
-d3.json("/ph/index.php/opendata/data", function(error, root) {
+d3.json("/ph/index.php/opendata/cp", function(error, root) {
 var node = div.datum(root).selectAll(".node")
   .data(treemap.nodes)
 .enter().append("div")

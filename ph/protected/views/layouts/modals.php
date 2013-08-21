@@ -1,4 +1,30 @@
 <!-- Modal -->
+<div id="loginForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">S'inscrire ou se Connecter :</h3>
+  </div>
+  <div class="modal-body">
+  	<p> S'inscrire pour soutenir le projet ou simplement suivre son avancement
+   	<br/>et si vous etes deja inscrit , connectez vous avec votre email d'inscription.</p>
+    <form id="registerForm" action="">
+    	<section>
+        	<table>
+              	<tr>
+                  	<td class="txtright"><input class="span2" type="text" id="registerEmail" name="registerEmail" placeholder="Email" ></td>
+                  	<td> <a class="btn btn-warning" href="javascript:;" onclick="$('#registerForm').submit();return false;"  >S'inscrire  ou se Connecter</a></td>
+              	</tr>
+            </table>
+        </section>
+	</form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+  </div>
+</div>
+<!-- Modal -->
+
+<!-- Modal -->
 <div id="participer" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -14,87 +40,87 @@
           	    $account = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->pixelsactifs->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
           	?>
           	<table>
-          	<tr>
-              	<td class="txtright"></td>
-              	<td> <?php if($account && isset($account['email']) )echo $account['email'] ?></td>
-          	</tr>
-          	<tr>
-              	<td class="txtright">Je m'appel</td>
-              	<td> <input id="registerName" name="registerName" value="<?php if($account && isset($account['name']) )echo $account['name'] ?>"/></td>
-          	</tr>
-          	<tr>
-              	<td class="txtright">Je m'inscrit en tant que  </td>
-              	<td>
-              	<?php 
-                      $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                        'data' => array("citoyen"=>"citoyen","association"=>"association","entreprise"=>"entreprise","collectivité"=>"collectivité"), 
-                        'name' => 'typePA',
-                      	'id' => 'typePA',
-                        'value'=>($account && isset($account['type']) ) ? $account['type'] : "citoyen",
-                        'pluginOptions' => array('width' => '150px')
-                      ));
-        		    ?></td>
-    		</tr>   
-    		<tr>
-              	<td class="txtright">j'habite en  </td>
-              	<td>
-    		<?php 
-                      $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                        'data' => OpenData::$phCountries, 
-                        'name' => 'countryPA',
-                      	'id' => 'countryPA',
-                        'value'=>($account && isset($account['country']) ) ? $account['country'] : "Réunion",
-                        'pluginOptions' => array('width' => '150px')
-                      ));
-        		    ?></td>
-        	</tr> 
-    		<tr>
-        		<td class="txtright">au code postal</td>  
-        		<td><input id="registerCP" name="registerCP" class="span2" value="<?php if($account && isset($account['cp']) )echo $account['cp'] ?>"></td>
-    		</tr>
-    		
-    		<tr> 
-                <td class="txtright">J'aimerais aider le projet</td>
-                <td> <input type="checkbox" id="registerHelpout" name="registerHelpout" <?php if($account && isset($account['activeOnProject']) )echo "checked" ?>></td>
-            </tr>
-            <tr <?php if($account && (!isset($account['activeOnProject']) || !$account['activeOnProject']) ){ ?>class="hidden" <?php }?> id="registerHelpoutWhat">
-                <td class="txtright">en tant que </td>
-                <td>
-                    <?php 
-                      $cursor = Yii::app()->mongodb->jobTypes->findOne( array(), array('list'));
-                      $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                        'asDropDownList' => false,
-                        'name' => 'helpJob',
-                      	'id' => 'helpJob',
-                        'value'=>($account && isset($account['positions']) ) ? implode(",", $account['positions']) : "",
-                        'pluginOptions' => array(
-                            'tags' => $cursor['list'],
-                            'placeholder' => "Qu'aimeriez vous faire ?",
-                            'width' => '100%',
-                            'tokenSeparators' => array(',', ' ')
-                        )));
-        		    ?>
-    		    </td>
-		    </tr>
-		    <tr >
-                <td class="txtright">Mots clefs vous décrivant </td>
-                <td>
-                    <?php 
-                      $cursor = Yii::app()->mongodb->tags->findOne( array(), array('list'));
-                      $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                        'asDropDownList' => false,
-                        'name' => 'tagsPA',
-                      	'id' => 'tagsPA',
-                        'value'=>($account && isset($account['tags']) ) ? implode(",", $account['tags']) : "",
-                        'pluginOptions' => array(
-                            'tags' => $cursor['list'],
-                            'placeholder' => "Mots clefs ?",
-                            'width' => '100%',
-                            'tokenSeparators' => array(',', ' ')
-                        )));
-        		    ?>
-    		    </td>
-		    </tr>
+              	<tr>
+                  	<td class="txtright"></td>
+                  	<td> <?php if($account && isset($account['email']) )echo $account['email'] ?></td>
+              	</tr>
+              	<tr>
+                  	<td class="txtright">Je m'appel</td>
+                  	<td> <input id="registerName" name="registerName" value="<?php if($account && isset($account['name']) )echo $account['name'] ?>"/></td>
+              	</tr>
+              	<tr>
+                  	<td class="txtright">Je m'inscrit en tant que  </td>
+                  	<td>
+                  	<?php 
+                          $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
+                            'data' => array("citoyen"=>"citoyen","association"=>"association","entreprise"=>"entreprise","collectivité"=>"collectivité"), 
+                            'name' => 'typePA',
+                          	'id' => 'typePA',
+                            'value'=>($account && isset($account['type']) ) ? $account['type'] : "citoyen",
+                            'pluginOptions' => array('width' => '150px')
+                          ));
+            		    ?></td>
+        		</tr>   
+        		<tr>
+                  	<td class="txtright">j'habite en  </td>
+                  	<td>
+        		<?php 
+                          $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
+                            'data' => OpenData::$phCountries, 
+                            'name' => 'countryPA',
+                          	'id' => 'countryPA',
+                            'value'=>($account && isset($account['country']) ) ? $account['country'] : "Réunion",
+                            'pluginOptions' => array('width' => '150px')
+                          ));
+            		    ?></td>
+            	</tr> 
+        		<tr>
+            		<td class="txtright">au code postal</td>  
+            		<td><input id="registerCP" name="registerCP" class="span2" value="<?php if($account && isset($account['cp']) )echo $account['cp'] ?>"></td>
+        		</tr>
+        		
+        		<tr> 
+                    <td class="txtright">J'aimerais aider le projet</td>
+                    <td> <input type="checkbox" id="registerHelpout" name="registerHelpout" <?php if($account && isset($account['activeOnProject']) )echo "checked" ?>></td>
+                </tr>
+                <tr <?php if($account && (!isset($account['activeOnProject']) || !$account['activeOnProject']) ){ ?>class="hidden" <?php }?> id="registerHelpoutWhat">
+                    <td class="txtright">en tant que </td>
+                    <td>
+                        <?php 
+                          $cursor = Yii::app()->mongodb->jobTypes->findOne( array(), array('list'));
+                          $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
+                            'asDropDownList' => false,
+                            'name' => 'helpJob',
+                          	'id' => 'helpJob',
+                            'value'=>($account && isset($account['positions']) ) ? implode(",", $account['positions']) : "",
+                            'pluginOptions' => array(
+                                'tags' => $cursor['list'],
+                                'placeholder' => "Qu'aimeriez vous faire ?",
+                                'width' => '100%',
+                                'tokenSeparators' => array(',', ' ')
+                            )));
+            		    ?>
+        		    </td>
+    		    </tr>
+    		    <tr >
+                    <td class="txtright">Mots clefs vous décrivant </td>
+                    <td>
+                        <?php 
+                          $cursor = Yii::app()->mongodb->tags->findOne( array(), array('list'));
+                          $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
+                            'asDropDownList' => false,
+                            'name' => 'tagsPA',
+                          	'id' => 'tagsPA',
+                            'value'=>($account && isset($account['tags']) ) ? implode(",", $account['tags']) : "",
+                            'pluginOptions' => array(
+                                'tags' => $cursor['list'],
+                                'placeholder' => "Mots clefs ?",
+                                'width' => '100%',
+                                'tokenSeparators' => array(',', ' ')
+                            )));
+            		    ?>
+        		    </td>
+    		    </tr>
           </table>
              
         </section>
@@ -158,6 +184,37 @@
 <!-- Modal -->
 
 <!-- Modal -->
+<div id="boiteIdee" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Proposer votre idée</h3>
+  </div>
+  <div class="modal-body">
+    <p> Ce projet est un réseau social ouvert, un squelette de module d'interet general, qui accueillera 
+    toute vos idées qui s'orienteront vers l'interet général.</p>
+    <form id="ideaForm" style="line-height:40px;">
+        <section>
+        	<select class="basic">
+              <option value="">Select something…</option>
+              <option>Lorem</option>
+              <option>Ipsum</option>
+              <option>Dolor</option>
+              <option>Sit</option>
+              <option>Amet</option>
+            </select>
+             
+        </section>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+    <button class="btn btn-primary" id="submitInvite" onclick="$('#inviteForm').submit();">Enregistrer</button>
+  </div>
+</div>
+<!-- Modal -->
+
+
+<!-- Modal -->
 <div id="flashInfo" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -171,7 +228,6 @@
   </div>
 </div>
 <!-- Modal -->
-
 
 <!-- Modal Gallery fancy Box Like -->
 <div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
@@ -197,6 +253,7 @@ initT['modalsInit'] = function(){
     $("#registerForm").submit( function(event){
     	log($(this).serialize());
     	event.preventDefault();
+    	$("#loginForm").modal('hide');
     	toggleSpinner();
     	$.ajax({
     	  type: "POST",
@@ -204,12 +261,15 @@ initT['modalsInit'] = function(){
     	  data: "registerEmail="+$("#registerEmail").val(),
     	  success: function(data){
     		  if(data.result){
-    			  $("#register").html('<a href="#participer"  target="_blank" role="button" data-toggle="modal">Bienvenue - Suite</a>');
-    			  $("#participer").modal('show');
+        		  window.location.reload();
     		  }
     		  else {
-    			  $("#flashInfo .modal-body").html(data.msg);
-    			  $("#flashInfo").modal('show');
+				  if(data.id == "accountExist")
+					  window.location.reload();
+				  else {
+        			  $("#flashInfo .modal-body").html(data.msg);
+        			  $("#flashInfo").modal('show');
+				  }
     		  }
     		  toggleSpinner();
     	  },

@@ -13,14 +13,18 @@ class StatisticsController extends Controller {
 	    $this->render("index");
 	}
 	public function actionGraph($type) {
+	    
 	   switch ($type) {
 	       case "thematique":
+	           $this->layout = "blanck";
 	           $page = "thematique";
 	           break;
-	       case "cp":
-	          $page = "cp";
+	       case "cpCount":
+	           $this->layout = "blanck";
+	          $page = "cpCount";
 	           break;
 	       case "metier":
+	          $this->layout = "blanck";
 	          $page = "metier";
 	           break;
 	       default:
