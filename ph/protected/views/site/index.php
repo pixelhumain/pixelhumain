@@ -64,17 +64,24 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                     <h2>Sur les épaules des géants!</h2> 
                     <div id="gallery" class="pull-right" data-toggle="modal-gallery" data-target="#modal-gallery" data-selector="a.gallery-item">
                         <div style="margin-bottom:10px;">
-                        <a class="gallery-item " href="images/AFF_TYPO.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO.jpg')?>" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO2.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO2.jpg')?>" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO3.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO3.jpg')?>" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO4.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO4.jpg')?>" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO5.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO5.jpg')?>" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO6.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO6.jpg')?>" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO7.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO7.jpg')?>" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO8.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO8.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_EVENEMENTS.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_EVENEMENTS.jpg')?>" width="100" /></a>
+                            <a class="gallery-item " href="images/AFF_OPENSOURCE.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_OPENSOURCE.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_BDB.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_BDB.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_RECRUTEMENT.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_RECRUTEMENT.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_TYPO.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_TYPO2.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO2.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_TYPO3.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO3.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_TYPO4.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO4.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_TYPO5.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO5.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_TYPO6.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO6.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_TYPO7.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO7.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_TYPO8.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO8.jpg')?>" width="100"/></a>
+                            
+                            <a class="gallery-item " href="images/AFF_TYPO9.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO9.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_TYPO10.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO10.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_TYPO11.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO11.jpg')?>" width="100"/></a>
+                            <a class="gallery-item " href="images/AFF_TYPO12.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO12.jpg')?>" width="100"/></a>
                         </div>
-                        <a class="gallery-item " href="images/AFF_TYPO9.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO9.jpg')?>" width="100"/></a>
-                        <a class="gallery-item " href="images/AFF_TYPO10.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_TYPO10.jpg')?>" width="100"/></a>
                     </div>
                 </div>
               </div>

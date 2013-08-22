@@ -45,7 +45,10 @@ class SiteController extends Controller
 				$this->render('error', $error);
 		}
 	}
-
+    public function actionPage($id) {
+	   
+	   $this->render($id);
+	}
 	/**
 	 * Displays the contact page
 	 */

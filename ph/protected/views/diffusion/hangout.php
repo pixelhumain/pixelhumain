@@ -5,7 +5,7 @@ h2 {
   top:0px;
   left:0px;
   color: #324553;
-  
+  z-index:0;
 }
 
 		

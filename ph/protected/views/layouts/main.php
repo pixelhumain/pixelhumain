@@ -45,6 +45,7 @@
 $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/TweenMax.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/modernizr-2.6.2-respond-1.1.0.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/prefixfree.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/load-image.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap-image-gallery.min.js' , CClientScript::POS_END);

@@ -1,6 +1,7 @@
 /* ==========================================================================
    Oceatoon custom styles
    ========================================================================== */
+@import url(http://weloveiconfonts.com/api/?family=entypo);
 @font-face
 {
 font-family: Homestead;
@@ -40,18 +41,19 @@ div.p40{padding:15px}
 .p20{padding:20px;}
 .w25p{width:20%;}
 .mr70{margin-right:70px}
+.mb5{margin-bottom:5px}
 .homestead{font-family:"Homestead";}
 .notvis{visibility:hidden;}
 .txtright{text-align:right}
 .txtcenter{text-align:center}
-
-* {margin: 0;padding: 0;}
+.pink{color:#df354c;}
+* {margin: 0;padding: 0;box-sizing: border-box;}
 html {background: #EEEFF1; } 
 body{width:100%;height:100%;padding-top: 60px;}
-.navbar .title a{ font-family:"Homestead";color:#F5E414;}
+.navbar .title a{ font-family:"Homestead";color:#f5e414;}
 .btn-ph {
 /*background-color: #F5E414;*/
-background-image: linear-gradient(to bottom, #F5E414, #F5E414);
+background-image: linear-gradient(to bottom, #f5e414, #F5E414);
 background-repeat: repeat-x;
 border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 color: #000000;
@@ -72,7 +74,7 @@ ol.carousel-indicators {list-style:none;}
 footer{padding:40px;width:100%;background-color:#fff;border-top:1px solid #2D3E4B;
 -webkit-box-shadow: inset 0 4px 2px -2px #2D3E4B;
 -moz-box-shadow: inset 0 4px 2px -2px  #2D3E4B;
-box-shadow: inset 0 4px 2px -2px #2D3E4B;}
+box-shadow: inset 0 4px 2px -2px #2D3E4B;}#91bf2d;
 #contact{font-size:18px;width:900px;margin:0px auto;}
 #contact a{font-weight:bold;}
 
@@ -145,4 +147,197 @@ path {fill: none;stroke: #DADBDF;  /*couleur du trait*/stroke-width: 0.5px;}
 .modal input {  border:none;  border-bottom:2px solid rgba(256,256,256, 0.3);  outline:none;  background:rgba(45, 62, 75, 0.2);  font-size:1em;  padding-left:8px;  color:white;}
 .modal input:focus {  border-bottom:2px solid #324553;  background:rgba(0, 0, 0, 0.1);}
 
+/* ********************* */
+/* Menu Fixe LEft */
+/* ********************* */
+/* entypo */
+[class*="entypo-"]:before {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  text-align: center;
+  font-family: 'entypo', sans-serif;
+}
 
+.side-panel {
+  padding: 30px 0;
+  position:fixed;
+  top:80px;
+  left:0px;
+  z-index:1000;
+}
+.side-panel:nth-child(2n) {
+  /*background: #2d3e4a;*/
+}
+.side-panel ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family:"Homestead";
+}
+.side-panel > ul > li:first-child {
+  border-top-right-radius: 3px;
+}
+.side-panel > ul > li:first-child a {
+  padding-top: 13px;
+}
+.side-panel > ul > li:last-child {
+  border-bottom-right-radius: 3px;
+}
+.side-panel > ul > li:last-child a {
+  padding-bottom: 13px;
+}
+.side-panel > ul ul {
+  width: 150px;
+  padding-left: 10px;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+.side-panel > ul ul li:first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-right-color: #efefef;
+}
+.side-panel > ul ul li:first-child:before {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid #efefef;
+  border-right-color: inherit;
+}
+.side-panel > ul ul li:first-child:hover {
+  border-right-color: #fff;
+}
+.side-panel > ul ul li:last-child {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.side-panel li {
+  position: relative;
+  background: #efefef;
+}
+.side-panel li:hover {
+  background: #fff;
+}
+.side-panel li:hover > ul {
+  display: block;
+}
+.side-panel a {
+  display: inline-block;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+/*
+.a > ul {
+  width: 150px;
+  transform: translateX(-110px);
+}
+.a span[class*="entypo-"] {
+  display: inline-block;
+  position: relative;
+  left: 105px;
+}
+.a .menu-item {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  display: block;
+  padding: 8px 13px;
+  color: #efefef;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  transform: translate(-100%, -50%) translateZ(0);
+  background: #2d3e4a;
+  border-radius: 3px;
+  border-right-color: #2d3e4a;
+  transition: all .3s ease-in-out;
+  z-index: -2;
+}
+.a .menu-item:before {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid #efefef;
+  border-right-color: inherit;
+}
+.a li:hover .menu-item {
+  transform: translate(10px, -50%);
+}
+.a > ul ul {
+  display: block;
+  opacity: 0;
+  transform: translate(-100%);
+  transition: all .3s ease-in-out;
+  z-index: -1;
+}
+.a > ul > li:first-child:hover .menu-item {
+  transform: translate(-100%, -50%);
+}
+.a li:hover ul {
+  opacity: 1;
+  transform: translate(0);
+}*/
+
+.b li [class*="entypo-"] {
+  display: inline-block;
+  position: relative;
+  left: 145px;
+  transform: translateX(0);
+  transition: all .3s ease-in-out;
+  transition-delay: .1s;
+  font-size: x-large;
+  color:#2d3e4a;
+}
+.b .menu-item {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  
+}
+.b > ul {
+  position: relative;
+  left: -150px;
+  transform: translate(0) translateZ(0);
+  width: 200px;
+  transition: transform .3s .1s ease-in-out;
+}
+.b > ul:hover {
+  transform: translateX(150px);
+  transition: all .3s ease-in-out;
+}
+.b > ul:hover li [class*="entypo-"] {
+  transform: translateX(-150px);
+  transition-delay: 0;
+}
+.b > ul:hover .menu-item {
+  opacity: 1;
+  transition: opacity .3s .2s ease-in-out;
+}
+.b > ul ul {
+  display: block;
+  opacity: 0;
+  transform: translate(-100%);
+  transition: all .3s ease-in-out;
+  z-index: -1;
+}
+.b li:hover ul {
+  opacity: 1;
+  transform: translate(0);
+}

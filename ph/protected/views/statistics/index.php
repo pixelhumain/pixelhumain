@@ -70,6 +70,20 @@ ol.slats li p span.meta {
 			</a>
 		</h3>
 	</li>
+	<li class="group">
+		<h3>
+			<a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/groups')?>">
+				Activité de groupes
+			</a>
+		</h3>
+	</li>
+	<li class="group">
+		<h3>
+			<a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/interactions')?>">
+				Interactions Locales 
+			</a>
+		</h3>
+	</li>
 </ol>	
 </div></div>		
 				

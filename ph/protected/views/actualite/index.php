@@ -7,67 +7,84 @@ h2 {
   color: #324553;
   
 }
-ol.slats li {
-	margin: 0 0 10px 0;
-	padding: 0 0 10px 0;
-	border-bottom: 1px solid #eee;
-	}
-ol.slats li:last-child {
-	margin: 0;
-	padding: 0;
-	border-bottom: none;
-	}
-ol.slats li h3 {
-	font-size: 18px;
-	font-weight: bold;
-	line-height: 1.1;
-	}
-ol.slats li h3 a img {
-	float: left;
-	margin: 0 10px 0 0;
-	padding: 4px;
-	border: 1px solid #eee;
-	}
-ol.slats li h3 a:hover img {
-	background: #eee;
-	}
-ol.slats li p {
-	margin: 0 0 0 76px;
-	font-size: 14px;
-	line-height: 1.4;
-	}
-ol.slats li p span.meta {
-	display: block;
-	font-size: 12px;
-	color: #999;
-	}		
-		
+ul{
+	list-style:none;
+}
 </style>
 <div class="container graph">
     <br/>
     <div class="hero-unit">
+    <div class='pull-left' style="width:70%">
+        <h2>Actualité Ville de St Joseph</h2>
+        <p>Agreger toute les sources d'information locales interressantes pour une commune </p>
+        <p>Filtrable par mot clef</p>
     
-    <h2>Agir Localement avec le PH</h2>
-    <p>Actions Locales : toute initiatives locales ouvertes : qui peut interresser un petit ou gros groupe de personne dans votre commune. </p>
-<ol class="slats">
-	<li class="group">
-		<h3>
-			<a href="<?php echo Yii::app()->createUrl('/index.php/actualite')?>">
-				Se tenir informer 
-			</a>
-			<p>Tous ce qui se passe localement </p>
-		</h3>
-	</li>
-	<li>Proposer/Organiser des actions locales</li>
-	<li>Donner votre avis sur des propositionq d'actionq localeq</li>
-	<li class="group">
-		<h3>
-			<a href="<?php echo Yii::app()->createUrl('/index.php/discuter')?>">
-				participer aux reflexions locale
-			</a>
-		</h3>
-	</li>
-</ol>	
+<?php 
+
+    $content = file_get_contents('http://www.saintjoseph.re/spip.php?page=rss_nouveautes');  
+    $x = new SimpleXmlElement($content);  
+      
+    echo "<ul>";  
+      
+    foreach($x->channel->item as $entry) {  
+        echo "<li><a href='$entry->link' title='$entry->title'>" . $entry->title . "</a></li>";  
+    }  
+    echo "</ul>";  
+?>
+</div>
+<div class='pull-right' style="width:30%">
+<?php 
+	$this->widget('application.extensions.YiiTagCloud.YiiTagCloud', 
+            array(
+                'beginColor' => '00089A',
+                'endColor' => 'A3AEFF',
+                'minFontSize' => 8,
+                'maxFontSize' => 20,
+                'arrTags' => array (
+            			'Petites Annonces'      => array('weight'=> 6),
+                		'Emploi'      => array('weight'=> 9),
+                        'Culture'     => array('weight'=> 5),
+                        'Évennement'     => array('weight'=> 9),
+                        'Action'   => array('weight'=> 8),
+                        'Projet'  => array('weight'=> 6),
+                        'Surf'     => array('weight'=> 3),
+                        'Aménagement'     => array('weight'=> 4),
+                        'Marmaille'     => array('weight'=> 9),
+                        'Creche'     => array('weight'=> 3),
+                        'Handicap'     => array('weight'=> 2),
+                        'Guitar'     => array('weight'=> 6),
+                        'Tennis'     => array('weight'=> 4),
+                        'Football'     => array('weight'=> 9),
+                        'Auto'     => array('weight'=> 5),
+                        'Moto'     => array('weight'=> 4),
+                        'Médecin'     => array('weight'=> 7),
+                        'Garagiste'     => array('weight'=> 5),
+                        'Restaurant'     => array('weight'=> 9),
+                        'Recette'      => array('weight'=> 2),
+                        'Artisan'      => array('weight'=> 6),
+                        'Epicerie'      => array('weight'=> 2),
+                    	'Monnaie Locale'      => array('weight'=> 8),
+                        'Actualité'      => array('weight'=> 9),
+                        'Arts'      => array('weight'=> 9),
+                        'Arts'      => array('weight'=> 5),
+                        'Donne Fruit'      => array('weight'=> 6),
+                        'Instrument'      => array('weight'=> 4),
+                        'Plante'      => array('weight'=> 9),
+                        'Jardin Communal'      => array('weight'=> 9),
+                        'Femme de ménage'      => array('weight'=> 9),
+                        'Jardinage'      => array('weight'=> 5),
+                        'Nounou'      => array('weight'=> 4),
+                        'Administration'      => array('weight'=> 6),
+            			'Assistante Maternelle'      => array('weight'=> 9),
+            			'Aide a domicile'      => array('weight'=> 4),
+                        'Pharmacie de Garde'      => array('weight'=> 7),
+                        'Accident'      => array('weight'=> 9)
+                ),
+          )
+    );
+	?>
+	</div>
+	<div class="clear"></div>
 </div></div>
 <script type="text/javascript"		>
 initT['animInit'] = function(){

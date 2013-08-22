@@ -1,0 +1,26 @@
+#yii-feed-container {
+    
+}
+.yii-feed-widget-item {
+    width:32%;
+    float:left;
+    margin-right:1%;
+}
+.yii-feed-widget-item h2 {
+    font-size:12px;
+    margin:0;
+    line-height:13px;
+}
+.yii-feed-widget-item p{
+    font-size: 11px;
+    line-height: 13px;
+    margin: 0;
+}
+.yii-feed-widget-item p small{
+    font-size: 9px;
+    margin: 0px 0px 5px 0px;
+    display: block;
+}
+.yii-feed-widget-clear{
+    clear: both;
+}

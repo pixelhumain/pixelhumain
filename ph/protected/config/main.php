@@ -16,6 +16,9 @@ return array(
         'bootstrap' => realpath(__DIR__ . '/../extensions/yiistrap'),
 		'yiiwheels' => realpath(__DIR__ . '/../extensions/yiiwheels'), 
     ),
+    'controllerMap'=>array(
+         'YiiFeedWidget' => 'ext.yii-feed-widget.YiiFeedWidgetController'
+    ),
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',

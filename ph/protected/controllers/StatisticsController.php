@@ -27,6 +27,14 @@ class StatisticsController extends Controller {
 	          $this->layout = "blanck";
 	          $page = "metier";
 	           break;
+	       case "groups":
+	          $this->layout = "blanck";
+	          $page = "groups";
+	           break;
+	       case "interactions":
+	          $this->layout = "blanck";
+	          $page = "interactions";
+	           break;
 	       default:
 	          $page = "cp";
 	   }

@@ -190,18 +190,16 @@
     <h3 id="myModalLabel">Proposer votre idée</h3>
   </div>
   <div class="modal-body">
-    <p> Ce projet est un réseau social ouvert, un squelette de module d'interet general, qui accueillera 
-    toute vos idées qui s'orienteront vers l'interet général.</p>
+    <p> Ce projet est un réseau social ouvert, un squelette de module d'interet general, qui accueillera </p>
     <form id="ideaForm" style="line-height:40px;">
         <section>
-        	<select class="basic">
-              <option value="">Select something…</option>
-              <option>Lorem</option>
-              <option>Ipsum</option>
-              <option>Dolor</option>
-              <option>Sit</option>
-              <option>Amet</option>
-            </select>
+        	<table>
+              	<tr>
+                  	<td class="txtright">Sujet</td>
+                  	<td> <input id="titleIdea" name="titleIdea" value=""/></td>
+              	</tr>
+          	</table>
+          	<textarea name="yourIdea" style="width:95%" rows=9></textarea>
              
         </section>
     </form>
