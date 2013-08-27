@@ -51,7 +51,7 @@ include('./connect.php');
 			}
 			/// affichage de la valeur d'un objet  var_dump( $query);	d'une variable echo $var
 			
-			$cursor = $connection->pixelhumain->pixelsactifs->find( $query );
+			$cursor = $connection->pixelhumain->citoyens->find( $query );
 			?>	
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">

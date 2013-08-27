@@ -35,6 +35,10 @@ class StatisticsController extends Controller {
 	          $this->layout = "blanck";
 	          $page = "interactions";
 	           break;
+	       case "3dsurface":
+	          $this->layout = "blanck";
+	          $page = "3dsurface";
+	           break;
 	       default:
 	          $page = "cp";
 	   }

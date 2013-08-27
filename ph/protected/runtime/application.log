@@ -5874,3 +5874,141 @@ Stack trace:
 REQUEST_URI=/ph/index.php/site/page/id/images/AFF_OPENSOURCE.jpg
 HTTP_REFERER=http://127.0.0.1/ph/index.php/site/page/id/opensource
 ---
+2013/08/22 17:45:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "pixelfunding".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('pixelfunding')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('pixelfunding')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('financement/pix...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/financement/pixelfunding
+---
+2013/08/22 17:45:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "pixelfunder".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('pixelfunder')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('pixelfunder')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('financement/pix...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/financement/pixelfunder
+---
+2013/08/23 10:28:55 [error] [exception.Swift_TransportException] exception 'Swift_TransportException' with message 'Failed to authenticate on SMTP server with username "oceatoon@gmail.com" using 2 possible authenticators' in X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\mail\vendors\swiftMailer\classes\Swift\Transport\Esmtp\AuthHandler.php:179
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\mail\vendors\swiftMailer\classes\Swift\Transport\EsmtpTransport.php(252): Swift_Transport_Esmtp_AuthHandler->afterEhlo(Object(Swift_SmtpTransport))
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\mail\vendors\swiftMailer\classes\Swift\Transport\AbstractSmtpTransport.php(108): Swift_Transport_EsmtpTransport->_doHeloCommand()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\mail\vendors\swiftMailer\classes\Swift\Mailer.php(74): Swift_Transport_AbstractSmtpTransport->start()
+#3 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\mail\YiiMail.php(133): Swift_Mailer->send(Object(Swift_Message), Array)
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\PixelsActifsController.php(78): YiiMail->send(Object(YiiMailMessage))
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): PixelsActifsController->actionRegister()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('register')
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('pixelsactifs/re...')
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#13 {main}
+REQUEST_URI=/ph/index.php/pixelsactifs/register
+HTTP_REFERER=http://127.0.0.1/ph/
+---
+2013/08/24 07:34:32 [error] [exception.MongoConnectionException] exception 'MongoConnectionException' with message 'Failed to connect to: 127.0.0.1:27017: No connection could be made because the target machine actively refused it.
+' in X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php:130
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php(130): MongoClient->__construct('mongodb://127.0...', Array)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php(112): EMongoClient->connect()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CModule.php(387): EMongoClient->init()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CModule.php(103): CModule->getComponent('mongodb')
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\modals.php(40): CModule->__get('mongodb')
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require('X:\X_Dev\humanp...')
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('X:\X_Dev\humanp...', NULL, true)
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): CBaseController->renderFile('X:\X_Dev\humanp...', NULL, true)
+#8 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\main.php(40): CController->renderPartial('application.vie...')
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require('X:\X_Dev\humanp...')
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('X:\X_Dev\humanp...', Array, true)
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(784): CBaseController->renderFile('X:\X_Dev\humanp...', Array, true)
+#12 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\SiteController.php(32): CController->render('index')
+#13 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#14 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#16 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('')
+#18 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#19 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#21 {main}
+REQUEST_URI=/ph/
+HTTP_REFERER=http://127.0.0.1/ph/
+---
+2013/08/25 10:37:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "dis".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('dis')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/dis
+---
+2013/08/26 14:48:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "test".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('test')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/test
+---
+2013/08/26 15:31:10 [error] [php] Trying to get property of non-object (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\test\index.php:22)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): TestController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): TestController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TestController.php(14): TestController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): TestController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): TestController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): TestController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): TestController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/test
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\test\index.php (22)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TestController.php (14)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/08/26 18:02:34 [error] [php] Undefined variable: assoNames (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\modals.php:153)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): TestController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\main.php(40): TestController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): TestController->renderInternal()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(784): TestController->renderFile()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TestController.php(14): TestController->render()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): TestController->actionIndex()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): TestController->runAction()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): TestController->runActionWithFilters()
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): TestController->run()
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/test
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\modals.php (153)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\main.php (40)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TestController.php (14)
+2013/08/26 18:11:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "index.php/citoyens/register2".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('index.php/citoy...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/index.php/citoyens/register2
+HTTP_REFERER=http://127.0.0.1/ph/index.php/test
+---
+2013/08/26 19:51:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "index.php/citoyens/register".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('index.php/citoy...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/index.php/citoyens/register
+HTTP_REFERER=http://127.0.0.1/ph/index.php/test
+---

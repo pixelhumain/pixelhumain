@@ -60,7 +60,7 @@ catch(MongoConnectionException $e)
 				$query['actions.tags'] = array('$in' => $tagsSelected);
 			}
 			/// affichage de la valeur d'un objet  var_dump( $query);	d'une variable echo $var
-			$cursor = $database->pixelsactifs->find( $query );
+			$cursor = $database->citoyens->find( $query );
 			?>	
 			<h1>VerMixel Actif (<?php echo $cursor->count()?>)</h1>
 			

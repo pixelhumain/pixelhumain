@@ -15,12 +15,12 @@ class OpenDataController extends Controller {
 	
     public function actionCP() {
        $format = (isset($_GET["format"])) ? $_GET["format"] : "json" ;
-	   $pixelsactifs = Yii::app()->mongodb->pixelsactifs->find();
+	   $citoyens = Yii::app()->mongodb->citoyens->find();
 	   
 	   if($format == "csv"){
 	       header('Content-Type: application/tsv');
 	       
-    	   foreach ($pixelsactifs as $pa){
+    	   foreach ($citoyens as $pa){
     	       $cp = (isset($pa["cp"])) ? $pa["cp"] : "none" ;
     	       if(!isset($children[$cp])){
     	           $children[$cp]=array("name"=>$cp,
@@ -45,7 +45,7 @@ class OpenDataController extends Controller {
     	   $children = array();
     	   $json = array("name"=>"Pixel Humain",
     	   				 "children"=>array());
-    	   foreach ($pixelsactifs as $pa){
+    	   foreach ($citoyens as $pa){
     	       $cp = (isset($pa["cp"])) ? $pa["cp"] : "none" ;
     	       if(!isset($children[$cp])){
     	           $children[$cp]=array("name"=>$cp,

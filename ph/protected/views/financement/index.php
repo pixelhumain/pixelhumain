@@ -3,6 +3,16 @@
 $cs = Yii::app()->getClientScript();
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/pricing.css');
 ?>
+<style>
+
+h2 {
+  position:relative;
+  top:0px;
+  left:0px;
+  color: #324553;
+  font-family: "Homestead";
+}
+</style>
 <div class="container" id="accueil">
     <br/>
     <!-- Main hero unit for a primary marketing message or call to action -->
@@ -50,7 +60,7 @@ $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/pricing.css');
 			<div class="price">
 				<div class="price_figure">
 					<span class="price_number">1€</span>
-					<span class="price_tenure">par an</span>
+					<span class="price_tenure">soutien pour 1an</span>
 				</div>
 			</div>
 			<ul class="features">
@@ -70,7 +80,7 @@ $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/pricing.css');
 			<div class="price">
 				<div class="price_figure">
 					<span class="price_number">100€</span>
-					<span class="price_tenure">pour la vie</span>
+					<span class="price_tenure">soutien à vie</span>
 				</div>
 			</div>
 			<ul class="features">
@@ -91,7 +101,7 @@ $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/pricing.css');
 			<div class="price">
 				<div class="price_figure">
 					<span class="price_number">500€</span>
-					<span class="price_tenure">à vie pour 5</span>
+					<span class="price_tenure">soutien pour 5 vies</span>
 				</div>
 			</div>
 			<ul class="features">

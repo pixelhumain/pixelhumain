@@ -1,12 +1,12 @@
 <?php
 /**
- * SiteController.php
+ * CitoyensController.php
  *
- * @author: antonio ramirez <antonio@clevertech.biz>
+ * @author: Tibor Katelbach <oceatoon@gmail.com>
  * Date: 7/23/12
  * Time: 12:25 AM
  */
-class PixelsActifsController extends Controller {
+class CitoyensController extends Controller {
 
 	public function accessRules() {
 		return array(
@@ -28,11 +28,11 @@ class PixelsActifsController extends Controller {
 	 * This is cleared by removing the tobeactivated field in the pixelactifs collection
 	 */
     public function actionActivate($user) {
-        $account = Yii::app()->mongodb->pixelsactifs->findOne(array("_id"=>new MongoId($user)));
+        $account = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId($user)));
         if($account){
             Yii::app()->session["userId"] = $user;
             //remove tobeactivated attribute on account
-            Yii::app()->mongodb->pixelsactifs->update(array("_id"=>new MongoId($user)), array('$unset' => array("tobeactivated"=>"")));
+            Yii::app()->mongodb->citoyens->update(array("_id"=>new MongoId($user)), array('$unset' => array("tobeactivated"=>"")));
         }
         //TODO : add notification to the cities,region,departement info panel
         
@@ -51,7 +51,7 @@ class PixelsActifsController extends Controller {
 	{
 	    if(Yii::app()->request->isAjaxRequest && isset($_POST['registerEmail']) && !empty($_POST['registerEmail']))
 		{
-            $account = Yii::app()->mongodb->pixelsactifs->findOne(array("email"=>$_POST['registerEmail']));
+            $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST['registerEmail']));
             if($account){
                 Yii::app()->session["userId"] = $account["_id"]; 
                 echo json_encode(array("result"=>false, "id"=>"accountExist","msg"=>"Ce compte existe déjà."));
@@ -65,17 +65,17 @@ class PixelsActifsController extends Controller {
                                 'adminNotified' => false,
                                 'created' => time()
                                 );
-                    Yii::app()->mongodb->pixelsactifs->insert($newAccount);
+                    Yii::app()->mongodb->citoyens->insert($newAccount);
                     Yii::app()->session["userId"] = $newAccount["_id"]; 
                     //send validation mail
                     //TODO : make emails as cron jobs
-                    $message = new YiiMailMessage;
+                    /*$message = new YiiMailMessage;
                     $message->view = 'validation';
                     $message->setSubject('Confirmer votre compte Pixel Humain');
                     $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
                     $message->addTo("oceatoon@gmail.com");//$_POST['registerEmail']
                     $message->from = Yii::app()->params['adminEmail'];
-                    Yii::app()->mail->send($message);
+                    Yii::app()->mail->send($message);*/
                     
                     //TODO : add an admin notification
                     
@@ -94,7 +94,7 @@ class PixelsActifsController extends Controller {
 	{
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
 		{
-            $account = Yii::app()->mongodb->pixelsactifs->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
+            $account = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
             if($account)
             {
                   $newInfos = array();
@@ -106,12 +106,17 @@ class PixelsActifsController extends Controller {
                   	  $newInfos['activeOnProject'] = $_POST['registerHelpout'];
                   if( !empty($_POST['helpJob']) )
                   	  $newInfos['positions'] = explode(",", $_POST['helpJob']);
+                  if( isset($_POST['registerVieAssociative']) ){
+                      //demande validation du responsable 
+                  	  $newInfos['associations'] = explode(",", $_POST['listAssociation']);
+                  }
+                  
                   if( !empty($_POST['tagsPA']) )
                       $newInfos['tags'] = explode(",", $_POST['tagsPA']);
                   $newInfos['type']=$_POST['typePA'];
                   $newInfos['country']=$_POST['countryPA'];
                   
-                  //if a job in the list doesn't is new , add it to the jobType collection
+                  //if a job in the list doesn't exist is new , add it to the jobType collection
                   $jobList = Yii::app()->mongodb->jobTypes->findOne(array("_id"=>new MongoId("5202375bc073efb084a9d2aa")));
                   foreach( explode(",", $_POST['helpJob']) as $job){
                       if(!in_array($job, $jobList['list'])){
@@ -120,7 +125,7 @@ class PixelsActifsController extends Controller {
                       }
                   }
                   
-                  //if a job in the list doesn't is new , add it to the jobType collection
+                  //if a job in the list doesn't exist is new , add it to the jobType collection
                   $tagsList = Yii::app()->mongodb->tags->findOne(array("_id"=>new MongoId("51b972ebe4b075a9690bbc5b")));
                   foreach( explode(",", $_POST['tagsPA']) as $tag){
                       if(!in_array($tag, $tagsList['list'])){
@@ -129,9 +134,26 @@ class PixelsActifsController extends Controller {
                       }
                   }
                   
+                  //if a job in the list doesn't exist is new , add it to the group collection
+                  $newAsso = false;
+                  foreach( explode(",", $_POST['listAssociation']) as $asso)
+                  {
+                      if(!Yii::app()->mongodb->group->findOne(array("name"=>$asso)))
+                          Yii::app()->mongodb->group->insert(array("name"=>$asso,
+                          										   "type"=>"association",
+                                                                   'tobeValidated' => true,
+                                							 	   'adminNotified' => false));
+                      $newAsso = $asso;
+                  }
+                  
+                  
+                  
                   $where = array("_id" => new MongoId(Yii::app()->session["userId"]));	
-                  Yii::app()->mongodb->pixelsactifs->update($where, array('$set' => $newInfos));
-                  echo json_encode(array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.")); 
+                  Yii::app()->mongodb->citoyens->update($where, array('$set' => $newInfos));
+                  $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
+                  if($newAsso)
+                      $result["newAsso"] = $newAsso;
+                  echo json_encode($result); 
             } else 
                   echo json_encode(array("result"=>false, "id"=>"accountNotExist ".Yii::app()->session["userId"],"msg"=>"Ce compte n'existe plus."));
                 
@@ -144,14 +166,14 @@ class PixelsActifsController extends Controller {
 	{
 	    if(Yii::app()->request->isAjaxRequest && isset($_POST['inviteEmail']) && !empty($_POST['inviteEmail']))
 		{
-            $account = Yii::app()->mongodb->pixelsactifs->findOne(array("email"=>$_POST['inviteEmail']));
-            $sponsor = Yii::app()->mongodb->pixelsactifs->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
+            $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST['inviteEmail']));
+            $sponsor = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
             if($account){
                 //the sponsored user allready exists 
                 //simply add it to the sponsors conenctions 
                 $where = array("_id" => new MongoId(Yii::app()->session["userId"]));	
                 $connect = (isset($sponsor["connect"])) ? array_push($connect["connect"], $account["_id"]) : array($account["_id"]);
-                Yii::app()->mongodb->pixelsactifs->update($where, array('$set' => array("connect"=>$connect )));
+                Yii::app()->mongodb->citoyens->update($where, array('$set' => array("connect"=>$connect )));
                 echo json_encode(array("result"=>false, "id"=>"accountExist","msg"=>"Merci pour cette action de partage. "));
             }
             else 
@@ -169,7 +191,7 @@ class PixelsActifsController extends Controller {
                     if( isset($_POST['inviteName']) )
                       $newAccount['name'] = $_POST['inviteName'];
                       
-                    Yii::app()->mongodb->pixelsactifs->insert($newAccount);
+                    Yii::app()->mongodb->citoyens->insert($newAccount);
                     //send validation mail
                     //TODO : make emails as cron jobs
                     $message = new YiiMailMessage;
@@ -187,7 +209,7 @@ class PixelsActifsController extends Controller {
                     //simply add it to the sponsors conenctions 
                     $where = array("_id" => new MongoId(Yii::app()->session["userId"]));	
                     $connect = (isset($sponsor["connect"])) ? array_push($connect["connect"], $account["_id"]) : array($account["_id"]);
-                    Yii::app()->mongodb->pixelsactifs->update($where, array('$set' => array("connect"=>$connect )));
+                    Yii::app()->mongodb->citoyens->update($where, array('$set' => array("connect"=>$connect )));
                     
                     echo json_encode(array("result"=>true, "id"=>$newAccount["_id"],"msg"=>"Meci pour votre contribution.".
                     																		"<br/> Plus on est nombreux, mieux ca marchera.".

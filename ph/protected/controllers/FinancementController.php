@@ -22,5 +22,7 @@ class FinancementController extends Controller {
 	public function actionIndex() {
 	    $this->render("index");
 	}
-	
+public function actionPixelfunding() {
+	    $this->render("pixelfunding");
+	}
 }

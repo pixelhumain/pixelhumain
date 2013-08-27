@@ -16,7 +16,7 @@
            Veuillez clicker sur le lien pour participer a cette initiative locale pour améliorer votre commune.<br/>
            ou copier le directement dans votre navigateur 
            <br/>
-           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/index.php?r=pixelsactifs/activate/user/<?php echo $user?>">Confirmer L'invitation</a>
+           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/index.php?r=citoyens/activate/user/<?php echo $user?>">Confirmer L'invitation</a>
         </td>
       </tr>
       </table>

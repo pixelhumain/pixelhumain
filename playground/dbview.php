@@ -39,7 +39,7 @@ include('struct_header.php');
 			<li><a href="https://api.mongolab.com/api/1/databases/pixelhumain/collections/france?apiKey=<?php echo $dbconfig['MONGOLAB_API_KEY']?>">France</a></li>
 			<li><a href="https://api.mongolab.com/api/1/databases/pixelhumain/collections/activities?apiKey=<?php echo $dbconfig['MONGOLAB_API_KEY']?>">activities</a></li>
 			<li><a href="https://api.mongolab.com/api/1/databases/pixelhumain/collections/natures?apiKey=<?php echo $dbconfig['MONGOLAB_API_KEY']?>">natures</a></li>
-			<li><a href="https://api.mongolab.com/api/1/databases/pixelhumain/collections/pixelsactifs?apiKey=<?php echo $dbconfig['MONGOLAB_API_KEY']?>">pixelsactifs</a></li>
+			<li><a href="https://api.mongolab.com/api/1/databases/pixelhumain/collections/citoyens?apiKey=<?php echo $dbconfig['MONGOLAB_API_KEY']?>">pixelsactifs</a></li>
 			<li><a href="https://api.mongolab.com/api/1/databases/pixelhumain/collections/tags?apiKey=<?php echo $dbconfig['MONGOLAB_API_KEY']?>">tags</a></li>
 			<li><a href="https://api.mongolab.com/api/1/databases/pixelhumain/collections/types?apiKey=<?php echo $dbconfig['MONGOLAB_API_KEY']?>">types</a></li>
 			

@@ -84,6 +84,13 @@ ol.slats li p span.meta {
 			</a>
 		</h3>
 	</li>
+	<li class="group">
+		<h3>
+			<a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/3dsurface')?>">
+				simulation 3d
+			</a>
+		</h3>
+	</li>
 </ol>	
 </div></div>		
 				

@@ -18,8 +18,8 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon Compte <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                            
-                                <!-- li><a href="<?php echo Yii::app()->createUrl('index.php/thematique')?>">Thématique</a></li>
+                            	<?php /*
+                                <li><a href="<?php echo Yii::app()->createUrl('index.php/thematique')?>">Thématique</a></li>
 								<li><a href="<?php echo Yii::app()->createUrl('index.php/statistics')?>">Statistique</a></li>
 								<li><a href="<?php echo Yii::app()->createUrl('index.php/opendata')?>">Open Data</a></li>
 								<li><a href="<?php echo Yii::app()->createUrl('index.php/annuaire')?>">Annuaire</a></li>
@@ -28,8 +28,8 @@
 								<li><a href="<?php echo Yii::app()->createUrl('index.php/discuter')?>" >Discuter</a></li>
 								<li><a href="<?php echo Yii::app()->createUrl('index.php/actualite')?>" >Actualité</a></li>
 								<li><a href="<?php echo Yii::app()->createUrl('index.php/diffusion/hangout')?>" >Conseil Mun. Live</a></li>
-                                <li class="divider"></li-->
-                                
+                                <li class="divider"></li>
+                                */?>
                                 <li><a href="#participer"  target="_blank" role="button" data-toggle="modal">Mon compte</a></li>
                                 <li><a href="#invitation"  target="_blank" role="button" data-toggle="modal">Invitation</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('index.php/site/logout')?>"  role="button" data-toggle="modal">Logout</a></li>
@@ -66,18 +66,19 @@
                 <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/cpCount')?>">Commune</a></li>
                 <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/groups')?>">Association</a></li>
                 <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/interactions')?>">Interaction</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/3dsurface')?>">Surface 3D</a></li>
               </ul>
         </li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/opendata')?>"><span class="entypo-share"></span><span class="menu-item">Open Data</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/annuaire')?>"><span class="entypo-network"></span><span class="menu-item">Annuaire</span></a></li>
-        <li><a><span class="entypo-map"></span><span class="menu-item">Carto</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/covoiturage')?>"><span class="entypo-shareable"></span><span class="menu-item">Covoiturage</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('index.php/geo')?>"><span class="entypo-map"></span><span class="menu-item">Carto</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/decouvrir')?>"><span class="entypo-globe"></span><span class="menu-item">Découvrir</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/discuter')?>" ><span class="entypo-chat"></span><span class="menu-item">Discuter</span></a></li>
         <li><a href="#boiteIdee" role="button" data-toggle="modal"><span class="entypo-light-bulb">&#128161;</span><span class="menu-item" >Idée ou Projet</span></a></li>
         
         <li><a href="<?php echo Yii::app()->createUrl('index.php/actualite')?>" ><span class="entypo-rss"></span><span class="menu-item">Actualité</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/diffusion/hangout')?>" ><span class="entypo-mic"></span><span class="menu-item">Conseil Mun.</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('index.php/covoiturage')?>"><span class="entypo-shareable"></span><span class="menu-item">Covoiturage</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/statistics/graph/type/groups')?>"><span class="entypo-flow-tree"></span><span class="menu-item">se Regrouper</span></a></li>
         
         <li><a href="<?php echo Yii::app()->createUrl('index.php/site/page/id/opensource')?>"><span class="entypo-cc"></span><span class="menu-item">Libre de droit</span></a></li>

@@ -51,7 +51,7 @@ ol.slats li p span.meta {
 	</li>
 	<li class="group">
 		<h3>
-			<a href="<?php echo Yii::app()->createUrl('/index.php/pixelsactifs/invitation')?>">
+			<a href="<?php echo Yii::app()->createUrl('/index.php/citoyens/invitation')?>">
 				Inviter un Concitoyen
 			</a>
 		</h3>

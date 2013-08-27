@@ -1,7 +1,7 @@
 <?php
 require_once('./config/configDB.php');
 // Get this at your MongoLab.com user page
-$url = "https://api.mongolab.com/api/1/databases/".$dbconfig['db']."/collections/pixelsactifs?apiKey=".$dbconfig['MONGOLAB_API_KEY'];
+$url = "https://api.mongolab.com/api/1/databases/".$dbconfig['db']."/collections/citoyens?apiKey=".$dbconfig['MONGOLAB_API_KEY'];
 
 $data = json_encode(
   array(

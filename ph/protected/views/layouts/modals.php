@@ -37,7 +37,7 @@
         <section>
           
           	<?php 
-          	    $account = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->pixelsactifs->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
+          	    $account = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
           	?>
           	<table>
               	<tr>
@@ -102,8 +102,37 @@
             		    ?>
         		    </td>
     		    </tr>
+    		    <tr> 
+                    <td class="txtright">J'ai une vie associative</td>
+                    <td> <input type="checkbox" id="registerVieAssociative" name="registerVieAssociative" <?php if($account && isset($account['associations']) )echo "checked" ?>></td>
+                </tr>
+                <tr <?php if($account && (!isset($account['associations']) || !$account['associations']) ){ ?>class="hidden"  <?php }?>  id="registerVieAssociativeWhat">
+                    <td class="txtright">La(Les)quelle(s) </td>
+                    <td>
+                        <?php 
+                        //TODO ajax request as you type
+                          $names = array();
+                          foreach(iterator_to_array(Yii::app()->mongodb->group->find( array("type"=>"association"), array("name" => 1) )) as $a)
+                              array_push($names, $a['name']);
+                              //$assoNames[$a['name']] = $a['name'] ;
+                          
+                          $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
+                            'asDropDownList' => false,
+                            'name' => 'listAssociation',
+                          	'id' => 'listAssociation',
+                            'value'=>($account && isset($account['associations']) ) ? implode(",", $account['associations']) : "",
+                            'pluginOptions' => array(
+                                'tags' => $names,
+                                'placeholder' => "Nom(s) d'association(s)",
+                                'width' => '100%',
+                                'tokenSeparators' => array(',', ' ')
+                            )));
+            		    ?>
+        		    </td>
+    		    </tr>
+               
     		    <tr >
-                    <td class="txtright">Mots clefs vous décrivant </td>
+                    <td class="txtright">Centre d'interet </td>
                     <td>
                         <?php 
                           $cursor = Yii::app()->mongodb->tags->findOne( array(), array('list'));
@@ -114,7 +143,7 @@
                             'value'=>($account && isset($account['tags']) ) ? implode(",", $account['tags']) : "",
                             'pluginOptions' => array(
                                 'tags' => $cursor['list'],
-                                'placeholder' => "Mots clefs ?",
+                                'placeholder' => "Mots clefs vous décrivant",
                                 'width' => '100%',
                                 'tokenSeparators' => array(',', ' ')
                             )));
@@ -255,7 +284,7 @@ initT['modalsInit'] = function(){
     	toggleSpinner();
     	$.ajax({
     	  type: "POST",
-    	  url: "index.php/pixelsactifs/register",
+    	  url: "index.php/citoyens/register",
     	  data: "registerEmail="+$("#registerEmail").val(),
     	  success: function(data){
     		  if(data.result){
@@ -281,12 +310,17 @@ initT['modalsInit'] = function(){
     	toggleSpinner();
     	$.ajax({
     	  type: "POST",
-    	  url: "index.php/pixelsactifs/register2",
+    	  url: "index.php/citoyens/register2",
     	  data: $("#register2").serialize(),
     	  success: function(data){
     			  $("#flashInfo .modal-body").html(data.msg);
-    			  $("#flashInfo").modal('show');
+    			  
     		  	  toggleSpinner();
+    		  	  if(data.newAsso){
+        		  	  alert("L'association "+data.newAsso+" a été créé pour vous, merci d'inviter le président pour confirmer.");
+    		  		  $("#invitation").modal('show');
+    		  	  } else
+    		  		$("#flashInfo").modal('show');
     	  },
     	  dataType: "json"
     	});
@@ -297,7 +331,7 @@ initT['modalsInit'] = function(){
     	toggleSpinner();
     	$.ajax({
     	  type: "POST",
-    	  url: "index.php/pixelsactifs/invitation",
+    	  url: "index.php/citoyens/invitation",
     	  data: $("#inviteForm").serialize(),
     	  success: function(data){
     			  $("#flashInfo .modal-body").html(data.msg);
@@ -307,14 +341,20 @@ initT['modalsInit'] = function(){
     	  dataType: "json"
     	});
     });
+    showEvent("registerHelpout");
+    showEvent("registerVieAssociative");
+    
     /*$("#registerCP").blur(function(){
     	alert("#registerCP");
     });*/
-    $("#registerHelpout").click(function(){
-    	if($("#registerHelpout").prop("checked"))
-    		$("#registerHelpoutWhat").removeClass("hidden");
-    	else
-    		$("#registerHelpoutWhat").addClass("hidden");
-    });
+    
 };
+function showEvent(id){
+	$("#"+id).click(function(){
+    	if($("#"+id).prop("checked"))
+    		$("#"+id+"What").removeClass("hidden");
+    	else
+    		$("#"+id+"What").addClass("hidden");
+    });
+}
 </script>

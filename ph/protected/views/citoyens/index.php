@@ -12,7 +12,7 @@ $this->pageTitle=Yii::app()->name.", début d'un réseau citoyen";
 <div class="container">
 <?php 
 //$this->renderPartial('modalInvitePA');
-$pa = Yii::app()->mongodb->pixelsactifs;
+$pa = Yii::app()->mongodb->citoyens;
 $ct = $pa->find();
 ?>
     <!-- BEGIN DEMO WRAPPER -->
