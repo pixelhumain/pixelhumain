@@ -18,9 +18,18 @@ class CitoyensController extends Controller {
 			array('deny'),
 		);
 	}
-
+    /**
+     * Listing de tout les citoyen locaux filtrable et cherchable
+     * par thématique
+     */
 	public function actionIndex() {
 	    $this->render("index");
+	}
+	/**
+	 * Point d'entrée pour gérer son compte 
+	 */
+    public function actionCompte() {
+	    $this->render("compte");
 	}
 	/**
 	 * upon Registration a email is send to the new user's email 
@@ -106,11 +115,10 @@ class CitoyensController extends Controller {
                   	  $newInfos['activeOnProject'] = $_POST['registerHelpout'];
                   if( !empty($_POST['helpJob']) )
                   	  $newInfos['positions'] = explode(",", $_POST['helpJob']);
-                  if( isset($_POST['registerVieAssociative']) ){
+                  /*if( isset($_POST['registerVieAssociative']) ){
                       //demande validation du responsable 
                   	  $newInfos['associations'] = explode(",", $_POST['listAssociation']);
-                  }
-                  
+                  }*/
                   if( !empty($_POST['tagsPA']) )
                       $newInfos['tags'] = explode(",", $_POST['tagsPA']);
                   $newInfos['type']=$_POST['typePA'];
@@ -118,8 +126,10 @@ class CitoyensController extends Controller {
                   
                   //if a job in the list doesn't exist is new , add it to the jobType collection
                   $jobList = Yii::app()->mongodb->jobTypes->findOne(array("_id"=>new MongoId("5202375bc073efb084a9d2aa")));
-                  foreach( explode(",", $_POST['helpJob']) as $job){
-                      if(!in_array($job, $jobList['list'])){
+                  foreach( explode(",", $_POST['helpJob']) as $job)
+                  {
+                      if(!in_array($job, $jobList['list']))
+                      {
                           array_push($jobList['list'], $job);
                           Yii::app()->mongodb->jobTypes->update(array("_id"=>new MongoId("5202375bc073efb084a9d2aa")), array('$set' => array("list"=>$jobList['list'])));
                       }
@@ -127,15 +137,17 @@ class CitoyensController extends Controller {
                   
                   //if a job in the list doesn't exist is new , add it to the jobType collection
                   $tagsList = Yii::app()->mongodb->tags->findOne(array("_id"=>new MongoId("51b972ebe4b075a9690bbc5b")));
-                  foreach( explode(",", $_POST['tagsPA']) as $tag){
-                      if(!in_array($tag, $tagsList['list'])){
+                  foreach( explode(",", $_POST['tagsPA']) as $tag)
+                  {
+                      if(!in_array($tag, $tagsList['list']))
+                      {
                           array_push($tagsList['list'], $tag);
                           Yii::app()->mongodb->tags->update(array("_id"=>new MongoId("51b972ebe4b075a9690bbc5b")), array('$set' => array("list"=>$tagsList['list'])));
                       }
                   }
                   
                   //if a job in the list doesn't exist is new , add it to the group collection
-                  $newAsso = false;
+                 /* $newAsso = false;
                   foreach( explode(",", $_POST['listAssociation']) as $asso)
                   {
                       if(!Yii::app()->mongodb->group->findOne(array("name"=>$asso)))
@@ -144,15 +156,12 @@ class CitoyensController extends Controller {
                                                                    'tobeValidated' => true,
                                 							 	   'adminNotified' => false));
                       $newAsso = $asso;
-                  }
-                  
-                  
+                  }*/
                   
                   $where = array("_id" => new MongoId(Yii::app()->session["userId"]));	
                   Yii::app()->mongodb->citoyens->update($where, array('$set' => $newInfos));
                   $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
-                  if($newAsso)
-                      $result["newAsso"] = $newAsso;
+                  
                   echo json_encode($result); 
             } else 
                   echo json_encode(array("result"=>false, "id"=>"accountNotExist ".Yii::app()->session["userId"],"msg"=>"Ce compte n'existe plus."));

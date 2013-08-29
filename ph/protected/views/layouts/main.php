@@ -30,6 +30,7 @@
    <script src="<?php echo Yii::app()->createUrl('js/jquery-1.8.3.min.js')?>"></script>
    <script>
    var initT = new Object();
+   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
    </script>
        <?php //Yii::app()->bootstrap->register(); ?>
 </head>

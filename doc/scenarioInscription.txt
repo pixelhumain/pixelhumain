@@ -1,0 +1,32 @@
+Formulaire inscription citoyen
+	on inscrit un citoyen avec un email simple 
+		ajout un nouveau "citoyen" 
+			notification admin
+			mail de vlaidation
+		puis on peut continuer a remplir les elements citoyens
+		ajout de detail
+
+Form vie associative
+	j'ai une vie associative
+		je gere une association 
+		je suis membres d'une ou plusieurs association
+		l'asso existe : ajout par combo 
+		l'asso n'existe pas : 
+			ajout un nouveau "group"
+
+Form ajouter asso ou entreprise			
+	inscription type association , entreprise 
+		ajout neau "group"
+			notification admin
+	connecter les membres (import csv)
+	lien avec d'autre association
+	
+Form ajouter un evennement
+	an event
+	contact = citoyen 
+	date 
+	titre 
+	description 
+	cp
+	location
+	site 
