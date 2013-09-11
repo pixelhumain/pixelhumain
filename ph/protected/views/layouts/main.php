@@ -27,7 +27,8 @@
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/mainph.css">
 
    <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-   <script src="<?php echo Yii::app()->createUrl('js/jquery-1.8.3.min.js')?>"></script>
+   <?php //echo Yii::app()->createUrl('js/jquery-1.8.3.min.js')?>
+   <script src="<?php echo Yii::app()->createUrl('js/jquery-1.10.2.min.js')?>"></script>
    <script>
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";

@@ -13,15 +13,41 @@ h2 {
     <br/>
     <div class="hero-unit">
     
-    <h2>TEST</h2>
-    
-    <?php 
-    $assoNames = array();
-    $tmp = iterator_to_array(Yii::app()->mongodb->group->find( array("type"=>"association"), array("name" => 1) ));
-    foreach($tmp as $a)
-        $assoNames[$a['name']] = $a['name'] ;
-    var_dump($assoNames);?>
-</div></div>
+        <h2>TEST</h2>
+        
+        <?php 
+        $assoNames = array();
+        $tmp = iterator_to_array(Yii::app()->mongodb->group->find( array("type"=>"association"), array("name" => 1) ));
+        foreach($tmp as $a)
+            $assoNames[$a['name']] = $a['name'] ;
+        var_dump($assoNames);?>
+        
+        <div class="input-append">
+            <?php $this->widget('yiiwheels.widgets.datepicker.WhDatePicker', array(
+                    'name' => 'eventWhen',
+                    'pluginOptions' => array(
+                        'format' => 'mm/dd/yyyy'
+                    )
+                ));
+            ?>
+            <span class="add-on" style="color:black"><icon class="icon-calendar"></icon></span>
+    	</div>
+    	
+    	<div class="input-append">
+           <?php $this->widget(
+                'yiiwheels.widgets.daterangepicker.WhDateRangePicker',
+                array(
+                    'name' => 'daterangepickertest',
+                    'htmlOptions' => array(
+                        'placeholder' => 'Select date'
+                    )
+                )
+            );
+            ?>
+            <span class="add-on" style="color:black"><icon class="icon-calendar"></icon></span>
+    	</div>
+	</div>
+</div>
 <script type="text/javascript"		>
 initT['animInit'] = function(){
 	

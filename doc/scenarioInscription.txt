@@ -30,3 +30,7 @@ Form ajouter un evennement
 	cp
 	location
 	site 
+	etes vous a l'origine 
+		un citoyen lambda peut creer la fiche d'un evennement meme s'il en est pas le gerent 
+	
+	

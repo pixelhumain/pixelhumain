@@ -33,7 +33,7 @@
                                 <li><a href="#participer"  target="_blank" role="button" data-toggle="modal">Citoyen</a></li>
                                 <li><a href="#association"  target="_blank" role="button" data-toggle="modal">Associations</a></li>
                                 <li><a href="#entreprise"  target="_blank" role="button" data-toggle="modal">Entreprise</a></li>
-                                <li><a href="#evennement"  target="_blank" role="button" data-toggle="modal">Evennement</a></li>
+                                <li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/creer')?>" >Evenement</a></li>
                                 <li><a href="#invitation"  target="_blank" role="button" data-toggle="modal">Invitation</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('index.php/site/logout')?>"  role="button" data-toggle="modal">Logout</a></li>
                             </ul>

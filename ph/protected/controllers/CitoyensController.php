@@ -28,7 +28,7 @@ class CitoyensController extends Controller {
 	/**
 	 * Point d'entrée pour gérer son compte 
 	 */
-    public function actionCompte() {
+    public function actionMoi() {
 	    $this->render("compte");
 	}
 	/**

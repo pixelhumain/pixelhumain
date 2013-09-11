@@ -25,13 +25,13 @@ div.m15{margin:15px}
 div.p5{padding:5px}
 div.p10{padding:10px}
 div.p15{padding:15px}
-div.p40{padding:15px}
+div.p40{padding:15px;}
 .fsxxs{font-size:xx-small}
 .fsxs{font-size:x-small}
 .fss{font-size:small}
 .fsn{font-size:normal}
 .fsl{font-size:large}
-.fsxl{font-size:x-large}
+.fsxl{font-size:x-large;}
 .fsxxl{font-size:x-large}
 .fb{font-weight:bold}
 .fl{float:left}
