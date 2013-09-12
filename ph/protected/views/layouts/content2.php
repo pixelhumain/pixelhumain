@@ -36,40 +36,12 @@
 </head>
 
 <body>
-
-<?php echo $content; ?>
-<?php $this->renderPartial('application.views.layouts.modals');
+<?php $this->renderPartial('application.views.layouts.sideMenu2');?>
+<?php echo $content; 
 
 $cs = Yii::app()->getClientScript();
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/TweenMax.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/modernizr-2.6.2-respond-1.1.0.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/load-image.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap-image-gallery.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/d3.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/spin.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/main.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClientScript::POS_END);
 ?>		
-        
-        <script>
-			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-			  ga('create', 'UA-42883170-1', 'pixelhumain.com');
-			  ga('send', 'pageview');
-
-			
-			 /*var uvOptions = {};
-			  (function() {
-				var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-				uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/YmmyBM5muP7JoGkF31YDg.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-			  })();*/
-        </script>
-
-
-
+     
 </body>
 </html>

@@ -9,10 +9,9 @@ h2 {
 }
 
 </style>
-<div class="container graph">
-    <br/>
+<div style="width:50px;height:50px;background-color: #324553; padding:3px;float:left;"><a href="#" id="trigger" class="menu-trigger"></a></div>
     <div class="hero-unit">
-    
+    	
         <h2>TEST</h2>
         
         <?php 
@@ -46,8 +45,13 @@ h2 {
             ?>
             <span class="add-on" style="color:black"><icon class="icon-calendar"></icon></span>
     	</div>
+    	<h2>TEST</h2><h2>TEST</h2>
+    	<h2>TEST</h2>
+    	<h2>TEST</h2>
+    	<h2>TEST</h2>
+    	<h2>TEST</h2>
+    	v
 	</div>
-</div>
 <script type="text/javascript"		>
 initT['animInit'] = function(){
 	

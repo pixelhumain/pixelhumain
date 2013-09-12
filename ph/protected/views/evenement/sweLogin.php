@@ -7,7 +7,7 @@ body {	/*overflow: hidden;*/}
 
 canvas{position:absolute;top:0px;left:0px;}
 
-.appMenuContainer{background-color:rgba(59, 120, 163, 0.7);width:100%;height:55px;position:absolute;top:61px;left:0px;z-index:1000;}
+.appMenuContainer{background-color:rgba(59, 120, 163, 0.7);width:100%;height:55px;position:absolute;top:57px;left:0px;z-index:1000;}
 .appMenu{position:absolute;top:5px;right:30px;z-index:1051;}
 .appMenu li{padding:5px;margin:5px;border:2px solid #666;display:inline;float:left;background-color:#F5E414;}
 .appMenu a{color:#324553;font-weight:bold;}
@@ -27,7 +27,6 @@ background-color:#FFF;
 -o-border-radius: 5px;
 -ms-border-radius: 5px;
 border-radius: 5px;}
-.appContent ul.people li.me{background-color:#F5E414;}
 .appContent ul.people li.descL {height:150px; }
 .appContent h1{margin-left:0px;text-decoration:underline;font-family: "Homestead";color: #fff;}
 .appContent div.infos{word-wrap:break-word;text-align:right}
@@ -57,121 +56,13 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
 
 .appFooter{position:fixed;bottom:0px;right:0px;width:100px;z-index:2000;margin:15px;}
 </style>
-<div class="appMenuContainer">
-    <ul class="appMenu">
-    	<li><a href="#sweInscription" id="mesInfos" role="button" data-toggle="modal"><i class="icon-user"></i> Mes Infos</a></li>
-    	<li><a href="#sweInvitation" role="button" data-toggle="modal"><i class="icon-envelope"></i> Inviter Qlqun</a></li>
-    	<li><a href="#sweFeedBack" role="button" data-toggle="modal"><i class="icon-download-alt"></i> FeedBack</a></li>
-    	<li><a href="#coaching" role="button" data-toggle="modal"><i class="icon-bell"></i> APPEL UN COACH !! </a><a href="#coaching" role="button" data-toggle="modal"><span class="badge" style="background-color:red;">8</span></a></li>
-        <li><a href="javascript:filterType('participant')">Inscrits <span class="badge">121</span></a></li>
-        <li><a href="javascript:filterType('projet')">Projets <span class="badge">13</span></a></li>
-        <li><a href="javascript:filterType('coach')">Coachs <span class="badge">15</span></a></li>
-        <li><a href="javascript:filterType('jury')">Jurys <span class="badge">8</span></a></li>
-        <li><a href="javascript:filterType('organisateur')">Organisateurs <span class="badge">8</span></a></li>
-    </ul>
-</div>
 
 <div class="appContent">
 
-    <div id="appPanel">
-    	<ul>
-        <li><i class="icon-search"></i> </span><a href="http://news.yahoo.com/exclusive-u-directs-agents-cover-program-used-investigate-091643729.html" target="_blank">DEA Mines "National Security" Data To Spy On Americans, Now Concealing Program</a></li>
-        <li><a href="http://www.theguardian.com/science/2013/aug/05/google-sergey-brin-synthetic-beef-hamburger" target="_blank">Sergey Brin invests in synthetic beef</a></li>
-        <li><a href="http://darling.dolezel.info/en/Darling" target="_blank">OS X emulation layer for Linux</a></li>
-        <li><a href="http://www.infinum.co/the-capsized-eight/articles/is-your-android-emulator-just-too-slow" target="_blank">Fast android emulator using Virtualbox</a></li>
-        <li><a href="http://nakedsecurity.sophos.com/2013/08/05/latvia-blocking-extradition-of-gozi-writer-thanks-to-disproportionate-us-sentencing/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+nakedsecurity+%28Naked+Security+-+Sophos%29" target="_blank">Latvia blocking extradition of Gozi writer due to disproportionate US sentencing</a></li>
-        <li><a href="https://groups.google.com/forum/#!topic/google-tasks-api/T4kKnEDl6so" target="_blank">Please let me know if I should Stop developing apps for Google</a></li>
-        <li><a href="http://news.yahoo.com/exclusive-u-directs-agents-cover-program-used-investigate-091643729.html" target="_blank">DEA Mines "National Security" Data To Spy On Americans, Now Concealing Program</a></li>
-        <li><a href="http://www.theguardian.com/science/2013/aug/05/google-sergey-brin-synthetic-beef-hamburger" target="_blank">Sergey Brin invests in synthetic beef</a></li>
-        <li><a href="http://darling.dolezel.info/en/Darling" target="_blank">OS X emulation layer for Linux</a></li>
-        <li><a href="http://www.infinum.co/the-capsized-eight/articles/is-your-android-emulator-just-too-slow" target="_blank">Fast android emulator using Virtualbox</a></li>
-        <li><a href="http://nakedsecurity.sophos.com/2013/08/05/latvia-blocking-extradition-of-gozi-writer-thanks-to-disproportionate-us-sentencing/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+nakedsecurity+%28Naked+Security+-+Sophos%29" target="_blank">Latvia blocking extradition of Gozi writer due to disproportionate US sentencing</a></li>
-        <li><a href="https://groups.google.com/forum/#!topic/google-tasks-api/T4kKnEDl6so" target="_blank">Please let me know if I should Stop developing apps for Google</a></li>
-      </ul>
-    </div>
-    
-	<h1>Start Up Week End 2012<br/><span class="appTitle">  </span></h1>
+	<h1>Start Up Week End 2012 </h1>
 	
-	<br/>
-	
-	<ul class="people">
-    	<?php
-    	
-    	$row = 1;
-    	$coaches = array();
-    	$myproject = '';
-    	$projects = array();
-        if (($handle = fopen("upload/swe participants2.txt", "r")) !== FALSE) 
-        {
-            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
-            {
-                $num = count($data);
-                
-                $row++;
-                for ($c=0; $c < $num; $c++) 
-                {
-                    $line = explode("\t", $data[$c]);
-                    
-                    //some panels will have more information than others
-                    $classDesc = (isset($line[3]) && in_array($line[3], array('jury','coach','projet'))) ? 'descL' : '';
-                    //only show people panels on load 
-                    $classHide = (isset($line[3]) && in_array($line[3], array('participant'))) ? 'hide' : '';
-                    //connected users panel will be different
-                    $classMe = (Yii::app()->session["userEmail"] == $line[2]) ? 'me' : '';
-                    
-                    if(!empty($classMe) && !empty($line[6]) )
-                        $myproject = $line[6];
-
-                    //desc content
-                    $xtra = (isset($line[4])) ? '<div class="clear"></div><div class="desc">'.$line[4] : '';
-                    
-                    $classProjet = ''; 
-                    if(!empty($line[6])){
-                        $classProjet = $line[6];
-                        
-                        //adds show team on project panel
-                        if($line[3]=='projet'){
-                            $xtra .= "<a  class='btn-ph' href='javascript:filterType(\"".$line[6]."\")' title='Project Team'><span class='entypo-users'></span></a>";
-                            $classMe = (!empty($myproject) && $line[6] == $myproject ) ? 'me' : '';
-                        }
-                    }
-                    
-                    //join Btn on project panel
-                    if(isset($line[3]) && $line[3]=='projet'){
-                        $xtra .= "<a class='btn btn-ph' href='javascript:userJoinProject()' title='Rejoindre ce projet'><span class='entypo-share'></span></a>";
-                        array_push($projects, $line[6] );
-                    }
-                    $xtra .= '</div>';
-                    
-                    $img = (!empty($line[5]) ) ? $line[5] : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); 
-                    
-                    if(isset($line[0]) && isset($line[3]))
-                    {
-                        echo '<li class="'.((isset($line[3])) ?$line[3]:"").' '.$classDesc.' '.$classHide.' '.$classProjet.' '.$classMe.'">'.
-                        		'<div class="thumb">
-                        			<img src="'.$img.'"/>
-                        		</div>
-                        		<div class="infos">
-                        			<div class="type">'.((isset($line[3])) ?$line[3]:"coco").'</div>
-                        			<br/>
-                        			<div class="name">'. 
-                                        $line[0].
-                            			'<br/>'
-                                        .$line[1]. 
-                                    '</div>'.
-                                    $xtra.'
-                        		</div></li>';
-                        if(isset($line[3]) && $line[3]=='coach')
-                            $coaches[$line[0].$line[1]] = $line[0].' '.$line[1];
-                    }
-                }
-            }
-            fclose($handle);
-        }
-    	?>
-	
-	</ul>
-	
+	<h3>Cette Plateforme est restreinte aux inscrit.<br/>
+	si vous etes inscrit <a href="#loginForm"  class="btn-ph"  role="button" data-toggle="modal">Connectez vous</a></h3>
 </div>
 
 <ul class="appFooter">	
@@ -186,16 +77,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
 
 <canvas id="canvas"></canvas>
 
-<?php $this->renderPartial('application.views.evenement.sweModals',array('coaches'=>$coaches,
-																		 'myproject'=>$myproject,
-                                                                         'projects'=>$projects
-                                                                        ));?>
-
-
 <script type="text/javascript">
-function userJoinProject(){
-	alert("ajax update user project");
-}
 function filterType(type){
 	$(".appContent ul.people li").slideUp();
 	$(".appContent ul.people li."+type).slideDown();
@@ -209,15 +91,12 @@ function filterType(type){
 		$(".appTitle").html("Les Coachs");
 	else if(type=="organisateur")
 		$(".appTitle").html("Les organisateurs");
-	else if(type=="me")
-		$(".appTitle").html("Mon compte");
 	else
 		$(".appTitle").html("Les inscrits");
 	
 }
 initT['sweGraphInit'] = function(){
-	$('#appPanel').scrollbox();
-	$('#mesInfos').click(function(){filterType('me')});
+	
 	//Code by: Kushagra Agarwal
 	//http://cssdeck.com/item/602/html5-canvas-particles-web-matrix
 	// RequestAnimFrame: a browser API for getting smooth animations
@@ -241,7 +120,7 @@ initT['sweGraphInit'] = function(){
 	var ctx = canvas.getContext("2d");
 
 	// Set the canvas width and height to occupy full window
-	var W = window.innerWidth, H = window.innerHeight*5;
+	var W = window.innerWidth, H = window.innerHeight;
 	canvas.width = W;
 	canvas.height = H;
 

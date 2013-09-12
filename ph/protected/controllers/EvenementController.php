@@ -19,7 +19,10 @@ class EvenementController extends Controller {
 	    $this->render("swe");
 	}
 	public function actionSwegraph() {
-	    //$this->layout = "blanck";
-	    $this->render("swegraph");
+	    $this->layout = "swe";
+	    if(!isset(Yii::app()->session["userId"]))
+	        $this->render("sweLogin");
+	    else
+	        $this->render("swegraph");
 	}
 }

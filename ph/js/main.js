@@ -6,7 +6,7 @@ $(document).ready(function() {
 		  $(this).tab('show');
 		});*/
 	
-	
+	NProgress.start();
 	/* *************************** */
 	/* Toile de delaunay en bg */
 	/* *************************** */
@@ -49,6 +49,7 @@ $(document).ready(function() {
 	
 	
 	initSequence();
+	setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 2000);
 });
 function toggleSpinner(){
 	if($("#logoLink").length){

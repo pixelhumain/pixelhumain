@@ -40,6 +40,7 @@ class CitoyensController extends Controller {
         $account = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId($user)));
         if($account){
             Yii::app()->session["userId"] = $user;
+            Yii::app()->session["userEmail"] = $account["email"];
             //remove tobeactivated attribute on account
             Yii::app()->mongodb->citoyens->update(array("_id"=>new MongoId($user)), array('$unset' => array("tobeactivated"=>"")));
         }
@@ -62,7 +63,8 @@ class CitoyensController extends Controller {
 		{
             $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST['registerEmail']));
             if($account){
-                Yii::app()->session["userId"] = $account["_id"]; 
+                Yii::app()->session["userId"] = $account["_id"];
+                Yii::app()->session["userEmail"] = $account["email"]; 
                 echo json_encode(array("result"=>false, "id"=>"accountExist","msg"=>"Ce compte existe déjà."));
             }
             else {
@@ -76,6 +78,7 @@ class CitoyensController extends Controller {
                                 );
                     Yii::app()->mongodb->citoyens->insert($newAccount);
                     Yii::app()->session["userId"] = $newAccount["_id"]; 
+                    Yii::app()->session["userEmail"] = $newAccount["email"];
                     //send validation mail
                     //TODO : make emails as cron jobs
                     /*$message = new YiiMailMessage;

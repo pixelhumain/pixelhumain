@@ -28,7 +28,7 @@
 
    <title><?php echo CHtml::encode($this->pageTitle); ?></title>
    <?php //echo Yii::app()->createUrl('js/jquery-1.8.3.min.js')?>
-   <script src="<?php echo Yii::app()->createUrl('js/jquery-1.10.2.min.js')?>"></script>
+   <script src="<?php echo Yii::app()->createUrl('js/jquery.1.10.2.min.js')?>"></script>
    <script>
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
@@ -38,8 +38,9 @@
 
 <body>
 <?php $this->renderPartial('application.views.layouts.header');?>
+<?php $this->renderPartial('application.views.layouts.sideMenu1');?>
 <?php echo $content; ?>
-<?php $this->renderPartial('application.views.layouts.modals');?>
+<?php $this->renderPartial('application.views.layouts.modals');?>	
 <div class="clear"></div>
 <?php $this->renderPartial('application.views.layouts.footer');?>
 
@@ -53,6 +54,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/load-image.min.js' , 
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap-image-gallery.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/d3.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/spin.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/nprogress/nprogress.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/main.js' , CClientScript::POS_END);
 ?>		
         
