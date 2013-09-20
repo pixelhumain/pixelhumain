@@ -15,8 +15,8 @@
                   	<td>
                   	<?php 
                   	if(!empty($myproject)){
-                  	    echo $myproject?><input type="hidden" name="coachProject"/>
-                  	    <?php } else {
+                  	    echo $myproject?><input type="hidden" name="coachProject" id="coachProject" value="<?php echo $myproject?>" />
+                  	<?php } else {
                   	    $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'data' => $projects, 
                             'name' => 'coachProject',
@@ -53,23 +53,27 @@
 </div>
 <!-- Modal -->
 <script type="text/javascript">
-initT['invitationModalsInit'] = function(){
+initT['coachFormModalsInit'] = function(){
     
     $("#coachForm").submit( function(event){
     	event.preventDefault();
     	$("#coaching").modal('hide');
     	NProgress.start();
-    	/*$.ajax({
+    	$.ajax({
     	  type: "POST",
-    	  url: baseUrl+"/index.php/citoyens/invitation",
-    	  data: $("#inviteForm").serialize(),
+    	  url: baseUrl+"/index.php/evenement/sweCoachRequest",
+    	  data: $("#coachForm").serialize(),
     	  success: function(data){
+        	  	  if($("#coachingCount").html() != "")
+        	  		$("#coachingCount").html(parseInt($("#coachingCount").html())+1);
+            	  else	  
+            		  $("#coachingCount").html("1");
     			  $("#flashInfo .modal-body").html(data.msg);
     			  $("#flashInfo").modal('show');
     			  NProgress.done();
     	  },
     	  dataType: "json"
-    	});*/
+    	});
     });
 };
 </script>
@@ -117,6 +121,7 @@ initT['invitationModalsInit'] = function(){
 
 
 
+
 <!-- Modal -->
 <div id="sweInscription" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
@@ -125,7 +130,7 @@ initT['invitationModalsInit'] = function(){
   </div>
   <div class="modal-body">
     <p> Merci de compléter vos donées . </p>
-        <form id="sweInscriptionForm" class="form-horizontal">
+        <form id="sweInscriptionForm" class="form-horizontal" enctype="multipart/form-data">
             <?php $me = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));?>
             <!-- Text input-->
             <div class="control-group">
@@ -140,7 +145,32 @@ initT['invitationModalsInit'] = function(){
               <label class="control-label" for="EMAIL">Votre email</label>
               <div class="controls">
                 <input id="email" name="email" type="text" value="<?php echo $me["email"]?>" class="input-large" required="">
-                
+              </div>
+            </div>
+            
+            <div class="control-group">
+              <label class="control-label" for="NOM">Photo</label>
+              <div class="controls">
+                <?php
+                    $this->widget('yiiwheels.widgets.fineuploader.WhFineUploader', array(
+                            'name'          => 'imageFile',
+                            'uploadAction'  => $this->createUrl('index.php/templates/upload', array('fine' => 1)),
+                            'pluginOptions' => array(
+                                'validation'=>array(
+                                    'allowedExtensions' => array('jpg','jpeg','png','gif'),
+                                    'itemLimit'=>1
+                                )
+                            ),
+                            'events' => array(
+                                'complete'=>"function( id,  name,  responseJSON,  xhr){
+                                	$('#image').val(responseJSON);
+                                	$('li.participant.me img').attr('src','".Yii::app()->createUrl('upload/swe/')."/'+responseJSON);
+                                	console.log('".Yii::app()->createUrl('upload/swe/')."'+responseJSON);
+                                }"
+                            ),
+                        ));
+                    ?>
+                    <input type="hidden" id="image" name="image" value="<?php if(isset($me["image"]))echo $me["image"]?>"/>
               </div>
             </div>
             
@@ -374,6 +404,9 @@ initT['invitationModalsInit'] = function(){
 
 <script type="text/javascript">
 initT['sweInscriptionModalsInit'] = function(){
+	$('input[type=file]').change(function (e) {
+	    $('#customfileupload').html($(this).val());
+	});
     $("#sweInscriptionForm").submit( function(event){
     	event.preventDefault();
     	$("#sweInscription").modal('hide');

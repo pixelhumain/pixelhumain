@@ -22,6 +22,7 @@ canvas{position:absolute;top:0px;left:0px;}
 .appContent h1{margin-left:0px;text-decoration:underline;font-family: "Homestead";color: #fff;}
 .appContent ul.people li{position:relative;width:190px;height:100px;padding:5px;margin:5px;display:block;float:left;background-color:#FFF;-webkit-border-radius: 5px;-moz-border-radius: 5px;-o-border-radius: 5px;-ms-border-radius: 5px;border-radius: 5px;}
 .appContent ul.people li.me{background-color:#F5E414;}
+.appContent ul.people li.me img{cursor:pointer}
 .appContent ul.people li.descL {height:150px; }
 .appContent li.participant{border:2px solid yellow;background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png')?>') no-repeat bottom left;}
 .appContent li.projet{border:2px solid orange;}
@@ -41,6 +42,9 @@ canvas{position:absolute;top:0px;left:0px;}
 
 .appFooter{position:fixed;bottom:0px;right:0px;width:100px;z-index:2000;margin:15px;}
 
+.bgRed{background-color:red;}
+.cRed{color:red;}
+.coachRequestedColor{border:5px solid red;}
 </style>
 <?php $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId("523321c7c073ef2b380a231c")));?>
 <div class="appMenuContainer">
@@ -49,9 +53,7 @@ canvas{position:absolute;top:0px;left:0px;}
     		<li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweadmin')?>"><i class="icon-wrench"></i> Admin</a></li>
     	<?php } ?>
     	<li><a href="#sweInscription" id="mesInfos" role="button" data-toggle="modal"><i class="icon-user"></i> Mes Infos</a></li>
-    	<!-- li><a href="#sweInvitation" role="button" data-toggle="modal"><i class="icon-envelope"></i> Inviter Qlqun</a></li-->
-    	<!--li><a href="#sweFeedBack" role="button" data-toggle="modal"><i class="icon-download-alt"></i> FeedBack</a></li-->
-    	<li><a href="#coaching" role="button" data-toggle="modal"><i class="icon-bell"></i> APPEL UN COACH !! </a><a href="#coaching" role="button" data-toggle="modal"><span class="badge" style="background-color:red;">8</span></a></li>
+    	<li><a href="#coaching" role="button" data-toggle="modal"><i class="icon-bell"></i> APPEL UN COACH !! </a><a href="#coaching" role="button" data-toggle="modal"><span id="coachingCount" class="badge bgRed" ></span></a></li>
         <li><a href="javascript:filterType('participant')">Inscrits <span class="badge">121</span></a></li>
         <li><a href="javascript:filterType('projet')">Projets <span class="badge">13</span></a></li>
         <li><a href="javascript:filterType('coach')">Coachs <span class="badge">15</span></a></li>
@@ -63,20 +65,7 @@ canvas{position:absolute;top:0px;left:0px;}
 <div class="appContent">
 
     <div id="appPanel">
-    	<ul>
-        <li><i class="icon-search"></i> </span><a href="http://news.yahoo.com/exclusive-u-directs-agents-cover-program-used-investigate-091643729.html" target="_blank">DEA Mines "National Security" Data To Spy On Americans, Now Concealing Program</a></li>
-        <li><a href="http://www.theguardian.com/science/2013/aug/05/google-sergey-brin-synthetic-beef-hamburger" target="_blank">Sergey Brin invests in synthetic beef</a></li>
-        <li><a href="http://darling.dolezel.info/en/Darling" target="_blank">OS X emulation layer for Linux</a></li>
-        <li><a href="http://www.infinum.co/the-capsized-eight/articles/is-your-android-emulator-just-too-slow" target="_blank">Fast android emulator using Virtualbox</a></li>
-        <li><a href="http://nakedsecurity.sophos.com/2013/08/05/latvia-blocking-extradition-of-gozi-writer-thanks-to-disproportionate-us-sentencing/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+nakedsecurity+%28Naked+Security+-+Sophos%29" target="_blank">Latvia blocking extradition of Gozi writer due to disproportionate US sentencing</a></li>
-        <li><a href="https://groups.google.com/forum/#!topic/google-tasks-api/T4kKnEDl6so" target="_blank">Please let me know if I should Stop developing apps for Google</a></li>
-        <li><a href="http://news.yahoo.com/exclusive-u-directs-agents-cover-program-used-investigate-091643729.html" target="_blank">DEA Mines "National Security" Data To Spy On Americans, Now Concealing Program</a></li>
-        <li><a href="http://www.theguardian.com/science/2013/aug/05/google-sergey-brin-synthetic-beef-hamburger" target="_blank">Sergey Brin invests in synthetic beef</a></li>
-        <li><a href="http://darling.dolezel.info/en/Darling" target="_blank">OS X emulation layer for Linux</a></li>
-        <li><a href="http://www.infinum.co/the-capsized-eight/articles/is-your-android-emulator-just-too-slow" target="_blank">Fast android emulator using Virtualbox</a></li>
-        <li><a href="http://nakedsecurity.sophos.com/2013/08/05/latvia-blocking-extradition-of-gozi-writer-thanks-to-disproportionate-us-sentencing/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+nakedsecurity+%28Naked+Security+-+Sophos%29" target="_blank">Latvia blocking extradition of Gozi writer due to disproportionate US sentencing</a></li>
-        <li><a href="https://groups.google.com/forum/#!topic/google-tasks-api/T4kKnEDl6so" target="_blank">Please let me know if I should Stop developing apps for Google</a></li>
-      </ul>
+    	<ul id="appPanelList"></ul>
     </div>
     
 	<h1><?php echo $event["name"]?><br/><span class="appTitle">  </span></h1>
@@ -92,13 +81,12 @@ canvas{position:absolute;top:0px;left:0px;}
     	$projects = array();
         foreach ($sweThings as $line) 
         {
-            $name = $line["name"];
+            $name = (isset($line["name"])) ? $line["name"]: null;
             $type = (isset($line["type"])) ? $line["type"] : null;
-            $email = $line["email"];
-            if(isset($line["desc"]))
-                $desc = $line["desc"];
+            $email = (isset($line["email"])) ? $line["email"]:null;
+            $desc = (isset($line["desc"])) ? $line["desc"]:null;
             $project = (isset($line["projet"])) ? str_replace(' ', '', $line["projet"]) : "";
-            $img = (isset($line["img"]))? $line["img"]:"";
+            $img = (isset($line["image"]))? $line["image"]:"";
             
             //some panels will have more information than others
             $classDesc = (isset($type) && in_array($type, array('jury','coach','projet'))) ? 'descL' : '';
@@ -111,7 +99,8 @@ canvas{position:absolute;top:0px;left:0px;}
                 $myproject = $project;
 
             //desc content
-            $xtra = '<div class="clear"></div><div class="desc">';
+            
+            $xtra = '<div class="xtra clear"></div><div class="desc">';
             if( isset( $desc) && $desc == strip_tags($desc) )
                 $xtra .= '<span class="txt">';
             $xtra .= (isset($desc)) ? $desc : '';
@@ -122,7 +111,6 @@ canvas{position:absolute;top:0px;left:0px;}
             if(!empty($project))
             {
                 $classProjet = $project;
-                
                 //adds show team on project panel
                 if(isset($type) && ( $type=='projet' || $type=='participant')) 
                 {
@@ -137,11 +125,12 @@ canvas{position:absolute;top:0px;left:0px;}
                 $xtra .= "<a class='btn-ph' href='javascript:userJoinProject(\"".$project."\")' title='Rejoindre ce projet'><span class='entypo-share'></span></a>";
                 array_push($projects, $project );
             }else if(isset($type) && $type=='coach'){
-                $xtra .= "<a class='btn-ph' href='#coaching' onclick='$(\"#coachRequested\").select2(\"val\",\"".(str_replace(' ', '', $name))."\")'  role='button' data-toggle='modal' title='Appeler ce coach'><span class='entypo-megaphone'></span></a>";
+                $coachRequestBadge =  '<span id="'.(str_replace(' ', '', $name)).'RequestBadge" class="badge bgRed coachBadges" ></span>';
+                $xtra .= "<a class='btn-ph' href='#coaching' onclick='$(\"#coachRequested\").select2(\"val\",\"".(str_replace(' ', '', $name))."\")'  role='button' data-toggle='modal' title='Appeler ce coach'><span class='entypo-megaphone'></span></a>".$coachRequestBadge;
             }
             $xtra .= '</div>';
             
-            $img = (!empty($img) ) ? $img : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); 
+            $img = (!empty($img) ) ? Yii::app()->createUrl('upload/swe/'.$img) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); 
             
             if(!empty($name) && isset($type))
             {
@@ -151,8 +140,13 @@ canvas{position:absolute;top:0px;left:0px;}
                     $strNames = $names[0]."<br/>".str_replace($names[0], '', $name);
                 else
                     $strNames = str_replace( ' ', '<br/>', $name );
-                     
-                echo '<li class="'.$type.' '.$classDesc.' hide '.$classProjet.' '.$classMe.'">'.
+
+                $coachClass = "";
+                if(isset($type) && $type=='coach'){
+                    $coaches[str_replace(' ', '', $name)] = $name;
+                    $coachClass = str_replace(' ', '', $name);
+                }     
+                echo '<li class="'.$type.' '.$classDesc.' hide '.$classProjet.' '.$classMe.' '.$coachClass.'">'.
                 		'<div class="thumb">
                 			<img src="'.$img.'"/>
                 		</div>
@@ -163,8 +157,7 @@ canvas{position:absolute;top:0px;left:0px;}
                             $xtra.'
                 		</div>
                 	 </li>';
-                if(isset($type) && $type=='coach')
-                    $coaches[str_replace(' ', '', $name)] = $name;
+                
             }
         }?>
 	</ul>
@@ -190,14 +183,65 @@ canvas{position:absolute;top:0px;left:0px;}
 
 
 <script type="text/javascript">
+var previousDataCoach = {"count":0};
+function getCoachCount(){
+    $.getJSON(baseUrl+"/index.php/evenement/sweNotifications", function(data) {
+        // console.log(previousDataCoach);
+        // console.log(data);
+		if( previousDataCoach.count != data.count  )
+		{	
+			console.log("entered");
+            if(data.count > 0)
+            	$("#coachingCount").html(data.count);
+            else
+            	$("#coachingCount").html('');
+        	var coaches = data.coaches;
+        	var projects= data.projects;
+        	var ids= data.ids;
+        	$(".coachRequestedColor").removeClass("coachRequestedColor");
+        	$(".coachBadges").html("");
+        	$("#appPanelList").html("");
+        	$(".coach").css("border","2px solid purple");
+        	for(var ix = 0; ix < coaches.length; ix++){
+            	/*console.log(coaches[ix]);
+            	console.log(projects[ix]);*/
+    			$("."+coaches[ix]).addClass("coachRequestedColor");//marche pas 
+    			$("."+coaches[ix]).css("border","5px solid red");
+    			if( $("#"+coaches[ix]+"RequestBadge").html() != "" )
+    	  			$("#"+coaches[ix]+"RequestBadge").html( parseInt( $("#"+coaches[ix]+"RequestBadge").html() ) + 1 );
+        	    else	  
+        			$("#"+coaches[ix]+"RequestBadge").html("1");
+    			$("#appPanelList").append("<li><span class='entypo-megaphone cRed'></span>"+coaches[ix]+" : "+projects[ix]+" <span class='entypo-squarred-cross cRed'><a href='#' onclick='sweCoachingDone(\""+ids[ix]+"\")'>&#10062;</a></span> </li>");
+        	}
+		}
+		previousDataCoach = data;
+        setTimeout(getCoachCount,5000);
+    });
+}
+function sweCoachingDone(id){
+	NProgress.start();
+	$.ajax({
+	  type: "POST",
+	  url: baseUrl+"/index.php/evenement/sweCoachingDone",
+	  data: {"id":id},
+	  success: function(data){
+		  	  $("#flashInfo .modal-body").html(data.msg);
+			  $("#flashInfo").modal('show');
+			  NProgress.done();
+	  },
+	  dataType: "json"
+	});
+	console.log("sweCoachingDone "+id);
+}
 function userJoinProject(project){
-	
+	$("li.projet.me").removeClass('me');
 	NProgress.start();
 	$.ajax({
 	  type: "POST",
 	  url: baseUrl+"/index.php/evenement/sweRejoindreProjet",
 	  data: {"projet":project},
 	  success: function(data){
+		  	  $("li.projet."+project).addClass('me');
 			  $("#flashInfo .modal-body").html(data.msg);
 			  $("#flashInfo").modal('show');
 			  NProgress.done();
@@ -223,11 +267,15 @@ function filterType(type){
 	
 }
 initT['sweGraphInit'] = function(){
+	<?php if($myproject){?>
+	$("li.projet.<?php echo $myproject?>").addClass('me');
+	<?php }?>
 	filterType("projet");
 	//appear after loading
 	$(".appContent").slideDown();
 	$('#appPanel').scrollbox();
 	$('#mesInfos').click(function(){filterType('me')});
+	getCoachCount();
 	//Code by: Kushagra Agarwal
 	//http://cssdeck.com/item/602/html5-canvas-particles-web-matrix
 	// RequestAnimFrame: a browser API for getting smooth animations

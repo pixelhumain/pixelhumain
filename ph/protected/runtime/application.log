@@ -7280,3 +7280,544 @@ REQUEST_URI=/ph/index.php/evenement/startupweekend2012?name=Tibor+Katelbach&emai
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swegraph.php (161)
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (35)
 in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/17 13:00:14 [error] [php] Undefined variable: projects (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:117)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweNotifications
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (117)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/18 08:15:12 [error] [exception.CException] exception 'CException' with message 'TemplatesController cannot find the requested view "accordeon".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:878
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CController->renderPartial('accordeon', NULL, true)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TemplatesController.php(16): CController->render('accordeon')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): TemplatesController->actionIndex()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('templates')
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#10 {main}
+REQUEST_URI=/ph/index.php/templates?name=accordeon
+---
+2013/09/18 09:30:05 [error] [php] Undefined variable: id (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:114)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweNotifications
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (114)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/18 09:39:31 [error] [php] Undefined index: name (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swegraph.php:83)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): EvenementController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): EvenementController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php(35): EvenementController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): EvenementController->actionStartupWeekEnd2012()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/startupweekend2012?name=Tibor+Katelbach&email=oceatoon%40gmail.com&commentConnuSWE=&profession=&formation=&expertise=&age=&codepostal=&objectif=
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swegraph.php (83)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (35)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/18 09:40:36 [error] [php] Undefined index: name (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swegraph.php:83)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): EvenementController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): EvenementController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php(35): EvenementController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): EvenementController->actionStartupWeekEnd2012()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/startupweekend2012?name=Tibor+Katelbach&email=oceatoon%40gmail.com&commentConnuSWE=&profession=&formation=&expertise=&age=&codepostal=&objectif=
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swegraph.php (83)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (35)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/18 09:40:44 [error] [php] Undefined index: email (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swegraph.php:85)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): EvenementController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): EvenementController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php(35): EvenementController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): EvenementController->actionStartupWeekEnd2012()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/startupweekend2012?name=Tibor+Katelbach&email=oceatoon%40gmail.com&commentConnuSWE=&profession=&formation=&expertise=&age=&codepostal=&objectif=
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swegraph.php (85)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (35)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/18 11:51:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/script.js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/scrip...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/assets/js/script.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=upload
+---
+2013/09/18 11:52:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/script.js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/scrip...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/assets/js/script.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=upload
+---
+2013/09/18 11:52:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/script.js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/scrip...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/assets/js/script.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=upload
+---
+2013/09/18 11:52:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.filedrop.js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/assets/js/jquery.filedrop.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=upload
+---
+2013/09/18 11:52:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.filedrop.js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/assets/js/jquery.filedrop.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=upload
+---
+2013/09/18 11:52:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/script.js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/scrip...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/assets/js/script.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=upload
+---
+2013/09/18 11:52:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/script.js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/scrip...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/assets/js/script.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=upload
+---
+2013/09/18 11:52:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.filedrop.js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/assets/js/jquery.filedrop.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=upload
+---
+2013/09/18 11:52:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.filedrop.js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/assets/js/jquery.filedrop.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=upload
+---
+2013/09/18 11:52:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/script.js".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/scrip...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/assets/js/script.js
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=upload
+---
+2013/09/18 11:55:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "post_file.php".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('post_file.php')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/post_file.php
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=upload
+---
+2013/09/18 11:59:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "index.php/templates/upload".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('index.php/templ...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/index.php/templates/upload
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=upload
+---
+2013/09/18 12:05:28 [error] [php] move_uploaded_file(uploads/done.png) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TemplatesController.php:51)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): TemplatesController->runAction()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): TemplatesController->runActionWithFilters()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): TemplatesController->run()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/templates/upload
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TemplatesController.php (51)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/19 12:42:37 [error] [exception.CException] exception 'CException' with message 'EvenementController cannot find the requested view "view".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:878
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CController->renderPartial('view', NULL, true)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php(20): CController->render('view')
+#2 [internal function]: EvenementController->actionView('523321c7c073ef2...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(EvenementController), Array)
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EvenementController), Object(ReflectionMethod), Array)
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('evenement/view/...')
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#12 {main}
+REQUEST_URI=/ph/index.php/evenement/view/id/523321c7c073ef2b380a231c
+HTTP_REFERER=http://127.0.0.1/ph/index.php/evenement
+---
+2013/09/19 12:52:02 [error] [exception.CException] exception 'CException' with message 'EvenementController cannot find the requested view "swe/view".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:878
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CController->renderPartial('swe/view', NULL, true)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php(20): CController->render('swe/view')
+#2 [internal function]: EvenementController->actionView('523321c7c073ef2...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(EvenementController), Array)
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EvenementController), Object(ReflectionMethod), Array)
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('evenement/view/...')
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#12 {main}
+REQUEST_URI=/ph/index.php/evenement/view/id/523321c7c073ef2b380a231c
+HTTP_REFERER=http://127.0.0.1/ph/index.php/evenement
+---
+2013/09/19 12:52:59 [error] [exception.CException] exception 'CException' with message 'EvenementController cannot find the requested view "swe/view".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:878
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CController->renderPartial('swe/view', NULL, true)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php(20): CController->render('swe/view')
+#2 [internal function]: EvenementController->actionView('523321c7c073ef2...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(EvenementController), Array)
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EvenementController), Object(ReflectionMethod), Array)
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('evenement/view/...')
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#12 {main}
+REQUEST_URI=/ph/index.php/evenement/view/id/523321c7c073ef2b380a231c
+HTTP_REFERER=http://127.0.0.1/ph/index.php/evenement
+---
+2013/09/19 14:53:27 [error] [php] Undefined variable: log (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:80)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweInfos
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (80)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/19 14:54:00 [error] [php] Undefined variable: log (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:79)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweInfos
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (79)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/19 14:54:52 [error] [php] Undefined variable: log (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:79)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweInfos
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (79)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/19 15:34:09 [error] [php] Undefined index: file (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:53)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweInfos
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (53)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/19 15:34:28 [error] [php] Undefined index: image (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:53)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweInfos
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (53)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/19 15:49:12 [error] [php] Undefined index: image (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:53)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweInfos
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (53)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/19 16:28:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "<a href='".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('<a href='')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('<a href='')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('evenement/<a hr...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/evenement/%3Ca%20href=%27
+HTTP_REFERER=http://127.0.0.1/ph/index.php/evenement/StartupWeekEnd2012
+---
+2013/09/19 16:37:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "<a href='".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('<a href='')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('<a href='')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('evenement/<a hr...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/evenement/%3Ca%20href=%27
+HTTP_REFERER=http://127.0.0.1/ph/index.php/evenement/StartupWeekEnd2012
+---
+2013/09/19 16:37:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "<a href='".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('<a href='')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('<a href='')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('evenement/<a hr...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/evenement/%3Ca%20href=%27
+HTTP_REFERER=http://127.0.0.1/ph/index.php/evenement/StartupWeekEnd2012
+---
+2013/09/19 16:38:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "<a href='".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('<a href='')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('<a href='')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('evenement/<a hr...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/evenement/%3Ca%20href=%27
+HTTP_REFERER=http://127.0.0.1/ph/index.php/evenement/StartupWeekEnd2012
+---
+2013/09/19 18:28:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "name".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('name')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('name')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('templates/name/...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/templates/name/uploadMini
+---
+2013/09/19 19:27:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "name".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('name')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('name')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('templates/name/...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/templates/name/uploadMini
+---
+2013/09/19 20:37:16 [error] [php] require_once(handler.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TemplatesController.php:23)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): TemplatesController->runAction()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): TemplatesController->runActionWithFilters()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): TemplatesController->run()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/templates/upload/fine/1?qquuid=32562c92-598c-4967-a008-8441767457e4&qqtotalfilesize=366564&fineuploadtest=575514_545232155515578_1759128552_n.png
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TemplatesController.php (23)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TemplatesController.php (23)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/19 21:35:41 [error] [php] Undefined variable: log (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:55)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweInfos
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (55)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/19 22:11:51 [error] [php] Undefined index: image (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\sweModals.php:171)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): EvenementController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swegraph.php(182): EvenementController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): EvenementController->renderInternal()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): EvenementController->renderFile()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): EvenementController->renderPartial()
+#6 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php(35): EvenementController->render()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): EvenementController->actionStartupWeekEnd2012()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#12 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012?fileuploadui=575514_545232155515578_1759128552_n.png&titleIdea=&yourIdea=
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\sweModals.php (171)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swegraph.php (182)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (35)
+2013/09/19 22:27:43 [error] [php] Undefined index: img (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swegraph.php:89)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): EvenementController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): EvenementController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php(35): EvenementController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): EvenementController->actionStartupWeekEnd2012()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012?fileuploadui=575514_545232155515578_1759128552_n.png&titleIdea=&yourIdea=
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swegraph.php (89)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (35)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/19 22:32:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "1044217_534296236607117_1571934541_n.jpg".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('1044217_5342962...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('1044217_5342962...')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('evenement/10442...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/evenement/1044217_534296236607117_1571934541_n.jpg
+HTTP_REFERER=http://127.0.0.1/ph/index.php/evenement/StartupWeekEnd2012?fileuploadui=575514_545232155515578_1759128552_n.png&titleIdea=&yourIdea=
+---
+2013/09/20 08:43:49 [error] [php] Use of undefined constant StartupWeekEnd2012 - assumed 'StartupWeekEnd2012' (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:31)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (31)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/20 08:47:43 [error] [php] in_array() expects parameter 2 to be array, null given (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:46)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): EvenementController->actionStartupWeekEnd2012()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#7 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (46)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (32)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/20 08:48:17 [error] [php] Argument 1 passed to iterator_to_array() must implement interface Traversable, null given, called in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php on line 32 and defined (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:46)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): EvenementController->actionStartupWeekEnd2012()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#7 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (46)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (32)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/20 08:59:42 [error] [php] Argument 1 passed to iterator_to_array() must implement interface Traversable, null given, called in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php on line 33 and defined (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:47)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): EvenementController->actionStartupWeekEnd2012()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#7 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (47)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (33)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/20 09:25:59 [error] [php] Argument 1 passed to iterator_to_array() must implement interface Traversable, array given, called in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php on line 49 and defined (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:32)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (32)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/20 09:27:02 [error] [php] Undefined variable: type (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:32)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (32)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)

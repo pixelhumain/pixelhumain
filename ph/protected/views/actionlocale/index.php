@@ -66,7 +66,14 @@ ol.slats li p span.meta {
 		</h3>
 	</li>
 	<li>Proposer/Organiser des actions locales</li>
-	<li>Donner votre avis sur des propositionq d'actionq localeq</li>
+	<li>Donner votre avis sur des propositions d'actions locales</li>
+	<li class="group">
+		<h3>
+			<a href="<?php echo Yii::app()->createUrl('/index.php/projet')?>">
+				Proposer/Organiser des projets locaux
+			</a>
+		</h3>
+	</li>
 	<li class="group">
 		<h3>
 			<a href="<?php echo Yii::app()->createUrl('/index.php/discuter')?>">
