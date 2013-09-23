@@ -426,40 +426,4 @@ initT['sweInscriptionModalsInit'] = function(){
 };
 </script>
 
-<!-- Modal -->
-<div id="sweInvitation" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel"> Inviter Quelqu'un au Start Up Week End</h3>
-  </div>
-  <div class="modal-body">
-    <p> Un mail d'invitation sera envoyé a votre filleul.<br/>
-    Le parainage renforce les objectifs du Pixel Humain qui sont d'impliquer la population locale dans l'activité et la communication locale.<br/>
-    En parainant vous 
-    </p>
-    <form id="inviteForm" style="line-height:40px;">
-        <section>
-          	<input type="hidden" id="sponsorPA" name="sponsorPA" value="<?php echo Yii::app()->session["userId"]; ?>"/>
-          	<table>
-          	<tr>
-              	<td class="txtright">Un Email</td>
-              	<td> <input id="inviteEmail" name="inviteEmail" value=""/></td>
-          	</tr>
-          	<tr>
-              	<td class="txtright">Un nom </td>
-              	<td> <input id="inviteName" name="inviteName" value=""/></td>
-          	</tr>
-          </table>
-             
-        </section>
-        
-    </form>
-    
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
-    <button class="btn btn-primary" id="submitInvite" onclick="$('#inviteForm').submit();">Enregistrer</button>
-  </div>
-</div>
-<!-- Modal -->
 

@@ -23,12 +23,13 @@ class EvenementController extends Controller {
 	    $this->render("new");
 	}
 	
-	/**
+	/** ****************************************
 	 * Start Up Week End
 	 */
+	const swe2012Id = "523321c7c073ef2b380a231c";
     public function actionStartupWeekEnd2012() {
 	    $this->layout = "swe";
-	    $event = Yii::app()->mongodb->group->findOne(array("key"=>"StartupWeekEnd2012"));
+	    $event = Yii::app()->mongodb->group->findOne(array("key"=>"StartupWeekEnd2012")); 
 	    // for this event that is private 
 	    // user must be loggued 
 	    // and exist in the event user particpant list
@@ -76,6 +77,78 @@ class EvenementController extends Controller {
 		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
 		exit;
 	}
+    public function actionSweProject() 
+    { 
+	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
+		{
+            
+		     $project = Yii::app()->mongodb->group->findOne(array("email"=>$_POST["projectEmail"]));
+             $newInfos = array(
+                			'email'=>$_POST["projectEmail"],
+                    		'name' => $_POST["projectName"],
+                            'desc'=> $_POST["projectDesc"]
+                            );
+              if(!$project)
+              {
+                  $newInfos['created'] = time();
+                  $newInfos['type'] = "projet";
+                  $newInfos['country'] ='Réunion';
+                  $newInfos['events']= array(new MongoId(self::swe2012Id));
+              }
+              $where = array("email"=>$_POST["projectEmail"]);	
+              Yii::app()->mongodb->group->insert($newInfos);
+              
+              $where = array("_id" => new MongoId(self::swe2012Id));	
+              Yii::app()->mongodb->group->update($where, array('$push' => array("projects"=>$newInfos["_id"])));
+              
+              $newInfos['projet'] = strtolower( str_replace(' ', '', $_POST["projectName"] ) );
+              Yii::app()->mongodb->startupweekend->insert($newInfos);
+              
+              $result = array("result"=>true,"msg"=>"Données bien enregistrées.");
+              
+              echo json_encode($result); 
+            
+		} else
+		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
+		exit;
+	}
+	
+    public function actionSwePerson() 
+    { 
+	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
+		{
+		        $newAccount = array(
+                    			'email'=>$_POST["personEmail"],
+                                'created' => time(),
+                        		'name' => $_POST["personName"],
+                                'type' => "citoyen",
+                                'country' =>'Réunion',
+                                'events'=>array(new MongoId(self::swe2012Id))
+                                );
+                $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST["personEmail"]));
+                if($account){
+                    Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId(self::swe2012Id))));
+                    $newAccount["_id"] = $account["_id"];
+                }
+                else
+                    Yii::app()->mongodb->citoyens->insert($newAccount);
+                //add a participant
+                $where = array("_id" => new MongoId(self::swe2012Id));	
+                Yii::app()->mongodb->group->update($where, array('$push' => array("participants"=>$newAccount["_id"])));
+                
+                //add details into statupweekend table
+                $newAccount['type']='participant';
+                Yii::app()->mongodb->startupweekend->insert($newAccount);
+              
+              $result = array("result"=>true,"msg"=>"Données bien enregistrées.");
+              
+              echo json_encode($result); 
+            
+		} else
+		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
+		exit;
+	}
+	
     public function actionSweRejoindreProjet() {
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
 		{

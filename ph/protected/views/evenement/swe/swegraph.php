@@ -93,7 +93,7 @@ canvas{position:absolute;top:0px;left:0px;}
             //only show people panels on load 
             $classHide = (isset($type) && in_array($type, array('participant'))) ? 'hide' : '';
             //connected users panel will be different
-            $classMe = (Yii::app()->session["userEmail"] == $email) ? 'me' : '';
+            $classMe = (Yii::app()->session["userEmail"] == $email && $type!='projet') ? 'me' : '';
             
             if(!empty($classMe) && !empty($project) )
                 $myproject = $project;
@@ -116,13 +116,14 @@ canvas{position:absolute;top:0px;left:0px;}
                 {
                     $xtra .= "<a  class='btn-ph' href='#' onclick='filterType(\"".$project."\")' title='Project Team'><span class='entypo-users'></span></a>";
                 }
-            } else if ( isset($type) && $type=='participant' )
+            } else if ( isset($type) && $type=='participant' && Yii::app()->session["userEmail"] == $event["adminEmail"] )
                 $xtra .= "<a  class='btn' href='#' onclick='filterType(\"projet\")' title='Rejoindre un projet'><span class='entypo-share'></span></a>";
                 
             
             //join Btn on project panel
             if(isset($type) && $type=='projet'){
-                $xtra .= "<a class='btn-ph' href='javascript:userJoinProject(\"".$project."\")' title='Rejoindre ce projet'><span class='entypo-share'></span></a>";
+                if(Yii::app()->session["userEmail"] == $event["adminEmail"])
+                    $xtra .= "<a class='btn-ph' href='javascript:userJoinProject(\"".$project."\")' title='Rejoindre ce projet'><span class='entypo-share'></span></a>";
                 array_push($projects, $project );
             }else if(isset($type) && $type=='coach'){
                 $coachRequestBadge =  '<span id="'.(str_replace(' ', '', $name)).'RequestBadge" class="badge bgRed coachBadges" ></span>';

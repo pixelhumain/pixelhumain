@@ -5,10 +5,7 @@
     <h3 id="myModalLabel">Parainer ou Inviter Quelqu'un</h3>
   </div>
   <div class="modal-body">
-    <p> Un mail d'invitation sera envoyé a votre filleul.<br/>
-    Le parainage renforce les objectifs du Pixel Humain qui sont d'impliquer la population locale dans l'activité et la communication locale.<br/>
-    En parainant vous 
-    </p>
+    <p> L'invité recevra un mail pour venir compléter sa fiche d'incription </p>
     <form id="inviteForm" style="line-height:40px;">
         <section>
           	<input type="hidden" id="sponsorPA" name="sponsorPA" value="<?php echo Yii::app()->session["userId"]; ?>"/>

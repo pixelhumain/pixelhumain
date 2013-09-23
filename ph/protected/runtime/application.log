@@ -7821,3 +7821,68 @@ Stack trace:
 REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (32)
 in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/20 18:43:52 [error] [php] Undefined index: email (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:84)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweProject
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (84)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/20 18:44:18 [error] [php] Undefined index: email (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:84)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweProject
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (84)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/20 18:48:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "swegraph".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('swegraph')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('swegraph')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('evenement/swegr...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/evenement/swegraph
+HTTP_REFERER=http://127.0.0.1/ph/index.php/evenement/sweadmin
+---
+2013/09/20 20:15:11 [error] [php] Undefined variable: created (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:122)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/swePerson
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (122)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/20 20:16:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "registerpwd".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('registerpwd')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('registerpwd')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('citoyens/regist...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/citoyens/registerPwd
+HTTP_REFERER=http://127.0.0.1/ph/index.php/evenement/StartupWeekEnd2012
+---
+2013/09/22 17:50:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "view".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('view')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('templates/view/...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/templates/view/name/vex
+---

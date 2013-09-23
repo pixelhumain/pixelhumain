@@ -7,16 +7,19 @@
  * @author: Tibor Katelbach <tibor@pixelhumain.com>
  * Date: 16/08/13
  */
-class TemplatesController extends Controller {
+class TemplatesController extends Controller 
+{
 
-    public function actionIndex() {
+    public function actionIndex() 
+    {
        $name = "index";
        if(isset($_GET["name"])) 
            $name = $_GET["name"];
 	   $this->render($name);
 	}
 	
-    public function actionUpload() {
+    public function actionUpload() 
+    {
         $upload_dir = 'upload/swe/';
         $allowed_ext = array('jpg','jpeg','png','gif');
         
@@ -25,7 +28,6 @@ class TemplatesController extends Controller {
     	    echo json_encode(array('error'=>'Error! Wrong HTTP method!'));
 	        exit;
         }
-        
         
         if(array_key_exists('imageFile',$_FILES) && $_FILES['imageFile']['error'] == 0 ){
         	

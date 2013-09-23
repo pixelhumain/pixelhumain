@@ -107,11 +107,11 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
     <div class="grid">
         <div></div>
         <div  data-ss-colspan="2">
-        <a href="<?php echo Yii::app()->createUrl('index.php/evenement/swegraph')?>">Panel Participant</a>
+        <a href="<?php echo Yii::app()->createUrl('index.php/evenement/StartupWeekEnd2012')?>">Panel Participant</a>
         </div>
         <div></div>
-        <div data-ss-colspan="2"><a href="#sweAddPerson"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> participant</a></div>
-        <div data-ss-colspan="2"></div>
+        <div data-ss-colspan="2"><a href="#sweAddPerson"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Participant</a></div>
+        <div data-ss-colspan="2"><a href="#sweAddProject"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Projet</a></div>
         <div data-ss-colspan="3"><a href="#sweHelp"   target="_blank" role="button" data-toggle="modal">Statistic </a></div>
         <div></div>
         <div data-ss-colspan="3"></div>
@@ -134,6 +134,8 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
 	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/Logo-NRJ-New-Blanc.jpg"/></li>
 </ul>
 
+<canvas id="canvas"></canvas>
+
 
 <!-- Modal -->
 <div id="sweAddPerson" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -146,25 +148,18 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
     Le parainage renforce les objectifs du Pixel Humain qui sont d'impliquer la population locale dans l'activité et la communication locale.<br/>
     En parainant vous 
     </p>
-<form id="sweAddForm" style="line-height:40px;">
+	<form id="sweAddPersonForm" style="line-height:40px;">
         <section>
           	<table>
           	<tr>
               	<td class="txtright">Email</td>
-              	<td> <input id="inviteEmail" name="inviteEmail" value=""/></td>
+              	<td> <input id="personEmail" name="personEmail" value=""/></td>
           	</tr>
           	<tr>
               	<td class="txtright">Nom </td>
-              	<td> <input id="inviteName" name="inviteName" value=""/></td>
+              	<td> <input id="personName" name="personName" value=""/></td>
           	</tr>
-          	
-          	<tr>
-              	<td class="txtright">Prénom </td>
-              	<td> <input id="inviteName" name="inviteName" value=""/></td>
-          	</tr>
-          	
           </table>
-             
         </section>
         
     </form>
@@ -172,12 +167,95 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
-    <button class="btn btn-primary" id="submitInvite" onclick="$('#inviteForm').submit();">Enregistrer</button>
+    <button class="btn btn-primary" id="submitInvite" onclick="$('#sweAddPersonForm').submit();">Enregistrer</button>
   </div>
 </div>
 <!-- Modal -->
 
-<canvas id="canvas"></canvas>
+<script type="text/javascript">
+initT['swePersonModalsInit'] = function(){
+	$('input[type=file]').change(function (e) {
+	    $('#customfileupload').html($(this).val());
+	});
+    $("#sweAddPersonForm").submit( function(event){
+    	event.preventDefault();
+    	$("#sweAddPerson").modal('hide');
+    	NProgress.start();
+    	$.ajax({
+    	  type: "POST",
+    	  url: baseUrl+"/index.php/evenement/swePerson",
+    	  data: $("#sweAddPersonForm").serialize(),
+    	  success: function(data){
+    			  $("#flashInfo .modal-body").html(data.msg);
+    			  $("#flashInfo").modal('show');
+    			  NProgress.done();
+    	  },
+    	  dataType: "json"
+    	});
+    });
+};
+</script>
+
+<!-- Modal -->
+<div id="sweAddProject" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"> Ajouter un nouveau projet</h3>
+  </div>
+  <div class="modal-body">
+    <p> Creer un nouveau projet ,vous connecterez ensuite son equipe.</p>
+<form id="sweAddProjectForm" style="line-height:40px;">
+        <section>
+          	<table>
+          	<tr>
+              	<td class="txtright">Email du porteur</td>
+              	<td> <input id="projectEmail" name="projectEmail" value=""/></td>
+          	</tr>
+          	<tr>
+              	<td class="txtright">Nom du Projet</td>
+              	<td> <input id="projectName" name="projectName" value=""/></td>
+          	</tr>
+          	<tr>
+              	<td class="txtright">Description</td>
+              	<td> <input id="projectDesc" name="projectDesc" value=""/></td>
+          	</tr>
+          </table>
+        </section>
+    </form>
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+    <button class="btn btn-primary" id="submitInvite" onclick="$('#sweAddProjectForm').submit();">Enregistrer</button>
+  </div>
+</div>
+<!-- Modal -->
+
+
+<script type="text/javascript">
+initT['sweProjectModalsInit'] = function(){
+	$('input[type=file]').change(function (e) {
+	    $('#customfileupload').html($(this).val());
+	});
+    $("#sweAddProjectForm").submit( function(event){
+    	event.preventDefault();
+    	$("#sweAddProject").modal('hide');
+    	NProgress.start();
+    	$.ajax({
+    	  type: "POST",
+    	  url: baseUrl+"/index.php/evenement/sweProject",
+    	  data: $("#sweAddProjectForm").serialize(),
+    	  success: function(data){
+    			  $("#flashInfo .modal-body").html(data.msg);
+    			  $("#flashInfo").modal('show');
+    			  NProgress.done();
+    	  },
+    	  dataType: "json"
+    	});
+    });
+};
+</script>
+
 
 <script type="text/javascript">
 
