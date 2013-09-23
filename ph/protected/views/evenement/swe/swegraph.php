@@ -49,7 +49,7 @@ canvas{position:absolute;top:0px;left:0px;}
 <?php $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId("523321c7c073ef2b380a231c")));?>
 <div class="appMenuContainer">
     <ul class="appMenu">
-    	<?php if(Yii::app()->session["userEmail"] == $event["adminEmail"]){ ?>
+    	<?php if( in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) ){ ?>
     		<li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweadmin')?>"><i class="icon-wrench"></i> Admin</a></li>
     	<?php } ?>
     	<li><a href="#sweInscription" id="mesInfos" role="button" data-toggle="modal"><i class="icon-user"></i> Mes Infos</a></li>
@@ -116,13 +116,13 @@ canvas{position:absolute;top:0px;left:0px;}
                 {
                     $xtra .= "<a  class='btn-ph' href='#' onclick='filterType(\"".$project."\")' title='Project Team'><span class='entypo-users'></span></a>";
                 }
-            } else if ( isset($type) && $type=='participant' && Yii::app()->session["userEmail"] == $event["adminEmail"] )
+            } else if ( isset($type) && $type=='participant' && in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) )
                 $xtra .= "<a  class='btn' href='#' onclick='filterType(\"projet\")' title='Rejoindre un projet'><span class='entypo-share'></span></a>";
                 
             
             //join Btn on project panel
             if(isset($type) && $type=='projet'){
-                if(Yii::app()->session["userEmail"] == $event["adminEmail"])
+                if(in_array( Yii::app()->session["userEmail"], $event["adminEmail"]))
                     $xtra .= "<a class='btn-ph' href='javascript:userJoinProject(\"".$project."\")' title='Rejoindre ce projet'><span class='entypo-share'></span></a>";
                 array_push($projects, $project );
             }else if(isset($type) && $type=='coach'){
