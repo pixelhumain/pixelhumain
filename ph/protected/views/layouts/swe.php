@@ -11,7 +11,7 @@
 	<meta name="robots" content="Index,Follow" />
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+    <script src="<?php echo Yii::app()->createUrl('js/jquery.1.10.2.min.js')?>"></script>    
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
@@ -28,7 +28,7 @@
 
    <title><?php echo CHtml::encode($this->pageTitle); ?></title>
    <?php //echo Yii::app()->createUrl('js/jquery-1.8.3.min.js')?>
-   <script src="<?php echo Yii::app()->createUrl('js/jquery.1.10.2.min.js')?>"></script>
+   
    <script>
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
