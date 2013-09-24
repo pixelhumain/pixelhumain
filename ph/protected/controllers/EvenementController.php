@@ -8,7 +8,8 @@
  * Date: 15/08/13
  */
 class EvenementController extends Controller {
-
+    const moduleTitle = "Évènement";
+    
 	public function actionIndex() {
 	    $this->render("index");
 	}

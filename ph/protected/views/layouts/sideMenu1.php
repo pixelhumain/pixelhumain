@@ -155,6 +155,7 @@
               </ul>
         </li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/evenement')?>"><span class="entypo-signal"></span><span class="menu-item">Évènement</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('index.php/association')?>"><span class="entypo-users"></span><span class="menu-item">Association</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/opendata')?>"><span class="entypo-share"></span><span class="menu-item">Open Data</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/annuaire')?>"><span class="entypo-network"></span><span class="menu-item">Annuaire</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/geo')?>"><span class="entypo-map"></span><span class="menu-item">Carto</span></a></li>

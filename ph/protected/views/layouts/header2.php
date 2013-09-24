@@ -22,7 +22,7 @@
             	</div>
             	
         </div>
-        <div class="pull-left p15 fsxl h60" id="appTitle">Évènement</div>
+        <div class="pull-left p15 fsxl h60" id="appTitle"><?php echo $this::moduleTitle ?></div>
     </div>
 </header>
 

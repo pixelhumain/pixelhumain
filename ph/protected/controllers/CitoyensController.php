@@ -69,13 +69,21 @@ class CitoyensController extends Controller {
             }
             else {
                 //validate isEmail
-               if(preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$_POST['registerEmail'])) { 
+                $email = $_POST['registerEmail'];
+                $name = "";
+               if(preg_match('#^([\w.-])/<([\w.-]+@[\w.-]+\.[a-zA-Z]{2,6})/>$#',$email, $matches)) {
+                  $name = $matches[0];
+                  $email = $matches[1];
+               }
+               if(preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$email)) { 
                     $newAccount = array(
-                    			'email'=>$_POST['registerEmail'],
+                    			'email'=>$email,
                                 'tobeactivated' => true,
                                 'adminNotified' => false,
                                 'created' => time()
                                 );
+                    if(!empty($name))
+                        $newAccount["name"] = $name;
                     Yii::app()->mongodb->citoyens->insert($newAccount);
                     Yii::app()->session["userId"] = $newAccount["_id"]; 
                     Yii::app()->session["userEmail"] = $newAccount["email"];
@@ -93,7 +101,7 @@ class CitoyensController extends Controller {
                     
                     echo json_encode(array("result"=>true, "id"=>$newAccount["_id"]));
                }else
-                   echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide."));
+                   echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide.".print_r($matches)));
             }
 		} else
 		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));

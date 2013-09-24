@@ -38,6 +38,7 @@
 
 <body>
 <?php $this->renderPartial('application.views.layouts.header2');?>
+<?php if(isset($this->showSidebar1) && $this->showSidebar1)$this->renderPartial('application.views.layouts.sideMenu1');?>
 <?php echo $content; ?>
 <?php $this->renderPartial('application.views.layouts.modals');?>	
 
