@@ -49,14 +49,14 @@ font-family: "Homestead";
     <p> Valorisation des associations locale, des leurs actions et objectifs </p>
  	<div class="grid">
         <div></div>
-        <div  data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/projet/list/ownerId/'.$asso["_id"])?>">Projet(s)</a></div>
+        <div  data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/projet/list/ownerId/'.$asso["_id"])?>">Projet(s)</a>desc,resp,resp</div>
         <div></div>
         <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Membres</a></div>
         <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Bureau</a></div>
         <div data-ss-colspan="3"><a href="#"   target="_blank" role="button" data-toggle="modal">Statistic </a></div>
         <div></div>
         <div data-ss-colspan="3"><a href="#"   target="_blank" role="button" data-toggle="modal">Évènement </a></div>
-        <div></div>
+        <div><a href="#"   target="_blank" role="button" data-toggle="modal">NEWS Feed</a></div>
         <div></div>
         <div></div>
    </div>

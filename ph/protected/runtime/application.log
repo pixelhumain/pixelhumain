@@ -8277,3 +8277,20 @@ REQUEST_URI=/ph/index.php/commune/view/cp/97400
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\swe.php (41)
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CommuneController.php (24)
 in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/24 12:42:49 [error] [exception.MongoException] exception 'MongoException' with message 'Invalid object ID' in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ProjetController.php:21
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ProjetController.php(21): MongoId->__construct('')
+#1 [internal function]: ProjetController->actionList('')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjetController), Array)
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjetController), Object(ReflectionMethod), Array)
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('list')
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('projet/list/own...')
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#11 {main}
+REQUEST_URI=/ph/index.php/projet/list/ownerId
+HTTP_REFERER=http://127.0.0.1/ph/index.php/commune/view/cp/97400
+---

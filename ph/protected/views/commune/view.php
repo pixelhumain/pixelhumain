@@ -22,24 +22,24 @@ font-family: "Homestead";
   color: #324553;
 }
 .grid {
-      border: 1px dashed #CCC;
-      position: relative;
-    }
+  border: 1px dashed #CCC;
+  position: relative;
+}
 
-    .grid > div {
-      background: #AAA;
-      position: absolute;
-      height: 100px;
-      width: 100px;
-    }
+.grid > div {
+  background: #AAA;
+  position: absolute;
+  height: 50px;
+  width: 100px;
+}
 
-    .grid > div[data-ss-colspan="2"] { width: 210px; }
-    .grid > div[data-ss-colspan="3"] { width: 320px; }
+.grid > div[data-ss-colspan="2"] { width: 210px; }
+.grid > div[data-ss-colspan="3"] { width: 320px; }
 
-    .grid > .ss-placeholder-child {
-      background: transparent;
-      border: 1px dashed blue;
-    }	
+.grid > .ss-placeholder-child {
+  background: transparent;
+  border: 1px dashed blue;
+}	
 .graph div{border:1px solid #666;text-align:center}
 </style>
 <div class="container graph">
@@ -47,7 +47,7 @@ font-family: "Homestead";
     <div class="hero-unit">
     
     <h2> Commune <?php echo $cp?></h2>
-    <p> Valorisation l'information locale, les actions... </p>
+    <p> Un condenser de votre commune, contribuez à l'action locale. </p>
  	<div class="grid">
         <div></div>
         <div  data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/projet/list/ownerId/')?>">Projet(s)</a></div>
@@ -61,9 +61,6 @@ font-family: "Homestead";
         <div></div>
         <div></div>
    </div>
-   
-   
-   
 </div></div>
 
 <div class="container graph">
@@ -133,6 +130,15 @@ font-family: "Homestead";
 		</div>
 		<div class="span4">
 		<h2>Rézoté</h2>
+		</div>
+	</div>
+	
+	<div class="row-fluid">
+		<div class="span6">
+		<h2>Calendrier</h2>
+		</div>
+		<div class="span6">
+		<h2></h2>
 		</div>
 	</div>
 	

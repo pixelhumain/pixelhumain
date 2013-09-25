@@ -51,7 +51,7 @@ font-family: "Homestead";
         <div></div>
         <div  data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/projet/people/id/'.$projet["_id"].'/type/team')?>">Membres Actifs</a></div>
         <div  data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/projet/people/id/'.$projet["_id"].'/type/mentors')?>">Adhérent / Soutien</a></div>
-        <div></div>
+        <div><a href="<?php echo Yii::app()->createUrl('index.php/projet/people/id/'.$projet["_id"].'/type/recrutement')?>">Recrutement</a></div>
         <div data-ss-colspan="2"></div>
         <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Action</a></div>
         <div data-ss-colspan="3"><a href="#"   target="_blank" role="button" data-toggle="modal">Statistic </a></div>

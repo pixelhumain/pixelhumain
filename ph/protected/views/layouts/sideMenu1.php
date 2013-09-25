@@ -154,6 +154,8 @@
                 <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/3dsurface')?>">Surface 3D</a></li>
               </ul>
         </li>
+        <li><a href="<?php echo Yii::app()->createUrl('index.php/commune')?>"><span class="entypo-address"></span><span class="menu-item">Commune</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('index.php/projet')?>"><span class="entypo-light-bulb">&#128161;</span><span class="menu-item">Projet</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/evenement')?>"><span class="entypo-signal"></span><span class="menu-item">Évènement</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/association')?>"><span class="entypo-users"></span><span class="menu-item">Association</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/opendata')?>"><span class="entypo-share"></span><span class="menu-item">Open Data</span></a></li>
@@ -161,7 +163,6 @@
         <li><a href="<?php echo Yii::app()->createUrl('index.php/geo')?>"><span class="entypo-map"></span><span class="menu-item">Carto</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/decouvrir')?>"><span class="entypo-globe"></span><span class="menu-item">Découvrir</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/discuter')?>" ><span class="entypo-chat"></span><span class="menu-item">Discuter</span></a></li>
-        <li><a href="#boiteIdee" role="button" data-toggle="modal"><span class="entypo-light-bulb">&#128161;</span><span class="menu-item" >Idée ou Projet</span></a></li>
         
         <li><a href="<?php echo Yii::app()->createUrl('index.php/actualite')?>" ><span class="entypo-rss"></span><span class="menu-item">Actualité</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/diffusion/hangout')?>" ><span class="entypo-mic"></span><span class="menu-item">Conseil Mun.</span></a></li>
