@@ -34,7 +34,10 @@ class EvenementController extends Controller {
 	    // for this event that is private 
 	    // user must be loggued 
 	    // and exist in the event user particpant list
-	    if( !isset(Yii::app()->session["userId"]) || !self::isParticipant($event,"participants"))
+	    if( !isset(Yii::app()->session["userId"]) || !( self::isParticipant($event,"participants") || 
+	                                                    self::isParticipant($event,"organisateurs") || 
+	                                                    self::isParticipant($event,"jurys") || 
+	                                                    self::isParticipant($event,"coaches") ))
 	        $this->render("swe/sweLogin");
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(); 
