@@ -66,6 +66,7 @@ canvas{position:absolute;top:0px;left:0px;}
 
     <div id="appPanel">
     	<ul id="appPanelList"></ul>
+    	<?php echo Yii::app()->session["userEmail"]?>
     </div>
     
 	<h1><?php echo $event["name"]?><br/><span class="appTitle">  </span></h1>

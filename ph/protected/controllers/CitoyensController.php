@@ -141,6 +141,7 @@ class CitoyensController extends Controller {
                             $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST['registerEmail']));
                             if($account){
                                 Yii::app()->session["userId"] = $account["_id"];
+                                Yii::app()->session["userEmail"] = $account["email"];
                                 if ( !isset(Yii::app()->session["loggedIn"]) && !is_array(Yii::app()->session["loggedIn"]))
                                     Yii::app()->session["loggedIn"] =   array();
                                 $tmp = Yii::app()->session["loggedIn"];
