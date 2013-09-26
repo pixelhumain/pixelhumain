@@ -1,5 +1,10 @@
-<?php $this->renderPartial('application.views.layouts.modals.loginForm');?>
-<?php //$this->renderPartial('application.views.layouts.modals.loginPwdForm');?>
+<?php 
+if($this->secure)
+    $this->renderPartial('application.views.layouts.modals.loginPwdForm');
+else
+    $this->renderPartial('application.views.layouts.modals.loginForm');
+
+?>
 <?php 
 $account = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
 ?>

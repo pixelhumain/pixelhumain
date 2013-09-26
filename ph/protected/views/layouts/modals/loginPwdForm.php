@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div id="loginPwdForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="loginForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">S'inscrire ou se Connecter :</h3>
@@ -40,8 +40,8 @@ initT['loginModalsInit'] = function(){
     	toggleSpinner();
     	$.ajax({
     	  type: "POST",
-    	  url: baseUrl+"/index.php/citoyens/registerPwd",
-    	  data: "registerEmail="+$("#registerPwdEmail").val(),
+    	  url: baseUrl+"/index.php/citoyens/registerAppPwd",
+    	  data: "registerEmail="+$("#registerPwdEmail").val()+"&registerPwd="+$("#registerPwd").val()+"&appKey=<?php echo $this->appKey?>&appType=<?php echo $this->appType?>",
     	  success: function(data){
     		  if(data.result){
         		  window.location.reload();

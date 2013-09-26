@@ -101,10 +101,67 @@ class CitoyensController extends Controller {
                     
                     echo json_encode(array("result"=>true, "id"=>$newAccount["_id"]));
                }else
-                   echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide.".print_r($matches)));
+                   echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide."));
             }
 		} else
 		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
+		exit;
+	}
+	/**
+	 * Register to a secuure application, the unique pwd is linked to the application instance retreived by type
+	 * test exists 
+	 * otherwise add the DB 
+	 * send validation mail 
+	 */
+	public function actionRegisterAppPwd()
+	{
+	    if(Yii::app()->request->isAjaxRequest && isset($_POST['registerEmail']) && !empty($_POST['registerEmail']) 
+	                                          && isset($_POST['registerPwd']) && !empty($_POST['registerPwd']))
+		{
+		    //check application exists
+		    if(isset($_POST['appKey']) && !empty($_POST['appKey']) 
+	           && isset($_POST['appType']) && !empty($_POST['appType']))
+	        {
+	           $type = Yii::app()->mongodb->selectCollection($_POST['appType']);
+	           $app = $type->findOne(array("_id"=>new MongoId($_POST['appKey'])));
+               if($app)
+               {
+                    //validate isEmail
+                    $email = $_POST['registerEmail'];
+                    $name = "";
+                   if(preg_match('#^([\w.-])/<([\w.-]+@[\w.-]+\.[a-zA-Z]{2,6})/>$#',$email, $matches)) 
+                   {
+                      $name = $matches[0];
+                      $email = $matches[1];
+                   }
+                   if(preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$email)) 
+                   { 
+                        //test pwd
+                        if( $app["pwd"] == $_POST['registerPwd'] ){
+                            $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST['registerEmail']));
+                            if($account){
+                                Yii::app()->session["userId"] = $account["_id"];
+                                //if ( !isset(Yii::app()->session["loggedIn"]) && !is_array(Yii::app()->session["loggedIn"]))
+                                Yii::app()->session["loggedIn"] =   array("523321c7c073ef2b380a231c");
+                                //Yii::app()->session["loggedIn"] = array_push(  , $_POST['appKey'] );
+                                //Yii::app()->session["loggedIn"]
+                                echo json_encode(array("result"=>true, "msg"=>"Vous êtes connecté à présent, Amusez vous bien."));
+                            }
+                            else
+                                 echo json_encode(array("result"=>false, "msg"=>"Compte inconnue."));
+                            
+                        }else
+                            echo json_encode(array("result"=>false, "msg"=>"Accés refusé."));
+                    } else 
+                       echo json_encode(array("result"=>false, "msg"=>"Email invalide"));
+               } else 
+                   echo json_encode(array("result"=>false, "msg"=>"Application invalide"));
+		    }else{
+                echo json_encode(array("result"=>false, "msg"=>"Vous Pourrez pas accéder a cette application"));
+            }
+		} else
+		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
+		
 		exit;
 	}
 	/**

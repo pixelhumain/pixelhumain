@@ -31,10 +31,13 @@ class EvenementController extends Controller {
     public function actionStartupWeekEnd2012() {
 	    $this->layout = "swe";
 	    $event = Yii::app()->mongodb->group->findOne(array("key"=>"StartupWeekEnd2012")); 
+	    $this->secure = $event['private'];
+	    $this->appKey = $event['_id'];
+	    $this->appType = 'group';
 	    // for this event that is private 
 	    // user must be loggued 
 	    // and exist in the event user particpant list
-	    if( !isset(Yii::app()->session["userId"]) || !( self::isParticipant($event,"participants") || 
+	    if( !isset(Yii::app()->session["userId"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"])  || !( self::isParticipant($event,"participants") || 
 	                                                    self::isParticipant($event,"organisateurs") || 
 	                                                    self::isParticipant($event,"jurys") || 
 	                                                    self::isParticipant($event,"coaches") ))

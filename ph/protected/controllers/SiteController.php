@@ -107,6 +107,7 @@ class SiteController extends Controller
 	public function actionLogout()
 	{
 		Yii::app()->user->logout(true);
+		Yii::app()->session["loggedIn"] = null;
 		$this->redirect(Yii::app()->homeUrl);
 	}
 	
