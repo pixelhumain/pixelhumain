@@ -141,10 +141,11 @@ class CitoyensController extends Controller {
                             $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST['registerEmail']));
                             if($account){
                                 Yii::app()->session["userId"] = $account["_id"];
-                                //if ( !isset(Yii::app()->session["loggedIn"]) && !is_array(Yii::app()->session["loggedIn"]))
-                                Yii::app()->session["loggedIn"] =   array("523321c7c073ef2b380a231c");
-                                //Yii::app()->session["loggedIn"] = array_push(  , $_POST['appKey'] );
-                                //Yii::app()->session["loggedIn"]
+                                if ( !isset(Yii::app()->session["loggedIn"]) && !is_array(Yii::app()->session["loggedIn"]))
+                                    Yii::app()->session["loggedIn"] =   array();
+                                $tmp = Yii::app()->session["loggedIn"];
+                                array_push( $tmp , $_POST['appKey'] );
+                                Yii::app()->session["loggedIn"] = $tmp;
                                 echo json_encode(array("result"=>true, "msg"=>"Vous êtes connecté à présent, Amusez vous bien."));
                             }
                             else

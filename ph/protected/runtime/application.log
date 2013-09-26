@@ -8478,3 +8478,14 @@ Stack trace:
 REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012
 HTTP_REFERER=http://127.0.0.1/ph/index.php/evenement
 ---
+2013/09/26 11:16:08 [error] [php] Indirect modification of overloaded element of CHttpSession has no effect (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:146)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/registerAppPwd
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (146)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
