@@ -8502,3 +8502,16 @@ REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (56)
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (40)
 in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/27 10:54:40 [error] [php] Undefined index:  (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:50)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (50)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (40)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)

@@ -37,15 +37,21 @@ class EvenementController extends Controller {
 	    // for this event that is private 
 	    // user must be loggued 
 	    // and exist in the event user particpant list
-	    if( !isset(Yii::app()->session["userId"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"])  || !( self::isParticipant($event,"participants") || 
-	                                                    self::isParticipant($event,"organisateurs") || 
-	                                                    self::isParticipant($event,"jurys") || 
-	                                                    self::isParticipant($event,"coaches") ))
+	    if( !isset(Yii::app()->session["userId"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
 	        $this->render("swe/sweLogin");
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(); 
 	        $this->render("swe/swegraph",array("sweThings"=>$sweThings));
 	    }
+	}
+	
+	public function checkParticipation($event){
+	    $res = false; 
+	    foreach ($event["participantTypes"] as $t){
+	        $res = self::isParticipant($event,$t);
+	        if($res)break;
+	    }
+	    return $res;
 	}
 	/**
 	 * 
