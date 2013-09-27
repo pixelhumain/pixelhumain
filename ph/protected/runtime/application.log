@@ -8489,3 +8489,16 @@ Stack trace:
 REQUEST_URI=/ph/index.php/citoyens/registerAppPwd
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (146)
 in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/09/27 08:27:24 [error] [php] Missing argument 2 for EvenementController::isParticipant(), called in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php on line 40 and defined (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:56)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/StartupWeekEnd2012
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (56)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (40)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
