@@ -109,9 +109,7 @@ class CitoyensController extends Controller {
 	}
 	/**
 	 * Register to a secuure application, the unique pwd is linked to the application instance retreived by type
-	 * test exists 
-	 * otherwise add the DB 
-	 * send validation mail 
+	 * the appKey is saved in a sessionvariable loggedIn
 	 */
 	public function actionRegisterAppPwd()
 	{

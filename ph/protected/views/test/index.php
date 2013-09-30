@@ -1,6 +1,6 @@
 <?php 
-$cs = Yii::app()->getClientScript();
-$cs->registerCssFile(Yii::app()->request->baseUrl. '/css/magic.css');
+/*$cs = Yii::app()->getClientScript();
+$cs->registerCssFile(Yii::app()->request->baseUrl. '/css/magic.css');*/
 ?>
 <style>
 h2 {
@@ -64,10 +64,12 @@ h2 {
     	
     	<div  id="coco" style="display:block">
         	<h2>TEST</h2>    	
-        	    
-                	
+        	  <?php 
+                $test = Yii::app()->mongodb->test->findOne(array("ki"=>"lo"));
+                $test["ki"] = "ki";
+                Yii::app()->mongodb->test->save($test);
+                ?>  
         </div>
-    	<a href="#" onclick="javascript:$('#coco').addClass('magictime tinRightOut');">Hide Magic</a>
 	</div>
 <script type="text/javascript"		>
 initT['animInit'] = function(){

@@ -47,7 +47,9 @@ font-family: "Homestead";
     <div class="hero-unit">
     
     <h2> Commune <?php echo $cp?></h2>
-    <p> Un condenser de votre commune, contribuez à l'action locale. </p>
+    <p> Un condenser de votre commune, contribuez à l'action locale. 
+    <br/>La 1ere etape est de connecter un maximum de citoyen a l'initiative.
+    </p>
  	<div class="grid">
         <div></div>
         <div  data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/projet/list/ownerId/')?>">Projet(s)</a></div>
@@ -102,7 +104,7 @@ font-family: "Homestead";
 	<br/>
 	<div class="row-fluid">
 		<div class="span4">
-		<h2>Concerts</h2>
+		<h2>Agenda</h2>
 		</div>
 		<div class="span4">
 		<h2>Découvrez</h2>

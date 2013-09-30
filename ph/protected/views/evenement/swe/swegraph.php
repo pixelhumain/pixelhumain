@@ -66,7 +66,6 @@ canvas{position:absolute;top:0px;left:0px;}
 
     <div id="appPanel">
     	<ul id="appPanelList"></ul>
-    	<?php echo Yii::app()->session["userEmail"]?>
     </div>
     
 	<h1><?php echo $event["name"]?><br/><span class="appTitle">  </span></h1>
@@ -117,14 +116,14 @@ canvas{position:absolute;top:0px;left:0px;}
                 {
                     $xtra .= "<a  class='btn-ph' href='#' onclick='filterType(\"".$project."\")' title='Project Team'><span class='entypo-users'></span></a>";
                 }
-            } else if ( isset($type) && $type=='participant' && in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) )
-                $xtra .= "<a  class='btn' href='#' onclick='filterType(\"projet\")' title='Rejoindre un projet'><span class='entypo-share'></span></a>";
+            } /*else if ( isset($type) && $type=='participant' && in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) )
+                $xtra .= "<a  class='btn' href='#' onclick='filterType(\"projet\")' title='Rejoindre un projet'><span class='entypo-share'></span></a>";*/
                 
             
             //join Btn on project panel
             if(isset($type) && $type=='projet'){
-                if(in_array( Yii::app()->session["userEmail"], $event["adminEmail"]))
-                    $xtra .= "<a class='btn-ph' href='javascript:userJoinProject(\"".$project."\")' title='Rejoindre ce projet'><span class='entypo-share'></span></a>";
+                /*if(in_array( Yii::app()->session["userEmail"], $event["adminEmail"]))
+                    $xtra .= "<a class='btn-ph' href='javascript:userJoinProject(\"".$project."\")' title='Rejoindre ce projet'><span class='entypo-share'></span></a>";*/
                 array_push($projects, $project );
             }else if(isset($type) && $type=='coach'){
                 $coachRequestBadge =  '<span id="'.(str_replace(' ', '', $name)).'RequestBadge" class="badge bgRed coachBadges" ></span>';
@@ -213,7 +212,11 @@ function getCoachCount(){
     	  			$("#"+coaches[ix]+"RequestBadge").html( parseInt( $("#"+coaches[ix]+"RequestBadge").html() ) + 1 );
         	    else	  
         			$("#"+coaches[ix]+"RequestBadge").html("1");
-    			$("#appPanelList").append("<li><span class='entypo-megaphone cRed'></span>"+coaches[ix]+" : "+projects[ix]+" <span class='entypo-squarred-cross cRed'><a href='#' onclick='sweCoachingDone(\""+ids[ix]+"\")'>&#10062;</a></span> </li>");
+    			var remove = "";
+    			<?php if(in_array($user["type"], array('coach','organisateur')) || in_array(Yii::app()->session["userEmail"], $event["adminEmail"])) { ?>
+    				remove = "<span class='entypo-squarred-cross cRed'><a href='#' onclick='sweCoachingDone(\""+ids[ix]+"\")'>&#10062;</a></span>";
+    			<?php }?>
+    			$("#appPanelList").append("<li><span class='entypo-megaphone cRed'></span>"+coaches[ix]+" : "+projects[ix]+" "+remove+" </li>");
         	}
 		}
 		previousDataCoach = data;

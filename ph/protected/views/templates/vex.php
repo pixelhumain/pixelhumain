@@ -28,7 +28,7 @@ initT['uploadInit'] = function(){
 
 	$('.demo-confirm').click(function(){
 	    vex.dialog.confirm({
-	        message: 'Are you absolutely sure you want to destroy the alien planet?',
+	        message: 'Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>Are you absolutely sure you want to destroy the alien planet?<br/>',
 	        callback: function(value) {
 	            $('.demo-result-confirm').html('Callback value: <b>' + value + '</b>').show();
 	        }

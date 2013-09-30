@@ -33,6 +33,15 @@ initT['loginModalsInit'] = function(){
     /* *************************** */
     /* resgistration Ajax Call*/
     /* *************************** */
+    $('#registerPwd').bind("enterKey",function(e){
+    	$('#registerPwdForm').submit();
+    });
+    $('#registerPwd').keyup(function(e){
+        if(e.keyCode == 13)
+        {
+        	$('#registerPwdForm').submit();
+        }
+    });
     $("#registerPwdForm").submit( function(event){
     	log($(this).serialize());
     	event.preventDefault();

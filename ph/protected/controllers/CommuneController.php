@@ -10,7 +10,7 @@
  */
 class CommuneController extends Controller {
     const moduleTitle = "Commune";
-    public $showSidebar1 = false;
+    public $showSidebar1 = true;
     
 	public function actionIndex() {
 	    $this->layout = "swe";
@@ -20,7 +20,6 @@ class CommuneController extends Controller {
     public function actionView($cp) 
     {
         $this->layout = "swe";
-        $this->showSidebar1 = true;
         $this->render("view",array('cp'=>$cp));
 	}
 }

@@ -1,6 +1,6 @@
 <style>
 ol.slats li {
-	margin: 0 0 10px 0;
+	margin: 0 0 10px 50px;
 	padding: 0 0 10px 0;
 	border-bottom: 1px solid #eee;
 	}
@@ -36,22 +36,20 @@ ol.slats li p span.meta {
 </style>
 
 <h2>Should Render directly by reading content of views/templates/ folder</h2>
-
+<div class="container" id="accueil">
+    <br/>
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
 <ol class="slats">
+	<?php foreach(CFileHelper::findFiles('protected\views\templates',array("exclude"=>array("index.php"),"level"=>0)) as $f){?>
 	<li class="group">
 		<h3>
-			<a href="<?php echo Yii::app()->createUrl('/index.php/templates?name=dashboard')?>">
-				DashBoard Template
+		    <?php $name = pathinfo($f, PATHINFO_FILENAME)?>
+			<a href="<?php echo Yii::app()->createUrl('/index.php/templates?name='.$name)?>">
+				<?php echo $name?>
 			</a>
 		</h3>
 	</li>
-	<li class="group">
-		<h3>
-			<a href="<?php echo Yii::app()->createUrl('/index.php/templates?name=panelFlip')?>">
-				panelFlip
-			</a>
-		</h3>
-	</li>
-	
+	<?php }?>
 </ol>			
-				
+</div></div>	

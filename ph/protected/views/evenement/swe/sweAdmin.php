@@ -96,7 +96,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
 
 <div class="appContent">
 
-	<h1>Start Up Week End 2012 </h1>
+	<h1>Start Up Week End 2012</h1>
 	
 	<div class="container graph">
     <br/>
@@ -111,10 +111,21 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
         </div>
         <div></div>
         <div data-ss-colspan="2"><a href="#sweAddPerson"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Participant</a></div>
-        <div data-ss-colspan="2"><a href="#sweAddProject"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Projet</a></div>
+        <div data-ss-colspan="2">
+            <a href="#sweAddProject"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Projet</a>
+            <?php ?>
+        </div>
         <div data-ss-colspan="3"><a href="#sweHelp"   target="_blank" role="button" data-toggle="modal">Statistic </a></div>
         <div></div>
-        <div data-ss-colspan="3"></div>
+        <?php 
+        $ct = 0;
+        foreach (Yii::app()->mongodb->startupweekend->find(array("type"=>"participant")) as $line) 
+        {
+            if(count($line)*100/16 != 100)
+               $ct++;
+        } 
+            ?>
+        <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweCompteRempli')?>">Compte incomplet (<?php echo $ct?>)</a></div>
         <div></div>
         <div></div>
         <div></div>
@@ -141,12 +152,10 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
 <div id="sweAddPerson" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel"> Inviter Quelqu'un au Start Up Week End</h3>
+    <h3 id="myModalLabel"> Ajouter un nouveau participant</h3>
   </div>
   <div class="modal-body">
-    <p> Un mail d'invitation sera envoyé a votre filleul.<br/>
-    Le parainage renforce les objectifs du Pixel Humain qui sont d'impliquer la population locale dans l'activité et la communication locale.<br/>
-    En parainant vous 
+    <p> Un mail d'invitation sera envoyé a ce participant pour remplir sa fiche perso 
     </p>
 	<form id="sweAddPersonForm" style="line-height:40px;">
         <section>
@@ -207,18 +216,65 @@ initT['swePersonModalsInit'] = function(){
 <form id="sweAddProjectForm" style="line-height:40px;">
         <section>
           	<table>
-          	<tr>
-              	<td class="txtright">Email du porteur</td>
-              	<td> <input id="projectEmail" name="projectEmail" value=""/></td>
-          	</tr>
-          	<tr>
-              	<td class="txtright">Nom du Projet</td>
-              	<td> <input id="projectName" name="projectName" value=""/></td>
-          	</tr>
-          	<tr>
-              	<td class="txtright">Description</td>
-              	<td> <input id="projectDesc" name="projectDesc" value=""/></td>
-          	</tr>
+          	
+              	<tr>
+                  	<td class="txtright">Nom du Projet</td>
+                  	<td> <input id="projectName" name="projectName" value=""/></td>
+              	</tr>
+              	
+              	<tr>
+                  	<td class="txtright">Email du porteur</td>
+                  	<td> 
+                  	<?php 
+    					$participants = Yii::app()->mongodb->startupweekend->find(array("type"=>"participant"));
+    					$particpantsOptions = array();
+    					foreach($participants as $p){
+    					    if(!isset($p["projet"]))
+    					        $particpantsOptions[$p["email"]] = $p["name"];
+    					}
+    					    
+    					$this->widget('yiiwheels.widgets.select2.WhSelect2', array(
+    							'data' => $particpantsOptions, 
+                                'name' => 'projectEmail',
+                              	'id' => 'projectEmail',
+                              	'pluginOptions' => array(
+                                   'width' => '100%',
+                                )
+                              ));
+    					?>
+                  	</td>
+              	</tr>
+              	
+              	<tr>
+                  	<td class="txtright">Description</td>
+                  	<td> <textarea id="projectDesc" name="projectDesc"></textarea></td>
+              	</tr>
+              	
+              	<tr>
+                  	<td class="txtright">Équipe</td>
+                  	<td> 
+    					<?php 
+    					$particpantsOptions = array();
+    					foreach($participants as $p){
+    					    if(!isset($p["projet"]))
+    					        array_push($particpantsOptions, $p["email"]);
+    					}
+    					    
+    					$this->widget('yiiwheels.widgets.select2.WhSelect2', array(
+    							'name' => 'projectTeam',
+                              	'id' => 'projectTeam',
+    							'asDropDownList' => false,
+    							'value'=> "",
+                                'pluginOptions' => array(
+                                   'tags' => $particpantsOptions,
+    								'placeholder' => "",
+                                    'width' => '100%',
+                                )
+                              ));
+    					?>
+    				</td>
+              	</tr>
+              	
           </table>
         </section>
     </form>
