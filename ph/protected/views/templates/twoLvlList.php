@@ -42,18 +42,15 @@ margin:10px;
         foreach ($ct as $e){
             if(isset($e["cp"])) {
                 $departement = substr($e["cp"], 0,2);
-                if(!isset($cps[$departement])){
+                if(!isset($cps[$departement]))
                     $cps[$departement] = array();
-                    $depCt[$departement]["cpCount"] = 0;
-                }
                 if( !in_array($e["cp"],$cps[$departement])){
                     array_push($cps[$departement], $e["cp"]);
                     $cpCt[$e["cp"]] = 1;
-                    $depCt[$departement]["citizenCount"] = 1;
-                    $depCt[$departement]["cpCount"] = $depCt[$departement]["cpCount"]+1;
+                    $depCt[$departement] = 1;
                 } else {
                     $cpCt[$e["cp"]] = $cpCt[$e["cp"]]+1;
-                    $depCt[$departement]["citizenCount"] = $depCt[$departement]["citizenCount"]+1;
+                    $depCt[$departement] = $depCt[$departement]+1;
                 }
                 $totalCount++;
                 
@@ -84,7 +81,7 @@ margin:10px;
         foreach ($cps as $dep=>$val){
             ?>
             <div style="clear:both; width:100%;">
-            <h3>Département <?php echo $dep?> (<?php echo $depCt[$dep]["cpCount"]?> communes, <?php echo $depCt[$dep]["citizenCount"]?> citoyens)</h3>
+            <h3>Département <?php echo $dep?></h3>
             <ul class="slats">
             <?php 
             foreach ($val as $cp){

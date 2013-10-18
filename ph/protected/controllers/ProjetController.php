@@ -25,17 +25,18 @@ class ProjetController extends Controller {
     public function actionPeople($id,$type) 
     {
 	    $this->layout = "swe";
-	    $owner = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
-	    $this->render( "people" , array( 'projet' => $owner,"typePeople"=>$type ));
+	    $projet = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
+	    $this->render( "people" , array( 'projet' => $projet,"typePeople"=>$type ));
+	}
+    public function actionOrganigrid($id,$type,$design="s") 
+    {$this->layout = "blanck";
+	    $projet = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
+	    $this->render( "organigrid" , array( 'projet' => $projet,"typePeople"=>$type,"design"=>$design ));
 	}
     public function actionView($id) 
     {
-        $this->layout = "swe";
         $projet = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
-        if(isset($projet["key"]) )
-            $this->redirect(Yii::app()->createUrl('index.php/projet/'.$projet["key"]));
-        else    
-	        $this->render("view",array('projet'=>$projet));
+        $this->render("view",array('projet'=>$projet));
 	}
     public function actionCreer() 
     {

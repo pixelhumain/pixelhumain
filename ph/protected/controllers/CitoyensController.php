@@ -110,6 +110,14 @@ class CitoyensController extends Controller {
 	/**
 	 * Register to a secuure application, the unique pwd is linked to the application instance retreived by type
 	 * the appKey is saved in a sessionvariable loggedIn
+	 * for the moment works with a unique password for all users 
+	 * specified on the event instance 
+	 * Steps : 
+	 * 1- find the App (ex:event in group) exists in appType table
+	 * 2 - check if email is valid
+	 * 3- test password matches
+	 * 4- find the user exists in "citoyens" table based on email
+	 * 5- save session information 
 	 */
 	public function actionRegisterAppPwd()
 	{
@@ -138,6 +146,7 @@ class CitoyensController extends Controller {
                         if( $app["pwd"] == $_POST['registerPwd'] ){
                             $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST['registerEmail']));
                             if($account){
+                                //TODO : check if account is participant in the app
                                 Yii::app()->session["userId"] = $account["_id"];
                                 Yii::app()->session["userEmail"] = $account["email"];
                                 if ( !isset(Yii::app()->session["loggedIn"]) && !is_array(Yii::app()->session["loggedIn"]))

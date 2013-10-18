@@ -59,7 +59,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
 
 <div class="appContent">
 
-	<h1>Start Up Week End 2012 </h1>
+	<h1><?php echo $title?> </h1>
 	
 	<h3>Cette Plateforme est restreinte aux inscrit.
 	<br/>

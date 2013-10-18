@@ -128,7 +128,7 @@ initT['coachFormModalsInit'] = function(){
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3>Startupweekend III : Inscription</h3>
   </div>
-  <div class="modal-body">
+  <div class="modal-body" style="height:600px;">
     <p> Merci de compléter vos donées . </p>
         <form id="sweInscriptionForm" class="form-horizontal" enctype="multipart/form-data">
             <?php $me = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));?>
@@ -163,9 +163,10 @@ initT['coachFormModalsInit'] = function(){
                             ),
                             'events' => array(
                                 'complete'=>"function( id,  name,  responseJSON,  xhr){
-                                	$('#image').val(responseJSON);
-                                	$('li.participant.me img').attr('src','".Yii::app()->createUrl('upload/swe/')."/'+responseJSON);
-                                	console.log('".Yii::app()->createUrl('upload/swe/')."'+responseJSON);
+                                	console.log('".Yii::app()->createUrl('upload/swe/')."/'+xhr.name);
+                                	$('#image').val(xhr.name);
+                                	$('li.participant.me img').attr('src','".Yii::app()->createUrl('upload/swe/')."/'+xhr.name);
+                                	
                                 }"
                             ),
                         ));
@@ -401,24 +402,29 @@ initT['coachFormModalsInit'] = function(){
 
 <script type="text/javascript">
 initT['sweInscriptionModalsInit'] = function(){
+	
 	$('input[type=file]').change(function (e) {
 	    $('#customfileupload').html($(this).val());
 	});
     $("#sweInscriptionForm").submit( function(event){
-    	event.preventDefault();
-    	$("#sweInscription").modal('hide');
-    	NProgress.start();
-    	$.ajax({
-    	  type: "POST",
-    	  url: baseUrl+"/index.php/evenement/sweInfos",
-    	  data: $("#sweInscriptionForm").serialize(),
-    	  success: function(data){
-    			  $("#flashInfo .modal-body").html(data.msg);
-    			  $("#flashInfo").modal('show');
-    			  NProgress.done();
-    	  },
-    	  dataType: "json"
-    	});
+    	if($('.error').length){
+    		alert('Veuillez remplir les champs obligatoires.');
+    	}else{
+        	event.preventDefault();
+        	$("#sweInscription").modal('hide');
+        	NProgress.start();
+        	$.ajax({
+        	  type: "POST",
+        	  url: baseUrl+"/index.php/evenement/sweInfos",
+        	  data: $("#sweInscriptionForm").serialize(),
+        	  success: function(data){
+        			  $("#flashInfo .modal-body").html(data.msg);
+        			  $("#flashInfo").modal('show');
+        			  NProgress.done();
+        	  },
+        	  dataType: "json"
+        	});
+    	}
     });
 };
 </script>

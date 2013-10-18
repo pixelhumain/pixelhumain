@@ -5,7 +5,9 @@
     	$myproject = '';
     	$projects = array();
     	$created = time();
-        if (($handle = fopen("upload/swe participants2012.txt", "r")) !== FALSE) 
+    	$groupId = "525e306ac073ef2eb85938f7";//"523321c7c073ef2b380a231c";
+    	$process = 0 ;
+        if (($handle = fopen("upload/suwe2013.csv", "r")) !== FALSE) 
         {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
             {
@@ -24,28 +26,30 @@
                         		'name' => $line[0].' '.$line[1],
                                 'type' => "citoyen",
                                 'country' =>'Réunion',
-                                'events'=>array(new MongoId("523321c7c073ef2b380a231c"))
+                                'events'=>array(new MongoId($groupId))
                                 );
-                        $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$line[2]));
-                        if($account){
-                            Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId("523321c7c073ef2b380a231c"))));
-                            $newAccount["_id"] = $account["_id"];
+                        if($process){
+                            $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$line[2]));
+                            if($account){
+                                Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId($groupId))));
+                                $newAccount["_id"] = $account["_id"];
+                            }
+                            else
+                                Yii::app()->mongodb->citoyens->insert($newAccount);
+                            //add a participant
+                            $where = array("_id" => new MongoId($groupId));	
+                            Yii::app()->mongodb->group->update($where, array('$push' => array("participants"=>$newAccount["_id"])));
+                            
+                            //add details into statupweekend table
+                            $newAccount['type']='participant';
+                            if(!empty($line[6]))
+                                $newAccount['projet']=$line[6];
+                            if(!empty($line[5]))
+                                $newAccount['img']=$line[5];
+                            $account = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId($newAccount["_id"])));
+                            if(!$account)
+                                Yii::app()->mongodb->startupweekend->insert($newAccount);
                         }
-                        else
-                            Yii::app()->mongodb->citoyens->insert($newAccount);
-                        //add a participant
-                        $where = array("_id" => new MongoId("523321c7c073ef2b380a231c"));	
-                        Yii::app()->mongodb->group->update($where, array('$push' => array("participants"=>$newAccount["_id"])));
-                        
-                        //add details into statupweekend table
-                        $newAccount['type']='participant';
-                        if(!empty($line[6]))
-                            $newAccount['projet']=$line[6];
-                        if(!empty($line[5]))
-                            $newAccount['img']=$line[5];
-                        $account = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId($newAccount["_id"])));
-                        if(!$account)
-                            Yii::app()->mongodb->startupweekend->insert($newAccount);
                     } 
                     else if( !empty($line[3]) && $line[3]=="projet" )
                     {
@@ -57,20 +61,22 @@
                                 'type' => "projet",
                                 'country' =>'Réunion',
                                 'desc'=> (!empty($line[4])) ? $line[4] : "",
-                                'events'=>array(new MongoId("523321c7c073ef2b380a231c"))
+                                'events'=>array(new MongoId($groupId))
                                 );
-                        Yii::app()->mongodb->group->insert($newAccount);
-                        //add a participant
-                        $where = array("_id" => new MongoId("523321c7c073ef2b380a231c"));	
-                        Yii::app()->mongodb->group->update($where, array('$push' => array("projects"=>$newAccount["_id"])));
-                        
-                        //add details into statupweekend table
-                        $newAccount['type']='projet';
-                        if(!empty($line[6]))
-                            $newAccount['projet']=$line[6];
-                        if(!empty($line[5]))
-                            $newAccount['img']=$line[5];
-                        Yii::app()->mongodb->startupweekend->insert($newAccount);
+                        if($process){
+                            Yii::app()->mongodb->group->insert($newAccount);
+                            //add a participant
+                            $where = array("_id" => new MongoId($groupId));	
+                            Yii::app()->mongodb->group->update($where, array('$push' => array("projects"=>$newAccount["_id"])));
+                            
+                            //add details into statupweekend table
+                            $newAccount['type']='projet';
+                            if(!empty($line[6]))
+                                $newAccount['projet']=$line[6];
+                            if(!empty($line[5]))
+                                $newAccount['img']=$line[5];
+                            Yii::app()->mongodb->startupweekend->insert($newAccount);
+                        }
                     }
                     else if( !empty($line[3]) && $line[3]=="coach" )
                     {
@@ -81,26 +87,28 @@
                         		'name' => $line[0].' '.$line[1],
                                 'type' => "citoyen",
                                 'country' =>'Réunion',
-                                'events'=>array(new MongoId("523321c7c073ef2b380a231c"))
+                                'events'=>array(new MongoId($groupId))
                                 );
+                        if($process){
                         $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$line[2]));
-                        if($account){
-                            Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId("523321c7c073ef2b380a231c"))));
-                            $newAccount["_id"] = $account["_id"];
+                            if($account){
+                                Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId($groupId))));
+                                $newAccount["_id"] = $account["_id"];
+                            }
+                            else
+                                Yii::app()->mongodb->citoyens->insert($newAccount);
+                            //add a participant
+                            $where = array("_id" => new MongoId($groupId));	
+                            Yii::app()->mongodb->group->update($where, array('$push' => array("coaches"=>$newAccount["_id"])));
+                            
+                            //add details into statupweekend table
+                            $newAccount['type']='coach';
+                            if(!empty($line[5]))
+                                $newAccount['img']=$line[5];
+                            $account = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId($newAccount["_id"])));
+                            if(!$account)
+                                Yii::app()->mongodb->startupweekend->insert($newAccount);
                         }
-                        else
-                            Yii::app()->mongodb->citoyens->insert($newAccount);
-                        //add a participant
-                        $where = array("_id" => new MongoId("523321c7c073ef2b380a231c"));	
-                        Yii::app()->mongodb->group->update($where, array('$push' => array("coaches"=>$newAccount["_id"])));
-                        
-                        //add details into statupweekend table
-                        $newAccount['type']='coach';
-                        if(!empty($line[5]))
-                            $newAccount['img']=$line[5];
-                        $account = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId($newAccount["_id"])));
-                        if(!$account)
-                            Yii::app()->mongodb->startupweekend->insert($newAccount);
                     }
                     else if( !empty($line[3]) && $line[3]=="jury" )
                     {
@@ -111,26 +119,28 @@
                         		'name' => $line[0].' '.$line[1],
                                 'type' => "citoyen",
                                 'country' =>'Réunion',
-                                'events'=>array(new MongoId("523321c7c073ef2b380a231c"))
+                                'events'=>array(new MongoId($groupId))
                                 );
-                        $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$line[2]));
-                        if($account){
-                            Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId("523321c7c073ef2b380a231c"))));
-                            $newAccount["_id"] = $account["_id"];
+                        if($process){
+                            $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$line[2]));
+                            if($account){
+                                Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId($groupId))));
+                                $newAccount["_id"] = $account["_id"];
+                            }
+                            else
+                                Yii::app()->mongodb->citoyens->insert($newAccount);
+                            //add a participant
+                            $where = array("_id" => new MongoId($groupId));	
+                            Yii::app()->mongodb->group->update($where, array('$push' => array("jurys"=>$newAccount["_id"])));
+                            
+                            //add details into statupweekend table
+                            $newAccount['type']='jury';
+                            if(!empty($line[5]))
+                                $newAccount['img']=$line[5];
+                            $account = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId($newAccount["_id"])));
+                            if(!$account)
+                                Yii::app()->mongodb->startupweekend->insert($newAccount);
                         }
-                        else
-                            Yii::app()->mongodb->citoyens->insert($newAccount);
-                        //add a participant
-                        $where = array("_id" => new MongoId("523321c7c073ef2b380a231c"));	
-                        Yii::app()->mongodb->group->update($where, array('$push' => array("jurys"=>$newAccount["_id"])));
-                        
-                        //add details into statupweekend table
-                        $newAccount['type']='jury';
-                        if(!empty($line[5]))
-                            $newAccount['img']=$line[5];
-                        $account = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId($newAccount["_id"])));
-                        if(!$account)
-                            Yii::app()->mongodb->startupweekend->insert($newAccount);
                     }
                     else if( !empty($line[3]) && $line[3]=="organisateur" )
                     {
@@ -141,26 +151,28 @@
                         		'name' => $line[0].' '.$line[1],
                                 'type' => "citoyen",
                                 'country' =>'Réunion',
-                                'events'=>array(new MongoId("523321c7c073ef2b380a231c"))
+                                'events'=>array(new MongoId($groupId))
                                 );
-                        $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$line[2]));
-                        if($account){
-                            Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId("523321c7c073ef2b380a231c"))));
-                            $newAccount["_id"] = $account["_id"];
+                        if($process){
+                            $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$line[2]));
+                            if($account){
+                                Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId($groupId))));
+                                $newAccount["_id"] = $account["_id"];
+                            }
+                            else
+                                Yii::app()->mongodb->citoyens->insert($newAccount);
+                            //add a participant
+                            $where = array("_id" => new MongoId($groupId));	
+                            Yii::app()->mongodb->group->update($where, array('$push' => array("organisateurs"=>$newAccount["_id"])));
+                            
+                            //add details into statupweekend table
+                            $newAccount['type']='organisateur';
+                            if(!empty($line[5]))
+                                $newAccount['img']=$line[5];
+                            $account = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId($newAccount["_id"])));
+                            if(!$account)
+                                Yii::app()->mongodb->startupweekend->insert($newAccount);
                         }
-                        else
-                            Yii::app()->mongodb->citoyens->insert($newAccount);
-                        //add a participant
-                        $where = array("_id" => new MongoId("523321c7c073ef2b380a231c"));	
-                        Yii::app()->mongodb->group->update($where, array('$push' => array("organisateurs"=>$newAccount["_id"])));
-                        
-                        //add details into statupweekend table
-                        $newAccount['type']='organisateur';
-                        if(!empty($line[5]))
-                            $newAccount['img']=$line[5];
-                        $account = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId($newAccount["_id"])));
-                        if(!$account)
-                            Yii::app()->mongodb->startupweekend->insert($newAccount);
                     }
                 }
             }

@@ -8,7 +8,7 @@
  * Date: 16/08/13
  */
 class OpenDataController extends Controller {
-
+    const moduleTitle = "OpenData";
 	public function actionIndex() {
 	    $this->render("index");
 	}
@@ -61,5 +61,10 @@ class OpenDataController extends Controller {
     	   header('Content-Type: application/json');
     	   echo json_encode($json);
 	   }
+	}
+	
+	public function actionDataConnexion() {
+	    $this->layout = "swe";
+	    $this->render("dataconnexion");
 	}
 }

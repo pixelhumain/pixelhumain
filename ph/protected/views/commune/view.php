@@ -72,8 +72,9 @@ font-family: "Homestead";
 			<h2>Habitants</h2>
 			<?php 
 			$citoyens = Yii::app()->mongodb->citoyens->find(array("cp"=>$cp));
-			foreach($citoyens as $c)
-			    echo $c["name"]."<br/>";?>
+			foreach($citoyens as $c){
+			    if(isset($c["name"]))echo $c["name"]."<br/>";
+			    }?>
 			
 		</div>
 		<div class="span4">

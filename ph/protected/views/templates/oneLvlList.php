@@ -34,32 +34,20 @@ margin:10px;
         $ct = Yii::app()->mongodb->citoyens->find();
         $cps = array();
         $cpCt = array();
-        $depCt = array();
         $totalCount = 0;
         ?>
     	  
         <?php 
         foreach ($ct as $e){
             if(isset($e["cp"])) {
-                $departement = substr($e["cp"], 0,2);
-                if(!isset($cps[$departement])){
-                    $cps[$departement] = array();
-                    $depCt[$departement]["cpCount"] = 0;
-                }
-                if( !in_array($e["cp"],$cps[$departement])){
-                    array_push($cps[$departement], $e["cp"]);
+                if( !in_array($e["cp"],$cps)){
+                    array_push($cps, $e["cp"]);
                     $cpCt[$e["cp"]] = 1;
-                    $depCt[$departement]["citizenCount"] = 1;
-                    $depCt[$departement]["cpCount"] = $depCt[$departement]["cpCount"]+1;
-                } else {
+                } else
                     $cpCt[$e["cp"]] = $cpCt[$e["cp"]]+1;
-                    $depCt[$departement]["citizenCount"] = $depCt[$departement]["citizenCount"]+1;
-                }
                 $totalCount++;
-                
             }   
-        }
-        ?>
+        }?>
     <div>
     
     <div class="row-fluid">
@@ -79,21 +67,22 @@ margin:10px;
 		</div>
 	</div>
 	 
-    
+    <ul class="slats">
     	<?php 
-        foreach ($cps as $dep=>$val){
-            ?>
-            <div style="clear:both; width:100%;">
-            <h3>Département <?php echo $dep?> (<?php echo $depCt[$dep]["cpCount"]?> communes, <?php echo $depCt[$dep]["citizenCount"]?> citoyens)</h3>
-            <ul class="slats">
-            <?php 
-            foreach ($val as $cp){
+        foreach ($cps as $cp){
         ?>
-        	<li class="group"><h3><a href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/'.$cp)?>"><?php echo $cp?></a> <br/><?php echo $cpCt[$cp]?></h3></li>
+        <li class="group"><h3><a href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/'.$cp)?>"><?php echo $cp?></a> <br/><?php echo $cpCt[$cp]?></h3></li>
         <?php }?>
-        	</ul>
-        	</div>
+        
+    </ul>
+    <canvas>
+    	<?php 
+        foreach ($cps as $cp){
+        ?>
+        <li class="group"><h3><a href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/'.$cp)?>"><?php echo $cp?></a> (<?php echo $cpCt[$cp]?>)</h3></li>
         <?php }?>
+        
+    </canvas>   	
 </div></div>
 <script type="text/javascript"		>
 initT['animInit'] = function(){

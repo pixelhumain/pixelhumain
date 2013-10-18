@@ -16,7 +16,7 @@ class EvenementController extends Controller {
     public function actionView($id) {
         $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
         if(isset($event["key"]) )
-            $this->redirect(Yii::app()->createUrl('index.php/evenement/'.$event["key"]));
+            $this->redirect(Yii::app()->createUrl('index.php/evenement/key/id/'.$event["key"]));
         else    
 	        $this->render("swe/view");
 	}
@@ -28,9 +28,11 @@ class EvenementController extends Controller {
 	 * Start Up Week End
 	 */
 	const swe2012Id = "523321c7c073ef2b380a231c";
-    public function actionStartupWeekEnd2012() {
+	const swe2013Id = "525e306ac073ef2eb85938f7";
+	
+    public function actionKey($id) {
 	    $this->layout = "swe";
-	    $event = Yii::app()->mongodb->group->findOne(array("key"=>"StartupWeekEnd2012")); 
+	    $event = Yii::app()->mongodb->group->findOne(array("key"=>$id)); 
 	    $this->secure = $event['private'];
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
@@ -38,7 +40,7 @@ class EvenementController extends Controller {
 	    // user must be loggued 
 	    // and exist in the event user particpant list
 	    if( !isset(Yii::app()->session["userId"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
-	        $this->render("swe/sweLogin");
+	        $this->render("swe/sweLogin",array("title"=>$event["name"]));
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(); 
 	        $user = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
@@ -77,6 +79,9 @@ class EvenementController extends Controller {
 	    else 
 	        $this->render($view);
 	}
+	/**
+	 * Interface admin permettant de gerer l'evennement
+	 */
     public function actionSweAdmin() {
         $this->layout = "swe";
 	    $event = Yii::app()->mongodb->group->findOne(array("key"=>"StartupWeekEnd2012"));
@@ -88,6 +93,10 @@ class EvenementController extends Controller {
 	    else 
 	        $this->render("swe/sweAdmin");
 	}
+	/**
+	 * Presente le nombre de compte incomlet 
+	 * dans le but de contacter le participant pour qu'il le complete
+	 */
     public function actionSweCompteRempli() {
 	    $this->layout = "swe";
 	    $event = Yii::app()->mongodb->group->findOne(array("key"=>"StartupWeekEnd2012")); 
@@ -104,10 +113,16 @@ class EvenementController extends Controller {
 	        $this->render("swe/swecomplete",array("sweThings"=>$sweThings));
 	    }
 	}
+	/**
+	 * Importer CSV de données ex : SUWE 2012
+	 */
     public function actionSweImport() {
 	    $this->layout = "swe";
 	    $this->render("swe/import");
 	}
+	/**
+	 * un participant met a jour sa fiche personnelle
+	 */
     public function actionSweInfos() 
     { 
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
@@ -129,6 +144,7 @@ class EvenementController extends Controller {
 		exit;
 	}
 	/**
+	 * Creer un nouveau projet pour le SUWE
 	 * only for admins 
 	 */
     public function actionSweProject() 
@@ -180,6 +196,9 @@ class EvenementController extends Controller {
 		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
 		exit;
 	}
+	/**
+	 * Connecter Personne et Projet
+	 */
     public function SweRejoindreProjet($mail,$projet) {
 	    $account = Yii::app()->mongodb->startupweekend->findOne(array("email"=>$mail));
         if($account)
@@ -188,6 +207,10 @@ class EvenementController extends Controller {
               Yii::app()->mongodb->startupweekend->save($account);
         } 
 	}
+	/**
+	 * Ajouter une nouvelle perzsonne au SUWE
+	 * only for admins 
+	 */
     public function actionSwePerson() 
     { 
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))

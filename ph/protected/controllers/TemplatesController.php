@@ -12,9 +12,12 @@ class TemplatesController extends Controller
 
     public function actionIndex() 
     {
+       
        $name = "index";
        if(isset($_GET["name"])) 
            $name = $_GET["name"];
+       if(in_array($name,array("listPage","hexagon","formLarge"))) 
+           $this->layout = "empty";
 	   $this->render($name);
 	}
 	
@@ -40,9 +43,10 @@ class TemplatesController extends Controller
         
         	// Move the uploaded file from the temporary 
         	// directory to the uploads folder:
-        	
-        	if(move_uploaded_file($pic['tmp_name'], $upload_dir.$pic['name'])){
-        		echo json_encode(array("success"=>true));
+        	//TODO use a unique Id for the iamge name Yii::app()->session["userId"].'.'.$ext
+        	$name = Yii::app()->session["userId"].'.'.$ext;//$pic['name']
+        	if(move_uploaded_file($pic['tmp_name'], $upload_dir.$name)){
+        		echo json_encode(array("success"=>true,'name'=>$name));
     	        exit;
         	}
         	
@@ -51,4 +55,9 @@ class TemplatesController extends Controller
         echo json_encode(array('error'=>'Something went wrong with your upload!'));
     	exit;
 	}
+    function clean($string) {
+       $string = preg_replace('/  */', '-', $string);
+       $string = strtr($string,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY'); // Replaces all spaces with hyphens.
+       return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+    }
 }
