@@ -20,6 +20,7 @@ class CommuneController extends Controller {
     public function actionView($cp) 
     {
         $this->layout = "swe";
-        $this->render("view",array('cp'=>$cp));
+        if(substr($cp, 0,2) == "97")
+        $this->render("view",array('cp'=>$cp,'dep'=>substr($cp, 0,3)));
 	}
 }

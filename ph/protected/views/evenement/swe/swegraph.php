@@ -23,7 +23,7 @@ canvas{position:absolute;top:0px;left:0px;}
 .appContent ul.people li{position:relative;width:190px;height:100px;padding:5px;margin:5px;display:block;float:left;background-color:#FFF;-webkit-border-radius: 5px;-moz-border-radius: 5px;-o-border-radius: 5px;-ms-border-radius: 5px;border-radius: 5px;}
 .appContent ul.people li.me{background-color:#F5E414;}
 .appContent ul.people li.me img{cursor:pointer}
-.appContent ul.people li.descL {height:150px; }
+.appContent ul.people li.descL {height:200px; }
 .appContent li.participant{border:2px solid yellow;background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png')?>') no-repeat bottom left;}
 .appContent li.projet{border:2px solid orange;}
 .appContent li.coach{border:2px solid purple;}
@@ -34,7 +34,7 @@ canvas{position:absolute;top:0px;left:0px;}
 .appContent div.infos{word-wrap:break-word;text-align:right}
 .appContent div.type {display:block;float:right;font-size:x-small;}
 .appContent div.name {font-family: "Homestead";color: #324553;font-size:medium; margin-left:10px;display:block;float:right; }
-.appContent div.desc {position:absolute;width:100%;bottom:0px; margin:5px;text-align:left;}
+.appContent div.desc {position:absolute;width:100%;bottom:0px; margin:5px;text-align:left;word-wrap: break-word;width:180px;padding-right:5px;}
 .appContent div.desc span.txt{font-size:small;}
 .appContent div.desc a.btn-ph{display:inline-block;float:left;margin-right:5px;}
 .appContent div.thumb{height:40px;width:40px;float:left;}
@@ -46,19 +46,19 @@ canvas{position:absolute;top:0px;left:0px;}
 .cRed{color:red;}
 .coachRequestedColor{border:5px solid red;}
 </style>
-<?php $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId("523321c7c073ef2b380a231c")));?>
+
 <div class="appMenuContainer">
     <ul class="appMenu">
     	<?php if( in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) ){ ?>
-    		<li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweadmin')?>"><i class="icon-wrench"></i> Admin</a></li>
+    		<li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweadmin/id/'.$key)?>"><i class="icon-wrench"></i> Admin</a></li>
     	<?php } ?>
     	<li><a href="#sweInscription" id="mesInfos" role="button" data-toggle="modal"><i class="icon-user"></i> Mes Infos</a></li>
     	<li><a href="#coaching" role="button" data-toggle="modal"><i class="icon-bell"></i> APPEL UN COACH !! </a><a href="#coaching" role="button" data-toggle="modal"><span id="coachingCount" class="badge bgRed" ></span></a></li>
-        <li><a href="javascript:filterType('participant')">Inscrits <span class="badge">121</span></a></li>
-        <li><a href="javascript:filterType('projet')">Projets <span class="badge">13</span></a></li>
-        <li><a href="javascript:filterType('coach')">Coachs <span class="badge">15</span></a></li>
-        <li><a href="javascript:filterType('jury')">Jurys <span class="badge">8</span></a></li>
-        <li><a href="javascript:filterType('organisateur')">Organisateurs <span class="badge">8</span></a></li>
+        <li><a href="javascript:filterType('participant')">Inscrits <span class="badge"><?php echo count($event["participants"])?></span></a></li>
+        <li><a href="javascript:filterType('projet')">Projets <span class="badge"><?php echo count($event["projects"])?></span></a></li>
+        <li><a href="javascript:filterType('coach')">Coachs <span class="badge"><?php echo count($event["coaches"])?></span></a></li>
+        <li><a href="javascript:filterType('jury')">Jurys <span class="badge"><?php echo count($event["jurys"])?></span></a></li>
+        <li><a href="javascript:filterType('organisateur')">Organisateurs <span class="badge"><?php echo count($event["organisateurs"])?></span></a></li>
     </ul>
 </div>
 
@@ -81,84 +81,86 @@ canvas{position:absolute;top:0px;left:0px;}
     	$projects = array();
         foreach ($sweThings as $line) 
         {
-            $name = (isset($line["name"])) ? $line["name"]: null;
-            $type = (isset($line["type"])) ? $line["type"] : null;
-            $email = (isset($line["email"])) ? $line["email"]:null;
-            $desc = (isset($line["desc"])) ? $line["desc"]:null;
-            $project = (isset($line["projet"])) ? str_replace(' ', '', $line["projet"]) : "";
-            $img = (isset($line["image"]))? $line["image"]:"";
-            
-            //some panels will have more information than others
-            $classDesc = (isset($type) && in_array($type, array('jury','coach','projet'))) ? 'descL' : '';
-            //only show people panels on load 
-            $classHide = (isset($type) && in_array($type, array('participant'))) ? 'hide' : '';
-            //connected users panel will be different
-            $classMe = (Yii::app()->session["userEmail"] == $email && $type!='projet') ? 'me' : '';
-            
-            if(!empty($classMe) && !empty($project) )
-                $myproject = $project;
-
-            //desc content
-            
-            $xtra = '<div class="xtra clear"></div><div class="desc">';
-            if( isset( $desc) && $desc == strip_tags($desc) )
-                $xtra .= '<span class="txt">';
-            $xtra .= (isset($desc)) ? $desc : '';
-            if( isset( $desc) && $desc == strip_tags($desc) )
-                $xtra .= '</span><div class="clear"></div>';
+            if(in_array($event['_id'],$line['events'])){
+                $name = (isset($line["name"])) ? $line["name"]: null;
+                $type = (isset($line["type"])) ? $line["type"] : null;
+                $email = (isset($line["email"])) ? $line["email"]:null;
+                $desc = (isset($line["desc"])) ? $line["desc"]:null;
+                $project = (isset($line["projet"])) ? str_replace(' ', '', $line["projet"]) : "";
+                $img = (isset($line["image"]))? $line["image"]:"";
                 
-            $classProjet = ''; 
-            if(!empty($project))
-            {
-                $classProjet = $project;
-                //adds show team on project panel
-                if(isset($type) && ( $type=='projet' || $type=='participant')) 
+                //some panels will have more information than others
+                $classDesc = (isset($type) && in_array($type, array('jury','coach','projet'))) ? 'descL' : '';
+                //only show people panels on load 
+                $classHide = (isset($type) && in_array($type, array('participant'))) ? 'hide' : '';
+                //connected users panel will be different
+                $classMe = (Yii::app()->session["userEmail"] == $email && $type!='projet') ? 'me' : '';
+                
+                if(!empty($classMe) && !empty($project) )
+                    $myproject = $project;
+    
+                //desc content
+                
+                $xtra = '<div class="xtra clear"></div><div class="desc">';
+                if( isset( $desc) && $desc == strip_tags($desc) )
+                    $xtra .= '<span class="txt">';
+                $xtra .= (isset($desc)) ? $desc : '';
+                if( isset( $desc) && $desc == strip_tags($desc) )
+                    $xtra .= '</span><div class="clear"></div>';
+                    
+                $classProjet = ''; 
+                if(!empty($project))
                 {
-                    $xtra .= "<a  class='btn-ph' href='#' onclick='filterType(\"".$project."\")' title='Project Team'><span class='entypo-users'></span></a>";
+                    $classProjet = $project;
+                    //adds show team on project panel
+                    if(isset($type) && ( $type=='projet' || $type=='participant')) 
+                    {
+                        $xtra .= "<a  class='btn-ph' href='#' onclick='filterType(\"".$project."\")' title='Project Team'><span class='entypo-users'></span></a>";
+                    }
+                } /*else if ( isset($type) && $type=='participant' && in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) )
+                    $xtra .= "<a  class='btn' href='#' onclick='filterType(\"projet\")' title='Rejoindre un projet'><span class='entypo-share'></span></a>";*/
+                    
+                
+                //join Btn on project panel
+                if(isset($type) && $type=='projet'){
+                    /*if(in_array( Yii::app()->session["userEmail"], $event["adminEmail"]))
+                        $xtra .= "<a class='btn-ph' href='javascript:userJoinProject(\"".$project."\")' title='Rejoindre ce projet'><span class='entypo-share'></span></a>";*/
+                    array_push($projects, $project );
+                }else if(isset($type) && $type=='coach'){
+                    $coachRequestBadge =  '<span id="'.(str_replace(' ', '', $name)).'RequestBadge" class="badge bgRed coachBadges" ></span>';
+                    $xtra .= "<a class='btn-ph' href='#coaching' onclick='$(\"#coachRequested\").select2(\"val\",\"".(str_replace(' ', '', $name))."\")'  role='button' data-toggle='modal' title='Appeler ce coach'><span class='entypo-megaphone'></span></a>".$coachRequestBadge;
                 }
-            } /*else if ( isset($type) && $type=='participant' && in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) )
-                $xtra .= "<a  class='btn' href='#' onclick='filterType(\"projet\")' title='Rejoindre un projet'><span class='entypo-share'></span></a>";*/
+                $xtra .= '</div>';
                 
-            
-            //join Btn on project panel
-            if(isset($type) && $type=='projet'){
-                /*if(in_array( Yii::app()->session["userEmail"], $event["adminEmail"]))
-                    $xtra .= "<a class='btn-ph' href='javascript:userJoinProject(\"".$project."\")' title='Rejoindre ce projet'><span class='entypo-share'></span></a>";*/
-                array_push($projects, $project );
-            }else if(isset($type) && $type=='coach'){
-                $coachRequestBadge =  '<span id="'.(str_replace(' ', '', $name)).'RequestBadge" class="badge bgRed coachBadges" ></span>';
-                $xtra .= "<a class='btn-ph' href='#coaching' onclick='$(\"#coachRequested\").select2(\"val\",\"".(str_replace(' ', '', $name))."\")'  role='button' data-toggle='modal' title='Appeler ce coach'><span class='entypo-megaphone'></span></a>".$coachRequestBadge;
+                $img = (!empty($img) ) ? Yii::app()->createUrl('upload/swe/'.$img) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); 
+                
+                if(!empty($name) && isset($type))
+                {
+                    $names = explode(" ", $name);
+                    $strNames = "";
+                    if( count($names) > 2 )
+                        $strNames = $names[0]."<br/>".str_replace($names[0], '', $name);
+                    else
+                        $strNames = str_replace( ' ', '<br/>', $name );
+    
+                    $coachClass = "";
+                    if(isset($type) && $type=='coach'){
+                        $coaches[str_replace(' ', '', $name)] = $name;
+                        $coachClass = str_replace(' ', '', $name);
+                    }     
+                    echo '<li class="'.$type.' '.$classDesc.' hide '.$classProjet.' '.$classMe.' '.$coachClass.'">'.
+                    		'<div class="thumb">
+                    			<img src="'.$img.'"/>
+                    		</div>
+                    		<div class="infos">
+                    			<div class="type">'.((isset($type)) ?$type:"coco").'</div>
+                    			<br/>
+                    			<div class="name">'.$strNames.'</div>'.
+                                $xtra.'
+                    		</div>
+                    	 </li>';
+                    
             }
-            $xtra .= '</div>';
-            
-            $img = (!empty($img) ) ? Yii::app()->createUrl('upload/swe/'.$img) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); 
-            
-            if(!empty($name) && isset($type))
-            {
-                $names = explode(" ", $name);
-                $strNames = "";
-                if( count($names) > 2 )
-                    $strNames = $names[0]."<br/>".str_replace($names[0], '', $name);
-                else
-                    $strNames = str_replace( ' ', '<br/>', $name );
-
-                $coachClass = "";
-                if(isset($type) && $type=='coach'){
-                    $coaches[str_replace(' ', '', $name)] = $name;
-                    $coachClass = str_replace(' ', '', $name);
-                }     
-                echo '<li class="'.$type.' '.$classDesc.' hide '.$classProjet.' '.$classMe.' '.$coachClass.'">'.
-                		'<div class="thumb">
-                			<img src="'.$img.'"/>
-                		</div>
-                		<div class="infos">
-                			<div class="type">'.((isset($type)) ?$type:"coco").'</div>
-                			<br/>
-                			<div class="name">'.$strNames.'</div>'.
-                            $xtra.'
-                		</div>
-                	 </li>';
-                
             }
         }?>
 	</ul>
@@ -179,14 +181,15 @@ canvas{position:absolute;top:0px;left:0px;}
 
 <?php $this->renderPartial('application.views.evenement.swe.sweModals',array('coaches'=>$coaches,
     																		 'myproject'=>$myproject,
-                                                                             'projects'=>$projects
+                                                                             'projects'=>$projects,
+                                                                             'event'=>$event
                                                                             ));?>
 
 
 <script type="text/javascript">
 var previousDataCoach = {"count":0};
 function getCoachCount(){
-    $.getJSON(baseUrl+"/index.php/evenement/sweNotifications", function(data) {
+    $.getJSON(baseUrl+"/index.php/evenement/sweNotifications/id/<?php echo $event["_id"]?>", function(data) {
         // console.log(previousDataCoach);
         // console.log(data);
 		if( previousDataCoach.count != data.count  )

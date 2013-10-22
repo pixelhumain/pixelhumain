@@ -96,7 +96,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
 
 <div class="appContent">
 
-	<h1>Start Up Week End 2012</h1>
+	<h1><?php echo $event["name"]?></h1>
 	
 	<div class="container graph">
     <br/>
@@ -107,7 +107,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
     <div class="grid">
         <div></div>
         <div  data-ss-colspan="2">
-        <a href="<?php echo Yii::app()->createUrl('index.php/evenement/StartupWeekEnd2012')?>">Panel Participant</a>
+        <a href="<?php echo Yii::app()->createUrl('index.php/evenement/key/id/'.$key)?>">Panel Participant</a>
         </div>
         <div></div>
         <div data-ss-colspan="2"><a href="#sweAddPerson"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Participant</a></div>
@@ -119,13 +119,13 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
         <div></div>
         <?php 
         $ct = 0;
-        foreach (Yii::app()->mongodb->startupweekend->find(array("type"=>"participant")) as $line) 
+        foreach (Yii::app()->mongodb->startupweekend->find(array("type"=>"participant","events"=>$event["_id"])) as $line) 
         {
             if(count($line)*100/16 != 100)
                $ct++;
         } 
             ?>
-        <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweCompteRempli')?>">Compte incomplet (<?php echo $ct?>)</a></div>
+        <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweCompteRempli/id/'.$key)?>">Compte incomplet (<?php echo $ct?>)</a></div>
         <div></div>
         <div></div>
         <div></div>
@@ -168,6 +168,27 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
               	<td class="txtright">Nom </td>
               	<td> <input id="personName" name="personName" value=""/></td>
           	</tr>
+          	<tr>
+              	<td class="txtright">type</td>
+              	<td> 
+              	<?php 
+					
+					$this->widget('yiiwheels.widgets.select2.WhSelect2', array(
+							'data' => array("participant"=>"participant",
+											"coach"=>"coach",
+											"jury"=>"jury",
+											"organisateur"=>"organisateur"), 
+                            'name' => 'personType',
+                          	'id' => 'personType',
+                          	'pluginOptions' => array(
+                               'width' => '128px'
+                            )
+                          ));
+					?>
+              	</td>
+          	</tr>
+          	
+          	<input type="hidden" id="eventId" name="eventId" value="<?php echo $event["_id"]?>"/>
           </table>
         </section>
         
@@ -226,7 +247,7 @@ initT['swePersonModalsInit'] = function(){
                   	<td class="txtright">Email du porteur</td>
                   	<td> 
                   	<?php 
-    					$participants = Yii::app()->mongodb->startupweekend->find(array("type"=>"participant"));
+    					$participants = Yii::app()->mongodb->startupweekend->find(array("type"=>"participant","events"=>$event["_id"]));
     					$particpantsOptions = array();
     					foreach($participants as $p){
     					    if(!isset($p["projet"]))
@@ -234,7 +255,7 @@ initT['swePersonModalsInit'] = function(){
     					}
     					    
     					$this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-    							'data' => $particpantsOptions, 
+    							'data' => (!empty($particpantsOptions))?$particpantsOptions:array("aucun particpant"), 
                                 'name' => 'projectEmail',
                               	'id' => 'projectEmail',
                               	'pluginOptions' => array(
@@ -274,7 +295,7 @@ initT['swePersonModalsInit'] = function(){
     					?>
     				</td>
               	</tr>
-              	
+              	<input type="hidden" id="eventId" name="eventId" value="<?php echo $event["_id"]?>"/>
           </table>
         </section>
     </form>

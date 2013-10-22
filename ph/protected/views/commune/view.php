@@ -3,6 +3,11 @@ $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/jquery.touch-punch.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/jquery.shapeshift.min.js' , CClientScript::POS_END);
+
+$cs->registerCssFile(Yii::app()->request->baseUrl. '/js/morris.js-0.4.3/morris.css');
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/morris.js-0.4.3/morris.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile( 'http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js' , CClientScript::POS_END);
+
 ?>
 <style>
 h2 {
@@ -71,11 +76,13 @@ font-family: "Homestead";
 		<div class="span4">
 			<h2>Habitants</h2>
 			<?php 
-			$citoyens = Yii::app()->mongodb->citoyens->find(array("cp"=>$cp));
-			foreach($citoyens as $c){
-			    if(isset($c["name"]))echo $c["name"]."<br/>";
-			    }?>
-			
+			$cpdb = Yii::app()->mongodb->codespostaux->findOne(array("codeinsee"=>OpenData::$codePostalToCodeInsee[$dep][$cp],"type"=>"commune"));
+			foreach($cpdb["demographie"] as $an=>$pop){
+			    echo $an." => ".$pop."<br/>";
+			    };?>
+			<div id="demographie">
+				
+			</div>
 		</div>
 		<div class="span4">
 			<h2>Informations / Activité</h2>

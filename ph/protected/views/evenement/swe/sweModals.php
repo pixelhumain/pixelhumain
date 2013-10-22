@@ -38,6 +38,7 @@
                           ));
             		    ?></td>
         		</tr>
+        		<input type="hidden" id="eventId" name="eventId" value="<?php echo $event["_id"]?>"/>
               	<tr>
                   	<td class="txtright">Question</td>
                   	<td> <input name="coachQuestion"/></td>

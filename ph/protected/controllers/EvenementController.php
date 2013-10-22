@@ -17,7 +17,7 @@ class EvenementController extends Controller {
         $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
         if(isset($event["key"]) )
             $this->redirect(Yii::app()->createUrl('index.php/evenement/key/id/'.$event["key"]));
-        else    
+        else
 	        $this->render("swe/view");
 	}
     public function actionCreer() {
@@ -39,12 +39,15 @@ class EvenementController extends Controller {
 	    // for this event that is private 
 	    // user must be loggued 
 	    // and exist in the event user particpant list
-	    if( !isset(Yii::app()->session["userId"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
+	    if ( !isset(Yii::app()->session["userId"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) )) 
 	        $this->render("swe/sweLogin",array("title"=>$event["name"]));
 	    else {
-	        $sweThings = Yii::app()->mongodb->startupweekend->find(); 
+	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ) )); 
 	        $user = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
-	        $this->render("swe/swegraph",array("sweThings"=>$sweThings,"user"=>$user));
+	        $this->render("swe/swegraph",array("sweThings"=>$sweThings,
+	        								   "user"=>$user,
+	        								   "event"=>$event,
+	        								   "key"=>$id));
 	    }
 	}
 	
@@ -82,24 +85,24 @@ class EvenementController extends Controller {
 	/**
 	 * Interface admin permettant de gerer l'evennement
 	 */
-    public function actionSweAdmin() {
+    public function actionSweAdmin($id) {
         $this->layout = "swe";
-	    $event = Yii::app()->mongodb->group->findOne(array("key"=>"StartupWeekEnd2012"));
+	    $event = Yii::app()->mongodb->group->findOne(array("key"=>$id));
 	    $this->secure = $event['private'];
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
         if( !isset(Yii::app()->session["userId"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
 	        $this->render("swe/sweLogin");
 	    else 
-	        $this->render("swe/sweAdmin");
+	        $this->render("swe/sweAdmin",array("event"=>$event,"key"=>$id));
 	}
 	/**
 	 * Presente le nombre de compte incomlet 
 	 * dans le but de contacter le participant pour qu'il le complete
 	 */
-    public function actionSweCompteRempli() {
+    public function actionSweCompteRempli($id) {
 	    $this->layout = "swe";
-	    $event = Yii::app()->mongodb->group->findOne(array("key"=>"StartupWeekEnd2012")); 
+	    $event = Yii::app()->mongodb->group->findOne(array("key"=>$id)); 
 	    $this->secure = $event['private'];
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
@@ -152,6 +155,7 @@ class EvenementController extends Controller {
         $event = Yii::app()->mongodb->group->findOne(array("key"=>"StartupWeekEnd2012")); 
 	    if(Yii::app()->request->isAjaxRequest && isset( Yii::app()->session["userId"] ) && self::isParticipantEmail($event,"adminEmail") )
 		{
+		     $eventId = $_POST[ "eventId" ];
 		     $project = Yii::app()->mongodb->group->findOne(array("email"=>$_POST["projectEmail"]));
              $newInfos = array(
                 			'email'=>$_POST["projectEmail"],
@@ -163,7 +167,7 @@ class EvenementController extends Controller {
                   $newInfos['created'] = time();
                   $newInfos['type'] = "projet";
                   $newInfos['country'] ='Réunion';
-                  $newInfos['events']= array(new MongoId(self::swe2012Id));
+                  $newInfos['events']= array(new MongoId($eventId));
               }
               
               //update group instance	
@@ -171,7 +175,7 @@ class EvenementController extends Controller {
               
               //update event only if group is being created
               if(!$project){
-                  $where = array("_id" => new MongoId(self::swe2012Id));	
+                  $where = array("_id" => new MongoId($eventId));	
                   Yii::app()->mongodb->group->update($where, array('$push' => array("projects"=>$newInfos["_id"])));
               }
               
@@ -208,34 +212,43 @@ class EvenementController extends Controller {
         } 
 	}
 	/**
-	 * Ajouter une nouvelle perzsonne au SUWE
+	 * Ajoute un nouveau participant au SUWE
 	 * only for admins 
+	 * ajoute a la table 
+	 * - citoyen
+	 * - insert in
 	 */
     public function actionSwePerson() 
     { 
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
 		{
+		        $eventId = $_POST[ "eventId" ];
 		        $newAccount = array(
                     			'email'=>$_POST["personEmail"],
                                 'created' => time(),
                         		'name' => $_POST["personName"],
                                 'type' => "citoyen",
                                 'country' =>'Réunion',
-                                'events'=>array(new MongoId(self::swe2012Id))
+                                'events'=>array(new MongoId( $eventId ))
                                 );
                 $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST["personEmail"]));
                 if($account){
-                    Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId(self::swe2012Id))));
+                    if(!in_array(new MongoId($eventId), $account["events"]))
+                        Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId($eventId))));
                     $newAccount["_id"] = $account["_id"];
                 }
                 else
                     Yii::app()->mongodb->citoyens->insert($newAccount);
                 //add a participant
-                $where = array("_id" => new MongoId(self::swe2012Id));	
-                Yii::app()->mongodb->group->update($where, array('$push' => array("participants"=>$newAccount["_id"])));
+                $where = array("_id" => new MongoId($eventId));	
+                $personTypesContainers = array("participant"=>"participants",
+                                               "coach"=>"coaches",
+                                                "jury"=>"jurys",
+                                                "organisateur"=>"organisteurs");
+                Yii::app()->mongodb->group->update($where, array('$push' => array($personTypesContainers[$_POST["personType"]]=>$newAccount["_id"])));
                 
                 //add details into statupweekend table
-                $newAccount['type']='participant';
+                $newAccount['type']=$_POST["personType"];
                 Yii::app()->mongodb->startupweekend->insert($newAccount);
               
               $result = array("result"=>true,"msg"=>"Données bien enregistrées.");
@@ -288,6 +301,9 @@ class EvenementController extends Controller {
         
         exit_status('Something went wrong with your upload!');
 	}
+	/**
+	 * creates a notifaction instance in that same table 
+	 */
     public function actionSweCoachRequest() {
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
 		{
@@ -297,7 +313,8 @@ class EvenementController extends Controller {
                   $notification = array( "projet" => $_POST["coachProject"],
                                           "coach" => $_POST["coachRequested"],
                                           "read" => false,
-                                          "type"=>"startUpWeekendCoachRequest");
+                                          "type"=>"startUpWeekendCoachRequest",
+                                          "event"=>$_POST["eventId"]);
                   if(!empty($_POST["coachQuestion"]))
                       $notification["question"] = $_POST["coachQuestion"];
                   Yii::app()->mongodb->notifications->insert($notification);
@@ -310,17 +327,21 @@ class EvenementController extends Controller {
 		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
 		exit;
 	}
-	public function actionSweNotifications() {
+	/**
+	 * get and returns all open notifactions
+	 */
+	public function actionSweNotifications($id) {
 	    
 	    $coaches = array();
 	    $projects = array();
 	    $ids = array();
-	    foreach(Yii::app()->mongodb->notifications->find(array("read"=>false,"type"=>"startUpWeekendCoachRequest"),array("coach","projet")) as $k=>$c){
+	    $where = array("read"=>false,"type"=>"startUpWeekendCoachRequest","event"=>$id);
+	    foreach(Yii::app()->mongodb->notifications->find($where,array("coach","projet")) as $k=>$c){
 	        array_push($coaches, $c["coach"]);
 	        array_push($projects, $c["projet"]);
 	        array_push($ids, $k);
 	    }
-        $result = array("count"=>Yii::app()->mongodb->notifications->count(array("read"=>false,"type"=>"startUpWeekendCoachRequest")),
+        $result = array("count"=>Yii::app()->mongodb->notifications->count($where),
                         "coaches"=>$coaches,
                         "projects"=>$projects,
                         "ids"=>$ids
