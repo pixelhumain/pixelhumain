@@ -54,17 +54,16 @@ font-family: "Homestead";
     
     <h2> Commune <?php echo $cp?></h2>
     <p> Un condenser de votre commune, contribuez à l'action locale. 
-    <br/>La 1ere etape est de connecter un maximum de citoyen a l'initiative.
+    <br/>Commencons par définir un canevas en format ouvert(opendata) decrivant une commune.
+    <br/>Pour faciliter la tache pour toute les commune interressé par l'initiative.
+    <br/>A tout moment il est important de communecter un maximum de citoyen.
+    <br/>*se communecter : Un citoyen connecté à sa commune. 
     </p>
  	<div class="grid">
-        <div></div>
-        <div  data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/projet/list/ownerId/')?>">Projet(s)</a></div>
-        <div></div>
-        <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Membres</a></div>
-        <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Bureau</a></div>
-        <div data-ss-colspan="3"><a href="#"   target="_blank" role="button" data-toggle="modal">Statistic </a></div>
-        <div></div>
-        <div data-ss-colspan="3"><a href="#"   target="_blank" role="button" data-toggle="modal">Évènement </a></div>
+        <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/annuaireElus/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>"  > Annuaire des élus </a></div>
+        <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/commune/servicesMunicipaux/cp/'.$cp)?>">Services Municipaux</a></div>
+        <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal">Quartiers, Agglo </a></div>
+        <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal">Budget </a></div>
         <div></div>
         <div></div>
         <div></div>
@@ -95,7 +94,7 @@ font-family: "Homestead";
 			$assos = Yii::app()->mongodb->group->find(array("cp"=>$cp,"type"=>"association"));
 			foreach($assos as $a)
 			    echo $a["name"]."<br/>";?>
-			petit annuaire Associations
+			Annuaire Associations par filtre évolué
 		</div>
 	</div>
 	<br/>
@@ -116,6 +115,7 @@ font-family: "Homestead";
 	<div class="row-fluid">
 		<div class="span4">
 		<h2>Agenda</h2>
+		flux RSS de divers source locale
 		</div>
 		<div class="span4">
 		<h2>Découvrez</h2>

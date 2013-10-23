@@ -47,8 +47,8 @@ font-family: "Homestead";
     <br/>
     <div class="hero-unit">
     
-    <h2> Concours Dataconnexion</h2>
-    <p> Nous avons voulu ici regrouper quelques interprétation
+    <h2> Preuve de concept : Dataconnexion</h2>
+    <p> Nous avons voulu ici regrouper quelques interprétations
     <br/>et exemple de visualisations des données disponible sur Data.gouv.fr, Insee, etc
     
     <br/>Un des objectifs du PIxel Humain est de permettre un couplage entre opendata de divers autre source

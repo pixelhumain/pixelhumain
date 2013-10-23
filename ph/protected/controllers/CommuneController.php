@@ -20,7 +20,22 @@ class CommuneController extends Controller {
     public function actionView($cp) 
     {
         $this->layout = "swe";
-        if(substr($cp, 0,2) == "97")
         $this->render("view",array('cp'=>$cp,'dep'=>substr($cp, 0,3)));
+	}
+    public function actionAnnuaireelus($ci) 
+    {
+        $this->layout = "swe";
+        $annuaire = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci ),array("annuaireElu") ); 
+        $this->render("annuaireElus",array( 'ci' => $ci ,
+        									'annuaire' => $annuaire
+                                          ));
+	}
+    public function actionServicesMunicipaux($ci) 
+    {
+        $this->layout = "swe";
+        $service = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci ),array("servicesMunicipaux") ); 
+        $this->render("services",array( 'ci' => $ci ,
+        									'service' => $service
+                                          ));
 	}
 }
