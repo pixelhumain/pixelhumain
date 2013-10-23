@@ -49,15 +49,18 @@ font-family: "Homestead";
     
     <h2> Concours Dataconnexion</h2>
     <p> Nous avons voulu ici regrouper quelques interprétation
-    <br/>et exemple de visualisations des données disponibleq sur Data.gouv.fr, Insee
-    <br/>Un des objectifs du PIxel Humain est de permettre un couplage entre opendata de divers source, notament crowd sourcing.
-    et d'un crowd sourcing actif avec les 4 familles d'acteur représenté par le PH (citoyen, association, entreprise,collectivité).
+    <br/>et exemple de visualisations des données disponible sur Data.gouv.fr, Insee, etc
+    
+    <br/>Un des objectifs du PIxel Humain est de permettre un couplage entre opendata de divers autre source
+    notament du crowd sourcing actif avec les 4 familles d'acteur représenté par le PH (citoyen, association, entreprise,collectivité).
     On decouvre avec ce projet que les données globalement ouverte concernant les communes sont assez limités. 
     Un des objectifs du Pixel Humain est de motiver et outiller les communes à partager certaines données de bases de facon standardisé.
+    C'est un squelette applicatif pour valoriser l'activté locale pour les 4 familles représenté.
     Hiérarchie de la mairie,
     Contact par secteur en mairie (poste, nom, tel, email),
     Structure et découpage de la Commune,
-	on aimerait Structurer un outil de recherche des opendata locale
+	Proposer un outil de classification et de recherche des opendatas ultra locale et travailler de facon privillégié avec data.gouv.fr
+	
     <br/>Pour la demo concours voici quelques données réutilisé dans le PH 
     <ul>
     <li><a href="http://www.data.gouv.fr/DataSet/550652" target="_blank">ASSOCIATIONS RECONNUES D'UTILITÉ PUBLIQUE </a></li>
