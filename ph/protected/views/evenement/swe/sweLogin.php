@@ -65,7 +65,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
 	<br/>
 	si vous etes inscrit <a href="#loginForm"  class="btn-ph"  role="button" data-toggle="modal">Connectez vous</a>
 	<br/>
-	sinon vous pouvez tenter de contacter <a href="reunion.startupweekend.org" target="_blank" class="btn-ph"> Les organisateurs </a>.
+	sinon vous pouvez tenter de contacter <a href="http://reunion.startupweekend.org" target="_blank" class="btn-ph"> Les organisateurs </a>.
 	</h3>
 </div>
 

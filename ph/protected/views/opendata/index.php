@@ -54,16 +54,21 @@ ol.slats li p span.meta {
 	<li class="group">
 		<h3>
 			<a href="<?php echo Yii::app()->createUrl('/index.php/opendata/commune/ci/97411')?>">
-				Structure Standard Json, de l'organisation d'une mairie (ex:97411)
+				Structure Standard Json, de l'organisation d'une commune (ex:97411)
 			</a>
 		</h3>
 	</li>
 	<li class="group">
-		<h3>
-			<a href="<?php echo Yii::app()->createUrl('/index.php/opendata/cp')?>">
-				Json des pixels actifs par Code Postal
-			</a>
-		</h3>
+		<h3>Structure Standard Json, de l'organisation d'une agglomeration / intercommune (ex:CINOR)</h3>
+	</li>
+	<li class="group">
+		<h3>Structure Standard Json, de l'organisation d'une région (ex:974)</h3>
+	</li>
+	<li class="group">
+		<h3>Structure Standard Json, de l'organisation d'un département (ex:974)</h3>
+	</li>
+	<li class="group">
+		<h3>Json des pixels actifs par Code Postal</h3>
 	</li>
 	<li class="group">
 		<h3>

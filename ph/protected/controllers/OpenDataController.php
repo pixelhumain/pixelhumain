@@ -7,7 +7,7 @@
  * @author: Tibor Katelbach <tibor@pixelhumain.com>
  * Date: 16/08/13
  */
-class OpenDataController extends Controller {
+class OpendataController extends Controller {
     
     const moduleTitle = "OpenData";
     
