@@ -54,7 +54,7 @@ ol.slats li p span.meta {
 	<li class="group">
 		<h3>
 			<a href="<?php echo Yii::app()->createUrl('/index.php/opendata/commune/ci/97411')?>">
-				Structure Standard Json, de l'organisation d'une mairie
+				Structure Standard Json, de l'organisation d'une mairie (ex:97411)
 			</a>
 		</h3>
 	</li>

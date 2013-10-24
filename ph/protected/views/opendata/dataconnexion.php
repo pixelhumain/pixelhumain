@@ -73,7 +73,7 @@ font-family: "Homestead";
         <a href="<?php echo Yii::app()->createUrl('index.php/commune')?>">Distribution des Communectés</a>
         Inscrit connecté par departement
         </div>
-        <div></div>
+        <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/opendata/commune/ci/97411')?>" ><i class="icon-plus"></i> Open Data Locales</a></div>
         <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/97400')?>" ><i class="icon-plus"></i> Démo Commune</a> 97400</div>
         <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Bureau</a></div>
         <div data-ss-colspan="3"><a href="#"   target="_blank" role="button" data-toggle="modal">Statistic </a></div>
