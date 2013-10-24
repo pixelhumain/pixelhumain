@@ -65,7 +65,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                     </div>
                 </div>
               </div>
-              
+              <?php /*?>
     		  <div class="pull-left">
                   <a class="btn btn-primary btn-large homestead" href="http://blog.pixelhumain.com/" target="_blank"> BLOG </a>
                   <a class="btn btn-primary btn-large homestead " href="http://groups.diigo.com/group/pixelhumain" target="_blank">Recherche & Developpement</a>
@@ -81,7 +81,16 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     		        <li><a href="https://docs.google.com/forms/d/1DML6pRB5sialnkQwd_uxqW52efEhP1uJwdpk6bNCvEM/viewform" target="_blank">Pour les Associations</a></li>
     				<li><a href="https://docs.google.com/forms/d/1HWrloARNDlIfiI0XpdoogYDBxZwZm3O2FtTbc-Sfx0s/viewform" target="_blank">Pour les Entreprises</a></li>
     		    </ul>
-    		</div>
+    		</div>*/?>
+    		<div style="width:100%;" class="center">
+        		<a href="https://www.facebook.com/groups/pixelhumain/" target="_blank"><span class="icon-facebook-rect blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="https://plus.google.com/u/0/communities/111483652487023091469?cfem=1" target="_blank"><span class="icon-googleplus-rect blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="http://groups.diigo.com/group/pixelhumain" target="_blank"><span class="icon-diigo blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="https://trello.com/board/pixel-humain-echolocal/50a3e15a175358d65a0089ef" target="_blank"><span class="icon-trello blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;
+            	<a href="http://blog.pixelhumain.com/" target="_blank"><span class="icon-blogger-rect blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="http://twitter.com/pixelhumain" target="_blank"><span class="icon-twitter blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="https://github.com/pixelhumain/pixelhumain" target="_blank"><span class="icon-github-text blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+        	</div>
     		<div class="clear"></div>
         </div>
         
@@ -93,7 +102,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     	<?php if(!isset(Yii::app()->session["userId"])){?>
         <div class="pull-left homestead blueDark center" style="width:45%;border:1px color red;">
         	<span class="entypo-vcard blue" style="font-size:300%"></span><br/><br/>
-        	<h1>Adhérer</h1>
+        	<h1> Adhérer </h1>
         	<div>
         	C'est se communecter, être connecté à sa commune ( mail, code postal).
         	<br/>Ainsi vous adhérez au projet et donnez plus de poids à votre communauté locale.
@@ -104,7 +113,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         <?php } else if(!$userCp = Citoyen::isCommunected()){ ?>
         <div class="pull-left homestead blueDark center" style="width:45%;border:1px color red;">
         	<span class="entypo-vcard blue" style="font-size:300%"></span><br/><br/>
-        	<h1>Inscrit <span style="text-decoration:line-through">communecté </span></h1>
+        	<h1> Inscrit <span style="text-decoration:line-through">communecté </span></h1>
         	<div>
         	se communecter, c'est être connecté à sa commune, avec un simple code postal
         	</div>
@@ -114,23 +123,23 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         <?php } else { ?>
         	<div class="pull-left homestead blueDark center" style="width:45%;border:1px color red;">
         	<span class="entypo-vcard blue" style="font-size:300%"></span><br/><br/>
-        	<h1>Vous etes Communecté</h1>
+        	<h1> Vous etes Communecté </h1>
         	<div>
         	<img src="<?php echo Yii::app()->createUrl('images/bdb.png')?>"/>
-        	<br/>Commune : <?php echo $userCp;?>
+        	<br/><a class=" btn-warning btn-large homestead" href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/'.$userCp)?>">Commune : <?php echo $userCp;?></a>
         	</div>
         </div>
         <?php }?>
         <div class="pull-right homestead blueDark center" style="width:45%;border:1px color red;">
-        	<span class="entypo-light-bulb blue" style="font-size:300%">&#128161;</span><br/><br/>
-        	<h1>Sponsorisez</h1>
+        	<span class="icon-lightbulb blue" style="font-size:300%"></span><br/><br/>
+        	<h1> Sponsorisez </h1>
         	<div>
         	Vos dons sont deductible a 60% de vos impots sur le revenu.
         	Le projet est d'interet général, nous comptons sur les collectivité et sur un financement citoyen
         	pour obtenir les moyens financier necessaire pour démarré l'initiative.
         	</div>
         	<br/>
-        	<a class=" btn-warning btn-large homestead" href="" target="_blank"> Je souhaite soutenir </a>
+        	<a class=" btn-warning btn-large homestead" href="<?php echo Yii::app()->createUrl('index.php/financement')?>" target="_blank"> Je souhaite soutenir </a>
         </div>
         <div class="clear"></div>
     </div>

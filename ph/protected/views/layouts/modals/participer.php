@@ -40,6 +40,7 @@
             		    ?></td>
         		</tr>   
         		<?*/?>
+        		<input id="typePA" name="typePA" type="hidden" value="citoyen"/>
         		<tr>
                   	<td class="txtright">j'habite en  </td>
                   	<td>

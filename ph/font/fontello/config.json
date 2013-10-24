@@ -7,10 +7,28 @@
   "ascent": 850,
   "glyphs": [
     {
+      "uid": "ccc2329632396dc096bb638d4b46fb98",
+      "css": "mail-alt",
+      "code": 59399,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "f3dc2d6d8fe9cf9ebff84dc260888cdf",
+      "css": "heart-empty",
+      "code": 59400,
+      "src": "fontawesome"
+    },
+    {
       "uid": "b846892636bd74112998bb159bdddf27",
       "css": "trello",
       "code": 59397,
       "src": "fontawesome"
+    },
+    {
+      "uid": "489090690d8bd1745e365485946e20a8",
+      "css": "megaphone",
+      "code": 59401,
+      "src": "entypo"
     },
     {
       "uid": "b1ec8e90c2c85cf0035849980a3789b3",
@@ -41,6 +59,12 @@
       "css": "diigo",
       "code": 59398,
       "src": "brandico"
+    },
+    {
+      "uid": "599d6c088f4a1c64611b989459d65f6b",
+      "css": "lightbulb",
+      "code": 59402,
+      "src": "elusive"
     },
     {
       "uid": "798f480ad47c7c7fa6c64ece88ea2180",

@@ -17,7 +17,7 @@ h2 {
     <br/>
     <!-- Main hero unit for a primary marketing message or call to action -->
     <div class="hero-unit">
-    <h2>Financement Citoyen</h2>
+    <h2>Financement Citoyen ( trés bientot disponible )</h2>
 	Le Crowd Funding, n'est pas nouveau en soi, mais aujourd'hui, c'est devenue une facon d'etre soutenue et levé des fonds de facon participative.
 	<h3>Le principe</h3>
 	- Donner une petite somme pour participer au financement d'un projet qui demande de grand moyen
@@ -52,7 +52,7 @@ h2 {
 				<li>24/7 support Email</li>
 			</ul>
 			<div class="footer">
-				<a href="javascript:alert('');" class="action_button">C'est parti</a>
+				<a href="javascript:alert('tres bientot');" class="action_button">C'est parti</a>
 			</div>
 		</li>
 		<li class="price_block">
@@ -72,7 +72,7 @@ h2 {
 				<li>24/7 Email support</li>
 			</ul>
 			<div class="footer">
-				<a href="#" class="action_button">C'est parti</a>
+				<a href="javascript:alert('tres bientot');" class="action_button">C'est parti</a>
 			</div>
 		</li>
 		<li class="price_block">
@@ -92,7 +92,7 @@ h2 {
 				<li>24/7 Email support</li>
 			</ul>
 			<div class="footer">
-				<a href="#" class="action_button">C'est parti</a>
+				<a href="javascript:alert('tres bientot');" class="action_button">C'est parti</a>
 				
 			</div>
 		</li>
@@ -113,7 +113,7 @@ h2 {
 				<li>24/7 Email support</li>
 			</ul>
 			<div class="footer">
-				<a href="#" class="action_button">C'est parti</a>
+				<a href="javascript:alert('tres bientot');" class="action_button">C'est parti</a>
 			</div>
 		</li>
 	</ul>

@@ -11361,3 +11361,74 @@ Stack trace:
 REQUEST_URI=/ph/index.php/citoyens/register2
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (201)
 in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/10/24 18:26:39 [error] [php] Undefined index: typePA (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:201)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register2
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (201)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/10/24 18:30:27 [error] [php] Undefined index: typePA (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:201)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register2
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (201)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/10/24 18:50:28 [error] [php] Undefined index: 97421 (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\site\index.php:129)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): SiteController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): SiteController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\SiteController.php(32): SiteController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): SiteController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\site\index.php (129)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\SiteController.php (32)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/10/24 18:51:27 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:336
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('commune/view/ci...')
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/ph/index.php/commune/view/ci/97414
+HTTP_REFERER=http://127.0.0.1/ph/
+---
+2013/10/24 18:52:29 [error] [php] Undefined index: annuaireElu (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\commune\annuaireElus.php:269)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): CommuneController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CommuneController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CommuneController.php(31): CommuneController->render()
+#3 unknown(0): CommuneController->actionAnnuaireelus()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CommuneController->runAction()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CommuneController->runActionWithFilters()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CommuneController->run()
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/commune/annuaireElus/ci/97414
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\commune\annuaireElus.php (269)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CommuneController.php (31)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
