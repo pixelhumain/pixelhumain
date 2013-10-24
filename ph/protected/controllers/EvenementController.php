@@ -18,7 +18,7 @@ class EvenementController extends Controller {
         if(isset($event["key"]) )
             $this->redirect(Yii::app()->createUrl('index.php/evenement/key/id/'.$event["key"]));
         else
-	        $this->render("swe/view");
+	        $this->render("view");
 	}
     public function actionCreer() {
 	    $this->render("new");
