@@ -62,7 +62,11 @@ class OpenDataController extends Controller {
     	   echo json_encode($json);
 	   }
 	}
-	
+    public function actionCommune($ci) {
+        $commune = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("annuaireElu") ); 
+	    header('Content-Type: application/json');
+    	echo json_encode($commune);
+	}
 	public function actionDataConnexion() {
 	    $this->layout = "swe";
 	    $this->render("dataconnexion");

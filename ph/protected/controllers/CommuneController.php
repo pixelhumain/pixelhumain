@@ -25,7 +25,7 @@ class CommuneController extends Controller {
     public function actionAnnuaireelus($ci) 
     {
         $this->layout = "swe";
-        $annuaire = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci ),array("annuaireElu") ); 
+        $annuaire = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("annuaireElu") ); 
         $this->render("annuaireElus",array( 'ci' => $ci ,
         									'annuaire' => $annuaire
                                           ));
@@ -33,7 +33,7 @@ class CommuneController extends Controller {
     public function actionServicesMunicipaux($ci) 
     {
         $this->layout = "swe";
-        $service = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci ),array("servicesMunicipaux") ); 
+        $service = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("servicesMunicipaux") ); 
         $this->render("services",array( 'ci' => $ci ,
         									'service' => $service
                                           ));
