@@ -79,6 +79,7 @@ canvas{position:absolute;top:0px;left:0px;}
     	$coaches = array();
     	$myproject = '';
     	$projects = array();
+    	$meType = '';
         foreach ($sweThings as $line) 
         {
             if(in_array($event['_id'],$line['events'])){
@@ -95,7 +96,7 @@ canvas{position:absolute;top:0px;left:0px;}
                 $classHide = (isset($type) && in_array($type, array('participant'))) ? 'hide' : '';
                 //connected users panel will be different
                 $classMe = (Yii::app()->session["userEmail"] == $email && $type!='projet') ? 'me' : '';
-                
+                if(!empty($classMe))$meType = $type;
                 if(!empty($classMe) && !empty($project) )
                     $myproject = $project;
     
@@ -176,7 +177,8 @@ canvas{position:absolute;top:0px;left:0px;}
 <?php $this->renderPartial('application.views.evenement.swe.sweModals',array('coaches'=>$coaches,
     																		 'myproject'=>$myproject,
                                                                              'projects'=>$projects,
-                                                                             'event'=>$event
+                                                                             'event'=>$event,
+                                                                             'meType'=>$meType
                                                                             ));?>
 
 

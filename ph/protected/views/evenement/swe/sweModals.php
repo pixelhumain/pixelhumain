@@ -7,6 +7,8 @@
   <div class="modal-body">
     <p> Les Coachs sont là pour vous orienter, n'hésitez pas à les soliciter. <br/>
     En remplissant ce formulaire vous n'aurez pas à vous déplacer, Le coach recevra votre demande. </p>
+    <strong>Cette fonctionalité  ne sera disponible que le jour de l'évennement</strong>
+    <?php /*?>
     <form id="coachForm" style="line-height:40px;">
         <section>
         	<table>
@@ -46,6 +48,8 @@
           	</table>
         </section>
     </form>
+    <?php */ ?>
+    
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
@@ -164,9 +168,9 @@ initT['coachFormModalsInit'] = function(){
                             ),
                             'events' => array(
                                 'complete'=>"function( id,  name,  responseJSON,  xhr){
-                                	console.log('".Yii::app()->createUrl('upload/swe/')."/'+xhr.name);
+                                	console.log('".Yii::app()->createUrl('upload/swe/')."/'+xhr.name+'?d='+ new Date().getTime());
                                 	$('#image').val(xhr.name);
-                                	$('li.participant.me img').attr('src','".Yii::app()->createUrl('upload/swe/')."/'+xhr.name);
+                                	$('li.$meType.me img').attr('src','".Yii::app()->createUrl('upload/swe/')."/'+xhr.name+'?d='+ new Date().getTime());
                                 	
                                 }"
                             ),
