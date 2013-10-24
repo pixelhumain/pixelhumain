@@ -25,39 +25,19 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
               </div>
               <!-- Carousel items -->
               <div class="carousel-inner" style="height:460px;width:85%;margin-left:60px">
-              
-                <div class="active item p40">
-                    <h1 class="pull-right">Le Pixel Humain!</h1> 
+              	
+              	<div class="active item p40" >
+                    <iframe src="//player.vimeo.com/video/74212373" style="width:100%;height:400px;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+                
+                <div class="item p40">
+                    <h1 class="pull-right homestead">Le Pixel Humain</h1> 
                     <div style="width:500px; text-align:right;" class="pull-right">
                    
                         <p>Un projet citoyen de démocratie participative qui prend racine à la Réunion portée par l'association Open Atlas <br/><small class="fsxs">(loi 19101, but non lucratif)</small>. </p>
                         <p>Une plateforme de discussions et actions citoyennes sur un réseau local <br/>(en cours construction, Recherche de financement). </p>
                     </div>
                     <img class="pull-left" id="logoBanner" src="<?php echo Yii::app()->createUrl('images/logo/logo320.png')?>" alt="Logo Pixel Humain"/>
-                </div>
-                
-                <div class="item p40">
-                    <div style="width:500px; text-align:left;" class="pull-left">
-                        <p> "ça ne changera jamais" et "on n'a pas notre mot à dire de toute façon" ? <br/>
-                        La démocratie actuelle n'est-elle pas à bout de souffle ? <br/>
-                        Il est temps de s'organiser et de se regrouper pour trouver de nouvelle solution. <br/><br/>
-                        A l'heure d'internet, de la simplification de la communication et du partage de l'information,
-                        tout est réunit pour que tout un chacun s'organise pour faire changer les choses.<br/><br/>
-                        Et si un outil proposait une interface web pour que citoyens, associations, collectivités et entreprises 
-                        travaillent pour construire une société à l'image de tous?<br/><br/>
-                        Un outil dans lequel le citoyen dialoguerait avec sa ville pour participer aux décisions qui le 
-                        concernent le plus. Si cet outil permettait à ce même citoyen de connaître ses voisins qui a les mêmes 
-                        intérêts sur lui, les associations qui proposent des initiatives sociales et solidaires à coté de chez 
-                        lui, les artisans/entreprises qui fabriquent localement les produits qu'il achète... <br/><br/>
-                        Bref reconnecter le virtuel et le réél, le Pixel et l'Humain.
-                        </p>
-                    </div>
-                    <img class="pull-right" src="<?php echo Yii::app()->createUrl('images/logo/logo320.png')?>" alt="Logo Pixel Humain"/>
-                    <script type="text/javascript">
-                    initT['imgZoom'] = function(){
-                    	TweenMax.staggerFromTo("#logoBanner", 3, {scaleX:0, scaleY:0}, {scaleX:1, scaleY:1},1);
-                    };
-                    </script>
                 </div>
                 
                 <div class="item p40">
@@ -107,6 +87,52 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         
         
         
+    </div>
+    
+    <div class="hero-unit">
+    	<?php if(!isset(Yii::app()->session["userId"])){?>
+        <div class="pull-left homestead blueDark center" style="width:45%;border:1px color red;">
+        	<span class="entypo-vcard blue" style="font-size:300%"></span><br/><br/>
+        	<h1>Adhérer</h1>
+        	<div>
+        	C'est se communecter, être connecté à sa commune ( mail, code postal).
+        	<br/>Ainsi vous adhérez au projet et donnez plus de poids à votre communauté locale.
+        	</div>
+        	<br/>
+        	<a class=" btn-warning btn-large homestead" href="#loginForm"  role="button" data-toggle="modal"> Je souhaite adhérer </a>
+        </div>
+        <?php } else if(!$userCp = Citoyen::isCommunected()){ ?>
+        <div class="pull-left homestead blueDark center" style="width:45%;border:1px color red;">
+        	<span class="entypo-vcard blue" style="font-size:300%"></span><br/><br/>
+        	<h1>Inscrit <span style="text-decoration:line-through">communecté </span></h1>
+        	<div>
+        	se communecter, c'est être connecté à sa commune, avec un simple code postal
+        	</div>
+        	<br/>
+        	<a class=" btn-warning btn-large homestead" href="#participer"  role="button" data-toggle="modal"> Communectez vous </a>
+        </div>
+        <?php } else { ?>
+        	<div class="pull-left homestead blueDark center" style="width:45%;border:1px color red;">
+        	<span class="entypo-vcard blue" style="font-size:300%"></span><br/><br/>
+        	<h1>Vous etes Communecté</h1>
+        	<div>
+        	<img src="<?php echo Yii::app()->createUrl('images/bdb.png')?>"/>
+        	<br/>Commune : <?php echo $userCp;?>
+        	</div>
+        </div>
+        <?php }?>
+        <div class="pull-right homestead blueDark center" style="width:45%;border:1px color red;">
+        	<span class="entypo-light-bulb blue" style="font-size:300%">&#128161;</span><br/><br/>
+        	<h1>Sponsorisez</h1>
+        	<div>
+        	Vos dons sont deductible a 60% de vos impots sur le revenu.
+        	Le projet est d'interet général, nous comptons sur les collectivité et sur un financement citoyen
+        	pour obtenir les moyens financier necessaire pour démarré l'initiative.
+        	</div>
+        	<br/>
+        	<a class=" btn-warning btn-large homestead" href="" target="_blank"> Je souhaite soutenir </a>
+        </div>
+        <div class="clear"></div>
     </div>
     
     <div class="hero-unit">
@@ -363,6 +389,33 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     <div class="hero-unit center">
         <img src="<?php echo Yii::app()->createUrl('images/gandhi.jpg')?>" class="img-rounded" alt="Soyez le changement que vous voulez voir dans le monde. (--Mahatma Gandhi)"/>
         </div>
+    
+    <div class="hero-unit">
+        <div class="homestead blueDark center" style="height:border:1px color red;">
+        	<span class="entypo-heart-empty blue" style="font-size:300%"></span><br/><br/>
+        	<h1>L'équipe</h1>
+        	<div>
+        	Une équipe dynamique, professionelle, passionné de Pixels Actifs
+        	<br/>c'est donnée de vrais objectifs humains, d'améliorer la connectivité, le partage, et l'action locale.
+        	<?php 
+            $this->renderPartial('application.views.projet.organigrid',array( 'projet' => Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId("523c8195f6b95c5426007cb8"))),
+            																  "typePeople"=>"team,mentors",
+            																  "design"=>"s",
+                                                                              "isModule"=>true
+                                                                             ));
+        	?>
+        	
+        	
+        	Le projet est open source, libre et fortement ouvert à la collaboration.
+        	<br/>Idées, Questions, Conseils, Actions... OUI NIDE IOU!!
+        	</div>
+        	<br/>
+        	<a class=" btn-warning btn-large homestead" href="" target="_blank"> Devenez Pixels Actifs </a>
+        	</div>
+        	
+        </div>
+        <div class="clear"></div>
+    </div>
     
 </div> <!-- /container -->
 

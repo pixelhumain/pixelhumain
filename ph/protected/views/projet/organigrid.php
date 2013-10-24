@@ -6,7 +6,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/jquery.shapeshift.min
 ?>
 <style>
 h2,h3,h4 {
-	font-family: "Homestead";
+	/*font-family: "Homestead";*/
   position:relative;
   top:0px;
   left:0px;
@@ -60,37 +60,15 @@ display:block;
 }	
 
 .graph div{border:1px solid #666;text-align:center}
-.menu{paading:5px;font-family: "Homestead"}
-a.tags{font-family: "Homestead";font-size:small;line-height:15px;}
+.menu{paading:5px;}
+a.tags{font-size:large;line-height:20px;}
 </style>
+<?php if(!isset($isModule)){?>
 <div class="container graph">
-    
-    
-    
     <div class="hero-unit">
-    
     <h2> Organi Grid <?php echo $projet['name']?></h2>
-    <div class="menu">
-        <a href="#" onclick="filterType('people','#F5E424')">Tous</a> | 
-        
-        <?php
-        $filters = array(); 
-        foreach(explode(",", $typePeople) as $t){
-            array_push($filters, $t);
-        ?>
-        <a href="#" onclick="filterType('<?php echo $t?>','#DFE1E8')"><?php echo $t?> (<?php echo count($projet[$t])?>) </a> | 
-         <?php 
-         foreach($projet[$t] as $id)
-         {
-         foreach(explode(",",$id['tags']) as $tag)
-             {?>	
-                 <a href="#" class="tags" onclick="filterType('<?php echo str_replace(" ", "", $tag)?>','#DFE1E8')"><?php echo $tag?> </a> | 
-             <?php 
-             }
-         }?>
-        <?php } ?>
-    </div> 
-    <div class="clear"></div>
+    <?php }?>
+    
  	<div class="grid">
  		<?php 
  		$colors = array("yellow","blue","#df354c","grey1","grey2");
@@ -105,14 +83,39 @@ a.tags{font-family: "Homestead";font-size:small;line-height:15px;}
         	<h4><?php echo $line['name']?></h4>
         	<span class="txt"><?php echo $id['text']?></span>
         	<?php foreach(explode(",",$id['tags']) as $tag) {?>	
-                 <a href="#" class="tags" onclick="filterType('<?php echo str_replace(" ", "", $tag)?>','#DFE1E8')"><?php echo $tag?> </a>
+                 <a href="javascript:;" class="tags " onclick="filterType('<?php echo str_replace(" ", "", $tag)?>','#DFE1E8')"><?php echo $tag?> </a>
              <?php }?>
         </div>
        <?php } 
            $ctColors++;
             }?>
    </div>
+   
+   <div class="menu">
+        <a href="javascript:;" class="tags badge blueDarkbg yellow" onclick="filterType('people','#F5E424')">Tous</a>&nbsp;
+        
+        <?php
+        $filters = array(); 
+        foreach(explode(",", $typePeople) as $t){
+            array_push($filters, $t);
+        ?>
+        <a href="javascript:;" class="tags badge blueDarkbg yellow" onclick="filterType('<?php echo $t?>','#DFE1E8')"><?php echo $t?> (<?php echo count($projet[$t])?>) </a>&nbsp;
+         <?php 
+         foreach($projet[$t] as $id)
+         {
+         foreach(explode(",",$id['tags']) as $tag)
+             {?>	
+                 <a href="javascript:;" class="tags badge blueDarkbg yellow" onclick="filterType('<?php echo str_replace(" ", "", $tag)?>','#DFE1E8')"><?php echo $tag?> </a>&nbsp;
+             <?php 
+             }
+         }?>
+        <?php } ?>
+    </div> 
+    <div class="clear"></div>
+   
+   <?php if(!isset($isModule)){?>
 </div></div>
+<?php }?>
 
 <script type="text/javascript">
 function filterType(type,color){

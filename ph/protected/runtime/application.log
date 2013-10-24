@@ -11296,3 +11296,68 @@ REQUEST_URI=/ph/index.php/commune/annuaireElus/ci/images/L1-right.png
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\commune\annuaireElus.php (270)
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CommuneController.php (31)
 in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/10/24 14:03:08 [error] [exception.MongoException] exception 'MongoException' with message 'Invalid object ID' in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\projet\people.php:63
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\projet\people.php(63): MongoId->__construct(Array)
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require('X:\X_Dev\humanp...')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('X:\X_Dev\humanp...', Array, true)
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): CBaseController->renderFile('X:\X_Dev\humanp...', Array, true)
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CController->renderPartial('people', Array, true)
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ProjetController.php(29): CController->render('people', Array)
+#6 [internal function]: ProjetController->actionPeople('523c8195f6b95c5...', 'team')
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjetController), Array)
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjetController), Object(ReflectionMethod), Array)
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('people')
+#13 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('projet/people/i...')
+#14 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#16 {main}
+REQUEST_URI=/ph/index.php/projet/people/id/523c8195f6b95c5426007cb8/type/team
+HTTP_REFERER=http://127.0.0.1/ph/index.php/projet/view/id/523c8195f6b95c5426007cb8
+---
+2013/10/24 14:07:03 [error] [php] Undefined variable: design (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\projet\organigrid.php:31)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): SiteController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\site\index.php(382): SiteController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): SiteController->renderInternal()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): SiteController->renderFile()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): SiteController->renderPartial()
+#6 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\SiteController.php(32): SiteController->render()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): SiteController->runAction()
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#12 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\projet\organigrid.php (31)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\site\index.php (382)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\SiteController.php (32)
+2013/10/24 15:23:51 [error] [php] Undefined index: typePA (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:201)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register2
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (201)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/10/24 15:24:12 [error] [php] Undefined index: typePA (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:201)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register2
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (201)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)

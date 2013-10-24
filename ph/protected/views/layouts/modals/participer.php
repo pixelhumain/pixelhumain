@@ -25,6 +25,7 @@
                   	<td class="txtright">Je m'appel</td>
                   	<td> <input id="registerName" name="registerName" value="<?php if($account && isset($account['name']) )echo $account['name'] ?>"/></td>
               	</tr>
+              	<?php /*?>
               	<tr>
                   	<td class="txtright">Je suis  </td>
                   	<td>
@@ -38,6 +39,7 @@
                           ));
             		    ?></td>
         		</tr>   
+        		<?*/?>
         		<tr>
                   	<td class="txtright">j'habite en  </td>
                   	<td>

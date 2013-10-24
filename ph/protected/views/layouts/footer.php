@@ -1,31 +1,28 @@
 <footer>  
 
-   <div id="contact" >
-        <h1>Contactez, Rejoignez nous </h1>
+   <div id="contact" class="center">
+        <div class="homestead blueDark" style="height:250px;border:1px color red;">
+        	<span class="entypo-megaphone blue" style="font-size:300%"></span><br/><br/>
+        	<h1>Contact</h1>
+        	<div>
+        	+262-262.34.36.86
+        	<br/>contact @ pixelhumain.com
+        	</div>
+        	<br/>
+        	
+        	<a href="https://www.facebook.com/groups/pixelhumain/" target="_blank"><span class="icon-facebook-rect blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	<a href="https://plus.google.com/u/0/communities/111483652487023091469?cfem=1" target="_blank"><span class="icon-googleplus-rect blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	<a href="http://groups.diigo.com/group/pixelhumain" target="_blank"><span class="icon-diigo blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	<a href="https://trello.com/board/pixel-humain-echolocal/50a3e15a175358d65a0089ef" target="_blank"><span class="icon-trello blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;
+        	<a href="http://blog.pixelhumain.com/" target="_blank"><span class="icon-blogger-rect blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+        	<a href="http://twitter.com/pixelhumain" target="_blank"><span class="icon-twitter blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+        	<a href="https://github.com/pixelhumain/pixelhumain" target="_blank"><span class="icon-github-text blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="blueDarkbg" style="width:100%; height:60px;color:white;padding:5px">
+        	Le Pixel Humain, sous <img src="<?php echo Yii::app()->createUrl('images/open-licence.png')?>" style="height:45px"/> licence ouverte & opensource,  Porté par L'association Open Atlas
+        </div>
+       
         
-        <br/>
-        <p><a href="http://blog.pixelhumain.com/" target="_blank"> Le blog </a></p>
-        <p>Pixel Humain sur <a href="https://www.facebook.com/groups/pixelhumain/" target="_blank"> FaceBook </a></p>
-        <p><a href="http://groups.diigo.com/group/pixelhumain" target="_blank">Recherche & Dévellopement</a> du Pixel Humain</p>
-        <p>Notre <a href="https://trello.com/board/pixel-humain-echolocal/50a3e15a175358d65a0089ef" target="_blank">Plan d'action </a></p>
-        <br/>
-        <h4>Que vous ayez une idée ou que ce soit par plaisirs,<br/>
-        Nous aimons recevoir vos mails!!</h4>
-        <br/>
-        <p>
-        <a class="btn btn-warning btn-large" href="mailto:contact@pixelhumain.com" target="_blank">Envoyer un Mail </a>
-        <?php if(isset(Yii::app()->session["userId"])){?>
-		<div id="ddinvité" class="wrapper-dropdown-3" tabindex="1">
-		    <span>Invité quelqu'un</span>
-		    <ul class="dropdown">
-		        <li><a href="" target="_blank">Un Citoyens</a></li>
-		        <li><a href="" target="_blank">Une Collectivités</a></li>
-		        <li><a href="" target="_blank">Une Associations</a></li>
-				<li><a href="" target="_blank">Une Entreprises</a></li>
-		    </ul>
-		</div>
-    	<?php }?>
-        </p>
     </div>
     
 </footer>

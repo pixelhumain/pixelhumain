@@ -1,0 +1,52 @@
+{
+  "name": "social",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "b846892636bd74112998bb159bdddf27",
+      "css": "trello",
+      "code": 59397,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "b1ec8e90c2c85cf0035849980a3789b3",
+      "css": "twitter",
+      "code": 59393,
+      "src": "zocial"
+    },
+    {
+      "uid": "8045477f6a7ef0bd7caff130ad25b88d",
+      "css": "facebook-rect",
+      "code": 59392,
+      "src": "brandico"
+    },
+    {
+      "uid": "626fb97a7c0c0db53a1853fb9e96e223",
+      "css": "googleplus-rect",
+      "code": 59394,
+      "src": "brandico"
+    },
+    {
+      "uid": "a38dfae0ec2d11e1aff10800200c9a66",
+      "css": "blogger-rect",
+      "code": 59396,
+      "src": "brandico"
+    },
+    {
+      "uid": "ca1c321a95f268ed0e54e7ba11a8264d",
+      "css": "diigo",
+      "code": 59398,
+      "src": "brandico"
+    },
+    {
+      "uid": "798f480ad47c7c7fa6c64ece88ea2180",
+      "css": "github-text",
+      "code": 59395,
+      "src": "elusive"
+    }
+  ]
+}
