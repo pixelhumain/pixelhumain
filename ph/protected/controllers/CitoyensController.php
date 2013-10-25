@@ -7,7 +7,7 @@
  * Time: 12:25 AM
  */
 class CitoyensController extends Controller {
-
+    const moduleTitle = "Citoyen";
 	public function accessRules() {
 		return array(
 			// not logged in users should be able to login and view captcha images as well as errors
@@ -196,8 +196,11 @@ class CitoyensController extends Controller {
                       //demande validation du responsable 
                   	  $newInfos['associations'] = explode(",", $_POST['listAssociation']);
                   }*/
+                  	  
                   if( !empty($_POST['tagsPA']) )
                       $newInfos['tags'] = explode(",", $_POST['tagsPA']);
+                  if( !empty($_POST['imageCitoyen']) )
+                      $newInfos['img'] = $_POST['imageCitoyen'];
                   $newInfos['type']=$_POST['typePA'];
                   $newInfos['country']=$_POST['countryPA'];
                   

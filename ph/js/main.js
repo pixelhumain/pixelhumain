@@ -78,7 +78,7 @@ function toggleSpinner(){
 		$("#logo").html('');
 		var spinner = new Spinner(spinner_opts).spin($("#logo")[0]);
 	} else 
-		$("#logo").html('<a id="logoLink" href="index.php">Pixel Humain</a>');
+		$("#logo").html('<a id="logoLink" class="ml10 " href="/ph">PH</a>');
 }
 
 var spinner_opts = {

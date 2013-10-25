@@ -25,7 +25,7 @@
 	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/logo/favicon.gif" />
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/mainph.css">
-
+	
    <title><?php echo CHtml::encode($this->pageTitle); ?></title>
    <?php //echo Yii::app()->createUrl('js/jquery-1.8.3.min.js')?>
    <script src="<?php echo Yii::app()->createUrl('js/jquery.1.10.2.min.js')?>"></script>
@@ -37,10 +37,11 @@
 </head>
 
 <body>
-<?php $this->renderPartial('application.views.layouts.header');?>
-<?php $this->renderPartial('application.views.layouts.sideMenu1');?>
+<?php $account = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;?>
+<?php $this->renderPartial('application.views.layouts.header2',array( "account" => $account));?>
+<?php if(isset($this->showSidebar1) && $this->showSidebar1)$this->renderPartial('application.views.layouts.sideMenu1');?>
 <?php echo $content; ?>
-<?php $this->renderPartial('application.views.layouts.modals');?>	
+<?php $this->renderPartial('application.views.layouts.modals',array( "account" => $account));?>	
 <div class="clear"></div>
 <?php $this->renderPartial('application.views.layouts.footer');?>
 

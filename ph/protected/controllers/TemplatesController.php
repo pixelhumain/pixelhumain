@@ -21,9 +21,9 @@ class TemplatesController extends Controller
 	   $this->render($name);
 	}
 	
-    public function actionUpload() 
+    public function actionUpload($dir,$input) 
     {
-        $upload_dir = 'upload/swe/';
+        $upload_dir = 'upload/'.$dir.'/';
         $allowed_ext = array('jpg','jpeg','png','gif');
         
         
@@ -32,9 +32,9 @@ class TemplatesController extends Controller
 	        exit;
         }
         
-        if(array_key_exists('imageFile',$_FILES) && $_FILES['imageFile']['error'] == 0 ){
+        if(array_key_exists($input,$_FILES) && $_FILES[$input]['error'] == 0 ){
         	
-        	$pic = $_FILES['imageFile'];
+        	$pic = $_FILES[$input];
         	$ext = pathinfo($pic['name'], PATHINFO_EXTENSION);
         	if(!in_array($ext,$allowed_ext)){
         		echo json_encode(array('error'=>'Only '.implode(',',$allowed_ext).' files are allowed!'));

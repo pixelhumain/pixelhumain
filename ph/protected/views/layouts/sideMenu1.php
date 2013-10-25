@@ -82,7 +82,7 @@
   cursor: pointer;
 }
 
-.b li [class*="entypo-"] {
+.b li [class*="entypo-"],.b li [class*="icon-"] {
   display: inline-block;
   position: relative;
   left: 145px;
@@ -109,7 +109,7 @@
   transform: translateX(150px);
   transition: all .3s ease-in-out;
 }
-.b > ul:hover li [class*="entypo-"] {
+.b > ul:hover li [class*="entypo-"],.b > ul:hover li [class*="icon-"] {
   transform: translateX(-150px);
   transition-delay: 0;
 }
@@ -143,7 +143,7 @@
         <li><a href="#loginForm"  target="_blank" role="button" data-toggle="modal"><span class="entypo-user"></span><span class="menu-item">s'Inscrire</span></a></li>
         <li><a href="#invitation"  role="button" data-toggle="modal"><span class="entypo-link"></span><span class="menu-item">Invitation</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/thematique')?>"><span class="entypo-tag"></span><span class="menu-item">Thématique</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/statistics')?>"><span class="entypo-area-graph">&#128200;</span><span class="menu-item">Statistique</span></a>
+        <li><a href="<?php echo Yii::app()->createUrl('index.php/statistics')?>"><span class="icon-chart-line"></span> <span class="menu-item">Statistique</span></a>
         	<ul>
                 <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/metier')?>">Metier</a></li>
                 <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/thematique')?>">Thématique</a></li>
@@ -155,7 +155,7 @@
               </ul>
         </li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/commune')?>"><span class="entypo-address"></span><span class="menu-item">Commune</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/projet')?>"><span class="entypo-light-bulb">&#128161;</span><span class="menu-item">Projet</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('index.php/projet')?>"><span class="icon-lightbulb"></span> <span class="menu-item">Projet</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/evenement')?>"><span class="entypo-signal"></span><span class="menu-item">Évènement</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/association')?>"><span class="entypo-users"></span><span class="menu-item">Association</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/opendata')?>"><span class="entypo-share"></span><span class="menu-item">Open Data</span></a></li>

@@ -160,7 +160,7 @@ initT['coachFormModalsInit'] = function(){
                 <?php
                     $this->widget('yiiwheels.widgets.fineuploader.WhFineUploader', array(
                             'name'          => 'imageFile',
-                            'uploadAction'  => $this->createUrl('index.php/templates/upload', array('fine' => 1)),
+                            'uploadAction'  => $this->createUrl('index.php/templates/upload/dir/swe/input/imageFile', array('fine' => 1)),
                             'pluginOptions' => array(
                                 'validation'=>array(
                                     'allowedExtensions' => array('jpg','jpeg','png','gif'),

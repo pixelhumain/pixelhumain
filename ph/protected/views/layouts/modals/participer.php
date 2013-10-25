@@ -25,6 +25,31 @@
                   	<td class="txtright">Je m'appel</td>
                   	<td> <input id="registerName" name="registerName" value="<?php if($account && isset($account['name']) )echo $account['name'] ?>"/></td>
               	</tr>
+              	<tr>
+                  	<td class="txtright">Photo</td>
+                  	<td> <?php
+                        $this->widget('yiiwheels.widgets.fineuploader.WhFineUploader', array(
+                                'name'          => 'imageCitoyenFile',
+                                'uploadAction'  => $this->createUrl('index.php/templates/upload/dir/citoyens/input/imageCitoyenFile', array('fine' => 1)),
+                                'pluginOptions' => array(
+                                    'validation'=>array(
+                                        'allowedExtensions' => array('jpg','jpeg','png','gif'),
+                                        'itemLimit'=>1
+                                    )
+                                ),
+                                'events' => array(
+                                    'complete'=>"function( id,  name,  responseJSON,  xhr){
+                                    	console.log('".Yii::app()->createUrl('upload/citoyens/')."/'+xhr.name+'?d='+ new Date().getTime());
+                                    	$('#imageCitoyen').val('upload/citoyens/'+xhr.name);
+                                    	$('img.citizenThumb').attr('src','".Yii::app()->createUrl('upload/citoyens/')."/'+xhr.name+'?d='+ new Date().getTime());
+                                    	
+                                    }"
+                                ),
+                            ));
+                        ?>
+                        <input type="hidden" id="imageCitoyen" name="imageCitoyen" value="<?php if($account && isset($account["image"]))echo $account["image"]?>"/>
+                    </td>
+              	</tr>
               	<?php /*?>
               	<tr>
                   	<td class="txtright">Je suis  </td>

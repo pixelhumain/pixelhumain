@@ -2,7 +2,7 @@
 
    <div id="contact" class="center">
         <div class="homestead blueDark" style="height:250px;border:1px color red;">
-        	<span class="entypo-megaphone blue" style="font-size:300%"></span><br/><br/>
+        	<span class="entypo-globe blue" style="font-size:300%"></span><br/><br/>
         	<h1>Contact</h1>
         	<div>
         	+262-262.34.36.86

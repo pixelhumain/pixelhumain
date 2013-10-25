@@ -79,7 +79,17 @@ a.tags{font-size:large;line-height:20px;}
                 $line = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId($id['id'])));
         ?>
         <div data-ss-colspan="2" class="people <?php echo $t?> <?php echo str_replace(",", " ",str_replace(" ", "", $id['tags']))?>">
-        	<img src="<?php echo Yii::app()->createUrl($id['img'])?>" />
+        <?php $img = Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png');
+            if(isset($line['img']))
+                $img = Yii::app()->createUrl($line['img']);
+            else if(isset($id['img']))
+                $img = Yii::app()->createUrl($id['img']);
+            $classMe = "";
+            if($line["_id"] == Yii::app()->session["userId"])
+                $classMe = "class='citizenThumb'";
+            	?>
+            	
+        	<img <?php echo $classMe?> src="<?php echo $img?>" />
         	<h4><?php echo $line['name']?></h4>
         	<span class="txt"><?php echo $id['text']?></span>
         	<?php foreach(explode(",",$id['tags']) as $tag) {?>	

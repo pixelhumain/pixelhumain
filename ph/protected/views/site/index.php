@@ -24,10 +24,12 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
               </div>
               <!-- Carousel items -->
-              <div class="carousel-inner" style="height:460px;width:85%;margin-left:60px">
+              <div class="carousel-inner" style="height:560px;width:85%;margin-left:60px">
               	
               	<div class="active item p40" >
-                    <iframe src="//player.vimeo.com/video/74212373" style="width:100%;height:400px;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              		<div class="center"><span class="entypo-video blue" style="font-size:300%"></span></div>
+              		<h2 class="homestead">P.H Animé </h2> 
+                    <iframe src="//player.vimeo.com/video/74212373" style="width:100%;height:450px;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
                 
                 <div class="item p40">
@@ -41,7 +43,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                 </div>
                 
                 <div class="item p40">
-                    <h2>Sur les épaules des géants!</h2> 
+                    <h2 class="homestead">Sur les épaules des géants!</h2> 
                     <div id="gallery" class="pull-right" data-toggle="modal-gallery" data-target="#modal-gallery" data-selector="a.gallery-item">
                         <div style="margin-bottom:10px;">
                             <a class="gallery-item " href="images/AFF_EVENEMENTS.jpg" ><img src="<?php echo Yii::app()->createUrl('images/AFF_EVENEMENTS.jpg')?>" width="100" /></a>
@@ -98,6 +100,10 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         
     </div>
     
+    <div class="hero-unit center">
+        <img src="<?php echo Yii::app()->createUrl('images/gandhi.jpg')?>" class="img-rounded" alt="Soyez le changement que vous voulez voir dans le monde. (--Mahatma Gandhi)"/>
+        </div>
+    
     <div class="hero-unit">
     	<?php if(!isset(Yii::app()->session["userId"])){?>
         <div class="pull-left homestead blueDark center" style="width:45%;border:1px color red;">
@@ -147,6 +153,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     
     
     <div class="hero-unit">
+    	<div class="center"><span class="entypo-megaphone blue" style="font-size:300%"></span><br/></div>
     	<h2 class="homestead"> A propos  </h2>
         <div class="accordion" id="accordion2">
             
@@ -399,13 +406,14 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     </div>
     
     
-     <div class="hero-unit center">
-        <img src="<?php echo Yii::app()->createUrl('images/gandhi.jpg')?>" class="img-rounded" alt="Soyez le changement que vous voulez voir dans le monde. (--Mahatma Gandhi)"/>
-        </div>
+     
         
         
         
     <div class="hero-unit">
+    	<div class="center">
+    		<span class="entypo-infinity blue" style="font-size:300%"></span><br/><br/>
+    	</div>
     	<h2 class="homestead"> Objectifs Tangibles court Terme  </h2>
         <div class="accordion" id="accordion3">
             

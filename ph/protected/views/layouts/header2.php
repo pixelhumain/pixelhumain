@@ -15,14 +15,14 @@
                     <?php if(!isset(Yii::app()->session["userId"])){?>
                     	<a href="#loginForm" class="ml10 w60" role="button" data-toggle="modal" title="connexion" ><span class="entypo-login"></span></a>
                     <?php } else {?>
-                    	<img width=30 src="<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png')?>"/>
+                    	<a href="#participer" class="ml10 w60" role="button" data-toggle="modal" title="mon compte" ><img width=30 class="citizenThumb" src="<?php echo ( $account && isset($account['img']) ) ? Yii::app()->createUrl($account['img']) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>"/></a>
                     	<a href="#participer" class="ml10 w60" role="button" data-toggle="modal" title="mon compte" ><span class="entypo-cog"></span></a>
                     	<a href="<?php echo Yii::app()->createUrl('index.php/site/logout')?>" class="ml10 w60" role="button" data-toggle="modal" title="deconnexion" ><span class="entypo-logout"></span></a>
                     <?php }?>
             	</div>
             	
         </div>
-        <div class="pull-left p15 fsxl h60" id="appTitle"><?php echo $this::moduleTitle ?></div>
+        <div class="pull-left p15 fsxl h60 b" id="appTitle"><?php echo $this::moduleTitle ?></div>
     </div>
 </header>
 
