@@ -13,10 +13,12 @@
           
           	
           	<table>
+          		<?php /*?>
           		<tr>
                   	<td class="txtright"></td>
                   	<td> <?php echo $account['_id'] ?></td>
               	</tr>
+              	*/?>
               	<tr>
                   	<td class="txtright"></td>
                   	<td> <?php if($account && isset($account['email']) )echo $account['email'] ?></td>

@@ -9,7 +9,8 @@
  */
 class TemplatesController extends Controller 
 {
-
+    const moduleTitle = "Templates";
+    
     public function actionIndex() 
     {
        
