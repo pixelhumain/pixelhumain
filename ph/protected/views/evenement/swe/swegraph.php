@@ -64,7 +64,7 @@ canvas{position:absolute;top:0px;left:0px;}
 
 <div class="appContent">
 
-    <div id="appPanel">
+    <div id="appPanel" class="hidden">
     	<ul id="appPanelList"></ul>
     </div>
     
@@ -191,10 +191,14 @@ function getCoachCount(){
 		if( previousDataCoach.count != data.count  )
 		{	
 			console.log("entered");
-            if(data.count > 0)
+            if(data.count > 0){
+            	$("#appPanel").show();
             	$("#coachingCount").html(data.count);
-            else
+            }
+            else {
+            	$("#appPanel").hide();
             	$("#coachingCount").html('');
+            }
         	var coaches = data.coaches;
         	var projects= data.projects;
         	var ids= data.ids;
@@ -270,6 +274,7 @@ function filterType(type){
 		$(".appTitle").html("Les inscrits");
 	
 }
+
 initT['sweGraphInit'] = function(){
 	<?php if($myproject){?>
 	$("li.projet.<?php echo $myproject?>").addClass('me');

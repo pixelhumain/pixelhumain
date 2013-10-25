@@ -61,7 +61,7 @@ font-family: "Homestead";
     </p>
  	<div class="grid">
         <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/annuaireElus/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>"  > Annuaire des élus </a></div>
-        <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/commune/servicesMunicipaux/cp/'.$cp)?>">Services Municipaux</a></div>
+        <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/commune/servicesMunicipaux/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>">Services Municipaux</a></div>
         <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal">Quartiers, Agglo </a></div>
         <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal">Budget </a></div>
         <div></div>

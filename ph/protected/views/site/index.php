@@ -144,7 +144,10 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         <div class="clear"></div>
     </div>
     
+    
+    
     <div class="hero-unit">
+    	<h2 class="homestead"> A propos  </h2>
         <div class="accordion" id="accordion2">
             
           <div class="accordion-group">
@@ -395,9 +398,97 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         </div>
     </div>
     
-    <div class="hero-unit center">
+    
+     <div class="hero-unit center">
         <img src="<?php echo Yii::app()->createUrl('images/gandhi.jpg')?>" class="img-rounded" alt="Soyez le changement que vous voulez voir dans le monde. (--Mahatma Gandhi)"/>
         </div>
+        
+        
+        
+    <div class="hero-unit">
+    	<h2 class="homestead"> Objectifs Tangibles court Terme  </h2>
+        <div class="accordion" id="accordion3">
+            
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne">
+                Communecter 10 000 citoyens francais (pour le moment <?php echo Yii::app()->mongodb->citoyens->count(array('cp'=>array('$ne'=>null)));?>)
+              </a>
+            </div>
+            <div id="collapseOne" class="accordion-body collapse ">
+              <div class="accordion-inner">
+                <p>
+                Le Bonhomme des bonhommes est le symbol du PH, il est le porte parole des citoyens regroupé 
+                par commune, donc du départemetn et de la Region, etc...
+                La 1ere étape du projets ressemble à une pétition, en parallele nous continuons à 
+                développer les outils qui feront du P.H un veritable outils de communication locale.
+                
+                </p>
+                <blockquote >
+                Le Pixel Humain n'est que le corp du projet 
+                <br/>La Population en est le Coeur,
+                <br/>Les échanges en sont le song et
+                <br/>La collaboration en sera le cerveau 
+                </blockquote>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne">
+                Collaborer avec 3 Communes Locales (déjà 3 interressées)
+              </a>
+            </div>
+            <div id="collapseOne" class="accordion-body collapse ">
+              <div class="accordion-inner">
+                <p>
+                C'est un objectif symbolique que de s'associer et travailler avec une collectivité
+                dés le début du projet. Ce sera extremement constructifs pour les deux parties.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne">
+                Un Mur de pensée postive 
+              </a>
+            </div>
+            <div id="collapseOne" class="accordion-body collapse ">
+              <div class="accordion-inner">
+                <p>
+                Si vous etes un tant soit peu artiste, le projet souhaite porter une image positive 
+                d'une société humaine de partage, d'échange, de créativité et de collaboration.
+                Nous allons donc vous créer un mur ou tout les artiste (graphiste, musicien, poète...etc)
+                pourrons manifester leur vision positive du moment et del'émotion que leur procure le projet.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne">
+                Campagne de Méiose Mensuelle
+              </a>
+            </div>
+            <div id="collapseOne" class="accordion-body collapse ">
+              <div class="accordion-inner">
+                <p>
+                La méiose est le renouvellement des cellules en se divisant en 2. Dans le projet 
+                si tout les pixels invite un voisin ou un amis, tous les mois, la masse critique
+                sera atteinte d'autant plus rapidement.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+      </div>
+    </div>
+    
+   
     
     <div class="hero-unit">
         <div class="homestead blueDark center" style="height:border:1px color red;">
@@ -419,7 +510,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         	<br/>Idées, Questions, Conseils, Actions... OUI NIDE IOU!!
         	</div>
         	<br/>
-        	<a class=" btn-warning btn-large homestead" href="" target="_blank"> Devenez Pixels Actifs </a>
+        	<a class=" btn-warning btn-large homestead" href="#participer"  role="button" data-toggle="modal"> Devenez Pixels Actifs </a>
         	</div>
         	
         </div>

@@ -5,9 +5,10 @@
     <h3>Demande de Coaching</h3>
   </div>
   <div class="modal-body">
-    <p> Les Coachs sont là pour vous orienter, n'hésitez pas à les soliciter. <br/>
-    En remplissant ce formulaire vous n'aurez pas à vous déplacer, Le coach recevra votre demande. </p>
-    <strong>Cette fonctionalité  ne sera disponible que le jour de l'évennement</strong>
+    <p> Les Coachs sont là pour vous orienter, n'hésitez pas à les solliciter. 
+        En remplissant ce formulaire vous n'aurez pas à vous déplacer, le coach recevra votre demande. 
+        </p>
+    <strong>Cette fonctionnalité  ne sera disponible que le jour de l'événement</strong>
     <?php /*?>
     <form id="coachForm" style="line-height:40px;">
         <section>
