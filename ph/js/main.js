@@ -50,7 +50,7 @@ $(document).ready(function() {
 	
 	initSequence();
 	setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 2000);
-	
+	/*
 	$('#sweInscriptionForm').validate(
 			 {
 			  rules: {
@@ -71,7 +71,7 @@ $(document).ready(function() {
 			    .text('').addClass('valid').removeClass('error')
 			    .closest('.control-group').removeClass('error').addClass('success');
 			  }
-			 });
+			 });*/
 });
 function toggleSpinner(){
 	if($("#logoLink").length){

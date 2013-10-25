@@ -53,13 +53,13 @@ font-family: "Homestead";
     
     <br/>Un des objectifs du PIxel Humain est de permettre un couplage entre opendata de divers autre source
     notament du crowd sourcing actif avec les 4 familles d'acteur représenté par le PH (citoyen, association, entreprise,collectivité).
-    On decouvre avec ce projet que les données globalement ouverte concernant les communes sont assez limités. 
-    Un des objectifs du Pixel Humain est de motiver et outiller les communes à partager certaines données de bases de facon standardisé.
-    C'est un squelette applicatif pour valoriser l'activté locale pour les 4 familles représenté.
-    Hiérarchie de la mairie,
-    Contact par secteur en mairie (poste, nom, tel, email),
-    Structure et découpage de la Commune,
-	Proposer un outil de classification et de recherche des opendatas ultra locale et travailler de facon privillégié avec data.gouv.fr
+    <br/>On decouvre avec ce projet que les données globalement ouverte concernant les communes sont assez limités. 
+    <br/>Un des objectifs du Pixel Humain est de motiver et outiller les communes à partager certaines données de bases de facon standardisé.
+    <br/>C'est un squelette applicatif pour valoriser l'activté locale pour les 4 familles représenté.
+    <br/>Hiérarchie de la mairie,
+    <br/>Contact par secteur en mairie (poste, nom, tel, email),
+    <br/>Structure et découpage de la Commune,
+	<br/>Proposer un outil de classification et de recherche des opendatas ultra locale et travailler de facon privillégié avec data.gouv.fr
 	
     <br/>Pour la demo concours voici quelques données réutilisé dans le PH 
     <ul>

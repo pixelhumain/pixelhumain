@@ -2,7 +2,7 @@
 
 class SiteController extends Controller
 {
-    const moduleTitle = "Acceuil";
+    const moduleTitle = "Accueil";
     public $showSidebar1 = true;
 	/**
 	 * Declares class-based actions.

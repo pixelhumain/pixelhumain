@@ -70,7 +70,7 @@ class OpendataController extends Controller {
     	echo json_encode($commune);
 	}
 	public function actionDataConnexion() {
-	    $this->layout = "swe";
+	   // $this->layout = "swe";
 	    $this->render("dataconnexion");
 	}
 }
