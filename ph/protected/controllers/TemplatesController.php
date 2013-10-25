@@ -24,6 +24,8 @@ class TemplatesController extends Controller
     public function actionUpload($dir,$input) 
     {
         $upload_dir = 'upload/'.$dir.'/';
+        if(!file_exists ( $upload_dir ))
+            mkdir ($upload_dir);
         $allowed_ext = array('jpg','jpeg','png','gif');
         
         
