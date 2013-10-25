@@ -26,7 +26,7 @@
                   	<td> <input id="registerName" name="registerName" value="<?php if($account && isset($account['name']) )echo $account['name'] ?>"/></td>
               	</tr>
               	<tr>
-                  	<td class="txtright">Photo</td>
+                  	<td class="txtright"><img width=50 class="citizenThumb" src="<?php echo ( $account && isset($account['img']) ) ? Yii::app()->createUrl($account['img']) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>"/></td>
                   	<td> <?php
                         $this->widget('yiiwheels.widgets.fineuploader.WhFineUploader', array(
                                 'name'          => 'imageCitoyenFile',
