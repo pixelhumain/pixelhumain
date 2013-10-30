@@ -19,7 +19,7 @@ $(document).ready(function() {
 	
 	var delaunay = d3.geom.delaunay(vertices);
 	
-	var svg = d3.select("body")
+	var svgBG = d3.select("body")
 	  .append("svg")
 	      //.attr("width", "100%")
 	      //.attr("height", "100%")
@@ -28,7 +28,7 @@ $(document).ready(function() {
 			//.attr("height", h)
 	    .attr("viewBox", [0, 0, w, h].join(' '))
 	
-	    svg.append("g")
+	    svgBG.append("g")
 	  .selectAll("path")
 	    .data(delaunay)
 	  .enter().append("path")

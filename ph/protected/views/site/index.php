@@ -137,15 +137,112 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         </div>
         <?php }?>
         <div class="pull-right homestead blueDark center" style="width:45%;border:1px color red;">
-        	<span class="icon-lightbulb blue" style="font-size:300%"></span><br/><br/>
-        	<h1> Sponsorisez </h1>
-        	<div>
-        	Vos dons sont deductible a 60% de vos impots sur le revenu.
-        	Le projet est d'interet général, nous comptons sur les collectivité et sur un financement citoyen
-        	pour obtenir les moyens financier necessaire pour démarré l'initiative.
-        	</div>
-        	<br/>
-        	<a class=" btn-warning btn-large homestead" href="<?php echo Yii::app()->createUrl('index.php/financement')?>" target="_blank"> Je souhaite soutenir </a>
+        <span class="icon-lightbulb blue" style="font-size:300%"></span><br/><br/>
+            <div class="accordion" id="accordionAction">
+                
+                  	<div class="accordion-group">
+                        <div class="accordion-heading">
+                          <h1> <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordionAction" href="#collapse0">Ma commune (ction) </a></h1>
+                        </div>
+                        <div id="collapse0" class="accordion-body collapse ">
+                          <div class="accordion-inner">
+                            C'est l'essence du projet Pixel Humain, que de fédérer, aider à agir localement, 
+                            <br/>Offrir des outils citoyens pour améliorer la vie dans la commune.
+                            <br/>Valoriser et communiquer avec nos communes. 
+                        	<br/>
+            				<a class=" btn-warning btn-large homestead" href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/'.$userCp)?>')?>" target="_blank"> Découvrir </a>
+                          </div>
+                        </div>
+                  	</div>
+                  	
+                  	<div class="accordion-group">
+                        <div class="accordion-heading">
+                          <h1> <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordionAction" href="#collapse2">Invitez vos concitoyens </a></h1>
+                        </div>
+                        <div id="collapse2" class="accordion-body collapse ">
+                          <div class="accordion-inner">
+                            La force et le poids des citoyens viendra de leur capacité à se fédérer.
+                            C'est le symbole du "Bonhomme des bonhommes" les pensées, les paroles et les actions sont d'autant plus fortes que le nombre d'acteur locaux est grand.
+                            Si chaque inscrit invite 6 ou plus, acteurs locaux, nos capacités à convaincre serait largement atteinte.
+                            Adhérer c'est bien, Rézoter, c'est se renforcer.
+                        	<br/>
+            				<a class=" btn-warning btn-large homestead" href="#invitation" role="button" data-toggle="modal" title="invitation" > je veux invitez </a>
+                          </div>
+                        </div>
+                  	</div>
+                  	
+                  	<div class="accordion-group">
+                        <div class="accordion-heading">
+                          <h1> <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordionAction" href="#collapse3">Module Association</a> </h1>
+                        </div>
+                        <div id="collapse3" class="accordion-body collapse ">
+                          <div class="accordion-inner">
+                            Les associations ont particulierement besoin d'un coup de pouce pour
+                            <br/>  exister localement, s'organiser, agir et communiquer.
+                        	<br/>
+            				<a class=" btn-warning btn-large homestead" href="<?php echo Yii::app()->createUrl('index.php/association')?>" target="_blank"> Découvrir / Utiliser </a>
+                          </div>
+                        </div>
+                  	</div>
+                  	
+                  	<div class="accordion-group">
+                        <div class="accordion-heading">
+                          <h1> <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordionAction" href="#collapse4">Module Entreprise</a> </h1>
+                        </div>
+                        <div id="collapse4" class="accordion-body collapse ">
+                          <div class="accordion-inner">
+                            Donnez toute les chances au entreprises et à l'entrepreunariat local avant d'aller utiliser un service de metropole ou d'ailleur.
+                            <br/> De la meme facon que les associations, mettons toutes les chances de notre coté
+                        	<br/>
+            				<a class=" btn-warning btn-large homestead" href="<?php echo Yii::app()->createUrl('index.php/financement')?>" target="_blank"> Découvrir / Utiliser </a>
+                          </div>
+                        </div>
+                  	</div>
+                  	
+                  	<div class="accordion-group">
+                        <div class="accordion-heading">
+                          <h1> <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordionAction" href="#collapse5">Module évennement</a> </h1>
+                        </div>
+                        <div id="collapse5" class="accordion-body collapse ">
+                          <div class="accordion-inner">
+                            Valorisez, communiquez vos évennement plus ou moins locaux.
+                            Donnez leur une mémoire et faites les vivre plus longtemps. 
+                        	<br/>
+            				<a class=" btn-warning btn-large homestead" href="<?php echo Yii::app()->createUrl('index.php/evennement')?>" target="_blank"> Découvrir / Utiliser </a>
+                          </div>
+                        </div>
+                  	</div>
+                  	
+                  	<div class="accordion-group">
+                        <div class="accordion-heading">
+                          <h1> <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordionAction" href="#collapse6">Pensées positives</a> </h1>
+                        </div>
+                        <div id="collapse6" class="accordion-body collapse ">
+                          <div class="accordion-inner">
+                            Un mur artistique au thème de la pensée positive, du changement, des alternatives...
+                            bref tout ce qui touche de pret ou de loin la 
+                            philosophie du projet Pixel Humain.
+                        	<br/>
+            				<a class=" btn-warning btn-large homestead" href="<?php echo Yii::app()->createUrl('index.php/blog/key/penséePositive')?>" target="_blank"> Découvrir / Participer </a>
+                          </div>
+                        </div>
+                  	</div>
+                  	
+                  	<div class="accordion-group">
+                        <div class="accordion-heading">
+                          <h1> <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordionAction" href="#collapse1">Aidez Nous "€"</a> </h1>
+                        </div>
+                        <div id="collapse1" class="accordion-body collapse ">
+                          <div class="accordion-inner">
+                            Vos dons sont deductible a 60% de vos impots sur le revenu.
+                        	Le projet est d'interet général, nous comptons sur les collectivités et sur un financement citoyen
+                        	pour obtenir les moyens financier nécessaire pour péréniser l'initiative.
+                        	<br/>
+            				<a class=" btn-warning btn-large homestead" href="<?php echo Yii::app()->createUrl('index.php/financement')?>" target="_blank"> Je souhaite soutenir </a>
+                          </div>
+                        </div>
+                  	</div>
+              </div>
         </div>
         <div class="clear"></div>
     </div>
@@ -500,7 +597,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     
     <div class="hero-unit">
         <div class="homestead blueDark center" style="height:border:1px color red;">
-        	<span class="entypo-heart-empty blue" style="font-size:300%"></span><br/><br/>
+        	<span class="entypo-heart-empty pink" style="font-size:300%"></span><br/><br/>
         	<h1>L'équipe</h1>
         	<div>
         	Une équipe dynamique, professionelle, passionné de Pixels Actifs

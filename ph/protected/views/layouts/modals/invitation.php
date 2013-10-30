@@ -18,18 +18,6 @@
               	<td class="txtright">Un nom </td>
               	<td> <input id="inviteName" name="inviteName" value=""/></td>
           	</tr>
-          	<tr>
-              	<td class="txtright">sera inscrit en tant que  </td>
-              	<td>
-              	<?php 
-                      $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                        'data' => array("citoyen"=>"citoyen","association"=>"association","entreprise"=>"entreprise","collectivité"=>"collectivité"), 
-                        'name' => 'typeInvite',
-                      	'id' => 'typeInvite',
-                        'pluginOptions' => array('width' => '150px')
-                      ));
-        		    ?></td>
-    		</tr>
           </table>
              
         </section>

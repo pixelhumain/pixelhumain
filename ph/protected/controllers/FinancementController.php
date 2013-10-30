@@ -7,7 +7,7 @@
  * Time: 12:25 AM
  */
 class FinancementController extends Controller {
-
+ const moduleTitle = "Templates";
 	public function accessRules() {
 		return array(
 			// not logged in users should be able to login and view captcha images as well as errors

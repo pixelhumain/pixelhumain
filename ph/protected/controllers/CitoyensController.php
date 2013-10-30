@@ -23,7 +23,15 @@ class CitoyensController extends Controller {
      * par thématique
      */
 	public function actionIndex() {
-	    $this->render("index");
+	    $user = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
+	    $this->render("index",array("user"=>$user));
+	}
+	/**
+     * Listing de tout les citoyen locaux filtrable et cherchable
+     * par thématique
+     */
+	public function actionList() {
+	    $this->render("list");
 	}
 	/**
 	 * Point d'entrée pour gérer son compte 
@@ -275,7 +283,7 @@ class CitoyensController extends Controller {
                                 'tobeactivated' => true,
                                 'adminNotified' => false,
                                 'created' => time(),
-                                'type'=>$_POST['typeInvite']
+                                'type'=>'citoyen'
                                 );
                     if( isset($_POST['inviteName']) )
                       $newAccount['name'] = $_POST['inviteName'];

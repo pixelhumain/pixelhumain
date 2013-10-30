@@ -7,7 +7,8 @@
     	$created = time();
     	$groupId = "525e306ac073ef2eb85938f7";//"523321c7c073ef2b380a231c";
     	$process = 1 ;
-        if (($handle = fopen("upload/SUWE2013.csv", "r")) !== FALSE) 
+    	echo "created : ".$created."<br/>";
+        if (($handle = fopen("upload/swe.csv", "r")) !== FALSE) 
         {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
             {
