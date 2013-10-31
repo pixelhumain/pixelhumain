@@ -279,7 +279,7 @@ initT['sweGraphInit'] = function(){
 	<?php if($myproject){?>
 	$("li.projet.<?php echo $myproject?>").addClass('me');
 	<?php }?>
-	filterType("projet");
+	filterType("participant");
 	//appear after loading
 	$(".appContent").slideDown();
 	$('#appPanel').scrollbox();
