@@ -53,10 +53,10 @@ padding:px;
    		 <p> </p>
      	<div class="grid">
             <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/cp/'.$user["cp"])?>"  > Ma Commune </a></div>
-            <div data-ss-colspan="2"><a href="#"  > + Association </a></div>
-            <div data-ss-colspan="3"><a href="#">+ Société</a></div>
-            <div data-ss-colspan="3"><a href="#">+ concitoyen</a> </div>
-            <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"> Activité Citoyenne </a></div>
+            <div data-ss-colspan="2"><a href="#association"   target="_blank" role="button" data-toggle="modal"  > + Association </a></div>
+            <div data-ss-colspan="3"><a href="#entreprise"   target="_blank" role="button" data-toggle="modal">+ Société</a></div>
+            <div data-ss-colspan="3"><a href="#invitation"   target="_blank" role="button" data-toggle="modal">+ Invitation</a> </div>
+            <div data-ss-colspan="2"><a href="#association"   target="_blank" role="button" data-toggle="modal"> Activité Citoyenne </a></div>
             <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"></a></div>
             <div></div>
             <div></div>
@@ -64,7 +64,85 @@ padding:px;
        </div>
 		
 	</div>
-</div>
+</div>		
+		
+<div class="container graph">
+<div class="hero-unit">
+	<div class="row-fluid">
+		<div class="span4 block">
+			<h2>Liste Assocation</h2>
+			
+			<div id="myfirstchart" style="height: 250px;"></div>
+		</div>
+		<div class=" actu span4 block">
+			<h2>Liste Entreprise</h2>
+			
+			
+		</div>
+		<div class="span4 block">
+			<h2>Liste Rezotage </h2>
+			
+		</div>
+	</div>
+	<br/>
+	<div class="row-fluid">
+		<div class="span8 block">
+		<h2>-----------------</h2>
+		
+        
+		</div>
+		<div class="span4 block">
+		<h2>-------- </h2>
+		</div>
+	</div>
+	<br/>
+	<div class="row-fluid">
+		<div class="span4  block">
+		<h2>---------</h2>
+		</div>
+		<div class="span4 block">
+		<h2>-----------</h2>
+		</div>
+		<div class="span4 block">
+		<h2>------------</h2>
+		</div>
+	</div>
+	<br/>
+	<div class="row-fluid">
+		<div class="span6 block">
+		<h2>-----------</h2>
+		</div>
+		<div class="span6 block ">
+		<h2>------------</h2>
+		</div>
+	</div>
+	<br/>
+	<div class="row-fluid">
+		<div class="span4 block">
+		<h2>------------</h2>
+		</div>
+		
+		<div class="span4 block">
+		<h2>------------------</h2>
+		</div>
+		
+		<div class="span4 block">
+		<h2>----------------</h2>
+		</div>
+	</div>
+	<br/>
+	<div class="row-fluid">
+		<div class="span6 block">
+		<h2>---------------------</h2>
+		</div>
+		
+		<div class="span6 block">
+		<h2>---------------------</h2>
+		</div>
+	</div>
+	
+</div></div>
+
 
 
 <script type="text/javascript"		>

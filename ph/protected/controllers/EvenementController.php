@@ -39,7 +39,7 @@ class EvenementController extends Controller {
 	    // for this event that is private 
 	    // user must be loggued 
 	    // and exist in the event user particpant list
-	    if ( !isset(Yii::app()->session["userId"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) )) 
+	    if ( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) )) 
 	        $this->render("swe/sweLogin",array("title"=>$event["name"]));
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ) )); 
@@ -77,7 +77,7 @@ class EvenementController extends Controller {
 	    $this->secure = $event['private'];
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
-        if( !isset(Yii::app()->session["userId"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
+        if( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
 	        $this->render("swe/sweLogin");
 	    else 
 	        $this->render($view);
@@ -91,7 +91,7 @@ class EvenementController extends Controller {
 	    $this->secure = $event['private'];
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
-        if( !isset(Yii::app()->session["userId"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
+        if( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
 	        $this->render("swe/sweLogin");
 	    else 
 	        $this->render("swe/sweAdmin",array("event"=>$event,"key"=>$id));
@@ -109,7 +109,7 @@ class EvenementController extends Controller {
 	    // for this event that is private 
 	    // user must be loggued 
 	    // and exist in the event user particpant list
-	    if( !isset(Yii::app()->session["userId"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
+	    if( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
 	        $this->render("swe/sweLogin");
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array("type"=>"participant")); 

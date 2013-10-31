@@ -216,7 +216,7 @@ font-family: "Homestead";
 		<h2>Rézoté</h2>
 		</div>
 	</div>
-	
+	<br/>
 	<div class="row-fluid">
 		<div class="span6 block">
 		<h2>Calendrier</h2>
