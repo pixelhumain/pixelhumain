@@ -22,7 +22,7 @@
             	</div>
             	
         </div>
-        <div class="pull-left p15 fsxl h60 b" id="appTitle"><?php echo $this::moduleTitle ?></div>
+        <div class="pull-left p15 fsxl h60 b" id="appTitle"><?php echo (isset($this->inlinePageTitle)) ? $this->inlinePageTitle : $this::moduleTitle ?></div>
     </div>
 </header>
 

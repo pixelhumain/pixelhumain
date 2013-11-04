@@ -7,7 +7,7 @@
  * Time: 12:25 AM
  */
 class FinancementController extends Controller {
- const moduleTitle = "Templates";
+ const moduleTitle = "Financement";
 	public function accessRules() {
 		return array(
 			// not logged in users should be able to login and view captcha images as well as errors
@@ -22,7 +22,7 @@ class FinancementController extends Controller {
 	public function actionIndex() {
 	    $this->render("index");
 	}
-public function actionPixelfunding() {
+    public function actionPixelfunding() {
 	    $this->render("pixelfunding");
 	}
 }

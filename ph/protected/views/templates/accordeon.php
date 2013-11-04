@@ -93,7 +93,9 @@ p {
           </div>
         </div>
         </div>
+        
  </div> 
+ <br/>
 <script>
 $(document).ready(function(){
 	  var animTime = 300,

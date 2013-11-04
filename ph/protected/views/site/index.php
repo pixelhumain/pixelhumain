@@ -150,7 +150,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                             <br/>Offrir des outils citoyens pour améliorer la vie dans la commune.
                             <br/>Valoriser et communiquer avec nos communes. 
                         	<br/>
-            				<a class=" btn-warning btn-large homestead" href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/'.$userCp)?>')?>" target="_blank"> Découvrir </a>
+            				<a class=" btn-warning btn-large homestead" href="<?php echo (!isset(Yii::app()->session["userId"])) ? Yii::app()->createUrl('index.php/commune') : Yii::app()->createUrl('index.php/commune/view/cp/'.$userCp)?>')?>" target="_blank"> Découvrir </a>
                           </div>
                         </div>
                   	</div>

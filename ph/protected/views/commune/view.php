@@ -53,7 +53,7 @@ font-family: "Homestead";
     <br/>
     <div class="hero-unit">
     
-    <h2> Commune <?php echo $cp?></h2>
+    <h2> Commune <?php echo OpenData::$commune["974"][$cp]." ( ".$cp.""?></h2>
     <p> Un condenser de votre commune, contribuez à l'action locale. 
     <br/>Commencons par définir un canevas en format ouvert(opendata) decrivant une commune.
     <br/>Pour faciliter la tache pour toute les commune interressé par l'initiative.
@@ -144,7 +144,7 @@ font-family: "Homestead";
                     curl_close($crl);
                     return $ret;
                 }
-                $q = urlencode("saint denis réunion");
+                $q = urlencode(OpenData::$commune["974"][$cp]." réunion");
                 $json = get_url_contents('http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q='.$q);
                 
                 $data = json_decode($json);

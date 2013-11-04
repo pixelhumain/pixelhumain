@@ -9,7 +9,8 @@
  */
 class TemplatesController extends Controller 
 {
-    const moduleTitle = "Templates";
+    const moduleTitle = "Page";
+    public $inlinePageTitle = null;
     
     public function actionIndex() 
     {
@@ -17,7 +18,7 @@ class TemplatesController extends Controller
        $name = "index";
        if(isset($_GET["name"])) 
            $name = $_GET["name"];
-       if(in_array($name,array("listPage","hexagon","formLarge","mapael_france","mapael_france2","hoverEffects"))) 
+       if(in_array($name,array("listPage","hexagon","formLarge","mapael_france","mapael_france2","hoverEffects","nodesLabels"))) 
            $this->layout = "empty";
 	   $this->render($name);
 	}
@@ -63,4 +64,13 @@ class TemplatesController extends Controller
        $string = strtr($string,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY'); // Replaces all spaces with hyphens.
        return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
     }
+    
+    public function actionPage($name){
+        $page = Yii::app()->mongodb->data->findOne(array("key"=>$name,
+        														 "type"=>"page"));
+        $this->pageTitle = ((isset($page["title"])) ? $page["title"] : strtoupper($name) ).", Pixel Humain : 1er Réseau Social Citoyen Libre";
+        $this->inlinePageTitle = strtoupper($name);
+        $this->render("active/".$name, array( "name" => $name ));
+    }
+    
 }

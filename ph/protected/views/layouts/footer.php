@@ -17,8 +17,12 @@
         	<a href="http://blog.pixelhumain.com/" target="_blank"><span class="icon-blogger-rect blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
         	<a href="http://twitter.com/pixelhumain" target="_blank"><span class="icon-twitter blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
         	<a href="https://github.com/pixelhumain/pixelhumain" target="_blank"><span class="icon-github-text blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+        	<br/><br/>
+        	<a href="<?php echo Yii::app()->createUrl('index.php/templates/page/name/faq')?>"><span class="entypo-help blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+        	<a href="<?php echo Yii::app()->createUrl('index.php/templates/page/name/faq')?>"><span class="entypo-plus blueDark" style="font-size:200%"></span><span class="entypo-plus blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+        	
         </div>
-        <div class="blueDarkbg" style="width:100%; height:60px;color:white;padding:5px">
+        <div class="blueDarkbg" style="width:100%; height:60px;color:white;padding:5px;margin-top:20px;">
         	Le Pixel Humain, sous <img src="<?php echo Yii::app()->createUrl('images/open-licence.png')?>" style="height:45px"/> licence ouverte & opensource,  Porté par L'association Open Atlas
         </div>
        
