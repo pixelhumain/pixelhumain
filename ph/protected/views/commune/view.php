@@ -55,11 +55,10 @@ font-family: "Homestead";
     <div class="hero-unit">
     
     <h2> Commune <?php echo OpenData::$commune["974"][$cp]." ( ".$cp.", ".$communcted." communectés ) "?></h2>
-    <p> Un condenser de votre commune, contribuez à l'action locale. 
-    <br/>Commencons par définir un canevas en format ouvert(opendata) decrivant une commune.
-    <br/>Pour faciliter la tache pour toute les commune interressé par l'initiative.
-    <br/>A tout moment il est important de communecter un maximum de citoyen.
-    <br/>*se communecter : Un citoyen connecté à sa commune. 
+    <p> Commencons par définir un format standard et ouvert(opendata) decrivant une commune.
+    <br/>Pour faciliter la tache pour toutes les communes interressées par l'initiative.
+    <br/>Il est important de *communecter un maximum de citoyen.
+    <br/>*se communecter : Un citoyen connecté à sa commune grace a son code postal. 
     </p>
  	<div class="grid">
         <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/annuaireElus/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>"  > Annuaire des élus </a></div>
