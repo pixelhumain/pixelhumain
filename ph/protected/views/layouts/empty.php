@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/logo/favicon.gif" />
    <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-   
+   <script src="<?php echo Yii::app()->createUrl('js/jquery-1.8.3.min.js')?>"></script>
    <script>
    var initT = new Object();
    </script>
@@ -25,7 +25,7 @@
 	
 <?php 
 $cs = Yii::app()->getClientScript();
-//$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClientScript::POS_END);
 ?>	        
 
 </body>

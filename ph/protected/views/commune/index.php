@@ -25,8 +25,8 @@ margin:10px;
     <div class="hero-unit">
     
     <h2> Modélisons nos Communes</h2>
-    <p> En analysant le conportement de nos communes, nous pourront alors produire un modèle communal interresant, fonctionnel et duplicable  
-    <br/>Mais d'abord nousdevons nous regrouper, nous faire connaitre, et échanger.<br>
+    <p> En analysant le comportement de nos communes, l'objectif est de créer un modèle et un fichier générique décrivant la structure et le fonctionnement d'une commune.  
+    <br/>Etre Communecter ( être connecté a sa commune) permet de se regrouper, se faire connaitre, et échanger.<br>
     Le PH repose sur l'activité de chacun d'entre nous, il prendra tous son sens  quand on arrivera a valorisé la somme de nos petites actions.
     </p>
     

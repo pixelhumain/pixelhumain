@@ -20,7 +20,9 @@ class CommuneController extends Controller {
     public function actionView($cp) 
     {
         $this->layout = "swe";
-        $this->render("view",array('cp'=>$cp,'dep'=>substr($cp, 0,3)));
+        $this->render("view",array('cp'=>$cp,
+        						   'dep'=>substr($cp, 0,3),
+                                   'communcted'=>Yii::app()->mongodb->citoyens->count(array('cp'=>$cp) )));
 	}
     public function actionAnnuaireelus($ci) 
     {

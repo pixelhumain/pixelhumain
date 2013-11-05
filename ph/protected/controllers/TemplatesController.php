@@ -71,6 +71,7 @@ class TemplatesController extends Controller
         $this->pageTitle = ((isset($page["title"])) ? $page["title"] : strtoupper($name) ).", Pixel Humain : 1er Réseau Social Citoyen Libre";
         $this->inlinePageTitle = strtoupper($name);
         $this->render("active/".$name, array( "name" => $name ));
+        
     }
     
 }

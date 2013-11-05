@@ -32,6 +32,9 @@ font-family: "Homestead";
   height: 150px;
   width: 100px;
   color:#555;
+  border:1px solid #666;
+  text-align:center;
+  padding:5px;
 }
 
 .grid > div[data-ss-colspan="2"] { width: 210px; }
@@ -41,48 +44,32 @@ font-family: "Homestead";
   background: transparent;
   border: 1px dashed blue;
 }	
-.graph div{border:1px solid #666;text-align:center}
 </style>
 <div class="container graph">
     <br/>
     <div class="hero-unit">
     
     <h2> Preuve de concept : Dataconnexion</h2>
-    <p> Nous avons voulu ici regrouper quelques interprétations
-    <br/>et exemple de visualisations des données disponible sur Data.gouv.fr, Insee, etc
-    
-    <br/>Un des objectifs du PIxel Humain est de permettre un couplage entre opendata de divers autre source
+    <p> 
+    <br/>C'est Enocre tout frais et tout chaud quelques jours ne suffisent pas pour aller assez loin dans le POC
+    <br/>Un des objectifs du PIxel Humain est de permettre un couplage entre opendata de divers source
     notament du crowd sourcing actif avec les 4 familles d'acteur représenté par le PH (citoyen, association, entreprise,collectivité).
-    <br/>On decouvre avec ce projet que les données globalement ouverte concernant les communes sont assez limités. 
+    <br/>On decouvre avec ce projet que les données globalement ouverte concernant les communes sont assez limités, difficile à obtenir et personnes ne veut prendre le risque de le transmettre. 
     <br/>Un des objectifs du Pixel Humain est de motiver et outiller les communes à partager certaines données de bases de facon standardisé.
-    <br/>C'est un squelette applicatif pour valoriser l'activté locale pour les 4 familles représenté.
-    <br/>Hiérarchie de la mairie,
+    <br/>C'est un squelette applicatif pour valoriser l'activté locale pour nos 4 familles.
+    <br/>Fonctionnement d'une mairie, communcation bilaterale citoyen &lt;&gt; collectivité
     <br/>Contact par secteur en mairie (poste, nom, tel, email),
-    <br/>Structure et découpage de la Commune,
-	<br/>Proposer un outil de classification et de recherche des opendatas ultra locale et travailler de facon privillégié avec data.gouv.fr
+    <br/>Système de discussion démocratique,
+	<br/>Nous aimerions proposer un outil de classification et de recherche des opendatas ultra locales et travailler de facon privillégié avec data.gouv.fr
 	
     <br/>Pour la demo concours voici quelques données réutilisé dans le PH 
-    <ul>
-    <li><a href="http://www.data.gouv.fr/DataSet/550652" target="_blank">ASSOCIATIONS RECONNUES D'UTILITÉ PUBLIQUE </a></li>
-    <li><a href="http://www.data.gouv.fr/DataSet/550653?xtmc=association&xtcr=1" target="_blank">FONDATIONS RECONNUES D'UTILITÉ PUBLIQUE  </a></li>
-    </ul>
+
     </p>
  	<div class="grid">
-        <div></div>
-        <div  data-ss-colspan="2">
-        <a href="<?php echo Yii::app()->createUrl('index.php/commune')?>">Distribution des Communectés</a>
-        Inscrit connecté par departement
-        </div>
-        <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/opendata/commune/ci/97411')?>" ><i class="icon-plus"></i> Open Data Locales</a></div>
-        <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/97400')?>" ><i class="icon-plus"></i> Démo Commune</a> 97400</div>
-        <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Bureau</a></div>
-        <div data-ss-colspan="3"><a href="#"   target="_blank" role="button" data-toggle="modal">Statistic </a></div>
-        <div></div>
-        <div data-ss-colspan="3"><a href="#"   target="_blank" role="button" data-toggle="modal">Évènement </a></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div data-ss-colspan="2"><a href="#loginForm"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Inscrivez Vous</a></div>
+ 		<div data-ss-colspan="2">Démo Commune<br/><a target="_blank" href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/97400')?>" >97400</a> <a  target="_blank" href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/97480')?>" >97480</a> </div>
+        <div  data-ss-colspan="2"><a  target="_blank" href="<?php echo Yii::app()->createUrl('index.php/commune')?>">Distribution des Communectés</a>Inscrit connecté par departement</div>
+        <div data-ss-colspan="2"><a target="_blank" href="<?php echo Yii::app()->createUrl('index.php/opendata/commune/ci/97411')?>" ><i class="entypo-plus"></i> Modèle Open Data Locales</a> une commune </div>
+        <div data-ss-colspan="2"><a href="#loginForm"   target="_blank" role="button" data-toggle="modal"><i class="entypo-plus"></i> Inscrivez Vous</a> on vous tiendra informé </div>
    </div>
 </div></div>
 

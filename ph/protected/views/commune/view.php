@@ -36,6 +36,7 @@ font-family: "Homestead";
   position: absolute;
   height: 50px;
   width: 100px;
+  padding:5px;
 }
 
 .grid > div[data-ss-colspan="2"] { width: 210px; }
@@ -45,7 +46,7 @@ font-family: "Homestead";
   background: transparent;
   border: 1px dashed blue;
 }	
-.graph div.block{border:1px solid #666;text-align:center}
+.graph div.block{border:1px solid #666;text-align:center; padding:5px;}
 #myfirstchart svg{z-index: 1000;}
 .actu ul{text-align:left;font-size:small}
 </style>
@@ -53,7 +54,7 @@ font-family: "Homestead";
     <br/>
     <div class="hero-unit">
     
-    <h2> Commune <?php echo OpenData::$commune["974"][$cp]." ( ".$cp.""?></h2>
+    <h2> Commune <?php echo OpenData::$commune["974"][$cp]." ( ".$cp.", ".$communcted." communectés ) "?></h2>
     <p> Un condenser de votre commune, contribuez à l'action locale. 
     <br/>Commencons par définir un canevas en format ouvert(opendata) decrivant une commune.
     <br/>Pour faciliter la tache pour toute les commune interressé par l'initiative.
@@ -64,6 +65,8 @@ font-family: "Homestead";
         <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/annuaireElus/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>"  > Annuaire des élus </a></div>
         <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/commune/servicesMunicipaux/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>">Services Municipaux</a></div>
         <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/opendata/commune/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>">Open Data Commune</a> </div>
+        
+        <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/templates?name=nodesLabels&cp='.$cp)?>"   target="_blank" role="button" data-toggle="modal">Connected</a></div>
         <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal">Quartiers, Agglo</a></div>
         <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal">Budget</a></div>
         <div></div>
@@ -89,16 +92,21 @@ font-family: "Homestead";
 		<div class=" actu span4 block">
 			<h2>Informations / Activité</h2>
 			
-			<?php 
-			$content = file_get_contents('http://www.saintjoseph.re/spip.php?page=rss_nouveautes');  
-            $x = new SimpleXmlElement($content);  
-              
-            echo "<ul>";  
-              
-            foreach($x->channel->item as $entry) {  
-                echo "<li><a href='$entry->link' title='$entry->title'>" . $entry->title . "</a></li>";  
-            }  
-            echo "</ul>";  
+			<?php
+			 $rss = Yii::app()->mongodb->data->find(array("cp"=>$cp,"type"=>"rss"));
+			if( Yii::app()->mongodb->data->count(array("cp"=>$cp,"type"=>"rss")) ){
+			    foreach($rss as $r){
+        			echo $r["title"]."<br/>";
+			        $content = file_get_contents($r['url']);  
+                    $x = new SimpleXmlElement($content);  
+                    echo "<ul>";  
+                    foreach($x->channel->item as $entry) {  
+                        echo "<li><a href='$entry->link' title='$entry->title'>" . $entry->title . "</a></li>";  
+                    }  
+                    echo "</ul>";
+			    }
+			}  else
+			    echo "il n'y a pas de RSS Locale pour ce code postal <br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez en un</a>"
 			?>
 			
 		</div>
@@ -108,7 +116,9 @@ font-family: "Homestead";
 			$assos = Yii::app()->mongodb->group->find(array("cp"=>$cp,"type"=>"association"));
 			foreach($assos as $a)
 			    echo $a["name"]."<br/>";?>
-			Annuaire Associations par filtre évolué
+			<small>Annuaire  des Associations locales.
+			<br/>Aucune données opendata organisé n'existe à l'heure actuelle<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez votre Association</a>.
+			</small>
 		</div>
 	</div>
 	<br/>
@@ -166,7 +176,7 @@ font-family: "Homestead";
                 }
               	?>
               	
-              		
+              		<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez une photo Locale</a>
                </div> 
               
     		<div class="clear"></div>
@@ -179,50 +189,71 @@ font-family: "Homestead";
 			$assos = Yii::app()->mongodb->group->find(array("cp"=>$cp,"type"=>"entreprise"));
 			foreach($assos as $a)
 			    echo $a["name"]."<br/>";?>
-			Annuaire Entreprise locales
+			<small>Annuaire Entreprise locales.
+			<br/>Aucune données opendata organisé n'existe à l'heure actuelle.
+			<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez votre Entreprise</a>
+			</small>
 		</div>
 	</div>
 	<br/>
 	<div class="row-fluid">
 		<div class="span4  block">
 		<h2>Agenda</h2>
-		flux RSS de divers source locale
+		<small>flux Daté de divers source locale.
+			<br/>Aucune données opendata organisé n'existe à l'heure actuelle.
+			<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez un Evenement</a>
+		</small>
 		</div>
 		<div class="span4 block">
 		<h2>Découvrez</h2>
+		<small>Ceux qui connaissent le mieux leur region sont les habitants locaux.
+			<br/>Aucune données opendata organisé n'existe à l'heure actuelle.
+			<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez une Lieu</a>
+		</small>
 		</div>
 		<div class="span4 block">
 		<h2>Participez</h2>
+		<small>La Participation citoyenne, rend la commune plus interactive, donc plus riche.
+		<br/>Discussion et Proposition de projet locaux
+		</small>
 		</div>
 	</div>
 	<br/>
 	<div class="row-fluid">
 		<div class="span6 block">
 		<h2>Interrogez</h2>
+		<small>Il existera un jour un lien direct entre citoyen organisé et collectivité.</small>
 		</div>
 		<div class="span6 block ">
-		<h2>Recommendez</h2>
+		<h2>Rézoté</h2>
+		<small>Des outils pour mieux collaborer, s'organiser et avancer.</small>
 		</div>
 	</div>
 	<br/>
 	<div class="row-fluid">
 		<div class="span4 block">
-		<h2>Petites Annonces</h2>
+		<h2>Petites Annonces Locales</h2>
+		<small>Le Recyclage, donner une deuxième vie au objet de la consommation </small>
+		<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Mon Annonce</a>
 		</div>
 		<div class="span4 block">
 		<h2>Covoiturez</h2>
+		<small>Les départs organisés d'une meme commune peuvent fortement diminuer le traffic de voiture.</small>
+		<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Nouveau Trajet</a>
 		</div>
 		<div class="span4 block">
-		<h2>Rézoté</h2>
+		<h2>Rencontrez</h2>
+		<small>Tout thématisé, facilite les rencontres et les echanges</small>
 		</div>
 	</div>
 	<br/>
 	<div class="row-fluid">
 		<div class="span6 block">
-		<h2>Calendrier</h2>
+		<h2>Aide Participative</h2>
+		<small>Inicidant, Perte, Déménagement, </small>
 		</div>
 		<div class="span6 block">
-		<h2></h2>
+		<h2>--------------</h2>
 		</div>
 	</div>
 	
