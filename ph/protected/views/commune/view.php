@@ -7,6 +7,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/jquery.shapeshift.min
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/js/morris.js-0.4.3/morris.css');
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/morris.js-0.4.3/morris.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile( 'http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap-tooltip.js' , CClientScript::POS_END);
 
 ?>
 <style>
@@ -305,7 +306,7 @@ font-family: "Homestead";
     		<ul>
     			<?php 
 			    foreach($commune['structure']["intercommune"] as $q){
-                        echo "<li>$q</li>";  
+                        echo "<li><a href='#' rel='tooltip' title='' data-original-title='Default tooltip'>$q</a></li>";  
 			    }
     			?>
 			</ul>
