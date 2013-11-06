@@ -78,6 +78,7 @@ font-family: "Homestead";
 <div class="hero-unit">
 	<div class="row-fluid">
 		<div class="span4 block">
+			<span class="entypo-users green" style="font-size:150%"></span><br/>
 			<h2>Évolution population</h2>
 			<script>var population = [];
 			<?php 
@@ -89,6 +90,7 @@ font-family: "Homestead";
 			<div id="myfirstchart" style="height: 250px;"></div>
 		</div>
 		<div class=" actu span4 block">
+			<span class="entypo-newspaper green" style="font-size:150%"></span><br/>
 			<h2>Informations / Activité</h2>
 			
 			<?php
@@ -105,11 +107,12 @@ font-family: "Homestead";
                     echo "</ul>";
 			    }
 			}  else
-			    echo "il n'y a pas de RSS Locale pour ce code postal <br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez en un</a>"
+			    echo "Aucun RSS Locale encore pour ce code postal <br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez en un</a>"
 			?>
 			
 		</div>
 		<div class="span4 block">
+			<span class="entypo-users green" style="font-size:150%"></span><br/>
 			<h2>Associations </h2>
 			<?php 
 			$assos = Yii::app()->mongodb->group->find(array("cp"=>$cp,"type"=>"association"));
@@ -123,6 +126,7 @@ font-family: "Homestead";
 	<br/>
 	<div class="row-fluid">
 		<div class="span8 block">
+		<span class="entypo-picture green" style="font-size:150%"></span><br/>
 		<h2>Photographies / Vidéos</h2>
 		<div id="myCarousel" class="carousel slide">
             
@@ -183,6 +187,7 @@ font-family: "Homestead";
         
 		</div>
 		<div class="span4 block">
+		<span class="entypo-briefcase green" style="font-size:150%"></span><br/>
 		<h2>Entreprises </h2>
 		<?php 
 			$assos = Yii::app()->mongodb->group->find(array("cp"=>$cp,"type"=>"entreprise"));
@@ -197,63 +202,87 @@ font-family: "Homestead";
 	<br/>
 	<div class="row-fluid">
 		<div class="span4  block">
-		<h2>Agenda</h2>
-		<small>flux Daté de divers source locale.
-			<br/>Aucune données opendata organisé n'existe à l'heure actuelle.
-			<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez un Evenement</a>
-		</small>
+    		<span class="entypo-calendar green" style="font-size:150%"></span><br/>
+    		<h2>Agenda</h2>
+    		<small>flux Daté de divers source locale.
+    			<br/>Aucune données opendata organisé n'existe à l'heure actuelle.
+    			<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez un Evenement</a>
+    		</small>
 		</div>
+		
 		<div class="span4 block">
-		<h2>Découvrez</h2>
-		<small>Ceux qui connaissent le mieux leur region sont les habitants locaux.
-			<br/>Aucune données opendata organisé n'existe à l'heure actuelle.
-			<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez une Lieu</a>
-		</small>
+    		<span class="entypo-eye green" style="font-size:150%"></span><br/>
+    		<h2>Découvrez</h2>
+    		<small>Ceux qui connaissent le mieux leur region sont les habitants locaux.
+    			<br/>Aucune données opendata organisé n'existe à l'heure actuelle.
+    			<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez une Lieu</a>
+    		</small>
 		</div>
+		
 		<div class="span4 block">
-		<h2>Participez</h2>
-		<small>La Participation citoyenne, rend la commune plus interactive, donc plus riche.
-		<br/>Discussion et Proposition de projet locaux
-		</small>
+    		<span class="entypo-cog green" style="font-size:150%"></span><br/>
+    		<h2>Participez</h2>
+    		<small>La Participation citoyenne, rend la commune plus interactive, donc plus riche.
+    		<br/>Discussion et Proposition de projet locaux
+    		</small>
 		</div>
+		
 	</div>
 	<br/>
 	<div class="row-fluid">
+		
 		<div class="span6 block">
-		<h2>Interrogez</h2>
-		<small>Il existera un jour un lien direct entre citoyen organisé et collectivité.</small>
+			<span class="entypo-help green" style="font-size:150%"></span><br/>
+    		<h2>Interrogez</h2>
+    		<small>Il existera un jour un lien direct entre citoyen organisé et collectivité.</small>
 		</div>
+		
 		<div class="span6 block ">
-		<h2>Rézoté</h2>
-		<small>Des outils pour mieux collaborer, s'organiser et avancer.</small>
+			<span class="entypo-user-add green" style="font-size:150%"></span><br/>
+    		<h2>Rézoté</h2>
+    		<small>Des outils pour mieux collaborer, s'organiser et avancer.</small>
 		</div>
+		
 	</div>
 	<br/>
 	<div class="row-fluid">
+	
 		<div class="span4 block">
-		<h2>Petites Annonces Locales</h2>
-		<small>Le Recyclage, donner une deuxième vie au objet de la consommation </small>
-		<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Mon Annonce</a>
-		</div>
+    		<span class="entypo-mic green" style="font-size:150%"></span><br/>
+    		<h2>Petites Annonces Locales</h2>
+    		<small>Le Recyclage, donner une deuxième vie au objet de la consommation </small>
+    		<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Mon Annonce</a>
+    	</div>
+    		
 		<div class="span4 block">
-		<h2>Covoiturez</h2>
-		<small>Les départs organisés d'une meme commune peuvent fortement diminuer le traffic de voiture.</small>
-		<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Nouveau Trajet</a>
+    		<span class="entypo-address green" style="font-size:150%"></span><br/>
+    		<h2>Covoiturez</h2>
+    		<small>Les départs organisés d'une meme commune peuvent fortement diminuer le traffic de voiture.</small>
+    		<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Nouveau Trajet</a>
 		</div>
+		
 		<div class="span4 block">
-		<h2>Rencontrez</h2>
-		<small>Tout thématisé, facilite les rencontres et les echanges</small>
-		</div>
+    		<span class="entypo-user-add green" style="font-size:150%"></span><br/>
+    		<h2>Rencontrez</h2>
+    		<small>Tout thématisé, facilite les rencontres et les echanges</small>
+	    </div>
+	    
 	</div>
 	<br/>
 	<div class="row-fluid">
+	
 		<div class="span6 block">
-		<h2>Aide Participative</h2>
-		<small>Inicidant, Perte, Déménagement, </small>
+    		<span class="entypo-lifebuoy green" style="font-size:150%"></span><br/>
+    		<h2>Aide Participative</h2>
+    		<small>Inicidant, Perte, Déménagement, </small>
 		</div>
+		
 		<div class="span6 block">
-		<h2>--------------</h2>
+			<span class="entypo-thumbs-up green" style="font-size:150%"></span><br/>
+    		<h2>Actions/Pensées Positives</h2>
+    		<small>------- </small>
 		</div>
+		
 	</div>
 	
 </div></div>

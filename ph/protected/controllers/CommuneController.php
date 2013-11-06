@@ -13,20 +13,16 @@ class CommuneController extends Controller {
     public $showSidebar1 = true;
     
 	public function actionIndex() {
-	    $this->layout = "swe";
-	    
 	    $this->render("index");
 	}
     public function actionView($cp) 
     {
-        $this->layout = "swe";
         $this->render("view",array('cp'=>$cp,
         						   'dep'=>substr($cp, 0,3),
                                    'communcted'=>Yii::app()->mongodb->citoyens->count(array('cp'=>$cp) )));
 	}
     public function actionAnnuaireelus($ci) 
     {
-        $this->layout = "swe";
         $annuaire = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("annuaireElu") ); 
         $this->render("annuaireElus",array( 'ci' => $ci ,
         									'annuaire' => $annuaire
@@ -34,7 +30,6 @@ class CommuneController extends Controller {
 	}
     public function actionServicesMunicipaux($ci) 
     {
-        $this->layout = "swe";
         $service = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("servicesMunicipaux") ); 
         $this->render("services",array( 'ci' => $ci ,
         									'service' => $service
