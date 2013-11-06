@@ -1,32 +1,33 @@
-
-{
-  "key" : "faq",
-  "type" : "qa",
-  "question" : "Pour qui ? Mairie",
-  "answer" : "J'informe mieux, je valorise mes actions Je communique sur mon activité, mes évènements, mes projets auprès de mes administrés.  \r\nJ'écoute les citoyens Je reçois les avis, idées, projets, problèmes citoyens et j'interagis afin d'améliorer la vie locale.\r\nJ'agis/réagis plus vite Plus près des réalités du terrain et des besoins rééls, les dossiers avancent plus facilement et je peux les réajuster rapidement.\r\nJe valorise mon territoire, je le rend plus attractif, Mes citoyens connaissent leur territoire, échanges entre eux et créer/participe à des initiatives locales. \r\nJe favorise l'économie locale et les circuits courts."
-}
-
-
-{
-  "key" : "positivons",
-  "type" : "post",
-  "title" : "Proverbe -- Pierre Dac",
-  "content" : "Il vaut mieu penser le changement que changer le pansement.",
-  "tags":["proverb"]
-}
+COLLECTION : data
+	
+	{
+	  "key" : "faq",
+	  "type" : "qa",
+	  "question" : "Pour qui ? Mairie",
+	  "answer" : "J'informe mieux, je valorise mes actions Je communique sur mon activité, mes évènements, mes projets auprès de mes administrés.  \r\nJ'écoute les citoyens Je reçois les avis, idées, projets, problèmes citoyens et j'interagis afin d'améliorer la vie locale.\r\nJ'agis/réagis plus vite Plus près des réalités du terrain et des besoins rééls, les dossiers avancent plus facilement et je peux les réajuster rapidement.\r\nJe valorise mon territoire, je le rend plus attractif, Mes citoyens connaissent leur territoire, échanges entre eux et créer/participe à des initiatives locales. \r\nJe favorise l'économie locale et les circuits courts."
+	}
 
 
-{
-  "_id" : ObjectId("52777acec073ef2cb80411c6"),
-  "editable" : ["adminPH"],
-  "key" : "faq",
-  "type" : "page",
-  "title" : "Questions Réponses Fréquentes"
-}
+	{
+	  "key" : "positivons",
+	  "type" : "post",
+	  "title" : "Proverbe -- Pierre Dac",
+	  "content" : "Il vaut mieu penser le changement que changer le pansement.",
+	  "tags":["proverb"]
+	}
 
 
-{
-  "type" : "rss",
-  "cp" : "97400",
-  "url" : "http://93.agendaculturel.fr/rss/concert/saint-denis/"
-}
+	{
+	  "_id" : ObjectId("52777acec073ef2cb80411c6"),
+	  "editable" : ["adminPH"],
+	  "key" : "faq",
+	  "type" : "page",
+	  "title" : "Questions Réponses Fréquentes"
+	}
+
+
+	{
+	  "type" : "rss",
+	  "cp" : "97400",
+	  "url" : "http://93.agendaculturel.fr/rss/concert/saint-denis/"
+	}

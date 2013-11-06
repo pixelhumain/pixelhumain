@@ -46,42 +46,25 @@ ol.slats li p span.meta {
     <br/>
     <div class="hero-unit">
     
-    <h2>Open Data Locale : Les sources de données libres</h2>
-    <p>Toute les données qui permettent de faire tourner le PH sont ouverte est disponible a l'utilisation publique.<br/>
-    Mais surtout elles sont crowd sourcer (rempli par les citoyens)
-    </p>
-<ol class="slats">
-	<li class="group">
-		<h3>
-			<a href="<?php echo Yii::app()->createUrl('/index.php/opendata/commune/ci/97411')?>">
-				Structure Standard Json, de l'organisation d'une commune (ex:97411)
-			</a>
-		</h3>
-	</li>
-	<li class="group">
-		<h3>Structure Standard Json, de l'organisation d'une agglomeration / intercommune (ex:CINOR)</h3>
-	</li>
-	<li class="group">
-		<h3>Structure Standard Json, de l'organisation d'une région (ex:974)</h3>
-	</li>
-	<li class="group">
-		<h3>Structure Standard Json, de l'organisation d'un département (ex:974)</h3>
-	</li>
-	<li class="group">
-		<h3>Json des pixels actifs par Code Postal</h3>
-	</li>
-	<li class="group">
-		<h3>
-				Json des pixels actifs par Métier
-		</h3>
-	</li>
-	<li class="group">
-		<h3>
-				Json des pixels actifs par Centre D'interet
-		</h3>
-	</li>
-</ol>	
-</div></div>		
+        <h2>Open Data Locale : Les sources de données libres</h2>
+        <p>Toute les données qui permettent de faire tourner le PH sont ouverte est disponible a l'utilisation publique.<br/>
+        Mais surtout elles sont crowd sourcer (rempli par les citoyens)
+        </p>
+        
+        <ol class="slats">
+        	<li class="group"><h3><a href="<?php echo Yii::app()->createUrl('/index.php/opendata/commune/ci/97411')?>">Structure Standard Json, de l'organisation d'une commune (ex:97411)</a></h3></li>
+        	<li class="group"><h3>Structure Standard Json, de l'organisation d'une agglomeration / intercommune (ex:CINOR)</h3></li>
+        	<li class="group"><h3>Structure Standard Json, de l'organisation d'une région (ex:974)</h3></li>
+        	<li class="group"><h3>Structure Standard Json, de l'organisation d'un département (ex:974)</h3></li>
+        	<li class="group"><h3>Json des pixels actifs par Code Postal</h3></li>
+        	<li class="group"><h3>Json des pixels actifs par Métier</h3></li>
+        	<li class="group"><h3>Json des pixels actifs par Centre D'interet</h3></li>
+        	<li class="group"><h3><a href="<?php echo Yii::app()->createUrl('/index.php/opendata/microformats')?>">Référence des collections et documents de la base MongoDB PH</a></h3></li>
+        </ol>	
+    
+	</div>
+</div>	
+	
 <script type="text/javascript">
 initT['animInit'] = function(){
 (function ani(){

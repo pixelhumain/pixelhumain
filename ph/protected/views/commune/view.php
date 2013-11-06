@@ -54,7 +54,7 @@ font-family: "Homestead";
     <br/>
     <div class="hero-unit">
     
-    <h2> Commune <?php echo OpenData::$commune["974"][$cp]." ( ".$cp.", ".$communcted." communectés ) "?></h2>
+    <h2> Commune <?php echo OpenData::$commune["974"][$cp]." ( ".$cp.", <a href='".Yii::app()->createUrl('index.php/templates?name=nodesLabels&cp='.$cp)."'   target='_blank'>".$communected." communectés </a>) "?></h2>
     <p> Commencons par définir un format standard et ouvert(opendata) decrivant une commune.
     <br/>Pour faciliter la tache pour toutes les communes interressées par l'initiative.
     <br/>Il est important de *communecter un maximum de citoyen.
@@ -64,10 +64,7 @@ font-family: "Homestead";
         <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/annuaireElus/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>"  > Annuaire des élus </a></div>
         <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/commune/servicesMunicipaux/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>">Services Municipaux</a></div>
         <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/opendata/commune/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>">Open Data Commune</a> </div>
-        
-        <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/templates?name=nodesLabels&cp='.$cp)?>"   target="_blank" role="button" data-toggle="modal">Connected</a></div>
-        <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal">Quartiers, Agglo</a></div>
-        <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal">Budget</a></div>
+        <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/budget/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>" target="_blank" >Budget</a></div>
         <div></div>
         <div></div>
         <div></div>
@@ -284,11 +281,45 @@ font-family: "Homestead";
 		</div>
 		
 	</div>
+	<br/>
+	<div class="row-fluid">
+	
+		<?php if(isset($commune['structure'])){?>
+		<div class="span6 block">
+    		<span class="entypo-map green" style="font-size:150%"></span><br/>
+    		<h2>Quartier</h2>
+    		
+    			<?php 
+			    foreach($commune['structure']["quartier"] as $q){
+                        echo "$q, ";  
+			    }
+    			?>
+			</ul>
+		</div>
+		<?php }?>
+		
+		<?php if(isset($commune['structure']['intercommune'])){?>
+		<div class="span6 block">
+			<span class="entypo-flow-tree green" style="font-size:150%"></span><br/>
+    		<h2>InterCommune</h2>
+    		<ul>
+    			<?php 
+			    foreach($commune['structure']["intercommune"] as $q){
+                        echo "<li>$q</li>";  
+			    }
+    			?>
+			</ul>
+		</div>
+		<?php }?>
+		
+		
+	</div>
 	
 </div></div>
 
 <script type="text/javascript"		>
 initT['animInit'] = function(){
+	
 	Morris.Bar({
 		  element: 'myfirstchart',
 		  data: population,
@@ -296,11 +327,13 @@ initT['animInit'] = function(){
 		  ykeys: ['a', 'b'],
 		  labels: ['Series A', 'Series B']
 		});
+	
 	$(".grid").shapeshift({
 	    minColumns: 3
 	  });
-        (function ani(){
-        	  TweenMax.staggerFromTo(".container h2", 4, {scaleX:0.4, scaleY:0.4}, {scaleX:1, scaleY:1},1);
-        })();
+	  
+    (function ani(){
+    	  TweenMax.staggerFromTo(".container h2", 4, {scaleX:0.4, scaleY:0.4}, {scaleX:1, scaleY:1},1);
+    })();
 };
 </script>			

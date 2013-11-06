@@ -19,20 +19,28 @@ class CommuneController extends Controller {
     {
         $this->render("view",array('cp'=>$cp,
         						   'dep'=>substr($cp, 0,3),
-                                   'communcted'=>Yii::app()->mongodb->citoyens->count(array('cp'=>$cp) )));
+                                   'communected'=>Yii::app()->mongodb->citoyens->count(array('cp'=>$cp) ),
+                                   'commune'=>Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>OpenData::$codePostalToCodeInsee["974"][$cp],"type"=>"commune" ) )
+                                    ));
 	}
     public function actionAnnuaireelus($ci) 
     {
-        $annuaire = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("annuaireElu") ); 
         $this->render("annuaireElus",array( 'ci' => $ci ,
-        									'annuaire' => $annuaire
+        									'annuaire' => Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("annuaireElu") )
                                           ));
 	}
     public function actionServicesMunicipaux($ci) 
     {
-        $service = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("servicesMunicipaux") ); 
         $this->render("services",array( 'ci' => $ci ,
-        									'service' => $service
+        									'service' => Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("servicesMunicipaux") )
                                           ));
 	}
+	
+    public function actionBudget($ci) 
+    {
+        $this->render("budget",array( 'ci' => $ci ,
+        									'service' => Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("budget","name") )
+                                          ));
+	}
+   
 }

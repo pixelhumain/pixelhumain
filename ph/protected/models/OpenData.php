@@ -2,6 +2,9 @@
 
 class OpenData
 {
+    /*
+     * Tous les pays disponible à l'inscription
+     */
     public static $phCountries = array("France"=>"France",
                     				"Guadeloupe"=>"Guadeloupe",
                   					"Guyanne"=>"Guyanne",
@@ -9,6 +12,10 @@ class OpenData
                     				"Mayotte"=>"Mayotte",
                     				"Nouvelle-Calédonie"=>"Nouvelle-Calédonie",
                     				"Réunion"=>"Réunion");
+    /**
+     * Classé par departement 
+     * ce tableau fait le lien entre Code postal et nom de ville
+     */
     public static $commune = array( '974'=>array(
                                             '97400'=> 'ST DENIS',
                                             '97410'=> 'ST PIERRE',
@@ -50,7 +57,10 @@ class OpenData
                                             '97490'=> 'STE CLOTILDE'
                                             )
                                     );
-                                    /* Code Postal to Insee */ 
+/* Code Postal to Insee 
+ * le code insee est connecté à une commune
+ * le code postale est connecté à une ville
+ * */ 
   public static $codePostalToCodeInsee = array( '974'=>array(
                                             '97400'=> '97411',
                                             '97410'=> '97416',

@@ -11,10 +11,26 @@ class OpendataController extends Controller {
     
     const moduleTitle = "OpenData";
     
+    /**
+	 * Listing des Urls open data accessible 
+	 * avec la description des varialbes
+	 */
 	public function actionIndex() {
 	    $this->render("index");
 	}
 	
+	/**
+	 * Listing de la structure de Base de données 
+	 * toute les tables 
+	 * et tout les documents
+	 */
+	public function actionMicroformats() {
+	    $this->render("microformats");
+	}
+	
+	/**
+	 * Retourne les données open data relative à un code postale 
+	 */
     public function actionCP() {
        $format = (isset($_GET["format"])) ? $_GET["format"] : "json" ;
 	   $citoyens = Yii::app()->mongodb->citoyens->find();
@@ -64,13 +80,22 @@ class OpendataController extends Controller {
     	   echo json_encode($json);
 	   }
 	}
+	
+	/**
+	 * Retourne les données open data relative à une commune 
+	 */
     public function actionCommune($ci) {
         $commune = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("annuaireElu") ); 
 	    header('Content-Type: application/json');
     	echo json_encode($commune);
 	}
+	
+	/**
+	 * Page de démo pour le concours etalab : dataconnexion
+	 */
 	public function actionDataConnexion() {
 	   // $this->layout = "swe";
 	    $this->render("dataconnexion");
 	}
+	
 }

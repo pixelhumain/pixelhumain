@@ -259,11 +259,7 @@ body {
 		
 		<h2>Annuaire des Élus</h2>
 	
-		<ul id="utilityNav">
-			<li><a href="<?php echo Yii::app()->createUrl('index.php/commune/servicesMunicipaux/ci/'.$ci)?>">Services Municipaux</a></li>
-			<li><a href="/login">Conseil Municipal Live</a></li>
-			<li><a href="/sitemap">Budget</a></li>
-		</ul>
+		
 
 		<ul id="primaryNav" class="col5">
 			<li id="home"><a href="<?php echo $annuaire["annuaireElu"]["maire"]["fonction"]?>"><?php echo $annuaire["annuaireElu"]["maire"]["nom"]?></a></li>

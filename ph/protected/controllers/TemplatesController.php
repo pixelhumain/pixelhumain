@@ -18,7 +18,7 @@ class TemplatesController extends Controller
        $name = "index";
        if(isset($_GET["name"])) 
            $name = $_GET["name"];
-       if(in_array($name,array("listPage","hexagon","formLarge","mapael_france","mapael_france2","hoverEffects","nodesLabels"))) 
+       if(in_array($name,array("listPage","hexagon","formLarge","mapael_france","mapael_france2","hoverEffects","nodesLabels","scrollImages","menuVerticaleGch"))) 
            $this->layout = "empty";
 	   $this->render($name);
 	}
