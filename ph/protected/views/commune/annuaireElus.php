@@ -257,7 +257,7 @@ body {
     <div class="hero-unit">
 <div class="sitemap">
 		
-		<h2>Annuaire des Élus</h2>
+		<h2>Annuaire des Élus </h2>
 	
 		
 

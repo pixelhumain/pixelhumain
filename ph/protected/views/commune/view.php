@@ -8,7 +8,6 @@ $cs->registerCssFile(Yii::app()->request->baseUrl. '/js/morris.js-0.4.3/morris.c
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/morris.js-0.4.3/morris.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile( 'http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap-tooltip.js' , CClientScript::POS_END);
-
 ?>
 <style>
 h2 {
@@ -28,17 +27,10 @@ font-family: "Homestead";
   color: #324553;
 }
 .grid {
-  border: 1px dashed #CCC;
-  position: relative;
+  border: 1px dashed #CCC;  position: relative;
 }
 
-.grid > div {
-  background: #AAA;
-  position: absolute;
-  height: 50px;
-  width: 100px;
-  padding:5px;
-}
+.grid > div {  background: #AAA;  position: absolute;  height: 50px;  width: 100px;  padding:5px;}
 
 .grid > div[data-ss-colspan="2"] { width: 210px; }
 .grid > div[data-ss-colspan="3"] { width: 320px; }
@@ -65,7 +57,7 @@ font-family: "Homestead";
         <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/annuaireElus/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>"  > Annuaire des élus </a></div>
         <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/commune/servicesMunicipaux/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>">Services Municipaux</a></div>
         <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/opendata/commune/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>">Open Data Commune</a> </div>
-        <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/budget/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>" target="_blank" >Budget</a></div>
+        <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/budget/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>" >Budget</a></div>
         <div></div>
         <div></div>
         <div></div>
@@ -117,7 +109,7 @@ font-family: "Homestead";
 			foreach($assos as $a)
 			    echo $a["name"]."<br/>";?>
 			<small>Annuaire  des Associations locales.
-			<br/>Aucune données opendata organisé n'existe à l'heure actuelle<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez votre Association</a>.
+			<br/>Aucune donnée opendata organisée n'existe à l'heure actuelle<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez votre Association</a>.
 			</small>
 		</div>
 	</div>
@@ -192,7 +184,7 @@ font-family: "Homestead";
 			foreach($assos as $a)
 			    echo $a["name"]."<br/>";?>
 			<small>Annuaire Entreprise locales.
-			<br/>Aucune données opendata organisé n'existe à l'heure actuelle.
+			<br/>Aucune donnée opendata organisée n'existe à l'heure actuelle.
 			<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez votre Entreprise</a>
 			</small>
 		</div>
@@ -203,7 +195,7 @@ font-family: "Homestead";
     		<span class="entypo-calendar green" style="font-size:150%"></span><br/>
     		<h2>Agenda</h2>
     		<small>flux Daté de divers source locale.
-    			<br/>Aucune données opendata organisé n'existe à l'heure actuelle.
+    			<br/>Aucune donnée opendata organisée n'existe à l'heure actuelle.
     			<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez un Evenement</a>
     		</small>
 		</div>
@@ -212,7 +204,7 @@ font-family: "Homestead";
     		<span class="entypo-eye green" style="font-size:150%"></span><br/>
     		<h2>Découvrez</h2>
     		<small>Ceux qui connaissent le mieux leur region sont les habitants locaux.
-    			<br/>Aucune données opendata organisé n'existe à l'heure actuelle.
+    			<br/>Aucune donnée opendata organisée n'existe à l'heure actuelle.
     			<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez une Lieu</a>
     		</small>
 		</div>

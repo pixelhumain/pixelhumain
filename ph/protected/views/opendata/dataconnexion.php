@@ -50,22 +50,15 @@ font-family: "Homestead";
     <div class="hero-unit">
     
         <h2> Preuve de concept : Dataconnexion</h2>
+        
+        
         <p> 
-        <br/>C'est Enocre tout frais et tout chaud quelques jours ne suffisent pas pour aller assez loin dans le POC
-        <br/>Un des objectifs du PIxel Humain est de permettre un couplage entre opendata de divers source
-        notament du crowd sourcing actif avec les 4 familles d'acteur représenté par le PH (citoyen, association, entreprise,collectivité).
-        <br/>On decouvre avec ce projet que les données globalement ouverte concernant les communes sont assez limités, difficile à obtenir et personnes ne veut prendre le risque de le transmettre. 
-        <br/>Un des objectifs du Pixel Humain est de motiver et outiller les communes à partager certaines données de bases de facon standardisé.
-        <br/>C'est un squelette applicatif pour valoriser l'activté locale pour nos 4 familles.
-        <br/>Fonctionnement d'une mairie, communcation bilaterale citoyen &lt;&gt; collectivité
-        <br/>Contact par secteur en mairie (poste, nom, tel, email),
-        <br/>Système de discussion démocratique,
-    	<br/>Nous aimerions proposer un outil de classification et de recherche des opendatas ultra locales et travailler de facon privillégié avec data.gouv.fr
-    	
-       
-    
-        </p>
-     	<h3>Quelques POC</h3>
+        Peu de communes (Paris, Bordeaux…) proposent des données en libre exploitation (open data). Ce n’est malheureusement pas le cas de l’ensemble des communes. De plus, elles ne s’accordent pas sur le format des données échangé.
+        Le Pixel Humain (PH) dans sa partie Open Data, propose d’élaborer un format de fichier de données ouvert, libre et générique utilisable par toutes les communes. Une simple adhésion de la commune à l’association Open Atlas lui donnera accès à une collection d’outils citoyens l’accompagnant vers une ouverture numérique.
+        Cette dynamique guidera les communes dans leur objectif de transparence et de modernisation tout en proposant une valorisation et un développement durable du territoire. La plateforme  acceueillera citoyens, associations et entreprises locales qui veulent bien adhérer a 
+         l’initiative pour former le 1er réseau social citoyen libre. Le dispositif est gratuit, déployé en France et les Doms via internet et des applications mobiles.
+
+		<h3>Quelques POC</h3>
      	 Pour la demo concours voici quelques données réutilisé dans le PH 
      	<div class="grid">
      		<div data-ss-colspan="2">Démo Commune<br/><a target="_blank" href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/97400')?>" >97400</a> <a  target="_blank" href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/97480')?>" >97480</a> </div>
@@ -73,11 +66,21 @@ font-family: "Homestead";
             <div data-ss-colspan="2"><a target="_blank" href="<?php echo Yii::app()->createUrl('index.php/opendata/commune/ci/97411')?>" ><i class="entypo-plus"></i> Modèle Open Data Locales</a> une commune </div>
             <div data-ss-colspan="2"><a href="#loginForm"   target="_blank" role="button" data-toggle="modal"><i class="entypo-plus"></i> Inscrivez Vous</a> on vous tiendra informé </div>
        </div>
+
+<br/>
+        Actuellement en phase d’étude et POC, le Pixel Humain est actuellement disponible en version alpha. Par la suite, la plateforme utilise les dernières techniques et technologies web (temps reel, SVG, 3D, geoloc).
+        L’alimentation du fichier de données Commune s’appuie sur deux principes : agréger un maximum de fichiers de données existants, en provenance de sources validées (data.gouv, insee…). Puis, alimenter les données manquantes ou inexactes via une interface par la commune elle même, par les citoyens, associations ou entreprises. Ce crowdsourcing sera accompagné d’outils de validation (historique, versioning, origine de la donnée). Les données du fichier couvrent divers thèmes : organisation du conseil municipal (élus, calendrier des conseils), structure de la mairie (services, horaires, coordonnées…), culturel, associatif… Partager de l’information, débattre, coopérer dans l’intérêt public, valoriser le territoire, privilégier l’économie locale restent les principaux objectifs du PH
+
+    	
+       
+    
+        </p>
+     	
        
        <h3>Plus d'infos</h3>
        <ul>
        	<li><a target="_blank" href="http://www.pixelhumain.com/tmp/pptComplet.pdf">Présentation Power Point ( 23 Slides )</a></li>
-       	<li><a target="_blank" href="http://www.pixelhumain.com/tmp/PRESENTATION_PH_02092013_BD.pdf">Présentation Détaillé ( 20 pages )</a></li>
+       	<li><a target="_blank" href="http://www.pixelhumain.com/tmp/PRESENTATION_PH_02092013_BD.pdf">Présentation Détaillée ( 20 pages )</a></li>
        </ul>
    		
    
