@@ -57,13 +57,13 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
 .appFooter{position:fixed;bottom:0px;right:0px;width:100px;z-index:2000;margin:15px;}
 </style>
 
-<div class="appContent">
+<div class="container appContent">
 
 	<h1><?php echo $title?> </h1>
 	
 	<h3>Cette Plateforme est restreinte aux inscrit.
 	<br/>
-	si vous etes inscrit <a href="#loginForm"  class="btn-ph"  role="button" data-toggle="modal">Connectez vous</a>
+	si vous êtes inscrit <a href="#loginForm"  class="btn-ph"  role="button" data-toggle="modal">Connectez vous</a>
 	<br/>
 	sinon vous pouvez tenter de contacter <a href="http://reunion.startupweekend.org" target="_blank" class="btn-ph"> Les organisateurs </a>.
 	</h3>

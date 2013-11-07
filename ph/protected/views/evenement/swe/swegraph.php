@@ -52,7 +52,7 @@ canvas{position:absolute;top:0px;left:0px;}
     	<?php if( in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) ){ ?>
     		<li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweadmin/id/'.$key)?>"><i class="icon-wrench"></i> Admin</a></li>
     	<?php } ?>
-    	<li><a href="#sweInscription" id="mesInfos" role="button" data-toggle="modal"><i class="icon-user"></i> Mes Infos</a></li>
+    	<?php /*?><li><a href="#sweInscription" id="mesInfos" role="button" data-toggle="modal"><i class="icon-user"></i> Mes Infos</a></li>*/?>
     	<li><a href="#coaching" role="button" data-toggle="modal"><i class="icon-bell"></i> APPEL UN COACH !! </a><a href="#coaching" role="button" data-toggle="modal"><span id="coachingCount" class="badge bgRed" ></span></a></li>
         <li><a href="javascript:filterType('participant')">Inscrits <span class="badge"><?php echo count($event["participants"])?></span></a></li>
         <li><a href="javascript:filterType('projet')">Projets <span class="badge"><?php echo count($event["projects"])?></span></a></li>

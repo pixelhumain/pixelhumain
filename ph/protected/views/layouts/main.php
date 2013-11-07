@@ -30,12 +30,13 @@
    <?php //echo Yii::app()->createUrl('js/jquery-1.8.3.min.js')?>
    <script>
    var initT = new Object();
+   var showDelaunay = true;
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
    </script>
        <?php //Yii::app()->bootstrap->register(); ?>
 </head>
 
-<body>
+<body  class="clear-outline" data-target=".bs-docs-sidebar" data-spy="scroll">
 <?php $account = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;?>
 <?php $this->renderPartial('application.views.layouts.header2',array( "account" => $account));?>
 <?php if(isset($this->showSidebar1) && $this->showSidebar1)$this->renderPartial('application.views.layouts.sideMenu1');?>

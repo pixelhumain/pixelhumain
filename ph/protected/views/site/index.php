@@ -85,13 +85,13 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     		    </ul>
     		</div>*/?>
     		<div style="width:100%;" class="center">
-        		<a href="https://www.facebook.com/groups/pixelhumain/" target="_blank"><span class="icon-facebook-rect blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            	<a href="https://plus.google.com/u/0/communities/111483652487023091469?cfem=1" target="_blank"><span class="icon-googleplus-rect blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            	<a href="http://groups.diigo.com/group/pixelhumain" target="_blank"><span class="icon-diigo blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            	<a href="https://trello.com/board/pixel-humain-echolocal/50a3e15a175358d65a0089ef" target="_blank"><span class="icon-trello blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;
-            	<a href="http://blog.pixelhumain.com/" target="_blank"><span class="icon-blogger-rect blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
-            	<a href="http://twitter.com/pixelhumain" target="_blank"><span class="icon-twitter blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
-            	<a href="https://github.com/pixelhumain/pixelhumain" target="_blank"><span class="icon-github-text blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+        		<a href="https://www.facebook.com/groups/pixelhumain/" target="_blank"><span class="social-facebook-rect blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="https://plus.google.com/u/0/communities/111483652487023091469?cfem=1" target="_blank"><span class="social-googleplus-rect blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="http://groups.diigo.com/group/pixelhumain" target="_blank"><span class="social-diigo blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="https://trello.com/board/pixel-humain-echolocal/50a3e15a175358d65a0089ef" target="_blank"><span class="social-trello blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;
+            	<a href="http://blog.pixelhumain.com/" target="_blank"><span class="social-blogger-rect blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="http://twitter.com/pixelhumain" target="_blank"><span class="social-twitter blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="https://github.com/pixelhumain/pixelhumain" target="_blank"><span class="social-github-text blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
         	</div>
     		<div class="clear"></div>
         </div>
@@ -137,7 +137,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         </div>
         <?php }?>
         <div class="pull-right homestead blueDark center" style="width:45%;border:1px color red;">
-        <span class="icon-lightbulb blue" style="font-size:300%"></span><br/><br/>
+        <span class="social-lightbulb blue" style="font-size:300%"></span><br/><br/>
             <div class="accordion" id="accordionAction">
                 
                   	<div class="accordion-group">
@@ -284,7 +284,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                 <p>L’Innovation au service de la société.</p>
                 <p class="text-info">“Venez mettre votre grain d’Xel ! ”</p>
                 </blockquote>
-                <a class="btn btn-primary btn-large pull-right">En Savoir Plus <i class="icon-forward icon-white"></i></a>
+                <a class="btn btn-primary btn-large pull-right">En Savoir Plus <i class="social-forward social-white"></i></a>
               </div>
             </div>
           </div>
@@ -419,7 +419,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                 C'est quand même plus agréable de choisir où l'on applique nos impôts, non ? 
                 <br/>Par exemple : avec un revenu imposable de 20 000 € vous pouvez verser au maximum  4 000 € ( soit 20% de 20000 ) et vous pouvez déduire de vos impôts la somme de 2 640 € ( soit 66% de 4000).
                 <br/>Pour bénéficier de cette réduction d'impôt, l'association Open Atlas (Association à but non lucratif et d'intérêt général) fournira un reçu, indiquant le montant du don effectué. C'est ce reçu qu'il vous faudra joindre à votre déclaration de revenus.
-                 <a href="http://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006191957&cidTexte=LEGITEXT000006069577&dateTexte=vig" target="_blank">Texte de loi officiel<i class="icon-forward icon-white"></i></a></p>
+                 <a href="http://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006191957&cidTexte=LEGITEXT000006069577&dateTexte=vig" target="_blank">Texte de loi officiel<i class="social-forward social-white"></i></a></p>
                 <div class="center">
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                     <input type="hidden" name="cmd" value="_s-xclick">

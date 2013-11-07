@@ -82,7 +82,7 @@
   cursor: pointer;
 }
 
-.b li [class*="entypo-"],.b li [class*="icon-"] {
+.b li [class*="entypo-"],.b li [class*="icon-"],.b li [class*="social-"] {
   display: inline-block;
   position: relative;
   left: 145px;
@@ -109,7 +109,7 @@
   transform: translateX(150px);
   transition: all .3s ease-in-out;
 }
-.b > ul:hover li [class*="entypo-"],.b > ul:hover li [class*="icon-"] {
+.b > ul:hover li [class*="entypo-"],.b > ul:hover li [class*="icon-"],.b > ul:hover li [class*="social-"] {
   transform: translateX(-150px);
   transition-delay: 0;
 }
@@ -143,7 +143,7 @@
         <li><a href="#loginForm"  target="_blank" role="button" data-toggle="modal"><span class="entypo-user"></span><span class="menu-item">s'Inscrire</span></a></li>
         <li><a href="#invitation"  role="button" data-toggle="modal"><span class="entypo-link"></span><span class="menu-item">Invitation</span></a></li>
         <li><a href="<?php echo Yii::app()->createUrl('index.php/thematique')?>"><span class="entypo-tag"></span><span class="menu-item">Thématique</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/statistics')?>"><span class="icon-chart-line"></span> <span class="menu-item">Statistique</span></a>
+        <li><a href="<?php echo Yii::app()->createUrl('index.php/statistics')?>"><span class="social-chart-line"></span> <span class="menu-item">Statistique</span></a>
         	<ul>
                 <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/metier')?>">Metier</a></li>
                 <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/thematique')?>">Thématique</a></li>

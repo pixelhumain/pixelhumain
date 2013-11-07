@@ -10,30 +10,34 @@ $(document).ready(function() {
 	/* *************************** */
 	/* Toile de delaunay en bg */
 	/* *************************** */
-	var w = 1000,
-    h = 1000;
-
-	var vertices = d3.range(2000).map(function(d) {
-	  return [Math.random() * w, Math.random() * h];
-	});
+	console.log("delaunay",showDelaunay);
+	if( showDelaunay  )
+	{
+		var w = 1000,
+	    h = 1000;
 	
-	var delaunay = d3.geom.delaunay(vertices);
-	
-	var svgBG = d3.select("body")
-	  .append("svg")
-	      //.attr("width", "100%")
-	      //.attr("height", "100%")
-	      .attr("preserveAspectRatio", "xMidYMid slice")
-			//.attr("width", w)
-			//.attr("height", h)
-	    .attr("viewBox", [0, 0, w, h].join(' '))
-	
-	    svgBG.append("g")
-	  .selectAll("path")
-	    .data(delaunay)
-	  .enter().append("path")
-	    .attr("class", function(d, i) { return "q" + (i % 9) + "-9"; })
-	    .attr("d", function(d) { return "M" + d.join("L") + "Z"; });
+		var vertices = d3.range(2000).map(function(d) {
+		  return [Math.random() * w, Math.random() * h];
+		});
+		
+		var delaunay = d3.geom.delaunay(vertices);
+		
+		var svgBG = d3.select("body")
+		  .append("svg")
+		      //.attr("width", "100%")
+		      //.attr("height", "100%")
+		      .attr("preserveAspectRatio", "xMidYMid slice")
+				//.attr("width", w)
+				//.attr("height", h)
+		    .attr("viewBox", [0, 0, w, h].join(' '))
+		
+		    svgBG.append("g")
+		  .selectAll("path")
+		    .data(delaunay)
+		  .enter().append("path")
+		    .attr("class", function(d, i) { return "q" + (i % 9) + "-9"; })
+		    .attr("d", function(d) { return "M" + d.join("L") + "Z"; });
+	}
 	/* *************************** */
 	
 	/* *************************** */

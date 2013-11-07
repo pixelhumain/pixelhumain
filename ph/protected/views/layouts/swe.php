@@ -31,6 +31,7 @@
    
    <script>
    var initT = new Object();
+   var showDelaunay = false;
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
    </script>
        <?php //Yii::app()->bootstrap->register(); ?>

@@ -50,6 +50,27 @@ class EvenementController extends Controller {
 	        								   "key"=>$id));
 	    }
 	}
+    
+	public function actionSweInfosForm($id) {
+	    $this->layout = "swe";
+	    $event = Yii::app()->mongodb->group->findOne(array("key"=>$id)); 
+	    $this->secure = $event['private'];
+	    $this->appKey = $event['_id'];
+	    $this->appType = 'group';
+	    // for this event that is private 
+	    // user must be loggued 
+	    // and exist in the event user particpant list
+	    if ( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) )) 
+	        $this->render("swe/sweLogin",array("title"=>$event["name"]));
+	    else {
+	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ) )); 
+	        $user = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
+	        $this->render("swe/sweinfos",array("sweThings"=>$sweThings,
+	        								   "user"=>$user,
+	        								   "event"=>$event,
+	        								   "key"=>$id));
+	    }
+	}
 	
 	public function checkParticipation($event){
 	    $res = false; 
