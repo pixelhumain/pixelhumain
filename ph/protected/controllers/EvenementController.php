@@ -334,7 +334,7 @@ class EvenementController extends Controller {
                   $notification = array( "projet" => $_POST["coachProject"],
                                           "coach" => $_POST["coachRequested"],
                                           "read" => false,
-                                          "type"=>"startUpWeekendCoachRequest",
+                                          "type"=> Notification::NOTIFICATION_SWE_COACH_REQUEST,
                                           "event"=>$_POST["eventId"]);
                   if(!empty($_POST["coachQuestion"]))
                       $notification["question"] = $_POST["coachQuestion"];
@@ -356,7 +356,7 @@ class EvenementController extends Controller {
 	    $coaches = array();
 	    $projects = array();
 	    $ids = array();
-	    $where = array("read"=>false,"type"=>"startUpWeekendCoachRequest","event"=>$id);
+	    $where = array("read"=>false,"type"=>Notification::NOTIFICATION_SWE_COACH_REQUEST,"event"=>$id);
 	    foreach(Yii::app()->mongodb->notifications->find($where,array("coach","projet")) as $k=>$c){
 	        array_push($coaches, $c["coach"]);
 	        array_push($projects, $c["projet"]);
