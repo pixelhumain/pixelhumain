@@ -90,7 +90,7 @@ canvas{position:absolute;top:0px;left:0px;}
                 $project = "";
                 if( $key == "StartupWeekEnd2012" && isset($line["projet"])) 
                     $project = str_replace(' ', '', $line["projet"]);
-                else if( $key == "StartupWeekEnd2013" && isset($line["projet13"])) 
+                else if( $key == "StartupWeekEnd2013" && isset( $line["projet13"] )) 
                     $project = str_replace(' ', '', $line["projet13"]);
                     
                 $img = (isset($line["image"]))? $line["image"]:"";
@@ -121,7 +121,7 @@ canvas{position:absolute;top:0px;left:0px;}
                     //adds show team on project panel
                     if(isset($type) && ( $type=='projet' || $type=='participant')) 
                     {
-                        $xtra .= "<a  class='btn-ph' href='#' onclick='filterType(\"".$project."\")' title='Project Team'><span class='entypo-users'></span></a>";
+                        //$xtra .= "<a  class='btn-ph' href='#' onclick='filterType(\"".$project."\")' title='Project Team'><span class='entypo-users'></span></a>";
                     }
                 } /*else if ( isset($type) && $type=='participant' && in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) )
                     $xtra .= "<a  class='btn' href='#' onclick='filterType(\"projet\")' title='Rejoindre un projet'><span class='entypo-share'></span></a>";*/
