@@ -20,7 +20,7 @@ canvas{position:absolute;top:0px;left:0px;}
 
 .appContent{position:absolute;top:120px;left:120px;z-index:1000;width:90%;display:none}
 .appContent h1{margin-left:0px;text-decoration:underline;font-family: "Homestead";color: #fff;}
-.appContent ul.people li{position:relative;width:190px;height:100px;padding:5px;margin:5px;display:block;float:left;background-color:#FFF;-webkit-border-radius: 5px;-moz-border-radius: 5px;-o-border-radius: 5px;-ms-border-radius: 5px;border-radius: 5px;}
+.appContent ul.people li{position:relative;width:190px;height:150px;padding:5px;margin:5px;display:block;float:left;background-color:#FFF;-webkit-border-radius: 5px;-moz-border-radius: 5px;-o-border-radius: 5px;-ms-border-radius: 5px;border-radius: 5px;}
 .appContent ul.people li.me{background-color:#F5E414;}
 .appContent ul.people li.me img{cursor:pointer}
 .appContent ul.people li.descL {height:150px; }
@@ -80,7 +80,7 @@ canvas{position:absolute;top:0px;left:0px;}
                 $img = (isset($line["image"]))? $line["image"]:"";
                 
                 //desc content
-                $xtra = '<div class="xtra clear"></div><div class="desc">';
+                $xtra = '<div class="xtra clear">'.$email.'</div><div class="desc">';
                 $xtra .= "<a  class='btn-ph' href='#' onclick='' title='Project Team'><span class='entypo-mail'></span></a>";
                 $xtra .= '</div>';
                 
@@ -119,15 +119,7 @@ canvas{position:absolute;top:0px;left:0px;}
 	
 </div>
 
-<ul class="appFooter">	
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/07/logoreunion2.png"/></li>
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/logo-technopole-transparent1.jpg"/></li>
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/Logo-banque-reunion1.png"/></li>
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/supinfo.jpg"/></li>
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/Lalternative_logo_ok1.jpg"/></li>
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/POLE_EMPLOI.jpg"/></li>
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/Logo-NRJ-New-Blanc.jpg"/></li>
-</ul>
+<?php $this->renderPartial('application.views.evenement.swe.sweSponsor');?>
 
 <canvas id="canvas"></canvas>
 

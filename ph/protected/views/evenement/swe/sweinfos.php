@@ -75,7 +75,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
             <?php $me = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));?>
             <!-- Text input-->
             <div class="control-group">
-              <label class="control-label" for="NOM">Votre Nom Prénom</label>
+              <label class="control-label" for="NOM">Votre Prénom Nom</label>
               <div class="controls">
                 <input id="name" name="name" type="text" value="<?php echo $me["name"]?>" class="input-medium" required="">
               </div>
@@ -156,6 +156,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
                                               "étudiant",
                                               "chef d'entreprise",
                                               "travailleur indépendant",
+                                              "expert / spécialiste"
                                             ),
                             'name' => 'profession',
                           	'id' => 'profession',
@@ -183,6 +184,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
                                               "BTS",
                                               "IAE",
                                               "EGC",
+                                              "Beaux Arts"
                                             ),
                             'name' => 'formation',
                           	'id' => 'formation',
@@ -212,6 +214,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
                                               "Design / graphisme",
                                               "Développeur informatique",
                                               "Expert / ingénieur",
+                                              "Informaticien / ingénieur"
                                             ),
                             'name' => 'expertise',
                           	'id' => 'expertise',
@@ -239,7 +242,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
             
             <!-- Select Basic -->
             <div class="control-group">
-              <label class="control-label" for="codepostal">De quelle région de la Réunion venez-vous ?</label>
+              <label class="control-label" for="codepostal">De quelle région venez-vous ?</label>
               <div class="controls">
               <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
@@ -338,15 +341,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
     </div>
 </div>
 
-<ul class="appFooter">	
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/07/logoreunion2.png"/></li>
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/logo-technopole-transparent1.jpg"/></li>
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/Logo-banque-reunion1.png"/></li>
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/supinfo.jpg"/></li>
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/Lalternative_logo_ok1.jpg"/></li>
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/POLE_EMPLOI.jpg"/></li>
-	<li class="sponsor"><img  src="http://reunion.startupweekend.org/files/2012/09/Logo-NRJ-New-Blanc.jpg"/></li>
-</ul>
+<?php $this->renderPartial('application.views.evenement.swe.sweSponsor');?>
 
 <canvas id="canvas"></canvas>
 

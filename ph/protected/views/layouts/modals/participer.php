@@ -3,7 +3,7 @@
 <div id="participer" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Inscription Réussit, Étape suivante ?</h3>
+    <h3 id="myModalLabel">Inscription réussie, Étape suivante ?</h3>
   </div>
   <div class="modal-body" style="max-height:550px" >
   <p> Un mail de validation vous a été envoyé
@@ -24,7 +24,7 @@
                   	<td> <?php if($account && isset($account['email']) )echo $account['email'] ?></td>
               	</tr>
               	<tr>
-                  	<td class="txtright">Je m'appel</td>
+                  	<td class="txtright">Je m'appelle</td>
                   	<td> <input id="registerName" name="registerName" value="<?php if($account && isset($account['name']) )echo $account['name'] ?>"/></td>
               	</tr>
               	<tr>
@@ -111,7 +111,7 @@
     		    </tr>
     		    
     		    <tr >
-                    <td class="txtright">Centre d'interet </td>
+                    <td class="txtright">Centre d'intérêt </td>
                     <td>
                         <?php 
                           $cursor = Yii::app()->mongodb->tags->findOne( array(), array('list'));

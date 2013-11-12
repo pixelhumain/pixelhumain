@@ -133,7 +133,7 @@ class EvenementController extends Controller {
 	    if( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
 	        $this->render("swe/sweLogin");
 	    else {
-	        $sweThings = Yii::app()->mongodb->startupweekend->find(array("type"=>"participant")); 
+	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ),"type"=>"participant")); 
 	        $this->render("swe/swecomplete",array("sweThings"=>$sweThings));
 	    }
 	}
