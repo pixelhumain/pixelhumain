@@ -206,6 +206,10 @@ class EvenementController extends Controller {
               
               //e know all the particiapnts exist
               //adds the project name on the persons data form
+              $projectKey = "projet";
+              if( $_POST["eventId"] == "523321c7c073ef2b380a231c")
+                  $projectKey = "projet13"; 
+                  
 		      if(isset($_POST["projectTeam"])){
 		          $this->SweRejoindreProjet($_POST["projectEmail"],strtolower( str_replace(' ', '', $_POST["projectName"] ) ));
                   foreach(explode(",", $_POST["projectTeam"])as $email){
@@ -224,11 +228,11 @@ class EvenementController extends Controller {
 	/**
 	 * Connecter Personne et Projet
 	 */
-    public function SweRejoindreProjet($mail,$projet) {
+    public function SweRejoindreProjet($mail,$projet,$key) {
 	    $account = Yii::app()->mongodb->startupweekend->findOne(array("email"=>$mail));
         if($account)
         {
-              $account = array("projet"=>$projet);
+              $account = array($key=>$projet);
               Yii::app()->mongodb->startupweekend->save($account);
         } 
 	}

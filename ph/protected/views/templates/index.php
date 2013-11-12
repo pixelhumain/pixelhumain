@@ -3,6 +3,8 @@ ol.slats li {
 	margin: 0 0 10px 50px;
 	padding: 0 0 10px 0;
 	border-bottom: 1px solid #eee;
+	width:150px;
+	float:left;
 	}
 ol.slats li:last-child {
 	margin: 0;
@@ -35,7 +37,7 @@ ol.slats li p span.meta {
 	}				
 </style>
 
-<h2>Should Render directly by reading content of views/templates/ folder</h2>
+<h2>List directly reading content of views/templates/ folder</h2>
 <div class="container" id="accueil">
     <br/>
     <!-- Main hero unit for a primary marketing message or call to action -->
@@ -51,5 +53,6 @@ ol.slats li p span.meta {
 		</h3>
 	</li>
 	<?php }?>
-</ol>			
+</ol>	
+<div class="clear"></div>		
 </div></div>	

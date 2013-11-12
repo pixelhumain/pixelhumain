@@ -75,8 +75,10 @@ class CitoyensController extends Controller {
             if($account){
                 Yii::app()->session["userId"] = $account["_id"];
                 Yii::app()->session["userEmail"] = $account["email"]; 
+                if( isset($account["isAdmin"]) && $account["isAdmin"] )
+                    Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
                 Notification::add(array("type"=>Notification::NOTIFICATION_LOGIN,
-                    												 "user"=>$account["_id"]));
+                    					"user"=>$account["_id"]));
                 echo json_encode(array("result"=>false, "id"=>"accountExist","msg"=>"Ce compte existe déjà.","isCommunected"=>isset($account["cp"])));
             }
             else {

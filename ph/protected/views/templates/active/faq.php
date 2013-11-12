@@ -63,33 +63,23 @@ p {
 </style>
 
 <div class="container">
-	<div class="span3 bs-docs-sidebar">
-        <ul class="nav nav-list bs-docs-sidenav affix-top">
-          <li class="active"><a href="#dropdowns"><i class="icon-chevron-right"></i> Dropdowns</a></li>
-          <li class=""><a href="#buttonGroups"><i class="icon-chevron-right"></i> Button groups</a></li>
-          <li class=""><a href="#buttonDropdowns"><i class="icon-chevron-right"></i> Button dropdowns</a></li>
-          <li class=""><a href="#navs"><i class="icon-chevron-right"></i> Navs</a></li>
-          <li class=""><a href="#navbar"><i class="icon-chevron-right"></i> Navbar</a></li>
-          <li class=""><a href="#breadcrumbs"><i class="icon-chevron-right"></i> Breadcrumbs</a></li>
-          <li class=""><a href="#pagination"><i class="icon-chevron-right"></i> Pagination</a></li>
-          <li class=""><a href="#labels-badges"><i class="icon-chevron-right"></i> Labels and badges</a></li>
-          <li class=""><a href="#typography"><i class="icon-chevron-right"></i> Typography</a></li>
-          <li class=""><a href="#thumbnails"><i class="icon-chevron-right"></i> Thumbnails</a></li>
-          <li class=""><a href="#alerts"><i class="icon-chevron-right"></i> Alerts</a></li>
-          <li class=""><a href="#progress"><i class="icon-chevron-right"></i> Progress bars</a></li>
-          <li><a href="#media"><i class="icon-chevron-right"></i> Media object</a></li>
-          <li><a href="#misc"><i class="icon-chevron-right"></i> Misc</a></li>
-        </ul>
-      </div>	
+	
     <div class="acc-container">
     	<?php 
+    	if(Citoyen::isAdminUser()){
+    	    $this->renderPartial('application.views.templates.active.addfaq');
+    	    echo '<a href="#addFaqForm" role="button" data-toggle="modal" class="btn btn-warning pull-right"><span class="entypo-plus"></span> Ajouter</a>';
+    	} 
     	$ct = 0;
     	foreach( Yii::app()->mongodb->data->find(array( "key" => $name , 
     																  "type" => "qa")) as $qa)
-    	{?>
+    	{
+    	    $updateBtn = (Citoyen::isAdminUser()) ? '<a href="#addFaqForm" role="button" data-toggle="modal" class="btn btn-warning pull-right"><span class="entypo-pencil"></span></a>' : "";
+    	    $delBtn = (Citoyen::isAdminUser()) ? '<a href="#'.$qa["_id"].'" class="delBtn btn btn-warning pull-right"><span class="entypo-cancel"></span></a>' : "";
+    	?>
     																  
-            <div class="acc-btn"><h1 class="selected"> <?php echo $qa["question"]?></h1></div>
-            <div class="acc-content <?php if(!$ct)echo "open"?>">
+            <div class="acc-btn <?php echo $qa["_id"]?>"><h1 class="selected"> <?php echo $qa["question"]?></h1> <?php echo $updateBtn." - ".$delBtn ?></div>
+            <div class="acc-content <?php if(!$ct)echo "open"?> <?php echo $qa["_id"]?>" >
               <div class="acc-content-inner">
                 <p> <?php echo $qa["answer"]?></p>
               </div>
@@ -123,6 +113,26 @@ $(document).ready(function(){
 	    }
 	    
 	  });
-	  
+	  <?php 
+	    if(Citoyen::isAdminUser()){
+	    ?>
+	  $(document).on('touchstart click', '.delBtn', function(event){
+		  event.preventDefault();
+		  toggleSpinner();
+		  $.ajax({
+	    	  type: "POST",
+	    	  url: baseUrl+"/index.php/data/delete",
+	    	  data: {"id":this.hash.substr(1)},
+	    	  success: function(data){
+	    			  $("#flashInfo .modal-body").html(data.msg);
+	    			  toggleSpinner();
+	    		  	  $("#flashInfo").modal('show');
+	    		  	  $( "."+this.hash.substr(1) ).remove();
+	    	  },
+	    	  dataType: "json"
+	    	});
+		  
+	  });
+	  <?php } ?>
 	});
 </script>

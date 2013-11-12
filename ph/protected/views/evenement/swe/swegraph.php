@@ -87,7 +87,12 @@ canvas{position:absolute;top:0px;left:0px;}
                 $type = (isset($line["type"])) ? $line["type"] : null;
                 $email = (isset($line["email"])) ? $line["email"]:null;
                 $desc = (isset($line["desc"])) ? $line["desc"]:null;
-                $project = (isset($line["projet"])) ? str_replace(' ', '', $line["projet"]) : "";
+                $project = "";
+                if( $key == "StartupWeekEnd2012" && isset($line["projet"])) 
+                    $project = str_replace(' ', '', $line["projet"]);
+                else if( $key == "StartupWeekEnd2013" && isset($line["projet13"])) 
+                    $project = str_replace(' ', '', $line["projet13"]);
+                    
                 $img = (isset($line["image"]))? $line["image"]:"";
                 
                 //some panels will have more information than others

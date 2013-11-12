@@ -8,7 +8,18 @@
     	$groupId = "525e306ac073ef2eb85938f7";//"523321c7c073ef2b380a231c";
     	$process = 1 ;
     	echo "created : ".$created."<br/>";
-        if (($handle = fopen("upload/swe.csv", "r")) !== FALSE) 
+    	/*
+    	$event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId( $groupId ))); 
+    	$particpants = array();
+    	foreach ($event["participants"] as $p){
+    	    if(!in_array($p, $particpants))
+    	        array_push($particpants, $p);
+    	    else
+    	        echo $p." exist<br/>";
+    	}
+    	Yii::app()->mongodb->group->update(array( "_id"=>new MongoId( $groupId ) ) , array('$set' => array("participants"=>$particpants)));
+    	*/
+        if (($handle = fopen("upload/swe2.csv", "r")) !== FALSE) 
         {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
             {
@@ -31,6 +42,7 @@
                                 );
                         if($process){
                             $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$line[2]));
+                            //add to citoyens table
                             if($account){
                                 if(!in_array(new MongoId($groupId), $account["events"])){
                                     Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId($groupId))));
@@ -47,6 +59,10 @@
                             }
                             else
                                 Yii::app()->mongodb->citoyens->insert($newAccount);
+
+                            //add a participant
+                            $where = array("_id" => new MongoId($groupId));	
+                            Yii::app()->mongodb->group->update($where, array('$push' => array("participants"=>$newAccount["_id"])));
                                 
                             //add details into statupweekend table
                             $newAccount['type']='participant';
@@ -55,6 +71,7 @@
                             if(!empty($line[5]))
                                 $newAccount['img']=$line[5];
                             
+                            //add a copy to startupweekend table
                             $account = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId($newAccount["_id"])));
                             if(!$account)
                                 Yii::app()->mongodb->startupweekend->insert($newAccount);
