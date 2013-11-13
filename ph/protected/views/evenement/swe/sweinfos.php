@@ -85,7 +85,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
             <div class="control-group">
               <label class="control-label" for="EMAIL">Votre email</label>
               <div class="controls">
-                <input id="email" name="email" type="text" value="<?php echo $me["email"]?>" class="input-large" required="">
+                <?php echo $me["email"]?><input id="email" name="email" type="hidden" value="<?php echo $me["email"]?>" class="input-large" required="">
               </div>
             </div>
             
@@ -123,6 +123,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
                 <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'data' => array(
+                                              "",
                                               "Présentation des organisateurs",
                                               "Internet",
                                               "Facebook ou Twitter",
@@ -136,7 +137,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
                           	'id' => 'commentConnuSWE',
                             'value'=> (isset($me["commentConnuSWE"])) ? $me["commentConnuSWE"] : "",
                             'pluginOptions' => array(
-                                
+                                'width' => '250px',
                             )));
                 ?>
                 
@@ -151,7 +152,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
               	<?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'data' => array(
-                                              "salarié",
+                                              "","salarié",
                                               "demandeur d'emploi",
                                               "étudiant",
                                               "chef d'entreprise",
@@ -164,7 +165,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
                             'pluginOptions' => array(
                                 
                                 'placeholder' => "Profession",
-                                
+                                'width' => '250px',
                                 'tokenSeparators' => array(',', ' ')
                             )));
                 ?>
@@ -178,7 +179,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
               <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'data' => array(
-                                            "ILOI",
+                                            "","ILOI",
                                               "ESIROI",
                                               "IUT",
                                               "BTS",
@@ -192,7 +193,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
                             'pluginOptions' => array(
                                 
                                 'placeholder' => "",
-                                
+                                'width' => '250px',
                                 'tokenSeparators' => array(',', ' ')
                             )));
                 ?>
@@ -207,8 +208,8 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
               <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'data' => array(
-                                            "entrepreneur",
-                                              "gestion / comptabilité",
+                                            "","Entrepreneur",
+                                              "Gestion / comptabilité",
                                               "Commerce",
                                               "Marketing / Communication",
                                               "Design / graphisme",
@@ -222,7 +223,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
                             'pluginOptions' => array(
                                 
                                 'placeholder' => "",
-                                
+                                'width' => '250px',
                                 'tokenSeparators' => array(',', ' ')
                             )));
                 ?>
@@ -247,7 +248,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
               <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'data' => array(
-                                            '97400'=> 'ST DENIS',
+                                            ""=>"",'97400'=> 'ST DENIS',
                                             '97410'=> 'ST PIERRE',
                                             '97411'=> 'BOIS DE NEFLES ST PAUL',
                                             '97412'=> 'BRAS PANON',
@@ -292,7 +293,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
                             'pluginOptions' => array(
                                 
                                 'placeholder' => "",
-                                
+                                'width' => '250px',
                                 'tokenSeparators' => array(',', ' ')
                             )));
                 ?>
@@ -307,7 +308,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
               <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'data' => array(
-                                              "Présenter votre idée nouvelle",
+                                              "","Présenter votre idée nouvelle",
                                               "Présenter votre idée pour l'améliorer",
                                               "Présenter votre idée pour la faire évaluer",
                                               "Trouver une idée pour m'associer à un projet",
@@ -326,7 +327,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
                             'pluginOptions' => array(
                                 
                                 'placeholder' => "",
-                                
+                                'width' => '250px',
                                 'tokenSeparators' => array(',', ' ')
                             )));
                 ?>
