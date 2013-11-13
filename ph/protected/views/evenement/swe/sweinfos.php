@@ -185,7 +185,8 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
                                               "BTS",
                                               "IAE",
                                               "EGC",
-                                              "Beaux Arts"
+                                              "Beaux Arts",
+                							  "SupInfo"
                                             ),
                             'name' => 'formation',
                           	'id' => 'formation',
