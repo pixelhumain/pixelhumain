@@ -13009,3 +13009,22 @@ Stack trace:
 REQUEST_URI=/ph/index.php/templates/page/name/52777ce1c073ef2cb80411ca
 HTTP_REFERER=http://127.0.0.1/ph/index.php/templates/page/name/faq
 ---
+2013/11/12 20:18:32 [error] [php] Undefined index: question (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\templates\active\faq.php:81)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): TemplatesController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): TemplatesController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TemplatesController.php(73): TemplatesController->render()
+#3 unknown(0): TemplatesController->actionPage()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): TemplatesController->runAction()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): TemplatesController->runActionWithFilters()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): TemplatesController->run()
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/templates/page/name/faq
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\templates\active\faq.php (81)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TemplatesController.php (73)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)

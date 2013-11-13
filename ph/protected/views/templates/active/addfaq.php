@@ -15,7 +15,7 @@
                   	<td> <input id="question" name="question" value=""/></td>
               	</tr>
           	</table>
-          	<textarea name="answer" style="width:95%" rows=9></textarea>
+          	<textarea name="answer" id="answer" style="width:95%" rows=9></textarea>
         </section>
     </form>
   </div>

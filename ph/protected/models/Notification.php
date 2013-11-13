@@ -8,6 +8,7 @@ class Notification
     const NOTIFICATION_INVITATION	   = "citizenInvitation";
     
     const NOTIFICATION_SWE_COACH_REQUEST	   = "startUpWeekendCoachRequest";
+    const NOTIFICATION_SWE_SAVED_INFOS	       = "sweSavedInfos";
     
     public static function add($params){
         $params["created"] = time();

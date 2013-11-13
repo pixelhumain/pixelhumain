@@ -159,6 +159,8 @@ class EvenementController extends Controller {
                   Yii::app()->mongodb->startupweekend->update($where, array('$set' => $newInfos));
                   $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
                   
+                  Notification::add(array("type"=>Notification::NOTIFICATION_SWE_SAVED_INFOS,
+                    					  "user"=>$newAccount["_id"]));
                   echo json_encode($result); 
             } else 
                   echo json_encode(array("result"=>false, "id"=>"accountNotExist ".Yii::app()->session["userId"],"msg"=>"Ce compte n'existe plus."));

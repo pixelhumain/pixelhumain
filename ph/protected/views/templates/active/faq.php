@@ -74,7 +74,7 @@ p {
     	foreach( Yii::app()->mongodb->data->find(array( "key" => $name , 
     																  "type" => "qa")) as $qa)
     	{
-    	    $updateBtn = (Citoyen::isAdminUser()) ? '<a href="#addFaqForm" role="button" data-toggle="modal" class="btn btn-warning pull-right"><span class="entypo-pencil"></span></a>' : "";
+    	    $updateBtn = (Citoyen::isAdminUser()) ? '<a href="#'.$qa["_id"].'" class="updateBtn btn btn-warning pull-right"><span class="entypo-pencil"></span></a>' : "";
     	    $delBtn = (Citoyen::isAdminUser()) ? '<a href="#'.$qa["_id"].'" class="delBtn btn btn-warning pull-right"><span class="entypo-cancel"></span></a>' : "";
     	?>
     																  
@@ -119,6 +119,7 @@ $(document).ready(function(){
 	  $(document).on('touchstart click', '.delBtn', function(event){
 		  event.preventDefault();
 		  toggleSpinner();
+		  $( "."+this.hash.substr(1) ).remove();
 		  $.ajax({
 	    	  type: "POST",
 	    	  url: baseUrl+"/index.php/data/delete",
@@ -127,11 +128,17 @@ $(document).ready(function(){
 	    			  $("#flashInfo .modal-body").html(data.msg);
 	    			  toggleSpinner();
 	    		  	  $("#flashInfo").modal('show');
-	    		  	  $( "."+this.hash.substr(1) ).remove();
 	    	  },
 	    	  dataType: "json"
 	    	});
 		  
+	  });
+
+	  $(document).on('touchstart click', '.updateBtn', function(event){
+		  event.preventDefault();
+		  $("#addFaqForm").modal('show');
+		  $("#question").val($("."+this.hash.substr(1)+" h1").text());
+		  $("#answer").val($("."+this.hash.substr(1)+" .acc-content-inner p").text());
 	  });
 	  <?php } ?>
 	});

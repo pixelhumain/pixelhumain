@@ -38,11 +38,7 @@ class DataController extends Controller {
             $account = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
             if( $account && Citoyen::isAdminUser() )
             {
-                  $data = $_POST;
-                  $data["key"] = "faq";
-                  $data["type"] = "qa";
-                  
-                  Yii::app()->mongodb->data->insert($data);
+                  Yii::app()->mongodb->data->remove(array("_id"=>new MongoId($_POST["id"])));
                   $result = array("result"=>true,"msg"=>"Donnée enregistrée.");
                   echo json_encode($result); 
             } else 
