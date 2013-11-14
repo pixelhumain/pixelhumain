@@ -58,7 +58,7 @@ font-family: "Homestead";
         <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/commune/servicesMunicipaux/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>">Services Municipaux</a></div>
         <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/opendata/commune/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>">Open Data Commune</a> </div>
         <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/budget/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>" >Budget</a></div>
-        <div></div>
+        <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/candidat/ci/'.OpenData::$codePostalToCodeInsee["974"][$cp])?>" >Candidat 2014</a></div>
         <div></div>
         <div></div>
    </div>
