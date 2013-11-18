@@ -51,6 +51,7 @@ canvas{position:absolute;top:0px;left:0px;}
     <ul class="appMenu">
     	<?php if( in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) ){ ?>
     		<li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweadmin')?>"><i class="icon-wrench"></i> Admin</a></li>
+    		<li><a href="#exportEmails" role="button" data-toggle="modal"><i class="icon-wrench"></i> EXPORT</a></li>
     	<?php } ?>
     </ul>
 </div>
@@ -69,6 +70,7 @@ canvas{position:absolute;top:0px;left:0px;}
     	$coaches = array();
     	$myproject = '';
     	$projects = array();
+    	$emailList  = "";
         foreach ($sweThings as $line) 
         {
             if(count($line)*100/16 != 100){
@@ -79,6 +81,7 @@ canvas{position:absolute;top:0px;left:0px;}
                 $project = (isset($line["projet"])) ? str_replace(' ', '', $line["projet"]) : "";
                 $img = (isset($line["image"]))? $line["image"]:"";
                 
+                $emailList .= $email.", <br/>";
                 //desc content
                 $xtra = '<div class="xtra clear">'.$email.'</div><div class="desc">';
                 $xtra .= "<a  class='btn-ph' href='#' onclick='' title='Project Team'><span class='entypo-mail'></span></a>";
@@ -122,6 +125,24 @@ canvas{position:absolute;top:0px;left:0px;}
 <?php $this->renderPartial('application.views.evenement.swe.sweSponsor');?>
 
 <canvas id="canvas"></canvas>
+
+<!-- Modal -->
+<div id="exportEmails" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"> Export des comptes</h3>
+  </div>
+  <div class="modal-body">
+    <p> copier coller 
+    </p>
+	<?php echo $emailList;?>
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+  </div>
+</div>
+<!-- Modal -->
 
 <script type="text/javascript">
 
