@@ -43,6 +43,7 @@ class EvenementController extends Controller {
 	        $this->render("swe/sweLogin",array("title"=>$event["name"]));
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ) )); 
+	        $sweThings->sort(array('name' => 1));
 	        $user = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
 	        $this->render("swe/swegraph",array("sweThings"=>$sweThings,
 	        								   "user"=>$user,
@@ -64,6 +65,7 @@ class EvenementController extends Controller {
 	        $this->render("swe/sweLogin",array("title"=>$event["name"]));
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ) )); 
+	        $sweThings->sort(array('name' => 1));
 	        $user = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
 	        $this->render("swe/sweinfos",array("sweThings"=>$sweThings,
 	        								   "user"=>$user,
@@ -134,6 +136,7 @@ class EvenementController extends Controller {
 	        $this->render("swe/sweLogin");
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ),"type"=>"participant")); 
+	        $sweThings->sort(array('name' => 1));
 	        $this->render("swe/swecomplete",array("sweThings"=>$sweThings));
 	    }
 	}
@@ -175,7 +178,8 @@ class EvenementController extends Controller {
 	 */
     public function actionSweProject() 
     { 
-        $event = Yii::app()->mongodb->group->findOne(array("key"=>"StartupWeekEnd2012")); 
+        $eventId = $_POST[ "eventId" ];
+        $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($eventId))); 
 	    if(Yii::app()->request->isAjaxRequest && isset( Yii::app()->session["userId"] ) && self::isParticipantEmail($event,"adminEmail") )
 		{
 		     $eventId = $_POST[ "eventId" ];

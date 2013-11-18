@@ -44,8 +44,8 @@ class CommuneController extends Controller {
 	}
     public function actionCandidat($ci) 
     {
-        $this->render("candidat",array( 'ci' => $ci ,
-        								'service' => Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("candidat","name") )
+        $this->render("candidats",array( 'ci' => $ci ,
+        								'candidat' => Yii::app()->mongodb->codespostauxCandidats->findOne(array('codeinsee'=>$ci ) )
                                           ));
 	}
     

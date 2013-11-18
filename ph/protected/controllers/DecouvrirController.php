@@ -7,7 +7,8 @@
  * Time: 12:25 AM
  */
 class DecouvrirController extends Controller {
-
+    const moduleTitle = "decouvrir";
+    
 	public function accessRules() {
 		return array(
 			// not logged in users should be able to login and view captcha images as well as errors

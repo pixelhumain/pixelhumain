@@ -233,6 +233,18 @@ ol.slats li p span.meta {
 	</li>
 	
 	<li class="group">
+		<h3>Candidats par CodesPostaux </h3>
+		<p> Format Standard d'un candidat au municipale</p>
+		<?php 
+		$entry = Yii::app()->mongodb->codespostauxCandidats->findOne(array("_id"=>new MongoId("528467d9c073ef2528e188f8")));
+	    array_shift($entry);
+	    $entry["2014"][0]["program"] = array();
+	    
+		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>";
+		?>
+	</li>
+	
+	<li class="group">
 	    <?php 
 		$entries = Yii::app()->mongodb->lists->find();
 		$listNames = "";

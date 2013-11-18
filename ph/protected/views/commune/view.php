@@ -84,7 +84,7 @@ font-family: "Homestead";
 			<h2>Informations / Activité</h2>
 			
 			<?php
-			 $rss = Yii::app()->mongodb->data->find(array("cp"=>$cp,"type"=>"rss"));
+			$rss = Yii::app()->mongodb->data->find(array("cp"=>$cp,"type"=>"rss"));
 			if( Yii::app()->mongodb->data->count(array("cp"=>$cp,"type"=>"rss")) ){
 			    foreach($rss as $r){
         			echo $r["title"]."<br/>";
