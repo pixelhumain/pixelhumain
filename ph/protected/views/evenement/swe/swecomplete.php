@@ -46,12 +46,13 @@ canvas{position:absolute;top:0px;left:0px;}
 .cRed{color:red;}
 .coachRequestedColor{border:5px solid red;}
 </style>
-<?php $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId("523321c7c073ef2b380a231c")));?>
+<?php $event = Yii::app()->mongodb->group->findOne(array("key"=>$key));?>
 <div class="appMenuContainer">
     <ul class="appMenu">
     	<?php if( in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) ){ ?>
-    		<li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweadmin')?>"><i class="icon-wrench"></i> Admin</a></li>
+    		<li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweadmin/id/'.$key)?>"><i class="icon-wrench"></i> Admin</a></li>
     		<li><a href="#exportEmails" role="button" data-toggle="modal"><i class="icon-wrench"></i> EXPORT</a></li>
+    		<li><a href='#cancelParticipation'  role='button' data-toggle='modal'><i class='entypo-cancel'></i> Supprimer un participant</a></li>
     	<?php } ?>
     </ul>
 </div>
@@ -84,7 +85,6 @@ canvas{position:absolute;top:0px;left:0px;}
                 $emailList .= $email.", <br/>";
                 //desc content
                 $xtra = '<div class="xtra clear">'.$email.'</div><div class="desc">';
-                $xtra .= "<a  class='btn-ph' href='#' onclick='' title='Project Team'><span class='entypo-mail'></span></a>";
                 $xtra .= '</div>';
                 
                 $img = (!empty($img) ) ? Yii::app()->createUrl('upload/swe/'.$img) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); 
@@ -133,8 +133,7 @@ canvas{position:absolute;top:0px;left:0px;}
     <h3 id="myModalLabel"> Export des comptes</h3>
   </div>
   <div class="modal-body">
-    <p> copier coller 
-    </p>
+   
 	<?php echo $emailList;?>
     
   </div>
@@ -143,6 +142,59 @@ canvas{position:absolute;top:0px;left:0px;}
   </div>
 </div>
 <!-- Modal -->
+
+
+
+<!-- Modal -->
+<div id="cancelParticipation" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"> Annuler ce participant</h3>
+  </div>
+  <div class="modal-body">
+    <form id="cancelParticipationForm" style="line-height:40px;">
+        <section>
+          	<table>
+          	<tr>
+              	<td class="txtright">Email</td>
+              	<td> <input id="personEmail" name="personEmail" value=""/></td>
+          	</tr>
+          	<input type="hidden" id="eventId" name="eventId" value="<?php echo $event["_id"]?>"/>
+          </table>
+        </section>
+        
+    </form>
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+    <button class="btn btn-primary" id="submitCancel" onclick="$('#cancelParticipationForm').submit();">Enregistrer</button>
+  </div>
+</div>
+<!-- Modal -->
+
+<script type="text/javascript">
+initT['swePersonModalsInit'] = function(){
+	
+    $("#cancelParticipationForm").submit( function(event){
+    	event.preventDefault();
+    	$("#cancelParticipation").modal('hide');
+    	NProgress.start();
+    	$.ajax({
+    	  type: "POST",
+    	  url: baseUrl+"/index.php/evenement/swecancelparticipation",
+    	  data: $("#cancelParticipationForm").serialize(),
+    	  success: function(data){
+    			  $("#flashInfo .modal-body").html(data.msg);
+    			  $("#flashInfo").modal('show');
+    			  window.location.reload();
+    			  NProgress.done();
+    	  },
+    	  dataType: "json"
+    	});
+    });
+};
+</script>
 
 <script type="text/javascript">
 

@@ -137,7 +137,7 @@ class EvenementController extends Controller {
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ),"type"=>"participant")); 
 	        $sweThings->sort(array('name' => 1));
-	        $this->render("swe/swecomplete",array("sweThings"=>$sweThings));
+	        $this->render("swe/swecomplete",array("sweThings"=>$sweThings,"key"=>$id));
 	    }
 	}
 	/**
@@ -154,7 +154,7 @@ class EvenementController extends Controller {
     { 
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
 		{
-            $account = Yii::app()->mongodb->startupweekend->findOne(array("email"=>Yii::app()->session["userEmail"]));
+            $account = Yii::app()->mongodb->startupweekend->findOne(array("email"=>$_POST["personEmail"]));
             if($account)
             {
                   $newInfos = $_POST;
@@ -165,6 +165,30 @@ class EvenementController extends Controller {
                   Notification::add(array("type" => Notification::NOTIFICATION_SWE_SAVED_INFOS,
                     					  "user" => Yii::app()->session["userId"] ));
                   echo json_encode($result); 
+            } else 
+                  echo json_encode(array("result"=>false, "id"=>"accountNotExist ".Yii::app()->session["userId"],"msg"=>"Ce compte n'existe plus."));
+                
+		} else
+		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
+		exit;
+	}
+	/**
+	 * Cancel event participation
+	 * 
+	 */
+    public function actionSweCancelParticipation() 
+    { 
+	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
+		{
+            $account = Yii::app()->mongodb->startupweekend->findOne(array("email"=>$_POST["personEmail"]));
+            if($account )
+            {	
+                Yii::app()->mongodb->startupweekend->update( array( "email" => $_POST["personEmail"] ) , array('$pull' => array("events"=>new MongoId( $_POST["eventId"]))));
+                Yii::app()->mongodb->citoyens->update( array( "email" => $_POST["personEmail"] ) , array('$pull' => array("events"=>new MongoId( $_POST["eventId"]))));
+                Yii::app()->mongodb->group->update( array( "_id"=>new MongoId( $_POST["eventId"]) ) , array('$pull' => array("participants"=>new MongoId( $_POST["eventId"]))));
+                
+                $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
+                echo json_encode($result); 
             } else 
                   echo json_encode(array("result"=>false, "id"=>"accountNotExist ".Yii::app()->session["userId"],"msg"=>"Ce compte n'existe plus."));
                 
