@@ -206,11 +206,37 @@ class EvenementController extends Controller {
 		{
             $account = Yii::app()->mongodb->startupweekend->findOne(array("email"=>$_POST["email"]));
             if($account )
-            {	
+            {	//var_dump($account);
                 unset($account['events']);
                 unset($account['_id']);
-                $account['created'] = date('d-m-Y',$account['created']); 
-                $result = array("result"=>true,"msg"=>str_replace(",", ",<br/>", json_encode($account)));
+                unset($account['type']);
+                if( isset($account['commentConnuSWE'] ) && $account['commentConnuSWE'] ) $account['commentConnuSWE'] = SWE::$commentConnuSWE[ $account['commentConnuSWE']-1 ]; else unset($account['commentConnuSWE']);
+                if( isset($account['expertise'] ) && $account['expertise'] ) $account['expertise']       = SWE::$expertise[ $account['expertise']  ]; else unset($account['expertise']);
+                if( isset($account['formation'] ) && $account['formation'] ) $account['formation']       = SWE::$formation[ $account['formation'] ]; else unset($account['formation']);
+                if( isset($account['objectif'] ) && $account['objectif'] ) $account['objectif']        = SWE::$objectif[ $account['objectif'] ]; else unset($account['objectif']);
+                if( isset($account['profession'] ) && $account['profession'] ) $account['profession']      = SWE::$profession[ $account['profession']-1 ]; else unset($account['profession']);
+                $image = "";
+                if( isset($account['image'] ) && $account['image'] ) {
+                    $image = "<div class='pull-right'><img src='".Yii::app()->createUrl( 'upload/swe/'.$account['image'] )."' width='150'/></div>"; 
+                    unset($account['image']);
+                 }
+                
+                $msg = "";
+                foreach($account as $k=>$v){
+                    $msg .= "<li><b>".strtoupper($k)."</b> : ".$v."</li>";
+                }
+                $msg = $image."<ul>".$msg."</ul>";
+                
+                /*$account['created'] = date('d-m-Y',$account['created']); 
+                $msg = str_replace(",", "</li><li><b>", json_encode($account));
+                $msg = str_replace(':', '</b> ', $msg);
+                $msg = str_replace('"', '', $msg);
+                $msg = str_replace('{', '', $msg);
+                $msg = str_replace('}', '', $msg);
+                $msg = "<ul><li><b>".$msg."</li></ul>";*/
+                //$msg = html_entity_decode(preg_replace("/U\+([0-9A-F]{4})/", "&#x\\1;", $msg), ENT_NOQUOTES, 'UTF-8');
+                
+                $result = array("result"=>true,"msg"=>$msg);
                 echo json_encode($result); 
             } else 
                   echo json_encode(array("result"=>false, "id"=>"accountNotExist ".Yii::app()->session["userId"],"msg"=>"Ce compte n'existe plus."));

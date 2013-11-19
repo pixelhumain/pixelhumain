@@ -122,17 +122,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
               <div class="controls">
                 <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                            'data' => array(
-                                              "",
-                                              "Présentation des organisateurs",
-                                              "Internet",
-                                              "Facebook ou Twitter",
-                                              "Presse",
-                                              "Autre média (radio, TV)",
-                                              "Newsletter ou mailing",
-                                              "Pôle Emploi",
-                                              "Ancien participant"
-                                            ),
+                            'data' => SWE::$commentConnuSWE,
                             'name' => 'commentConnuSWE',
                           	'id' => 'commentConnuSWE',
                             'value'=> (isset($me["commentConnuSWE"])) ? $me["commentConnuSWE"] : "",
@@ -151,14 +141,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
               <div class="controls">
               	<?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                            'data' => array(
-                                              "","salarié",
-                                              "demandeur d'emploi",
-                                              "étudiant",
-                                              "chef d'entreprise",
-                                              "travailleur indépendant",
-                                              "expert / spécialiste"
-                                            ),
+                            'data' => SWE::$profession,
                             'name' => 'profession',
                           	'id' => 'profession',
                             'value'=> (isset($me["profession"])) ? $me["profession"] : "",
@@ -178,16 +161,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
               <div class="controls">
               <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                            'data' => array(
-                                            "","ILOI",
-                                              "ESIROI",
-                                              "IUT",
-                                              "BTS",
-                                              "IAE",
-                                              "EGC",
-                                              "Beaux Arts",
-                							  "SupInfo"
-                                            ),
+                            'data' => SWE::$formation,
                             'name' => 'formation',
                           	'id' => 'formation',
                             'value'=> (isset($me["formation"])) ? $me["formation"] : "",
@@ -208,16 +182,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
               <div class="controls">
               <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                            'data' => array(
-                                            "","Entrepreneur",
-                                              "Gestion / comptabilité",
-                                              "Commerce",
-                                              "Marketing / Communication",
-                                              "Design / graphisme",
-                                              "Développeur informatique",
-                                              "Expert / ingénieur",
-                                              "Informaticien / ingénieur"
-                                            ),
+                            'data' => SWE::$expertise,
                             'name' => 'expertise',
                           	'id' => 'expertise',
                             'value'=> (isset($me["expertise"])) ? $me["expertise"] : "",
@@ -248,46 +213,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
               <div class="controls">
               <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                            'data' => array(
-                                            ""=>"",'97400'=> 'ST DENIS',
-                                            '97410'=> 'ST PIERRE',
-                                            '97411'=> 'BOIS DE NEFLES ST PAUL',
-                                            '97412'=> 'BRAS PANON',
-                                            '97413'=> 'CILAOS',
-                                            '97414'=> 'ENTRE DEUX',
-                                            '97416'=> 'LA CHALOUPE',
-                                            '97417'=> 'LA MONTAGNE',
-                                            '97418'=> 'LA PLAINE DES CAFRES',
-                                            '97419'=> 'LA POSSESSION',
-                                            '97420'=> 'LE PORT',
-                                            '97421'=> 'LA RIVIERE',
-                                            '97422'=> 'LA SALINE',
-                                            '97423'=> 'LE GUILLAUME',
-                                            '97424'=> 'LE PITON ST LEU',
-                                            '97425'=> 'LES AVIRONS',
-                                            '97426'=> 'LES TROIS BASSINS',
-                                            '97427'=> 'L ETANG SALE',
-                                            '97429'=> 'PETITE ILE',
-                                            '97430'=> 'LE TAMPON',
-                                            '97431'=> 'LA PLAINE DES PALMISTES',
-                                            '97432'=> 'RAVINE DES CABRIS',
-                                            '97433'=> 'SALAZIE',
-                                            '97434'=> 'LES TROIS BASSINS',
-                                            '97434'=> 'ST GILLES LES BAINS' ,
-                                            '97435'=> 'ST GILLES LES HAUTS',
-                                            '97436'=> 'ST LEU',
-                                            '97437'=> 'STE ANNE',
-                                            '97438'=> 'STE MARIE',
-                                            '97439'=> 'STE ROSE',
-                                            '97440'=> 'ST ANDRE',
-                                            '97441'=> 'STE SUZANNE',
-                                            '97442'=> 'ST PHILIPPE',
-                                            '97450'=> 'ST LOUIS',
-                                            '97460'=> 'ST PAUL',
-                                            '97470'=> 'ST BENOIT',
-                                            '97480'=> 'ST JOSEPH',
-                                            '97490'=> 'STE CLOTILDE'
-                                            ),
+                            'data' => OpenData::$commune['974'],
                             'name' => 'codepostal',
                           	'id' => 'codepostal',
                             'value'=> (isset($me["codepostal"])) ? $me["codepostal"] : "",
@@ -308,20 +234,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
               <div class="controls">
               <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                            'data' => array(
-                                              "","Présenter votre idée nouvelle",
-                                              "Présenter votre idée pour l'améliorer",
-                                              "Présenter votre idée pour la faire évaluer",
-                                              "Trouver une idée pour m'associer à un projet",
-                                              "faire avancer mon projet",
-                                              "trouver des associés / partenaires",
-                                              "rencontrer des nouvelles personnes",
-                                              "satisfaire votre curiosité",
-                                              "vous former (en accéléré) à la création d'entreprise",
-                                              "recevoir des conseils d'experts",
-                                              "répondre à un 'besoin' précis",
-                                              "le challenge, le 'fun'",
-                                            ),
+                            'data' => SWE::$objectif,
                             'name' => 'objectif',
                           	'id' => 'objectif',
                             'value'=> (isset($me["objectif"])) ? $me["objectif"] : "",

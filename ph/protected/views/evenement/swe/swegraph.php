@@ -20,24 +20,25 @@ canvas{position:absolute;top:0px;left:0px;}
 
 .appContent{position:absolute;top:120px;left:120px;z-index:1000;width:90%;display:none}
 .appContent h1{margin-left:0px;text-decoration:underline;font-family: "Homestead";color: #fff;}
-.appContent ul.people li{position:relative;width:190px;height:100px;padding:5px;margin:5px;display:block;float:left;background-color:#FFF;-webkit-border-radius: 5px;-moz-border-radius: 5px;-o-border-radius: 5px;-ms-border-radius: 5px;border-radius: 5px;}
+.appContent ul.people li{cursor:pointer;position:relative;width:190px;height:100px;padding:5px;margin:5px;display:block;float:left;background-color:#FFF;-webkit-border-radius: 5px;-moz-border-radius: 5px;-o-border-radius: 5px;-ms-border-radius: 5px;border-radius: 5px;}
 .appContent ul.people li.me{background-color:#F5E414;}
 .appContent ul.people li.me img{cursor:pointer}
 .appContent ul.people li.descL {height:200px; }
 .appContent li.participant{border:2px solid yellow;background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png')?>') no-repeat bottom left;}
 .appContent li.projet{border:2px solid orange;}
 .appContent li.coach{border:2px solid purple;}
+
 .appContent li.jury{border:2px solid red;}
 .appContent li.organisateur{border:2px solid blue;}
 .sponsor {list-style:none}
 .sponsor img{width:100px;margin-bottom:20px;}
 .appContent div.infos{word-wrap:break-word;text-align:right}
-.appContent div.type {display:block;float:right;font-size:x-small;}
-.appContent div.name {font-family: "Homestead";color: #324553;font-size:medium; margin-left:10px;display:block;float:right; }
-.appContent div.desc {position:absolute;width:100%;bottom:0px; margin:5px;text-align:left;word-wrap: break-word;width:180px;padding-right:5px;}
+.appContent div.type {display:block;float:right;font-size:x-small;clear:both;}
+.appContent div.name {font-family: "Homestead";color: #324553;font-size:medium; margin-left:10px;display:block;position:absolute;bottom:5px;right:5px; }
+.appContent div.desc {position:absolute;width:100%;bottom:0px; margin:5px;text-align:left;word-wrap: break-word;width:180px;padding-right:5px;position:absolute;top:50px;left:5px;}
 .appContent div.desc span.txt{font-size:small;}
-.appContent div.desc a.btn-ph{display:inline-block;float:left;margin-right:5px;}
-.appContent div.thumb{height:40px;width:40px;float:left;}
+.appContent div.desc a.btn-ph{display:inline-block;float:left;margin-right:5px;position:absolute;bottom:5px;left:5px;}
+.appContent div.thumb{position:absolute;height:40px;width:40px;top:5px;left:5px;}
 .appContent .metier{width:20px;height:20px;background-color:red;position:relative; top:0px; right:0px;-webkit-border-radius: 20px;-moz-border-radius: 20px;-o-border-radius: 20px;-ms-border-radius: 20px;border-radius: 20px;border:1px solid #000;}
 
 .appFooter{position:fixed;bottom:0px;right:0px;width:100px;z-index:2000;margin:15px;}
@@ -125,7 +126,7 @@ canvas{position:absolute;top:0px;left:0px;}
                     }
                 } /*else if ( isset($type) && $type=='participant' && in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) )
                     $xtra .= "<a  class='btn' href='#' onclick='filterType(\"projet\")' title='Rejoindre un projet'><span class='entypo-share'></span></a>";*/
-                    
+                 
                 
                 //join Btn on project panel
                 if(isset($type) && $type=='projet'){
@@ -139,14 +140,14 @@ canvas{position:absolute;top:0px;left:0px;}
                 $xtra .= '</div>';
                 
                 $img = (!empty($img) ) ? Yii::app()->createUrl('upload/swe/'.$img) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); 
-                
+                $canView = ( in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) ) ? 'onclick="showPerson(\''.$email.'\')"' : "";   
                 if(!empty($name) && isset($type))
                 {
                     $names = explode(" ", $name);
                     $strNames = "";
-                    if( count($names) > 2 )
+                    /*if( count($names) > 2 )
                         $strNames = $names[0]."<br/>".str_replace($names[0], '', $name);
-                    else
+                    else*/
                         $strNames = str_replace( ' ', '<br/>', $name );
     
                     $coachClass = "";
@@ -154,14 +155,12 @@ canvas{position:absolute;top:0px;left:0px;}
                         $coaches[str_replace(' ', '', $name)] = $name;
                         $coachClass = str_replace(' ', '', $name);
                     }     
-                    echo '<li class="'.$type.' '.$classDesc.' hide '.$classProjet.' '.$classMe.' '.$coachClass.'">'.
-                    		'<div class="thumb">
-                    			<img src="'.$img.'"/>
-                    		</div>
+                    echo '<li class="'.$type.' '.$classDesc.' hide '.$classProjet.' '.$classMe.' '.$coachClass.'" '.$canView.'>'.
+                    		'
                     		<div class="infos">
-                    			<div class="type">'.((isset($type)) ?$type:"coco").'</div>
-                    			<br/>
-                    			<div class="name">'.$strNames.'</div>'.
+                    			<div class="type">'.((isset($type)) ?$type:"").'</div>
+                    			<div class="name ">'.$strNames.'</div>
+                    			<div class="thumb" ><img src="'.$img.'" /></div>'.
                                 $xtra.'
                     		</div>
                     	 </li>';
@@ -186,6 +185,18 @@ canvas{position:absolute;top:0px;left:0px;}
 
 
 <script type="text/javascript">
+function showPerson(email){
+	$.ajax({
+  	  type: "POST",
+  	  url: baseUrl+"/index.php/evenement/sweGetPerson",
+  	  data: {"email":email},
+  	  success: function(data){
+  			  $("#flashInfo .modal-body").html(data.msg);
+  			  $("#flashInfo").modal('show');
+  	  },
+  	  dataType: "json"
+  	});
+}
 var previousDataCoach = {"count":0};
 function getCoachCount(){
     $.getJSON(baseUrl+"/index.php/evenement/sweNotifications/id/<?php echo $event["_id"]?>", function(data) {
