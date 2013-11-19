@@ -197,6 +197,29 @@ class EvenementController extends Controller {
 		exit;
 	}
 	/**
+	 * REcuperer le contenu d'un compte
+	 * 
+	 */
+    public function actionSweGetPerson() 
+    { 
+	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
+		{
+            $account = Yii::app()->mongodb->startupweekend->findOne(array("email"=>$_POST["email"]));
+            if($account )
+            {	
+                unset($account['events']);
+                unset($account['_id']);
+                $account['created'] = date('d-m-Y',$account['created']); 
+                $result = array("result"=>true,"msg"=>str_replace(",", ",<br/>", json_encode($account)));
+                echo json_encode($result); 
+            } else 
+                  echo json_encode(array("result"=>false, "id"=>"accountNotExist ".Yii::app()->session["userId"],"msg"=>"Ce compte n'existe plus."));
+                
+		} else
+		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
+		exit;
+	}
+	/**
 	 * Creer un nouveau projet pour le SUWE
 	 * only for admins 
 	 */

@@ -121,7 +121,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
         $ct = 0;
         foreach (Yii::app()->mongodb->startupweekend->find(array("type"=>"participant","events"=>$event["_id"])) as $line) 
         {
-            if(count($line)*100/16 != 100)
+            if(count($line)*100/16 < 50)
                $ct++;
         } 
             ?>

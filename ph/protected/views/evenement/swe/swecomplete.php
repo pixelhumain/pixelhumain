@@ -74,7 +74,7 @@ canvas{position:absolute;top:0px;left:0px;}
     	$emailList  = "";
         foreach ($sweThings as $line) 
         {
-            if(count($line)*100/16 != 100){
+            if(count($line)*100/16 < 50 ){
                 $name = (isset($line["name"])) ? $line["name"]: null;
                 $type = (isset($line["type"])) ? $line["type"] : null;
                 $email = (isset($line["email"])) ? $line["email"]:null;
@@ -85,6 +85,7 @@ canvas{position:absolute;top:0px;left:0px;}
                 $emailList .= $email.", <br/>";
                 //desc content
                 $xtra = '<div class="xtra clear">'.$email.'</div><div class="desc">';
+                $xtra .= '<a  class="btn-ph" href="javascript:;" onclick="showPerson(\''.$email.'\')"><span class="entypo-eye"></span></a>';
                 $xtra .= '</div>';
                 
                 $img = (!empty($img) ) ? Yii::app()->createUrl('upload/swe/'.$img) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); 
@@ -173,6 +174,7 @@ canvas{position:absolute;top:0px;left:0px;}
 </div>
 <!-- Modal -->
 
+
 <script type="text/javascript">
 initT['swePersonModalsInit'] = function(){
 	
@@ -197,6 +199,18 @@ initT['swePersonModalsInit'] = function(){
 </script>
 
 <script type="text/javascript">
+function showPerson(email){
+	$.ajax({
+  	  type: "POST",
+  	  url: baseUrl+"/index.php/evenement/sweGetPerson",
+  	  data: {"email":email},
+  	  success: function(data){
+  			  $("#flashInfo .modal-body").html(data.msg);
+  			  $("#flashInfo").modal('show');
+  	  },
+  	  dataType: "json"
+  	});
+}
 
 initT['sweGraphInit'] = function(){
 	
