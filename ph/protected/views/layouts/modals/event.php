@@ -63,7 +63,7 @@
                     <td class="txtright">Centre d'interet </td>
                     <td>
                         <?php 
-                          $cursor = Yii::app()->mongodb->tags->findOne( array(), array('list'));
+                          $cursor = Yii::app()->mongodb->lists->findOne( array("name"=>"tags"), array('list'));
                           $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'asDropDownList' => false,
                             'name' => 'tagsEvent',

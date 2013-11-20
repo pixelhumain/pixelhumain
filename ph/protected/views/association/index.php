@@ -51,11 +51,15 @@ ol.slats li p span.meta {
     <p> Valorisation des associations locale, des leurs actions et objectifs </p>
 <ol class="slats">
 	<?php 
-    $pa = Yii::app()->mongodb->group;
-    $ct = $pa->find(array("type"=>"association"));
-    foreach ($ct as $e){
+    $pa = Yii::app()->mongodb->group->find(array("type"=>PixelHumain::TYPE_ASSOCIATION));
+    foreach ($pa as $e){
     ?>
-    <li class="group"><h3><a href="<?php echo Yii::app()->createUrl('index.php/association/view/id/'.$e["_id"])?>"><?php echo $e["name"]?></a></h3></li>
+    <li class="group"><h3><a href="<?php echo Yii::app()->createUrl('index.php/association/view/id/'.$e["_id"])?>"><?php echo $e["name"]?></a>
+    <?php 
+    	echo ((Citoyen::isAdminUser()) ? '<a href="#'.$e["_id"].'" class="updateBtn btn btn-primary pull-right"><span class="entypo-pencil"></span></a>' : "");
+    	echo ((Citoyen::isAdminUser()) ? '<a href="#'.$e["_id"].'" class="delBtn btn btn-primary pull-right"><span class="entypo-cancel"></span></a>' : "");
+    	?>
+    </h3></li>
     <?php }?>
     
 </ol>   	
@@ -65,5 +69,29 @@ initT['animInit'] = function(){
 (function ani(){
 	  TweenMax.staggerFromTo(".container h2", 4, {scaleX:0.4, scaleY:0.4}, {scaleX:1, scaleY:1},1);
 })();
+<?php 
+	    if(Citoyen::isAdminUser()){
+	    ?>
+	  $(document).on('touchstart click', '.delBtn', function(event){
+		  //console.log(this.hash.substr(1));
+		  if(confirm("t'es sur de ton copup ?")){
+		  event.preventDefault();
+		  toggleSpinner();
+		  $( "."+this.hash.substr(1) ).remove();
+		  $.ajax({
+	    	  type: "POST",
+	    	  url: baseUrl+"/index.php/association/delete",
+	    	  data: {"id":this.hash.substr(1)},
+	    	  success: function(data){
+	    			  $("#flashInfo .modal-body").html(data.msg);
+	    			  toggleSpinner();
+	    		  	  $("#flashInfo").modal('show');
+	    		  	  window.location.reload();
+	    	  },
+	    	  dataType: "json"
+	    	});
+		  }
+	  });
+	  <?php } ?>
 };
 </script>			

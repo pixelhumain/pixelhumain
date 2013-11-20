@@ -27,7 +27,7 @@ font-family: "Homestead";
 }
 
 .grid > div {
-padding:px;
+padding:5px;
   background: #AAA;
   position: absolute;
   height: 50px;
@@ -42,43 +42,63 @@ padding:px;
   border: 1px dashed blue;
 }	
 .graph div.block{border:1px solid #666;text-align:center}
-#myfirstchart svg{z-index: 1000;}
-.actu ul{text-align:left;font-size:small}
+
 </style>
 
 <div class="container graph">
     <br/>
     <div class="hero-unit">
+        <?php if(isset(Yii::app()->session["userId"])){?>
 		<h2><?php echo $user["name"]?></h2>
    		 <p> </p>
      	<div class="grid">
             <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/cp/'.$user["cp"])?>"  > Ma Commune </a></div>
-            <div data-ss-colspan="2"><a href="#association"   target="_blank" role="button" data-toggle="modal"  > + Association </a></div>
+            <?php /*?><div data-ss-colspan="2"><a href="#association"   target="_blank" role="button" data-toggle="modal"  > + Association </a></div>*/?>
+            <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/association/creer')?>"  > + Association </a></div>
             <div data-ss-colspan="3"><a href="#entreprise"   target="_blank" role="button" data-toggle="modal">+ Société</a></div>
             <div data-ss-colspan="3"><a href="#invitation"   target="_blank" role="button" data-toggle="modal">+ Invitation</a> </div>
             <div data-ss-colspan="2"><a href="#association"   target="_blank" role="button" data-toggle="modal"> Activité Citoyenne </a></div>
-            <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"></a></div>
+            <div data-ss-colspan="2"><a href="#connection"   target="_blank" role="button" data-toggle="modal">+ Connection</a></div>
             <div></div>
             <div></div>
             <div></div>
        </div>
-		
+		<?php } else {?>
+		<h2><div data-ss-colspan="2"><a href="#loginForm"   target="_blank" role="button" data-toggle="modal"  > Connectez Vous  </a> Pour en voir plus</div></h2>
+		<?php }?>
 	</div>
 </div>		
-		
+<?php if(isset(Yii::app()->session["userId"])){?>
 <div class="container graph">
 <div class="hero-unit">
 	<div class="row-fluid">
+		<?php if(isset($user["associations"])){?>
 		<div class="span4 block">
-			<h2>Liste Assocation</h2>
+			<h2>Mes Assocations</h2>
+			<?php 
 			
-			<div id="myfirstchart" style="height: 250px;"></div>
+			foreach($user["associations"] as $a){
+			    $entity = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($a),"type"=>PixelHumain::TYPE_ASSOCIATION));
+			    echo "<a href='".Yii::app()->createUrl('index.php/association/view/id/'.$entity["_id"])."' class='btn btn-warning'>".$entity["name"]."</a><br/>";
+			}
+			?>
+			<br/>
 		</div>
+		<?php }?>
+		
+		<?php if(isset($user["entreprises"])){?>
 		<div class=" actu span4 block">
 			<h2>Liste Entreprise</h2>
-			
-			
+			<?php 
+			foreach($user["entreprises"] as $a){
+			    $entity = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($a),"type"=>PixelHumain::TYPE_ENTREPRISE));
+			    echo "<a href='".Yii::app()->createUrl('index.php/entrepise/view/id/'.$entity["_id"])."' class='btn btn-warning'>".$entity["name"]."</a><br/>";
+			}
+			?>
+			<br/>
 		</div>
+		<?php }?>
+		
 		<div class="span4 block">
 			<h2>Liste Rezotage </h2>
 			
@@ -142,7 +162,7 @@ padding:px;
 	</div>
 	
 </div></div>
-
+<?php } ?>
 
 
 <script type="text/javascript"		>

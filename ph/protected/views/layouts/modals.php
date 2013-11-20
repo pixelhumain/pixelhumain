@@ -5,7 +5,7 @@ else
     $this->renderPartial('application.views.layouts.modals.loginForm');
 ?>
 <?php $this->renderPartial('application.views.layouts.modals.participer',array( "account" => $account));?>
-<?php $this->renderPartial('application.views.layouts.modals.association',array( "account" => $account) );?>
+<?php //$this->renderPartial('application.views.layouts.modals.association',array( "account" => $account) );?>
 <?php $this->renderPartial('application.views.layouts.modals.entreprise');?>
 <?php $this->renderPartial('application.views.layouts.modals.invitation');?>
 <?php $this->renderPartial('application.views.layouts.modals.boiteIdee');?>

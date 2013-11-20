@@ -64,7 +64,7 @@ class CitoyensController extends Controller {
 	 * Register
 	 * on PH we registration requires only an email 
 	 * test exists 
-	 * otherwise add the DB 
+	 * otherwise add to DB 
 	 * send validation mail 
 	 */
 	public function actionRegister()
@@ -101,6 +101,7 @@ class CitoyensController extends Controller {
                     Yii::app()->mongodb->citoyens->insert($newAccount);
                     Yii::app()->session["userId"] = $newAccount["_id"]; 
                     Yii::app()->session["userEmail"] = $newAccount["email"];
+                    
                     //send validation mail
                     //TODO : make emails as cron jobs
                     /*$message = new YiiMailMessage;
@@ -299,7 +300,7 @@ class CitoyensController extends Controller {
                     Yii::app()->mongodb->citoyens->insert($newAccount);
                     //send validation mail
                     //TODO : make emails as cron jobs
-                    $message = new YiiMailMessage;
+                    /*$message = new YiiMailMessage;
                     $message->view = 'invitation';
                     $name = (isset($sponsor["name"])) ? "par ".$sponsor["name"] : "par ".$sponsor["email"];
                     $message->setSubject('Invitation au projet Pixel Humain '.$name);
@@ -307,7 +308,7 @@ class CitoyensController extends Controller {
                                             "sponsorName"=>$name), 'text/html');
                     $message->addTo("oceatoon@gmail.com");//$_POST['inviteEmail']
                     $message->from = Yii::app()->params['adminEmail'];
-                    Yii::app()->mail->send($message);
+                    Yii::app()->mail->send($message);*/
                     
                     //TODO : add an admin notification
                     Notification::add(array("type"=>Notification::NOTIFICATION_INVITATION,

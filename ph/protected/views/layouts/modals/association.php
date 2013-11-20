@@ -1,4 +1,7 @@
-
+<?php 
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js' , CClientScript::POS_END);
+?>
 <!-- Modal -->
 <style>
 #myAssoList ul{list-style:none}
@@ -20,14 +23,8 @@
           	<?php 
           	    $asso = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
           	?>
-          	<ul id="myAssoList">
-          		<li class="created"><a href="javascript:;" onclick="$('#assoCreate').slideToggle();return false;">Open Atlas</a></li>
-          		<li class="member">Unit et Metis</li>
-          		<li class="member">Bleu Ocean</li>
-          		<li class="member">Globice</li>
-          	</ul>
-          	<br/>
-          	<p><a class="btn btn-warning fb" href="javascript:;" onclick="$('#assoCreate').slideToggle();return false;"  >Je gère une association</a></p>
+          	
+          	<p><a class="btn btn-warning fb" href="javascript:;" onclick="$('#assoCreate').slideToggle();return false;"  >Ajouter une association</a></p>
           	<div  id="assoCreate" class="hide">
               	<table>
                   	<tr>
@@ -36,7 +33,10 @@
                   	</tr>
                   	<tr>
                       	<td class="txtright">Nom(Raison Sociale)</td>
-                      	<td> <input id="assoName" name="assoName" value="<?php if($asso && isset($asso['name']) )echo $asso['name'] ?>"/></td>
+                      	<td> 
+                      		<input id="assoName" name="assoName" value="<?php if($asso && isset($asso['name']) )echo $asso['name'] ?>"/>
+                      		
+                      	</td>
                   	</tr>
             		<tr>
                       	<td class="txtright">Pays  </td>
@@ -59,7 +59,7 @@
                         <td class="txtright">Centre d'interet </td>
                         <td>
                             <?php 
-                              $cursor = Yii::app()->mongodb->tags->findOne( array(), array('list'));
+                              $cursor = Yii::app()->mongodb->lists->findOne( array("name"=>"tags"), array('list'));
                               $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                                 'asDropDownList' => false,
                                 'name' => 'tagsAsso',
@@ -75,10 +75,6 @@
             		    </td>
         		    </tr>
         		    
-        		    <tr>
-                		<td class="txtright">Connecter vos membres</td>  
-                		<td><input type="checkbox" id="assoMembers" name="assoMembers" <?php if($asso && isset($asso['membres']) )echo "checked" ?>></td>
-            		</tr>
             		
               </table>
           </div>
@@ -128,5 +124,40 @@
 <script type="text/javascript">
 initT['assoModalsInit'] = function(){
     showEvent("registerVieAssociative");
+    
+    $( "#assoName" ).autocomplete({
+        source: function( request, response ) {
+          $.ajax({
+            url: baseUrl+"/index.php/association/getNames",
+            dataType: "jsonp",
+            data: {
+              typed: request.term,
+              style: "full",
+              maxRows: 12
+            },
+            success: function( data ) {
+                response( $.map( data.names, function( item ) {
+                   console.log(item);
+                   return {
+                     label: item.name,
+                     value: item.name
+                   }
+                 }));
+               }
+          });
+        },
+        minLength: 2,
+        select: function( event, ui ) {
+          console.log( ui.item ?
+            "Selected: " + ui.item.label :
+            "Nothing selected, input was " + this.value);
+        },
+        /*open: function() {
+          $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+        },
+        close: function() {
+          $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+        }*/
+      });
 };
 </script>
