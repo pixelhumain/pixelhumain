@@ -24,6 +24,7 @@ class EvenementController extends Controller {
 	    $this->render("new");
 	}
 	
+	
 	/** ****************************************
 	 * Start Up Week End
 	 */

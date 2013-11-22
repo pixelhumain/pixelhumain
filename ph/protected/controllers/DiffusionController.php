@@ -10,7 +10,7 @@
  * Date: 21/08/13
  */
 class DiffusionController extends Controller {
-
+    const moduleTitle = "Diffusion";
 	public function actionIndex() {
 	    $this->render("index");
 	}

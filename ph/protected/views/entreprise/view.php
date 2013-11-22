@@ -29,10 +29,8 @@ font-family: "Homestead";
     .grid > div {
       background: #AAA;
       position: absolute;
-      height: 50px;
-      line-height:22px;
+      height: 100px;
       width: 100px;
-      padding:5px;
     }
 
     .grid > div[data-ss-colspan="2"] { width: 210px; }
@@ -42,10 +40,7 @@ font-family: "Homestead";
       background: transparent;
       border: 1px dashed blue;
     }	
-    .graph div.block{border:1px solid #666;text-align:center}
-    
 </style>
-
 <div class="container graph">
     <br/>
     <div class="hero-unit">
@@ -54,9 +49,9 @@ font-family: "Homestead";
     <p> Valorisation des associations locale, des leurs actions et objectifs </p>
  	<div class="grid">
         <div></div>
-        <div  data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/projet/list/ownerId/'.$asso["_id"])?>">Projet(s)</a></div>
+        <div  data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/projet/list/ownerId/'.$asso["_id"])?>">Projet(s)</a>desc,resp,resp</div>
         <div></div>
-        <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/tools/import/group/'.$asso["_id"].'/type/members')?>"><i class="icon-plus"></i> Membres</a></div>
+        <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Membres</a></div>
         <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Bureau</a></div>
         <div data-ss-colspan="3"><a href="#"   target="_blank" role="button" data-toggle="modal">Statistic </a></div>
         <div></div>
@@ -66,87 +61,6 @@ font-family: "Homestead";
         <div></div>
    </div>
 </div></div>
-
-<div class="container graph">
-<div class="hero-unit">
-	<div class="row-fluid">
-		
-		<div class="span4 block">
-			<h2>Mes Projets</h2>
-			
-			<br/>
-		</div>
-		
-		<div class=" actu span4 block">
-			<h2>Bureau</h2>
-			
-			<br/>
-		</div>
-		
-		<div class="span4 block">
-			<h2>Membres </h2>
-			
-		</div>
-	</div>
-	<br/>
-	<div class="row-fluid">
-		<div class="span8 block">
-		<h2>Évènement</h2>
-		
-        
-		</div>
-		<div class="span4 block">
-		<h2>-------- </h2>
-		</div>
-	</div>
-	<br/>
-	<div class="row-fluid">
-		<div class="span4  block">
-		<h2>---------</h2>
-		</div>
-		<div class="span4 block">
-		<h2>-----------</h2>
-		</div>
-		<div class="span4 block">
-		<h2>------------</h2>
-		</div>
-	</div>
-	<br/>
-	<div class="row-fluid">
-		<div class="span6 block">
-		<h2>-----------</h2>
-		</div>
-		<div class="span6 block ">
-		<h2>------------</h2>
-		</div>
-	</div>
-	<br/>
-	<div class="row-fluid">
-		<div class="span4 block">
-		<h2>------------</h2>
-		</div>
-		
-		<div class="span4 block">
-		<h2>------------------</h2>
-		</div>
-		
-		<div class="span4 block">
-		<h2>----------------</h2>
-		</div>
-	</div>
-	<br/>
-	<div class="row-fluid">
-		<div class="span6 block">
-		<h2>---------------------</h2>
-		</div>
-		
-		<div class="span6 block">
-		<h2>---------------------</h2>
-		</div>
-	</div>
-	
-</div></div>
-
 <script type="text/javascript"		>
 initT['animInit'] = function(){
 	$(".grid").shapeshift({

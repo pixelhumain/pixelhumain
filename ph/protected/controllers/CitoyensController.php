@@ -160,7 +160,8 @@ class CitoyensController extends Controller {
                    if(preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$email)) 
                    { 
                         //test pwd
-                        if( $app["pwd"] == $_POST['registerPwd'] ){
+                        if( $app["pwd"] == $_POST['registerPwd'] )
+                        {
                             $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST['registerEmail']));
                             if($account){
                                 //TODO : check if account is participant in the app
@@ -175,7 +176,6 @@ class CitoyensController extends Controller {
                             }
                             else
                                  echo json_encode(array("result"=>false, "msg"=>"Compte inconnue."));
-                            
                         }else
                             echo json_encode(array("result"=>false, "msg"=>"Accés refusé."));
                     } else 
@@ -268,6 +268,14 @@ class CitoyensController extends Controller {
 		exit;
 	}
 	
+	public function actionFind($email){
+	    $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$email));
+        if($account){
+            echo json_encode($account);
+        }
+        else
+             echo "Compte inconnue.";
+	}
     public function actionInvitation()
 	{
 	    if(Yii::app()->request->isAjaxRequest && isset($_POST['inviteEmail']) && !empty($_POST['inviteEmail']))

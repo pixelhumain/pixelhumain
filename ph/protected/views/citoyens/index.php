@@ -68,6 +68,7 @@ padding:5px;
 		<?php }?>
 	</div>
 </div>		
+
 <?php if(isset(Yii::app()->session["userId"])){?>
 <div class="container graph">
 <div class="hero-unit">
