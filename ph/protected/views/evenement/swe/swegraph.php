@@ -172,7 +172,7 @@ canvas{position:absolute;top:0px;left:0px;}
                     echo '<li class="'.$type.' '.$classDesc.' hide '.$classProjet.' '.$classMe.' '.$coachClass.'" >'.
                     		'
                     		<div class="infos">
-                    			<div class="type">'.((isset($type)) ?$type:"").$project.'</div>
+                    			<div class="type">'.((isset($type)) ?$type:"").'</div>
                     			<div class="name " >'.$strNames.'</div>
                     			<div class="thumb" ><img src="'.$img.'" '.$canView.' /></div>'.
                                 $xtra.'
