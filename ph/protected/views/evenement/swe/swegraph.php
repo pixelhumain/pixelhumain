@@ -74,7 +74,7 @@ canvas{position:absolute;top:0px;left:0px;}
 
 <div class="appContent">
 
-    <div id="appPanel" class="hidden">
+    <div id="appPanel" >
     	<ul id="appPanelList"></ul>
     </div>
     

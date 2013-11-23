@@ -9,7 +9,7 @@
         En remplissant ce formulaire vous n'aurez pas à vous déplacer, le coach recevra votre demande. 
         </p>
     <strong>Cette fonctionnalité  ne sera disponible que le jour de l'événement</strong>
-    <?php /*?>
+  
     <form id="coachForm" style="line-height:40px;">
         <section>
         	<table>
@@ -49,7 +49,6 @@
           	</table>
         </section>
     </form>
-    <?php */ ?>
     
   </div>
   <div class="modal-footer">
