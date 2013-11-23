@@ -93,11 +93,16 @@ canvas{position:absolute;top:0px;left:0px;}
         foreach ($sweThings as $line) 
         {
             if(in_array($event['_id'],$line['events'])){
+                
                 $name = (isset($line["name"])) ? $line["name"]: null;
                 $type = (isset($line["type"])) ? $line["type"] : null;
                 $email = (isset($line["email"])) ? $line["email"]:null;
                 $desc = (isset($line["desc"])) ? $line["desc"]:null;
                 $project = "";
+                
+                //un user peut etre associer a un projet 2012 et 13
+                //lorsqu'en 2012 projet = projectName
+                // 2013 projet13 = projectName
                 if( $key == "StartupWeekEnd2012" && isset($line["projet"])) 
                     $project = str_replace(' ', '', $line["projet"]);
                 else if( $key == "StartupWeekEnd2013" && isset( $line["projet13"] )) 
@@ -131,18 +136,18 @@ canvas{position:absolute;top:0px;left:0px;}
                     //adds show team on project panel
                     if(isset($type) && ( $type=='projet' || $type=='participant')) 
                     {
-                        //$xtra .= "<a  class='btn-ph' href='#' onclick='filterType(\"".$project."\")' title='Project Team'><span class='entypo-users'></span></a>";
+                        $xtra .= "<a  class='btn-ph' href='#' onclick='filterType(\"".$project."\")' title='Project Team'><span class='entypo-users'></span></a>";
                     }
-                } /*else if ( isset($type) && $type=='participant' && in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) )
-                    $xtra .= "<a  class='btn' href='#' onclick='filterType(\"projet\")' title='Rejoindre un projet'><span class='entypo-share'></span></a>";*/
+                } 
                  
-                
                 //join Btn on project panel
                 if(isset($type) && $type=='projet'){
                     /*if(in_array( Yii::app()->session["userEmail"], $event["adminEmail"]))
                         $xtra .= "<a class='btn-ph' href='javascript:userJoinProject(\"".$project."\")' title='Rejoindre ce projet'><span class='entypo-share'></span></a>";*/
                     array_push($projects, $project );
-                }else if(isset($type) && $type=='coach'){
+                }
+                else if(isset($type) && $type=='coach')
+                {
                     $coachRequestBadge =  '<span id="'.(str_replace(' ', '', $name)).'RequestBadge" class="badge bgRed coachBadges" ></span>';
                     $xtra .= "<a class='btn-ph' href='#coaching' onclick='$(\"#coachRequested\").select2(\"val\",\"".(str_replace(' ', '', $name))."\")'  role='button' data-toggle='modal' title='Appeler ce coach'><span class='entypo-megaphone'></span></a>".$coachRequestBadge;
                 }
@@ -164,12 +169,12 @@ canvas{position:absolute;top:0px;left:0px;}
                         $coaches[str_replace(' ', '', $name)] = $name;
                         $coachClass = str_replace(' ', '', $name);
                     }     
-                    echo '<li class="'.$type.' '.$classDesc.' hide '.$classProjet.' '.$classMe.' '.$coachClass.'" '.$canView.'>'.
+                    echo '<li class="'.$type.' '.$classDesc.' hide '.$classProjet.' '.$classMe.' '.$coachClass.'" >'.
                     		'
                     		<div class="infos">
-                    			<div class="type">'.((isset($type)) ?$type:"").'</div>
-                    			<div class="name ">'.$strNames.'</div>
-                    			<div class="thumb" ><img src="'.$img.'" /></div>'.
+                    			<div class="type">'.((isset($type)) ?$type:"").$project.'</div>
+                    			<div class="name " >'.$strNames.'</div>
+                    			<div class="thumb" ><img src="'.$img.'" '.$canView.' /></div>'.
                                 $xtra.'
                     		</div>
                     	 </li>';
@@ -189,7 +194,7 @@ canvas{position:absolute;top:0px;left:0px;}
 	
 	<div class="statistics">
 		<ul>
-			<a class="entypo-left btn" href="javascript:statPanelIndex (-1)"></a> <a class="entypo-right  btn" href="javascript:statPanelIndex (1)"></a>
+			<a class="entypo-left btn hide" href="javascript:statPanelIndex (-1)"></a> <a class="entypo-right  btn hide" href="javascript:statPanelIndex (1)"></a>
     		<li id="stats1" class="hide">
     			<div id="container2" style=" width:800px;margin: 0 auto"></div>
     		</li>
@@ -317,6 +322,7 @@ var statnum = 1;
 var statsPaenlCount = 6;
 function statPanelIndex (step){
 	$("#stats"+statnum).slideUp();
+	$("#statistics .btn").show();
 	if(statnum == statsPaenlCount && step == 1)
 		statnum = 1;
 	else if ( statnum == 1 && step == -1 )
@@ -328,10 +334,11 @@ function statPanelIndex (step){
 function filterType(type){
 	$(".appContent ul.people li").slideUp();
 	$("#stats"+statnum).hide();
-
+	$("#statistics .btn").hide();
 	if(type == "statistics")
 	{
 		$("#stats"+statnum).slideDown();
+		$("#statistics .btn").show();
 	}
 	else 
 	{
@@ -562,8 +569,9 @@ initT['sweGraphInit'] = function(){
 		requestAnimFrame(animloop);
 	}
 
-	animloop();
+	//animloop();
 
+    /*
     $('#container2').highcharts({
         chart: {
             type: 'bar'
@@ -881,7 +889,7 @@ initT['sweGraphInit'] = function(){
 	        name: 'Area',
 	        data: [1, 8, 2, 7, 3, 6, 4, 5]
 	    }]
-	});
+	});*/
     
 };
 

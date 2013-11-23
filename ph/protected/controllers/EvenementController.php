@@ -257,43 +257,47 @@ class EvenementController extends Controller {
 	    if(Yii::app()->request->isAjaxRequest && isset( Yii::app()->session["userId"] ) && self::isParticipantEmail($event,"adminEmail") )
 		{
 		     $eventId = $_POST[ "eventId" ];
-		     $project = Yii::app()->mongodb->group->findOne(array("email"=>$_POST["projectEmail"]));
+		     $project = Yii::app()->mongodb->group->findOne(array("name"=>$_POST["projectName"]));
              $newInfos = array(
-                			'email'=>$_POST["projectEmail"],
-                    		'name' => $_POST["projectName"],
-                            'desc'=> $_POST["projectDesc"]
-                            );
-              if(!$project)
-              {
+        		'name' => $_POST["projectName"],
+                'desc' => $_POST["projectDesc"]
+             );
+             if(!$project)
+             {
                   $newInfos['created'] = time();
                   $newInfos['type'] = "projet";
                   $newInfos['country'] ='Réunion';
                   $newInfos['events']= array(new MongoId($eventId));
-              }
+             }
               
               //update group instance	
               Yii::app()->mongodb->group->save($newInfos);
               
+              //add the project id to the event project List
               //update event only if group is being created
               if(!$project){
                   $where = array("_id" => new MongoId($eventId));	
                   Yii::app()->mongodb->group->update($where, array('$push' => array("projects"=>$newInfos["_id"])));
               }
               
-              //update the startupweekend instance
-              $newInfos['projet'] = strtolower( str_replace(' ', '', $_POST["projectName"] ) );
+              //e know all the particiapnts exist
+              //adds the project name on the persons data form
+              $projectKey = "projet";
+              if( $_POST["eventId"] == EvenementController::swe2013Id )
+                  $projectKey = "projet13"; 
+              
+              $newInfos[$projectKey] = strtolower( str_replace(' ', '', $_POST["projectName"] ) );
+              
+              //in startup the 
               Yii::app()->mongodb->startupweekend->save($newInfos);
               
               //e know all the particiapnts exist
               //adds the project name on the persons data form
-              $projectKey = "projet";
-              if( $_POST["eventId"] == "523321c7c073ef2b380a231c")
-                  $projectKey = "projet13"; 
-                  
+              
 		      if(isset($_POST["projectTeam"])){
-		          $this->SweRejoindreProjet($_POST["projectEmail"],strtolower( str_replace(' ', '', $_POST["projectName"] ) ));
-                  foreach(explode(",", $_POST["projectTeam"])as $email){
-    		           $this->SweRejoindreProjet($email,strtolower( str_replace(' ', '', $_POST["projectName"] ) ));
+		          foreach( explode (",", $_POST["projectTeam"])as $email)
+                  {
+    		           $this->SweRejoindreProjet($email,strtolower( str_replace(' ', '', $_POST["projectName"] ) ),$projectKey);
                   }
               }
               
@@ -309,12 +313,52 @@ class EvenementController extends Controller {
 	 * Connecter Personne et Projet
 	 */
     public function SweRejoindreProjet($mail,$projet,$key) {
+        //si la personne existe 
 	    $account = Yii::app()->mongodb->startupweekend->findOne(array("email"=>$mail));
         if($account)
         {
-              $account = array($key=>$projet);
-              Yii::app()->mongodb->startupweekend->save($account);
-        } 
+              Yii::app()->mongodb->startupweekend->update(array("_id" => new MongoId($account["_id"])), array('$set' => array($key=>$projet)));
+        } else {
+                //Sinon creer le citoyen en testant l'existence 
+                // et creer le startuper
+                $groupId = EvenementController::swe2013Id;
+                $newAccount = array(
+            			'email'=>$mail,
+                        'name'=>"No Name",
+                        'created' => time(),
+                        'type' => "citoyen",
+                        'country' =>'Réunion',
+                        'events'=>array(new MongoId($groupId))
+                        );
+                $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$mail));
+                //add to citoyens table
+                if($account){
+                    if(!in_array(new MongoId($groupId), $account["events"])){
+                        Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$push' => array("events"=>new MongoId($groupId))));
+                    } else {
+                        $events = array();
+                        foreach($account["events"] as $e)
+                        {
+                            if ( !in_array( $e, $events ) )
+                                array_push($events, $e);
+                        }
+                        Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($account["_id"])), array('$set' => array("events"=>$events)));
+                    }
+                    $newAccount["_id"] = $account["_id"];
+                }
+                else
+                    Yii::app()->mongodb->citoyens->insert($newAccount);
+
+                //add a participant
+                $where = array("_id" => new MongoId($groupId));	
+                Yii::app()->mongodb->group->update($where, array('$push' => array("participants"=>$newAccount["_id"]))); 
+                    
+                //add details into statupweekend table
+                $newAccount['type'] = 'participant';
+                $newAccount[$key] = $projet;
+                Yii::app()->mongodb->startupweekend->insert($newAccount);
+        }
+        
 	}
 	/**
 	 * Ajoute un nouveau participant au SUWE
