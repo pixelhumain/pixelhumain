@@ -171,6 +171,7 @@ class CitoyensController extends Controller {
                                     Yii::app()->session["loggedIn"] =   array();
                                 $tmp = Yii::app()->session["loggedIn"];
                                 array_push( $tmp , $_POST['appKey'] );
+                                
                                 Yii::app()->session["loggedIn"] = $tmp;
                                 echo json_encode(array("result"=>true, "msg"=>"Vous êtes connecté à présent, Amusez vous bien."));
                             }

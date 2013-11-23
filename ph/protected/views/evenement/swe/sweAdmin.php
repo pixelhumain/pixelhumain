@@ -239,13 +239,14 @@ initT['swePersonModalsInit'] = function(){
                   	<td class="txtright">Email du porteur</td>
                   	<td> 
                   	<?php 
-    					$participants = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ) ));
+                  	echo $event["_id"];
+    					$participants = iterator_to_array(Yii::app()->mongodb->startupweekend->find());
     					$particpantsOptions = array();
     					$projectKey = "projet";
                           if( $event["_id"] == "523321c7c073ef2b380a231c")
                               $projectKey = "projet13"; 
     					foreach($participants as $p){
-    					    if($p["type"] == "participant" && !isset($p[$projectKey]))
+    					    if(isset($p["type"]) && $p["type"] == "participant" && !isset($p[$projectKey]))
     					        $particpantsOptions[$p["email"]] = $p["name"];
     					}
     					    
@@ -272,7 +273,7 @@ initT['swePersonModalsInit'] = function(){
     					<?php 
     					$particpantsOptions = array();
     					foreach($participants as $p){
-    					    if($p["type"] == "participant" && !isset($p[$projectKey]))
+    					    if(isset($p["type"]) && $p["type"] == "participant" && !isset($p[$projectKey]))
     					        array_push($particpantsOptions, $p["email"]);
     					}
     					    

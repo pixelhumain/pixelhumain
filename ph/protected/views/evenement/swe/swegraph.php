@@ -1,6 +1,11 @@
 <?php 
 $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/jquery.scrollbox.js' , CClientScript::POS_END);
+
+$cs->registerScriptFile('http://code.highcharts.com/highcharts.js' , CClientScript::POS_END);
+$cs->registerScriptFile('http://code.highcharts.com/modules/exporting.js' , CClientScript::POS_END);
+$cs->registerScriptFile('http://code.highcharts.com/highcharts-more.js' , CClientScript::POS_END);
+
 ?>
 <style>
 body {	/*overflow: hidden;*/}
@@ -41,17 +46,21 @@ canvas{position:absolute;top:0px;left:0px;}
 .appContent div.thumb{position:absolute;height:40px;width:40px;top:5px;left:5px;}
 .appContent .metier{width:20px;height:20px;background-color:red;position:relative; top:0px; right:0px;-webkit-border-radius: 20px;-moz-border-radius: 20px;-o-border-radius: 20px;-ms-border-radius: 20px;border-radius: 20px;border:1px solid #000;}
 
-.appFooter{position:fixed;bottom:0px;right:0px;width:100px;z-index:2000;margin:15px;}
+.appFooter{position:fixed;bottom:0px;right:0px;width:70px;z-index:2000;margin:15px;}
 
 .bgRed{background-color:red;}
 .cRed{color:red;}
 .coachRequestedColor{border:5px solid red;}
+
+
 </style>
 
+    
 <div class="appMenuContainer">
     <ul class="appMenu">
     	<?php if( in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) ){ ?>
     		<li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweadmin/id/'.$key)?>"><i class="icon-wrench"></i> Admin</a></li>
+    		<li><a href="javascript:statnum=1;filterType('statistics')">Stats</a></li>
     	<?php } ?>
     	<?php /*?><li><a href="#sweInscription" id="mesInfos" role="button" data-toggle="modal"><i class="icon-user"></i> Mes Infos</a></li>*/?>
     	<li><a href="#coaching" role="button" data-toggle="modal"><i class="icon-bell"></i> APPEL UN COACH !! </a><a href="#coaching" role="button" data-toggle="modal"><span id="coachingCount" class="badge bgRed" ></span></a></li>
@@ -69,7 +78,7 @@ canvas{position:absolute;top:0px;left:0px;}
     	<ul id="appPanelList"></ul>
     </div>
     
-	<h1><?php echo $event["name"]?><br/><span class="appTitle">  </span></h1>
+	<h1><?php echo $event["name"]?><br/><span class="appTitle"></span></h1>
 	
 	<br/>
 	
@@ -170,6 +179,38 @@ canvas{position:absolute;top:0px;left:0px;}
         }?>
 	</ul>
 	
+	<style>
+		.statistics { width:80%; }
+		.statistics ul { list-style:none; }
+		.statistics li div { border:2px solid #666; background:white;  }
+		.statistics a.btn{font-size:30px;margin-bottom:8px;} 
+		.statistics a.entypo-right{margin-left:30px}
+	</style>
+	
+	<div class="statistics">
+		<ul>
+			<a class="entypo-left btn" href="javascript:statPanelIndex (-1)"></a> <a class="entypo-right  btn" href="javascript:statPanelIndex (1)"></a>
+    		<li id="stats1" class="hide">
+    			<div id="container2" style=" width:800px;margin: 0 auto"></div>
+    		</li>
+    		<li id="stats2" class="hide">
+    			<div id="container3" style="width:800px;margin: 0 auto"></div>
+    		</li>
+    		<li id="stats3" class="hide">
+    			<div id="container4" style="width:800px;margin: 0 auto"></div>
+    		</li>
+    		<li id="stats4" class="hide">
+    			<div id="container5" style="width:800px;margin: 0 auto"></div>
+    		</li>
+    		<li id="stats5" class="hide">
+    			<div id="container6" style="width:800px;margin: 0 auto"></div>
+    		</li>
+    		<li id="stats6" class="hide">
+    			<div id="container7" style="width:800px;margin: 0 auto"></div>
+    		</li>
+		</ul>
+	</div>
+	
 </div>
 
 <?php $this->renderPartial('application.views.evenement.swe.sweSponsor');?>
@@ -185,6 +226,7 @@ canvas{position:absolute;top:0px;left:0px;}
 
 
 <script type="text/javascript">
+
 function showPerson(email){
 	$.ajax({
   	  type: "POST",
@@ -271,25 +313,47 @@ function userJoinProject(project){
 	  dataType: "json"
 	});
 }
+var statnum = 1;
+var statsPaenlCount = 6;
+function statPanelIndex (step){
+	$("#stats"+statnum).slideUp();
+	if(statnum == statsPaenlCount && step == 1)
+		statnum = 1;
+	else if ( statnum == 1 && step == -1 )
+		statnum = statsPaenlCount;
+	else
+		statnum = statnum + step;	
+	filterType( "statistics" );	
+}
 function filterType(type){
 	$(".appContent ul.people li").slideUp();
-	$(".appContent ul.people li."+type).slideDown();
-	if(type=="projet")
-		$(".appTitle").html("Les projets");
-	else if(type=="jury")
-		$(".appTitle").html("Le jury");
-	else if(type=="coach")
-		$(".appTitle").html("Les Coachs");
-	else if(type=="organisateur")
-		$(".appTitle").html("Les organisateurs");
-	else if(type=="me")
-		$(".appTitle").html("Mon compte");
-	else
-		$(".appTitle").html("Les inscrits");
+	$("#stats"+statnum).hide();
+
+	if(type == "statistics")
+	{
+		$("#stats"+statnum).slideDown();
+	}
+	else 
+	{
+    	$(".appContent ul.people li."+type).slideDown();
+    	if(type=="projet")
+    		$(".appTitle").html("Les projets");
+    	else if(type=="jury")
+    		$(".appTitle").html("Le jury");
+    	else if(type=="coach")
+    		$(".appTitle").html("Les Coachs");
+    	else if(type=="organisateur")
+    		$(".appTitle").html("Les organisateurs");
+    	else if(type=="me")
+    		$(".appTitle").html("Mon compte");
+    	else
+    		$(".appTitle").html("Les inscrits");
+	}
 	
 }
 
 initT['sweGraphInit'] = function(){
+	
 	<?php if($myproject){?>
 	$("li.projet.<?php echo $myproject?>").addClass('me');
 	<?php }?>
@@ -499,6 +563,326 @@ initT['sweGraphInit'] = function(){
 	}
 
 	animloop();
+
+    $('#container2').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Historic World Population by Region'
+        },
+        subtitle: {
+            text: 'Source: Wikipedia.org'
+        },
+        xAxis: {
+            categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Population (millions)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' millions'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 100,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: '#FFFFFF',
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Year 1800',
+            data: [107, 31, 635, 203, 2]
+        }, {
+            name: 'Year 1900',
+            data: [133, 156, 947, 408, 6]
+        }, {
+            name: 'Year 2008',
+            data: [973, 914, 4054, 732, 34]
+        }]
+    });
+
+
+
+
+    $('#container3').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Monthly Average Rainfall'
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com'
+        },
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ]
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Rainfall (mm)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Tokyo',
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+        }, {
+            name: 'New York',
+            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+        }, {
+            name: 'London',
+            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+        }, {
+            name: 'Berlin',
+            data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+        }]
+    });
+
+    $('#container4').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Stacked bar chart'
+        },
+        xAxis: {
+            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total fruit consumption'
+            }
+        },
+        legend: {
+            backgroundColor: '#FFFFFF',
+            reversed: true
+        },
+        plotOptions: {
+            series: {
+                stacking: 'normal'
+            }
+        },
+            series: [{
+            name: 'John',
+            data: [5, 3, 4, 7, 2]
+        }, {
+            name: 'Jane',
+            data: [2, 2, 3, 2, 1]
+        }, {
+            name: 'Joe',
+            data: [3, 4, 4, 2, 5]
+        }]
+    });
+
+    $('#container5').highcharts({
+        chart: {
+            type: 'column',
+            margin: [ 50, 50, 100, 80]
+        },
+        title: {
+            text: 'World\'s largest cities per 2008'
+        },
+        xAxis: {
+            categories: [
+                'Tokyo',
+                'Jakarta',
+                'New York',
+                'Seoul',
+                'Manila',
+                'Mumbai',
+                'Sao Paulo',
+                'Mexico City',
+                'Dehli',
+                'Osaka',
+                'Cairo',
+                'Kolkata',
+                'Los Angeles',
+                'Shanghai',
+                'Moscow',
+                'Beijing',
+                'Buenos Aires',
+                'Guangzhou',
+                'Shenzhen',
+                'Istanbul'
+            ],
+            labels: {
+                rotation: -45,
+                align: 'right',
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Population (millions)'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>',
+        },
+        series: [{
+            name: 'Population',
+            data: [34.4, 21.8, 20.1, 20, 19.6, 19.5, 19.1, 18.4, 18,
+                17.3, 16.8, 15, 14.7, 14.5, 13.3, 12.8, 12.4, 11.8,
+                11.7, 11.2],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    });
+
+
+    $('#container6').highcharts({
+
+	    chart: {
+	        type: 'bubble',
+	        zoomType: 'xy'
+	    },
+
+	    title: {
+	    	text: 'Highcharts Bubbles'
+	    },
+	
+	    series: [{
+	        data: [[97,36,79],[94,74,60],[68,76,58],[64,87,56],[68,27,73],[74,99,42],[7,93,87],[51,69,40],[38,23,33],[57,86,31]]
+	    }, {
+	        data: [[25,10,87],[2,75,59],[11,54,8],[86,55,93],[5,3,58],[90,63,44],[91,33,17],[97,3,56],[15,67,48],[54,25,81]]
+	    }, {
+	        data: [[47,47,21],[20,12,4],[6,76,91],[38,30,60],[57,98,64],[61,17,80],[83,60,13],[67,78,75],[64,12,10],[30,77,82]]
+	    }]
+	
+	});
+
+ $('#container7').highcharts({
+        
+	    chart: {
+	        polar: true
+	    },
+	    
+	    title: {
+	        text: 'Highcharts Polar Chart'
+	    },
+	    
+	    pane: {
+	        startAngle: 0,
+	        endAngle: 360
+	    },
+	
+	    xAxis: {
+	        tickInterval: 45,
+	        min: 0,
+	        max: 360,
+	        labels: {
+	        	formatter: function () {
+	        		return this.value + '°';
+	        	}
+	        }
+	    },
+	        
+	    yAxis: {
+	        min: 0
+	    },
+	    
+	    plotOptions: {
+	        series: {
+	            pointStart: 0,
+	            pointInterval: 45
+	        },
+	        column: {
+	            pointPadding: 0,
+	            groupPadding: 0
+	        }
+	    },
+	
+	    series: [{
+	        type: 'column',
+	        name: 'Column',
+	        data: [8, 7, 6, 5, 4, 3, 2, 1],
+	        pointPlacement: 'between'
+	    }, {
+	        type: 'line',
+	        name: 'Line',
+	        data: [1, 2, 3, 4, 5, 6, 7, 8]
+	    }, {
+	        type: 'area',
+	        name: 'Area',
+	        data: [1, 8, 2, 7, 3, 6, 4, 5]
+	    }]
+	});
+    
 };
 
 </script>	
