@@ -569,9 +569,9 @@ initT['sweGraphInit'] = function(){
 		requestAnimFrame(animloop);
 	}
 
-	//animloop();
+	animloop();
 
-    /*
+    
     $('#container2').highcharts({
         chart: {
             type: 'bar'
@@ -889,7 +889,7 @@ initT['sweGraphInit'] = function(){
 	        name: 'Area',
 	        data: [1, 8, 2, 7, 3, 6, 4, 5]
 	    }]
-	});*/
+	});
     
 };
 
