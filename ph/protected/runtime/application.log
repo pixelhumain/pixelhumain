@@ -14628,3 +14628,92 @@ Stack trace:
 #22 {main}
 REQUEST_URI=/ph/index.php/evenement/key/id/StartupWeekEnd2013
 ---
+2013/11/24 07:53:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sweinfosform2".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:483
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(270): CController->missingAction('sweinfosform2')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('sweinfosform2')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('evenement/swein...')
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ph/index.php/evenement/sweinfosform2/id/StartupWeekEnd2013
+---
+2013/11/24 08:32:44 [error] [php] Undefined index: contactMembresProlonge (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\sweinfos2.php:130)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): EvenementController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): EvenementController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php(78): EvenementController->render()
+#3 unknown(0): EvenementController->actionSweInfosForm()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweinfosform/id/StartupWeekEnd2013?num=2
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\sweinfos2.php (130)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (78)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/11/24 08:33:37 [error] [php] Undefined index: pitcher (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\sweinfos2.php:81)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): EvenementController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): EvenementController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php(78): EvenementController->render()
+#3 unknown(0): EvenementController->actionSweInfosForm()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweinfosform/id/StartupWeekEnd2013?num=2
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\sweinfos2.php (81)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (78)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/11/24 09:14:28 [error] [php] Undefined index: personEmail (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:88)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweInfos
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (88)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/11/24 09:15:22 [error] [php] Undefined index: personEmail (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php:88)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweInfos
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (88)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/11/24 09:33:04 [error] [php] Undefined variable: type (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swecomplete.php:83)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): EvenementController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): EvenementController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php(170): EvenementController->render()
+#3 unknown(0): EvenementController->actionSweCompteRempli()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): EvenementController->runAction()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): EvenementController->runActionWithFilters()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): EvenementController->run()
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/evenement/sweCompteRempli/id/StartupWeekEnd2013
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\evenement\swe\swecomplete.php (83)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\EvenementController.php (170)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)

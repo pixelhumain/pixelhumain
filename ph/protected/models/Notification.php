@@ -13,6 +13,7 @@ class Notification
     
     const NOTIFICATION_SWE_COACH_REQUEST	   = "startUpWeekendCoachRequest";
     const NOTIFICATION_SWE_SAVED_INFOS	       = "sweSavedInfos";
+    const NOTIFICATION_SWE_SAVED_FEEDBACK      = "sweSavedFeedback";
     
     /*
      * Save a certain Norification to the notification table

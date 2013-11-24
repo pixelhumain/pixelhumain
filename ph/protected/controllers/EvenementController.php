@@ -67,14 +67,43 @@ class EvenementController extends Controller {
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ) )); 
 	        $sweThings->sort(array('name' => 1));
-	        $user = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
-	        $this->render("swe/sweinfos",array("sweThings"=>$sweThings,
+	        $user = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
+	        
+	        $page = "swe/sweinfos";
+	        $page .= ( isset($_GET["num"]) && $_GET["num"]) ? $_GET["num"] : "";
+	             
+	        $this->render($page,array("sweThings"=>$sweThings,
 	        								   "user"=>$user,
 	        								   "event"=>$event,
 	        								   "key"=>$id));
 	    }
 	}
-	
+/**
+	 * un participant met a jour sa fiche personnelle
+	 */
+    public function actionSweInfos() 
+    { 
+	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
+		{
+		    $where = array("_id" => new MongoId(Yii::app()->session["userId"]));	
+            $account = Yii::app()->mongodb->startupweekend->findOne($where);
+            if($account)
+            {
+                  $newInfos = $_POST;
+                  
+                  Yii::app()->mongodb->startupweekend->update($where, array('$set' => $newInfos));
+                  $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
+                  
+                  Notification::add(array("type" => Notification::NOTIFICATION_SWE_SAVED_FEEDBACK,
+                    					  "user" => Yii::app()->session["userId"] ));
+                  echo json_encode($result); 
+            } else 
+                  echo json_encode(array("result"=>false, "id"=>"accountNotExist ".Yii::app()->session["userId"],"msg"=>"Ce compte n'existe plus."));
+                
+		} else
+		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
+		exit;
+	}
 	public function checkParticipation($event){
 	    $res = false; 
 	    foreach ($event["participantTypes"] as $t){
@@ -148,31 +177,7 @@ class EvenementController extends Controller {
 	    $this->layout = "swe";
 	    $this->render("swe/import");
 	}
-	/**
-	 * un participant met a jour sa fiche personnelle
-	 */
-    public function actionSweInfos() 
-    { 
-	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
-		{
-            $account = Yii::app()->mongodb->startupweekend->findOne(array("email"=>$_POST["personEmail"]));
-            if($account)
-            {
-                  $newInfos = $_POST;
-                  $where = array("_id" => new MongoId(Yii::app()->session["userId"]));	
-                  Yii::app()->mongodb->startupweekend->update($where, array('$set' => $newInfos));
-                  $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
-                  
-                  Notification::add(array("type" => Notification::NOTIFICATION_SWE_SAVED_INFOS,
-                    					  "user" => Yii::app()->session["userId"] ));
-                  echo json_encode($result); 
-            } else 
-                  echo json_encode(array("result"=>false, "id"=>"accountNotExist ".Yii::app()->session["userId"],"msg"=>"Ce compte n'existe plus."));
-                
-		} else
-		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
-		exit;
-	}
+	
 	/**
 	 * Cancel event participation
 	 * 

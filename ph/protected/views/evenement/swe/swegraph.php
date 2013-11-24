@@ -194,7 +194,7 @@ canvas{position:absolute;top:0px;left:0px;}
 	
 	<div class="statistics">
 		<ul>
-			<a class="entypo-left btn hide" href="javascript:statPanelIndex (-1)"></a> <a class="entypo-right  btn hide" href="javascript:statPanelIndex (1)"></a>
+			<a class="entypo-left btn " href="javascript:statPanelIndex (-1)"></a> <a class="entypo-right  btn " href="javascript:statPanelIndex (1)"></a>
     		<li id="stats1" class="hide">
     			<div id="container2" style=" width:800px;margin: 0 auto"></div>
     		</li>
@@ -322,7 +322,7 @@ var statnum = 1;
 var statsPaenlCount = 6;
 function statPanelIndex (step){
 	$("#stats"+statnum).slideUp();
-	$("#statistics .btn").show();
+	//$("#statistics .btn").show();
 	if(statnum == statsPaenlCount && step == 1)
 		statnum = 1;
 	else if ( statnum == 1 && step == -1 )
@@ -334,7 +334,7 @@ function statPanelIndex (step){
 function filterType(type){
 	$(".appContent ul.people li").slideUp();
 	$("#stats"+statnum).hide();
-	$("#statistics .btn").hide();
+	//$("#statistics .btn").hide();
 	if(type == "statistics")
 	{
 		$("#stats"+statnum).slideDown();

@@ -51,7 +51,8 @@ canvas{position:absolute;top:0px;left:0px;}
     <ul class="appMenu">
     	<?php if( in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) ){ ?>
     		<li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweadmin/id/'.$key)?>"><i class="icon-wrench"></i> Admin</a></li>
-    		<li><a href="#exportEmails" role="button" data-toggle="modal"><i class="icon-wrench"></i> EXPORT</a></li>
+    		<li><a href="#exportEmails" role="button" data-toggle="modal"><i class="icon-wrench"></i> EXPORT Compte NC</a></li>
+    		<li><a href="#exportEmailsProjet" role="button" data-toggle="modal"><i class="icon-wrench"></i> EXPORT Candidat Projet</a></li>
     		<li><a href='#cancelParticipation'  role='button' data-toggle='modal'><i class='entypo-cancel'></i> Supprimer un participant</a></li>
     	<?php } ?>
     </ul>
@@ -72,17 +73,28 @@ canvas{position:absolute;top:0px;left:0px;}
     	$myproject = '';
     	$projects = array();
     	$emailList  = "";
+    	$emailListProjeteur  = "";
         foreach ($sweThings as $line) 
         {
+            $projectKey = "projet";
+            if( $key == "StartupWeekEnd2013" ) 
+                    $projectKey = "projet13";
+                    
+            if( isset($line["type"]) && $line["type"] == 'participant' && isset($line[$projectKey]) )
+                $emailListProjeteur .= $line["email"].", <br/>";
+                
             if(count($line)*100/16 < 50 ){
                 $name = (isset($line["name"])) ? $line["name"]: null;
                 $type = (isset($line["type"])) ? $line["type"] : null;
                 $email = (isset($line["email"])) ? $line["email"]:null;
                 $desc = (isset($line["desc"])) ? $line["desc"]:null;
-                $project = (isset($line["projet"])) ? str_replace(' ', '', $line["projet"]) : "";
+                
+                
+                $project = (isset($line[$projectKey])) ? str_replace(' ', '', $line[$projectKey]) : "";
                 $img = (isset($line["image"]))? $line["image"]:"";
                 
                 $emailList .= $email.", <br/>";
+
                 //desc content
                 $xtra = '<div class="xtra clear">'.$email.'</div><div class="desc">';
                 $xtra .= '<a  class="btn-ph" href="javascript:;" onclick="showPerson(\''.$email.'\')"><span class="entypo-eye"></span></a>';
@@ -144,6 +156,26 @@ canvas{position:absolute;top:0px;left:0px;}
 </div>
 <!-- Modal -->
 
+<!-- Modal -->
+<div id="exportEmailsProjet" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"> Export des comptes</h3>
+  </div>
+  <div class="modal-body">
+   
+	<?php 
+	echo "<b>".substr_count($emailListProjeteur, "@")."</b>";
+	echo "<br/>";
+	echo $emailListProjeteur;
+	?>
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+  </div>
+</div>
+<!-- Modal -->
 
 
 <!-- Modal -->
