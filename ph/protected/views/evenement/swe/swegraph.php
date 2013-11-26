@@ -248,8 +248,8 @@ canvas{position:absolute;top:0px;left:0px;}
 	
 	<div class="statistics">
 		<ul>
-			<a class="entypo-left btn " href="javascript:statPanelIndex (-1)"></a>
-			<a class="entypo-right  btn " href="javascript:statPanelIndex (1)"></a>
+			<a class="entypo-left btn nextStat" href="javascript:statPanelIndex (-1)"></a>
+			<a class="entypo-right  btn prevStat" href="javascript:statPanelIndex (1)"></a>
     		<li id="stats1" class="hide chart">
     			
     			<h1>Participants : <?php echo count($event["participants"])?></h1>
@@ -425,6 +425,11 @@ function statPanelIndex (step){
 	filterType( "statistics" );	
 }
 
+$(".nextStat,.prevStat").click(function(){
+lockInterval = true;
+console.log("set lockInterval ",lockInterval);
+});
+
 function filterType(type){
 	$(".appContent ul.people li").slideUp();
 	$("#stats"+statnum).hide();
@@ -451,13 +456,19 @@ function filterType(type){
 	}
 	
 }
-
+var lockInterval = false;
+function stopStatsInterval(){
+	console.log("lockInterval ",lockInterval);
+	if( !lockInterval )
+		statPanelIndex(1);
+}
 initT['sweGraphInit'] = function(){
 	
 	<?php if($myproject){?>
 	$("li.projet.<?php echo $myproject?>").addClass('me');
 	<?php }?>
 	filterType("statistics");
+	setInterval("stopStatsInterval()",5000);
 	//appear after loading
 	$(".appContent").slideDown();
 	$('#appPanel').scrollbox();
@@ -705,10 +716,10 @@ initT['sweGraphInit'] = function(){
             enabled: false
         },
         tooltip: {
-            pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>',
+            pointFormat: '<b>{point.y:.1f} Personnes</b>',
         },
         series: [{
-            name: 'Population',
+            name: 'Participants',
             data: [<?php $ct = 0; foreach ( $cpMap as $cp=>$people ){
                         if($ct>0)echo ",";     
                         echo count( $people );
