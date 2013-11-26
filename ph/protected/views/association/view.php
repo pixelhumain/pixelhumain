@@ -51,17 +51,18 @@ font-family: "Homestead";
     <div class="hero-unit">
     
     <h2> Association <?php echo $asso["name"]?></h2>
-    <p> Valorisation des associations locale, des leurs actions et objectifs </p>
+    <p> Valorisation des associations locales, de leurs actions et objectifs </p>
  	<div class="grid">
         <div></div>
         <div  data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/projet/list/ownerId/'.$asso["_id"])?>">Projet(s)</a></div>
         <div></div>
         <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/tools/import/group/'.$asso["_id"].'/type/members')?>"><i class="icon-plus"></i> Membres</a></div>
-        <div data-ss-colspan="2"><a href="#"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Bureau</a></div>
-        <div data-ss-colspan="3"><a href="#"   target="_blank" role="button" data-toggle="modal">Statistic </a></div>
+        <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/discuter/brainstormForm')?>" ><i class="icon-plus"></i> Brainstorm</a></div>
+        <div data-ss-colspan="2"><a href="#" role="button" data-toggle="modal"><i class="icon-plus"></i> Bureau</a></div>
+        <div data-ss-colspan="3"><a href="#" role="button" data-toggle="modal">Statistic </a></div>
         <div></div>
-        <div data-ss-colspan="3"><a href="#"   target="_blank" role="button" data-toggle="modal">Évènement </a></div>
-        <div><a href="#"   target="_blank" role="button" data-toggle="modal">NEWS Feed</a></div>
+        <div data-ss-colspan="3"><a href="#" role="button" data-toggle="modal">Évènement </a></div>
+        <div><a href="#" role="button" data-toggle="modal">NEWS Feed</a></div>
         <div></div>
         <div></div>
    </div>

@@ -2,10 +2,11 @@
 $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/jquery.scrollbox.js' , CClientScript::POS_END);
 
+$graph = 0;
+
 $cs->registerScriptFile('http://code.highcharts.com/highcharts.js' , CClientScript::POS_END);
 $cs->registerScriptFile('http://code.highcharts.com/modules/exporting.js' , CClientScript::POS_END);
 $cs->registerScriptFile('http://code.highcharts.com/highcharts-more.js' , CClientScript::POS_END);
-
 ?>
 <style>
 body {	/*overflow: hidden;*/}
@@ -52,7 +53,6 @@ canvas{position:absolute;top:0px;left:0px;}
 .cRed{color:red;}
 .coachRequestedColor{border:5px solid red;}
 
-
 </style>
 
     
@@ -65,7 +65,7 @@ canvas{position:absolute;top:0px;left:0px;}
     	<?php /*?><li><a href="#sweInscription" id="mesInfos" role="button" data-toggle="modal"><i class="icon-user"></i> Mes Infos</a></li>*/?>
     	<li><a href="#coaching" role="button" data-toggle="modal"><i class="icon-bell"></i> APPEL UN COACH !! </a><a href="#coaching" role="button" data-toggle="modal"><span id="coachingCount" class="badge bgRed" ></span></a></li>
         <li><a href="javascript:filterType('participant')">Inscrits <span class="badge"><?php echo count($event["participants"])?></span></a></li>
-        <li><a href="javascript:filterType('projet')">Projets <span class="badge"><?php echo count($event["projects"])?></span></a></li>
+        <li><a href="javascript:filterType('projet')">Projets <span class="badge"><?php echo count($event["projects"])-2?></span></a></li>
         <li><a href="javascript:filterType('coach')">Coachs <span class="badge"><?php echo count($event["coaches"])?></span></a></li>
         <li><a href="javascript:filterType('jury')">Jurys <span class="badge"><?php echo count($event["jurys"])?></span></a></li>
         <li><a href="javascript:filterType('organisateur')">Organisateurs <span class="badge"><?php echo count($event["organisateurs"])?></span></a></li>
@@ -74,7 +74,7 @@ canvas{position:absolute;top:0px;left:0px;}
 
 <div class="appContent">
 
-    <div id="appPanel" >
+    <div id="appPanel" class="hidden">
     	<ul id="appPanelList"></ul>
     </div>
     
@@ -90,16 +90,61 @@ canvas{position:absolute;top:0px;left:0px;}
     	$myproject = '';
     	$projects = array();
     	$meType = '';
+    	
+    	//statistics
+    	$projectMap = array();
+    	$cpMap = array( "Unknown" => array() );
+    	$objectifMap = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
+    	$expertiseMap = array(0,0,0,0,0,0,0,0,0);
+    	$formationMap = array(0,0,0,0,0,0,0,0,0);
+    	$professionMap = array(0,0,0,0,0,0,0);
+    	$commentConnuSWEMap = array(0,0,0,0,0,0,0,0,0);
         foreach ($sweThings as $line) 
         {
-            if(in_array($event['_id'],$line['events'])){
-                
+            if(in_array($event['_id'],$line['events']) && !in_array( $line["_id"], array("52904262e9ce27f504cffd46","52904512e9ce27f504cffd48") ) )
+            {    
                 $name = (isset($line["name"])) ? $line["name"]: null;
                 $type = (isset($line["type"])) ? $line["type"] : null;
                 $email = (isset($line["email"])) ? $line["email"]:null;
                 $desc = (isset($line["desc"])) ? $line["desc"]:null;
                 $project = "";
                 
+                
+                //statistics
+                if(isset($type) && in_array($type, array('participant'))){
+                    if(isset($line["codepostal"]) ){
+                        if( !isset( $cpMap[ $line["codepostal"] ] ) )
+                            $cpMap[ $line["codepostal"] ] = array();
+                        array_push( $cpMap[ $line["codepostal"] ], $email );
+                    }else
+                        array_push( $cpMap[ "Unknown" ], $email );
+                
+                    if(isset($line["objectif"]) ){
+                        $objectifMap[ $line["objectif"] ] += 1;
+                    }else
+                        $objectifMap[ 0 ] += 1;
+                        
+                    if(isset($line["expertise"]) ){
+                        $expertiseMap[ $line["expertise"] ] += 1;
+                    }else
+                        $expertiseMap[ 0 ] += 1;
+
+                    if(isset($line["formation"]) ){
+                        $formationMap[ $line["formation"] ] += 1;
+                    }else
+                        $formationMap[ 0 ] += 1;
+                        
+                    if(isset($line["profession"]) ){
+                        $professionMap[ $line["profession"] ] += 1;
+                    }else
+                        $professionMap[ 0 ] += 1;
+                        
+                    if(isset($line["commentConnuSWE"]) ){
+                        $commentConnuSWEMap[ $line["commentConnuSWE"] ] += 1;
+                    }else
+                        $commentConnuSWEMap[ 0 ] += 1;
+                }
+                    
                 //un user peut etre associer a un projet 2012 et 13
                 //lorsqu'en 2012 projet = projectName
                 // 2013 projet13 = projectName
@@ -117,11 +162,11 @@ canvas{position:absolute;top:0px;left:0px;}
                 //connected users panel will be different
                 $classMe = (Yii::app()->session["userEmail"] == $email && $type!='projet') ? 'me' : '';
                 if(!empty($classMe))$meType = $type;
-                if(!empty($classMe) && !empty($project) )
+                if(!empty($classMe) && !empty($project) ){
                     $myproject = $project;
+                }
     
                 //desc content
-                
                 $xtra = '<div class="xtra clear"></div><div class="desc">';
                 if( isset( $desc) && $desc == strip_tags($desc) )
                     $xtra .= '<span class="txt">';
@@ -137,6 +182,14 @@ canvas{position:absolute;top:0px;left:0px;}
                     if(isset($type) && ( $type=='projet' || $type=='participant')) 
                     {
                         $xtra .= "<a  class='btn-ph' href='#' onclick='filterType(\"".$project."\")' title='Project Team'><span class='entypo-users'></span></a>";
+                    }
+                    
+                    //statistics
+                    if( !isset( $projectMap[ $project ] ) )
+                        $projectMap[ $project ] = array();
+                    if( $type!='projet' ){
+                        array_push( $projectMap[ $project ], $email );
+                        
                     }
                 } 
                  
@@ -190,28 +243,67 @@ canvas{position:absolute;top:0px;left:0px;}
 		.statistics li div { border:2px solid #666; background:white;  }
 		.statistics a.btn{font-size:30px;margin-bottom:8px;} 
 		.statistics a.entypo-right{margin-left:30px}
+		.statistics h1{text-decoration:none;color: #324553;}
 	</style>
 	
 	<div class="statistics">
 		<ul>
-			<a class="entypo-left btn " href="javascript:statPanelIndex (-1)"></a> <a class="entypo-right  btn " href="javascript:statPanelIndex (1)"></a>
-    		<li id="stats1" class="hide">
-    			<div id="container2" style=" width:800px;margin: 0 auto"></div>
+			<a class="entypo-left btn " href="javascript:statPanelIndex (-1)"></a>
+			<a class="entypo-right  btn " href="javascript:statPanelIndex (1)"></a>
+    		<li id="stats1" class="hide chart">
+    			
+    			<h1>Participants : <?php echo count($event["participants"])?></h1>
+    			<h1>Projets : <?php echo count($event["projects"])?></h1>
+    			<h1>54h de dure labeur</h1> 
+    			<h1>C'etait Grand et Raide</h1>
+    			
     		</li>
-    		<li id="stats2" class="hide">
-    			<div id="container3" style="width:800px;margin: 0 auto"></div>
+    		
+    		<li id="stats2" class="hide chart">
+    			<h1><?php echo count($projectMap,COUNT_RECURSIVE)-count($projectMap)?> Participants Distribué sur <?php echo count($event["projects"])?> projets</h1>
+    			<?php $pct = 1;?>
+    			<?php foreach ($projectMap as $p=>$team){?>
+    			      <h1><?php echo $pct?> - <?php echo strtoupper($p)." : ".count($team)?> participants</h1>  
+    			<?php $pct++;}?>
     		</li>
-    		<li id="stats3" class="hide">
+    		
+    		
+    		<li id="stats3" class="hide chart">
+    			<div id="container5" style=" width:800px;margin: 0 auto"></div>
+    		</li>
+    		<li id="stats4" class="hide chart">
     			<div id="container4" style="width:800px;margin: 0 auto"></div>
     		</li>
-    		<li id="stats4" class="hide">
-    			<div id="container5" style="width:800px;margin: 0 auto"></div>
+    		<li id="stats5" class="hide chart">
+    			<div id="container8" style="width:800px;margin: 0 auto"></div>
     		</li>
-    		<li id="stats5" class="hide">
+    		<li id="stats6" class="hide chart">
+    			<div id="container9" style="width:800px;margin: 0 auto"></div>
+    		</li>
+    		<li id="stats7" class="hide chart">
+    			<div id="container10" style="width:800px;margin: 0 auto"></div>
+    		</li>
+    		<li id="stats8" class="hide chart">
+    			<div id="container11" style="width:800px;margin: 0 auto"></div>
+    		</li>
+    		<li id="stats9" class="hide chart">
+    			<div id="container12" style="width:800px;margin: 0 auto"></div>
+    		</li>
+    		
+    		<li id="stats10" class="hide chart">
+    			<div id="container2" style="width:800px;margin: 0 auto"></div>
+    		</li>
+    		
+    		<li id="stats11" class="hide chart">
     			<div id="container6" style="width:800px;margin: 0 auto"></div>
     		</li>
-    		<li id="stats6" class="hide">
+    		
+    		<li id="stats12" class="hide chart">
     			<div id="container7" style="width:800px;margin: 0 auto"></div>
+    		</li>
+    		
+    		<li id="stats13" class="hide chart">
+    			<div id="container3" style="width:800px;margin: 0 auto"></div>
     		</li>
 		</ul>
 	</div>
@@ -318,11 +410,12 @@ function userJoinProject(project){
 	  dataType: "json"
 	});
 }
+
 var statnum = 1;
-var statsPaenlCount = 6;
+var statsPaenlCount = $(".chart").length;
 function statPanelIndex (step){
 	$("#stats"+statnum).slideUp();
-	//$("#statistics .btn").show();
+	$("#statistics a.btn").show();
 	if(statnum == statsPaenlCount && step == 1)
 		statnum = 1;
 	else if ( statnum == 1 && step == -1 )
@@ -331,14 +424,14 @@ function statPanelIndex (step){
 		statnum = statnum + step;	
 	filterType( "statistics" );	
 }
+
 function filterType(type){
 	$(".appContent ul.people li").slideUp();
 	$("#stats"+statnum).hide();
-	//$("#statistics .btn").hide();
 	if(type == "statistics")
 	{
+		$("#statistics a.btn").show();
 		$("#stats"+statnum).slideDown();
-		$("#statistics .btn").show();
 	}
 	else 
 	{
@@ -364,7 +457,7 @@ initT['sweGraphInit'] = function(){
 	<?php if($myproject){?>
 	$("li.projet.<?php echo $myproject?>").addClass('me');
 	<?php }?>
-	filterType("participant");
+	filterType("statistics");
 	//appear after loading
 	$(".appContent").slideDown();
 	$('#appPanel').scrollbox();
@@ -398,7 +491,7 @@ initT['sweGraphInit'] = function(){
 	canvas.height = H;
 
 	// Some variables for later use
-	var particleCount = 200,
+	var particleCount = 20,
 		particles = [],
 		minDist = 70,
 		dist;
@@ -571,7 +664,110 @@ initT['sweGraphInit'] = function(){
 
 	animloop();
 
-    
+
+
+	$('#container5').highcharts({
+        chart: {
+            type: 'column',
+            margin: [ 50, 50, 100, 80]
+        },
+        title: {
+            text: 'Distribution par Ville'
+        },
+        xAxis: {
+            categories: [
+                <?php $ct = 0; foreach ($cpMap as $cp=>$people){
+                     if($ct>0)echo ",";       
+                     if($cp == "Unknown")
+                         echo "'Inconnue'";
+                     else
+                        echo "'".OpenData::$commune['974'][$cp]."'";
+                    $ct++;
+                }
+                ?>
+            ],
+            labels: {
+                rotation: -45,
+                align: 'right',
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Membres de Projets'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>',
+        },
+        series: [{
+            name: 'Population',
+            data: [<?php $ct = 0; foreach ( $cpMap as $cp=>$people ){
+                        if($ct>0)echo ",";     
+                        echo count( $people );
+                        $ct++;
+                    }
+                    ?>],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    });
+
+	$('#container4').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Stacked bar chart'
+        },
+        xAxis: {
+            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total fruit consumption'
+            }
+        },
+        legend: {
+            backgroundColor: '#FFFFFF',
+            reversed: true
+        },
+        plotOptions: {
+            series: {
+                stacking: 'normal'
+            }
+        },
+            series: [{
+            name: 'John',
+            data: [5, 3, 4, 7, 2]
+        }, {
+            name: 'Jane',
+            data: [2, 2, 3, 2, 1]
+        }, {
+            name: 'Joe',
+            data: [3, 4, 4, 2, 5]
+        }]
+    });
+	
     $('#container2').highcharts({
         chart: {
             type: 'bar'
@@ -702,115 +898,9 @@ initT['sweGraphInit'] = function(){
         }]
     });
 
-    $('#container4').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: 'Stacked bar chart'
-        },
-        xAxis: {
-            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Total fruit consumption'
-            }
-        },
-        legend: {
-            backgroundColor: '#FFFFFF',
-            reversed: true
-        },
-        plotOptions: {
-            series: {
-                stacking: 'normal'
-            }
-        },
-            series: [{
-            name: 'John',
-            data: [5, 3, 4, 7, 2]
-        }, {
-            name: 'Jane',
-            data: [2, 2, 3, 2, 1]
-        }, {
-            name: 'Joe',
-            data: [3, 4, 4, 2, 5]
-        }]
-    });
+    
 
-    $('#container5').highcharts({
-        chart: {
-            type: 'column',
-            margin: [ 50, 50, 100, 80]
-        },
-        title: {
-            text: 'World\'s largest cities per 2008'
-        },
-        xAxis: {
-            categories: [
-                'Tokyo',
-                'Jakarta',
-                'New York',
-                'Seoul',
-                'Manila',
-                'Mumbai',
-                'Sao Paulo',
-                'Mexico City',
-                'Dehli',
-                'Osaka',
-                'Cairo',
-                'Kolkata',
-                'Los Angeles',
-                'Shanghai',
-                'Moscow',
-                'Beijing',
-                'Buenos Aires',
-                'Guangzhou',
-                'Shenzhen',
-                'Istanbul'
-            ],
-            labels: {
-                rotation: -45,
-                align: 'right',
-                style: {
-                    fontSize: '13px',
-                    fontFamily: 'Verdana, sans-serif'
-                }
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Population (millions)'
-            }
-        },
-        legend: {
-            enabled: false
-        },
-        tooltip: {
-            pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>',
-        },
-        series: [{
-            name: 'Population',
-            data: [34.4, 21.8, 20.1, 20, 19.6, 19.5, 19.1, 18.4, 18,
-                17.3, 16.8, 15, 14.7, 14.5, 13.3, 12.8, 12.4, 11.8,
-                11.7, 11.2],
-            dataLabels: {
-                enabled: true,
-                rotation: -90,
-                color: '#FFFFFF',
-                align: 'right',
-                x: 4,
-                y: 10,
-                style: {
-                    fontSize: '13px',
-                    fontFamily: 'Verdana, sans-serif',
-                    textShadow: '0 0 3px black'
-                }
-            }
-        }]
-    });
+    
 
 
     $('#container6').highcharts({
@@ -890,7 +980,215 @@ initT['sweGraphInit'] = function(){
 	        data: [1, 8, 2, 7, 3, 6, 4, 5]
 	    }]
 	});
-    
+
+
+ $('#container8').highcharts({
+     chart: {
+         plotBackgroundColor: null,
+         plotBorderWidth: null,
+         plotShadow: false
+     },
+     title: {
+         text: 'Les Objectifs des participants'
+     },
+     tooltip: {
+ 	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+     },
+     plotOptions: {
+         pie: {
+             allowPointSelect: true,
+             cursor: 'pointer',
+             dataLabels: {
+                 enabled: true,
+                 color: '#000000',
+                 connectorColor: '#000000',
+                 format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+             }
+         }
+     },
+     series: [{
+         type: 'pie',
+         name: 'Cumulé',
+         data: [
+            <?php $ct = 0; 
+                foreach ( $objectifMap as $t => $v )
+                {
+                    if($ct>0)echo ",";     
+                    $titre = ($t) ? SWE::$objectif[$t] : "Inconnue" ;
+                    echo "[\"".$titre."\",$v]";
+                    $ct++;
+                }
+            ?>
+         ]
+     }]
+ });
+ 
+ $('#container9').highcharts({
+     chart: {
+         plotBackgroundColor: null,
+         plotBorderWidth: null,
+         plotShadow: false
+     },
+     title: {
+         text: 'Expertise des participants'
+     },
+     tooltip: {
+ 	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+     },
+     plotOptions: {
+         pie: {
+             allowPointSelect: true,
+             cursor: 'pointer',
+             dataLabels: {
+                 enabled: true,
+                 color: '#000000',
+                 connectorColor: '#000000',
+                 format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+             }
+         }
+     },
+     series: [{
+         type: 'pie',
+         name: 'Cumulé',
+         data: [
+            <?php $ct = 0; 
+                foreach ( $expertiseMap as $t => $v )
+                {
+                    if($ct>0)echo ",";     
+                    $titre = ($t) ? SWE::$expertise[$t] : "Inconnue" ;
+                    echo "[\"".$titre."\",$v]";
+                    $ct++;
+                }
+            ?>
+         ]
+     }]
+ });
+ 
+ $('#container10').highcharts({
+     chart: {
+         plotBackgroundColor: null,
+         plotBorderWidth: null,
+         plotShadow: false
+     },
+     title: {
+         text: 'Formation des participants'
+     },
+     tooltip: {
+ 	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+     },
+     plotOptions: {
+         pie: {
+             allowPointSelect: true,
+             cursor: 'pointer',
+             dataLabels: {
+                 enabled: true,
+                 color: '#000000',
+                 connectorColor: '#000000',
+                 format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+             }
+         }
+     },
+     series: [{
+         type: 'pie',
+         name: 'Cumulé',
+         data: [
+            <?php $ct = 0; 
+                foreach ( $formationMap as $t => $v )
+                {
+                    if($ct>0)echo ",";     
+                    $titre = ($t) ? SWE::$formation[$t] : "Inconnue" ;
+                    echo "[\"".$titre."\",$v]";
+                    $ct++;
+                }
+            ?>
+         ]
+     }]
+ });
+ 
+ $('#container11').highcharts({
+     chart: {
+         plotBackgroundColor: null,
+         plotBorderWidth: null,
+         plotShadow: false
+     },
+     title: {
+         text: 'Professions des participants'
+     },
+     tooltip: {
+ 	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+     },
+     plotOptions: {
+         pie: {
+             allowPointSelect: true,
+             cursor: 'pointer',
+             dataLabels: {
+                 enabled: true,
+                 color: '#000000',
+                 connectorColor: '#000000',
+                 format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+             }
+         }
+     },
+     series: [{
+         type: 'pie',
+         name: 'Cumulé',
+         data: [
+            <?php $ct = 0; 
+                foreach ( $professionMap as $t => $v )
+                {
+                    if($ct>0)echo ",";     
+                    $titre = ($t) ? SWE::$profession[$t] : "Inconnue" ;
+                    echo "[\"".$titre."\",$v]";
+                    $ct++;
+                }
+            ?>
+         ]
+     }]
+ });
+ 
+ $('#container12').highcharts({
+     chart: {
+         plotBackgroundColor: null,
+         plotBorderWidth: null,
+         plotShadow: false
+     },
+     title: {
+         text: 'Comment ils ont Decouvert le SWE'
+     },
+     tooltip: {
+ 	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+     },
+     plotOptions: {
+         pie: {
+             allowPointSelect: true,
+             cursor: 'pointer',
+             dataLabels: {
+                 enabled: true,
+                 color: '#000000',
+                 connectorColor: '#000000',
+                 format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+             }
+         }
+     },
+     series: [{
+         type: 'pie',
+         name: 'Cumulé',
+         data: [
+            <?php $ct = 0; 
+                foreach ( $commentConnuSWEMap as $t => $v )
+                {
+                    if($ct>0)echo ",";     
+                    $titre = ($t) ? SWE::$commentConnuSWE[$t] : "Inconnue" ;
+                    echo "[\"".$titre."\",$v]";
+                    $ct++;
+                }
+            ?>
+         ]
+     }]
+ });
+ 
+	
+	
 };
 
 </script>	

@@ -47,8 +47,8 @@ ol.slats li p span.meta {
     <br/>
     <div class="hero-unit">
     
-    <h2> Module Association</h2>
-    <p> Valorisation des associations locale, des leurs actions et objectifs </p>
+    <h2> Brainstormons</h2>
+    <p> Un brainstom s'effectue en 3 étapes : Contribution, Vote , Résultat  </p>
 <ol class="slats">
 	<?php 
     $pa = Yii::app()->mongodb->group->find(array("type"=>PixelHumain::TYPE_ASSOCIATION));
@@ -74,7 +74,7 @@ initT['animInit'] = function(){
 	    ?>
 	  $(document).on('touchstart click', '.delBtn', function(event){
 		  //console.log(this.hash.substr(1));
-		  if(confirm("t'es sur de ton coup ?")){
+		  if(confirm("t'es sur de ton copup ?")){
 		  event.preventDefault();
 		  toggleSpinner();
 		  $( "."+this.hash.substr(1) ).remove();

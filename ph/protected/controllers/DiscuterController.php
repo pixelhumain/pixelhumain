@@ -9,9 +9,37 @@
  * Date: 15/08/13
  */
 class DiscuterController extends Controller {
-
+    const moduleTitle = "Discuter";
+    
 	public function actionIndex() {
 	    $this->render("index");
 	}
 	
+	/**
+	 * MODULE DE BRAINSTORM
+	 */
+    public function actionBrainstorm($id) {
+	    $this->render("brainstorm");
+	}
+    public function actionBrainstormForm() {
+        /*
+         * 
+         */
+	    $this->render("brainstormForm");
+	}
+    public function actionBrainstormSave() {
+        /*
+         * 
+         */
+	    $this->render("brainstormForm");
+	}
+    public function actionBrainstormIdeaAdd() {
+        
+	}
+    public function actionBrainstormVote() {
+        
+	}
+    /*public function actionBrainstorm($id) {
+	    $this->render("brainstorm");
+	}*/
 }

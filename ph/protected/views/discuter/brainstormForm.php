@@ -57,7 +57,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
 
 .appFooter{position:fixed;bottom:0px;right:0px;width:100px;z-index:2000;margin:15px;}
 
-.control-group{margin-bottom:5px;float:left;}
+.control-group{margin-bottom:5px;}
 .form-horizontal .control-group {   margin-bottom:5px;}
 
 h2,h3,h4 {
@@ -114,101 +114,127 @@ a.tags{font-family: "Homestead";font-size:small;line-height:15px;}
 
 <div class="container appContent">
 
-	<h1>Référencer votre Association</h1>
+	<h1>Créer une session de Brainstorm </h1>
+ 
+    
     <div class="hero-unit">
     	<h3> Merci de compléter vos données. </h3>
         
-        <p> si vous gérer une ou plusieurs associations ou etes simplement membre
-       <br/>Vous etes au bon endroit pour la valorisé, la diffuser, l'aider à la faire vivre</p>
+        <p> Les Coachs sont là pour vous orienter, n'hésitez pas à les solliciter. 
+        En remplissant ce formulaire vous n'aurez pas à vous déplacer, le brainstorm recevra votre demande. 
+        </p>
        
-        <form id="associationForm" style="line-height:30px;width:500px;">
-            <section>
-              	<?php 
-              	    $asso = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
-              	    
-              	    if( isset(Yii::app()->session["userId"]) )
-              	    {?>
-                  	
-                 		<?php 
-                 		$user = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId( Yii::app()->session["userId"] )));
-                 		foreach($user["associations"] as $id)
-                 		{
-                 		    $myasso = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
-                 		    echo "<a class='btn btn-warning' href='".Yii::app()->createUrl('index.php/association/view/id/'.$myasso['_id'])."'>".$myasso['name']."</a>";
-                         }
-              	    } ?>
-				<br/><br/>
-              	<div  id="assoCreate">
-                  	<table>
-                  		<tr>
-                          	<td class="txtright">Nom(Raison Sociale)</td>
-                          	<td> 
-								<input id="assoName" name="assoName" value="<?php if($asso && isset($asso['name']) ) echo $asso['name']; else $asso["name"]; ?>"/>
-							</td>
-                      	</tr>
-                      	<tr>
-                          	<td class="txtright">Email</td>
-                          	<td> <input id="assoEmail" name="assoEmail" value="<?php if($asso && isset($asso['email']) ) echo $asso['email']; else $asso["email"]; ?>"/></td>
-                      	</tr>
-                		<tr>
-                          	<td class="txtright">Pays  </td>
-                          	<td>
-                		<?php 
-                                  $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                                    'data' => OpenData::$phCountries, 
-                                    'name' => 'countryAsso',
-                                  	'id' => 'countryAsso',
-                                    'value'=>($asso && isset($asso['country']) ) ? $asso['country'] : "Réunion",
-                                    'pluginOptions' => array('width' => '150px')
-                                  ));
-                    		    ?></td>
-                    	</tr> 
-                		<tr>
-                    		<td class="txtright">au code postal</td>  
-                    		<td><input id="assoCP" name="assoCP" class="span2" value="<?php if($asso && isset($asso['cp']) )echo $asso['cp'] ?>"></td>
-                		</tr>
-            		    <tr >
-                            <td class="txtright">Centre d'interet </td>
-                            <td>
-                                <?php 
-                                  $cursor = Yii::app()->mongodb->lists->findOne( array("name"=>"tags"), array('list'));
-                                  $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                                    'asDropDownList' => false,
-                                    'name' => 'tagsAsso',
-                                  	'id' => 'tagsAsso',
-                                    'value'=>($asso && isset($asso['tags']) ) ? implode(",", $asso['tags']) : "",
-                                    'pluginOptions' => array(
-                                        'tags' => $cursor['list'],
-                                        'placeholder' => "Mots clefs descriptifs",
-                                        'width' => '100%',
-                                        'tokenSeparators' => array(',', ' ')
-                                    )));
-                    		    ?>
-                		    </td>
-            		    </tr>
-            		    <tr>
-                    		<td class="txtright">Position</td>  
-                    		<td>
-                    		<?php 
-                    		$this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                                    'data' => Association::$position, 
-                                    'name' => 'assoPosition',
-                                  	'id' => 'assoPosition',
-                                    'value'=>($asso && isset($asso['position']) ) ? $asso['position'] : "membre",
-                                    'pluginOptions' => array('width' => '150px')
-                                  ));
-                    		?>
-                    		
-                    		</td>
-                		</tr>
-                  </table>
+        <form id="brainstormForm" style="line-height:30px;width:500px;">
+        <section>
+        	
+
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="Titre">Nom du site </label>
+              <div class="controls">
+                <input id="Titre" name="Titre" type="text" placeholder="" class="input-xlarge" required="">
               </div>
-              <div class="clear"></div>
-            </section>
+            </div>
             
-        </form>
+            <!-- Select Basic -->
+            <div class="control-group">
+              <label class="control-label" for="portée">portée</label>
+              <div class="controls">
+                <select id="portée" name="portée" class="input-xlarge">
+                  <option>réseau</option>
+                  <option>commune</option>
+                  <option>département</option>
+                  <option>Région</option>
+                  <option>Pays</option>
+                </select>
+              </div>
+            </div>
+            
+            <!-- Multiple Checkboxes (inline) -->
+            <div class="control-group">
+              <label class="control-label" for="modération">modération</label>
+              <div class="controls">
+                <label class="checkbox inline" for="modération-0">
+                  <input type="checkbox" name="modération" id="modération-0" value="OUI">
+                  OUI
+                </label>
+              </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="Nombre de résultats">Nombre de résultats</label>
+              <div class="controls">
+                <input id="Nombre de résultats" name="Nombre de résultats" type="text" placeholder="" class="input-small" required="">
+                
+              </div>
+            </div>
+            
+            <!-- Prepended text-->
+            <div class="control-group">
+              <label class="control-label" for="brainstorm">brainstorm</label>
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on">brainstorm</span>
+                  <input id="brainstorm" name="brainstorm" class="input-xlarge" placeholder="brainstorm" type="text">
+                </div>
+                
+              </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="temps">temps</label>
+              <div class="controls">
+                <input id="temps" name="temps" type="text" placeholder="" class="input-small" required="">
+                
+              </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="maxsolution">maxsolution</label>
+              <div class="controls">
+                <input id="maxsolution" name="maxsolution" type="text" placeholder="" class="input-xlarge" required="">
+                
+              </div>
+            </div>
+            
+            <!-- Prepended text-->
+            <div class="control-group">
+              <label class="control-label" for="vote">vote</label>
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on">vote</span>
+                  <input id="vote" name="vote" class="input-xlarge" placeholder="vote" type="text">
+                </div>
+                
+              </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="nbiteration">nbiteration</label>
+              <div class="controls">
+                <input id="nbiteration" name="nbiteration" type="text" placeholder="" class="input-small" required="">
+                
+              </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="temps">temps</label>
+              <div class="controls">
+                <input id="temps" name="temps" type="text" placeholder="" class="input-small" required="">
+                
+              </div>
+            </div>
+            <div class="clear"></div>
+        </section>
+        
+    </form>
 		<div class="modal-footer pull-left">
-            <button class="btn btn-primary" id="associationFormSubmit" onclick="$('#associationForm').submit();">Enregistrer</button>
+            <button class="btn btn-primary" id="brainstormFormSubmit" onclick="$('#brainstormForm').submit();">Enregistrer</button>
           </div>
     </div>
 </div>
@@ -226,22 +252,22 @@ initT['sweGraphInit'] = function(){
 		    type: 'get'
 		  }
 		});
-	$("#associationForm").submit( function(event){
+	$("#brainstormForm").submit( function(event){
     	if($('.error').length){
     		alert('Veuillez remplir les champs obligatoires.');
     	}else{
         	event.preventDefault();
-        	$("#associationForm").modal('hide');
+        	$("#brainstormForm").modal('hide');
         	NProgress.start();
         	$.ajax({
         	  type: "POST",
         	  url: baseUrl+"/index.php/association/save",
-        	  data: $("#associationForm").serialize(),
+        	  data: $("#brainstormForm").serialize(),
         	  success: function(data){
         			  $("#flashInfo .modal-body").html(data.msg);
         			  $("#flashInfo").modal('show');
         			  NProgress.done();
-        			  window.location.href = baseUrl+"/index.php/association";
+        			  window.location.href = baseUrl+"/index.php/discuter/brainstorm";
         	  },
         	  dataType: "json"
         	});
