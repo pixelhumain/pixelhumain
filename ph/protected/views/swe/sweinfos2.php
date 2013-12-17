@@ -93,9 +93,7 @@ appContent div.controls {float:left;margin-left:0px;}
               <label class="control-label" for="objectifsAtteint">Lors du SWE, vos objectifs ont ils été atteints ?</label>
               <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                            'data' => array(""=>"","toutafait"=>"Tout à fait",
-                            				"enPartie"=>"En partie",
-                            				"pasdutout"=>"Pas du tout",),
+                            'data' => SWE::$objectifAtteint,
                             'name' => 'objectifsAtteint',
                           	'id' => 'objectifsAtteint',
                             'value'=> (isset($me["objectifsAtteint"])) ? $me["objectifsAtteint"] : "",
@@ -111,10 +109,7 @@ appContent div.controls {float:left;margin-left:0px;}
               <label class="control-label" for="concretisation">Pensez vous que le projet va se concrétiser ?</label>
               <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                            'data' => array(""=>"","ouiRapidement"=>"Oui rapidement",
-                            				"OuiMaisPlusTard"=>"Oui mais plus tard",
-                            				"ouiSousUneAutreForme"=>"Oui sous une autre forme",
-                                            "non"=>"Non"),
+                            'data' => SWE::$concretisation,
                             'name' => 'concretisation',
                           	'id' => 'concretisation',
                             'value'=> (isset($me["concretisation"])) ? $me["concretisation"] : "",
@@ -142,9 +137,7 @@ appContent div.controls {float:left;margin-left:0px;}
               <label class="control-label" for="recommandation">Recommanderiez vous le SWE à votre entourage ?</label>
              <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                            'data' => array(""=>"","oui"=>"Oui, oui et oui !",
-                            				"pourquoiPas"=>"Pourquoi pas",
-                            				"non"=>"Non"),
+                            'data' => SWE::$recommandation,
                             'name' => 'recommandation',
                           	'id' => 'recommandation',
                             'value'=> (isset($me["recommandation"])) ? $me["recommandation"] : "",
@@ -159,10 +152,7 @@ appContent div.controls {float:left;margin-left:0px;}
               <label class="control-label" for="amerlioration">Quels points sont à améliorer selon vous ?</label>
               <?php 
                 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                            'data' => array(""=>"","déroulement"=>"Déroulement",
-                            				"explications"=>"Explications",
-                            				"coaching"=>"coaching",
-                                            "orgaGenerale"=>"organisation en général"),
+                            'data' => SWE::$amerlioration,
                             'name' => 'amerlioration',
                           	'id' => 'amerlioration',
                             'value'=> (isset($me["amerlioration"])) ? $me["amerlioration"] : "",
@@ -190,7 +180,7 @@ appContent div.controls {float:left;margin-left:0px;}
     </div>
 </div>
 
-<?php $this->renderPartial('application.views.evenement.swe.sweSponsor');?>
+<?php $this->renderPartial('application.views.swe.sweSponsor');?>
 
 <canvas id="canvas"></canvas>
 
@@ -208,7 +198,7 @@ initT['sweGraphInit'] = function(){
         	NProgress.start();
         	$.ajax({
         	  type: "POST",
-        	  url: baseUrl+"/index.php/evenement/sweInfos",
+        	  url: baseUrl+"/index.php/ext/swe/sweInfos",
         	  data: $("#sweFeedBackForm").serialize(),
         	  success: function(data){
         			  $("#flashInfo .modal-body").html(data.msg);

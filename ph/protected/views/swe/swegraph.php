@@ -59,11 +59,11 @@ canvas{position:absolute;top:0px;left:0px;}
 <div class="appMenuContainer">
     <ul class="appMenu">
     	<?php if( in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) ){ ?>
-    		<li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweadmin/id/'.$key)?>"><i class="icon-wrench"></i> Admin</a></li>
+    		<li><a href="<?php echo Yii::app()->createUrl('index.php/ext/swe/sweadmin/id/'.$key)?>"><i class="icon-wrench"></i> Admin</a></li>
     		<li><a href="javascript:statnum=1;filterType('statistics')">Stats</a></li>
     	<?php } ?>
-    	<?php /*?><li><a href="#sweInscription" id="mesInfos" role="button" data-toggle="modal"><i class="icon-user"></i> Mes Infos</a></li>*/?>
-    	<li><a href="#coaching" role="button" data-toggle="modal"><i class="icon-bell"></i> APPEL UN COACH !! </a><a href="#coaching" role="button" data-toggle="modal"><span id="coachingCount" class="badge bgRed" ></span></a></li>
+    	<?php /*?><li><a href="#sweInscription" id="mesInfos" role="button" data-toggle="modal"><i class="icon-user"></i> Mes Infos</a></li>
+    	<li><a href="#coaching" role="button" data-toggle="modal"><i class="icon-bell"></i> APPEL UN COACH !! </a><a href="#coaching" role="button" data-toggle="modal"><span id="coachingCount" class="badge bgRed" ></span></a></li>*/?>
         <li><a href="javascript:filterType('participant')">Inscrits <span class="badge"><?php echo count($event["participants"])?></span></a></li>
         <li><a href="javascript:filterType('projet')">Projets <span class="badge"><?php echo count($event["projects"])-2?></span></a></li>
         <li><a href="javascript:filterType('coach')">Coachs <span class="badge"><?php echo count($event["coaches"])?></span></a></li>
@@ -93,12 +93,22 @@ canvas{position:absolute;top:0px;left:0px;}
     	
     	//statistics
     	$projectMap = array();
+    	$teamTypeMap = array();
     	$cpMap = array( "Unknown" => array() );
+    	$newsMap = array("N"=>0,"E"=>0,"S"=>0,"O"=>0);
     	$objectifMap = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
     	$expertiseMap = array(0,0,0,0,0,0,0,0,0);
     	$formationMap = array(0,0,0,0,0,0,0,0,0);
+    	$etudiantCount = 0;
     	$professionMap = array(0,0,0,0,0,0,0);
     	$commentConnuSWEMap = array(0,0,0,0,0,0,0,0,0);
+    	$moyenDage = 0;
+    	$nbDage = 0 ;
+    	$contactMembresProlonge = Array();
+    	$objectifsAtteint = array("toutafait"=>0,"enPartie"=>0,"pasdutout"=>0); ;
+    	$concretisation = array("ouiRapidement"=>0,"OuiMaisPlusTard"=>0,"ouiSousUneAutreForme"=>0,"non"=>0);
+    	$recommandation = array("oui"=>"Oui, oui et oui !","pourquoiPas"=>"Pourquoi pas","non"=>"Non");
+    	$amerlioration = array("déroulement"=>"Déroulement","explications"=>"Explications","coaching"=>"coaching","orgaGenerale"=>"organisation en général");
         foreach ($sweThings as $line) 
         {
             if(in_array($event['_id'],$line['events']) && !in_array( $line["_id"], array("52904262e9ce27f504cffd46","52904512e9ce27f504cffd48") ) )
@@ -107,8 +117,8 @@ canvas{position:absolute;top:0px;left:0px;}
                 $type = (isset($line["type"])) ? $line["type"] : null;
                 $email = (isset($line["email"])) ? $line["email"]:null;
                 $desc = (isset($line["desc"])) ? $line["desc"]:null;
-                $project = "";
                 
+                $project = "";
                 
                 //statistics
                 if(isset($type) && in_array($type, array('participant'))){
@@ -116,6 +126,7 @@ canvas{position:absolute;top:0px;left:0px;}
                         if( !isset( $cpMap[ $line["codepostal"] ] ) )
                             $cpMap[ $line["codepostal"] ] = array();
                         array_push( $cpMap[ $line["codepostal"] ], $email );
+                        $newsMap[OpenData::$communeMap["974"][$line["codepostal"]]["news"]] += 1; 
                     }else
                         array_push( $cpMap[ "Unknown" ], $email );
                 
@@ -129,10 +140,11 @@ canvas{position:absolute;top:0px;left:0px;}
                     }else
                         $expertiseMap[ 0 ] += 1;
 
-                    if(isset($line["formation"]) ){
+                    if(isset($line["formation"]) && !empty($line["formation"])){
                         $formationMap[ $line["formation"] ] += 1;
-                    }else
-                        $formationMap[ 0 ] += 1;
+                        $etudiantCount++;
+                    } /*else
+                        $formationMap[ 0 ] += 1;*/
                         
                     if(isset($line["profession"]) ){
                         $professionMap[ $line["profession"] ] += 1;
@@ -143,6 +155,30 @@ canvas{position:absolute;top:0px;left:0px;}
                         $commentConnuSWEMap[ $line["commentConnuSWE"] ] += 1;
                     }else
                         $commentConnuSWEMap[ 0 ] += 1;
+                    
+                    $age = (isset($line["age"])) ? $line["age"]:null;
+                    if($age){
+                       $nbDage++;
+                       $moyenDage += $age;
+                    }
+                    if(isset($line["objectifsAtteint"]) && !empty($line["objectifsAtteint"]) )
+                        $objectifsAtteint[ $line["objectifsAtteint"] ] += 1;
+                    
+                    
+                    if(isset($line["concretisation"]) && !empty($line["concretisation"]) )
+                        $concretisation[ $line["concretisation"] ] += 1;
+                    
+                        
+                    if(isset($line["recommandation"]) && !empty($line["recommandation"]) )
+                        $recommandation[ $line["recommandation"] ] += 1;
+                    
+                    if(isset($line["amerlioration"]) && !empty($line["amerlioration"]) )
+                        $amerlioration[ $line["amerlioration"] ] += 1;
+                    
+                    /*if(isset($line["contactMembresProlonge"]) ){
+                        $contactMembresProlonge[ $line["contactMembresProlonge"] ] += 1;
+                    }else
+                        $contactMembresProlonge[ 0 ] += 1;*/
                 }
                     
                 //un user peut etre associer a un projet 2012 et 13
@@ -185,11 +221,17 @@ canvas{position:absolute;top:0px;left:0px;}
                     }
                     
                     //statistics
-                    if( !isset( $projectMap[ $project ] ) )
+                    if( !isset( $projectMap[ $project ] ) ){
                         $projectMap[ $project ] = array();
+                        $teamTypeMap[$project ] = array(0,0,0,0,0,0,0,0,0);
+                    }
                     if( $type!='projet' ){
                         array_push( $projectMap[ $project ], $email );
-                        
+                        if(isset($line["expertise"]) ){
+                            if(!isset( $teamTypeMap[ $project ][ $line["expertise"] ] ))
+                                $teamTypeMap[ $project ][ $line["expertise"] ] = 0;
+                            $teamTypeMap[ $project ][ $line["expertise"] ] += 1;
+                        }
                     }
                 } 
                  
@@ -252,69 +294,66 @@ canvas{position:absolute;top:0px;left:0px;}
 			<a class="entypo-right  btn prevStat" href="javascript:statPanelIndex (1)"></a>
     		<li id="stats1" class="hide chart">
     			
-    			<h1>Participants : <?php echo count($event["participants"])?></h1>
-    			<h1>Projets : <?php echo count($event["projects"])?></h1>
+    			<h1>Participants  <br/><?php echo count($event["participants"])?> Inscrits</h1>
+    			<h1>98 sont venus</h1>
+    			<h1>46 ont pitchés</h1>
+    			<h1><?php echo count($event["projects"])?> Projets Retenus</h1>
+    			<h1>56 sont restés</h1>
+    			<h1>Moyenne d'age <?php echo floor($moyenDage/$nbDage)?> ans</h1>
     			<h1>54h de dure labeur</h1> 
     			<h1>C'etait Grand et Raide</h1>
-    			
     		</li>
-    		
     		<li id="stats2" class="hide chart">
-    			<h1><?php echo count($projectMap,COUNT_RECURSIVE)-count($projectMap)?> Participants Distribué sur <?php echo count($event["projects"])?> projets</h1>
-    			<?php $pct = 1;?>
-    			<?php foreach ($projectMap as $p=>$team){?>
-    			      <h1><?php echo $pct?> - <?php echo strtoupper($p)." : ".count($team)?> participants</h1>  
-    			<?php $pct++;}?>
+    			<div id="container14" style=" width:800px;margin: 0 auto"></div>
     		</li>
-    		
-    		
     		<li id="stats3" class="hide chart">
-    			<div id="container5" style=" width:800px;margin: 0 auto"></div>
-    		</li>
-    		<li id="stats4" class="hide chart">
     			<div id="container4" style="width:800px;margin: 0 auto"></div>
     		</li>
+    		<li id="stats4" class="hide chart">
+    			<div id="container2" style="width:800px;margin: 0 auto"></div>
+    			<div id="container5" style=" width:800px;margin: 0 auto"></div>
+    		</li>
     		<li id="stats5" class="hide chart">
-    			<div id="container8" style="width:800px;margin: 0 auto"></div>
+    			<div id="container12" style="width:800px;margin: 0 auto"></div>
     		</li>
     		<li id="stats6" class="hide chart">
-    			<div id="container9" style="width:800px;margin: 0 auto"></div>
+    			<div id="container8" style="width:800px;margin: 0 auto"></div>
     		</li>
     		<li id="stats7" class="hide chart">
-    			<div id="container10" style="width:800px;margin: 0 auto"></div>
-    		</li>
-    		<li id="stats8" class="hide chart">
     			<div id="container11" style="width:800px;margin: 0 auto"></div>
     		</li>
+    		<li id="stats8" class="hide chart">
+    			<div id="container9" style="width:800px;margin: 0 auto"></div>
+    		</li>
     		<li id="stats9" class="hide chart">
-    			<div id="container12" style="width:800px;margin: 0 auto"></div>
+    			<div id="container10" style="width:800px;margin: 0 auto"></div>
     		</li>
     		
     		<li id="stats10" class="hide chart">
-    			<div id="container2" style="width:800px;margin: 0 auto"></div>
-    		</li>
-    		
-    		<li id="stats11" class="hide chart">
-    			<div id="container6" style="width:800px;margin: 0 auto"></div>
-    		</li>
-    		
-    		<li id="stats12" class="hide chart">
     			<div id="container7" style="width:800px;margin: 0 auto"></div>
     		</li>
     		
-    		<li id="stats13" class="hide chart">
+    		<li id="stats11" class="hide chart">
     			<div id="container3" style="width:800px;margin: 0 auto"></div>
+    		</li>
+    		
+    		<li id="stats12" class="hide chart">
+    			<div id="container16" style="width:800px;margin: 0 auto"></div>
+    		</li>
+    		
+    		<li id="stats13" class="hide chart">
+    			<div id="container17" style="width:800px;margin: 0 auto"></div>
     		</li>
 		</ul>
 	</div>
 	
 </div>
 
-<?php $this->renderPartial('application.views.evenement.swe.sweSponsor');?>
+<?php $this->renderPartial('application.views.swe.sweSponsor');?>
 
 <canvas id="canvas"></canvas>
 
-<?php $this->renderPartial('application.views.evenement.swe.sweModals',array('coaches'=>$coaches,
+<?php $this->renderPartial('application.views.swe.sweModals',array('coaches'=>$coaches,
     																		 'myproject'=>$myproject,
                                                                              'projects'=>$projects,
                                                                              'event'=>$event,
@@ -327,7 +366,7 @@ canvas{position:absolute;top:0px;left:0px;}
 function showPerson(email){
 	$.ajax({
   	  type: "POST",
-  	  url: baseUrl+"/index.php/evenement/sweGetPerson",
+  	  url: baseUrl+"/index.php/ext/swe/sweGetPerson",
   	  data: {"email":email},
   	  success: function(data){
   			  $("#flashInfo .modal-body").html(data.msg);
@@ -338,7 +377,7 @@ function showPerson(email){
 }
 var previousDataCoach = {"count":0};
 function getCoachCount(){
-    $.getJSON(baseUrl+"/index.php/evenement/sweNotifications/id/<?php echo $event["_id"]?>", function(data) {
+    $.getJSON(baseUrl+"/index.php/ext/swe/sweNotifications/id/<?php echo $event["_id"]?>", function(data) {
         // console.log(previousDataCoach);
         // console.log(data);
 		if( previousDataCoach.count != data.count  )
@@ -383,7 +422,7 @@ function sweCoachingDone(id){
 	NProgress.start();
 	$.ajax({
 	  type: "POST",
-	  url: baseUrl+"/index.php/evenement/sweCoachingDone",
+	  url: baseUrl+"/index.php/ext/swe/sweCoachingDone",
 	  data: {"id":id},
 	  success: function(data){
 		  	  $("#flashInfo .modal-body").html(data.msg);
@@ -399,7 +438,7 @@ function userJoinProject(project){
 	NProgress.start();
 	$.ajax({
 	  type: "POST",
-	  url: baseUrl+"/index.php/evenement/sweRejoindreProjet",
+	  url: baseUrl+"/index.php/ext/swe/sweRejoindreProjet",
 	  data: {"projet":project},
 	  success: function(data){
 		  	  $("li.projet."+project).addClass('me');
@@ -412,14 +451,14 @@ function userJoinProject(project){
 }
 
 var statnum = 1;
-var statsPaenlCount = $(".chart").length;
+var statsPanelCount = $(".chart").length;
 function statPanelIndex (step){
 	$("#stats"+statnum).slideUp();
-	$("#statistics a.btn").show();
-	if(statnum == statsPaenlCount && step == 1)
+	$(".nextStat,.prevStat").show();
+	if(statnum == statsPanelCount && step == 1)
 		statnum = 1;
 	else if ( statnum == 1 && step == -1 )
-		statnum = statsPaenlCount;
+		statnum = statsPanelCount;
 	else
 		statnum = statnum + step;	
 	filterType( "statistics" );	
@@ -432,10 +471,11 @@ console.log("set lockInterval ",lockInterval);
 
 function filterType(type){
 	$(".appContent ul.people li").slideUp();
+	$(".nextStat,.prevStat").hide();
 	$("#stats"+statnum).hide();
 	if(type == "statistics")
 	{
-		$("#statistics a.btn").show();
+		$(".nextStat,.prevStat").show();
 		$("#stats"+statnum).slideDown();
 	}
 	else 
@@ -468,12 +508,12 @@ initT['sweGraphInit'] = function(){
 	$("li.projet.<?php echo $myproject?>").addClass('me');
 	<?php }?>
 	filterType("statistics");
-	setInterval("stopStatsInterval()",5000);
+	//setInterval("stopStatsInterval()",5000);
 	//appear after loading
 	$(".appContent").slideDown();
 	$('#appPanel').scrollbox();
 	$('#mesInfos').click(function(){filterType('me')});
-	getCoachCount();
+	//getCoachCount();
 	//Code by: Kushagra Agarwal
 	//http://cssdeck.com/item/602/html5-canvas-particles-web-matrix
 	// RequestAnimFrame: a browser API for getting smooth animations
@@ -670,12 +710,75 @@ initT['sweGraphInit'] = function(){
 	// Start the main animation loop using requestAnimFrame
 	function animloop() {
 		draw();
-		requestAnimFrame(animloop);
+		//requestAnimFrame(animloop);
 	}
 
 	animloop();
 
-
+	$('#container14').highcharts({
+        chart: {
+            type: 'column',
+            margin: [ 50, 50, 100, 80]
+        },
+        title: {
+            text: '<?php echo count($projectMap,COUNT_RECURSIVE)-count($projectMap)?> Participants sont Resté sur <?php echo count($event["projects"])?> projets'
+        },
+        xAxis: {
+            categories: [
+                
+    			<?php 
+    			$ct=0;
+    			foreach ($projectMap as $p=>$team) {
+    			    if($ct>0)echo ",";    
+    			    echo "'".strtoupper($p)."'";
+    			    $ct++;
+    			      } 
+    			?>
+            ],
+            labels: {
+                rotation: -45,
+                align: 'right',
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Membres de Projets'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: '<b>{point.y:.1f} Personnes</b>',
+        },
+        series: [{
+            name: 'Participants',
+            data: [<?php $ct = 0; foreach ( $projectMap as $p=>$team ){
+                        if($ct>0)echo ",";     
+                        echo count($team);
+                        $ct++;
+                    }
+                    ?>],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    });
 
 	$('#container5').highcharts({
         chart: {
@@ -747,15 +850,24 @@ initT['sweGraphInit'] = function(){
             type: 'bar'
         },
         title: {
-            text: 'Stacked bar chart'
+            text: 'Compétence des participants par projet'
         },
         xAxis: {
-            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+            categories: [
+        <?php 
+		$ct=0;
+		foreach ($teamTypeMap as $p=>$team) {
+		    if($ct>0)echo ",";    
+		    echo "'".strtoupper($p)."'";
+		    $ct++;
+		      } 
+		?>
+			]
         },
         yAxis: {
             min: 0,
             title: {
-                text: 'Total fruit consumption'
+                text: 'Participant par Projet'
             }
         },
         legend: {
@@ -767,229 +879,270 @@ initT['sweGraphInit'] = function(){
                 stacking: 'normal'
             }
         },
-            series: [{
-            name: 'John',
-            data: [5, 3, 4, 7, 2]
-        }, {
-            name: 'Jane',
-            data: [2, 2, 3, 2, 1]
-        }, {
-            name: 'Joe',
-            data: [3, 4, 4, 2, 5]
-        }]
+            series: [
+                     
+<?php 
+
+$ct = 0; 
+foreach ( SWE::$profession as $pro ){
+    //if(!empty($pro)){
+        if($ct>0)echo ",";
+        echo '{"name":"'.$pro.'","data":[';
+        $ctt =0;
+        $vals = "";
+        foreach ( $teamTypeMap as $p=>$teamTypes ){
+            if($ctt>0)$vals .= ",";     
+            $vals .= $teamTypes[$ct];
+            $ctt++;
+        }
+        echo $vals."]}";
+    //}
+    $ct++;
+}
+?> 
+             
+             ]
     });
 	
-    $('#container2').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: 'Historic World Population by Region'
-        },
-        subtitle: {
-            text: 'Source: Wikipedia.org'
-        },
-        xAxis: {
-            categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
-            title: {
-                text: null
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Population (millions)',
-                align: 'high'
-            },
-            labels: {
-                overflow: 'justify'
-            }
-        },
-        tooltip: {
-            valueSuffix: ' millions'
-        },
-        plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true
-                }
-            }
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'top',
-            x: -40,
-            y: 100,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: '#FFFFFF',
-            shadow: true
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Year 1800',
-            data: [107, 31, 635, 203, 2]
-        }, {
-            name: 'Year 1900',
-            data: [133, 156, 947, 408, 6]
-        }, {
-            name: 'Year 2008',
-            data: [973, 914, 4054, 732, 34]
-        }]
-    });
+	$('#container2').highcharts({
+	     chart: {
+	         plotBackgroundColor: null,
+	         plotBorderWidth: null,
+	         plotShadow: false
+	     },
+	     title: {
+	         text: 'N.E.W.S : Nord Est Ouest Sud '
+	     },
+	     tooltip: {
+	 	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	     },
+	     plotOptions: {
+	         pie: {
+	             allowPointSelect: true,
+	             cursor: 'pointer',
+	             dataLabels: {
+	                 enabled: true,
+	                 color: '#000000',
+	                 connectorColor: '#000000',
+	                 format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+	             }
+	         }
+	     },
+	     series: [{
+	         type: 'pie',
+	         name: 'Cumulé',
+	         data: [
+	            <?php $ct = 0; 
+	                $newsLabel = array("N"=>"Nord","E"=>"Est","O"=>"Ouest","S"=>"Sud");
+	                foreach ( $newsMap as $t => $v )
+	                {
+	                    if($t){
+	                        if($ct>0)echo ",";     
+	                        $titre = ($t) ? $newsLabel[$t] : "Inconnue" ;
+	                        echo "[\"".$titre."\",$v]";
+	                        $ct++;
+	                    }
+	                }
+	            ?>
+	         ]
+	     }]
+	 });
 
-
-
-
-    $('#container3').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Monthly Average Rainfall'
-        },
-        subtitle: {
-            text: 'Source: WorldClimate.com'
-        },
-        xAxis: {
-            categories: [
-                'Jan',
-                'Feb',
-                'Mar',
-                'Apr',
-                'May',
-                'Jun',
-                'Jul',
-                'Aug',
-                'Sep',
-                'Oct',
-                'Nov',
-                'Dec'
-            ]
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Rainfall (mm)'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Tokyo',
-            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-
-        }, {
-            name: 'New York',
-            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-
-        }, {
-            name: 'London',
-            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-
-        }, {
-            name: 'Berlin',
-            data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-
-        }]
-    });
-
-    
-
-    
-
-
-    $('#container6').highcharts({
-
-	    chart: {
-	        type: 'bubble',
-	        zoomType: 'xy'
-	    },
-
-	    title: {
-	    	text: 'Highcharts Bubbles'
-	    },
-	
-	    series: [{
-	        data: [[97,36,79],[94,74,60],[68,76,58],[64,87,56],[68,27,73],[74,99,42],[7,93,87],[51,69,40],[38,23,33],[57,86,31]]
-	    }, {
-	        data: [[25,10,87],[2,75,59],[11,54,8],[86,55,93],[5,3,58],[90,63,44],[91,33,17],[97,3,56],[15,67,48],[54,25,81]]
-	    }, {
-	        data: [[47,47,21],[20,12,4],[6,76,91],[38,30,60],[57,98,64],[61,17,80],[83,60,13],[67,78,75],[64,12,10],[30,77,82]]
-	    }]
-	
-	});
 
  $('#container7').highcharts({
-        
-	    chart: {
-	        polar: true
-	    },
+	 chart: {
+         plotBackgroundColor: null,
+         plotBorderWidth: 0,
+         plotShadow: false
+     },
+     title: {
+         text: "Pensez vous concrétiser votre projet ?",
+         align: 'center',
+         verticalAlign: 'middle',
+         y: 120
+     },
+     tooltip: {
+         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+     },
+     plotOptions: {
+         pie: {
+             dataLabels: {
+                 enabled: true,
+                 distance: -50,
+                 style: {
+                     fontWeight: 'bold',
+                     color: 'white',
+                     textShadow: '0px 1px 2px black'
+                 }
+             },
+             startAngle: -90,
+             endAngle: 90,
+             center: ['50%', '75%']
+         }
+     },
+     series: [{
+         type: 'pie',
+         name: 'Browser share',
+         innerSize: '50%',
+         data: [
+<?php $ct = 0; 
+foreach ( $concretisation as $t => $v )
+{
+    if($t){
+        if($ct>0)echo ",";     
+        $titre = ($t) ? SWE::$concretisation[$t] : "Inconnue" ;
+        echo "[\"".$titre."\",$v]";
+        $ct++;
+    }
+}
+?>
+         ]
+     }]
 	    
-	    title: {
-	        text: 'Highcharts Polar Chart'
-	    },
+	});
+
+ $('#container3').highcharts({
+ 	chart: {
+         plotBackgroundColor: null,
+         plotBorderWidth: 0,
+         plotShadow: false
+     },
+     title: {
+         text: "Quels points sont à améliorer selon vous ?",
+         align: 'center',
+         verticalAlign: 'middle',
+         y: 120
+     },
+     tooltip: {
+         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+     },
+     plotOptions: {
+         pie: {
+             dataLabels: {
+                 enabled: true,
+                 distance: -50,
+                 style: {
+                     fontWeight: 'bold',
+                     color: 'white',
+                     textShadow: '0px 1px 2px black'
+                 }
+             },
+             startAngle: -90,
+             endAngle: 90,
+             center: ['50%', '75%']
+         }
+     },
+     series: [{
+         type: 'pie',
+         name: 'Browser share',
+         innerSize: '50%',
+         data: [
+<?php $ct = 0; 
+foreach ( $amerlioration as $t => $v )
+{
+    if($t){
+        if($ct>0)echo ",";     
+        $titre = ($t) ? SWE::$amerlioration[$t] : "Inconnue" ;
+        echo "[\"".$titre."\",$v]";
+        $ct++;
+    }
+}
+?>
+         ]
+     }]
+ });
+ $('#container16').highcharts({
+	 chart: {
+         plotBackgroundColor: null,
+         plotBorderWidth: 0,
+         plotShadow: false
+     },
+     title: {
+         text: "Vos attentes ont-elles était comblées ?",
+         align: 'center',
+         verticalAlign: 'middle',
+         y: 120
+     },
+     tooltip: {
+         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+     },
+     plotOptions: {
+         pie: {
+             dataLabels: {
+                 enabled: true,
+                 distance: -50,
+                 style: {
+                     fontWeight: 'bold',
+                     color: 'white',
+                     textShadow: '0px 1px 2px black'
+                 }
+             },
+             startAngle: -90,
+             endAngle: 90,
+             center: ['50%', '75%']
+         }
+     },
+     series: [{
+         type: 'pie',
+         name: 'Browser share',
+         innerSize: '50%',
+         data: [
+<?php $ct = 0; 
+foreach ( $objectifsAtteint as $t => $v )
+{
+    if($t){
+        if($ct>0)echo ",";     
+        $titre = ($t) ? SWE::$objectifsAtteint[$t] : "Inconnue" ;
+        echo "[\"".$titre."\",$v]";
+        $ct++;
+    }
+}
+?>
+         ]
+     }]
 	    
-	    pane: {
-	        startAngle: 0,
-	        endAngle: 360
-	    },
-	
-	    xAxis: {
-	        tickInterval: 45,
-	        min: 0,
-	        max: 360,
-	        labels: {
-	        	formatter: function () {
-	        		return this.value + '°';
-	        	}
-	        }
-	    },
-	        
-	    yAxis: {
-	        min: 0
-	    },
+	});
+ $('#container17').highcharts({
+	 chart: {
+         plotBackgroundColor: null,
+         plotBorderWidth: 0,
+         plotShadow: false
+     },
+     title: {
+         text: "Recommanderiez vous le StartUpWeekEnd à des proches ?",
+         align: 'center',
+         verticalAlign: 'middle',
+         y: 120
+     },
+     tooltip: {
+         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+     },
+     plotOptions: {
+         pie: {
+             dataLabels: {
+                 enabled: true,
+                 distance: -50,
+                 style: {
+                     fontWeight: 'bold',
+                     color: 'white',
+                     textShadow: '0px 1px 2px black'
+                 }
+             },
+             startAngle: -90,
+             endAngle: 90,
+             center: ['50%', '75%']
+         }
+     },
+     series: [{
+         type: 'pie',
+         name: 'Browser share',
+         innerSize: '50%',
+         data: [
+			["Oui",90],
+			["Non",10]
+         ]
+     }]
 	    
-	    plotOptions: {
-	        series: {
-	            pointStart: 0,
-	            pointInterval: 45
-	        },
-	        column: {
-	            pointPadding: 0,
-	            groupPadding: 0
-	        }
-	    },
-	
-	    series: [{
-	        type: 'column',
-	        name: 'Column',
-	        data: [8, 7, 6, 5, 4, 3, 2, 1],
-	        pointPlacement: 'between'
-	    }, {
-	        type: 'line',
-	        name: 'Line',
-	        data: [1, 2, 3, 4, 5, 6, 7, 8]
-	    }, {
-	        type: 'area',
-	        name: 'Area',
-	        data: [1, 8, 2, 7, 3, 6, 4, 5]
-	    }]
 	});
 
 
@@ -1024,10 +1177,12 @@ initT['sweGraphInit'] = function(){
             <?php $ct = 0; 
                 foreach ( $objectifMap as $t => $v )
                 {
-                    if($ct>0)echo ",";     
-                    $titre = ($t) ? SWE::$objectif[$t] : "Inconnue" ;
-                    echo "[\"".$titre."\",$v]";
-                    $ct++;
+                    if($t){
+                        if($ct>0)echo ",";     
+                        $titre = ($t) ? SWE::$objectif[$t] : "Inconnue" ;
+                        echo "[\"".$titre."\",$v]";
+                        $ct++;
+                    }
                 }
             ?>
          ]
@@ -1065,10 +1220,12 @@ initT['sweGraphInit'] = function(){
             <?php $ct = 0; 
                 foreach ( $expertiseMap as $t => $v )
                 {
-                    if($ct>0)echo ",";     
-                    $titre = ($t) ? SWE::$expertise[$t] : "Inconnue" ;
-                    echo "[\"".$titre."\",$v]";
-                    $ct++;
+                    if($t){
+                        if($ct>0)echo ",";     
+                        $titre = ($t) ? SWE::$expertise[$t] : "Inconnue" ;
+                        echo "[\"".$titre."\",$v]";
+                        $ct++;
+                    }
                 }
             ?>
          ]
@@ -1078,11 +1235,13 @@ initT['sweGraphInit'] = function(){
  $('#container10').highcharts({
      chart: {
          plotBackgroundColor: null,
+         //backgroundColor: '#FCFFC5',
          plotBorderWidth: null,
          plotShadow: false
      },
+     
      title: {
-         text: 'Formation des participants'
+         text: 'Répartition des <?php echo $etudiantCount?> étudiants '
      },
      tooltip: {
  	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -1106,10 +1265,12 @@ initT['sweGraphInit'] = function(){
             <?php $ct = 0; 
                 foreach ( $formationMap as $t => $v )
                 {
-                    if($ct>0)echo ",";     
-                    $titre = ($t) ? SWE::$formation[$t] : "Inconnue" ;
-                    echo "[\"".$titre."\",$v]";
-                    $ct++;
+                    if($t){
+                        if($ct>0)echo ",";     
+                        $titre = ($t) ? SWE::$formation[$t] : "Inconnue" ;
+                        echo "[\"".$titre."\",$v]";
+                        $ct++;
+                    }
                 }
             ?>
          ]
@@ -1147,10 +1308,12 @@ initT['sweGraphInit'] = function(){
             <?php $ct = 0; 
                 foreach ( $professionMap as $t => $v )
                 {
-                    if($ct>0)echo ",";     
-                    $titre = ($t) ? SWE::$profession[$t] : "Inconnue" ;
-                    echo "[\"".$titre."\",$v]";
-                    $ct++;
+                    if($t){
+                        if($ct>0)echo ",";     
+                        $titre = ($t) ? SWE::$profession[$t] : "Inconnue" ;
+                        echo "[\"".$titre."\",$v]";
+                        $ct++;
+                    }
                 }
             ?>
          ]
@@ -1198,7 +1361,7 @@ initT['sweGraphInit'] = function(){
      }]
  });
  
-	
+
 	
 };
 

@@ -256,7 +256,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
     </div>
 </div>
 
-<?php $this->renderPartial('application.views.evenement.swe.sweSponsor');?>
+<?php $this->renderPartial('application.views.swe.sweSponsor');?>
 
 <canvas id="canvas"></canvas>
 
@@ -292,7 +292,7 @@ initT['sweGraphInit'] = function(){
         	NProgress.start();
         	$.ajax({
         	  type: "POST",
-        	  url: baseUrl+"/index.php/evenement/sweInfos",
+        	  url: baseUrl+"/index.php/ext/swe/sweInfos",
         	  data: $("#sweInscriptionForm").serialize(),
         	  success: function(data){
         			  $("#flashInfo .modal-body").html(data.msg);

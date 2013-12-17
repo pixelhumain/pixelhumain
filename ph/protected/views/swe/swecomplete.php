@@ -50,7 +50,7 @@ canvas{position:absolute;top:0px;left:0px;}
 <div class="appMenuContainer">
     <ul class="appMenu">
     	<?php if( in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) ){ ?>
-    		<li><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweadmin/id/'.$key)?>"><i class="icon-wrench"></i> Admin</a></li>
+    		<li><a href="<?php echo Yii::app()->createUrl('index.php/ext/swe/sweadmin/id/'.$key)?>"><i class="icon-wrench"></i> Admin</a></li>
     		<li><a href="#exportEmails" role="button" data-toggle="modal"><i class="icon-wrench"></i> EXPORT Compte NC</a></li>
     		<li><a href="#exportEmailsProjet" role="button" data-toggle="modal"><i class="icon-wrench"></i> EXPORT Candidat Projet</a></li>
     		<li><a href='#cancelParticipation'  role='button' data-toggle='modal'><i class='entypo-cancel'></i> Supprimer un participant</a></li>
@@ -135,7 +135,7 @@ canvas{position:absolute;top:0px;left:0px;}
 	
 </div>
 
-<?php $this->renderPartial('application.views.evenement.swe.sweSponsor');?>
+<?php $this->renderPartial('application.views.swe.sweSponsor');?>
 
 <canvas id="canvas"></canvas>
 
@@ -216,7 +216,7 @@ initT['swePersonModalsInit'] = function(){
     	NProgress.start();
     	$.ajax({
     	  type: "POST",
-    	  url: baseUrl+"/index.php/evenement/swecancelparticipation",
+    	  url: baseUrl+"/index.php/ext/swe/swecancelparticipation",
     	  data: $("#cancelParticipationForm").serialize(),
     	  success: function(data){
     			  $("#flashInfo .modal-body").html(data.msg);
@@ -234,7 +234,7 @@ initT['swePersonModalsInit'] = function(){
 function showPerson(email){
 	$.ajax({
   	  type: "POST",
-  	  url: baseUrl+"/index.php/evenement/sweGetPerson",
+  	  url: baseUrl+"/index.php/ext/swe/sweGetPerson",
   	  data: {"email":email},
   	  success: function(data){
   			  $("#flashInfo .modal-body").html(data.msg);

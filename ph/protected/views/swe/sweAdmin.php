@@ -107,7 +107,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
     <div class="grid">
         <div></div>
         <div  data-ss-colspan="2">
-        <a href="<?php echo Yii::app()->createUrl('index.php/evenement/key/id/'.$key)?>">Panel Participant</a>
+        <a href="<?php echo Yii::app()->createUrl('index.php/ext/swe/key/id/'.$key)?>">Panel Participant</a>
         </div>
         <div></div>
         <div data-ss-colspan="2"><a href="#sweAddPerson"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Participant</a></div>
@@ -125,7 +125,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
                $ct++;
         } 
             ?>
-        <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/evenement/sweCompteRempli/id/'.$key)?>">Compte incomplet (<?php echo $ct?>)</a></div>
+        <div data-ss-colspan="3"><a href="<?php echo Yii::app()->createUrl('index.php/ext/swe/sweCompteRempli/id/'.$key)?>">Compte incomplet (<?php echo $ct?>)</a></div>
         <div></div>
         <div></div>
         <div></div>
@@ -135,7 +135,7 @@ background-url:#fff url('<?php echo Yii::app()->createUrl('images/PHOTO_ANONYMOU
 
 </div>
 
-<?php $this->renderPartial('application.views.evenement.swe.sweSponsor');?>
+<?php $this->renderPartial('application.views.swe.sweSponsor');?>
 
 <canvas id="canvas"></canvas>
 
@@ -205,7 +205,7 @@ initT['swePersonModalsInit'] = function(){
     	NProgress.start();
     	$.ajax({
     	  type: "POST",
-    	  url: baseUrl+"/index.php/evenement/swePerson",
+    	  url: baseUrl+"/index.php/ext/swe/swePerson",
     	  data: $("#sweAddPersonForm").serialize(),
     	  success: function(data){
     			  $("#flashInfo .modal-body").html(data.msg);
@@ -304,7 +304,7 @@ initT['sweProjectModalsInit'] = function(){
     	NProgress.start();
     	$.ajax({
     	  type: "POST",
-    	  url: baseUrl+"/index.php/evenement/sweProject",
+    	  url: baseUrl+"/index.php/ext/swe/sweProject",
     	  data: $("#sweAddProjectForm").serialize(),
     	  success: function(data){
     			  $("#flashInfo .modal-body").html(data.msg);

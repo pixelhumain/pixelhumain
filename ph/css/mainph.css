@@ -195,8 +195,8 @@ label.custom-select {position: relative;display: inline-block;}
 /* ********************* */
 /* SVG background path */
 /* ********************* */
-svg {left: 0;position: absolute;top: 0;width: 100%;height: 3000px;z-index: -1;}
-path {fill: none;stroke: #DADBDF;  /*couleur du trait*/stroke-width: 0.5px;}
+#delaunayBg {left: 0;position: absolute;top: 0;width: 100%;height: 3000px;z-index: -1;}
+#delaunayBg > g > path {fill: none;stroke: #DADBDF;  /*couleur du trait*/stroke-width: 0.5px;}
 /* ********************* */
 /*yellow special drop down*/
 /* ********************* */

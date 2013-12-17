@@ -26,6 +26,7 @@ $(document).ready(function() {
 		  .append("svg")
 		      //.attr("width", "100%")
 		      //.attr("height", "100%")
+		      .attr("id", "delaunayBg")
 		      .attr("preserveAspectRatio", "xMidYMid slice")
 				//.attr("width", w)
 				//.attr("height", h)
