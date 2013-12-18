@@ -16243,3 +16243,248 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/ph/index.php/ird
 ---
+2013/12/18 14:23:37 [error] [exception.CException] exception 'CException' with message 'IrdtestController cannot find the requested view "index".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:878
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(14): CController->render('index')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ext/irdtest')
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#10 {main}
+REQUEST_URI=/ph/index.php/ext/irdtest
+---
+2013/12/18 14:25:46 [error] [exception.CException] exception 'CException' with message 'IrdtestController cannot find the requested view "index".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:878
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(14): CController->render('index')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ext/irdtest')
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#10 {main}
+REQUEST_URI=/ph/index.php/ext/irdtest
+---
+2013/12/18 14:26:12 [error] [exception.CException] exception 'CException' with message 'IrdtestController cannot find the requested view "index".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:878
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(14): CController->render('index')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ext/irdtest')
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#10 {main}
+REQUEST_URI=/ph/index.php/ext/irdtest
+---
+2013/12/18 14:26:22 [error] [exception.CException] exception 'CException' with message 'IrdtestController cannot find the requested view "index".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:878
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(14): CController->render('index')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ext/irdtest')
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#10 {main}
+REQUEST_URI=/ph/index.php/ext/irdtest
+---
+2013/12/18 14:28:15 [error] [exception.CException] exception 'CException' with message 'IrdtestController cannot find the requested view "index".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php:878
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(16): CController->render('index')
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ext/irdtest')
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#10 {main}
+REQUEST_URI=/ph/index.php/ext/irdtest
+---
+2013/12/18 15:00:26 [error] [php] Undefined index: YEAR (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php:163)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): IrdtestController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): IrdtestController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(17): IrdtestController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): IrdtestController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): IrdtestController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): IrdtestController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/ext/irdtest
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php (163)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php (17)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/12/18 15:01:05 [error] [php] Undefined index: YEAR (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php:163)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): IrdtestController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): IrdtestController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(17): IrdtestController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): IrdtestController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): IrdtestController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): IrdtestController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/ext/irdtest
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php (163)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php (17)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/12/18 15:02:55 [error] [php] Undefined index: YEAR (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php:170)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): IrdtestController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): IrdtestController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(17): IrdtestController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): IrdtestController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): IrdtestController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): IrdtestController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/ext/irdtest
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php (170)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php (17)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/12/18 15:10:44 [error] [php] Invalid argument supplied for foreach() (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php:176)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): IrdtestController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): IrdtestController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(17): IrdtestController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): IrdtestController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): IrdtestController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): IrdtestController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/ext/irdtest
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php (176)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php (17)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/12/18 16:33:46 [error] [php] Undefined variable: year (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php:183)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): IrdtestController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): IrdtestController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(17): IrdtestController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): IrdtestController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): IrdtestController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): IrdtestController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/ext/irdtest
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php (183)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php (17)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/12/18 16:33:57 [error] [php] Undefined variable: cumul (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php:183)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): IrdtestController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): IrdtestController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(17): IrdtestController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): IrdtestController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): IrdtestController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): IrdtestController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/ext/irdtest
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php (183)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php (17)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/12/18 16:34:29 [error] [php] Undefined offset: 1982 (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php:184)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): IrdtestController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): IrdtestController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(17): IrdtestController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): IrdtestController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): IrdtestController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): IrdtestController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/ext/irdtest
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php (184)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php (17)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/12/18 18:04:11 [error] [php] Undefined index: ACTIVITY_CAT (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php:191)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): IrdtestController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): IrdtestController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(17): IrdtestController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): IrdtestController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): IrdtestController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): IrdtestController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/ext/irdtest
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php (191)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php (17)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/12/18 18:58:19 [error] [php] Undefined offset: 1980 (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php:247)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): IrdtestController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): IrdtestController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(17): IrdtestController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): IrdtestController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): IrdtestController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): IrdtestController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/ext/irdtest
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php (247)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php (17)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/12/18 19:15:50 [error] [php] Undefined variable: sportFatalCount (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php:273)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): IrdtestController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): IrdtestController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php(17): IrdtestController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): IrdtestController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): IrdtestController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): IrdtestController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): IrdtestController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/ext/irdtest
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\ird\index.php (273)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\IrdtestController.php (17)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)

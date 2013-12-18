@@ -9,9 +9,16 @@
  * Date: 15/08/13
  */
 class IrdtestController extends Controller {
-
+    
+    const moduleTitle = "IRD test";
+    
 	public function actionIndex() {
-	    echo "IRD Controller";
+	    $attacks = Yii::app()->mongodb->ird->find(); 
+	    $this->render("/ird/index",array("attacks"=>$attacks));
+	}
+	
+    public function actionView($id) {
+        $this->render("view");
 	}
 	
 }
