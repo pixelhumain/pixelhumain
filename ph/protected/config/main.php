@@ -17,7 +17,7 @@ return array(
 		'yiiwheels' => realpath(__DIR__ . '/../extensions/yiiwheels'), 
     ),
     'controllerMap'=>array(
-         'YiiFeedWidget' => 'ext.yii-feed-widget.YiiFeedWidgetController'
+         //'YiiFeedWidget' => 'ext.yii-feed-widget.YiiFeedWidgetController'
     ),
 	// autoloading model and component classes
 	'import'=>array(
