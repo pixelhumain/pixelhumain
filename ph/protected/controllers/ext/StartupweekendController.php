@@ -7,16 +7,16 @@
  * @author: Tibor Katelbach <tibor@pixelhumain.com>
  * Date: 15/08/13
  */
-class SWEController extends Controller {
+class StartupweekendController extends Controller {
     const moduleTitle = "Évènement";
     
 	public function actionIndex() {
-	    $this->redirect(Yii::app()->createUrl('index.php/ext/swe/view/id/525e306ac073ef2eb85938f7'));
+	    $this->redirect(Yii::app()->createUrl('index.php/ext/startupweekend/view/id/525e306ac073ef2eb85938f7'));
 	}
     public function actionView($id) {
         $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
         if(isset($event["key"]) )
-            $this->redirect(Yii::app()->createUrl('index.php/ext/swe/key/id/'.$event["key"]));
+            $this->redirect(Yii::app()->createUrl('index.php/ext/startupweekend/key/id/'.$event["key"]));
         else
 	        $this->render("view");
 	}
@@ -41,12 +41,12 @@ class SWEController extends Controller {
 	    // user must be loggued 
 	    // and exist in the event user particpant list
 	    if ( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) )) 
-	        $this->render("/swe/sweLogin",array("title"=>$event["name"]));
+	        $this->render("/startupweekend/sweLogin",array("title"=>$event["name"]));
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ) )); 
 	        $sweThings->sort(array('name' => 1));
 	        $user = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
-	        $this->render("/swe/swegraph",array("sweThings"=>$sweThings,
+	        $this->render("/startupweekend/swegraph",array("sweThings"=>$sweThings,
 	        								   "user"=>$user,
 	        								   "event"=>$event,
 	        								   "key"=>$id));
@@ -63,13 +63,13 @@ class SWEController extends Controller {
 	    // user must be loggued 
 	    // and exist in the event user particpant list
 	    if ( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) )) 
-	        $this->render("/swe/sweLogin",array("title"=>$event["name"]));
+	        $this->render("/startupweekend/sweLogin",array("title"=>$event["name"]));
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ) )); 
 	        $sweThings->sort(array('name' => 1));
 	        $user = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
 	        
-	        $page = "/swe/sweinfos";
+	        $page = "/startupweekend/sweinfos";
 	        $page .= ( isset($_GET["num"]) && $_GET["num"]) ? $_GET["num"] : "";
 	             
 	        $this->render($page,array("sweThings"=>$sweThings,
@@ -131,7 +131,7 @@ class SWEController extends Controller {
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
         if( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
-	        $this->render("/swe/sweLogin");
+	        $this->render("/startupweekend/sweLogin");
 	    else 
 	        $this->render($view);
 	}
@@ -145,9 +145,9 @@ class SWEController extends Controller {
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
         if( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
-	        $this->render("/swe/sweLogin");
+	        $this->render("/startupweekend/sweLogin");
 	    else 
-	        $this->render("/swe/sweAdmin",array("event"=>$event,"key"=>$id));
+	        $this->render("/startupweekend/sweAdmin",array("event"=>$event,"key"=>$id));
 	}
 	/**
 	 * Presente le nombre de compte incomlet 
@@ -163,11 +163,11 @@ class SWEController extends Controller {
 	    // user must be loggued 
 	    // and exist in the event user particpant list
 	    if( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
-	        $this->render("/swe/sweLogin");
+	        $this->render("/startupweekend/sweLogin");
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ),"type"=>"participant")); 
 	        $sweThings->sort(array('name' => 1));
-	        $this->render("/swe/swecomplete",array("sweThings"=>$sweThings,"key"=>$id));
+	        $this->render("/startupweekend/swecomplete",array("sweThings"=>$sweThings,"key"=>$id));
 	    }
 	}
 	/**
@@ -175,7 +175,7 @@ class SWEController extends Controller {
 	 */
     public function actionSweImport() {
 	    $this->layout = "swe";
-	    $this->render("/swe/import");
+	    $this->render("/startupweekend/import");
 	}
 	
 	/**
