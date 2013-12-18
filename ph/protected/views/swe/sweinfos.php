@@ -292,7 +292,7 @@ initT['sweGraphInit'] = function(){
         	NProgress.start();
         	$.ajax({
         	  type: "POST",
-        	  url: baseUrl+"/index.php/ext/swe/sweInfos",
+        	  url: baseUrl+"/index.php/ext/startupweekend/sweInfos",
         	  data: $("#sweInscriptionForm").serialize(),
         	  success: function(data){
         			  $("#flashInfo .modal-body").html(data.msg);

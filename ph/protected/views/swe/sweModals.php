@@ -66,7 +66,7 @@ initT['coachFormModalsInit'] = function(){
     	NProgress.start();
     	$.ajax({
     	  type: "POST",
-    	  url: baseUrl+"/index.php/ext/swe/sweCoachRequest",
+    	  url: baseUrl+"/index.php/ext/startupweekend/sweCoachRequest",
     	  data: $("#coachForm").serialize(),
     	  success: function(data){
         	  	  if($("#coachingCount").html() != "")
@@ -338,7 +338,7 @@ initT['sweInscriptionModalsInit'] = function(){
         	NProgress.start();
         	$.ajax({
         	  type: "POST",
-        	  url: baseUrl+"/index.php/ext/swe/sweInfos",
+        	  url: baseUrl+"/index.php/ext/startupweekend/sweInfos",
         	  data: $("#sweInscriptionForm").serialize(),
         	  success: function(data){
         			  $("#flashInfo .modal-body").html(data.msg);

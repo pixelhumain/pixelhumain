@@ -59,7 +59,7 @@ canvas{position:absolute;top:0px;left:0px;}
 <div class="appMenuContainer">
     <ul class="appMenu">
     	<?php if( in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) ){ ?>
-    		<li><a href="<?php echo Yii::app()->createUrl('index.php/ext/swe/sweadmin/id/'.$key)?>"><i class="icon-wrench"></i> Admin</a></li>
+    		<li><a href="<?php echo Yii::app()->createUrl('index.php/ext/startupweekend/sweadmin/id/'.$key)?>"><i class="icon-wrench"></i> Admin</a></li>
     		<li><a href="javascript:statnum=1;filterType('statistics')">Stats</a></li>
     	<?php } ?>
     	<?php /*?><li><a href="#sweInscription" id="mesInfos" role="button" data-toggle="modal"><i class="icon-user"></i> Mes Infos</a></li>
@@ -366,7 +366,7 @@ canvas{position:absolute;top:0px;left:0px;}
 function showPerson(email){
 	$.ajax({
   	  type: "POST",
-  	  url: baseUrl+"/index.php/ext/swe/sweGetPerson",
+  	  url: baseUrl+"/index.php/ext/startupweekend/sweGetPerson",
   	  data: {"email":email},
   	  success: function(data){
   			  $("#flashInfo .modal-body").html(data.msg);
@@ -377,7 +377,7 @@ function showPerson(email){
 }
 var previousDataCoach = {"count":0};
 function getCoachCount(){
-    $.getJSON(baseUrl+"/index.php/ext/swe/sweNotifications/id/<?php echo $event["_id"]?>", function(data) {
+    $.getJSON(baseUrl+"/index.php/ext/startupweekend/sweNotifications/id/<?php echo $event["_id"]?>", function(data) {
         // console.log(previousDataCoach);
         // console.log(data);
 		if( previousDataCoach.count != data.count  )
@@ -422,7 +422,7 @@ function sweCoachingDone(id){
 	NProgress.start();
 	$.ajax({
 	  type: "POST",
-	  url: baseUrl+"/index.php/ext/swe/sweCoachingDone",
+	  url: baseUrl+"/index.php/ext/startupweekend/sweCoachingDone",
 	  data: {"id":id},
 	  success: function(data){
 		  	  $("#flashInfo .modal-body").html(data.msg);
@@ -438,7 +438,7 @@ function userJoinProject(project){
 	NProgress.start();
 	$.ajax({
 	  type: "POST",
-	  url: baseUrl+"/index.php/ext/swe/sweRejoindreProjet",
+	  url: baseUrl+"/index.php/ext/startupweekend/sweRejoindreProjet",
 	  data: {"projet":project},
 	  success: function(data){
 		  	  $("li.projet."+project).addClass('me');

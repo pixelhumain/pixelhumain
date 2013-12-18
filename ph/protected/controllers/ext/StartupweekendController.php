@@ -41,12 +41,12 @@ class StartupweekendController extends Controller {
 	    // user must be loggued 
 	    // and exist in the event user particpant list
 	    if ( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) )) 
-	        $this->render("/startupweekend/sweLogin",array("title"=>$event["name"]));
+	        $this->render("/swe/sweLogin",array("title"=>$event["name"]));
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ) )); 
 	        $sweThings->sort(array('name' => 1));
 	        $user = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
-	        $this->render("/startupweekend/swegraph",array("sweThings"=>$sweThings,
+	        $this->render("/swe/swegraph",array("sweThings"=>$sweThings,
 	        								   "user"=>$user,
 	        								   "event"=>$event,
 	        								   "key"=>$id));
@@ -63,13 +63,13 @@ class StartupweekendController extends Controller {
 	    // user must be loggued 
 	    // and exist in the event user particpant list
 	    if ( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) )) 
-	        $this->render("/startupweekend/sweLogin",array("title"=>$event["name"]));
+	        $this->render("/swe/sweLogin",array("title"=>$event["name"]));
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ) )); 
 	        $sweThings->sort(array('name' => 1));
 	        $user = Yii::app()->mongodb->startupweekend->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
 	        
-	        $page = "/startupweekend/sweinfos";
+	        $page = "/swe/sweinfos";
 	        $page .= ( isset($_GET["num"]) && $_GET["num"]) ? $_GET["num"] : "";
 	             
 	        $this->render($page,array("sweThings"=>$sweThings,
@@ -131,7 +131,7 @@ class StartupweekendController extends Controller {
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
         if( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
-	        $this->render("/startupweekend/sweLogin");
+	        $this->render("/swe/sweLogin");
 	    else 
 	        $this->render($view);
 	}
@@ -145,9 +145,9 @@ class StartupweekendController extends Controller {
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
         if( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
-	        $this->render("/startupweekend/sweLogin");
+	        $this->render("/swe/sweLogin");
 	    else 
-	        $this->render("/startupweekend/sweAdmin",array("event"=>$event,"key"=>$id));
+	        $this->render("/swe/sweAdmin",array("event"=>$event,"key"=>$id));
 	}
 	/**
 	 * Presente le nombre de compte incomlet 
@@ -163,11 +163,11 @@ class StartupweekendController extends Controller {
 	    // user must be loggued 
 	    // and exist in the event user particpant list
 	    if( !isset(Yii::app()->session["userId"]) || !is_array(Yii::app()->session["loggedIn"]) || !in_array($event["_id"],Yii::app()->session["loggedIn"]) || !( self::checkParticipation($event) ))
-	        $this->render("/startupweekend/sweLogin");
+	        $this->render("/swe/sweLogin");
 	    else {
 	        $sweThings = Yii::app()->mongodb->startupweekend->find(array('events'=> new MongoId( $event["_id"] ),"type"=>"participant")); 
 	        $sweThings->sort(array('name' => 1));
-	        $this->render("/startupweekend/swecomplete",array("sweThings"=>$sweThings,"key"=>$id));
+	        $this->render("/swe/swecomplete",array("sweThings"=>$sweThings,"key"=>$id));
 	    }
 	}
 	/**
@@ -175,7 +175,7 @@ class StartupweekendController extends Controller {
 	 */
     public function actionSweImport() {
 	    $this->layout = "swe";
-	    $this->render("/startupweekend/import");
+	    $this->render("/swe/import");
 	}
 	
 	/**
