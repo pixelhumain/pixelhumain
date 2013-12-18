@@ -16235,3 +16235,11 @@ REQUEST_URI=/ph/index.php/ext/swe/key/id/StartupWeekEnd2013
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\swe\swegraph.php (888)
 in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ext\SWEController.php (52)
 in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2013/12/18 13:08:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "ird".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ird')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/ird
+---

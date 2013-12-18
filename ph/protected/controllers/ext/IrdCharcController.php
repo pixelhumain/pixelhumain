@@ -8,7 +8,7 @@
  * @author: Tibor Katelbach <tibor@pixelhumain.com>
  * Date: 15/08/13
  */
-class IrdddController extends Controller {
+class IrdCharcController extends Controller {
 
 	public function actionIndex() {
 	    echo "IRD Controller";
