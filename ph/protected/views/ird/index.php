@@ -42,7 +42,21 @@ h2 {
             <div id="stats5"  class="hide chart">
             	<div id="container7" style="min-width: 800px; height: 400px; margin: 0 auto"></div>
             </div>
+            
+            <div id="stats6"  class="hide chart">
+            	<div id="container8" style="min-width: 800px; height: 400px; margin: 0 auto"></div>
+            </div>
+            
+            <div id="stats7"  class="hide chart">
+            	<div id="container9" style="min-width: 800px; height: 400px; margin: 0 auto"></div>
+            </div>
+            
+            <div id="stats8"  class="hide chart">
+            	<div id="container10" style="min-width: 800px; height: 400px; margin: 0 auto"></div>
+            </div>
         </div>
+         <div class="clear"></div>
+        <a class="entypo-left btn nextStat" href="javascript:statPanelIndex (-1)"></a> <a class="entypo-right  btn prevStat" href="javascript:statPanelIndex (1)"></a>
         
         
     </div>
@@ -81,12 +95,16 @@ $kayak = array();
 $autre = array();
 $nodata = array();
 
+$people = array("fatal"=>array(0,0,0,0,0),"nonfatal"=>array(0,0,0,0,0));
+$month = array("fatal"=>array(0,0,0,0,0,0,0,0,0,0,0,0),"nonfatal"=>array(0,0,0,0,0,0,0,0,0,0,0,0));
+$timehour = array("fatal"=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0),"nonfatal"=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0));
 
 $ct = 0;
 
 foreach ($attacks as $a=>$v)
 {
-    if( isset($v["YEAR"]) ){
+    if( isset($v["YEAR"]) )
+    {
         if(!in_array($v["YEAR"],$counted))
 	    {
 	        $years[ $v["YEAR"] ] = array("total"=>0,"fatal"=>0,"nonfatal"=>0);
@@ -126,6 +144,34 @@ foreach ($attacks as $a=>$v)
             $nodata[ $v["YEAR"] ]["total"] +=1;
             if($v["FATAL"]=="Fatal") $nodata[ $v["YEAR"] ]["fatal"] +=1; else $nodata[ $v["YEAR"] ]["nonfatal"] +=1;
         }
+        
+        //['Alone','2 to 4','5 to 10','>10','No Data']
+        if($v["PEOPLE IN WATER"] == 1){
+            if($v["FATAL"]=="Fatal") $people["fatal"][0] +=1;
+            else $people["nonfatal"][0] +=1;
+        } else if( in_array($v["PEOPLE IN WATER"], array(2,3,4)) ){
+            if($v["FATAL"]=="Fatal") $people["fatal"][1] +=1;
+            else $people["nonfatal"][1] +=1;
+        } else if( in_array($v["PEOPLE IN WATER"], array(5,6,7,8,9,10)) ){
+            if($v["FATAL"]=="Fatal") $people["fatal"][2] +=1;
+            else $people["nonfatal"][2] +=1;
+        } else if( $v["PEOPLE IN WATER"] > 10 ){
+            if($v["FATAL"]=="Fatal") $people["fatal"][3] +=1;
+            else $people["nonfatal"][3] +=1;
+        } else {
+            if($v["FATAL"]=="Fatal") $people["fatal"][4] +=1;
+            else $people["nonfatal"][4] +=1;
+        } 
+        
+        //['Jan','Fev','Mars','Avril','Mai','Juin','Juil','Aout','Sep','Oct','Nov','Dec']
+        if($v["FATAL"]=="Fatal") $month["fatal"][intval($v["MONTH"])-1] +=1;
+        else $month["nonfatal"][intval($v["MONTH"])-1] +=1;
+        
+        //['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24']
+        if($v["TIME ROUNDED"] != "ND"){
+            if($v["FATAL"]=="Fatal") $timehour["fatal"][intval($v["TIME ROUNDED"])-6] +=1;
+            else $timehour["nonfatal"][intval($v["TIME ROUNDED"])-6] +=1;
+        }
     }
 }
 sort($counted,SORT_NUMERIC );
@@ -141,19 +187,23 @@ $surfCount = $chasseCount = $nageCount = $windsurfCount = $kayakCount = $autreCo
 $surfFatalCount = $chasseFatalCount = $nageFatalCount = $windsurfFatalCount = $kayakFatalCount = $autreFatalCount = $nodataFatalCount = 
 $surfNonFatalCount = $chasseNonFatalCount = $nageNonFatalCount = $windsurfNonFatalCount = $kayakNonFatalCount = $autreNonFatalCount = "";
 
+$ct = 0;
+$sep = "";
 foreach ( $counted as $y )
 {
-    $yearCount .= ($yearCount != "") ? ",".$years[$y]["total"] : $years[$y]["total"] ;
-    $fatalCount .= ($fatalCount != "") ? ",".$years[$y]["fatal"] : $years[$y]["fatal"] ;
-    $nonfatalCount .= ($nonfatalCount != "") ? ",".$years[$y]["nonfatal"] : $years[$y]["nonfatal"] ;
+    if($ct > 0)$sep = ",";
+    $yearCount .= $sep.$years[$y]["total"] ;
+    $fatalCount .= $sep.$years[$y]["fatal"] ;
+    $nonfatalCount .= $sep.$years[$y]["nonfatal"] ;
     
-    $surfCount .= ($surfCount != "") ? ",".$surf[$y]["total"] : $surf[$y]["total"] ;
-    $chasseCount .= ($chasseCount != "") ? ",".$chasse[$y]["total"] : $chasse[$y]["total"] ;
-    $nageCount .= ($nageCount != "") ? ",".$nage[$y]["total"] : $nage[$y]["total"] ;
-    $windsurfCount .= ($windsurfCount != "") ? ",".$windsurf[$y]["total"] : $windsurf[$y]["total"] ;
-    $kayakCount .= ($kayakCount != "") ? ",".$kayak[$y]["total"] : $kayak[$y]["total"] ;
-    $autreCount .= ($autreCount != "") ? ",".$autre[$y]["total"] : $autre[$y]["total"] ;
-    $nodataCount .= ($nodataCount != "") ? ",".$nodata[$y]["total"] : $nodata[$y]["total"] ;
+    $surfCount .= $sep.$surf[$y]["total"] ;
+    $chasseCount .= $sep.$chasse[$y]["total"] ;
+    $nageCount .= $sep.$nage[$y]["total"] ;
+    $windsurfCount .= $sep.$windsurf[$y]["total"] ;
+    $kayakCount .= $sep.$kayak[$y]["total"] ;
+    $autreCount .= $sep.$autre[$y]["total"] ;
+    $nodataCount .= $sep.$nodata[$y]["total"] ;
+    $ct++; 
     
     $surfFatalCount += $surf[$y]["fatal"] ;
     $chasseFatalCount += $chasse[$y]["fatal"] ;
@@ -192,6 +242,14 @@ nodataCount = [<?php echo $nodataCount ?>];
 sportFatalCount = [<?php echo $sportFatalCount ?>];
 sportNonFatalCount = [<?php echo $sportNonFatalCount ?>];
 
+peopleFatalCount = [<?php echo implode(",", $people["fatal"]) ?>];
+peopleNonFatalCount = [<?php echo implode(",", $people["nonfatal"]) ?>];
+
+monthFatalCount = [<?php echo implode(",", $month["fatal"]) ?>];
+monthNonFatalCount = [<?php echo implode(",", $month["nonfatal"]) ?>];
+
+timehourFatalCount = [<?php echo implode(",", $timehour["fatal"]) ?>];
+timehourNonFatalCount = [<?php echo implode(",", $timehour["nonfatal"]) ?>];
 //console.log(fatalCount,nonfatalCount);
 
 $('#container3').highcharts({
@@ -507,6 +565,184 @@ $('#container7').highcharts({
     }, {
         name: 'Non-Fatale',
         data: sportNonFatalCount
+    }]
+});
+
+
+$('#container8').highcharts({
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: "Attaque Fatale - Non fatale par nombre de personne dans l'eau"
+    },
+    xAxis: {
+        categories: ['Alone','2 to 4','5 to 10','>10','No Data']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Total fruit consumption'
+        },
+        stackLabels: {
+            enabled: true,
+            style: {
+                fontWeight: 'bold',
+                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+            }
+        }
+    },
+    legend: {
+        align: 'right',
+        x: -70,
+        verticalAlign: 'top',
+        y: 20,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        shadow: false
+    },
+    tooltip: {
+        formatter: function() {
+            return '<b>'+ this.x +'</b><br/>'+
+                this.series.name +': '+ this.y +'<br/>'+
+                'Total: '+ this.point.stackTotal;
+        }
+    },
+    plotOptions: {
+        column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true,
+                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+            }
+        }
+    },
+    series: [{
+        name: 'Fatale',
+        data: peopleFatalCount
+    }, {
+        name: 'Non-Fatale',
+        data: peopleNonFatalCount
+    }]
+});
+
+$('#container9').highcharts({
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: "Attaque Fatale - Non fatale par mois"
+    },
+    xAxis: {
+        categories: ['Jan','Fev','Mars','Avril','Mai','Juin','Juil','Aout','Sep','Oct','Nov','Dec']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Total fruit consumption'
+        },
+        stackLabels: {
+            enabled: true,
+            style: {
+                fontWeight: 'bold',
+                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+            }
+        }
+    },
+    legend: {
+        align: 'right',
+        x: -70,
+        verticalAlign: 'top',
+        y: 20,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        shadow: false
+    },
+    tooltip: {
+        formatter: function() {
+            return '<b>'+ this.x +'</b><br/>'+
+                this.series.name +': '+ this.y +'<br/>'+
+                'Total: '+ this.point.stackTotal;
+        }
+    },
+    plotOptions: {
+        column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true,
+                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+            }
+        }
+    },
+    series: [{
+        name: 'Fatale',
+        data: monthFatalCount
+    }, {
+        name: 'Non-Fatale',
+        data: monthNonFatalCount
+    }]
+});
+
+$('#container10').highcharts({
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: "Attaque Fatale - Non fatale par Heure"
+    },
+    xAxis: {
+        categories: ['6h','7h','8h','9h','10h','11h','12h','13h','14h','15h','16h','17h','18h','19h']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Total fruit consumption'
+        },
+        stackLabels: {
+            enabled: true,
+            style: {
+                fontWeight: 'bold',
+                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+            }
+        }
+    },
+    legend: {
+        align: 'right',
+        x: -70,
+        verticalAlign: 'top',
+        y: 20,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        shadow: false
+    },
+    tooltip: {
+        formatter: function() {
+            return '<b>'+ this.x +'</b><br/>'+
+                this.series.name +': '+ this.y +'<br/>'+
+                'Total: '+ this.point.stackTotal;
+        }
+    },
+    plotOptions: {
+        column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true,
+                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+            }
+        }
+    },
+    series: [{
+        name: 'Fatale',
+        data: timehourFatalCount
+    }, {
+        name: 'Non-Fatale',
+        data: timehourNonFatalCount
     }]
 });
 
