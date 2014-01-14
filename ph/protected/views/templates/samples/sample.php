@@ -3,9 +3,13 @@ $cs = Yii::app()->getClientScript();
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/js/styles.css');
 $cs->registerScriptFile('http://' , CClientScript::POS_END);
 ?>
+
+<!-- BLOCK CSS -->
 <style>
 
 </style>
+
+<!-- BLOCK HTML  -->
 
 <div class="container graph">
     <br/>
@@ -16,6 +20,7 @@ $cs->registerScriptFile('http://' , CClientScript::POS_END);
 	</div>
 </div>
 
+<!-- BLOCK JAVASCRIPT  -->
 
 <script type="text/javascript"		>
 initT['animInit'] = function(){

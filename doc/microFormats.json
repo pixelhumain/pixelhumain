@@ -1,10 +1,10 @@
-COLLECTION : data
+ï»¿COLLECTION : data
 	
 	{
 	  "key" : "faq",
 	  "type" : "qa",
-	  "question" : "Pour qui ? Mairie",
-	  "answer" : "J'informe mieux, je valorise mes actions Je communique sur mon activité, mes évènements, mes projets auprès de mes administrés.  \r\nJ'écoute les citoyens Je reçois les avis, idées, projets, problèmes citoyens et j'interagis afin d'améliorer la vie locale.\r\nJ'agis/réagis plus vite Plus près des réalités du terrain et des besoins rééls, les dossiers avancent plus facilement et je peux les réajuster rapidement.\r\nJe valorise mon territoire, je le rend plus attractif, Mes citoyens connaissent leur territoire, échanges entre eux et créer/participe à des initiatives locales. \r\nJe favorise l'économie locale et les circuits courts."
+	  "question" : "Pour quiÂ ? Mairie",
+	  "answer" : "J'informe mieux, je valorise mes actions Je communique sur mon activitÃ©, mes Ã©vÃ¨nements, mes projets auprÃ¨s de mes administrÃ©s.  \r\nJ'Ã©coute les citoyens Je reÃ§ois les avis, idÃ©es, projets, problÃ¨mes citoyens et j'interagis afin d'amÃ©liorer la vie locale.\r\nJ'agis/rÃ©agis plus vite Plus prÃ¨s des rÃ©alitÃ©s du terrain et des besoins rÃ©Ã©ls, les dossiers avancent plus facilement et je peux les rÃ©ajuster rapidement.\r\nJe valorise mon territoire, je le rend plus attractif, Mes citoyens connaissent leur territoire, Ã©changes entre eux et crÃ©er/participe Ã  des initiatives locales. \r\nJe favorise l'Ã©conomie locale et les circuits courts."
 	}
 
 
@@ -22,7 +22,7 @@ COLLECTION : data
 	  "editable" : ["adminPH"],
 	  "key" : "faq",
 	  "type" : "page",
-	  "title" : "Questions Réponses Fréquentes"
+	  "title" : "Questions RÃ©ponses FrÃ©quentes"
 	}
 
 

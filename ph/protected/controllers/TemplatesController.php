@@ -14,15 +14,14 @@ class TemplatesController extends Controller
     
     public function actionIndex() 
     {
-       
        $name = "index";
        if(isset($_GET["name"])) 
            $name = $_GET["name"];
        if(in_array($name,array("listPage","hexagon","formLarge","mapael_france","mapael_france2","hoverEffects","nodesLabels","scrollImages","menuVerticaleGch"))) 
            $this->layout = "empty";
-	   $this->render($name);
+	   
+       $this->render($name);
 	}
-	
     public function actionUpload($dir,$input) 
     {
         $upload_dir = 'upload/'.$dir.'/';

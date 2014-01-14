@@ -41,6 +41,7 @@
 <?php $account = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;?>
 <?php $this->renderPartial('application.views.layouts.header2',array( "account" => $account));?>
 <?php if(isset($this->showSidebar1) && $this->showSidebar1)$this->renderPartial('application.views.layouts.sideMenu1');?>
+<?php /*?><div class="container graph"><div class="hero-unit"><?php phpinfo(INFO_MODULES);?></div></div>*/?>
 <?php echo $content; ?>
 <?php $this->renderPartial('application.views.layouts.modals',array( "account" => $account));?>	
 

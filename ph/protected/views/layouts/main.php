@@ -40,7 +40,9 @@
 <?php $account = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;?>
 <?php $this->renderPartial('application.views.layouts.header2',array( "account" => $account));?>
 <?php if(isset($this->showSidebar1) && $this->showSidebar1)$this->renderPartial('application.views.layouts.sideMenu1');?>
+
 <?php echo $content; ?>
+
 <?php $this->renderPartial('application.views.layouts.modals',array( "account" => $account));?>	
 <div class="clear"></div>
 <?php $this->renderPartial('application.views.layouts.footer');?>
@@ -57,6 +59,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/d3.min.js' , CClientS
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/spin.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/nprogress/nprogress.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/main.js' , CClientScript::POS_END);
+
 ?>		
         
         <script>
