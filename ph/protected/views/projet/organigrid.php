@@ -106,6 +106,7 @@ a.tags{font-size:large;line-height:20px;}
         
         <?php
         $filters = array(); 
+        $tags = array();
         foreach(explode(",", $typePeople) as $t){
             array_push($filters, $t);
         ?>
@@ -114,9 +115,12 @@ a.tags{font-size:large;line-height:20px;}
          foreach($projet[$t] as $id)
          {
          foreach(explode(",",$id['tags']) as $tag)
-             {?>	
+             {
+                 if(!in_array($tag, $tags)){
+                     array_push($tags, $tag);
+                 ?>	
                  <a href="javascript:;" class="tags badge blueDarkbg yellow" onclick="filterType('<?php echo str_replace(" ", "", $tag)?>','#DFE1E8')"><?php echo $tag?> </a>&nbsp;
-             <?php 
+             <?php }
              }
          }?>
         <?php } ?>

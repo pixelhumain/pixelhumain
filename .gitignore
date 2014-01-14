@@ -9,7 +9,7 @@ bin/
 tmp/
 ph/upload
 ph/assets
-'ph/protected/runtime
+ph/protected/runtime
 *.tmp
 *.bak
 *.swp
