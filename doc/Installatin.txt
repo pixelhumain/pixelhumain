@@ -1,0 +1,25 @@
+Pixel humain utilise
+github comme repository de code 
+url : https://github.com/pixelhumain/pixelhumain
+installer un clone localement 
+tout commit doit etre explicite par message 
+
+php pour le langage serveur 
+installer un serveur apache (easyphp,wampp..)
+
+mongodb pour la base de donnee
+installer une instance mongodb
+http://www.mongodb.org/
+si vous connaissez pas decouvrez
+http://try.mongodb.org/
+puis installer 
+http://www.mongodb.org/downloads
+Demarrer la base
+dans l'emplacement de votre dossier mango  
+creer un dossier mongodb/bin/data/db
+C:\chemin\dossier\Dev\mongodb\bin\mongod --dbpath chemin\dossier\Dev\mongodb\bin\data\db
+
+pour visualiser la base mongo installer mongovue
+http://www.mongovue.com/downloads/
+
+
