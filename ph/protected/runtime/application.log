@@ -16614,3 +16614,19 @@ Stack trace:
 REQUEST_URI=/ph/
 HTTP_REFERER=http://127.0.0.1/home/
 ---
+2014/01/14 08:01:10 [error] [exception.CException] exception 'CException' with message 'TemplatesController cannot find the requested view "onePagNav".' in C:\Users\fazar\Documents\GitHub\pixelhumain\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\Users\fazar\Documents\GitHub\pixelhumain\yii\framework\web\CController.php(782): CController->renderPartial('onePagNav', NULL, true)
+#1 C:\Users\fazar\Documents\GitHub\pixelhumain\ph\protected\controllers\TemplatesController.php(23): CController->render('onePagNav')
+#2 C:\Users\fazar\Documents\GitHub\pixelhumain\yii\framework\web\actions\CInlineAction.php(49): TemplatesController->actionIndex()
+#3 C:\Users\fazar\Documents\GitHub\pixelhumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Users\fazar\Documents\GitHub\pixelhumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\Users\fazar\Documents\GitHub\pixelhumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\Users\fazar\Documents\GitHub\pixelhumain\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 C:\Users\fazar\Documents\GitHub\pixelhumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('templates')
+#8 C:\Users\fazar\Documents\GitHub\pixelhumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 C:\Users\fazar\Documents\GitHub\pixelhumain\ph\index.php(18): CApplication->run()
+#10 {main}
+REQUEST_URI=/ph/index.php/templates?name=onePagNav
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates
+---
