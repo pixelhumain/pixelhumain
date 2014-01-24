@@ -25,10 +25,10 @@ body {
 }
 
 .chat-thread {
-  margin: 24px auto 0 auto;
-  padding: 0 20px 0 0;
+  margin: -50px auto 0 auto;
+  padding: 0 -7px 0 0;
   list-style: none;
-  overflow-y: scroll;
+  overflow-y: scroll; //scroll
   overflow-x: hidden;
 }
 
@@ -102,7 +102,7 @@ body {
 }
 
 .chat-window {
-  position: fixed;
+  margin:10px auto;
   bottom: 18px;
 }
 
@@ -137,7 +137,7 @@ body {
   }
 
   .chat-window {
-    left: 25%;
+    left: 30%;
     width: 50%;
   }
 }
