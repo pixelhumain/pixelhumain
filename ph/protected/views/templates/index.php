@@ -47,7 +47,7 @@ ol.slats li p span.meta {
 	<li class="group">
 		<h3>
 		    <?php $name = pathinfo($f, PATHINFO_FILENAME)?>
-			<a href="<?php echo Yii::app()->createUrl('/index.php/templates?name='.$name)?>">
+			<a href="<?php echo Yii::app()->createUrl('/templates?name='.$name)?>">
 				<?php echo $name?>
 			</a>
 		</h3>

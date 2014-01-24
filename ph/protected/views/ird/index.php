@@ -19,7 +19,7 @@ h2 {
     <br/>
     <div class="hero-unit">
         <h2>IRD : Historique des données recoltées</h2>
-        <a class="entypo-left btn nextStat" href="javascript:statPanelIndex (-1)"></a> <a class="entypo-right  btn prevStat" href="javascript:statPanelIndex (1)"></a>
+        <a class="icon-left btn nextStat" href="javascript:statPanelIndex (-1)"></a> <a class="icon-right  btn prevStat" href="javascript:statPanelIndex (1)"></a>
         
         <div class="clear"></div>
         <div id="graph" style="width:800px;">
@@ -56,7 +56,7 @@ h2 {
             </div>
         </div>
          <div class="clear"></div>
-        <a class="entypo-left btn nextStat" href="javascript:statPanelIndex (-1)"></a> <a class="entypo-right  btn prevStat" href="javascript:statPanelIndex (1)"></a>
+        <a class="icon-left btn nextStat" href="javascript:statPanelIndex (-1)"></a> <a class="icon-right  btn prevStat" href="javascript:statPanelIndex (1)"></a>
         
         
     </div>

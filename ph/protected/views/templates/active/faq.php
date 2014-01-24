@@ -68,14 +68,14 @@ p {
     	<?php 
     	if(Citoyen::isAdminUser()){
     	    $this->renderPartial('application.views.templates.active.addfaq');
-    	    echo '<a href="#addFaqForm" role="button" data-toggle="modal" class="btn btn-warning pull-right"><span class="entypo-plus"></span> Ajouter</a>';
+    	    echo '<a href="#addFaqForm" role="button" data-toggle="modal" class="btn btn-warning pull-right"><span class="icon-plus"></span> Ajouter</a>';
     	} 
     	$ct = 0;
     	foreach( Yii::app()->mongodb->data->find(array( "key" => $name , 
     																  "type" => "qa")) as $qa)
     	{
-    	    $updateBtn = (Citoyen::isAdminUser()) ? '<a href="#'.$qa["_id"].'" class="updateBtn btn btn-warning pull-right"><span class="entypo-pencil"></span></a>' : "";
-    	    $delBtn = (Citoyen::isAdminUser()) ? '<a href="#'.$qa["_id"].'" class="delBtn btn btn-warning pull-right"><span class="entypo-cancel"></span></a>' : "";
+    	    $updateBtn = (Citoyen::isAdminUser()) ? '<a href="#'.$qa["_id"].'" class="updateBtn btn btn-warning pull-right"><span class="icon-pencil"></span></a>' : "";
+    	    $delBtn = (Citoyen::isAdminUser()) ? '<a href="#'.$qa["_id"].'" class="delBtn btn btn-warning pull-right"><span class="icon-cancel"></span></a>' : "";
     	?>
     																  
             <div class="acc-btn <?php echo $qa["_id"]?>"><h1 class="selected"> <?php echo $qa["question"]?></h1> <?php echo $updateBtn." - ".$delBtn ?></div>

@@ -56,8 +56,8 @@ ol.slats li p span.meta {
     ?>
     <li class="group"><h3><a href="<?php echo Yii::app()->createUrl('index.php/entreprise/view/id/'.$e["_id"])?>"><?php echo $e["name"]?></a>
     <?php 
-    	echo ((Citoyen::isAdminUser()) ? '<a href="#'.$e["_id"].'" class="updateBtn btn btn-primary pull-right"><span class="entypo-pencil"></span></a>' : "");
-    	echo ((Citoyen::isAdminUser()) ? '<a href="#'.$e["_id"].'" class="delBtn btn btn-primary pull-right"><span class="entypo-cancel"></span></a>' : "");
+    	echo ((Citoyen::isAdminUser()) ? '<a href="#'.$e["_id"].'" class="updateBtn btn btn-primary pull-right"><span class="icon-pencil"></span></a>' : "");
+    	echo ((Citoyen::isAdminUser()) ? '<a href="#'.$e["_id"].'" class="delBtn btn btn-primary pull-right"><span class="icon-cancel"></span></a>' : "");
     	?>
     </h3></li>
     <?php }?>

@@ -61,9 +61,10 @@ class CitoyensController extends Controller {
                 
 	}
 	/**
-	 * Register
-	 * on PH we registration requires only an email 
+	 * Register or Login
+	 * on PH registration requires only an email 
 	 * test exists 
+	 * if exists > request pwd
 	 * otherwise add to DB 
 	 * send validation mail 
 	 */
@@ -73,13 +74,59 @@ class CitoyensController extends Controller {
 		{
             $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST['registerEmail']));
             if($account){
-                Yii::app()->session["userId"] = $account["_id"];
-                Yii::app()->session["userEmail"] = $account["email"]; 
-                if( isset($account["isAdmin"]) && $account["isAdmin"] )
-                    Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
-                Notification::add(array("type"=>Notification::NOTIFICATION_LOGIN,
-                    					"user"=>$account["_id"]));
-                echo json_encode(array("result"=>false, "id"=>"accountExist","msg"=>"Ce compte existe déjà.","isCommunected"=>isset($account["cp"])));
+                if( empty( $account["pwd"] ) )
+                {
+                    if(empty($_POST['registerPwd'])){
+                        //send email to reset password
+                        $pwd = uniqid('', true);
+                        Yii::app()->mongodb->citoyens->update(array("email"=>$_POST['registerEmail']), 
+                                                              array('$set' => array("pwd"=>hash('sha256', $_POST['registerEmail'].$pwd) )));
+                        $message = new YiiMailMessage;
+                        $message->view = 'validation';
+                        $message->setSubject('Set your password - Pixel Humain');
+                        $message->setBody(array("user"=>$account["_id"],
+                                                "pwd"=>$pwd), 'text/html');
+                        $message->addTo($_POST['registerEmail']);
+                        $message->from = Yii::app()->params['adminEmail'];
+                        Yii::app()->mail->send($message);
+                        
+                        echo json_encode( array("result"=>false, 
+                        						"msg"=>"Vous n'aviez pas creer de mot de passe, un mot de passe temporaire vous a été envoyé par mail.") );
+                    } else {
+                        //if a pwd was typed 
+                        //it will be set as pwd and will login the person
+                        
+                        Yii::app()->mongodb->citoyens->update(array("email"=>$_POST['registerEmail']), 
+                                                              array('$set' => array("pwd"=>hash('sha256', $_POST['registerEmail'].$_POST['registerPwd']) )));
+                        
+                        Yii::app()->session["userId"] = $account["_id"];
+                        Yii::app()->session["userEmail"] = $account["email"]; 
+                        
+                        if( isset($account["isAdmin"]) && $account["isAdmin"] )
+                            Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
+                            
+                        Notification::add(array("type" => Notification::NOTIFICATION_LOGIN,
+                            					"user" => $account["_id"]));
+                        
+                        echo json_encode(array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"])));
+                    }
+                } 
+                elseif ( !empty($_POST['registerPwd']) && $account["pwd"] == hash('sha256', $_POST['registerEmail'].$_POST['registerPwd']))
+                {
+                    Yii::app()->session["userId"] = $account["_id"];
+                    Yii::app()->session["userEmail"] = $account["email"]; 
+                    
+                    if( isset($account["isAdmin"]) && $account["isAdmin"] )
+                        Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
+                        
+                    Notification::add(array("type" => Notification::NOTIFICATION_LOGIN,
+                        					"user" => $account["_id"]));
+                    
+                    echo json_encode(array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"])));
+                } else 
+                    echo json_encode(array("result"=>false, "msg"=>"Email ou Mot de Passe ne correspondent pas, rééssayez."));
+                
+               
             }
             else {
                 //validate isEmail
@@ -89,16 +136,23 @@ class CitoyensController extends Controller {
                   $name = $matches[0];
                   $email = $matches[1];
                }
-               if(preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$email)) { 
-                    $newAccount = array(
+               
+               if(!empty($_POST['registerPwd']) && preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$email)) { 
+                   
+                   //new user is creating account 
+                   $newAccount = array(
                     			'email'=>$email,
+                                'pwd' => hash('sha256', $email.$_POST['registerPwd']),
                                 'tobeactivated' => true,
                                 'adminNotified' => false,
                                 'created' => time()
                                 );
                     if(!empty($name))
                         $newAccount["name"] = $name;
+                    //add to DB
                     Yii::app()->mongodb->citoyens->insert($newAccount);
+                   
+                    //set session elements for global credentials
                     Yii::app()->session["userId"] = $newAccount["_id"]; 
                     Yii::app()->session["userEmail"] = $newAccount["email"];
                     
@@ -118,7 +172,7 @@ class CitoyensController extends Controller {
                     
                     echo json_encode(array("result"=>true, "id"=>$newAccount["_id"]));
                }else
-                   echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide."));
+                   echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide et un mot de passe ."));
             }
 		} else
 		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));

@@ -49,10 +49,16 @@ padding:5px;
     <br/>
     <div class="hero-unit">
         <?php if(isset(Yii::app()->session["userId"])){?>
-		<h2><?php echo $user["name"]?></h2>
+		<h2><?php if(isset($user["name"]))echo $user["name"]; else echo "<a href='#participer' role='button' data-toggle='modal' title='mon compte'>Quel est votre nom ou pseudo?</a>"; ?></h2>
    		 <p> </p>
      	<div class="grid">
-            <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/commune/cp/'.$user["cp"])?>"  > Ma Commune </a></div>
+            <div data-ss-colspan="3">
+            	<?php if(isset($user["cp"])){?>
+            	<a href="<?php echo Yii::app()->createUrl('index.php/commune/cp/'.$user["cp"])?>"  > Ma Commune </a>
+            	<?php } else { ?>
+            		<a href="#participer" class="ml10 w60 yellow" role="button" data-toggle="modal" title="mon compte" >Se Communecter </a>( je me connecte à ma commune en donnant mon code postale)
+            	<?php }?>
+            </div>
             <?php /*?><div data-ss-colspan="2"><a href="#association"   target="_blank" role="button" data-toggle="modal"  > + Association </a></div>*/?>
             <div data-ss-colspan="2"><a href="<?php echo Yii::app()->createUrl('index.php/association/creer')?>"  > + Association </a></div>
             <div data-ss-colspan="3"><a href="#entreprise"   target="_blank" role="button" data-toggle="modal">+ Société</a></div>

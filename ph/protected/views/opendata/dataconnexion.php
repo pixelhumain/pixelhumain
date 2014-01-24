@@ -63,8 +63,8 @@ font-family: "Homestead";
      	<div class="grid">
      		<div data-ss-colspan="2">Démo Commune<br/><a target="_blank" href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/97400')?>" >97400</a> <a  target="_blank" href="<?php echo Yii::app()->createUrl('index.php/commune/view/cp/97480')?>" >97480</a> </div>
             <div  data-ss-colspan="2"><a  target="_blank" href="<?php echo Yii::app()->createUrl('index.php/commune')?>">Distribution des Communectés</a>Inscrit connecté par departement</div>
-            <div data-ss-colspan="2"><a target="_blank" href="<?php echo Yii::app()->createUrl('index.php/opendata/commune/ci/97411')?>" ><i class="entypo-plus"></i> Modèle Open Data Locales</a> une commune </div>
-            <div data-ss-colspan="2"><a href="#loginForm"   target="_blank" role="button" data-toggle="modal"><i class="entypo-plus"></i> Inscrivez Vous</a> on vous tiendra informé </div>
+            <div data-ss-colspan="2"><a target="_blank" href="<?php echo Yii::app()->createUrl('index.php/opendata/commune/ci/97411')?>" ><i class="icon-plus"></i> Modèle Open Data Locales</a> une commune </div>
+            <div data-ss-colspan="2"><a href="#loginForm"   target="_blank" role="button" data-toggle="modal"><i class="icon-plus"></i> Inscrivez Vous</a> on vous tiendra informé </div>
        </div>
 
 <br/>

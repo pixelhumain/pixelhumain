@@ -16684,3 +16684,558 @@ Stack trace:
 REQUEST_URI=/ph/index.php/assets/php/twitter.php
 HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=dashBoardHome
 ---
+2014/01/15 14:09:12 [error] [exception.MongoConnectionException] exception 'MongoConnectionException' with message 'Failed to connect to: 127.0.0.1:27017: No connection could be made because the target machine actively refused it.
+' in X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php:130
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php(130): MongoClient->__construct('mongodb://127.0...', Array)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php(112): EMongoClient->connect()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CModule.php(387): EMongoClient->init()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CModule.php(103): CModule->getComponent('mongodb')
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\ProjetController.php(33): CModule->__get('mongodb')
+#5 [internal function]: ProjetController->actionOrganigrid('523c8195f6b95c5...', 'team,mentors', 's')
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjetController), Array)
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjetController), Object(ReflectionMethod), Array)
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('organigrid')
+#12 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('projet/organigr...')
+#13 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#15 {main}
+REQUEST_URI=/ph/index.php/projet/organigrid/id/523c8195f6b95c5426007cb8/type/team,mentors
+HTTP_REFERER=http://127.0.0.1/ph/index.php/projet/view/id/523c8195f6b95c5426007cb8
+---
+2014/01/15 14:09:23 [error] [exception.MongoConnectionException] exception 'MongoConnectionException' with message 'Failed to connect to: 127.0.0.1:27017: No connection could be made because the target machine actively refused it.
+' in X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php:130
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php(130): MongoClient->__construct('mongodb://127.0...', Array)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php(112): EMongoClient->connect()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CModule.php(387): EMongoClient->init()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CModule.php(103): CModule->getComponent('mongodb')
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\modals\participer.php(97): CModule->__get('mongodb')
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require('X:\X_Dev\humanp...')
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('X:\X_Dev\humanp...', Array, true)
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): CBaseController->renderFile('X:\X_Dev\humanp...', Array, true)
+#8 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\modals.php(7): CController->renderPartial('application.vie...', Array)
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require('X:\X_Dev\humanp...')
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('X:\X_Dev\humanp...', Array, true)
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): CBaseController->renderFile('X:\X_Dev\humanp...', Array, true)
+#12 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\main.php(46): CController->renderPartial('application.vie...', Array)
+#13 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require('X:\X_Dev\humanp...')
+#14 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('X:\X_Dev\humanp...', Array, true)
+#15 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(784): CBaseController->renderFile('X:\X_Dev\humanp...', Array, true)
+#16 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TemplatesController.php(23): CController->render('index')
+#17 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): TemplatesController->actionIndex()
+#18 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#19 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#20 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('')
+#22 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('templates')
+#23 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#24 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#25 {main}
+REQUEST_URI=/ph/index.php/templates
+---
+2014/01/15 14:09:26 [error] [exception.MongoConnectionException] exception 'MongoConnectionException' with message 'Failed to connect to: 127.0.0.1:27017: Previous connection attempts failed, server blacklisted' in X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php:130
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php(130): MongoClient->__construct('mongodb://127.0...', Array)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php(112): EMongoClient->connect()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CModule.php(387): EMongoClient->init()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CModule.php(103): CModule->getComponent('mongodb')
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\decouvrir\modalCommune.php(33): CModule->__get('mongodb')
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require('X:\X_Dev\humanp...')
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('X:\X_Dev\humanp...', NULL, true)
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): CBaseController->renderFile('X:\X_Dev\humanp...', NULL, true)
+#8 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\decouvrir\index.php(11): CController->renderPartial('modalCommune')
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require('X:\X_Dev\humanp...')
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('X:\X_Dev\humanp...', NULL, true)
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): CBaseController->renderFile('X:\X_Dev\humanp...', NULL, true)
+#12 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#13 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\DecouvrirController.php(56): CController->render('index')
+#14 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): DecouvrirController->actionIndex()
+#15 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('')
+#19 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('decouvrir')
+#20 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#22 {main}
+REQUEST_URI=/ph/index.php/decouvrir
+---
+2014/01/17 07:54:44 [error] [exception.MongoConnectionException] exception 'MongoConnectionException' with message 'Failed to connect to: 127.0.0.1:27017: No connection could be made because the target machine actively refused it.
+' in X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php:130
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php(130): MongoClient->__construct('mongodb://127.0...', Array)
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\extensions\MongoYii\EMongoClient.php(112): EMongoClient->connect()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CModule.php(387): EMongoClient->init()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CModule.php(103): CModule->getComponent('mongodb')
+#4 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\modals\participer.php(97): CModule->__get('mongodb')
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require('X:\X_Dev\humanp...')
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('X:\X_Dev\humanp...', Array, true)
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): CBaseController->renderFile('X:\X_Dev\humanp...', Array, true)
+#8 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\modals.php(7): CController->renderPartial('application.vie...', Array)
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require('X:\X_Dev\humanp...')
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('X:\X_Dev\humanp...', Array, true)
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): CBaseController->renderFile('X:\X_Dev\humanp...', Array, true)
+#12 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\main.php(46): CController->renderPartial('application.vie...', Array)
+#13 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require('X:\X_Dev\humanp...')
+#14 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('X:\X_Dev\humanp...', Array, true)
+#15 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(784): CBaseController->renderFile('X:\X_Dev\humanp...', Array, true)
+#16 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\TemplatesController.php(23): CController->render('index')
+#17 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): TemplatesController->actionIndex()
+#18 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#19 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#20 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CController->run('')
+#22 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('templates')
+#23 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#24 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#25 {main}
+REQUEST_URI=/ph/index.php/templates
+---
+2014/01/17 10:39:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "ext/ird".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ext/ird')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/ext/ird
+---
+2014/01/17 10:39:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "ext/ird".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ext/ird')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/ext/ird
+---
+2014/01/17 10:39:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "ext/ird".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ext/ird')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/ext/ird
+---
+2014/01/17 10:39:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "ext/ird".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ext/ird')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/ext/ird
+---
+2014/01/17 10:40:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "ird".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ird')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/index.php/ird
+---
+2014/01/21 13:51:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=sondagRond
+---
+2014/01/21 13:51:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=sondagRond
+---
+2014/01/21 13:52:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=sondagRond
+---
+2014/01/21 13:52:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=sondagRond
+---
+2014/01/21 13:52:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=sondagRond
+---
+2014/01/21 13:52:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=sondagRond
+---
+2014/01/21 14:22:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=sondagRond
+---
+2014/01/21 15:00:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=gridBoxes
+---
+2014/01/21 15:00:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=gridBoxes
+---
+2014/01/21 15:00:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=gridBoxes
+---
+2014/01/21 15:00:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=gridBoxes
+---
+2014/01/21 15:00:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=gridBoxes
+---
+2014/01/21 15:00:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=gridBoxes
+---
+2014/01/21 18:54:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=panels
+---
+2014/01/21 18:54:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=panels
+---
+2014/01/21 18:55:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=panels
+---
+2014/01/21 18:55:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=panels
+---
+2014/01/21 18:56:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=panels
+---
+2014/01/21 18:56:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=panels
+---
+2014/01/21 18:57:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=panels
+---
+2014/01/21 18:57:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=panels
+---
+2014/01/21 18:57:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/styles.css".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/styles.css')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/js/styles.css
+HTTP_REFERER=http://127.0.0.1/ph/index.php/templates?name=panels
+---
+2014/01/23 13:32:05 [error] [php] Undefined index: pwd (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:78)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (78)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2014/01/23 13:32:25 [error] [php] Undefined index: pwd (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:78)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (78)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2014/01/23 13:32:32 [error] [php] Undefined index: pwd (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:78)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (78)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2014/01/23 13:32:45 [error] [php] Undefined index: pwd (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:78)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (78)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2014/01/23 15:25:50 [error] [php] Undefined variable: newAccount (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:125)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (125)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2014/01/23 15:27:04 [error] [php] Undefined index: name (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\citoyens\index.php:52)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): CitoyensController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CitoyensController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php(27): CitoyensController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): CitoyensController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\citoyens\index.php (52)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (27)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2014/01/23 15:29:39 [error] [php] Undefined variable: newAccount (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:105)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (105)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2014/01/23 15:30:21 [error] [php] Undefined variable: newAccount (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:105)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (105)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2014/01/23 15:32:48 [error] [php] Undefined variable: newAccount (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:85)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (85)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2014/01/23 15:51:36 [error] [php] Undefined index: pwd (X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php:114)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/index.php/citoyens/register
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (114)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2014/01/23 20:12:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "font/fontello/font/social.woff".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('font/fontello/f...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/font/fontello/font/social.woff?22239949
+HTTP_REFERER=http://127.0.0.1/ph/css/mainph.css
+---
+2014/01/23 20:12:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "font/fontello/font/social.ttf".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('font/fontello/f...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/font/fontello/font/social.ttf?22239949
+HTTP_REFERER=http://127.0.0.1/ph/css/mainph.css
+---
+2014/01/23 20:12:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "font/fontello/font/social.woff".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('font/fontello/f...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/font/fontello/font/social.woff?22239949
+HTTP_REFERER=http://127.0.0.1/ph/
+---
+2014/01/23 20:12:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "font/fontello/font/social.ttf".' in X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('font/fontello/f...')
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CApplication->run()
+#3 {main}
+REQUEST_URI=/ph/font/fontello/font/social.ttf?22239949
+HTTP_REFERER=http://127.0.0.1/ph/
+---
+2014/01/23 20:32:20 [error] [php] Undefined index: name (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\citoyens\index.php:52)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): CitoyensController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CitoyensController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php(27): CitoyensController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): CitoyensController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/citoyens
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\citoyens\index.php (52)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (27)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2014/01/23 20:35:33 [error] [php] Undefined index: cp (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\citoyens\index.php:55)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): CitoyensController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(782): CitoyensController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php(27): CitoyensController->render()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): CitoyensController->actionIndex()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): CitoyensController->runAction()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): CitoyensController->runActionWithFilters()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): CitoyensController->run()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/citoyens
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\citoyens\index.php (55)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\CitoyensController.php (27)
+in X:\X_Dev\humanpixel\pixelHumain\ph\index.php (18)
+2014/01/23 20:47:16 [error] [php] Undefined index: cp (X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\header3.php:36)
+Stack trace:
+#0 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(869): SiteController->renderFile()
+#1 X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\main.php(41): SiteController->renderPartial()
+#2 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(126): require()
+#3 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CBaseController.php(95): SiteController->renderInternal()
+#4 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(784): SiteController->renderFile()
+#5 X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\SiteController.php(35): SiteController->render()
+#6 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#7 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#8 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(286): SiteController->runAction()
+#9 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#10 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#11 X:\X_Dev\humanpixel\pixelHumain\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 X:\X_Dev\humanpixel\pixelHumain\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 X:\X_Dev\humanpixel\pixelHumain\ph\index.php(18): CWebApplication->run()
+REQUEST_URI=/ph/
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\header3.php (36)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\views\layouts\main.php (41)
+in X:\X_Dev\humanpixel\pixelHumain\ph\protected\controllers\SiteController.php (35)

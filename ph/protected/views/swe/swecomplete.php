@@ -53,7 +53,7 @@ canvas{position:absolute;top:0px;left:0px;}
     		<li><a href="<?php echo Yii::app()->createUrl('index.php/ext/startupweekend/sweadmin/id/'.$key)?>"><i class="icon-wrench"></i> Admin</a></li>
     		<li><a href="#exportEmails" role="button" data-toggle="modal"><i class="icon-wrench"></i> EXPORT Compte NC</a></li>
     		<li><a href="#exportEmailsProjet" role="button" data-toggle="modal"><i class="icon-wrench"></i> EXPORT Candidat Projet</a></li>
-    		<li><a href='#cancelParticipation'  role='button' data-toggle='modal'><i class='entypo-cancel'></i> Supprimer un participant</a></li>
+    		<li><a href='#cancelParticipation'  role='button' data-toggle='modal'><i class='icon-cancel'></i> Supprimer un participant</a></li>
     	<?php } ?>
     </ul>
 </div>
@@ -97,7 +97,7 @@ canvas{position:absolute;top:0px;left:0px;}
 
                 //desc content
                 $xtra = '<div class="xtra clear">'.$email.'</div><div class="desc">';
-                $xtra .= '<a  class="btn-ph" href="javascript:;" onclick="showPerson(\''.$email.'\')"><span class="entypo-eye"></span></a>';
+                $xtra .= '<a  class="btn-ph" href="javascript:;" onclick="showPerson(\''.$email.'\')"><span class="icon-eye"></span></a>';
                 $xtra .= '</div>';
                 
                 $img = (!empty($img) ) ? Yii::app()->createUrl('upload/swe/'.$img) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); 

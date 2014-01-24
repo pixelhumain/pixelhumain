@@ -1,0 +1,34 @@
+pixelhumain.com 
+is the root of the project 
+
+/application/country/cp
+/application/country/region
+/application/country/dep
+
+ex : 
+/communes/fr/97421
+/region/fr/974
+/associations/fr/97421
+
+Divers Applications :
+    En Dev 
+    /citoyens
+    /commune
+    /associations
+    /entreprise 
+    /evenement
+    /annuaire
+    /opendata
+/projet
+/reflechir
+/statistics
+/financement
+/geo
+/actualite
+/collectivite
+/covoiturage
+/data
+/decouvrir
+/diffusion
+/templates
+/thematique

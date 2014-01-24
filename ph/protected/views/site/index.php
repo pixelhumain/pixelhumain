@@ -27,15 +27,16 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
               <div class="carousel-inner" style="height:560px;width:85%;margin-left:60px">
               	
               	<div class="active item p40" >
-              		<div class="center"><span class="entypo-video blue" style="font-size:300%"></span></div>
+              		<div class="center"><span class="icon-video-chat blue" style="font-size:300%"></span></div>
               		<h2 class="homestead">P.H Animé </h2> 
-                    <iframe src="//player.vimeo.com/video/74212373" style="width:100%;height:450px;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              		
+              		<img src="<?php echo Yii::app()->createUrl('images/vimeo.png')?>"/>
+                    <?php // <iframe src="//player.vimeo.com/video/74212373" style="width:100%;height:450px;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> ?>
                 </div>
                 
                 <div class="item p40">
                     <h1 class="pull-right homestead">Le Pixel Humain</h1> 
                     <div style="width:500px; text-align:right;" class="pull-right">
-                   
                         <p>Un projet citoyen de démocratie participative qui prend racine à la Réunion portée par l'association Open Atlas <br/><small class="fsxs">(loi 19101, but non lucratif)</small>. </p>
                         <p>Une plateforme de discussions et actions citoyennes sur un réseau local <br/>(en cours construction, Recherche de financement). </p>
                     </div>
@@ -85,13 +86,13 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     		    </ul>
     		</div>*/?>
     		<div style="width:100%;" class="center">
-        		<a href="https://www.facebook.com/groups/pixelhumain/" target="_blank"><span class="social-facebook-rect blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            	<a href="https://plus.google.com/u/0/communities/111483652487023091469?cfem=1" target="_blank"><span class="social-googleplus-rect blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            	<a href="http://groups.diigo.com/group/pixelhumain" target="_blank"><span class="social-diigo blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            	<a href="https://trello.com/board/pixel-humain-echolocal/50a3e15a175358d65a0089ef" target="_blank"><span class="social-trello blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;
-            	<a href="http://blog.pixelhumain.com/" target="_blank"><span class="social-blogger-rect blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
-            	<a href="http://twitter.com/pixelhumain" target="_blank"><span class="social-twitter blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
-            	<a href="https://github.com/pixelhumain/pixelhumain" target="_blank"><span class="social-github-text blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+        		<a href="https://www.facebook.com/groups/pixelhumain/" target="_blank"><span class="icon-facebook-rect blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="https://plus.google.com/u/0/communities/111483652487023091469?cfem=1" target="_blank"><span class="icon-googleplus-rect blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="http://groups.diigo.com/group/pixelhumain" target="_blank"><span class="icon-diigo blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="https://trello.com/board/pixel-humain-echolocal/50a3e15a175358d65a0089ef" target="_blank"><span class="icon-trello blueDark" style="font-size:200%"></span></a>&nbsp;&nbsp;&nbsp;
+            	<a href="http://blog.pixelhumain.com/" target="_blank"><span class="icon-blogger-rect blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="http://twitter.com/pixelhumain" target="_blank"><span class="icon-twitter blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
+            	<a href="https://github.com/pixelhumain/pixelhumain" target="_blank"><span class="icon-github-text blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
         	</div>
     		<div class="clear"></div>
         </div>
@@ -107,7 +108,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     <div class="hero-unit">
     	<?php if(!isset(Yii::app()->session["userId"])){?>
         <div class="pull-left homestead blueDark center" style="width:45%;border:1px color red;">
-        	<span class="entypo-vcard blue" style="font-size:300%"></span><br/><br/>
+        	<span class="icon-vcard blue" style="font-size:300%"></span><br/><br/>
         	<h1> Adhérer </h1>
         	<div>
         	C'est se communecter, être connecté à sa commune ( mail, code postal).
@@ -118,7 +119,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         </div>
         <?php } else if(!$userCp = Citoyen::isCommunected()){ ?>
         <div class="pull-left homestead blueDark center" style="width:45%;border:1px color red;">
-        	<span class="entypo-vcard blue" style="font-size:300%"></span><br/><br/>
+        	<span class="icon-vcard blue" style="font-size:300%"></span><br/><br/>
         	<h1> Inscrit <span style="text-decoration:line-through">communecté </span></h1>
         	<div>
         	se communecter, c'est être connecté à sa commune, avec un simple code postal
@@ -128,7 +129,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         </div>
         <?php } else { ?>
         	<div class="pull-left homestead blueDark center" style="width:45%;border:1px color red;">
-        	<span class="entypo-vcard blue" style="font-size:300%"></span><br/><br/>
+        	<span class="icon-vcard blue" style="font-size:300%"></span><br/><br/>
         	<h1> Vous etes Communecté </h1>
         	<div>
         	<img src="<?php echo Yii::app()->createUrl('images/bdb.png')?>"/>
@@ -137,7 +138,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         </div>
         <?php }?>
         <div class="pull-right homestead blueDark center" style="width:45%;border:1px color red;">
-        <span class="social-lightbulb blue" style="font-size:300%"></span><br/><br/>
+        <span class="icon-lightbulb blue" style="font-size:300%"></span><br/><br/>
             <div class="accordion" id="accordionAction">
                 
                   	<div class="accordion-group">
@@ -250,7 +251,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     
     
     <div class="hero-unit">
-    	<div class="center"><span class="entypo-megaphone blue" style="font-size:300%"></span><br/></div>
+    	<div class="center"><span class="icon-megaphone blue" style="font-size:300%"></span><br/></div>
     	<h2 class="homestead"> A propos  </h2>
         <div class="accordion" id="accordion2">
             
@@ -284,7 +285,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                 <p>L’Innovation au service de la société.</p>
                 <p class="text-info">“Venez mettre votre grain d’Xel ! ”</p>
                 </blockquote>
-                <a class="btn btn-primary btn-large pull-right">En Savoir Plus <i class="social-forward social-white"></i></a>
+                <a class="btn btn-primary btn-large pull-right">En Savoir Plus <i class="icon-forward icon-white"></i></a>
               </div>
             </div>
           </div>
@@ -419,7 +420,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
                 C'est quand même plus agréable de choisir où l'on applique nos impôts, non ? 
                 <br/>Par exemple : avec un revenu imposable de 20 000 € vous pouvez verser au maximum  4 000 € ( soit 20% de 20000 ) et vous pouvez déduire de vos impôts la somme de 2 640 € ( soit 66% de 4000).
                 <br/>Pour bénéficier de cette réduction d'impôt, l'association Open Atlas (Association à but non lucratif et d'intérêt général) fournira un reçu, indiquant le montant du don effectué. C'est ce reçu qu'il vous faudra joindre à votre déclaration de revenus.
-                 <a href="http://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006191957&cidTexte=LEGITEXT000006069577&dateTexte=vig" target="_blank">Texte de loi officiel<i class="social-forward social-white"></i></a></p>
+                 <a href="http://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006191957&cidTexte=LEGITEXT000006069577&dateTexte=vig" target="_blank">Texte de loi officiel<i class="icon-forward icon-white"></i></a></p>
                 <div class="center">
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                     <input type="hidden" name="cmd" value="_s-xclick">
@@ -509,7 +510,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
         
     <div class="hero-unit">
     	<div class="center">
-    		<span class="entypo-infinity blue" style="font-size:300%"></span><br/><br/>
+    		<span class="icon-infinity blue" style="font-size:300%"></span><br/><br/>
     	</div>
     	<h2 class="homestead"> Objectifs Tangibles court Terme  </h2>
         <div class="accordion" id="accordion3">
@@ -597,7 +598,7 @@ $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discuss
     
     <div class="hero-unit">
         <div class="homestead blueDark center" style="height:border:1px color red;">
-        	<span class="entypo-heart-empty pink" style="font-size:300%"></span><br/><br/>
+        	<span class="icon-heart-empty pink" style="font-size:300%"></span><br/><br/>
         	<h1>L'équipe</h1>
         	<div>
         	Une équipe dynamique, professionelle, passionné de Pixels Actifs

@@ -217,7 +217,7 @@ canvas{position:absolute;top:0px;left:0px;}
                     //adds show team on project panel
                     if(isset($type) && ( $type=='projet' || $type=='participant')) 
                     {
-                        $xtra .= "<a  class='btn-ph' href='#' onclick='filterType(\"".$project."\")' title='Project Team'><span class='entypo-users'></span></a>";
+                        $xtra .= "<a  class='btn-ph' href='#' onclick='filterType(\"".$project."\")' title='Project Team'><span class='icon-users'></span></a>";
                     }
                     
                     //statistics
@@ -238,13 +238,13 @@ canvas{position:absolute;top:0px;left:0px;}
                 //join Btn on project panel
                 if(isset($type) && $type=='projet'){
                     /*if(in_array( Yii::app()->session["userEmail"], $event["adminEmail"]))
-                        $xtra .= "<a class='btn-ph' href='javascript:userJoinProject(\"".$project."\")' title='Rejoindre ce projet'><span class='entypo-share'></span></a>";*/
+                        $xtra .= "<a class='btn-ph' href='javascript:userJoinProject(\"".$project."\")' title='Rejoindre ce projet'><span class='icon-share'></span></a>";*/
                     array_push($projects, $project );
                 }
                 else if(isset($type) && $type=='coach')
                 {
                     $coachRequestBadge =  '<span id="'.(str_replace(' ', '', $name)).'RequestBadge" class="badge bgRed coachBadges" ></span>';
-                    $xtra .= "<a class='btn-ph' href='#coaching' onclick='$(\"#coachRequested\").select2(\"val\",\"".(str_replace(' ', '', $name))."\")'  role='button' data-toggle='modal' title='Appeler ce coach'><span class='entypo-megaphone'></span></a>".$coachRequestBadge;
+                    $xtra .= "<a class='btn-ph' href='#coaching' onclick='$(\"#coachRequested\").select2(\"val\",\"".(str_replace(' ', '', $name))."\")'  role='button' data-toggle='modal' title='Appeler ce coach'><span class='icon-megaphone'></span></a>".$coachRequestBadge;
                 }
                 $xtra .= '</div>';
                 
@@ -284,14 +284,14 @@ canvas{position:absolute;top:0px;left:0px;}
 		.statistics ul { list-style:none; }
 		.statistics li div { border:2px solid #666; background:white;  }
 		.statistics a.btn{font-size:30px;margin-bottom:8px;} 
-		.statistics a.entypo-right{margin-left:30px}
+		.statistics a.icon-right{margin-left:30px}
 		.statistics h1{text-decoration:none;color: #324553;}
 	</style>
 	
 	<div class="statistics">
 		<ul>
-			<a class="entypo-left btn nextStat" href="javascript:statPanelIndex (-1)"></a>
-			<a class="entypo-right  btn prevStat" href="javascript:statPanelIndex (1)"></a>
+			<a class="icon-left btn nextStat" href="javascript:statPanelIndex (-1)"></a>
+			<a class="icon-right  btn prevStat" href="javascript:statPanelIndex (1)"></a>
     		<li id="stats1" class="hide chart">
     			
     			<h1>Participants  <br/><?php echo count($event["participants"])?> Inscrits</h1>
@@ -409,9 +409,9 @@ function getCoachCount(){
         			$("#"+coaches[ix]+"RequestBadge").html("1");
     			var remove = "";
     			<?php if(in_array($user["type"], array('coach','organisateur')) || in_array(Yii::app()->session["userEmail"], $event["adminEmail"])) { ?>
-    				remove = "<span class='entypo-squarred-cross cRed'><a href='#' onclick='sweCoachingDone(\""+ids[ix]+"\")'>&#10062;</a></span>";
+    				remove = "<span class='icon-squarred-cross cRed'><a href='#' onclick='sweCoachingDone(\""+ids[ix]+"\")'>&#10062;</a></span>";
     			<?php }?>
-    			$("#appPanelList").append("<li><span class='entypo-megaphone cRed'></span>"+coaches[ix]+" : "+projects[ix]+" "+remove+" </li>");
+    			$("#appPanelList").append("<li><span class='icon-megaphone cRed'></span>"+coaches[ix]+" : "+projects[ix]+" "+remove+" </li>");
         	}
 		}
 		previousDataCoach = data;

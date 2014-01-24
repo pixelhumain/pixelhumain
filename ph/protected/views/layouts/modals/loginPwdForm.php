@@ -9,14 +9,16 @@
    	<br/>et si vous etes deja inscrit , connectez vous avec votre email d'inscription.</p>
     <form id="registerPwdForm" action="">
     	<section>
-        	<table>
+        	<table style="width:300px;margin:0 auto;">
               	<tr>
-                  	<td class="txtright"><input class="span2" type="text" id="registerPwdEmail" name="registerPwdEmail" placeholder="Email" ></td>
-                  	<td></td>
+                  	<td><input type="text" id="registerPwdEmail" name="registerPwdEmail" placeholder="Email" ></td>
+                  	
               	</tr>
               	<tr>
-                  	<td class="txtright"><input class="span2" type="password" id="registerPwd" name="registerPwd" placeholder="Mot de passe" ></td>
-                  	<td> <a class="btn btn-warning" href="javascript:;" onclick="$('#registerPwdForm').submit();return false;"  >S'inscrire  ou se Connecter</a></td>
+                  	<td><input type="password" id="registerPwd" name="registerPwd" placeholder="Mot de passe (si Login)" ></td>
+                </tr>
+              	<tr>	
+                  	<td> <a class="btn btn-warning " href="javascript:;" onclick="$('#registerPwdForm').submit();return false;"  >S'inscrire  ou se Connecter</a></td>
               	</tr>
               	
             </table>
@@ -47,10 +49,21 @@ initT['loginModalsInit'] = function(){
     	event.preventDefault();
     	$("#loginPwdForm").modal('hide');
     	toggleSpinner();
+
+    	method = "register";
+    	extraParam = "";
+    	var appKey = false;<?php //echo empty($this->appKey)?>;
+    	var appType = false;<?php //echo empty($this->appType)?>;
+    	<?php /*
+    	if( appKey && appType  )
+    		extraParam = "&appKey=<?php //echo $this->appKey?>&appType=<?php //echo $this->appType?>";
+    		method = "registerAppPwd";
+    	}*/?>
+	
     	$.ajax({
     	  type: "POST",
-    	  url: baseUrl+"/index.php/citoyens/registerAppPwd",
-    	  data: "registerEmail="+$("#registerPwdEmail").val()+"&registerPwd="+$("#registerPwd").val()+"&appKey=<?php echo $this->appKey?>&appType=<?php echo $this->appType?>",
+    	  url: baseUrl+"/index.php/citoyens/"+method,
+    	  data: "registerEmail="+$("#registerPwdEmail").val()+"&registerPwd="+$("#registerPwd").val()+extraParam,
     	  success: function(data){
     		  if(data.result){
         		  window.location.reload();

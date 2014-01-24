@@ -140,36 +140,36 @@
       </ul>
     </li>
     */?>
-        <li><a href="#loginForm"  target="_blank" role="button" data-toggle="modal"><span class="entypo-user"></span><span class="menu-item">s'Inscrire</span></a></li>
-        <li><a href="#invitation"  role="button" data-toggle="modal"><span class="entypo-link"></span><span class="menu-item">Invitation</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/thematique')?>"><span class="entypo-tag"></span><span class="menu-item">Thématique</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/statistics')?>"><span class="social-chart-line"></span> <span class="menu-item">Statistique</span></a>
+        <li><a href="#loginForm"  target="_blank" role="button" data-toggle="modal"><span class="icon-user"></span><span class="menu-item">s'Inscrire</span></a></li>
+        <li><a href="#invitation"  role="button" data-toggle="modal"><span class="icon-link"></span><span class="menu-item">Invitation</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('thematique')?>"><span class="icon-tag"></span><span class="menu-item">Thématique</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('statistics')?>"><span class="icon-chart-line"></span> <span class="menu-item">Statistique</span></a>
         	<ul>
-                <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/metier')?>">Metier</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/thematique')?>">Thématique</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/cp')?>">Code Postaux</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/cpCount')?>">Commune</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/groups')?>">Association</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/interactions')?>">Interaction</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl('/index.php/statistics/graph/type/3dsurface')?>">Surface 3D</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/metier')?>">Metier</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/thematique')?>">Thématique</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/cp')?>">Code Postaux</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/cpCount')?>">Commune</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/groups')?>">Association</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/interactions')?>">Interaction</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/3dsurface')?>">Surface 3D</a></li>
               </ul>
         </li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/commune')?>"><span class="entypo-address"></span><span class="menu-item">Commune</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/projet')?>"><span class="icon-lightbulb"></span> <span class="menu-item">Projet</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/evenement')?>"><span class="entypo-signal"></span><span class="menu-item">Évènement</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/association')?>"><span class="entypo-users"></span><span class="menu-item">Association</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/opendata')?>"><span class="entypo-share"></span><span class="menu-item">Open Data</span></a></li>
-        <?php /*<li><a href="<?php echo Yii::app()->createUrl('index.php/annuaire')?>"><span class="entypo-network"></span><span class="menu-item">Annuaire</span></a></li> */?>
-        <?php /*<li><a href="<?php echo Yii::app()->createUrl('index.php/geo')?>"><span class="entypo-map"></span><span class="menu-item">Carto</span></a></li> */?>
-        <?php /*<li><a href="<?php echo Yii::app()->createUrl('index.php/decouvrir')?>"><span class="entypo-globe"></span><span class="menu-item">Découvrir</span></a></li> */?>
-        <?php /* <li><a href="<?php echo Yii::app()->createUrl('index.php/discuter')?>" ><span class="entypo-chat"></span><span class="menu-item">Discuter</span></a></li> */?>
+        <li><a href="<?php echo Yii::app()->createUrl('commune')?>"><span class="icon-address"></span><span class="menu-item">Commune</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('projet')?>"><span class="icon-lightbulb"></span> <span class="menu-item">Projet</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('evenement')?>"><span class="icon-wifi"></span><span class="menu-item">Évènement</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('association')?>"><span class="icon-users"></span><span class="menu-item">Association</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('opendata')?>"><span class="icon-share"></span><span class="menu-item">Open Data</span></a></li>
+        <?php /*<li><a href="<?php echo Yii::app()->createUrl('annuaire')?>"><span class="icon-network"></span><span class="menu-item">Annuaire</span></a></li> */?>
+        <?php /*<li><a href="<?php echo Yii::app()->createUrl('geo')?>"><span class="icon-map"></span><span class="menu-item">Carto</span></a></li> */?>
+        <?php /*<li><a href="<?php echo Yii::app()->createUrl('decouvrir')?>"><span class="icon-globe"></span><span class="menu-item">Découvrir</span></a></li> */?>
+        <?php /* <li><a href="<?php echo Yii::app()->createUrl('discuter')?>" ><span class="icon-chat"></span><span class="menu-item">Discuter</span></a></li> */?>
         
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/actualite')?>" ><span class="entypo-rss"></span><span class="menu-item">Actualité</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/diffusion/hangout')?>" ><span class="entypo-mic"></span><span class="menu-item">Conseil Mun.</span></a></li>
-        <?php /*<li><a href="<?php echo Yii::app()->createUrl('index.php/covoiturage')?>"><span class="entypo-shareable"></span><span class="menu-item">Covoiturage</span></a></li> */?>
-        <?php /*<li><a href="<?php echo Yii::app()->createUrl('index.php/statistics/graph/type/groups')?>"><span class="entypo-flow-tree"></span><span class="menu-item">se Regrouper</span></a></li> */?>
+        <li><a href="<?php echo Yii::app()->createUrl('actualite')?>" ><span class="icon-rss"></span><span class="menu-item">Actualité</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('diffusion/hangout')?>" ><span class="icon-mic"></span><span class="menu-item">Conseil Mun.</span></a></li>
+        <?php /*<li><a href="<?php echo Yii::app()->createUrl('covoiturage')?>"><span class="icon-shareable"></span><span class="menu-item">Covoiturage</span></a></li> */?>
+        <?php /*<li><a href="<?php echo Yii::app()->createUrl('statistics/graph/type/groups')?>"><span class="icon-flow-tree"></span><span class="menu-item">se Regrouper</span></a></li> */?>
         
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/site/page/id/opensource')?>"><span class="entypo-cc"></span><span class="menu-item">Libre de droit</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('index.php/financement')?>"><span class="entypo-thumbs-up"></span><span class="menu-item">Soutenir</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('site/page/id/opensource')?>"><span class="icon-cc"></span><span class="menu-item">Libre de droit</span></a></li>
+        <li><a href="<?php echo Yii::app()->createUrl('financement')?>"><span class="icon-thumbs-up"></span><span class="menu-item">Soutenir</span></a></li>
   </ul>
 </div>

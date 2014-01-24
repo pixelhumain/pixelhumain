@@ -13,7 +13,7 @@
                         <li><a href="<?php echo Yii::app()->createUrl('index.php#contact')?>">Contact</a></li>
                         <li><a href="<?php echo Yii::app()->createUrl('index.php/financement')?>">Soutien</a></li>
                         <?php if(!isset(Yii::app()->session["userId"])){?>
-                        <li id="register"><a href="#loginForm"  role="button" data-toggle="modal"  >S'inscrire <span class="entypo-login"></span> </a></li>
+                        <li id="register"><a href="#loginForm"  role="button" data-toggle="modal"  >S'inscrire <span class="icon-login"></span> </a></li>
                         <?php } else {?>
                         <li class="dropdown">
                             <a href="<?php echo Yii::app()->createUrl('index.php/citoyens')?>" class="dropdown-toggle" data-toggle="dropdown">Mon Compte <b class="caret"></b></a>
