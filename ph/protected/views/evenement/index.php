@@ -47,15 +47,23 @@ ol.slats li p span.meta {
     <br/>
     <div class="hero-unit">
     
-    <h2>Liste d'évenement</h2>
-    <p>Tous ls évènements locaux d'interet général </p>
+    <h2>Liste d'évenement <a href="<?php echo Yii::app()->createUrl('evenement/creer')?>" class="updateBtn btn btn-primary pull-right"><span class="icon-plus">Ajouter</span></a></h2>
+    <p>
+    Tous ls évènements locaux d'interet général,<br/>
+    Organiser, Communiquer et donner une mémoire aux évenement locaux
+     </p>
 <ol class="slats">
 	<?php 
     $pa = Yii::app()->mongodb->group;
     $ct = $pa->find(array("type"=>"event"));
     foreach ($ct as $e){
     ?>
-    <li class="group"><h3><a href="<?php echo Yii::app()->createUrl('index.php/evenement/view/id/'.$e["_id"])?>"><?php echo $e["name"]?></a></h3></li>
+    <li class="group"><h3><a href="<?php echo Yii::app()->createUrl('evenement/view/id/'.$e["_id"])?>"><?php echo $e["name"]?></a>
+    <?php 
+    	echo ((Citoyen::isAdminUser()) ? '<a href="#'.$e["_id"].'" class="updateBtn btn btn-primary pull-right"><span class="icon-pencil-neg"></span></a>' : "");
+    	echo ((Citoyen::isAdminUser()) ? '<a href="#'.$e["_id"].'" class="delBtn btn btn-primary pull-right"><span class="icon-cancel"></span></a>' : "");
+    	?>
+    </h3></li>
     <?php }?>
     
 </ol>    

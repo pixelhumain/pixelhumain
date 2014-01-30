@@ -47,22 +47,24 @@ ol.slats li p span.meta {
     <br/>
     <div class="hero-unit">
     
-    <h2> Module Association</h2>
+    <h2> Module Association <a href="<?php echo Yii::app()->createUrl('association/creer')?>" class="updateBtn btn btn-primary pull-right"><span class="icon-plus">Ajouter</span></a></h2>
     <p> Valorisation des associations locale, des leurs actions et objectifs </p>
+
 <ol class="slats">
 	<?php 
     $pa = Yii::app()->mongodb->group->find(array("type"=>PixelHumain::TYPE_ASSOCIATION));
     foreach ($pa as $e){
     ?>
-    <li class="group"><h3><a href="<?php echo Yii::app()->createUrl('index.php/association/view/id/'.$e["_id"])?>"><?php echo $e["name"]?></a>
+    <li class="group"><h3><a href="<?php echo Yii::app()->createUrl('association/view/id/'.$e["_id"])?>"><?php echo $e["name"]?></a>
     <?php 
-    	echo ((Citoyen::isAdminUser()) ? '<a href="#'.$e["_id"].'" class="updateBtn btn btn-primary pull-right"><span class="icon-pencil"></span></a>' : "");
+    	echo ((Citoyen::isAdminUser()) ? '<a href="#'.$e["_id"].'" class="updateBtn btn btn-primary pull-right"><span class="icon-pencil-neg"></span></a>' : "");
     	echo ((Citoyen::isAdminUser()) ? '<a href="#'.$e["_id"].'" class="delBtn btn btn-primary pull-right"><span class="icon-cancel"></span></a>' : "");
     	?>
     </h3></li>
     <?php }?>
     
-</ol>   	
+</ol>  
+
 </div></div>
 <script type="text/javascript"		>
 initT['animInit'] = function(){
@@ -80,7 +82,7 @@ initT['animInit'] = function(){
 		  $( "."+this.hash.substr(1) ).remove();
 		  $.ajax({
 	    	  type: "POST",
-	    	  url: baseUrl+"/index.php/association/delete",
+	    	  url: baseUrl+"/association/delete",
 	    	  data: {"id":this.hash.substr(1)},
 	    	  success: function(data){
 	    			  $("#flashInfo .modal-body").html(data.msg);

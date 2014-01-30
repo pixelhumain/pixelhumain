@@ -24,14 +24,7 @@ h2 {
                   	<td class="txtright">Nom </td>
                   	<td> <input id="eventName" name="eventName" value="<?php if($event && isset($event['name']) )echo $event['name'] ?>"/></td>
               	</tr>
-              	<tr>
-                  	<td class="txtright">Contact </td>
-                  	<td> <input id="eventContact" name="eventContact" value="<?php if($event && isset($event['contact']) )echo $event['contact'] ?>"/></td>
-              	</tr>
-              	<tr>
-                  	<td class="txtright">Site Web</td>
-                  	<td> <input id="eventSite" name="eventSite" value="<?php if($event && isset($event['site']) )echo $event['site'] ?>"/></td>
-              	</tr>
+              	
         		<tr>
                   	<td class="txtright">Quand </td>
                   	<td> 
@@ -50,10 +43,7 @@ h2 {
     					</div>
                   	</td>
               	</tr>
-              	<tr>
-                  	<td class="txtright">Où </td>
-                  	<td> <input id="eventWhere" name="eventWhere" value="<?php if($event && isset($event['where']) )echo $event['where'] ?>"/></td>
-              	</tr>
+              	
         		<tr>
             		<td class="txtright">code postal</td>  
             		<td><input id="eventCP" name="eventCP" class="span2" value="<?php if($event && isset($event['cp']) )echo $event['cp'] ?>"></td>
@@ -71,34 +61,17 @@ h2 {
                           ));
             		    ?></td>
             	</tr> 
-    		    <tr >
-                    <td class="txtright">Centre d'interet </td>
-                    <td>
-                        <?php 
-                          $cursor = Yii::app()->mongodb->lists->findOne( array("name"=>"tags"), array('list'));
-                          $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
-                            'asDropDownList' => false,
-                            'name' => 'tagsEvent',
-                          	'id' => 'tagsEvent',
-                            'value'=>($event && isset($event['tags']) ) ? implode(",", $event['tags']) : "",
-                            'pluginOptions' => array(
-                                'tags' => $cursor['list'],
-                                'placeholder' => "Mots clefs descriptifs",
-                                'tokenSeparators' => array(',', ' ')
-                            )));
-            		    ?>
-        		    </td>
-    		    </tr>
     		    
-    		    <tr>
-            		<td class="txtright">Envoyer des invitations</td>  
+        		 <tr>
+            		<td class="txtright">Public ?</td>  
             		<td>
             		<?php $this->widget('yiiwheels.widgets.switch.WhSwitch', array(
-                        'name' => 'eventMembers',
-            		    //'value'=>true
+                        'name' => 'public',
+            		    'value'=>true
                     ));?>
             		</td>
         		</tr>
+        		
         		<tr>
         		<td></td>
         		<td>Partager votre evenement depuis le PH, lui permettra de se développer localement.</td>
@@ -108,12 +81,37 @@ h2 {
         </section>
         
     </form>
+    <div class="modal-footer pull-left">
+            <button class="btn btn-primary" id="eventFormSubmit" onclick="$('#eventForm').submit();">Enregistrer</button>
+          </div>
 </div></div>
 <script type="text/javascript"        >
 initT['animInit'] = function(){
-(function ani(){
-      TweenMax.staggerFromTo(".container h2", 4, {scaleX:0.4, scaleY:0.4}, {scaleX:1, scaleY:1},1);
-})();
+
+	$("#eventForm").submit( function(event){
+    	if($('.error').length){
+    		alert('Veuillez remplir les champs obligatoires.');
+    	}else{
+        	event.preventDefault();
+        	$("#eventForm").modal('hide');
+        	NProgress.start();
+        	
+        	$.ajax({
+        	  type: "POST",
+        	  url: baseUrl+"/index.php/evenement/save",
+        	  data: $("#eventForm").serialize(),
+        	  success: function(data){
+        			  $("#flashInfo .modal-body").html(data.msg);
+        			  $("#flashInfo").modal('show');
+        			  NProgress.done();
+        			  if(data.result)
+        			  	window.location.href = baseUrl+"/index.php/evenement/view/id/"+data.id;
+        	  },
+        	  dataType: "json"
+        	});
+    	}
+    });
+	
 };
 </script>
 

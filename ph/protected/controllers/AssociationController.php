@@ -11,7 +11,8 @@
 class AssociationController extends Controller {
     const moduleTitle = "Association";
     
-	public function actionIndex() {
+	
+    public function actionIndex() {
 	    $this->layout = "swe";
 	    $this->render("index");
 	}
