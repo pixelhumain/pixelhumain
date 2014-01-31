@@ -48,7 +48,27 @@ return array(
             'opauthParams' => array(
                 'security_salt' => '322e94bf816b18a9d85b0d70274af5614efd3748a10170c9be6c2b3c16bb1500',
                 'Strategy' => array(
-                    
+                    'Facebook' => array(
+            			//https://developers.facebook.com/x/apps/534906546570011/settings/basic/
+            			'app_id' => '534906546570011',
+            			'app_secret' => '2b4d7a98eeac103e3ca6ec9387e58bdc'
+            		),
+            		'Twitter' => array(
+            			//https://dev.twitter.com/apps/5741723/show
+            			'key' => 'bI9MbnygLBkgI0zlNKuuw',
+            			'secret' => 'wgKuhTmq9LjtEpfYz0wwhiSLvzfrDtX81ENZDze9uo'
+            		),
+            		'Google' => array(
+            			//https://cloud.google.com/console/project/1035825037059/apiui/credential
+            			'client_id' => '1035825037059-tcrscaie3brdsu5cl8gekna0opeqkgn4.apps.googleusercontent.com',
+            			'client_secret' => 'yNeJg-EFe5lF-eiPGm8UbqSD'
+            		),
+            		'LinkedIn' => array(
+            			//https://www.linkedin.com/secure/developer
+            			'api_key' => '77o6zfdg1ulh2a',
+            			'secret_key' => 'xrWLQrYq9D54FDha'
+            		),
+            		'OpenID' => array(),
                 ),
             ),
         ),

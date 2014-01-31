@@ -140,7 +140,25 @@ DropDown.prototype = {
 	}
 }
 
-
+function openModal(key){
+    	$("#loginForm").modal('hide');
+    	toggleSpinner();
+    	$.ajax({
+    	  type: "POST",
+    	  url: baseUrl+"/common/GetMicroformat/key/"+key,
+    	  data: {"template":"nameForm"},
+    	  success: function(data){
+    		  	  
+    			  $("#flashInfoContent").html(data.content);
+    			  
+    		  toggleSpinner();
+    	  },
+    	  dataType: "json"
+    	});
+    
+	
+	$("#flashInfo").modal('show');
+}
 
 /* *************************** */
 /* global JS tools */

@@ -331,6 +331,12 @@
       "src": "mfglabs"
     },
     {
+      "uid": "874694a9126e8193bca844356d1b6328",
+      "css": "at",
+      "code": 59462,
+      "src": "mfglabs"
+    },
+    {
       "uid": "500cde26773d15aaac1bfaa2a33cc5a9",
       "css": "spread",
       "code": 59430,
@@ -364,6 +370,12 @@
       "uid": "a38dfae0ec2d11e1aff10800200c9a66",
       "css": "blogger-rect",
       "code": 59396,
+      "src": "brandico"
+    },
+    {
+      "uid": "e9e96618b0f44170930f9b179237c76e",
+      "css": "linkedin-rect",
+      "code": 59461,
       "src": "brandico"
     },
     {

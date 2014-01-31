@@ -15,6 +15,11 @@ class Notification
     const NOTIFICATION_SWE_SAVED_INFOS	       = "sweSavedInfos";
     const NOTIFICATION_SWE_SAVED_FEEDBACK      = "sweSavedFeedback";
     
+    const LOGIN_FACEBOOK      = "LoginFaceBook";
+    const LOGIN_TWITTER       = "LoginTwitter";
+    const LOGIN_LINKEDIN      = "LoginLinkedIn";
+    const LOGIN_GOOGLE        = "LoginGoogle";
+    
     /*
      * Save a certain Norification to the notification table
      * */

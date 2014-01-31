@@ -33,28 +33,43 @@
                     <div class="cube pull-left">
                 		<a href="<?php echo Yii::app()->createUrl('citoyens')?>" class="ml10 w60 " role="button" data-toggle="modal" title="mon compte" ><img <?php echo $mode?> class="citizenThumb" src="<?php echo ( isset($account) && isset($account['img']) ) ? Yii::app()->createUrl($account['img']) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>"/><br/><span class="fsxs menuTitle">Citoyen</span></a>
                 	</div>
-                	<?php if(isset($account["cp"])){?>
+                	
+                    <?php if(isset($account["cp"])){?>
                 	<div class="cube pull-left">
                 		<a href="<?php echo Yii::app()->createUrl('commune')?>" class="ml10 w60 " role="button" data-toggle="modal" title="Commune" ><span class="icon-town-hall"></span><br/><span class="fsxs menuTitle">Commune</span></a>
                 	</div>
+                	<?php } else { ?>
+                	<div class="cube pull-left">
+                		<a href="#" class="ml10 w60 pink" onclick="openModal('commune')" title="Commune" ><span class="icon-town-hall"></span><br/><span class="fsxs menuTitle">Commune</span></a>
+                	</div>
                 	<?php } ?>
+                	
+                	<?php if(!isset($account["email"])){?>
+                	<div class="cube pull-left ">
+                		<a href="#" class="ml10 w60 pink" onclick="openModal('email')" title="Email" ><span class="icon-at"></span><br/><span class="fsxs menuTitle">Email</span></a>
+                	</div>
+                	<?php } ?>
+                	
                 	<?php if(isset($account["associations"])){?>
                 	<div class="cube pull-left">
                 		<a href="<?php echo Yii::app()->createUrl('association')?>" class="ml10 w60 " role="button" data-toggle="modal" title="Association" ><span class="icon-users"></span><br/><span class="fsxs menuTitle">Association</span></a>
                 	</div>
                 	<?php } ?>
+                	
                 	<?php if(true){?>
                 	<div class="cube pull-left">
-                		<span class="badge">2</span>
-                		<a href="<?php echo Yii::app()->createUrl('discuter')?>" class="ml10 w60 " role="button" data-toggle="modal" title="Discuter" ><span class="icon-chat"></span><br/><span class="fsxs menuTitle">Infos</span></a>
+                		<?php //<span class="badge">2</span>//?>
+                		<a href="<?php echo Yii::app()->createUrl('discuter')?>" class="ml10 w60 pink" role="button" data-toggle="modal" title="Discuter" ><span class="icon-chat"></span><br/><span class="fsxs menuTitle">Infos</span></a>
                 	</div>
                 	<?php } ?>
+                	
                 	<div class="cube pull-left">
                 		<a href="#participer" class="ml10 w60 " role="button" data-toggle="modal" title="mon compte" ><span class="icon-cog-1"></span><br/><span class="fsxs menuTitle">Mon compte</span></a>
                 	</div>
                 	<div class="cube pull-left">
                 		<a href="<?php echo Yii::app()->createUrl('site/logout')?>" class="ml10 w60 " role="button" data-toggle="modal" title="deconnexion" ><span class="icon-logout"></span><span class="fsxs menuTitle">Déconnection</span></a>
                 	</div>
+                	
                 <?php }?>
             	
         </div>

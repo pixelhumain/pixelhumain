@@ -4,7 +4,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Flash information :</h3>
   </div>
-  <div class="modal-body">
+  <div class="modal-body " id="flashInfoContent">
     
   </div>
   <div class="modal-footer">

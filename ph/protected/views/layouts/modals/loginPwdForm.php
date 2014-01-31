@@ -8,17 +8,31 @@
   	<p> S'inscrire pour soutenir le projet ou simplement suivre son avancement
    	<br/>et si vous etes deja inscrit , connectez vous avec votre email d'inscription.</p>
     <form id="registerPwdForm" action="">
-    	<section>
-        	<table style="width:300px;margin:0 auto;">
+    	<section >
+        	<table style="width:230px; float:left;margin-left:40px;">
               	<tr>
                   	<td><input type="text" id="registerPwdEmail" name="registerPwdEmail" placeholder="Email" ></td>
-                  	
               	</tr>
               	<tr>
                   	<td><input type="password" id="registerPwd" name="registerPwd" placeholder="Mot de passe (si Login)" ></td>
                 </tr>
               	<tr>	
                   	<td> <a class="btn btn-warning " href="javascript:;" onclick="$('#registerPwdForm').submit();return false;"  >S'inscrire  ou se Connecter</a></td>
+              	</tr>
+              	
+            </table>
+            <table style="width:210px;float:right;margin-right:40px;">
+              	<tr>	
+                  	<td> <a class="btn btn-primary w100p" href="<?php echo Yii::app()->createUrl('opauth/facebook')?>" ><span class="icon-facebook-rect"></span> FaceBook</a></td>
+              	</tr>
+              	<tr>	
+                  	<td> <a class="btn btn-primary w100p" href="<?php echo Yii::app()->createUrl('opauth/linkedin')?>" ><span class="icon-linkedin-rect"></span> LinkedIn</a></td>
+              	</tr>
+              	<tr>	
+                  	<td> <a class="btn btn-primary w100p" href="<?php echo Yii::app()->createUrl('opauth/twitter')?>" ><span class="icon-twitter"></span> Twitter</a></td>
+              	</tr>
+              	<tr>	
+                  	<td> <a class="btn btn-primary w100p" href="<?php echo Yii::app()->createUrl('opauth/google')?>" ><span class="icon-googleplus-rect"></span> Google</a></td>
               	</tr>
               	
             </table>
