@@ -28,7 +28,6 @@
                         if ($aspect >= 1) 
                             $mode = "style='height:30px'"; 
                     }
-
                     ?>
                     <div class="cube pull-left">
                 		<a href="<?php echo Yii::app()->createUrl('citoyens')?>" class="ml10 w60 " role="button" data-toggle="modal" title="mon compte" ><img <?php echo $mode?> class="citizenThumb" src="<?php echo ( isset($account) && isset($account['img']) ) ? Yii::app()->createUrl($account['img']) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>"/><br/><span class="fsxs menuTitle">Citoyen</span></a>
@@ -40,13 +39,13 @@
                 	</div>
                 	<?php } else { ?>
                 	<div class="cube pull-left">
-                		<a href="#" class="ml10 w60 pink" onclick="openModal('commune')" title="Commune" ><span class="icon-town-hall"></span><br/><span class="fsxs menuTitle">Commune</span></a>
+                		<a href="#" class="ml10 w60 pink" onclick="openModal('cp','citoyens','<?php echo Yii::app()->session["userId"]?>','nameForm')" title="Commune" ><span class="icon-town-hall"></span><br/><span class="fsxs menuTitle">Commune</span></a>
                 	</div>
                 	<?php } ?>
                 	
                 	<?php if(!isset($account["email"])){?>
                 	<div class="cube pull-left ">
-                		<a href="#" class="ml10 w60 pink" onclick="openModal('email')" title="Email" ><span class="icon-at"></span><br/><span class="fsxs menuTitle">Email</span></a>
+                		<a href="#" class="ml10 w60 pink" onclick="openModal('email','citoyens','<?php echo Yii::app()->session["userId"]?>','nameForm')" title="Email" ><span class="icon-at"></span><br/><span class="fsxs menuTitle">Email</span></a>
                 	</div>
                 	<?php } ?>
                 	
@@ -73,7 +72,9 @@
                 <?php }?>
             	
         </div>
-        <div class="pull-left p15 fsxl h60 b" id="appTitle"><?php echo (isset($this->inlinePageTitle)) ? $this->inlinePageTitle : $this::moduleTitle ?></div>
+        <div class="pull-left p15 fsxl h60 b" id="appTitle"><?php echo (isset($this->inlinePageTitle)) ? $this->inlinePageTitle : $this::moduleTitle ?> </div>
+        
+    	
     </div>
 </header>
 

@@ -49,7 +49,8 @@ ol.slats li p span.meta {
     <h2>Référence des collections et document de la base Mongo</h2>
     <p>
     	L'objectif ici est d'etre transparent et garder une trace des differents microformats 
-    	élaborere au cours du projet.
+    	élaboré au cours du projet.</br>
+    	La table microformat peut contenir plus de details, et devrait devenir l'unique reference des microformat du projet</br> 
     	<br/>Tout ce que vous voyez ci dessous vient directement de la base de donnée (WYSIWYG)
     	<br/>Bonne pratique : Chaque fois qu'un nouveau *microformat ou document est creer et inséré dans la base de donnée
     	<br/>il faut impérativement le lister ici, l'expliquer et coder la requete pour en voir le code exact.
@@ -57,7 +58,25 @@ ol.slats li p span.meta {
     	<br/> Microformat : structure JSon décrivant ou modélisant quelque chose (action, person, event, concept , objet... )
     </p>
 <ol class="slats">
+	
+	<li class="group">
+		<h3>Microformats </h3>
+		<p> Cette collections est une librairie de schema de microformat <br/>
+		on ajoute un type qu'on veut decrire, dont on veut construire une formulaire dynamiquemnt </br>
+		contrsuire un menu dynamiquement et generiquement </p>
+		
+		<?php 
+		$entry = Yii::app()->mongodb->microformats->findOne(array("_id"=>new MongoId("52ef3d3ac073ef404cc85803")));
+	    array_shift($entry);
+		?>
+		<pre id="mfjson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
 
+		$("#mfjson").html(JSON.stringify(obj, null, 4));
+		</script>
+	</li>
+	
 	<li class="group">
 		<h3>Citoyen</h3>
 		<p> 
@@ -70,8 +89,13 @@ ol.slats li p span.meta {
 	    $entry["events"]=array();
 	    $entry["positions"]=array();
 	    $entry["img"]="";
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>"
 		?>
+		<pre id="citoyenjson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+
+		$("#citoyenjson").html(JSON.stringify(obj, null, 4));
+		</script>
 	</li>
 	
 	<li class="group">
@@ -80,7 +104,7 @@ ol.slats li p span.meta {
 		$listNames = "";
 		$listNamesA = array(); 
 		foreach($entries as $e){
-		    if(!in_array($e["type"], $listNamesA)){
+		    if(isset($e["type"]) && !in_array($e["type"], $listNamesA)){
 		        $listNames .= $e["type"].", ";
 		        array_push($listNamesA, $e["type"]);
 		    }
@@ -95,15 +119,23 @@ ol.slats li p span.meta {
 		<?php 
 		$entry = Yii::app()->mongodb->group->findOne(array("name"=>"Open Atlas"));
 	    array_shift($entry);
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>"
 		?>
+		<pre id="assojson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+		$("#assojson").html(JSON.stringify(obj, null, 4));
+		</script>
 		
 		<h4>Entreprise</h4>
 		<?php 
 		$entry = Yii::app()->mongodb->group->findOne(array("name"=>"Oceatoon - Tibor Katelbach"));
 	    array_shift($entry);
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>";
 		?>
+		<pre id="entreprisejson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+		$("#entreprisejson").html(JSON.stringify(obj, null, 4));
+		</script>
 		
 		<h4>Event</h4>
 		<?php 
@@ -117,9 +149,12 @@ ol.slats li p span.meta {
 	    $entry["participants"]=array();
 	    $entry["projects"]=array();
 	    $entry["pwd"]="";
-	    
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>";
 		?>
+		<pre id="eventjson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+		$("#eventjson").html(JSON.stringify(obj, null, 4));
+		</script>
 		
 		<h4>Projet</h4>
 		<?php 
@@ -130,9 +165,12 @@ ol.slats li p span.meta {
 	    $entry["mentors"]=array();
 	    $entry["events"]=array();
 	    $entry["owner"]=array();
-	    
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>";
 		?>
+		<pre id="projetjson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+		$("#projetjson").html(JSON.stringify(obj, null, 4));
+		</script>
 	</li>
 	
 	<li class="group">
@@ -155,8 +193,13 @@ ol.slats li p span.meta {
 		<?php 
 		$entry = Yii::app()->mongodb->data->findOne(array("key"=>"positivons","type"=>"page"));
 	    array_shift($entry);
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>";
 		?>
+		<pre id="pagejson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+
+		$("#pagejson").html(JSON.stringify(obj, null, 4));
+		</script>
 		
 		<h4>Question Réponse</h4>
 		<?php 
@@ -164,22 +207,34 @@ ol.slats li p span.meta {
 	    array_shift($entry);
 	    $entry["question"]="";
 	    $entry["answer"]="";
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>";
 		?>
+		<pre id="qajson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+
+		$("#qajson").html(JSON.stringify(obj, null, 4));
+		</script>
 		
 		<h4>RSS</h4>
 		<?php 
 		$entry = Yii::app()->mongodb->data->findOne(array("url"=>"http://www.saintjoseph.re/spip.php?page=rss_nouveautes"));
 	    array_shift($entry);
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>";
 		?>
-		
+		<pre id="rssjson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+		$("#rssjson").html(JSON.stringify(obj, null, 4));
+		</script>
 		<h4>Post</h4>
 		<?php 
 		$entry = Yii::app()->mongodb->data->findOne(array("title"=>"Proverbe-- Abbé Pierre"));
 	    array_shift($entry);
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>";
 		?>
+		<pre id="postjson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+		$("#postjson").html(JSON.stringify(obj, null, 4));
+		</script>
 		
 	</li>
 	
@@ -201,8 +256,12 @@ ol.slats li p span.meta {
 		<?php 
 		$entry = Yii::app()->mongodb->notifications->findOne(array("_id"=>new MongoId("52382468f6b95c6c20000867")));
 	    array_shift($entry);
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>";
 		?>
+		<pre id="notificationjson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+		$("#notificationjson").html(JSON.stringify(obj, null, 4));
+		</script>
 	</li>
 	
 	<li class="group">
@@ -227,9 +286,13 @@ ol.slats li p span.meta {
 	    $entry["structure"] = array();
 	    $entry["servicesMunicipaux"] = array();
 	    $entry["annuaireElu"] = array();
-	    
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>";
 		?>
+		<pre id="cpjson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+		$("#cpjson").html(JSON.stringify(obj, null, 4));
+		</script>
+		
 	</li>
 	
 	<li class="group">
@@ -239,9 +302,12 @@ ol.slats li p span.meta {
 		$entry = Yii::app()->mongodb->codespostauxCandidats->findOne(array("_id"=>new MongoId("528467d9c073ef2528e188f8")));
 	    array_shift($entry);
 	    $entry["2014"][0]["program"] = array();
-	    
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>";
 		?>
+		<pre id="candidatsjson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+		$("#candidatsjson").html(JSON.stringify(obj, null, 4));
+		</script>
 	</li>
 	
 	<li class="group">
@@ -259,8 +325,13 @@ ol.slats li p span.meta {
 		<?php 
 		$entry = Yii::app()->mongodb->lists->findOne(array("name"=>"types"));
 	    array_shift($entry);
-		echo "<pre>".str_replace(",", ",<br/>", json_encode($entry))."</pre>";
 		?>
+		<pre id="listsjson"></pre>
+		<script>
+		var obj = <?php echo json_encode($entry)?>; 
+
+		$("#listsjson").html(JSON.stringify(obj, null, 4));
+		</script>
 	</li>
 	
 </ol>	

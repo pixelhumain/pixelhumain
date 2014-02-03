@@ -6,9 +6,9 @@
 
 
 .side-panel {
-  padding: 30px 0;
+  padding: 0 30px 0 0;
   position:fixed;
-  top:80px;
+  top:60px;
   left:0px;
   z-index:1000;
 }
@@ -68,7 +68,7 @@
 }
 .side-panel li {
   position: relative;
-  background: #efefef;
+  background: #4A6AAC;
 }
 .side-panel li:hover {
   background: #fff;
@@ -131,45 +131,30 @@
 </style>
 <div class="side-panel b">
   <ul>
-  <?php /*
-    <li><a><span class="entypo-plus-circled"></span><span class="menu-item">Quick Add</span></a>
-      <ul>
-        <li><a class="entypo-doc-text-inv">Post</a></li>
-        <li><a class="entypo-layout">Template</a></li>
-        <li><a class="entypo-rocket">Rocket</a></li>
-      </ul>
-    </li>
-    */?>
-        <li><a href="#loginForm"  target="_blank" role="button" data-toggle="modal"><span class="icon-user"></span><span class="menu-item">s'Inscrire</span></a></li>
-        <li><a href="#invitation"  role="button" data-toggle="modal"><span class="icon-link"></span><span class="menu-item">Invitation</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('thematique')?>"><span class="icon-tag"></span><span class="menu-item">Thématique</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('statistics')?>"><span class="icon-chart-line"></span> <span class="menu-item">Statistique</span></a>
-        	<ul>
-                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/metier')?>">Metier</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/thematique')?>">Thématique</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/cp')?>">Code Postaux</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/cpCount')?>">Commune</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/groups')?>">Association</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/interactions')?>">Interaction</a></li>
-                <li><a href="<?php echo Yii::app()->createUrl('/statistics/graph/type/3dsurface')?>">Surface 3D</a></li>
-              </ul>
-        </li>
-        <li><a href="<?php echo Yii::app()->createUrl('commune')?>"><span class="icon-address"></span><span class="menu-item">Commune</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('projet')?>"><span class="icon-lightbulb"></span> <span class="menu-item">Projet</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('evenement')?>"><span class="icon-wifi"></span><span class="menu-item">Évènement</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('association')?>"><span class="icon-users"></span><span class="menu-item">Association</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('opendata')?>"><span class="icon-share"></span><span class="menu-item">Open Data</span></a></li>
-        <?php /*<li><a href="<?php echo Yii::app()->createUrl('annuaire')?>"><span class="icon-network"></span><span class="menu-item">Annuaire</span></a></li> */?>
-        <?php /*<li><a href="<?php echo Yii::app()->createUrl('geo')?>"><span class="icon-map"></span><span class="menu-item">Carto</span></a></li> */?>
-        <?php /*<li><a href="<?php echo Yii::app()->createUrl('decouvrir')?>"><span class="icon-globe"></span><span class="menu-item">Découvrir</span></a></li> */?>
-        <?php /* <li><a href="<?php echo Yii::app()->createUrl('discuter')?>" ><span class="icon-chat"></span><span class="menu-item">Discuter</span></a></li> */?>
-        
-        <li><a href="<?php echo Yii::app()->createUrl('actualite')?>" ><span class="icon-rss"></span><span class="menu-item">Actualité</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('diffusion/hangout')?>" ><span class="icon-mic"></span><span class="menu-item">Conseil Mun.</span></a></li>
-        <?php /*<li><a href="<?php echo Yii::app()->createUrl('covoiturage')?>"><span class="icon-shareable"></span><span class="menu-item">Covoiturage</span></a></li> */?>
-        <?php /*<li><a href="<?php echo Yii::app()->createUrl('statistics/graph/type/groups')?>"><span class="icon-flow-tree"></span><span class="menu-item">se Regrouper</span></a></li> */?>
-        
-        <li><a href="<?php echo Yii::app()->createUrl('site/page/id/opensource')?>"><span class="icon-cc"></span><span class="menu-item">Libre de droit</span></a></li>
-        <li><a href="<?php echo Yii::app()->createUrl('financement')?>"><span class="icon-thumbs-up"></span><span class="menu-item">Soutenir</span></a></li>
-  </ul>
+<?php 
+foreach( $this->sidebar1 as $item )
+{
+    $modal = (isset($item["isModal"])) ? 'role="button" data-toggle="modal"' : "";
+    $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' : "";
+    $href = (isset($item["href"])) ? $item["href"] : "#";
+    $class = (isset($item["class"])) ? 'class="'.$item["class"].'"' : "";
+    echo '<li><a href="'.$href.'" '.$modal.' '.$class.' ><span class="'.$item["iconClass"].'"></span><span class="menu-item">'.$item["label"].'</span></a>';
+    //This menu can have 2 levels
+    if( isset($item["children"]) )
+    {
+        echo "<ul>";
+        foreach( $item["children"] as $item2 )
+        {
+            $modal2 = (isset($item2["isModal"])) ? 'role="button" data-toggle="modal"' : "";
+            $onclick2 = (isset($item2["onclick"])) ? 'onclick="'.$item2["onclick"].'"' : "";
+            $href2 = (isset($item2["href"])) ? $item2["href"] : "#";
+            echo '<li><a href="'.$href2.'" '.$modal2.'></span>'.$item2["label"].'</a></li>';
+        }
+        echo "</ul>";
+    }
+    echo "</li>";
+}
+?>
+</ul>
+
 </div>

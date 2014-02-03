@@ -2,9 +2,13 @@
 <p> <?php if(isset($txt))echo $txt?></p>
     <form id="flashForm" action="">
     	<section>
-            <?php echo $key?> : <input type="text" name='<?php echo $key?>' value=""></input>
-            <input type="hidden" name='key' value="<?php echo $key?>"></input>
-            <input type="hidden" name='collection' value="<?php echo $collection?>"></input>
+            desc : <input type="text" name='description' value=""></input>
+            <br/>
+            toto : <input type="text" name='toto' value=""></input>
+            <br/>
+            koko : <input type="text" name='kok' value=""></input>
+            
+            <input type="hidden" name='collection' value="group"></input>
             <input type="hidden" name='id' value="<?php echo $id?>"></input>
             <br/>
             <a class="btn btn-warning " href="javascript:;" onclick="$('#flashForm').submit(); return false;"  >Enregistrer</a>
@@ -15,7 +19,6 @@
 	$("#flashForm").submit( function(event){
     	log($(this).serialize());
     	event.preventDefault();
-    	//$("#flashInfo").modal('hide');
     	toggleSpinner();
 
     	$.ajax({
@@ -24,8 +27,6 @@
     	  data: $(this).serialize(),
     	  success: function(data){
     		  $("#flashInfoContent").html(data.msg);
-        	  //$("#flashInfo").modal('show');
-				
     		  toggleSpinner();
     	  },
     	  dataType: "json"

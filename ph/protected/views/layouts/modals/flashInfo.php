@@ -8,6 +8,7 @@
     
   </div>
   <div class="modal-footer">
+  	<div id="flashInfoSaveBtn" class="fl"> </div>
     <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
   </div>
 </div>

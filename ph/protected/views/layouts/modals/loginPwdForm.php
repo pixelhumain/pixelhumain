@@ -10,6 +10,7 @@
     <form id="registerPwdForm" action="">
     	<section >
         	<table style="width:230px; float:left;margin-left:40px;">
+        	
               	<tr>
                   	<td><input type="text" id="registerPwdEmail" name="registerPwdEmail" placeholder="Email" ></td>
               	</tr>
@@ -21,8 +22,10 @@
               	</tr>
               	
             </table>
+            
             <table style="width:210px;float:right;margin-right:40px;">
-              	<tr>	
+            
+              	<tr>
                   	<td> <a class="btn btn-primary w100p" href="<?php echo Yii::app()->createUrl('opauth/facebook')?>" ><span class="icon-facebook-rect"></span> FaceBook</a></td>
               	</tr>
               	<tr>	
@@ -36,6 +39,7 @@
               	</tr>
               	
             </table>
+            
         </section>
 	</form>
   </div>

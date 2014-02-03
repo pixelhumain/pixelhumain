@@ -50,12 +50,11 @@ font-family: "Homestead";
     <br/>
     <div class="hero-unit">
     
-    <h2> Évenement <?php echo $event["name"].", ".$event["date"].", ".$event["cp"]?></h2>
+    <h2> Évenement <?php echo $event["name"].", ".$event["date"].", ".OpenData::$commune["974"][$event["cp"]]?></h2>
     <p> 
-    TODO : <br/>
-    Type : REunion, FEstival, Concert, rassemblement, marché, Exposition, Colloque, Concours, Competition ou Tournois <br/>
-    Where, <br/>
-    Description Succinte
+    Type : <?php if(isset($event["eventType"]))echo $event["eventType"]?><br/>
+    Where : <?php if(isset($event["country"]))echo OpenData::$commune["974"][$event["cp"]].", ".$event["country"]?><br/>
+    Description : <?php if(isset($event["description"]))echo $event["description"]?>
     
     </p>
  	<div class="grid">

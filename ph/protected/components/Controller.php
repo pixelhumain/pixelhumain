@@ -14,6 +14,12 @@ class Controller extends CController
 	 */
 	public $layout='//layouts/main';
 	/**
+	 * This object can be filled specifically according to context 
+	 * it will be rendered once page logic is done  
+	 */
+	public $topMenu = array();
+	public $sidebar1 = array();
+	/**
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
 	 */
 	public $menu=array();

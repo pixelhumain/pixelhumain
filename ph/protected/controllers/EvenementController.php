@@ -10,17 +10,25 @@
 class EvenementController extends Controller {
     const moduleTitle = "Évènement";
     
+    
 	public function actionIndex() {
+	    array_push( $this->sidebar1, array("href"=>Yii::app()->createUrl('evenement/creer'), "iconClass"=>"icon-plus", "label"=>"Ajouter"));
 	    $this->render("index");
 	}
     public function actionView($id) {
+        //menu sidebar
+        array_push( $this->sidebar1, array("href"=>Yii::app()->createUrl('evenement/creer'), "iconClass"=>"icon-plus", "label"=>"Ajouter"));
+        array_push( $this->sidebar1, array( "label"=>"Modifier", "iconClass"=>"icon-pencil-neg","onclick"=>"openModal('eventForm','group','$id','dynamicallyBuild')" ) );
+        
         $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
+                 
         if(isset($event["key"]) )
             $this->redirect(Yii::app()->createUrl('evenement/key/id/'.$event["key"]));
         else
 	        $this->render("view",array('event'=>$event));
 	}
     public function actionCreer() {
+        array_push( $this->sidebar1, array("href"=>Yii::app()->createUrl('evenement/creer'), "iconClass"=>"icon-plus", "label"=>"Ajouter"));
 	    $this->render("new2");
 	}
 	

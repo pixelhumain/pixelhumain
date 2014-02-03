@@ -140,17 +140,17 @@ DropDown.prototype = {
 	}
 }
 
-function openModal(key){
+function openModal(key,collection,id,tpl){
     	$("#loginForm").modal('hide');
     	toggleSpinner();
     	$.ajax({
     	  type: "POST",
     	  url: baseUrl+"/common/GetMicroformat/key/"+key,
-    	  data: {"template":"nameForm"},
+    	  data: { "key":key, "template":tpl, "collection":collection, "id":id },
     	  success: function(data){
     		  	  
     			  $("#flashInfoContent").html(data.content);
-    			  
+    			  $("#flashInfoSaveBtn").html('<a class="btn btn-warning " href="javascript:;" onclick="$(\'#flashForm\').submit(); return false;"  >Enregistrer</a>');
     		  toggleSpinner();
     	  },
     	  dataType: "json"

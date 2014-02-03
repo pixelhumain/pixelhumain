@@ -1,7 +1,31 @@
 <?php
 /* @var $this SiteController */
-
 $this->pageTitle=Yii::app()->name.", démocratie participative Réunion, discussion , actions et réseau local";
+ 
+$this->sidebar1 = array(
+    array("href"=>"#loginForm", "iconClass"=>"icon-user", "label"=>"s'Inscrire", "isModal"=>true),
+    array("href"=>"#invitation", "iconClass"=>"icon-link", "label"=>"Invitation", "isModal"=>true),
+    array("href"=>Yii::app()->createUrl('thematique'), "iconClass"=>"icon-chart-line", "label"=>"Statistique", 
+        "children"=>array(
+            array("href"=>Yii::app()->createUrl('/statistics/graph/type/metier'), "label"=>"Metier" ),
+            array("href"=>Yii::app()->createUrl('/statistics/graph/type/thematique'), "label"=>"Thématique" ),
+            array("href"=>Yii::app()->createUrl('/statistics/graph/type/cp'), "label"=>"Code Postaux"),
+            array("href"=>Yii::app()->createUrl('/statistics/graph/type/cpCount'), "label"=>"Commune"),
+            array("href"=>Yii::app()->createUrl('/statistics/graph/type/groups'), "label"=>"Association"),
+            array("href"=>Yii::app()->createUrl('/statistics/graph/type/interactions'), "label"=>"Interaction"),
+            array("href"=>Yii::app()->createUrl('/statistics/graph/type/3dsurface'), "label"=>"Surface 3D"),
+        )),
+    array("href"=>Yii::app()->createUrl('commune'), "iconClass"=>"icon-town-hall", "label"=>"Commune"),
+    array("href"=>Yii::app()->createUrl('projet'), "iconClass"=>"icon-lightbulb", "label"=>"Projet"),
+    array("href"=>Yii::app()->createUrl('evenement'), "iconClass"=>"icon-wifi", "label"=>"Évènement"),
+    array("href"=>Yii::app()->createUrl('association'), "iconClass"=>"icon-users", "label"=>"Association"),
+    array("href"=>Yii::app()->createUrl('opendata'), "iconClass"=>"icon-share", "label"=>"Open Data"),
+    array("href"=>Yii::app()->createUrl('actualite'), "iconClass"=>"icon-rss", "label"=>"Conseil Mun."),
+    array("href"=>Yii::app()->createUrl('diffusion/hangout'), "iconClass"=>"icon-mic", "label"=>"Conseil Mun."),
+    array("href"=>Yii::app()->createUrl('site/page/id/opensource'), "iconClass"=>"icon-cc", "label"=>"Conseil Mun."),
+    array("href"=>Yii::app()->createUrl('actualite'), "iconClass"=>"icon-mic", "label"=>"Libre de droit"),
+    array("href"=>Yii::app()->createUrl('financement'), "iconClass"=>"icon-thumbs-up", "label"=>"Soutenir"),
+);
 ?>
 
  <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
