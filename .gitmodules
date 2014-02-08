@@ -7,3 +7,6 @@
 [submodule "ph/protected/extensions/yiiwheels"]
 	path = ph/protected/extensions/yiiwheels
 	url = https://github.com/2amigos/yiiwheels.git
+[submodule "ph/protected/modules/opauth"]
+	path = ph/protected/modules/opauth
+	url = https://github.com/opauth/opauth.git
