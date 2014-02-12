@@ -1,0 +1,11 @@
+TODO list - composer
+
+1. Paramétrer le composer pour installer les librairies dépendantes et extension Yii
+2. Modifier l'init de l'application pour prendre en compte la modification des emplacements des lib
+3. Ajouter des hooks :
+3.1 Init pour la première install afin d'initialiser la BD 
+3.2 Lancer des scripts de MAJ entre les différentes versions
+4. Documenter et maj du readme.md
+5. Faire tester par un nouveau dev et maj
+
+

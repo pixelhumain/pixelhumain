@@ -1,0 +1,30 @@
+{
+	"name": "pixelhumain/webapp",
+	"description": "Webapp of Pixelhumain",
+	"keywords": ["PixelHumain"],
+	"type": "webapp",
+	"license": "creative commons",
+	"authors": [
+		{
+			"name": "Tibor Katelbach",
+			"email": "oceatoon@gmail.com",
+			"homepage": "http://oceatoon.org//"
+		},
+		{
+			"name": "Sylvain Barbot",
+			"email": "sylvain.barbot@gmail.com"
+		}
+	],
+	"repositories": [
+		{
+		    "type": "composer",
+		    "url": "http://packages.phundament.com"
+		}
+	],
+	"require": {
+		"2amigos/yiistrap": "1.1.*",
+		"2amigos/yiiwheels": "1.0.*",
+		"opauth/opauth" : "0.4.4"
+	},
+    "minimum-stability": "dev"
+}
