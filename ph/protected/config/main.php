@@ -13,8 +13,9 @@ return array(
 	// preloading 'log' component
 	'preload'=>array('log'),
     'aliases' => array(
-        'bootstrap' => realpath(__DIR__ . '/../extensions/yiistrap'),
-		'yiiwheels' => realpath(__DIR__ . '/../extensions/yiiwheels'), 
+        'bootstrap' => realpath(__DIR__ . '/../../vendor/2amigos/yiistrap'),
+		'yiiwheels' => realpath(__DIR__ . '/../../vendor/2amigos/yiiwheels'), 
+    	'mongoYii' => realpath(__DIR__ . '/../../vendor/sammaye/mongoyii')
     ),
     'controllerMap'=>array(
          //'YiiFeedWidget' => 'ext.yii-feed-widget.YiiFeedWidgetController'
@@ -24,9 +25,9 @@ return array(
 		'application.models.*',
 		'application.components.*',
 		'bootstrap.helpers.TbHtml',
-    	'application.extensions..MongoYii.*',
-        'application.extensions..MongoYii.validators.*',
-        'application.extensions..MongoYii.behaviors.*',
+    	'mongoYii.MongoYii.*',
+        'mongoYii.MongoYii.validators.*',
+        'mongoYii.MongoYii.behaviors.*',
     	'ext.mail.YiiMailMessage',
         'ext.helpers.*',
 	),
