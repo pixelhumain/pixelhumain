@@ -15,16 +15,12 @@
 			"email": "sylvain.barbot@gmail.com"
 		}
 	],
-	"repositories": [
-		{
-		    "type": "composer",
-		    "url": "http://packages.phundament.com"
-		}
-	],
 	"require": {
-		"2amigos/yiistrap": "1.1.*",
-		"2amigos/yiiwheels": "1.0.*",
-		"opauth/opauth" : "0.4.4"
+		"2amigos/yiistrap": "1.1.1",
+		"2amigos/yiiwheels": "dev-master",
+		"opauth/opauth" : "0.4.4",
+		"sammaye/mongoyii" : "3.*",
+		"yiisoft/yii":"1.1.14"
 	},
     "minimum-stability": "dev"
 }
