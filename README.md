@@ -26,7 +26,7 @@ mongod --dbpath data\db
 PixelHumain is set with composer in order to manage dependencies and libraries.
 - Clone the repository in order to recover the files
 - If you don't have it get the composer (https://getcomposer.org/)
-- Launch folliwuing commands to initiate the application : 
+- Launch following commands to initiate the application : 
 ```
 composer update
 ...
