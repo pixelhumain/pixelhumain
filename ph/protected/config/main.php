@@ -13,6 +13,7 @@ return array(
 	// preloading 'log' component
 	'preload'=>array('log'),
     'aliases' => array(
+    	'vendor' => realpath(__DIR__ . '/../../vendor/'),
         'bootstrap' => realpath(__DIR__ . '/../../vendor/2amigos/yiistrap'),
 		'yiiwheels' => realpath(__DIR__ . '/../../vendor/2amigos/yiiwheels'), 
     	'mongoYii' => realpath(__DIR__ . '/../../vendor/sammaye/mongoyii')
@@ -25,9 +26,9 @@ return array(
 		'application.models.*',
 		'application.components.*',
 		'bootstrap.helpers.TbHtml',
-    	'mongoYii.MongoYii.*',
-        'mongoYii.MongoYii.validators.*',
-        'mongoYii.MongoYii.behaviors.*',
+    	'mongoYii.*',
+        'mongoYii.validators.*',
+        'mongoYii.behaviors.*',
     	'ext.mail.YiiMailMessage',
         'ext.helpers.*',
 	),
