@@ -19,6 +19,7 @@ class EvenementController extends Controller {
         //menu sidebar
         array_push( $this->sidebar1, array("href"=>Yii::app()->createUrl('evenement/creer'), "iconClass"=>"icon-plus", "label"=>"Ajouter"));
         array_push( $this->sidebar1, array( "label"=>"Modifier", "iconClass"=>"icon-pencil-neg","onclick"=>"openModal('eventForm','group','$id','dynamicallyBuild')" ) );
+        array_push( $this->sidebar1, array( "label"=>"Participant", "iconClass"=>"icon-users","onclick"=>"openModal('eventParticipantForm','group','$id','dynamicallyBuild')" ) );
         
         $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
                  

@@ -41,7 +41,7 @@
 <?php $this->renderPartial('application.views.layouts.header3',array( "account" => $account));?>
 <?php if(isset($this->sidebar1))
         $this->renderPartial('application.views.layouts.sideMenu1');?>
-
+<div class="space60"></div>
 <?php echo $content; ?>
 
 <?php $this->renderPartial('application.views.layouts.modals',array( "account" => $account));?>	
@@ -59,6 +59,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap-image-galle
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/d3.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/spin.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/nprogress/nprogress.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/underscore.string.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/main.js' , CClientScript::POS_END);
 
 ?>		

@@ -277,6 +277,32 @@ font-family: "Homestead";
 	<br/>
 	<div class="row-fluid">
 	
+
+		<div class="span6 block">
+    		<span class="icon-lifebuoy green" style="font-size:150%"></span><br/>
+    		<h2>Lieux Locaux
+    		<?php
+			if( Yii::app()->mongodb->places->count(array("cp"=>$cp)) ){
+				echo "(".Yii::app()->mongodb->places->count(array("cp"=>$cp)).")</h2>";
+				$places = Yii::app()->mongodb->places->find(array("cp"=>$cp));
+			    foreach($places as $p){
+        			echo "<a href='http://".$p["uri"]."' target='_blank'>".$p["name"]."</a> - ";
+			    }
+			}  else
+			    echo "</h2>Aucun Lieu n'a encore été ajouté pour ce code postal <br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Ajoutez en un</a>"
+			?>
+		</div>
+		
+		<div class="span6 block">
+			<span class="icon-thumbs-up green" style="font-size:150%"></span><br/>
+    		<h2>>-------</h2>
+    		<small>------- </small>
+		</div>
+		
+	</div>
+	<br/>
+	<div class="row-fluid">
+	
 		<?php if(isset($commune['structure'])){?>
 		<div class="span6 block">
     		<span class="icon-map green" style="font-size:150%"></span><br/>

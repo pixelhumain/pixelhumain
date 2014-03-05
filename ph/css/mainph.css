@@ -167,10 +167,12 @@ div.p40{padding:15px}
 .grey2{color:#F3F3F9}/* body menu B */
 .green{color:#1ABC9C}
 .greenDark{color:#227D4F}
+.white {color:white}
+.whitebg {background-color:white}
 * {margin: 0;padding: 0;box-sizing: border-box}
-html {background: #EEEFF1; } 
-body{width:100%;height:100%;padding-top: 60px}
-.navbar .title a{ font-family:"Homestead";color:#f5e414}
+html {background: #3399FF; } 
+body{width:100%;height:100%;padding-top: 0px}
+
 .btn-ph {
 /*background-color: #F5E414;*/
 background-image: linear-gradient(to bottom, #f5e414, #F5E414);
@@ -206,6 +208,12 @@ footer{padding:40px;width:100%;background-color:#fff;border-top:1px solid #2D3E4
 box-shadow: inset 0 4px 2px -2px #2D3E4B}#91bf2d;
 #contact{font-size:18px;width:900px;margin:0px auto}
 #contact a{font-weight:bold}
+
+header{height:0px}
+.navbar{height:50px;}
+.navbar-fixed-top { margin-bottom: 0px; }
+.navbar .title a{ font-family:"Homestead";color:#f5e414}
+.navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {padding: 0px;}
 /* Cube version of the menu*/
 .cube{
 	background-color:#324553;

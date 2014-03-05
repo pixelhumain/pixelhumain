@@ -25,6 +25,7 @@ class OpendataController extends Controller {
 	 * et tout les documents
 	 */
 	public function actionMicroformats() {
+	    array_push( $this->sidebar1, array( "label"=>"Creer", "onclick"=>"alert('TODO : microformat builder using drag and drop ')","iconClass"=>"icon-plus"));
 	    $this->render("microformats");
 	}
 	

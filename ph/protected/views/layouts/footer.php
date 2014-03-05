@@ -1,7 +1,21 @@
 <footer>  
 
    <div id="contact" class="center">
-        <div class="homestead blueDark" style="height:250px;border:1px color red;">
+        <div class="homestead blueDark" style="height:250px;">
+        	<?php 
+        	$cornerDev = Yii::app()->mongodb->cornerDev->findOne(array("url"=>"/".Yii::app()->controller->id."/".Yii::app()->controller->action->id));
+        	if($cornerDev){?>
+       		 <ul class="cornerDev pull-right" style="position:relative; top:0px; right:0px;list-style:none;min-width:150px;">
+            	<li><a class="label" href="javascript:filterType('participant')">Inscrits <span class="badge badge-info"><?php echo (isset($group["participants"])) ? count($group["participants"]) : 0?></span></a></li>
+            	<li><a class="label" href="javascript:filterType('brainstorm')">Brainstorms <span class="badge badge-inverse"><?php echo (isset($group["participants"])) ? count($group["participants"]) : 0?></span></a></li>
+            	<li><a class="label" href="javascript:filterType('discussion')">Discussions <span class="badge badge-info"><?php echo (isset($group["participants"])) ? count($group["participants"]) : 0?></span></a></li>
+            	<li><a class="label" href="javascript:filterType('event')">Evenements <span class="badge badge-inverse"><?php echo (isset($group["participants"])) ? count($group["participants"]) : 0?></span></a></li>
+            	<li><a class="label" href="javascript:filterType('project')">Projets <span class="badge badge-info"><?php echo (isset($group["participants"])) ? count($group["participants"]) : 0?></span></a></li>
+            	<li><a class="label" href="javascript:filterType('post')">Annonces <span class="badge badge-inverse"><?php echo (isset($group["participants"])) ? count($group["participants"]) : 0?></span></a></li>
+            </ul>
+            <?php }?>
+        	
+        
         	<span class="icon-globe greenDark" style="font-size:300%"></span><br/><br/>
         	<h1>Contact</h1>
         	<div>
@@ -21,7 +35,9 @@
         	<a href="<?php echo Yii::app()->createUrl('index.php/templates/page/name/faq')?>"><span class="icon-help blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
         	<a href="<?php echo Yii::app()->createUrl('index.php/templates/page/name/faq')?>"><span class="icon-plus blueDark" style="font-size:200%"></span><span class="icon-plus blueDark" style="font-size:200%"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
         	
+        	
         </div>
+        <br/><br/>
         <div class="blueDarkbg" style="width:100%; height:60px;color:white;padding:5px;margin-top:20px;">
         	Le Pixel Humain, sous <img src="<?php echo Yii::app()->createUrl('images/open-licence.png')?>" style="height:45px"/> licence ouverte & opensource,  Porté par L'association Open Atlas
         </div>

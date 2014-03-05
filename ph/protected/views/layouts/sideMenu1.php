@@ -68,10 +68,10 @@
 }
 .side-panel li {
   position: relative;
-  background: #4A6AAC;
+  background: #507DBD;
 }
 .side-panel li:hover {
-  background: #fff;
+  background: #4A6AAC;
 }
 .side-panel li:hover > ul {
   display: block;
@@ -80,6 +80,8 @@
   display: inline-block;
   padding: 8px 15px;
   cursor: pointer;
+  text-decoration:none;
+  color:#fff;
 }
 
 .b li [class*="entypo-"],.b li [class*="icon-"],.b li [class*="social-"] {
@@ -90,7 +92,7 @@
   transition: all .3s ease-in-out;
   transition-delay: .1s;
   font-size: x-large;
-  color:#2d3e4a;
+  color:#fff;
 }
 .b .menu-item {
   display: inline-block;
@@ -138,7 +140,7 @@ foreach( $this->sidebar1 as $item )
     $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' : "";
     $href = (isset($item["href"])) ? $item["href"] : "#";
     $class = (isset($item["class"])) ? 'class="'.$item["class"].'"' : "";
-    echo '<li><a href="'.$href.'" '.$modal.' '.$class.' ><span class="'.$item["iconClass"].'"></span><span class="menu-item">'.$item["label"].'</span></a>';
+    echo '<li><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' ><span class="'.$item["iconClass"].'"></span><span class="menu-item">'.$item["label"].'</span></a>';
     //This menu can have 2 levels
     if( isset($item["children"]) )
     {
@@ -148,7 +150,7 @@ foreach( $this->sidebar1 as $item )
             $modal2 = (isset($item2["isModal"])) ? 'role="button" data-toggle="modal"' : "";
             $onclick2 = (isset($item2["onclick"])) ? 'onclick="'.$item2["onclick"].'"' : "";
             $href2 = (isset($item2["href"])) ? $item2["href"] : "#";
-            echo '<li><a href="'.$href2.'" '.$modal2.'></span>'.$item2["label"].'</a></li>';
+            echo '<li><a href="'.$href2.'" '.$modal2.' '.$onclick2.'></span>'.$item2["label"].'</a></li>';
         }
         echo "</ul>";
     }

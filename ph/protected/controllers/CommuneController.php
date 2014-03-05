@@ -17,6 +17,22 @@ class CommuneController extends Controller {
 	}
     public function actionView($cp) 
     {
+        array_push( $this->sidebar1, array( "label"=>"Invitation","href"=>"#invitation", "iconClass"=>"icon-link",  "isModal"=>true));
+        array_push( $this->sidebar1, array( "label"=>"Ajouter", "iconClass"=>"icon-plus",
+                                            "children"=> array( 
+                                                array( "label"=>"Actualité", "onclick"=>"openModal('actuAjoutForm','data',null,'dynamicallyBuild')"),
+                                                array( "label"=>"Évenement", "href"=>Yii::app()->createUrl('evenement/creer')),
+                                                array( "label"=>"Pensée", "onclick"=>"openModal('actuAjoutForm','data',null,'dynamicallyBuild')"),
+                                                array( "label"=>"Projet", "onclick"=>"openModal('actuAjoutForm','data',null,'dynamicallyBuild')"),
+                                                array( "label"=>"Lieu", "onclick"=>"openModal('actuAjoutForm','data',null,'dynamicallyBuild')"),
+                                                array( "label"=>"Date", "onclick"=>"openModal('actuAjoutForm','data',null,'dynamicallyBuild')"),
+                                                array( "label"=>"Question", "onclick"=>"openModal('actuAjoutForm','data',null,'dynamicallyBuild')"),
+                                                array( "label"=>"Annonces", "onclick"=>"openModal('actuAjoutForm','data',null,'dynamicallyBuild')"),
+                                                array( "label"=>"Covoiturage", "onclick"=>"openModal('actuAjoutForm','data',null,'dynamicallyBuild')"),
+                                            ) 
+                                        ));
+
+        
         $this->render("view",array('cp'=>$cp,
         						   'dep'=>substr($cp, 0,3),
                                    'communected'=>Yii::app()->mongodb->citoyens->count(array('cp'=>$cp) ),

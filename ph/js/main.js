@@ -10,7 +10,7 @@ $(document).ready(function() {
 	/* *************************** */
 	/* Toile de delaunay en bg */
 	/* *************************** */
-	console.log("delaunay",showDelaunay);
+	//console.log("delaunay",showDelaunay);
 	if( showDelaunay  )
 	{
 		var w = 1000,
@@ -140,13 +140,13 @@ DropDown.prototype = {
 	}
 }
 
-function openModal(key,collection,id,tpl){
+function openModal(key,collection,id,tpl,savePath,isSub){
     	$("#loginForm").modal('hide');
     	toggleSpinner();
     	$.ajax({
     	  type: "POST",
     	  url: baseUrl+"/common/GetMicroformat/key/"+key,
-    	  data: { "key":key, "template":tpl, "collection":collection, "id":id },
+    	  data: { "key":key, "template":tpl, "collection":collection, "id":id,"savePath":savePath,"isSub":isSub },
     	  success: function(data){
     		  	  
     			  $("#flashInfoContent").html(data.content);

@@ -4,7 +4,7 @@
 /* ********************* */
 #appTitle{background-color:#DFE1E8;width:250px}
 </style>
-<header>'
+<header>
     <div class="navbar navbar-inverse navbar-fixed-top">
     			
         <div class="navbar-inner pull-left ">

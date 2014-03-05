@@ -79,7 +79,6 @@ font-family: "Homestead";
 		
 		<div class="span4 block">
 			<h2>PARTICIPANT, STANDS</h2>
-			
 			<br/>
 		</div>
 		
