@@ -2,16 +2,23 @@ Pixel Humain
 ===========
 
 ##Installation
-
+####Configure your php
+Verify your php configuration is right done lauching the command line
+```
+php --ini
+```
+The php.ini specified in the "Loaded Configuration File" option should be the right one.
+Check in this php.ini file the openssl extension is activated.
 ####must install a Php webserver
 - On Windows OS : 
 Get the dll from here https://s3.amazonaws.com/drivers.mongodb.org/php/index.html
-in the php.ini add (depends on your php install version) : 
+The right version driver depends on the version of php you're running with.
+In the php.ini add (depends on your php install version) : 
 ```
 extension=extension=php_mongo-1.4.5-5.5-vc11.dll
 ```
 - On Unix like OS : 
-You'll have to simply get the .so that corresponds to your php install
+Same as windows but choose a .so driver instead of a dll one.
 
 ####install a mongo Database instance and admin tool
 - [Mongo installation](http://docs.mongodb.org/manual/installation/)
@@ -26,6 +33,14 @@ mongod --dbpath data\db
 PixelHumain is set with composer in order to manage dependencies and libraries.
 - Clone the repository in order to recover the files
 - If you don't have it get the composer (https://getcomposer.org/)
+- Modify the file /ph/protected/config/dbconfig.php with your database name and URL
+```
+$dbconfig = array(
+    'class' => 'mongoYii.EMongoClient',
+    'server' => 'mongodb://127.0.0.1:27017/',
+    'db' => 'pixelhumain',    
+);
+```
 - Launch following commands to initiate the application : 
 ```
 composer update
