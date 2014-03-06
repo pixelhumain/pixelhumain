@@ -4,32 +4,41 @@ Pixel Humain
 ##Installation
 
 ####must install a Php webserver
-in the php.ini add 
-on windows
-depends on your php install version
+- On Windows OS : 
+Get the dll from here https://s3.amazonaws.com/drivers.mongodb.org/php/index.html
+in the php.ini add (depends on your php install version) : 
 ```
-extension=php_mongo-1.4.1-5.3-vc9.dll
-get the dll from here https://github.com/mongodb/mongo-php-driver/downloads
+extension=extension=php_mongo-1.4.5-5.5-vc11.dll
 ```
-on mac  you'll have to simply get the .so that corresponds to your php install
+- On Unix like OS : 
+You'll have to simply get the .so that corresponds to your php install
 
 ####install a mongo Database instance and admin tool
 - [Mongo installation](http://docs.mongodb.org/manual/installation/)
 - [Mongo administration-interfaces](http://docs.mongodb.org/ecosystem/tools/administration-interfaces/)
-- launch Mongo localy : mongod --dbpath data\db
+- launch Mongo localy : 
+```
+mongod --dbpath data\db
+```
 - create a database called pixelhumain : use pixelhumain
-- either mongorestore : mongorestore --dbpath /data/pixelhumain (path to the bson files)
-- or mongoimport all the json files in the /data folder : mongoimport --db pixelhumain --collection pixelsactifs --file data/pixelsactifs.json --journal
 
-####Git clone the repo 
-depending on how you webservers alias is configured 
-here the alias is called ''ph'' and pointing to the folder you cloned
-test this url : 
+####Composer installation
+PixelHumain is set with composer in order to manage dependencies and libraries.
+- Clone the repository in order to recover the files
+- If you don't have it get the composer (https://getcomposer.org/)
+- Launch following commands to initiate the application : 
+```
+composer update
+...
+composer install
+```
+
+####Launch the application
+- Launch you http webserver
+- depending on how you webservers alias is configured here the alias is called ''ph'' and pointing to the folder you cloned test this url : 
 http://127.0.0.1/ph/yii/frontend/www/index.php/decouvrir
 
-
 ##Version 0.001 
-
     L'homme qui déplace une montagne commence par déplacer les petites pierres.- Confucius
 
 ###Valorisation de la Collectivité

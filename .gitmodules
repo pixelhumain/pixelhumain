@@ -1,9 +1,0 @@
-[submodule "ph/protected/extensions/MongoYii"]
-	path = ph/protected/extensions/MongoYii
-	url = https://github.com/Sammaye/MongoYii.git
-[submodule "ph/protected/extensions/yiistrap"]
-	path = ph/protected/extensions/yiistrap
-	url = https://github.com/Crisu83/yiistrap.git
-[submodule "ph/protected/extensions/yiiwheels"]
-	path = ph/protected/extensions/yiiwheels
-	url = https://github.com/2amigos/yiiwheels.git

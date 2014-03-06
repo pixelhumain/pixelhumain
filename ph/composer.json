@@ -1,0 +1,44 @@
+{
+	"name": "pixelhumain/webapp",
+	"description": "Webapp of Pixelhumain",
+	"keywords": ["PixelHumain"],
+	"type": "webapp",
+	"license": "creative commons",
+	"authors": [
+		{
+			"name": "Tibor Katelbach",
+			"email": "oceatoon@gmail.com",
+			"homepage": "http://oceatoon.org//"
+		},
+		{
+			"name": "Sylvain Barbot",
+			"email": "sylvain.barbot@gmail.com"
+		}
+	],
+	"require": {
+		"2amigos/yiistrap": "1.1.1",
+		"2amigos/yiiwheels": "dev-master",
+		"opauth/opauth" : "0.4.4",
+		"sammaye/mongoyii" : "3.*",
+		"yiisoft/yii":"1.1.14",
+		"yiiext/migrate-command":"dev-master#35f315b as 0.7.2.1"
+	},
+	"autoload": {
+    	"psr-0": {
+        	"PixelHumain": "./src"
+    	}
+	},
+    "scripts":{
+        "pre-install-cmd":"PixelHumain\\ComposerCallback::preInstall",
+        "post-install-cmd":"PixelHumain\\ComposerCallback::postInstall",
+        "pre-update-cmd":"PixelHumain\\ComposerCallback::preUpdate",
+        "post-update-cmd":"PixelHumain\\ComposerCallback::postUpdate",
+        "post-package-install":[
+            "PixelHumain\\ComposerCallback::postPackageInstall"
+        ],
+        "post-package-update":[
+            "PixelHumain\\ComposerCallback::postPackageUpdate"
+        ]
+    },
+    "minimum-stability": "dev"
+}

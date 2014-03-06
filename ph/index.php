@@ -1,10 +1,9 @@
 <?php
 
 // change the following paths if necessary
-$yii=dirname(__FILE__).'/../yii/framework/yii.php';
+$yii=dirname(__FILE__).'/vendor/yiisoft/yii/framework/yii.php';
 $config=dirname(__FILE__).'/protected/config/main.php';
 
-// remove the following lines when in production mode
 // remove the following lines when in production mode
 if(stripos($_SERVER['SERVER_NAME'], "local.") === false && stripos($_SERVER['SERVER_NAME'], "127.0.0.1") === false && stripos($_SERVER['SERVER_NAME'], "localhost:8080") === false )
     defined('YII_DEBUG') or define('YII_DEBUG',false); // PROD
