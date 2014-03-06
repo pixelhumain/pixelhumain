@@ -15,6 +15,12 @@
 			"email": "sylvain.barbot@gmail.com"
 		}
 	],
+	"repositories": [
+		{
+		    "type": "composer",
+		    "url": "http://packages.phundament.com"
+		}
+	],
 	"require": {
 		"2amigos/yiistrap": "1.1.1",
 		"2amigos/yiiwheels": "dev-master",
