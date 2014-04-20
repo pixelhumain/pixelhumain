@@ -30,4 +30,24 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_NONE;
 		return !$this->errorCode;
 	}
+
+	private function authenticateHeader()
+	{
+	    // Check if we have the USERNAME and PASSWORD HTTP headers set?
+	    if(!(isset($_SERVER['HTTP_X_USERNAME']) and isset($_SERVER['HTTP_X_PASSWORD']))) {
+	        // Error: Unauthorized
+	        $this->_sendResponse(401);
+	    }
+	    $username = $_SERVER['HTTP_X_USERNAME'];
+	    $password = $_SERVER['HTTP_X_PASSWORD'];
+	    // Find the user
+	    $user=User::model()->find('LOWER(username)=?',array(strtolower($username)));
+	    if($user===null) {
+	        // Error: Unauthorized
+	        $this->_sendResponse(401, 'Error: User Name is invalid');
+	    } else if(!$user->validatePassword($password)) {
+	        // Error: Unauthorized
+	        $this->_sendResponse(401, 'Error: User Password is invalid');
+	    }
+	}
 }
