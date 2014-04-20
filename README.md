@@ -19,6 +19,8 @@ extension=extension=php_mongo-1.4.5-5.5-vc11.dll
 ```
 - On Unix like OS : 
 Same as windows but choose a .so driver instead of a dll one.
+[Here's a good doc](http://tech.enekochan.com/2013/10/22/install-mongodb-in-ubuntu-12-04/)
+
 
 ####install a mongo Database instance and admin tool
 - [Mongo installation](http://docs.mongodb.org/manual/installation/)
