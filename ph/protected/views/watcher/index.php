@@ -67,6 +67,19 @@
 					cp* : <input type="text" name="postalcodeSaveUser" id="postalcodeSaveUser" value="97421" /><br/>
 					pwd* : <input type="text" name="pwdSaveUser" id="pwdSaveUser" value="1234" /><br/>
 					phoneNumber : <input type="text" name="phoneNumberSaveUser" id="phoneNumberSaveUser" value="1234" />(for SMS)<br/>
+					type : <select name="typeSaveUser" id="typeSaveUser">
+								<?php 
+								$tor = Yii::app()->mongodb->lists->findOne( array( "name" => "typeObservaterReunion" ),array("list") ) ;
+								foreach ($tor["list"] as $key => $value) {
+									echo '<option value="'.$key.'">'.$value.'</option>';
+								}
+								?>
+							</select><br/>
+					<!-- langue : <select name="langSaveUser" id="langSaveUser">
+								<option value="fr">Francais</option>
+								<option value="creol">Créole</option>
+								<option value="en">Anglais</option>
+							</select><br/> -->
 					<a href="javascript:addUser()">Test it</a><br/>
 					<div id="createUserResult" class="result fss"></div>
 					<script>
@@ -78,7 +91,9 @@
 							    	   "name" : $("#nameSaveUser").val() , 
 							    	   "cp" : $("#postalcodeSaveUser").val() , 
 							    	   "pwd" : $("#pwdSaveUser").val(),
-							    	   "phoneNumber" : $("#phoneNumberSaveUser").val()},
+							    	   "phoneNumber" : $("#phoneNumberSaveUser").val(),
+							    		//"lang" : $("#langSaveUser").val(),
+							    		"type" : $("#typeSaveUser").val()},
 							    type:"POST",
 							    success:function(data) {
 							      $("#createUserResult").html(JSON.stringify(data, null, 4));
@@ -127,7 +142,16 @@
 					url : /ph/ext/watcher/observations/type/sharkObservationReunion<br/>
 					method : GET <br/>
 					param : type<br/>
-					type : <input type="text" name="typeObservations" id="typeObservations" value="sharkObservationReunion" /><br/>
+					type : 
+					<select name="typeObservater" id="typeObservater">
+						<option></option>
+						<?php 
+						$typeObservationReunion = Yii::app()->mongodb->lists->findOne( array( "name" => "typeObservationReunion" ),array("list") ) ;
+						foreach ($typeObservationReunion["list"] as $key => $value) {
+							echo '<option value="'.$key.'">'.$value.'</option>';
+						}
+						?>
+					</select><br/>
 					<a href="javascript:observations()">Test it</a><br/>
 					<div id="observationsResult" class="result fss"></div>
 					<script>
@@ -204,10 +228,20 @@
 					method type : POST <br/>
 				</div>
 				<div class="apiForm addObservation">
-					type : <input type="text" name="typeaddObservation" id="typeaddObservation" value="sharkObservationReunion" /><br/>
-					who : <input type="text" name="whoaddObservation" id="whoaddObservation" value="520931e2f6b95c5cd3003d6c" /><br/>
-					when : <input type="text" name="addObservationwhen" id="addObservationwhen" value="" /><br/>
+					type : 
+					<select name="typeaddObservation" id="typeaddObservation">
+						<option></option>
+						<?php 
+						$typeObservationReunion = Yii::app()->mongodb->lists->findOne( array( "name" => "typeObservationReunion" ),array("list") ) ;
+						foreach ($typeObservationReunion["list"] as $key => $value) {
+							echo '<option value="'.$key.'">'.$value.'</option>';
+						}
+						?>
+					</select><br/>
+					who : <?php echo Yii::app()->session["userId"]; ?><input type="hidden" name="whoaddObservation" id="whoaddObservation" value="<?php echo Yii::app()->session["userId"]; ?>" /><br/>
+					when : <?php echo time(); ?><input type="hidden" name="addObservationwhen" id="addObservationwhen" value="<?php echo time(); ?>" /><br/>
 					where : <select name="addObservationwhere" id="addObservationwhere">
+						<option></option>
 						<?php 
 						$where = Yii::app()->mongodb->lists->findOne( array( "name" => "surfSpotReunion" ),array("list") ) ;
 						foreach ($where["list"] as $key => $value) {
@@ -215,20 +249,32 @@
 						}
 						?>
 					</select><br/>
-					what : <select name="addObservationwhat" id="addObservationwhat">
-						<?php 
-						$what = Yii::app()->mongodb->lists->findOne( array( "name" => "typeObservationReunion" ),array("list") ) ;
-						foreach ($what["list"] as $key => $value) {
-							echo '<option value="'.$key.'">'.$value.'</option>';
-						}
-						?>
-					</select><br/>
+					<div id="addObservationwhatContainer" class="hide">
+						<span id="whatLabel">what</span> : <select name="addObservationwhat" id="addObservationwhat">
+							<option></option>
+						</select>
+					</div>
+					<br/>
 					description : <input type="text" name="addObservationdescription" id="addObservationdescription" value="" />(180 caracters)<br/>
 					<a href="javascript:addObservation()">Test it</a><br/>
 					<div id="addObservationResult" class="result fss"></div>
 					<script>
 						initT['datepickerInit'] = function(){
 							$("#addObservationwhen").datepicker();
+
+							$("#typeaddObservation").change(function(){
+								console.log("selected",$("#typeaddObservation").val());
+								if( $("#typeaddObservation").val() != "" ){
+									$("#addObservationwhat").html("<option></option>");
+									$("#whatLabel").html( FormContext[$("#typeaddObservation").val()]["label"] );
+									$.each( FormContext[$("#typeaddObservation").val()]["list"], function(key,value){
+										$("#addObservationwhat").append("<option value='"+key+"'>"+value+"</option>");
+									});
+									$("#addObservationwhatContainer").show();
+								} else {
+									$("#addObservationwhatContainer").hide();
+								}
+							});
 						};
 						function addObservation(){
 							$("#observationsResult").html("");
@@ -262,13 +308,19 @@
 					<a href="javascript:getObservationForm()">Test it</a><br/>
 					<div id="getObservationFormResult" class="result fss"></div>
 					<script>
+						var FormContext = null;
+						initT['getFormcontext'] = function(){
+							getObservationForm();
+						};
 						function getObservationForm(){
 							$("#getObservationFormResult").html("");
 							$.ajax({
 							    url:'/ph/ext/watcher/getObservationForm/key/'+$("#typeaddObservation").val(),
 							    type:"GET",
+							    dataType:"json",
 							    success:function(data) {
-							      $("#getObservationFormResult").html( JSON.stringify(data, null, 4) );
+							      FormContext = data;
+							      console.log("FormContext ",FormContext );
 							    },
 							    error:function (xhr, ajaxOptions, thrownError){
 							      $("#getObservationFormResult").html(thrownError);

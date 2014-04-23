@@ -10,7 +10,7 @@
 class WatcherController extends Controller {
 
     const moduleTitle = "Water Watcher App";
-    
+    public static $moduleKey = "waterwatcher";
     /**
      * List all the latest observations
      * @return [json Map] list
@@ -53,12 +53,15 @@ class WatcherController extends Controller {
 		if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) )){
 			//udate the new app specific fields
 			$newInfos = array();
-			if( !empty($_POST['cp']) )
+			if( isset($_POST['cp']) )
 				$newInfos['cp'] = $_POST['cp'];
 			if( isset($_POST['name']) )
 				$newInfos['name'] = $_POST['name'];
-			if( !empty($_POST['phoneNumber']) )
+			if( isset($_POST['phoneNumber']) )
 				$newInfos['phoneNumber'] = $_POST['phoneNumber'];
+
+			$newInfos['applications'] = array( "key"=> "waterwatcher", "usertype" => $_POST['type']  );
+			//$newInfos['lang'] = $_POST['lang'];
 			
 			Yii::app()->mongodb->citoyens->update(array("email" => $email), 
                                                   array('$set' => $newInfos ) 
@@ -155,6 +158,24 @@ class WatcherController extends Controller {
 		
 		$what = Yii::app()->mongodb->lists->findOne( array( "name" => "typeObservationReunion" ),array("list") ) ;
 		$form["what"] = $what["list"];
+
+		$sharkObservationReunion = Yii::app()->mongodb->lists->findOne( array( "name" => "sharkObservationReunion" ),array("list","label") ) ;
+		$form["sharkObservationReunion"] = $sharkObservationReunion;
+
+		$visibilityObservationReunion = Yii::app()->mongodb->lists->findOne( array( "name" => "visibilityObservationReunion" ),array("list","label") ) ;
+		$form["visibilityObservationReunion"] = $visibilityObservationReunion;
+
+		$polutionObservationReunion = Yii::app()->mongodb->lists->findOne( array( "name" => "polutionObservationReunion" ),array("list","label") ) ;
+		$form["polutionObservationReunion"] = $polutionObservationReunion;
+
+		$sanitaryRiskObservationReunion = Yii::app()->mongodb->lists->findOne( array( "name" => "sanitaryRiskObservationReunion" ),array("list","label") ) ;
+		$form["sanitaryRiskObservationReunion"] = $sanitaryRiskObservationReunion;
+
+		$surferCountObservationReunion = Yii::app()->mongodb->lists->findOne( array( "name" => "surferCountObservationReunion" ),array("list","label") ) ;
+		$form["surferCountObservationReunion"] = $surferCountObservationReunion;
+
+		$vigilanceObservationReunion = Yii::app()->mongodb->lists->findOne( array( "name" => "vigilanceObservationReunion" ),array("list","label") ) ;
+		$form["vigilanceObservationReunion"] = $vigilanceObservationReunion;
 	 	
 	 	echo json_encode( $form ) ;
 	    Yii::app()->end();   
