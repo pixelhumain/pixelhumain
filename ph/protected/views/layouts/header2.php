@@ -18,7 +18,7 @@
                         $k_path_url = (isset($_SERVER['HTTPS']) AND (!empty($_SERVER['HTTPS'])) AND strtolower($_SERVER['HTTPS'])!='off') ? 'https://' : 'http://';
                         $path = $k_path_url.$_SERVER['SERVER_NAME'].substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1);
                         $mode = "style='width:30px'";
-                        if ( isset($account) && isset($account['img']) ) {
+                        if ( isset($account) && isset($account['img']) && file_exists($path.$account['img']) ) {
                             $img = getimagesize( $path.$account['img'] );
                             $width = $img[0]; 
                             $height = $img[1]; 

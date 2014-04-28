@@ -34,8 +34,11 @@ return array(
 	),
 
 	'modules'=>array(
+		//PIXEL HUMAIN specific modules 
+		'waterwatcher',
+		'egpc',
+		'azotlive',
 		// uncomment the following to enable the Gii tool
-		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'Enter Your Password Here',

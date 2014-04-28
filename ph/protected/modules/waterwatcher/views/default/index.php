@@ -23,9 +23,9 @@
 			<li><h3>User</h3></li>
 
 			<li class="block">
-				<a href="/ph/ext/watcher/login">Login</a><br/>
+				<a href="/ph/waterwatcher/default/login">Login</a><br/>
 				<div class="fss">
-					url : /ph/ext/watcher/login<br/>
+					url : /ph/waterwatcher/default/login<br/>
 					method type : POST <br/>
 				</div>
 				<div class="apiForm login">
@@ -37,7 +37,7 @@
 						function login(){
 							$("#loginResult").html("");
 							$.ajax({
-							    url:'/ph/ext/watcher/login',
+							    url:'/ph/waterwatcher/default/login',
 							    type:"POST",
 							    data:{ "email" : $("#emailLogin").val() , 
 							    	   "pwd" : $("#pwdLogin").val()},
@@ -54,9 +54,9 @@
 				</div>
 			</li>
 
-			<li class="block"><a href="/ph/ext/watcher/saveUser">Create/Update user</a><br/>
+			<li class="block"><a href="/ph/waterwatcher/default/saveUser">Create/Update user</a><br/>
 				<div class="fss">
-					url : /ph/ext/watcher/saveUser<br/>
+					url : /ph/waterwatcher/default/saveUser<br/>
 					method type : POST <br/>
 					Form inputs : email,postalcode,pwd,phoneNumber(is optional)<br/>
 					return json object {"result":true || false}
@@ -86,7 +86,7 @@
 						function addUser(){
 							$("#getUserResult").html("");
 							$.ajax({
-							    url:'/ph/ext/watcher/saveUser',
+							    url:'/ph/waterwatcher/default/saveUser',
 							    data:{ "email" : $("#emailSaveUser").val() , 
 							    	   "name" : $("#nameSaveUser").val() , 
 							    	   "cp" : $("#postalcodeSaveUser").val() , 
@@ -107,9 +107,9 @@
 				</div>
 			</li>
 			
-			<li class="block"><a href="/ph/ext/watcher/getUser/email/oceatoon@gmail.com">Get User</a><br/>
+			<li class="block"><a href="/ph/waterwatcher/default/getUser/email/oceatoon@gmail.com">Get User</a><br/>
 				<div class="fss">
-					url : /ph/ext/watcher/getUser/email/oceatoon@gmail.com<br/>
+					url : /ph/waterwatcher/default/getUser/email/oceatoon@gmail.com<br/>
 					method type : GET <br/>
 					param : email<br/>
 					email : <input type="text" name="getUseremail" id="getUseremail" value="oceatoon@gmail.com" /><br/>
@@ -119,7 +119,7 @@
 						function getUser(){
 							$("#getUserResult").html("");
 							$.ajax({
-							    url:'/ph/ext/watcher/getUser/email/'+$("#getUseremail").val(),
+							    url:'/ph/waterwatcher/default/getUser/email/'+$("#getUseremail").val(),
 							    type:"GET",
 							    success:function(data) {
 							      $("#getUserResult").html(JSON.stringify(data, null, 4));
@@ -137,9 +137,9 @@
 
 			<li><h3>Observations</h3></li>
 			
-			<li class="block"><a href="/ph/ext/watcher/observations/type/sharkObservationReunion">Latest observations</a><br/>
+			<li class="block"><a href="/ph/waterwatcher/default/observations/type/sharkObservationReunion">Latest observations</a><br/>
 				<div class="fss">
-					url : /ph/ext/watcher/observations/type/sharkObservationReunion<br/>
+					url : /ph/waterwatcher/default/observations/type/sharkObservationReunion<br/>
 					method : GET <br/>
 					param : type<br/>
 					type : 
@@ -158,7 +158,7 @@
 						function observations(){
 							$("#observationsResult").html("");
 							$.ajax({
-							    url:'/ph/ext/watcher/observations/type/'+$("#typeObservations").val(),
+							    url:'/ph/waterwatcher/default/observations/type/'+$("#typeObservations").val(),
 							    type:"GET",
 							    success:function(data) {
 							      $("#observationsResult").html(JSON.stringify(data, null, 4));
@@ -172,9 +172,9 @@
 				</div>
 			</li>
 			
-			<li class="block"><a href="/ph/ext/watcher/getObservation/id/xxx">Get an observation</a><br/>
+			<li class="block"><a href="/ph/waterwatcher/default/getObservation/id/xxx">Get an observation</a><br/>
 				<div class="fss">
-					url : /ph/ext/watcher/getObservation/id/xxx<br/>
+					url : /ph/waterwatcher/default/getObservation/id/xxx<br/>
 					method type : GET <br/>
 					id : <input type="text" name="getObservationid" id="getObservationid" value="534fad666803fa564e96277a" /><br/>
 					<a href="javascript:getObservation()">Test it</a><br/>
@@ -183,7 +183,7 @@
 						function getObservation(){
 							$("#getObservationResult").html("");
 							$.ajax({
-							    url:'/ph/ext/watcher/getObservation/id/'+$("#getObservationid").val(),
+							    url:'/ph/waterwatcher/default/getObservation/id/'+$("#getObservationid").val(),
 							    type:"GET",
 							    success:function(data) {
 							      $("#getObservationResult").html(JSON.stringify(data, null, 4));
@@ -197,9 +197,9 @@
 				</div>
 			</li>
 
-			<li class="block"><a href="/ph/ext/watcher/myObservation/id/">My observations</a><br/>
+			<li class="block"><a href="/ph/waterwatcher/default/myObservation/id/">My observations</a><br/>
 				<div class="fss">
-					url : /ph/ext/watcher/myObservation/id/xxx<br/>
+					url : /ph/waterwatcher/default/myObservation/id/xxx<br/>
 					method type : GET <br/>
 					id : <input type="text" name="myObservationid" id="myObservationid" value="520931e2f6b95c5cd3003d6c" /><br/>
 					<a href="javascript:myObservation()">Test it</a><br/>
@@ -208,7 +208,7 @@
 						function myObservation(){
 							$("#myObservationResult").html("");
 							$.ajax({
-							    url:'/ph/ext/watcher/myObservation/id/'+$("#myObservationid").val(),
+							    url:'/ph/waterwatcher/default/myObservation/id/'+$("#myObservationid").val(),
 							    type:"GET",
 							    success:function(data) {
 							      $("#myObservationResult").html(JSON.stringify(data, null, 4));
@@ -222,9 +222,9 @@
 				</div>
 			</li>
 			
-			<li class="block"><a href="/ph/ext/watcher/addObservation">Add an observations</a><br/>
+			<li class="block"><a href="/ph/waterwatcher/default/addObservation">Add an observations</a><br/>
 				<div class="fss">
-					url : /ph/ext/watcher/addObservation<br/>
+					url : /ph/waterwatcher/default/addObservation<br/>
 					method type : POST <br/>
 				</div>
 				<div class="apiForm addObservation">
@@ -279,7 +279,7 @@
 						function addObservation(){
 							$("#observationsResult").html("");
 							$.ajax({
-							    url:'/ph/ext/watcher/addObservation',
+							    url:'/ph/waterwatcher/default/addObservation',
 							    type:"POST",
 							    data:{ "type" : $("#typeaddObservation").val() , 
 							    	   "who" : $("#whoaddObservation").val() , 
@@ -300,11 +300,10 @@
 				</div>
 			</li>
 
-			<li class="block"><a href="/ph/ext/watcher/getObservationForm/key/sharkObservationReunion">get observations Context = anything needed for the form</a><br/>
+			<li class="block"><a href="/ph/waterwatcher/default/getObservationForm">get observations Context = anything needed for the form</a><br/>
 				<div class="fss">
-					url : /ph/ext/watcher/getObservationForm/key/sharkObservationReunion<br/>
+					url : /ph/waterwatcher/default/getObservationForm<br/>
 					method type : GET <br/>
-					key : <input type="text" name="typeObservations" id="typeObservations" value="sharkObservationReunion" /><br/>
 					<a href="javascript:getObservationForm()">Test it</a><br/>
 					<div id="getObservationFormResult" class="result fss"></div>
 					<script>
@@ -315,7 +314,7 @@
 						function getObservationForm(){
 							$("#getObservationFormResult").html("");
 							$.ajax({
-							    url:'/ph/ext/watcher/getObservationForm/key/'+$("#typeaddObservation").val(),
+							    url:'/ph/waterwatcher/default/getObservationForm',
 							    type:"GET",
 							    dataType:"json",
 							    success:function(data) {
@@ -336,9 +335,9 @@
 
 			<li><h3>Tools</h3></li>
 			
-			<li class="block"><a href="/ph/ext/watcher/getClosestLocation/type/surfspots974/lat/xxx/lon/xxx">Closest Where Location </a><br/>
+			<li class="block"><a href="/ph/waterwatcher/default/getClosestLocation/type/surfspots974/lat/xxx/lon/xxx">Closest Where Location </a><br/>
 				<div class="fss">
-					url : /ph/ext/watcher/getClosestLocation/type/surfspots974/lat/xxx/lon/xxx<br/>
+					url : /ph/waterwatcher/default/getClosestLocation/type/surfspots974/lat/xxx/lon/xxx<br/>
 					method type : GET <br/>
 					param : type,lat,lon<br/>
 					return json object { location : xxx}

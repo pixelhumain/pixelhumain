@@ -7,7 +7,7 @@
  * @author: Tibor Katelbach <tibor@pixelhumain.com>
  * Date: 14/03/2014
  */
-class WatcherController extends Controller {
+class DefaultController extends Controller {
 
     const moduleTitle = "Water Watcher App";
     public static $moduleKey = "waterwatcher";
@@ -17,7 +17,7 @@ class WatcherController extends Controller {
      */
 	public function actionIndex() 
 	{
-	    $this->render("/watcher/index");
+	    $this->render("index");
 	}
 
 	
@@ -145,11 +145,10 @@ class WatcherController extends Controller {
 	    Yii::app()->end();
 	}
 	/**
-	 * 
-	 * @param  [type] $key [description]
+	 * Preapres all the lists needed for the water watcher context
 	 * @return [json]      [description]
 	 */
-	public function actionGetObservationForm($key) 
+	public function actionGetObservationForm() 
 	{
 		$form = array();
 		
