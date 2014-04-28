@@ -73,6 +73,7 @@ class CitoyensController extends Controller {
                                             "children"=> array( 
                                                 array( "label"=>"Group", "onclick"=>"openModal('groupCreerForm','data',null,'dynamicallyBuild')"),
                                                 array( "label"=>"Actualité", "onclick"=>"openModal('actuAjoutForm','data',null,'dynamicallyBuild')"),
+                                                array( "label"=>"Évenement", "onclick"=>"openModal('eventForm','data',null,'dynamicallyBuild')"),
                                                 array( "label"=>"Évenement", "href"=>Yii::app()->createUrl('evenement/creer')),
                                                 array( "label"=>"Pensée", "onclick"=>"openModal('actuAjoutForm','data',null,'dynamicallyBuild')"),
                                                 array( "label"=>"Projet", "onclick"=>"openModal('actuAjoutForm','data',null,'dynamicallyBuild')"),

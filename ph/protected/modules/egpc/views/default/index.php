@@ -1,5 +1,5 @@
 <style>
-	.apiList h2,.apiList h3 { 
+	.apiList h2,.apiList h3,.apiList h4 { 
 		font-family: "Homestead";
 		position:relative;
 		top:0px;
@@ -22,12 +22,44 @@
 	 .result{
 		color: red; 
 	}
+	.blocki{
+		background-color: #324553;
+		color: white;
+		padding : 10px;
+		border : 3px solid #666;
+	}
+	h4.blockblue{
+		background-color: #29C2FD
+	}
 </style>
 <div class="containeri apiList">
 	<div class="hero-uniti">
 		<h2>E.G.P.C API : List all URLs</h2>
 		<ul>
-			
+			<!-- ////////////////////////////////////////////////////////////////////////////// -->
+			<li ><h3>Scenario</h3></li>
+			<li>
+				<h4 class="blockblue">Inscription / Creation</h4>
+				<ul class="blocki">
+					<li>EGPC envoie une invitation par campagne mail contenant un lien d'inscription</li>
+					<li>Le nouveau venu s'inscrit en citoyen : email + cp </li>
+					<li>peut creer une association + mot clef</li>
+					<li>peut creer une entreprise + mot clef</li>
+					<li>peut creer un groupe + mot clef</li>
+					<li>peut inviter qlq'un dans chacune de ces entités</li>
+					<li>peut creer un evenement en tant que citoyen ou pour son entité</li>
+					<li>peut inviter qlq'un à un evenement</li>
+				</ul>
+				<h4  class="blockblue">Visualisation</h4>
+				<ul class="blocki">
+					<li>Tout le monde peut visualiser l'organisation de EGPC</li>
+					<li>Voir un listing de chaque entité  (Gpe. , Ass. , Ent., Cit. )</li>
+					<li>Voir tout les evenements</li>
+					<li>Filtrer par mots clefs</li>
+					<li>Ouvrir une entité (Gpe. , Ass. , Ent., Cit. )</li>
+					<li>Ouvrir un evenement</li>
+				</ul>
+			</li>
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
 			<li><h3>User</h3></li>
@@ -138,32 +170,23 @@
 				</div>
 			</li>
 
+			<li class="block"><a href="/ph/egpc/default/getPeople">Get EGPC People</a><br/>
+			</li>
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
-			<li><h3>Association</h3></li>
+			<li><h3>Entities</h3></li>
 
-			<li class="block"><a href="/ph/egpc/default/saveAssociation">Create/Update Associations</a><br/>
+			<li class="block"><a href="/ph/egpc/default/saveAssociation">Create/Update Entité (Asso. , Entr. , Group )</a><br/>
 			</li>
 
-			<li class="block"><a href="/ph/egpc/default/getAssociation">Get une Associations</a><br/>
+			<li class="block"><a href="/ph/egpc/default/getAssociation">Get une Entité</a><br/>
 			</li>
 
-			<li class="block"><a href="/ph/egpc/default/linkUserAssociation">Lié un User a une Association</a><br/>
+			<li class="block"><a href="/ph/egpc/default/linkUserAssociation">Lié un User a une Entité</a><br/>
 			</li>
 
-			<!-- ////////////////////////////////////////////////////////////////////////////// -->
-
-			<li><h3>Groupes</h3></li>
-
-			<li class="block"><a href="/ph/egpc/default/saveGroup">Create/Update Groupe</a><br/>
+			<li class="block"><a href="/ph/egpc/default/getEntities">Get EGPC Entités</a><br/>
 			</li>
-
-			<li class="block"><a href="/ph/egpc/default/linkUserAssociation">Link un User or an Association to a group</a><br/>
-			</li>
-
-			<li class="block"><a href="/ph/egpc/default/getGroup">Get une Group</a><br/>
-			</li>
-
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
 			<li><h3>Evenement</h3></li>
