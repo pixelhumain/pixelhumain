@@ -1,8 +1,18 @@
 <style>
+	.apiList h2,.apiList h3 { 
+		font-family: "Homestead";
+		position:relative;
+		top:0px;
+		left:0px;
+		color: #324553;
+		background-color: white;
+		padding : 10px;
+		border : 3px solid #666;
+	}
 	.apiList ul{list-style: none;}
 	.apiList .block{ 
 		border:1px solid #333; 
-		background-color: beige; 
+		background-color: #ededed; 
 		margin:10px; 
 		padding:10px;
 	}
@@ -15,7 +25,7 @@
 </style>
 <div class="containeri apiList">
 	<div class="hero-uniti">
-		<h2>List of all available API's</h2>
+		<h2>Water Watcher API : List all Urls</h2>
 		<ul>
 			
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->

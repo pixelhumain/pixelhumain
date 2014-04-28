@@ -1,8 +1,18 @@
 <style>
+	.apiList h2,.apiList h3 { 
+		font-family: "Homestead";
+		position:relative;
+		top:0px;
+		left:0px;
+		color: #324553;
+		background-color: white;
+		padding : 10px;
+		border : 3px solid #666;
+	}
 	.apiList ul{list-style: none;}
 	.apiList .block{ 
 		border:1px solid #333; 
-		background-color: beige; 
+		background-color: #ededed; 
 		margin:10px; 
 		padding:10px;
 	}
@@ -15,7 +25,7 @@
 </style>
 <div class="containeri apiList">
 	<div class="hero-uniti">
-		<h2>List of all available API's</h2>
+		<h2>AZOT LIVE API : List all URLs</h2>
 		<ul>
 			
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
@@ -23,9 +33,9 @@
 			<li><h3>User</h3></li>
 
 			<li class="block">
-				<a href="/ph/ext/watcher/login">Login</a><br/>
+				<a href="/ph/azotlive/default/login">Login</a><br/>
 				<div class="fss">
-					url : /ph/ext/watcher/login<br/>
+					Il faut etre loguer par email, cp, et mot de passe<br/>
 					method type : POST <br/>
 				</div>
 				<div class="apiForm login">
@@ -37,7 +47,7 @@
 						function login(){
 							$("#loginResult").html("");
 							$.ajax({
-							    url:'/ph/ext/watcher/login',
+							    url:'/ph/azotlive/default/login',
 							    type:"POST",
 							    data:{ "email" : $("#emailLogin").val() , 
 							    	   "pwd" : $("#pwdLogin").val()},
@@ -54,9 +64,9 @@
 				</div>
 			</li>
 
-			<li class="block"><a href="/ph/ext/watcher/saveUser">Create/Update user</a><br/>
+			<li class="block"><a href="/ph/azotlive/default/saveUser">Create/Update user</a><br/>
 				<div class="fss">
-					url : /ph/ext/watcher/saveUser<br/>
+					url : /ph/azotlive/default/saveUser<br/>
 					method type : POST <br/>
 					Form inputs : email,postalcode,pwd,phoneNumber(is optional)<br/>
 					return json object {"result":true || false}
@@ -75,18 +85,13 @@
 								}
 								?>
 							</select><br/>
-					<!-- langue : <select name="langSaveUser" id="langSaveUser">
-								<option value="fr">Francais</option>
-								<option value="creol">Créole</option>
-								<option value="en">Anglais</option>
-							</select><br/> -->
 					<a href="javascript:addUser()">Test it</a><br/>
 					<div id="createUserResult" class="result fss"></div>
 					<script>
 						function addUser(){
 							$("#getUserResult").html("");
 							$.ajax({
-							    url:'/ph/ext/watcher/saveUser',
+							    url:'/ph/azotlive/default/saveUser',
 							    data:{ "email" : $("#emailSaveUser").val() , 
 							    	   "name" : $("#nameSaveUser").val() , 
 							    	   "cp" : $("#postalcodeSaveUser").val() , 
@@ -107,9 +112,9 @@
 				</div>
 			</li>
 			
-			<li class="block"><a href="/ph/ext/watcher/getUser/email/oceatoon@gmail.com">Get User</a><br/>
+			<li class="block"><a href="/ph/azotlive/default/getUser/email/oceatoon@gmail.com">Get User</a><br/>
 				<div class="fss">
-					url : /ph/ext/watcher/getUser/email/oceatoon@gmail.com<br/>
+					url : /ph/azotlive/default/getUser/email/oceatoon@gmail.com<br/>
 					method type : GET <br/>
 					param : email<br/>
 					email : <input type="text" name="getUseremail" id="getUseremail" value="oceatoon@gmail.com" /><br/>
@@ -119,7 +124,7 @@
 						function getUser(){
 							$("#getUserResult").html("");
 							$.ajax({
-							    url:'/ph/ext/watcher/getUser/email/'+$("#getUseremail").val(),
+							    url:'/ph/azotlive/default/getUser/email/'+$("#getUseremail").val(),
 							    type:"GET",
 							    success:function(data) {
 							      $("#getUserResult").html(JSON.stringify(data, null, 4));
@@ -132,6 +137,46 @@
 					</script>
 				</div>
 			</li>
+
+			<!-- ////////////////////////////////////////////////////////////////////////////// -->
+
+			<li><h3>Evenement</h3></li>
+
+			<li class="block"><a href="/ph/azotlive/default/getEvents">Liste des evenements (tag filtrable) </a><br/>
+			</li>
+
+			<li class="block"><a href="/ph/azotlive/default/saveEvent">Create/Update evenement</a><br/>
+			</li>
+
+			<li class="block"><a href="/ph/azotlive/default/getEvent">Get un evenement</a><br/>
+			</li>
+
+			<!-- ////////////////////////////////////////////////////////////////////////////// -->
+
+			<li><h3>Votes</h3></li>
+
+			<li class="block"><a href="/ph/azotlive/default/saveAssociation">Create/Update Associations</a><br/>
+			</li>
+
+			<li class="block"><a href="/ph/azotlive/default/getAssociation">Get une Associations</a><br/>
+			</li>
+
+			<li class="block"><a href="/ph/azotlive/default/linkUserAssociation">Lié un User a une Association</a><br/>
+			</li>
+
+			<!-- ////////////////////////////////////////////////////////////////////////////// -->
+
+			<li><h3>Ventes</h3></li>
+
+			<li class="block"><a href="/ph/azotlive/default/saveGroup">Create/Update Groupe</a><br/>
+			</li>
+
+			<li class="block"><a href="/ph/azotlive/default/linkUserAssociation">Link un User or an Association to a group</a><br/>
+			</li>
+
+			<li class="block"><a href="/ph/azotlive/default/getGroup">Get une Group</a><br/>
+			</li>
+
 
 		</ul>
 	</div>

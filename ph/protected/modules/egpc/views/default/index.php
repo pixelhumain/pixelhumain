@@ -1,8 +1,18 @@
 <style>
+	.apiList h2,.apiList h3 { 
+		font-family: "Homestead";
+		position:relative;
+		top:0px;
+		left:0px;
+		color: #324553;
+		background-color: white;
+		padding : 10px;
+		border : 3px solid #666;
+	}
 	.apiList ul{list-style: none;}
 	.apiList .block{ 
 		border:1px solid #333; 
-		background-color: beige; 
+		background-color: #ededed; 
 		margin:10px; 
 		padding:10px;
 	}
@@ -15,7 +25,7 @@
 </style>
 <div class="containeri apiList">
 	<div class="hero-uniti">
-		<h2>List of all available API's</h2>
+		<h2>E.G.P.C API : List all URLs</h2>
 		<ul>
 			
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
@@ -132,15 +142,40 @@
 
 			<li><h3>Association</h3></li>
 
-			<li class="block"><a href="/ph/egpc/default/saveUser">Create/Update Associations</a><br/>
+			<li class="block"><a href="/ph/egpc/default/saveAssociation">Create/Update Associations</a><br/>
 			</li>
 
-			<li class="block"><a href="/ph/egpc/default/saveUser">Contenu d'une Associations</a><br/>
+			<li class="block"><a href="/ph/egpc/default/getAssociation">Get une Associations</a><br/>
+			</li>
+
+			<li class="block"><a href="/ph/egpc/default/linkUserAssociation">Lié un User a une Association</a><br/>
+			</li>
+
+			<!-- ////////////////////////////////////////////////////////////////////////////// -->
+
+			<li><h3>Groupes</h3></li>
+
+			<li class="block"><a href="/ph/egpc/default/saveGroup">Create/Update Groupe</a><br/>
+			</li>
+
+			<li class="block"><a href="/ph/egpc/default/linkUserAssociation">Link un User or an Association to a group</a><br/>
+			</li>
+
+			<li class="block"><a href="/ph/egpc/default/getGroup">Get une Group</a><br/>
 			</li>
 
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
 			<li><h3>Evenement</h3></li>
+
+			<li class="block"><a href="/ph/egpc/default/getEvents">Liste des evenements (tag filtrable) </a><br/>
+			</li>
+
+			<li class="block"><a href="/ph/egpc/default/saveEvent">Create/Update evenement</a><br/>
+			</li>
+
+			<li class="block"><a href="/ph/egpc/default/getEvent">Get un evenement</a><br/>
+			</li>
 
 		</ul>
 	</div>
