@@ -28,18 +28,19 @@
 		padding : 10px;
 		border : 3px solid #666;
 	}
-	h4.blockblue{
-		background-color: #29C2FD
+	h4.blocky{
+		background-color: #fff95e
 	}
+	h3.blockp{background-color: #ffd150}
 </style>
 <div class="containeri apiList">
 	<div class="hero-uniti">
 		<h2>E.G.P.C API : List all URLs</h2>
 		<ul>
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
-			<li ><h3>Scenario</h3></li>
+			<li ><h3 class="blockp">Scenario</h3></li>
 			<li>
-				<h4 class="blockblue">Inscription / Creation</h4>
+				<h4 class="blocky">Inscription / Creation</h4>
 				<ul class="blocki">
 					<li>EGPC envoie une invitation par campagne mail contenant un lien d'inscription</li>
 					<li>Le nouveau venu s'inscrit en citoyen : email + cp </li>
@@ -50,7 +51,7 @@
 					<li>peut creer un evenement en tant que citoyen ou pour son entité</li>
 					<li>peut inviter qlq'un à un evenement</li>
 				</ul>
-				<h4  class="blockblue">Visualisation</h4>
+				<h4  class="blocky">Visualisation</h4>
 				<ul class="blocki">
 					<li>Tout le monde peut visualiser l'organisation de EGPC</li>
 					<li>Voir un listing de chaque entité  (Gpe. , Ass. , Ent., Cit. )</li>
@@ -62,7 +63,7 @@
 			</li>
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
-			<li><h3>User</h3></li>
+			<li><h3 class="blockp">User</h3></li>
 
 			<li class="block">
 				<a href="/ph/egpc/default/login">Login</a><br/>
@@ -174,30 +175,44 @@
 			</li>
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
-			<li><h3>Entities</h3></li>
+			<li><h3 class="blockp">Entities</h3></li>
 
-			<li class="block"><a href="/ph/egpc/default/saveAssociation">Create/Update Entité (Asso. , Entr. , Group )</a><br/>
+			<li class="block">
+				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Form</a>
+				<a href="/ph/egpc/default/saveAssociation">Create/Update Entité (Asso. , Entr. , Group )</a>
 			</li>
-
-			<li class="block"><a href="/ph/egpc/default/getAssociation">Get une Entité</a><br/>
+			
+			<li class="block">
+				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Get</a>
+				<a href="/ph/egpc/default/getAssociation">Get une Entité</a><br/>
 			</li>
-
-			<li class="block"><a href="/ph/egpc/default/linkUserAssociation">Lié un User a une Entité</a><br/>
+			
+			<li class="block">
+				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Link Form</a>
+				<a href="/ph/egpc/default/linkUserAssociation">Lié un User a une Entité</a><br/>
 			</li>
-
-			<li class="block"><a href="/ph/egpc/default/getEntities">Get EGPC Entités</a><br/>
+			
+			<li class="block">
+				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Get</a>
+				<a href="/ph/egpc/default/getEntities">Get all EGPC Entités</a><br/>
 			</li>
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
-			<li><h3>Evenement</h3></li>
+			<li><h3 class="blockp">Evenement</h3></li>
 
-			<li class="block"><a href="/ph/egpc/default/getEvents">Liste des evenements (tag filtrable) </a><br/>
+			<li class="block">
+				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Get</a>
+				<a href="/ph/egpc/default/getEvents">Liste des evenements (tag filtrable) </a><br/>
 			</li>
 
-			<li class="block"><a href="/ph/egpc/default/saveEvent">Create/Update evenement</a><br/>
+			<li class="block">
+				<a href="javascript:;" class="btn btn-primary" onclick="openModal('eventForm','data',null,'dynamicallyBuild')">Form</a>
+				<a href="/ph/egpc/default/saveEvent">Create/Update evenement</a><br/>
 			</li>
 
-			<li class="block"><a href="/ph/egpc/default/getEvent">Get un evenement</a><br/>
+			<li class="block">
+				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Get</a>
+				<a href="/ph/egpc/default/getEvent">Get un evenement</a><br/>
 			</li>
 
 		</ul>

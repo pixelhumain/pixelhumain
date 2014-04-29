@@ -1,5 +1,5 @@
 <style>
-	.apiList h2,.apiList h3 { 
+	.apiList h2,.apiList h3,.apiList h4 { 
 		font-family: "Homestead";
 		position:relative;
 		top:0px;
@@ -22,15 +22,46 @@
 	 .result{
 		color: red; 
 	}
+	.blocki{
+		background-color: #324553;
+		color: white;
+		padding : 10px;
+		border : 3px solid #666;
+	}
+	h4.blocky{
+		background-color: #fff95e
+	}
+	h3.blockp{background-color: #ffd150}
 </style>
 <div class="containeri apiList">
 	<div class="hero-uniti">
 		<h2>Water Watcher API : List all Urls</h2>
 		<ul>
-			
+			<!-- ////////////////////////////////////////////////////////////////////////////// -->
+			<li ><h3 class="blockp">Scenario</h3></li>
+			<li>
+				<h4 class="blocky">Users</h4>
+				<ul class="blocki">
+					<li>The Application is Secured by User REgistration and Login</li>
+					<li>User can define which Observations(push types) he will receive</li>
+				</ul>
+				<h4  class="blocky">Observations</h4>
+				<ul class="blocki">
+					<li>Observations are made by Users</li>
+					<li>Observations have different properties per types</li>
+					<li>Some observations are restricted</li>
+					<li>Observations are pushed to the user community, as Phone Notifactions</li>
+					<li>Maybe as SMS to validate</li>
+					<li>The admin User can moderate the application</li>
+					<li>a user Copy an observations to his phone SMS interface</li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</li>
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
-			<li><h3>User</h3></li>
+			<li><h3 class="blockp">User</h3></li>
 
 			<li class="block">
 				<a href="/ph/waterwatcher/default/login">Login</a><br/>
@@ -145,7 +176,7 @@
 
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
-			<li><h3>Observations</h3></li>
+			<li><h3 class="blockp">Observations</h3></li>
 			
 			<li class="block"><a href="/ph/waterwatcher/default/observations/type/sharkObservationReunion">Latest observations</a><br/>
 				<div class="fss">
@@ -330,6 +361,7 @@
 							    success:function(data) {
 							      FormContext = data;
 							      console.log("FormContext ",FormContext );
+							      $("#getObservationFormResult").html(JSON.stringify(data, null, 4));
 							    },
 							    error:function (xhr, ajaxOptions, thrownError){
 							      $("#getObservationFormResult").html(thrownError);
@@ -343,7 +375,7 @@
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
 
-			<li><h3>Tools</h3></li>
+			<li><h3 class="blockp">Tools</h3></li>
 			
 			<li class="block"><a href="/ph/waterwatcher/default/getClosestLocation/type/surfspots974/lat/xxx/lon/xxx">Closest Where Location </a><br/>
 				<div class="fss">
