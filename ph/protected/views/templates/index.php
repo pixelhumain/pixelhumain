@@ -43,7 +43,7 @@ ol.slats li p span.meta {
     <!-- Main hero unit for a primary marketing message or call to action -->
     <div class="hero-unit">
 <ol class="slats">
-	<?php foreach(CFileHelper::findFiles('protected\views\templates',array("exclude"=>array("index.php"),"level"=>0)) as $f){?>
+	<?php foreach(CFileHelper::findFiles('protected/views/templates/',array("exclude"=>array("index.php"),"level"=>0)) as $f){?>
 	<li class="group">
 		<h3>
 		    <?php $name = pathinfo($f, PATHINFO_FILENAME)?>

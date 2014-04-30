@@ -44,6 +44,8 @@
 				<ul class="blocki">
 					<li>The Application is Secured by User REgistration and Login</li>
 					<li>User can define which Observations(push types) he will receive</li>
+					<li>a registration is email validated</li>
+					<li></li>
 				</ul>
 				<h4  class="blocky">Observations</h4>
 				<ul class="blocki">
