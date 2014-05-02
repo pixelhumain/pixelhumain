@@ -134,9 +134,9 @@ class Citoyen
                     
                     //TODO : add an admin notification
                     Notification::add(array("type"=>Notification::NOTIFICATION_REGISTER,
-                                            "user"=>$newAccount));
+                                            "user"=>$newAccount["_id"]));
                     
-                    echo json_encode(array("result"=>true, "id"=>$newAccount["_id"]));
+                    echo json_encode(array("result"=>true, "id"=>$newAccount));
                } else
                         echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide et un mot de passe ."));
             } else
