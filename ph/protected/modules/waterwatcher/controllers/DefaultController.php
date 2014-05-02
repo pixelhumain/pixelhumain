@@ -63,8 +63,8 @@ class DefaultController extends Controller {
 			$newInfos['applications'] = array( "key"=> "waterwatcher", "usertype" => $_POST['type']  );
 			//$newInfos['lang'] = $_POST['lang'];
 			
-			Yii::app()->mongodb->citoyens->update(array("email" => $email), 
-                                                  array('$set' => $newInfos ) 
+			Yii::app()->mongodb->citoyens->update( array("email" => $email), 
+                                                   array('$set' => $newInfos ) 
                                                   );
 		}
 	    Yii::app()->end();
