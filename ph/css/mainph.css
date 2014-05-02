@@ -172,7 +172,7 @@ div.p40{padding:15px}
 .whitebg {background-color:white}
 * {margin: 0;padding: 0;box-sizing: border-box}
 html {background: #3399FF; } 
-body{width:100%;height:100%;padding-top: 0px}
+body{width:100%;height:0px;padding-top: 0px}
 
 .btn-ph {
 /*background-color: #F5E414;*/

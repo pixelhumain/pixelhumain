@@ -82,55 +82,63 @@ class Citoyen
                 
                
             }
-            else {
-                //validate isEmail
-                $email = $email;
-                $name = "";
-               if(preg_match('#^([\w.-])/<([\w.-]+@[\w.-]+\.[a-zA-Z]{2,6})/>$#',$email, $matches)) {
-                  $name = $matches[0];
-                  $email = $matches[1];
-               }
-               
-               if(!empty($pwd) && preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$email)) { 
-                   
-                   //new user is creating account 
-                   $newAccount = array(
-                    			'email'=>$email,
-                                'pwd' => hash('sha256', $email.$pwd),
-                                'tobeactivated' => true,
-                                'adminNotified' => false,
-                                'created' => time()
-                                );
-                    if(!empty($name))
-                        $newAccount["name"] = $name;
-                    //add to DB
-                    Yii::app()->mongodb->citoyens->insert($newAccount);
-                   
-                    //set session elements for global credentials
-                    Yii::app()->session["userId"] = $newAccount["_id"]; 
-                    Yii::app()->session["userEmail"] = $newAccount["email"];
-                    
-                    //send validation mail
-                    //TODO : make emails as cron jobs
-                    /*$message = new YiiMailMessage;
-                    $message->view = 'validation';
-                    $message->setSubject('Confirmer votre compte Pixel Humain');
-                    $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
-                    $message->addTo("oceatoon@gmail.com");//$email
-                    $message->from = Yii::app()->params['adminEmail'];
-                    Yii::app()->mail->send($message);*/
-                    
-                    //TODO : add an admin notification
-                    Notification::add(array("type"=>Notification::NOTIFICATION_REGISTER,
-                    						"user"=>$newAccount["_id"]));
-                    
-                    echo json_encode(array("result"=>true, "id"=>$newAccount["_id"]));
-               }else
-                   echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide et un mot de passe ."));
-            }
+            else
+                echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide et un mot de passe ."));
+            
 		} else
 		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
     }
 
+    public static function register( $email, $pwd){
+        if(Yii::app()->request->isAjaxRequest && isset($email) && !empty($email))
+        {
+            //validate isEmail
+            $name = "";
+           if(preg_match('#^([\w.-])/<([\w.-]+@[\w.-]+\.[a-zA-Z]{2,6})/>$#',$email, $matches)) 
+           {
+              $name = $matches[0];
+              $email = $matches[1];
+           }
+           
+           if(!empty($pwd) && preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$email)) 
+           { 
+               
+               //new user is creating account 
+               $newAccount = array(
+                            'email'=>$email,
+                            'pwd' => hash('sha256', $email.$pwd),
+                            'tobeactivated' => true,
+                            'adminNotified' => false,
+                            'created' => time()
+                            );
+                if(!empty($name))
+                    $newAccount["name"] = $name;
+                //add to DB
+                Yii::app()->mongodb->citoyens->insert($newAccount);
+               
+                //set session elements for global credentials
+                Yii::app()->session["userId"] = $newAccount["_id"]; 
+                Yii::app()->session["userEmail"] = $newAccount["email"];
+                
+                //send validation mail
+                //TODO : make emails as cron jobs
+                /*$message = new YiiMailMessage;
+                $message->view = 'validation';
+                $message->setSubject('Confirmer votre compte Pixel Humain');
+                $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
+                $message->addTo("oceatoon@gmail.com");//$email
+                $message->from = Yii::app()->params['adminEmail'];
+                Yii::app()->mail->send($message);*/
+                
+                //TODO : add an admin notification
+                Notification::add(array("type"=>Notification::NOTIFICATION_REGISTER,
+                                        "user"=>$newAccount["_id"]));
+                
+                echo json_encode(array("result"=>true, "id"=>$newAccount["_id"]));
+           } else
+                    echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide et un mot de passe ."));
+        } else
+            echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
+    }
    
 }

@@ -49,7 +49,7 @@ class DefaultController extends Controller {
 		$email = $_POST["email"];
 
 		//if exists login else create the new user
-		echo Citoyen::login( $email, $_POST["pwd"]);
+		echo Citoyen::register( $email, $_POST["pwd"]);
 		if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) )){
 			//udate the new app specific fields
 			$newInfos = array();
