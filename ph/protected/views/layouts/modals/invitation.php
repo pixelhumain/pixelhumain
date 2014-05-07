@@ -1,8 +1,10 @@
 <!-- Modal -->
-<div id="invitation" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="invitation" tabindex="-1" role="dialog" aria-labelledby="invitationLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Parainer ou Inviter Quelqu'un</h3>
+    <h3 id="invitationLabel">Parainer ou Inviter Quelqu'un</h3>
   </div>
   <div class="modal-body">
     <p> L'invité recevra un mail pour venir compléter sa fiche d'incription </p>
@@ -28,6 +30,8 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
     <button class="btn btn-primary" id="submitInvite" onclick="$('#inviteForm').submit();">Enregistrer</button>
   </div>
+</div>
+</div>
 </div>
 <!-- Modal -->
 

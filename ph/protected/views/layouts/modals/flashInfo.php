@@ -1,8 +1,10 @@
 <!-- Modal -->
-<div id="flashInfo" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div  class="modal  fade" id="flashInfo" tabindex="-1" role="dialog" aria-labelledby="flashInfoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Flash information :</h3>
+    <h3 id="flashInfoLabel">Flash information :</h3>
   </div>
   <div class="modal-body " id="flashInfoContent">
     
@@ -27,5 +29,7 @@
         <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
         <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
     </div>
+</div>
+</div>
 </div>
 <!-- /Modal Gallery fancy Box Like -->

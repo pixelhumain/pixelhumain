@@ -1,9 +1,11 @@
 
 <!-- Modal -->
-<div id="participer" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal  fade" id="participer"  tabindex="-1" role="dialog" aria-labelledby="participerLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Inscription réussie, Étape suivante ?</h3>
+    <h3 id="participerLabel">Inscription réussie, Étape suivante ?</h3>
   </div>
   <div class="modal-body" style="max-height:550px" >
   <p> Un mail de validation vous a été envoyé
@@ -13,12 +15,6 @@
           
           	
           	<table>
-          		<?php /*?>
-          		<tr>
-                  	<td class="txtright"></td>
-                  	<td> <?php echo $account['_id'] ?></td>
-              	</tr>
-              	*/?>
               	<tr>
                   	<td class="txtright"></td>
                   	<td> <?php if($account && isset($account['email']) )echo $account['email'] ?></td>
@@ -41,10 +37,9 @@
                                 ),
                                 'events' => array(
                                     'complete'=>"function( id,  name,  responseJSON,  xhr){
-                                    	console.log('".Yii::app()->createUrl('upload/citoyens/')."/'+xhr.name+'?d='+ new Date().getTime());
-                                    	$('#imageCitoyen').val('upload/citoyens/'+xhr.name);
-                                    	$('img.citizenThumb').attr('src','".Yii::app()->createUrl('upload/citoyens/')."/'+xhr.name+'?d='+ new Date().getTime());
-                                    	
+                                    console.log('".Yii::app()->createUrl('upload/citoyens/')."/'+xhr.name+'?d='+ new Date().getTime());
+                                    $('#imageCitoyen').val('upload/citoyens/'+xhr.name);
+                                    $('img.citizenThumb').attr('src','".Yii::app()->createUrl('upload/citoyens/')."/'+xhr.name+'?d='+ new Date().getTime());
                                     }"
                                 ),
                             ));
@@ -140,6 +135,8 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
     <button class="btn btn-primary" id="submitAccount" onclick="$('#register2').submit();">Enregistrer</button>
   </div>
+</div>
+</div>
 </div>
 <!-- Modal -->
 <script type="text/javascript">

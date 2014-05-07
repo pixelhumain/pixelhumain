@@ -1,15 +1,10 @@
 <?php 
-if($this->secure)
-    $this->renderPartial('application.views.layouts.modals.loginPwdForm');
-?>
-<?php $this->renderPartial('application.views.layouts.modals.participer',array( "account" => $account));?>
-<?php //$this->renderPartial('application.views.layouts.modals.association',array( "account" => $account) );?>
-<?php $this->renderPartial('application.views.layouts.modals.entreprise');?>
-<?php $this->renderPartial('application.views.layouts.modals.invitation');?>
-<?php $this->renderPartial('application.views.layouts.modals.boiteIdee');?>
-<?php $this->renderPartial('application.views.layouts.modals.flashInfo');?>
-
-
+$this->renderPartial('application.views.layouts.modals.loginPwdForm');
+$this->renderPartial('application.views.layouts.modals.participer',array( "account" => $account));
+$this->renderPartial('application.views.layouts.modals.entreprise');
+$this->renderPartial('application.views.layouts.modals.invitation');
+$this->renderPartial('application.views.layouts.modals.boiteIdee');
+$this->renderPartial('application.views.layouts.modals.flashInfo');?>
 
 <script type="text/javascript">
 initT['modalsInit'] = function(){

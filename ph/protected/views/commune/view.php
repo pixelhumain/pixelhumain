@@ -42,6 +42,7 @@ font-family: "Homestead";
 .graph div.block{border:1px solid #666;text-align:center; padding:5px;}
 #myfirstchart svg{z-index: 1000;}
 .actu ul{text-align:left;font-size:small}
+.row{border:1px solid #666}
 </style>
 <div class="container graph">
     <br/>
@@ -64,10 +65,9 @@ font-family: "Homestead";
    </div>
 </div></div>
 
-<div class="container graph">
-<div class="hero-unit">
-	<div class="row-fluid">
-		<div class="span4 block">
+<div class="grid-body no-border">
+	<div class="row">
+		<div class="col-md-4 block">
 			<span class="icon-users green" style="font-size:150%"></span><br/>
 			<h2>Évolution population</h2>
 			<script>var population = [];
@@ -79,7 +79,7 @@ font-family: "Homestead";
 			    </script>
 			<div id="myfirstchart" style="height: 250px;"></div>
 		</div>
-		<div class=" actu span4 block">
+		<div class=" actu col-md-4 block">
 			<span class="icon-newspaper green" style="font-size:150%"></span><br/>
 			<h2>Informations / Activité</h2>
 			
@@ -101,7 +101,7 @@ font-family: "Homestead";
 			?>
 			
 		</div>
-		<div class="span4 block">
+		<div class="col-md-4 block">
 			<span class="icon-users green" style="font-size:150%"></span><br/>
 			<h2>Associations </h2>
 			<?php 
@@ -114,8 +114,8 @@ font-family: "Homestead";
 		</div>
 	</div>
 	<br/>
-	<div class="row-fluid">
-		<div class="span8 block">
+	<div class="row">
+		<div class="col-md-8 block">
 		<span class="icon-picture green" style="font-size:150%"></span><br/>
 		<h2>Photographies / Vidéos</h2>
 		<div id="myCarousel" class="carousel slide">
@@ -176,7 +176,7 @@ font-family: "Homestead";
         </div>
         
 		</div>
-		<div class="span4 block">
+		<div class="col-md-4 block">
 		<span class="icon-briefcase green" style="font-size:150%"></span><br/>
 		<h2>Entreprises </h2>
 		<?php 
@@ -190,8 +190,8 @@ font-family: "Homestead";
 		</div>
 	</div>
 	<br/>
-	<div class="row-fluid">
-		<div class="span4  block">
+	<div class="row">
+		<div class="col-md-4  block">
     		<span class="icon-calendar green" style="font-size:150%"></span><br/>
     		<h2>Agenda</h2>
     		<small>flux Daté de divers source locale.
@@ -200,7 +200,7 @@ font-family: "Homestead";
     		</small>
 		</div>
 		
-		<div class="span4 block">
+		<div class="col-md-4 block">
     		<span class="icon-eye green" style="font-size:150%"></span><br/>
     		<h2>Découvrez</h2>
     		<small>Ceux qui connaissent le mieux leur region sont les habitants locaux.
@@ -209,7 +209,7 @@ font-family: "Homestead";
     		</small>
 		</div>
 		
-		<div class="span4 block">
+		<div class="col-md-4 block">
     		<span class="icon-cog-1 green" style="font-size:150%"></span><br/>
     		<h2>Participez</h2>
     		<small>La Participation citoyenne, rend la commune plus interactive, donc plus riche.
@@ -219,15 +219,15 @@ font-family: "Homestead";
 		
 	</div>
 	<br/>
-	<div class="row-fluid">
+	<div class="row">
 		
-		<div class="span6 block">
+		<div class="col-md-6 block">
 			<span class="icon-help green" style="font-size:150%"></span><br/>
     		<h2>Interrogez</h2>
     		<small>Il existera un jour un lien direct entre citoyen organisé et collectivité.</small>
 		</div>
 		
-		<div class="span6 block ">
+		<div class="col-md-6 block ">
 			<span class="icon-user-add green" style="font-size:150%"></span><br/>
     		<h2>Rézoté</h2>
     		<small>Des outils pour mieux collaborer, s'organiser et avancer.</small>
@@ -235,23 +235,23 @@ font-family: "Homestead";
 		
 	</div>
 	<br/>
-	<div class="row-fluid">
+	<div class="row">
 	
-		<div class="span4 block">
+		<div class="col-md-4 block">
     		<span class="icon-mic green" style="font-size:150%"></span><br/>
     		<h2>Petites Annonces Locales</h2>
     		<small>Le Recyclage, donner une deuxième vie au objet de la consommation </small>
     		<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Mon Annonce</a>
     	</div>
     		
-		<div class="span4 block">
+		<div class="col-md-4 block">
     		<span class="icon-address green" style="font-size:150%"></span><br/>
     		<h2>Covoiturez</h2>
     		<small>Les départs organisés d'une meme commune peuvent fortement diminuer le traffic de voiture.</small>
     		<br/> <a class='btn btn-primary' href=\"javascript('bientot')\">Nouveau Trajet</a>
 		</div>
 		
-		<div class="span4 block">
+		<div class="col-md-4 block">
     		<span class="icon-user-add green" style="font-size:150%"></span><br/>
     		<h2>Rencontrez</h2>
     		<small>Tout thématisé, facilite les rencontres et les echanges</small>
@@ -259,15 +259,15 @@ font-family: "Homestead";
 	    
 	</div>
 	<br/>
-	<div class="row-fluid">
+	<div class="row">
 	
-		<div class="span6 block">
+		<div class="col-md-6 block">
     		<span class="icon-lifebuoy green" style="font-size:150%"></span><br/>
     		<h2>Aide Participative</h2>
     		<small>Inicidant, Perte, Déménagement, </small>
 		</div>
 		
-		<div class="span6 block">
+		<div class="col-md-6 block">
 			<span class="icon-thumbs-up green" style="font-size:150%"></span><br/>
     		<h2>Actions/Pensées Positives</h2>
     		<small>------- </small>
@@ -275,10 +275,10 @@ font-family: "Homestead";
 		
 	</div>
 	<br/>
-	<div class="row-fluid">
+	<div class="row">
 	
 
-		<div class="span6 block">
+		<div class="col-md-6 block">
     		<span class="icon-lifebuoy green" style="font-size:150%"></span><br/>
     		<h2>Lieux Locaux
     		<?php
@@ -293,7 +293,7 @@ font-family: "Homestead";
 			?>
 		</div>
 		
-		<div class="span6 block">
+		<div class="col-md-6 block">
 			<span class="icon-thumbs-up green" style="font-size:150%"></span><br/>
     		<h2>>-------</h2>
     		<small>------- </small>
@@ -301,10 +301,10 @@ font-family: "Homestead";
 		
 	</div>
 	<br/>
-	<div class="row-fluid">
+	<div class="row">
 	
 		<?php if(isset($commune['structure'])){?>
-		<div class="span6 block">
+		<div class="col-md-6 block">
     		<span class="icon-map green" style="font-size:150%"></span><br/>
     		<h2>Quartier</h2>
     		
@@ -318,7 +318,7 @@ font-family: "Homestead";
 		<?php }?>
 		
 		<?php if(isset($commune['structure']['intercommune'])){?>
-		<div class="span6 block">
+		<div class="col-md-6 block">
 			<span class="icon-flow-tree green" style="font-size:150%"></span><br/>
     		<h2>InterCommune</h2>
     		<ul>
@@ -334,7 +334,7 @@ font-family: "Homestead";
 		
 	</div>
 	
-</div></div>
+</div></div></div>
 
 <script type="text/javascript"		>
 initT['animInit'] = function(){

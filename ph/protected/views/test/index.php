@@ -19,6 +19,23 @@ h2 {
         <h2>TEST</h2>
         
         <?php 
+
+        // connect
+$m = new MongoClient();
+
+// select a database
+$db = $m->pixelhumain;
+
+// select a collection (analogous to a relational database's table)
+$collection = $db->lists;
+
+$cursor = $collection->find();
+
+// iterate through the results
+foreach ($cursor as $document) {
+    echo $document["name"] . "<br/>";
+}
+
         $assoNames = array();
         $tmp = iterator_to_array(Yii::app()->mongodb->group->find( array("type"=>"association"), array("name" => 1) ));
         foreach($tmp as $a)

@@ -62,7 +62,7 @@ $(document).ready(function() {
 
     function initChatScroll() {
         var eleHeight = window.innerHeight;
-        console.log(eleHeight);
+        //console.log(eleHeight);
         $('#main-chat-wrapper').slimScroll({
                 color: '#a1b2bd',
                 size: '4px',

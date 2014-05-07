@@ -1,9 +1,11 @@
 
 <!-- Modal -->
-<div id="boiteIdee" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="boiteIdee"  tabindex="-1" role="dialog" aria-labelledby="boiteIdeeLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Proposer votre idée</h3>
+    <h3 id="boiteIdeeLabel">Proposer votre idée</h3>
   </div>
   <div class="modal-body">
     <p> Ce projet est un réseau social ouvert, un squelette de module d'interet general, qui accueillera </p>
@@ -24,5 +26,7 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
     <button class="btn btn-primary" id="submitInvite" onclick="$('#inviteForm').submit();">Enregistrer</button>
   </div>
+</div>
+</div>
 </div>
 <!-- Modal -->
