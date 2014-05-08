@@ -46,7 +46,8 @@
             $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' : "";
             $href = (isset($item["href"])) ? $item["href"] : "#";
             $class = (isset($item["class"])) ? 'class="'.$item["class"].'"' : "";
-            echo '<li><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' ><i class="'.$item["iconClass"].'"></i><span class="title">'.$item["label"].'</span>';
+            $icon = (isset($item["iconClass"])) ? '<i class="'.$item["iconClass"].'"></i>' : '';
+            echo '<li><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="title">'.$item["label"].'</span>';
             //This menu can have 2 levels
             if( isset($item["children"]) )
             {

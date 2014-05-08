@@ -44,14 +44,14 @@ class Citoyen
                         $message->from = Yii::app()->params['adminEmail'];
                         Yii::app()->mail->send($message);
                         
-                        echo json_encode( array("result"=>false, 
-                        						"msg"=>"Vous n'aviez pas creer de mot de passe, un mot de passe temporaire vous a été envoyé par mail.") );
+                        $res =  array("result"=>false, 
+                        						"msg"=>"Vous n'aviez pas creer de mot de passe, un mot de passe temporaire vous a été envoyé par mail.") ;
                     } else {
                         //if a pwd was typed 
                         //it will be set as pwd and will login the person
                         
                         Yii::app()->mongodb->citoyens->update(array("email"=>$email), 
-                                                              array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
+                                                              array('$set' => array("pwd"=>hash('sha256', $email.$pwd) ));
                         
                         Yii::app()->session["userId"] = $account["_id"];
                         Yii::app()->session["userEmail"] = $account["email"]; 
@@ -62,7 +62,7 @@ class Citoyen
                         Notification::add(array("type" => Notification::NOTIFICATION_LOGIN,
                             					"user" => $account["_id"]));
                         
-                        echo json_encode(array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"])));
+                        $res = array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"]));
                     }
                 } 
                 elseif ( !empty($pwd) && $account["pwd"] == hash('sha256', $email.$pwd))
@@ -76,17 +76,19 @@ class Citoyen
                     Notification::add(array("type" => Notification::NOTIFICATION_LOGIN,
                         					"user" => $account["_id"]));
                     
-                    echo json_encode(array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"])));
+                    $res = array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"]));
                 } else 
-                    echo json_encode(array("result"=>false, "msg"=>"Email ou Mot de Passe ne correspondent pas, rééssayez."));
+                    $res = array("result"=>false, "msg"=>"Email ou Mot de Passe ne correspondent pas, rééssayez.");
                 
                
             }
             else
-                echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide et un mot de passe ."));
+                $res = array("result"=>false, "msg"=>"Vous devez remplir un email valide et un mot de passe .");
             
 		} else
-		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
+		    $res = array("result"=>false, "msg"=>"Cette requete ne peut aboutir.");
+
+        return $res;
     }
 
     public static function register( $email, $pwd){
@@ -136,13 +138,15 @@ class Citoyen
                     Notification::add(array("type"=>Notification::NOTIFICATION_REGISTER,
                                             "user"=>$newAccount["_id"]));
                     
-                    echo json_encode(array("result"=>true, "id"=>$newAccount));
+                    $res = array("result"=>true, "id"=>$newAccount);
                } else
-                        echo json_encode(array("result"=>false, "msg"=>"Vous devez remplir un email valide et un mot de passe ."));
+                        $res = array("result"=>false, "msg"=>"Vous devez remplir un email valide et un mot de passe .");
             } else
-                echo json_encode(array("result"=>true, "id"=>$account["_id"]));
+                $res = array("result"=>true, "id"=>$account["_id"]);
         } else
-            echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
+            $res = array("result"=>false, "msg"=>"Cette requete ne peut aboutir.");
+
+        return $res;
     }
    
 }

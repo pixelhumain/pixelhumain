@@ -10,7 +10,16 @@
 class DefaultController extends Controller {
 
     const moduleTitle = "Etat Généraux des pouvoirs citoyens";
-    public static $moduleKey = "waterwatcher";
+    public static $moduleKey = "egpc";
+
+    protected function beforeAction($action)
+  {
+    
+    array_push( $this->sidebar1, array( "label"=>"Login","href"=>"#blockLogin"));
+    array_push( $this->sidebar1, array( "label"=>"Save User","href"=>"#blockSaveUser"));
+    array_push( $this->sidebar1, array( "label"=>"Get User","href"=>"#blockGetUser"));
+    return parent::beforeAction($action);
+  }
     /**
      * List all the latest observations
      * @return [json Map] list
@@ -48,7 +57,7 @@ class DefaultController extends Controller {
         $email = $_POST["email"];
 
         //if exists login else create the new user
-        echo Citoyen::login( $email, $_POST["pwd"]);
+        echo Citoyen::register( $email, $_POST["pwd"]);
         if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) )){
             //udate the new app specific fields
             $newInfos = array();
@@ -59,7 +68,7 @@ class DefaultController extends Controller {
             if( isset($_POST['phoneNumber']) )
                 $newInfos['phoneNumber'] = $_POST['phoneNumber'];
 
-            $newInfos['applications'] = array( "key"=> "waterwatcher", "usertype" => $_POST['type']  );
+            $newInfos['applications'] = array( "key"=> $this->moduleKey, "usertype" => $_POST['type']  );
             //$newInfos['lang'] = $_POST['lang'];
             
             Yii::app()->mongodb->citoyens->update(array("email" => $email), 

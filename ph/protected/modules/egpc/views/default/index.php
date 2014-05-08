@@ -65,7 +65,7 @@
 
 			<li><h3 class="blockp">User</h3></li>
 
-			<li class="block">
+			<li class="block" id="blockLogin">
 				<a href="/ph/egpc/default/login">Login</a><br/>
 				<div class="fss">
 					Il faut etre loguer par email, cp, et mot de passe<br/>
@@ -97,7 +97,7 @@
 				</div>
 			</li>
 
-			<li class="block"><a href="/ph/egpc/default/saveUser">Create/Update user</a><br/>
+			<li class="block"><a href="/ph/egpc/default/saveUser"  id="blockSaveUser">Create/Update user</a><br/>
 				<div class="fss">
 					url : /ph/egpc/default/saveUser<br/>
 					method type : POST <br/>
@@ -105,19 +105,12 @@
 					return json object {"result":true || false}
 				</div>
 				<div class="apiForm createUser">
-					name : <input type="text" name="nameSaveUser" id="nameSaveUser" value="New User" /><br/>
-					email* : <input type="text" name="emailSaveUser" id="emailSaveUser" value="new@new.com" /><br/>
+					name : <input type="text" name="nameSaveUser" id="nameSaveUser" value="EGPC User" /><br/>
+					email* : <input type="text" name="emailSaveUser" id="emailSaveUser" value="egpc@egpc.com" /><br/>
 					cp* : <input type="text" name="postalcodeSaveUser" id="postalcodeSaveUser" value="97421" /><br/>
 					pwd* : <input type="text" name="pwdSaveUser" id="pwdSaveUser" value="1234" /><br/>
 					phoneNumber : <input type="text" name="phoneNumberSaveUser" id="phoneNumberSaveUser" value="1234" />(for SMS)<br/>
-					type : <select name="typeSaveUser" id="typeSaveUser">
-								<?php 
-								$tor = Yii::app()->mongodb->lists->findOne( array( "name" => "typeObservaterReunion" ),array("list") ) ;
-								foreach ($tor["list"] as $key => $value) {
-									echo '<option value="'.$key.'">'.$value.'</option>';
-								}
-								?>
-							</select><br/>
+					
 					<a href="javascript:addUser()">Test it</a><br/>
 					<div id="createUserResult" class="result fss"></div>
 					<script>
@@ -129,9 +122,7 @@
 							    	   "name" : $("#nameSaveUser").val() , 
 							    	   "cp" : $("#postalcodeSaveUser").val() , 
 							    	   "pwd" : $("#pwdSaveUser").val(),
-							    	   "phoneNumber" : $("#phoneNumberSaveUser").val(),
-							    		//"lang" : $("#langSaveUser").val(),
-							    		"type" : $("#typeSaveUser").val()},
+							    	   "phoneNumber" : $("#phoneNumberSaveUser").val()},
 							    type:"POST",
 							    success:function(data) {
 							      $("#createUserResult").html(JSON.stringify(data, null, 4));
@@ -145,7 +136,7 @@
 				</div>
 			</li>
 			
-			<li class="block"><a href="/ph/egpc/default/getUser/email/oceatoon@gmail.com">Get User</a><br/>
+			<li class="block"><a href="/ph/egpc/default/getUser/email/oceatoon@gmail.com"  id="blockGetUser">Get User</a><br/>
 				<div class="fss">
 					url : /ph/egpc/default/getUser/email/oceatoon@gmail.com<br/>
 					method type : GET <br/>

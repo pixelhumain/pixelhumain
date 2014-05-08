@@ -30,11 +30,28 @@ class DefaultController extends Controller {
 	 * actionLogin 
 	 * Login to open a session
 	 * uses the generic Citoyens login system 
+	 * check if application is registered on user account 
 	 * @return [type] [description]
 	 */
 	public function actionLogin() 
 	{
-		echo Citoyen::login( $_POST["email"] , $_POST["pwd"]);		
+		$email = $_POST["email"];
+		$res = Citoyen::login( $email , $_POST["pwd"]);	
+		if( isset( Yii::app()->session["userId"] ) ){
+			//check if application is registered on user account
+			$account = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) ); 
+			//if not add it 
+			if( !isset( $account["applications"] ) && !isset( $account["applications"][$this::$moduleKey] ) ){
+				$newInfos = array();
+				$newInfos['applications'] = array( $this::$moduleKey = array( "usertype" => $this::$moduleKey)  );
+				Yii::app()->mongodb->citoyens->update( array("email" => $email), 
+	                                                   array('$set' => $newInfos ) 
+	                                                  );
+				$res["addedRegistration"] = $this::$moduleKey;
+			} else
+				$res["isRegister".$this::$moduleKey] = true;
+		}
+		echo json_encode($res);
 	    Yii::app()->end();
 	}
 	/**
@@ -60,7 +77,7 @@ class DefaultController extends Controller {
 			if( isset($_POST['phoneNumber']) )
 				$newInfos['phoneNumber'] = $_POST['phoneNumber'];
 
-			$newInfos['applications'] = array( "key"=> "waterwatcher", "usertype" => $_POST['type']  );
+			$newInfos['applications'] = array( $this::$moduleKey = array( "usertype" => $_POST['type']  ));
 			//$newInfos['lang'] = $_POST['lang'];
 			
 			Yii::app()->mongodb->citoyens->update( array("email" => $email), 
@@ -105,7 +122,7 @@ class DefaultController extends Controller {
 	 */
 	public function actionAddObservation() 
 	{
-	   if( Yii::app()->request->isAjaxRequest  && isset( $_POST["who"] ) )
+	   if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest  && isset( $_POST["who"] ) )
 		{
 			//TODO : validate POST data to an observation model 
 			$newObservation = array(
@@ -121,7 +138,7 @@ class DefaultController extends Controller {
 	    	echo json_encode( array( "result"=>true,  
 	    							 "id"=>$newObservation["_id"] ) );
 		} else 
-			echo json_encode(array("result"=>false, "msg"=>"Something went wrong."));
+			echo json_encode(array("result"=>false, "msg"=>"Something went wrong. Maybe you not loggued in."));
 	    Yii::app()->end();
 	}
 	/**

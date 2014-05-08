@@ -96,7 +96,7 @@ class CitoyensController extends Controller {
 	
 	public function actionRegister()
 	{
-      Citoyen::login($_POST['registerEmail'] , $_POST['registerPwd'] );
+      echo json_encode(Citoyen::login($_POST['registerEmail'] , $_POST['registerPwd'] ));
 		  exit;
 	}
 	/**

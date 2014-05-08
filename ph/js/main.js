@@ -11,7 +11,7 @@ $(document).ready(function() {
 	/* Toile de delaunay en bg */
 	/* *************************** */
 	//console.log("delaunay",showDelaunay);
-	if( showDelaunay  )
+	/*if( showDelaunay  )
 	{
 		var w = 1000,
 	    h = 1000;
@@ -38,7 +38,7 @@ $(document).ready(function() {
 		  .enter().append("path")
 		    .attr("class", function(d, i) { return "q" + (i % 9) + "-9"; })
 		    .attr("d", function(d) { return "M" + d.join("L") + "Z"; });
-	}
+	}*/
 	/* *************************** */
 	
 	/* *************************** */
