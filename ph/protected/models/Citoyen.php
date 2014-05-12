@@ -3,7 +3,17 @@
 class Citoyen
 {
     const GAME_REZOTAGE	   = 10;
-    
+
+    const NODE_ASSOCIATIONS     = 'associations';
+    const NODE_APPLICATIONS     = 'applications';
+    const NODE_EVENTS           = 'events';
+    const NODE_POSITIONS        = 'positions';
+
+    public static $types2Nodes = array(Group::TYPE_ASSOCIATION => self::NODE_ASSOCIATIONS,
+                                Group::TYPE_ENTREPRISE  => "employees",
+                                Group::TYPE_EVENT       => "participants",
+                                Group::TYPE_PROJECT     => "participants");
+
     public static function isCommunected(){
         $user = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
         return (isset($user["cp"])) ? $user["cp"] : null;
@@ -51,7 +61,7 @@ class Citoyen
                         //it will be set as pwd and will login the person
                         
                         Yii::app()->mongodb->citoyens->update(array("email"=>$email), 
-                                                              array('$set' => array("pwd"=>hash('sha256', $email.$pwd) ));
+                                                              array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
                         
                         Yii::app()->session["userId"] = $account["_id"];
                         Yii::app()->session["userEmail"] = $account["email"]; 
@@ -87,7 +97,6 @@ class Citoyen
             
 		} else
 		    $res = array("result"=>false, "msg"=>"Cette requete ne peut aboutir.");
-
         return $res;
     }
 
@@ -146,6 +155,41 @@ class Citoyen
         } else
             $res = array("result"=>false, "msg"=>"Cette requete ne peut aboutir.");
 
+        return $res;
+    }
+
+    //Registers a user into an application
+    //by adding "applications":{"appKey":{appData}}
+    //an application is defined in the application collection
+    public static function applicationRegistered($appKey, $email){
+        $res = array();
+        if( isset( Yii::app()->session["userId"] ) ){
+            //TODO : test application exists
+            $application = Yii::app()->mongodb->applications->findOne( array( "key" => $appKey ) );  
+            //check if application is registered on user account
+            $account = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) ); 
+            //if not add it 
+            if( isset( $application ) && !isset( $account["applications"][$appKey] ) )
+            {
+                $newInfos = array();
+                if( !isset( $account[ 'applications' ] ))
+                    $newInfos['applications'] = array( $appKey => array( "usertype" => $appKey)  );
+                else {
+                    $newInfos['applications'] = $account[ 'applications' ];
+                    $newInfos['applications'] [$appKey] = array( "usertype" => $appKey)  ;
+                }
+                //if application requires rgistration confirmation or moderation
+                if( isset( $application["registration"] ) && $application["registration"] == "mustBeConfirmed"  ){
+                    $newInfos['applications'][$appKey]["registrationConfirmed"] = false ;
+                    $res["addedRegistrationConfirmationRequest"] = true;
+                }
+                Yii::app()->mongodb->citoyens->update( array("email" => $email), 
+                                                       array('$set' => $newInfos ) 
+                                                      );
+                $res["addedRegistration"] = $appKey;
+            } else
+                $res["isRegister".$appKey] = true;
+        }
         return $res;
     }
    

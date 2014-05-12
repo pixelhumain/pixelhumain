@@ -19,6 +19,7 @@ class Controller extends CController
 	 */
 	public $topMenu = array();
 	public $sidebar1 = array();
+	public $percent = 15;
 	/**
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
 	 */

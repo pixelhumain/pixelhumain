@@ -11,13 +11,16 @@ class DefaultController extends Controller {
 
     const moduleTitle = "Etat Généraux des pouvoirs citoyens";
     public static $moduleKey = "egpc";
-
+    
+    public $sidebar1 = array(
+            array( "label"=>"Login","href"=>"#blockLogin"),
+            array( "label"=>"Save User","href"=>"#blockSaveUser"),
+            array( "label"=>"Get User","href"=>"#blockGetUser")
+        );
+    public $percent = 60; //TODO link it to unit test
     protected function beforeAction($action)
   {
     
-    array_push( $this->sidebar1, array( "label"=>"Login","href"=>"#blockLogin"));
-    array_push( $this->sidebar1, array( "label"=>"Save User","href"=>"#blockSaveUser"));
-    array_push( $this->sidebar1, array( "label"=>"Get User","href"=>"#blockGetUser"));
     return parent::beforeAction($action);
   }
     /**
@@ -42,7 +45,10 @@ class DefaultController extends Controller {
      */
     public function actionLogin() 
     {
-        echo Citoyen::login( $_POST["email"] , $_POST["pwd"]);      
+        $email = $_POST["email"];
+        $res = Citoyen::login( $email , $_POST["pwd"]); 
+        $res = array_merge($res, Citoyen::applicationRegistered($this::$moduleKey,$email));
+        echo json_encode( $res );  
         Yii::app()->end();
     }
     /**
@@ -55,26 +61,28 @@ class DefaultController extends Controller {
     public function actionSaveUser() 
     {
         $email = $_POST["email"];
+        if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest){
+            //if exists login else create the new user
+            $res = Citoyen::register( $email, $_POST["pwd"]);
+            if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) )){
+                //udate the new app specific fields
+                $newInfos = array();
+                if( isset($_POST['cp']) )
+                    $newInfos['cp'] = $_POST['cp'];
+                if( isset($_POST['name']) )
+                    $newInfos['name'] = $_POST['name'];
+                if( isset($_POST['phoneNumber']) )
+                    $newInfos['phoneNumber'] = $_POST['phoneNumber'];
 
-        //if exists login else create the new user
-        echo Citoyen::register( $email, $_POST["pwd"]);
-        if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) )){
-            //udate the new app specific fields
-            $newInfos = array();
-            if( isset($_POST['cp']) )
-                $newInfos['cp'] = $_POST['cp'];
-            if( isset($_POST['name']) )
-                $newInfos['name'] = $_POST['name'];
-            if( isset($_POST['phoneNumber']) )
-                $newInfos['phoneNumber'] = $_POST['phoneNumber'];
-
-            $newInfos['applications'] = array( "key"=> $this->moduleKey, "usertype" => $_POST['type']  );
-            //$newInfos['lang'] = $_POST['lang'];
-            
-            Yii::app()->mongodb->citoyens->update(array("email" => $email), 
-                                                  array('$set' => $newInfos ) 
-                                                  );
-        }
+                $newInfos['applications'] = array( $this::$moduleKey => array( "usertype"=>$_POST['type'] ,"registrationConfirmed" => false ));
+                
+                Yii::app()->mongodb->citoyens->update( array("email" => $email), 
+                                                       array('$set' => $newInfos ) 
+                                                      );
+            }
+        } else
+            $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
+        echo json_encode( $res );  
         Yii::app()->end();
     }
     /**
@@ -84,20 +92,107 @@ class DefaultController extends Controller {
      */
     public function actionGetUser($email) 
     {
-        $res = true;
-        $user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
+       $user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
         echo json_encode( $user );
         Yii::app()->end();
     }
 
+    public function actionConfirmUserRegistration($email) 
+    {
+        //TODO : add a test adminUser
+        //isAppAdminUser
+        if( isset( Yii::app()->session["userId"]  ) ) { 
+            $user = Yii::app()->mongodb->citoyens->findAndModify( array("email" => $email), 
+                                                                  array('$set' => array("applications.egpc.registrationConfirmed"=>true) ) );
+            $user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
+            echo json_encode( $user );
+        }
+        Yii::app()->end();
+    }
+
+    public function actionGetPeople() 
+    {
+        $users = Yii::app()->mongodb->citoyens->find( array( "applications.egpc.usertype" => $this::$moduleKey ));
+        echo json_encode( iterator_to_array($users) );
+        Yii::app()->end();
+    }
     //********************************************************************************
     //          ASSOCIATION
     //********************************************************************************
-    
-    //********************************************************************************
-    //          GROUPS
-    //********************************************************************************
-    
+    public function actionSaveGroup() 
+    {
+        $email = $_POST["email"];
+
+        if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest){
+            //creating user must exist
+            if($user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) )) 
+            {
+                //udate the new app specific fields
+                $newInfos = array();
+                if( isset($_POST['email']) )
+                    $newInfos['email'] = $_POST['email'];
+                if( isset($_POST['cp']) )
+                    $newInfos['cp'] = $_POST['cp'];
+                if( isset($_POST['name']) )
+                    $newInfos['name'] = $_POST['name'];
+                if( isset($_POST['phoneNumber']) )
+                    $newInfos['phoneNumber'] = $_POST['phoneNumber'];
+                if( isset($_POST['type']) )
+                    $newInfos['type'] = $_POST['type'];
+                $newInfos['applications'] = array( $this::$moduleKey => array( "usertype"=>$_POST['type'],"registrationConfirmed" => false ));
+                    
+                //if exists login else create the new group
+                if(!Yii::app()->mongodb->group->findOne( array( "type"=>$_POST['type'],"name"=>$_POST['name'] ) ))
+                {
+                    Yii::app()->mongodb->group->insert( $newInfos);
+                    $res = array("result" => true, 
+                                 "msg"    => $_POST['type']." has be created or updated");
+                } else {
+                    //if there's an email change 
+                    Yii::app()->mongodb->group->update( array("name" => $_POST['name']), 
+                                                        array('$set' => $newInfos ) 
+                                                      );
+                }
+            } else 
+                $res = array('result' => false, "msg"=>"Connected user must exist");
+         } else
+            $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
+
+        echo json_encode( $res );  
+        Yii::app()->end();
+    }
+    public function actionGetGroup($email) 
+    {
+       $res = Yii::app()->mongodb->group->find( array( "email" => $email ) );
+        echo json_encode( iterator_to_array($res) );
+        Yii::app()->end();
+    }
+
+    public function actionGetGroups() 
+    {
+        //TODO : other fgroup types
+       $res = Yii::app()->mongodb->group->find( array( "applications.egpc.usertype" => Group::TYPE_ASSOCIATION ));
+        echo json_encode( iterator_to_array($res) );
+        Yii::app()->end();
+    }
+    public function actionLinkUser2Group() 
+    {
+        if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest && isset( $_POST['email'] ) && isset( $_POST['name'] ) )
+            $res = Group::addMember( $_POST['email'] , $_POST['name'], Group::TYPE_ASSOCIATION );
+        else
+            $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
+        echo json_encode( $res );
+        Yii::app()->end();
+    }
+    public function actionUnLinkUser2Group() 
+    {
+        if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest && isset( $_POST['email'] ) && isset( $_POST['name'] ) )
+            $res = Group::removeMember( $_POST['email'] , $_POST['name'], Group::TYPE_ASSOCIATION );
+        else
+            $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
+        echo json_encode( $res );
+        Yii::app()->end();
+    }
     //********************************************************************************
     //          EVENTS
     //********************************************************************************

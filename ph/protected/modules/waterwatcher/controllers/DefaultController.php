@@ -37,21 +37,9 @@ class DefaultController extends Controller {
 	{
 		$email = $_POST["email"];
 		$res = Citoyen::login( $email , $_POST["pwd"]);	
-		if( isset( Yii::app()->session["userId"] ) ){
-			//check if application is registered on user account
-			$account = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) ); 
-			//if not add it 
-			if( !isset( $account["applications"] ) && !isset( $account["applications"][$this::$moduleKey] ) ){
-				$newInfos = array();
-				$newInfos['applications'] = array( $this::$moduleKey = array( "usertype" => $this::$moduleKey)  );
-				Yii::app()->mongodb->citoyens->update( array("email" => $email), 
-	                                                   array('$set' => $newInfos ) 
-	                                                  );
-				$res["addedRegistration"] = $this::$moduleKey;
-			} else
-				$res["isRegister".$this::$moduleKey] = true;
-		}
-		echo json_encode($res);
+		$res = array_merge($res, Citoyen::applicationRegistered($this::$moduleKey,$email));
+		
+		echo json_encode( $res );
 	    Yii::app()->end();
 	}
 	/**
@@ -77,7 +65,7 @@ class DefaultController extends Controller {
 			if( isset($_POST['phoneNumber']) )
 				$newInfos['phoneNumber'] = $_POST['phoneNumber'];
 
-			$newInfos['applications'] = array( $this::$moduleKey = array( "usertype" => $_POST['type']  ));
+			$newInfos['applications'] = array( $this::$moduleKey => array( "usertype" => $_POST['type']  ));
 			//$newInfos['lang'] = $_POST['lang'];
 			
 			Yii::app()->mongodb->citoyens->update( array("email" => $email), 

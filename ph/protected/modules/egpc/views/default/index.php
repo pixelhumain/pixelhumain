@@ -79,18 +79,10 @@
 					<script>
 						function login(){
 							$("#loginResult").html("");
-							$.ajax({
-							    url:'/ph/egpc/default/login',
-							    type:"POST",
-							    data:{ "email" : $("#emailLogin").val() , 
-							    	   "pwd" : $("#pwdLogin").val()},
-							    success:function(data) {
-							      $("#loginResult").html(data);
-							    },
-							    error:function (xhr, ajaxOptions, thrownError){
-							      $("#loginResult").html(data);
-							    } 
-							  });
+							params = { "email" : $("#emailLogin").val() , 
+							    	   "pwd" : $("#pwdLogin").val()};
+							testitpost("loginResult",'/ph/egpc/default/login',params);
+							
 						}
 					</script>
 					
@@ -110,27 +102,20 @@
 					cp* : <input type="text" name="postalcodeSaveUser" id="postalcodeSaveUser" value="97421" /><br/>
 					pwd* : <input type="text" name="pwdSaveUser" id="pwdSaveUser" value="1234" /><br/>
 					phoneNumber : <input type="text" name="phoneNumberSaveUser" id="phoneNumberSaveUser" value="1234" />(for SMS)<br/>
-					
+					type : <select name="typeSaveUser" id="typeSaveUser">
+								<option value="egpc">Participant</option>
+								<option value="adminegpc">adminEGPC</option>
+							</select><br/>
 					<a href="javascript:addUser()">Test it</a><br/>
 					<div id="createUserResult" class="result fss"></div>
 					<script>
 						function addUser(){
-							$("#getUserResult").html("");
-							$.ajax({
-							    url:'/ph/egpc/default/saveUser',
-							    data:{ "email" : $("#emailSaveUser").val() , 
+							params = { "email" : $("#emailSaveUser").val() , 
 							    	   "name" : $("#nameSaveUser").val() , 
 							    	   "cp" : $("#postalcodeSaveUser").val() , 
-							    	   "pwd" : $("#pwdSaveUser").val(),
-							    	   "phoneNumber" : $("#phoneNumberSaveUser").val()},
-							    type:"POST",
-							    success:function(data) {
-							      $("#createUserResult").html(JSON.stringify(data, null, 4));
-							    },
-							    error:function (xhr, ajaxOptions, thrownError){
-							      $("#createUserResult").html(data);
-							    } 
-							  });
+							    	   "type" : $("#typeSaveUser").val(),
+							    	   "phoneNumber" : $("#phoneNumberSaveUser").val()};
+							testitpost("createUserResult",'/ph/egpc/default/saveUser',params);
 						}
 					</script>
 				</div>
@@ -143,26 +128,33 @@
 					param : email<br/>
 					email : <input type="text" name="getUseremail" id="getUseremail" value="oceatoon@gmail.com" /><br/>
 					<a href="javascript:getUser()">Test it</a><br/>
+					<a href="javascript:confirmUserRegistration()">Confirm User Registration</a><br/>
 					<div id="getUserResult" class="result fss"></div>
 					<script>
 						function getUser(){
-							$("#getUserResult").html("");
-							$.ajax({
-							    url:'/ph/egpc/default/getUser/email/'+$("#getUseremail").val(),
-							    type:"GET",
-							    success:function(data) {
-							      $("#getUserResult").html(JSON.stringify(data, null, 4));
-							    },
-							    error:function (xhr, ajaxOptions, thrownError){
-							      $("#getUserResult").html(data);
-							    } 
-							  });
+							testitget("getUserResult",'/ph/egpc/default/getUser/email/'+$("#getUseremail").val());
+						}
+						function confirmUserRegistration(){
+							testitget("getUserResult",'/ph/egpc/default/confirmUserRegistration/email/'+$("#getUseremail").val());
 						}
 					</script>
 				</div>
 			</li>
 
+
 			<li class="block"><a href="/ph/egpc/default/getPeople">Get EGPC People</a><br/>
+				<div class="fss">
+					url : /ph/egpc/default/getPeople<br/>
+					method type : GET <br/>
+					<a href="javascript:getPeople()">Test it</a><br/>
+					<div id="getPeopleResult" class="result fss"></div>
+					<script>
+						function getPeople(){
+							testitget("getPeopleResult",'/ph/egpc/default/getPeople');
+						}
+					</script>
+				</div>
+
 			</li>
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
@@ -170,22 +162,109 @@
 
 			<li class="block">
 				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Form</a>
-				<a href="/ph/egpc/default/saveAssociation">Create/Update Entité (Asso. , Entr. , Group )</a>
+				<a href="/ph/egpc/default/saveGroup">Create/Update Entité (Asso. , Entr. , Group )</a>
+
+				<div class="fss">
+					url : /ph/egpc/default/saveGroup<br/>
+					method type : POST <br/>
+					Form inputs : email,postalcode,pwd,phoneNumber(is optional)type<br/>
+					return json object {"result":true || false}
+				</div>
+				<div class="apiForm createUser">
+					name : <input type="text" name="namesaveGroup" id="namesaveGroup" value="Asso1" /><br/>
+					email* : <input type="text" name="emailsaveGroup" id="emailsaveGroup" value="egpc@egpc.com" /> (personne physique responsable )<br/>
+					cp* : <input type="text" name="postalcodesaveGroup" id="postalcodesaveGroup" value="97421" /><br/>
+					phoneNumber : <input type="text" name="phoneNumbersaveGroup" id="phoneNumbersaveGroup" value="1234" />(for SMS)<br/>
+					type : <select name="typesaveGroup" id="typesaveGroup">
+								<option value="association">Association</option>
+								<option value="entreprise">Entreprise</option>
+								<option value="group">Groupe de personne</option>
+							</select><br/>
+					<a href="javascript:addUser()">Test it</a><br/>
+					<div id="saveGroupResult" class="result fss"></div>
+					<script>
+						function addUser(){
+							params = { "email" : $("#emailsaveGroup").val() , 
+							    	   "name" : $("#namesaveGroup").val() , 
+							    	   "cp" : $("#postalcodesaveGroup").val() , 
+							    	   "pwd" : $("#pwdsaveGroup").val(),
+							    	   "type" : $("#typesaveGroup").val(),
+							    	   "phoneNumber" : $("#phoneNumbersaveGroup").val()};
+							testitpost("saveGroupResult",'/ph/egpc/default/saveGroup',params);
+						}
+					</script>
+				</div>
+
 			</li>
 			
 			<li class="block">
 				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Get</a>
-				<a href="/ph/egpc/default/getAssociation">Get une Entité</a><br/>
+				<a href="/ph/egpc/default/getGroup">Get une Entité by email </a><br/>
+				<div class="fss">
+					url : /ph/egpc/default/getGroup/email/egpc@egpc.com<br/>
+					method type : GET <br/>
+					param : email<br/>
+					email : <input type="text" name="getGroupemail" id="getGroupemail" value="egpc@egpc.com" /><br/>
+					<a href="javascript:getGroup()">Test it</a><br/>
+					<a href="javascript:confirmUserRegistration()">Confirm User Registration</a><br/>
+					<div id="getGroupResult" class="result fss"></div>
+					<script>
+						function getGroup(){
+							testitget("getGroupResult",'/ph/egpc/default/getGroup/email/'+$("#getGroupemail").val());
+						}
+						function confirmUserRegistration(){
+							testitget("getGroupResult",'/ph/egpc/default/confirmGroupRegistration/email/'+$("#getGroupemail").val());
+						}
+					</script>
+				</div>
+			
 			</li>
 			
 			<li class="block">
 				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Link Form</a>
-				<a href="/ph/egpc/default/linkUserAssociation">Lié un User a une Entité</a><br/>
+				<a href="/ph/egpc/default/linkUser2Group">Lié un User a une Entité</a><br/>
+				<div class="fss">
+					url : /ph/egpc/default/linkUser2Group/email/egpc@egpc.com<br/>
+					method type : GET <br/>
+					param : email<br/>
+					all egpc groups  : <input type="text" name="linkUser2GroupGroup" id="linkUser2GroupGroup" value="Asso1" />(auto-complete)<br/>
+					email : <input type="text" name="linkUser2Groupemail" id="linkUser2Groupemail" value="egpc@egpc.com" /><br/>
+					<a href="javascript:linkUser2Group()">Link it</a><br/>
+					<a href="javascript:unlinkUser2Group()">Unlink it</a><br/>
+					<div id="linkUser2GroupResult" class="result fss"></div>
+					<script>
+						function linkUser2Group(){
+							params = { 
+					    	   "email" : $("#linkUser2Groupemail").val() , 
+					    	   "name" : $("#linkUser2GroupGroup").val() 
+					    	   };
+							testitpost("linkUser2GroupResult",'/ph/egpc/default/linkUser2Group',params);
+						}
+						function unlinkUser2Group(){
+							params = { 
+					    	   "email" : $("#linkUser2Groupemail").val() , 
+					    	   "name" : $("#linkUser2GroupGroup").val() 
+					    	   };
+							testitpost("linkUser2GroupResult",'/ph/egpc/default/unlinkUser2Group',params);
+						}
+					</script>
+				</div>
 			</li>
 			
 			<li class="block">
 				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Get</a>
-				<a href="/ph/egpc/default/getEntities">Get all EGPC Entités</a><br/>
+				<a href="/ph/egpc/default/getGroups">Get all EGPC Entités</a><br/>
+				<div class="fss">
+					url : /ph/egpc/default/getGroups<br/>
+					method type : GET <br/>
+					<a href="javascript:getGroups()">Test it</a><br/>
+					<div id="getGroupsResult" class="result fss"></div>
+					<script>
+						function getGroups(){
+							testitget("getGroupsResult",'/ph/egpc/default/getGroups');
+						}
+					</script>
+				</div>
 			</li>
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
@@ -209,3 +288,34 @@
 		</ul>
 	</div>
 </div>
+<script type="text/javascript">
+function testitpost(id,url,params){
+	console.log(id,url,params);
+	$("#"+id).html("");
+	$.ajax({
+	    url:url,
+	    data:params,
+	    type:"POST",
+	    success:function(data) {
+	      $("#"+id).html(JSON.stringify(data, null, 4));
+	    },
+	    error:function (xhr, ajaxOptions, thrownError){
+	      $("#"+id).html(data);
+	    } 
+	  });
+}
+function testitget(id,url){
+	$("#"+id).html("");
+	$.ajax({
+	    url:url,
+	    data:params,
+	    type:"GET",
+	    success:function(data) {
+	      $("#"+id).html(JSON.stringify(data, null, 4));
+	    },
+	    error:function (xhr, ajaxOptions, thrownError){
+	      $("#"+id).html(data);
+	    } 
+	  });
+}
+</script>

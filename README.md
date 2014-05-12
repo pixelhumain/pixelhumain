@@ -20,16 +20,22 @@ extension=extension=php_mongo-1.4.5-5.5-vc11.dll
 - On Unix like OS : 
 Same as windows but choose a .so driver instead of a dll one.
 [Here's a good doc](http://tech.enekochan.com/2013/10/22/install-mongodb-in-ubuntu-12-04/)
+[manuel d'installation officiel PHP](http://www.php.net/manual/fr/mongo.installation.php)
 
 
 ####install a mongo Database instance and admin tool
 - [Mongo installation](http://docs.mongodb.org/manual/installation/)
 - [Mongo administration-interfaces](http://docs.mongodb.org/ecosystem/tools/administration-interfaces/)
+- [many of us use ROBOMONGO](http://robomongo.org/)
 - launch Mongo localy : 
 ```
 mongod --dbpath data\db
 ```
+- inside mongodb/bin folder , launch mongo
 - create a database called pixelhumain : use pixelhumain
+- create a user for the db : db.users.save( {username:"mkyong"} )
+
+- we'll soon create  
 
 ####Composer installation
 PixelHumain is set with composer in order to manage dependencies and libraries.
