@@ -39,6 +39,7 @@ return array(
 		'waterwatcher',
 		'egpc',
 		'azotlive',
+		'echolocal',
 		// uncomment the following to enable the Gii tool
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',

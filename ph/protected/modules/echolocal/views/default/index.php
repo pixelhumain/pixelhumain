@@ -35,30 +35,19 @@
 </style>
 <div class="containeri apiList">
 	<div class="hero-uniti">
-		<h2>E.G.P.C API : List all URLs</h2>
+		<h2>Echolocal API : List all URLs</h2>
 		<ul>
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 			<li ><h3 class="blockp">Scenario</h3></li>
 			<li>
 				<h4 class="blocky">Inscription / Creation</h4>
 				<ul class="blocki">
-					<li>EGPC envoie une invitation par campagne mail contenant un lien d'inscription</li>
-					<li>Le nouveau venu s'inscrit en citoyen : email + cp </li>
-					<li>peut creer une association + mot clef</li>
-					<li>peut creer une entreprise + mot clef</li>
-					<li>peut creer un groupe + mot clef</li>
-					<li>peut inviter qlq'un dans chacune de ces entités</li>
-					<li>peut creer un evenement en tant que citoyen ou pour son entité</li>
-					<li>peut inviter qlq'un à un evenement</li>
+					<li></li>
+					
 				</ul>
 				<h4  class="blocky">Visualisation</h4>
 				<ul class="blocki">
-					<li>Tout le monde peut visualiser l'organisation de EGPC</li>
-					<li>Voir un listing de chaque entité  (Gpe. , Ass. , Ent., Cit. )</li>
-					<li>Voir tout les evenements</li>
-					<li>Filtrer par mots clefs</li>
-					<li>Ouvrir une entité (Gpe. , Ass. , Ent., Cit. )</li>
-					<li>Ouvrir un evenement</li>
+					<li></li>
 				</ul>
 			</li>
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
@@ -66,7 +55,7 @@
 			<li><h3 class="blockp">User</h3></li>
 
 			<li class="block" id="blockLogin">
-				<a href="/ph/egpc/default/login">Login</a><br/>
+				<a href="/ph/echolocal/default/login">Login</a><br/>
 				<div class="fss">
 					Il faut etre loguer par email, cp, et mot de passe<br/>
 					method type : POST <br/>
@@ -81,7 +70,7 @@
 							$("#loginResult").html("");
 							params = { "email" : $("#emailLogin").val() , 
 							    	   "pwd" : $("#pwdLogin").val()};
-							testitpost("loginResult",'/ph/egpc/default/login',params);
+							testitpost("loginResult",'/ph/echolocal/default/login',params);
 							
 						}
 					</script>
@@ -89,22 +78,22 @@
 				</div>
 			</li>
 
-			<li class="block"><a href="/ph/egpc/default/saveUser"  id="blockSaveUser">Create/Update user</a><br/>
+			<li class="block"><a href="/ph/echolocal/default/saveUser"  id="blockSaveUser">Create/Update user</a><br/>
 				<div class="fss">
-					url : /ph/egpc/default/saveUser<br/>
+					url : /ph/echolocal/default/saveUser<br/>
 					method type : POST <br/>
 					Form inputs : email,postalcode,pwd,phoneNumber(is optional)<br/>
 					return json object {"result":true || false}
 				</div>
 				<div class="apiForm createUser">
-					name : <input type="text" name="nameSaveUser" id="nameSaveUser" value="EGPC User" /><br/>
-					email* : <input type="text" name="emailSaveUser" id="emailSaveUser" value="egpc@egpc.com" /><br/>
+					name : <input type="text" name="nameSaveUser" id="nameSaveUser" value="echolocal User" /><br/>
+					email* : <input type="text" name="emailSaveUser" id="emailSaveUser" value="echolocal@echolocal.com" /><br/>
 					cp* : <input type="text" name="postalcodeSaveUser" id="postalcodeSaveUser" value="97421" /><br/>
 					pwd* : <input type="text" name="pwdSaveUser" id="pwdSaveUser" value="1234" /><br/>
 					phoneNumber : <input type="text" name="phoneNumberSaveUser" id="phoneNumberSaveUser" value="1234" />(for SMS)<br/>
 					type : <select name="typeSaveUser" id="typeSaveUser">
-								<option value="egpc">Participant</option>
-								<option value="adminegpc">adminEGPC</option>
+								<option value="echolocal">Participant</option>
+								<option value="adminecholocal">adminecholocal</option>
 							</select><br/>
 					<a href="javascript:addUser()">Test it</a><br/>
 					<div id="createUserResult" class="result fss"></div>
@@ -115,15 +104,15 @@
 							    	   "cp" : $("#postalcodeSaveUser").val() , 
 							    	   "type" : $("#typeSaveUser").val(),
 							    	   "phoneNumber" : $("#phoneNumberSaveUser").val()};
-							testitpost("createUserResult",'/ph/egpc/default/saveUser',params);
+							testitpost("createUserResult",'/ph/echolocal/default/saveUser',params);
 						}
 					</script>
 				</div>
 			</li>
 			
-			<li class="block"><a href="/ph/egpc/default/getUser/email/oceatoon@gmail.com"  id="blockGetUser">Get User</a><br/>
+			<li class="block"><a href="/ph/echolocal/default/getUser/email/oceatoon@gmail.com"  id="blockGetUser">Get User</a><br/>
 				<div class="fss">
-					url : /ph/egpc/default/getUser/email/oceatoon@gmail.com<br/>
+					url : /ph/echolocal/default/getUser/email/oceatoon@gmail.com<br/>
 					method type : GET <br/>
 					param : email<br/>
 					email : <input type="text" name="getUseremail" id="getUseremail" value="oceatoon@gmail.com" /><br/>
@@ -132,25 +121,25 @@
 					<div id="getUserResult" class="result fss"></div>
 					<script>
 						function getUser(){
-							testitget("getUserResult",'/ph/egpc/default/getUser/email/'+$("#getUseremail").val());
+							testitget("getUserResult",'/ph/echolocal/default/getUser/email/'+$("#getUseremail").val());
 						}
 						function confirmUserRegistration(){
-							testitget("getUserResult",'/ph/egpc/default/confirmUserRegistration/email/'+$("#getUseremail").val());
+							testitget("getUserResult",'/ph/echolocal/default/confirmUserRegistration/email/'+$("#getUseremail").val());
 						}
 					</script>
 				</div>
 			</li>
 
 
-			<li class="block"><a href="/ph/egpc/default/getPeople">Get EGPC People</a><br/>
+			<li class="block"><a href="/ph/echolocal/default/getPeople">Get echolocal People</a><br/>
 				<div class="fss">
-					url : /ph/egpc/default/getPeople<br/>
+					url : /ph/echolocal/default/getPeople<br/>
 					method type : GET <br/>
 					<a href="javascript:getPeople()">Test it</a><br/>
 					<div id="getPeopleResult" class="result fss"></div>
 					<script>
 						function getPeople(){
-							testitget("getPeopleResult",'/ph/egpc/default/getPeople');
+							testitget("getPeopleResult",'/ph/echolocal/default/getPeople');
 						}
 					</script>
 				</div>
@@ -162,17 +151,17 @@
 
 			<li class="block">
 				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Form</a>
-				<a href="/ph/egpc/default/saveGroup">Create/Update Entité (Asso. , Entr. , Group )</a>
+				<a href="/ph/echolocal/default/saveGroup">Create/Update Entité (Asso. , Entr. , Group )</a>
 
 				<div class="fss">
-					url : /ph/egpc/default/saveGroup<br/>
+					url : /ph/echolocal/default/saveGroup<br/>
 					method type : POST <br/>
 					Form inputs : email,postalcode,pwd,phoneNumber(is optional)type<br/>
 					return json object {"result":true || false}
 				</div>
 				<div class="apiForm createUser">
 					name : <input type="text" name="namesaveGroup" id="namesaveGroup" value="Asso1" /><br/>
-					email* : <input type="text" name="emailsaveGroup" id="emailsaveGroup" value="egpc@egpc.com" /> (personne physique responsable )<br/>
+					email* : <input type="text" name="emailsaveGroup" id="emailsaveGroup" value="echolocal@echolocal.com" /> (personne physique responsable )<br/>
 					cp* : <input type="text" name="postalcodesaveGroup" id="postalcodesaveGroup" value="97421" /><br/>
 					phoneNumber : <input type="text" name="phoneNumbersaveGroup" id="phoneNumbersaveGroup" value="1234" />(for SMS)<br/>
 					type : <select name="typesaveGroup" id="typesaveGroup" onchange="typeChanged()">
@@ -200,7 +189,7 @@
 							if( $("#wheresaveGroup").val() )
 								paramas["where"] = $("#wheresaveGroup").val();
 							
-							testitpost("saveGroupResult",'/ph/egpc/default/saveGroup',params);
+							testitpost("saveGroupResult",'/ph/echolocal/default/saveGroup',params);
 						}
 						function typeChanged(){
 							console.log( $("#typesaveGroup").val() );
@@ -217,21 +206,21 @@
 			
 			<li class="block">
 				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Get</a>
-				<a href="/ph/egpc/default/getGroup">Get une Entité by email </a><br/>
+				<a href="/ph/echolocal/default/getGroup">Get une Entité by email </a><br/>
 				<div class="fss">
-					url : /ph/egpc/default/getGroup/email/egpc@egpc.com<br/>
+					url : /ph/echolocal/default/getGroup/email/echolocal@echolocal.com<br/>
 					method type : GET <br/>
 					param : email<br/>
-					email : <input type="text" name="getGroupemail" id="getGroupemail" value="egpc@egpc.com" /><br/>
+					email : <input type="text" name="getGroupemail" id="getGroupemail" value="echolocal@echolocal.com" /><br/>
 					<a href="javascript:getGroup()">Test it</a><br/>
 					<a href="javascript:confirmUserRegistration()">Confirm User Registration</a><br/>
 					<div id="getGroupResult" class="result fss"></div>
 					<script>
 						function getGroup(){
-							testitget("getGroupResult",'/ph/egpc/default/getGroup/email/'+$("#getGroupemail").val());
+							testitget("getGroupResult",'/ph/echolocal/default/getGroup/email/'+$("#getGroupemail").val());
 						}
 						function confirmUserRegistration(){
-							testitget("getGroupResult",'/ph/egpc/default/confirmGroupRegistration/email/'+$("#getGroupemail").val());
+							testitget("getGroupResult",'/ph/echolocal/default/confirmGroupRegistration/email/'+$("#getGroupemail").val());
 						}
 					</script>
 				</div>
@@ -240,13 +229,13 @@
 			
 			<li class="block">
 				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Link Form</a>
-				<a href="/ph/egpc/default/linkUser2Group">Lié un User a une Entité</a><br/>
+				<a href="/ph/echolocal/default/linkUser2Group">Lié un User a une Entité</a><br/>
 				<div class="fss">
-					url : /ph/egpc/default/linkUser2Group/email/egpc@egpc.com<br/>
+					url : /ph/echolocal/default/linkUser2Group/email/echolocal@echolocal.com<br/>
 					method type : GET <br/>
 					param : email<br/>
-					all egpc groups  : <input type="text" name="linkUser2GroupGroup" id="linkUser2GroupGroup" value="Asso1" />(auto-complete)<br/>
-					email(s) : <textarea type="text" name="linkUser2Groupemail" id="linkUser2Groupemail">egpc@egpc.com</textarea><br/>
+					all echolocal groups  : <input type="text" name="linkUser2GroupGroup" id="linkUser2GroupGroup" value="Asso1" />(auto-complete)<br/>
+					email(s) : <textarea type="text" name="linkUser2Groupemail" id="linkUser2Groupemail">echolocal@echolocal.com</textarea><br/>
 					séparé par des virgules<br/>
 					<a href="javascript:linkUser2Group()">Link it</a><br/>
 					<a href="javascript:unlinkUser2Group()">Unlink it</a><br/>
@@ -257,14 +246,14 @@
 					    	   "email" : $("#linkUser2Groupemail").val() , 
 					    	   "name" : $("#linkUser2GroupGroup").val() 
 					    	   };
-							testitpost("linkUser2GroupResult",'/ph/egpc/default/linkUser2Group',params);
+							testitpost("linkUser2GroupResult",'/ph/echolocal/default/linkUser2Group',params);
 						}
 						function unlinkUser2Group(){
 							params = { 
 					    	   "email" : $("#linkUser2Groupemail").val() , 
 					    	   "name" : $("#linkUser2GroupGroup").val() 
 					    	   };
-							testitpost("linkUser2GroupResult",'/ph/egpc/default/unlinkUser2Group',params);
+							testitpost("linkUser2GroupResult",'/ph/echolocal/default/unlinkUser2Group',params);
 						}
 					</script>
 				</div>
@@ -272,15 +261,15 @@
 			
 			<li class="block">
 				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Get</a>
-				<a href="/ph/egpc/default/getGroups">Get all EGPC Entités</a><br/>
+				<a href="/ph/echolocal/default/getGroups">Get all echolocal Entités</a><br/>
 				<div class="fss">
-					url : /ph/egpc/default/getGroups<br/>
+					url : /ph/echolocal/default/getGroups<br/>
 					method type : GET <br/>
 					<a href="javascript:getGroups()">Test it</a><br/>
 					<div id="getGroupsResult" class="result fss"></div>
 					<script>
 						function getGroups(){
-							testitget("getGroupsResult",'/ph/egpc/default/getGroups');
+							testitget("getGroupsResult",'/ph/echolocal/default/getGroups');
 						}
 					</script>
 				</div>

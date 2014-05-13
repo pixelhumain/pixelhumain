@@ -9,8 +9,8 @@
  */
 class DefaultController extends Controller {
 
-    const moduleTitle = "Etat Généraux des pouvoirs citoyens";
-    public static $moduleKey = "egpc";
+    const moduleTitle = "Echolocal";
+    public static $moduleKey = "echolocal";
     
     public $sidebar1 = array(
             array( "label"=>"Login","href"=>"#blockLogin"),
