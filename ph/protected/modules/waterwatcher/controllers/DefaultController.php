@@ -39,7 +39,7 @@ class DefaultController extends Controller {
 		$res = Citoyen::login( $email , $_POST["pwd"]);	
 		$res = array_merge($res, Citoyen::applicationRegistered($this::$moduleKey,$email));
 		
-		echo json_encode( $res );
+		Rest::json($res);
 	    Yii::app()->end();
 	}
 	/**

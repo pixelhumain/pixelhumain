@@ -48,7 +48,8 @@ class DefaultController extends Controller {
         $email = $_POST["email"];
         $res = Citoyen::login( $email , $_POST["pwd"]); 
         $res = array_merge($res, Citoyen::applicationRegistered($this::$moduleKey,$email));
-        echo json_encode( $res );  
+
+        Rest::json($res);
         Yii::app()->end();
     }
     /**
@@ -86,7 +87,7 @@ class DefaultController extends Controller {
             }
         } else
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
-        echo json_encode( $res );  
+        Rest::json($res);  
         Yii::app()->end();
     }
     /**
@@ -97,7 +98,7 @@ class DefaultController extends Controller {
     public function actionGetUser($email) 
     {
        $user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
-        echo json_encode( $user );
+        Rest::json( $user );
         Yii::app()->end();
     }
 
@@ -109,15 +110,22 @@ class DefaultController extends Controller {
             $user = Yii::app()->mongodb->citoyens->findAndModify( array("email" => $email), 
                                                                   array('$set' => array("applications.egpc.registrationConfirmed"=>true) ) );
             $user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
-            echo json_encode( $user );
+            Rest::json( $user );
         }
         Yii::app()->end();
     }
 
     public function actionGetPeople() 
     {
-        $users = Yii::app()->mongodb->citoyens->find( array( "applications.egpc.usertype" => $this::$moduleKey ));
-        echo json_encode( iterator_to_array($users) );
+        
+        if( isset( $_POST["name"] ) ){
+            $where["name"] = $_POST["name"];
+            $group = Yii::app()->mongodb->group->findOne ( array( "name" => $_POST["name"] ) );
+            $users = Yii::app()->mongodb->citoyens->find ( array( "associations" => (string)$group['_id']) );
+        } else {
+            $users = Yii::app()->mongodb->citoyens->find ( array( "applications.egpc.usertype" => $this::$moduleKey ) );
+        }
+        Rest::json( iterator_to_array($users) );
         Yii::app()->end();
     }
     //********************************************************************************
@@ -162,13 +170,13 @@ class DefaultController extends Controller {
          } else
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
 
-        echo json_encode( $res );  
+        Rest::json($res);  
         Yii::app()->end();
     }
     public function actionGetGroup($email) 
     {
        $res = Yii::app()->mongodb->group->find( array( "email" => $email ) );
-        echo json_encode( iterator_to_array($res) );
+        Rest::json( iterator_to_array($res) );
         Yii::app()->end();
     }
 
@@ -176,7 +184,7 @@ class DefaultController extends Controller {
     {
         //TODO : other fgroup types
        $res = Yii::app()->mongodb->group->find( array( "applications.egpc.usertype" => Group::TYPE_ASSOCIATION ));
-        echo json_encode( iterator_to_array($res) );
+        Rest::json( iterator_to_array($res) );
         Yii::app()->end();
     }
     public function actionLinkUser2Group() 
@@ -190,7 +198,7 @@ class DefaultController extends Controller {
             }
         } else
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
-        echo json_encode( $res );
+        Rest::json($res);
         Yii::app()->end();
     }
     public function actionUnLinkUser2Group() 
@@ -204,10 +212,21 @@ class DefaultController extends Controller {
             }
         } else
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
-        echo json_encode( $res );
+        Rest::json($res);
         Yii::app()->end();
     }
     //********************************************************************************
-    //          EVENTS
+    //          COMMUNICATIONS
     //********************************************************************************
+    public function actionSendMessage() 
+    {
+        if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest && isset( $_POST['email'] ) && isset( $_POST['msg'] ) )
+        {
+            $res = Message::createMessage($_POST['email']  , $_POST['msg'], self::$moduleKey );
+        } else
+            $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
+        Rest::json($res);
+        Yii::app()->end();
+    }
+
 }

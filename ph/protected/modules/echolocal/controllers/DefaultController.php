@@ -48,7 +48,7 @@ class DefaultController extends Controller {
         $email = $_POST["email"];
         $res = Citoyen::login( $email , $_POST["pwd"]); 
         $res = array_merge($res, Citoyen::applicationRegistered($this::$moduleKey,$email));
-        echo json_encode( $res );  
+        Rest::json($res);  
         Yii::app()->end();
     }
     /**
@@ -86,7 +86,7 @@ class DefaultController extends Controller {
             }
         } else
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
-        echo json_encode( $res );  
+        Rest::json($res);  
         Yii::app()->end();
     }
     /**
@@ -162,7 +162,7 @@ class DefaultController extends Controller {
          } else
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
 
-        echo json_encode( $res );  
+        Rest::json($res);  
         Yii::app()->end();
     }
     public function actionGetGroup($email) 
@@ -190,7 +190,7 @@ class DefaultController extends Controller {
             }
         } else
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
-        echo json_encode( $res );
+        Rest::json($res);
         Yii::app()->end();
     }
     public function actionUnLinkUser2Group() 
@@ -204,7 +204,7 @@ class DefaultController extends Controller {
             }
         } else
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
-        echo json_encode( $res );
+        Rest::json($res);
         Yii::app()->end();
     }
     //********************************************************************************

@@ -60,6 +60,10 @@
 					<li>Ouvrir une entité (Gpe. , Ass. , Ent., Cit. )</li>
 					<li>Ouvrir un evenement</li>
 				</ul>
+				<h4  class="blocky">Communication</h4>
+				<ul class="blocki">
+					<li>Send a message to list of people</li>
+				</ul>
 			</li>
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
@@ -162,7 +166,7 @@
 
 			<li class="block">
 				<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')">Form</a>
-				<a href="/ph/egpc/default/saveGroup">Create/Update Entité (Asso. , Entr. , Group )</a>
+				<a href="/ph/egpc/default/saveGroup">Create/Update Entité (Asso. , Entr. , Group, Events )</a>
 
 				<div class="fss">
 					url : /ph/egpc/default/saveGroup<br/>
@@ -181,10 +185,10 @@
 								<option value="group">Groupe de personne</option>
 								<option value="event">Evenement</option>
 							</select><br/>
-					<span class="hide whensaveGroup">
-						when : <input type="text" name="whensaveGroup" id="whensaveGroup" value="" />
-						where : <input type="text" name="wheresaveGroup" id="wheresaveGroup" value="" />
-					</span><br/>
+					<span class="whensaveGroup">
+					when : <input type="text" name="whensaveGroup" id="whensaveGroup" value="" /><br/>
+					where : <input  type="text" name="wheresaveGroup" id="wheresaveGroup" value="" /><br/>
+					</span>
 					<a href="javascript:addUser()">Test it</a><br/>
 					<div id="saveGroupResult" class="result fss"></div>
 					<script>
@@ -210,6 +214,10 @@
 								$(".whensaveGroup").hide();
 							}
 						}
+						initT['datepickerInit'] = function(){
+							$("#whensaveGroup").datepicker();
+							typeChanged();
+						};
 					</script>
 				</div>
 
@@ -243,9 +251,19 @@
 				<a href="/ph/egpc/default/linkUser2Group">Lié un User a une Entité</a><br/>
 				<div class="fss">
 					url : /ph/egpc/default/linkUser2Group/email/egpc@egpc.com<br/>
-					method type : GET <br/>
-					param : email<br/>
-					all egpc groups  : <input type="text" name="linkUser2GroupGroup" id="linkUser2GroupGroup" value="Asso1" />(auto-complete)<br/>
+					method type : POST <br/>
+					param : <br/>
+					all egpc groups  : 
+					<select id="linkUser2GroupGroup">
+						<option></option>
+						<?php 
+						$groups = Yii::app()->mongodb->group->find( array( "applications.egpc.usertype" => Group::TYPE_ASSOCIATION ));
+						foreach ($groups as $value) {
+							echo '<option value="'.$value["name"].'">'.$value["name"].'</option>';
+						}
+						?>
+						
+					</select><br/>
 					email(s) : <textarea type="text" name="linkUser2Groupemail" id="linkUser2Groupemail">egpc@egpc.com</textarea><br/>
 					séparé par des virgules<br/>
 					<a href="javascript:linkUser2Group()">Link it</a><br/>
@@ -286,11 +304,67 @@
 				</div>
 			</li>
 			
+			<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
+			<li><h3 class="blockp">Communcation</h3></li>
+			<li class="block">
+				<a href="/ph/egpc/default/sendMessage">Send a Message to people</a><br/>
+				<div class="fss">
+					url : /ph/egpc/default/sendMessage<br/>
+					method type : POST <br/>
+					params : <br/>
+					message  : <textarea name="sendMessagemsg" id="sendMessagemsg"></textarea> <br/>
+					email(s) : <textarea type="text" name="sendMessageemail" id="sendMessageemail">egpc@egpc.com</textarea><br/>
+					séparé par des virgules<br/>
+					<a href="javascript:sendMessage()">Send it</a><br/>
+					<select id="sendMessagePeople">
+						<option></option>
+						<?php 
+						$groups = Yii::app()->mongodb->group->find( array( "applications.egpc.usertype" => Group::TYPE_ASSOCIATION ));
+						foreach ($groups as $value) {
+							echo '<option value="'.$value["name"].'">'.$value["name"].'</option>';
+						}
+						?>
+						
+					</select>
+					<a href="javascript:setPeople()">Get People </a><br/>
+					<div id="sendMessageResult" class="result fss"></div>
+					<script>
+						function sendMessage(){
+							params = { 
+					    	   "email" : $("#sendMessageemail").val() , 
+					    	   "msg" : $("#sendMessagemsg").val() 
+					    	   };
+							testitpost("sendMessageResult",'/ph/egpc/default/sendMessage',params);
+						}
+						function setPeople(){
+							$("#sendMessageemail").val("");
+							$.ajax({
+							    url:'/ph/egpc/default/getPeople',
+							    type:"POST",
+							    data:{ "name":$("#sendMessagePeople").val()},
+							    datatype : "json",
+							    success:function(data) {
+							    	list = "";
+								    $.each(data,function(k,v){
+								      	list += (list == "") ? v.email : ","+v.email ;
+								    })
+							      	console.log(list);
+							      	$("#sendMessageemail").val(list);
+								      	
+							    },
+							    error:function (xhr, ajaxOptions, thrownError){
+							      $("#"+id).html(data);
+							    } 
+							  });
+						}
+					</script>
+				</div>
+			</li>
 		</ul>
 	</div>
 </div>
-div.toto*2>ul>li*4>a
+
 <script type="text/javascript">
 function testitpost(id,url,params){
 	console.log(id,url,params);

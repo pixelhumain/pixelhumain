@@ -1,6 +1,11 @@
 <?php 
 class Rest
 {
+	public static function json($res){
+		header("Content-type: application/json; charset=utf-8");
+		echo json_encode( $res );  
+	}
+	
 	public static function sendResponse($status = 200, $body = '', $content_type = 'text/html')
 	{
 	    // set the status

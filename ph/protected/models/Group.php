@@ -1,4 +1,4 @@
-(<?php
+<?php
 
 class Group
 {
@@ -12,7 +12,7 @@ class Group
 	//defines that this group is used in an application
 	const NODE_APPLICATIONS     = 'applications';
 
-
+	
 	public static function addMember( $email, $name, $type )
 	{
 		$user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
@@ -20,14 +20,14 @@ class Group
         if( $user && $group )
         {
         	//check if user is allready linked to this group
-        	if( !Group::isGroupMember($user["_id"],$group["_id"]) ){
-        		Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($user["_id"])), array('$push' => array( Citoyen::$types2Nodes[ $type ] => $group["_id"] )));
-        		Yii::app()->mongodb->group->update(array("_id" => new MongoId($group["_id"])), array('$push' => array( self::NODE_PARTICIPANTS => $user["_id"])));
+        	if( !Group::isGroupMember((string)$user["_id"],$group["_id"]) ){
+        		Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($user["_id"])), array('$push' => array( Citoyen::$types2Nodes[ $type ] => (string)$group["_id"] )));
+        		Yii::app()->mongodb->group->update(array("_id" => new MongoId($group["_id"])), array('$push' => array( self::NODE_PARTICIPANTS => (string)$user["_id"])));
         		$res = array( "result" => true,  "userConnected2Group" => true );
         	}else
         		$res = array( "result" => true,  "userAllreadyConnected2Group" => true );
         } else
-       		$res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
+       		$res = array('result' => false , 'msg'=>'something somewhere went terribly wrong'); //,'u'=>$user,"g"=>$group
         return $res;
     }
 
@@ -37,8 +37,8 @@ class Group
 		$group = Yii::app()->mongodb->group->findOne( array( "name" => $name,"type"=>$type ) );
         if( isset( $user ) && isset( $group ) )
         {
-        	Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($user["_id"])), array('$pull' => array( Citoyen::$types2Nodes[ $type ] => $group["_id"] )));
-        	Yii::app()->mongodb->group->update(array("_id" => new MongoId($group["_id"])), array('$pull' => array( self::NODE_PARTICIPANTS => $user["_id"])));
+        	Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($user["_id"])), array('$pull' => array( Citoyen::$types2Nodes[ $type ] => (string)$group["_id"] )));
+        	Yii::app()->mongodb->group->update(array("_id" => new MongoId($group["_id"])), array('$pull' => array( self::NODE_PARTICIPANTS => (string)$user["_id"])));
         	$res = array( "result" => true,  "userDisonnected2Group" => true );
         } else
        		$res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
