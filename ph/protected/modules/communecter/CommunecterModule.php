@@ -7,7 +7,7 @@
  *
 */
 
-class CommunectModule extends CWebModule
+class CommunecterModule extends CWebModule
 {
     
 
@@ -18,8 +18,8 @@ class CommunectModule extends CWebModule
 
 		// import the module-level models and components
 		$this->setImport(array(
-			'communect.models.*',
-			'communect.components.*',
+			'communecter.models.*',
+			'communecter.components.*',
 		));
 	}
 

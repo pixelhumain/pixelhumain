@@ -9,19 +9,51 @@
  */
 class DefaultController extends Controller {
 
-    const moduleTitle = "Communectons Nous";
-    public static $moduleKey = "communect";
+    const moduleTitle = "Communecter";
+    public static $moduleKey = "communecter";
     
     public $sidebar1 = array(
-            array( "label"=>"Login"),
-            array( "label"=>"CreateUser"),
-            array( "label"=>"GetUser"),
-            array( "label"=>"ConnectUser"),
+            
+            array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggleScenario('scenario')","hide"=>true,
+                "blocks"=>array(
+                    array("label"=>"Inscription / Creation",
+                        "children"=>array(
+                            
+                        )),
+                    array("label"=>"Visualisation",
+                        "children"=>array(
+                            
+                            )),
+                    array("label"=>"Communication",
+                        "children"=>array(
+                            
+                        )),
+                )),
+            array('label' => "User", "key"=>"user", 
+                "children"=> array(
+                    array( "label"=>"Login","href"=>"#blockLogin"),
+                    array( "label"=>"Save User","href"=>"#blockSaveUser"),
+                    array( "label"=>"Get User","href"=>"#blockGetUser"),
+                    array( "label"=>"ConfirmUserRegistration","href"=>"#blockGetUser"),
+                    array( "label"=>"GetPeople","href"=>"#blockgetPeople")
+                )),
+            array('label' => "Entities", "key"=>"entities",
+                "children"=> array(
+                    array( "label"=>"Save Group","href"=>"#blocksaveGroup"),
+                    array( "label"=>"GetGroup","href"=>"#blockgetgroup"),
+                    array( "label"=>"linkUser2Group","href"=>"#blocklinkUser2Group"),
+                    array( "label"=>"unlinkUser2Group","href"=>"#blocklinkUser2Group"),
+                    array( "label"=>"getGroups","href"=>"#blockgetGroups")
+                )),
+            array('label' => "Communication", "key"=>"communications", 
+                "children"=> array(
+                    array( "label"=>"sendMessage","href"=>"#blocksendMessage")
+                )),
         );
     public $percent = 60; //TODO link it to unit test
     protected function beforeAction($action)
   {
-    
+    array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules", "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
     return parent::beforeAction($action);
   }
     /**
@@ -32,27 +64,18 @@ class DefaultController extends Controller {
 	{
 	    $this->render("index");
 	}
-
+    public function actions()
+    {
+        return array(
+            'login'=>'application.controllers.user.LoginAction',
+        );
+    }
     //********************************************************************************
     //          USERS
     //********************************************************************************
     
 
-    /**
-     * actionLogin 
-     * Login to open a session
-     * uses the generic Citoyens login system 
-     * @return [type] [description]
-     */
-    public function actionLogin() 
-    {
-        $email = $_POST["email"];
-        $res = Citoyen::login( $email , $_POST["pwd"]); 
-        $res = array_merge($res, Citoyen::applicationRegistered($this::$moduleKey,$email));
-
-        Rest::json($res);
-        Yii::app()->end();
-    }
+   
     /**
      * [actionAddWatcher 
      * create or update a user account

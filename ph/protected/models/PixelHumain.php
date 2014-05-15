@@ -15,5 +15,13 @@ class PixelHumain
     const CONNECT_TYPE_WORK	       = "work";
     const CONNECT_TYPE_CONTACT	   = "contact";
     
-    
+    public static function buildMenuChildren( $collection )
+    {
+        $menu = array();
+       $cols = iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find());
+        foreach ($cols as$e) {
+            array_push( $menu , array( "label"=>$e["name"],"href"=>Yii::app()->createUrl("/".$e["key"] ) ) );
+        }
+        return $menu;
+    }
 }

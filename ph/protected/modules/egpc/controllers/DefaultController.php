@@ -13,58 +13,62 @@ class DefaultController extends Controller {
     public static $moduleKey = "egpc";
     
     public $sidebar1 = array(
-            array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggleScenario('scenario')",
-                "hide"=>true,
+            
+            array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggleScenario('scenario')","hide"=>true,
                 "blocks"=>array(
-                        array("label"=>"Inscription / Creation","children"=>array(
-                                                                    "EGPC envoie une invitation par campagne mail contenant un lien d'inscription",
-                                                                    "Le nouveau venu s'inscrit en citoyen : email + cp ",
-                                                                    "peut creer une association + mot clef",
-                                                                    "peut creer une entreprise + mot clef",
-                                                                    "peut creer un groupe + mot clef",
-                                                                    "peut inviter qlq'un dans chacune de ces entités",
-                                                                    "peut creer un evenement en tant que citoyen ou pour son entité",
-                                                                    "peut inviter qlq'un à un evenement",
-                                                                    )
-                            ),
-                        array("label"=>"Visualisation","children"=>array(
-                                                                    "Tout le monde peut visualiser l'organisation de EGPC",
-                                                                    "Voir un listing de chaque entité  (Gpe. , Ass. , Ent., Cit. )",
-                                                                    "Voir tout les evenements",
-                                                                    "Filtrer par mots clefs",
-                                                                    "Ouvrir une entité (Gpe. , Ass. , Ent., Cit. )",
-                                                                    "Ouvrir un evenement"
-                                                                    )
-                            ),
-                        array("label"=>"Communication","children"=>array(
-                                                                    "Send a message to list of people",
-                                                                    )
-                            ),
-                    )),
-            array('label' => "User", "key"=>"user", "children"=> array(
-                                                    array( "label"=>"Login","href"=>"#blockLogin"),
-                                                    array( "label"=>"Save User","href"=>"#blockSaveUser"),
-                                                    array( "label"=>"Get User","href"=>"#blockGetUser"),
-                                                    array( "label"=>"ConfirmUserRegistration","href"=>"#blockGetUser"),
-                                                    array( "label"=>"GetPeople","href"=>"#blockgetPeople")
-                                                    )),
-            array('label' => "Entities", "key"=>"entities", "children"=> array(
-                                                    array( "label"=>"Save Group","href"=>"#blocksaveGroup"),
-                                                    array( "label"=>"GetGroup","href"=>"#blockgetgroup"),
-                                                    array( "label"=>"linkUser2Group","href"=>"#blocklinkUser2Group"),
-                                                    array( "label"=>"unlinkUser2Group","href"=>"#blocklinkUser2Group"),
-                                                    array( "label"=>"getGroups","href"=>"#blockgetGroups")
-                                                    )),
-            array('label' => "Communication", "key"=>"communications", "children"=> array(
-                                                    array( "label"=>"sendMessage","href"=>"#blocksendMessage")
-                                                    )),
+                    array("label"=>"Inscription / Creation",
+                        "children"=>array(
+                            "EGPC envoie une invitation par campagne mail contenant un lien d'inscription",
+                            "Le nouveau venu s'inscrit en citoyen : email + cp ",
+                            "peut creer une association + mot clef",
+                            "peut creer une entreprise + mot clef",
+                            "peut creer un groupe + mot clef",
+                            "peut inviter qlq'un dans chacune de ces entités",
+                            "peut creer un evenement en tant que citoyen ou pour son entité",
+                            "peut inviter qlq'un à un evenement",
+                        )),
+                    array("label"=>"Visualisation",
+                        "children"=>array(
+                            "Tout le monde peut visualiser l'organisation de EGPC",
+                            "Voir un listing de chaque entité  (Gpe. , Ass. , Ent., Cit. )",
+                            "Voir tout les evenements",
+                            "Filtrer par mots clefs",
+                            "Ouvrir une entité (Gpe. , Ass. , Ent., Cit. )",
+                            "Ouvrir un evenement"
+                            )),
+                    array("label"=>"Communication",
+                        "children"=>array(
+                            "Send a message to list of people",
+                        )),
+                )),
+            array('label' => "User", "key"=>"user", 
+                "children"=> array(
+                    array( "label"=>"Login","href"=>"#blockLogin"),
+                    array( "label"=>"Save User","href"=>"#blockSaveUser"),
+                    array( "label"=>"Get User","href"=>"#blockGetUser"),
+                    array( "label"=>"ConfirmUserRegistration","href"=>"#blockGetUser"),
+                    array( "label"=>"GetPeople","href"=>"#blockgetPeople")
+                )),
+            array('label' => "Entities", "key"=>"entities",
+                "children"=> array(
+                    array( "label"=>"Save Group","href"=>"#blocksaveGroup"),
+                    array( "label"=>"GetGroup","href"=>"#blockgetgroup"),
+                    array( "label"=>"linkUser2Group","href"=>"#blocklinkUser2Group"),
+                    array( "label"=>"unlinkUser2Group","href"=>"#blocklinkUser2Group"),
+                    array( "label"=>"getGroups","href"=>"#blockgetGroups")
+                )),
+            array('label' => "Communication", "key"=>"communications", 
+                "children"=> array(
+                    array( "label"=>"sendMessage","href"=>"#blocksendMessage")
+                )),
         );
     public $percent = 60; //TODO link it to unit test
+
     protected function beforeAction($action)
-  {
-    
-    return parent::beforeAction($action);
-  }
+    {
+        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules", "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
+        return parent::beforeAction($action);
+    }
     /**
      * List all the latest observations
      * @return [json Map] list
@@ -170,8 +174,9 @@ class DefaultController extends Controller {
         Rest::json( iterator_to_array($users) );
         Yii::app()->end();
     }
+
     //********************************************************************************
-    //          ASSOCIATION
+    //          ENTITIES
     //********************************************************************************
     public function actionSaveGroup() 
     {

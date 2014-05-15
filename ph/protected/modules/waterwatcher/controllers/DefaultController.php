@@ -11,6 +11,14 @@ class DefaultController extends Controller {
 
     const moduleTitle = "Water Watcher App";
     public static $moduleKey = "waterwatcher";
+    public $percent = 80; //TODO link it to unit test
+
+    protected function beforeAction($action)
+    {
+        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules", "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
+        return parent::beforeAction($action);
+    }
+
     /**
      * List all the latest observations
      * @return [json Map] list

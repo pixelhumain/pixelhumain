@@ -9,8 +9,16 @@
  */
 class DefaultController extends Controller {
 
-    const moduleTitle = "Etat Généraux des pouvoirs citoyens";
-    public static $moduleKey = "waterwatcher";
+    const moduleTitle = "Azot Live";
+    public static $moduleKey = "azotlive";
+    public $percent = 60; //TODO link it to unit test
+
+    protected function beforeAction($action)
+    {
+        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules", "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
+        return parent::beforeAction($action);
+    }
+
     /**
      * List all the latest observations
      * @return [json Map] list

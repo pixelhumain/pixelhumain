@@ -161,9 +161,10 @@ class Citoyen
     //Registers a user into an application
     //by adding "applications":{"appKey":{appData}}
     //an application is defined in the application collection
+    //if appkey is null no need to regiser any application
     public static function applicationRegistered($appKey, $email){
         $res = array();
-        if( isset( Yii::app()->session["userId"] ) ){
+        if( isset( Yii::app()->session["userId"]) && $appKey != null  ){
             //TODO : test application exists
             $application = Yii::app()->mongodb->applications->findOne( array( "key" => $appKey ) );  
             //check if application is registered on user account

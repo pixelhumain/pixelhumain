@@ -2,35 +2,57 @@
 /**
  * DefaultController.php
  *
- * API REST pour géré l'application EGPC
+ * API REST pour géré l'application echolocal
  *
  * @author: Tibor Katelbach <tibor@pixelhumain.com>
  * Date: 14/03/2014
  */
 class DefaultController extends Controller {
 
-    const moduleTitle = "Echolocal";
+    const moduleTitle = "Etat Généraux des pouvoirs citoyens";
     public static $moduleKey = "echolocal";
     
     public $sidebar1 = array(
-            array( "label"=>"Login","href"=>"#blockLogin"),
-            array( "label"=>"Save User","href"=>"#blockSaveUser"),
-            array( "label"=>"Get User","href"=>"#blockGetUser")
+            
+            array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggleScenario('scenario')","hide"=>true,
+                "blocks"=>array(
+                    array("label"=>"Inscription / Creation",
+                        "children"=>array(
+                            
+                        )),
+                    array("label"=>"Visualisation",
+                        "children"=>array(
+                            
+                            )),
+                    array("label"=>"Communication",
+                        "children"=>array(
+                            
+                        )),
+                )),
+            array('label' => "User", "key"=>"user", 
+                "children"=> array(
+                    
+                )),
+            array('label' => "Communication", "key"=>"communications", 
+                "children"=> array(
+                    
+                )),
         );
-    public $percent = 60; //TODO link it to unit test
+    public $percent = 0; //TODO link it to unit test
+
     protected function beforeAction($action)
-  {
-    
-    return parent::beforeAction($action);
-  }
+    {
+        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules", "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
+        return parent::beforeAction($action);
+    }
     /**
      * List all the latest observations
      * @return [json Map] list
      */
-	public function actionIndex() 
-	{
-	    $this->render("index");
-	}
+    public function actionIndex() 
+    {
+        $this->render("index");
+    }
 
     //********************************************************************************
     //          USERS
@@ -48,7 +70,8 @@ class DefaultController extends Controller {
         $email = $_POST["email"];
         $res = Citoyen::login( $email , $_POST["pwd"]); 
         $res = array_merge($res, Citoyen::applicationRegistered($this::$moduleKey,$email));
-        Rest::json($res);  
+
+        Rest::json($res);
         Yii::app()->end();
     }
     /**
@@ -97,7 +120,7 @@ class DefaultController extends Controller {
     public function actionGetUser($email) 
     {
        $user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
-        echo json_encode( $user );
+        Rest::json( $user );
         Yii::app()->end();
     }
 
@@ -107,21 +130,29 @@ class DefaultController extends Controller {
         //isAppAdminUser
         if( isset( Yii::app()->session["userId"]  ) ) { 
             $user = Yii::app()->mongodb->citoyens->findAndModify( array("email" => $email), 
-                                                                  array('$set' => array("applications.egpc.registrationConfirmed"=>true) ) );
+                                                                  array('$set' => array("applications.echolocal.registrationConfirmed"=>true) ) );
             $user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
-            echo json_encode( $user );
+            Rest::json( $user );
         }
         Yii::app()->end();
     }
 
     public function actionGetPeople() 
     {
-        $users = Yii::app()->mongodb->citoyens->find( array( "applications.egpc.usertype" => $this::$moduleKey ));
-        echo json_encode( iterator_to_array($users) );
+        
+        if( isset( $_POST["name"] ) ){
+            $where["name"] = $_POST["name"];
+            $group = Yii::app()->mongodb->group->findOne ( array( "name" => $_POST["name"] ) );
+            $users = Yii::app()->mongodb->citoyens->find ( array( "associations" => (string)$group['_id']) );
+        } else {
+            $users = Yii::app()->mongodb->citoyens->find ( array( "applications.echolocal.usertype" => $this::$moduleKey ) );
+        }
+        Rest::json( iterator_to_array($users) );
         Yii::app()->end();
     }
+
     //********************************************************************************
-    //          ASSOCIATION
+    //          ENTITIES
     //********************************************************************************
     public function actionSaveGroup() 
     {
@@ -168,15 +199,15 @@ class DefaultController extends Controller {
     public function actionGetGroup($email) 
     {
        $res = Yii::app()->mongodb->group->find( array( "email" => $email ) );
-        echo json_encode( iterator_to_array($res) );
+        Rest::json( iterator_to_array($res) );
         Yii::app()->end();
     }
 
     public function actionGetGroups() 
     {
         //TODO : other fgroup types
-       $res = Yii::app()->mongodb->group->find( array( "applications.egpc.usertype" => Group::TYPE_ASSOCIATION ));
-        echo json_encode( iterator_to_array($res) );
+       $res = Yii::app()->mongodb->group->find( array( "applications.echolocal.usertype" => Group::TYPE_ASSOCIATION ));
+        Rest::json( iterator_to_array($res) );
         Yii::app()->end();
     }
     public function actionLinkUser2Group() 
@@ -208,6 +239,17 @@ class DefaultController extends Controller {
         Yii::app()->end();
     }
     //********************************************************************************
-    //          EVENTS
+    //          COMMUNICATIONS
     //********************************************************************************
+    public function actionSendMessage() 
+    {
+        if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest && isset( $_POST['email'] ) && isset( $_POST['msg'] ) )
+        {
+            $res = Message::createMessage($_POST['email']  , $_POST['msg'], self::$moduleKey );
+        } else
+            $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
+        Rest::json($res);
+        Yii::app()->end();
+    }
+
 }
