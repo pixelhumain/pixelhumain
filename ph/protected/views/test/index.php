@@ -28,7 +28,8 @@ h2 {
                 <?php 
                 $alias = substr($_SERVER['SCRIPT_NAME'], 1, strrpos($_SERVER['SCRIPT_NAME'], "/"));
                 $color = ($alias == "ph/")? "green" : "red";
-                echo "<span style='color:".$color."'> TEst alias : $alias</span>";    
+                $txt = ($alias == "ph/") ? "Your alias is good : $alias " : "Your alias should : 127.0.0.1/ph" ;
+                echo "<span style='color:".$color."'>  $txt </span>";    
                 ?>
             </li>
 
@@ -53,9 +54,9 @@ h2 {
                 try{
                     $m = new MongoClient();
                     $color = (isset($m)) ? "green" : "red";
-                    echo "<span style='color:".$color."'> TEst a MongoClient connection</span><br/>";
+                    echo "<span style='color:".$color."'> MongoClient connection is working</span><br/>";
                 } catch (Exception $e) {
-                    echo "<span style='color:red'> TEst a MongoClient connection <br/>error message : ".$e->getMessage()."</span><br/>";
+                    echo "<span style='color:red'> MongoClient connection <br/>error message : ".$e->getMessage()."</span><br/>";
                 }
                 ?>
             </li>
@@ -80,10 +81,10 @@ h2 {
                 ?>
             </li>
         </ul>
-
-        
+----------------------------------------------------------- <br/>
+<h2> PATHS AND URLS</h2>       
         <?php 
-echo "<br/>----------------------------------------------------------- <br/>";
+
 $conflen=strlen('SCRIPT');
 $B=substr(__FILE__,0,strrpos(__FILE__,'/'));
 $A=substr($_SERVER['DOCUMENT_ROOT'], strrpos($_SERVER['DOCUMENT_ROOT'], $_SERVER['PHP_SELF']));
@@ -97,7 +98,7 @@ $k_path_url = (isset($_SERVER['HTTPS']) AND (!empty($_SERVER['HTTPS'])) AND strt
  echo $folder = substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1)." ::  SCRIPT_NAME / <br/>";
  echo $k_path_url.$_SERVER['SERVER_NAME'].substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1)." :: SERVER_NAME / SCRIPT_NAME<br/>";
         
-
+/*
 if(isset($m)){
 $cursor = $collection->find();
 foreach ($cursor as $document) {
@@ -110,7 +111,7 @@ foreach ($cursor as $document) {
             $assoNames[$a['name']] = $a['name'] ;
         var_dump($assoNames);
 
-    }?>
+    }*/?>
         
         <div class="input-append">
             <?php $this->widget('yiiwheels.widgets.datepicker.WhDatePicker', array(
@@ -158,6 +159,57 @@ foreach ($cursor as $document) {
                 $test["ki"] = "ki";
                 Yii::app()->mongodb->test->save($test);
             }
+
+            /*$newInfos = array("api" =>array(
+                "scenario" => array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggleScenario('scenario')",
+                "hide"=>true,
+                "blocks"=>array(
+                        array("label"=>"Inscription / Creation","children"=>array(
+                                                                    "EGPC envoie une invitation par campagne mail contenant un lien d'inscription",
+                                                                    "Le nouveau venu s'inscrit en citoyen : email + cp ",
+                                                                    "peut creer une association + mot clef",
+                                                                    "peut creer une entreprise + mot clef",
+                                                                    "peut creer un groupe + mot clef",
+                                                                    "peut inviter qlq'un dans chacune de ces entités",
+                                                                    "peut creer un evenement en tant que citoyen ou pour son entité",
+                                                                    "peut inviter qlq'un à un evenement",
+                                                                    )
+                            ),
+                        array("label"=>"Visualisation","children"=>array(
+                                                                    "Tout le monde peut visualiser l'organisation de EGPC",
+                                                                    "Voir un listing de chaque entité  (Gpe. , Ass. , Ent., Cit. )",
+                                                                    "Voir tout les evenements",
+                                                                    "Filtrer par mots clefs",
+                                                                    "Ouvrir une entité (Gpe. , Ass. , Ent., Cit. )",
+                                                                    "Ouvrir un evenement"
+                                                                    )
+                            ),
+                        array("label"=>"Communication","children"=>array(
+                                                                    "Send a message to list of people",
+                                                                    )
+                            ),
+                    )),
+            "user"=>array('label' => "User", "key"=>"user", "children"=> array(
+                                                    array( "label"=>"Login","href"=>"#blockLogin"),
+                                                    array( "label"=>"Save User","href"=>"#blockSaveUser"),
+                                                    array( "label"=>"Get User","href"=>"#blockGetUser"),
+                                                    array( "label"=>"ConfirmUserRegistration","href"=>"#blockGetUser"),
+                                                    array( "label"=>"GetPeople","href"=>"#blockgetPeople")
+                                                    )),
+            "entities"=>array('label' => "Entities", "key"=>"entities", "children"=> array(
+                                                    array( "label"=>"Save Group","href"=>"#blocksaveGroup"),
+                                                    array( "label"=>"GetGroup","href"=>"#blockgetgroup"),
+                                                    array( "label"=>"linkUser2Group","href"=>"#blocklinkUser2Group"),
+                                                    array( "label"=>"unlinkUser2Group","href"=>"#blocklinkUser2Group"),
+                                                    array( "label"=>"getGroups","href"=>"#blockgetGroups")
+                                                    )),
+            "communications"=>array('label' => "Communication", "key"=>"communications", "children"=> array(
+                                                    array( "label"=>"sendMessage","href"=>"#blocksendMessage")
+                                                    )),
+        ));
+        Yii::app()->mongodb->applications->update( array("key" => "egpc"), 
+                                                        array('$set' => $newInfos ) 
+                                                      );*/
                 ?>  
         </div>
 	</div>

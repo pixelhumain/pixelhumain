@@ -1,0 +1,33 @@
+.apiList h2,.apiList h3,.apiList h4 { 
+	font-family: "Homestead";
+	position:relative;
+	top:0px;
+	left:0px;
+	color: #324553;
+	background-color: white;
+	padding : 10px;
+	border : 3px solid #666;
+}
+.apiList ul{list-style: none;}
+.apiList .block{ 
+	border:1px solid #333; 
+	background-color: #ededed; 
+	margin:10px; 
+	padding:10px;
+}
+ .fss{
+	line-height: 20px; 
+}
+ .result{
+	color: red; 
+}
+.blocki{
+	background-color: #324553;
+	color: white;
+	padding : 10px;
+	border : 3px solid #666;
+}
+h4.blocky{
+	background-color: #fff95e
+}
+h3.blockp{background-color: #ffd150}
