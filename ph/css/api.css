@@ -8,6 +8,7 @@
 	padding : 10px;
 	border : 3px solid #666;
 }
+
 .apiList ul{list-style: none;}
 .apiList .block{ 
 	border:1px solid #333; 
@@ -29,5 +30,11 @@
 }
 h4.blocky{
 	background-color: #fff95e
+}
+h4.blocky > i{
+	font-size: x-large;
+	margin-bottom: 5px;
+	color:#0AA598;
+	top:-1px;
 }
 h3.blockp{background-color: #ffd150}

@@ -9,7 +9,7 @@
 			Form inputs : email,postalcode,pwd,phoneNumber(is optional)type<br/>
 			return json object {"result":true || false}
 		</div>
-		<div class="apiForm createUser">
+		<div class="apiForm saveGroup">
 			name : <input type="text" name="namesaveGroup" id="namesaveGroup" value="Asso1" /><br/>
 			email* : <input type="text" name="emailsaveGroup" id="emailsaveGroup" value="egpc@egpc.com" /> (personne physique responsable )<br/>
 			cp* : <input type="text" name="postalcodesaveGroup" id="postalcodesaveGroup" value="97421" /><br/>
@@ -24,10 +24,10 @@
 			when : <input type="text" name="whensaveGroup" id="whensaveGroup" value="" /><br/>
 			where : <input  type="text" name="wheresaveGroup" id="wheresaveGroup" value="" /><br/>
 			</span>
-			<a href="javascript:addUser()">Test it</a><br/>
+			<a href="javascript:saveGroup()">Test it</a><br/>
 			<div id="saveGroupResult" class="result fss"></div>
 			<script>
-				function addUser(){
+				function saveGroup(){
 					params = { "email" : $("#emailsaveGroup").val() , 
 					    	   "name" : $("#namesaveGroup").val() , 
 					    	   "cp" : $("#postalcodesaveGroup").val() , 

@@ -68,4 +68,9 @@ function toggle(id){
 	}
 	return false;
 }
+function scrollTo(id){
+ $("html, body").animate({
+            scrollTop: $(id).offset().top-70
+        }, 700);
+}
 </script>

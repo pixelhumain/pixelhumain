@@ -14,46 +14,62 @@ class DefaultController extends Controller {
     
     public $sidebar1 = array(
             
-            array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggleScenario('scenario')","hide"=>true,
+            array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggle('scenario')","hide"=>true, "iconClass"=>"fa fa-list",
                 "blocks"=>array(
-                    array("label"=>"Inscription / Creation",
+                    array("label"=>"Inscription / Creation","iconClass"=>"fa fa-user",
                         "children"=>array(
-                            
+                            "se communecter == remplir un email + cp = referencement mais pas de zone privée ",
+                            "creer son compte privé = personnalisation",
+                            "parrainage :: inviter un voisin ou une connaissance ou une entité, creer du lien",
+                            "boule de neige social = utiliser les reseau sociau pour inviter ",
+                            "un citoyen peut creer une entité (Gpe. , Ass. , Ent., Cit. )",
                         )),
-                    array("label"=>"Visualisation",
+                    array("label"=>"Administration","iconClass"=>"fa fa-cogs",
                         "children"=>array(
-                            
+                            "Voir le nombres de citoyen",
+                            "Voir le temps de frequentation",
+                            ""
                             )),
-                    array("label"=>"Communication",
+                    array("label"=>"Visualisation","iconClass"=>"fa fa-eye",
                         "children"=>array(
-                            
+                            "Voir l'activité de ma commune",
+                            "Voir l'activité de ma region",
+
+                            )),
+                    array("label"=>"Communication","iconClass"=>"fa fa-bullhorn",
+                        "children"=>array(
+                            "System de notification PH > tout le monde",
+                            "System de notification PH > une commune",
+                            "Citoyen to Commune",
+                            "Citoyen to Entity, Citoyen doit appartenir a l'entité",
                         )),
                 )),
-            array('label' => "User", "key"=>"user", 
+            array('label' => "User", "key"=>"user", "iconClass"=>"fa fa-user", 
                 "children"=> array(
-                    array( "label"=>"Login","href"=>"#blockLogin"),
-                    array( "label"=>"Save User","href"=>"#blockSaveUser"),
-                    array( "label"=>"Get User","href"=>"#blockGetUser"),
-                    array( "label"=>"ConfirmUserRegistration","href"=>"#blockGetUser"),
-                    array( "label"=>"GetPeople","href"=>"#blockgetPeople")
+                    array( "label"=>"se Communecter","href"=>"javascript:;","onclick"=>"scrollTo('#blockCommunect')",),
+                    array( "label"=>"Login","href"=>"javascript:;","onclick"=>"scrollTo('#blockLogin')",),
+                    array( "label"=>"Save User","href"=>"javascript:;","onclick"=>"scrollTo('#blockSaveUser')"),
+                    array( "label"=>"Get User","href"=>"javascript:;","onclick"=>"scrollTo('#blockGetUser')"),
+                    array( "label"=>"ConfirmUserRegistration","href"=>"javascript:;","onclick"=>"scrollTo('#blockGetUser')"),
+                    array( "label"=>"GetPeople","href"=>"javascript:;","onclick"=>"scrollTo('#blockgetPeople')")
                 )),
-            array('label' => "Entities", "key"=>"entities",
+            array('label' => "Entities", "key"=>"entities", "iconClass"=>"fa fa-group",
                 "children"=> array(
-                    array( "label"=>"Save Group","href"=>"#blocksaveGroup"),
-                    array( "label"=>"GetGroup","href"=>"#blockgetgroup"),
-                    array( "label"=>"linkUser2Group","href"=>"#blocklinkUser2Group"),
-                    array( "label"=>"unlinkUser2Group","href"=>"#blocklinkUser2Group"),
-                    array( "label"=>"getGroups","href"=>"#blockgetGroups")
+                    array( "label"=>"Save Group","href"=>"javascript:;","onclick"=>"scrollTo('#blocksaveGroup')"),
+                    array( "label"=>"GetGroup","href"=>"javascript:;","onclick"=>"scrollTo('#blockgetgroup')"),
+                    array( "label"=>"linkUser2Group","href"=>"javascript:;","onclick"=>"scrollTo('#blocklinkUser2Group')"),
+                    array( "label"=>"unlinkUser2Group","href"=>"javascript:;","onclick"=>"scrollTo('#blocklinkUser2Group')"),
+                    array( "label"=>"getGroups","href"=>"javascript:;","onclick"=>"scrollTo('#blockgetGroups')")
                 )),
-            array('label' => "Communication", "key"=>"communications", 
+            array('label' => "Communication", "key"=>"communications", "iconClass"=>"fa fa-bullhorn", 
                 "children"=> array(
-                    array( "label"=>"sendMessage","href"=>"#blocksendMessage")
+                    array( "label"=>"sendMessage","href"=>"javascript:;","onclick"=>"scrollTo('#blocksendMessage')")
                 )),
         );
     public $percent = 60; //TODO link it to unit test
     protected function beforeAction($action)
   {
-    array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules", "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
+    array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules","iconClass"=>"fa fa-th", "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
     return parent::beforeAction($action);
   }
     /**
@@ -67,64 +83,16 @@ class DefaultController extends Controller {
     public function actions()
     {
         return array(
-            'login'=>'application.controllers.user.LoginAction',
+            'login'     =>'application.controllers.user.LoginAction',
+            'saveuser'  =>'application.controllers.user.SaveUserAction',
+            'communect' => 'application.controllers.user.CommunectAction',
+            'getuser'   => 'application.controllers.user.GetUserAction',
         );
     }
     //********************************************************************************
     //          USERS
     //********************************************************************************
-    
 
-   
-    /**
-     * [actionAddWatcher 
-     * create or update a user account
-     * if the email doesn't exist creates a new citizens with corresponding data 
-     * else simply adds the watcher app the users profile ]
-     * @return [json] 
-     */
-    public function actionSaveUser() 
-    {
-        $email = $_POST["email"];
-        if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest){
-            //if exists login else create the new user
-            $res = Citoyen::register( $email, $_POST["pwd"]);
-            if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) )){
-                //udate the new app specific fields
-                $newInfos = array();
-                if( isset($_POST['cp']) )
-                    $newInfos['cp'] = $_POST['cp'];
-                if( isset($_POST['name']) )
-                    $newInfos['name'] = $_POST['name'];
-                if( isset($_POST['phoneNumber']) )
-                    $newInfos['phoneNumber'] = $_POST['phoneNumber'];
-                if( isset($_POST['when']) )
-                    $newInfos['when'] = $_POST['when'];
-                if( isset($_POST['where']) )
-                    $newInfos['where'] = $_POST['where'];
-
-                $newInfos['applications'] = array( $this::$moduleKey => array( "usertype"=>$_POST['type'] ,"registrationConfirmed" => false ));
-                
-                Yii::app()->mongodb->citoyens->update( array("email" => $email), 
-                                                       array('$set' => $newInfos ) 
-                                                      );
-            }
-        } else
-            $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
-        Rest::json($res);  
-        Yii::app()->end();
-    }
-    /**
-     * [actionGetWatcher get the user data based on his id]
-     * @param  [string] $email   email connected to the citizen account
-     * @return [type] [description]
-     */
-    public function actionGetUser($email) 
-    {
-       $user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
-        Rest::json( $user );
-        Yii::app()->end();
-    }
 
     public function actionConfirmUserRegistration($email) 
     {

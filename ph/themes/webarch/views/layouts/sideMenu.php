@@ -4,6 +4,9 @@
       <div class="page-sidebar-wrapper" id="main-menu-wrapper">
     <!-- BEGIN MINI-PROFILE -->
     <div class="user-info-wrapper"> 
+      <?php if(isset($this::$moduleKey)){?>
+      <div>Module <?php  echo strtoupper($this::$moduleKey) ?></div>
+      <?php } ?>
       <div class="profile-wrapper">
         <img src="<?php echo ( isset($account) && isset($account['img']) ) ? Yii::app()->createUrl($account['img']) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>" alt="" data-src="<?php echo ( isset($account) && isset($account['img']) ) ? Yii::app()->createUrl($account['img']) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>" data-src-retina="<?php echo ( isset($account) && isset($account['img']) ) ? Yii::app()->createUrl($account['img']) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>" width="69" height="69" />
       </div>
@@ -30,10 +33,11 @@
            
             ?>
         <div class="greeting">Bienvenue</div>
-        <div class="username"><span class="semi-bold"><?php echo $account['name']?></span></div>
+        <div class="username"><span class="semi-bold"><?php if(isset($account['name']))echo $account['name']?></span></div>
         <div class="status">Connecté<a href="<?php Yii::app()->createUrl("citoyens/moi")?>"><div class="status-icon green"></div><?php echo (isset($account['cp'])) ? "<a href='".Yii::app()->createUrl("commune/view/cp/".$account['cp'])."'>".$account['cp'].'</a>' : $account['name']?></a></div>
         <?php } ?>
       </div>
+      
     </div>
     <!-- END MINI-PROFILE -->
     <!-- BEGIN SIDEBAR MENU --> 

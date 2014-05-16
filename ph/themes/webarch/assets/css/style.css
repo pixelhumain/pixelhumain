@@ -1306,7 +1306,7 @@ body.menu-non-fixed .page-sidebar {
 }
 .user-info-wrapper {
   display: block;
-  margin: 20px 31px;
+  margin: 0px 31px;
   margin-bottom: 0px;
 }
 .user-info-wrapper .profile-wrapper {
@@ -1315,7 +1315,7 @@ body.menu-non-fixed .page-sidebar {
   border-radius: 100px;
   overflow: hidden;
   display: inline-block;
-  margin-right: 11px;
+  margin-right: 4px;
   margin-top: 9px;
   float: left;
 }

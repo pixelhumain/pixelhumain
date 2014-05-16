@@ -14,9 +14,9 @@ class DefaultController extends Controller {
     
     public $sidebar1 = array(
             
-            array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggleScenario('scenario')","hide"=>true,
+            array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggle('scenario')","hide"=>true,"iconClass"=>"fa fa-list",
                 "blocks"=>array(
-                    array("label"=>"Inscription / Creation",
+                    array("label"=>"Inscription / Creation ","iconClass"=>"fa fa-cogs",
                         "children"=>array(
                             "EGPC envoie une invitation par campagne mail contenant un lien d'inscription",
                             "Le nouveau venu s'inscrit en citoyen : email + cp ",
@@ -27,21 +27,20 @@ class DefaultController extends Controller {
                             "peut creer un evenement en tant que citoyen ou pour son entité",
                             "peut inviter qlq'un à un evenement",
                         )),
-                    array("label"=>"Visualisation",
+                    array("label"=>"Visualisation","iconClass"=>"fa fa-eye",
                         "children"=>array(
                             "Tout le monde peut visualiser l'organisation de EGPC",
                             "Voir un listing de chaque entité  (Gpe. , Ass. , Ent., Cit. )",
                             "Voir tout les evenements",
                             "Filtrer par mots clefs",
-                            "Ouvrir une entité (Gpe. , Ass. , Ent., Cit. )",
-                            "Ouvrir un evenement"
+                            "Ouvrir une entité (Gpe. , Ass. , Ent., Cit., Event )"
                             )),
-                    array("label"=>"Communication",
+                    array("label"=>"Communication","iconClass"=>"fa fa-bullhorn",
                         "children"=>array(
                             "Send a message to list of people",
                         )),
                 )),
-            array('label' => "User", "key"=>"user", 
+            array('label' => "User", "key"=>"user", "iconClass"=>"fa fa-user", 
                 "children"=> array(
                     array( "label"=>"Login","href"=>"#blockLogin"),
                     array( "label"=>"Save User","href"=>"#blockSaveUser"),
@@ -49,7 +48,7 @@ class DefaultController extends Controller {
                     array( "label"=>"ConfirmUserRegistration","href"=>"#blockGetUser"),
                     array( "label"=>"GetPeople","href"=>"#blockgetPeople")
                 )),
-            array('label' => "Entities", "key"=>"entities",
+            array('label' => "Entities", "key"=>"entities","iconClass"=>"fa fa-group",
                 "children"=> array(
                     array( "label"=>"Save Group","href"=>"#blocksaveGroup"),
                     array( "label"=>"GetGroup","href"=>"#blockgetgroup"),
@@ -57,7 +56,7 @@ class DefaultController extends Controller {
                     array( "label"=>"unlinkUser2Group","href"=>"#blocklinkUser2Group"),
                     array( "label"=>"getGroups","href"=>"#blockgetGroups")
                 )),
-            array('label' => "Communication", "key"=>"communications", 
+            array('label' => "Communication", "key"=>"communications", "iconClass"=>"fa fa-bullhorn", 
                 "children"=> array(
                     array( "label"=>"sendMessage","href"=>"#blocksendMessage")
                 )),
@@ -66,8 +65,18 @@ class DefaultController extends Controller {
 
     protected function beforeAction($action)
     {
-        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules", "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
+        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules","iconClass"=>"fa fa-th",  "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
         return parent::beforeAction($action);
+    }
+
+    public function actions()
+    {
+        return array(
+            'login'=>'application.controllers.user.LoginAction',
+            'saveuser'=>'application.controllers.user.SaveUserAction',
+            'getuser'   => 'application.controllers.user.GetUserAction',
+            'confirmUserRegistration' => 'application.controllers.user.ConfirmUserRegistrationAction',
+        );
     }
     /**
      * List all the latest observations
@@ -82,85 +91,6 @@ class DefaultController extends Controller {
     //          USERS
     //********************************************************************************
     
-
-    /**
-     * actionLogin 
-     * Login to open a session
-     * uses the generic Citoyens login system 
-     * @return [type] [description]
-     */
-    public function actionLogin() 
-    {
-        $email = $_POST["email"];
-        $res = Citoyen::login( $email , $_POST["pwd"]); 
-        $res = array_merge($res, Citoyen::applicationRegistered($this::$moduleKey,$email));
-
-        Rest::json($res);
-        Yii::app()->end();
-    }
-    /**
-     * [actionAddWatcher 
-     * create or update a user account
-     * if the email doesn't exist creates a new citizens with corresponding data 
-     * else simply adds the watcher app the users profile ]
-     * @return [json] 
-     */
-    public function actionSaveUser() 
-    {
-        $email = $_POST["email"];
-        if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest){
-            //if exists login else create the new user
-            $res = Citoyen::register( $email, $_POST["pwd"]);
-            if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) )){
-                //udate the new app specific fields
-                $newInfos = array();
-                if( isset($_POST['cp']) )
-                    $newInfos['cp'] = $_POST['cp'];
-                if( isset($_POST['name']) )
-                    $newInfos['name'] = $_POST['name'];
-                if( isset($_POST['phoneNumber']) )
-                    $newInfos['phoneNumber'] = $_POST['phoneNumber'];
-                if( isset($_POST['when']) )
-                    $newInfos['when'] = $_POST['when'];
-                if( isset($_POST['where']) )
-                    $newInfos['where'] = $_POST['where'];
-
-                $newInfos['applications'] = array( $this::$moduleKey => array( "usertype"=>$_POST['type'] ,"registrationConfirmed" => false ));
-                
-                Yii::app()->mongodb->citoyens->update( array("email" => $email), 
-                                                       array('$set' => $newInfos ) 
-                                                      );
-            }
-        } else
-            $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
-        Rest::json($res);  
-        Yii::app()->end();
-    }
-    /**
-     * [actionGetWatcher get the user data based on his id]
-     * @param  [string] $email   email connected to the citizen account
-     * @return [type] [description]
-     */
-    public function actionGetUser($email) 
-    {
-       $user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
-        Rest::json( $user );
-        Yii::app()->end();
-    }
-
-    public function actionConfirmUserRegistration($email) 
-    {
-        //TODO : add a test adminUser
-        //isAppAdminUser
-        if( isset( Yii::app()->session["userId"]  ) ) { 
-            $user = Yii::app()->mongodb->citoyens->findAndModify( array("email" => $email), 
-                                                                  array('$set' => array("applications.egpc.registrationConfirmed"=>true) ) );
-            $user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
-            Rest::json( $user );
-        }
-        Yii::app()->end();
-    }
-
     public function actionGetPeople() 
     {
         

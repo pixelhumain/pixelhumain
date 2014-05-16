@@ -1,4 +1,28 @@
 <ul>
+	<li class="block" id="blockCommunect">
+		<a href="/ph/<?php echo $this::$moduleKey?>/default/communect">Login</a><br/>
+		<div class="fss">
+			se communecter c'est juste suivre l'activité d'un CP <br/>
+			Il suffit d'un email et d'un CP<br/>
+			method type : POST <br/>
+		</div>
+		<div class="apiForm communect">
+			email : <input type="text" name="emailCommunect" id="emailCommunect" value="toto@toto.com" /><br/>
+			code postal  : <input type="text" name="cpCommunect" id="cpCommunect" value="97421" /><br/>
+			<a href="javascript:communect()">Communect</a><br/>
+			<div id="communectResult" class="result fss"></div>
+			<script>
+				function communect(){
+					params = { "email" : $("#emailCommunect").val() , 
+					    	   "cp" : $("#cpCommunect").val()
+					    	};
+					testitpost("communectResult",'/ph/<?php echo $this::$moduleKey?>/default/communect',params);
+				}
+			</script>
+			
+		</div>
+	</li>
+
 	<li class="block" id="blockLogin">
 		<a href="/ph/<?php echo $this::$moduleKey?>/default/login">Login</a><br/>
 		<div class="fss">
@@ -12,7 +36,6 @@
 			<div id="loginResult" class="result fss"></div>
 			<script>
 				function login(){
-					$("#loginResult").html("");
 					params = { "email" : $("#emailLogin").val() , 
 					    	   "pwd" : $("#pwdLogin").val()
 					    	};
@@ -37,18 +60,15 @@
 			cp* : <input type="text" name="postalcodeSaveUser" id="postalcodeSaveUser" value="97421" /><br/>
 			pwd* : <input type="text" name="pwdSaveUser" id="pwdSaveUser" value="1234" /><br/>
 			phoneNumber : <input type="text" name="phoneNumberSaveUser" id="phoneNumberSaveUser" value="1234" />(for SMS)<br/>
-			type : <select name="typeSaveUser" id="typeSaveUser">
-						<option value="<?php echo $this::$moduleKey?>">Participant</option>
-						<option value="admin<?php echo $this::$moduleKey?>">admin<?php echo $this::$moduleKey?></option>
-					</select><br/>
+			
 			<a href="javascript:addUser()">Test it</a><br/>
 			<div id="createUserResult" class="result fss"></div>
 			<script>
 				function addUser(){
 					params = { "email" : $("#emailSaveUser").val() , 
 					    	   "name" : $("#nameSaveUser").val() , 
-					    	   "cp" : $("#postalcodeSaveUser").val() , 
-					    	   "type" : $("#typeSaveUser").val(),
+					    	   "cp" : $("#postalcodeSaveUser").val() ,
+					    	   "pwd":$("#pwdSaveUser").val() ,
 					    	   "phoneNumber" : $("#phoneNumberSaveUser").val()};
 					testitpost("createUserResult",'/ph/<?php echo $this::$moduleKey?>/default/saveUser',params);
 				}
@@ -63,15 +83,12 @@
 			param : email<br/>
 			email : <input type="text" name="getUseremail" id="getUseremail" value="oceatoon@gmail.com" /><br/>
 			<a href="javascript:getUser()">Test it</a><br/>
-			<a href="javascript:confirmUserRegistration()">Confirm User Registration</a><br/>
 			<div id="getUserResult" class="result fss"></div>
 			<script>
 				function getUser(){
 					testitget("getUserResult",'/ph/<?php echo $this::$moduleKey?>/default/getUser/email/'+$("#getUseremail").val());
 				}
-				function confirmUserRegistration(){
-					testitget("getUserResult",'/ph/<?php echo $this::$moduleKey?>/default/confirmUserRegistration/email/'+$("#getUseremail").val());
-				}
+				
 			</script>
 		</div>
 	</li>

@@ -2,7 +2,8 @@
 
 	<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
-	<h4  class="blocky"><?php echo $b["label"]?></h4>
+	<h4  class="blocky"><?php if(isset($b["iconClass"])) { ?><i class="<?php  echo $b["iconClass"]?>"></i> <?php }?><?php echo $b["label"]?></h4>
+	
 	<ul class="blocki">
 		<?php foreach ($b["children"] as  $bl) { ?>
 		<li><?php echo $bl?></li>
