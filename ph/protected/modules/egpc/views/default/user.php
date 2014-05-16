@@ -68,11 +68,11 @@
 			<a href="javascript:confirmUserRegistration()">Confirm User Registration</a><br/>
 			<div id="getUserResult" class="result fss"></div>
 			<script>
-				function getUser(){
+				function getUser() { 
 					testitget("getUserResult",'/ph/<?php echo $this::$moduleKey?>/default/getUser/email/'+$("#getUseremail").val());
 				}
-				function confirmUserRegistration(){
-					testitget("getUserResult",'/ph/<?php echo $this::$moduleKey?>/default/confirmUserRegistration/email/'+$("#getUseremail").val()+'/app/<?php echo $this::$moduleKey?>');
+				function confirmUserRegistration() { 
+					testitget("getUserResult",'/ph/<?php echo $this::$moduleKey?>/default/confirmgroupregistration/email/'+$("#getUseremail").val()+'/app/<?php echo $this::$moduleKey?>');
 				}
 			</script>
 		</div>
@@ -82,12 +82,12 @@
 	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/default/getPeople"  id="blockgetPeople">Get <?php echo $this::$moduleKey?> People</a><br/>
 		<div class="fss">
 			url : /ph/<?php echo $this::$moduleKey?>/default/getPeople<br/>
-			method type : GET <br/>
+			method type : POST <br/>
 			<a href="javascript:getPeople()">Test it</a><br/>
 			<div id="getPeopleResult" class="result fss"></div>
 			<script>
 				function getPeople(){
-					testitget("getPeopleResult",'/ph/<?php echo $this::$moduleKey?>/default/getPeople');
+					testitpost("getPeopleResult",'/ph/<?php echo $this::$moduleKey?>/default/getpeopleby',{"app":"<?php echo $this::$moduleKey?>"});
 				}
 			</script>
 		</div>

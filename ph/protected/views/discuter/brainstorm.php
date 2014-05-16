@@ -51,7 +51,7 @@ ol.slats li p span.meta {
     <p> Un brainstom s'effectue en 3 étapes : Contribution, Vote , Résultat  </p>
 <ol class="slats">
 	<?php 
-    $pa = Yii::app()->mongodb->group->find(array("type"=>PixelHumain::TYPE_ASSOCIATION));
+    $pa = Yii::app()->mongodb->groups->find(array("type"=>PixelHumain::TYPE_ASSOCIATION));
     foreach ($pa as $e){
     ?>
     <li class="group"><h3><a href="<?php echo Yii::app()->createUrl('index.php/association/view/id/'.$e["_id"])?>"><?php echo $e["name"]?></a>

@@ -106,7 +106,7 @@ foreach ($cursor as $document) {
 }
 
         $assoNames = array();
-        $tmp = iterator_to_array(Yii::app()->mongodb->group->find( array("type"=>"association"), array("name" => 1) ));
+        $tmp = iterator_to_array(Yii::app()->mongodb->groups->find( array("type"=>"association"), array("name" => 1) ));
         foreach($tmp as $a)
             $assoNames[$a['name']] = $a['name'] ;
         var_dump($assoNames);

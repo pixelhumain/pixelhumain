@@ -1,17 +1,17 @@
 <ul>
 	<li class="block">
 		<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')" id="blocksaveGroup">Form</a>
-		<a href="/ph/egpc/default/saveGroup">Create/Update Entité (Asso. , Entr. , Group, Events )</a>
+		<a href="/ph/<?php echo $this::$moduleKey?>/default/saveGroup">Create/Update Entité (Asso. , Entr. , Group, Events )</a>
 
 		<div class="fss">
-			url : /ph/egpc/default/saveGroup<br/>
+			url : /ph/<?php echo $this::$moduleKey?>/default/saveGroup<br/>
 			method type : POST <br/>
 			Form inputs : email,postalcode,pwd,phoneNumber(is optional)type<br/>
 			return json object {"result":true || false}
 		</div>
 		<div class="apiForm saveGroup">
 			name : <input type="text" name="namesaveGroup" id="namesaveGroup" value="Asso1" /><br/>
-			email* : <input type="text" name="emailsaveGroup" id="emailsaveGroup" value="egpc@egpc.com" /> (personne physique responsable )<br/>
+			email* : <input type="text" name="emailsaveGroup" id="emailsaveGroup" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /> (personne physique responsable )<br/>
 			cp* : <input type="text" name="postalcodesaveGroup" id="postalcodesaveGroup" value="97421" /><br/>
 			phoneNumber : <input type="text" name="phoneNumbersaveGroup" id="phoneNumbersaveGroup" value="1234" />(for SMS)<br/>
 			type : <select name="typesaveGroup" id="typesaveGroup" onchange="typeChanged()">
@@ -39,7 +39,7 @@
 					if( $("#wheresaveGroup").val() )
 						paramas["where"] = $("#wheresaveGroup").val();
 					
-					testitpost("saveGroupResult",'/ph/egpc/default/saveGroup',params);
+					testitpost("saveGroupResult",'/ph/<?php echo $this::$moduleKey?>/default/savegroup',params);
 				}
 				function typeChanged(){
 					console.log( $("#typesaveGroup").val() );
@@ -60,21 +60,21 @@
 	
 	<li class="block">
 		<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')" id="blockgetgroup">Get</a>
-		<a href="/ph/egpc/default/getGroup">Get une Entité by email </a><br/>
+		<a href="/ph/<?php echo $this::$moduleKey?>/default/getGroup">Get une Entité by email </a><br/>
 		<div class="fss">
-			url : /ph/egpc/default/getGroup/email/egpc@egpc.com<br/>
+			url : /ph/<?php echo $this::$moduleKey?>/default/getGroup/email/<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com<br/>
 			method type : GET <br/>
 			param : email<br/>
-			email : <input type="text" name="getGroupemail" id="getGroupemail" value="egpc@egpc.com" /><br/>
+			email : <input type="text" name="getGroupemail" id="getGroupemail" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /><br/>
 			<a href="javascript:getGroup()">Test it</a><br/>
-			<a href="javascript:confirmUserRegistration()">Confirm User Registration</a><br/>
+			<a href="javascript:confirmGroupRegistration()">Confirm User Registration</a><br/>
 			<div id="getGroupResult" class="result fss"></div>
 			<script>
 				function getGroup(){
-					testitget("getGroupResult",'/ph/egpc/default/getGroup/email/'+$("#getGroupemail").val());
+					testitget("getGroupResult",'/ph/<?php echo $this::$moduleKey?>/default/getGroup/email/'+$("#getGroupemail").val());
 				}
-				function confirmUserRegistration(){
-					testitget("getGroupResult",'/ph/egpc/default/confirmGroupRegistration/email/'+$("#getGroupemail").val());
+				function confirmGroupRegistration(){
+					testitget("getGroupResult",'/ph/<?php echo $this::$moduleKey?>/default/confirmGroupRegistration/email/'+$("#getGroupemail").val());
 				}
 			</script>
 		</div>
@@ -83,23 +83,23 @@
 	
 	<li class="block">
 		<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')"  id="blocklinkUser2Group">Link Form</a>
-		<a href="/ph/egpc/default/linkUser2Group">Lié un User a une Entité</a><br/>
+		<a href="/ph/<?php echo $this::$moduleKey?>/default/linkUser2Group">Lié un User a une Entité</a><br/>
 		<div class="fss">
-			url : /ph/egpc/default/linkUser2Group/email/egpc@egpc.com<br/>
+			url : /ph/<?php echo $this::$moduleKey?>/default/linkUser2Group/email/<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com<br/>
 			method type : POST <br/>
 			param : <br/>
-			all egpc groups  : 
+			all <?php echo $this::$moduleKey?> groups  : 
 			<select id="linkUser2GroupGroup">
 				<option></option>
 				<?php 
-				$groups = Yii::app()->mongodb->group->find( array( "applications.egpc.usertype" => Group::TYPE_ASSOCIATION ));
+				$groups = Yii::app()->mongodb->groups->find( array( "applications.".$this::$moduleKey.".usertype" => Group::TYPE_ASSOCIATION ));
 				foreach ($groups as $value) {
 					echo '<option value="'.$value["name"].'">'.$value["name"].'</option>';
 				}
 				?>
 				
 			</select><br/>
-			email(s) : <textarea type="text" name="linkUser2Groupemail" id="linkUser2Groupemail">egpc@egpc.com</textarea><br/>
+			email(s) : <textarea type="text" name="linkUser2Groupemail" id="linkUser2Groupemail"><?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com</textarea><br/>
 			séparé par des virgules<br/>
 			<a href="javascript:linkUser2Group()">Link it</a><br/>
 			<a href="javascript:unlinkUser2Group()">Unlink it</a><br/>
@@ -110,14 +110,14 @@
 			    	   "email" : $("#linkUser2Groupemail").val() , 
 			    	   "name" : $("#linkUser2GroupGroup").val() 
 			    	   };
-					testitpost("linkUser2GroupResult",'/ph/egpc/default/linkUser2Group',params);
+					testitpost("linkUser2GroupResult",'/ph/<?php echo $this::$moduleKey?>/default/linkUser2Group',params);
 				}
 				function unlinkUser2Group(){
 					params = { 
 			    	   "email" : $("#linkUser2Groupemail").val() , 
 			    	   "name" : $("#linkUser2GroupGroup").val() 
 			    	   };
-					testitpost("linkUser2GroupResult",'/ph/egpc/default/unlinkUser2Group',params);
+					testitpost("linkUser2GroupResult",'/ph/<?php echo $this::$moduleKey?>/default/unlinkUser2Group',params);
 				}
 			</script>
 		</div>
@@ -125,15 +125,15 @@
 	
 	<li class="block">
 		<a href="javascript:;" class="btn btn-primary" onclick="openModal('groupCreerForm','data',null,'dynamicallyBuild')" id="blockgetGroups">Get</a>
-		<a href="/ph/egpc/default/getGroups">Get all EGPC Entités</a><br/>
+		<a href="/ph/<?php echo $this::$moduleKey?>/default/getGroups">Get all <?php echo $this::$moduleKey?> Entités</a><br/>
 		<div class="fss">
-			url : /ph/egpc/default/getGroups<br/>
+			url : /ph/<?php echo $this::$moduleKey?>/default/getGroups<br/>
 			method type : GET <br/>
 			<a href="javascript:getGroups()">Test it</a><br/>
 			<div id="getGroupsResult" class="result fss"></div>
 			<script>
 				function getGroups(){
-					testitget("getGroupsResult",'/ph/egpc/default/getGroups');
+					testitget("getGroupsResult",'/ph/<?php echo $this::$moduleKey?>/default/getGroups');
 				}
 			</script>
 		</div>

@@ -10,9 +10,9 @@ class Citoyen
     const NODE_POSITIONS        = 'positions';
 
     public static $types2Nodes = array(Group::TYPE_ASSOCIATION => self::NODE_ASSOCIATIONS,
-                                Group::TYPE_ENTREPRISE  => "employees",
-                                Group::TYPE_EVENT       => "participants",
-                                Group::TYPE_PROJECT     => "participants");
+                                        Group::TYPE_ENTREPRISE  => "employees",
+                                        Group::TYPE_EVENT       => "participants",
+                                        Group::TYPE_PROJECT     => "participants");
 
     public static function isCommunected(){
         $user = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))); 

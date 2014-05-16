@@ -105,7 +105,7 @@ font-family: "Homestead";
 			<span class="icon-users green" style="font-size:150%"></span><br/>
 			<h2>Associations </h2>
 			<?php 
-			$assos = Yii::app()->mongodb->group->find(array("cp"=>$cp,"type"=>"association"));
+			$assos = Yii::app()->mongodb->groups->find(array("cp"=>$cp,"type"=>"association"));
 			foreach($assos as $a)
 			    echo $a["name"]."<br/>";?>
 			<small>Annuaire  des Associations locales.
@@ -180,7 +180,7 @@ font-family: "Homestead";
 		<span class="icon-briefcase green" style="font-size:150%"></span><br/>
 		<h2>Entreprises </h2>
 		<?php 
-			$assos = Yii::app()->mongodb->group->find(array("cp"=>$cp,"type"=>"entreprise"));
+			$assos = Yii::app()->mongodb->groups->find(array("cp"=>$cp,"type"=>"entreprise"));
 			foreach($assos as $a)
 			    echo $a["name"]."<br/>";?>
 			<small>Annuaire Entreprise locales.

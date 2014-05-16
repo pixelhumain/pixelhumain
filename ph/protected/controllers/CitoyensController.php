@@ -223,8 +223,8 @@ class CitoyensController extends Controller {
                  /* $newAsso = false;
                   foreach( explode(",", $_POST['listAssociation']) as $asso)
                   {
-                      if(!Yii::app()->mongodb->group->findOne(array("name"=>$asso)))
-                          Yii::app()->mongodb->group->insert(array("name"=>$asso,
+                      if(!Yii::app()->mongodb->groups->findOne(array("name"=>$asso)))
+                          Yii::app()->mongodb->groups->insert(array("name"=>$asso,
                           										   "type"=>"association",
                                                                    'tobeValidated' => true,
                                 							 	   'adminNotified' => false));

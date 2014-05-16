@@ -17,7 +17,7 @@ class EntrepriseController extends Controller {
 	}
     public function actionView($id) {
         $this->layout = "swe";
-        $asso = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
+        $asso = Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId($id)));
         if(isset($asso["key"]) )
             $this->redirect(Yii::app()->createUrl('index.php/entreprise/'.$asso["key"]));
         else    

@@ -124,7 +124,7 @@ a.tags{font-family: "Homestead";font-size:small;line-height:15px;}
         <form id="associationForm" style="line-height:30px;width:500px;">
             <section>
               	<?php 
-              	    $asso = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
+              	    $asso = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
               	    
               	    if( isset(Yii::app()->session["userId"]) )
               	    {?>
@@ -133,7 +133,7 @@ a.tags{font-family: "Homestead";font-size:small;line-height:15px;}
                  		$user = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId( Yii::app()->session["userId"] )));
                  		foreach($user["associations"] as $id)
                  		{
-                 		    $myasso = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
+                 		    $myasso = Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId($id)));
                  		    echo "<a class='btn btn-warning' href='".Yii::app()->createUrl('index.php/association/view/id/'.$myasso['_id'])."'>".$myasso['name']."</a>";
                          }
               	    } ?>

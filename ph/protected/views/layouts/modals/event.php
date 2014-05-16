@@ -12,7 +12,7 @@
     <form id="eventForm" style="line-height:40px;">
         <section>
         	<?php 
-        	$event = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
+        	$event = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
         	?>
           	<table>
               	<tr>

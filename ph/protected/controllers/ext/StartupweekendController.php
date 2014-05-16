@@ -14,7 +14,7 @@ class StartupweekendController extends Controller {
 	    $this->redirect(Yii::app()->createUrl('index.php/ext/startupweekend/view/id/525e306ac073ef2eb85938f7'));
 	}
     public function actionView($id) {
-        $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
+        $event = Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId($id)));
         if(isset($event["key"]) )
             $this->redirect(Yii::app()->createUrl('index.php/ext/startupweekend/key/id/'.$event["key"]));
         else
@@ -33,7 +33,7 @@ class StartupweekendController extends Controller {
 	
     public function actionKey($id) {
 	    $this->layout = "swe";
-	    $event = Yii::app()->mongodb->group->findOne(array("key"=>$id)); 
+	    $event = Yii::app()->mongodb->groups->findOne(array("key"=>$id)); 
 	    $this->secure = $event['private'];
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
@@ -55,7 +55,7 @@ class StartupweekendController extends Controller {
     
 	public function actionSweInfosForm($id) {
 	    $this->layout = "swe";
-	    $event = Yii::app()->mongodb->group->findOne(array("key"=>$id)); 
+	    $event = Yii::app()->mongodb->groups->findOne(array("key"=>$id)); 
 	    $this->secure = $event['private'];
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
@@ -126,7 +126,7 @@ class StartupweekendController extends Controller {
 	}
 	private function testLogin($id,$view){
 	    
-	    $event = Yii::app()->mongodb->group->findOne(array("_id"=>$id)); 
+	    $event = Yii::app()->mongodb->groups->findOne(array("_id"=>$id)); 
 	    $this->secure = $event['private'];
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
@@ -140,7 +140,7 @@ class StartupweekendController extends Controller {
 	 */
     public function actionSweAdmin($id) {
         $this->layout = "swe";
-	    $event = Yii::app()->mongodb->group->findOne(array("key"=>$id));
+	    $event = Yii::app()->mongodb->groups->findOne(array("key"=>$id));
 	    $this->secure = $event['private'];
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
@@ -155,7 +155,7 @@ class StartupweekendController extends Controller {
 	 */
     public function actionSweCompteRempli($id) {
 	    $this->layout = "swe";
-	    $event = Yii::app()->mongodb->group->findOne(array("key"=>$id)); 
+	    $event = Yii::app()->mongodb->groups->findOne(array("key"=>$id)); 
 	    $this->secure = $event['private'];
 	    $this->appKey = $event['_id'];
 	    $this->appType = 'group';
@@ -191,7 +191,7 @@ class StartupweekendController extends Controller {
             {	
                 Yii::app()->mongodb->startupweekend->update( array( "email" => $_POST["personEmail"] ) , array('$pull' => array("events"=>new MongoId( $_POST["eventId"]))));
                 Yii::app()->mongodb->citoyens->update( array( "email" => $_POST["personEmail"] ) , array('$pull' => array("events"=>new MongoId( $_POST["eventId"]))));
-                Yii::app()->mongodb->group->update( array( "_id"=>new MongoId( $_POST["eventId"]) ) , array('$pull' => array("participants"=>new MongoId( $_POST["eventId"]))));
+                Yii::app()->mongodb->groups->update( array( "_id"=>new MongoId( $_POST["eventId"]) ) , array('$pull' => array("participants"=>new MongoId( $_POST["eventId"]))));
                 
                 $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
                 echo json_encode($result); 
@@ -258,11 +258,11 @@ class StartupweekendController extends Controller {
     public function actionSweProject() 
     { 
         $eventId = $_POST[ "eventId" ];
-        $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($eventId))); 
+        $event = Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId($eventId))); 
 	    if(Yii::app()->request->isAjaxRequest && isset( Yii::app()->session["userId"] ) && self::isParticipantEmail($event,"adminEmail") )
 		{
 		     $eventId = $_POST[ "eventId" ];
-		     $project = Yii::app()->mongodb->group->findOne(array("name"=>$_POST["projectName"]));
+		     $project = Yii::app()->mongodb->groups->findOne(array("name"=>$_POST["projectName"]));
              $newInfos = array(
         		'name' => $_POST["projectName"],
                 'desc' => $_POST["projectDesc"]
@@ -276,13 +276,13 @@ class StartupweekendController extends Controller {
              }
               
               //update group instance	
-              Yii::app()->mongodb->group->save($newInfos);
+              Yii::app()->mongodb->groups->save($newInfos);
               
               //add the project id to the event project List
               //update event only if group is being created
               if(!$project){
                   $where = array("_id" => new MongoId($eventId));	
-                  Yii::app()->mongodb->group->update($where, array('$push' => array("projects"=>$newInfos["_id"])));
+                  Yii::app()->mongodb->groups->update($where, array('$push' => array("projects"=>$newInfos["_id"])));
               }
               
               //e know all the particiapnts exist
@@ -356,7 +356,7 @@ class StartupweekendController extends Controller {
 
                 //add a participant
                 $where = array("_id" => new MongoId($groupId));	
-                Yii::app()->mongodb->group->update($where, array('$push' => array("participants"=>$newAccount["_id"]))); 
+                Yii::app()->mongodb->groups->update($where, array('$push' => array("participants"=>$newAccount["_id"]))); 
                     
                 //add details into statupweekend table
                 $newAccount['type'] = 'participant';
@@ -399,7 +399,7 @@ class StartupweekendController extends Controller {
                                                "coach"=>"coaches",
                                                 "jury"=>"jurys",
                                                 "organisateur"=>"organisteurs");
-                Yii::app()->mongodb->group->update($where, array('$push' => array($personTypesContainers[$_POST["personType"]]=>$newAccount["_id"])));
+                Yii::app()->mongodb->groups->update($where, array('$push' => array($personTypesContainers[$_POST["personType"]]=>$newAccount["_id"])));
                 
                 //add details into statupweekend table
                 $newAccount['type']=$_POST["personType"];

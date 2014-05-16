@@ -46,7 +46,7 @@ canvas{position:absolute;top:0px;left:0px;}
 .cRed{color:red;}
 .coachRequestedColor{border:5px solid red;}
 </style>
-<?php $event = Yii::app()->mongodb->group->findOne(array("key"=>$key));?>
+<?php $event = Yii::app()->mongodb->groups->findOne(array("key"=>$key));?>
 <div class="appMenuContainer">
     <ul class="appMenu">
     	<?php if( in_array( Yii::app()->session["userEmail"], $event["adminEmail"]) ){ ?>

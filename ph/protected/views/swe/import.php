@@ -9,7 +9,7 @@
     	$process = 1 ;
     	echo "created : ".$created."<br/>";
     	/*
-    	$event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId( $groupId ))); 
+    	$event = Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId( $groupId ))); 
     	$particpants = array();
     	foreach ($event["participants"] as $p){
     	    if(!in_array($p, $particpants))
@@ -17,7 +17,7 @@
     	    else
     	        echo $p." exist<br/>";
     	}
-    	Yii::app()->mongodb->group->update(array( "_id"=>new MongoId( $groupId ) ) , array('$set' => array("participants"=>$particpants)));
+    	Yii::app()->mongodb->groups->update(array( "_id"=>new MongoId( $groupId ) ) , array('$set' => array("participants"=>$particpants)));
     	*/
         if (($handle = fopen("upload/swe2.csv", "r")) !== FALSE) 
         {
@@ -62,7 +62,7 @@
 
                             //add a participant
                             $where = array("_id" => new MongoId($groupId));	
-                            Yii::app()->mongodb->group->update($where, array('$push' => array("participants"=>$newAccount["_id"])));
+                            Yii::app()->mongodb->groups->update($where, array('$push' => array("participants"=>$newAccount["_id"])));
                                 
                             //add details into statupweekend table
                             $newAccount['type']='participant';
@@ -102,10 +102,10 @@
                                 'events'=>array(new MongoId($groupId))
                                 );
                         if($process){
-                            Yii::app()->mongodb->group->insert($newAccount);
+                            Yii::app()->mongodb->groups->insert($newAccount);
                             //add a participant
                             $where = array("_id" => new MongoId($groupId));	
-                            Yii::app()->mongodb->group->update($where, array('$push' => array("projects"=>$newAccount["_id"])));
+                            Yii::app()->mongodb->groups->update($where, array('$push' => array("projects"=>$newAccount["_id"])));
                             
                             //add details into statupweekend table
                             $newAccount['type']='projet';
@@ -147,7 +147,7 @@
                                 Yii::app()->mongodb->citoyens->insert($newAccount);
                             //add a participant
                             $where = array("_id" => new MongoId($groupId));	
-                            Yii::app()->mongodb->group->update($where, array('$push' => array("coaches"=>$newAccount["_id"])));
+                            Yii::app()->mongodb->groups->update($where, array('$push' => array("coaches"=>$newAccount["_id"])));
                             
                             //add details into statupweekend table
                             $newAccount['type']='coach';
@@ -201,7 +201,7 @@
                                 Yii::app()->mongodb->citoyens->insert($newAccount);
                             //add a participant
                             $where = array("_id" => new MongoId($groupId));	
-                            Yii::app()->mongodb->group->update($where, array('$push' => array("jurys"=>$newAccount["_id"])));
+                            Yii::app()->mongodb->groups->update($where, array('$push' => array("jurys"=>$newAccount["_id"])));
                             
                             //add details into statupweekend table
                             $newAccount['type']='jury';
@@ -254,7 +254,7 @@
                                 Yii::app()->mongodb->citoyens->insert($newAccount);
                             //add a participant
                             $where = array("_id" => new MongoId($groupId));	
-                            Yii::app()->mongodb->group->update($where, array('$push' => array("organisateurs"=>$newAccount["_id"])));
+                            Yii::app()->mongodb->groups->update($where, array('$push' => array("organisateurs"=>$newAccount["_id"])));
                             
                             //add details into statupweekend table
                             $newAccount['type']='organisateur';

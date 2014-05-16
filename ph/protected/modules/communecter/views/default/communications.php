@@ -12,7 +12,7 @@
 			<select id="sendMessagePeople">
 				<option></option>
 				<?php 
-				$groups = Yii::app()->mongodb->group->find( array( "applications.egpc.usertype" => Group::TYPE_ASSOCIATION ));
+				$groups = Yii::app()->mongodb->groups->find( array( "type" => new MongoRegex("/.*/") ));
 				foreach ($groups as $value) {
 					echo '<option value="'.$value["name"].'">'.$value["name"].'</option>';
 				}
@@ -31,7 +31,7 @@
 				function setPeople(){
 					$("#sendMessageemail").val("");
 					$.ajax({
-					    url:'/ph/egpc/default/getPeople',
+					    url:'/ph/egpc/default/getPeopleBy',
 					    type:"POST",
 					    data:{ "name":$("#sendMessagePeople").val()},
 					    datatype : "json",

@@ -21,7 +21,7 @@ $cs->registerScriptFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jq
     <form id="associationForm" style="line-height:40px;">
         <section>
           	<?php 
-          	    $asso = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
+          	    $asso = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
           	?>
           	
           	<p><a class="btn btn-warning fb" href="javascript:;" onclick="$('#assoCreate').slideToggle();return false;"  >Ajouter une association</a></p>
@@ -88,7 +88,7 @@ $cs->registerScriptFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jq
                             <?php 
                             //TODO ajax request as you type
                               $names = array();
-                              foreach(iterator_to_array(Yii::app()->mongodb->group->find( array("type"=>"association"), array("name" => 1) )) as $a)
+                              foreach(iterator_to_array(Yii::app()->mongodb->groups->find( array("type"=>"association"), array("name" => 1) )) as $a)
                                   array_push($names, $a['name']);
                                   //$assoNames[$a['name']] = $a['name'] ;
                               

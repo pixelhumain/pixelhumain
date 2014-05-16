@@ -85,7 +85,7 @@ padding:5px;
 			<?php 
 			
 			foreach($user["associations"] as $a){
-			    $entity = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($a),"type"=>PixelHumain::TYPE_ASSOCIATION));
+			    $entity = Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId($a),"type"=>PixelHumain::TYPE_ASSOCIATION));
 			    echo "<a href='".Yii::app()->createUrl('index.php/association/view/id/'.$entity["_id"])."' class='btn btn-warning'>".$entity["name"]."</a><br/>";
 			}
 			?>
@@ -98,7 +98,7 @@ padding:5px;
 			<h2>Liste Entreprise</h2>
 			<?php 
 			foreach($user["entreprises"] as $a){
-			    $entity = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($a),"type"=>PixelHumain::TYPE_ENTREPRISE));
+			    $entity = Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId($a),"type"=>PixelHumain::TYPE_ENTREPRISE));
 			    echo "<a href='".Yii::app()->createUrl('index.php/entrepise/view/id/'.$entity["_id"])."' class='btn btn-warning'>".$entity["name"]."</a><br/>";
 			}
 			?>

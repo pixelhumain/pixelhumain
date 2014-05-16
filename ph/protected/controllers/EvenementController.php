@@ -21,7 +21,7 @@ class EvenementController extends Controller {
         array_push( $this->sidebar1, array( "label"=>"Modifier", "iconClass"=>"icon-pencil-neg","onclick"=>"openModal('eventForm','group','$id','dynamicallyBuild')" ) );
         array_push( $this->sidebar1, array( "label"=>"Participant", "iconClass"=>"icon-users","onclick"=>"openModal('eventParticipantForm','group','$id','dynamicallyBuild')" ) );
         
-        $event = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
+        $event = Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId($id)));
                  
         if(isset($event["key"]) )
             $this->redirect(Yii::app()->createUrl('evenement/key/id/'.$event["key"]));
@@ -58,7 +58,7 @@ class EvenementController extends Controller {
 	    if(Yii::app()->request->isAjaxRequest && isset($_POST['eventName']) && !empty($_POST['eventName']))
 		{
 		    //TODO check by key
-            $account = Yii::app()->mongodb->group->findOne(array( "name" => $_POST['eventName']));
+            $account = Yii::app()->mongodb->groups->findOne(array( "name" => $_POST['eventName']));
             if(!$account)
             { 
                //validate isEmail
@@ -78,7 +78,7 @@ class EvenementController extends Controller {
                     if(!empty($_POST['eventWhen']))
                          $new["date"] = $_POST['eventWhen'];
                     
-                    Yii::app()->mongodb->group->insert($new);
+                    Yii::app()->mongodb->groups->insert($new);
                     
                     //add the association to the users association list
                     $where = array("_id" => new MongoId(Yii::app()->session["userId"]));	
@@ -109,7 +109,7 @@ class EvenementController extends Controller {
 	}
     public function actionGetNames() {
        $assos = array();
-       foreach( Yii::app()->mongodb->group->find( array("name" => new MongoRegex("/".$_GET["typed"]."/i") ),array("name","cp") )  as $a=>$v)
+       foreach( Yii::app()->mongodb->groups->find( array("name" => new MongoRegex("/".$_GET["typed"]."/i") ),array("name","cp") )  as $a=>$v)
            $assos[] = array("name"=>$v["name"],"cp"=>$v["cp"],"id"=>$a);
        header('Content-Type: application/json');
        echo json_encode( array( "names"=>$assos ) ) ;
@@ -120,10 +120,10 @@ class EvenementController extends Controller {
     public function actionDelete() {
 	    if(Yii::app()->request->isAjaxRequest && Citoyen::isAdminUser())
 		{
-            $account = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($_POST["id"])));
+            $account = Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId($_POST["id"])));
             if( $account )
             {
-                  Yii::app()->mongodb->group->remove(array("_id"=>new MongoId($_POST["id"])));
+                  Yii::app()->mongodb->groups->remove(array("_id"=>new MongoId($_POST["id"])));
                   //temporary for dev
                   //TODO : Remove the association from all Ci accounts
                   Yii::app()->mongodb->citoyens->update( array( "_id" => new MongoId(Yii::app()->session["userId"]) ) , array('$pull' => array("associations"=>new MongoId( $_POST["id"]))));

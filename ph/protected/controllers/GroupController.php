@@ -45,7 +45,7 @@ class GroupController extends Controller {
         array_push( $this->sidebar1, array( "label"=>"Projet", "iconClass"=>"icon-share","onclick"=>"filterType('project')" ) );
         array_push( $this->sidebar1, array( "label"=>"Annonce", "iconClass"=>"icon-megaphone blue","onclick"=>"filterType('post')" ) );
         
-        $group = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
+        $group = Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId($id)));
         if(!empty($group['pwd'])){
             $this->secure = true;
     	    $this->appKey = $group['_id'];
@@ -95,7 +95,7 @@ class GroupController extends Controller {
 	
     public function actionKey($id) {
 	    $this->layout = "swe";
-	    $group = Yii::app()->mongodb->group->findOne(array("key"=>$id)); 
+	    $group = Yii::app()->mongodb->groups->findOne(array("key"=>$id)); 
 	    $this->secure = $group['private'];
 	    $this->appKey = $group['_id'];
 	    $this->appType = 'group';
@@ -122,7 +122,7 @@ class GroupController extends Controller {
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
 		{
 	        //test if group exist
-	         $group = (isset($_POST["id"])) ? Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($_POST["id"]))) : null; 
+	         $group = (isset($_POST["id"])) ? Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId($_POST["id"]))) : null; 
 	         if($group){
     	        //check citizen exist by email 
     	        if(preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$_POST['email'])) { 

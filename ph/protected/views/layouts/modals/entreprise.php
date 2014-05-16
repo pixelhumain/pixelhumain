@@ -13,7 +13,7 @@
     <form id="entrepriseForm" style="line-height:40px;">
         <section>
           	<?php 
-          	    $entreprise = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
+          	    $entreprise = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
           	?>
           	<table>
               	<tr>
@@ -27,7 +27,7 @@
                         <?php 
                         //TODO ajax request as you type
                           $names = array();
-                          foreach(iterator_to_array(Yii::app()->mongodb->group->find( array("type"=>"entreprise"), array("name" => 1) )) as $a)
+                          foreach(iterator_to_array(Yii::app()->mongodb->groups->find( array("type"=>"entreprise"), array("name" => 1) )) as $a)
                               array_push($names, $a['name']);
                               //$assoNames[$a['name']] = $a['name'] ;
                           

@@ -142,7 +142,7 @@ class DefaultController extends Controller {
         
         if( isset( $_POST["name"] ) ){
             $where["name"] = $_POST["name"];
-            $group = Yii::app()->mongodb->group->findOne ( array( "name" => $_POST["name"] ) );
+            $group = Yii::app()->mongodb->groups->findOne ( array( "name" => $_POST["name"] ) );
             $users = Yii::app()->mongodb->citoyens->find ( array( "associations" => (string)$group['_id']) );
         } else {
             $users = Yii::app()->mongodb->citoyens->find ( array( "applications.echolocal.usertype" => $this::$moduleKey ) );
@@ -177,14 +177,14 @@ class DefaultController extends Controller {
                 $newInfos['applications'] = array( $this::$moduleKey => array( "usertype"=>$_POST['type'],"registrationConfirmed" => false ));
                     
                 //if exists login else create the new group
-                if(!Yii::app()->mongodb->group->findOne( array( "type"=>$_POST['type'],"name"=>$_POST['name'] ) ))
+                if(!Yii::app()->mongodb->groups->findOne( array( "type"=>$_POST['type'],"name"=>$_POST['name'] ) ))
                 {
-                    Yii::app()->mongodb->group->insert( $newInfos);
+                    Yii::app()->mongodb->groups->insert( $newInfos);
                     $res = array("result" => true, 
                                  "msg"    => $_POST['type']." has be created or updated");
                 } else {
                     //if there's an email change 
-                    Yii::app()->mongodb->group->update( array("name" => $_POST['name']), 
+                    Yii::app()->mongodb->groups->update( array("name" => $_POST['name']), 
                                                         array('$set' => $newInfos ) 
                                                       );
                 }
@@ -198,7 +198,7 @@ class DefaultController extends Controller {
     }
     public function actionGetGroup($email) 
     {
-       $res = Yii::app()->mongodb->group->find( array( "email" => $email ) );
+       $res = Yii::app()->mongodb->groups->find( array( "email" => $email ) );
         Rest::json( iterator_to_array($res) );
         Yii::app()->end();
     }
@@ -206,7 +206,7 @@ class DefaultController extends Controller {
     public function actionGetGroups() 
     {
         //TODO : other fgroup types
-       $res = Yii::app()->mongodb->group->find( array( "applications.echolocal.usertype" => Group::TYPE_ASSOCIATION ));
+       $res = Yii::app()->mongodb->groups->find( array( "applications.echolocal.usertype" => Group::TYPE_ASSOCIATION ));
         Rest::json( iterator_to_array($res) );
         Yii::app()->end();
     }

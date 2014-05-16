@@ -16,13 +16,13 @@ class Group
 	public static function addMember( $email, $name, $type )
 	{
 		$user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
-		$group = Yii::app()->mongodb->group->findOne( array( "name" => $name,"type"=>$type ) );
+		$group = Yii::app()->mongodb->groups->findOne( array( "name" => $name,"type"=>$type ) );
         if( $user && $group )
         {
         	//check if user is allready linked to this group
         	if( !Group::isGroupMember((string)$user["_id"],$group["_id"]) ){
         		Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($user["_id"])), array('$push' => array( Citoyen::$types2Nodes[ $type ] => (string)$group["_id"] )));
-        		Yii::app()->mongodb->group->update(array("_id" => new MongoId($group["_id"])), array('$push' => array( self::NODE_PARTICIPANTS => (string)$user["_id"])));
+        		Yii::app()->mongodb->groups->update(array("_id" => new MongoId($group["_id"])), array('$push' => array( self::NODE_PARTICIPANTS => (string)$user["_id"])));
         		$res = array( "result" => true,  "userConnected2Group" => true );
         	}else
         		$res = array( "result" => true,  "userAllreadyConnected2Group" => true );
@@ -34,11 +34,11 @@ class Group
     public static function removeMember( $email, $name, $type )
     {
 		$user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
-		$group = Yii::app()->mongodb->group->findOne( array( "name" => $name,"type"=>$type ) );
+		$group = Yii::app()->mongodb->groups->findOne( array( "name" => $name,"type"=>$type ) );
         if( isset( $user ) && isset( $group ) )
         {
         	Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($user["_id"])), array('$pull' => array( Citoyen::$types2Nodes[ $type ] => (string)$group["_id"] )));
-        	Yii::app()->mongodb->group->update(array("_id" => new MongoId($group["_id"])), array('$pull' => array( self::NODE_PARTICIPANTS => (string)$user["_id"])));
+        	Yii::app()->mongodb->groups->update(array("_id" => new MongoId($group["_id"])), array('$pull' => array( self::NODE_PARTICIPANTS => (string)$user["_id"])));
         	$res = array( "result" => true,  "userDisonnected2Group" => true );
         } else
        		$res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
@@ -47,7 +47,7 @@ class Group
 
     public static function isGroupMember($userId, $groupId) 
     {
-    	$group = Yii::app()->mongodb->group->findOne( array("_id" => new MongoId($groupId), self::NODE_PARTICIPANTS => $userId  ) );
+    	$group = Yii::app()->mongodb->groups->findOne( array("_id" => new MongoId($groupId), self::NODE_PARTICIPANTS => $userId  ) );
      	return   $group;
     }
 

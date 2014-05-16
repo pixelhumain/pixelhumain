@@ -94,15 +94,17 @@
 	</li>
 
 
-	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/default/getPeople"  id="blockgetPeople">Get <?php echo $this::$moduleKey?> People</a><br/>
+	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/default/getPeople"  id="blockgetPeople">Get People by codepostal </a><br/>
 		<div class="fss">
 			url : /ph/<?php echo $this::$moduleKey?>/default/getPeople<br/>
-			method type : GET <br/>
+			method type : POST <br/>
+			cp* : <input type="text" name="postalcodegetPeople" id="postalcodegetPeople" value="97421" /><br/>
 			<a href="javascript:getPeople()">Test it</a><br/>
 			<div id="getPeopleResult" class="result fss"></div>
 			<script>
 				function getPeople(){
-					testitget("getPeopleResult",'/ph/<?php echo $this::$moduleKey?>/default/getPeople');
+					params = { "cp" : $("#postalcodegetPeople").val() };
+					testitpost("getPeopleResult",'/ph/<?php echo $this::$moduleKey?>/default/getpeopleby',params);
 				}
 			</script>
 		</div>

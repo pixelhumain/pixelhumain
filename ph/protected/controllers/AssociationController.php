@@ -18,7 +18,7 @@ class AssociationController extends Controller {
 	}
     public function actionView($id) {
         $this->layout = "swe";
-        $asso = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($id)));
+        $asso = Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId($id)));
         if(isset($asso["key"]) )
             $this->redirect(Yii::app()->createUrl('index.php/assocation/'.$asso["key"]));
         else    
@@ -30,7 +30,7 @@ class AssociationController extends Controller {
     public function actionSave() {
 	    if(Yii::app()->request->isAjaxRequest && isset($_POST['assoEmail']) && !empty($_POST['assoEmail']))
 		{
-            $account = Yii::app()->mongodb->group->findOne(array( "name" => $_POST['assoName']));
+            $account = Yii::app()->mongodb->groups->findOne(array( "name" => $_POST['assoName']));
             if(!$account)
             { 
                //validate isEmail
@@ -59,7 +59,7 @@ class AssociationController extends Controller {
                         else if($_POST['assoPosition']==Association::$positionList[5])
                             $newAccount["benevolesActif"] = $position;
                     }
-                    Yii::app()->mongodb->group->insert($newAccount);
+                    Yii::app()->mongodb->groups->insert($newAccount);
                     
                     //add the association to the users association list
                     $where = array("_id" => new MongoId(Yii::app()->session["userId"]));	
@@ -90,7 +90,7 @@ class AssociationController extends Controller {
 	}
     public function actionGetNames() {
        $assos = array();
-       foreach( Yii::app()->mongodb->group->find( array("name" => new MongoRegex("/".$_GET["typed"]."/i") ),array("name","cp") )  as $a=>$v)
+       foreach( Yii::app()->mongodb->groups->find( array("name" => new MongoRegex("/".$_GET["typed"]."/i") ),array("name","cp") )  as $a=>$v)
            $assos[] = array("name"=>$v["name"],"cp"=>$v["cp"],"id"=>$a);
        header('Content-Type: application/json');
        echo json_encode( array( "names"=>$assos ) ) ;
@@ -101,10 +101,10 @@ class AssociationController extends Controller {
     public function actionDelete() {
 	    if(Yii::app()->request->isAjaxRequest && Citoyen::isAdminUser())
 		{
-            $account = Yii::app()->mongodb->group->findOne(array("_id"=>new MongoId($_POST["id"])));
+            $account = Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId($_POST["id"])));
             if( $account )
             {
-                  Yii::app()->mongodb->group->remove(array("_id"=>new MongoId($_POST["id"])));
+                  Yii::app()->mongodb->groups->remove(array("_id"=>new MongoId($_POST["id"])));
                   //temporary for dev
                   //TODO : Remove the association from all Ci accounts
                   Yii::app()->mongodb->citoyens->update( array( "_id" => new MongoId(Yii::app()->session["userId"]) ) , array('$pull' => array("associations"=>new MongoId( $_POST["id"]))));

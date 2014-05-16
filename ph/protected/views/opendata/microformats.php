@@ -100,7 +100,7 @@ ol.slats li p span.meta {
 	
 	<li class="group">
 	    <?php 
-		$entries = Yii::app()->mongodb->group->find();
+		$entries = Yii::app()->mongodb->groups->find();
 		$listNames = "";
 		$listNamesA = array(); 
 		foreach($entries as $e){
@@ -117,7 +117,7 @@ ol.slats li p span.meta {
 		
 		<h4>Association</h4>
 		<?php 
-		$entry = Yii::app()->mongodb->group->findOne(array("name"=>"Open Atlas"));
+		$entry = Yii::app()->mongodb->groups->findOne(array("name"=>"Open Atlas"));
 	    array_shift($entry);
 		?>
 		<pre id="assojson"></pre>
@@ -128,7 +128,7 @@ ol.slats li p span.meta {
 		
 		<h4>Entreprise</h4>
 		<?php 
-		$entry = Yii::app()->mongodb->group->findOne(array("name"=>"Oceatoon - Tibor Katelbach"));
+		$entry = Yii::app()->mongodb->groups->findOne(array("name"=>"Oceatoon - Tibor Katelbach"));
 	    array_shift($entry);
 		?>
 		<pre id="entreprisejson"></pre>
@@ -139,7 +139,7 @@ ol.slats li p span.meta {
 		
 		<h4>Event</h4>
 		<?php 
-		$entry = Yii::app()->mongodb->group->findOne(array("key"=>"StartupWeekEnd2012"));
+		$entry = Yii::app()->mongodb->groups->findOne(array("key"=>"StartupWeekEnd2012"));
 	    array_shift($entry);
 	    
 	    $entry["adminEmail"]=array();
@@ -158,7 +158,7 @@ ol.slats li p span.meta {
 		
 		<h4>Projet</h4>
 		<?php 
-		$entry = Yii::app()->mongodb->group->findOne(array("name"=>"Pixel Humain"));
+		$entry = Yii::app()->mongodb->groups->findOne(array("name"=>"Pixel Humain"));
 	    array_shift($entry);
 	    
 	    $entry["team"]=array();
