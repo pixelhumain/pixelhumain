@@ -1,76 +1,40 @@
-<?php 
-$cs = Yii::app()->getClientScript();
-$cs->registerCssFile(Yii::app()->request->baseUrl. '/css/api.css'); 
-?>
+<section class="mt80 stepContainer">
 
-<div class="containeri apiList">
-	<div class="hero-uniti">
-		<h2>A.P.I <?php echo $this::moduleTitle?>  : List all URLs</h2>
-		<ul>
-			<?php foreach ($this->sidebar1 as  $e) { 
-				if( !isset( $e["menuOnly"])){
-				?>
+    <div class="step">
+      <div class="stepTitle">5s pour comprendre</div>
+      se Communecter == Se connecter à sa commune pour ne rien rater<br>
+      un habitant en connecte un autre et ainsi de suite<br>
+    </div>
 
-				<!-- ////////////////////////////////////////////////////////////////////////////// -->
+    <div class="step">
+      <div class="fr">
+        <div class="communectedcp">97421</div>
+        <div class="communected">234</div>
+      </div>
 
-				<li ><h3 class="blockp"><?php echo $e['label']?> <?php if(isset($e['children']))echo "( ".count($e['children'])." )"?>  <a class="<?php echo $e['key']?>Icon fa fa-eye<?php if(isset($e['hide'])) echo '-slash'?>" href="javascript:;" onclick="toggle('<?php echo $e['key']?>');"></a></h3></li>
-				<li class="<?php echo $e['key']?> <?php if(isset($e['hide'])) echo 'hide'?>">
-					<?php 
-					$params = ( isset( $e['blocks']) ) ? array("blocks"=>$e['blocks']) : array();
-					$this->renderPartial( 'application.modules.'.$this::$moduleKey.'.views.default.'.$e['key'],$params ); ?>
-				</li>
+      <div class="stepTitle">5s pour participer</div>
+      s'incrire : <input type="text" name="email" placeholder="email"/> + 
+      <input type="text" name="code postal" placeholder="code postal"/>
+      <a href="" class="btn">Communectez moi</a> <br>
+       Communiquer sans intermediare avec toute votre commune<br>
+       combien etes vous deja communecter dans votre commune?  
 
-				<!-- ////////////////////////////////////////////////////////////////////////////// -->
+     </div>
 
-			<?php }}?>
-			
-		</ul>
-	</div>
-</div>
+    <div class="step">
+      <div class="stepTitle">Quelques minute Pour Creer son reseau</div>
+      Faire du buzz, 
+      inviter des gens de votre commune et d'ailleurs<br>
+      Connecter Quelqu'un : <input type="text" name="invitteEmail" placeholder="email"/> <a href="" class="btn">Envoyer L'invitation</a><br>
+      Cette action a plus d'impact que vous n'imaginez.
+    </div>
 
-<script type="text/javascript">
-function testitpost(id,url,params){
-	console.log(id,url,params);
-	$("#"+id).html("");
-	$.ajax({
-	    url:url,
-	    data:params,
-	    type:"POST",
-	    success:function(data) {
-	      $("#"+id).html(JSON.stringify(data, null, 4));
-	    },
-	    error:function (xhr, ajaxOptions, thrownError){
-	      $("#"+id).html(data);
-	    } 
-	  });
-}
-function testitget(id,url){
-	$("#"+id).html("");
-	$.ajax({
-	    url:url,
-	    type:"GET",
-	    success:function(data) {
-	      $("#"+id).html(JSON.stringify(data, null, 4));
-	    },
-	    error:function (xhr, ajaxOptions, thrownError){
-	      $("#"+id).html(data);
-	    } 
-	  });
-}
-function toggle(id){
-	if( !$("."+id).is(":visible") ) {
-		$("."+id).removeClass("hide").attr("style","");
-		$("."+id+"Icon").removeClass('fa-eye-slash').addClass('fa-eye');
-	} else { 
-		$("."+id).addClass("hide");
-		$("."+id+"Icon").removeClass('fa-eye').addClass('fa-eye-slash');
-		$("."+id).hide();
-	}
-	return false;
-}
-function scrollTo(id){
- $("html, body").animate({
-            scrollTop: $(id).offset().top-70
-        }, 700);
-}
-</script>
+    <div class="step">
+
+      <div class="stepTitle">Future : Continuer dans le bon sens</div>
+      <a href="http://pixelhumain.com" class="btn">le Pixel Humain</a> : un reseau sociétal vous attends pour agir<br>
+       ... l'histoire ne fait que commencer
+       <div class="loader">Loading...</div>
+    </div>
+
+  </section>
