@@ -93,7 +93,7 @@ class DefaultController extends Controller {
      */
 	public function actionIndex() 
 	{
-	    $this->render("index");
+	    $this->render("../../../../modules/api/views/index", array("path"=>'application.modules.'.$this::$moduleKey.'.views.default.') );
 	}
 
   

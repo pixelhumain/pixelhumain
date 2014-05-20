@@ -7,7 +7,7 @@
 }
 
 body {
-  background: url("../img/crowd.jpg") no-repeat;
+  background: url("../img/crowd.jpg") repeat;
   background-size: 2000px;
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   margin:0px;
@@ -139,16 +139,19 @@ menu.a {
 
 .title{ z-index:-1;font-size: xx-large;font-weight: bolder;margin-top: 20px;margin-left: 100px;}
 .stepContainer{width: 80%;margin: 0 auto;margin-top: 40px;}
-.mt100{margin-top: 100px;}
+.topSpacer{margin-top: 100px;}
 .step{ border: 1px solid white;  color:white;   margin-bottom: 10px;  padding:10px;  background-color: #000;  opacity: 0.6;}
-.step > input{height: 30px;}
+.step > input{height: 30px;margin-top: 3px;margin-bottom: 10px;}
 a.btn{background-color: yellow; color:#000; padding: 3px;text-decoration: none;font-weight: bold;}
 a.btn:hover{background-color: #F1C40F;}
 .stepTitle{color: #F9E78B;font-weight: bold;margin-bottom: 3px;}
 .hide{visibility: hidden;}
-.communected{color: yellow; font-size: 4em; font-weight: bold;}
-.communectedcp{color: yellow; font-size: 1.3em; font-weight: bold;}
+.hidden{display: none;}
+.communected{color: yellow; font-size: 4em; font-weight: bold;border: 1px solid yellow; border-radius: 50%;padding: 10px;text-align: center}
+.communectedcp{color: yellow; font-size: 1.3em; font-weight: bold;border: 1px solid yellow; border-radius: 50%;padding: 5px;text-align: center}
 .fr{float: right; }
+.highlight{font-weight: bold;color: yellow;}
+
 @media screen and (max-width: 768px) {
   .menu {
     height: auto;
@@ -164,6 +167,8 @@ a.btn:hover{background-color: #F1C40F;}
     width: -webkit-calc(100% - 0.5rem);
     width: calc(100% - 0.5rem);
   }
+  .title{font-size: large;font-weight: bold;margin-top: 37px;margin-left: 77px;}
+  .topSpacer{margin-top: 280px;}
 }
 
 /* ---------------- Loader ------------------- */
@@ -171,7 +176,7 @@ a.btn:hover{background-color: #F1C40F;}
 .loader,
 .loader:before,
 .loader:after {
-  background: #FFF;
+  background: yellow;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em;
@@ -188,7 +193,7 @@ a.btn:hover{background-color: #F1C40F;}
 }
 .loader {
   text-indent: -9999em;
-  margin: 10% auto;
+  margin: 5% auto;
   position: relative;
   font-size: 11px;
   -webkit-animation-delay: 0.16s;
@@ -203,11 +208,11 @@ a.btn:hover{background-color: #F1C40F;}
   0%,
   80%,
   100% {
-    box-shadow: 0 0 #FFF;
+    box-shadow: 0 0 yellow;
     height: 4em;
   }
   40% {
-    box-shadow: 0 -2em #ffffff;
+    box-shadow: 0 -2em yellow;
     height: 5em;
   }
 }
@@ -215,11 +220,11 @@ a.btn:hover{background-color: #F1C40F;}
   0%,
   80%,
   100% {
-    box-shadow: 0 0 #FFF;
+    box-shadow: 0 0 yellow;
     height: 4em;
   }
   40% {
-    box-shadow: 0 -2em #ffffff;
+    box-shadow: 0 -2em yellow;
     height: 5em;
   }
 }

@@ -1,6 +1,6 @@
 <ul>
 	<li class="block" id="blockCommunect">
-		<a href="/ph/<?php echo $this::$moduleKey?>/default/communect">Login</a><br/>
+		<a href="/ph/<?php echo $this::$moduleKey?>/api/communect">Login</a><br/>
 		<div class="fss">
 			se communecter c'est juste suivre l'activité d'un CP <br/>
 			Il suffit d'un email et d'un CP<br/>
@@ -16,7 +16,7 @@
 					params = { "email" : $("#emailCommunect").val() , 
 					    	   "cp" : $("#cpCommunect").val()
 					    	};
-					testitpost("communectResult",'/ph/<?php echo $this::$moduleKey?>/default/communect',params);
+					testitpost("communectResult",'/ph/<?php echo $this::$moduleKey?>/api/communect',params);
 				}
 			</script>
 			
@@ -24,7 +24,7 @@
 	</li>
 
 	<li class="block" id="blockLogin">
-		<a href="/ph/<?php echo $this::$moduleKey?>/default/login">Login</a><br/>
+		<a href="/ph/<?php echo $this::$moduleKey?>/api/login">Login</a><br/>
 		<div class="fss">
 			Il faut etre loguer par email, cp, et mot de passe<br/>
 			method type : POST <br/>
@@ -39,7 +39,7 @@
 					params = { "email" : $("#emailLogin").val() , 
 					    	   "pwd" : $("#pwdLogin").val()
 					    	};
-					testitpost("loginResult",'/ph/<?php echo $this::$moduleKey?>/default/login',params);
+					testitpost("loginResult",'/ph/<?php echo $this::$moduleKey?>/api/login',params);
 					
 				}
 			</script>
@@ -47,9 +47,9 @@
 		</div>
 	</li>
 
-	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/default/saveUser"  id="blockSaveUser">Create/Update user</a><br/>
+	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/api/saveUser"  id="blockSaveUser">Create/Update user</a><br/>
 		<div class="fss">
-			url : /ph/<?php echo $this::$moduleKey?>/default/saveUser<br/>
+			url : /ph/<?php echo $this::$moduleKey?>/api/saveUser<br/>
 			method type : POST <br/>
 			Form inputs : email,postalcode,pwd,phoneNumber(is optional)<br/>
 			return json object {"result":true || false}
@@ -70,15 +70,15 @@
 					    	   "cp" : $("#postalcodeSaveUser").val() ,
 					    	   "pwd":$("#pwdSaveUser").val() ,
 					    	   "phoneNumber" : $("#phoneNumberSaveUser").val()};
-					testitpost("createUserResult",'/ph/<?php echo $this::$moduleKey?>/default/saveUser',params);
+					testitpost("createUserResult",'/ph/<?php echo $this::$moduleKey?>/api/saveUser',params);
 				}
 			</script>
 		</div>
 	</li>
 	
-	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/default/getUser/email/oceatoon@gmail.com"  id="blockGetUser">Get User</a><br/>
+	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/api/getUser/email/oceatoon@gmail.com"  id="blockGetUser">Get User</a><br/>
 		<div class="fss">
-			url : /ph/<?php echo $this::$moduleKey?>/default/getUser/email/oceatoon@gmail.com<br/>
+			url : /ph/<?php echo $this::$moduleKey?>/api/getUser/email/oceatoon@gmail.com<br/>
 			method type : GET <br/>
 			param : email<br/>
 			email : <input type="text" name="getUseremail" id="getUseremail" value="oceatoon@gmail.com" /><br/>
@@ -86,7 +86,7 @@
 			<div id="getUserResult" class="result fss"></div>
 			<script>
 				function getUser(){
-					testitget("getUserResult",'/ph/<?php echo $this::$moduleKey?>/default/getUser/email/'+$("#getUseremail").val());
+					testitget("getUserResult",'/ph/<?php echo $this::$moduleKey?>/api/getUser/email/'+$("#getUseremail").val());
 				}
 				
 			</script>
@@ -94,17 +94,60 @@
 	</li>
 
 
-	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/default/getPeople"  id="blockgetPeople">Get People by codepostal </a><br/>
+	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/api/getpeopleby"  id="blockgetPeople">Get People by codepostal </a><br/>
 		<div class="fss">
-			url : /ph/<?php echo $this::$moduleKey?>/default/getPeople<br/>
+			url : /ph/<?php echo $this::$moduleKey?>/api/getpeopleby<br/>
 			method type : POST <br/>
 			cp* : <input type="text" name="postalcodegetPeople" id="postalcodegetPeople" value="97421" /><br/>
-			<a href="javascript:getPeople()">Test it</a><br/>
+			<a href="javascript:getpeopleby()">Test it</a><br/>
+			<a href="javascript:countpeopleby()">Count it</a><br/>
 			<div id="getPeopleResult" class="result fss"></div>
 			<script>
-				function getPeople(){
+				function getpeopleby(){
 					params = { "cp" : $("#postalcodegetPeople").val() };
-					testitpost("getPeopleResult",'/ph/<?php echo $this::$moduleKey?>/default/getpeopleby',params);
+					testitpost("getPeopleResult",'/ph/<?php echo $this::$moduleKey?>/api/getpeopleby',params);
+				}
+				function countpeopleby(){
+					params = { "cp" : $("#postalcodegetPeople").val() };
+					testitpost("getPeopleResult",'/ph/<?php echo $this::$moduleKey?>/api/getpeopleby/count/1',params);
+				}
+			</script>
+		</div>
+
+	</li>
+
+	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/api/inviteUser"  id="blockinviteUser">Invite User</a><br/>
+		<div class="fss">
+			url : /ph/<?php echo $this::$moduleKey?>/api/inviteUser<br/>
+			method type : POST <br/>
+			param : email<br/>
+			email : <input type="text" name="inviteUseremail" id="inviteUseremail" value="egpc@egpc.com" /><br/>
+			<a href="javascript:inviteUser()">Test it</a><br/>
+			<div id="inviteUserResult" class="result fss"></div>
+			<script>
+				function inviteUser(){
+					params = { "email" : $("#inviteUseremail").val() };
+					testitpost("inviteUserResult",'/ph/<?php echo $this::$moduleKey?>/api/inviteUser',params);
+				}
+				
+			</script>
+		</div>
+	</li>
+
+	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/api/getnodeby"  id="blockgetnodeby">Get content of a Node (friends, ...)</a><br/>
+		<div class="fss">
+			url : /ph/<?php echo $this::$moduleKey?>/api/getnodeby<br/>
+			method type : GET <br/>
+			type : <input type="text" name="getnodebyType" id="getnodebyType" value="friends" /><br/>
+			<a href="javascript:getnodeby()">Test it</a><br/>
+			<a href="javascript:countgetnodeby()">Count it</a><br/>
+			<div id="getnodebyResult" class="result fss"></div>
+			<script>
+				function getnodeby(){
+					testitget("getnodebyResult",'/ph/<?php echo $this::$moduleKey?>/api/getnodeby/type/'+$("#getnodebyType").val());
+				}
+				function countgetnodeby(){
+					testitget("getnodebyResult",'/ph/<?php echo $this::$moduleKey?>/api/getnodeby/type/'+$("#getnodebyType").val()+'/count/1');
 				}
 			</script>
 		</div>

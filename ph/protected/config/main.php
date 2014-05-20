@@ -9,6 +9,7 @@ require_once(dirname(__FILE__) . '/mailconfig.php');
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Pixel Humain',
+	//'defaultController' => 'communecter/default/index',
 	'theme'=>'webarch',
 
 	// preloading 'log' component

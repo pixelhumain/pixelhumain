@@ -26,7 +26,6 @@
 	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/mainph.css">
 
 	<!-- END NEED TO WORK ON -->
-	<?php //echo Yii::app()->createUrl('js/jquery-1.8.3.min.js')?>
    <script>
    var initT = new Object();
    var showDelaunay = true;

@@ -8,8 +8,12 @@ class Citoyen
     const NODE_APPLICATIONS     = 'applications';
     const NODE_EVENTS           = 'events';
     const NODE_POSITIONS        = 'positions';
+    const NODE_FRIENDS          = 'friends';
+    const NODE_NOTIFICATIONS    = "notifications";
 
-    public static $types2Nodes = array(Group::TYPE_ASSOCIATION => self::NODE_ASSOCIATIONS,
+    const NOTIFICATION_FRIEND_REQUEST    = "friendRequest";
+
+    public static $types2Nodes = array( Group::TYPE_ASSOCIATION  => self::NODE_ASSOCIATIONS,
                                         Group::TYPE_ENTREPRISE  => "employees",
                                         Group::TYPE_EVENT       => "participants",
                                         Group::TYPE_PROJECT     => "participants");
@@ -66,7 +70,7 @@ class Citoyen
                         Yii::app()->mongodb->citoyens->update(array("email"=>$email), 
                                                               array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
                         
-                        Yii::app()->session["userId"] = $account["_id"];
+                        Yii::app()->session["userId"] = (string)$account["_id"];
                         Yii::app()->session["userEmail"] = $account["email"]; 
                         
                         if( isset($account["isAdmin"]) && $account["isAdmin"] )
@@ -82,7 +86,7 @@ class Citoyen
                 //but one is filled in the login field that will be the pwd
                 elseif ( !empty($pwd) && $account["pwd"] == hash('sha256', $email.$pwd))
                 {
-                    Yii::app()->session["userId"] = $account["_id"];
+                    Yii::app()->session["userId"] = (string)$account["_id"];
                     Yii::app()->session["userEmail"] = $account["email"]; 
                     
                     if( isset($account["isAdmin"]) && $account["isAdmin"] )
@@ -148,7 +152,7 @@ class Citoyen
                     Yii::app()->mongodb->citoyens->insert($newAccount);
                    
                     //set session elements for global credentials
-                    Yii::app()->session["userId"] = $newAccount["_id"]; 
+                    Yii::app()->session["userId"] = (string)$newAccount["_id"]; 
                     Yii::app()->session["userEmail"] = $newAccount["email"];
                     
                     //send validation mail
@@ -201,7 +205,6 @@ class Citoyen
                
                if(preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$email)) 
                { 
-                   
                    //new user is creating account 
                    $newAccount = array(
                                 'email'=>$email,
@@ -217,7 +220,7 @@ class Citoyen
                     Yii::app()->mongodb->citoyens->insert($newAccount);
                    
                     //set session elements for global credentials
-                    Yii::app()->session["userId"] = $newAccount["_id"]; 
+                    Yii::app()->session["userId"] = (string)$newAccount["_id"]; 
                     Yii::app()->session["userEmail"] = $newAccount["email"];
                     
                     //send validation mail
@@ -234,7 +237,7 @@ class Citoyen
                     Notification::add(array("type"=>Notification::NOTIFICATION_COMMUNECTED,
                                             "user"=>$newAccount["_id"]));
                     
-                    $res = array("result"=>true, "id"=>$newAccount);
+                    $res = array("result"=>true, "id"=>$newAccount,"isNewUser"=>true);
                } else
                         $res = array("result"=>false, "msg"=>"Vous devez remplir un email valide.");
             } else
@@ -280,5 +283,97 @@ class Citoyen
         }
         return $res;
     }
-   
+    /*
+    - email must be valid
+     */
+     public static function createUser($email){
+        //new user is creating account 
+        $newAccount = array(
+                    'email'=>$email,
+                    'created' => time()
+                    );
+        
+        Yii::app()->mongodb->citoyens->insert($newAccount);
+        //send validation mail
+        //TODO : make emails as cron jobs
+        /*$message = new YiiMailMessage;
+        $message->view = 'validation';
+        $message->setSubject('Confirmer votre compte Pixel Humain');
+        $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
+        $message->addTo("oceatoon@gmail.com");//$email
+        $message->from = Yii::app()->params['adminEmail'];
+        Yii::app()->mail->send($message);*/
+
+        return array("userAdded"=>true,"id"=>(string)$newAccount["_id"]);
+    }
+
+    /*
+    -check email is valid
+    -new user is creating account 
+    -link both users together
+     */
+    public static function inviteUser($invitedEmail)
+    {
+        //check email is valid
+        if( preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$invitedEmail) ) 
+        { 
+            $res = Citoyen::createUser($invitedEmail);
+           
+            //link both users together
+            if(Yii::app()->session["userId"])
+                $res["link2Users_Call"] = Citoyen::link2Users( (string)Yii::app()->session["userId"] , (string)$res["id"] );
+        } else  
+            $res = array("result"=>false,"msg"=>"submited email is not valid");
+        return $res;
+    }
+
+    /*
+    - make sure both users exist and aren't the same id
+    - add a relation link on the inviter
+    - add invited to inviter friends
+    - add inviter to invited friends
+    - notify the invited user for validation
+    - return true or false
+     */
+    public static function link2Users($inviterId, $invitedId)
+    {
+        //make sure both users exist
+        $inviter = Yii::app()->mongodb->citoyens->findOne( array("_id" => new MongoId($inviterId) )); 
+        $invited = Yii::app()->mongodb->citoyens->findOne( array("_id" => new MongoId($invitedId) ));
+        $res = array("result" => false);
+        if($inviter && $invited && $inviter != $invited)
+        {
+            //check if not allready linked
+            if( !isset($inviter[Citoyen::NODE_FRIENDS]) || ( isset($inviter[Citoyen::NODE_FRIENDS]) && !isset( $inviter[Citoyen::NODE_FRIENDS][$invitedId] ) ) )
+            {
+                //add a relation link on the inviter
+                //add invited to inviter friends
+                Yii::app()->mongodb->citoyens->update(array("_id"   => new MongoId($inviterId)), 
+                                                      array('$set' => array( Citoyen::NODE_FRIENDS.".".$invitedId => array( "since"=>time()))));
+                //add inviter to invited friends
+                if( !isset($invited[Citoyen::NODE_FRIENDS]) || ( isset($invited[Citoyen::NODE_FRIENDS]) && !isset( $invited[Citoyen::NODE_FRIENDS][$inviterId] ) ) )
+                    Yii::app()->mongodb->citoyens->update(array("_id"   => new MongoId($invitedId)), 
+                                                          array('$set' => array( Citoyen::NODE_FRIENDS.".".$inviterId => array( "since"=>time() ))));
+
+                //notify the invited user for validation
+                Notification::add(array("type"          => Notification::NOTIFICATION_LINK_REQUEST,
+                                        "notifyUser"    => $invitedId,
+                                        "inviter"       => $inviterId,
+                                        "invited"       => $invitedId ));
+                $res = array("result" => true,
+                             "invitationRequestSaved"=>true,
+                             "inviterId"=>$inviterId,
+                             "invitedId"=>$invitedId);
+            } else 
+                $res = array("result" => false,
+                             "msg"=>"users are allready connected",
+                             "inviterId"=>$inviterId,
+                             "invitedId"=>$invitedId);
+        } else
+            $res = array("result" => false,
+                             "msg"=>"users must be different",
+                             "inviterId"=>$inviterId,
+                             "invitedId"=>$invitedId);
+        return $res;
+    }
 }

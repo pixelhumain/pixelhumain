@@ -50,7 +50,9 @@ class ApiController extends Controller {
                     array( "label"=>"Save User","href"=>"javascript:;","onclick"=>"scrollTo('#blockSaveUser')"),
                     array( "label"=>"Get User","href"=>"javascript:;","onclick"=>"scrollTo('#blockGetUser')"),
                     array( "label"=>"ConfirmUserRegistration","href"=>"javascript:;","onclick"=>"scrollTo('#blockGetUser')"),
-                    array( "label"=>"GetPeople","href"=>"javascript:;","onclick"=>"scrollTo('#blockgetPeople')")
+                    array( "label"=>"GetPeople","href"=>"javascript:;","onclick"=>"scrollTo('#blockgetPeople')"),
+                    array( "label"=>"InvitePeople","href"=>"javascript:;","onclick"=>"scrollTo('#blockinviteUser')"),
+                    array( "label"=>"GetNodeByType","href"=>"javascript:;","onclick"=>"scrollTo('#blockgetnodeby')")
                 )),
             array('label' => "Entities", "key"=>"entities", "iconClass"=>"fa fa-group",
                 "children"=> array(
@@ -78,7 +80,7 @@ class ApiController extends Controller {
      */
 	public function actionIndex() 
 	{
-	    $this->render("index");
+	    $this->render("../../../../modules/api/views/index", array("path"=>'application.modules.'.$this::$moduleKey.'.views.api.') );
 	}
     public function actions()
     {
@@ -88,6 +90,8 @@ class ApiController extends Controller {
             'communect' => 'application.controllers.user.CommunectAction',
             'getuser'   => 'application.controllers.user.GetUserAction',
             'getpeopleby'   => 'application.controllers.user.GetPeopleByAction',
+            'inviteuser'   => 'application.controllers.user.InviteUserAction',
+            'getnodeby'   => 'application.controllers.user.GetNodeByAction',
 
             'savegroup'   => 'application.controllers.groups.SaveGroupAction',  
             'getgroupsby'   => 'application.controllers.groups.GetGroupsByAction',  
