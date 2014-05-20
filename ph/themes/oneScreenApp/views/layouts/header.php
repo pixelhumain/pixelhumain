@@ -1,4 +1,4 @@
-<div class="title">se Communecter</div>
+<div class="title"><?php echo $this::moduleTitle?></div>
 
   <nav class="menu-opener">
     <div class="menu-opener-inner"></div>

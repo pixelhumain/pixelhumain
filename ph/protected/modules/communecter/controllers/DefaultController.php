@@ -9,7 +9,7 @@
  */
 class DefaultController extends Controller {
 
-    const moduleTitle = "Communecter";
+    const moduleTitle = "se Communecter";
     public static $moduleKey = "communecter";
 
     public $sidebar1 = array(
@@ -23,7 +23,7 @@ class DefaultController extends Controller {
     protected function beforeAction($action)
   	{
   		Yii::app()->theme  = "oneScreenApp";
-		return parent::beforeAction($action);
+		  return parent::beforeAction($action);
   	}
 
     /**
