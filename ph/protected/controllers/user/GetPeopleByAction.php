@@ -12,12 +12,11 @@ class GetPeopleByAction extends CAction
         $where = array();
         $filter = ( $filter != "" ) ? explode(",", $filter) : array();
 
-        if( isset( $_POST["name"] ) ){
+        if( isset( $_POST["groupname"] ) ){
             $group = Yii::app()->mongodb->groups->findOne ( array( "name" => $_POST["name"] ) );
             $where = array( Citoyen::$types2Nodes[$group["type"]] => (string)$group['_id']);
         } else if( isset( $_POST["cp"] ) ){
             $where = array( "cp" => $_POST["cp"] );
-            
         } else if( isset( $_POST["app"] ) ){
             $where  = array( "applications.".$_POST["app"].".usertype" => $_POST["app"] );
         }

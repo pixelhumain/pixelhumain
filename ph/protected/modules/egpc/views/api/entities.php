@@ -33,13 +33,15 @@
 					    	   "cp" : $("#postalcodesaveGroup").val() , 
 					    	   "pwd" : $("#pwdsaveGroup").val(),
 					    	   "type" : $("#typesaveGroup").val(),
-					    	   "phoneNumber" : $("#phoneNumbersaveGroup").val()};
+					    	   "phoneNumber" : $("#phoneNumbersaveGroup").val(),
+					    	   "app":"<?php echo $this::$moduleKey?>"
+					    	};
 					if( $("#whensaveGroup").val() )
 						paramas["when"] = $("#whensaveGroup").val();
 					if( $("#wheresaveGroup").val() )
 						paramas["where"] = $("#wheresaveGroup").val();
 					
-					testitpost("saveGroupResult",'/ph/<?php echo $this::$moduleKey?>/api/savegroup',params);
+					testitpost("saveGroupResult",'/ph/<?php echo $this::$moduleKey?>/api/saveGroup',params);
 				}
 				function typeChanged(){
 					console.log( $("#typesaveGroup").val() );
@@ -67,11 +69,11 @@
 			param : email<br/>
 			email : <input type="text" name="getGroupemail" id="getGroupemail" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /><br/>
 			<a href="javascript:getGroup()">Test it</a><br/>
-			<a href="javascript:confirmGroupRegistration()">Confirm User Registration</a><br/>
+			<a href="javascript:confirmGroupRegistration()">Confirm Group Registration</a><br/>
 			<div id="getGroupResult" class="result fss"></div>
 			<script>
 				function getGroup(){
-					testitget("getGroupResult",'/ph/<?php echo $this::$moduleKey?>/api/getGroup/email/'+$("#getGroupemail").val());
+					testitpost("getGroupResult",'/ph/<?php echo $this::$moduleKey?>/api/getgroupsby',{"email":$("#getGroupemail").val()});
 				}
 				function confirmGroupRegistration(){
 					testitget("getGroupResult",'/ph/<?php echo $this::$moduleKey?>/api/confirmGroupRegistration/email/'+$("#getGroupemail").val());

@@ -1,18 +1,18 @@
 	<ul>
 	<li class="block">
-		<a href="/ph/egpc/api/sendMessage"  id="blocksendMessage">Send a Message to people</a><br/>
+		<a href="/ph/<?php echo $this::$moduleKey?>/api/sendMessage"  id="blocksendMessage">Send a Message to people</a><br/>
 		<div class="fss">
-			url : /ph/egpc/api/sendMessage<br/>
+			url : /ph/<?php echo $this::$moduleKey?>/api/sendMessage<br/>
 			method type : POST <br/>
 			params : <br/>
 			message  : <textarea name="sendMessagemsg" id="sendMessagemsg"></textarea> <br/>
-			email(s) : <textarea type="text" name="sendMessageemail" id="sendMessageemail">egpc@egpc.com</textarea><br/>
+			email(s) : <textarea type="text" name="sendMessageemail" id="sendMessageemail"><?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com</textarea><br/>
 			séparé par des virgules<br/>
 			<a href="javascript:sendMessage()">Send it</a><br/>
 			<select id="sendMessagePeople">
 				<option></option>
 				<?php 
-				$groups = Yii::app()->mongodb->groups->find( array( "type" => new MongoRegex("/.*/") ));
+				$groups = Yii::app()->mongodb->groups->find( array( "applications.".$this::$moduleKey.".usertype" => Group::TYPE_ASSOCIATION ));
 				foreach ($groups as $value) {
 					echo '<option value="'.$value["name"].'">'.$value["name"].'</option>';
 				}
@@ -24,14 +24,15 @@
 				function sendMessage(){
 					params = { 
 			    	   "email" : $("#sendMessageemail").val() , 
-			    	   "msg" : $("#sendMessagemsg").val() 
+			    	   "msg" : $("#sendMessagemsg").val(),
+			    	   "app":"<?php echo $this::$moduleKey?>"
 			    	   };
-					testitpost("sendMessageResult",'/ph/egpc/api/sendMessage',params);
+					testitpost("sendMessageResult",'/ph/<?php echo $this::$moduleKey?>/api/sendMessage',params);
 				}
 				function setPeople(){
 					$("#sendMessageemail").val("");
 					$.ajax({
-					    url:'/ph/egpc/api/getPeopleBy',
+					    url:'/ph/<?php echo $this::$moduleKey?>/api/getPeopleBy',
 					    type:"POST",
 					    data:{ "groupname":$("#sendMessagePeople").val()},
 					    datatype : "json",
