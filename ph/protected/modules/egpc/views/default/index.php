@@ -95,25 +95,25 @@ function drawGraph(){
         //graph.setSelection([3, 4, 5]);
 }
 $(document).ready(function() { 
-  nodes.push({id: 1, label: "Asso EGPC"});
-  /*testitpost("info",'/ph/<?php echo $this::$moduleKey?>/api/getpeopleby/filter/email,name',{"app":"<?php echo $this::$moduleKey?>"},
-            function(data){
-              
-              $.each(data,function(k,v){
-                console.log(k, v.name);
-                nodes.push({id: k, label: v.name+"\n"+v.email});  
-                edges.push({from: 1, to: k});
-              })
-              drawGraph();
-            });*/
+  nodes.push({id: 1, label: "Asso EGPC",color: 'yellow'});
+  
   testitpost("info",'/ph/<?php echo $this::$moduleKey?>/api/getgroupsby/filter/email,name',{"app":"<?php echo $this::$moduleKey?>"},
             function(data){
-              
               $.each(data,function(k,v){
                 console.log(k, v.name);
-                nodes.push({id: k, label: v.name+"\n"+v.email});  
+                nodes.push({id: k, label: v.name+"\n"+v.email,color: 'beige'});  
                 edges.push({from: 1, to: k});
-              })
+                testitpost("info",'/ph/<?php echo $this::$moduleKey?>/api/getpeopleby/filter/email,name',{"groupname":v.name},
+                                function(data){
+                                  
+                                  $.each(data,function(kk,vv){
+                                    console.log(kk, vv.name);
+                                    nodes.push({id: kk+"-"+k, label: vv.name+"\n"+vv.email});  
+                                    edges.push({from: k, to: kk+"-"+k});
+                                  })
+                                  drawGraph();
+                                });
+              });
               drawGraph();
             });
   drawGraph();
