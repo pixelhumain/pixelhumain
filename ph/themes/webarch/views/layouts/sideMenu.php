@@ -62,7 +62,8 @@
                     $modal2 = (isset($item2["isModal"])) ? 'role="button" data-toggle="modal"' : "";
                     $onclick2 = (isset($item2["onclick"])) ? 'onclick="'.$item2["onclick"].'"' : "";
                     $href2 = (isset($item2["href"])) ? $item2["href"] : "#";
-                    echo '<li><a href="'.$href2.'" '.$modal2.' '.$onclick2.'>'.$item2["label"].'</a></li>';
+                    $icon = (isset($item2["iconClass"])) ? '<i class="'.$item2["iconClass"].'"></i>' : '';
+                    echo '<li><a href="'.$href2.'" '.$modal2.' '.$onclick2.'>'.$icon.' '.$item2["label"].'</a></li>';
                 }
                 echo "</ul>";
             }else

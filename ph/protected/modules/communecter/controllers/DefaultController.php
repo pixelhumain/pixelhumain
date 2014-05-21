@@ -12,6 +12,9 @@ class DefaultController extends Controller {
     const moduleTitle = "se Communecter";
     public static $moduleKey = "communecter";
 
+    public $keywords = "connecter, réseau, sociétal, citoyen, société, regrouper, commune, communecter, social";
+    public $description = "Communecter : Connecter a sa commune, reseau societal, le citoyen au centre de la société.";
+    
     public $sidebar1 = array(
         array('label' => "Pourquoi", "key"=>"why","href"=>"javascript:;","onclick"=>"hideShow('.why')"),
         array('label' => "Quoi", "key"=>"what","href"=>"javascript:;","onclick"=>"hideShow('.what')"),

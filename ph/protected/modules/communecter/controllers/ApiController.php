@@ -9,7 +9,7 @@
  */
 class ApiController extends Controller {
 
-    const moduleTitle = "Communecter";
+    const moduleTitle = "API Communecter";
     public static $moduleKey = "communecter";
     
     public $sidebar1 = array(

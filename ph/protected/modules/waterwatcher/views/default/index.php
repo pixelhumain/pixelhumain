@@ -44,23 +44,12 @@ $cs->registerScriptFile('http://visjs.org/dist/vis.js' , CClientScript::POS_END)
     
 
     <div class="step invite hidden">
-      <style type="text/css">
-        #mygraph {
-          float:right;
-          width: 300px;
-          height: 300px;
-          border: 1px solid lightgray;
-        }
-      </style>
-      <div id="mygraph"></div>
-      <div id="info"></div>
       <div class="stepTitle">Participer c'est bien, etre plusieur, c'est mieux : Creer son reseau</div>
       Faire du buzz, 
       inviter des gens de votre commune et d'ailleurs<br>
       Connecter Quelqu'un : <input type="text" id="inviteEmail" placeholder="email"/> <a href="javascript:;" onclick="inviteUser()" class="btn">Envoyer L'invitation</a><br>
       Cette action a plus d'impact que vous n'imaginez.
       <div class="fr" style="margin-right:20px;" id="inviteResult"> </div>
-
       <div style="clear:both;"></div>
     </div>
 

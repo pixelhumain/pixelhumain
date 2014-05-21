@@ -2,129 +2,39 @@
 /**
  * DefaultController.php
  *
- * API REST pour géré l'application EGPC
+ * OneScreenApp for Communecting people
  *
  * @author: Tibor Katelbach <tibor@pixelhumain.com>
  * Date: 14/03/2014
  */
 class DefaultController extends Controller {
 
-    const moduleTitle = "Etat Généraux des pouvoirs citoyens";
+    const moduleTitle = "EGPC : Etat Généraux des pouvoirs citoyens";
+    public $keywords = "connecter, réseau, sociétal, citoyen, société, regrouper, commune, communecter, social";
+    public $description = "Etat Généraux des pouvoirs citoyens : Connecter a sa commune, reseau societal, le citoyen au centre de la société.";
     public static $moduleKey = "egpc";
-    
+
     public $sidebar1 = array(
-            
-            array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggle('scenario')","hide"=>true,"iconClass"=>"fa fa-list",
-                "blocks"=>array(
-                    array("label"=>"Inscription / Creation ","iconClass"=>"fa fa-cogs",
-                        "children"=>array(
-                            "EGPC envoie une invitation par campagne mail contenant un lien d'inscription",
-                            "Le nouveau venu s'inscrit en citoyen : email + cp ",
-                            "peut creer une association + mot clef",
-                            "peut creer une entreprise + mot clef",
-                            "peut creer un groupe + mot clef",
-                            "peut inviter qlq'un dans chacune de ces entités",
-                            "peut creer un evenement en tant que citoyen ou pour son entité",
-                            "peut inviter qlq'un à un evenement",
-                        )),
-                    array("label"=>"Visualisation","iconClass"=>"fa fa-eye",
-                        "children"=>array(
-                            "Tout le monde peut visualiser l'organisation de EGPC",
-                            "Voir un listing de chaque entité  (Gpe. , Ass. , Ent., Cit. )",
-                            "Voir tout les evenements",
-                            "Filtrer par mots clefs",
-                            "Ouvrir une entité (Gpe. , Ass. , Ent., Cit., Event )"
-                            )),
-                    array("label"=>"Communication","iconClass"=>"fa fa-bullhorn",
-                        "children"=>array(
-                            "Send a message to list of people",
-                        )),
-                )),
-            array('label' => "User", "key"=>"user", "iconClass"=>"fa fa-user", 
-                "children"=> array(
-                    array( "label"=>"Login","href"=>"#blockLogin"),
-                    array( "label"=>"Save User","href"=>"#blockSaveUser"),
-                    array( "label"=>"Get User","href"=>"#blockGetUser"),
-                    array( "label"=>"ConfirmUserRegistration","href"=>"#blockGetUser"),
-                    array( "label"=>"GetPeople","href"=>"#blockgetPeople")
-                )),
-            array('label' => "Entities", "key"=>"entities","iconClass"=>"fa fa-group",
-                "children"=> array(
-                    array( "label"=>"Save Group","href"=>"#blocksaveGroup"),
-                    array( "label"=>"GetGroup","href"=>"#blockgetgroup"),
-                    array( "label"=>"linkUser2Group","href"=>"#blocklinkUser2Group"),
-                    array( "label"=>"unlinkUser2Group","href"=>"#blocklinkUser2Group"),
-                    array( "label"=>"getGroups","href"=>"#blockgetGroups")
-                )),
-            array('label' => "Communication", "key"=>"communications", "iconClass"=>"fa fa-bullhorn", 
-                "children"=> array(
-                    array( "label"=>"sendMessage","href"=>"#blocksendMessage")
-                )),
-        );
-    public $percent = 60; //TODO link it to unit test
+        array('label' => "Pourquoi", "key"=>"why","href"=>"javascript:;","onclick"=>"hideShow('.why')"),
+        array('label' => "Quoi", "key"=>"what","href"=>"javascript:;","onclick"=>"hideShow('.what')"),
+        array('label' => "Comment", "key"=>"how","href"=>"javascript:;","onclick"=>"hideShow('.how')"),
+        array('label' => "Qui", "key"=>"who","href"=>"javascript:;","onclick"=>"hideShow('.who')"),
+        array('label' => "Quand", "key"=>"when","href"=>"javascript:;","onclick"=>"hideShow('.when')"),
+    );
 
     protected function beforeAction($action)
-    {
-        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules","iconClass"=>"fa fa-th",  "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
-        return parent::beforeAction($action);
-    }
+  	{
+  		Yii::app()->theme  = "oneScreenApp";
+		  return parent::beforeAction($action);
+  	}
 
-    public function actions()
-    {
-        return array(
-            //********************************************************************************
-            //          USERS
-            //********************************************************************************
-            'login'=>'application.controllers.user.LoginAction',
-            'saveuser'=>'application.controllers.user.SaveUserAction',
-            'getuser'   => 'application.controllers.user.GetUserAction',
-            'confirmgroupregistration' => 'application.controllers.user.ConfirmUserRegistrationAction',
-            'getpeopleby'   => 'application.controllers.user.GetPeopleBy',
-
-            'savegroup'   => 'application.controllers.groups.SaveGroupAction',  
-            'getgroupsby'   => 'application.controllers.groups.GetGroupsByAction',  
-            
-            'sendmessage'   => 'application.controllers.messages.SendMessageAction',  
-        );
-    }
     /**
      * List all the latest observations
      * @return [json Map] list
      */
 	public function actionIndex() 
 	{
-	    $this->render("../../../../modules/api/views/index", array("path"=>'application.modules.'.$this::$moduleKey.'.views.default.') );
+	    $this->render("index");
 	}
-
   
-    public function actionLinkUser2Group() 
-    {
-        if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest && isset( $_POST['email'] ) && isset( $_POST['name'] ) )
-        {
-            $emails = explode(",",$_POST['email'] );
-            $res = array(); 
-            foreach ($emails as $email) {
-                $res = array_merge($res, Group::addMember($email  , $_POST['name'], Group::TYPE_ASSOCIATION ));
-            }
-        } else
-            $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
-        Rest::json($res);
-        Yii::app()->end();
-    }
-    public function actionUnLinkUser2Group() 
-    {
-        if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest && isset( $_POST['email'] ) && isset( $_POST['name'] ) )
-        {
-            $emails = explode(",",$_POST['email'] );
-            $res = array(); 
-            foreach ($emails as $email) {
-                $res = array_merge($res, Group::removeMember($email  , $_POST['name'], Group::TYPE_ASSOCIATION ));
-            }
-        } else
-            $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
-        Rest::json($res);
-        Yii::app()->end();
-    }
-
-
 }
