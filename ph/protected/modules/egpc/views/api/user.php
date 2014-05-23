@@ -83,13 +83,13 @@
 		<div class="fss">
 			url : /ph/<?php echo $this::$moduleKey?>/api/getpeopleby<br/>
 			method type : POST <br/>
-			filter : <input type="text" name="getpeoplebyFilter" id="getpeoplebyFilter" value="email" />(comma seperated)<br/>
+			fields : <input type="text" name="getpeoplebyFilter" id="getpeoplebyFilter" value="email" />(comma seperated)<br/>
 			<a href="javascript:getpeopleby()">Test it</a><br/>
 			<div id="getpeoplebyResult" class="result fss"></div>
 			<script>
 				function getpeopleby(){
-					filter = ($("#getpeoplebyFilter").val()) ? '/filter/'+$("#getpeoplebyFilter").val() : ""; 
-					testitpost("getpeoplebyResult",'/ph/<?php echo $this::$moduleKey?>/api/getpeopleby'+filter,{"app":"<?php echo $this::$moduleKey?>"});
+					fields = ($("#getpeoplebyFilter").val()) ? '/fields/'+$("#getpeoplebyFilter").val() : ""; 
+					testitpost("getpeoplebyResult",'/ph/<?php echo $this::$moduleKey?>/api/getpeopleby'+fields,{"app":"<?php echo $this::$moduleKey?>"});
 				}
 			</script>
 		</div>

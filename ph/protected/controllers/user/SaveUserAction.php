@@ -25,6 +25,8 @@ class SaveUserAction extends CAction
                     $newInfos['name'] = $_POST['name'];
                 if( isset($_POST['phoneNumber']) )
                     $newInfos['phoneNumber'] = $_POST['phoneNumber'];
+                if( isset($_POST['tags']) )
+                    $newInfos['tags'] = explode(",",$_POST['tags']);
 
                 //specific application routines
                 if( isset( $_POST["app"] ) )

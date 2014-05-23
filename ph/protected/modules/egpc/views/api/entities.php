@@ -14,6 +14,7 @@
 			email* : <input type="text" name="emailsaveGroup" id="emailsaveGroup" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /> (personne physique responsable )<br/>
 			cp* : <input type="text" name="postalcodesaveGroup" id="postalcodesaveGroup" value="97421" /><br/>
 			phoneNumber : <input type="text" name="phoneNumbersaveGroup" id="phoneNumbersaveGroup" value="1234" />(for SMS)<br/>
+			tags : <input type="text" name="tagssaveGroup" id="tagssaveGroup" value="" placeholder="ex:social,solidaire...etc"/><br/>
 			type : <select name="typesaveGroup" id="typesaveGroup" onchange="typeChanged()">
 						<option value="association">Association</option>
 						<option value="entreprise">Entreprise</option>
@@ -34,6 +35,7 @@
 					    	   "pwd" : $("#pwdsaveGroup").val(),
 					    	   "type" : $("#typesaveGroup").val(),
 					    	   "phoneNumber" : $("#phoneNumbersaveGroup").val(),
+					    	   "tags" : $("#tagssaveGroup").val(),
 					    	   "app":"<?php echo $this::$moduleKey?>"
 					    	};
 					if( $("#whensaveGroup").val() )
@@ -131,13 +133,13 @@
 		<div class="fss">
 			url : /ph/<?php echo $this::$moduleKey?>/api/getgroupsby<br/>
 			method type : POST <br/>
-			filter : <input type="text" name="getgroupsbyFilter" id="getgroupsbyFilter" value="email" />(comma seperated)<br/>
+			fields : <input type="text" name="getgroupsbyFilter" id="getgroupsbyFilter" value="email" />(comma seperated)<br/>
 			<a href="javascript:getgroupsby()">Test it</a><br/>
 			<div id="getgroupsbyResult" class="result fss"></div>
 			<script>
 				function getgroupsby(){
-					filter = ($("#getgroupsbyFilter").val()) ? '/filter/'+$("#getgroupsbyFilter").val() : ""; 
-					testitpost("getgroupsbyResult",'/ph/<?php echo $this::$moduleKey?>/api/getgroupsby'+filter,{"app":"<?php echo $this::$moduleKey?>"});
+					fields = ($("#getgroupsbyFilter").val()) ? '/fields/'+$("#getgroupsbyFilter").val() : ""; 
+					testitpost("getgroupsbyResult",'/ph/<?php echo $this::$moduleKey?>/api/getgroupsby'+fields,{"app":"<?php echo $this::$moduleKey?>"});
 				}
 			</script>
 		</div>

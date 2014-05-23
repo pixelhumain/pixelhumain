@@ -30,6 +30,9 @@ class SaveGroupAction extends CAction
                     $newInfos['phoneNumber'] = $_POST['phoneNumber'];
                 if( isset($_POST['type']) )
                     $newInfos['type'] = $_POST['type'];
+                if( isset($_POST['tags']) )
+                    $newInfos['tags'] = explode(",",$_POST['tags']);
+
                 if( isset( $_POST["app"] ) )
                 {
                 	$appKey = $_POST["app"];

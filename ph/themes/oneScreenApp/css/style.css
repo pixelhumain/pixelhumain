@@ -139,7 +139,7 @@ menu.a {
 .title{ z-index:-1;font-size: xx-large;font-weight: bolder;margin-top: 20px;margin-left: 100px;}
 .stepContainer{width: 80%;margin: 0 auto;margin-top: 40px;}
 .topSpacer{margin-top: 100px;}
-.step{ border: 1px solid white;  color:white;   margin-bottom: 10px;  padding:10px;  background-color: #000;  opacity: 0.6;}
+.step{ border: 1px solid white;  color:white;   margin-bottom: 10px;  padding:10px;  background-color: #000;  opacity: 0.8;}
 .step > input{height: 30px;margin-top: 3px;margin-bottom: 10px;}
 a.btn{background-color: yellow; color:#000; padding: 3px;text-decoration: none;font-weight: bold;}
 a.btn:hover{background-color: #F1C40F;}
