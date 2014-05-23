@@ -376,4 +376,29 @@ class Citoyen
                              "invitedId"=>$invitedId);
         return $res;
     }
+    /*
+    Gets all users corresponding to a certain request
+    - set the where clause according to POST parameters
+    - a fields can be added to the selection clause, in order to retreive only certain fields from DB
+     */
+    public static function getPeopleBy($params)
+    {
+        $where = (isset($params["where"])) ? $params["where"] : array();
+        $fields = ( isset($params["fields"]) ) ? $params["fields"] : array();
+        
+        if( isset( $params["groupname"] ) ){
+            $group = Yii::app()->mongodb->groups->findOne ( array( "name" => $params["groupname"] ) );
+            $where = array( Citoyen::$types2Nodes[$group["type"]] => (string)$group['_id']);
+        } else if( isset( $params["cp"] ) ){
+            $where = array( "cp" => $params["cp"] );
+        } else if( isset( $params["app"] ) ){
+            $where  = array( "applications.".$params["app"].".usertype" => $params["app"] );
+        }
+
+        if( !isset($params["count"]) ) 
+            $res = iterator_to_array(Yii::app()->mongodb->citoyens->find ( $where,$fields ));
+        else
+            $res = array('count' => Yii::app()->mongodb->citoyens->count ( $where,$fields ));
+        return $res;
+    }
 }

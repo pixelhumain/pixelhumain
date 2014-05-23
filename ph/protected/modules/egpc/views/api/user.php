@@ -88,8 +88,11 @@
 			<div id="getpeoplebyResult" class="result fss"></div>
 			<script>
 				function getpeopleby(){
-					fields = ($("#getpeoplebyFilter").val()) ? '/fields/'+$("#getpeoplebyFilter").val() : ""; 
-					testitpost("getpeoplebyResult",'/ph/<?php echo $this::$moduleKey?>/api/getpeopleby'+fields,{"app":"<?php echo $this::$moduleKey?>"});
+					fields = $("#getpeoplebyFilter").val(); 
+					params = {"app":"<?php echo $this::$moduleKey?>"};
+					if(fields) 
+						params.fields = fields.split(",");
+					testitpost("getpeoplebyResult",'/ph/<?php echo $this::$moduleKey?>/api/getpeopleby',params);
 				}
 			</script>
 		</div>

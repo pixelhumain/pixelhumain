@@ -32,6 +32,12 @@ class SaveGroupAction extends CAction
                     $newInfos['type'] = $_POST['type'];
                 if( isset($_POST['tags']) )
                     $newInfos['tags'] = explode(",",$_POST['tags']);
+                if( isset($_POST['when']) )
+                    $newInfos['date'] = $_POST['when'];
+                if( isset($_POST['where']) )
+                    $newInfos['where'] = $_POST['where'];
+                if( isset($_POST['group']) )
+                    $newInfos['group'] = $_POST['group'];
 
                 if( isset( $_POST["app"] ) )
                 {

@@ -50,6 +50,31 @@ class Group
     	$group = Yii::app()->mongodb->groups->findOne( array("_id" => new MongoId($groupId), self::NODE_PARTICIPANTS => $userId  ) );
      	return   $group;
     }
+    public static function getGroupsBy( $params ){
+        $where = (isset($params["where"])) ? $params["where"] : array();
+        $fields = ( isset($params["fields"]) ) ? $params["fields"] : array();
 
+        if( isset( $params["name"] ) ) {
+            $where["name"] = $params["name"] ;
+        } else if( isset( $params["email"] ) ) {
+            $where["email"] = $params["email"]  ;
+        }else if( isset( $params["cp"] ) ) {
+            $where["cp"] = $params["cp"] ;
+        }else if( isset( $params["tags"] ) ) {
+            $where["tags"] = $params["tags"] ;
+        } else if( isset( $params["app"] )) {
+            $groupType = (isset($params["groupType"])) ? $params["groupType"] : new MongoRegex("/.*/") ;
+            $where["applications.".$params["app"].".usertype"] = $groupType ;
+        }else if( isset( $params["type"] ) ) {
+            $where["type"] = $params["type"] ;
+        }
+
+       if( !isset($params["count"]) ) 
+            $res = iterator_to_array(Yii::app()->mongodb->groups->find ( $where,$fields ));
+        else
+            $res = array('count' => Yii::app()->mongodb->groups->count ( $where,$fields ));
+
+        return $res;
+    }
 }
 ?>

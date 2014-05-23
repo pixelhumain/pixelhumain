@@ -1,5 +1,6 @@
 <?php 
 $cs = Yii::app()->getClientScript();
+$cs->registerCssFile(Yii::app()->request->baseUrl. '/css/vis.css');
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/vis.min.js' , CClientScript::POS_END);
 $this->pageTitle=$this::moduleTitle;
@@ -9,16 +10,19 @@ $this->pageTitle=$this::moduleTitle;
 </style>
 <section class="mt80 stepContainer">
 
-    <div class="step home">
-      <div class="fr"><input type="text" id="search" placeholder="chercher"/> <i class="fa fa-search"></i></div>
+    <div class="step home ">
+      <div class="fr"><a href=""><i class="fa fa-plus"></i></a> <input type="text" id="search" placeholder="chercher"/> <i class="fa fa-search"></i></div>
       <div class="stepTitle">Reseau EGPC </div>
       <style type="text/css">
         #mygraph {
-          float:right;
           width: 100%;
           height: 350px;
           border: 1px solid lightgray;
-          background-color: #000;
+        }
+        .vis.timeline .item {
+          border-color: #F991A3;
+          font-size: 15pt;
+          box-shadow: 5px 5px 20px rgba(128,128,128, 0.5);
         }
         #tags{padding: 10px;}
         #tags a{
@@ -43,14 +47,20 @@ $this->pageTitle=$this::moduleTitle;
         }
       </style>
       <div id="mygraph"></div>
-
-      <div id="tags" style="width:49%; float:left;border:1px solid #fff;margin-top:5px;">tag cloud filter : one two three</div>
+    
+      <div id="tags" style="width:49%; float:left;border:1px solid #fff;margin-top:5px;"></div>
       <div id="notifications" style="width:49%;float:right;border:1px solid #fff;margin-top:5px;">notifications Panel</div>
       <div id="info"></div>
       
       <div style="clear:both;"></div>
     </div>
-  
+    
+    <div class="step when " >
+      <div class="stepTitle">Quand ?</div>
+      <div id="mytimeline" style="background-color: #FAFAFA;"></div>
+      <div id="visualization"></div>
+    </div>
+
     <div class="step why hidden" >
       <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
       <div class="stepTitle">Pourquoi ?</div>
@@ -89,16 +99,7 @@ $this->pageTitle=$this::moduleTitle;
 
     
 
-    <div class="step when hidden" >
-      <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
-      <div class="stepTitle">Quand ?</div>
-      Tous les évenements regroupé EGPC
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-    </div>
+    
   </section>
 
 <script type="text/javascript">
@@ -110,7 +111,93 @@ var tags = [];
 var activeTags = [];
 $(document).ready( function() 
 { 
-  getGroups();
+
+var groups = new vis.DataSet([
+    {id: 0, content: 'First', value: 1},
+    {id: 1, content: 'Third', value: 3},
+    {id: 2, content: 'Second', value: 2}
+  ]);
+
+var items = new vis.DataSet([
+  <?php 
+  $tags = array();
+  foreach ($events as $key => $value) 
+  {
+    if( isset($value["date"]) ){
+      $name = $value["name"];  
+      $dateY = date("Y", strtotime($value["date"]));
+      $dateM = date("n", strtotime($value["date"]))-1;
+      $dated = date("j", strtotime($value["date"]));
+      //echo "console.log('$name');";
+      ?>
+        {id: '<?php echo $key?>', group: 0, content: '<?php echo $name?>', start: new Date(<?php echo $dateY?>, <?php echo $dateM?>, <?php echo $dated?>)},
+      <?php
+    }
+   }?>  
+]);
+
+  // create visualization
+  var container = document.getElementById('visualization');
+  var options = {
+    // option groupOrder can be a property name or a sort function
+    // the sort function must compare two groups and return a value
+    //     > 0 when a > b
+    //     < 0 when a < b
+    //       0 when a == b
+    groupOrder: function (a, b) {
+      return a.value - b.value;
+    },
+    editable: true
+  };
+
+  var timeline = new vis.Timeline(container);
+  timeline.setOptions(options);
+  timeline.setGroups(groups);
+  timeline.setItems(items);
+
+
+
+  <?php 
+  $tags = array();
+  foreach ($groups as $key => $value) 
+  {
+    $name = $value["name"];
+    $email = $value["email"];
+    echo "nodes.push({id: '$key', label: '$name \\n $email',color: 'beige'});";
+    echo "edges.push({from: 1, to: '$key'});";
+
+    $people = Citoyen::getPeopleBy(array("groupname"=>$name,"fields"=>array("email",'name')));
+    foreach ($people as $key2 => $value2) 
+    {
+      $name2 = $value2["name"];
+      $email2 = $value2["email"];
+      echo "nodes.push({id: '$key2-$key', label: '$name2 \\n $email2'});";
+      echo "edges.push({from: '$key', to: '$key2-$key'});";
+    }
+
+   
+  }
+  foreach ($tagsall as $t) {
+    $filtre = "";
+      $onoff = "off";
+      if( isset( $_GET['tags'] )){
+        if( stripos($_GET['tags'], $t) === false){
+          $filtre = $t.",".$_GET['tags'];
+        }else{
+          //remove active from url to desactivate a tag
+          $filtre=str_replace( ( ( stripos( $_GET['tags'], $t."," ) === false ) ? $t : $t."," ) , "" , $_GET['tags'] );
+          $onoff = "";
+        }
+      } else
+        $filtre = $t;
+      
+      $tagHTML = " <a class='tag $t $onoff ' href='/ph/egpc?tags=$filtre'>$t</a>";
+      echo "$('#tags').append(\"$tagHTML\");";
+  }
+  $onoff = ( isset( $_GET['tags'] )) ? "off" : "";
+  $tagHTML = " <a class='tag $onoff' href='/ph/egpc'>Tous</a>";
+  echo "$('#tags').append(\"$tagHTML\");";
+  ?>
   drawGraph();
 });
 
@@ -118,15 +205,6 @@ function getGroups(filterTag)
 {
   console.log("getGroups",filterTag);
   var params = {"app":"<?php echo $this::$moduleKey?>"};
-  <?php if( isset($_GET['tags'])){
-    $tags = array_unique (explode(",", $_GET['tags']));?>
-    <?php $or = array();
-    foreach ($tags as $key) {
-      array_push($or, array("tags"=>$key));
-    }
-    ?>
-  params.where = { "$or" : <?php echo json_encode($or)?> };
-  <?php } ?>
   testitpost("info",'/ph/<?php echo $this::$moduleKey?>/api/getgroupsby/fields/email,name,tags',params,
             function(data)
             {
@@ -151,25 +229,6 @@ function getGroups(filterTag)
               });
 
               drawGraph();
-              <?php if( isset( $_GET['tags'] ) ){?>
-              filterByTag("<?php echo $_GET['tags']?>");
-              <?php } ?>
-            });
-  testitpost("info",'/ph/<?php echo $this::$moduleKey?>/api/getgroupsby/fields/tags',{"app":"<?php echo $this::$moduleKey?>"},
-            function(data)
-            {
-              $.each(data,function(k,v)
-              {
-                
-                //gather all tags 
-                if(v.tags != undefined)
-                  tags = arrayUnique(tags.concat(v.tags));
-                console.log(tags);
-                //get people for each sub contents
-                
-              });
-
-              drawTagCloud();
               <?php if( isset( $_GET['tags'] ) ){?>
               filterByTag("<?php echo $_GET['tags']?>");
               <?php } ?>
@@ -216,38 +275,5 @@ function drawGraph()
         //graph.setSelection([3, 4, 5]);
 }
 
-
-function drawTagCloud()
-{
-  console.log("drawTagCloud",tags);
-  var strHTML = "";
-  $.each(tags,function(index,v){
-    //TODO : url clean v 
-    slug = convertToSlug(v);
-    strHTML += " <a class='tag "+slug+" off ' href='/ph/egpc<?php echo '?tags=';if(isset($_GET['tags']))echo implode(',', $tags).","?>"+v+"'>"+v+"</a>";
-  });
-  strHTML += " <a class='tag' href='/ph/egpc'>Tous</a>";
-  $("#tags").html(strHTML);
-}
-
-function convertToSlug(Text)
-{
-    return Text
-        .toLowerCase()
-        .replace(/ /g,'-')
-        .replace(/[^\w-]+/g,'')
-        ;
-}
-function arrayUnique(array) {
-    var a = array.concat();
-    for(var i=0; i<a.length; ++i) {
-        for(var j=i+1; j<a.length; ++j) {
-            if(a[i] === a[j])
-                a.splice(j--, 1);
-        }
-    }
-
-    return a;
-};
 
 </script>
