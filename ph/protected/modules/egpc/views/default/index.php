@@ -7,50 +7,63 @@ $this->pageTitle=$this::moduleTitle;
 ?>
 <style type="text/css">
   body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/crowd.jpg") repeat;}
+  #mygraph {
+    width: 100%;
+    height: 350px;
+    border: 1px solid lightgray;
+  }
+  .vis.timeline .item {
+    border-color: #F991A3;
+    font-size: 15pt;
+    box-shadow: 5px 5px 20px rgba(128,128,128, 0.5);
+  }
+  #tags{padding: 10px;}
+  #tags a{
+    display: block;
+    float:left;
+    background-color: yellow;
+    padding:5px;
+    border-radius: 3px;
+    margin: 2px;
+    text-decoration: none;
+    color:#000;
+    border:1px solid #000;
+    font-weight:bold;
+  }
+  #tags a:hover{
+    background-color: transparent;
+    border-color:yellow; 
+    color: yellow;
+  }
+  #tags a.off{
+    background-color: grey;
+  }
+  a > i.fa{ 
+    color: yellow;
+    padding-right: 10px;
+  }
+  #notifications{
+    padding: 10px;
+  }
 </style>
 <section class="mt80 stepContainer">
 
     <div class="step home ">
-      <div class="fr"><a href=""><i class="fa fa-plus"></i></a> <input type="text" id="search" placeholder="chercher"/> <i class="fa fa-search"></i></div>
+      <div class="fr"><input type="text" id="search" placeholder="chercher"/> <a href="javascript:alert('TODO : connect to API')"><i class="fa fa-search"></i></a><a href="javascript:alert('TODO : connect to API')"><i class="fa fa-plus"></i></a> <a href="javascript:alert('TODO : connect to API')"><i class="fa fa-comment"></i></a> <a href="javascript:alert('TODO : connect to API')"><i class="fa fa-calendar"></i></a> </div>
       <div class="stepTitle">Reseau EGPC </div>
-      <style type="text/css">
-        #mygraph {
-          width: 100%;
-          height: 350px;
-          border: 1px solid lightgray;
-        }
-        .vis.timeline .item {
-          border-color: #F991A3;
-          font-size: 15pt;
-          box-shadow: 5px 5px 20px rgba(128,128,128, 0.5);
-        }
-        #tags{padding: 10px;}
-        #tags a{
-          display: block;
-          float:left;
-          background-color: yellow;
-          padding:5px;
-          border-radius: 3px;
-          margin: 2px;
-          text-decoration: none;
-          color:#000;
-          border:1px solid #000;
-          font-weight:bold;
-        }
-        #tags a:hover{
-          background-color: transparent;
-          border-color:yellow; 
-          color: yellow;
-        }
-        #tags a.off{
-          background-color: grey;
-        }
-      </style>
+      
       <div id="mygraph"></div>
     
       <div id="tags" style="width:49%; float:left;border:1px solid #fff;margin-top:5px;"></div>
-      <div id="notifications" style="width:49%;float:right;border:1px solid #fff;margin-top:5px;">notifications Panel</div>
-      <div id="info"></div>
+      <div id="notifications" style="width:49%;float:right;border:1px solid #fff;margin-top:5px;">
+        <?php 
+          foreach ($msgs as $key => $value) 
+          {?>
+                <div class="msg"><?php echo $value["msg"]?> ( <?php echo date("d M h:m",$value["created"])?> )</div>
+        <?php } ?>  </div>
+      <div id="info">
+        
+      </div>
       
       <div style="clear:both;"></div>
     </div>
@@ -111,7 +124,9 @@ var tags = [];
 var activeTags = [];
 $(document).ready( function() 
 { 
-
+setTimeout(function () {
+            getMessages();
+        }, 5000);
 var groups = new vis.DataSet([
     {id: 0, content: 'First', value: 1},
     {id: 1, content: 'Third', value: 3},
@@ -275,5 +290,7 @@ function drawGraph()
         //graph.setSelection([3, 4, 5]);
 }
 
-
+function getMessages(){
+  $("#notifications").prepend("robit69");
+}
 </script>

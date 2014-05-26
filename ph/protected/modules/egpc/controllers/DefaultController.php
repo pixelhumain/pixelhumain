@@ -63,8 +63,12 @@ class DefaultController extends Controller {
           
         }
       }
-      $events = $tagsall = Group::getGroupsBy( array("where"=>array("type"=>"event") , "fields"=>array("name","date")));
-	    $this->render( "index" , array( "groups" => $groups ,"tagsall"=>$alltags,"events"=>$events ) );
+      $events = Group::getGroupsBy( array("where"=>array("applications.".$this::$moduleKey.".usertype"=>"event") , "fields"=>array("name","date")));
+      $msgs = Message::getMessagesBy( array("where"=>array("applications.".$this::$moduleKey.".usertype"=>"message") , "fields"=>array("msg","created")));
+	    $this->render( "index" , array( "groups" => $groups ,
+                                      "tagsall"=>$alltags,
+                                      "msgs"=>$msgs,
+                                      "events"=>$events ) );
 	}
   
 }

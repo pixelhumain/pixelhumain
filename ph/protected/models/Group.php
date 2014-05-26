@@ -65,8 +65,6 @@ class Group
         } else if( isset( $params["app"] )) {
             $groupType = (isset($params["groupType"])) ? $params["groupType"] : new MongoRegex("/.*/") ;
             $where["applications.".$params["app"].".usertype"] = $groupType ;
-        }else if( isset( $params["type"] ) ) {
-            $where["type"] = $params["type"] ;
         }
 
        if( !isset($params["count"]) ) 

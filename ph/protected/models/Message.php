@@ -3,11 +3,12 @@
 class Message
 {
     /*
-    - check users existant for each email
+    - check user existance for each email
     - insert into message collection with a userId array
-    - the message is stored for the connected user
+    - the message is also stored for the connected user
+    - if an application has a $app["messages"] == "mustBeConfirmed" then the new message will carry messageConfirmed property
      */
-	public static function createMessage( $emails, $msg, $module )
+	public static function createMessage( $emails, $msg, $module=null )
 	{
 		//run through emails and validate existing accounts
     	$userids = array();
@@ -17,9 +18,9 @@ class Message
     	{
     		//QUESTION : should we validate that a user is registered to the module
     		if($user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) ))
-    			array_push($userids, $user["_id"]);
+    			array_push($userids, (string)$user["_id"]);
     		else
-    			array_push($inexistantUsers, $user["_id"]);
+    			array_push($inexistantUsers, (string)$user["_id"]);
     	}
     	//save message to DB
     	if( count($userids) )
@@ -29,6 +30,17 @@ class Message
         	$newInfos['from'] = Yii::app()->session["userId"];
         	$newInfos['to'] = $userids;
         	$newInfos['msg'] = $msg;
+            $newInfos['created'] = time();
+            if( isset( $_POST["app"] ) )
+                {
+                    $appKey = $_POST["app"];
+                    $newInfos['applications'] = array( $appKey => array( "usertype"=>"message" ));
+                    $app = Yii::app()->mongodb->applications->findOne( array( "key"=> $appKey ) );
+                    //check for application specifics defined in DBs application entry
+                    if( isset( $app["messages"] ) && $app["messages"] == "mustBeConfirmed")
+                        $newInfos['applications'][$appKey]["messageConfirmed"] = false;
+                }
+
         	Yii::app()->mongodb->messages->insert( $newInfos);
         	$res = array("result" => true, 
                       	 "msg" => "message send to ".count($userids)." users" );
@@ -38,6 +50,25 @@ class Message
         	$res = array("result" => false, 
                       	 "msg"   => "no valid user accounts " );
     
+        return $res;
+    }
+    /*
+    get Messages according to certain parameters
+    simply add a email, app to the params entry
+     */
+    public static function getMessagesBy($params){
+        $where = (isset($params["where"])) ? $params["where"] : array();
+        $fields = ( isset($params["fields"]) ) ? $params["fields"] : array();
+
+        
+       if( !isset($params["count"]) ) 
+            if( isset($params["limit"]) ) 
+                $res = iterator_to_array(Yii::app()->mongodb->messages->find ( $where,$fields )->limit($params["limit"]));
+            else
+                $res = iterator_to_array(Yii::app()->mongodb->messages->find ( $where,$fields ));
+        else
+            $res = array('count' => Yii::app()->mongodb->messages->count ( $where,$fields ));
+        //$res["count"]=count($res);
         return $res;
     }
 }

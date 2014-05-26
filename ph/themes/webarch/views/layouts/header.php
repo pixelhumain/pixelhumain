@@ -85,7 +85,7 @@
                     <a href="#" class="dropdown-toggle" id="my-task-list" data-placement="bottom" data-content="" data-toggle="dropdown" data-original-title="Notifications">
                         <div class="user-details"> 
                             <div class="username">
-                                <span class="badge badge-important">3</span>&nbsp;<?php //echo Yii::app()->session["userId"]?><span class="bold">&nbsp;<?php if(isset($account['name']))echo $account['name']?></span>                                 
+                                <span class="badge badge-important">3</span>&nbsp;<?php echo Yii::app()->session["userId"]?><span class="bold">&nbsp;<?php if(isset($account['name']))echo $account['name']?></span>                                 
                             </div>                      
                         </div> 
                         <div class="iconset top-down-arrow"></div>

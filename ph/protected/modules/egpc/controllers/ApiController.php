@@ -88,6 +88,7 @@ class ApiController extends Controller {
             'getgroupsby'               => 'application.controllers.groups.GetGroupsByAction',  
             
             'sendmessage'               => 'application.controllers.messages.SendMessageAction',  
+            'getmessageby'              => 'application.controllers.messages.GetMessageByAction',  
         );
     }
     /**

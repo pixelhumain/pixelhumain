@@ -24,7 +24,7 @@
 			<span class="whensaveGroup">
 			when : <input type="text" name="whensaveGroup" id="whensaveGroup" value="" /><br/>
 			where : <input  type="text" name="wheresaveGroup" id="wheresaveGroup" value="" /><br/>
-			who : <input  type="text" name="whosaveGroup" id="whosaveGroup" value="5370b477f6b95c280a00390c" /><br/>
+			participant : <input  type="text" name="whosaveGroup" id="whosaveGroup" value="5370b477f6b95c280a00390c" /><br/>
 			</span>
 			<a href="javascript:saveGroup()">Test it</a><br/>
 			<div id="saveGroupResult" class="result fss"></div>
