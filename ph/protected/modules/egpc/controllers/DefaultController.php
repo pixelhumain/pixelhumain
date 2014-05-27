@@ -38,15 +38,21 @@ class DefaultController extends Controller {
       $searchTags = array();
       if(isset($_GET['tags']))
       {
-      foreach (explode(",", $_GET['tags']) as $key)
-        array_push($searchTags, array("tags"=>$key));
+        foreach (explode(",", $_GET['tags']) as $key)
+          array_push($searchTags, array("tags"=>$key));
       }
+      
       $params = array("app"=>$this::$moduleKey,
                       "fields"=>array("name","email","tags"));
-      if(count($searchTags))
-        $params["where"] = array('$or'=>$searchTags,'$or' => array( array("type"=>"association")));
 
-      $groups = Group::getGroupsBy( $params);
+      if(count($searchTags))
+        $params["tags"] = array('$or'=>$searchTags);
+
+      $params["where"] = array('$or' => array( array( "type"=>"association" ),
+                                               array( "type"=>"entreprise" ),
+                                               array( "type"=>"group" )));
+
+      $groups = Group::getGroupsBy( $params );
       $tagsall = Group::getGroupsBy( array("app"=>$this::$moduleKey , "fields"=>array("tags")));
       $alltags = array();
       foreach ($tagsall as $key => $value) 
@@ -60,7 +66,6 @@ class DefaultController extends Controller {
               array_push($alltags, $t);
             }
           }
-          
         }
       }
       $events = Group::getGroupsBy( array("where"=>array("applications.".$this::$moduleKey.".usertype"=>"event") , "fields"=>array("name","date")));
@@ -70,5 +75,10 @@ class DefaultController extends Controller {
                                       "msgs"=>$msgs,
                                       "events"=>$events ) );
 	}
+
+  public function actionMixitup() 
+  {
+      $this->render( "mixitup" );
+  }
   
 }

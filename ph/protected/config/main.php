@@ -94,7 +94,7 @@ return array(
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'showScriptName'=>false,
-			'caseSensitive'=>false, 
+			'caseSensitive'=>false,
 			'rules'=>array(
 				/*'<action>'=>'site/<action>',*/
                '<controller:\w+>/<id:\d+>' => '<controller>/view',
