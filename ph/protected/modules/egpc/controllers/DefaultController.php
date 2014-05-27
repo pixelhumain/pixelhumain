@@ -19,8 +19,7 @@ class DefaultController extends Controller {
       array('label' => "Quand", "key"=>"when","href"=>"javascript:;","onclick"=>"hideShow('.when')"),
       array('label' => "Pourquoi", "key"=>"why","href"=>"javascript:;","onclick"=>"hideShow('.why')"),
       array('label' => "Quoi", "key"=>"what","href"=>"javascript:;","onclick"=>"hideShow('.what')"),
-      array('label' => "Comment", "key"=>"how","href"=>"javascript:;","onclick"=>"hideShow('.how')"),
-      
+      array('label' => "Mixitup", "key"=>"how","href"=>"egpc?tpl=mixitup"),
     );
     
     protected function beforeAction($action)
@@ -70,15 +69,13 @@ class DefaultController extends Controller {
       }
       $events = Group::getGroupsBy( array("where"=>array("applications.".$this::$moduleKey.".usertype"=>"event") , "fields"=>array("name","date")));
       $msgs = Message::getMessagesBy( array("where"=>array("applications.".$this::$moduleKey.".usertype"=>"message") , "fields"=>array("msg","created")));
-	    $this->render( "index" , array( "groups" => $groups ,
+      $tpl = (isset($_GET['tpl'])) ? $_GET['tpl'] : "index";
+	    $this->render( $tpl , array( "groups" => $groups ,
                                       "tagsall"=>$alltags,
                                       "msgs"=>$msgs,
                                       "events"=>$events ) );
 	}
 
-  public function actionMixitup() 
-  {
-      $this->render( "mixitup" );
-  }
+  
   
 }
