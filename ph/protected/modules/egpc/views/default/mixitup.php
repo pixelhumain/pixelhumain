@@ -37,7 +37,7 @@ $this->pageTitle=$this::moduleTitle;
           $tags .= $t.' ';
         }
       }
-      $blocks .= ' <div class="mix '.$tags.'" data-myorder="'.$name.' '.$email.'" style="display:inline-blocks">'.$name.'<br/>'.$email.'<br/><br/>'.$tags.'</div>';
+      $blocks .= ' <div class="mix '.$tags.'" data-myorder="'.$name.' '.$email.'" style="display:inline-blocks">'.$name.'<br/>'.$email.'<br/>'.$tasg.'</div>';
     }
     ?>
   <?php echo $tagBlock?>

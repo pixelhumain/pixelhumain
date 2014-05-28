@@ -100,10 +100,7 @@ $this->pageTitle=$this::moduleTitle;
         <?php $this->renderPartial( "tools" ); ?>
       </div>
       <div class="stepTitle">Qui fait quoi ?</div>
-      <script type="text/javascript">
-<?php 
-      echo "console.log('group count : ".count($groups)."');";?>
-      </script>
+      
       <?php 
         foreach ($groups as $key => $value) 
         {
