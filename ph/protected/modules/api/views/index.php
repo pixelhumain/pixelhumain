@@ -20,7 +20,8 @@ $this->pageTitle=$this::moduleTitle;
 				<li class="<?php echo $e['key']?> <?php if(isset($e['hide'])) echo 'hide'?>">
 					<?php 
 					$params = ( isset( $e['blocks']) ) ? array("blocks"=>$e['blocks']) : array();
-					$this->renderPartial( $path.$e['key'],$params ); ?>
+					if(file_exists($path.$e['key']))
+						$this->renderPartial( $path.$e['key'],$params ); ?>
 				</li>
 
 				<!-- ////////////////////////////////////////////////////////////////////////////// -->

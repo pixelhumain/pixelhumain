@@ -23,25 +23,71 @@ class ApiController extends Controller {
                             "boule de neige social = utiliser les reseau sociau pour inviter ",
                             "un citoyen peut creer une entité (Gpe. , Ass. , Ent., Cit. )",
                         )),
-                    array("label"=>"Administration","iconClass"=>"fa fa-cogs",
+                    array("label"=>"Actualité","iconClass"=>"fa fa-list",
                         "children"=>array(
-                            "Voir le nombres de citoyen",
-                            "Voir le temps de frequentation",
-                            ""
-                            )),
-                    array("label"=>"Visualisation","iconClass"=>"fa fa-eye",
+                            "Ceci deviendra un module dans le PH",
+                            "tout element qui depasse un niveau de vote peut devenir une actualité",
+                            "un push de la commune",
+                            "un push citoyen",
+                        )),
+                    array("label"=>"Agreggateur de RSS","iconClass"=>"fa fa-rss",
                         "children"=>array(
-                            "Voir l'activité de ma commune",
-                            "Voir l'activité de ma region",
-
-                            )),
+                            "Ceci deviendra un module dans le PH",
+                            "tout type peut ajouter un RSS local :: contenu concernant le CP (concert, mairie, restaurant...)",
+                            "visualisation de tous les flux aggregé",
+                            "filtre par tag",
+                            "filtre chronologique",
+                            "filtre par fournisseur : voir que les infos d'un fournisseur",
+                        )),
+                    array("label"=>"Conseil de quartier","iconClass"=>"fa fa-group",
+                        "children"=>array(
+                            "Ceci deviendra un module dans le PH",
+                            "proposer un ordre du jour",
+                            "un ordre du jour peut etre voté",
+                            "les ordres du jours les plus voté seront présenter durant le conseil de quartier ",
+                            "?? comment intégrer Loomio en paralele avec le PH",
+                        )),
+                    array("label"=>"Annuaire Locale","iconClass"=>"fa fa-bullhorn",
+                        "children"=>array(
+                            "Ceci deviendra un module dans le PH",
+                            "listing mixitup des acteurs locaux : asso,entr,service public...",
+                            "tout type peut ajouter une entité à l'annuaire doit concerner le CP",
+                            "une entité peut etre voté",
+                            "network mapping local",
+                            "creer du lien "
+                        )),
+                    array("label"=>"Agenda Locale","iconClass"=>"fa fa-bullhorn",
+                        "children"=>array(
+                            "Ceci deviendra un module dans le PH",
+                            "tout type peut ajouter une date local :: contenu concernant le CP (concert, elections, rencontre...)",
+                        )),
                     array("label"=>"Communication","iconClass"=>"fa fa-bullhorn",
                         "children"=>array(
                             "System de notification PH > tout le monde",
                             "System de notification PH > une commune",
+                            "commune > to administré",
+                            "quartier > to administré",
                             "Citoyen to Commune",
-                            "Citoyen to Entity, Citoyen doit appartenir a l'entité",
+                            "Citoyen to Secteur de commune",
+                            "Citoyen to Group, Citoyen doit appartenir a l'entité",
                         )),
+                    array("label"=>"Administration Commune","iconClass"=>"fa fa-cogs",
+                        "children"=>array(
+                            "Voir le nombres de citoyen",
+                            "Voir le temps de frequentation",
+                            "Comptabiliser les contributions"
+                            )),
+                    array("label"=>"Administration PH","iconClass"=>"fa fa-cogs",
+                        "children"=>array(
+                            "Voir le nombres de citoyen",
+                            "Voir le temps de frequentation",
+                            "Comptabiliser les contributions"
+                            )),
+                    array("label"=>"Visualisation","iconClass"=>"fa fa-eye",
+                        "children"=>array(
+                            "Ma commune",
+                            "Voir l'activité de ma region",
+                            )),
                 )),
             array('label' => "User", "key"=>"user", "iconClass"=>"fa fa-user", 
                 "children"=> array(
@@ -60,7 +106,46 @@ class ApiController extends Controller {
                     array( "label"=>"GetGroup","href"=>"javascript:;","onclick"=>"scrollTo('#blockgetgroup')"),
                     array( "label"=>"linkUser2Group","href"=>"javascript:;","onclick"=>"scrollTo('#blocklinkUser2Group')"),
                     array( "label"=>"unlinkUser2Group","href"=>"javascript:;","onclick"=>"scrollTo('#blocklinkUser2Group')"),
-                    array( "label"=>"getGroups","href"=>"javascript:;","onclick"=>"scrollTo('#blockgetGroups')")
+                    array( "label"=>"get Groups By","href"=>"javascript:;","onclick"=>"scrollTo('#blockgetGroups')")
+                )),
+            array('label' => "Actualité", "key"=>"news", "iconClass"=>"fa fa-list ", 
+                "children"=> array(
+                    array( "label"=>"Create News","href"=>"javascript:;","onclick"=>"scrollTo('#blocksaveNews')"),
+                    array( "label"=>"Make as News","href"=>"javascript:;","onclick"=>"scrollTo('#blockmakeAsNews')"),
+                    array( "label"=>"Admin confirm News","href"=>"javascript:;","onclick"=>"scrollTo('#blockadminConfirmNews')"),
+                )),
+            array('label' => "RSS", "key"=>"rss", "iconClass"=>"fa fa-rss", 
+                "children"=> array(
+                    array( "label"=>"Add Feed","href"=>"javascript:;","onclick"=>"scrollTo('#blockaddFeed')"),
+                    array( "label"=>"Admin confirm Feed","href"=>"javascript:;","onclick"=>"scrollTo('#blockadminConfirmFeed')"),
+                )),
+            array('label' => "Conseil de quartier", "key"=>"groupCommunication", "iconClass"=>"fa fa-group", 
+                "children"=> array(
+                    array( "label"=>"Create Quartier","href"=>"javascript:;","onclick"=>"scrollTo('#blocksaveQuartier')"),
+                    array( "label"=>"Soumettre une Entrée","href"=>"javascript:;","onclick"=>"scrollTo('#blocksoumettreEntry')"),
+                    array( "label"=>"Vote sur une Entrée","href"=>"javascript:;","onclick"=>"scrollTo('#blockvoteEntry')"),
+                    array( "label"=>"Déclaré un Admin","href"=>"javascript:;","onclick"=>"scrollTo('#blocksaveAdmin')"),
+                    array( "label"=>"Admin confirm Entry","href"=>"javascript:;","onclick"=>"scrollTo('#blockadminConfirmFeed')"),
+                )),
+            array('label' => "Annuaire Locale", "key"=>"directory", "iconClass"=>"fa fa-th-list", 
+                "children"=> array(
+                    array( "label"=>"get Groups By","href"=>"javascript:;","onclick"=>"scrollTo('#blockgetGroups')"),
+                    array( "label"=>"entityConnect","href"=>"javascript:;","onclick"=>"scrollTo('#blockconnectUserEntity')"),
+                )),
+            array('label' => "Agenda Locale", "key"=>"agenda", "iconClass"=>"fa fa-calendar", 
+                "children"=> array(
+                    array( "label"=>"Get Dates By","href"=>"javascript:;","onclick"=>"scrollTo('#blockGetDatesBy')"),
+                    array( "label"=>"Add Date","href"=>"javascript:;","onclick"=>"scrollTo('#blockaddDate')"),
+                    array( "label"=>"Admin confirm Entry","href"=>"javascript:;","onclick"=>"scrollTo('#blockadminConfirmEntry')"),
+                )),
+            array('label' => "Administration Commune", "key"=>"adminCommune", "iconClass"=>"fa fa-cog", 
+                "children"=> array(
+                    array( "label"=>"Get Quartier","href"=>"javascript:;","onclick"=>"scrollTo('#blockGetDatesBy')"),
+                    array( "label"=>"Set Admin Quartier","href"=>"javascript:;","onclick"=>"scrollTo('#blockadminQuartier')"),
+                )),
+            array('label' => "Administration PH", "key"=>"adminPH", "iconClass"=>"fa fa-cogs", 
+                "children"=> array(
+                    array( "label"=>"Set Admin Quartier","href"=>"javascript:;","onclick"=>"scrollTo('#blockadminQuartier')"),
                 )),
             array('label' => "Communication", "key"=>"communications", "iconClass"=>"fa fa-bullhorn", 
                 "children"=> array(
