@@ -14,6 +14,13 @@ class PixelHumain
     const CONNECT_TYPE_FRIEND	   = "friend";
     const CONNECT_TYPE_WORK	       = "work";
     const CONNECT_TYPE_CONTACT	   = "contact";
+
+    const COLLECTION_GROUPS     = "groups";    
+
+    public static $types2Collection = array( Group::TYPE_ASSOCIATION  => self::COLLECTION_GROUPS,
+                                            Group::TYPE_EVENT  => self::COLLECTION_GROUPS,
+                                            Group::TYPE_ENTREPRISE  => self::COLLECTION_GROUPS,
+                                        );
     
     public static function buildMenuChildren( $collection )
     {

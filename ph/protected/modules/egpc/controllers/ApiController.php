@@ -86,6 +86,7 @@ class ApiController extends Controller {
 
             'savegroup'                 => 'application.controllers.groups.SaveGroupAction',  
             'getgroupsby'               => 'application.controllers.groups.GetGroupsByAction',  
+            'linkuser2group'            => 'application.controllers.groups.LinkUser2GroupAction',
             
             'sendmessage'               => 'application.controllers.messages.SendMessageAction',  
             'getmessageby'              => 'application.controllers.messages.GetMessageByAction',  
@@ -101,34 +102,6 @@ class ApiController extends Controller {
 	}
 
   
-    public function actionLinkUser2Group() 
-    {
-        if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest && isset( $_POST['email'] ) && isset( $_POST['name'] ) )
-        {
-            $emails = explode(",",$_POST['email'] );
-            $res = array(); 
-            foreach ($emails as $email) {
-                $res = array_merge($res, Group::addMember($email  , $_POST['name'], Group::TYPE_ASSOCIATION ));
-            }
-        } else
-            $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
-        Rest::json($res);
-        Yii::app()->end();
-    }
-    public function actionUnLinkUser2Group() 
-    {
-        if( isset( Yii::app()->session["userId"] ) && Yii::app()->request->isAjaxRequest && isset( $_POST['email'] ) && isset( $_POST['name'] ) )
-        {
-            $emails = explode(",",$_POST['email'] );
-            $res = array(); 
-            foreach ($emails as $email) {
-                $res = array_merge($res, Group::removeMember($email  , $_POST['name'], Group::TYPE_ASSOCIATION ));
-            }
-        } else
-            $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
-        Rest::json($res);
-        Yii::app()->end();
-    }
 
 
 }

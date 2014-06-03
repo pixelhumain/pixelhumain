@@ -115,14 +115,17 @@
 				function linkUser2Group(){
 					params = { 
 			    	   "email" : $("#linkUser2Groupemail").val() , 
-			    	   "name" : $("#linkUser2GroupGroup").val() 
+			    	   "name" : $("#linkUser2GroupGroup").val(),
+			    	   "type":"<?php echo Group::TYPE_ASSOCIATION?>"
 			    	   };
 					testitpost("linkUser2GroupResult",'/ph/<?php echo $this::$moduleKey?>/api/linkUser2Group',params);
 				}
 				function unlinkUser2Group(){
 					params = { 
 			    	   "email" : $("#linkUser2Groupemail").val() , 
-			    	   "name" : $("#linkUser2GroupGroup").val() 
+			    	   "name" : $("#linkUser2GroupGroup").val() ,
+			    	   "type":"<?php echo Group::TYPE_ASSOCIATION?>",
+			    	    "unlink" : true,
 			    	   };
 					testitpost("linkUser2GroupResult",'/ph/<?php echo $this::$moduleKey?>/api/unlinkUser2Group',params);
 				}

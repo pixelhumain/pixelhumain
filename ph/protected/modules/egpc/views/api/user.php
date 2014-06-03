@@ -12,7 +12,6 @@
 			<div id="loginResult" class="result fss"></div>
 			<script>
 				function login(){
-					$("#loginResult").html("");
 					params = { "email" : $("#emailLogin").val() , 
 					    	   "pwd" : $("#pwdLogin").val(),
 					    	   "app" : "<?php echo $this::$moduleKey?>"};

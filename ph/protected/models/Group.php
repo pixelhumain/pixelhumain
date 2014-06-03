@@ -6,7 +6,7 @@ class Group
 	const TYPE_ENTREPRISE		   = 'entreprise';
 	const TYPE_EVENT		       = 'event';
 	const TYPE_PROJECT		       = 'projet';
-
+const ACTION_VOTE_UP        = "voteUp";
 	//list of participants of a group contains a list of Ids
 	const NODE_PARTICIPANTS		   = 'participants';
 	//defines that this group is used in an application
@@ -69,10 +69,9 @@ class Group
             $where["cp"] = $params["cp"] ;
         }else if( isset( $params["tags"] ) ) {
             if(isset($params["tags"]['$or']))
-                $where['$or'] = $params["tags"]['$or'] ;
+                $where['$or'] = $params["tags"]['$or'] ; //TODO : foreach et mettre ajouté REgEx
             else    
                 $where["tags"] = $params["tags"] ;
-            
         } else if( isset( $params["app"] )) {
             $groupType = (isset($params["groupType"])) ? $params["groupType"] : new MongoRegex("/.*/") ;
             $where["applications.".$params["app"].".usertype"] = $groupType ;
