@@ -1,4 +1,3 @@
-<li><h3>Ventes</h3></li>
 
 <li class="block"><a href="/ph/azotlive/default/saveGroup">Create/Update Groupe</a><br/>
 </li>

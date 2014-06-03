@@ -7,7 +7,7 @@
 			method type : POST <br/>
 		</div>
 		<div class="apiForm communect">
-			email : <input type="text" name="emailCommunect" id="emailCommunect" value="toto@toto.com" /><br/>
+			email : <input type="text" name="emailCommunect" id="emailCommunect" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /><br/>
 			code postal  : <input type="text" name="cpCommunect" id="cpCommunect" value="97421" /><br/>
 			<a href="javascript:communect()">Communect</a><br/>
 			<div id="communectResult" class="result fss"></div>
@@ -30,8 +30,8 @@
 			method type : POST <br/>
 		</div>
 		<div class="apiForm login">
-			email : <input type="text" name="emailLogin" id="emailLogin" value="oceatoon@gmail.com" /><br/>
-			pwd : <input type="password" name="pwdLogin" id="pwdLogin" value="2210" /><br/>
+			email : <input type="text" name="emailLogin" id="emailLogin" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /><br/>
+			pwd : <input type="password" name="pwdLogin" id="pwdLogin" value="1234" /><br/>
 			<a href="javascript:login()">Test it</a><br/>
 			<div id="loginResult" class="result fss"></div>
 			<script>
@@ -81,7 +81,7 @@
 			url : /ph/<?php echo $this::$moduleKey?>/api/getUser/email/oceatoon@gmail.com<br/>
 			method type : GET <br/>
 			param : email<br/>
-			email : <input type="text" name="getUseremail" id="getUseremail" value="oceatoon@gmail.com" /><br/>
+			email : <input type="text" name="getUseremail" id="getUseremail" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /><br/>
 			<a href="javascript:getUser()">Test it</a><br/>
 			<div id="getUserResult" class="result fss"></div>
 			<script>
@@ -121,7 +121,7 @@
 			url : /ph/<?php echo $this::$moduleKey?>/api/inviteUser<br/>
 			method type : POST <br/>
 			param : email<br/>
-			email : <input type="text" name="inviteUseremail" id="inviteUseremail" value="egpc@egpc.com" /><br/>
+			email : <input type="text" name="inviteUseremail" id="inviteUseremail" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /><br/>
 			<a href="javascript:inviteUser()">Test it</a><br/>
 			<div id="inviteUserResult" class="result fss"></div>
 			<script>
@@ -134,23 +134,4 @@
 		</div>
 	</li>
 
-	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/api/getnodeby"  id="blockgetnodeby">Get content of a Node (friends, ...)</a><br/>
-		<div class="fss">
-			url : /ph/<?php echo $this::$moduleKey?>/api/getnodeby<br/>
-			method type : GET <br/>
-			type : <input type="text" name="getnodebyType" id="getnodebyType" value="friends" /><br/>
-			<a href="javascript:getnodeby()">Test it</a><br/>
-			<a href="javascript:countgetnodeby()">Count it</a><br/>
-			<div id="getnodebyResult" class="result fss"></div>
-			<script>
-				function getnodeby(){
-					testitget("getnodebyResult",'/ph/<?php echo $this::$moduleKey?>/api/getnodeby/type/'+$("#getnodebyType").val());
-				}
-				function countgetnodeby(){
-					testitget("getnodebyResult",'/ph/<?php echo $this::$moduleKey?>/api/getnodeby/type/'+$("#getnodebyType").val()+'/count/1');
-				}
-			</script>
-		</div>
-
-	</li>
 </ul>	

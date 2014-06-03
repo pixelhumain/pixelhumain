@@ -19,7 +19,8 @@ $this->pageTitle=$this::moduleTitle;
 				<li ><i class="sectionIcon fa <?php echo $e['iconClass']?>"></i><h3 class="blockp"><?php echo $e['label']?> <?php if(isset($e['children']))echo "( ".count($e['children'])." )"?>  <a class="<?php echo $e['key']?>Icon fa fa-eye<?php if(isset($e['hide'])) echo '-slash'?>" href="javascript:;" onclick="toggle('<?php echo $e['key']?>');"></a></h3></li>
 				<li class="<?php echo $e['key']?> <?php if(isset($e['hide'])) echo 'hide'?>">
 					<?php 
-					$params = ( isset( $e['blocks']) ) ? array("blocks"=>$e['blocks']) : array();
+					$params = ( isset( $e['blocks']) ) ? array("blocks"=>$e['blocks']) : (( isset( $e['generate'] ) ) ? array("blocks"=>$this->sidebar1) : array());
+
 					if( is_file(Yii::getPathOfAlias($path.$e['key']).".php") )
 						$this->renderPartial( $path.$e['key'],$params ); 
 					else

@@ -119,6 +119,7 @@ class ApiController extends Controller {
                     array( "label"=>"Add Feed","href"=>"javascript:;","onclick"=>"scrollTo('#blockaddFeed')"),
                     array( "label"=>"Admin confirm Feed","href"=>"javascript:;","onclick"=>"scrollTo('#blockadminConfirmFeed')"),
                 )),
+            
             array('label' => "Conseil de quartier", "key"=>"groupCommunication", "iconClass"=>"fa fa-group", 
                 "children"=> array(
                     array( "label"=>"Create Quartier","href"=>"javascript:;","onclick"=>"scrollTo('#blocksaveQuartier')"),

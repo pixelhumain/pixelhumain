@@ -18,8 +18,8 @@ class Citoyen
     const ACTION_VOTE_DOWN      = "voteDown";
     const ACTION_VOTE_ABSTAIN   = "voteAbstain";
     //const ACTION_VOTE_BLOCK     = "voteBlock";
-    /*const ACTION_PURCHASE = "purchase";
-    const ACTION_INFORM = "inform";
+    const ACTION_PURCHASE       = "purchase";
+    /*const ACTION_INFORM = "inform";
     const ACTION_ASK_EXPERTISE = "expertiseRequest";
     const ACTION_COMMENT = "comment";*/
 
@@ -28,14 +28,14 @@ class Citoyen
                                         Group::TYPE_EVENT        => "participants",
                                         Group::TYPE_PROJECT      => "participants");
     
-    public static $action2Nodes = array( Citoyen::ACTION_VOTE_UP        => array("node"=>"voted","value"=>1),
-                                         Citoyen::ACTION_VOTE_DOWN      => array("node"=>"voted","value"=>-1),
-                                         Citoyen::ACTION_VOTE_ABSTAIN   => array("node"=>"voted","value"=>0),
-                                         //Citoyen::ACTION_VOTE_BLOCK     => array("node"=>"voted","value"=>-2),
-                                         /*Citoyen::ACTION_PURCHASE       => "purchased",
-                                         Citoyen::ACTION_INFORM         => "informed",
-                                         Citoyen::ACTION_REQUEST_EXPERTISE  => "request",
-                                         Citoyen::ACTION_COMMENT  => "commented",*/
+    public static $action2Nodes = array( self::ACTION_VOTE_UP        => array("node"=>"voted","value"=>1),
+                                         self::ACTION_VOTE_DOWN      => array("node"=>"voted","value"=>-1),
+                                         self::ACTION_VOTE_ABSTAIN   => array("node"=>"voted","value"=>0),
+                                         //self::ACTION_VOTE_BLOCK     => array("node"=>"voted","value"=>-2),
+                                         self::ACTION_PURCHASE       => array("node"=>"purchased","value"=>1),
+                                         /*self::ACTION_INFORM         => "informed",
+                                         self::ACTION_REQUEST_EXPERTISE  => "request",
+                                         self::ACTION_COMMENT  => "commented",*/
                                         );
 
     public static function isCommunected(){
@@ -422,7 +422,9 @@ class Citoyen
         return $res;
     }
     /*
+    - can only vote , purchase, .. once
     - check user and element existance 
+    - QUESTION : should actions be application inside
      */
     public static function addAction( $email=null , $id=null, $collection=null, $action=null, $unset=false  )
     {
@@ -434,42 +436,46 @@ class Citoyen
         $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
         if($user && $element)
         {
-            if($unset)
-                $dbMethod = '$unset';
-            else
-                $dbMethod = '$set';
-            
+            //check user hasn't allready done the action
+            $actionNode = Citoyen::$action2Nodes[ $action ]["node"];
+            if( $unset 
+                || !isset( $element[ $actionNode ] ) 
+                || ( isset( $element[ $actionNode ] ) && !in_array( (string)$user["_id"] , $element[ $actionNode ] ) ) )
+            {
+                if($unset)
+                    $dbMethod = '$unset';
+                else
+                    $dbMethod = '$set';
 
-            // "actions": { "groups": { "538c5918f6b95c800400083f": { "voted": "voteUp" }, "538cb7f5f6b95c80040018b1": { "voted": "voteUp" } } } }
-            $map[self::NODE_ACTIONS.".".$collection.".".(string)$element["_id"].".".self::$action2Nodes[$action]["node"] ] = $action ;
-            //update the user table 
-            //adds or removes an action
-            Yii::app()->mongodb->citoyens->update( array( "_id" => $user["_id"]), 
-                                                   array( $dbMethod => $map));
-            if($unset){
-                $dbMethod = '$pull';
-                $inc = -1;
-            }
-            else {
-                $dbMethod = '$addToSet';
-                $inc = self::$action2Nodes[ $action ]["value"];
-            }
-            $dbAction = array($dbMethod => array( self::$action2Nodes[ $action ]["node"] => (string)$user["_id"]));
-            //check if user allready voted
-            //if user id is in the action's node (ex:voted)
-            if( !in_array( (string)$user["_id"] , $element[ self::$action2Nodes[ $action ]["node"] ] ) )
-                $dbAction['$inc'] = array($action=>$inc);
-             
-
-            Yii::app()->mongodb->selectCollection($collection)->update( array("_id" => new MongoId($element["_id"])), 
-                                                                        $dbAction);
-            $res = array( "result"          => true,  
-                          "userActionSaved" => true,
-                          "user"            => $user = Yii::app()->mongodb->citoyens->findOne( array("email" => $email ),array("actions")),
-                          "element"         => Yii::app()->mongodb->selectCollection($collection)->findOne( array("_id" => new MongoId($id) ),array("voted","votesUp"))
-                           );
-        
-            //$res = array( "result" => true,  "userAllreadyDidAction" => true );
+                // "actions": { "groups": { "538c5918f6b95c800400083f": { "voted": "voteUp" }, "538cb7f5f6b95c80040018b1": { "voted": "voteUp" } } } }
+                $map[self::NODE_ACTIONS.".".$collection.".".(string)$element["_id"].".".$actionNode ] = $action ;
+                //update the user table 
+                //adds or removes an action
+                Yii::app()->mongodb->citoyens->update( array( "_id" => $user["_id"]), 
+                                                       array( $dbMethod => $map));
+                if($unset){
+                    $dbMethod = '$pull';
+                    //decrement when removing an action instance
+                    $inc = -1;
+                }
+                else 
+                {
+                    //push unique user Ids into action node list
+                    $dbMethod = '$addToSet';
+                    //increment according to specifications
+                    $inc = self::$action2Nodes[ $action ]["value"];
+                }
+                
+                Yii::app()->mongodb->selectCollection($collection)->update( array("_id" => new MongoId($element["_id"])), 
+                                                                            array($dbMethod => array( $actionNode => (string)$user["_id"]),
+                                                                              '$inc'=>array( $action => $inc)));
+                $res = array( "result"          => true,  
+                              "userActionSaved" => true,
+                              "user"            => $user = Yii::app()->mongodb->citoyens->findOne( array("email" => $email ),array("actions")),
+                              "element"         => Yii::app()->mongodb->selectCollection($collection)->findOne( array("_id" => new MongoId($id) ),array(Citoyen::$action2Nodes[ $action ]["node"]))
+                               );
+            } else
+                $res = array( "result" => true,  "userAllreadyDidAction" => true );
         }
         return $res;
     }

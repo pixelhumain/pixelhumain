@@ -62,11 +62,7 @@ class ApiController extends Controller {
                     array( "label"=>"unlinkUser2Group","href"=>"javascript:;","onclick"=>"scrollTo('#blocklinkUser2Group')"),
                     array( "label"=>"getGroups","href"=>"javascript:;","onclick"=>"scrollTo('#blockgetGroups')")
                 )),
-            array('label' => "Votes", "key"=>"votes", "iconClass"=>"fa fa-thumbs-up", 
-                "children"=> array(
-                    array( "label"=>"sendMessage","href"=>"javascript:;","onclick"=>"scrollTo('#blocksendMessage')")
-                )),
-            array('label' => "Ventes", "key"=>"ventes", "iconClass"=>"fa fa-euro", 
+            array('label' => "Actions : Votes, Purchase", "key"=>"votes", "iconClass"=>"fa fa-thumbs-up", 
                 "children"=> array(
                     array( "label"=>"sendMessage","href"=>"javascript:;","onclick"=>"scrollTo('#blocksendMessage')")
                 )),
@@ -91,7 +87,8 @@ class ApiController extends Controller {
             'getuser'                   => 'application.controllers.user.GetUserAction',
             'confirmgroupregistration'  => 'application.controllers.user.ConfirmUserRegistrationAction',
             'getpeopleby'               => 'application.controllers.user.GetPeopleByAction',
-            'addaction'               => 'application.controllers.user.AddActionAction',
+            'addaction'                 => 'application.controllers.user.AddActionAction',
+            "getactionvalue"            => 'application.controllers.generic.GetFromCollectionAction',
 
             'savegroup'                 => 'application.controllers.groups.SaveGroupAction',  
             'getgroupsby'               => 'application.controllers.groups.GetGroupsByAction',  
