@@ -59,11 +59,7 @@ class ApiController extends Controller {
                 "children"=> array(
                     array( "label"=>"sendMessage","href"=>"javascript:;","onclick"=>"scrollTo('#blocksendMessage')")
                 )),
-            array('label' => "Demosalithia", "key"=>"demosalithia", "iconClass"=>"fa fa-eye",
-                "children"=> array(
-                    array( "label" => "initMap", "href" => "javascript:;","iconClass"=>"fa fa-sitemap", )
-                )),
-            array('label' => "Views", "key"=>"views", "iconClass"=>"fa fa-eye", 'menuOnly'=>true,
+             array('label' => "Views", "key"=>"views", "iconClass"=>"fa fa-eye", 'menuOnly'=>true,
                 "children"=> array(
                     array( "label" => "Graph", "href" => "/ph/egpc","iconClass"=>"fa fa-sitemap", )
                 )),
@@ -94,9 +90,6 @@ class ApiController extends Controller {
             
             'sendmessage'               => 'application.controllers.messages.SendMessageAction',  
             'getmessageby'              => 'application.controllers.messages.GetMessageByAction',
-            
-            'savepositionuser'          => 'application.controllers.map.SavePositionUserAction',
-            'showcitoyens'          	=> 'application.controllers.map.ShowCitoyensAction',
             
               
         );

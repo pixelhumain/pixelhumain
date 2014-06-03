@@ -39,6 +39,7 @@ return array(
 		//PIXEL HUMAIN specific modules 
 		'waterwatcher',
 		'egpc',
+		'demosalithia',
 		'azotlive',
 		'echolocal',
 		'communecter',
