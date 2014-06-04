@@ -9,14 +9,18 @@ php --ini
 ```
 The php.ini specified in the "Loaded Configuration File" option should be the right one.
 Check in this php.ini file the openssl extension is activated.
+
 ####must install a Php webserver
 - On Windows OS : 
 Get the dll from here https://s3.amazonaws.com/drivers.mongodb.org/php/index.html
 The right version driver depends on the version of php you're running with.
+Copy the dll file in your directory : %php_dir%/ext
 In the php.ini add (depends on your php install version) : 
 ```
 extension=extension=php_mongo-1.4.5-5.5-vc11.dll
 ```
+
+
 - On Unix like OS : 
 Same as windows but choose a .so driver instead of a dll one.
 [Here's a good doc](http://tech.enekochan.com/2013/10/22/install-mongodb-in-ubuntu-12-04/)

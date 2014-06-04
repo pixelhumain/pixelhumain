@@ -1,0 +1,5 @@
+{ "_id" : { "$oid" : "527a0b25c073ef2528e188ec" }, "name" : "jobTypes", "list" : [ "developpeur", "graphiste", "animateur", "photographe", "drh", "expert", "monnaie Locale", "juridique", "financement", "administratif", "mentor", "developpeur drh", "", "testeur", "informaticien", "consultatif", "collectivité", "dsi", "porteur", "chefDeProjet", "penseur", "stratégieCommunication" ] }
+{ "_id" : { "$oid" : "527a0b32c073ef2528e188ed" }, "name" : "activities", "list" : [ "camping", "climbing", "fishing", "swimming" ] }
+{ "_id" : { "$oid" : "527a0be1c073ef2528e188ee" }, "name" : "natures", "list" : [ "montagne", "etang", "cascade" ] }
+{ "_id" : { "$oid" : "527a0c0fc073ef2528e188ef" }, "name" : "types", "list" : { "association" : "Association", "citoyen" : "Citoyen", "entreprise" : "Entreprise", "collectivité" : "Collectivité" } }
+{ "_id" : { "$oid" : "527a0c3cc073ef2528e188f0" }, "name" : "tags", "list" : [ "Environnement", "Transports", "Déchets", "Energie", "Alimentation", "Agriculture", "Culture", "Emploi", "surfer", "musicien", "artisan", "", "education", "marmaille", "video", "securité", "informaticien", "ingenieur", "oceanographie" ] }
