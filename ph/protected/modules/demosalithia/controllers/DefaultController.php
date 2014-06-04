@@ -4,7 +4,7 @@
  *
  * OneScreenApp for Communecting people
  *
- * @author: Tibor Katelbach <tibor@pixelhumain.com>
+ * @author: Tristan Goguet <tristan.goguet@gmail.com>
  * Date: 14/03/2014
  */
 class DefaultController extends Controller {

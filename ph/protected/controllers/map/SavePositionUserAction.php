@@ -15,7 +15,6 @@ class SavePositionUserAction extends CAction
         $email = $_POST["email"];
         
         //$res = Citoyen::register( $email, $_POST["pwd"]);
-        $res = "tout va bien";
         if( Yii::app()->request->isAjaxRequest )
         {
             //if exists login else create the new user
@@ -45,7 +44,7 @@ class SavePositionUserAction extends CAction
                 Yii::app()->mongodb->citoyens->update( array("email" => $email), 
                                                        array('$set' => $newInfos ) 
                                                       );
-                $res .= ", Yii::app()->mongodb->citoyens->update OK ! new position : (".$newInfos['lat'].", ".$newInfos['lng'].")";
+                $res = "Ok ! La position de " . $email . " a bien été modifiée : (".$newInfos['lat'].", ".$newInfos['lng'].")";
             }
         } else
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
