@@ -35,10 +35,20 @@ class DefaultController extends Controller {
      */
 	public function actionIndex() 
 	{
-	    $this->render("index");
+    $title = "Tous les sondages";
+    $where = array("type"=>"survey");
+    if(isset($_GET["cp"]))
+      $where["cp"] = $_GET["cp"];
+    $list = iterator_to_array(Yii::app()->mongodb->surveys->find ( $where ));
+	  $this->render( "mixitup", array( "list" => $list,"title"=>$title )  );
 	}
-  /*public function actionGraph()
+  public function actionEntries($surveyId) 
   {
-    $this->render("graph");
-  }*/
+    $where = array("type"=>"entry","survey"=>$surveyId);
+    $list = iterator_to_array(Yii::app()->mongodb->surveys->find ( $where ));
+    $survey = Yii::app()->mongodb->surveys->findOne ( array("_id"=>new MongoId ( $surveyId ) ) );
+    $title = "Commune ".$survey["cp"]." : ".$survey["name"];
+    $this->render( "mixitup", array( "list" => $list,"title"=>$title )  );
+  }
+  
 }

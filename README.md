@@ -15,7 +15,11 @@ Get the dll from here https://s3.amazonaws.com/drivers.mongodb.org/php/index.htm
 The right version driver depends on the version of php you're running with.
 In the php.ini add (depends on your php install version) : 
 ```
-extension=extension=php_mongo-1.4.5-5.5-vc11.dll
+for php 5.5
+extension=php_mongo-1.4.5-5.5-vc11.dll
+or 
+for php 5.3
+extension=php_mongo-1.4.1-5.3-vc9.dll
 ```
 - On Unix like OS : 
 Same as windows but choose a .so driver instead of a dll one.

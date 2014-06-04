@@ -14,15 +14,24 @@ class SaveSessionAction extends CAction
         if( Yii::app()->session["userId"] )
         {
             $email = $_POST["email"];
+            $name  = $_POST['name'];
             //if exists login else create the new user
             if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) ))
             {
                 //udate the new app specific fields
                 $newInfos = array();
                 $newInfos['email'] = $email;
-                $newInfos['name'] = $_POST['name'];
+                $newInfos['name'] = $name;
+                if( isset($_POST['survey']) )
+                    $newInfos['survey'] = $_POST['survey'];
+                if( isset($_POST['message']) )
+                    $newInfos['message'] = $_POST['message'];
+                if( isset($_POST['type']) )
+                    $newInfos['type'] = $_POST['type'];
                 if( isset($_POST['tags']) )
                     $newInfos['tags'] = explode(",",$_POST['tags']);
+                if( isset($_POST['cp']) )
+                    $newInfos['cp'] = $_POST['cp'];
 
                 //specific application routines
                 if( isset( $_POST["app"] ) )
@@ -32,21 +41,20 @@ class SaveSessionAction extends CAction
                     {
                         //when registration is done for an application it must be registered
                     	$newInfos['applications'] = array( $appKey => array( "usertype"=> (isset($_POST['type']) ) ? $_POST['type']:$_POST['app']  ));
-
-                    	
                         //check for application specifics defined in DBs application entry
                     	if( isset( $app["registration"] ) && ( $app["registration"] == "mustBeConfirmed" ))
                     		$newInfos['applications'][$appKey]["registrationConfirmed"] = false;
                         $res['applicationExist'] = true;
                     }else
                         $res['applicationExist'] = false;
-                }   
+                }
 
-                Yii::app()->mongodb->survey->update( array( "email" => $email ), 
-                                                       array('$set' => $newInfos ) 
+                Yii::app()->mongodb->surveys->update( array( "name" => $name ), 
+                                                       array('$set' => $newInfos ) ,
+                                                       array('upsert' => true ) 
                                                       );
                 $res['result'] = true;
-                $res["id"] = $newInfos["_id"];
+                $res['msg'] = "surveySaved";
             }else
                 $res = array('result' => false , 'msg'=>"user doen't exist");
         } else

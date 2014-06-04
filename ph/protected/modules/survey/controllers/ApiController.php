@@ -75,9 +75,10 @@ class ApiController extends Controller {
             'addaction'         => 'application.controllers.user.AddActionAction',
             "getactionvalue"    => 'application.controllers.generic.GetFromCollectionAction',
 
-            'savesession'   => 'application.controllers.survey.SaveSessionAction',  
+            'savesession'       => 'application.controllers.survey.SaveSessionAction',  
+            'getby'             => 'application.controllers.generic.GetByAction',  
 
-            'sendmessage'   => 'application.controllers.messages.SendMessageAction',  
+            'sendmessage'       => 'application.controllers.messages.SendMessageAction',  
         );
     }
 }

@@ -19,11 +19,10 @@
 				<option></option>
 				<?php 
 				$actions = array(
-					"voteUp",
-					"voteDown",
-					"voteAbstain",
-					"voteBlock",
-					"purchase"
+					Citoyen::ACTION_VOTE_UP,
+					Citoyen::ACTION_VOTE_DOWN,
+					Citoyen::ACTION_VOTE_ABSTAIN,
+					Citoyen::ACTION_PURCHASE
 					);
 				foreach ($actions as $value) {
 					echo '<option value="'.$value.'">'.$value.'</option>';
