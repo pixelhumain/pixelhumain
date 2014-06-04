@@ -11,18 +11,33 @@ The php.ini specified in the "Loaded Configuration File" option should be the ri
 Check in this php.ini file the openssl extension is activated.
 
 ####must install a Php webserver
+Choose your favorite webserver (apache) or package (easyPhp, Wamp...)
+Edit the httpd.conf file and activate the line
+```
+LoadModule rewrite_module modules/mod_rewrite.so
+```
+
 - On Windows OS : 
 Get the dll from here https://s3.amazonaws.com/drivers.mongodb.org/php/index.html
+Download the 1.4.5 mongo driver version (php_mongo-1.4.5.zip)
+Extract the zip file.
 The right version driver depends on the version of php you're running with.
+Saying 5.X is your php version, choose the file : 
+```
+if (X<5) 
+	php_mongo-1.4.5-5.X-vc9.dll
+else
+	php_mongo-1.4.5-5.X-vc11.dll
+```
+Important : if you'are running with a 64bits platform choose the file with 'x86_64' in it.
 Copy the dll file in your directory : %php_dir%/ext
-In the php.ini add (depends on your php install version) : 
+In the php.ini add (the name of the dll file depends on your php install version) : 
 ```
-extension=extension=php_mongo-1.4.5-5.5-vc11.dll
+extension=extension=php_mongo-1.4.5-5.X-vc9.dll
 ```
-
 
 - On Unix like OS : 
-Same as windows but choose a .so driver instead of a dll one.
+Same rules as windows but choose a .so driver instead of a dll one.
 [Here's a good doc](http://tech.enekochan.com/2013/10/22/install-mongodb-in-ubuntu-12-04/)
 [manuel d'installation officiel PHP](http://www.php.net/manual/fr/mongo.installation.php)
 
@@ -35,11 +50,9 @@ Same as windows but choose a .so driver instead of a dll one.
 ```
 mongod --dbpath data\db
 ```
-- inside mongodb/bin folder , launch mongo
-- create a database called pixelhumain : use pixelhumain
-- create a user for the db : db.users.save( {username:"mkyong"} )
-
-- we'll soon create  
+- inside your favorite mongo administration tool : 
+- create a database called pixelhumain
+- create a user for the db : pixelhumain
 
 ####Composer installation
 PixelHumain is set with composer in order to manage dependencies and libraries.
@@ -63,7 +76,11 @@ composer install
 ####Launch the application
 - Launch you http webserver
 - depending on how you webservers alias is configured here the alias is called ''ph'' and pointing to the folder you cloned test this url : 
-http://127.0.0.1/ph/yii/frontend/www/index.php/decouvrir
+http://localhost:8080/ph/index.php/test
+
+- All the first line should be green.
+
+YOU SUCCEED ! READY TO CODE NOW !
 
 ##Version 0.001 
     L'homme qui déplace une montagne commence par déplacer les petites pierres.- Confucius
