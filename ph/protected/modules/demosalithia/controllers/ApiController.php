@@ -38,10 +38,7 @@ class ApiController extends Controller {
             //          MAP
             //********************************************************************************
             'savepositionuser'          => 'application.controllers.map.SavePositionUserAction',
-            'showcitoyens'          	=> 'application.controllers.map.ShowCitoyensAction',
-            'insertmultipleuserfortest' => 'application.controllers.map.InsertMultipleUserForTest',
-            
-              
+            'showcitoyens'          	=> 'application.controllers.map.ShowCitoyensAction',           
         );
     }
     /**
