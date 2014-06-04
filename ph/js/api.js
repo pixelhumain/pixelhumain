@@ -26,12 +26,14 @@ function testitget(id,url,callback){
 	    		callback(data);
 	    	else
 	      		$("#"+id).html(JSON.stringify(data, null, 4));
+	    	
 	    },
 	    error:function (xhr, ajaxOptions, thrownError){
 	      $("#"+id).html(data);
 	    } 
 	  });
 }
+
 function toggle(id){
 	if( !$("."+id).is(":visible") ) {
 		$("."+id).removeClass("hide").attr("style","");

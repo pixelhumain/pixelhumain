@@ -91,7 +91,8 @@ class ApiController extends Controller {
             'sendmessage'               => 'application.controllers.messages.SendMessageAction',  
             'getmessageby'              => 'application.controllers.messages.GetMessageByAction',
             
-              
+              'insertmultipleuserfortest' => 'application.controllers.user.InsertMultipleUserForTestAction',
+            
         );
     }
     /**

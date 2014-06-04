@@ -2,7 +2,7 @@
 /**
  * Water Watcher Module
  *
- * @author Tibor Katelbach <oceatoon@mail.com>
+ * @author: Tristan Goguet <tristan.goguet@gmail.com>
  * @version 0.0.3
  *
 */
