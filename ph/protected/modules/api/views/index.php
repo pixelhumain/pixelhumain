@@ -20,7 +20,11 @@ $this->pageTitle=$this::moduleTitle;
 				<li class="<?php echo $e['key']?> <?php if(isset($e['hide'])) echo 'hide'?>">
 					<?php 
 					$params = ( isset( $e['blocks']) ) ? array("blocks"=>$e['blocks']) : array();
-					$this->renderPartial( $path.$e['key'],$params ); ?>
+					if( is_file(Yii::getPathOfAlias($path.$e['key']).".php") )
+						$this->renderPartial( $path.$e['key'],$params ); 
+					else
+						echo "This template ".$e['key']." doesn't exist yet : ".Yii::getPathOfAlias($path.$e['key']).".php";
+					?>
 				</li>
 
 				<!-- ////////////////////////////////////////////////////////////////////////////// -->

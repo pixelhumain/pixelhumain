@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/css/font-awesome.min.css">
   
   <script src='<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.v1.11.0.js'></script>
+  <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
 </head>
 
 <body>

@@ -24,6 +24,7 @@
 			<span class="whensaveGroup">
 			when : <input type="text" name="whensaveGroup" id="whensaveGroup" value="" /><br/>
 			where : <input  type="text" name="wheresaveGroup" id="wheresaveGroup" value="" /><br/>
+			participant : <input  type="text" name="whosaveGroup" id="whosaveGroup" value="5370b477f6b95c280a00390c" /><br/>
 			</span>
 			<a href="javascript:saveGroup()">Test it</a><br/>
 			<div id="saveGroupResult" class="result fss"></div>
@@ -36,12 +37,14 @@
 					    	   "type" : $("#typesaveGroup").val(),
 					    	   "phoneNumber" : $("#phoneNumbersaveGroup").val(),
 					    	   "tags" : $("#tagssaveGroup").val(),
-					    	   "app":"<?php echo $this::$moduleKey?>"
+					    	   "app":"<?php echo $this::$moduleKey?>",
 					    	};
 					if( $("#whensaveGroup").val() )
-						paramas["when"] = $("#whensaveGroup").val();
+						params["when"] = $("#whensaveGroup").val();
 					if( $("#wheresaveGroup").val() )
-						paramas["where"] = $("#wheresaveGroup").val();
+						params["where"] = $("#wheresaveGroup").val();
+					if( $("#whosaveGroup").val() )
+						params["group"] = $("#whosaveGroup").val();
 					
 					testitpost("saveGroupResult",'/ph/<?php echo $this::$moduleKey?>/api/saveGroup',params);
 				}
@@ -112,14 +115,17 @@
 				function linkUser2Group(){
 					params = { 
 			    	   "email" : $("#linkUser2Groupemail").val() , 
-			    	   "name" : $("#linkUser2GroupGroup").val() 
+			    	   "name" : $("#linkUser2GroupGroup").val(),
+			    	   "type":"<?php echo Group::TYPE_ASSOCIATION?>"
 			    	   };
 					testitpost("linkUser2GroupResult",'/ph/<?php echo $this::$moduleKey?>/api/linkUser2Group',params);
 				}
 				function unlinkUser2Group(){
 					params = { 
 			    	   "email" : $("#linkUser2Groupemail").val() , 
-			    	   "name" : $("#linkUser2GroupGroup").val() 
+			    	   "name" : $("#linkUser2GroupGroup").val() ,
+			    	   "type":"<?php echo Group::TYPE_ASSOCIATION?>",
+			    	    "unlink" : true,
 			    	   };
 					testitpost("linkUser2GroupResult",'/ph/<?php echo $this::$moduleKey?>/api/unlinkUser2Group',params);
 				}
@@ -134,12 +140,21 @@
 			url : /ph/<?php echo $this::$moduleKey?>/api/getgroupsby<br/>
 			method type : POST <br/>
 			fields : <input type="text" name="getgroupsbyFilter" id="getgroupsbyFilter" value="email" />(comma seperated)<br/>
+			tags : <input type="text" name="getgroupsbyTags" id="getgroupsbyTags" value="social" />(comma seperated)<br/>
 			<a href="javascript:getgroupsby()">Test it</a><br/>
 			<div id="getgroupsbyResult" class="result fss"></div>
 			<script>
 				function getgroupsby(){
-					fields = ($("#getgroupsbyFilter").val()) ? '/fields/'+$("#getgroupsbyFilter").val() : ""; 
-					testitpost("getgroupsbyResult",'/ph/<?php echo $this::$moduleKey?>/api/getgroupsby'+fields,{"app":"<?php echo $this::$moduleKey?>"});
+					fields = $("#getgroupsbyFilter").val(); 
+					tags = $("#getgroupsbyTags").val(); 
+					params = {"app":"<?php echo $this::$moduleKey?>"};
+					if(fields) 
+						params.fields = fields.split(",");
+					if(tags){
+						//params.tags = "social";
+						params.tags = {'$or':[{'tags':"social"},{'tags':"recherche"}]};
+					}
+					testitpost("getgroupsbyResult",'/ph/<?php echo $this::$moduleKey?>/api/getgroupsby',params);
 				}
 			</script>
 		</div>

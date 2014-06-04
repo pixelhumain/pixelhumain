@@ -37,7 +37,7 @@ class SaveUserAction extends CAction
 
                 	$app = Yii::app()->mongodb->applications->findOne( array( "key"=> $appKey ) );
                     //check for application specifics defined in DBs application entry
-                	if( isset( $app["registration"] ) && $app["registration"] == "mustBeConfirmed")
+                	if( isset( $app["registration"] ) && ( $app["registration"] == "mustBeConfirmed" ))
                 		$newInfos['applications'][$appKey]["registrationConfirmed"] = false;
                 }
 

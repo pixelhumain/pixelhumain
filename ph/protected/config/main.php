@@ -39,6 +39,7 @@ return array(
 		//PIXEL HUMAIN specific modules 
 		'waterwatcher',
 		'egpc',
+		'demosalithia',
 		'azotlive',
 		'echolocal',
 		'communecter',
@@ -94,7 +95,7 @@ return array(
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'showScriptName'=>false,
-			'caseSensitive'=>false, 
+			'caseSensitive'=>false,
 			'rules'=>array(
 				/*'<action>'=>'site/<action>',*/
                '<controller:\w+>/<id:\d+>' => '<controller>/view',

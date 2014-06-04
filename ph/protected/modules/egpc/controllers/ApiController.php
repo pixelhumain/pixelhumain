@@ -59,10 +59,11 @@ class ApiController extends Controller {
                 "children"=> array(
                     array( "label"=>"sendMessage","href"=>"javascript:;","onclick"=>"scrollTo('#blocksendMessage')")
                 )),
-            array('label' => "Views", "key"=>"views", "iconClass"=>"fa fa-eye", 'menuOnly'=>true,
+             array('label' => "Views", "key"=>"views", "iconClass"=>"fa fa-eye", 'menuOnly'=>true,
                 "children"=> array(
                     array( "label" => "Graph", "href" => "/ph/egpc","iconClass"=>"fa fa-sitemap", )
                 )),
+            
         );
     public $percent = 60; //TODO link it to unit test
 
@@ -88,6 +89,9 @@ class ApiController extends Controller {
             'getgroupsby'               => 'application.controllers.groups.GetGroupsByAction',  
             
             'sendmessage'               => 'application.controllers.messages.SendMessageAction',  
+            'getmessageby'              => 'application.controllers.messages.GetMessageByAction',
+            
+              
         );
     }
     /**

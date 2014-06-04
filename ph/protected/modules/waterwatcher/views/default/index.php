@@ -2,6 +2,7 @@
 $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 $cs->registerScriptFile('http://visjs.org/dist/vis.js' , CClientScript::POS_END);
+$this->pageTitle=$this::moduleTitle;
 ?>
 <style type="text/css">
   body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/water.jpg") repeat;}
