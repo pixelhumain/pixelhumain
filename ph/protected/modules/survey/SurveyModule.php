@@ -1,13 +1,13 @@
 <?php
 /**
- * Water Watcher Module
+ * Communect Module
  *
- * @author: Tristan Goguet <tristan.goguet@gmail.com>
+ * @author Tibor Katelbach <oceatoon@mail.com>
  * @version 0.0.3
  *
 */
 
-class DemosalithiaModule extends CWebModule
+class SurveyModule extends CWebModule
 {
     
 
@@ -18,8 +18,8 @@ class DemosalithiaModule extends CWebModule
 
 		// import the module-level models and components
 		$this->setImport(array(
-			'demosalithia.models.*',
-			'demosalithia.components.*',
+			'survey.models.*',
+			'survey.components.*',
 		));
 	}
 

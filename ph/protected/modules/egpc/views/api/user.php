@@ -62,7 +62,7 @@
 			url : /ph/<?php echo $this::$moduleKey?>/api/getUser/email/oceatoon@gmail.com<br/>
 			method type : GET <br/>
 			param : email<br/>
-			email : <input type="text" name="getUseremail" id="getUseremail" value="oceatoon@gmail.com" /><br/>
+			email : <input type="text" name="getUseremail" id="getUseremail" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /><br/>
 			<a href="javascript:getUser()">Test it</a><br/>
 			<a href="javascript:confirmUserRegistration()">Confirm User Registration</a><br/>
 			<div id="getUserResult" class="result fss"></div>

@@ -23,9 +23,7 @@ class SaveUserAction extends CAction
                     $newInfos['cp'] = $_POST['cp'];
                 if( isset($_POST['name']) )
                     $newInfos['name'] = $_POST['name'];
-                if( isset($_POST['phoneNumber']) )
-                    $newInfos['phoneNumber'] = $_POST['phoneNumber'];
-                if( isset($_POST['tags']) )
+               if( isset($_POST['tags']) )
                     $newInfos['tags'] = explode(",",$_POST['tags']);
 
                 //specific application routines
@@ -33,7 +31,7 @@ class SaveUserAction extends CAction
                 {
                     $appKey = $_POST["app"];
                     //when registration is done for an application it must be registered
-                	$newInfos['applications'] = array( $appKey => array( "usertype"=>$_POST['type']  ));
+                	$newInfos['applications'] = array( $appKey => array( "usertype"=> (isset($_POST['type']) ) ? $_POST['type']:$_POST['app']  ));
 
                 	$app = Yii::app()->mongodb->applications->findOne( array( "key"=> $appKey ) );
                     //check for application specifics defined in DBs application entry

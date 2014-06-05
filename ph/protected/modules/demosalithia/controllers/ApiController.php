@@ -4,7 +4,7 @@
  *
  * API REST pour géré l'application EGPC
  *
- * @author: Tibor Katelbach <tibor@pixelhumain.com>
+ * @author: Tristan Goguet <tristan.goguet@gmail.com>
  * Date: 14/03/2014
  */
 class ApiController extends Controller {
@@ -17,11 +17,11 @@ class ApiController extends Controller {
                 "children"=> array(
                     array( "label" => "initMap", "href" => "javascript:;","iconClass"=>"fa fa-sitemap", )
                 )),
-            array('label' => "Views", "key"=>"views", "iconClass"=>"fa fa-eye", 'menuOnly'=>true,
+            /*array('label' => "Views", "key"=>"views", "iconClass"=>"fa fa-eye", 'menuOnly'=>true,
                 "children"=> array(
                     array( "label" => "Graph", "href" => "/ph/egpc","iconClass"=>"fa fa-sitemap", )
                 )),
-            
+            */
         );
     public $percent = 60; //TODO link it to unit test
 
@@ -38,9 +38,7 @@ class ApiController extends Controller {
             //          MAP
             //********************************************************************************
             'savepositionuser'          => 'application.controllers.map.SavePositionUserAction',
-            'showcitoyens'          	=> 'application.controllers.map.ShowCitoyensAction',
-            
-              
+            'showcitoyens'          	=> 'application.controllers.map.ShowCitoyensAction',           
         );
     }
     /**

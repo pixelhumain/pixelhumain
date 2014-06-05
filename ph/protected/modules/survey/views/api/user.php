@@ -1,6 +1,6 @@
 <ul>
 	<li class="block" id="blockCommunect">
-		<a href="/ph/<?php echo $this::$moduleKey?>/api/communect">Login</a><br/>
+		<a href="/ph/<?php echo $this::$moduleKey?>/api/communect">se Comunecter</a><br/>
 		<div class="fss">
 			se communecter c'est juste suivre l'activité d'un CP <br/>
 			Il suffit d'un email et d'un CP<br/>
@@ -37,7 +37,8 @@
 			<script>
 				function login(){
 					params = { "email" : $("#emailLogin").val() , 
-					    	   "pwd" : $("#pwdLogin").val()
+					    	   "pwd" : $("#pwdLogin").val(),
+					    	   "app":"<?php echo $this::$moduleKey?>"
 					    	};
 					testitpost("loginResult",'/ph/<?php echo $this::$moduleKey?>/api/login',params);
 					
@@ -69,14 +70,15 @@
 					    	   "name" : $("#nameSaveUser").val() , 
 					    	   "cp" : $("#postalcodeSaveUser").val() ,
 					    	   "pwd":$("#pwdSaveUser").val() ,
-					    	   "phoneNumber" : $("#phoneNumberSaveUser").val()};
+					    	   "phoneNumber" : $("#phoneNumberSaveUser").val(),
+					    		"app" : "<?php echo $this::$moduleKey?>"};
 					testitpost("createUserResult",'/ph/<?php echo $this::$moduleKey?>/api/saveUser',params);
 				}
 			</script>
 		</div>
 	</li>
 	
-	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/api/getUser/email/oceatoon@gmail.com"  id="blockGetUser">Get User</a><br/>
+	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/api/getUser/email/<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com"  id="blockGetUser">Get User</a><br/>
 		<div class="fss">
 			url : /ph/<?php echo $this::$moduleKey?>/api/getUser/email/oceatoon@gmail.com<br/>
 			method type : GET <br/>
@@ -134,4 +136,23 @@
 		</div>
 	</li>
 
+	<li class="block"><a href="/ph/<?php echo $this::$moduleKey?>/api/getnodeby"  id="blockgetnodeby">Get content of a Node (friends, ...)</a><br/>
+		<div class="fss">
+			url : /ph/<?php echo $this::$moduleKey?>/api/getnodeby<br/>
+			method type : GET <br/>
+			type : <input type="text" name="getnodebyType" id="getnodebyType" value="friends" /><br/>
+			<a href="javascript:getnodeby()">Test it</a><br/>
+			<a href="javascript:countgetnodeby()">Count it</a><br/>
+			<div id="getnodebyResult" class="result fss"></div>
+			<script>
+				function getnodeby(){
+					testitget("getnodebyResult",'/ph/<?php echo $this::$moduleKey?>/api/getnodeby/type/'+$("#getnodebyType").val());
+				}
+				function countgetnodeby(){
+					testitget("getnodebyResult",'/ph/<?php echo $this::$moduleKey?>/api/getnodeby/type/'+$("#getnodebyType").val()+'/count/1');
+				}
+			</script>
+		</div>
+
+	</li>
 </ul>	

@@ -32,9 +32,12 @@ else
 Important : if you'are running with a 64bits platform choose the file with 'x86_64' in it.
 Copy the dll file in your directory : %php_dir%/ext
 In the php.ini add (the name of the dll file depends on your php install version) : 
-```
-extension=extension=php_mongo-1.4.5-5.X-vc9.dll
-```
+=======
+for php 5.5
+extension=php_mongo-1.4.5-5.5-vc11.dll
+or 
+for php 5.3
+extension=php_mongo-1.4.1-5.3-vc9.dll
 
 - On Unix like OS : 
 Same rules as windows but choose a .so driver instead of a dll one.
