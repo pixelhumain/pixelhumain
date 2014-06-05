@@ -92,6 +92,7 @@ class Citoyen
                         
                         Yii::app()->session["userId"] = (string)$account["_id"];
                         Yii::app()->session["userEmail"] = $account["email"]; 
+                        Yii::app()->user = $account;
                         
                         if( isset($account["isAdmin"]) && $account["isAdmin"] )
                             Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
@@ -467,12 +468,12 @@ class Citoyen
                 }
                 
                 Yii::app()->mongodb->selectCollection($collection)->update( array("_id" => new MongoId($element["_id"])), 
-                                                                            array($dbMethod => array( $actionNode => (string)$user["_id"]),
-                                                                              '$inc'=>array( $action => $inc)));
+                                                                            array($dbMethod => array( $action => (string)$user["_id"]),
+                                                                              '$inc'=>array( $action."Count" => $inc)));
                 $res = array( "result"          => true,  
                               "userActionSaved" => true,
                               "user"            => $user = Yii::app()->mongodb->citoyens->findOne( array("email" => $email ),array("actions")),
-                              "element"         => Yii::app()->mongodb->selectCollection($collection)->findOne( array("_id" => new MongoId($id) ),array(Citoyen::$action2Nodes[ $action ]["node"]))
+                              "element"         => Yii::app()->mongodb->selectCollection($collection)->findOne( array("_id" => new MongoId($id) ),array( $action))
                                );
             } else
                 $res = array( "result" => true,  "userAllreadyDidAction" => true );

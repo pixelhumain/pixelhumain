@@ -32,7 +32,7 @@ class SaveSessionAction extends CAction
                     $newInfos['tags'] = explode(",",$_POST['tags']);
                 if( isset($_POST['cp']) )
                     $newInfos['cp'] = $_POST['cp'];
-
+                $newInfos['created'] = time();
                 //specific application routines
                 if( isset( $_POST["app"] ) )
                 {
