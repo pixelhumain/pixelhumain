@@ -15,27 +15,27 @@ use Composer\Script\Event;
  *
  * config.php
  *     'params' => array(
-        'composer.callbacks' => array(
-            'post-update' => array('yiic', 'migrate'),
-            'post-install' => array('yiic', 'migrate'),
-            'yiisoft/yii-install' => array('yiic', 'webapp', realpath(dirname(__FILE__))),
-        ),
-    )
-);
-
+ *        'composer.callbacks' => array(
+ *           'post-update' => array('yiic', 'migrate'),
+ *           'post-install' => array('yiic', 'migrate'),
+ *           'yiisoft/yii-install' => array('yiic', 'webapp', realpath(dirname(__FILE__))),
+ *       ),
+ *   )
+ *);
+ *
  * composer.json
  *   "scripts": {
  *      "pre-install-cmd": "config\\ComposerCallback::preInstall",
-        "post-install-cmd": "config\\ComposerCallback::postInstall",
-        "pre-update-cmd": "config\\ComposerCallback::preUpdate",
-        "post-update-cmd": "config\\ComposerCallback::postUpdate",
-        "post-package-install": [
-        "config\\ComposerCallback::postPackageInstall"
-        ],
-        "post-package-update": [
-        "config\\ComposerCallback::postPackageUpdate"
-        ]
-    }
+ *       "post-install-cmd": "config\\ComposerCallback::postInstall",
+ *       "pre-update-cmd": "config\\ComposerCallback::preUpdate",
+ *       "post-update-cmd": "config\\ComposerCallback::postUpdate",
+ *       "post-package-install": [
+ *       "config\\ComposerCallback::postPackageInstall"
+ *       ],
+ *       "post-package-update": [
+ *       "config\\ComposerCallback::postPackageUpdate"
+ *       ]
+ *   }
  */
 
 defined('YII_PATH') or define('YII_PATH', dirname(__FILE__).'/../../vendor/yiisoft/yii/framework');
