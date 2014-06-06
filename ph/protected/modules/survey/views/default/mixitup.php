@@ -2,26 +2,49 @@
 $cs = Yii::app()->getClientScript();
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/protected/modules/egpc/css/mixitup/reset.css');
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/protected/modules/egpc/css/mixitup/style.css');
+$cs->registerScriptFile($this->module->assetsUrl.'/js/jquery.sparkline.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 $this->pageTitle=$this::moduleTitle;
 ?>
+
 <style type="text/css">
   body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/faces3.jpg") repeat;}
+  .connect{ opacity: 0.9;background-color: #000; margin-bottom: 10px;border:1px solid #3399FF;width: 100%;padding: 10px }
+  button.filter,button.sort{color:#000;}
 </style>
-<div class="title"><?php echo $title?>
-  <br/>
+<?php
+$this->renderPartial('application.modules.'.$this::$moduleKey.'.views.default.modals.proposerloi');
+$this->renderPartial('application.modules.'.$this::$moduleKey.'.views.default.modals.voterloiDesc');
+?>
+
+<section class="mt80 stepContainer">
+  <div class="connect btn">
+    <div style="color:#3399FF;float:left;font-size: xx-large;font-weight: bold">
+      <?php echo $this::moduleTitle." : ".$title;
+       if(isset($_GET["cp"])) echo " ".$_GET["cp"]?>
+    </div>
+    
   <?php if( isset( Yii::app()->session["userId"])){ 
     $user = Yii::app()->mongodb->citoyens->findOne ( array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) );
-    echo "connected as : ".$user["email"];?>
+    ?>
+    <a href="#participer" class="btn" role="button" data-toggle="modal" title="mon compte" ><i class="icon-cog-1"></i><?php echo  $user["email"];?></a>
+    <a href="/ph/site/logout" class="btn " role="button" data-toggle="modal" title="deconnexion" ><i class="fa fa-signout"></i>Logout</a>
+    
   <?php } else {?>
-    <a href="">se Connecter</a>
+    <a href="#loginForm" class="btn " role="button" data-toggle="modal" title="connexion" ><i class="fa fa-signin"></i>Se Connecter pour voter</a>
   <?php } ?>
+  </div>
+<?php if( isset( Yii::app()->session["userId"])){ ?>
+<div class="connect" style="margin-right: 50px;">
+  <a href="#proposerloiForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" ><i class="fa fa-signout"></i>Proposer</a>
+  <textarea id="message1" style="width:790px;height:30px;vertical-align: middle" onkeyup="AutoGrowTextArea(this);$('#message').val($('#message1').val());"></textarea>
+  <a href="#proposerloiForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" title="envoyer" >Envoyer</a>
 </div>
-<section class="mt80 stepContainer">
-
+<?php } ?>
 <div class="controls">
-  <label>Filter:</label>
-  <button class="filter" data-filter="all">All</button>
+  <a href="#voterloiDescForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" ><i class="fa fa-signout"></i>Voter les propositions</a>
+  <label>Filtre:</label>
+  <button class="filter" data-filter="all">Tout</button>
    <?php
     $alltags = array(); 
     $blocks = "";
@@ -35,7 +58,7 @@ $this->pageTitle=$this::moduleTitle;
       if( !isset($_GET["cp"]) && $value["type"]=="survey" )
       {
         if(!in_array($value["cp"], $cps)){
-          $cpBlock .= '<button class="filter" data-filter=".'.$value["cp"].'">'.$value["cp"].'</button>';
+          $cpBlock .= ' <button class="filter " data-filter=".'.$value["cp"].'">'.$value["cp"].'</button>';
           array_push($cps, $value["cp"]);
         }
       }
@@ -48,7 +71,7 @@ $this->pageTitle=$this::moduleTitle;
           if(!in_array($t, $alltags))
           {
             array_push($alltags, $t);
-            $tagBlock .= '<button class="filter" data-filter=".'.$t.'">'.$t.'</button>';
+            $tagBlock .= ' <button class="filter " data-filter=".'.$t.'">'.$t.'</button>';
           }
           $tags .= $t.' ';
         }
@@ -84,27 +107,27 @@ $this->pageTitle=$this::moduleTitle;
         $linkVoteAbstain = (isset( Yii::app()->session["userId"]) ) ? "<a class='".$voteAbstainActive." ".$value["_id"].Citoyen::ACTION_VOTE_ABSTAIN."' href=\"".$hrefAbstain."\" title=' ".$voteAbstainCount."Abstention'><i class='fa fa-circle'></i></a>" : "";
         $linkVoteDown = (isset( Yii::app()->session["userId"])) ? "<a class='".$voteDownActive." ".$value["_id"].Citoyen::ACTION_VOTE_DOWN."' href=\"".$hrefDown."\" title='".$voteDownCount." Contre'><i class='fa fa-thumbs-down '></i></a>" : "";
       }
-
+      $totalVote = $voteUpCount+$voteAbstainCount+$voteDownCount;
       $content = ($value["type"]=="entry") ? "<br/>".$value["message"]:"";
       $voteLinks = ($value["type"]=="entry") ? "<br/><br/><div class='votelinks'>".$linkVoteUp." ".$linkVoteAbstain." ".$linkVoteDown."</div>" : "";
       $ordre = $voteUpCount-$voteDownCount;
       $created = (isset($value["created"])) ? $value["created"] : 0; 
       $blocks .= ' <div class="mix '.$tags.' '.$cp.'" data-vote="'.$ordre.'"  data-time="'.$created.'" style="display:inline-blocks">'.
                     $link.
-                    $email.'<br/>'.
-                    $tags.
+                    //$email.'<br/>'.
+                    //$tags.
                     $content.
                     $voteLinks.
-                    '</div>';
+                    '<span class="inlinebar">1,3,4,5,3,5</span></div>';
     }
     ?>
   <?php echo $tagBlock?>
-  <label>Vote:</label>
-  <button class="sort" data-sort="vote:asc">Asc</button>
-  <button class="sort" data-sort="vote:desc">Desc</button>
-  <label>Temps:</label>
-  <button class="sort" data-sort="time:asc">Asc</button>
-  <button class="sort" data-sort="time:desc">Desc</button>
+  <label>Classement:</label>
+  <button class="sort " data-sort="vote:asc">Asc</button>
+  <button class="sort " data-sort="vote:desc">Desc</button>
+  <label>Chronos:</label>
+  <button class="sort " data-sort="time:asc">Asc</button>
+  <button class="sort " data-sort="time:desc">Desc</button>
   
   <?php if(!isset($_GET["cp"]) && $where["type"]=="survey")
       {?>
@@ -116,8 +139,6 @@ $this->pageTitle=$this::moduleTitle;
   
   <?php echo $blocks?>
 
-  <div class="gap"></div>
-  <div class="gap"></div>
 </div>
 </section>
 
@@ -125,11 +146,12 @@ $this->pageTitle=$this::moduleTitle;
 <script type="text/javascript">
   
   $(function(){
-  $('#mixcontainer').mixItUp({
-    load: {
-      sort: 'vote:desc'
-    }
-  });
+    $('#mixcontainer').mixItUp({
+      load: {
+        sort: 'vote:desc'
+      }
+    });
+    $('.inlinebar').sparkline();
 });
   function addaction(id,action){
       if(confirm("Vous êtes sûr, ce vote sera final ?")){
@@ -140,12 +162,23 @@ $this->pageTitle=$this::moduleTitle;
              "action" : action 
              };
         testitpost(null,'/ph/<?php echo $this::$moduleKey?>/api/addaction',params,function(data){
-         window.location.reload();
-
+        window.location.reload();
         });
     }
     }
     function dejaVote(){
       alert("Vous ne pouvez pas votez 2 fois, ni changer de vote.");
     }
+    function AutoGrowTextArea(textField)
+{
+  if (textField.clientHeight < textField.scrollHeight)
+  {
+    textField.style.height = textField.scrollHeight + "px";
+    if (textField.clientHeight < textField.scrollHeight)
+    {
+      textField.style.height = 
+        (textField.scrollHeight * 2 - textField.clientHeight) + "px";
+    }
+  }
+}
 </script>

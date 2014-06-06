@@ -34,4 +34,13 @@ class SurveyModule extends CWebModule
 		else
 			return false;
 	}
+	private $_assetsUrl;
+
+	public function getAssetsUrl()
+	{
+	    if ($this->_assetsUrl === null)
+	        $this->_assetsUrl = Yii::app()->getAssetManager()->publish(
+	            Yii::getPathOfAlias('survey.assets') );
+	    return $this->_assetsUrl;
+	}
 }
