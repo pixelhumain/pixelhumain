@@ -6,10 +6,10 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScrip
 $this->pageTitle=$this::moduleTitle;
 ?>
 <style type="text/css">
-  body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/crowd.jpg") repeat;}
+  body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/faces3.jpg") repeat;}
 </style>
-<div class="title"><?php echo $title?></div>
-<div class="title">
+<div class="title"><?php echo $title?>
+  <br/>
   <?php if( isset( Yii::app()->session["userId"])){ 
     $user = Yii::app()->mongodb->citoyens->findOne ( array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) );
     echo "connected as : ".$user["email"];?>
@@ -106,7 +106,7 @@ $this->pageTitle=$this::moduleTitle;
   <button class="sort" data-sort="time:asc">Asc</button>
   <button class="sort" data-sort="time:desc">Desc</button>
   
-  <?php if(!isset($_GET["cp"]) && $value["type"]=="survey")
+  <?php if(!isset($_GET["cp"]) && $where["type"]=="survey")
       {?>
   <label>Commune:</label>
   <?php echo $cpBlock; }?>

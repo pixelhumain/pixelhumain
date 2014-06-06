@@ -67,14 +67,14 @@ h2 {
                 $db = $m->pixelhumain;
                 $color = (isset($db)) ? "green" : "red";
                 } 
-                echo "<span style='color:".$color."'> Test : Database Pixelhumain was found </span><br/>";
+                echo "<span style='color:".$color."'> Test : Connected to Database '".$db."' was found </span><br/>";
                 ?>
             </li>
             <li>
             <?php 
                 $color = "red";
                 if(isset($m)){
-                    $collection = $db->lists;
+                    $collection = $db->surveys;
                     $color = (isset($collection)) ? "green" : "red";
                 }
                 echo "<span style='color:".$color."'> Test : Colection 'Lists' was found </span><br/>";
@@ -113,43 +113,6 @@ foreach ($cursor as $document) {
 
     }*/?>
         
-        <div class="input-append">
-            <?php $this->widget('yiiwheels.widgets.datepicker.WhDatePicker', array(
-                    'name' => 'eventWhen',
-                    'pluginOptions' => array(
-                        'format' => 'mm/dd/yyyy'
-                    )
-                ));
-            ?>
-            <span class="add-on" style="color:black"><icon class="icon-calendar"></icon></span>
-    	</div>
-    	
-    	<div class="input-append">
-           <?php $this->widget(
-                'yiiwheels.widgets.daterangepicker.WhDateRangePicker',
-                array(
-                    'name' => 'daterangepickertest',
-                    'htmlOptions' => array(
-                        'placeholder' => 'Select date'
-                    )
-                )
-            );
-            ?>
-            <span class="add-on" style="color:black"><icon class="icon-calendar"></icon></span>
-    	</div>
-    	
-    	<?php
-                    $this->widget('yiiwheels.widgets.fineuploader.WhFineUploader', array(
-                            'name'          => 'photo',
-                            'uploadAction'  => $this->createUrl('index.php/templates/upload', array('fine' => 1)),
-                            'pluginOptions' => array(
-                                'validation'=>array(
-                                    'allowedExtensions' => array('jpeg', 'jpg','png','gif')
-                                )
-                            )
-                        ));
-                    ?>
-    	
     	<div  id="coco" style="display:block">
         	<h2>TEST</h2>    	
         	  <?php 

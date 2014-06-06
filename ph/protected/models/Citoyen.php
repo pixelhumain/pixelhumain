@@ -92,8 +92,6 @@ class Citoyen
                         
                         Yii::app()->session["userId"] = (string)$account["_id"];
                         Yii::app()->session["userEmail"] = $account["email"]; 
-                        Yii::app()->user = $account;
-                        
                         if( isset($account["isAdmin"]) && $account["isAdmin"] )
                             Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
                             
