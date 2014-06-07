@@ -189,37 +189,40 @@
 						});
 				}
 				
-				function showCities(){ //affiche les citoyens qui possèdent des attributs lat, lng, depuis la BD
+				var listCities = new Array();
+				function showCities(){ //affiche les villes qui possèdent des attributs lat, lng, depuis la BD
 					mapCitoyens = loadMap("mapCanvasCitoyens");
-					//listMarkersCities = new Array();
+					
 					testitget("showInsertMuserResult",'/ph/<?php echo $this::$moduleKey?>/api/showCities/', 
 						function (data){
 							var nbCities=0;
 						 	$.each(data, function()
 							{
-								//alert(this['geo']['latitude']);
-								if(this['geo']['latitude'] != null){
+								//vérifie qu'on a bien les positions géographiques
+								if(this['geo']['latitude'] != null && 
+									//et que la ville n'a pas été déjà affichée (pb CP grand villes avec des arrondissements
+									listCities[this["name"]] != this["habitants"]){	
+				 					
+				 					//crée le contenu de la bulle
 				 					var content = "";
-				 					if(this['name'] != null)  content += 	"<b>" + this['name'] + "</b><br/>";
-				 					if(this['cp'] != null)  content += 	this['cp'] + "<br/>";
-				 					if(this['habitants'] != null)  content += 	"Nombre d'habitants : " + this['habitants'] + "<br/>";
-				 					if(this['densite'] != null)  content += 	"Densité : " + this['densite'] + "<br/>";
+				 					if(this['name'] != null)  		content += 	"<b>" + this['name'] + "</b><br/>";
+				 					if(this['cp'] != null)  		content += 	this['cp'] + "<br/>";
+				 					if(this['habitants'] != null)  	content += 	"Nombre d'habitants : " + this['habitants'] + "<br/>";
+				 					if(this['densite'] != null)  	content += 	"Densité : " + this['densite'] + "<br/>";
 				 									
-				 				//content += "<a id='' style='width:200px; float:left;' href='javascript:saveThisPosition(\"" + this['email'] + "\")'>Enregistrer cette position</a><br/>";
-				 					//alert(this['long']);
-				 					//récupère un nouveau marker
-				 					//alert("lat : " + this['geo']['latitude']);
 				 					var leMarker = addMarker(mapCitoyens, { "lat" : this['geo']['latitude'],   "lng" : this['geo']['longitude']  , "contentInfoWin" : content });
 				 					nbCities++;
-				 					//garde ce marker en mémoire, avec le mail correspondant
-				 					//listMarkersCities.push( { "email" : this['email'], "marker" : leMarker } );
+				 					//garde le nom de la ville et le nb habitant en mémoire, pour n'afficher qu'une fois les villes qui ont plusieurs arrondissements
+				 					listCities[this["name"]] = this['habitants'];
 				 				}
 							});
-							$("#showCitiesResult").html(nbCities + " villes de plus de 100 000 habitants sur la carte");
+							$("#showCitiesResult").html(nbCities + " villes de plus de 300 000 habitants sur la carte");
 						});
 				}
 				
-				function saveThisPosition(email) //enregistre la position du marker correspondant au mail
+				
+				
+				function saveThisPosition(email) //enregistre la position du marker correspondant au mail (pour les utilisateurs seulement, pas les villes)
 				{
 					for (var i=0; i<listMarkersCitoyens.length; i++) {
 					  	if(listMarkersCitoyens[i].email == email) {
