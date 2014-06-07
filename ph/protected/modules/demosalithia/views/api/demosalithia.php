@@ -158,7 +158,7 @@
 			</div>	
 			<a href="javascript:showCitoyens()">Afficher les citoyens</a><br/>		
 			<a href="javascript:showCities()">Afficher les villes</a><br/>		
-			<div id="showInsertMuserResult" class="result fss"></div>
+			<div id="showCitiesResult" class="result fss"></div>
 			
 			<script>
 				var mapCitoyens = loadMap("mapCanvasCitoyens");
@@ -194,6 +194,7 @@
 					//listMarkersCities = new Array();
 					testitget("showInsertMuserResult",'/ph/<?php echo $this::$moduleKey?>/api/showCities/', 
 						function (data){
+							var nbCities=0;
 						 	$.each(data, function()
 							{
 								//alert(this['geo']['latitude']);
@@ -201,18 +202,20 @@
 				 					var content = "";
 				 					if(this['name'] != null)  content += 	"<b>" + this['name'] + "</b><br/>";
 				 					if(this['cp'] != null)  content += 	this['cp'] + "<br/>";
-				 					if(this['habitants'] != null)  content += 	this['habitants'] + "<br/>";
-				 					if(this['densite'] != null)  content += 	this['densite'] + "<br/>";
+				 					if(this['habitants'] != null)  content += 	"Nombre d'habitants : " + this['habitants'] + "<br/>";
+				 					if(this['densite'] != null)  content += 	"Densité : " + this['densite'] + "<br/>";
 				 									
 				 				//content += "<a id='' style='width:200px; float:left;' href='javascript:saveThisPosition(\"" + this['email'] + "\")'>Enregistrer cette position</a><br/>";
 				 					//alert(this['long']);
 				 					//récupère un nouveau marker
 				 					//alert("lat : " + this['geo']['latitude']);
 				 					var leMarker = addMarker(mapCitoyens, { "lat" : this['geo']['latitude'],   "lng" : this['geo']['longitude']  , "contentInfoWin" : content });
+				 					nbCities++;
 				 					//garde ce marker en mémoire, avec le mail correspondant
 				 					//listMarkersCities.push( { "email" : this['email'], "marker" : leMarker } );
 				 				}
 							});
+							$("#showCitiesResult").html(nbCities + " villes de plus de 100 000 habitants sur la carte");
 						});
 				}
 				
