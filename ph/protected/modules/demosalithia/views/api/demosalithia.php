@@ -149,6 +149,7 @@
 		<a href="/ph/<?php echo $this::$moduleKey?>/api/showCitoyens/">Afficher les citoyens</a><br/>
 		<div class="fss">
 			Afficher les citoyens inscrits en BD, et modifier leurs positions<br/>
+			+ Afficher les villes<br/>
 		</div>
 		<div class="apiForm login">
 			<div id="mapCanvasCitoyens" style="width:500px; height:250px; background-color:grey; text-align:center; font-size:20px;"
@@ -156,7 +157,8 @@
 			</br>Chargement de la carte ...
 			</div>	
 			<a href="javascript:showCitoyens()">Afficher les citoyens</a><br/>		
-			<div id="showInsertMuserResult" class="result fss"></div>
+			<a href="javascript:showCities()">Afficher les villes</a><br/>		
+			<div id="showCitiesResult" class="result fss"></div>
 			
 			<script>
 				var mapCitoyens = loadMap("mapCanvasCitoyens");
@@ -187,7 +189,40 @@
 						});
 				}
 				
-				function saveThisPosition(email) //enregistre la position du marker correspondant au mail
+				var listCities = new Array();
+				function showCities(){ //affiche les villes qui possèdent des attributs lat, lng, depuis la BD
+					mapCitoyens = loadMap("mapCanvasCitoyens");
+					
+					testitget("showInsertMuserResult",'/ph/<?php echo $this::$moduleKey?>/api/showCities/', 
+						function (data){
+							var nbCities=0;
+						 	$.each(data, function()
+							{
+								//vérifie qu'on a bien les positions géographiques
+								if(this['geo']['latitude'] != null && 
+									//et que la ville n'a pas été déjà affichée (pb CP grand villes avec des arrondissements
+									listCities[this["name"]] != this["habitants"]){	
+				 					
+				 					//crée le contenu de la bulle
+				 					var content = "";
+				 					if(this['name'] != null)  		content += 	"<b>" + this['name'] + "</b><br/>";
+				 					if(this['cp'] != null)  		content += 	this['cp'] + "<br/>";
+				 					if(this['habitants'] != null)  	content += 	"Nombre d'habitants : " + this['habitants'] + "<br/>";
+				 					if(this['densite'] != null)  	content += 	"Densité : " + this['densite'] + "<br/>";
+				 									
+				 					var leMarker = addMarker(mapCitoyens, { "lat" : this['geo']['latitude'],   "lng" : this['geo']['longitude']  , "contentInfoWin" : content });
+				 					nbCities++;
+				 					//garde le nom de la ville et le nb habitant en mémoire, pour n'afficher qu'une fois les villes qui ont plusieurs arrondissements
+				 					listCities[this["name"]] = this['habitants'];
+				 				}
+							});
+							$("#showCitiesResult").html(nbCities + " villes de plus de 300 000 habitants sur la carte");
+						});
+				}
+				
+				
+				
+				function saveThisPosition(email) //enregistre la position du marker correspondant au mail (pour les utilisateurs seulement, pas les villes)
 				{
 					for (var i=0; i<listMarkersCitoyens.length; i++) {
 					  	if(listMarkersCitoyens[i].email == email) {
@@ -210,5 +245,53 @@
 	</li>
 
 </ul>	
+
+
+<ul>
+	<li class="block" id="blockLogin">
+		<a href="/ph/<?php echo $this::$moduleKey?>/api/showCitoyens/">Zone de diffusion</a><br/>
+		<div class="fss">
+			Délimiter une zone de diffusion<br/>
+		</div>
+		<div class="apiForm login">
+			<div id="mapCanvasBounds" style="width:500px; height:250px; background-color:grey; text-align:center; font-size:20px;">
+			</br>Chargement de la carte ...
+			</div>	
+			<a href="javascript:loadRectangleArea()">Afficher la zone</a><br/>		
+			<a href="javascript:showBound()">Afficher les valeurs de la zone</a><br/>		
+			<div id="showBoundsResult" class="result fss"></div>
+			
+			<script>
+				var mapZone = loadMap("mapCanvasBounds");
+				var RectangleArea;
+				
+				function loadRectangleArea() //enregistre la position du marker correspondant au mail
+				{
+					var rectangleOptions = {   
+						editable: true,
+						bounds: mapZone.getBounds(),
+						map: mapZone,
+						fillColor: 'yellow',
+						fillOpacity: 0.3,
+						visible: true }
+					
+					RectangleArea = new google.maps.Rectangle(rectangleOptions);
+					mapZone.setZoom(mapZone.getZoom()-1);
+				}
+			
+				function showBound(){
+					var bounds = RectangleArea.getBounds();
+					$("#showBoundsResult").html ( "latMax : " + bounds.getNorthEast().lat() + "<br/>" +
+												  "lngMax : " + bounds.getNorthEast().lng() + "<br/>" +
+												  "latMin : " + bounds.getSouthWest().lat() + "<br/>" +
+												  "lngMin : " + bounds.getSouthWest().lng() + "<br/>" );
+				}
+			</script>
+			
+		</div>
+	</li>
+
+</ul>	
+
 
 
