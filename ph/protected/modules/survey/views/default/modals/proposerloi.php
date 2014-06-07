@@ -38,7 +38,7 @@ initT['proposerloiModalsInit'] = function(){
       $("#proposerloiForm").modal('hide');
       //toggleSpinner();
       var hashtagList = getHashTagList( $("#message").val() );
-      //log(hashtagList.hashtags);
+      log(hashtagList.hashtags);
       //log(hashtagList.people);
 
       params = { "survey" : "<?php echo (string)$survey['_id']?>", 
@@ -49,7 +49,7 @@ initT['proposerloiModalsInit'] = function(){
                "cp" : "<?php echo $survey['cp']?>" , 
                "type" : "entry"};
 
-     /*$.ajax({
+     $.ajax({
         type: "POST",
         url: '/ph/<?php echo $this::$moduleKey?>/api/saveSession',
         data: params,
@@ -64,7 +64,7 @@ initT['proposerloiModalsInit'] = function(){
           //toggleSpinner();
         },
         dataType: "json"
-      });*/
+      });
     
     });
   
@@ -77,16 +77,16 @@ function getHashTagList(mystr){
   people = "";
   $.each(strT,function(i,v){
     if(v.indexOf("#")==0 && v != "#"){
-      log(v);
+      //log(v);
       if(hashtags != "" )
         hashtags += ",";
-      hashtags += v;
+      hashtags += v.substring(1,v.length);
     }
     if(v.indexOf("@")==0 && v != "@"){
-      log(v);
+      //log(v);
       if(people != "" )
         people += ",";
-      people += v;
+      people += v.substring(1,v.length);
     }
   });
   log(hashtags)

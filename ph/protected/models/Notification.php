@@ -12,6 +12,8 @@ class Notification
     const NOTIFICATION_INVITATION	           = "citizenInvitation";
     const NOTIFICATION_LINK_REQUEST            = "citizenLinkRequest";
     const NOTIFICATION_LINK_CONFIRMATION       = "citizenLinkConfirmation";
+
+    const NOTIFICATION_FRIEND_REQUEST          = "friendRequest";
     
     const ASSOCIATION_SAVED	                   = "associationSaved";
     const ENTREPRISE_SAVED	                   = "entrepriseSaved";

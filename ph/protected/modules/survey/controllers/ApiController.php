@@ -72,7 +72,7 @@ class ApiController extends Controller {
             'getuser'           => 'application.controllers.user.GetUserAction',
             'getpeopleby'       => 'application.controllers.user.GetPeopleByAction',
             'inviteuser'        => 'application.controllers.user.InviteUserAction',
-            'addaction'         => 'application.controllers.user.AddActionAction',
+            'addaction'         => 'application.controllers.action.AddActionAction',
             "getactionvalue"    => 'application.controllers.generic.GetFromCollectionAction',
 
             'savesession'       => 'application.controllers.survey.SaveSessionAction',  

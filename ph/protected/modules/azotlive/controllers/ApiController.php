@@ -87,7 +87,7 @@ class ApiController extends Controller {
             'getuser'                   => 'application.controllers.user.GetUserAction',
             'confirmgroupregistration'  => 'application.controllers.user.ConfirmUserRegistrationAction',
             'getpeopleby'               => 'application.controllers.user.GetPeopleByAction',
-            'addaction'                 => 'application.controllers.user.AddActionAction',
+            'addaction'                 => 'application.controllers.action.AddActionAction',
             "getactionvalue"            => 'application.controllers.generic.GetFromCollectionAction',
 
             'savegroup'                 => 'application.controllers.groups.SaveGroupAction',  
