@@ -66,6 +66,11 @@ button + label{
     padding:3px;
     border:1px solid #3399FF; 
     text-decoration: none;
+    
+}
+.mixcontainer .mix span{
+  display: block;
+  margin:3px;
 }
 .mixcontainer .mix a:hover{
     background-color: transparent;

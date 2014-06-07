@@ -5,6 +5,7 @@ function testitpost(id,url,params,callback){
 	    url:url,
 	    data:params,
 	    type:"POST",
+	    dataType:"json",
 	    success:function(data) {
 	    	if(callback)
 	    		callback(data);
@@ -21,6 +22,7 @@ function testitget(id,url,callback){
 	$.ajax({
 	    url:url,
 	    type:"GET",
+	    dataType:"json",
 	    success:function(data) {
 	    	if(callback)
 	    		callback(data);

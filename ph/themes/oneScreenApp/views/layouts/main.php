@@ -22,7 +22,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
   <meta name="publisher" content="Pixel Humain">
   <meta name="author" lang="fr" content="Pixel Humain" />
   <meta name="robots" content="Index,Follow" />
-  >description);=<script>
+  <script>
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
    </script>

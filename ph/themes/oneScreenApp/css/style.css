@@ -136,7 +136,7 @@ menu.a {
   margin: auto;
 }
 
-.title{ z-index:-1;font-size: xx-large;font-weight: bolder;margin-top: 20px;padding:10px;margin-bottom: 10px}
+.title{ z-index:-1;font-size: 1em;font-weight: bolder;margin-top: 20px;padding:10px;margin-bottom: 10px}
 .stepContainer{width: 80%;margin: 0 auto;margin-top: 40px;}
 .topSpacer{margin-top: 100px;}
 .step{ border: 1px solid white;  color:white;   margin-bottom: 10px;  padding:10px;  background-color: #000;  opacity: 0.8;}

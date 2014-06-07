@@ -28,7 +28,7 @@ class SaveSessionAction extends CAction
                     $newInfos['message'] = $_POST['message'];
                 if( isset($_POST['type']) )
                     $newInfos['type'] = $_POST['type'];
-                if( isset($_POST['tags']) )
+                if( isset($_POST['tags']) && !empty($_POST['tags']) )
                     $newInfos['tags'] = explode(",",$_POST['tags']);
                 if( isset($_POST['cp']) )
                     $newInfos['cp'] = $_POST['cp'];

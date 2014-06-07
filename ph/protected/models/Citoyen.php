@@ -20,22 +20,22 @@ class Citoyen
     //const ACTION_VOTE_BLOCK     = "voteBlock";
     const ACTION_PURCHASE       = "purchase";
     /*const ACTION_INFORM = "inform";
-    const ACTION_ASK_EXPERTISE = "expertiseRequest";
-    const ACTION_COMMENT = "comment";*/
+    const ACTION_ASK_EXPERTISE = "expertiseRequest";*/
+    const ACTION_COMMENT = "comment";
 
     public static $types2Nodes = array( Group::TYPE_ASSOCIATION  => self::NODE_ASSOCIATIONS,
                                         Group::TYPE_ENTREPRISE   => "employees",
                                         Group::TYPE_EVENT        => "participants",
                                         Group::TYPE_PROJECT      => "participants");
     
-    public static $action2Nodes = array( self::ACTION_VOTE_UP        => array("node"=>"voted","value"=>1),
-                                         self::ACTION_VOTE_DOWN      => array("node"=>"voted","value"=>-1),
-                                         self::ACTION_VOTE_ABSTAIN   => array("node"=>"voted","value"=>0),
+    public static $action2Nodes = array( self::ACTION_VOTE_UP        => array("value"=>1),
+                                         self::ACTION_VOTE_DOWN      => array("value"=>-1),
+                                         self::ACTION_VOTE_ABSTAIN   => array("value"=>0),
                                          //self::ACTION_VOTE_BLOCK     => array("node"=>"voted","value"=>-2),
-                                         self::ACTION_PURCHASE       => array("node"=>"purchased","value"=>1),
+                                         self::ACTION_PURCHASE       => array("value"=>1),
                                          /*self::ACTION_INFORM         => "informed",
-                                         self::ACTION_REQUEST_EXPERTISE  => "request",
-                                         self::ACTION_COMMENT  => "commented",*/
+                                         self::ACTION_REQUEST_EXPERTISE  => "request",*/
+                                         self::ACTION_COMMENT  => array("value"=>1),
                                         );
 
     public static function isCommunected(){
@@ -436,10 +436,10 @@ class Citoyen
         if($user && $element)
         {
             //check user hasn't allready done the action
-            $actionNode = Citoyen::$action2Nodes[ $action ]["node"];
+            
             if( $unset 
-                || !isset( $element[ $actionNode ] ) 
-                || ( isset( $element[ $actionNode ] ) && !in_array( (string)$user["_id"] , $element[ $actionNode ] ) ) )
+                || !isset( $element[ $action ] ) 
+                || ( isset( $element[ $action ] ) && !in_array( (string)$user["_id"] , $element[ $action ] ) ) )
             {
                 if($unset)
                     $dbMethod = '$unset';
@@ -447,7 +447,7 @@ class Citoyen
                     $dbMethod = '$set';
 
                 // "actions": { "groups": { "538c5918f6b95c800400083f": { "voted": "voteUp" }, "538cb7f5f6b95c80040018b1": { "voted": "voteUp" } } } }
-                $map[self::NODE_ACTIONS.".".$collection.".".(string)$element["_id"].".".$actionNode ] = $action ;
+                $map[self::NODE_ACTIONS.".".$collection.".".(string)$element["_id"].".".$action ] = $action ;
                 //update the user table 
                 //adds or removes an action
                 Yii::app()->mongodb->citoyens->update( array( "_id" => $user["_id"]), 
