@@ -33,20 +33,23 @@
 <script type="text/javascript">
 initT['proposerloiModalsInit'] = function(){
     $("#saveEntryForm").submit( function(event){
-      log($(this).serialize());
+      //log($(this).serialize());
       event.preventDefault();
       $("#proposerloiForm").modal('hide');
       //toggleSpinner();
-      
+      var hashtagList = getHashTagList( $("#message").val() );
+      //log(hashtagList.hashtags);
+      //log(hashtagList.people);
+
       params = { "survey" : "<?php echo (string)$survey['_id']?>", 
                "email" : "<?php echo Yii::app()->session['userEmail']?>" , 
                "name" : $("#nameaddEntry").val() , 
-               "tags" : "" ,
+               "tags" : hashtagList.hashtags ,
                "message":$("#message").val(),
                "cp" : "<?php echo $survey['cp']?>" , 
                "type" : "entry"};
 
-      $.ajax({
+     /*$.ajax({
         type: "POST",
         url: '/ph/<?php echo $this::$moduleKey?>/api/saveSession',
         data: params,
@@ -61,10 +64,35 @@ initT['proposerloiModalsInit'] = function(){
           //toggleSpinner();
         },
         dataType: "json"
-      });
+      });*/
     
     });
   
     
 };
+
+function getHashTagList(mystr){
+  var strT = mystr.split(" ");
+  hashtags = "";
+  people = "";
+  $.each(strT,function(i,v){
+    if(v.indexOf("#")==0 && v != "#"){
+      log(v);
+      if(hashtags != "" )
+        hashtags += ",";
+      hashtags += v;
+    }
+    if(v.indexOf("@")==0 && v != "@"){
+      log(v);
+      if(people != "" )
+        people += ",";
+      people += v;
+    }
+  });
+  log(hashtags)
+  log(people);
+
+  return {"hashtags":hashtags,"people":people};
+}
+
 </script>
