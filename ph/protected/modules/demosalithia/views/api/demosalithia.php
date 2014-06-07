@@ -149,6 +149,7 @@
 		<a href="/ph/<?php echo $this::$moduleKey?>/api/showCitoyens/">Afficher les citoyens</a><br/>
 		<div class="fss">
 			Afficher les citoyens inscrits en BD, et modifier leurs positions<br/>
+			+ Afficher les villes<br/>
 		</div>
 		<div class="apiForm login">
 			<div id="mapCanvasCitoyens" style="width:500px; height:250px; background-color:grey; text-align:center; font-size:20px;"
@@ -156,6 +157,7 @@
 			</br>Chargement de la carte ...
 			</div>	
 			<a href="javascript:showCitoyens()">Afficher les citoyens</a><br/>		
+			<a href="javascript:showCities()">Afficher les villes</a><br/>		
 			<div id="showInsertMuserResult" class="result fss"></div>
 			
 			<script>
@@ -187,6 +189,33 @@
 						});
 				}
 				
+				function showCities(){ //affiche les citoyens qui possèdent des attributs lat, lng, depuis la BD
+					mapCitoyens = loadMap("mapCanvasCitoyens");
+					//listMarkersCities = new Array();
+					testitget("showInsertMuserResult",'/ph/<?php echo $this::$moduleKey?>/api/showCities/', 
+						function (data){
+						 	$.each(data, function()
+							{
+								//alert(this['geo']['latitude']);
+								if(this['geo']['latitude'] != null){
+				 					var content = "";
+				 					if(this['name'] != null)  content += 	"<b>" + this['name'] + "</b><br/>";
+				 					if(this['cp'] != null)  content += 	this['cp'] + "<br/>";
+				 					if(this['habitants'] != null)  content += 	this['habitants'] + "<br/>";
+				 					if(this['densite'] != null)  content += 	this['densite'] + "<br/>";
+				 									
+				 				//content += "<a id='' style='width:200px; float:left;' href='javascript:saveThisPosition(\"" + this['email'] + "\")'>Enregistrer cette position</a><br/>";
+				 					//alert(this['long']);
+				 					//récupère un nouveau marker
+				 					//alert("lat : " + this['geo']['latitude']);
+				 					var leMarker = addMarker(mapCitoyens, { "lat" : this['geo']['latitude'],   "lng" : this['geo']['longitude']  , "contentInfoWin" : content });
+				 					//garde ce marker en mémoire, avec le mail correspondant
+				 					//listMarkersCities.push( { "email" : this['email'], "marker" : leMarker } );
+				 				}
+							});
+						});
+				}
+				
 				function saveThisPosition(email) //enregistre la position du marker correspondant au mail
 				{
 					for (var i=0; i<listMarkersCitoyens.length; i++) {
@@ -210,5 +239,53 @@
 	</li>
 
 </ul>	
+
+
+<ul>
+	<li class="block" id="blockLogin">
+		<a href="/ph/<?php echo $this::$moduleKey?>/api/showCitoyens/">Zone de diffusion</a><br/>
+		<div class="fss">
+			Délimiter une zone de diffusion<br/>
+		</div>
+		<div class="apiForm login">
+			<div id="mapCanvasBounds" style="width:500px; height:250px; background-color:grey; text-align:center; font-size:20px;">
+			</br>Chargement de la carte ...
+			</div>	
+			<a href="javascript:loadRectangleArea()">Afficher la zone</a><br/>		
+			<a href="javascript:showBound()">Afficher les valeurs de la zone</a><br/>		
+			<div id="showBoundsResult" class="result fss"></div>
+			
+			<script>
+				var mapZone = loadMap("mapCanvasBounds");
+				var RectangleArea;
+				
+				function loadRectangleArea() //enregistre la position du marker correspondant au mail
+				{
+					var rectangleOptions = {   
+						editable: true,
+						bounds: mapZone.getBounds(),
+						map: mapZone,
+						fillColor: 'yellow',
+						fillOpacity: 0.3,
+						visible: true }
+					
+					RectangleArea = new google.maps.Rectangle(rectangleOptions);
+					mapZone.setZoom(mapZone.getZoom()-1);
+				}
+			
+				function showBound(){
+					var bounds = RectangleArea.getBounds();
+					$("#showBoundsResult").html ( "latMax : " + bounds.getNorthEast().lat() + "<br/>" +
+												  "lngMax : " + bounds.getNorthEast().lng() + "<br/>" +
+												  "latMin : " + bounds.getSouthWest().lat() + "<br/>" +
+												  "lngMin : " + bounds.getSouthWest().lng() + "<br/>" );
+				}
+			</script>
+			
+		</div>
+	</li>
+
+</ul>	
+
 
 
