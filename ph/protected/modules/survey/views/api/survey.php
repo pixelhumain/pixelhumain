@@ -151,7 +151,8 @@
 				$actions = array(
 					Action::ACTION_VOTE_UP,
 					Action::ACTION_VOTE_DOWN,
-					Action::ACTION_VOTE_ABSTAIN
+					Action::ACTION_VOTE_ABSTAIN,
+					Action::ACTION_FOLLOW
 					);
 				foreach ($actions as $value) {
 					echo '<option value="'.$value.'">'.$value.'</option>';

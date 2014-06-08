@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__) . '/dbconfig.php');
 require_once(dirname(__FILE__) . '/mailconfig.php');
+require_once(dirname(__FILE__) . '/moduleconfig.php');
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -35,15 +36,7 @@ return array(
         'ext.helpers.*',
 	),
 
-	'modules'=>array(
-		//PIXEL HUMAIN specific modules 
-		'waterwatcher',
-		'egpc',
-		'demosalithia',
-		'azotlive',
-		'echolocal',
-		'communecter',
-		'survey',
+	'modules'=>array_merge($activeModules,array(
 		// uncomment the following to enable the Gii tool
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
@@ -83,7 +76,7 @@ return array(
                 ),
             ),
         ),
-	),
+	)),
 
 	// application components
 	'components'=>array(

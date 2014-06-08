@@ -13,10 +13,9 @@ $commentActive = true;
   body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/cloud.jpg") repeat;}
   .connect{ opacity: 0.9;background-color: #000; margin-bottom: 10px;border:1px solid #3399FF;width: 100%;padding: 10px }
   button.filter,button.sort{color:#000;}
-  .leftlinks{float: left}
-  .rightlinks{float: right}
   a.btn{margin:3px;}
   .mix{border-radius: 8px;}
+
   /*.infolink{border-top:1px solid #fff}*/
 </style>
 <section class="mt80 stepContainer">
@@ -146,7 +145,15 @@ $commentActive = true;
       $linkComment = (isset( Yii::app()->session["userId"]) && $commentActive) ? "<a class='btn ".$value["_id"].Action::ACTION_COMMENT."' role='button' data-toggle='modal' href=\"".$hrefComment."\" title='".$commentCount." Commentaire'><i class='fa fa-comments '></i></a>" : "";
       $totalVote = $voteUpCount+$voteAbstainCount+$voteDownCount;
 
-      $content = ($value["type"]=="entry") ? "".$value["message"]:"";
+      $content = ($value["type"]=="entry") ? "".$value["message"]:"";?>
+      <style>
+
+      .leftlinks{float: left}
+      .rightlinks{float: right}
+      .leftlinks a.btn{background-color: yellow;border: 1px solid yellow;}
+      /*.rightlinks a.btn{background-color: beige;border: 1px solid beige;}*/
+      </style>
+      <?php
       $leftLinks = ($value["type"]=="entry") ? "<div class='leftlinks'>".$linkVoteUp." ".$linkVoteAbstain." ".$linkVoteDown."</div>" : "";
       $graphLink = ' <a href="#graphForm" role="button" data-toggle="modal" class="btn">'.$voteUpCount.','.$voteAbstainCount.','.$voteDownCount.'</a> ';
       $rightLinks = ($value["type"]=="entry") ? "<div class='rightlinks'>".$graphLink.$linkComment.$infoslink."</div>" : "";
