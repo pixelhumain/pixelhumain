@@ -96,7 +96,7 @@ class Citoyen
                         if( isset($account["isAdmin"]) && $account["isAdmin"] )
                             Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
                             
-                        Notification::add(array("type" => Notification::NOTIFICATION_LOGIN,
+                        NotificationBusinessObject::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
                                                 "user" => $account["_id"]));
                         
                         $res = array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"]));
@@ -112,7 +112,7 @@ class Citoyen
                     if( isset($account["isAdmin"]) && $account["isAdmin"] )
                         Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
                         
-                    Notification::add(array("type" => Notification::NOTIFICATION_LOGIN,
+                    NotificationBusinessObject::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
                                             "user" => $account["_id"]));
                     
                     $res = array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"]));
@@ -186,7 +186,7 @@ class Citoyen
                     Yii::app()->mail->send($message);*/
                     
                     //TODO : add an admin notification
-                    Notification::add(array("type"=>Notification::NOTIFICATION_REGISTER,
+                    NotificationBusinessObject::saveNotification(array("type"=>NotificationType::NOTIFICATION_REGISTER,
                                             "user"=>$newAccount["_id"]));
                     
                     $res = array("result"=>true, "id"=>$newAccount);
@@ -254,7 +254,7 @@ class Citoyen
                     Yii::app()->mail->send($message);*/
                     
                     //TODO : add an admin notification
-                    Notification::add(array("type"=>Notification::NOTIFICATION_COMMUNECTED,
+                    NotificationBusinessObject::saveNotification(array("type"=>NotificationType::NOTIFICATION_COMMUNECTED,
                                             "user"=>$newAccount["_id"]));
                     
                     $res = array("result"=>true, "id"=>$newAccount,"isNewUser"=>true);
@@ -376,10 +376,11 @@ class Citoyen
                                                           array('$set' => array( Citoyen::NODE_FRIENDS.".".$inviterId => array( "since"=>time() ))));
 
                 //notify the invited user for validation
-                Notification::add(array("type"          => Notification::NOTIFICATION_LINK_REQUEST,
-                                        "notifyUser"    => $invitedId,
-                                        "inviter"       => $inviterId,
-                                        "invited"       => $invitedId ));
+                NotificationBusinessObject::saveNotification (
+                    array(  "type" => NotificationType::NOTIFICATION_LINK_REQUEST,
+                            "notifyUser"    => $invitedId,
+                            "inviter"       => $inviterId,
+                            "invited"       => $invitedId ));
                 $res = array("result" => true,
                              "invitationRequestSaved"=>true,
                              "inviterId"=>$inviterId,

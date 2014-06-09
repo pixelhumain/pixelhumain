@@ -86,7 +86,7 @@ class CitoyensController extends Controller {
             Yii::app()->mongodb->citoyens->update(array("_id"=>new MongoId($user)), array('$unset' => array("tobeactivated"=>"")));
         }
         //TODO : add notification to the cities,region,departement info panel
-        Notification::add(array("type"=>Notification::NOTIFICATION_ACTIVATED,
+        NotificationBusinessObject::saveNotification(array("type"=>NotificationType::NOTIFICATION_ACTIVATED,
                     			"user"=>$newAccount["_id"]));
         
         //TODO : redirect to monPH page , inciter le rezotage local
@@ -295,7 +295,7 @@ class CitoyensController extends Controller {
                     Yii::app()->mail->send($message);*/
                     
                     //TODO : add an admin notification
-                    Notification::add(array("type"=>Notification::NOTIFICATION_INVITATION,
+                    NotificationBusinessObject::saveNotification(array("type"=>NotificationType::NOTIFICATION_INVITATION,
                     												 "user"=>Yii::app()->session["userId"],
                     												 "invited"=>$newAccount["_id"]));
                     //simply add it to the sponsors conenctions 
