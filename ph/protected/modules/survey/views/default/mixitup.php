@@ -20,7 +20,7 @@ $commentActive = true;
 </style>
 <section class="mt80 stepContainer">
   <div class="connect btn">
-    <div style="color:#3399FF;float:left;font-size: xx-large;font-weight: bold">
+    <div style="color:#3399FF;float:left;font-size: x-large;font-weight: bold">
       <?php echo $this::moduleTitle." : ".$title;
        if(isset($_GET["cp"])) echo " ".$_GET["cp"]?>
     </div>
@@ -28,7 +28,7 @@ $commentActive = true;
   <?php if( isset( Yii::app()->session["userId"])){ 
     $user = Yii::app()->mongodb->citoyens->findOne ( array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) );
     ?>
-    <a href="#participer" class="btn" role="button" data-toggle="modal" title="mon compte" ><i class="icon-cog-1"></i><?php echo  $user["email"];?></a>
+    <a href="#participer" class="btn" role="button" data-toggle="modal" title="mon compte" ><i class="icon-cog-1"></i><?php echo  $user["email"];?> <span class="badge badge-info">9</span></a>
     <a href="/ph/site/logout" class="btn " role="button" data-toggle="modal" title="deconnexion" ><i class="fa fa-signout"></i>Logout</a>
     
   <?php } else {?>
@@ -204,12 +204,21 @@ $commentActive = true;
     $('#mixcontainer').mixItUp({load: {sort: 'vote:desc'}});
     $('.inlinebar').sparkline('html', {type: 'pie'} );
 });
-  function entryDetail(url){
+  function entryDetail(url,edit){
     testitget( null , url , function(data){
-      log(data.content);
-      $("#flashInfoContent").html(data.content);
-      $("#flashInfoLabel").html(data.title);
-      $("#flashInfo").modal('show');
+      if(edit) {
+        $("#flashInfo").modal('hide');
+        $("#proposerloiFormLabel").html(data.title);
+        $("#nameaddEntry").val(data.title);
+        $("#message").val(data.contentBrut);
+        $("#proposerloiForm").modal('show');
+        AutoGrowTextArea($("message"));
+
+      } else {
+        $("#flashInfoContent").html(data.content);
+        $("#flashInfoLabel").html(data.title);
+        $("#flashInfo").modal('show');
+      }
     } );
   }
   function addaction(id,action){

@@ -156,7 +156,7 @@ class GroupController extends Controller {
                         Yii::app()->mail->send($message);*/
                         
                         //TODO : add an admin notification
-                        Notification::add(array("type"=>Notification::NOTIFICATION_INVITATION,
+                        NotificationBusinessObject::saveNotification(array("type"=>NotificationType::NOTIFICATION_INVITATION,
                         												 "user"=>Yii::app()->session["userId"],
                         												 "invited"=>$account["_id"]));
     		        }

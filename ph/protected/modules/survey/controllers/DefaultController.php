@@ -40,7 +40,8 @@ class DefaultController extends Controller {
     if(isset($_GET["cp"]))
       $where["cp"] = $_GET["cp"];
     $list = iterator_to_array(Yii::app()->mongodb->surveys->find ( $where ));
-	  $this->render( "mixitup", array( "list" => $list,"title"=>$title,"where"=>$where )  );
+    $user = ( isset( Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne ( array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) ) : null;
+	  $this->render( "mixitup", array( "list" => $list,"title"=>$title,"where"=>$where,"user"=>$user )  );
 	}
   public function actionEntries($surveyId) 
   {
@@ -49,14 +50,17 @@ class DefaultController extends Controller {
     $survey = Yii::app()->mongodb->surveys->findOne ( array("_id"=>new MongoId ( $surveyId ) ) );
     $where["survey"] = $survey;
     $title = "Commune ".$survey["cp"]." : ".$survey["name"];
-    $this->render( "mixitup", array( "list" => $list,"title"=>$title,"where"=>$where )  );
+    $user = ( isset( Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne ( array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) ) : null;
+    $this->render( "mixitup", array( "list" => $list,"title"=>$title,"where"=>$where,"user"=>$user )  );
   }
   public function actionEntry($surveyId) 
   {
     $where = array("survey"=>$surveyId);
     $survey = Yii::app()->mongodb->surveys->findOne ( array("_id"=>new MongoId ( $surveyId ) ) );
     $where["survey"] = $survey;
-    echo CJSON::encode( array( "title" => $survey["name"],"content" => $this->renderPartial( "entry", array("survey"=>$survey), true) ) );
+    echo CJSON::encode( array( "title" => $survey["name"],
+                               "content" => $this->renderPartial( "entry", array("survey"=>$survey), true),
+                               "contentBrut" => $survey["message"] ) );
   }
   
 }

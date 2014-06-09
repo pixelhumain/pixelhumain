@@ -94,7 +94,7 @@ class StartupweekendController extends Controller {
                   Yii::app()->mongodb->startupweekend->update($where, array('$set' => $newInfos));
                   $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
                   
-                  Notification::add(array("type" => Notification::NOTIFICATION_SWE_SAVED_FEEDBACK,
+                  NotificationBusinessObject::saveNotification(array("type" => NotificationType::NOTIFICATION_SWE_SAVED_FEEDBACK,
                     					  "user" => Yii::app()->session["userId"] ));
                   echo json_encode($result); 
             } else 
@@ -467,10 +467,11 @@ class StartupweekendController extends Controller {
                   $notification = array( "projet" => $_POST["coachProject"],
                                           "coach" => $_POST["coachRequested"],
                                           "read" => false,
-                                          "type"=> Notification::NOTIFICATION_SWE_COACH_REQUEST,
+                                          "type"=> NotificationType::NOTIFICATION_SWE_COACH_REQUEST,
                                           "event"=>$_POST["eventId"]);
                   if(!empty($_POST["coachQuestion"]))
                       $notification["question"] = $_POST["coachQuestion"];
+                  //TODO Appeler la méthode du BO
                   Yii::app()->mongodb->notifications->insert($notification);
                   $result = array("result"=>true,"msg"=>"Un Coach sera bientot avec vous.");
                   
@@ -489,7 +490,7 @@ class StartupweekendController extends Controller {
 	    $coaches = array();
 	    $projects = array();
 	    $ids = array();
-	    $where = array("read"=>false,"type"=>Notification::NOTIFICATION_SWE_COACH_REQUEST,"event"=>$id);
+	    $where = array("read"=>false,"type"=>NotificationType::NOTIFICATION_SWE_COACH_REQUEST,"event"=>$id);
 	    foreach(Yii::app()->mongodb->notifications->find($where,array("coach","projet")) as $k=>$c){
 	        array_push($coaches, $c["coach"]);
 	        array_push($projects, $c["projet"]);

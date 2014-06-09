@@ -76,7 +76,7 @@ class AssociationController extends Controller {
                     Yii::app()->mail->send($message);*/
                     
                     //TODO : add an admin notification
-                    Notification::add(array("type"=>Notification::ASSOCIATION_SAVED,
+                    NotificationBusinessObject::saveNotification(array("type"=>NotificationType::ASSOCIATION_SAVED,
                     						"user"=>$newAccount["_id"]));
                     
                     echo json_encode(array("result"=>true, "msg"=>"Votre association est communecté.", "id"=>$newAccount["_id"]));
