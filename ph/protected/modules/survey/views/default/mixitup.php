@@ -2,20 +2,51 @@
 $cs = Yii::app()->getClientScript();
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/protected/modules/egpc/css/mixitup/reset.css');
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/protected/modules/egpc/css/mixitup/style.css');
-//$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
+$cs->registerScriptFile($this->module->assetsUrl.'/js/jquery.sparkline.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 $this->pageTitle=$this::moduleTitle;
-?>
-<style type="text/css">
-  body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/crowd.jpg") repeat;}
-</style>
-<div class="title"><?php echo $title ?></div>
-<section class="mt80 stepContainer">
 
+$commentActive = true;
+?>
+
+<style type="text/css">
+  body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/cloud.jpg") repeat;}
+  .connect{ opacity: 0.9;background-color: #000; margin-bottom: 10px;border:1px solid #3399FF;width: 100%;padding: 10px }
+  button.filter,button.sort{color:#000;}
+  .leftlinks{float: left}
+  .rightlinks{float: right}
+  a.btn{margin:3px;}
+  .mix{border-radius: 8px;}
+</style>
+<section class="mt80 stepContainer">
+  <div class="connect btn">
+    <div style="color:#3399FF;float:left;font-size: xx-large;font-weight: bold">
+      <?php echo $this::moduleTitle." : ".$title;
+       if(isset($_GET["cp"])) echo " ".$_GET["cp"]?>
+    </div>
+    
+  <?php if( isset( Yii::app()->session["userId"])){ 
+    $user = Yii::app()->mongodb->citoyens->findOne ( array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) );
+    ?>
+    <a href="#participer" class="btn" role="button" data-toggle="modal" title="mon compte" ><i class="icon-cog-1"></i><?php echo  $user["email"];?></a>
+    <a href="/ph/site/logout" class="btn " role="button" data-toggle="modal" title="deconnexion" ><i class="fa fa-signout"></i>Logout</a>
+    
+  <?php } else {?>
+    <a href="#loginForm" class="btn " role="button" data-toggle="modal" title="connexion" ><i class="fa fa-signin"></i>Se Connecter pour voter</a>
+  <?php } ?>
+  </div>
+<?php if( isset( Yii::app()->session["userId"]) && $where["type"]=="entry"){ ?>
+  <div class="connect" style="margin-right: 50px;">
+    <a href="#proposerloiForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" ><i class="fa fa-signout"></i>Proposer</a>
+    <textarea id="message1" style="width:45%;height:30px;vertical-align: middle" onkeyup="AutoGrowTextArea(this);$('#message').val($('#message1').val());"></textarea>
+    <a href="#proposerloiForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" title="envoyer" >Envoyer</a>
+  </div>
+<?php } ?>
 <div class="controls">
-  <label>Filter:</label>
- 
-  <button class="filter" data-filter="all">All</button>
-   <?php
+  <?php
+  if($where["type"]=="entry"){?>
+  <a href="#voterloiDescForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" ><i class="fa fa-signout"></i>Voter les propositions</a>
+  <?php }
     $alltags = array(); 
     $blocks = "";
     $tagBlock = "";
@@ -28,7 +59,7 @@ $this->pageTitle=$this::moduleTitle;
       if( !isset($_GET["cp"]) && $value["type"]=="survey" )
       {
         if(!in_array($value["cp"], $cps)){
-          $cpBlock .= '<button class="filter" data-filter=".'.$value["cp"].'">'.$value["cp"].'</button>';
+          $cpBlock .= ' <button class="filter " data-filter=".'.$value["cp"].'">'.$value["cp"].'</button>';
           array_push($cps, $value["cp"]);
         }
       }
@@ -38,42 +69,98 @@ $this->pageTitle=$this::moduleTitle;
       {
         foreach ($value["tags"] as $t) 
         {
-          if(!in_array($t, $alltags))
+          if(!empty($t) && !in_array($t, $alltags))
           {
             array_push($alltags, $t);
-            $tagBlock .= '<button class="filter" data-filter=".'.$t.'">'.$t.'</button>';
+            $tagBlock .= ' <button class="filter " data-filter=".'.$t.'">'.$t.'</button>';
           }
           $tags .= $t.' ';
         }
       }
+
       $cp = ($value["type"]=="survey") ? $value["cp"] : "" ; 
       $count = Yii::app()->mongodb->surveys->count ( array("type"=>"entry","survey"=>(string)$value["_id"]) );
-      $link = ($count) ? '<a href="'.Yii::app()->createUrl("/survey/default/entries/surveyId/".(string)$value["_id"]).'">'.$name.' ('.$count.')</a><br/>' : $name.'<br/>';
-      $blocks .= ' <div class="mix '.$tags.' '.$cp.'" data-myorder="'.$name.' '.$email.'" style="display:inline-blocks">'.
+      $link = $name.'<br/>';
+      if ($value["type"]=="survey" && $count)
+        $link = '<a class="btn" href="'.Yii::app()->createUrl("/survey/default/entries/surveyId/".(string)$value["_id"]).'">'.$name.' ('.$count.')</a><br/>' ;
+      else if ($value["type"]=="entry")
+        $link = '<a class="btn" onclick="entryDetail(\''.Yii::app()->createUrl("/survey/default/entry/surveyId/".(string)$value["_id"]).'\')" href="javascript:;">'.$name.'</a><br/>' ;
+      
+      //has loged user voted on this entry 
+      //vote UPS
+      $voteUpActive = ( isset( Yii::app()->session["userId"]) 
+                     && isset($value[Citoyen::ACTION_VOTE_UP])
+                     && is_array($value[Citoyen::ACTION_VOTE_UP]) 
+                     && in_array( Yii::app()->session["userId"] , $value[Citoyen::ACTION_VOTE_UP] )) ? "active":"";
+      $voteUpCount = (isset($value[Citoyen::ACTION_VOTE_UP."Count"])) ? $value[Citoyen::ACTION_VOTE_UP."Count"] : 0 ;
+      $hrefUp = (isset( Yii::app()->session["userId"]) && empty($voteUpActive)) ? "javascript:addaction('".$value["_id"]."','".Citoyen::ACTION_VOTE_UP."')" : "";
+      
+      //vote ABSTAIN 
+      $voteAbstainActive = (isset( Yii::app()->session["userId"]) 
+                        && isset($value[Citoyen::ACTION_VOTE_ABSTAIN])
+                        && is_array($value[Citoyen::ACTION_VOTE_ABSTAIN])
+                        && in_array(Yii::app()->session["userId"], $value[Citoyen::ACTION_VOTE_ABSTAIN])) ? "active":"";
+      $voteAbstainCount = (isset($value[Citoyen::ACTION_VOTE_ABSTAIN."Count"])) ? $value[Citoyen::ACTION_VOTE_ABSTAIN."Count"] : 0 ;
+      $hrefAbstain = (isset( Yii::app()->session["userId"]) && empty($voteAbstainActive)) ? "javascript:addaction('".(string)$value["_id"]."','".Citoyen::ACTION_VOTE_ABSTAIN."')" : "";
+      
+      //vote DOWN 
+      $voteDownActive = (isset( Yii::app()->session["userId"]) 
+                        && isset($value[Citoyen::ACTION_VOTE_DOWN]) 
+                        && is_array($value[Citoyen::ACTION_VOTE_DOWN]) 
+                        && in_array(Yii::app()->session["userId"], $value[Citoyen::ACTION_VOTE_DOWN])) ? "active":"";
+      $voteDownCount = (isset($value[Citoyen::ACTION_VOTE_DOWN."Count"])) ? -$value[Citoyen::ACTION_VOTE_DOWN."Count"] : 0 ;
+      $hrefDown = (isset( Yii::app()->session["userId"]) && empty($voteDownActive)) ? "javascript:addaction('".(string)$value["_id"]."','".Citoyen::ACTION_VOTE_DOWN."')" : "";
+      
+      //votes cannot be changed, link become spans
+      if( !empty($voteUpActive) || !empty($voteAbstainActive) || !empty($voteDownActive)){
+        $linkVoteUp = (isset( Yii::app()->session["userId"]) && !empty($voteUpActive) ) ? "<span class='".$voteUpActive." ".$value["_id"].Citoyen::ACTION_VOTE_UP."' ><i class='fa fa-thumbs-up' ></i></span>" : "";
+        $linkVoteAbstain = (isset( Yii::app()->session["userId"]) && !empty($voteAbstainActive)) ? "<span class='".$voteAbstainActive." ".$value["_id"].Citoyen::ACTION_VOTE_ABSTAIN."'><i class='fa fa-circle'></i></span>" : "";
+        $linkVoteDown = (isset( Yii::app()->session["userId"]) && !empty($voteDownActive)) ? "<span class='".$voteDownActive." ".$value["_id"].Citoyen::ACTION_VOTE_DOWN."' ><i class='fa fa-thumbs-down '></i></span>" : "";
+      }else{
+        $linkVoteUp = (isset( Yii::app()->session["userId"])  ) ? "<a class='btn ".$voteUpActive." ".$value["_id"].Citoyen::ACTION_VOTE_UP."' href=\" ".$hrefUp." \" title='".$voteUpCount." Pour'><i class='fa fa-thumbs-up' ></i></a>" : "";
+        $linkVoteAbstain = (isset( Yii::app()->session["userId"]) ) ? "<a class='btn ".$voteAbstainActive." ".$value["_id"].Citoyen::ACTION_VOTE_ABSTAIN."' href=\"".$hrefAbstain."\" title=' ".$voteAbstainCount."Abstention'><i class='fa fa-circle'></i></a>" : "";
+        $linkVoteDown = (isset( Yii::app()->session["userId"])) ? "<a class='btn ".$voteDownActive." ".$value["_id"].Citoyen::ACTION_VOTE_DOWN."' href=\"".$hrefDown."\" title='".$voteDownCount." Contre'><i class='fa fa-thumbs-down '></i></a>" : "";
+      }
+      $hrefComment = "#commentsForm";
+      $commentCount = 0;
+      $linkComment = (isset( Yii::app()->session["userId"]) && $commentActive) ? "<a class='btn ".$value["_id"].Citoyen::ACTION_COMMENT."' role='button' data-toggle='modal' href=\"".$hrefComment."\" title='".$commentCount." Commentaire'><i class='fa fa-comments '></i></a>" : "";
+      $totalVote = $voteUpCount+$voteAbstainCount+$voteDownCount;
+
+      $content = ($value["type"]=="entry") ? "".$value["message"]:"";
+      $leftLinks = ($value["type"]=="entry") ? "<div class='leftlinks'>".$linkVoteUp." ".$linkVoteAbstain." ".$linkVoteDown."</div>" : "";
+      $graphLink = ' <a href="#graphForm" role="button" data-toggle="modal" class="btn">'.$voteUpCount.','.$voteAbstainCount.','.$voteDownCount.'</a> ';
+      $rightLinks = ($value["type"]=="entry") ? "<div class='rightlinks'>".$graphLink.$linkComment."</div>" : "";
+      $ordre = $voteUpCount-$voteDownCount;
+      $created = (isset($value["created"])) ? $value["created"] : 0; 
+      $blocks .= ' <div class="mix '.$tags.' '.$cp.'" data-vote="'.$ordre.'"  data-time="'.$created.'" style="display:inline-blocks"">'.
                     $link.
-                    $email.'<br/>'.
-                    $tags.
+                    //$email.'<br/>'.
+                    //$tags.
+                    $content.'<br/>'.
+                    $leftLinks.
+                    $rightLinks.
                     '</div>';
     }
     ?>
-  <?php echo $tagBlock?>
-  <label>Sort:</label>
+
+  <label>Classement:</label>
+  <button class="sort " data-sort="vote:asc">Asc</button>
+  <button class="sort " data-sort="vote:desc">Desc</button>
+  <label>Chronos:</label>
+  <button class="sort " data-sort="time:asc">Asc</button>
+  <button class="sort " data-sort="time:desc">Desc</button>
   
-  <button class="sort" data-sort="myorder:asc">Asc</button>
-  <button class="sort" data-sort="myorder:desc">Desc</button>
-  
-  <?php if(!isset($_GET["cp"]) && $value["type"]=="survey")
+  <?php if(!isset($_GET["cp"]) && $where["type"]=="survey")
       {?>
   <label>Commune:</label>
   <?php echo $cpBlock; }?>
-
+  <br/>
+  <label>Filtre:</label>
+  <button class="filter" data-filter="all">Tout</button>
+  <?php echo $tagBlock?>
 </div>
-<div id="Container" class="container">
-  
+<div id="mixcontainer" class="mixcontainer">
   <?php echo $blocks?>
-
-  <div class="gap"></div>
-  <div class="gap"></div>
 </div>
 </section>
 
@@ -81,6 +168,52 @@ $this->pageTitle=$this::moduleTitle;
 <script type="text/javascript">
   
   $(function(){
-  $('#Container').mixItUp();
+    $('#mixcontainer').mixItUp({load: {sort: 'vote:desc'}});
+    $('.inlinebar').sparkline('html', {type: 'pie'} );
 });
+  function entryDetail(url){
+    testitget( null , url , function(data){
+      log(data.content);
+      $("#flashInfoContent").html(data.content);
+      $("#flashInfoLabel").html(data.title);
+      $("#flashInfo").modal('show');
+    } );
+  }
+  function addaction(id,action){
+      if(confirm("Vous êtes sûr, ce vote sera final ?")){
+        params = { 
+             "email" : '<?php echo Yii::app()->session["userEmail"]?>' , 
+             "id" : id ,
+             "collection":"surveys",
+             "action" : action 
+             };
+        testitpost(null,'/ph/<?php echo $this::$moduleKey?>/api/addaction',params,function(data){
+        window.location.reload();
+        });
+    }
+    }
+    function dejaVote(){
+      alert("Vous ne pouvez pas votez 2 fois, ni changer de vote.");
+    }
+    function AutoGrowTextArea(textField)
+{
+  if (textField.clientHeight < textField.scrollHeight)
+  {
+    textField.style.height = textField.scrollHeight + "px";
+    if (textField.clientHeight < textField.scrollHeight)
+    {
+      textField.style.height = 
+        (textField.scrollHeight * 2 - textField.clientHeight) + "px";
+    }
+  }
+}
 </script>
+<?php
+if($where["type"]=="entry"){
+  $this->renderPartial('application.modules.'.$this::$moduleKey.'.views.default.modals.proposerloi',array("survey"=>$where["survey"]));
+  $this->renderPartial('application.modules.'.$this::$moduleKey.'.views.default.modals.voterloiDesc');
+  if($commentActive)
+    $this->renderPartial('application.modules.'.$this::$moduleKey.'.views.default.modals.comments');
+  $this->renderPartial('application.modules.'.$this::$moduleKey.'.views.default.modals.graph');
+}
+?>

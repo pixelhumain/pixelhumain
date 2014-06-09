@@ -25,6 +25,7 @@
 
 	<li class="block" id="blockLogin">
 		<a href="/ph/<?php echo $this::$moduleKey?>/api/login">Login</a><br/>
+		<a href="/ph/site/logout">Logout</a><br/>
 		<div class="fss">
 			Il faut etre loguer par email, cp, et mot de passe<br/>
 			method type : POST <br/>

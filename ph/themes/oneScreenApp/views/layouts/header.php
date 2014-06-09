@@ -1,5 +1,3 @@
-<div class="title"><?php echo $this::moduleTitle; if(isset($_GET["cp"])) echo " ".$_GET["cp"];?> </div>
-
   <nav class="menu-opener">
     <div class="menu-opener-inner"></div>
   </nav>
