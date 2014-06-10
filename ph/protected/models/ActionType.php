@@ -8,16 +8,16 @@ class ActionType
 
     const ACTION_VOTE_UP        = "voteUp";
     const ACTION_VOTE_ABSTAIN   = "voteAbstain";
-     const ACTION_VOTE_UNCLEAR   = "voteUnclear";
-    const ACTION_VOTE_MOREINFO   = "voteMoreInfo";
+    const ACTION_VOTE_UNCLEAR   = "voteUnclear";
+    const ACTION_VOTE_MOREINFO  = "voteMoreInfo";
     const ACTION_VOTE_DOWN      = "voteDown";
    
-    //const ACTION_VOTE_BLOCK     = "voteBlock";
+    //const ACTION_VOTE_BLOCK   = "voteBlock";
     const ACTION_PURCHASE       = "purchase";
-    /*const ACTION_INFORM = "inform";
-    const ACTION_ASK_EXPERTISE = "expertiseRequest";*/
-    const ACTION_COMMENT = "comment";
-    const ACTION_FOLLOW = "follow";
+    /*const ACTION_INFORM       = "inform";
+    const ACTION_ASK_EXPERTISE  = "expertiseRequest";*/
+    const ACTION_COMMENT        = "comment";
+    const ACTION_FOLLOW         = "follow";
 
     /*public static $action2Nodes = array( self::ACTION_VOTE_UP        => array("value"=>1),
                                          self::ACTION_VOTE_DOWN      => array("value"=>-1),

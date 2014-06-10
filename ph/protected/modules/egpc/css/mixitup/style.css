@@ -105,7 +105,7 @@ border-color: transparent;
 @media all and (min-width: 640px){
   .mixcontainer .mix,
   .mixcontainer .gap{
-    width: 24.6%;
+    width: 33%;
   }
 }
 /**

@@ -26,6 +26,11 @@ $commentActive = true;
   /*.rightlinks a.btn{background-color: beige;border: 1px solid beige;}*/
   a.btn.alertlink{background-color:red;color:white;border: 1px solid red;}
   a.btn.golink{background-color:green;color:white;border: 1px solid green;}
+  a.btn.voteUp{background-color: green;border: 1px solid green;}
+  a.btn.voteUnclear{background-color: yellow;border: 1px solid yellow;}
+  a.btn.voteMoreInfo{background-color: gray;border: 1px solid gray;}
+  a.btn.voteAbstain{background-color: white;border: 1px solid white;}
+  a.btn.voteDown{background-color: red;border: 1px solid red;}
 </style>
 <section class="mt80 stepContainer">
 
@@ -123,6 +128,8 @@ $commentActive = true;
                      && in_array( Yii::app()->session["userId"] , $value[ActionType::ACTION_VOTE_UP] )) ? "active":"";
       $voteUpCount = (isset($value[ActionType::ACTION_VOTE_UP."Count"])) ? $value[ActionType::ACTION_VOTE_UP."Count"] : 0 ;
       $hrefUp = (isset( Yii::app()->session["userId"]) && empty($voteUpActive)) ? "javascript:addaction('".$value["_id"]."','".ActionType::ACTION_VOTE_UP."')" : "";
+      $classUp = $voteUpActive." ".ActionType::ACTION_VOTE_UP." ".$value["_id"].ActionType::ACTION_VOTE_UP;
+      $iconUp = 'fa-thumbs-up';
 
       //vote ABSTAIN 
       $voteAbstainActive = (isset( Yii::app()->session["userId"]) 
@@ -131,7 +138,29 @@ $commentActive = true;
                         && in_array(Yii::app()->session["userId"], $value[ActionType::ACTION_VOTE_ABSTAIN])) ? "active":"";
       $voteAbstainCount = (isset($value[ActionType::ACTION_VOTE_ABSTAIN."Count"])) ? $value[ActionType::ACTION_VOTE_ABSTAIN."Count"] : 0 ;
       $hrefAbstain = (isset( Yii::app()->session["userId"]) && empty($voteAbstainActive)) ? "javascript:addaction('".(string)$value["_id"]."','".ActionType::ACTION_VOTE_ABSTAIN."')" : "";
-      
+      $classAbstain = $voteAbstainActive." ".ActionType::ACTION_VOTE_ABSTAIN." ".$value["_id"].ActionType::ACTION_VOTE_ABSTAIN;
+      $iconAbstain = 'fa-circle';
+
+      //vote UNCLEAR
+      $voteUnclearActive = ( isset( Yii::app()->session["userId"]) 
+                     && isset($value[ActionType::ACTION_VOTE_UNCLEAR])
+                     && is_array($value[ActionType::ACTION_VOTE_UNCLEAR]) 
+                     && in_array( Yii::app()->session["userId"] , $value[ActionType::ACTION_VOTE_UNCLEAR] )) ? "active":"";
+      $voteUnclearCount = (isset($value[ActionType::ACTION_VOTE_UNCLEAR."Count"])) ? $value[ActionType::ACTION_VOTE_UNCLEAR."Count"] : 0 ;
+      $hrefUnclear = (isset( Yii::app()->session["userId"]) && empty($voteUnclearCount)) ? "javascript:addaction('".$value["_id"]."','".ActionType::ACTION_VOTE_UNCLEAR."')" : "";
+      $classUnclear = $voteUnclearActive." ".ActionType::ACTION_VOTE_UNCLEAR." ".$value["_id"].ActionType::ACTION_VOTE_UNCLEAR;
+      $iconUnclear = "fa-pencil";
+
+      //vote MORE INFO
+      $voteMoreInfoActive = ( isset( Yii::app()->session["userId"]) 
+                     && isset($value[ActionType::ACTION_VOTE_MOREINFO])
+                     && is_array($value[ActionType::ACTION_VOTE_MOREINFO]) 
+                     && in_array( Yii::app()->session["userId"] , $value[ActionType::ACTION_VOTE_MOREINFO] )) ? "active":"";
+      $voteMoreInfoCount = (isset($value[ActionType::ACTION_VOTE_MOREINFO."Count"])) ? $value[ActionType::ACTION_VOTE_MOREINFO."Count"] : 0 ;
+      $hrefMoreInfo = (isset( Yii::app()->session["userId"]) && empty($voteMoreInfoCount)) ? "javascript:addaction('".$value["_id"]."','".ActionType::ACTION_VOTE_MOREINFO."')" : "";
+      $classMoreInfo = $voteMoreInfoActive." ".ActionType::ACTION_VOTE_MOREINFO." ".$value["_id"].ActionType::ACTION_VOTE_MOREINFO;
+      $iconMoreInfo = "fa-question-circle";
+
       //vote DOWN 
       $voteDownActive = (isset( Yii::app()->session["userId"]) 
                         && isset($value[ActionType::ACTION_VOTE_DOWN]) 
@@ -139,28 +168,34 @@ $commentActive = true;
                         && in_array(Yii::app()->session["userId"], $value[ActionType::ACTION_VOTE_DOWN])) ? "active":"";
       $voteDownCount = (isset($value[ActionType::ACTION_VOTE_DOWN."Count"])) ? -$value[ActionType::ACTION_VOTE_DOWN."Count"] : 0 ;
       $hrefDown = (isset( Yii::app()->session["userId"]) && empty($voteDownActive)) ? "javascript:addaction('".(string)$value["_id"]."','".ActionType::ACTION_VOTE_DOWN."')" : "";
-      
+      $classDown = $voteDownActive." ".ActionType::ACTION_VOTE_DOWN." ".$value["_id"].ActionType::ACTION_VOTE_DOWN;
+      $iconDown = "fa-thumbs-down";
+
       //votes cannot be changed, link become spans
       $avoter = "mesvotes";
-      if( !empty($voteUpActive) || !empty($voteAbstainActive) || !empty($voteDownActive)){
-        $linkVoteUp = (isset( Yii::app()->session["userId"]) && !empty($voteUpActive) ) ? "<span class='".$voteUpActive." ".$value["_id"].ActionType::ACTION_VOTE_UP."' ><i class='fa fa-thumbs-up' ></i></span>" : "";
-        $linkVoteAbstain = (isset( Yii::app()->session["userId"]) && !empty($voteAbstainActive)) ? "<span class='".$voteAbstainActive." ".$value["_id"].ActionType::ACTION_VOTE_ABSTAIN."'><i class='fa fa-circle'></i></span>" : "";
-        $linkVoteDown = (isset( Yii::app()->session["userId"]) && !empty($voteDownActive)) ? "<span class='".$voteDownActive." ".$value["_id"].ActionType::ACTION_VOTE_DOWN."' ><i class='fa fa-thumbs-down '></i></span>" : "";
+      if( !empty($voteUpActive) || !empty($voteAbstainActive) || !empty($voteDownActive) || !empty($voteUnclearActive) || !empty($voteMoreInfoActive)){
+        $linkVoteUp = (isset( Yii::app()->session["userId"]) && !empty($voteUpActive) ) ? "<span class='".$classUp."' ><i class='fa $iconUp' ></i></span>" : "";
+        $linkVoteAbstain = (isset( Yii::app()->session["userId"]) && !empty($voteAbstainActive)) ? "<span class='".$classAbstain."'><i class='fa $iconAbstain'></i></span>" : "";
+        $linkVoteUnclear = (isset( Yii::app()->session["userId"]) && !empty($voteUnclearActive)) ? "<span class='".$classUnclear."'><i class='fa  $iconUnclear'></i></span>" : "";
+        $linkVoteMoreInfo = (isset( Yii::app()->session["userId"]) && !empty($voteMoreInfoActive)) ? "<span class='".$classMoreInfo."'><i class='fa  $iconMoreInfo'></i></span>" : "";
+        $linkVoteDown = (isset( Yii::app()->session["userId"]) && !empty($voteDownActive)) ? "<span class='".$classDown."' ><i class='fa $iconDown'></i></span>" : "";
       }else{
         $avoter = "avoter";
-        $linkVoteUp = (isset( Yii::app()->session["userId"])  ) ? "<a class='btn ".$voteUpActive." ".$value["_id"].ActionType::ACTION_VOTE_UP."' href=\" ".$hrefUp." \" title='".$voteUpCount." Pour'><i class='fa fa-thumbs-up' ></i></a>" : "";
-        $linkVoteAbstain = (isset( Yii::app()->session["userId"]) ) ? "<a class='btn ".$voteAbstainActive." ".$value["_id"].ActionType::ACTION_VOTE_ABSTAIN."' href=\"".$hrefAbstain."\" title=' ".$voteAbstainCount."Abstention'><i class='fa fa-circle'></i></a>" : "";
-        $linkVoteDown = (isset( Yii::app()->session["userId"])) ? "<a class='btn ".$voteDownActive." ".$value["_id"].ActionType::ACTION_VOTE_DOWN."' href=\"".$hrefDown."\" title='".$voteDownCount." Contre'><i class='fa fa-thumbs-down '></i></a>" : "";
+        $linkVoteUp = (isset( Yii::app()->session["userId"])  ) ? "<a class='btn ".$classUp."' href=\" ".$hrefUp." \" title='".$voteUpCount." Pour'><i class='fa $iconUp' ></i></a>" : "";
+        $linkVoteAbstain = (isset( Yii::app()->session["userId"]) ) ? "<a class='btn ".$classAbstain."' href=\"".$hrefAbstain."\" title=' ".$voteAbstainCount." Abstention'><i class='fa $iconAbstain'></i></a>" : "";
+        $linkVoteUnclear = (isset( Yii::app()->session["userId"]) ) ? "<a class='btn ".$classUnclear."' href=\"".$hrefUnclear."\" title=' ".$voteUnclearCount." Pas Clair Rerédiger'><i class='fa $iconUnclear'></i></a>" : "";
+        $linkVoteMoreInfo = (isset( Yii::app()->session["userId"]) ) ? "<a class='btn ".$classMoreInfo."' href=\"".$hrefMoreInfo."\" title=' ".$voteMoreInfoCount." Necessite plus dinformations'><i class='fa $iconMoreInfo'></i></a>" : "";
+        $linkVoteDown = (isset( Yii::app()->session["userId"])) ? "<a class='btn ".$classDown."' href=\"".$hrefDown."\" title='".$voteDownCount." Contre'><i class='fa $iconDown'></i></a>" : "";
       }
       $hrefComment = "#commentsForm";
       $commentCount = 0;
       $linkComment = (isset( Yii::app()->session["userId"]) && $commentActive) ? "<a class='btn ".$value["_id"].ActionType::ACTION_COMMENT."' role='button' data-toggle='modal' href=\"".$hrefComment."\" title='".$commentCount." Commentaire'><i class='fa fa-comments '></i></a>" : "";
-      $totalVote = $voteUpCount+$voteAbstainCount+$voteDownCount;
+      $totalVote = $voteUpCount+$voteAbstainCount+$voteDownCount+$voteUnclearCount+$voteMoreInfoCount;
       $info = ($totalVote) ? '<span class="info">'.$totalVote.' sur <span class="info voterTotal">'.$uniqueVoters.'</span> voteur(s)</span><br/>':'<span class="info"></span><br/>';
 
       $content = ($value["type"]=="entry") ? "".$value["message"]:"";?>
     <?php
-      $leftLinks = ($value["type"]=="entry") ? "<div class='leftlinks'>".$linkVoteUp." ".$linkVoteAbstain." ".$linkVoteDown."</div>" : "";
+      $leftLinks = ($value["type"]=="entry") ? "<div class='leftlinks'>".$linkVoteUp." ".$linkVoteUnclear." ".$linkVoteAbstain." ".$linkVoteMoreInfo." ".$linkVoteDown."</div>" : "";
       $graphLink = ($totalVote) ?' <a class="btn" onclick="entryDetail(\''.Yii::app()->createUrl("/survey/default/graph/surveyId/".(string)$value["_id"]).'\',\'graph\')" href="javascript:;"><i class="fa fa-th-large"></i></a> ' : '';
       $moderatelink = (  $where["type"]=="entry" && $isModerator && isset( $value["applications"][$this::$moduleKey]["cleared"] ) && $value["applications"][$this::$moduleKey]["cleared"] == false ) ? "<a class='btn golink' href='javascript:moderateEntry(\"".$value["_id"]."\",1)'><i class='fa fa-plus ' ></i></a><a class='btn alertlink' href='javascript:moderateEntry(\"".$value["_id"]."\",0)'><i class='fa fa-minus ' ></i></a>" :"";
       $rightLinks = (  isset( $value["applications"][$this::$moduleKey]["cleared"] ) && $value["applications"][$this::$moduleKey]["cleared"] == false ) ? $moderatelink : $graphLink.$linkComment.$infoslink ;
@@ -186,7 +221,7 @@ $commentActive = true;
   <button class="sort " data-sort="time:asc">Asc</button>
   <button class="sort " data-sort="time:desc">Desc</button>
   <label>Affichage:</label>
-  <button id="ChangeLayout"><i class="fa fa-th-list"></i></button>
+  <button id="ChangeLayout"><i class="fa fa-reorder"></i></button>
   
   <?php if(!isset($_GET["cp"]) && $where["type"]=="survey")
       {?>
@@ -236,7 +271,7 @@ $changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
     
     if(layout == 'list'){
       layout = 'grid';
-      $changeLayout.html('<i class="fa fa-th-list"></i>'); // Update the button text
+      $changeLayout.html('<i class="fa fa-reorder"></i>'); // Update the button text
       $container.mixItUp('changeLayout', {
         containerClass: layout // change the container class to "grid"
       });

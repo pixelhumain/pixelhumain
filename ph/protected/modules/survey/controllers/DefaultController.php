@@ -44,7 +44,7 @@ class DefaultController extends Controller {
     if(isset($_GET["cp"]))
       $where["cp"] = $_GET["cp"];
     $list = PHDB::find(PHType::TYPE_SURVEYS, $where );
-    $user = ( isset( Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne ( array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) ) : null;
+    $user = ( isset( Yii::app()->session["userId"])) ? PHDB::findOne (PHType::TYPE_CITOYEN, array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) ) : null;
 	  $this->render( "mixitup", array( "list" => $list,"title"=>$title,"where"=>$where,"user"=>$user )  );
 	}
   public function actionEntries($surveyId) 
