@@ -62,5 +62,26 @@ class DefaultController extends Controller {
                                "content" => $this->renderPartial( "entry", array("survey"=>$survey), true),
                                "contentBrut" => $survey["message"] ) );
   }
+  public function actionGraph($surveyId) 
+  {
+    $where = array("survey"=>$surveyId);
+    $survey = Yii::app()->mongodb->surveys->findOne ( array("_id"=>new MongoId ( $surveyId ) ) );
+    $where["survey"] = $survey;
+    $voteDownCount = (isset($survey[Action::ACTION_VOTE_DOWN."Count"])) ? $survey[Action::ACTION_VOTE_DOWN."Count"] : 0;
+    $voteAbstainCount = (isset($survey[Action::ACTION_VOTE_ABSTAIN."Count"])) ? $survey[Action::ACTION_VOTE_ABSTAIN."Count"] : 0;
+    $voteUpCount = (isset($survey[Action::ACTION_VOTE_UP."Count"])) ? $survey[Action::ACTION_VOTE_UP."Count"] : 0;
+    $totalVotes = $voteDownCount+$voteAbstainCount+$voteUpCount
+    $oneVote = 100/$totalVotes;
+    $voteDownCount = $voteDownCount * $oneVote ;
+    $voteAbstainCount = $voteAbstainCount * $oneVote;
+    $voteUpCount = $voteUpCount * $oneVote;
+
+    echo CJSON::encode( array( "title" => "Repartition de  votes : ".$survey["name"] ,
+                               "content" => $this->renderPartial( "graph", array( "name" => $survey["name"],
+                                                                                  "voteDownCount" => $voteDownCount,
+                                                                                  "voteAbstainCount" => $voteAbstainCount,
+                                                                                  "voteUpCount" => $voteUpCount), 
+                                                                  true)));
+  }
   
 }

@@ -28,7 +28,6 @@ class Action
                                          self::ACTION_COMMENT  => array("value"=>1),
                                          self::ACTION_FOLLOW  => array("value"=>1),
                                         );
-    
    /*
     - can only vote , purchase, .. once
     - check user and element existance 
@@ -71,7 +70,7 @@ class Action
                     //push unique user Ids into action node list
                     $dbMethod = '$addToSet';
                     //increment according to specifications
-                    $inc = self::$action2Nodes[ $action ]["value"];
+                    $inc = 1;//self::$action2Nodes[ $action ]["value"];
                 }
                 
                 Yii::app()->mongodb->selectCollection($collection)->update( array("_id" => new MongoId($element["_id"])), 

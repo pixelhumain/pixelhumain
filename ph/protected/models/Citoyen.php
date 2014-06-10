@@ -76,8 +76,8 @@ class Citoyen
                         if( isset($account["isAdmin"]) && $account["isAdmin"] )
                             Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
                             
-                        NotificationBusinessObject::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
-                                                "user" => $account["_id"]));
+                        /*NotificationBusinessObject::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
+                                                "user" => $account["_id"]));*/
                         
                         $res = array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"]));
                     }
@@ -92,8 +92,8 @@ class Citoyen
                     if( isset($account["isAdmin"]) && $account["isAdmin"] )
                         Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
                         
-                    NotificationBusinessObject::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
-                                            "user" => $account["_id"]));
+                    /*NotificationBusinessObject::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
+                                            "user" => $account["_id"]));*/
                     
                     $res = array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"]));
                 } else 
@@ -166,8 +166,8 @@ class Citoyen
                     Yii::app()->mail->send($message);*/
                     
                     //TODO : add an admin notification
-                    NotificationBusinessObject::saveNotification(array("type"=>NotificationType::NOTIFICATION_REGISTER,
-                                            "user"=>$newAccount["_id"]));
+                    /*NotificationBusinessObject::saveNotification(array("type"=>NotificationType::NOTIFICATION_REGISTER,
+                                            "user"=>$newAccount["_id"]));*/
                     
                     $res = array("result"=>true, "id"=>$newAccount);
                } else

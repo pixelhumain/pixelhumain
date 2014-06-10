@@ -6,7 +6,7 @@ class Group
 	const TYPE_ENTREPRISE		   = 'entreprise';
 	const TYPE_EVENT		       = 'event';
 	const TYPE_PROJECT		       = 'projet';
-const ACTION_VOTE_UP        = "voteUp";
+    const ACTION_VOTE_UP        = "voteUp";
 	//list of participants of a group contains a list of Ids
 	const NODE_PARTICIPANTS		   = 'participants';
 	//defines that this group is used in an application

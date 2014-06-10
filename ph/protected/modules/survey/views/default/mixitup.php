@@ -3,6 +3,9 @@ $cs = Yii::app()->getClientScript();
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/protected/modules/egpc/css/mixitup/reset.css');
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/protected/modules/egpc/css/mixitup/style.css');
 $cs->registerScriptFile($this->module->assetsUrl.'/js/jquery.sparkline.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile('http://code.highcharts.com/highcharts.js' , CClientScript::POS_END);
+$cs->registerScriptFile('http://code.highcharts.com/modules/exporting.js' , CClientScript::POS_END);
+$cs->registerScriptFile('http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.5' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 $this->pageTitle=$this::moduleTitle;
 
@@ -147,7 +150,6 @@ $commentActive = true;
 
       $content = ($value["type"]=="entry") ? "".$value["message"]:"";?>
       <style>
-
       .leftlinks{float: left}
       .rightlinks{float: right}
       .leftlinks a.btn{background-color: yellow;border: 1px solid yellow;}
@@ -155,7 +157,7 @@ $commentActive = true;
       </style>
       <?php
       $leftLinks = ($value["type"]=="entry") ? "<div class='leftlinks'>".$linkVoteUp." ".$linkVoteAbstain." ".$linkVoteDown."</div>" : "";
-      $graphLink = ' <a href="#graphForm" role="button" data-toggle="modal" class="btn">'.$voteUpCount.','.$voteAbstainCount.','.$voteDownCount.'</a> ';
+      $graphLink = ' <a class="btn" onclick="entryDetail(\''.Yii::app()->createUrl("/survey/default/graph/surveyId/".(string)$value["_id"]).'\',\'graph\')" href="javascript:;"><i class="fa fa-th-large"></i>'.$voteUpCount.','.$voteAbstainCount.','.$voteDownCount.'</a> ';
       $rightLinks = ($value["type"]=="entry") ? "<div class='rightlinks'>".$graphLink.$linkComment.$infoslink."</div>" : "";
       $ordre = $voteUpCount-$voteDownCount;
       $created = (isset($value["created"])) ? $value["created"] : 0; 
@@ -197,27 +199,27 @@ $commentActive = true;
 </div>
 </section>
 
-  <script src='http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.5'></script>
 <script type="text/javascript">
   
   $(function(){
     $('#mixcontainer').mixItUp({load: {sort: 'vote:desc'}});
     $('.inlinebar').sparkline('html', {type: 'pie'} );
 });
-  function entryDetail(url,edit){
+  function entryDetail(url,type=null){
     testitget( null , url , function(data){
-      if(edit) {
+      if(type == "edit") {
         $("#flashInfo").modal('hide');
         $("#proposerloiFormLabel").html(data.title);
         $("#nameaddEntry").val(data.title);
         $("#message").val(data.contentBrut);
         $("#proposerloiForm").modal('show');
         AutoGrowTextArea($("message"));
-
       } else {
         $("#flashInfoContent").html(data.content);
         $("#flashInfoLabel").html(data.title);
         $("#flashInfo").modal('show');
+        if(type=="graph")
+          setUpGraph();
       }
     } );
   }
@@ -256,6 +258,5 @@ if($where["type"]=="entry"){
   $this->renderPartial('application.modules.'.$this::$moduleKey.'.views.default.modals.voterloiDesc');
   if($commentActive)
     $this->renderPartial('application.modules.'.$this::$moduleKey.'.views.default.modals.comments');
-  $this->renderPartial('application.modules.'.$this::$moduleKey.'.views.default.modals.graph');
 }
 ?>

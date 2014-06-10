@@ -34,10 +34,11 @@ class ApiController extends Controller {
                     array( "label"=>"Admin confirm Entry","desc"=>"session can be moderated if specified",
                         "href"=>"javascript:;","onclick"=>"scrollTo('#blockadminConfirmFeed')"),
                 )),
-            array('label' => "Administration", "key"=>"adminSurvey", "iconClass"=>"fa fa-cog", 
+            array('label' => "Administration", "key"=>"admin", "iconClass"=>"fa fa-cog", 
                 "children"=> array(
-                    array( "label"=>"Get Quartier","href"=>"javascript:;","onclick"=>"scrollTo('#blockGetDatesBy')"),
-                    array( "label"=>"Set Admin Quartier","href"=>"javascript:;","onclick"=>"scrollTo('#blockadminQuartier')"),
+                    array( "label"=>"Moderation Settings","href"=>"javascript:;","onclick"=>"scrollTo('#blockModerationSettings')"),
+                    array( "label"=>"Get Entries to Moderate","href"=>"javascript:;","onclick"=>"scrollTo('#blockall2Moderate')"),
+                    array( "label"=>"Moderate an entry","href"=>"javascript:;","onclick"=>"scrollTo('#blockModerate')"),
                 )),
             array('label' => "Administration PH", "key"=>"adminPH", "iconClass"=>"fa fa-cogs", 
                 "children"=> array(
