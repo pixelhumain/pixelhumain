@@ -89,9 +89,9 @@ class DefaultController extends Controller {
     $where = array("survey"=>$surveyId);
     $survey = PHDB::findOne (PHType::TYPE_SURVEYS, array("_id"=>new MongoId ( $surveyId ) ) );
     $where["survey"] = $survey;
-    $voteDownCount = (isset($survey[Action::ACTION_VOTE_DOWN."Count"])) ? $survey[Action::ACTION_VOTE_DOWN."Count"] : 0;
-    $voteAbstainCount = (isset($survey[Action::ACTION_VOTE_ABSTAIN."Count"])) ? $survey[Action::ACTION_VOTE_ABSTAIN."Count"] : 0;
-    $voteUpCount = (isset($survey[Action::ACTION_VOTE_UP."Count"])) ? $survey[Action::ACTION_VOTE_UP."Count"] : 0;
+    $voteDownCount = (isset($survey[ActionType::ACTION_VOTE_DOWN."Count"])) ? $survey[ActionType::ACTION_VOTE_DOWN."Count"] : 0;
+    $voteAbstainCount = (isset($survey[ActionType::ACTION_VOTE_ABSTAIN."Count"])) ? $survey[ActionType::ACTION_VOTE_ABSTAIN."Count"] : 0;
+    $voteUpCount = (isset($survey[ActionType::ACTION_VOTE_UP."Count"])) ? $survey[ActionType::ACTION_VOTE_UP."Count"] : 0;
     $totalVotes = $voteDownCount+$voteAbstainCount+$voteUpCount;
     $oneVote = 100/$totalVotes;
     $voteDownCount = $voteDownCount * $oneVote ;

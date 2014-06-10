@@ -67,11 +67,11 @@ button + label{
     border:1px solid #3399FF; 
     text-decoration: none;
 }
-.mixcontainer .mix a.title{
+.mixcontainer .mix a.titleMix{
 color:white;
-border-color: white;
+border-color: transparent;
   background-color: transparent;
-  word-wrap: inherit;
+ word-wrap:break-word;
   }
 .mixcontainer .mix span.info{
   color:white;

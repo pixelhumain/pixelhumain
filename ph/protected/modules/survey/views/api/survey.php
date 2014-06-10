@@ -151,10 +151,10 @@
 				<option></option>
 				<?php 
 				$actions = array(
-					Action::ACTION_VOTE_UP,
-					Action::ACTION_VOTE_DOWN,
-					Action::ACTION_VOTE_ABSTAIN,
-					Action::ACTION_FOLLOW
+					ActionType::ACTION_VOTE_UP,
+					ActionType::ACTION_VOTE_DOWN,
+					ActionType::ACTION_VOTE_ABSTAIN,
+					ActionType::ACTION_FOLLOW
 					);
 				foreach ($actions as $value) {
 					echo '<option value="'.$value.'">'.$value.'</option>';

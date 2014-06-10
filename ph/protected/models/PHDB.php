@@ -8,6 +8,7 @@ class PHDB
     {
         return iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where));
     }
+
     public static function count( $collection, $where=array() )
     {
         return Yii::app()->mongodb->selectCollection($collection)->count($where);
@@ -21,5 +22,9 @@ class PHDB
     public static function update( $collection, $where, $action )
     {
         return Yii::app()->mongodb->selectCollection($collection)->update($where,$action);
+    }
+    public static function insert( $collection, $info )
+    {
+        return Yii::app()->mongodb->selectCollection($collection)->insert($info);
     }
 }

@@ -2,7 +2,8 @@
 
 class PHType
 {
-    const TYPE_CITOYEN	       = "citoyen";
+    const TYPE_CITOYEN	       = "citoyens";
+    const TYPE_GROUPS          = "groups";
     const TYPE_ASSOCIATION	   = "association";
     const TYPE_ENTREPRISE	   = "entreprise";
     const TYPE_COLLECTIVITE	   = "collectivite";
@@ -11,6 +12,7 @@ class PHType
     const TYPE_DISCUSSION	   = "discussion";
     const TYPE_APPLICATIONS    = "applications";
     const TYPE_SURVEYS         = "surveys";
+    const TYPE_ACTION_HISTORY  = "actionHistory";
     
     /* Standard connection types, the user can then create his own groupings*/
     const CONNECT_TYPE_FRIEND	   = "friend";

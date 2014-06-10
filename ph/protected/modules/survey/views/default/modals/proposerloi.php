@@ -15,7 +15,7 @@
         title 
         <br/>
         <form id="saveEntryForm" action="">
-        <input type="text" name="nameaddEntry" id="nameaddEntry" value="" />
+        <input type="text" name="nameaddEntry" id="nameaddEntry" maxlength=100 value="" placeholder="100 caract. max." />
         <br/><br/>
         message
         <textarea id="message" style="width:100%;height:30px;vertical-align: middle" onkeyup="AutoGrowTextArea(this);$('#message1').val($('#message').val())"></textarea>
