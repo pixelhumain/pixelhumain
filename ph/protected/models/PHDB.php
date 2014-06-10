@@ -8,6 +8,10 @@ class PHDB
     {
         return iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where));
     }
+    public static function count( $collection, $where=array() )
+    {
+        return Yii::app()->mongodb->selectCollection($collection)->count($where);
+    }
 
     public static function findOne( $collection, $where )
     {

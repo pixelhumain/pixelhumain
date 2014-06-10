@@ -2,8 +2,10 @@
 <li class="block" id="blockModerationSettings">
 	Moderation Settings
 </li>
+
 <li class="block" id="blockModerationAddModerator">
 	Add an admin
+	<?php /*
 	<div class="apiForm addmoderatorEntry">
 		<select id="citizenaddmoderator">
 			<option></option>
@@ -29,6 +31,7 @@
 			
 		</script>
 	</div>
+	*/?>
 </li>
 
 <li class="block" id="blockModerate">

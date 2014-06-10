@@ -60,14 +60,28 @@ button + label{
     color: white;
 }
 
-.mixcontainer .mix a,.mixcontainer .mix span,.mixcontainer button {
+.mixcontainer .mix a,.mixcontainer .mix span{
     background-color: #3399FF;
     color:#000;
     padding:3px;
     border:1px solid #3399FF; 
     text-decoration: none;
-    
 }
+.mixcontainer .mix a.title{
+color:white;
+border-color: white;
+  background-color: transparent;
+  word-wrap: inherit;
+  }
+.mixcontainer .mix span.info{
+  color:white;
+  font-size: xx-small;
+  background-color: transparent;
+  border: none;
+  margin:0px;
+  display: inline;
+}
+
 .mixcontainer .mix span{
   display: block;
   margin:3px;
@@ -91,6 +105,17 @@ button + label{
 @media all and (min-width: 640px){
   .mixcontainer .mix,
   .mixcontainer .gap{
-    width: 24.65%;
+    width: 24.6%;
   }
+}
+/**
+ * List Styles
+ */
+
+.mixcontainer.list .mix{
+  width: 100%;
+}
+
+.mixcontainer.list .mix:before{
+  padding-top: 40px;
 }

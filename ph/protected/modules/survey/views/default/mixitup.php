@@ -37,7 +37,7 @@ $commentActive = true;
   <?php if( isset( Yii::app()->session["userId"])){ 
     $user = Yii::app()->mongodb->citoyens->findOne ( array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) );
     ?>
-    <a href="#participer" class="btn" role="button" data-toggle="modal" title="mon compte" ><i class="icon-cog-1"></i><?php echo  $user["email"];?> <?php if($isModerator){ ?><span class="badge badge-info">ADMIN</span><?php } ?></a>
+    <a href="#participer" class="btn" role="button" data-toggle="modal" title="mon compte" ><i class="icon-cog-1"></i><?php echo  $user["email"];?> <?php if($where["type"]=="entry" && $isModerator){ ?><span class="badge badge-info">ADMIN</span><?php } ?></a>
     <a href="/ph/site/logout" class="btn " role="button" data-toggle="modal" title="deconnexion" ><i class="fa fa-signout"></i>Logout</a>
     
   <?php } else {?>
@@ -102,9 +102,9 @@ $commentActive = true;
       
 
       if ($value["type"]=="survey" && $count)
-        $link = '<a class="btn '.$meslois.'" href="'.Yii::app()->createUrl("/survey/default/entries/surveyId/".(string)$value["_id"]).'">'.$name.' ('.$count.')</a>' ;
+        $link = '<a class="btn title '.$meslois.'" href="'.Yii::app()->createUrl("/survey/default/entries/surveyId/".(string)$value["_id"]).'">'.$name.' ('.$count.')</a>' ;
       else if ($value["type"]=="entry")
-        $link = '<a class="btn '.$meslois.'" onclick="entryDetail(\''.Yii::app()->createUrl("/survey/default/entry/surveyId/".(string)$value["_id"]).'\')" href="javascript:;">'.$name.'</a>' ;
+        $link = '<a class="btn title '.$meslois.'" onclick="entryDetail(\''.Yii::app()->createUrl("/survey/default/entry/surveyId/".(string)$value["_id"]).'\')" href="javascript:;">'.$name.'</a>' ;
       
       //$infoslink bring visual detail about the entry
       $infoslink = "";
@@ -120,7 +120,7 @@ $commentActive = true;
                      && in_array( Yii::app()->session["userId"] , $value[Action::ACTION_VOTE_UP] )) ? "active":"";
       $voteUpCount = (isset($value[Action::ACTION_VOTE_UP."Count"])) ? $value[Action::ACTION_VOTE_UP."Count"] : 0 ;
       $hrefUp = (isset( Yii::app()->session["userId"]) && empty($voteUpActive)) ? "javascript:addaction('".$value["_id"]."','".Action::ACTION_VOTE_UP."')" : "";
-      
+
       //vote ABSTAIN 
       $voteAbstainActive = (isset( Yii::app()->session["userId"]) 
                         && isset($value[Action::ACTION_VOTE_ABSTAIN])
@@ -137,7 +137,6 @@ $commentActive = true;
       $voteDownCount = (isset($value[Action::ACTION_VOTE_DOWN."Count"])) ? -$value[Action::ACTION_VOTE_DOWN."Count"] : 0 ;
       $hrefDown = (isset( Yii::app()->session["userId"]) && empty($voteDownActive)) ? "javascript:addaction('".(string)$value["_id"]."','".Action::ACTION_VOTE_DOWN."')" : "";
       
-
       //votes cannot be changed, link become spans
       $avoter = "mesvotes";
       if( !empty($voteUpActive) || !empty($voteAbstainActive) || !empty($voteDownActive)){
@@ -154,19 +153,20 @@ $commentActive = true;
       $commentCount = 0;
       $linkComment = (isset( Yii::app()->session["userId"]) && $commentActive) ? "<a class='btn ".$value["_id"].Action::ACTION_COMMENT."' role='button' data-toggle='modal' href=\"".$hrefComment."\" title='".$commentCount." Commentaire'><i class='fa fa-comments '></i></a>" : "";
       $totalVote = $voteUpCount+$voteAbstainCount+$voteDownCount;
+      $info = ($totalVote) ? '<span class="info">'.$totalVote.' sur <span class="info voterTotal">'.$uniqueVoters.'</span> voteur(s)</span><br/>':'<span class="info"></span><br/>';
 
       $content = ($value["type"]=="entry") ? "".$value["message"]:"";?>
     <?php
       $leftLinks = ($value["type"]=="entry") ? "<div class='leftlinks'>".$linkVoteUp." ".$linkVoteAbstain." ".$linkVoteDown."</div>" : "";
-      $graphLink = ' <a class="btn" onclick="entryDetail(\''.Yii::app()->createUrl("/survey/default/graph/surveyId/".(string)$value["_id"]).'\',\'graph\')" href="javascript:;"><i class="fa fa-th-large"></i></a> ';
-      $moderatelink = (  $isModerator && isset( $value["applications"][$this::$moduleKey]["cleared"] ) && $value["applications"][$this::$moduleKey]["cleared"] == false ) ? "<a class='btn golink' href='javascript:moderateEntry(\"".$value["_id"]."\",1)'><i class='fa fa-plus ' ></i></a><a class='btn alertlink' href='javascript:moderateEntry(\"".$value["_id"]."\",0)'><i class='fa fa-minus ' ></i></a>" :"";
+      $graphLink = ($totalVote) ?' <a class="btn" onclick="entryDetail(\''.Yii::app()->createUrl("/survey/default/graph/surveyId/".(string)$value["_id"]).'\',\'graph\')" href="javascript:;"><i class="fa fa-th-large"></i></a> ' : '';
+      $moderatelink = (  $where["type"]=="entry" && $isModerator && isset( $value["applications"][$this::$moduleKey]["cleared"] ) && $value["applications"][$this::$moduleKey]["cleared"] == false ) ? "<a class='btn golink' href='javascript:moderateEntry(\"".$value["_id"]."\",1)'><i class='fa fa-plus ' ></i></a><a class='btn alertlink' href='javascript:moderateEntry(\"".$value["_id"]."\",0)'><i class='fa fa-minus ' ></i></a>" :"";
       $rightLinks = (  isset( $value["applications"][$this::$moduleKey]["cleared"] ) && $value["applications"][$this::$moduleKey]["cleared"] == false ) ? $moderatelink : $graphLink.$linkComment.$infoslink ;
       $rightLinks = ($value["type"]=="entry") ? "<div class='rightlinks'>".$rightLinks."</div>" : "";
       $ordre = $voteUpCount-$voteDownCount;
       $created = (isset($value["created"])) ? $value["created"] : 0; 
       $blocks .= ' <div class="mix '.$avoter.' '.$meslois.' '.$followingEntry.' '.$tags.' '.$cp.'" data-vote="'.$ordre.'"  data-time="'.$created.'" style="display:inline-blocks"">'.
                     $link.'<br/>'.
-                    //$email.'<br/>'.
+                    $info.
                     //$tags.
                     //$content.
                     '<br/>'.
@@ -182,6 +182,8 @@ $commentActive = true;
   <label>Chronos:</label>
   <button class="sort " data-sort="time:asc">Asc</button>
   <button class="sort " data-sort="time:desc">Desc</button>
+  <label>Affichage:</label>
+  <button id="ChangeLayout"><i class="fa fa-th-list"></i></button>
   
   <?php if(!isset($_GET["cp"]) && $where["type"]=="survey")
       {?>
@@ -195,7 +197,7 @@ $commentActive = true;
   <a class="filter btn" data-filter=".mesvotes">Mes votes</a>
   <a class="filter btn" data-filter=".myentries">Mes lois</a>
   <?php } ?>
-  <button class="filter" data-filter="all">Tout</button>
+  <button class="filter btn" data-filter="all">Tout</button>
   <?php echo $tagBlock?>
 
 </div>
@@ -205,11 +207,48 @@ $commentActive = true;
 </section>
 
 <script type="text/javascript">
-  
+var layout = 'grid', // Store the current layout as a variable
+$container = $('#mixcontainer'), // Cache the MixItUp container
+$changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
+
   $(function(){
-    $('#mixcontainer').mixItUp({load: {sort: 'vote:desc'}});
-    $('.inlinebar').sparkline('html', {type: 'pie'} );
+    $container.mixItUp({
+        load: {sort: 'vote:desc'},
+        animation: {
+          animateChangeLayout: true, // Animate the positions of targets as the layout changes
+          animateResizeTargets: true, // Animate the width/height of targets as the layout changes
+          effects: 'fade rotateX(-40deg) translateZ(-100px)'
+        },
+        layout: {
+          containerClass: 'grid' // Add the class 'list' to the container on load
+        }
+      });
+
+    //$('.inlinebar').sparkline('html', {type: 'pie'} );
 });
+
+  $changeLayout.on('click', function(){
+    
+    // If the current layout is a list, change to grid:
+    
+    if(layout == 'list'){
+      layout = 'grid';
+      $changeLayout.html('<i class="fa fa-th-list"></i>'); // Update the button text
+      $container.mixItUp('changeLayout', {
+        containerClass: layout // change the container class to "grid"
+      });
+      
+    // Else if the current layout is a grid, change to list:  
+    
+    } else {
+      layout = 'list';
+      $changeLayout.html('<i class="fa fa-th"></i>'); // Update the button text
+      $container.mixItUp('changeLayout', {
+        containerClass: layout // Change the container class to 'list'
+      });
+    }
+  });
+
   function entryDetail(url,type=null){
     testitget( null , url , function(data){
       if(type == "edit") {

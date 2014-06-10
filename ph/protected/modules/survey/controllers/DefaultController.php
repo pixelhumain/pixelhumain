@@ -43,7 +43,7 @@ class DefaultController extends Controller {
     //check if information is Postal Code restricted 
     if(isset($_GET["cp"]))
       $where["cp"] = $_GET["cp"];
-    $list = iterator_to_array(Yii::app()->mongodb->surveys->find ( $where ));
+    $list = PHDB::find(PHType::TYPE_SURVEYS, $where );
     $user = ( isset( Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne ( array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) ) : null;
 	  $this->render( "mixitup", array( "list" => $list,"title"=>$title,"where"=>$where,"user"=>$user )  );
 	}
@@ -52,29 +52,32 @@ class DefaultController extends Controller {
     $where = array( "type"=>SurveyType::TYPE_ENTRY, "survey"=>$surveyId );
 
     //check if is moderated in which the proper filter will be added to the where clause
-    $app = Yii::app()->mongodb->applications->findOne ( array("key"=> self::$moduleKey ) );
+    $app = PHDB::findOne (PHType::TYPE_APPLICATIONS, array("key"=> self::$moduleKey ) );
     $isModerator = Survey::isModerator(Yii::app()->session["userId"], self::$moduleKey);
 
     if(!$isModerator && isset($app["moderation"]))
       $where['applications.'.self::$moduleKey.'.'.SurveyType::STATUS_CLEARED] = array('$exists'=>false);
 
-    $list = iterator_to_array(Yii::app()->mongodb->surveys->find ( $where ));
-    $survey = Yii::app()->mongodb->surveys->findOne ( array("_id"=>new MongoId ( $surveyId ) ) );
+    $list = PHDB::find(PHType::TYPE_SURVEYS, $where );
+    $survey = PHDB::findOne (PHType::TYPE_SURVEYS, array("_id"=>new MongoId ( $surveyId ) ) );
     $where["survey"] = $survey;
     $title = "Commune ".$survey["cp"]." : ".$survey["name"];
-    $user = ( isset( Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne ( array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) ) : null;
+    $user = ( isset( Yii::app()->session["userId"])) ? PHDB::findOne (PHType::TYPE_CITOYEN, array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) ) : null;
 
+
+    $uniqueVoters = PHDB::count( PHType::TYPE_CITOYEN, array("applications.survey"=>array('$exists'=>true)) );
     $this->render( "mixitup", array( "list" => $list,
                                      "title"=>$title,
                                      "where"=>$where,
                                      "user"=>$user,
-                                     "isModerator"=>$isModerator )  );
+                                     "isModerator"=>$isModerator,
+                                     "uniqueVoters"=>$uniqueVoters )  );
   }
 
   public function actionEntry($surveyId) 
   {
     $where = array("survey"=>$surveyId);
-    $survey = Yii::app()->mongodb->surveys->findOne ( array("_id"=>new MongoId ( $surveyId ) ) );
+    $survey = PHDB::findOne (PHType::TYPE_SURVEYS, array("_id"=>new MongoId ( $surveyId ) ) );
     $where["survey"] = $survey;
     echo CJSON::encode( array( "title" => $survey["name"],
                                "content" => $this->renderPartial( "entry", array("survey"=>$survey), true),
@@ -84,7 +87,7 @@ class DefaultController extends Controller {
   public function actionGraph($surveyId) 
   {
     $where = array("survey"=>$surveyId);
-    $survey = Yii::app()->mongodb->surveys->findOne ( array("_id"=>new MongoId ( $surveyId ) ) );
+    $survey = PHDB::findOne (PHType::TYPE_SURVEYS, array("_id"=>new MongoId ( $surveyId ) ) );
     $where["survey"] = $survey;
     $voteDownCount = (isset($survey[Action::ACTION_VOTE_DOWN."Count"])) ? $survey[Action::ACTION_VOTE_DOWN."Count"] : 0;
     $voteAbstainCount = (isset($survey[Action::ACTION_VOTE_ABSTAIN."Count"])) ? $survey[Action::ACTION_VOTE_ABSTAIN."Count"] : 0;
