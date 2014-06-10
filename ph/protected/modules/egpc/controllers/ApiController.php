@@ -69,7 +69,7 @@ class ApiController extends Controller {
 
     protected function beforeAction($action)
     {
-        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules","iconClass"=>"fa fa-th",  "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
+        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules","iconClass"=>"fa fa-th",  "menuOnly"=>true,"children"=>PH::buildMenuChildren("applications") ));
         return parent::beforeAction($action);
     }
 

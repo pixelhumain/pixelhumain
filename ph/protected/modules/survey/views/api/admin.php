@@ -2,8 +2,33 @@
 <li class="block" id="blockModerationSettings">
 	Moderation Settings
 </li>
-<li class="block" id="blockModerationSettings">
-	Add as admi
+<li class="block" id="blockModerationAddModerator">
+	Add an admin
+	<div class="apiForm addmoderatorEntry">
+		<select id="citizenaddmoderator">
+			<option></option>
+			<?php 
+				$Surveys = PHDB::find( PHType::TYPE_CITOYEN);
+				foreach ($Surveys as $value) {
+					echo '<option value="'.$value["_id"].'">'.$value["name"]." ".'</option>';
+				}
+			?>
+		</select><br/>
+		<select id="moderateAction">
+			<option></option>
+			<option value="moderator">moderator</option>
+		</select><br/>
+		<a href="javascript:addmoderatorEntry()">Moderate it</a><br/>
+		<div id="addmoderatorEntryResult" class="result fss"></div>
+		<script>
+			function addmoderatorEntry(){
+				params = {  "id" : $("#citizenaddmoderatorEntry").val() , 
+				    		"app" : "survey"};
+				testitpost("addmoderatorEntryResult",'/ph/<?php echo $this::$moduleKey?>/api/addmoderator',params);
+			}
+			
+		</script>
+	</div>
 </li>
 
 <li class="block" id="blockModerate">
@@ -12,7 +37,7 @@
 			<select id="sessionmoderateEntry">
 				<option></option>
 				<?php 
-					$Surveys = Yii::app()->mongodb->surveys->find( array("type"=>"entry",'$or'=>array( array( "applications.survey.cleared"=>false),array("applications.survey.cleared"=>"refused"))));
+					$Surveys = PHDB::find( PHType::TYPE_SURVEYS, array("type"=>"entry",'$or'=>array( array( "applications.survey.cleared"=>false),array("applications.survey.cleared"=>"refused"))));
 					foreach ($Surveys as $value) {
 						echo '<option value="'.$value["_id"].'">'.$value["name"]." ".'</option>';
 					}

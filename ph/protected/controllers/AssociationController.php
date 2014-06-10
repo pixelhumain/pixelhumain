@@ -39,7 +39,7 @@ class AssociationController extends Controller {
                     $newAccount = array(
                     			'email'=>$email,
                     			"name" => $_POST['assoName'],
-                                'type'=>PixelHumain::TYPE_ASSOCIATION ,
+                                'type'=>PHType::TYPE_ASSOCIATION ,
                                 'tobeactivated' => true,
                                 'adminNotified' => false,
                                 'created' => time()

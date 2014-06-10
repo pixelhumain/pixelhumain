@@ -12,26 +12,28 @@ class Survey
      	{ 
      		if(self::isModerator(Yii::app()->session["userId"],$params["app"]))
      		{
-		     	$survey = Yii::app()->mongodb->surveys->findOne( array("_id"=>new MongoId($params["survey"])) );
+		     	$survey = PHDB::findOne( PHType::TYPE_SURVEYS, array("_id"=>new MongoId($params["survey"])) );
 		     	if( isset($survey["applications"][$params["app"]]["cleared"] ))
 		     	{
 		     		if($params["action"]){
-		     			Yii::app()->mongodb->surveys->update( array("_id"=>new MongoId($params["survey"])),
-		     													array('$unset' => array('applications.survey.cleared' => true))
-		     												 );
+		     			PHDB::update( PHType::TYPE_SURVEYS, 
+		     									array("_id"=>new MongoId($params["survey"])),
+		     									array('$unset' => array('applications.survey.cleared' => true))
+		     								);
 		     			$res["msg"] = "EntryCleared";
 		     			$res["result"] = true;
 		     		} else {
-		     			Yii::app()->mongodb->surveys->update( array("_id"=>new MongoId($params["survey"])),
-		     													array('$set' => array('applications.survey.cleared' => "refused"))
-		     												 );
+		     			PHDB::update(  PHType::TYPE_SURVEYS, 
+		     								    array("_id"=>new MongoId($params["survey"])),
+		     									array('$set' => array('applications.survey.cleared' => "refused"))
+		     								);
 		     			$res["msg"] = "EntryRefused";
 		     		}
 		     	} else {
 		     		$res["msg"] = "Nothing to clear on this entry";
 		     	}
 
-		     	$res["survey"] = Yii::app()->mongodb->surveys->findOne( array("_id"=>new MongoId($params["survey"])) );
+		     	$res["survey"] = PHDB::findOne( PHType::TYPE_SURVEYS, array("_id"=>new MongoId($params["survey"])) );
 		     } else 
 		     	$res["msg"] = "mustBeModerator";
 	     } else 
@@ -40,7 +42,7 @@ class Survey
      	return $res;
      }
      public static function isModerator($userId,$app) {
-     	$app = Yii::app()->mongodb->applications->findOne ( array("key"=> $app ) );
+     	$app = PHDB::findOne( PHType::TYPE_APPLICATIONS, array("key"=> $app ) );
     	return ( isset( $userId ) && in_array(Yii::app()->session["userId"], $app["moderator"]) ) ? true : false;
      }
 }

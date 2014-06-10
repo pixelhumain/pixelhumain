@@ -52,7 +52,7 @@ class ApiController extends Controller {
     public $percent = 60; //TODO link it to unit test
     protected function beforeAction($action)
     {
-        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules","iconClass"=>"fa fa-th", "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
+        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules","iconClass"=>"fa fa-th", "menuOnly"=>true,"children"=>PH::buildMenuChildren("applications") ));
         return parent::beforeAction($action);
     }
 
@@ -77,7 +77,7 @@ class ApiController extends Controller {
             "getactionvalue"    => 'application.controllers.generic.GetFromCollectionAction',
 
             'savesession'       => 'application.controllers.survey.SaveSessionAction',  
-            'moderateentry'          => 'application.controllers.survey.ModerateAction',  
+            'moderateentry'     => 'application.controllers.survey.ModerateAction',  
             'getby'             => 'application.controllers.generic.GetByAction',  
 
             'sendmessage'       => 'application.controllers.messages.SendMessageAction',  
