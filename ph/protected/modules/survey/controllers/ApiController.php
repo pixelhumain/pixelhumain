@@ -77,6 +77,7 @@ class ApiController extends Controller {
             "getactionvalue"    => 'application.controllers.generic.GetFromCollectionAction',
 
             'savesession'       => 'application.controllers.survey.SaveSessionAction',  
+            'moderateentry'          => 'application.controllers.survey.ModerateAction',  
             'getby'             => 'application.controllers.generic.GetByAction',  
 
             'sendmessage'       => 'application.controllers.messages.SendMessageAction',  

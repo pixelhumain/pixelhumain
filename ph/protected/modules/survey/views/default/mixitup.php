@@ -20,6 +20,12 @@ $commentActive = true;
   .mix{border-radius: 8px;}
 
   /*.infolink{border-top:1px solid #fff}*/
+  .leftlinks{float: left}
+  .rightlinks{float: right}
+  .leftlinks a.btn{background-color: yellow;border: 1px solid yellow;}
+  /*.rightlinks a.btn{background-color: beige;border: 1px solid beige;}*/
+  a.btn.alertlink{background-color:red;color:white;border: 1px solid red;}
+  a.btn.golink{background-color:green;color:white;border: 1px solid green;}
 </style>
 <section class="mt80 stepContainer">
   <div class="connect btn">
@@ -31,7 +37,7 @@ $commentActive = true;
   <?php if( isset( Yii::app()->session["userId"])){ 
     $user = Yii::app()->mongodb->citoyens->findOne ( array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) );
     ?>
-    <a href="#participer" class="btn" role="button" data-toggle="modal" title="mon compte" ><i class="icon-cog-1"></i><?php echo  $user["email"];?> <span class="badge badge-info">9</span></a>
+    <a href="#participer" class="btn" role="button" data-toggle="modal" title="mon compte" ><i class="icon-cog-1"></i><?php echo  $user["email"];?> <?php if($isModerator){ ?><span class="badge badge-info">ADMIN</span><?php } ?></a>
     <a href="/ph/site/logout" class="btn " role="button" data-toggle="modal" title="deconnexion" ><i class="fa fa-signout"></i>Logout</a>
     
   <?php } else {?>
@@ -47,7 +53,7 @@ $commentActive = true;
 <?php } ?>
 <div class="controls">
   <?php
-  if($where["type"]=="entry"){?>
+  if($where["type"]=="entry" && isset( Yii::app()->session["userId"])){?>
   <a href="#voterloiDescForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" ><i class="fa fa-signout"></i>Voter les propositions</a>
   <?php }
     $alltags = array(); 
@@ -105,6 +111,7 @@ $commentActive = true;
       $infoslink .= (!empty($followingEntry)) ? "<i class='fa fa-rss infolink' ></i>" :"";
       $infoslink .= (!empty($meslois)) ? "<i class='fa fa-user infolink' ></i>" :"";
 
+      
       //has loged user voted on this entry 
       //vote UPS
       $voteUpActive = ( isset( Yii::app()->session["userId"]) 
@@ -149,16 +156,12 @@ $commentActive = true;
       $totalVote = $voteUpCount+$voteAbstainCount+$voteDownCount;
 
       $content = ($value["type"]=="entry") ? "".$value["message"]:"";?>
-      <style>
-      .leftlinks{float: left}
-      .rightlinks{float: right}
-      .leftlinks a.btn{background-color: yellow;border: 1px solid yellow;}
-      /*.rightlinks a.btn{background-color: beige;border: 1px solid beige;}*/
-      </style>
-      <?php
+    <?php
       $leftLinks = ($value["type"]=="entry") ? "<div class='leftlinks'>".$linkVoteUp." ".$linkVoteAbstain." ".$linkVoteDown."</div>" : "";
-      $graphLink = ' <a class="btn" onclick="entryDetail(\''.Yii::app()->createUrl("/survey/default/graph/surveyId/".(string)$value["_id"]).'\',\'graph\')" href="javascript:;"><i class="fa fa-th-large"></i>'.$voteUpCount.','.$voteAbstainCount.','.$voteDownCount.'</a> ';
-      $rightLinks = ($value["type"]=="entry") ? "<div class='rightlinks'>".$graphLink.$linkComment.$infoslink."</div>" : "";
+      $graphLink = ' <a class="btn" onclick="entryDetail(\''.Yii::app()->createUrl("/survey/default/graph/surveyId/".(string)$value["_id"]).'\',\'graph\')" href="javascript:;"><i class="fa fa-th-large"></i></a> ';
+      $moderatelink = (  $isModerator && isset( $value["applications"][$this::$moduleKey]["cleared"] ) && $value["applications"][$this::$moduleKey]["cleared"] == false ) ? "<a class='btn golink' href='javascript:moderateEntry(\"".$value["_id"]."\",1)'><i class='fa fa-plus ' ></i></a><a class='btn alertlink' href='javascript:moderateEntry(\"".$value["_id"]."\",0)'><i class='fa fa-minus ' ></i></a>" :"";
+      $rightLinks = (  isset( $value["applications"][$this::$moduleKey]["cleared"] ) && $value["applications"][$this::$moduleKey]["cleared"] == false ) ? $moderatelink : $graphLink.$linkComment.$infoslink ;
+      $rightLinks = ($value["type"]=="entry") ? "<div class='rightlinks'>".$rightLinks."</div>" : "";
       $ordre = $voteUpCount-$voteDownCount;
       $created = (isset($value["created"])) ? $value["created"] : 0; 
       $blocks .= ' <div class="mix '.$avoter.' '.$meslois.' '.$followingEntry.' '.$tags.' '.$cp.'" data-vote="'.$ordre.'"  data-time="'.$created.'" style="display:inline-blocks"">'.
@@ -187,9 +190,11 @@ $commentActive = true;
 
   <br/>
   <label>Filtre:</label>
+  <?php if( isset( Yii::app()->session["userId"])){?>
   <a class="filter btn" data-filter=".avoter">A voter</a>
   <a class="filter btn" data-filter=".mesvotes">Mes votes</a>
   <a class="filter btn" data-filter=".myentries">Mes lois</a>
+  <?php } ?>
   <button class="filter" data-filter="all">Tout</button>
   <?php echo $tagBlock?>
 
@@ -240,17 +245,27 @@ $commentActive = true;
       alert("Vous ne pouvez pas votez 2 fois, ni changer de vote.");
     }
     function AutoGrowTextArea(textField)
-{
-  if (textField.clientHeight < textField.scrollHeight)
-  {
-    textField.style.height = textField.scrollHeight + "px";
-    if (textField.clientHeight < textField.scrollHeight)
     {
-      textField.style.height = 
-        (textField.scrollHeight * 2 - textField.clientHeight) + "px";
+      if (textField.clientHeight < textField.scrollHeight)
+      {
+        textField.style.height = textField.scrollHeight + "px";
+        if (textField.clientHeight < textField.scrollHeight)
+        {
+          textField.style.height = 
+            (textField.scrollHeight * 2 - textField.clientHeight) + "px";
+        }
+      }
     }
-  }
-}
+
+    function moderateEntry(id,action)
+    {
+      params = { "survey" : id , 
+            "action" : action , 
+              "app" : "survey"};
+      testitpost("moderateEntryResult",'/ph/<?php echo $this::$moduleKey?>/api/moderateentry',params,function(){
+        window.location.reload();
+      });
+    }
 </script>
 <?php
 if($where["type"]=="entry"){

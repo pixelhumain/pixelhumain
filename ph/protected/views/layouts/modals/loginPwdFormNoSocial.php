@@ -27,16 +27,7 @@
                 <table style="width:210px;float:right;margin-right:40px;">
                 
                   	<tr>
-                      	<td> <a class="btn btn-primary btn-xs w100p" href="<?php echo Yii::app()->createUrl('opauth/facebook')?>" ><span class="icon-facebook-rect"></span> FaceBook</a></td>
-                  	</tr>
-                  	<tr>	
-                      	<td> <a class="btn btn-primary btn-xs w100p" href="<?php echo Yii::app()->createUrl('opauth/linkedin')?>" ><span class="icon-linkedin-rect"></span> LinkedIn</a></td>
-                  	</tr>
-                  	<tr>	
-                      	<td> <a class="btn btn-primary btn-xs w100p" href="<?php echo Yii::app()->createUrl('opauth/twitter')?>" ><span class="icon-twitter"></span> Twitter</a></td>
-                  	</tr>
-                  	<tr>	
-                      	<td> <a class="btn btn-primary btn-xs w100p" href="<?php echo Yii::app()->createUrl('opauth/google')?>" ><span class="icon-googleplus-rect"></span> Google</a></td>
+                      	<td> Si vous n'avez pas de compte ce meme formulaire vous crééra un compte, sinon vous logguera</td>
                   	</tr>
                   	
                 </table>

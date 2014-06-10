@@ -22,7 +22,8 @@
 					    	   "name" : $("#namesaveSession").val() , 
 					    	   "tags" : $("#tagssaveSession").val(),
 					    	   "cp" : $("#postalcodesaveSession").val(),
-					    	   "type" : "survey" };
+					    	   "type" : "survey",
+					    	   "app" : "survey" };
 					testitpost("saveSessionResult",'/ph/<?php echo $this::$moduleKey?>/api/saveSession',params);
 				}
 				function getSession(){
@@ -71,7 +72,8 @@
 					    	   "tags" : $("#tagsaddEntry").val() ,
 					    	   "message":$("#entryaddEntry").val(),
 					    	   "cp" : $("#postalcodesaveGroup").val() , 
-					    	   "type" : "entry"};
+					    	   "type" : "entry",
+					    		"app" : "survey"};
 					testitpost("addEntryResult",'/ph/<?php echo $this::$moduleKey?>/api/saveSession',params);
 				}
 				function getEntry(){

@@ -10,8 +10,11 @@ require_once(dirname(__FILE__) . '/moduleconfig.php');
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Pixel Humain',
-	//'defaultController' => 'communecter/default/index',
 	'theme'=>'webarch',
+	
+	//SPECIFIC MODULE confis
+	//'defaultController' => 'communecter/default/index',
+	//'homeUrl' => "/ph/survey",
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -27,6 +30,7 @@ return array(
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
+		'application.business.*',
 		'application.components.*',
 		'bootstrap.helpers.TbHtml',
     	'mongoYii.*',
