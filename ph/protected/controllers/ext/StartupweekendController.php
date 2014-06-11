@@ -94,7 +94,7 @@ class StartupweekendController extends Controller {
                   Yii::app()->mongodb->startupweekend->update($where, array('$set' => $newInfos));
                   $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
                   
-                  NotificationBusinessObject::saveNotification(array("type" => NotificationType::NOTIFICATION_SWE_SAVED_FEEDBACK,
+                  Notification::saveNotification(array("type" => NotificationType::NOTIFICATION_SWE_SAVED_FEEDBACK,
                     					  "user" => Yii::app()->session["userId"] ));
                   echo json_encode($result); 
             } else 
