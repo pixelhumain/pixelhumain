@@ -68,10 +68,11 @@ button + label{
     text-decoration: none;
 }
 .mixcontainer .mix a.titleMix{
-color:white;
-border-color: transparent;
+  color:white;
+  border-color: transparent;
   background-color: transparent;
- word-wrap:break-word;
+  word-wrap:break-word;
+  font-weight: bold;
   }
 .mixcontainer .mix span.info{
   color:white;
