@@ -166,7 +166,7 @@ class ApiController extends Controller {
      */
 	public function actionIndex() 
 	{
-	    $this->render("../../../../modules/api/views/index", array("path"=>'application.modules.'.$this::$moduleKey.'.views.api.') );
+	    $this->render("../../../../components/api/views/index", array("path"=>'application.modules.'.$this::$moduleKey.'.views.api.') );
 	}
     public function actions()
     {
