@@ -7,4 +7,5 @@ $activeModules = array(
 	'azotlive',
 	'echolocal',
 	'communecter',
-	'survey');
+	'survey',
+	'pppm');

@@ -49,7 +49,7 @@ class ApiController extends Controller {
      */
 	public function actionIndex() 
 	{
-	    $this->render("../../../../components/api/views/index", array("path"=>'application.modules.'.$this::$moduleKey.'.views.api.') );
+	    $this->render("../../../../components/api/views/index", array("path"=>Yii::app()->params["modulePath"].$this::$moduleKey.'.views.api.') );
 	}
 
   	/*

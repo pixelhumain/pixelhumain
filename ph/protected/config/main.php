@@ -39,7 +39,7 @@ return array(
     	'ext.mail.YiiMailMessage',
         'ext.helpers.*',
 	),
-
+	'modulePath' => '../../modules',
 	'modules'=>array_merge($activeModules,array(
 		// uncomment the following to enable the Gii tool
 		'gii'=>array(
