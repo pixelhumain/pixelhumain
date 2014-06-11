@@ -1,6 +1,9 @@
 <?php 
 if($this->secure)
-    $this->renderPartial('application.views.layouts.modals.loginPwdForm');
+	if($this->hasSocial)
+		$this->renderPartial('application.views.layouts.modals.loginPwdFormNoSocial');
+	else
+    	$this->renderPartial('application.views.layouts.modals.loginPwdForm');
 else
     $this->renderPartial('application.views.layouts.modals.loginForm');
 ?>

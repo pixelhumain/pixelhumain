@@ -67,7 +67,7 @@ class EvenementController extends Controller {
                     $new = array(
                     			'email'=>$email,
                     			"name" => $_POST['eventName'],
-                                'type'=>PixelHumain::TYPE_EVENT ,
+                                'type'=>PHType::TYPE_EVENT ,
                     			'country'=>$_POST['countryEvent'],
                     			'public'=>$_POST['public'],
                                 'created' => time()

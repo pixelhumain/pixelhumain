@@ -6,10 +6,10 @@
 class Notification 
 {
 
-    private $notificationDAO;
-    
-    public function __construct() {
-        $this->notificationDAO = new NotificationDAO();
+    // A Citizen Notificaiton is saved in the Citizen Collection
+    public static function saveCitizenNotification($params) {
+        PHDB::update("citoyens", array("_id" => new MongoId($params['notifyUser'])), 
+            array('$push' => array( Citoyen::NODE_NOTIFICATIONS => $notification )) )
     }
 
      /*
@@ -25,12 +25,12 @@ class Notification
         if(isset($params['notifyUser'])){
             
             //insert in citoyen collection
-            Notification::saveCitizenNotification($params);
+            self::saveCitizenNotification($params);
             unset($params['notifyUser']);
         }
 
         if(self::isAdminNotificationActivated())
-            Notification::saveAdminNotification($params);
+            self::saveAdminNotification($params);
 
     }
 
