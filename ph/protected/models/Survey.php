@@ -42,7 +42,7 @@ class Survey
      	return $res;
      }
      public static function isModerator($userId,$app) {
-     	$app = PHDB::findOne( PHType::TYPE_APPLICATIONS, array("key"=> $app ) );
+     	$app = Yii::app()->mongodb->selectCollection(PHType::TYPE_APPLICATIONS)->findOne(array("key"=> $app ) );
     	return ( isset( $userId ) && in_array(Yii::app()->session["userId"], $app["moderator"]) ) ? true : false;
      }
 }
