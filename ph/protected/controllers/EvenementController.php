@@ -67,7 +67,7 @@ class EvenementController extends Controller {
                     $new = array(
                     			'email'=>$email,
                     			"name" => $_POST['eventName'],
-                                'type'=>PixelHumain::TYPE_EVENT ,
+                                'type'=>PHType::TYPE_EVENT ,
                     			'country'=>$_POST['countryEvent'],
                     			'public'=>$_POST['public'],
                                 'created' => time()
@@ -95,7 +95,7 @@ class EvenementController extends Controller {
                     Yii::app()->mail->send($message);*/
                     
                     //TODO : add an admin notification
-                    Notification::add(array("type"=>Notification::ASSOCIATION_SAVED,
+                    Notification::saveNotification(array("type"=>NotificationType::ASSOCIATION_SAVED,
                     						"user"=>$new["_id"]));
                     
                     echo json_encode(array("result"=>true, "msg"=>"Votre evenement est communecté.", "id"=>$new["_id"]));

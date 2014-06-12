@@ -3,52 +3,44 @@
 - system notifications are saved in the notification collection
 - citizen Notifications are saved in the citizen collection under the notification node
  */
-class Notification
+class Notification 
 {
-    const NOTIFICATION_LOGIN	               = "citizenLogin";
-    const NOTIFICATION_REGISTER	               = "citizenRegister";
-    const NOTIFICATION_COMMUNECTED             = "citizenCommunected";
-    const NOTIFICATION_ACTIVATED	           = "citizenActivated";
-    const NOTIFICATION_INVITATION	           = "citizenInvitation";
-    const NOTIFICATION_LINK_REQUEST            = "citizenLinkRequest";
-    const NOTIFICATION_LINK_CONFIRMATION       = "citizenLinkConfirmation";
-    
-    const ASSOCIATION_SAVED	                   = "associationSaved";
-    const ENTREPRISE_SAVED	                   = "entrepriseSaved";
-    const COLLECTIVITE_SAVED	               = "collectiviteSaved";
-    
-    const NOTIFICATION_SWE_COACH_REQUEST	   = "startUpWeekendCoachRequest";
-    const NOTIFICATION_SWE_SAVED_INFOS	       = "sweSavedInfos";
-    const NOTIFICATION_SWE_SAVED_FEEDBACK      = "sweSavedFeedback";
-    
-    const LOGIN_FACEBOOK                       = "LoginFaceBook";
-    const LOGIN_TWITTER                        = "LoginTwitter";
-    const LOGIN_LINKEDIN                       = "LoginLinkedIn";
-    const LOGIN_GOOGLE                         = "LoginGoogle";
-    
-    /*
-     * Save a certain Norification to the notification table
+
+    // A Citizen Notificaiton is saved in the Citizen Collection
+    public static function saveCitizenNotification($params) {
+        PHDB::update("citoyens", array("_id" => new MongoId($params['notifyUser'])), 
+            array('$push' => array( Citoyen::NODE_NOTIFICATIONS => $notification )) )
+    }
+
+     /*
+     * Save a certain Notification to the notification table
      * if notifyUser param is set, an entry is added to the citizen collection for the front end to pick up
      * 
      * */
-    public static function add($params){
-        $params["created"] = time();
+
+    public static function saveNotification($params) {
+        
+         $params["created"] = time();
         
         if(isset($params['notifyUser'])){
             
-            //set teh type of citizen notification
-            if($params["type"] == Notification::NOTIFICATION_LINK_REQUEST)
-                $notification = array( Citoyen::NOTIFICATION_FRIEND_REQUEST => $params["inviter"]);
-
             //insert in citoyen collection
-            Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($params['notifyUser'])), 
-                                                  array('$push' => array( Citoyen::NODE_NOTIFICATIONS => $notification )));
+            self::saveCitizenNotification($params);
             unset($params['notifyUser']);
         }
 
-        if(!in_array($_SERVER['SERVER_NAME'], array('127.0.0.1',"localhost")))
-            Yii::app()->mongodb->notifications->insert($params); 
+        if(self::isAdminNotificationActivated())
+            self::saveAdminNotification($params);
 
     }
 
+    //The administrators are notified if the parameter 'adminNotification' is set in the phConfig.php file
+    private static function isAdminNotificationActivated() {
+        if(Yii::app()->params[$adminNotification] == "true") {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }

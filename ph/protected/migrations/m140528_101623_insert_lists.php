@@ -29,7 +29,6 @@ class m140528_101623_insert_lists extends EMongoMigration
 		finally {
 			fclose($handle);
 		}
-		
 	}
 
 	public function down()

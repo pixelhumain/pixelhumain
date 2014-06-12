@@ -13,7 +13,7 @@
                     <h2>Associations</h2>
                     <ul>
                         <?php 
-                            $pa = Yii::app()->mongodb->groups->find(array("type"=>PixelHumain::TYPE_ASSOCIATION));
+                            $pa = Yii::app()->mongodb->groups->find(array("type"=>PHType::TYPE_ASSOCIATION));
                             foreach ($pa as $e){
                             ?>
                             <li class="group"><a href="<?php echo Yii::app()->createUrl('association/view/id/'.$e["_id"])?>"><?php echo $e["name"]?></a>
@@ -30,7 +30,7 @@
                     <h2>Entreprises</h2>
                     <ul>
                         <?php 
-                            $pa = Yii::app()->mongodb->groups->find(array("type"=>PixelHumain::TYPE_ENTREPRISE));
+                            $pa = Yii::app()->mongodb->groups->find(array("type"=>PHType::TYPE_ENTREPRISE));
                             foreach ($pa as $e){
                             ?>
                             <li class="group"><a href="<?php echo Yii::app()->createUrl('index.php/entreprise/view/id/'.$e["_id"])?>"><?php echo $e["name"]?></a>

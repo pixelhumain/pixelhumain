@@ -27,7 +27,7 @@ class ApiController extends Controller {
 
     protected function beforeAction($action)
     {
-        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules","iconClass"=>"fa fa-th",  "menuOnly"=>true,"children"=>PixelHumain::buildMenuChildren("applications") ));
+        array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules","iconClass"=>"fa fa-th",  "menuOnly"=>true,"children"=>PH::buildMenuChildren("applications") ));
         return parent::beforeAction($action);
     }
 
@@ -50,7 +50,7 @@ class ApiController extends Controller {
      */
 	public function actionIndex() 
 	{
-	    $this->render("../../../../modules/api/views/index", array("path"=>'application.modules.'.$this::$moduleKey.'.views.api.') );
+	    $this->render("../../../../components/api/views/index", array("path"=>Yii::app()->params["modulePath"].$this::$moduleKey.'.views.api.') );
 	}
 
   	/*

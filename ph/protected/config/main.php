@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__) . '/dbconfig.php');
 require_once(dirname(__FILE__) . '/mailconfig.php');
+require_once(dirname(__FILE__) . '/moduleconfig.php');
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -9,8 +10,11 @@ require_once(dirname(__FILE__) . '/mailconfig.php');
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Pixel Humain',
-	//'defaultController' => 'communecter/default/index',
 	'theme'=>'webarch',
+	
+	//SPECIFIC MODULE confis
+	//'defaultController' => 'communecter/default/index',
+	//'homeUrl' => "/ph/survey",
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -26,6 +30,7 @@ return array(
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
+		'application.business.*',
 		'application.components.*',
 		'bootstrap.helpers.TbHtml',
     	'mongoYii.*',
@@ -34,6 +39,7 @@ return array(
     	'ext.mail.YiiMailMessage',
         'ext.helpers.*',
 	),
+<<<<<<< HEAD
 
 	'modules'=>array(
 		//PIXEL HUMAIN specific modules 
@@ -44,6 +50,10 @@ return array(
 		'echolocal',
 		'communecter',
 		'survey',
+=======
+	'modulePath' => '../../modules',
+	'modules'=>array_merge($activeModules,array(
+>>>>>>> 9470db5edd9d3b0854057b063ca4026537d0a9c6
 		// uncomment the following to enable the Gii tool
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
@@ -83,7 +93,7 @@ return array(
                 ),
             ),
         ),
-	),
+	)),
 
 	// application components
 	'components'=>array(

@@ -39,7 +39,7 @@ class AssociationController extends Controller {
                     $newAccount = array(
                     			'email'=>$email,
                     			"name" => $_POST['assoName'],
-                                'type'=>PixelHumain::TYPE_ASSOCIATION ,
+                                'type'=>PHType::TYPE_ASSOCIATION ,
                                 'tobeactivated' => true,
                                 'adminNotified' => false,
                                 'created' => time()
@@ -76,7 +76,7 @@ class AssociationController extends Controller {
                     Yii::app()->mail->send($message);*/
                     
                     //TODO : add an admin notification
-                    Notification::add(array("type"=>Notification::ASSOCIATION_SAVED,
+                    Notification::saveNotification(array("type"=>NotificationType::ASSOCIATION_SAVED,
                     						"user"=>$newAccount["_id"]));
                     
                     echo json_encode(array("result"=>true, "msg"=>"Votre association est communecté.", "id"=>$newAccount["_id"]));

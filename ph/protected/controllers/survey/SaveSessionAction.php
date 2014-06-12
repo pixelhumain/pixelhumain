@@ -42,8 +42,11 @@ class SaveSessionAction extends CAction
                         //when registration is done for an application it must be registered
                     	$newInfos['applications'] = array( $appKey => array( "usertype"=> (isset($_POST['type']) ) ? $_POST['type']:$_POST['app']  ));
                         //check for application specifics defined in DBs application entry
-                    	if( isset( $app["registration"] ) && ( $app["registration"] == "mustBeConfirmed" ))
-                    		$newInfos['applications'][$appKey]["registrationConfirmed"] = false;
+                    	if( isset( $app["moderation"] ) ){
+                    		$newInfos['applications'][$appKey][SurveyType::STATUS_CLEARED] = false;
+                            //set a Notification for admin moderation 
+                            
+                        }
                         $res['applicationExist'] = true;
                     }else
                         $res['applicationExist'] = false;
