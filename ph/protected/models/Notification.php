@@ -9,7 +9,7 @@ class Notification
     // A Citizen Notificaiton is saved in the Citizen Collection
     public static function saveCitizenNotification($params) {
         PHDB::update("citoyens", array("_id" => new MongoId($params['notifyUser'])), 
-            array('$push' => array( Citoyen::NODE_NOTIFICATIONS => $notification )) )
+            array('$push' => array( Citoyen::NODE_NOTIFICATIONS => $notification )) );
     }
 
      /*
@@ -36,7 +36,8 @@ class Notification
 
     //The administrators are notified if the parameter 'adminNotification' is set in the phConfig.php file
     private static function isAdminNotificationActivated() {
-        if(Yii::app()->params[$adminNotification] == "true") {
+
+        if(Yii::app()->params["adminNotification"] == "true") {
             return true;
         } else {
             return false;
