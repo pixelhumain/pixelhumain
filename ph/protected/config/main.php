@@ -18,7 +18,8 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
-    'aliases' => array(
+	'modulePath' => '../../modules',
+	'aliases' => array(
     	'vendor' => realpath(__DIR__ . '/../../vendor/'),
         'bootstrap' => realpath(__DIR__ . '/../../vendor/2amigos/yiistrap'),
 		'yiiwheels' => realpath(__DIR__ . '/../../vendor/2amigos/yiiwheels'), 
@@ -39,21 +40,9 @@ return array(
     	'ext.mail.YiiMailMessage',
         'ext.helpers.*',
 	),
-<<<<<<< HEAD
 
-	'modules'=>array(
-		//PIXEL HUMAIN specific modules 
-		'waterwatcher',
-		'egpc',
-		'sig',
-		'azotlive',
-		'echolocal',
-		'communecter',
-		'survey',
-=======
-	'modulePath' => '../../modules',
 	'modules'=>array_merge($activeModules,array(
->>>>>>> 9470db5edd9d3b0854057b063ca4026537d0a9c6
+
 		// uncomment the following to enable the Gii tool
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',

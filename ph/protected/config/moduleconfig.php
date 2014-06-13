@@ -8,4 +8,5 @@ $activeModules = array(
 	'echolocal',
 	'communecter',
 	'survey',
+	'sig',
 	'pppm');
