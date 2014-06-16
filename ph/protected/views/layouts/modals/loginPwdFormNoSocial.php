@@ -27,7 +27,7 @@
                 <table style="width:210px;float:right;margin-right:40px;">
                 
                   	<tr>
-                      	<td> Si vous n'avez pas de compte ce meme formulaire vous crééra un compte, sinon vous logguera</td>
+                      	<td style="font-weight: bold"> Si vous n'avez pas de compte ce meme formulaire vous crééra un compte, sinon vous logguera</td>
                   	</tr>
                   	
                 </table>
@@ -63,20 +63,19 @@ initT['loginModalsInit'] = function(){
     	$("#loginPwdForm").modal('hide');
     	toggleSpinner();
 
-    	method = "register";
-    	extraParam = "";
-    	var appKey = false;<?php //echo empty($this->appKey)?>;
-    	var appType = false;<?php //echo empty($this->appType)?>;
-    	<?php /*
-    	if( appKey && appType  )
-    		extraParam = "&appKey=<?php //echo $this->appKey?>&appType=<?php //echo $this->appType?>";
-    		method = "registerAppPwd";
-    	}*/?>
-	
+    	method = "login";
+	    params = params = { "email" : $("#registerPwdEmail").val() , 
+                   "pwd" : $("#registerPwd").val()
+                };
+      <?php if( isset( $this->module->id ) && $this->loginRegister ) { ?>
+      params.loginRegister =1;
+      params.app = "<?php echo $this->module->id?>";
+      <?php } ?>
+      log(params);
     	$.ajax({
     	  type: "POST",
-    	  url: baseUrl+"/index.php/citoyens/"+method,
-    	  data: "registerEmail="+$("#registerPwdEmail").val()+"&registerPwd="+$("#registerPwd").val()+extraParam,
+    	  url: baseUrl+"/<?php echo $this->module->id?>/api/"+method,
+    	  data: params,
     	  success: function(data){
     		  if(data.result){
         		  window.location.reload();

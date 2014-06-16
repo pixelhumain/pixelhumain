@@ -36,23 +36,24 @@ class Citoyen
      * send validation mail 
      * @param  [string] $email   email connected to the citizen account
      * @param  [string] $pwd   pwd connected to the citizen account
+     * @param  [boolean] $loginRegister   loginRegister defines if login fails this creates automatically a new account
      * @return [type] [description]
      */
-    public static function login($email,$pwd)
+    public static function login($email,$pwd,$loginRegister=null)
     {
         if(Yii::app()->request->isAjaxRequest && isset($email) && !empty($email))
         {
             Yii::app()->session["userId"] = null;
             Yii::app()->session["userEmail"] = null; 
-            $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$email));
+            $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$email));
             if($account){
                 if( empty( $account["pwd"] ) )
                 {
                     if(empty($pwd)){
                         //send email to reset password
                         $pwd = uniqid('', true);
-                        Yii::app()->mongodb->citoyens->update(array("email"=>$email), 
-                                                              array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
+                        PHDB::update(PHType::TYPE_CITOYEN,array("email"=>$email), 
+                                                          array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
                         $message = new YiiMailMessage;
                         $message->view = 'validation';
                         $message->setSubject('Set your password - Pixel Humain');
@@ -68,16 +69,16 @@ class Citoyen
                         //if a pwd was typed 
                         //it will be set as pwd and will login the person 
                         
-                        Yii::app()->mongodb->citoyens->update(array("email"=>$email), 
-                                                              array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
+                        PHDB::update(PHType::TYPE_CITOYEN,array("email"=>$email), 
+                                                          array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
                         
                         Yii::app()->session["userId"] = (string)$account["_id"];
                         Yii::app()->session["userEmail"] = $account["email"]; 
                         if( isset($account["isAdmin"]) && $account["isAdmin"] )
                             Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
                             
-                        Notification::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
-                                                "user" => $account["_id"]));
+                        /*Notification::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
+                                                "user" => $account["_id"]));*/
                         
                         $res = array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"]));
                     }
@@ -92,16 +93,15 @@ class Citoyen
                     if( isset($account["isAdmin"]) && $account["isAdmin"] )
                         Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
                         
-                    Notification::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
-                                            "user" => $account["_id"]));
+                    /*Notification::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
+                                            "user" => $account["_id"]));*/
                     
                     $res = array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"]));
                 } else 
                     $res = array("result"=>false, "msg"=>"Email ou Mot de Passe ne correspondent pas, rééssayez.");
-                
-               
-            }
-            else
+            } else if($loginRegister){
+                $res = self::register( $email, $pwd );
+            } else
                 $res = array("result"=>false, "msg"=>"Vous devez remplir un email valide et un mot de passe .");
             
         } else
@@ -124,7 +124,7 @@ class Citoyen
         {
             Yii::app()->session["userId"] = null;
             Yii::app()->session["userEmail"] = null; 
-            $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$email));
+            $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$email));
             if(!$account)
             {
                 //validate isEmail
@@ -149,7 +149,7 @@ class Citoyen
                     if(!empty($name))
                         $newAccount["name"] = $name;
                     //add to DB
-                    Yii::app()->mongodb->citoyens->insert($newAccount);
+                    PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
                    
                     //set session elements for global credentials
                     Yii::app()->session["userId"] = (string)$newAccount["_id"]; 
@@ -166,8 +166,8 @@ class Citoyen
                     Yii::app()->mail->send($message);*/
                     
                     //TODO : add an admin notification
-                    Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_REGISTER,
-                                            "user"=>$newAccount["_id"]));
+                    /*Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_REGISTER,
+                                            "user"=>$newAccount["_id"]));*/
                     
                     $res = array("result"=>true, "id"=>$newAccount);
                } else
@@ -192,7 +192,7 @@ class Citoyen
     {
         if(Yii::app()->request->isAjaxRequest && isset($email) && !empty($email))
         {
-            $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$email));
+            $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$email));
             if(!$account)
             {
                 //validate isEmail
@@ -217,7 +217,7 @@ class Citoyen
                     if(!empty($name))
                         $newAccount["name"] = $name;
                     //add to DB
-                    Yii::app()->mongodb->citoyens->insert($newAccount);
+                    PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
                    
                     //set session elements for global credentials
                     Yii::app()->session["userId"] = (string)$newAccount["_id"]; 
@@ -256,9 +256,9 @@ class Citoyen
         $res = array();
         if( isset( Yii::app()->session["userId"]) && $appKey != null  ){
             //TODO : test application exists
-            $application = Yii::app()->mongodb->applications->findOne( array( "key" => $appKey ) );  
+            $application = PHDB::findOne(PHType::TYPE_APPLICATIONS, array( "key" => $appKey ) );  
             //check if application is registered on user account
-            $account = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) ); 
+            $account = PHDB::findOne(PHType::TYPE_CITOYEN, array( "email" => $email ) ); 
             //if not add it 
             if( isset( $application ) && !isset( $account["applications"][$appKey] ) )
             {
@@ -274,7 +274,7 @@ class Citoyen
                     $newInfos['applications'][$appKey]["registrationConfirmed"] = false ;
                     $res["addedRegistrationConfirmationRequest"] = true;
                 }
-                Yii::app()->mongodb->citoyens->update( array("email" => $email), 
+                PHDB::update(PHType::TYPE_CITOYEN, array("email" => $email), 
                                                        array('$set' => $newInfos ) 
                                                       );
                 $res["addedRegistration"] = $appKey;
@@ -293,7 +293,7 @@ class Citoyen
                     'created' => time()
                     );
         
-        Yii::app()->mongodb->citoyens->insert($newAccount);
+        PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
         //send validation mail
         //TODO : make emails as cron jobs
         /*$message = new YiiMailMessage;
@@ -338,8 +338,8 @@ class Citoyen
     public static function link2Users($inviterId, $invitedId)
     {
         //make sure both users exist
-        $inviter = Yii::app()->mongodb->citoyens->findOne( array("_id" => new MongoId($inviterId) )); 
-        $invited = Yii::app()->mongodb->citoyens->findOne( array("_id" => new MongoId($invitedId) ));
+        $inviter = PHDB::findOne(PHType::TYPE_CITOYEN, array("_id" => new MongoId($inviterId) )); 
+        $invited = PHDB::findOne(PHType::TYPE_CITOYEN, array("_id" => new MongoId($invitedId) ));
         $res = array("result" => false);
         if($inviter && $invited && $inviter != $invited)
         {
@@ -348,11 +348,11 @@ class Citoyen
             {
                 //add a relation link on the inviter
                 //add invited to inviter friends
-                Yii::app()->mongodb->citoyens->update(array("_id"   => new MongoId($inviterId)), 
+                PHDB::update(PHType::TYPE_CITOYEN,array("_id"   => new MongoId($inviterId)), 
                                                       array('$set' => array( Citoyen::NODE_FRIENDS.".".$invitedId => array( "since"=>time()))));
                 //add inviter to invited friends
                 if( !isset($invited[Citoyen::NODE_FRIENDS]) || ( isset($invited[Citoyen::NODE_FRIENDS]) && !isset( $invited[Citoyen::NODE_FRIENDS][$inviterId] ) ) )
-                    Yii::app()->mongodb->citoyens->update(array("_id"   => new MongoId($invitedId)), 
+                    PHDB::update(PHType::TYPE_CITOYEN,array("_id"   => new MongoId($invitedId)), 
                                                           array('$set' => array( Citoyen::NODE_FRIENDS.".".$inviterId => array( "since"=>time() ))));
 
                 //notify the invited user for validation
@@ -388,7 +388,7 @@ class Citoyen
         $fields = ( isset($params["fields"]) ) ? $params["fields"] : array();
         
         if( isset( $params["groupname"] ) ){
-            $group = Yii::app()->mongodb->groups->findOne ( array( "name" => $params["groupname"] ) );
+            $group = PHDB::findOne(PHType::TYPE_GROUPS,  array( "name" => $params["groupname"] ) );
             $where = array( Citoyen::$types2Nodes[$group["type"]] => (string)$group['_id']);
         } else if( isset( $params["cp"] ) ){
             $where = array( "cp" => $params["cp"] );
@@ -397,9 +397,9 @@ class Citoyen
         }
 
         if( !isset($params["count"]) ) 
-            $res = iterator_to_array(Yii::app()->mongodb->citoyens->find ( $where,$fields ));
+            $res = PHDB::find(PHType::TYPE_CITOYEN,  $where,$fields );
         else
-            $res = array('count' => Yii::app()->mongodb->citoyens->count ( $where,$fields ));
+            $res = array('count' => PHDB::count(PHType::TYPE_CITOYEN,  $where,$fields ));
         return $res;
     }
     

@@ -20,12 +20,12 @@ class SaveSessionAction extends CAction
             {
                 //udate the new app specific fields
                 $newInfos = array();
-                $newInfos['email'] = $email;
-                $newInfos['name'] = $name;
+                $newInfos['email'] = (string)$email;
+                $newInfos['name'] = (string)$name;
                 if( isset($_POST['survey']) )
                     $newInfos['survey'] = $_POST['survey'];
                 if( isset($_POST['message']) )
-                    $newInfos['message'] = $_POST['message'];
+                    $newInfos['message'] = (string)$_POST['message'];
                 if( isset($_POST['type']) )
                     $newInfos['type'] = $_POST['type'];
                 if( isset($_POST['tags']) && !empty($_POST['tags']) )
@@ -44,8 +44,7 @@ class SaveSessionAction extends CAction
                         //check for application specifics defined in DBs application entry
                     	if( isset( $app["moderation"] ) ){
                     		$newInfos['applications'][$appKey][SurveyType::STATUS_CLEARED] = false;
-                            //set a Notification for admin moderation 
-                            
+                            //TODO : set a Notification for admin moderation 
                         }
                         $res['applicationExist'] = true;
                     }else
