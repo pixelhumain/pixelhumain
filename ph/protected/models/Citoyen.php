@@ -157,13 +157,13 @@ class Citoyen
                     
                     //send validation mail
                     //TODO : make emails as cron jobs
-                    /*$message = new YiiMailMessage;
+                    $message = new YiiMailMessage;
                     $message->view = 'validation';
                     $message->setSubject('Confirmer votre compte Pixel Humain');
                     $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
                     $message->addTo("oceatoon@gmail.com");//$email
                     $message->from = Yii::app()->params['adminEmail'];
-                    Yii::app()->mail->send($message);*/
+                    Yii::app()->mail->send($message);
                     
                     //TODO : add an admin notification
                     /*Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_REGISTER,
@@ -225,13 +225,13 @@ class Citoyen
                     
                     //send validation mail
                     //TODO : make emails as cron jobs
-                    /*$message = new YiiMailMessage;
+                    $message = new YiiMailMessage;
                     $message->view = 'validation';
                     $message->setSubject('Confirmer votre compte Pixel Humain');
                     $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
-                    $message->addTo("oceatoon@gmail.com");//$email
+                    $message->addTo($email);
                     $message->from = Yii::app()->params['adminEmail'];
-                    Yii::app()->mail->send($message);*/
+                    Yii::app()->mail->send($message);
                     
                     //TODO : add an admin notification
                     Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_COMMUNECTED,
