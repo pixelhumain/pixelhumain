@@ -35,8 +35,24 @@ class SaveUserAction extends CAction
 
                 	$app = PHDB::findOne(PHType::TYPE_APPLICATIONS,array( "key"=> $appKey ) );
                     //check for application specifics defined in DBs application entry
-                	if( isset( $app["registration"] ) && ( $app["registration"] == "mustBeConfirmed" ))
-                		$newInfos['applications'][$appKey]["registrationConfirmed"] = false;
+                	if( isset( $app["registration"] ))
+                        if( $app["registration"] == "mustBeConfirmed" )
+                		      $newInfos['applications'][$appKey]["registrationConfirmed"] = false;
+                        else if( $app["registration"] == "mailValidation" )
+                        {
+                            Yii::app()->session["userId"] = "validateEmail"; 
+                            Yii::app()->session["userEmail"] = null;
+                            
+                            //send validation mail
+                            //TODO : make emails as cron jobs
+                            $message = new YiiMailMessage;
+                            $message->view = 'validation';
+                            $message->setSubject('Confirmer votre compte Pixel Humain');
+                            $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
+                            $message->addTo($email);
+                            $message->from = Yii::app()->params['adminEmail'];
+                            Yii::app()->mail->send($message);
+                        }
                 }
 
                 PHDB::update(PHType::TYPE_CITOYEN,

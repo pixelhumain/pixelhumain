@@ -14,5 +14,7 @@ class PH
         }
         return $menu;
     }
-    
+    public static function notlocalServer(){
+    	return (stripos($_SERVER['SERVER_NAME'], "127.0.0.1") === false && stripos($_SERVER['SERVER_NAME'], "localhost:8080") === false );
+    }
 }

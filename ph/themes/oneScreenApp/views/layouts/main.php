@@ -9,7 +9,7 @@ $cs->registerScriptFile(Yii::app()->theme->baseUrl.'../../webarch/assets/plugins
 $cs->registerCssFile(Yii::app()->theme->baseUrl."/css/style.css");
 $cs->registerCssFile(Yii::app()->theme->baseUrl."/css/font-awesome.min.css");
 $cs->registerScriptFile(Yii::app()->theme->baseUrl.'/js/index.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClientScript::POS_HEAD);
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,7 +38,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
     $this->renderPartial('application.views.layouts.modals.loginPwdFormNoSocial');
   else
     $this->renderPartial('application.views.layouts.modals.loginPwdFormNoSocial');
-  $this->renderPartial('application.views.layouts.modals.participer',array( "account" => $account));
+  $this->renderPartial('application.views.layouts.modals.participerSimple',array( "account" => $account));
   $this->renderPartial('application.views.layouts.modals.flashInfo');
 ?>
 </body>

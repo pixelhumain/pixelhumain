@@ -218,24 +218,24 @@ class Citoyen
                         $newAccount["name"] = $name;
                     //add to DB
                     PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
-                   
+
                     //set session elements for global credentials
                     Yii::app()->session["userId"] = (string)$newAccount["_id"]; 
                     Yii::app()->session["userEmail"] = $newAccount["email"];
                     
                     //send validation mail
                     //TODO : make emails as cron jobs
-                    $message = new YiiMailMessage;
+                    /*$message = new YiiMailMessage;
                     $message->view = 'validation';
                     $message->setSubject('Confirmer votre compte Pixel Humain');
                     $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
                     $message->addTo($email);
                     $message->from = Yii::app()->params['adminEmail'];
-                    Yii::app()->mail->send($message);
+                    Yii::app()->mail->send($message);*/
                     
                     //TODO : add an admin notification
-                    Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_COMMUNECTED,
-                                            "user"=>$newAccount["_id"]));
+                    /*Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_COMMUNECTED,
+                                            "user"=>$newAccount["_id"]));*/
                     
                     $res = array("result"=>true, "id"=>$newAccount,"isNewUser"=>true);
                } else
@@ -296,13 +296,13 @@ class Citoyen
         PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
         //send validation mail
         //TODO : make emails as cron jobs
-        /*$message = new YiiMailMessage;
+        $message = new YiiMailMessage;
         $message->view = 'validation';
         $message->setSubject('Confirmer votre compte Pixel Humain');
         $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
         $message->addTo("oceatoon@gmail.com");//$email
         $message->from = Yii::app()->params['adminEmail'];
-        Yii::app()->mail->send($message);*/
+        Yii::app()->mail->send($message);
 
         return array("userAdded"=>true,"id"=>(string)$newAccount["_id"]);
     }
