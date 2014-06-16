@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="loginFormLabel">S'inscrire ou se Connecter :</h3>
+        <h3 id="loginFormLabel">S'inscrire ou se Connecter dfgsdgsdf :</h3>
       </div>
       <div class="modal-body">
       	<p> S'inscrire pour soutenir le projet ou simplement suivre son avancement
