@@ -34,7 +34,12 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
 
   $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.header');
   echo $content;  
-  $this->renderPartial('webroot.themes.webarch.views.layouts.modals',array( "account" => $account));
+  if(!$this->hasSocial)
+    $this->renderPartial('application.views.layouts.modals.loginPwdFormNoSocial');
+  else
+    $this->renderPartial('application.views.layouts.modals.loginPwdFormNoSocial');
+  $this->renderPartial('application.views.layouts.modals.participer',array( "account" => $account));
+  $this->renderPartial('application.views.layouts.modals.flashInfo');
 ?>
 </body>
 </html>

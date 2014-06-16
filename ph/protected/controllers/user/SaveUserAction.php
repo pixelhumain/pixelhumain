@@ -15,7 +15,7 @@ class SaveUserAction extends CAction
         {
             //if exists login else create the new user
             $res = Citoyen::register( $email, $_POST["pwd"]);
-            if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) ))
+            if(PHDB::findOne(PHType::TYPE_CITOYEN,array( "email" => $email ) ))
             {
                 //udate the new app specific fields
                 $newInfos = array();
@@ -33,15 +33,16 @@ class SaveUserAction extends CAction
                     //when registration is done for an application it must be registered
                 	$newInfos['applications'] = array( $appKey => array( "usertype"=> (isset($_POST['type']) ) ? $_POST['type']:$_POST['app']  ));
 
-                	$app = Yii::app()->mongodb->applications->findOne( array( "key"=> $appKey ) );
+                	$app = PHDB::findOne(PHType::TYPE_APPLICATIONS,array( "key"=> $appKey ) );
                     //check for application specifics defined in DBs application entry
                 	if( isset( $app["registration"] ) && ( $app["registration"] == "mustBeConfirmed" ))
                 		$newInfos['applications'][$appKey]["registrationConfirmed"] = false;
                 }
 
-                Yii::app()->mongodb->citoyens->update( array("email" => $email), 
-                                                       array('$set' => $newInfos ) 
-                                                      );
+                PHDB::update(PHType::TYPE_CITOYEN,
+                            array("email" => $email), 
+                            array('$set' => $newInfos ) 
+                            );
             }
         } else
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');

@@ -13,6 +13,11 @@ class Controller extends CController
     public $secure=true;
     //show social button on login
     public $hasSocial=true;
+
+    //must be carefull with this technique
+    //can open the door to attacks 
+    //account usurpation is obvious , this needs to be doubled by mail validation
+    public $loginRegister=false;
 	/**
 	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
 	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
