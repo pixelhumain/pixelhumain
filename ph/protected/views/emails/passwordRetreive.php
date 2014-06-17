@@ -18,7 +18,7 @@
            <h3>Bienvenue au Pixel Humain !! </h3>
            Utilisez ce mot de passe :  <?php echo $pwd?>
            <br/>
-           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/index.php?r=citoyens/activate/user/<?php echo $user?>">Login</a>
+           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>">Login</a>
         </td>
       </tr>
       </table>

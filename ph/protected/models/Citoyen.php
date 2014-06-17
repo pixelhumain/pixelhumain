@@ -161,7 +161,10 @@ class Citoyen
                     $message->view = 'validation';
                     $message->setSubject('Confirmer votre compte Pixel Humain');
                     $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
-                    $message->addTo("oceatoon@gmail.com");//$email
+                    if(!PH::notlocalServer())
+                        $message->addTo(Yii::app()->params['adminEmail']);
+                    else
+                        $message->addTo($email);
                     $message->from = Yii::app()->params['adminEmail'];
                     Yii::app()->mail->send($message);
                     
