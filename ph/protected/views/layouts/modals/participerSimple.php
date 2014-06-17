@@ -82,7 +82,7 @@ initT['AccountModalsInit'] = function(){
     	});
     });
 
-    showEvent("registerHelpout");
+    //showEvent("registerHelpout");
 };
 
 </script>
