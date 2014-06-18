@@ -174,7 +174,7 @@ a.btn:hover{background-color: #F1C40F;}
   display: block;
 }
 footer {
-  width:100px;
+  width:100%;
   text-align: center;
   margin: auto;
 }

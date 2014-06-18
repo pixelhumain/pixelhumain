@@ -13,10 +13,10 @@
             	<table style="width:230px; float:left;margin-left:40px;">
             	
                   	<tr>
-                      	<td><input type="text" id="registerPwdEmail" name="registerPwdEmail" placeholder="Email" value="survey1@survey.com" ></td>
+                      	<td><input type="text" id="registerPwdEmail" name="registerPwdEmail" placeholder="Email"  ></td>
                   	</tr>
                   	<tr>
-                      	<td><input type="password" id="registerPwd" name="registerPwd" placeholder="Mot de passe (si Login)" ></td>
+                      	<td><input type="password" id="registerPwd" name="registerPwd" placeholder="Mot de passe" ></td>
                     </tr>
                   	
                   	
