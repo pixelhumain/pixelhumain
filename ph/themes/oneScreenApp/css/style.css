@@ -169,6 +169,18 @@ a.btn:hover{background-color: #F1C40F;}
   .title{font-size: large;font-weight: bold;margin-top: 37px;margin-left: 77px;}
   .topSpacer{margin-top: 280px;}
 }
+.mixcontainer:after {
+  content: "";
+  display: block;
+}
+footer {
+  width:100px;
+  text-align: center;
+  margin: auto;
+}
+footer img{
+  width: 60px;
+}
 
 /* ---------------- Loader ------------------- */
 

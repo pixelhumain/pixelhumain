@@ -6,7 +6,7 @@
         <h3 id="loginFormLabel">S'inscrire ou se Connecter : </h3>
       </div>
       <div class="modal-body">
-      	<p> S'inscrire pour soutenir le projet ou simplement suivre son avancement
+      	<p> Si vous voulez votez, il faut s'authentifier donc avoir un compte 
        	<br/>et si vous etes deja inscrit , connectez vous avec votre email d'inscription.</p>
         <form id="registerPwdForm" action="">
         	<section >
@@ -25,7 +25,7 @@
                 <table style="width:210px;float:right;margin-right:40px;">
                 
                   	<tr>
-                      	<td style="font-weight: bold"> Si vous n'avez pas de compte ce meme formulaire vous crééra un compte, sinon vous logguera</td>
+                      	<td style="font-weight: bold"> Si vous n'avez pas de compte ce même formulaire vous créera un compte, sinon vous logguera</td>
                   	</tr>
                   	
                 </table>
@@ -36,7 +36,7 @@
       </div>
        <div class="modal-footer">
           <a class="btn btn-warning " href="javascript:;" onclick="$('#registerPwdForm').submit();return false;"  >S'inscrire  ou se Connecter</a>
-          <a class="btn btn-warning " href="javascript:;" onclick="sendEmailPwd();"  >Regénéré mon Mot de passe</a>
+          <a class="btn btn-warning " href="javascript:;" onclick="sendEmailPwd();"  >Regénéré mon mot de passe</a>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
     </div>
