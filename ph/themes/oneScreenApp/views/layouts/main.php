@@ -44,7 +44,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
 ?>
 <footer class="site-footer">
   <a href="http://pixelhumain.com" target="_blank">
-  <img src='<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/logo/logo144.png' alt="PIXELHUMAIN: TOOLKIT CITOYEN LIBRE" title="PIXELHUMAIN: TOOLKIT CITOYEN LIBRE"/>
+  <img src='<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/logo/ctk.png' alt="PIXELHUMAIN: TOOLKIT CITOYEN LIBRE" title="PIXELHUMAIN: TOOLKIT CITOYEN LIBRE"/>
   </a>
 </footer>
 </body>
