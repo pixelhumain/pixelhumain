@@ -36,7 +36,7 @@
       </div>
        <div class="modal-footer">
           <a class="btn btn-warning " href="javascript:;" onclick="$('#registerPwdForm').submit();return false;"  >S'inscrire  ou se Connecter</a>
-          <a class="btn btn-warning " href="javascript:;" onclick="sendEmailPwd();"  >Regénéré mon mot de passe</a>
+          <a class="btn btn-warning " href="javascript:;" onclick="sendEmailPwd();"  >Mot de passe oublié</a>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
     </div>
