@@ -23,8 +23,13 @@ class SendEmailPwdAction extends CAction
             //TODO : make emails as cron jobs
             $message = new YiiMailMessage;
             $message->view = 'passwordRetreive';
-            $message->setSubject('Votre Mot de passe Pixel Humain');
-            $message->setBody(array("pwd"=>$pwd), 'text/html');
+            $app = ( isset($_POST["app"])) ? PHDB::findOne(PHType::TYPE_APPLICATIONS,array( "key" => $_POST["app"] ) ) : null;
+            $title = ( $app && isset($app["name"]) ) ? $app["name"] : "Pixel Humain";
+            $logo = ( $app && isset($app["logo"]) ) ? Yii::app()->getModule($app["key"])->assetsUrl.$app["logo"] : Yii::app()->getRequest()->getBaseUrl(true).'/images/logo/logo144.png';
+            $message->setSubject('Votre Mot de passe '.$title);
+            $message->setBody(array( "pwd"   => $pwd ,
+                                     "title" => $title ,
+                                     "logo"  => $logo ), 'text/html');
             if(!PH::notlocalServer())
                 $message->addTo(Yii::app()->params['adminEmail']);
             else

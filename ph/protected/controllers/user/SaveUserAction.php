@@ -47,8 +47,12 @@ class SaveUserAction extends CAction
                             //TODO : make emails as cron jobs
                             $message = new YiiMailMessage;
                             $message->view = 'validation';
-                            $message->setSubject('Confirmer votre compte Pixel Humain');
-                            $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
+                            $titre = $app["name"];
+                            $logo = ( isset($app["logo"]) ) ? $this->module->assetsUrl.$app["logo"] : Yii::app()->getRequest()->getBaseUrl(true).'/images/logo/logo144.png';
+                            $message->setSubject('Confirmer votre compte '.$title);
+                            $message->setBody(array( "user"  => $newAccount["_id"] ,
+                                                     "title" => $title ,
+                                                     "logo"  => $logo ), 'text/html');
                             $message->addTo($email);
                             $message->from = Yii::app()->params['adminEmail'];
                             Yii::app()->mail->send($message);
