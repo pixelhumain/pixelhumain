@@ -9,7 +9,7 @@ class Notification
     // A Citizen Notificaiton is saved in the Citizen Collection
     public static function saveCitizenNotification($params) {
         PHDB::update("citoyens", array("_id" => new MongoId($params['notifyUser'])), 
-            array('$push' => array( Citoyen::NODE_NOTIFICATIONS => $notification )) );
+            array('$push' => array( CitoyenType::NODE_NOTIFICATIONS => $notification )) );
     }
 
      /*

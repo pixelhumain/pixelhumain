@@ -2,23 +2,6 @@
 
 class Citoyen
 {
-    const GAME_REZOTAGE    = 10;
-
-    const NODE_ASSOCIATIONS     = 'associations';
-    const NODE_APPLICATIONS     = 'applications';
-    const NODE_EVENTS           = 'events';
-    const NODE_POSITIONS        = 'positions';
-    const NODE_FRIENDS          = 'friends';
-    const NODE_NOTIFICATIONS    = "notifications";
-
-    
-    public static $types2Nodes = array( Group::TYPE_ASSOCIATION  => self::NODE_ASSOCIATIONS,
-                                        Group::TYPE_ENTREPRISE   => "employees",
-                                        Group::TYPE_EVENT        => "participants",
-                                        Group::TYPE_PROJECT      => "participants");
-    
-    
-
     public static function isCommunected(){
         $user = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
         return (isset($user["cp"])) ? $user["cp"] : null;
@@ -142,7 +125,7 @@ class Citoyen
                    $newAccount = array(
                                 'email'=>$email,
                                 'pwd' => hash('sha256', $email.$pwd),
-                                'tobeactivated' => true,
+                                CitoyenType::NODE_TOBEACTIVATED => true,
                                 'adminNotified' => false,
                                 'created' => time()
                                 );
@@ -211,7 +194,7 @@ class Citoyen
                    //new user is creating account 
                    $newAccount = array(
                                 'email'=>$email,
-                                'tobeactivated' => true,
+                                CitoyenType::NODE_TOBEACTIVATED => true,
                                 'adminNotified' => false,
                                 'created' => time()
                                 );
@@ -347,16 +330,16 @@ class Citoyen
         if($inviter && $invited && $inviter != $invited)
         {
             //check if not allready linked
-            if( !isset($inviter[Citoyen::NODE_FRIENDS]) || ( isset($inviter[Citoyen::NODE_FRIENDS]) && !isset( $inviter[Citoyen::NODE_FRIENDS][$invitedId] ) ) )
+            if( !isset($inviter[CitoyenType::NODE_FRIENDS]) || ( isset($inviter[CitoyenType::NODE_FRIENDS]) && !isset( $inviter[CitoyenType::NODE_FRIENDS][$invitedId] ) ) )
             {
                 //add a relation link on the inviter
                 //add invited to inviter friends
                 PHDB::update(PHType::TYPE_CITOYEN,array("_id"   => new MongoId($inviterId)), 
-                                                      array('$set' => array( Citoyen::NODE_FRIENDS.".".$invitedId => array( "since"=>time()))));
+                                                      array('$set' => array( CitoyenType::NODE_FRIENDS.".".$invitedId => array( "since"=>time()))));
                 //add inviter to invited friends
-                if( !isset($invited[Citoyen::NODE_FRIENDS]) || ( isset($invited[Citoyen::NODE_FRIENDS]) && !isset( $invited[Citoyen::NODE_FRIENDS][$inviterId] ) ) )
+                if( !isset($invited[CitoyenType::NODE_FRIENDS]) || ( isset($invited[CitoyenType::NODE_FRIENDS]) && !isset( $invited[CitoyenType::NODE_FRIENDS][$inviterId] ) ) )
                     PHDB::update(PHType::TYPE_CITOYEN,array("_id"   => new MongoId($invitedId)), 
-                                                          array('$set' => array( Citoyen::NODE_FRIENDS.".".$inviterId => array( "since"=>time() ))));
+                                                          array('$set' => array( CitoyenType::NODE_FRIENDS.".".$inviterId => array( "since"=>time() ))));
 
                 //notify the invited user for validation
                 Notification::saveNotification (
