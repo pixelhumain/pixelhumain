@@ -9,7 +9,7 @@ $cs->registerScriptFile(Yii::app()->theme->baseUrl.'../../webarch/assets/plugins
 $cs->registerCssFile(Yii::app()->theme->baseUrl."/css/style.css");
 $cs->registerCssFile(Yii::app()->theme->baseUrl."/css/font-awesome.min.css");
 $cs->registerScriptFile(Yii::app()->theme->baseUrl.'/js/index.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClientScript::POS_HEAD);
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,6 +22,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
   <meta name="publisher" content="Pixel Humain">
   <meta name="author" lang="fr" content="Pixel Humain" />
   <meta name="robots" content="Index,Follow" />
+  <link rel='shortcut icon' type='image/x-icon' href="<?php echo $this->module->assetsUrl?>/img/favicon.ico" />
   <script>
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
@@ -38,8 +39,14 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
     $this->renderPartial('application.views.layouts.modals.loginPwdFormNoSocial');
   else
     $this->renderPartial('application.views.layouts.modals.loginPwdFormNoSocial');
-  $this->renderPartial('application.views.layouts.modals.participer',array( "account" => $account));
+  $this->renderPartial('application.views.layouts.modals.participerSimple',array( "account" => $account));
   $this->renderPartial('application.views.layouts.modals.flashInfo');
 ?>
+<footer class="site-footer">
+  <a href="http://pixelhumain.com" target="_blank">
+  <img src='<?php echo $this->module->assetsUrl; ?>/img/logo.png' alt="<?php echo $this->module->id; ?>" title="<?php echo $this->module->id; ?>"/>
+  </a>
+  
+</footer>
 </body>
 </html>

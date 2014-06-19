@@ -56,7 +56,7 @@ class CitoyensController extends Controller {
      */
 	public function actionIndex() {
 	       
-	    $user = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
+	    $user = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId(Yii::app()->session["userId"])));
 	    $this->render("index",array("user"=>$user));
 	}
 	/**
@@ -78,16 +78,17 @@ class CitoyensController extends Controller {
 	 * This is cleared by removing the tobeactivated field in the pixelactifs collection
 	 */
     public function actionActivate($user) {
-        $account = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId($user)));
+        $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId($user)));
         if($account){
             Yii::app()->session["userId"] = $user;
             Yii::app()->session["userEmail"] = $account["email"];
             //remove tobeactivated attribute on account
             Yii::app()->mongodb->citoyens->update(array("_id"=>new MongoId($user)), array('$unset' => array("tobeactivated"=>"")));
+            /*Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_ACTIVATED,
+                          "user"=>$account["_id"]));*/
         }
         //TODO : add notification to the cities,region,departement info panel
-        Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_ACTIVATED,
-                    			"user"=>$newAccount["_id"]));
+        
         
         //TODO : redirect to monPH page , inciter le rezotage local
         $this->redirect(Yii::app()->homeUrl);
@@ -137,7 +138,7 @@ class CitoyensController extends Controller {
                         //test pwd
                         if( $app["pwd"] == $_POST['registerPwd'] )
                         {
-                            $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST['registerEmail']));
+                            $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$_POST['registerEmail']));
                             if($account){
                                 //TODO : check if account is participant in the app
                                 Yii::app()->session["userId"] = $account["_id"];
@@ -173,7 +174,7 @@ class CitoyensController extends Controller {
 	{
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
 		{
-            $account = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
+            $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId(Yii::app()->session["userId"])));
             if($account)
             {
                   $newInfos = array();

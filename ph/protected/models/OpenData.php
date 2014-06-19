@@ -11,7 +11,8 @@ class OpenData
                     				"Martinique"=>"Martinique",
                     				"Mayotte"=>"Mayotte",
                     				"Nouvelle-Calédonie"=>"Nouvelle-Calédonie",
-                    				"Réunion"=>"Réunion");
+                    				"Réunion"=>"Réunion",
+                                    "St Pierre et Miquelon"=>"St Pierre et Miquelon");
     /**
      * Classé par departement 
      * ce tableau fait le lien entre Code postal et nom de ville

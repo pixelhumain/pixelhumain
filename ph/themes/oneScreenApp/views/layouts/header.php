@@ -1,3 +1,7 @@
+ <?php 
+if(count($this->sidebar1)>0)
+{
+?>
   <nav class="menu-opener">
     <div class="menu-opener-inner"></div>
   </nav>
@@ -15,3 +19,6 @@
         ?>
     </ul>
   </nav>
+<?php 
+}
+?>
