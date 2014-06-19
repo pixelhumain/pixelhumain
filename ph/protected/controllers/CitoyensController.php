@@ -199,25 +199,29 @@ class CitoyensController extends Controller {
                   $newInfos['country']=$_POST['countryPA'];
                   
                   //if a job in the list doesn't exist is new , add it to the jobType collection
-                  $jobList = Yii::app()->mongodb->jobTypes->findOne(array("_id"=>new MongoId("5202375bc073efb084a9d2aa")));
-                  foreach( explode(",", $_POST['helpJob']) as $job)
-                  {
-                      if(!in_array($job, $jobList['list']))
-                      {
-                          array_push($jobList['list'], $job);
-                          Yii::app()->mongodb->jobTypes->update(array("_id"=>new MongoId("5202375bc073efb084a9d2aa")), array('$set' => array("list"=>$jobList['list'])));
-                      }
+                  if( !empty($_POST['helpJob']) ){
+                    $jobList = Yii::app()->mongodb->jobTypes->findOne(array("_id"=>new MongoId("5202375bc073efb084a9d2aa")));
+                    foreach( explode(",", $_POST['helpJob']) as $job)
+                    {
+                        if(!in_array($job, $jobList['list']))
+                        {
+                            array_push($jobList['list'], $job);
+                            Yii::app()->mongodb->jobTypes->update(array("_id"=>new MongoId("5202375bc073efb084a9d2aa")), array('$set' => array("list"=>$jobList['list'])));
+                        }
+                    }
                   }
-                  
                   //if a job in the list doesn't exist is new , add it to the jobType collection
-                  $tagsList = Yii::app()->mongodb->tags->findOne(array("_id"=>new MongoId("51b972ebe4b075a9690bbc5b")));
-                  foreach( explode(",", $_POST['tagsPA']) as $tag)
-                  {
-                      if(!in_array($tag, $tagsList['list']))
-                      {
-                          array_push($tagsList['list'], $tag);
-                          Yii::app()->mongodb->tags->update(array("_id"=>new MongoId("51b972ebe4b075a9690bbc5b")), array('$set' => array("list"=>$tagsList['list'])));
-                      }
+                  
+                  if( !empty($_POST['helpJob']) ){
+                    $tagsList = Yii::app()->mongodb->tags->findOne(array("_id"=>new MongoId("51b972ebe4b075a9690bbc5b")));
+                    foreach( explode(",", $_POST['tagsPA']) as $tag)
+                    {
+                        if(!in_array($tag, $tagsList['list']))
+                        {
+                            array_push($tagsList['list'], $tag);
+                            Yii::app()->mongodb->tags->update(array("_id"=>new MongoId("51b972ebe4b075a9690bbc5b")), array('$set' => array("list"=>$tagsList['list'])));
+                        }
+                    }
                   }
                   
                   //if a job in the list doesn't exist is new , add it to the group collection

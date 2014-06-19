@@ -9,6 +9,7 @@ $cs->registerScriptFile(Yii::app()->theme->baseUrl.'../../webarch/assets/plugins
 $cs->registerCssFile(Yii::app()->theme->baseUrl."/css/style.css");
 $cs->registerCssFile(Yii::app()->theme->baseUrl."/css/font-awesome.min.css");
 $cs->registerScriptFile(Yii::app()->theme->baseUrl.'/js/index.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/nprogress/nprogress.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClientScript::POS_HEAD);
 ?>
 <!DOCTYPE html>
