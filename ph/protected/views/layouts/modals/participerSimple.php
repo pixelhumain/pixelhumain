@@ -42,6 +42,14 @@
             		<td class="txtright">au code postal</td>  
             		<td><input id="registerCP" name="registerCP" class="span2" value="<?php if($account && isset($account['cp']) )echo $account['cp'] ?>"></td>
         		</tr>
+            <tr>
+                <td class="txtright">Ancien mot de passe</td>  
+                <td><input id="registeroldpwd" name="registeroldpwd" class="span2"></td>
+            </tr>
+            <tr>
+                <td class="txtright">Nouveau mot de passe</td>  
+                <td><input id="registernewpwd" name="registernewpwd" class="span2" ></td>
+            </tr>
         		
           </table>
              
@@ -63,7 +71,7 @@ initT['AccountModalsInit'] = function(){
     $("#register2").submit( function(event){
     	event.preventDefault();
     	$("#participer").modal('hide');
-    	toggleSpinner();
+    	NProgress.start();
     	$.ajax({
     	  type: "POST",
     	  url: baseUrl+"/citoyens/register2",
@@ -71,12 +79,13 @@ initT['AccountModalsInit'] = function(){
     	  success: function(data){
     			  $("#flashInfo .modal-body").html(data.msg);
     			  
-    		  	  toggleSpinner();
+    		  	  
     		  	  if(data.newAsso){
         		  	  alert("L'association "+data.newAsso+" a été créé pour vous, merci d'inviter le président pour confirmer.");
     		  		  $("#invitation").modal('show');
     		  	  } else
     		  		$("#flashInfo").modal('show');
+              NProgress.done();
     	  },
     	  dataType: "json"
     	});

@@ -61,7 +61,7 @@ initT['loginModalsInit'] = function(){
     	log($(this).serialize());
     	event.preventDefault();
     	$("#loginForm").modal('hide');
-    	toggleSpinner();
+    	NProgress.start();
 
     	method = "login";
 	    params = { "email" : $("#registerPwdEmail").val() , 
@@ -88,7 +88,7 @@ initT['loginModalsInit'] = function(){
         			  $("#flashInfo").modal('show');
 				  }
     		  }
-    		  toggleSpinner();
+    		  NProgress.done();
     	  },
     	  dataType: "json"
     	});
@@ -101,6 +101,7 @@ initT['loginModalsInit'] = function(){
 function sendEmailPwd(){
       $(".loginFormLabel").html('Patience : <div class="loader"></div>');
       if($("#registerPwdEmail").val()!=""){
+        NProgress.start();
         $("#loginForm").modal('hide');
         params = { "email" : $("#registerPwdEmail").val()};
         <?php if( isset( $this->module->id ) && $this->loginRegister ) { ?>
@@ -113,7 +114,7 @@ function sendEmailPwd(){
           success: function(data){
               $("#flashInfo .modal-body").html(data.msg);
               $("#flashInfo").modal('show');
-              $(".loader").remove();
+              NProgress.done();
           },
           dataType: "json"
         });

@@ -14,6 +14,7 @@ $this->pageTitle=$this::moduleTitle;
 		{?>
 		<h2>A.P.I <?php echo $this::moduleTitle?>  : List all URLs</h2>
 		<ul>
+			
 			<?php foreach ($this->sidebar1 as  $e) { 
 				if( !isset( $e["menuOnly"])){
 				?>
@@ -34,7 +35,7 @@ $this->pageTitle=$this::moduleTitle;
 
 				<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
-			<?php }}?>
+			<?php }} ?>
 			
 		</ul>
 		<?php } else { ?>
