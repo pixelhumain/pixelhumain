@@ -1,9 +1,6 @@
 <?php
 /**
- * [actionAddWatcher 
- * create or update a user account
- * if the email doesn't exist creates a new citizens with corresponding data 
- * else simply adds the watcher app the users profile ]
+ * 
  * @return [json] 
  */
 class SendEmailPwdAction extends CAction
@@ -23,13 +20,16 @@ class SendEmailPwdAction extends CAction
             //TODO : make emails as cron jobs
             $message = new YiiMailMessage;
             $message->view = 'passwordRetreive';
-            $app = ( isset($_POST["app"])) ? PHDB::findOne(PHType::TYPE_APPLICATIONS,array( "key" => $_POST["app"] ) ) : null;
+            $app = new Application($_POST["app"]);
+
+            /*$app = ( isset($_POST["app"])) ? PHDB::findOne(PHType::TYPE_APPLICATIONS,array( "key" => $_POST["app"] ) ) : null;
             $title = ( $app && isset($app["name"]) ) ? $app["name"] : "Pixel Humain";
             $logo = ( $app && isset($app["logo"]) ) ? Yii::app()->getModule($app["key"])->assetsUrl.$app["logo"] : Yii::app()->getRequest()->getBaseUrl(true).'/images/logo/logo144.png';
-            $message->setSubject('Votre Mot de passe '.$title);
+            */
+            $message->setSubject('Réinitialisation du mot de passe pour le site '.$app->name);
             $message->setBody(array( "pwd"   => $pwd ,
-                                     "title" => $title ,
-                                     "logo"  => $logo ), 'text/html');
+                                     "title" => $app->name ,
+                                     "logo"  => $app->logoUrl ), 'text/html');
             if(!PH::notlocalServer())
                 $message->addTo(Yii::app()->params['adminEmail']);
             else

@@ -38,7 +38,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
   if(!$this->hasSocial)
     $this->renderPartial('application.views.layouts.modals.loginPwdFormNoSocial');
   else
-    $this->renderPartial('application.views.layouts.modals.loginPwdFormNoSocial');
+    $this->renderPartial('application.views.layouts.modals.loginPwdForm');
   $this->renderPartial('application.views.layouts.modals.participerSimple',array( "account" => $account));
   $this->renderPartial('application.views.layouts.modals.flashInfo');
 ?>
