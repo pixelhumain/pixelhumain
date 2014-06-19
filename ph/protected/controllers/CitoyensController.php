@@ -177,6 +177,7 @@ class CitoyensController extends Controller {
             $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId(Yii::app()->session["userId"])));
             if($account)
             {
+                  $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
                   $newInfos = array();
                   if( !empty($_POST['registerName']) )
                       $newInfos['name'] = $_POST['registerName'];
@@ -186,6 +187,12 @@ class CitoyensController extends Controller {
                   	  $newInfos['activeOnProject'] = $_POST['registerHelpout'];
                   if( !empty($_POST['helpJob']) )
                   	  $newInfos['positions'] = explode(",", $_POST['helpJob']);
+                  if( !empty($_POST['registeroldpwd']) && !empty($_POST['registernewpwd']) ){
+                      if( $account["pwd"] == hash( 'sha256', Yii::app()->session["userEmail"].$_POST['registeroldpwd'] ) )
+                        $newInfos['pwd'] = hash('sha256', Yii::app()->session["userEmail"].$_POST['registernewpwd']); 
+                      else
+                        $result["msg"] .= ", mais votre ancien mot passe ne correspond pas"; 
+                    }
                   /*if( isset($_POST['registerVieAssociative']) ){
                       //demande validation du responsable 
                   	  $newInfos['associations'] = explode(",", $_POST['listAssociation']);
@@ -238,7 +245,7 @@ class CitoyensController extends Controller {
                   
                   $where = array("_id" => new MongoId(Yii::app()->session["userId"]));	
                   Yii::app()->mongodb->citoyens->update($where, array('$set' => $newInfos));
-                  $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
+                  
                   
                   echo json_encode($result); 
             } else 

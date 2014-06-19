@@ -44,11 +44,11 @@
         		</tr>
             <tr>
                 <td class="txtright">Ancien mot de passe</td>  
-                <td><input id="registeroldpwd" name="registeroldpwd" class="span2"></td>
+                <td><input type="password" id="registeroldpwd" name="registeroldpwd" class="span2"></td>
             </tr>
             <tr>
                 <td class="txtright">Nouveau mot de passe</td>  
-                <td><input id="registernewpwd" name="registernewpwd" class="span2" ></td>
+                <td><input type="password" id="registernewpwd" name="registernewpwd" class="span2" ></td>
             </tr>
         		
           </table>
