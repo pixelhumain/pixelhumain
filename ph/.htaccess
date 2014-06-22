@@ -541,10 +541,11 @@ RedirectMatch 404 /\\.git(/|$)
 
 
 RewriteEngine On
-RewriteBase /ph/
+#RewriteBase /ph/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)\?*$ index.php/$1 [L,QSA]
+#RewriteRule ^(.*)\?*$ index.php/$1 [L,QSA]
+RewriteRule index.php
 
 # Tmp for large data uploads 
 <IfModule mod_php5.c>
