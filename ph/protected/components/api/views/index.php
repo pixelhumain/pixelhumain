@@ -10,7 +10,11 @@ $this->pageTitle=$this::moduleTitle;
 <div class="containeri apiList">
 	<div class="hero-uniti">
 		<?php 
-		if( isset( Yii::app()->session["userId"]) && isset($user[CitoyenType::NODE_ISADMIN]) ) 
+		$user = PHDB::findOne(PHType::TYPE_CITOYEN, array("_id"=>new MongoId(Yii::app()->session["userId"])));
+		if( (isset( Yii::app()->session["userId"]) && isset($user[CitoyenType::NODE_ISADMIN]) )
+			|| ( isset( $this->module ) && isset( $user[PHType::TYPE_APPLICATIONS])
+										&& isset( $user[PHType::TYPE_APPLICATIONS][$this->module->id])
+										&& isset( $user[PHType::TYPE_APPLICATIONS][$this->module->id][CitoyenType::NODE_ISADMIN])  ) )
 		{?>
 		<h2>A.P.I <?php echo $this::moduleTitle?>  : List all URLs</h2>
 		<ul>
