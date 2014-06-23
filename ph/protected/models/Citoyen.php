@@ -2,21 +2,26 @@
 
 class Citoyen
 {
-    public static function isCommunected(){
+    public static function isCommunected()
+    {
         $user = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
         return (isset($user["cp"])) ? $user["cp"] : null;
     }
-    public static function isAdminUser(){
+    public static function isAdminUser()
+    {
         return ( isset(Yii::app()->session["userIsAdmin"]) && Yii::app()->session["userIsAdmin"] ) ;  
     }
-    public static function isAppAdmin($userId,$app) {
+    public static function isAppAdmin($userId,$app) 
+    {
         $user = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId($userId))); 
         return (isset($user["applications"]) && isset($user["applications"][$app]) && isset($user["applications"][$app]["isAdmin"])) ;
-     }
-     public static function isAppUser($userId,$app) {
+    }
+    public static function isAppUser($userId,$app) 
+    {
         $user = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId($userId))); 
         return (isset($user["applications"]) && isset($user["applications"][$app]));
      }
+
     /**
      * Register or Login
      * on PH registration requires only an email 
@@ -92,10 +97,10 @@ class Citoyen
             } else if($loginRegister){
                 $res = self::register( $email, $pwd );
             } else
-                $res = array("result"=>false, "msg"=>"Vous devez remplir un email valide et un mot de passe .");
+                $res = array("result"=>false, "msg"=>"Merci de saisir un email valide et un mot de passe");
             
         } else
-            $res = array("result"=>false, "msg"=>"Cette requete ne peut aboutir.");
+            $res = array("result"=>false, "msg"=>"Cette requête ne peut aboutir. Merci de bien vouloir réessayer en complétant les champs nécessaires");
         return $res;
     }
 

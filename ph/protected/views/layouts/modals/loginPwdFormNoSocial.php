@@ -6,7 +6,7 @@
         <h3 id="loginFormLabel">S'inscrire ou se Connecter : </h3>
       </div>
       <div class="modal-body">
-      	<p> Si vous voulez votez, il faut s'authentifier donc avoir un compte 
+      	<p class="loginFormToptxt"> Il faut s'authentifier donc avoir un compte 
        	<br/>et si vous etes deja inscrit , connectez vous avec votre email d'inscription.</p>
         <form id="registerPwdForm" action="">
         	<section >
@@ -25,7 +25,7 @@
                 <table style="width:210px;float:right;margin-right:40px;">
                 
                   	<tr>
-                      	<td style="font-weight: bold"> Si vous n'avez pas de compte ce même formulaire vous créera un compte, sinon vous logguera</td>
+                      	<td style="font-weight: bold" class="loginFormToptxt2"> Si vous n'avez pas de compte ce même formulaire vous créera un compte, sinon vous logguera</td>
                   	</tr>
                   	
                 </table>
@@ -118,7 +118,9 @@ function sendEmailPwd(){
           },
           dataType: "json"
         });
-      }else 
-        alert("il faudrait peut etre mettre un email, non ?");
+      }else {
+        $("#flashInfo .modal-body").html("il faudrait peut etre mettre un email, non ?");
+        $("#flashInfo").modal('show');
+      }
 }
 </script>
