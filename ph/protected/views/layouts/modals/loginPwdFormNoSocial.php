@@ -119,7 +119,7 @@ function sendEmailPwd(){
           dataType: "json"
         });
       }else {
-        $("#flashInfo .modal-body").html("il faudrait peut etre mettre un email, non ?");
+        $("#flashInfo .modal-body").html("Merci compléter le champ Email pour recevoir votre mot de passe.");
         $("#flashInfo").modal('show');
       }
 }

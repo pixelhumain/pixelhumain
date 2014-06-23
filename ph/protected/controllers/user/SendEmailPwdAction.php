@@ -37,7 +37,7 @@ class SendEmailPwdAction extends CAction
             $message->from = Yii::app()->params['adminEmail'];
             Yii::app()->mail->send($message);
 
-            $res = array("result"=>true,"msg"=>"Veuillez vérifier votre boite Email, vous y trouverez votre mot de passe.");
+            $res = array("result"=>true,"msg"=>"Un mail avec un nouveau mot de passe vous a été envoyé à votre adresse email. Merci.");
         } else {
             //TODO evoyer un email de presentation 
             $res = array("result"=>false,"msg"=>"Cet email n'existe pas, vous pouvez le creer par contre.");
