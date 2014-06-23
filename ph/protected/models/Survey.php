@@ -18,20 +18,20 @@ class Survey
 		     		if($params["action"]){
 		     			PHDB::update( PHType::TYPE_SURVEYS, 
 		     									array("_id"=>new MongoId($params["survey"])),
-		     									array('$unset' => array('applications.survey.cleared' => true))
+		     									array('$unset' => array('applications.'.$params["app"].'.cleared' => true))
 		     								);
 		     			$res["msg"] = "EntryCleared";
 		     			$res["result"] = true;
 		     		} else {
 		     			PHDB::update(  PHType::TYPE_SURVEYS, 
 		     								    array("_id"=>new MongoId($params["survey"])),
-		     									array('$set' => array('applications.survey.cleared' => "refused"))
+		     									array('$set' => array('applications.'.$params["app"].'.cleared' => "refused"))
 		     								);
 		     			$res["msg"] = "EntryRefused";
 		     		}
-		     	} else {
+		     	} else 
 		     		$res["msg"] = "Nothing to clear on this entry";
-		     	}
+		     	
 
 		     	$res["survey"] = PHDB::findOne( PHType::TYPE_SURVEYS, array("_id"=>new MongoId($params["survey"])) );
 		     } else 
