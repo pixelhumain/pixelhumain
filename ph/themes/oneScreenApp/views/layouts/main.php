@@ -44,7 +44,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
   $this->renderPartial('application.views.layouts.modals.flashInfo');
 ?>
 <footer class="site-footer">
-  <a href="http://pixelhumain.com" target="_blank">
+  <a href="http://partipirate.pm" target="_blank">
   <img src='<?php echo $this->module->assetsUrl; ?>/img/logo.png' alt="<?php echo $this->module->id; ?>" title="<?php echo $this->module->id; ?>"/>
   </a>
   
