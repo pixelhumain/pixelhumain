@@ -154,8 +154,11 @@ class Citoyen
                     //TODO : make emails as cron jobs
                     $message = new YiiMailMessage;
                     $message->view = 'validation';
-                    $message->setSubject('Confirmer votre compte Pixel Humain');
-                    $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
+                    $app = new Application($_POST["app"]);
+                    $message->setSubject('Confirmer votre compte  pour le site '.$app->name);
+                    $message->setBody(array( "user"=>$newAccount["_id"] ,
+                                             "title" => $app->name ,
+                                             "logo"  => $app->logoUrl ), 'text/html');
                     if(!PH::notlocalServer())
                         $message->addTo(Yii::app()->params['adminEmail']);
                     else

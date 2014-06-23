@@ -65,11 +65,11 @@ initT['loginModalsInit'] = function(){
 
     	method = "login";
 	    params = { "email" : $("#registerPwdEmail").val() , 
-                   "pwd" : $("#registerPwd").val()
+                   "pwd" : $("#registerPwd").val(),
                 };
       <?php if( isset( $this->module->id ) && $this->loginRegister ) { ?>
-      params.loginRegister =1;
-      params.app = "<?php echo $this->module->id?>";
+        params.loginRegister =1;
+        params.app = "<?php echo $this->module->id?>";
       <?php } ?>
       log(params);
     	$.ajax({
