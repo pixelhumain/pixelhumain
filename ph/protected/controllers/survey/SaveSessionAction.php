@@ -31,7 +31,8 @@ class SaveSessionAction extends CAction
                 if( isset($_POST['tags']) && !empty($_POST['tags']) )
                     $newInfos['tags'] = explode(",",$_POST['tags']);
                 if( isset($_POST['cp']) )
-                    $newInfos['cp'] = $_POST['cp'];
+                    $newInfos['cp'] = explode(",",$_POST['cp']);
+
                 $newInfos['created'] = time();
                 //specific application routines
                 if( isset( $_POST["app"] ) )
