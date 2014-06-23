@@ -5,15 +5,12 @@
     <div class="modal-content">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="participerLabel">Inscription réussie, Étape suivante ?</h3>
+    <h3 id="participerLabel">Information utilisateur</h3>
   </div>
   <div class="modal-body" style="max-height:550px" >
-  <p> Un mail de validation vous a été envoyé
-   <br/>En attendant vous pouvez compléter votre inscription ci-dessous</p>
+  <p></p>
     <form id="register2" style="line-height:40px;">
         <section>
-          
-          	
           	<table>
               	<tr>
                   	<td class="txtright"></td>
@@ -26,7 +23,7 @@
               	
         		<input id="typePA" name="typePA" type="hidden" value="citoyen"/>
         		<tr>
-                  	<td class="txtright">j'habite en  </td>
+                  	<td class="txtright">j'habite </td>
                   	<td>
         		<?php 
                           $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
