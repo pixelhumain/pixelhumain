@@ -16,7 +16,7 @@ class SaveSessionAction extends CAction
             $email = $_POST["email"];
             $name  = $_POST['name'];
             //if exists login else create the new user
-            if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) ))
+            if(PHDB::findOne (PHType::TYPE_CITOYEN, array( "email" => $email ) ))
             {
                 //udate the new app specific fields
                 $newInfos = array();
@@ -37,7 +37,7 @@ class SaveSessionAction extends CAction
                 if( isset( $_POST["app"] ) )
                 {
                     $appKey = $_POST["app"];
-                    if($app = Yii::app()->mongodb->applications->findOne( array( "key"=> $appKey ) ))
+                    if($app = PHDB::findOne (PHType::TYPE_APPLICATIONS,  array( "key"=> $appKey ) ))
                     {
                         //when registration is done for an application it must be registered
                     	$newInfos['applications'] = array( $appKey => array( "usertype"=> (isset($_POST['type']) ) ? $_POST['type']:$_POST['app']  ));

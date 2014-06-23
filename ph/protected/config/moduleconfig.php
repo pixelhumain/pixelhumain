@@ -9,4 +9,5 @@ $activeModules = array(
 	'communecter',
 	'survey',
 	'sig',
-	'pppm');
+	'pppm',
+	'githubs');

@@ -27,4 +27,8 @@ class PHDB
     {
         return Yii::app()->mongodb->selectCollection($collection)->insert($info);
     }
+    public static function remove( $collection, $where )
+    {
+        return Yii::app()->mongodb->selectCollection($collection)->remove($where);
+    }
 }

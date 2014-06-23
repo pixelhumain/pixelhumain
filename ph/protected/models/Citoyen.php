@@ -3,13 +3,20 @@
 class Citoyen
 {
     public static function isCommunected(){
-        $user = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
+        $user = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
         return (isset($user["cp"])) ? $user["cp"] : null;
     }
     public static function isAdminUser(){
         return ( isset(Yii::app()->session["userIsAdmin"]) && Yii::app()->session["userIsAdmin"] ) ;  
     }
-    
+    public static function isAppAdmin($userId,$app) {
+        $user = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId($userId))); 
+        return (isset($user["applications"]) && isset($user["applications"][$app]) && isset($user["applications"][$app]["isAdmin"])) ;
+     }
+     public static function isAppUser($userId,$app) {
+        $user = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId($userId))); 
+        return (isset($user["applications"]) && isset($user["applications"][$app]));
+     }
     /**
      * Register or Login
      * on PH registration requires only an email 
