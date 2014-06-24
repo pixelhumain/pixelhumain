@@ -390,7 +390,7 @@ class Citoyen
         
         if( isset( $params["groupname"] ) ){
             $group = PHDB::findOne(PHType::TYPE_GROUPS,  array( "name" => $params["groupname"] ) );
-            $where = array( Citoyen::$types2Nodes[$group["type"]] => (string)$group['_id']);
+            $where = array( CitoyenType::$types2Nodes[$group["type"]] => (string)$group['_id']);
         } else if( isset( $params["cp"] ) ){
             $where = array( "cp" => $params["cp"] );
         } else if( isset( $params["app"] ) ){
