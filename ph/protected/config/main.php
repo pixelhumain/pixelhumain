@@ -14,7 +14,7 @@ return array(
 	
 	//SPECIFIC MODULE confis
 	//'defaultController' => 'communecter/default/index',
-	//'homeUrl' => "/ph/survey",
+	'homeUrl' => "/ph/pppm",
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -86,12 +86,16 @@ return array(
 
 	// application components
 	'components'=>array(
-		'user'=>array(
-			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
-		),
+		'session' => array(
+            'timeout' => 86400,
+        ),
+        'user'=>array(
+            'allowAutoLogin' => true,
+            'autoRenewCookie' => true,
+            'authTimeout' => 31557600,
+        ),
+        
 		// uncomment the following to enable URLs in path-format
-		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'showScriptName'=>false,

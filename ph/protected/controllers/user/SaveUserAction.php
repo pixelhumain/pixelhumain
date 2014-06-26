@@ -15,7 +15,7 @@ class SaveUserAction extends CAction
         {
             //if exists login else create the new user
             $res = Citoyen::register( $email, $_POST["pwd"]);
-            if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) ))
+            if(PHDB::findOne(PHType::TYPE_CITOYEN,array( "email" => $email ) ))
             {
                 //udate the new app specific fields
                 $newInfos = array();
@@ -33,15 +33,36 @@ class SaveUserAction extends CAction
                     //when registration is done for an application it must be registered
                 	$newInfos['applications'] = array( $appKey => array( "usertype"=> (isset($_POST['type']) ) ? $_POST['type']:$_POST['app']  ));
 
-                	$app = Yii::app()->mongodb->applications->findOne( array( "key"=> $appKey ) );
+                	$app = PHDB::findOne(PHType::TYPE_APPLICATIONS,array( "key"=> $appKey ) );
                     //check for application specifics defined in DBs application entry
-                	if( isset( $app["registration"] ) && ( $app["registration"] == "mustBeConfirmed" ))
-                		$newInfos['applications'][$appKey]["registrationConfirmed"] = false;
+                	if( isset( $app["registration"] ))
+                        if( $app["registration"] == "mustBeConfirmed" )
+                		      $newInfos['applications'][$appKey]["registrationConfirmed"] = false;
+                        else if( $app["registration"] == "mailValidation" )
+                        {
+                            Yii::app()->session["userId"] = "validateEmail"; 
+                            Yii::app()->session["userEmail"] = null;
+                            
+                            //send validation mail
+                            //TODO : make emails as cron jobs
+                            $message = new YiiMailMessage;
+                            $message->view = 'validation';
+                            $titre = $app["name"];
+                            $logo = ( isset($app["logo"]) ) ? $this->module->assetsUrl.$app["logo"] : Yii::app()->getRequest()->getBaseUrl(true).'/images/logo/logo144.png';
+                            $message->setSubject('Confirmer votre compte '.$title);
+                            $message->setBody(array( "user"  => $newAccount["_id"] ,
+                                                     "title" => $title ,
+                                                     "logo"  => $logo ), 'text/html');
+                            $message->addTo($email);
+                            $message->from = Yii::app()->params['adminEmail'];
+                            Yii::app()->mail->send($message);
+                        }
                 }
 
-                Yii::app()->mongodb->citoyens->update( array("email" => $email), 
-                                                       array('$set' => $newInfos ) 
-                                                      );
+                PHDB::update(PHType::TYPE_CITOYEN,
+                            array("email" => $email), 
+                            array('$set' => $newInfos ) 
+                            );
             }
         } else
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');

@@ -6,10 +6,19 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScrip
 $this->pageTitle=$this::moduleTitle;
 ?>
 
+
 <div class="containeri apiList">
 	<div class="hero-uniti">
+		<?php 
+		$user = PHDB::findOne(PHType::TYPE_CITOYEN, array("_id"=>new MongoId(Yii::app()->session["userId"])));
+		if( (isset( Yii::app()->session["userId"]) && isset($user[CitoyenType::NODE_ISADMIN]) )
+			|| ( isset( $this->module ) && isset( $user[PHType::TYPE_APPLICATIONS])
+										&& isset( $user[PHType::TYPE_APPLICATIONS][$this->module->id])
+										&& isset( $user[PHType::TYPE_APPLICATIONS][$this->module->id][CitoyenType::NODE_ISADMIN])  ) )
+		{?>
 		<h2>A.P.I <?php echo $this::moduleTitle?>  : List all URLs</h2>
 		<ul>
+			
 			<?php foreach ($this->sidebar1 as  $e) { 
 				if( !isset( $e["menuOnly"])){
 				?>
@@ -30,8 +39,12 @@ $this->pageTitle=$this::moduleTitle;
 
 				<!-- ////////////////////////////////////////////////////////////////////////////// -->
 
-			<?php }}?>
+			<?php }} ?>
 			
 		</ul>
+		<?php } else { ?>
+			<h2>Restricted Area</h2>
+			you can contact an admin <a href="mail:contact@pixelhumain.com"><i class="fa fa-mail"></i></a>
+		<?php } ?>
 	</div>
 </div>

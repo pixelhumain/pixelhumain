@@ -61,3 +61,12 @@ function initSequence(){
     });
     initT = null;
 }
+
+function showEvent(id){
+	$("#"+id).click(function(){
+    	if($("#"+id).prop("checked"))
+    		$("#"+id+"What").removeClass("hidden");
+    	else
+    		$("#"+id+"What").addClass("hidden");
+    });
+}

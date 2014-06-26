@@ -16,36 +16,36 @@ class SaveSessionAction extends CAction
             $email = $_POST["email"];
             $name  = $_POST['name'];
             //if exists login else create the new user
-            if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) ))
+            if(PHDB::findOne (PHType::TYPE_CITOYEN, array( "email" => $email ) ))
             {
                 //udate the new app specific fields
                 $newInfos = array();
-                $newInfos['email'] = $email;
-                $newInfos['name'] = $name;
+                $newInfos['email'] = (string)$email;
+                $newInfos['name'] = (string)$name;
                 if( isset($_POST['survey']) )
                     $newInfos['survey'] = $_POST['survey'];
                 if( isset($_POST['message']) )
-                    $newInfos['message'] = $_POST['message'];
+                    $newInfos['message'] = (string)$_POST['message'];
                 if( isset($_POST['type']) )
                     $newInfos['type'] = $_POST['type'];
                 if( isset($_POST['tags']) && !empty($_POST['tags']) )
                     $newInfos['tags'] = explode(",",$_POST['tags']);
                 if( isset($_POST['cp']) )
-                    $newInfos['cp'] = $_POST['cp'];
+                    $newInfos['cp'] = explode(",",$_POST['cp']);
+
                 $newInfos['created'] = time();
                 //specific application routines
                 if( isset( $_POST["app"] ) )
                 {
                     $appKey = $_POST["app"];
-                    if($app = Yii::app()->mongodb->applications->findOne( array( "key"=> $appKey ) ))
+                    if($app = PHDB::findOne (PHType::TYPE_APPLICATIONS,  array( "key"=> $appKey ) ))
                     {
                         //when registration is done for an application it must be registered
                     	$newInfos['applications'] = array( $appKey => array( "usertype"=> (isset($_POST['type']) ) ? $_POST['type']:$_POST['app']  ));
                         //check for application specifics defined in DBs application entry
                     	if( isset( $app["moderation"] ) ){
                     		$newInfos['applications'][$appKey][SurveyType::STATUS_CLEARED] = false;
-                            //set a Notification for admin moderation 
-                            
+                            //TODO : set a Notification for admin moderation 
                         }
                         $res['applicationExist'] = true;
                     }else

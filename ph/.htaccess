@@ -1,7 +1,7 @@
 # Note .htaccess files are an overhead, this logic should be in your Apache
 # config if possible: httpd.apache.org/docs/2.2/howto/htaccess.html
 
-# Techniques in here adapted from all over, including:
+# Techniques in here ad²apted from all over, including:
 #   Kroc Camen: camendesign.com/.htaccess
 #   perishablepress.com/press/2006/01/10/stupid-htaccess-tricks/
 #   Sample .htaccess file of CMS MODx: modxcms.com
@@ -540,16 +540,11 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
 RedirectMatch 404 /\\.git(/|$)
 
 
-RewriteEngine on
-
-# If you are in a sub folder of your web root you
-# might have to enable something like this:
-#
-# RewriteBase /~antonio/app/frontend/www
-
+RewriteEngine On
+#RewriteBase /ph/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
+#RewriteRule ^(.*)\?*$ index.php/$1 [L,QSA]
 RewriteRule . index.php
 
 # Tmp for large data uploads 

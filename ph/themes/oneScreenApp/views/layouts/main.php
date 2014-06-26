@@ -9,7 +9,8 @@ $cs->registerScriptFile(Yii::app()->theme->baseUrl.'../../webarch/assets/plugins
 $cs->registerCssFile(Yii::app()->theme->baseUrl."/css/style.css");
 $cs->registerCssFile(Yii::app()->theme->baseUrl."/css/font-awesome.min.css");
 $cs->registerScriptFile(Yii::app()->theme->baseUrl.'/js/index.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/nprogress/nprogress.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClientScript::POS_HEAD);
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,6 +23,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
   <meta name="publisher" content="Pixel Humain">
   <meta name="author" lang="fr" content="Pixel Humain" />
   <meta name="robots" content="Index,Follow" />
+  <link rel='shortcut icon' type='image/x-icon' href="<?php echo $this->module->assetsUrl?>/img/favicon.ico" />
   <script>
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
@@ -34,7 +36,25 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
 
   $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.header');
   echo $content;  
-  $this->renderPartial('webroot.themes.webarch.views.layouts.modals',array( "account" => $account));
+  if(!$this->hasSocial)
+    $this->renderPartial('application.views.layouts.modals.loginPwdFormNoSocial');
+  else
+    $this->renderPartial('application.views.layouts.modals.loginPwdForm');
+  $this->renderPartial('application.views.layouts.modals.participerSimple',array( "account" => $account));
+  $this->renderPartial('application.views.layouts.modals.flashInfo');
 ?>
+<footer class="site-footer">
+  <?php if($this->module->assetsUrl){?>
+  <a href="http://partipirate.pm" target="_blank">
+  <img src='<?php echo $this->module->assetsUrl; ?>/img/logo.png' alt="<?php echo $this->module->id; ?>" title="<?php echo $this->module->id; ?>"/>
+  </a>
+  <br/>
+  <a href="#cguForm" class="btn " role="button" data-toggle="modal" title="Condition Generale d'utilisation" ><i class="fa fa-signout"></i>CGU</a>
+  <?php } else {?>
+  <a href="http://pixelhumain.com" target="_blank">
+    <img src='<?php echo Yii::app()->request->baseUrl?>/images/logo/logo144.png' alt="Pixel Humain" width="100" title="<?php echo $this->module->id; ?>"/>
+  </a>
+  <?php } ?>
+</footer>
 </body>
 </html>

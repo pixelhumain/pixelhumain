@@ -24,6 +24,9 @@ class Swift_Transport_StreamBuffer
   implements Swift_Transport_IoBuffer
 {
   
+  /* Add this to make mailer work with PHP 5.5*/
+  private $_sequence;
+  
   /** A primary socket */
   private $_stream;
   

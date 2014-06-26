@@ -56,7 +56,7 @@ class CitoyensController extends Controller {
      */
 	public function actionIndex() {
 	       
-	    $user = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
+	    $user = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId(Yii::app()->session["userId"])));
 	    $this->render("index",array("user"=>$user));
 	}
 	/**
@@ -78,16 +78,17 @@ class CitoyensController extends Controller {
 	 * This is cleared by removing the tobeactivated field in the pixelactifs collection
 	 */
     public function actionActivate($user) {
-        $account = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId($user)));
+        $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId($user)));
         if($account){
             Yii::app()->session["userId"] = $user;
             Yii::app()->session["userEmail"] = $account["email"];
             //remove tobeactivated attribute on account
             Yii::app()->mongodb->citoyens->update(array("_id"=>new MongoId($user)), array('$unset' => array("tobeactivated"=>"")));
+            /*Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_ACTIVATED,
+                          "user"=>$account["_id"]));*/
         }
         //TODO : add notification to the cities,region,departement info panel
-        Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_ACTIVATED,
-                    			"user"=>$newAccount["_id"]));
+        
         
         //TODO : redirect to monPH page , inciter le rezotage local
         $this->redirect(Yii::app()->homeUrl);
@@ -137,7 +138,7 @@ class CitoyensController extends Controller {
                         //test pwd
                         if( $app["pwd"] == $_POST['registerPwd'] )
                         {
-                            $account = Yii::app()->mongodb->citoyens->findOne(array("email"=>$_POST['registerEmail']));
+                            $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$_POST['registerEmail']));
                             if($account){
                                 //TODO : check if account is participant in the app
                                 Yii::app()->session["userId"] = $account["_id"];
@@ -173,9 +174,10 @@ class CitoyensController extends Controller {
 	{
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
 		{
-            $account = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
+            $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId(Yii::app()->session["userId"])));
             if($account)
             {
+                  $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
                   $newInfos = array();
                   if( !empty($_POST['registerName']) )
                       $newInfos['name'] = $_POST['registerName'];
@@ -185,6 +187,12 @@ class CitoyensController extends Controller {
                   	  $newInfos['activeOnProject'] = $_POST['registerHelpout'];
                   if( !empty($_POST['helpJob']) )
                   	  $newInfos['positions'] = explode(",", $_POST['helpJob']);
+                  if( !empty($_POST['registeroldpwd']) && !empty($_POST['registernewpwd']) ){
+                      if( $account["pwd"] == hash( 'sha256', Yii::app()->session["userEmail"].$_POST['registeroldpwd'] ) )
+                        $newInfos['pwd'] = hash('sha256', Yii::app()->session["userEmail"].$_POST['registernewpwd']); 
+                      else
+                        $result["msg"] .= ", mais votre ancien mot passe ne correspond pas"; 
+                    }
                   /*if( isset($_POST['registerVieAssociative']) ){
                       //demande validation du responsable 
                   	  $newInfos['associations'] = explode(",", $_POST['listAssociation']);
@@ -198,25 +206,29 @@ class CitoyensController extends Controller {
                   $newInfos['country']=$_POST['countryPA'];
                   
                   //if a job in the list doesn't exist is new , add it to the jobType collection
-                  $jobList = Yii::app()->mongodb->jobTypes->findOne(array("_id"=>new MongoId("5202375bc073efb084a9d2aa")));
-                  foreach( explode(",", $_POST['helpJob']) as $job)
-                  {
-                      if(!in_array($job, $jobList['list']))
-                      {
-                          array_push($jobList['list'], $job);
-                          Yii::app()->mongodb->jobTypes->update(array("_id"=>new MongoId("5202375bc073efb084a9d2aa")), array('$set' => array("list"=>$jobList['list'])));
-                      }
+                  if( !empty($_POST['helpJob']) ){
+                    $jobList = Yii::app()->mongodb->jobTypes->findOne(array("_id"=>new MongoId("5202375bc073efb084a9d2aa")));
+                    foreach( explode(",", $_POST['helpJob']) as $job)
+                    {
+                        if(!in_array($job, $jobList['list']))
+                        {
+                            array_push($jobList['list'], $job);
+                            Yii::app()->mongodb->jobTypes->update(array("_id"=>new MongoId("5202375bc073efb084a9d2aa")), array('$set' => array("list"=>$jobList['list'])));
+                        }
+                    }
                   }
-                  
                   //if a job in the list doesn't exist is new , add it to the jobType collection
-                  $tagsList = Yii::app()->mongodb->tags->findOne(array("_id"=>new MongoId("51b972ebe4b075a9690bbc5b")));
-                  foreach( explode(",", $_POST['tagsPA']) as $tag)
-                  {
-                      if(!in_array($tag, $tagsList['list']))
-                      {
-                          array_push($tagsList['list'], $tag);
-                          Yii::app()->mongodb->tags->update(array("_id"=>new MongoId("51b972ebe4b075a9690bbc5b")), array('$set' => array("list"=>$tagsList['list'])));
-                      }
+                  
+                  if( !empty($_POST['helpJob']) ){
+                    $tagsList = Yii::app()->mongodb->tags->findOne(array("_id"=>new MongoId("51b972ebe4b075a9690bbc5b")));
+                    foreach( explode(",", $_POST['tagsPA']) as $tag)
+                    {
+                        if(!in_array($tag, $tagsList['list']))
+                        {
+                            array_push($tagsList['list'], $tag);
+                            Yii::app()->mongodb->tags->update(array("_id"=>new MongoId("51b972ebe4b075a9690bbc5b")), array('$set' => array("list"=>$tagsList['list'])));
+                        }
+                    }
                   }
                   
                   //if a job in the list doesn't exist is new , add it to the group collection
@@ -233,7 +245,7 @@ class CitoyensController extends Controller {
                   
                   $where = array("_id" => new MongoId(Yii::app()->session["userId"]));	
                   Yii::app()->mongodb->citoyens->update($where, array('$set' => $newInfos));
-                  $result = array("result"=>true,"msg"=>"Vos Données ont bien été enregistrées.");
+                  
                   
                   echo json_encode($result); 
             } else 
