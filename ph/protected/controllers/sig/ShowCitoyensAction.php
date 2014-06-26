@@ -1,8 +1,8 @@
 <?php
 /**
- * [actionGetWatcher get the user data based on his id]
+ * [actionGetWatcher get all user from "citoyens" collection]
  * @param 
- * @return [type] [description]
+ * @return [user iterator]
  */
 class ShowCitoyensAction extends CAction
 {
