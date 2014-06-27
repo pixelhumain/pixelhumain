@@ -1,4 +1,3 @@
-<a href="/ph/<?php echo $this->module->id?>/api/communect">se Comunecter</a><br/>
 <div class="fss">
 	se communecter c'est juste suivre l'activité d'un CP <br/>
 	Il suffit d'un email et d'un CP<br/>

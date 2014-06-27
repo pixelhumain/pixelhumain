@@ -4,7 +4,7 @@
  */
 class CitoyenType
 {    
-    const GAME_REZOTAGE    = 10;
+    const GAME_REZOTAGE       = 10;
     const GAME_ACTION_NIV1    = 1;
     const GAME_ACTION_NIV2    = 2;
     const GAME_ACTION_NIV3    = 3;

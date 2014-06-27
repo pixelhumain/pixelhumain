@@ -1,0 +1,20 @@
+<div class="apiForm deleteEntry">
+	<select id="sessiondeleteEntry">
+		<option></option>
+		<?php 
+			$surveys = PHDB::find( PHType::TYPE_SURVEYS, array("type"=>Survey::TYPE_ENTRY));
+			foreach ($surveys as $value) {
+				echo '<option value="'.$value["_id"].'">'.$value["name"].' - '.$value["survey"].'</option>';
+			}
+		?>
+	</select><br/>
+	<a href="javascript:deleteEntry()">Test it</a><br/>
+	<div id="deleteEntryResult" class="result fss"></div>
+	<script>
+		function deleteEntry() {
+			params = { "survey" : $("#sessiondeleteEntry").val() , 
+			    		"app" : "<?php echo $this->module->id?>"};
+			testitpost("deleteEntryResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/deletesurvey',params);
+		}
+	</script>
+</div>

@@ -40,6 +40,7 @@ $this->pageTitle=$this::moduleTitle;
 								if(is_file(Yii::getPathOfAlias($pathTpl).".php") )
 								{
 									echo "<li class='block' id='block".$child['key']."'>";
+									echo "<h4>".$child['label']."</h4>";
 									$this->renderPartial( $pathTpl,$params ); 
 									echo "</li>";
 								}else
@@ -52,6 +53,7 @@ $this->pageTitle=$this::moduleTitle;
 								if($pathTpl && is_file(Yii::getPathOfAlias($pathTpl).".php") )
 								{
 									echo "<li class='block' id='block".$child['key']."'>";
+									echo "<h4>".$child['label']."</h4>";
 									$this->renderPartial( $pathTpl,$params ); 
 									echo "</li>";
 								}else

@@ -1,4 +1,3 @@
-<a href="/ph/<?php echo $this->module->id?>/api/login">Login</a><br/>
 <a href="/ph/site/logout">Logout</a><br/>
 <div class="fss">
 	Il faut etre loguer par email, cp, et mot de passe<br/>

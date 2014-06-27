@@ -1,4 +1,3 @@
-<a href="/ph/<?php echo $this->module->id?>/api/getnodeby"  >Get content of a Node (friends, ...)</a><br/>
 <div class="fss">
 	url : /ph/<?php echo $this->module->id?>/api/getnodeby<br/>
 	method type : GET <br/>

@@ -19,7 +19,12 @@ h2 {
         <h2>TEST INSTALLATION REQUIREMENTS</h2>
         
         <ul>
-
+<?php           
+/*
+$a = array("cococ","frfr",Api::$userMap);
+var_dump($this::$a);
+ */
+?>
             <li><?php 
                 echo "<span style='color:green'>You are running on PHP ".phpversion()."</span>";
             ?></li>

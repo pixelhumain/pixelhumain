@@ -10,4 +10,5 @@ $activeModules = array(
 	'survey',
 	'sig',
 	'pppm',
-	'githubs');
+	'githubs',
+	'pixelfunding');

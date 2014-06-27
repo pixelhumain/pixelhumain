@@ -25,7 +25,7 @@ class Group
         {
         	//check if user is allready linked to this group
         	if( !Group::isGroupMember((string)$user["_id"],$group["_id"]) ){
-        		Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($user["_id"])), array('$push' => array( Citoyen::$types2Nodes[ $type ] => (string)$group["_id"] )));
+        		Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($user["_id"])), array('$push' => array( CitoyenType::$types2Nodes[ $type ] => (string)$group["_id"] )));
         		Yii::app()->mongodb->groups->update(array("_id" => new MongoId($group["_id"])), array('$push' => array( self::NODE_PARTICIPANTS => (string)$user["_id"])));
         		$res = array( "result" => true,  "userConnected2Group" => true );
         	}else
@@ -41,7 +41,7 @@ class Group
 		$group = Yii::app()->mongodb->groups->findOne( array( "name" => $name,"type"=>$type ) );
         if( isset( $user ) && isset( $group ) )
         {
-        	Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($user["_id"])), array('$pull' => array( Citoyen::$types2Nodes[ $type ] => (string)$group["_id"] )));
+        	Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($user["_id"])), array('$pull' => array( CitoyenType::$types2Nodes[ $type ] => (string)$group["_id"] )));
         	Yii::app()->mongodb->groups->update(array("_id" => new MongoId($group["_id"])), array('$pull' => array( self::NODE_PARTICIPANTS => (string)$user["_id"])));
         	$res = array( "result" => true,  "userDisonnected2Group" => true );
         } else

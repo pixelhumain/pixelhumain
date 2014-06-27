@@ -1,4 +1,3 @@
-<a href="/ph/<?php echo $this->module->id?>/api/saveUser">Create/Update user</a><br/>
 <div class="fss">
 	url : /ph/<?php echo $this->module->id?>/api/saveUser<br/>
 	method type : POST <br/>

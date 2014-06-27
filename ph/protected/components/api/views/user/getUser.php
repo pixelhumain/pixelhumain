@@ -1,4 +1,3 @@
-<a href="/ph/<?php echo $this->module->id?>/api/getUser/email/<?php echo $this->module->id?>@<?php echo $this->module->id?>.com">Get User</a><br/>
 <div class="fss">
 	url : /ph/<?php echo $this->module->id?>/api/getUser/email/oceatoon@gmail.com<br/>
 	method type : GET <br/>

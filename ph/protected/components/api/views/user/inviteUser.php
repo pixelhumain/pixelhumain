@@ -1,4 +1,3 @@
-<a href="/ph/<?php echo $this->module->id?>/api/inviteUser" >Invite User</a><br/>
 <div class="fss">
 	url : /ph/<?php echo $this->module->id?>/api/inviteUser<br/>
 	method type : POST <br/>
