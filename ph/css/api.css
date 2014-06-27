@@ -16,18 +16,16 @@
 	margin:10px; 
 	padding:10px;
 }
- .fss{
-	line-height: 20px; 
-}
- .result{
-	color: red; 
-}
+ .fss{line-height: 20px; }
+ .result{color: red; }
 .blocki{
 	background-color: #324553;
 	color: white;
 	padding : 10px;
 	border : 3px solid #666;
 }
+.blocki a.btn {color : white;}
+.blocki li {margin-top: "3px";}
 h4.blocky{
 	background-color: #fff95e
 }

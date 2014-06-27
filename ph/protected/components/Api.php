@@ -9,51 +9,132 @@
  */
 
 class Api {
-	public static $userMap = array('label' => "User ", "key"=>"user", "iconClass"=>"fa fa-user","generate"=>true,
-                "children"=> array(
-                    array( "label"=>"se Communecter", "key"=>"communect","actions"=>array('communect' => 'application.controllers.user.CommunectAction')),
-                    array( "label"=>"Login", "key"=>"login", 
-                    		"actions"=>array('login' => 'application.controllers.user.LoginAction',
-                    						 'sendemailpwd' => 'application.controllers.user.SendEmailPwdAction',)),
-                    array( "label"=>"Save User", "key"=>"saveUser", "actions"=>array('saveuser' => 'application.controllers.user.SaveUserAction')),
-                    array( "label"=>"Get User", "key"=>"getUser","actions"=>array('getuser' => 'application.controllers.user.GetUserAction')),
-                    array( "label"=>"ConfirmUserRegistration"),
-                    array( "label"=>"GetPeople","key"=>"getPeople","actions"=>array('getpeopleby' => 'application.controllers.user.GetPeopleByAction')),
-                    array( "label"=>"InvitePeople", "key"=>"inviteUser","actions"=>array('inviteuser' => 'application.controllers.user.InviteUserAction'))
-                ));
+	//container of all existing api definitions
+	//to be used to build maps for any module or application
+	//ex : userMap is a sample composition of a standard user Map = list of methods or definitions needed to define a user process
+	public static $apis = array(
+							/* -----------------------------------------------
+							USER Section
+							 ------------------------------------------------ */
+							"communect" => array( "label"=>"se Communecter", "key"=>"communect",
+								"desc"=>"an email and Postal Code is all a user needs to connect to his city",
+								"actions"=>array('communect' => 'application.controllers.user.CommunectAction')),
+							"login" => array( "label"=>"Login", "key"=>"login", 
+								"desc"=>"classic login feature email + pwd",
+		                    	"actions"=>array('login' => 'application.controllers.user.LoginAction',
+		                    					 'sendemailpwd' => 'application.controllers.user.SendEmailPwdAction',)),
+		                    "saveUser" => array( "label"=>"Save User", "key"=>"saveUser", 
+		                    	"desc"=>"create a new user",
+		                    	"actions"=>array('saveuser' => 'application.controllers.user.SaveUserAction')),
+		                    "getUser" => array( "label"=>"Get User", "key"=>"getUser",
+		                    	"desc"=>"Get a user Entry by email",
+		                    	"actions"=>array('getuser' => 'application.controllers.user.GetUserAction')),
+		                    "getPeople" => array( "label"=>"GetPeople","key"=>"getPeople",
+		                    	"desc"=>"get all people register as users of an application",
+		                    	"actions"=>array('getpeopleby' => 'application.controllers.user.GetPeopleByAction')),
+		                    "inviteUser" => array( "label"=>"Invite People", "key"=>"inviteUser",
+		                    	"desc"=>"people networking is based on invitations",
+		                    	"actions"=>array('inviteuser' => 'application.controllers.user.InviteUserAction')),
 
-	public static $surveyMap = array('label' => "Survey", "key"=>"survey", "iconClass"=>"fa fa-thumbs-up", "generate"=>true,
-                "children"=> array(
-                    array( "label"=>"Create Session", "key"=>"saveSession", "actions"=>array('savesession' => 'application.controllers.survey.SaveSessionAction',  ),
-                    		"desc"=>"a session is a container will contain entries and be linked to people"),
-                    array( "label"=>"Add Entry", "key"=>"addEntry", "actions"=>array(),
-                    		"desc"=>"an entry, is a text, law, idea, things to vote on"),
-                    array( "label"=>"Vote on an Entry","key"=>"addaction",
-                    		"actions"=>array('addaction' => 'application.controllers.action.AddActionAction',
-                    						"getactionvalue" => 'application.controllers.generic.GetFromCollectionAction'),
-                    		"desc"=>"votes help decision making and give orientations"),
-                    array( "label"=>"get a Node By","key"=>"getby","actions"=>array('getby' => 'application.controllers.generic.GetByAction'),
-                    		"desc"=>"get a Node from an entry corresponding to a certain criteria"),
-                ));
+		                    /* -----------------------------------------------
+							SURVEY Section
+							 ------------------------------------------------ */
+		                    "saveSession" => array( "label"=>"Create Session", "key"=>"saveSession", 
+		                    		"desc"=>"a session is a container will contains entries and be linked to people",
+		                    		"actions" => array( 'savesession' => 'application.controllers.survey.SaveSessionAction' )),
+		                    "addEntry" => array( "label"=>"Add Entry", "key"=>"addEntry", 
+		                    		"desc"=>"an entry, is a text, law, idea, things to vote on",
+		                    		"actions"=>array()),
+		                    "addaction" => array( "label"=>"Vote on an Entry","key"=>"addaction",
+		                    		"desc"=>"votes help decision making and give orientations",
+		                    		"actions"=>array('addaction' => 'application.controllers.action.AddActionAction',
+		                    						"getactionvalue" => 'application.controllers.generic.GetFromCollectionAction')),
+		                    "deleteSurvey" => array( "label"=>"Delete a Survey","key"=>"deleteSurvey",
+		                    	"desc"=>"Delete a Survey and all it's children",
+		                    	"actions"=>array('deletesurvey' => 'application.controllers.survey.DeleteAction')),
+		                    "deleteEntry" => array( "label"=>"Delete an Entry","key"=>"deleteEntry",
+		                    	"desc"=>"Delete a single Entry ",
+		                    	"actions"=>array('deletesurvey' => 'application.controllers.survey.DeleteAction')),
+		                    
+		                    /* -----------------------------------------------
+							COMMUNICATION Section
+							 ------------------------------------------------ */
+		                    "sendMessage" => array( "label"=>"sendMessage","key"=>"sendMessage",
+		                    	"desc"=>"Send a Message a preson or to a list of people",
+		                    	"actions"=>array('sendmessage' => 'application.controllers.messages.SendMessageAction')),
+		                    
+		                    /* -----------------------------------------------
+							GENERIC Section
+							 ------------------------------------------------ */
+		                    "getby" => array( "label"=>"get a Node By","key"=>"getby",
+		                    		"desc"=>"get a Node from an entry corresponding to a certain criteria",
+		                    		"actions"=>array('getby' => 'application.controllers.generic.GetByAction')),
 
-	public static $adminMap = array('label' => "Administration", "key"=>"admin", "iconClass"=>"fa fa-cog", "generate"=>true,
-                "children"=> array(
-                    array( "label"=>"Moderation Settings","key"=>"moderationSettings","actions"=>array()),
-                    array( "label"=>"Add an admin","key"=>"addAdmin","actions"=>array('addappadmin'       => 'application.controllers.applications.AddAppAdminAction')),
-                    array( "label"=>"Moderate an entry","key"=>"moderate","actions"=>array('moderateentry' => 'application.controllers.survey.ModerateAction')),
-                    array( "label"=>"Delete a Survey","key"=>"deleteSurvey","actions"=>array('deletesurvey'     => 'application.controllers.survey.DeleteAction')),
-                    array( "label"=>"Delete a Entry","key"=>"deleteEntry","actions"=>array('deletesurvey'     => 'application.controllers.survey.DeleteAction')),
-                    array( "label"=>"Delete a User","key"=>"deleteUser","actions"=>array())
-                ));
+		                    /* -----------------------------------------------
+							ADMIN Section (these methods are only accessible by initialy defined APP ADMIN USER)
+							 ------------------------------------------------ */
+		                    "moderationSettings" => array( "label"=>"Moderation Settings","key"=>"moderationSettings",
+		                    	"desc"=>"Modify and Manage an applications moderation settings",
+		                    	"actions"=>array()),
+		                    "addAdmin" => array( "label"=>"Add an admin","key"=>"addAdmin",
+		                    	"desc"=>"Give admin credentials to a user",
+		                    	"actions"=>array('addappadmin' => 'application.controllers.applications.AddAppAdminAction')),
+		                    "moderate" => array( "label"=>"Moderate an entry","key"=>"moderate",
+		                    	"desc"=>"Moderate an entry for an application",
+		                    	"actions"=>array('moderateentry' => 'application.controllers.survey.ModerateAction')),
+		                    "deleteUser" => array( "label"=>"Delete a User","key"=>"deleteUser",
+		                    	"desc"=>"Delete a User's access to an app",
+		                    	"actions"=>array()),
 
-	public static $adminPHMap = array('label' => "Administration PH", "key"=>"adminPH", "iconClass"=>"fa fa-cogs", "generate"=>true,
-                "children"=> array(
-                    array( "label"=>"Set Admin Quartier","key"=>"adminQuartier","actions"=>array()),
-                ));
+		                    /* -----------------------------------------------
+							ADMIN PH Section (these methods are only accessible by initialy defined PH ADMIN USER)
+							 ------------------------------------------------ */
+		                    "adminQuartier" => array( "label"=>"Set Admin Quartier","key"=>"adminQuartier",
+		                    	"desc"=>"Delete a User's access to an app",
+		                    	"actions"=>array())
+						);
 
-	public static $communicatoinMap = array('label' => "Communication", "key"=>"communication", "iconClass"=>"fa fa-bullhorn", "generate"=>true,
+	public static function getUserMap(){
+		return array( 'label' => "User ", "key"=>"user", "iconClass"=>"fa fa-user","generate"=>true,
                 "children"=> array(
-                    array( "label"=>"sendMessage","key"=>"sendMessage","actions"=>array('sendmessage' => 'application.controllers.messages.SendMessageAction'))
+                    self::$apis["communect"],
+                    self::$apis["login"],
+                    self::$apis["saveUser"],
+                    self::$apis["getUser"],
+                    self::$apis["inviteUser"],
+                    ));
+	}
+	public static function getSurveyMap(){
+		return array( 'label' => "Survey", "key"=>"survey", "iconClass"=>"fa fa-thumbs-up", "generate"=>true,
+                "children"=> array(
+                    self::$apis["saveSession"],
+                    self::$apis["addAdmin"],
+                    self::$apis["addaction"],
+                    self::$apis["getby"],
+                ));
+	}
+	public static function getAdminMap(){
+		return array( 'label' => "Administration", "key"=>"admin", "iconClass"=>"fa fa-cog", "generate"=>true,
+                "children"=> array(
+                    self::$apis["moderationSettings"],
+                    self::$apis["addEntry"],
+                    self::$apis["moderate"],
+                    self::$apis["deleteUser"],
+                    self::$apis["deleteSurvey"],
+                    self::$apis["deleteEntry"]
+                ));
+	}
+	public static function getAdminPHMap(){
+		return array( 'label' => "Administration PH", "key"=>"adminPH", "iconClass"=>"fa fa-cogs", "generate"=>true,
+                "children"=> array(
+                    self::$apis["adminQuartier"],
+                ));
+	}
+	public static function getCommunicatoinMap(){
+		return array( 'label' => "Communication", "key"=>"communication", "iconClass"=>"fa fa-bullhorn", "generate"=>true,
+                "children"=> array(
+                    self::$apis["sendMessage"],
                 ));	
+	}
 }
 ?>

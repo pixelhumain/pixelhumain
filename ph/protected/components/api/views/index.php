@@ -17,9 +17,31 @@ $this->pageTitle=$this::moduleTitle;
 										&& isset( $user[PHType::TYPE_APPLICATIONS][$this->module->id][CitoyenType::NODE_ISADMIN])  ) )
 		{?>
 		<h2>A.P.I <?php echo $this::moduleTitle?>  : List all URLs</h2>
+
 		<ul>
-			
-			<?php foreach ($this->sidebar1 as  $e) { 
+			<li><i class="sectionIcon fa fa fa-list"></i><h3 class="blockp">Scenario  <a class="scenarioIcon fa fa-eye-slash" href="javascript:;" onclick="toggle('scenario');"></a></h3></li>
+			<li class="scenario hide">
+		<?php 
+
+			foreach ($this->sidebar1 as  $e) 
+			{ 
+				if( isset($e["children"]) )
+				{
+					$icon = ( isset($e["iconClass"]) ) ? '<i class="'.$e["iconClass"].'"></i>' : '';
+					echo '<h4  class="blocky">'.$e["label"].'</h4>';
+					echo '<ul class="blocki">';
+					foreach ($e["children"] as $key => $child) 
+					{
+						if( isset($child["desc"]) )
+						{
+							echo '<li><a class="btn btn-small btn-primary" href="javascript:;" onclick="scrollTo(\'#block'.$child["key"].'\')">'.strtoupper($child["label"])." </a> ".$child["desc"].'</li>';
+						}
+					}
+					echo '</ul>';
+				}
+			}	
+			echo '</li>';
+			foreach ($this->sidebar1 as  $e) { 
 				if( !isset( $e["menuOnly"])){
 				?>
 
