@@ -34,7 +34,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
 <?php 
   $account = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
 
-  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.header');
+  
   echo $content;  
   if(!$this->hasSocial)
     $this->renderPartial('application.views.layouts.modals.loginPwdFormNoSocial');
@@ -44,15 +44,11 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
   $this->renderPartial('application.views.layouts.modals.flashInfo');
 ?>
 <footer class="site-footer">
-  <?php if($this->module->assetsUrl){?>
-  <a href="http://partipirate.pm" target="_blank">
-  <img src='<?php echo $this->module->assetsUrl; ?>/img/logo.png' alt="<?php echo $this->module->id; ?>" title="<?php echo $this->module->id; ?>"/>
-  </a>
-  <br/>
-  <a href="#cguForm" class="btn " role="button" data-toggle="modal" title="Condition Generale d'utilisation" ><i class="fa fa-signout"></i>CGU</a>
+  <?php if(isset($this->footer)){
+    $this->renderPartial(Yii::app()->params["modulePath"].$this->module->id.$this->footer);?>
   <?php } else {?>
   <a href="http://pixelhumain.com" target="_blank">
-    <img src='<?php echo Yii::app()->request->baseUrl?>/images/logo/logo144.png' alt="Pixel Humain" width="100" title="<?php echo $this->module->id; ?>"/>
+    <img src='<?php echo Yii::app()->request->baseUrl?>/images/logo/logo144.png' alt="Pixel Humain" style="width:80px" title="<?php echo $this->module->id; ?>"/>
   </a>
   <?php } ?>
 </footer>
