@@ -24,7 +24,16 @@
 	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/responsive.css" rel="stylesheet" type="text/css"/>
 	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/mainph.css">
-
+	
+	
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/leaflet.css"  type="text/css" rel="stylesheet"/>
+	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/leaflet.draw.css" type="text/css" rel="stylesheet"/>
+	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/leaflet.draw.ie.css" type="text/css" rel="stylesheet"/>
+	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/MarkerCluster.css"  type="text/css" rel="stylesheet"/>
+	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/MarkerCluster.Default.css"  type="text/css" rel="stylesheet"/>
+	
+	
 	<!-- END NEED TO WORK ON -->
    <script>
    var initT = new Object();
@@ -80,7 +89,8 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/js/core.js" type="text/javascript"></script> 
 	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/js/chat.js" type="text/javascript"></script> 
 	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/js/demo.js" type="text/javascript"></script> 
-
+	
+	
 	<!-- END CORE TEMPLATE JS --> 
 	<?php 
 $cs = Yii::app()->getClientScript();

@@ -1,10 +1,9 @@
 <?php
 /**
  * [actionAddWatcher 
- * create or update a user account
- * if the email doesn't exist creates a new citizens with corresponding data 
- * else simply adds the watcher app the users profile ]
- * @return [json] 
+ * create or update position of user connected (logged)
+ * if user not logged : exit
+ * @return [string] 
  */
 class SavePositionUserAction extends CAction
 {
@@ -20,11 +19,8 @@ class SavePositionUserAction extends CAction
       
         $email =  Yii::app()->session["userEmail"]; //$_POST["email"];
         
-        //$res = Citoyen::register( $email, $_POST["pwd"]);
         if( Yii::app()->request->isAjaxRequest )
         {
-            //if exists login else create the new user
-            //$res = Citoyen::register( $email, $_POST["pwd"]);
             if(Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) ))
             {
                 //udate the new app specific fields
@@ -36,7 +32,6 @@ class SavePositionUserAction extends CAction
             	
             	$newInfos = array('geo' => $newPos);
             	
-                //specific application routines
                 if( isset( $_POST["app"] ) )
                 {
                     $appKey = $_POST["app"];
