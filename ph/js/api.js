@@ -37,10 +37,14 @@ function testitget(id,url,callback){
 }
 
 function toggle(id){
-	if( !$("."+id).is(":visible") ) {
+	log(id);
+	if( !$("."+id).is(":visible") ) 
+	{
 		$("."+id).removeClass("hide").attr("style","");
 		$("."+id+"Icon").removeClass('fa-eye-slash').addClass('fa-eye');
-	} else { 
+	} 
+	else 
+	{ 
 		$("."+id).addClass("hide");
 		$("."+id+"Icon").removeClass('fa-eye').addClass('fa-eye-slash');
 		$("."+id).hide();

@@ -391,11 +391,12 @@ class Citoyen
         if( isset( $params["groupname"] ) ){
             $group = PHDB::findOne(PHType::TYPE_GROUPS,  array( "name" => $params["groupname"] ) );
             $where = array( CitoyenType::$types2Nodes[$group["type"]] => (string)$group['_id']);
-        } else if( isset( $params["cp"] ) ){
+        } 
+        if( isset( $params["cp"] ) )
             $where = array( "cp" => $params["cp"] );
-        } else if( isset( $params["app"] ) ){
+        if( isset( $params["app"] ) )
             $where  = array( "applications.".$params["app"].".usertype" => $params["app"] );
-        }
+        
 
         if( !isset($params["count"]) ) 
             $res = PHDB::find(PHType::TYPE_CITOYEN,  $where,$fields );

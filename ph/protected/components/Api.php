@@ -13,6 +13,7 @@ class Api {
 	//to be used to build maps for any module or application
 	//ex : userMap is a sample composition of a standard user Map = list of methods or definitions needed to define a user process
 	public static $apis = array(
+
 							/* -----------------------------------------------
 							USER Section
 							 ------------------------------------------------ */
@@ -35,7 +36,28 @@ class Api {
 		                    "inviteUser" => array( "label"=>"Invite People", "key"=>"inviteUser",
 		                    	"desc"=>"people networking is based on invitations",
 		                    	"actions"=>array('inviteuser' => 'application.controllers.user.InviteUserAction')),
+		                    "confirmUserRegistration" => array( "label"=>"Confirm User Registration","key"=>"confirmUserRegistration", "parent"=>"user",
+		                    	"desc"=>"some applications will need user's to register their accounts",
+		                    	"actions"=>array('confirmgroupregistration' => 'application.controllers.user.ConfirmUserRegistrationAction')),
 
+		                    /* -----------------------------------------------
+							GROUP Section
+							 ------------------------------------------------ */
+		                    "saveGroup" => array( "label"=>"Save Group", "key"=>"saveGroup",
+		                    	"desc"=>"save a Group or an entity ",
+		                    	"actions"=>array('savegroup'=> 'application.controllers.groups.SaveGroupAction')),
+		                    "getgroupsby" => array( "label"=>"GetGroup","key"=>"getgroupsby",
+		                    	"desc"=>"get a Group or an entity based on criterias",
+		                    	"actions"=>array(
+		                    		'getgroupsby' => 'application.controllers.groups.GetGroupsByAction',
+		                    		'confirmgroupregistration' => 'application.controllers.user.ConfirmUserRegistrationAction'
+		                    		)),
+		                    'linkUser2Group' => array( "label"=>"Link User to a group","key"=>"linkUser2Group",
+		                    	"desc"=>"Linking a user to a group gives him access to group rights and group credentials",
+		                    	"actions"=>array(
+		                    		'linkUser2Group' => 'application.controllers.groups.LinkUser2GroupAction'
+		                    		)),
+		                    
 		                    /* -----------------------------------------------
 							SURVEY Section
 							 ------------------------------------------------ */
@@ -59,14 +81,17 @@ class Api {
 		                    /* -----------------------------------------------
 							COMMUNICATION Section
 							 ------------------------------------------------ */
-		                    "sendMessage" => array( "label"=>"sendMessage","key"=>"sendMessage",
+		                    "sendMessage" => array( "label"=>"Send Message","key"=>"sendMessage",
 		                    	"desc"=>"Send a Message a preson or to a list of people",
 		                    	"actions"=>array('sendmessage' => 'application.controllers.messages.SendMessageAction')),
+		                    "getmessageby" => array( "label"=>"Get Message By","key"=>"getmessageby",
+		                    	"desc"=>"Get all messages based on criterias",
+		                    	"actions"=>array('getmessageby' => 'application.controllers.messages.GetMessageByAction',)),
 		                    
 		                    /* -----------------------------------------------
 							GENERIC Section
 							 ------------------------------------------------ */
-		                    "getby" => array( "label"=>"get a Node By","key"=>"getby",
+		                    "getby" => array( "label"=>"get a Node By","key"=>"getby", "parent"=>"generic",
 		                    		"desc"=>"get a Node from an entry corresponding to a certain criteria",
 		                    		"actions"=>array('getby' => 'application.controllers.generic.GetByAction')),
 
@@ -101,7 +126,15 @@ class Api {
                     self::$apis["login"],
                     self::$apis["saveUser"],
                     self::$apis["getUser"],
+                    self::$apis["getPeople"],                    
                     self::$apis["inviteUser"],
+                    ));
+	}
+	public static function getGroupMap(){
+		return array('label' => "Groups", "key"=>"groups","iconClass"=>"fa fa-group","generate"=>true,
+                "children"=> array(
+                    self::$apis["saveGroup"],
+                    self::$apis["getgroupsby"]
                     ));
 	}
 	public static function getSurveyMap(){
@@ -130,11 +163,34 @@ class Api {
                     self::$apis["adminQuartier"],
                 ));
 	}
-	public static function getCommunicatoinMap(){
+	public static function getCommunicationMap(){
 		return array( 'label' => "Communication", "key"=>"communication", "iconClass"=>"fa fa-bullhorn", "generate"=>true,
                 "children"=> array(
                     self::$apis["sendMessage"],
+                    self::$apis["sendMessage"],
                 ));	
+	}
+	public static function buildActionMap( $context ){
+		//index is the main page of all api interfaces
+		$actions = array( 'index' => 'application.components.api.controllers.IndexAction');
+        //the context is buildin the sidemenu1 object and can contain a map of needed action controllers
+        foreach ($context as  $e) 
+        { 
+            if(isset($e["children"]))
+            {
+                foreach ($e["children"] as $key => $child) 
+                {
+                    if( isset($child["actions"]) )
+                    {
+                        foreach ($child["actions"] as $k => $v) 
+                        {
+                            $actions[$k] = $v;
+                        }
+                    }
+                }
+            }
+        }
+        return $actions;
 	}
 }
 ?>
