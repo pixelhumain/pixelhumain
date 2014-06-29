@@ -55,7 +55,10 @@ mongod --dbpath data\db
 ```
 - inside your favorite mongo administration tool : 
 - create a database called pixelhumain
-- create a user for the db : pixelhumain
+- create a user for the db : pixelhumain 
+- you can do this the simple mongo
+	- use pixelhumain
+	- db.addUser( "pixelhumain","pixelhumain" ) 
 
 ####Composer installation
 PixelHumain is set with composer in order to manage dependencies and libraries.
@@ -70,6 +73,9 @@ $dbconfig = array(
 );
 ```
 - Launch following commands to initiate the application : 
+in 
+cd path/to/pixelhumain/ph
+where you'll find composer.json
 ```
 composer update
 ...
