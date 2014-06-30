@@ -6,7 +6,7 @@
  */
 class ShowCitiesAction extends CAction
 {
-    public function run()
+    public function run() 
     {
     	//affiche les villes de plus de 100 000 habitants
     	$query = array('habitants' => array( '$gt' => 100000 )); //filtre les villes de + de 100 000 habitants
