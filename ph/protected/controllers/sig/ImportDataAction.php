@@ -11,7 +11,7 @@ class ImportDataAction extends CAction
     public function run()
     {
         $result = $this->importFromJson();
-        $result = $this->checkPositionCitoyens();
+        $result .= $this->checkPositionCitoyens();
      	
 		Rest::json($result);  
 		Yii::app()->end();
