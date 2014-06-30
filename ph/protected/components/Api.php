@@ -114,9 +114,9 @@ class Api {
 		                    /* -----------------------------------------------
 							ADMIN PH Section (these methods are only accessible by initialy defined PH ADMIN USER)
 							 ------------------------------------------------ */
-		                    "adminQuartier" => array( "label"=>"Set Admin Quartier","key"=>"adminQuartier",
-		                    	"desc"=>"Delete a User's access to an app",
-		                    	"actions"=>array())
+		                    "initData" => array( "label"=>"Data Initialising","key"=>"initData",
+		                    	"desc"=>"Imports a list of files in the 'data' folder, containing the datasets to get this module up and running",
+		                    	"actions"=>array('initdata' => 'application.components.api.controllers.InitDataAction',))
 						);
 
 	public static function getUserMap(){
@@ -160,19 +160,24 @@ class Api {
 	public static function getAdminPHMap(){
 		return array( 'label' => "Administration PH", "key"=>"adminPH", "iconClass"=>"fa fa-cogs", "generate"=>true,
                 "children"=> array(
-                    self::$apis["adminQuartier"],
+                    self::$apis["initData"]
                 ));
 	}
 	public static function getCommunicationMap(){
 		return array( 'label' => "Communication", "key"=>"communication", "iconClass"=>"fa fa-bullhorn", "generate"=>true,
                 "children"=> array(
                     self::$apis["sendMessage"],
-                    self::$apis["sendMessage"],
+                    self::$apis["getmessageby"],
                 ));	
 	}
 	public static function buildActionMap( $context ){
 		//index is the main page of all api interfaces
-		$actions = array( 'index' => 'application.components.api.controllers.IndexAction');
+		$actions = array( 
+			'index' => 'application.components.api.controllers.IndexAction',
+		);
+		array_push(Yii::app()->controller->sidebar1, Api::getAdminPHMap());
+		array_push($context, Api::getAdminPHMap());
+
         //the context is buildin the sidemenu1 object and can contain a map of needed action controllers
         foreach ($context as  $e) 
         { 
@@ -185,6 +190,7 @@ class Api {
                         foreach ($child["actions"] as $k => $v) 
                         {
                             $actions[$k] = $v;
+                            //echo $k."<br/>";
                         }
                     }
                 }

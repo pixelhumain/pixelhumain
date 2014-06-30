@@ -31,4 +31,7 @@ class PHDB
     {
         return Yii::app()->mongodb->selectCollection($collection)->remove($where);
     }
+    public static function batchInsert($collection,$a){
+        return Yii::app()->mongodb->selectCollection($collection)->batchInsert($a);   
+    }
 }

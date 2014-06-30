@@ -1,4 +1,3 @@
-<a href="/ph/<?php echo $this::$moduleKey?>/api/getby">Get all <?php echo $this::$moduleKey?> Types</a><br/>
 <div class="fss">
 	url : /ph/<?php echo $this::$moduleKey?>/api/getby<br/>
 	method type : POST <br/>

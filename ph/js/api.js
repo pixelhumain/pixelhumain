@@ -13,7 +13,7 @@ function testitpost(id,url,params,callback){
 	      		$("#"+id).html(JSON.stringify(data, null, 4));
 	    },
 	    error:function (xhr, ajaxOptions, thrownError){
-	      $("#"+id).html(data);
+	      $("#"+id).html(thrownError);
 	    } 
 	  });
 }
@@ -31,7 +31,7 @@ function testitget(id,url,callback){
 	    	
 	    },
 	    error:function (xhr, ajaxOptions, thrownError){
-	      $("#"+id).html(data);
+	      $("#"+id).html(thrownError);
 	    } 
 	  });
 }
