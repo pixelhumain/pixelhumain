@@ -18,25 +18,15 @@ class SendEmailPwdAction extends CAction
 
             //send validation mail
             //TODO : make emails as cron jobs
-            $message = new YiiMailMessage;
-            $message->view = 'passwordRetreive';
             $app = new Application($_POST["app"]);
-
-            /*$app = ( isset($_POST["app"])) ? PHDB::findOne(PHType::TYPE_APPLICATIONS,array( "key" => $_POST["app"] ) ) : null;
-            $title = ( $app && isset($app["name"]) ) ? $app["name"] : "Pixel Humain";
-            $logo = ( $app && isset($app["logo"]) ) ? Yii::app()->getModule($app["key"])->assetsUrl.$app["logo"] : Yii::app()->getRequest()->getBaseUrl(true).'/images/logo/logo144.png';
-            */
-            $message->setSubject('Réinitialisation du mot de passe pour le site '.$app->name);
-            $message->setBody(array( "pwd"   => $pwd ,
-                                     "title" => $app->name ,
-                                     "logo"  => $app->logoUrl ), 'text/html');
-            if(!PH::notlocalServer())
-                $message->addTo(Yii::app()->params['adminEmail']);
-            else
-                $message->addTo($email);
-            $message->from = Yii::app()->params['adminEmail'];
-            Yii::app()->mail->send($message);
-
+            Mail::send(array("tpl"=>'passwordRetreive',
+                             "subject" => 'Réinitialisation du mot de passe pour le site '.$app->name,
+                             "from"=>Yii::app()->params['adminEmail'],
+                             "to" => (!PH::notlocalServer())? Yii::app()->params['adminEmail']: $email,
+                             "tplParams" => array( "pwd"   => $pwd ,
+                                                 "title" => $app->name ,
+                                                 "logo"  => $app->logoUrl )
+                                             ));
             $res = array("result"=>true,"msg"=>"Un mail avec un nouveau mot de passe vous a été envoyé à votre adresse email. Merci.");
         } else {
             //TODO evoyer un email de presentation 

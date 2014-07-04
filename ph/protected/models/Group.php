@@ -5,7 +5,8 @@ class Group
 	const TYPE_ASSOCIATION		   = 'association';
 	const TYPE_ENTREPRISE		   = 'entreprise';
 	const TYPE_EVENT		       = 'event';
-	const TYPE_PROJECT		       = 'projet';
+	const TYPE_PROJECT		       = 'project';
+    const TYPE_GROUP             = 'group';
     const ACTION_VOTE_UP        = "voteUp";
 	//list of participants of a group contains a list of Ids
 	const NODE_PARTICIPANTS		   = 'participants';
@@ -25,8 +26,8 @@ class Group
         {
         	//check if user is allready linked to this group
         	if( !Group::isGroupMember((string)$user["_id"],$group["_id"]) ){
-        		Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($user["_id"])), array('$push' => array( CitoyenType::$types2Nodes[ $type ] => (string)$group["_id"] )));
-        		Yii::app()->mongodb->groups->update(array("_id" => new MongoId($group["_id"])), array('$push' => array( self::NODE_PARTICIPANTS => (string)$user["_id"])));
+        		PH::update(PHType::TYPE_CITOYEN,array("_id" => new MongoId($user["_id"])), array('$push' => array( CitoyenType::$types2Nodes[ $type ] => (string)$group["_id"] )));
+        		PH::update(PHType::TYPE_GROUPS,array("_id" => new MongoId($group["_id"])), array('$push' => array( self::NODE_PARTICIPANTS => (string)$user["_id"])));
         		$res = array( "result" => true,  "userConnected2Group" => true );
         	}else
         		$res = array( "result" => true,  "userAllreadyConnected2Group" => true );
@@ -41,8 +42,8 @@ class Group
 		$group = Yii::app()->mongodb->groups->findOne( array( "name" => $name,"type"=>$type ) );
         if( isset( $user ) && isset( $group ) )
         {
-        	Yii::app()->mongodb->citoyens->update(array("_id" => new MongoId($user["_id"])), array('$pull' => array( CitoyenType::$types2Nodes[ $type ] => (string)$group["_id"] )));
-        	Yii::app()->mongodb->groups->update(array("_id" => new MongoId($group["_id"])), array('$pull' => array( self::NODE_PARTICIPANTS => (string)$user["_id"])));
+        	PH::update(PHType::TYPE_CITOYEN,array("_id" => new MongoId($user["_id"])), array('$pull' => array( CitoyenType::$types2Nodes[ $type ] => (string)$group["_id"] )));
+        	PH::update(PHType::TYPE_GROUPS,array("_id" => new MongoId($group["_id"])), array('$pull' => array( self::NODE_PARTICIPANTS => (string)$user["_id"])));
         	$res = array( "result" => true,  "userDisonnected2Group" => true );
         } else
        		$res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');

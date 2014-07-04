@@ -33,7 +33,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/mainLight.js' , CClie
 <body>
 <?php 
   $account = (isset(Yii::app()->session["userId"])) ? Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"]))) : null;
-
+  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.header');
   
   echo $content;  
   if(!$this->hasSocial)

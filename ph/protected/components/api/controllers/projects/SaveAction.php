@@ -54,7 +54,7 @@ class SaveAction extends CAction
                         $res['applicationExist'] = false;
                 }
 
-                PHDB::update( array( "name" => $name ), 
+                PHDB::update( PHType::TYPE_PROJECTS, array( "name" => $name ), 
                                                        array('$set' => $newInfos ) ,
                                                        array('upsert' => true ) 
                                                       );

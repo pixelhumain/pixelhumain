@@ -49,15 +49,12 @@ class Citoyen
                         $pwd = uniqid('', true);
                         PHDB::update(PHType::TYPE_CITOYEN,array("email"=>$email), 
                                                           array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
-                        $message = new YiiMailMessage;
-                        $message->view = 'validation';
-                        $message->setSubject('Set your password - Pixel Humain');
-                        $message->setBody(array("user"=>$account["_id"],
-                                                "pwd"=>$pwd), 'text/html');
-                        $message->addTo($email);
-                        $message->from = Yii::app()->params['adminEmail'];
-                        Yii::app()->mail->send($message);
-                        
+                        Mail::send(array("tpl"=>'validation',
+                                         "subject" => "Set your password - Pixel Humain",
+                                         "from"=>Yii::app()->params['adminEmail'],
+                                         "to" => $email,
+                                         "tplParams" => array("user"=>$account["_id"],"pwd"=>$pwd),
+                                            ));
                         $res =  array("result"=>false, 
                                                 "msg"=>"Vous n'aviez pas creer de mot de passe, un mot de passe temporaire vous a été envoyé par mail.") ;
                     } else {
@@ -152,20 +149,15 @@ class Citoyen
                     
                     //send validation mail
                     //TODO : make emails as cron jobs
-                    $message = new YiiMailMessage;
-                    $message->view = 'validation';
                     $app = new Application($_POST["app"]);
-                    $message->setSubject('Confirmer votre compte  pour le site '.$app->name);
-                    $message->setBody(array( "user"=>$newAccount["_id"] ,
-                                             "title" => $app->name ,
-                                             "logo"  => $app->logoUrl ), 'text/html');
-                    if(!PH::notlocalServer())
-                        $message->addTo(Yii::app()->params['adminEmail']);
-                    else
-                        $message->addTo($email);
-                    $message->from = Yii::app()->params['adminEmail'];
-                    Yii::app()->mail->send($message);
-                    
+                    Mail::send(array("tpl"=>'validation',
+                                             "subject" => 'Confirmer votre compte  pour le site '.$app->name,
+                                             "from"=>Yii::app()->params['adminEmail'],
+                                             "to" => (!PH::notlocalServer()) ? Yii::app()->params['adminEmail']: $email,
+                                             "tplParams" => array( "user"=>$newAccount["_id"] ,
+                                                                   "title" => $app->name ,
+                                                                   "logo"  => $app->logoUrl )
+                                             ));
                     //TODO : add an admin notification
                     /*Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_REGISTER,
                                             "user"=>$newAccount["_id"]));*/
@@ -297,13 +289,12 @@ class Citoyen
         PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
         //send validation mail
         //TODO : make emails as cron jobs
-        $message = new YiiMailMessage;
-        $message->view = 'validation';
-        $message->setSubject('Confirmer votre compte Pixel Humain');
-        $message->setBody(array("user"=>$newAccount["_id"]), 'text/html');
-        $message->addTo("oceatoon@gmail.com");//$email
-        $message->from = Yii::app()->params['adminEmail'];
-        Yii::app()->mail->send($message);
+        Mail::send(array("tpl"=>'validation',
+                         "subject" => 'Confirmer votre compte '.$title,
+                         "from"=>Yii::app()->params['adminEmail'],
+                         "to" => $email,
+                         "tplParams" => array( "user"=>$newAccount["_id"] )
+                         ));
 
         return array("userAdded"=>true,"id"=>(string)$newAccount["_id"]);
     }
@@ -388,9 +379,15 @@ class Citoyen
         $where = (isset($params["where"])) ? $params["where"] : array();
         $fields = ( isset($params["fields"]) ) ? $params["fields"] : array();
         
-        if( isset( $params["groupname"] ) ){
+        if( isset( $params["groupid"] ) )
+        {
+            $group = PHDB::findOne(PHType::TYPE_GROUPS,  array( "_id" => new MongoId( $params["groupid"] ) ) );
+            $where = array( (isset(CitoyenType::$types2Nodes[$group["type"]])) ? CitoyenType::$types2Nodes[$group["type"]] : "participants" => (string)$group['_id']);
+        } 
+        if( isset( $params["groupname"] ) )
+        {
             $group = PHDB::findOne(PHType::TYPE_GROUPS,  array( "name" => $params["groupname"] ) );
-            $where = array( CitoyenType::$types2Nodes[$group["type"]] => (string)$group['_id']);
+            $where = array( (isset(CitoyenType::$types2Nodes[$group["type"]])) ? CitoyenType::$types2Nodes[$group["type"]] : "participants" => (string)$group['_id']);
         } 
         if( isset( $params["cp"] ) )
             $where = array( "cp" => $params["cp"] );

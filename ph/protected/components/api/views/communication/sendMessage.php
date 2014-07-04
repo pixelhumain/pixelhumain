@@ -3,7 +3,7 @@ url : /ph/egpc/api/sendMessage<br/>
 method type : POST <br/>
 params : <br/>
 message  : <textarea name="sendMessagemsg" id="sendMessagemsg"></textarea> <br/>
-email(s) : <textarea type="text" name="sendMessageemail" id="sendMessageemail">egpc@egpc.com</textarea><br/>
+email(s) : <textarea type="text" name="sendMessageemail" id="sendMessageemail"><?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com</textarea><br/>
 séparé par des virgules<br/>
 <a href="javascript:sendMessage()">Send it</a><br/>
 <select id="sendMessagePeople">

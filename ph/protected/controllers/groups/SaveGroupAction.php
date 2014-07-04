@@ -16,12 +16,14 @@ class SaveGroupAction extends CAction
         if( Yii::app()->request->isAjaxRequest)
         {
             //creating user must exist
-            if($user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) )) 
+            if($user = PHDB::findOne( PHType::TYPE_CITOYEN, array( "email" => $email ) )) 
             {
                 //udate the new app specific fields
                 $newInfos = array();
                 if( isset($_POST['email']) )
                     $newInfos['email'] = $_POST['email'];
+                if( isset($_POST['email']) && $_POST['email'] != Yii::app()->session["userEmail"] )
+                    $newInfos['createdByEmail'] = Yii::app()->session["userEmail"];
                 if( isset($_POST['cp']) )
                     $newInfos['cp'] = $_POST['cp'];
                 if( isset($_POST['name']) )
@@ -43,21 +45,21 @@ class SaveGroupAction extends CAction
                 {
                 	$appKey = $_POST["app"];
                 	$newInfos['applications'] = array( $appKey => array( "usertype"=>$_POST['type'] ));
-                	$app = Yii::app()->mongodb->applications->findOne( array( "key"=> $appKey ) );
+                	$app = PHDB::findOne( PHType::TYPE_APPLICATIONS, array( "key"=> $appKey ) );
                     //check for application specifics defined in DBs application entry
                 	if( isset( $app["registration"] ) && $app["registration"] == "mustBeConfirmed")
                 		$newInfos['applications'][$appKey]["registrationConfirmed"] = false;
                 }
                 
                 //check if group exists else create the new group
-                if(!Yii::app()->mongodb->groups->findOne( array( "type"=>$_POST['type'],"name"=>$_POST['name'] ) ))
+                if(!PHDB::findOne( PHType::TYPE_GROUPS, array( "type"=>$_POST['type'],"name"=>$_POST['name'] ) ))
                 {
-                    Yii::app()->mongodb->groups->insert( $newInfos);
+                    PHDB::insert( PHType::TYPE_GROUPS,$newInfos);
                     $res = array("result" => true, 
                                  "msg"    => $_POST['type']." has been created");
                 } else {
                     //if there's an email change 
-                    Yii::app()->mongodb->groups->update( array("name" => $_POST['name']), 
+                    PHDB::update( PHType::TYPE_GROUPS,array("name" => $_POST['name']), 
                                                         array('$set' => $newInfos ) 
                                                       );
                     $res = array("result" => true, 

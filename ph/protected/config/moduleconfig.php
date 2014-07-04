@@ -15,4 +15,4 @@ $activeModules = array(
 	'meeteem',
 	'project',
 	'timeline',
-	'networkMapping');
+	'networkmapping');
