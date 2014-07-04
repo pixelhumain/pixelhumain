@@ -45,17 +45,19 @@ class SaveUserAction extends CAction
                             
                             //send validation mail
                             //TODO : make emails as cron jobs
-                            $message = new YiiMailMessage;
-                            $message->view = 'validation';
-                            $titre = $app["name"];
-                            $logo = ( isset($app["logo"]) ) ? $this->module->assetsUrl.$app["logo"] : Yii::app()->getRequest()->getBaseUrl(true).'/images/logo/logo144.png';
-                            $message->setSubject('Confirmer votre compte '.$title);
-                            $message->setBody(array( "user"  => $newAccount["_id"] ,
-                                                     "title" => $title ,
-                                                     "logo"  => $logo ), 'text/html');
-                            $message->addTo($email);
-                            $message->from = Yii::app()->params['adminEmail'];
-                            Yii::app()->mail->send($message);
+                            if(stripos($_SERVER['SERVER_NAME'], "127.0.0.1") === false && stripos($_SERVER['SERVER_NAME'], "localhost:8080") === false ){
+                                $message = new YiiMailMessage;
+                                $message->view = 'validation';
+                                $titre = $app["name"];
+                                $logo = ( isset($app["logo"]) ) ? $this->module->assetsUrl.$app["logo"] : Yii::app()->getRequest()->getBaseUrl(true).'/images/logo/logo144.png';
+                                $message->setSubject('Confirmer votre compte '.$title);
+                                $message->setBody(array( "user"  => $newAccount["_id"] ,
+                                                         "title" => $title ,
+                                                         "logo"  => $logo ), 'text/html');
+                                $message->addTo($email);
+                                $message->from = Yii::app()->params['adminEmail'];
+                                Yii::app()->mail->send($message);
+                            }
                         }
                 }
 

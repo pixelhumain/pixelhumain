@@ -11,4 +11,8 @@ $activeModules = array(
 	'sig',
 	'pppm',
 	'githubs',
-	'pixelfunding');
+	'pixelfunding',
+	'meeteem',
+	'project',
+	'timeline',
+	'networkMapping');

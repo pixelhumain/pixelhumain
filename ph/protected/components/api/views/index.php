@@ -3,7 +3,7 @@ $cs = Yii::app()->getClientScript();
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/api.css'); 
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 
-$this->pageTitle=$this::moduleTitle;
+$this->pageTitle="API ".$this::moduleTitle;
 ?>
 
 
