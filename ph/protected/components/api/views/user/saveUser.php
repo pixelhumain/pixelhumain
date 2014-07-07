@@ -1,9 +1,3 @@
-<div class="fss">
-	url : /ph/<?php echo $this->module->id?>/api/saveUser<br/>
-	method type : POST <br/>
-	Form inputs : email,postalcode,pwd,phoneNumber(is optional)<br/>
-	return json object {"result":true || false}
-</div>
 <div class="apiForm createUser">
 	name : <input type="text" name="nameSaveUser" id="nameSaveUser" value="<?php echo $this->module->id?> User" /><br/>
 	email* : <input type="text" name="emailSaveUser" id="emailSaveUser" value="<?php echo $this->module->id?>@<?php echo $this->module->id?>.com" /><br/>

@@ -1,6 +1,11 @@
 <?php
 /*
 Generic Database Method shared Throught the project
+*
+ * Librairies et Methodes Transversales 
+ *
+ * @author: Tibor Katelbach <tibor@pixelhumain.com>
+ * Date: 01/06/14
  */
 class PHDB
 {
@@ -33,5 +38,26 @@ class PHDB
     }
     public static function batchInsert($collection,$a){
         return Yii::app()->mongodb->selectCollection($collection)->batchInsert($a);   
+    }
+    /*
+    $params is the POST array 
+    $key is the microformat that  should contain 
+     */
+    public static function validate($key,$params)
+    {
+        $res = array("result"=>false);
+        if( $jsonSchema = PHDB::findOne( PHType::TYPE_MICROFORMATS , array("key"=>$key) ) )
+        {
+            //hack to convert array cast into object stdClass : json_decode (json_encode ( $jsonSchema["jsonSchema"] ), FALSE)
+            $validator = new Json\Validator(json_decode (json_encode ( $jsonSchema["jsonSchema"] ), FALSE) );
+            try{
+                $validator->validate( $params );
+                $res = array("result"=>true);
+            } catch(Exception $e){
+                $res["msg"] = $e->getMessage();
+            }
+        } else 
+            $res["msg"] = "no json Schema found.";
+        return $res; 
     }
 }

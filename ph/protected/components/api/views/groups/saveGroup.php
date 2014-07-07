@@ -1,14 +1,6 @@
-<a href="/ph/<?php echo $this::$moduleKey?>/api/saveGroup">Create/Update Entité (Asso. , Entr. , Group, Events )</a>
-
-<div class="fss">
-	url : /ph/<?php echo $this::$moduleKey?>/api/saveGroup<br/>
-	method type : POST <br/>
-	Form inputs : email,postalcode,pwd,phoneNumber(is optional)type<br/>
-	return json object {"result":true || false}
-</div>
 <div class="apiForm saveGroup">
 	name : <input type="text" name="namesaveGroup" id="namesaveGroup" value="Asso1" /><br/>
-	email* : <input type="text" name="emailsaveGroup" id="emailsaveGroup" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /> (personne physique responsable )<br/>
+	email* : <input type="text" name="emailsaveGroup" id="emailsaveGroup" value="<?php echo $this->module->id?>@<?php echo $this->module->id?>.com" /> (personne physique responsable )<br/>
 	cp* : <input type="text" name="postalcodesaveGroup" id="postalcodesaveGroup" value="97421" /><br/>
 	phoneNumber : <input type="text" name="phoneNumbersaveGroup" id="phoneNumbersaveGroup" value="1234" />(for SMS)<br/>
 	tags : <input type="text" name="tagssaveGroup" id="tagssaveGroup" value="" placeholder="ex:social,solidaire...etc"/><br/>
@@ -34,7 +26,7 @@
 			    	   "type" : $("#typesaveGroup").val(),
 			    	   "phoneNumber" : $("#phoneNumbersaveGroup").val(),
 			    	   "tags" : $("#tagssaveGroup").val(),
-			    	   "app":"<?php echo $this::$moduleKey?>",
+			    	   "app":"<?php echo $this->module->id?>",
 			    	};
 			if( $("#whensaveGroup").val() )
 				params["when"] = $("#whensaveGroup").val();
@@ -43,7 +35,7 @@
 			if( $("#whosaveGroup").val() )
 				params["group"] = $("#whosaveGroup").val();
 			
-			testitpost("saveGroupResult", baseUrl+'/<?php echo $this::$moduleKey?>/api/saveGroup',params);
+			testitpost("saveGroupResult", baseUrl+'/<?php echo $this->module->id?>/api/saveGroup',params);
 		}
 		function typeChanged(){
 			console.log( $("#typesaveGroup").val() );

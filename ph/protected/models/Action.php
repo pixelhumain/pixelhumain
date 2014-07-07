@@ -1,12 +1,12 @@
 <?php
 /*
-- system notifications are saved in the notification collection
-- citizen Notifications are saved in the citizen collection under the notification node
+- actions are saved on any needed element in any collection
+
  */
 class Action
 {
    /*
-    - can only vote , purchase, .. once
+    - can only add an action once vote , purchase, .. 
     - check user and element existance 
     - QUESTION : should actions be application inside
      */

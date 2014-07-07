@@ -57,7 +57,15 @@ class Api {
         	"actions"=>array(
         		'linkUser2Group' => 'application.controllers.groups.LinkUser2GroupAction'
         		)),
-        
+
+        /* -----------------------------------------------
+        Event Section
+         ------------------------------------------------ */
+        "saveEvent" => array( "label"=>"Create Event", "key"=>"saveEvent", 
+                "microformat"=>"eventFormRDF",
+                "desc"=>"an Event is a date with something happening ",
+                "actions" => array( 'saveevent' => 'application.controllers.events.SaveEventAction' )),
+
         /* -----------------------------------------------
 		SURVEY Section
 		 ------------------------------------------------ */
@@ -145,6 +153,12 @@ class Api {
                     self::$apis["getgroupsby"]
                     ));
 	}
+    public static function getAgendaMap(){
+        return array('label' => "Agenda", "key"=>"agenda","iconClass"=>"fa fa-calendar","generate"=>true,
+                "children"=> array(
+                    self::$apis["saveEvent"]
+                    ));
+    }
 	public static function getSurveyMap(){
 		return array( 'label' => "Survey", "key"=>"survey", "iconClass"=>"fa fa-thumbs-up", "generate"=>true,
                 "children"=> array(

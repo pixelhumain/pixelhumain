@@ -22,7 +22,7 @@ if(file_exists(Yii::getPathOfAlias(Yii::app()->params["modulePath"].Yii::app()->
 	<script>
 		function initData(){
 			params = {}; 
-			testitpost("initDataResult", baseUrl+'/<?php echo $this::$moduleKey?>/api/initdata',params);
+			testitpost("initDataResult", baseUrl+'/<?php echo $this->module->id?>/api/initdata',params);
 		}
 	</script>
 </div>

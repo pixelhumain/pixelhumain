@@ -1,12 +1,10 @@
 <!-- Simple Node element requesting only a name to create a node  -->
-<script type="text/javascript">
-requiredFields = [];
-</script>
+
 <p> <?php if(isset($txt))echo $txt?></p>
 <form id="flashForm" action="">
 	<section>
-		<p></p>
-		<table style="width:100%;margin:auto;" >
+		<p>TODO : Generic Form Text </p>
+		<table>
     	<?php 
     	//pour remplir les valeur de l'element en cours d'upate
     	$entry = ( (!isset($isSub) || !$isSub) && isset($id) && $id != null && isset($collection)) ? PHDB::findOne($collection, array("_id"=>new MongoId($id)) ) : null;
@@ -14,22 +12,15 @@ requiredFields = [];
     	if(isset($microformat))
     	{
     	    $hidden = "";
-            $required = array();
-            foreach ($microformat["jsonSchema"]["properties"] as $k=>$v)
+        	foreach ($microformat["formSchema"] as $k=>$v)
         	{
-                /******************************
-                 * Gather all required fields
-                 ******************************/
-                if(isset($v["required"]) && $v["required"])
-                    echo "<script>requiredFields.push('".$k."')</script>";
         	    /******************************
         	     * Draw or not draw an input line
         	     ******************************/
-        	    $buildRow = ( !isset($v["inputType"]) || $v["inputType"] != "hidden" );
-        	    if( $buildRow )
-                {?>
+        	    $buildRow = ( !isset($v["type"]) || $v["type"] != "hidden" );
+        	    if( $buildRow ){?>
         	    <tr>
-        	    <td class="txtright " style="padding-right:15px;"><label for="<?php echo $k?>"><?php echo ( isset($v["label"]) ) ? $v["label"] : $k?> <?php echo ( isset($v["required"]) ) ? "*" : ""?></label> </td>
+        	    <td class="txtright"><?php echo ( isset($v["label"]) ) ? $v["label"] : $k?></td>
         	    <td>
         	    <?php 
         	    }
@@ -42,25 +33,22 @@ requiredFields = [];
                 else if(isset( $v["value"] ))
                     $value = $v["value"];
                 
+                if( !isset( $v["type"]) || $v["type"] == "text" ) {
                 /******************************
-                 * INPUT TYPE TEXT
-                 ******************************/
-                if( !isset( $v["inputType"]) || $v["inputType"] == "text" ) {?>
-                	<input type="text" class="<?php echo ( isset($v["required"]) ) ? "debug" : ""?>" name='<?php echo $k?>' id='<?php echo $k?>' value="<?php echo $value?>" placeholder="<?php echo ( isset($v["label"]) ) ? $v["label"] : $k?>"/>
-                <?php } 
+        	     * INPUT TYPE TEXT
+        	     ******************************/
+                    ?>
+                	<input type="text" name='<?php echo $k?>' value="<?php echo $value?>" />
+                <?php } else if( $v["type"] == "textarea"){
                 /******************************
-                 * INPUT TYPE TEXTAREA
-                 ******************************/
-                else if( $v["inputType"] == "textarea")
-                {
-                ?>
-                	<textarea id='<?php echo $k?>' name='<?php echo $k?>'><?php echo $value?></textarea>
-                <?php } 
-                /******************************
-                 * INPUT TYPE DROPDOWN SELECT
-                 ******************************/
-                else if( $v["inputType"] == "select") {
-                 
+        	     * INPUT TYPE TEXTAREA
+        	     ******************************/
+                    ?>
+                	<textarea name='<?php echo $k?>'><?php echo $value?></textarea>
+                <?php } else if( $v["type"] == "select") {
+                 /******************************
+        	     * INPUT TYPE DROPDOWN SELECT
+        	     ******************************/
                     $default = "";
                     if( isset( $v["default"]) ) 
                         $default = $v["default"];
@@ -71,7 +59,6 @@ requiredFields = [];
                     {
                         if( $v["options_type"] == "php" ) 
                             eval( '$options ='.$options.';' );//BUG : bugs with OpenData::$phCountries doesn't evaluate
-                        //data can come fron a DB collection
                         else if( $v["options_type"] == "db" ){
                             $list = PHDB::findOne(PHType::TYPE_LISTS, array("name"=>$options ) );
                             $options = $list["list"];
@@ -84,41 +71,37 @@ requiredFields = [];
                         'value'=> ($entry && isset($entry[$k]) ) ? $value : $default,
                         'pluginOptions' => array('width' => '150px')
                       ) );
-                } 
+                } else if( $v["type"] == "checkbox") {
                 /******************************
-                 * INPUT TYPE CHECKBOX
-                 ******************************/
-                else if( $v["inputType"] == "checkbox") {
+        	     * INPUT TYPE CHECKBOX
+        	     ******************************/
                     if($value == "")
                         $value = 0; //preset to zero
                     ?>
-                    <input type="checkbox" id='<?php echo $k?>' name="<?php echo $k?>" value="<?php echo $value?>" <?php if($value)echo "checked" ?>>
-                <?php }
+                    <input type="checkbox" name="<?php echo $k?>" value="<?php echo $value?>" <?php if($value)echo "checked" ?>>
+                <?php }else if( $v["type"] == "file") {
                 /******************************
-                 * INPUT TYPE FILE
-                 ******************************/
-                else if( $v["inputType"] == "file") {?>
-                    <input type="file" name="<?php echo $k?>" id='<?php echo $k?>'/>
-                <?php } 
+        	     * INPUT TYPE FILE
+        	     ******************************/?>
+                    <input type="file" name="<?php echo $k?>"/>
+                <?php } else if( $v["type"] == "link") {
                 /******************************
-                 * INPUT TYPE FILE
-                 ******************************/
-                else if( $v["inputType"] == "link") {?>
+        	     * INPUT TYPE FILE
+        	     ******************************/?>
                     <a class="btn btn-primary" href="<?php echo "http://".$v["url"]?>">Go There</a>
-                <?php } 
+                <?php } else if( $v["type"] == "hidden" ) {
                 /******************************
-                 * INPUT TYPE HIDDEN
-                 ******************************/
-                else if( $v["inputType"] == "hidden" ) {
+        	     * INPUT TYPE HIDDEN
+        	     ******************************/
                     if(isset( $v["evalType"] ) && $v["evalType"] == "php" )
                         eval('$value = '.$value.';'); //value can be php and must be evaluated 
-                    $hidden .= '<input type="hidden" name="'.$k.'" id="'.$k.'" value="'.$value.'"/>';
-                } 
+                    $hidden .= '<input type="hidden" name="'.$k.'" value="'.$value.'"/>';
+                } else { 
                 /******************************
-                 * DEFAULT TO A TEXT TYPE INPUT
-                 ******************************/
-                else { ?>
-                	<input type="text"  class="<?php echo ( isset($v["required"]) ) ? "debug" : ""?>" id='<?php echo $k?>' name='<?php echo $k?>' value="<?php echo $value?>" />
+        	     * DEFAULT TO A TEXT TYPE INPUT
+        	     ******************************/
+                    ?>
+                	<input type="text" name='<?php echo $k?>' value="<?php echo $value?>" />
                 <?php } 
                 
                 if( $buildRow ){?>
@@ -169,34 +152,23 @@ requiredFields = [];
 	//generic ajax saving process
 	var path = "<?php echo (isset($savePath)) ? $savePath : '/common/save/' ?>";
 	$("#flashForm").submit( function(event){
-    	//log($(this).serialize());
+    	log($(this).serialize());
     	event.preventDefault();
-        requiredTest = true;
-        /*$.each(requiredFields, function(i,v){
-            //log(v);
-            if($("#"+v).val() == "")
-                requiredTest = false;
-        });*/
     	toggleSpinner();
-        
-        if(requiredTest)
-        {
-        	$.ajax({
-        	  type: "POST",
-        	  url: baseUrl+path,
-        	  data: $(this).serialize(),
-        	  success: function(data){
-        		  $("#flashInfoSaveBtn").html('');
-        		  $("#flashInfoContent").html(data.msg);
-        		  /*if( data.reload )
-            		  window.location.reload();*/
-        		  toggleSpinner();
-        	  },
-        	  dataType: "json"
-        	});
-        }else{
-            alert("Please fill required fields.");
-        }
+
+    	$.ajax({
+    	  type: "POST",
+    	  url: baseUrl+path,
+    	  data: $(this).serialize(),
+    	  success: function(data){
+    		  $("#flashInfoSaveBtn").html('');
+    		  $("#flashInfoContent").html(data.msg);
+    		  if(data.reload)
+        		  window.location.reload();
+    		  toggleSpinner();
+    	  },
+    	  dataType: "json"
+    	});
     
     });
 <?php if(isset( $microformat["formSchema"]["slug"]) && isset($microformat["formSchema"]["slug"])){?>
@@ -221,27 +193,27 @@ available fields
 
 "description" : {
       "label" : "Description",
-      "inputType" : "text"
+      "type" : "text"
     },
 "description" : {
       "label" : "Description",
-      "inputType" : "hidden"
+      "type" : "hidden"
     },
 "owner" : {
-		"inputType" : "hidden",
+		"type" : "hidden",
 		"value" : "userId"
     },
 "description" : {
       "label" : "Description",
-      "inputType" : "textarea"
+      "type" : "textarea"
     },
 "public" : {
       "label" : "Publique",
-	  "inputType" : "checkbox"
+	  "type" : "checkbox"
     },
-"inputType" : {
-      "label" : "inputType",
-      "inputType" : "select",
+"type" : {
+      "label" : "Type",
+      "type" : "select",
 	  "options" :{
 	  	"meeting" : "Réunion",
 		 "festival" : "Festival",
@@ -254,13 +226,13 @@ available fields
     },
 "country" : {
       "label" : "Pays",
-      "inputType" : "select",
+      "type" : "select",
       "options_type" : "db",
       "options" : "countries"
     }
 "date" : {
       "label" : "Date",
-      "inputType" : "date"
+      "type" : "date"
     },
 */?>
    

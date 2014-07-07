@@ -14,7 +14,7 @@
 		function deleteEntry() {
 			params = { "survey" : $("#sessiondeleteEntry").val() , 
 			    		"app" : "<?php echo $this->module->id?>"};
-			testitpost("deleteEntryResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/deletesurvey',params);
+			testitpost("deleteEntryResult",baseUrl+'/<?php echo $this->module->id?>/api/deletesurvey',params);
 		}
 	</script>
 </div>

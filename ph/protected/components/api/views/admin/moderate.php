@@ -21,7 +21,7 @@
 			params = { "survey" : $("#sessionmoderateEntry").val() , 
 						"action" : $("#moderateAction").val() , 
 			    		"app" : "<?php echo $this->module->id?>"};
-			testitpost("moderateEntryResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/moderateentry',params);
+			testitpost("moderateEntryResult",baseUrl+'/<?php echo $this->module->id?>/api/moderateentry',params);
 		}
 		function getEntry(){
 			params = { "where" : { 
@@ -31,7 +31,7 @@
 			    	   	},
 			    	   	"collection":"surveys"
 			    	};
-			testitpost("moderateEntryResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/getby',params);
+			testitpost("moderateEntryResult",baseUrl+'/<?php echo $this->module->id?>/api/getby',params);
 		}
 	</script>
 </div>

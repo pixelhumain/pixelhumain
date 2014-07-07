@@ -1,9 +1,3 @@
-<div class="fss">
-	url : /ph/<?php echo $this::$moduleKey?>/api/addEntry<br/>
-	method type : POST <br/>
-	Form inputs : email,postalcode,pwd,phoneNumber(is optional)<br/>
-	return json object {"result":true || false}
-</div>
 <div class="apiForm addEntry">
 	<select id="sessionaddEntry">
 		<option></option>
@@ -31,7 +25,7 @@
 			    	   "cp" : $("#postalcodesaveGroup").val() , 
 			    	   "type" : "entry",
 			    	   "app" : "survey"};
-			testitpost("addEntryResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/saveSession',params);
+			testitpost("addEntryResult",baseUrl+'/<?php echo $this->module->id?>/api/saveSession',params);
 		}
 		function getEntry(){
 			params = { "where" : { 
@@ -41,7 +35,7 @@
 			    	   	},
 			    	   	"collection":"surveys"
 			    	};
-			testitpost("addEntryResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/getby',params);
+			testitpost("addEntryResult",baseUrl+'/<?php echo $this->module->id?>/api/getby',params);
 		}
 	</script>
 </div>

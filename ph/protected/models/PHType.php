@@ -13,6 +13,8 @@ class PHType
     const TYPE_APPLICATIONS    = "applications";
     const TYPE_SURVEYS         = "surveys";
     const TYPE_ACTION_HISTORY  = "actionHistory";
+    const TYPE_MICROFORMATS    = "microformats";
+    const TYPE_LISTS           = "lists";
     
     /* Standard connection types, the user can then create his own groupings*/
     const CONNECT_TYPE_FRIEND	   = "friend";

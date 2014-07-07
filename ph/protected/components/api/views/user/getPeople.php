@@ -1,6 +1,4 @@
 <div class="fss">
-	url : /ph/<?php echo $this->module->id?>/api/getpeopleby<br/>
-	method type : POST <br/>
 	cp* : <input type="text" name="postalcodegetPeople" id="postalcodegetPeople" value="97421" /><br/>
 	<a href="javascript:getpeopleby()">Test it</a><br/>
 	<a href="javascript:countpeopleby()">Count it</a><br/>

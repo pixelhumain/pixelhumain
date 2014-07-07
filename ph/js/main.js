@@ -82,8 +82,11 @@ function toggleSpinner(){
 	if($("#logoLink").length){
 		$("#logo").html('');
 		var spinner = new Spinner(spinner_opts).spin($("#logo")[0]);
-	} else 
+		NProgress.start();
+	} else {
 		$("#logo").html('<a id="logoLink" class="ml10 " href="/ph">PH</a>');
+		NProgress.done();
+	}
 }
 
 var spinner_opts = {
@@ -146,9 +149,14 @@ function openModal(key,collection,id,tpl,savePath,isSub){
     	$.ajax({
     	  type: "POST",
     	  url: baseUrl+"/common/GetMicroformat/key/"+key,
-    	  data: { "key":key, "template":tpl, "collection":collection, "id":id,"savePath":savePath,"isSub":isSub },
+    	  data: { "key" : key, 
+    	  		  "template" : tpl, 
+    	  		  "collection" : collection, 
+    	  		  "id" : id,
+    	  		  "savePath" : savePath,
+    	  		  "isSub" : isSub },
     	  success: function(data){
-    		  	  
+    			  $("#flashInfoLabel").html(data.title);
     			  $("#flashInfoContent").html(data.content);
     			  $("#flashInfoSaveBtn").html('<a class="btn btn-warning " href="javascript:;" onclick="$(\'#flashForm\').submit(); return false;"  >Enregistrer</a>');
     		  toggleSpinner();

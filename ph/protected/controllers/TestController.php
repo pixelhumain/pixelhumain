@@ -14,4 +14,9 @@ class TestController extends Controller {
 	    $this->layout = "test";
 	    $this->render("index");
 	}
+	public function actionValidate() {
+	    $this->layout = "test";
+	    $e = new Event();
+	    $e->validate("eventFormRDF");
+	}
 }

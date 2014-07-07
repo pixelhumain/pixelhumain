@@ -1,6 +1,4 @@
 <div class="fss">
-	url : /ph/<?php echo $this::$moduleKey?>/api/getby<br/>
-	method type : POST <br/>
 	type : <select id="getbyType">
 		<option value="survey">Surveys</option>
 		<option value="entry">Entries</option>
@@ -30,7 +28,7 @@
 				params.where[op] = tagList;
 				params.where["$and"] = [{"type":type}];
 			}
-			testitpost("getbyResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/getby',params);
+			testitpost("getbyResult",baseUrl+'/<?php echo $this->module->id?>/api/getby',params);
 		}
 	</script>
 </div>

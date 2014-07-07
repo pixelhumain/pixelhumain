@@ -1,12 +1,6 @@
-<div class="fss">
-	url : /ph/<?php echo $this::$moduleKey?>/api/saveProject<br/>
-	method type : POST <br/>
-	Form inputs : email,postalcode,pwd,phoneNumber(is optional)<br/>
-	return json object {"result":true || false}
-</div>
 <div class="apiForm saveProject">
-	name : <input type="text" name="namesaveProject" id="namesaveProject" value="<?php echo $this::$moduleKey?>1" /><br/>
-	admin email* : <input type="text" name="emailsaveProject" id="emailsaveProject" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /><br/>
+	name : <input type="text" name="namesaveProject" id="namesaveProject" value="<?php echo $this->module->id?>1" /><br/>
+	admin email* : <input type="text" name="emailsaveProject" id="emailsaveProject" value="<?php echo $this->module->id?>@<?php echo $this->module->id?>.com" /><br/>
 	tags : <input type="text" name="tagssaveProject" id="tagssaveProject" value="lois,anonymat,vote" placeholder="ex:social,solidaire...etc"/>(comma seperated)<br/>
 	scope* : cp ou quartier : <input type="text" name="postalcodesaveProject" id="postalcodesaveProject" value="97421" />(comma seperated)<br/>
 		
@@ -20,8 +14,8 @@
 			    	   "tags" : $("#tagssaveProject").val(),
 			    	   "cp" : $("#postalcodesaveProject").val(),
 			    	   "type" : "project",
-			    	   "app" : "<?php echo $this::$moduleKey?>" };
-			testitpost("saveProjectResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/saveProject',params);
+			    	   "app" : "<?php echo $this->module->id?>" };
+			testitpost("saveProjectResult",baseUrl+'/<?php echo $this->module->id?>/api/saveProject',params);
 		}
 		function getSession(){
 			params = { "where" : { 
@@ -31,7 +25,7 @@
 			    	   	},
 			    	   	"collection":"projects"
 			    	};
-			testitpost("saveProjectResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/getby',params);
+			testitpost("saveProjectResult",baseUrl+'/<?php echo $this->module->id?>/api/getby',params);
 		}
 	</script>
 </div>

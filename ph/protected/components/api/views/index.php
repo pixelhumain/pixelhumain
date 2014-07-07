@@ -4,6 +4,19 @@ $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/api.css');
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 
 $this->pageTitle="API ".$this::moduleTitle;
+function blockHTML($pathTpl,$entry,$params){
+	$str = "<li class='block' id='block".$entry['key']."'>";
+	$str .= "<h4>".$entry['label']."</h4>";
+	$str .= "<div class='fss fr'>".$entry['desc']."</div>";
+	
+	if(isset($entry["microformat"])) {
+		$microformat = PHDB::findOne(PHType::TYPE_MICROFORMATS, array("key"=>$entry["microformat"]));
+		$str .= "<a href='javascript:;' onclick='openModal(\"".$entry["microformat"]."\",\"".$microformat["collection"]."\",null,\"".$microformat["template"]."\")'  class='btn'>".$entry['microformat']."</a><br/>";
+	} else
+		$str .= Yii::app()->controller->renderPartial( $pathTpl,$params,true );
+	$str .= "</li>";
+	return $str;
+}
 ?>
 
 
@@ -63,10 +76,7 @@ $this->pageTitle="API ".$this::moduleTitle;
 									$pathTpl = $child['tpl'];
 									if(is_file(Yii::getPathOfAlias($pathTpl).".php") )
 									{
-										echo "<li class='block' id='block".$child['key']."'>";
-										echo "<h4>".$child['label']."</h4>";
-										$this->renderPartial( $pathTpl,$params ); 
-										echo "</li>";
+										echo blockHTML($pathTpl,$child,$params);
 									}else
 										echo "<span style='color:red'>This template ".$child['key']." doesn't exist yet : ".Yii::getPathOfAlias($child['tpl']).".php</span>";
 								} 
@@ -82,10 +92,7 @@ $this->pageTitle="API ".$this::moduleTitle;
 									}
 									if($pathTpl && is_file(Yii::getPathOfAlias($pathTpl).".php") )
 									{
-										echo "<li class='block' id='block".$child['key']."'>";
-										echo "<h4>".$child['label']."</h4>";
-										$this->renderPartial( $pathTpl,$params ); 
-										echo "</li>";
+										echo blockHTML($pathTpl,$child,$params);
 									}else
 										echo "<span style='color:red'>This template ".$child['label']." has no tpl specified </span>";
 								}

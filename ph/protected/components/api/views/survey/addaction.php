@@ -1,8 +1,5 @@
 <div class="fss">
-	url : /ph/<?php echo $this::$moduleKey?>/api/addaction<br/>
-	method type : POST <br/>
-	param : <br/>
-	all <?php echo $this::$moduleKey?> entries : 
+	all <?php echo $this->module->id?> entries : 
 	<select id="addactionSurvey">
 		<option></option>
 		<?php 
@@ -39,7 +36,7 @@
 	    	   "collection":"surveys",
 	    	   "action" : $("#actionSurvey").val() 
 	    	   };
-			testitpost("addactionResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/addaction',params);
+			testitpost("addactionResult",baseUrl+'/<?php echo $this->module->id?>/api/addaction',params);
 		}
 
 		function unaddaction(){
@@ -50,7 +47,7 @@
 	    	   "unset" : true,
 	    	   "action" : $("#actionSurvey").val() 
 	    	   };
-			testitpost("addactionResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/addaction',params);
+			testitpost("addactionResult",baseUrl+'/<?php echo $this->module->id?>/api/addaction',params);
 		}
 
 		function getIncByAction(){
@@ -59,7 +56,7 @@
 	    	   "collection":"surveys",
 	    	   "fields" : [$("#actionSurvey").val()] 
 	    	   };
-			testitpost("addactionResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/getactionvalue',params);
+			testitpost("addactionResult",baseUrl+'/<?php echo $this->module->id?>/api/getactionvalue',params);
 		}
 
 	</script>

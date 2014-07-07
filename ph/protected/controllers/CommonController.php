@@ -19,10 +19,13 @@ class CommonController extends Controller {
      * */
     public function actionGetMicroformat() {
         if(isset($_POST["key"])){
-            $microformat = Yii::app()->mongodb->microformats->findOne( array( "key"=>$_POST["key"] ));
+            $microformat = PHDB::findOne(PHType::TYPE_MICROFORMATS, array( "key"=>$_POST["key"] ));
             $html = "";
+            $title = "Formulaire";
             if($microformat){
                 //clef trouvé dans microformats
+                if(isset($microformat["jsonSchema"]["title"]))
+                    $title = $microformat["jsonSchema"]["title"];
                 if($microformat["template"] == "dynamicallyBuild")
                     $_POST["microformat"] = $microformat;
                 $html .= $this->renderPartial($microformat["template"],$_POST,true);
@@ -30,15 +33,16 @@ class CommonController extends Controller {
                 //clef pas trouvé dans microformats
                 $html .= $this->renderPartial($_POST["template"],$_POST,true);
             }
-            echo json_encode( array("result"=>true,"content"=>$html));
+            echo json_encode( array("result"=>true,"title"=>$title,"content"=>$html));
         } else 
-            echo json_encode( array("result"=>false,"content"=>"Votre ne peut aboutir"));
+            echo json_encode( array("result"=>false,"title"=>$title,"content"=>"Votre ne peut aboutir"));
 	}
     /**
      * Saves part of an entry genericlly based on 
      * - collection and id value
      */
-	public function actionSave() {
+	public function actionSave() 
+    {
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
 		{
     	    $id = null;
@@ -46,42 +50,40 @@ class CommonController extends Controller {
     	    $collection = $_POST["collection"];
     	    if( !empty($_POST["id"]) ){
     	        $id = $_POST["id"];
-    	        $data = Yii::app()->mongodb->selectCollection($collection)->findOne(array("_id"=>new MongoId($id)));
     	    }
     	    $key = $_POST["key"];
     	    unset($_POST['id']);
             unset($_POST['collection']);
             unset($_POST['key']);
             
-            $microformat = Yii::app()->mongodb->microformats->findOne( array( "key"=> $key));
-            
-            //TODO add validation process based on microformat defeinition of the form
-            $res = array("result"=>false,"content"=>"Votre ne peut aboutir");
-            if($data){
-                if( !$microformat && isset( $key )) {
-                    Yii::app()->mongodb->selectCollection($collection)->update(array("_id"=>new MongoId($id)), 
-                                                                                        array('$set' => array( $key => $_POST[ $key ] ) ));
-                } else {
-                    Yii::app()->mongodb->selectCollection($collection)->update(array("_id"=>new MongoId($id)), 
-                                                                               array('$set' => $_POST ));
-                }
-                                                                                    
-                $res = array("result"=>true,"msg"=>"Vos données ont bien été enregistré.","reload"=>true);
-            } else {
-                //TODO : test d'existance
-                foreach($_POST as $k=>$v){
-                    $pattern = '/^[0-9a-fA-F]{24}$/';
-                    if( preg_match($pattern, $v) )
-                        $_POST[$k] = new MongoId($v);
-                }
-                
-                Yii::app()->mongodb->selectCollection($collection)->insert( $_POST );
-                $res = array("result"=>true,"msg"=>"Vos données ont bien été enregistré.","reload"=>true);
+            //empty fields aren't properly validated and must be removed
+            foreach ($_POST as $k => $v) {
+                if(empty($v))
+                    unset($_POST[$k]);
             }
-            
+            $microformat = PHDB::findOne(PHType::TYPE_MICROFORMATS, array( "key"=> $key));
+            //validation process based on microformat defeinition of the form
+            $valid = PHDB::validate( $key, json_decode (json_encode ($_POST), FALSE) );
+            if( $valid["result"] )
+            {
+                if($id)
+                {
+                    //update a single field
+                    //else update whole map
+                    $changeMap = ( !$microformat && isset( $key )) ? array('$set' => array( $key => $_POST[ $key ] ) ) : array('$set' => $_POST );
+                    PHDB::update($collection,array("_id"=>new MongoId($id)), $changeMap);
+                    $res = array("result"=>true,
+                                 "msg"=>"Vos données ont été mise à jour.","reload"=>true);
+                } 
+                else 
+                {
+                    PHDB::insert($collection, $_POST );
+                    $res = array("result"=>true,
+                                 "msg"=>"Vos données ont bien été enregistré.","reload"=>true);
+                }
+            } else 
+                $res = $valid;
             echo json_encode( $res );  
 		}
 	}
-	
-	
 }

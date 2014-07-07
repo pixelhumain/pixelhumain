@@ -1,8 +1,3 @@
-<div class="fss">
-	se communecter c'est juste suivre l'activité d'un CP <br/>
-	Il suffit d'un email et d'un CP<br/>
-	method type : POST <br/>
-</div>
 <div class="apiForm communect">
 	email : <input type="text" name="emailCommunect" id="emailCommunect" value="<?php echo $this->module->id?>@<?php echo $this->module->id?>.com" /><br/>
 	code postal  : <input type="text" name="cpCommunect" id="cpCommunect" value="97421" /><br/>

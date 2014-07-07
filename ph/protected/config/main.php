@@ -3,7 +3,7 @@ require_once(dirname(__FILE__) . '/dbconfig.php');
 require_once(dirname(__FILE__) . '/mailconfig.php');
 require_once(dirname(__FILE__) . '/moduleconfig.php');
 // uncomment the following to define a path alias
-// Yii::setPathOfAlias('local','path/to/local-folder');
+Yii::setPathOfAlias('Json',dirname(__FILE__) . '/../extensions/Json');
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
@@ -38,6 +38,7 @@ return array(
         'mongoYii.validators.*',
         'mongoYii.behaviors.*',
     	'ext.mail.YiiMailMessage',
+    	'ext.Json.Validator',
         'ext.helpers.*',
 	),
 

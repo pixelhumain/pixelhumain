@@ -1,6 +1,5 @@
 <div class="fss">
-	url : /ph/<?php echo $this->module->id?>/api/getnodeby<br/>
-	method type : GET <br/>
+	
 	type : <input type="text" name="getnodebyType" id="getnodebyType" value="friends" /><br/>
 	<a href="javascript:getnodeby()">Test it</a><br/>
 	<a href="javascript:countgetnodeby()">Count it</a><br/>
