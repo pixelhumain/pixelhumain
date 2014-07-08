@@ -1,6 +1,12 @@
+<?php 
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
+$this->pageTitle= "Convert RDF instance to Formatted Json Schema" ;
+?>
 <h1> Convert RDF instance to Formatted Json Schema  </h1>
 
 <div>
+	Get Existing Microformats 
 	<select id="getMicroformat">
 		<option></option>
 		<?php 
@@ -11,14 +17,14 @@
 		?>
 	</select>
 	<a class="btn btn-primary " href="javascript:getMicroformat()">Get Json</a>
-	<a class="btn btn-primary " href="javascript:showForm()">Show Form</a>
+	<a class="btn btn-primary hide showBtn" href="javascript:showForm()">Show Form</a>
 </div>
 
-<div class="fl clear w100p">
+<div class="fl clear w100p convertBtn">
 <a class="btn btn-primary " href="javascript:buildJsonSchema()">Convert</a>
 </div>
 
-<div style="float:left;padding:20px;">
+<div style="float:left;padding:20px;" class="convertSrc">
 	<textarea id="rdfinstance" style="width:400px;height:400px;color:white;background-color: #000;" placeholder="RDF instance JSON">
 <?php if(isset($_GET["src"]) && $_GET["src"]==1)
 {
@@ -108,14 +114,25 @@
 	<textarea id="jsonSchema" style="width:400px;height:400px;background-color: #1B1E24;color:white;" placeholder="JSON Schema"></textarea>
 </div>
 
-<div>
+<div style="float:left;padding:20px;">
 	<input type="text" name="microformatName" id="microformatName" placeholder="microformat Name"/>
 	<input type="text" name="microformatCollection" id="microformatCollection" placeholder="microformat Collection"/>
 	<input type="text" name="microformatTemplate" id="microformatTemplate" placeholder="microformat Template"/>
-	<a class="btn btn-primary " href="javascript:showForm()">Show Form</a>
+	<a class="btn btn-primary hide showBtn" href="javascript:showForm()">Show Form</a>
 </div>
 
 <script type="text/javascript">
+	initT['initPage'] = function(){
+		<?php
+		if(isset($_GET["microformat"]))
+		{
+			$microformat = PHDB::findOne(PHType::TYPE_MICROFORMATS, array('key' => $_GET["microformat"] ));
+			echo "$('#getMicroformat').val('".(string)$microformat["_id"]."');";
+			echo "getMicroformat();";
+		}
+		?>
+	};
+
 	jsonSchema = {
 		title:"",
 		type:"object",
@@ -144,8 +161,33 @@
 			} else
 				jsonSchema.properties[key] = { "inputType" : "text","i18n":k };
 		});
-	}
+	}var currentMF = null;
 	function showForm(){
-
+		openModal(currentMF.key,currentMF.collection,null,currentMF.template);
+	}
+	function getMicroformat(){
+		if($("#getMicroformat").val()!=""){
+			params = {
+				"collection":"<?php echo PHType::TYPE_MICROFORMATS?>",
+				"where":{ 
+					"_id" : $("#getMicroformat").val()
+				} 
+			}; 
+			testitpost("getbyResult",baseUrl+'/tools/getby',params,function(data){
+				currentMF = data[$("#getMicroformat").val()];
+				if(currentMF && currentMF.jsonSchema){
+					$("#jsonSchema").val( JSON.stringify(currentMF.jsonSchema, null, 4) );
+					$("#microformatName").val( currentMF.key);
+					$("#microformatCollection").val( currentMF.collection);
+					$("#microformatTemplate").val( currentMF.template);
+					$(".convertBtn").fadeOut();
+					$(".convertSrc").fadeOut();
+					$(".showBtn").removeClass("hide");
+				} else
+					alert("Microformat is empty");
+				
+			});
+		} else 
+			alert("you must choose a microformat key");
 	}
 </script>

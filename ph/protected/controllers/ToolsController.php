@@ -9,6 +9,14 @@
  */
 class ToolsController extends Controller {
     const moduleTitle = "Outils";
+
+    public function actions()
+    {
+        return array(
+            'getby' => 'application.controllers.generic.GetByAction',                      
+        );
+    }
+
     /**
      * Runs through a tab seperated CSV file
      * saves to table citoyen or group 
