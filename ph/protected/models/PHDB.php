@@ -18,7 +18,10 @@ class PHDB
     {
         return Yii::app()->mongodb->selectCollection($collection)->count($where);
     }
-
+    public static function countWFileds( $collection, $where=array(),$fields=array() )
+    {
+        return Yii::app()->mongodb->selectCollection($collection)->count($where,$fields);
+    }
     public static function findOne( $collection, $where )
     {
         return Yii::app()->mongodb->selectCollection($collection)->findOne($where);

@@ -40,6 +40,7 @@ return array(
     	'ext.mail.YiiMailMessage',
     	'ext.Json.Validator',
         'ext.helpers.*',
+        //'ext.easyrdf.lib.*'
 	),
 
 	'modules'=>array_merge($activeModules,array(

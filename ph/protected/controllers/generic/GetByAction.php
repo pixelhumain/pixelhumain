@@ -8,9 +8,9 @@ class GetByAction extends CAction
         $fields = ( isset($params["fields"]) ) ? $params["fields"] : "";
 
         if( !isset($params["count"]) ) 
-            $res = iterator_to_array(Yii::app()->mongodb->selectCollection($_POST['collection'])->find ( $where ));
+            $res = PHDB::find($_POST['collection'],$where );
         else
-            $res = array('count' => Yii::app()->mongodb->selectCollection($_POST['collection'])->count ( $where,$fields ));
+            $res = array('count' => PHDB::countWFileds($_POST['collection'],( $where,$fields ));
         //$res["where"]=$where;
         Rest::json( $res );
         Yii::app()->end();

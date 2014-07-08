@@ -45,7 +45,9 @@ class CommonController extends Controller {
     {
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
 		{
-    	    $id = null;
+    	    
+            var_dump($_POST);
+            $id = null;
     	    $data = null;
     	    $collection = $_POST["collection"];
     	    if( !empty($_POST["id"]) ){
@@ -58,6 +60,7 @@ class CommonController extends Controller {
             
             //empty fields aren't properly validated and must be removed
             foreach ($_POST as $k => $v) {
+                echo $k." => ".$v."\n";
                 if(empty($v))
                     unset($_POST[$k]);
             }
@@ -73,13 +76,17 @@ class CommonController extends Controller {
                     $changeMap = ( !$microformat && isset( $key )) ? array('$set' => array( $key => $_POST[ $key ] ) ) : array('$set' => $_POST );
                     PHDB::update($collection,array("_id"=>new MongoId($id)), $changeMap);
                     $res = array("result"=>true,
-                                 "msg"=>"Vos données ont été mise à jour.","reload"=>true);
+                                 "msg"=>"Vos données ont été mise à jour.",
+                                 "reload"=>true,
+                                 "map"=>$_POST);
                 } 
                 else 
                 {
                     PHDB::insert($collection, $_POST );
                     $res = array("result"=>true,
-                                 "msg"=>"Vos données ont bien été enregistré.","reload"=>true);
+                                 "msg"=>"Vos données ont bien été enregistré.",
+                                 "reload"=>true,
+                                 "map"=>$_POST);
                 }
             } else 
                 $res = $valid;

@@ -45,7 +45,7 @@ requiredFields = [];
                 /******************************
                  * INPUT TYPE TEXT
                  ******************************/
-                if( !isset( $v["inputType"]) || $v["inputType"] == "text" ) {?>
+                if( !isset( $v["inputType"]) || $v["inputType"] == "text" ) { ?>
                 	<input type="text" class="<?php echo ( isset($v["required"]) ) ? "debug" : ""?>" name='<?php echo $k?>' id='<?php echo $k?>' value="<?php echo $value?>" placeholder="<?php echo ( isset($v["label"]) ) ? $v["label"] : $k?>"/>
                 <?php } 
                 /******************************
@@ -106,7 +106,7 @@ requiredFields = [];
                 else if( $v["inputType"] == "link") {?>
                     <a class="btn btn-primary" href="<?php echo "http://".$v["url"]?>">Go There</a>
                 <?php } 
-                /******************************
+                /* *****************************
                  * INPUT TYPE HIDDEN
                  ******************************/
                 else if( $v["inputType"] == "hidden" ) {

@@ -35,7 +35,7 @@
         <div class="greeting">Bienvenue</div>
         <div class="username"><span class="semi-bold"><?php if(isset($account['name']))echo $account['name']?></span></div>
         <div class="status">Connecté<a href="<?php Yii::app()->createUrl("citoyens/moi")?>"><div class="status-icon green"></div><?php echo (isset($account['cp'])) ? "<a href='".Yii::app()->createUrl("commune/view/cp/".$account['cp'])."'>".$account['cp'].'</a>' : $account['email']?></a></div>
-        <?php  echo Yii::app()->session["userId"];?>
+        <?php  //echo Yii::app()->session["userId"];?>
         <?php } ?>
       </div>
       

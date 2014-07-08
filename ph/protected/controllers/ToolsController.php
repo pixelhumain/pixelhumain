@@ -23,6 +23,9 @@ class ToolsController extends Controller {
     public function actionImport($group,$type) {
         $this->render("pasteIn",array("group"=>$group,"type"=>$type,));
 	}
+    public function actionConvert() {
+        $this->render("rdf2jsonSchema");
+    }
 	public function actionVisualizeImport($group,$type) {
 	    $process = 0;
         $row = 1;

@@ -14,9 +14,18 @@ class TestController extends Controller {
 	    $this->layout = "test";
 	    $this->render("index");
 	}
+	
 	public function actionValidate() {
 	    $this->layout = "test";
 	    $e = new Event();
 	    $e->validate("eventFormRDF");
+	}
+
+	public function actionEasyRDF(){
+		$this->layout = "test";
+		$foaf = new EasyRdf_Graph("http://njh.me/foaf.rdf");
+		$foaf->load();
+		$me = $foaf->primaryTopic();
+		echo "My name is: ".$me->get('foaf:name')."\n";
 	}
 }
