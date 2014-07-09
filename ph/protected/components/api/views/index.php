@@ -4,10 +4,18 @@ $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/api.css');
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 
 $this->pageTitle="API ".$this::moduleTitle;
-function blockHTML($pathTpl,$entry,$params){
+function blockHTML($pathTpl,$entry,$params,$parent){
 	$str = "<li class='block' id='block".$entry['key']."'>";
 	$str .= "<h4>".$entry['label']."</h4>";
-	$str .= "<div class='fss fr'>".$entry['desc']."</div>";
+	$actions = "";
+	foreach ($entry["actions"] as $ak => $av) {
+		$actions .= $ak." > ".$av."<br/>";
+	}
+	$str .= "<div class='fss fr txtright'>".
+				$entry['desc']."<br/>".
+				"file > api/views/".$parent['key']."/".$entry['key'].".php<br/>".
+				$actions."<br/>".
+			"</div>";
 	
 	if(isset($entry["microformat"])) {
 		$microformat = PHDB::findOne(PHType::TYPE_MICROFORMATS, array("key"=>$entry["microformat"]));
@@ -76,7 +84,7 @@ function blockHTML($pathTpl,$entry,$params){
 									$pathTpl = $child['tpl'];
 									if(is_file(Yii::getPathOfAlias($pathTpl).".php") )
 									{
-										echo blockHTML($pathTpl,$child,$params);
+										echo blockHTML($pathTpl,$child,$params,$e);
 									}else
 										echo "<span style='color:red'>This template ".$child['key']." doesn't exist yet : ".Yii::getPathOfAlias($child['tpl']).".php</span>";
 								} 
@@ -92,7 +100,7 @@ function blockHTML($pathTpl,$entry,$params){
 									}
 									if($pathTpl && is_file(Yii::getPathOfAlias($pathTpl).".php") )
 									{
-										echo blockHTML($pathTpl,$child,$params);
+										echo blockHTML($pathTpl,$child,$params,$e);
 									}else
 										echo "<span style='color:red'>This template ".$child['label']." has no tpl specified </span>";
 								}

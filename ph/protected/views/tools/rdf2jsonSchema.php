@@ -5,7 +5,7 @@ $this->pageTitle= "Convert RDF instance to Formatted Json Schema" ;
 ?>
 <h1> Convert RDF instance to Formatted Json Schema  </h1>
 
-<div>
+<div class="fl col-md-6">
 	Get Existing Microformats 
 	<select id="getMicroformat">
 		<option></option>
@@ -16,16 +16,28 @@ $this->pageTitle= "Convert RDF instance to Formatted Json Schema" ;
 			}
 		?>
 	</select>
+	<br/>
 	<a class="btn btn-primary " href="javascript:getMicroformat()">Get Json</a>
 	<a class="btn btn-primary hide showBtn" href="javascript:showForm()">Show Form</a>
 </div>
 
-<div class="fl clear w100p convertBtn">
-<a class="btn btn-primary " href="javascript:buildJsonSchema()">Convert</a>
+<div class="fl  col-md-6" id="getMicroformatSection">
+	Get An Ontology<br/>
+	TODO : import all schemas
+	TODO : list all ontologies in select
+	TODO : and build a sample instance <br/>
+	TODO : microformat builder checkbox interface of all field of an ontology<br/>
+	<select id="getOntology"></select>
+	<a class="btn btn-primary " href="javascript:getOntology()">Get Ontology and Build JSON</a>
 </div>
 
-<div style="float:left;padding:20px;" class="convertSrc">
-	<textarea id="rdfinstance" style="width:400px;height:400px;color:white;background-color: #000;" placeholder="RDF instance JSON">
+<div class="fl clear w100p convertBtn">
+<a class="btn btn-primary " href="javascript:buildJsonSchema()">Convert</a>
+<br/>TODO : Add JSON Editor
+</div>
+
+<div style="float:left;padding:20px;" class="convertSrc col-md-6">
+	<textarea id="rdfinstance"  class="w100p" style="height:400px;color:white;background-color: #000;" placeholder="RDF instance JSON">
 <?php if(isset($_GET["src"]) && $_GET["src"]==1)
 {
 ?>
@@ -110,14 +122,16 @@ $this->pageTitle= "Convert RDF instance to Formatted Json Schema" ;
 <?php } ?>
 	</textarea>
 </div>
-<div style="float:left;padding:20px;">
-	<textarea id="jsonSchema" style="width:400px;height:400px;background-color: #1B1E24;color:white;" placeholder="JSON Schema"></textarea>
+<div style="float:left;padding:20px;" class=" col-md-6">
+	<textarea id="jsonSchema" class="w100p" style="height:400px;background-color: #1B1E24;color:white;" placeholder="JSON Schema"></textarea>
 </div>
 
 <div style="float:left;padding:20px;">
 	<input type="text" name="microformatName" id="microformatName" placeholder="microformat Name"/>
 	<input type="text" name="microformatCollection" id="microformatCollection" placeholder="microformat Collection"/>
-	<input type="text" name="microformatTemplate" id="microformatTemplate" placeholder="microformat Template"/>
+	<input type="text" name="microformatTemplate" id="microformatTemplate" placeholder="microformat Template" value="dynamicallyBuild"/>
+	<br/>
+	<a class="btn btn-primary hide saveMFBtn" href="javascript:saveMicroformat()">Save Microformat</a>
 	<a class="btn btn-primary hide showBtn" href="javascript:showForm()">Show Form</a>
 </div>
 
@@ -142,6 +156,7 @@ $this->pageTitle= "Convert RDF instance to Formatted Json Schema" ;
 	{
 		convert( $.parseJSON( $("#rdfinstance").val() ) , null );
 		$("#jsonSchema").val( JSON.stringify(jsonSchema, null, 4) );
+		$(".saveMFBtn").removeClass("hide");
 	}
 	function convert(jsonSrc,prefix)
 	{
@@ -173,7 +188,7 @@ $this->pageTitle= "Convert RDF instance to Formatted Json Schema" ;
 					"_id" : $("#getMicroformat").val()
 				} 
 			}; 
-			testitpost("getbyResult",baseUrl+'/tools/getby',params,function(data){
+			testitpost(null,baseUrl+'/tools/getby',params,function(data){
 				currentMF = data[$("#getMicroformat").val()];
 				if(currentMF && currentMF.jsonSchema){
 					$("#jsonSchema").val( JSON.stringify(currentMF.jsonSchema, null, 4) );
@@ -182,12 +197,44 @@ $this->pageTitle= "Convert RDF instance to Formatted Json Schema" ;
 					$("#microformatTemplate").val( currentMF.template);
 					$(".convertBtn").fadeOut();
 					$(".convertSrc").fadeOut();
+					$("#getMicroformatSection").fadeOut();
 					$(".showBtn").removeClass("hide");
+					$(".saveMFBtn").removeClass("hide");
 				} else
 					alert("Microformat is empty");
 				
 			});
 		} else 
 			alert("you must choose a microformat key");
+	}
+	function getOntology(){
+		alert("TODO ROODOOODOO");
+	}
+	function saveMicroformat()
+	{
+		if( $("#microformatName").val()!="" && $("#microformatCollection").val()!="" && $("#microformatTemplate").val()!="" )
+		{
+			params = {
+				"collection":"<?php echo PHType::TYPE_MICROFORMATS?>",
+				"key":$("#microformatName").val(),
+				"MFcollection":$("#microformatCollection").val(),
+				"template":$("#microformatTemplate").val(),
+				"jsonSchema":$.parseJSON($("#jsonSchema").val())
+			}; 
+			testitpost(null,baseUrl+'/common/save',params,function(data){
+				if(data.result){
+					$("#flashInfoSaveBtn").html('');
+        		  	$("#flashInfoContent").html(data.msg);
+        		  	$("#flashInfo").modal('show');
+        		  	$(".showBtn").removeClass("hide");
+        		  	$("#getMicroformat").append("<option value='"+data.map["_id"]["$id"]+"'>"+$("#microformatName").val()+"</option>");
+        		  	alert(data.map["_id"]["$id"]);
+        		  	
+				} else
+					alert("Something went wrong.");
+			});
+		} else 
+			alert("you must choose a microformat key");
+
 	}
 </script>

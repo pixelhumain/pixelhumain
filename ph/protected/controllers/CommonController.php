@@ -45,8 +45,7 @@ class CommonController extends Controller {
     {
 	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
 		{
-    	    
-            var_dump($_POST);
+    	    //var_dump($_POST);
             $id = null;
     	    $data = null;
     	    $collection = $_POST["collection"];
@@ -54,19 +53,30 @@ class CommonController extends Controller {
     	        $id = $_POST["id"];
     	    }
     	    $key = $_POST["key"];
+
     	    unset($_POST['id']);
-            unset($_POST['collection']);
-            unset($_POST['key']);
+            if( $_POST['collection'] == PHType::TYPE_MICROFORMATS){
+                $_POST['collection'] = $_POST['MFcollection'];
+                unset( $_POST['MFcollection'] );
+            }else {
+                unset($_POST['collection']);
+                unset($_POST['key']);
+            }
             
             //empty fields aren't properly validated and must be removed
-            foreach ($_POST as $k => $v) {
+            /*foreach ($_POST as $k => $v) {
                 echo $k." => ".$v."\n";
                 if(empty($v))
                     unset($_POST[$k]);
-            }
+            }*/
             $microformat = PHDB::findOne(PHType::TYPE_MICROFORMATS, array( "key"=> $key));
+            $validate = ( !isset($microformat )  || !isset($microformat["jsonSchema"])) ? false : true;
             //validation process based on microformat defeinition of the form
-            $valid = PHDB::validate( $key, json_decode (json_encode ($_POST), FALSE) );
+            //by default dont perform validation test
+            $valid = array("result"=>true);
+            if($validate)
+                $valid = PHDB::validate( $key, json_decode (json_encode ($_POST), FALSE) );
+            
             if( $valid["result"] )
             {
                 if($id)
