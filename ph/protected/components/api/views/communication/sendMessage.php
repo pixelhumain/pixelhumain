@@ -3,7 +3,7 @@
 message  : <textarea name="sendMessagemsg" id="sendMessagemsg"></textarea> <br/>
 email(s) : <textarea type="text" name="sendMessageemail" id="sendMessageemail"><?php echo $this->module->id?>@<?php echo $this->module->id?>.com</textarea><br/>
 séparé par des virgules<br/>
-<a href="javascript:sendMessage()">Send it</a><br/>
+<a class="btn" href="javascript:sendMessage()">Send it</a><br/>
 <select id="sendMessagePeople">
 	<option></option>
 	<?php 
@@ -13,7 +13,7 @@ séparé par des virgules<br/>
 	}
 	?>
 </select>
-<a href="javascript:setPeople()">Get People </a><br/>
+<a class="btn" href="javascript:setPeople()">Get People </a><br/>
 <div id="sendMessageResult" class="result fss"></div>
 <script>
 	function sendMessage(){

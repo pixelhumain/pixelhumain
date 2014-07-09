@@ -8,7 +8,7 @@
 			}
 		?>
 	</select><br/>
-	<a href="javascript:deleteSurvey()">Test it</a><br/>
+	<a class="btn" href="javascript:deleteSurvey()">Test it</a><br/>
 	<div id="deleteSurveyResult" class="result fss"></div>
 	<script>
 		function deleteSurvey() {

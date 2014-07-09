@@ -24,9 +24,9 @@
 		?>
 	</select><br/>
 	email : <input type="text" name="addactionemail" id="addactionemail" value="magninpierre@wanadoo.fr"/><br/>
-	<a href="javascript:addaction()">Add Action</a><br/>
-	<a href="javascript:unaddaction()">Remove Action</a><br/>
-	<a href="javascript:getIncByAction()">Get Element Increment Value</a><br/>
+	<a class="btn" href="javascript:addaction()">Add Action</a><br/>
+	<a class="btn" href="javascript:unaddaction()">Remove Action</a><br/>
+	<a class="btn" href="javascript:getIncByAction()">Get Element Increment Value</a><br/>
 	<div id="addactionResult" class="result fss"></div>
 	<script>
 		function addaction(){

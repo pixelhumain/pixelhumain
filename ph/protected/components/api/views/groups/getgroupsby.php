@@ -1,7 +1,7 @@
 <div class="fss">
 	email : <input type="text" name="getGroupemail" id="getGroupemail" value="<?php echo $this->module->id?>@<?php echo $this->module->id?>.com" /><br/>
-	<a href="javascript:getGroup()">Test it</a><br/>
-	<a href="javascript:confirmGroupRegistration()">Confirm Group Registration</a><br/>
+	<a class="btn" href="javascript:getGroup()">Test it</a><br/>
+	<a class="btn" href="javascript:confirmGroupRegistration()">Confirm Group Registration</a><br/>
 	<div id="getGroupResult" class="result fss"></div>
 	<script>
 		function getGroup(){
@@ -18,7 +18,7 @@
 	method type : POST <br/>
 	fields : <input type="text" name="getgroupsbyFilter" id="getgroupsbyFilter" value="email" />(comma seperated)<br/>
 	tags : <input type="text" name="getgroupsbyTags" id="getgroupsbyTags" value="social" />(comma seperated)<br/>
-	<a href="javascript:getgroupsby()">Test it</a><br/>
+	<a class="btn" href="javascript:getgroupsby()">Test it</a><br/>
 	<div id="getgroupsbyResult" class="result fss"></div>
 	<script>
 		function getgroupsby(){

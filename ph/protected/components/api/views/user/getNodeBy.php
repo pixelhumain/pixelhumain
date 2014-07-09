@@ -1,8 +1,8 @@
 <div class="fss">
 	
 	type : <input type="text" name="getnodebyType" id="getnodebyType" value="friends" /><br/>
-	<a href="javascript:getnodeby()">Test it</a><br/>
-	<a href="javascript:countgetnodeby()">Count it</a><br/>
+	<a class="btn" href="javascript:getnodeby()">Test it</a><br/>
+	<a class="btn" href="javascript:countgetnodeby()">Count it</a><br/>
 	<div id="getnodebyResult" class="result fss"></div>
 	<script>
 		function getnodeby(){

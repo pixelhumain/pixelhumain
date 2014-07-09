@@ -13,8 +13,8 @@
 	email(s) : <textarea type="text" name="linkUser2Groupemail" id="linkUser2Groupemail"><?php echo $this->module->id?>@<?php echo $this->module->id?>.com</textarea><br/>
 	séparé par des virgules<br/>
 	<span style="color:red">(TODO : link as followers)</span>
-	<a href="javascript:linkUser2Group()">Link it</a><br/>
-	<a href="javascript:unlinkUser2Group()">Unlink it</a><br/>
+	<a class="btn" href="javascript:linkUser2Group()">Link it</a><br/>
+	<a class="btn" href="javascript:unlinkUser2Group()">Unlink it</a><br/>
 	<div id="linkUser2GroupResult" class="result fss"></div>
 	<script>
 		function linkUser2Group(){

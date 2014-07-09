@@ -1,7 +1,9 @@
 <?php 
 $cs = Yii::app()->getClientScript();
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/api.css'); 
+$cs->registerCssFile(Yii::app()->request->baseUrl. '/css/clean.css'); 
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery.columns.min.js' , CClientScript::POS_END);
 
 $this->pageTitle="API ".$this::moduleTitle;
 function blockHTML($pathTpl,$entry,$params,$parent){
@@ -22,6 +24,7 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 		$str .= "<a href='javascript:;' onclick='openModal(\"".$entry["microformat"]."\",\"".$microformat["collection"]."\",null,\"".$microformat["template"]."\")'  class='btn'>".$entry['microformat']."</a><br/>";
 	} else
 		$str .= Yii::app()->controller->renderPartial( $pathTpl,$params,true );
+		
 	$str .= "</li>";
 	return $str;
 }
@@ -120,7 +123,7 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 		</ul>
 		<?php } else { ?>
 			<h2>Restricted Area</h2>
-			you can contact an admin <a href="mail:contact@pixelhumain.com"><i class="fa fa-mail"></i></a>
+			you can contact an admin <a class="btn" href="mail:contact@pixelhumain.com"><i class="fa fa-mail"></i></a>
 		<?php } ?>
 	</div>
 </div>

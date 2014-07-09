@@ -5,7 +5,7 @@
 	</select><br/>
 	fields : <input type="text" name="getbyFilter" id="getbyFilter" value="email" />(comma seperated)<br/>
 	tags : <input type="text" name="getbyTags" id="getbyTags" value="social" />(comma seperated)<br/>
-	<a href="javascript:getby()">Test it</a><br/>
+	<a class="btn" href="javascript:getby()">Test it</a><br/>
 	<div id="getbyResult" class="result fss"></div>
 	<script>
 		function getby(){

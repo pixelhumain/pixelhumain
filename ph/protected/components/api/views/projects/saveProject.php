@@ -4,8 +4,8 @@
 	tags : <input type="text" name="tagssaveProject" id="tagssaveProject" value="lois,anonymat,vote" placeholder="ex:social,solidaire...etc"/>(comma seperated)<br/>
 	scope* : cp ou quartier : <input type="text" name="postalcodesaveProject" id="postalcodesaveProject" value="97421" />(comma seperated)<br/>
 		
-	<a href="javascript:saveProject()">Test it</a><br/>
-	<a href="javascript:getSession()">Get it</a><br/>
+	<a class="btn" href="javascript:saveProject()">Test it</a><br/>
+	<a class="btn" href="javascript:getSession()">Get it</a><br/>
 	<div id="saveProjectResult" class="result fss"></div>
 	<script>
 		function saveProject(){

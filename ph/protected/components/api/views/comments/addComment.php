@@ -1,6 +1,6 @@
 <div class="fss">
 	fields : <input type="text" name="getmessagebyFilter" id="getmessagebyFilter" value="msg" />(comma seperated)<br/>
-	<a href="javascript:getmessageby()">Test it</a><br/>
+	<a class="btn" href="javascript:getmessageby()">Test it</a><br/>
 	<div id="getmessagebyResult" class="result fss"></div>
 	<script>
 		function getmessageby()

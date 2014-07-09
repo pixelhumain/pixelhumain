@@ -1,7 +1,7 @@
 <div class="fss">
 	email : <input type="text" name="getUseremail" id="getUseremail" value="t@azotlive.com" /><br/>
-	<a href="javascript:getUser()">Test it</a><br/>
-	<a href="javascript:confirmUserRegistration()">Confirm User Registration from Email </a><span style="color:red">(TODO add a key hash code)</span><br/>
+	<a class="btn" href="javascript:getUser()">Test it</a><br/>
+	<a class="btn" href="javascript:confirmUserRegistration()">Confirm User Registration from Email </a><span style="color:red">(TODO add a key hash code)</span><br/>
 	<div id="getUserResult" class="result fss"></div>
 	<script>
 		function getUser() { 

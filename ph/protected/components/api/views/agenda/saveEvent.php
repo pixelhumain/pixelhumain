@@ -5,7 +5,7 @@
 	cp* : <input type="text" name="postalcodesaveEvent" id="postalcodesaveEvent" value="97421" /><br/>
 	when* : <input type="text" name="pwdsaveEvent" id="pwdsaveEvent" value="1234" /><br/>
 	
-	<a href="javascript:saveEvent()">Test it</a><br/>
+	<a class="btn" href="javascript:saveEvent()">Test it</a><br/>
 	<div id="createUserResult" class="result fss"></div>
 	<script>
 		function saveEvent(){

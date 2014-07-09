@@ -13,8 +13,8 @@
 		<option value=1>accept</option>
 		<option value=0>refuse</option>
 	</select><br/>
-	<a href="javascript:moderateEntry()">Moderate it</a><br/>
-	<a href="javascript:getEntry()">Get it</a><br/>
+	<a class="btn" href="javascript:moderateEntry()">Moderate it</a><br/>
+	<a class="btn" href="javascript:getEntry()">Get it</a><br/>
 	<div id="moderateEntryResult" class="result fss"></div>
 	<script>
 		function moderateEntry(){

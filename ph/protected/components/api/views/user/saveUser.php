@@ -5,7 +5,7 @@
 	pwd* : <input type="text" name="pwdSaveUser" id="pwdSaveUser" value="1234" /><br/>
 	phoneNumber : <input type="text" name="phoneNumberSaveUser" id="phoneNumberSaveUser" value="1234" />(for SMS)<br/>
 	
-	<a href="javascript:addUser()">Test it</a><br/>
+	<a class="btn" href="javascript:addUser()">Test it</a><br/>
 	<div id="createUserResult" class="result fss"></div>
 	<script>
 		function addUser(){

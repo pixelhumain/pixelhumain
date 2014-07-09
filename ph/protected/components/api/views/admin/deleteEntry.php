@@ -8,7 +8,7 @@
 			}
 		?>
 	</select><br/>
-	<a href="javascript:deleteEntry()">Test it</a><br/>
+	<a class="btn" href="javascript:deleteEntry()">Test it</a><br/>
 	<div id="deleteEntryResult" class="result fss"></div>
 	<script>
 		function deleteEntry() {

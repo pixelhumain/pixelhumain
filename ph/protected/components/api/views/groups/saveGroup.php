@@ -15,7 +15,7 @@
 	where : <input  type="text" name="wheresaveGroup" id="wheresaveGroup" value="" /><br/>
 	participant : <input  type="text" name="whosaveGroup" id="whosaveGroup" value="5370b477f6b95c280a00390c" /><br/>
 	</span>
-	<a href="javascript:saveGroup()">Test it</a><br/>
+	<a class="btn" href="javascript:saveGroup()">Test it</a><br/>
 	<div id="saveGroupResult" class="result fss"></div>
 	<script>
 		function saveGroup(){

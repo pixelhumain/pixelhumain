@@ -13,7 +13,7 @@
 		<option></option>
 		<option value="admin">admin</option>
 	</select><br/>
-	<a href="javascript:addAdminEntry()">Test it</a><br/>
+	<a class="btn" href="javascript:addAdminEntry()">Test it</a><br/>
 	<div id="addAdminEntryResult" class="result fss"></div>
 	<script>
 		function addAdminEntry(){

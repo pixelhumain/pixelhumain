@@ -12,8 +12,8 @@
 	message  : <textarea name="entryaddEntry" id="entryaddEntry">this is test, can contain links</textarea> <br/>
 	tags : <input type="text" name="tagsaddEntry" id="tagsaddEntry" value="" placeholder="ex:social,solidaire...etc"/>(comma seperated)<br/>
 	admin email* : <input type="text" name="emailaddEntry" id="emailaddEntry" value="magninpierre@wanadoo.fr" /><br/>
-	<a href="javascript:addEntry()">Test it</a><br/>
-	<a href="javascript:getEntry()">Get it</a><br/>
+	<a class="btn" href="javascript:addEntry()">Test it</a><br/>
+	<a class="btn" href="javascript:getEntry()">Get it</a><br/>
 	<div id="addEntryResult" class="result fss"></div>
 	<script>
 		function addEntry(){

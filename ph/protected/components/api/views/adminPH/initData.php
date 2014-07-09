@@ -8,7 +8,7 @@ if(file_exists(Yii::getPathOfAlias(Yii::app()->params["modulePath"].Yii::app()->
 	foreach( CFileHelper::findFiles(Yii::getPathOfAlias(Yii::app()->params["modulePath"].Yii::app()->controller->module->id.".data" )) as $f)
 	{?>
 			
-		<br/><a href="<?php echo Yii::app()->createUrl( $f)?>">
+		<br/><a class="btn" href="<?php echo Yii::app()->createUrl( $f)?>">
 			<?php echo pathinfo($f, PATHINFO_FILENAME)?>
 		</a>
 <?php }
@@ -17,7 +17,7 @@ if(file_exists(Yii::getPathOfAlias(Yii::app()->params["modulePath"].Yii::app()->
 ?>
 									
 <br/><br/>
-	<a href="javascript:initData()">initialise data</a><br/>
+	<a class="btn" href="javascript:initData()">initialise data</a><br/>
 	<div id="initDataResult" class="result fss"></div>
 	<script>
 		function initData(){
