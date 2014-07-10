@@ -8,7 +8,7 @@ function testitpost(id,url,params,callback){
 	    dataType:"json",
 	    success:function(data) {
 	    	if(callback)
-	    		callback(data);
+	    		callback(data,id);
 	    	else
 	      		$("#"+id).html(JSON.stringify(data, null, 4));
 	    },
@@ -25,7 +25,7 @@ function testitget(id,url,callback){
 	    dataType:"json",
 	    success:function(data) {
 	    	if(callback)
-	    		callback(data);
+	    		callback(data,id);
 	    	else
 	      		$("#"+id).html(JSON.stringify(data, null, 4));
 	    	
@@ -62,4 +62,16 @@ function Object2Array(obj){
 		jsonAr.push(v);
 	});
 	return jsonAr;
+}
+function showAsColumn(resp,id){
+	log(resp,"dir");
+	if($("#"+id).hasClass("columns"))
+	{
+		$("#"+id).columns('setMaster', Object2Array(resp));
+		$("#"+id).columns('create');
+	} else {
+		$("#"+id).columns({
+	      data:Object2Array(resp)
+	    });
+	}
 }

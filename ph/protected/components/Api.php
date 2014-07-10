@@ -153,7 +153,7 @@ class Api {
                     self::$apis["getgroupsby"]
                     ));
 	}
-    public static function getAgendaMap(){
+    public static function getEventMap(){
         return array('label' => "Agenda", "key"=>"agenda","iconClass"=>"fa fa-calendar","generate"=>true,
                 "children"=> array(
                     self::$apis["saveEvent"]
