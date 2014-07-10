@@ -67,5 +67,5 @@ public $microformat = '{
     }
     echo $res;
       
-  }*:
+  }*/
 }

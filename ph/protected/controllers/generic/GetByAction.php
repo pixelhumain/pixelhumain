@@ -5,13 +5,13 @@ class GetByAction extends CAction
     {
         $params =  $_POST;
         $where = (isset($params["where"])) ? $params["where"] : array();
-        $fields = ( isset($params["fields"]) ) ? $params["fields"] : "";
+        $fields = ( isset($params["fields"]) ) ? $params["fields"] : null;
 
         if(isset($where["_id"]))
             $where["_id"] = new MongoId($where["_id"]);
-        if( !isset($params["count"]) ) 
-            $res = PHDB::find($_POST['collection'],$where );
-        else
+        if( !isset($params["count"]) ) {
+            $res = PHDB::find($_POST['collection'],$where,$fields );
+        } else
             $res = array('count' => PHDB::countWFileds($_POST['collection'],$where,$fields ));
         //$res["where"]=$where;
         Rest::json( $res );

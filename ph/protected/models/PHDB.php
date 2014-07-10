@@ -9,11 +9,14 @@ Generic Database Method shared Throught the project
  */
 class PHDB
 {
-    public static function find( $collection, $where=array() )
+    public static function find( $collection, $where=array(),$fields=null )
     {
-        return iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where));
+        if(!$fields)
+            $res = iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where));
+        else
+            $res = iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find( $where , $fields));
+        return $res;
     }
-    
     public static function count( $collection, $where=array() )
     {
         return Yii::app()->mongodb->selectCollection($collection)->count($where);

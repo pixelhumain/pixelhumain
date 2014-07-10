@@ -2,7 +2,7 @@
 	cp* : <input type="text" name="postalcodegetPeople" id="postalcodegetPeople" placeholder="97421" /><br/>
 	<br/>
 	<a class="btn" href="javascript:getpeopleby(1)">Test it</a> <a class="btn" href="javascript:getpeopleby(0)">as Json</a> <a class="btn" href="javascript:countpeopleby()">Count it</a><br/>
-	<div id="getPeopleResult" class="result fss"></div>
+	<br/><div id="getPeopleResult" class="result fss"></div>
 	<script>
 		function getpeopleby(asjson){
 			params = { 

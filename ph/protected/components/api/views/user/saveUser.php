@@ -6,7 +6,7 @@
 	phoneNumber : <input type="text" name="phoneNumberSaveUser" id="phoneNumberSaveUser" value="1234" />(for SMS)<br/>
 	
 	<a class="btn" href="javascript:addUser()">Test it</a><br/>
-	<div id="createUserResult" class="result fss"></div>
+	<br/><div id="createUserResult" class="result fss"></div>
 	<script>
 		function addUser(){
 			params = { "email" : $("#emailSaveUser").val() , 

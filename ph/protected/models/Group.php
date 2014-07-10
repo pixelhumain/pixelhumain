@@ -2,7 +2,9 @@
 
 class Group
 {
-	const TYPE_ASSOCIATION		   = 'association';
+	
+    const COLLECTION = "groups";
+    const TYPE_ASSOCIATION		   = 'association';
 	const TYPE_ENTREPRISE		   = 'entreprise';
 	const TYPE_EVENT		       = 'event';
 	const TYPE_PROJECT		       = 'project';

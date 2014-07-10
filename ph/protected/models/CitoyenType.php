@@ -4,6 +4,7 @@
  */
 class CitoyenType
 {    
+    const COLLECTION = "citoyens";
     const GAME_REZOTAGE       = 10;
     const GAME_ACTION_NIV1    = 1;
     const GAME_ACTION_NIV2    = 2;

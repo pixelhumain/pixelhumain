@@ -64,10 +64,11 @@ function Object2Array(obj){
 	return jsonAr;
 }
 function showAsColumn(resp,id){
-	log(resp,"dir");
+	//log(resp,"dir");
 	if($("#"+id).hasClass("columns"))
 	{
-		$("#"+id).columns('setMaster', Object2Array(resp));
+		log("rebuild");
+		$("#"+id).columns('setMaster', Object2Array(resp) );
 		$("#"+id).columns('create');
 	} else {
 		$("#"+id).columns({

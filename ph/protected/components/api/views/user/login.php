@@ -4,7 +4,7 @@
 	<a class="btn" href="javascript:login()">Test it</a><br/>
 	<a class="btn" href="javascript:sendEmailPwd()">Mot de passe oublié</a><br/>
 	<a class="btn" href="/ph/site/logout">Logout</a><br/>
-	<div id="loginResult" class="result fss"></div>
+	<br/><div id="loginResult" class="result fss"></div>
 	<script>
 		function login(){
 			params = { "email" : $("#emailLogin").val() , 

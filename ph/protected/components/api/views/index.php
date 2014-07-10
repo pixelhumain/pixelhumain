@@ -7,25 +7,27 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery.columns.min.js'
 
 $this->pageTitle="API ".$this::moduleTitle;
 function blockHTML($pathTpl,$entry,$params,$parent){
+	//echo $entry["key"];
 	$str = "<li class='block' id='block".$entry['key']."'>";
 	$str .= "<h4>".$entry['label']."</h4>";
 	$actions = "";
 	foreach ($entry["actions"] as $ak => $av) {
 		$actions .= $ak." > ".$av."<br/>";
 	}
+	$formInfo = ( isset( $entry["microformat"] ) ) ? "microformat : ".$entry["microformat"]  : "file > api/views/".$parent['key']."/".$entry['key'].".php";
 	$str .= "<div class='fss fr txtright'>".
 				$entry['desc']."<br/>".
-				"file > api/views/".$parent['key']."/".$entry['key'].".php<br/>".
+				$formInfo."<br/>".
 				$actions."<br/>".
 			"</div>";
 	
-	if(isset($entry["microformat"])) {
+	if( isset( $entry["microformat"] ) ) {
 		$microformat = PHDB::findOne(PHType::TYPE_MICROFORMATS, array("key"=>$entry["microformat"]));
 		$str .= "<a href='javascript:;' onclick='openModal(\"".$entry["microformat"]."\",\"".$microformat["collection"]."\",null,\"".$microformat["template"]."\")'  class='btn'>".$entry['microformat']."</a><br/>";
 	} else
 		$str .= Yii::app()->controller->renderPartial( $pathTpl,$params,true );
 		
-	$str .= "</li>";
+	$str .= "<div class='clear'>&nbsp;</div></li>";
 	return $str;
 }
 ?>
@@ -101,7 +103,7 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 										else 
 											$pathTpl = "application.components.api.views.".$e["key"].".".$child["key"];
 									}
-									if($pathTpl && is_file(Yii::getPathOfAlias($pathTpl).".php") )
+									if(($pathTpl && is_file(Yii::getPathOfAlias($pathTpl).".php")) || $child["microformat"] )
 									{
 										echo blockHTML($pathTpl,$child,$params,$e);
 									}else

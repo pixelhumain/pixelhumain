@@ -154,9 +154,10 @@ class Api {
                     ));
 	}
     public static function getEventMap(){
-        return array('label' => "Agenda", "key"=>"agenda","iconClass"=>"fa fa-calendar","generate"=>true,
+        return array('label' => "Events", "key"=>"event","iconClass"=>"fa fa-calendar","generate"=>true,
                 "children"=> array(
-                    self::$apis["saveEvent"]
+                    self::$apis["saveEvent"],
+                    self::$apis["getby"],
                     ));
     }
 	public static function getSurveyMap(){

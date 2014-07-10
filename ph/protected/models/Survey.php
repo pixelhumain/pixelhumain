@@ -4,6 +4,7 @@ class Survey
 {
 	const TYPE_SURVEY = 'survey';
 	const TYPE_ENTRY  = 'entry';
+	const COLLECTION = "surveys";
 	
      public static function moderateEntry($params) {
      	$res = array( "result" => false );
