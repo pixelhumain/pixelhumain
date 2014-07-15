@@ -23,8 +23,8 @@ $this->pageTitle= "Convert RDF instance to Formatted Json Schema" ;
 
 <div class="fl  col-md-6" id="getMicroformatSection">
 	Get An Ontology<br/>
-	TODO : import all schemas
-	TODO : list all ontologies in select
+	TODO : import all schemas <br/>
+	TODO : list all ontologies in select <br/>
 	TODO : and build a sample instance <br/>
 	TODO : microformat builder checkbox interface of all field of an ontology<br/>
 	<select id="getOntology"></select>
@@ -123,7 +123,7 @@ $this->pageTitle= "Convert RDF instance to Formatted Json Schema" ;
 	</textarea>
 </div>
 <div style="float:left;padding:20px;" class=" col-md-6">
-	<textarea id="jsonSchema" class="w100p" style="height:400px;background-color: #1B1E24;color:white;" placeholder="JSON Schema"></textarea>
+	<textarea id="jsonSchema" class="w100p" style="overflow:auto;height:400px;background-color: #1B1E24;color:white;" placeholder="JSON Schema"></textarea>
 </div>
 
 <div style="float:left;padding:20px;">

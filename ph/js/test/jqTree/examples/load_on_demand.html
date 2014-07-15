@@ -1,0 +1,35 @@
+
+<link rel="stylesheet" href="example.css">
+<link rel="stylesheet" href="../jqtree.css">
+
+<div id="tree1" data-url="/nodes/"></div>
+
+
+<script src="../extra/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../extra/bower_components/jquery-mockjax/jquery.mockjax.js"></script>
+<script src="../extra/example_data.js"></script>
+<script src="../extra/bower_components/jquery-cookie/jquery.cookie.js"></script>
+<script src="../tree.jquery.js"></script>
+<script>
+$.mockjax({
+    url: '*',
+    responseTime: 1000,
+    response: function(options) {
+        if (options.data && options.data.node) {
+            this.responseText = ExampleData.getChildrenOfNode(options.data.node);
+        }
+        else {
+            this.responseText = ExampleData.getFirstLevelData();
+        }
+    }
+});
+
+$(function() {
+    var $tree = $('#tree1');
+
+    $tree.tree({
+        dragAndDrop: true
+    });
+});
+
+</script>
