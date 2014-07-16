@@ -34,6 +34,9 @@ class ToolsController extends Controller {
     public function actionConvert() {
         $this->render("rdf2jsonSchema");
     }
+    public function actionVie() {
+        $this->render("vietree");
+    }
 	public function actionVisualizeImport($group,$type) {
 	    $process = 0;
         $row = 1;
