@@ -128,12 +128,12 @@ function buildData(key){
 	        if( v2 != "Text" && v2 != "Thing" && v2 != "Number" && v2 != "Integer" && v2 != "URL"
 	         && v2 != "DateTime" && v2 != "Date" )
 	        {
-			  	id = jsonDataId++;
-				jsonDataOnto.children.push({
-				  	id : id,
-				  	label :  "Type::"+v2,
-				  	load_on_demand:1 
-				});
+  			  	id = jsonDataId++;
+    				jsonDataOnto.children.push({
+    				  	id : id,
+    				  	label :  "Type::"+v2,
+                load_on_demand:1 
+    				});
 	        }
 	      });
 	    } 
@@ -189,37 +189,29 @@ function buildTree()
             console.log('tree.click',selected_node.name,$('#tree').tree('isNodeSelected', selected_node) );
             if ( $('#tree').tree('isNodeSelected', selected_node) ) 
             {
+              //select an element in the jqtree
             	if(selected_node.name.indexOf("Type::")<0)
             	{
-            		$('#tree').tree('removeFromSelection', selected_node);
-            		if(selected_node.parent.parent.name != undefined){
-	                	delete jsonSchema[selected_node.parent.parent.name][selected_node.name];
-	                	if( Object.keys( jsonSchema[selected_node.parent.parent.name] ).length == 1)
-	                		jsonSchema[selected_node.parent.parent.name] = "";
-	                } else
-	            		delete jsonSchema[selected_node.name];
-	                $("#jsonSchema").val( JSON.stringify(jsonSchema, null, 4) ); 
-	            } else 
-	            {
-            		alert("open Node Type del");
-            	}
+            		$('#tree').tree( 'removeFromSelection' , selected_node );
+                removeJsonSchema(selected_node);
+	              $("#jsonSchema").val( JSON.stringify(jsonSchema, null, 4) ); 
+	            }
             }
             else 
             {
+              //select an element in the jqtree
+              //exception for subTypes
             	if(selected_node.name.indexOf("Type::")<0)
             	{
 
-	                console.log('addToSelection',selected_node.name,selected_node.parent.parent.name);
+	                console.log('addToSelection',
+                              selected_node.name,
+                              selected_node.parent.parent.name,
+                              "lvl = "+selected_node.getLevel());
 	                $('#tree').tree('addToSelection', selected_node);
-	                if(selected_node.parent.parent.name != undefined){
-	                	if(typeof jsonSchema[selected_node.parent.parent.name] != "object"){
-	                		jsonSchema[selected_node.parent.parent.name]={};
-	                		jsonSchema[selected_node.parent.parent.name]["@Type"]=selected_node.parent.name.substring(6,selected_node.parent.name.length);
-	                	}
-	                	jsonSchema[selected_node.parent.parent.name][selected_node.name]="";
-	                } else
-	                	jsonSchema[selected_node.name]="";
-	                $("#jsonSchema").val( JSON.stringify(jsonSchema, null, 4) ); 
+                  //exception needed when the select Node is in depth
+                  add2JsonSchema(selected_node);
+                  $("#jsonSchema").val( JSON.stringify(jsonSchema, null, 4) ); 
             	} 
             	else 
             	{
@@ -229,9 +221,8 @@ function buildTree()
             		//and build the corresponding tree
             		type = selected_node.name.substring(6,selected_node.name.length);
             		var data = buildData(type);
-			        $('#tree').tree('loadData', data, selected_node);
-					$('#tree').tree('openNode', selected_node);
-					
+			          $('#tree').tree('loadData', data, selected_node );
+					      $('#tree').tree('openNode', selected_node );
             	}
             }
         }
@@ -246,5 +237,53 @@ function buildTree()
 	    }
 	);
 	
+}
+
+function add2JsonSchema(node)
+{
+  parents = [];
+  parenttypes = [];
+  selectedNodeName = node.name;
+  while (node.parent.name != undefined) {
+      if(node.parent.name != rootType)
+      {
+        if(node.parent.name.indexOf("Type::")<0 )
+        {
+          parents.unshift(node.parent.name);
+        }else{
+          parenttypes.unshift(node.parent.name.substring(6,node.parent.name.length));
+        }
+      }
+      node = node.parent;
+  }
+  console.log(parents);
+  console.log(parenttypes);
+  parentNode = jsonSchema;
+  console.log("build parents");
+  while(parents.length > 0)
+  {
+    parentName = parents.shift();
+    parentType = parenttypes.shift();
+    console.log("build parents",parentName,parentType);
+    if(typeof parentNode[parentName] != "object")
+    {
+      parentNode[parentName]={};
+      parentNode[parentName]["@Type"]=parentType;
+    }
+    parentNode = parentNode[parentName];
+  } 
+  parentNode[selectedNodeName]="";
+}
+
+function removeJsonSchema(node)
+{
+  if(node.parent.parent.name != undefined)
+  {
+      delete jsonSchema[node.parent.parent.name][node.name];
+      if( Object.keys( jsonSchema[node.parent.parent.name] ).length == 1)
+        jsonSchema[node.parent.parent.name] = "";
+  } 
+  else
+      delete jsonSchema[node.name];
 }
 </script>
