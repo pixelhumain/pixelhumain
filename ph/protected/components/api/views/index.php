@@ -124,8 +124,23 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 			
 		</ul>
 		<?php } else { ?>
-			<h2>Restricted Area</h2>
-			you can contact an admin <a class="btn" href="mail:contact@pixelhumain.com"><i class="fa fa-mail"></i></a>
+		<h2>Restricted Area</h2>
+		<?php
+			if(!PH::notlocalServer())
+			{
+				$admins = PHDB::noAdminExist();
+				if(count($admins) > 0){
+					echo "Below is your list of admin users :<br/>";
+					foreach ($admins as $key => $value) {
+						echo $value["email"]."<br/>";
+					}
+				} else {
+					echo "Your instance has no admin user, first initialise your data below :<br/>";
+					$this->renderPartial("application.components.api.views.adminPH.initData" ); 
+				}
+			}
+			?>
+			<br/>you can contact an admin <a class="btn" href="mail:contact@pixelhumain.com"><i class="fa fa-mail"></i></a>
 		<?php } ?>
 	</div>
 </div>

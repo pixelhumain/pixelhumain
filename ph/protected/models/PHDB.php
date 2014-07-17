@@ -66,4 +66,7 @@ class PHDB
             $res["msg"] = "no json Schema found.";
         return $res; 
     }
+    public static function noAdminExist(){
+        return PHDB::find(PHType::TYPE_CITOYEN, array("applications.egpc.isAdmin"=>true));
+    }
 }
