@@ -128,7 +128,7 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 		<?php
 			if(!PH::notlocalServer())
 			{
-				$admins = PHDB::noAdminExist();
+				$admins = PHDB::noAdminExist($this->module->id);
 				if(count($admins) > 0){
 					echo "Below is your list of admin users :<br/>";
 					foreach ($admins as $key => $value) {
