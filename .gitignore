@@ -10,6 +10,7 @@ tmp/
 ph/upload
 ph/assets
 ph/protected/runtime
+ph/themes/theme-azotlive
 *.tmp
 *.bak
 *.swp
