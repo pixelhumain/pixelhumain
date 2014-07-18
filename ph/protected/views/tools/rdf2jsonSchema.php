@@ -176,7 +176,9 @@ $this->pageTitle= "Convert RDF instance to Formatted Json Schema" ;
 			} else
 				jsonSchema.properties[key] = { "inputType" : "text","i18n":k };
 		});
-	}var currentMF = null;
+	}
+
+	var currentMF = null;
 	function showForm(){
 		openModal(currentMF.key,currentMF.collection,null,currentMF.template);
 	}
