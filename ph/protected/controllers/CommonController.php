@@ -19,17 +19,17 @@ class CommonController extends Controller {
      * */
     public function actionGetMicroformat() {
         if(isset($_POST["key"])){
-            $microformat = PHDB::findOne(PHType::TYPE_MICROFORMATS, array( "key"=>$_POST["key"] ));
+            $_POST["microformat"] = PHDB::findOne(PHType::TYPE_MICROFORMATS, array( "key"=>$_POST["key"] ));
             $html = "";
             $title = "Formulaire";
-            if($microformat){
+            if($_POST["microformat"]){
                 //clef trouvé dans microformats
-                if(isset($microformat["jsonSchema"]["title"]))
-                    $title = $microformat["jsonSchema"]["title"];
-                if($microformat["template"] == "dynamicallyBuild")
-                    $_POST["microformat"] = $microformat;
-                $html .= $this->renderPartial($microformat["template"],$_POST,true);
-            }else {
+                if(isset($_POST["microformat"]["jsonSchema"]["title"]))
+                    $title = $_POST["microformat"]["jsonSchema"]["title"];
+                if($_POST["microformat"]["template"] == "dynamicallyBuild")
+                    $_POST["microformat"] = $_POST["microformat"];
+                $html .= $this->renderPartial($_POST["microformat"]["template"],$_POST,true);
+            } else {
                 //clef pas trouvé dans microformats
                 $html .= $this->renderPartial($_POST["template"],$_POST,true);
             }
@@ -37,6 +37,17 @@ class CommonController extends Controller {
         } else 
             echo json_encode( array("result"=>false,"title"=>$title,"content"=>"Votre ne peut aboutir"));
 	}
+    public function actionGetMicroformatHTML() {
+        if(isset($_POST["microformat"]["jsonSchema"])){
+            $html = "";
+            if(isset($_POST["microformat"]["jsonSchema"]["title"]))
+                $title = $_POST["microformat"]["jsonSchema"]["title"];
+            $html .= $this->renderPartial("dynamicallyBuild",$_POST,true);
+            
+            echo json_encode( array("result"=>true,"title"=>$title,"content"=>$html) );
+        } else 
+            echo json_encode( array("result"=>false,"title"=>$_POST["microformat"]["jsonSchema"]["title"],"content"=>"Votre requete ne peut aboutir") );
+    }
     /**
      * Saves part of an entry genericlly based on 
      * - collection and id value
@@ -69,8 +80,8 @@ class CommonController extends Controller {
                 if(empty($v))
                     unset($_POST[$k]);
             }*/
-            $microformat = PHDB::findOne(PHType::TYPE_MICROFORMATS, array( "key"=> $key));
-            $validate = ( !isset($microformat )  || !isset($microformat["jsonSchema"])) ? false : true;
+            $_POST["microformat"] = PHDB::findOne(PHType::TYPE_MICROFORMATS, array( "key"=> $key));
+            $validate = ( !isset($_POST["microformat"] )  || !isset($_POST["microformat"]["jsonSchema"])) ? false : true;
             //validation process based on microformat defeinition of the form
             //by default dont perform validation test
             $valid = array("result"=>true);
@@ -83,7 +94,7 @@ class CommonController extends Controller {
                 {
                     //update a single field
                     //else update whole map
-                    $changeMap = ( !$microformat && isset( $key )) ? array('$set' => array( $key => $_POST[ $key ] ) ) : array('$set' => $_POST );
+                    $changeMap = ( !$_POST["microformat"] && isset( $key )) ? array('$set' => array( $key => $_POST[ $key ] ) ) : array('$set' => $_POST );
                     PHDB::update($collection,array("_id"=>new MongoId($id)), $changeMap);
                     $res = array("result"=>true,
                                  "msg"=>"Vos données ont été mise à jour.",

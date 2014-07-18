@@ -10,13 +10,16 @@ requiredFields = [];
     	<?php 
     	//pour remplir les valeur de l'element en cours d'upate
     	$entry = ( (!isset($isSub) || !$isSub) && isset($id) && $id != null && isset($collection)) ? PHDB::findOne($collection, array("_id"=>new MongoId($id)) ) : null;
-    	$user = PHDB::findOne($collection, array("_id"=>new MongoId(Yii::app()->session["userId"])) );
-    	if(isset($microformat))
+    	$user = (isset($collection) && $collection!=null) ? PHDB::findOne($collection, array("_id"=>new MongoId(Yii::app()->session["userId"])) ) : array();
+    	//var_dump($microformat["jsonSchema"]["properties"]);
+        if(isset($microformat))
     	{
     	    $hidden = "";
             $required = array();
             foreach ($microformat["jsonSchema"]["properties"] as $k=>$v)
         	{
+                $k = str_replace("(", "[", $k);
+                $k = str_replace(")", "]", $k);
                 /******************************
                  * Gather all required fields
                  ******************************/

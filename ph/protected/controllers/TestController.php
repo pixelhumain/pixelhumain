@@ -20,9 +20,7 @@ class TestController extends Controller {
 	    $e = new Event();
 	    $e->validate("eventFormRDF");
 	}
-	public function actionVie() {
-	    $this->render("vietree");
-	}
+	
 
 	public function actionEasyRDF(){
 		$this->layout = "test";

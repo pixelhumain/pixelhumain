@@ -23,22 +23,23 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jqtree/tree.jquery.js'
 </div>
 
 <div class="row">
-  
-  <div  class="col-md-6">
-  	<textarea id="jsonSchema" class="w100p" style="height:400px;background-color: #1B1E24;color:white;" ></textarea>
-    <textarea id="jsonData" class="w100p" style="height:400px;background-color: #1B1E24;color:white;" ></textarea>
-  </div>
-
   <div  class="col-md-6">
     <div class="results"></div>
     <div id="tree" data-url=""></div>
+    <div id="formBtn" class="hide" ><a class="btn btn-primary" href="javascript:buildForm()">Show Form</a></div>
   </div>
-
+  <div  class="col-md-6">
+    <div id="form"></div>
+    <textarea id="jsonSchema" class="w100p " style="height:400px;background-color: #1B1E24;color:white;" placeholder="json Schema"></textarea>
+  	<textarea id="jsonRDFInstance" class="w100p" style="height:400px;background-color: #1B1E24;color:white;" placeholder="json RDF Instance"></textarea>
+    <textarea id="jsonData" class="w100p hide" style="height:400px;background-color: #1B1E24;color:white;" placeholder="json Data"></textarea>
+  </div>
 </div>
 
 <script type="text/javascript">
 
-var jsonSchema = {"@context": "http://schema.org"};
+var jsonRDFInstance = {"@context": "http://schema.org"};
+var jsonSchema = { title:"TEST 123", type:"object", properties:{} };
 var jsonData = null;
 var jsonDataId = 0;
 var schema = null;
@@ -47,17 +48,16 @@ var rootType = null;
 
 $(document).ready( function() { 
 	console.clear();
+  $("#jsonRDFInstance").val("");
   $("#jsonSchema").val("");
   $("#jsonData").val("");
-  results = $(".results");
-  
-  fetchRDF('.results');
+  fetchRDF();
   
 } );
 
-function fetchRDF(id, ontology){
+function fetchRDF(){
   var vie = new VIE();
-  results.html("");
+  $(".results").html("");
   if( schema == null )
   {
     vie.loadSchema(baseUrl+"/data/all.json",//"http://schema.rdfs.org/all.json", 
@@ -80,7 +80,7 @@ function fetchRDF(id, ontology){
           });
         },
         error: function () {
-            results.append('<div class="msg">Something went wrong with loading the ontology!</div>');
+            $(".results").append('<div class="msg">Something went wrong with loading the ontology!</div>');
         }
     });
   } 
@@ -91,19 +91,14 @@ function fetchRDF(id, ontology){
 function drawJson ( ontology ) 
 {
   rootType = ontology;
-  jsonSchema = {
-  	"@context": "http://schema.org",
-  	"@Type" : ontology
-  };
-  jsonData = {
-  	id : jsonDataId++,
-  	label : ontology,
-  	children: buildData( ontology )
-  };
-  buildSchema( ontology,true );
+  jsonRDFInstance = {"@context": "http://schema.org","@Type" : ontology};
+  jsonData = {id : jsonDataId++, label : ontology, children: buildData( ontology ) };
+  
+  //buildRDFInstance( ontology,true );
   buildTree();
   $("#jsonData").val( JSON.stringify(jsonData, null, 4) ); 
-  $("#jsonSchema").val( JSON.stringify(jsonSchema, null, 4) ); 
+  applyChanges();
+  $("#formBtn").removeClass("hide");
 }
 
 function buildData(key){
@@ -115,7 +110,7 @@ function buildData(key){
 	  {
 	    ontology = v.id.substring(18,v.id.length-1);
 	    id = jsonDataId++;
-	    selectedNodes.push(id);
+	    //selectedNodes.push(id);
 	    jsonDataOnto = {
 		  	id : id,
 		  	label :  ontology
@@ -142,7 +137,8 @@ function buildData(key){
 	}
   return children;
 }
-function buildSchema(key, build){
+//in case we want to fill all properties onload of the Type
+/*function buildRDFInstance(key, build){
   var onto = schema.get(key);
   var json = {};
   if( onto != undefined && onto.attributes.list())
@@ -155,14 +151,15 @@ function buildSchema(key, build){
 	
 	if(build)
 	{
-		console.log("buildSchema",key);
+		//console.log("buildRDFInstance",key);
 		for (var attrname in json) 
 		{ 
-			jsonSchema[attrname] = json[attrname]; 
+      //fill RDF instance onclick
+			//jsonRDFInstance[attrname] = json[attrname]; 
 		}
 	}
   }
-}
+}*/
 
 var activeNode = null;
 function buildTree()
@@ -186,15 +183,15 @@ function buildTree()
             var selected_node = e.node;
             if (selected_node.id == undefined) 
                 console.log('The multiple selection functions require that nodes have an id');
-            console.log('tree.click',selected_node.name,$('#tree').tree('isNodeSelected', selected_node) );
+            //console.log('tree.click',selected_node.name,$('#tree').tree('isNodeSelected', selected_node) );
             if ( $('#tree').tree('isNodeSelected', selected_node) ) 
             {
               //select an element in the jqtree
             	if(selected_node.name.indexOf("Type::")<0)
             	{
             		$('#tree').tree( 'removeFromSelection' , selected_node );
-                removeJsonSchema(selected_node);
-	              $("#jsonSchema").val( JSON.stringify(jsonSchema, null, 4) ); 
+                removejsonRDFInstance(selected_node);
+	              applyChanges();
 	            }
             }
             else 
@@ -210,8 +207,8 @@ function buildTree()
                               "lvl = "+selected_node.getLevel());
 	                $('#tree').tree('addToSelection', selected_node);
                   //exception needed when the select Node is in depth
-                  add2JsonSchema(selected_node);
-                  $("#jsonSchema").val( JSON.stringify(jsonSchema, null, 4) ); 
+                  add2jsonRDFInstance(selected_node);
+                  applyChanges();
             	} 
             	else 
             	{
@@ -233,13 +230,13 @@ function buildTree()
 	    function(e) {
 	    	e.preventDefault();
 	    	var selected_node = e.node;
-	    	console.log("open Node Event",selected_node.name);
+	    	//console.log("open Node Event",selected_node.name);
 	    }
 	);
 	
 }
 
-function add2JsonSchema(node)
+function add2jsonRDFInstance(node)
 {
   parents = [];
   parenttypes = [];
@@ -256,15 +253,16 @@ function add2JsonSchema(node)
       }
       node = node.parent;
   }
-  console.log(parents);
-  console.log(parenttypes);
-  parentNode = jsonSchema;
-  console.log("build parents");
+  //console.log(parents);
+  //console.log(parenttypes);
+  //console.log("build parents");
+  parentNode = jsonRDFInstance;
+  
   while(parents.length > 0)
   {
     parentName = parents.shift();
     parentType = parenttypes.shift();
-    console.log("build parents",parentName,parentType);
+    //console.log("build parents",parentName,parentType);
     if(typeof parentNode[parentName] != "object")
     {
       parentNode[parentName]={};
@@ -275,15 +273,69 @@ function add2JsonSchema(node)
   parentNode[selectedNodeName]="";
 }
 
-function removeJsonSchema(node)
+function removejsonRDFInstance(node)
 {
   if(node.parent.parent.name != undefined)
   {
-      delete jsonSchema[node.parent.parent.name][node.name];
-      if( Object.keys( jsonSchema[node.parent.parent.name] ).length == 1)
-        jsonSchema[node.parent.parent.name] = "";
+      delete jsonRDFInstance[node.parent.parent.name][node.name];
+      if( Object.keys( jsonRDFInstance[node.parent.parent.name] ).length == 1)
+        jsonRDFInstance[node.parent.parent.name] = "";
   } 
   else
-      delete jsonSchema[node.name];
+      delete jsonRDFInstance[node.name];
 }
+function applyChanges()
+{
+  $("#jsonRDFInstance").val( JSON.stringify(jsonRDFInstance, null, 4) ); 
+  buildJsonSchema();
+}
+function buildJsonSchema()
+{
+    convert( $.parseJSON( $("#jsonRDFInstance").val() ) , null );
+    $("#jsonSchema").val( JSON.stringify(jsonSchema, null, 4) );
+}
+function convert(jsonSrc,prefix)
+{
+    //jsonSchema = { title:rootType, type:"object", properties:{} };
+    $.each(jsonSrc , function(k,v){
+      key = ( prefix != null ) ?  (k==0) ? prefix+'(array)' : prefix+'('+k+')' : k;
+      //console.log(typeof v,key,k, typeof k);
+      if( typeof k != "number" && k.indexOf("@") >= 0 )
+        jsonSchema.properties[key] = { "value" : v,"inputType" : "hidden" };
+      else if(typeof k == "number" && k > 0)
+        console.warn(key+" not rendered");
+      else if(typeof v == "object"){
+        console.info("build an object definition : "+key)
+        convert(v,key);
+      } else if(typeof v == "array"){
+        console.info("build an array definition"+key+'(list)');
+        convert(v[0],key+'(list)');
+      } else
+        jsonSchema.properties[key] = { "inputType" : "text","i18n":k };
+    });
+  }
+  function buildForm(){
+    $("#form").html("");
+    $.ajax({
+        url:baseUrl+"/common/GetMicroformatHTML",
+        type:"POST",
+        data : { 
+          "key" : rootType.toLowerCase(),
+          "collection" : null,
+          "id" : null,
+          "microformat" : { "jsonSchema" : $.parseJSON( $("#jsonSchema").val() ) } },
+        dataType:"json",
+        success:function(data) 
+        {
+          $("#flashInfoLabel").html(data.title);
+          $("#flashInfoContent").html(data.content);
+          $("#flashInfoSaveBtn").html('<a class="btn btn-warning " href="javascript:;" onclick="$(\'#flashForm\').submit(); return false;"  >Enregistrer</a>'); 
+          $("#flashInfo").modal('show');
+        },
+        error:function (xhr, ajaxOptions, thrownError)
+        {
+          $("#flashInfoContent").html(data.content);
+        } 
+    });
+  }
 </script>
