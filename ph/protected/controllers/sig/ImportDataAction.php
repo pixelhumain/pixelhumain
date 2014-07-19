@@ -10,8 +10,8 @@ class ImportDataAction extends CAction
 {
     public function run()
     {
-        $result = $this->importFromJson();
-        $result .= $this->checkPositionCitoyens();
+        $result = $this->importFromJson();			//importe les données depuis fichier .json vers ddb
+        $result .= $this->checkPositionCitoyens();	//update la position geo des citoyens
      	
 		Rest::json($result);  
 		Yii::app()->end();
@@ -22,10 +22,12 @@ class ImportDataAction extends CAction
 	  	//augmente la limite de la mémoire pour charger tout le fichier json
 		ini_set("memory_limit","300M"); 
 		
+		//charge le fichier json en memoire
 		$fp = fopen ("../../modules/sig/data/_cities_.json", "r");  	
 		$contenu_du_fichier = fread ($fp, filesize('../../modules/sig/data/_cities_.json')); //charge le contenu du fichier
-		fclose ($fp);   
-		$json = json_decode ($contenu_du_fichier); //convertit en json
+		fclose ($fp);
+		//transforme le flux en structure json   
+		$json = json_decode ($contenu_du_fichier); 
 		
 		$result = "loading json file ok<br/>";
 		
