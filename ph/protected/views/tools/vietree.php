@@ -36,6 +36,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jqtree/tree.jquery.js'
   </div>
 </div>
 
+
 <script type="text/javascript">
 
 var jsonRDFInstance = {"@context": "http://schema.org"};
@@ -225,15 +226,18 @@ function buildTree()
         }
     );
 
-    $('#tree').bind(
+    /*$('#tree').bind(
 	    'tree.open',
 	    function(e) {
 	    	e.preventDefault();
 	    	var selected_node = e.node;
 	    	//console.log("open Node Event",selected_node.name);
 	    }
-	);
-	
+	);*/
+
+	$('#tree').on('tree.open', function(e) {
+    console.log('tree.open',e);
+  });
 }
 
 function add2jsonRDFInstance(node)

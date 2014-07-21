@@ -37,6 +37,9 @@ class ToolsController extends Controller {
     public function actionVie() {
         $this->render("vietree");
     }
+    public function actionTchat() {
+        $this->render("tchat");
+    }
 	public function actionVisualizeImport($group,$type) {
 	    $process = 0;
         $row = 1;

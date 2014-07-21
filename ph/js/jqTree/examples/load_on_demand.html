@@ -30,6 +30,10 @@ $(function() {
     $tree.tree({
         dragAndDrop: true
     });
+
+    $tree.on('tree.open', function(e) {
+        console.log('tree.open',e);
+    });
 });
 
 </script>

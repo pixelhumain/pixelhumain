@@ -2,7 +2,7 @@
 //PIXEL HUMAIN specific modules 
 $activeModules = array(
 	'waterwatcher',
-	'egpc',
+	'projet.egpc',
 	'demosalithia',
 	'azotlive',
 	'echolocal',
