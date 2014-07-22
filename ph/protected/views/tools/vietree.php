@@ -1,11 +1,11 @@
 <?php 
 $cs = Yii::app()->getClientScript();
-$cs->registerCssFile(Yii::app()->request->baseUrl. '/js/jqtree/jqtree.css');
+$cs->registerCssFile(Yii::app()->request->baseUrl. '/js/jqTree/jqtree.css');
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/test/underscore.min.1.3.3.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/backbone.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/vie-2.1.0.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/vie-widgets.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jqtree/tree.jquery.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jqTree/tree.jquery.js' , CClientScript::POS_END);
 //$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/test/jqtree/extra/bower_components/jquery-mockjax/jquery.mockjax.js' , CClientScript::POS_END);
 ?>
 
