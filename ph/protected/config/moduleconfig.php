@@ -1,15 +1,15 @@
 <?php
 //PIXEL HUMAIN specific modules 
 $activeModules = array(
-	'waterwatcher',
-	'projet.egpc',
+	'project.waterwatcher',
+	'project.egpc',
 	'demosalithia',
 	'azotlive',
-	'echolocal',
+	'project.echolocal',
 	'communecter',
 	'survey',
 	'sig',
-	'pppm',
+	'project.pppm',
 	'githubs',
 	'pixelfunding',
 	'meeteem',
