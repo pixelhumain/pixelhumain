@@ -30,6 +30,8 @@ class Message
         	$newInfos['from'] = Yii::app()->session["userId"];
         	$newInfos['to'] = $userids;
         	$newInfos['msg'] = $msg;
+            if(isset($_POST["emailCopy"]) && $_POST["emailCopy"])
+                $newInfos['emailCopy'] = "todo";
             $newInfos['created'] = time();
             if( isset( $_POST["app"] ) )
                 {
@@ -41,7 +43,7 @@ class Message
                         $newInfos['applications'][$appKey]["messageConfirmed"] = false;
                 }
 
-        	Yii::app()->mongodb->messages->insert( $newInfos);
+        	PHDB::insert(PHType::TYPE_MESSAGES, $newInfos);
         	$res = array("result" => true, 
                       	 "msg" => "message send to ".count($userids)." users" );
         	if( count($inexistantUsers) )

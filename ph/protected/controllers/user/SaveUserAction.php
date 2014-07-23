@@ -15,7 +15,7 @@ class SaveUserAction extends CAction
         {
             //if exists login else create the new user
             $res = Citoyen::register( $email, $_POST["pwd"]);
-            if(PHDB::findOne(PHType::TYPE_CITOYEN,array( "email" => $email ) ))
+            if($user = PHDB::findOne(PHType::TYPE_CITOYEN,array( "email" => $email ) ))
             {
                 //udate the new app specific fields
                 $newInfos = array();
@@ -40,19 +40,19 @@ class SaveUserAction extends CAction
                 		      $newInfos['applications'][$appKey]["registrationConfirmed"] = false;
                         else if( $app["registration"] == "mailValidation" )
                         {
-                            Yii::app()->session["userId"] = "validateEmail"; 
+                            Yii::app()->session["userId"] = $user["_id"]; 
                             Yii::app()->session["userEmail"] = null;
                             
                             //send validation mail
                             //TODO : make emails as cron jobs
-                            $titre = $app["name"];
+                            $title = $app["name"];
                             $logo = ( isset($app["logo"]) ) ? $this->module->assetsUrl.$app["logo"] : Yii::app()->getRequest()->getBaseUrl(true).'/images/logo/logo144.png';
                                
                             Mail::send(array("tpl"=>'validation',
                                              "subject" => 'Confirmer votre compte '.$title,
                                              "from"=>Yii::app()->params['adminEmail'],
                                              "to" => $email,
-                                             "tplParams" => array( "user"  => $newAccount["_id"] ,
+                                             "tplParams" => array( "user"  => $user["_id"] ,
                                                                      "title" => $title ,
                                                                      "logo"  => $logo,
                                                 )));

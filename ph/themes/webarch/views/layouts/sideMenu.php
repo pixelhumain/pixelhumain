@@ -102,3 +102,8 @@
   </div>
   <!-- END SIDEBAR FOOTER WIDGET -->
   <!-- END SIDEBAR --> 
+  <script type="text/javascript">
+  initT['toggleMenu'] = function() {
+    //$("body").toggleMenu();
+  };
+  </script>

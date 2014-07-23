@@ -103,7 +103,7 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 										else 
 											$pathTpl = "application.components.api.views.".$e["key"].".".$child["key"];
 									}
-									if(($pathTpl && is_file(Yii::getPathOfAlias($pathTpl).".php")) || $child["microformat"] )
+									if(($pathTpl && is_file(Yii::getPathOfAlias($pathTpl).".php")) || (isset($child["microformat"] ) && $child["microformat"]) )
 									{
 										echo blockHTML($pathTpl,$child,$params,$e);
 									}else

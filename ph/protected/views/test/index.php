@@ -87,9 +87,9 @@ var_dump($this::$a);
             </li>
         </ul>
 ----------------------------------------------------------- <br/>
-<h2> PATHS AND URLS</h2>       
+<h2> PATHS AND URLS </h2>       
         <?php 
-
+echo Yii::app()->session["userId"]."<br/>";
 $conflen=strlen('SCRIPT');
 $B=substr(__FILE__,0,strrpos(__FILE__,'/'));
 $A=substr($_SERVER['DOCUMENT_ROOT'], strrpos($_SERVER['DOCUMENT_ROOT'], $_SERVER['PHP_SELF']));

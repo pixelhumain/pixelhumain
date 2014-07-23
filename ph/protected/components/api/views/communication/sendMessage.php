@@ -3,6 +3,7 @@
 message  : <textarea name="sendMessagemsg" id="sendMessagemsg"></textarea> <br/>
 email(s) : <textarea type="text" name="sendMessageemail" id="sendMessageemail"><?php echo $this->module->id?>@<?php echo $this->module->id?>.com</textarea><br/>
 séparé par des virgules<br/>
+<input type="checkbox" id="emailCopy"/>send email copy <br/>
 <a class="btn" href="javascript:sendMessage()">Send it</a><br/>
 <select id="sendMessagePeople">
 	<option></option>
@@ -19,6 +20,7 @@ séparé par des virgules<br/>
 	function sendMessage(){
 		params = { 
     	   "email" : $("#sendMessageemail").val() , 
+    	   "emailCopy" : $("#emailCopy").val() , 
     	   "msg" : $("#sendMessagemsg").val() 
     	   };
 		testitpost("sendMessageResult",baseUrl+'/egpc/api/sendMessage',params);
