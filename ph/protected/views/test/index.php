@@ -88,6 +88,7 @@ var_dump($this::$a);
             <li>
                 <?php
                 var_dump(Yii::app()->mongodb->citoyens);
+                var_dump(Yii::app()->mongodb->citoyens->findOne(array("email"=>"egpc@egpc.com")));
                 ?>
             </li>
         </ul>
