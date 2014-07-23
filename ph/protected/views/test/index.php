@@ -85,6 +85,11 @@ var_dump($this::$a);
                 echo "<span style='color:".$color."'> Test : Colection 'Lists' was found </span><br/>";
                 ?>
             </li>
+            <li>
+                <?php
+                var_dump(Yii::app()->mongodb->citoyens);
+                ?>
+            </li>
         </ul>
 ----------------------------------------------------------- <br/>
 <h2> PATHS AND URLS </h2>       
@@ -103,20 +108,15 @@ $k_path_url = (isset($_SERVER['HTTPS']) AND (!empty($_SERVER['HTTPS'])) AND strt
  echo $folder = substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1)." ::  SCRIPT_NAME / <br/>";
  echo $k_path_url.$_SERVER['SERVER_NAME'].substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1)." :: SERVER_NAME / SCRIPT_NAME<br/>";
         
-/*
+
 if(isset($m)){
 $cursor = $collection->find();
+$cursor = PHDB::find("applications");
 foreach ($cursor as $document) {
     echo $document["name"] . "<br/>";
 }
 
-        $assoNames = array();
-        $tmp = iterator_to_array(Yii::app()->mongodb->groups->find( array("type"=>"association"), array("name" => 1) ));
-        foreach($tmp as $a)
-            $assoNames[$a['name']] = $a['name'] ;
-        var_dump($assoNames);
-
-    }*/?>
+    }?>
         
     	<div  id="coco" style="display:block">
         	<h2>TEST</h2>    	
@@ -124,8 +124,7 @@ foreach ($cursor as $document) {
 
                 if(isset($m)){
                 $test = Yii::app()->mongodb->test->findOne(array("ki"=>"lo"));
-                $test["ki"] = "ki";
-                Yii::app()->mongodb->test->save($test);
+                
             }
 
             /*$newInfos = array("api" =>array(

@@ -9,7 +9,7 @@ class PH
     {
         $menu = array();
         $cols = PHDB::find( $collection);
-        foreach ($cols as$e) {
+        foreach ($cols as $e) {
             array_push( $menu , array( "label"=>$e["name"],"href"=>Yii::app()->createUrl("/".$e["key"] ) ) );
         }
         return $menu;
