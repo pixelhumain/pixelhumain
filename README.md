@@ -89,6 +89,14 @@ http://localhost:8080/ph/index.php/test
 
 - All the first line should be green.
 
+####Adding a Module
+- at the same level of the /pixelhumain folder , create a folder called /modules
+- cd modules 
+- git clone "any of the module" ex : https://github.com/pixelhumain/networkMapping
+- front end URL : 127.0.0.1/ph/networkmapping
+- api URL : 127.0.0.1/ph/networkmapping/api
+- if any there's any initData to be installed you'll see the prompt 
+- sometimes you'll need to initData to install test Data sets
 YOU SUCCEED ! READY TO CODE NOW !
 
 ##Version 0.001 
