@@ -7,7 +7,7 @@ class PHType
     const TYPE_ASSOCIATION	   = "association";
     const TYPE_ENTREPRISE	   = "entreprise";
     const TYPE_COLLECTIVITE	   = "collectivite";
-    const TYPE_EVENT	       = "event";
+    const TYPE_EVENTS          = "events";
     const TYPE_PROJECTS	       = "projects";
     const TYPE_DISCUSSION	   = "discussion";
     const TYPE_APPLICATIONS    = "applications";

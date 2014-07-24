@@ -107,16 +107,15 @@ foreach ($attacks as $a=>$v)
     {
         if(!in_array($v["YEAR"],$counted))
 	    {
-	        $years[ $v["YEAR"] ] = array("total"=>0,"fatal"=>0,"nonfatal"=>0);
-	        $surf[ $v["YEAR"] ] = array("total"=>0,"fatal"=>0,"nonfatal"=>0);
+            $years[ $v["YEAR"] ] = array("total"=>0,"fatal"=>0,"nonfatal"=>0);
+            $surf[ $v["YEAR"] ] = array("total"=>0,"fatal"=>0,"nonfatal"=>0);
             $chasse[ $v["YEAR"] ] = array("total"=>0,"fatal"=>0,"nonfatal"=>0);
             $nage[ $v["YEAR"] ] = array("total"=>0,"fatal"=>0,"nonfatal"=>0);
             $windsurf[ $v["YEAR"] ] = array("total"=>0,"fatal"=>0,"nonfatal"=>0);
             $kayak[ $v["YEAR"] ] = array("total"=>0,"fatal"=>0,"nonfatal"=>0);
             $autre[ $v["YEAR"] ] = array("total"=>0,"fatal"=>0,"nonfatal"=>0);
             $nodata[ $v["YEAR"] ] = array("total"=>0,"fatal"=>0,"nonfatal"=>0);
-	        array_push($counted,$v["YEAR"] );
-	        
+            array_push($counted,$v["YEAR"] );
 	    }
 	    
 	    $years[ $v["YEAR"] ]["total"] += 1;

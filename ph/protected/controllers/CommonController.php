@@ -18,6 +18,7 @@ class CommonController extends Controller {
      * - generic 
      * */
     public function actionGetMicroformat() {
+        //Yii::app()->session["userLang"] = "fr";
         if(isset($_POST["key"])){
             $_POST["microformat"] = PHDB::findOne(PHType::TYPE_MICROFORMATS, array( "key"=>$_POST["key"] ));
             $html = "";
@@ -80,8 +81,8 @@ class CommonController extends Controller {
                 if(empty($v))
                     unset($_POST[$k]);
             }*/
-            $_POST["microformat"] = PHDB::findOne(PHType::TYPE_MICROFORMATS, array( "key"=> $key));
-            $validate = ( !isset($_POST["microformat"] )  || !isset($_POST["microformat"]["jsonSchema"])) ? false : true;
+            $microformat = PHDB::findOne(PHType::TYPE_MICROFORMATS, array( "key"=> $key));
+            $validate = ( !isset($microformat )  || !isset($microformat["jsonSchema"])) ? false : true;
             //validation process based on microformat defeinition of the form
             //by default dont perform validation test
             $valid = array("result"=>true);
@@ -94,7 +95,7 @@ class CommonController extends Controller {
                 {
                     //update a single field
                     //else update whole map
-                    $changeMap = ( !$_POST["microformat"] && isset( $key )) ? array('$set' => array( $key => $_POST[ $key ] ) ) : array('$set' => $_POST );
+                    $changeMap = ( !$microformat && isset( $key )) ? array('$set' => array( $key => $_POST[ $key ] ) ) : array('$set' => $_POST );
                     PHDB::update($collection,array("_id"=>new MongoId($id)), $changeMap);
                     $res = array("result"=>true,
                                  "msg"=>"Vos données ont été mise à jour.",

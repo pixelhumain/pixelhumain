@@ -48,6 +48,8 @@ class PHDB
     /*
     $params is the POST array 
     $key is the microformat that  should contain 
+    uses https://github.com/hasbridge/php-json-schema
+    based on json schema rules
      */
     public static function validate($key,$params)
     {

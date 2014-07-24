@@ -1,4 +1,5 @@
 <!-- Simple Node element requesting only a name to create a node  -->
+
 <script type="text/javascript">
 requiredFields = [];
 </script>
@@ -8,6 +9,7 @@ requiredFields = [];
 		<p></p>
 		<table style="width:100%;margin:auto;" >
     	<?php 
+        $hidden = "";
     	//pour remplir les valeur de l'element en cours d'upate
     	$entry = ( (!isset($isSub) || !$isSub) && isset($id) && $id != null && isset($collection)) ? PHDB::findOne($collection, array("_id"=>new MongoId($id)) ) : null;
     	$user = (isset($collection) && $collection!=null) ? PHDB::findOne($collection, array("_id"=>new MongoId(Yii::app()->session["userId"])) ) : array();
@@ -32,7 +34,7 @@ requiredFields = [];
         	    if( $buildRow )
                 {?>
         	    <tr>
-        	    <td class="txtright " style="padding-right:15px;"><label for="<?php echo $k?>"><?php echo ( isset($v["label"]) ) ? $v["label"] : $k?> <?php echo ( isset($v["required"]) ) ? "*" : ""?></label> </td>
+        	    <td class="txtright " style="padding-right:15px;"><label for="<?php echo $k?>"><?php echo ( isset($v["label"]) ) ? Translate::key($v["label"]) : Translate::key($k)?> <?php echo ( isset($v["required"]) ) ? "*" : ""?></label> </td>
         	    <td>
         	    <?php 
         	    }
@@ -49,7 +51,7 @@ requiredFields = [];
                  * INPUT TYPE TEXT
                  ******************************/
                 if( !isset( $v["inputType"]) || $v["inputType"] == "text" ) { ?>
-                	<input type="text" class="<?php echo ( isset($v["required"]) ) ? "debug" : ""?>" name='<?php echo $k?>' id='<?php echo $k?>' value="<?php echo $value?>" placeholder="<?php echo ( isset($v["label"]) ) ? $v["label"] : $k?>"/>
+                	<input type="text" class="<?php echo ( isset($v["required"]) ) ? "debug" : ""?>" name='<?php echo $k?>' id='<?php echo $k?>' value="<?php echo $value?>" placeholder="<?php echo ( isset($v["label"]) ) ? Translate::key($v["label"]) : Translate::key($k)?>"/>
                 <?php } 
                 /******************************
                  * INPUT TYPE TEXTAREA
@@ -69,6 +71,7 @@ requiredFields = [];
                         $default = $v["default"];
                     else if( isset($user["country"]) )
                         $default = $user["country"];
+
                     $options = $v["options"];
                     if( isset( $v["options_type"] ))
                     {
@@ -85,6 +88,16 @@ requiredFields = [];
                         'name' => $k,
                       	'id' => $k,
                         'value'=> ($entry && isset($entry[$k]) ) ? $value : $default,
+                        'pluginOptions' => array('width' => '150px')
+                      ) );
+                } 
+                else if( $v["inputType"] == "enum") {
+                    $options = $v["values"];
+                    $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
+                        'data' => $options, 
+                        'name' => $k,
+                        'id' => $k,
+                        'value'=> ($entry && isset($entry[$k]) ) ? $value : "",
                         'pluginOptions' => array('width' => '150px')
                       ) );
                 } 

@@ -112,7 +112,6 @@ $k_path_url = (isset($_SERVER['HTTPS']) AND (!empty($_SERVER['HTTPS'])) AND strt
 
 if(isset($m)){
 $cursor = $collection->find();
-$cursor = PHDB::find("applications");
 foreach ($cursor as $document) {
     echo $document["name"] . "<br/>";
 }
