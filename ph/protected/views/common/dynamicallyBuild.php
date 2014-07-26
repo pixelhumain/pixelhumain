@@ -93,6 +93,16 @@ requiredFields = [];
                 } 
                 else if( $v["inputType"] == "enum") {
                     $options = $v["values"];
+                    if( isset( $v["source"] ))
+                    {
+                        if( $v["source"] == "php" ) 
+                            eval( '$options ='.$options.';' );//BUG : bugs with OpenData::$phCountries doesn't evaluate
+                        //data can come fron a DB collection
+                        else if( $v["source"] == "db" ){
+                            $list = PHDB::findOne(PHType::TYPE_LISTS, array("name"=>$options ) );
+                            $options = $list["list"];
+                        }
+                    }
                     $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                         'data' => $options, 
                         'name' => $k,
@@ -115,6 +125,18 @@ requiredFields = [];
                  ******************************/
                 else if( $v["inputType"] == "file") {?>
                     <input type="file" name="<?php echo $k?>" id='<?php echo $k?>'/>
+                <?php } 
+                /******************************
+                 * INPUT TYPE DATE
+                 ******************************/
+                else if( $v["inputType"] == "date") {?>
+                    <input type="text" class="dateInput" name="<?php echo $k?>" id='<?php echo $k?>' placeholder="22/10/2014" />
+                <?php } 
+                /******************************
+                 * INPUT TYPE TIME
+                 ******************************/
+                else if( $v["inputType"] == "time") {?>
+                    <input type="text" class="timeInput" name="<?php echo $k?>" id='<?php echo $k?>' placeholder="20:30" />
                 <?php } 
                 /******************************
                  * INPUT TYPE FILE
@@ -215,12 +237,22 @@ requiredFields = [];
         }
     
     });
+
 <?php if(isset( $microformat["formSchema"]["slug"]) && isset($microformat["formSchema"]["slug"])){?>
 $("[name='name']").keyup(function(){
 $("[name='slug']").val(_.str.slugify($("[name='name']").val()));
 });
 <?php }?>
-    
+
+$(document).ready(function() { 
+    //init Input type 
+    $(".dateInput").datepicker({ 
+        language: "fr",
+        format: "dd/mm/yy"
+    });
+
+});
+
 </script>  
 
 <?php /*

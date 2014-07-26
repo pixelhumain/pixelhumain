@@ -5,6 +5,9 @@ $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/clean.css');
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery.columns.min.js' , CClientScript::POS_END);
 
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-datepicker/css/datepicker.css'); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl.'/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' , CClientScript::POS_END);
+
 $this->pageTitle="API ".$this::moduleTitle;
 function blockHTML($pathTpl,$entry,$params,$parent){
 	//echo $entry["key"];
@@ -23,15 +26,40 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 	
 	if( isset( $entry["microformat"] ) ) {
 		$microformat = PHDB::findOne(PHType::TYPE_MICROFORMATS, array("key"=>$entry["microformat"]));
-		$str .= "<a href='javascript:;' onclick='openModal(\"".$entry["microformat"]."\",\"".$microformat["collection"]."\",null,\"".$microformat["template"]."\")'  class='btn'>".$entry['microformat']."</a><br/>";
+		$tpl = (isset($microformat["template"])) ? $microformat["template"] : "dynamicallyBuild" ;
+		$str .= "<a href='javascript:;' onclick='openModal(\"".$entry["microformat"]."\",\"".$microformat["collection"]."\",null,\"".$tpl."\")'  class='btn'>".$entry['microformat']."</a><br/>";
 	} else
 		$str .= Yii::app()->controller->renderPartial( $pathTpl,$params,true );
 		
 	$str .= "<div class='clear'>&nbsp;</div></li>";
 	return $str;
 }
-?>
 
+$me = PHDB::findOne(PHType::TYPE_CITOYEN,array('email' => Yii::app()->session["userEmail"] )); ?>
+<div class="controls">
+<img width=50 class="citizenThumb" src="<?php echo ( $me && isset($me['img']) ) ? Yii::app()->createUrl($me['img']) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>"/></td>
+<?php
+    $this->widget('yiiwheels.widgets.fineuploader.WhFineUploader', array(
+            'name'          => 'imageFile',
+            'uploadAction'  => $this->createUrl('index.php/templates/upload/dir/'.$this->module->id.'/input/imageFile', array('fine' => 1)),
+            'pluginOptions' => array(
+                'validation'=>array(
+                    'allowedExtensions' => array('jpg','jpeg','png','gif'),
+                    'itemLimit'=>1
+                )
+            ),
+            'events' => array(
+                'complete'=>"function( id,  name,  responseJSON,  xhr){
+                	console.log('".Yii::app()->createUrl('upload/'.$this->module->id.'/')."/'+xhr.name+'?d='+ new Date().getTime());
+                	$('#image').val(xhr.name);
+                	$('li.me img').attr('src','".Yii::app()->createUrl('upload/'.$this->module->id.'/')."/'+xhr.name+'?d='+ new Date().getTime());
+                	
+                }"
+            ),
+        ));
+    ?>
+    <input type="hidden" id="image" name="image" value="<?php if(isset($me["image"]))echo $me["image"]?>"/>
+</div>
 
 <div class="containeri apiList">
 	<div class="hero-uniti">
@@ -126,13 +154,19 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 		<?php } else { ?>
 		<h2>Restricted Area</h2>
 		<?php
+			/* ******************************
+			When first time users conenct to the api 
+			there is no data for a certain module 
+			this section will initialise the data
+			this is only shown if no admin user is found
+			******************************/
 			if(!PH::notlocalServer())
 			{
 				$admins = PHDB::noAdminExist($this->module->id);
 				if(count($admins) > 0){
-					echo "Below is your list of admin users :<br/>";
+					echo "<b>Data has allready been initialised</b><br/>Below is your list of admin users :<br/>";
 					foreach ($admins as $key => $value) {
-						echo $value["email"]."<br/>";
+						echo "<b>".$value["email"]."</b><br/>";
 					}
 				} else {
 					echo "Your instance has no admin user, first initialise your data below :<br/>";
@@ -140,7 +174,7 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 				}
 			}
 			?>
-			<br/>you can contact an admin <a class="btn" href="mail:contact@pixelhumain.com"><i class="fa fa-mail"></i></a>
+			<br/>or You can contact a PH admin <a class="btn" href="mail:contact@pixelhumain.com"><i class="fa fa-mail"></i></a>
 		<?php } ?>
 	</div>
 </div>

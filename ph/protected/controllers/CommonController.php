@@ -27,9 +27,8 @@ class CommonController extends Controller {
                 //clef trouvé dans microformats
                 if(isset($_POST["microformat"]["jsonSchema"]["title"]))
                     $title = $_POST["microformat"]["jsonSchema"]["title"];
-                if($_POST["microformat"]["template"] == "dynamicallyBuild")
-                    $_POST["microformat"] = $_POST["microformat"];
-                $html .= $this->renderPartial($_POST["microformat"]["template"],$_POST,true);
+                $tpl = (isset($_POST["microformat"]["template"])) ? $_POST["microformat"]["template"] : "dynamicallyBuild";
+                $html .= $this->renderPartial($tpl,$_POST,true);
             } else {
                 //clef pas trouvé dans microformats
                 $html .= $this->renderPartial($_POST["template"],$_POST,true);

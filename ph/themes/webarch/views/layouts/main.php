@@ -14,25 +14,28 @@
 	<meta name="robots" content="Index,Follow" />
 	<!-- NEED TO WORK ON -->
 
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/jquery-slider/css/jquery.sidr.light.css" rel="stylesheet" type="text/css" media="screen"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/animate.min.css" rel="stylesheet" type="text/css"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/style.css" rel="stylesheet" type="text/css"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/responsive.css" rel="stylesheet" type="text/css"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
-	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/mainph.css">
+<?php 
+$cs = Yii::app()->getClientScript();
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/pace/pace-theme-flash.css');
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-slider/css/jquery.sidr.light.css');
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/boostrapv3/css/bootstrap.min.css');
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/boostrapv3/css/bootstrap-theme.min.css');
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/font-awesome/css/font-awesome.css');
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/animate.min.css');
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/style.css');
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/responsive.css');
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/custom-icon-set.css');
+$cs->registerCssFile(Yii::app()->request->baseUrl. '/css/mainph.css');
 	
 	
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/leaflet.css"  type="text/css" rel="stylesheet"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/leaflet.draw.css" type="text/css" rel="stylesheet"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/leaflet.draw.ie.css" type="text/css" rel="stylesheet"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/MarkerCluster.css"  type="text/css" rel="stylesheet"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/MarkerCluster.Default.css"  type="text/css" rel="stylesheet"/>
-	
+$cs->registerCssFile("http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css");
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/leaflet.css');
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/leaflet.draw.css');
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/leaflet.draw.ie.css');
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/MarkerCluster.css');
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/MarkerCluster.Default.css');
+?>
+
 	
 	<!-- END NEED TO WORK ON -->
    <script>
@@ -69,31 +72,28 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.h
 <!-- END CONTENT --> 
 <?php 
 $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.modals',array( "account" => $account));
-?>
-<!-- BEGIN CORE JS FRAMEWORK--> 
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/boostrapv3/js/bootstrap.min.js" type="text/javascript"></script> 
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/breakpoints.js" type="text/javascript"></script> 
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script> 
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/jquery-block-ui/jqueryblockui.js" type="text/javascript"></script> 
-	<!-- END CORE JS FRAMEWORK --> 
-	<!-- BEGIN PAGE LEVEL JS --> 	
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/jquery-slider/jquery.sidr.min.js" type="text/javascript"></script> 	
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script> 
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/pace/pace.min.js" type="text/javascript"></script>  
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
-	<!-- END PAGE LEVEL PLUGINS --> 	
+
+//BEGIN CORE JS FRAMEWORK--> 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-1.8.3.min.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/boostrapv3/js/bootstrap.min.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/breakpoints.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-unveil/jquery.unveil.min.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-block-ui/jqueryblockui.js' , CClientScript::POS_END); 
+//	<!-- END CORE JS FRAMEWORK --> 
+//	<!-- BEGIN PAGE LEVEL JS --> 	
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-slider/jquery.sidr.min.js' , CClientScript::POS_END); 	
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/pace/pace.min.js' , CClientScript::POS_END);  
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js' , CClientScript::POS_END);
+//	<!-- END PAGE LEVEL PLUGINS --> 	
 	
-	<!-- BEGIN CORE TEMPLATE JS --> 
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/js/core.js" type="text/javascript"></script> 
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/js/chat.js" type="text/javascript"></script> 
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/js/demo.js" type="text/javascript"></script> 
-	
-	
-	<!-- END CORE TEMPLATE JS --> 
-	<?php 
-$cs = Yii::app()->getClientScript();
+//	<!-- BEGIN CORE TEMPLATE JS --> 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/core.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/chat.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/demo.js' , CClientScript::POS_END); 
+//	<!-- END CORE TEMPLATE JS --> 
+
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/TweenMax.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/modernizr-2.6.2-respond-1.1.0.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/prefixfree.min.js' , CClientScript::POS_END);
