@@ -34,6 +34,40 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/leaflet.draw.css')
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/leaflet.draw.ie.css');
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/MarkerCluster.css');
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/MarkerCluster.Default.css');
+
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-1.8.3.min.js' , CClientScript::POS_HEAD); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js' , CClientScript::POS_END); 
+
+
+//BEGIN CORE JS FRAMEWORK--> 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/boostrapv3/js/bootstrap.min.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/breakpoints.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-unveil/jquery.unveil.min.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-block-ui/jqueryblockui.js' , CClientScript::POS_END); 
+//	<!-- END CORE JS FRAMEWORK --> 
+//	<!-- BEGIN PAGE LEVEL JS --> 	
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-slider/jquery.sidr.min.js' , CClientScript::POS_END); 	
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/pace/pace.min.js' , CClientScript::POS_END);  
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js' , CClientScript::POS_END);
+//	<!-- END PAGE LEVEL PLUGINS --> 	
+	
+//	<!-- BEGIN CORE TEMPLATE JS --> 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/core.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/chat.js' , CClientScript::POS_END); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/demo.js' , CClientScript::POS_END); 
+//	<!-- END CORE TEMPLATE JS --> 
+
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/TweenMax.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/modernizr-2.6.2-respond-1.1.0.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/prefixfree.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/load-image.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap-image-gallery.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/d3.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/spin.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/nprogress/nprogress.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/underscore.string.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/main.js' , CClientScript::POS_END);
 ?>
 
 	
@@ -72,39 +106,6 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.h
 <!-- END CONTENT --> 
 <?php 
 $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.modals',array( "account" => $account));
-
-//BEGIN CORE JS FRAMEWORK--> 
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-1.8.3.min.js' , CClientScript::POS_END); 
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js' , CClientScript::POS_END); 
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/boostrapv3/js/bootstrap.min.js' , CClientScript::POS_END); 
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/breakpoints.js' , CClientScript::POS_END); 
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-unveil/jquery.unveil.min.js' , CClientScript::POS_END); 
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-block-ui/jqueryblockui.js' , CClientScript::POS_END); 
-//	<!-- END CORE JS FRAMEWORK --> 
-//	<!-- BEGIN PAGE LEVEL JS --> 	
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-slider/jquery.sidr.min.js' , CClientScript::POS_END); 	
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js' , CClientScript::POS_END); 
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/pace/pace.min.js' , CClientScript::POS_END);  
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js' , CClientScript::POS_END);
-//	<!-- END PAGE LEVEL PLUGINS --> 	
-	
-//	<!-- BEGIN CORE TEMPLATE JS --> 
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/core.js' , CClientScript::POS_END); 
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/chat.js' , CClientScript::POS_END); 
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/demo.js' , CClientScript::POS_END); 
-//	<!-- END CORE TEMPLATE JS --> 
-
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/TweenMax.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/modernizr-2.6.2-respond-1.1.0.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/prefixfree.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/load-image.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap-image-gallery.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/d3.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/spin.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/nprogress/nprogress.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/underscore.string.min.js' , CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/main.js' , CClientScript::POS_END);
-
 ?>	
 </body>
 </html>

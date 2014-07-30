@@ -14,7 +14,7 @@ return array(
 	
 	//SPECIFIC MODULE confis
 	//'defaultController' => 'communecter/default/index',
-	//'homeUrl' => "/ph/pppm",
+	'homeUrl' => "/ph/azotlive",
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -31,12 +31,7 @@ return array(
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
-		'application.business.*',
 		'application.components.*',
-		'bootstrap.helpers.TbHtml',
-    	'mongoYii.*',
-        'mongoYii.validators.*',
-        'mongoYii.behaviors.*',
     	'ext.mail.YiiMailMessage',
     	'ext.Json.Validator',
         'ext.helpers.*',
