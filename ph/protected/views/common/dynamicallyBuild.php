@@ -123,8 +123,34 @@ requiredFields = [];
                 /******************************
                  * INPUT TYPE FILE
                  ******************************/
-                else if( $v["inputType"] == "file") {?>
-                    <input type="file" name="<?php echo $k?>" id='<?php echo $k?>'/>
+                else if( $v["inputType"] == "image") {?>
+                    
+                    <div class="controls">
+                        <img width=50 class="imageThumb" src="<?php echo ( $user && isset($user['image']) ) ? Yii::app()->createUrl($user['image']) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>"/></td>
+                        <?php
+                        $srcModule = (isset($this->module) && isset($this->module->id)) ? $this->module->id : "azotlive";
+                        $this->widget('yiiwheels.widgets.fineuploader.WhFineUploader', array(
+                                'name'          => 'fineUploader',
+                                'uploadAction'  => $this->createUrl('/templates/upload/dir/'.$srcModule.'/collection/'.$collection.'/input/fineUploader', array('fine' => 1)),
+                                'pluginOptions' => array(
+                                    'validation'=>array(
+                                        'allowedExtensions' => array('jpg','jpeg','png','gif'),
+                                        'itemLimit'=>1
+                                    )
+                                ),
+                                'events' => array(
+                                    'complete'=>"function( id,  name,  responseJSON,  xhr){
+                                        console.log('".Yii::app()->createUrl('upload/'.$srcModule.'/collection/'.$collection.'/')."/'+xhr.name+'?d='+ new Date().getTime());
+                                        $('#image').val(xhr.name);
+                                        $('.imageThumb').attr('src','".Yii::app()->createUrl('upload/'.$srcModule.'/collection/'.$collection.'/')."/'+xhr.name+'?d='+ new Date().getTime());
+                                        
+                                    }"
+                                ),
+                            ));
+                        ?>
+                        <input type="hidden" id="image" name="image" value="<?php if(isset($user["image"]))echo $user["image"]?>"/>
+                    </div>
+
                 <?php } 
                 /******************************
                  * INPUT TYPE DATE
@@ -235,7 +261,6 @@ requiredFields = [];
         }else{
             alert("Please fill required fields.");
         }
-    
     });
 
 <?php if(isset( $microformat["formSchema"]["slug"]) && isset($microformat["formSchema"]["slug"])){?>
@@ -250,6 +275,34 @@ $(document).ready(function() {
         language: "fr",
         format: "dd/mm/yy"
     });
+
+    $("#fineUploader").fineUploader({
+            debug: true,
+            allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],
+            //sizeLimit: 204800, // 200 kB = 200 * 1024 bytes
+            request: {
+                endpoint: "<?php echo $this->createUrl('/templates/upload/dir/'.$srcModule.'/collection/'.$collection.'/input/qqfile', array('fine' => 1));?>"
+            },
+            retry: {
+               enableAuto: true
+            }
+        })
+        .on("submit",function(event,id, fileName){
+            console.log("on sutmit", id, fileName);
+        })
+        .on("upload",function(event,id, fileName){
+            console.log("on upload", id, fileName);
+        })
+        .on("complete",function(event, id, fileName, responseJSON) {
+            if (responseJSON.success) {
+              console.log("on complete", id, responseJSON.name);
+               $('#image').val('<?php echo Yii::app()->createUrl('upload/'.$srcModule.'/'.$collection.'/')?>/'+responseJSON.name);
+               $('.imageThumb').attr('src','<?php echo Yii::app()->createUrl('upload/'.$srcModule.'/'.$collection.'/')?>/'+responseJSON.name+'?d='+ new Date().getTime());
+                                    
+            } else {
+              console.log("on sutmit", id, fileName,responseJSON.error);
+            }
+          });
 
 });
 

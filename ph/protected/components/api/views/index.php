@@ -14,8 +14,10 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 	$str = "<li class='block' id='block".$entry['key']."'>";
 	$str .= "<h4>".$entry['label']."</h4>";
 	$actions = "";
-	foreach ($entry["actions"] as $ak => $av) {
-		$actions .= $ak." > ".$av."<br/>";
+	if(isset($entry["actions"])){
+		foreach ($entry["actions"] as $ak => $av) {
+			$actions .= $ak." > ".$av."<br/>";
+		}
 	}
 	$formInfo = ( isset( $entry["microformat"] ) ) ? "microformat : ".$entry["microformat"]  : "file > api/views/".$parent['key']."/".$entry['key'].".php";
 	$str .= "<div class='fss fr txtright'>".
@@ -33,33 +35,8 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 		
 	$str .= "<div class='clear'>&nbsp;</div></li>";
 	return $str;
-}
+}?>
 
-$me = PHDB::findOne(PHType::TYPE_CITOYEN,array('email' => Yii::app()->session["userEmail"] )); ?>
-<div class="controls">
-<img width=50 class="citizenThumb" src="<?php echo ( $me && isset($me['img']) ) ? Yii::app()->createUrl($me['img']) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>"/></td>
-<?php
-    $this->widget('yiiwheels.widgets.fineuploader.WhFineUploader', array(
-            'name'          => 'imageFile',
-            'uploadAction'  => $this->createUrl('index.php/templates/upload/dir/'.$this->module->id.'/input/imageFile', array('fine' => 1)),
-            'pluginOptions' => array(
-                'validation'=>array(
-                    'allowedExtensions' => array('jpg','jpeg','png','gif'),
-                    'itemLimit'=>1
-                )
-            ),
-            'events' => array(
-                'complete'=>"function( id,  name,  responseJSON,  xhr){
-                	console.log('".Yii::app()->createUrl('upload/'.$this->module->id.'/')."/'+xhr.name+'?d='+ new Date().getTime());
-                	$('#image').val(xhr.name);
-                	$('li.me img').attr('src','".Yii::app()->createUrl('upload/'.$this->module->id.'/')."/'+xhr.name+'?d='+ new Date().getTime());
-                	
-                }"
-            ),
-        ));
-    ?>
-    <input type="hidden" id="image" name="image" value="<?php if(isset($me["image"]))echo $me["image"]?>"/>
-</div>
 
 <div class="containeri apiList">
 	<div class="hero-uniti">

@@ -23,9 +23,13 @@ class TemplatesController extends Controller
 	   
        $this->render($name);
 	}
-    public function actionUpload($dir,$input) 
+    public function actionUpload($dir,$collection=null,$input) 
     {
+        if(isset($collection))
+            $dir .= '/'.$collection.'/';
         $upload_dir = 'upload/'.$dir.'/';
+        
+
         if(!file_exists ( $upload_dir ))
             mkdir ($upload_dir);
         $allowed_ext = array('jpg','jpeg','png','gif');

@@ -35,7 +35,7 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/leaflet.draw.ie.cs
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/MarkerCluster.css');
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/MarkerCluster.Default.css');
 
-$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-1.8.3.min.js' , CClientScript::POS_HEAD); 
+//$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-1.8.3.min.js' , CClientScript::POS_HEAD); 
 $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js' , CClientScript::POS_END); 
 
 

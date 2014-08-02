@@ -114,7 +114,8 @@ class Api {
         "getby" => array( "label"=>"get a Node By","key"=>"getby", "parent"=>"generic",
         		"desc"=>"get a Node from an entry corresponding to a certain criteria",
         		"actions"=>array('getby' => 'application.controllers.generic.GetByAction')),
-
+        "image" => array( "label"=>"Image","key"=>"image", "parent"=>"generic",
+                "desc"=>"add an image to any element and upload it"),
         /* -----------------------------------------------
 		ADMIN Section (these methods are only accessible by initialy defined APP ADMIN USER)
 		 ------------------------------------------------ */
@@ -148,6 +149,7 @@ class Api {
                     self::$apis["getUser"],
                     self::$apis["getPeople"],                    
                     self::$apis["inviteUser"],
+                    //self::$apis["image"],
                     ));
 	}
 	public static function getGroupMap(){
