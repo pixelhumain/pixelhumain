@@ -10,7 +10,10 @@ class GetByAction extends CAction
         if(isset($where["_id"]))
             $where["_id"] = new MongoId($where["_id"]);
         if( !isset($params["count"]) ) {
-            $res = PHDB::find($_POST['collection'],$where,$fields );
+            if($fields)
+                $res = PHDB::find($_POST['collection'],$where,$fields );
+            else
+                $res = PHDB::find($_POST['collection'] );
         } else
             $res = array('count' => PHDB::countWFileds($_POST['collection'],$where,$fields ));
         //$res["where"]=$where;

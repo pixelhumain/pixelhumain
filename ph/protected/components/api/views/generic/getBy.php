@@ -1,5 +1,7 @@
 <div class="fss">
 
+	Todo : collection List as parameter<br/>
+	Todo : build available fields list dynamically<br/>
 	collections : 
 	<select id="getbyCollection">
 

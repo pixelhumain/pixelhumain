@@ -17,6 +17,7 @@ requiredFields = [];
         if(isset($microformat))
     	{
     	    $hidden = "";
+            $initJS = "";
             $required = array();
             foreach ($microformat["jsonSchema"]["properties"] as $k=>$v)
         	{
@@ -90,6 +91,7 @@ requiredFields = [];
                         'value'=> ($entry && isset($entry[$k]) ) ? $value : $default,
                         'pluginOptions' => array('width' => '150px')
                       ) );
+                    
                 } 
                 else if( $v["inputType"] == "enum") {
                     $options = $v["values"];
@@ -110,6 +112,9 @@ requiredFields = [];
                         'value'=> ($entry && isset($entry[$k]) ) ? $value : "",
                         'pluginOptions' => array('width' => '150px')
                       ) );
+                    if(isset($v["onchange"])){
+                        $initJS .= "$('#".$k."').on('change',function(e){".$v["onchange"]."});";
+                    }
                 } 
                 /******************************
                  * INPUT TYPE CHECKBOX
@@ -271,16 +276,17 @@ $("[name='slug']").val(_.str.slugify($("[name='name']").val()));
 
 $(document).ready(function() { 
     //init Input type 
+    //TODO : move to declaration section above 
     $(".dateInput").datepicker({ 
         language: "fr",
         format: "dd/mm/yy"
     });
-
+    //TODO : move to declaration section above 
     $("#fineUploader").fineUploader({
             debug: true,
             allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],
             //sizeLimit: 204800, // 200 kB = 200 * 1024 bytes
-            request: {
+            request:{
                 endpoint: "<?php echo $this->createUrl('/templates/upload/dir/'.$srcModule.'/collection/'.$collection.'/input/qqfile', array('fine' => 1));?>"
             },
             retry: {
@@ -288,23 +294,25 @@ $(document).ready(function() {
             }
         })
         .on("submit",function(event,id, fileName){
-            console.log("on sutmit", id, fileName);
+            //console.log("on sutmit", id, fileName);
         })
         .on("upload",function(event,id, fileName){
-            console.log("on upload", id, fileName);
+            //console.log("on upload", id, fileName);
         })
         .on("complete",function(event, id, fileName, responseJSON) {
             if (responseJSON.success) {
-              console.log("on complete", id, responseJSON.name);
-               $('#image').val('<?php echo Yii::app()->createUrl('upload/'.$srcModule.'/'.$collection.'/')?>/'+responseJSON.name);
+               filePath = '<?php echo Yii::app()->createUrl('upload/'.$srcModule.'/'.$collection.'/')?>/'+responseJSON.name;
+               console.log("on complete", id, filePath);
+               $('#image').val(filePath);
                $('.imageThumb').attr('src','<?php echo Yii::app()->createUrl('upload/'.$srcModule.'/'.$collection.'/')?>/'+responseJSON.name+'?d='+ new Date().getTime());
                                     
             } else {
-              console.log("on sutmit", id, fileName,responseJSON.error);
+              console.log("on complete error", id, fileName,responseJSON.error);
             }
           });
-
+    <?php echo $initJS;?>    
 });
+
 
 </script>  
 

@@ -6,13 +6,13 @@ class OpenData
      * Tous les pays disponible à l'inscription
      */
     public static $phCountries = array("France"=>"France",
-                    				"Guadeloupe"=>"Guadeloupe",
-                  					"Guyanne"=>"Guyanne",
-                    				"Martinique"=>"Martinique",
-                    				"Mayotte"=>"Mayotte",
-                    				"Nouvelle-Calédonie"=>"Nouvelle-Calédonie",
-                    				"Réunion"=>"Réunion",
-                                    "St Pierre et Miquelon"=>"St Pierre et Miquelon");
+                        				"Guadeloupe"=>"Guadeloupe",
+                      					"Guyanne"=>"Guyanne",
+                        				"Martinique"=>"Martinique",
+                        				"Mayotte"=>"Mayotte",
+                        				"Nouvelle-Calédonie"=>"Nouvelle-Calédonie",
+                        				"Réunion"=>"Réunion",
+                                        "St Pierre et Miquelon"=>"St Pierre et Miquelon");
     /**
      * Classé par departement 
      * ce tableau fait le lien entre Code postal et nom de ville
