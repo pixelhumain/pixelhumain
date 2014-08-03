@@ -23,7 +23,7 @@ class TemplatesController extends Controller
 	   
        $this->render($name);
 	}
-    public function actionUpload($dir,$collection=null,$input) 
+    public function actionUpload($dir,$collection=null,$input,$rename=false) 
     {
         if(isset($collection))
             $dir .= '/'.$collection.'/';
@@ -56,7 +56,7 @@ class TemplatesController extends Controller
         	// directory to the uploads folder:
         	//we use a unique Id for the iamge name Yii::app()->session["userId"].'.'.$ext
             //renaming file
-        	$name = Yii::app()->session["userId"].'.'.$ext;//$pic['name']
+        	$name = ($rename) ? Yii::app()->session["userId"].'.'.$ext : $pic['name'];
         	if(move_uploaded_file($pic['tmp_name'], $upload_dir.$name))
             {
         		echo json_encode(array("success"=>true,'name'=>$name));

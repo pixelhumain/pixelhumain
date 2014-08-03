@@ -9,7 +9,9 @@ class GetCpObjectAction extends CAction
     {
     	$object = PHDB::findOne( $typePH, array("_id"=>new MongoId($object_id)) );     				
     	if($object != null){
-    		$data = array( "cp"=> $object['cp'] );
+    		$data = array();
+    		if(isset($object['cp'])) $data["cp"] = $object['cp'];
+	 		if(isset($object['geo'])) $data["geo"] = $object['geo'];
 	 		Rest::json( $data );      	
       	}
       	else { Rest::json( $typePH . " n° " . $object_id . " not found" );  }

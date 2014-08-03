@@ -27,7 +27,7 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/responsive.css');
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/custom-icon-set.css');
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/mainph.css');
 	
-	
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/sig.css');
 $cs->registerCssFile("http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css");
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/leaflet.css');
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/leaflet.draw.css');
