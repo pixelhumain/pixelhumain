@@ -25,7 +25,7 @@
 	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/mainph.css">
 	
-	
+	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/sig.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/leaflet.css"  type="text/css" rel="stylesheet"/>
 	<link href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/leaflet.draw.css" type="text/css" rel="stylesheet"/>

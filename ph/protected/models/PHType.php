@@ -15,7 +15,8 @@ class PHType
     const TYPE_ACTION_HISTORY  = "actionHistory";
     const TYPE_MICROFORMATS    = "microformats";
     const TYPE_LISTS           = "lists";
-    const TYPE_MESSAGES           = "messages";
+    const TYPE_MESSAGES        = "messages";
+    const TYPE_NEWS        	   = "news";
     
     /* Standard connection types, the user can then create his own groupings*/
     const CONNECT_TYPE_FRIEND	   = "friend";

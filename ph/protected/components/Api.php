@@ -58,6 +58,34 @@ class Api {
         		'linkUser2Group' => 'application.controllers.groups.LinkUser2GroupAction'
         		)),
 
+         /* -----------------------------------------------
+		SIG Section
+		 ------------------------------------------------ */
+        "initMap" => array( "label"=>"InitMap", "key"=>"initMap",
+        	"desc"=>"init the map",
+        	"actions"=>array()),
+        	
+        "showCities" => array( "label"=>"Show Cities", "key"=>"showCities",
+        	"desc"=>"show all cities on the map",
+        	"actions"=>array('showCities'=> 'application.controllers.sig.ShowCitiesAction')),
+        	
+        "saveGeoposition" => array( "label"=>"Save Geoposition", "key"=>"saveGeoposition",
+        	"desc"=>"save geoposition on every PHType in DB",
+        	"actions"=>array('saveGeoposition'=> 'application.controllers.sig.SaveGeoposition')),
+        	
+       	"saveGroupsGeoposition" => array( "label"=>"Save Group Geoposition", "key"=>"saveGroupsGeoposition",
+        	"desc"=>"save group geoposition in DB",
+        	"actions"=>array('saveGroupsGeoposition'=> 'application.controllers.sig.SaveGroupsGeoposition')),
+        	
+       	"showCitoyens" => array( "label"=>"Show citoyens clustered", "key"=>"showCitoyens",
+        	"desc"=>"show every citoyens on the map",
+        	"actions"=>array('showCitoyens'=> 'application.controllers.sig.ShowCitoyens')),
+        	
+        "showRectangleArea" => array( "label"=>"Show rectangle area", "key"=>"showRectangleArea",
+        	"desc"=>"show rectangle area",
+        	"actions"=>array('showRectangleArea'=> '')),
+        
+
         /* -----------------------------------------------
         Event Section
          ------------------------------------------------ */
@@ -102,6 +130,13 @@ class Api {
         "saveProject" => array( "label"=>"Save Project", "key"=>"saveProject",
             "desc"=>"save a Project or an entity ",
             "actions"=>array('saveproject'=> 'application.components.api.controllers.projects.SaveAction')),
+        
+       	/* -----------------------------------------------
+        NEWS Section
+         ------------------------------------------------ */
+        "formCreateNews" => array( "label"=>"Form Create News", "key"=>"formCreateNews",
+            "desc"=>"form to create a News ",
+            "actions"=>array('savenews'=> 'application.controllers.news.SaveNewsAction')),
         
 
         /* -----------------------------------------------
@@ -197,6 +232,24 @@ class Api {
         return array( 'label' => "Project", "key"=>"projects", "iconClass"=>"fa fa-list", "generate"=>true,
                 "children"=> array(
                     self::$apis["saveProject"]
+                )); 
+    }
+	public static function getSigMap(){
+        return array( 'label' => "Sig", "key"=>"sig", "iconClass"=>"fa fa-list", "generate"=>true,
+                "children"=> array(
+                    self::$apis["initMap"],
+                    self::$apis["saveGeoposition"],
+                    self::$apis["saveGroupsGeoposition"],
+                    self::$apis["showCities"],
+                    self::$apis["showCitoyens"],
+                    self::$apis["showRectangleArea"]                   
+                )); 
+    }
+	public static function getNewsMap(){
+        return array( 'label' => "News", "key"=>"news", "iconClass"=>"fa fa-list", "generate"=>true,
+                "children"=> array(
+                    self::$apis["formCreateNews"]
+                	
                 )); 
     }
 	public static function buildActionMap( $context ){
