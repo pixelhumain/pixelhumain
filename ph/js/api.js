@@ -59,8 +59,11 @@ function scrollTo(id){
 function Object2Array(obj){
 	jsonAr =[];
 	$.each(obj,function(k,v){
+		v.id = k;
+		delete v._id;
 		jsonAr.push(v);
 	});
+	console.dir(jsonAr);
 	return jsonAr;
 }
 function showAsColumn(resp,id){
@@ -72,7 +75,17 @@ function showAsColumn(resp,id){
 		$("#"+id).columns('create');
 	} else {
 		$("#"+id).columns({
-	      data:Object2Array(resp)
+	      data:Object2Array(resp),
+	      schema:[
+		      {"header":"Name","key":"name"},
+		      {"header":"Edit","key":"id", "template":"<a class='openModal' href='{{id}}' data-id='{{id}}' data-name='{{name}}'>{{id}}</a>"}
+		  ]
 	    });
+	    
+	    $(".openModal").click(function(e){
+	    	e.preventDefault();
+	    	openModal($("#getbyMicroformat").val(),$("#getbyCollection").val(),this.dataset.id,"dynamicallyBuild");
+	    })
 	}
 }
+

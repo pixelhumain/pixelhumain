@@ -3,13 +3,11 @@
 	Todo : collection List as parameter<br/>
 	Todo : build available fields list dynamically<br/>
 	collections : 
-	<select id="getbyCollection">
-
+	<select id="getbyCollection" onchange="$('#getbyMicroformat').val(collection2Microformat[$(this).val()])">
 		<option value="<?php echo Survey::COLLECTION?>"><?php echo Survey::COLLECTION ?></option>
 		<option value="<?php echo Event::COLLECTION?>"><?php echo Event::COLLECTION ?></option>
 		<option value="<?php echo CitoyenType::COLLECTION?>"><?php echo CitoyenType::COLLECTION ?></option>
 		<option value="<?php echo Group::COLLECTION?>"><?php echo Group::COLLECTION ?></option>
-
 	</select><br/>
 
 	type : 
@@ -17,15 +15,21 @@
 		<option></option>
 		<option value="<?php echo Survey::TYPE_SURVEY?>">Survey : <?php echo Survey::TYPE_SURVEY?></option>
 		<option value="<?php echo Survey::TYPE_ENTRY?>">Survey : <?php echo Survey::TYPE_ENTRY?></option>
-
 	</select><br/>
 
 	fields : <input type="text" name="getbyFilter" id="getbyFilter" value="email" />(comma seperated)<br/>
 	tags : <input type="text" name="getbyTags" id="getbyTags" value="social" />(comma seperated for or operator, + for and operator )<br/>
 	cp : <input type="text" name="getbyCP" id="getbyCP" value="97421" /><br/>
+	microformat : <input type="text" name="getbyMicroformat" id="getbyMicroformat" /><br/>
 	<a class="btn" href="javascript:getby()">Test it</a> <a class="btn" href="javascript:getby(1)">as Json</a><br/>
 	<br/><div id="getbyResult" class="result fss"></div>
 	<script>
+		var collection2Microformat = {
+			"<?php echo Event::COLLECTION?>":"eventFormRDF",
+			"<?php echo Survey::COLLECTION?>":"<?php echo Survey::COLLECTION?>",
+			"<?php echo CitoyenType::COLLECTION?>":"<?php echo CitoyenType::COLLECTION?>",
+			"<?php echo Group::COLLECTION?>":"<?php echo Group::COLLECTION?>"
+		}
 		function getby(asjson){
 			fields = $("#getbyFilter").val(); 
 			tags   = $("#getbyTags").val(); 

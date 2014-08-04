@@ -151,13 +151,13 @@ class Citoyen
                     //TODO : make emails as cron jobs
                     $app = new Application($_POST["app"]);
                     Mail::send(array("tpl"=>'validation',
-                                             "subject" => 'Confirmer votre compte  pour le site '.$app->name,
-                                             "from"=>Yii::app()->params['adminEmail'],
-                                             "to" => (!PH::notlocalServer()) ? Yii::app()->params['adminEmail']: $email,
-                                             "tplParams" => array( "user"=>$newAccount["_id"] ,
-                                                                   "title" => $app->name ,
-                                                                   "logo"  => $app->logoUrl )
-                                             ));
+                                     "subject" => 'Confirmer votre compte  pour le site '.$app->name,
+                                     "from"=>Yii::app()->params['adminEmail'],
+                                     "to" => (!PH::notlocalServer()) ? Yii::app()->params['adminEmail']: $email,
+                                     "tplParams" => array( "user"=>$newAccount["_id"] ,
+                                                           "title" => $app->name ,
+                                                           "logo"  => $app->logoUrl )
+                                     ));
                     //TODO : add an admin notification
                     /*Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_REGISTER,
                                             "user"=>$newAccount["_id"]));*/

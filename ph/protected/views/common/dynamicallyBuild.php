@@ -12,7 +12,7 @@ requiredFields = [];
         $hidden = "";
     	//pour remplir les valeur de l'element en cours d'upate
     	$entry = ( (!isset($isSub) || !$isSub) && isset($id) && $id != null && isset($collection)) ? PHDB::findOne($collection, array("_id"=>new MongoId($id)) ) : null;
-    	$user = (isset($collection) && $collection!=null) ? PHDB::findOne($collection, array("_id"=>new MongoId(Yii::app()->session["userId"])) ) : array();
+    	$element = (isset($collection) && $collection!=null) ? PHDB::findOne($collection, array("_id"=>new MongoId(Yii::app()->session["userId"])) ) : array();
     	//var_dump($microformat["jsonSchema"]["properties"]);
         if(isset($microformat))
     	{
@@ -51,7 +51,7 @@ requiredFields = [];
                 /******************************
                  * INPUT TYPE TEXT
                  ******************************/
-                if( !isset( $v["inputType"]) || $v["inputType"] == "text" ) { ?>
+                if( !isset( $v["inputType"]) || $v["inputType"] == "text" || $v["inputType"] == "numeric" ) { ?>
                 	<input type="text" class="<?php echo ( isset($v["required"]) ) ? "debug" : ""?>" name='<?php echo $k?>' id='<?php echo $k?>' value="<?php echo $value?>" placeholder="<?php echo ( isset($v["label"]) ) ? Translate::key($v["label"]) : Translate::key($k)?>"/>
                 <?php } 
                 /******************************
@@ -70,8 +70,8 @@ requiredFields = [];
                     $default = "";
                     if( isset( $v["default"]) ) 
                         $default = $v["default"];
-                    else if( isset($user["country"]) )
-                        $default = $user["country"];
+                    else if( isset($element["country"]) )
+                        $default = $element["country"];
 
                     $options = $v["options"];
                     if( isset( $v["options_type"] ))
@@ -131,7 +131,7 @@ requiredFields = [];
                 else if( $v["inputType"] == "image") {?>
                     
                     <div class="controls">
-                        <img width=50 class="imageThumb" src="<?php echo ( $user && isset($user['image']) ) ? Yii::app()->createUrl($user['image']) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>"/></td>
+                        <img width=50 class="<?php echo $k?>Thumb" src="<?php echo ( $element && isset($element[$k]) ) ? $element[$k] : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>"/></td>
                         <?php
                         $srcModule = (isset($this->module) && isset($this->module->id)) ? $this->module->id : "azotlive";
                         $this->widget('yiiwheels.widgets.fineuploader.WhFineUploader', array(
@@ -146,14 +146,18 @@ requiredFields = [];
                                 'events' => array(
                                     'complete'=>"function( id,  name,  responseJSON,  xhr){
                                         console.log('".Yii::app()->createUrl('upload/'.$srcModule.'/collection/'.$collection.'/')."/'+xhr.name+'?d='+ new Date().getTime());
-                                        $('#image').val(xhr.name);
-                                        $('.imageThumb').attr('src','".Yii::app()->createUrl('upload/'.$srcModule.'/collection/'.$collection.'/')."/'+xhr.name+'?d='+ new Date().getTime());
+                                        $('#<?php echo $k?>').val(xhr.name);
+                                        $('.<?php echo $k?>Thumb').attr('src','".Yii::app()->createUrl('upload/'.$srcModule.'/collection/'.$collection.'/')."/'+xhr.name+'?d='+ new Date().getTime());
                                         
                                     }"
                                 ),
                             ));
                         ?>
-                        <input type="hidden" id="image" name="image" value="<?php if(isset($user["image"]))echo $user["image"]?>"/>
+                        <script type="text/javascript">
+                        var uploadId = '#<?php echo $k?>';
+                        var uploadThumb = '.<?php echo $k?>Thumb';
+                        </script>
+                        <input type="hidden" id="<?php echo $k?>" name="<?php echo $k?>" value="<?php if(isset($element[$k]))echo $element[$k]?>"/>
                     </div>
 
                 <?php } 
@@ -303,8 +307,8 @@ $(document).ready(function() {
             if (responseJSON.success) {
                filePath = '<?php echo Yii::app()->createUrl('upload/'.$srcModule.'/'.$collection.'/')?>/'+responseJSON.name;
                console.log("on complete", id, filePath);
-               $('#image').val(filePath);
-               $('.imageThumb').attr('src','<?php echo Yii::app()->createUrl('upload/'.$srcModule.'/'.$collection.'/')?>/'+responseJSON.name+'?d='+ new Date().getTime());
+               $(uploadId).val(filePath);
+               $(uploadThumb).attr('src','<?php echo Yii::app()->createUrl('upload/'.$srcModule.'/'.$collection.'/')?>/'+responseJSON.name+'?d='+ new Date().getTime());
                                     
             } else {
               console.log("on complete error", id, fileName,responseJSON.error);
