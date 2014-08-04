@@ -16,6 +16,7 @@ class PHType
     const TYPE_MICROFORMATS    = "microformats";
     const TYPE_LISTS           = "lists";
     const TYPE_MESSAGES        = "messages";
+    const TYPE_JOBTYPES        = "jobTypes"; 
     const TYPE_NEWS        	   = "news";
     
     /* Standard connection types, the user can then create his own groupings*/

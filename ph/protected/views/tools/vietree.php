@@ -315,7 +315,7 @@ function convert(jsonSrc,prefix)
         console.info("build an array definition"+key+'(list)');
         convert(v[0],key+'(list)');
       } else
-        jsonSchema.properties[key] = { "inputType" : "text","i18n":k };
+        jsonSchema.properties[key] = { "inputType" : "text" };
     });
   }
   function buildForm(){

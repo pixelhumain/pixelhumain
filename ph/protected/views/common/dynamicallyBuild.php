@@ -17,6 +17,7 @@ requiredFields = [];
         if(isset($microformat))
     	{
     	    $hidden = "";
+            $initJS = "";
             $required = array();
             foreach ($microformat["jsonSchema"]["properties"] as $k=>$v)
         	{
@@ -90,9 +91,20 @@ requiredFields = [];
                         'value'=> ($entry && isset($entry[$k]) ) ? $value : $default,
                         'pluginOptions' => array('width' => '150px')
                       ) );
+                    
                 } 
                 else if( $v["inputType"] == "enum") {
                     $options = $v["values"];
+                    if( isset( $v["source"] ))
+                    {
+                        if( $v["source"] == "php" ) 
+                            eval( '$options ='.$options.';' );//BUG : bugs with OpenData::$phCountries doesn't evaluate
+                        //data can come fron a DB collection
+                        else if( $v["source"] == "db" ){
+                            $list = PHDB::findOne(PHType::TYPE_LISTS, array("name"=>$options ) );
+                            $options = $list["list"];
+                        }
+                    }
                     $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                         'data' => $options, 
                         'name' => $k,
@@ -100,6 +112,9 @@ requiredFields = [];
                         'value'=> ($entry && isset($entry[$k]) ) ? $value : "",
                         'pluginOptions' => array('width' => '150px')
                       ) );
+                    if(isset($v["onchange"])){
+                        $initJS .= "$('#".$k."').on('change',function(e){".$v["onchange"]."});";
+                    }
                 } 
                 /******************************
                  * INPUT TYPE CHECKBOX
@@ -113,8 +128,46 @@ requiredFields = [];
                 /******************************
                  * INPUT TYPE FILE
                  ******************************/
-                else if( $v["inputType"] == "file") {?>
-                    <input type="file" name="<?php echo $k?>" id='<?php echo $k?>'/>
+                else if( $v["inputType"] == "image") {?>
+                    
+                    <div class="controls">
+                        <img width=50 class="imageThumb" src="<?php echo ( $user && isset($user['image']) ) ? Yii::app()->createUrl($user['image']) : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>"/></td>
+                        <?php
+                        $srcModule = (isset($this->module) && isset($this->module->id)) ? $this->module->id : "azotlive";
+                        $this->widget('yiiwheels.widgets.fineuploader.WhFineUploader', array(
+                                'name'          => 'fineUploader',
+                                'uploadAction'  => $this->createUrl('/templates/upload/dir/'.$srcModule.'/collection/'.$collection.'/input/fineUploader', array('fine' => 1)),
+                                'pluginOptions' => array(
+                                    'validation'=>array(
+                                        'allowedExtensions' => array('jpg','jpeg','png','gif'),
+                                        'itemLimit'=>1
+                                    )
+                                ),
+                                'events' => array(
+                                    'complete'=>"function( id,  name,  responseJSON,  xhr){
+                                        console.log('".Yii::app()->createUrl('upload/'.$srcModule.'/collection/'.$collection.'/')."/'+xhr.name+'?d='+ new Date().getTime());
+                                        $('#image').val(xhr.name);
+                                        $('.imageThumb').attr('src','".Yii::app()->createUrl('upload/'.$srcModule.'/collection/'.$collection.'/')."/'+xhr.name+'?d='+ new Date().getTime());
+                                        
+                                    }"
+                                ),
+                            ));
+                        ?>
+                        <input type="hidden" id="image" name="image" value="<?php if(isset($user["image"]))echo $user["image"]?>"/>
+                    </div>
+
+                <?php } 
+                /******************************
+                 * INPUT TYPE DATE
+                 ******************************/
+                else if( $v["inputType"] == "date") {?>
+                    <input type="text" class="dateInput" name="<?php echo $k?>" id='<?php echo $k?>' placeholder="22/10/2014" />
+                <?php } 
+                /******************************
+                 * INPUT TYPE TIME
+                 ******************************/
+                else if( $v["inputType"] == "time") {?>
+                    <input type="text" class="timeInput" name="<?php echo $k?>" id='<?php echo $k?>' placeholder="20:30" />
                 <?php } 
                 /******************************
                  * INPUT TYPE FILE
@@ -213,14 +266,54 @@ requiredFields = [];
         }else{
             alert("Please fill required fields.");
         }
-    
     });
+
 <?php if(isset( $microformat["formSchema"]["slug"]) && isset($microformat["formSchema"]["slug"])){?>
 $("[name='name']").keyup(function(){
 $("[name='slug']").val(_.str.slugify($("[name='name']").val()));
 });
 <?php }?>
-    
+
+$(document).ready(function() { 
+    //init Input type 
+    //TODO : move to declaration section above 
+    $(".dateInput").datepicker({ 
+        language: "fr",
+        format: "dd/mm/yy"
+    });
+    //TODO : move to declaration section above 
+    $("#fineUploader").fineUploader({
+            debug: true,
+            allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],
+            //sizeLimit: 204800, // 200 kB = 200 * 1024 bytes
+            request:{
+                endpoint: "<?php echo $this->createUrl('/templates/upload/dir/'.$srcModule.'/collection/'.$collection.'/input/qqfile', array('fine' => 1));?>"
+            },
+            retry: {
+               enableAuto: true
+            }
+        })
+        .on("submit",function(event,id, fileName){
+            //console.log("on sutmit", id, fileName);
+        })
+        .on("upload",function(event,id, fileName){
+            //console.log("on upload", id, fileName);
+        })
+        .on("complete",function(event, id, fileName, responseJSON) {
+            if (responseJSON.success) {
+               filePath = '<?php echo Yii::app()->createUrl('upload/'.$srcModule.'/'.$collection.'/')?>/'+responseJSON.name;
+               console.log("on complete", id, filePath);
+               $('#image').val(filePath);
+               $('.imageThumb').attr('src','<?php echo Yii::app()->createUrl('upload/'.$srcModule.'/'.$collection.'/')?>/'+responseJSON.name+'?d='+ new Date().getTime());
+                                    
+            } else {
+              console.log("on complete error", id, fileName,responseJSON.error);
+            }
+          });
+    <?php echo $initJS;?>    
+});
+
+
 </script>  
 
 <?php /*

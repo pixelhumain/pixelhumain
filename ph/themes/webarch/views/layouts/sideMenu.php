@@ -4,7 +4,7 @@
       <div class="page-sidebar-wrapper" id="main-menu-wrapper">
     <!-- BEGIN MINI-PROFILE -->
     <div class="user-info-wrapper"> 
-      <?php if(isset($this::$moduleKey)){?>
+      <?php if( isset($this::$moduleKey) ){?>
       <div>Module <?php  echo strtoupper($this::$moduleKey) ?></div>
       <?php } ?>
       <div class="profile-wrapper">

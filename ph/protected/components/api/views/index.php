@@ -5,14 +5,19 @@ $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/clean.css');
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery.columns.min.js' , CClientScript::POS_END);
 
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-datepicker/css/datepicker.css'); 
+$cs->registerScriptFile(Yii::app()->theme->baseUrl.'/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' , CClientScript::POS_END);
+
 $this->pageTitle="API ".$this::moduleTitle;
 function blockHTML($pathTpl,$entry,$params,$parent){
 	//echo $entry["key"];
 	$str = "<li class='block' id='block".$entry['key']."'>";
 	$str .= "<h4>".$entry['label']."</h4>";
 	$actions = "";
-	foreach ($entry["actions"] as $ak => $av) {
-		$actions .= $ak." > ".$av."<br/>";
+	if(isset($entry["actions"])){
+		foreach ($entry["actions"] as $ak => $av) {
+			$actions .= $ak." > ".$av."<br/>";
+		}
 	}
 	$formInfo = ( isset( $entry["microformat"] ) ) ? "microformat : ".$entry["microformat"]  : "file > api/views/".$parent['key']."/".$entry['key'].".php";
 	$str .= "<div class='fss fr txtright'>".
@@ -23,14 +28,14 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 	
 	if( isset( $entry["microformat"] ) ) {
 		$microformat = PHDB::findOne(PHType::TYPE_MICROFORMATS, array("key"=>$entry["microformat"]));
-		$str .= "<a href='javascript:;' onclick='openModal(\"".$entry["microformat"]."\",\"".$microformat["collection"]."\",null,\"".$microformat["template"]."\")'  class='btn'>".$entry['microformat']."</a><br/>";
+		$tpl = (isset($microformat["template"])) ? $microformat["template"] : "dynamicallyBuild" ;
+		$str .= "<a href='javascript:;' onclick='openModal(\"".$entry["microformat"]."\",\"".$microformat["collection"]."\",null,\"".$tpl."\")'  class='btn'>".$entry['microformat']."</a><br/>";
 	} else
 		$str .= Yii::app()->controller->renderPartial( $pathTpl,$params,true );
 		
 	$str .= "<div class='clear'>&nbsp;</div></li>";
 	return $str;
-}
-?>
+}?>
 
 
 <div class="containeri apiList">
@@ -126,13 +131,19 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 		<?php } else { ?>
 		<h2>Restricted Area</h2>
 		<?php
+			/* ******************************
+			When first time users conenct to the api 
+			there is no data for a certain module 
+			this section will initialise the data
+			this is only shown if no admin user is found
+			******************************/
 			if(!PH::notlocalServer())
 			{
 				$admins = PHDB::noAdminExist($this->module->id);
 				if(count($admins) > 0){
-					echo "Below is your list of admin users :<br/>";
+					echo "<b>Data has allready been initialised</b><br/>Below is your list of admin users :<br/>";
 					foreach ($admins as $key => $value) {
-						echo $value["email"]."<br/>";
+						echo "<b>".$value["email"]."</b><br/>";
 					}
 				} else {
 					echo "Your instance has no admin user, first initialise your data below :<br/>";
@@ -140,7 +151,7 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 				}
 			}
 			?>
-			<br/>you can contact an admin <a class="btn" href="mail:contact@pixelhumain.com"><i class="fa fa-mail"></i></a>
+			<br/>or You can contact a PH admin <a class="btn" href="mail:contact@pixelhumain.com"><i class="fa fa-mail"></i></a>
 		<?php } ?>
 	</div>
 </div>

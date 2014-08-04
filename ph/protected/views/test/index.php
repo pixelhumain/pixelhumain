@@ -110,14 +110,14 @@ $k_path_url = (isset($_SERVER['HTTPS']) AND (!empty($_SERVER['HTTPS'])) AND strt
  echo $k_path_url.$_SERVER['SERVER_NAME'].substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1)." :: SERVER_NAME / SCRIPT_NAME<br/>";
         
 
-if(isset($m)){
+/*if(isset($m)){
 $cursor = $collection->find();
 foreach ($cursor as $document) {
     echo $document["name"] . "<br/>";
 }
 
-    }?>
-        
+    }*/?>
+        <input type="text" class="dateInput"/>
     	<div  id="coco" style="display:block">
         	<h2>TEST</h2>    	
         	  <?php 
@@ -180,8 +180,13 @@ foreach ($cursor as $document) {
                 ?>  
         </div>
 	</div>
+    
 <script type="text/javascript"		>
 initT['animInit'] = function(){
 	setTimeout( function() { $('#coco').addClass('tinRightIn'); } , 2000);
+
+    //init Input type 
+    $(".dateInput").datepicker();
+
 };
 </script>			

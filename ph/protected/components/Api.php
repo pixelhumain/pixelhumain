@@ -24,9 +24,13 @@ class Api {
 			"desc"=>"classic login feature email + pwd",
         	"actions"=>array('login' => 'application.controllers.user.LoginAction',
         					 'sendemailpwd' => 'application.controllers.user.SendEmailPwdAction',)),
-        "saveUser" => array( "label"=>"Save User", "key"=>"saveUser", 
+        "saveUserRDF" => array( "label"=>"Save User", "key"=>"saveUserRDF",
+            "microformat"=>"personFormRDF", 
         	"desc"=>"create a new user",
         	"actions"=>array('saveuser' => 'application.controllers.user.SaveUserAction')),
+        "saveUser" => array( "label"=>"Save User", "key"=>"saveUser",
+            "desc"=>"create a new user",
+            "actions"=>array('saveuser' => 'application.controllers.user.SaveUserAction')),
         "getUser" => array( "label"=>"Get User", "key"=>"getUser",
         	"desc"=>"Get a user Entry by email",
         	"actions"=>array('getuser' => 'application.controllers.user.GetUserAction')),
@@ -148,7 +152,8 @@ class Api {
         "getby" => array( "label"=>"get a Node By","key"=>"getby", "parent"=>"generic",
         		"desc"=>"get a Node from an entry corresponding to a certain criteria",
         		"actions"=>array('getby' => 'application.controllers.generic.GetByAction')),
-
+        "image" => array( "label"=>"Image","key"=>"image", "parent"=>"generic",
+                "desc"=>"add an image to any element and upload it"),
         /* -----------------------------------------------
 		ADMIN Section (these methods are only accessible by initialy defined APP ADMIN USER)
 		 ------------------------------------------------ */
@@ -182,6 +187,7 @@ class Api {
                     self::$apis["getUser"],
                     self::$apis["getPeople"],                    
                     self::$apis["inviteUser"],
+                    //self::$apis["image"],
                     ));
 	}
 	public static function getGroupMap(){

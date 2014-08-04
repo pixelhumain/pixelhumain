@@ -89,7 +89,7 @@
                     <td class="txtright">en tant que </td>
                     <td>
                         <?php 
-                          $cursor = Yii::app()->mongodb->jobTypes->findOne( array(), array('list'));
+                          $cursor = PHDB::findOne(PHType::TYPE_JOBTYPES, array(), array('list'));
                           $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'asDropDownList' => false,
                             'name' => 'helpJob',
@@ -109,7 +109,7 @@
                     <td class="txtright">Centre d'intérêt </td>
                     <td>
                         <?php 
-                          $cursor = Yii::app()->mongodb->lists->findOne( array("name"=>"tags"), array('list'));
+                          $cursor = PHDB::findOne(PHType::TYPE_LISTS, array("name"=>"tags"), array('list'));
                           $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'asDropDownList' => false,
                             'name' => 'tagsPA',
