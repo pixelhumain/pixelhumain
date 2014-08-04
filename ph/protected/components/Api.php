@@ -137,6 +137,9 @@ class Api {
         "formCreateNews" => array( "label"=>"Form Create News", "key"=>"formCreateNews",
             "desc"=>"form to create a News ",
             "actions"=>array('savenews'=> 'application.controllers.news.SaveNewsAction')),
+        "newsStream" => array( "label"=>"News Stream", "key"=>"newsStream",
+            "desc"=>"stream of latest News send for me",
+            "actions"=>array('getnewsstream'=> 'application.controllers.news.getNewsStreamAction')),
         
 
         /* -----------------------------------------------
@@ -248,7 +251,8 @@ class Api {
 	public static function getNewsMap(){
         return array( 'label' => "News", "key"=>"news", "iconClass"=>"fa fa-list", "generate"=>true,
                 "children"=> array(
-                    self::$apis["formCreateNews"]
+                    self::$apis["formCreateNews"],
+                	self::$apis["newsStream"]
                 	
                 )); 
     }

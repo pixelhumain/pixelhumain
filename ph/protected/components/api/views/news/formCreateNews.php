@@ -34,22 +34,25 @@
 	
 	<div id="scopeLoader">
 	</div>
+	
 </div>	
 	<a class="btn" href="javascript:showArea()">Show Area</a><br/>
 	<a class="btn" href="javascript:saveNews()">Test it</a><br/>
 	<br/><div id="createNewsResult" class="result fss"></div>
 	<script>
 		var mapCreateNews;
+		var rectangleScope;
+		
 		var scopeType;
 		
 		function showArea(){
 			$('#scopeLoader').html('<div id="mapNewsCanvas" class="mapCanvas1"> </br>Chargement de la carte ... </div>');		
-			mapCreateNews = loadMap("mapNewsCanvas");
-			loadRectangleArea(mapCreateNews);
+			loadRectangleArea("mapNewsCanvas");
 		}
+		
 		function saveNews(){
 			
-			params = { "title" : $("#titleSaveNews").val() , 
+		var params = { "title" : $("#titleSaveNews").val() , 
 			    	   "msg" : $("#contentSaveNews").val() , 
 			    	   "tags" : $("#tagsSaveNews").val() ,
 			    	   "nature":$("#natureSaveNews").val(),
@@ -57,7 +60,7 @@
 			    	};
 			    	
 			if(scopeType == "geoArea"){
-				var bounds = getBoundsValue();
+				var bounds = rectangleScope.getBounds();
 				params["latMinScope"] = bounds.getSouthWest().lat;
 				params["lngMinScope"] = bounds.getSouthWest().lng;
 				params["latMaxScope"] = bounds.getNorthEast().lat;
@@ -78,10 +81,10 @@
 		$('input[type=radio][name=scope]').change(function() {
 			$("#scopeLoader").html("");
 			
-        	if (this.value == "cp") { $("#scopeLoader").html("<input type='text' name='cpScope' id='cpScope' value='75000'>"); }
-        	if (this.value == "groups") { showGroupsListScope(); }
-        	if (this.value == "departement") { $("#scopeLoader").html("<input type='text' name='depScope' id='depScope' value='75'>"); }
-        	if (this.value == "geoArea") { showArea(); }
+        	if (this.value == "cp") 		{ $("#scopeLoader").html("<input type='text' name='cpScope' id='cpScope' value='75000'>"); }
+        	if (this.value == "groups") 	{ showGroupsListScope(); }
+        	if (this.value == "departement"){ $("#scopeLoader").html("<input type='text' name='depScope' id='depScope' value='75'>"); }
+        	if (this.value == "geoArea") 	{ showArea(); }
         	
         	if (this.value != "groups") { $("#groupsListScope").css("visibility", "hidden"); }
         	scopeType = this.value;

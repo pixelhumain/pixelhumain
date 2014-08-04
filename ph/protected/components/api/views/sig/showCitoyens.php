@@ -12,15 +12,24 @@
 			<div id="mapCanvasClusters" class="mapCanvas1">
 			<br/>Chargement de la carte ...
 			</div>	
+			<a href="javascript:initClusterMap('mapCanvasClusters')">Init map</a><br/>		
 			<a href="javascript:showCitoyensClusters()">Afficher les citoyens avec cluster</a><br/>		
 			<div id="showCitoyensResult" class="result fss"></div>
 
 		<script>				
-				var mapClusters = loadMap("mapCanvasClusters");
-				var markersLayer = new L.MarkerClusterGroup();
-				mapClusters.addLayer(markersLayer);// add it to the map
+				var mapClusters = null;
+				var markersLayer;
+				var geoJsonCollection;
 				
-				var geoJsonCollection = { type: 'FeatureCollection', features: new Array() };
+				function initClusterMap(canvas){
+					if(mapClusters != null) mapClusters.remove();
+					
+					mapClusters = loadMap(canvas);
+					markersLayer = new L.MarkerClusterGroup();
+					mapClusters.addLayer(markersLayer);// add it to the map
+					geoJsonCollection = { type: 'FeatureCollection', features: new Array() };
+				}
+				
 				
 				//##
 				//affiche les citoyens qui possèdent des attributs geo.latitude, geo.longitude, depuis la BD
@@ -92,5 +101,7 @@
 							 "geometry": { type: 'Point',
 							 			 coordinates: coordinates } };
 				}
+				
+				
 			</script>		
 		</div>

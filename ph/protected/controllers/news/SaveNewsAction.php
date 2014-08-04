@@ -37,7 +37,7 @@ class SaveNewsAction extends CAction
                 if( isset($_POST['title']) ) 	 $newsData['title'] = $_POST['title'];
                 if( isset($_POST['msg']) ) 	 	 $newsData['msg'] 	= $_POST['msg'];
                 if( isset($_POST['tags']) ) 	 $newsData['tags'] 	= explode(",",$_POST['tags']);
-				if( isset($_POST['nature']) ) 	 $newsData['msg'] 	= $_POST['msg'];
+				if( isset($_POST['nature']) ) 	 $newsData['nature'] = $_POST['nature'];
                 if( isset($_POST['scopeType']) ) $newsData['scope']['scopeType'] = $_POST['scopeType'];
                 
                 if($newsData['scope']['scopeType'] == "geoArea"){
