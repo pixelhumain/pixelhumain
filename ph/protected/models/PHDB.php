@@ -42,8 +42,8 @@ class PHDB
     {
         return Yii::app()->mongodb->selectCollection($collection)->remove($where);
     }
-    public static function batchInsert($collection,$a){
-        return Yii::app()->mongodb->selectCollection($collection)->batchInsert($a);   
+    public static function batchInsert($collection,$rows){
+        return Yii::app()->mongodb->selectCollection($collection)->batchInsert($rows);   
     }
     /*
     $params is the POST array 
@@ -67,6 +67,30 @@ class PHDB
         } else 
             $res["msg"] = "no json Schema found.";
         return $res; 
+    }
+    /**
+     * Validate the given ID from the __construct
+     *
+     * @return boolean true for valid / false for invalid.
+     */
+    public static function isValidMongoId($id)
+    {
+        $regex = '/^[0-9a-z]{24}$/';
+        if (class_exists("MongoId"))
+        {
+            $tmp = new MongoId($id);
+            if ($tmp->{'$id'} == $id)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        if (preg_match($regex, $id))
+        {
+            return true;
+        }
+        return false;
     }
     public static function noAdminExist($moduleId)
     {

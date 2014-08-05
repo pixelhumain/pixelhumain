@@ -8,7 +8,7 @@ if(file_exists(Yii::getPathOfAlias(Yii::app()->params["modulePath"].Yii::app()->
 	foreach( CFileHelper::findFiles(Yii::getPathOfAlias(Yii::app()->params["modulePath"].Yii::app()->controller->module->id.".data" )) as $f)
 	{?>
 			
-		<br/><a class="btn" href="<?php echo Yii::app()->createUrl( $f)?>">
+		<br/><a class="btn" href="#" onclick="alert('<?php echo $this->module->id."/data/".pathinfo($f, PATHINFO_FILENAME)?>');">
 			<?php echo pathinfo($f, PATHINFO_FILENAME)?>
 		</a>
 <?php }

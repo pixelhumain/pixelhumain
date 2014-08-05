@@ -146,8 +146,9 @@ function blockHTML($pathTpl,$entry,$params,$parent){
 						echo "<b>".$value["email"]."</b><br/>";
 					}
 				} else {
-					echo "Your instance has no admin user, first initialise your data below :<br/>";
+					echo "Your Application instance <b>".$this->module->id."</b> has no admin user, first initialise your data below :<br/>";
 					$this->renderPartial("application.components.api.views.adminPH.initData" ); 
+					//var_dump(json_decode(file_get_contents("X:\\X_Dev\\humanpixel\\modules\\sample\\data\\applications.js"),true));
 				}
 			}
 			?>

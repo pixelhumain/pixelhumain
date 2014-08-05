@@ -16,4 +16,5 @@ $activeModules = array(
 	'project',
 	'agenda',
 	'networkmapping',
-	'news');
+	'news',
+	'sample');
