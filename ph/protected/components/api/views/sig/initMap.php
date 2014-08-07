@@ -1,7 +1,6 @@
-<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/js/leaflet.draw-src.js" type="text/javascript"></script> 
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/js/leaflet.draw.js" type="text/javascript"></script> 
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/assets/js/leaflet.markercluster-src.js"></script>
+
+<?php SIG::clientScripts(); ?>
+
 
 <div class="fss">
 		</div>

@@ -30,11 +30,9 @@ class SaveNewsAction extends CAction
 			if(scopeType == "groups")		{ params["groupScope"] = $("#groupsListScope").val(); }
 			
         */
-        
-        if( Yii::app()->request->isAjaxRequest )
-        {
-            	$newsData = array();
-                if( isset($_POST['title']) ) 	 $newsData['title'] = $_POST['title'];
+        		$newsData = array();
+             
+             	if( isset($_POST['title']) ) 	 $newsData['title'] = $_POST['title'];
                 if( isset($_POST['msg']) ) 	 	 $newsData['msg'] 	= $_POST['msg'];
                 if( isset($_POST['tags']) ) 	 $newsData['tags'] 	= explode(",",$_POST['tags']);
 				if( isset($_POST['nature']) ) 	 $newsData['nature'] = $_POST['nature'];
@@ -59,13 +57,29 @@ class SaveNewsAction extends CAction
                 	if( isset($_POST['depScope']) ) $newsData['scope']['depScope'] = $_POST['depScope']; 
                 }
                 
-                PHDB::insert( PHType::TYPE_NEWS, $newsData );
-		     				//	array("_id"=>new MongoId($_POST["_id"])),
-		     				//	array('$set' => $newsData)
-		     				//);
+                //recuperation de la position de l'auteur du message
+        		$myEmail =  Yii::app()->session["userEmail"];
+     			$user = PHDB::findOne( PHType::TYPE_CITOYEN, array( "email" => $myEmail ) );
+     			$myCp = 0;
+     			//si l'utilisateur a enregistré sa position, on recopie lat lng
+     			if(isset($user['geo'])) {
+     					$newsData['from']['latitude']  = $user['geo']['latitude'];
+	 					$newsData['from']['longitude'] = $user['geo']['longitude'];   
+     			}
+     			 else { //sinon on utilise la position geo de sa ville
+     					$myCp = $me['cp'];
+    			
+        				$city = PHDB::find( 'cities', array( "cp" => $myCp ) );
+     					if($city != null){
+	 						$newsData['from']['latitude'] = $city['geo']['latitude'];
+	 						$newsData['from']['longitude'] = $city['geo']['longitude'];   
+        				}
+        		}
+        		
+                PHDB::insert( PHType::TYPE_NEWS, $newsData );		     				
 
         		Rest::json($newsData);  
         		Yii::app()->end();
-    	}
+    	
     }
 }

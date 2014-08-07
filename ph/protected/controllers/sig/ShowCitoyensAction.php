@@ -1,6 +1,6 @@
 <?php
 /**
- * [actionGetWatcher get all user from "citoyens" collection]
+ * [get all user from "citoyens" collection]
  * @param 
  * @return [user iterator]
  */
@@ -8,8 +8,7 @@ class ShowCitoyensAction extends CAction
 {
     public function run()
     {
-    	$users = iterator_to_array(Yii::app()->mongodb->citoyens->find());
-        
+    	$users = PHDB::find(PHType::TYPE_CITOYEN);
         Rest::json( $users );
         Yii::app()->end();
     }

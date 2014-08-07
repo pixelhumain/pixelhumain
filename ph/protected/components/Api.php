@@ -71,23 +71,25 @@ class Api {
         	
         "showCities" => array( "label"=>"Show Cities", "key"=>"showCities",
         	"desc"=>"show all cities on the map",
-        	"actions"=>array('showCities'=> 'application.controllers.sig.ShowCitiesAction')),
+        	"actions"=>array('showcities'=> 'application.controllers.sig.ShowCitiesAction')),
         	
         "saveGeoposition" => array( "label"=>"Save Geoposition", "key"=>"saveGeoposition",
         	"desc"=>"save geoposition on every PHType in DB",
-        	"actions"=>array('saveGeoposition'=> 'application.controllers.sig.SaveGeoposition')),
+        	"actions"=>array('savegeoposition'=> 'application.controllers.sig.SaveGeopositionAction')),
         	
        	"saveGroupsGeoposition" => array( "label"=>"Save Group Geoposition", "key"=>"saveGroupsGeoposition",
         	"desc"=>"save group geoposition in DB",
-        	"actions"=>array('saveGroupsGeoposition'=> 'application.controllers.sig.SaveGroupsGeoposition')),
+        	"actions"=>array('savegroupsgeoposition'=> 'application.controllers.sig.SaveGroupsGeopositionAction',
+        					 'getcpobject'=> 'application.controllers.sig.GetCpObjectAction',
+        					 'getpositioncp'=> 'application.controllers.sig.GetPositionCpAction')),
         	
        	"showCitoyens" => array( "label"=>"Show citoyens clustered", "key"=>"showCitoyens",
         	"desc"=>"show every citoyens on the map",
-        	"actions"=>array('showCitoyens'=> 'application.controllers.sig.ShowCitoyens')),
+        	"actions"=>array('showcitoyens'=> 'application.controllers.sig.ShowCitoyensAction')),
         	
         "showRectangleArea" => array( "label"=>"Show rectangle area", "key"=>"showRectangleArea",
         	"desc"=>"show rectangle area",
-        	"actions"=>array('showRectangleArea'=> '')),
+        	"actions"=>array()),
         
 
         /* -----------------------------------------------

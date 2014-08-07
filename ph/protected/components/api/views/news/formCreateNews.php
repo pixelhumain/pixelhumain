@@ -1,4 +1,8 @@
 
+<?php SIG::clientScripts(); ?>
+
+
+
 <div class="apiForm createNews">
 				
 <div style="width:300px; float:left;">
@@ -34,20 +38,25 @@
 	
 	<div id="scopeLoader">
 	</div>
-	
+	<div id="mapNewsCanvas" class="mapCanvas1"> </br>Chargement de la carte ... </div>
 </div>	
 	<a class="btn" href="javascript:showArea()">Show Area</a><br/>
 	<a class="btn" href="javascript:saveNews()">Test it</a><br/>
 	<br/><div id="createNewsResult" class="result fss"></div>
 	<script>
 		var mapCreateNews;
-		var rectangleScope;
+		var rectangleScope = null;
 		
 		var scopeType;
 		
 		function showArea(){
-			$('#scopeLoader').html('<div id="mapNewsCanvas" class="mapCanvas1"> </br>Chargement de la carte ... </div>');		
-			loadRectangleArea("mapNewsCanvas");
+			if(rectangleScope == null)
+			rectangleScope = loadRectangleArea(mapCreateNews);
+			$("#mapNewsCanvas").css("visibility", "visible");
+		}
+		
+		function showGroupsListScope(){
+			$("#groupsListScope").css("visibility", "visible");
 		}
 		
 		function saveNews(){
@@ -66,17 +75,15 @@
 				params["latMaxScope"] = bounds.getNorthEast().lat;
 				params["lngMaxScope"] = bounds.getNorthEast().lng;
 			}
+			
 			if(scopeType == "cp")			{ params["cpScope"] = $("#cpScope").val(); }
 			if(scopeType == "departement")	{ params["depScope"] = $("#depScope").val(); }
 			if(scopeType == "groups")		{ params["groupScope"] = $("#groupsListScope").val(); }
 			
 			//alert(JSON.stringify(params));
-			testitpost("createNewsResult",baseUrl+'/news/api/saveNews',params);
+			testitpost("createNewsResult",baseUrl+'/news/api/saveNews', params);
 		}
 		
-		function showGroupsListScope(){
-			$("#groupsListScope").css("visibility", "visible");
-		}
 		
 		$('input[type=radio][name=scope]').change(function() {
 			$("#scopeLoader").html("");
@@ -87,10 +94,12 @@
         	if (this.value == "geoArea") 	{ showArea(); }
         	
         	if (this.value != "groups") { $("#groupsListScope").css("visibility", "hidden"); }
+        	if (this.value != "geoArea") { $("#mapNewsCanvas").css("visibility", "hidden"); }
+        	
         	scopeType = this.value;
         	
         });
         
-        
+        mapCreateNews = loadMap("mapNewsCanvas");
 	</script>
 </div>

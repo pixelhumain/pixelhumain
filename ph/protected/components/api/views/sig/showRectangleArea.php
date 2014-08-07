@@ -1,3 +1,6 @@
+
+<?php SIG::clientScripts(); ?>
+
 	<div class="fss">
 	</div>
 	
@@ -5,7 +8,7 @@
 			<div id="mapCanvasBounds" class="mapCanvas1">
 			</br>Chargement de la carte ...
 			</div>	
-			<a href="javascript:loadRectangleArea('mapCanvasBounds')">Afficher la zone</a><br/>		
+			<a href="javascript:initMapRectangleArea('mapCanvasBounds')">Afficher la zone</a><br/>		
 			<a href="javascript:showBound()">Afficher les valeurs de la zone</a><br/>		
 			<div id="showBoundsResult" class="result fss"></div>
 			
@@ -13,29 +16,29 @@
 				var RectangleArea = null;
 				var mapZoneArea = null;
 				
+				function initMapRectangleArea(){
+					RectangleArea = loadRectangleArea(mapZoneArea);
+				}
+				
+				
 				//##
 				//affiche un rectangle sur la carte
-				function loadRectangleArea(canvas)
+				function loadRectangleArea(theMap)
 				{
 					//si le rectangle existe deja on le supprime	
-					if(RectangleArea != null) { mapZoneArea.removeLayer(RectangleArea); RectangleArea = null; }
-					//si la map existe deja, on la supprime
-					if(mapZoneArea != null) { mapZoneArea.remove(); mapZoneArea = null; }
-					
-					//charge la carte
-					mapZoneArea = loadMap(canvas);
 					//creation du rectangle a partir des bounds de la carte
-					var bounds = mapZoneArea.getBounds();
-					RectangleArea = L.rectangle(bounds, {
+					var bounds = theMap.getBounds();
+					var theRectangleArea = L.rectangle(bounds, {
 												color: "yellow", 
 												weight: 2,
 												fillOpacity: 0.3,
 												clickable: true
-											}).addTo(mapZoneArea);
+											}).addTo(theMap);
 					//autorise l'edition de la zone par l'utilisateur						
-					RectangleArea.editing.enable();	
+					theRectangleArea.editing.enable();	
 					//recule la carte (zoom - 1) pour rendre le rectangle visible					
-					mapZoneArea.setZoom(mapZoneArea.getZoom()-1);
+					theMap.setZoom(theMap.getZoom()-1);
+					return theRectangleArea;
 				}
 				
 			
@@ -50,6 +53,7 @@
 												  "lngMax : " + bounds.getNorthEast().lng + "<br/>" );
 				}
 				
-			
+				mapZoneArea = loadMap('mapCanvasBounds');
+					
 			</script>			
 		</div>

@@ -1,4 +1,7 @@
 	
+<?php SIG::clientScripts(); ?>
+
+
 
 		<div class="fss">
 			Afficher les villes de la BD<br/>

@@ -1,3 +1,8 @@
+
+<?php SIG::clientScripts(); ?>
+
+
+
 <div class="fss">
 			
 		<div class="apiForm login">
@@ -14,7 +19,7 @@
 			</div>	
 			<a href="javascript:initClusterMap('mapCanvasClusters')">Init map</a><br/>		
 			<a href="javascript:showCitoyensClusters()">Afficher les citoyens avec cluster</a><br/>		
-			<div id="showCitoyensResult" class="result fss"></div>
+			<div id="showCitoyensResult" class="result fss">result : </div>
 
 		<script>				
 				var mapClusters = null;
@@ -38,17 +43,17 @@
 					geoJsonCollection = { type: 'FeatureCollection', features: new Array() };
 					markersLayer.clearLayers();			
 					
-					testitget("showCitoyensResult", baseUrl+'/sig/api/showCitoyens/', 
-						function (data){
+					testitget("showCitoyensResult", baseUrl+'/sig/api/showCitoyens',
+						function (data){ 
 							var listItemMap = "";
-						 	$.each(data, function() {
+						 	$.each(data, function() {  	
 								if(this['geo'] != null){
 				 					var content = "";
-				 					if(this['name'] != null)  content += 	"<b>" + this['name'] + "</b><br/>";
+				 					if(this['name'] != null)   content += 	"<b>" + this['name'] + "</b><br/>";
 				 					if(this['email'] != null)  content += 	this['email'] + "<br/>";
 				 					if(this['cp'] != null)     content += 	this['cp'] + "<br/>";
 				 					if(this['phoneNumber'] != null)     content += 	this['phoneNumber'] + "<br/>";
-				 					if(this['geo'] != null)     content += 	this['geo']['latitude'] + " - " + this['geo']['longitude'] + "<br/>";
+				 					if(this['geo'] != null)    content += 	this['geo']['latitude'] + " - " + this['geo']['longitude'] + "<br/>";
 				 					
 				 					var properties = { 	title : this['name'], 
 				 										icon : getIcoMarker("citoyens"),

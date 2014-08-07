@@ -9,7 +9,7 @@ class ShowCitiesAction extends CAction
     public function run() 
     {
     	//affiche les villes de plus de 100 000 habitants
-    	$query = array('habitants' => array( '$gt' => 100000 )); //filtre les villes de + de 100 000 habitants
+    	$query = array('habitants' => array( '$gt' => 100000 ));
     	$cities = iterator_to_array(Yii::app()->mongodb->cities->find($query));
         
         Rest::json( $cities );

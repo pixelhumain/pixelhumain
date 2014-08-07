@@ -1,4 +1,6 @@
 
+<?php SIG::clientScripts(); ?>
+
 <div class="apiForm createNews">
 					
 	<div id="mapCanvasNewsStream" class="mapCanvas1">
@@ -6,9 +8,9 @@
 	</div>	
 	
 	<div style="width:300px; float:left;">
-		<b>tags</b> : <input type="text" name="tagsSaveNews" id="tagsSaveNews" value="<?php echo $this->module->id?> Tags" /><br/>
-		<b>nature :</b>
-		<select id="natureSaveNews">
+		<b>Tags</b> : <input type="text" name="tagsStreamNews" id="tagsSaveNews" value="<?php echo $this->module->id?> Tags" /><br/>
+		<b>Nature :</b>
+		<select id="natureStreamNews">
 			<?php 
 			$natures = array( "free_msg", "help", "idea", "proposition", "rumor", "true_information", "question" );
 			foreach ($natures as $value) {
@@ -16,16 +18,17 @@
 			}
 			?>
 		
-		</select>
-	</div>
+		</select></br>
+		
+<!-- 	Activer / Désactiver la reception des messages postés pour CP ou DEPARTEMENT ?
 
-	<div style="float:left;"><b>Scope :</b><br>
-		<input type="radio" class="radioScope" name="scopeNewsStream" value="cp">Postal Code<br>
-		<input type="radio" class="radioScope" name="scopeNewsStream" value="departement">Departement<br>
-		<input type="radio" class="radioScope" name="scopeNewsStream" value="groups">Groups<br>
-		<input type="radio" class="radioScope" name="scopeNewsStream" value="geoArea">Geo Area<br>
+		<input type="checkbox" class="radioScope" name="scopeNewsStream" id="chkBoxCp" value="cp" checked> Mon code postal<br>
+		<input type="checkbox" class="radioScope" name="scopeNewsStream" id="chkBoxDep" value="departement" checked>Mon département<br>
+		
 
-		<select id="groupsListScopeNewsStream" style="visibility:hidden;">
+ 		<input type="checkbox" class="radioScope" name="scopeNewsStream" id="chkBoxGroups" value="groups" checked><b>Mes groupes :</b>	
+		<select id="groupsListScopeNewsStream">
+			<option value="all">Tous mes groupes</option>
 			<?php
 					$groups = Group::getGroupsBy(array ( "email" => Yii::app()->session["userEmail"] ));
 					foreach($groups as $group){
@@ -33,9 +36,10 @@
 					}			
 			?>	
 		</select>
-	
-		<div id="scopeLoaderNewsStream">
-		</div>
+-->
+		<div id="scopeLoaderNewsStream"></div>
+		<input type="checkbox" class="radioScope" name="scopeNewsStream" id="chkBoxGeoArea" checked><b> Syncroniser avec la carte</b>
+		
 	</div>
 			
 	<a class="btn" href="javascript:initStreamMap()">Init Stream Map</a> 
@@ -52,62 +56,34 @@
         
 		function showNewsStream(){
 			
-		var params = { "tags" : $("#tagsSaveNews").val() ,
-			    	   "nature":$("#natureSaveNews").val(),
-			    	   "scopeType" : scopeTypeNewsStream
-			    	};
+			var params = { 	"tags" : $("#tagsStreamNews").val() ,
+			    	  	 	"nature":$("#natureStreamNews").val(),
+			    	   		"scopeType" : scopeTypeNewsStream
+			    		 };
 			    	
-			if(scopeTypeNewsStream == "geoArea"){
+			if($('#chkBoxGeoArea').is(':checked')){
 				var bounds = mapClusters.getBounds();
+				params["geoAreaScope"] = true;
 				params["latMinScope"] = bounds.getSouthWest().lat;
 				params["lngMinScope"] = bounds.getSouthWest().lng;
 				params["latMaxScope"] = bounds.getNorthEast().lat;
 				params["lngMaxScope"] = bounds.getNorthEast().lng;
-			}
-			if(scopeTypeNewsStream == "cp")			{ params["cpScope"] = $("#cpScopeNewsStream").val(); }
-			if(scopeTypeNewsStream == "departement"){ params["depScope"] = $("#depScopeNewsStream").val(); }
-			if(scopeTypeNewsStream == "groups")		{ params["groupScope"] = $("#groupsListScopeNewsStream").val(); }
+			} else { params["geoAreaScope"] = false; }
+			
+			params["cpScope"] = $('#chkBoxCp').is(':checked');			
+			params["depScope"] = $('#chkBoxDep').is(':checked');		
+			//params["groupScope"] = $('#chkBoxGroups').is(':checked');	
+			
+			//if($('#chkBoxGroups').is(':checked')){
+			//	params["idGroupScope"] = $("#groupsListScopeNewsStream").val();
+			//}
 			
 			//alert(JSON.stringify(params)); return;
-		
-			testitpost("newsStreamResult",baseUrl+'/<?php echo $this->module->id?>/api/getNewsStream/', params);//, 
-			/*			function (data){ //alert(data);
-							var listItemMap = "";
-						 	$.each(data, function() {
-						 	alert(JSON.stringify(data));
-								/*if(this['geo'] != null){
-				 					var content = "";
-				 					if(this['name'] != null)  content += 	"<b>" + this['name'] + "</b><br/>";
-				 					if(this['email'] != null)  content += 	this['email'] + "<br/>";
-				 					if(this['cp'] != null)     content += 	this['cp'] + "<br/>";
-				 					if(this['phoneNumber'] != null)     content += 	this['phoneNumber'] + "<br/>";
-				 					if(this['geo'] != null)     content += 	this['geo']['latitude'] + " - " + this['geo']['longitude'] + "<br/>";
-				 					
-				 					var properties = { 	title : this['name'], 
-				 										icon : getIcoMarker("citoyens"),
-				 										content: content };
-				 					
-				 					var marker = getGeoJsonMarker(properties, new Array(this['geo']['longitude'], this['geo']['latitude']));
-				 					geoJsonCollection['features'].push(marker);	
-				 					
-				 					//crée la liste à afficher à droite de la carte
-				 					listItemMap += "<div class='itemMapList'>" + this['name'] + "</div>";	 								 					
-				 				}
-				 				* /
-							});
-							
-											
-						});*/
+		    testitpost("newsStreamResult",baseUrl+'/<?php echo $this->module->id?>/api/getNewsStream/', params);
 		}
-        $('input[type=radio][name=scopeNewsStream]').change(function() {
-			$("#scopeLoader").html("");
-			
-        	if (this.value == "groups") { $("#groupsListScopeNewsStream").css("visibility", "visible"); }
-        	else  						{ $("#groupsListScopeNewsStream").css("visibility", "hidden"); }
-        	scopeTypeNewsStream = this.value;  	
-        });
+		
         
-        
+        initStreamMap();
     
 	</script>
 </div>

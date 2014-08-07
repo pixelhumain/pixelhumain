@@ -1,3 +1,6 @@
+
+<?php SIG::clientScripts(); ?>
+
 <div class="fss">
 	Si l'élément possède un CP => localisation à partir du CP + modification manuelle
 	Sinon, localisation impossible

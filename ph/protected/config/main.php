@@ -32,6 +32,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'bootstrap.helpers.TbHtml',
     	'ext.mail.YiiMailMessage',
     	'ext.Json.Validator',
         'ext.helpers.*',

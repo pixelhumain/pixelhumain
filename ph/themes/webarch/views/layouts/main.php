@@ -26,7 +26,8 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/style.css');
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/responsive.css');
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/custom-icon-set.css');
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/mainph.css');
-	
+
+/*
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/sig.css');
 $cs->registerCssFile("http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css");
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/leaflet.css');
@@ -34,7 +35,7 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/leaflet.draw.css')
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/leaflet.draw.ie.css');
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/MarkerCluster.css');
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/MarkerCluster.Default.css');
-
+*/
 //$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-1.8.3.min.js' , CClientScript::POS_HEAD); 
 $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js' , CClientScript::POS_END); 
 
