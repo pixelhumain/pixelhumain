@@ -30,9 +30,11 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jqTree/tree.jquery.js'
   </div>
   <div  class="col-md-6">
     <div id="form"></div>
+    <div id="formBtn" class="hide" ><a class="btn btn-primary" href="javascript:buildForm()">Show Form</a></div>
     <textarea id="jsonSchema" class="w100p " style="height:400px;background-color: #1B1E24;color:white;" placeholder="json Schema"></textarea>
   	<textarea id="jsonRDFInstance" class="w100p" style="height:400px;background-color: #1B1E24;color:white;" placeholder="json RDF Instance"></textarea>
     <textarea id="jsonData" class="w100p hide" style="height:400px;background-color: #1B1E24;color:white;" placeholder="json Data"></textarea>
+
   </div>
 </div>
 

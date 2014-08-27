@@ -31,11 +31,11 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$tpl = "index2";
-		if(isset($_GET["tpl"])) 
-			$tpl = $_GET["tpl"];
-		else 
+		$tpl = "index";
+		if(isset($_GET["tpl"])) {
 			Yii::app()->theme  = "juntos";
+			$tpl = $_GET["tpl"];
+		}		
 		
 		$this->render($tpl);
 	}

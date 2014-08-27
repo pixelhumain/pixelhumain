@@ -17,17 +17,19 @@
 		<option value="<?php echo Survey::TYPE_ENTRY?>">Survey : <?php echo Survey::TYPE_ENTRY?></option>
 	</select><br/>
 
+
 	fields : <input type="text" name="getbyFilter" id="getbyFilter" value="email" />(comma seperated)<br/>
 	tags : <input type="text" name="getbyTags" id="getbyTags" value="social" />(comma seperated for or operator, + for and operator )<br/>
 	cp : <input type="text" name="getbyCP" id="getbyCP" value="97421" /><br/>
 	microformat : <input type="text" name="getbyMicroformat" id="getbyMicroformat" /><br/>
+	application : <input type="text" name="getbyApplication" id="getbyApplication" value="<?php echo $this->module->id?>" /><br/>
 	<a class="btn" href="javascript:getby()">Test it</a> <a class="btn" href="javascript:getby(1)">as Json</a><br/>
 	<br/><div id="getbyResult" class="result fss"></div>
 	<script>
 		var collection2Microformat = {
 			"<?php echo Event::COLLECTION?>":"eventFormRDF",
 			"<?php echo Survey::COLLECTION?>":"<?php echo Survey::COLLECTION?>",
-			"<?php echo CitoyenType::COLLECTION?>":"<?php echo CitoyenType::COLLECTION?>",
+			"<?php echo CitoyenType::COLLECTION?>":"personFormRDF",
 			"<?php echo Group::COLLECTION?>":"<?php echo Group::COLLECTION?>"
 		}
 		function getby(asjson){
@@ -60,6 +62,13 @@
 			
 			if($("#getbyCP").val())
 				ands.push({"cp":$("#getbyCP").val()});
+
+			if($("#getbyApplication").val()){
+				appKey = "applications."+$("#getbyApplication").val();
+				appMap = {};
+				appMap[appKey] = {'$exists':true};
+				ands.push(appMap);
+			}
 
 			params.where["$and"] = ands;
 

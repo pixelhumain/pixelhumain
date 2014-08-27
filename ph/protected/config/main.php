@@ -14,7 +14,7 @@ return array(
 	
 	//SPECIFIC MODULE confis
 	//'defaultController' => 'communecter/default/index',
-	'homeUrl' => "/ph/azotlive",
+	'homeUrl' => "/ph?tpl=index",
 
 	// preloading 'log' component
 	'preload'=>array('log'),

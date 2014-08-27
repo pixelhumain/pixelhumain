@@ -68,20 +68,24 @@ requiredFields = [];
                 else if( $v["inputType"] == "select") {
                  
                     $default = "";
+                    $options = $v["values"];
+                    $placeholder = $k;
                     if( isset( $v["default"]) ) 
                         $default = $v["default"];
                     else if( isset($element["country"]) )
                         $default = $element["country"];
-
-                    $options = $v["options"];
-                    if( isset( $v["options_type"] ))
+                    
+                    if( isset( $v["source"] ))
                     {
-                        if( $v["options_type"] == "php" ) 
+                        if( $v["source"] == "php" ) 
                             eval( '$options ='.$options.';' );//BUG : bugs with OpenData::$phCountries doesn't evaluate
                         //data can come fron a DB collection
-                        else if( $v["options_type"] == "db" ){
+                        else if( $v["source"] == "db" )
+                        {
                             $list = PHDB::findOne(PHType::TYPE_LISTS, array("name"=>$options ) );
                             $options = $list["list"];
+                            if(isset($list['label']))
+                                $placeholder = $list['label'];
                         }
                     }
                     $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
@@ -90,11 +94,17 @@ requiredFields = [];
                       	'id' => $k,
                         'value'=> ($entry && isset($entry[$k]) ) ? $value : $default,
                         'pluginOptions' => array('width' => '150px')
-                      ) );
-                    
+                    ) );
+                    $initJS .= "$('#".$k."').select2({
+                                    'placeholder':\"".htmlentities($placeholder)."\",
+                                    'width':'100%',
+                                    'tokenSeparators':[',',' ']
+                                });";
                 } 
                 else if( $v["inputType"] == "enum") {
+
                     $options = $v["values"];
+                    $placeholder = $k;
                     if( isset( $v["source"] ))
                     {
                         if( $v["source"] == "php" ) 
@@ -103,6 +113,8 @@ requiredFields = [];
                         else if( $v["source"] == "db" ){
                             $list = PHDB::findOne(PHType::TYPE_LISTS, array("name"=>$options ) );
                             $options = $list["list"];
+                            if(isset($list['label']))
+                                $placeholder = $list['label'];
                         }
                     }
                     $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
@@ -112,9 +124,15 @@ requiredFields = [];
                         'value'=> ($entry && isset($entry[$k]) ) ? $value : "",
                         'pluginOptions' => array('width' => '150px')
                       ) );
-                    if(isset($v["onchange"])){
+                    $initJS .= "$('#".$k."').select2({
+                                //'tags':['Environnement','Transports','Déchets','Energie','Alimentation','Agriculture','Culture','Emploi','surfer','musicien','artisan','','education','marmaille','video','securité','informaticien','ingenieur','oceanographie'],
+                                'placeholder':\"".htmlentities($placeholder)."\",
+                                'width':'100%',
+                                'tokenSeparators':[',',' ']
+                            });";
+                    if(isset($v["onchange"]))
                         $initJS .= "$('#".$k."').on('change',function(e){".$v["onchange"]."});";
-                    }
+                    
                 } 
                 /******************************
                  * INPUT TYPE CHECKBOX
@@ -285,6 +303,7 @@ $(document).ready(function() {
         language: "fr",
         format: "dd/mm/yy"
     });
+    <?php if(isset($srcModule)){?>
     //TODO : move to declaration section above 
     $("#fineUploader").fineUploader({
             debug: true,
@@ -314,6 +333,7 @@ $(document).ready(function() {
               console.log("on complete error", id, fileName,responseJSON.error);
             }
           });
+    <?php } ?>
     <?php echo $initJS;?>    
 });
 
@@ -368,8 +388,8 @@ available fields
 "country" : {
       "label" : "Pays",
       "inputType" : "select",
-      "options_type" : "db",
-      "options" : "countries"
+      "source" : "db",
+      "values" : "countries"
     }
 "date" : {
       "label" : "Date",

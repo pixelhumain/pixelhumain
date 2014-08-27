@@ -58,6 +58,7 @@ class CommonController extends Controller {
 		{
     	    //var_dump($_POST);
             $id = null;
+            
     	    $data = null;
     	    $collection = $_POST["collection"];
     	    if( !empty($_POST["id"]) ){
