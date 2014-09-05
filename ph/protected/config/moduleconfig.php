@@ -2,7 +2,7 @@
 //PIXEL HUMAIN specific modules 
 $activeModules = array(
 	'waterwatcher',
-	'waterwatcher_sencha',
+	'waterwatcher2',
 	'egpc',
 	'demosalithia',
 	'azotlive',
