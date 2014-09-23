@@ -22,69 +22,40 @@
         </div>
       </div>
       <!-- start: MAIN NAVIGATION MENU -->
-      <ul class="main-navigation-menu">
-        <li>
-          <a href="javascript:void(0)"><i class="fa fa-home"></i> <span class="title"> Management </span><i class="icon-arrow"></i> </a>
-          <ul class="sub-menu">
-            <li>
-              <a href="<?php echo Yii::app()->createUrl("/teeo/event")?>">
-                <span class="title"> Evenement </span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <span class="title"> RPEE </span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <span class="title"> Audit </span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="javascript:void(0)"><i class="fa fa-cog"></i> <span class="title"> Configuration </span><i class="icon-arrow"></i> </a>
-          <ul class="sub-menu">
-            <li>
-              <a href="">
-                <span class="title"> Management de l'Energie </span>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="javascript:void(0)"><i class="fa fa-life-bouy "></i> <span class="title"> Temporaire </span><i class="icon-arrow"></i> </a>
-          <ul class="sub-menu">
-            <li>
-                <a href="<?php echo Yii::app()->createUrl("/teeo/person/login")?>">
-                  <span class="title"> Login </span>
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo Yii::app()->createUrl("/teeo/person/login?box=register")?>">
-                  <span class="title"> Register </span>
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo Yii::app()->createUrl("/teeo/person/profile")?>">
-                  <span class="title"> Profile </span>
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo Yii::app()->createUrl("/teeo/default/tree")?>">
-                  <span class="title"> Tree </span>
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo Yii::app()->createUrl("/teeo/default/lists")?>">
-                  <span class="title"> Lists </span>
-                </a>
-              </li>
-            </ul>
-        </li>
+      <ul class="main-navigation-menu">  
+        <?php 
+          foreach( $this->sidebar1 as $item )
+          {
+              $modal = (isset($item["isModal"])) ? 'role="button" data-toggle="modal"' : "";
+              $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' : "";
+              $href = (isset($item["href"])) ? $item["href"] : "#";
+              $class = (isset($item["class"])) ? 'class="'.$item["class"].'"' : "";
+              $icon = (isset($item["iconClass"])) ? '<i class="'.$item["iconClass"].'"></i>' : '';
+              echo '<li><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="title">'.$item["label"].'</span>';
+              //This menu can have 2 levels
+              if( isset($item["children"]) )
+              {
+                  echo "<span class='arrow'></span></a><ul class='sub-menu'>";
+                  foreach( $item["children"] as $item2 )
+                  {
+                      $modal2 = (isset($item2["isModal"])) ? 'role="button" data-toggle="modal"' : "";
+                      $onclick2 = (isset($item2["onclick"])) ? 'onclick="'.$item2["onclick"].'"' 
+                                                             : ( (isset($item2["key"])) ? 'onclick="scrollTo(\'#block'.$item2["key"].'\')"' 
+                                                                                        : "" );
+                      $href2 = (isset($item2["href"])) ? $item2["href"] : "javascript:;";
+                      $icon = (isset($item2["iconClass"])) ? '<i class="'.$item2["iconClass"].'"></i>' : '';
+                      echo '<li><a href="'.$href2.'" '.$modal2.' '.$onclick2.'>'.$icon.' '.$item2["label"].'</a></li>';
+                  }
+                  echo "</ul>";
+              }else
+                echo "</a>";
+              echo "</li>";
+          }
+          ?>
+        
+        <!-- END TWO LEVEL MENU -->     
       </ul>
+      <div class="clearfix"></div>
       <!-- end: MAIN NAVIGATION MENU -->
     </div>
     <!-- end: SIDEBAR -->
