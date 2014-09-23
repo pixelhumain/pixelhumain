@@ -38,17 +38,16 @@ return array(
         'ext.helpers.*',
         //'ext.easyrdf.lib.*'
 	),
-
 	'modules'=>array_merge($activeModules,array(
 
 		// uncomment the following to enable the Gii tool
-		'gii'=>array(
+		/*'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'Enter Your Password Here',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
         	'generatorPaths' => array('bootstrap.gii'),
-		),
+		),*/
 		/*'importcsv'=>array(
             'path'=>'upload/importCsv/', // path to folder for saving csv file and file with import params
         ),*/
@@ -109,8 +108,8 @@ return array(
 			'connectionString' => $mysqldbconfig['db.connectionString'],
 			'username' => $mysqldbconfig['db.username'],
 			'password' => $mysqldbconfig['db.password'],
-			'schemaCachingDuration' => YII_DEBUG ? 0 : 86400000, // 1000 days
-			'enableParamLogging' => YII_DEBUG,
+			//'schemaCachingDuration' => YII_DEBUG ? 0 : 86400000, // 1000 days
+			//'enableParamLogging' => YII_DEBUG,
 			'charset' => 'utf8'
 		),*/
 		'mongodb' => $dbconfig,
