@@ -1,4 +1,11 @@
 this file lists any thought , text or idea that corresponds to the project
+anyone can add something french or english
+
+add a separator, your text, your name and the date
+
+
+--------------------------------------------------------------------
+
 it's not about having a platform 
 it's about philosophy, nad beleiving soemthing different is possible.
 we are not convincing peolpe, they're allready aware of the need for change, 
@@ -9,5 +16,27 @@ We've been building collaboratively , the web and computers for quite some time,
 and the open source world has made it happen
 Let's try to apply the same energy to society.
 Nothing can kill an open source project who's time has come.
-Tibor Katelbach 
+Tibor Katelbach 23/09/2014
+
+--------------------------------------------------------------------
+
+Un outil dans lequel les citoyens sont communectés : Connecté a leur commune, ce qui signifie qu'ils sont :
+informé en quasi temps reel de ce qui se passe localement
+participants à l'activité locale   (dialogue facilité avec les collectivités, regroupement de citoyen pour reflechir ou débattre...) 
+connectés à la communes mais aussi avec ces voisins  pour partager des intérêts communs, avec des associations locales qui proposent des initiatives sociales et solidaires, des entreprises et producteurs qui fabriquent localement les produits qu’il achète... Bref connecter le virtuel et le réel, le Pixel et l’Humain. 
+A l’heure d’internet, de la simplification de la communication et du partage de l’information, tout est réuni pour fédérer et organiser cette dynamique. L’essence du Pixel Humain est de créer cette synergie collective et solidaire reliant tous types d’acteurs, tous domaines et objectifs confondus.
+A cet effet, le Pixel Humain souhaite être un catalyseur d’initiatives locales, un réseau social, libre de droit et d’accès, traitant de thématiques d’intérêt général. Cette plateforme internet de concertation est destinée à réunir et faire interagir les citoyens, le tissu associatif local, les entreprises locales et les pouvoirs publics. Les objectifs sont de permettre à tous 
+ces acteurs de ne plus agir chacun de leur côté mais de :
+
+• Se fédérer sur une plateforme commune
+• Se rencontrer
+• Simplifier les échanges
+• Interagir
+• Coopérer
+• Consommer localement
+• Ouvrir nos collectivités
+• Promouvoir un développement durable
+
+La finalité du Pixel Humain est d’apporter aux collectivités les réflexions individuelles et de donner aux individus l’intelligence collective.
+
 --------------------------------------------------------------------
