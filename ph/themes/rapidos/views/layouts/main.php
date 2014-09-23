@@ -7,7 +7,7 @@
 	<!--<![endif]-->
 	<!-- start: HEAD -->
 	<head>
-		<title><?php echo ($this->pageTitle) ? CHtml::encode($this->pageTitle) : $this::moduleTitle; ?></title>
+		<title><?php echo ($this->pageTitle) ? CHtml::encode($this->pageTitle) : "set a pageTitle"; ?></title>
 		<meta charset="utf-8" />
 		<!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -42,7 +42,7 @@
 
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-modal/css/bootstrap-modal.css');
-		
+
 		//<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
 		//<!-- start: CORE CSS -->
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/styles.css');
@@ -68,7 +68,7 @@
 		<div class="main-wrapper">
 			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.topbar');?>
 			<?php 
-			$sidemenuL = ($this->sidebar1) ? $this->sidebar1 : 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.sideMenuL';
+			$sidemenuL = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.sideMenuL';
 			$this->renderPartial($sidemenuL);
 			?>
 			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.sideMenuR');?>

@@ -8,7 +8,7 @@
 			</a>
 			<!-- start: LOGO -->
 			<a class="navbar-brand" href="<?php echo Yii::app()->createUrl("/teeo")?>">
-				<img height="30" src="<?php echo $this->module->assetsUrl?>/images/teeo_banniere.png"/> Système d'information du Management de l'énergie
+				<?php echo (isset($this->projectImage)) ? '<img height="30" src="'.$this->module->assetsUrl.$this->projectImage.'"/>' : "<i class='fa fa-close'>/i>"; echo (isset($this->projectName)) ? $this->projectName : "Page subTitle";?>
 			</a>
 			<!-- end: LOGO -->
 		</div>
