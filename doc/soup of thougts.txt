@@ -3,7 +3,39 @@ anyone can add something french or english
 
 add a separator, your text, your name and the date
 
+--------------------------------------------------------------------
 
+> What is the pespectiva adoption of modalities and digital manufacturing systems by the population? Is it a fad (or fashion ) or it can be sustainable in the near future?
+
+adoption never starts by being a trend 
+it's first a usage by certain oriented communties that will promote it 
+if it answers real life problems. the snow ball effect can then become a trend
+and it can be very sustainable, by very small amounts given by the user population (crowd funding)
+
+> What in the world would change if the culture of digital manufacturing is adopted by the common people ?
+
+we would apply it to everything and that's what's happening 
+open source is starting to go into all sorts of different subjects 
+
+> Does the culture makers should be encouraged , particularly in his country, from government policies ? If so why? and how?
+
+when the governments understand the positive impact 
+they will promote more than ever 
+they are in fact in front of a crisis they are unable to manage 
+and feel it's time for change , the change will come from the maker culture 
+in fact it's always been this way, creativity is always botttom - up
+
+> Maker does culture should be promoted from school ? Why? and how?
+ 
+offcourse , and so should the open source philosophy 
+it'll bring global openness, instead of competition
+group work instead of individualism
+School should come back to the basic ,
+learning to cook , to build, to garden ...etc
+
+TK answer to letter from Fernando Bordignon
+Profesor Asociado 
+Universidad Pedagógica de Argentina
 --------------------------------------------------------------------
 
 it's not about having a platform 
@@ -16,7 +48,7 @@ We've been building collaboratively , the web and computers for quite some time,
 and the open source world has made it happen
 Let's try to apply the same energy to society.
 Nothing can kill an open source project who's time has come.
-Tibor Katelbach 23/09/2014
+TK 23/09/2014
 
 --------------------------------------------------------------------
 
