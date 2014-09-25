@@ -2,8 +2,8 @@
 <?php SIG::clientScripts(); ?>
 
 
-<div class="fss">
-		</div>
+<div class="fss"></div>
+
 		<div class="apiForm login">
 			<div id="mapCanvas" class="mapCanvas1" >
 			</br>Chargement de la carte ...

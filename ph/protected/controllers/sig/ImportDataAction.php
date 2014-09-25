@@ -10,8 +10,8 @@ class ImportDataAction extends CAction
 {
     public function run()
     {
-        $result = $this->importFromJson();			//importe les données depuis fichier .json vers ddb
-        $result .= $this->checkPositionCitoyens();	//update la position geo des citoyens
+        //$result = $this->importFromJson();		//importe les données depuis fichier .json vers ddb
+        $result = $this->checkPositionCitoyens();	//update la position geo des citoyens
      	
 		Rest::json($result);  
 		Yii::app()->end();
@@ -72,10 +72,15 @@ class ImportDataAction extends CAction
      	foreach ($citoyens as $users)
      	{
      		//récupère les valeurs des attributs
-     		$cp = ""; $geo = false; $email = "";
+     		$cp = ""; 
+     		$email = "";
+     		$geo = false; 
+     		$type = false; 
+     		
      		foreach ($users as $key => $value)	{
      			if($key == 'cp') $cp = $value;
      			if($key == 'geo') $geo = true;  
+     			if($key == 'type') $type = true;  
      			if($key == 'email') $email = $value;  
      			   			
      		}
@@ -88,9 +93,19 @@ class ImportDataAction extends CAction
      				$newPos = array(); 
      				$newPos['geo'] = $city['geo'];
      				$result .= "nouvelle position pour -> ".$email." : cp =".$cp;
-     			Yii::app()->mongodb->citoyens->update( array("email" => $email), 
-                                                       array('$set' => $newPos ) );
+     				Yii::app()->mongodb->citoyens->update( array("email" => $email), 
+                                                       	   array('$set' => $newPos ) );
                 }
+     		} 
+     		//si l'utilisateur n'a pas de type
+     		//on lui rajoute "citoyen" par defaut
+     		if($type == false){
+     				$newType = array(); 
+     				$newType['type'] = "citoyen";
+     				$result .= "nouveau type pour -> ".$email;
+     				Yii::app()->mongodb->citoyens->update( array("email" => $email), 
+                                                       	   array('$set' => $newType ) );
+                
      		} 
      		
      	}

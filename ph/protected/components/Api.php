@@ -91,6 +91,10 @@ class Api {
         	"desc"=>"show rectangle area",
         	"actions"=>array()),
         
+		 "importData" => array( "label"=>"Import data", "key"=>"importData",
+        	"desc"=>"Import data from json & check Citoyens geoPosition whith CP",
+        	"actions"=>array('importdata'=> 'application.controllers.sig.ImportDataAction')),
+        	
 
         /* -----------------------------------------------
         Event Section
@@ -253,7 +257,9 @@ class Api {
                     self::$apis["saveGroupsGeoposition"],
                     self::$apis["showCities"],
                     self::$apis["showCitoyens"],
-                    self::$apis["showRectangleArea"]                   
+                    self::$apis["showRectangleArea"],
+                    self::$apis["importData"]
+                                       
                 )); 
     }
 	public static function getNewsMap(){
