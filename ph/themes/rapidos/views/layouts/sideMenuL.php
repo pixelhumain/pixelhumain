@@ -15,7 +15,7 @@
         </div>
         <div class="inline-block">
           <h5 class="no-margin"> <?php echo Yii::t('login','Welcome');?> </h5>
-          <h4 class="no-margin"> <?php echo Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?> </h4>
+          <h4 class="no-margin"> <?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?> </h4>
           <a class="btn user-options sb_toggle">
             <i class="fa fa-cog"></i>
           </a>

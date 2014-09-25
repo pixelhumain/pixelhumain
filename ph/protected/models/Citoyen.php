@@ -40,6 +40,7 @@ class Citoyen
         {
             Yii::app()->session["userId"] = null;
             Yii::app()->session["userEmail"] = null; 
+            Yii::app()->session["user"] = null; 
             $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$email));
             if($account){
                 if( empty( $account["pwd"] ) )
@@ -66,6 +67,8 @@ class Citoyen
                         
                         Yii::app()->session["userId"] = (string)$account["_id"];
                         Yii::app()->session["userEmail"] = $account["email"]; 
+                        $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
+                        Yii::app()->session["user"] = array("name"=>$name); 
                         if( isset($account["isAdmin"]) && $account["isAdmin"] )
                             Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
                             
@@ -81,6 +84,8 @@ class Citoyen
                 {
                     Yii::app()->session["userId"] = (string)$account["_id"];
                     Yii::app()->session["userEmail"] = $account["email"]; 
+                    $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
+                    Yii::app()->session["user"] = array("name"=>$name); 
                     
                     if( isset($account["isAdmin"]) && $account["isAdmin"] )
                         Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
@@ -88,7 +93,7 @@ class Citoyen
                     /*Notification::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
                                             "user" => $account["_id"]));*/
                     
-                    $res = array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"]));
+                    $res = array("result"=>true,  "id"=>$account["_id"], "name"=>$name,"isCommunected"=>isset($account["cp"]));
                 } else 
                     $res = array("result"=>false, "msg"=>"Email ou Mot de Passe ne correspondent pas, rééssayez.");
             } else if($loginRegister){
@@ -116,6 +121,7 @@ class Citoyen
         {
             Yii::app()->session["userId"] = null;
             Yii::app()->session["userEmail"] = null; 
+            Yii::app()->session["user"] = null; 
             $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$email));
             if(!$account)
             {
@@ -146,7 +152,8 @@ class Citoyen
                     //set session elements for global credentials
                     Yii::app()->session["userId"] = (string)$newAccount["_id"]; 
                     Yii::app()->session["userEmail"] = $newAccount["email"];
-                    
+                    $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
+                    Yii::app()->session["user"] = array("name"=>$name); 
                     //send validation mail
                     //TODO : make emails as cron jobs
                     $app = new Application($_POST["app"]);
@@ -215,7 +222,8 @@ class Citoyen
                     //set session elements for global credentials
                     Yii::app()->session["userId"] = (string)$newAccount["_id"]; 
                     Yii::app()->session["userEmail"] = $newAccount["email"];
-                    
+                    $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
+                    Yii::app()->session["user"] = array("name"=>$name); 
                     //send validation mail
                     //TODO : make emails as cron jobs
                     /*$message = new YiiMailMessage;
