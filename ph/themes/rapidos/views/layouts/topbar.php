@@ -7,7 +7,7 @@
 				<i class="fa fa-bars"></i>
 			</a>
 			<!-- start: LOGO -->
-			<a class="navbar-brand" href="<?php echo Yii::app()->createUrl("/teeo")?>">
+			<a class="navbar-brand" href="<?php echo Yii::app()->createUrl("/".$this->module->id)?>">
 				<?php echo (isset($this->projectImage)) ? '<img height="30" src="'.$this->module->assetsUrl.$this->projectImage.'"/>' : "<i class='fa fa-close'>/i>"; echo (isset($this->projectName)) ? $this->projectName : "Page subTitle";?>
 			</a>
 			<!-- end: LOGO -->
@@ -22,7 +22,7 @@
 					</a>
 					<ul class="dropdown-menu dropdown-dark">
 						<li>
-							<a href="<?php echo Yii::app()->createUrl("/teeo/person/profile")?>">
+							<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/profile")?>">
 								My Profile
 							</a>
 						</li>
@@ -37,7 +37,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo Yii::app()->createUrl("/teeo/person/logout")?>">
+							<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/logout")?>">
 								Log Out
 							</a>
 						</li>
