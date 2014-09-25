@@ -101,31 +101,23 @@ YOU SUCCEED ! READY TO CODE NOW !
 
 ##Version 0.001 
     L'homme qui déplace une montagne commence par déplacer les petites pierres.- Confucius
+    Man who wants to move a mountain starts by moving pebbles
 
-###Valorisation de la Collectivité
-* page region : liste toutes les communes avec quelques details
-* page commune : liste toutes les activités locales, les elements naturels, propose un annuaire local
-* création Commune : définie par les infos wikipedia, des images, des activités, la natures 
-* creation Pixel Actif : défini par son type, son contact, son action locale
+### Valuing States Structure
+* page region  : List all Counties with minimal descritption
+* city page : List local actors(directory), local Places
+* people page : 
 
-##Roadmap court terme 
-* Ajouter un Pixel Actif 
-**Association, Entreprise, Collectivité, Citoyens
-* Pouvoir ajouter une commune 
-**Il ya un (ou plusieurs,plus tard) représentant de Commune (citoyen ou collectivité)
+##Roadmap short term 
+* add a person/citizen
+* add and Association, Company
+* add a State entity (city, county...)
 
-##Documenter avant de Coder
-Prendre pour habitude d'écrire une doc ou corrigé une doc avant de se lancer dans le code.
-Ce qui permet d'éviter a se taper la fastidieuse tache d'ecriture d'une doc aprés coup.
-Ca permet aussi de tourner 7 fois autour de l'idée avant de perdre son temps a le coder.
-
-##Proof of concept First
-Une bonne facon de procéder pour proposer un nouveau module ou feature au PH, sans perdre de temps et aller droit au but 
-c'est de commencer par une version la plus light possible, pure front end, basé sur une structure JSON. 
-on peut ainsi en discuter, la modifier avant de l'intégrer dans le coeur applicatif.
+##Document before coding
+Make a good habit of writing a doc or a doc corrected before embarking in the code. 
+This avoids a tedious task of writing a doc after hit. 
 
 ##En savoir plus
-* [documentation technique](https://github.com/pixelhumain/pixelhumain/blob/master/doc/presentation.md)
 * [Gestin de projet : Trello](https://trello.com/board/pixel-humain-echolocal/50a3e15a175358d65a0089ef)
 * [le site](http://www.pixelhumain.com/)
 * [le blog](http://blog.pixelhumain.com/)
