@@ -152,7 +152,7 @@ class Citoyen
                     //set session elements for global credentials
                     Yii::app()->session["userId"] = (string)$newAccount["_id"]; 
                     Yii::app()->session["userEmail"] = $newAccount["email"];
-                    $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
+                    $name = (isset($newAccount["name"])) ? $newAccount["name"] : "Anonymous" ;
                     Yii::app()->session["user"] = array("name"=>$name); 
                     //send validation mail
                     //TODO : make emails as cron jobs
@@ -222,7 +222,7 @@ class Citoyen
                     //set session elements for global credentials
                     Yii::app()->session["userId"] = (string)$newAccount["_id"]; 
                     Yii::app()->session["userEmail"] = $newAccount["email"];
-                    $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
+                    $name = (isset($newAccount["name"])) ? $newAccount["name"] : "Anonymous" ;
                     Yii::app()->session["user"] = array("name"=>$name); 
                     //send validation mail
                     //TODO : make emails as cron jobs
