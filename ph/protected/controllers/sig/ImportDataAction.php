@@ -66,8 +66,11 @@ class ImportDataAction extends CAction
 		
 	 public function checkPositionCitoyens()
 	 {
-	 	$citoyens =  iterator_to_array(Yii::app()->mongodb->citoyens->find());
-     	$result = "";
+	 	$query = array( 'cp' => array( '$exists' => true ),
+	 					'geo' => array( '$exists' => false )
+	 					);
+	 	$citoyens =  iterator_to_array(Yii::app()->mongodb->citoyens->find($query));
+     	$result = "deb";
      	$i=0;
      	foreach ($citoyens as $users)
      	{
@@ -92,23 +95,24 @@ class ImportDataAction extends CAction
      			if($city != null){
      				$newPos = array(); 
      				$newPos['geo'] = $city['geo'];
-     				$result .= "nouvelle position pour -> ".$email." : cp =".$cp;
+     				$result .= " --- UP ".$email." : cp ".$cp;
      				Yii::app()->mongodb->citoyens->update( array("email" => $email), 
                                                        	   array('$set' => $newPos ) );
                 }
      		} 
      		//si l'utilisateur n'a pas de type
      		//on lui rajoute "citoyen" par defaut
-     		if($type == false){
+     	/*	if($type == false){
      				$newType = array(); 
      				$newType['type'] = "citoyen";
      				$result .= "nouveau type pour -> ".$email;
      				Yii::app()->mongodb->citoyens->update( array("email" => $email), 
                                                        	   array('$set' => $newType ) );
-                
-     		} 
+               
+     		}  */
      		
      	}
+     	$result += " - count : ".count(citoyens);
      	
      	return $result;
     	

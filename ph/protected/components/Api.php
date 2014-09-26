@@ -87,6 +87,14 @@ class Api {
         	"desc"=>"show every citoyens on the map",
         	"actions"=>array('showcitoyens'=> 'application.controllers.sig.ShowCitoyensAction')),
         	
+        "getCommunected" => array( "label"=>"Get all citoyens communected (CP)", "key"=>"getCommunected",
+        	"desc"=>"show every citoyens with CP on the map",
+        	"actions"=>array('getcommunected'=> 'application.controllers.sig.GetCommunectedAction')),
+        	
+        "getPixelActif" => array( "label"=>"Get Pixel Actif", "key"=>"getPixelActif",
+        	"desc"=>"show every Pixel Actif on the map",
+        	"actions"=>array('getpixelactif'=> 'application.controllers.sig.GetPixelActifAction')),
+        	
         "showRectangleArea" => array( "label"=>"Show rectangle area", "key"=>"showRectangleArea",
         	"desc"=>"show rectangle area",
         	"actions"=>array()),
@@ -256,6 +264,8 @@ class Api {
                     self::$apis["saveGeoposition"],
                     self::$apis["saveGroupsGeoposition"],
                     self::$apis["showCities"],
+                    self::$apis["getCommunected"],
+                    self::$apis["getPixelActif"],
                     self::$apis["showCitoyens"],
                     self::$apis["showRectangleArea"],
                     self::$apis["importData"]
