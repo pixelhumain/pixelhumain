@@ -17,13 +17,13 @@
 				<!-- start: TO-DO DROPDOWN -->
 				<li class="dropdown">
 					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-						<i class="fa fa-plus"></i> AJOUTER
+						<i class="fa fa-plus  fa-2x icon-big"></i> ADD
 						<div class="tooltip-notification hide">
 							<div class="tooltip-notification-arrow"></div>
 							<div class="tooltip-notification-inner">
 								<div>
 									<div class="semi-bold">
-										HI THERE!
+										PARTICIPATE HERE!
 									</div>
 									<div class="message">
 										Try the Subview Live Experience
@@ -58,7 +58,7 @@
 				                      	$iconStack .= '<span class="fa-stack">';
 				                      	foreach( $item2["iconStack"] as $i )
 						                {
-						                	$iconStack .= '<i class=""></i>';
+						                	$iconStack .= '<i class="'.$i.'"></i>';
 						                }
 				                      	$iconStack .= '</span>';
 				                      }
@@ -88,6 +88,13 @@
 						</li>
 					</ul>
 				</li>
+				<?php /*?>
+				<li class="dropdown">
+					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
+						<i class="fa fa-eye fa-2x icon-big "></i> VIEW
+					</a>
+				</li>
+				*/?>
 				<li class="dropdown">
 					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
 						<span class="messages-count badge badge-default hide">3</span> <i class="fa fa-envelope"></i> MESSAGES
