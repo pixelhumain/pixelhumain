@@ -1415,7 +1415,7 @@ function getModal(what, url,id)
   loaded = {};
   $('#ajax-modal').modal("hide");
   console.log("getEvent",what,"url",url,"event",id);
-  if(id)
+  if(id!=null)
     url = url+id;
   //var params = $(form).serialize();
   //$("#ajax-modal-modal-body").html("<i class='fa fa-cog fa-spin fa-2x icon-big'></i> Loading");
