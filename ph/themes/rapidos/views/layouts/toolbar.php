@@ -34,7 +34,7 @@
 					</a>
 					<ul class="dropdown-menu dropdown-light dropdown-subview">
 						<?php 
-				          foreach( $this->toolbarMenu as $item )
+				          foreach( $this->toolbarMenuAdd as $item )
 				          {
 				              $modal = (isset($item["isModal"])) ? 'role="button" data-toggle="modal"' : "";
 				              $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' : "";
@@ -47,11 +47,9 @@
 				              {
 				                  foreach( $item["children"] as $item2 )
 				                  {
-				                      $modal2 = (isset($item2["isModal"])) ? 'role="button" data-toggle="modal"' : "";
-				                      $onclick2 = (isset($item2["onclick"])) ? 'onclick="'.$item2["onclick"].'"' 
-				                                                             : ( (isset($item2["key"])) ? 'onclick="scrollTo(\'#block'.$item2["key"].'\')"' 
-				                                                                                        : "" );
-				                      $href2 = (isset($item2["href"])) ? (stripos($item2["href"], "http") === false) ? Yii::app()->createUrl($item2["href"]) : $item2["href"] : "javascript:;";
+				                      $onclick2 = (isset($item2["onclick"])) ? 'onclick="'.$item2["onclick"].'"' : ""; 
+				                      $class = (isset($item2["class"])) ? 'class="'.$item2["class"].'"' : "";
+				                      $href2 = (isset($item2["href"])) ? (stripos($item2["href"], "http") === false) ? $item2["href"] : $item2["href"] : "javascript:;";
 				                      $icon = (isset($item2["iconClass"])) ? '<i class="'.$item2["iconClass"].'"></i>' : '';
 				                      $iconStack = "";
 				                      if((isset($item2["iconStack"]))){
@@ -62,30 +60,13 @@
 						                }
 				                      	$iconStack .= '</span>';
 				                      }
-				                      echo '<li><a href="'.$href2.'" '.$modal2.' '.$onclick2.'>'.$icon.''.$iconStack.' '.$item2["label"].'</a></li>';
+				                      echo '<li><a href="'.$href2.'" '.$class.' '.$onclick2.'>'.$icon.''.$iconStack.' '.$item2["label"].'</a></li>';
 				                  }
 				              }else
 				                echo ($href) ? "</a>" : "";
 				          }
 				        ?>
-						<li class="dropdown-header">
-							Calendar
-						</li>
-						<li>
-							<a href="#newEvent" class="new-event"><span class="fa-stack"> <i class="fa fa-calendar-o fa-stack-1x fa-lg"></i> <i class="fa fa-plus fa-stack-1x stack-right-bottom text-danger"></i> </span> Add new event</a>
-						</li>
-						<li>
-							<a href="#showCalendar" class="show-calendar"><span class="fa-stack"> <i class="fa fa-calendar-o fa-stack-1x fa-lg"></i> <i class="fa fa-share fa-stack-1x stack-right-bottom text-danger"></i> </span> Show calendar</a>
-						</li>
-						<li class="dropdown-header">
-							Contributors
-						</li>
-						<li>
-							<a href="#newContributor" class="new-contributor"><span class="fa-stack"> <i class="fa fa-user fa-stack-1x fa-lg"></i> <i class="fa fa-plus fa-stack-1x stack-right-bottom text-danger"></i> </span> Add new contributor</a>
-						</li>
-						<li>
-							<a href="#showContributors" class="show-contributors"><span class="fa-stack"> <i class="fa fa-user fa-stack-1x fa-lg"></i> <i class="fa fa-share fa-stack-1x stack-right-bottom text-danger"></i> </span> Show all contributor</a>
-						</li>
+						
 					</ul>
 				</li>
 				<?php /*?>
