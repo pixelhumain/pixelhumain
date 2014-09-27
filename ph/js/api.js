@@ -17,7 +17,38 @@ function testitpost(id,url,params,callback){
 	    } 
 	  });
 }
-function testitget(id,url,callback){
+function getModal(what, url,id)
+{
+	loaded = {};
+	$('#ajax-modal').modal("hide");
+	console.log("getEvent",what,"url",url,"event",id);
+	url = url+id;
+	//var params = $(form).serialize();
+	//$("#ajax-modal-modal-body").html("<i class='fa fa-cog fa-spin fa-2x icon-big'></i> Loading");
+	$('body').modalmanager('loading'); 
+	$.ajax({
+        type: "GET",
+        url: url,
+        //dataType : "json"
+        //data: params
+    })
+    .done(function (data) 
+    {
+        if (data) {               
+        	/*if(!selectContent)
+        		selectContent = data.selectContent;*/
+    		$("#ajax-modal-modal-title").html("<i class='fa fa-pencil'></i> "+eventJson[id]["eventLib"]);
+            $("#ajax-modal-modal-body").html(data); 
+            $('#ajax-modal').modal("show");
+        } else {
+            $("#ajax-modal-modal-body").html("bug get event "+id);
+            $('#ajax-modal').modal("show");
+        }
+    });
+	
+}
+function testitget(id,url,callback)
+{
 	$("#"+id).html("");
 	$.ajax({
 	    url:url,
@@ -36,7 +67,8 @@ function testitget(id,url,callback){
 	  });
 }
 
-function toggle(id){
+function toggle(id)
+{
 	log(id);
 	if( !$("."+id).is(":visible") ) 
 	{
@@ -51,14 +83,17 @@ function toggle(id){
 	}
 	return false;
 }
-function scrollTo(id){
+function scrollTo(id)
+{
  $("html, body").animate({
             scrollTop: $(id).offset().top-70
         }, 700);
 }
-function Object2Array(obj){
+function Object2Array(obj)
+{
 	jsonAr =[];
-	$.each(obj,function(k,v){
+	$.each(obj,function(k,v)
+	{
 		v.id = k;
 		delete v._id;
 		jsonAr.push(v);
@@ -66,7 +101,8 @@ function Object2Array(obj){
 	console.dir(jsonAr);
 	return jsonAr;
 }
-function showAsColumn(resp,id){
+function showAsColumn(resp,id)
+{
 	//log(resp,"dir");
 	if($("#"+id).hasClass("columns"))
 	{

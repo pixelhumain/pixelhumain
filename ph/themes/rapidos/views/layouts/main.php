@@ -174,6 +174,7 @@
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		//<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		//<!-- start: CORE JAVASCRIPTS  -->
+		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/main.js' , CClientScript::POS_END);
 		?>
 		<!-- end: CORE JAVASCRIPTS  -->
