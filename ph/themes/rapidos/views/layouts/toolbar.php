@@ -159,48 +159,82 @@
 						<li>
 							<div class="drop-down-wrapper ps-container">
 								<ul>
-									<li class="unread">
-										<a href="javascript:;" class="unread">
-											<div class="clearfix">
-												<div class="thread-image">
-													<i class="fa fa-map-marker fa-5x  icon-big text-primary"></i>
-												</div>
-												<div class="thread-content">
-													<span class="author">Local NGos</span>
-													<span class="preview">Discover Non Governmental Organisations around you</span>
-													<span class="time"> Just Now</span>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:;" class="unread">
-											<div class="clearfix">
-												<div class="thread-image">
-													<i class="fa fa-map-marker fa-5x  icon-big text-danger"></i>
-												</div>
-												<div class="thread-content">
-													<span class="author">Local Companies</span>
-													<span class="preview">Discover Companies around you</span>
-													<span class="time">8 hrs</span>
-												</div>
-											</div>
-										</a>
-									</li>
 									<li>
 										<a href="javascript:;">
 											<div class="clearfix">
 												<div class="thread-image">
-													<i class="fa fa-map-marker fa-5x  icon-big text-success"></i>
+													<i class="fa fa-sitemap fa-3x  icon-big text-dark-green"></i>
 												</div>
 												<div class="thread-content">
-													<span class="author">Local Events</span>
-													<span class="preview">Discover All sorts of local events around you</span>
-													<span class="time">14 hrs</span>
+													<span class="author">Your Network</span>
+													<span class="preview">People, Organisation, Events, Projects </span>
+													<span class="time">around You</span>
 												</div>
 											</div>
 										</a>
 									</li>
+
+									<li class="unread">
+										<a href="javascript:;" class="unread">
+											<div class="clearfix">
+												<div class="thread-image">
+													<span class="fa-stack"><i class="fa fa-group fa-3x  icon-big text-azure"></i></span>
+												</div>
+												<div class="thread-content">
+													<span class="author">Local NGos</span>
+													<span class="preview">Discover Non Governmental Organisations around you</span>
+													<span class="time">around You</span>
+												</div>
+											</div>
+										</a>
+									</li>
+
+									<li>
+										<a href="javascript:;" class="unread">
+											<div class="clearfix">
+												<div class="thread-image">
+													<i class="fa fa-building fa-3x  icon-big text-danger"></i>
+												</div>
+												<div class="thread-content">
+													<span class="author">Local Companies</span>
+													<span class="preview">Discover Companies around you</span>
+													<span class="time">around You</span>
+												</div>
+											</div>
+										</a>
+									</li>
+
+									<li>
+										<a href="javascript:;">
+											<div class="clearfix">
+												<div class="thread-image">
+													<i class="fa fa-university fa-3x  icon-big text-orange"></i>
+												</div>
+												<div class="thread-content">
+													<span class="author">Local State</span>
+													<span class="preview">All the city hall public services</span>
+													<span class="time">around You</span>
+												</div>
+											</div>
+										</a>
+									</li>
+
+									<li>
+										<a href="javascript:;">
+											<div class="clearfix">
+												<div class="thread-image">
+													<i class="fa fa-calendar fa-3x  icon-big text-light-purple"></i>
+												</div>
+												<div class="thread-content">
+													<span class="author">Local Events</span>
+													<span class="preview">Discover All sorts of local events around you</span>
+													<span class="time">around You</span>
+												</div>
+											</div>
+										</a>
+									</li>
+									
+									
 								</ul>
 							</div>
 						</li>

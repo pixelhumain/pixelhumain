@@ -3328,6 +3328,90 @@ ul.post-list .post-image {
 }
 
 /* ---------------------------------------------------------------------- */
+/*  Text colors
+/* ---------------------------------------------------------------------- */
+.text-azure {
+  color: #00bdcc;
+}
+.text-light-azure { 
+  color: #00d5e6;
+}
+.text-dark-azure {
+  color: #008e99;
+}
+.text-blue {
+  color: #5f8295;
+}
+.text-light-blue {
+  color: #7c9bab;
+}
+.text-dark-blue {
+  color: #4b6776;
+}
+.text-green {
+  color: #1fbba6;
+}
+.text-light-green {
+  color: #30ddc6;
+}
+.text-dark-green {
+  color: #188f7f;
+}
+.text-orange {
+  color: #f58a5c;
+}
+.text-light-orange {
+  color: #f8ac8c;
+}
+.text-dark-orange {
+  color: #f2682c;
+}
+.text-red {
+  color: #e66b6b;
+}
+.text-light-red {
+  color: #ed9797;
+}
+.text-dark-red {
+  color: #df3f3f;
+}
+.text-purple {
+  color: #804c75;
+}
+.text-light-purple {
+  color: #a05f92;
+}
+.text-dark-purple {
+  color: #603958;
+}
+.text-beige {
+  color: #cccc99;
+}
+.text-light-beige {
+  color: #d5d5aa;
+}
+.text-dark-beige {
+  color: #bbbb77;
+}
+.text-yellow {
+  color: #ffb848;
+}
+.text-light-yellow {
+  color: #ffcc7b;
+}
+.text-dark-yellow {
+  color: #ffa415;
+}
+.text-grey {
+  color: #8b91a0;
+}
+.text-light-grey {
+  color: #a7acb7;
+}
+.text-dark-grey {
+  color: #707788;
+}
+/* ---------------------------------------------------------------------- */
 /*  Buttons
 /* ---------------------------------------------------------------------- */
 .btn {
