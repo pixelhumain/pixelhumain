@@ -34,6 +34,7 @@ return array(
 		'application.components.*',
 		'bootstrap.helpers.TbHtml',
     	'ext.mail.YiiMailMessage',
+    	'ext.mobile.Mobile_Detect',
     	'ext.Json.Validator',
         'ext.helpers.*',
         //'ext.easyrdf.lib.*'
