@@ -138,17 +138,17 @@
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap/js/bootstrap.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/blockUI/jquery.blockUI.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/iCheck/jquery.icheck.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/moment/min/moment.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/perfect-scrollbar/src/jquery.mousewheel.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/perfect-scrollbar/src/perfect-scrollbar.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootbox/bootbox.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery.scrollTo/jquery.scrollTo.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/ScrollToFixed/jquery-scrolltofixed-min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery.appear/jquery.appear.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-cookie/jquery.cookie.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/velocity/jquery.velocity.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/TouchSwipe/jquery.touchSwipe.min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/iCheck/jquery.icheck.min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/moment/min/moment.min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/perfect-scrollbar/src/jquery.mousewheel.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/perfect-scrollbar/src/perfect-scrollbar.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootbox/bootbox.min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery.scrollTo/jquery.scrollTo.min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/ScrollToFixed/jquery-scrolltofixed-min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery.appear/jquery.appear.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-cookie/jquery.cookie.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/velocity/jquery.velocity.min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/TouchSwipe/jquery.touchSwipe.min.js' , CClientScript::POS_END);
 		//<!-- end: MAIN JAVASCRIPTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTENTS -->
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js' , CClientScript::POS_END);
@@ -156,20 +156,8 @@
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/toastr/toastr.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-modal/js/bootstrap-modal.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-select/bootstrap-select.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-validation/dist/jquery.validate.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/DataTables/media/js/jquery.dataTables.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/DataTables/media/js/DT_bootstrap.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/truncate/jquery.truncate.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/summernote/dist/summernote.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-daterangepicker/daterangepicker.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/subview.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/subview-examples.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-modal/js/bootstrap-modal.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , CClientScript::POS_END);
 		//<!-- end: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTENTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		//<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
