@@ -1405,7 +1405,7 @@ var Main = function() {"use strict";
 			runMsViewport();
 			runTimeStamp();
 			documentEvents();
-			SVExamples.init();
+			
 		}
 	};
 }();
@@ -1414,9 +1414,10 @@ function getModal(what, url,id)
 {
   loaded = {};
   $('#ajax-modal').modal("hide");
-  console.log("getEvent",what,"url",url,"event",id);
   if(id!=null)
     url = url+id;
+  console.log("getEvent",what,"url",url,"id",id);
+  
   //var params = $(form).serialize();
   //$("#ajax-modal-modal-body").html("<i class='fa fa-cog fa-spin fa-2x icon-big'></i> Loading");
   $('body').modalmanager('loading'); 

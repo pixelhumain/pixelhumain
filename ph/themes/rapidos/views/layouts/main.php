@@ -166,7 +166,9 @@
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/main.js' , CClientScript::POS_END);
 		?>
 		<!-- end: CORE JAVASCRIPTS  -->
-		
+		<script type="text/javascript">
+			SVExamples.init();
+		</script>
 	</body>
 	<!-- end: BODY -->
 </html>
