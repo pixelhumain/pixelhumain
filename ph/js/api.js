@@ -49,6 +49,27 @@ function getModal(what, url,id)
     });
 	
 }
+function openSubView(what, url,id)
+{
+	$.subview({
+		content: "#ajaxSV",
+		onShow: function() {
+			$("#ajaxSV").html("<i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading");
+			$.ajax({
+		        type: "GET",
+		        url: baseUrl+url
+		    })
+		    .done(function (data) 
+		    {
+		        if (data) {               
+		            $("#ajaxSV").html(data); 
+		        } else {
+		        	bootbox.alert("bug happened : "+id);
+		        }
+		    });
+		}
+	});
+}
 function testitget(id,url,callback)
 {
 	$("#"+id).html("");
