@@ -19,16 +19,18 @@ function testitpost(id,url,params,callback){
 }
 function getModal(what, url,id)
 {
+	
 	loaded = {};
 	$('#ajax-modal').modal("hide");
-	console.log("getEvent",what,"url",url,"event",id);
-	url = url+id;
+	if(id)
+		url = url+id;
+	console.log("getModal",what,"url",url,"event",id);
 	//var params = $(form).serialize();
 	//$("#ajax-modal-modal-body").html("<i class='fa fa-cog fa-spin fa-2x icon-big'></i> Loading");
 	$('body').modalmanager('loading'); 
 	$.ajax({
         type: "GET",
-        url: url,
+        url: baseUrl+url
         //dataType : "json"
         //data: params
     })
@@ -37,7 +39,7 @@ function getModal(what, url,id)
         if (data) {               
         	/*if(!selectContent)
         		selectContent = data.selectContent;*/
-    		$("#ajax-modal-modal-title").html("<i class='fa fa-pencil'></i> "+eventJson[id]["eventLib"]);
+    		$("#ajax-modal-modal-title").html("<i class='fa fa-pencil'></i> "+what);
             $("#ajax-modal-modal-body").html(data); 
             $('#ajax-modal').modal("show");
         } else {
@@ -46,6 +48,27 @@ function getModal(what, url,id)
         }
     });
 	
+}
+function openSubView(what, url,id)
+{
+	$.subview({
+		content: "#ajaxSV",
+		onShow: function() {
+			$("#ajaxSV").html("<i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading");
+			$.ajax({
+		        type: "GET",
+		        url: baseUrl+url
+		    })
+		    .done(function (data) 
+		    {
+		        if (data) {               
+		            $("#ajaxSV").html(data); 
+		        } else {
+		        	bootbox.alert("bug happened : "+id);
+		        }
+		    });
+		}
+	});
 }
 function testitget(id,url,callback)
 {

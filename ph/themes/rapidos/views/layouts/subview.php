@@ -26,6 +26,10 @@
 		</form>
 	</div>
 </div>
+<!-- *** Ajax Test *** -->
+<div id="ajaxSV" class="no-display">
+	
+</div>
 <!-- *** READ NOTE *** -->
 <div id="readNote">
 	<div class="barTopSubview">
