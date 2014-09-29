@@ -6689,3 +6689,23 @@ body.error-full-page {
 .isMobile ul.main-navigation-menu li:not(.open) a:hover {
   background: inherit !important;
 }
+
+.cblock {
+  text-align: center;
+    padding:100px;
+}
+.cblock:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+/* The element to be centered, can
+   also be of any width and height */ 
+.centered {
+  display: inline-block;
+  vertical-align: middle;
+  width: 300px;
+}
