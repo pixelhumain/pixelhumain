@@ -18,6 +18,8 @@
 		<!-- end: META -->
 		<!-- start: MAIN CSS -->
 		<?php 
+		$detect = new Mobile_Detect;
+		$isMobile = $detect->isMobile();
 		$cs = Yii::app()->getClientScript();
 		$cs->registerCssFile('http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,200,100,800');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap/css/bootstrap.min.css');
@@ -107,7 +109,12 @@
 					<!-- end: SPANEL CONFIGURATION MODAL FORM -->
 					<div class="container">
 						<!-- start: PAGE HEADER -->
-						<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.toolbar');?>
+						<?php 
+						$path = '.views.layouts.toolbar';
+						if(true) { 
+						    $path = '.views.layouts.toolbarMobile'; 
+						} 
+						$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);?>
 						<!-- end: PAGE HEADER -->
 						<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.breadcrumb');?>
 						<!-- start: PAGE CONTENT -->
@@ -163,7 +170,13 @@
 		//<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		//<!-- start: CORE JAVASCRIPTS  -->
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/main.js' , CClientScript::POS_END);
+		
+		$path = '/assets/js/main.js';
+		if(true) { 
+		    $path = '/assets/js/mainMobile.js'; 
+		} 
+		
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl.$path , CClientScript::POS_END);
 		?>
 		<!-- end: CORE JAVASCRIPTS  -->
 		<script type="text/javascript">
