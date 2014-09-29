@@ -54,7 +54,7 @@ function openSubView(what, url,id)
 	$.subview({
 		content: "#ajaxSV",
 		onShow: function() {
-			$("#ajaxSV").html("<i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading");
+			$("#ajaxSV").html("<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>");
 			$.ajax({
 		        type: "GET",
 		        url: baseUrl+url

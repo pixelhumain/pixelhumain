@@ -18,4 +18,4 @@ $activeModules = array(
 	'agenda',
 	'networkmapping',
 	'news',
-	'teeo');
+	'twh');

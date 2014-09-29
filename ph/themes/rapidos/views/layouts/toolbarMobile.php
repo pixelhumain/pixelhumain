@@ -139,90 +139,49 @@
 						</li>
 					</ul>
 				</li>
+				<?php 
+				if(isset($this->toolbarMenuMaps)){
+					?>
 				<li class="dropdown">
 					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-						<span class="messages-count badge badge-default hide">3</span> <i class="fa fa-map-marker"></i> MAPS
+						<span class="messages-count badge badge-default ">3</span> <i class="fa fa-map-marker"></i> MAPS
 					</a>
 					<ul class="dropdown-menu dropdown-light dropdown-messages">
 						<li>
 							<div class="drop-down-wrapper ps-container">
 								<ul>
-									<li>
-										<a href="javascript:;">
-											<div class="clearfix">
-												<div class="thread-image">
-													<i class="fa fa-sitemap fa-3x  icon-big text-dark-green"></i>
-												</div>
-												<div class="thread-content">
-													<span class="author">Your Network</span>
-													<span class="preview">People, Organisation, Events, Projects </span>
-													<span class="time">around You</span>
-												</div>
-											</div>
-										</a>
-									</li>
+									<?php 
+							          foreach( $this->toolbarMenuMaps as $item )
+							          {
+							              $href = "javascript:;";
+							              if( isset($item["href"]) )
+							              {
+							              	if(stripos($item["href"], "http") >= 0 || stripos($item["href"], "#") >=0 )
+							              		$href = $item["href"];
+							              	else
+							              		$href = Yii::app()->createUrl($item["href"]) ;
+							              	}
+							             $icon = (isset($item["iconClass"])) ? $item["iconClass"] : '';
+									       ?>
+									       <li>
+												<a href="<?php echo $href ?>">
+													<div class="clearfix">
+														<div class="thread-image">
+															<i class="fa fa-3x icon-big <?php echo $icon ?>"></i>
+														</div>
+														<div class="thread-content">
+															<span class="author"><?php echo $item["label"] ?></span>
+															<span class="preview"><?php echo $item["desc"] ?> </span>
+															<span class="time"><?php echo $item["extra"] ?></span>
+														</div>
+													</div>
+												</a>
+											</li>
+							       <?php       
+							          }
+							       ?>
 
-									<li class="unread">
-										<a href="javascript:;" class="unread">
-											<div class="clearfix">
-												<div class="thread-image">
-													<span class="fa-stack"><i class="fa fa-group fa-3x  icon-big text-azure"></i></span>
-												</div>
-												<div class="thread-content">
-													<span class="author">Local NGos</span>
-													<span class="preview">Discover Non Governmental Organisations around you</span>
-													<span class="time">around You</span>
-												</div>
-											</div>
-										</a>
-									</li>
-
-									<li>
-										<a href="javascript:;" class="unread">
-											<div class="clearfix">
-												<div class="thread-image">
-													<i class="fa fa-building fa-3x  icon-big text-danger"></i>
-												</div>
-												<div class="thread-content">
-													<span class="author">Local Companies</span>
-													<span class="preview">Discover Companies around you</span>
-													<span class="time">around You</span>
-												</div>
-											</div>
-										</a>
-									</li>
-
-									<li>
-										<a href="javascript:;">
-											<div class="clearfix">
-												<div class="thread-image">
-													<i class="fa fa-university fa-3x  icon-big text-orange"></i>
-												</div>
-												<div class="thread-content">
-													<span class="author">Local State</span>
-													<span class="preview">All the city hall public services</span>
-													<span class="time">around You</span>
-												</div>
-											</div>
-										</a>
-									</li>
-
-									<li>
-										<a href="javascript:;">
-											<div class="clearfix">
-												<div class="thread-image">
-													<i class="fa fa-calendar fa-3x  icon-big text-light-purple"></i>
-												</div>
-												<div class="thread-content">
-													<span class="author">Local Events</span>
-													<span class="preview">Discover All sorts of local events around you</span>
-													<span class="time">around You</span>
-												</div>
-											</div>
-										</a>
-									</li>
-									
-									
+																	
 								</ul>
 							</div>
 						</li>
@@ -233,6 +192,9 @@
 						</li>
 					</ul>
 				</li>
+				<?php 
+				}
+					?>
 			</ul>
 			<!-- end: TOP NAVIGATION MENU -->
 		</div>
