@@ -111,7 +111,7 @@
 						<!-- start: PAGE HEADER -->
 						<?php 
 						$path = '.views.layouts.toolbar';
-						if(true) { 
+						if($isMobile) { 
 						    $path = '.views.layouts.toolbarMobile'; 
 						} 
 						$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);?>
