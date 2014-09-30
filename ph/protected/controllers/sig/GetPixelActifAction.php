@@ -8,14 +8,32 @@ class GetPixelActifAction extends CAction
 {
     public function run()
     {
-    	//récupère seulement les citoyens qui sont pixelActif ou partnerPH (et ont une position géo)
-    	$where = array(	'geo'  => array( '$exists' => true ), 
-    					'name' => array( '$exists' => true ), 
-    					//'tags' => "pixelActif",
-	 					//'tags' => "partnerPH",
-	 					);
+    
+    	$where = array(	//'tag'  => "",
+    					'geo'  => array( '$exists' => true ),
+    					'geo.latitude' => array('$gt' => floatval($_POST['latMinScope']), '$lt' => floatval($_POST['latMaxScope'])),
+						'geo.longitude' => array('$gt' => floatval($_POST['lngMinScope']), '$lt' => floatval($_POST['lngMaxScope']))
+					  
+					  	/*'geoPosition' =>  array('$geoWithin' => 
+									array( '$box' => array(array(floatval($_POST['lngMinScope']), 
+															  	 floatval($_POST['latMinScope']) 
+															 ),
+																
+														array(floatval($_POST['lngMaxScope']), 
+															  floatval($_POST['latMaxScope']) 
+															 ),
+												 		),
+										)
+									),
+					  */
+					  
+					  );
+					  
     	$users = PHDB::find(PHType::TYPE_CITOYEN, $where);
-        Rest::json( $users );
+        $users["origine"] = "getPixelActif";
+    	
+    	
+    	Rest::json( $users );
         Yii::app()->end();
     }
 }
