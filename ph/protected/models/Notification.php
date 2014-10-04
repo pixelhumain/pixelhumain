@@ -33,7 +33,7 @@ class Notification
         if(self::isAdminNotificationActivated())
             self::saveAdminNotification($params);
 
-        return $res
+        return $res;
     }
 
     //The administrators are notified if the parameter 'adminNotification' is set in the phConfig.php file

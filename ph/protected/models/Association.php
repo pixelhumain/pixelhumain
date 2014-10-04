@@ -8,11 +8,14 @@ class Association
                             		"tresorier"=>"Trésorier",
                             		"secretaire"=>"Secrétaire",
                             		"conseilAdministration"=>"Conseil d'administration",
-                            		"benevole"=>"Bénévoles");
+                            		"benevole"=>"Bénévoles",
+                                    "CEO"=>"Gérant CEO",
+                                    "CTO"=>"Responsable Techinique CTO");
    public static $positionList = array("membre",
                                 		"president",
                                 		"tresorier",
                                 		"secretaire",
                                 		"conseilAdministration",
-                                		"benevole");
+                                		"benevole",
+                                        );
 }

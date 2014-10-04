@@ -60,7 +60,7 @@
 		   var showDelaunay = true;
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
-
+		   var moduleId = "<?php echo $this->module->id?>";
 		</script>
 	</head>
 	<!-- end: HEAD -->
@@ -187,6 +187,7 @@
 $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.css');
 //$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap/bootstrap-typeahead.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/autosize/jquery.autosize.min.js' , CClientScript::POS_END);
 
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScript::POS_END);
 		
