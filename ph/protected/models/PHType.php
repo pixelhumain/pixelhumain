@@ -2,6 +2,15 @@
 
 class PHType
 {
+    /*
+    convert to Json Ld 
+    const TYPE_CITOYEN         = "persons";
+    const TYPE_GROUPS          = "organisations";
+    const TYPE_ASSOCIATION     = "NGO";
+    const TYPE_ENTREPRISE      = "LocalBusiness";
+    const TYPE_COLLECTIVITE    = "GovernmentOrganization";
+
+     */
     const TYPE_CITOYEN	       = "citoyens";
     const TYPE_GROUPS          = "groups";
     const TYPE_ASSOCIATION	   = "association";

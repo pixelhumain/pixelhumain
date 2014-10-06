@@ -114,6 +114,29 @@ class Citoyen
     - insert to ciotyens collection
     - send validation Email 
     - add a system Notification for stats
+
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Seattle",
+    "addressRegion": "WA",
+    "postalCode": "98052",
+    "streetAddress": "20341 Whitworth Institute 405 N. Whitworth"
+  },
+  "colleague": [
+    "http://www.xyz.edu/students/alicejones.html",
+    "http://www.xyz.edu/students/bobsmith.html"
+  ],
+  "email": "mailto:jane-doe@xyz.edu",
+  "image": "janedoe.jpg",
+  "jobTitle": "Professor",
+  "name": "Jane Doe",
+  "telephone": "(425) 123-4567",
+  "url": "http://www.janedoe.com"
+}
+
      */
     public static function register( $email, $pwd )
     {
@@ -138,14 +161,27 @@ class Citoyen
                    
                    //new user is creating account 
                    $newAccount = array(
-                                'email'=>$email,
-                                'pwd' => hash('sha256', $email.$pwd),
-                                CitoyenType::NODE_TOBEACTIVATED => true,
-                                'adminNotified' => false,
-                                'created' => time()
-                                );
+                        "@context"=> array(
+                        "@vocab"=>"http://schema.org",
+                        "ph"=>"http://pixelhumain.com/ph/ontology/",
+                            ),
+                        'email'=>$email,
+                        'pwd' => hash('sha256', $email.$pwd),
+                        'ph:created' => time()
+                        );
                     if(!empty($name))
                         $newAccount["name"] = $name;
+                    //save any inexistant tag to DB 
+                    if( isset($_POST['tags']) )
+                    {
+                      $tagsList = PHDB::findOne( PHType::TYPE_LISTS,array("name"=>"tags"), array('list'));
+                      foreach( explode(",", $_POST['tags']) as $tag)
+                      {
+                        if(!in_array($tag, $tagsList['list']))
+                          PHDB::update( PHType::TYPE_LISTS,array("name"=>"tags"), array('$push' => array("list"=>$tag)));
+                      }
+                      $newAccount["tags"] = $_POST['tags'];
+                    }
                     //add to DB
                     PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
                    
@@ -158,13 +194,14 @@ class Citoyen
                     //TODO : make emails as cron jobs
                     $app = new Application($_POST["app"]);
                     Mail::send(array("tpl"=>'validation',
-                                     "subject" => 'Confirmer votre compte  pour le site '.$app->name,
-                                     "from"=>Yii::app()->params['adminEmail'],
-                                     "to" => (!PH::notlocalServer()) ? Yii::app()->params['adminEmail']: $email,
-                                     "tplParams" => array( "user"=>$newAccount["_id"] ,
-                                                           "title" => $app->name ,
-                                                           "logo"  => $app->logoUrl )
-                                     ));
+                         "subject" => 'Confirmer votre compte  pour le site '.$app->name,
+                         "from"=>Yii::app()->params['adminEmail'],
+                         "to" => (!PH::notlocalServer()) ? Yii::app()->params['adminEmail']: $email,
+                         "tplParams" => array( "user"=>$newAccount["_id"] ,
+                                               "title" => $app->name ,
+                                               "logo"  => $app->logoUrl )
+                    ));
+
                     //TODO : add an admin notification
                     /*Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_REGISTER,
                                             "user"=>$newAccount["_id"]));*/

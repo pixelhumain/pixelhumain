@@ -18,6 +18,7 @@ var FormElements = function() {
 			placeholder: "Select a State",
 			allowClear: false
 		});
+		$('.tagSelect').select2({ tags: ["red", "green", "blue"] });
 	};
 	//function to initiate Callback on Checkbox and RadioButton
 	var runCalbackIcheck = function() {

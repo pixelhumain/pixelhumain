@@ -7,16 +7,19 @@ function testitpost(id,url,params,callback){
 	    type:"POST",
 	    dataType:"json",
 	    success:function(data) {
-	    	if(callback)
+	    	if( typeof callback === "function")
 	    		callback(data,id);
+	    	else if(typeof data.msg === "string" )
+	    		toastr.success(data);
 	    	else
 	      		$("#"+id).html(JSON.stringify(data, null, 4));
 	    },
 	    error:function (xhr, ajaxOptions, thrownError){
-	      $("#"+id).html(thrownError);
+	      toastr.error(thrownError);
 	    } 
 	  });
 }
+
 function getModal(what, url,id)
 {
 	
@@ -43,12 +46,11 @@ function getModal(what, url,id)
             $("#ajax-modal-modal-body").html(data); 
             $('#ajax-modal').modal("show");
         } else {
-            $("#ajax-modal-modal-body").html("bug get event "+id);
-            $('#ajax-modal').modal("show");
+            toastr.error("bug get "+id);
         }
     });
-	
 }
+
 function openSubView(what, url,id)
 {
 	$.subview({
@@ -64,12 +66,13 @@ function openSubView(what, url,id)
 		        if (data) {               
 		            $("#ajaxSV").html(data); 
 		        } else {
-		        	bootbox.alert("bug happened : "+id);
+		        	bootbox.error("bug happened : "+id);
 		        }
 		    });
 		}
 	});
 }
+
 function testitget(id,url,callback)
 {
 	$("#"+id).html("");
@@ -78,14 +81,16 @@ function testitget(id,url,callback)
 	    type:"GET",
 	    dataType:"json",
 	    success:function(data) {
-	    	if(callback)
+	    	if( typeof callback === "function")
 	    		callback(data,id);
+	    	else if(typeof data === "string" )
+	    		toastr.success(data);
 	    	else
 	      		$("#"+id).html(JSON.stringify(data, null, 4));
 	    	
 	    },
 	    error:function (xhr, ajaxOptions, thrownError){
-	      $("#"+id).html(thrownError);
+	       toastr.error(thrownError);
 	    } 
 	  });
 }

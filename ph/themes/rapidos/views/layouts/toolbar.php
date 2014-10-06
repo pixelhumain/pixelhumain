@@ -164,6 +164,7 @@
 									<?php 
 							          foreach( $this->toolbarMenuMaps as $item )
 							          {
+							          	  $onclick = (isset($item["onclick"])) ? ' onclick="'.$item["onclick"].'"' : "";
 							              $href = "javascript:;";
 							              if( isset($item["href"]) )
 							              {
@@ -175,7 +176,7 @@
 							             $icon = (isset($item["iconClass"])) ? $item["iconClass"] : '';
 							       ?>
 							       <li>
-										<a href="<?php echo $href ?>">
+										<a href="<?php echo $href ?>" <?php echo $onclick ?> >
 											<div class="clearfix">
 												<div class="thread-image">
 													<i class="fa fa-3x icon-big <?php echo $icon ?>"></i>
