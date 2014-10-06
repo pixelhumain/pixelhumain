@@ -174,7 +174,7 @@
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScript::POS_END);
 		
 		$path = '/assets/js/main.js';
-		if(true) { 
+		if($isMobile) { 
 		    $path = '/assets/js/mainMobile.js'; 
 		} 
 		

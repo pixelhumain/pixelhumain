@@ -1409,34 +1409,3 @@ var Main = function() {"use strict";
 		}
 	};
 }();
-
-function getModal(what, url,id)
-{
-  loaded = {};
-  $('#ajax-modal').modal("hide");
-  if(id!=null)
-    url = url+id;
-  console.log("getEvent",what,"url",url,"id",id);
-  
-  //var params = $(form).serialize();
-  //$("#ajax-modal-modal-body").html("<i class='fa fa-cog fa-spin fa-2x icon-big'></i> Loading");
-  $('body').modalmanager('loading'); 
-  $.ajax({
-        type: "GET",
-        url: baseUrl+url,
-        //dataType : "json"
-        //data: params
-    })
-    .done(function (data) 
-    {
-        if (data) {               
-        $("#ajax-modal-modal-title").html("<i class='fa fa-pencil'></i> "+title);
-            $("#ajax-modal-modal-body").html(data); 
-            $('#ajax-modal').modal("show");
-        } else {
-            $("#ajax-modal-modal-body").html("bug get event "+id);
-            $('#ajax-modal').modal("show");
-        }
-    });
-  
-}
