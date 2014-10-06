@@ -171,6 +171,17 @@ class Citoyen
                         );
                     if(!empty($name))
                         $newAccount["name"] = $name;
+                    //save any inexistant tag to DB 
+                    if( isset($_POST['tags']) )
+                    {
+                      $tagsList = PHDB::findOne( PHType::TYPE_LISTS,array("name"=>"tags"), array('list'));
+                      foreach( explode(",", $_POST['tags']) as $tag)
+                      {
+                        if(!in_array($tag, $tagsList['list']))
+                          PHDB::update( PHType::TYPE_LISTS,array("name"=>"tags"), array('$push' => array("list"=>$tag)));
+                      }
+                      $newAccount["tags"] = $_POST['tags'];
+                    }
                     //add to DB
                     PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
                    
@@ -190,6 +201,7 @@ class Citoyen
                                                "title" => $app->name ,
                                                "logo"  => $app->logoUrl )
                     ));
+
                     //TODO : add an admin notification
                     /*Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_REGISTER,
                                             "user"=>$newAccount["_id"]));*/

@@ -192,9 +192,11 @@ $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/autosize/jq
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScript::POS_END);
 		
 		$path = '/assets/js/main.js';
-		if(true) { 
+		$detect = new Mobile_Detect;
+	    $isMobile = $detect->isMobile();
+	      
+	    if($isMobile) 
 		    $path = '/assets/js/mainMobile.js'; 
-		} 
 		
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl.$path , CClientScript::POS_END);
 		?>
