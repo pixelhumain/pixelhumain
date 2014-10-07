@@ -69,6 +69,9 @@ function openSubView(what, url,id)
 		        	bootbox.error("bug happened : "+id);
 		        }
 		    });
+		},
+		onHide : function() {
+			loaded = {};
 		}
 	});
 }
