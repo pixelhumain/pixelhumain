@@ -27,12 +27,12 @@
 							</a>
 						</li>
 						<li>
-							<a href="pages_calendar.html">
+							<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/event/agenda")?>">
 								My Calendar
 							</a>
 						</li>
 						<li>
-							<a href="pages_messages.html">
+							<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/discuss")?>">
 								My Messages (3)
 							</a>
 						</li>

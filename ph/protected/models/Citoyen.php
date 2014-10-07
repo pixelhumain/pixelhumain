@@ -142,12 +142,13 @@ class Citoyen
     {
         if(Yii::app()->request->isAjaxRequest && isset($email) && !empty($email))
         {
-            Yii::app()->session["userId"] = null;
-            Yii::app()->session["userEmail"] = null; 
-            Yii::app()->session["user"] = null; 
+            
             $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$email));
             if(!$account)
             {
+              Yii::app()->session["userId"] = null;
+              Yii::app()->session["userEmail"] = null; 
+              Yii::app()->session["user"] = null; 
                 //validate isEmail
                 $name = "";
                if(preg_match('#^([\w.-])/<([\w.-]+@[\w.-]+\.[a-zA-Z]{2,6})/>$#',$email, $matches)) 
@@ -169,8 +170,18 @@ class Citoyen
                         'pwd' => hash('sha256', $email.$pwd),
                         'ph:created' => time()
                         );
-                    if(!empty($name))
-                        $newAccount["name"] = $name;
+
+                    if(isset($_POST['name']))
+                        $newAccount["name"] = $_POST['name'];
+                    if(isset($_POST['cp']))
+                    {
+                         $newAccount["cp"] = $_POST['cp'];
+                         $newAccount["address"] = array(
+                           "@type"=>"PostalAddress",
+                           "postalCode"=> $_POST['cp']);
+                    }
+                    if(isset($_POST['country']))
+                           $newAccount["address"]["addressLocality"]= $_POST['country'];
                     //save any inexistant tag to DB 
                     if( isset($_POST['tags']) )
                     {
@@ -206,11 +217,11 @@ class Citoyen
                     /*Notification::saveNotification(array("type"=>NotificationType::NOTIFICATION_REGISTER,
                                             "user"=>$newAccount["_id"]));*/
                     
-                    $res = array("result"=>true, "id"=>$newAccount);
+                    $res = array("result"=>true, "id"=>$newAccount, "msg"=>"Data Successfully Saved.");
                } else
                         $res = array("result"=>false, "msg"=>"Vous devez remplir un email valide et un mot de passe .");
             } else
-                $res = array("result"=>true, "id"=>$account["_id"]);
+                $res = array("result"=>true, "id"=>$account["_id"], "msg"=>"Existing User Successfully Saved.");
         } else
             $res = array("result"=>false, "msg"=>"Cette requete ne peut aboutir.");
 

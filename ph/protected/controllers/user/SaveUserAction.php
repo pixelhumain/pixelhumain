@@ -14,17 +14,42 @@ class SaveUserAction extends CAction
         if( Yii::app()->request->isAjaxRequest )
         {
             //if exists login else create the new user
-            $res = Citoyen::register( $email, $_POST["pwd"]);
+            $pwd = (isset($_POST["pwd"])) ? $_POST["pwd"] : null ;
+            $res = Citoyen::register( $email, $pwd);
             if($user = PHDB::findOne(PHType::TYPE_CITOYEN,array( "email" => $email ) ))
             {
                 //udate the new app specific fields
                 $newInfos = array();
                 if( isset($_POST['cp']) )
                     $newInfos['cp'] = $_POST['cp'];
-                if( isset($_POST['name']) )
+                if( isset($_POST['name']) ){
                     $newInfos['name'] = $_POST['name'];
-               if( isset($_POST['tags']) )
+                    Yii::app()->session["user"] = array("name"=>$_POST['name']); 
+                }
+                if( isset($_POST['city']) )
+                    $newInfos['city'] = $_POST['city'];
+                if( isset($_POST['tags']) )
                     $newInfos['tags'] = explode(",",$_POST['tags']);
+                if(isset($_POST['cp']))
+                    {
+                         $newInfos["cp"] = $_POST['cp'];
+                         $newInfos["address"] = array(
+                           "@type"=>"PostalAddress",
+                           "postalCode"=> $_POST['cp']);
+                    }
+                if(isset($_POST['country']))
+                       $newInfos["address"]["addressLocality"]= $_POST['country'];
+
+                if( isset($_POST['tags']) )
+                {
+                  $tagsList = PHDB::findOne( PHType::TYPE_LISTS,array("name"=>"tags"), array('list'));
+                  foreach( explode(",", $_POST['tags']) as $tag)
+                  {
+                    if(!in_array($tag, $tagsList['list']))
+                      PHDB::update( PHType::TYPE_LISTS,array("name"=>"tags"), array('$push' => array("list"=>$tag)));
+                  }
+                  $newInfos["tags"] = $_POST['tags'];
+                }
 
                 //specific application routines
                 if( isset( $_POST["app"] ) )

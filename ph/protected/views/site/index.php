@@ -627,12 +627,12 @@ $this->sidebar1 = array(
         	<div>
         	Une équipe dynamique, professionelle, passionné de Pixels Actifs
         	<br/>c'est donnée de vrais objectifs humains, d'améliorer la connectivité, le partage, et l'action locale.
-        	<?php 
+        	<?php /*
             $this->renderPartial('application.views.projet.organigrid',array( 'projet' => Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId("523c8195f6b95c5426007cb8"))),
             																  "typePeople"=>"team,mentors",
             																  "design"=>"s",
                                                                               "isModule"=>true
-                                                                             ));
+                                                                             ));*/
         	?>
         	
         	
