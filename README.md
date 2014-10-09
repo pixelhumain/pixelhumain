@@ -62,7 +62,7 @@ mongod --dbpath data\db
 
 ####Composer installation
 PixelHumain is set with composer in order to manage dependencies and libraries.
-- Clone the repository in order to recover the files
+- [Clone](https://github.com/pixelhumain) the repository in order to recover the files
 - If you don't have it get the composer (https://getcomposer.org/)
 - Modify the file /ph/protected/config/dbconfig.php with your database name and URL
 ```
