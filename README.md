@@ -115,6 +115,12 @@ RewriteRule ^(.*)$ /ph/index.php/$1 [L]
 
 ####Adding a Module
 - at the same level of the /pixelhumain folder , create a folder called /modules
+```
+/pixelhumain
+	/ph
+	/doc ...
+/modules
+```
 - cd modules 
 - git clone "any of the module" ex : https://github.com/pixelhumain/networkMapping
 - front end URL : 127.0.0.1/ph/networkmapping
