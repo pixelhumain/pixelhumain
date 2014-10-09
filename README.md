@@ -84,6 +84,13 @@ composer update
 composer install
 ```
 
+####Launch the application
+- Launch you http webserver
+- depending on how you webservers alias is configured here the alias is called ''ph'' and pointing to the folder you cloned test this url : 
+http://localhost:8080/ph/index.php/test
+
+- All the first line should be green.
+
 right now you can access the application like 127.0.0.1/ph/index.php/anyModule
 to remove the index.php you'll need to configure your http.conf like this 
 ```
@@ -105,13 +112,6 @@ RewriteRule ^(.*)$ /ph/index.php/$1 [L]
 </IfModule>
 </Directory>
 ```
-
-####Launch the application
-- Launch you http webserver
-- depending on how you webservers alias is configured here the alias is called ''ph'' and pointing to the folder you cloned test this url : 
-http://localhost:8080/ph/index.php/test
-
-- All the first line should be green.
 
 ####Adding a Module
 - at the same level of the /pixelhumain folder , create a folder called /modules
