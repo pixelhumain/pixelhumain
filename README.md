@@ -122,12 +122,19 @@ RewriteRule ^(.*)$ /ph/index.php/$1 [L]
 /modules
 ```
 - cd modules 
-- git clone "any of the module" ex : https://github.com/pixelhumain/networkMapping
-- front end URL : 127.0.0.1/ph/networkmapping
-- api URL : 127.0.0.1/ph/networkmapping/api
+- git clone "any of the module" ex : https://github.com/pixelhumain/communecter
+- front end URL : 127.0.0.1/ph/communecter
+- api URL : 127.0.0.1/ph/communecter/api
 - if any there's any initData to be installed you'll see the prompt 
 - sometimes you'll need to initData to install test Data sets
 YOU SUCCEED ! READY TO CODE NOW !
+
+####Understanding the structure and Yii 
+Now you can follow urls to understand and dive into the code, which is a fairly standard and simple MVC
+ex : 127.0.0.1/ph/communecter/person/profile
+- "communecter" is the module 
+- "person" is the controller file called PersonController.php
+- "profile" is the action foun called actionProfile found in the above controller file
 
 ##Version 0.001 
     L'homme qui déplace une montagne commence par déplacer les petites pierres.- Confucius
