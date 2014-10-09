@@ -62,7 +62,7 @@ mongod --dbpath data\db
 
 ####Composer installation
 PixelHumain is set with composer in order to manage dependencies and libraries.
-- [Clone](https://github.com/pixelhumain) the repository in order to recover the files
+- [Clone](https://github.com/pixelhumain/pixelhumain) the repository in order to recover the files
 - If you don't have it get the composer (https://getcomposer.org/)
 - Modify the file /ph/protected/config/dbconfig.php with your database name and URL
 ```
@@ -82,6 +82,28 @@ where you'll find composer.json
 composer update
 ...
 composer install
+```
+
+right now you can access the application like 127.0.0.1/ph/index.php/anyModule
+to remove the index.php you'll need to configure your http.conf like this 
+```
+Alias "/ph" "pathToProjectFolder/pixelhumain/ph"
+<Directory "pathToProjectFolder/pixelhumain/ph">
+Options FollowSymLinks Indexes
+AllowOverride none
+Order deny,allow
+Allow from 127.0.0.1
+deny from all
+<IfModule mod_rewrite.c>
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php|assets|robots\.txt)
+RewriteRule ^(.*)$ /ph/index.php/$1 [L]
+</IfModule>
+</Directory>
 ```
 
 ####Launch the application
