@@ -76,16 +76,19 @@ function openSubView(what, url,id)
 	});
 }
 
-function testitget(id,url,callback)
+function testitget(id,url,callback,datatype)
 {
-	$("#"+id).html("");
+	if(datatype != "html" )
+		$("#"+id).html("");
 	$.ajax({
 	    url:url,
 	    type:"GET",
-	    dataType:"json",
+	    //dataType:"json",
 	    success:function(data) {
 	    	if( typeof callback === "function")
 	    		callback(data,id);
+	    	else if(datatype === "html" )
+	    		$(id).html(data);
 	    	else if(typeof data === "string" )
 	    		toastr.success(data);
 	    	else
