@@ -34,6 +34,14 @@
 												fillOpacity: 0.3,
 												clickable: true
 											}).addTo(theMap);
+											
+					L.circleMarker([51.508, -0.11], 50000, {
+						color: 'red',
+						fillColor: '#f03',
+						fillOpacity: 0.5,
+    					stroke: false
+					}).addTo(theMap);
+					
 					//autorise l'edition de la zone par l'utilisateur						
 					theRectangleArea.editing.enable();	
 					//recule la carte (zoom - 1) pour rendre le rectangle visible					
