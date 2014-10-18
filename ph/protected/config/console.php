@@ -14,7 +14,7 @@ return array(
 	),
 	// application components
 	'components'=>array(
-		'mongodb' => $dbconfigtest,
+		'mongodb' => $dbconfig,
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(

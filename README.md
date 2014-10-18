@@ -62,7 +62,7 @@ mongod --dbpath data\db
 
 ####Composer installation
 PixelHumain is set with composer in order to manage dependencies and libraries.
-- Clone the repository in order to recover the files
+- [Clone](https://github.com/pixelhumain/pixelhumain) the repository in order to recover the files
 - If you don't have it get the composer (https://getcomposer.org/)
 - Modify the file /ph/protected/config/dbconfig.php with your database name and URL
 ```
@@ -72,6 +72,8 @@ $dbconfig = array(
     'db' => 'pixelhumain',    
 );
 ```
+- Create a new folder called "runtime" in the directory "path/to/pixelhumain/ph/protected/"
+- Create a new folder called "assets" in the directory "path/to/pixelhumain/ph"
 - Launch following commands to initiate the application : 
 in 
 cd path/to/pixelhumain/ph
@@ -89,15 +91,50 @@ http://localhost:8080/ph/index.php/test
 
 - All the first line should be green.
 
+right now you can access the application like 127.0.0.1/ph/index.php/anyModule
+to remove the index.php you'll need to configure your http.conf like this 
+```
+Alias "/ph" "pathToProjectFolder/pixelhumain/ph"
+<Directory "pathToProjectFolder/pixelhumain/ph">
+Options FollowSymLinks Indexes
+AllowOverride none
+Order deny,allow
+Allow from 127.0.0.1
+deny from all
+<IfModule mod_rewrite.c>
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php|assets|robots\.txt)
+RewriteRule ^(.*)$ /ph/index.php/$1 [L]
+</IfModule>
+</Directory>
+```
+
 ####Adding a Module
 - at the same level of the /pixelhumain folder , create a folder called /modules
+```
+/pixelhumain
+	/ph
+	/doc ...
+/modules
+```
 - cd modules 
-- git clone "any of the module" ex : https://github.com/pixelhumain/networkMapping
-- front end URL : 127.0.0.1/ph/networkmapping
-- api URL : 127.0.0.1/ph/networkmapping/api
+- git clone "any of the module" ex : https://github.com/pixelhumain/communecter
+- front end URL : 127.0.0.1/ph/communecter
+- api URL : 127.0.0.1/ph/communecter/api
 - if any there's any initData to be installed you'll see the prompt 
 - sometimes you'll need to initData to install test Data sets
 YOU SUCCEED ! READY TO CODE NOW !
+
+####Understanding the structure and Yii 
+Now you can follow urls to understand and dive into the code, which is a fairly standard and simple MVC
+ex : 127.0.0.1/ph/communecter/person/profile
+- "communecter" is the module 
+- "person" is the controller file called PersonController.php
+- "profile" is the action foun called actionProfile found in the above controller file
 
 ##Version 0.001 
     L'homme qui déplace une montagne commence par déplacer les petites pierres.- Confucius

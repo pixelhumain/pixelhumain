@@ -19,7 +19,12 @@ class m140528_101623_insert_lists extends EMongoMigration
 			        if (count($json_a) == 0) {
 						throw new Exception("Et ho c'est pas du bon format json ton fichier !");
 					} else {
-						$this->insert($json_a);
+						foreach ( array_keys($json_a) as $key) {
+							if ( $key == "_id" ) {
+								$json_a[$key] = new \MongoId( $json_a[$key]['$oid'] );
+							}
+						}
+						$this->insert( $json_a );
 					}
 			    }
 			} else {

@@ -14,7 +14,7 @@ return array(
 	
 	//SPECIFIC MODULE confis
 	//'defaultController' => 'communecter/default/index',
-	'homeUrl' => "/ph?tpl=index",
+	'homeUrl' => "/ph/twh",//"/ph?tpl=index",
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -37,6 +37,7 @@ return array(
     	'ext.mobile.Mobile_Detect',
     	'ext.Json.Validator',
         'ext.helpers.*',
+        'ext.CornerDev',
         //'ext.easyrdf.lib.*'
 	),
 	'modules'=>array_merge($activeModules,array(

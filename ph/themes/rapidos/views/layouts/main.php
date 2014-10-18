@@ -21,7 +21,7 @@
 		$detect = new Mobile_Detect;
 		$isMobile = $detect->isMobile();
 		$cs = Yii::app()->getClientScript();
-		$cs->registerCssFile('http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,200,100,800');
+		//$cs->registerCssFile('http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,200,100,800');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap/css/bootstrap.min.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/font-awesome/css/font-awesome.min.css');
 		
@@ -192,9 +192,12 @@ $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/autosize/jq
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScript::POS_END);
 		
 		$path = '/assets/js/main.js';
-		if(true) { 
-		    $path = '/assets/js/mainMobile.js'; 
-		} 
+
+		$detect = new Mobile_Detect;
+	    $isMobile = $detect->isMobile();
+	      
+	    if($isMobile)
+	    	$path = '/assets/js/mainMobile.js'; 
 		
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl.$path , CClientScript::POS_END);
 		?>
