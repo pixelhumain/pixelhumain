@@ -180,7 +180,8 @@
 
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/subview.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/subview-examples.js' , CClientScript::POS_END);
-
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/sig/sig.js' , CClientScript::POS_END);
+		
 //$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery-Tags-Input/jquery.tagsinput.css');
 //$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap/bootstrap-typeahead.js' , CClientScript::POS_END);
 //$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery-Tags-Input/jquery.tagsinput.js' , CClientScript::POS_END);
@@ -206,6 +207,7 @@ $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/autosize/jq
 		jQuery(document).ready(function() {
 			Main.init();
 			SVExamples.init();
+			Sig.init();
 		});
 		</script>
 	</body>
