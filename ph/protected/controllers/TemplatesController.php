@@ -27,17 +27,17 @@ class TemplatesController extends Controller
     {
         if(isset($collection))
             $dir .= '/'.$collection.'/';
-        $upload_dir = 'upload/'.$dir.'/';
-        
-
+        $upload_dir = 'upload/';
         if(!file_exists ( $upload_dir ))
             mkdir ($upload_dir);
-        $allowed_ext = array('jpg','jpeg','png','gif');
-        
+        $upload_dir = 'upload/'.$dir.'/';
+        if(!file_exists ( $upload_dir ))
+            mkdir ($upload_dir);
+        $allowed_ext = array('jpg','jpeg','png','gif',"pdf");
         
         if(strtolower($_SERVER['REQUEST_METHOD']) != 'post')
         {
-    	    echo json_encode(array('error'=>'Error! Wrong HTTP method!'));
+    	    echo json_encode(array('result'=>false,'error'=>'Error! Wrong HTTP method!'));
 	        exit;
         }
         
@@ -48,7 +48,7 @@ class TemplatesController extends Controller
         	$ext = pathinfo($pic['name'], PATHINFO_EXTENSION);
         	if(!in_array($ext,$allowed_ext))
             {
-        		echo json_encode(array('error'=>'Only '.implode(',',$allowed_ext).' files are allowed!'));
+        		echo json_encode(array('result'=>false,'error'=>'Only '.implode(',',$allowed_ext).' files are allowed!'));
     	        exit;
         	}	
         
@@ -59,13 +59,13 @@ class TemplatesController extends Controller
         	$name = ($rename) ? Yii::app()->session["userId"].'.'.$ext : $pic['name'];
         	if(move_uploaded_file($pic['tmp_name'], $upload_dir.$name))
             {
-        		echo json_encode(array("success"=>true,'name'=>$name));
+        		echo json_encode(array('result'=>true,"success"=>true,'name'=>$name));
     	        exit;
         	}
         	
         }
         
-        echo json_encode(array('error'=>'Something went wrong with your upload!'));
+        echo json_encode(array('result'=>false,'error'=>'Something went wrong with your upload!'));
     	exit;
 	}
     function clean($string) {
@@ -76,7 +76,7 @@ class TemplatesController extends Controller
     
     public function actionPage($name){
         $page = Yii::app()->mongodb->data->findOne(array("key"=>$name,
-        														 "type"=>"page"));
+        												 "type"=>"page"));
         $this->pageTitle = ((isset($page["title"])) ? $page["title"] : strtoupper($name) ).", Pixel Humain : 1er Réseau Social Citoyen Libre";
         $this->inlinePageTitle = strtoupper($name);
         $this->render("active/".$name, array( "name" => $name ));
