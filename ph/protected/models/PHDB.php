@@ -34,6 +34,10 @@ class PHDB
     {
         return Yii::app()->mongodb->selectCollection($collection)->update($where,$action);
     }
+     public static function updateWithOptions( $collection, $where, $action,$options )
+    {
+        return Yii::app()->mongodb->selectCollection($collection)->update($where,$action,$options);
+    }
     public static function insert( $collection, $info )
     {
         return Yii::app()->mongodb->selectCollection($collection)->insert($info);

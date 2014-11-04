@@ -12,11 +12,10 @@ class ImportDataAction extends CAction
     {
     	//$result = $this->createPartners();			//créé des citoyens Partenaires et PixelActif
         //$result = $this->importFromJson();			//importe les cities depuis fichier .json vers dbb
-        //$result .= $this->checkPositionCitoyens();	//update la position geo des citoyens
-     	//$result = $this->updateGeoPositionCitoyens();
+        //$result = $this->updateGeoPositionCitoyens();
     	//$result = $this->updateGeoPositionCities();
-    	
-    	$result = "Par sécurité, l'execution de ce script est désactivé. Merci de choisir une action (->contrll ImportDataAction) avant d'executer ce script";
+    	$result = $this->updateGeoPositionGroups();
+    	//$result = "Par sécurité, l'execution de ce script est désactivé. Merci de choisir une action (->contrll ImportDataAction) avant d'executer ce script";
 		Rest::json($result);  
 		Yii::app()->end();
 	}
@@ -37,13 +36,18 @@ class ImportDataAction extends CAction
 		$result .= $partnersJson->type;
 		foreach($partnersJson->features as $partner) {
 				
+			$tag = (isset($partner->properties->tag)) ? $partner->properties->tag : "pixelActif";
 			$citoyen = array(	'name' => $partner->properties->name,
-								'tag' => $partner->properties->tag,
+								'tag' => $tag,
                                 'created' => time(),
-                                'geo' => array("type" => $partner->geometry->type,	
-                                			   "coordinates" => array( $partner->geometry->coordinates[1],
-                                			   						   $partner->geometry->coordinates[0] )
-                                		 )
+                                'geo' => array("@type" => "GeoCoordinates",	
+                                			   "longitude" => $partner->geometry->coordinates[0],
+                                			   "latitude" => $partner->geometry->coordinates[1],
+                                		 ),
+                                'geoPosition' => array("type" => "Point", 
+                                						"coordinates" => array(	$partner->geometry->coordinates[0], 
+                                												$partner->geometry->coordinates[1])
+                                					   )
 								);
 			$result .= " name : ".$partner->properties->name;
 			Yii::app()->mongodb->citoyens->insert($citoyen);
@@ -189,6 +193,39 @@ class ImportDataAction extends CAction
      	
      	return $result;  	
 	 }
+	
+	public function updateGeoPositionGroups()
+	 {	
+	 	$groups =  PHDB::find(PHType::TYPE_GROUPS);
+     	$result = "deb";
+     	$i=0;
+     	foreach ($groups as $group)
+     	{
+     				$i++;
+     				//trouve la ville qui correspond au cp                    
+					$queryCity = array( "cp" => strval(intval($group["cp"])),
+										"geo" => array('$exists' => true) ); 
+					$city =  Yii::app()->mongodb->cities->findOne($queryCity); //->limit(1)
+					if($city!=null){ $i++;
+			
+					$newPos = array('geo' => array("@type" => "GeoCoordinates",	
+											   "longitude" => floatval($city['geo']['coordinates'][0]),
+											   "latitude"  => floatval($city['geo']['coordinates'][1]) ),
+									'geoPosition' => $city['geo']
+								  );
+			
+			 
+                    $result .= " <".$i."> ". $city['name'].$group["cp"];
+    	
+     				//Yii::app()->mongodb->groups->update( array("_id" => $group["_id"]), 
+                    //                                   	 array('$set' => $newPos ) );
+            
+     				}
+     				$result .= " - count : ".count($groups)." - latlng : ".$city['geo']['coordinates'][1];
+     	
+     				return $result;  	
+	 }
+	}
 	
 	
 

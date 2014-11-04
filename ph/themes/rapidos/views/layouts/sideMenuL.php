@@ -49,7 +49,7 @@
                 echo "</a>";
               echo "</li>";
           }
-
+          echo '<li><a href="javascript:void(0)"><i class="fa fa-cog"></i> <span class="title"> Debug </span><i class="icon-arrow"></i> </a><ul class="sub-menu">';
           if(stripos($_SERVER['SERVER_NAME'], "127.0.0.1") >=0 || stripos($_SERVER['SERVER_NAME'], "localhost:8080") >=0 )
           {
             foreach( $this->pages as $key=>$item )
@@ -80,7 +80,7 @@
                 echo "</li>";
             }
           }
-            
+          echo "</ul></li>";  
           ?>
         
         <!-- END TWO LEVEL MENU -->     
@@ -97,8 +97,9 @@
       </a>
     </div>
     <div class="col-xs-6 text-right no-padding">
+      
       <a class="btn btn-sm log-out text-right" href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout')?>">
-        <i class="fa fa-power-off"></i> Log Out
+        <i class="fa fa-power-off"></i> Work in Progress
       </a>
     </div>
   </div>

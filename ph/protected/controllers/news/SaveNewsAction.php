@@ -39,10 +39,10 @@ class SaveNewsAction extends CAction
                 if( isset($_POST['scopeType']) ) $newsData['scope']['scopeType'] = $_POST['scopeType'];
                 
                 if($newsData['scope']['scopeType'] == "geoArea"){
-                	if( isset($_POST['latMinScope']) ) $newsData['scope']['geoArea']['latMinScope'] = $_POST['latMinScope'];
-                	if( isset($_POST['lngMinScope']) ) $newsData['scope']['geoArea']['lngMinScope'] = $_POST['lngMinScope'];
-                	if( isset($_POST['latMaxScope']) ) $newsData['scope']['geoArea']['latMaxScope'] = $_POST['latMaxScope'];
-                	if( isset($_POST['lngMaxScope']) ) $newsData['scope']['geoArea']['lngMaxScope'] = $_POST['lngMaxScope'];          	
+                	if( isset($_POST['latMinScope']) ) $newsData['scope']['geoArea']['latMinScope'] = floatval($_POST['latMinScope']);
+                	if( isset($_POST['lngMinScope']) ) $newsData['scope']['geoArea']['lngMinScope'] = floatval($_POST['lngMinScope']);
+                	if( isset($_POST['latMaxScope']) ) $newsData['scope']['geoArea']['latMaxScope'] = floatval($_POST['latMaxScope']);
+                	if( isset($_POST['lngMaxScope']) ) $newsData['scope']['geoArea']['lngMaxScope'] = floatval($_POST['lngMaxScope']);          	
                 }
                 
                 if($newsData['scope']['scopeType'] == "cp"){
@@ -63,18 +63,20 @@ class SaveNewsAction extends CAction
      			$myCp = 0;
      			//si l'utilisateur a enregistré sa position, on recopie lat lng
      			if(isset($user['geo'])) {
-     					$newsData['from']['latitude']  = $user['geo']['latitude'];
-	 					$newsData['from']['longitude'] = $user['geo']['longitude'];   
+     					$newsData['from']['latitude']  = floatval($user['geo']['latitude']);
+	 					$newsData['from']['longitude'] = floatval($user['geo']['longitude']);   
      			}
      			 else { //sinon on utilise la position geo de sa ville
      					$myCp = $me['cp'];
     			
         				$city = PHDB::find( 'cities', array( "cp" => $myCp ) );
      					if($city != null){
-	 						$newsData['from']['latitude'] = $city['geo']['latitude'];
-	 						$newsData['from']['longitude'] = $city['geo']['longitude'];   
+	 						$newsData['from']['latitude'] = floatval($city['geo']['latitude']);
+	 						$newsData['from']['longitude'] = floatval($city['geo']['longitude']);   
         				}
         		}
+        		
+        		$newsData['author'] = new MongoId(Yii::app()->session["userId"]);
         		
                 PHDB::insert( PHType::TYPE_NEWS, $newsData );		     				
 

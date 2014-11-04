@@ -22,7 +22,7 @@
 					</a>
 					<ul class="dropdown-menu dropdown-dark">
 						<li>
-							<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/profile")?>">
+							<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person")?>">
 								My Profile
 							</a>
 						</li>
