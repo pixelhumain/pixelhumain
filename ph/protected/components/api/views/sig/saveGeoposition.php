@@ -9,8 +9,8 @@
 
 <div class="apiForm createUser">
 	<div id="mapCanvasNewPos"class="mapCanvas1"> </br>Chargement de la carte ... </div>	
-	<a class="btn" href="javascript:initSaveNewPos('citoyens' , '538c56dfc0461f5a307a5dff')">Initialiser la carte</a><br/>
-	<a class="btn" href="javascript:saveGeoposition('citoyens', '538c56dfc0461f5a307a5dff')">Valider la position de l'élément</a><br/>
+	<a class="btn" href="javascript:initSaveNewPos('citoyens' , '<?php echo Yii::app()->session["userId"]; ?>')">Initialiser la carte</a><br/>
+	<a class="btn" href="javascript:saveGeoposition('citoyens', '<?php echo Yii::app()->session["userId"]; ?>')">Valider la position de l'élément</a><br/>
 	
 	<div id="savePosGroupsResult" class="result fss"></div>
 
