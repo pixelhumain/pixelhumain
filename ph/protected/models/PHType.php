@@ -27,6 +27,7 @@ class PHType
     const TYPE_MESSAGES        = "messages";
     const TYPE_JOBTYPES        = "jobTypes"; 
     const TYPE_NEWS        	   = "news";
+    const TYPE_LAYOUT          = "layout";
     
     /* Standard connection types, the user can then create his own groupings*/
     const CONNECT_TYPE_FRIEND	   = "friend";

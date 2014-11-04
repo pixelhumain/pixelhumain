@@ -1,78 +1,7 @@
 var Index = function() {"use strict";
 
 	// function to initiate Chart 1
-	var runChart1 = function() {
-		function randValue() {
-			return (Math.floor(Math.random() * (100 + 4000 - 2000))) + 2000;
-		};
-		function createSeries() {
-			var y = date.getFullYear(), m = date.getMonth();
-			var firstDay = new Date(y, m, 1);
-			var fifthDay = new Date(y, m, 5);
-			var tenthDay = new Date(y, m, 10);
-			var fifteenthDay = new Date(y, m, 15);
-			var twentiethDay = new Date(y, m, 20);
-			var twentyfifthDay = new Date(y, m, 25);
-			var lastDay = new Date(y, m + 1, 0);
 
-			for(var d = new Date(new Date().setDate(new Date().getDate() - 15)); d <= new Date(); d.setDate(d.getDate() + 1)) {
-
-				series1.push([new Date(d), Math.floor(Math.random() * (1500000 - 450000 + 1)) + 450000]);
-				series2.push([new Date(d), Math.random() * (400 - 70) + 70]);
-			}
-		}
-
-		if($("#chart1 > svg").length) {
-			var date = new Date();
-			var series1 = [];
-			var series2 = [];
-
-			createSeries();
-
-			var data = [{
-				"key": "Quantity",
-				"bar": true,
-				"values": series1
-			}, {
-				"key": "Price",
-				"values": series2
-			}];
-			nv.addGraph(function() {
-				var chart = nv.models.linePlusBarChart().margin({
-					top: 15,
-					right: 30,
-					bottom: 15,
-					left: 60
-				})
-				//We can set x data accessor to use index. Reason? So the bars all appear evenly spaced.
-				.x(function(d, i) {
-					return i;
-				}).y(function(d, i) {
-					return d[1];
-				}).color(['#DFDFDD', '#E66F6F']);
-
-				chart.xAxis.tickFormat(function(d) {
-					var dx = data[0].values[d] && data[0].values[d][0] || 0;
-					return d3.time.format('%x')(new Date(dx));
-				});
-
-				chart.y1Axis.tickFormat(d3.format(',f'));
-
-				chart.y2Axis.tickFormat(function(d) {
-					return '$' + d3.format(',f')(d);
-				});
-
-				chart.bars.forceY([0, 2000000]);
-				chart.lines.forceY([0, 900]);
-
-				d3.select('#chart1 svg').datum(data).transition().duration(0).call(chart);
-
-				nv.utils.windowResize(chart.update);
-
-				return chart;
-			});
-		}
-	};
 	// function to initiate Chart 2
 	var runChart2 = function() {
 		if($("#chart2 > svg").length) {
@@ -494,7 +423,7 @@ var Index = function() {"use strict";
 	};
 	return {
 		init: function() {
-			runChart1();
+			//runChart1();
 			runChart2();
 			runChart3();
 			runChart4();
