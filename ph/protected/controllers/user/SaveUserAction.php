@@ -50,7 +50,7 @@ class SaveUserAction extends CAction
                   }
                   $newInfos["tags"] = $_POST['tags'];
                 }
-                if( isset($_FILES['avatar']) )
+                if( isset($_FILES['avatar']) && $_FILES['avatar']['tmp_name'] !== ""  )
                 {
                 	$pathImage = $this->processImage($_FILES['avatar'],$user["_id"]);
                 	if ($pathImage) {
