@@ -40,12 +40,23 @@ var Sig = function() {
 											"minZoom":options.zoomMin,
 											"maxZoom":options.zoomMax,
 							  } ).setView(options.startCenter, options.zoomStart);
-				
+		
+		
+		if(options.tileLayer == "toner")
 		L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
 			attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
 			subdomains: 'abcd'
 		}).setOpacity(0.4).addTo(_MAP);
 	
+		if(options.tileLayer == "landscape")
+		L.tileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+			minZoom: 2,
+			maxZoom: 18,
+	
+		}).setOpacity(0.8).addTo(_MAP);
+	
+		
 		return _MAP; 		
 	};
 	
@@ -60,6 +71,11 @@ var Sig = function() {
 		},
 		
 		loadMapTeeo : function(options)
+		{
+			startNewMap(options);
+			return _MAP;
+		},
+		loadMapCommunecter : function(options)
 		{
 			startNewMap(options);
 			return _MAP;
