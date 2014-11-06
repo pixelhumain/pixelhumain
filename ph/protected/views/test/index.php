@@ -39,63 +39,75 @@ var_dump($this::$a);
             </li>
 
             <li>
-                <?php 
-                echo "<span style='color:green'>You have Mongo driver v.".phpversion("mongo");
-                try{
-                    $m = new Mongo();
-                    $adminDB = $m->pixelhumain; //require admin priviledge
-                    $mongodb_info = $adminDB->command(array('buildinfo'=>true));
-                    $mongodb_version = $mongodb_info['version'];
-                    echo " and Mongo DB v.".$mongodb_info["version"]."</span>";
-                } catch (Exception $e) {
-                    echo 'Exception reçue : ',  $e->getMessage(), "\n";
+                <?php
+                // Check mongodb php driver installation
+                if(!PHDB::checkMongoDbPhpDriverInstalled(false))
+                {
+                	echo "<span style='color:red'>Your Mongo driver is not installed on your PHP server. Fix it and check php set up using phpinfo().</span><br/>";
                 }
-                
+                else 
+                {
+	                echo "<span style='color:green'>You have Mongo driver v.".phpversion("mongo");
+	                try{                
+	                    $m = new Mongo();
+	                    $adminDB = $m->pixelhumain; //require admin priviledge
+	                    $mongodb_info = $adminDB->command(array('buildinfo'=>true));
+	                    $mongodb_version = $mongodb_info['version'];
+	                    echo " and Mongo DB v.".$mongodb_info["version"]."</span>";
+	                } catch (Exception $e) {
+	                    echo 'Received Exception : ',  $e->getMessage(), "\n";
+	                }
+                }                
                 ?>
             </li>
 
-            <li>
-                <?php 
-                try{
-                    $m = new MongoClient();
-                    $color = (isset($m)) ? "green" : "red";
-                    echo "<span style='color:".$color."'> MongoClient connection is working</span><br/>";
-                } catch (Exception $e) {
-                    echo "<span style='color:red'> MongoClient connection <br/>error message : ".$e->getMessage()."</span><br/>";
-                }
-                ?>
-            </li>
-            <li>
-            <?php 
-                $color = "red";
-                if(isset($m)){
-                $db = $m->pixelhumain;
-                $color = (isset($db)) ? "green" : "red";
-                } 
-                echo "<span style='color:".$color."'> Test : Connected to Database '".$db."' was found </span><br/>";
-                ?>
-            </li>
-            <li>
-            <?php 
-                $color = "red";
-                if(isset($m)){
-                    $collection = $db->surveys;
-                    $color = (isset($collection)) ? "green" : "red";
-                }
-                echo "<span style='color:".$color."'> Test : Colection 'Lists' was found </span><br/>";
-                ?>
-            </li>
-            <li>
-                <?php
-                var_dump(Yii::app()->mongodb->citoyens);
-                var_dump(Yii::app()->mongodb->citoyens->findOne(array("email"=>"egpc@egpc.com")));
-                ?>
-            </li>
+            <?php
+            if(PHDB::checkMongoDbPhpDriverInstalled(false))
+            {?>
+	            <li>
+	                <?php 
+	                try{
+	                    $m = new MongoClient();
+	                    $color = (isset($m)) ? "green" : "red";
+	                    echo "<span style='color:".$color."'> MongoClient connection is working</span><br/>";
+	                } catch (Exception $e) {
+	                    echo "<span style='color:red'> MongoClient connection <br/>error message : ".$e->getMessage()."</span><br/>";
+	                }
+	                ?>
+	            </li>
+	                        
+	            <li>
+	            <?php 
+	                $color = "red";
+	                if(isset($m)){
+	                $db = $m->pixelhumain;
+	                $color = (isset($db)) ? "green" : "red";
+	                } 
+	                echo "<span style='color:".$color."'> Test : Connected to Database '".$db."' was found </span><br/>";
+	                ?>
+	            </li>
+	            <li>
+	            <?php 
+	                $color = "red";
+	                if(isset($m)){
+	                    $collection = $db->surveys;
+	                    $color = (isset($collection)) ? "green" : "red";
+	                }
+	                echo "<span style='color:".$color."'> Test : Colection 'Lists' was found </span><br/>";
+	                ?>
+	            </li>
+	            <li>
+	                <?php
+	                var_dump(Yii::app()->mongodb->citoyens);
+	                var_dump(Yii::app()->mongodb->citoyens->findOne(array("email"=>"egpc@egpc.com")));
+	                ?>
+	            </li>
+	         <?php }?>
         </ul>
 ----------------------------------------------------------- <br/>
 <h2> PATHS AND URLS </h2>       
         <?php 
-echo Yii::app()->session["userId"]."<br/>";
+echo "Session userId:".Yii::app()->session["userId"]."<br/>";
 $conflen=strlen('SCRIPT');
 $B=substr(__FILE__,0,strrpos(__FILE__,'/'));
 $A=substr($_SERVER['DOCUMENT_ROOT'], strrpos($_SERVER['DOCUMENT_ROOT'], $_SERVER['PHP_SELF']));
@@ -123,9 +135,9 @@ foreach ($cursor as $document) {
         	  <?php 
 
                 if(isset($m)){
-                $test = Yii::app()->mongodb->test->findOne(array("ki"=>"lo"));
+                	$test = !PHDB::checkMongoDbPhpDriverInstalled(false)?null:Yii::app()->mongodb->test->findOne(array("ki"=>"lo"));
                 
-            }
+            	}
 
             /*$newInfos = array("api" =>array(
                 "scenario" => array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggleScenario('scenario')",

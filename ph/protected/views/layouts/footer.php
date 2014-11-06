@@ -3,7 +3,7 @@
    <div id="contact" class="center">
         <div class="homestead blueDark" style="height:250px;">
         	<?php 
-        	$cornerDev = Yii::app()->mongodb->cornerDev->findOne(array("url"=>"/".Yii::app()->controller->id."/".Yii::app()->controller->action->id));
+        	$cornerDev = !PHDB::checkMongoDbPhpDriverInstalled(false)?null:Yii::app()->mongodb->cornerDev->findOne(array("url"=>"/".Yii::app()->controller->id."/".Yii::app()->controller->action->id));
         	if($cornerDev){?>
        		 <ul class="cornerDev pull-right" style="position:relative; top:0px; right:0px;list-style:none;min-width:150px;">
             	<li><a class="label" href="javascript:filterType('participant')">Inscrits <span class="badge badge-info"><?php echo (isset($group["participants"])) ? count($group["participants"]) : 0?></span></a></li>

@@ -27,9 +27,10 @@
                         <?php 
                         //TODO ajax request as you type
                           $names = array();
-                          foreach(iterator_to_array(Yii::app()->mongodb->groups->find( array("type"=>"entreprise"), array("name" => 1) )) as $a)
-                              array_push($names, $a['name']);
-                              //$assoNames[$a['name']] = $a['name'] ;
+                          if(PHDB::checkMongoDbPhpDriverInstalled(false))
+	                          foreach(iterator_to_array(Yii::app()->mongodb->groups->find( array("type"=>"entreprise"), array("name" => 1) )) as $a)
+	                              array_push($names, $a['name']);
+	                              //$assoNames[$a['name']] = $a['name'] ;
                           
                           $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'asDropDownList' => false,
@@ -50,7 +51,7 @@
                     <td class="txtright">Type d'action </td>
                     <td>
                         <?php 
-                          $cursor = Yii::app()->mongodb->lists->findOne( array("name"=>"tags"), array('list'));
+                          $cursor = !PHDB::checkMongoDbPhpDriverInstalled(false)?null:Yii::app()->mongodb->lists->findOne( array("name"=>"tags"), array('list'));
                           $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'asDropDownList' => false,
                             'name' => 'tagsEntreprise',

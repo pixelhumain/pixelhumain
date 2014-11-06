@@ -10,52 +10,44 @@ Generic Database Method shared Throught the project
 class PHDB
 {
     public static function find( $collection, $where=array(),$fields=null )
-    {
-    	self::checkMongoDbPhpDriverInstalled();
+    {    	
         if(!$fields)
-            $res = iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where));
+            $res = !self::checkMongoDbPhpDriverInstalled()?null:iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where));
         else
-            $res = iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find( $where , $fields));
+            $res = !self::checkMongoDbPhpDriverInstalled()?null:iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find( $where , $fields));
         return $res;
     }
     public static function count( $collection, $where=array() )
-    {
-    	self::checkMongoDbPhpDriverInstalled();
-        return Yii::app()->mongodb->selectCollection($collection)->count($where);
+    {    	
+        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->count($where);
     }
     public static function countWFileds( $collection, $where=array(),$fields=array() )
-    {
-    	self::checkMongoDbPhpDriverInstalled();
-        return Yii::app()->mongodb->selectCollection($collection)->count($where,$fields);
+    {    	
+        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->count($where,$fields);
     }
     public static function findOne( $collection, $where )
-    {
-    	self::checkMongoDbPhpDriverInstalled();
-        return Yii::app()->mongodb->selectCollection($collection)->findOne($where);
+    {    	
+        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->findOne($where);
     }
     
     public static function update( $collection, $where, $action )
-    {
-    	self::checkMongoDbPhpDriverInstalled();
-        return Yii::app()->mongodb->selectCollection($collection)->update($where,$action);
+    {    	
+        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->update($where,$action);
     }
      public static function updateWithOptions( $collection, $where, $action,$options )
     {
-    	self::checkMongoDbPhpDriverInstalled();
-        return Yii::app()->mongodb->selectCollection($collection)->update($where,$action,$options);
+        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->update($where,$action,$options);
     }
     public static function insert( $collection, $info )
-    {
-    	self::checkMongoDbPhpDriverInstalled();
-        return Yii::app()->mongodb->selectCollection($collection)->insert($info);
+    {    	
+        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->insert($info);
     }
     public static function remove( $collection, $where )
-    {
-    	self::checkMongoDbPhpDriverInstalled();
-        return Yii::app()->mongodb->selectCollection($collection)->remove($where);
+    {    	
+        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->remove($where);
     }
     public static function batchInsert($collection,$rows){
-        return Yii::app()->mongodb->selectCollection($collection)->batchInsert($rows);   
+        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->batchInsert($rows);   
     }
     /*
     $params is the POST array 
@@ -111,13 +103,19 @@ class PHDB
     /**
      * Will check if Mongo class exists (id est mongo php driver is installed : mongo.so or mongo.dll).
      * Then will check that Yii::ap()->mongdb is correctly instanciated
-     * @return boolean TRUE if ok, else will throw CHttpException
-     * @throws CHttpException : Will throw CHttpException(500) if verification failed
+     * @param bool $bThrowExceptionIfFailed By default FALSE. If true and if verification failed, will throw exception
+     * @return boolean TRUE if ok, else will return false if $bThrowExceptionIfFailed==false or throw CHttpException either
+     * @throws CHttpException : Will throw CHttpException(500) if verification failed and $bThrowExceptionIfFailed==true
      */
-    public static function checkMongoDbPhpDriverInstalled()
+    public static function checkMongoDbPhpDriverInstalled($bThrowExceptionIfFailed=false)
     {
-    	if(!class_exists('Mongo') || !isset(Yii::ap()->mongdb))
-    		throw new CHttpException(500,"It seems that your apache/PHP/MongoDb server is not correctly set up. This app need an apache/php server set up with mongo extension. Fix it and retry");
+    	if(!isset(Yii::app()->mongdb))
+    	{
+    		if($bThrowExceptionIfFailed)
+    			throw new CHttpException(500,"It seems that your apache/PHP/MongoDb server is not correctly set up. This app need an apache/php server set up with mongo extension. Fix it and retry".print_r(debug_backtrace(),true));
+    		else 
+    			return false;
+    	}
     	else
     		return true;    	
     }

@@ -542,7 +542,7 @@ $this->sidebar1 = array(
           <div class="accordion-group">
             <div class="accordion-heading">
               <a class="accordion-toggle fsxl fb" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne">
-                Communecter 10 000 citoyens francais (pour le moment <?php echo Yii::app()->mongodb->citoyens->count(array('cp'=>array('$ne'=>null)));?>)
+                Communecter 10 000 citoyens francais (pour le moment <?php echo !PHDB::checkMongoDbPhpDriverInstalled(false)?null:Yii::app()->mongodb->citoyens->count(array('cp'=>array('$ne'=>null)));?>)
               </a>
             </div>
             <div id="collapseOne" class="accordion-body collapse ">
@@ -628,7 +628,7 @@ $this->sidebar1 = array(
         	Une équipe dynamique, professionelle, passionné de Pixels Actifs
         	<br/>c'est donnée de vrais objectifs humains, d'améliorer la connectivité, le partage, et l'action locale.
         	<?php /*
-            $this->renderPartial('application.views.projet.organigrid',array( 'projet' => Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId("523c8195f6b95c5426007cb8"))),
+            $this->renderPartial('application.views.projet.organigrid',array( 'projet' => !PHDB::checkMongoDbPhpDriverInstalled(false)?null:Yii::app()->mongodb->groups->findOne(array("_id"=>new MongoId("523c8195f6b95c5426007cb8"))),
             																  "typePeople"=>"team,mentors",
             																  "design"=>"s",
                                                                               "isModule"=>true
