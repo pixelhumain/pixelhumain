@@ -30,8 +30,7 @@ font-family: "Homestead";
 <div class="container" id="accueil">
     <br/>
     <!-- Main hero unit for a primary marketing message or call to action -->
-    <div class="hero-unit">
-        <?php echo CHtml::encode($message); ?>
+    <div class="hero-unit">        
     	<img id="logoERror" class="pull-left" src="<?php echo Yii::app()->createUrl('images/logo/logo320.png')?>" alt="Logo Pixel Humain"/>
     	<div id="error">
     		<?php if($code == 404){?>
@@ -44,6 +43,13 @@ font-family: "Homestead";
             <?php }?>
         </div>
         <div class="clear"></div>
+        <div>
+        <?php if(YII_DEBUG){?>
+        	<?php echo CHtml::encode($message); ?>
+        	<pre><?php echo debug_backtrace() ?></pre>
+        <?php }else echo "toto";?>
+        </div>
+        
         <br/><br/>
     </div>
 </div>

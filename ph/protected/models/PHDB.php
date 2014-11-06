@@ -109,7 +109,7 @@ class PHDB
      */
     public static function checkMongoDbPhpDriverInstalled($bThrowExceptionIfFailed=false)
     {
-    	if(!isset(Yii::app()->mongdb))
+    	if(!extension_loaded("mongo") || !isset(Yii::app()->mongodb))
     	{
     		if($bThrowExceptionIfFailed)
     			throw new CHttpException(500,"It seems that your apache/PHP/MongoDb server is not correctly set up. This app need an apache/php server set up with mongo extension. Fix it and retry".print_r(debug_backtrace(),true));

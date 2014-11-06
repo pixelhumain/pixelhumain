@@ -1,6 +1,9 @@
 Pixel Humain
 ===========
 
+If you are on mac OSX, read this readme first :
+[Specific readme_macOS.md for Mac OSX](https://github.com/pixelhumain/pixelhumain/blob/master/README_macOs.md/)
+
 ##Installation
 ####Configure your php
 Verify your php configuration is right done lauching the command line
@@ -136,10 +139,6 @@ ex : 127.0.0.1/ph/communecter/person/profile
 - "person" is the controller file called PersonController.php
 - "profile" is the action foun called actionProfile found in the above controller file
 
-##Version 0.001 
-    L'homme qui déplace une montagne commence par déplacer les petites pierres.- Confucius
-    Man who wants to move a mountain starts by moving pebbles
-
 ### Valuing States Structure
 * page region  : List all Counties with minimal descritption
 * city page : List local actors(directory), local Places
@@ -154,8 +153,22 @@ ex : 127.0.0.1/ph/communecter/person/profile
 Make a good habit of writing a doc or a doc corrected before embarking in the code. 
 This avoids a tedious task of writing a doc after hit. 
 
-##En savoir plus
-* [Gestin de projet : Trello](https://trello.com/board/pixel-humain-echolocal/50a3e15a175358d65a0089ef)
+##More info
+* [Specific readme.md for Mac OSX](https://github.com/pixelhumain/pixelhumain/blob/master/README_macOs.md/)
 * [le site](http://www.pixelhumain.com/)
 * [le blog](http://blog.pixelhumain.com/)
 * [group Facebook](https://www.facebook.com/groups/pixelhumain/)
+
+
+<br/>
+<br/>
+
+---
+
+<br/>
+<br/>
+
+
+##Version 0.002
+    L'homme qui déplace une montagne commence par déplacer les petites pierres.- Confucius
+    Man who wants to move a mountain starts by moving pebbles

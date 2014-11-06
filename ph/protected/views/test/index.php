@@ -1,6 +1,49 @@
 <?php 
 /*$cs = Yii::app()->getClientScript();
 $cs->registerCssFile(Yii::app()->request->baseUrl. '/css/magic.css');*/
+
+
+function checkServerVar()
+{
+	$vars=array('HTTP_HOST','SERVER_NAME','SERVER_PORT','SCRIPT_NAME','SCRIPT_FILENAME','PHP_SELF','HTTP_ACCEPT','HTTP_USER_AGENT');
+	$missing=array();
+	foreach($vars as $var)
+	{
+		if(!isset($_SERVER[$var]))
+			$missing[]=$var;
+	}
+	if(!empty($missing))
+		return '$_SERVER does not have '.implode(', ',$missing);
+	
+	if(!isset($_SERVER["REQUEST_URI"]) && isset($_SERVER["QUERY_STRING"]))
+		return 'Either $_SERVER["REQUEST_URI"] or $_SERVER["QUERY_STRING"] must exist.';
+
+	if(!isset($_SERVER["PATH_INFO"]) && strpos($_SERVER["PHP_SELF"],$_SERVER["SCRIPT_NAME"]) !== 0)
+		return 'Unable to determine URL path info. Please make sure $_SERVER["PATH_INFO"] (or $_SERVER["PHP_SELF"] and $_SERVER["SCRIPT_NAME"]) contains proper value.';
+
+	return '';
+}
+
+function checkCaptchaSupport()
+{
+	if(extension_loaded('imagick'))
+	{
+		$imagick=new Imagick();
+		$imagickFormats=$imagick->queryFormats('PNG');
+	}
+	if(extension_loaded('gd'))
+		$gdInfo=gd_info();
+	if(isset($imagickFormats) && in_array('PNG',$imagickFormats))
+		return '';
+	elseif(isset($gdInfo))
+	{
+		if($gdInfo['FreeType Support'])
+			return '';
+		return 'GD installed,<br />FreeType support not installed';
+	}
+	return 'GD or ImageMagick not installed';
+}
+
 ?>
 <style>
 h2 {
@@ -25,44 +68,126 @@ $a = array("cococ","frfr",Api::$userMap);
 var_dump($this::$a);
  */
 ?>
-            <li><?php 
-                echo "<span style='color:green'>You are running on PHP ".phpversion()."</span>";
+            <li><?php  // check PHP version required by yii
+            	if(version_compare(PHP_VERSION,"5.1.0",">="))            
+                	echo "<span style='color:green'>You are running on PHP ".phpversion()." which is compatible with PH</span>";
+            	else
+            		echo "<span style='color:red'>You are running a too old PHP version [".phpversion()."]. PH requires PHP5.1.1.0 or earlier</span>";
             ?></li>
+            
+             <li><?php  // check server var
+            	$res = checkServerVar();
+            	if(empty($res))            
+                	echo '<span style="color:green"> variables $_SERVER are OK</span>';
+            	else
+					echo '<span style="color:red"> variables $_SERVER are not OK : ['.$res.']</span>';            
+            	?>
+            </li>                      
+            
+            <li><?php  // check extension Reflection            	
+            	if(class_exists('Reflection',false))            
+                	echo '<span style="color:green"> extension Reflection is installed.</span>';
+            	else
+					echo '<span style="color:red"> extension Reflection is not installed. Please install it on your PHP server</span>';            
+            	?>
+            </li> 
+            
+            <li><?php  // check extension pcre            	
+            	if(extension_loaded("pcre"))            
+                	echo '<span style="color:green"> extension PCRE is installed.</span>';
+            	else
+					echo '<span style="color:red"> extension PCRE is not installed. Please install it on your PHP server</span>';            
+            	?>
+            </li> 
+            
+            <li><?php  // check extension SPL            	
+            	if(extension_loaded("SPL"))            
+                	echo '<span style="color:green"> extension SPL is installed.</span>';
+            	else
+					echo '<span style="color:red"> extension SPL is not installed. Please install it on your PHP server</span>';            
+            	?>
+            </li> 
+            
+            <li><?php  // check extension DOM            	
+            	if(class_exists('DOMDocument',false))            
+                	echo '<span style="color:green"> extension DOM is installed.Used by CHtmlPurifier and CWsdlGenerator</span>';
+            	else
+					echo '<span style="color:red"> extension DOM is not installed. Please install it on your PHP server. it is required by CHtmlPurifier and CWsdlGenerator</span>';            
+            	?>
+            </li> 
+            
+            <li><?php  // check extension PDO            	
+            	if(class_exists('pdo',false))            
+                	echo '<span style="color:green"> extension PDO is installed (usefull for db related class).</span>';
+            	else
+					echo '<span style="color:red"> extension PDO is not installed. Please install it on your PHP server. It is required for db classes</span>';            
+            	?>
+            </li> 
+            
+            <li><?php  // check extension mcrypt            	
+            	if(extension_loaded("mcrypt"))            
+                	echo '<span style="color:green"> extension Mcrypt is installed. Used by CSecurityManager. (encryption and decryptions methods)</span>';
+            	else
+					echo '<span style="color:red"> extension Mcrypt is not installed. Please install it on your PHP server. It is required by CSecurityManager (encryption and decryptions methods)</span>';            
+            	?>
+            </li> 
+                                    
+            <li><?php  // check extension GD
+            	$res = checkCaptchaSupport();     	
+            	if(empty($res))            
+                	echo '<span style="color:green"> extension GD with FreeType support or ImageMagick extension with PNG supported is installed.</span>';
+            	else
+					echo '<span style="color:red"> extension GD with FreeType support or ImageMagick extension with PNG supported is not installed. Please install it on your PHP server. It is required by CCaptachaAction and image manipulation classes</span>';            
+            	?>
+            </li> 
+            
+            <li><?php  // check extension Ctype            	
+            	if(extension_loaded("ctype"))            
+                	echo '<span style="color:green"> extension Ctype is installed. Used by CDateFormatter, CDateTimeParser, CTextHighlighter, CHtmlPurifier</span>';
+            	else
+					echo '<span style="color:red"> extension Ctype is not installed. Please install it on your PHP server. It is required by CDateFormatter, CDateTimeParser, CTextHighlighter, CHtmlPurifier</span>';            
+            	?>
+            </li> 
+            
+            <li><?php  // check extension Fileinfo            	
+            	if(extension_loaded("fileinfo"))            
+                	echo '<span style="color:green"> extension Fileinfo is installed. Used by CFileValidator</span>';
+            	else
+					echo '<span style="color:red"> extension Fileinfo is not installed. Please install it on your PHP server</span>';            
+            	?>
+            </li> 
 
+	         
+            
             <li>
                 <?php 
+                // good alias is "/ph" or custom virtual host such as http://local.ph.com
                 $alias = substr($_SERVER['SCRIPT_NAME'], 1, strrpos($_SERVER['SCRIPT_NAME'], "/"));
-                $color = ($alias == "ph/")? "green" : "red";
-                $txt = ($alias == "ph/") ? "Your alias is good : $alias " : "Your alias should : 127.0.0.1/ph" ;
+                
+                $color = (empty($alias ) || $alias == "ph/")? "green" : "red";
+                $txt = (empty($alias) || $alias == "ph/") ? "Your app alias is good." : "Your alias should be [127.0.0.1/ph] or a virtual host such as [local.ph.com]" ;
                 echo "<span style='color:".$color."'>  $txt </span>";    
                 ?>
             </li>
-
-            <li>
-                <?php
-                // Check mongodb php driver installation
-                if(!PHDB::checkMongoDbPhpDriverInstalled(false))
-                {
-                	echo "<span style='color:red'>Your Mongo driver is not installed on your PHP server. Fix it and check php set up using phpinfo().</span><br/>";
-                }
-                else 
-                {
-	                echo "<span style='color:green'>You have Mongo driver v.".phpversion("mongo");
-	                try{                
-	                    $m = new Mongo();
-	                    $adminDB = $m->pixelhumain; //require admin priviledge
-	                    $mongodb_info = $adminDB->command(array('buildinfo'=>true));
-	                    $mongodb_version = $mongodb_info['version'];
-	                    echo " and Mongo DB v.".$mongodb_info["version"]."</span>";
-	                } catch (Exception $e) {
-	                    echo 'Received Exception : ',  $e->getMessage(), "\n";
-	                }
-                }                
-                ?>
-            </li>
+	<br/>
+            <li><?php  // check extension mongo            	
+            	if(extension_loaded("mongo"))            
+                	echo '<span style="color:green"> extension Mongo v'.phpversion("mongo").' is installed. Used as database by PH</span>';
+            	else
+					echo '<span style="color:red"> extension Mongo is not installed. Please install it on your PHP server. It is requiredfor all database stuff</span>';            
+            	?>
+            </li>     
+            
+            <li><?php  // check Yii::app()->mongodb is instanciated            	
+            	if(PHDB::checkMongoDbPhpDriverInstalled(false))            
+                	echo '<span style="color:green"> Yii::app()->mongodb is instanciated. Access to mongodb is OK.</span>';
+            	else
+					echo '<span style="color:red"> Yii::app()->mongodb is not instanciated. Fix credentails on protected/config/dbconfig.php and</span>';            
+            	?>
+            </li>             
 
             <?php
-            if(PHDB::checkMongoDbPhpDriverInstalled(false))
+            if(extension_loaded("mongo"))
             {?>
 	            <li>
 	                <?php 
@@ -71,40 +196,48 @@ var_dump($this::$a);
 	                    $color = (isset($m)) ? "green" : "red";
 	                    echo "<span style='color:".$color."'> MongoClient connection is working</span><br/>";
 	                } catch (Exception $e) {
-	                    echo "<span style='color:red'> MongoClient connection <br/>error message : ".$e->getMessage()."</span><br/>";
+	                    echo "<span style='color:red'> MongoClient connection failed. Check mongodb is running + check protected/config/dbconfig.php credentials <br/>error message : ".$e->getMessage()."</span><br/>";
 	                }
 	                ?>
 	            </li>
-	                        
-	            <li>
-	            <?php 
-	                $color = "red";
-	                if(isset($m)){
-	                $db = $m->pixelhumain;
-	                $color = (isset($db)) ? "green" : "red";
-	                } 
-	                echo "<span style='color:".$color."'> Test : Connected to Database '".$db."' was found </span><br/>";
-	                ?>
-	            </li>
-	            <li>
-	            <?php 
-	                $color = "red";
-	                if(isset($m)){
-	                    $collection = $db->surveys;
-	                    $color = (isset($collection)) ? "green" : "red";
-	                }
-	                echo "<span style='color:".$color."'> Test : Colection 'Lists' was found </span><br/>";
-	                ?>
-	            </li>
+	                
+	            <?php if(isset($m)){?>        
+	            	<li>
+		            <?php 
+		                $color = "red";
+		                $db = null;
+		                if(isset($m)){
+		                $db = $m->pixelhumain;
+		                $color = (isset($db)) ? "green" : "red";
+		                } 
+		                echo "<span style='color:".$color."'> Mongo Test : Connected to Database '".$db."' was found </span><br/>";
+		                ?>
+		            </li>
+	            
+		            <li>
+		            <?php 
+		                $color = "red";
+		                if(isset($m)){
+		                    $collection = $db->surveys;
+		                    $color = (isset($collection)) ? "green" : "red";
+		                }
+		                echo "<span style='color:".$color."'> Mongo Test : Collection 'Lists' was found </span><br/>";
+		                ?>
+		            </li>
+	            <?php }?>
+	            <?php /*?>
 	            <li>
 	                <?php
 	                var_dump(Yii::app()->mongodb->citoyens);
 	                var_dump(Yii::app()->mongodb->citoyens->findOne(array("email"=>"egpc@egpc.com")));
 	                ?>
 	            </li>
+	            <?php */ ?>
 	         <?php }?>
         </ul>
+        
 ----------------------------------------------------------- <br/>
+
 <h2> PATHS AND URLS </h2>       
         <?php 
 echo "Session userId:".Yii::app()->session["userId"]."<br/>";
