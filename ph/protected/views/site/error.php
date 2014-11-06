@@ -46,8 +46,8 @@ font-family: "Homestead";
         <div>
         <?php if(YII_DEBUG){?>
         	<?php echo CHtml::encode($message); ?>
-        	<pre><?php echo debug_backtrace() ?></pre>
-        <?php }else echo "toto";?>
+        	<pre><?php echo print_r(debug_backtrace(),true) ?></pre>
+        <?php }?>
         </div>
         
         <br/><br/>
