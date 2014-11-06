@@ -11,6 +11,7 @@ class PHDB
 {
     public static function find( $collection, $where=array(),$fields=null )
     {
+    	self::checkMongoDbPhpDriverInstalled();
         if(!$fields)
             $res = iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where));
         else
@@ -19,31 +20,38 @@ class PHDB
     }
     public static function count( $collection, $where=array() )
     {
+    	self::checkMongoDbPhpDriverInstalled();
         return Yii::app()->mongodb->selectCollection($collection)->count($where);
     }
     public static function countWFileds( $collection, $where=array(),$fields=array() )
     {
+    	self::checkMongoDbPhpDriverInstalled();
         return Yii::app()->mongodb->selectCollection($collection)->count($where,$fields);
     }
     public static function findOne( $collection, $where )
     {
+    	self::checkMongoDbPhpDriverInstalled();
         return Yii::app()->mongodb->selectCollection($collection)->findOne($where);
     }
     
     public static function update( $collection, $where, $action )
     {
+    	self::checkMongoDbPhpDriverInstalled();
         return Yii::app()->mongodb->selectCollection($collection)->update($where,$action);
     }
      public static function updateWithOptions( $collection, $where, $action,$options )
     {
+    	self::checkMongoDbPhpDriverInstalled();
         return Yii::app()->mongodb->selectCollection($collection)->update($where,$action,$options);
     }
     public static function insert( $collection, $info )
     {
+    	self::checkMongoDbPhpDriverInstalled();
         return Yii::app()->mongodb->selectCollection($collection)->insert($info);
     }
     public static function remove( $collection, $where )
     {
+    	self::checkMongoDbPhpDriverInstalled();
         return Yii::app()->mongodb->selectCollection($collection)->remove($where);
     }
     public static function batchInsert($collection,$rows){
@@ -99,5 +107,18 @@ class PHDB
     public static function noAdminExist($moduleId)
     {
         return PHDB::find(PHType::TYPE_CITOYEN, array("applications.".$moduleId.".isAdmin"=>true));
+    }
+    /**
+     * Will check if Mongo class exists (id est mongo php driver is installed : mongo.so or mongo.dll).
+     * Then will check that Yii::ap()->mongdb is correctly instanciated
+     * @return boolean TRUE if ok, else will throw CHttpException
+     * @throws CHttpException : Will throw CHttpException(500) if verification failed
+     */
+    public static function checkMongoDbPhpDriverInstalled()
+    {
+    	if(!class_exists('Mongo') || !isset(Yii::ap()->mongdb))
+    		throw new CHttpException(500,"It seems that your apache/PHP/MongoDb server is not correctly set up. This app need an apache/php server set up with mongo extension. Fix it and retry");
+    	else
+    		return true;    	
     }
 }

@@ -34,10 +34,14 @@ font-family: "Homestead";
         <?php echo CHtml::encode($message); ?>
     	<img id="logoERror" class="pull-left" src="<?php echo Yii::app()->createUrl('images/logo/logo320.png')?>" alt="Logo Pixel Humain"/>
     	<div id="error">
+    		<?php if($code == 404){?>
             <h1>ERREUR 404</h1>
             <h1>PAGE INCONNUE</h1>
             <h1>DU PIXEL HUMAIN</h1>
             <h2>QUI CHERCHE FINIT PAR TROUVER</h2>
+            <?php }else{?>
+            <h1>ERREUR <?php echo $code?></h1>
+            <?php }?>
         </div>
         <div class="clear"></div>
         <br/><br/>

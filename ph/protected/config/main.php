@@ -18,7 +18,7 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
-	'modulePath' => '../../modules',
+	'modulePath' =>realpath(__DIR__.'../../modules'),
 	'aliases' => array(
     	'vendor' => realpath(__DIR__ . '/../../vendor/'),
         'bootstrap' => realpath(__DIR__ . '/../../vendor/2amigos/yiistrap'),

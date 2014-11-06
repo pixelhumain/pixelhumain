@@ -5,7 +5,7 @@ class m140528_101623_insert_lists extends EMongoMigration
 	public function up()
 	{
 		try {
-			$file_name = "C:/Users/DEVPH/git/pixelhumain/ph/data/lists.json";
+			$file_name = realpath(__DIR__ . '/../../data/lists.json');
 			$this->setCollectionName("lists");
 
 			$handle = fopen($file_name, "r");
@@ -31,9 +31,9 @@ class m140528_101623_insert_lists extends EMongoMigration
 				throw new Exception("Pooom ! Impossible d'ouvrir le fichier : ".$file_name);
 			} 
 		} 
-		finally {
-			fclose($handle);
-		}
+		catch(Exception $e){}
+		if($handle)
+			fclose($handle);		
 	}
 
 	public function down()

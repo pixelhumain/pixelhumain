@@ -63,7 +63,7 @@ class XmlHelper {
 
 		return $str;
 	}
-}
+
 
 /**
  * Convert an XML into an array
@@ -72,72 +72,71 @@ class XmlHelper {
  * @param	string
  * @return	string
  */
-public static function amstore_xmlobj2array($obj, $level=0) 
-{
-    
-    $items = array();
-    
-    if(!is_object($obj)) return $items;
-        
-    $child = (array)$obj;
-    $nodeId = null;
-    if(sizeof($child)>1) 
-    {
-        foreach($child as $aa=>$bb) 
-        {
-            if(is_array($bb)) {
-                if(isset($bb["nodeId"]))
-                  	$nodeId = "node".$bb["nodeId"];
-                foreach($bb as $ee=>$ff) 
-                {
-                    if(!is_object($ff)) 
-                    {
-                        $items[$nodeId][$ee] = $ff;
-                    } 
-                    elseif(get_class($ff)=='SimpleXMLElement') 
-                    {
-                        if(!isset( $items[$nodeId]["children"] ))
-                          $items[$nodeId]["children"] = array();
-                        $items[$nodeId]["children"][$ee] = self::amstore_xmlobj2array($ff,$level+1);
-                    }
-                }
-            } 
-            elseif(!is_object($bb)) 
-            {
-                $items[$aa] = $bb;
-            } 
-            elseif(get_class($bb)=='SimpleXMLElement') 
-            {
-                if(!isset( $items[$nodeId]["children"] ))
-                  $items[$nodeId]["children"] = array();
-                $items[$nodeId]["children"] = self::amstore_xmlobj2array($bb,$level+1);
-            }
-        }
-    } else
-    if(sizeof($child)>0) {
-        foreach($child as $aa=>$bb) {
-            if(!is_array($bb)&&!is_object($bb)) {
-                $items[$aa."OOOOO"] = $bb;
-            } else
-            if(is_object($bb)) {
-                $items[$aa] = self::amstore_xmlobj2array($bb,$level+1);
-            } else {
-                foreach($bb as $cc=>$dd) {
-                    if(!is_object($dd)) {
-                        $items[$obj->getName()][$cc] = $dd;
-                    } else
-                    if(get_class($dd)=='SimpleXMLElement') {
-                        $items[$obj->getName()."ZZZZZZ"][$cc] = self::amstore_xmlobj2array($dd,$level+1);
-                    }
-                }
-            }
-        }
-    }
-
-    return $items;
+	public static function amstore_xmlobj2array($obj, $level=0) 
+	{
+	    
+	    $items = array();
+	    
+	    if(!is_object($obj)) return $items;
+	        
+	    $child = (array)$obj;
+	    $nodeId = null;
+	    if(sizeof($child)>1) 
+	    {
+	        foreach($child as $aa=>$bb) 
+	        {
+	            if(is_array($bb)) {
+	                if(isset($bb["nodeId"]))
+	                  	$nodeId = "node".$bb["nodeId"];
+	                foreach($bb as $ee=>$ff) 
+	                {
+	                    if(!is_object($ff)) 
+	                    {
+	                        $items[$nodeId][$ee] = $ff;
+	                    } 
+	                    elseif(get_class($ff)=='SimpleXMLElement') 
+	                    {
+	                        if(!isset( $items[$nodeId]["children"] ))
+	                          $items[$nodeId]["children"] = array();
+	                        $items[$nodeId]["children"][$ee] = self::amstore_xmlobj2array($ff,$level+1);
+	                    }
+	                }
+	            } 
+	            elseif(!is_object($bb)) 
+	            {
+	                $items[$aa] = $bb;
+	            } 
+	            elseif(get_class($bb)=='SimpleXMLElement') 
+	            {
+	                if(!isset( $items[$nodeId]["children"] ))
+	                  $items[$nodeId]["children"] = array();
+	                $items[$nodeId]["children"] = self::amstore_xmlobj2array($bb,$level+1);
+	            }
+	        }
+	    } else
+	    if(sizeof($child)>0) {
+	        foreach($child as $aa=>$bb) {
+	            if(!is_array($bb)&&!is_object($bb)) {
+	                $items[$aa."OOOOO"] = $bb;
+	            } else
+	            if(is_object($bb)) {
+	                $items[$aa] = self::amstore_xmlobj2array($bb,$level+1);
+	            } else {
+	                foreach($bb as $cc=>$dd) {
+	                    if(!is_object($dd)) {
+	                        $items[$obj->getName()][$cc] = $dd;
+	                    } else
+	                    if(get_class($dd)=='SimpleXMLElement') {
+	                        $items[$obj->getName()."ZZZZZZ"][$cc] = self::amstore_xmlobj2array($dd,$level+1);
+	                    }
+	                }
+	            }
+	        }
+	    }
+	
+	    return $items;
+	}
 }
-
 // ------------------------------------------------------------------------
 
 /* End of file xml_helper.php */
-/* Location: ./system/helpers/xml_helper.php */

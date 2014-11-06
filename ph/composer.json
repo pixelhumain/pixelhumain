@@ -30,7 +30,7 @@
 		"2amigos/yiiwheels": "dev-master",
 		"opauth/opauth" : "0.4.4",
 		"sammaye/mongoyii" : "3.*",
-		"yiisoft/yii":"1.1.14",
+		"yiisoft/yii":"1.1.15",
 		"yiiext/migrate-command":"dev-master#35f315b as 0.7.2.1"
 	},
 	"autoload": {

@@ -9,6 +9,7 @@ bin/
 tmp/
 ph/upload
 ph/assets
+php/themes/rapidos/assets/*
 ph/protected/runtime
 ph/themes/theme-azotlive
 *.tmp
