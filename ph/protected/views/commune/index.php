@@ -71,9 +71,9 @@ margin:10px;
 		<div class="span6">
 		<h3><?php echo $totalCount?> comptes communnectés :-(</h3>
         <p><div id="progressbar" style=" border:4px solid #324553; width:250px; height:30px;">
-            	<div style="background-color:#324553;margin:3px;width:<?php echo ($totalCount * 235 / $citizenCount )?>px;height:15px"></div>
+            	<div style="background-color:#324553;margin:3px;width:<?php echo $citizenCount==0?0: ($totalCount * 235 / $citizenCount )?>px;height:15px"></div>
             </div>
-            soit <?php echo ($totalCount * 100 / $citizenCount )?> %
+            soit <?php echo $citizenCount==0?0:($totalCount * 100 / $citizenCount )?> %
         </p> 
         </div>
 		</div>
