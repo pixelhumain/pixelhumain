@@ -9,13 +9,15 @@ bin/
 tmp/
 ph/upload
 ph/assets
-php/themes/rapidos/assets/*
 ph/protected/runtime
 ph/themes/theme-azotlive
 *.tmp
 *.bak
 *.swp
 *~.nib
+
+*.DS_Store
+
 local.properties
 .classpath
 .settings/
@@ -218,5 +220,3 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 /ehxwwa4q.nyx.txt
-
-*.DS_Store
