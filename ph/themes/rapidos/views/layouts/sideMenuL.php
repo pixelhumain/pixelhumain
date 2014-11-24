@@ -24,13 +24,7 @@
         <?php 
           foreach( $this->sidebar1 as $item )
           {
-              $modal = (isset($item["isModal"])) ? 'role="button" data-toggle="modal"' : "";
-              $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' : "";
-              $href = (isset($item["href"])) ? (stripos($item["href"], "http") === false) ? Yii::app()->createUrl($item["href"]) : $item["href"] : "#";
-              $class = (isset($item["class"])) ? 'class="'.$item["class"].'"' : "";
-              $icon = (isset($item["iconClass"])) ? '<i class="'.$item["iconClass"].'"></i>' : '';
-              echo '<li><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="title">'.$item["label"].'</span>';
-              //This menu can have 2 levels
+              buildLi($item);
               if( isset($item["children"]) )
               {
                   buildChildren($item["children"]);
@@ -42,26 +36,32 @@
                 echo "</a>";
               echo "</li>";
           }
-
+          function buildLi($item){
+            $modal = (isset($item["isModal"])) ? 'role="button" data-toggle="modal"' : "";
+            $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' 
+                                                 : ( (isset($item["key"])) ? 'onclick="scrollTo(\'#block'.$item["key"].'\')"' 
+                                                                            : "" );
+            $href = (isset($item["href"])) ? (stripos($item["href"], "http") === false) ? Yii::app()->createUrl($item["href"]) : $item["href"] : "#";
+            $class = (isset($item["class"])) ? 'class="'.$item["class"].'"' : "";
+            $icon = (isset($item["iconClass"])) ? '<i class="'.$item["iconClass"].'"></i>' : '';
+            $isActive = ( isset( TeeoApi::$sectionMenu[ $item["key"] ] ) && in_array( Yii::app()->controller->action->id, TeeoApi::$sectionMenu[ $item["key"] ] ) ) ? true : false;
+            $active = ( $isActive || (isset($item["active"]) && $item["active"] ) ) ? "open active" : "";
+            echo '<li class="'.$item["key"].' '.$active.'"><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="title">'.$item["label"].'</span>';
+            //This menu can have 2 levels
+          }
           function buildChildren( $children ){
             echo "<i class='icon-arrow'></i></a><ul class='sub-menu'>";
-            foreach( $children as $item2 )
+            foreach( $children as $item )
             {
-                $modal2 = (isset($item2["isModal"])) ? 'role="button" data-toggle="modal"' : "";
-                $onclick2 = (isset($item2["onclick"])) ? 'onclick="'.$item2["onclick"].'"' 
-                                                       : ( (isset($item2["key"])) ? 'onclick="scrollTo(\'#block'.$item2["key"].'\')"' 
-                                                                                  : "" );
-                $href2 = (isset($item2["href"])) ? (stripos($item2["href"], "http") === false) ? Yii::app()->createUrl($item2["href"]) : $item2["href"] : "javascript:;";
-                $icon2 = (isset($item2["iconClass"])) ? '<i class="'.$item2["iconClass"].'"></i>' : '';
-                echo '<li><a href="'.$href2.'" '.$modal2.' '.$onclick2.'>'.$icon2.'<span class="title">'.$item2["label"].'</span>';
-
-                if( isset($item2["children"]) )
+                if(isset($item["key"]))
+                  buildLi($item);
+                if( isset($item["children"]) )
                 {
-                    buildChildren($item2["children"]);
+                    buildChildren($item["children"]);
                 }
-                else if( isset($item2["getChildren"]) )
+                else if( isset($item["getChildren"]) )
                 {
-                  buildChildren( TeeoApi::menuItems(null,$item2["getChildren"]) );
+                  buildChildren( TeeoApi::menuItems(null,$item["getChildren"]) );
                 } else
                   echo "</a>";
 
