@@ -44,6 +44,8 @@
 
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-modal/css/bootstrap-modal.css');
+		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda.min.css');
+		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda-themeless.min.css');
 
 		//<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
 		//<!-- start: CORE CSS -->
@@ -168,6 +170,9 @@
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-select/bootstrap-select.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/spin.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda.min.js' , CClientScript::POS_END);
+		
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-validation/dist/jquery.validate.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , CClientScript::POS_END);
 
