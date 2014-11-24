@@ -11,6 +11,7 @@ class PHDB
 {
     public static function find( $collection, $where=array(),$fields=null )
     {    	
+        
         if(!$fields)
             $res = !self::checkMongoDbPhpDriverInstalled()?null:iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where));
         else

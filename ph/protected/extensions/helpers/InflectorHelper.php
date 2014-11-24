@@ -166,6 +166,31 @@ class InflectorHelper {
 		return ucwords(preg_replace('/[_]+/', ' ', strtolower(trim($str))));
 	}
 
+	public static function slugify($text)
+	{ 
+	  // replace non letter or digits by -
+	  $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
+
+	  // trim
+	  $text = trim($text, '-');
+
+	  // transliterate
+	  $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+	  // lowercase
+	  $text = strtolower($text);
+
+	  // remove unwanted characters
+	  $text = preg_replace('~[^-\w]+~', '', $text);
+
+	  if (empty($text))
+	  {
+	    return 'n-a';
+	  }
+
+	  return $text;
+	}
+
 }
 /* End of file inflector_helper.php */
 /* Location: ./system/helpers/inflector_helper.php */
