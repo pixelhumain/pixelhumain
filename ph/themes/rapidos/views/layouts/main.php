@@ -58,7 +58,8 @@
 		<script>
 		   var initT = new Object();
 		   var showDelaunay = true;
-		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
+		   // A supprimer une fois le redirect corrigé 
+		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>/index.php";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
 		</script>
