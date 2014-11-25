@@ -76,6 +76,19 @@ function openSubView(what, url,id)
 	});
 }
 
+function openSubViewHTML(html,callback)
+{
+	$.subview({
+		content: "#ajaxSV",
+		onShow: function() {
+			$("#ajaxSV").html("<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>");
+			$("#ajaxSV").html(html); 
+			if( typeof callback === "function")
+	    		callback();
+		}
+	});
+}
+
 function testitget(id,url,callback,datatype)
 {
 	if(datatype != "html" )
