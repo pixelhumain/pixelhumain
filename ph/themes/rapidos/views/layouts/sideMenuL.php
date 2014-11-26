@@ -31,7 +31,7 @@
               }
               else if( isset($item["getChildren"]) )
               {
-                buildChildren( TeeoApi::menuItems(null,$item["getChildren"]) );
+                buildChildren( Menu::menuItems(null,$item["getChildren"]) );
               } else
                 echo "</a>";
               echo "</li>";
@@ -44,7 +44,7 @@
             $href = (isset($item["href"])) ? (stripos($item["href"], "http") === false) ? Yii::app()->createUrl($item["href"]) : $item["href"] : "#";
             $class = (isset($item["class"])) ? 'class="'.$item["class"].'"' : "";
             $icon = (isset($item["iconClass"])) ? '<i class="'.$item["iconClass"].'"></i>' : '';
-            $isActive = ( isset( TeeoApi::$sectionMenu[ $item["key"] ] ) && in_array( Yii::app()->controller->action->id, TeeoApi::$sectionMenu[ $item["key"] ] ) ) ? true : false;
+            $isActive = ( isset( Menu::$sectionMenu[ $item["key"] ] ) && in_array( Yii::app()->controller->action->id, Menu::$sectionMenu[ $item["key"] ] ) ) ? true : false;
             $active = ( $isActive || (isset($item["active"]) && $item["active"] ) ) ? "open active" : "";
             echo '<li class="'.$item["key"].' '.$active.'"><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="title">'.$item["label"].'</span>';
             //This menu can have 2 levels
@@ -61,7 +61,7 @@
                 }
                 else if( isset($item["getChildren"]) )
                 {
-                  buildChildren( TeeoApi::menuItems(null,$item["getChildren"]) );
+                  buildChildren( Menu::menuItems(null,$item["getChildren"]) );
                 } else
                   echo "</a>";
 

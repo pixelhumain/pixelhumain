@@ -132,9 +132,11 @@ function toggle(id)
 }
 function scrollTo(id)
 {
- $("html, body").animate({
-            scrollTop: $(id).offset().top-70
-        }, 700);
+	if( $(id).length )
+	{
+		console.log("initscrollTo ", id);
+	 	$("html, body").animate({ scrollTop: $(id).offset().top-70 }, 700);
+	}
 }
 function Object2Array(obj)
 {
