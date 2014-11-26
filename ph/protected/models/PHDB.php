@@ -19,6 +19,17 @@ class PHDB
         return $res;
     }
 
+    public static function findAndSort( $collection, $where=array(), $sortCriteria, $limit=0)
+    {       
+        if (!self::checkMongoDbPhpDriverInstalled()) return null;
+
+        if($limit)
+            $res = iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where)->sort($sortCriteria)->limit($limit));
+        else
+            $res = iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where)->sort($sortCriteria));
+        return $res;
+    }
+
     public static function findAndModify( $collection, $where, $action, $options=null )
     {       
         return !self::checkMongoDbPhpDriverInstalled()?null:
