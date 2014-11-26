@@ -18,6 +18,13 @@ class PHDB
             $res = !self::checkMongoDbPhpDriverInstalled()?null:iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find( $where , $fields));
         return $res;
     }
+
+    public static function findAndModify( $collection, $where, $action, $options=null )
+    {       
+        return !self::checkMongoDbPhpDriverInstalled()?null:
+            Yii::app()->mongodb->selectCollection($collection)->findAndModify($where, $action, null, $options);
+    }
+
     public static function count( $collection, $where=array() )
     {    	
         return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->count($where);
