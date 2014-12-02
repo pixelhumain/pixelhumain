@@ -45,6 +45,7 @@ class CornerDev{
 	        				array( "project"=>$project, "person"=>$userEmail,"controller"=>$controller,"action"=>$action,"date"=>date("d/m/y"),"type"=> self::ACTION_WORKLOG) ,
 	        				array('$set' => $entry ) ,
                             array("upsert"=>true) );
+	        PHDB::insert( "cornerLog", array( "project"=>$project, "person"=>$userEmail,"controller"=>$controller,"action"=>$action,"timestamp"=>time(),"type"=> self::ACTION_WORKLOG) );
 	    }
 	}
 } 
