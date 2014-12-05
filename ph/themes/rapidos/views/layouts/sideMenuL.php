@@ -39,12 +39,13 @@
           function buildLi($item){
             $modal = (isset($item["isModal"])) ? 'role="button" data-toggle="modal"' : "";
             $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' 
-                                                 : ( (isset($item["key"])) ? 'onclick="scrollTo(\'#block'.$item["key"].'\')"' 
+                                                 : ( (isset($item["key"]) && false) ? 'onclick="scrollTo(\'#block'.$item["key"].'\')"' 
                                                                             : "" );
             $href = (isset($item["href"])) ? (stripos($item["href"], "http") === false) ? Yii::app()->createUrl($item["href"]) : $item["href"] : "#";
             $class = (isset($item["class"])) ? 'class="'.$item["class"].'"' : "";
             $icon = (isset($item["iconClass"])) ? '<i class="'.$item["iconClass"].'"></i>' : '';
             $isActive = ( isset( Menu::$sectionMenu[ $item["key"] ] ) && in_array( Yii::app()->controller->action->id, Menu::$sectionMenu[ $item["key"] ] ) ) ? true : false;
+            
             $active = ( $isActive || (isset($item["active"]) && $item["active"] ) ) ? "open active" : "";
             echo '<li class="'.$item["key"].' '.$active.'"><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="title">'.$item["label"].'</span>';
             //This menu can have 2 levels
@@ -57,7 +58,7 @@
                   buildLi($item);
                 if( isset($item["children"]) )
                 {
-                    buildChildren($item["children"]);
+                  buildChildren($item["children"]);
                 }
                 else if( isset($item["getChildren"]) )
                 {

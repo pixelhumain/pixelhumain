@@ -14,7 +14,7 @@ $.fn.editableTableWidget = function (options) {
 			active,
 			showEditor = function (select) {
 				active = element.find('td:focus');
-				if (active.length) {
+				if (active.length && !active.hasClass(activeOptions.disableClass)) {
 					editor.val(active.text())
 						.removeClass('error')
 						.show()
@@ -126,6 +126,7 @@ $.fn.editableTableWidget.defaultOptions = {
 	cloneProperties: ['padding', 'padding-top', 'padding-bottom', 'padding-left', 'padding-right',
 					  'text-align', 'font', 'font-size', 'font-family', 'font-weight',
 					  'border', 'border-top', 'border-bottom', 'border-left', 'border-right'],
+	disableClass: 'edit-disabled',
 	editor: $('<input>')
 };
 

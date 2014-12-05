@@ -62,7 +62,6 @@ class TemplatesController extends Controller
         		echo json_encode(array('result'=>true,"success"=>true,'name'=>$name));
     	        exit;
         	}
-        	
         }
         
         echo json_encode(array('result'=>false,'error'=>'Something went wrong with your upload!'));
@@ -80,6 +79,12 @@ class TemplatesController extends Controller
         $this->pageTitle = ((isset($page["title"])) ? $page["title"] : strtoupper($name) ).", Pixel Humain : 1er Réseau Social Citoyen Libre";
         $this->inlinePageTitle = strtoupper($name);
         $this->render("active/".$name, array( "name" => $name ));
+        
+    }
+
+    public function actionBrowser($folder){
+        $this->layout = "empty";
+        $this->render("browser", array( "folder" => $folder ));
         
     }
     

@@ -138,4 +138,102 @@ class PHDB
     	else
     		return true;    	
     }
+
+    /**
+     * Retreives from the data folder the $file 
+     * and returns the node corresponding to the where clause
+     * @return array containing a element of a json file.
+     */
+    public static function getArrayFromDataFolder($file=null,$where=null)
+    {
+        $moduleId=Yii::app()->controller->module->id;
+        $actionId = Yii::app()->controller->action->id;
+        $res = null;
+
+        if(file_exists(Yii::getPathOfAlias(Yii::app()->params["modulePath"].$moduleId.".data" )))
+        {
+          foreach( CFileHelper::findFiles(Yii::getPathOfAlias(Yii::app()->params["modulePath"].$moduleId.".data" )) as $f)
+          {
+            $fn = pathinfo($f, PATHINFO_FILENAME);
+            //echo "<br/>".$fn;
+            if( $file == $fn )
+            {
+                //echo "<br/> found file ".$file;
+                $json = json_decode( file_get_contents($f), true);
+                
+                //var_dump($json);
+                foreach ( $json as $i=>$row ) 
+                {
+                    
+                    if( ( isset($row[ $where["key"] ]) &&  $row[ $where["key"] ] == $where["value"] ) )
+                    {    
+                        //echo "<br/> found document name ".$row[ $where["key"] ];
+                        return $row;
+                    }
+                }
+            }
+          }
+        } 
+         return $res;
+      }
+
+    /**
+     * Gives status messages about the difference between 2 array elements
+     * correponding to a collection entry in the database 
+     *
+     * @return array of message with their types
+     */
+    public static function compareEntries($entries, $type, $file,$where, $autoApply=false)
+    {
+        $msg = array();
+        $arrayFromDataFolder = PHDB::getArrayFromDataFolder($file,$where);
+        if(isset($entries[$type]["_id"]))
+            unset($entries[$type]["_id"]);
+        
+        //testing existence
+        if( !isset($entries[$type]) ){
+          array_push($msg, array("type"=>"error","msg"=>"no $type in DB"));
+          if( $autoApply)
+          {
+            PHDB::insert($file,$arrayFromDataFolder);
+            array_push($msg, array("type"=>"action","msg"=>"new $type inserted DB"));
+            array_push($msg, array("type"=>"ok","msg"=>"$type entry has been updated in Database, <br/>"));
+          }
+        }
+        //compare one way
+        else if ($diff = ArrayHelper::array_diff_assoc_recursive( $arrayFromDataFolder , $entries[$type] ) ){
+          array_push($msg, array("type"=>"error","msg"=>"$type entry isn't up to date , some data has been 'added' to current content <br/>"));
+          //var_dump($arrayFromDataFolder);
+          //var_dump($entries[$type]);
+          var_dump($diff);
+          if( !empty($diff) && $autoApply)
+          {
+            PHDB::remove($file,array($where["key"]=>$where["value"]));
+            array_push($msg, array("type"=>"action","msg"=>"old $type removed DB"));
+            PHDB::insert($file,$arrayFromDataFolder);
+            array_push($msg, array("type"=>"action","msg"=>"new $type inserted DB"));
+            array_push($msg, array("type"=>"ok","msg"=>"$type entry has been updated in Database, <br/>"));
+          }
+        }
+        //compare other way
+        else if ($diff = ArrayHelper::array_diff_assoc_recursive( $entries[$type] , $arrayFromDataFolder ) ){
+          array_push($msg, array("type"=>"error","msg"=>"$type entry isn't up to date , some data has been 'removed' from current content  <br/>"));
+          //var_dump($arrayFromDataFolder);
+          //var_dump($entries[$type]);
+          var_dump($diff);
+          if( !empty($diff) && $autoApply)
+          {
+            PHDB::remove($file,array($where["key"]=>$where["value"]));
+            array_push($msg, array("type"=>"action","msg"=>"old $type removed DB"));
+            PHDB::insert($file,$arrayFromDataFolder);
+            array_push($msg, array("type"=>"action","msg"=>"new $type inserted DB"));
+            array_push($msg, array("type"=>"ok","msg"=>"$type entry has been updated in Database, <br/>"));
+          }
+        }
+        //nothing has changed
+        else {
+          array_push($msg, array("type"=>"ok","msg"=>"nothing to update on $type"));
+        }
+        return $msg;
+    }
 }

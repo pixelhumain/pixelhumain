@@ -109,7 +109,7 @@
                     <td class="txtright">Centre d'intérêt </td>
                     <td>
                         <?php 
-                          $cursor = PHDB::findOne(PHType::TYPE_LISTS, array("name"=>"tags"), array('list'));
+                          /*$cursor = PHDB::findOne(PHType::TYPE_LISTS, array("name"=>"tags"), array('list'));
                           $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                             'asDropDownList' => false,
                             'name' => 'tagsPA',
@@ -120,7 +120,7 @@
                                 'placeholder' => "Mots clefs vous décrivant",
                                 'width' => '100%',
                                 'tokenSeparators' => array(',', ' ')
-                            )));
+                            )));*/
             		    ?>
         		    </td>
     		    </tr>
