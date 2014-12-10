@@ -241,6 +241,7 @@ var_dump($this::$a);
 <h2> PATHS AND URLS </h2>       
         <?php 
 echo "Session userId:".Yii::app()->session["userId"]."<br/>";
+echo "Base URL de YII : ".str_replace("\\", "/",Yii::app()->basePath)."<br/>";
 $conflen=strlen('SCRIPT');
 $B=substr(__FILE__,0,strrpos(__FILE__,'/'));
 $A=substr($_SERVER['DOCUMENT_ROOT'], strrpos($_SERVER['DOCUMENT_ROOT'], $_SERVER['PHP_SELF']));

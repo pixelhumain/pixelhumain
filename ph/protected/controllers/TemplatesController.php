@@ -85,7 +85,6 @@ class TemplatesController extends Controller
     public function actionBrowser($folder){
         $this->layout = "empty";
         $this->render("browser", array( "folder" => $folder ));
-        
     }
     
 }

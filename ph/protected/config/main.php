@@ -11,7 +11,7 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Pixel Humain',
 	'theme'=>'webarch',
-	
+
 	//SPECIFIC MODULE confis
 	//'defaultController' => 'communecter/default/index',
 	'homeUrl' => "/ph/twh",//"/ph?tpl=index",
@@ -165,5 +165,8 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'contact@pixelhumain.com',
+		//upload base directory
+		'uploadURL' => "ph/upload/teeo/event/",
+		'uploadDir' => str_replace("\\", "/",dirname(__FILE__).DIRECTORY_SEPARATOR).'..'."/../upload/teeo/event/",
 	),
 );
