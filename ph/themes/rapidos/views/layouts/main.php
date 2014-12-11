@@ -61,10 +61,12 @@
 		   var initT = new Object();
 		   var showDelaunay = true;
 		   // A supprimer une fois le redirect corrigé 
-		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>/index.php";
+		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
+
 		</script>
+		
 	</head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
@@ -196,7 +198,8 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select
 $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/autosize/jquery.autosize.min.js' , CClientScript::POS_END);
 
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/pace.min.js' , CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScript::POS_END);
 		
 		$path = '/assets/js/main.js';
 
@@ -210,6 +213,11 @@ $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/autosize/jq
 		?>
 		<!-- end: CORE JAVASCRIPTS  -->
 		<script type="text/javascript">
+		paceOptions = {  
+			  // Configuration goes here. Example: 
+			  ajax: false, 
+			  elements: false,  
+			} 
 		jQuery(document).ready(function() {
 			Main.init();
 			SVExamples.init();
@@ -226,7 +234,9 @@ $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/autosize/jq
 			  "hideEasing": "linear",
 			  "showMethod": "fadeIn",
 			  "hideMethod": "fadeOut"
-			}
+			};
+			//Connecting pace loader toall ajax requests 
+			$(document).ajaxStart(function() { Pace.restart(); });
 		});
 		</script>
 	</body>
