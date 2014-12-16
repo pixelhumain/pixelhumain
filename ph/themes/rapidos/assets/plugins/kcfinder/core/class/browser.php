@@ -824,7 +824,7 @@ class browser extends uploader {
         if (isset($_POST['dir']))
             $dir .= "/" . $_POST['dir'];
         if (!$this->checkFilePath($dir))
-            $this->errorMsg("Unknown error. 19 ".realpath($dir)." ".$this->typeDir);
+            $this->errorMsg("Unknown error. 19 ".str_replace("\\", "/",realpath($dir))." ".realpath($this->typeDir));
         if ($existent && (!is_dir($dir) || !is_readable($dir)))
             $this->errorMsg("Inexistant or inaccessible folder.");
         return $dir;

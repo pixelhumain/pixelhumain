@@ -166,7 +166,7 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'contact@pixelhumain.com',
 		//upload base directory
-		'uploadURL' => "ph/upload/teeo/event/",
-		'uploadDir' => str_replace("\\", "/",dirname(__FILE__).DIRECTORY_SEPARATOR).'..'."/../upload/teeo/event/",
+		'uploadURL' => "/ph/upload/teeo/event/",
+		'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\upload\\teeo\\event\\",
 	),
 );
