@@ -19,7 +19,10 @@ function testitpost(id,url,params,callback){
 	    } 
 	  });
 }
-
+/*
+what can be a simple string which will go into the title bar 
+or an aboject with properties like title, icon, desc
+ */
 function getModal(what, url,id)
 {
 	
@@ -42,8 +45,12 @@ function getModal(what, url,id)
         if (data) {               
         	/*if(!selectContent)
         		selectContent = data.selectContent;*/
-    		$("#ajax-modal-modal-title").html("<i class='fa fa-pencil'></i> "+what);
-            $("#ajax-modal-modal-body").html(data); 
+        	title = (typeof what === "object" && what.title ) ? what.title : what;
+        	icon = (typeof what === "object" && what.icon ) ? what.icon : "fa-pencil";
+        	desc = (typeof what === "object" && what.desc ) ? what.desc+'<div class="space20"></div>' : "";
+
+    		$("#ajax-modal-modal-title").html("<i class='fa "+icon+"'></i> "+title);
+            $("#ajax-modal-modal-body").html(desc+data); 
             $('#ajax-modal').modal("show");
         } else {
             toastr.error("bug get "+id);
