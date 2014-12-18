@@ -225,5 +225,10 @@ footer {
   right: 100%;
   width: 100%;
   height: 2px;
+}  
+@media (max-width: 991px) {
+  .pace .pace-progress {
+    top: 50px;
+  }  
 }
 
