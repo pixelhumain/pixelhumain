@@ -213,6 +213,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScri
 		?>
 		<!-- end: CORE JAVASCRIPTS  -->
 		<script type="text/javascript">
+		
 		paceOptions = {  
 			  // Configuration goes here. Example: 
 			  ajax: false, 

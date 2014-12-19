@@ -231,4 +231,7 @@ footer {
     top: 50px;
   }  
 }
+.modal-dialog {
+    top: 40%;
+}
 
