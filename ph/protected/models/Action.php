@@ -78,7 +78,7 @@ class Action
                 						"ojectId" => $id,
                 						"created"=>time()
                 					);
-        PHDB::insert( PHType::TYPE_ACTION_HISTORY, $currentAction );
+        PHDB::insert( PHType::TYPE_ACTIVITYSTREAM, $currentAction );
     }
     
 

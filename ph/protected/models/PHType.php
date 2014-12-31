@@ -21,7 +21,7 @@ class PHType
     const TYPE_DISCUSSION	   = "discussion";
     const TYPE_APPLICATIONS    = "applications";
     const TYPE_SURVEYS         = "surveys";
-    const TYPE_ACTION_HISTORY  = "actionHistory";
+    const TYPE_ACTIVITYSTREAM  = "activityStream";
     const TYPE_MICROFORMATS    = "microformats";
     const TYPE_LISTS           = "lists";
     const TYPE_MESSAGES        = "messages";
