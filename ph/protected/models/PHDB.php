@@ -35,7 +35,10 @@ class PHDB
         return !self::checkMongoDbPhpDriverInstalled()?null:
             Yii::app()->mongodb->selectCollection($collection)->findAndModify($where, $action, null, $options);
     }
-
+    public static function distinct( $collection, $key, $where=array() )
+    {     
+        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->distinct($key,$where);
+    }
     public static function count( $collection, $where=array() )
     {    	
         return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->count($where);
