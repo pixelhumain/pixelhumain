@@ -1,0 +1,134 @@
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+CORNER DEV, For Spiders , The Builders of the Web 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Slogan 
+For Spiders , The Builders of the Web 
+Corner Dev is a Corner Stone of WebDev 
+Manage, Build and Follow your web projects 
+without leaving your browser's project page.
+
+A set of tools designed to make our project management easy
+build a Sitemap
+List all the features for each page
+Comment, Task, Debug, notify  
+
+DESCRIPTION
+XXXXXXXXXXXXXXXXXXXXXXXX
+    is a Corner div available during dev 
+        can add stuff to your dev context a url for different actions
+            - edit details popin interface
+            - simple sitemap definition as a descriptive approach 
+                - url todo (progress & status)
+                    during specification phase
+                    - add a screen shot per version to have a history of evolution
+                - add a notification pin saying this url isn't in sitemap , do you want to add it 
+                    when building the sitemap comes from the dev
+                - this url isn't finish what is the status 
+                - this url is finished but not validated, please test it thouroughly and confirm it 
+            
+            - comments 
+                declare a bug
+                    add a an html identifier like a ID, this way we can 
+                    highlight the issue with a RED BORDER
+                a wish, 
+                a comment for discussion
+                a dev log (cross link elements)
+                advise listened or not 
+        color coded according to status or action options
+        
+        
+SPECIFICATION 
+XXXXXXXXXXXXXXXXXXXXXXXX
+    ADMIN
+        is fixed position is configurable corner position 
+            1- default : bottom Left
+            2- top left
+            3- top right
+            4- bottom right
+        jsonSRC = is linked to a json description file or a REST DB generated JSON 
+        searchBase : choose what attribute value search is done 
+            Yii : controller + action 
+            default : URL
+    INTERFACE 
+        2 front end interfaces 
+            - page view : shows page specific information, and actions
+            - global view : shows global dev activity, and actions
+        searches the jsonSRC for the entry 
+            if finds shows details + tools : edit , add comments ...
+            else shows adding tools 
+    JSON EDITOR
+        -import and manipulate any existant json
+        -add child to any node of the tree
+            - simple : write a pair(key:value)
+            - template : use / fill a template 
+        using jsontree
+            problem is the strict data convention 
+            opening up the jsonTree would do the trick 
+            
+            
+ROADMAP & TODOS
+XXXXXXXXXXXXXXXXXXXXXXXX
+    - sitemap : add style node for background color or image
+    - integrate jqueery.sitemap project into corner dev
+        - try to keep them seperatly functional while using the same Json file
+        - make an admin for both interface to define the sitemap 
+    ------------------- Feature Freaking ---------------------------------------------    
+    - site crawler : when added to an existing site , you can either 
+        fill the corner Dev sitemap manuelly with 'add this page' or have a spider crawl 
+        the site and build the sitemap automatically
+
+Features Done
+XXXXXXXXXXXXXXXXXXXXXXXX
+    -cornerDev equals all sitemap editing features before adding any new ones 
+        This way any new feature will be build on a common ground
+        - add Comment 
+        - move new frame in the sitemap
+    -!Exist : Add a new entry or browser the sitemap tree
+        - correspondance with sitemap interface
+    -Exist : Edit JSON corresponding data
+        - show Edit Frame Form 
+        - Fill with current page data 
+        - reuse Frame creation from Sitemap 
+        - refactor sitemap structure to use Ojbects with IDs
+            - currently sections is an array of Objects but should become an Obj of Obj, where keys are unique IDs
+            - currently Frames is an array of Object the same as above 
+            - refactor the sitemap JS frame editing and creating 
+    -make admin interface : in the CornerDev.php Class
+    -show corner in-site in minimal 2 state feature (url exist or !exist)
+        based on search attribute takes 2 colors (url exist or !exist)
+        
+        
+ARCHITECTURE
+XXXXXXXXXXXXXXXXXXXXXXXX
+    The Module can run in both ways standalone 
+        Json file based (for svn based development)
+        DB based maybe Couch DB (for ommunity based development)
+        
+    JSON Specifications
+    -------------------------
+    grouping reusable nodes (microformats) like 
+    coord : {top: , 
+             left : , 
+             width:, 
+             height: }
+    specs : {title: , 
+             progress: ,
+             state:,
+             priority:,
+             type:,
+              }
+    "_-_" a node title always defines the type of the node
+        something_-_list : { types : [type1,type2,type3,...], //all possible types for the data below
+                       data : [{},{}] //a list of content differingonly by type
+                     }
+        something_-_tpl :: {will have the generic definition of a template, refer to openTree specifiactions}
+        pages_-_tpl_popinForm_-_page :: this node is of type popin_Form and uses page.js specification map as a form template or schema
+        path_-_text :: 
+        url_-_tpl_-_url":{"label_-_text":"qqqqqq","url_-_text":"qqqqqq"} //defines a url type node 
+        save_-_callback : "saveCallback()" //will launch this script after saving the node
+        types_-_## // is a specification node , ex : list of possible types
+		
+        
+FEATURE FREAKING
+XXXXXXXXXXXXXXXXXXXXXXXX
+- infinite depth between Sections and zones 

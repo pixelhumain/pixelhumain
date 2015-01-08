@@ -230,7 +230,7 @@
 				});
 			}
 		},
-		hideSubview: function() {
+		hideSubview: function(callback) {
 			if(subview_id.length > 1 && subview_action !== "close") {
 
 				subview_action = "";
@@ -388,6 +388,8 @@
 					}
 				}
 			}
+      if(callback && typeof callback == "function")
+        callback();
 		}
 	});
 })(jQuery);
