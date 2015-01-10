@@ -48,7 +48,7 @@
 				<!-- end: USER DROPDOWN -->
 				<li class="right-menu-toggle">
 					<a href="#" class="sb-toggle-right">
-						<i class="fa fa-globe toggle-icon"></i> <i class="fa fa-caret-right"></i> <span class="notifications-count badge badge-default hide"> 3</span>
+						<i class="fa fa-info-circle toggle-icon"></i> <i class="fa fa-caret-right"></i> <span class="notifications-count badge badge-default hide"> 3</span>
 					</a>
 				</li>
 			</ul>

@@ -20,7 +20,7 @@
 				<!-- start: TO-DO DROPDOWN -->
 				<li class="dropdown">
 					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-						<i class="fa fa-plus  fa-2x icon-big"></i> ADD
+						<i class="fa fa-plus  fa-2x icon-big"></i> AJOUTER
 						<div class="tooltip-notification hide">
 							<div class="tooltip-notification-arrow"></div>
 							<div class="tooltip-notification-inner">
@@ -155,7 +155,7 @@
 					?>
 				<li class="dropdown">
 					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-						<span class="messages-count badge badge-default ">3</span> <i class="fa fa-map-marker"></i> MAPS
+						<span class="messages-count badge badge-default ">3</span> <i class="fa fa-map-marker"></i> CARTO
 					</a>
 					<ul class="dropdown-menu dropdown-light dropdown-messages">
 						<li>
@@ -209,7 +209,7 @@
 					?>
 				<li class="menu-search">
 					<a href="#">
-						<i class="fa fa-search"></i> SEARCH
+						<i class="fa fa-search"></i> CHERCHER
 					</a>
 					<!-- start: SEARCH POPOVER -->
 					<div class="popover bottom search-box transition-all">
