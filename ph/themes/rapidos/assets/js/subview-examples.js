@@ -13,7 +13,7 @@
     if(typeof addTasks2CAlendar != 'undefined' && typeof addTasks2CAlendar == "function")
     {
       calendar = addTasks2CAlendar();
-      console.log("calendar",calendar);
+      //console.dir("calendar",calendar);
     }else{
   		var d = date.getDate();
   		var m = date.getMonth();

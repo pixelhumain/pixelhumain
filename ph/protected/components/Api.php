@@ -149,6 +149,20 @@ class Api {
             "desc"=>"save a Project or an entity ",
             "actions"=>array('saveproject'=> 'application.components.api.controllers.projects.SaveAction')),
         
+        /* -----------------------------------------------
+        PROJECT Section
+         ------------------------------------------------ */
+        "markNotificationAsRead" => array( "label"=>"Mark Notification As Read", "key"=>"markNotificationAsRead",
+            "desc"=>"Mark a Nnotification as Read and remove",
+            "process"=>array(
+            	"when a user clicks a notification",
+            	"an ajax event is launched",
+            	"get the activity Stream Entry related to the notification",
+            	"remove the user Id from the notify.id array",
+            	"if only one user in the array remove the notify node from the AS entry"
+            ),
+            "actions"=>array('markNotificationAsRead'=> 'application.components.api.controllers.activityStream.notifications.RemoveAction')),
+
        	/* -----------------------------------------------
         NEWS Section
          ------------------------------------------------ */
@@ -255,6 +269,12 @@ class Api {
         return array( 'label' => "Project", "key"=>"projects", "iconClass"=>"fa fa-list", "generate"=>true,
                 "children"=> array(
                     self::$apis["saveProject"]
+                )); 
+    }
+    public static function getNotificationMap(){
+        return array( 'label' => "Notification", "key"=>"notifications", "iconClass"=>"fa fa-info", "generate"=>true,
+                "children"=> array(
+                    self::$apis["markNotificationAsRead"]                	
                 )); 
     }
 	public static function getSigMap(){

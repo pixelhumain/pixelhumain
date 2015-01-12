@@ -286,10 +286,7 @@ var Main = function() {"use strict";
 		}
 
 		if($('.notifications-count').length) {
-			setTimeout(function() {
-				$('.notifications-count').removeClass('hide');
-				$('.notifications-count').addClass('animated bounceIn');
-			}, 10000);
+      notifCount();
 		}
 	};
 	//Search Box Function

@@ -19,7 +19,7 @@
 				<li id="mbz" style="padding-top:5px;"></li>
 				<!-- start: USER DROPDOWN -->
 				<li class="dropdown current-user">
-					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
+					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" title="<?php echo Yii::app()->session["userId"]?>" data-placement="bottom" data-close-others="true" href="#">
 						<img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/avatar-1-small.jpg" class="img-circle" alt=""> <span class="username hidden-xs"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span> <i class="fa fa-caret-down "></i>
 					</a>
 					<ul class="dropdown-menu dropdown-dark">
@@ -48,7 +48,7 @@
 				<!-- end: USER DROPDOWN -->
 				<li class="right-menu-toggle">
 					<a href="#" class="sb-toggle-right">
-						<i class="fa fa-info-circle toggle-icon"></i> <i class="fa fa-caret-right"></i> <span class="notifications-count badge badge-default hide"> 3</span>
+						<i class="fa fa-info-circle toggle-icon"></i> <i class="fa fa-caret-right"></i> <span class="notifications-count badge badge-default hide"></span>
 					</a>
 				</li>
 			</ul>
