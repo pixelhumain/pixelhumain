@@ -150,10 +150,10 @@ class Api {
             "actions"=>array('saveproject'=> 'application.components.api.controllers.projects.SaveAction')),
         
         /* -----------------------------------------------
-        PROJECT Section
+        NOTIFICATIONS Section
          ------------------------------------------------ */
         "markNotificationAsRead" => array( "label"=>"Mark Notification As Read", "key"=>"markNotificationAsRead",
-            "desc"=>"Mark a Nnotification as Read and remove",
+            "desc"=>"Mark a Notification as Read and remove",
             "process"=>array(
             	"when a user clicks a notification",
             	"an ajax event is launched",
@@ -161,7 +161,13 @@ class Api {
             	"remove the user Id from the notify.id array",
             	"if only one user in the array remove the notify node from the AS entry"
             ),
-            "actions"=>array('markNotificationAsRead'=> 'application.components.api.controllers.activityStream.notifications.RemoveAction')),
+            "actions"=>array('marknotificationasread'=> 'application.components.api.controllers.activityStream.notifications.RemoveAction')),
+        "markallnotificationasread" => array( "label"=>"Mark All Notification As Read", "key"=>"markallnotificationasread",
+            "desc"=>"Mark all Notifications as Read and remove",
+            "actions"=>array('markallnotificationasread'=> 'application.components.api.controllers.activityStream.notifications.RemoveAllAction')),
+        "getNotifications" => array( "label"=>"Get Notifications", "key"=>"getNotifications",
+            "desc"=>"Get Notifications",
+            "actions"=>array('getnotifications'=> 'application.components.api.controllers.activityStream.notifications.GetAction')),
 
        	/* -----------------------------------------------
         NEWS Section
@@ -271,10 +277,12 @@ class Api {
                     self::$apis["saveProject"]
                 )); 
     }
-    public static function getNotificationMap(){
+    public static function getNotificationActions(){
         return array( 'label' => "Notification", "key"=>"notifications", "iconClass"=>"fa fa-info", "generate"=>true,
                 "children"=> array(
-                    self::$apis["markNotificationAsRead"]                	
+                    self::$apis["markNotificationAsRead"] ,
+                    self::$apis["markallnotificationasread"] ,
+                    self::$apis["getNotifications"] ,
                 )); 
     }
 	public static function getSigMap(){

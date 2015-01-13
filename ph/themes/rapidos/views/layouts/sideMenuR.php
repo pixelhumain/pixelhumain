@@ -6,21 +6,32 @@
 			<div class="pageslide-title">
 				You have 11 notifications 
 			</div>
-			<ul class="pageslide-list">
+			<ul class="pageslide-list header">
 				<li>
 					<a href="javascript:;" onclick='refreshNotifications()' class="btn btn-primary"><i class="fa fa-refresh"></i></a>
 				</li>
+			</ul>
+			<ul class="pageslide-list notifList">
 				<?php
-					foreach( $this->notifications as $item )
-			        {
-			            echo "<li class='notifLi'>";
-			            echo "<a class='notif' data-id='".(string)$item["_id"]."' href='".$item["notify"]["url"]."'><span class='label label-primary'>";
-			            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message">';
-			            echo $item["notify"]["displayName"];
-			            echo "</span><span class='time'> 1 min</span></a>";
-			            echo "</li>";
-			        } 
+					$maxTimestamp = 0;
+					if(isset($this->notifications))
+					{
+						foreach( $this->notifications as $item )
+				        {
+				            echo "<li class='notifLi notif_".(string)$item["_id"]."'>";
+				            echo "<a class='notif' data-id='".(string)$item["_id"]."' href='".$item["notify"]["url"]."'><span class='label label-primary'>";
+				            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message">';
+				            echo $item["notify"]["displayName"];
+				            
+				            echo "</span><span class='time'>".round(abs(time() - $item["timestamp"]) / 60)."min</span></a>";
+				            echo "</li>";
+				            if($item["timestamp"] > $maxTimestamp)
+				            	$maxTimestamp = $item["timestamp"];
+				        } 
+				    }
 				?>
+			</ul>
+			<ul  class="pageslide-list footer"> 
 				<li class='markAllAsRead'>
 					<a href="javascript:;" onclick='markAllAsRead()' class="btn btn-primary ">Mark all as Read <i class="fa fa-check-square-o"></i></a>
 				</li>
@@ -38,51 +49,131 @@
 </div>
 <!-- end: PAGESLIDE RIGHT -->
 <script type="text/javascript">
-jQuery(document).ready(function() {
+
+var notifications = null;
+var maxNotifTimstamp = <?php echo $maxTimestamp ?>;
+
+jQuery(document).ready(function() 
+{
 	
-	$(".notifications a.notif").off().on("click",function () {
-		console.log("notif read",$(this).data("id"));
-		$(this).parent().remove();
-		markAsRead($(this).data("id"));
-	});
+	bindNotifEvents();
 
 });
-function markAllAsRead(){
-	$(".notifications ul li.notifLi").remove();
-	toastr.info("TODO : apply ajax remove to DB data");
-	//ajax remove Notifications by AS Id
-	//TODO : ActivityStream::removeNotifications($id)
-	$(".markAllAsRead").hide();
-	notifCount();
+
+function bindNotifEvents(){
+
+	$(".notifList a.notif").off().on("click",function () 
+	{
+		markAsRead($(this).data("id"));
+		elem = $(this).parent();
+		elem.removeClass('animated bounceInRight').addClass("animated bounceOutRight");
+		setTimeout(function(){
+            elem.addClass('hide');
+            elem.removeClass('animated bounceOutRight');
+            notifCount();
+        }, 200);
+		
+	});
+
 }
-function markAsRead(){
-	toastr.info("TODO : apply ajax remove to DB data");
+
+function markAsRead(id)
+{
+	console.log("markAsRead",id);
 	//ajax remove Notifications by AS Id
-	//TODO : ActivityStream::removeNotifications($id)
-	if( $(".notifications ul li").length == 2)
-		$(".markAllAsRead").hide();
-	notifCount();
+	$.ajax({
+        type: "POST",
+        url: baseUrl+"/"+moduleId+"/api/marknotificationasread",
+        data: { "id" : id },
+        dataType : 'json'
+    })
+    .done( function (data) {
+    	console.dir(data);
+        if ( data && data.result ) {               
+        	$(".notifList li.notif_"+id).remove();
+        	console.log("notification cleared ",data);
+        } else {
+            toastr.error("no notifications found ");
+        }
+        notifCount();
+    });
+
+	
 }
-function refreshNotifications(){
-	toastr.info("TODO : refresh notification list");
+
+function markAllAsRead()
+{
+	$.ajax({
+        type: "POST",
+        url: baseUrl+"/"+moduleId+"/api/markallnotificationasread",
+        dataType : 'json'
+    })
+    .done( function (data) {
+    	console.dir(data);
+        if ( data && data.result ) {               
+        	$(".notifList li.notifLi").remove();
+        	console.log("notifications cleared ",data);
+        } else {
+            toastr.error("no notifications found ");
+        }
+        notifCount();
+    });
+	
+}
+
+function refreshNotifications()
+{
 	//ajax get Notifications
-	//TODO : ActivityStream::getNotifications(array("notify.id"=>Yii::app()->session["userId"]));
-
-	if( $(".notifications ul li").length > 2 )
-		$(".markAllAsRead").show();
-	notifCount();
+	console.log("refreshNotifications",maxNotifTimstamp);
+	$.ajax({
+        type: "GET",
+        url: baseUrl+"/"+moduleId+"/api/getnotifications?ts="+maxNotifTimstamp
+    })
+    .done(function (data) {
+        if (data) {               
+        	buildNotifications(data);
+        } else {
+            toastr.error("no notifications found ");
+        }
+        notifCount();
+    });
 }
-function buildNotifications(){
 
+function buildNotifications(list)
+{
+	console.info("buildNotifications()");
+	//$(".notifList").html("");
+	$.each(list,function(notifKey,notifObj)
+	{
+		str = "<li class='notifLi notif_"+notifKey+" hide'>"+
+				"<a class='notif' data-id='"+notifKey+"' href='"+notifObj.notify.url+"'><span class='label label-primary'>"+
+				'<i class="fa '+notifObj.notify.icon+'"></i></span> <span class="message">'+
+				notifObj.notify.displayName+
+				"</span><span class='time'> 1 min</span></a>"+
+			"</li>";
+		$(".notifList").append(str);
+		$(".notif_"+notifKey).removeClass('hide').addClass("animated bounceInRight");
+		if( notifObj.timestamp > maxNotifTimstamp )
+			maxNotifTimstamp = notifObj.timestamp;
+	});
+	setTimeout( function(){
+    	notifCount();
+    }, 200);
+	
+	bindNotifEvents();
 }
-function notifCount(){
-	var countNotif = $(".notifications a.notif").length;
-	if(countNotif){
+
+function notifCount()
+{
+	var countNotif = $(".notifList li:visible").length;
+	if(countNotif > 0)
+	{
 	    $(".notifications-count").html(countNotif);
 		$('.notifications-count').removeClass('hide');
 		$('.notifications-count').addClass('animated bounceIn');
 	} else {
 		$('.notifications-count').addClass('hide');
+		$(".markAllAsRead").hide();
 	}
 }
 </script>
