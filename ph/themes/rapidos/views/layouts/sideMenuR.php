@@ -97,8 +97,6 @@ function markAsRead(id)
         }
         notifCount();
     });
-
-	
 }
 
 function markAllAsRead()
