@@ -18,4 +18,5 @@ $activeModules = array(
 	'agenda',
 	'networkmapping',
 	'news',
-	'twh');
+	'twh',
+	'vitrine');
