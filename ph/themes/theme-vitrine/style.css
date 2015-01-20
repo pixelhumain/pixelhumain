@@ -471,6 +471,13 @@ div.with-arrow{
 	margin: 0 auto;
 	color: #FFF;
 }
+
+.mapProject {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  color: #FFF;
+}
 .project > .sequence-canvas {
 	height: 100%;
 	width: 100%;

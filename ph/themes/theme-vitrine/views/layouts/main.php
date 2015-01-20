@@ -7,7 +7,7 @@
     <!-- MAKE IT RESPONSIVE -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- BOOTSTRAP -->
-    <link href="<?php echo Yii::app()->theme->baseUrl;?>/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="<?php echo Yii::app()->theme->baseUrl;?>/js/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
     
     <!-- MAIN STYLE -->
     <link href="<?php echo Yii::app()->theme->baseUrl;?>/css/style.css" rel="stylesheet" media="screen">
@@ -19,6 +19,7 @@
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
     <![endif]-->
+
   </head>
   <!-- START BODY -->
   <body>
@@ -35,7 +36,7 @@
 		<div id="loader"></div>
   	</div>
     <!-- SCRIPTS -->
-    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/alert.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.sequence-min.js"></script>
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.fancybox.pack.js"></script>
@@ -46,6 +47,7 @@
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/pace.min.js"></script>
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.flexslider-min.js"></script>
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/custom.js"></script>
+	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/bootstrap/js/bootstrap.js"></script>
   </body>
   <!-- END BODY -->
 </html>

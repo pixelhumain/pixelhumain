@@ -298,6 +298,7 @@ ul.list-icon li:before{
 
 	width: auto;
 }
+
 #menu{
 	float: right;
 	line-height: 32px;
@@ -350,6 +351,7 @@ div.with-arrow{
 	z-index: 10;
 
 }
+
 
 .new{background:url(images/white-bg.png) top center no-repeat; background-color:#2a3945; padding-top:100px; }
 .new h3{color:#FFF !important; }
@@ -996,6 +998,8 @@ text-align:center !important;}
 #single-page .section-content .event-featured{
 	display: block;
 	width: 90%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 #single-page .section-content .post-featured img,
 #single-page .section-content .event-featured img{
@@ -1744,3 +1748,4 @@ div.graph-navigation.zoomExtends {
     bottom: 50px;
     right: 15px;
 }
+
