@@ -1,11 +1,6 @@
 Pixel Humain
 ===========
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pixelhumain/pixelhumain?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-If you are on mac OSX, read this readme first :
-[Specific readme_macOS.md for Mac OSX](https://github.com/pixelhumain/pixelhumain/blob/master/README_macOs.md/)
-
 ##Installation
 ####Configure your php
 Verify your php configuration is right done lauching the command line
@@ -174,3 +169,9 @@ This avoids a tedious task of writing a doc after hit.
 ##Version 0.002
     L'homme qui déplace une montagne commence par déplacer les petites pierres.- Confucius
     Man who wants to move a mountain starts by moving pebbles
+    
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pixelhumain/pixelhumain?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+If you are on mac OSX, read this readme first :
+[Specific readme_macOS.md for Mac OSX](https://github.com/pixelhumain/pixelhumain/blob/master/README_macOs.md/)
+
