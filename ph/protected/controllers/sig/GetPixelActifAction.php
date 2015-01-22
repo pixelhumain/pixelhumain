@@ -8,12 +8,12 @@ class GetPixelActifAction extends CAction
 {
     public function run()
     {
-    
-    	$where = array(	//'tag'  => "",
-    					'geo'  => array( '$exists' => true ),
+    	//début de la requete => scope geographique
+    	$where = array(	'geo'  => array( '$exists' => true ),
     					'geo.latitude' => array('$gt' => floatval($_POST['latMinScope']), '$lt' => floatval($_POST['latMaxScope'])),
 						'geo.longitude' => array('$gt' => floatval($_POST['lngMinScope']), '$lt' => floatval($_POST['lngMaxScope']))
 					  
+					  	//version $geoWithin (à conserver en attendant la maj de version de mongo)
 					  	/*'geoPosition' =>  array('$geoWithin' => 
 									array( '$box' => array(array(floatval($_POST['lngMinScope']), 
 															  	 floatval($_POST['latMinScope']) 
@@ -28,8 +28,19 @@ class GetPixelActifAction extends CAction
 					  */
 					  
 					  );
-					  
-    	$users = PHDB::find(PHType::TYPE_CITOYEN, $where);
+		
+		//rajoute les filtres choisi dans le panel (seulement s'il y a au moins 1 filtre selectionné)
+		if(isset($_POST['types']))
+		//TAG = TYPE = "citoyen,pixelActif,partnerPH,commune,association,projectLeader
+		$where['tag'] = array('$in' => $_POST['types']);
+    	//si aucun filtre n'est selectionné, on ne fait pas la recherche
+    	else { 
+    		Rest::json( array("result" => "Aucun résultat") );
+        	Yii::app()->end();
+    	}
+    	
+    								  
+    	$users = PHDB::find("citoyengeo", $where);
         $users["origine"] = "getPixelActif";
     	
     	

@@ -10,12 +10,12 @@ class ImportDataAction extends CAction
 {
     public function run()
     {
-    	//$result = $this->createPartners();			//créé des citoyens Partenaires et PixelActif
+    	$result = $this->createPartners();				//créé des citoyens Partenaires et PixelActif
         //$result = $this->importFromJson();			//importe les cities depuis fichier .json vers dbb
         //$result = $this->updateGeoPositionCitoyens();
     	//$result = $this->updateGeoPositionCities();
-    	$result = $this->updateGeoPositionGroups();
-    	//$result = "Par sécurité, l'execution de ce script est désactivé. Merci de choisir une action (->contrll ImportDataAction) avant d'executer ce script";
+    	//$result = $this->updateGeoPositionGroups();
+    	//$result = "Par sécurité, l'execution de ce script est désactivé. Merci de choisir une action avant d'executer ce script";
 		Rest::json($result);  
 		Yii::app()->end();
 	}
@@ -26,31 +26,46 @@ class ImportDataAction extends CAction
 		ini_set("memory_limit","100M"); 
 		
 		//charge le fichier json en memoire
-		$fp = fopen ("../../modules/sig/data/_partners_.json", "r");  	
-		$contenu_du_fichier = fread ($fp, filesize('../../modules/sig/data/_partners_.json')); //charge le contenu du fichier
+		$fp = fopen ("../../modules/sig/data/_partners_and_tags_.json", "r");  	
+		$contenu_du_fichier = fread ($fp, filesize('../../modules/sig/data/_partners_and_tags_.json')); //charge le contenu du fichier
 		fclose ($fp);
 		//transforme le flux en structure json   
 		$partnersJson = json_decode ($contenu_du_fichier); 
 		
-		$result = "loading _partners_.json file ok<br/>";
+		$result = "loading _partners_and_tags_.json file ok<br/>";
 		$result .= $partnersJson->type;
 		foreach($partnersJson->features as $partner) {
 				
 			$tag = (isset($partner->properties->tag)) ? $partner->properties->tag : "pixelActif";
+			
+			$coordinates1 = array();
+			$coordinates2 = array();
+			if($tag == "pixelActif"){
+			$coordinates1 = array("@type" => "GeoCoordinates",	
+                                			   "longitude" => $partner->geometry->coordinates[1],
+                                			   "latitude" => $partner->geometry->coordinates[0] );
+            $coordinates2 = array(	$partner->geometry->coordinates[1], 
+                    				$partner->geometry->coordinates[0]);
+            }else{
+             $coordinates1 = array("@type" => "GeoCoordinates",	
+                                			   "longitude" => $partner->geometry->coordinates[0],
+                                			   "latitude" => $partner->geometry->coordinates[1] );
+            $coordinates2 = array(	$partner->geometry->coordinates[0], 
+                    				$partner->geometry->coordinates[1]);
+            }
+            
+            
 			$citoyen = array(	'name' => $partner->properties->name,
 								'tag' => $tag,
                                 'created' => time(),
-                                'geo' => array("@type" => "GeoCoordinates",	
-                                			   "longitude" => $partner->geometry->coordinates[0],
-                                			   "latitude" => $partner->geometry->coordinates[1],
-                                		 ),
+                                'geo' => $coordinates1,
                                 'geoPosition' => array("type" => "Point", 
-                                						"coordinates" => array(	$partner->geometry->coordinates[0], 
-                                												$partner->geometry->coordinates[1])
+                                						"coordinates" => $coordinates2
                                 					   )
 								);
-			$result .= " name : ".$partner->properties->name;
-			Yii::app()->mongodb->citoyens->insert($citoyen);
+			
+			$result .= "  +  ".$partner->properties->name;
+			Yii::app()->mongodb->citoyengeo->insert($citoyen);
 		}	
 		return $result;
 	  }
