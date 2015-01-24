@@ -9,9 +9,9 @@ class GetPixelActifAction extends CAction
     public function run()
     {
     	//début de la requete => scope geographique
-    	$where = array(	'geo'  => array( '$exists' => true ),
-    					'geo.latitude' => array('$gt' => floatval($_POST['latMinScope']), '$lt' => floatval($_POST['latMaxScope'])),
-						'geo.longitude' => array('$gt' => floatval($_POST['lngMinScope']), '$lt' => floatval($_POST['lngMaxScope']))
+    	$where = array(	// 'geo'  => array( '$exists' => true ),
+//     					'geo.latitude' => array('$gt' => floatval($_POST['latMinScope']), '$lt' => floatval($_POST['latMaxScope'])),
+// 						'geo.longitude' => array('$gt' => floatval($_POST['lngMinScope']), '$lt' => floatval($_POST['lngMaxScope']))
 					  
 					  	//version $geoWithin (à conserver en attendant la maj de version de mongo)
 					  	/*'geoPosition' =>  array('$geoWithin' => 
