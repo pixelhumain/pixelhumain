@@ -55,9 +55,7 @@ var maxNotifTimstamp = <?php echo $maxTimestamp ?>;
 
 jQuery(document).ready(function() 
 {
-	
 	bindNotifEvents();
-
 });
 
 function bindNotifEvents(){
