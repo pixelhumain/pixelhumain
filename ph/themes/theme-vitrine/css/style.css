@@ -490,7 +490,9 @@ svg {
   margin-bottom: 20px;
   color:#2a3945;
 }
-
+#patterns svg{
+  z-index: -10;
+}
 .sequence-next,
 .sequence-prev {
   cursor: pointer;
@@ -513,7 +515,6 @@ svg {
 
 circle {
     fill: #c8cdd0;
-    background-image: "images/img3.png"
     -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
     transition: width 2s;
 }

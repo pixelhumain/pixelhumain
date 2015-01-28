@@ -7,6 +7,11 @@
 			"@context": "http://schema.org",
 			"@type": "comment",
 			"comment": "lllzjziefizizeziez"
+		},
+		"image" : {
+			"@context": "http://schema.org",
+			"@type": "image",
+			"url" : "img1.png"
 		}
 	},
 
@@ -18,6 +23,11 @@
 			"@context": "http://schema.org",
 			"@type": "comment",
 			"comment": "lllzjziefizizeziez"
+		},
+		"image" : {
+			"@context": "http://schema.org",
+			"@type": "image",
+			"url" : "img2.png"
 		}
 	},
 
@@ -29,6 +39,11 @@
 			"@context": "http://schema.org",
 			"@type": "comment",
 			"comment": "lllzjziefizizeziez"
+		},
+		"image" : {
+			"@context": "http://schema.org",
+			"@type": "image",
+			"url" : "img2.png"
 		}
 	},
 	
@@ -40,6 +55,11 @@
 			"@context": "http://schema.org",
 			"@type": "comment",
 			"comment": "lllzjziefizizeziez"
+		},
+		"image" : {
+			"@context": "http://schema.org",
+			"@type": "image",
+			"url" : "img1.png"
 		}
 	},
 	
@@ -51,6 +71,11 @@
 			"@context": "http://schema.org",
 			"@type": "comment",
 			"comment": "lllzjziefizizeziez"
+		},
+		"image" : {
+			"@context": "http://schema.org",
+			"@type": "image",
+			"url" : "img2.png"
 		}
 	},
 	
@@ -62,6 +87,11 @@
 			"@context": "http://schema.org",
 			"@type": "comment",
 			"comment": "lllzjziefizizeziez"
+		},
+		"image" : {
+			"@context": "http://schema.org",
+			"@type": "image",
+			"url" : "img1.png"
 		}
 	},
 	
