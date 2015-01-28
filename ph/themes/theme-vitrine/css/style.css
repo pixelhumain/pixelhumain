@@ -252,7 +252,7 @@ ul.list-icon li{
 }
 ul.list-icon li:before{
 	content: "\e72a";
-	font-size: 14px;
+	font-size: 14px;$("#"+id).d3MouseOver();
 	padding-right: 12px;
 	color: #CCC;
 	display: inline-table;
@@ -274,7 +274,7 @@ ul.list-icon li:before{
 	padding: 20px 0;
 	width: 100%;
 	z-index: 1000;
-	position: relative;
+	position: absolute;
     -webkit-transition-duration: 0.4s;
        -moz-transition-duration: 0.4s;
             transition-duration: 0.4s;
@@ -329,7 +329,7 @@ ul.list-icon li:before{
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 .section{
-	z-index: 1;
+	/*z-index: 1;*/
 	position: relative;
 }
 .section-header{
@@ -469,6 +469,109 @@ div.with-arrow{
 .section-content-colored .post-footer a.btn:hover{
 	color: #CCC !important;
 	border-color: #CCC !important;
+}
+/* * * * * * * *  ** * * *  * ** * * * ** * * * * * ** * * * ** * **
+* * SVG
+* * * * * ** * * * * * * * * ** * * * * * ** * * * * * ** * * * * */
+
+svg {
+  background-color: #e3e7e8;
+  width:100%;
+  z-index: 0;
+  position: absolute;  
+}
+.imgSvg{
+  z-index:0;
+  
+  position: relative;
+  font-size: 3em;
+  text-align:center;
+  margin-top:20px;
+  margin-bottom: 20px;
+  color:#2a3945;
+}
+
+.sequence-next,
+.sequence-prev {
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  top: 50%;
+  margin-top: -40px;
+  opacity: 0.4;
+  z-index: 20;
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  -ms-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+.imgSvg img{
+  margin-top:50px;
+}
+
+
+circle {
+    fill: #c8cdd0;
+    background-image: "images/img3.png"
+    -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+    transition: width 2s;
+}
+
+
+.label {
+    fill: black;
+    font-size: 16px;
+}
+
+
+circle.child {
+    fill: #ccc;
+    stroke: #999;
+}
+
+circle.child:hover {
+     fill: #ccc;
+     cursor: pointer;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: normal;
+  padding: 5px;
+  background: #2a3945;
+  color: #fff;
+  border-radius: 2px;
+  z-index: 5070;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+.bindLine {
+  stroke: #c8cdd0;
+  stroke-opacity: .8;
+
+}
+
+.tool-d3 {
+  background-color: #2a3945
 }
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * * MAIN SLIDER (PROJECTS)
@@ -1080,6 +1183,8 @@ margin-right:10px;
 	background-color: #2a3945;
 
 }
+
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * FOOTER - WIDGETS
@@ -1339,7 +1444,7 @@ html[xmlns] .slides {display: block;}
 
 /* FlexSlider Default Theme
 *********************************/
-.flexslider { margin: 75px auto 75px auto;width: 90%; position: relative; zoom: 1; }
+.flexslider { margin: 10px auto 10px auto;width: 33%; position: relative; zoom: 1; }
 .flex-viewport { max-height: 2000px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; -o-transition: all 1s ease; transition: all 1s ease; }
 .loading .flex-viewport { max-height: 300px; }
 .flexslider .slides { zoom: 1; }
@@ -1347,7 +1452,7 @@ html[xmlns] .slides {display: block;}
 
 /* Direction Nav */
 .flex-direction-nav {*height: 0;}
-.flex-direction-nav a  { display: block; width: 40px; height: 50px; margin: -20px 0 0; position: absolute; top: 50%; z-index: 10; overflow: hidden; opacity: 0; cursor: pointer; color: rgba(255,255,255,0.8); -webkit-transition: all .3s ease; -moz-transition: all .3s ease; transition: all .3s ease; }
+.flex-direction-nav a  { display: block; width: 40px; height: 50px; margin: -20px 0 0; position: absolute; top: 50%; z-index: 10; overflow: hidden; opacity: 0; cursor: pointer; color: #2a3945; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; transition: all .3s ease; }
 .flex-direction-nav .flex-prev { left: -50px; }
 .flex-direction-nav .flex-next { right: -50px; text-align: right; }
 .flexslider:hover .flex-prev { opacity: 0.7; left: -60px; }

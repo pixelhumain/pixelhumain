@@ -19,7 +19,7 @@
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
     <![endif]-->
-
+    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.js"></script>
   </head>
   <!-- START BODY -->
   <body>
@@ -37,7 +37,12 @@
   	</div>
     <!-- SCRIPTS -->
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.js"></script>
+    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/underscore.js"></script>
+    
+    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/d3.js"></script>
+    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/d3.tip.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/alert.js"></script>
+	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/graphSlider.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.sequence-min.js"></script>
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.fancybox.pack.js"></script>
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.sticky.js"></script>
