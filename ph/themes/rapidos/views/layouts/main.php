@@ -222,7 +222,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScri
 		jQuery(document).ready(function() {
 			Main.init();
 			SVExamples.init();
-			Sig.init();
+			//Sig.init();
 			toastr.options = {
 			  "closeButton": false,
 			  "positionClass": "toast-bottom-right",
