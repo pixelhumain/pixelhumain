@@ -42,7 +42,6 @@
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/d3.js"></script>
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/d3.tip.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/alert.js"></script>
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/graphSlider.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.sequence-min.js"></script>
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.fancybox.pack.js"></script>
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.sticky.js"></script>
