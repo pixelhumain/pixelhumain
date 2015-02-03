@@ -15,7 +15,7 @@ function testitpost(id,url,params,callback){
 	      		$("#"+id).html(JSON.stringify(data, null, 4));
 	    },
 	    error:function (xhr, ajaxOptions, thrownError){
-	      toastr.error(thrownError);
+	     console.error(thrownError);
 	    } 
 	  });
 }
@@ -53,7 +53,7 @@ function getModal(what, url,id)
             $("#ajax-modal-modal-body").html(desc+data); 
             $('#ajax-modal').modal("show");
         } else {
-            toastr.error("bug get "+id);
+           console.error("bug get "+id);
         }
     });
 }
@@ -123,7 +123,7 @@ function testitget(id,url,callback,datatype)
 	    	
 	    },
 	    error:function (xhr, ajaxOptions, thrownError){
-	       toastr.error(thrownError);
+	      console.error(thrownError);
 	    } 
 	  });
 }
