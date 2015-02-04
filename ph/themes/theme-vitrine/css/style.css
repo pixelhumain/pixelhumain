@@ -78,11 +78,14 @@ a:hover,
 .section-image a.btn.btn-donation,
 #single-page .section-header,
 #menu a.btn-success{
-  background-color: #82b440;
+  background-color: #92be1f;
 }
 .section-content-colored.with-arrow:after,
 .section-full-colored.with-arrow:after{
   border-top-color: #82b440;
+}
+.btnCom{
+  background-color: #82b440;
 }
 a,
 .section-content-colored.color2 .section-content .event-content a.btn:hover,
@@ -479,6 +482,10 @@ svg {
   width:100%;
   z-index: 0;
   position: absolute;  
+}
+
+.svgAndImg{
+  background-color: #e3e7e8;
 }
 .imgSvg{
   z-index:0;

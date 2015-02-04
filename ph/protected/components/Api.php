@@ -141,7 +141,12 @@ class Api {
         "getmessageby" => array( "label"=>"Get Message By","key"=>"getmessageby",
         	"desc"=>"Get all messages based on criterias",
         	"actions"=>array('getmessageby' => 'application.controllers.messages.GetMessageByAction',)),
-        
+        "sendMessageVitrine" => array("label"=>"Send Message Vitrine", "key" =>"sendMessageVitrine",
+        	"desc"=>"Send a Message a preson or to a list of people",
+        	"actions"=>array('sendmessagevitrine' => 'application.controllers.messages.SendMessageVitrineAction')),
+          "getmessagevitby" => array( "label"=>"Get Message By","key"=>"getmessagevitby",
+        	"desc"=>"Get all messages based on criterias",
+        	"actions"=>array('getmessagevitby' => 'application.controllers.messages.GetMessageVitByAction',)),
         /* -----------------------------------------------
         PROJECT Section
          ------------------------------------------------ */
@@ -269,6 +274,8 @@ class Api {
                 "children"=> array(
                     self::$apis["sendMessage"],
                     self::$apis["getmessageby"],
+                    self::$apis["sendMessageVitrine"],
+                    self::$apis["getmessagevitby"],
                 ));	
 	}
     public static function getProjectMap(){

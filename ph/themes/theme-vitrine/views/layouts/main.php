@@ -40,6 +40,7 @@
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/underscore.js"></script>
     
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/d3.js"></script>
+     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/api.js"></script>
     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/d3.tip.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/alert.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.sequence-min.js"></script>
