@@ -279,11 +279,11 @@ class Api {
     }
     public static function getNotificationActions(){
         return array( 'label' => "Notification", "key"=>"notifications", "iconClass"=>"fa fa-info", "generate"=>true,
-                "children"=> array(
-                    self::$apis["markNotificationAsRead"] ,
-                    self::$apis["markallnotificationasread"] ,
-                    self::$apis["getNotifications"] ,
-                )); 
+                      "children"=> array(
+                        self::$apis[ "markNotificationAsRead" ] ,
+                        self::$apis[ "markallnotificationasread" ] ,
+                        self::$apis[ "getNotifications" ] ,
+                    )); 
     }
 	public static function getSigMap(){
         return array( 'label' => "Sig", "key"=>"sig", "iconClass"=>"fa fa-list", "generate"=>true,

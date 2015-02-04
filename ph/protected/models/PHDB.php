@@ -13,9 +13,9 @@ class PHDB
     {    	
         
         if(!$fields)
-            $res = !self::checkMongoDbPhpDriverInstalled()?null:iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where));
+            $res = !self::checkMongoDbPhpDriverInstalled() ? null : iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where));
         else
-            $res = !self::checkMongoDbPhpDriverInstalled()?null:iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find( $where , $fields));
+            $res = !self::checkMongoDbPhpDriverInstalled() ? null : iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find( $where , $fields));
         return $res;
     }
 
@@ -32,44 +32,44 @@ class PHDB
 
     public static function findAndModify( $collection, $where, $action, $options=null )
     {       
-        return !self::checkMongoDbPhpDriverInstalled()?null:
+        return !self::checkMongoDbPhpDriverInstalled() ? null : 
             Yii::app()->mongodb->selectCollection($collection)->findAndModify($where, $action, null, $options);
     }
     public static function distinct( $collection, $key, $where=array() )
     {     
-        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->distinct($key,$where);
+        return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->distinct($key,$where);
     }
     public static function count( $collection, $where=array() )
     {    	
-        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->count($where);
+        return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->count($where);
     }
     public static function countWFileds( $collection, $where=array(),$fields=array() )
     {    	
-        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->count($where,$fields);
+        return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->count($where,$fields);
     }
     public static function findOne( $collection, $where )
     {    	
-        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->findOne($where);
+        return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->findOne($where);
     }
     
     public static function update( $collection, $where, $action )
     {    	
-        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->update($where,$action);
+        return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->update($where,$action);
     }
      public static function updateWithOptions( $collection, $where, $action,$options )
     {
-        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->update($where,$action,$options);
+        return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->update($where,$action,$options);
     }
     public static function insert( $collection, $info )
     {    	
-        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->insert($info);
+        return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->insert($info);
     }
     public static function remove( $collection, $where )
     {    	
-        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->remove($where);
+        return !self::checkMongoDbPhpDriverInstalled()? null :Yii::app()->mongodb->selectCollection($collection)->remove($where);
     }
     public static function batchInsert($collection,$rows){
-        return !self::checkMongoDbPhpDriverInstalled()?null:Yii::app()->mongodb->selectCollection($collection)->batchInsert($rows);   
+        return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->batchInsert($rows);   
     }
     /*
     $params is the POST array 

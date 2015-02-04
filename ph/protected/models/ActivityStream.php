@@ -51,7 +51,11 @@ class ActivityStream {
 	{
 	    return PHDB::findAndSort(PHType::TYPE_ACTIVITYSTREAM, $param,$sort);
 	}
-
+	public static function getActivtyForObjectId($param,$sort=array("timestamp"=>-1))
+	{
+	    return PHDB::findAndSort(PHType::TYPE_ACTIVITYSTREAM, $param,$sort);
+	}
+	
 	public static function removeNotifications($id)
 	{
 	    $notif = PHDB::findOne(PHType::TYPE_ACTIVITYSTREAM, array("_id"=> new MongoId($id) ) );

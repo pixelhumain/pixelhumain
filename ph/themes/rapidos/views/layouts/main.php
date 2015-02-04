@@ -59,7 +59,7 @@
 		<link rel='shortcut icon' type='image/x-icon' href="<?php echo $this->module->assetsUrl?>/images/favicon.ico" />
 		<script>
 		   var initT = new Object();
-		   var showDelaunay = true;
+		   //var showDelaunay = true;
 		   // A supprimer une fois le redirect corrigé 
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
