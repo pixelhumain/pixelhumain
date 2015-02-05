@@ -67,7 +67,6 @@ class ActivityStream {
 		    	unset($notif["notify"]);
 		    else
 		    	unset($notif["notify"]);
-
 			try{
 			    unset($notif["_id"]);
 			    PHDB::update( PHType::TYPE_ACTIVITYSTREAM,
@@ -87,11 +86,23 @@ class ActivityStream {
 	public static function removeNotificationsByUser()
 	{
 		try{
-		    //TODO : check 
-		    PHDB::update( PHType::TYPE_ACTIVITYSTREAM,
-		                  array("notify.id"  => Yii::app()->session["userId"] ), 
-		                  array('$unset' => array("notify"=>true) ) );
-
+		    $userNotifcations = PHDB::find( PHType::TYPE_ACTIVITYSTREAM,array("notify.id"  => Yii::app()->session["userId"] ));
+		    foreach ($userNotifcations as $key => $value) {
+		    	if(count($value["notify"]["id"]) == 1 )
+		    		PHDB::update( PHType::TYPE_ACTIVITYSTREAM,
+				                  array("_id"  => $value["_id"] ), 
+				                  array('$unset' => array("notify"=>true) ) );
+		    	else
+		    		PHDB::update( PHType::TYPE_ACTIVITYSTREAM,
+			                  array("_id"  => $value["_id"] ), 
+			                  array('$pull' => array( "notify.id" => Yii::app()->session["userId"] )));
+		    	
+		    }
+		    /*PHDB::updateWithOptions( PHType::TYPE_ACTIVITYSTREAM,
+					    			array("notify.id"  => Yii::app()->session["userId"] ),
+					    			array('$pull' => array( "notify.id" => Yii::app()->session["userId"] )),
+					    			array("multi"=>1));*/
+			
 		    $res = array( "result"=>true,"msg"=>"Removed succesfully" );
 	    }
 	    catch (Exception $e) {  
@@ -99,6 +110,6 @@ class ActivityStream {
 	    } 
 	
 
-		return Rest::json($res);
+		return $res;
 	}
 }

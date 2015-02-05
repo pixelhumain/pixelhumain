@@ -4,7 +4,7 @@
 		<div class="notifications">
 			
 			<div class="pageslide-title">
-				You have 11 notifications 
+				You have <span class="notifCount"></span> notifications 
 			</div>
 			<ul class="pageslide-list header">
 				<li>
@@ -59,10 +59,9 @@ jQuery(document).ready(function()
 });
 
 function bindNotifEvents(){
-
 	$(".notifList a.notif").off().on("click",function () 
 	{
-		markAsRead($(this).data("id"));
+		markAsRead( $(this).data("id") );
 		elem = $(this).parent();
 		elem.removeClass('animated bounceInRight').addClass("animated bounceOutRight");
 		setTimeout(function(){
@@ -70,9 +69,7 @@ function bindNotifEvents(){
             elem.removeClass('animated bounceOutRight');
             notifCount();
         }, 200);
-		
 	});
-
 }
 
 function markAsRead(id)
@@ -138,8 +135,9 @@ function refreshNotifications()
 function buildNotifications(list)
 {
 	console.info("buildNotifications()");
-	//$(".notifList").html("");
-	$.each(list,function(notifKey,notifObj)
+	$(".notifList").html("");
+
+	$.each( list , function( notifKey , notifObj )
 	{
 		str = "<li class='notifLi notif_"+notifKey+" hide'>"+
 				"<a class='notif' data-id='"+notifKey+"' href='"+notifObj.notify.url+"'><span class='label label-primary'>"+
@@ -162,11 +160,13 @@ function buildNotifications(list)
 function notifCount()
 {
 	var countNotif = $(".notifList li:visible").length;
-	if(countNotif > 0)
+	$(".notifCount").html( countNotif );
+	if( countNotif > 0 )
 	{
 	    $(".notifications-count").html(countNotif);
 		$('.notifications-count').removeClass('hide');
 		$('.notifications-count').addClass('animated bounceIn');
+		$(".markAllAsRead").show();
 	} else {
 		$('.notifications-count').addClass('hide');
 		$(".markAllAsRead").hide();
