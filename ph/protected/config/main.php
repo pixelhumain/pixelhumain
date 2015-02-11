@@ -21,8 +21,6 @@ return array(
 	'modulePath' => realpath(__DIR__ . '/../../../../modules/'),
 	'aliases' => array(
     	'vendor' => realpath(__DIR__ . '/../../vendor/'),
-        'bootstrap' => realpath(__DIR__ . '/../../vendor/2amigos/yiistrap'),
-		'yiiwheels' => realpath(__DIR__ . '/../../vendor/2amigos/yiiwheels'), 
     	'mongoYii' => realpath(__DIR__ . '/../../vendor/sammaye/mongoyii')
     ),
     'controllerMap'=>array(
@@ -32,7 +30,6 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-		'bootstrap.helpers.TbHtml',
     	'ext.mail.YiiMailMessage',
     	'ext.mobile.Mobile_Detect',
     	'ext.Json.Validator',
@@ -135,12 +132,6 @@ return array(
 			),
 		),
 		'mail' => $mailConfigTest, 
-		'bootstrap' => array(
-            'class' => 'bootstrap.components.TbApi',   
-        ),
-        'yiiwheels' => array(
-            'class' => 'yiiwheels.YiiWheels',   
-        ),
         'ePdf' => array(
             'class'         => 'ext.yii-pdf.EYiiPdf',
             'params'        => array(

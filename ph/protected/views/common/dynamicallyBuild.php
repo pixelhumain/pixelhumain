@@ -88,13 +88,14 @@ requiredFields = [];
                                 $placeholder = $list['label'];
                         }
                     }
+                    /* TODO - Tib Refactor
                     $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                         'data' => $options, 
                         'name' => $k,
                       	'id' => $k,
                         'value'=> ($entry && isset($entry[$k]) ) ? $value : $default,
                         'pluginOptions' => array('width' => '150px')
-                    ) );
+                    ) );*/
                     $initJS .= "$('#".$k."').select2({
                                     'placeholder':\"".htmlentities($placeholder)."\",
                                     'width':'100%',
@@ -117,6 +118,7 @@ requiredFields = [];
                                 $placeholder = $list['label'];
                         }
                     }
+                    /* TODO - Tib Refactor
                     $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                         'data' => $options, 
                         'name' => $k,
@@ -124,6 +126,7 @@ requiredFields = [];
                         'value'=> ($entry && isset($entry[$k]) ) ? $value : "",
                         'pluginOptions' => array('width' => '150px')
                       ) );
+                    */
                     $initJS .= "$('#".$k."').select2({
                                 //'tags':['Environnement','Transports','Déchets','Energie','Alimentation','Agriculture','Culture','Emploi','surfer','musicien','artisan','','education','marmaille','video','securité','informaticien','ingenieur','oceanographie'],
                                 'placeholder':\"".htmlentities($placeholder)."\",
@@ -152,6 +155,7 @@ requiredFields = [];
                         <img width=50 class="<?php echo $k?>Thumb" src="<?php echo ( $element && isset($element[$k]) ) ? $element[$k] : Yii::app()->createUrl('images/PHOTO_ANONYMOUS.png'); ?>"/></td>
                         <?php
                         $srcModule = (isset($this->module) && isset($this->module->id)) ? $this->module->id : "azotlive";
+                        /* TODO - Tib Refactor
                         $this->widget('yiiwheels.widgets.fineuploader.WhFineUploader', array(
                                 'name'          => 'fineUploader',
                                 'uploadAction'  => $this->createUrl('/templates/upload/dir/'.$srcModule.'/collection/'.$collection.'/input/fineUploader', array('fine' => 1)),
@@ -170,6 +174,7 @@ requiredFields = [];
                                     }"
                                 ),
                             ));
+                        */
                         ?>
                         <script type="text/javascript">
                         var uploadId = '#<?php echo $k?>';

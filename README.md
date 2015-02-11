@@ -3,6 +3,11 @@ Pixel Humain
 
 If you are on mac OSX, read this readme first :
 [Specific readme_macOS.md for Mac OSX](https://github.com/pixelhumain/pixelhumain/blob/master/README_macOs.md/)
+## Requierement
+Php version : 5.4.X (minimum)
+MongoDB : 2.6.X (tested version - minimum)
+Mongo Driver : 1.4.5 (tested version - minimum)
+
 
 ##Installation
 ####Configure your php
@@ -54,7 +59,7 @@ extension=php_mongo-1.4.1-5.3-vc9.dll
 - [many of us use ROBOMONGO](http://robomongo.org/)
 - launch Mongo localy : 
 ```
-mongod --dbpath data\db
+mongod --dbpath data/db
 ```
 - inside your favorite mongo administration tool : 
 - create a database called pixelhumain
