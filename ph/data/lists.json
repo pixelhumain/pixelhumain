@@ -1,5 +1,366 @@
-{ "_id" : { "$oid" : "527a0b25c073ef2528e188ec" }, "name" : "jobTypes", "list" : [ "developpeur", "graphiste", "animateur", "photographe", "drh", "expert", "monnaie Locale", "juridique", "financement", "administratif", "mentor", "developpeur drh", "", "testeur", "informaticien", "consultatif", "collectivité", "dsi", "porteur", "chefDeProjet", "penseur", "stratégieCommunication" ] }
-{ "_id" : { "$oid" : "527a0b32c073ef2528e188ed" }, "name" : "activities", "list" : [ "camping", "climbing", "fishing", "swimming" ] }
-{ "_id" : { "$oid" : "527a0be1c073ef2528e188ee" }, "name" : "natures", "list" : [ "montagne", "etang", "cascade" ] }
-{ "_id" : { "$oid" : "527a0c0fc073ef2528e188ef" }, "name" : "types", "list" : { "association" : "Association", "citoyen" : "Citoyen", "entreprise" : "Entreprise", "collectivité" : "Collectivité" } }
-{ "_id" : { "$oid" : "527a0c3cc073ef2528e188f0" }, "name" : "tags", "list" : [ "Environnement", "Transports", "Déchets", "Energie", "Alimentation", "Agriculture", "Culture", "Emploi", "surfer", "musicien", "artisan", "", "education", "marmaille", "video", "securité", "informaticien", "ingenieur", "oceanographie" ] }
+[
+{
+    "name" : "visibilityObservationReunion",
+    "label" : "Couleur de l'eau",
+    "list" : {
+        "translucide" : "Translucide",
+        "moyenBlanc" : "Moyenne Blanchatre",
+        "mauvaiseBlanc" : "Mauvaise Blanchatre",
+        "moyenVert" : "Moyenne Verte",
+        "mauvaiseVert" : "Mauvaise Verte",
+        "moyenMarron" : "Moyenne Marron",
+        "mauvaiseMarron" : "Mauvaise Maron"
+    }
+}
+,
+{
+    "name" : "sanitaryRiskObservationReunion",
+    "label" : "Baignade interdite",
+    "list" : {
+        "baignadeInterdite" : "Baignade interdite"
+    }
+}
+,
+{
+    "name" : "surferCountObservationReunion",
+    "label" : "Nombres",
+    "list" : {
+        "0" : "0",
+        "1-5" : "moins de 5",
+        "+5" : "plus de 5"
+    }
+}
+,
+{
+    "name" : "vigilanceObservationReunion",
+    "label" : "Présence Vigie",
+    "list" : {
+        "vigie" : "Présence Vigie Plage",
+        "vigieApnée" : "Présence Vigie Apnée",
+        "jetski" : "JetSki",
+        "plongeur" : "Plongeur",
+        "bateauProximité" : "Bateau à Proximité"
+    }
+}
+,
+{
+    "name" : "jobTypes",
+    "list" : [ 
+        "developpeur", 
+        "graphiste", 
+        "animateur", 
+        "photographe", 
+        "drh", 
+        "expert", 
+        "monnaie Locale", 
+        "juridique", 
+        "financement", 
+        "administratif", 
+        "mentor", 
+        "developpeur drh", 
+        "", 
+        "testeur", 
+        "informaticien", 
+        "consultatif", 
+        "collectivité", 
+        "dsi", 
+        "porteur", 
+        "chefDeProjet", 
+        "penseur", 
+        "stratégieCommunication"
+    ]
+}
+,
+{
+    "name" : "activities",
+    "list" : [ 
+        "camping", 
+        "climbing", 
+        "fishing", 
+        "swimming"
+    ]
+}
+,
+{
+    "name" : "natures",
+    "list" : [ 
+        "montagne", 
+        "etang", 
+        "cascade"
+    ]
+}
+,
+{
+    "name" : "types",
+    "list" : {
+        "association" : "Association",
+        "citoyen" : "Citoyen",
+        "entreprise" : "Entreprise",
+        "collectivité" : "Collectivité"
+    }
+}
+,
+{
+    "name" : "countries",
+    "list" : {
+        "France" : "France",
+        "Guadeloupe" : "Guadeloupe",
+        "Guyanne" : "Guyanne",
+        "Martinique" : "Martinique",
+        "Mayotte" : "Mayotte",
+        "Nouvelle-Calédonie" : "Nouvelle-Calédonie",
+        "Réunion" : "Réunion"
+    }
+}
+,
+{
+    "list" : {
+        "competition" : "Compétition",
+        "concert" : "Concert",
+        "concours" : "Concours",
+        "exposition" : "Exposition",
+        "festival" : "Festival",
+        "getTogether" : "Rencontre",
+        "market" : "Marché",
+        "meeting" : "Réunion"
+    },
+    "name" : "eventTypes"
+}
+,
+{
+    "list" : {
+        "organisateur" : "Gérant",
+        "coorganisateur" : "Co-Organisateur",
+        "invitéSpécial" : "Invité Spécial",
+        "participant" : "Participant",
+        "animateur" : "Animateur"
+    },
+    "name" : "roles"
+}
+,
+{
+    "list" : {
+        "stand" : "Stand",
+        "conférencié" : "Conférencier",
+        "visitor" : "Visiteur"
+    },
+    "name" : "participantTypes"
+}
+,
+{
+    "name" : "typeObservaterReunion",
+    "list" : {
+        "waterwatcher" : "Simple Water Watcher",
+        "cross" : "Agent CROSS",
+        "drass" : "Agent DRASS",
+        "mns" : "Agent MNS",
+        "commune" : "Agent Communal",
+        "ird" : "Agent IRD",
+        "surfClub" : "Club de surf"
+    }
+}
+,
+{
+    "name" : "typeObservationReunion",
+    "list" : {
+        "sharkObservationReunion" : "Requin",
+        "visibilityObservationReunion" : "Visibilté",
+        "polutionObservationReunion" : "Pollution",
+        "sanitaryRiskObservationReunion" : "Risque sanitaire",
+        "surferCountObservationReunion" : "Nombre de pratiquant",
+        "vigilanceObservationReunion" : "Vigie",
+        "infosObservationReunion" : "Infos"
+    }
+}
+,
+{
+    "name" : "surfSpotReunion",
+    "list" : {
+        "Boucan" : "Boucan",
+        "Roches-Noires" : "Roches-Noires",
+        "Trois-Bassins" : "Trois-Bassins",
+        "Saint-Leu" : "Saint-Leu",
+        "Cimetière" : "Cimetière",
+        "La Jetée - Saint-Pierre" : "La Jetée - Saint-Pierre",
+        "Aigrettes" : "Aigrettes",
+        "Cap Requin" : "Cap Requin",
+        "L'Hermitage" : "L'Hermitage",
+        "La Caffrine" : "La Caffrine",
+        "Le Port" : "Le Port",
+        "Pic du Diable" : "Pic du Diable",
+        "La Digue" : "La Digue",
+        "L'Étang-Salé" : "L'Étang-Salé",
+        "Manapany" : "Manapany",
+        "Pointe au sel" : "Pointe au sel",
+        "Ravine Blanche" : "Ravine Blanche"
+    }
+}
+,
+{
+    "name" : "sharkObservationReunion",
+    "label" : "Niveau de certitude",
+    "list" : {
+        "faible" : "Faible",
+        "moyen" : "Moyen",
+        "Fort" : "Fort",
+        "cross" : "Transmis par CROSS"
+    }
+}
+,
+{
+    "name" : "polutionObservationReunion",
+    "label" : "Classe de Pollution",
+    "list" : {
+        "odeurAnormal" : "Odeur anormale de l'eau",
+        "debris" : "Présence de débris",
+        "animauxMort" : "Présence d'animaux morts"
+    }
+}
+,
+{
+    "name" : "musicTypes",
+    "lang" : "fr",
+    "label" : "Music Types",
+    "list" : {
+        "blues" : "Blues",
+        "bossanova" : "Bossa-Nova",
+        "chansonFrancaise" : "Chanson française",
+        "classique" : "Classique",
+        "club" : "Club",
+        "country" : "Country",
+        "dance" : "Dance",
+        "dancehall" : "Dancehall",
+        "disco" : "Disco",
+        "drumAndBass" : "Drum and bass",
+        "electro" : "Electro",
+        "funk" : "Funk",
+        "gospel" : "Gospel",
+        "heavyMetal" : "Heavy metal",
+        "hipHop" : "Hip-hop",
+        "instrumental" : "Instrumental",
+        "jazz" : "Jazz",
+        "kuduro" : "Kuduro",
+        "lounge" : "Lounge",
+        "madison" : "Madison",
+        "maloya" : "Maloya",
+        "musette" : "Musette",
+        "newAge" : "New Age",
+        "oldies" : "Oldies",
+        "opera" : "Opéra",
+        "pop" : "Pop",
+        "popFolk" : "Pop-Folk",
+        "popRock" : "Pop-Rock",
+        "RythmAndBlues" : "Rhythm and Blues",
+        "rnB" : "R'n'B",
+        "rai" : "Raï",
+        "rap" : "Rap",
+        "rave" : "Rave",
+        "ragga" : "Ragga",
+        "reggae" : "Reggae",
+        "retro" : "Retro",
+        "rock" : "Rock",
+        "rockAlternatif" : "Rock alternatif",
+        "romantique" : "Romantique",
+        "rumba" : "Rumba",
+        "salegy" : "Salegy",
+        "salsa" : "Salsa",
+        "sega" : "Séga",
+        "seggae" : "Seggae",
+        "slow" : "Slow",
+        "ska" : "Ska",
+        "soul" : "Soul",
+        "tango" : "Tango",
+        "techno" : "Techno",
+        "triphop" : "Trip hop",
+        "valse" : "Valse",
+        "worldMusic" : "World music",
+        "zouk" : "Zouk",
+        "zumba" : "Zumba",
+        "other" : "Autre"
+    }
+}
+,
+{
+    "name" : "eventTypes",
+    "lang" : "fr",
+    "label" : "Types d'évennement",
+    "list" : {
+        "concert" : "Concert",
+        "theatre" : "Théâtre",
+        "dance" : "Danse",
+        "sport" : "Sport",
+        "cirque" : "Cirque",
+        "marionnette" : "Marionnettes",
+        "other" : "Autre"
+    }
+}
+,
+{
+    "name" : "organisationTypes",
+    "list" : {
+        "association" : "Association",
+        "entreprise" : "Entreprise",
+        "group" : "Group",
+        "project" : "Projet"
+    }
+}
+,
+{
+    "list" : [ 
+        "Environnement", 
+        "Transports", 
+        "Déchets", 
+        "Energie", 
+        "Alimentation", 
+        "Agriculture", 
+        "Culture", 
+        "Emploi", 
+        "Surfer", 
+        "Musicien", 
+        "Artisan", 
+        "Education", 
+        "Marmaille", 
+        "Video", 
+        "Securité", 
+        "Informaticien", 
+        "Ingenieur", 
+        "Oceanographie", 
+        "Périscolaire", 
+        "Santé", 
+        "Sport", 
+        ""
+    ],
+    "name" : "tags"
+}
+,
+{
+    "name" : "eventPlaces",
+    "localtion" : "Reunion",
+    "lang" : "fr",
+    "label" : "Lieu d'évennement",
+    "list" : {
+        "guyAgenor" : "ESPACE CULTUREL GUY AGENOR",
+        "kabardock" : "KABARDOCK",
+        "kerveguen" : "LE KERVEGUEN",
+        "ravineSinLeu" : "LA RAVINE SAINT-LEU",
+        "palaxa" : "LE PALAXA",
+        "parkOmega" : "LE PARK OMEGA",
+        "sechoir" : "LE SECHOIR",
+        "leconteDELisle" : "LESPAS CULTUREL LECONTE DE LISLE",
+        "lesQuais" : "LES QUAIS LE PORT",
+        "nordev" : "PARC DES EXPOSITIONS ET CONGRES ST DENIS (NORDEV)",
+        "parcExpoBat" : "PARC EXPO BAT",
+        "parcExpoSindni" : "PARC EXPO ST DENIS",
+        "petitStadeLest" : "PETIT STADE DE L'EST",
+        "gramounLele" : "SALLE GRAMOUN LéLé",
+        "guyAlphonsine" : "SALLE GUY ALPHONSINE",
+        "canter" : "THEATRE CANTER",
+        "sables" : "THEATRE DES SABLES",
+        "champsFleuri" : "THEATRE CHAMP FLEURI",
+        "sinGilles" : "THEATRE SAINT GILLES",
+        "lucetLangenier" : "THEATRE LUCET LANGENIER",
+        "lucDonat" : "THEATRE LUC DONAT",
+        "sousLesArbres" : "THEATRE SOUS LES ARBRES"
+    }
+}
+]
