@@ -18,15 +18,18 @@
 					{
 						foreach( $this->notifications as $item )
 				        {
-				            echo "<li class='notifLi notif_".(string)$item["_id"]."'>";
-				            echo "<a class='notif' data-id='".(string)$item["_id"]."' href='".$item["notify"]["url"]."'><span class='label label-primary'>";
-				            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message">';
-				            echo $item["notify"]["displayName"];
-				            
-				            echo "</span><span class='time'>".round(abs(time() - $item["timestamp"]) / 60)."min</span></a>";
-				            echo "</li>";
-				            if($item["timestamp"] > $maxTimestamp)
-				            	$maxTimestamp = $item["timestamp"];
+				        	if(isset($item["notify"]))
+				        	{
+					            echo "<li class='notifLi notif_".(string)$item["_id"]."'>";
+					            echo "<a class='notif' data-id='".(string)$item["_id"]."' href='".$item["notify"]["url"]."'><span class='label label-primary'>";
+					            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message">';
+					            echo $item["notify"]["displayName"];
+					            
+					            echo "</span><span class='time'>".round(abs(time() - $item["timestamp"]) / 60)."min</span></a>";
+					            echo "</li>";
+					            if($item["timestamp"] > $maxTimestamp)
+					            	$maxTimestamp = $item["timestamp"];
+					        }
 				        } 
 				    }
 				?>

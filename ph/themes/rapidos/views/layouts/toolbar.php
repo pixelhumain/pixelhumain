@@ -153,7 +153,7 @@
 				<?php 
 				if(isset($this->toolbarMenuMaps)){
 					?>
-				<li class="dropdown">
+				<li class="dropdown hide">
 					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
 						<span class="messages-count badge badge-default ">3</span> <i class="fa fa-map-marker"></i> CARTO
 					</a>
