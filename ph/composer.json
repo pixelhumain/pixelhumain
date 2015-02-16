@@ -26,8 +26,6 @@
  		"chriskite/phactory" : "*"
  	},
 	"require": {
-		"2amigos/yiistrap": "1.1.1",
-		"2amigos/yiiwheels": "dev-master",
 		"opauth/opauth" : "0.4.4",
 		"sammaye/mongoyii" : "3.*",
 		"yiisoft/yii":"1.1.15",
