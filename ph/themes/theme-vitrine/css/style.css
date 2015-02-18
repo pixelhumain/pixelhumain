@@ -132,7 +132,7 @@ body{
 }
 p{
 	font-family: "Lato", arial, sans-serif;
-  line-height: 1.8em;
+  line-height: 1.3em;
 }
 h1,
 h2,
@@ -143,7 +143,7 @@ h4{
 }
 
 h1
-{color:#f6e200; margin-top:45px; }
+{color:#f6e200; margin-top:10px; }
 
 .parnet{color:#2a3945; margin-top:45px; }
 .parnet p{ color:#2a3945;}
@@ -193,6 +193,9 @@ hr{
 	margin: 25px auto;
 	border: 0;
 	background-color: #CCC;
+}
+.img_cont{
+  padding-bottom: 10px
 }
 img{
 	max-width: 100%;
@@ -347,7 +350,10 @@ ul.list-icon li:before{
 }
 .section-header{
 	text-align: center;
-	padding: 30px 0 25px 0;
+	padding: 30px 0 10px 0;
+}
+h1{
+  font-size: 2em;
 }
 .section a.btn{
 	margin-top: 25px;
@@ -355,6 +361,7 @@ ul.list-icon li:before{
 	color: #fff;
 	border: 0;
 }
+
 .section a.btn:hover{
 	background: transparent;
 }
@@ -369,7 +376,7 @@ div.with-arrow{
 .new{background:url(images/white-bg.png) top center no-repeat; background-color:#2a3945; padding-top:100px; }
 .new h3{color:#FFF !important; }
 .new span{ color:#f6e200; }
-.contact-map {	background:url(images/contact-map.jpg) top center no-repeat; }
+.contact-map {	background:url(images/contact-map.jpg) top center no-repeat; background-size: 160% }
 .with-arrow:after{
 	top:100%;
 		
@@ -494,12 +501,20 @@ svg {
   position: absolute;  
 }
 
+.icon_section{
+  height: 4%;
+  width: 4%;
+  margin:auto;
+}
+#services p{
+  font-size: 0.8em;
+}
 .svgAndImg{
   background-color: #e3e7e8;
 }
+
 .imgSvg{
   z-index:0;
-  
   position: relative;
   font-size: 3em;
   text-align:center;
@@ -507,6 +522,7 @@ svg {
   margin-bottom: 20px;
   color:#2a3945;
 }
+
 #patterns svg{
   z-index: -10;
 }
@@ -1450,7 +1466,7 @@ a#scrollUp:hover{
 
 /* FlexSlider Necessary Styles
 *********************************/
-.flexslider {margin: 0; padding: 0;}
+.flexslider {margin: 5%; padding: 5%;}
 .flexslider .slides > li {display: none; -webkit-backface-visibility: hidden; list-style-type: none;} /* Hide the slides before the JS is loaded. Avoids image jumping */
 .flexslider .slides div {display: block; overflow: hidden; color:#2a3945;}
 .flex-pauseplay span {text-transform: capitalize;}
@@ -1467,7 +1483,7 @@ html[xmlns] .slides {display: block;}
 
 /* FlexSlider Default Theme
 *********************************/
-.flexslider { margin: 10px auto 10px auto;width: 33%; position: relative; zoom: 1; }
+.flexslider { margin: 10px auto 10px auto;width: 35%; position: relative; zoom: 1; }
 .flex-viewport { max-height: 2000px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; -o-transition: all 1s ease; transition: all 1s ease; }
 .loading .flex-viewport { max-height: 300px; }
 .flexslider .slides { zoom: 1; }
@@ -1486,15 +1502,15 @@ html[xmlns] .slides {display: block;}
 .flex-direction-nav a.flex-next:before  { content: "\e72a"; }
 
 /* Control Nav */
-.flex-control-nav {width: 100%; position: absolute; bottom: -50px; text-align: center;}
+.flex-control-nav {width: 100%; position: relative; bottom: 0px; text-align: center;}
 .flex-control-nav li {margin: 0 6px; display: inline-block; zoom: 1; *display: inline;}
-.flex-control-paging li a {width: 11px; height: 11px; display: block; background: #666; background: rgba(255,255,255,0.5); cursor: pointer; text-indent: -9999px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px; box-shadow: inset 0 0 3px rgba(255,255,255,0.3);}
-.flex-control-paging li a:hover { background: #333; background: rgba(255,255,255,0.7); }
-.flex-control-paging li a.flex-active { background: #000; background: rgba(255,255,255,0.9); cursor: default; }
+.flex-control-paging li a {width: 8px; height: 8px; display: block; background: #666; background: black; cursor: pointer; text-indent: -9999px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px; box-shadow: inset 0 0 3px rgba(255,255,255,0.3);}
+.flex-control-paging li a:hover { background: #333; background: rgba(255,255,255,0.7); width: 9px; height: 9px; border: 2px solid black;}
+.flex-control-paging li a.flex-active { background: #000; background: rgba(255,255,255,0.9); cursor: default; width: 10px; height: 10px; border: 2px solid black;}
 
 @media screen and (max-width: 860px) {
   .flex-direction-nav .flex-prev { opacity: 1; left: 10px;}
-  .flex-direction-nav .flex-next { opacity: 1; right: 10px;}
+  .flex-direction-nav .flex-next { opacity: 1; right: 10px;} 
 }
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * * FANCYBOX

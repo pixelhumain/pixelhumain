@@ -16,7 +16,7 @@
 					<li><a href="#team">L'EQUIPE</a></li>
 					<li><a href="#services">PARTICIPER</a></li>
 					<li><a href="#contact">CONTACT</a></li>
-					<li><a href="javascript:;" class ="btn btnCom" id="btnCom" data-toggle="modal" data-target="#smallModal">COMMENTAIRE</a></li>
+					<li><a href="javascript:;" class ="btn btnCom btn-success" id="btnCom" data-toggle="modal" data-target="#smallModal">COMMENTAIRE</a></li>
 					<li><a href="#donation" class="btn btn-success">FAIRE UN DON</a></li>
 			</ul>
 		</nav>
