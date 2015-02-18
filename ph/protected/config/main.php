@@ -14,7 +14,7 @@ return array(
 
 	//SPECIFIC MODULE confis
 	//'defaultController' => 'communecter/default/index',
-	'homeUrl' => "/ph/twh",//"/ph?tpl=index",
+	'homeUrl' => "/ph/",//"/ph?tpl=index",
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -22,6 +22,8 @@ return array(
 	'aliases' => array(
     	'vendor' => realpath(__DIR__ . '/../../vendor/'),
     	'mongoYii' => realpath(__DIR__ . '/../../vendor/sammaye/mongoyii')
+    	'bootstrap' => realpath(__DIR__ . '/../../vendor/2amigos/yiistrap'),
+		'yiiwheels' => realpath(__DIR__ . '/../../vendor/2amigos/yiiwheels'), 
     ),
     'controllerMap'=>array(
          //'YiiFeedWidget' => 'ext.yii-feed-widget.YiiFeedWidgetController'
@@ -30,6 +32,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'bootstrap.helpers.TbHtml',
     	'ext.mail.YiiMailMessage',
     	'ext.mobile.Mobile_Detect',
     	'ext.Json.Validator',
@@ -132,6 +135,12 @@ return array(
 			),
 		),
 		'mail' => $mailConfigTest, 
+		'bootstrap' => array(
+            'class' => 'bootstrap.components.TbApi',   
+        ),
+        'yiiwheels' => array(
+            'class' => 'yiiwheels.YiiWheels',   
+        ),
         'ePdf' => array(
             'class'         => 'ext.yii-pdf.EYiiPdf',
             'params'        => array(
@@ -154,6 +163,8 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
+		//this paramters is used to by pass the authentification
+		'mockAuthenticate'=>true,
 		// this is used in contact page
 		'adminEmail'=>'contact@pixelhumain.com',
 		//upload base directory
