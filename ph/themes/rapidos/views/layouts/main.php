@@ -121,7 +121,7 @@
 						} 
 						$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);?>
 						<!-- end: PAGE HEADER -->
-						<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.breadcrumb');?>
+						<?php //$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.breadcrumb');?>
 						<!-- start: PAGE CONTENT -->
 						<?php echo $content;  ?>
 						<!-- end: PAGE CONTENT-->

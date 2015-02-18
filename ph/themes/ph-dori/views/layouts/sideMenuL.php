@@ -4,9 +4,19 @@
   <div class="navbar-content">
     <div class="navbar-content-inner">
 
-      <ul class="navbar-menu">  
+      <ul class="navbar-menu"> 
+        <li class="mainModuleMenu">
+            <a href="#">
+              <i class="fa fa-bars"></i>
+
+              <span class="inner">
+                <i class="fa fa-caret-down"></i>
+                <span>Menu</span>
+              </span>
+            </a>
+          </li> 
         <?php 
-          
+
           foreach( $this->sidebar1 as $item )
           {
               buildLi($item);
@@ -24,7 +34,7 @@
             $isActive = ( isset( Menu::$sectionMenu[ $item["key"] ] ) && in_array( Yii::app()->controller->action->id, Menu::$sectionMenu[ $item["key"] ] ) ) ? true : false;
             
             $active = ( $isActive || (isset($item["active"]) && $item["active"] ) ) ? "open active" : "";
-            echo '<li class="menu_'.$item["key"].' '.$item["key"].' '.$active.'"><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="inner"><i class="fa fa-caret-right"></i>'.$item["label"].'</span></a></li>';
+            echo '<li class="moduleMenu menu_'.$item["key"].' '.$item["key"].' '.$active.'"><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="inner">'.$item["label"].'</span></a></li>';
           }
 
           function buildChildren( $children )
@@ -42,5 +52,14 @@
     </div>
   </div>
 </nav>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+      $(".mainModuleMenu").mouseenter(function(){
+        $(".moduleMenu").addClass("active");
+      }).mouseleave(function(){
+        $(".moduleMenu").removeClass("active");
+      });
+    });
 
+</script>
 <!-- end: LEFT NAVIGATION MENU -->
