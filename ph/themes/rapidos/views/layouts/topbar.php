@@ -38,11 +38,13 @@
 								My Calendar
 							</a>
 						</li>
+						<?php /*
 						<li>
 							<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/discuss")?>">
 								My Messages (3)
 							</a>
 						</li>
+						*/?>
 						<li>
 							<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/logout")?>">
 								Log Out
