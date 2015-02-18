@@ -140,9 +140,11 @@
 				<!-- end: PAGE -->
 			</div>
 			<!-- end: MAIN CONTAINER -->
-			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.footer');?>
-			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.subview');?>
-			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.modals');?>
+			<?php 
+			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.footer');
+			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.subview');
+			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.modals');
+			?>
 		</div>
 		<?php
 		echo "<!-- start: MAIN JAVASCRIPTS -->";
@@ -209,14 +211,14 @@
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScript::POS_END);
 
 		//<!-- start: JAVASCRIPTS REQUIRED FOR sliders -->
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/assets/plugins/jQRangeSlider/jQAllRangeSliders-min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/assets/plugins/modernizr/modernizr.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/assets/plugins/slider/js/bootstrap-slider.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/assets/plugins/jQuery-Knob/js/jquery.knob.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/assets/js/ui-sliders.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQRangeSlider/jQAllRangeSliders-min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/modernizr/modernizr.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/slider/js/bootstrap-slider.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery-Knob/js/jquery.knob.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/ui-sliders.js' , CClientScript::POS_END);
 		//<!-- end: JAVASCRIPTS REQUIRED FOR sliders -->
 
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/assets/js/additional.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/additional.js' , CClientScript::POS_END);
 		
 		$path = '/assets/js/main.js';
 
