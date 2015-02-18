@@ -1,7 +1,7 @@
 
 var Sig = function() {
 	
-	"use strict";
+	//"use strict";
 	
 	//set variables	
 	var _MAP;
@@ -12,18 +12,18 @@ var Sig = function() {
 		$.getScript(themeUrl+"/assets/js/sig/leaflet.js", 						function( data, textStatus, jqxhr ) { });
 		$.getScript(themeUrl+"/assets/js/sig/leaflet.draw-src.js", 				function( data, textStatus, jqxhr ) { });
 		$.getScript(themeUrl+"/assets/js/sig/leaflet.draw.js", 					function( data, textStatus, jqxhr ) { });
-		$.getScript(themeUrl+"/assets/js/sig/leaflet.markercluster-src.js", 		function( data, textStatus, jqxhr ) { });
+		$.getScript(themeUrl+"/assets/js/sig/leaflet.markercluster-src.js", 	function( data, textStatus, jqxhr ) { });
 	
 		$.getScript(themeUrl+"/assets/js/sig/dvf/copyright.js", 					function( data, textStatus, jqxhr ) { });
 		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.utils.js", 			function( data, textStatus, jqxhr ) { });
-		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.linearfunctions.js", function( data, textStatus, jqxhr ) { });
-		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.palettes.js", 		function( data, textStatus, jqxhr ) { });
+		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.linearfunctions.js",   function( data, textStatus, jqxhr ) { });
+		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.palettes.js", 			function( data, textStatus, jqxhr ) { });
 		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.regularpolygon.js", 	function( data, textStatus, jqxhr ) { });
-		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.markers.js", 		function( data, textStatus, jqxhr ) { });
-		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.chartmarkers.js", 	function( data, textStatus, jqxhr ) { });
+		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.markers.js", 			function( data, textStatus, jqxhr ) { });
+		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.chartmarkers.js", 		function( data, textStatus, jqxhr ) { });
 		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.datalayer.js", 		function( data, textStatus, jqxhr ) { });
 		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.lines.js", 			function( data, textStatus, jqxhr ) { });
-		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.controls.js", 		function( data, textStatus, jqxhr ) { });
+		$.getScript(themeUrl+"/assets/js/sig/dvf/leaflet.dvf.controls.js", 			function( data, textStatus, jqxhr ) { });
 		
 		//alert("load ok");
 	}
