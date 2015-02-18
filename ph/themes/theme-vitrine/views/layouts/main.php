@@ -3,23 +3,40 @@
   <head>
     <meta charset="utf-8">
     <!-- PAGE TITLE -->
-    <title>Juntos - Charity & Association Template</title>
+    <title><?php echo ($this->pageTitle) ? CHtml::encode($this->pageTitle) : "set a pageTitle"; ?></title>
     <!-- MAKE IT RESPONSIVE -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- BOOTSTRAP -->
-    <link href="<?php echo Yii::app()->theme->baseUrl;?>/js/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+    <?php 
+		$detect = new Mobile_Detect;
+		$isMobile = $detect->isMobile();
+		$cs = Yii::app()->getClientScript();
+		//$cs->registerCssFile('http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,200,100,800');
+		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/css/bootstrap.min.css');
+		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/css/style.css');
+	?>
+    <!--<link href="<?php echo Yii::app()->theme->baseUrl;?>/js/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"> -->
     
     <!-- MAIN STYLE -->
-    <link href="<?php echo Yii::app()->theme->baseUrl;?>/css/style.css" rel="stylesheet" media="screen">
+    <!--<link href="<?php echo Yii::app()->theme->baseUrl;?>/css/style.css" rel="stylesheet" media="screen"> -->
     <!-- FONTS -->
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
+    <!--<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'> -->
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
     <![endif]-->
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.js"></script>
+    <!--<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.js"></script>-->
+    <link rel='shortcut icon' type='image/x-icon' href="<?php echo $this->module->assetsUrl?>/images/favicon.ico" />
+    <script>
+		   var initT = new Object();
+		   //var showDelaunay = true;
+		   // A supprimer une fois le redirect corrigé 
+		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
+		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
+		   var moduleId = "<?php echo $this->module->id?>";
+	</script>
   </head>
   <!-- START BODY -->
   <body>
@@ -36,23 +53,25 @@
 		<div id="loader"></div>
   	</div>
     <!-- SCRIPTS -->
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.js"></script>
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/underscore.js"></script>
-    
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/d3.js"></script>
-     <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/api.js"></script>
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/d3.tip.js"></script>
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/alert.js"></script>
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.sequence-min.js"></script>
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.fancybox.pack.js"></script>
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.sticky.js"></script>
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.scrollUp.min.js"></script>
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.smoothscroll.min.js"></script>
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.meanmenu.min.js"></script>
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/pace.min.js"></script>
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/jquery.flexslider-min.js"></script>
-    <script src="<?php echo Yii::app()->theme->baseUrl;?>/js/custom.js"></script>
-	<script src="<?php echo Yii::app()->theme->baseUrl;?>/js/bootstrap/js/bootstrap.js"></script>
+    <?php 
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.js' , CClientScript::POS_END);
+    	
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/d3.js' , CClientScript::POS_END);
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/api.js' , CClientScript::POS_END);
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/d3.tip.js' , CClientScript::POS_END);
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/alert.js' , CClientScript::POS_END);
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.sequence-min.js' , CClientScript::POS_END);
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.fancybox.pack.js' , CClientScript::POS_END);
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.scrollUp.min.js' , CClientScript::POS_END);
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.smoothscroll.min.js' , CClientScript::POS_END);
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.meanmenu.min.js' , CClientScript::POS_END);
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.sticky.js' , CClientScript::POS_END);
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/pace.min.js' , CClientScript::POS_END);	
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/custom.js' , CClientScript::POS_END);
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/bootstrap/js/bootstrap.js' , CClientScript::POS_END);
+    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.flexslider-min.js' , CClientScript::POS_END);
+
+    ?>
   </body>
   <!-- END BODY -->
 </html>

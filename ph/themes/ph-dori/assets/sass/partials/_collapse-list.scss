@@ -1,0 +1,24 @@
+/* collapse_list */
+
+.collapse_list {
+
+    .collapse_wrap {
+
+        .collapse_box {
+            display: none;
+        }
+
+        &.active,
+        &.open {
+            .collapse_box {
+                display: block;
+            }
+
+            .hide_on_active {
+                display: none;
+            }
+        }
+
+    }
+
+}

@@ -25,14 +25,14 @@ class TemplatesController extends Controller
 	}
     public function actionUpload($dir,$collection=null,$input,$rename=false) 
     {
-        if(isset($collection))
+        if( isset( $collection ))
             $dir .= '/'.$collection.'/';
         $upload_dir = 'upload/';
         if(!file_exists ( $upload_dir ))
-            mkdir ($upload_dir);
+            mkdir ( $upload_dir );
         $upload_dir = 'upload/'.$dir.'/';
         if(!file_exists ( $upload_dir ))
-            mkdir ($upload_dir);
+            mkdir ( $upload_dir );
         $allowed_ext = array('jpg','jpeg','png','gif',"pdf");
         
         if(strtolower($_SERVER['REQUEST_METHOD']) != 'post')
@@ -57,9 +57,13 @@ class TemplatesController extends Controller
         	//we use a unique Id for the iamge name Yii::app()->session["userId"].'.'.$ext
             //renaming file
         	$name = ($rename) ? Yii::app()->session["userId"].'.'.$ext : $pic['name'];
-        	if(move_uploaded_file($pic['tmp_name'], $upload_dir.$name))
-            {
-        		echo json_encode(array('result'=>true,"success"=>true,'name'=>$name));
+        	if( isset(Yii::app()->session["userId"]) && $name && move_uploaded_file($pic['tmp_name'], $upload_dir.$name))
+            {   
+        		echo json_encode(array('result'=>true,
+                                        "success"=>true,
+                                        'name'=>$name,
+                                        'dir'=> $upload_dir,
+                                        'size'=>self::human_filesize ( filesize ( $upload_dir.$name ) ) ));
     	        exit;
         	}
         }
@@ -67,6 +71,26 @@ class TemplatesController extends Controller
         echo json_encode(array('result'=>false,'error'=>'Something went wrong with your upload!'));
     	exit;
 	}
+
+    public function actionDelete($dir,$type) 
+    {
+        $filepath = __DIR__."/../../upload/".$dir."/".$type."/".$_POST['name'];
+        if(isset(Yii::app()->session["userId"]) && file_exists ( $filepath ))
+        {
+            if(unlink($filepath))
+                echo json_encode(array('result'=>true));
+            else
+                echo json_encode(array('result'=>false,'error'=>'Something went wrong!'));
+        } else
+            echo json_encode(array('result'=>false,'error'=>'Something went wrong!',"filepath"=>$filepath));
+    }
+
+    function human_filesize($bytes, $decimals = 2) {
+      $sz = 'BKMGTP';
+      $factor = floor((strlen($bytes) - 1) / 3);
+      return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
+    }
+
     function clean($string) {
        $string = preg_replace('/  */', '-', $string);
        $string = strtr($string,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY'); // Replaces all spaces with hyphens.

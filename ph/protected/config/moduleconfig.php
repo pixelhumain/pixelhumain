@@ -19,4 +19,5 @@ $activeModules = array(
 	'networkmapping',
 	'news',
 	'twh',
-	'vitrine');
+	'vitrine',
+	'rdf');

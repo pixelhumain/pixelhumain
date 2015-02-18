@@ -1,5 +1,6 @@
 
 <!-- Modal -->
+<!-- TODO - Refactor -->
 <div class="modal  fade" id="participer"  tabindex="-1" role="dialog" aria-labelledby="participerLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

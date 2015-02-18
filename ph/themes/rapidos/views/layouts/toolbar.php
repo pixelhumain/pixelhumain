@@ -19,6 +19,7 @@
 					?>
 				<!-- start: TO-DO DROPDOWN -->
 				<li class="dropdown">
+					<?php /*
 					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
 						<i class="fa fa-plus  fa-2x icon-big"></i> AJOUTER
 						<div class="tooltip-notification hide">
@@ -34,7 +35,7 @@
 								</div>
 							</div>
 						</div>
-					</a>
+					</a>*/?>
 					<ul class="dropdown-menu dropdown-light dropdown-subview">
 						<?php 
 				          foreach( $this->toolbarMenuAdd as $item )
@@ -88,9 +89,11 @@
 				</li>
 				<?php } ?>
 				<li class="dropdown">
+					<?php /*
 					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
 						<span class="messages-count badge badge-default hide">3</span> <i class="fa fa-envelope"></i> MESSAGES
 					</a>
+					*/?>
 					<ul class="dropdown-menu dropdown-light dropdown-messages">
 						<li>
 							<span class="dropdown-header"> You have 9 messages</span>
@@ -153,10 +156,12 @@
 				<?php 
 				if(isset($this->toolbarMenuMaps)){
 					?>
-				<li class="dropdown">
+				<li class="dropdown hide">
+					<?php /*
 					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
 						<span class="messages-count badge badge-default ">3</span> <i class="fa fa-map-marker"></i> CARTO
 					</a>
+					*/?>
 					<ul class="dropdown-menu dropdown-light dropdown-messages">
 						<li>
 							<div class="drop-down-wrapper ps-container">
@@ -208,9 +213,11 @@
 				}
 					?>
 				<li class="menu-search">
+					<?php /*
 					<a href="#">
 						<i class="fa fa-search"></i> CHERCHER
 					</a>
+					*/?>
 					<!-- start: SEARCH POPOVER -->
 					<div class="popover bottom search-box transition-all">
 						<div class="arrow"></div>
