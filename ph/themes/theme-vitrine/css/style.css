@@ -850,7 +850,10 @@ text-align:center !important;}
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #blog{background:url(images/white-bg.png) top center no-repeat; }
 #blog p {color:#FFF !important; }
-#services{background:url(images/curve.png) top center no-repeat #92be1f; }
+#description{
+
+}
+#services{background:url(images/white-bg.png) top center no-repeat #92be1f; }
 .services-slider .slides div{
 	text-align: center;
 	margin: 0px;
@@ -875,29 +878,41 @@ text-align:center !important;}
 	z-index: 11;
 	background:url(images/grey-curve.png) top center no-repeat;
 }
+#philosophie{
+  background:url(images/curve.png) top center no-repeat;
+
+}
+#philosophie h1{
+  color: #92be1f;
+}
 #team .section-header{
 	padding: 30px 0 0 0;
 }
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* * GALLERY SLIDER
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+* *  SLIDER
+*GALLERY * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#philosophie .section-header{
+  padding: 30px 0 0 0;
+}
 #gallery-slider{
-	width: 100%;
+	width: 80%;
 	margin: auto;
 	position: relative;
+  padding-top: 25px;
+  padding-bottom: 25px;
 	zoom: 1;
 }
 #gallery-slider .slides li{
-	width: 25%;
+	width: 150px;
 }
 #gallery-slider .flex-control-nav{
-	bottom: 10px;
+	bottom: -10px;
 }
 #gallery-slider .flex-direction-nav .flex-prev{
-	left: 50px;
+	left: -50px;
 }
 #gallery-slider .flex-direction-nav .flex-next{
-	right: 50px;
+	right: -50px;
 }
 #gallery-slider:hover .flex-prev, 
 #gallery-slider:hover .flex-next { 
@@ -910,6 +925,7 @@ text-align:center !important;}
 .gallery-item{
     display: block;
     overflow: hidden;
+    height: 150px;
     position: relative;
 }
 .gallery-item img{ 
@@ -928,6 +944,7 @@ text-align:center !important;}
 	height: auto;
 	position: relative;
 }
+
 .gallery-item img:hover{
 	opacity: .5;
     -webkit-transition-duration: 0.5s;
@@ -1226,6 +1243,7 @@ margin-right:10px;
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #footer{
 	font-size: .9em;
+  color:white;
 	background-color:#2a3945;
 
 }
