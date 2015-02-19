@@ -14,7 +14,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta content="" name="description" />
-		<meta content="" name="author" />
+		<meta content="Human Pixel Community" name="author" />
 		<!-- end: META -->
 		<!-- start: MAIN CSS -->
 		<?php 
@@ -48,11 +48,11 @@
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda.min.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda-themeless.min.css');
 
-		<!-- start: CSS REQUIRED FOR slider ONLY -->
+		//start: CSS REQUIRED FOR slider ONLY -->
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/slider/css/slider.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQRangeSlider/css/classic-min.css');
-		<!-- end: CSS REQUIRED FOR slider ONLY -->
+		//<!-- end: CSS REQUIRED FOR slider ONLY -->
 
 		//<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
 		//<!-- start: CORE CSS -->
@@ -128,7 +128,7 @@
 						} 
 						$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);?>
 						<!-- end: PAGE HEADER -->
-						<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.breadcrumb');?>
+						<?php //$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.breadcrumb');?>
 						<!-- start: PAGE CONTENT -->
 						<?php echo $content;  ?>
 						<!-- end: PAGE CONTENT-->
@@ -140,9 +140,11 @@
 				<!-- end: PAGE -->
 			</div>
 			<!-- end: MAIN CONTAINER -->
-			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.footer');?>
-			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.subview');?>
-			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.modals');?>
+			<?php 
+			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.footer');
+			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.subview');
+			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.modals');
+			?>
 		</div>
 		<?php
 		echo "<!-- start: MAIN JAVASCRIPTS -->";
@@ -208,15 +210,15 @@
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/pace.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScript::POS_END);
 
-		<!-- start: JAVASCRIPTS REQUIRED FOR sliders -->
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/assets/plugins/jQRangeSlider/jQAllRangeSliders-min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/assets/plugins/modernizr/modernizr.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/assets/plugins/slider/js/bootstrap-slider.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/assets/plugins/jQuery-Knob/js/jquery.knob.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/assets/js/ui-sliders.js' , CClientScript::POS_END);
-		<!-- end: JAVASCRIPTS REQUIRED FOR sliders -->
+		//<!-- start: JAVASCRIPTS REQUIRED FOR sliders -->
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQRangeSlider/jQAllRangeSliders-min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/modernizr/modernizr.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/slider/js/bootstrap-slider.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery-Knob/js/jquery.knob.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/ui-sliders.js' , CClientScript::POS_END);
+		//<!-- end: JAVASCRIPTS REQUIRED FOR sliders -->
 
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/assets/js/additional.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/additional.js' , CClientScript::POS_END);
 		
 		$path = '/assets/js/main.js';
 

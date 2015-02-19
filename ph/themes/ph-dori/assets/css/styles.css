@@ -1126,6 +1126,10 @@ footer {
           width: 307px;
           color: #2a3945;
           background-color: #fff; }
+          .left-navbar .navbar-menu li.active a {
+          width: 307px;
+          color: #2a3945;
+          background-color: #fff; }
         .left-navbar .navbar-menu li a > i {
           float: left;
           width: 59px;
