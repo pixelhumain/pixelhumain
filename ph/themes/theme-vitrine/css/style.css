@@ -319,6 +319,7 @@ ul.list-icon li:before{
 	float: right;
 	line-height: 32px;
 	margin-bottom: 0;
+  font-size: 12px;
 }
 #menu li{
 	display: inline-block;
@@ -693,6 +694,11 @@ text-align:center !important;}
     -webkit-box-shadow: none;
     border-radius: 20px;
 }
+
+#section-video, #section-philo, #section-serv{
+  opacity: 0;
+}
+
 #project .slide-content .sr-only {
 	position: absolute;
 	width: 100%;
