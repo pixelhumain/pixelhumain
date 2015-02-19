@@ -129,8 +129,22 @@
 						$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);?>
 						<!-- end: PAGE HEADER -->
 						<?php //$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.breadcrumb');?>
+						
 						<!-- start: PAGE CONTENT -->
-						<?php echo $content;  ?>
+						<div class="row page_content_wrap">
+							<span class="page_navigation_bg col-md-3 hidden-xs hidden-sm <?php echo (count($this->sidebar2 )) ? "" : "hide" ?>"></span>
+							<!-- start: MODULE  MENU -->
+							<div class="<?php echo (count($this->sidebar2 )) ? "col-md-3" : "hide" ?>">
+								<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.menuModule'); ?>
+							</div>
+							<!-- end: MODULE MENU -->
+							<div class="col-md-<?php echo (count($this->sidebar2 )) ? "9" : "12" ?>">
+								<section class="page_content">
+									<?php echo $content;  ?>
+								</section>
+							</div>
+						</div>
+						
 						<!-- end: PAGE CONTENT-->
 					</div>
 					<div class="subviews">

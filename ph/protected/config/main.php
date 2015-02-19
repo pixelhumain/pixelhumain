@@ -12,6 +12,9 @@ return array(
 	'name'=>'Pixel Humain',
 	'theme'=>'webarch',
 
+	'sourceLanguage'=>'00',
+	'language'=>'en',
+
 	//SPECIFIC MODULE confis
 	//'defaultController' => 'communecter/default/index',
 	'homeUrl' => "/ph/",//"/ph?tpl=index",
@@ -85,6 +88,14 @@ return array(
 
 	// application components
 	'components'=>array(
+		'communecter' => array(
+            'class'=>'CPhpMessageSource',
+            'basePath'=>realpath(__DIR__ . '/../../../../modules/communecter/messages')
+        ),
+		'twh' => array(
+            'class'=>'CPhpMessageSource',
+            'basePath'=>realpath(__DIR__ . '/../../../../modules/twh/messages')
+        ),
 		'session' => array(
             'timeout' => 86400,
         ),
@@ -164,7 +175,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		//this paramters is used to by pass the authentification
-		'mockAuthenticate'=>true,
+		//'mockAuthenticate'=>true,
 		// this is used in contact page
 		'adminEmail'=>'contact@pixelhumain.com',
 		//upload base directory
