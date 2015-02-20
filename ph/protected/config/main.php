@@ -2,6 +2,7 @@
 require_once(dirname(__FILE__) . '/dbconfig.php');
 require_once(dirname(__FILE__) . '/mailconfig.php');
 require_once(dirname(__FILE__) . '/moduleconfig.php');
+
 // uncomment the following to define a path alias
 Yii::setPathOfAlias('Json',dirname(__FILE__) . '/../extensions/Json');
 
@@ -163,8 +164,6 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
-		//this paramters is used to by pass the authentification
-		'mockAuthenticate'=>true,
 		// this is used in contact page
 		'adminEmail'=>'contact@pixelhumain.com',
 		//upload base directory
