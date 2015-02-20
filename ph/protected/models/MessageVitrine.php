@@ -8,7 +8,7 @@ class MessageVitrine
     - the message is also stored for the connected user
     - if an application has a $app["messages"] == "mustBeConfirmed" then the new message will carry messageConfirmed property
      */
-	public static function createMessage( $emails, $msg, $cp, $module=null )
+	public static function createMessage( $emails, $name, $firstname, $msg, $cp, $module=null )
 	{
 		//run through emails and validate existing accounts
     	$userids = array();
@@ -20,43 +20,44 @@ class MessageVitrine
     		//QUESTION : should we validate that a user is registered to the module
     		if($user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) )){
     			array_push($userids, (string)$user["_id"]);
-    			$name = $user["name"];
+    			//$name = $user["name"];
     			$image= "";
     		}else{
     			array_push($inexistantUsers, (string)$user["_id"]);
+    			$image ="";
     		}
     	}
     	//save message to DB
-    	if( count($userids) )
-    	{
-        	$newInfos = array();
-        	$comment = array();
-        	$image = array();
-        	$image["url"] ="";
-        	$comment['comment'] = $msg;
-        	$newInfos['name'] = $name;
-        	$newInfos['comment'] = $comment;
-        	$newInfos['image'] = $image;
-            //$newInfos['cp'] = $cp;
-            $newInfos['created'] = time();
-            if( isset( $_POST["app"] ) )
-                {
-                    $appKey = $_POST["app"];
-                    $newInfos['applications'] = array( $appKey => array( "usertype"=>"message" ));
-                    $app = Yii::app()->mongodb->applications->findOne( array( "key"=> $appKey ) );
-                    //check for application specifics defined in DBs application entry
-                    if( isset( $app["messagesVitrine"] ) && $app["messagesVitrine"] == "mustBeConfirmed")
-                        $newInfos['applications'][$appKey]["messageConfirmed"] = false;
-                }
+        $newInfos = array();
+        $comment = array();
+        $image = array();
+        $image["url"] ="";
+        $comment['comment'] = $msg;
+        $newInfos['name'] = $name;
+        $newInfos['firstname'] = $firstname;
+        $newInfos['comment'] = $comment;
+        $newInfos['image'] = $image;
+        //$newInfos['cp'] = $cp;
+        $newInfos['created'] = time();
+        
+        if( isset( $_POST["app"] ) ){
+           $appKey = $_POST["app"];
+           $newInfos['applications'] = array( $appKey => array( "usertype"=>"message" ));
+           $app = Yii::app()->mongodb->applications->findOne( array( "key"=> $appKey ) );
+           //check for application specifics defined in DBs application entry
+           if( isset( $app["messagesVitrine"] ) && $app["messagesVitrine"] == "mustBeConfirmed")
+               $newInfos['applications'][$appKey]["messageConfirmed"] = false;
+        }
 
-        	PHDB::insert($messageVit, $newInfos);
-        	$res = array("result" => true, 
+        PHDB::insert($messageVit, $newInfos);
+        $res = array("result" => true, 
                       	 "msg" => "message send to ".count($userids)." users" );
-        	if( count($inexistantUsers) )
+        if( count($inexistantUsers) ){
         		$res["error"] = count($inexistantUsers)." user doesn't have a PH account.";
-        } else
+        } else{
         	$res = array("result" => false, 
                       	 "msg"   => "no valid user accounts " );
+        }
     
         return $res;
     }

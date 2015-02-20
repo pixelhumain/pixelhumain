@@ -9,7 +9,7 @@ class GetPixelActifAction extends CAction
     public function run()
     {
     	//début de la requete => scope geographique
-    	$where = array(	// 'geo'  => array( '$exists' => true ),
+    	$where = array(	'geo'  => array( '$exists' => true ),
 //     					'geo.latitude' => array('$gt' => floatval($_POST['latMinScope']), '$lt' => floatval($_POST['latMaxScope'])),
 // 						'geo.longitude' => array('$gt' => floatval($_POST['lngMinScope']), '$lt' => floatval($_POST['lngMaxScope']))
 					  
@@ -32,7 +32,7 @@ class GetPixelActifAction extends CAction
 		//rajoute les filtres choisi dans le panel (seulement s'il y a au moins 1 filtre selectionné)
 		if(isset($_POST['types']))
 		//TAG = TYPE = "citoyen,pixelActif,partnerPH,commune,association,projectLeader
-		$where['tag'] = array('$in' => $_POST['types']);
+		$where['type'] = array('$in' => $_POST['types']);
     	//si aucun filtre n'est selectionné, on ne fait pas la recherche
     	else { 
     		Rest::json( array("result" => "Aucun résultat") );
@@ -40,7 +40,7 @@ class GetPixelActifAction extends CAction
     	}
     	
     								  
-    	$users = PHDB::find("citoyengeo", $where);
+    	$users = PHDB::find(PHType::TYPE_CITOYEN, $where);
         $users["origine"] = "getPixelActif";
     	
     	

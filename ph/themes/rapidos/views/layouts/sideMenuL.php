@@ -47,7 +47,8 @@
             $isActive = ( isset( Menu::$sectionMenu[ $item["key"] ] ) && in_array( Yii::app()->controller->action->id, Menu::$sectionMenu[ $item["key"] ] ) ) ? true : false;
             
             $active = ( $isActive || (isset($item["active"]) && $item["active"] ) ) ? "open active" : "";
-            echo '<li class="menu_'.$item["key"].' '.$item["key"].' '.$active.'"><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="title">'.$item["label"].'</span>';
+            $label = Yii::t("perimeter",$item["label"],null,Yii::app()->controller->module->id);
+            echo '<li class="menu_'.$item["key"].' '.$item["key"].' '.$active.'"><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="title">'.$label.'</span>';
             //This menu can have 2 levels
           }
           function buildChildren( $children ){
@@ -110,13 +111,14 @@
       <div class="clearfix"></div>
       
       <!-- end: MAIN NAVIGATION MENU -->
-    </div>
+     
     <!-- end: SIDEBAR -->
   </div>
   <div class="slide-tools">
+
     <div class="col-xs-6 text-left no-padding">
       <a class="btn btn-sm status" href="#">
-        Version <i class="fa fa-dot-circle-o text-green"></i> <span><?php echo (isset($this->version)) ? $this->version : ""?></span>
+        <?php echo strtoupper(Yii::app()->language)?> Version <i class="fa fa-dot-circle-o text-green"></i> <span><?php echo (isset($this->version)) ? $this->version : ""?></span>
       </a>
     </div>
     <div class="col-xs-6 text-right no-padding">

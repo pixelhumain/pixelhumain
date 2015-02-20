@@ -56,7 +56,7 @@ class ImportDataAction extends CAction
             
             
 			$citoyen = array(	'name' => $partner->properties->name,
-								'tag' => $tag,
+								'type' => $tag,
                                 'created' => time(),
                                 'geo' => $coordinates1,
                                 'geoPosition' => array("type" => "Point", 
@@ -65,7 +65,7 @@ class ImportDataAction extends CAction
 								);
 			
 			$result .= "  +  ".$partner->properties->name;
-			Yii::app()->mongodb->citoyengeo->insert($citoyen);
+			Yii::app()->mongodb->citoyens->insert($citoyen);
 		}	
 		return $result;
 	  }

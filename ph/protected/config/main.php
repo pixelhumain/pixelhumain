@@ -13,6 +13,9 @@ return array(
 	'name'=>'Pixel Humain',
 	'theme'=>'webarch',
 
+	'sourceLanguage'=>'00',
+	'language'=>'en',
+
 	//SPECIFIC MODULE confis
 	//'defaultController' => 'communecter/default/index',
 	'homeUrl' => "/ph/",//"/ph?tpl=index",
@@ -86,6 +89,14 @@ return array(
 
 	// application components
 	'components'=>array(
+		'communecter' => array(
+            'class'=>'CPhpMessageSource',
+            'basePath'=>realpath(__DIR__ . '/../../../../modules/communecter/messages')
+        ),
+		'twh' => array(
+            'class'=>'CPhpMessageSource',
+            'basePath'=>realpath(__DIR__ . '/../../../../modules/twh/messages')
+        ),
 		'session' => array(
             'timeout' => 86400,
         ),
