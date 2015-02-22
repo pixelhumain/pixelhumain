@@ -117,8 +117,9 @@
   <div class="slide-tools">
 
     <div class="col-xs-6 text-left no-padding">
+
       <a class="btn btn-sm status" href="#">
-        <?php echo strtoupper(Yii::app()->language)?> Version <i class="fa fa-dot-circle-o text-green"></i> <span><?php echo (isset($this->version)) ? $this->version : ""?></span>
+         Version <span class="text-white"><?php echo strtoupper(Yii::app()->language)?></span> <i class="fa fa-dot-circle-o text-green"></i> <span><?php echo (isset($this->version)) ? $this->version : ""?></span>
       </a>
     </div>
     <div class="col-xs-6 text-right no-padding">
