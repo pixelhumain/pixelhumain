@@ -100,7 +100,15 @@ a,
 .is-sticky #navigation, 
 .mean-container .mean-nav ul,
 .pace .pace-progress{
-  background-color: #ccc;
+  background-color: black;
+
+}
+.is-sticky #navigation a{
+  color:white;
+}
+.is-sticky #navigation .btn-success{
+  color: red;
+  background-color: transparent;
 }
 .pace .pace-progress-inner {
   box-shadow: 0 0 10px #0DB4E9, 0 0 5px #0DB4E9;
@@ -285,11 +293,12 @@ ul.list-icon li:before{
 	z-index: 1000;
 	margin-bottom: -95px !important;
 }
-#navigation{background-color:e9edef; }
+#navigation{background-color:#e9edef;}
 .sticky-wrapper #navigation{
 	padding: 20px 0;
 	width: 100%;
 	z-index: 1000;
+  color:black;
 	position: absolute;
     -webkit-transition-duration: 0.4s;
        -moz-transition-duration: 0.4s;
@@ -309,6 +318,8 @@ ul.list-icon li:before{
 }
 #logo{
 	position: absolute;
+  font-family: "Homestead", arial, sans-serif;
+  font-size: 1.4em;
 }
 #logo img{
 
