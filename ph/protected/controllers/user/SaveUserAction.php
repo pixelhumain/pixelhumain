@@ -18,10 +18,33 @@ class SaveUserAction extends CAction
             $res = Citoyen::register( $email, $pwd);
             if($user = PHDB::findOne(PHType::TYPE_CITOYEN,array( "email" => $email ) ))
             {
+                $pos = array();
                 //udate the new app specific fields
+                if(isset($_POST['compt'])){
+
+                	for($i=0; $i<$_POST['compt']; $i++){
+                		echo $i;
+                		$posStr = "position-".$i;
+                		//echo $_POST["position-"+$i];
+                		if(isset($_POST["position-0"])){
+                			echo "ok2";
+                			$pos["name"] = $_POST["position-"+$i];
+                		}
+                	}
+                	
+                }
                 $newInfos = array();
+                $newInfos["position"] = $pos;
                 if( isset($_POST['cp']) )
                     $newInfos['cp'] = $_POST['cp'];
+                if( isset($_POST['tel']) )
+                    $newInfos['phoneNumber'] = $_POST['tel'];
+                if( isset($_POST['url']) )
+                    $newInfos['url'] = $_POST['url'];
+                if( isset($_POST['skype']) )
+                    $newInfos['skype'] = $_POST['skype'];
+                if( isset($_POST['birth']) )
+                    $newInfos['birth'] = $_POST['birth'];
                 if( isset($_POST['name']) ){
                     $newInfos['name'] = $_POST['name'];
                     Yii::app()->session["user"] = array("name"=>$_POST['name']); 
