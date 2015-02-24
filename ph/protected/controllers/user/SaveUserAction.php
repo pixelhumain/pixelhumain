@@ -28,8 +28,6 @@ class SaveUserAction extends CAction
                 }
                 if( isset($_POST['city']) )
                     $newInfos['city'] = $_POST['city'];
-                if( isset($_POST['tags']) )
-                    $newInfos['tags'] = explode(",",$_POST['tags']);
                 if(isset($_POST['cp']))
                     {
                          $newInfos["cp"] = $_POST['cp'];
@@ -48,7 +46,7 @@ class SaveUserAction extends CAction
                     if(!in_array($tag, $tagsList['list']))
                       PHDB::update( PHType::TYPE_LISTS,array("name"=>"tags"), array('$push' => array("list"=>$tag)));
                   }
-                  $newInfos["tags"] = $_POST['tags'];
+                  $newInfos["tags"] = explode(",",$_POST['tags']);
                 }
                 if( isset($_FILES['avatar']) && $_FILES['avatar']['tmp_name'] !== ""  )
                 {
