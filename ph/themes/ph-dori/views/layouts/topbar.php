@@ -16,7 +16,7 @@
 				<i class="fa fa-logo"></i>
 			</span>
 
-			<a href="#" class="userlink">
+			<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person")?>" class="userlink">
 				<i class="fa fa-user_circled"></i>
 				<span class="username"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span>
 			</a>

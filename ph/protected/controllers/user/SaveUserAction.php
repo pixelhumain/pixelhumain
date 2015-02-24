@@ -38,7 +38,7 @@ class SaveUserAction extends CAction
                 if(isset($_POST['country']))
                        $newInfos["address"]["addressLocality"]= $_POST['country'];
 
-                if( isset($_POST['tags']) )
+                if( isset($_POST['tags']) && $_POST['tags']!="" )
                 {
                   $tagsList = PHDB::findOne( PHType::TYPE_LISTS,array("name"=>"tags"), array('list'));
                   foreach( explode(",", $_POST['tags']) as $tag)
