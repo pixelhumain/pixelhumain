@@ -18,7 +18,7 @@ class Api {
 		USER Section
 		 ------------------------------------------------ */
 		"communect" => array( "label"=>"se Communecter", "key"=>"communect",
-			"desc"=>"an email and Postal Code is all a user needs to connect to his city",
+			"desc"=>"An email and Postal Code is all a user needs to connect to his city",
 			"actions"=>array('communect' => 'application.controllers.user.CommunectAction')),
 		"login" => array( "label"=>"Login", "key"=>"login", 
 			"desc"=>"classic login feature email + pwd",

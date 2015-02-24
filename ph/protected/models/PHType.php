@@ -12,6 +12,8 @@ class PHType
 
      */
     const TYPE_CITOYEN	       = "citoyens";
+    const TYPE_ORGANIZATIONS   = "organizations";
+    
     const TYPE_GROUPS          = "groups";
     const TYPE_ASSOCIATION	   = "association";
     const TYPE_ENTREPRISE	   = "entreprise";

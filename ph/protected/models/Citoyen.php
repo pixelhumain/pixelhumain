@@ -50,6 +50,9 @@ class Citoyen
                         $pwd = uniqid('', true);
                         PHDB::update(PHType::TYPE_CITOYEN,array("email"=>$email), 
                                                           array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
+                        
+                        // TODO - Remove Pixel Humain and get the application Name
+                        // TODO - Add a batch/crown to send the mail ?
                         Mail::send(array("tpl"=>'validation',
                                          "subject" => "Set your password - Pixel Humain",
                                          "from"=>Yii::app()->params['adminEmail'],
@@ -65,6 +68,8 @@ class Citoyen
                         PHDB::update(PHType::TYPE_CITOYEN,array("email"=>$email), 
                                                           array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
                         
+                        //TODO - No session should be handled on Models ?
+                        //TODO - Return a user object or array
                         Yii::app()->session["userId"] = (string)$account["_id"];
                         Yii::app()->session["userEmail"] = $account["email"]; 
                         $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
