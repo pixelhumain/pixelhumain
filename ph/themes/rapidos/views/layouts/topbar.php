@@ -24,10 +24,10 @@
 				<li class="dropdown current-user">
 					<?php 
 						//TODO - Ne fonctionne pas avec communecté 
-						$titleId = (isset(Yii::app()->session["user"])) ? Yii::app()->session["user"]["userId"]."-".Yii::app()->session["user"]["groupId"]."-".Yii::app()->session["userId"]."-".Yii::app()->session["lang"] : "";
+						//$titleId = (isset(Yii::app()->session["user"])) ? Yii::app()->session["user"]["userId"]."-".Yii::app()->session["user"]["groupId"]."-".Yii::app()->session["userId"]."-".Yii::app()->session["lang"] : "";
 						//$titleId = "";
 					?>
-					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" title="<?php echo $titleId?>" data-placement="bottom" data-close-others="true" href="#">
+					<!--<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" title="<?php //echo $titleId?>" data-placement="bottom" data-close-others="true" href="#">-->
 						<img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/avatar-1-small.jpg" class="img-circle" alt=""> <span class="username hidden-xs"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span> <i class="fa fa-caret-down "></i>
 					</a>
 					<ul class="dropdown-menu dropdown-dark">

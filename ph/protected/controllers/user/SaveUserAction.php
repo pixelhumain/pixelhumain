@@ -14,22 +14,28 @@ class SaveUserAction extends CAction
         if( Yii::app()->request->isAjaxRequest )
         {
             //if exists login else create the new user
+
             $pwd = (isset($_POST["pwd"])) ? $_POST["pwd"] : null ;
             $res = Citoyen::register( $email, $pwd);
+            $newInfos = array();
             if($user = PHDB::findOne(PHType::TYPE_CITOYEN,array( "email" => $email ) ))
             {
                 $pos = array();
                 //udate the new app specific fields
                 if( isset($_POST["position"])){
                 	echo count($_POST["position"]);
-                	for($i=0; $i<count($_POST["position"]); $i++){
+                	/*for($i=0; $i<count($_POST["position"]); $i++){
                 		$postionObj = [];
-                		$postionObj["intitule"] = $_POST["position"][$i];
+                		echo $_POST["position"];
+                		if($_POST["position"]!= ""){
+                			$postionObj["intitule"] = $_POST["position"][$i];
+                		}
                 		$pos["pos".$i] = $postionObj;
-                	}
+                	}*/
+                	$newInfos["position"] = $_POST["position"];
                 }
-                $newInfos = array();
-                $newInfos["positions"] = $pos;
+                
+
                 if( isset($_POST['supervisor']) )
                     $newInfos['supervisor'] = $_POST['supervisor'];
                 if( isset($_POST['cp']) )
@@ -48,6 +54,8 @@ class SaveUserAction extends CAction
                 }
                 if( isset($_POST['city']) )
                     $newInfos['city'] = $_POST['city'];
+                if( isset($_POST['imagePath']) )
+                    $newInfos['imagePath'] = $_POST['imagePath'];
                 if(isset($_POST['cp']))
                     {
                          $newInfos["cp"] = $_POST['cp'];
@@ -60,7 +68,10 @@ class SaveUserAction extends CAction
 
                 if( isset($_POST['tags']) && $_POST['tags']!="" )
                 {
+                  $tabTags  = explode(",", $_POST['tags']);
+                  $newInfos["tags"]= $tabTags;
                   $tagsList = PHDB::findOne( PHType::TYPE_LISTS,array("name"=>"tags"), array('list'));
+
                   foreach( explode(",", $_POST['tags']) as $tag)
                   {
                     if(!in_array($tag, $tagsList['list']))
