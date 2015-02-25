@@ -8,5 +8,13 @@ class HtmlHelper {
         }
         return $c;
     }
+
+    public static function echoIfSetOr($var , $default = null) {
+    	if (isset($var)) {
+    		echo $var;
+    	} elseif (isset($default)) {
+    		echo $default;
+    	}
+    }
 }
 ?>
