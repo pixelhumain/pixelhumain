@@ -88,7 +88,7 @@ function openSubView(what, url,id, callback)
 	});
 }
 
-function openSubViewHTML(html,callback,id)
+function openSubViewHTML(html,callback,id,callbackHide,callbackClose)
 {
     if(!id) 
         id = "#ajaxSV";
@@ -99,7 +99,15 @@ function openSubViewHTML(html,callback,id)
 			$("#ajaxSV").html(html); 
 			if( typeof callback === "function")
 	    		callback();
-		}
+		},
+    onHide : function() {
+      if( typeof callbackHide === "function")
+          callbackHide();
+    },
+    /*onClose : function() {
+      if( typeof callbackClose === "function")
+          callbackClose();
+    }*/
 	});
 }
 
