@@ -30,6 +30,8 @@ class SaveUserAction extends CAction
                 }
                 $newInfos = array();
                 $newInfos["positions"] = $pos;
+                if( isset($_POST['supervisor']) )
+                    $newInfos['supervisor'] = $_POST['supervisor'];
                 if( isset($_POST['cp']) )
                     $newInfos['cp'] = $_POST['cp'];
                 if( isset($_POST['tel']) )
