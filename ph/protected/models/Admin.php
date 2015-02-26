@@ -10,10 +10,13 @@ class Admin
    * if $type is empty the script will scann and import the whole data folder (limited control)
    * if type is given this is a name of a file inside /data  
    * if collection is empty , data will be stored in file name colelction
-   * 
-   * @return [json Map] list
+   * @param type $moduleId 
+	 * @param type $type , is the file type when wanting to load only one file at a time
+	 * @param type $collection , is the destinating collection
+	 * @param type $isDummy , if is true, often associated with the type , on each dummy data inserted will be added dummyData:$type
+	 * @return type
    */
-	public static function initModuleData( $moduleId, $type=null, $collection = null,$isDummy=false )
+	public static function initModuleData( $moduleId, $type=null, $collection = null,$isDummy=false,$linkAllToActiveUser=false )
 	{
 		$res = array("module"=>$moduleId, "collection"=>$collection, "imported"=>array(),"errors"=>0);
 	    if( file_exists( Yii::getPathOfAlias( Yii::app()->params["modulePath"].$moduleId.".data" ) ) )
@@ -24,7 +27,7 @@ class Admin
 				{
 					//todo : if csv 
 					//if json
-					$importRes = self::insertDataFromFile($f,$collection,$type,$isDummy);
+					$importRes = self::insertDataFromFile($f,$collection,$type,$isDummy,$linkAllToActiveUser);
 					array_push( $res["imported"], $importRes);
 				}
 			} else {
@@ -37,7 +40,7 @@ class Admin
 						break;
 					}
 				}
-				$importRes = self::insertDataFromFile($file,$collection,$type,$isDummy);
+				$importRes = self::insertDataFromFile($file,$collection,$type,$isDummy,$linkAllToActiveUser);
 				array_push( $res["imported"], $importRes);
 				$res["errors"] += count($importRes["errors"]);
 			}
@@ -50,14 +53,13 @@ class Admin
 	 * is a clone of initModuleData the differnece is this import files can contain 
 	 * multiple destination dataset in one single file, the key being the destignation collection 
 	 * @param type $moduleId 
-	 * @param type $type 
-	 * @param type $collection 
-	 * @param type $isDummy 
+	 * @param type $type , is the file type when wanting to load only one file at a time
+	 * @param type $isDummy , if is true, often associated with the type , on each dummy data inserted will be added dummyData:$type
 	 * @return type
 	 */
-	public static function initMultipleModuleData( $moduleId, $type=null, $isDummy=false )
+	public static function initMultipleModuleData( $moduleId, $type=null, $isDummy=false,$linkAllToActiveUser=false,$reverse=false )
 	{
-		$res = array("module"=>$moduleId, "imported"=>array(),"errors"=>0);
+		$res = array("module"=>$moduleId, "imported"=>array(),"errors"=>0,"linkAllToActiveUser"=>$linkAllToActiveUser);
 	    if( file_exists( Yii::getPathOfAlias( Yii::app()->params["modulePath"].$moduleId.".data" ) ) )
 		{
 			$file = null;
@@ -71,21 +73,39 @@ class Admin
 			}
 			$jsonAll = json_decode( file_get_contents($file), true);
 			$importRes = array( "file"=> $type,  "isDummy"=>$isDummy , "imports"=>array(),"count"=>0,"errors"=>0  );
-			foreach ($jsonAll as $col => $data) {
-				$importRes['imports'][$col] = array();
-				$importRes['imports'][$col]["count"] = count($data);
-				$importRes["count"] += count($data);
-				$importRes['imports'][$col]["collection"] = $col;
-				$errors = array();
-				$infos = array();
-				foreach ($data as $row) {
-					$infosRes = self::insertData($row,$col,$type,$isDummy);
-		        	if($infosRes["error"])
-		        		array_push( $errors, $infosRes["error"] );
-					array_push( $infos, $infosRes["info"] );
+			foreach ($jsonAll as $col => $data) 
+			{
+				if(!$reverse)
+				{
+					if( $col != "linkAllToActiveUser")
+					{
+						$importRes['imports'][$col] = array();
+						$importRes['imports'][$col]["count"] = count($data);
+						$importRes["count"] += count($data);
+						$importRes['imports'][$col]["collection"] = $col;
+						$errors = array();
+						$infos = array();
+						foreach ($data as $row) 
+						{
+							$infosRes = self::insertData($row,$col,$type,$isDummy,$linkAllToActiveUser);
+							if($infosRes["error"])
+				        		array_push( $errors, $infosRes["error"] );
+							array_push( $infos, $infosRes["info"] );
+						}
+						$importRes['imports'][$col]["infos"] = $infos;
+						$importRes['imports'][$col]["errors"] = $errors;
+					} 
+					else 
+					{
+						$linkAllToActiveUser = true;
+						$res["linkAllToActiveUser"] = true;
+					}
+				} 
+				else
+				{
+					$infosRes = self::removeData($col,$type,$isDummy,$linkAllToActiveUser);
+					$importRes["count"] += $infosRes["count"];
 				}
-				$importRes['imports'][$col]["infos"] = $infos;
-				$importRes['imports'][$col]["errors"] = $errors;
 			}
 			array_push( $res["imported"], $importRes);
 
@@ -102,7 +122,7 @@ class Admin
 	 * @param type $collection 
 	 * @return type
 	 */
-	public static function insertDataFromFile($file, $collection = null,$type=null,$isDummy=false)
+	public static function insertDataFromFile($file, $collection ,$type,$isDummy,$linkAllToActiveUser)
 	{
 		$json = json_decode( file_get_contents($file), true);
 		$fn = pathinfo($file, PATHINFO_FILENAME);
@@ -111,7 +131,7 @@ class Admin
 		//PHDB::batchInsert( $fn , $json );
 		foreach ( $json as $row ) 
         {
-        	$infosRes = self::insertData($row,$collection,$type,$isDummy);
+        	$infosRes = self::insertData($row,$collection,$type,$isDummy,$linkAllToActiveUser);
         	if($infosRes["error"])
         		array_push( $errors, $infosRes["error"] );
 			array_push( $infos, $infosRes["info"] );
@@ -124,7 +144,7 @@ class Admin
    *
    * @return [json Map] list
    */
-	public static function insertData($row, $collection,$type,$isDummy)
+	public static function insertData($row, $collection,$type,$isDummy,$linkAllToActiveUser)
 	{
 		$error = null;
     	if(isset($row["_id"]) && isset($row["_id"]['$oid']) && PHDB::isValidMongoId($row["_id"]['$oid']) ){
@@ -147,22 +167,66 @@ class Admin
         
         $where = array("_id"=>new MongoId((string)$row["_id"]));
         $exist = (PHDB::findOne( $collection, $where ) ) ? true : false ;
-        $info = array( "collection"=>$collection, "id"=>(string)$row["_id"], "exist"=>$exist, "msg"=>"" );
+        $info = array( "collection"=>$collection, "id"=>(string)$row["_id"], "exist"=>$exist, "msg"=>array() );
         
+        if($linkAllToActiveUser){
+        	if( $collection == PHType::TYPE_CITOYEN ){
+        		$row["links"] = array("knows" => Yii::app()->session["userId"] ) ;
+        		PHDB::update( PHType::TYPE_CITOYEN, 
+        					  array("_id" => new MongoId(Yii::app()->session["userId"])), 
+        					  array('$addToSet' => array("links.knows"=>(string)$row["_id"])));
+        		array_push($info["msg"],"added links.knows activeUser");
+        	}
+        	elseif ( $collection == PHType::TYPE_ORGANIZATIONS ) 
+        	{
+        		$row["links"] = array("members" => array("persons"=>Yii::app()->session["userId"]));
+        		PHDB::update( PHType::TYPE_CITOYEN, 
+        					  array("_id" => new MongoId(Yii::app()->session["userId"])), 
+        					  array('$addToSet' => array("links.memberOf"=>(string)$row["_id"])));
+        		array_push($info["msg"],"added links.members and memberOf for activeUser");
+        	}
+
+        }
+
         if( $exist )
         {
         	PHDB::remove( $collection, $where );
-        	$info["msg"] .= "remove";
+        	array_push($info["msg"],"existed removed");
         }
 
         try {
 		    PHDB::insert( $collection, $row );
-		    $info["msg"] .= " - inserted";
+		    array_push($info["msg"],"inserted");
 		} catch (MongoException $ex) {
 		    $error = array( "id"=>(string)$row["_id"],"exist"=>$exist,"msg"=>$ex->getMessage());
 		}
 		return array( "info" => $info ,
 					  "error" => $error );
+	}
+
+	public static function removeData($collection,$type,$isDummy,$linkAllToActiveUser)
+	{
+		$error = null;
+		if($isDummy)
+			$rows = PHDB::find($collection,array("dummyData"=>$type));
+    	$info = array( "collection"=>$collection,   );
+    	foreach ($rows as $key => $value) 
+    	{
+    		if( $linkAllToActiveUser )
+    		{
+	    		if( $collection == PHType::TYPE_CITOYEN )
+		        	PHDB::update( PHType::TYPE_CITOYEN, 
+		        					  array("_id" => new MongoId(Yii::app()->session["userId"])), 
+		        					  array('$pull' => array("links.knows"=>array($key))));
+		        elseif( $collection == PHType::TYPE_ORGANIZATIONS )
+		        	PHDB::update( PHType::TYPE_ORGANIZATIONS, 
+	        					  array("_id" => new MongoId(Yii::app()->session["userId"])), 
+	        					  array('$pull' => array("links.memberOf"=>array($key))));
+		    }
+
+        	PHDB::remove( $collection, array("_id" => new MongoId( $key )) );
+    	}
+		return array( "count"=>count($rows) );
 	}
 	/**
    *
