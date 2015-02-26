@@ -23,15 +23,17 @@ class SaveUserAction extends CAction
                 $pos = array();
                 //udate the new app specific fields
                 if( isset($_POST["position"])){
-                	
                 	$positionObj = [];
-                	for($i=0; $i<count($_POST["position"]); $i++){
-                		
-                		if($_POST["position"][$i]!= ""){
-
-                			array_push($positionObj, $_POST["position"][$i]);
-                		}
+                	if(is_array($_POST["position"])){
+                		for($i=0; $i<count($_POST["position"]); $i++){
+	                		if($_POST["position"][$i]!= ""){
+	                			array_push($positionObj, $_POST["position"][$i]);
+	                		}
+	                	}
+                	}else{
+                		$positionObj = $_POST["position"];
                 	}
+                	
                 	$newInfos["positions"] = $positionObj;
 
                 }
