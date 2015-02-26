@@ -90,6 +90,13 @@ class OpendataController extends Controller {
 	    header('Content-Type: application/json');
     	echo json_encode($commune);
 	}
+
+	public function actionPersons() {
+        $commune = PHDB::find( PHType::TYPE_CITOYEN ,array('isOpendata'=>true ) ); 
+
+	    header('Content-Type: application/json');
+    	echo json_encode($commune);
+	}
 	
 	/**
 	 * Page de démo pour le concours etalab : dataconnexion
