@@ -2,7 +2,7 @@
 <footer class="inner">
 	<div class="footer-inner">
 		<div class="pull-left">
-			2014 <?php echo (isset($this->projectImage)) ? '<img height="30" style="margin-right:20px;" src="'.$this->module->assetsUrl.$this->projectImage.'"/>' : "<i class='fa fa-close'>/i>";
+			<?php echo $this->footerText; echo (isset($this->projectImage)) ? '<img height="30" style="margin-right:20px;" src="'.$this->module->assetsUrl.$this->projectImage.'"/>' : "<i class='fa fa-close'>/i>";
 			if(isset($this->footerImages)){
 				foreach ($this->footerImages as $k=>$v) {
 					?>

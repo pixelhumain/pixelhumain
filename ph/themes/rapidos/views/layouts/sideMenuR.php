@@ -24,8 +24,20 @@
 					            echo "<a class='notif' data-id='".(string)$item["_id"]."' href='".$item["notify"]["url"]."'><span class='label label-primary'>";
 					            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message">';
 					            echo $item["notify"]["displayName"];
-					            
-					            echo "</span><span class='time'>".round(abs(time() - $item["timestamp"]) / 60)."min</span></a>";
+						            
+								$a = $item["timestamp"];
+								$b = time();
+								$difference = $b-$a;
+
+								$second = 1;
+								$minute = 60*$second;
+								$hour   = 60*$minute;
+								$day    = 24*$hour;
+
+								$d    = (floor($difference/$day) > 0) ? floor($difference/$day)."j" : "";
+								$h   = (floor(($difference%$day)/$hour)> 0) ? floor(($difference%$day)/$hour)."h" : "" ; 
+								$m = (floor((($difference%$day)%$hour)/$minute)> 0) ? floor((($difference%$day)%$hour)/$minute)."min" : "" ;
+								 echo "</span><span class='time'>".$d.$h.$m."</span></a>";
 					            echo "</li>";
 					            if($item["timestamp"] > $maxTimestamp)
 					            	$maxTimestamp = $item["timestamp"];
@@ -36,7 +48,7 @@
 			</ul>
 			<ul  class="pageslide-list footer"> 
 				<li class='markAllAsRead'>
-					<a href="javascript:;" onclick='markAllAsRead()' class="btn btn-primary ">Mark all as Read <i class="fa fa-check-square-o"></i></a>
+					<a href="#" onclick='markAllAsRead()' class="btn btn-primary ">Mark all as Read <i class="fa fa-check-square-o"></i></a>
 				</li>
 			</ul>
 

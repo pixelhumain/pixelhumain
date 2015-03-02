@@ -355,7 +355,8 @@ var jsonHelper = {
     destArray = [];
     //console.dir(srcObj);
     $.each(srcObj,function(k,v){
-      destArray.push(v);
+        if(v.value != 0)
+            destArray.push(v);
     });
     //console.dir(destArray);
     return destArray;

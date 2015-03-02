@@ -112,4 +112,16 @@ class ActivityStream {
 
 		return $res;
 	}
+
+	public static function addNotification($params)
+	{
+	    $notify =  array(
+	        "objectType" => "persons",
+	        "id" => $params["persons"],
+	        "displayName" => $params["label"],
+	        "icon" => $params["icon"],
+	        "url" => $params["url"]
+	    );
+	    return $notify;
+	}
 }
