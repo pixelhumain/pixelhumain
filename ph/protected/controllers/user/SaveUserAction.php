@@ -33,9 +33,7 @@ class SaveUserAction extends CAction
                 	}else{
                 		$positionObj = $_POST["position"];
                 	}
-                	
                 	$newInfos["positions"] = $positionObj;
-
                 }
                 
 

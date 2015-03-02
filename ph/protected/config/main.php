@@ -180,5 +180,6 @@ return array(
 		//upload base directory
 		'uploadURL' => "/ph/upload/teeo/event/",
 		'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\upload\\teeo\\event\\",
+		'uploadComDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\templates\\upload\\dir\\communecter\\collection\\person"
 	),
 );
