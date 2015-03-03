@@ -119,7 +119,16 @@ class SaveUserAction extends CAction
                                                 )));
                         }
                 }
-
+                //Social Network info
+                $socialNetwork = array();
+                if (isset($_POST["twitterAccount"])) $socialNetwork["twitterAccount"] = $_POST["twitterAccount"];
+                if (isset($_POST["facebookAccount"])) $socialNetwork["facebookAccount"] = $_POST["facebookAccount"];
+                if (isset($_POST["gplusAccount"])) $socialNetwork["gplusAccount"] = $_POST["gplusAccount"];
+                if (isset($_POST["gitHubAccount"])) $socialNetwork["gitHubAccount"] = $_POST["gitHubAccount"];
+                if (isset($_POST["linkedInAccount"])) $socialNetwork["linkedInAccount"] = $_POST["linkedInAccount"];
+                if (isset($_POST["skypeAccount"])) $socialNetwork["skypeAccount"] = $_POST["skypeAccount"];
+                $newInfos["socialNetwork"] = $socialNetwork;
+                
                 PHDB::update(PHType::TYPE_CITOYEN,
                             array("email" => $email), 
                             array('$set' => $newInfos ) 
