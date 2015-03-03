@@ -87,8 +87,11 @@
 						peter.clark@example.com
 					</a>
 				</address>
-				<a class="btn btn-transparent-white" href="#">
+				<a class="btn btn-transparent-white" href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person"); ?>">
 					<i class="fa fa-pencil"></i> Edit
+				</a>
+				<a class="btn btn-transparent-white" href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/logout"); ?>">
+					<i class="fa fa-power-off "></i> Logout
 				</a>
 			</div>
 			<!-- end: SLIDING BAR THIRD COLUMN -->

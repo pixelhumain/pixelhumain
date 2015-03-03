@@ -6,12 +6,20 @@
 		</div>
 	</div>
 	<div class="col-sm-6 col-xs-12">
+		
 		<a href="#" class="back-subviews">
 			<i class="fa fa-chevron-left"></i> BACK
 		</a>
 		<a href="#" class="close-subviews">
 			<i class="fa fa-times"></i> CLOSE
 		</a>
+
+		<a href="#" class="save-subviews">
+			<i class="fa fa-save"></i> SAVE
+		</a>
+		<span class="loader-subviews">
+			<i class="fa fa-spinner fa-spin"></i> LOADING
+		</span>
 		<div class="toolbar-tools pull-right">
 			<ul class="nav navbar-right">
 				<?php 

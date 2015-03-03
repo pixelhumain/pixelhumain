@@ -1557,7 +1557,7 @@ a.text-light:hover {
   text-decoration: none;
 }
 
-.close-subviews, .back-subviews {
+.close-subviews, .back-subviews, .save-subviews, .loader-subviews {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -1599,14 +1599,27 @@ a.text-light:hover {
   left: 110px;
 }
 
-.close-subviews > i, .back-subviews > i {
+.close-subviews > i, .back-subviews > i, .save-subviews > i, .loader-subviews > i {
   display: block;
   margin-top: 12px;
   color: #111111;
   font-size: 16px;
 }
+ .save-subviews > i, .loader-subviews > i {
+  font-size: 22px;
+  margin-top: 6px;
+}
+.save-subviews {
+  background-color:#DEDEBD;
+  border:1px solid #666;
+}
+.loader-subviews {
+  background-color:#CCCC99;
+  border:1px solid #666;
+}
 
-.close-subviews:hover, .close-subviews:focus, .back-subviews:hover, .back-subviews:focus {
+.close-subviews:hover, .close-subviews:focus, .back-subviews:hover, .back-subviews:focus
+, .save-subviews:hover, .save-subviews:focus, .loader-subviews:hover, .loader-subviews:focus {
   background-color: #EEEEEE;
   color: #111111;
   text-decoration: none;
