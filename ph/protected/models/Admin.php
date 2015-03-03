@@ -52,6 +52,7 @@ class Admin
 	/**
 	 * is a clone of initModuleData the differnece is this import files can contain 
 	 * multiple destination dataset in one single file, the key being the destignation collection 
+	 * tool mongo query :: db.citoyens.find({email:/oceat/},{email:1,events:1,links:1,projects:1})
 	 * @param type $moduleId 
 	 * @param type $type , is the file type when wanting to load only one file at a time
 	 * @param type $isDummy , if is true, often associated with the type , on each dummy data inserted will be added dummyData:$type
@@ -168,22 +169,66 @@ class Admin
         $where = array("_id"=>new MongoId((string)$row["_id"]));
         $exist = (PHDB::findOne( $collection, $where ) ) ? true : false ;
         $info = array( "collection"=>$collection, "id"=>(string)$row["_id"], "exist"=>$exist, "msg"=>array() );
-        
+        $userId = Yii::app()->session["userId"];
         if($linkAllToActiveUser){
         	if( $collection == PHType::TYPE_CITOYEN ){
-        		$row["links"] = array("knows" => Yii::app()->session["userId"] ) ;
+        		$person = array("type"=>$collection);
+        		if(isset($row["links"]) && isset( $row["links"]["knows"] ) )
+        			$row["links"]["knows"][$userId] = $person;
+        		else {
+        			$knows = array();
+        			$knows[$userId] = $person;
+        			$row["links"] = $knows ;
+        		}
         		PHDB::update( PHType::TYPE_CITOYEN, 
-        					  array("_id" => new MongoId(Yii::app()->session["userId"])), 
-        					  array('$addToSet' => array("links.knows"=>(string)$row["_id"])));
+        					  array("_id" => new MongoId($userId)), 
+        					  array('$set' => array("links.knows.".(string)$row["_id"] =>array("type"=>$collection))));
         		array_push($info["msg"],"added links.knows activeUser");
         	}
         	elseif ( $collection == PHType::TYPE_ORGANIZATIONS ) 
         	{
-        		$row["links"] = array("members" => array("persons"=>Yii::app()->session["userId"]));
+        		$person = array("type"=>PHType::TYPE_CITOYEN);
+        		if(isset($row["links"]) && isset( $row["links"]["members"] ) )
+        			$row["links"]["members"][$userId] = $person;
+        		else {
+        			$members = array();
+        			$members[$userId] = $person;
+        			$row["links"] = $members ;
+        		}
         		PHDB::update( PHType::TYPE_CITOYEN, 
-        					  array("_id" => new MongoId(Yii::app()->session["userId"])), 
-        					  array('$addToSet' => array("links.memberOf"=>(string)$row["_id"])));
+        					  array("_id" => new MongoId($userId)), 
+        					  array('$set' => array("links.memberOf.".(string)$row["_id"]=>array( "type"=>$collection ))));
         		array_push($info["msg"],"added links.members and memberOf for activeUser");
+        	}
+        	elseif ( $collection == PHType::TYPE_EVENTS ) 
+        	{
+        		$person = array("id"=>$userId,"type"=>PHType::TYPE_CITOYEN);
+        		if(isset($row["attendees"])) 
+        			array_push($row["attendees"], $person);
+        		else {
+        			$attendees = array();
+        			$attendees[$userId] = $person;
+        			$row["attendees"] = $attendees ;
+        		}	
+        		PHDB::update( PHType::TYPE_CITOYEN, 
+        					  array("_id" => new MongoId($userId)), 
+        					  array('$addToSet' => array("events"=>(string)$row["_id"]  )));
+        		array_push($info["msg"],"added attendees and events.attendee for activeUser");
+        	}
+        	elseif ( $collection == PHType::TYPE_PROJECTS ) 
+        	{
+        		$person = array("id"=>$userId,"type"=>PHType::TYPE_CITOYEN);
+        		if(isset($row["contributors"])) 
+        			array_push($row["contributors"], $person);
+        		else {
+        			$contributors = array();
+        			$contributors[$userId] = $person;
+        			$row["attendees"] = $contributors ;
+        		}
+        		PHDB::update( PHType::TYPE_CITOYEN, 
+        					  array("_id" => new MongoId($userId)), 
+        					  array('$addToSet' => array("projects"=>(string)$row["_id"]  )));
+        		array_push($info["msg"],"added contributors and projects for activeUser");
         	}
 
         }
@@ -210,18 +255,27 @@ class Admin
 		if($isDummy)
 			$rows = PHDB::find($collection,array("dummyData"=>$type));
     	$info = array( "collection"=>$collection,   );
+    	$userId = Yii::app()->session["userId"];
     	foreach ($rows as $key => $value) 
     	{
     		if( $linkAllToActiveUser )
     		{
 	    		if( $collection == PHType::TYPE_CITOYEN )
 		        	PHDB::update( PHType::TYPE_CITOYEN, 
-		        					  array("_id" => new MongoId(Yii::app()->session["userId"])), 
-		        					  array('$pull' => array("links.knows"=>array($key))));
+		        					  array("_id" => new MongoId($userId)), 
+		        					  array('$unset' => array("links.knows.".$key=>1)));
 		        elseif( $collection == PHType::TYPE_ORGANIZATIONS )
-		        	PHDB::update( PHType::TYPE_ORGANIZATIONS, 
-	        					  array("_id" => new MongoId(Yii::app()->session["userId"])), 
-	        					  array('$pull' => array("links.memberOf"=>array($key))));
+		        	PHDB::update( PHType::TYPE_CITOYEN, 
+	        					  array("_id" => new MongoId($userId)), 
+	        					  array('$unset' => array("links.memberOf.".$key=>1)));
+		        elseif( $collection == PHType::TYPE_EVENTS )
+		        	PHDB::update( PHType::TYPE_CITOYEN, 
+	        					  array("_id" => new MongoId($userId)), 
+	        					  array('$pull' => array("events"=>$key)));
+		        elseif( $collection == PHType::TYPE_PROJECTS )
+		        	PHDB::update( PHType::TYPE_CITOYEN, 
+	        					  array("_id" => new MongoId($userId)), 
+	        					  array('$pull' => array("projects"=>$key)));
 		    }
 
         	PHDB::remove( $collection, array("_id" => new MongoId( $key )) );
