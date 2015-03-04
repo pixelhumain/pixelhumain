@@ -173,12 +173,20 @@ class Admin
         if($linkAllToActiveUser){
         	if( $collection == PHType::TYPE_CITOYEN ){
         		$person = array("type"=>$collection);
-        		if(isset($row["links"]) && isset( $row["links"]["knows"] ) )
-        			$row["links"]["knows"][$userId] = $person;
+        		if(isset($row["links"])){
+        			if( isset( $row["links"]["knows"] ) )
+        				$row["links"]["knows"][$userId] = $person;
+        			else {
+	        			$knows = array();
+	        			$knows[$userId] = $person;
+	        			$row["links"]["knows"] = $knows ;
+	        		}
+
+        		}
         		else {
         			$knows = array();
         			$knows[$userId] = $person;
-        			$row["links"] = $knows ;
+        			$row["links"] = array("knows"=>$knows) ;
         		}
         		PHDB::update( PHType::TYPE_CITOYEN, 
         					  array("_id" => new MongoId($userId)), 
@@ -188,12 +196,20 @@ class Admin
         	elseif ( $collection == PHType::TYPE_ORGANIZATIONS ) 
         	{
         		$person = array("type"=>PHType::TYPE_CITOYEN);
-        		if(isset($row["links"]) && isset( $row["links"]["members"] ) )
-        			$row["links"]["members"][$userId] = $person;
+        		if(isset($row["links"])  ){
+        			if( isset( $row["links"]["members"] ) )
+        				$row["links"]["members"][$userId] = $person;
+        			else
+        			{
+        				$members = array();
+        				$members[$userId] = $person;
+        				$row["links"]["members"] = $members;
+        			}
+        		}
         		else {
         			$members = array();
         			$members[$userId] = $person;
-        			$row["links"] = $members ;
+        			$row["links"] = array("members"=>$members) ;
         		}
         		PHDB::update( PHType::TYPE_CITOYEN, 
         					  array("_id" => new MongoId($userId)), 
@@ -223,7 +239,7 @@ class Admin
         		else {
         			$contributors = array();
         			$contributors[$userId] = $person;
-        			$row["attendees"] = $contributors ;
+        			$row["contributors"] = $contributors ;
         		}
         		PHDB::update( PHType::TYPE_CITOYEN, 
         					  array("_id" => new MongoId($userId)), 
