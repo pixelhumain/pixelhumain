@@ -13,6 +13,10 @@
 			<i class="fa fa-times"></i> CLOSE
 		</a>
 		
+		<a href="#" class="save-subviews">
+			<i class="fa fa-save"></i> SAVE
+		</a>
+		
 		<div class="toolbar-tools pull-right">
 			<ul class="nav navbar-right">
 				<?php 
@@ -214,9 +218,9 @@
 					?>
 				<li class="menu-search">
 					
-					<a href="#">
-						<i class="fa fa-search"></i> CHERCHER
-					</a>
+					<span class="loader-subviews">
+						<i class="fa fa-spinner fa-spin"></i> LOADING
+					</span>
 					
 					<!-- start: SEARCH POPOVER -->
 					<div class="popover bottom search-box transition-all">
