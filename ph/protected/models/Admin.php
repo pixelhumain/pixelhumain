@@ -178,7 +178,7 @@ class Admin
         		else {
         			$knows = array();
         			$knows[$userId] = $person;
-        			$row["links"] = $knows ;
+        			$row["links"] = array("knows"=>$knows) ;
         		}
         		PHDB::update( PHType::TYPE_CITOYEN, 
         					  array("_id" => new MongoId($userId)), 
@@ -193,7 +193,7 @@ class Admin
         		else {
         			$members = array();
         			$members[$userId] = $person;
-        			$row["links"] = $members ;
+        			$row["links"] = array("members"=>$members) ;
         		}
         		PHDB::update( PHType::TYPE_CITOYEN, 
         					  array("_id" => new MongoId($userId)), 
@@ -223,7 +223,7 @@ class Admin
         		else {
         			$contributors = array();
         			$contributors[$userId] = $person;
-        			$row["attendees"] = $contributors ;
+        			$row["contributors"] = $contributors ;
         		}
         		PHDB::update( PHType::TYPE_CITOYEN, 
         					  array("_id" => new MongoId($userId)), 
