@@ -1,6 +1,9 @@
 (function($) {
 	"use strict";
-	var subViews = $(".subviews"), show_functions = [], close_functions = [], hide_functions = [], subview_id = [], screenPosition, $this, subViewElement, subviewShowClass = ".show-sv", subviewHideClass = ".hide-sv", subviewBackClass = ".back-sv", subview_action = "", thisBody = document.body || document.documentElement, thisStyle = thisBody.style, supportTransition = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined;
+	var subViews = $(".subviews"), show_functions = [], close_functions = [], hide_functions = [], subview_id = [], screenPosition, 
+	$this, subViewElement, subviewShowClass = ".show-sv", subviewHideClass = ".hide-sv", subviewBackClass = ".back-sv", subview_action = "", 
+	thisBody = document.body || document.documentElement, thisStyle = thisBody.style, 
+	supportTransition = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined;
 
 	$(subviewShowClass).on("click", function(e) {
 		subViewElement = $(this);
@@ -28,7 +31,8 @@
 				startFrom: "top",
 				onShow: "",
 				onHide: "",
-				onClose: ""
+				onClose: "",
+				onSave: null,
 			};
 
 			var settings = $.extend({}, defaults, options);
@@ -60,6 +64,28 @@
 							}
 							$.hideSubview();
 						});
+						if(settings.onSave && jQuery.isFunction(settings.onSave)){
+							$(".save-subviews").show(0, function(e) {
+								$(this).css({
+									opacity: 1,
+									left: "0px"
+								});
+							}).off().on("click", function(e) {
+								console.log("click Save SubView");
+								/*$(this).hide(0, function(e) {
+									$(this).css({
+										opacity: 0
+									});
+								});*/
+								$(".loader-subviews").show(0, function(e) {
+									$(this).css({
+										opacity: 1,
+										left: "0px"
+									});
+								});
+								settings.onSave();
+							});
+						}
 					});
 					screenPosition = $(window).scrollTop();
 					$("html, body").animate({
@@ -287,6 +313,14 @@
 							$(this).off().hide();
 						});
 					}
+					if($(".save-subviews").is(":visible")) {
+						$(".save-subviews").css({
+							opacity: 0,
+							left: "20px"
+						}).on('webkitTransitionEnd oTransitionEnd otransitionend transitionend msTransitionEnd', function() {
+							$(this).off().hide();
+						});
+					}
 					$(".close-subviews").css({
 						opacity: 0,
 						left: "20px"
@@ -341,6 +375,14 @@
 							$(this).off().hide();
 						});
 					}
+					if($(".save-subviews").is(":visible")) {
+						$(".save-subviews").animate({
+							opacity: 0,
+							left: "20px"
+						}, 300, function() {
+							$(this).off().hide();
+						});
+					}
 					$(".close-subviews").animate({
 						opacity: 0,
 						left: "20px"
@@ -354,6 +396,7 @@
 							});
 						});
 					});
+
 
 					if(subViews.hasClass("subviews-right")) {
 						subViews.animate({

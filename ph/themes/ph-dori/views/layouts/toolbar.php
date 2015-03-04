@@ -12,6 +12,7 @@
 		<a href="#" class="close-subviews">
 			<i class="fa fa-times"></i> CLOSE
 		</a>
+		
 		<div class="toolbar-tools pull-right">
 			<ul class="nav navbar-right">
 				<?php 
