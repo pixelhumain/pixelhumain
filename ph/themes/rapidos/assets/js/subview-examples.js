@@ -8,51 +8,52 @@
 
 	// creates an array of events to display in the calendar
 	var setCalendarEvents = function() {
-    var date = new Date();
-    dateToShow = date;
-    if(typeof addTasks2CAlendar != 'undefined' && typeof addTasks2CAlendar == "function")
-    {
-      calendar = addTasks2CAlendar();
-      //console.dir("calendar",calendar);
-    }else{
-  		var d = date.getDate();
-  		var m = date.getMonth();
-  		var y = date.getFullYear();
-  		calendar = [
-        {
-    			title : 'Networking',
-    			start : new Date(y, m, d, 20, 0),
-    			end : new Date(y, m, d, 21, 0),
-    			className: 'event-job',
-                category: 'Job',
-    			allDay : false,
-    			content : 'Out to design conference'
-    		}, 
-        {
-            title: 'Bootstrap Seminar',
-            start: new Date(y, m, d - 5),
-            end: new Date(y, m, d - 2),
-            className: 'event-offsite',
-            category: 'Off-site work',
-            allDay: true
-        }, 
-        {
-            title: 'Lunch with Nicole',
-            start: new Date(y, m, d - 3, 12, 0),
-            end: new Date(y, m, d - 3, 12, 30),
-            className: 'event-generic',
-            category: 'Generic',
-            allDay: false
-        }, 
-        {
-            title: 'Corporate Website Redesign',
-            start: new Date(y, m, d + 5),
-            end: new Date(y, m, d + 10),
-            className: 'event-todo',
-            category: 'To Do',
-            allDay: true
-        }];
-    }
+	    var date = new Date();
+	    dateToShow = date;
+	    console.log("setCalendarEvents");
+	    if(typeof addTasks2CAlendar != 'undefined' && typeof addTasks2CAlendar == "function")
+	    {
+	      calendar = addTasks2CAlendar();
+	      console.dir(calendar);
+	    }else{
+	  		var d = date.getDate();
+	  		var m = date.getMonth();
+	  		var y = date.getFullYear();
+	  		calendar = [
+	        {
+	    			title : 'Networking',
+	    			start : new Date(y, m, d, 20, 0),
+	    			end : new Date(y, m, d, 21, 0),
+	    			className: 'event-job',
+	                category: 'Job',
+	    			allDay : false,
+	    			content : 'Out to design conference'
+	    		}, 
+	        {
+	            title: 'Bootstrap Seminar',
+	            start: new Date(y, m, d - 5),
+	            end: new Date(y, m, d - 2),
+	            className: 'event-offsite',
+	            category: 'Off-site work',
+	            allDay: true
+	        }, 
+	        {
+	            title: 'Lunch with Nicole',
+	            start: new Date(y, m, d - 3, 12, 0),
+	            end: new Date(y, m, d - 3, 12, 30),
+	            className: 'event-generic',
+	            category: 'Generic',
+	            allDay: false
+	        }, 
+	        {
+	            title: 'Corporate Website Redesign',
+	            start: new Date(y, m, d + 5),
+	            end: new Date(y, m, d + 10),
+	            className: 'event-todo',
+	            category: 'To Do',
+	            allDay: true
+	        }];
+	    }
 	};
 	//creates fullCalendar
 	var showCalendar = function() {
@@ -1110,13 +1111,16 @@
 	};
 	return {
 		init : function() {
-			setCalendarEvents();
+			//setCalendarEvents();
 			runEventFormValidation();
 			setContributorsList();
 			runContributorsFormValidation();
 			runSubViews();
 			readNote();
 			runNoteFormValidation();
+		},
+		setCalendarEvents : function() {
+			setCalendarEvents();
 		}
 	};
 	console.log("SVExamples");
