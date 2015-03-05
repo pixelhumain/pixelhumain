@@ -52,6 +52,8 @@ class Admin
 	/**
 	 * is a clone of initModuleData the differnece is this import files can contain 
 	 * multiple destination dataset in one single file, the key being the destignation collection 
+	 * http://127.0.0.1/ph/communecter/person/initDataPeopleAll
+	 * http://127.0.0.1/ph/communecter/person/clearInitDataPeopleAll
 	 * tool mongo query :: db.citoyens.find({email:/oceat/},{email:1,events:1,links:1,projects:1})
 	 * @param type $moduleId 
 	 * @param type $type , is the file type when wanting to load only one file at a time

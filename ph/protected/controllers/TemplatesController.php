@@ -33,7 +33,7 @@ class TemplatesController extends Controller
         $upload_dir = 'upload/'.$dir.'/';
         if(!file_exists ( $upload_dir ))
             mkdir ( $upload_dir );
-        $allowed_ext = array('jpg','jpeg','png','gif',"pdf");
+        $allowed_ext = array('jpg','jpeg','png','gif',"pdf","xls","xlsx","doc","docx","ppt","pptx");
         
         if(strtolower($_SERVER['REQUEST_METHOD']) != 'post')
         {
