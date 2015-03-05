@@ -162,32 +162,43 @@ class Admin
         	$id = new MongoId();
 
         $row["_id"] = $id;
+
+        /* **************************************
+        * always add a key to easily detect and remove dummy data 
+        ***************************************** */
         if($isDummy)
         	$row["dummyData"] = $type;
 
         if(!$collection)
         	$collection = $fn;
         
+        /* **************************************
+        *	Building links with the active User 
+        ***************************************** */
         $where = array("_id"=>new MongoId((string)$row["_id"]));
         $exist = (PHDB::findOne( $collection, $where ) ) ? true : false ;
         $info = array( "collection"=>$collection, "id"=>(string)$row["_id"], "exist"=>$exist, "msg"=>array() );
         $userId = Yii::app()->session["userId"];
+        
         if($linkAllToActiveUser){
+        	$personType = array("type"=>$collection);
         	if( $collection == PHType::TYPE_CITOYEN ){
-        		$person = array("type"=>$collection);
+        		/* **************************************
+		        *	KNOWS links for people
+		        ***************************************** */
         		if(isset($row["links"])){
         			if( isset( $row["links"]["knows"] ) )
-        				$row["links"]["knows"][$userId] = $person;
+        				$row["links"]["knows"][$userId] = $personType;
         			else {
 	        			$knows = array();
-	        			$knows[$userId] = $person;
+	        			$knows[$userId] = $personType;
 	        			$row["links"]["knows"] = $knows ;
 	        		}
 
         		}
         		else {
         			$knows = array();
-        			$knows[$userId] = $person;
+        			$knows[$userId] = $personType;
         			$row["links"] = array("knows"=>$knows) ;
         		}
         		PHDB::update( PHType::TYPE_CITOYEN, 
@@ -197,20 +208,22 @@ class Admin
         	}
         	elseif ( $collection == PHType::TYPE_ORGANIZATIONS ) 
         	{
-        		$person = array("type"=>PHType::TYPE_CITOYEN);
+        		/* **************************************
+		        *	MEMBERS links for ORGANISATION
+		        ***************************************** */
         		if(isset($row["links"])  ){
         			if( isset( $row["links"]["members"] ) )
-        				$row["links"]["members"][$userId] = $person;
+        				$row["links"]["members"][$userId] = $personType;
         			else
         			{
         				$members = array();
-        				$members[$userId] = $person;
+        				$members[$userId] = $personType;
         				$row["links"]["members"] = $members;
         			}
         		}
         		else {
         			$members = array();
-        			$members[$userId] = $person;
+        			$members[$userId] = $personType;
         			$row["links"] = array("members"=>$members) ;
         		}
         		PHDB::update( PHType::TYPE_CITOYEN, 
@@ -220,27 +233,32 @@ class Admin
         	}
         	elseif ( $collection == PHType::TYPE_EVENTS ) 
         	{
-        		$person = array("id"=>$userId,"type"=>PHType::TYPE_CITOYEN);
+        		/* **************************************
+		        *	ATTENDEES links for events
+		        ***************************************** */
         		if(isset($row["attendees"])) 
-        			array_push($row["attendees"], $person);
+        			array_push($row["attendees"], $personType);
         		else {
         			$attendees = array();
-        			$attendees[$userId] = $person;
+        			$attendees[$userId] = $personType;
         			$row["attendees"] = $attendees ;
         		}	
         		PHDB::update( PHType::TYPE_CITOYEN, 
         					  array("_id" => new MongoId($userId)), 
         					  array('$addToSet' => array("events"=>(string)$row["_id"]  )));
+        		
         		array_push($info["msg"],"added attendees and events.attendee for activeUser");
         	}
         	elseif ( $collection == PHType::TYPE_PROJECTS ) 
         	{
-        		$person = array("id"=>$userId,"type"=>PHType::TYPE_CITOYEN);
+        		/* **************************************
+		        *	CONTRIBUTORS links for projects
+		        ***************************************** */
         		if(isset($row["contributors"])) 
-        			array_push($row["contributors"], $person);
+        			$row["contributors"][$userId] = $personType;
         		else {
         			$contributors = array();
-        			$contributors[$userId] = $person;
+        			$contributors[$userId] = $personType;
         			$row["contributors"] = $contributors ;
         		}
         		PHDB::update( PHType::TYPE_CITOYEN, 
@@ -253,11 +271,17 @@ class Admin
 
         if( $exist )
         {
+        	/* **************************************
+	        *	remove to renew existing data
+	        ***************************************** */
         	PHDB::remove( $collection, $where );
         	array_push($info["msg"],"existed removed");
         }
 
         try {
+        	/* **************************************
+	        *	Create entry in DB
+	        ***************************************** */
 		    PHDB::insert( $collection, $row );
 		    array_push($info["msg"],"inserted");
 		} catch (MongoException $ex) {
