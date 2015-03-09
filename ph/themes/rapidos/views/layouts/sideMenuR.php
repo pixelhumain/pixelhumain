@@ -4,7 +4,7 @@
 		<div class="notifications">
 			
 			<div class="pageslide-title">
-				You have <span class="notifCount"></span> notifications 
+				<?php echo Yii::t("common","You have <span class='notifCount'></span> notifications ") ?>
 			</div>
 			<ul class="pageslide-list header">
 				<li>
@@ -48,7 +48,7 @@
 			</ul>
 			<ul  class="pageslide-list footer"> 
 				<li class='markAllAsRead'>
-					<a href="#" onclick='markAllAsRead()' class="btn btn-primary ">Mark all as Read <i class="fa fa-check-square-o"></i></a>
+					<a href="#" onclick='markAllAsRead()' class="btn btn-primary "><?php echo Yii::t("common","Mark all as Read") ?> <i class="fa fa-check-square-o"></i></a>
 				</li>
 			</ul>
 
@@ -103,7 +103,7 @@ function markAsRead(id)
         	$(".notifList li.notif_"+id).remove();
         	console.log("notification cleared ",data);
         } else {
-            toastr.error("no notifications found ");
+            toastr.error(<?php echo Yii::t("common","No notifications found") ?>);
         }
         notifCount();
     });
@@ -122,7 +122,7 @@ function markAllAsRead()
         	$(".notifList li.notifLi").remove();
         	console.log("notifications cleared ",data);
         } else {
-            toastr.error("no notifications found ");
+            toastr.error(<?php echo Yii::t("common","No notifications found") ?>);
         }
         notifCount();
     });
@@ -141,7 +141,7 @@ function refreshNotifications()
         if (data) {               
         	buildNotifications(data);
         } else {
-            toastr.error("no notifications found ");
+            toastr.error(<?php echo Yii::t("common","No notifications found") ?>);
         }
         notifCount();
     });

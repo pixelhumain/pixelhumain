@@ -8,17 +8,17 @@
 	<div class="col-sm-6 col-xs-12">
 		
 		<a href="#" class="back-subviews">
-			<i class="fa fa-chevron-left"></i> BACK
+			<i class="fa fa-chevron-left"></i> <?php echo Yii::t("common","BACK") ?>
 		</a>
 		<a href="#" class="close-subviews">
-			<i class="fa fa-times"></i> CLOSE
+			<i class="fa fa-times"></i> <?php echo Yii::t("common","CLOSE") ?>
 		</a>
 
 		<a href="#" class="save-subviews">
-			<i class="fa fa-save"></i> SAVE
+			<i class="fa fa-save"></i> <?php echo Yii::t("common","SAVE") ?>
 		</a>
 		<span class="loader-subviews">
-			<i class="fa fa-spinner fa-spin"></i> LOADING
+			<i class="fa fa-spinner fa-spin"></i> <?php echo Yii::t("common","LOADING") ?>
 		</span>
 		<div class="toolbar-tools pull-right">
 			<ul class="nav navbar-right">

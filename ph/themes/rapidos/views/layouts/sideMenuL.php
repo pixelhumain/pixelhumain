@@ -125,7 +125,7 @@
     <div class="col-xs-6 text-right no-padding">
       
       <a class="btn btn-sm log-out text-right" href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout')?>">
-        <i class="fa fa-power-off"></i> Work in Progress
+        <i class="fa fa-power-off"></i> <?php echo Yii::t("common","Work in Progress") ?>
       </a>
     </div>
   </div>
