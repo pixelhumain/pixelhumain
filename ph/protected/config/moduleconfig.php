@@ -20,4 +20,4 @@ $activeModules = array(
 	'news',
 	'twh',
 	'vitrine',
-	'rdf');
+	'learn');

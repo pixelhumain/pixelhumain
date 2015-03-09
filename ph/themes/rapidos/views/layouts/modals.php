@@ -12,7 +12,7 @@
 				
 			</div>
 			<div class="modal-footer">
-				<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+				<button type="button" data-dismiss="modal" class="btn btn-default"><?php echo Yii::t("common","Close") ?></button>
 			</div>
 		</div>
 	</div>

@@ -33,12 +33,12 @@
 					<ul class="dropdown-menu dropdown-dark">
 						<li>
 							<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person")?>">
-								My Profile
+								<?php echo Yii::t("common","My Profile") ?>
 							</a>
 						</li>
 						<li>
 							<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/event/agenda")?>">
-								My Calendar
+								<?php echo Yii::t("common","My Calendar") ?>
 							</a>
 						</li>
 						<?php /*
@@ -50,7 +50,7 @@
 						*/?>
 						<li>
 							<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/logout")?>">
-								Log Out
+								<?php echo Yii::t("common","Log Out") ?>
 							</a>
 						</li>
 					</ul>
