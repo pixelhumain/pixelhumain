@@ -10,6 +10,7 @@ class SaveUserAction extends CAction
 {
     public function run()
     {
+
        $email = $_POST["email"];
         if( Yii::app()->request->isAjaxRequest )
         {
@@ -23,7 +24,7 @@ class SaveUserAction extends CAction
                 $pos = array();
                 //udate the new app specific fields
                 if( isset($_POST["position"])){
-                	$positionObj = [];
+                	$positionObj = array();
                 	if(is_array($_POST["position"])){
                 		for($i=0; $i<count($_POST["position"]); $i++){
 	                		if($_POST["position"][$i]!= ""){
@@ -36,7 +37,6 @@ class SaveUserAction extends CAction
                 	$newInfos["positions"] = $positionObj;
                 }
                 
-
                 if( isset($_POST['supervisor']) )
                     $newInfos['supervisor'] = $_POST['supervisor'];
                 if( isset($_POST['cp']) )
@@ -67,22 +67,29 @@ class SaveUserAction extends CAction
                 if(isset($_POST['country']))
                        $newInfos["address"]["addressLocality"]= $_POST['country'];
 
-                if( isset($_POST['tags']) && $_POST['tags']!="" )
+                if( isset($_POST['tags']))
                 {
-                  $tabTags  = explode(",", $_POST['tags']);
-                  $newInfos["tags"]= $tabTags;
-                  $tagsList = PHDB::findOne( PHType::TYPE_LISTS,array("name"=>"tags"), array('list'));
+               		if($_POST['tags']!=""){
+	                  $tabTags  = explode(",", $_POST['tags']);
+	                  $newInfos["tags"]= $tabTags;
+	     
+	                  $tagsList = PHDB::findOne( PHType::TYPE_LISTS,array("name"=>"tags"), array('list'));
 
-                  foreach( explode(",", $_POST['tags']) as $tag)
-                  {
-                    if(!in_array($tag, $tagsList['list']))
-                      PHDB::update( PHType::TYPE_LISTS,array("name"=>"tags"), array('$push' => array("list"=>$tag)));
-                  }
-                  $newInfos["tags"] = explode(",",$_POST['tags']);
+	                  foreach( explode(",", $_POST['tags']) as $tag)
+	                  {
+	                    if(!in_array($tag, $tagsList['list']))
+	                      PHDB::update( PHType::TYPE_LISTS,array("name"=>"tags"), array('$push' => array("list"=>$tag)));
+	                  }
+	                  $newInfos["tags"] = explode(",",$_POST['tags']);
+	                }else{
+	                	 $newInfos["tags"] = $_POST['tags'];
+	                }
+
                 }
-                if( isset($_FILES['avatar']) && $_FILES['avatar']['tmp_name'] !== ""  )
+                if( isset($_FILES['avatar'])) 
                 {
-                	$pathImage = $this->processImage($_FILES['avatar'],$user["_id"]);
+                	echo "ok";
+                	$pathImage = $this->processImage($_FILES['avatar'],$user["_id"]["$id"]);
                 	if ($pathImage) {
                 		 $newInfos["imagePath"] = $pathImage;
                 	}
@@ -193,5 +200,4 @@ private function save_image($source, $destination, $image_type){
         default: return false;
     } 
   } 	
-  	    
 }
