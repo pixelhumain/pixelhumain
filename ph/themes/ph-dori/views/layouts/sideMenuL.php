@@ -47,6 +47,11 @@
           }
           ?>
         <!-- END TWO LEVEL MENU -->     
+        <?php if(YII_DEBUG){ ?>
+        <li class="moduleMenu menu_debug debug ">
+          <a href="javascript:showDebugMap();"><i class="fa fa-bug"></i><span class="inner">Show Debug Map</span></a>
+        </li>
+        <?php } ?>
       </ul>
 
     </div>

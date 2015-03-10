@@ -418,3 +418,16 @@ $.fn.serializeFormJSON = function () {
     });
     return o;
 };
+
+function showDebugMap() 
+{  
+  if(debugMap && debugMap.length > 0)
+  {
+    $.each(debugMap, function (i,val) {
+          console.dir(val);
+      });
+    toastr.info("check Console for "+debugMap.length+" maps");
+  }else
+    toastr.error("no maps to show, please do debugMap.push(something)");
+
+}
