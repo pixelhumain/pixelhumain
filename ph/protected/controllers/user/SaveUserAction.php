@@ -88,7 +88,7 @@ class SaveUserAction extends CAction
                 }
                 if( isset($_FILES['avatar'])) 
                 {
-                	echo "ok";
+                	
                 	$pathImage = $this->processImage($_FILES['avatar'],$user["_id"]["$id"]);
                 	if ($pathImage) {
                 		 $newInfos["imagePath"] = $pathImage;
