@@ -23,6 +23,10 @@ return array(
 	"CLOSE" => "FERMER",
 	"SAVE" => "ENREGISTRER",
 	"LOADING" => "EN COURS",
+	"Edit" => "Modifier",
+	"Delete" => "Supprimer",
+	"Back" => "Retour",
+	"Next" => "Suivant",
 
 	//NOTIFICATIONS
 	"You have <span class='notifCount'></span> notifications " => "Vous avez <span class='notifCount'></span> notifications ",
