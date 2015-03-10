@@ -343,7 +343,6 @@ ul.list-icon li:before{
 }
 #menu a.btn-success{
 	padding: 10px 16px 7px 16px;
-	margin-left: 20px;
 	background:#f6e200;
 	border:none;
 }
@@ -1518,7 +1517,7 @@ html[xmlns] .slides {display: block;}
 
 /* FlexSlider Default Theme
 *********************************/
-.flexslider { margin: 10px auto 10px auto;width: 35%; position: relative; zoom: 1; }
+.flexslider { margin: 10px auto 10px auto;width: 50%; position: relative; zoom: 1; }
 .flex-viewport { max-height: 2000px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; -o-transition: all 1s ease; transition: all 1s ease; }
 .loading .flex-viewport { max-height: 300px; }
 .flexslider .slides { zoom: 1; }
