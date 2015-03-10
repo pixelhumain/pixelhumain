@@ -103,7 +103,7 @@ function markAsRead(id)
         	$(".notifList li.notif_"+id).remove();
         	console.log("notification cleared ",data);
         } else {
-            toastr.error(<?php echo Yii::t("common","No notifications found") ?>);
+            toastr.error('<?php echo Yii::t("common","No notifications found") ?>');
         }
         notifCount();
     });
@@ -122,7 +122,7 @@ function markAllAsRead()
         	$(".notifList li.notifLi").remove();
         	console.log("notifications cleared ",data);
         } else {
-            toastr.error(<?php echo Yii::t("common","No notifications found") ?>);
+            toastr.error('<?php echo Yii::t("common","No notifications found") ?>');
         }
         notifCount();
     });
@@ -141,7 +141,7 @@ function refreshNotifications()
         if (data) {               
         	buildNotifications(data);
         } else {
-            toastr.error(<?php echo Yii::t("common","No notifications found") ?>);
+            toastr.error('<?php echo Yii::t("common","No notifications found") ?>');
         }
         notifCount();
     });

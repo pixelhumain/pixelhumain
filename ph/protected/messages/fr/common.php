@@ -9,7 +9,7 @@ return array(
 	"Fullscreen"=>"Pleine écran",
 
 	"My Profile"=> "Mon compte",
-	"My Calendar" => "Mon Calendrier",
+	"My Calendar" => "Mon calendrier",
 	"Log Out" => "Déconnexion",
 
 	// LANGUE
