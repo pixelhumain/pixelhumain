@@ -72,7 +72,10 @@
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
 		   <?php if(YII_DEBUG){ ?>
-	       var debugMap = [{ "userId":"<?php echo Yii::app()->session['userId']?>"}];
+	       var debugMap = [
+		       { "userId":"<?php echo Yii::app()->session['userId']?>"},
+		       { "userEmail":"<?php echo Yii::app()->session['userEmail']?>"}
+	       ];
 	       <?php } ?>
 		   
 		</script>
@@ -131,6 +134,7 @@
 						} 
 						$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);?>
 						<!-- end: PAGE HEADER -->
+						<div class="space20"></div>
 						<?php //$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.breadcrumb');?>
 						
 						<!-- start: PAGE CONTENT -->
@@ -161,6 +165,10 @@
 			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.footer');
 			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.subview');
 			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.modals');
+			foreach( $this->subviews as $item )
+	        {
+	            $this->renderPartial(Yii::app()->params["modulePath"].$this->module->id.".views.".$item);
+	        }
 			?>
 		</div>
 		<?php
@@ -213,7 +221,7 @@
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-daterangepicker/daterangepicker.js' , CClientScript::POS_END);
 
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/subview.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/subview-examples.js' , CClientScript::POS_END);
+		//$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/global-subviews.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/sig/sig.js' , CClientScript::POS_END);
 		
 		//$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery-Tags-Input/jquery.tagsinput.css');
@@ -258,7 +266,7 @@
 		jQuery(document).ready(function() {
 			Main.init();
 			Additional.init();
-			SVExamples.init();
+			//SVGlobal.init();
 			//Sig.init();
 			toastr.options = {
 			  "closeButton": false,

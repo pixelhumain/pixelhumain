@@ -1633,14 +1633,16 @@ a.text-light:hover {
   -webkit-border-radius: 3px;
   border-radius: 3px;
   color: #111111;
+  border:1px solid #666;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0;
-  line-height: 31px;
+  line-height: 18px;
+  padding-top: 4px;
+  padding-bottom: 6px;
   margin-right: 3px;
   margin-top: 2px;
   opacity: 0.9;
-  padding: 8px 0 7px 0;
   position: relative;
   text-align: center;
   width: 90px;
@@ -1666,19 +1668,29 @@ a.text-light:hover {
   display: none; }
 
 .back-subviews {
-  left: 110px; }
+  left: 110px;
+}
 
 .close-subviews > i, .back-subviews > i, .save-subviews > i, .loader-subviews > i {
   display: block;
-  margin-top: 12px;
+  margin-top: 6px;
   color: #111111;
-  font-size: 16px; }
+  font-size: 20px;
+}
+.save-subviews {
+  background-color:#DEDEBD;
+}
+.loader-subviews {
+  background-color:#CCCC99;
+  border:1px solid #666;
+}
 
 .close-subviews:hover, .close-subviews:focus, .back-subviews:hover, .back-subviews:focus
 , .save-subviews:hover, .save-subviews:focus, .loader-subviews:hover, .loader-subviews:focus {
   background-color: #EEEEEE;
   color: #111111;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 #newNote {
   display: none; }
@@ -5823,13 +5835,7 @@ h5,
   font-size: 14px;
   font-weight: 400; }
 
-/* ---------------------------------------------------------------------- */
-/*  additional Subview
-/* ---------------------------------------------------------------------- */
-.close-subviews {
-  margin-top: 0;
-  padding: 0;
-  padding-top: 1px; }
+
 
 /* ---------------------------------------------------------------------- */
 /*  additional Buttons

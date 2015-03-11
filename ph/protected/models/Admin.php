@@ -181,7 +181,7 @@ class Admin
         $userId = Yii::app()->session["userId"];
         
         if($linkAllToActiveUser){
-        	$personType = array("type"=>$collection);
+        	$personType = array("type"=>PHType::TYPE_CITOYEN);
         	if( !isset($row["dontLink"]) || !$row["dontLink"] )
         	{
 	        	if( $collection == PHType::TYPE_CITOYEN )
