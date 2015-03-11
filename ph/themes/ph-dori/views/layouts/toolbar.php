@@ -92,7 +92,7 @@
 					</ul>
 				</li>
 				<?php } ?>
-				<li class="dropdown">
+				<li class="dropdown hide">
 					
 					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
 						<span class="messages-count badge badge-default hide">3</span> <i class="fa fa-envelope"></i> MESSAGES
