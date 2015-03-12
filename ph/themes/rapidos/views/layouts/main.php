@@ -134,9 +134,17 @@
 				<!-- end: PAGE -->
 			</div>
 			<!-- end: MAIN CONTAINER -->
-			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.footer');?>
-			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.subview');?>
-			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.modals');?>
+			<?php 
+			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.footer');
+			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.subview');
+			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.modals');
+			/*if (isset($this->subviews)) {
+				foreach( $this->subviews as $item )
+		        {
+		            $this->renderPartial(Yii::app()->params["modulePath"].$this->module->id.".views.".$item);
+		        }
+		    }*/
+			?>
 		</div>
 		<?php
 		echo "<!-- start: MAIN JAVASCRIPTS -->";

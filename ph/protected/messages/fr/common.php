@@ -7,6 +7,7 @@ return array(
 	"Refresh"=>"Rafraichir",
 	"Configurations"=>"Configurations",
 	"Fullscreen"=>"Pleine écran",
+	"Processing" => "En cours",
 
 	"My Profile"=> "Mon compte",
 	"My Calendar" => "Mon calendrier",
