@@ -447,47 +447,8 @@
 		}
 
 	};
-	// read note
-	var readNote = function(el) {
-		var noteIndex;
-		if ( typeof el == "undefined" || el < 0) {
-			noteIndex = 0;
-		} else {
-			noteIndex = el;
-		}
-		$("#readNote .e-slider").data('owlCarousel').jumpTo(noteIndex);
-	};
 	
-	var checkNote = function() {
-
-		//alert(el.closest("li").index());
-		$note = $('.form-note .summernote');
-
-		if ($('.form-note .note-title').val() !== "" || $note.code() !== $note.attr("placeholder")) {
-			bootbox.confirm("You did not save note, are you sure to cancel?", function(result) {
-
-				if (result) {
-
-					$('.form-note .note-title').val("");
-					$note.code($note.attr("placeholder"));
-					$.hideSubview();
-				}
-
-			});
-
-		} else {
-			$(".form-note .help-block").remove();
-			$(".form-note .form-group").removeClass("has-error").removeClass("has-success");
-			$.hideSubview();
-		}
-
-	};
-
-	var hideNote = function() {
-		$('.form-note .summernote').destroy();
-	};
-	
-	var setContributorsList = function() {
+var setContributorsList = function() {
 		contributors = [{
 			firstName : 'Peter',
 			lastName : 'Clark',
@@ -530,7 +491,6 @@
 			avatar : "assets/images/avatar-5.jpg"
 		}];
 	}; 
-
 	var showContributors = function() {
 		var LISTING_RESULTS = [];
 		for ( var i = 0; i < contributors.length; i++) {
@@ -844,45 +804,7 @@
 	};
 
 	var runSubViews = function() {
-		$(".new-note").off().on("click", function() {
-			subViewElement = $(this);
-			subViewContent = subViewElement.attr('href');
-			$.subview({
-				content : subViewContent,
-				onShow : function() {
-					editNote();
-				},
-				onClose : function() {
-					checkNote();
-				},
-				onHide : function() {
-					hideNote();
-				}
-			});
-		});
-		$(".read-all-notes").off().on("click", function() {
-			subViewElement = $(this);
-			subViewContent = subViewElement.attr('href');
-			$.subview({
-				content : subViewContent,
-				startFrom : "right",
-				onShow : function() {
-					readNote();
-				}
-			});
-		});
-		$(".read-note").off().on("click", function() {
-			subViewElement = $(this);
-			subViewContent = subViewElement.attr('href');
-			subViewIndex = subViewElement.closest(".e-slider").data("owlCarousel").currentItem;
-			$.subview({
-				content : subViewContent,
-				startFrom : "right",
-				onShow : function() {
-					readNote(subViewIndex);
-				}
-			});
-		});
+		
 		$(".new-event").off().on("click", function() {
 			subViewElement = $(this);
 			subViewContent = subViewElement.attr('href');
@@ -958,166 +880,12 @@
 	
 	
 
-	
-	var cloneNote = function(el, noteToSave) {
-
-		var _clone_note = el.find(".item:first").clone(true);
-		
-		_clone_note.children(".panel-heading").find("h3").text(noteToSave.title).end().parent().children(".panel-body").find(".note-short-content").html(noteToSave.shortContent).end().find(".note-content").html(noteToSave.content).end().parent().children(".panel-footer").find("img").attr("src", noteToSave.avatar).end().find(".author-note").text(noteToSave.author).end().find("time").attr("title", moment(noteToSave.date)).text(moment(noteToSave.date).startOf('second').fromNow());
-		
-		return (_clone_note);
-	}; 	
-	var runNoteFormValidation = function() {
-		var formNote = $('.form-note');
-		var errorHandler1 = $('.errorHandler', formNote);
-		var successHandler1 = $('.successHandler', formNote);
-		$.validator.addMethod("getEditorValue", function() {
-			$("#noteEditor").val($('.form-note .summernote').code());
-			if ($("#noteEditor").val() != "" && $("#noteEditor").val() != "<br>" && $("#noteEditor").val() != $('.form-note .summernote').attr("placeholder")) {
-				$('#noteEditor').val('');
-				return true;
-			} else {
-				return false;
-			}
-		}, '* This field is required.');
-		formNote.validate({
-			errorElement : "span", // contain the error msg in a span tag
-			errorClass : 'help-block',
-			errorPlacement : function(error, element) {// render error placement for each input type
-				if (element.attr("type") == "radio" || element.attr("type") == "checkbox") {// for chosen elements, need to insert the error after the chosen container
-					error.insertBefore($(element).closest('.form-group').children('div').children().last());
-				} else if (element.attr("name") == "dd" || element.attr("name") == "mm" || element.attr("name") == "yyyy") {
-					error.insertBefore($(element).closest('.form-group').children('div'));
-				} else {
-					error.insertBefore(element);
-					// for other inputs, just perform default behavior
-				}
-			},
-			ignore : "",
-			rules : {
-				noteTitle : {
-					minlength : 2,
-					required : true
-				},
-				noteEditor : "getEditorValue"
-			},
-			messages : {
-				noteTitle : "* Please specify your first name"
-			},
-			invalidHandler : function(event, validator) {//display error alert on form submit
-				successHandler1.hide();
-				errorHandler1.show();
-			},
-			highlight : function(element) {
-				$(element).closest('.help-block').removeClass('valid');
-				// display OK icon
-				$(element).closest('.form-group').removeClass('has-success').addClass('has-error').find('.symbol').removeClass('ok').addClass('required');
-				// add the Bootstrap error class to the control group
-			},
-			unhighlight : function(element) {// revert the change done by hightlight
-				$(element).closest('.form-group').removeClass('has-error');
-				// set error class to the control group
-			},
-			success : function(label, element) {
-				label.addClass('help-block valid');
-				// mark the current input as valid and display OK icon
-				$(element).closest('.form-group').removeClass('has-error').addClass('has-success').find('.symbol').removeClass('required').addClass('ok');
-			},
-			submitHandler : function(form) {
-				successHandler1.show();
-				errorHandler1.hide();
-				$.blockUI({
-					message : '<i class="fa fa-spinner fa-spin"></i> Do some ajax to sync with backend...'
-				});
-				var noteToSave = new Object;
-				noteToSave.title = $('.form-note .note-title').val(), noteToSave.shortContent = jQuery.truncate($note.code(), {
-					length : 200
-				}), noteToSave.content = $note.code(), noteToSave.author = "Peter Clark", noteToSave.avatar = "assets/images/avatar-1-small.jpg", noteToSave.date = new Date();
-				$.mockjax({
-					url : '/note/new/webservice',
-					dataType : 'json',
-					responseTime : 1000,
-					responseText : {
-						say : 'ok'
-					}
-				});
-
-				$.ajax({
-					url : '/note/new/webservice',
-					dataType : 'json',
-					success : function(json) {
-						$.unblockUI();
-						if (json.say == "ok") {
-							sliderNotes.data('owlCarousel').addItem(cloneNote($("#readNote"), noteToSave), 0);
-							if(widgetNotes.length) {
-								widgetNotes.data('owlCarousel').addItem(cloneNote($("#notes"), noteToSave), 0);
-							}
-							$('.form-note .note-title').val("");
-							$note.code($note.attr("placeholder"));
-							$.hideSubview();
-							//widgetNotes.data('owlCarousel').flexAnimate(0);
-							toastr.success(noteToSave.author + ' added a new note!');
-						}
-					}
-				});
-			}
-		});
-	};
-
-
-	var editNote = function() {
-	$(".delete-note").off().on("click", function(e) {
-			subViewElement = $(this);
-			
-			subViewIndex = subViewElement.closest(".e-slider").data("owlCarousel").currentItem;
-		
-		bootbox.confirm("Are you sure you want to delete this note?", function(result) {
-			if (result) {
-				if (widgetNotes.length){
-					widgetNotes.data('owlCarousel').removeItem(subViewIndex);
-					widgetNotes.data('owlCarousel').jumpTo(0);
-				}				
-				sliderNotes.data('owlCarousel').removeItem(subViewIndex);				
-				sliderNotes.data('owlCarousel').jumpTo(0);
-			};
-		});
-	}); 
-	$note = $(".form-note .summernote");
-	$note.summernote({
-
-		oninit: function() {
-			if ($note.code() == "" || $note.code().replace(/(<([^>]+)>)/ig, "") == "") {
-				$note.code($note.attr("placeholder"));
-			}
-		}, onfocus: function(e) {
-			if ($note.code() == $note.attr("placeholder")) {
-				$note.code("");
-			}
-		}, onblur: function(e) {
-			if ($note.code() == "" || $note.code().replace(/(<([^>]+)>)/ig, "") == "") {
-				$note.code($note.attr("placeholder"));
-			}
-		}, onkeyup: function(e) {
-			$("span[for='noteEditor']").remove();
-		},
-
-
-		toolbar: [
-		['style', ['bold', 'italic', 'underline', 'clear']],
-		['color', ['color']],
-		['para', ['ul', 'ol', 'paragraph']],
-		]
-		});
-	};
 	return {
 		init : function() {
-			//setCalendarEvents();
 			runEventFormValidation();
 			setContributorsList();
 			runContributorsFormValidation();
 			runSubViews();
-			readNote();
-			runNoteFormValidation();
 		},
 		setCalendarEvents : function() {
 			setCalendarEvents();
