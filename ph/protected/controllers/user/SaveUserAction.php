@@ -17,7 +17,12 @@ class SaveUserAction extends CAction
             //if exists login else create the new user
 
             $pwd = (isset($_POST["pwd"])) ? $_POST["pwd"] : null ;
-            $res = Citoyen::register( $email, $pwd);
+            if($user = PHDB::findOne(PHType::TYPE_CITOYEN,array( "email" => $email ) )){
+            	 $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
+            }
+            else{
+            	$res = Citoyen::register( $email, $pwd);
+            }
             $newInfos = array();
             if($user = PHDB::findOne(PHType::TYPE_CITOYEN,array( "email" => $email ) ))
             {
@@ -140,6 +145,7 @@ class SaveUserAction extends CAction
                             array("email" => $email), 
                             array('$set' => $newInfos ) 
                             );
+                $res = array('result' => true , 'msg'=>'update profile succesfully');
             }
         } else
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
