@@ -1606,16 +1606,16 @@ a.text-light:hover {
   font-size: 16px;
 }
  .save-subviews > i, .loader-subviews > i {
-  font-size: 22px;
-  margin-top: 6px;
+  /*font-size: 22px;*/
+  margin-top: 12px;
 }
 .save-subviews {
-  background-color:#DEDEBD;
-  border:1px solid #666;
+  /*background-color:#23D1B9;*/
+  /*border:1px solid #666;*/
 }
 .loader-subviews {
-  background-color:#CCCC99;
-  border:1px solid #666;
+  /*background-color:#CCCC99;
+  border:1px solid #666;*/
 }
 
 .close-subviews:hover, .close-subviews:focus, .back-subviews:hover, .back-subviews:focus

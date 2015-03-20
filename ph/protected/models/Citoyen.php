@@ -42,7 +42,8 @@ class Citoyen
             Yii::app()->session["userEmail"] = null; 
             Yii::app()->session["user"] = null; 
             $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$email));
-            if($account){
+            if($account)
+            {
                 if( empty( $account["pwd"] ) )
                 {
                     if(empty($pwd)){
