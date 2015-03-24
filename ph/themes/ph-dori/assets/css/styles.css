@@ -1678,10 +1678,10 @@ a.text-light:hover {
   font-size: 20px;
 }
 .save-subviews {
-  background-color:#DEDEBD;
+  /*background-color:#DEDEBD;*/
 }
 .loader-subviews {
-  background-color:#CCCC99;
+  /*background-color:#CCCC99;*/
   border:1px solid #666;
 }
 

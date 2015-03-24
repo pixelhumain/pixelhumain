@@ -57,7 +57,7 @@ requiredFields = [];
                  * INPUT TYPE TEXT
                  ******************************/
                 if( !isset( $v["inputType"]) || $v["inputType"] == "text" || $v["inputType"] == "numeric" ) { ?>
-                	<input type="text" class="<?php echo ( isset($v["required"]) ) ? "debug" : ""?>" name='<?php echo $k?>' id='<?php echo $k?>' value="<?php echo $value?>" placeholder="<?php echo ( isset($v["label"]) ) ? Translate::key($v["label"]) : Translate::key($k)?>"/>
+                	<input type="text" class="form-control <?php echo ( isset($v["required"]) ) ? "debug" : ""?>" name='<?php echo $k?>' id='<?php echo $k?>' value="<?php echo $value?>" placeholder="<?php echo ( isset($v["label"]) ) ? Translate::key($v["label"]) : Translate::key($k)?>"/>
                 <?php } 
                 /******************************
                  * INPUT TYPE TEXTAREA
@@ -65,7 +65,7 @@ requiredFields = [];
                 else if( $v["inputType"] == "textarea")
                 {
                 ?>
-                	<textarea id='<?php echo $k?>' name='<?php echo $k?>'><?php echo $value?></textarea>
+                	<textarea id='<?php echo $k?>' class='form-control' name='<?php echo $k?>'><?php echo $value?></textarea>
                 <?php } 
                 /******************************
                  * INPUT TYPE DROPDOWN SELECT
@@ -192,14 +192,16 @@ requiredFields = [];
                 /******************************
                  * INPUT TYPE DATE
                  ******************************/
-                else if( $v["inputType"] == "date") {?>
-                    <input type="text" class="dateInput" name="<?php echo $k?>" id='<?php echo $k?>' placeholder="01/01/2014" />
+                else if( $v["inputType"] == "date") {
+                    
+                ?>
+                    <input type="text" class="form-control dateInput" name="<?php echo $k?>" id='<?php echo $k?>' placeholder="01/01/2014" />
                 <?php } 
                 /******************************
                  * INPUT TYPE TIME
                  ******************************/
                 else if( $v["inputType"] == "time") {?>
-                    <input type="text" class="timeInput" name="<?php echo $k?>" id='<?php echo $k?>' placeholder="20:30" />
+                    <input type="text" class="form-control timeInput" name="<?php echo $k?>" id='<?php echo $k?>' placeholder="20:30" />
                 <?php } 
                 /******************************
                  * INPUT TYPE FILE
@@ -268,6 +270,7 @@ requiredFields = [];
 <script type="text/javascript">
 
 	//generic ajax saving process
+    var afterDynBuildSave = null;
 	var path = "<?php echo (isset($savePath)) ? $savePath : '/common/save/' ?>";
 	$("#flashForm").submit( function(event){
     	//log($(this).serialize());
@@ -278,7 +281,13 @@ requiredFields = [];
             if($("#"+v).val() == "")
                 requiredTest = false;
         });*/
-    	toggleSpinner();
+        $.blockUI({
+                    message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
+                    '<blockquote>'+
+                      '<p>la Liberté est la reconnaissance de la nécessité.</p>'+
+                      '<cite title="Hegel">Hegel</cite>'+
+                    '</blockquote> '
+                });
         
         if(requiredTest)
         {
@@ -286,17 +295,18 @@ requiredFields = [];
         	  type: "POST",
         	  url: baseUrl+path,
         	  data: $(this).serialize(),
-        	  success: function(data){
-        		  $("#flashInfoSaveBtn").html('');
-        		  $("#flashInfoContent").html(data.msg);
-        		  /*if( data.reload )
-            		  window.location.reload();*/
-        		  toggleSpinner();
-        	  },
-        	  dataType: "json"
+              dataType: "json",
+        	  success: function(data)
+              {
+        		  
+                if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
+                    afterDynBuildSave(data.map,data.id);
+                $.unblockUI();
+                toastr.success('saved successfully !');
+        	  }
         	});
         }else{
-            alert("Please fill required fields.");
+            toastr.alert("Please fill required fields.");
         }
     });
 

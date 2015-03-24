@@ -104,7 +104,8 @@ class CommonController extends Controller {
                     $res = array("result"=>true,
                                  "msg"=>"Vos données ont été mise à jour.",
                                  "reload"=>true,
-                                 "map"=>$_POST);
+                                 "map"=>$_POST,
+                                 "id"=>(string)$_POST["_id"]);
                 } 
                 else 
                 {
@@ -112,7 +113,8 @@ class CommonController extends Controller {
                     $res = array("result"=>true,
                                  "msg"=>"Vos données ont bien été enregistré.",
                                  "reload"=>true,
-                                 "map"=>$_POST);
+                                 "map"=>$_POST,
+                                 "id"=>(string)$_POST["_id"]);
                 }
             } else 
                 $res = $valid;

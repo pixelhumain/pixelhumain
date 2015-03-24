@@ -77,12 +77,12 @@
 										opacity: 0
 									});
 								});*/
-								$(".loader-subviews").show(0, function(e) {
+								/*$(".loader-subviews").show(0, function(e) {
 									$(this).css({
 										opacity: 1,
 										left: "0px"
 									});
-								});
+								});*/
 								settings.onSave();
 							});
 						}
