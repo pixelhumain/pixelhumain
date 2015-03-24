@@ -62,7 +62,11 @@ class Admin
 	 */
 	public static function initMultipleModuleData( $moduleId, $type=null, $isDummy=false,$linkAllToActiveUser=false,$reverse=false )
 	{
-		$res = array("module"=>$moduleId, "imported"=>array(),"errors"=>0,"linkAllToActiveUser"=>$linkAllToActiveUser);
+		$res = array(   "module"=>$moduleId, 
+						"userId"=>Yii::app()->session['userId'], 
+						"imported"=>array(),
+						"errors"=>0,
+						"linkAllToActiveUser"=>$linkAllToActiveUser);
 	    if( file_exists( Yii::getPathOfAlias( Yii::app()->params["modulePath"].$moduleId.".data" ) ) )
 		{
 			$file = null;
@@ -75,7 +79,11 @@ class Admin
 				}
 			}
 			$jsonAll = json_decode( file_get_contents($file), true);
-			$importRes = array( "file"=> $type,  "isDummy"=>$isDummy , "imports"=>array(),"count"=>0,"errors"=>0  );
+			$importRes = array( "file"=> $type,  
+								"isDummy"=>$isDummy , 
+								"imports"=>array(),
+								"count"=>0,
+								"errors"=>0  );
 			foreach ($jsonAll as $col => $data) 
 			{
 				if(!$reverse)
@@ -189,15 +197,16 @@ class Admin
 	        		/* **************************************
 			        *	KNOWS links for people
 			        ***************************************** */
-	        		if(isset($row["links"])){
+	        		if(isset($row["links"]))
+	        		{
 	        			if( isset( $row["links"]["knows"] ) )
 	        				$row["links"]["knows"][$userId] = $personType;
-	        			else {
+	        			else 
+	        			{
 		        			$knows = array();
 		        			$knows[$userId] = $personType;
 		        			$row["links"]["knows"] = $knows ;
 		        		}
-
 	        		}
 	        		else {
 	        			$knows = array();
@@ -206,7 +215,7 @@ class Admin
 	        		}
 	        		PHDB::update( PHType::TYPE_CITOYEN, 
 	        					  array("_id" => new MongoId($userId)), 
-	        					  array('$set' => array("links.knows.".(string)$row["_id"] =>array("type"=>$collection))));
+	        					  array('$set' => array( Link::person2person.".".(string)$row["_id"] =>array("type"=>$collection))));
 	        		array_push($info["msg"],"added links.knows activeUser");
 	        	}
 	        	elseif ( $collection == PHType::TYPE_ORGANIZATIONS ) 
@@ -231,7 +240,7 @@ class Admin
 	        		}
 	        		PHDB::update( PHType::TYPE_CITOYEN, 
 	        					  array("_id" => new MongoId($userId)), 
-	        					  array('$set' => array("links.memberOf.".(string)$row["_id"]=>array( "type"=>$collection ))));
+	        					  array('$set' => array( Link::person2organization.".".(string)$row["_id"] => array( "type"=>$collection ))));
 	        		array_push($info["msg"],"added links.members and memberOf for activeUser");
 	        	}
 	        	elseif ( $collection == PHType::TYPE_EVENTS ) 
@@ -239,35 +248,51 @@ class Admin
 	        		/* **************************************
 			        *	ATTENDEES links for events
 			        ***************************************** */
-	        		if(isset($row["attendees"])) 
-	        			array_push($row["attendees"], $personType);
-	        		else {
+			        if(isset($row["links"])  )
+			        {
+		        		if(isset($row["links"]["attendees"])) 
+		        			$row["links"]["attendees"][$userId] = $personType;
+		        		else {
+		        			$attendees = array();
+		        			$attendees[$userId] = $personType;
+		        			$row["links"]["attendees"] = $attendees ;
+		        		}
+		        	}
+		        	else {
 	        			$attendees = array();
 	        			$attendees[$userId] = $personType;
-	        			$row["attendees"] = $attendees ;
-	        		}	
+	        			$row["links"] = array("attendees" => $attendees) ;
+	        		}
 	        		PHDB::update( PHType::TYPE_CITOYEN, 
 	        					  array("_id" => new MongoId($userId)), 
-	        					  array('$addToSet' => array("events"=>(string)$row["_id"]  )));
-	        		
-	        		array_push($info["msg"],"added attendees and events.attendee for activeUser");
+	        					  array('$set' => array( Link::person2events.".".(string)$row["_id"] => array( "type" => $collection ))));
+
+	        		array_push($info["msg"],"added links.events for activeUser");
 	        	}
 	        	elseif ( $collection == PHType::TYPE_PROJECTS ) 
 	        	{
 	        		/* **************************************
 			        *	CONTRIBUTORS links for projects
 			        ***************************************** */
-	        		if(isset($row["contributors"])) 
-	        			$row["contributors"][$userId] = $personType;
-	        		else {
+			        if( isset($row["links"]) )
+			        {
+		        		if(isset($row["links"]["contributors"])) 
+		        			$row["links"]["contributors"][$userId] = $personType;
+		        		else {
+		        			$contributors = array();
+		        			$contributors[$userId] = $personType;
+		        			$row["links"]["contributors"] = $contributors ;
+		        		}
+		        	} else {
 	        			$contributors = array();
 	        			$contributors[$userId] = $personType;
-	        			$row["contributors"] = $contributors ;
+	        			$row["links"] = array("contributors" => $contributors) ;
 	        		}
 	        		PHDB::update( PHType::TYPE_CITOYEN, 
 	        					  array("_id" => new MongoId($userId)), 
-	        					  array('$addToSet' => array("projects"=>(string)$row["_id"]  )));
-	        		array_push($info["msg"],"added contributors and projects for activeUser");
+	        					  array('$set' => array( Link::person2projects.".".(string)$row["_id"] => array( "type"=>$collection ))));
+
+	        		array_push($info["msg"],"added links.projects for activeUser");
 	        	}
 	        }
         }
@@ -308,19 +333,22 @@ class Admin
 	    		if( $collection == PHType::TYPE_CITOYEN )
 		        	PHDB::update( PHType::TYPE_CITOYEN, 
 		        					  array("_id" => new MongoId($userId)), 
-		        					  array('$unset' => array("links.knows.".$key=>1)));
+		        					  array('$unset' => array( Link::person2person.".".$key => 1 )));
+
 		        elseif( $collection == PHType::TYPE_ORGANIZATIONS )
 		        	PHDB::update( PHType::TYPE_CITOYEN, 
 	        					  array("_id" => new MongoId($userId)), 
-	        					  array('$unset' => array("links.memberOf.".$key=>1)));
+	        					  array('$unset' => array( Link::person2organization.".".$key => 1 )));
+		        
 		        elseif( $collection == PHType::TYPE_EVENTS )
 		        	PHDB::update( PHType::TYPE_CITOYEN, 
 	        					  array("_id" => new MongoId($userId)), 
-	        					  array('$pull' => array("events"=>$key)));
+	        					  array('$unset' => array( Link::person2events.".".$key => 1 )));
+		        
 		        elseif( $collection == PHType::TYPE_PROJECTS )
 		        	PHDB::update( PHType::TYPE_CITOYEN, 
 	        					  array("_id" => new MongoId($userId)), 
-	        					  array('$pull' => array("projects"=>$key)));
+	        					  array('$unset' => array( Link::person2projects.".".$key => 1 )));
 		    }
 
         	PHDB::remove( $collection, array("_id" => new MongoId( $key )) );
