@@ -128,9 +128,15 @@ onSave: (optional) overloads the generic saveProcess
         	value = formValues[field];
 
         /* **************************************
+		* 
+		***************************************** */
+        if( field.indexOf("separator")>=0 ) 
+        	fieldHTML += '<div class="text-large text-bold panel-blue text-white center padding-10'+fieldClass+'">'+iconOpen+iconClose+fieldObj.title+'</div>';
+        
+        /* **************************************
 		* STANDARD TEXT INPUT
 		***************************************** */
-        if( !fieldObj.inputType || fieldObj.inputType == "text" || fieldObj.inputType == "numeric" ) 
+        else if( !fieldObj.inputType || fieldObj.inputType == "text" || fieldObj.inputType == "numeric" ) 
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         
         /* **************************************
