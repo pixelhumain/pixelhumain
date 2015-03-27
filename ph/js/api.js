@@ -113,7 +113,42 @@ function openSubViewHTML(html,callback,id,callbackHide,callbackClose)
     }*/
 	});
 }
-
+function openDynamicSubview (key,collection,callback) { 
+  $.subview({
+    content: "#ajaxSV",
+    onShow: function() {
+      $("#ajaxSV").html("<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>");
+      $.ajax({
+            type: "POST",
+            url: baseUrl+"/common/getmicroformat/key/"+key,
+            data: { 
+              "key" : key,
+              "collection" : collection,
+              "id" : ''  
+            },
+             dataType: "json"
+        })
+        .done(function (data) 
+        {
+            if (data && data.result) {               
+                $("#ajaxSV").html(data.content); 
+                if(callback && typeof callback == "function" )
+                  afterDynBuildSave = callback;
+            } else {
+              toastr.error((data.msg) ? data.msg : "bug happened");
+              $.hideSubview();
+            }
+        });
+    },
+    onHide : function() {
+      $.hideSubview();
+    },
+    onSave : function() {
+      $("#flashForm").submit();
+      $.hideSubview();
+    }
+  });
+}
 function testitget(id,url,callback,datatype)
 {
 	if(datatype != "html" )
@@ -285,9 +320,15 @@ var jsonHelper = {
   getValueByPath : function(srcObj,path)
   {
     node = srcObj;
+    console.log("path",path);
     if( !path )
       return node;
-    else if( path.indexOf(".") ){
+    else if( typeof path == "object" && path.value )
+    {
+      return path.value;
+    }
+    else if( path.indexOf(".") )
+    {
       pathArray = path.split(".");
       $.each(pathArray,function(i,v){
         if(node != undefined && node[v] != undefined)
@@ -299,8 +340,10 @@ var jsonHelper = {
       });
       return node;
     }  
-    else
+    else if(node[path])
       return node[path];
+    else
+      return "";
   },
   setValueByPath : function(srcObj,path,value)
   {
@@ -308,7 +351,8 @@ var jsonHelper = {
     if( !path ){
       node = value;
     }
-    else if( path.indexOf(".") ){
+    else if( path.indexOf(".") )
+    {
       pathArray = path.split(".");
       nodeParent = null;
       lastKey = null;
@@ -324,9 +368,8 @@ var jsonHelper = {
       //console.log(node,nodeParent,lastKey);
       nodeParent[lastKey] = value;
     }  
-    else{ 
+    else
       node[path] = value;
-    }
   },
   
   deleteByPath : function  (srcObj,path) {
@@ -434,3 +477,4 @@ function showDebugMap()
     toastr.error("no maps to show, please do debugMap.push(something)");
 
 }
+

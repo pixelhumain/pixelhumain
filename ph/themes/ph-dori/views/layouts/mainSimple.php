@@ -32,6 +32,7 @@
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/styles.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/styles-responsive.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/iCheck/skins/all.css');
+		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/toastr/toastr.min.css');
 		?>
 		<!-- end: MAIN CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
@@ -41,6 +42,7 @@
 		   var showDelaunay = true;
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
+		   var moduleId = "<?php echo $this->module->id?>";
 		</script>
 	</head>
 	<!-- end: HEAD -->
@@ -68,6 +70,9 @@
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootbox/bootbox.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-mockjax/jquery.mockjax.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/blockUI/jquery.blockUI.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/toastr/toastr.js' , CClientScript::POS_END);
+
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/dynForm.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/main.js' , CClientScript::POS_END);
 
