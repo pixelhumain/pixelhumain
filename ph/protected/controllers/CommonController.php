@@ -109,6 +109,7 @@ class CommonController extends Controller {
                 } 
                 else 
                 {
+                    $_POST["created"] = time();
                     PHDB::insert($collection, $_POST );
                     $res = array("result"=>true,
                                  "msg"=>"Vos données ont bien été enregistré.",
