@@ -58,7 +58,7 @@ function getModal(what, url,id)
     });
 }
 
-function openSubView(what, url,id, callback)
+function openSubView(what, url,id, callback,closeCallBack)
 {
     if(!id) 
         id = "#ajaxSV";
@@ -83,7 +83,10 @@ function openSubView(what, url,id, callback)
 		    });
 		},
 		onHide : function() {
+      if( typeof closeCallBack === "function")
+        closeCallBack();
 			loaded = {};
+      $.hideSubview();
 		}
 	});
 }
