@@ -18,7 +18,7 @@ class SaveUserAction extends CAction
 
             $pwd = (isset($_POST["pwd"])) ? $_POST["pwd"] : null ;
             if($user = PHDB::findOne(PHType::TYPE_CITOYEN,array( "email" => $email ) )){
-            	 $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
+            	 $res = array('result' => false , 'msg'=>'Email non valid');
             }
             else{
             	$res = Citoyen::register( $email, $pwd);
@@ -141,14 +141,15 @@ class SaveUserAction extends CAction
                 if (isset($_POST["skypeAccount"])) $socialNetwork["skypeAccount"] = $_POST["skypeAccount"];
                 $newInfos["socialNetwork"] = $socialNetwork;
                 
-                PHDB::update(PHType::TYPE_CITOYEN,
+                $res =PHDB::update(PHType::TYPE_CITOYEN,
                             array("email" => $email), 
                             array('$set' => $newInfos ) 
                             );
-                $res = array('result' => true , 'msg'=>'update profile succesfully');
+                //$res = array('result' => true , 'msg'=>'update profile succesfully');
             }
-        } else
+        } else{
             $res = array('result' => false , 'msg'=>'something somewhere went terribly wrong');
+        }
             
         Rest::json($res);  
         Yii::app()->end();
