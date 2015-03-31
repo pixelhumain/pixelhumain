@@ -11,7 +11,7 @@ Yii::setPathOfAlias('Json',dirname(__FILE__) . '/../extensions/Json');
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Pixel Humain',
-	'theme'=>'webarch',
+	'theme'=>'ph-dori',
 
 	'sourceLanguage'=>'00',
 	'language'=>'en',

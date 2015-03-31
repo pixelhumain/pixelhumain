@@ -5,6 +5,12 @@
 		margin-left:19%; 
 		width:250px;
 	}
+
+	#dropdownTags{
+		padding: 0px 15px; 
+		margin-left:3%; 
+		width:275px;
+	}
 	.li-dropdown-scope{
 		padding: 8px 3px;
 		color: black;
@@ -65,10 +71,16 @@
 				<span class="trigger collapse_trigger">
 					<i class="fa fa-tags"></i>
 				</span>
-
-				<a href="#" class="sb_custom_toggle" data-target="#tags_slidingbar">
+				<form class="inner collapse_box">
+					<input id="filterField" name="filterField" placeholder="Pseudo, saisissez ou modifiez ici vos tags !" >
+						<ul class="dropdown-menu" id="dropdownTags" style="">
+							<ol class="li-dropdown-scope">-</ol>
+						</ul>
+					</input>
+				</form> 
+				<!--<a href="#" class="sb_custom_toggle" data-target="#tags_slidingbar">
 					Pseudo, saisissez ou modifiez ici vos tags !
-				</a>
+				</a>-->
 			</div>
 
 		</li>
@@ -79,13 +91,23 @@
 				<i class="slider-sm-ico"></i>
 			</div>
 
-			<div class="inner slider-wrap collapse_box">
+			<div class="inner collapse_box">
 				
-				<div class="slider slider-sm slider-green">
+				<!--<div class="slider slider-sm slider-green">
 					<input type="text" class="slider-element form-control" value="" data-slider-max="70" data-slider-step="1" data-slider-value="30" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="hide">
 				</div>
 
-				<label class="slider_label">Zoom géographique</label>
+				<label class="slider_label">Zoom géographique</label>-->
+				<span class="trigger collapse_trigger">
+					<i class="slider-sm-ico"></i>
+				</span>
+				<form class="inner collapse_box">
+					<input id="filterCpField" name="filterCpField" placeholder="Zoom géographique" >
+						<ul class="dropdown-menu" id="dropdownCp" style="">
+							<ol class="li-dropdown-scope">-</ol>
+						</ul>
+					</input>
+				</form>
 
 			</div>
 
@@ -135,6 +157,16 @@
 
 	var timeout;
 	jQuery(document).ready(function() {
+
+		$("#filterField").keyup(function(e){
+			var str = $("#filterField").val();
+			getFieldFilter(str, 2);
+		});
+
+		$("#filterCpField").keyup(function(e){
+			var str = $("#filterCpField").val();
+			getFieldFilter(str, 3);
+		})
 
 		$('#searchBar').keyup(function(e){
 		    var name = $('#searchBar').val();
@@ -214,6 +246,94 @@
 			}	
 		})
 	}
+
+
+	function getFieldFilter(str, col){
+		if(str.length>=3){
+			setDropdown(str, col);
+			if(typeof(oTableOrganization)!= "undefined"){
+				oTableOrganization.DataTable().column( col ).search( str , true , true ).draw();
+			}
+			if(typeof(oTableEvent)!= "undefined"){
+				oTableEvent.DataTable().column( col ).search( str , true , true ).draw();
+			}
+			if(typeof(oTablePeople)!= "undefined"){
+				oTablePeople.DataTable().column( col ).search( str , true , true ).draw();
+			}
+			if(typeof(oTableProject)!= "undefined"){
+				oTableProject.DataTable().column( col ).search( str , true , true ).draw();
+			}
+		}
+		else{
+			closeDropdown(str, col);
+			if(typeof(oTableOrganization)!= "undefined"){
+				oTableOrganization.DataTable().column( col ).search( "" , true , true ).draw();
+			}
+			if(typeof(oTableEvent)!= "undefined"){
+				oTableEvent.DataTable().column( col ).search( "" , true , true ).draw();
+			}
+			if(typeof(oTablePeople)!= "undefined"){
+				oTablePeople.DataTable().column( col ).search( "" , true , true ).draw();
+			}
+			if(typeof(oTableProject)!= "undefined"){
+				oTableProject.DataTable().column( col ).search( "" , true , true ).draw();
+			}
+		}
+	}
+
+	function setDropdown(str, location){
+		var htmlres="";
+		var arrayFilter;
+		if(location == 2 && typeof(contextTags)!="undefined"){
+			arrayFilter = contextTags;
+		}else if(typeof(contextCp)!="undefined"){
+			arrayFilter = contextCp;
+		}
+		if(typeof(arrayFilter)!="undefined"){
+			for(var i = 0; i<arrayFilter.length; i++){
+				if(arrayFilter[i].toLowerCase().indexOf(str.toLowerCase())>=0)
+					htmlres += "<div class='searchList li-dropdown-scope' ><ol><a href='javascript:setTagsInput(\""+arrayFilter[i]+"\")'>" + arrayFilter[i] + "</a></ol></div>";
+			}
+			if(htmlres == "") htmlres = "<ol class='li-dropdown-scope'>Aucun résultat</ol>";
+			if(location == 2){
+				$("#dropdownTags").html(htmlres);
+				$("#dropdownTags").css({"display" : "inline" });
+			}
+			else{
+				$("#dropdownCp").html(htmlres);
+				$("#dropdownCp").css({"display" : "inline" });
+			}
+			
+		}
+		
+	}
+
+	function setTagsInput(tags){
+		$("#dropdownTags").css({"display" : "none" });
+		$("#filterField").val(tags);
+		if(typeof(oTableOrganization)!= "undefined"){
+			oTableOrganization.DataTable().column( 2 ).search( tags , true , true ).draw();
+		}
+		if(typeof(oTableEvent)!= "undefined"){
+			oTableEvent.DataTable().column( 2 ).search( tags , true , true ).draw();
+		}
+		if(typeof(oTablePeople)!= "undefined"){
+			oTablePeople.DataTable().column( 2 ).search( tags , true , true ).draw();
+		}
+		if(typeof(oTableProject)!= "undefined"){
+			oTableProject.DataTable().column( 2 ).search( tags , true , true ).draw();
+		}
+	}
+
+	function closeDropdown(str, location){
+		if(location == 2){
+			$("#dropdownTags").css({"display" : "none" });
+		}else{
+			$("#dropdownCp").css({"display" : "none" });
+		}
+		
+	}
+
 
 </script>	
 </header>
