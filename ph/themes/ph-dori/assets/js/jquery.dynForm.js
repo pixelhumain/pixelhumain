@@ -38,12 +38,14 @@ onSave: (optional) overloads the generic saveProcess
 				formObj: {},
 				formValues: {},
 				onLoad : null,
-				onSave: null
+				onSave: null,
+				savePath : '/ph/common/save'
 			};
 
 			var settings = $.extend({}, defaults, options);
 			$this = this;
-			console.log("build dyn Form",settings.formId);
+
+			console.info("build Form dynamically into form tag : ",settings.formId);
 			console.dir(settings.formObj);
 
 			/* **************************************
@@ -67,8 +69,7 @@ onSave: (optional) overloads the generic saveProcess
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
 				
-				fieldHTML = buildInputField(field, fieldObj, settings.formValues);
-				$(settings.formId).append(fieldHTML);
+				buildInputField(settings.formId,field, fieldObj, settings.formValues);
 			});
 			
 			/* **************************************
@@ -89,8 +90,7 @@ onSave: (optional) overloads the generic saveProcess
 			/* **************************************
 			* bind any events Post building 
 			***************************************** */
-			var path = (settings.savePath) ? settings.savePath : '/common/save/';
-			bindDynFormEvents(settings.formId,path,settings.onSave,form.rules);
+			bindDynFormEvents(settings,form.rules);
 
 			if(settings.onLoad && jQuery.isFunction( settings.onLoad ) )
 				settings.onLoad();
@@ -105,7 +105,7 @@ onSave: (optional) overloads the generic saveProcess
 
 	});
 		
-	function buildInputField(field, fieldObj,formValues)
+	function buildInputField(id, field, fieldObj,formValues)
 	{
 		var fieldHTML = '<div class="form-group">';
 		var required = "";
@@ -184,6 +184,15 @@ onSave: (optional) overloads the generic saveProcess
         }
 
         /* **************************************
+		* DATE INPUT , we use bootstrap-datepicker
+		***************************************** */
+        else if ( fieldObj.inputType == "daterange" ) {
+        	if(placeholder == "")
+        		placeholder="25/01/2014";
+        	fieldHTML += iconOpen+'<input type="text" class="form-control daterangeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        }
+
+        /* **************************************
 		* TIME INPUT , we use 
 		***************************************** */
         else if ( fieldObj.inputType == "time" ) {
@@ -199,69 +208,132 @@ onSave: (optional) overloads the generic saveProcess
         	if(fieldObj.url.indexOf("http://") < 0 )
         		fieldObj.url = "http://"+fieldObj.url;
         	fieldHTML += '<a class="btn btn-primary '+fieldClass+'" href="'+fieldObj.url+'">Go There</a>';
-        }
+        } 
+
+        /* **************************************
+		* CUSTOM 
+		***************************************** */
+        else if ( fieldObj.inputType == "custom" ) {
+        	fieldHTML += fieldObj.html;
+        } 
+
+        else 
+        	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         
 		fieldHTML += '</div>';
-		return fieldHTML;
+
+		$(id).append(fieldHTML);
+
+		if( fieldObj.init && $.isFunction(fieldObj.init) )
+        	fieldObj.init();
 	}
 
 	var afterDynBuildSave = null;
-	function bindDynFormEvents (id, path, onSave, formRules) {  
+	function bindDynFormEvents (params, formRules) {  
 
-		var errorHandler = $('.errorHandler', $(id));
-		$(id).validate({
+		/* **************************************
+		* FORM VALIDATION and save process binding
+		***************************************** */
+		console.info("connecting submit btn to $.validate pluggin");
+		console.dir(formRules);
+		var errorHandler = $('.errorHandler', $(params.formId));
+		$(params.formId).validate({
 
 			rules : formRules,
 
 			submitHandler : function(form) {
 				errorHandler.hide();
 
-				 $.blockUI({
-                    message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
-                    '<blockquote>'+
-                      "<p>Je désapprouve ce que vous dites, mais je me battrai jusqu'à la mort pour que vous ayez le droit de le dire..</p>"+
-                      '<cite title="Hegel">Voltaire</cite>'+
-                    '</blockquote> '
-                });
-
-				if(onSave && jQuery.isFunction( onSave ) ){
-					onSave();
+				if(params.onSave && jQuery.isFunction( params.onSave ) ){
+					params.onSave();
+					return false;
 		        } else {
+		        	console.info("default SaveProcess",params.savePath);
+		        	console.dir($(params.formId).serializeFormJSON());
 		        	$.ajax({
 		        	  type: "POST",
-		        	  url: baseUrl+path,
-		        	  data: $(id).serializeFormJSON(),
-		              dataType: "json",
-		        	  success: function(data)
-		              {
+		        	  url: params.savePath,
+		        	  data: $(params.formId).serializeFormJSON(),
+		              dataType: "json"
+		        	}).done( function(data){
+		                
 		                if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
 		                    afterDynBuildSave(data.map,data.id);
-		                $.unblockUI();
-		                toastr.success('saved successfully !');
-		        	  }
+		                console.info('saved successfully !');
+
 		        	});
+					return false;
 			    }
-			    return false;
+			    
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
 			}
 		});
 		
+		console.info("connecting any specific input event select2, datepicker...");
 		/* **************************************
-		* SELECTs , we use select2 lib
+		* SELECTs , we use https://github.com/select2/select2
 		***************************************** */
-		$(".select2Input").select2();
+		if( $(".select2Input").length){
+			if( jQuery.isFunction(jQuery.fn.select2) )
+				$(".select2Input").select2();
+			else
+				console.error("select2 library is missing");
+		} 
+		/* **************************************
+		* DATE INPUT , we use https://github.com/eternicode/bootstrap-datepicker
+		***************************************** */
+		if(  $(".dateInput").length){
+			if( jQuery.isFunction(jQuery.fn.datepicker) )
+				$(".dateInput").datepicker({ 
+			        autoclose: true,
+			        language: "fr",
+			        format: "dd/mm/yy"
+			    });
+		    else
+				console.error("datepicker library is missing");
+		}
 
 		/* **************************************
-		* DATE INPUT , we use bootstrap-datepicker lib
+		* DATE RANGE INPUT , we use https://github.com/dangrossman/bootstrap-daterangepicker
 		***************************************** */
-		$(".dateInput").datepicker({ 
-	        autoclose: true,
-	        language: "fr",
-	        format: "dd/mm/yy"
-	    });
+		if( $(".daterangeInput").length){
+			if( jQuery.isFunction(jQuery.fn.daterangepicker) )
+				$('#reservationtime').daterangepicker({
+		            timePicker: true,
+		            timePickerIncrement: 30,
+		            format: 'MM/DD/YYYY h:mm A'
+		          }, function(start, end, label) {
+		            console.log(start.toISOString(), end.toISOString(), label);
+		          });
+			else
+				console.error("daterangepicker library is missing")
+		    /*$('.daterangeInput').val(moment().format('DD/MM/YYYY h:mm A') + ' - ' + moment().add('days', 1).format('DD/MM/YYYY h:mm A'))
+			.daterangepicker({  
+				startDate: moment(),
+				endDate: moment().add('days', 1),
+				timePicker: true, 
+				timePickerIncrement: 30, 
+				format: 'DD/MM/YYYY h:mm A' 
+			});*/
+		}
 	}
 
 })(jQuery);
 
+$.fn.serializeFormJSON = function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
