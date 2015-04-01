@@ -98,6 +98,7 @@ class Admin
 						$infos = array();
 						foreach ($data as $row) 
 						{
+							//TODO SBAR - Faire un test sur le type pour utiliser les méthodes du modèle ?
 							$infosRes = self::insertData($row,$col,$type,$isDummy,$linkAllToActiveUser);
 							if($infosRes["error"])
 				        		array_push( $errors, $infosRes["error"] );
@@ -189,7 +190,7 @@ class Admin
         $userId = Yii::app()->session["userId"];
         
         if($linkAllToActiveUser){
-        	$personType = array("type"=>PHType::TYPE_CITOYEN);
+        	$personType = array("type"=>PHType::TYPE_CITOYEN, "isAdmin"=>true );
         	if( !isset($row["dontLink"]) || !$row["dontLink"] )
         	{
 	        	if( $collection == PHType::TYPE_CITOYEN )
@@ -199,8 +200,11 @@ class Admin
 			        ***************************************** */
 	        		if(isset($row["links"]))
 	        		{
-	        			if( isset( $row["links"]["knows"] ) )
+	        			if( isset( $row["links"]["knows"] ) ) {
+							// Pas d'admin pour le knows
+	        				unset($personType["isAdmin"]);
 	        				$row["links"]["knows"][$userId] = $personType;
+	        			}
 	        			else 
 	        			{
 		        			$knows = array();
@@ -240,7 +244,7 @@ class Admin
 	        		}
 	        		PHDB::update( PHType::TYPE_CITOYEN, 
 	        					  array("_id" => new MongoId($userId)), 
-	        					  array('$set' => array( Link::person2organization.".".(string)$row["_id"] => array( "type"=>$collection ))));
+	        					  array('$set' => array( Link::person2organization.".".(string)$row["_id"] => array( "type"=>$collection, "isAdmin"=>true ))));
 	        		array_push($info["msg"],"added links.members and memberOf for activeUser");
 	        	}
 	        	elseif ( $collection == PHType::TYPE_EVENTS ) 
