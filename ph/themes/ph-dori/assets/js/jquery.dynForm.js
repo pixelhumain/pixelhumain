@@ -104,10 +104,15 @@ onSave: (optional) overloads the generic saveProcess
 		},*/
 
 	});
-		
+	
+	/* **************************************
+	*
+	*	each input field type has a corresponding HTMl to build
+	*
+	***************************************** */
 	function buildInputField(id, field, fieldObj,formValues)
 	{
-		var fieldHTML = '<div class="form-group">';
+		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
 		var required = "";
 		if(fieldObj.rules && fieldObj.rules.required)
 			required = "*";
@@ -120,7 +125,9 @@ onSave: (optional) overloads the generic saveProcess
         var iconOpen = (fieldObj.icon) ? '<span class="input-icon">'   : '';
         var iconClose = (fieldObj.icon) ? '<i class="'+fieldObj.icon+'"></i> </span>' : '';
         var placeholder = (fieldObj.placeholder) ? fieldObj.placeholder+required : '';
+        var placeholder2 = (fieldObj.placeholder2) ? fieldObj.placeholder2 : '';
         var fieldClass = (fieldObj.class) ? fieldObj.class : '';
+        var initField = '';
         var value = "";
         if( fieldObj.value ) 
         	value = fieldObj.value;
@@ -130,8 +137,11 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* 
 		***************************************** */
-        if( field.indexOf("separator")>=0 ) 
-        	fieldHTML += '<div class="text-large text-bold panel-blue text-white center padding-10'+fieldClass+'">'+iconOpen+iconClose+fieldObj.title+'</div>';
+        if( field.indexOf("separator")>=0 ) {
+        	if(fieldClass == '' ) 
+        		fieldClass = "panel-blue";
+        	fieldHTML += '<div class="text-large text-bold '+fieldClass+' text-white center padding-10 ">'+iconOpen+iconClose+fieldObj.title+'</div>';
+        }
         
         /* **************************************
 		* STANDARD TEXT INPUT
@@ -142,9 +152,11 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* HIDDEN
 		***************************************** */
-        else if( fieldObj.inputType == "hidden" ) 
+        else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
+        	if ( fieldObj.inputType == "timestamp" )
+        		value = Date.now();
         	fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
-        
+        }
         /* **************************************
 		* TEXTAREA
 		***************************************** */
@@ -163,10 +175,11 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* SELECT , we use select2
 		***************************************** */
-        else if ( fieldObj.inputType == "select" ) {
+        else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) {
+        	var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
         	if(value == "")
         		value="25/01/2014";
-        	fieldHTML += '<select class="select2Input '+fieldClass+'" name="'+field+'" id="'+field+'" style="width: 100%;height:30px">'+
+        	fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px">'+
         					 '<option value="">'+placeholder+'</option>';
 			$.each(fieldObj.options, function(optKey, optVal) { 
 				fieldHTML += '<option value="'+optKey+'">'+optVal+'</option>';
@@ -184,7 +197,7 @@ onSave: (optional) overloads the generic saveProcess
         }
 
         /* **************************************
-		* DATE INPUT , we use bootstrap-datepicker
+		* DATE RANGE INPUT 
 		***************************************** */
         else if ( fieldObj.inputType == "daterange" ) {
         	if(placeholder == "")
@@ -211,6 +224,49 @@ onSave: (optional) overloads the generic saveProcess
         } 
 
         /* **************************************
+		* ARRAY , is a list of sequential values
+		***************************************** */
+        else if ( fieldObj.inputType == "array" ) {
+        	fieldHTML += '<div class="inputs array">'+
+								'<div class="col-sm-10">'+
+									'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
+								'</div>'+
+								'<div class="col-sm-2">'+
+									'<button data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+								'</div>'+
+							'</div>'+
+							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
+							'<div class="col-sm-12">'+
+								'<div class="space10"></div>'+
+						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
+				       		'</div></span>'+
+				       '<div class="space5"></div>';
+			initField = initMultiFields;
+        }
+
+        /* **************************************
+		* PROPERTIES , is a list of pairs key/values
+		***************************************** */
+        else if ( fieldObj.inputType == "properties" ) {
+        	fieldHTML += '<div class="inputs properties">'+
+								'<div class="col-sm-3">'+
+									'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
+								'</div>'+
+								'<div class="col-sm-7">'+
+									'<textarea type="text" name="values[]" class="addmultifield1 form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);"  placeholder="'+placeholder2+'"></textarea>'+
+									'<button data-id="'+field+fieldObj.inputType+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+								'</div>'+
+							'</div>'+
+							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
+							'<div class="col-sm-12">'+
+								'<div class="space10"></div>'+
+						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
+				       		'</div></span>'+
+				       '<div class="space5"></div>';
+			initField = initMultiFields;
+        }
+
+        /* **************************************
 		* CUSTOM 
 		***************************************** */
         else if ( fieldObj.inputType == "custom" ) {
@@ -225,9 +281,17 @@ onSave: (optional) overloads the generic saveProcess
 		$(id).append(fieldHTML);
 
 		if( fieldObj.init && $.isFunction(fieldObj.init) )
-        	fieldObj.init();
+        	fieldObj.init(field+fieldObj.inputType);
+        else if(initField && $.isFunction(initField) )
+        	initField ('.'+field+fieldObj.inputType);
 	}
+	
 
+	/* **************************************
+	*
+	*	any event to be initiated 
+	*
+	***************************************** */
 	var afterDynBuildSave = null;
 	function bindDynFormEvents (params, formRules) {  
 
@@ -243,7 +307,7 @@ onSave: (optional) overloads the generic saveProcess
 
 			submitHandler : function(form) {
 				errorHandler.hide();
-
+				console.info("form submitted "+params.formId);
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
 					params.onSave();
 					return false;
@@ -318,7 +382,127 @@ onSave: (optional) overloads the generic saveProcess
 				format: 'DD/MM/YYYY h:mm A' 
 			});*/
 		}
+
+		
+		/* **************************************
+		* PROPERTIES 
+		***************************************** */
+		if(  $(".addmultifield").length )
+		{
+			if(  $(".addmultifield1").length )
+				$('head').append('<style type="text/css">.inputs textarea.addmultifield1{width:90%; height:34px;}</style>');
+			$('.addPropBtn').unbind("click").click(function()
+			{ 
+				var field = $(this).data('id');
+				if( $('.'+field+' .inputs .addmultifield:visible').length==0 || ( $("."+field+" .addmultifield:last").val() != "" && $( "."+field+" .addmultifield1:last" ).val() != "") )
+					addfield('.'+field);
+				else
+					toastr.info("please fill properties first");
+			} );
+		}
 	}
+
+	/* **************************************
+	*
+	*	specific methods for each type of input
+	*
+	***************************************** */
+	/* **************************************
+	* PROPERTIES , is a list of pairs key/values
+	***************************************** */
+	function addfield(parentContainer) 
+	{
+		console.log("addfield",parentContainer);
+		if(!$.isEmptyObject($(parentContainer+' .inputs')))
+	    {
+	    	if($(parentContainer+' .properties').length > 0)
+	    		$(propertyLineHTML( {"label":"","value":""} ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	    	else
+	    		$(arrayLineHTML("") ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	        $(parentContainer+' .addmultifield:last').focus();
+	        initMultiFields(parentContainer);
+	    }else 
+	    	console.error("container doesn't seem to exist : "+parentContainer+' .inputs');
+	}
+	
+
+	function initMultiFields(parentContainer){
+		console.log("initMultiFields",parentContainer);
+	  $(parentContainer+' .addmultifield').unbind('keydown').keydown(function(event) 
+	  {
+	  	if ( event.keyCode == 13)
+	    {
+			event.preventDefault();
+	        if( $(this).val() != ""){
+	        	if( $( this ).parent().next().children(".addmultifield1").val() != "" )
+	        		addfield(parentContainer);
+	        	else 
+	        		$( this ).parent().next().children(".addmultifield1").focus();
+	        } 
+	        else
+	        	toastr.warning("La paire (clef/valeure) doit etre remplie.");
+	    }
+	  });
+
+	  $(parentContainer+' .addmultifield1').unbind('keydown').keydown(function(event) 
+	  {
+	  	if ( event.ctrlKey &&  event.keyCode == 13)
+	    {
+			event.preventDefault();
+	        if( $(this).val() != "" && $( this ).parent().prev().children(".addmultifield").val() != "" )
+	        	addfield(parentContainer);
+	        else
+	        	toastr.warning("La paire (clef/valeure) doit etre remplie.");
+	    }
+	  }); 
+
+	  $(parentContainer+' .removePropLineBtn').click(function(){
+	  	$(this).parent().prev().remove();
+	  	$(this).parent().remove();
+	  });
+
+	}
+
+	function clearProperties(where)
+	{
+		$("#ajaxSV "+where+" .inputs").html("");
+		propertyLineHTML( {"label":"","value":""} );
+	}
+
+	function propertyLineHTML(propVal)
+	{
+		var str = '<div class="space5"></div><div class="col-sm-3">'+
+					'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="'+propVal.label+'" />'+
+				'</div>'+
+				'<div class="col-sm-7">'+
+					'<textarea type="text" name="values[]" class="addmultifield1 form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);" placeholder="valeur"   >'+propVal.value+'</textarea>'+
+					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-right" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
+				'</div>';
+		return str;
+	}
+	function arrayLineHTML(val)
+	{
+		var str = '<div class="space5"></div><div class="col-sm-10">'+
+					'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="'+val+'"/>'+
+					'</div>'+
+					'<div class="col-sm-2">'+
+					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-left" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
+				'</div>';
+		return str;
+	}
+	
+	function drawPropertiesForm(list,where)
+	{
+		propHTML = "";
+		$.each( list , function(propKey,propVal){
+			propHTML += propertyLineHTML(propVal);
+		});
+		//console.info("editPerimeter",propHTML);
+		if(propHTML != "")
+			$("#ajaxSV "+where+" .inputs").html(propHTML);
+	}
+
+	
 
 })(jQuery);
 
@@ -336,4 +520,65 @@ $.fn.serializeFormJSON = function () {
         }
     });
     return o;
+};
+
+/* **************************************
+* PROPERTIES functions called externally
+***************************************** */
+// here's our click function for when the forms submitted
+function getPairs(parentContainer)
+{
+	//console.log("getPairs",parentContainer);
+    var properties = {};
+    $.each($(parentContainer+' .addmultifield'), function(i,el) {
+    	if( $(this).val() != "" && $( this ).parent().next().children(".addmultifield1") != "" ){
+	        properties[ slugify($(this).val()) ] = { "label" : $(this).val(),
+	        										  "value" : $( this ).parent().next().children(".addmultifield1").val()};
+	    }
+    });
+    //console.dir("getPairs",properties);
+    return properties;
+}
+
+function AutoGrowTextArea(textField)
+{
+  if (textField.clientHeight < textField.scrollHeight)
+  {
+    textField.style.height = textField.scrollHeight + "px";
+    if (textField.clientHeight < textField.scrollHeight)
+    {
+      textField.style.height = 
+        (textField.scrollHeight * 2 - textField.clientHeight) + "px";
+    }
+  }
+}
+
+function slugify (value) {    
+	var rExps=[
+	{re:/[\xC0-\xC6]/g, ch:'A'},
+	{re:/[\xE0-\xE6]/g, ch:'a'},
+	{re:/[\xC8-\xCB]/g, ch:'E'},
+	{re:/[\xE8-\xEB]/g, ch:'e'},
+	{re:/[\xCC-\xCF]/g, ch:'I'},
+	{re:/[\xEC-\xEF]/g, ch:'i'},
+	{re:/[\xD2-\xD6]/g, ch:'O'},
+	{re:/[\xF2-\xF6]/g, ch:'o'},
+	{re:/[\xD9-\xDC]/g, ch:'U'},
+	{re:/[\xF9-\xFC]/g, ch:'u'},
+	{re:/[\xC7-\xE7]/g, ch:'c'},
+	{re:/[\xD1]/g, ch:'N'},
+	{re:/[\xF1]/g, ch:'n'} ];
+
+	// converti les caractères accentués en leurs équivalent alpha
+	for(var i=0, len=rExps.length; i<len; i++)
+	value=value.replace(rExps[i].re, rExps[i].ch);
+
+	// 1) met en bas de casse
+	// 2) remplace les espace par des tirets
+	// 3) enleve tout les caratères non alphanumeriques
+	// 4) enlève les doubles tirets
+	return value.toLowerCase()
+	.replace(/\s+/g, '-')
+	.replace(/[^a-z0-9-]/g, '')
+	.replace(/\-{2,}/g,'-');
 };

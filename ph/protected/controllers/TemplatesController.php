@@ -25,14 +25,21 @@ class TemplatesController extends Controller
 	}
     public function actionUpload($dir,$collection=null,$input,$rename=false) 
     {
-        if( isset( $collection ))
-            $dir .= '/'.$collection.'/';
+        
         $upload_dir = 'upload/';
         if(!file_exists ( $upload_dir ))
             mkdir ( $upload_dir );
+        
         $upload_dir = 'upload/'.$dir.'/';
         if(!file_exists ( $upload_dir ))
             mkdir ( $upload_dir );
+
+        if( isset( $collection ))
+            $dir .= '/'.$collection.'/';
+        
+        if(!file_exists ( $upload_dir ))
+            mkdir ( $upload_dir );
+        
         $allowed_ext = array('jpg','jpeg','png','gif',"pdf","xls","xlsx","doc","docx","ppt","pptx");
         
         if(strtolower($_SERVER['REQUEST_METHOD']) != 'post')
