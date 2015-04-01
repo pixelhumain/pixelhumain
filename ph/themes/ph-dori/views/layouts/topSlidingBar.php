@@ -116,7 +116,6 @@
 
 	jQuery(document).ready(function() {
 		getNotificationSlidingBar();
-		getInfo();
 	})
 
 	function getNotificationSlidingBar(){

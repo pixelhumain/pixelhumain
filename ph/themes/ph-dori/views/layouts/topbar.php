@@ -52,7 +52,7 @@
 				<span class="notifications-count badge badge-danger animated bounceIn">97</span>
 			</a>
 
-			<a href="#" class="sb_toggle">
+			<a href="#" class="sb_toggle" id="sbToogle">
 				<i class="fa fa-cog"></i>
 			</a>
 		</div>
@@ -181,6 +181,10 @@
 		$("#searchForm").on("click", function(){
 			$("dropdown_search").css("display", "none");
 		});
+
+		$("#sbToogle").on("click", function(){
+			getInfo();
+		})
 
 		//-----Pluger Map ici-----
 
