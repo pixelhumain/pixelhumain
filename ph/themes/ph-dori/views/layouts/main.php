@@ -53,12 +53,13 @@
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/slider/css/slider.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQRangeSlider/css/classic-min.css');
 		//<!-- end: CSS REQUIRED FOR slider ONLY -->
-
+		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/flexSlider/flexslider.css');
 		//<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
 		//<!-- start: CORE CSS -->
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/styles.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/styles-responsive.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/plugins.css');
+
 		?>
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/<?php echo (isset($this->themeStyle)) ? $this->themeStyle : "theme-default"?>.css" type="text/css" id="skin_color">
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/print.css" type="text/css" media="print"/>
@@ -247,6 +248,8 @@
 		//<!-- end: JAVASCRIPTS REQUIRED FOR sliders -->
 
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/additional.js' , CClientScript::POS_END);
+
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/flexSlider/jquery.flexslider-min.js', CClientScript::POS_END);
 		
 		$path = '/assets/js/main.js';
 

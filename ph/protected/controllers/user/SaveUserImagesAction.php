@@ -8,17 +8,19 @@
  */
 class SaveUserImagesAction extends CAction
 {
-    public function run()
+    public function run($type, $id)
     {
-
     	if( isset($_FILES['avatar'])) 
         {
-        	
-        	$pathImage = $this->processImage($_FILES['avatar'],Yii::app()->session["userId"]);
+        	$phType = PHType::TYPE_CITOYEN;
+        	if($type == 'event'){
+        		$phType = PHType::TYPE_EVENTS;
+        	}
+        	$pathImage = $this->processImage($_FILES['avatar'],$id, $type);
         	if ($pathImage) {
 
-        		PHDB::update(PHType::TYPE_CITOYEN,
-        					array("_id" => new MongoId(Yii::app()->session["userId"])),
+        		PHDB::update($phType,
+        					array("_id" => new MongoId($id)),
                             array('$set' => array("imagePath"=> $pathImage))
                             );
         	}
@@ -30,9 +32,18 @@ class SaveUserImagesAction extends CAction
       
     }
 
-	private function processImage($image, $userID) {
-		$image_name							= "image_".$userID;
-		$destination_folder =Yii::app()->theme->baseUrl+'/upload/person/'.$image_name;
+	private function processImage($image, $userID, $type) {
+		$image_name	= "image_".$userID;
+        $upload_dir = '/upload/';
+        if(!file_exists ( $upload_dir ))
+            mkdir ( $upload_dir );
+        $upload_dir = 'upload/communecter/';
+        if(!file_exists ( $upload_dir ))
+            mkdir ( $upload_dir );
+        $upload_dir = 'upload/communecter/'.$type.'/';
+        if(!file_exists ( $upload_dir ))
+            mkdir ( $upload_dir );
+		$destination_folder ='upload/communecter/'.$type.'/'.$image_name;
 		$image_temp = $image['tmp_name']; //file temp
 		$image_size_info    = getimagesize($image_temp);
 		
@@ -60,7 +71,6 @@ class SaveUserImagesAction extends CAction
 	default:
 	    $image_res = false;
 	}
-
 	$path_file_to_save = $destination_folder.".".$image_extension;
 		$this->save_image($image_res,$path_file_to_save,$image_type );
 		$urlSaved = Yii::app()->getAssetManager()->publish($path_file_to_save);
