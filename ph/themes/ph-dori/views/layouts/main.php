@@ -72,6 +72,7 @@
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
+		   var personMap = <?php echo json_encode($this->person)?>;
 		   <?php if(YII_DEBUG){ ?>
 	       var debugMap = [
 		       { "userId":"<?php echo Yii::app()->session['userId']?>"},
