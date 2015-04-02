@@ -193,6 +193,8 @@ class Admin
         	$personType = array("type"=>PHType::TYPE_CITOYEN, "isAdmin"=>true );
         	if( !isset($row["dontLink"]) || !$row["dontLink"] )
         	{
+	        	//Add creator to collection
+	        	$row["creator"] = $userId;
 	        	if( $collection == PHType::TYPE_CITOYEN )
 	        	{
 	        		/* **************************************

@@ -20,6 +20,7 @@ class PHType
     const TYPE_COLLECTIVITE	   = "collectivite";
     const TYPE_EVENTS          = "events";
     const TYPE_PROJECTS	       = "projects";
+    const TYPE_JOBS            = "jobPosting";
     const TYPE_DISCUSSION	   = "discussion";
     const TYPE_APPLICATIONS    = "applications";
     const TYPE_SURVEYS         = "surveys";
