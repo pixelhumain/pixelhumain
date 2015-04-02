@@ -36,7 +36,7 @@ class TemplatesController extends Controller
 
         if( isset( $collection ))
             $dir .= '/'.$collection.'/';
-        
+        $upload_dir = 'upload/'.$dir.'/';
         if(!file_exists ( $upload_dir ))
             mkdir ( $upload_dir );
         

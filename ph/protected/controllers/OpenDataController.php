@@ -92,10 +92,8 @@ class OpendataController extends Controller {
 	}
 
 	public function actionPersons() {
-        $commune = PHDB::find( PHType::TYPE_CITOYEN ,array('isOpendata'=>true ) ); 
-
-	    header('Content-Type: application/json');
-    	echo json_encode($commune);
+        $data = PHDB::find( PHType::TYPE_CITOYEN ,array('isOpendata'=>true ) ); 
+    	echo Rest::json($data);
 	}
 	
 	/**

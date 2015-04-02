@@ -7,44 +7,36 @@
  */
 class DataController extends Controller {
 
-    /**
-     * Add a new FAQ entry into the "data" table
-     */
-	public function actionFaq() {
-	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
-		{
-            $account = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
-            if( $account && Citoyen::isAdminUser() )
-            {
-                  $data = $_POST;
-                  $data["key"] = "faq";
-                  $data["type"] = "qa";
-                  
-                  Yii::app()->mongodb->data->insert($data);
-                  $result = array("result"=>true,"msg"=>"Donnée enregistrée.");
-                  echo json_encode($result); 
-            } else 
-                  echo json_encode(array("result"=>false,"msg"=>"Cette requete ne peut aboutir."));
-		} else
-		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
-		exit;
-	}
 	/**
 	 * Delete an entry from the data table using the id
 	 */
-    public function actionDelete() {
-	    if(Yii::app()->request->isAjaxRequest && isset(Yii::app()->session["userId"]))
-		{
-            $account = Yii::app()->mongodb->citoyens->findOne(array("_id"=>new MongoId(Yii::app()->session["userId"])));
-            if( $account && Citoyen::isAdminUser() )
-            {
-                  Yii::app()->mongodb->data->remove(array("_id"=>new MongoId($_POST["id"])));
-                  $result = array("result"=>true,"msg"=>"Donnée enregistrée.");
-                  echo json_encode($result); 
-            } else 
-                  echo json_encode(array("result"=>false,"msg"=>"Cette requete ne peut aboutir."));
-		} else
-		    echo json_encode(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
-		exit;
+    public function actionExportInitData($id) {
+	    if( isset(Yii::app()->session["userId"]) && $id == Yii::app()->session["userId"])
+  		{
+              $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId(Yii::app()->session["userId"])));
+              if( $account  )
+              {
+                  $account["_id"] = array('$oid'=>(string)$account["_id"]);
+                  unset( $account["_id"]['$id'] );
+
+                  /* **************************************
+                  * CITOYENS MAP
+                  ***************************************** */
+                  $exportInitData = array( 
+                    PHType::TYPE_CITOYEN=>array($account) 
+                  );
+
+                  /* **************************************
+                  * ORGANIZATIONS MAP
+                  ***************************************** */
+                  /*$myOrganizations = Authorisation::listUserOrganizationAdmin( Yii::app()->session["userId"] );
+                  if($myOrganizations){
+                    $exportInitData[PHType::TYPE_ORGANIZATIONS] = $myOrganizations;
+                  }*/
+                  echo Rest::json($exportInitData);
+              } else 
+                    echo Rest::json(array("result"=>false,"msg"=>"Cette requete ne peut aboutir."));
+  		} else
+  		    echo Rest::json(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
 	}
 }
