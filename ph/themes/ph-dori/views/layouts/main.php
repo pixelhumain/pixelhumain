@@ -248,10 +248,11 @@
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/ui-sliders.js' , CClientScript::POS_END);
 		//<!-- end: JAVASCRIPTS REQUIRED FOR sliders -->
 
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/additional.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/nvd3/lib/d3.v3.js' , CClientScript::POS_END);
 
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/flexSlider/jquery.flexslider-min.js', CClientScript::POS_END);
-		
+		//D3 script
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/additional.js' , CClientScript::POS_END);
 		$path = '/assets/js/main.js';
 
 		$detect = new Mobile_Detect;

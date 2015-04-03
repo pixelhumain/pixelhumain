@@ -21,7 +21,7 @@ class SaveUserImagesAction extends CAction
 
         		PHDB::update($phType,
         					array("_id" => new MongoId($id)),
-                            array('$set' => array("imagePath"=> $pathImage))
+                            array('$set' => array("imagePath"=> Yii::app()->getRequest()->getBaseUrl(true)."/".$pathImage))
                             );
         	}
         	$res = array('result' => true , 'msg'=>'The profile picture was changed successfully');
@@ -74,7 +74,7 @@ class SaveUserImagesAction extends CAction
 	$path_file_to_save = $destination_folder.".".$image_extension;
 		$this->save_image($image_res,$path_file_to_save,$image_type );
 		$urlSaved = Yii::app()->getAssetManager()->publish($path_file_to_save);
-	return $urlSaved;
+	return $path_file_to_save;
 	}
 
 	##### Saves image resource to file #####
