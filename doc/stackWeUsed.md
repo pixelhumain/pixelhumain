@@ -26,5 +26,5 @@ jquery-jvectormap-1.2.2.min.js
 jquery-jvectormap-world-mill-en.js
 
 Design
-http://www.revox.io/webarch/HTML/
+
 

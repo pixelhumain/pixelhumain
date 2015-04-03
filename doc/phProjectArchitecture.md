@@ -62,7 +62,7 @@ some projects will have their own look & feel & design
 in Yii these are called themes and are available under 
 /ph
 	/themes
-		/webarch (default)
+		/ph-dori (default)
 		/onePageApp
 			/assets
 			/views
