@@ -21,4 +21,4 @@ $activeModules = array(
 	'twh',
 	'vitrine',
 	'learn',
-	'organization');
+	'opendata');

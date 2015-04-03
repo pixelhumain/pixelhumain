@@ -80,7 +80,7 @@ class Admin
 			}
 			$jsonAll = json_decode( file_get_contents($file), true);
 			$importRes = array( "file"=> $type,  
-								"isDummy"=>$isDummy , 
+								"isDummy"=>($isDummy) ? $type : false , 
 								"imports"=>array(),
 								"count"=>0,
 								"errors"=>0  );
@@ -148,7 +148,7 @@ class Admin
         		array_push( $errors, $infosRes["error"] );
 			array_push( $infos, $infosRes["info"] );
         }
-		return array( "file"=> $fn, "collection"=>$collection, "isDummy"=>$isDummy,"count"=>count($json), "infos"=>$infos, "errors"=>$errors);
+		return array( "file"=> $fn, "collection"=>$collection, "isDummy"=>($isDummy) ? $type : false,"count"=>count($json), "infos"=>$infos, "errors"=>$errors);
 			
 	}
 
