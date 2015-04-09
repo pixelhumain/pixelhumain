@@ -33,6 +33,7 @@ class SaveUserImagesAction extends CAction
     }
 
 	private function processImage($image, $userID, $type) {
+
 		$image_name	= "image_".$userID;
         $upload_dir = '/upload/';
         if(!file_exists ( $upload_dir ))
@@ -43,7 +44,15 @@ class SaveUserImagesAction extends CAction
         $upload_dir = 'upload/communecter/'.$type.'/';
         if(!file_exists ( $upload_dir ))
             mkdir ( $upload_dir );
-		$destination_folder ='upload/communecter/'.$type.'/'.$image_name;
+        $upload_dir = 'upload/communecter/'.$type.'/'.$userID.'/';
+        if(!file_exists ( $upload_dir ))
+            mkdir ( $upload_dir );
+        $fileCount = 1;
+        foreach(glob($upload_dir . "*.{jpg,png,gif}",GLOB_BRACE) as $filename){
+        	$fileCount = $fileCount+1;
+        };
+        $image_name = "image_".$fileCount;
+		$destination_folder ='upload/communecter/'.$type.'/'.$userID.'/'.$image_name;
 		$image_temp = $image['tmp_name']; //file temp
 		$image_size_info    = getimagesize($image_temp);
 		
@@ -92,4 +101,5 @@ class SaveUserImagesAction extends CAction
 	default: return false;
 	} 
 	} 
+
 }
