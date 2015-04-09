@@ -2029,6 +2029,19 @@ textarea.autosize {
   font-weight: 400;
   margin-top: 7px; }
 
+/* Style for x-editable content */
+.editable-container.editable-inline {
+    display: inline; 
+}
+
+.editable-input {
+    display: inline; 
+}
+
+.editableform .form-control {
+    width: 100%;
+}
+
 /* ---------------------------------------------------------------------- */
 /*  Tables
 /* ---------------------------------------------------------------------- */
