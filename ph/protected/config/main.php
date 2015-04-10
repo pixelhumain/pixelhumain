@@ -42,6 +42,7 @@ return array(
     	'ext.Json.Validator',
         'ext.helpers.*',
         'ext.CornerDev',
+        'ext.ClientScript'
         //'ext.easyrdf.lib.*'
 	),
 	'modules'=>array_merge($activeModules,array(
@@ -105,6 +106,9 @@ return array(
             'autoRenewCookie' => true,
             'authTimeout' => 31557600,
         ),
+        'clientScript' => array(
+      		'class' => 'ClientScript'
+  		),
         
 		// uncomment the following to enable URLs in path-format
 		'urlManager'=>array(
