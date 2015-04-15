@@ -51,7 +51,9 @@
 				<i class="fa fa-comment"></i>
 				<span class="notifications-count badge badge-danger animated bounceIn">97</span>
 			</a>
-
+			<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/activities")?>">
+				<i class="fa fa-bookmark-o"></i>
+			</a>
 			<a href="#" class="sb_toggle" id="sbToogle">
 				<i class="fa fa-cog"></i>
 			</a>
@@ -125,6 +127,13 @@
 				<input class="wide" id="sigNetwork" name="sigNetwork" type="text" placeholder="Pseudo, passez votre interface en mode cartographie">
 			</form>
 
+		</li>
+		<li class="collapse_wrap">
+			<div class="trigger collapse_trigger">
+				<a href="javascript:;" onclick="openSubView('Network Viewer', '/communecter/graph/viewer', null,null,function(){clearViewer();})">
+					<i class="fa fa-share-alt"></i>
+				</a>
+			</div>
 		</li>
 
 		<li class="collapse_wrap">
