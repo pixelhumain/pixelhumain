@@ -34,7 +34,7 @@ class Citoyen
      * @param  [boolean] $loginRegister   loginRegister defines if login fails this creates automatically a new account
      * @return [type] [description]
      */
-    public static function login($email,$pwd,$loginRegister=null)
+    public static function login($email,$pwd,$loginRegister=null) 
     {
         if(Yii::app()->request->isAjaxRequest && isset($email) && !empty($email))
         {
@@ -46,7 +46,8 @@ class Citoyen
             {
                 if( empty( $account["pwd"] ) )
                 {
-                    if(empty($pwd)){
+                    if(empty($pwd))
+                    {
                         //send email to reset password
                         $pwd = uniqid('', true);
                         PHDB::update(PHType::TYPE_CITOYEN,array("email"=>$email), 
@@ -65,7 +66,6 @@ class Citoyen
                     } else {
                         //if a pwd was typed 
                         //it will be set as pwd and will login the person 
-                        
                         PHDB::update(PHType::TYPE_CITOYEN,array("email"=>$email), 
                                                           array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
                         
@@ -75,6 +75,10 @@ class Citoyen
                         Yii::app()->session["userEmail"] = $account["email"]; 
                         $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
                         Yii::app()->session["user"] = array("name"=>$name); 
+                        
+                        if(isset( $account["cp"] )) 
+                          Yii::app()->session["user"]["cp"] = $account["cp"];
+
                         if( isset($account["isAdmin"]) && $account["isAdmin"] )
                             Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
                             
