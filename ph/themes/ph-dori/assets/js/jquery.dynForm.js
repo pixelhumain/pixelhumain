@@ -21,6 +21,7 @@ onSave: (optional) overloads the generic saveProcess
 	var thisBody = document.body || document.documentElement, 
 	thisStyle = thisBody.style, 
 	$this,
+	initValues = {},
 	supportTransition = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined
 	
 	/*$(subviewBackClass).on("click", function(e) {
@@ -129,6 +130,7 @@ onSave: (optional) overloads the generic saveProcess
         var fieldClass = (fieldObj.class) ? fieldObj.class : '';
         var initField = '';
         var value = "";
+        var style = "";
         if( fieldObj.value ) 
         	value = fieldObj.value;
         else if (formValues && formValues[field]) 
@@ -146,9 +148,15 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* STANDARD TEXT INPUT
 		***************************************** */
-        else if( !fieldObj.inputType || fieldObj.inputType == "text" || fieldObj.inputType == "numeric" ) 
-        	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
-        
+        else if( !fieldObj.inputType || fieldObj.inputType == "text" || fieldObj.inputType == "numeric" || fieldObj.inputType == "tags" ) {
+        	
+        	if(fieldObj.inputType == "tags"){
+        		fieldClass += " select2TagsInput";
+        		initValues[field] = fieldObj.values;
+        		style = "style='width:100%'"
+        	}
+        	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
+        }
         /* **************************************
 		* HIDDEN
 		***************************************** */
@@ -160,9 +168,11 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* TEXTAREA
 		***************************************** */
-        else if ( fieldObj.inputType == "textarea" ) 
+        else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){ 
+        	if(fieldObj.inputType == "wysiwyg")
+        		fieldClass += " wysiwygInput";
         	fieldHTML += '<textarea id="'+field+'" class="form-control '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
-        
+        }
         /* **************************************
 		* CHECKBOX
 		***************************************** */
@@ -177,8 +187,6 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) {
         	var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
-        	if(value == "")
-        		value="25/01/2014";
         	fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px">'+
         					 '<option value="">'+placeholder+'</option>';
 			$.each(fieldObj.options, function(optKey, optVal) { 
@@ -272,7 +280,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "custom" ) {
         	fieldHTML += fieldObj.html;
         } 
-
+ 
         else 
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         
@@ -311,7 +319,9 @@ onSave: (optional) overloads the generic saveProcess
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
 					params.onSave();
 					return false;
-		        } else {
+		        } 
+		        else 
+		        {
 		        	console.info("default SaveProcess",params.savePath);
 		        	console.dir($(params.formId).serializeFormJSON());
 		        	$.ajax({
@@ -340,8 +350,23 @@ onSave: (optional) overloads the generic saveProcess
 		* SELECTs , we use https://github.com/select2/select2
 		***************************************** */
 		if( $(".select2Input").length){
+
 			if( jQuery.isFunction(jQuery.fn.select2) )
 				$(".select2Input").select2();
+			else
+				console.error("select2 library is missing");
+		} 
+		if( $(".select2TagsInput").length){
+			if( jQuery.isFunction(jQuery.fn.select2) )
+				$.each($(".select2TagsInput"),function () { 
+
+					//console.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
+					$(this).removeClass("form-control").select2({
+					  "tags": initValues[$(this).attr("id")],
+					  "tokenSeparators": [',', ' ']
+					});
+				 });
+				
 			else
 				console.error("select2 library is missing");
 		} 
@@ -399,6 +424,34 @@ onSave: (optional) overloads the generic saveProcess
 				else
 					toastr.info("please fill properties first");
 			} );
+		}
+
+		/* **************************************
+		* WYSIWYG 
+		***************************************** */
+		if(  $(".wysiwygInput").length )
+		{
+			$(".wysiwygInput").summernote({
+
+				oninit: function() {
+					/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
+						$(this).code($(this).attr("placeholder"));
+					}*/
+				}, onfocus: function(e) {
+					/*if ($(this).code() == $(this).attr("placeholder")) {
+						$(this).code("");
+					}*/
+				}, onblur: function(e) {
+					/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
+						$(this).code($(this).attr("placeholder"));
+					}*/
+				}, onkeyup: function(e) {},
+				toolbar: [
+				['style', ['bold', 'italic', 'underline', 'clear']],
+				['color', ['color']],
+				['para', ['ul', 'ol', 'paragraph']],
+				]
+			});
 		}
 	}
 
@@ -538,6 +591,19 @@ function getPairs(parentContainer)
     });
     //console.dir("getPairs",properties);
     return properties;
+}
+
+function getArray(parentContainer)
+{
+	//console.log("getArray",parentContainer);
+    var list = [];
+    $.each($(parentContainer+' .addmultifield'), function(i,el) {
+    	if( $(this).val() != ""  ){
+	        list.push( $(this).val() );
+	    }
+    });
+    //console.dir("getArray",list);
+    return list;
 }
 
 function AutoGrowTextArea(textField)

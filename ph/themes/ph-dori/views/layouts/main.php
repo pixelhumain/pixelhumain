@@ -136,8 +136,9 @@
 						} 
 						$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);?>
 						<!-- end: PAGE HEADER -->
-						<div class="space20"></div>
-						<?php //$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.breadcrumb');?>
+						
+						<?php //<div class="space20"></div> 
+						//$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.breadcrumb');?>
 						
 						<!-- start: PAGE CONTENT -->
 						<div class="row page_content_wrap">
