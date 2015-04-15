@@ -47,11 +47,12 @@
 				<span class="username"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span>
 			</a>
 
-			<a href="#">
+			<a href="#" onclick="popinInfo('TODO : Compteur Notfication de discussion','Ce compteur de gamification permettra de suivre')">
 				<i class="fa fa-comment"></i>
 				<span class="notifications-count badge badge-danger animated bounceIn">97</span>
 			</a>
-			<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/activities")?>">
+			<?php //<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/activities") ?>
+			<a href="#" onclick="popinInfo('TODO : Compteur de Gamifation','Ce compteur de gamification permettra de suivre les points cumulés par l`activité sur la plateforme')"  >
 				<i class="fa fa-bookmark-o"></i>
 			</a>
 			<a href="#" class="sb_toggle" id="sbToogle">
@@ -347,6 +348,16 @@
 		
 	}
 
+	function popinInfo (title,message) {
+		title = (title != "") ? title : "Popin info";
+	    message = (message != "") ? message : "This feature isn't available yet";
+		bootbox.dialog({
+	            title: "<b class='text-bold text-red'>"+title+"</b>",
+	            message: message,
+	        }
+	    );
+
+	}
 
 </script>	
 </header>

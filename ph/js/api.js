@@ -320,7 +320,7 @@ var jsonHelper = {
   getValueByPath : function(srcObj,path)
   {
     node = srcObj;
-    console.log("path",path);
+    //console.log("path",path);
     if( !path )
       return node;
     else if( typeof path == "object" && path.value )
