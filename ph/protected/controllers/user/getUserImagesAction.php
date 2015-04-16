@@ -10,6 +10,7 @@ class GetUserImagesAction extends CAction
 {
     public function run($type, $id)
     {
+    	
     	$directory = 'upload/communecter/'.$type.'/'.$id.'/';
     	//$directory = Yii::app()->params['uploadURL'].$type.DIRECTORY_SEPARATOR.$id.DIRECTORY_SEPARATOR;
 		$listImages=array();
