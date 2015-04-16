@@ -211,7 +211,7 @@
 				var type = $("#searchType").val();
 				var id = $("#searchId").val();
 				if(id != ""){
-					window.location.href=baseUrl+"/" + moduleId + "/"+type+"/public/id/"+id;
+					window.location.href=baseUrl+"/" + moduleId + "/"+type+"/dashboard/id/"+id;
 				}
 				
 			}
@@ -223,7 +223,7 @@
 		if(type=="citoyen"){
 			type = "person";
 		}
-		window.location.href=baseUrl+"/" + moduleId + "/"+type+"/public/id/"+id;
+		window.location.href=baseUrl+"/" + moduleId + "/"+type+"/dashboard/id/"+id;
 		/*
 		$("#searchBar").val(name);
 		$("#searchId").val(id);

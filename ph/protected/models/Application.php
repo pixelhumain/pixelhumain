@@ -32,4 +32,3 @@ class Application
 		$this->name = self::DEFAULT_NAME;
 	}
 }
-?>   
