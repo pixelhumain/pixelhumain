@@ -21,10 +21,10 @@ class SaveUserImagesAction extends CAction
 
         		PHDB::update($phType,
         					array("_id" => new MongoId($id)),
-                            array('$set' => array("imagePath"=> Yii::app()->getRequest()->getBaseUrl(true)."/".$pathImage))
+                            array('$set' => array("imagePath"=> $pathImage))
                             );
         	}
-        	$res = array('result' => true , 'msg'=>'The profile picture was changed successfully');
+        	$res = array('result' => true , 'msg'=>'The profile picture was changed successfully', 'imagePath' => $pathImage );
             
 	        Rest::json($res);  
 	        Yii::app()->end();
@@ -34,17 +34,16 @@ class SaveUserImagesAction extends CAction
 
 	private function processImage($image, $userID, $type) {
 
-		$image_name	= "image_".$userID;
-        $upload_dir = '/upload/';
+        $upload_dir = Yii::app()->params['uploadDir']."\\..\\";
         if(!file_exists ( $upload_dir ))
             mkdir ( $upload_dir );
-        $upload_dir = 'upload/communecter/';
+        $upload_dir = Yii::app()->params['uploadDir'];
         if(!file_exists ( $upload_dir ))
             mkdir ( $upload_dir );
-        $upload_dir = 'upload/communecter/'.$type.'/';
+        $upload_dir = $upload_dir.$type.'/';
         if(!file_exists ( $upload_dir ))
             mkdir ( $upload_dir );
-        $upload_dir = 'upload/communecter/'.$type.'/'.$userID.'/';
+        $upload_dir = $upload_dir.$userID.'/';
         if(!file_exists ( $upload_dir ))
             mkdir ( $upload_dir );
         $fileCount = 1;
@@ -52,38 +51,38 @@ class SaveUserImagesAction extends CAction
         	$fileCount = $fileCount+1;
         };
         $image_name = "image_".$fileCount;
-		$destination_folder ='upload/communecter/'.$type.'/'.$userID.'/'.$image_name;
+		$destination_folder =$upload_dir.$image_name;
 		$image_temp = $image['tmp_name']; //file temp
 		$image_size_info    = getimagesize($image_temp);
 		
 		
-	if($image_size_info){
-	$image_width        = $image_size_info[0]; //image width
-			$image_height       = $image_size_info[1]; //image height
-			$image_type         = $image_size_info['mime']; //image type
-	}else{
-			die("Make sure image file is valid!");
-	}
-	switch($image_type){
-	case 'image/png':
-	    $image_res =  imagecreatefrompng($image_temp);
-	    $image_extension ="png";
-	     break;
-	case 'image/gif':
-	    $image_res =  imagecreatefromgif($image_temp);
-	    $image_extension ="gif";
-	     break;       
-	case 'image/jpeg': case 'image/pjpeg':
-	    $image_res = imagecreatefromjpeg($image_temp);
-	     $image_extension ="jpg";
-	     break;           
-	default:
-	    $image_res = false;
-	}
-	$path_file_to_save = $destination_folder.".".$image_extension;
-		$this->save_image($image_res,$path_file_to_save,$image_type );
-		$urlSaved = Yii::app()->getAssetManager()->publish($path_file_to_save);
-	return $path_file_to_save;
+		if($image_size_info){
+		$image_width        = $image_size_info[0]; //image width
+				$image_height       = $image_size_info[1]; //image height
+				$image_type         = $image_size_info['mime']; //image type
+		}else{
+				die("Make sure image file is valid!");
+		}
+		switch($image_type){
+		case 'image/png':
+		    $image_res =  imagecreatefrompng($image_temp);
+		    $image_extension ="png";
+		     break;
+		case 'image/gif':
+		    $image_res =  imagecreatefromgif($image_temp);
+		    $image_extension ="gif";
+		     break;       
+		case 'image/jpeg': case 'image/pjpeg':
+		    $image_res = imagecreatefromjpeg($image_temp);
+		     $image_extension ="jpg";
+		     break;           
+		default:
+		    $image_res = false;
+		}
+		$path_file_to_save = $destination_folder.".".$image_extension;
+			$this->save_image($image_res,$path_file_to_save,$image_type );
+			$urlSaved = Yii::app()->getAssetManager()->publish($path_file_to_save);
+		return $path_file_to_save;
 	}
 
 	##### Saves image resource to file #####

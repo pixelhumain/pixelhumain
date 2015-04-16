@@ -12,7 +12,6 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Pixel Humain',
 	'theme'=>'ph-dori',
-
 	'sourceLanguage'=>'00',
 	'language'=>'en',
 
@@ -182,8 +181,8 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'contact@pixelhumain.com',
 		//upload base directory
-		'uploadURL' => "/ph/upload/teeo/event/",
-		'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\upload\\teeo\\event\\",
+		'uploadURL' => "/ph/upload/",
+		'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\upload\\communecter\\",
 		'uploadComDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\templates\\upload\\dir\\communecter\\collection\\person"
 	),
 );
