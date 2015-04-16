@@ -131,7 +131,7 @@
 		</li>
 		<li class="collapse_wrap">
 			<div class="trigger collapse_trigger">
-				<a href="javascript:;" onclick="openSubView('Network Viewer', '/communecter/graph/viewer', null,null,function(){clearViewer();})">
+				<a href="javascript:;" onclick="openViewer()">
 					<i class="fa fa-share-alt"></i>
 				</a>
 			</div>
@@ -361,4 +361,12 @@
 
 	}
 
+	function openViewer () { 
+		var pathtab = window.location.href.split("#");
+		console.log("openViewer",pathtab[0]);
+		if(typeof contextMap != 'undefined')
+			openSubView('Network Viewer', '/communecter/graph/viewer', null,null,function(){clearViewer();})
+		else
+			popinInfo("Network Graph Feature Unavailable", "This context hasn't been prepared to be viewed as a graph.");
+	}
 </script>	

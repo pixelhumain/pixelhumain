@@ -9,25 +9,25 @@
 					<div class="col-xs-6 col-lg-3">
 						<button class="btn btn-icon btn-block optionTopButton space10" data-type="people">
 							<i class="fa fa-smile-o"></i>
-							Person <span class="badge badge-info partition-red"> 4 </span>
+							Person <span class="badge badge-info partition-red peopleCounter"></span>
 						</button>
 					</div>
 					<div class="col-xs-6 col-lg-3">
 						<button class="btn btn-icon btn-block optionTopButton space10" data-type="organisations">
 							<i class="fa fa-group "></i>
-							Organization <span class="badge badge-info partition-red"> 23 </span>
+							Organization <span class="badge badge-info partition-red organzationsCounter"></span>
 						</button>
 					</div>
 					<div class="col-xs-6 col-lg-3">
 						<button class="btn btn-icon btn-block optionTopButton space10" data-type="events">
 							<i class="fa fa-calendar-o"></i>
-							Calendar <span class="badge badge-info partition-blue"> 5 </span>
+							Calendar <span class="badge badge-info partition-blue eventsCounter"></span>
 						</button>
 					</div>
 					<div class="col-xs-6 col-lg-3">
 						<button class="btn btn-icon btn-block optionTopButton space10" data-type="projects">
 							<i class="fa fa-folder-open-o"></i>
-							Project <span class="badge badge-info partition-red"> 9 </span>
+							Project <span class="badge badge-info partition-red projectsCounter"></span>
 						</button>
 					</div>
 				</div>
@@ -93,12 +93,12 @@
 		}
 		$.hideSubview();
 		console.log(pathtab[0]);
-		if(pathtab[0] == baseUrl+"/"+moduleId+"/person"){
+		/*if(pathtab[0] == baseUrl+"/"+moduleId+"/person"){
 			window.location.hash = "#panel_"+this.getAttribute('data-type');
 			pageLoad();
-		}else{
-			window.location.replace(baseUrl+"/"+moduleId+"/person#panel_"+this.getAttribute('data-type'));
-		}
+		}else*/
+			window.location.replace(baseUrl+"/"+moduleId+"/person/dashboard/id/<?php echo Yii::app()->session["userId"] ?>");
+		
 	})
 
 	jQuery(document).ready(function() {
@@ -121,7 +121,7 @@
 			}	
 		})
 	}
-
+var personMap = null; 
 	function getInfo(){
 		var data = {"id" : '<?php echo Yii::app()->session["userId"] ?>'};
 		$.ajax({
@@ -133,15 +133,29 @@
 	        	if(!data){
 	        		toastr.error(data.content);
 	        	}else{
+	        		personMap = data;
 	        		var tel = "";
 	        		if(typeof(data.tel) != "undefined"){
 	        			tel = data.tel;
 	        		}
 	        		var str=""+data.name+"<br>"+ data.address.addressLocality+"<br>"+tel+"<br>Email:<a href='#'>"+data.email+"</a>";
 	        		$("#infoTopSliding").html(str);
+
+	        		if( Object.keys(data.links.knows).length)
+	        			$(".peopleCounter").html(Object.keys(data.links.knows).length);
+
+	        		if( Object.keys(data.links.memberOf).length)
+	        			$(".organzationsCounter").html(Object.keys(data.links.memberOf).length);
+
+	        		if( Object.keys(data.links.events).length)
+	        			$(".eventsCounter").html(Object.keys(data.links.events).length);
+
+	        		if( Object.keys(data.links.projects).length)
+	        			$(".projectsCounter").html(Object.keys(data.links.projects).length);
 	        	}
 	        }
 		})
 	}
+	function countNodes() {  }
 </script>
 <!-- end: SLIDING BAR -->
