@@ -15,6 +15,14 @@ class Document {
 	  	return PHDB::find( self::COLLECTION,$params);
 	}
 
+
+	public static function listMyDocumentByType($userId, $type, $doctype, $sort=null){
+		$params = array("id"=> $userId,
+						"type" => $type,
+						"doctype" => $doctype);
+		$listDocuments = PHDB::findAndSort( self::COLLECTION,$params, $sort);
+		return $listDocuments;
+	}
 	/**
 	 * save document information
 	 * @param $params : a set of information for the document (?to define)
