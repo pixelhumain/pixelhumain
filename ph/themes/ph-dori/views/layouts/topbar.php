@@ -361,6 +361,4 @@
 
 	}
 
-	function
-
 </script>	

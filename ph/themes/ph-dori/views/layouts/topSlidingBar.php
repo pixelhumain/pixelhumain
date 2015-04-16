@@ -53,22 +53,9 @@
 						<li>
 							<a href="#"><img alt="" src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/image05_th.jpg"></a>
 						</li>
-						<li>
-							<a href="#"><img alt="" src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/image06_th.jpg"></a>
-						</li>
-						<li>
-							<a href="#"><img alt="" src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/image07_th.jpg"></a>
-						</li>
-						<li>
-							<a href="#"><img alt="" src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/image08_th.jpg"></a>
-						</li>
-						<li>
-							<a href="#"><img alt="" src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/image09_th.jpg"></a>
-						</li>
-						<li>
-							<a href="#"><img alt="" src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/image10_th.jpg"></a>
-						</li>
+						
 					</ul>
+					<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/gallery"); ?>" class="btn btn-transparent-white"> My Gallery</a>
 				</div>
 			</div>
 			<!-- end: SLIDING BAR SECOND COLUMN -->
