@@ -28,7 +28,7 @@
             $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' 
                                                  : ( (isset($item["key"]) && false) ? 'onclick="scrollTo(\'#block'.$item["key"].'\')"' 
                                                                             : "" );
-            $href = (isset($item["href"])) ? (stripos($item["href"], "http") === false) ? Yii::app()->createUrl($item["href"]) : $item["href"] : "#";
+            $href = (isset($item["href"])) ? (stripos($item["href"], "http") === false && stripos($item["href"], "#") !=0 ) ? Yii::app()->createUrl($item["href"]) : $item["href"] : "#";
             $class = (isset($item["class"])) ? 'class="'.$item["class"].'"' : "";
             $icon = (isset($item["iconClass"])) ? '<i class="'.$item["iconClass"].'"></i>' : '';
             $isActive = ( isset( Menu::$sectionMenu[ $item["key"] ] ) && in_array( Yii::app()->controller->action->id, Menu::$sectionMenu[ $item["key"] ] ) ) ? true : false;
