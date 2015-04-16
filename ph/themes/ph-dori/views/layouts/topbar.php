@@ -42,7 +42,7 @@
 				<i class="fa fa-logo"></i>
 			</span>
 
-			<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person")?>" class="userlink">
+			<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/dashboard/id/".Yii::app()->session['userId'])?>" class="userlink">
 				<i class="fa fa-user_circled"></i>
 				<span class="username"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span>
 			</a>
@@ -65,7 +65,7 @@
 
 		<li class="collapse_wrap">
 			
-			<div class="trigger collapse_trigger hide_on_active">
+			<div class="trigger collapse_trigger hide_on_active"  onclick="popinInfo('TODO : Tag Filter','le cumul de tag personnalisé permet de filtrer et trier les données')">
 				<i class="fa fa-tags"></i>
 				<span class="notifications-count badge badge-warning animated bounceIn">3</span>
 			</div>
@@ -90,7 +90,7 @@
 
 		<li class="collapse_wrap">
 			
-			<div class="trigger collapse_trigger hide_on_active">
+			<div class="trigger collapse_trigger hide_on_active" onclick="popinInfo('TODO : GeoGraphic Filter','Les localités personnalisés permet de filtrer et trier les données par emplacement géographique')">
 				<i class="slider-sm-ico"></i>
 			</div>
 
@@ -162,6 +162,8 @@
 		</li>
 
 	</ul>
+</header>
+<!-- end: TOP NAVIGATION MENU -->
 
 <script type="text/javascript">
 
@@ -359,7 +361,6 @@
 
 	}
 
-</script>	
-</header>
+	function
 
-<!-- end: TOP NAVIGATION MENU -->
+</script>	
