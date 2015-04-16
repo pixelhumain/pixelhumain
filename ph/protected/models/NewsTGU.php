@@ -2,7 +2,7 @@
 /*
 Contains anything generix for the site 
  */
-class News
+class NewsTGU
 {
 	const COLLECTION = "articles";
 	public static $GENRE_COLOR = array( 	
