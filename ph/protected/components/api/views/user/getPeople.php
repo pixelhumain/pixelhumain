@@ -10,7 +10,7 @@
 				"app" : "<?php echo $this->module->id?>"
 			};
 			callback = (asjson) ? showAsColumn : null ;
-			testitpost("getPeopleResult",baseUrl+'/<?php echo $this->module->id?>/api/getpeopleby',params,callback);
+			ajaxPost("getPeopleResult",baseUrl+'/<?php echo $this->module->id?>/api/getpeopleby',params,callback);
 		}
 		function countpeopleby(){
 			params = { 
@@ -18,7 +18,7 @@
 				"app" : "<?php echo $this->module->id?>",
 				"count" : 1
 			};
-			testitpost("getPeopleResult",baseUrl+'/<?php echo $this->module->id?>/api/getpeopleby/count/1',params);
+			ajaxPost("getPeopleResult",baseUrl+'/<?php echo $this->module->id?>/api/getpeopleby/count/1',params);
 		}
 	</script>
 </div>

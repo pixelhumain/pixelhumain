@@ -23,7 +23,7 @@
 	    	   "name" : $("#linkUser2GroupGroup").val() ,
 	    	   "type":"<?php echo Group::TYPE_EVENT?>"
 	    	   };
-			testitpost("linkUser2GroupResult", baseUrl+'/<?php echo $this->module->id?>/api/linkUser2Group',params);
+			ajaxPost("linkUser2GroupResult", baseUrl+'/<?php echo $this->module->id?>/api/linkUser2Group',params);
 		}
 		function unlinkUser2Group(){
 			params = { 
@@ -32,7 +32,7 @@
 	    	   "type":"<?php echo Group::TYPE_EVENT?>",
 	    	   "unlink" : true,
 	    	   };
-			testitpost("linkUser2GroupResult", baseUrl+'/<?php echo $this->module->id?>/api/linkUser2Group',params);
+			ajaxPost("linkUser2GroupResult", baseUrl+'/<?php echo $this->module->id?>/api/linkUser2Group',params);
 		}
 	</script>
 </div>

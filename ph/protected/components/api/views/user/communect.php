@@ -8,7 +8,7 @@
 			params = { "email" : $("#emailCommunect").val() , 
 			    	   "cp" : $("#cpCommunect").val()
 			    	};
-			testitpost("communectResult",baseUrl+'/<?php echo $this->module->id?>/api/communect',params);
+			ajaxPost("communectResult",baseUrl+'/<?php echo $this->module->id?>/api/communect',params);
 		}
 	</script>
 	

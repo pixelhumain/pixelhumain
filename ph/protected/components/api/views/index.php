@@ -152,7 +152,7 @@ séparé par des virgules<br/>
     	   "emailCopy" : $("#emailCopy").val() , 
     	   "msg" : $("#sendMessagemsg").val() 
     	   };
-		testitpost("sendMessageResult",baseUrl+'/<?php echo $this->module->id?>/api/sendMessage',params);
+		ajaxPost("sendMessageResult",baseUrl+'/<?php echo $this->module->id?>/api/sendMessage',params);
 	}
 	function setPeople(){
 		$("#sendMessageemail").val("");

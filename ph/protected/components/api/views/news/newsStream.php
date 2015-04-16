@@ -79,7 +79,7 @@
 			//}
 			
 			//alert(JSON.stringify(params)); return;
-		    testitpost("newsStreamResult",baseUrl+'/<?php echo $this->module->id?>/api/getNewsStream/', params);
+		    ajaxPost("newsStreamResult",baseUrl+'/<?php echo $this->module->id?>/api/getNewsStream/', params);
 		}
 		
         

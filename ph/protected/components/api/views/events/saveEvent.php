@@ -15,7 +15,7 @@
 			    	   "pwd":$("#pwdsaveEvent").val() ,
 			    	   "phoneNumber" : $("#phoneNumbersaveEvent").val(),
 			    		"app" : "<?php echo $this->module->id?>"};
-			testitpost("createUserResult",baseUrl+'/<?php echo $this->module->id?>/api/saveEvent',params);
+			ajaxPost("createUserResult",baseUrl+'/<?php echo $this->module->id?>/api/saveEvent',params);
 		}
 	</script>
 </div>

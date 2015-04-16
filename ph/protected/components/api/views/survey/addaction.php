@@ -36,7 +36,7 @@
 	    	   "collection":"surveys",
 	    	   "action" : $("#actionSurvey").val() 
 	    	   };
-			testitpost("addactionResult",baseUrl+'/<?php echo $this->module->id?>/api/addaction',params);
+			ajaxPost("addactionResult",baseUrl+'/<?php echo $this->module->id?>/api/addaction',params);
 		}
 
 		function unaddaction(){
@@ -47,7 +47,7 @@
 	    	   "unset" : true,
 	    	   "action" : $("#actionSurvey").val() 
 	    	   };
-			testitpost("addactionResult",baseUrl+'/<?php echo $this->module->id?>/api/addaction',params);
+			ajaxPost("addactionResult",baseUrl+'/<?php echo $this->module->id?>/api/addaction',params);
 		}
 
 		function getIncByAction(){
@@ -56,7 +56,7 @@
 	    	   "collection":"surveys",
 	    	   "fields" : [$("#actionSurvey").val()] 
 	    	   };
-			testitpost("addactionResult",baseUrl+'/<?php echo $this->module->id?>/api/getactionvalue',params);
+			ajaxPost("addactionResult",baseUrl+'/<?php echo $this->module->id?>/api/getactionvalue',params);
 		}
 
 	</script>

@@ -190,7 +190,7 @@ $this->pageTitle= "Convert RDF instance to Formatted Json Schema" ;
 					"_id" : $("#getMicroformat").val()
 				} 
 			}; 
-			testitpost(null,baseUrl+'/tools/getby',params,function(data){
+			ajaxPost(null,baseUrl+'/tools/getby',params,function(data){
 				currentMF = data[$("#getMicroformat").val()];
 				if(currentMF && currentMF.jsonSchema){
 					$("#jsonSchema").val( JSON.stringify(currentMF.jsonSchema, null, 4) );
@@ -223,7 +223,7 @@ $this->pageTitle= "Convert RDF instance to Formatted Json Schema" ;
 				"template":$("#microformatTemplate").val(),
 				"jsonSchema":$.parseJSON($("#jsonSchema").val())
 			}; 
-			testitpost(null,baseUrl+'/common/save',params,function(data){
+			ajaxPost(null,baseUrl+'/common/save',params,function(data){
 				if(data.result){
 					$("#flashInfoSaveBtn").html('');
         		  	$("#flashInfoContent").html(data.msg);

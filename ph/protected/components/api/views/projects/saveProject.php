@@ -15,7 +15,7 @@
 			    	   "cp" : $("#postalcodesaveProject").val(),
 			    	   "type" : "project",
 			    	   "app" : "<?php echo $this->module->id?>" };
-			testitpost("saveProjectResult",baseUrl+'/<?php echo $this->module->id?>/api/saveProject',params);
+			ajaxPost("saveProjectResult",baseUrl+'/<?php echo $this->module->id?>/api/saveProject',params);
 		}
 		function getSession(){
 			params = { "where" : { 
@@ -25,7 +25,7 @@
 			    	   	},
 			    	   	"collection":"projects"
 			    	};
-			testitpost("saveProjectResult",baseUrl+'/<?php echo $this->module->id?>/api/getby',params);
+			ajaxPost("saveProjectResult",baseUrl+'/<?php echo $this->module->id?>/api/getby',params);
 		}
 	</script>
 </div>

@@ -23,13 +23,13 @@
 		$('#mapCanvasSavePosLoader').html('<div id="mapCanvasNewPos" class="mapCanvas1"> </br>Chargement de la carte ... </div>');
 	
 		//récupère l'objet demandé
-		testitget("savePosGroupsResult", baseUrl+'/sig/api/getCpObject/typePH/'+typePH+'/object_id/'+object_id, 	
+		ajaxGet("savePosGroupsResult", baseUrl+'/sig/api/getCpObject/typePH/'+typePH+'/object_id/'+object_id, 	
 				function (object){
 					if(object['geo'] != null) { //si l'élément a déjà été localisé
 						showGeoposOnMap(object['geo']['latitude'], object['geo']['longitude'], typePH, map)
 					}
 					else if(object['cp'] != null) { //si l'objet n'a pas de GEO, on position par le CP
-					 	testitget("savePosGroupsResult", baseUrl+'/sig/api/getPositionCp/cp/'+object['cp'], 	
+					 	ajaxGet("savePosGroupsResult", baseUrl+'/sig/api/getPositionCp/cp/'+object['cp'], 	
 							function (position){
 								if(position == null) { $("#savePosGroupsResult").html ( "pas de position trouvée pour ce CP"); }
 								else { 
@@ -59,7 +59,7 @@
 						  "type" : typePH,
 						  "geo": { "latitude" : markerNewPos.getLatLng().lat ,  "longitude" : markerNewPos.getLatLng().lng }
 				 };
-		testitpost("savePosGroupsResult", baseUrl+'/sig/api/saveGeoposition',params);
+		ajaxPost("savePosGroupsResult", baseUrl+'/sig/api/saveGeoposition',params);
 	}
 	
 	mapNewPos = loadMap("mapCanvasNewPos"); 

@@ -9,7 +9,7 @@ fields : <input type="text" name="getmessagevitbyFilter" id="getmessagevitbyFilt
 		params = {"applications.<?php echo $this->module->id?>.usertype":"event","limit":30};
 		if(fields) 
 			params.fields = fields.split(",");
-		testitpost("getmessagevitbyResult", baseUrl+'/<?php echo $this->module->id?>/api/getmessagevitby',params);
+		ajaxPost("getmessagevitbyResult", baseUrl+'/<?php echo $this->module->id?>/api/getmessagevitby',params);
 	}
 </script> 
 </div>

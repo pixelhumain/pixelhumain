@@ -43,7 +43,7 @@
 					geoJsonCollection = { type: 'FeatureCollection', features: new Array() };
 					markersLayer.clearLayers();			
 					
-					testitget("showCitoyensResult", baseUrl+'/sig/api/showCitoyens',
+					ajaxGet("showCitoyensResult", baseUrl+'/sig/api/showCitoyens',
 						function (data){ 
 							var listItemMap = "";
 						 	$.each(data, function() {  	

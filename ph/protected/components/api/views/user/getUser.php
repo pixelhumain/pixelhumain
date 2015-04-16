@@ -4,7 +4,7 @@
 	<br/><div id="getUserResult" class="result fss"></div>
 	<script>
 		function getUser(){
-			testitget("getUserResult",baseUrl+'/<?php echo $this->module->id?>/api/getUser/email/'+$("#getUseremail").val());
+			ajaxGet("getUserResult",baseUrl+'/<?php echo $this->module->id?>/api/getUser/email/'+$("#getUseremail").val());
 		}
 		
 	</script>

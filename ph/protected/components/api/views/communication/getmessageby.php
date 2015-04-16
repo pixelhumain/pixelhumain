@@ -9,7 +9,7 @@
 			params = {"applications.<?php echo $this->module->id?>.usertype":"event","limit":10};
 			if(fields) 
 				params.fields = fields.split(",");
-			testitpost("getmessagebyResult", baseUrl+'/<?php echo $this->module->id?>/api/getmessageby',params);
+			ajaxPost("getmessagebyResult", baseUrl+'/<?php echo $this->module->id?>/api/getmessageby',params);
 		}
 	</script>
 </div>

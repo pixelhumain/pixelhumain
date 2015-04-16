@@ -15,7 +15,7 @@
 			    	   "pwd":$("#pwdSaveUser").val() ,
 			    	   "phoneNumber" : $("#phoneNumberSaveUser").val(),
 			    		"app" : "<?php echo $this->module->id?>"};
-			testitpost("createUserResult",baseUrl+'/<?php echo $this->module->id?>/api/saveUser',params);
+			ajaxPost("createUserResult",baseUrl+'/<?php echo $this->module->id?>/api/saveUser',params);
 		}
 	</script>
 </div>

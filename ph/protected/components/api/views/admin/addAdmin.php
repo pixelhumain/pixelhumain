@@ -19,7 +19,7 @@
 		function addAdminEntry(){
 			params = {  "id" : $("#citizenaddAdminEntry").val() , 
 			    		"app" : "<?php echo $this->module->id?>"};
-			testitpost("addAdminEntryResult",baseUrl+'/<?php echo $this->module->id?>/api/addappadmin',params);
+			ajaxPost("addAdminEntryResult",baseUrl+'/<?php echo $this->module->id?>/api/addappadmin',params);
 		}
 		
 	</script>

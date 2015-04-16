@@ -25,7 +25,7 @@
 			    	   "cp" : $("#postalcodesaveGroup").val() , 
 			    	   "type" : "entry",
 			    	   "app" : "survey"};
-			testitpost("addEntryResult",baseUrl+'/<?php echo $this->module->id?>/api/saveSession',params);
+			ajaxPost("addEntryResult",baseUrl+'/<?php echo $this->module->id?>/api/saveSession',params);
 		}
 		function getEntry(){
 			params = { "where" : { 
@@ -35,7 +35,7 @@
 			    	   	},
 			    	   	"collection":"surveys"
 			    	};
-			testitpost("addEntryResult",baseUrl+'/<?php echo $this->module->id?>/api/getby',params);
+			ajaxPost("addEntryResult",baseUrl+'/<?php echo $this->module->id?>/api/getby',params);
 		}
 	</script>
 </div>

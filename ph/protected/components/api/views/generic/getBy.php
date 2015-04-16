@@ -73,7 +73,7 @@
 			params.where["$and"] = ands;
 
 			callback = (!asjson) ? showAsColumn : null ;
-			testitpost("getbyResult",baseUrl+'/<?php echo $this->module->id?>/api/getby',params,callback);
+			ajaxPost("getbyResult",baseUrl+'/<?php echo $this->module->id?>/api/getby',params,callback);
 		}
 	</script>
 </div>

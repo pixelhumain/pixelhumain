@@ -6,10 +6,10 @@
 	<br/><div id="getnodebyResult" class="result fss"></div>
 	<script>
 		function getnodeby(){
-			testitget("getnodebyResult",baseUrl+'/<?php echo $this->module->id?>/api/getnodeby/type/'+$("#getnodebyType").val());
+			ajaxGet("getnodebyResult",baseUrl+'/<?php echo $this->module->id?>/api/getnodeby/type/'+$("#getnodebyType").val());
 		}
 		function countgetnodeby(){
-			testitget("getnodebyResult",baseUrl+'/<?php echo $this->module->id?>/api/getnodeby/type/'+$("#getnodebyType").val()+'/count/1');
+			ajaxGet("getnodebyResult",baseUrl+'/<?php echo $this->module->id?>/api/getnodeby/type/'+$("#getnodebyType").val()+'/count/1');
 		}
 	</script>
 </div>

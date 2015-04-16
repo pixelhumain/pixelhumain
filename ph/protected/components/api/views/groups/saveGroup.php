@@ -35,7 +35,7 @@
 			if( $("#whosaveGroup").val() )
 				params["group"] = $("#whosaveGroup").val();
 			
-			testitpost("saveGroupResult", baseUrl+'/<?php echo $this->module->id?>/api/saveGroup',params);
+			ajaxPost("saveGroupResult", baseUrl+'/<?php echo $this->module->id?>/api/saveGroup',params);
 		}
 		function typeChanged(){
 			console.log( $("#typesaveGroup").val() );

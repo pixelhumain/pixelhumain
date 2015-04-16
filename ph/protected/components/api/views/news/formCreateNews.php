@@ -81,7 +81,7 @@
 			if(scopeType == "groups")		{ params["groupScope"] = $("#groupsListScope").val(); }
 			
 			//alert(JSON.stringify(params));
-			testitpost("createNewsResult",baseUrl+'/news/api/saveNews', params);
+			ajaxPost("createNewsResult",baseUrl+'/news/api/saveNews', params);
 		}
 		
 		

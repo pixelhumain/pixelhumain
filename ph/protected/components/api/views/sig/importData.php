@@ -12,7 +12,7 @@
 			function importData(){ 
 				params = { 	"dbName" : $("#dbName").val() ,
 							"app":"<?php echo $this::$moduleKey?>"  };
-				testitpost("importDataResult", baseUrl+'/sig/api/importData',params);
+				ajaxPost("importDataResult", baseUrl+'/sig/api/importData',params);
 				$("#importDataResult").html("Le chargement des données est en cours, cela peut durer quelques minutes...");				
 			}
 			</script>

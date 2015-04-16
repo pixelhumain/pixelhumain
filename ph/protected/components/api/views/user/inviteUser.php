@@ -5,7 +5,7 @@
 	<script>
 		function inviteUser(){
 			params = { "email" : $("#inviteUseremail").val() };
-			testitpost("inviteUserResult",baseUrl+'/<?php echo $this->module->id?>/api/inviteUser',params);
+			ajaxPost("inviteUserResult",baseUrl+'/<?php echo $this->module->id?>/api/inviteUser',params);
 		}
 		
 	</script>

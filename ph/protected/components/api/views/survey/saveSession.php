@@ -15,7 +15,7 @@
 			    	   "cp" : $("#postalcodesaveSession").val(),
 			    	   "type" : "survey",
 			    	   "app" : "survey" };
-			testitpost("saveSessionResult",baseUrl+'/<?php echo $this->module->id?>/api/saveSession',params);
+			ajaxPost("saveSessionResult",baseUrl+'/<?php echo $this->module->id?>/api/saveSession',params);
 		}
 		function getSession(){
 			params = { "where" : { 
@@ -25,7 +25,7 @@
 			    	   	},
 			    	   	"collection":"surveys"
 			    	};
-			testitpost("saveSessionResult",baseUrl+'/<?php echo $this->module->id?>/api/getby',params);
+			ajaxPost("saveSessionResult",baseUrl+'/<?php echo $this->module->id?>/api/getby',params);
 		}
 	</script>
 </div>

@@ -5,10 +5,10 @@
 	<div id="getGroupResult" class="result fss"></div>
 	<script>
 		function getGroup(){
-			testitpost("getGroupResult", baseUrl+'/<?php echo $this->module->id?>/api/getgroupsby',{"email":$("#getGroupemail").val()});
+			ajaxPost("getGroupResult", baseUrl+'/<?php echo $this->module->id?>/api/getgroupsby',{"email":$("#getGroupemail").val()});
 		}
 		function confirmGroupRegistration(){
-			testitget("getGroupResult", baseUrl+'/<?php echo $this->module->id?>/api/confirmGroupRegistration/email/'+$("#getGroupemail").val());
+			ajaxGet("getGroupResult", baseUrl+'/<?php echo $this->module->id?>/api/confirmGroupRegistration/email/'+$("#getGroupemail").val());
 		}
 	</script>
 </div>
@@ -31,7 +31,7 @@
 				//params.tags = "social";
 				params.tags = {'$or':[{'tags':"social"},{'tags':"recherche"}]};
 			}
-			testitpost("getgroupsbyResult", baseUrl+'/<?php echo $this->module->id?>/api/getgroupsby',params);
+			ajaxPost("getgroupsbyResult", baseUrl+'/<?php echo $this->module->id?>/api/getgroupsby',params);
 		}
 	</script>
 </div>

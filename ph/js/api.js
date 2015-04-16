@@ -1,4 +1,4 @@
-function testitpost(id,url,params,callback){
+function ajaxPost(id,url,params,callback){
 	console.log(id,url,params);
 	$("#"+id).html("");
 	$.ajax({
@@ -18,6 +18,31 @@ function testitpost(id,url,params,callback){
 	     console.error(thrownError);
 	    } 
 	  });
+}
+
+function getAjax(id,url,callback,datatype)
+{
+  if(datatype != "html" )
+    $("#"+id).html("");
+  $.ajax({
+      url:url,
+      type:"GET",
+      //dataType:"json",
+      success:function(data) {
+        if( typeof callback === "function")
+          callback(data,id);
+        else if(datatype === "html" )
+          $(id).html(data);
+        else if(typeof data === "string" )
+          toastr.success(data);
+        else
+            $("#"+id).html(JSON.stringify(data, null, 4));
+        
+      },
+      error:function (xhr, ajaxOptions, thrownError){
+        console.error(thrownError);
+      } 
+    });
 }
 /*
 what can be a simple string which will go into the title bar 
@@ -149,30 +174,7 @@ function openDynamicSubview (key,collection,callback) {
     }
   });
 }
-function testitget(id,url,callback,datatype)
-{
-	if(datatype != "html" )
-		$("#"+id).html("");
-	$.ajax({
-	    url:url,
-	    type:"GET",
-	    //dataType:"json",
-	    success:function(data) {
-	    	if( typeof callback === "function")
-	    		callback(data,id);
-	    	else if(datatype === "html" )
-	    		$(id).html(data);
-	    	else if(typeof data === "string" )
-	    		toastr.success(data);
-	    	else
-	      		$("#"+id).html(JSON.stringify(data, null, 4));
-	    	
-	    },
-	    error:function (xhr, ajaxOptions, thrownError){
-	      console.error(thrownError);
-	    } 
-	  });
-}
+
 
 function toggle(id)
 {

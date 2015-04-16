@@ -15,7 +15,7 @@ code postal : <textarea type="number" name="cpComment" id="cpComment"></textarea
     	   "msg" : $("#sendCommentmsg").val(),
     	   "cp" : $("#cpComment").val(),
     	   };
-		testitpost("sendCommentResult",baseUrl+'/<?php echo $this->module->id?>/api/sendmessagevitrine',params);
+		ajaxPost("sendCommentResult",baseUrl+'/<?php echo $this->module->id?>/api/sendmessagevitrine',params);
 	}
 </script>
 </div>

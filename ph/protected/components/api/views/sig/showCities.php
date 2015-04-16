@@ -21,7 +21,7 @@
 				//##
 				//affiche les villes qui possèdent des attributs lat, lng, depuis la BD
 				function showCities(){ 
-					testitget("showInsertMuserResult", baseUrl+'/sig/api/showCities/', 
+					ajaxGet("showInsertMuserResult", baseUrl+'/sig/api/showCities/', 
 						function (data){
 							var nbCities=0;
 						 	$.each(data, function() {

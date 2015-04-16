@@ -12,7 +12,7 @@
 			    	   "loginRegister" :1,
 			    	   "app":"<?php echo $this->module->id?>"
 			    	};
-			testitpost("loginResult",baseUrl+'/<?php echo $this->module->id?>/api/login',params);
+			ajaxPost("loginResult",baseUrl+'/<?php echo $this->module->id?>/api/login',params);
 			
 		}
 		function sendEmailPwd(){
