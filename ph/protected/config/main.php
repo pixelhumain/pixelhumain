@@ -181,8 +181,8 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'contact@pixelhumain.com',
 		//upload base directory
-		'uploadURL' => "/ph/upload/",
-		'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\upload\\communecter\\",
+		'uploadURL' => "upload".DIRECTORY_SEPARATOR."communecter".DIRECTORY_SEPARATOR,
+		'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR."communecter".DIRECTORY_SEPARATOR,
 		'uploadComDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\templates\\upload\\dir\\communecter\\collection\\person"
 	),
 );

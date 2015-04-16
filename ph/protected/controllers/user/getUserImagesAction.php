@@ -11,6 +11,7 @@ class GetUserImagesAction extends CAction
     public function run($type, $id)
     {
     	$directory = 'upload/communecter/'.$type.'/'.$id.'/';
+    	//$directory = Yii::app()->params['uploadURL'].$type.DIRECTORY_SEPARATOR.$id.DIRECTORY_SEPARATOR;
 		$listImages=array();
 		if(file_exists ( $directory )){
 	    	//get all image files with a .jpg extension. This way you can add extension parser

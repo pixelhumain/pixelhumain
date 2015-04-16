@@ -34,7 +34,7 @@ class SaveUserImagesAction extends CAction
 
 	private function processImage($image, $userID, $type) {
 
-        $upload_dir = Yii::app()->params['uploadDir']."\\..\\";
+        $upload_dir = Yii::app()->params['uploadDir'].DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR;
         if(!file_exists ( $upload_dir ))
             mkdir ( $upload_dir );
         $upload_dir = Yii::app()->params['uploadDir'];
