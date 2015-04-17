@@ -121,7 +121,7 @@
 			}	
 		})
 	}
-var personMap = null; 
+	
 	function getInfo(){
 		var data = {"id" : '<?php echo Yii::app()->session["userId"] ?>'};
 		$.ajax({

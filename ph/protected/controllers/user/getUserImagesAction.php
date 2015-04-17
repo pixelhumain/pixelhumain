@@ -6,7 +6,7 @@
  * else simply adds the watcher app the users profile ]
  * @return [json] 
  */
-class GetUserImagesAction extends CAction
+class getUserImagesAction extends CAction
 {
     public function run($type, $id)
     {

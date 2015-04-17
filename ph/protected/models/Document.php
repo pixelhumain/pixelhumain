@@ -29,12 +29,13 @@ class Document {
 	*/
 	public static function save($params){
 		//$id = Yii::app()->session["userId"];
+		
 	    $new = array(
 			"id" => $params['id'],
 	  		"type" => $params['type'],
 	  		"folder" => $params['folder'],
 	  		"moduleId" => $params['moduleId'],
-	  		"doctype" => $params['doctype'],	
+	  		"doctype" => Document::getDoctype($params['name']),	
 	  		"author" => $params['author'],
 	  		"name" => $params['name'],
 	  		"size" => $params['size'],
@@ -48,6 +49,28 @@ class Document {
 	    return array("result"=>true, "msg"=>"Votre document est enregistré.", "id"=>$new["_id"]);	
 	}
 
+	/**
+	* get the type of a document
+	* @param strname : the name of the document
+	*/
+	public static function getDoctype($strname){
+
+		$supported_image = array(
+		    'gif',
+		    'jpg',
+		    'jpeg',
+		    'png'
+		);
+
+		$doctype = "";
+		$ext = strtolower(pathinfo($strname, PATHINFO_EXTENSION)); // Using strtolower to overcome case sensitive
+		if (in_array($ext, $supported_image)) {
+			$doctype = "image";
+		}else{
+			$doctype = $ext;
+		}
+		return $doctype;
+	}
 	
 }
 ?>

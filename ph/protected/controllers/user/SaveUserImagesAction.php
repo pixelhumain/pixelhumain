@@ -17,12 +17,13 @@ class SaveUserImagesAction extends CAction
         	if($type == 'event'){
         		$phType = PHType::TYPE_EVENTS;
         	}
+        	$folder = str_replace(DIRECTORY_SEPARATOR, "/", Yii::app()->controller->module->id.DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR.$id.DIRECTORY_SEPARATOR);
         	$pathImage = $this->processImage($_FILES['avatar'],$id, $type);
         	if ($pathImage) {
         		$params = array();
         		$params["id"] = $id;
         		$params["type"] = $phType;
-        		$params['folder'] = Yii::app()->controller->module->id.DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR.$id.DIRECTORY_SEPARATOR;
+        		$params['folder'] = $folder;
         		$params['moduleId'] = Yii::app()->controller->module->id;
         		$params['name'] = $pathImage["name"];
         		$params['doctype'] = "image";
@@ -32,12 +33,13 @@ class SaveUserImagesAction extends CAction
         		Document::save($params);
 
         		//Profile to check
+        		$urlBdd = str_replace(DIRECTORY_SEPARATOR, "/", Yii::app()->getRequest()->getBaseUrl(true).DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR.$folder.$pathImage["name"]);
         		PHDB::update($phType,
         					array("_id" => new MongoId($id)),
-                            array('$set' => array("imagePath"=> $pathImage["folder"].$pathImage["name"]))
+                            array('$set' => array("imagePath"=> $urlBdd))
                             );
         	}
-        	$res = array('result' => true , 'msg'=>'The profile picture was changed successfully', 'imagePath' => $pathImage["folder"].$pathImage["name"] );
+        	$res = array('result' => true , 'msg'=>'The picture was uploaded', 'imagePath' => $urlBdd );
             
 	        Rest::json($res);  
 	        Yii::app()->end();
