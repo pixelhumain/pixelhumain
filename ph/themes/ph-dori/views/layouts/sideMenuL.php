@@ -25,16 +25,24 @@
           function buildLi($item)
           {
             $modal = (isset($item["isModal"])) ? 'role="button" data-toggle="modal"' : "";
-            $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' 
-                                                 : ( (isset($item["key"]) && false) ? 'onclick="scrollTo(\'#block'.$item["key"].'\')"' 
-                                                                            : "" );
-            $href = (isset($item["href"])) ? (stripos($item["href"], "http") === false && stripos($item["href"], "#") !=0 ) ? Yii::app()->createUrl($item["href"]) : $item["href"] : "#";
+            $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' :  "" ;
+
+            $coco = ( isset( $item["href"] ) ) ? $item["href"]  :"#";
+            /*if( isset( $item["href"] ) ) 
+            {
+              $href = $item["href"]."".stripos($item["href"], "http");
+              if( stripos($item["href"], "http") === false  )  
+                $href = 'xxxxxxxxxx';//Yii::app()->createUrl( $item[ "href" ] ) ;
+              if( stripos($item["href"], "#") == 0 )
+                $href = Yii::app()->request->getUrl().$item[ "href" ];
+            }*/
+
             $class = (isset($item["class"])) ? 'class="'.$item["class"].'"' : "";
             $icon = (isset($item["iconClass"])) ? '<i class="'.$item["iconClass"].'"></i>' : '';
             $isActive = ( isset( Menu::$sectionMenu[ $item["key"] ] ) && in_array( Yii::app()->controller->action->id, Menu::$sectionMenu[ $item["key"] ] ) ) ? true : false;
             
             $active = ( $isActive || (isset($item["active"]) && $item["active"] ) ) ? "open active" : "";
-            echo '<li class="moduleMenu menu_'.$item["key"].' '.$item["key"].' '.$active.'"><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="inner">'.$item["label"].'</span></a></li>';
+            echo '<li class="moduleMenu menu_'.$item["key"].' '.$item["key"].' '.$active.'"><a href="'.$coco.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="inner">'.$item["label"].'</span></a></li>';
           }
 
           function buildChildren( $children )
