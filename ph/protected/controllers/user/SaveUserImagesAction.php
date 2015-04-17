@@ -22,7 +22,7 @@ class SaveUserImagesAction extends CAction
         		$params = array();
         		$params["id"] = $id;
         		$params["type"] = $phType;
-        		$params['folder'] = Yii::app()->controller->module->id.DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR.$id.DIRECTORY_SEPARATOR;
+        		$params['folder'] = str_replace(DIRECTORY_SEPARATOR, "/", Yii::app()->controller->module->id.DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR.$id.DIRECTORY_SEPARATOR);
         		$params['moduleId'] = Yii::app()->controller->module->id;
         		$params['name'] = $pathImage["name"];
         		$params['doctype'] = "image";
@@ -30,14 +30,8 @@ class SaveUserImagesAction extends CAction
         		$params['author'] = "";
         		$params['category'] = array();
         		Document::save($params);
-
-        		//Profile to check
-        		PHDB::update($phType,
-        					array("_id" => new MongoId($id)),
-                            array('$set' => array("imagePath"=> $pathImage["folder"].$pathImage["name"]))
-                            );
         	}
-        	$res = array('result' => true , 'msg'=>'The profile picture was changed successfully', 'imagePath' => $pathImage["folder"].$pathImage["name"] );
+        	$res = array('result' => true , 'msg'=>'The picture was uploaded', 'imagePath' => $pathImage["folder"].$pathImage["name"] );
             
 	        Rest::json($res);  
 	        Yii::app()->end();
