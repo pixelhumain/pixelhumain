@@ -16,6 +16,8 @@ class SaveUserImagesAction extends CAction
         	$phType = PHType::TYPE_CITOYEN;
         	if($type == 'event'){
         		$phType = PHType::TYPE_EVENTS;
+        	}if($type =="organization"){
+        		$phType = Organization::COLLECTION;
         	}
         	$folder = str_replace(DIRECTORY_SEPARATOR, "/", Yii::app()->controller->module->id.DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR.$id.DIRECTORY_SEPARATOR);
         	$pathImage = $this->processImage($_FILES['avatar'],$id, $type);
@@ -27,7 +29,7 @@ class SaveUserImagesAction extends CAction
         		$params['moduleId'] = Yii::app()->controller->module->id;
         		$params['name'] = $pathImage["name"];
         		$params['doctype'] = "image";
-        		$params['size'] = $pathImage["size"];
+        		$params['size'] = $pathImage["size"][0]*$pathImage["size"][1]/1000;
         		$params['author'] = "";
         		$params['category'] = array();
         		Document::save($params);
