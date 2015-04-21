@@ -64,14 +64,14 @@
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/<?php echo (isset($this->themeStyle)) ? $this->themeStyle : "theme-default"?>.css" type="text/css" id="skin_color">
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/print.css" type="text/css" media="print"/>
 		<!-- end: CORE CSS -->
-		<link rel='shortcut icon' type='image/x-icon' href="<?php echo $this->module->assetsUrl?>/images/favicon.ico" />
+		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset($this->module->assetsUrl) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" />
 		<script>
 		   var initT = new Object();
 		   //var showDelaunay = true;
 		   // A supprimer une fois le redirect corrigé 
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
-		   var moduleId = "<?php echo $this->module->id?>";
+		   var moduleId = "<?php echo (isset($this->module->id) ) ? $this->module->id : '' ?>";
 		   var personMap = <?php echo json_encode( (isset($this->person)) ? $this->person : array())?>;
 		   <?php if(YII_DEBUG){ ?>
 	       var debugMap = [
