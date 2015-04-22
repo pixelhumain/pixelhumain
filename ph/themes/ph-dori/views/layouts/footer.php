@@ -23,7 +23,7 @@
 				$logoColor = "";
 				$platform = "PROD";
 			}
-			echo "<span class='label label-inverse '>".$platform."</span> <span class='label label-inverse ' style='margin-right:20px'>".$this->version."</span>";
+			echo "<span class='label label-inverse '>".$platform."</span> <span class='label label-inverse '>".$this->versionDate."</span> <span class='label label-inverse ' style='margin-right:20px'>".$this->version."</span>";
 		 	
 			if(isset($this->footerImages)){
 				foreach ($this->footerImages as $k=>$v) {
