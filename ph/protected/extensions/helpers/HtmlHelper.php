@@ -27,6 +27,7 @@ class HtmlHelper {
      * @return true if everything done right
      */
     public static function registerCssAndScriptsFiles($files) {
+        $cs = Yii::app()->getClientScript();
         $ajaxRequest = Yii::app()->request->isAjaxRequest;
         foreach ($files as $file) {
             $extention = pathinfo($file,PATHINFO_EXTENSION);

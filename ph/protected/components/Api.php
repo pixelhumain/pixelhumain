@@ -214,7 +214,15 @@ class Api {
 		 ------------------------------------------------ */
         "initData" => array( "label"=>"Data Initialising","key"=>"initData",
         	"desc"=>"Imports a list of files in the 'data' folder, containing the datasets to get this module up and running",
-        	"actions"=>array('initdata' => 'application.components.api.controllers.InitDataAction',))
+        	"actions"=>array('initdata' => 'application.components.api.controllers.InitDataAction',)),
+        
+        /* -----------------------------------------------
+        Open Data Section
+         ------------------------------------------------ */
+        "openData" => array( "label"=>"Open Data","key"=>"openData",
+            "desc"=>"All the open data used like countries, cities...",
+            "actions"=>array('getcountries' => 'application.components.api.controllers.openData.GetCountriesAction',
+                             'getcitiesbypostalcode' => 'application.components.api.controllers.openData.GetCitiesByPostalCodeAction',)),
 	);
 
 	public static function getUserMap(){

@@ -4,15 +4,18 @@ class OpenData
 {
     /*
      * Tous les pays disponible à l'inscription
+     * Use the ISO_3166-1 list (http://en.wikipedia.org/wiki/ISO_3166-1)
      */
-    public static $phCountries = array("France"=>"France",
-                        				"Guadeloupe"=>"Guadeloupe",
-                      					"Guyanne"=>"Guyanne",
-                        				"Martinique"=>"Martinique",
-                        				"Mayotte"=>"Mayotte",
-                        				"Nouvelle-Calédonie"=>"Nouvelle-Calédonie",
-                        				"Réunion"=>"Réunion",
-                                        "St Pierre et Miquelon"=>"St Pierre et Miquelon");
+    public static $phCountries = array( "FR"=>"France",
+                        				"GP"=>"Guadeloupe",
+                      					"GF"=>"Guyanne Française",
+                        				"MQ"=>"Martinique",
+                        				"YT"=>"Mayotte",
+                        				"NC"=>"Nouvelle-Calédonie",
+                        				"RE"=>"Réunion",
+                                        "PM"=>"St Pierre et Miquelon");
+    
+
     /**
      * Classé par departement 
      * ce tableau fait le lien entre Code postal et nom de ville
@@ -58,43 +61,43 @@ class OpenData
                                             )
                                     );
      public static $communeMap = array( '974'=>array(
-                                            '97400'=> array( "codeinsee"=>'97411', "name"=>'ST DENIS', "news"=>"N"),
-                                            '97410'=> array( "codeinsee"=>'97416', "name"=>'ST PIERRE', "news"=>"S"),
-                                            '97411'=> array( "codeinsee"=>'97415', "name"=>'BOIS DE NEFLES ST PAUL', "news"=>"O"),
-                                            '97412'=> array( "codeinsee"=>'97402', "name"=>'BRAS PANON', "news"=>"E"),
-                                            '97413'=> array( "codeinsee"=>'97424', "name"=>'CILAOS', "news"=>"S"),
-                                            '97414'=> array( "codeinsee"=>'97403', "name"=>'ENTRE DEUX', "news"=>"S"),
-                                            '97416'=> array( "codeinsee"=>'97413', "name"=>'LA CHALOUPE', "news"=>"O"),
-                                            '97417'=> array( "codeinsee"=>'97411', "name"=>'LA MONTAGNE', "news"=>"N"),
-                                            '97418'=> array( "codeinsee"=>'97422', "name"=>'LA PLAINE DES CAFRES', "news"=>"S"),
-                                            '97419'=> array( "codeinsee"=>'97408', "name"=>'LA POSSESSION', "news"=>"N"),
-                                            '97420'=> array( "codeinsee"=>'97407', "name"=>'LE PORT', "news"=>"N"),
-                                            '97421'=> array( "codeinsee"=>'97414', "name"=>'LA RIVIERE', "news"=>"S"),
-                                            '97422'=> array( "codeinsee"=>'97415', "name"=>'LA SALINE', "news"=>"O"),
-                                            '97423'=> array( "codeinsee"=>'97415', "name"=>'LE GUILLAUME', "news"=>"O"),
-                                            '97424'=> array( "codeinsee"=>'97413', "name"=>'LE PITON ST LEU', "news"=>"O"),
-                                            '97425'=> array( "codeinsee"=>'97401', "name"=>'LES AVIRONS', "news"=>"S"),
-                                            '97426'=> array( "codeinsee"=>'97423', "name"=>'LES TROIS BASSINS', "news"=>"O"),
-                                            '97427'=> array( "codeinsee"=>'97404', "name"=>'L ETANG SALE', "news"=>"S"),
-                                            '97429'=> array( "codeinsee"=>'97405', "name"=>'PETITE ILE', "news"=>"S"),
-                                            '97430'=> array( "codeinsee"=>'97422', "name"=>'LE TAMPON', "news"=>"S"),
-                                            '97431'=> array( "codeinsee"=>'97406', "name"=>'LA PLAINE DES PALMISTES', "news"=>"E"),
-                                            '97432'=> array( "codeinsee"=>'97416', "name"=>'RAVINE DES CABRIS', "news"=>"S"),
-                                            '97433'=> array( "codeinsee"=>'97421', "name"=>'SALAZIE', "news"=>"E"),
-                                            '97434'=> array( "codeinsee"=>'97415', "name"=>'ST GILLES LES BAINS', "news"=>"O") ,
-                                            '97435'=> array( "codeinsee"=>'97415', "name"=>'ST GILLES LES HAUTS', "news"=>"O"),
-                                            '97436'=> array( "codeinsee"=>'97413', "name"=>'ST LEU', "news"=>"O"),
-                                            '97437'=> array( "codeinsee"=>'97410', "name"=>'STE ANNE', "news"=>"E"),
-                                            '97438'=> array( "codeinsee"=>'97418', "name"=>'STE MARIE', "news"=>"N"),
-                                            '97439'=> array( "codeinsee"=>'97419', "name"=>'STE ROSE', "news"=>"E"),
-                                            '97440'=> array( "codeinsee"=>'97409', "name"=>'ST ANDRE', "news"=>"E"),
-                                            '97441'=> array( "codeinsee"=>'97420', "name"=>'STE SUZANNE', "news"=>"E"),
-                                            '97442'=> array( "codeinsee"=>'97417', "name"=>'ST PHILIPPE', "news"=>"S"),
-                                            '97450'=> array( "codeinsee"=>'97414', "name"=>'ST LOUIS', "news"=>"S"),
-                                            '97460'=> array( "codeinsee"=>'97415', "name"=>'ST PAUL', "news"=>"O"),
-                                            '97470'=> array( "codeinsee"=>'97410', "name"=>'ST BENOIT', "news"=>"E"),
-                                            '97480'=> array( "codeinsee"=>'97412', "name"=>'ST JOSEPH', "news"=>"S"),
-                                            '97490'=> array( "codeinsee"=>'97411', "name"=>'STE CLOTILDE', "news"=>"N")
+                                            '97400'=> array(array( "codeinsee"=>'97411', "name"=>'ST DENIS', "news"=>"N")),
+                                            '97410'=> array(array( "codeinsee"=>'97416', "name"=>'ST PIERRE', "news"=>"S")),
+                                            '97411'=> array(array( "codeinsee"=>'97415', "name"=>'BOIS DE NEFLES ST PAUL', "news"=>"O")),
+                                            '97412'=> array(array( "codeinsee"=>'97402', "name"=>'BRAS PANON', "news"=>"E")),
+                                            '97413'=> array(array( "codeinsee"=>'97424', "name"=>'CILAOS', "news"=>"S")),
+                                            '97414'=> array(array( "codeinsee"=>'97403', "name"=>'ENTRE DEUX', "news"=>"S")),
+                                            '97416'=> array(array( "codeinsee"=>'97413', "name"=>'LA CHALOUPE', "news"=>"O")),
+                                            '97417'=> array(array( "codeinsee"=>'97411', "name"=>'LA MONTAGNE', "news"=>"N")),
+                                            '97418'=> array(array( "codeinsee"=>'97422', "name"=>'LA PLAINE DES CAFRES', "news"=>"S")),
+                                            '97419'=> array(array( "codeinsee"=>'97408', "name"=>'LA POSSESSION', "news"=>"N")),
+                                            '97420'=> array(array( "codeinsee"=>'97407', "name"=>'LE PORT', "news"=>"N")),
+                                            '97421'=> array(array( "codeinsee"=>'97414', "name"=>'LA RIVIERE', "news"=>"S")),
+                                            '97422'=> array(array( "codeinsee"=>'97415', "name"=>'LA SALINE', "news"=>"O")),
+                                            '97423'=> array(array( "codeinsee"=>'97415', "name"=>'LE GUILLAUME', "news"=>"O")),
+                                            '97424'=> array(array( "codeinsee"=>'97413', "name"=>'LE PITON ST LEU', "news"=>"O")),
+                                            '97425'=> array(array( "codeinsee"=>'97401', "name"=>'LES AVIRONS', "news"=>"S")),
+                                            '97426'=> array(array( "codeinsee"=>'97423', "name"=>'LES TROIS BASSINS', "news"=>"O")),
+                                            '97427'=> array(array( "codeinsee"=>'97404', "name"=>'L ETANG SALE', "news"=>"S")),
+                                            '97429'=> array(array( "codeinsee"=>'97405', "name"=>'PETITE ILE', "news"=>"S")),
+                                            '97430'=> array(array( "codeinsee"=>'97422', "name"=>'LE TAMPON', "news"=>"S")),
+                                            '97431'=> array(array( "codeinsee"=>'97406', "name"=>'LA PLAINE DES PALMISTES', "news"=>"E")),
+                                            '97432'=> array(array( "codeinsee"=>'97416', "name"=>'RAVINE DES CABRIS', "news"=>"S")),
+                                            '97433'=> array(array( "codeinsee"=>'97421', "name"=>'SALAZIE', "news"=>"E")),
+                                            '97434'=> array(array( "codeinsee"=>'97415', "name"=>'ST GILLES LES BAINS', "news"=>"O")) ,
+                                            '97435'=> array(array( "codeinsee"=>'97415', "name"=>'ST GILLES LES HAUTS', "news"=>"O")),
+                                            '97436'=> array(array( "codeinsee"=>'97413', "name"=>'ST LEU', "news"=>"O")),
+                                            '97437'=> array(array( "codeinsee"=>'97410', "name"=>'STE ANNE', "news"=>"E")),
+                                            '97438'=> array(array( "codeinsee"=>'97418', "name"=>'STE MARIE', "news"=>"N")),
+                                            '97439'=> array(array( "codeinsee"=>'97419', "name"=>'STE ROSE', "news"=>"E")),
+                                            '97440'=> array(array( "codeinsee"=>'97409', "name"=>'ST ANDRE', "news"=>"E")),
+                                            '97441'=> array(array( "codeinsee"=>'97420', "name"=>'STE SUZANNE', "news"=>"E")),
+                                            '97442'=> array(array( "codeinsee"=>'97417', "name"=>'ST PHILIPPE', "news"=>"S")),
+                                            '97450'=> array(array( "codeinsee"=>'97414', "name"=>'ST LOUIS', "news"=>"S")),
+                                            '97460'=> array(array( "codeinsee"=>'97415', "name"=>'ST PAUL', "news"=>"O")),
+                                            '97470'=> array(array( "codeinsee"=>'97410', "name"=>'ST BENOIT', "news"=>"E")),
+                                            '97480'=> array(array( "codeinsee"=>'97412', "name"=>'ST JOSEPH', "news"=>"S")),
+                                            '97490'=> array(array( "codeinsee"=>'97411', "name"=>'STE CLOTILDE', "news"=>"N"))
                                             )
                                     );
                                     
@@ -145,42 +148,5 @@ class OpenData
                                             )
    
                                     );
-                                    
-                                    /*
-                                     97413'=> 'CILAOS', SUD
-                                            '97414'=> 'ENTRE DEUX',  SUD
-                                            '97416'=> 'LA CHALOUPE',  OUEST
-                                            '97417'=> 'LA MONTAGNE',  NORD
-                                            '97418'=> 'LA PLAINE DES CAFRES',  SUD
-                                            '97419'=> 'LA POSSESSION',  NORD
-                                            '97420'=> 'LE PORT',  NORD
-                                            '97421'=> 'LA RIVIERE', SUD
-                                            '97422'=> 'LA SALINE', OUEST
-                                            '97423'=> 'LE GUILLAUME', OUEST
-                                            '97424'=> 'LE PITON ST LEU', OUEST
-                                            '97425'=> 'LES AVIRONS', SUD
-                                            '97426'=> 'LES TROIS BASSINS', OUEST
-                                            '97427'=> 'L ETANG SALE', SUD
-                                            '97429'=> 'PETITE ILE', SUD
-                                            '97430'=> 'LE TAMPON', SUD
-                                            '97431'=> 'LA PLAINE DES PALMISTES', EST
-                                            '97432'=> 'RAVINE DES CABRIS', SUD
-                                            '97433'=> 'SALAZIE', EST
-                                            '97434'=> 'LES TROIS BASSINS', OUEST
-                                            '97434'=> 'ST GILLES LES BAINS' , OUEST
-                                            '97435'=> 'ST GILLES LES HAUTS', OUEST
-                                            '97436'=> 'ST LEU', OUEST
-                                            '97437'=> 'STE ANNE', EST
-                                            '97438'=> 'STE MARIE',NORD
-                                            '97439'=> 'STE ROSE', EST
-                                            '97440'=> 'ST ANDRE', EST
-                                            '97441'=> 'STE SUZANNE', EST
-                                            '97442'=> 'ST PHILIPPE', SUD
-                                            '97450'=> 'ST LOUIS', SUD
-                                            '97460'=> 'ST PAUL', OUEST
-                                            '97470'=> 'ST BENOIT', EST
-                                            '97480'=> 'ST JOSEPH', SUD
-                                            '97490'=> 'STE CLOTILDE' NORD
-                                     */
                                    
 }
