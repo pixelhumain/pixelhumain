@@ -1952,7 +1952,7 @@ span.input-help > input {
 select.form-control {
   background-color: #FFFFFF;
   border: 1px solid #D5D5D5;
-  border-radius: 0 0 0 0;
+  border-radius: 4px;
   color: #858585; }
 
 select.form-control option {

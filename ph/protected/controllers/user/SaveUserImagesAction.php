@@ -13,28 +13,25 @@ class SaveUserImagesAction extends CAction
     {
     	if( isset($_FILES['avatar'])) 
         {
-        	$phType = PHType::TYPE_CITOYEN;
-        	if($type == 'event'){
-        		$phType = PHType::TYPE_EVENTS;
-        	}
+        	$type = trim($type);
         	$folder = str_replace(DIRECTORY_SEPARATOR, "/", Yii::app()->controller->module->id.DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR.$id.DIRECTORY_SEPARATOR);
         	$pathImage = $this->processImage($_FILES['avatar'],$id, $type);
         	if ($pathImage) {
         		$params = array();
         		$params["id"] = $id;
-        		$params["type"] = $phType;
+        		$params["type"] = $type;
         		$params['folder'] = $folder;
         		$params['moduleId'] = Yii::app()->controller->module->id;
         		$params['name'] = $pathImage["name"];
         		$params['doctype'] = "image";
-        		$params['size'] = $pathImage["size"];
+        		$params['size'] = $pathImage["size"][0]*$pathImage["size"][1]/1000;
         		$params['author'] = "";
         		$params['category'] = array();
         		Document::save($params);
 
         		//Profile to check
         		$urlBdd = str_replace(DIRECTORY_SEPARATOR, "/", Yii::app()->getRequest()->getBaseUrl(true).DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR.$folder.$pathImage["name"]);
-        		PHDB::update($phType,
+        		PHDB::update($type,
         					array("_id" => new MongoId($id)),
                             array('$set' => array("imagePath"=> $urlBdd))
                             );

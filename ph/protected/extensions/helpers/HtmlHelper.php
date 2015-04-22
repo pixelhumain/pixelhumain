@@ -16,5 +16,39 @@ class HtmlHelper {
     		echo $default;
     	}
     }
+
+    /**
+     * Register using yii methode the css and javascript files.
+     * The helper will choose the way to register the file depending on :
+     * 1. It's an ajax request or not
+     * 2. It's a css or a javascript file
+     * @param array $files an array with the file path of the css and js to register. 
+     * The paths must be relative from the baseUrl. Ex : '/assets/plugins/bootstrap-datepicker/css/datepicker.css'
+     * @return true if everything done right
+     */
+    public static function registerCssAndScriptsFiles($files) {
+        $cs = Yii::app()->getClientScript();
+        $ajaxRequest = Yii::app()->request->isAjaxRequest;
+        foreach ($files as $file) {
+            $extention = pathinfo($file,PATHINFO_EXTENSION);
+            if ($extention == "js" || $extention == "JS") {
+                if($ajaxRequest){
+                    echo CHtml::scriptFile(Yii::app()->theme->baseUrl.$file);
+                } else {
+                    $cs->registerScriptFile(Yii::app()->theme->baseUrl. $file , CClientScript::POS_END, array(), 2);
+                }
+            } else if ($extention == "css" || $extention == "CSS") {
+                if($ajaxRequest){
+                    echo CHtml::cssFile(Yii::app()->theme->baseUrl.$file);
+                } else {
+                    $cs->registerCssFile(Yii::app()->theme->baseUrl.$file);
+                }
+            } else {
+                //unknown extension
+                throw new InvalidArgumentException("unkonw file extension : ".$extention);
+            }
+        }
+        return true;
+    }
 }
 ?>

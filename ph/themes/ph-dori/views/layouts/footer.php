@@ -2,7 +2,29 @@
 <footer class="inner">
 	<div class="footer-inner">
 		<div class="pull-left">
+
 			2014 <?php echo (isset($this->projectImage)) ? '<img height="30" style="margin-right:20px;" src="'.$this->module->assetsUrl.$this->projectImage.'"/>' : "<i class='fa fa-close'>/i>";
+			 
+			$platform = "";
+			$logoColor = "";
+			if( $_SERVER['SERVER_NAME'] == "127.0.0.1" || $_SERVER['SERVER_NAME'] == "localhost" ){
+				$logoColor = "text-red";
+				$platform = "LOCAL DEV";
+			}
+			else if( $_SERVER['SERVER_NAME'] == "text.pixelhumain.com" ){
+				$logoColor = "text-azure";
+				$platform = "TEST";
+			}
+			else if( $_SERVER['SERVER_NAME'] == "dev.pixelhumain.com" ){
+				$logoColor = "text-orange";
+				$platform = "ONLINE DEV";
+			}
+			else if( $_SERVER['SERVER_NAME'] == "pixelhumain.com" ){
+				$logoColor = "";
+				$platform = "PROD";
+			}
+			echo "<span class='label label-inverse '>".$platform."</span> <span class='label label-inverse '>".$this->versionDate."</span> <span class='label label-inverse ' style='margin-right:20px'>".$this->version."</span>";
+		 	
 			if(isset($this->footerImages)){
 				foreach ($this->footerImages as $k=>$v) {
 					?>

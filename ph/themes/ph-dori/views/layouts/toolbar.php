@@ -2,7 +2,8 @@
 <div class="toolbar row">
 	<div class="col-md-7 hidden-xs">
 		<div class="page-header">
-			<h1><?php echo (isset($this->title)) ? $this->title : "Page Title"; ?> <small class="hidden-xs"><?php echo (isset($this->subTitle)) ? $this->subTitle : "Page subTitle";?></small></h1>
+			<h1><?php echo (isset($this->title)) ? $this->title : "Page Title"; ?></h1> 
+			<?php echo (isset($this->subTitle)) ? "<small class='hidden-xs'>".$this->subTitle."</small>" : "Page subTitle";?>
 		</div>
 	</div>
 	<div class="col-md-5 col-xs-12">

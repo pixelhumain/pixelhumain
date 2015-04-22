@@ -29,15 +29,16 @@ function getAjax(id,url,callback,datatype)
       type:"GET",
       //dataType:"json",
       success:function(data) {
-        if( typeof callback === "function")
-          callback(data,id);
-        else if(datatype === "html" )
+        
+        if(datatype === "html" )
           $(id).html(data);
         else if(typeof data === "string" )
           toastr.success(data);
         else
             $("#"+id).html(JSON.stringify(data, null, 4));
-        
+
+        if( typeof callback === "function")
+          callback(data,id);
       },
       error:function (xhr, ajaxOptions, thrownError){
         console.error(thrownError);
