@@ -1,42 +1,42 @@
 /* The MIT License */
-.dropzoneTEEO,
-.dropzoneTEEO *,
-.dropzoneTEEO-previews,
-.dropzoneTEEO-previews * {
+.dropzoneInstance,
+.dropzoneInstance *,
+.dropzoneInstance-previews,
+.dropzoneInstance-previews * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.dropzoneTEEO {
+.dropzoneInstance {
   position: relative;
   border: 1px solid rgba(0,0,0,0.08);
   background: rgba(0,0,0,0.02);
   padding: 1em;
 }
-.dropzoneTEEO.dz-clickable {
+.dropzoneInstance.dz-clickable {
   cursor: pointer;
 }
-.dropzoneTEEO.dz-clickable .dz-message,
-.dropzoneTEEO.dz-clickable .dz-message span {
+.dropzoneInstance.dz-clickable .dz-message,
+.dropzoneInstance.dz-clickable .dz-message span {
   cursor: pointer;
 }
-.dropzoneTEEO.dz-clickable * {
+.dropzoneInstance.dz-clickable * {
   cursor: default;
 }
-.dropzoneTEEO .dz-message {
+.dropzoneInstance .dz-message {
   opacity: 1;
   -ms-filter: none;
   filter: none;
 }
-.dropzoneTEEO.dz-drag-hover {
+.dropzoneInstance.dz-drag-hover {
   border-color: rgba(0,0,0,0.15);
   background: rgba(0,0,0,0.04);
 }
-.dropzoneTEEO.dz-started .dz-message {
+.dropzoneInstance.dz-started .dz-message {
   display: none;
 }
-.dropzoneTEEO .dz-preview,
-.dropzoneTEEO-previews .dz-preview {
+.dropzoneInstance .dz-preview,
+.dropzoneInstance-previews .dz-preview {
   background: rgba(255,255,255,0.8);
   position: relative;
   display: inline-block;
@@ -45,12 +45,12 @@
   border: 1px solid #acacac;
   padding: 6px 6px 6px 6px;
 }
-.dropzoneTEEO .dz-preview.dz-file-preview [data-dz-thumbnail],
-.dropzoneTEEO-previews .dz-preview.dz-file-preview [data-dz-thumbnail] {
+.dropzoneInstance .dz-preview.dz-file-preview [data-dz-thumbnail],
+.dropzoneInstance-previews .dz-preview.dz-file-preview [data-dz-thumbnail] {
   display: none;
 }
-.dropzoneTEEO .dz-preview .dz-details,
-.dropzoneTEEO-previews .dz-preview .dz-details {
+.dropzoneInstance .dz-preview .dz-details,
+.dropzoneInstance-previews .dz-preview .dz-details {
   width: 100px;
   height: 100px;
   position: relative;
@@ -58,43 +58,43 @@
   padding: 5px;
   margin-bottom: 22px;
 }
-.dropzoneTEEO .dz-preview .dz-details .dz-filename,
-.dropzoneTEEO-previews .dz-preview .dz-details .dz-filename {
+.dropzoneInstance .dz-preview .dz-details .dz-filename,
+.dropzoneInstance-previews .dz-preview .dz-details .dz-filename {
   overflow: hidden;
   height: 100%;
 }
-.dropzoneTEEO .dz-preview .dz-details img,
-.dropzoneTEEO-previews .dz-preview .dz-details img {
+.dropzoneInstance .dz-preview .dz-details img,
+.dropzoneInstance-previews .dz-preview .dz-details img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100px;
   height: 100px;
 }
-.dropzoneTEEO .dz-preview .dz-details .dz-size,
-.dropzoneTEEO-previews .dz-preview .dz-details .dz-size {
+.dropzoneInstance .dz-preview .dz-details .dz-size,
+.dropzoneInstance-previews .dz-preview .dz-details .dz-size {
   position: absolute;
   bottom: -28px;
   left: 3px;
   height: 28px;
   line-height: 28px;
 }
-.dropzoneTEEO .dz-preview.dz-error .dz-error-mark,
-.dropzoneTEEO-previews .dz-preview.dz-error .dz-error-mark {
+.dropzoneInstance .dz-preview.dz-error .dz-error-mark,
+.dropzoneInstance-previews .dz-preview.dz-error .dz-error-mark {
   display: block;
 }
-.dropzoneTEEO .dz-preview.dz-success .dz-success-mark,
-.dropzoneTEEO-previews .dz-preview.dz-success .dz-success-mark {
+.dropzoneInstance .dz-preview.dz-success .dz-success-mark,
+.dropzoneInstance-previews .dz-preview.dz-success .dz-success-mark {
   display: block;
 }
-.dropzoneTEEO .dz-preview:hover .dz-details img,
-.dropzoneTEEO-previews .dz-preview:hover .dz-details img {
+.dropzoneInstance .dz-preview:hover .dz-details img,
+.dropzoneInstance-previews .dz-preview:hover .dz-details img {
   display: none;
 }
-.dropzoneTEEO .dz-preview .dz-success-mark,
-.dropzoneTEEO-previews .dz-preview .dz-success-mark,
-.dropzoneTEEO .dz-preview .dz-error-mark,
-.dropzoneTEEO-previews .dz-preview .dz-error-mark {
+.dropzoneInstance .dz-preview .dz-success-mark,
+.dropzoneInstance-previews .dz-preview .dz-success-mark,
+.dropzoneInstance .dz-preview .dz-error-mark,
+.dropzoneInstance-previews .dz-preview .dz-error-mark {
   display: none;
   position: absolute;
   width: 40px;
@@ -104,16 +104,16 @@
   right: -10px;
   top: -10px;
 }
-.dropzoneTEEO .dz-preview .dz-success-mark,
-.dropzoneTEEO-previews .dz-preview .dz-success-mark {
+.dropzoneInstance .dz-preview .dz-success-mark,
+.dropzoneInstance-previews .dz-preview .dz-success-mark {
   color: #8cc657;
 }
-.dropzoneTEEO .dz-preview .dz-error-mark,
-.dropzoneTEEO-previews .dz-preview .dz-error-mark {
+.dropzoneInstance .dz-preview .dz-error-mark,
+.dropzoneInstance-previews .dz-preview .dz-error-mark {
   color: #ee162d;
 }
-.dropzoneTEEO .dz-preview .dz-progress,
-.dropzoneTEEO-previews .dz-preview .dz-progress {
+.dropzoneInstance .dz-preview .dz-progress,
+.dropzoneInstance-previews .dz-preview .dz-progress {
   position: absolute;
   top: 100px;
   left: 6px;
@@ -122,8 +122,8 @@
   background: #d7d7d7;
   display: none;
 }
-.dropzoneTEEO .dz-preview .dz-progress .dz-upload,
-.dropzoneTEEO-previews .dz-preview .dz-progress .dz-upload {
+.dropzoneInstance .dz-preview .dz-progress .dz-upload,
+.dropzoneInstance-previews .dz-preview .dz-progress .dz-upload {
   display: block;
   position: absolute;
   top: 0;
@@ -132,12 +132,12 @@
   width: 0%;
   background-color: #8cc657;
 }
-.dropzoneTEEO .dz-preview.dz-processing .dz-progress,
-.dropzoneTEEO-previews .dz-preview.dz-processing .dz-progress {
+.dropzoneInstance .dz-preview.dz-processing .dz-progress,
+.dropzoneInstance-previews .dz-preview.dz-processing .dz-progress {
   display: block;
 }
-.dropzoneTEEO .dz-preview .dz-error-message,
-.dropzoneTEEO-previews .dz-preview .dz-error-message {
+.dropzoneInstance .dz-preview .dz-error-message,
+.dropzoneInstance-previews .dz-preview .dz-error-message {
   display: none;
   position: absolute;
   top: -5px;
@@ -149,11 +149,11 @@
   max-width: 500px;
   z-index: 500;
 }
-.dropzoneTEEO .dz-preview:hover.dz-error .dz-error-message,
-.dropzoneTEEO-previews .dz-preview:hover.dz-error .dz-error-message {
+.dropzoneInstance .dz-preview:hover.dz-error .dz-error-message,
+.dropzoneInstance-previews .dz-preview:hover.dz-error .dz-error-message {
   display: block;
 }
-.dropzoneTEEO {
+.dropzoneInstance {
   border: 1px solid rgba(0,0,0,0.03);
   min-height: 360px;
   -webkit-border-radius: 3px;
@@ -161,7 +161,7 @@
   background: rgba(0,0,0,0.03);
   padding: 23px;
 }
-.dropzoneTEEO .dz-default.dz-message {
+.dropzoneInstance .dz-default.dz-message {
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -182,67 +182,67 @@
   left: 50%;
 }
 @media all and (-webkit-min-device-pixel-ratio:1.5),(min--moz-device-pixel-ratio:1.5),(-o-min-device-pixel-ratio:1.5/1),(min-device-pixel-ratio:1.5),(min-resolution:138dpi),(min-resolution:1.5dppx) {
-  .dropzoneTEEO .dz-default.dz-message {
+  .dropzoneInstance .dz-default.dz-message {
     background-image: url("../images/spritemap@2x.png");
     -webkit-background-size: 428px 406px;
     -moz-background-size: 428px 406px;
     background-size: 428px 406px;
   }
 }
-.dropzoneTEEO .dz-default.dz-message span {
+.dropzoneInstance .dz-default.dz-message span {
   display: none;
 }
-.dropzoneTEEO.dz-square .dz-default.dz-message {
+.dropzoneInstance.dz-square .dz-default.dz-message {
   background-position: 0 -123px;
   width: 268px;
   margin-left: -134px;
   height: 174px;
   margin-top: -87px;
 }
-.dropzoneTEEO.dz-drag-hover .dz-message {
+.dropzoneInstance.dz-drag-hover .dz-message {
   opacity: 0.15;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=15)";
   filter: alpha(opacity=15);
 }
-.dropzoneTEEO.dz-started .dz-message {
+.dropzoneInstance.dz-started .dz-message {
   display: block;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
 }
-.dropzoneTEEO .dz-preview,
-.dropzoneTEEO-previews .dz-preview {
+.dropzoneInstance .dz-preview,
+.dropzoneInstance-previews .dz-preview {
   -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.16);
   box-shadow: 1px 1px 4px rgba(0,0,0,0.16);
   font-size: 14px;
 }
-.dropzoneTEEO .dz-preview.dz-image-preview:hover .dz-details img,
-.dropzoneTEEO-previews .dz-preview.dz-image-preview:hover .dz-details img {
+.dropzoneInstance .dz-preview.dz-image-preview:hover .dz-details img,
+.dropzoneInstance-previews .dz-preview.dz-image-preview:hover .dz-details img {
   display: block;
   opacity: 0.1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
   filter: alpha(opacity=10);
 }
-.dropzoneTEEO .dz-preview.dz-success .dz-success-mark,
-.dropzoneTEEO-previews .dz-preview.dz-success .dz-success-mark {
+.dropzoneInstance .dz-preview.dz-success .dz-success-mark,
+.dropzoneInstance-previews .dz-preview.dz-success .dz-success-mark {
   opacity: 1;
   -ms-filter: none;
   filter: none;
 }
-.dropzoneTEEO .dz-preview.dz-error .dz-error-mark,
-.dropzoneTEEO-previews .dz-preview.dz-error .dz-error-mark {
+.dropzoneInstance .dz-preview.dz-error .dz-error-mark,
+.dropzoneInstance-previews .dz-preview.dz-error .dz-error-mark {
   opacity: 1;
   -ms-filter: none;
   filter: none;
 }
-.dropzoneTEEO .dz-preview.dz-error .dz-progress .dz-upload,
-.dropzoneTEEO-previews .dz-preview.dz-error .dz-progress .dz-upload {
+.dropzoneInstance .dz-preview.dz-error .dz-progress .dz-upload,
+.dropzoneInstance-previews .dz-preview.dz-error .dz-progress .dz-upload {
   background: #ee1e2d;
 }
-.dropzoneTEEO .dz-preview .dz-error-mark,
-.dropzoneTEEO-previews .dz-preview .dz-error-mark,
-.dropzoneTEEO .dz-preview .dz-success-mark,
-.dropzoneTEEO-previews .dz-preview .dz-success-mark {
+.dropzoneInstance .dz-preview .dz-error-mark,
+.dropzoneInstance-previews .dz-preview .dz-error-mark,
+.dropzoneInstance .dz-preview .dz-success-mark,
+.dropzoneInstance-previews .dz-preview .dz-success-mark {
   display: block;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -256,32 +256,32 @@
   background-repeat: no-repeat;
 }
 @media all and (-webkit-min-device-pixel-ratio:1.5),(min--moz-device-pixel-ratio:1.5),(-o-min-device-pixel-ratio:1.5/1),(min-device-pixel-ratio:1.5),(min-resolution:138dpi),(min-resolution:1.5dppx) {
-  .dropzoneTEEO .dz-preview .dz-error-mark,
-  .dropzoneTEEO-previews .dz-preview .dz-error-mark,
-  .dropzoneTEEO .dz-preview .dz-success-mark,
-  .dropzoneTEEO-previews .dz-preview .dz-success-mark {
+  .dropzoneInstance .dz-preview .dz-error-mark,
+  .dropzoneInstance-previews .dz-preview .dz-error-mark,
+  .dropzoneInstance .dz-preview .dz-success-mark,
+  .dropzoneInstance-previews .dz-preview .dz-success-mark {
     background-image: url("../images/spritemap@2x.png");
     -webkit-background-size: 428px 406px;
     -moz-background-size: 428px 406px;
     background-size: 428px 406px;
   }
 }
-.dropzoneTEEO .dz-preview .dz-error-mark span,
-.dropzoneTEEO-previews .dz-preview .dz-error-mark span,
-.dropzoneTEEO .dz-preview .dz-success-mark span,
-.dropzoneTEEO-previews .dz-preview .dz-success-mark span {
+.dropzoneInstance .dz-preview .dz-error-mark span,
+.dropzoneInstance-previews .dz-preview .dz-error-mark span,
+.dropzoneInstance .dz-preview .dz-success-mark span,
+.dropzoneInstance-previews .dz-preview .dz-success-mark span {
   display: none;
 }
-.dropzoneTEEO .dz-preview .dz-error-mark,
-.dropzoneTEEO-previews .dz-preview .dz-error-mark {
+.dropzoneInstance .dz-preview .dz-error-mark,
+.dropzoneInstance-previews .dz-preview .dz-error-mark {
   background-position: -268px -123px;
 }
-.dropzoneTEEO .dz-preview .dz-success-mark,
-.dropzoneTEEO-previews .dz-preview .dz-success-mark {
+.dropzoneInstance .dz-preview .dz-success-mark,
+.dropzoneInstance-previews .dz-preview .dz-success-mark {
   background-position: -268px -163px;
 }
-.dropzoneTEEO .dz-preview .dz-progress .dz-upload,
-.dropzoneTEEO-previews .dz-preview .dz-progress .dz-upload {
+.dropzoneInstance .dz-preview .dz-progress .dz-upload,
+.dropzoneInstance-previews .dz-preview .dz-progress .dz-upload {
   -webkit-animation: loading 0.4s linear infinite;
   -moz-animation: loading 0.4s linear infinite;
   -o-animation: loading 0.4s linear infinite;
@@ -304,16 +304,16 @@
   background-position: 0px -400px;
 }
 @media all and (-webkit-min-device-pixel-ratio:1.5),(min--moz-device-pixel-ratio:1.5),(-o-min-device-pixel-ratio:1.5/1),(min-device-pixel-ratio:1.5),(min-resolution:138dpi),(min-resolution:1.5dppx) {
-  .dropzoneTEEO .dz-preview .dz-progress .dz-upload,
-  .dropzoneTEEO-previews .dz-preview .dz-progress .dz-upload {
+  .dropzoneInstance .dz-preview .dz-progress .dz-upload,
+  .dropzoneInstance-previews .dz-preview .dz-progress .dz-upload {
     background-image: url("../images/spritemap@2x.png");
     -webkit-background-size: 428px 406px;
     -moz-background-size: 428px 406px;
     background-size: 428px 406px;
   }
 }
-.dropzoneTEEO .dz-preview.dz-success .dz-progress,
-.dropzoneTEEO-previews .dz-preview.dz-success .dz-progress {
+.dropzoneInstance .dz-preview.dz-success .dz-progress,
+.dropzoneInstance-previews .dz-preview.dz-success .dz-progress {
   display: block;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -324,8 +324,8 @@
   -ms-transition: opacity 0.4s ease-in-out;
   transition: opacity 0.4s ease-in-out;
 }
-.dropzoneTEEO .dz-preview .dz-error-message,
-.dropzoneTEEO-previews .dz-preview .dz-error-message {
+.dropzoneInstance .dz-preview .dz-error-message,
+.dropzoneInstance-previews .dz-preview .dz-error-message {
   display: block;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -336,14 +336,14 @@
   -ms-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
 }
-.dropzoneTEEO .dz-preview:hover.dz-error .dz-error-message,
-.dropzoneTEEO-previews .dz-preview:hover.dz-error .dz-error-message {
+.dropzoneInstance .dz-preview:hover.dz-error .dz-error-message,
+.dropzoneInstance-previews .dz-preview:hover.dz-error .dz-error-message {
   opacity: 1;
   -ms-filter: none;
   filter: none;
 }
-.dropzoneTEEO a.dz-remove,
-.dropzoneTEEO-previews a.dz-remove {
+.dropzoneInstance a.dz-remove,
+.dropzoneInstance-previews a.dz-remove {
   background-image: -webkit-linear-gradient(top, #fafafa, #eee);
   background-image: -moz-linear-gradient(top, #fafafa, #eee);
   background-image: -o-linear-gradient(top, #fafafa, #eee);
@@ -359,8 +359,8 @@
   color: #aaa;
   margin-top: 26px;
 }
-.dropzoneTEEO a.dz-remove:hover,
-.dropzoneTEEO-previews a.dz-remove:hover {
+.dropzoneInstance a.dz-remove:hover,
+.dropzoneInstance-previews a.dz-remove:hover {
   color: #666;
 }
 @-moz-keyframes loading {

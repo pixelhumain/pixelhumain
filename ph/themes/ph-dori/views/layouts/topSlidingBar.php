@@ -35,7 +35,7 @@
 			<!-- end: SLIDING BAR FIRST COLUMN -->
 			<!-- start: SLIDING BAR SECOND COLUMN -->
 			<div class="col-md-4 col-sm-4">
-				<h2>My Recent Activities</h2>
+				<h2>My Recent Images</h2>
 				<div class="blog-photo-stream margin-bottom-30">
 					<ul class="list-unstyled">
 						<li>

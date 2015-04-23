@@ -317,3 +317,14 @@ body {
   background: #e5324b; }
 
 /* end theme-style11.scss */
+/* ---------------------------------------------------------------------- */
+/*  SELECT2
+/* ---------------------------------------------------------------------- */
+.select2-container .select2-choice .select2-arrow b:before {
+    left: 5px;
+    top: -3px;
+}
+.select2-container .select2-choice {
+    height: 32px;
+    line-height: 32px;
+}
