@@ -29,7 +29,9 @@ class Document {
 	*/
 	public static function save($params){
 		//$id = Yii::app()->session["userId"];
-		
+		if(!isset($params["contentKey"])){
+			$params["contentKey"] = "";
+		}
 	    $new = array(
 			"id" => $params['id'],
 	  		"type" => $params['type'],
@@ -40,6 +42,7 @@ class Document {
 	  		"name" => $params['name'],
 	  		"size" => $params['size'],
 	  		"category" => $params['category'],
+	  		"contentKey" => $params["contentKey"],
 	  		'created' => time()
 	    );
 

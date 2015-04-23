@@ -61,23 +61,29 @@
 			<span class="trigger collapse_trigger">
 				<i class="fa fa-logo"></i>
 			</span>
+			<?php if(isset(Yii::app()->session["userId"])){ ?>
+	 			<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/dashboard/id/".Yii::app()->session['userId'])?>" class="userlink">
+					<i class="fa fa-user_circled"></i>
+					<span class="username"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span>
+				</a>
 
-			<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/dashboard/id/".Yii::app()->session['userId'])?>" class="userlink">
-				<i class="fa fa-user_circled"></i>
-				<span class="username"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span>
-			</a>
-
-			<a href="#" onclick="popinInfo('TODO : Compteur Notfication de discussion','Ce compteur de gamification permettra de suivre')">
-				<i class="fa fa-comment"></i>
-				<span class="notifications-count badge badge-danger animated bounceIn">97</span>
-			</a>
-			<?php //<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/activities") ?>
-			<a href="#" onclick="popinInfo('TODO : Compteur de Gamifation','Ce compteur de gamification permettra de suivre les points cumulés par l`activité sur la plateforme')"  >
-				<i class="fa fa-bookmark-o"></i>
-			</a>
-			<a href="#" class="sb_toggle" id="sbToogle">
-				<i class="fa fa-cog"></i>
-			</a>
+				<a href="#" onclick="popinInfo('TODO : Compteur Notfication de discussion','Ce compteur de gamification permettra de suivre')">
+					<i class="fa fa-comment"></i>
+					<span class="notifications-count badge badge-danger animated bounceIn">97</span>
+				</a>
+				<?php //<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/activities") ?>
+				<a href="#" onclick="popinInfo('TODO : Compteur de Gamifation','Ce compteur de gamification permettra de suivre les points cumulés par l`activité sur la plateforme')"  >
+					<i class="fa fa-bookmark-o"></i>
+				</a>
+				<a href="#" class="sb_toggle" id="sbToogle">
+					<i class="fa fa-cog"></i>
+				</a>
+			<?php } else { ?>
+				<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/login"); ?>" >
+					<i class="fa fa-power-off"></i>
+					<span> Se connecter   </span>
+				</a>
+			<?php }; ?>
 		</div>
 	</div>
 		
