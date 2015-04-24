@@ -2251,6 +2251,10 @@ td.small-width {
   text-shadow: none !important;
   vertical-align: middle; }
 
+.badge-green {
+  background-color: #1fbba6;
+}
+
 .label {
   font-size: 85% !important;
   padding: 0.4em 0.6em !important; }
@@ -4353,8 +4357,12 @@ div.timeline {
   border-color: #CCCC99 !important; }
 
 .label-green, .badge-green {
-  background-color: #3D9400 !important;
-  border-color: #3D9400 !important; }
+  background-color: #94c01b !important;
+  border-color: #94c01b !important; }
+
+.label-red, .badge-red {
+  background-color: #e66b6b !important;
+  border-color: #e66b6b !important; }
 
 .fc-border-separate tr.fc-last th {
   border-top: none !important;
