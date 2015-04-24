@@ -86,7 +86,7 @@ class Document {
 		foreach ($listImagesofType as $key => $value) {
 			if(isset($value["contentKey"]) && $value["contentKey"] != ""){
 				if(explode(".", $contentKey)[1] == explode(".", $value["contentKey"])[1]){
-					$imagePath = "upload".DIRECTORY_SEPARATOR.$value["folder"].$value["name"];
+					$imagePath = "upload".DIRECTORY_SEPARATOR.Yii::app()->controller->module->id.$value["folder"].$value["name"];
     				$imagePath = Yii::app()->getRequest()->getBaseUrl(true).DIRECTORY_SEPARATOR.$imagePath;
     				$imagePath = str_replace(DIRECTORY_SEPARATOR, "/", $imagePath);
 					$listImages[(string)explode(".", $value["contentKey"])[2]] = $imagePath;
