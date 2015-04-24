@@ -82,14 +82,16 @@ class Document {
 	public static function getListImagesByKey($id, $contentKey){
 		$listImages= array();
 		$sort = array( 'created' => 1 );
-		$listImagesofType = Document::listMyDocumentByType($id, explode(".", $contentKey)[0], "image", $sort);
+		$explodeContentKey = explode(".", $contentKey);
+		$listImagesofType = Document::listMyDocumentByType($id, $explodeContentKey[0], "image", $sort);
 		foreach ($listImagesofType as $key => $value) {
 			if(isset($value["contentKey"]) && $value["contentKey"] != ""){
-				if(explode(".", $contentKey)[1] == explode(".", $value["contentKey"])[1]){
+				$explodeValueContentKey = explode(".", $value["contentKey"]);
+				if(explode(".", $contentKey)[1] == $explodeValueContentKey[1]){
 					$imagePath = "upload".DIRECTORY_SEPARATOR.Yii::app()->controller->module->id.$value["folder"].$value["name"];
     				$imagePath = Yii::app()->getRequest()->getBaseUrl(true).DIRECTORY_SEPARATOR.$imagePath;
     				$imagePath = str_replace(DIRECTORY_SEPARATOR, "/", $imagePath);
-					$listImages[(string)explode(".", $value["contentKey"])[2]] = $imagePath;
+					$listImages[(string) $explodeValueContentKey[2]] = $imagePath;
 				}
 			}
 		}
