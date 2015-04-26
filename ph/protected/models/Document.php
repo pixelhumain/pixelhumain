@@ -74,6 +74,29 @@ class Document {
 		}
 		return $doctype;
 	}
+
+	/**
+	* get a list of a image 
+	* @return return a list of image
+	*/
+	public static function getListImagesByKey($id, $contentKey){
+		$listImages= array();
+		$sort = array( 'created' => 1 );
+		$explodeContentKey = explode(".", $contentKey);
+		$listImagesofType = Document::listMyDocumentByType($id, $explodeContentKey[0], "image", $sort);
+		foreach ($listImagesofType as $key => $value) {
+			if(isset($value["contentKey"]) && $value["contentKey"] != ""){
+				$explodeValueContentKey = explode(".", $value["contentKey"]);
+				if($explodeContentKey[1] == $explodeValueContentKey[1]){
+					$imagePath = "upload".DIRECTORY_SEPARATOR.Yii::app()->controller->module->id.$value["folder"].$value["name"];
+    				$imagePath = Yii::app()->getRequest()->getBaseUrl(true).DIRECTORY_SEPARATOR.$imagePath;
+    				$imagePath = str_replace(DIRECTORY_SEPARATOR, "/", $imagePath);
+					$listImages[(string) $explodeValueContentKey[2]] = $imagePath;
+				}
+			}
+		}
+		return $listImages;
+	}
 	
 }
 ?>

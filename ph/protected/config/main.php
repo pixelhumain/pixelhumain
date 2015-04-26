@@ -25,6 +25,7 @@ return array(
 	'aliases' => array(
     	'vendor' => realpath(__DIR__ . '/../../vendor/'),
     	'mongoYii' => realpath(__DIR__ . '/../../vendor/sammaye/mongoYii'),
+    	'recaptcha' => realpath(__DIR__ . '/../../vendor/recaptcha'),
     	'bootstrap' => realpath(__DIR__ . '/../../vendor/2amigos/yiistrap'),
 		'yiiwheels' => realpath(__DIR__ . '/../../vendor/2amigos/yiiwheels'), 
     ),

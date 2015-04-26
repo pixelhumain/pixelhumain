@@ -14,7 +14,7 @@ class SaveUserImagesAction extends CAction
     	if( isset($_FILES['avatar'])) 
         {
         	$type = trim($type);
-        	$folder = str_replace(DIRECTORY_SEPARATOR, "/", Yii::app()->controller->module->id.DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR.$id.DIRECTORY_SEPARATOR);
+        	$folder = str_replace(DIRECTORY_SEPARATOR, "/", DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR.$id.DIRECTORY_SEPARATOR);
         	$pathImage = $this->processImage($_FILES['avatar'],$id, $type);
         	if ($pathImage) {
         		$params = array();
@@ -31,7 +31,7 @@ class SaveUserImagesAction extends CAction
         		Document::save($params);
 
         		//Profile to check
-        		$urlBdd = str_replace(DIRECTORY_SEPARATOR, "/", Yii::app()->getRequest()->getBaseUrl(true).DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR.$folder.$pathImage["name"]);
+        		$urlBdd = str_replace(DIRECTORY_SEPARATOR, "/", Yii::app()->getRequest()->getBaseUrl(true).DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR.Yii::app()->controller->module->id.$folder.$pathImage["name"]);
         		PHDB::update($type,
         					array("_id" => new MongoId($id)),
                             array('$set' => array("imagePath"=> $urlBdd))

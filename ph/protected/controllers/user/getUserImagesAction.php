@@ -12,7 +12,7 @@ class getUserImagesAction extends CAction
     	$type = trim($type);
     	$listImages=Document::listMyDocumentByType($id, $type, "image", $sort);
     	foreach ($listImages as $key => $value) {
-    		$imagePath = "upload".DIRECTORY_SEPARATOR.$value["folder"].$value["name"];
+    		$imagePath = "upload".DIRECTORY_SEPARATOR.Yii::app()->controller->module->id.$value["folder"].$value["name"];
     		$imagePath = Yii::app()->getRequest()->getBaseUrl(true).DIRECTORY_SEPARATOR.$imagePath;
     		$imagePath = str_replace(DIRECTORY_SEPARATOR, "/", $imagePath);
     		$listImagesPath[$key]=$imagePath;

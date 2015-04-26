@@ -152,7 +152,7 @@ onSave: (optional) overloads the generic saveProcess
         	
         	if(fieldObj.inputType == "tags"){
         		fieldClass += " select2TagsInput";
-        		initValues[field] = fieldObj.values;
+        		initValues[field]["tags"] = fieldObj.values;
         		style = "style='width:100%'"
         	}
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
@@ -187,8 +187,8 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) {
         	var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
-        	fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px">'+
-        					 '<option value="">'+placeholder+'</option>';
+        	fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px" data-placeholder="'+placeholder+'">';
+			fieldHTML += '<option></option>';
 			$.each(fieldObj.options, function(optKey, optVal) { 
 				fieldHTML += '<option value="'+optKey+'">'+optVal+'</option>';
 			});	
@@ -275,6 +275,14 @@ onSave: (optional) overloads the generic saveProcess
         }
 
         /* **************************************
+		* CAPTCHA
+		***************************************** */
+        else if ( fieldObj.inputType == "recaptcha" ) {
+        	fieldHTML += '<div class="g-recaptcha" data-sitekey="'+fieldObj.key+'"></div>';
+        } 
+        
+
+        /* **************************************
 		* CUSTOM 
 		***************************************** */
         else if ( fieldObj.inputType == "custom" ) {
@@ -349,27 +357,51 @@ onSave: (optional) overloads the generic saveProcess
 		/* **************************************
 		* SELECTs , we use https://github.com/select2/select2
 		***************************************** */
-		if( $(".select2Input").length){
-
+		//is a type select with options
+		if( $(".select2Input").length)
+		{
 			if( jQuery.isFunction(jQuery.fn.select2) )
-				$(".select2Input").select2();
-			else
-				console.error("select2 library is missing");
+			{
+				/*$(".select2Input").select2(
+					{
+					  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
+					}
+				);*/
+				
+				$.each($(".select2Input"),function () 
+				{
+					if( jQuery.isFunction(jQuery.fn.select2) )
+						$(this).select2({
+							  "placeholder" : ( $(this).data("placeholder") ) ? $(this).data("placeholder") : "",
+							  allowClear: true
+							}
+						);
+					else
+						console.error("select2 library is missing");
+				 });
+			}
 		} 
-		if( $(".select2TagsInput").length){
-			if( jQuery.isFunction(jQuery.fn.select2) )
-				$.each($(".select2TagsInput"),function () { 
 
+		//is a type input
+		if( $(".select2TagsInput").length)
+		{
+			if( jQuery.isFunction(jQuery.fn.select2) )
+			{
+				$.each($(".select2TagsInput"),function () 
+				{ 
 					//console.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
-					$(this).removeClass("form-control").select2({
-					  "tags": initValues[$(this).attr("id")],
-					  "tokenSeparators": [',', ' ']
-					});
+					var selectOptions = {
+					  "tags": initValues[ $(this).attr("id") ]["tags"],
+					  "tokenSeparators": [',', ' '],
+					  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
+					};
+					$(this).removeClass("form-control").select2(selectOptions);
 				 });
 				
-			else
+			} else
 				console.error("select2 library is missing");
 		} 
+
 		/* **************************************
 		* DATE INPUT , we use https://github.com/eternicode/bootstrap-datepicker
 		***************************************** */
