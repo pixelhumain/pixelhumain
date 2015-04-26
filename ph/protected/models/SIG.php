@@ -26,9 +26,9 @@ class SIG
 	
 	//ajoute la position géographique d'une donnée si elle contient un Code Postal
 	//add geographical position to a data if it contains Postal Code
-	public function addGeoPositionToEntity($entity){
+	public static function addGeoPositionToEntity($entity){
 		if(empty($entity["geo"]) && !empty($entity["address"]["postalCode"])){
-			$geoPos = $this->getPositionByCp($entity["address"]["postalCode"]);
+			$geoPos = self::getPositionByCp($entity["address"]["postalCode"]);
 			if($geoPos != false){
 				$entity["geo"] = $geoPos;
 			}
@@ -37,12 +37,12 @@ class SIG
 	}
   	//récupère la position géographique depuis les Cities
   	//get geo position from Cities collection in data base
-	private function getPositionByCp($cp){
+	public static function getPositionByCp($cp){
   		$city = PHDB::findOne ( 'cities', array("cp"=>$cp) );
 		if(!empty($city)){
 			return array( 	"@type" => "GeoCoordinates",
-							"latitude" => $city["geo"]["coordinates"][1],
-							"longitude" => $city["geo"]["coordinates"][0]);
+							"latitude" => $city["geo"]["latitude"],
+							"longitude" => $city["geo"]["longitude"]);
 		} return false;
 		
 	}
