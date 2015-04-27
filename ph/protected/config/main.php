@@ -184,6 +184,7 @@ return array(
 		//upload base directory
 		'uploadURL' => "upload".DIRECTORY_SEPARATOR."communecter".DIRECTORY_SEPARATOR,
 		'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR."communecter".DIRECTORY_SEPARATOR,
-		'uploadComDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\templates\\upload\\dir\\communecter\\collection\\person"
+		'uploadComDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\templates\\upload\\dir\\communecter\\collection\\person",
+        'captcha' => ''
 	),
 );
