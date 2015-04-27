@@ -36,7 +36,7 @@
 				$logoColor = "text-red";
 				$platform = "LOCAL DEV";
 			}
-			else if( $_SERVER['SERVER_NAME'] == "text.pixelhumain.com" ){
+			else if( $_SERVER['SERVER_NAME'] == "test.pixelhumain.com" ){
 				$logoColor = "text-azure";
 				$platform = "TEST";
 			}
