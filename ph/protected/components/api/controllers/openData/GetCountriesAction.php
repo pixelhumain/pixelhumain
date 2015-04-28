@@ -7,11 +7,8 @@ class GetCountriesAction extends CAction
 {
     public function run()
     {
-        $countries = array();
-        foreach (OpenData::$phCountries as $key => $value) {
-            array_push($countries, array("value" => $key, "text" => $value));
-        }
-            
+        
+        $countries = OpenData::getCountriesList();
         Rest::json($countries); 
         Yii::app()->end();
     }

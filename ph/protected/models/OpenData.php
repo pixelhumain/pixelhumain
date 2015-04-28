@@ -148,5 +148,13 @@ class OpenData
                                             )
    
                                     );
+
+    public static function getCountriesList() {
+        $countries = array();
+        foreach (OpenData::$phCountries as $key => $value) {
+            array_push($countries, array("value" => $key, "text" => $value));
+        }
+        return $countries;
+    }
                                    
 }
