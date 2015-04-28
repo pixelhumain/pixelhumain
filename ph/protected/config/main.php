@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__) . '/dbconfig.php');
-require_once(dirname(__FILE__) . '/mailconfig.php');
+require_once(dirname(__FILE__) . '/paramsconfig.php');
 require_once(dirname(__FILE__) . '/moduleconfig.php');
 
 // uncomment the following to define a path alias
@@ -21,7 +21,7 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
-	'modulePath' => realpath(__DIR__ . '/../../../../modules/'),
+	'modulePath' => realpath(__DIR__ . $modulesDir),
 	'aliases' => array(
     	'vendor' => realpath(__DIR__ . '/../../vendor/'),
     	'mongoYii' => realpath(__DIR__ . '/../../vendor/sammaye/mongoYii'),
@@ -92,11 +92,7 @@ return array(
 	'components'=>array(
 		'communecter' => array(
             'class'=>'CPhpMessageSource',
-            'basePath'=>realpath(__DIR__ . '/../../../../modules/communecter/messages')
-        ),
-		'twh' => array(
-            'class'=>'CPhpMessageSource',
-            'basePath'=>realpath(__DIR__ . '/../../../../modules/twh/messages')
+            'basePath'=>realpath(__DIR__ . '/'.$modulesDir.'communecter/messages')
         ),
 		'session' => array(
             'timeout' => 86400,
@@ -178,13 +174,5 @@ return array(
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
-	'params'=>array(
-		// this is used in contact page
-		'adminEmail'=>'contact@pixelhumain.com',
-		//upload base directory
-		'uploadURL' => "upload".DIRECTORY_SEPARATOR."communecter".DIRECTORY_SEPARATOR,
-		'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR."communecter".DIRECTORY_SEPARATOR,
-		'uploadComDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\templates\\upload\\dir\\communecter\\collection\\person",
-        'captcha' => ''
-	),
+	'params'=>$params
 );

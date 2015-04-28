@@ -121,11 +121,13 @@ class DataController extends Controller {
                   /* **************************************
                   * ORGANIZATIONS MAP
                   ***************************************** */
-                  /*$myOrganizations = Authorisation::listUserOrganizationAdmin( Yii::app()->session["userId"] );
+                  $myOrganizations = Organization::getWhere( array("creator"=>Yii::app()->session["userId"]) );
                   if($myOrganizations){
-                    $exportInitData[PHType::TYPE_ORGANIZATIONS] = $myOrganizations;
-                  }*/
-                  echo Rest::json($exportInitData);
+                    $exportInitData[ PHType::TYPE_ORGANIZATIONS ] = $myOrganizations;
+                  }
+                  $res = json_encode( $exportInitData );
+                  file_put_contents("upload/".Yii::app()->session["userId"].".json", $res, FILE_APPEND | LOCK_EX);
+                  echo "<a href='".Yii::app()->createUrl("/upload/".Yii::app()->session["userId"].".json")."' target='_blank'>See your Exported data</a>"; 
               } else 
                     echo Rest::json(array("result"=>false,"msg"=>"Cette requete ne peut aboutir."));
   		} else
