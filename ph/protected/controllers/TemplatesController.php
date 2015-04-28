@@ -23,22 +23,32 @@ class TemplatesController extends Controller
 	   
        $this->render($name);
 	}
-    public function actionUpload($dir,$collection=null,$input,$rename=false) 
+    public function actionUpload($dir,$folder=null,$ownerId=null,$input,$rename=false) 
     {
         
         $upload_dir = 'upload/';
         if(!file_exists ( $upload_dir ))
             mkdir ( $upload_dir );
         
+        //ex: upload/communecter
         $upload_dir = 'upload/'.$dir.'/';
         if(!file_exists ( $upload_dir ))
             mkdir ( $upload_dir );
 
-        if( isset( $collection ))
-            $dir .= '/'.$collection.'/';
-        $upload_dir = 'upload/'.$dir.'/';
-        if(!file_exists ( $upload_dir ))
-            mkdir ( $upload_dir );
+        //ex: upload/communecter/person
+        if( isset( $folder )){
+            $upload_dir .= $folder.'/';
+            if( !file_exists ( $upload_dir ) )
+                mkdir ( $upload_dir );
+        }
+
+        //ex: upload/communecter/person/userId
+        if( isset( $ownerId ))
+        {
+            $upload_dir .= $ownerId.'/';
+            if( !file_exists ( $upload_dir ) )
+                mkdir ( $upload_dir );
+        }
         
         $allowed_ext = array('jpg','jpeg','png','gif',"pdf","xls","xlsx","doc","docx","ppt","pptx");
         

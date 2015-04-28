@@ -22,3 +22,5 @@ $activeModules = array(
 	'vitrine',
 	'learn',
 	'opendata');
+
+$modulesDir = '/../../../../modules/';

@@ -1,5 +1,7 @@
 <?php
 
+//DEPRECATED : 
+//TODO : ANALYSE TO REMOVE PERMENANTLY
 class Group
 {
 	
