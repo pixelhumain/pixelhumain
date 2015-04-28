@@ -41,10 +41,12 @@ class Document {
 	  		"author" => $params['author'],
 	  		"name" => $params['name'],
 	  		"size" => $params['size'],
-	  		"category" => $params['category'],
-	  		"contentKey" => $params["contentKey"],
 	  		'created' => time()
 	    );
+	    if(isset($params["category"]))
+	    	$new["category"] = $params["category"];
+	    if(isset($params["contentKey"]))
+	    	$new["contentKey"] = $params["contentKey"];
 
 
 	    PHDB::insert(self::COLLECTION,$new);
