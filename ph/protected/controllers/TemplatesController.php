@@ -37,15 +37,16 @@ class TemplatesController extends Controller
 
         //ex: upload/communecter/person
         if( isset( $folder )){
-            $dir .= '/'.$folder.'/';
-            $upload_dir = 'upload/'.$dir.'/';
+            $upload_dir .= $folder.'/';
+            if( !file_exists ( $upload_dir ) )
+                mkdir ( $upload_dir );
         }
 
         //ex: upload/communecter/person/userId
         if( isset( $ownerId ))
         {
             $upload_dir .= $ownerId.'/';
-            if(!file_exists ( $upload_dir ))
+            if( !file_exists ( $upload_dir ) )
                 mkdir ( $upload_dir );
         }
         

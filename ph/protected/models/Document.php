@@ -97,6 +97,31 @@ class Document {
 		}
 		return $listImages;
 	}
+
+	/**
+	* remove a document by id
+	* @return
+	*/
 	
+	public static function removeDocumentById($id){
+		return PHDB::remove(self::COLLECTION, array("_id"=>new MongoId($id)));
+	}
+
+	/**
+	* upload the path of an image
+	* @param itemId is the id of the item that we want to update
+	* @param itemType is the type of the item that we want to update
+	* @param path is the new path of the image
+	* @return
+	*/
+	public static function setImagePath($itemId, $itemType, $path, $contentKey){
+		$tabImage = explode('.', $contentKey);
+		if(in_array("banniere", $tabImage)){
+			return PHDB::update($itemType,
+	    					array("_id" => new MongoId($itemId)),
+	                        array('$set' => array("imagePath"=> $path))
+	                    );
+		}
+	}
 }
 ?>

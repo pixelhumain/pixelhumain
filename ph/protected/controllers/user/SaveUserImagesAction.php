@@ -28,16 +28,13 @@ class SaveUserImagesAction extends CAction
         		$params['author'] = "";
         		$params['category'] = array();
         		$params['contentKey'] = $contentKey;
-        		Document::save($params);
+        		$result = Document::save($params);
 
         		//Profile to check
         		$urlBdd = str_replace(DIRECTORY_SEPARATOR, "/", Yii::app()->getRequest()->getBaseUrl(true).DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR.Yii::app()->controller->module->id.$folder.$pathImage["name"]);
-        		PHDB::update($type,
-        					array("_id" => new MongoId($id)),
-                            array('$set' => array("imagePath"=> $urlBdd))
-                            );
+        		Document::setImagePath($id, $type, $urlBdd, $contentKey);
         	}
-        	$res = array('result' => true , 'msg'=>'The picture was uploaded', 'imagePath' => $urlBdd );
+        	$res = array('result' => true , 'msg'=>'The picture was uploaded', 'imagePath' => $urlBdd,"id" => $result["id"]);
             
 	        Rest::json($res);  
 	        Yii::app()->end();
