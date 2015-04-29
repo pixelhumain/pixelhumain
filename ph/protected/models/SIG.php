@@ -4,7 +4,8 @@ Contains anything generix for the site
  */
 class SIG
 {
-    
+    const CITIES_COLLECTION_NAME = "cities";
+
     public static function clientScripts()
     {
         $cs = Yii::app()->getClientScript();
@@ -46,5 +47,40 @@ class SIG
 		} return false;
 		
 	}
-    
+
+	/**
+	 * Get the city by insee code. Can throw Exception if the city is unknown.
+	 * @param String $codeInsee the code insee of the city
+	 * @return Array With all the field as the cities collection
+	 */
+	public static function getCityByCodeInsee($codeInsee) {
+		if (empty($codeInsee)) {
+			throw new InvalidArgumentException("The Insee Code is mandatory");
+		}
+
+		$city = PHDB::findOne(SIG::CITIES_COLLECTION_NAME, array("insee" => $codeInsee));
+		if (empty($city)) {
+			throw new CTKException("Impossible to find the city with the insee code : ".$codeInsee);
+		} else {
+			return $city;
+		}
+	}
+
+	/**
+	 * Get the city label by insee code. Can throw Exception if the city is unknown.
+	 * @param String $codeInsee the code insee of the city
+	 * @return Array With all the field as the cities collection
+	 */
+	public static function getCitiesByPostalCode($postalCode) {
+		if (empty($postalCode)) {
+			throw new InvalidArgumentException("The postal Code is mandatory");
+		}
+
+		$city = PHDB::findAndSort(SIG::CITIES_COLLECTION_NAME, array("cp" => $postalCode), array("name" => -1));
+		if (empty($city)) {
+			throw new CTKException("Impossible to find the city with the postal code : ".$postalCode);
+		} else {
+			return $city;
+		}
+	}    
 }
