@@ -16,10 +16,10 @@ class Document {
 	}
 
 
-	public static function listMyDocumentByType($userId, $type, $doctype, $sort=null){
+	public static function listMyDocumentByType($userId, $type, $contentKey, $sort=null){
 		$params = array("id"=> $userId,
 						"type" => $type,
-						"doctype" => $doctype);
+						"contentKey" => new MongoRegex("/".$contentKey."/i"));
 		$listDocuments = PHDB::findAndSort( self::COLLECTION,$params, $sort);
 		return $listDocuments;
 	}
