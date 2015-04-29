@@ -33,8 +33,9 @@ class SaveUserImagesAction extends CAction
         		//Profile to check
         		$urlBdd = str_replace(DIRECTORY_SEPARATOR, "/", Yii::app()->getRequest()->getBaseUrl(true).DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR.Yii::app()->controller->module->id.$folder.$pathImage["name"]);
         		Document::setImagePath($id, $type, $urlBdd, $contentKey);
+        		$newImage = Document::getById($result["id"]);
         	}
-        	$res = array('result' => true , 'msg'=>'The picture was uploaded', 'imagePath' => $urlBdd,"id" => $result["id"]);
+        	$res = array('result' => true , 'msg'=>'The picture was uploaded', 'imagePath' => $urlBdd,"id" => $result["id"], "image" => $newImage);
             
 	        Rest::json($res);  
 	        Yii::app()->end();
