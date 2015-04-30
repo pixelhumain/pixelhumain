@@ -229,7 +229,7 @@ class Authorisation {
 
     /**
     * Get the authorization for edit an item
-    * @param type is the type of item, (organization or event)
+    * @param type is the type of item, (organization or event or person)
     * @param itemId id of the item we want to edits
     * @return a boolean
     */
@@ -239,6 +239,8 @@ class Authorisation {
     		$res = Authorisation::isEventAdmin($itemId, $userId);
     	}else if($type == Organization::COLLECTION){
     		$res = Authorisation::isOrganizationAdmin($userId, $itemId);
+    	}else if($type== Person::COLLECTION){
+    		$res = ($userId==$itemId);
     	}
 
     	return $res;
