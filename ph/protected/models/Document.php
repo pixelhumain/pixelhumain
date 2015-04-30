@@ -15,7 +15,6 @@ class Document {
 	  	return PHDB::find( self::COLLECTION,$params);
 	}
 
-
 	public static function listMyDocumentByType($userId, $type, $contentKey, $sort=null){
 		$params = array("id"=> $userId,
 						"type" => $type,

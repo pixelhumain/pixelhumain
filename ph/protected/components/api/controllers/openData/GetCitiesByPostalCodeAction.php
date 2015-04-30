@@ -13,7 +13,7 @@ class GetCitiesByPostalCodeAction extends CAction
         try {
             $cities = SIG::getCitiesByPostalCode($postalCode);
         } catch (CTKException $e) {
-            $cities = array(array("value" => "", "text" => "Unknown Postal Code"));
+            $cities = array("unknownId" => array("name" => "Unknown Postal Code", "insee" => ""));
         }
 
         Rest::json($cities); 

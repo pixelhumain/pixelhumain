@@ -15,6 +15,7 @@ class Organization {
 	    "address" => "address",
 	    "streetAddress" => "address.streetAddress",
 	    "postalCode" => "address.postalCode",
+	    "city" => "address.codeInsee",
 	    "addressLocality" => "address.addressLocality",
 	    "addressCountry" => "address.addressCountry",
 	    "tags" => "tags",		    
