@@ -82,5 +82,16 @@ class SIG
 		} else {
 			return $city;
 		}
-	}    
+	}
+
+	public static function getAdressSchemaLikeByCodeInsee($codeInsee) {
+		$city = SIG::getCitiesByPostalCode();
+		$geo = array( 	"@type" => "GeoCoordinates",
+							"latitude" => $city["geo"]["latitude"],
+							"longitude" => $city["geo"]["longitude"]);
+
+		$address = array("@type"=>"PostalAddress", "postalCode"=> $city['cp'], 
+				"addressLocality" => $city["name"], "codeInsee" => $codeInsee, "geo" => $geo);
+		return address;
+	}
 }
