@@ -85,13 +85,13 @@ class SIG
 	}
 
 	public static function getAdressSchemaLikeByCodeInsee($codeInsee) {
-		$city = SIG::getCitiesByPostalCode();
+		$city = SIG::getCityByCodeInsee($codeInsee);
 		$geo = array( 	"@type" => "GeoCoordinates",
 							"latitude" => $city["geo"]["latitude"],
 							"longitude" => $city["geo"]["longitude"]);
 
 		$address = array("@type"=>"PostalAddress", "postalCode"=> $city['cp'], 
 				"addressLocality" => $city["name"], "codeInsee" => $codeInsee, "geo" => $geo);
-		return address;
+		return $address;
 	}
 }
