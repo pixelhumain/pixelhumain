@@ -91,7 +91,7 @@
 
 		<li class="collapse_wrap">
 			
-			<div class="trigger collapse_trigger hide_on_active"  onclick="popinInfo('TODO : Tag Filter','le cumul de tag personnalisé permet de filtrer et trier les données')">
+			<div class="trigger collapse_trigger hide_on_active " onclick="popinInfo('TODO : Tag Filter','le cumul de tag personnalisé permet de filtrer et trier les données')">
 				<i class="fa fa-tags"></i>
 				<span class="notifications-count badge badge-warning animated bounceIn">3</span>
 			</div>
@@ -101,7 +101,7 @@
 					<i class="fa fa-tags"></i>
 				</span>
 				<form class="inner collapse_box">
-					<input id="filterField" name="filterField" placeholder="Pseudo, saisissez ou modifiez ici vos tags !" >
+					<input id="filterField" name="filterField" placeholder="Saisissez ou modifiez ici vos tags !" >
 						<ul class="dropdown-menu" id="dropdownTags" style="">
 							<ol class="li-dropdown-scope">-</ol>
 						</ul>
@@ -241,7 +241,10 @@
 				}
 				
 			}
-		})
+		});
+		if($(".tooltips").length) {
+	 		$('.tooltips').tooltip();
+	 	}
 	});
 
 	var mapIcon = {"citoyen":"fa-smile-o", "event":"fa-calendar", "NGO":" fa-building-o", "LocalBusiness":"fa-group", "GovernmentOrganization":"fa-institution", "Group":"fa-group"};

@@ -132,6 +132,7 @@ class TemplatesController extends Controller
                 $name = ($rename) ? Yii::app()->session["userId"].'.'.$ext : $_FILES[$input]['name'][$key];
                 if( isset(Yii::app()->session["userId"]) && $name && move_uploaded_file($_FILES[$input]['tmp_name'][$key], $upload_dir.$name))
                 {   
+                    chmod($$upload_dir.$name, 0775);
                     echo json_encode(array('result'=>true,
                                             "success"=>true,
                                             'name'=>$name,
@@ -149,11 +150,14 @@ class TemplatesController extends Controller
 
     public function actionDelete($dir,$type) 
     {
-        $filepath = __DIR__."/../../upload/".$dir."/".$type."/".$_POST['name'];
+        $filepath = __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR.$_POST['parentId'].DIRECTORY_SEPARATOR.$_POST['name'];
         if(isset(Yii::app()->session["userId"]) && file_exists ( $filepath ))
         {
             if(unlink($filepath))
+            {
+                Document::removeDocumentById($_POST['docId']);
                 echo json_encode(array('result'=>true));
+            }
             else
                 echo json_encode(array('result'=>false,'error'=>'Something went wrong!'));
         } else

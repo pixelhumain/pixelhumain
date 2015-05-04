@@ -21,6 +21,7 @@ $activeModules = array(
 	'twh',
 	'vitrine',
 	'learn',
-	'opendata');
+	'opendata',
+	'granddir');
 
 $modulesDir = '/../../../../modules/';

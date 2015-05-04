@@ -43,9 +43,9 @@ class Document {
 	  		"size" => $params['size'],
 	  		'created' => time()
 	    );
-	    if(isset($params["category"]))
+	    if(isset($params["category"]) && !empty($params["category"]))
 	    	$new["category"] = $params["category"];
-	    if(isset($params["contentKey"]))
+	    if(isset($params["contentKey"]) && !empty($params["contentKey"]))
 	    	$new["contentKey"] = $params["contentKey"];
 
 
