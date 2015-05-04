@@ -15,11 +15,10 @@ class Document {
 	  	return PHDB::find( self::COLLECTION,$params);
 	}
 
-
-	public static function listMyDocumentByType($userId, $type, $doctype, $sort=null){
+	public static function listMyDocumentByType($userId, $type, $contentKey, $sort=null){
 		$params = array("id"=> $userId,
 						"type" => $type,
-						"doctype" => $doctype);
+						"contentKey" => new MongoRegex("/".$contentKey."/i"));
 		$listDocuments = PHDB::findAndSort( self::COLLECTION,$params, $sort);
 		return $listDocuments;
 	}
@@ -118,7 +117,7 @@ class Document {
 	*/
 	public static function setImagePath($itemId, $itemType, $path, $contentKey){
 		$tabImage = explode('.', $contentKey);
-		if(in_array("banniere", $tabImage)){
+		if(in_array("profil", $tabImage)){
 			return PHDB::update($itemType,
 	    					array("_id" => new MongoId($itemId)),
 	                        array('$set' => array("imagePath"=> $path))

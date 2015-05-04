@@ -1,6 +1,6 @@
 <!-- start: TOP NAVIGATION MENU -->
 <style>
-	#dropdown_search{
+	#dropdown_searchTop{
 		padding: 0px 15px; 
 		margin-left:19%; 
 		width:250px;
@@ -19,6 +19,10 @@
 	}
 	.li-dropdown-scope:hover{
 		/*background-color: #ccc;*/
+	}
+
+	#searchBar{
+		max-width: 250px;
 	}
 	.searchList:hover{
 		background-color: #ccc;
@@ -62,7 +66,7 @@
 				<i class="fa fa-logo"></i>
 			</span>
 			<?php if(isset(Yii::app()->session["userId"])){ ?>
-	 			<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/dashboard/id/".Yii::app()->session['userId'])?>" class="userlink">
+	 			<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/")?>" class="userlink">
 					<i class="fa fa-user_circled"></i>
 					<span class="username"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span>
 				</a>
@@ -173,7 +177,7 @@
 				<input class='hide' id="searchId" name="searchId"/>
 				<input class='hide' id="searchType" name="searchType"/>
 				<input id="searchBar" name="searchBar" type="text" placeholder="Que recherchez-vous ?">
-					<ul class="dropdown-menu" id="dropdown_search" style="">
+					<ul class="dropdown-menu" id="dropdown_searchTop" style="">
 						<ol class="li-dropdown-scope">-</ol>
 					</ul>
 				</input>
@@ -194,6 +198,7 @@
 <script type="text/javascript">
 
 	var timeout;
+	var mapIconTop = {"citoyen":"fa-smile-o", "event":"fa-calendar", "NGO":" fa-building-o", "LocalBusiness":"fa-group", "GovernmentOrganization":"fa-institution", "Group":"fa-group"};
 	jQuery(document).ready(function() {
 
 		$("#filterField").keyup(function(e){
@@ -212,12 +217,12 @@
 		    	clearTimeout(timeout);
 		    	timeout = setTimeout('autoCompleteSearch("'+name+'")', 500);
 		    }else{
-		    	$("#dropdown_search").css("display", "none");
+		    	$("#dropdown_searchTop").css("display", "none");
 		    }		
 		});
 
 		$("#searchForm").on("click", function(){
-			$("dropdown_search").css("display", "none");
+			$("dropdown_searchTop").css("display", "none");
 		});
 
 		$("#sbToogle").on("click", function(){
@@ -247,7 +252,7 @@
 	 	}
 	});
 
-	var mapIcon = {"citoyen":"fa-smile-o", "event":"fa-calendar", "NGO":" fa-building-o", "LocalBusiness":"fa-group", "GovernmentOrganization":"fa-institution", "Group":"fa-group"};
+	
 	function setSearchInput(id, name, type){
 		if(type=="citoyen"){
 			type = "person";
@@ -257,7 +262,7 @@
 		$("#searchBar").val(name);
 		$("#searchId").val(id);
 		$("#searchType").val(type);
-		$("#dropdown_search").css({"display" : "none" });*/	
+		$("#dropdown_searchTop").css({"display" : "none" });*/	
 	}
 
 	function autoCompleteSearch(name){
@@ -280,13 +285,13 @@
 		 						if(o.type){
 			 						typeIco = o.type;
 			 					}
-			 					str += "<div class='searchList li-dropdown-scope' ><ol><a href='javascript:setSearchInput(\""+ o._id["$id"] +"\", \""+o.name+"\", \""+i+"\")'><span><i class='fa "+mapIcon[typeIco]+"'></i></span>  " + o.name + "</a></ol></div>";
+			 					str += "<div class='searchList li-dropdown-scope' ><ol><a href='javascript:setSearchInput(\""+ o._id["$id"] +"\", \""+o.name+"\", \""+i+"\")'><span><i class='fa "+mapIconTop[typeIco]+"'></i></span>  " + o.name + "</a></ol></div>";
 			 				})
 		 				}	
 		  			}); 
 		  			if(str == "") str = "<ol class='li-dropdown-scope'>Aucun résultat</ol>";
-		  			$("#dropdown_search").html(str);
-		  			$("#dropdown_search").css({"display" : "inline" });
+		  			$("#dropdown_searchTop").html(str);
+		  			$("#dropdown_searchTop").css({"display" : "inline" });
 	  			}
 			}	
 		})

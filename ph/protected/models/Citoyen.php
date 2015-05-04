@@ -38,9 +38,7 @@ class Citoyen
     {
         if(Yii::app()->request->isAjaxRequest && isset($email) && !empty($email))
         {
-            Yii::app()->session["userId"] = null;
-            Yii::app()->session["userEmail"] = null; 
-            Yii::app()->session["user"] = null; 
+            Person::clearUserSessionData();
             $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$email));
             if($account)
             {
@@ -71,10 +69,11 @@ class Citoyen
                         
                         //TODO - No session should be handled on Models ?
                         //TODO - Return a user object or array
-                        Yii::app()->session["userId"] = (string)$account["_id"];
-                        Yii::app()->session["userEmail"] = $account["email"]; 
                         $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
-                        Yii::app()->session["user"] = array("name"=>$name); 
+                        Person::saveUserSessionData((string)$account["_id"],
+                                              $account["email"],
+                                              array("name"=>$name)
+                                            );
                         
                         if(isset( $account["cp"] )) 
                           Yii::app()->session["user"]["cp"] = $account["cp"];
@@ -92,10 +91,11 @@ class Citoyen
                 //but one is filled in the login field that will be the pwd
                 elseif ( !empty($pwd) && $account["pwd"] == hash('sha256', $email.$pwd))
                 {
-                    Yii::app()->session["userId"] = (string)$account["_id"];
-                    Yii::app()->session["userEmail"] = $account["email"]; 
                     $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
-                    Yii::app()->session["user"] = array("name"=>$name); 
+                    Person::saveUserSessionData((string)$account["_id"],
+                                              $account["email"],
+                                              array("name"=>$name)
+                                            );
                     
                     if( isset($account["isAdmin"]) && $account["isAdmin"] )
                         Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
@@ -156,9 +156,7 @@ class Citoyen
             $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$email));
             if(!$account)
             {
-              Yii::app()->session["userId"] = null;
-              Yii::app()->session["userEmail"] = null; 
-              Yii::app()->session["user"] = null; 
+              Person::clearUserSessionData();
                 //validate isEmail
                 $name = "";
                if(preg_match('#^([\w.-])/<([\w.-]+@[\w.-]+\.[a-zA-Z]{2,6})/>$#',$email, $matches)) 
@@ -207,10 +205,11 @@ class Citoyen
                     PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
                    
                     //set session elements for global credentials
-                    Yii::app()->session["userId"] = (string)$newAccount["_id"]; 
-                    Yii::app()->session["userEmail"] = $newAccount["email"];
                     $name = (isset($newAccount["name"])) ? $newAccount["name"] : "Anonymous" ;
-                    Yii::app()->session["user"] = array("name"=>$name); 
+                    Person::saveUserSessionData((string)$newAccount["_id"],
+                                              $newAccount["email"],
+                                              array("name"=>$name)
+                                            );
                     //send validation mail
                     //TODO : make emails as cron jobs
                     $app = new Application($_POST["app"]);
@@ -278,10 +277,12 @@ class Citoyen
                     PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
 
                     //set session elements for global credentials
-                    Yii::app()->session["userId"] = (string)$newAccount["_id"]; 
-                    Yii::app()->session["userEmail"] = $newAccount["email"];
                     $name = (isset($newAccount["name"])) ? $newAccount["name"] : "Anonymous" ;
-                    Yii::app()->session["user"] = array("name"=>$name); 
+                    
+                    Person::saveUserSessionData((string)$newAccount["_id"],
+                                              $newAccount["email"],
+                                              array("name"=>$name)
+                                            );
                     //send validation mail
                     //TODO : make emails as cron jobs
                     /*$message = new YiiMailMessage;

@@ -15,6 +15,7 @@ class Organization {
 	    "address" => "address",
 	    "streetAddress" => "address.streetAddress",
 	    "postalCode" => "address.postalCode",
+	    "city" => "address.codeInsee",
 	    "addressLocality" => "address.addressLocality",
 	    "addressCountry" => "address.addressCountry",
 	    "tags" => "tags",		    
@@ -43,24 +44,24 @@ class Organization {
 	 */
 	public static function insert($organization, $userId) {
 	    
-		Organization::checkOrganizationData($organization);
+		$newOrganization = Organization::getAndCheckOrganization($organization);
 		
 		//Manage tags : save any inexistant tag to DB 
-		if (isset($organization["tags"]))
-			$organization["tags"] = Tags::filterAndSaveNewTags($organization["tags"]);
+		if (isset($newOrganization["tags"]))
+			$newOrganization["tags"] = Tags::filterAndSaveNewTags($newOrganization["tags"]);
 
 		//Add the user creator of the organization in the system
-		$organization["creator"] = $userId;
+		$newOrganization["creator"] = $userId;
 
 		//fonction générique de SIG, à utiliser pour n'importe quelle entité
 		//si l'entité contient un champs address => postalCode, on trouve la position dans les Cites
-		$organization = SIG::addGeoPositionToEntity($organization);
+		//$newOrganization = SIG::addGeoPositionToEntity($organization);
 	
 		//Insert the organization
-	    PHDB::insert( Organization::COLLECTION, $organization);
+	    PHDB::insert( Organization::COLLECTION, $newOrganization);
 		
-	    if (isset($organization["_id"])) {
-	    	$newOrganizationId = (String) $organization["_id"];
+	    if (isset($newOrganization["_id"])) {
+	    	$newOrganizationId = (String) $newOrganization["_id"];
 	    } else {
 	    	throw new CommunecterException("Problem inserting the new organization");
 	    }
@@ -70,7 +71,7 @@ class Organization {
 
 	    //TODO ???? : add an admin notification
 	    Notification::saveNotification(array("type"=>"Created",
-	    						"user"=>$organization["_id"]));
+	    						"user"=>$newOrganizationId));
 	                  
 	    $newOrganization = Organization::getById($newOrganizationId);
 	    return array("result"=>true, "msg"=>"Votre organisation est communectée.", 
@@ -85,18 +86,93 @@ class Organization {
 		s */
 	}
 	
+	public static function newOrganizationFromPost($organization) {
+		$newOrganization = array();
+		$newOrganization["email"] = empty($organization['organizationEmail']) ? "" : $organization['organizationEmail'];
+		$newOrganization["country"] = empty($organization['organizationCountry']) ? "" : $organization['organizationCountry'];
+		$newOrganization["name"] = empty($organization['organizationName']) ? "" : $organization['organizationName'];
+		$newOrganization["type"] = empty($organization['type']) ? "" : $organization['type'];
+		$newOrganization["postalCode"] = empty($organization['postalCode']) ? "" : $organization['postalCode'];
+		$newOrganization["city"] = empty($organization['city']) ? "" : $organization['city'];
+		$newOrganization["description"] = empty($organization['description']) ? "" : $organization['description'];
+		$newOrganization["tags"] = empty($organization['tagsOrganization']) ? "" : $organization['tagsOrganization'];
+		$newOrganization["typeIntervention"] = empty($organization['typeIntervention']) ? "" : $organization['typeIntervention'];
+		$newOrganization["typeOfPublic"] = empty($organization['public']) ? "" : $organization['public'];
+
+		return $newOrganization;
+	}
+
 	/**
 	 * Apply organization checks and business rules before inserting
-	 * @param array $organization : array with the data of the person to check
-	 * @return 
+	 * @param array $organization : array with the data of the organization to check
+	 * @return array Organization well format : ready to be inserted
 	 */
-	public static function checkOrganizationData($organization) {
-		$organizationName = $organization["name"];
+	public static function getAndCheckOrganization($organization) {
+		//email : mandotory 
+		if(empty($organization['email'])) {
+			throw new CTKException("Vous devez remplir un email.");
+		} else {
+			//validate Email
+			$email = $organization['email'];
+			if (! preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$email)) { 
+				throw new CTKException("Vous devez remplir un email valide.");
+			}
+		}
+
+		if (empty($organization['name'])) {
+			throw new CTKException("Vous devez remplir un nom pour votre organization.");
+		}
+		
 		// Is There a association with the same name ?
-	    $organizationSameName = PHDB::findOne( Organization::COLLECTION,array( "name" => $organizationName));      
+	    $organizationSameName = PHDB::findOne( Organization::COLLECTION,array( "name" => $organization["name"]));      
 	    if($organizationSameName) { 
-	      throw new CommunecterException("An organization with the same name already exist in the plateform");
+	      throw new CTKException("An organization with the same name already exist in the plateform");
 	    }
+
+		$newOrganization = array(
+			'email'=>$email,
+			"name" => $organization['name'],
+			'created' => time()
+		);
+		
+		if (empty($organization['type'])) {
+			throw new CTKException("Vous devez remplir le type de votre organization.");
+		}
+		$newOrganization["type"] = $organization['type'];
+				  
+		if(!empty($organization['postalCode'])) {
+			if (!empty($organization['city'])) {
+				$insee = $organization['city'];
+				$address = SIG::getAdressSchemaLikeByCodeInsee($insee);
+				$newOrganization["address"] = $address;
+			}
+		}
+				  
+		if (!empty($organization['description']))
+			$newOrganization["description"] = $organization['description'];
+				  
+		//Tags
+		if ( gettype($organization['tags']) == "array" ) {
+			$tags = $organization['tags'];
+		} else if ( gettype($organization['tags']) == "string" ) {
+			$tags = explode(",", $organization['tags']);
+		}
+		$newOrganization["tags"] = $tags;
+
+		//************************ Spécifique Granddir ********************/
+		//TODO SBAR : A sortir du CTK. Prévoir une méthode populateSpecific() à appeler ici
+		//Cette méthode sera implémenté dans le Modèle Organization spécifique de Granddir
+		//Type of Intervention
+		if (!empty($organization["typeIntervention"])) {
+			$newOrganization["typeIntervention"] = $organization["typeIntervention"];
+		}
+	
+		//Type of Intervention
+		if (!empty($organization["typeOfPublic"])) {
+			$newOrganization["typeOfPublic"] = $organization["typeOfPublic"];
+		}
+
+		return $newOrganization;
 	}
 
 	/**
@@ -172,7 +248,7 @@ class Organization {
 	    Notification::saveNotification(array("type"=>"Updated",
 	    						"user"=>$organizationId));
 	                  
-	    return Rest::json(array("result"=>true, "msg"=>"Votre organisation a été mise à jour.", "id"=>$organizationId));
+	    return array("result"=>true, "msg"=>"Votre organisation a été mise à jour.", "id"=>$organizationId);
 		
 	}
 	
@@ -207,12 +283,6 @@ class Organization {
 			"url",
 			"coi"
 		);
-		/*Photo de profil
-		Centre d’intérêts
-		Projets publics auxquels participe l’utilisateur
-		Actualité publique
-		Agenda public
-		Réseau (cartographie)*/
 
 		//TODO SBAR = filter data to retrieve only public data	
 		$organization = Organization::getById($id);
@@ -235,11 +305,12 @@ class Organization {
 	 * @return newPersonId ans newOrganizationId
 	 */
 	public static function createPersonOrganizationAndAddMember($person, $organization, $parentOrganizationId) {
-		
+		//The data check is normaly done before inserting but the both data (organization and person)  
+		//must be ok before inserting
 		//Check person datas 
-		Person::checkPersonData($person, false);
+		Person::getAndcheckPersonData($person, false);
 		//Check organization datas 
-		Organization::checkOrganizationData($organization);
+		Organization::getAndCheckOrganization($organization);
 		
 		//Create a new person
 		$newPerson = Person::insert($person);

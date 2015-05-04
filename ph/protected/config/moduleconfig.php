@@ -23,5 +23,3 @@ $activeModules = array(
 	'learn',
 	'opendata',
 	'granddir');
-
-$modulesDir = '/../../../../modules/';

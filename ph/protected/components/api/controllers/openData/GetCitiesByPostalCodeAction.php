@@ -7,18 +7,15 @@ class GetCitiesByPostalCodeAction extends CAction
 {
     public function run()
     {
-        //TODO SBAR - Limited to the reunion department
-        $defaultDepartment = "974";
-
+        $errorMessage = array(array("value" => "", "text" => "Unknown Postal Code"));
         $cities = array();
         $postalCode = isset($_POST["postalCode"]) ? $_POST["postalCode"] : null;
-        if ($postalCode && isset(OpenData::$communeMap[$defaultDepartment][$postalCode])) {
-            foreach (OpenData::$communeMap[$defaultDepartment][$postalCode] as $value) {
-                array_push($cities, array("value" => $value["codeinsee"], "text" => $value["name"]));
-            }
-        } else {
-            $cities = array(array("value" => "00000", "text" => "Unknown Postal Code"));
+        try {
+            $cities = SIG::getCitiesByPostalCode($postalCode);
+        } catch (CTKException $e) {
+            $cities = array("unknownId" => array("name" => "Unknown Postal Code", "insee" => ""));
         }
+
         Rest::json($cities); 
         Yii::app()->end();
     }
