@@ -117,7 +117,7 @@ class Document {
 	*/
 	public static function setImagePath($itemId, $itemType, $path, $contentKey){
 		$tabImage = explode('.', $contentKey);
-		if(in_array("banniere", $tabImage)){
+		if(in_array("profil", $tabImage)){
 			return PHDB::update($itemType,
 	    					array("_id" => new MongoId($itemId)),
 	                        array('$set' => array("imagePath"=> $path))
