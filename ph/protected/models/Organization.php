@@ -229,6 +229,7 @@ class Organization {
 	 * @param array A well format organization 
 	 * @return a json result as an array. 
 	 */
+	//TODO SBAR => deprecated and not used
 	public static function update($organizationId, $organization, $userId) {
 		
 		//Check if user is authorized to update
@@ -418,17 +419,29 @@ class Organization {
 	 */
 	 public static function updateOrganizationField($organizationId, $organizationFieldName, $organizationFieldValue, $userId){
 	 	if (!Authorisation::isOrganizationAdmin($userId, $organizationId)) {
-			throw new CommunecterException("Can not update this organization : you are not authorized to update that organization !");	
+			throw new CTKException("Can not update this organization : you are not authorized to update that organization !");	
 		}
 		$dataFieldName = Organization::getCollectionFieldName($organizationFieldName);
-		//Specific case : tags
+	
+		//Specific case : 
+		//Tags
 		if ($dataFieldName == "tags") {
 			$organizationFieldValue = Tags::filterAndSaveNewTags($organizationFieldValue);
 		}
+		//address
+		if ($dataFieldName == "address") {
+			if(!empty($organizationFieldValue["postalCode"]) && !empty($organizationFieldValue["codeInsee"])) {
+				$insee = $organizationFieldValue["codeInsee"];
+				$address = SIG::getAdressSchemaLikeByCodeInsee($insee);
+				$organization = array("address" => $address);
+			} else {
+				throw new CTKException("Error updating the Organization : address is not well formated !");			
+			}
+		} else {
+			$organization = array($dataFieldName => $organizationFieldValue);	
+		}
 
-		$organization = array($dataFieldName => $organizationFieldValue);
-		
-		//update the person
+		//update the organization
 		PHDB::update( Organization::COLLECTION, array("_id" => new MongoId($organizationId)), 
 		                          array('$set' => $organization));
 	                  
