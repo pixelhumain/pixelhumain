@@ -61,7 +61,8 @@ class SaveUserImagesAction extends CAction
         foreach(glob($upload_dir . "*.{jpg,png,gif}",GLOB_BRACE) as $filename){
         	$fileCount = $fileCount+1;
         };
-        $image_name = "image_".$fileCount;
+        $create = time();
+        $image_name = "img_".$userID."_".$create;
 		$destination_folder =$upload_dir.$image_name;
 		$image_temp = $image['tmp_name']; //file temp
 		$image_size_info    = getimagesize($image_temp);
