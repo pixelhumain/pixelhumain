@@ -2,6 +2,8 @@
 class Document {
 
 	const COLLECTION = "documents";
+	const IMG_BANNIERE = "Banniere";
+	const IMG_PROFIL = "Profil";
 	/**
 	 * get an project By Id
 	 * @param type $id : is the mongoId of the project
@@ -117,7 +119,7 @@ class Document {
 	*/
 	public static function setImagePath($itemId, $itemType, $path, $contentKey){
 		$tabImage = explode('.', $contentKey);
-		if(in_array("profil", $tabImage)){
+		if(in_array(Document::IMG_PROFIL, $tabImage)){
 			return PHDB::update($itemType,
 	    					array("_id" => new MongoId($itemId)),
 	                        array('$set' => array("imagePath"=> $path))
