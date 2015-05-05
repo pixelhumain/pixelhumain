@@ -2,6 +2,7 @@
 class Document {
 
 	const COLLECTION = "documents";
+
 	/**
 	 * get an project By Id
 	 * @param type $id : is the mongoId of the project
@@ -103,7 +104,6 @@ class Document {
 	* remove a document by id
 	* @return
 	*/
-	
 	public static function removeDocumentById($id){
 		return PHDB::remove(self::COLLECTION, array("_id"=>new MongoId($id)));
 	}
@@ -117,7 +117,7 @@ class Document {
 	*/
 	public static function setImagePath($itemId, $itemType, $path, $contentKey){
 		$tabImage = explode('.', $contentKey);
-		if(in_array("profil", $tabImage)){
+		if(in_array("Profil", $tabImage)){
 			return PHDB::update($itemType,
 	    					array("_id" => new MongoId($itemId)),
 	                        array('$set' => array("imagePath"=> $path))
