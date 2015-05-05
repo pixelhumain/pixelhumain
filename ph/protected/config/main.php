@@ -42,7 +42,8 @@ return array(
     	'ext.Json.Validator',
         'ext.helpers.*',
         'ext.CornerDev',
-        'ext.ClientScript'
+        'ext.ClientScript',
+        'ext.resizer.*'
         //'ext.easyrdf.lib.*'
 	),
 	'modules'=>array_merge($activeModules,array(
