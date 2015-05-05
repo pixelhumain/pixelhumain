@@ -26,22 +26,24 @@ class HtmlHelper {
      * The paths must be relative from the baseUrl. Ex : '/assets/plugins/bootstrap-datepicker/css/datepicker.css'
      * @return true if everything done right
      */
-    public static function registerCssAndScriptsFiles($files) {
+    public static function registerCssAndScriptsFiles($files,$path=null) {
         $cs = Yii::app()->getClientScript();
+        /*if(!$path)
+            $path = Yii::app()->theme->baseUrl;*/
         $ajaxRequest = Yii::app()->request->isAjaxRequest;
         foreach ($files as $file) {
             $extention = pathinfo($file,PATHINFO_EXTENSION);
             if ($extention == "js" || $extention == "JS") {
                 if($ajaxRequest){
-                    echo CHtml::scriptFile(Yii::app()->theme->baseUrl.$file);
+                    echo CHtml::scriptFile($path.$file);
                 } else {
-                    $cs->registerScriptFile(Yii::app()->theme->baseUrl. $file , CClientScript::POS_END, array(), 2);
+                    $cs->registerScriptFile($path. $file , CClientScript::POS_END, array(), 2);
                 }
             } else if ($extention == "css" || $extention == "CSS") {
                 if($ajaxRequest){
-                    echo CHtml::cssFile(Yii::app()->theme->baseUrl.$file);
+                    echo CHtml::cssFile($path.$file);
                 } else {
-                    $cs->registerCssFile(Yii::app()->theme->baseUrl.$file);
+                    $cs->registerCssFile($path.$file);
                 }
             } else {
                 //unknown extension

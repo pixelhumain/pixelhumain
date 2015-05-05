@@ -11,6 +11,7 @@ ph/upload
 ph/assets
 ph/protected/runtime
 ph/themes/theme-azotlive
+ph/themes/rapidos
 *.tmp
 *.bak
 *.swp
