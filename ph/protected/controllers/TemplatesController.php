@@ -160,8 +160,14 @@ class TemplatesController extends Controller
             }
             else
                 echo json_encode(array('result'=>false,'error'=>'Something went wrong!'));
-        } else
+        } 
+        else 
+        {
+            $doc = Document::getById( $_POST['docId'] );
+            if( $doc )
+                Document::removeDocumentById($_POST['docId']);
             echo json_encode(array('result'=>false,'error'=>'Something went wrong!',"filepath"=>$filepath));
+        }
     }
 
     function human_filesize($bytes, $decimals = 2) {
