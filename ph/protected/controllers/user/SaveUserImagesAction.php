@@ -9,7 +9,7 @@
 class SaveUserImagesAction extends CAction
 {
 	
-    public function run($type, $id, $contentKey=null)
+    public function run($type, $id, $contentKey=null, $user)
     {
     	if( isset($_FILES['avatar'])) 
         {
@@ -25,7 +25,7 @@ class SaveUserImagesAction extends CAction
         		$params['name'] = $pathImage["name"];
         		$params['doctype'] = "image";
         		$params['size'] = $pathImage["size"][0]*$pathImage["size"][1]/1000;
-        		$params['author'] = "";
+        		$params['author'] = $user;
         		$params['category'] = array();
         		$params['contentKey'] = $contentKey;
         		$result = Document::save($params);
@@ -61,7 +61,8 @@ class SaveUserImagesAction extends CAction
         foreach(glob($upload_dir . "*.{jpg,png,gif}",GLOB_BRACE) as $filename){
         	$fileCount = $fileCount+1;
         };
-        $image_name = "image_".$fileCount;
+        $create = time();
+        $image_name = "img_".$userID."_".$create;
 		$destination_folder =$upload_dir.$image_name;
 		$image_temp = $image['tmp_name']; //file temp
 		$image_size_info    = getimagesize($image_temp);

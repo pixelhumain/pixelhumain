@@ -28,8 +28,8 @@ class HtmlHelper {
      */
     public static function registerCssAndScriptsFiles($files,$path=null) {
         $cs = Yii::app()->getClientScript();
-        /*if(!$path)
-            $path = Yii::app()->theme->baseUrl;*/
+        if(!$path)
+            $path = Yii::app()->theme->baseUrl;
         $ajaxRequest = Yii::app()->request->isAjaxRequest;
         foreach ($files as $file) {
             $extention = pathinfo($file,PATHINFO_EXTENSION);
