@@ -9,7 +9,7 @@
 class SaveUserImagesAction extends CAction
 {
 	
-    public function run($type, $id, $contentKey=null)
+    public function run($type, $id, $contentKey=null, $user)
     {
     	if( isset($_FILES['avatar'])) 
         {
@@ -25,7 +25,7 @@ class SaveUserImagesAction extends CAction
         		$params['name'] = $pathImage["name"];
         		$params['doctype'] = "image";
         		$params['size'] = $pathImage["size"][0]*$pathImage["size"][1]/1000;
-        		$params['author'] = "";
+        		$params['author'] = $user;
         		$params['category'] = array();
         		$params['contentKey'] = $contentKey;
         		$result = Document::save($params);
