@@ -62,7 +62,7 @@ class TemplatesController extends Controller
         {
         	
         	$pic = $_FILES[$input];
-        	$ext = pathinfo($pic['name'], PATHINFO_EXTENSION);
+        	$ext = strtolower(pathinfo($pic['name'], PATHINFO_EXTENSION));
         	if(!in_array($ext,$allowed_ext))
             {
         		echo json_encode(array('result'=>false,'error'=>'Only '.implode(',',$allowed_ext).' files are allowed!'));
