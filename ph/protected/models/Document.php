@@ -3,8 +3,10 @@ class Document {
 
 	const COLLECTION = "documents";
 
-	const IMG_BANNIERE = "Banniere";
-	const IMG_PROFIL = "Profil";
+	const IMG_BANNIERE = "banniere";
+	const IMG_PROFIL = "profil";
+	const IMG_SLIDER = "slider";
+	const IMG_MEDIA = "media";
 
 	/**
 	 * get an project By Id
