@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 class Document {
 
 	const COLLECTION = "documents";

@@ -74,6 +74,8 @@ class TemplatesController extends Controller
         	//we use a unique Id for the iamge name Yii::app()->session["userId"].'.'.$ext
             //renaming file
         	$name = ($rename) ? Yii::app()->session["userId"].'.'.$ext : $pic['name'];
+            if( file_exists ( $upload_dir.$name ) )
+                $name = time()."_".$name;
         	if( isset(Yii::app()->session["userId"]) && $name && move_uploaded_file($pic['tmp_name'], $upload_dir.$name))
             {   
         		echo json_encode(array('result'=>true,
@@ -116,8 +118,8 @@ class TemplatesController extends Controller
         
         if(array_key_exists($input,$_FILES) && $_FILES[$input]['error'] == 0 )
         {
-            
-            foreach ( $_FILES[$input]["name"] as $key => $value ) {
+            foreach ( $_FILES[$input]["name"] as $key => $value ) 
+            {
                 $ext = pathinfo($_FILES[$input]['name'][$key], PATHINFO_EXTENSION);
                 if(!in_array($ext,$allowed_ext))
                 {
@@ -127,12 +129,11 @@ class TemplatesController extends Controller
             
                 // Move the uploaded file from the temporary 
                 // directory to the uploads folder:
-                //we use a unique Id for the iamge name Yii::app()->session["userId"].'.'.$ext
-                //renaming file
+                // we use a unique Id for the iamge name Yii::app()->session["userId"].'.'.$ext
+                // renaming file
                 $name = ($rename) ? Yii::app()->session["userId"].'.'.$ext : $_FILES[$input]['name'][$key];
                 if( isset(Yii::app()->session["userId"]) && $name && move_uploaded_file($_FILES[$input]['tmp_name'][$key], $upload_dir.$name))
                 {   
-                    chmod($$upload_dir.$name, 0775);
                     echo json_encode(array('result'=>true,
                                             "success"=>true,
                                             'name'=>$name,
@@ -141,7 +142,6 @@ class TemplatesController extends Controller
                     exit;
                 }
             }
-            
         }
         
         echo json_encode(array('result'=>false,'error'=>'Something went wrong with your upload!'));
@@ -160,8 +160,14 @@ class TemplatesController extends Controller
             }
             else
                 echo json_encode(array('result'=>false,'error'=>'Something went wrong!'));
-        } else
+        } 
+        else 
+        {
+            $doc = Document::getById( $_POST['docId'] );
+            if( $doc )
+                Document::removeDocumentById($_POST['docId']);
             echo json_encode(array('result'=>false,'error'=>'Something went wrong!',"filepath"=>$filepath));
+        }
     }
 
     function human_filesize($bytes, $decimals = 2) {
