@@ -5,38 +5,51 @@ class Organization {
 	
 	//From Post/Form name to database field name
 	private static $dataBinding = array(
-	    "name" => "name",
-	    "email" => "email",
-	    "created" => "created",
-	    "creator" => "creator",
-	    "type" => "type",
-	    "shortDescription" => "shortDescription",
-	    "description" => "description",
-	    "address" => "address",
-	    "streetAddress" => "address.streetAddress",
-	    "postalCode" => "address.postalCode",
-	    "city" => "address.codeInsee",
-	    "addressLocality" => "address.addressLocality",
-	    "addressCountry" => "address.addressCountry",
-	    "tags" => "tags",		    
-	    "typeIntervention" => "typeIntervention",
-	    "typeOfPublic" => "typeOfPublic",
-	    "url"=>"url",
-	    "telephone" => "telephone"
+	    "name" => array("name" => "name", "rules" => array("required")),
+	    "email" => array("name" => "email", "rules" => array("email")),
+	    "created" => array("name" => "created"),
+	    "creator" => array("name" => "creator"),
+	    "type" => array("name" => "type"),
+	    "shortDescription" => array("name" => "shortDescription"),
+	    "description" => array("name" => "description"),
+	    "address" => array("name" => "address"),
+	    "streetAddress" => array("name" => "address.streetAddress"),
+	    "postalCode" => array("name" => "address.postalCode"),
+	    "city" => array("name" => "address.codeInsee"),
+	    "addressLocality" => array("name" => "address.addressLocality"),
+	    "addressCountry" => array("name" => "address.addressCountry"),
+	    "tags" => array("name" => "tags"),
+	    "typeIntervention" => array("name" => "typeIntervention"),
+	    "typeOfPublic" => array("name" => "typeOfPublic"),
+	    "url"=>array("name" => "url"),
+	    "telephone" => array("name" => "telephone")
 	);
-
+	
+	//See findOrganizationByCriterias...
 	public static function getWhere($params) {
 	  	return PHDB::find( self::COLLECTION,$params);
 	}
 
-  	private static function getCollectionFieldName($organizationFieldName) {
+	//TODO SBAR - First test to validate data. Move it to DataValidator
+  	private static function getCollectionFieldNameAndValidate($organizationFieldName, $organizationFieldValue) {
 		$res = "";
 		if (isset(self::$dataBinding["$organizationFieldName"])) {
-			$res = self::$dataBinding["$organizationFieldName"];
+			$data = self::$dataBinding["$organizationFieldName"];
+			$name = $data["name"];
+			//Validate field
+			if (isset($data["rules"])) {
+				$rules = $data["rules"];
+				foreach ($rules as $rule) {
+					$isDataValidated = DataValidator::$rule($organizationFieldValue);
+					if (! $isDataValidated) {
+						throw new CTKException("The Field ".$organizationFieldName." does not respect the validation rules");
+					}
+				}	
+			}
 		} else {
-			throw new CommunecterException("Unknown field :".$organizationFieldName);
+			throw new CTKException("Unknown field :".$organizationFieldName);
 		}
-		return $res;
+		return $name;
 	}
 
 	/**
@@ -423,12 +436,12 @@ class Organization {
 	 	if (!Authorisation::isOrganizationAdmin($userId, $organizationId)) {
 			throw new CTKException("Can not update this organization : you are not authorized to update that organization !");	
 		}
-		$dataFieldName = Organization::getCollectionFieldName($organizationFieldName);
+		$dataFieldName = Organization::getCollectionFieldNameAndValidate($organizationFieldName, $organizationFieldValue);
 	
 		//Specific case : 
 		//Tags
 		if ($dataFieldName == "tags") {
-			$organizationFieldValue = Tags::filterAndSaveNewTags($organizationFieldValue);
+			$organizationFieldValue = Tags::filterAndSaveNewTags($organizationFieldValue, $organizationFieldValue);
 		}
 		//address
 		if ($dataFieldName == "address") {
