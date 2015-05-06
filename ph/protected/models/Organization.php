@@ -5,7 +5,7 @@ class Organization {
 	
 	//From Post/Form name to database field name
 	private static $dataBinding = array(
-	    "name" => array("name" => "name", "rules" => array("required")),
+	    "name" => array("name" => "name", "rules" => array("required", "organizationSameName")),
 	    "email" => array("name" => "email", "rules" => array("email")),
 	    "created" => array("name" => "created"),
 	    "creator" => array("name" => "creator"),
@@ -22,7 +22,8 @@ class Organization {
 	    "typeIntervention" => array("name" => "typeIntervention"),
 	    "typeOfPublic" => array("name" => "typeOfPublic"),
 	    "url"=>array("name" => "url"),
-	    "telephone" => array("name" => "telephone")
+	    "telephone" => array("name" => "telephone"),
+	    "video" => array("name" => "video")
 	);
 	
 	//See findOrganizationByCriterias...

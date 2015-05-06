@@ -10,14 +10,25 @@
 class DataValidator {
 
 	public static function required($toValidate) {
-		return (! isEmpty($toValidate));
+		if (! isEmpty($toValidate))	return "The Field is required";
 	}
 
 	public static function email($toValidate) {
 		if (! preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$toValidate)) { 
-			return false;
+			return "The email is not well formated";
 		} else {
-			return true;
+			return "";
 		}
 	}
+	
+	public static function organizationSameName($toValidate) {
+		// Is There a association with the same name ?
+	    $organizationSameName = PHDB::findOne( Organization::COLLECTION,array( "name" => $toValidate);      
+	    if($organizationSameName) { 
+	    	return false;
+	    } else {
+	    	return true;
+	    }
+	}
+
 }
