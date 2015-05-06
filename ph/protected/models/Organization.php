@@ -20,7 +20,9 @@ class Organization {
 	    "addressCountry" => "address.addressCountry",
 	    "tags" => "tags",		    
 	    "typeIntervention" => "typeIntervention",
-	    "typeOfPublic" => "typeOfPublic"
+	    "typeOfPublic" => "typeOfPublic",
+	    "url"=>"url",
+	    "telephone" => "telephone"
 	);
 
 	public static function getWhere($params) {
