@@ -10,25 +10,29 @@
 class DataValidator {
 
 	public static function required($toValidate) {
-		if (! isEmpty($toValidate))	return "The Field is required";
+		$res = "";
+		if (empty($toValidate)) {
+			$res = "The Field is required";
+		}
+		return $res;
 	}
 
 	public static function email($toValidate) {
+		$res = "";
 		if (! preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$toValidate)) { 
-			return "The email is not well formated";
-		} else {
-			return "";
+			$res = "The email is not well formated";
 		}
+		return $res;
 	}
 	
 	public static function organizationSameName($toValidate) {
 		// Is There a association with the same name ?
-	    $organizationSameName = PHDB::findOne( Organization::COLLECTION,array( "name" => $toValidate);      
-	    if($organizationSameName) { 
-	    	return false;
-	    } else {
-	    	return true;
+	    $res = "";
+	    $organizationSameName = PHDB::findOne(Organization::COLLECTION,array( "name" => $toValidate));      
+	    if ($organizationSameName) { 
+	    	$res = "An organization with the same name allready exists";
 	    }
+	    return $res;
 	}
 
 }

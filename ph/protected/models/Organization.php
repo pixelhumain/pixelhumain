@@ -42,8 +42,8 @@ class Organization {
 				$rules = $data["rules"];
 				foreach ($rules as $rule) {
 					$isDataValidated = DataValidator::$rule($organizationFieldValue);
-					if (! $isDataValidated) {
-						throw new CTKException("The Field ".$organizationFieldName." does not respect the validation rules");
+					if ($isDataValidated != "") {
+						throw new CTKException($isDataValidated);
 					}
 				}	
 			}
