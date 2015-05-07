@@ -168,12 +168,15 @@ class Organization {
 			$newOrganization["description"] = $organization['description'];
 				  
 		//Tags
-		if ( gettype($organization['tags']) == "array" ) {
-			$tags = $organization['tags'];
-		} else if ( gettype($organization['tags']) == "string" ) {
-			$tags = explode(",", $organization['tags']);
+		if (isset($organization['tags'])) {
+			if ( gettype($organization['tags']) == "array" ) {
+				$tags = $organization['tags'];
+			} else if ( gettype($organization['tags']) == "string" ) {
+				$tags = explode(",", $organization['tags']);
+			}
+			$newOrganization["tags"] = $tags;
 		}
-		$newOrganization["tags"] = $tags;
+		
 
 		//************************ Spécifique Granddir ********************/
 		//TODO SBAR : A sortir du CTK. Prévoir une méthode populateSpecific() à appeler ici
@@ -274,15 +277,20 @@ class Organization {
 	 * It is created in a temporary state
 	 * This creates and invites the email to fill extra information 
 	 * into the Organisation profile 
-	 * @param type $param 
+	 * @param array $param minimal information in order to create the organization
 	 * @return type
 	 */
 	public static function createAndInvite($param) {
-	  	PHDB::insert( Organization::COLLECTION , $param );
-
+	  	try {
+	  		$res = self::insert($param, $param["invitedBy"]);
+	  	} catch (CTKException $e) {
+	  		$res = array("result"=>false, "msg"=> $e->getMessage());
+	  	}
         //TODO TIB : mail Notification 
         //for the organisation owner to subscribe to the network 
         //and complete the Organisation Profile
+        
+        return $res;
 	}
 
 	/**
