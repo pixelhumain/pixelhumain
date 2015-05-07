@@ -44,6 +44,9 @@
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
 		</script>
+		<style type="text/css">
+			.form-group label.error{ color:red; font-size:10px; }
+		</style>
 	</head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->

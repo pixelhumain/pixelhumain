@@ -149,11 +149,14 @@ onSave: (optional) overloads the generic saveProcess
 		* STANDARD TEXT INPUT
 		***************************************** */
         else if( !fieldObj.inputType || fieldObj.inputType == "text" || fieldObj.inputType == "numeric" || fieldObj.inputType == "tags" ) {
-        	
-        	if(fieldObj.inputType == "tags"){
+        	if(fieldObj.inputType == "tags")
+        	{
         		fieldClass += " select2TagsInput";
-        		if(fieldObj.values)
+        		if(fieldObj.values){
+        			if(!initValues[field])
+        				initValues[field] = {};
         			initValues[field]["tags"] = fieldObj.values;
+        		}
         		style = "style='width:100%'"
         	}
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;

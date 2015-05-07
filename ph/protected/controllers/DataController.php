@@ -125,6 +125,16 @@ class DataController extends Controller {
                   if($myOrganizations){
                     $exportInitData[ PHType::TYPE_ORGANIZATIONS ] = $myOrganizations;
                   }
+
+                  /* **************************************
+                  * ORGANIZATIONS MAP
+                  ***************************************** */
+                  $myOrganizations = Event::getWhere( array("creator"=>Yii::app()->session["userId"]) );
+                  if($myOrganizations){
+                    $exportInitData[ PHType::TYPE_ORGANIZATIONS ] = $myOrganizations;
+                  }
+
+
                   $res = json_encode( $exportInitData );
                   file_put_contents("upload/".Yii::app()->session["userId"].".json", $res, FILE_APPEND | LOCK_EX);
                   echo "<a href='".Yii::app()->createUrl("/upload/".Yii::app()->session["userId"].".json")."' target='_blank'>See your Exported data</a>"; 
