@@ -152,7 +152,8 @@ onSave: (optional) overloads the generic saveProcess
         	
         	if(fieldObj.inputType == "tags"){
         		fieldClass += " select2TagsInput";
-        		initValues[field]["tags"] = fieldObj.values;
+        		if(fieldObj.values)
+        			initValues[field]["tags"] = fieldObj.values;
         		style = "style='width:100%'"
         	}
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
