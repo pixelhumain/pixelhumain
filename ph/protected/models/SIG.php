@@ -77,11 +77,7 @@ class SIG
 		}
 
 		$city = PHDB::findAndSort(SIG::CITIES_COLLECTION_NAME, array("cp" => $postalCode), array("name" => -1));
-		if (empty($city)) {
-			throw new CTKException("Impossible to find the city with the postal code : ".$postalCode);
-		} else {
-			return $city;
-		}
+		return $city;
 	}
 
 	public static function getAdressSchemaLikeByCodeInsee($codeInsee) {
