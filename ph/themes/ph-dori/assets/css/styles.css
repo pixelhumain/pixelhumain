@@ -2038,8 +2038,9 @@ textarea.autosize {
     display: inline; 
 }
 
-.editableform .form-group, .editableform .form-control, .editableform .editable-input, .editable-pre-wrapped {
-    width: 100%;
+/*.editableform .form-group, .editableform .form-control, .editableform .editable-input, .editable-pre-wrapped {*/
+.editableform .form-group, .editableform .form-control, .editable-pre-wrapped {
+	width: 100%;
 }
 
 /* ---------------------------------------------------------------------- */
