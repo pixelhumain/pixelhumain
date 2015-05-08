@@ -177,7 +177,6 @@ class Organization {
 			$newOrganization["tags"] = $tags;
 		}
 		
-
 		//************************ Spécifique Granddir ********************/
 		//TODO SBAR : A sortir du CTK. Prévoir une méthode populateSpecific() à appeler ici
 		//Cette méthode sera implémenté dans le Modèle Organization spécifique de Granddir
