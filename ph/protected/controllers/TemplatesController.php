@@ -160,6 +160,10 @@ class TemplatesController extends Controller
             }
             else
                 echo json_encode(array('result'=>false,'error'=>'Something went wrong!'));
+
+            if(isset($_POST['itemId']) && isset($_POST['itemType']) && isset($_POST['itemKey'])){
+            	Document::setImagePath($_POST['itemId'], $_POST['itemType'], "", $_POST['itemKey']);
+            }
         } 
         else 
         {
