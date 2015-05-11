@@ -88,7 +88,7 @@ class Event {
 	    
 	    //send validation mail
 	    //TODO : make emails as cron jobs
-	    /*$message = new YiiMailMessage;
+	    /*$message = new YiiMailMessage; 
 	    $message->view = 'validation';
 	    $message->setSubject('Confirmer votre compte Pixel Humain');
 	    $message->setBody(array("user"=>$new["_id"]), 'text/html');
