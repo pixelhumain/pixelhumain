@@ -50,8 +50,11 @@ class Document {
 	    );
 	    if(isset($params["category"]) && !empty($params["category"]))
 	    	$new["category"] = $params["category"];
-	    if(isset($params["contentKey"]) && !empty($params["contentKey"]))
+	    if(isset($params["contentKey"]) && !empty($params["contentKey"])){
 	    	$new["contentKey"] = $params["contentKey"];
+	    	$pathImg = "/upload/".$params['moduleId']."/".$params['type']."/".$params["id"]."/".$params["name"];
+	    	Document::setImagePath( $params['id'], $params['type'], $pathImg ,$params["contentKey"]);
+	    }
 
 
 	    PHDB::insert(self::COLLECTION,$new);
