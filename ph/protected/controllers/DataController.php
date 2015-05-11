@@ -100,14 +100,27 @@ class DataController extends Controller {
       $this->render("dataconnexion");
   }
 	/**
-	 * Delete an entry from the data table using the id
+	 * Export all data related to a person 
+   * Generates a json file
+   * and an image folder
 	 */
-    public function actionExportInitData($id) {
+    public function actionExportInitData($id,$module) 
+    {
 	    if( isset(Yii::app()->session["userId"]) && $id == Yii::app()->session["userId"])
   		{
               $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId(Yii::app()->session["userId"])));
               if( $account  )
               {
+                  /* **************************************
+                  * SETUP FILE SYSTEM
+                  ***************************************** */
+                  $suffixe = "test";//"_".date('YmdHi')
+                  $base = 'upload'.DIRECTORY_SEPARATOR.'export'.DIRECTORY_SEPARATOR.Yii::app()->session["userId"].$suffixe.DIRECTORY_SEPARATOR;
+                  $upload_dir = $base."assets".DIRECTORY_SEPARATOR;
+                  if(!file_exists ( $upload_dir ))
+                      mkdir ( $upload_dir, 0775, true );
+                  $upload_dir = $base;
+
                   $account["_id"] = array('$oid'=>(string)$account["_id"]);
                   unset( $account["_id"]['$id'] );
 
@@ -115,7 +128,7 @@ class DataController extends Controller {
                   * CITOYENS MAP
                   ***************************************** */
                   $exportInitData = array( 
-                    PHType::TYPE_CITOYEN=>array($account) 
+                    PHType::TYPE_CITOYEN => array($account) 
                   );
 
                   /* **************************************
@@ -123,24 +136,56 @@ class DataController extends Controller {
                   ***************************************** */
                   $myOrganizations = Organization::getWhere( array("creator"=>Yii::app()->session["userId"]) );
                   if($myOrganizations){
-                    $exportInitData[ PHType::TYPE_ORGANIZATIONS ] = $myOrganizations;
+                    $exportInitData[ Organization::COLLECTION ] = array();
+                    
+                    foreach ($myOrganizations as $key => $o) {
+                      array_push( $exportInitData[ Organization::COLLECTION ], $o );
+                    }
+
                   }
 
                   /* **************************************
-                  * ORGANIZATIONS MAP
+                  * Events MAP
                   ***************************************** */
-                  $myOrganizations = Event::getWhere( array("creator"=>Yii::app()->session["userId"]) );
-                  if($myOrganizations){
-                    $exportInitData[ PHType::TYPE_ORGANIZATIONS ] = $myOrganizations;
+                  $myEvents = Event::getWhere( array("creator"=>Yii::app()->session["userId"]) );
+                  if($myEvents){
+                    $exportInitData[ Event::COLLECTION ] = array();
+                    
+                    foreach ($myEvents as $key => $e) {
+                      array_push($exportInitData[ Event::COLLECTION ], $e);
+                    }
+                  }
+
+                  /* **************************************
+                  * Documents MAP
+                  ***************************************** */
+                  $myDocs = Document::getWhere( array("creator"=>Yii::app()->session["userId"]) );
+                  if($myDocs){
+                    $exportInitData[ Document::COLLECTION ] = array();
+                    
+                    foreach ($myDocs as $key => $doc) {
+                      array_push($exportInitData[ Document::COLLECTION ], $doc);
+                      $src = "upload".DIRECTORY_SEPARATOR.$module.DIRECTORY_SEPARATOR.$doc["type"].DIRECTORY_SEPARATOR.$doc["id"].DIRECTORY_SEPARATOR.$doc["name"];
+                      $dest = $upload_dir."assets".DIRECTORY_SEPARATOR.$module.DIRECTORY_SEPARATOR.$doc["folder"].DIRECTORY_SEPARATOR.$doc["name"];
+                      if( file_exists ( $src ) )
+                      {
+                        if(!file_exists ( $upload_dir."assets".DIRECTORY_SEPARATOR.$module.DIRECTORY_SEPARATOR.$doc["folder"].DIRECTORY_SEPARATOR ))
+                          mkdir ( $upload_dir."assets".DIRECTORY_SEPARATOR.$module.DIRECTORY_SEPARATOR.$doc["folder"].DIRECTORY_SEPARATOR, 0775, true );
+                        copy ( $src , $dest );
+                      }
+                    }
                   }
 
 
                   $res = json_encode( $exportInitData );
-                  file_put_contents("upload/".Yii::app()->session["userId"].".json", $res, FILE_APPEND | LOCK_EX);
-                  echo "<a href='".Yii::app()->createUrl("/upload/".Yii::app()->session["userId"].".json")."' target='_blank'>See your Exported data</a>"; 
+                  
+
+                  file_put_contents( $upload_dir.Yii::app()->session["userId"].".json" , $res , LOCK_EX );
+                  echo "<a href='".Yii::app()->createUrl("/".$upload_dir.Yii::app()->session["userId"].".json")."' target='_blank'>See your Exported data</a>"; 
               } else 
                     echo Rest::json(array("result"=>false,"msg"=>"Cette requete ne peut aboutir."));
   		} else
   		    echo Rest::json(array("result"=>false, "msg"=>"Cette requete ne peut aboutir."));
 	}
+
 }

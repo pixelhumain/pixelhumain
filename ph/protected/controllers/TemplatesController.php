@@ -28,18 +28,18 @@ class TemplatesController extends Controller
         
         $upload_dir = 'upload/';
         if(!file_exists ( $upload_dir ))
-            mkdir ( $upload_dir );
+            mkdir ( $upload_dir,0775 );
         
         //ex: upload/communecter
         $upload_dir = 'upload/'.$dir.'/';
         if(!file_exists ( $upload_dir ))
-            mkdir ( $upload_dir );
+            mkdir ( $upload_dir,0775 );
 
         //ex: upload/communecter/person
         if( isset( $folder )){
             $upload_dir .= $folder.'/';
             if( !file_exists ( $upload_dir ) )
-                mkdir ( $upload_dir );
+                mkdir ( $upload_dir,0775 );
         }
 
         //ex: upload/communecter/person/userId
@@ -47,7 +47,7 @@ class TemplatesController extends Controller
         {
             $upload_dir .= $ownerId.'/';
             if( !file_exists ( $upload_dir ) )
-                mkdir ( $upload_dir );
+                mkdir ( $upload_dir,0775 );
         }
         
         $allowed_ext = array('jpg','jpeg','png','gif',"pdf","xls","xlsx","doc","docx","ppt","pptx");
@@ -86,7 +86,6 @@ class TemplatesController extends Controller
     	        exit;
         	}
         }
-        
         echo json_encode(array('result'=>false,'error'=>'Something went wrong with your upload!'));
     	exit;
 	}
