@@ -14,6 +14,10 @@ class Api {
 	//ex : userMap is a sample composition of a standard user Map = list of methods or definitions needed to define a user process
 	public static $apis = array(
 
+
+        'index' => array( "label"=>"API index", "key"=>"index",
+            "desc"=>"Scenario driven API  index for Restfull testing",
+            "actions"=>array('index' => 'application.components.api.controllers.IndexAction')),
 		/* -----------------------------------------------
 		USER Section
 		 ------------------------------------------------ */

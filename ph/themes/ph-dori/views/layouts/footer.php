@@ -3,7 +3,7 @@
 	<div class="footer-inner">
 		<div class="pull-left">
 
-			2014 <?php echo (isset($this->projectImage)) ? '<img height="30" style="margin-right:20px;" src="'.$this->module->assetsUrl.$this->projectImage.'"/>' : "<i class='fa fa-close'>/i>";
+			2012 - 2015 <?php echo (isset($this->projectImage)) ? '<img height="30" style="margin-right:20px;" src="'.$this->module->assetsUrl.$this->projectImage.'"/>' : "<i class='fa fa-close'></i>";
 			 
 			$platform = "";
 			$logoColor = "";
@@ -23,7 +23,7 @@
 				$logoColor = "";
 				$platform = "PROD";
 			}
-			echo "<span class='label label-inverse '>".$platform."</span> <span class='label label-inverse '>".((isset($this->versionDate)) ? $this->versionDate: "" )."</span> <span class='label label-inverse ' style='margin-right:20px'>".$this->version."</span>";
+			echo "<span class='label label-inverse '>".$platform."</span> <span class='label label-inverse '>".( (isset($this->versionDate)) ? $this->versionDate : "" )."</span> <span class='label label-inverse ' style='margin-right:20px'>".((isset($this->version)) ? $this->version : "")."</span>";
 		 	
 			if(isset($this->footerImages)){
 				foreach ($this->footerImages as $k=>$v) {

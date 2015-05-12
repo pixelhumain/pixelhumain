@@ -52,7 +52,7 @@
 				$logoColor = "";
 				$platform = "PROD";
 			}
-			$contextInfo = $platform." : ".$this->version;
+			$contextInfo = (isset($this->version)) ? $platform." : ".$this->version : $platform;
 		 ?>
 		<h1 class="trigger collapse_trigger hide_on_active">
 			<i class="fa fa-logo <?php echo $logoColor ?> " title="<?php echo $contextInfo ?>"></i>

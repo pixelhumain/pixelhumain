@@ -134,10 +134,9 @@
 						if($isMobile) { 
 						    $path = '.views.layouts.toolbarMobile'; 
 						} 
-						$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);?>
-						<!-- end: PAGE HEADER -->
+						$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);
+						//<!-- end: PAGE HEADER -->
 						
-						<?php 
 						if(!count($this->sidebar2 ))
 							echo '<div class="space20"></div> ';
 						//$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.breadcrumb');?>
@@ -260,7 +259,6 @@
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/additional.js' , CClientScript::POS_END);
 
 		$path = '/assets/js/main.js';
-
 		$detect = new Mobile_Detect;
 	    $isMobile = $detect->isMobile();
 	      

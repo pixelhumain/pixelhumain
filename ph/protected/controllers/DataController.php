@@ -114,7 +114,7 @@ class DataController extends Controller {
                   /* **************************************
                   * SETUP FILE SYSTEM
                   ***************************************** */
-                  $suffixe = "test";//"_".date('YmdHi')
+                  $suffixe = "";//"_".date('YmdHi')
                   $base = 'upload'.DIRECTORY_SEPARATOR.'export'.DIRECTORY_SEPARATOR.Yii::app()->session["userId"].$suffixe.DIRECTORY_SEPARATOR;
                   $upload_dir = $base."assets".DIRECTORY_SEPARATOR;
                   if(!file_exists ( $upload_dir ))

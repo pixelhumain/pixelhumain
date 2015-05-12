@@ -1,6 +1,7 @@
 <?php
 //PIXEL HUMAIN specific modules 
 $activeModules = array(
+	'citizenToolKit',
 	'waterwatcher',
 	'waterwatcher2',
 	'egpc',
@@ -22,4 +23,5 @@ $activeModules = array(
 	'vitrine',
 	'learn',
 	'opendata',
-	'granddir');
+	'granddir',
+	);
