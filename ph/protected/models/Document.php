@@ -145,5 +145,20 @@ class Document {
 		}
 	}
 
+	/**
+	 * Get the list of categories available for the id and the type (Person, Organization, Event..)
+	 * @param String $id Id to search the categories for
+	 * @param String $type Collection Type 
+	 * @return array of available categories (String)
+	 */
+	public static function getAvailableCategories($id, $type) {
+		$params = array("id"=> $id,
+						"type" => $type);
+		$sort = array("category" => -1);
+		$listCategory = PHDB::distinct(self::COLLECTION, "category", $params);
+		
+		return $listCategory;
+	}
+
 }
 ?>
