@@ -38,29 +38,7 @@ class Document {
 		$listDocuments = PHDB::findAndSort( self::COLLECTION,$params, $sort);
 		return $listDocuments;	
 	}
-
-	//TODO SBAR - get the moduleid
-	public static function getDocumentLink($document, $text) {
-		$module = /*$this->module->id*/"communecter";
-		$baseURL = Yii::app()->request->baseUrl;
-		$link = "";
-		if (isset($document) && isset($document['name']) && isset($document['folder'])) {
-        	$name = strtolower($document['name']);
-        	if(strrpos($name, ".pdf") != false)
-				$link = '<a href="'.$baseURL."/upload/".$module."/".$document['folder']."/".$document['name'].'" target="_blank">'.
-							'<i class="fa fa-file-pdf-o fa-3x icon-big"></i>'.$text.'</a>';	
-			else if( strrpos( $name, ".jpg" ) != false || strrpos($name, ".jpeg") != false || strrpos($name, ".gif")  != false || strrpos($name, ".png")  != false  )
-				$link = '<a href="'.$baseURL."/upload/".$module."/".$document['folder']."/".$document['name'].'" data-lightbox="docs">'.
-							'<img width="50" class="" src="'.Yii::app()->request->baseUrl."/upload/".$this->module->id."/".$document['folder']."/".$document['name'].'"/>'.
-							$text.'</a>';	
-			else
-				$link = '<a href="'.$baseURL."/upload/".$module."/".$document['folder']."/".$document['name'].'" target="_blank">'.
-							'<i class="fa fa-file fa-3x icon-big"></i>'.$text.'</a>';
-		} else {
-			throw new CTKException("The document is not well formated");
-		}
-		return $link;
-	}
+	
 	/**
 	 * save document information
 	 * @param $params : a set of information for the document (?to define)
@@ -165,6 +143,39 @@ class Document {
 	                        array('$set' => array("imagePath"=> $path))
 	                    );
 		}
+	}
+
+
+	public static function getLastImageByKey($itemId, $itemType, $key){
+		$listImages= array();
+		$sort = array( 'created' => 1 );
+		$listImagesofType = Document::listMyDocumentByType($itemId, $itemType, "image", $sort);
+		var_dump($listImagesofType);
+		foreach ($listImagesofType as $key => $value) {
+			if(isset($value["contentKey"]) && $value["contentKey"] != ""){
+				$explodeValueContentKey = explode(".", $value["contentKey"]);
+				var_dump($explodeValueContentKey);
+				if(in_array($key, $explodeValueContentKey)){
+					array_push($listImages, $value);
+				}
+			}
+		}
+		return $listImages;
+
+	/**
+	 * Get the list of categories available for the id and the type (Person, Organization, Event..)
+	 * @param String $id Id to search the categories for
+	 * @param String $type Collection Type 
+	 * @return array of available categories (String)
+	 */
+	public static function getAvailableCategories($id, $type) {
+		$params = array("id"=> $id,
+						"type" => $type);
+		$sort = array("category" => -1);
+		$listCategory = PHDB::distinct(self::COLLECTION, "category", $params);
+		
+		return $listCategory;
+
 	}
 
 }
