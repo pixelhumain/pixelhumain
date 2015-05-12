@@ -161,8 +161,7 @@ class Document {
 						"contentKey" => new MongoRegex("/".$key."/i"));
 		$listImagesofType = PHDB::findAndSort( self::COLLECTION,$params, $sort, 1);
 		foreach ($listImagesofType as $key => $value) {
-			$imagePath = "upload".DIRECTORY_SEPARATOR.Yii::app()->controller->module->id.$value["folder"].$value["name"];
-    		$imagePath = Yii::app()->getRequest()->getBaseUrl(true).DIRECTORY_SEPARATOR.$imagePath;
+			$imagePath = DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR.Yii::app()->controller->module->id.DIRECTORY_SEPARATOR.$value["folder"].DIRECTORY_SEPARATOR.$value["name"];
     		$imagePath = str_replace(DIRECTORY_SEPARATOR, "/", $imagePath);
 		}
 		return $imagePath;

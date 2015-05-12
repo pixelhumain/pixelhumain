@@ -115,6 +115,12 @@ class Event {
         	$res["$eventId"] = $eventValue;
         }*/
 
+        foreach ($eventOrganization as $key => $value) {
+        	$profil = Document::getLastImageByKey($key, PHType::TYPE_EVENTS, Document::IMG_PROFIL);
+        	if($profil!="")
+        		$value['imagePath']=$profil;
+        }
+
         return $eventOrganization;
 	}
 
@@ -167,6 +173,11 @@ class Event {
 	public static function listEventAttending($userId){
 		$where = array("links.attendees.".$userId => array('$exists' => true));
 		$eventsAttending = PHDB::find(PHType::TYPE_EVENTS, $where);
+		foreach ($eventsAttending as $key => $value) {
+        	$profil = Document::getLastImageByKey($key, PHType::TYPE_EVENTS, Document::IMG_PROFIL);
+        	if($profil!="")
+        		$value['imagePath']=$profil;
+        }
         return $eventsAttending;
 	}
 }

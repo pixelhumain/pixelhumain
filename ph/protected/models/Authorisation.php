@@ -148,6 +148,7 @@ class Authorisation {
         $where = array("links.attendees.".$userId.".isAdmin" => true);
         $eventList = PHDB::find(PHType::TYPE_EVENTS, $where);
 
+
         //events of organization i'am admin 
         $listOrganizationAdmin = Authorisation::listUserOrganizationAdmin($userId);
         foreach ($listOrganizationAdmin as $organizationId => $organization) {
@@ -155,6 +156,12 @@ class Authorisation {
             foreach ($eventOrganization as $eventId => $eventValue) {
                 $eventList[$eventId] = $eventValue;
             }
+        }
+
+        foreach ($eventList as $key => $value) {
+        	$profil = Document::getLastImageByKey($key, PHType::TYPE_EVENTS, Document::IMG_PROFIL);
+        	if($profil!="")
+        		$value['imagePath']=$profil;
         }
 
         return $eventList;
