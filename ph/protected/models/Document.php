@@ -145,5 +145,22 @@ class Document {
 		}
 	}
 
+	public static function getLastImageByKey($itemId, $itemType, $key){
+		$listImages= array();
+		$sort = array( 'created' => 1 );
+		$listImagesofType = Document::listMyDocumentByType($itemId, $itemType, "image", $sort);
+		var_dump($listImagesofType);
+		foreach ($listImagesofType as $key => $value) {
+			if(isset($value["contentKey"]) && $value["contentKey"] != ""){
+				$explodeValueContentKey = explode(".", $value["contentKey"]);
+				var_dump($explodeValueContentKey);
+				if(in_array($key, $explodeValueContentKey)){
+					array_push($listImages, $value);
+				}
+			}
+		}
+		return $listImages;
+	}
+
 }
 ?>
