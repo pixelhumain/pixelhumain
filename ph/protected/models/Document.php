@@ -146,22 +146,22 @@ class Document {
 	}
 
 
+	/**
+	* get the last images with a key
+	* @param itemId is the id of the item that we want to get images
+	* @param itemType is the type of the item that we want to get images
+	* @param key is the type of image we want to get
+	* @return
+	*/
 	public static function getLastImageByKey($itemId, $itemType, $key){
 		$listImages= array();
-		$sort = array( 'created' => 1 );
-		$listImagesofType = Document::listMyDocumentByType($itemId, $itemType, "image", $sort);
-		var_dump($listImagesofType);
-		foreach ($listImagesofType as $key => $value) {
-			if(isset($value["contentKey"]) && $value["contentKey"] != ""){
-				$explodeValueContentKey = explode(".", $value["contentKey"]);
-				var_dump($explodeValueContentKey);
-				if(in_array($key, $explodeValueContentKey)){
-					array_push($listImages, $value);
-				}
-			}
-		}
-		return $listImages;
-
+		$sort = array( 'created' => -1 );
+		$params = array("id"=> $itemId,
+						"type" => $itemType,
+						"contentKey" => new MongoRegex("/".$key."/i"));
+		$listImagesofType = PHDB::findAndSort( self::COLLECTION,$params, $sort, 1);
+		return $listImagesofType;
+	}
 	/**
 	 * Get the list of categories available for the id and the type (Person, Organization, Event..)
 	 * @param String $id Id to search the categories for
