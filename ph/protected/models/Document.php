@@ -154,13 +154,18 @@ class Document {
 	* @return
 	*/
 	public static function getLastImageByKey($itemId, $itemType, $key){
-		$listImages= array();
+		$imagePath = "";
 		$sort = array( 'created' => -1 );
 		$params = array("id"=> $itemId,
 						"type" => $itemType,
 						"contentKey" => new MongoRegex("/".$key."/i"));
 		$listImagesofType = PHDB::findAndSort( self::COLLECTION,$params, $sort, 1);
-		return $listImagesofType;
+		foreach ($listImagesofType as $key => $value) {
+			$imagePath = "upload".DIRECTORY_SEPARATOR.Yii::app()->controller->module->id.$value["folder"].$value["name"];
+    		$imagePath = Yii::app()->getRequest()->getBaseUrl(true).DIRECTORY_SEPARATOR.$imagePath;
+    		$imagePath = str_replace(DIRECTORY_SEPARATOR, "/", $imagePath);
+		}
+		return $imagePath;
 	}
 	/**
 	 * Get the list of categories available for the id and the type (Person, Organization, Event..)
