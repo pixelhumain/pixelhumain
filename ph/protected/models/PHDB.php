@@ -56,6 +56,10 @@ class PHDB
         return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->findOne($where);
     }
     
+    public static function findOneById( $collection, $id )
+    {     
+        return self::findOne( $collection, array("_id"=>new MongoId($id)));
+    }
     public static function update( $collection, $where, $action )
     {    	
         return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->update($where,$action);
