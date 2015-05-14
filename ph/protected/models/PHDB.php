@@ -19,15 +19,19 @@ class PHDB
         return $res;
     }
 
-    public static function findAndSort( $collection, $where=array(), $sortCriteria, $limit=0)
+    public static function findAndSort( $collection, $where=array(), $sortCriteria, $limit=0, $fields=null)
     {       
         if (!self::checkMongoDbPhpDriverInstalled()) return null;
-
+          if ($fields) {
+            $res = Yii::app()->mongodb->selectCollection($collection)->find($where, $fields)->sort($sortCriteria);
+          } else {
+            $res = Yii::app()->mongodb->selectCollection($collection)->find($where)->sort($sortCriteria);
+          }
+        
         if($limit)
-            $res = iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where)->sort($sortCriteria)->limit($limit));
-        else
-            $res = iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where)->sort($sortCriteria));
-        return $res;
+          $res = $res->limit($limit);
+
+        return iterator_to_array($res);
     }
 
     public static function findAndModify( $collection, $where, $action, $options=null )

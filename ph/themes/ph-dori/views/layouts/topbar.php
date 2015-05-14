@@ -269,7 +269,7 @@
 		var data = {"name" : name};
 		$.ajax({
 			type: "POST",
-	        url: baseUrl+"/" + moduleId + "/search/getmemberautocomplete",
+	        url: baseUrl+"/" + moduleId + "/search/globalautocomplete",
 	        data: data,
 	        dataType: "json",
 	        success: function(data){
