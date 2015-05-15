@@ -12,6 +12,7 @@ ph/assets
 ph/protected/runtime
 ph/themes/theme-azotlive
 ph/themes/rapidos
+ph/themes/theme-granddir
 *.tmp
 *.bak
 *.swp

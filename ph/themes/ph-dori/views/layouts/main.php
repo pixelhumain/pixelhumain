@@ -21,44 +21,46 @@
 		$detect = new Mobile_Detect;
 		$isMobile = $detect->isMobile();
 		$cs = Yii::app()->getClientScript();
+		$themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
+		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 		//$cs->registerCssFile('http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,200,100,800');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap/css/bootstrap.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/font-awesome/css/font-awesome.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/font-awesome-custom/css/font-awesome.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap/css/bootstrap.min.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/font-awesome/css/font-awesome.min.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/font-awesome-custom/css/font-awesome.css');
 		
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/iCheck/skins/all.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/perfect-scrollbar/src/perfect-scrollbar.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/animate.css/animate.min.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/iCheck/skins/all.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/perfect-scrollbar/src/perfect-scrollbar.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/animate.css/animate.min.css');
 		//<!-- end: MAIN CSS -->
 		//<!-- start: CSS REQUIRED FOR SUBVIEW CONTENTS -->
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/owl-carousel/owl-carousel/owl.theme.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/owl-carousel/owl-carousel/owl.transitions.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/summernote/dist/summernote.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/toastr/toastr.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-select/bootstrap-select.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/DataTables/media/css/DT_bootstrap.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/owl-carousel/owl-carousel/owl.carousel.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/owl-carousel/owl-carousel/owl.theme.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/owl-carousel/owl-carousel/owl.transitions.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/summernote/dist/summernote.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/fullcalendar/fullcalendar/fullcalendar.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/toastr/toastr.min.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-select/bootstrap-select.min.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/DataTables/media/css/DT_bootstrap.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css');
 
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-modal/css/bootstrap-modal.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda-themeless.min.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-modal/css/bootstrap-modal.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/ladda-bootstrap/dist/ladda.min.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/ladda-bootstrap/dist/ladda-themeless.min.css');
 
 		//start: CSS REQUIRED FOR slider ONLY -->
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/slider/css/slider.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQRangeSlider/css/classic-min.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/slider/css/slider.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/jQRangeSlider/css/classic-min.css');
 		//<!-- end: CSS REQUIRED FOR slider ONLY -->
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/flexSlider/flexslider.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/flexSlider/flexslider.css');
 		//<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
 		//<!-- start: CORE CSS -->
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/styles.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/styles-responsive.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/plugins.css');
+		$cs->registerCssFile($themeAssetsUrl.'/css/styles.css');
+		$cs->registerCssFile($themeAssetsUrl.'/css/styles-responsive.css');
+		$cs->registerCssFile($themeAssetsUrl.'/css/plugins.css');
 
 		?>
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/<?php echo (isset($this->themeStyle)) ? $this->themeStyle : "theme-default"?>.css" type="text/css" id="skin_color">
@@ -86,14 +88,14 @@
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
 	<body>
-		<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.topSlidingBar');?>
+		<?php $this->renderPartial($layoutPath.'topSlidingBar');?>
 		<div class="main-wrapper">
-			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.topbar');?>
+			<?php $this->renderPartial($layoutPath.'topbar');?>
 			<?php 
-			$sidemenuL = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.sideMenuL';
+			$sidemenuL = $layoutPath.'sideMenuL';
 			$this->renderPartial($sidemenuL);
 			?>
-			<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.sideMenuR');?>
+			<?php $this->renderPartial($layoutPath.'sideMenuR');?>
 
 			<!-- start: MAIN CONTAINER -->
 			<div class="main-container inner">
@@ -139,14 +141,14 @@
 						
 						if(!count($this->sidebar2 ))
 							echo '<div class="space20"></div> ';
-						//$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.breadcrumb');?>
+						//$this->renderPartial($layoutPath.'breadcrumb');?>
 						
 						<!-- start: PAGE CONTENT -->
 						<div class="row page_content_wrap">
 							<span class="page_navigation_bg col-md-3 hidden-xs hidden-sm <?php echo (count($this->sidebar2 )) ? "" : "hide" ?>"></span>
 							<!-- start: MODULE  MENU -->
 							<div class="<?php echo (count($this->sidebar2 )) ? "col-md-3" : "hide" ?>">
-								<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.menuModule'); ?>
+								<?php $this->renderPartial($layoutPath.'menuModule'); ?>
 							</div>
 							<!-- end: MODULE MENU -->
 							<div class="col-md-<?php echo (count($this->sidebar2 )) ? "9" : "12" ?>">
@@ -166,9 +168,9 @@
 			</div>
 			<!-- end: MAIN CONTAINER -->
 			<?php 
-			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.footer');
-			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.subview');
-			$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.modals');
+			$this->renderPartial($layoutPath.'footer');
+			$this->renderPartial($layoutPath.'subview');
+			$this->renderPartial($layoutPath.'modals');
 			if (isset($this->subviews)) {
 				foreach( $this->subviews as $item )
 		        {
@@ -180,83 +182,83 @@
 		<?php
 		/*echo "<!-- start: MAIN JAVASCRIPTS -->";
 		echo "<!--[if lt IE 9]>";
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/respond.min.js' , CClientScript::POS_HEAD);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/excanvas.min.js' , CClientScript::POS_HEAD);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery/jquery-1.11.1.min.js' , CClientScript::POS_HEAD);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/respond.min.js' , CClientScript::POS_HEAD);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/excanvas.min.js' , CClientScript::POS_HEAD);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jQuery/jquery-1.11.1.min.js' , CClientScript::POS_HEAD);
 		echo "<![endif]-->";*/
 		echo "<!--[if gte IE 9]><!-->";
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
 		echo "<!--<![endif]-->";
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap/js/bootstrap.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/blockUI/jquery.blockUI.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap/js/bootstrap.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/blockUI/jquery.blockUI.js' , CClientScript::POS_END);
 	    
-	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/perfect-scrollbar/src/jquery.mousewheel.js' , CClientScript::POS_END);
-	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/perfect-scrollbar/src/perfect-scrollbar.js' , CClientScript::POS_END);
-	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootbox/bootbox.min.js' , CClientScript::POS_END);
-	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery.scrollTo/jquery.scrollTo.min.js' , CClientScript::POS_END);
-	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/ScrollToFixed/jquery-scrolltofixed-min.js' , CClientScript::POS_END);
-	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery.appear/jquery.appear.js' , CClientScript::POS_END);
-	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-cookie/jquery.cookie.js' , CClientScript::POS_END);
-	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/velocity/jquery.velocity.min.js' , CClientScript::POS_END);
-	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/TouchSwipe/jquery.touchSwipe.min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/perfect-scrollbar/src/jquery.mousewheel.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/perfect-scrollbar/src/perfect-scrollbar.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/bootbox/bootbox.min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery.scrollTo/jquery.scrollTo.min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/ScrollToFixed/jquery-scrolltofixed-min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery.appear/jquery.appear.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery-cookie/jquery.cookie.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/velocity/jquery.velocity.min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/TouchSwipe/jquery.touchSwipe.min.js' , CClientScript::POS_END);
 		//<!-- end: MAIN JAVASCRIPTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTENTS -->
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/iCheck/jquery.icheck.min.js' , CClientScript::POS_END);
-	    $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/moment/min/moment.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-mockjax/jquery.mockjax.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/toastr/toastr.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-modal/js/bootstrap-modal.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-validation/dist/jquery.validate.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/iCheck/jquery.icheck.min.js' , CClientScript::POS_END);
+	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/moment/min/moment.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/owl-carousel/owl-carousel/owl.carousel.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery-mockjax/jquery.mockjax.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/toastr/toastr.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-modal/js/bootstrap-modal.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery-validation/dist/jquery.validate.min.js' , CClientScript::POS_END);
 		
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-select/bootstrap-select.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/spin.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/fullcalendar/fullcalendar/fullcalendar.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-select/bootstrap-select.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/ladda-bootstrap/dist/spin.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/ladda-bootstrap/dist/ladda.min.js' , CClientScript::POS_END);
 		
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , CClientScript::POS_END);
 
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/DataTables/media/js/jquery.dataTables.min.1.10.4.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/DataTables/media/js/DT_bootstrap.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/DataTables/media/js/jquery.dataTables.min.1.10.4.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/DataTables/media/js/DT_bootstrap.js' , CClientScript::POS_END);
 
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/truncate/jquery.truncate.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/summernote/dist/summernote.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap-daterangepicker/daterangepicker.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/truncate/jquery.truncate.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/summernote/dist/summernote.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-daterangepicker/daterangepicker.js' , CClientScript::POS_END);
 
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/subview.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/jquery.dynForm.js' , CClientScript::POS_END);
-		//$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/global-subviews.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/sig/sig.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/js/subview.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/js/jquery.dynForm.js' , CClientScript::POS_END);
+		//$cs->registerScriptFile($themeAssetsUrl.'/js/global-subviews.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/js/sig/sig.js' , CClientScript::POS_END);
 		
-		//$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery-Tags-Input/jquery.tagsinput.css');
+		//$cs->registerCssFile($themeAssetsUrl.'/plugins/jQuery-Tags-Input/jquery.tagsinput.css');
 		//$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap/bootstrap-typeahead.js' , CClientScript::POS_END);
-		//$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery-Tags-Input/jquery.tagsinput.js' , CClientScript::POS_END);
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.css');
+		//$cs->registerScriptFile($themeAssetsUrl.'/plugins/jQuery-Tags-Input/jquery.tagsinput.js' , CClientScript::POS_END);
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/select2/select2.css');
 		//$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap/bootstrap-typeahead.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/autosize/jquery.autosize.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/select2/select2.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/autosize/jquery.autosize.min.js' , CClientScript::POS_END);
 
 		//mainly used by ajax pods
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery.pulsate/jquery.pulsate.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery.pulsate/jquery.pulsate.min.js' , CClientScript::POS_END);
 
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/pace.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/api.js' , CClientScript::POS_END);
 
 		//<!-- start: JAVASCRIPTS REQUIRED FOR sliders -->
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQRangeSlider/jQAllRangeSliders-min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/modernizr/modernizr.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/slider/js/bootstrap-slider.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery-Knob/js/jquery.knob.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/ui-sliders.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jQRangeSlider/jQAllRangeSliders-min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/modernizr/modernizr.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/slider/js/bootstrap-slider.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jQuery-Knob/js/jquery.knob.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/js/ui-sliders.js' , CClientScript::POS_END);
 		//<!-- end: JAVASCRIPTS REQUIRED FOR sliders -->
 
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/nvd3/lib/d3.v3.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/flexSlider/jquery.flexslider-min.js', CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/nvd3/lib/d3.v3.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/flexSlider/jquery.flexslider-min.js', CClientScript::POS_END);
 		//D3 script
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/additional.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/js/additional.js' , CClientScript::POS_END);
 
 		$path = '/assets/js/main.js';
 		$detect = new Mobile_Detect;
