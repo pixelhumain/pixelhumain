@@ -208,8 +208,11 @@ class Organization {
         } else {
 			//add the public URL to the data structure
 	  		$organization["publicURL"] = '/organization/public/id/'.$id;
+	  		//add the profil image and logo image
+	  		$organization["imagePath"] = Document::getLastImageByKey($id, Organization::COLLECTION, Document::IMG_PROFIL);
+			$organization["logo"] = Document::getLastImageByKey($id, Organization::COLLECTION, Document::IMG_LOGO);
         }
-
+				
 	  	return $organization;
 	}
 
