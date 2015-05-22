@@ -102,9 +102,10 @@ return array(
             'timeout' => 86400,
         ),
         'user'=>array(
-            'allowAutoLogin' => true,
-            'autoRenewCookie' => true,
-            'authTimeout' => 31557600,
+            'allowAutoLogin'    => true,
+            'autoRenewCookie'   => true,
+            'authTimeout'       => 31557600,
+            //'loginUrl'          => array('/granddir/person/login'),
         ),
         'clientScript' => array(
       		'class' => 'ClientScript'
