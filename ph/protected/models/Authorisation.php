@@ -166,7 +166,41 @@ class Authorisation {
 
         return $eventList;
     }
+    
+    //**************************************************************
+    // Project Authorisation
+    //**************************************************************
 
+    /**
+     * Return true if the user is Admin of the project
+     * A user can be admin of an project if :
+     * 1/ He is attendee + admin of the project
+     * 2/ He is admin of an organization organizing a project (not include)
+     * 3/ He is admin of an organization that can edit it members (canEditMembers flag) (not include)
+     *      and the organizations members is organizing the project
+     * @param String $projectId The projectId to check if the userId is admin of
+     * @param String $userId The userId to get the authorisation of
+     * @return boolean True if the user isAdmin, False else
+     */
+     public static function isProjectAdmin($projectId, $userId) {
+    	$res = false;
+        $listProject = Authorisation::listProjectsIamAdminOf($userId);
+        if(isset($listProject[(string)$projectId])){
+       		$res=true;
+       	} 
+       	return $res;
+    }
+    
+	public static function listProjectsIamAdminOf($userId) {
+        $projectList = array();
+
+        //project i'am admin 
+        $where = array("links.contributors.".$userId.".isAdmin" => true);
+        $projectList = PHDB::find(PHType::TYPE_PROJECTS, $where);
+        //projects of organization i'am admin 
+        $listOrganizationAdmin = Authorisation::listUserOrganizationAdmin($userId);
+        return $projectList;
+    }
     //**************************************************************
     // Job Authorisation
     //**************************************************************
@@ -236,7 +270,7 @@ class Authorisation {
 
     /**
     * Get the authorization for edit an item
-    * @param type is the type of item, (organization or event or person)
+    * @param type is the type of item, (organization or event or person or project)
     * @param itemId id of the item we want to edits
     * @return a boolean
     */
@@ -244,6 +278,8 @@ class Authorisation {
     	$res=false;
     	if($type==PHType::TYPE_EVENTS){
     		$res = Authorisation::isEventAdmin($itemId, $userId);
+    	}else if($type==PHType::TYPE_PROJECTS){
+    		$res = Authorisation::isProjectAdmin($itemId, $userId);
     	}else if($type == Organization::COLLECTION){
     		$res = Authorisation::isOrganizationAdmin($userId, $itemId);
     	}else if($type== Person::COLLECTION){
