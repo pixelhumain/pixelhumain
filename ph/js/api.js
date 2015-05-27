@@ -27,6 +27,7 @@ function getAjax(id,url,callback,datatype)
   $.ajax({
       url:url,
       type:"GET",
+      cache:false,
       //dataType:"json",
       success:function(data) {
         
