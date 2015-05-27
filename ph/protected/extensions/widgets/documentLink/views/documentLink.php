@@ -18,7 +18,7 @@ if (isset($document) && isset($document['name']) && isset($document['folder'])) 
 		$link = '<a href="'.$baseURL."/upload/".$module."/".$document['folder']."/".$document['name'].'" target="_blank">'.
 					'<i class="fa fa-file fa-2x"></i>'.$text.'</a>';
 } else {
-	throw new CTKException("The document is not well formated");
+	throw new CTKException( Yii::t("documents","The document is not well formated",null,Yii::app()->controller->module->id) );
 }
 echo $link;
 ?>

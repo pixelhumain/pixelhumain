@@ -36,6 +36,8 @@ return array(
 
 	// FOOTER
 	"Work in Progress" => "Travail en court",
+
+	'Something went wrong!' => "Une erreur est survenue!"
 	
 );
 
