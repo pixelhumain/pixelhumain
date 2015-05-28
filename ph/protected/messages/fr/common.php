@@ -26,8 +26,10 @@ return array(
 	"LOADING" => "EN COURS",
 	"Edit" => "Modifier",
 	"Delete" => "Supprimer",
+	"Remove" => "Supprimer",
 	"Back" => "Retour",
 	"Next" => "Suivant",
+	"View" => "Voir",
 
 	//NOTIFICATIONS
 	"You have <span class='notifCount'></span> notifications " => "Vous avez <span class='notifCount'></span> notifications ",
@@ -37,8 +39,12 @@ return array(
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 
-	'Something went wrong!' => "Une erreur est survenue!"
-	
+	'Something went wrong!' => "Une erreur est survenue!",
+
+	//TYPES
+	"NGO" => "Association",
+	"LocalBusiness" => "Entreprise",
+	"Group" => "Groupe",
 );
 
 ?>
