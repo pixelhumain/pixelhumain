@@ -9,7 +9,7 @@ if( stripos($_SERVER['SERVER_NAME'], "127.0.0.1") === false &&
 	stripos($_SERVER['SERVER_NAME'], "localhost") === false && 
 	stripos($_SERVER['SERVER_NAME'], "::1") === false && 
 	stripos($_SERVER['SERVER_NAME'], "localhost:8080") === false && strpos($_SERVER['SERVER_NAME'], "local.")!==0 )
-    defined('YII_DEBUG') or define('YII_DEBUG',true); // PROD
+    defined('YII_DEBUG') or define('YII_DEBUG',false); // PROD
 else {
 	error_reporting(E_ALL);	
     defined('YII_DEBUG') or define('YII_DEBUG',true);//LOCAL DEV    
