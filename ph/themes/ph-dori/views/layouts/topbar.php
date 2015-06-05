@@ -399,7 +399,7 @@
 		var pathtab = window.location.href.split("#");
 		console.log("openViewer",pathtab[0]);
 		if(typeof contextMap != 'undefined')
-			openSubView('Network Viewer', '/communecter/graph/viewer', null,null,function(){clearViewer();})
+			openSubView('Network Viewer', '/communecter/graph/viewer/id/'+contextMap["_id"]["$id"]+'/type/<?php echo Yii::app()->controller->id ?>', null,null,function(){clearViewer();})
 		else
 			popinInfo("Network Graph Feature Unavailable", "This context hasn't been prepared to be viewed as a graph.");
 	}
