@@ -8,7 +8,6 @@ class Mail
     public static function send( $params )
     {
         if( PH::notlocalServer() ){
-            
             $message = new YiiMailMessage;
             $message->view =  $params['tpl'];
             $message->setSubject($params['subject']);

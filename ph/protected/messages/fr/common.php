@@ -31,6 +31,19 @@ return array(
 	"Next" => "Suivant",
 	"View" => "Voir",
 
+	"january"=>"janvier",
+	"febuary"=>"février",
+	"march"=>"mars",
+	"april"=>"avril",
+	"may"=>"mai",
+	"june"=>"juin",
+	"july"=>"juillet",
+	"august"=>"aout",
+	"september"=>"septembre",
+	"october"=>"octobre",
+	"november"=>"novembre",
+	"december"=>"décembre",
+
 	//NOTIFICATIONS
 	"You have <span class='notifCount'></span> notifications " => "Vous avez <span class='notifCount'></span> notifications ",
 	"Mark all as Read" => "Marquer comme lu",
@@ -45,6 +58,8 @@ return array(
 	"NGO" => "Association",
 	"LocalBusiness" => "Entreprise",
 	"Group" => "Groupe",
+
+
 );
 
 ?>

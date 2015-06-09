@@ -188,6 +188,9 @@
 		<li class="collapse_wrap">
 			<a href="#" class="sb-toggle-right trigger">
 				<i class="fa fa-globe toggle-icon"></i>
+				<?php if( !empty( $this->notifications )  ){?>
+				<span class="notifications-count badge badge-danger animated bounceIn"><?php count($this->notifications); ?></span>
+				<?php } ?>
 			</a>
 		</li>
 
