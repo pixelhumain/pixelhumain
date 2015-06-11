@@ -6,7 +6,9 @@
  * ( that are stored in <framework_dir>/i18n/data/ )
  */
 
-return array(
-	"tester" => "TESTER FR"
-);
+	return array(
+		"tester" => "TESTER FR"
+		"Your organization has been added with success. Check your mail box : you will recieive soon a mail from us." => "Votre organisation à été ajouté avec succés. Verifiez votre boite mail : vous allez un email bientôt",
+		"invalid Captcha Test"  => "Captcha invalide",
+	);
 ?>
