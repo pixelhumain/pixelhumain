@@ -53,7 +53,17 @@ return array(
 	"Work in Progress" => "Travail en court",
 
 	'Something went wrong!' => "Une erreur est survenue!",
+	'Uncorrect request' => 'Cette requête n\'a pas pu aboutir',
+	
+	//DATA
 
+	'Your data has been saved' => 'Vos données ont bien été enregistré.',
+	'Data saved' => 'Donnée enregistrée.',
+
+	//Authorization
+
+	'Access denied' => 'Accès refusé',
+	
 	//TYPES
 	"NGO" => "Association",
 	"LocalBusiness" => "Entreprise",
