@@ -39,6 +39,7 @@ return array(
 		'application.components.*',
 		'bootstrap.helpers.TbHtml',
     	'ext.mail.YiiMailMessage',
+        'ext.mail.YiiMail',
     	'ext.mobile.Mobile_Detect',
     	'ext.Json.Validator',
         'ext.helpers.*',

@@ -5,9 +5,9 @@ Contains anything generix for the site
 class Mail
 {
     
-    public static function send( $params )
+    public static function send( $params, $force = false )
     {
-        if( PH::notlocalServer() ){
+        if( PH::notlocalServer() || $force ){
             $message = new YiiMailMessage;
             $message->view =  $params['tpl'];
             $message->setSubject($params['subject']);
@@ -15,8 +15,9 @@ class Mail
             $message->addTo($params['to']);
             $message->from = $params['from'];
 
-            Yii::app()->mail->send($message);
-        }
+            return Yii::app()->mail->send($message);
+        } else 
+            return false;
     }
     public static function notlocalServer(){
     	return (stripos($_SERVER['SERVER_NAME'], "127.0.0.1") === false && stripos($_SERVER['SERVER_NAME'], "localhost:8080") === false );
