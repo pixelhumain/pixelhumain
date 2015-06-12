@@ -7,7 +7,7 @@
  */
 
 	return array(
-		"The job posting id is mandatory to retrieve the job posting !" =>  "",
+		"The job posting id is mandatory to retrieve the job posting !" =>  "L'id de l'offre d'emploi est obligatoire pour récupérer l'offre d'emploi!",
 		"New Job Offer" => "Nouvel offre d'emploi",
 		"Fill the form"	=> "Remplissez le formulaire",
 		"Job Posting" => "Offres d'emploi",
