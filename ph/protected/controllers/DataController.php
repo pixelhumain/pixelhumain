@@ -78,17 +78,10 @@ class DataController extends Controller {
      }
   }
   
-  /**
-   * Retourne les données open data relative à une commune 
-   */
-    public function actionCommune($ci) {
-        $commune = Yii::app()->mongodb->codespostaux->findOne(array('codeinsee'=>$ci,"type"=>"commune" ),array("annuaireElu") ); 
-      header('Content-Type: application/json');
-      echo json_encode($commune);
-  }
-
-  public function actionPersons() {
-        $data = PHDB::find( PHType::TYPE_CITOYEN ,array('isOpendata'=>true ) ); 
+  public function actionPersons( $format = null ) {
+      $data = PHDB::find( PHType::TYPE_CITOYEN , array('isOpendata'=>true ) ); 
+      if( isset( $format ) && $format == Translate::FORMAT_SCHEMA )
+        $data = Translate::schema( $data );
       echo Rest::json($data);
   }
   
