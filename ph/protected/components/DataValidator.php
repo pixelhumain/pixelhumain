@@ -2,14 +2,14 @@
 /**
  * DataValidator.php
  *
- * DataValidator class help Validates the 
- * @author: Tibor Katelbach <tibor@pixelhumain.com>
+ * DataValidator class help Validates the data of objects
+ * @author: Sylvain Barbot <sylvain@pixelhumain.com>
  * Date: 27/06/2014
  */
 
 class DataValidator {
 
-	public static function required($toValidate) {
+	public static function required($toValidate, $objectId=null) {
 		$res = "";
 		if (empty($toValidate)) {
 			$res = "The Field is required";
@@ -17,7 +17,7 @@ class DataValidator {
 		return $res;
 	}
 
-	public static function email($toValidate) {
+	public static function email($toValidate, $objectId=null) {
 		$res = "";
 		if (! preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$toValidate)) { 
 			$res = "The email is not well formated";
@@ -25,12 +25,37 @@ class DataValidator {
 		return $res;
 	}
 	
-	public static function organizationSameName($toValidate) {
+	public static function organizationSameName($toValidate, $objectId=null) {
 		// Is There a association with the same name ?
 	    $res = "";
 	    $organizationSameName = PHDB::findOne(Organization::COLLECTION,array( "name" => $toValidate));      
 	    if ($organizationSameName) { 
 	    	$res = "An organization with the same name allready exists";
+	    }
+	    return $res;
+	}
+
+	public static function eventStartDate($toValidate, $objectId) {
+		// Is the start Date before endDate
+	    $res = "";
+	    $event = Event::getById($objectId);
+	    $endDate = DateTime::createFromFormat('Y-m-d H:i:s', $event["endDate"]);
+	    $startDate = DateTime::createFromFormat('Y-m-d H:i', $toValidate);
+
+	    if ($startDate > $endDate) { 
+	    	$res = "The start date of the event must be before the end date";
+	    }
+	    return $res;
+	}
+
+	public static function eventEndDate($toValidate, $objectId) {
+		// Is the end Date after start Date
+	    $res = "";
+	    $event = Event::getById($objectId);
+	    $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $event["startDate"]);
+	    $endDate = DateTime::createFromFormat('Y-m-d H:i', $toValidate);
+	    if ($startDate > $endDate) { 
+	    	$res = "The end date of the event must be after the start date";
 	    }
 	    return $res;
 	}
