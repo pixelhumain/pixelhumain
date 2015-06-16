@@ -22,5 +22,8 @@
 		"Unauthorized Access." => "Accès non autorisé",
 		"The invitation process completed with success" => "L'invitation a été completé avec succés",
 		"Can not update this organization : you are not authorized to update that organization !" => "Impossible de mettre à jour cette organisation: vous n'êtes pas autorisé à modifier cette organisation !",
+		"Are you sure you want to remove this person's :" => "Êtes-vous sûr de vouloir supprimer le rôle :",
+		"ROLE REMOVED SUCCESFULLY!!" => "Rôle effacé avec succés!!",
+		"Add me as member of" => "Ajoutez moi comme membre",
 	);
 ?>

@@ -54,7 +54,14 @@ return array(
 
 	'Something went wrong!' => "Une erreur est survenue!",
 	'Uncorrect request' => 'Cette requête n\'a pas pu aboutir',
+	'Can not manage the type ' => 'Vous ne pouvez pas gérer le type',
 	
+
+	//Form
+
+	'Required Fields' => "Champs requis",
+	'Save' => "Sauvegarder",
+	'Back to Search' => "Retour sur la recherche",
 	//DATA
 
 	'Your data has been saved' => 'Vos données ont bien été enregistré.',
