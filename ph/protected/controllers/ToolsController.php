@@ -70,5 +70,10 @@ Titi Kiki	toto@kiki.com";
         echo "<br/> <h2>insert count : ".$insertCount."</h2>";
         echo "<br/> <h2>exist count : ".$existCount."</h2>";
         echo $echoStr;
-    }    
+    }
+
+    public function actionDataImport() 
+    {
+        $this->render("dataImport");
+    }   
 }

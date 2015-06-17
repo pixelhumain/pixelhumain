@@ -36,7 +36,11 @@ $params = array(
     'uploadUrl' => "/upload/",
     'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR,
     'uploadComDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\templates\\upload\\dir\\communecter\\collection\\person",
-    'captcha' => '6LdiygUTAAAAAEsbbK7LvMjJRt9PLP9lO-6QSM8K'
+    'captcha' => '6LdiygUTAAAAAEsbbK7LvMjJRt9PLP9lO-6QSM8K',
+    'facebook' => array('idAPP' => "974944225849158",
+                        'secretAPP' => "3e485c0809b44e953963c778f5a3c2a0",
+                        'required_scope' => 'public_profile, publish_actions, read_custom_friendlists, user_groups, user_likes, publish_pages')
+
   );
 
 $modulesDir = '/../../../../modules/';
