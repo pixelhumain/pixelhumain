@@ -284,7 +284,11 @@ ul.list-icon li:before{
             transition-duration: 0.4s;
 }
 #navigation a{
-	color: #000;
+  color: #2a3945;
+}
+
+a:hover{
+  color: #e4334b;
 }
 #logo{
 	position: absolute;

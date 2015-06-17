@@ -314,7 +314,10 @@ ul.list-icon li:before{
 }
 #navigation a{
 	color: #2a3945;
+  font-weight: bold;
 }
+
+
 #logo{
 	position: absolute;
   font-family: "Homestead", arial, sans-serif;
@@ -707,8 +710,8 @@ text-align:center !important;}
     border-radius: 20px;
 }
 
-#section-video, #section-philo, #section-serv{
-  opacity: 0;
+.section-video, #section-philo, #section-serv{
+  opacity: 1;
 }
 
 #project .slide-content .sr-only {
@@ -871,7 +874,7 @@ text-align:center !important;}
 #description{
 
 }
-#services{background:url(images/white-bg.png) top center no-repeat #92be1f; }
+#services{background:url(images/curve.png) top center no-repeat #92be1f; }
 .services-slider .slides div{
 	text-align: center;
 	margin: 0px;
