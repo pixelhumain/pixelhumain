@@ -100,7 +100,7 @@ a,
 .is-sticky #navigation, 
 .mean-container .mean-nav ul,
 .pace .pace-progress{
-  background-color: black;
+  background-color: #2a3945;
 
 }
 .is-sticky #navigation a{
@@ -306,7 +306,6 @@ ul.list-icon li:before{
 }
 .sticky-wrapper.is-sticky #navigation{
 	padding: 15px 0;
-	border-bottom: solid 4px rgba(255, 255, 255, .8);
 	width: 100%;
 	z-index: 1000;
     -webkit-transition-duration: 0.4s;
@@ -1520,7 +1519,7 @@ html[xmlns] .slides {display: block;}
 
 /* FlexSlider Default Theme
 *********************************/
-.flexslider { margin: 10px auto 10px auto;width: 50%; position: relative; zoom: 1; }
+.flexslider { margin: 10px auto 10px auto;width: 90%; position: relative; zoom: 1; }
 .flex-viewport { max-height: 2000px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; -o-transition: all 1s ease; transition: all 1s ease; }
 .loading .flex-viewport { max-height: 300px; }
 .flexslider .slides { zoom: 1; }
