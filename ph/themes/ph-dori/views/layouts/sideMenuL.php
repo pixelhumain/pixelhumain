@@ -17,12 +17,12 @@
           </li> 
         <?php 
 			$menuLeft = array(
-              array('label' => "MY ACCOUNT", "key"=>"myAccount","iconClass"=>"fa fa-home","href"=> Yii::app()->createUrl($this->module->id."/person/dashboard")),
-              array('label' => "MY CITY", "key"=>"myCityPage","iconClass"=>"fa fa-university","href"=> Yii::app()->createUrl($this->module->id."/city/index/insee/97400")),
-              array('label' => "MY CALENDAR", "key"=>"myCalendarPage","iconClass"=>"fa fa-calendar","href"=> Yii::app()->createUrl($this->module->id."/person/calendar")),
-              array('label' => "MY DIRECTORY", "key"=>"myDirectoryPage","iconClass"=>"fa fa-globe","href"=> Yii::app()->createUrl($this->module->id."/person/directory")),
-              array('label' => "MY NEWS", "key"=>"myNewsPage","iconClass"=>"fa fa-rss","href"=> Yii::app()->createUrl($this->module->id."/news/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ),
-              array('label' => "HEY !! ", "key"=>"heyPage","iconClass"=>"fa fa-bullhorn", "class"=>"new-news" ,"href"=>"#new-News"),
+              array('label' => "MY ACCOUNT", "key"=>"myAccount","iconClass"=>"fa fa-home","href"=> Yii::app()->createUrl($this->moduleId."/person/dashboard")),
+              array('label' => "MY CITY", "key"=>"myCityPage","iconClass"=>"fa fa-university","href"=> Yii::app()->createUrl($this->moduleId."/city/index/insee/97400")),
+              array('label' => "MY DIRECTORY", "key"=>"myDirectoryPage","iconClass"=>"fa fa-globe","href"=> Yii::app()->createUrl($this->moduleId."/person/directory")),
+              array('label' => "MY CALENDAR", "key"=>"myCalendarPage","iconClass"=>"fa fa-calendar","href"=> Yii::app()->createUrl($this->moduleId."/person/calendar")),
+              array('label' => "MY NEWS", "key"=>"myNewsPage","iconClass"=>"fa fa-rss","href"=> Yii::app()->createUrl($this->moduleId."/news/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ),
+              array('label' => "HEY !! ", "key"=>"heyPage","iconClass"=>"fa fa-comment", "class"=>"new-news" ,"href"=>"#new-News"),
             );
             $this->sidebar1 = $menuLeft;//array_merge( $menuLeft, $this->sidebar1 );	
           foreach( $this->sidebar1 as $item )

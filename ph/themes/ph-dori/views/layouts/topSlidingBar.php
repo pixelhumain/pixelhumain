@@ -55,7 +55,7 @@
 						</li>
 						
 					</ul>
-					<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/gallery"); ?>" class="btn btn-transparent-white"> My Gallery</a>
+					<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/gallery"); ?>" class="btn btn-transparent-white"> My Gallery</a>
 				</div>
 			</div>
 			<!-- end: SLIDING BAR SECOND COLUMN -->
@@ -67,7 +67,7 @@
 				<a class="btn btn-transparent-white optionTopButton" data-type="edit_account">
 					<i class="fa fa-pencil"></i> Edit
 				</a>
-				<a class="btn btn-transparent-white" href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/logout"); ?>">
+				<a class="btn btn-transparent-white" href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/logout"); ?>">
 					<i class="fa fa-power-off "></i> Logout
 				</a>
 			</div>

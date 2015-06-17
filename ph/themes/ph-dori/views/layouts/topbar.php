@@ -66,7 +66,7 @@
 				<i class="fa fa-logo"></i>
 			</span>
 			<?php if(isset(Yii::app()->session["userId"])){ ?>
-	 			<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/")?>" class="userlink">
+	 			<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/")?>" class="userlink">
 					<i class="fa fa-user_circled"></i>
 					<span class="username"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span>
 				</a>
@@ -75,7 +75,7 @@
 					<i class="fa fa-comment"></i>
 					<span class="notifications-count badge badge-danger animated bounceIn">97</span>
 				</a>
-				<?php //<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/activities") ?>
+				<?php //<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/activities") ?>
 				<a href="#" onclick="popinInfo('TODO : Compteur de Gamifation','Ce compteur de gamification permettra de suivre les points cumulés par l`activité sur la plateforme')"  >
 					<i class="fa fa-bookmark-o"></i>
 				</a>
@@ -83,7 +83,7 @@
 					<i class="fa fa-cog"></i>
 				</a>
 			<?php } else { ?>
-				<a href="<?php echo Yii::app()->createUrl("/".$this->module->id."/person/login"); ?>" >
+				<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/login"); ?>" >
 					<i class="fa fa-power-off"></i>
 					<span> Se connecter   </span>
 				</a>
