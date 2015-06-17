@@ -26,8 +26,23 @@ return array(
 	"LOADING" => "EN COURS",
 	"Edit" => "Modifier",
 	"Delete" => "Supprimer",
+	"Remove" => "Supprimer",
 	"Back" => "Retour",
 	"Next" => "Suivant",
+	"View" => "Voir",
+
+	"january"=>"janvier",
+	"febuary"=>"février",
+	"march"=>"mars",
+	"april"=>"avril",
+	"may"=>"mai",
+	"june"=>"juin",
+	"july"=>"juillet",
+	"august"=>"aout",
+	"september"=>"septembre",
+	"october"=>"octobre",
+	"november"=>"novembre",
+	"december"=>"décembre",
 
 	//NOTIFICATIONS
 	"You have <span class='notifCount'></span> notifications " => "Vous avez <span class='notifCount'></span> notifications ",
@@ -37,8 +52,35 @@ return array(
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 
-	'Something went wrong!' => "Une erreur est survenue!"
+	'Something went wrong!' => "Une erreur est survenue!",
+	'Uncorrect request' => 'Cette requête n\'a pas pu aboutir',
+	'Can not manage the type ' => 'Vous ne pouvez pas gérer le type',
 	
+
+	//Form
+
+	'Required Fields' => "Champs requis",
+	'Save' => "Sauvegarder",
+	'Back to Search' => "Retour sur la recherche",
+	//DATA
+
+	'Your data has been saved' => 'Vos données ont bien été enregistré.',
+	'Data saved' => 'Donnée enregistrée.',
+
+	//Authorization
+
+	'Access denied' => 'Accès refusé',
+	
+	//TYPES
+	"NGO" => "Association",
+	"LocalBusiness" => "Entreprise",
+	"Group" => "Groupe",
+
+	//EMAILS
+	'New Organization created on ' => "Nouvelle organisation créée sur ",
+	'New Event created on ' => "Nouvel évennement créé sur ",
+	'New Project created on ' => "Nouveau projet créée sur ",
+	"Confirm your account on " => "Confirmer votre compte sur"
 );
 
 ?>

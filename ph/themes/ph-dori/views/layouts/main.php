@@ -13,8 +13,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<meta content="" name="description" />
+		
+		<meta content="<?php echo ($this->keywords) ? CHtml::encode($this->keywords):""; ?>" name="keywords" />
+		<meta content="<?php echo ($this->description) ? CHtml::encode($this->description):""; ?>" name="description" />
 		<meta content="Human Pixel Community" name="author" />
+
 		<!-- end: META -->
 		<!-- start: MAIN CSS -->
 		<?php 

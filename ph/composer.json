@@ -32,7 +32,8 @@
 		"sammaye/mongoyii" : "3.*",
 		"yiisoft/yii":"1.1.15",
 		"yiiext/migrate-command":"dev-master#35f315b as 0.7.2.1",
-        "google/recaptcha": "~1.1"
+        "google/recaptcha": "~1.1",
+        "mandrill/mandrill": "1.0.*"
 	},
 	"autoload": {
     	"psr-0": {
