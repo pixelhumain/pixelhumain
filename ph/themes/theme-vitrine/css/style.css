@@ -59,6 +59,10 @@ src: url('../font/Homestead/Homestead-Regular.ttf');
 }
 .colored, 
 a:hover,
+#navigation a:hover,
+#navigation a.btn:hover,
+.is-sticky #navigation a:hover,
+.is-sticky #navigation a.btn:hover,
 .event a, 
 .post a,
 .section-content-colored .section-content .event-content a.btn:hover,
@@ -340,7 +344,7 @@ ul.list-icon li:before{
 	list-style-type: none;
 }
 #menu li a:hover{
-	color: rgba(255, 255, 255, .8);
+	/*color: rgba(255, 255, 255, .8);*/
 }
 #menu a.btn-success{
 	padding: 10px 16px 7px 16px;
@@ -348,8 +352,12 @@ ul.list-icon li:before{
 	border:none;
 }
 #menu a.btn-success:hover{
-	background-color: #2a3945;
+	background-color: #e4334b;
 	color: #FFF;
+}
+
+.is-sticky #menu a.btn-succes:hover{
+ 
 }
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
