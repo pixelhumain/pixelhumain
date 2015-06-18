@@ -1311,63 +1311,100 @@ margin-right:10px;
 .section .widget-latests a.btn{
 	margin-top: 5px;
 }
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* RESPONSIVE
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-@media only screen and (max-width: 780px) {
-    .slide-content{
-	    text-align: center;
-    }
-    #project .slide-content h1{
-	    font-size: 2.5em
-    }
-    #project .slide-content img{
-	    width: 30%;
-	    float: none !important;
-    }
-    #project .slide-content a.btn{
-	    margin-top: 15px !important;
-    }
 
+/****************************************************************************************
+**** BANNIERE
+****************************************************************************************/
 
+#modalComment{
+  max-height: 600px;
+  width: 450px;
 }
-@media only screen and (max-width: 550px) {
-    #project .slide-content{
-	    text-align: center;
-	    top: 13%;
-    }
-    #project .slide-content h3{
-	    font-size: 1.3em;
-    }
-    .sequence-pagination li{
-	    font-size: 1.2em;
-    }
-		#footer p{text-transform:uppercase; margin-top:30px; font-size:12px;  text-align:center; !important; padding-left:2%; }
-#footer span{line-height:16px; font-size:12px;  text-transform:uppercase; text-align:right; padding-right:5%; }
-}
-@media only screen and (max-width: 470px) {
-    #project .slide-content h3{
-	    font-size: 1.1em;
-    }
-    #project .slide-content h1{
-	    margin-bottom: 20px;
-    }
-    .sequence-pagination li{
-	    font-size: 1em;
-    }
-    #project .sequence-prev{
-		left: 20px;
-	}
-	#project .sequence-next{
-		right: 20px;
-	}
 
-  svg{
-
-  }
+#sectionsvg{
+  background-color: #ccc;
 }
+
+.slideTitle_pix{
+  color: #2a3945;
+}
+
+.d3-tip{
+  z-index: 20;
+}
+#sectionsvg p{
+  font-size: 1.15em;
+}
+#sectionsvg h1{
+  font-size: 3em;
+  font-family: "Varela Round",arial,sans-serif;
+}
+
+#sectionsvg .flexslider{
+  width: 50%;
+}
+.tip-title img{
+  width: 20%;
+  height: 20%;
+}
+.tip-title{
+  color:steelblue;
+  font-size: 12px;
+}
+.tip-titletag{
+  color: black;
+} 
+
+.pop-div, .popover-content {
+    max-width: 270px;
+    max-height: 100px;
+    background-color: transparent;
+    /*overflow-y:scroll;*/
+}
+.popover > .popover-content .tagPop{
+  background: steelblue;
+}
+
+.popover{
+  z-index: 5;
+  font-size: 12px;
+}
+.tooltip{
+  z-index: 5;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.tooltip-inner{
+  z-index: 1;
+  background: transparent;
+  color: black;
+}
+
+.textZone{
+  height: 150px
+}
+
+.imgZone{
+  margin-bottom: 15px;
+}
+
+#banFlex{
+  margin: 0px auto;
+}
+#sectionsvg .pinkBtn{
+  margin-top: 10px;
+  background-color: yellow;
+  color:black;
+  font-size: 1.15em;
+}
+#sectionsvg .pinkBtn:hover{
+  background-color: #e4334b;
+  color:white;
+}
+
+
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * PLUGINS
@@ -1550,11 +1587,11 @@ html[xmlns] .slides {display: block;}
 .flex-direction-nav a.flex-next:before  { content: "\e72a"; }
 
 /* Control Nav */
-.flex-control-nav {width: 100%; position: relative; bottom: 0px; text-align: center;}
+.flex-control-nav {width: 100%; position: relative; bottom: -20px; text-align: center;}
 .flex-control-nav li {margin: 0 6px; display: inline-block; zoom: 1; *display: inline;}
 .flex-control-paging li a {width: 8px; height: 8px; display: block; background: #666; background: black; cursor: pointer; text-indent: -9999px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px; box-shadow: inset 0 0 3px rgba(255,255,255,0.3);}
-.flex-control-paging li a:hover { background: #333; background: rgba(255,255,255,0.7); width: 9px; height: 9px; border: 2px solid black;}
-.flex-control-paging li a.flex-active { background: #000; background: rgba(255,255,255,0.9); cursor: default; width: 10px; height: 10px; border: 2px solid black;}
+.flex-control-paging li a:hover { background: #333; background: black; width: 9px; height: 9px; border: 2px solid black;}
+.flex-control-paging li a.flex-active { background: #000; background: black; cursor: default; width: 10px; height: 10px; border: 2px solid black;}
 
 @media screen and (max-width: 860px) {
   .flex-direction-nav .flex-prev { opacity: 1; left: 10px;}
@@ -1941,3 +1978,90 @@ div.graph-navigation.zoomExtends {
     right: 15px;
 }
 
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* RESPONSIVE
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+@media only screen and (max-width: 1295px) {
+    #sectionsvg h1{
+      font-size: 40px;
+    }
+
+    #sectionsvg p {
+      font-size: 20px;
+    }
+
+
+    #sectionsvg .pinkBtn{
+       font-size: 20px;
+    }
+
+    .imgSvg {
+      margin-bottom: 35px;
+      margin-top: 0;
+    }
+
+    #banFlex .flex-control-nav{
+      bottom: -50px;
+    }
+
+    #projectFlex .flex-direction-nav{
+      bottom: 50px;
+    }
+
+}
+@media only screen and (max-width: 780px) {
+    .slide-content{
+      text-align: center;
+    }
+    #project .slide-content h1{
+      font-size: 2.5em
+    }
+    #project .slide-content img{
+      width: 30%;
+      float: none !important;
+    }
+    #project .slide-content a.btn{
+      margin-top: 15px !important;
+    }
+
+
+}
+@media only screen and (max-width: 550px) {
+    #project .slide-content{
+      text-align: center;
+      top: 13%;
+    }
+    #project .slide-content h3{
+      font-size: 1.3em;
+    }
+    .sequence-pagination li{
+      font-size: 1.2em;
+    }
+    #footer p{text-transform:uppercase; margin-top:30px; font-size:12px;  text-align:center; !important; padding-left:2%; }
+#footer span{line-height:16px; font-size:12px;  text-transform:uppercase; text-align:right; padding-right:5%; }
+}
+@media only screen and (max-width: 470px) {
+    #project .slide-content h3{
+      font-size: 1.1em;
+    }
+    #project .slide-content h1{
+      margin-bottom: 20px;
+    }
+    .sequence-pagination li{
+      font-size: 1em;
+    }
+    #project .sequence-prev{
+    left: 20px;
+  }
+  #project .sequence-next{
+    right: 20px;
+  }
+
+  svg{
+
+  }
+}
