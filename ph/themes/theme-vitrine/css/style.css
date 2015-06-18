@@ -62,7 +62,6 @@ a:hover,
 #navigation a:hover,
 #navigation a.btn:hover,
 .is-sticky #navigation a:hover,
-.is-sticky #navigation a.btn:hover,
 .event a, 
 .post a,
 .section-content-colored .section-content .event-content a.btn:hover,
@@ -110,8 +109,11 @@ a,
   color:white;
 }
 .is-sticky #navigation .btn-success{
-  color: red;
-  background-color: transparent;
+  color: white;
+}
+
+.is-sticky #navigation .btn-success:hover{
+  color: white;
 }
 .pace .pace-progress-inner {
   box-shadow: 0 0 10px #0DB4E9, 0 0 5px #0DB4E9;
@@ -354,10 +356,6 @@ ul.list-icon li:before{
 #menu a.btn-success:hover{
 	background-color: #e4334b;
 	color: #FFF;
-}
-
-.is-sticky #menu a.btn-succes:hover{
- 
 }
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1519,7 +1517,7 @@ a#scrollUp:hover{
 *********************************/
 .flexslider {margin: 5%; padding: 5%;}
 .flexslider .slides > li {display: none; -webkit-backface-visibility: hidden; list-style-type: none;} /* Hide the slides before the JS is loaded. Avoids image jumping */
-.flexslider .slides div {display: block; overflow: hidden; color:#2a3945;}
+.flexslider .slides div {display: block; /*overflow: hidden;*/ color:#2a3945;}
 .flex-pauseplay span {text-transform: capitalize;}
 
 /* Clearfix for the .slides element */
