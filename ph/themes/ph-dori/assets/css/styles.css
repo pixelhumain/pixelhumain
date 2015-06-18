@@ -74,7 +74,7 @@ body {
   margin: 0;
   background: #ffffff; }
   body.bg_style_1 {
-    background: url("../images/bg.png") transparent !important; }
+    background: url("../images/bg.jpg") transparent !important; }
   body.bg_style_2 {
     background: url("../images/bg_2.png") transparent !important; }
   body.bg_style_3 {
@@ -83,6 +83,12 @@ body {
     background: url("../images/bg_4.png") transparent !important; }
   body.bg_style_5 {
     background: url("../images/bg_5.png") transparent !important; }
+@font-face
+{
+font-family: Homestead;
+src: url('../font/Homestead/Homestead-Display.ttf');
+}
+.homestead{font-family:"Homestead"}
 
 ::-moz-selection {
   background: #5f8295;
@@ -1560,6 +1566,12 @@ a.text-light:hover {
 .radius-10 {
   border-radius: 10px; }
 
+.radius-15 {
+  border-radius: 15px; }
+
+.radius-20 {
+  border-radius: 20px; }
+
 .stack-right-bottom {
   left: auto !important;
   right: -0.5em !important;
@@ -2856,9 +2868,21 @@ td.small-width {
 body.login {
   overflow: visible; }
 
-body.login {
-  background-image: url("../images/bg.png");
+body.bgcity {
+  background-image: url("../images/bg.jpg");
   background-color: transparent; }
+body.bgblack {
+  background-image: none;
+  background-color: black; }
+body.bgblue {
+  background-image: none;
+  background-color: #22B8EA; }
+body.bggreen {
+  background-image: none;
+  background-color: #94BD31; }
+  body.bgred {
+  background-image: none;
+  background-color: #E33551; }
 
 body.login .main-login {
   margin-top: 60px;
@@ -2870,7 +2894,7 @@ body.login .logo {
 
 body.login .box-login, body.login .box-forgot, body.login .box-register {
   background: #FFFFFF;
-  border-radius: 5px;
+  border-radius: 20px;
   overflow: hidden;
   padding: 15px;
   position: absolute;
@@ -2878,13 +2902,30 @@ body.login .box-login, body.login .box-forgot, body.login .box-register {
   left: 0;
   right: 0; }
 
-body.login .box-login, body.login .box-forgot, body.login .box-register {
+body.login .box {
   display: none; }
+
+
+  body.login .box h1 {
+ font-size: 4em;
+  font-weight: bolder;
+  color:white;
+ }
+
+body.login .box section{
+  color:#666;
+  font-size:25px; 
+  font-weight: bold;
+}
 
 body.login .form fieldset {
   border: none;
   margin: 0;
-  padding: 10px 0 0; }
+  padding: 10px 0 0; 
+    padding-left:70px;padding-right:70px;}
+
+body.login .form fieldset input[type="text"] {
+  border-radius: 5px}
 
 body.login a.forgot {
   color: #909090;
@@ -5036,7 +5077,7 @@ div.portfolio-info {
 /*  Lock Screen
 /* ---------------------------------------------------------------------- */
 body.lock-screen {
-  background: #1f212f url("../images/bg.png"); }
+  background: #1f212f url("../images/bg.jpg"); }
 
 .main-ls {
   height: 250px;
@@ -5096,7 +5137,7 @@ body.lock-screen .user-info > span em {
   padding: 20px 0; }
 
 .timer-area {
-  background-image: url("../images/bg.png");
+  background-image: url("../images/bg.jpg");
   background-color: transparent;
   margin-bottom: 4em;
   padding-top: 2em;

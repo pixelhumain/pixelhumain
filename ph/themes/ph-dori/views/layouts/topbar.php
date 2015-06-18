@@ -37,33 +37,33 @@
 			$platform = "";
 			$logoColor = "";
 			if( $_SERVER['SERVER_NAME'] == "127.0.0.1" || $_SERVER['SERVER_NAME'] == "localhost" ){
-				$logoColor = "text-red";
+				$logoColor = "#04b8ec";
 				$platform = "LOCAL DEV";
 			}
 			else if( $_SERVER['SERVER_NAME'] == "test.pixelhumain.com" ){
-				$logoColor = "text-azure";
+				$logoColor = "#e4334b";
 				$platform = "TEST";
 			}
 			else if( $_SERVER['SERVER_NAME'] == "dev.pixelhumain.com" ){
-				$logoColor = "text-orange";
+				$logoColor = "#92be1f";
 				$platform = "ONLINE DEV";
 			}
 			else if( $_SERVER['SERVER_NAME'] == "pixelhumain.com" ){
-				$logoColor = "";
+				$logoColor = "white";
 				$platform = "PROD";
 			}
 			$contextInfo = (isset($this->version)) ? $platform." : ".$this->version : $platform;
 		 ?>
 		<h1 class="trigger collapse_trigger hide_on_active">
-			<i class="fa fa-logo <?php echo $logoColor ?> " title="<?php echo $contextInfo ?>"></i>
+			<i class="fa fa-bars mainModuleMenu  " style="color:<?php echo $logoColor ?>;font-size: 32px;" title="<?php echo $contextInfo ?>"></i>
 			<span class="fulltitle">full page title</span>
-			<span class="notifications-count badge badge-danger animated bounceIn">97</span>
+			<span class="notifications-count badge badge-danger animated bounceIn"></span>
 		</h1>
 
 		<div class="inner collapse_box">
 
 			<span class="trigger collapse_trigger">
-				<i class="fa fa-logo"></i>
+				<i class="fa fa-bars mainModuleMenu " style="color:<?php echo $logoColor ?>;font-size: 32px;" title="<?php echo $contextInfo ?>"></i>
 			</span>
 			<?php if(isset(Yii::app()->session["userId"])){ ?>
 	 			<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/")?>" class="userlink">
@@ -73,7 +73,7 @@
 
 				<a href="#" onclick="popinInfo('TODO : Compteur Notfication de discussion','Ce compteur de gamification permettra de suivre')">
 					<i class="fa fa-comment"></i>
-					<span class="notifications-count badge badge-danger animated bounceIn">97</span>
+					<span class="notifications-count badge badge-danger animated bounceIn"></span>
 				</a>
 				<?php //<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/activities") ?>
 				<a href="#" onclick="popinInfo('TODO : Compteur de Gamifation','Ce compteur de gamification permettra de suivre les points cumulés par l`activité sur la plateforme')"  >
@@ -83,9 +83,9 @@
 					<i class="fa fa-cog"></i>
 				</a>
 			<?php } else { ?>
-				<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/login"); ?>" >
+				<a style="padding-right:30px;padding-left:30px;" href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/login"); ?>" >
 					<i class="fa fa-power-off"></i>
-					<span> Se connecter   </span>
+					<span > Se connecter   </span>
 				</a>
 			<?php }; ?>
 		</div>
@@ -193,8 +193,8 @@
 				<?php } ?>
 			</a>
 		</li>
-
 	</ul>
+	<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/")?>"><img  style="float:right;margin:13px; height:35px;" src="<?php echo $this->module->assetsUrl?>/images/logoSM.png"/></a>
 </header>
 <!-- end: TOP NAVIGATION MENU -->
 

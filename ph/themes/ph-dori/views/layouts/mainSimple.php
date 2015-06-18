@@ -50,7 +50,7 @@
 	</head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
-	<body class="login">
+	<body class="login bgcity">
 		<?php echo $content;  ?>
 		<!-- start: MAIN JAVASCRIPTS -->
 		<?php

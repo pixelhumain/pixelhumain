@@ -5,6 +5,7 @@
     <div class="navbar-content-inner">
 
       <ul class="navbar-menu"> 
+      <?php /* ?>
         <li class="mainModuleMenu">
             <a href="#">
               <i class="fa fa-bars"></i>
@@ -15,7 +16,7 @@
               </span>
             </a>
           </li> 
-        <?php 
+        <?php */
 			$menuLeft = array(
               array('label' => "MY ACCOUNT", "key"=>"myAccount","iconClass"=>"fa fa-home","href"=> Yii::app()->createUrl($this->moduleId."/person/dashboard")),
               array('label' => "MY CITY", "key"=>"myCityPage","iconClass"=>"fa fa-university","href"=> Yii::app()->createUrl($this->moduleId."/city/index/insee/97400")),
