@@ -11,7 +11,6 @@
         if (($handle = fopen("upload/data.csv", "r")) !== FALSE) 
         {
             
-            
             $firstnameId = 1;
             $lastnameId = 2;
             $emailId = 0;
