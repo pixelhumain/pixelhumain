@@ -7,6 +7,7 @@
  * @author: Tibor Katelbach <tibor@pixelhumain.com>
  * Date: 15/08/13
  */
+
 class ToolsController extends Controller {
     const moduleTitle = "Outils";
 
@@ -74,6 +75,87 @@ Titi Kiki	toto@kiki.com";
 
     public function actionDataImport() 
     {
-        $this->render("dataImport");
-    }   
+        if(isset($_FILES['fileimport']) && isset($_FILES['mapping']) )
+        {
+            if (($handle = fopen('/home/raphael/Bureau/'.$_FILES['fileimport']['name'], "r")) !== FALSE) 
+                {
+                    $t = file_get_contents('/home/raphael/Bureau/'.$_FILES['mapping']['name']);
+                    $mapping = json_decode($t);
+                    $i = 0 ;
+                    $data = fgetcsv($handle, ";");
+                    $tabCode = explode("\t", $data[0]);
+                    while (($data2 = fgetcsv($handle, ";")) !== FALSE) 
+                    {
+                        $line = explode("\t", $data2[0]);
+                        $res = PHDB::findOne(City::COLLECTION, array("insee" => $line[0]));
+                        
+                        if($res != null)
+                        {
+                            foreach ($tabCode as $keyCode => $valueCode) 
+                            {
+                                foreach ($mapping->cityDataSrc->fields as $key => $value) 
+                                {
+                                    if($valueCode == $key)
+                                    {   
+                                        $map = explode(".", $value);
+                                        if(!isset($commune[$line[0]]))
+                                        {
+                                            $commune[$line[0]] = FileHelper::create_json($map, $line[$keyCode]);
+                                        }
+                                        else
+                                        {
+                                            $commune[$line[0]] = FileHelper::create_json_with_father($map, $line[$keyCode], $commune[$line[0]]) ;
+                                        
+                                        }
+                                    }
+                                }   
+                            }
+                        }
+                        else
+                        {
+                            foreach ($tabCode as $keyCode => $valueCode) 
+                            {
+                                foreach ($mapping->cityDataSrc->fields as $key => $value) 
+                                {
+                                    if($valueCode == $key)
+                                    {   
+                                        $map = explode(".", $value);
+                                        if(!isset($rejet[$line[0]]))
+                                        {
+                                            $rejet[$line[0]] = FileHelper::create_json($map, $line[$keyCode]);
+                                        }
+                                        else
+                                        {
+                                            $rejet[$line[0]] = FileHelper::create_json_with_father($map, $line[$keyCode], $rejet[$line[0]]) ;
+                                        }
+                                    }
+                                }   
+                            }
+                        }
+
+                    }
+                    $json["commune"] = $commune ;
+                    if(isset($rejet))
+                        $jsonrejet["commune"] = $rejet ;
+                    else
+                        $jsonrejet = "";
+
+                }
+                fclose($handle);
+                $this->render("dataImport",array("json"=>json_encode($json),
+                                                "jsonrejet"=>json_encode($jsonrejet),
+                                                "result"=>false));  
+        }
+        else
+        {
+            $this->render("dataImport",array("result"=>false));  
+        }
+    } 
+    public function actionImportMongo() 
+    {
+        $donnees = $_POST['visualisationJSON'];
+        $res = PHDB::insert(City::COLLECTION, json_encode($donnees));
+        return Rest::json(array('result'=> $res));
+        //$this->render("dataImport",array("result"=>$res));
+    }  
 }

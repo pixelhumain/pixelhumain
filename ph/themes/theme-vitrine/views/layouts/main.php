@@ -14,6 +14,7 @@
 		//$cs->registerCssFile('http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,200,100,800');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/css/bootstrap.min.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/css/style.css');
+		$cs->registerCssFile(Yii::app()->theme->baseUrl.'/plugins/animate.css/animate.min.css');
 	?>
     <!--<link href="<?php echo Yii::app()->theme->baseUrl;?>/js/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"> -->
     

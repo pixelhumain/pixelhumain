@@ -447,6 +447,65 @@ class fileHelper {
 	{
 		return substr(sprintf('%o', $perms), -3);
 	}
+// --------------------------------------------------------------------
+
+/**
+ * create_json
+ *
+ * 
+ *
+ * @access	public
+ * @param	string	mapping
+ * @param	string	
+ * @return	array
+ */
+	public static function create_json($map, $value)
+	{
+		if(count($map) == 1)
+	    {
+	    	$pere[$map[0]] = $value;
+	    }
+	    else
+	    {
+	    	$newmap = array_splice($map, 1);
+	    	$pere[$map[0]] = FileHelper::create_json($newmap, $value);
+	   	}
+	    return $pere;
+	}
+
+// --------------------------------------------------------------------
+
+/**
+ * create_json
+ *
+ * 
+ *
+ * @access	public
+ * @param	string	mapping
+ * @param	string	
+ * @return	array
+ */
+	public static function create_json_with_father($map, $value, $pere)
+	{
+		if(count($map) == 1)
+	    {
+	    	$pere[$map[0]] = $value;
+	    }
+	    else
+	    {
+	    	$newmap = array_splice($map, 1);
+	    	if(isset($pere[$map[0]]))
+	    	{	
+	    		$pere[$map[0]] = FileHelper::create_json_with_father($newmap, $value, $pere[$map[0]]);
+	    	}
+	    	else
+	    	{
+	    		$pere[$map[0]] = FileHelper::create_json($newmap, $value);
+	    	}
+			
+	    }
+	    return $pere;
+	}
 }
 
 

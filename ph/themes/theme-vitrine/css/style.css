@@ -65,14 +65,14 @@ a:hover,
 .section-content-colored .section-content .post-content a.btn:hover,
 .section-full-colored,
 .section a.btn:hover{
-  color: #82b440;
+  color: #e4334b;
 }
 .section-content-colored .section-content .event-content a.btn:hover,
 .section-content-colored .section-content .post-content a.btn:hover,
 .section a.btn:hover,
 .section-image a.btn.btn-donation,
 #menu a.btn-success{
-  border-color: #82b440;
+  border-color: #e4334b;
 }
 .section-full-colored,
 .section-content-colored .section-content,
@@ -314,7 +314,10 @@ ul.list-icon li:before{
 }
 #navigation a{
 	color: #2a3945;
+  font-weight: bold;
 }
+
+
 #logo{
 	position: absolute;
   font-family: "Homestead", arial, sans-serif;
@@ -707,8 +710,8 @@ text-align:center !important;}
     border-radius: 20px;
 }
 
-#section-video, #section-philo, #section-serv{
-  opacity: 0;
+.section-video, #section-philo, #section-serv{
+  opacity: 1;
 }
 
 #project .slide-content .sr-only {
@@ -869,9 +872,12 @@ text-align:center !important;}
 #blog{background:url(images/white-bg.png) top center no-repeat; }
 #blog p {color:#FFF !important; }
 #description{
-
+  background:url(images/grey-curve.png) top center no-repeat;
 }
-#services{background:url(images/white-bg.png) top center no-repeat #92be1f; }
+#description .section-header {
+  padding: 50px 0 0;
+}
+#services{background:url(images/curve.png) top center no-repeat #92be1f; }
 .services-slider .slides div{
 	text-align: center;
 	margin: 0px;
@@ -881,6 +887,8 @@ text-align:center !important;}
 #services .section-header{
 	padding: 30px 0 0 0;
 }
+
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * * DONATION
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -1268,7 +1276,7 @@ margin-right:10px;
 #footer p{text-transform:uppercase; display:inline; text-align:left !important; padding-left:5%; }
 #footer span{line-height:16px; float:right; text-transform:uppercase; text-align:right; padding-right:5%; }
 #footer .section-content{
-	padding: 50px 0 20px 0;
+	padding: 30px 0 30px 0;
 }
 .widget{
 	margin-top: 50px;
