@@ -531,14 +531,14 @@ svg {
   background-color: #e3e7e8;
 }
 
-.imgSvg{
-  z-index:0;
-  position: relative;
+.imgSvg {
+  color: #2a3945;
   font-size: 3em;
-  text-align:center;
-  margin-top:20px;
-  margin-bottom: 20px;
-  color:#2a3945;
+  margin-bottom: 70px;
+  margin-top: -35px;
+  position: relative;
+  text-align: center;
+  z-index: 0;
 }
 
 #patterns svg{
