@@ -872,7 +872,10 @@ text-align:center !important;}
 #blog{background:url(images/white-bg.png) top center no-repeat; }
 #blog p {color:#FFF !important; }
 #description{
-  /*background:url(images/grey-curve.png) top center no-repeat; */
+  background:url(images/grey-curve.png) top center no-repeat;
+}
+#description .section-header {
+  padding: 50px 0 0;
 }
 #services{background:url(images/curve.png) top center no-repeat #92be1f; }
 .services-slider .slides div{
