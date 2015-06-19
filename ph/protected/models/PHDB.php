@@ -51,14 +51,17 @@ class PHDB
     {    	
         return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->count($where,$fields);
     }
-    public static function findOne( $collection, $where )
+    public static function findOne( $collection, $where ,$fields=null)
     {    	
-        return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->findOne($where);
+        if($fields)
+          return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->findOne($where,$fields);
+        else  
+          return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->findOne($where);
     }
     
-    public static function findOneById( $collection, $id )
-    {     
-        return self::findOne( $collection, array("_id"=>new MongoId($id)));
+    public static function findOneById( $collection, $id, $fields=null )
+    {   
+        return self::findOne( $collection, array("_id"=>new MongoId($id)), $fields);
     }
     public static function update( $collection, $where, $action )
     {    	

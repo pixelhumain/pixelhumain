@@ -57,7 +57,7 @@
 		<h1 class="trigger collapse_trigger hide_on_active">
 			<i class="fa fa-bars mainModuleMenu  " style="color:<?php echo $logoColor ?>;font-size: 32px;" title="<?php echo $contextInfo ?>"></i>
 			<span class="fulltitle">full page title</span>
-			<span class="notifications-count badge badge-danger animated bounceIn"></span>
+			<span class="menu-count badge badge-danger animated bounceIn"></span>
 		</h1>
 
 		<div class="inner collapse_box">
@@ -93,34 +93,17 @@
 		
 	<ul class="navbar-menu">
 
-		<li class="collapse_wrap">
+		<li class="collapse_wrap topBtn">
 			
-			<div class="trigger collapse_trigger hide_on_active " onclick="popinInfo('TODO : Tag Filter','le cumul de tag personnalisé permet de filtrer et trier les données')">
+			<div class="trigger collapse_trigger" onclick='openSlideBar("tags")'>
 				<i class="fa fa-tags"></i>
-				<span class="notifications-count badge badge-warning animated bounceIn">3</span>
+				<span class="tags-count badge badge-warning animated bounceIn"></span>
 			</div>
-
-			<div class="inner collapse_box">
-				<span class="trigger collapse_trigger">
-					<i class="fa fa-tags"></i>
-				</span>
-				<form class="inner collapse_box">
-					<input id="filterField" name="filterField" placeholder="Saisissez ou modifiez ici vos tags !" >
-						<ul class="dropdown-menu" id="dropdownTags" style="">
-							<ol class="li-dropdown-scope">-</ol>
-						</ul>
-					</input>
-				</form> 
-				<!--<a href="#" class="sb_custom_toggle" data-target="#tags_slidingbar">
-					Pseudo, saisissez ou modifiez ici vos tags !
-				</a>-->
-			</div>
-
 		</li>
 
-		<li class="collapse_wrap">
+		<li class="collapse_wrap topBtn">
 			
-			<div class="trigger collapse_trigger hide_on_active" onclick="popinInfo('TODO : GeoGraphic Filter','Les localités personnalisés permet de filtrer et trier les données par emplacement géographique')">
+			<div class="trigger collapse_trigger"  onclick='openSlideBar("scope")'>
 				<i class="slider-sm-ico"></i>
 			</div>
 
@@ -147,7 +130,6 @@
 		</li>
 
 		<li class="collapse_wrap">
-			
 			<div class="trigger collapse_trigger">
 				<a href="javascript:;" onclick="openSubView('Your Network', '/communecter/sig/network', null)">
 					<i class="fa fa-map-marker"></i>
@@ -232,7 +214,8 @@
 		$("#sbToogle").on("click", function(){
 			getInfo();
 		})
-
+		if( window.localStorage && typeof localStorage!='undefined' && localStorage.myTagsCount )
+			$(".tags-count").html(localStorage.myTagsCount);
 		//-----Pluger Map ici-----
 
 		$('#sigNetwork').keypress(function(e){
@@ -246,7 +229,7 @@
 				var type = $("#searchType").val();
 				var id = $("#searchId").val();
 				if(id != ""){
-					window.location.href=baseUrl+"/" + moduleId + "/"+type+"/dashboard/id/"+id;
+					window.location.href = baseUrl+"/" + moduleId + "/"+type+"/dashboard/id/"+id;
 				}
 				
 			}
@@ -406,5 +389,98 @@
 			openSubView('Network Viewer', '/communecter/graph/viewer/id/'+contextMap["_id"]["$id"]+'/type/<?php echo Yii::app()->controller->id ?>', null,null,function(){clearViewer();})
 		else
 			popinInfo("Network Graph Feature Unavailable", "This context hasn't been prepared to be viewed as a graph.");
+	}
+	
+	function bindTagEvents () { 
+		$(".btn-tag").off().on("click",function(){
+			if(!$(this).hasClass("active")){
+				toastr.error("TODO : add to active tags : "+$(this).data("id"));
+				$(this).addClass("active");
+			} else {
+				toastr.error("TODO : add to active tags : "+$(this).data("id"));
+				$(this).removeClass("active");
+			}
+		});
+	}
+
+	var openSlideBarType = null;
+	function openSlideBar(type)
+	{
+		console.log("openSlideBar",type);
+		$(".slidingbar").slideDown();
+		
+		if( type == "tags")
+		{
+			openSlideBarType = "tags"; 
+			$(".slidingbarTitle").html('Tous vos tags');
+			if ( debug || ( window.localStorage && typeof localStorage!='undefined' && !localStorage.myTags ) ) 
+			{	
+				console.log("rebuild localStorage.myTags");
+				$(".tags-count").html(localStorage.myTags.length);
+				$(".slidingbarList").html("<i class='fa fa-circle-o-notch fa-spin fa-3x'></i>");
+				$.ajax({
+					url : baseUrl+"/" + moduleId +'/person/tags',
+					dataType : 'json',
+					success : function(json) 
+					{
+						if(json.result && json.tags.length )
+						{
+							strHTML = "";
+							localStorage.myTagsCount = json.tags.length;
+
+							$.each(json.tags, function(i,v) { 
+								active = (json.activeTags && inArray(v, json.activeTags)) ? "active" : "";
+								strHTML += '<li><span class="btn btn-md btn-tag '+active+'" data-id="'+v+'">'+
+												'<a href="#" class="del fa fa-times"></a> <i class="fa fa-tag"></i>'+
+												v+
+											'</span></li>';
+							});
+							localStorage.myTags = strHTML;
+
+							$(".slidingbarList").html( localStorage.myTags );
+							$(".tags-count").html(localStorage.myTagsCount);
+							bindTagEvents ();
+						} else {
+							$(".slidingbarList").html("you don't have any tags, simply add some <a href='#'><i class='fa fa-add'></i></a> ");
+						}
+					}
+				});
+			}
+			else{
+				console.log("localStorage.myTags exists ");
+				$(".slidingbarList").html(localStorage.myTags);
+				$(".tags-count").html(localStorage.myTagsCount);
+				bindTagEvents ();
+			}
+
+		} else if( type == "scope")
+		{
+			openSlideBarType = "scope"; 
+			$(".slidingbarTitle").html('Tous vos scopes administratifs');
+			strHTML = '<li>'+
+						'<span class="btn btn-md btn-tag">'+
+							'<a href="#" class="del fa fa-times"></a>'+
+							'<i class="fa fa-tag"></i>'+
+							'Scope 01'+
+						'</span>'+
+					'</li>'+
+					'<li>'+
+						'<span class="btn btn-md btn-tag">'+
+							'<a href="#" class="del fa fa-times"></a>'+
+							'<i class="fa fa-tag"></i>'+
+							'Scope 02'+
+						'</span>'+
+					'</li>';
+			$(".slidingbarList").html(strHTML);
+		}
+	}
+	function closeSlideBar() {  
+		console.log("closeSlideBar",openSlideBarType);
+		$(".topBtn").removeClass("open active");
+		openSlideBarType = null;
+	}
+	function toggleTag(val)
+	{ 
+		toastr.success('success!'+val);
 	}
 </script>	
