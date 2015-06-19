@@ -60,4 +60,25 @@ class DataValidator {
 	    return $res;
 	}
 
+	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue) {
+		$res = "";
+		if (isset($dataBinding["$fieldName"])) {
+			$data = $dataBinding["$fieldName"];
+			$name = $data["name"];
+			//Validate field
+			if (isset($data["rules"])) {
+				$rules = $data["rules"];
+				foreach ($rules as $rule) {
+					$isDataValidated = DataValidator::$rule($fieldValue);
+					if ($isDataValidated != "") {
+						throw new CTKException($isDataValidated);
+					}
+				}	
+			}
+		} else {
+			throw new CTKException("Unknown field :".$fieldName);
+		}
+		return $name;
+	}
+
 }
