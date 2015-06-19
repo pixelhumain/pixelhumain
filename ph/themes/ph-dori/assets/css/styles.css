@@ -940,7 +940,7 @@ footer {
 /* ---------------------------------------------------------------------- */
 .slidingbar {
   background: rgba(23, 33, 41, 0.95);
-  padding-top: 60px;
+  padding-top: 10px;
   padding-left: 59px; }
   .slidingbar .h1 {
     color: #fff; }
@@ -983,7 +983,8 @@ footer {
       display: block;
       font-size: 17px;
       line-height: inherit; }
-    .top-navbar .collapse_wrap .trigger .notifications-count {
+    .top-navbar .collapse_wrap .trigger .notifications-count,
+    .top-navbar .collapse_wrap .trigger .tags-count {
       position: absolute;
       top: 12px;
       right: 10px; }
@@ -5923,11 +5924,13 @@ h5,
   color: #f4f5f6;
   background: #53738a;
   border-color: #53738a; }
-  .btn-tag:hover, .btn-tag:focus {
-    color: #fff; }
+
+  .btn-tag:hover, .btn-tag:focus, .btn-tag.active  {
+    background-color: #F6E200;
+    color:#666; }
 
 span.btn-tag {
-  cursor: auto; }
+  cursor: pointer; }
 
 /* ---------------------------------------------------------------------- */
 /*  additional Slider

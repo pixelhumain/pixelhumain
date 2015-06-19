@@ -177,6 +177,7 @@ function openDynamicSubview (key,collection,callback) {
   });
 }
 
+/* --------------------------------------------------------------- */
 
 function toggle(id)
 {
@@ -194,6 +195,9 @@ function toggle(id)
 	}
 	return false;
 }
+
+/* --------------------------------------------------------------- */
+
 function scrollTo(id)
 {
 	if( $(id).length )
@@ -202,6 +206,9 @@ function scrollTo(id)
 	 	$("html, body").animate({ scrollTop: $(id).offset().top-70 }, 700);
 	}
 }
+
+/* --------------------------------------------------------------- */
+
 function Object2Array(obj)
 {
 	jsonAr =[];
@@ -214,6 +221,56 @@ function Object2Array(obj)
 	console.dir(jsonAr);
 	return jsonAr;
 }
+
+/* --------------------------------------------------------------- */
+
+function arrayCompare(a1, a2) {
+  if (a1.length != a2.length) return false;
+  var length = a2.length;
+  for (var i = 0; i < length; i++) {
+    if (a1[i] !== a2[i]) return false;
+  }
+  return true;
+}
+
+/* --------------------------------------------------------------- */
+
+function inArray(needle, haystack) {
+  var length = haystack.length;
+  for(var i = 0; i < length; i++) {
+    if(typeof haystack[i] == 'object') {
+      if(arrayCompare(haystack[i], needle)) return true;
+    } else {
+      if(haystack[i] == needle) return true;
+    }
+  }
+  return false;
+}
+
+/* ------------------------------- */
+
+function log(msg,type){
+  if(debug){
+     try {
+      if(type){
+        switch(type){
+          case 'info': console.info(msg); break;
+          case 'warn': console.warn(msg); break;
+          case 'debug': console.debug(msg); break;
+          case 'error': console.error(msg); break;
+          case 'dir': console.dir(msg); break;
+          default : console.log(msg);
+        }
+      } else
+            console.log(msg);
+    } catch (e) { 
+       //alert(msg);
+    }
+  }
+}
+
+/* --------------------------------------------------------------- */
+
 function showAsColumn(resp,id)
 {
 	//log(resp,"dir");
@@ -237,6 +294,8 @@ function showAsColumn(resp,id)
 	    })
 	}
 }
+
+/* --------------------------------------------------------------- */
 
 function slugify (value) {    
 	var rExps=[
