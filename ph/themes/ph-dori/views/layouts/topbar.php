@@ -194,7 +194,7 @@
 			</a>
 		</li>
 	</ul>
-	<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/")?>"><img  style="float:right;margin:13px; height:35px;" src="<?php echo $this->module->assetsUrl?>/images/logoSM.png"/></a>
+	<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/")?>"><img  style="float:right;margin:13px; height:35px;" src="<?php echo ($this->module) ? $this->module->assetsUrl."/images/logoSMclean.png" : Yii::app()->baseUrl."/images/logo/byPH.png" ?>"/></a> 
 </header>
 <!-- end: TOP NAVIGATION MENU -->
 
@@ -202,7 +202,8 @@
 
 	var timeout;
 	var mapIconTop = {"citoyen":"fa-smile-o", "event":"fa-calendar", "NGO":" fa-building-o", "LocalBusiness":"fa-group", "GovernmentOrganization":"fa-institution", "Group":"fa-group"};
-	jQuery(document).ready(function() {
+	jQuery(document).ready(function() 
+	{
 
 		$("#filterField").keyup(function(e){
 			var str = $("#filterField").val();
