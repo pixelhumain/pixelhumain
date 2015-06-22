@@ -880,6 +880,7 @@ text-align:center !important;}
 }
 #description .section-header {
   padding: 50px 0 0;
+  background:url(images/grey-curve.png) top center no-repeat;
 }
 #services{background:url(images/curve.png) top center no-repeat #92be1f; }
 .services-slider .slides div{
