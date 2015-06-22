@@ -79,13 +79,13 @@
 		   var moduleId = "<?php echo (isset($this->module->id) ) ? $this->module->id : '' ?>";
 		   var personMap = <?php echo json_encode( (isset($this->person)) ? $this->person : array())?>;
 		   var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
-		   <?php if(YII_DEBUG){ ?>
+		  
 	       var debugMap = [
+		    <?php if(YII_DEBUG) { ?>
 		       { "userId":"<?php echo Yii::app()->session['userId']?>"},
 		       { "userEmail":"<?php echo Yii::app()->session['userEmail']?>"}
-	       ];
 	       <?php } ?>
-		   
+	       ];
 		</script>
 		
 	</head>
