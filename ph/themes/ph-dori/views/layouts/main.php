@@ -216,8 +216,8 @@
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-modal/js/bootstrap-modal.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery-validation/dist/jquery.validate.min.js' , CClientScript::POS_END);
-		
-		$cs->registerScriptFile($themeAssetsUrl.'/plugins/fullcalendar/fullcalendar/fullcalendar.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery-validation/localization/messages_fr.js' , CClientScript::POS_END);
+
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-select/bootstrap-select.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/ladda-bootstrap/dist/spin.min.js' , CClientScript::POS_END);
