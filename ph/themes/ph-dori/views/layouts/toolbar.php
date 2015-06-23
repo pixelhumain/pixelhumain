@@ -18,8 +18,15 @@
 			<i class="fa fa-save"></i> SAVE
 		</a>
 		
+
 		<div class="toolbar-tools pull-right">
 			<ul class="nav navbar-right">
+				<?php 
+				if(isset($this->toolbarMBZ)){
+					foreach ($this->toolbarMBZ as $value) {
+						echo "<li>".$value."</li>";
+					}
+				} ?>
 				<?php 
 				if(isset($this->toolbarMenuAdd)){
 					?>

@@ -29,6 +29,7 @@
               array('label' => "MY CALENDAR", "key"=>"myCalendarPage","iconClass"=>"fa fa-calendar","href"=> Yii::app()->createUrl($this->moduleId."/event/calendarview/id/".$id."/type/".Yii::app()->controller->id)),
               array('label' => "MY NEWS", "key"=>"myNewsPage","iconClass"=>"fa fa-rss","href"=> Yii::app()->createUrl($this->moduleId."/news/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ),
               array('label' => "HEY !! ", "key"=>"heyPage","iconClass"=>"fa fa-comment", "class"=>"new-news" ,"href"=>"#new-News"),
+              array('label' => "LOGOUT ", "key"=>"logoutPage","iconClass"=>"fa fa-power-off text-red","href"=>Yii::app()->createUrl($this->moduleId."/person/logout")),
             );
             $this->sidebar1 = $menuLeft;//array_merge( $menuLeft, $this->sidebar1 );	
           foreach( $this->sidebar1 as $item )

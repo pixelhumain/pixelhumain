@@ -95,16 +95,17 @@
 
 		<li class="collapse_wrap topBtn">
 			
-			<div class="trigger collapse_trigger" onclick='openSlideBar("tags")'>
+			<div class="trigger collapse_trigger" title="TAGS" onclick='openSlideBar("tags")'>
 				<i class="fa fa-tags"></i>
-				<span class="tags-count badge badge-warning animated bounceIn"></span>
+				<span class="tags-count notifcation-counter badge badge-warning animated bounceIn"></span>
 			</div>
 		</li>
 
 		<li class="collapse_wrap topBtn">
 			
-			<div class="trigger collapse_trigger"  onclick='openSlideBar("scope")'>
-				<i class="slider-sm-ico"></i>
+			<div class="trigger collapse_trigger" title="TERRITORIES"  onclick='openSlideBar("scope")'>
+				<i class="fa fa-circle-o"></i>
+				<span class="scopes-count notifcation-counter badge badge-warning animated bounceIn"></span>
 			</div>
 
 			<div class="inner collapse_box">
@@ -117,6 +118,7 @@
 				<span class="trigger collapse_trigger">
 					<i class="slider-sm-ico"></i>
 				</span>
+				<!--
 				<form class="inner collapse_box">
 					<input id="filterCpField" name="filterCpField" placeholder="Zoom géographique" >
 						<ul class="dropdown-menu" id="dropdownCp" style="">
@@ -124,7 +126,7 @@
 						</ul>
 					</input>
 				</form>
-
+				-->
 			</div>
 
 		</li>
@@ -135,11 +137,11 @@
 					<i class="fa fa-map-marker"></i>
 				</a>
 			</div>
-
+			<!--
 			<form class="inner collapse_box" onSubmit="return(false);">
 				<input class="wide" id="sigNetwork" name="sigNetwork" type="text" placeholder="Pseudo, passez votre interface en mode cartographie">
 			</form>
-
+			-->
 		</li>
 		<li class="collapse_wrap">
 			<div class="trigger collapse_trigger">
@@ -214,8 +216,12 @@
 		$("#sbToogle").on("click", function(){
 			getInfo();
 		})
+		// ---------- TAGS ------------
 		if( window.localStorage && typeof localStorage!='undefined' && localStorage.myTagsCount )
 			$(".tags-count").html(localStorage.myTagsCount);
+		
+		
+		
 		//-----Pluger Map ici-----
 
 		$('#sigNetwork').keypress(function(e){
@@ -401,77 +407,111 @@
 				$(this).removeClass("active");
 			}
 		});
+		// ---------- SCOPES ------------
+		$('.addScopeBtn, .addTagBtn').off().on("click",function(e){
+			toastr.info('TODO : show add Scope Form!');
+		});
 	}
 
 	var openSlideBarType = null;
+	function  buildTagSlideBar (json) { 
+		openSlideBarType = "tags"; 
+		if ( debug || ( window.localStorage && typeof localStorage!='undefined' && !localStorage.myTags ) ) 
+		{
+			if(json.result && json.tags.length )
+			{
+				strHTML = "";
+				localStorage.myTagsCount = json.tags.length;
+
+				$.each(json.tags, function(i,v) { 
+					active = (json.activeTags && inArray(v, json.activeTags)) ? "active" : "";
+					strHTML += '<li><span class="btn btn-md btn-tag '+active+'" data-id="'+v+'">'+
+									'<a href="#" class="del fa fa-times"></a> <i class="fa fa-tag"></i>'+
+									v+
+								'</span></li>';
+				});
+				strHTML += "<a href='#'  class='addTagBtn btn btn-light-orange'><i class='fa fa-plus'></i></a> ";
+				localStorage.myTags = strHTML;
+
+				$(".slidingbarList").html( localStorage.myTags );
+				$(".tags-count").html(localStorage.myTagsCount);
+				bindTagEvents ();
+			} else {
+				$(".slidingbarList").html("you don't have any tags, simply add some <a href='#'  class='addTagBtn btn btn-orange btn-xs'><i class='fa fa-plus'></i></a> ");
+			}
+		} else{
+			console.log("localStorage.myTags exists ");
+			$(".slidingbarList").html(localStorage.myTags);
+			$(".tags-count").html(localStorage.myTagsCount);
+			bindTagEvents ();
+		}
+
+	}
+	function buildScopeSlideBar (json) {
+		openSlideBarType = "scope"; 
+		$(".slidingbarTitle").html('<i class="fa fa-circle-o text-azure"></i> Tous vos térritoires : Géographique, Administratif, Organisations');
+		if ( ( window.localStorage && typeof localStorage!='undefined' && !localStorage.myScope ) ) 
+		{	
+			console.log("rebuild localStorage.myScope");
+			$(".slidingbarList").html("<i class='fa fa-circle-o-notch fa-spin fa-3x'></i>");
+			console.dir( json );
+			if(json.result && Object.keys(json.scopes).length  )
+			{
+				strHTML = "";
+				localStorage.myScopeCount = Object.keys(json.scopes).length;
+				if( Object.keys(json.scopes).length )
+				{
+					$.each(json.scopes, function(k,v) 
+					{ 
+						console.log( k, v );
+						active = (json.activeScopes && inArray(v, json.activeScopes)) ? "active" : "";
+						strHTML +=  '<li><span class="btn btn-md btn-tag '+active+'" data-val="'+v+'" data-type="'+k+'">'+
+										'<a href="#" class="del fa fa-times"></a> <i class="fa fa-tag"></i>'+
+										k+" : "+v+
+									'</span></li>';
+					});
+					strHTML += "<a href='#'  class='addTagBtn btn btn-orange'><i class='fa fa-plus'></i></a> ";
+					localStorage.myScope = strHTML;
+				}
+
+				$(".slidingbarList").html( localStorage.myScope );
+				$(".scopes-count").html(localStorage.myScopeCount);
+				bindTagEvents ();
+			} else {
+				$(".slidingbarList").html("you don't have any scopes, simply add some <a href='#' class='addScopeBtn btn btn-orange'> <i class='fa fa-plus '></i> </a> ");
+			}
+		}
+		else{
+			console.log("localStorage.myScope exists ");
+			$(".slidingbarList").html(localStorage.myScope);
+			bindTagEvents ();
+		}
+	}
 	function openSlideBar(type)
 	{
 		console.log("openSlideBar",type);
 		$(".slidingbar").slideDown();
-		
-		if( type == "tags")
-		{
-			openSlideBarType = "tags"; 
-			$(".slidingbarTitle").html('Tous vos tags');
-			if ( debug || ( window.localStorage && typeof localStorage!='undefined' && !localStorage.myTags ) ) 
-			{	
-				console.log("rebuild localStorage.myTags");
-				$(".tags-count").html(localStorage.myTags.length);
-				$(".slidingbarList").html("<i class='fa fa-circle-o-notch fa-spin fa-3x'></i>");
-				$.ajax({
-					url : baseUrl+"/" + moduleId +'/person/tags',
-					dataType : 'json',
-					success : function(json) 
-					{
-						if(json.result && json.tags.length )
-						{
-							strHTML = "";
-							localStorage.myTagsCount = json.tags.length;
-
-							$.each(json.tags, function(i,v) { 
-								active = (json.activeTags && inArray(v, json.activeTags)) ? "active" : "";
-								strHTML += '<li><span class="btn btn-md btn-tag '+active+'" data-id="'+v+'">'+
-												'<a href="#" class="del fa fa-times"></a> <i class="fa fa-tag"></i>'+
-												v+
-											'</span></li>';
-							});
-							localStorage.myTags = strHTML;
-
-							$(".slidingbarList").html( localStorage.myTags );
-							$(".tags-count").html(localStorage.myTagsCount);
-							bindTagEvents ();
-						} else {
-							$(".slidingbarList").html("you don't have any tags, simply add some <a href='#'><i class='fa fa-add'></i></a> ");
-						}
-					}
-				});
-			}
-			else{
-				console.log("localStorage.myTags exists ");
-				$(".slidingbarList").html(localStorage.myTags);
-				$(".tags-count").html(localStorage.myTagsCount);
-				bindTagEvents ();
-			}
-
-		} else if( type == "scope")
-		{
-			openSlideBarType = "scope"; 
-			$(".slidingbarTitle").html('Tous vos scopes administratifs');
-			strHTML = '<li>'+
-						'<span class="btn btn-md btn-tag">'+
-							'<a href="#" class="del fa fa-times"></a>'+
-							'<i class="fa fa-tag"></i>'+
-							'Scope 01'+
-						'</span>'+
-					'</li>'+
-					'<li>'+
-						'<span class="btn btn-md btn-tag">'+
-							'<a href="#" class="del fa fa-times"></a>'+
-							'<i class="fa fa-tag"></i>'+
-							'Scope 02'+
-						'</span>'+
-					'</li>';
-			$(".slidingbarList").html(strHTML);
+		$(".slidingbarTitle").html('<i class="fa fa-tags text-azure"></i> Tous vos tags');
+		if ( debug || ( window.localStorage && typeof localStorage!='undefined' && !localStorage.myData ) ) 
+		{	
+			$(".slidingbarList").html("<i class='fa fa-circle-o-notch fa-spin fa-3x'></i>");
+			$.ajax({
+				url : baseUrl+"/" + moduleId +'/person/data',
+				dataType : 'json',
+				success : function(json) 
+				{
+					if( type == "tags")
+						buildTagSlideBar (json);
+					else if( type == "scope")
+						buildScopeSlideBar (json);
+				}
+			});
+		}
+		else{
+			if( type == "tags")
+				buildTagSlideBar (json);
+			else if( type == "scope")
+				buildScopeSlideBar (json);
 		}
 	}
 	function closeSlideBar() {  

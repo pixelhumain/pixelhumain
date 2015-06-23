@@ -984,7 +984,7 @@ footer {
       font-size: 17px;
       line-height: inherit; }
     .top-navbar .collapse_wrap .trigger .notifications-count,
-    .top-navbar .collapse_wrap .trigger .tags-count {
+    .top-navbar .collapse_wrap .trigger .notifcation-counter{
       position: absolute;
       top: 12px;
       right: 10px; }
@@ -2874,7 +2874,7 @@ body.bgcity {
   background-color: transparent; }
 body.bgblack {
   background-image: none;
-  background-color: black; }
+  background-color: #2a3945; }
 body.bgblue {
   background-image: none;
   background-color: #22B8EA; }
