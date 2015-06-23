@@ -310,7 +310,8 @@ Titi Kiki	toto@kiki.com";
                                     "jsonimport"=>FileHelper::indent_json(json_encode($jsonimport)),
                                     "jsonrejet"=>FileHelper::indent_json(json_encode($jsonrejet)),
                                     "tabCode"=>$tabCode,
-                                    "arrayjsonmapping"=>$jsonmapping,
+                                    "lien"=>$_POST['lien'],
+                                    "arraymappingfields"=>$jsonmapping["cityDataSrc"]['fields'],
                                     "arrayCsvImport"=>$arrayCsvImport,
                                     "nbcommunemodif"=>count($arrayCsvImport),
                                     "nbinfoparcommune"=>count($jsonmapping["cityDataSrc"]['fields']),
@@ -319,7 +320,8 @@ Titi Kiki	toto@kiki.com";
         }
         else
         {
-            return Rest::json(array('result'=> "mappingempty"));
+            return Rest::json(array('result'=> "mappingempty",
+                                    'tabmapping'=>$_POST['tabmapping']));
         }
     } 
 

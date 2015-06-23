@@ -36,22 +36,26 @@
 					</div>';
 			echo '	<div class="form-group col-md-12">
 						<div id="divtab" class="table-responsive">
-					    	<table id="tabcreatemapping" class="table table-striped table-bordered table-hover  directoryTable ">
+					    	<table id="tabcreatemapping" class="table table-striped table-bordered table-hover ">
 					    		<thead>
 						    		<tr class="active">
+						    			<th>Supprimer</th>
 						    			<th>Colonne CSV</th>
 						    			<th>Mapping</th>
 						    			<th>Lien</th>
 						    		</tr>
 					    		</thead>
 						    	<tbody class="directoryLines">';
+						    		$i = 1 ;
 									foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
 									{
-										echo '<tr class="active">';
+										echo '<tr class="active" id="lignemapping'.$i.'">';
+											echo '<td><a href="#" class="btn btn-primary">X</a></td>';
 											echo '<td>'.$value.'</td>';
 											echo '<td><input type="text" id="'.$key.'" value=""/></td>';
 											echo '<td><input type="radio" name="lien" value="'.$value.'"></td>';
 										echo '</tr>';
+										$i++;
 									}
 			echo '  			</tbody>
 							</table>
@@ -90,19 +94,8 @@
 						</div>
 						<div id="divListImport" class="table-responsive">
 						    <table class="table table-striped table-bordered table-hover">
-						    	<thead>
-						    		<tr class="active">
-						    			<?php
-						    			if(isset(Yii::app()->session["tabCSV"][0]))
-						    			{
-							    			foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
-											{
-												echo '<th>'.$value.'</th>';
-											}
-										}
-										?>
-						    		</tr>
-					    		</thead>
+						    	<thead id="tableHeadImport">
+						    	</thead>
 					    		<tbody id="tableBodyImport">
 					    		</tbody>
 							</table>
@@ -130,19 +123,8 @@
 			  		</div>
 			  		<div id="divListRejet" >
 			    		<table class="table table-striped table-bordered table-hover ">
-			    			<thead>
-					    		<tr class="active">
-					    			<?php
-					    			if(isset(Yii::app()->session["tabCSV"][0]))
-						    		{
-						    			foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
-										{
-											echo '<th>'.$value.'</th>';
-										}
-									}
-									?>
-					    		</tr>
-				    		</thead>
+			    			<thead id="tableHeadRejet">
+					    	</thead>
 				    		<tbody id="tableBodyRejet">
 				    		</tbody>
 						</table>
@@ -187,6 +169,11 @@ jQuery(document).ready(function()
 	$("#divListRejet").hide();
 	$("#divListRejet").css('overflow', 'auto');
 	
+	$("#tabcreatemapping a").off().on('click', function()
+  	{
+  		$(this).parent().parent().remove();
+
+  	});
 
 	$("#sumitMapping").off().on('click', function()
   	{
@@ -219,10 +206,14 @@ jQuery(document).ready(function()
 					else
 					{
 						$("#visualisationGlobal").show();
-						//useCodeMirror("jsonmapping", data.jsonmapping);
+						
 						$("#jsonimport").html(data.jsonimport);
 						$("#jsonmapping").html(data.jsonmapping);
 						$("#jsonrejet").html(data.jsonrejet);
+						
+						useCodeMirror("jsonmapping");
+						//useCodeMirror("jsonimport");
+						//useCodeMirror("jsonrejet");
 						
 						console.dir();
 						
@@ -230,18 +221,37 @@ jQuery(document).ready(function()
 						$("#listeInformationImport").append('<li class="list-group-item">'+ data.nbinfoparcommune +' informations seront ajouté par communes</li>');
 						$("#listeInformationRejet").html('<li class="list-group-item">'+ data.nbcommunerejet +' communes mis à jours</li>');
 
+						colimport = [];
+						entete = "<tr>";
+						$.each(data.tabCode, function( keyRows, valueRows )
+						{
+							$.each(data.arraymappingfields, function( keyFields, valueFields )
+							{
+							   	if(valueRows == keyFields || valueRows == data.lien)
+							   	{
+							   		colimport.push(keyRows);
+							   		entete = entete + "<th>"+ valueRows +"</th>";
+							   	}
+							});
+						});
+						entete = entete + "</tr>";
+
+						$("#tableHeadImport").html(entete);
+						$("#tableHeadRejet").html(entete);
+
 						ligne ="";
 						$.each(data.arrayCsvImport, function( keyRows, valueRows )
 						{
 							ligne = ligne + "<tr>" ;
 						    $.each(valueRows, function( keyCols, valueCols )
 							{
-							    ligne = ligne + "<td>"+ valueCols +"</td>";
+								if(jQuery.inArray(keyCols, colimport) != -1)
+							    	ligne = ligne + "<td>"+ valueCols +"</td>";
 							    
 							});
 							ligne = ligne + "</tr>" ;
 						});
-						$("#tableBodyImport").html(ligne);
+						$("#tableBodyImport").append(ligne);
 
 						ligne ="";
 						$.each(data.arrayCsvRejet, function( keyRows, valueRows )
@@ -253,7 +263,7 @@ jQuery(document).ready(function()
 							});
 							ligne = ligne + "</tr>" ;
 						});
-						$("#tableBodyRejet").html(ligne);
+						$("#tableBodyRejet").append(ligne);
 		       		}
 		       	}
 		    });
@@ -413,11 +423,10 @@ function resetDirectoryTable()
 	
 }
 
-/*function useCodeMirror(element, json ) 
+function useCodeMirror(element) 
 { 
 	editor = CodeMirror.fromTextArea(document.getElementById(element), {
 						    lineNumbers: true,
-						    value : json
 						  });
-}*/
+}
 </script>
