@@ -211,7 +211,7 @@ hr{
   padding-bottom: 10px
 }
 img{
-	max-width: 100%;
+	max-width: 75%;
 }
 span.dropcap{
     display: inline-block;
@@ -559,7 +559,7 @@ svg {
   transition-duration: 0.4s;
 }
 .imgSvg img{
-  margin-top:10%;
+  margin-top:64px;
 }
 
 
