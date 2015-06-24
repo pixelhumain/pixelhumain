@@ -36,31 +36,26 @@ class DataValidator {
 	}
 
 	public static function eventStartDate($toValidate, $objectId) {
-		// Is the start Date before endDate
-	    $res = "";
-	    $event = Event::getById($objectId);
-	    $endDate = DateTime::createFromFormat('Y-m-d H:i:s', $event["endDate"]);
-	    $startDate = DateTime::createFromFormat('Y-m-d H:i', $toValidate);
-
-	    if ($startDate > $endDate) { 
-	    	$res = "The start date of the event must be before the end date";
-	    }
-	    return $res;
+		$event = Event::getById($objectId);
+		return self::startDate($toValidate, $event);
 	}
 
 	public static function eventEndDate($toValidate, $objectId) {
-		// Is the end Date after start Date
-	    $res = "";
-	    $event = Event::getById($objectId);
-	    $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $event["startDate"]);
-	    $endDate = DateTime::createFromFormat('Y-m-d H:i', $toValidate);
-	    if ($startDate > $endDate) { 
-	    	$res = "The end date of the event must be after the start date";
-	    }
-	    return $res;
+		$event = Event::getById($objectId);
+		return self::endDate($toValidate, $event);
 	}
 
-	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue) {
+	public static function projectStartDate($toValidate, $objectId) {
+		$project = Project::getById($objectId);
+		return self::startDate($toValidate, $project);
+	}
+
+	public static function projectEndDate($toValidate, $objectId) {
+		$project = Project::getById($objectId);
+		return self::endDate($toValidate, $project);
+	}
+
+	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue, $objectId = null) {
 		$res = "";
 		if (isset($dataBinding["$fieldName"])) {
 			$data = $dataBinding["$fieldName"];
@@ -69,7 +64,7 @@ class DataValidator {
 			if (isset($data["rules"])) {
 				$rules = $data["rules"];
 				foreach ($rules as $rule) {
-					$isDataValidated = DataValidator::$rule($fieldValue);
+					$isDataValidated = DataValidator::$rule($fieldValue, $objectId);
 					if ($isDataValidated != "") {
 						throw new CTKException($isDataValidated);
 					}
@@ -80,5 +75,49 @@ class DataValidator {
 		}
 		return $name;
 	}
+
+	private static function startDate($toValidate, $object) {
+		// Is the start Date before endDate
+	    $res = "";
+	    
+	    $endDate = DateTime::createFromFormat('Y-m-d H:i:s', $object["endDate"]);
+	    
+	    $startDate = DateTime::createFromFormat('Y-m-d H:i', $toValidate);
+		
+		//Try to convert the startDate
+		if (empty($startDate)) {
+			$startDate = DateTime::createFromFormat('Y-m-d', $toValidate);
+		} 
+	    if (empty($startDate)) {
+			throw new CTKException("The end date is not well formated");
+		}
+
+	    if ($startDate > $endDate) { 
+	    	$res = "The start date must be before the end date";
+	    }
+	    return $res;
+	}
+
+	private static function endDate($toValidate, $object) {
+		// Is the end Date after start Date
+	    $res = "";
+	    $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $object["startDate"]);
+	    
+	    //Try to convert the endDate
+	    $endDate = DateTime::createFromFormat('Y-m-d H:i', $toValidate);
+	    if (empty($endDate)) {
+			$endDate = DateTime::createFromFormat('Y-m-d', $toValidate);
+		} 
+	    if (empty($endDate)) {
+			throw new CTKException("The end date is not well formated");
+		}
+
+	    if ($startDate > $endDate) { 
+	    	$res = "The end date must be after the start date";
+	    }
+	    return $res;
+	}
+
+	
 
 }
