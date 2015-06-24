@@ -30,6 +30,10 @@ class Controller extends CController
 	public $topMenu = array();
 	public $sidebar1 = array();
 	public $sidebar2 = array();
+	public $toolbarMBZ = null;
+	public $toolbarMenuAdd = null;
+	public $toolbarMenuMaps = null;
+
 	public $keywords = "";
 	public $description = "";
 	public $percent = 15;
