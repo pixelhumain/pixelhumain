@@ -12,12 +12,19 @@
 				<label for="fileimport">Données à importer (csv) :</label><input type="file" id="fileimport" name="fileimport" accept=".csv">
 			</div>
 			<div class="col-md-4">
-				<label> Séparateur(csv) :</label>
-				<select id="separateur" name="separateur">
+				<label> Séparateur de données :</label>
+				<select id="separateurDonnees" name="separateurDonnees">
 					<option value=";">point-virgule</option>
 				  	<option value=",">virgule</option>
 				  	<option value=".">point</option>
 				  	<option value=" ">espace</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label> Séparateur de texte :</label>
+				<select id="separateurTexte" name="separateurTexte">
+					<option value='"'>guillemet</option>
+				  	<option value="'">cote</option>
 				</select>
 			</div>
 		</div>
@@ -29,7 +36,7 @@
 						$allMapping = PHDB::find (City::COLLECTION_IMPORTHISTORY);
 						foreach ($allMapping as $key => $value) 
 						{
-							echo '<option value="'.$key .'">'.$value["cityDataSrc"]["nameFile"].'</option>';
+							echo '<option value="'.$key .'">'.$value["nameFile"].'</option>';
 
 						}
 				?>
@@ -49,18 +56,17 @@
 			if($choose == "modify")
 			{
 				$oneMapping = PHDB::findOne(City::COLLECTION_IMPORTHISTORY, array("_id"=>new MongoId($chooseMapping)));
-				var_dump($oneMapping['cityDataSrc']["fields"]);
-					echo ' 	<div class="form-group col-md-12">
+				echo ' 	<div class="form-group col-md-12">
 								<h3 class="col-md-12">Mapping</h3>
 								<div class="form-group col-md-4">
-									<label for="source">Source : </label><input type="text" id="source" name="source" value="'.$oneMapping['cityDataSrc']["src"].'">
+									<label for="source">Source : </label><input type="text" id="source" name="source" value="'.$oneMapping["src"].'">
 									<input type="hidden" id="chooseSelected" value="'.$choose.'">
 									<input type="hidden" id="mappingSelected" value="'.$chooseMapping.'">
 									<input type="hidden" id="nameFile" value="'.$nameFile.'">
 									<input type="hidden" id="separateurMapping" value="'.$separateur.'">
 								</div>
 								<div class="form-group col-md-4">
-									<label for="url">URL : </label><input type="text" id="url" name="url" value="'.$oneMapping['cityDataSrc']["url"].'">
+									<label for="url">URL : </label><input type="text" id="url" name="url" value="'.$oneMapping["url"].'">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="lien">Lien : </label>
@@ -91,7 +97,7 @@
 							<select id="lien">';
 			    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
 								{
-									echo '<option value="'.$value.'">'.$value.'</option>';
+									echo '<option value="'.$key.'">'.$value.'</option>';
 								}
 		echo '				</select>
 						</div>
@@ -114,18 +120,22 @@
 						    		if($choose == "modify")
 						    		{
 						    			
-						    			foreach ($oneMapping['cityDataSrc']["fields"] as $key => $value) 
+						    			foreach ($oneMapping["fields"] as $key => $value) 
 						    			{
+						    				
 						    				$nbligne++;
 						    				$i = 0;
 						    				$trouver = false ;
-						    				while($trouver == false && $i < count(Yii::app()->session["tabCSV"]))
+						    				while($trouver == false && $i < count(Yii::app()->session["tabCSV"][0]))
 						    				{
-						    					if(Yii::app()->session["tabCSV"][$i] == $key)
+						    					if(Yii::app()->session["tabCSV"][0][$i] == $key)
+						    					{
 						    						$trouver = true;
-						    					else
+						    					}
+						    					else	
 						    						$i++;
 						    				}
+						    				
 						    				echo '<tr  id="lineMapping'.$nbligne.'">
 						    						<td id="valueheadCSVMapping'.$nbligne.'">'.$key .'</td>
 						    						<td id="labelMapping'.$nbligne.'">'.$value.'</td>
@@ -147,7 +157,7 @@
 		echo '								</select>
 						    			</td>
 						    			<td><input type="text" id="textMapping" value=""/></td>
-						    			<td><a href="#" id="addMapping" class="btn btn-primary">Ajouter</a></td>
+						    			<td><input type="submit" id="addMapping" class="btn btn-primary" value="Ajouter"/>
 						    		</tr>';
 		echo '  				</tbody>
 							</table>
@@ -251,6 +261,7 @@ jQuery(document).ready(function()
 
 	
 	resetDirectoryTable() ;
+
 	$("#divChooseMapping").hide();
 	$("#visualisationGlobal").hide();
 	$("#divInformationImport").hide();
@@ -276,18 +287,21 @@ jQuery(document).ready(function()
   		ligne = '<tr id="lineMapping'+nbligne+'"> ';
   		ligne =	 ligne + '<td id="valueheadCSVMapping'+nbligne+'">' + $("#selectHeadCSV option:selected").text() + '</td>';
   		ligne =	 ligne + '<td id="labelMapping'+nbligne+'">' + $("#textMapping").val() + '</td>';
-  		ligne =	 ligne + '<td><input type="hidden" id="keyheadCSVMapping'+nbligne+'" value="'+$("#selectHeadCSV").val()+'"><a href="#" class="btn btn-primary">X</a></td></tr>';
-  		alert($("#selectHeadCSV").val());
+  		ligne =	 ligne + '<td><input type="hidden" id="keyheadCSVMapping'+nbligne+'" value="'+$("#selectHeadCSV").val()+'">';
+  		ligne =	 ligne + '<a href="#" class="btn btn-primary">X</a></td></tr>';
   		$("#nbligne").val(nbligne);
   		$("#LineAddMapping").before(ligne);
+
+  		return false;
   		
   	});
 
-  	/*$("#tabcreatemapping a").off().on('click', function()
+  	$("#bodyCreateMapping a").off().on('click', function()
   	{
+  		alert("yo");
   		$(this).parent().parent().remove();
+  	});
 
-  	});*/
 
 	$("#sumitMapping").off().on('click', function()
   	{
@@ -295,88 +309,95 @@ jQuery(document).ready(function()
   		nbligne = $("#nbligne").val();
   		for (i = 1; i <= nbligne; i++) 
   		{
+
   			tabmapping[$("#keyheadCSVMapping"+i).val()] = $("#labelMapping"+i).text();
 		}
 
-  	
-  		$.ajax({
-	        type: 'POST',
-	        data: {mappingSelected : $("#mappingSelected").val(), chooseSelected : $("#chooseSelected").val(), separateur : $("#separateurMapping").val(), nameFile : $("#nameFile").val(), source : $("#source").val(), url : $("#url").val(), tabmapping : tabmapping, tabCSV : $("#tabCSV").val(), lien : $('#lien option:selected').val()},
-	        url: baseUrl+'/tools/traitermapping/',
-	        dataType : 'json',
-	        success: function(data)
-	        {
+		if(tabmapping != "")
+  		{
+	  		$.ajax({
+		        type: 'POST',
+		        data: {mappingSelected : $("#mappingSelected").val(), chooseSelected : $("#chooseSelected").val(), separateur : $("#separateurMapping").val(), nameFile : $("#nameFile").val(), source : $("#source").val(), url : $("#url").val(), tabmapping : tabmapping, tabCSV : $("#tabCSV").val(), lien : $('#lien').val()},
+		        url: baseUrl+'/tools/traitermapping/',
+		        dataType : 'json',
+		        success: function(data)
+		        {
 
-				console.dir(data);
-				if(data.result == "mappingempty")
-				{
-					toastr.error("Vous devez remplir les informations du mapping.");
-				}
-				else
-				{
-					$("#visualisationGlobal").show();
-					
-					$("#jsonimport").html(data.jsonimport);
-					$("#jsonmapping").html(data.jsonmapping);
-					$("#jsonrejet").html(data.jsonrejet);
-					
-					useCodeMirror("jsonmapping");
-					useCodeMirror("jsonimport");
-					useCodeMirror("jsonrejet");
-					
-					console.dir();
-					
-					$("#listeInformationImport").html('<li class="list-group-item">'+ data.nbcommunemodif +' communes mis à jours</li>');
-					$("#listeInformationImport").append('<li class="list-group-item">'+ data.nbinfoparcommune +' informations seront ajouté par communes</li>');
-					$("#listeInformationRejet").html('<li class="list-group-item">'+ data.nbcommunerejet +' communes mis à jours</li>');
-
-					colimport = [];
-					entete = "<tr>";
-					$.each(data.tabCode, function( keyRows, valueRows )
+					console.dir(data);
+					if(data.result == "mappingempty")
 					{
-						$.each(data.arraymappingfields, function( keyFields, valueFields )
-						{
-						   	if(valueRows == keyFields || valueRows == data.lien)
-						   	{
-						   		colimport.push(keyRows);
-						   		entete = entete + "<th>"+ valueRows +"</th>";
-						   	}
-						});
-					});
-					entete = entete + "</tr>";
-
-					$("#tableHeadImport").html(entete);
-					$("#tableHeadRejet").html(entete);
-
-					ligne ="";
-					$.each(data.arrayCsvImport, function( keyRows, valueRows )
+						toastr.error("Vous devez remplir les informations du mapping.");
+					}
+					else
 					{
-						ligne = ligne + "<tr>" ;
-					    $.each(valueRows, function( keyCols, valueCols )
-						{
-							if(jQuery.inArray(keyCols, colimport) != -1)
-						    	ligne = ligne + "<td>"+ valueCols +"</td>";
-						    
-						});
-						ligne = ligne + "</tr>" ;
-					});
-					$("#tableBodyImport").append(ligne);
+						$("#visualisationGlobal").show();
+						
+						$("#jsonimport").html(data.jsonimport);
+						$("#jsonmapping").html(data.jsonmapping);
+						$("#jsonrejet").html(data.jsonrejet);
 
-					ligne ="";
-					$.each(data.arrayCsvRejet, function( keyRows, valueRows )
-					{
-						ligne = ligne + "<tr>" ;
-					    $.each(valueRows, function( keyCols, valueCols )
+						/*useCodeMirror("jsonmapping");
+						useCodeMirror("jsonimport");
+						useCodeMirror("jsonrejet");*/
+						
+						
+						
+						$("#listeInformationImport").html('<li class="list-group-item">'+ data.nbcommunemodif +' communes mis à jours</li>');
+						$("#listeInformationImport").append('<li class="list-group-item">'+ data.nbinfoparcommune +' informations seront ajouté par communes</li>');
+						$("#listeInformationRejet").html('<li class="list-group-item">'+ data.nbcommunerejet +' communes mis à jours</li>');
+
+						colimport = [];
+						entete = "<tr>";
+						$.each(data.tabCode, function( keyRows, valueRows )
 						{
-							if(jQuery.inArray(keyCols, colimport) != -1)
-						    	ligne = ligne + "<td>"+ valueCols +"</td>";
+							$.each(data.arraymappingfields, function( keyFields, valueFields )
+							{
+							   	if(valueRows == keyFields || valueRows == data.lien)
+							   	{
+							   		colimport.push(keyRows);
+							   		entete = entete + "<th>"+ valueRows +"</th>";
+							   	}
+							});
 						});
-						ligne = ligne + "</tr>" ;
-					});
-					$("#tableBodyRejet").append(ligne);
-	       		}
-	       	}
-	    });
+						entete = entete + "</tr>";
+
+						$("#tableHeadImport").html(entete);
+						$("#tableHeadRejet").html(entete);
+
+						ligne ="";
+						$.each(data.arrayCsvImport, function( keyRows, valueRows )
+						{
+							ligne = ligne + "<tr>" ;
+						    $.each(valueRows, function( keyCols, valueCols )
+							{
+								if(jQuery.inArray(keyCols, colimport) != -1)
+							    	ligne = ligne + "<td>"+ valueCols +"</td>";
+							    
+							});
+							ligne = ligne + "</tr>" ;
+						});
+						$("#tableBodyImport").append(ligne);
+
+						ligne ="";
+						$.each(data.arrayCsvRejet, function( keyRows, valueRows )
+						{
+							ligne = ligne + "<tr>" ;
+						    $.each(valueRows, function( keyCols, valueCols )
+							{
+								if(jQuery.inArray(keyCols, colimport) != -1)
+							    	ligne = ligne + "<td>"+ valueCols +"</td>";
+							});
+							ligne = ligne + "</tr>" ;
+						});
+						$("#tableBodyRejet").append(ligne);
+		       		}
+		       	}
+		    });
+		}
+		else
+		{
+			toastr.error("Vous devez ajouter des éléments au mapping.");
+		}
 		
   		return false;
   	});
@@ -482,7 +503,7 @@ jQuery(document).ready(function()
   		$("#linkListRejet").parent().attr('class', 'active');
   	});
 
-
+ 
 });	
 
 var directoryTable = null;
@@ -523,10 +544,25 @@ function resetDirectoryTable()
 	}
 }
 
-function useCodeMirror(element) 
+	function useCodeMirror(element) 
 { 
-	editor = CodeMirror.fromTextArea(document.getElementById(element), {
+	/*editor = CodeMirror.fromTextArea(document.getElementById(element), {
 						    lineNumbers: true,
-						  });
+						    mode:  "javascript",
+						    value: "lala"
+						  });*/
+
+	alert(element);
+	myTextArea = document.getElementById(element);
+	alert(myTextArea.value);
+	var myCodeMirror = CodeMirror(function(elt) 
+	{
+	  myTextArea.parentNode.replaceChild(elt, myTextArea);
+	}, 
+	{
+		lineNumbers: true,
+		value: myTextArea.value,
+		mode : {name: "javascript", json: true}
+	});
 }
 </script>
