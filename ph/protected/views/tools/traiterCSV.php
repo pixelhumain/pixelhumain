@@ -1,5 +1,6 @@
 <div class="col-md-12">
 	<form id="formfile" method="POST" action="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/tools/traitercsv/';?>" enctype="multipart/form-data">
+		<input type="hidden" id="result" value="<?php echo $result ; ?>"/>
 		
 		<div class="row">
 			<div class="col-md-4">
@@ -49,129 +50,121 @@
 		</div>
 
 	</form>
-	<form id="formmapping">
+	<div id="divmapping">
 	<?php
-		if($result == true)
-		{
-			if($choose == "modify")
-			{
-				$oneMapping = PHDB::findOne(City::COLLECTION_IMPORTHISTORY, array("_id"=>new MongoId($chooseMapping)));
-				echo ' 	<div class="form-group col-md-12">
-								<h3 class="col-md-12">Mapping</h3>
-								<div class="form-group col-md-4">
-									<label for="source">Source : </label><input type="text" id="source" name="source" value="'.$oneMapping["src"].'">
-									<input type="hidden" id="chooseSelected" value="'.$choose.'">
-									<input type="hidden" id="mappingSelected" value="'.$chooseMapping.'">
-									<input type="hidden" id="nameFile" value="'.$nameFile.'">
-									<input type="hidden" id="separateurMapping" value="'.$separateur.'">
-								</div>
-								<div class="form-group col-md-4">
-									<label for="url">URL : </label><input type="text" id="url" name="url" value="'.$oneMapping["url"].'">
-								</div>
-								<div class="form-group col-md-4">
-									<label for="lien">Lien : </label>
-									<select id="lien">';
+		
+		if(isset($chooseMapping))
+			$oneMapping = PHDB::findOne(City::COLLECTION_IMPORTHISTORY, array("_id"=>new MongoId($chooseMapping)));
+
+		echo ' 	
+				<div class="form-group col-md-12">
+					<h3 class="col-md-12">Mapping</h3>
+					<div class="form-group col-md-4">
+						<label for="source">Source : </label>';
+						if(isset($oneMapping))
+							echo '<input type="text" id="source" name="source" value="'.$oneMapping["src"].'">';
+						else
+							echo '<input type="text" id="source" name="source" value="">';
+							
+						if($result == true)
+						{
+							echo '<input type="hidden" id="chooseSelected" value="'.$choose.'">
+										<input type="hidden" id="nameFile" value="'.$nameFile.'">
+										<input type="hidden" id="separateurMapping" value="'.$separateur.'">';
+							
+							if($choose == "modify")
+							{	
+								echo '<input type="hidden" id="mappingSelected" value="'.$chooseMapping.'">';
+							}
+						}
+									
+		echo'		</div>
+					<div class="form-group col-md-4">
+						<label for="url">URL : </label>';
+						if(isset($oneMapping))
+							echo '<input type="text" id="url" name="url" value="'.$oneMapping["url"].'">';
+						else
+							echo '<input type="text" id="url" name="url" value="">';
+
+						
+		echo'		</div>
+					<div class="form-group col-md-4">
+						<label for="lien">Lien : </label>
+						<select id="lien">';
+		    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
+							{
+								echo '<option value="'.$key.'">'.$value.'</option>';
+							}
+	echo '				</select>
+					</div>
+				</div>
+
+				<div class="form-group col-md-12">
+
+					<div id="divtab" class="table-responsive">
+				    	<table id="tabcreatemapping" class="table table-striped table-bordered table-hover">
+				    		<thead>
+					    		<tr>
+					    			<th>Colonne CSV</th>
+					    			<th>Mapping</th>
+					    			<th>Ajouter/Supprimer</th>
+					    		</tr>
+				    		</thead>
+					    	<tbody class="directoryLines" id="bodyCreateMapping">';
+					    		$nbligne = 0 ;
+					    		if($choose == "modify")
+					    		{
+					    			
+					    			foreach ($oneMapping["fields"] as $key => $value) 
+					    			{
+					    				
+					    				$nbligne++;
+					    				$i = 0;
+					    				$trouver = false ;
+					    				while($trouver == false && $i < count(Yii::app()->session["tabCSV"][0]))
+					    				{
+					    					if(Yii::app()->session["tabCSV"][0][$i] == $key)
+					    					{
+					    						$trouver = true;
+					    					}
+					    					else	
+					    						$i++;
+					    				}
+					    				echo '<tr  id="lineMapping'.$nbligne.'">
+					    						<td id="valueheadCSVMapping'.$nbligne.'">'.$key .'</td>
+					    						<td id="labelMapping'.$nbligne.'">'.$value.'</td>
+					    						<td>
+					    							<input type="hidden" id="keyheadCSVMapping'.$nbligne.'" value="'.$i.'">
+					    							<a href="#" class="deleteLineMapping btn btn-primary">X</a></td>
+					    					</tr>';
+					    				
+					    			}
+					    		}
+	echo '			    		<tr id="LineAddMapping">
+					    			<td>
+					    				<input type="hidden" id="nbligne" value="'.$nbligne.'"/>
+					    				<select id="selectHeadCSV">';
 					    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
 										{
-											echo '<option value="'.$value.'">'.$value.'</option>';
+											echo '<option value="'.$key.'">'.$value.'</option>';
 										}
-				echo '				</select>
-								</div>
-							</div>';
-			}
-			else
-			{
-				echo ' 	<div class="form-group col-md-12">
-						<h3 class="col-md-12">Mapping</h3>
-						<div class="form-group col-md-4">
-							<label for="source">Source : </label><input type="text" id="source" name="source">
-							<input type="hidden" id="chooseSelected" value="'.$choose.'">
-							<input type="hidden" id="nameFile" value="'.$nameFile.'">
-							<input type="hidden" id="separateurMapping" value="'.$separateur.'">
-						</div>
-						<div class="form-group col-md-4">
-							<label for="url">URL : </label><input type="text" id="url" name="url">
-						</div>
-						<div class="form-group col-md-4">
-							<label for="lien">Lien : </label>
-							<select id="lien">';
-			    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
-								{
-									echo '<option value="'.$key.'">'.$value.'</option>';
-								}
-		echo '				</select>
-						</div>
-					</div>';
-			}
-			
-		echo '		<div class="form-group col-md-12">
-
-						<div id="divtab" class="table-responsive">
-					    	<table id="tabcreatemapping" class="table table-striped table-bordered table-hover ">
-					    		<thead>
-						    		<tr>
-						    			<th>Colonne CSV</th>
-						    			<th>Mapping</th>
-						    			<th>Ajouter/Supprimer</th>
-						    		</tr>
-					    		</thead>
-						    	<tbody class="directoryLines" id="bodyCreateMapping">';
-						    		$nbligne = 0 ;
-						    		if($choose == "modify")
-						    		{
-						    			
-						    			foreach ($oneMapping["fields"] as $key => $value) 
-						    			{
-						    				
-						    				$nbligne++;
-						    				$i = 0;
-						    				$trouver = false ;
-						    				while($trouver == false && $i < count(Yii::app()->session["tabCSV"][0]))
-						    				{
-						    					if(Yii::app()->session["tabCSV"][0][$i] == $key)
-						    					{
-						    						$trouver = true;
-						    					}
-						    					else	
-						    						$i++;
-						    				}
-						    				
-						    				echo '<tr  id="lineMapping'.$nbligne.'">
-						    						<td id="valueheadCSVMapping'.$nbligne.'">'.$key .'</td>
-						    						<td id="labelMapping'.$nbligne.'">'.$value.'</td>
-						    						<td>
-						    							<input type="hidden" id="keyheadCSVMapping'.$nbligne.'" value="'.$i.'">
-						    							<a href="#" class="btn btn-primary">X</a></td>
-						    					</tr>';
-						    				
-						    			}
-						    		}
-		echo '			    		<tr id="LineAddMapping">
-						    			<td>
-						    				<input type="hidden" id="nbligne" value="'.$nbligne.'"/>
-						    				<select id="selectHeadCSV">';
-						    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
-											{
-												echo '<option value="'.$key.'">'.$value.'</option>';
-											}
-		echo '								</select>
-						    			</td>
-						    			<td><input type="text" id="textMapping" value=""/></td>
-						    			<td><input type="submit" id="addMapping" class="btn btn-primary" value="Ajouter"/>
-						    		</tr>';
-		echo '  				</tbody>
-							</table>
-						</div>
-					</div>';
-		echo ' 		<div class="form-group col-md-12">
-						<div class="form-group col-md-4 col-md-offset-4">
-							<a href="#" id="sumitMapping" class="btn btn-primary">Visualisation</a>
-						</div>
-					</div>';
-		}
+	echo '								</select>
+					    			</td>
+					    			<td><input type="text" id="textMapping" value=""/></td>
+					    			<td><input type="submit" id="addMapping" class="btn btn-primary" value="Ajouter"/>
+					    		</tr>';
+	echo '  				</tbody>
+						</table>
+					</div>
+				</div>';
+	echo ' 		<div class="form-group col-md-12">
+					<div class="form-group col-md-4 col-md-offset-4">
+						<a href="#" id="sumitMapping" class="btn btn-primary">Visualisation</a>
+					</div>
+				</div>';
 
 	?>
-	</form>
+	</div>
 	<div id="visualisationGlobal">
 		<div class="col-md-12">
 			<h3 class="col-md-12">Vérification avant import</h3>
@@ -193,11 +186,13 @@
 						    <textarea class="col-md-12 form-control" id="jsonimport" rows="10"  readonly></textarea>
 						</div>
 						<div id="divListImport" class="table-responsive">
-						    <table class="table table-striped table-bordered table-hover">
-						    	<thead id="tableHeadImport">
-						    	</thead>
-					    		<tbody id="tableBodyImport">
-					    		</tbody>
+						    <table id="tableImport" class="table table-striped table-bordered table-hover directoryTable">
+					    		<thead id="tableHeadImport">
+						    		
+					    		</thead>
+						    	<tbody class="directoryLines" id="tableBodyImport">
+						    		
+						    	</tbody>
 							</table>
 						</div>
 					</div>
@@ -222,11 +217,11 @@
 			    		<textarea class="col-md-12 form-control" id="jsonrejet" rows="10"  readonly></textarea>
 			  		</div>
 			  		<div id="divListRejet" >
-			    		<table class="table table-striped table-bordered table-hover">
-			    			<thead id="tableHeadRejet">
-			    			</thead>
-				    		<tbody id="tableBodyRejet" class="directoryLines">
-				    		</tbody>
+			    		<table id="tableRejet" class="table table-striped table-bordered table-hover directoryTable">
+				    		<thead id="tableHeadRejet">
+					    	</thead>
+					    	<tbody class="directoryLines" id="tableBodyRejet">
+					    	</tbody>
 						</table>
 			  		</div>
 			  	</div>
@@ -258,9 +253,19 @@
 <script type="text/javascript">
 jQuery(document).ready(function() 
 {
+	//resetDirectoryTable() ;
+	bindMappingEvents();
 
+	mappingCodeMiror =  useCodeMirror("jsonmapping");
+	importCodeMiror = useCodeMirror("jsonimport");
+	rejetCodeMiror = useCodeMirror("jsonrejet");
+
+	/*$('#jsonmapping').data('CodeMirrorInstance', useCodeMirror("jsonmapping"));
+	$('#jsonimport').data('CodeMirrorInstance', useCodeMirror("jsonimport"));
+	$('#jsonrejet').data('CodeMirrorInstance', useCodeMirror("jsonrejet"));*/
 	
-	resetDirectoryTable() ;
+	
+
 
 	$("#divChooseMapping").hide();
 	$("#visualisationGlobal").hide();
@@ -270,6 +275,9 @@ jQuery(document).ready(function()
 	$("#divListImport").css('overflow', 'auto');
 	$("#divListRejet").hide();
 	$("#divListRejet").css('overflow', 'auto');
+
+	if($("#result").val() == false)
+		$("#divmapping").hide();
 	
 	$("#choose").change(function() 
 	{
@@ -284,23 +292,39 @@ jQuery(document).ready(function()
 	$("#addMapping").off().on('click', function()
   	{
   		nbligne = parseInt($("#nbligne").val())+ 1;
-  		ligne = '<tr id="lineMapping'+nbligne+'"> ';
-  		ligne =	 ligne + '<td id="valueheadCSVMapping'+nbligne+'">' + $("#selectHeadCSV option:selected").text() + '</td>';
-  		ligne =	 ligne + '<td id="labelMapping'+nbligne+'">' + $("#textMapping").val() + '</td>';
-  		ligne =	 ligne + '<td><input type="hidden" id="keyheadCSVMapping'+nbligne+'" value="'+$("#selectHeadCSV").val()+'">';
-  		ligne =	 ligne + '<a href="#" class="btn btn-primary">X</a></td></tr>';
-  		$("#nbligne").val(nbligne);
-  		$("#LineAddMapping").before(ligne);
+  		inc = 1;
+  		deja = false ;
+
+  		while(deja == false && inc <= nbligne)
+  		{
+  			if($("#valueheadCSVMapping"+inc).text() == $("#selectHeadCSV option:selected").text() || $("#labelMapping"+inc).text() == $("#textMapping").val())
+  				deja = true;
+  			inc++;
+  		}
+
+  		if(deja == false)
+  		{
+	  		ligne = '<tr id="lineMapping'+nbligne+'"> ';
+	  		ligne =	 ligne + '<td id="valueheadCSVMapping'+nbligne+'">' + $("#selectHeadCSV option:selected").text() + '</td>';
+	  		ligne =	 ligne + '<td id="labelMapping'+nbligne+'">' + $("#textMapping").val() + '</td>';
+	  		ligne =	 ligne + '<td><input type="hidden" id="keyheadCSVMapping'+nbligne+'" value="'+$("#selectHeadCSV").val()+'">';
+	  		ligne =	 ligne + '<a href="#" class="deleteLineMapping btn btn-primary">X</a></td></tr>';
+	  		$("#nbligne").val(nbligne);
+	  		$("#LineAddMapping").before(ligne);
+	  		bindMappingEvents();
+
+	  	}
+	  	else
+	  	{
+	  		toastr.error("Une des deux infomations sont déja utilisée.");
+	  	}
 
   		return false;
   		
   	});
 
-  	$("#bodyCreateMapping a").off().on('click', function()
-  	{
-  		alert("yo");
-  		$(this).parent().parent().remove();
-  	});
+
+  	
 
 
 	$("#sumitMapping").off().on('click', function()
@@ -309,7 +333,6 @@ jQuery(document).ready(function()
   		nbligne = $("#nbligne").val();
   		for (i = 1; i <= nbligne; i++) 
   		{
-
   			tabmapping[$("#keyheadCSVMapping"+i).val()] = $("#labelMapping"+i).text();
 		}
 
@@ -336,9 +359,11 @@ jQuery(document).ready(function()
 						$("#jsonmapping").html(data.jsonmapping);
 						$("#jsonrejet").html(data.jsonrejet);
 
-						/*useCodeMirror("jsonmapping");
-						useCodeMirror("jsonimport");
-						useCodeMirror("jsonrejet");*/
+
+
+						changeCode(mappingCodeMiror, data.jsonmapping);
+						changeCode(importCodeMiror, data.jsonimport) ;
+						changeCode(rejetCodeMiror, data.jsonrejet);
 						
 						
 						
@@ -359,8 +384,8 @@ jQuery(document).ready(function()
 							   	}
 							});
 						});
-						entete = entete + "</tr>";
 
+						entete = entete + "</tr>";
 						$("#tableHeadImport").html(entete);
 						$("#tableHeadRejet").html(entete);
 
@@ -376,7 +401,7 @@ jQuery(document).ready(function()
 							});
 							ligne = ligne + "</tr>" ;
 						});
-						$("#tableBodyImport").append(ligne);
+						$("#tableBodyImport").html(ligne);
 
 						ligne ="";
 						$.each(data.arrayCsvRejet, function( keyRows, valueRows )
@@ -389,10 +414,14 @@ jQuery(document).ready(function()
 							});
 							ligne = ligne + "</tr>" ;
 						});
-						$("#tableBodyRejet").append(ligne);
+						$("#tableBodyRejet").html(ligne);
+
+						resetDirectoryTable() ;
 		       		}
 		       	}
 		    });
+
+			
 		}
 		else
 		{
@@ -544,25 +573,39 @@ function resetDirectoryTable()
 	}
 }
 
+function bindMappingEvents()
+{
+	$(".deleteLineMapping").off().on('click', function()
+  	{
+  		$(this).parent().parent().remove();
+  	});
+}
+
+
+
+
+
 	function useCodeMirror(element) 
 { 
-	/*editor = CodeMirror.fromTextArea(document.getElementById(element), {
+	editor = CodeMirror.fromTextArea(document.getElementById(element), {
 						    lineNumbers: true,
-						    mode:  "javascript",
-						    value: "lala"
-						  });*/
+						    mode:  {name: "javascript", json: true}
+						  });
 
-	alert(element);
-	myTextArea = document.getElementById(element);
-	alert(myTextArea.value);
-	var myCodeMirror = CodeMirror(function(elt) 
-	{
-	  myTextArea.parentNode.replaceChild(elt, myTextArea);
-	}, 
-	{
-		lineNumbers: true,
-		value: myTextArea.value,
-		mode : {name: "javascript", json: true}
-	});
+	return editor;
 }
+
+function changeCode(editor, text) 
+{
+  // editor = document.getElementById(element);
+
+   editor.setValue(text);
+   editor.getDoc().clearHistory();
+}
+
+/*var textArea = document.getElementById('myScript');
+var editor = CodeMirror.fromTextArea(textArea);
+editor.getDoc().setValue('var msg = "Hi";');
+*/
+
 </script>

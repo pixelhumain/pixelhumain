@@ -75,100 +75,8 @@ Titi Kiki	toto@kiki.com";
 
     public function actionDataImport() 
     {
-        if(isset($_FILES['fileimport']) && isset($_FILES['mapping']) )
-        {
-            if (($handle = fopen($_FILES['fileimport']['tmp_name'], "r")) !== FALSE) 
-            {
-                    $t = file_get_contents($_FILES['mapping']['tmp_name']);
-                    $mapping = json_decode($t);
-                    
-                    $data = fgetcsv($handle, ";");
-                    
-                    $tabCode = explode("\t", $data[0]);
-
-
-                    $arrayCsvImport[0] = $tabCode ;
-                    $arrayCsvRejet[0] = $tabCode ;
-                    $i = 1 ;
-
-                    while (($data2 = fgetcsv($handle, ";")) !== FALSE) 
-                    {
-                        if (($i%2000) == 0)
-                        {
-                            set_time_limit(30) ;
-                        }
-
-                        $line = explode("\t", $data2[0]);
-                        $res = PHDB::findOne(City::COLLECTION, array("insee" => $line[0]));
-                      
-                        if($res != null)
-                        {
-                            $arrayCsvImport[$i] = $line ;
-                            foreach ($tabCode as $keyCode => $valueCode) 
-                            {
-                                $autre = $mapping->cityDataSrc->fields[$valueCode];
-                                var_dump($autre);
-                                foreach ($mapping->cityDataSrc->fields as $key => $value) 
-                                {
-                                    if($valueCode == $key)
-                                    {   
-                                        $map = explode(".", $value);
-                                        if(!isset($commune[$line[0]]))
-                                        {
-                                            $commune[$line[0]] = FileHelper::create_json($map, $line[$keyCode]);
-                                        }
-                                        else
-                                        {
-                                            $commune[$line[0]] = FileHelper::create_json_with_father($map, $line[$keyCode], $commune[$line[0]]) ;
-                                        }
-                                    }
-                                }   
-                            }
-                        }
-                        else
-                        {
-                            $arrayCsvRejet[$i] = $line ;
-                            foreach ($tabCode as $keyCode => $valueCode) 
-                            {
-                                foreach ($mapping->cityDataSrc->fields as $key => $value) 
-                                {
-                                    if($valueCode == $key)
-                                    {   
-                                        $map = explode(".", $value);
-                                        if(!isset($rejet[$line[0]]))
-                                        {
-                                            $rejet[$line[0]] = FileHelper::create_json($map, $line[$keyCode]);
-                                        }
-                                        else
-                                        {
-                                            $rejet[$line[0]] = FileHelper::create_json_with_father($map, $line[$keyCode], $rejet[$line[0]]) ;
-                                        }
-                                    }
-                                }   
-                            }
-                        }
-                        $i++;
-                    }
-                    $json["codeInsee"] = $commune ;
-                    if(isset($rejet))
-                        $jsonrejet["codeInsee"] = $rejet ;
-                    else
-                        $jsonrejet["codeInsee"] = [];
-
-                }
-                fclose($handle);
-                $this->render("dataImport",array("json"=>$json,
-                                                "jsonrejet"=>$jsonrejet,
-                                                "arrayCsvImport"=>$arrayCsvImport,
-                                                "arrayCsvRejet"=>$arrayCsvRejet,
-                                                "jsonmapping"=>$mapping,
-                                                "tabCode"=>$tabCode,
-                                                "result"=>false));  
-        }
-        else
-        {
-            $this->render("dataImport",array("result"=>false));  
-        }
+        $this->render("dataImport");  
+       
     } 
     public function actionImportMongo() 
     {
@@ -206,22 +114,19 @@ Titi Kiki	toto@kiki.com";
 
     public function actionTraiterCSV() 
     {
+       header('Content-Type: text/html; charset=UTF-8');
         if(isset($_FILES['fileimport']))
         {
-            
             if (($handle = fopen($_FILES['fileimport']['tmp_name'], "r")) !== FALSE) 
             {
                 $i = 0 ;
-
                 while (($data = fgetcsv($handle,0, $_POST['separateurDonnees'], $_POST['separateurTexte'])) !== FALSE) 
                 {
-                   
                     if(count($data) == 1)
                     {    
                        /* if($i == 1)
                             var_dump($data[0]);*/
                         $tabCSV[$i] = explode("\t", $data[0]);
-
                     }
                     else
                     {    
@@ -235,22 +140,22 @@ Titi Kiki	toto@kiki.com";
                 
                     
             }
-
             fclose($handle);
             Yii::app()->session["tabCSV"] = $tabCSV;
 
             $params = array("result"=>true,
-                                                "separateur"=>$_POST['separateurDonnees'],
-                                                "nameFile"=>$_FILES['fileimport']['name'],
-                                                "choose"=>$_POST['choose']);
-            if(isset($_POST['chooseMapping']))
+                            "separateur"=>$_POST['separateurDonnees'],
+                            "nameFile"=>$_FILES['fileimport']['name'],
+                            "choose"=>$_POST['choose']);
+            
+            if($_POST['choose'] == "modify")
                 $params['chooseMapping'] = $_POST['chooseMapping'];
 
             $this->render("traiterCSV",$params);
         }
         else
         {
-            $this->render("traiterCSV",array("tabCSV"=>true,"result"=>false));  
+            $this->render("traiterCSV",array("choose"=>false,"result"=>false));  
         }
     }
 
@@ -412,7 +317,49 @@ Titi Kiki	toto@kiki.com";
 
 
 
-     
+     public function actionImportJson() 
+    {
+        if(isset($_FILES['fileimport']))
+        {
+            if (($handle = fopen($_FILES['fileimport']['tmp_name'], "r")) !== FALSE) 
+            {
+                $i = 0 ;
+                while (($data = fgetcsv($handle,0, $_POST['separateurDonnees'], $_POST['separateurTexte'])) !== FALSE) 
+                {
+                    if(count($data) == 1)
+                    {    
+                       /* if($i == 1)
+                            var_dump($data[0]);*/
+                        $tabCSV[$i] = explode("\t", $data[0]);
+                    }
+                    else
+                    {    
+                        /*if($i == 1)
+                            var_dump($data);*/
+                        $tabCSV[$i] = $data;
+
+                    }
+                    $i++;
+                }     
+            }
+
+            fclose($handle);
+            Yii::app()->session["tabCSV"] = $tabCSV;
+
+            $params = array("result"=>true,
+                                                "separateur"=>$_POST['separateurDonnees'],
+                                                "nameFile"=>$_FILES['fileimport']['name'],
+                                                "choose"=>$_POST['choose']);
+            if(isset($_POST['chooseMapping']))
+                $params['chooseMapping'] = $_POST['chooseMapping'];
+
+            $this->render("importJson",$params);
+        }
+        else
+        {
+            $this->render("importJson",array("result"=>false));  
+        }
+    }
     
 
 
