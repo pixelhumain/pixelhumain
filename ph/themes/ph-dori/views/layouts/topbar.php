@@ -185,7 +185,7 @@
 <script type="text/javascript">
 
 	var timeout;
-	var mapIconTop = {"citoyen":"fa-smile-o", "event":"fa-calendar", "NGO":" fa-building-o", "LocalBusiness":"fa-group", "GovernmentOrganization":"fa-institution", "Group":"fa-group"};
+	var mapIconTop = {"citoyen":"fa-smile-o", "event":"fa-calendar", "project":"fa-lightbulb-o", "NGO":" fa-building-o", "LocalBusiness":"fa-group", "GovernmentOrganization":"fa-institution", "Group":"fa-group"};
 	jQuery(document).ready(function() 
 	{
 
