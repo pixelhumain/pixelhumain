@@ -196,6 +196,9 @@ body {
 .text-pink {
   color: #e5324b; }
 
+label.error {
+  color: red; }
+
 .panel-grey,
 .partition-grey {
   background-color: #bfc0c4;
