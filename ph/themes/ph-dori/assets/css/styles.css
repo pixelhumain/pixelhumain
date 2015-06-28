@@ -4281,6 +4281,232 @@ div.timeline {
 .ie8 div.timeline_element:before {
   display: none; }
 
+
+/* ---------------------------------------------------------------------- */
+/*  commentline
+/* ---------------------------------------------------------------------- */
+div.commentline {
+  margin: 0 100px 0 0;
+  overflow: hidden;
+  position: relative;
+  padding-left: 10px;}
+
+div.commentline .columns {
+    margin: 0;
+    padding: 0;
+    list-style: none; 
+    float: left;
+    width: 50%;
+    margin-top: 20px;
+    clear: right;}
+
+div.commentline .columns .commentline_element {
+    opacity: 1;
+    margin-left: 30px;
+    right: 10%;
+    opacity: 1;
+    right: 0;
+  }
+div.commentline .columns .commentline_element:before {
+    left: -27px;
+    top: 15px; }
+
+div.commentline .columns .commentline_element:after {
+    left: -35px;
+    top: 10px; }
+    
+  div.commentline .date_separator {
+    clear: both;
+    height: 60px;
+    position: relative;
+    text-align: center; }
+    div.commentline .date_separator span {
+      border-radius: 5px;
+      height: 30px;
+      line-height: 30px;
+      margin-top: -16px;
+      position: absolute;
+      top: -200%;
+      width: 200px;
+      top: 50%;
+      left: 50%;
+      margin-left: -100px;
+      border: 1px solid #707788;
+      background-color: #8b91a0;
+      color: white; }
+  div.commentline .spine {
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    width: 4px;
+    /*left: 50%;*/
+    margin-left: -1px;
+    bottom: 0;
+    background-color: #dfe1e5; }
+  div.commentline .column_center .commentline_element {
+    margin: 20px auto;
+    opacity: 1; }
+    div.commentline .column_center .commentline_element:before, div.commentline .column_center .commentline_element:after {
+      display: none; }
+
+.commentline_element {
+  border-radius: 5px;
+  clear: both;
+  margin: 10px 0;
+  padding: 20px;
+  opacity: 0;
+  position: relative;
+  transition: all 0.2s linear 0s;
+  min-width: 66.6667%;
+  text-shadow: none;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1); }
+  .commentline_element.partition-white {
+    border: 1px solid #dfe1e5; }
+    .commentline_element.partition-white:hover {
+      border: 1px solid #d1d3d9; }
+    .commentline_element.partition-white:after {
+      background-color: white; }
+    .commentline_element.partition-white:hover:after {
+      background-color: #707788;
+      border: 1px solid white; }
+  .commentline_element.partition-green {
+    border: none;
+    color: white; }
+    .commentline_element.partition-green:hover {
+      border: none; }
+    .commentline_element.partition-green:after {
+      background-color: #1fbba6; }
+    .commentline_element.partition-green:hover:after {
+      background-color: white;
+      border: 1px solid #1fbba6; }
+  .commentline_element.partition-orange {
+    border: none;
+    color: white; }
+    .commentline_element.partition-orange:hover {
+      border: none; }
+    .commentline_element.partition-orange:after {
+      background-color: #f58a5c; }
+    .commentline_element.partition-orange:hover:after {
+      background-color: white;
+      border: 1px solid #f58a5c; }
+  .commentline_element.partition-blue {
+    border: none;
+    color: white; }
+    .commentline_element.partition-blue:hover {
+      border: none; }
+    .commentline_element.partition-blue:after {
+      background-color: #5f8295; }
+    .commentline_element.partition-blue:hover:after {
+      background-color: white;
+      border: 1px solid #5f8295; }
+  .commentline_element.partition-red {
+    border: none;
+    color: white; }
+    .commentline_element.partition-red:hover {
+      border: none; }
+    .commentline_element.partition-red:after {
+      background-color: #e66b6b; }
+    .commentline_element.partition-red:hover:after {
+      background-color: white;
+      border: 1px solid #e66b6b; }
+  .commentline_element.partition-azure {
+    border: none;
+    color: white; }
+    .commentline_element.partition-azure:hover {
+      border: none; }
+    .commentline_element.partition-azure:after {
+      background-color: #00bdcc; }
+    .commentline_element.partition-azure:hover:after {
+      background-color: white;
+      border: 1px solid #00bdcc; }
+  .commentline_element.partition-purple {
+    border: none;
+    color: white; }
+    .commentline_element.partition-purple:hover {
+      border: none; }
+    .commentline_element.partition-purple:after {
+      background-color: #804c75; }
+    .commentline_element.partition-purple:hover:after {
+      background-color: white;
+      border: 1px solid #804c75; }
+  .commentline_element:hover {
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2); }
+  .commentline_element:before {
+    content: "";
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 26px;
+    border-top: 1px dashed #CCCCCC; }
+  .commentline_element:after {
+    border-radius: 100%;
+    content: "";
+    display: block;
+    height: 10px;
+    position: absolute;
+    width: 10px;
+    background-color: #BBBBBB;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
+  .commentline_element:hover:after {
+    z-index: 100;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    z-index: 100; }
+  .commentline_element .commentline_title {
+    overflow: hidden;
+    position: relative;
+    text-transform: uppercase;
+    padding-top: 10px; }
+  .commentline_element .commentline_date {
+    display: block; }
+    .commentline_element .commentline_date .day {
+      font-size: 52px;
+      letter-spacing: -2px; }
+  .commentline_element .commentline_content {
+    padding-top: 10px; }
+  .commentline_element .readmore {
+    padding: 10px;
+    text-align: right; }
+
+.commentline-scrubber {
+  padding: 8px 0 8px 1px;
+  top: 60px;
+  right: 0;
+  width: 100px;
+  z-index: 1;
+  list-style: none;
+  position: absolute; }
+  .commentline-scrubber li {
+    margin-bottom: 1px; }
+    .commentline-scrubber li:nth-last-child(2) a {
+      border-color: #c3c6ce;
+      color: #c3c6ce; }
+    .commentline-scrubber li:last-child a {
+      border-color: #d1d3d9;
+      color: #d1d3d9; }
+  .commentline-scrubber a {
+    border-left: 5px solid #a7acb7;
+    color: #a7acb7;
+    display: block;
+    font-weight: normal;
+    outline: medium none;
+    padding: 4px 0 4px 6px; }
+    .commentline-scrubber a:hover {
+      border-color: #707788 !important;
+      color: #707788 !important; }
+  .commentline-scrubber .selected > a {
+    border-left-color: #707788 !important;
+    color: #707788 !important;
+    font-weight: bold !important; }
+
+/* ie8 fixes */
+.ie8 div.commentline_element:after {
+  display: none; }
+
+.ie8 div.commentline_element:before {
+  display: none; }
+
 /**/
 /* ---------------------------------------------------------------------- */
 /*  Calendar
