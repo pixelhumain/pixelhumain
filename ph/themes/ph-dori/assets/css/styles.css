@@ -4289,29 +4289,50 @@ div.commentline {
   margin: 0 100px 0 0;
   overflow: hidden;
   position: relative;
-  padding-left: 10px;}
+  padding-left: 10px;
+  width: 50%;}
 
-div.commentline .columns {
+div.commentline ul {
     margin: 0;
     padding: 0;
     list-style: none; 
-    float: left;
-    width: 50%;
-    margin-top: 20px;
-    clear: right;}
+    margin-top: 20px;}
 
-div.commentline .columns .commentline_element {
+/* Next Levels */
+div.commentline .level {
+    margin-left: 50px;
+}
+
+.level div.commentline_element:before {
+    content: "";
+    display: block;
+    height: 179px;
+    position: absolute;
+    border-left: 1px dashed #CCCCCC; 
+    top: 0px;}
+
+div.commentline > li > ul  {
+    float: left;
+    width: 100%;
+    clear: right; 
+}
+
+div.commentline > li {
+    float: left;
+    width: 100%;
+    clear: right; 
+}
+
+div.commentline ul > li .commentline_element {
     opacity: 1;
     margin-left: 30px;
-    right: 10%;
-    opacity: 1;
     right: 0;
   }
-div.commentline .columns .commentline_element:before {
+div.commentline ul > li .commentline_element:before {
     left: -27px;
     top: 15px; }
 
-div.commentline .columns .commentline_element:after {
+div.commentline ul > li .commentline_element:after {
     left: -35px;
     top: 10px; }
     
