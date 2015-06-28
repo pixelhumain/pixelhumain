@@ -33,7 +33,7 @@
 				}
 			}
 			?>
-			<a href="#"><i class="fa fa-map-marker fa-2x" title="Partners Map"></i></a>
+			<a href="#"><i class="fa fa-bars fa-2x" title="Partners Map"></i></a>
 		</div>
 		<div class="pull-right">
 			<span class="go-top"><i class="fa fa-chevron-up"></i></span>

@@ -757,6 +757,20 @@ ul.main-navigation-menu {
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out; }
 
+#slidingbar-area-footer, .slidingbar-area-footer{
+left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 99999;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
+
 #slidingbar, .slidingbar {
   background: rgba(54, 56, 57, 0.9);
   color: #8C8989;
