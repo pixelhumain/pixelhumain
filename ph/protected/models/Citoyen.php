@@ -76,8 +76,10 @@ class Citoyen
                                             );
                         
                         if(isset( $account["cp"] )) 
-                          Yii::app()->session["user"]["cp"] = $account["cp"];
-
+                          Yii::app()->session["user"]["postalCode"] = $account["cp"];
+                        if( isset( $account["address"]) && isset( $account["address"]["postalCode"]) )
+                          Yii::app()->session["user"]["postalCode"] = $account["address"]["postalCode"];
+                        
                         if( isset($account["isAdmin"]) && $account["isAdmin"] )
                             Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
                             

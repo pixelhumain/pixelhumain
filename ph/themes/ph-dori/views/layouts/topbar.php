@@ -108,26 +108,7 @@
 				<span class="scopes-count notifcation-counter badge badge-warning animated bounceIn"></span>
 			</div>
 
-			<div class="inner collapse_box">
-				
-				<!--<div class="slider slider-sm slider-green">
-					<input type="text" class="slider-element form-control" value="" data-slider-max="70" data-slider-step="1" data-slider-value="30" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="hide">
-				</div>
-
-				<label class="slider_label">Zoom géographique</label>-->
-				<span class="trigger collapse_trigger">
-					<i class="slider-sm-ico"></i>
-				</span>
-				<!--
-				<form class="inner collapse_box">
-					<input id="filterCpField" name="filterCpField" placeholder="Zoom géographique" >
-						<ul class="dropdown-menu" id="dropdownCp" style="">
-							<ol class="li-dropdown-scope">-</ol>
-						</ul>
-					</input>
-				</form>
-				-->
-			</div>
+			
 
 		</li>
 
@@ -185,7 +166,7 @@
 <script type="text/javascript">
 
 	var timeout;
-	var mapIconTop = {"citoyen":"fa-smile-o", "event":"fa-calendar", "NGO":" fa-building-o", "LocalBusiness":"fa-group", "GovernmentOrganization":"fa-institution", "Group":"fa-group"};
+	var mapIconTop = {"citoyen":"fa-smile-o", "event":"fa-calendar", "project":"fa-lightbulb-o", "NGO":" fa-building-o", "LocalBusiness":"fa-group", "GovernmentOrganization":"fa-institution", "Group":"fa-group"};
 	jQuery(document).ready(function() 
 	{
 

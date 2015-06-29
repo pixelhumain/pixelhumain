@@ -4,7 +4,10 @@ class Survey
 {
 	const TYPE_SURVEY = 'survey';
 	const TYPE_ENTRY  = 'entry';
+
 	const COLLECTION = "surveys";
+	const PARENT_COLLECTION = "actionRooms";
+
 	
      public static function moderateEntry($params) {
      	$res = array( "result" => false );
@@ -43,8 +46,11 @@ class Survey
      	return $res;
      }
      public static function isModerator($userId,$app) {
-     	$app = Yii::app()->mongodb->selectCollection(PHType::TYPE_APPLICATIONS)->findOne(array("key"=> $app ) );
-    	return ( isset( $userId ) && in_array(Yii::app()->session["userId"], $app["moderator"]) ) ? true : false;
+     	$app = PHDB::findOne(PHType::TYPE_APPLICATIONS, array("key"=> $app ) );
+     	$res = false;
+     	if( isset($app["moderator"] ))
+    		$res = ( isset( $userId ) && in_array(Yii::app()->session["userId"], $app["moderator"]) ) ? true : false;
+    	return $res;
      }
 
      public static function deleteEntry($params){

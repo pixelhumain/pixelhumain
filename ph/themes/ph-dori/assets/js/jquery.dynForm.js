@@ -414,7 +414,7 @@ onSave: (optional) overloads the generic saveProcess
 				$(".dateInput").datepicker({ 
 			        autoclose: true,
 			        language: "fr",
-			        format: "dd/mm/yy"
+			        format: "dd/mm/yyyy"
 			    });
 		    else
 				console.error("datepicker library is missing");
