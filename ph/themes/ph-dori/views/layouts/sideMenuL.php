@@ -22,15 +22,17 @@
         	$id=Yii::app()->session["userId"];
         	if(isset($_GET["id"]))
         		$id= $_GET["id"];
-			$menuLeft = array(
-              array('label' => "MY ACCOUNT", "key"=>"myAccount","iconClass"=>"fa fa-home","href"=> Yii::app()->createUrl($this->moduleId."/person/dashboard")),
-              array('label' => "MY CITY", "key"=>"myCityPage","iconClass"=>"fa fa-university","href"=> Yii::app()->createUrl($this->moduleId."/city/index/insee/97400")),
-              array('label' => "MY DIRECTORY", "key"=>"myDirectoryPage","iconClass"=>"fa fa-globe","href"=> Yii::app()->createUrl($this->moduleId."/person/directory")),
-              array('label' => "MY CALENDAR", "key"=>"myCalendarPage","iconClass"=>"fa fa-calendar","href"=> Yii::app()->createUrl($this->moduleId."/event/calendarview/id/".$id."/type/".Yii::app()->controller->id)),
-              array('label' => "MY NEWS", "key"=>"myNewsPage","iconClass"=>"fa fa-rss","href"=> Yii::app()->createUrl($this->moduleId."/news/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ),
-              array('label' => "HEY !! ", "key"=>"heyPage","iconClass"=>"fa fa-comment", "class"=>"new-news" ,"href"=>"#new-News"),
-              array('label' => "LOGOUT ", "key"=>"logoutPage","iconClass"=>"fa fa-power-off text-red","href"=>Yii::app()->createUrl($this->moduleId."/person/logout")),
-            );
+			    $menuLeft = array();
+                array_push($menuLeft, array('label' => "MY ACCOUNT", "key"=>"myAccount","iconClass"=>"fa fa-home","href"=> Yii::app()->createUrl($this->moduleId."/person/dashboard")) );
+                if( isset( Yii::app()->session["user"]["codeInsee"] ) )
+                    array_push($menuLeft, array('label' => "MY CITY", "key"=>"myCityPage","iconClass"=>"fa fa-university","href"=> Yii::app()->createUrl($this->moduleId."/city/index/insee/".Yii::app()->session["user"]["codeInsee"])) );
+                array_push($menuLeft, array('label' => "MY DIRECTORY", "key"=>"myDirectoryPage","iconClass"=>"fa fa-globe","href"=> Yii::app()->createUrl($this->moduleId."/person/directory")) );
+                array_push($menuLeft, array('label' => "MY CALENDAR", "key"=>"myCalendarPage","iconClass"=>"fa fa-calendar","href"=> Yii::app()->createUrl($this->moduleId."/event/calendarview/id/".$id."/type/".Yii::app()->controller->id)) );
+                array_push($menuLeft, array('label' => "MY NEWS", "key"=>"myNewsPage","iconClass"=>"fa fa-rss","href"=> Yii::app()->createUrl($this->moduleId."/news/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ) );
+                array_push($menuLeft, array('label' => "HEY !! ", "key"=>"heyPage","iconClass"=>"fa fa-comment", "class"=>"new-news" ,"href"=>"#new-News") );
+                array_push($menuLeft, array('label' => "MY VOTES", "key"=>"myVotesPage","iconClass"=>"fa fa-legal","href"=> Yii::app()->createUrl($this->moduleId."/survey/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ) );
+                array_push($menuLeft, array('label' => "LOGOUT ", "key"=>"logoutPage","iconClass"=>"fa fa-power-off text-red","href"=>Yii::app()->createUrl($this->moduleId."/person/logout")) );
+                 
             $this->sidebar1 = $menuLeft;//array_merge( $menuLeft, $this->sidebar1 );	
           foreach( $this->sidebar1 as $item )
           {
@@ -57,7 +59,7 @@
             $isActive = ( isset( Menu::$sectionMenu[ $item["key"] ] ) && in_array( Yii::app()->controller->action->id, Menu::$sectionMenu[ $item["key"] ] ) ) ? true : false;
             
             $active = ( $isActive || (isset($item["active"]) && $item["active"] ) ) ? "open active" : "";
-            echo '<li class="moduleMenu menu_'.$item["key"].' '.$item["key"].' '.$active.'"><a href="'.$coco.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="inner">'.$item["label"].'</span></a></li>';
+            echo '<li class=" moduleMenu menu_'.$item["key"].' '.$item["key"].' '.$active.'"><a href="'.$coco.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="inner">'.$item["label"].'</span></a></li>';
           }
 
           function buildChildren( $children )
