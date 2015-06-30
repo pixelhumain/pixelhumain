@@ -2129,8 +2129,9 @@ div.graph-navigation.zoomExtends {
 }
 
 #projectFlex{
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 0px;
+  margin-top: 20px;
 }
 
 #description .title_fontHome{

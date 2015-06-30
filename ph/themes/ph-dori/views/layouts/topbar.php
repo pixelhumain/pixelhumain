@@ -372,8 +372,9 @@
 	function openViewer () { 
 		var pathtab = window.location.href.split("#");
 		console.log("openViewer",pathtab[0]);
-		if(typeof contextMap != 'undefined')
-			openSubView('Network Viewer', '/communecter/graph/viewer/id/'+contextMap["_id"]["$id"]+'/type/<?php echo Yii::app()->controller->id ?>', null,null,function(){clearViewer();})
+		var idToSend = "<?php if(isset($_GET['id'])) echo $_GET['id']; else if(isset(Yii::app()->session["userId"])) echo Yii::app()->session["userId"];?>"
+		if(typeof idToSend != 'undefined' && idToSend!='')
+			openSubView('Network Viewer', '/communecter/graph/viewer/id/'+idToSend+'/type/<?php echo Yii::app()->controller->id ?>', null,null,function(){clearViewer();})
 		else
 			popinInfo("Network Graph Feature Unavailable", "This context hasn't been prepared to be viewed as a graph.");
 	}
