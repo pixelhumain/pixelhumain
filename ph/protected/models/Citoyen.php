@@ -2,9 +2,10 @@
 
 class Citoyen
 {
+    const COLLECTION = "citoyens";
     public static function isCommunected()
     {
-        $user = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
+        $user = PHDB::findOne(self::COLLECTION,array("_id"=>new MongoId(Yii::app()->session["userId"]))); 
         return (isset($user["cp"])) ? $user["cp"] : null;
     }
     public static function isAdminUser()
@@ -13,12 +14,12 @@ class Citoyen
     }
     public static function isAppAdmin($userId,$app) 
     {
-        $user = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId($userId))); 
+        $user = PHDB::findOne(self::COLLECTION,array("_id"=>new MongoId($userId))); 
         return (isset($user["applications"]) && isset($user["applications"][$app]) && isset($user["applications"][$app]["isAdmin"])) ;
     }
     public static function isAppUser($userId,$app) 
     {
-        $user = PHDB::findOne(PHType::TYPE_CITOYEN,array("_id"=>new MongoId($userId))); 
+        $user = PHDB::findOne(self::COLLECTION,array("_id"=>new MongoId($userId))); 
         return (isset($user["applications"]) && isset($user["applications"][$app]));
      }
 
@@ -39,7 +40,7 @@ class Citoyen
         if(Yii::app()->request->isAjaxRequest && isset($email) && !empty($email))
         {
             Person::clearUserSessionData();
-            $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$email));
+            $account = PHDB::findOne(self::COLLECTION,array("email"=>$email));
             if($account)
             {
                 if( empty( $account["pwd"] ) )
@@ -48,7 +49,7 @@ class Citoyen
                     {
                         //send email to reset password
                         $pwd = uniqid('', true);
-                        PHDB::update(PHType::TYPE_CITOYEN,array("email"=>$email), 
+                        PHDB::update(self::COLLECTION,array("email"=>$email), 
                                                           array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
                         
                         // TODO - Remove Pixel Humain and get the application Name
@@ -64,21 +65,12 @@ class Citoyen
                     } else {
                         //if a pwd was typed 
                         //it will be set as pwd and will login the person 
-                        PHDB::update(PHType::TYPE_CITOYEN,array("email"=>$email), 
+                        PHDB::update(self::COLLECTION,array("email"=>$email), 
                                                           array('$set' => array("pwd"=>hash('sha256', $email.$pwd) )));
                         
                         //TODO - No session should be handled on Models ?
                         //TODO - Return a user object or array
-                        $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
-                        Person::saveUserSessionData((string)$account["_id"],
-                                              $account["email"],
-                                              array("name"=>$name)
-                                            );
-                        
-                        if(isset( $account["cp"] )) 
-                          Yii::app()->session["user"]["postalCode"] = $account["cp"];
-                        if( isset( $account["address"]) && isset( $account["address"]["postalCode"]) )
-                          Yii::app()->session["user"]["postalCode"] = $account["address"]["postalCode"];
+                        Person::saveUserSessionData($account);
                         
                         if( isset($account["isAdmin"]) && $account["isAdmin"] )
                             Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
@@ -93,19 +85,11 @@ class Citoyen
                 //but one is filled in the login field that will be the pwd
                 elseif ( !empty($pwd) && $account["pwd"] == hash('sha256', $email.$pwd))
                 {
-                    $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
-                    Person::saveUserSessionData((string)$account["_id"],
-                                              $account["email"],
-                                              array("name"=>$name)
-                                            );
-                    
-                    if( isset($account["isAdmin"]) && $account["isAdmin"] )
-                        Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
-                        
+                    Person::saveUserSessionData($account);
                     /*Notification::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
                                             "user" => $account["_id"]));*/
                     
-                    $res = array("result"=>true,  "id"=>$account["_id"], "name"=>$name,"isCommunected"=>isset($account["cp"]));
+                    $res = array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"]));
                 } else 
                     $res = array("result"=>false, "msg"=>"Email ou Mot de Passe ne correspondent pas, rééssayez.");
             } else if($loginRegister){
@@ -155,7 +139,7 @@ class Citoyen
         if(Yii::app()->request->isAjaxRequest && isset($email) && !empty($email))
         {
             
-            $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$email));
+            $account = PHDB::findOne(self::COLLECTION,array("email"=>$email));
             if(!$account)
             {
               Person::clearUserSessionData();
@@ -204,14 +188,11 @@ class Citoyen
                       $newAccount["tags"] = $_POST['tags'];
                     }
                     //add to DB
-                    PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
+                    PHDB::insert(self::COLLECTION,$newAccount);
                    
                     //set session elements for global credentials
-                    $name = (isset($newAccount["name"])) ? $newAccount["name"] : "Anonymous" ;
-                    Person::saveUserSessionData((string)$newAccount["_id"],
-                                              $newAccount["email"],
-                                              array("name"=>$name)
-                                            );
+                    Person::saveUserSessionData($newAccount);
+
                     //send validation mail
                     //TODO : make emails as cron jobs
                     $app = new Application($_POST["app"]);
@@ -251,7 +232,7 @@ class Citoyen
     {
         if(Yii::app()->request->isAjaxRequest && isset($email) && !empty($email))
         {
-            $account = PHDB::findOne(PHType::TYPE_CITOYEN,array("email"=>$email));
+            $account = PHDB::findOne(self::COLLECTION,array("email"=>$email));
             if(!$account)
             {
                 //validate isEmail
@@ -276,15 +257,11 @@ class Citoyen
                     if(!empty($name))
                         $newAccount["name"] = $name;
                     //add to DB
-                    PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
+                    PHDB::insert(self::COLLECTION,$newAccount);
 
                     //set session elements for global credentials
-                    $name = (isset($newAccount["name"])) ? $newAccount["name"] : "Anonymous" ;
-                    
-                    Person::saveUserSessionData((string)$newAccount["_id"],
-                                              $newAccount["email"],
-                                              array("name"=>$name)
-                                            );
+                    Person::saveUserSessionData($newAccount);
+
                     //send validation mail
                     //TODO : make emails as cron jobs
                     /*$message = new YiiMailMessage;
@@ -320,7 +297,7 @@ class Citoyen
             //TODO : test application exists
             $application = PHDB::findOne(PHType::TYPE_APPLICATIONS, array( "key" => $appKey ) );  
             //check if application is registered on user account
-            $account = PHDB::findOne(PHType::TYPE_CITOYEN, array( "email" => $email ) ); 
+            $account = PHDB::findOne(self::COLLECTION, array( "email" => $email ) ); 
             //if not add it 
             if( isset( $application ) && !isset( $account["applications"][$appKey] ) )
             {
@@ -336,7 +313,7 @@ class Citoyen
                     $newInfos['applications'][$appKey]["registrationConfirmed"] = false ;
                     $res["addedRegistrationConfirmationRequest"] = true;
                 }
-                PHDB::update(PHType::TYPE_CITOYEN, array("email" => $email), 
+                PHDB::update(self::COLLECTION, array("email" => $email), 
                                                        array('$set' => $newInfos ) 
                                                       );
                 $res["addedRegistration"] = $appKey;
@@ -355,7 +332,7 @@ class Citoyen
                     'created' => time()
                     );
         
-        PHDB::insert(PHType::TYPE_CITOYEN,$newAccount);
+        PHDB::insert(self::COLLECTION,$newAccount);
         //send validation mail
         //TODO : make emails as cron jobs
         Mail::send(array("tpl"=>'validation',
@@ -399,8 +376,8 @@ class Citoyen
     public static function link2Users($inviterId, $invitedId)
     {
         //make sure both users exist
-        $inviter = PHDB::findOne(PHType::TYPE_CITOYEN, array("_id" => new MongoId($inviterId) )); 
-        $invited = PHDB::findOne(PHType::TYPE_CITOYEN, array("_id" => new MongoId($invitedId) ));
+        $inviter = PHDB::findOne(self::COLLECTION, array("_id" => new MongoId($inviterId) )); 
+        $invited = PHDB::findOne(self::COLLECTION, array("_id" => new MongoId($invitedId) ));
         $res = array("result" => false);
         if($inviter && $invited && $inviter != $invited)
         {
@@ -409,11 +386,11 @@ class Citoyen
             {
                 //add a relation link on the inviter
                 //add invited to inviter friends
-                PHDB::update(PHType::TYPE_CITOYEN,array("_id"   => new MongoId($inviterId)), 
+                PHDB::update(self::COLLECTION,array("_id"   => new MongoId($inviterId)), 
                                                       array('$set' => array( CitoyenType::NODE_FRIENDS.".".$invitedId => array( "since"=>time()))));
                 //add inviter to invited friends
                 if( !isset($invited[CitoyenType::NODE_FRIENDS]) || ( isset($invited[CitoyenType::NODE_FRIENDS]) && !isset( $invited[CitoyenType::NODE_FRIENDS][$inviterId] ) ) )
-                    PHDB::update(PHType::TYPE_CITOYEN,array("_id"   => new MongoId($invitedId)), 
+                    PHDB::update(self::COLLECTION,array("_id"   => new MongoId($invitedId)), 
                                                           array('$set' => array( CitoyenType::NODE_FRIENDS.".".$inviterId => array( "since"=>time() ))));
 
                 //notify the invited user for validation
@@ -465,9 +442,9 @@ class Citoyen
         
 
         if( !isset($params["count"]) ) 
-            $res = PHDB::find(PHType::TYPE_CITOYEN,  $where,$fields );
+            $res = PHDB::find(self::COLLECTION,  $where,$fields );
         else
-            $res = array('count' => PHDB::count(PHType::TYPE_CITOYEN,  $where,$fields ));
+            $res = array('count' => PHDB::count(self::COLLECTION,  $where,$fields ));
         return $res;
     }
     

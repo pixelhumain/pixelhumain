@@ -1397,7 +1397,7 @@ h1.text-extra-large {
   color: #ffb848; }
 
 .text-red {
-  color: #e66b6b; }
+  color: #E33551; }
 
 .text-white {
   color: white; }
@@ -2913,7 +2913,7 @@ body.login .box-login, body.login .box-forgot, body.login .box-register {
   overflow: hidden;
   padding: 15px;
   position: absolute;
-  top: 60px;
+  top: 95px;
   left: 0;
   right: 0; }
 
@@ -3404,7 +3404,7 @@ ul.post-list .post-image {
     border-bottom: 4px solid white; }
 
 .btn-red {
-  background-color: #e66b6b;
+  background-color: #E33551;
   border-color: #e25555;
   color: white; }
   .btn-red:hover, .btn-red:focus, .btn-red:active, .btn-red.active {
@@ -3426,7 +3426,7 @@ ul.post-list .post-image {
   color: white; }
   .btn-light-red:hover, .btn-light-red:focus, .btn-light-red:active, .btn-light-red.active {
     background-color: #ea8181;
-    border-color: #e66b6b;
+    border-color: #E33551;
     color: white; }
   .btn-light-red.disabled:hover, .btn-light-red.disabled:focus, .btn-light-red.disabled:active, .btn-light-red.disabled.active, .btn-light-red[disabled]:hover, .btn-light-red[disabled]:focus, .btn-light-red[disabled]:active, .btn-light-red[disabled].active, fieldset[disabled] .btn-light-red:hover, fieldset[disabled] .btn-light-red:focus, fieldset[disabled] .btn-light-red:active, fieldset[disabled] .btn-light-red.active {
     background-color: white;
@@ -3557,7 +3557,7 @@ ul.post-list .post-image {
     border-bottom: 4px solid white; }
 
 .btn-yellow {
-  background-color: #ffb848;
+  background-color: #F6E200;
   border-color: #ffae2e;
   color: white; }
   .btn-yellow:hover, .btn-yellow:focus, .btn-yellow:active, .btn-yellow.active {
@@ -3697,14 +3697,14 @@ ul.post-list .post-image {
   background: none;
   border-color: rgba(230, 107, 107, 0.6);
   border-width: 2px;
-  color: #e66b6b !important; }
+  color: #E33551 !important; }
   .btn-transparent-red:hover, .btn-transparent-red:focus, .btn-transparent-red:active, .btn-transparent-red.active {
     background-color: rgba(230, 107, 107, 0.1);
     border-color: rgba(230, 107, 107, 0.8); }
   .btn-transparent-red.disabled:hover, .btn-transparent-red.disabled:focus, .btn-transparent-red.disabled:active, .btn-transparent-red.disabled.active, .btn-transparent-red[disabled]:hover, .btn-transparent-red[disabled]:focus, .btn-transparent-red[disabled]:active, .btn-transparent-red[disabled].active, fieldset[disabled] .btn-transparent-red:hover, fieldset[disabled] .btn-transparent-red:focus, fieldset[disabled] .btn-transparent-red:active, fieldset[disabled] .btn-transparent-red.active {
     background: none;
     border-color: rgba(230, 107, 107, 0.3);
-    color: #e66b6b; }
+    color: #E33551; }
   .btn-transparent-red .caret {
     border-top-color: white; }
   .dropup .btn-transparent-red .caret {
@@ -4193,10 +4193,10 @@ div.timeline {
     .timeline_element.partition-red:hover {
       border: none; }
     .timeline_element.partition-red:after {
-      background-color: #e66b6b; }
+      background-color: #E33551; }
     .timeline_element.partition-red:hover:after {
       background-color: white;
-      border: 1px solid #e66b6b; }
+      border: 1px solid #E33551; }
   .timeline_element.partition-azure {
     border: none;
     color: white; }
@@ -4440,10 +4440,10 @@ div.commentline ul > li .commentline_element:after {
     .commentline_element.partition-red:hover {
       border: none; }
     .commentline_element.partition-red:after {
-      background-color: #e66b6b; }
+      background-color: #E33551; }
     .commentline_element.partition-red:hover:after {
       background-color: white;
-      border: 1px solid #e66b6b; }
+      border: 1px solid #E33551; }
   .commentline_element.partition-azure {
     border: none;
     color: white; }
@@ -4665,8 +4665,8 @@ div.commentline ul > li .commentline_element:after {
   border-color: #94c01b !important; }
 
 .label-red, .badge-red {
-  background-color: #e66b6b !important;
-  border-color: #e66b6b !important; }
+  background-color: #E33551 !important;
+  border-color: #E33551 !important; }
 
 .fc-border-separate tr.fc-last th {
   border-top: none !important;
@@ -4907,7 +4907,7 @@ div.commentline ul > li .commentline_element:after {
           margin: 0 5px 0 -13px;
           width: 11px; }
           .messages-list .messages-item .messages-item-time .messages-item-actions .tag-icon.red {
-            background: #e66b6b; }
+            background: #E33551; }
           .messages-list .messages-item .messages-item-time .messages-item-actions .tag-icon.blue {
             background: #5f8295; }
           .messages-list .messages-item .messages-item-time .messages-item-actions .tag-icon.green {
@@ -5323,7 +5323,7 @@ div.portfolio-info {
     opacity: 0.3;
     cursor: default !important; }
 .pagination-red li.active a {
-  background: #e66b6b !important;
+  background: #E33551 !important;
   border: none !important;
   color: white !important;
   cursor: default !important;
@@ -5333,7 +5333,7 @@ div.portfolio-info {
   -khtml-opacity: 1;
   opacity: 1; }
 .pagination-red li [class^="fa-"], .pagination-red li [class*=" fa-"] {
-  color: #e66b6b; }
+  color: #E33551; }
 
 /* ---------------------------------------------------------------------- */
 /*  Lock Screen
@@ -5513,7 +5513,7 @@ ul#countdown li p.timeRefDays, ul#countdown li p.timeRefHours, ul#countdown li p
       background: #595e6c; }
 
 .pricing-green .plan li strong {
-  color: #e66b6b; }
+  color: #E33551; }
 .pricing-green .plan li.plan-name {
   background: #23d1b9; }
 .pricing-green .plan li.plan-price {
@@ -5533,11 +5533,11 @@ ul#countdown li p.timeRefDays, ul#countdown li p.timeRefHours, ul#countdown li p
   background: #374c57; }
 
 .pricing-red .plan li strong {
-  color: #e66b6b; }
+  color: #E33551; }
 .pricing-red .plan li.plan-name {
   background: #ea8181; }
 .pricing-red .plan li.plan-price {
-  background: #e66b6b;
+  background: #E33551;
   color: white; }
 .pricing-red .plan.featured .plan-name {
   background: #c92222; }
@@ -5890,16 +5890,16 @@ body.error-full-page {
       color: white !important; }
 
 .panel-red, .partition-red {
-  background-color: #e66b6b;
+  background-color: #E33551;
   position: relative;
   background-color: #ea8181 0px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ea8181 0px), to(#e66b6b 100%));
-  background-image: -webkit-linear-gradient(top, #ea8181 0px, #e66b6b 100%);
-  background-image: -moz-linear-gradient(top, #ea8181 0px, #e66b6b 100%);
-  background-image: -ms-linear-gradient(top, #ea8181 0px, #e66b6b 100%);
-  background-image: -o-linear-gradient(top, #ea8181 0px, #e66b6b 100%);
-  background-image: linear-gradient(to bottom, #ea8181 0px, #e66b6b 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ea8181 0px', endColorStr='#e66b6b 100%');
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ea8181 0px), to(#E33551 100%));
+  background-image: -webkit-linear-gradient(top, #ea8181 0px, #E33551 100%);
+  background-image: -moz-linear-gradient(top, #ea8181 0px, #E33551 100%);
+  background-image: -ms-linear-gradient(top, #ea8181 0px, #E33551 100%);
+  background-image: -o-linear-gradient(top, #ea8181 0px, #E33551 100%);
+  background-image: linear-gradient(to bottom, #ea8181 0px, #E33551 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ea8181 0px', endColorStr='#E33551 100%');
   color: white; }
   .panel-red .panel-tools .btn, .panel-red .panel-tools > a, .partition-red .panel-tools .btn, .partition-red .panel-tools > a {
     color: rgba(255, 255, 255, 0.7) !important; }
@@ -6511,16 +6511,16 @@ span.btn-tag {
       color: white !important; }
 
 .panel-red, .partition-red {
-  background-color: #e66b6b;
+  background-color: #E33551;
   position: relative;
   background-color: #ea8181 0px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ea8181 0px), to(#e66b6b 100%));
-  background-image: -webkit-linear-gradient(top, #ea8181 0px, #e66b6b 100%);
-  background-image: -moz-linear-gradient(top, #ea8181 0px, #e66b6b 100%);
-  background-image: -ms-linear-gradient(top, #ea8181 0px, #e66b6b 100%);
-  background-image: -o-linear-gradient(top, #ea8181 0px, #e66b6b 100%);
-  background-image: linear-gradient(to bottom, #ea8181 0px, #e66b6b 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ea8181 0px', endColorStr='#e66b6b 100%');
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ea8181 0px), to(#E33551 100%));
+  background-image: -webkit-linear-gradient(top, #ea8181 0px, #E33551 100%);
+  background-image: -moz-linear-gradient(top, #ea8181 0px, #E33551 100%);
+  background-image: -ms-linear-gradient(top, #ea8181 0px, #E33551 100%);
+  background-image: -o-linear-gradient(top, #ea8181 0px, #E33551 100%);
+  background-image: linear-gradient(to bottom, #ea8181 0px, #E33551 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ea8181 0px', endColorStr='#E33551 100%');
   color: white; }
   .panel-red .panel-tools .btn, .panel-red .panel-tools > a, .partition-red .panel-tools .btn, .partition-red .panel-tools > a {
     color: rgba(255, 255, 255, 0.7) !important; }
