@@ -20,10 +20,19 @@ function ajaxPost(id,url,params,callback){
 	  });
 }
 
-function getAjax(id,url,callback,datatype)
+function getAjax(id,url,callback,datatype,blockUI)
 {
+  if(blockUI)
+    $.blockUI({
+      message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
+            '<blockquote>'+
+              '<p>We’re even wrong about which mistakes we’re making.</p>'+
+              '<cite title="Carl Winfeld">Carl Winfeld</cite>'+
+            '</blockquote> '
+    });
+  
   if(datatype != "html" )
-    $("#"+id).html("");
+    $(id).html( "<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>" );
   $.ajax({
       url:url,
       type:"GET",
@@ -36,13 +45,17 @@ function getAjax(id,url,callback,datatype)
         else if(typeof data === "string" )
           toastr.success(data);
         else
-            $("#"+id).html(JSON.stringify(data, null, 4));
+            $(id).html( JSON.stringify(data, null, 4) );
 
         if( typeof callback === "function")
           callback(data,id);
+        if(blockUI)
+          $.unblockUI();
       },
       error:function (xhr, ajaxOptions, thrownError){
         console.error(thrownError);
+        if(blockUI)
+          $.unblockUI();
       } 
     });
 }
@@ -80,7 +93,7 @@ function getModal(what, url,id)
             $("#ajax-modal-modal-body").html(desc+data); 
             $('#ajax-modal').modal("show");
         } else {
-           console.error("bug get "+id);
+           console.error("bug get "+what, url,id);
         }
     });
 }
@@ -105,7 +118,7 @@ function openSubView(what, url,id, callback,closeCallBack)
                 if( typeof callback === "function")
                   callback(data);
 		        } else {
-		        	bootbox.error("bug happened : "+id);
+		        	console.error("openSubView bug happened : "+id,url,what);
 		        }
 		    });
 		},

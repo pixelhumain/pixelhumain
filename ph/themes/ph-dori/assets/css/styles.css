@@ -934,7 +934,7 @@ footer {
     border-radius: 0; }
 
 .toolbar {
-  margin-bottom: 3px;
+  margin-bottom: 0px;
   height: auto;
   min-height: 60px;
   max-height: none;
@@ -1235,6 +1235,11 @@ footer {
 .example {
   margin: 15px 0;
   padding: 14px 19px; }
+
+.space1 {
+  display: block;
+  margin-bottom: 1px !important;
+  clear: both; }
 
 .space5 {
   display: block;

@@ -159,7 +159,7 @@
 			</a>
 		</li>
 	</ul>
-	<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/")?>"><img  style="float:right;margin:13px; height:35px;" src="<?php echo ($this->module) ? $this->module->assetsUrl."/images/logoSMclean.png" : Yii::app()->baseUrl."/images/logo/byPH.png" ?>"/></a> 
+	<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/default/about")?>"><img  style="float:right;margin:13px; height:35px;" src="<?php echo ($this->module) ? $this->module->assetsUrl."/images/logoSMclean.png" : Yii::app()->baseUrl."/images/logo/byPH.png" ?>"/></a> 
 </header>
 <!-- end: TOP NAVIGATION MENU -->
 

@@ -156,7 +156,7 @@
 							</div>
 							<!-- end: MODULE MENU -->
 							<div class="col-md-<?php echo (count($this->sidebar2 )) ? "9" : "12" ?>">
-								<section class="page_content">
+								<section class="page_content" id="pageContent">
 									<?php echo $content;  ?>
 								</section>
 							</div>
