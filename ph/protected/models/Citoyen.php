@@ -88,7 +88,6 @@ class Citoyen
                     Person::saveUserSessionData($account);
                     /*Notification::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
                                             "user" => $account["_id"]));*/
-                    
                     $res = array("result"=>true,  "id"=>$account["_id"],"isCommunected"=>isset($account["cp"]));
                 } else 
                     $res = array("result"=>false, "msg"=>"Email ou Mot de Passe ne correspondent pas, rééssayez.");
