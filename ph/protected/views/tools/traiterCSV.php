@@ -71,7 +71,6 @@
 							echo '<input type="hidden" id="chooseSelected" value="'.$choose.'">
 										<input type="hidden" id="nameFile" value="'.$nameFile.'">
 										<input type="hidden" id="separateurMapping" value="'.$separateur.'">';
-							
 							if($choose == "modify")
 							{	
 								echo '<input type="hidden" id="mappingSelected" value="'.$chooseMapping.'">';
@@ -91,9 +90,12 @@
 					<div class="form-group col-md-4">
 						<label for="lien">Lien : </label>
 						<select id="lien">';
-		    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
+							if(isset(Yii::app()->session["tabCSV"]))
 							{
-								echo '<option value="'.$key.'">'.$value.'</option>';
+			    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
+								{
+									echo '<option value="'.$key.'">'.$value.'</option>';
+								}
 							}
 	echo '				</select>
 					</div>
@@ -144,9 +146,12 @@
 					    			<td>
 					    				<input type="hidden" id="nbligne" value="'.$nbligne.'"/>
 					    				<select id="selectHeadCSV">';
-					    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
+					    				if(isset(Yii::app()->session["tabCSV"]))
 										{
-											echo '<option value="'.$key.'">'.$value.'</option>';
+						    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
+											{
+												echo '<option value="'.$key.'">'.$value.'</option>';
+											}
 										}
 	echo '								</select>
 					    			</td>
@@ -330,17 +335,19 @@ jQuery(document).ready(function()
 	$("#sumitMapping").off().on('click', function()
   	{
   		var tabmapping = [];
+  		var tabIDmapping = [];
   		nbligne = $("#nbligne").val();
-  		for (i = 1; i <= nbligne; i++) 
+  		for (i = 0; i < nbligne; i++) 
   		{
-  			tabmapping[$("#keyheadCSVMapping"+i).val()] = $("#labelMapping"+i).text();
+  			tabmapping[i] = $("#labelMapping"+(i+1)).text();
+  			tabIDmapping[i] = $("#keyheadCSVMapping"+(i+1)).val();
 		}
 
 		if(tabmapping != "")
   		{
 	  		$.ajax({
 		        type: 'POST',
-		        data: {mappingSelected : $("#mappingSelected").val(), chooseSelected : $("#chooseSelected").val(), separateur : $("#separateurMapping").val(), nameFile : $("#nameFile").val(), source : $("#source").val(), url : $("#url").val(), tabmapping : tabmapping, tabCSV : $("#tabCSV").val(), lien : $('#lien').val()},
+		        data: {tabidmapping : tabIDmapping, mappingSelected : $("#mappingSelected").val(), chooseSelected : $("#chooseSelected").val(), separateur : $("#separateurMapping").val(), nameFile : $("#nameFile").val(), source : $("#source").val(), url : $("#url").val(), tabmapping : tabmapping, tabCSV : $("#tabCSV").val(), lien : $('#lien').val()},
 		        url: baseUrl+'/tools/traitermapping/',
 		        dataType : 'json',
 		        success: function(data)
@@ -365,8 +372,6 @@ jQuery(document).ready(function()
 						changeCode(importCodeMiror, data.jsonimport) ;
 						changeCode(rejetCodeMiror, data.jsonrejet);
 						
-						
-						
 						$("#listeInformationImport").html('<li class="list-group-item">'+ data.nbcommunemodif +' communes mis à jours</li>');
 						$("#listeInformationImport").append('<li class="list-group-item">'+ data.nbinfoparcommune +' informations seront ajouté par communes</li>');
 						$("#listeInformationRejet").html('<li class="list-group-item">'+ data.nbcommunerejet +' communes mis à jours</li>');
@@ -384,7 +389,7 @@ jQuery(document).ready(function()
 							   	}
 							});
 						});
-
+						
 						entete = entete + "</tr>";
 						$("#tableHeadImport").html(entete);
 						$("#tableHeadRejet").html(entete);
@@ -397,7 +402,6 @@ jQuery(document).ready(function()
 							{
 								if(jQuery.inArray(keyCols, colimport) != -1)
 							    	ligne = ligne + "<td>"+ valueCols +"</td>";
-							    
 							});
 							ligne = ligne + "</tr>" ;
 						});
@@ -458,7 +462,7 @@ jQuery(document).ready(function()
   	{
   		$.ajax({
 	        type: 'POST',
-	        data: {mappingSelected : $("#mappingSelected").val(), chooseSelected : $("#chooseSelected").val(), jsonimport : $('#jsonimport').val(), jsonmapping : $('#jsonmapping').val()},
+	        data: {jsonrejet : $('#jsonrejet').val(), mappingSelected : $("#mappingSelected").val(), chooseSelected : $("#chooseSelected").val(), jsonimport : $('#jsonimport').val(), jsonmapping : $('#jsonmapping').val()},
 	        url: baseUrl+'/tools/importmongo/',
 	        dataType : 'json',
 	        success: function(data)

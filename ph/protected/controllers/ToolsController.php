@@ -80,10 +80,80 @@ Titi Kiki	toto@kiki.com";
     } 
     public function actionImportMongo() 
     {
+
         $jsonimport = json_decode($_POST['jsonimport']) ;
         $jsonmapping = json_decode($_POST['jsonmapping']) ;
+        $namefile = explode(".", $jsonmapping->nameFile);
+        if( file_exists ( "../../modules/cityData/importHistory/".date("Ymd").'_'.$namefile[0] ) == false)
+            mkdir("../../modules/cityData/importHistory/".date("Ymd").'_'.$namefile[0] , 0777);
         
+
+        file_put_contents("../../modules/cityData/importHistory/".date("Ymd").'_'.$namefile[0]."/importHistory.json", $_POST['jsonmapping']);
+        file_put_contents("../../modules/cityData/importHistory/".date("Ymd").'_'.$namefile[0]."/import.json", $_POST['jsonimport']);
+        file_put_contents("../../modules/cityData/importHistory/".date("Ymd").'_'.$namefile[0]."/rejet.json", $_POST['jsonrejet']);
+
         if($_POST['chooseSelected'] == "new")
+        {
+           $resMapping = PHDB::insert(City::COLLECTION_IMPORTHISTORY, $jsonmapping);
+        }
+        else
+        {
+            $resMapping = PHDB::update(City::COLLECTION_IMPORTHISTORY,
+                            array("_id"=>new MongoId($_POST['mappingSelected'])), 
+                            array('$set' => array('src' => $jsonmapping->src,
+                                            'date_update' => $jsonmapping->date_update,
+                                            'nameFile' => $jsonmapping->nameFile,
+                                            'url' => $jsonmapping->url,
+                                            'separateur' => $jsonmapping->separateur,
+                                            'codeInsee' => $jsonmapping->codeInsee,
+                                            'fields' => $jsonmapping->fields)),
+                            array("upsert" => true));
+        }
+
+        
+
+        if(isset($jsonimport->insee))
+        {
+            $res = PHDB::findOne(City::COLLECTION_DATA, array("insee" => $jsonimport->insee));
+            
+            if($res == null)
+            {
+                //var_dump($value);
+                $resData = PHDB::insert(City::COLLECTION_DATA, $jsonimport);
+            }
+            else
+            {
+               $resData = PHDB::update(City::COLLECTION_DATA, 
+                            array("_id"=>new MongoId($res["_id"])),
+                            array('$set' => $jsonimport),
+                            array("upsert" => true));
+            }
+        }
+        else
+        {
+            foreach ($jsonimport as $key => $value) 
+            {
+               
+                $res = PHDB::findOne(City::COLLECTION_DATA, array("insee" => $value->insee));
+                //var_dump($res);
+                if($res == null)
+                {
+                    //var_dump($value);
+                    $resData = PHDB::insert(City::COLLECTION_DATA, $value);
+                }
+                else
+                {
+                   $resData = PHDB::update(City::COLLECTION_DATA, 
+                                array("_id"=>new MongoId($res["_id"])),
+                                array('$set' => $value),
+                                array("upsert" => true));
+                }
+                
+            }  
+        }
+        
+
+        /*if($_POST['chooseSelected'] == "new")
         {
             
             $resData = PHDB::insert(City::COLLECTION_DATA, $jsonimport);
@@ -106,7 +176,7 @@ Titi Kiki	toto@kiki.com";
                             array("_id"=>new MongoId($jsonmapping->lastImportId->{'$id'})),
                             array('$set' => array('codeInsee' => $jsonimport->codeInsee)),
                             array("upsert" => true));
-        }
+        }*/
         
         return Rest::json(array('result'=> $resMapping));
     }
@@ -166,8 +236,18 @@ Titi Kiki	toto@kiki.com";
         {
             $tabCSV =  Yii::app()->session["tabCSV"] ;
             $tabMapping = $_POST['tabmapping'] ;
-            $tabCode = $tabCSV[0];
+            $tabIDMapping = $_POST['tabidmapping'] ;
+           
             
+
+            foreach ($tabCSV as $key => $value) 
+           {
+                if($key == 0)
+                    $tabCode = $value;
+           }
+
+
+            //var_dump($tabCSV);
              $jsonmapping["src"] = $_POST['source'];
             //json mapping
             if($_POST['chooseSelected'] == "new")            
@@ -176,7 +256,7 @@ Titi Kiki	toto@kiki.com";
             {
                 $oneMapping = PHDB::findOne(City::COLLECTION_IMPORTHISTORY, array("_id"=>new MongoId($_POST['mappingSelected'])));
                 $jsonmapping["date_create"] = $oneMapping["date_create"];
-                $jsonmapping["lastImportId"] = $oneMapping['lastImportId'];
+                //$jsonmapping["lastImportId"] = $oneMapping['lastImportId'];
             }
             
             $jsonmapping["date_update"] = date("d/m/y");
@@ -187,8 +267,10 @@ Titi Kiki	toto@kiki.com";
 
            foreach ($tabMapping as $key => $value) 
            {
-                if($value != '')
-                    $jsonfilsFields[$tabCode[$key]] = $value;
+                if($value != '' && isset($tabCode[$tabIDMapping[$key]]))
+                 {   
+                    $d = $tabCode[$tabIDMapping[$key]];
+                    $jsonfilsFields[$d] = $value;}
            }
         
             $jsonmapping["fields"] = $jsonfilsFields;
@@ -204,9 +286,12 @@ Titi Kiki	toto@kiki.com";
             }*/
             //json import csv
             $i = 1 ;
+            $inc_import = 0 ;
+            $inc_rejet = 0 ;
             while (count($tabCSV) > $i) 
             {
-                if (($i%2000) == 0)
+
+                if (($i%500) == 0)
                 {
                     set_time_limit(30) ;
                 }
@@ -215,37 +300,59 @@ Titi Kiki	toto@kiki.com";
 
                 $valueIdLien = $line[$idLien];
 
-                if(substr($valueIdLien,0,1) == "0")
-                    $valueIdLien = substr($valueIdLien,1);
+               
                 
                 $res = PHDB::findOne(City::COLLECTION, array("insee" => $valueIdLien));
               
                 if($res != null)
                 {
+                    $commune["insee"] = $valueIdLien;
                     $arrayCsvImport[$i] = $line ;
                     foreach ($tabCode as $keyCode => $valueCode) 
                     {
                         foreach ($jsonmapping['fields'] as $key => $value) 
                         {
+                           // var_dump($value);
                             if($valueCode == $key)
                             { 
-                               $map = explode(".", $value);
-                                if(!isset($commune[$valueIdLien]))
+                                $map = explode(".", $value);
+                                
+                                
+                                if(!isset($commune[$map[0]]))
                                 {
-                                    $commune[$valueIdLien] = FileHelper::create_json($map, $line[$keyCode]);
+                                    if(count($map) > 1)
+                                    {
+                                        $newmap = array_splice($map, 1);
+                                        $commune[$map[0]] = FileHelper::create_json($newmap, $line[$keyCode]);
+                                    }
+                                    else
+                                    {
+                                        $commune[$map[0]] = $line[$keyCode];
+                                    }
                                 }
                                 else
                                 {
-                                    $commune[$valueIdLien] = FileHelper::create_json_with_father($map, $line[$keyCode], $commune[$valueIdLien]) ;
+                                    if(count($map) > 1)
+                                    { 
+                                       $newmap = array_splice($map, 1);
+                                        $commune[$map[0]] = FileHelper::create_json_with_father($newmap, $line[$keyCode], $commune[$map[0]]) ;
+                                    }
+                                    else
+                                    {
+                                        $commune[$map[0]] = $line[$keyCode];
+                                    }
                                 }
                             }
                             
                         }   
                     }
+                    $inc_import++;
+                    $jsonimport[] = $commune ;
                 }
                 else
                 {
                     $arrayCsvRejet[$i] = $line ;
+                    $rejet["insee"] = $valueIdLien;
                     foreach ($tabCode as $keyCode => $valueCode) 
                     {
                        foreach ($jsonmapping['fields'] as $key => $value) 
@@ -254,35 +361,47 @@ Titi Kiki	toto@kiki.com";
                             { 
                              
                                 $map = explode(".", $value);
-                                if(!isset($rejet[$line[$idLien]]))
+                                if(!isset($rejet[$map[0]]))
                                 {
-                                    $rejet[$valueIdLien] = FileHelper::create_json($map, $line[$keyCode]);
+                                    if(count($map) > 1)
+                                    {
+                                        $newmap = array_splice($map, 1);
+                                        $rejet[$map[0]] = FileHelper::create_json($newmap, $line[$keyCode]);
+                                    }
+                                    else
+                                    {
+                                        $rejet[$map[0]] = $line[$keyCode];
+                                    }
                                 }
                                 else
                                 {
-                                    $rejet[$valueIdLien] = FileHelper::create_json_with_father($map, $line[$keyCode], $rejet[$valueIdLien]) ;
+                                    if(count($map) > 1)
+                                    { 
+                                       $newmap = array_splice($map, 1);
+                                        $rejet[$map[0]] = FileHelper::create_json_with_father($newmap, $line[$keyCode], $rejet[$map[0]]) ;
+                                    }
+                                    else
+                                    {
+                                        $rejet[$map[0]] = $line[$keyCode];
+                                    }
                                 }
                             }
                         }   
                     }
+                    $jsonrejet[] = $rejet ;
+                    $inc_rejet++;
                 }
                 $i++;
+
+                
             }
 
-            if(isset($commune))
-            {
-                $jsonimport["codeInsee"] = $commune ;
-            }
-            else
+            if(!isset($commune))
             {
                 $jsonimport["codeInsee"] = [];
                 $arrayCsvImport = [];
             }
-            if(isset($rejet))
-            {
-                $jsonrejet["codeInsee"] = $rejet ;
-            }
-            else
+            if(!isset($rejet))
             {
                 $jsonrejet["codeInsee"] = [];
                 $arrayCsvRejet = [];
@@ -319,39 +438,34 @@ Titi Kiki	toto@kiki.com";
 
      public function actionImportJson() 
     {
+        header('Content-Type: text/html; charset=UTF-8');
         if(isset($_FILES['fileimport']))
         {
-            if (($handle = fopen($_FILES['fileimport']['tmp_name'], "r")) !== FALSE) 
+            $json = file_get_contents($_FILES['fileimport']['tmp_name']);
+            $json_objet = json_decode($json, true);
+            
+
+            
+            $chaine = FileHelper::arbreJson($json_objet , "", "");
+
+            $arbre = explode(";",  $chaine);
+            
+
+            foreach ($arbre as $key => $value) 
             {
-                $i = 0 ;
-                while (($data = fgetcsv($handle,0, $_POST['separateurDonnees'], $_POST['separateurTexte'])) !== FALSE) 
-                {
-                    if(count($data) == 1)
-                    {    
-                       /* if($i == 1)
-                            var_dump($data[0]);*/
-                        $tabCSV[$i] = explode("\t", $data[0]);
-                    }
-                    else
-                    {    
-                        /*if($i == 1)
-                            var_dump($data);*/
-                        $tabCSV[$i] = $data;
-
-                    }
-                    $i++;
-                }     
+                $arbre[$key] = substr($value, 1);
             }
-
-            fclose($handle);
-            Yii::app()->session["tabCSV"] = $tabCSV;
-
+            
             $params = array("result"=>true,
-                                                "separateur"=>$_POST['separateurDonnees'],
-                                                "nameFile"=>$_FILES['fileimport']['name'],
-                                                "choose"=>$_POST['choose']);
-            if(isset($_POST['chooseMapping']))
+                            "arbre"=>$arbre,
+                            "nameFile"=>$_FILES['fileimport']['name'],
+                            "json_origine"=>$json,
+                            "choose"=>$_POST['choose']);
+            
+            if($_POST['choose'] == "modify")
                 $params['chooseMapping'] = $_POST['chooseMapping'];
+
+
 
             $this->render("importJson",$params);
         }
@@ -360,9 +474,153 @@ Titi Kiki	toto@kiki.com";
             $this->render("importJson",array("result"=>false));  
         }
     }
+
+   
     
 
+     public function actionTraiterMappingJson() 
+    {
+        if(isset($_POST['tabmapping']))
+        {
+            //var_dump($_POST['json_origine']);
+            $json_objet = json_decode($_POST['json_origine'], true);
+            
+            $tabMapping = $_POST['tabmapping'] ;
+            $tabIDMapping = $_POST['tabidmapping'] ;
+         
+            
+            $jsonmapping["src"] = $_POST['source'];
+            //json mapping
+            if($_POST['chooseSelected'] == "new")            
+                $jsonmapping["date_create"] = date("d/m/y");
+            else
+            {
+                $oneMapping = PHDB::findOne(City::COLLECTION_IMPORTHISTORY, array("_id"=>new MongoId($_POST['mappingSelected'])));
+                $jsonmapping["date_create"] = $oneMapping["date_create"];
+               // $jsonmapping["lastImportId"] = $oneMapping['lastImportId'];
+            }
+            
+            $jsonmapping["date_update"] = date("d/m/y");
+            $jsonmapping["url"] = $_POST['url'];
+            $jsonmapping["nameFile"] = $_POST['nameFile'];
+            //$jsonmapping["separateur"] = $_POST['separateur'];
+            $jsonmapping["codeInsee"] = $_POST['lien'];
 
+           foreach ($tabMapping as $key => $value) 
+           {
+                if($value != '')
+                    $jsonfilsFields[$tabIDMapping[$key]] = $value;
+           }
+        
+            $jsonmapping["fields"] = $jsonfilsFields;
+
+            $idLien = $_POST['lien'];
+            $cheminLien = explode(".", $_POST['lien']);
+            //var_dump($cheminLien);
+            $valueIdLien = FileHelper::get_value_json($json_objet, $cheminLien) ;
+            //var_dump($valueIdLien);
+
+            $res = PHDB::findOne(City::COLLECTION, array("insee" => $valueIdLien));
+            $inc_import = 0 ;
+            $inc_rejet = 0 ;
+            if($res != null)
+            {
+                $commune["insee"] = $valueIdLien;
+                foreach ($jsonmapping['fields'] as $key => $value)
+                {
+                   $map = explode(".", $value);
+                   $cheminJson = explode(".", $key);
+                   $value_json = FileHelper::get_value_json($json_objet, $cheminJson);
+                    if(!isset($commune[$map[0]]))
+                    {
+                        if(count($map) > 1)
+                        {
+                            $newmap = array_splice($map, 1);
+                            $commune[$map[0]] = FileHelper::create_json($newmap,  $value_json);
+                        }
+                        else
+                        {
+                            $commune[$map[0]] = $value_json;
+                        }
+                    }
+                    else
+                    {
+                        
+                        if(count($map) > 1)
+                        {
+                            $newmap = array_splice($map, 1);
+                            $commune[$map[0]] = FileHelper::create_json_with_father($newmap, $value_json, $commune[$map[0]]) ;
+                        }
+                        else
+                        {
+                            $commune[$map[0]] = $value_json;
+                        }
+                    }
+
+
+
+                }
+            }
+            else
+            {
+                foreach ($jsonmapping['fields'] as $key => $value)
+                {
+                    $map = explode(".", $value);
+                    $cheminJson = explode(".", $key);
+                    if(!isset($rejet[$valueIdLien]))
+                    {
+                        if(count($map) > 1)
+                        {
+                            $newmap = array_splice($map, 1);
+                            $rejet[$map[0]] = FileHelper::create_json_with_father($newmap, $value_json) ;
+                        }
+                        else
+                        {
+                            $rejet[$map[0]] = $value_json;
+                        }
+                    }
+                    else
+                    {
+                        if(count($map) > 1)
+                        {
+                            $newmap = array_splice($map, 1);
+                            $rejet[$map[0]] = FileHelper::create_json_with_father($newmap, $value_json, $rejet[$map[0]]) ;
+                        }
+                        else
+                        {
+                            $rejet[$map[0]] = $value_json;
+                        }
+                    }
+                }
+            }
+                
+          
+            
+            if(isset($commune))
+            {
+                $jsonimport = $commune ;
+            }
+            else
+            {
+                $jsonimport = [];
+                $arrayCsvImport = [];
+            }
+            if(isset($rejet))
+            {
+                $jsonrejet = $rejet ;
+            }
+            else
+            {
+                $jsonrejet = [];
+                $arrayCsvRejet = [];
+            }
+            return Rest::json(array('result'=> true,
+                                    'jsonmapping'=>FileHelper::indent_json(json_encode($jsonmapping)),
+                                    "jsonimport"=>FileHelper::indent_json(json_encode($jsonimport)),
+                                    "jsonrejet"=>FileHelper::indent_json(json_encode($jsonrejet)),
+                                    "lien"=>$_POST['lien']));
+        } 
+    } 
 
 
 
