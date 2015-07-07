@@ -574,6 +574,64 @@ class fileHelper {
 
 
 
+// --------------------------------------------------------------------
+
+/**
+ * arbreJson
+ *
+ * 
+ *
+ * @access	public
+ * @param	array	
+ * @return	string
+ */
+
+	public static function arbreJson($json, $chaine, $pere) 
+    {
+        
+        foreach ($json as $key => $value)
+        {
+        	if(is_array($value)==true)
+            {
+            	$pere =  $pere . "." . $key ;
+            	$chaine = FileHelper::arbreJson($value, $chaine, $pere);
+            }
+            else
+            	$chaine = $chaine . $pere . "." . $key .  ";";
+        }
+        
+        return $chaine ;
+    }
+
+// --------------------------------------------------------------------
+
+/**
+ * create_json
+ *
+ * 
+ *
+ * @access	public
+ * @param	array	mapping
+ * @param	string	
+ * @return	array
+ */
+	public static function get_value_json($json, $map)
+	{
+		
+		if(count($map) == 1)
+	    {
+	    	 $value = $json[$map[0]];
+	    }
+	    else
+	    {
+	    	$newmap = array_splice($map, 1);
+	    	$value = FileHelper::get_value_json($json[$map[0]], $newmap);
+	   	}
+	    return $value;
+	}
+
+// --------------------------------------------------------------------
+
 }
 
 
