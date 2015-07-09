@@ -2886,21 +2886,80 @@ td.small-width {
 /*  Login
 /* ---------------------------------------------------------------------- */
 body.login {
-  overflow: visible; }
+  overflow: visible; 
+  /*-webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);*/
+}
 
-body.bgcity {
+.bgcity {
   background-image: url("../images/bg.jpg");
-  background-color: transparent; }
-body.bgblack {
+  background-color: transparent;
+}
+.bgwave {
+  background-image: url("../images/wave.jpg");
+  background-color: transparent;
+}
+.bgseasky {
+  background-image: url("../images/back-error-page.jpg");
+  background-color: transparent;
+}
+.bggreenImg {
+  background-image: url("../images/greendrops.jpg");
+  background-color: transparent;
+}
+.bgwave {
+  background-image: url("../images/wave.jpg");
+  background-color: transparent;
+}
+.bgcloud {
+  background-image: url("../images/cloud.jpg");
+  background-color: transparent;
+}
+.bgcrowd {
+  background-image: url("../images/crowd.gif");
+  background-color: transparent;
+}
+.bgcrowd2 {
+  background-image: url("../images/crowd.jpg");
+  background-color: transparent;
+}
+.bgfaces {
+  background-image: url("../images/faces.jpg");
+  background-color: transparent;
+}
+.bgeau {
+  background-image: url("../images/fond-eau.jpg");
+  background-color: transparent;
+}
+.bgfrings {
+  background-image: url("../images/frings.jpg");
+  background-color: transparent;
+}
+.bgtree {
+  background-image: url("../images/tree.jpg");
+  background-color: transparent;
+}
+.bgtree1 {
+  background-image: url("../images/tree1.jpg");
+  background-color: transparent;
+}
+.bgwater {
+  background-image: url("../images/water.jpg");
+  background-color: transparent;
+}
+.bgblack {
   background-image: none;
   background-color: #2a3945; }
-body.bgblue {
+.bgblue {
   background-image: none;
   background-color: #22B8EA; }
-body.bggreen {
+.bggreen {
   background-image: none;
   background-color: #94BD31; }
-  body.bgred {
+.bgred {
   background-image: none;
   background-color: #E33551; }
 

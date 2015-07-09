@@ -35,8 +35,7 @@ font-family: "Homestead";
     	<div id="error">
     		<?php if($code == 404){?>
             <h1>ERREUR 404</h1>
-            <h1>PAGE INCONNUE</h1>
-            <h1>DU PIXEL HUMAIN</h1>
+            <h1>PAGE AND DEMOCRACY NOT FOUND</h1>
             <h2>QUI CHERCHE FINIT PAR TROUVER</h2>
             <?php }else{?>
             <h1>ERREUR <?php echo $code?></h1>
@@ -44,10 +43,10 @@ font-family: "Homestead";
         </div>
         <div class="clear"></div>
         <div>
-        <?php if(YII_DEBUG){?>
+        <?php /*if(YII_DEBUG){?>
         	<?php echo CHtml::encode($message); ?>
         	<pre><?php echo print_r(debug_backtrace(),true) ?></pre>
-        <?php }?>
+        <?php }*/?>
         </div>
         
         <br/><br/>

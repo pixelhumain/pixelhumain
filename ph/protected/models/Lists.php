@@ -45,7 +45,7 @@ class Lists {
   public static function getListByName($name){
     $res = array();
     //The tags are found in the list collection, key tags
-    $list = PHDB::findOne( DataList::COLLECTION,array("name"=>$name), array('list'));
+    $list = PHDB::findOne( self::COLLECTION,array("name"=>$name), array('list'));
 
     if (!empty($list['list']))
       $res = $list['list'];

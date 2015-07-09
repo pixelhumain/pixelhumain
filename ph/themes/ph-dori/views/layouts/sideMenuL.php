@@ -26,7 +26,7 @@
 			    $menuLeft = array();
                 array_push($menuLeft, array('label' => "MY ACCOUNT", "key"=>"myAccount","iconClass"=>"fa fa-home","href"=> Yii::app()->createUrl($this->moduleId."/person/dashboard")) );
                 if( isset( Yii::app()->session["user"]["codeInsee"] ) )
-                    array_push($menuLeft, array('label' => "MY CITY", "key"=>"myCityPage","iconClass"=>"fa fa-university","href"=> Yii::app()->createUrl($this->moduleId."/city/index/insee/".Yii::app()->session["user"]["codeInsee"])) );
+                    array_push($menuLeft, array('label' => "MY CITY ", "key"=>"myCityPage","iconClass"=>"fa fa-university","href"=> Yii::app()->createUrl($this->moduleId."/city/index/insee/".Yii::app()->session["user"]["codeInsee"])) );
                 array_push($menuLeft, array('label' => "MY DIRECTORY", "key"=>"myDirectoryPage","iconClass"=>"fa fa-globe","href"=> Yii::app()->createUrl($this->moduleId."/person/directory")) );
                 array_push($menuLeft, array('label' => "MY CALENDAR", "key"=>"myCalendarPage","iconClass"=>"fa fa-calendar","href"=> Yii::app()->createUrl($this->moduleId."/event/calendarview/id/".$id."/type/person")) );
                 array_push($menuLeft, array('label' => "MY NEWS", "key"=>"myNewsPage","iconClass"=>"fa fa-rss","href"=> Yii::app()->createUrl($this->moduleId."/news/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ) );
