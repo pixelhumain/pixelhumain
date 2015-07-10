@@ -68,7 +68,7 @@ class timesheet{
 	* The width of one Omega section
 	*/
 	public $oneOmega;
-	
+
 	/**
 	* original data
 	*/
@@ -210,7 +210,8 @@ class timesheet{
 	*/
 	private function section_title(){
 		foreach( $this->alpha as $alpha){
-			echo '<section><div>'.$alpha.'</div></section>';
+			echo '<section class="hoverScale"><div>'.$alpha.'</div></section>';
+			//echo '<a href="#timesheetTab" class="hoverScale"><section class="hoverScale"><div>'.$alpha.'</div></section></a>';
 		}
 	}
 
@@ -221,13 +222,21 @@ class timesheet{
 	* @return string $return Return an array of segment(s) for a period / level
 	*/	
 	private function calcul_timesheet($level_key, $segment){
-
+		//if($segment['tranche']== "month"){
+		//}
+		$baseYearMonth=$this->omega_base;
 		if($segment['start'][1] > ($this->omega_base + $this->omega_first)
 				|| $segment['end'][1] > ($this->omega_base + $this->omega_first) ) {
 			var_dump('Omega ('.$segment['start'][1].' and '.$segment['end'][1].') is greater then omega_base value ('.$this->omega_base.') ! - key : ' . $level_key , $segment);
 		}
+		if ($baseYearMonth==31){
+					$start_segment = $this->start_segment($segment['start'][1], $segment['start'][2] );
+		$end_segment = $this->end_segment($segment['end'][1], $segment['end'][2] );
+		}
+		else{
 		$start_segment = $this->start_segment($segment['start'][0], $segment['start'][1] );
 		$end_segment = $this->end_segment($segment['end'][0], $segment['end'][1] );
+		}
 		$return = array();
 		/*
 		* If curl and end < start then we create 2 segments
@@ -236,7 +245,6 @@ class timesheet{
 		if($segment['end'][0] < $segment['start'][0]
 				|| ($segment['end'][0] == $segment['start'][0] && $segment['end'][1] < $segment['start'][1] )
 		){
-
 			$segment['head_segment'] = true;
 			$segment['marginleft'] = 0;
 			$segment['width'] = $end_segment ;
@@ -248,9 +256,17 @@ class timesheet{
 			$segment['width'] = 100 - $start_segment ;
 		}
 		else{
-			$segment['head_segment'] = true;
-			$segment['marginleft'] = $start_segment;
-			$segment['width'] = $end_segment - $start_segment ;
+			if ($end_segment==$start_segment){
+				$segment['head_segment'] = true;
+				$segment['marginleft'] = $start_segment;
+				$segment['width'] = 1 ;
+
+			}
+			else{
+				$segment['head_segment'] = true;
+				$segment['marginleft'] = $start_segment;
+				$segment['width'] = $end_segment - $start_segment ;
+			}
 		}
 		array_push( $return , $segment );
 		return $return;
@@ -261,6 +277,7 @@ class timesheet{
 	*/
 	private function create_all_segments(){
 		$i = 0;
+		
 		foreach($this->data as $level_key => $periods){
 			$i++;
 			$color = $this->colors[$i % 5];
@@ -272,7 +289,7 @@ class timesheet{
 				// Simple array for mobile display
 				$m_period = array( 
 					'title'=> $level_key,
-					'color' => $color,
+					'color' => $period['color'],
 					'start' => explode( "-", $period['start']),
 					'end' =>  explode( "-", $period['end']),
 					);
@@ -339,13 +356,16 @@ class timesheet{
 	*/
 	function get_format( $segment, $mobile = false){
 		$displayDate = '';
-
+		
 		if( !empty($this->format) 
 			&& !empty( $this->format['timesheet_format'] ) 
 			&& !empty( $this->format['date_format']) 
 			){
-			$startdate = date($this->format['date_format'], strtotime( $segment['start'][0] .'-'. $segment['start'][1] ) );
-			$enddate = date($this->format['date_format'], strtotime( $segment['end'][0]	.'-'. $segment['end'][1] ) );
+			//echo "day:".$segment['start'][0] .'-'.$segment['start'][1]."au ".$segment['end'][0]	.'-'. $segment['end'][1]."/";
+			$dateOne= $segment['start'][0] .'/'. $segment['start'][1].'/'.$segment['start'][2];
+			$dateTwo= $segment['end'][0] .'/'. $segment['end'][1].'/'.$segment['end'][2];
+			$startdate = date($this->format['date_format'], strtotime($dateOne) );
+			$enddate = date($this->format['date_format'], strtotime($dateTwo) );
 			$displayDate = sprintf( $this->format['segment_des'] , $startdate, $enddate);
 		}
 		else{
@@ -386,6 +406,7 @@ class timesheet{
 	function get_display_data_mobile(){
 		$html = '';
 		foreach($this->mdata as $key => $segments){
+
 			$html .= '<li>';
 			$html .= '<div class="label '.$segments[0]['color'].'" >'.$key.'</div><div class="dates '.$segments[0]['color'].'">';
 			foreach($segments as $segment){
@@ -431,7 +452,7 @@ class timesheet{
 				<section><div></div></section>
 			</div>
 			<!-- Section -->
-			<div class="scale">
+			<div class="scale" style="z-index:50;">
 				<?php echo $this->section_title(); ?>
 			</div>
 			<!-- end section -->
