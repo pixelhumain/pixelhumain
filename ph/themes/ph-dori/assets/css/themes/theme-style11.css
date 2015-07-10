@@ -24,7 +24,8 @@ body {
 #slidingbar {
   background: rgba(34, 38, 47, 0.9); }
 
-.main-container, #pageslide-left, #pageslide-right {
+/*.main-container, */
+#pageslide-left, #pageslide-right {
   background-color: #22262f !important; }
 
 .label-default, .badge-default {
@@ -120,7 +121,8 @@ ul.main-navigation-menu .mega-menu .mega-menu-content ul.mega-sub-menu li a:hove
   background-color: #5f8295; }
 
 .main-content {
-  background: #DDDDDD; }
+  /*background: #DDDDDD; */
+}
 
 .go-top {
   color: white; }
