@@ -459,16 +459,21 @@ class fileHelper {
  * @param	string	
  * @return	array
  */
-	public static function create_json($map, $value)
+	public static function create_json($map, $value, $type)
 	{
 		if(count($map) == 1)
 	    {
-	    	$pere[$map[0]] = $value;
+	    	if($type == "INT")
+	    		$pere[$map[0]] = intval($value);
+	    	else if($type == "FLOAT")
+	    		$pere[$map[0]] = floatval($value);
+	    	else
+	    		$pere[$map[0]] = $value;
 	    }
 	    else
 	    {
 	    	$newmap = array_splice($map, 1);
-	    	$pere[$map[0]] = FileHelper::create_json($newmap, $value);
+	    	$pere[$map[0]] = FileHelper::create_json($newmap, $value, $type);
 	   	}
 	    return $pere;
 	}
@@ -484,22 +489,27 @@ class fileHelper {
  * @param	string	
  * @return	array
  */
-	public static function create_json_with_father($map, $value, $pere)
+	public static function create_json_with_father($map, $value, $pere, $type)
 	{
 		if(count($map) == 1)
 	    {
-	    	$pere[$map[0]] = $value;
+	    	if($type == "INT")
+	    		$pere[$map[0]] = intval($value);
+	    	else if($type == "FLOAT")
+	    		$pere[$map[0]] = floatval($value);
+	    	else
+	    		$pere[$map[0]] = $value;
 	    }
 	    else
 	    {
 	    	$newmap = array_splice($map, 1);
 	    	if(isset($pere[$map[0]]))
 	    	{	
-	    		$pere[$map[0]] = FileHelper::create_json_with_father($newmap, $value, $pere[$map[0]]);
+	    		$pere[$map[0]] = FileHelper::create_json_with_father($newmap, $value, $pere[$map[0]], $type);
 	    	}
 	    	else
 	    	{
-	    		$pere[$map[0]] = FileHelper::create_json($newmap, $value);
+	    		$pere[$map[0]] = FileHelper::create_json($newmap, $value, $type);
 	    	}
 			
 	    }

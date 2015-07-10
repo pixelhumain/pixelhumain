@@ -1,3 +1,9 @@
+<?php
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquery.jsonview.js' , CClientScript::POS_END);
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquery.jsonview.css');
+?>
+
 <div class="col-md-12">
 	<form id="formfile" method="POST" action="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/tools/traitercsv/';?>" enctype="multipart/form-data">
 		<input type="hidden" id="result" value="<?php echo $result ; ?>"/>
@@ -55,222 +61,247 @@
 		
 		if(isset($chooseMapping))
 			$oneMapping = PHDB::findOne(City::COLLECTION_IMPORTHISTORY, array("_id"=>new MongoId($chooseMapping)));
+	?>
+	
+		<div class="form-group col-md-12">
+			<h3 class="col-md-12">Mapping</h3>
+			<div class="form-group col-md-4">
+				<label for="source">Source : </label>
+				<?php
+					if(isset($oneMapping))
+						echo '<input type="text" id="source" name="source" value="'.$oneMapping["src"].'">';
+					else
+						echo '<input type="text" id="source" name="source" value="">';
+									
+					if($result == true)
+					{
+						echo '<input type="hidden" id="chooseSelected" value="'.$choose.'">
+									<input type="hidden" id="nameFile" value="'.$nameFile.'">
+									<input type="hidden" id="separateurMapping" value="'.$separateur.'">';
+						if($choose == "modify")
+						{	
+							echo '<input type="hidden" id="mappingSelected" value="'.$chooseMapping.'">';
+						}
+					}
+				?>
+										
+			</div>
+			<div class="form-group col-md-4">
+				<label for="url">URL : </label>
+				<?php
+					if(isset($oneMapping))
+						echo '<input type="text" id="url" name="url" value="'.$oneMapping["url"].'">';
+					else
+						echo '<input type="text" id="url" name="url" value="">';
+				?>
+			</div>
+			
+		</div>
 
-		echo ' 	
-				<div class="form-group col-md-12">
-					<h3 class="col-md-12">Mapping</h3>
-					<div class="form-group col-md-4">
-						<label for="source">Source : </label>';
-						if(isset($oneMapping))
-							echo '<input type="text" id="source" name="source" value="'.$oneMapping["src"].'">';
-						else
-							echo '<input type="text" id="source" name="source" value="">';
-							
-						if($result == true)
+		<div class="form-group col-md-12">
+			<div class="form-group col-md-4">
+				<label for="lien">Lien : </label>
+				<select id="lien">
+					<?php
+						if(isset(Yii::app()->session["tabCSV"]))
 						{
-							echo '<input type="hidden" id="chooseSelected" value="'.$choose.'">
-										<input type="hidden" id="nameFile" value="'.$nameFile.'">
-										<input type="hidden" id="separateurMapping" value="'.$separateur.'">';
-							if($choose == "modify")
-							{	
-								echo '<input type="hidden" id="mappingSelected" value="'.$chooseMapping.'">';
+		    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
+							{
+								echo '<option value="'.$key.'">'.$value.'</option>';
 							}
 						}
-									
-		echo'		</div>
-					<div class="form-group col-md-4">
-						<label for="url">URL : </label>';
-						if(isset($oneMapping))
-							echo '<input type="text" id="url" name="url" value="'.$oneMapping["url"].'">';
-						else
-							echo '<input type="text" id="url" name="url" value="">';
+					?>
+				</select>
+			</div>
+			<div class="form-group col-md-4">
+				<label for="subfile">Fichier : </label>
+				<select id="subfile">
+					<?php
+						if($result == true)
+						{
+							$arrayNameFile = explode(".", $nameFile);
+							$subfiles = scandir("../../modules/cityData/filesCityData/".$arrayNameFile[0]);
+							foreach ($subfiles as $key => $value){
+				                if(strpos($value, $arrayNameFile[0]) !== false) 
+				                	echo '<option value="'.$value.'">'.$value.'</option>';
+				            }
+				        }
+					?>
+				</select>
+			</div>
+		</div>
 
-						
-		echo'		</div>
-					<div class="form-group col-md-4">
-						<label for="lien">Lien : </label>
-						<select id="lien">';
-							if(isset(Yii::app()->session["tabCSV"]))
-							{
-			    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
-								{
-									echo '<option value="'.$key.'">'.$value.'</option>';
-								}
-							}
-	echo '				</select>
-					</div>
-				</div>
+		<div class="form-group col-md-12">
 
-				<div class="form-group col-md-12">
+			<div id="divtab" class="table-responsive">
+		    	<table id="tabcreatemapping" class="table table-striped table-bordered table-hover">
+		    		<thead>
+			    		<tr>
+			    			<th>Colonne CSV</th>
+			    			<th>Mapping</th>
+			    			<th>Type</th>
+			    			<th>Ajouter/Supprimer</th>
+			    		</tr>
+		    		</thead>
+			    	<tbody class="directoryLines" id="bodyCreateMapping">
+				    	<?php
+				    		$nbligne = 0 ;
+				    		if($choose == "modify")
+				    		{
+				    			
+				    			foreach ($oneMapping["fields"] as $key => $value) 
+				    			{
+				    				
+				    				$nbligne++;
+				    				$i = 0;
+				    				$trouver = false ;
+				    				while($trouver == false && $i < count(Yii::app()->session["tabCSV"][0]))
+				    				{
+				    					if(Yii::app()->session["tabCSV"][0][$i] == $key)
+				    					{
+				    						$trouver = true;
+				    					}
+				    					else	
+				    						$i++;
+				    				}
+				    				echo '<tr  id="lineMapping'.$nbligne.'">
+				    						<td id="valueheadCSVMapping'.$nbligne.'">'.$key .'</td>
+				    						<td id="labelMapping'.$nbligne.'">'.$value.'</td>
+				    						<td id="typeMapping'.$nbligne.'">'.$oneMapping["type"][$key].'</td>
 
-					<div id="divtab" class="table-responsive">
-				    	<table id="tabcreatemapping" class="table table-striped table-bordered table-hover">
-				    		<thead>
-					    		<tr>
-					    			<th>Colonne CSV</th>
-					    			<th>Mapping</th>
-					    			<th>Ajouter/Supprimer</th>
-					    		</tr>
-				    		</thead>
-					    	<tbody class="directoryLines" id="bodyCreateMapping">';
-					    		$nbligne = 0 ;
-					    		if($choose == "modify")
-					    		{
-					    			
-					    			foreach ($oneMapping["fields"] as $key => $value) 
-					    			{
-					    				
-					    				$nbligne++;
-					    				$i = 0;
-					    				$trouver = false ;
-					    				while($trouver == false && $i < count(Yii::app()->session["tabCSV"][0]))
-					    				{
-					    					if(Yii::app()->session["tabCSV"][0][$i] == $key)
-					    					{
-					    						$trouver = true;
-					    					}
-					    					else	
-					    						$i++;
-					    				}
-					    				echo '<tr  id="lineMapping'.$nbligne.'">
-					    						<td id="valueheadCSVMapping'.$nbligne.'">'.$key .'</td>
-					    						<td id="labelMapping'.$nbligne.'">'.$value.'</td>
-					    						<td>
-					    							<input type="hidden" id="keyheadCSVMapping'.$nbligne.'" value="'.$i.'">
-					    							<a href="#" class="deleteLineMapping btn btn-primary">X</a></td>
-					    					</tr>';
-					    				
-					    			}
-					    		}
-	echo '			    		<tr id="LineAddMapping">
-					    			<td>
-					    				<input type="hidden" id="nbligne" value="'.$nbligne.'"/>
-					    				<select id="selectHeadCSV">';
-					    				if(isset(Yii::app()->session["tabCSV"]))
+				    						<td>
+				    							<input type="hidden" id="keyheadCSVMapping'.$nbligne.'" value="'.$i.'">
+				    							<a href="#" class="deleteLineMapping btn btn-primary">X</a></td>
+				    					</tr>';
+				    				
+				    			}
+				    		}
+				    	?>
+						<tr id="LineAddMapping">
+			    			<td>
+			    				<input type="hidden" id="nbligne" value="<?php echo $nbligne ; ?>"/>
+			    				<select id="selectHeadCSV">
+			    				<?php
+				    				if(isset(Yii::app()->session["tabCSV"]))
+									{
+					    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
 										{
-						    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
-											{
-												echo '<option value="'.$key.'">'.$value.'</option>';
-											}
+											echo '<option value="'.$key.'">'.$value.'</option>';
 										}
-	echo '								</select>
-					    			</td>
-					    			<td><input type="text" id="textMapping" value=""/></td>
-					    			<td><input type="submit" id="addMapping" class="btn btn-primary" value="Ajouter"/>
-					    		</tr>';
-	echo '  				</tbody>
-						</table>
-					</div>
-				</div>';
-	echo ' 		<div class="form-group col-md-12">
-					<div class="form-group col-md-4 col-md-offset-4">
-						<a href="#" id="sumitMapping" class="btn btn-primary">Visualisation</a>
-					</div>
-				</div>';
+									}
+								?>
+								</select>
+			    			</td>
+			    			<td><input type="text" id="textMapping" value=""/></td>
+			    			<td>
+			    				<select id="typeMapping">
+			    					<option value="INT">INT</option>
+			    					<option value="STRING">STRING</option>
+								</select>
+			    			</td>
+			    			<td><input type="submit" id="addMapping" class="btn btn-primary" value="Ajouter"/>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="form-group col-md-12">
+			<div class="form-group col-md-4 col-md-offset-4">
+				<a href="#" id="sumitMapping" class="btn btn-primary">Visualisation</a>
+			</div>
+		</div>
 
-	?>
-	</div>
-	<div id="visualisationGlobal">
-		<div class="col-md-12">
+		
+		<div id="visualisationGlobal">
 			<h3 class="col-md-12">Vérification avant import</h3>
-			<label>Données importé :</label>
+			<div class="col-xs-12 col-sm-4">
+				<label>Données importé :</label>
+					<ul class="nav nav-tabs">
+						<li role="presentation" ><a href="#" id="linkInformationImport">Information</a></li>
+						<li role="presentation" class="active"><a href="#" id="linkJsonImport">JSON</a></li>
+						<li role="presentation"><a href="#" id="linkListImport">Liste des données</a></li>
+					</ul>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div id="divInformationImport">
+							  	<ul class="list-group" id="listeInformationImport">
+									<li class="list-group-item"></li>
+									<li class="list-group-item"></li>
+								</ul>
+							</div>
+							<div id="divJsonImport" class="panel-scroll height-230">
+								<input type="hidden" id="jsonimport" value="">
+							    <div class="col-md-12" id="divjsonimport"></div>
+							</div>
+							<div id="divListImport" class="table-responsive">
+							    <table id="tableImport" class="table table-striped table-bordered table-hover directoryTable">
+						    		<thead id="tableHeadImport">
+							    		
+						    		</thead>
+							    	<tbody class="directoryLines" id="tableBodyImport">
+							    		
+							    	</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+			</div>
+						
+			<div class="col-xs-12 col-sm-4">
+				<label>Données rejetée :</label>
 				<ul class="nav nav-tabs">
-					<li role="presentation" ><a href="#" id="linkInformationImport">Information</a></li>
-					<li role="presentation" class="active"><a href="#" id="linkJsonImport">JSON</a></li>
-					<li role="presentation"><a href="#" id="linkListImport">Liste des données</a></li>
+				  <li role="presentation" ><a href="#" id="linkInformationRejet">Information</a></li>
+				  <li role="presentation" class="active"><a href="#" id="linkJsonRejet">JSON</a></li>
+				  <li role="presentation"><a href="#" id="linkListRejet">Liste des données</a></li>
 				</ul>
 				<div class="panel panel-default">
-					<div class="panel-body">
-						<div id="divInformationImport">
-						  	<ul class="list-group" id="listeInformationImport">
-								<li class="list-group-item"></li>
-								<li class="list-group-item"></li>
+				  	<div class="panel-body ">
+				  		<div id="divInformationRejet">
+				  			<ul class="list-group" id="listeInformationRejet">
+							    <li class="list-group-item"></li>
 							</ul>
-						</div>
-						<div id="divJsonImport">
-						    <textarea class="col-md-12 form-control" id="jsonimport" rows="10"  readonly></textarea>
-						</div>
-						<div id="divListImport" class="table-responsive">
-						    <table id="tableImport" class="table table-striped table-bordered table-hover directoryTable">
-					    		<thead id="tableHeadImport">
-						    		
-					    		</thead>
-						    	<tbody class="directoryLines" id="tableBodyImport">
-						    		
+				  		</div>
+				  		<div id="divJsonRejet" class="panel-scroll height-230">
+				  			<input type="hidden" id="jsonrejet" value="">
+				    		<div class="col-md-12" id="divjsonrejet" ></div>
+				  		</div>
+				  		<div id="divListRejet" >
+				    		<table id="tableRejet" class="table table-striped table-bordered table-hover directoryTable">
+					    		<thead id="tableHeadRejet">
+						    	</thead>
+						    	<tbody class="directoryLines" id="tableBodyRejet">
 						    	</tbody>
 							</table>
-						</div>
-					</div>
+				  		</div>
+				  	</div>
 				</div>
-		</div>
-					
-		<div class="col-md-12">
-			<label>Données rejetée :</label>
-			<ul class="nav nav-tabs">
-			  <li role="presentation" ><a href="#" id="linkInformationRejet">Information</a></li>
-			  <li role="presentation" class="active"><a href="#" id="linkJsonRejet">JSON</a></li>
-			  <li role="presentation"><a href="#" id="linkListRejet">Liste des données</a></li>
-			</ul>
-			<div class="panel panel-default">
-			  	<div class="panel-body">
-			  		<div id="divInformationRejet">
-			  			<ul class="list-group" id="listeInformationRejet">
-						    <li class="list-group-item"></li>
-						</ul>
-			  		</div>
-			  		<div id="divJsonRejet">
-			    		<textarea class="col-md-12 form-control" id="jsonrejet" rows="10"  readonly></textarea>
-			  		</div>
-			  		<div id="divListRejet" >
-			    		<table id="tableRejet" class="table table-striped table-bordered table-hover directoryTable">
-				    		<thead id="tableHeadRejet">
-					    	</thead>
-					    	<tbody class="directoryLines" id="tableBodyRejet">
-					    	</tbody>
-						</table>
-			  		</div>
-			  	</div>
 			</div>
-		</div>
 
-		<div class="col-md-12">
-			<label>Mapping :</label>
-			<ul class="nav nav-tabs">
-			  <li role="presentation" class="active"><a href="#">JSON</a></li>
-			</ul>
-			<div class="panel panel-default">
-			  	<div class="panel-body">
-			  		<div id="divJsonMapping">
-			    		<textarea class="col-md-12 form-control" id="jsonmapping" rows="10" ></textarea>
-			  		</div>
-			  	</div>
+			<div class="col-xs-12 col-sm-4">
+				<label>Mapping :</label>
+				<ul class="nav nav-tabs">
+				  <li role="presentation" class="active"><a href="#">JSON</a></li>
+				</ul>
+				<div class="panel panel-default">
+				  	<div class="panel-body">
+				  		<div id="divJsonMapping" class="panel-scroll height-230">
+				  			<input type="hidden" id="jsonmapping" value="">
+				    		<div class="col-md-12" id="divjsonmapping"></div>
+				  		</div>
+				  	</div>
+				</div>
 			</div>
-		</div>
-		<div class="col-md-5 col-md-offset-5">
-			<a href="#" class="btn btn-primary col-md-3" type="submit" id="sumitImport">Import</a>
+			<div class="col-md-5 col-md-offset-5">
+				<a href="#" class="btn btn-primary col-md-3" type="submit" id="sumitImport">Import</a>
+			</div>
 		</div>
 	</div>
-
-	
 </div>
-<link rel="stylesheet" href="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/vendor/codemirror/codemirror.css'; ?>">
-<script src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/vendor/codemirror/codemirror.js'; ?>"></script>
+
 <script type="text/javascript">
 jQuery(document).ready(function() 
 {
-	//resetDirectoryTable() ;
 	bindMappingEvents();
-
-	mappingCodeMiror =  useCodeMirror("jsonmapping");
-	importCodeMiror = useCodeMirror("jsonimport");
-	rejetCodeMiror = useCodeMirror("jsonrejet");
-
-	/*$('#jsonmapping').data('CodeMirrorInstance', useCodeMirror("jsonmapping"));
-	$('#jsonimport').data('CodeMirrorInstance', useCodeMirror("jsonimport"));
-	$('#jsonrejet').data('CodeMirrorInstance', useCodeMirror("jsonrejet"));*/
-	
-	
-
 
 	$("#divChooseMapping").hide();
 	$("#visualisationGlobal").hide();
@@ -312,6 +343,7 @@ jQuery(document).ready(function()
 	  		ligne = '<tr id="lineMapping'+nbligne+'"> ';
 	  		ligne =	 ligne + '<td id="valueheadCSVMapping'+nbligne+'">' + $("#selectHeadCSV option:selected").text() + '</td>';
 	  		ligne =	 ligne + '<td id="labelMapping'+nbligne+'">' + $("#textMapping").val() + '</td>';
+	  		ligne =	 ligne + '<td id="typeMapping'+nbligne+'">' + $("#typeMapping").val() + '</td>';
 	  		ligne =	 ligne + '<td><input type="hidden" id="keyheadCSVMapping'+nbligne+'" value="'+$("#selectHeadCSV").val()+'">';
 	  		ligne =	 ligne + '<a href="#" class="deleteLineMapping btn btn-primary">X</a></td></tr>';
 	  		$("#nbligne").val(nbligne);
@@ -334,20 +366,44 @@ jQuery(document).ready(function()
 
 	$("#sumitMapping").off().on('click', function()
   	{
+  		
+
+		/*$.blockUI({
+		message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
+		           '<blockquote>'+
+		             '<p>la Liberté est la reconnaissance de la nécessité.</p>'+
+		             '<cite title="Hegel">Hegel</cite>'+
+		           '</blockquote> '
+		});*/
+
+
   		var tabmapping = [];
   		var tabIDmapping = [];
+  		var tabTypeMapping = [];
   		nbligne = $("#nbligne").val();
   		for (i = 0; i < nbligne; i++) 
   		{
   			tabmapping[i] = $("#labelMapping"+(i+1)).text();
   			tabIDmapping[i] = $("#keyheadCSVMapping"+(i+1)).val();
+  			tabTypeMapping[i] = $("#typeMapping"+(i+1)).text();
 		}
 
 		if(tabmapping != "")
   		{
 	  		$.ajax({
 		        type: 'POST',
-		        data: {tabidmapping : tabIDmapping, mappingSelected : $("#mappingSelected").val(), chooseSelected : $("#chooseSelected").val(), separateur : $("#separateurMapping").val(), nameFile : $("#nameFile").val(), source : $("#source").val(), url : $("#url").val(), tabmapping : tabmapping, tabCSV : $("#tabCSV").val(), lien : $('#lien').val()},
+		        data: {tabidmapping : tabIDmapping, 
+		        		mappingSelected : $("#mappingSelected").val(), 
+		        		chooseSelected : $("#chooseSelected").val(), 
+		        		separateur : $("#separateurMapping").val(), 
+		        		nameFile : $("#nameFile").val(), 
+		        		source : $("#source").val(), 
+		        		url : $("#url").val(), 
+		        		tabmapping : tabmapping, 
+		        		tabCSV : $("#tabCSV").val(), 
+		        		lien : $('#lien').val(),
+		        		subfile : $('#subfile').val(),
+		        		tabTypeMapping : tabTypeMapping},
 		        url: baseUrl+'/tools/traitermapping/',
 		        dataType : 'json',
 		        success: function(data)
@@ -362,15 +418,16 @@ jQuery(document).ready(function()
 					{
 						$("#visualisationGlobal").show();
 						
-						$("#jsonimport").html(data.jsonimport);
-						$("#jsonmapping").html(data.jsonmapping);
-						$("#jsonrejet").html(data.jsonrejet);
+						$("#jsonmapping").val(data.jsonmapping);
+						$("#jsonimport").val(data.jsonimport);
+						$("#jsonrejet").val(data.jsonrejet);
 
-
-
-						changeCode(mappingCodeMiror, data.jsonmapping);
-						changeCode(importCodeMiror, data.jsonimport) ;
-						changeCode(rejetCodeMiror, data.jsonrejet);
+						$("#divjsonmapping").JSONView(data.jsonmapping);
+		      			$('#divjsonmapping').JSONView('toggle', 1);
+		      			$("#divjsonimport").JSONView(data.jsonimport);
+		      			$('#divjsonimport').JSONView('toggle', 1);	
+		      			$("#divjsonrejet").JSONView(data.jsonrejet);
+		      			$('#divjsonrejet').JSONView('toggle', 1);	
 						
 						$("#listeInformationImport").html('<li class="list-group-item">'+ data.nbcommunemodif +' communes mis à jours</li>');
 						$("#listeInformationImport").append('<li class="list-group-item">'+ data.nbinfoparcommune +' informations seront ajouté par communes</li>');
@@ -422,6 +479,7 @@ jQuery(document).ready(function()
 
 						resetDirectoryTable() ;
 		       		}
+		       		//$.unblockUI();
 		       	}
 		    });
 
@@ -431,15 +489,17 @@ jQuery(document).ready(function()
 		{
 			toastr.error("Vous devez ajouter des éléments au mapping.");
 		}
+
 		
   		return false;
+
   	});
 
 
 	$('#formfile').submit(function() 
 	{
 	    if($("#fileimport").val() == "")
-	   	{
+	    {
 	   		toastr.error("Vous devez sélectionner un fichier.");
 	   		return false;
 	   	}
@@ -460,9 +520,20 @@ jQuery(document).ready(function()
 
   	$("#sumitImport").off().on('click', function()
   	{
+  		/*$.blockUI({
+		message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
+  	            '<blockquote>'+
+  	              "<p>Rien n'est plus proche du vrai que le faux</p>"+
+  	              '<cite title="Einstein">Einstein</cite>'+
+  	            '</blockquote> '
+		});*/
   		$.ajax({
 	        type: 'POST',
-	        data: {jsonrejet : $('#jsonrejet').val(), mappingSelected : $("#mappingSelected").val(), chooseSelected : $("#chooseSelected").val(), jsonimport : $('#jsonimport').val(), jsonmapping : $('#jsonmapping').val()},
+	        data: {jsonrejet : $('#jsonrejet').val(), 
+			        mappingSelected : $("#mappingSelected").val(), 
+			        chooseSelected : $("#chooseSelected").val(), 
+			        jsonimport : $('#jsonimport').val(), 
+			        jsonmapping : $('#jsonmapping').val()},
 	        url: baseUrl+'/tools/importmongo/',
 	        dataType : 'json',
 	        success: function(data)
@@ -471,9 +542,56 @@ jQuery(document).ready(function()
 	            if(data.result)
 	              	toastr.success("Les données ont été ajouté.");
 	            else
-	                toastr.error("Erreur"); 
+	                toastr.error("Erreur");
+	           // $.unblockUI();
 	        }
 	    });
+  	}); 
+});	
+
+var directoryTable = null;
+function resetDirectoryTable() 
+{ 
+	console.log("resetDirectoryTable");
+
+	if( !$('.directoryTable').hasClass("dataTable") )
+	{
+		directoryTable = $('.directoryTable').dataTable({
+			"aoColumnDefs" : [{
+				"aTargets" : [0]
+			}],
+			"oLanguage" : {
+				"sLengthMenu" : "Show _MENU_ Rows",
+				"sSearch" : "",
+				"oPaginate" : {
+					"sPrevious" : "",
+					"sNext" : ""
+				}
+			},
+			"aaSorting" : [[1, 'asc']],
+			"aLengthMenu" : [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"] ],
+			"iDisplayLength" : 10,
+			"destroy": true
+		});
+	} 
+	else 
+	{
+		if( $(".directoryLines").children('tr').length > 0 )
+		{
+			directoryTable.dataTable().fnDestroy();
+			directoryTable.dataTable().fnDraw();
+		} else {
+			console.log(" directoryTable fnClearTable");
+			directoryTable.dataTable().fnClearTable();
+		}
+	}
+}
+
+function bindMappingEvents()
+{
+	$(".deleteLineMapping").off().on('click', function()
+  	{
+  		$(this).parent().parent().remove();
   	});
 
 	$("#linkJsonImport").off().on('click', function()
@@ -536,80 +654,5 @@ jQuery(document).ready(function()
   		$("#linkListRejet").parent().attr('class', 'active');
   	});
 
- 
-});	
-
-var directoryTable = null;
-function resetDirectoryTable() 
-{ 
-	console.log("resetDirectoryTable");
-
-	if( !$('.directoryTable').hasClass("dataTable") )
-	{
-		directoryTable = $('.directoryTable').dataTable({
-			"aoColumnDefs" : [{
-				"aTargets" : [0]
-			}],
-			"oLanguage" : {
-				"sLengthMenu" : "Show _MENU_ Rows",
-				"sSearch" : "",
-				"oPaginate" : {
-					"sPrevious" : "",
-					"sNext" : ""
-				}
-			},
-			"aaSorting" : [[1, 'asc']],
-			"aLengthMenu" : [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"] ],
-			"iDisplayLength" : 10,
-			"destroy": true
-		});
-	} 
-	else 
-	{
-		if( $(".directoryLines").children('tr').length > 0 )
-		{
-			directoryTable.dataTable().fnDestroy();
-			directoryTable.dataTable().fnDraw();
-		} else {
-			console.log(" directoryTable fnClearTable");
-			directoryTable.dataTable().fnClearTable();
-		}
-	}
 }
-
-function bindMappingEvents()
-{
-	$(".deleteLineMapping").off().on('click', function()
-  	{
-  		$(this).parent().parent().remove();
-  	});
-}
-
-
-
-
-
-	function useCodeMirror(element) 
-{ 
-	editor = CodeMirror.fromTextArea(document.getElementById(element), {
-						    lineNumbers: true,
-						    mode:  {name: "javascript", json: true}
-						  });
-
-	return editor;
-}
-
-function changeCode(editor, text) 
-{
-  // editor = document.getElementById(element);
-
-   editor.setValue(text);
-   editor.getDoc().clearHistory();
-}
-
-/*var textArea = document.getElementById('myScript');
-var editor = CodeMirror.fromTextArea(textArea);
-editor.getDoc().setValue('var msg = "Hi";');
-*/
-
 </script>
