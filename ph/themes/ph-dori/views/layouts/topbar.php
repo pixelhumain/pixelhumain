@@ -30,7 +30,7 @@
 	ol{ padding-left:0; list-style-position:inside; }
 </style>
 
-<header class="top-navbar collapse_list">
+<header class="top-navbar collapse_list " >
 
 	<div class="navbar-logo collapse_wrap">
 		<?php 
@@ -94,7 +94,6 @@
 	<ul class="navbar-menu">
 
 		<li class="collapse_wrap topBtn">
-			
 			<div class="trigger collapse_trigger" title="TAGS" onclick='openSlideBar("tags")'>
 				<i class="fa fa-tags"></i>
 				<span class="tags-count notifcation-counter badge badge-warning animated bounceIn"></span>
@@ -102,14 +101,10 @@
 		</li>
 
 		<li class="collapse_wrap topBtn">
-			
 			<div class="trigger collapse_trigger" title="TERRITORIES"  onclick='openSlideBar("scope")'>
 				<i class="fa fa-circle-o"></i>
 				<span class="scopes-count notifcation-counter badge badge-warning animated bounceIn"></span>
 			</div>
-
-			
-
 		</li>
 
 		<li class="collapse_wrap">
@@ -124,10 +119,19 @@
 			</form>
 			-->
 		</li>
+		
 		<li class="collapse_wrap">
 			<div class="trigger collapse_trigger">
 				<a href="javascript:;" onclick="openViewer()">
 					<i class="fa fa-share-alt"></i>
+				</a>
+			</div>
+		</li>
+
+		<li class="collapse_wrap">
+			<div class="trigger collapse_trigger">
+				<a href="javascript:;" onclick="openSubView('Directory View', '/communecter/default/directory<?php echo (isset(Yii::app()->controller->id)) ? "/type/".Yii::app()->controller->id : ""; ?><?php echo (isset($_GET['id'])) ? "/id/".$_GET['id'] : ""; ?>', null)">
+					<i class="fa fa-align-justify"></i>
 				</a>
 			</div>
 		</li>

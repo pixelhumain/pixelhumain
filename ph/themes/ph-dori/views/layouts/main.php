@@ -7,17 +7,10 @@
 	<!--<![endif]-->
 	<!-- start: HEAD -->
 	<head>
-		<title><?php echo ($this->pageTitle) ? CHtml::encode($this->pageTitle) : "set a pageTitle"; ?></title>
-		<meta charset="utf-8" />
-		<!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		
-		<meta content="<?php echo ($this->keywords) ? CHtml::encode($this->keywords):""; ?>" name="keywords" />
-		<meta content="<?php echo ($this->description) ? CHtml::encode($this->description):""; ?>" name="description" />
-		<meta content="Human Pixel Community" name="author" />
-
+		<?php 
+		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+		$this->renderPartial($layoutPath.'metas');?>
 		<!-- end: META -->
 		<!-- start: MAIN CSS -->
 		<?php 
@@ -25,7 +18,7 @@
 		$isMobile = $detect->isMobile();
 		$cs = Yii::app()->getClientScript();
 		$themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
-		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+		
 		//$cs->registerCssFile('http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,200,100,800');
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap/css/bootstrap.min.css');
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/font-awesome/css/font-awesome.min.css');
@@ -91,20 +84,22 @@
 	</head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
-	<body>
+	<body class="">
 		<?php $this->renderPartial($layoutPath.'topSlidingBar');?>
 		<div class="main-wrapper">
-			<?php $this->renderPartial($layoutPath.'topbar');?>
 			<?php 
+			$this->renderPartial($layoutPath.'topbar');
+
 			$sidemenuL = $layoutPath.'sideMenuL';
 			$this->renderPartial($sidemenuL);
+			
+			$this->renderPartial($layoutPath.'sideMenuR');
 			?>
-			<?php $this->renderPartial($layoutPath.'sideMenuR');?>
 
 			<!-- start: MAIN CONTAINER -->
-			<div class="main-container inner">
+			<div class="main-container inner <?php echo (isset(Yii::app()->session['user']['bg'])) ? Yii::app()->session['user']['bg'] : "bgcity"?> ">
 				<!-- start: PAGE -->
-				<div class="main-content">
+				<div class="main-content ">
 					<!-- start: PANEL CONFIGURATION MODAL FORM -->
 					<div class="modal fade" id="panel-config" tabindex="-1" role="dialog" aria-hidden="true">
 						<div class="modal-dialog">
@@ -133,22 +128,23 @@
 					</div>
 					<!-- /.modal -->
 					<!-- end: SPANEL CONFIGURATION MODAL FORM -->
-					<div class="container">
+					<div class="container ">
 						<!-- start: PAGE HEADER -->
 						<?php 
-						$path = '.views.layouts.toolbar';
-						if($isMobile) { 
-						    $path = '.views.layouts.toolbarMobile'; 
-						} 
-						$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);
-						//<!-- end: PAGE HEADER -->
-						
-						if(!count($this->sidebar2 ))
-							echo '<div class="space20"></div> ';
-						//$this->renderPartial($layoutPath.'breadcrumb');?>
+							$path = '.views.layouts.toolbar';
+							if($isMobile) { 
+							    $path = '.views.layouts.toolbarMobile'; 
+							} 
+							$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);
+							//<!-- end: PAGE HEADER -->
+							
+							if(!count($this->sidebar2 ))
+								echo '<div class="space20"></div> ';
+							//$this->renderPartial($layoutPath.'breadcrumb');
+						?>
 						
 						<!-- start: PAGE CONTENT -->
-						<div class="row page_content_wrap">
+						<div class="row page_content_wrap ">
 							<span class="page_navigation_bg col-md-3 hidden-xs hidden-sm <?php echo (count($this->sidebar2 )) ? "" : "hide" ?>"></span>
 							<!-- start: MODULE  MENU -->
 							<div class="<?php echo (count($this->sidebar2 )) ? "col-md-3" : "hide" ?>">

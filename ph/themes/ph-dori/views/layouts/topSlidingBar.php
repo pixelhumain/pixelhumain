@@ -41,19 +41,6 @@
 						<li>
 							<a href="#"><img alt="" src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/image01_th.jpg"></a>
 						</li>
-						<li>
-							<a href="#"><img alt="" src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/image02_th.jpg"></a>
-						</li>
-						<li>
-							<a href="#"><img alt="" src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/image03_th.jpg"></a>
-						</li>
-						<li>
-							<a href="#"><img alt="" src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/image04_th.jpg"></a>
-						</li>
-						<li>
-							<a href="#"><img alt="" src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/image05_th.jpg"></a>
-						</li>
-						
 					</ul>
 					<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/gallery"); ?>" class="btn btn-transparent-white"> My Gallery</a>
 				</div>
@@ -70,6 +57,8 @@
 				<a class="btn btn-transparent-white" href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/logout"); ?>">
 					<i class="fa fa-power-off "></i> Logout
 				</a>
+				 
+				
 			</div>
 			<!-- end: SLIDING BAR THIRD COLUMN -->
 		</div>
@@ -82,7 +71,9 @@
 		</div>
 	</div>
 </div>
-<script>
+<script type="text/javascript">
+	
+
 	$(".optionTopButton").on("click", function(){
 		var pathtab = window.location.href.split("#");
 		if(typeof(force)!= "undefined"){
@@ -104,7 +95,8 @@
 	jQuery(document).ready(function() {
 		getNotificationSlidingBar();
 	})
-
+	
+	
 	function getNotificationSlidingBar(){
 		var data = {"id" : '<?php echo Yii::app()->session["userId"] ?>'};
 		$.ajax({
