@@ -163,7 +163,19 @@
 			</a>
 		</li>
 	</ul>
-	<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/default/about")?>"><img  style="float:right;margin:13px; height:35px;" src="<?php echo ($this->module) ? $this->module->assetsUrl."/images/logoSMclean.png" : Yii::app()->baseUrl."/images/logo/byPH.png" ?>"/></a> 
+	<li class="dropdown pull-right">
+		<a href="#" data-close-others="true" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+			<img  style="float:right;margin:13px; height:35px;" src="<?php echo ($this->module) ? $this->module->assetsUrl."/images/logoSMclean.png" : Yii::app()->baseUrl."/images/logo/byPH.png" ?>"/>
+		</a>
+		<ul class="dropdown-menu">
+			 <?php 
+	          foreach( Menu::$infoMenu as $item )
+	          {
+	              Menu::buildLi2( $item );
+	          }
+	          ?>
+		</ul>
+	</li>
 </header>
 <!-- end: TOP NAVIGATION MENU -->
 
