@@ -37,11 +37,6 @@
 			<div class="col-md-4 col-sm-4">
 				<h2>My Recent Images</h2>
 				<div class="blog-photo-stream margin-bottom-30">
-					<ul class="list-unstyled">
-						<li>
-							<a href="#"><img alt="" src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/image01_th.jpg"></a>
-						</li>
-					</ul>
 					<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/gallery"); ?>" class="btn btn-transparent-white"> My Gallery</a>
 				</div>
 			</div>
