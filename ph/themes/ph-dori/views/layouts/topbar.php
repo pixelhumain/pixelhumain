@@ -395,16 +395,31 @@
 			popinInfo("Network Graph Feature Unavailable", "This context hasn't been prepared to be viewed as a graph.");
 	}
 	
+	var activeFilters = [];
 	function bindTagEvents () { 
-		$(".btn-tag").off().on("click",function(){
-			if(!$(this).hasClass("active")){
-				toastr.error("TODO : add to active tags : "+$(this).data("id"));
+		$(".btn-my-tag, .btn-context-tag").off().on("click",function(){
+			if(!$(this).hasClass("active"))
 				$(this).addClass("active");
-			} else {
-				toastr.error("TODO : add to active tags : "+$(this).data("id"));
+			else 
 				$(this).removeClass("active");
+
+			if(applyTagFilter && $.isFunction(applyTagFilter) ){
+				count = applyTagFilter();
+				$('.slidingbarTitle2Count').html('( '+count+' items found )');
 			}
 		});
+		$(".btn-my-scope,.btn-context-scope").off().on("click",function(){
+			if(!$(this).hasClass("active"))
+				$(this).addClass("active");
+			else 
+				$(this).removeClass("active");
+
+			if(applyScopeFilter && $.isFunction(applyScopeFilter) ){
+				count = applyScopeFilter();
+				$('.slidingbarTitleScopeCount').html('( '+count+' items found )');
+			}
+		});
+		
 		// ---------- SCOPES ------------
 		$('.addScopeBtn, .addTagBtn').off().on("click",function(e){
 			toastr.info('TODO : show add Scope Form!');
@@ -412,42 +427,62 @@
 	}
 
 	var openSlideBarType = null;
-	function  buildTagSlideBar (json) { 
+	function  buildTagSlideBar (json) 
+	{ 
 		openSlideBarType = "tags"; 
+		btnHTML = " <a href='#' class='addTagBtn btn btn-light-orange btn-xs'><i class='fa fa-plus'></i></a> ";
+		$(".slidingbarTitle").html('<i class="fa fa-tags text-azure"></i> All your tags '+btnHTML);
+
+		//Gather and activate personnal tags
 		if ( debug || ( window.localStorage && typeof localStorage!='undefined' && !localStorage.myTags ) ) 
 		{
 			if(json.result && json.tags.length )
 			{
-				strHTML = "";
 				localStorage.myTagsCount = json.tags.length;
-
-				$.each(json.tags, function(i,v) { 
-					active = (json.activeTags && inArray(v, json.activeTags)) ? "active" : "";
-					strHTML += '<li><span class="btn btn-md btn-tag '+active+'" data-id="'+v+'">'+
-									'<a href="#" class="del fa fa-times"></a> <i class="fa fa-tag"></i>'+
-									v+
-								'</span></li>';
-				});
-				strHTML += "<a href='#'  class='addTagBtn btn btn-light-orange'><i class='fa fa-plus'></i></a> ";
+				var strHTML = buildTagListHTML (json.tags, json.activeTags, "btn-my-tag" );
 				localStorage.myTags = strHTML;
 
 				$(".slidingbarList").html( localStorage.myTags );
 				$(".tags-count").html(localStorage.myTagsCount);
-				bindTagEvents ();
 			} else {
 				$(".slidingbarList").html("you don't have any tags, simply add some <a href='#'  class='addTagBtn btn btn-orange btn-xs'><i class='fa fa-plus'></i></a> ");
 			}
-		} else{
+		} else {
 			console.log("localStorage.myTags exists ");
 			$(".slidingbarList").html(localStorage.myTags);
 			$(".tags-count").html(localStorage.myTagsCount);
-			bindTagEvents ();
 		}
 
+		//ADD context Tags
+		if( contextMap.tags && contextMap.tags.length )
+		{
+			$(".slidingbarList").append( '<div class="space1"><li><h1 class="h1 slidingbarTitle2"><i class="fa fa-tags text-azure"></i> Context tags <span class="slidingbarTitle2Count"></span></h1></li><div class="space1">' );
+			strHTML = buildTagListHTML ( contextMap.tags, null,"btn-context-tag");
+			$(".slidingbarList").append( strHTML );
+		}
+
+		bindTagEvents ();
 	}
+
+	function buildTagListHTML (tagsArray,activeTags,classBtn,type) 
+	{ 
+		var strHTML = "";
+		var classBtn = (classBtn) ? classBtn : "" ;
+		$.each( tagsArray , function( k , v ) { 
+			var active = (activeTags && inArray(v, activeTags)) ? "active" : "";
+			if(!type)
+				type = k;
+			var metas = (openSlideBarType == "scope" ) ? ' data-val="'+v+'" data-type="'+type+'" ' : ' data-id="'+v+'" ';
+			var lbl = (openSlideBarType == "scope" ) ? type+":"+v : v;
+			strHTML += '<li><span class="btn btn-xs btn-tag '+classBtn+' '+active+'" '+metas+'><a href="#" class="del fa fa-times"></a> <i class="fa fa-tag"></i> '+lbl+'</span></li>';
+		});
+		return strHTML;
+	}
+
 	function buildScopeSlideBar (json) {
 		openSlideBarType = "scope"; 
-		$(".slidingbarTitle").html('<i class="fa fa-circle-o text-azure"></i> Tous vos térritoires : Géographique, Administratif, Organisations');
+		btnHTML = "<a href='#'  class='addTagBtn btn btn-xs btn-orange'><i class='fa fa-plus'></i></a> ";
+		$(".slidingbarTitle").html('<i class="fa fa-circle-o text-azure"></i> Tous vos térritoires : Géographique, Administratif, Organisations '+btnHTML);
 		if ( ( window.localStorage && typeof localStorage!='undefined' && !localStorage.myScope ) ) 
 		{	
 			console.log("rebuild localStorage.myScope");
@@ -455,26 +490,16 @@
 			console.dir( json );
 			if(json.result && Object.keys(json.scopes).length  )
 			{
-				strHTML = "";
+				var strHTML = "";
 				localStorage.myScopeCount = Object.keys(json.scopes).length;
 				if( Object.keys(json.scopes).length )
 				{
-					$.each(json.scopes, function(k,v) 
-					{ 
-						console.log( k, v );
-						active = (json.activeScopes && inArray(v, json.activeScopes)) ? "active" : "";
-						strHTML +=  '<li><span class="btn btn-md btn-tag '+active+'" data-val="'+v+'" data-type="'+k+'">'+
-										'<a href="#" class="del fa fa-times"></a> <i class="fa fa-tag"></i>'+
-										k+" : "+v+
-									'</span></li>';
-					});
-					strHTML += "<a href='#'  class='addTagBtn btn btn-orange'><i class='fa fa-plus'></i></a> ";
+					var strHTML = buildTagListHTML ( json.scopes , json.activeScopes, "btn-my-scope" );
 					localStorage.myScope = strHTML;
 				}
 
 				$(".slidingbarList").html( localStorage.myScope );
 				$(".scopes-count").html(localStorage.myScopeCount);
-				bindTagEvents ();
 			} else {
 				$(".slidingbarList").html("you don't have any scopes, simply add some <a href='#' class='addScopeBtn btn btn-orange'> <i class='fa fa-plus '></i> </a> ");
 			}
@@ -482,14 +507,35 @@
 		else{
 			console.log("localStorage.myScope exists ");
 			$(".slidingbarList").html(localStorage.myScope);
-			bindTagEvents ();
 		}
+
+		//ADD context Tags
+		if( contextMap.scopes && ( contextMap.scopes.codeInsee.length ||contextMap.scopes.codePostal.length ||contextMap.scopes.region.length) )
+		{
+			strHTML = "";
+			if(contextMap.scopes.codeInsee.length)
+			{
+				$(".slidingbarList").append( '<div class="space1"><li><h1 class="h1 slidingbarTitleScope"><i class="fa fa-circle-o text-azure"></i> Context Scopes Insee <span class="slidingbarTitleScopeCount"></span></h1></li><div class="space1">' );
+				strHTML += buildTagListHTML ( contextMap.scopes.codeInsee , null,"btn-context-scope","codeInsee");
+			}
+			if(contextMap.scopes.codePostal.length)
+			{
+				$(".slidingbarList").append( '<div class="space1"><li><h1 class="h1 "><i class="fa fa-circle-o text-azure"></i> Context Scopes Postal <span class=""></span></h1></li><div class="space1">' );
+				strHTML += buildTagListHTML ( contextMap.scopes.codePostal , null,"btn-context-scope","codePostal");
+			}
+			if(contextMap.scopes.region.length)
+			{
+				$(".slidingbarList").append( '<div class="space1"><li><h1 class="h1 "><i class="fa fa-circle-o text-azure"></i> Context Scopes Region <span class=""></span></h1></li><div class="space1">' );
+				strHTML += buildTagListHTML ( contextMap.scopes.region , null,"btn-context-scope","region");
+			}
+			$(".slidingbarList").append( strHTML );
+		}
+		bindTagEvents ();
 	}
 	function openSlideBar(type)
 	{
 		console.log("openSlideBar",type);
 		$(".slidingbar").slideDown();
-		$(".slidingbarTitle").html('<i class="fa fa-tags text-azure"></i> Tous vos tags');
 		if ( debug || ( window.localStorage && typeof localStorage!='undefined' && !localStorage.myData ) ) 
 		{	
 			$(".slidingbarList").html("<i class='fa fa-circle-o-notch fa-spin fa-3x'></i>");
@@ -512,13 +558,11 @@
 				buildScopeSlideBar (json);
 		}
 	}
+
 	function closeSlideBar() {  
 		console.log("closeSlideBar",openSlideBarType);
 		$(".topBtn").removeClass("open active");
 		openSlideBarType = null;
 	}
-	function toggleTag(val)
-	{ 
-		toastr.success('success!'+val);
-	}
+
 </script>	
