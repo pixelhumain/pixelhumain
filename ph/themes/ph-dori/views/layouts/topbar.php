@@ -514,20 +514,16 @@
 		{
 			strHTML = "";
 			if(contextMap.scopes.codeInsee.length)
-			{
-				$(".slidingbarList").append( '<div class="space1"><li><h1 class="h1 slidingbarTitleScope"><i class="fa fa-circle-o text-azure"></i> Context Scopes Insee <span class="slidingbarTitleScopeCount"></span></h1></li><div class="space1">' );
 				strHTML += buildTagListHTML ( contextMap.scopes.codeInsee , null,"btn-context-scope","codeInsee");
-			}
+			
 			if(contextMap.scopes.codePostal.length)
-			{
-				$(".slidingbarList").append( '<div class="space1"><li><h1 class="h1 "><i class="fa fa-circle-o text-azure"></i> Context Scopes Postal <span class=""></span></h1></li><div class="space1">' );
 				strHTML += buildTagListHTML ( contextMap.scopes.codePostal , null,"btn-context-scope","codePostal");
-			}
+			
 			if(contextMap.scopes.region.length)
-			{
-				$(".slidingbarList").append( '<div class="space1"><li><h1 class="h1 "><i class="fa fa-circle-o text-azure"></i> Context Scopes Region <span class=""></span></h1></li><div class="space1">' );
 				strHTML += buildTagListHTML ( contextMap.scopes.region , null,"btn-context-scope","region");
-			}
+			
+			if(strHTML != "")
+				$(".slidingbarList").append( '<div class="space1"><li><h1 class="h1 slidingbarTitleScope"><i class="fa fa-circle-o text-azure"></i> Context Scopes <span class="slidingbarTitleScopeCount"></span></h1></li><div class="space1">' );
 			$(".slidingbarList").append( strHTML );
 		}
 		bindTagEvents ();
