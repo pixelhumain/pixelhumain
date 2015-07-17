@@ -3,7 +3,7 @@
 	<div class="footer-inner">
 		<div class="pull-left">
 
-			2012 - 2015 <?php echo (isset($this->projectImage)) ? '<img height="30" style="margin-right:20px;" src="'.$this->module->assetsUrl.$this->projectImage.'"/>' : "<i class='fa fa-close'></i>";
+			<?php echo (isset($this->projectImage)) ? '<img height="30" style="margin-right:20px;" src="'.$this->module->assetsUrl.$this->projectImage.'"/>' : "<i class='fa fa-close'></i>";
 			 
 			$platform = "";
 			$logoColor = "";

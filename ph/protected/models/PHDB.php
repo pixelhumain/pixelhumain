@@ -20,7 +20,7 @@ class PHDB
     }
 
     public static function findAndSort( $collection, $where=array(), $sortCriteria, $limit=0, $fields=null)
-    {       
+    {  
         if (!self::checkMongoDbPhpDriverInstalled()) return null;
           if ($fields) {
             $res = Yii::app()->mongodb->selectCollection($collection)->find($where, $fields)->sort($sortCriteria);

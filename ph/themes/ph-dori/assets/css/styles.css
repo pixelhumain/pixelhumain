@@ -1374,6 +1374,9 @@ footer {
 .text-extra-large {
   font-size: 18px !important; }
 
+.text-xxl {
+  font-size: 40px !important; }
+
 h1.text-extra-large {
   font-size: 50px !important; }
 
@@ -2950,9 +2953,15 @@ body.login {
   background-image: url("../images/water.jpg");
   background-color: transparent;
 }
-.bgblack {
+.bgdark {
   background-image: none;
   background-color: #2a3945; }
+.bgblack {
+  background-image: none;
+  background-color: black; }
+.bggrey {
+  background-image: none;
+  background-color: #dddddd; }
 .bgblue {
   background-image: none;
   background-color: #22B8EA; }
@@ -2962,6 +2971,11 @@ body.login {
 .bgred {
   background-image: none;
   background-color: #E33551; }
+.bgyellow {
+  background-image: none;
+  background-color: #F6E200; }
+
+
 
 body.login .main-login {
   margin-top: 60px;

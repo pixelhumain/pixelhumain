@@ -1,3 +1,8 @@
+<?php
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquery.jsonview.js' , CClientScript::POS_END);
+$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquery.jsonview.css');
+?>
 <div class="col-md-12">
 	<form id="formfile" method="POST" action="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/tools/importjson/';?>" enctype="multipart/form-data">
 		<input type="hidden" id="result" value="<?php echo $result ; ?>"/>
@@ -97,7 +102,7 @@
 				    		</thead>
 					    	<tbody class="directoryLines" id="bodyCreateMapping">
 					    		<tr id="LineAddMapping">
-					    			<td>
+					    			<td class="col-md-4" >
 					    				<input type="hidden" id="nbligne" value="0"/>
 					    				<select id="selectHeadCSV">';
 					    				if(isset($arbre))
@@ -109,8 +114,8 @@
 										}
 	echo '								</select>
 					    			</td>
-					    			<td><input type="text" id="textMapping" value=""/></td>
-					    			<td><input type="submit" id="addMapping" class="btn btn-primary" value="Ajouter"/>
+					    			<td class="col-md-4" ><input type="text" id="textMapping" value="" class="col-md-12" /></td>
+					    			<td class="col-md-4" ><input type="submit" id="addMapping" class="btn btn-primary" value="Ajouter"/>
 					    		</tr>';
 	echo '  				</tbody>
 						</table>
@@ -135,7 +140,8 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div id="divJsonImport">
-						    <textarea class="col-md-12 form-control" id="jsonimport" rows="10"  readonly></textarea>
+						    <input type="hidden" id="jsonimport" value="">
+			    			<div class="col-md-12" id="divjsonimport"></div>
 						</div>
 					</div>
 				</div>
@@ -149,7 +155,8 @@
 			<div class="panel panel-default">
 			  	<div class="panel-body">
 			  		<div id="divJsonRejet">
-			    		<textarea class="col-md-12 form-control" id="jsonrejet" rows="10"  readonly></textarea>
+			    		<input type="hidden" id="jsonrejet" value="">
+			    		<div class="col-md-12" id="divjsonrejet"></div>
 			  		</div>
 			  	</div>
 			</div>
@@ -163,7 +170,8 @@
 			<div class="panel panel-default">
 			  	<div class="panel-body">
 			  		<div id="divJsonMapping">
-			    		<textarea class="col-md-12 form-control" id="jsonmapping" rows="10" ></textarea>
+			    		<input type="hidden" id="jsonmapping" value="">
+			    		<div class="col-md-12" id="divjsonmapping"></div>
 			  		</div>
 			  	</div>
 			</div>
@@ -174,17 +182,11 @@
 	</div>
 </div>
 
-<link rel="stylesheet" href="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/vendor/codemirror/codemirror.css'; ?>">
-<script src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/vendor/codemirror/codemirror.js'; ?>"></script>
 <script type="text/javascript">
 jQuery(document).ready(function() 
 {
 	
 	bindMappingEvents();
-
-	mappingCodeMiror =  useCodeMirror("jsonmapping");
-	importCodeMiror = useCodeMirror("jsonimport");
-	rejetCodeMiror = useCodeMirror("jsonrejet");
 
 	$("#json_origine").hide();
 	$("#divChooseMapping").hide();
@@ -275,19 +277,20 @@ jQuery(document).ready(function()
 					{
 						$("#visualisationGlobal").show();
 						
-						$("#jsonimport").html(data.jsonimport);
-						$("#jsonmapping").html(data.jsonmapping);
-						$("#jsonrejet").html(data.jsonrejet);
+						$("#jsonmapping").val(data.jsonmapping);
+						$("#jsonimport").val(data.jsonimport);
+						$("#jsonrejet").val(data.jsonrejet);
 
-						changeCode(mappingCodeMiror, data.jsonmapping);
-						changeCode(importCodeMiror, data.jsonimport) ;
-						changeCode(rejetCodeMiror, data.jsonrejet);
-
+						$("#divjsonmapping").JSONView(data.jsonmapping);
+		      			$('#divjsonmapping').JSONView('toggle', 1);
+		      			$("#divjsonimport").JSONView(data.jsonimport);
+		      			$('#divjsonimport').JSONView('toggle', 1);	
+		      			$("#divjsonrejet").JSONView(data.jsonrejet);
+		      			$('#divjsonrejet').JSONView('toggle', 1);
 						
 		       		}
 		       	}
 		    });
-
 			
 		}
 		else

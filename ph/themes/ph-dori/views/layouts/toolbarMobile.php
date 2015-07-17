@@ -69,76 +69,7 @@
 						
 					</ul>
 				</li>
-				<?php /*?>
-				<li class="dropdown">
-					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-						<i class="fa fa-eye fa-2x icon-big "></i> VIEW
-					</a>
-				</li>
-				*/?>
-				<li class="dropdown">
-					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-						<span class="messages-count badge badge-default hide">3</span> <i class="fa fa-envelope"></i> MESSAGES
-					</a>
-					<ul class="dropdown-menu dropdown-light dropdown-messages">
-						<li>
-							<span class="dropdown-header"> You have 9 messages</span>
-						</li>
-						<li>
-							<div class="drop-down-wrapper ps-container">
-								<ul>
-									<li class="unread">
-										<a href="javascript:;" class="unread">
-											<div class="clearfix">
-												<div class="thread-image">
-													<img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/avatar-2.jpg" alt="">
-												</div>
-												<div class="thread-content">
-													<span class="author">Nicole Bell</span>
-													<span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula...</span>
-													<span class="time"> Just Now</span>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:;" class="unread">
-											<div class="clearfix">
-												<div class="thread-image">
-													<img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/avatar-3.jpg" alt="">
-												</div>
-												<div class="thread-content">
-													<span class="author">Steven Thompson</span>
-													<span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula...</span>
-													<span class="time">8 hrs</span>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:;">
-											<div class="clearfix">
-												<div class="thread-image">
-													<img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/avatar-5.jpg" alt="">
-												</div>
-												<div class="thread-content">
-													<span class="author">Kenneth Ross</span>
-													<span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula...</span>
-													<span class="time">14 hrs</span>
-												</div>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="view-all">
-							<a href="pages_messages.html">
-								See All
-							</a>
-						</li>
-					</ul>
-				</li>
+				
 				<?php 
 				if(isset($this->toolbarMenuMaps)){
 					?>

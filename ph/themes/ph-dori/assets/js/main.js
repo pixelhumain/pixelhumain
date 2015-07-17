@@ -243,24 +243,7 @@ var Main = function() {"use strict";
 		}
 
 	};
-	// function to activate the ToDo list, if present
-	var runToDoAction = function() {
-		if($(".todo-actions").length) {
-			$(".todo-actions > i").click(function() {
-				if($(this).hasClass("fa-square-o") || $(this).hasClass("icon-check-empty")) {
-
-					$(this).removeClass("fa-square-o").addClass("fa-check-square-o").parent().find("span").css({
-						opacity: .25
-					}).end().find(".todo-tools").hide().end().parent().find(".desc").css("text-decoration", "line-through");
-				} else {
-					$(this).removeClass("fa-check-square-o").addClass("fa-square-o").parent().find("span").css({
-						opacity: 1
-					}).end().find(".todo-tools").show().end().parent().find(".desc").css("text-decoration", "none");
-				}
-				return !1;
-			});
-		}
-	};
+	
 	//capture the user's attention with some animation
 	var runAnimatedElements = function() {
 		/*
@@ -288,33 +271,6 @@ var Main = function() {"use strict";
 		if($('.notifications-count').length) {
       notifCount();
 		}
-	};
-	//Search Box Function
-	var setSearchMenu = function() {
-		$('.menu-search > a').on('click', function(e) {
-			if($('.search-box').is(":hidden")) {
-				$('.search-box').css({
-					scale: 0.8,
-					opacity: 0,
-					display: 'block'
-				}).velocity({
-					scale: 1,
-					opacity: 1
-				}, 400, 'easeOutBack');
-			} else {
-				$('.search-box').velocity({
-					scale: 0.9,
-					opacity: 0
-				}, 400, 'easeInBack', function() {
-					$(this).hide();
-				});
-			}
-			e.preventDefault();
-
-		});
-		$('.menu-search').on('click', function(e) {
-			e.preventDefault();
-		});
 	};
 	//function to activate the Tooltips, if present
 	var runTooltips = function() {
@@ -397,6 +353,7 @@ var Main = function() {"use strict";
 			$(this).parents(".panel").fadeOut();
 			e.preventDefault();
 		});
+		
 		// panel refresh
 		$('body').on('click', '.panel-refresh', function(e) {
 			var el = $(this).parents(".panel");
@@ -655,6 +612,7 @@ var Main = function() {"use strict";
 		}
 	};
 	// function to activate moment#fromNow
+	//TODO : remove ???
 	var runTimeStamp = function() {
 		$(".timestamp").each(function() {
 			var startOfPeriod = moment($(this).attr("title"));
@@ -1375,10 +1333,8 @@ var Main = function() {"use strict";
 			runToggleSideBars();
 			runStyleSelector();
 			runElementsPosition();
-			runToDoAction();
 			runNavigationMenu();
 			runGoTop();
-			setSearchMenu();
 			runModuleTools();
 			runDropdownEnduring();
 			runTooltips();

@@ -97,7 +97,19 @@
 			?>
 
 			<!-- start: MAIN CONTAINER -->
-			<div class="main-container inner <?php echo (isset(Yii::app()->session['user']['bg'])) ? Yii::app()->session['user']['bg'] : "bgcity"?> ">
+			<?php 
+
+			$bgClass = "bggrey";
+			$bgStyle = "";
+			if( isset( Yii::app()->session['user']['bg'] ) ){
+				if( Yii::app()->session['user']['bg'] == "bgCustom" && isset(Yii::app()->session['user']['bgUrl']) ){
+					$bgStyle = "background-image: url('".Yii::app()->session['user']['bgUrl']."');";
+				}
+				else
+					$bgClass = Yii::app()->session['user']['bg'];
+			}
+			?>
+			<div class="main-container inner <?php echo $bgClass ?> " style="<?php echo $bgStyle ?>" >
 				<!-- start: PAGE -->
 				<div class="main-content ">
 					<!-- start: PANEL CONFIGURATION MODAL FORM -->
