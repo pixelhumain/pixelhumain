@@ -222,8 +222,6 @@ class timesheet{
 	* @return string $return Return an array of segment(s) for a period / level
 	*/	
 	private function calcul_timesheet($level_key, $segment){
-		//if($segment['tranche']== "month"){
-		//}
 		$baseYearMonth=$this->omega_base;
 		if($segment['start'][1] > ($this->omega_base + $this->omega_first)
 				|| $segment['end'][1] > ($this->omega_base + $this->omega_first) ) {
