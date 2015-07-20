@@ -2971,6 +2971,11 @@ body.login {
 .bgred {
   background-image: none;
   background-color: #E33551; }
+.bgyellow {
+  background-image: none;
+  background-color: #F6E200; }
+
+
 
 body.login .main-login {
   margin-top: 60px;
