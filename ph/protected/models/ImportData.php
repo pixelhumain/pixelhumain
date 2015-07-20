@@ -448,9 +448,12 @@ class ImportData
             }
 
             $params = array('result'=> true,
-                                    'jsonmapping'=>FileHelper::indent_json(json_encode($jsonMapping)),
-                                    "jsonimport"=>FileHelper::indent_json(json_encode($jsonimport)),
-                                    "jsonrejet"=>FileHelper::indent_json(json_encode($jsonrejet)),
+                                    'indentjsonmapping'=>FileHelper::indent_json(json_encode($jsonMapping)),
+                                    "indentjsonimport"=>FileHelper::indent_json(json_encode($jsonimport)),
+                                    "indentjsonrejet"=>FileHelper::indent_json(json_encode($jsonrejet)),
+                                    'jsonmapping'=>json_encode($jsonMapping),
+                                    "jsonimport"=>json_encode($jsonimport),
+                                    "jsonrejet"=>json_encode($jsonrejet),
                                     "tabCode"=>$arrayHeadCsv,
                                     "lien"=>$createMappingWithCSV['lien'],
                                     "arraymappingfields"=>$jsonMapping['fields'],

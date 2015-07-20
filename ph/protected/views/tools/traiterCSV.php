@@ -422,11 +422,11 @@ jQuery(document).ready(function()
 						$("#jsonimport").val(data.jsonimport);
 						$("#jsonrejet").val(data.jsonrejet);
 
-						$("#divjsonmapping").JSONView(data.jsonmapping);
+						$("#divjsonmapping").JSONView(data.indentjsonmapping);
 		      			$('#divjsonmapping').JSONView('toggle', 1);
-		      			$("#divjsonimport").JSONView(data.jsonimport);
+		      			$("#divjsonimport").JSONView(data.indentjsonimport);
 		      			$('#divjsonimport').JSONView('toggle', 1);	
-		      			$("#divjsonrejet").JSONView(data.jsonrejet);
+		      			$("#divjsonrejet").JSONView(data.indentjsonrejet);
 		      			$('#divjsonrejet').JSONView('toggle', 1);	
 						
 						$("#listeInformationImport").html('<li class="list-group-item">'+ data.nbcommunemodif +' communes mis à jours</li>');

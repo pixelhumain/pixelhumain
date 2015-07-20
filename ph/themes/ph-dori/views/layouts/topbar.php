@@ -61,7 +61,6 @@
 		</h1>
 
 		<div class="inner collapse_box">
-
 			<span class="trigger collapse_trigger">
 				<i class="fa fa-bars mainModuleMenu " style="color:<?php echo $logoColor ?>;font-size: 32px;" title="<?php echo $contextInfo ?>"></i>
 			</span>
@@ -169,10 +168,13 @@
 		</a>
 		<ul class="dropdown-menu">
 			 <?php 
-	          foreach( Menu::$infoMenu as $item )
-	          {
-	              Menu::buildLi2( $item );
-	          }
+			 	if(isset(Menu::$infoMenu))
+	          	{
+	          		foreach( Menu::$infoMenu as $item )
+			        {
+			            Menu::buildLi2( $item );
+			        }
+			    }
 	          ?>
 		</ul>
 	</li>
