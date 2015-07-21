@@ -161,7 +161,7 @@ return array(
 				*/
 			),
 		),
-		'mail' => $mailConfigTest, 
+		'mail' => $mailConfig, 
 		'bootstrap' => array(
             'class' => 'bootstrap.components.TbApi',   
         ),
