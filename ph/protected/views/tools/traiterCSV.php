@@ -103,9 +103,10 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquer
 				<label for="lien">Lien : </label>
 				<select id="lien">
 					<?php
-						if(isset(Yii::app()->session["tabCSV"]))
+						//if(isset(Yii::app()->session["tabCSV"]))
+						if(isset($tabCSV))
 						{
-		    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
+		    				foreach ($tabCSV[0] as $key => $value) 
 							{
 								echo '<option value="'.$key.'">'.$value.'</option>';
 							}
@@ -155,9 +156,9 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquer
 				    				$nbligne++;
 				    				$i = 0;
 				    				$trouver = false ;
-				    				while($trouver == false && $i < count(Yii::app()->session["tabCSV"][0]))
+				    				while($trouver == false && $i < count($tabCSV[0]))
 				    				{
-				    					if(Yii::app()->session["tabCSV"][0][$i] == $key)
+				    					if($tabCSV[0][$i] == $key)
 				    					{
 				    						$trouver = true;
 				    					}
@@ -182,9 +183,9 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquer
 			    				<input type="hidden" id="nbligne" value="<?php echo $nbligne ; ?>"/>
 			    				<select id="selectHeadCSV">
 			    				<?php
-				    				if(isset(Yii::app()->session["tabCSV"]))
+				    				if(isset($tabCSV))
 									{
-					    				foreach (Yii::app()->session["tabCSV"][0] as $key => $value) 
+					    				foreach ($tabCSV[0] as $key => $value) 
 										{
 											echo '<option value="'.$key.'">'.$value.'</option>';
 										}
@@ -215,6 +216,7 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquer
 		<div id="visualisationGlobal">
 			<h3 class="col-md-12">Vérification avant import</h3>
 			<div class="col-xs-12 col-sm-4">
+				<input type="hidden" id="typeData" value=""/>
 				<label>Données importé :</label>
 					<ul class="nav nav-tabs">
 						<li role="presentation" ><a href="#" id="linkInformationImport">Information</a></li>
@@ -422,11 +424,11 @@ jQuery(document).ready(function()
 						$("#jsonimport").val(data.jsonimport);
 						$("#jsonrejet").val(data.jsonrejet);
 
-						$("#divjsonmapping").JSONView(data.indentjsonmapping);
+						$("#divjsonmapping").JSONView(data.jsonmapping);
 		      			$('#divjsonmapping').JSONView('toggle', 1);
-		      			$("#divjsonimport").JSONView(data.indentjsonimport);
+		      			$("#divjsonimport").JSONView(data.jsonimport);
 		      			$('#divjsonimport').JSONView('toggle', 1);	
-		      			$("#divjsonrejet").JSONView(data.indentjsonrejet);
+		      			$("#divjsonrejet").JSONView(data.jsonrejet);
 		      			$('#divjsonrejet').JSONView('toggle', 1);	
 						
 						$("#listeInformationImport").html('<li class="list-group-item">'+ data.nbcommunemodif +' communes mis à jours</li>');
@@ -435,14 +437,23 @@ jQuery(document).ready(function()
 
 						colimport = [];
 						entete = "<tr>";
-						$.each(data.tabCode, function( keyRows, valueRows )
+
+						$.each(data.arraymappingfields, function( keyFields, valueFields )
 						{
-							$.each(data.arraymappingfields, function( keyFields, valueFields )
+							var myArray = valueFields.split('.');
+							$("#typeData").val(myArray[0])
+							return false ;
+						});
+
+						$.each(data.arraymappingfields, function( keyFields, valueFields )
+						{
+							$.each(data.tabCode, function( keyRows, valueRows )
 							{
-							   	if(valueRows == keyFields || valueRows == data.lien)
+								if(valueRows == keyFields || valueRows == data.lien)
 							   	{
 							   		colimport.push(keyRows);
 							   		entete = entete + "<th>"+ valueRows +"</th>";
+							   		return false ;
 							   	}
 							});
 						});
@@ -520,16 +531,17 @@ jQuery(document).ready(function()
 
   	$("#sumitImport").off().on('click', function()
   	{
-  		/*$.blockUI({
+  		$.blockUI({
 		message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
   	            '<blockquote>'+
   	              "<p>Rien n'est plus proche du vrai que le faux</p>"+
   	              '<cite title="Einstein">Einstein</cite>'+
   	            '</blockquote> '
-		});*/
+		});
   		$.ajax({
 	        type: 'POST',
-	        data: {jsonrejet : $('#jsonrejet').val(), 
+	        data: { typeData : $('#typeData').val(), 
+	        		jsonrejet : $('#jsonrejet').val(), 
 			        mappingSelected : $("#mappingSelected").val(), 
 			        chooseSelected : $("#chooseSelected").val(), 
 			        jsonimport : $('#jsonimport').val(), 
@@ -543,7 +555,7 @@ jQuery(document).ready(function()
 	              	toastr.success("Les données ont été ajouté.");
 	            else
 	                toastr.error("Erreur");
-	           // $.unblockUI();
+	           	$.unblockUI();
 	        }
 	    });
   	}); 
