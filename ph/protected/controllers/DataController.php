@@ -78,13 +78,43 @@ class DataController extends Controller {
      }
   }
   
-  public function actionPersons( $format = null ) {
-      $data = PHDB::find( PHType::TYPE_CITOYEN , array('isOpendata'=>true ) ); 
-      if( isset( $format ) && $format == Translate::FORMAT_SCHEMA )
-        $data = Translate::schema( $data );
-      echo Rest::json($data);
-  }
-  
+    public function actionGet( $type, $id = null, $format = null ,$limit=50) 
+    {
+        $bindMap = null;
+        $data = null;
+
+        if( $type == Person::COLLECTION )
+        {
+            if( $format == Translate::FORMAT_SCHEMA)
+                $bindMap = Translate::$dataBinding_person_schema;
+            else if( $format == Translate::FORMAT_PLP )
+                 $bindMap = Translate::$dataBinding_person_plp;
+            else if( $format == Translate::FORMAT_AS )
+                 $bindMap = Translate::$dataBinding_person_activityStream;
+        }
+        else if( $type == Event::COLLECTION && $format == Translate::FORMAT_SCHEMA)
+            $bindMap = Translate::$dataBinding_event_schema;
+        else if( $type == Organization::COLLECTION && $format == Translate::FORMAT_SCHEMA)
+            $bindMap = Translate::$dataBinding_organization_schema;
+        else if( $type == Project::COLLECTION && $format == Translate::FORMAT_SCHEMA )
+            $bindMap = Translate::$dataBinding_project_schema;
+        
+
+        $params = array('isOpendata'=>true );
+        if( @$id )
+            $params["_id"] =  new MongoId($id);
+
+        $data = PHDB::find( $type , $params ); 
+
+        /*if($limit)
+          $data = $data->limit($limit);*/
+
+        if( $data && $bindMap )
+            $data = Translate::convert( $data, $bindMap );
+
+        Rest::json($data);
+    }
+
   /**
    * Page de démo pour le concours etalab : dataconnexion
    */
