@@ -58,17 +58,15 @@ return array(
 	
 
 	//Form
-
 	'Required Fields' => "Champs requis",
 	'Save' => "Sauvegarder",
 	'Back to Search' => "Retour sur la recherche",
+	
 	//DATA
-
 	'Your data has been saved' => 'Vos données ont bien été enregistré.',
 	'Data saved' => 'Donnée enregistrée.',
 
 	//Authorization
-
 	'Access denied' => 'Accès refusé',
 	
 	//TYPES
@@ -80,7 +78,23 @@ return array(
 	'New Organization created on ' => "Nouvelle organisation créée sur ",
 	'New Event created on ' => "Nouvel évennement créé sur ",
 	'New Project created on ' => "Nouveau projet créée sur ",
-	"Confirm your account on " => "Confirmer votre compte sur"
+	"Confirm your account on " => "Confirmer votre compte sur",
+
+	//Common label
+	'Name' => 'Nom',
+	'Street Address' => 'Rue',
+	'Postal Code' => 'Code Postal',
+	'Country' => 'Pays',
+	'Phone Number' => 'Téléphone',
+	'Website URL' => 'URL du site web',
+	'Short Description' => 'Description courte',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => ''
+
+
 );
 
 ?>
