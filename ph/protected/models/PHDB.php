@@ -47,7 +47,7 @@ class PHDB
     {    	
         return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->count($where);
     }
-    public static function countWFileds( $collection, $where=array(),$fields=array() )
+    public static function countWFields( $collection, $where=array(),$fields=array() )
     {    	
         return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->count($where,$fields);
     }

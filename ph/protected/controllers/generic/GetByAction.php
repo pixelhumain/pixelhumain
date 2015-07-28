@@ -15,7 +15,7 @@ class GetByAction extends CAction
             else
                 $res = PHDB::find($_POST['collection'] );
         } else
-            $res = array('count' => PHDB::countWFileds($_POST['collection'],$where,$fields ));
+            $res = array('count' => PHDB::countWFields($_POST['collection'],$where,$fields ));
         //$res["where"]=$where;
         Rest::json( $res );
         Yii::app()->end();
