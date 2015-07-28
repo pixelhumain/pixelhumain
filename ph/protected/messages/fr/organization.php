@@ -25,5 +25,16 @@
 		"Are you sure you want to remove this person's :" => "Êtes-vous sûr de vouloir supprimer le rôle :",
 		"ROLE REMOVED SUCCESFULLY!!" => "Rôle effacé avec succés!!",
 		"Add me as member of" => "Ajoutez moi comme membre",
+		"Edit your information" => "Editer vos informations",
+		"Remove from my organization" => "Supprimer de mes organisations",
+		"Add me as member of the organization" => "Devenir membre de cette organisation",
+		"Are you sure you want to remove the connection with " => "Etes vous sure de vouloir supprimer la connection avec ",
+		"The link has been removed successfully." => "Le lien a été supprimé avec succes.",
+		"Error deleting the link : " => "Erreur lors de la suppression du lien : ", 
+		"Do you really want to become a member of the organization : " => "Etes vous sur de vouloir devenir membre de l'organisation : ",
+		"You are now a member of the organization : " => "Vous êtes maintenant membre de l'organisation : ",
+		"Become a member of this organization : " => "Devenir membre de cette organisation",
+		"I AM A MEMBER" => "JE SUIS MEMBRE",
+		"NOT A MEMBER" => "PAS MEMBRE",
 	);
 ?>

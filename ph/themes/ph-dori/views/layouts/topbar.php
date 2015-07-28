@@ -28,6 +28,10 @@
 		background-color: #ccc;
 	}
 	ol{ padding-left:0; list-style-position:inside; }
+	
+	<?php if( Yii::app()->session[ "userIsAdmin"] && Yii::app()->controller->id == "admin" ){?>
+	.top-navbar { background-color: #E33551; }
+	<?php }?>
 </style>
 
 <header class="top-navbar collapse_list " >

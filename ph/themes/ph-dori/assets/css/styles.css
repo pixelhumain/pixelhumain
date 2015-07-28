@@ -2987,14 +2987,28 @@ body.login .logo {
 
 body.login .box-login, body.login .box-forgot, body.login .box-register {
   background: #FFFFFF;
-  border-radius: 20px;
+  border-radius: 30px;
   overflow: hidden;
   padding: 15px;
+  margin:20px;
   position: absolute;
   top: 95px;
   left: 0;
   right: 0; }
 
+  body.login .box-pod {
+  background: #FFFFFF;
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 10px;
+  margin: 10px;
+ }
+  body.login .box-pod2 {
+  background: #FFFFFF;
+  border-radius: 10px;
+  
+  padding: 10px;
+}
 body.login .box {
   display: none; }
 
