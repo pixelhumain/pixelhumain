@@ -33,8 +33,5 @@
 		"Error deleting the link : " => "Erreur lors de la suppression du lien : ", 
 		"Do you really want to become a member of the organization : " => "Etes vous sur de vouloir devenir membre de l'organisation : ",
 		"You are now a member of the organization : " => "Vous êtes maintenant membre de l'organisation : "
-
-
-
 	);
 ?>
