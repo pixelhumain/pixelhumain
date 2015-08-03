@@ -250,4 +250,18 @@ class PHDB
         }
         return $msg;
     }
+
+    public static function getIdFromUpsertResult($result) {
+      //Trick for windows : the upserted does not have the same return value
+      if (isset($result["upserted"])) {
+        if (is_array($result["upserted"])) {
+          $id = (String) $result["upserted"][0]["_id"];
+        } else {
+          $id = (String) $result["upserted"];
+        }
+      } else {
+        throw new CTKException(Yii::t("job","Problem inserting the new job offer"));
+      }
+      return $id;
+    }
 }

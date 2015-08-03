@@ -181,10 +181,11 @@ onSave: (optional) overloads the generic saveProcess
 		* CHECKBOX
 		***************************************** */
         else if ( fieldObj.inputType == "checkbox" ) {
-        	if(value == "")
-        		value="25/01/2014";
-        	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'"/> '+placeholder;
-        }
+   			if(value == "")
+		       	value="25/01/2014";
+	       	var checked = ( fieldObj.checked ) ? "checked" : "";
+	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+'/> '+placeholder;
+       	}
 
         /* **************************************
 		* SELECT , we use select2
