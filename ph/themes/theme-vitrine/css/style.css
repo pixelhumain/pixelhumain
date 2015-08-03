@@ -2009,6 +2009,9 @@ div.graph-navigation.zoomExtends {
     #projectFlex .flex-direction-nav{
       bottom: 50px;
     }
+    .flexslider{
+      width: 70%;
+    }
 
 }
 @media only screen and (max-width: 780px) {
@@ -2091,6 +2094,7 @@ div.graph-navigation.zoomExtends {
   width: 50%;
   background-color: white;
   color:black;
+  min-height: 450px;
 }
 .videoSection{
    position: absolute;  
@@ -2216,7 +2220,7 @@ div.graph-navigation.zoomExtends {
 .keyWordsArea{
   margin-left: auto;
   margin-right: auto;
-  max-width: 90%;
+  max-width: 100%;
   text-align: center;
 }
 
@@ -2266,6 +2270,10 @@ div.graph-navigation.zoomExtends {
   .btn-lg{
     font-size: 14px;
   }
+
+  .imageSection{
+    min-height: 250px;
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -2282,6 +2290,10 @@ div.graph-navigation.zoomExtends {
 
   .btn-lg{
     font-size: 12px;
+  }
+
+  .imageSection{
+    min-height: 250px;
   }
 }
 
@@ -2312,6 +2324,10 @@ div.graph-navigation.zoomExtends {
   #services p {
     font-size: 12px;
   }
+
+  .imageSection{
+    min-height: 0px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -2329,5 +2345,8 @@ div.graph-navigation.zoomExtends {
 
   #sectionsvg h1 {
     font-size: 30px;
+  }
+  .imageSection{
+    min-height: 0px;
   }
 }
