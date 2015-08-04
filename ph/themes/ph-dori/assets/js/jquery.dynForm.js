@@ -187,6 +187,7 @@ onSave: (optional) overloads the generic saveProcess
 	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+'/> '+placeholder;
        	}
 
+
         /* **************************************
 		* SELECT , we use select2
 		***************************************** */
@@ -194,6 +195,7 @@ onSave: (optional) overloads the generic saveProcess
        		var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
        		fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px" data-placeholder="'+placeholder+'">';
 			fieldHTML += '<option></option>';
+
 			var selected = "";
 			
 			$.each(fieldObj.options, function(optKey, optVal) {
@@ -396,7 +398,7 @@ onSave: (optional) overloads the generic saveProcess
 			if( jQuery.isFunction(jQuery.fn.select2) )
 			{
 				$.each($(".select2TagsInput"),function () 
-				{ 
+				{
 					//console.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
 					var selectOptions = {
 					  "tags": initValues[ $(this).attr("id") ]["tags"],
@@ -405,7 +407,6 @@ onSave: (optional) overloads the generic saveProcess
 					};
 					$(this).removeClass("form-control").select2(selectOptions);
 				 });
-				
 			} else
 				console.error("select2 library is missing");
 		} 

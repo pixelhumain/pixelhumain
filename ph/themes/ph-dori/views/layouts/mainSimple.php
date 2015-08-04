@@ -37,6 +37,7 @@
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
+		   var userId = "<?php echo Yii::app()->session['userId']?>";
 		</script>
 		<style type="text/css">
 			.form-group label.error{ color:red; font-size:10px; }

@@ -70,6 +70,7 @@
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo (isset($this->module->id) ) ? $this->module->id : '' ?>";
+		   var userId = "<?php echo Yii::app()->session['userId']?>";
 		   var personMap = <?php echo json_encode( (isset($this->person)) ? $this->person : array())?>;
 		   var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
 		  
@@ -283,7 +284,6 @@
 		?>
 		<!-- end: CORE JAVASCRIPTS  -->
 		<script type="text/javascript">
-		
 		paceOptions = {  
 			  // Configuration goes here. Example: 
 			  ajax: false, 
