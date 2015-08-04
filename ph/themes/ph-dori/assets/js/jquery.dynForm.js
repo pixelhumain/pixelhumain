@@ -191,12 +191,15 @@ onSave: (optional) overloads the generic saveProcess
 		* SELECT , we use select2
 		***************************************** */
         else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) {
-        	var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
-        	fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px" data-placeholder="'+placeholder+'">';
+       		var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
+       		fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px" data-placeholder="'+placeholder+'">';
 			fieldHTML += '<option></option>';
-			$.each(fieldObj.options, function(optKey, optVal) { 
-				fieldHTML += '<option value="'+optKey+'">'+optVal+'</option>';
-			});	
+			var selected = "";
+			
+			$.each(fieldObj.options, function(optKey, optVal) {
+				selected = ( fieldObj.value && optKey == fieldObj.value ) ? "selected" : ""; 
+				fieldHTML += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
+			});
 			fieldHTML += '</select>';
         }
 
