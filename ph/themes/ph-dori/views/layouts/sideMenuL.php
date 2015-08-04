@@ -34,7 +34,7 @@
               array_push($menuLeft, array('label' => "MY CALENDAR", "key"=>"myCalendarPage","iconClass"=>"fa fa-calendar","href"=> Yii::app()->createUrl($this->moduleId."/event/calendarview/id/".$id."/type/person")) );
               array_push($menuLeft, array('label' => "MY NEWS", "key"=>"myNewsPage","iconClass"=>"fa fa-rss","href"=> Yii::app()->createUrl($this->moduleId."/news/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ) );
               array_push($menuLeft, array('label' => "HEY !! ", "key"=>"heyPage","iconClass"=>"fa fa-comment", "class"=>"new-news" ,"href"=>"#new-News") );
-              array_push($menuLeft, array('label' => "MY VOTES", "key"=>"myVotesPage","iconClass"=>"fa fa-legal","href"=> Yii::app()->createUrl($this->moduleId."/survey/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ) );
+              array_push($menuLeft, array('label' => "MY ACTIONS", "key"=>"myVotesPage","iconClass"=>"fa fa-thumbs-up","href"=> Yii::app()->createUrl($this->moduleId."/rooms/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ) );
             }
             
             if( @Yii::app()->session[ "userIsAdmin"] )
