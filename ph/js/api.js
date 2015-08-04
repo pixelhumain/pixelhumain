@@ -1,4 +1,15 @@
-function ajaxPost(id,url,params,callback, datatype){
+function checkLoggued(url)
+{
+  res = true;
+  if(userId == ""){
+    window.location.href = baseUrl+"/"+moduleId+"/person/login?backUrl="+url;
+    res = false;
+  }
+  return res;
+}
+
+function ajaxPost(id,url,params,callback, datatype)
+{
 	console.log(id,url,params);
   /*if(dataType == null)
     dataType = "json";*/
