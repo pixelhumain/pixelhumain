@@ -42,7 +42,8 @@ $params = array(
                         'secretAPP' => "3e485c0809b44e953963c778f5a3c2a0",
                         'required_scope' => 'public_profile, publish_actions, read_custom_friendlists, user_groups, user_likes, publish_pages'),
     'mandrill' => '4eD8BtmL5L_Z0E7Zz69Zlw',
-    'defaultController' => 'communecter'
+    'defaultController' => 'communecter',
+    'betaTest' => true
   );
 
 $modulesDir = '/../../../../modules/';
