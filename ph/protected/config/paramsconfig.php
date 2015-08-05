@@ -43,7 +43,7 @@ $params = array(
                         'required_scope' => 'public_profile, publish_actions, read_custom_friendlists, user_groups, user_likes, publish_pages'),
     'mandrill' => '4eD8BtmL5L_Z0E7Zz69Zlw',
     'defaultController' => 'communecter',
-    'betaTest' => true
+    'betaTest' => false
   );
 
 $modulesDir = '/../../../../modules/';
