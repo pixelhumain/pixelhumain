@@ -38,6 +38,21 @@
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
 		   var userId = "<?php echo Yii::app()->session['userId']?>";
+		   jQuery(document).ready(function() {
+				toastr.options = {
+				  "closeButton": false,
+				  "positionClass": "toast-bottom-right",
+				  "onclick": null,
+				  "showDuration": "1000",
+				  "hideDuration": "1000",
+				  "timeOut": "5000",
+				  "extendedTimeOut": "1000",
+				  "showEasing": "swing",
+				  "hideEasing": "linear",
+				  "showMethod": "fadeIn",
+				  "hideMethod": "fadeOut"
+				};
+			});
 		</script>
 		<style type="text/css">
 			.form-group label.error{ color:red; font-size:10px; }
@@ -80,7 +95,6 @@
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		?>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-		
 	</body>
 	<!-- end: BODY -->
 </html>
