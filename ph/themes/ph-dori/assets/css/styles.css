@@ -2985,7 +2985,7 @@ body.login .logo {
   padding: 20px;
   text-align: center; }
 
-body.login .box-login, body.login .box-forgot, body.login .box-register {
+body.login .box-login, body.login .box-email, body.login .box-register {
   background: #FFFFFF;
   border-radius: 30px;
   overflow: hidden;
