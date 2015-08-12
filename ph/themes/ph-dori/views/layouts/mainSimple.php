@@ -26,6 +26,7 @@
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/iCheck/skins/all.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/styles.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/styles-responsive.css');
+		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/plugins.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/iCheck/skins/all.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/toastr/toastr.min.css');
 		?>

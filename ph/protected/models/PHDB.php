@@ -260,7 +260,7 @@ class PHDB
           $id = (String) $result["upserted"];
         }
       } else {
-        throw new CTKException(Yii::t("job","Problem inserting the new job offer"));
+        throw new CTKException("Problem inserting the new job offer");
       }
       return $id;
     }
