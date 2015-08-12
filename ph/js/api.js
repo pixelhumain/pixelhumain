@@ -1,9 +1,14 @@
 function checkLoggued(url)
 {
   res = true;
-  if(userId == ""){
-    window.location.href = baseUrl+"/"+moduleId+"/person/login?backUrl="+url;
-    res = false;
+  if(userId == "") {
+    //TODO Replace with a modal version of the login page
+    if (confirm("You need to be loggued to do this : do you want to log in ?")) {
+      res = false;
+      window.location.href = baseUrl+"/"+moduleId+"/person/login?backUrl="+url;
+    } else {
+      res = false;
+    }
   }
   return res;
 }
