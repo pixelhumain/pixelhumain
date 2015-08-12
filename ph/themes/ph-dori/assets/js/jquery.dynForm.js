@@ -96,7 +96,6 @@ onSave: (optional) overloads the generic saveProcess
 			if(settings.onLoad && jQuery.isFunction( settings.onLoad ) )
 				settings.onLoad();
 		    
-
 			return form;
 		},
 
