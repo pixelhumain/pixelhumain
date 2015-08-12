@@ -18,6 +18,7 @@
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda.min.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda-themeless.min.css');
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/font-awesome/css/font-awesome.min.css');
+		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/font-awesome-custom/css/font-awesome.css');
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/velocity/jquery.velocity.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/subview.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/subview-examples.js' , CClientScript::POS_END);
