@@ -103,9 +103,9 @@ return array(
         /*'themeManager' => array(
             'basePath' => realpath(__DIR__ . $modulesDir)."/granddir/themes"
         ),*/
-		'granddir' => array(
+		'communecter' => array(
             'class'=>'CPhpMessageSource',
-            'basePath'=>realpath(__DIR__ .$modulesDir.'granddir/messages')
+            'basePath'=>realpath(__DIR__ .$modulesDir.'communecter/messages')
         ),
 		'session' => array(
             'timeout' => 86400,
