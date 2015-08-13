@@ -13,22 +13,26 @@
 		<!-- end: META -->
 		<!-- start: MAIN CSS -->
 		<?php 
+		$themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
+
 		$cs = Yii::app()->getClientScript();
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap/css/bootstrap.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda-themeless.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/font-awesome/css/font-awesome.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/font-awesome-custom/css/font-awesome.css');
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/velocity/jquery.velocity.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/subview.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/subview-examples.js' , CClientScript::POS_END);
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/animate.css/animate.min.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/iCheck/skins/all.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/styles.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/styles-responsive.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/css/plugins.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/iCheck/skins/all.css');
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/toastr/toastr.min.css');
+		$cs->registerCssFile($themeAssetsUrl. '/plugins/bootstrap/css/bootstrap.min.css');
+		$cs->registerCssFile($themeAssetsUrl. '/plugins/ladda-bootstrap/dist/ladda.min.css');
+		$cs->registerCssFile($themeAssetsUrl. '/plugins/ladda-bootstrap/dist/ladda-themeless.min.css');
+		$cs->registerCssFile($themeAssetsUrl. '/plugins/font-awesome/css/font-awesome.min.css');
+		$cs->registerCssFile($themeAssetsUrl. '/plugins/font-awesome-custom/css/font-awesome.css');
+		$cs->registerScriptFile($themeAssetsUrl. '/plugins/velocity/jquery.velocity.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl. '/js/subview.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl. '/js/subview-examples.js' , CClientScript::POS_END);
+		$cs->registerCssFile($themeAssetsUrl. '/plugins/animate.css/animate.min.css');
+		$cs->registerCssFile($themeAssetsUrl. '/plugins/iCheck/skins/all.css');
+		$cs->registerCssFile($themeAssetsUrl. '/css/styles.css');
+		$cs->registerCssFile($themeAssetsUrl. '/css/styles-responsive.css');
+		$cs->registerCssFile($themeAssetsUrl. '/css/plugins.css');
+		$cs->registerCssFile($themeAssetsUrl. '/plugins/iCheck/skins/all.css');
+		$cs->registerCssFile($themeAssetsUrl. '/plugins/toastr/toastr.min.css');
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css');
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , CClientScript::POS_END);
 		?>
 		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" />
 		<!-- end: MAIN CSS -->
@@ -41,6 +45,7 @@
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
 		   var userId = "<?php echo Yii::app()->session['userId']?>";
+		   var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
 		   jQuery(document).ready(function() {
 				toastr.options = {
 				  "closeButton": false,
