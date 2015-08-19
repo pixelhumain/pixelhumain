@@ -35,11 +35,9 @@
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/summernote/dist/summernote.css');
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/fullcalendar/fullcalendar/fullcalendar.css');
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/toastr/toastr.min.css');
-		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-select/bootstrap-select.min.css');
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css');
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/DataTables/media/css/DT_bootstrap.css');
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css');
-		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css');
 
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css');
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-modal/css/bootstrap-modal.css');
@@ -211,14 +209,14 @@
 	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/bootbox/bootbox.min.js' , CClientScript::POS_END);
 	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery.scrollTo/jquery.scrollTo.min.js' , CClientScript::POS_END);
 	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/ScrollToFixed/jquery-scrolltofixed-min.js' , CClientScript::POS_END);
-	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery.appear/jquery.appear.js' , CClientScript::POS_END);
+	    
 	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery-cookie/jquery.cookie.js' , CClientScript::POS_END);
 	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/velocity/jquery.velocity.min.js' , CClientScript::POS_END);
 	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/TouchSwipe/jquery.touchSwipe.min.js' , CClientScript::POS_END);
 		//<!-- end: MAIN JAVASCRIPTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTENTS -->
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/iCheck/jquery.icheck.min.js' , CClientScript::POS_END);
-	    $cs->registerScriptFile($themeAssetsUrl.'/plugins/moment/min/moment.min.js' , CClientScript::POS_END);
+	    
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/owl-carousel/owl-carousel/owl.carousel.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery-mockjax/jquery.mockjax.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/toastr/toastr.js' , CClientScript::POS_END);
@@ -227,8 +225,6 @@
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery-validation/dist/jquery.validate.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery-validation/localization/messages_fr.js' , CClientScript::POS_END);
 
-		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-select/bootstrap-select.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/ladda-bootstrap/dist/spin.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/ladda-bootstrap/dist/ladda.min.js' , CClientScript::POS_END);
 		
@@ -236,10 +232,22 @@
 
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/DataTables/media/js/jquery.dataTables.min.1.10.4.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/DataTables/media/js/DT_bootstrap.js' , CClientScript::POS_END);
-
+		
+		
+		/*used in Subviews
+		TODO : load specifically
+		*/
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery.appear/jquery.appear.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/moment/min/moment.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js' , CClientScript::POS_END);
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css');
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-daterangepicker/daterangepicker.js' , CClientScript::POS_END);
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-select/bootstrap-select.min.css');
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-select/bootstrap-select.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/truncate/jquery.truncate.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/summernote/dist/summernote.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-daterangepicker/daterangepicker.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/autosize/jquery.autosize.min.js' , CClientScript::POS_END);
+		
 
 		$cs->registerScriptFile($themeAssetsUrl.'/js/subview.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/js/jquery.dynForm.js' , CClientScript::POS_END);
@@ -252,7 +260,7 @@
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/select2/select2.css');
 		//$cs->registerScriptFile(Yii::app()->request->baseUrl. '/js/bootstrap/bootstrap-typeahead.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/select2/select2.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile($themeAssetsUrl.'/plugins/autosize/jquery.autosize.min.js' , CClientScript::POS_END);
+		
 
 		//mainly used by ajax pods
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/jquery.pulsate/jquery.pulsate.min.js' , CClientScript::POS_END);

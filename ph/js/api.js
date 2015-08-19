@@ -41,41 +41,41 @@ function ajaxPost(id,url,params,callback, datatype)
 
 function getAjax(id,url,callback,datatype,blockUI)
 {
-  if(blockUI)
-    $.blockUI({
-      message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
-            '<blockquote>'+
-              '<p>We’re even wrong about which mistakes we’re making.</p>'+
-              '<cite title="Carl Winfeld">Carl Winfeld</cite>'+
-            '</blockquote> '
-    });
+    if(blockUI)
+        $.blockUI({
+            message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
+                '<blockquote>'+
+                  '<p>Art is the heart of our culture.</p>'+
+                '</blockquote> '
+        });
   
-  if(datatype != "html" )
-    $(id).html( "<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>" );
-  $.ajax({
-      url:url,
-      type:"GET",
-      cache:false,
-      //dataType:"json",
-      success:function(data) {
-        
-        if(datatype === "html" )
-          $(id).html(data);
-        else if(typeof data === "string" )
-          toastr.success(data);
-        else
-            $(id).html( JSON.stringify(data, null, 4) );
-
-        if( typeof callback === "function")
-          callback(data,id);
-        if(blockUI)
-          $.unblockUI();
-      },
-      error:function (xhr, ajaxOptions, thrownError){
-        console.error(thrownError);
-        if(blockUI)
-          $.unblockUI();
-      } 
+    if(datatype != "html" )
+        $(id).html( "<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>" );
+  
+    $.ajax({
+        url:url,
+        type:"GET",
+        cache:false,
+        //dataType:"json",
+        success:function(data) {
+          
+          if(datatype === "html" )
+            $(id).html(data);
+          else if(typeof data === "string" )
+            toastr.success(data);
+          else
+              $(id).html( JSON.stringify(data, null, 4) );
+  
+          if( typeof callback === "function")
+            callback(data,id);
+          if(blockUI)
+            $.unblockUI();
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+          console.error(thrownError);
+          if(blockUI)
+            $.unblockUI();
+        } 
     });
 }
 /*
