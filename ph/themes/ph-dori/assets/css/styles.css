@@ -2908,6 +2908,10 @@ body.login {
   background-image: url("../images/wave.jpg");
   background-color: transparent;
 }
+.bgworld {
+  background-image: url("../images/world.jpg");
+  background-color: transparent;
+}
 .bgseasky {
   background-image: url("../images/back-error-page.jpg");
   background-color: transparent;

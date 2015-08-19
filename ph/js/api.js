@@ -4,11 +4,8 @@ function checkLoggued(url)
     //TODO Replace with a modal version of the login page
     bootbox.confirm("You need to be loggued to do this, login first ?",
           function(result) {
-            if (result) {
+            if (result) 
               window.location.href = baseUrl+"/"+moduleId+"/person/login?backUrl="+url;
-            } else {
-              return false;
-            }
      });
   } else
     return true;
