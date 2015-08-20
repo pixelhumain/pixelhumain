@@ -12,7 +12,7 @@
 		<!-- MENU -->
 		<nav>
 			<ul id="menu">
-				<li><a class="nav_label" data-href="#description">LE PROJET</a></li>
+				<li><a class="nav_label" data-href="#description">PROJETS</a></li>
 				<li><a class="nav_label" id="label_team" data-href="#team">LE RESEAU</a></li>
 				<li><a data-href="#services" class="btn btn-success">JE PARTICIPE</a></li>
 				<li><a class="nav_label" id="label_cont" data-href="#contact">CONTACT</a></li>

@@ -70,6 +70,12 @@ a:hover,
 .section a.btn:hover{
   color: #e4334b;
 }
+
+#navigation a.btn:hover,
+#navigation a:hover{
+  cursor: pointer;
+}
+
 .section-content-colored .section-content .event-content a.btn:hover,
 .section-content-colored .section-content .post-content a.btn:hover,
 .section a.btn:hover,
@@ -429,7 +435,7 @@ div.with-arrow{
     -o-background-size: cover; 
     background-size: cover; 
 	margin-top: -20px;
-	padding: 70px 0 20px 0;
+	padding: 0px 0 20px 0;
 	color: #FFF;
 }
 .mobile .section-image{
@@ -714,7 +720,7 @@ text-align:center !important;}
     border-radius: 20px;
 }
 
-.section-video, #section-philo, #section-serv{
+.section-video, .section-image, #section-philo, #section-serv{
   opacity: 1;
 }
 
@@ -2003,7 +2009,7 @@ div.graph-navigation.zoomExtends {
     }
 
     #banFlex .flex-control-nav{
-      bottom: -50px;
+      bottom: -60px;
     }
 
     #projectFlex .flex-direction-nav{
@@ -2091,10 +2097,13 @@ div.graph-navigation.zoomExtends {
   margin: auto;
   border: 20px solid white;
   position: relative;
-  width: 50%;
+  width: 70%;
   background-color: white;
   color:black;
-  min-height: 450px;
+  min-height: 250px;
+}
+.imageSectionVideo{
+   min-height: 450px;
 }
 .videoSection{
    position: absolute;  
@@ -2145,9 +2154,9 @@ div.graph-navigation.zoomExtends {
 .linkProjet, .menuTagsDiv{
   position: relative;
   margin-left: auto;
-    margin-right: auto;
+  margin-right: auto;
   padding-bottom: 20px;
-  width: 50%;
+  width: 60%;
   text-align: center;
 }
 .linkProjet ul, .menuTagsDiv ul{
@@ -2163,7 +2172,7 @@ div.graph-navigation.zoomExtends {
 .linkProjet a, .menuTagsDiv li{
   color:#f6e200;
 }
-.linkProjet a:active,.linkProjet a:target,.linkProjet a:hover, .linkProjet a:focus, .linkProject-nav .flex-active {
+.linkProjet a:active,.linkProjet a:target,.linkProjet a:hover, .linkProjet a:focus, .linkProjet .flex-active {
   text-decoration: none;
   color:#e3443b;
 }
@@ -2171,6 +2180,7 @@ div.graph-navigation.zoomExtends {
 .linkProject-nav{
   margin-left: auto;
   margin-right: auto;
+  padding-top: 20px;
   width: 100%;
 }
 
@@ -2213,15 +2223,14 @@ div.graph-navigation.zoomExtends {
 }
 
 .tagsProjectDiv{
-  max-width: 50%;
+  max-width: 70%;
   margin-left: auto;
   margin-right: auto;
 }
 .keyWordsArea{
-  margin-left: auto;
-  margin-right: auto;
   max-width: 100%;
-  text-align: center;
+  text-align: left;
+  padding-left: 20px;
 }
 
 .keyWordsArea button{
