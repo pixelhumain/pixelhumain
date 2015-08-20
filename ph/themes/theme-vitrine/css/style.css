@@ -1339,7 +1339,7 @@ margin-right:10px;
 }
 
 #sectionsvg .flexslider{
-  width: 50%;
+  width: 90%;
 }
 .tip-title img{
   width: 20%;
@@ -2170,8 +2170,8 @@ div.graph-navigation.zoomExtends {
 
 .linkProject-nav{
   margin-left: auto;
-    margin-right: auto;
-    width: 80%;
+  margin-right: auto;
+  width: 100%;
 }
 
 #icoCitoyen h3{
@@ -2238,6 +2238,7 @@ div.graph-navigation.zoomExtends {
   padding-bottom: 20px;
   width: 90%;
   text-align: center;
+  display: none;
 }
 .menuTags a{
   margin-left: auto;
@@ -2258,6 +2259,10 @@ div.graph-navigation.zoomExtends {
 @media screen and (max-width: 1300px) {
   .linkProjet{
     width: 70%;
+  }
+
+ #sectionsvg .flexslider {
+    width: 80%;
   }
 
   .tagsProjectDiv{
@@ -2286,6 +2291,17 @@ div.graph-navigation.zoomExtends {
   }
   #description p{
     font-size: 16px;
+  }
+
+  #sectionsvg .flexslider {
+    width: 100%;
+  }
+   #sectionsvg .h3 {
+    font-size: 14px;
+  }
+
+   #sectionsvg .h1 {
+    font-size: 32px;
   }
 
   .btn-lg{
