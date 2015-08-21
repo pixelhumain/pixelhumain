@@ -51,12 +51,14 @@ return array(
 
 	// FOOTER
 	"Work in Progress" => "Travail en court",
-
+	
+	// Erreurs
+	"You have some form errors. Please check below." => "Des erreurs sont présentes. Vérifier ci dessous",
 	'Something went wrong!' => "Une erreur est survenue!",
 	'Uncorrect request' => 'Cette requête n\'a pas pu aboutir',
 	'Can not manage the type ' => 'Vous ne pouvez pas gérer le type',
+	'The form has been validated.' => 'Le formulaire a été validé avec succès.',
 	
-
 	//Form
 	'Required Fields' => "Champs requis",
 	'Save' => "Sauvegarder",
