@@ -171,7 +171,7 @@
 						
 						<!-- end: PAGE CONTENT-->
 					</div>
-					<div class="subviews">
+					<div class="subviews" style="top:60px">
 						<div class="subviews-container"></div>
 					</div>
 				</div>

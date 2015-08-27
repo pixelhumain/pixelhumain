@@ -79,8 +79,9 @@
 					<span class="notifications-count badge badge-danger animated bounceIn"></span>
 				</a>
 				<?php //<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/activities") ?>
-				<a href="#" onclick="popinInfo('TODO : Compteur de Gamifation','Ce compteur de gamification permettra de suivre les points cumulés par l`activité sur la plateforme')"  >
+				<a href="#">
 					<i class="fa fa-bookmark-o"></i>
+					<span class="notifcation-counter badge badge-warning animated bounceIn"><?php echo Gamification::calcPoints( Yii::app()->session['userId'] ) ?></span>
 				</a>
 				<a href="#" class="sb_toggle" id="sbToogle">
 					<i class="fa fa-cog"></i>
