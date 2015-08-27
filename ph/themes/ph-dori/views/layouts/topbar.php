@@ -2,7 +2,7 @@
 <style>
 	#dropdown_searchTop{
 		padding: 0px 15px; 
-		margin-left:19%; 
+		margin-left:375px; 
 		width:250px;
 	}
 
@@ -27,7 +27,11 @@
 	.searchList:hover{
 		background-color: #ccc;
 	}
-	ol{ padding-left:0; list-style-position:inside; }
+	
+	ol{ 
+		padding-left:0; 
+		list-style-position:inside; 
+	}
 	
 	<?php if( Yii::app()->session[ "userIsAdmin"] && Yii::app()->controller->id == "admin" ){?>
 	.top-navbar { background-color: #E33551; }
@@ -189,7 +193,16 @@
 <script type="text/javascript">
 
 	var timeout;
-	var mapIconTop = {"citoyen":"fa-smile-o", "event":"fa-calendar", "project":"fa-lightbulb-o", "NGO":" fa-building-o", "LocalBusiness":"fa-group", "GovernmentOrganization":"fa-institution", "Group":"fa-group"};
+	var mapIconTop = {
+		"citoyen":"fa-user", 
+		"NGO":"fa-users",
+		"LocalBusiness" :"fa-industry",
+		"Group" : "fa-circle-o",
+		"GovernmentOrganization" : "fa-university",
+		"event":"fa-calendar",
+		"project":"fa-lightbulb-o"
+	};
+
 	jQuery(document).ready(function() 
 	{
 
