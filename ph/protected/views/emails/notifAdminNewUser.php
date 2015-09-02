@@ -5,10 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body>
-   
-
-  </body>
-  <body>
+    <span style="text-align: left;"><?php echo Utils::getServerName()?></span>
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
       <tr>
         <td align="left" valign="top">
@@ -16,7 +13,7 @@
         </td>
         <td align="left">
            <h3>Un nouvel utilisateur s'est inscrit sur le site : <?php echo $person["name"]?> !! </h3>
-           N'oubliez pas de le modérer sur le back office.
+           N'oubliez pas de le modérer sur le <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/'.Yii::app()->getController()->moduleId.'/admin'  ?>">back office</a>.
            <br/>
         </td>
       </tr>

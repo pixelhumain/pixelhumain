@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body>
+    <span style="text-align: left;"><?php echo Utils::getServerName()?></span>
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
       <tr>
         <td align="left" valign="top">

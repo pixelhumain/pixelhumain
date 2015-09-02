@@ -42,24 +42,10 @@
 
 	<div class="navbar-logo collapse_wrap">
 		<?php 
-			$platform = "";
-			$logoColor = "";
-			if( $_SERVER['SERVER_NAME'] == "127.0.0.1" || $_SERVER['SERVER_NAME'] == "localhost" ){
-				$logoColor = "#04b8ec";
-				$platform = "LOCAL DEV";
-			}
-			else if( $_SERVER['SERVER_NAME'] == "test.pixelhumain.com" ){
-				$logoColor = "#e4334b";
-				$platform = "TEST";
-			}
-			else if( $_SERVER['SERVER_NAME'] == "dev.pixelhumain.com" ){
-				$logoColor = "#92be1f";
-				$platform = "ONLINE DEV";
-			}
-			else if( $_SERVER['SERVER_NAME'] == "pixelhumain.com" ){
-				$logoColor = "white";
-				$platform = "PROD";
-			}
+			$serverInfo = Utils::getServerInformation();
+			$platform = $serverInfo["platform"];
+			$logoColor = $serverInfo["logoColor"];
+			
 			$contextInfo = (isset($this->version)) ? $platform." : ".$this->version : $platform;
 		 ?>
 		<h1 class="trigger collapse_trigger hide_on_active">
