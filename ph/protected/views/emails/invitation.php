@@ -17,7 +17,7 @@
         ?>
         <td align="left">
            <h3>Bienvenue sur Communecter !! </h3>
-           Vous avez été invité au projet Communecter par <?php echo $sponsorName?><br/>
+           Vous avez été invité au projet Communecter par <?php echo $invitorName?><br/>
            Veuillez clicker sur ce lien pour participer a cette initiative locale pour améliorer votre commune.<br/>
            ou copier le directement dans votre navigateur.
            <br/>
