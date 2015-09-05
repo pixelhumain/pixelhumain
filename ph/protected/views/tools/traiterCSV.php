@@ -141,6 +141,7 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquer
 			    			<th>Colonne CSV</th>
 			    			<th>Mapping</th>
 			    			<th>Type</th>
+			    			<th>Libellé</th>
 			    			<th>Ajouter/Supprimer</th>
 			    		</tr>
 		    		</thead>
@@ -200,6 +201,7 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquer
 			    					<option value="STRING">STRING</option>
 								</select>
 			    			</td>
+			    			<td><input type="text" id="libelleMapping" value=""/></td>
 			    			<td><input type="submit" id="addMapping" class="btn btn-primary" value="Ajouter"/>
 						</tr>
 					</tbody>
@@ -218,32 +220,11 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquer
 			<div class="col-xs-12 col-sm-4">
 				<input type="hidden" id="typeData" value=""/>
 				<label>Données importé :</label>
-					<ul class="nav nav-tabs">
-						<li role="presentation" ><a href="#" id="linkInformationImport">Information</a></li>
-						<li role="presentation" class="active"><a href="#" id="linkJsonImport">JSON</a></li>
-						<li role="presentation"><a href="#" id="linkListImport">Liste des données</a></li>
-					</ul>
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div id="divInformationImport">
-							  	<ul class="list-group" id="listeInformationImport">
-									<li class="list-group-item"></li>
-									<li class="list-group-item"></li>
-								</ul>
-							</div>
 							<div id="divJsonImport" class="panel-scroll height-230">
 								<input type="hidden" id="jsonimport" value="">
 							    <div class="col-md-12" id="divjsonimport"></div>
-							</div>
-							<div id="divListImport" class="table-responsive">
-							    <table id="tableImport" class="table table-striped table-bordered table-hover directoryTable">
-						    		<thead id="tableHeadImport">
-							    		
-						    		</thead>
-							    	<tbody class="directoryLines" id="tableBodyImport">
-							    		
-							    	</tbody>
-								</table>
 							</div>
 						</div>
 					</div>
@@ -251,29 +232,11 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquer
 						
 			<div class="col-xs-12 col-sm-4">
 				<label>Données rejetée :</label>
-				<ul class="nav nav-tabs">
-				  <li role="presentation" ><a href="#" id="linkInformationRejet">Information</a></li>
-				  <li role="presentation" class="active"><a href="#" id="linkJsonRejet">JSON</a></li>
-				  <li role="presentation"><a href="#" id="linkListRejet">Liste des données</a></li>
-				</ul>
 				<div class="panel panel-default">
 				  	<div class="panel-body ">
-				  		<div id="divInformationRejet">
-				  			<ul class="list-group" id="listeInformationRejet">
-							    <li class="list-group-item"></li>
-							</ul>
-				  		</div>
 				  		<div id="divJsonRejet" class="panel-scroll height-230">
 				  			<input type="hidden" id="jsonrejet" value="">
 				    		<div class="col-md-12" id="divjsonrejet" ></div>
-				  		</div>
-				  		<div id="divListRejet" >
-				    		<table id="tableRejet" class="table table-striped table-bordered table-hover directoryTable">
-					    		<thead id="tableHeadRejet">
-						    	</thead>
-						    	<tbody class="directoryLines" id="tableBodyRejet">
-						    	</tbody>
-							</table>
 				  		</div>
 				  	</div>
 				</div>
@@ -281,9 +244,6 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquer
 
 			<div class="col-xs-12 col-sm-4">
 				<label>Mapping :</label>
-				<ul class="nav nav-tabs">
-				  <li role="presentation" class="active"><a href="#">JSON</a></li>
-				</ul>
 				<div class="panel panel-default">
 				  	<div class="panel-body">
 				  		<div id="divJsonMapping" class="panel-scroll height-230">
@@ -307,12 +267,6 @@ jQuery(document).ready(function()
 
 	$("#divChooseMapping").hide();
 	$("#visualisationGlobal").hide();
-	$("#divInformationImport").hide();
-	$("#divInformationRejet").hide();
-	$("#divListImport").hide();
-	$("#divListImport").css('overflow', 'auto');
-	$("#divListRejet").hide();
-	$("#divListRejet").css('overflow', 'auto');
 
 	if($("#result").val() == false)
 		$("#divmapping").hide();
@@ -346,6 +300,7 @@ jQuery(document).ready(function()
 	  		ligne =	 ligne + '<td id="valueheadCSVMapping'+nbligne+'">' + $("#selectHeadCSV option:selected").text() + '</td>';
 	  		ligne =	 ligne + '<td id="labelMapping'+nbligne+'">' + $("#textMapping").val() + '</td>';
 	  		ligne =	 ligne + '<td id="typeMapping'+nbligne+'">' + $("#typeMapping").val() + '</td>';
+	  		ligne =	 ligne + '<td id="libelleMapping'+nbligne+'">' + $("#libelleMapping").val() + '</td>';
 	  		ligne =	 ligne + '<td><input type="hidden" id="keyheadCSVMapping'+nbligne+'" value="'+$("#selectHeadCSV").val()+'">';
 	  		ligne =	 ligne + '<a href="#" class="deleteLineMapping btn btn-primary">X</a></td></tr>';
 	  		$("#nbligne").val(nbligne);
@@ -382,19 +337,22 @@ jQuery(document).ready(function()
   		var tabmapping = [];
   		var tabIDmapping = [];
   		var tabTypeMapping = [];
+  		var tabLibelleMapping = [];
   		nbligne = $("#nbligne").val();
   		for (i = 0; i < nbligne; i++) 
   		{
   			tabmapping[i] = $("#labelMapping"+(i+1)).text();
   			tabIDmapping[i] = $("#keyheadCSVMapping"+(i+1)).val();
   			tabTypeMapping[i] = $("#typeMapping"+(i+1)).text();
+  			tabLibelleMapping[i] = $("#libelleMapping"+(i+1)).text();
 		}
 
 		if(tabmapping != "")
   		{
 	  		$.ajax({
 		        type: 'POST',
-		        data: {tabidmapping : tabIDmapping, 
+		        data: {
+		        		tabidmapping : tabIDmapping, 
 		        		mappingSelected : $("#mappingSelected").val(), 
 		        		chooseSelected : $("#chooseSelected").val(), 
 		        		separateur : $("#separateurMapping").val(), 
@@ -405,7 +363,9 @@ jQuery(document).ready(function()
 		        		tabCSV : $("#tabCSV").val(), 
 		        		lien : $('#lien').val(),
 		        		subfile : $('#subfile').val(),
-		        		tabTypeMapping : tabTypeMapping},
+		        		tabTypeMapping : tabTypeMapping,
+		        		tabLibelleMapping : tabLibelleMapping
+		        	},
 		        url: baseUrl+'/tools/traitermapping/',
 		        dataType : 'json',
 		        success: function(data)
@@ -430,65 +390,6 @@ jQuery(document).ready(function()
 		      			$('#divjsonimport').JSONView('toggle', 1);	
 		      			$("#divjsonrejet").JSONView(data.jsonrejet);
 		      			$('#divjsonrejet').JSONView('toggle', 1);	
-						
-						$("#listeInformationImport").html('<li class="list-group-item">'+ data.nbcommunemodif +' communes mis à jours</li>');
-						$("#listeInformationImport").append('<li class="list-group-item">'+ data.nbinfoparcommune +' informations seront ajouté par communes</li>');
-						$("#listeInformationRejet").html('<li class="list-group-item">'+ data.nbcommunerejet +' communes mis à jours</li>');
-
-						colimport = [];
-						entete = "<tr>";
-
-						$.each(data.arraymappingfields, function( keyFields, valueFields )
-						{
-							var myArray = valueFields.split('.');
-							$("#typeData").val(myArray[0])
-							return false ;
-						});
-
-						$.each(data.arraymappingfields, function( keyFields, valueFields )
-						{
-							$.each(data.tabCode, function( keyRows, valueRows )
-							{
-								if(valueRows == keyFields || valueRows == data.lien)
-							   	{
-							   		colimport.push(keyRows);
-							   		entete = entete + "<th>"+ valueRows +"</th>";
-							   		return false ;
-							   	}
-							});
-						});
-						
-						entete = entete + "</tr>";
-						$("#tableHeadImport").html(entete);
-						$("#tableHeadRejet").html(entete);
-
-						ligne ="";
-						$.each(data.arrayCsvImport, function( keyRows, valueRows )
-						{
-							ligne = ligne + "<tr>" ;
-						    $.each(valueRows, function( keyCols, valueCols )
-							{
-								if(jQuery.inArray(keyCols, colimport) != -1)
-							    	ligne = ligne + "<td>"+ valueCols +"</td>";
-							});
-							ligne = ligne + "</tr>" ;
-						});
-						$("#tableBodyImport").html(ligne);
-
-						ligne ="";
-						$.each(data.arrayCsvRejet, function( keyRows, valueRows )
-						{
-							ligne = ligne + "<tr>" ;
-						    $.each(valueRows, function( keyCols, valueCols )
-							{
-								if(jQuery.inArray(keyCols, colimport) != -1)
-							    	ligne = ligne + "<td>"+ valueCols +"</td>";
-							});
-							ligne = ligne + "</tr>" ;
-						});
-						$("#tableBodyRejet").html(ligne);
-
-						resetDirectoryTable() ;
 		       		}
 		       		//$.unblockUI();
 		       	}
