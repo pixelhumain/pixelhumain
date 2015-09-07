@@ -64,14 +64,14 @@
 					<span class="username"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span>
 				</a>
 
-				<a href="#" onclick="popinInfo('TODO : Compteur Notfication de discussion','Ce compteur de gamification permettra de suivre')">
+				<a href="#" onclick="popinInfo('TODO : Compteur Notfication de discussion','Ce compteur de commentaire permettra de suivre')" title="Gamification points">
 					<i class="fa fa-comment"></i>
-					<span class="notifications-count badge badge-danger animated bounceIn"></span>
+					<span class="notifications-count topbar-badge topbar-badge badge badge-danger animated bounceIn"></span>
 				</a>
 				<?php //<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/activities") ?>
-				<a href="#">
-					<i class="fa fa-bookmark-o"></i>
-					<span class="notifcation-counter badge badge-warning animated bounceIn"><?php echo Gamification::calcPoints( Yii::app()->session['userId'] ) ?></span>
+				<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/gamification"); ?>">
+					<i class="fa fa-gamepad "></i>
+					<span class="topbar-badgeL badge badge-warning animated bounceIn"><?php echo Gamification::badge( Yii::app()->session['userId'] ) ?></span>
 				</a>
 				<a href="#" class="sb_toggle" id="sbToogle">
 					<i class="fa fa-cog"></i>
@@ -152,7 +152,7 @@
 			<a href="#" class="sb-toggle-right trigger">
 				<i class="fa fa-globe toggle-icon"></i>
 				<?php if( !empty( $this->notifications )  ){?>
-				<span class="notifications-count badge badge-danger animated bounceIn"><?php count($this->notifications); ?></span>
+				<span class="notifications-count topbar-badge badge badge-danger animated bounceIn"><?php count($this->notifications); ?></span>
 				<?php } ?>
 			</a>
 		</li>
