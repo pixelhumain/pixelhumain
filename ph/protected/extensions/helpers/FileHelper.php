@@ -603,11 +603,20 @@ class fileHelper {
         {
         	if(is_array($value)==true)
             {
-            	$pere =  $pere . "." . $key ;
-            	$chaine = FileHelper::arbreJson($value, $chaine, $pere);
+            	if($pere == "")
+            		$newpere =  $key ;
+            	else
+            		$newpere =  $pere . "." . $key ;
+            	
+            	$chaine = FileHelper::arbreJson($value, $chaine, $newpere);
             }
             else
-            	$chaine = $chaine . $pere . "." . $key .  ";";
+            {
+            	if($pere == "")
+            		$chaine = $chaine . $key .  ";";
+            	else
+            		$chaine = $chaine . $pere . "." . $key .  ";";
+            }	
         }
         
         return $chaine ;
@@ -616,7 +625,7 @@ class fileHelper {
 // --------------------------------------------------------------------
 
 /**
- * create_json
+ * 
  *
  * 
  *
@@ -627,19 +636,42 @@ class fileHelper {
  */
 	public static function get_value_json($json, $map)
 	{
-		
-		if(count($map) == 1)
-	    {
-	    	 $value = $json[$map[0]];
-	    }
-	    else
-	    {
-	    	$newmap = array_splice($map, 1);
-	    	$value = FileHelper::get_value_json($json[$map[0]], $newmap);
-	   	}
+        if(isset($json[$map[0]]))
+		{
+			if(count($map) == 1)
+		    {
+		    	$value = $json[$map[0]];
+		    }
+		    else
+		    {
+		    	$newmap = array_splice($map, 1);
+		    	$value = FileHelper::get_value_json($json[$map[0]], $newmap);
+		   	}
+		}
+		else
+		{
+			$num = intval($map[0]) ;
+			if(is_int($num))
+			{
+				if(count($map) == 1)
+			    {
+			    	$value = $json[0];
+			    }
+			    else
+			    {
+			    	$newmap = array_splice($map, 1);
+			    	$value = FileHelper::get_value_json($json[0], $newmap);
+			   	}
+			}
+			else
+			{
+				$value = null ;	
+			}
+			
+		}
 	    return $value;
 	}
-
+	
 // --------------------------------------------------------------------
 
 }

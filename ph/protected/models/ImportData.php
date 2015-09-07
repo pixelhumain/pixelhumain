@@ -4,7 +4,8 @@
  */
 class ImportData
 { 
-	
+	const MICROFORMATS = "microformats";
+    const ORGANIZATIONS = "organizations";
 	//Insert les données dans Mongo, et créer les fichier dans CityData/importHistory
 	public static function importMongoDB($post)
     {
@@ -112,7 +113,7 @@ class ImportData
         }
 
     
-        if(isset($objectImport->insee))
+        /*if(isset($objectImport->insee))
         {
             $res = PHDB::findOne(City::COLLECTION_DATA, 
                                     array("insee" => $objectImport->insee, 
@@ -153,7 +154,7 @@ class ImportData
                 }
                 
             }  
-        }
+        }*/
 		return $resMapping;
     }
 
@@ -178,9 +179,13 @@ class ImportData
 
             $arrayNameFile = explode(".", $file['fileimport']['name']);
 
+            $path = '../../modules/cityData/filesCityData/' ;
+            if(!file_exists($path))
+                mkdir($path , 0775);
+
             $path = '../../modules/cityData/filesCityData/'.$arrayNameFile[0].'/' ;
             if(!file_exists($path))
-                mkdir($path , 0777);
+                mkdir($path , 0775);
 
 
             $countLine = 0;
@@ -285,9 +290,19 @@ class ImportData
                 $jsonfilsType[$d] = $value;
             }
         }
+
+        foreach ($createMappingWithCSV['tabLibelleMapping'] as $key => $value) 
+        {
+            if($value != '' && isset($arrayHeadCsv[$createMappingWithCSV['tabidmapping'][$key]]))
+            {   
+                $d = $arrayHeadCsv[$createMappingWithCSV['tabidmapping'][$key]];
+                $jsonfilsLibelle[$d] = $value;
+            }
+        }
         
         $jsonMapping["fields"] = $jsonfilsFields;
         $jsonMapping["type"] = $jsonfilsType;
+        $jsonMapping["labels"] = $jsonfilsLibelle;
 
         $idLien = $createMappingWithCSV['lien'];
 
@@ -302,7 +317,7 @@ class ImportData
                 
                 if($i>0 && $line[0] != null)
                 {
-                    if (($i%500) == 0)
+                    if (($i%2) == 0)
                     {
                         set_time_limit(30) ;
                     }
@@ -315,7 +330,7 @@ class ImportData
                     if($res != null)
                     {
                         $commune["insee"] = $valueIdLien;
-                        $arrayCsvImport[$i] = $line ;
+                        
                         foreach ($arrayHeadCsv as $keyCode => $valueCode) 
                         {
                             foreach ($jsonMapping['fields'] as $key => $value) 
@@ -323,22 +338,30 @@ class ImportData
                                 if($valueCode == $key)
                                 {
                                     $map = explode(".", $value);
+                                    $mapLabel = $map ;
+                                    $map[] = "value" ;
+                                    $mapLabel[] = "label" ;
                                     if(!isset($commune[$map[0]]))
                                     {
                                         if(count($map) > 1)
                                         {
                                             $newmap = array_splice($map, 1);
+                                            $newmapLabel = array_splice($mapLabel, 1);
                                             $commune[$map[0]] = FileHelper::create_json($newmap, $line[$keyCode], $jsonMapping['type'][$key]);
+                                            $commune[$map[0]] = FileHelper::create_json_with_father($newmapLabel, $jsonMapping['labels'][$key], $commune[$map[0]], "STRING");
+                                            //$commune[$map[0]] = FileHelper::create_json($newmapLabel, $jsonMapping['labels'][$key], "STRING");
                                         }
                                         else
                                         {
 
                                             if($jsonMapping['type'][$key] == "INT")
-                                                $commune[$map[0]] = intval($line[$keyCode]);
+                                                $commune[$map[0]]["value"] = intval($line[$keyCode]);
                                             else if($jsonMapping['type'][$key] == "FLOAT")
-                                                $commune[$map[0]] = floatval($line[$keyCode]);
+                                                $commune[$map[0]]["value"] = floatval($line[$keyCode]);
                                             else
-                                                $commune[$map[0]] = $line[$keyCode];
+                                                $commune[$map[0]]["value"] = $line[$keyCode];
+
+                                            $commune[$map[0]]["label"] = $jsonMapping['label'][$key] ;
                                         }
                                     }
                                     else
@@ -346,17 +369,21 @@ class ImportData
                                         if(count($map) > 1)
                                         { 
                                             $newmap = array_splice($map, 1);
-                                            $commune[$map[0]] = FileHelper::create_json_with_father($newmap, $line[$keyCode], $commune[$map[0]], $jsonMapping['type'][$key]) ;
+                                            $newmapLabel = array_splice($mapLabel, 1);
+                                            $commune[$map[0]]= FileHelper::create_json_with_father($newmap, $line[$keyCode], $commune[$map[0]], $jsonMapping['type'][$key]) ;
+                                            $commune[$map[0]] = FileHelper::create_json_with_father($newmapLabel, $jsonMapping['labels'][$key], $commune[$map[0]], "STRING");
                                         }
                                         else
                                         {
 
                                             if($jsonMapping['type'][$key] == "INT")
-                                                $commune[$map[0]] = intval($line[$keyCode]);
+                                                $commune[$map[0]]["value"] = intval($line[$keyCode]);
                                             else if($jsonMapping['type'][$key] == "FLOAT")
-                                                $commune[$map[0]] = floatval($line[$keyCode]);
+                                                $commune[$map[0]]["value"] = floatval($line[$keyCode]);
                                             else
-                                                $commune[$map[0]] = $line[$keyCode];
+                                                $commune[$map[0]]["value"] = $line[$keyCode];
+
+                                            $commune[$map[0]]["label"] = $jsonMapping['label'][$key] ;
                                         }
                                     }
                                     break;
@@ -370,7 +397,6 @@ class ImportData
                     else
                     {
                         $rejet["insee"] = $valueIdLien;
-                        $arrayCsvRejet[$i] = $line ;
 
                         foreach ($arrayHeadCsv as $keyCode => $valueCode) 
                         {
@@ -379,21 +405,28 @@ class ImportData
                                 if($valueCode == $key)
                                 { 
                                     $map = explode(".", $value);
+                                    $mapLabel = $map ;
+                                    $map[] = "value" ;
+                                    $mapLabel[] = "label" ;
                                     if(!isset($rejet[$map[0]]))
                                     {
                                         if(count($map) > 1)
                                         {
                                             $newmap = array_splice($map, 1);
+                                            $newmapLabel = array_splice($mapLabel, 1);
                                             $rejet[$map[0]] = FileHelper::create_json($newmap, $line[$keyCode], $jsonMapping['type'][$key]);
+                                            $rejet[$map[0]] = FileHelper::create_json_with_father($newmapLabel, $jsonMapping['labels'][$key], $rejet[$map[0]], "STRING");
                                         }
                                         else
                                         {
                                             if($jsonMapping['type'][$key] == "INT")
-                                                $rejet[$map[0]] = intval($line[$keyCode]);
+                                                $rejet[$map[0]]["value"] = intval($line[$keyCode]);
                                             else if($jsonMapping['type'][$key] == "FLOAT")
-                                                $rejet[$map[0]] = floatval($line[$keyCode]);
+                                                $rejet[$map[0]]["value"] = floatval($line[$keyCode]);
                                             else
-                                                $rejet[$map[0]] = $line[$keyCode];
+                                                $rejet[$map[0]]["value"] = $line[$keyCode];
+
+                                            $rejet[$map[0]]["label"] = $jsonMapping['label'][$key] ;
                                         }
                                     }
                                     else
@@ -401,17 +434,21 @@ class ImportData
                                         
                                         if(count($map) > 1)
                                         { 
-                                           $newmap = array_splice($map, 1);
-                                           $rejet[$map[0]] = FileHelper::create_json_with_father($newmap, $line[$keyCode], $rejet[$map[0]], $jsonMapping['type'][$key]) ;
+                                            $newmap = array_splice($map, 1);
+                                            $newmapLabel = array_splice($mapLabel, 1);
+                                            $rejet[$map[0]] = FileHelper::create_json_with_father($newmap, $line[$keyCode], $rejet[$map[0]], $jsonMapping['type'][$key]) ;
+                                            $rejet[$map[0]] = FileHelper::create_json_with_father($newmapLabel, $jsonMapping['labels'][$key], $rejet[$map[0]], "STRING");
                                         }
                                         else
                                         {
                                             if($jsonMapping['type'][$key] == "INT")
-                                                $rejet[$map[0]] = intval($line[$keyCode]);
+                                                $rejet[$map[0]]["value"] = intval($line[$keyCode]);
                                             else if($jsonMapping['type'][$key] == "FLOAT")
-                                                $rejet[$map[0]] = floatval($line[$keyCode]);
+                                                $rejet[$map[0]]["value"] = floatval($line[$keyCode]);
                                             else
-                                                $rejet[$map[0]] = $line[$keyCode];
+                                                $rejet[$map[0]]["value"] = $line[$keyCode];
+
+                                            $rejet[$map[0]]["label"] = $jsonMapping['label'][$key] ;
                                         }
                                     }
                                     break;
@@ -428,15 +465,19 @@ class ImportData
             if(!isset($commune))
             {
                 $jsonimport = [];
-                $arrayCsvImport = [];
             }
             if(!isset($rejet))
             {
                 $jsonrejet = [];
-                $arrayCsvRejet = [];
+                
             }
 
             $params = array('result'=> true,
+                                'jsonmapping'=>json_encode($jsonMapping),
+                                "jsonimport"=>json_encode($jsonimport),
+                                "jsonrejet"=>json_encode($jsonrejet));
+
+           /* $params = array('result'=> true,
                                     'jsonmapping'=>json_encode($jsonMapping),
                                     "jsonimport"=>json_encode($jsonimport),
                                     "jsonrejet"=>json_encode($jsonrejet),
@@ -447,7 +488,7 @@ class ImportData
                                     "nbcommunemodif"=>count($arrayCsvImport),
                                     "nbinfoparcommune"=>count($jsonMapping['fields']),
                                     "nbcommunerejet"=>count($arrayCsvRejet),
-                                    "arrayCsvRejet"=>$arrayCsvRejet);
+                                    "arrayCsvRejet"=>$arrayCsvRejet); */
 
             return $params ;
         
@@ -633,4 +674,283 @@ class ImportData
             return $params;
          
     } 
+
+
+
+    /******** Partie pour importData.php ***************/
+    public static function getMicroFormats($params, $fields=null, $limit=0) 
+    {
+        $microFormats =PHDB::findAndSort(self::MICROFORMATS,$params, array("created" =>1), $limit, $fields);
+        return $microFormats;
+    }
+
+    public static function parsingCSV($file, $post) 
+    {
+        header('Content-Type: text/html; charset=UTF-8');
+        if(isset($file['fileImport']) && isset($post['separateurDonnees']) && isset($post['separateurTexte']) && isset($post['chooseCollection']))
+        {
+            $csv = new SplFileObject($file['fileImport']['tmp_name'], 'r');
+            $csv->setFlags(SplFileObject::READ_CSV);
+            
+            $csv->setCsvControl($post['separateurDonnees'], $post['separateurTexte'], '"');
+            /*$csvControl = $csv->getCsvControl();
+            var_dump($csvControl);
+            $csv->setCsvControl($csvControl[0], $csvControl[1]);*/
+
+            $arrayNameFile = explode(".", $file['fileImport']['name']);
+            // On découpe le fichier s'il est trop gros, 5000 ligne par fichier
+
+            $path = '../../modules/cityData/filesImportData/' ;
+            if(!file_exists($path))
+                mkdir($path , 0775);
+
+            $path = '../../modules/cityData/filesImportData/'.$arrayNameFile[0].'/' ;
+            if(!file_exists($path))
+                mkdir($path , 0775);
+
+            $countLine = 0;
+            $countFile = 1;
+
+            foreach ($csv as $key => $value) 
+            {
+
+                //if(is_string($value))
+
+                $arrayCSV[$key] = $value;
+                if($key == 0)
+                    $headerCSV = $value;
+                
+                if($countLine == 0 || $key == 0)
+                    $arrayCSV[0] = $headerCSV;
+                else
+                    $arrayCSV[$countLine] = $value;
+
+
+                if($countLine == 5000)
+                {
+                    $nameFile = $arrayNameFile[0].'_'.$countFile.'.csv' ;
+                    ImportData::createCSV($arrayCSV, $nameFile, $path);
+                    $countLine = 0;
+                    $countFile++;
+                    $arrayCSV = array();
+                }
+                else
+                    $countLine++;
+
+            }
+            $nameFile = $arrayNameFile[0].'_'.$countFile.'.csv' ;
+            ImportData::createCSV($arrayCSV, $nameFile, $path);
+
+            $params = array("createLink"=>true,
+                            "arrayCSV" => $arrayCSV,
+                            "nameFile"=>$file['fileImport']['name'],
+                            "idCollection"=>$post['chooseCollection']);
+        }
+        else
+        {
+            $params = array("createLink"=>false);  
+        }
+
+        return $params ;
+    }
+
+
+
+    public static  function previewData($post) 
+    {
+        /**** new ****/
+
+        if(isset($post['infoCreateData']) && isset($post['idCollection']) && isset($post['subFile']) && isset($post['nameFile']))
+        {
+            $pathSubFile =  '../../modules/cityData/filesImportData/'.$post['nameFile'].'/'.$post['subFile'] ;
+            $arrayCSV = new SplFileObject($pathSubFile, 'r');
+            $arrayCSV->setFlags(SplFileObject::READ_CSV);
+            $arrayCSV->setCsvControl(',', '"', '"');
+
+            $i = 0 ;
+            while (!$arrayCSV->eof() && $i == 0) {
+                $arrayHeadCSV = $arrayCSV->fgetcsv() ;
+                $i++;
+            }
+           
+            $i = 0 ;
+            // On parcourt les lignes du CSV
+            
+
+            foreach ($arrayCSV as $keyCSV => $lineCSV) 
+            {
+                // On rejet la premier lignes qui correspond a l'en-tete, et les lignes qui seraient null
+                if($i>0 && $lineCSV[0] != null)
+                {
+                    if (($i%500) == 0)
+                    {
+                        set_time_limit(30) ;
+                    }
+
+
+                    foreach($post['infoCreateData']as $key => $objetInfoData) 
+                    {
+                        //$objetInfoData->idHeadCSV;
+                        //$objetInfoData->valueLinkCollection;
+                        $valueData = $lineCSV[$objetInfoData['idHeadCSV']] ;
+                        
+                        if(!empty($valueData))
+                        {
+                            $paramsInfoCollection = array("_id"=>new MongoId($post['idCollection']));
+                            $fieldsInfoCollection =  array("mappingFields.".$objetInfoData['valueLinkCollection']);
+
+                            $infoCollection = ImportData::getMicroFormats($paramsInfoCollection);
+
+                           
+                            //var_dump($infoCollection) ; 
+                            $mappingTypeData = explode(".", $post['idCollection'].".mappingFields.".$objetInfoData['valueLinkCollection']);
+
+
+                            $typeData = FileHelper::get_value_json($infoCollection,$mappingTypeData);
+                            /*var_dump($mappingTypeData) ; 
+                           
+                            var_dump($typeData) ; */
+
+                            $mapping = explode(".", $objetInfoData['valueLinkCollection']);
+                           
+                            if(isset($jsonData[$mapping[0]]))
+                            {
+                                if(count($mapping) > 1)
+                                { 
+                                    $newmap = array_splice($mapping, 1);
+                                    $jsonData[$mapping[0]] = FileHelper::create_json_with_father($newmap, $valueData, $jsonData[$mapping[0]], $typeData);
+                                }
+                                else
+                                {
+                                    $jsonData[$mapping[0]] = $valueData;
+                                }
+                            }
+                            else
+                            {
+                                if(count($mapping) > 1)
+                                { 
+                                    $newmap = array_splice($mapping, 1);
+                                    $jsonData[$mapping[0]] = FileHelper::create_json($newmap, $valueData, $typeData);
+                                }
+                                else
+                                {
+                                    $jsonData[$mapping[0]] = $valueData;
+                                }
+                            }
+                        }
+                        
+                    }
+                    $newOrganization = Organization::newOrganizationFromImportData($jsonData);
+                    //var_dump($newOrganization);
+                    try{
+                        $arrayJson[] = Organization::getAndCheckOrganization($newOrganization) ;
+                    }
+                    catch (CTKException $e){
+                        $newOrganization["msgError"] = $e->getMessage();
+                        $arrayJsonError[] = $newOrganization ;
+                    }
+                }
+                $i++;
+            }
+
+            if(!isset($arrayJson))
+                $arrayJson = [];
+
+            if(!isset($arrayJsonError))
+                $arrayJsonError = [];
+
+            $params = array("result" => true,
+                            "jsonImport"=> json_encode($arrayJson),
+                            "jsonError"=> json_encode($arrayJsonError));
+        }
+        else
+        {
+            $params = array("result" => false); 
+        }
+        return $params;
+    }
+
+
+
+    public static function importMongoDB2($post)
+    {
+        /***** new version *****/
+
+        $newFolder = false ;
+
+        $path = '../../modules/cityData/importData/' ;
+        if(!file_exists($path))
+            mkdir($path , 0775);
+
+
+        $pathFile = '../../modules/cityData/importData/organizations/' ;
+        if(!file_exists($pathFile))
+        {
+            mkdir($pathFile , 0775);
+            $count = 1 ;
+            $newFolder = true ;
+        }    
+        else
+        {
+            $files = scandir($pathFile);
+            $count = 1 ;
+            foreach ($files as $key => $value) {
+                $name_file = explode(".", $value);
+                if (strpos($name_file[0], "cityData") !== false) 
+                {
+                   $count++;
+                }
+            }
+        }
+
+        //importmongo all
+        if(file_exists("../../modules/cityData/importData/importAllMongo.sh") == true)
+            $textImportMongoAll = file_get_contents("../../modules/cityData/importData/importAllMongo.sh", FILE_USE_INCLUDE_PATH);
+        else
+            $textImportMongoAll = "" ;
+
+        if($newFolder)
+        {
+            $textImportMongoAll = $textImportMongoAll."cd organizations;\n";
+            $textImportMongoAll = $textImportMongoAll."sh importMongo.sh;\n";
+            $textImportMongoAll = $textImportMongoAll."cd .. ;\n";
+        }
+
+        //importmongo 
+        if(file_exists("../../modules/cityData/importData/organizations/importMongo.sh") == true)
+            $textFileSh = file_get_contents("../../modules/cityData/importData/organizations/importMongo.sh", FILE_USE_INCLUDE_PATH);
+        else
+            $textFileSh = "" ;
+
+
+        $textFileSh = $textFileSh . "mongoimport --db pixelhumain --collection organizations organizations_".$count.".json --jsonArray;\n";
+        
+        file_put_contents("../../modules/cityData/importData/organizations/organizations_".$count.".json", $post['jsonImport']);
+        file_put_contents("../../modules/cityData/importData/organizations/error_".$count.".json", $post['jsonError']);
+        file_put_contents("../../modules/cityData/importData/organizations/importMongo.sh", $textFileSh);
+        file_put_contents("../../modules/cityData/importData/importAllMongo.sh", $textImportMongoAll);
+
+        if(isset($post['jsonImport']))
+        {
+            $arrayDataImport = json_decode($post['jsonImport'], true) ;
+
+            foreach ($arrayDataImport as $key => $value) 
+            {
+                $newOrganization = Organization::newOrganizationFromImportData($value);
+                try{
+                    $resData[] = Organization::insert($newOrganization, Yii::app()->session["userId"]) ; 
+                }
+                catch (CTKException $e){
+                    $resData[] = $e->getMessage();
+                }        
+            }
+            $params = array("result" => true, 
+                            "resData" => $resData);
+        }
+        else
+        {
+            $params = array("result" => false); 
+        }
+        return $params;
+    }
 }
