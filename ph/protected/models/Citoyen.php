@@ -41,7 +41,7 @@ class Citoyen
         {
             Person::clearUserSessionData();
             $account = PHDB::findOne(self::COLLECTION,array("email"=>$email));
-            if($account)
+            if($account && (!isset($account["tobeactivated"]) || !$account["tobeactivated"]) )
             {
                 if( empty( $account["pwd"] ) )
                 {
@@ -95,8 +95,8 @@ class Citoyen
                 $res = self::register( $email, $pwd );
             } else
                 $res = array("result"=>false, 
-                              "msg"=>"Merci de saisir un email valide et un mot de passe"
-                              //"msg"=>"We're still finishing things, see you in september"
+                              //"msg"=>"Merci de saisir un email valide et un mot de passe"
+                              "msg"=>"We're still finishing things, see you in september"
                               );
             
         } else
