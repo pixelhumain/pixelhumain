@@ -243,13 +243,20 @@
 				
 			}
 		});
+
 		if($(".tooltips").length) {
 	 		$('.tooltips').tooltip();
 	 	}
 	});
 
 	
-	function setSearchInput(id, name, type){
+	function addEventOnSearch() {
+		$('.searchEntry').off().on("click", function(){
+			setSearchInput($(this).data("id"), $(this).data("type"));
+		});
+	}
+
+	function setSearchInput(id, type){
 		if(type=="citoyen"){
 			type = "person";
 		}
@@ -281,13 +288,16 @@
 		 						if(o.type){
 			 						typeIco = o.type;
 			 					}
-			 					str += "<div class='searchList li-dropdown-scope' ><ol><a href='javascript:setSearchInput(\""+ o._id["$id"] +"\", \""+o.name+"\", \""+i+"\")'><span><i class='fa "+mapIconTop[typeIco]+"'></i></span>  " + o.name + "</a></ol></div>";
+			 					str += 	"<div class='searchList li-dropdown-scope' ><ol>"+
+			 							"<a href='#'' data-id='"+ o._id["$id"] +"' data-type='"+ i +"' class='searchEntry'>"+
+			 							"<span><i class='fa "+mapIconTop[typeIco]+"'></i></span>  " + o.name + "</a></ol></div>";
 			 				})
 		 				}	
 		  			}); 
 		  			if(str == "") str = "<ol class='li-dropdown-scope'>Aucun résultat</ol>";
 		  			$("#dropdown_searchTop").html(str);
 		  			$("#dropdown_searchTop").css({"display" : "inline" });
+		  			addEventOnSearch();
 	  			}
 			}	
 		})
