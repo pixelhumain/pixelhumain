@@ -13,7 +13,7 @@
            suivez le lien pour découvrir<br/>
            ou copier le directement dans votre navigateur 
            <br/>
-           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$this->module->id; ?>/<?php echo $url?>">Découvrir</a>
+           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id.$url?>">Découvrir</a>
         </td>
       </tr>
       </table>
