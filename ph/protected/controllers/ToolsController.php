@@ -146,4 +146,28 @@ Titi Kiki	toto@kiki.com";
             return Rest::json($params);
         } 
     } 
+
+
+     /*** Import organizations and others***/
+
+     public function actionImportData() {
+        /*$controller->title = "Surveys";
+        $controller->subTitle = "Nombres de votants inscrit : ";
+        $controller->pageTitle = "Communecter - Surveys ";*/
+        //$this->render("importData");
+        $params = ImportData::parsingCSV($_FILES, $_POST);
+        $this->render("importData",$params); 
+    }
+
+    public function actionPreviewData(){
+        $params = ImportData::previewData($_POST);
+        return Rest::json($params);
+    }
+
+    public function actionImportMongo2() 
+    {
+        $params = ImportData::importMongoDB2($_POST);
+        return Rest::json($params);
+    }
+
 }

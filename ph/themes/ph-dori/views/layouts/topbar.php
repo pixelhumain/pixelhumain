@@ -3,7 +3,7 @@
 	#dropdown_searchTop{
 		padding: 0px 15px; 
 		margin-left:375px; 
-		width:250px;
+		width:300px;
 	}
 
 	#dropdownTags{
@@ -31,6 +31,12 @@
 	ol{ 
 		padding-left:0; 
 		list-style-position:inside; 
+	}
+
+	.city-search {
+	    font-size: 0.95rem;
+	    font-weight: 300;
+	    line-height: 0.8125rem;
 	}
 	
 	<?php if( Yii::app()->session[ "userIsAdmin"] && Yii::app()->controller->id == "admin" ){?>
@@ -64,14 +70,14 @@
 					<span class="username"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span>
 				</a>
 
-				<a href="#" onclick="popinInfo('TODO : Compteur Notfication de discussion','Ce compteur de gamification permettra de suivre')">
+				<a href="#" onclick="popinInfo('TODO : Compteur Notfication de discussion','Ce compteur de commentaire permettra de suivre')" title="Gamification points">
 					<i class="fa fa-comment"></i>
-					<span class="notifications-count badge badge-danger animated bounceIn"></span>
+					<span class="notifications-count topbar-badge topbar-badge badge badge-danger animated bounceIn"></span>
 				</a>
 				<?php //<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/activities") ?>
-				<a href="#">
-					<i class="fa fa-bookmark-o"></i>
-					<span class="notifcation-counter badge badge-warning animated bounceIn"><?php echo Gamification::calcPoints( Yii::app()->session['userId'] ) ?></span>
+				<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/gamification"); ?>">
+					<i class="fa fa-gamepad "></i>
+					<span class="topbar-badgeL badge badge-warning animated bounceIn"><?php echo Gamification::badge( Yii::app()->session['userId'] ) ?></span>
 				</a>
 				<a href="#" class="sb_toggle" id="sbToogle">
 					<i class="fa fa-cog"></i>
@@ -152,7 +158,7 @@
 			<a href="#" class="sb-toggle-right trigger">
 				<i class="fa fa-globe toggle-icon"></i>
 				<?php if( !empty( $this->notifications )  ){?>
-				<span class="notifications-count badge badge-danger animated bounceIn"><?php count($this->notifications); ?></span>
+				<span class="notifications-count topbar-badge badge badge-danger animated bounceIn"><?php count($this->notifications); ?></span>
 				<?php } ?>
 			</a>
 		</li>
@@ -243,13 +249,20 @@
 				
 			}
 		});
+
 		if($(".tooltips").length) {
 	 		$('.tooltips').tooltip();
 	 	}
 	});
 
 	
-	function setSearchInput(id, name, type){
+	function addEventOnSearch() {
+		$('.searchEntry').off().on("click", function(){
+			setSearchInput($(this).data("id"), $(this).data("type"));
+		});
+	}
+
+	function setSearchInput(id, type){
 		if(type=="citoyen"){
 			type = "person";
 		}
@@ -273,21 +286,33 @@
 	        		toastr.error(data.content);
 	        	}else{
 					str = "";
+					var city, postalCode = "";
 		 			$.each(data, function(i, v) {
 		 				console.log(v, v.length, v.size);
 		 				var typeIco = i;
 		 				if(v.length!=0){
 		 					$.each(v, function(k, o){
+		 						city = "";
+								postalCode = "";
 		 						if(o.type){
 			 						typeIco = o.type;
 			 					}
-			 					str += "<div class='searchList li-dropdown-scope' ><ol><a href='javascript:setSearchInput(\""+ o._id["$id"] +"\", \""+o.name+"\", \""+i+"\")'><span><i class='fa "+mapIconTop[typeIco]+"'></i></span>  " + o.name + "</a></ol></div>";
+			 					if (o.address != null) {
+	 								city = o.address.addressLocality;
+	 								postalCode = o.address.postalCode;
+	 							}
+			 					str += 	"<div class='searchList li-dropdown-scope' ><ol>"+
+			 							"<a href='#'' data-id='"+ o._id["$id"] +"' data-type='"+ i +"' class='searchEntry'>"+
+			 							"<span><i class='fa "+mapIconTop[typeIco]+"'></i></span>  " + o.name +
+			 							"<span class='city-search'> "+postalCode+" "+city+"</span>"+
+			 							"</a></ol></div>";
 			 				})
-		 				}	
+		 				}
 		  			}); 
 		  			if(str == "") str = "<ol class='li-dropdown-scope'>Aucun résultat</ol>";
 		  			$("#dropdown_searchTop").html(str);
 		  			$("#dropdown_searchTop").css({"display" : "inline" });
+		  			addEventOnSearch();
 	  			}
 			}	
 		})

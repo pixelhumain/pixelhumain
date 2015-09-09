@@ -1047,9 +1047,13 @@ footer {
         .top-navbar .navbar-logo .inner a > i {
           font-size: 19px;
           line-height: inherit; }
-        .top-navbar .navbar-logo .inner a .notifications-count {
+        .top-navbar .navbar-logo .inner a .topbar-badge{
           position: absolute;
           top: 12px;
+          right: 10px; }
+          .top-navbar .navbar-logo .inner a .topbar-badgeL{
+          position: absolute;
+          top: 6px;
           right: 10px; }
       .top-navbar .navbar-logo .inner .userlink {
         padding: 0 15px; }
