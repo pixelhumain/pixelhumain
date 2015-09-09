@@ -81,7 +81,7 @@ function markAsRead(id)
 	//ajax remove Notifications by AS Id
 	$.ajax({
         type: "POST",
-        url: baseUrl+"/"+moduleId+"/api/marknotificationasread",
+        url: baseUrl+"/"+moduleId+"/notification/marknotificationasread",
         data: { "id" : id },
         dataType : 'json'
     })
@@ -101,7 +101,7 @@ function markAllAsRead()
 {
 	$.ajax({
         type: "POST",
-        url: baseUrl+"/"+moduleId+"/api/markallnotificationasread",
+        url: baseUrl+"/"+moduleId+"/notification/markallnotificationasread",
         dataType : 'json'
     })
     .done( function (data) {
@@ -123,7 +123,7 @@ function refreshNotifications()
 	console.log("refreshNotifications",maxNotifTimstamp);
 	$.ajax({
         type: "GET",
-        url: baseUrl+"/"+moduleId+"/api/getnotifications?ts="+maxNotifTimstamp
+        url: baseUrl+"/"+moduleId+"/notification/getnotifications?ts="+maxNotifTimstamp
     })
     .done(function (data) {
         if (data) {               

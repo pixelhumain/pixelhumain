@@ -97,10 +97,11 @@
 
 			<!-- start: MAIN CONTAINER -->
 			<?php 
-
 			$bgClass = "bggrey";
 			$bgStyle = "";
-			if( isset( Yii::app()->session['user']['bg'] ) ){
+			if(Yii::app()->controller->id == "admin")
+				$bgClass = "bgred";
+			else if( isset( Yii::app()->session['user']['bg'] ) ){
 				if( Yii::app()->session['user']['bg'] == "bgCustom" && isset(Yii::app()->session['user']['bgUrl']) ){
 					$bgStyle = "background-image: url('".Yii::app()->session['user']['bgUrl']."');";
 				}
