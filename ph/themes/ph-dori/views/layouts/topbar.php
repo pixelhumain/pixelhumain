@@ -3,7 +3,7 @@
 	#dropdown_searchTop{
 		padding: 0px 15px; 
 		margin-left:375px; 
-		width:250px;
+		width:300px;
 	}
 
 	#dropdownTags{
@@ -31,6 +31,12 @@
 	ol{ 
 		padding-left:0; 
 		list-style-position:inside; 
+	}
+
+	.city-search {
+	    font-size: 0.95rem;
+	    font-weight: 300;
+	    line-height: 0.8125rem;
 	}
 	
 	<?php if( Yii::app()->session[ "userIsAdmin"] && Yii::app()->controller->id == "admin" ){?>
@@ -280,19 +286,28 @@
 	        		toastr.error(data.content);
 	        	}else{
 					str = "";
+					var city, postalCode = "";
 		 			$.each(data, function(i, v) {
 		 				console.log(v, v.length, v.size);
 		 				var typeIco = i;
 		 				if(v.length!=0){
 		 					$.each(v, function(k, o){
+		 						city = "";
+								postalCode = "";
 		 						if(o.type){
 			 						typeIco = o.type;
 			 					}
+			 					if (o.address != null) {
+	 								city = o.address.addressLocality;
+	 								postalCode = o.address.postalCode;
+	 							}
 			 					str += 	"<div class='searchList li-dropdown-scope' ><ol>"+
 			 							"<a href='#'' data-id='"+ o._id["$id"] +"' data-type='"+ i +"' class='searchEntry'>"+
-			 							"<span><i class='fa "+mapIconTop[typeIco]+"'></i></span>  " + o.name + "</a></ol></div>";
+			 							"<span><i class='fa "+mapIconTop[typeIco]+"'></i></span>  " + o.name +
+			 							"<span class='city-search'> "+postalCode+" "+city+"</span>"+
+			 							"</a></ol></div>";
 			 				})
-		 				}	
+		 				}
 		  			}); 
 		  			if(str == "") str = "<ol class='li-dropdown-scope'>Aucun résultat</ol>";
 		  			$("#dropdown_searchTop").html(str);
