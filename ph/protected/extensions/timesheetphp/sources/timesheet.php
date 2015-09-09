@@ -288,6 +288,7 @@ class timesheet{
 				$m_period = array( 
 					'title'=> $level_key,
 					'color' => $period['color'],
+					'key' => $period['key'],
 					'start' => explode( "-", $period['start']),
 					'end' =>  explode( "-", $period['end']),
 					);
@@ -317,7 +318,7 @@ class timesheet{
 		?>
 		<div class="segment">
 			<div style="margin-left: <?php echo $segment['marginleft']; ?>%;">
-				<?php if( $head_level ) : ?><span class="label" ><?php echo $segment['title']; ?></span><?php endif; ?>
+				<?php if( $head_level ) : ?><span class="label" ><?php if ($segment["key"]=="event"){?> <i class="fa fa-calendar"></i> <?php } ?><?php echo $segment['title']; ?></span><?php endif; ?>
 				<?php if( $segment['head_segment'] ) : ?><span class="date"><?php echo $displayDate ; ?></span><?php endif; ?>&nbsp;
 			</div>
 			<div style="margin-left: <?php echo $segment['marginleft']; ?>%; width: <?php echo $segment['width']; ?>%;position:relative;" class="bubble bubble-<?php echo $segment['color']; ?>" data-duration="6"></div>
