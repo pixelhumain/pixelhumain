@@ -109,6 +109,7 @@ function markAllAsRead()
         if ( data && data.result ) {               
         	$(".notifList li.notifLi").remove();
         	console.log("notifications cleared ",data);
+        	$(".sb-toggle-right").trigger("click");
         } else {
             toastr.error("no notifications found ");
         }
