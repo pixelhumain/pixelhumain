@@ -9,12 +9,12 @@ Yii::setPathOfAlias('Json',dirname(__FILE__) . '/../extensions/Json');
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Pixel Humain',
+	'name'=>'AzotLive',
 	'theme'=>'webarch',
 	
 	//SPECIFIC MODULE confis
 	//'defaultController' => 'communecter/default/index',
-	'homeUrl' => "/ph/twh",//"/ph?tpl=index",
+	'homeUrl' => "/ph/azotlive",//"/ph?tpl=index",
 
 	// preloading 'log' component
 	'preload'=>array('log'),
