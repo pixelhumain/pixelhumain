@@ -65,6 +65,7 @@ class UpdateUserAction extends CAction
 				if( isset($_POST['city']) )
                     $newInfos["address"]["addressCity"]= $_POST['city']; 
 
+                //TODO - Pas d'ajout de tags
                 if( isset($_POST['tags']) )
                 {
                   $tagsList = PHDB::findOne( PHType::TYPE_LISTS,array("name"=>"tags"), array('list'));
@@ -168,7 +169,7 @@ class UpdateUserAction extends CAction
     }
 
 		$path_file_to_save = $destination_folder.".".$image_extension;
-     	$this->save_image($image_res,$path_file_to_save,$image_type );
+     	$this->save_image($image_res,$path_file_to_save,$image_type);
      	$urlSaved = Yii::app()->getAssetManager()->publish($path_file_to_save);
 		return $urlSaved;
   	}
