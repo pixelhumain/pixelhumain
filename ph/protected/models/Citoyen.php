@@ -168,11 +168,15 @@ class Citoyen
                             ),
                         'email'=>$email,
                         'pwd' => hash('sha256', $email.$pwd),
-                        'ph:created' => time()
+                        'ph:created' => time(),
+						'status' => 0
                         );
-
+					if(isset($_POST['membertype']))
+                        $newAccount["membertype"] = $_POST['membertype'];
                     if(isset($_POST['name']))
                         $newAccount["name"] = $_POST['name'];
+						$newAccount["firstname"] = $_POST['firstname'];
+						$newAccount["lastname"] = $_POST['lastname'];
                     if(isset($_POST['cp']))
                     {
                          $newAccount["cp"] = $_POST['cp'];

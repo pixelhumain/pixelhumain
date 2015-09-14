@@ -1,0 +1,136 @@
+<?php
+/*
+- validate Ajax request
+- check refred email user exists
+- set group specific information
+- add application / module specific information 
+- insert or update group
+- TODO : add event to cart
+ */
+class AddUserToCartAction extends CAction
+{
+    public function run()
+    {
+       
+		if( $_POST['email'] ){
+			
+						
+			$m = new MongoClient("mongodb://oceatoon:6ognom9_$@open-atlas.org:27017/");
+$db = $m->selectDB ( "pixelhumainQA" );
+			$checkout = Yii::app()->session['checkout'];
+			$person = $_POST;
+			Yii::app()->session['personMap'] = $person;
+	
+	
+			$tickets = new MongoCollection($db, 'tickets');
+			//search for any pending tickets 
+			$unpayedTickets = $tickets->find(array("payed"=>false,"person.email"=>$person['email']));
+			foreach($unpayedTickets as $upt)
+				$tickets->remove(array("_id" => $upt["_id"]));
+			//issue ticket
+			//with non validated status
+			$now = new DateTime();
+			$now->setTimezone(new DateTimeZone('Indian/Reunion'));
+			
+
+			$offer = array(
+				"@context" => "http://schema.org",
+				"@Type"    => "Ticket",
+				"dateIssued" => $now->format("d/m/Y G:i"),
+				"tickets"=>array(
+					"@Type"    => "Ticket",
+					"quantity" => 0,
+					"@list"    => array()
+				),
+				"totalPrice"  => $checkout["total"],
+				"person"	  => array(
+					"@Type"	  => "Person",
+					"email"   => (string)$person["email"]
+				),
+				"event"=>array(
+					"@Type"   => "Event",
+					"@id"     => $checkout["events"]
+				),
+				"payed"     => false,
+				"printed"   => 0,
+				"printPref" => $person["printPref"]
+			);
+			$now = time();
+			$uniqueNum = (string)new MongoId();
+			$ticketToken = md5($now."azotlive".$uniqueNum);
+			if(isset($checkout["qtyCat1"]) && $checkout["qtyCat1"]>0 ){
+				$ticketNumbers = array();
+				for( $ix=0; $ix < $checkout["qtyCat1"]; $ix++){
+					$uniqueNum = (string)new MongoId();
+					$ticketNumber = array(
+						"ticketNumber" => $uniqueNum,
+						"time" => $now,
+						"ticketToken" =>$ticketToken
+					);
+					array_push($ticketNumbers,$ticketNumber);
+				}
+				$ticket = array(
+					"ticketNumbers" => $ticketNumbers,
+					"quantity" => $checkout["qtyCat1"],
+					"price"  => $checkout["price1"],
+					"type"  => "-25ans"
+				);
+				array_push($offer["tickets"]["@list"], $ticket );
+				$offer["tickets"]["quantity"] += $checkout["qtyCat1"];
+			}
+			if(isset($checkout["qtyCat2"]) && $checkout["qtyCat2"]>0){
+				$ticketNumbers = array();
+				for($ix=0; $ix < $checkout["qtyCat2"]; $ix++){
+					$uniqueNum = (string)new MongoId();
+					$ticketNumber = array(
+						"ticketNumber" => $uniqueNum,
+						"time"=> $now,
+						"ticketToken" => $ticketToken
+					);
+					array_push($ticketNumbers,$ticketNumber);
+				}
+				$ticket = array(
+					"ticketNumbers" => $ticketNumbers,
+					"ticketToken" => $ticketToken,
+					"quantity"  => $checkout["qtyCat2"],
+					"price" => $checkout["price2"],
+					"type" => "+25ans"
+				);
+				array_push($offer["tickets"]["@list"], $ticket );
+				$offer["tickets"]["quantity"] += $checkout["qtyCat2"];
+			}
+			if(isset($checkout["qtyCat3"]) && $checkout["qtyCat3"] > 0){
+				$ticketNumbers = array();
+				for($ix=0; $ix < $checkout["qtyCat3"]; $ix++){
+					$uniqueNum = (string)new MongoId();
+					$ticketNumber = array(
+						"ticketNumber" => $uniqueNum,
+						"time"=>$now,
+						"ticketToken" => $ticketToken
+					);
+					array_push($ticketNumbers,$ticketNumber);
+				}
+				$ticket = array(
+					"ticketNumbers" => $ticketNumbers,
+					"ticketToken" => $ticketToken,
+					"quantity"  => $checkout["qtyCat3"],
+					"price" => $checkout["price3"],
+					"type" => "passVIP"
+				);
+				array_push($offer["tickets"]["@list"], $ticket );
+				$offer["tickets"]["quantity"] += $checkout["qtyCat3"];
+			}
+			
+			$tickets->insert($offer);
+			
+			Yii::app()->session['offer'] = (string)$offer["_id"];
+			Yii::app()->session['event'] = $checkout["events"];
+			
+		}
+		
+		
+		$res = "Added to session";
+        Rest::json( $res );
+        Yii::app()->end();
+    }
+}

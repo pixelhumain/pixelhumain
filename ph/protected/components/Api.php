@@ -24,6 +24,9 @@ class Api {
 			"desc"=>"classic login feature email + pwd",
         	"actions"=>array('login' => 'application.controllers.user.LoginAction',
         					 'sendemailpwd' => 'application.controllers.user.SendEmailPwdAction',)),
+		"logout" => array( "label"=>"Logout", "key"=>"logout", 
+			"desc"=>"classic logout feature",
+        	"actions"=>array('logout' => 'application.controllers.user.LogoutAction')),					 
         "saveUserRDF" => array( "label"=>"Save User", "key"=>"saveUserRDF",
             "microformat"=>"personFormRDF", 
         	"desc"=>"create a new user",
@@ -31,6 +34,9 @@ class Api {
         "saveUser" => array( "label"=>"Save User", "key"=>"saveUser",
             "desc"=>"create a new user",
             "actions"=>array('saveuser' => 'application.controllers.user.SaveUserAction')),
+		"checkregisteremail" => array( "label"=>"Check Email", "key"=>"checkregisteremail",
+            "desc"=>"cheack new user email",
+            "actions"=>array('checkregisteremail' => 'application.controllers.user.CheckRegisterEmailAction')),
         "getUser" => array( "label"=>"Get User", "key"=>"getUser",
         	"desc"=>"Get a user Entry by email",
         	"actions"=>array('getuser' => 'application.controllers.user.GetUserAction')),
@@ -43,6 +49,15 @@ class Api {
         "confirmUserRegistration" => array( "label"=>"Confirm User Registration","key"=>"confirmUserRegistration", "parent"=>"user",
         	"desc"=>"some applications will need user's to register their accounts",
         	"actions"=>array('confirmgroupregistration' => 'application.controllers.user.ConfirmUserRegistrationAction')),
+		"generateTicket" => array( "label"=>"Generate Ticket Pdf","key"=>"generateTicket", "parent"=>"user",
+        	"desc"=>"generate ticket pdf of user",
+        	"actions"=>array('generateticket' => 'application.controllers.user.GenerateTicketPdfAction')),
+		"updateUser" => array( "label"=>"Update User", "key"=>"updateUser",
+            "desc"=>"update a user",
+            "actions"=>array('updateuser' => 'application.controllers.user.UpdateUserAction')),	
+		"activateUser" => array( "label"=>"Activate User", "key"=>"activateUser",
+            "desc"=>"activate a user",
+            "actions"=>array('activateuser' => 'application.controllers.user.ActivateUserAction')),
 
         /* -----------------------------------------------
 		GROUP Section
@@ -111,7 +126,40 @@ class Api {
                 "microformat"=>"eventFormRDF",
                 "desc"=>"an Event is a date with something happening ",
                 "actions" => array( 'saveevent' => 'application.controllers.events.SaveEventAction' )),
-
+		"addToCart" => array( "label"=>"Add To Cart", "key"=>"addToCart", 
+				"desc"=>"add event to cart",
+                "actions" => array( 'addtocart' => 'application.controllers.events.AddToCartAction' )),
+		"addUserToCart" => array( "label"=>"Add User to Cart", "key"=>"addUserToCart", 
+                "desc"=>"add event to cart",
+                "actions" => array( 'addusertocart' => 'application.controllers.events.AddUserToCartAction' )),
+		"addToCheckout" => array( "label"=>"Add To Cart", "key"=>"addToCheckout", 
+                "desc"=>"add to checkout",
+                "actions" => array( 'addtocheckout' => 'application.controllers.events.CheckoutAction' )),		
+		"deleteFromCart" => array( "label"=>"Delete From Cart", "key"=>"deleteFromCart", 
+                "desc"=>"delete from cart",
+                "actions" => array( 'deletefromcart' => 'application.controllers.events.DeleteFromCartAction' )),	
+		"ipnAction" => array( "label"=>"IPN Action", "key"=>"ipnAction", 
+                "desc"=>"ipn action",
+                "actions" => array( 'ipnaction' => 'application.controllers.events.IpnFormAction' )),
+		"searchEvent" => array( "label"=>"IPN Action", "key"=>"searchEvent", 
+                "desc"=>"search event",
+                "actions" => array( 'searchevent' => 'application.controllers.events.SearchEventAction' )),	
+		"voteEvent" => array( "label"=>"Vote Action", "key"=>"voteEvent", 
+                "desc"=>"vote event",
+                "actions" => array( 'voteevent' => 'application.controllers.events.VoteEventAction' )),	
+		"updateEvent" => array( "label"=>"Update Event Action", "key"=>"updateEvent", 
+				"desc"=>"Update Event Action",
+				"actions" => array( 'updateevent' => 'application.controllers.events.UpdateEventAction' )),
+		"deleteEvent" => array( "label"=>"Delete Event Action", "key"=>"deleteEvent", 
+				"desc"=>"Delete Event Action",
+				"actions" => array( 'deleteevent' => 'application.controllers.events.DeleteEventAction' )),
+		"commentEvent" => array( "label"=>"Comment Event Action", "key"=>"commentEvent", 
+				"desc"=>"Comment Event Action",
+				"actions" => array( 'commentevent' => 'application.controllers.events.CommentEventAction' )),
+		"apprvComment" => array( "label"=>"Approve Comment Action", "key"=>"apprvcomment", 
+				"desc"=>"Approve Comment Action",
+				"actions" => array( 'apprvcomment' => 'application.controllers.events.ApproveCommentAction' )),					
+				
         /* -----------------------------------------------
 		SURVEY Section
 		 ------------------------------------------------ */
@@ -197,11 +245,15 @@ class Api {
                 "children"=> array(
                     self::$apis["communect"],
                     self::$apis["login"],
+					self::$apis["logout"],
                     self::$apis["saveUser"],
+					self::$apis["checkregisteremail"],
                     self::$apis["getUser"],
                     self::$apis["getPeople"],                    
                     self::$apis["inviteUser"],
-                    //self::$apis["image"],
+					self::$apis["generateTicket"],
+					self::$apis["updateUser"],
+                    self::$apis["activateUser"],
                     ));
 	}
 	public static function getGroupMap(){
@@ -216,8 +268,20 @@ class Api {
                 "children"=> array(
                     self::$apis["saveEvent"],
                     self::$apis["getby"],
-                    ));
+					self::$apis["addToCart"],
+					self::$apis["addUserToCart"],
+					self::$apis["addToCheckout"],
+					self::$apis["deleteFromCart"],
+                    self::$apis["ipnAction"],
+					self::$apis["searchEvent"],
+					self::$apis["voteEvent"],
+					self::$apis["updateEvent"],
+					self::$apis["deleteEvent"],
+					self::$apis["commentEvent"],
+					self::$apis["apprvComment"],
+					));
     }
+
 	public static function getSurveyMap(){
 		return array( 'label' => "Survey", "key"=>"survey", "iconClass"=>"fa fa-thumbs-up", "generate"=>true,
                 "children"=> array(

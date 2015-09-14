@@ -1,0 +1,43 @@
+<?php
+class LoginAction extends CAction
+{
+    public function run()
+    {
+        $email = $_POST["email"];
+		$pwd = $_POST["pwd"];
+		
+		$user = Yii::app()->mongodb->citoyens->findOne( array( "email" => $email ) );
+		
+		$userEmail = $user['email'];
+		$userPwd = $user['pwd'];
+		$userId = (string)$user['_id'];
+		$userName = $user['firstname'];
+		
+		if( $userEmail && $userPwd == hash('sha256', $email.$pwd) )
+        {
+			
+			Yii::app()->session["userId"] = $userId;
+            Yii::app()->session["userEmail"] = $userEmail; 
+            Yii::app()->session["user"] = $userName; 
+			$res = array("result"=>true, "id"=>$userId, "name"=>$userName);
+			
+			/* $loginRegister = (isset($_POST["loginRegister"]) && $_POST["loginRegister"] ) ? true : null ; 
+			$res = Citoyen::login( $userEmail , $userPwd, $loginRegister); 
+			if( isset( $_POST["app"] ) )
+				$res = array_merge($res, Citoyen::applicationRegistered($_POST["app"],$userEmail)); */
+			
+			
+			Rest::json($res);
+			Yii::app()->end();
+        
+		}
+		else{
+			$res = array('result' => false , 'msg'=>"Vous n'êtes pas un utilisateur enregistré");
+				
+			Rest::json($res);  
+			Yii::app()->end();
+		}
+		
+       
+    }
+}

@@ -1,0 +1,46 @@
+<?php
+/*
+- validate Ajax request
+- check refred email user exists
+- set group specific information
+- add application / module specific information 
+- insert or update group
+- TODO : confirmation email / notification
+ */
+class VoteEventAction extends CAction
+{
+	public function run()
+	{
+		$event = $_POST['event'];
+		$userId = $_POST['userId'];
+		
+		$citoyen = PHDB::findOne(PHType::TYPE_CITOYEN,array( "_id" => new MongoId($userId) ) );
+		$voted_events = $citoyen["votes"];
+		
+		if( $voted_events == ''){
+			PHDB::update(PHType::TYPE_EVENTS,array("_id"=> new MongoId($event)), array('$inc' => array("voteUp"=>1)));
+			$event_to_add = $event.',';
+			PHDB::update( PHType::TYPE_CITOYEN,array("_id"=>new MongoId($userId)), array('$set' => array("votes"=> $event_to_add)));
+			$events = PHDB::findOne(PHType::TYPE_EVENTS,array( "_id" => new MongoId($event) ) );			
+			$res = array("result" => true, "votes" => $events['voteUp']);	
+		}
+		elseif( $voted_events != ''){
+			$voted_events_array = explode(",",$voted_events);
+			array_filter($voted_events_array);
+			if(!in_array($event, $voted_events_array)){
+				PHDB::update(PHType::TYPE_EVENTS,array("_id"=> new MongoId($event)), array('$inc' => array("voteUp"=>1)));
+				array_push($voted_events_array, $event);
+				$resultant_event = implode(",",$voted_events_array);
+				PHDB::update( PHType::TYPE_CITOYEN,array("_id"=>new MongoId($userId)), array('$set' => array("votes"=> $resultant_event)));		
+				$events = PHDB::findOne(PHType::TYPE_EVENTS,array( "_id" => new MongoId($event) ) );			
+				$res = array("result" => true, "votes" => $events['voteUp']);
+			}
+			$res = array("result" => false, 'msg'=>'Vous avez déjà soumis Vote');
+		}
+		else{
+			$res = array("result" => false, 'msg'=>'Quelque chose se est mal passé');
+		}
+		Rest::json( $res );
+		Yii::app()->end();
+	}
+}
