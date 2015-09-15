@@ -30,14 +30,16 @@ font-family: "Homestead";
 <div class="container" id="accueil">
     <br/>
     <!-- Main hero unit for a primary marketing message or call to action -->
-    <div class="hero-unit">
-        <?php echo CHtml::encode($message); ?>
-    	<img id="logoERror" class="pull-left" src="<?php echo Yii::app()->createUrl('images/logo/logo320.png')?>" alt="Logo Pixel Humain"/>
-    	<div id="error">
-            <h1>ERREUR 404</h1>
+    <div >
+      
+    	<div id="error" class="center">
+            
+            <h1>ERREUR PAGE</h1>
             <h1>PAGE INCONNUE</h1>
             <h1>DU PIXEL HUMAIN</h1>
             <h2>QUI CHERCHE FINIT PAR TROUVER</h2>
+
+            <?php echo CHtml::encode($message); ?>
         </div>
         <div class="clear"></div>
         <br/><br/>

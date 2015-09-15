@@ -1,1 +1,0 @@
-<textarea id='content' name='content'>{"toto":"paste some json","titi":[1,2]}</textarea>
