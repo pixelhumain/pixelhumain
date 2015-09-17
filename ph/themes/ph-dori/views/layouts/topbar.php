@@ -65,15 +65,29 @@
 				<i class="fa fa-bars mainModuleMenu " style="color:<?php echo $logoColor ?>;font-size: 32px;" title="<?php echo $contextInfo ?>"></i>
 			</span>
 			<?php if(isset(Yii::app()->session["userId"])){ ?>
-	 			<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/")?>" class="userlink">
-					<i class="fa fa-user_circled"></i>
-					<span class="username"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span>
+				
+				<a href="javascript:;" title="TAGS" onclick='openSlideBar("tags")'>
+					<i class="fa fa-tags"></i>
+					<span class="tags-count notifcation-counter badge badge-warning animated bounceIn"></span>
 				</a>
 
-				<a href="#" onclick="popinInfo('TODO : Compteur Notfication de discussion','Ce compteur de commentaire permettra de suivre')" title="Gamification points">
-					<i class="fa fa-comment"></i>
-					<span class="notifications-count topbar-badge topbar-badge badge badge-danger animated bounceIn"></span>
+				<a href="javascript:;" title="TERRITORIES"  onclick='openSlideBar("scope")'>
+					<i class="fa fa-circle-o"></i>
+					<span class="scopes-count notifcation-counter badge badge-warning animated bounceIn"></span>
 				</a>
+
+				<a href="javascript:;" onclick="openSubView('Your Network', '/communecter/sig/network', null)">
+					<i class="fa fa-map-marker"></i>
+				</a>
+
+				<a href="javascript:;" onclick="openViewer()">
+					<i class="fa fa-share-alt"></i>
+				</a>
+				
+				<a href="javascript:;" onclick="openSubView('Directory View', '/communecter/default/directory<?php echo (isset(Yii::app()->controller->id)) ? "/type/".Yii::app()->controller->id : ""; ?><?php echo (isset($_GET['id'])) ? "/id/".$_GET['id'] : ""; ?>', null)">
+					<i class="fa fa-align-justify"></i>
+				</a>
+
 				<?php //<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/activities") ?>
 				<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/gamification"); ?>">
 					<i class="fa fa-gamepad "></i>
@@ -93,56 +107,14 @@
 		
 	<ul class="navbar-menu">
 
-		<li class="collapse_wrap topBtn">
-			<div class="trigger collapse_trigger" title="TAGS" onclick='openSlideBar("tags")'>
-				<i class="fa fa-tags"></i>
-				<span class="tags-count notifcation-counter badge badge-warning animated bounceIn"></span>
-			</div>
-		</li>
-
-		<li class="collapse_wrap topBtn">
-			<div class="trigger collapse_trigger" title="TERRITORIES"  onclick='openSlideBar("scope")'>
-				<i class="fa fa-circle-o"></i>
-				<span class="scopes-count notifcation-counter badge badge-warning animated bounceIn"></span>
-			</div>
-		</li>
-
-		<li class="collapse_wrap">
-			<div class="trigger collapse_trigger">
-				<a href="javascript:;" onclick="openSubView('Your Network', '/communecter/sig/network', null)">
-					<i class="fa fa-map-marker"></i>
-				</a>
-			</div>
-			<!--
-			<form class="inner collapse_box" onSubmit="return(false);">
-				<input class="wide" id="sigNetwork" name="sigNetwork" type="text" placeholder="Pseudo, passez votre interface en mode cartographie">
-			</form>
-			-->
-		</li>
 		
-		<li class="collapse_wrap">
-			<div class="trigger collapse_trigger">
-				<a href="javascript:;" onclick="openViewer()">
-					<i class="fa fa-share-alt"></i>
-				</a>
-			</div>
-		</li>
-
-		<li class="collapse_wrap">
-			<div class="trigger collapse_trigger">
-				<a href="javascript:;" onclick="openSubView('Directory View', '/communecter/default/directory<?php echo (isset(Yii::app()->controller->id)) ? "/type/".Yii::app()->controller->id : ""; ?><?php echo (isset($_GET['id'])) ? "/id/".$_GET['id'] : ""; ?>', null)">
-					<i class="fa fa-align-justify"></i>
-				</a>
-			</div>
-		</li>
-
 		<li class="collapse_wrap">
 			
 			<div class="trigger collapse_trigger" id="searchForm">
 				<i class="fa fa-search"></i>
 			</div>
 
-			<form class="inner collapse_box">
+			<form class="inner">
 				<input class='hide' id="searchId" name="searchId"/>
 				<input class='hide' id="searchType" name="searchType"/>
 				<input id="searchBar" name="searchBar" type="text" placeholder="Que recherchez-vous ?">
@@ -162,6 +134,18 @@
 				<?php } ?>
 			</a>
 		</li>
+
+		<li class="collapse_wrap" style="padding-left:20px;padding-right:30px;">
+			<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/")?>" class="userlink">
+				<i class="fa fa-user_circled fa-2x"></i>
+				<span class="username"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span>
+			</a>
+		</li>
+
+		<li class="collapse_wrap" style="padding-left:20px;padding-right:30px; background-color: white; color: black; ">
+			<?php echo $this->title ?>
+		</li>
+
 	</ul>
 	<li class="dropdown pull-right">
 		<a href="#" data-close-others="true" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">

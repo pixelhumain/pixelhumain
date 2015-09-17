@@ -147,7 +147,7 @@
 							if($isMobile) { 
 							    $path = '.views.layouts.toolbarMobile'; 
 							} 
-							$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);
+							//$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.$path);
 							//<!-- end: PAGE HEADER -->
 							
 							if(!count($this->sidebar2 ))

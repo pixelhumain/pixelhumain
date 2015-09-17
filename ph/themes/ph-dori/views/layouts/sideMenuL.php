@@ -24,17 +24,18 @@
         		$id= $_GET["id"];
 
 		    $menuLeft = array();
-            array_push($menuLeft, array('label' => "MY ACCOUNT", "key"=>"myAccount","iconClass"=>"fa fa-home","href"=> Yii::app()->createUrl($this->moduleId."/person/dashboard")) );
+            array_push($menuLeft, array('label' => "MY ACCOUNT", "key"=>"myAccount","iconClass"=>"fa fa-home","href"=> Yii::app()->createUrl($this->moduleId."/news/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ) );
             if( Yii::app()->controller->id != "admin" )
             {
-              if( isset( Yii::app()->session["user"]["codeInsee"] ) )
-                  array_push($menuLeft, array('label' => "MY CITY ", "key"=>"myCityPage","iconClass"=>"fa fa-university","href"=> Yii::app()->createUrl($this->moduleId."/city/index/insee/".Yii::app()->session["user"]["codeInsee"])) );
-              
-              array_push($menuLeft, array('label' => "MY DIRECTORY", "key"=>"myDirectoryPage","iconClass"=>"fa fa-globe","href"=> Yii::app()->createUrl($this->moduleId."/person/directory")) );
-              array_push($menuLeft, array('label' => "MY PROJECTS", "key"=>"myProjectsPage","iconClass"=>"fa ".Project::ICON,"href"=> Yii::app()->createUrl($this->moduleId."/person/directory/type/projects")) );
+              array_push($menuLeft, array('label' => "MY PEOPLE", "key"=>"myPeoplePage","iconClass"=>"fa ".Person::ICON,"href"=> Yii::app()->createUrl($this->moduleId."/person/directory/type/projects")) );
+              array_push($menuLeft, array('label' => "MY ORGANIZATIONS", "key"=>"myOrganizationsPage","iconClass"=>"fa ".Organization::ICON,"href"=> Yii::app()->createUrl($this->moduleId."/person/directory/type/organizations")) );
+              array_push($menuLeft, array('label' => "MY PROJECTS", "key"=>"myProjectsPage","iconClass"=>"fa ".Project::ICON,"href"=> Yii::app()->createUrl($this->moduleId."/person/directory/type/persons")) );
               array_push($menuLeft, array('label' => "MY CALENDAR", "key"=>"myCalendarPage","iconClass"=>"fa fa-calendar","href"=> Yii::app()->createUrl($this->moduleId."/event/calendarview/id/".$id."/type/person")) );
-              array_push($menuLeft, array('label' => "MY NEWS", "key"=>"myNewsPage","iconClass"=>"fa fa-rss","href"=> Yii::app()->createUrl($this->moduleId."/news/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ) );
-              array_push($menuLeft, array('label' => "MY ACTIONS", "key"=>"myVotesPage","iconClass"=>"fa fa-thumbs-up","href"=> Yii::app()->createUrl($this->moduleId."/rooms/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ) );
+              if( isset( Yii::app()->session["user"]["codeInsee"] ) )
+                array_push($menuLeft, array('label' => "MY CITY ", "key"=>"myCityPage","iconClass"=>"fa fa-university","href"=> Yii::app()->createUrl($this->moduleId."/city/index/insee/".Yii::app()->session["user"]["codeInsee"])) );
+              //array_push($menuLeft, array('label' => "MY DIRECTORY", "key"=>"myDirectoryPage","iconClass"=>"fa fa-globe","href"=> Yii::app()->createUrl($this->moduleId."/person/directory")) );
+              //array_push($menuLeft, array('label' => "MY NEWS", "key"=>"myNewsPage","iconClass"=>"fa fa-rss","href"=> Yii::app()->createUrl($this->moduleId."/news/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ) );
+              //array_push($menuLeft, array('label' => "MY ACTIONS", "key"=>"myVotesPage","iconClass"=>"fa fa-thumbs-up","href"=> Yii::app()->createUrl($this->moduleId."/rooms/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ) );
             }
             
             if( @Yii::app()->session[ "userIsAdmin"] )
@@ -82,11 +83,11 @@
           }
           ?>
         <!-- END TWO LEVEL MENU -->     
-        <?php if(YII_DEBUG){ ?>
+        <?php /*if(YII_DEBUG){ ?>
         <li class="moduleMenu menu_debug debug ">
           <a href="javascript:showDebugMap();"><i class="fa fa-bug"></i><span class="inner">Show Debug Map</span></a>
         </li>
-        <?php } ?>
+        <?php }*/ ?>
       </ul>
 
     </div>
