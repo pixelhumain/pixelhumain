@@ -28,9 +28,9 @@
             array_push($menuLeft, array('label' => "MY WALL" , "key"=>"myAccount","iconClass"=>"fa fa-home","href"=> Yii::app()->createUrl($this->moduleId."/news/index/type/".Person::COLLECTION."/id/".Yii::app()->session["userId"] ) ) );
             if( Yii::app()->controller->id != "admin" )
             {
-              array_push($menuLeft, array('label' => "MY PEOPLE", "key"=>"myPeoplePage","iconClass"=>"fa ".Person::ICON,"href"=> Yii::app()->createUrl($this->moduleId."/person/directory/type/persons")) );
-              array_push($menuLeft, array('label' => "MY ORGANIZATIONS", "key"=>"myOrganizationsPage","iconClass"=>"fa ".Organization::ICON,"href"=> Yii::app()->createUrl($this->moduleId."/person/directory/type/organizations")) );
-              array_push($menuLeft, array('label' => "MY PROJECTS", "key"=>"myProjectsPage","iconClass"=>"fa ".Project::ICON,"href"=> Yii::app()->createUrl($this->moduleId."/person/directory/type/persons")) );
+              array_push($menuLeft, array('label' => "MY PEOPLE", "key"=>"myPeoplePage","iconClass"=>"fa ".Person::ICON,"href"=> Yii::app()->createUrl($this->moduleId."/person/directory/type/persons?tpl=directory2")) );
+              array_push($menuLeft, array('label' => "MY ORGANIZATIONS", "key"=>"myOrganizationsPage","iconClass"=>"fa ".Organization::ICON,"href"=> Yii::app()->createUrl($this->moduleId."/person/directory/type/organizations?tpl=directory2")) );
+              array_push($menuLeft, array('label' => "MY PROJECTS", "key"=>"myProjectsPage","iconClass"=>"fa ".Project::ICON,"href"=> Yii::app()->createUrl($this->moduleId."/person/directory/type/projects?tpl=directory2")) );
               array_push($menuLeft, array('label' => "MY CALENDAR", "key"=>"myCalendarPage","iconClass"=>"fa fa-calendar","href"=> Yii::app()->createUrl($this->moduleId."/event/calendarview/id/".$id."/type/person")) );
 
               if( isset( Yii::app()->session["user"]["codeInsee"] ) )
