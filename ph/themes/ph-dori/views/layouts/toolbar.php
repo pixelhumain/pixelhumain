@@ -64,7 +64,7 @@
 				              		$href = $item["href"];
 				              	else
 				              		$href = Yii::app()->createUrl($item["href"]) ;
-				              }
+				              	}
 				              $class = (isset($item["class"])) ? 'class="'.$item["class"].'"' : "";
 				              $icon = (isset($item["iconClass"])) ? '<i class="'.$item["iconClass"].'"></i>' : '';
 				              echo ($href) ? '<li><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="title">'.$item["label"].'</span></li>' : '<li class="dropdown-header '.$class.'">'.$icon.' '.$item["label"].'</li>';
