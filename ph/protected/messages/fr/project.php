@@ -7,7 +7,7 @@
  */
 
 	return array(
-		"Contributor successfully removed" =>  "Contributeur enlevé avec succès",
+
 	);
 
 
