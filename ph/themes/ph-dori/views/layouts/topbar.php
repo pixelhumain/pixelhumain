@@ -2,7 +2,7 @@
 <style>
 	#dropdown_searchTop{
 		padding: 0px 15px; 
-		margin-left:375px; 
+		margin-left:215px; 
 		width:300px;
 	}
 
@@ -96,6 +96,9 @@
 				<a href="#" class="sb_toggle" id="sbToogle">
 					<i class="fa fa-cog"></i>
 				</a>
+				<a href="<?php echo Yii::app()->createUrl($this->moduleId."/person/logout") ?>" >
+					<i class="fa fa-power-off text-yellow"></i>
+				</a>
 			<?php } else { ?>
 				<a style="padding-right:30px;padding-left:30px;" href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/login"); ?>" >
 					<i class="fa fa-power-off"></i>
@@ -107,7 +110,10 @@
 		
 	<ul class="navbar-menu">
 
-		
+		<li class="collapse_wrap" style="padding-left:20px;padding-right:30px; background-color: white; color: black; ">
+			<?php echo $this->title ?>
+		</li>
+
 		<li class="collapse_wrap">
 			
 			<div class="trigger collapse_trigger" id="searchForm">
@@ -135,16 +141,7 @@
 			</a>
 		</li>
 
-		<li class="collapse_wrap" style="padding-left:20px;padding-right:30px;">
-			<a href="<?php echo Yii::app()->createUrl("/".$this->moduleId."/person/")?>" class="userlink">
-				<i class="fa fa-user_circled fa-2x"></i>
-				<span class="username"><?php echo (isset(Yii::app()->session["user"]["name"])) ? Yii::app()->session["user"]["name"] : Yii::app()->session["user"]["firstName"]." ".Yii::app()->session["user"]["lastName"]?></span>
-			</a>
-		</li>
-
-		<li class="collapse_wrap" style="padding-left:20px;padding-right:30px; background-color: white; color: black; ">
-			<?php echo $this->title ?>
-		</li>
+		
 
 	</ul>
 	<li class="dropdown pull-right">
