@@ -30,6 +30,8 @@ return array(
 	"Back" => "Retour",
 	"Next" => "Suivant",
 	"View" => "Voir",
+	"Search" => "Rechercher",
+	"ADD" => "AJOUTER",
 
 	"january"=>"janvier",
 	"febuary"=>"février",
@@ -58,6 +60,9 @@ return array(
 	'Uncorrect request' => 'Cette requête n\'a pas pu aboutir',
 	'Can not manage the type ' => 'Vous ne pouvez pas gérer le type',
 	'The form has been validated.' => 'Le formulaire a été validé avec succès.',
+	'Please specify your first name' => "Veuillez spécifier votre nom",
+	"Please select a type" => "Veuillez selectionner un type",
+	"Please enter an email" => "Veuillez entrer un e-mail",
 	
 	//Form
 	'Required Fields' => "Champs requis",
@@ -85,18 +90,40 @@ return array(
 	//Common label
 	'Name' => 'Nom',
 	'Street Address' => 'Rue',
+	'Address' => 'Adresse',
 	'Postal Code' => 'Code Postal',
 	'Country' => 'Pays',
 	'Phone Number' => 'Téléphone',
 	'Website URL' => 'URL du site web',
 	'Short Description' => 'Description courte',
+	'Start' => 'Début',
+	'End' => 'Fin',
+	'Color' => 'Couleur',
+	'Status' => 'Statut',
 	'' => '',
-	'' => '',
-	'' => '',
-	'' => '',
-	'' => ''
-
-
+	
+	//Input title
+	'Search By name, email' => "Recherche par nom, email",
+	'Not find ? Click here.'=> 'Non trouvé ? Cliquez ici.',
+	
+	//Color
+	"Green" => "Vert",
+	"Blue" => "bleu",
+	"Purple" => "Violet",
+	"Red" => "Rouge",
+	"Yellow" => "Jaune",
+	
+	//Question
+	"Are you sure you want to delete" => "Êtes-vous sûr de supprimer",
+	
+	//Indication
+	"When" => "Quand",
+	"Where" => "Où",
+	"From" => "De",
+	"To" => "Au",
+	"All day" => "Toute la journée",
+	"Who" => "Qui",
+	
 );
 
 ?>
