@@ -24,6 +24,7 @@ return array(
 	"CLOSE" => "FERMER",
 	"SAVE" => "ENREGISTRER",
 	"LOADING" => "EN COURS",
+	"Invite" => "Inviter",
 	"Edit" => "Modifier",
 	"Delete" => "Supprimer",
 	"Remove" => "Supprimer",
@@ -32,7 +33,8 @@ return array(
 	"View" => "Voir",
 	"Search" => "Rechercher",
 	"ADD" => "AJOUTER",
-
+	
+	//MONTH
 	"january"=>"janvier",
 	"febuary"=>"février",
 	"march"=>"mars",
@@ -93,6 +95,7 @@ return array(
 	'Address' => 'Adresse',
 	'Postal Code' => 'Code Postal',
 	'Country' => 'Pays',
+	'City' => 'Ville',
 	'Phone Number' => 'Téléphone',
 	'Website URL' => 'URL du site web',
 	'Short Description' => 'Description courte',
@@ -100,12 +103,17 @@ return array(
 	'End' => 'Fin',
 	'Color' => 'Couleur',
 	'Status' => 'Statut',
-	'' => '',
+	'Birth date' => 'Date de naissance',
+	'Interests' => "Centres d'intérêt",
 	
-	//Input title
-	'Search By name, email' => "Recherche par nom, email",
+	//Input title - Placeholder
+	'Search by name or email' => "Recherche par nom, email",
 	'Not find ? Click here.'=> 'Non trouvé ? Cliquez ici.',
-	
+	'Select your City' => "Sélectionnez votre ville",
+	"Write note here" => "Écrire la description ici",
+	"All-Day" => "Journée",
+	"False" => "Non",
+	"True" => "Oui",
 	//Color
 	"Green" => "Vert",
 	"Blue" => "bleu",
@@ -124,6 +132,11 @@ return array(
 	"All day" => "Toute la journée",
 	"Who" => "Qui",
 	
+	//Attributes
+	"Me" => "Moi",
+	"Person" => "Citoyen",
+	"Organizations" => "Organisations",
+	"Projects" => "Projets"
 );
 
 ?>
