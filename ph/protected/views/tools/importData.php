@@ -123,6 +123,7 @@
 												$arrayPathMapping = explode(";",  $pathMapping);
 												foreach ($arrayPathMapping as $keyPathMapping => $valuePathMapping) 
 												{
+													
 													if(!empty($valuePathMapping))
 														echo '<option name="optionLinkCollection" value="'.$valuePathMapping.'">'.$valuePathMapping.'</option>' ;
 												}

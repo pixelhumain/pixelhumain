@@ -759,7 +759,7 @@ class ImportData
     public static  function previewData($post) 
     {
         /**** new ****/
-
+        
         if(isset($post['infoCreateData']) && isset($post['idCollection']) && isset($post['subFile']) && isset($post['nameFile']))
         {
             $pathSubFile =  '../../modules/cityData/filesImportData/'.$post['nameFile'].'/'.$post['subFile'] ;
@@ -793,6 +793,7 @@ class ImportData
                         //$objetInfoData->idHeadCSV;
                         //$objetInfoData->valueLinkCollection;
                         $valueData = $lineCSV[$objetInfoData['idHeadCSV']] ;
+                        //var_dump($valueData);
                         
                         if(!empty($valueData))
                         {
@@ -883,7 +884,7 @@ class ImportData
             mkdir($path , 0775);
 
 
-        $pathFile = '../../modules/cityData/importData/organizations/' ;
+        $pathFile = '../../modules/cityData/importData/'.$post['nameFile'].'/' ;
         if(!file_exists($pathFile))
         {
             mkdir($pathFile , 0775);
@@ -911,23 +912,23 @@ class ImportData
 
         if($newFolder)
         {
-            $textImportMongoAll = $textImportMongoAll."cd organizations;\n";
+            $textImportMongoAll = $textImportMongoAll."cd ".$post['nameFile'].";\n";
             $textImportMongoAll = $textImportMongoAll."sh importMongo.sh;\n";
             $textImportMongoAll = $textImportMongoAll."cd .. ;\n";
         }
 
         //importmongo 
-        if(file_exists("../../modules/cityData/importData/organizations/importMongo.sh") == true)
-            $textFileSh = file_get_contents("../../modules/cityData/importData/organizations/importMongo.sh", FILE_USE_INCLUDE_PATH);
+        if(file_exists("../../modules/cityData/importData/".$post['nameFile']."/importMongo.sh") == true)
+            $textFileSh = file_get_contents("../../modules/cityData/importData/".$post['nameFile']."/importMongo.sh", FILE_USE_INCLUDE_PATH);
         else
             $textFileSh = "" ;
 
 
-        $textFileSh = $textFileSh . "mongoimport --db pixelhumain --collection organizations organizations_".$count.".json --jsonArray;\n";
+        $textFileSh = $textFileSh . "mongoimport --db pixelhumain --collection organizations ".$post['nameFile']."_".$count.".json --jsonArray;\n";
         
-        file_put_contents("../../modules/cityData/importData/organizations/organizations_".$count.".json", $post['jsonImport']);
-        file_put_contents("../../modules/cityData/importData/organizations/error_".$count.".json", $post['jsonError']);
-        file_put_contents("../../modules/cityData/importData/organizations/importMongo.sh", $textFileSh);
+        file_put_contents("../../modules/cityData/importData/".$post['nameFile']."/".$post['nameFile']."_".$count.".json", $post['jsonImport']);
+        file_put_contents("../../modules/cityData/importData/".$post['nameFile']."/error_".$count.".json", $post['jsonError']);
+        file_put_contents("../../modules/cityData/importData/".$post['nameFile']."/importMongo.sh", $textFileSh);
         file_put_contents("../../modules/cityData/importData/importAllMongo.sh", $textImportMongoAll);
 
         if(isset($post['jsonImport']))
