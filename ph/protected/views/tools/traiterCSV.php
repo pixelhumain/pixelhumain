@@ -170,7 +170,7 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquer
 				    						<td id="valueheadCSVMapping'.$nbligne.'">'.$key .'</td>
 				    						<td id="labelMapping'.$nbligne.'">'.$value.'</td>
 				    						<td id="typeMapping'.$nbligne.'">'.$oneMapping["type"][$key].'</td>
-
+				    						<td id="libelleMapping'.$nbligne.'">'.$oneMapping["labels"][$key].'</td>
 				    						<td>
 				    							<input type="hidden" id="keyheadCSVMapping'.$nbligne.'" value="'.$i.'">
 				    							<a href="#" class="deleteLineMapping btn btn-primary">X</a></td>
