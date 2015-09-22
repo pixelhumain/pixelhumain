@@ -25,7 +25,7 @@
         /* USE */
         "titlePanel" 		 => '',
         "usePanel" 			 => false,
-        "useFilterType" 	 => false,
+        "useFilterType" 	 => true,
         "useRightList" 		 => false,
         "useZoomButton" 	 => true,
         "useHomeButton" 	 => false,
@@ -58,31 +58,37 @@
 		width:100% !important;
 		height:100% !important;
 	}
-
 	.<?php echo $moduleName; ?>{
 		width: 100% !important;
 		height: 100% !important;
-		position: absolute;
+		position: fixed;
+		top:0px;
+		left:0px;
 	}
-
 	.<?php echo $moduleName; ?> .input-search-place{
-		top:100px;
-		margin-right: 30px;
+		right:unset;
+		left:100px !important;
+		margin-right: 30px !important;
+		max-width: 254px !important;
+	}
+	.<?php echo $moduleName; ?> .btn-group-map		{
+		left: unset;
+		top:50px !important;
+		right:30px;
 	}
 	.<?php echo $moduleName; ?> .item_panel_map			{
 	}
 	.<?php echo $moduleName; ?> .item_panel_map:hover	{
 	}
 
-	.<?php echo $moduleName; ?> #right_tool_map		{}
+	.<?php echo $moduleName; ?> #right_tool_map		{
+
+	}
 	.<?php echo $moduleName; ?> #liste_map_element	{}
 
 	.<?php echo $moduleName; ?> #lbl-chk-scope		{}
 
-	.<?php echo $moduleName; ?> .btn-group-map		{
-		left: unset;
-		right:30px;
-	}
+	
 	
 
 	/* XS */
@@ -105,6 +111,9 @@
 
 	jQuery(document).ready(function()
 	{
+		//$(".sigModuleBg").addClass("hidden");
+		//$(".sigModuleBg").css({"display" : "none"});
+		
 		//création de l'objet SIG
 		Sig = SigLoader.getSig();
 
@@ -130,11 +139,31 @@
 		
 		//mapBg.panTo([-21.06912308335471, 55.34912109375]);
 		//masque l'icone de chargement
+
 		Sig.showIcoLoading(false);
 
-		var mapHeight = $("#mapBgContainer").height();
-		mapHeight = mapHeight + (1.2 * mapHeight);		
-		//$("#mapCanvas" + initParams.sigKey).css({"height":mapHeight});
+		var mapHeight = $("#mapCanvasBg").height();
+		var rightPanelHeight = mapHeight - 190;
+		$("#right_tool_map").css({"top":"120px"});
+		$("#right_tool_map").css({"height":rightPanelHeight});
+		$("#liste_map_element").css({"height":rightPanelHeight-50});
+
+		$(".sigModuleBg").css("display","none");
+		
 	});
+
+
+	function showMap(show){
+		show = $(".sigModuleBg").css("display") == "none";
+		if(show){
+			$(".sigModuleBg").show( 1000 );
+			$(".box-ajax").css({backgroundColor:'rgba(255, 255, 255, 0.5)'});
+			$(".box-ajax .mix").css({backgroundColor:'rgba(255, 255, 255, 0.5)'});
+		}else{
+			$(".sigModuleBg").hide( 1000 );
+			$(".box-ajax").css({backgroundColor:'rgba(255, 255, 255, 1)'});
+			$(".box-ajax .mix").css({backgroundColor:'rgba(255, 255, 255, 1)'});
+		}
+	}
 
 </script>
