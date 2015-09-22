@@ -108,12 +108,89 @@
 		</div>
 	</div>
 		
+	<style type="text/css">
+	.whiteMenu{
+		padding-left:20px;
+		padding-right:30px; 
+		background-color: white; 
+		color: black; 
+	}
+	</style>
 	<ul class="navbar-menu">
 
-		<li class="collapse_wrap" style="padding-left:20px;padding-right:30px; background-color: white; color: black; ">
+		<li class="collapse_wrap whiteMenu" >
 			<?php echo $this->title ?>
 		</li>
+		
+		<?php 
+		/*if(isset($this->toolbarMBZ)){
+			foreach ($this->toolbarMBZ as $value) {
+				if( stripos( $value, "</li>" ) != "")
+					echo $value;
+				else
+					echo "<li class='whiteMenu'>".$value."</li>";
+			}
+		} 
 
+		if(isset($this->toolbarMenuAdd)){
+			?>
+		<!-- start: TO-DO DROPDOWN -->
+		<li class="dropdown" style="padding-left:20px;padding-right:30px; background-color: white; color: black; ">
+			<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
+				<i class="fa fa-plus"></i> AJOUTER
+			</a>
+			<ul class="dropdown-menu dropdown-light dropdown-subview " style=" background-color: white;">
+				<?php 
+		          foreach( $this->toolbarMenuAdd as $item )
+		          {
+		              $modal = (isset($item["isModal"])) ? 'role="button" data-toggle="modal"' : "";
+		              $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' : "";
+		              $href = null;
+		              if( isset($item["href"]) )
+		              {
+		              	if(stripos($item["href"], "http") >= 0 || stripos($item["href"], "#") >=0 )
+		              		$href = $item["href"];
+		              	else
+		              		$href = Yii::app()->createUrl($item["href"]) ;
+		              	}
+		              $class = (isset($item["class"])) ? 'class="'.$item["class"].'"' : "";
+		              $icon = (isset($item["iconClass"])) ? '<i class="'.$item["iconClass"].'"></i>' : '';
+		              echo ($href) ? '<li><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="title">'.$item["label"].'</span></li>' : '<li class="dropdown-header '.$class.'">'.$icon.' '.$item["label"].'</li>';
+		              //This menu can have 2 levels 
+		              if( isset($item["children"]) )
+		              {
+		                  foreach( $item["children"] as $item2 )
+		                  {
+		                      $onclick2 = (isset($item2["onclick"])) ? 'onclick="'.$item2["onclick"].'"' : ""; 
+		                      $class = (isset($item2["class"])) ? 'class="'.$item2["class"].'"' : "";
+		                      $href2 = "javascript:;";
+				              if( isset($item2["href"]) )
+				              {
+				              	if(stripos($item2["href"], "http") >= 0 || stripos($item2["href"], "#") >=0 )
+				              		$href2 = $item2["href"];
+				              	else
+				              		$href2 = Yii::app()->createUrl($item2["href"]); 
+				              	}
+		                      $icon = (isset($item2["iconClass"])) ? '<i class="'.$item2["iconClass"].'"></i>' : '';
+		                      $iconStack = "";
+		                      if((isset($item2["iconStack"]))){
+		                      	$iconStack .= '<span class="fa-stack">';
+		                      	foreach( $item2["iconStack"] as $i )
+				                {
+				                	$iconStack .= '<i class="'.$i.'"></i>';
+				                }
+		                      	$iconStack .= '</span>';
+		                      }
+		                      echo '<li><a href="'.$href2.'" '.$class.' '.$onclick2.'>'.$icon.''.$iconStack.' '.$item2["label"].'</a></li>';
+		                  }
+		              }else
+		                echo ($href) ? "</a>" : "";
+		          }
+		       ?>
+				
+			</ul>
+		</li>
+		<?php }*/ ?>
 		<li class="collapse_wrap">
 			
 			<div class="trigger collapse_trigger" id="searchForm">

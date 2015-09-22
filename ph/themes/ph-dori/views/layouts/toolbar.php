@@ -37,19 +37,7 @@
 				<li class="dropdown">
 					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
 						<i class="fa fa-plus  fa-2x icon-big"></i> AJOUTER
-						<div class="tooltip-notification hide">
-							<div class="tooltip-notification-arrow"></div>
-							<div class="tooltip-notification-inner">
-								<div>
-									<div class="semi-bold">
-										PARTICIPATE HERE!
-									</div>
-									<div class="message">
-										Try the Subview Live Experience
-									</div>
-								</div>
-							</div>
-						</div>
+						
 					</a>
 					<ul class="dropdown-menu dropdown-light dropdown-subview">
 						<?php 
@@ -107,7 +95,7 @@
 				<?php 
 				if(isset($this->toolbarMenuMaps)){
 					?>
-				<li class="dropdown hide">
+				<li class="dropdown ">
 					
 					<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
 						<span class="messages-count badge badge-default ">3</span> <i class="fa fa-map-marker"></i> CARTO
