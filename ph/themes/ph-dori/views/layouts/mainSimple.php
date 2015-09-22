@@ -77,7 +77,7 @@
 	<body class="login bgcity">
 		
 		<?php 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-					$this->renderPartial($layoutPath.'mainMap');  ?>
+				$this->renderPartial($layoutPath.'mainMap');  ?>
 		
 		
 		<?php echo $content;  ?>
