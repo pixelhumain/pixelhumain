@@ -69,6 +69,11 @@
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
 	<body class="login bgcity">
+		
+		<?php 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+					$this->renderPartial($layoutPath.'mainMap');  ?>
+		
+		
 		<?php echo $content;  ?>
 		<!-- start: MAIN JAVASCRIPTS -->
 		<?php
@@ -99,10 +104,14 @@
 
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.css');
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.min.js' , CClientScript::POS_END);
+
+		
 		//<!-- end: MAIN JAVASCRIPTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		?>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+
+		
 	</body>
 	<!-- end: BODY -->
 </html>
