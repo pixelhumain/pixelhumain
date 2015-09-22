@@ -18,14 +18,14 @@
         "mapAttributions" => '<a href="http://www.opencyclemap.org">OpenCycleMap</a>',	 	//'Map tiles by <a href="http://stamen.com">Stamen Design</a>'
 
         /* MAP BUTTONS */
-        //"mapBtnBgColor" => '#E6D414',
-        //"mapBtnColor" => '#213042',
-        //"mapBtnBgColor_hover" => '#5896AB',
+        "mapBtnBgColor" => 'rgba(76, 114, 126, 0.65)', //'#E6D414',
+        //"mapBtnColor" => 'rgba(76, 114, 126, 0.65)', //'#213042',
+        //"mapBtnBgColor_hover" => 'rgba(76, 114, 126, 0.65)', //'#5896AB',
 
         /* USE */
         "titlePanel" 		 => '',
         "usePanel" 			 => false,
-        "useFilterType" 	 => true,
+        "useFilterType" 	 => false,
         "useRightList" 		 => false,
         "useZoomButton" 	 => true,
         "useHomeButton" 	 => false,
@@ -70,11 +70,16 @@
 		left:100px !important;
 		margin-right: 30px !important;
 		max-width: 254px !important;
+		z-index:100!important;
+	}
+	.<?php echo $moduleName; ?> .input-search-place input.input-search-place-in-map{
+		background-color: rgba(111, 161, 177, 0.74) !important;
 	}
 	.<?php echo $moduleName; ?> .btn-group-map		{
 		left: unset;
 		top:50px !important;
 		right:30px;
+		/*background-color: rgba(76, 114, 126, 0.65) !important;*/
 	}
 	.<?php echo $moduleName; ?> .item_panel_map			{
 	}
@@ -88,7 +93,9 @@
 
 	.<?php echo $moduleName; ?> #lbl-chk-scope		{}
 
-	
+	li.mix{
+		background:rgba(255, 255, 255, 0.3) !important;
+	}
 	
 
 	/* XS */
@@ -159,10 +166,12 @@
 			$(".sigModuleBg").show( 1000 );
 			$(".box-ajax").css({backgroundColor:'rgba(255, 255, 255, 0.5)'});
 			$(".box-ajax .mix").css({backgroundColor:'rgba(255, 255, 255, 0.5)'});
+			$('#btn-close-panel').show("fast");
 		}else{
 			$(".sigModuleBg").hide( 1000 );
 			$(".box-ajax").css({backgroundColor:'rgba(255, 255, 255, 1)'});
 			$(".box-ajax .mix").css({backgroundColor:'rgba(255, 255, 255, 1)'});
+			$('#btn-close-panel').hide("fast");
 		}
 	}
 
