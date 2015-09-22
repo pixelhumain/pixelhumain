@@ -166,11 +166,14 @@
 			$(".sigModuleBg").show( 1000 );
 			$(".box-ajax").css({backgroundColor:'rgba(255, 255, 255, 0.5)'});
 			$(".box-ajax .mix").css({backgroundColor:'rgba(255, 255, 255, 0.5)'});
+			$("a.text-white").css({color:'#58879B'});
 			$('#btn-close-panel').show("fast");
+			
 		}else{
 			$(".sigModuleBg").hide( 1000 );
 			$(".box-ajax").css({backgroundColor:'rgba(255, 255, 255, 1)'});
 			$(".box-ajax .mix").css({backgroundColor:'rgba(255, 255, 255, 1)'});
+			$("a.text-white").css({color:'#FFF'});
 			$('#btn-close-panel').hide("fast");
 		}
 	}
