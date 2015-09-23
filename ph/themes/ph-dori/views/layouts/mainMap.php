@@ -18,9 +18,9 @@
         "mapAttributions" => '<a href="http://www.opencyclemap.org">OpenCycleMap</a>',	 	//'Map tiles by <a href="http://stamen.com">Stamen Design</a>'
 
         /* MAP BUTTONS */
-        //"mapBtnBgColor" => '#E6D414',
-        //"mapBtnColor" => '#213042',
-        //"mapBtnBgColor_hover" => '#5896AB',
+        "mapBtnBgColor" => 'rgba(76, 114, 126, 0.65)', //'#E6D414',
+        //"mapBtnColor" => 'rgba(76, 114, 126, 0.65)', //'#213042',
+        //"mapBtnBgColor_hover" => 'rgba(76, 114, 126, 0.65)', //'#5896AB',
 
         /* USE */
         "titlePanel" 		 => '',
@@ -58,30 +58,43 @@
 		width:100% !important;
 		height:100% !important;
 	}
-
 	.<?php echo $moduleName; ?>{
 		width: 100% !important;
 		height: 100% !important;
-		position: absolute;
+		position: fixed;
+		top:0px;
+		left:0px;
 	}
-
 	.<?php echo $moduleName; ?> .input-search-place{
-		top:100px;
-		margin-right: 30px;
+		right:unset;
+		left:100px !important;
+		margin-right: 30px !important;
+		max-width: 254px !important;
+		z-index:100!important;
+	}
+	.<?php echo $moduleName; ?> .input-search-place input.input-search-place-in-map{
+		background-color: rgba(111, 161, 177, 0.74) !important;
+	}
+	.<?php echo $moduleName; ?> .btn-group-map		{
+		left: unset;
+		top:50px !important;
+		right:30px;
+		/*background-color: rgba(76, 114, 126, 0.65) !important;*/
 	}
 	.<?php echo $moduleName; ?> .item_panel_map			{
 	}
 	.<?php echo $moduleName; ?> .item_panel_map:hover	{
 	}
 
-	.<?php echo $moduleName; ?> #right_tool_map		{}
+	.<?php echo $moduleName; ?> #right_tool_map		{
+
+	}
 	.<?php echo $moduleName; ?> #liste_map_element	{}
 
 	.<?php echo $moduleName; ?> #lbl-chk-scope		{}
 
-	.<?php echo $moduleName; ?> .btn-group-map		{
-		left: unset;
-		right:30px;
+	li.mix{
+		background:rgba(255, 255, 255, 0.3) !important;
 	}
 	
 
@@ -105,6 +118,9 @@
 
 	jQuery(document).ready(function()
 	{
+		//$(".sigModuleBg").addClass("hidden");
+		//$(".sigModuleBg").css({"display" : "none"});
+		
 		//création de l'objet SIG
 		Sig = SigLoader.getSig();
 
@@ -130,11 +146,36 @@
 		
 		//mapBg.panTo([-21.06912308335471, 55.34912109375]);
 		//masque l'icone de chargement
+
 		Sig.showIcoLoading(false);
 
-		var mapHeight = $("#mapBgContainer").height();
-		mapHeight = mapHeight + (1.2 * mapHeight);		
-		//$("#mapCanvas" + initParams.sigKey).css({"height":mapHeight});
+		var mapHeight = $("#mapCanvasBg").height();
+		var rightPanelHeight = mapHeight - 190;
+		$("#right_tool_map").css({"top":"120px"});
+		$("#right_tool_map").css({"height":rightPanelHeight});
+		$("#liste_map_element").css({"height":rightPanelHeight-50});
+
+		$(".sigModuleBg").css("display","none");
+		
 	});
+
+
+	function showMap(show){
+		show = $(".sigModuleBg").css("display") == "none";
+		if(show){
+			$(".sigModuleBg").show( 1000 );
+			$(".box-ajax").css({backgroundColor:'rgba(255, 255, 255, 0.5)'});
+			$(".box-ajax .mix").css({backgroundColor:'rgba(255, 255, 255, 0.5)'});
+			$("a.text-white").css({color:'#58879B'});
+			$('#btn-close-panel').show("fast");
+			
+		}else{
+			$(".sigModuleBg").hide( 1000 );
+			$(".box-ajax").css({backgroundColor:'rgba(255, 255, 255, 1)'});
+			$(".box-ajax .mix").css({backgroundColor:'rgba(255, 255, 255, 1)'});
+			$("a.text-white").css({color:'#FFF'});
+			$('#btn-close-panel').hide("fast");
+		}
+	}
 
 </script>

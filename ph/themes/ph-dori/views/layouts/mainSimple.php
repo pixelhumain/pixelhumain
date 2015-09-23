@@ -46,6 +46,12 @@
 		   var moduleId = "<?php echo $this->module->id?>";
 		   var userId = "<?php echo Yii::app()->session['userId']?>";
 		   var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
+		   var debugMap = [
+		    <?php if(YII_DEBUG) { ?>
+		       { "userId":"<?php echo Yii::app()->session['userId']?>"},
+		       { "userEmail":"<?php echo Yii::app()->session['userEmail']?>"}
+	       <?php } ?>
+	       ];
 		   jQuery(document).ready(function() {
 				toastr.options = {
 				  "closeButton": false,
@@ -71,7 +77,7 @@
 	<body class="login bgcity">
 		
 		<?php 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-					$this->renderPartial($layoutPath.'mainMap');  ?>
+				$this->renderPartial($layoutPath.'mainMap');  ?>
 		
 		
 		<?php echo $content;  ?>
