@@ -135,7 +135,7 @@
 		//surcharge la fonction getMarkerSingle pour ouvrir le panel au click sur le marker
 		Sig.getMarkerSingle = function(thisMap, options, coordinates)
 		{
-			console.warn("--------------- getMarkerSingle ---------------------");
+			//console.warn("--------------- getMarkerSingle ---------------------");
 			var contentString = options.content;
 			if(options.content == null) contentString = "info window";
 
@@ -161,7 +161,7 @@
 
 		Sig.showMapElements = function(thisMap, data)
 		{
-			console.warn("--------------- showMapElements ---------------------");
+			//console.warn("--------------- showMapElements ---------------------");
 
 			if(data == null) return;
 
@@ -189,9 +189,9 @@
 			$.each(data, function (key, value){ len++; });//alert("len : " + len);
 			if(len > 1){
 				$.each(data, function (key, value){
-					console.warn("key");
-					console.log(key);
-					//console.log(value);
+					//console.warn("key");
+					//console.log(key);
+					////console.log(value);
 
 					thisSig.showFilterOnMap(data, key, thisMap);
 				});
@@ -202,7 +202,7 @@
 			var points = L.geoJson(this.geoJsonCollection, {				//Pour les clusters seulement :
 					onEachFeature: function (feature, layer) {				//sur chaque marker
 						var id = feature.properties.id;
-						console.dir(feature);
+						////console.dir(feature);
 						layer.setIcon(feature["properties"]["icon"]);	   	//affiche l'icon demandé
 						layer.on('click', function(e) {							
 							$("a[data-id='"+id+"']").click();
@@ -215,7 +215,7 @@
 										  		13, {"animate" : true });
 
 							var onclick = getActionsById(id); //$("a[data-id='"+id+"']").attr('onclick');
-							console.log(onclick);
+							//console.log(onclick);
 							//showAjaxPanel( baseUrl+'/'+moduleId+'/organization/detail/id/54eed32ca1aa143e020041c4', 'organization : TEEO','fa-users' );
 							setTimeout(onclick, 1);
 							$("#right_tool_map").hide('fast');
@@ -223,11 +223,11 @@
 							finalShowMarker();
 							thisSig.checkListElementMap(thisMap);
 						});
-						//console.warn("--------------- showMapElements click OK  ---------------------");
+						////console.warn("--------------- showMapElements click OK  ---------------------");
 
 					}
 				});
-				//console.warn("--------------- showMapElements  onEachFeature OK ---------------------");
+				////console.warn("--------------- showMapElements  onEachFeature OK ---------------------");
 
 				this.markersLayer.addLayer(points); 		// add it to the cluster group
 				thisMap.addLayer(this.markersLayer);		// add it to the map
