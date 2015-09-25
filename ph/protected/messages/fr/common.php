@@ -105,6 +105,7 @@ return array(
 	'Status' => 'Statut',
 	'Birth date' => 'Date de naissance',
 	'Interests' => "Centres d'intérêt",
+	'Duration' => 'Durée',
 	
 	//Input title - Placeholder
 	'Search by name or email' => "Recherche par nom, email",
