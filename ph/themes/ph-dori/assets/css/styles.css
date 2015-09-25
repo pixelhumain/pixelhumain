@@ -2989,7 +2989,7 @@ body.login {
 
 
 body.login .main-login {
-  margin-top: 60px;
+  margin-top: 115px;
   position: relative; }
 
 body.login .logo {
@@ -5201,11 +5201,28 @@ div.portfolio-info {
   position: absolute;
   top: -2px;
   width: 14px; }
-
+/*
 .portfolio-item > .tools {
-  background-color: rgba(0, 0, 0, 0.55);
+  background-color: rgba(256,256,256, 0.95);
+  position: absolute;
   bottom: 0;
-  left: -30px;
+  text-align: center;
+  transition: all 0.2s ease 0s;
+  vertical-align: middle;
+}
+
+.portfolio-item > .tools a:hover, .portfolio-item > .tools a:focus {
+  text-decoration: none; }
+
+.portfolio-item > .tools.tools-bottom {
+  
+  width: 100%;
+  height: 100%; }
+*/
+.portfolio-item > .tools {
+  background-color: rgba(256,256,256, 0.95);
+  bottom: 0;
+  left: 0px;
   position: absolute;
   text-align: center;
   top: 0;
@@ -5217,8 +5234,8 @@ div.portfolio-info {
   text-decoration: none; }
 
 .portfolio-item > .tools.tools-bottom {
-  bottom: -30px;
-  height: 28px;
+  bottom: -52px;
+  height: 50px;
   left: 0;
   right: 0;
   top: auto;

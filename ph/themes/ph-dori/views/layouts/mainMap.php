@@ -97,15 +97,12 @@
 		background:rgba(255, 255, 255, 0.3) !important;
 	}
 	
-	.box-ajax{
-		top:100px !important;
-	}
-
 	.leaflet-popup{
 		display:none;
 		visibility: hidden;
 	}
-
+	/*.box-ajax{top:100px;}*/
+	
 	/* XS */
 	@media screen and (max-width: 768px) {
 		.<?php echo $moduleName; ?> .mapCanvas{}
