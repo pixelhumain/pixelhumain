@@ -57,7 +57,7 @@
             $modal = (isset($item["isModal"])) ? 'role="button" data-toggle="modal"' : "";
             $onclick = (isset($item["onclick"])) ? 'onclick="'.$item["onclick"].'"' :  "" ;
 
-            $coco = ( isset( $item["href"] ) ) ? $item["href"]  :"#";
+            $href = ( isset( $item["href"] ) ) ? $item["href"]  :"#";
             /*if( isset( $item["href"] ) ) 
             {
               $href = $item["href"]."".stripos($item["href"], "http");
@@ -72,7 +72,7 @@
             $isActive = ( isset( Menu::$sectionMenu[ $item["key"] ] ) && in_array( Yii::app()->controller->action->id, Menu::$sectionMenu[ $item["key"] ] ) ) ? true : false;
             
             $active = ( $isActive || (isset($item["active"]) && $item["active"] ) ) ? "open active" : "";
-            echo '<li class=" moduleMenu menu_'.$item["key"].' '.$item["key"].' '.$active.'"><a href="'.$coco.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="inner">'.$item["label"].'</span></a></li>';
+            echo '<li class=" moduleMenu menu_'.$item["key"].' '.$item["key"].' '.$active.'"><a href="'.$href.'" '.$modal.' '.$class.' '.$onclick.' >'.$icon.'<span class="inner">'.$item["label"].'</span></a></li>';
           }
 
           function buildChildren( $children )
