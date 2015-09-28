@@ -13,6 +13,7 @@ class LoginAction extends CAction
 		$userId = (string)$user['_id'];
 		$userName = $user['firstname'];
 		$status = $user['status'];
+		$userIsAdmin = $user['isAdmin'];
 		
 		if( $userEmail && $userPwd == hash('sha256', $email.$pwd) && $status == 1 )
         {
@@ -20,6 +21,7 @@ class LoginAction extends CAction
 			Yii::app()->session["userId"] = $userId;
             Yii::app()->session["userEmail"] = $userEmail; 
             Yii::app()->session["user"] = $userName; 
+            if($userIsAdmin)Yii::app()->session["userIsAdmin"] = $userIsAdmin; 
 			
 			if($_POST['remember'] == 1) {
 				$res = array("result"=>true, "id"=>$userId, "password"=>$pwd, "email"=>$userEmail, "name"=>$userName, "remember"=>1);
