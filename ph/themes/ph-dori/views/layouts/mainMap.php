@@ -145,133 +145,9 @@
 
 	jQuery(document).ready(function()
 	{
-		//$(".sigModuleBg").addClass("hidden");
-		//$(".sigModuleBg").css({"display" : "none"});
-		
 		//création de l'objet SIG
 		Sig = SigLoader.getSig();
-/*
-		//surcharge la fonction getMarkerSingle pour ouvrir le panel au click sur le marker
-		Sig.getMarkerSingle = function(thisMap, options, coordinates)
-		{
-			//console.warn("--------------- getMarkerSingle ---------------------");
-			var contentString = options.content;
-			if(options.content == null) contentString = "info window";
 
-			var markerOptions = { icon : options.icon };
-
-			var marker = L.marker(coordinates, markerOptions)
-							.addTo(thisMap)
-							.bindPopup(contentString);
-
-			this.markerSingleList.push(marker);
-
-			marker.on('click', function(e) {
-					marker.openPopup();
-					//url = "showAjaxPanel( baseUrl+'/'+moduleId+'/".$type."/detail/id/".$id."', '".$type." : ".$name."','".$icon."' )";
-					if("undefined" != options.type) {
-						var type = options.type;
-						showAjaxPanel( baseUrl+'/'+moduleId+'/' + type + '/detail/id/' + options.id, type + ' : ' + options.name, '' );
-					}
-			});
-			return marker;
-		};
-
-		Sig.showMapElements = function(thisMap, data)
-		{
-			//console.warn("--------------- showMapElements ---------------------");
-
-			if(data == null) return;
-
-			var filterPanelValue = "citoyens";
-			//enregistre les dernières données dans une variable locale
-			this.dataMap = data;
-			//alert("datas : " + JSON.stringify(this.dataMap));
-			//efface les elements de la carte si elle n'est pas vide
-			if(this.markersLayer != "") this.clearMap(thisMap);
-
-			//conteneur de marker cluster
-			this.markersLayer = new L.MarkerClusterGroup({"maxClusterRadius" : 40});
-			thisMap.addLayer(this.markersLayer);
-
-			//collection de marker geojson
-			this.geoJsonCollection = { type: 'FeatureCollection', features: new Array() };
-
-			this.showIcoLoading(true);
-
-			//on affiche les data filtre par filtre
-			var thisSig = this;
-			//var array = new Array();
-
-			var len = 0;
-			$.each(data, function (key, value){ len++; });//alert("len : " + len);
-			if(len > 1){
-				$.each(data, function (key, value){
-					//console.warn("key");
-					//console.log(key);
-					////console.log(value);
-
-					thisSig.showFilterOnMap(data, key, thisMap);
-				});
-			}else{
-				thisSig.showOneElementOnMap(data, thisMap);
-			}
-
-			
-			var points = L.geoJson(this.geoJsonCollection, {				//Pour les clusters seulement :
-					onEachFeature: function (feature, layer) {				//sur chaque marker
-						var id = feature.properties.id;
-						////console.dir(feature);
-						layer.setIcon(feature["properties"]["icon"]);	   	//affiche l'icon demandé
-						layer.on('click', function(e) {							
-							$(thisSig.cssModuleName + " .item_map_list_" +id).click();
-						});
-						
-						//au click sur un element de la liste de droite, on zoom pour déclusturiser, et on ouvre la bulle
-						$(thisSig.cssModuleName + " .item_map_list_" + feature.properties.id).click(function(){
-							thisSig.centerSimple([	feature.geometry.coordinates[1],
-										  		feature.geometry.coordinates[0]],
-										  		13, {"animate" : true });
-
-							//var onclick = getActionsById(id); //$("a[data-id='"+id+"']").attr('onclick');
-							
-							var prop = feature.properties;
-							console.log("PROPRIETES : ");
-							console.dir(prop);
-
-							showMap(false);
-							showAjaxPanel( baseUrl+'/'+moduleId+'/'+prop.type+'/detail/id/'+prop.id, prop.type + ' : ' + prop.name, 'fa-'+prop.faIcon );
-							//setTimeout(onclick, 1);
-							$("#right_tool_map").hide('fast');
-
-							//finalShowMarker();
-							thisSig.checkListElementMap(thisMap);
-						});
-						//console.warn("--------------- showMapElements click OK  ---------------------");
-
-					}
-				});
-				//console.warn("--------------- showMapElements  onEachFeature OK ---------------------");
-
-				this.markersLayer.addLayer(points); 		// add it to the cluster group
-				thisMap.addLayer(this.markersLayer);		// add it to the map
-
-				$('#ico_reload').removeClass("fa-spin");
-				$('#ico_reload').css({"display":"none"});
-
-				if(this.initParameters.usePanel)
-					this.updatePanel(thisMap);
-
-				this.checkListElementMap(thisMap); 
-				
-				if("undefined" != typeof this.markersLayer.getBounds()._northEast )
-					thisMap.fitBounds(this.markersLayer.getBounds(), { 'maxZoom' : 14 });
-
-				thisSig.constructUI();
-
-				this.showIcoLoading(false);
-		};
-*/
 		//affiche l'icone de chargement
 		Sig.showIcoLoading(true);
 
@@ -284,7 +160,6 @@
 		Sig.showIcoLoading(false);
 
 		$("#right_tool_map").hide('fast');
-		
 
 		showMap(false);
 	});
