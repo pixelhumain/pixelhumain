@@ -109,6 +109,10 @@
 		padding:0px !important;
 	}
 
+	.box-white-round{
+		background-color:rgba(255, 255, 255, 0.5) !important;
+	}
+
 	li.mix{
 		background:rgba(255, 255, 255, 0.3) !important;
 	}
@@ -297,8 +301,6 @@
 			$(".btn-group-map").show( 700 );
 			$("#ajaxSV").hide( 700 );
 			$("#right_tool_map").show(700);
-			$(".box-ajax").css({backgroundColor:'rgba(255, 255, 255, 0.5)'});
-			$(".box-ajax .mix").css({backgroundColor:'rgba(255, 255, 255, 0.5)'});
 			$("a.text-white").css({color:'#58879B'});
 			
 		}else{
