@@ -164,6 +164,16 @@
 		showMap(false);
 	});
 
+	function openMainPanel(url, title, icon){
+		showAjaxPanel(url, title, icon);
+		var latlng = Sig.currentMarkerPopupOpen.getLatLng();
+
+		Sig.currentMarkerPopupOpen.closePopup();
+		Sig.map.panTo(latlng, 14);
+		Sig.centerSimple(latlng, 14);
+		showMap(false);
+		Sig.currentMarkerPopupOpen.openPopup();
+	}
 
 	function showMap(show){
 		console.log(show);
