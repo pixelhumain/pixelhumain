@@ -164,8 +164,15 @@
 		showMap(false);
 	});
 
+	function openMainPanelFromPanel(url, title, icon, id){
+		$(Sig.cssModuleName + " .item_map_list_" + id).click();
+		openMainPanel(url, title, icon);
+	}
+
 	function openMainPanel(url, title, icon){
 		showAjaxPanel(url, title, icon);
+
+		if(Sig.currentMarkerPopupOpen == null) return;
 		var latlng = Sig.currentMarkerPopupOpen.getLatLng();
 
 		Sig.currentMarkerPopupOpen.closePopup();
