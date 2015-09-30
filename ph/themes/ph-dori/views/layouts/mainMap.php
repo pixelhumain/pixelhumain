@@ -53,6 +53,10 @@
 ?>
 <style>
 
+	.<?php echo $moduleName; ?>{
+		/*z-index:-5;*/
+	}
+
 	.<?php echo $moduleName; ?> .mapCanvas{
 		position:relative !important;
 		width:100% !important;
@@ -90,7 +94,7 @@
 	}
 
 	.<?php echo $moduleName; ?> .panel_map, .panel_filter{
-		background:#4C727E;
+		background:#2A3945;
 	}
 	.<?php echo $moduleName; ?> .item_panel_map{
 	}
@@ -99,7 +103,7 @@
 
 	.<?php echo $moduleName; ?> #right_tool_map{
 		top:70px;
-		z-index: 100;
+		z-index: 0;
 	}
 	.<?php echo $moduleName; ?> #liste_map_element{}
 
@@ -154,6 +158,7 @@
 		Sig.showIcoLoading(false);
 
 		$("#right_tool_map").hide('fast');
+		//$(".sigModuleBg").css('zIndex' : 0);
 
 		showMap(false);
 	});
@@ -177,9 +182,9 @@
 	}
 
 	function showMap(show){
-		console.log(show);
+		//console.log(show);
 		if(show === undefined) show = $("#ajaxSV").css("display") != "none";
-		console.log(show);
+		//console.log(show);
 		
 		if(show){
 			
@@ -187,7 +192,7 @@
 			$(".btn-group-map").show( 700 );
 			$("#ajaxSV").hide( 700 );
 			$("#right_tool_map").show(700);
-			//$("a.text-white").css({color:'#58879B'});
+			$(".btn-show-map").html("<i class='fa fa-list'></i>");
 			
 		}else{
 			
@@ -195,6 +200,7 @@
 			$("#ajaxSV").show( 700 );
 			$("#right_tool_map").hide(700);
 			$(".panel_map").hide(1);
+			$(".btn-show-map").html("<i class='fa fa-map'></i>");
 			//$(".box-ajax").css({backgroundColor:'rgba(255, 255, 255, 1)'});
 			//$(".box-ajax .mix").css({backgroundColor:'rgba(255, 255, 255, 1)'});
 			
