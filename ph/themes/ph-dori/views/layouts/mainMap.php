@@ -76,16 +76,16 @@
 		background-color: rgba(42, 57, 69, 0.7) !important; /*rgba(111, 161, 177, 0.74) !important;*/
 	}
 	.<?php echo $moduleName; ?> .btn-group-map{
-		top:50px !important;
+		top:70px !important;
 	}
 	.<?php echo $moduleName; ?> .btn-group-map.tools-btn{
 		left: unset; /*90px !important;*/
-		top:50px !important;
+		top:70px !important;
 		/*background-color: rgba(76, 114, 126, 0.65) !important;*/
 	}
 	.<?php echo $moduleName; ?> .btn-group-map.tools-btn.input-search-place{
 		left: 90px !important;
-		top:50px !important;
+		top:70px !important;
 		/*background-color: rgba(76, 114, 126, 0.65) !important;*/
 	}
 
@@ -98,7 +98,7 @@
 	}
 
 	.<?php echo $moduleName; ?> #right_tool_map{
-		top:50px;
+		top:70px;
 		z-index: 100;
 	}
 	.<?php echo $moduleName; ?> #liste_map_element{}
@@ -109,13 +109,7 @@
 		padding:0px !important;
 	}
 
-	.box-white-round{
-		background-color:rgba(255, 255, 255, 0.5) !important;
-	}
-
-	li.mix{
-		background:rgba(255, 255, 255, 0.3) !important;
-	}
+	
 	
 	.leaflet-popup{
 		/*display:none;
@@ -193,7 +187,7 @@
 			$(".btn-group-map").show( 700 );
 			$("#ajaxSV").hide( 700 );
 			$("#right_tool_map").show(700);
-			$("a.text-white").css({color:'#58879B'});
+			//$("a.text-white").css({color:'#58879B'});
 			
 		}else{
 			
