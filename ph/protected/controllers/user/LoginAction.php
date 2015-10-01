@@ -24,7 +24,7 @@ class LoginAction extends CAction
             if($userIsAdmin)Yii::app()->session["userIsAdmin"] = $userIsAdmin; 
 			
 			if($_POST['remember'] == 1) {
-				$res = array("result"=>true, "id"=>$userId, "password"=>$pwd, "email"=>$userEmail, "name"=>$userName, "remember"=>1);
+				$res = array("result"=>true, "id"=>$userId, "password"=>$pwd, "email"=>$userEmail, "name"=>$userName, "userIsAdmin" => $userIsAdmin, "remember"=>1);
 			}
 			else{
 				$res = array("result"=>true, "id"=>$userId, "name"=>$userName);

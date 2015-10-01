@@ -148,5 +148,10 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'contact@pixelhumain.com',
+
+		//upload base directory
+	    'uploadUrl' => "upload/",
+	    'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR,
+	    //'uploadComDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\templates\\upload\\dir\\communecter\\collection\\person",
 	),
 );
