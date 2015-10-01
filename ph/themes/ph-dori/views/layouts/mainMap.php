@@ -185,28 +185,43 @@
 
 	function showMap(show){
 		//console.log(show);
-		if(show === undefined) show = $("#ajaxSV").css("display") != "none";
+		if(show === undefined) show = $("#right_tool_map").css("display") == "none";
 		//console.log(show);
 		
 		if(show){
 			
 			$(".sigModuleBg").show( 700 );
 			$(".btn-group-map").show( 700 );
-			$("#ajaxSV").hide( 700 );
 			$("#right_tool_map").show(700);
 			$(".btn-show-map").html("<i class='fa fa-list'></i>");
+
+			if($(".box-add").css("display") == "block"){
+				$(".box-add").hide(700);
+			}
+			else{
+				$("#ajaxSV").hide( 700 );
+			}
+			var timer = setTimeout("Sig.constructUI()", 1000);
 			
 		}else{
 			
 			$(".btn-group-map").hide( 700 );
-			$("#ajaxSV").show( 700 );
 			$("#right_tool_map").hide(700);
 			$(".panel_map").hide(1);
 			$(".btn-show-map").html("<i class='fa fa-map'></i>");
-			//$(".box-ajax").css({backgroundColor:'rgba(255, 255, 255, 1)'});
-			//$(".box-ajax .mix").css({backgroundColor:'rgba(255, 255, 255, 1)'});
 			
+			if($(".box-add").css("display") == "none")
+				$("#ajaxSV").show( 700 );
+			
+			// if($(".box-add").css("display") == "none"){
+			// 	$(".box-add").show(700);
+			// }
+			// else{
+			// 	$("#ajaxSV").show( 700 );
+			// }
 		}
+
+		
 	}
 
 
