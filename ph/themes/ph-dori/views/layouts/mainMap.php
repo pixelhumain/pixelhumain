@@ -81,6 +81,7 @@
 	}
 	.<?php echo $moduleName; ?> .btn-group-map{
 		top:70px !important;
+		display:none;
 	}
 	.<?php echo $moduleName; ?> .btn-group-map.tools-btn{
 		left: unset; /*90px !important;*/
@@ -104,6 +105,7 @@
 	.<?php echo $moduleName; ?> #right_tool_map{
 		top:70px;
 		z-index: 0;
+		display:none;
 	}
 	.<?php echo $moduleName; ?> #liste_map_element{}
 
