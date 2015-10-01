@@ -167,29 +167,39 @@
 
 	function openMainPanelFromPanel(url, title, icon, id){
 		$(Sig.cssModuleName + " .item_map_list_" + id).click();
-		openMainPanel(url, title, icon);
+		openMainPanel(url, title, icon, id);
 	}
 
-	function openMainPanel(url, title, icon){
+	function openMainPanel(url, title, icon, id){
+		//console.log("openMainPanel : " + id);
 		showAjaxPanel(url, title, icon);
 
 		if(Sig.currentMarkerPopupOpen == null) return;
 		var latlng = Sig.currentMarkerPopupOpen.getLatLng();
 
-		Sig.currentMarkerPopupOpen.closePopup();
+		//Sig.currentMarkerPopupOpen.closePopup();
 		Sig.map.panTo(latlng, 14);
 		Sig.centerSimple(latlng, 14);
+
+		//console.log("id : " + id);
+		$("#popup"+id+" .city_item_map_list").hide(100);
+		$("#popup"+id+" .country_item_map_list").hide(100);
+		$("#popup"+id+" .btn-more").hide(100);
+
 		showMap(false);
-		Sig.currentMarkerPopupOpen.openPopup();
+		//Sig.currentMarkerPopupOpen.bindPopup(Sig.getPopupShort(dataName, url, title, icon));
+		//Sig.currentMarkerPopupOpen.openPopup();
 	}
 
 	function showMap(show){
-		//console.log(show);
-		if(show === undefined) show = $("#right_tool_map").css("display") == "none";
-		//console.log(show);
 		
+		if(show === undefined) show = $("#right_tool_map").css("display") == "none";
 		if(show){
 			
+			if(Sig.currentMarkerPopupOpen != null){
+				Sig.currentMarkerPopupOpen.fire('click');
+			}
+
 			$(".sigModuleBg").show( 700 );
 			$(".btn-group-map").show( 700 );
 			$("#right_tool_map").show(700);
