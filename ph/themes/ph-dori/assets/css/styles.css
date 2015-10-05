@@ -3069,10 +3069,10 @@ body.login a.forgot {
   */
   text-shadow: 1px 1px 1px #FFFFFF;
    }
-
+/*
 body.login input.password {
   padding-right: 130px; }
-
+*/
 body.login label {
   color: #7F7F7F;
   font-size: 14px;
