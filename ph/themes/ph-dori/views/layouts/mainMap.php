@@ -95,7 +95,7 @@
 	}
 
 	.<?php echo $moduleName; ?> .panel_map, .panel_filter{
-		background:#2A3945;
+		
 	}
 	.<?php echo $moduleName; ?> .item_panel_map{
 	}
@@ -115,8 +115,7 @@
 		padding:0px !important;
 	}
 
-	
-	
+		
 	.leaflet-popup{
 		/*display:none;
 		visibility: hidden;*/
