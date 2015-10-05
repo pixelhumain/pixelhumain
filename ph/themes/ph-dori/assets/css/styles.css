@@ -3058,12 +3058,17 @@ body.login .form fieldset input[type="text"] {
   border-radius: 5px}
 
 body.login a.forgot {
-  color: #909090;
+  
   font-size: 12px;
+
+  /*
+  color: #909090;
   position: absolute;
+  top: 9px;
   right: 10px;
+  */
   text-shadow: 1px 1px 1px #FFFFFF;
-  top: 9px; }
+   }
 
 body.login input.password {
   padding-right: 130px; }
