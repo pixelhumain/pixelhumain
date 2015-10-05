@@ -63,10 +63,10 @@
 	$(".sharing").click(function(){
 		$(this).next(".hidden-buttons").fadeToggle();
 	});
-	//SCROLL TOP
+	/*SCROLL TOP
 	$.scrollUp({
 	    scrollText: 'Top', // Text for element
-	});
+	});*/
 	//FANCYOX
 	$('.fancybox').fancybox({
         openEffect  : 'elastic'
