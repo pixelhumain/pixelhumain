@@ -1,0 +1,27 @@
+/*!
+ *  Font Awesome 4.1.0 custom 0.1 by struna.org
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+/* FONT PATH
+ * -------------------------- */
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../fonts/fontawesome-custom.eot?v=0.1');
+    src: url('../fonts/fontawesome-custom.eot?#iefix&v=0.1') format('embedded-opentype'),
+        url('../fonts/fontawesome-custom.woff?v=0.1') format('woff'),
+        url('../fonts/fontawesome-custom.ttf?v=0.1') format('truetype'),
+        url('../fonts/fontawesome-custom.svg?v=0.1.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.fa-logo:before {
+    content: "\e800";
+}
+.fa-user_circled:before {
+    content: "\e801";
+}
+.fa-euro_tag:before {
+    content: "\e802";
+}
