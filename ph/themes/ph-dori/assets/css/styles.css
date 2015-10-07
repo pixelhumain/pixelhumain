@@ -3001,7 +3001,8 @@ body.login {
 
 
 body.login .main-login {
-  margin-top: 115px;
+  /*margin-top: 115px;*/
+  top:145px;
   position: relative; }
 
 body.login .logo {
@@ -3015,7 +3016,7 @@ body.login .box-white-round {
   padding: 15px;
   margin:20px;
   position: absolute;
-  top: 95px;
+  top: 115px;
   left: 0;
   right: 0; }
 
