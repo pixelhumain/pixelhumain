@@ -33,7 +33,7 @@
         "useFullPage" 	 	 => true,
         "useResearchTools" 	 => true,
         "useChartsMarkers" 	 => false,
-        "useHelpCoordinates" => true,
+        "useHelpCoordinates" => false,
         
         "notClusteredTag" 	 => array(),
         "firstView"		  	 => array(  "coordinates" => array(-21.219343584637794, 55.54756164550781),
@@ -111,9 +111,7 @@
 
 	.<?php echo $moduleName; ?> #lbl-chk-scope{}
 
-	.<?php echo $moduleName; ?> .leaflet-popup-content{
-		padding:0px !important;
-	}
+	
 
 		
 	.leaflet-popup{
@@ -165,29 +163,26 @@
 	});
 
 	function openMainPanelFromPanel(url, title, icon, id){
+		//console.log("openMainPanelFromPanel");
 		$(Sig.cssModuleName + " .item_map_list_" + id).click();
 		openMainPanel(url, title, icon, id);
 	}
 
 	function openMainPanel(url, title, icon, id){
-		//console.log("openMainPanel : " + id);
+		//console.log("openMainPanel");
 		showAjaxPanel(url, title, icon);
 
 		if(Sig.currentMarkerPopupOpen == null) return;
 		var latlng = Sig.currentMarkerPopupOpen.getLatLng();
 
-		//Sig.currentMarkerPopupOpen.closePopup();
 		Sig.map.panTo(latlng, 14);
 		Sig.centerSimple(latlng, 14);
 
-		//console.log("id : " + id);
 		$("#popup"+id+" .city_item_map_list").hide(100);
 		$("#popup"+id+" .country_item_map_list").hide(100);
 		$("#popup"+id+" .btn-more").hide(100);
 
 		showMap(false);
-		//Sig.currentMarkerPopupOpen.bindPopup(Sig.getPopupShort(dataName, url, title, icon));
-		//Sig.currentMarkerPopupOpen.openPopup();
 	}
 
 	function showMap(show){
