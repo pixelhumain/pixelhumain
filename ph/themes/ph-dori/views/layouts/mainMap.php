@@ -169,20 +169,20 @@
 	}
 
 	function openMainPanel(url, title, icon, id){
-		//console.log("openMainPanel");
 		showAjaxPanel(url, title, icon);
-
+		showMap(false);
+		
 		if(Sig.currentMarkerPopupOpen == null) return;
 		var latlng = Sig.currentMarkerPopupOpen.getLatLng();
+		
 
-		Sig.map.panTo(latlng, 14);
 		Sig.centerSimple(latlng, 14);
-
+		
 		$("#popup"+id+" .city_item_map_list").hide(100);
 		$("#popup"+id+" .country_item_map_list").hide(100);
 		$("#popup"+id+" .btn-more").hide(100);
 
-		showMap(false);
+		
 	}
 
 	function showMap(show){
@@ -216,13 +216,6 @@
 			
 			if($(".box-add").css("display") == "none")
 				$("#ajaxSV").show( 700 );
-			
-			// if($(".box-add").css("display") == "none"){
-			// 	$(".box-add").show(700);
-			// }
-			// else{
-			// 	$("#ajaxSV").show( 700 );
-			// }
 		}
 
 		
