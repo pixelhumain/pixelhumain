@@ -6724,6 +6724,7 @@ span.btn-tag {
 .panel-scroll {
   height: 400px;
   overflow: hidden;
+  overflow-y: auto;
   position: relative;
   width: auto;
   padding-right: 10px !important; }
