@@ -14,6 +14,7 @@ class LoginAction extends CAction
 		$userName = $user['firstname'];
 		$status = $user['status'];
 		$userIsAdmin = $user['isAdmin'];
+		$userIsOrganiser = $user['isOrganiser'];
 		
 		if( $userEmail && $userPwd == hash('sha256', $email.$pwd) && $status == 1 )
         {
@@ -21,10 +22,11 @@ class LoginAction extends CAction
 			Yii::app()->session["userId"] = $userId;
             Yii::app()->session["userEmail"] = $userEmail; 
             Yii::app()->session["user"] = $userName; 
-            if($userIsAdmin)Yii::app()->session["userIsAdmin"] = $userIsAdmin; 
+            if($userIsAdmin)Yii::app()->session["userIsAdmin"] = $userIsAdmin;
+            if($userIsAdmin)Yii::app()->session["userIsOrganiser"] = $userIsOrganiser; 
 			
 			if($_POST['remember'] == 1) {
-				$res = array("result"=>true, "id"=>$userId, "password"=>$pwd, "email"=>$userEmail, "name"=>$userName, "userIsAdmin" => $userIsAdmin, "remember"=>1);
+				$res = array("result"=>true, "id"=>$userId, "password"=>$pwd, "email"=>$userEmail, "name"=>$userName, "userIsAdmin" => $userIsAdmin, "userIsOrganiser" => $userIsOrganiser, "remember"=>1);
 			}
 			else{
 				$res = array("result"=>true, "id"=>$userId, "name"=>$userName);

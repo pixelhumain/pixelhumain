@@ -69,8 +69,8 @@ class Citoyen
                         Yii::app()->session["userEmail"] = $account["email"]; 
                         $name = (isset($account["name"])) ? $account["name"] : "Anonymous" ;
                         Yii::app()->session["user"] = array("name"=>$name); 
-                        if( isset($account["isAdmin"]) && $account["isAdmin"] )
-                            Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
+                        if( isset($account["isAdmin"]) && $account["isAdmin"] )Yii::app()->session["userIsAdmin"] = $account["isAdmin"];
+                        if( isset($account["isOrganiser"]) && $account["isOrganiser"] )Yii::app()->session["userIsOrganiser"] = $account["isOrganiser"]; 
                             
                         /*Notification::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
                                                 "user" => $account["_id"]));*/
@@ -89,6 +89,9 @@ class Citoyen
                     
                     if( isset($account["isAdmin"]) && $account["isAdmin"] )
                         Yii::app()->session["userIsAdmin"] = $account["isAdmin"]; 
+
+                     if( isset($account["isOrganiser"]) && $account["isOrganiser"] )
+                        Yii::app()->session["userIsOrganiser"] = $account["isOrganiser"]; 
                         
                     /*Notification::saveNotification(array("type" => NotificationType::NOTIFICATION_LOGIN,
                                             "user" => $account["_id"]));*/
