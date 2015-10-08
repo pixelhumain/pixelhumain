@@ -163,7 +163,6 @@
 	});
 
 	function openMainPanelFromPanel(url, title, icon, id){
-		//console.log("openMainPanelFromPanel");
 		$(Sig.cssModuleName + " .item_map_list_" + id).click();
 		openMainPanel(url, title, icon, id);
 	}
@@ -175,14 +174,11 @@
 		if(Sig.currentMarkerPopupOpen == null) return;
 		var latlng = Sig.currentMarkerPopupOpen.getLatLng();
 		
-
 		Sig.centerSimple(latlng, 14);
 		
 		$("#popup"+id+" .city_item_map_list").hide(100);
 		$("#popup"+id+" .country_item_map_list").hide(100);
 		$("#popup"+id+" .btn-more").hide(100);
-
-		
 	}
 
 	function showMap(show){
@@ -217,7 +213,6 @@
 			if($(".box-add").css("display") == "none")
 				$("#ajaxSV").show( 700 );
 		}
-
 		
 	}
 
