@@ -801,7 +801,7 @@ footer {
   footer .footer-inner {
     padding: 0 20px;
     line-height: 50px;
-    margin-left: 260px; }
+    right:0px; }
     .sidebar-close footer .footer-inner {
       margin-left: 0; }
   .right-sidebar-open footer {
@@ -1402,11 +1402,14 @@ h1.text-extra-large {
 .text-azure {
   color: #00bdcc; }
 
+.text-azure {
+  color: #00bdcc; }
+
 .text-orange {
-  color: #f58a5c; }
+  color: #F9B21A; }
 
 .text-green {
-  color: #1fbba6; }
+  color: #93C020; }
 
 .text-blue {
   color: #5f8295; }
@@ -1415,7 +1418,7 @@ h1.text-extra-large {
   color: #dd5a82; }
 
 .text-purple {
-  color: #dd5a82; }
+  color: #8C5AA1; }
 
 .text-bricky {
   color: #894550; }
@@ -1435,7 +1438,7 @@ a.text-white {
     color: white; }
 
 .text-dark {
-  color: rgba(44, 47, 59, 0.4); }
+  color: #3C5665; /*rgba(44, 47, 59, 0.4);*/ }
 
 a.text-dark:hover {
   color: rgba(44, 47, 59, 0.6); }
@@ -3002,7 +3005,7 @@ body.login {
 
 body.login .main-login {
   /*margin-top: 115px;*/
-  top:35px;
+  top:85px;
   position: relative; }
 
 body.login .logo {
@@ -6724,7 +6727,7 @@ span.btn-tag {
 .panel-scroll {
   height: 400px;
   overflow: hidden;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
   position: relative;
   width: auto;
   padding-right: 10px !important; }
