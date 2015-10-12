@@ -1424,7 +1424,7 @@ h1.text-extra-large {
   color: #894550; }
 
 .text-yellow {
-  color: #ffb848; }
+  color: #F3D116; }
 
 .text-red {
   color: #E33551; }
@@ -4381,6 +4381,60 @@ div.timeline {
     padding: 10px;
     text-align: right; }
 
+.timeline_element .ico-type-account {
+    background-image: url("flag.png");
+    text-align: center;
+    height: 20px;
+    width: 40px;
+    font-size: 13px;
+    padding: 0px;
+    float: left;
+    margin-left: -12px;
+    border-radius: 3px 0px 0px 3px;
+    margin-top: 0px;
+    margin-right: 25px;
+}
+}
+.timeline_element .ico-type-account i.fa{
+    margin-left:3px !important;
+}
+.timeline_element .timeline_date{
+  padding-left: 57px;
+}
+.timeline_element .timeline_author_block{
+  margin-left: 6px;  
+  margin-top: 10px;  
+  padding-top: 5px;  
+}
+.timeline_element .timeline_author{
+  text-transform: none !important;
+  margin-left:5px;
+}
+.timeline_element .timeline_title{
+  width:100%;
+  overflow: visible !important;
+}
+.timeline_element .timeline_text{
+  padding:0px 5px;
+}
+.timeline_element .tag_item_map_list{
+  color:#F00;
+}
+.timeline_element .label-tool-timeline{
+  background-color:white !important;
+}
+.timeline_element hr{
+  margin: 3px 0px;
+}
+.timeline_element .thumbnail-profil {
+    width: 50px;
+    height: 50px;
+    background-color: #DADADA;
+    border-radius: 4px;
+    margin-right: -50px;
+    float: left;    
+    margin-top: -5px;
+}
 .timeline-scrubber {
   padding: 8px 0 8px 1px;
   top: 60px;
