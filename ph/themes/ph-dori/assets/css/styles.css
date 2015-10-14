@@ -4446,6 +4446,7 @@ div.timeline {
 .timeline_element .timeline_shared_picture{
     width: 100%;
     min-height: 140px;
+    max-height:250px;
     margin-bottom: -60px;
     background-size: 100% auto;
     border-radius: 3px;
