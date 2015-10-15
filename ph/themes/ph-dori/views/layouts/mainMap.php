@@ -33,11 +33,11 @@
         "useFullPage" 	 	 => true,
         "useResearchTools" 	 => true,
         "useChartsMarkers" 	 => false,
-        "useHelpCoordinates" => false,
+        "useHelpCoordinates" => true,
         
         "notClusteredTag" 	 => array(),
-        "firstView"		  	 => array(  "coordinates" => array(-21.219343584637794, 55.54756164550781),
-									 	"zoom"		  => 11),
+        "firstView"		  	 => array(  "coordinates" => array(-1.4061088354351594, -26.015625),
+									 	"zoom"		  => 3),
     );
  
 	/* ***********************************************************************************/
@@ -150,6 +150,7 @@
 
 		//chargement des paramètres d'initialisation à partir des params PHP definis plus haut
 		var initParams =  <?php echo json_encode($sigParams); ?>;
+	
 
 		//chargement de la carte
 		mapBg = Sig.loadMap("mapCanvas", initParams);
@@ -157,9 +158,13 @@
 		Sig.showIcoLoading(false);
 
 		$("#right_tool_map").hide('fast');
-		//$(".sigModuleBg").css('zIndex' : 0);
-
+		
 		showMap(false);
+
+		<?php if(!isset(Yii::app()->session['user'])){ ?>
+			initHTML5Localisation();
+		<?php } ?>
+		
 	});
 
 	function openMainPanelFromPanel(url, title, icon, id){
@@ -216,5 +221,37 @@
 		
 	}
 
+	function initHTML5Localisation(){
+		if (navigator.geolocation)
+		{
+		  navigator.geolocation.getCurrentPosition(
+			function(position){ //success
+			    mapBg.panTo([position.coords.latitude, position.coords.longitude], {animate:false});
+			    mapBg.setZoom(13, {animate:false});
+			    toastr.success("Votre position géographique a été trouvée");
+			},
+			function (error){	//error
+				var info = "Erreur lors de la géolocalisation : ";
+			    switch(error.code) {
+				    case error.TIMEOUT:
+				    	info += "Timeout !";
+				    break;
+				    case error.PERMISSION_DENIED:
+				    info += "Vous n’avez pas donné la permission";
+				    break;
+				    case error.POSITION_UNAVAILABLE:
+				    	info += "La position n’a pu être déterminée";
+				    break;
+				    case error.UNKNOWN_ERROR:
+				    	info += "Erreur inconnue";
+				    break;
+				}
+				toastr.error(info);
+			});
+		}
+		else{
+		  toastr.error("Votre navigateur ne prend pas en compte la géolocalisation HTML5");
+		}
+	}
 
 </script>
