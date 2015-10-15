@@ -254,6 +254,7 @@ $k_path_url = (isset($_SERVER['HTTPS']) AND (!empty($_SERVER['HTTPS'])) AND strt
  echo $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']." :: HTTP_HOST / REQUEST_URI <br/>";
  echo $folder = substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1)." ::  SCRIPT_NAME / <br/>";
  echo $k_path_url.$_SERVER['SERVER_NAME'].substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1)." :: SERVER_NAME / SCRIPT_NAME<br/>";
+ echo "Home URL :: ".Yii::app()->homeUrl."<br>" ;
         
 
 /*if(isset($m)){
