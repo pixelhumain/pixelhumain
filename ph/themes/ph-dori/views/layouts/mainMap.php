@@ -181,9 +181,7 @@
 		
 		Sig.centerSimple(latlng, 14);
 		
-		$("#popup"+id+" .city_item_map_list").hide(100);
-		$("#popup"+id+" .country_item_map_list").hide(100);
-		$("#popup"+id+" .btn-more").hide(100);
+		Sig.hidePopupContent(id);
 	}
 
 	function showMap(show){
