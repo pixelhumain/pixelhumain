@@ -42,6 +42,7 @@
 		   var initT = new Object();
 		   var showDelaunay = true;
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
+		   var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
 		   var userId = "<?php echo Yii::app()->session['userId']?>";
