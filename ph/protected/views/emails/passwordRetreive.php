@@ -15,8 +15,12 @@
           <img src='<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo ?>' alt="<?php echo $title?>" title="<?php echo $title?>"/>
         </td>
         <td align="left">
-           <h3>Bienvenue au <?php echo $title?> !! </h3>
-           Utilisez ce mot de passe :  <?php echo $pwd?>
+           <h3>Réinitialisez votre mot de passe‏ - <?php echo $title?></h3>
+           Vous avez fait une demande de réinitialisation de votre mot de passe.
+           Afin d'accéder à votre espace Azotlive, vous pouvez utiliser ce mot de passe :  <?php echo $pwd?> 
+           
+           Si le problème persiste, n’hésitez pas à nous contacter à l'aide du formulaire dans la partie "contact".
+           L'équipe Azotlive
            <br/>
            <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>">Login</a>
         </td>

@@ -15,11 +15,11 @@
           <img src='<?php echo $logo ?>' alt="<?php echo $title?>" title="<?php echo $title?>"/>
         </td>
         <td align="left">
-           <h3>Bienvenue au <?php echo $title?> !! </h3>
-           veuillez clicker sur le lien pour confirmer votre compte<br/>
-           ou copier le directement dans votre navigateur 
-           <br/>
-           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id; ?>/api/activateUser/id/<?php echo $user?>">Validation</a>
+           <h3>Bienvenue à <?php echo $title?> !! </h3>
+           Nous avons pris en compte votre demande.<br/>
+           Pour activer votre compte cliquez sur 'Activation du compte' ci-dessous :<br/><br/>
+            <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id; ?>/person/activateUser/id/<?php echo $user?>">Activation du compte</a>
+           <br/>L'équipe Azotlive
         </td>
       </tr>
       </table>

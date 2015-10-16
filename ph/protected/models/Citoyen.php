@@ -174,6 +174,7 @@ class Citoyen
                         'ph:created' => time(),
 						'status' => 0
                         );
+                   if(isset($_POST['licence']))$newAccount["licence"] = $_POST['licence'];
 					if(isset($_POST['membertype']))
                         $newAccount["membertype"] = $_POST['membertype'];
                     if(isset($_POST['name']))
