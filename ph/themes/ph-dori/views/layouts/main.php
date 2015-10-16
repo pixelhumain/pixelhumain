@@ -67,7 +67,7 @@
 		   // A supprimer une fois le redirect corrigé 
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
-		   var assetsUrl =  "<?php echo Yii::app()->controller->module->assetsUrl;?>";
+		   var assetsUrl =  "<?php  echo (isset(Yii::app()->controller->module))?Yii::app()->controller->module->assetsUrl:'';?>";
 		   var homeUrl = "<?php echo Yii::app()->homeUrl;?>";
 		   var moduleId = "<?php echo (isset($this->module->id) ) ? $this->module->id : '' ?>";
 		   var userId = "<?php echo Yii::app()->session['userId']?>";
