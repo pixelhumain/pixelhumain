@@ -162,7 +162,7 @@
 		showMap(false);
 
 		<?php if(!isset(Yii::app()->session['user'])){ ?>
-			initHTML5Localisation();
+			$("a.register").click(function(){ initHTML5Localisation(); });		
 		<?php } ?>
 		
 	});
