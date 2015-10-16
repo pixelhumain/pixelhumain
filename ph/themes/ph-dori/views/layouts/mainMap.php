@@ -2,8 +2,8 @@
 <?php 
 	//modifier l'url relative si besoin pour trouver communecter/view/sig/
 	$relativePath = "../sig/";
-	
-   	//modifier les parametre en fonction des besoins de la carte
+
+	//modifier les parametre en fonction des besoins de la carte
 	$sigParams = array(
         "sigKey" => "Bg",
 
@@ -164,7 +164,7 @@
 		<?php if(!isset(Yii::app()->session['user'])){ ?>
 			$("a.register").click(function(){ initHTML5Localisation(); });		
 		<?php } ?>
-		
+
 	});
 
 	function openMainPanelFromPanel(url, title, icon, id){
