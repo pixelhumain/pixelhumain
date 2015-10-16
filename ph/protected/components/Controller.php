@@ -33,7 +33,7 @@ class Controller extends CController
 	public $toolbarMBZ = null;
 	public $toolbarMenuAdd = null;
 	public $toolbarMenuMaps = null;
-
+	public $title = "";
 	public $keywords = "";
 	public $description = "";
 	public $percent = 15;

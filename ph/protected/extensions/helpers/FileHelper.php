@@ -467,6 +467,8 @@ class fileHelper {
 	    		$pere[$map[0]] = intval($value);
 	    	else if($type == "FLOAT")
 	    		$pere[$map[0]] = floatval($value);
+	    	else if($type == "JSON")
+                $pere[$map[0]] = json_decode($value, true);
 	    	else
 	    		$pere[$map[0]] = $value;
 	    }
@@ -497,6 +499,8 @@ class fileHelper {
 	    		$pere[$map[0]] = intval($value);
 	    	else if($type == "FLOAT")
 	    		$pere[$map[0]] = floatval($value);
+	    	else if($type == "JSON")
+                $pere[$map[0]] = json_decode($value, true);
 	    	else
 	    		$pere[$map[0]] = $value;
 	    }

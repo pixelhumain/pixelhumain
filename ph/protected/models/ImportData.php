@@ -95,7 +95,7 @@ class ImportData
 
 
 
-        if($post['chooseSelected'] == "new"){
+        /*if($post['chooseSelected'] == "new"){
            $resMapping = PHDB::insert(City::COLLECTION_IMPORTHISTORY, $objectMapping);
         }
         else
@@ -110,7 +110,7 @@ class ImportData
                                             'idlien' => $objectMapping->idlien,
                                             'fields' => $objectMapping->fields)),
                             array("upsert" => true));
-        }
+        }*/
 
     
         /*if(isset($objectImport->insee))
@@ -155,7 +155,52 @@ class ImportData
                 
             }  
         }*/
-		return $resMapping;
+
+
+        if(isset($objectImport->insee))
+        {
+            $res = PHDB::findOne("cities", 
+                                    array("insee" => $objectImport->insee));
+            echo "</br> 1 : " ;
+            var_dump($post["typeData"]);
+            var_dump($res);
+            if($res == null)
+            {
+                //$resData = PHDB::insert(City::COLLECTION_DATA, $objectImport);
+            }
+            else
+            {
+                $resData = PHDB::update("cities", 
+                            array("_id"=>new MongoId($res["_id"])),
+                            array('$set' => $objectImport),
+                            array("upsert" => true));
+            }
+        }
+        else
+        {
+            foreach ($objectImport as $key => $value) 
+            {
+               
+                $res = PHDB::findOne("cities", 
+                                        array("insee" => $value->insee));
+                if($res == null)
+                {
+                    //$resData = PHDB::insert("cities", $value);
+                }
+                else
+                {
+                   $resData = PHDB::update("cities", 
+                                array("_id"=>new MongoId($res["_id"])),
+                                array('$set' => $value),
+                                array("upsert" => true));
+                }
+                
+            }  
+        }
+
+
+
+		return true;
     }
 
     public static function createCSV ($arrayCSV, $nameFile, $path)
@@ -339,29 +384,38 @@ class ImportData
                                 {
                                     $map = explode(".", $value);
                                     $mapLabel = $map ;
-                                    $map[] = "value" ;
-                                    $mapLabel[] = "label" ;
+                                    //$map[] = "value" ;
+                                    //$mapLabel[] = "label" ;
                                     if(!isset($commune[$map[0]]))
                                     {
                                         if(count($map) > 1)
                                         {
                                             $newmap = array_splice($map, 1);
-                                            $newmapLabel = array_splice($mapLabel, 1);
+                                            //$newmapLabel = array_splice($mapLabel, 1);
                                             $commune[$map[0]] = FileHelper::create_json($newmap, $line[$keyCode], $jsonMapping['type'][$key]);
-                                            $commune[$map[0]] = FileHelper::create_json_with_father($newmapLabel, $jsonMapping['labels'][$key], $commune[$map[0]], "STRING");
+                                            //$commune[$map[0]] = FileHelper::create_json_with_father($newmapLabel, $jsonMapping['labels'][$key], $commune[$map[0]], "STRING");
                                             //$commune[$map[0]] = FileHelper::create_json($newmapLabel, $jsonMapping['labels'][$key], "STRING");
                                         }
                                         else
                                         {
 
-                                            if($jsonMapping['type'][$key] == "INT")
+                                            /*if($jsonMapping['type'][$key] == "INT")
                                                 $commune[$map[0]]["value"] = intval($line[$keyCode]);
                                             else if($jsonMapping['type'][$key] == "FLOAT")
                                                 $commune[$map[0]]["value"] = floatval($line[$keyCode]);
                                             else
                                                 $commune[$map[0]]["value"] = $line[$keyCode];
 
-                                            $commune[$map[0]]["label"] = $jsonMapping['label'][$key] ;
+                                            $commune[$map[0]]["label"] = $jsonMapping['label'][$key] ;*/
+
+                                            if($jsonMapping['type'][$key] == "INT")
+                                                $commune[$map[0]] = intval($line[$keyCode]);
+                                            else if($jsonMapping['type'][$key] == "FLOAT")
+                                                $commune[$map[0]] = floatval($line[$keyCode]);
+                                            else if($jsonMapping['type'][$key] == "JSON")
+                                                $commune[$map[0]] = json_decode($line[$keyCode], true);
+                                            else
+                                                $commune[$map[0]] = $line[$keyCode];
                                         }
                                     }
                                     else
@@ -369,21 +423,30 @@ class ImportData
                                         if(count($map) > 1)
                                         { 
                                             $newmap = array_splice($map, 1);
-                                            $newmapLabel = array_splice($mapLabel, 1);
+                                            //$newmapLabel = array_splice($mapLabel, 1);
                                             $commune[$map[0]]= FileHelper::create_json_with_father($newmap, $line[$keyCode], $commune[$map[0]], $jsonMapping['type'][$key]) ;
-                                            $commune[$map[0]] = FileHelper::create_json_with_father($newmapLabel, $jsonMapping['labels'][$key], $commune[$map[0]], "STRING");
+                                            //$commune[$map[0]] = FileHelper::create_json_with_father($newmapLabel, $jsonMapping['labels'][$key], $commune[$map[0]], "STRING");
                                         }
                                         else
                                         {
 
-                                            if($jsonMapping['type'][$key] == "INT")
+                                            /*if($jsonMapping['type'][$key] == "INT")
                                                 $commune[$map[0]]["value"] = intval($line[$keyCode]);
                                             else if($jsonMapping['type'][$key] == "FLOAT")
                                                 $commune[$map[0]]["value"] = floatval($line[$keyCode]);
                                             else
                                                 $commune[$map[0]]["value"] = $line[$keyCode];
 
-                                            $commune[$map[0]]["label"] = $jsonMapping['label'][$key] ;
+                                            $commune[$map[0]]["label"] = $jsonMapping['label'][$key] ;*/
+
+                                            if($jsonMapping['type'][$key] == "INT")
+                                                $commune[$map[0]] = intval($line[$keyCode]);
+                                            else if($jsonMapping['type'][$key] == "FLOAT")
+                                                $commune[$map[0]] = floatval($line[$keyCode]);
+                                            else if($jsonMapping['type'][$key] == "JSON")
+                                                $commune[$map[0]] = json_decode($line[$keyCode], true);
+                                            else
+                                                $commune[$map[0]] = $line[$keyCode];
                                         }
                                     }
                                     break;
@@ -405,28 +468,37 @@ class ImportData
                                 if($valueCode == $key)
                                 { 
                                     $map = explode(".", $value);
-                                    $mapLabel = $map ;
-                                    $map[] = "value" ;
-                                    $mapLabel[] = "label" ;
+                                    //$mapLabel = $map ;
+                                    //$map[] = "value" ;
+                                    //$mapLabel[] = "label" ;
                                     if(!isset($rejet[$map[0]]))
                                     {
                                         if(count($map) > 1)
                                         {
                                             $newmap = array_splice($map, 1);
-                                            $newmapLabel = array_splice($mapLabel, 1);
+                                            //$newmapLabel = array_splice($mapLabel, 1);
                                             $rejet[$map[0]] = FileHelper::create_json($newmap, $line[$keyCode], $jsonMapping['type'][$key]);
-                                            $rejet[$map[0]] = FileHelper::create_json_with_father($newmapLabel, $jsonMapping['labels'][$key], $rejet[$map[0]], "STRING");
+                                            //$rejet[$map[0]] = FileHelper::create_json_with_father($newmapLabel, $jsonMapping['labels'][$key], $rejet[$map[0]], "STRING");
                                         }
                                         else
                                         {
-                                            if($jsonMapping['type'][$key] == "INT")
+                                            /*if($jsonMapping['type'][$key] == "INT")
                                                 $rejet[$map[0]]["value"] = intval($line[$keyCode]);
                                             else if($jsonMapping['type'][$key] == "FLOAT")
                                                 $rejet[$map[0]]["value"] = floatval($line[$keyCode]);
                                             else
                                                 $rejet[$map[0]]["value"] = $line[$keyCode];
 
-                                            $rejet[$map[0]]["label"] = $jsonMapping['label'][$key] ;
+                                            $rejet[$map[0]]["label"] = $jsonMapping['label'][$key] ;*/
+
+                                            if($jsonMapping['type'][$key] == "INT")
+                                                $rejet[$map[0]] = intval($line[$keyCode]);
+                                            else if($jsonMapping['type'][$key] == "FLOAT")
+                                                $rejet[$map[0]] = floatval($line[$keyCode]);
+                                            else if($jsonMapping['type'][$key] == "JSON")
+                                                $rejet[$map[0]] = json_decode($line[$keyCode], true);
+                                            else
+                                                $rejet[$map[0]] = $line[$keyCode];
                                         }
                                     }
                                     else
@@ -435,20 +507,30 @@ class ImportData
                                         if(count($map) > 1)
                                         { 
                                             $newmap = array_splice($map, 1);
-                                            $newmapLabel = array_splice($mapLabel, 1);
+                                            //$newmapLabel = array_splice($mapLabel, 1);
                                             $rejet[$map[0]] = FileHelper::create_json_with_father($newmap, $line[$keyCode], $rejet[$map[0]], $jsonMapping['type'][$key]) ;
-                                            $rejet[$map[0]] = FileHelper::create_json_with_father($newmapLabel, $jsonMapping['labels'][$key], $rejet[$map[0]], "STRING");
+                                            //$rejet[$map[0]] = FileHelper::create_json_with_father($newmapLabel, $jsonMapping['labels'][$key], $rejet[$map[0]], "STRING");
                                         }
                                         else
                                         {
-                                            if($jsonMapping['type'][$key] == "INT")
+                                           /* if($jsonMapping['type'][$key] == "INT")
                                                 $rejet[$map[0]]["value"] = intval($line[$keyCode]);
                                             else if($jsonMapping['type'][$key] == "FLOAT")
                                                 $rejet[$map[0]]["value"] = floatval($line[$keyCode]);
                                             else
                                                 $rejet[$map[0]]["value"] = $line[$keyCode];
 
-                                            $rejet[$map[0]]["label"] = $jsonMapping['label'][$key] ;
+                                            $rejet[$map[0]]["label"] = $jsonMapping['label'][$key] ;*/
+
+                                            if($jsonMapping['type'][$key] == "INT")
+                                                $rejet[$map[0]] = intval($line[$keyCode]);
+                                            else if($jsonMapping['type'][$key] == "FLOAT")
+                                                $rejet[$map[0]] = floatval($line[$keyCode]);
+                                            else if($jsonMapping['type'][$key] == "JSON")
+                                                $rejet[$map[0]] = json_decode($line[$keyCode], true);
+                                            else
+                                                $rejet[$map[0]] = $line[$keyCode];
+
                                         }
                                     }
                                     break;

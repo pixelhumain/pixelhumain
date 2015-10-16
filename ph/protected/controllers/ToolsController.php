@@ -92,6 +92,7 @@ Titi Kiki	toto@kiki.com";
 
     public function actionTraiterCSV() 
     {
+        $this->title = "Import de données dans cityData";
         if(isset($_FILES['fileimport']) && isset($_FILES['fileimport']) && isset($_POST['separateurDonnees']) && isset($_POST['separateurTexte']) && isset($_POST['choose']) && isset($_POST['chooseMapping']))
             $params = ImportData::useCSV($_FILES, $_POST);
         else

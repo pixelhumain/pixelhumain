@@ -9,7 +9,7 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquer
 		<input type="hidden" id="result" value="<?php echo $result ; ?>"/>
 		
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-4"> 
 				<select id="choose" name="choose">
 					<option value="new">Nouvelles données</option>
 				  	<option value="modify">Modifier une donnée</option>
@@ -199,6 +199,8 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquer
 			    				<select id="typeMapping">
 			    					<option value="INT">INT</option>
 			    					<option value="STRING">STRING</option>
+			    					<option value="FLOAT">FLOAT</option>
+			    					<option value="JSON">JSON</option>
 								</select>
 			    			</td>
 			    			<td><input type="text" id="libelleMapping" value=""/></td>
@@ -432,13 +434,13 @@ jQuery(document).ready(function()
 
   	$("#sumitImport").off().on('click', function()
   	{
-  		$.blockUI({
+  		/*$.blockUI({
 		message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
   	            '<blockquote>'+
   	              "<p>Rien n'est plus proche du vrai que le faux</p>"+
   	              '<cite title="Einstein">Einstein</cite>'+
   	            '</blockquote> '
-		});
+		});*/
   		$.ajax({
 	        type: 'POST',
 	        data: { typeData : $('#typeData').val(), 
@@ -456,7 +458,7 @@ jQuery(document).ready(function()
 	              	toastr.success("Les données ont été ajouté.");
 	            else
 	                toastr.error("Erreur");
-	           	$.unblockUI();
+	           	//$.unblockUI();
 	        }
 	    });
   	}); 
