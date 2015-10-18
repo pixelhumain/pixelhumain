@@ -970,15 +970,26 @@ FluidGraph.prototype.displayExternalGraph = function(d3node, d) {
   thisGraph = this;
   if (thisGraph.config.debug) console.log("displayExternGraph start");
 
+  var typeMap = {
+    "citoyens" : "person",
+    "organizations" : "organization",
+    "events" : "event",
+    "projects" : "project",
+    "person" : "person",
+  };
+
   d3.event.stopPropagation();
 
-  externalUri = d.identifier;
+  externalUri = baseUrl+"/communecter/graph/viewer/id/"+d.identifier+"/type/"+typeMap[d.type]+"/data/1";
 
-  thisGraph.d3data = thisGraph.getExternalD3Data(externalUri)
+  thisGraph.phData = thisGraph.getExternalD3Data(externalUri);
+  // thisGraph.phDataFile = getDataFile(thisGraph.phData);
 
+  thisGraph.d3data = createFluidGraph(d.type, d.identifier, thisGraph.phData);
   thisGraph.resetMouseVars();
   thisGraph.removeSvgElements();
   thisGraph.initDragLine();
+  thisGraph.activateForce();
   thisGraph.drawGraph();
 
   if (thisGraph.config.debug) console.log("displayExternGraph end");
