@@ -9,6 +9,9 @@
 	.notifications{
 		background-color: white;
 	}
+	.notifications a.notif{
+		background-color: white;
+	}
 </style>
 <div id="notificationPanel" class=" ">
 		<div class="notifications">
@@ -68,6 +71,7 @@ var maxNotifTimstamp = <?php echo $maxTimestamp ?>;
 jQuery(document).ready(function() 
 {
 	bindNotifEvents();
+	refreshNotifications();
 });
 
 function bindNotifEvents(){
@@ -76,6 +80,7 @@ function bindNotifEvents(){
 		markAsRead( $(this).data("id") );
 		elem = $(this).parent();
 		elem.removeClass('animated bounceInRight').addClass("animated bounceOutRight");
+		elem.removeClass("enable");
 		setTimeout(function(){
             elem.addClass('hide');
             elem.removeClass('animated bounceOutRight');
@@ -130,18 +135,23 @@ function markAllAsRead()
 function refreshNotifications()
 {
 	//ajax get Notifications
-	console.log("refreshNotifications",maxNotifTimstamp);
+	$(".pageslide-list.header .btn-primary i.fa-refresh").addClass("fa-spin");
+	console.log("refreshNotifications", maxNotifTimstamp);
 	$.ajax({
         type: "GET",
         url: baseUrl+"/"+moduleId+"/notification/getnotifications?ts="+maxNotifTimstamp
     })
-    .done(function (data) {
+    .done(function (data) { console.log("REFRESH NOTIF : "); console.dir(data);
         if (data) {               
         	buildNotifications(data);
         } else {
             toastr.error("no notifications found ");
         }
         notifCount();
+        $(".pageslide-list.header .btn-primary i.fa-refresh").removeClass("fa-spin");
+    }).fail(function(){
+    	toastr.error("error notifications");
+        $(".pageslide-list.header .btn-primary i.fa-refresh").removeClass("fa-spin");
     });
 }
 
@@ -152,36 +162,53 @@ function buildNotifications(list)
 
 	$.each( list , function( notifKey , notifObj )
 	{
+		var url = (typeof notifObj.notify!= "undefined") ? notifObj.notify.url : "#";
+		var icon = (typeof notifObj.notify!= "undefined") ? notifObj.notify.icon : "fa-bell";
+		var displayName = (typeof notifObj.notify != "undefined") ? notifObj.notify.displayName : "Undefined notification";
+
 		str = "<li class='notifLi notif_"+notifKey+" hide'>"+
-				"<a class='notif' data-id='"+notifKey+"' href='"+notifObj.notify.url+"'><span class='label label-primary'>"+
-				'<i class="fa '+notifObj.notify.icon+'"></i></span> <span class="message">'+
-				notifObj.notify.displayName+
-				"</span><span class='time'> 1 min</span></a>"+
-			"</li>";
+				"<a class='notif' data-id='"+notifKey+"' href='"+ "" +"'>"+
+					"<span class='label label-primary'>"+
+						'<i class="fa '+icon+'"></i>'+
+					"</span>" + 
+					
+					'<span class="message">'+
+						displayName+
+					"</span>" + 
+					
+					"<span class='time'> 1 min</span>"+
+				"</a>"+
+			  "</li>";
+
 		$(".notifList").append(str);
-		$(".notif_"+notifKey).removeClass('hide').addClass("animated bounceInRight");
+		$(".notif_"+notifKey).removeClass('hide').addClass("animated bounceInRight enable");
 		if( notifObj.timestamp > maxNotifTimstamp )
 			maxNotifTimstamp = notifObj.timestamp;
 	});
 	setTimeout( function(){
     	notifCount();
-    }, 200);
+    }, 800);
 	
 	bindNotifEvents();
 }
 
 function notifCount()
-{
-	var countNotif = $(".notifList li:visible").length;
+{ 	var countNotif = $(".notifList li.enable").length;
+	console.log(" !!!! notifCount", countNotif);
 	$(".notifCount").html( countNotif );
 	if( countNotif > 0 )
 	{
 	    $(".notifications-count").html(countNotif);
 		$('.notifications-count').removeClass('hide');
 		$('.notifications-count').addClass('animated bounceIn');
+		$('.notifications-count').addClass('badge-danger');
+		$('.notifications-count').removeClass('badge-info');
 		$(".markAllAsRead").show();
 	} else {
-		$('.notifications-count').addClass('hide');
+		//$('.notifications-count').addClass('hide');
+		$(".notifications-count").html("0");
+		$('.notifications-count').removeClass('badge-danger');
+		$('.notifications-count').addClass('badge-info');
 		$(".markAllAsRead").hide();
 	}
 }
