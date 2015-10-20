@@ -175,6 +175,7 @@
 				</div>
 			</div>
 			<div class="col-md-5 col-md-offset-5">
+				<a href="#" class="btn btn-primary col-md-3" type="submit" id="sumitGeo">GeoLocalisation</a>
 				<a href="#" class="btn btn-primary col-md-3" type="submit" id="sumitImport">Import</a>
 			</div>
 		</div>
@@ -345,6 +346,23 @@ function bindEvents()
 	           	//$.unblockUI();
 	        }
 	    });
+  	});
+
+
+
+
+  	$("#sumitGeo").off().on('click', function()
+  	{
+  		var json = jQuery.parseJSON($('#jsonImport').val()) ;
+  		console.log("here", json);
+  		$.each( json, function( key, org ) {
+			$.each( json, function( org, orgVal ) {
+		    	console.log("Address", orgVal.address);
+		    	// ICI TRISTAN
+		    	// Tu peux appeler ta fonction avec nominatime 
+		    	// orgVal.address :  te donne un objet de type { "streetAddress" : "...", "codePstal" : "..." , ...}
+		  	});
+		});
   	});
 }
 

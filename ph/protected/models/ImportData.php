@@ -932,6 +932,8 @@ class ImportData
                         $newOrganization["msgError"] = $e->getMessage();
                         $arrayJsonError[] = $newOrganization ;
                     }
+
+                     //var_dump($arrayJson);
                 }
                 $i++;
             }
@@ -1021,6 +1023,7 @@ class ImportData
             {
                 $newOrganization = Organization::newOrganizationFromImportData($value);
                 try{
+                    
                     $resData[] = Organization::insert($newOrganization, Yii::app()->session["userId"]) ; 
                 }
                 catch (CTKException $e){
