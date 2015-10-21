@@ -147,7 +147,10 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* STANDARD TEXT INPUT
 		***************************************** */
-        else if( !fieldObj.inputType || fieldObj.inputType == "text" || fieldObj.inputType == "numeric" || fieldObj.inputType == "tags" ) {
+        else if( !fieldObj.inputType || 
+        		  fieldObj.inputType == "text" || 
+        		  fieldObj.inputType == "numeric" || 
+        		  fieldObj.inputType == "tags" ) {
         	if(fieldObj.inputType == "tags")
         	{
         		fieldClass += " select2TagsInput";
@@ -156,9 +159,23 @@ onSave: (optional) overloads the generic saveProcess
         				initValues[field] = {};
         			initValues[field]["tags"] = fieldObj.values;
         		}
-        		style = "style='width:100%'"
+        		style = "style='width:100%'";
         	}
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
+        }
+        /* 	SCOPE USER 	*/
+        else if( !fieldObj.inputType || 
+        		  fieldObj.inputType == "scopeUsers" ) {
+        	
+        		fieldClass += " select2TagsInput select2ScopeUsersInput";
+        		//var users = getAllMyContacts();
+        		if(fieldObj.values){
+        			if(!initValues[field])
+        				initValues[field] = {};
+        			initValues[field]["tags"] = fieldObj.values;
+        		}
+        		style = "";
+        		fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
         }
         /* **************************************
 		* HIDDEN
@@ -180,10 +197,10 @@ onSave: (optional) overloads the generic saveProcess
 		* CHECKBOX
 		***************************************** */
         else if ( fieldObj.inputType == "checkbox" ) {
-   			if(value == "")
-		       	value="25/01/2014";
+   			if(value == "") value="25/01/2014";
 	       	var checked = ( fieldObj.checked ) ? "checked" : "";
-	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+'/> '+placeholder;
+	       	var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
+	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+'/> '+placeholder;
        	}
 
 

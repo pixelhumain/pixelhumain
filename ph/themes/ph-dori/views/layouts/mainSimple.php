@@ -8,6 +8,11 @@
 	<!-- start: HEAD -->
 	<head>
 		<?php 
+
+		//$insee = Sig::getInseeByLatLngCp(48.85409863123821, 2.3458385467529292, "75004");
+		//echo "INSEE : "; var_dump($insee);
+		//die();
+
 		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 		$this->renderPartial($layoutPath.'metas');?>
 		<!-- end: META -->

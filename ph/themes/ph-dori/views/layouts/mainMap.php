@@ -50,6 +50,8 @@
   	$this->renderPartial($relativePath.'generic/mapCss', array("sigParams" => $sigParams));
 	$this->renderPartial($relativePath.'generic/mapView', array("sigParams" => $sigParams));
 	//$this->renderPartial('addOrganizationMap'); var_dump($sigParams); die();
+
+	
 ?>
 <style>
 
