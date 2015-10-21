@@ -5,12 +5,19 @@
 		background-color: white;
 		width:250px;
 		display: none;
+		position: fixed !important;
+		top:0px !important;
 	}
 	.notifications{
 		background-color: white;
 	}
 	.notifications a.notif{
 		background-color: white;
+	}
+	ul.notifList{
+		max-height: 400px !important;
+		overflow-y:auto;
+		padding-right:10px; 
 	}
 </style>
 <div id="notificationPanel" class=" ">
