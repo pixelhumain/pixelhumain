@@ -32,7 +32,7 @@ class Payplug {
 
         curl_setopt($process, CURLOPT_HEADER, true);
         curl_setopt($process, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($process, CURLOPT_SSLVERSION, 3);
+       //curl_setopt($process, CURLOPT_SSLVERSION, 3);
         curl_setopt($process, CURLOPT_USERPWD, $email . ':' . $password);
 
         $answer = curl_exec($process);
