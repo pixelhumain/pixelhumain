@@ -26,11 +26,7 @@
 			<div class="pageslide-title">
 				You have <span class="notifCount"></span> notifications 
 			</div>
-			<ul class="pageslide-list header">
-				<li>
-					<a href="javascript:;" onclick='refreshNotifications()' class="btn btn-primary"><i class="fa fa-refresh"></i></a>
-				</li>
-			</ul>
+			
 			<ul class="pageslide-list notifList">
 				<?php
 					$maxTimestamp = 0;
@@ -54,9 +50,14 @@
 				    }
 				?>
 			</ul>
-			<ul  class="pageslide-list footer"> 
+			<ul class="pageslide-list header col-sm-6 padding-10 no-margin">
+				<li>
+					<a href="javascript:;" onclick='refreshNotifications()' class="btn btn-primary"><i class="fa fa-refresh"></i></a>
+				</li>
+			</ul>
+			<ul  class="pageslide-list footer col-sm-6 padding-10 no-margin"> 
 				<li class='markAllAsRead'>
-					<a href="javascript:;" onclick='markAllAsRead()' class="btn btn-primary ">Mark all as Read <i class="fa fa-check-square-o"></i></a>
+					<a href="javascript:;" onclick='markAllAsRead()' class="btn btn-primary">Mark all as Read <i class="fa fa-check-square-o"></i></a>	
 				</li>
 			</ul>
 
