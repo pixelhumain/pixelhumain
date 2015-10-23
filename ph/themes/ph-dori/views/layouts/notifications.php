@@ -148,7 +148,8 @@ function refreshNotifications()
         type: "GET",
         url: baseUrl+"/"+moduleId+"/notification/getnotifications?ts="+maxNotifTimstamp
     })
-    .done(function (data) { console.log("REFRESH NOTIF : "); console.dir(data);
+    .done(function (data) { 
+    	//console.log("REFRESH NOTIF : "); console.dir(data);
         if (data) {               
         	buildNotifications(data);
         } else {

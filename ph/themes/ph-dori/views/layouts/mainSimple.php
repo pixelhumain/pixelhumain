@@ -86,7 +86,8 @@
 				$this->renderPartial($layoutPath.'mainMap');  ?>
 		
 		<?php 
-			$this->renderPartial($layoutPath.'notifications');
+			if(isset(Yii::app()->session['userId']))
+				$this->renderPartial($layoutPath.'notifications');
 		?>
 		<?php echo $content;  ?>
 		<!-- start: MAIN JAVASCRIPTS -->
