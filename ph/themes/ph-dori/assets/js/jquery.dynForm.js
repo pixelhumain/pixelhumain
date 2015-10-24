@@ -175,7 +175,94 @@ onSave: (optional) overloads the generic saveProcess
         			initValues[field]["tags"] = fieldObj.values;
         		}
         		style = "";
-        		fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
+        		//fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
+        		fieldHTML += 	'<span id="lbl-send-to">Send to <i class="fa fa-caret-right"></i>'+ 
+	        					'<div class="dropdown">' +
+								  '<a data-toggle="dropdown" class="btn btn-sm btn-default" id="btn-toogle-dropdown-scope" href="#"><i class="fa fa-group"></i> My wall <i class="fa fa-caret-down"></i></a>' +
+								  '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">' +
+								   '<li><a href="#"><i class="fa fa-group"></i> My wall</a></li>' +
+								   '<li><a href="#" data-toggle="modal" data-target="#modal-scope"><i class="fa fa-plus"></i> Select</a></li>' +
+								  '</ul>' +
+								'</div></span>' ;
+
+				
+				fieldHTML += '<div class="modal fade" id="modal-scope" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'+
+							  '<div class="modal-dialog">'+
+							    '<div class="modal-content">'+
+							      '<div class="modal-header">'+
+							        //'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+							        '<input type="text" id="search-contact" class="form-control pull-right" placeholder="search">' +
+									'<h4 class="modal-title" id="myModalLabel"><i class="fa fa-search"></i> Send to ...</h4>'+
+							      '</div>'+
+							      '<div class="modal-body">'+
+								      '<div class="row no-padding">'+
+								      	'<div class="col-md-5 no-padding">'+
+									        '<div class="panel panel-default">  '+	
+												'<div class="panel-body">'+
+													'<div class="list-group" id="menu-type">'+
+														'<ul class="col-sm-6 col-md-12">';
+														$.each(fieldObj.contactTypes, function(key, type){
+				fieldHTML += 								'<li>'+
+																'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type homestead text-'+type.color+'">' +
+																	'<input type="checkbox" name="check-all-type" id="check-all-type'+type.name+'" value="'+type.name+'"> <span style="font-size:18px;"><i class="fa fa-'+type.icon+'"></i> My ' + type.name + "</span>" +
+																'</div>'+
+															'</li>';
+														});									
+				fieldHTML += 							'</ul>' +
+														'<ul class="col-sm-6 col-md-12">' + 
+															'<li>'+
+																'<div id="btn-scroll-type-city" class="btn btn-default btn-scroll-type homestead text-red">' +
+																	'<input type="checkbox" name="check-all-type" id="check-all-typecity value="mycity"> <span style="font-size:18px;"><i class="fa fa-university"></i> My City</span>' +
+																'</div>'+
+															'</li>' +
+															'<li>'+
+																'<div id="btn-scroll-type-city" class="btn btn-default btn-scroll-type homestead text-red">' +
+																	'<input type="checkbox" name="check-all-type" id="check-all-typecity value="cities"> <span style="font-size:18px;"><i class="fa fa-university"></i> Other cities</span></br>' +
+																	'<input type="text" name="scope-postal-code" style="width:100%;" class="form-control helvetica margin-top-5" placeholder="postal code">' +
+																'</div>'+
+															'</li>' +
+														'</ul>' +
+													'</div>'+
+												'</div>'+
+											'</div>' +
+								      	'</div>'+
+								      	'<div class="no-padding pull-right col-md-6" id="list-scroll-type">';
+										$.each(fieldObj.contactTypes, function(key, type){
+				fieldHTML += 			'<div class="panel panel-default" id="scroll-type-'+type.name+'">  '+	
+											'<div class="panel-heading">'+
+												'<h4 class="homestead text-'+type.color+'"><i class="fa fa-'+type.icon+'"></i> My '+type.name+'</h4>'+			
+											'</div>'+
+											'<div class="panel-body no-padding">'+
+												'<div class="list-group padding-5">'+
+													'<ul>';
+													$.each(fieldObj.values[type.name], function(key2, value){ 
+														var cp = (typeof value.address != "undefined" && typeof value.address.postalCode != "undefined") ? value.address.postalCode : typeof value.cp != "undefined" ? value.cp : "";
+														var city = (typeof value.address != "undefined" && typeof value.address.addressLocality != "undefined") ? value.address.addressLocality : "";
+														var profilImageUrl = (typeof value.profilImageUrl != "undefined" && value.profilImageUrl != "") ? baseUrl + value.profilImageUrl : assetPath + "/images/news/profile_default_l.png";
+														console.log("data contact +++++++++++ "); console.dir(value);
+				fieldHTML += 							'<li>' +
+															'<div class="btn btn-default btn-scroll-type btn-select-contact" idcontact="'+key2+'">' +
+																'<input type="checkbox" name="scope-'+type.name+'" class="chk-scope-'+type.name+'" id="chk-scope-'+key2+'" value="'+key2+'"> '+
+																'<img src="'+ profilImageUrl+'" class="thumb-send-to" height="35" width="35">'+
+																'<span class="scope-name-contact text-dark text-bold">' + value.name + '<br/><span class="text-light">'+cp+ ' ' + city + '</span></span>' +
+															'</div>' +
+														'</li>';
+													});									
+				fieldHTML += 						'</ul>' +	
+												'</div>'+
+											'</div>'+
+										'</div>';
+										});									
+				fieldHTML += 			'</div>' +
+									'</div>'+
+								  '</div>'+
+							      '<div class="modal-footer">'+
+							      	'<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>'+
+							      	'<button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Save</button>'+
+							      '</div>'+
+							    '</div><!-- /.modal-content -->'+
+							  '</div><!-- /.modal-dialog -->'+
+							'</div><!-- /.modal -->';
         }
         /* **************************************
 		* HIDDEN
