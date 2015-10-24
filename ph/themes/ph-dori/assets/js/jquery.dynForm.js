@@ -200,24 +200,26 @@ onSave: (optional) overloads the generic saveProcess
 									        '<div class="panel panel-default">  '+	
 												'<div class="panel-body">'+
 													'<div class="list-group" id="menu-type">'+
+														'<h4 class="text-dark text-bold"><i class="fa fa-angle-down"></i> Select receivers</h4>' +
 														'<ul class="col-sm-6 col-md-12">';
 														$.each(fieldObj.contactTypes, function(key, type){
 				fieldHTML += 								'<li>'+
 																'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type homestead text-'+type.color+'">' +
-																	'<input type="checkbox" name="check-all-type" id="check-all-type'+type.name+'" value="'+type.name+'"> <span style="font-size:18px;"><i class="fa fa-'+type.icon+'"></i> My ' + type.name + "</span>" +
+																	'<input type="checkbox" name="check-all-type" id="check-all-type'+type.name+'" value="'+type.name+'"> <span style="font-size:16px;"><i class="fa fa-'+type.icon+'"></i> My ' + type.name + "</span>" +
 																'</div>'+
 															'</li>';
 														});									
 				fieldHTML += 							'</ul>' +
+														'<h4 class="text-dark text-bold"><i class="fa fa-angle-down"></i> Select population</h4>' +
 														'<ul class="col-sm-6 col-md-12">' + 
 															'<li>'+
 																'<div id="btn-scroll-type-city" class="btn btn-default btn-scroll-type homestead text-red">' +
-																	'<input type="checkbox" name="check-all-type" id="check-all-typecity value="mycity"> <span style="font-size:18px;"><i class="fa fa-university"></i> My City</span>' +
+																	'<input type="checkbox" name="check-all-type" id="check-all-typecity value="mycity"> <span style="font-size:16px;"><i class="fa fa-university"></i> My City</span>' +
 																'</div>'+
 															'</li>' +
 															'<li>'+
 																'<div id="btn-scroll-type-city" class="btn btn-default btn-scroll-type homestead text-red">' +
-																	'<input type="checkbox" name="check-all-type" id="check-all-typecity value="cities"> <span style="font-size:18px;"><i class="fa fa-university"></i> Other cities</span></br>' +
+																	'<input type="checkbox" name="check-all-type" id="check-all-typecity value="cities"> <span style="font-size:16px;"><i class="fa fa-university"></i> Other cities</span></br>' +
 																	'<input type="text" name="scope-postal-code" style="width:100%;" class="form-control helvetica margin-top-5" placeholder="postal code">' +
 																'</div>'+
 															'</li>' +
