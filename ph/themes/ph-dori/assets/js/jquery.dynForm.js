@@ -225,7 +225,7 @@ onSave: (optional) overloads the generic saveProcess
 																	'<input type="checkbox" name="chk-cities" id="chk-cities" value="cities">'+
 																	'<div id="btn-scroll-type-other-cities" class="inline" >' +
 																		' <span style="font-size:16px;"><i class="fa fa-university"></i> Other cities</span></br>' +
-																	'<input type="text" name="scope-postal-code" id="scope-postal-code" style="width:100%;" class="form-control helvetica margin-top-5" placeholder="postal code">' +
+																	'<input type="text" name="scope-postal-code" id="scope-postal-code" style="width:100%;" class="form-control helvetica margin-top-5" placeholder="code insee">' +
 																	'</div>'+
 																'</div>'+
 															'</li>' +
