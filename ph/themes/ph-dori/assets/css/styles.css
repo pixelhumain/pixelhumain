@@ -89,6 +89,7 @@ font-family: Homestead;
 src: url('../font/Homestead/Homestead-Display.ttf');
 }
 .homestead{font-family:"Homestead"}
+.helvetica{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;}
 
 ::-moz-selection {
   background: #5f8295;
@@ -1405,29 +1406,29 @@ h1.text-extra-large {
 .text-azure {
   color: #00bdcc; }
 
-.text-orange {
-  color: #F9B21A; }
+.text-orange, a.text-orange:hover {
+  color: #F9B21A !important; }
 
-.text-green {
-  color: #93C020; }
+.text-green, a.text-green:hover {
+  color: #93C020 !important; }
 
-.text-blue {
-  color: #5f8295; }
+.text-blue, a.text-blue:hover {
+  color: #5f8295 !important; }
 
-.text-pink {
-  color: #dd5a82; }
+.text-pink, a.text-pink:hover {
+  color: #dd5a82 !important; }
 
-.text-purple {
-  color: #8C5AA1; }
+.text-purple, a.text-purple:hover {
+  color: #8C5AA1 !important; }
 
-.text-bricky {
-  color: #894550; }
+.text-bricky, a.text-bricky:hover {
+  color: #894550 !important; }
 
-.text-yellow {
-  color: #F3D116; }
+.text-yellow, a.text-yellow:hover {
+  color: #F3D116 !important; }
 
-.text-red {
-  color: #E33551; }
+.text-red, a.text-red:hover {
+  color: #E33551 !important; }
 
 .text-white {
   color: white; }
@@ -1463,6 +1464,16 @@ a.text-light:hover {
 
 .panel-white a.text-light:hover, .partition-white a.text-light:hover {
   color: rgba(0, 0, 0, 0.5) !important; }
+
+.bg-light{
+  background-color: rgba(236, 236, 236, 0.6)!important;
+}
+.bg-transparent{
+  background-color: transparent !important;
+}
+.bg-white{
+  background-color: white !important;
+}
 
 .circle-100 {
   width: 100px;
