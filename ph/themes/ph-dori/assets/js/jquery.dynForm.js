@@ -196,7 +196,7 @@ onSave: (optional) overloads the generic saveProcess
 							      '</div>'+
 							      '<div class="modal-body">'+
 								      '<div class="row no-padding bg-light">'+
-								      	'<div class="col-md-6 no-padding">'+
+								      	'<div class="col-md-6 col-sm-6 no-padding">'+
 									        '<div class="panel panel-default">  '+	
 												'<div class="panel-body no-padding">'+
 													'<div class="list-group" id="menu-type">'+
@@ -205,22 +205,28 @@ onSave: (optional) overloads the generic saveProcess
 														$.each(fieldObj.contactTypes, function(key, type){
 				fieldHTML += 								'<li>'+
 																'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type homestead text-'+type.color+'">' +
-																	'<input type="checkbox" name="check-all-type" id="check-all-type'+type.name+'" value="'+type.name+'"> <span style="font-size:16px;"><i class="fa fa-'+type.icon+'"></i> My ' + type.name + "</span>" +
+																	'<input type="checkbox" name="chk-all-type'+type.name+'" id="chk-all-type'+type.name+'" value="'+type.name+'"> <span style="font-size:16px;"><i class="fa fa-'+type.icon+'"></i> My ' + type.name + "</span>" +
 																'</div>'+
 															'</li>';
 														});									
 				fieldHTML += 							'</ul>' +
 														'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select population</h4>' +
-														'<ul class="col-sm-6 col-md-12">' + 
+														'<ul class="col-sm-6 col-md-6 no-margin">' + 
 															'<li>'+
-																'<div id="btn-scroll-type-city" class="btn btn-default btn-scroll-type homestead text-red">' +
-																	'<input type="checkbox" name="check-all-type" id="check-all-typecity value="mycity"> <span style="font-size:16px;"><i class="fa fa-university"></i> My City</span>' +
+																'<div class="btn btn-default btn-scroll-type homestead text-red">' +
+																	'<input type="checkbox" name="chk-my-city" id="chk-my-city" value="mycity">' +
+																	'<div id="btn-scroll-type-my-city" class="inline" >' +
+																		 ' <span style="font-size:16px;"><i class="fa fa-university"></i> My City</span>' +
+																	'</div>'+
 																'</div>'+
 															'</li>' +
 															'<li>'+
-																'<div id="btn-scroll-type-other-city" class="btn btn-default btn-scroll-type homestead text-red">' +
-																	'<input type="checkbox" name="check-all-type" id="check-all-typecity value="cities"> <span style="font-size:16px;"><i class="fa fa-university"></i> Other cities</span></br>' +
+																'<div id="btn-show-other-cities"  class="btn btn-default btn-scroll-type homestead text-red">' +
+																	'<input type="checkbox" name="chk-cities" id="chk-cities" value="cities">'+
+																	'<div id="btn-scroll-type-other-cities" class="inline" >' +
+																		' <span style="font-size:16px;"><i class="fa fa-university"></i> Other cities</span></br>' +
 																	'<input type="text" name="scope-postal-code" id="scope-postal-code" style="width:100%;" class="form-control helvetica margin-top-5" placeholder="postal code">' +
+																	'</div>'+
 																'</div>'+
 															'</li>' +
 														'</ul>' +
@@ -228,7 +234,7 @@ onSave: (optional) overloads the generic saveProcess
 												'</div>'+
 											'</div>' +
 								      	'</div>'+
-								      	'<div class="no-padding pull-right col-md-6 bg-white" id="list-scroll-type">';
+								      	'<div class="no-padding pull-right col-md-6  col-sm-6 col-xs-12 bg-white" id="list-scroll-type">';
 										$.each(fieldObj.contactTypes, function(key, type){
 				fieldHTML += 			'<div class="panel panel-default" id="scroll-type-'+type.name+'">  '+	
 											'<div class="panel-heading">'+
@@ -243,10 +249,17 @@ onSave: (optional) overloads the generic saveProcess
 														var profilImageUrl = (typeof value.profilImageUrl != "undefined" && value.profilImageUrl != "") ? baseUrl + value.profilImageUrl : assetPath + "/images/news/profile_default_l.png";
 														console.log("data contact +++++++++++ "); console.dir(value);
 				fieldHTML += 							'<li>' +
-															'<div class="btn btn-default btn-scroll-type btn-select-contact" idcontact="'+key2+'">' +
+															'<div class="btn btn-default btn-scroll-type btn-select-contact"  id="contact'+key2+'">' +
 																'<input type="checkbox" name="scope-'+type.name+'" class="chk-scope-'+type.name+'" id="chk-scope-'+key2+'" value="'+key2+'"> '+
-																'<img src="'+ profilImageUrl+'" class="thumb-send-to" height="35" width="35">'+
-																'<span class="scope-name-contact text-dark text-bold">' + value.name + '<br/><span class="text-light">'+cp+ ' ' + city + '</span></span>' +
+																'<div class="btn-chk-contact inline" idcontact="'+key2+'">' +
+																	'<img src="'+ profilImageUrl+'" class="thumb-send-to" height="35" width="35">'+
+																	'<span class="info-contact">' +
+																		'<span class="scope-name-contact text-dark text-bold" idcontact="'+key2+'">' + value.name + '</span>'+
+																		'<br/>'+
+																		'<span class="scope-cp-contact text-light" idcontact="'+key2+'">' + cp + ' </span>'+
+																		'<span class="scope-city-contact text-light" idcontact="'+key2+'">' + city + '</span>'+
+																	'</span>' +
+																'</div>' +
 															'</div>' +
 														'</li>';
 													});									
