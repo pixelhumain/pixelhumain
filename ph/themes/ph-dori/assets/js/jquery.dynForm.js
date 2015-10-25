@@ -200,8 +200,8 @@ onSave: (optional) overloads the generic saveProcess
 									        '<div class="panel panel-default">  '+	
 												'<div class="panel-body no-padding">'+
 													'<div class="list-group" id="menu-type">'+
-														'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select receivers</h4>' +
-														'<ul class="col-sm-6 col-md-12">';
+														'<ul class="col-xs-6 col-sm-12 col-md-12 no-padding">';
+				fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select receivers</h4>';
 														$.each(fieldObj.contactTypes, function(key, type){
 				fieldHTML += 								'<li>'+
 																'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type homestead text-'+type.color+'">' +
@@ -210,8 +210,8 @@ onSave: (optional) overloads the generic saveProcess
 															'</li>';
 														});									
 				fieldHTML += 							'</ul>' +
-														'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select population</h4>' +
-														'<ul class="col-sm-6 col-md-6 no-margin">' + 
+														'<ul class="col-xs-6 col-sm-12 col-md-12 no-margin no-padding">' + 
+															'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select population</h4>' +
 															'<li>'+
 																'<div class="btn btn-default btn-scroll-type homestead text-red">' +
 																	'<input type="checkbox" name="chk-my-city" id="chk-my-city" value="mycity">' +
