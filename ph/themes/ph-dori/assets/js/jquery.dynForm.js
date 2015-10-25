@@ -165,9 +165,9 @@ onSave: (optional) overloads the generic saveProcess
         }
         /* 	SCOPE USER 	*/
         else if( !fieldObj.inputType || 
-        		  fieldObj.inputType == "scopeUsers" ) {
+        		  fieldObj.inputType == "scope" ) {
         	
-        		fieldClass += " select2TagsInput select2ScopeUsersInput";
+        		fieldClass += " select2TagsInput select2ScopeInput";
         		//var users = getAllMyContacts();
         		if(fieldObj.values){
         			if(!initValues[field])
@@ -180,8 +180,8 @@ onSave: (optional) overloads the generic saveProcess
 	        					'<div class="dropdown">' +
 								  '<a data-toggle="dropdown" class="btn btn-sm btn-default" id="btn-toogle-dropdown-scope" href="#"><i class="fa fa-group"></i> My wall <i class="fa fa-caret-down"></i></a>' +
 								  '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">' +
-								   '<li><a href="#"><i class="fa fa-group"></i> My wall</a></li>' +
-								   '<li><a href="#" data-toggle="modal" data-target="#modal-scope"><i class="fa fa-plus"></i> Select</a></li>' +
+								   '<li><a href="#" id="scope-my-wall"><i class="fa fa-group"></i> My wall</a></li>' +
+								   '<li><a href="#" id="scope-select" data-toggle="modal" data-target="#modal-scope"><i class="fa fa-plus"></i> Select</a></li>' +
 								  '</ul>' +
 								'</div></span>' ;
 
@@ -210,7 +210,7 @@ onSave: (optional) overloads the generic saveProcess
 															'</li>';
 														});									
 				fieldHTML += 							'</ul>' +
-														'<ul class="col-xs-6 col-sm-12 col-md-12 no-margin no-padding">' + 
+														'<ul class="col-xs-6 col-sm-12 col-md-12 no-margin no-padding select-population">' + 
 															'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select population</h4>' +
 															'<li>'+
 																'<div class="btn btn-default btn-scroll-type homestead text-red">' +
@@ -247,7 +247,7 @@ onSave: (optional) overloads the generic saveProcess
 														var cp = (typeof value.address != "undefined" && typeof value.address.postalCode != "undefined") ? value.address.postalCode : typeof value.cp != "undefined" ? value.cp : "";
 														var city = (typeof value.address != "undefined" && typeof value.address.addressLocality != "undefined") ? value.address.addressLocality : "";
 														var profilImageUrl = (typeof value.profilImageUrl != "undefined" && value.profilImageUrl != "") ? baseUrl + value.profilImageUrl : assetPath + "/images/news/profile_default_l.png";
-														console.log("data contact +++++++++++ "); console.dir(value);
+														//console.log("data contact +++++++++++ "); console.dir(value);
 				fieldHTML += 							'<li>' +
 															'<div class="btn btn-default btn-scroll-type btn-select-contact"  id="contact'+key2+'">' +
 																'<input type="checkbox" name="scope-'+type.name+'" class="chk-scope-'+type.name+'" id="chk-scope-'+key2+'" value="'+key2+'"> '+
@@ -272,8 +272,9 @@ onSave: (optional) overloads the generic saveProcess
 									'</div>'+
 								  '</div>'+
 							      '<div class="modal-footer">'+
-							      	'<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>'+
-							      	'<button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Save</button>'+
+							      	'<button id="btn-reset-scope" type="button" class="btn btn-default btn-sm pull-left"><i class="fa fa-repeat"></i> Reset</button>'+
+							      	'<button id="btn-cancel" type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>'+
+							      	'<button id="btn-save" type="button" class="btn btn-success btn-sm" data-dismiss="modal"><i class="fa fa-check"></i> Save</button>'+
 							      '</div>'+
 							    '</div><!-- /.modal-content -->'+
 							  '</div><!-- /.modal-dialog -->'+
