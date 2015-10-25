@@ -195,12 +195,12 @@ onSave: (optional) overloads the generic saveProcess
 									'<h4 class="modal-title" id="myModalLabel"><i class="fa fa-search"></i> Send to ...</h4>'+
 							      '</div>'+
 							      '<div class="modal-body">'+
-								      '<div class="row no-padding">'+
-								      	'<div class="col-md-5 no-padding">'+
+								      '<div class="row no-padding bg-light">'+
+								      	'<div class="col-md-6 no-padding">'+
 									        '<div class="panel panel-default">  '+	
-												'<div class="panel-body">'+
+												'<div class="panel-body no-padding">'+
 													'<div class="list-group" id="menu-type">'+
-														'<h4 class="text-dark text-bold"><i class="fa fa-angle-down"></i> Select receivers</h4>' +
+														'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select receivers</h4>' +
 														'<ul class="col-sm-6 col-md-12">';
 														$.each(fieldObj.contactTypes, function(key, type){
 				fieldHTML += 								'<li>'+
@@ -210,7 +210,7 @@ onSave: (optional) overloads the generic saveProcess
 															'</li>';
 														});									
 				fieldHTML += 							'</ul>' +
-														'<h4 class="text-dark text-bold"><i class="fa fa-angle-down"></i> Select population</h4>' +
+														'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select population</h4>' +
 														'<ul class="col-sm-6 col-md-12">' + 
 															'<li>'+
 																'<div id="btn-scroll-type-city" class="btn btn-default btn-scroll-type homestead text-red">' +
@@ -218,9 +218,9 @@ onSave: (optional) overloads the generic saveProcess
 																'</div>'+
 															'</li>' +
 															'<li>'+
-																'<div id="btn-scroll-type-city" class="btn btn-default btn-scroll-type homestead text-red">' +
+																'<div id="btn-scroll-type-other-city" class="btn btn-default btn-scroll-type homestead text-red">' +
 																	'<input type="checkbox" name="check-all-type" id="check-all-typecity value="cities"> <span style="font-size:16px;"><i class="fa fa-university"></i> Other cities</span></br>' +
-																	'<input type="text" name="scope-postal-code" style="width:100%;" class="form-control helvetica margin-top-5" placeholder="postal code">' +
+																	'<input type="text" name="scope-postal-code" id="scope-postal-code" style="width:100%;" class="form-control helvetica margin-top-5" placeholder="postal code">' +
 																'</div>'+
 															'</li>' +
 														'</ul>' +
@@ -228,7 +228,7 @@ onSave: (optional) overloads the generic saveProcess
 												'</div>'+
 											'</div>' +
 								      	'</div>'+
-								      	'<div class="no-padding pull-right col-md-6" id="list-scroll-type">';
+								      	'<div class="no-padding pull-right col-md-6 bg-white" id="list-scroll-type">';
 										$.each(fieldObj.contactTypes, function(key, type){
 				fieldHTML += 			'<div class="panel panel-default" id="scroll-type-'+type.name+'">  '+	
 											'<div class="panel-heading">'+

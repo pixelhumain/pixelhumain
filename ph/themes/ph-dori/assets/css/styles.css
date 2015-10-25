@@ -1465,6 +1465,16 @@ a.text-light:hover {
 .panel-white a.text-light:hover, .partition-white a.text-light:hover {
   color: rgba(0, 0, 0, 0.5) !important; }
 
+.bg-light{
+  background-color: rgba(236, 236, 236, 0.6)!important;
+}
+.bg-transparent{
+  background-color: transparent !important;
+}
+.bg-white{
+  background-color: white !important;
+}
+
 .circle-100 {
   width: 100px;
   height: 100px;
