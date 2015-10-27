@@ -105,6 +105,8 @@ return array(
 	'Status' => 'Statut',
 	'Birth date' => 'Date de naissance',
 	'Interests' => "Centres d'intérêt",
+	'Category' => "Categorie",
+	'Key Words' => "Mots Clés",
 	'Duration' => 'Durée',
 	
 	//Input title - Placeholder
