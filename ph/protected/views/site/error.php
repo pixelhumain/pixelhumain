@@ -36,7 +36,7 @@ font-family: "Homestead";
             
             <h1>ERREUR PAGE</h1>
             <h1>PAGE INCONNUE</h1>
-            <h1>DU PIXEL HUMAIN</h1>
+            <h1>AZOTLIVE</h1>
             <h2>QUI CHERCHE FINIT PAR TROUVER</h2>
 
             <?php echo CHtml::encode($message); ?>
