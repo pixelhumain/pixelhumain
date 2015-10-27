@@ -168,14 +168,7 @@ onSave: (optional) overloads the generic saveProcess
         		  fieldObj.inputType == "scope" ) {
         	
         		fieldClass += " select2TagsInput select2ScopeInput";
-        		//var users = getAllMyContacts();
-        		if(fieldObj.values){
-        			if(!initValues[field])
-        				initValues[field] = {};
-        			initValues[field]["tags"] = fieldObj.values;
-        		}
-        		style = "";
-        		//fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
+        		
         		fieldHTML += 	'<span id="lbl-send-to">Send to <i class="fa fa-caret-right"></i>'+ 
 	        					'<div class="dropdown">' +
 								  '<a data-toggle="dropdown" class="btn btn-sm btn-default" id="btn-toogle-dropdown-scope" href="#"><i class="fa fa-group"></i> My wall <i class="fa fa-caret-down"></i></a>' +
