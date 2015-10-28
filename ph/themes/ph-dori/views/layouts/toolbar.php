@@ -24,10 +24,12 @@
 				<?php 
 				if(isset($this->toolbarMBZ)){
 					foreach ($this->toolbarMBZ as $value) {
-						if( stripos( $value, "</li>" ) != "")
-							echo $value;
-						else
-							echo "<li>".$value."</li>";
+						if(is_string($value)){
+							if( stripos( $value, "</li>" ) != "")
+								echo $value;
+							else
+								echo "<li>".$value."</li>";
+						}
 					}
 				} ?>
 				<?php 

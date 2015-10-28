@@ -12,7 +12,10 @@ class TestController extends Controller {
 
 	public function actionIndex() {
 	    $this->layout = "test";
-	    $this->render("index");
+	    if(Yii::app()->request->isAjaxRequest)
+            echo $this->renderPartial("index",null,true);
+        else
+	   		$this->render("index");
 	}
 	
 	public function actionValidate() {

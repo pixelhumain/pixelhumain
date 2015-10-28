@@ -244,14 +244,18 @@
 
 	var timeout;
 	var mapIconTop = {
-		"citoyen":"fa-user", 
-		"NGO":"fa-users",
-		"LocalBusiness" :"fa-industry",
-		"Group" : "fa-circle-o",
-		"GovernmentOrganization" : "fa-university",
-		"event":"fa-calendar",
-		"project":"fa-lightbulb-o"
-	};
+	    "default" : "fa-arrow-circle-right",
+	    "citoyen":"<?php echo Person::ICON ?>", 
+	    "NGO":"<?php echo Organization::ICON ?>",
+	    "LocalBusiness" :"<?php echo Organization::ICON_BIZ ?>",
+	    "Group" : "<?php echo Organization::ICON_GROUP ?>",
+	    "group" : "<?php echo Organization::ICON ?>",
+	    "association" : "<?php echo Organization::ICON ?>",
+	    "GovernmentOrganization" : "<?php echo Organization::ICON_GOV ?>",
+	    "event":"<?php echo Event::ICON ?>",
+	    "project":"<?php echo Project::ICON ?>",
+	    "city": "<?php echo City::ICON ?>"
+	  };
 
 	jQuery(document).ready(function() 
 	{
