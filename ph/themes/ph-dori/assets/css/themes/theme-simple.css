@@ -177,9 +177,10 @@ li.mix{
 }
 #notificationPanel{
   margin: 0px;
-  background-color: rgba(82, 129, 149, 1); /*rgba(36, 81, 101, 0.5)*/
+  display: none;
+  background-color: rgb(234, 240, 240); /*rgba(36, 81, 101, 0.5)*/
   color: #FFF;
-  position: absolute;
+  position: fixed;
   left: 70px;
   z-index: 1000;
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
@@ -226,6 +227,7 @@ ul.notifList{
     margin-top:15px;
     margin-bottom:0px;
     overflow-x: hidden;
+    background-color: white;
 }
 /* NOTIFICATIONS */
 /* BLOCK PROCESSING */
