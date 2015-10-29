@@ -253,6 +253,7 @@ class HttpClient
         $request->setopt(CURLOPT_HTTPHEADER, $headers);
         $request->setopt(CURLOPT_SSL_VERIFYPEER, true);
         $request->setopt(CURLOPT_SSL_VERIFYHOST, 2);
+        $request->setopt(CURLOPT_SSLVERSION, 1);
         $request->setopt(CURLOPT_CAINFO, realpath(__DIR__ . '/../../certs/cacert.pem'));
         if (!empty($data)) {
             $request->setopt(CURLOPT_POSTFIELDS, json_encode($data));
