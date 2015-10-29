@@ -157,22 +157,22 @@ li.mix{
 }
 
 /* NOTIFICATIONS */
-#btn-show-notification{
+.btn-corner-top-left{
   left:0px !important;
   position:absolute;
 }
-#btn-show-notification i.fa{
+#btn-show-notification.btn-corner-top-left i.fa{
   margin-right: 10px;
 }
-#btn-show-notification .badge{
+.btn-corner-top-left .badge{
   position: absolute;
   top: 32%;
   left: 47%;
 }
-#btn-show-notification .badge.badge-danger{
+.btn-corner-top-left .badge.badge-danger{
   background-color: #D9534F !important;
 }
-#btn-show-notification .badge.badge-info{
+.btn-corner-top-left .badge.badge-info{
   /*background-color: #D9534F !important;*/
 }
 #notificationPanel{
