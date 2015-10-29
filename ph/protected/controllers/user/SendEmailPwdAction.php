@@ -18,15 +18,17 @@ class SendEmailPwdAction extends CAction
 
             //send validation mail
             //TODO : make emails as cron jobs
-            $app = new Application($_POST["app"]);
-            Mail::send(array("tpl"=>'passwordRetreive',
-                             "subject" => 'Réinitialisation du mot de passe pour le site '.$app->name,
-                             "from"=>Yii::app()->params['adminEmail'],
-                             "to" => (!PH::notlocalServer())? Yii::app()->params['adminEmail']: $email,
-                             "tplParams" => array( "pwd"   => $pwd ,
-                                                 "title" => $app->name ,
-                                                 "logo"  => $app->logoUrl )
-                                             ));
+            // $app = new Application($_POST["app"]);
+            // Mail::send(array("tpl"=>'passwordRetreive',
+            //                  "subject" => 'Réinitialisation du mot de passe pour le site '.$app->name,
+            //                  "from"=>Yii::app()->params['adminEmail'],
+            //                  "to" => (!PH::notlocalServer())? Yii::app()->params['adminEmail']: $email,
+            //                  "tplParams" => array( "pwd"   => $pwd ,
+            //                                      "title" => $app->name ,
+            //                                      "logo"  => $app->logoUrl )
+            //                                  ));
+            $mailin = new AzotliveMail();
+            $mailin->sendReinitializePassword($email, $user['firstname'], $pwd);
             $res = array("result"=>true,"msg"=>"Un mail avec un nouveau mot de passe vous a été envoyé à votre adresse email. Merci.");
         } else {
             //TODO evoyer un email de presentation 
