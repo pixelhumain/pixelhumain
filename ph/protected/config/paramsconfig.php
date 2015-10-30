@@ -46,6 +46,13 @@ $params = array(
     //upload base directory
     'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR,
     'uploadComDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\templates\\upload\\dir\\communecter\\collection\\person",
+
+    //S3 configs
+    "access_key"=>"",
+    "secret"=> "",
+    "region"=> "eu-west-1",
+    "bucket.large"=> "pixelphotos.large",
+    "bucket.thumb"=>"pixelphotos.thumb",
     
     //Captcha
     'captcha' => '6LdiygUTAAAAAEsbbK7LvMjJRt9PLP9lO-6QSM8K',
