@@ -246,9 +246,9 @@
 				toastr.error(info);
 			});
 		}
-		else{
+		/*else{
 		  toastr.error("Votre navigateur ne prend pas en compte la géolocalisation HTML5");
-		}
+		}*/
 	}
 
 </script>
