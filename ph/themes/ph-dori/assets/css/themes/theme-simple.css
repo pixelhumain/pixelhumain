@@ -5,7 +5,7 @@
   left:25px;
 }*/
 #menu-top-container{
-  z-index:1;
+  z-index:10;
   position:fixed; 
   top:0px; 
   left:0px;
@@ -268,7 +268,7 @@ ul.notifList{
 
 
 #menu-container{
-  padding:10px 0px !important;
+  /*padding:10px 0px !important;*/
 }
 .menuline{
     line-height: 31px;
