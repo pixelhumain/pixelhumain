@@ -1,4 +1,5 @@
 <?php
+require_once(dirname(__FILE__) . '/paramsconfig.php');
 require_once(dirname(__FILE__) . '/dbconfig.php');
 require_once(dirname(__FILE__) . '/mailconfig.php');
 require_once(dirname(__FILE__) . '/moduleconfig.php');
@@ -142,16 +143,16 @@ return array(
             'class' => 'yiiwheels.YiiWheels',   
         ),
 	),
-
+	'params'=>$params
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
-	'params'=>array(
-		// this is used in contact page
-		'adminEmail'=>'contact@pixelhumain.com',
+	// 'params'=>array(
+	// 	// this is used in contact page
+	// 	'adminEmail'=>'contact@pixelhumain.com',
 
-		//upload base directory
-	    'uploadUrl' => "upload/",
-	    'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR,
+	// 	//upload base directory
+	//     'uploadUrl' => "upload/",
+	//     'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR,
 	    //'uploadComDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\templates\\upload\\dir\\communecter\\collection\\person",
-	),
+	// ),
 );
