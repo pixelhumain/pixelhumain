@@ -85,7 +85,7 @@ li.mix{
 }
 #menu-top-container .dropdown-menu {
     position: absolute;
-    top: 96%;
+    top: 98%;
     left: unset;
     z-index: 1000;
     display: none;
@@ -255,7 +255,7 @@ ul.notifList{
       #ajaxSV{
         min-height: 500px;
         display: block;
-        padding: 50px 50px 50px 120px;
+        padding: 80px 50px 50px 120px;
         margin: 0px 0px;
         top: -23px !important;
       }

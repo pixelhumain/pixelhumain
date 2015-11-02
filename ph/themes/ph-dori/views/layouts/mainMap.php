@@ -33,7 +33,7 @@
         "useFullPage" 	 	 => true,
         "useResearchTools" 	 => true,
         "useChartsMarkers" 	 => false,
-        "useHelpCoordinates" => false,
+        "useHelpCoordinates" => true,
         
         "notClusteredTag" 	 => array(),
         "firstView"		  	 => array(  "coordinates" => array(-1.4061088354351594, -26.015625),
