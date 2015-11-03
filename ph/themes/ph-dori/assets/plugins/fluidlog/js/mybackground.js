@@ -17,7 +17,10 @@ FluidGraph.prototype.bgOnMouseDown = function(d){
 
   if (thisGraph.state.editedNode)
   {
-    thisGraph.closeNode.call(thisGraph, "edited")
+    var el = d3.select(thisGraph.state.editedNode);
+    var el_open = el.select("#fo_content_edited_node_label");
+    if (el_open.node())
+      thisGraph.closeNode.call(thisGraph, "edited");
   }
 
   if (thisGraph.state.editedLinkLabel)

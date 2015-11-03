@@ -127,13 +127,10 @@ FluidGraph.prototype.displayText = function(svgNodes) {
     .on("mouseup",function(d){
       thisGraph.nodeOnMouseUp.call(thisGraph, d3.select(this.parentNode.parentNode.parentNode), d)})
     .on("dblclick",function(d){
-      if (thisGraph.config.displayExternGraph == true)
-      {
-        thisGraph.displayExternalGraph.call(thisGraph, d3.select(this.parentNode.parentNode.parentNode), d)
-      }
-      else {
-        thisGraph.editNode.call(thisGraph, d3.select(this.parentNode.parentNode.parentNode), d)
-      }
+      if (thisGraph.config.editGraphMode == true)
+        thisGraph.editNode.call(thisGraph, d3.select(this.parentNode.parentNode.parentNode), d);
+      else
+        thisGraph.displayExternalGraph.call(thisGraph, d3.select(this.parentNode.parentNode.parentNode), d);
     })
 
   //Rect to put events
@@ -166,14 +163,11 @@ FluidGraph.prototype.displayText = function(svgNodes) {
     .on("mouseover",function(d){
       thisGraph.nodeOnMouseOver.call(thisGraph, d3.select(this.parentNode.parentNode), d)})
     .on("dblclick",function(d){
-        if (thisGraph.config.displayExternalGraph == true)
-        {
-          thisGraph.displayExternalGraph.call(thisGraph, d3.select(this.parentNode.parentNode), d)
-        }
-        else {
-          thisGraph.editNode.call(thisGraph, d3.select(this.parentNode.parentNode), d)
-        }
-      })
+      if (thisGraph.config.editGraphMode == true)
+        thisGraph.editNode.call(thisGraph, d3.select(this.parentNode.parentNode), d);
+      else
+        thisGraph.displayExternalGraph.call(thisGraph, d3.select(this.parentNode.parentNode), d);
+    })
 
   if (thisGraph.config.debug) console.log("displayText end");
 }
@@ -1082,16 +1076,21 @@ FluidGraph.prototype.nodeOnMouseUp = function(d3node, d) {
     // thisGraph.state.selectedNode = d;
     // if we clicked on the same node, reset vars
     if (thisGraph.state.mouseUpNode.identifier == thisGraph.state.mouseDownNode.identifier) {
-      thisGraph.fixUnfixNode(d3node, d);
+      if (thisGraph.config.editGraphMode == true)
+        thisGraph.fixUnfixNode(d3node, d);
+
       thisGraph.resetMouseVars();
       return;
     }
 
     //Drop on an other node --> create a link
-    thisGraph.fixUnfixNode(thisGraph.state.svgMouseDownNode, d);
-    thisGraph.drag_line.attr("visibility", "hidden");
-    thisGraph.addLink(thisGraph.state.mouseDownNode.identifier, thisGraph.state.mouseUpNode.identifier);
-    thisGraph.resetMouseVars();
+    if (thisGraph.config.editGraphMode == true)
+    {
+      thisGraph.fixUnfixNode(thisGraph.state.svgMouseDownNode, d);
+      thisGraph.drag_line.attr("visibility", "hidden");
+      thisGraph.addLink(thisGraph.state.mouseDownNode.identifier, thisGraph.state.mouseUpNode.identifier);
+      thisGraph.resetMouseVars();
+    }
   }
 
   if (thisGraph.config.debug) console.log("nodeOnMouseUp end");

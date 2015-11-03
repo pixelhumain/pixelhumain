@@ -55,7 +55,9 @@ var FluidGraph = function (firstBgElement,d3data){
     displayId : "Off",
     proportionalNodeSize : "On",
     uriBase : "http://fluidlog.com/", //Warning : with LDP, no uriBase... :-)
-    uriSemFormsBase : "http://localhost:9000/ldp/fluidlog/", //Warning : with LDP, no uriBase... :-)
+    // Rwwplay : "https://localhost:8443/2013/fluidlog/",
+    // SemForms : "http://localhost:9000/ldp/fluidlog/",
+    uriExternalStore : "http://localhost:9000/ldp/fluidlog/",
     linkDistance : 100,
     charge : -1000,
     debug : false,
@@ -65,7 +67,7 @@ var FluidGraph = function (firstBgElement,d3data){
     repulseNeighbourOnHover : false,
     awsomeStrokeNode : true,
     remindSelectedNodeOnSave : true,
-    displayExternalGraph : true,
+    editGraphMode : true, // default : true
   };
 
   thisGraph.customNodes = {
@@ -277,7 +279,10 @@ FluidGraph.prototype.initSgvContainer = function(bgElementId){
         .on("zoom", function(d){thisGraph.rescale.call(this, thisGraph, d)}))
       .on("dblclick.zoom", null)
       .on("click", null)
-      .on("dblclick", function(d){thisGraph.addNode.call(this, thisGraph, d)})
+      .on("dblclick", function(d){
+        if (thisGraph.config.editGraphMode == true)
+          thisGraph.addNode.call(this, thisGraph, d)
+        })
       .append('g')
       .attr('id', bgElementId)
       .on("mousedown", function(d){
@@ -345,8 +350,8 @@ FluidGraph.prototype.activateForce = function(){
                         .nodes(thisGraph.d3data.nodes)
                         .links(thisGraph.d3data.edges)
                         .size([thisGraph.width, thisGraph.height])
-                        .linkDistance(100)
-                        .charge(-1000)
+                        .linkDistance(thisGraph.config.linkDistance)
+                        .charge(thisGraph.config.charge)
 
   if (thisGraph.config.elastic == "On")  {
     thisGraph.force.start()
@@ -546,13 +551,19 @@ FluidGraph.prototype.clearGraph = function() {
   if (thisGraph.config.debug) console.log("clearGraph start");
 
   thisGraph.resetMouseVars();
-  thisGraph.state.selectedNode = null;
+  thisGraph.resetStateNode();
   thisGraph.d3data.nodes = [];
   thisGraph.d3data.edges = [];
   thisGraph.graphName = thisGraph.config.newGraphName;
   thisGraph.removeSvgElements();
 
   if (thisGraph.config.debug) console.log("clearGraph end");
+}
+
+FluidGraph.prototype.resetStateNode = function() {
+  thisGraph.state.selectedNode = null;
+  thisGraph.state.openedNode = null;
+  thisGraph.state.editedNode = null;
 }
 
 FluidGraph.prototype.refreshGraph = function() {
@@ -564,7 +575,7 @@ FluidGraph.prototype.refreshGraph = function() {
   if (thisGraph.config.force == "On")
     thisGraph.activateForce();
 
-  thisGraph.state.openedNode = null;
+  thisGraph.resetStateNode();
   thisGraph.removeSvgElements();
   thisGraph.initDragLine();
   thisGraph.drawGraph();
@@ -734,9 +745,36 @@ FluidGraph.prototype.loadGraph = function(graphName) {
 
   if (thisGraph.config.debug) console.log("loadGraph start");
 
-  var txtRes = localStorage.getItem(thisGraph.config.version+"|"+graphName);
+  // https://ldp.openinitiative.com:8443/2013/people/
+  // https://www.wikidata.org/wiki/
+  // externalStoreSemForms = new MyStore({
+  //     container: thisGraph.config.uriExternalStore,
+  //     context: "http://owl.openinitiative.com/oicontext.jsonld",
+  //     template: "",
+  //     partials: "",
+  // });
 
-  thisGraph.d3data = thisGraph.jsonD3ToD3Data(txtRes);
+  var ExternalGraph;
+
+  // With Rwwplay
+  // externalStoreRwwplay.list(externalStoreRwwplay.container).then(function(list) {
+  //   list.forEach(function(item) {
+  //     externalStoreRwwplay.get(item,externalStoreRwwplay.container).then(function(graph) {
+  //             console.log("graph : "+graph);
+  //             ExternalGraph = graph;
+  //     });
+  //   });
+  // });
+
+//externalStoreSemForms.get("http://localhost:9000/ldp/fluidlog/unnamed").then(console.log.bind(console))
+  // externalStoreSemForms.get(thisGraph.config.uriExternalStore+"unnamed").then(function(graph) {
+  //             console.log("graph : "+graph);
+  //             ExternalGraph = graph;
+  // });
+
+  var localGraph = localStorage.getItem(thisGraph.config.version+"|"+graphName);
+
+  thisGraph.d3data = thisGraph.jsonD3ToD3Data(localGraph); //ExternalGraph
 
   thisGraph.graphName = graphName;
   thisGraph.changeGraphName();
@@ -903,48 +941,23 @@ FluidGraph.prototype.resetMouseVars = function()
   if (thisGraph.config.debug) console.log("resetMouseVars end");
 }
 
-FluidGraph.prototype.saveGraphToSemForms = function() {
+FluidGraph.prototype.saveGraphToExternalStore = function() {
   thisGraph = this;
-  if (thisGraph.config.debug) console.log("saveGraphToSemForms start");
+  if (thisGraph.config.debug) console.log("saveGraphToExternalStore start");
 
   var jsonLd = thisGraph.d3DataToJsonLd();
   // localStorage.setItem(thisGraph.config.version+"|"+thisGraph.graphName+".json-ld",window.JSON.stringify(jsonLd));
 
-  var myStore = new MyStore({ container : thisGraph.config.uriSemFormsBase, //"https://localhost:8443/2013/people/"
+  var myStore = new MyStore({ container : thisGraph.config.uriExternalStore,
                               context : "http://owl.openinitiative.com/oicontext.jsonld",
                               template : "",
                               partials : ""});
 
   myStore.save(jsonLd);
 
-  console.log("jsonLd " + jsonLd)
+  console.log("jsonLd " + JSON.stringify(jsonLd));
 
-  // var urlNameGraph = encodeURIComponent(thisGraph.graphName)
-  // var semFormsUrl = thisGraph.config.uriSemFormsBase+urlNameGraph
-  // $.ajax(
-  //   {
-  //     type: 'POST',
-  //     url: "http://localhost:9000/ldp/fluidlog", //thisGraph.config.uriSemFormsBase,
-  //     dataType: 'json',
-  //     headers : {
-  //       Accept : "application/json-ld",
-  //       "Content-Type" : "application/json-ld",
-  //       "Slug" : "carto1"
-  //     },
-  //     data: jsonLd,
-  //     // Slug : urlNameGraph,
-  //     // async: true,
-  //     success: function(t_data) {
-  //       d3data = t_data;
-  //       return false;
-  //     },
-  //     error: function(t_data) {
-  //       console.log("Erreur Ajax : Message="+t_data+" (Fonction getSemFormsData()) !");
-  //     },
-  //   }
-  // );
-
-  if (thisGraph.config.debug) console.log("saveGraphToSemForms end");
+  if (thisGraph.config.debug) console.log("saveGraphToExternalStore end");
 }
 
 FluidGraph.prototype.saveGraphToLocalStorage = function() {
@@ -970,27 +983,22 @@ FluidGraph.prototype.displayExternalGraph = function(d3node, d) {
   thisGraph = this;
   if (thisGraph.config.debug) console.log("displayExternGraph start");
 
-  var typeMap = {
-    "citoyens" : "person",
-    "organizations" : "organization",
-    "events" : "event",
-    "projects" : "project",
-    "person" : "person",
-  };
-
   d3.event.stopPropagation();
 
-  externalUri = baseUrl+"/communecter/graph/viewer/id/"+d.identifier+"/type/"+typeMap[d.type]+"/data/1";
+  externalUri = d.identifier;
 
-  thisGraph.phData = thisGraph.getExternalD3Data(externalUri);
-  // thisGraph.phDataFile = getDataFile(thisGraph.phData);
+  var externalD3Data = thisGraph.getExternalD3Data(externalUri)
 
-  thisGraph.d3data = createFluidGraph(d.type, d.identifier, thisGraph.phData);
-  thisGraph.resetMouseVars();
-  thisGraph.removeSvgElements();
-  thisGraph.initDragLine();
-  thisGraph.activateForce();
-  thisGraph.drawGraph();
+  if (externalD3Data)
+  {
+    thisGraph.d3data = externalD3Data;
+
+    thisGraph.resetMouseVars();
+    thisGraph.resetStateNode();
+    thisGraph.removeSvgElements();
+    thisGraph.initDragLine();
+    thisGraph.drawGraph();
+  }
 
   if (thisGraph.config.debug) console.log("displayExternGraph end");
 }
