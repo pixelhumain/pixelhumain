@@ -48,9 +48,9 @@ foreach(Config::$REQUIRED_FUNCTIONS as $key => $value) {
 // Prior to PHP 5.5, CURL_SSLVERSION_TLSv1 and CURL_SSLVERSION_DEFAULT didn't exist. Hence, we have to use a numeric value.
 if (!defined('CURL_SSLVERSION_DEFAULT')) {
     /** @ignore */
-    define('CURL_SSLVERSION_DEFAULT', 0);
+    //define('CURL_SSLVERSION_DEFAULT', 0);
 }
 if (!defined('CURL_SSLVERSION_TLSv1')) {
     /** @ignore */
-    define('CURL_SSLVERSION_TLSv1', 1);
+    //define('CURL_SSLVERSION_TLSv1', 1);
 }
