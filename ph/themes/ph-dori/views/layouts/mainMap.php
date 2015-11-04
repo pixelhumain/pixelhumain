@@ -29,6 +29,7 @@
         "useRightList" 		 => true,
         "useZoomButton" 	 => true,
         "useHomeButton" 	 => true,
+        "useSatelliteTiles"	 => true,
         "useFullScreen" 	 => true,
         "useFullPage" 	 	 => true,
         "useResearchTools" 	 => true,
