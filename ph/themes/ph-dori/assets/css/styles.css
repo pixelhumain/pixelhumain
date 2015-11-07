@@ -1407,7 +1407,7 @@ h1.text-extra-large {
   color: #00bdcc; }
 
 .text-orange, a.text-orange:hover {
-  color: #F9B21A !important; }
+  color: #FFA200 !important; }
 
 .text-green, a.text-green:hover {
   color: #93C020 !important; }
@@ -1425,7 +1425,7 @@ h1.text-extra-large {
   color: #894550 !important; }
 
 .text-yellow, a.text-yellow:hover {
-  color: #F3D116 !important; }
+  color: #FFC600 !important; }
 
 .text-red, a.text-red:hover {
   color: #E33551 !important; }
@@ -1442,7 +1442,7 @@ a.text-white {
   color: #3C5665; /*rgba(44, 47, 59, 0.4);*/ }
 
 a.text-dark:hover {
-  color: rgba(44, 47, 59, 0.6); }
+  color: #3C5665; /*rgba(44, 47, 59, 0.6);*/ }
 
 .center {
   text-align: center; }
