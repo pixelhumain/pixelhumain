@@ -58,25 +58,25 @@ return array(
 	
 	// Erreurs
 	"You have some form errors. Please check below." => "Des erreurs sont présentes. Vérifier ci dessous",
-	'Something went wrong!' => "Une erreur est survenue!",
-	'Uncorrect request' => 'Cette requête n\'a pas pu aboutir',
-	'Can not manage the type ' => 'Vous ne pouvez pas gérer le type',
-	'The form has been validated.' => 'Le formulaire a été validé avec succès.',
-	'Please specify your first name' => "Veuillez spécifier votre nom",
+	"Something went wrong!" => "Une erreur est survenue!",
+	"Uncorrect request" => "Cette requête n&#146;a pas pu aboutir",
+	"Can not manage the type " => "Vous ne pouvez pas gérer le type",
+	"The form has been validated." => "Le formulaire a été validé avec succès.",
+	"Please specify your first name" => "Veuillez spécifier votre nom",
 	"Please select a type" => "Veuillez selectionner un type",
 	"Please enter an email" => "Veuillez entrer un e-mail",
 	
 	//Form
-	'Required Fields' => "Champs requis",
-	'Save' => "Sauvegarder",
-	'Back to Search' => "Retour sur la recherche",
+	"Required Fields" => "Champs requis",
+	"Save" => "Sauvegarder",
+	"Back to Search" => "Retour sur la recherche",
 	
 	//DATA
-	'Your data has been saved' => 'Vos données ont bien été enregistré.',
-	'Data saved' => 'Donnée enregistrée.',
+	"Your data has been saved" => "Vos données ont bien été enregistré.",
+	"Data saved" => "Donnée enregistrée.",
 
 	//Authorization
-	'Access denied' => 'Accès refusé',
+	"Access denied" => "Accès refusé",
 	
 	//TYPES
 	"NGO" => "Association",
@@ -84,35 +84,37 @@ return array(
 	"Group" => "Groupe",
 
 	//EMAILS
-	'New Organization created on ' => "Nouvelle organisation créée sur ",
-	'New Event created on ' => "Nouvel évennement créé sur ",
-	'New Project created on ' => "Nouveau projet créée sur ",
+	"New Organization created on " => "Nouvelle organisation créée sur ",
+	"New Event created on " => "Nouvel évennement créé sur ",
+	"New Project created on " => "Nouveau projet créée sur ",
 	"Confirm your account on " => "Confirmer votre compte sur",
 
 	//Common label
-	'Name' => 'Nom',
-	'Street Address' => 'Rue',
-	'Address' => 'Adresse',
-	'Postal Code' => 'Code Postal',
-	'Country' => 'Pays',
-	'City' => 'Ville',
-	'Phone Number' => 'Téléphone',
-	'Website URL' => 'URL du site web',
-	'Short Description' => 'Description courte',
-	'Start' => 'Début',
-	'End' => 'Fin',
-	'Color' => 'Couleur',
-	'Status' => 'Statut',
-	'Birth date' => 'Date de naissance',
-	'Interests' => "Centres d'intérêt",
-	'Category' => "Categorie",
-	'Key Words' => "Mots Clés",
-	'Duration' => 'Durée',
+	"Name" => "Nom",
+	"Street Address" => "Rue",
+	"Address" => "Adresse",
+	"Postal Code" => "Code Postal",
+	"Country" => "Pays",
+	"City" => "Ville",
+	"Phone Number" => "Téléphone",
+	"Website URL" => "URL du site web",
+	"Short Description" => "Description courte",
+	"Start" => "Début",
+	"End" => "Fin",
+	"Color" => "Couleur",
+	"Status" => "Statut",
+	"Birth date" => "Date de naissance",
+	"Interests" => "Centres d&#146;intérêt",
+	"Category" => "Categorie",
+	"Key Words" => "Mots Clés",
+	"Duration" => "Durée",
+	"Directory" => "Répertoire",
+	"Contributors" => "Contributeurs",
 	
 	//Input title - Placeholder
-	'Search by name or email' => "Recherche par nom, email",
-	'Not find ? Click here.'=> 'Non trouvé ? Cliquez ici.',
-	'Select your City' => "Sélectionnez votre ville",
+	"Search by name or email" => "Recherche par nom, email",
+	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
+	"Select your City" => "Sélectionnez votre ville",
 	"Write note here" => "Écrire la description ici",
 	"All-Day" => "Journée",
 	"False" => "Non",
@@ -139,7 +141,102 @@ return array(
 	"Me" => "Moi",
 	"Person" => "Citoyen",
 	"Organizations" => "Organisations",
-	"Projects" => "Projets"
+	"Projects" => "Projets",
+	"Events" => "Événements",
+
+	/* ---- */
+	/*traduire un type de donnée (au singulier)*/
+	"person" => "Citoyen",
+	"organizations" => "Organisation",
+	"projects" => "Projet",
+	"events" => "Événement",
+
+	"DIRECTORY " => "Répertoire",
+	"Directory " => "Répertoire",
+	"MY DIRECTORY" => "Mon répertoire",
+	"DIRECTORY Contributors" => "Répertoire des contributeurs",
+	"DIRECTORY Local network" => "Répertoire : le réseau local",
+	"DIRECTORY Participants" => "Répertoire des participants",
+
+	"Send a message to this Person" 		=> "Envoyer un message à cette personne",
+	"Send a message to this Project" 		=> "Envoyer un message au(x) responsable(s) de ce projet",
+	"Send a message to this Organization" 	=> "Envoyer un message au(x) responsable(s) de cette organisation",
+	"Send a message to this Event" 			=> "Envoyer un message au(x) responsable(s) de cet événement",
+
+	"Contact" 				=> "Contacter",
+	"Unfollow this Person" 	=> "Ne plus suivre cette personne",
+	"Unfollow" 				=> "Ne plus suivre",
+	"Follow this Person" 	=> "Suivre cette personne",
+	"Follow" 				=> "Suivre",
+
+	"Add Something to your network" => "Ajouter quelque chose à votre réseau" ,
+	"Add"							=> "Ajouter",
+	"Leave this Organization" 		=> "Quitter cette organisation",
+	"Leave" 						=> "Quitter",
+	"Join this Organization" 		=> "Rejoindre cette organisation",
+	"Join" 							=> "Rejoindre",
+
+	"Declare me as admin of this organization" 	=> "Devenir administrateur de cette organisation",
+	"Become admin" 								=> "Devenir administrateur",
+
+	"Local network" => "Réseau local",
+	"Become admin" 	=> "Devenir administrateur",
+
+	"Show some statistics about this city"	=> "Afficher les statistics de cette ville",
+	"Statistics"							=> "Statistiques",
+
+	"Activity" 	=> "Activités",
+	"Details" 	=> "Détails",
+	"Contact" 	=> "Contacter",
+	"Contributors" => "Contributeurs",
+	
+	"Read all news publicated by this project" 		=> "Toute l&#146;actualité du projet",
+	"Read all news publicated by this organization" => "Toute l&#146;actualité de cette organisation",
+	"Discover who contributes to this project" 		=> "Les contributeurs du projet",
+	
+	"Participants" 		=> "Participants",
+	"Participants list" => "Liste des participants",
+	
+	"Add a participant to this organization" => "Ajouter un participant",
+	
+	"Add member" => "Ajouter un membre",
+	"Members" 	 => "Members",
+	"Show tag filters" => "Filtrer par tag",
+	"Show scope filters" => "Filtrer par lieu",
+	"Search by tag" => "Rechercher par tag",
+	"Search by place" => "Rechercher par lieu",
+
+	"General information about this project" => "Information général à propos de ce projet",
+	"Project contributors" => "Les contributeurs du projet",
+	"Stop contributing to this Project" => "Ne plus contribuer à ce projet",
+	"Stop contributing" => "Ne plus contribuer",
+	"I want to contribute to this Project" => "Je veux contribuer à ce projet",
+
+	"Search what" => "Rechercher quoi",
+	"Search where" => "Rechercher où",
+
+	"MY DETAIL"			=> "MON PROFIL",
+	"NEWS"				=> "FIL D'ACTUALITÉS",
+	"MY PEOPLE"			=> "MES CONTACTS",
+	"MY ORGANIZATIONS" 	=> "MES ORGANISATIONS",
+	"MY PROJECTS" 		=> "MES PROJETS",
+	"MY EVENTS" 		=> "MES ÉVÉNEMENTS",
+	"MY CITY" 			=> "MA VILLE",
+	"ADD SOMETHING" 	=> "AJOUTER",
+	"LOGOUT" 			=> "DÉCONNECTER",
+
+	"LOCAL ACTORS"		=> "Les acteurs locaux",
+	"HAPHAZARD"			=> "Au hasard",
+	
+	"ASSOCIATIONS"				=> "ASSOCIATIONS",
+	"ENTREPRISES"				=> "ENTREPRISES",
+	"GROUPES"					=> "GROUPES",
+	"LOCAL CONNECTED CITIZENS"	=> "CITOYENS CONNECTÉS",
+	"LOCAL EVENTS"				=> "ÉVÉNEMENTS",
+	"LOCAL PROJECTS"			=> "PROJETS",
+	/* ---- */
+	
+
 );
 
 ?>
