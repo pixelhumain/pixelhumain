@@ -152,10 +152,11 @@ return array(
 	"events" => "Événement",
 
 	"DIRECTORY " => "Répertoire",
+	"DIRECTORY of" => "Répertoire de",
 	"Directory " => "Répertoire",
 	"MY DIRECTORY" => "Mon répertoire",
 	"DIRECTORY Contributors" => "Répertoire des contributeurs",
-	"DIRECTORY Local network" => "Répertoire : le réseau local",
+	"DIRECTORY Local network of" => "Répertoire : le réseau local de",
 	"DIRECTORY Participants" => "Répertoire des participants",
 
 	"Send a message to this Person" 		=> "Envoyer un message à cette personne",
