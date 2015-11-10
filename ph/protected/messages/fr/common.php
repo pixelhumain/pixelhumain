@@ -81,7 +81,9 @@ return array(
 	//TYPES
 	"NGO" => "Association",
 	"LocalBusiness" => "Entreprise",
+	"Local Business" => "Entreprise",
 	"Group" => "Groupe",
+	"Government Organization" => "Organisation gouvernementale",
 
 	//EMAILS
 	"New Organization created on " => "Nouvelle organisation créée sur ",
@@ -135,11 +137,18 @@ return array(
 	"From" => "De",
 	"To" => "Au",
 	"All day" => "Toute la journée",
+	"All" => "Tous",
 	"Who" => "Qui",
 	
 	//Attributes
 	"Me" => "Moi",
 	"Person" => "Citoyen",
+	"Organizations" => "Organisations",
+	"Projects" => "Projets",
+	"Events" => "Événements",
+
+	"Persons" => "Citoyens",
+	"People" => "Citoyens",
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
@@ -154,6 +163,7 @@ return array(
 	"DIRECTORY " => "Répertoire",
 	"DIRECTORY of" => "Répertoire de",
 	"Directory " => "Répertoire",
+	"Show his directory" => "Afficher les contacts de cette personne",
 	"MY DIRECTORY" => "Mon répertoire",
 	"DIRECTORY Contributors" => "Répertoire des contributeurs",
 	"DIRECTORY Local network of" => "Répertoire : le réseau local de",
@@ -206,6 +216,10 @@ return array(
 	"Show scope filters" => "Filtrer par lieu",
 	"Search by tag" => "Rechercher par tag",
 	"Search by place" => "Rechercher par lieu",
+	"Select tags to change result" => "Sélectionnez des tags pour filtrer les résultats",
+	"Select places to change result" => "Sélectionnez des lieux pour filtrer les résultats",
+	"Where are you looking ?" => "Où recherchez-vous ?",
+	"What are you looking for ?" => "Que recherchez-vous ?",
 
 	"General information about this project" => "Information général à propos de ce projet",
 	"Project contributors" => "Les contributeurs du projet",
@@ -213,8 +227,8 @@ return array(
 	"Stop contributing" => "Ne plus contribuer",
 	"I want to contribute to this Project" => "Je veux contribuer à ce projet",
 
-	"Search what" => "Rechercher quoi",
-	"Search where" => "Rechercher où",
+	"Search what" => "Quoi",
+	"Search where" => "Où",
 
 	"MY DETAIL"			=> "MON PROFIL",
 	"NEWS"				=> "FIL D'ACTUALITÉS",
@@ -235,6 +249,8 @@ return array(
 	"LOCAL CONNECTED CITIZENS"	=> "CITOYENS CONNECTÉS",
 	"LOCAL EVENTS"				=> "ÉVÉNEMENTS",
 	"LOCAL PROJECTS"			=> "PROJETS",
+	
+	"Organizations types" => "Type d'organisations"
 	/* ---- */
 	
 
