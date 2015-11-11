@@ -100,6 +100,7 @@ return array(
 	"City" => "Ville",
 	"Phone Number" => "Téléphone",
 	"Website URL" => "URL du site web",
+	"Description" => "Description",
 	"Short Description" => "Description courte",
 	"Start" => "Début",
 	"End" => "Fin",
@@ -112,6 +113,7 @@ return array(
 	"Duration" => "Durée",
 	"Directory" => "Répertoire",
 	"Contributors" => "Contributeurs",
+	"General informations" => "Informations générales",
 	
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
@@ -200,6 +202,7 @@ return array(
 	"Details" 	=> "Détails",
 	"Contact" 	=> "Contacter",
 	"Contributors" => "Contributeurs",
+	"Contributors of project" => "Les contributeurs du projet",
 	
 	"Read all news publicated by this project" 		=> "Toute l&#146;actualité du projet",
 	"Read all news publicated by this organization" => "Toute l&#146;actualité de cette organisation",
@@ -211,7 +214,8 @@ return array(
 	"Add a participant to this organization" => "Ajouter un participant",
 	
 	"Add member" => "Ajouter un membre",
-	"Members" 	 => "Members",
+	"Member" 	 => "Membre",
+	"Members" 	 => "Membres",
 	"Show tag filters" => "Filtrer par tag",
 	"Show scope filters" => "Filtrer par lieu",
 	"Search by tag" => "Rechercher par tag",
@@ -250,7 +254,17 @@ return array(
 	"LOCAL EVENTS"				=> "ÉVÉNEMENTS",
 	"LOCAL PROJECTS"			=> "PROJETS",
 	
-	"Organizations types" => "Type d'organisations"
+	"Organizations types" => "Type d'organisations",
+
+	"Add an Event" => "Créer un nouvel événement",
+	"Add a Project" => "Créer un nouveau projet",
+
+	"Administrator" => "Administrateur",
+	"Just a citizen wanting to give visibility to it :)" => "Juste un citoyen qui veut faire connaître cette organisation",
+	"What's your role inside this new organization ?" => "Quel est votre rôle dans cette organisation ?",
+	"Add an Organization" => "Créer une nouvelle organisation",
+
+	
 	/* ---- */
 	
 

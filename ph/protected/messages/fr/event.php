@@ -7,6 +7,7 @@
 		"Invalid date" => "Date incorrect",
 		"Event already exist" => "Cette Evenement existe déjà.",
 		"Event well updated" => "Votre evenement a ete modifié avec succes.",
+		"Add an Event" => "Créer un nouvel événement",
 	)
 
 ?>
