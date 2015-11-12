@@ -162,6 +162,7 @@ return array(
 	"projects" => "Projet",
 	"events" => "Événement",
 
+	"PROJECT" => "PROJET",
 	"DIRECTORY " => "Répertoire",
 	"DIRECTORY of" => "Répertoire de",
 	"Directory " => "Répertoire",
@@ -264,7 +265,7 @@ return array(
 	"What's your role inside this new organization ?" => "Quel est votre rôle dans cette organisation ?",
 	"Add an Organization" => "Créer une nouvelle organisation",
 
-	
+	"Back to" => "Revenir sur",
 	/* ---- */
 	
 
