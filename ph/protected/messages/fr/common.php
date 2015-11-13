@@ -271,6 +271,8 @@ return array(
 	"Know more" => "En savoir +",
 	"Show Directory" => "Afficher le répertoire",
 	"City Home page" => "Page accueil de cette ville",
+
+	
 	/* ---- */
 	
 
