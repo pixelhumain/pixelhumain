@@ -230,6 +230,8 @@ return array(
 	"Project contributors" => "Les contributeurs du projet",
 	"Stop contributing to this Project" => "Ne plus contribuer à ce projet",
 	"Stop contributing" => "Ne plus contribuer",
+	"Start contributing" => "Contribuer",
+	"Start contributing to this Project" => "Contribuer à ce projet",
 	"I want to contribute to this Project" => "Je veux contribuer à ce projet",
 
 	"Search what" => "Quoi",
