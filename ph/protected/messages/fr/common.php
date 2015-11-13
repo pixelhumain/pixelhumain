@@ -196,7 +196,7 @@ return array(
 	"Local network" => "Réseau local",
 	"Become admin" 	=> "Devenir administrateur",
 
-	"Show some statistics about this city"	=> "Afficher les statistics de cette ville",
+	"Show some statistics about this city"	=> "Afficher les statistiques de cette ville",
 	"Statistics"							=> "Statistiques",
 
 	"Activity" 	=> "Activités",
@@ -241,7 +241,7 @@ return array(
 	"MY ORGANIZATIONS" 	=> "MES ORGANISATIONS",
 	"MY PROJECTS" 		=> "MES PROJETS",
 	"MY EVENTS" 		=> "MES ÉVÉNEMENTS",
-	"MY CITY" 			=> "MA VILLE",
+	"MY CITY" 			=> "MA COMMUNE",
 	"ADD SOMETHING" 	=> "AJOUTER",
 	"LOGOUT" 			=> "DÉCONNECTER",
 
@@ -266,6 +266,9 @@ return array(
 	"Add an Organization" => "Créer une nouvelle organisation",
 
 	"Back to" => "Revenir sur",
+	"Know more" => "En savoir +",
+	"Show Directory" => "Afficher le répertoire",
+	"City Home page" => "Page accueil de cette ville",
 	/* ---- */
 	
 

@@ -128,6 +128,10 @@
 		.<?php echo $moduleName; ?> .btn-group-map{}
 	}
 </style>
+<?php 
+	$myId = Yii::app()->session['userId'];
+	$myUser = Person::getById($myId);
+?>
 <script type="text/javascript">
 
 	var Sig;
@@ -147,7 +151,6 @@
 
 		//affiche l'icone de chargement
 		Sig.showIcoLoading(true);
-
 		//chargement des paramètres d'initialisation à partir des params PHP definis plus haut
 		var initParams =  <?php echo json_encode($sigParams); ?>;
 	
@@ -160,7 +163,8 @@
 		$("#right_tool_map").hide('fast');
 		
 		showMap(false);
-
+		Sig.userData = <?php echo json_encode($myUser); ?>;
+		
 		<?php if(!isset(Yii::app()->session['user'])){ ?>
 			$("a.register").click(function(){ initHTML5Localisation(); });		
 		<?php } ?>

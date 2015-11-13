@@ -36,5 +36,6 @@
 		"Become a member of this organization : " => "Devenir membre de cette organisation",
 		"I AM A MEMBER" => "JE SUIS MEMBRE",
 		"NOT A MEMBER" => "PAS MEMBRE",
+		"Contact information" => "Informations générales",
 	);
 ?>

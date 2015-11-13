@@ -317,7 +317,65 @@ ul.notifList{
   padding-top: 75px;
   padding-bottom: 15px;
 }
-  .bg-yellow{
+.text-azure {
+  color: #00bdcc; }
+
+.text-azure {
+  color: #2BB0C6; }
+
+.text-orange, a.text-orange:hover {
+  color: #FFA200 !important; }
+
+.text-green, a.text-green:hover {
+  color: #93C020 !important; }
+
+.text-blue, a.text-blue:hover {
+  color: #5f8295 !important; }
+
+.text-pink, a.text-pink:hover {
+  color: #dd5a82 !important; }
+
+.text-purple, a.text-purple:hover {
+  color: #8C5AA1 !important; }
+
+.text-bricky, a.text-bricky:hover {
+  color: #894550 !important; }
+
+.text-yellow, a.text-yellow:hover {
+  color: #FFC600 !important; }
+
+.text-red, a.text-red:hover {
+  color: #E33551 !important; }
+
+.text-prune, a.text-prune:hover{
+  color:#C32372 !important;
+}
+.text-white {
+  color: white; }
+
+a.text-white {
+  color: rgba(255, 255, 255, 0.6); }
+  a.text-white:hover {
+    color: white; }
+
+.text-dark {
+  color: #3C5665; /*rgba(44, 47, 59, 0.4);*/ }
+
+a.text-dark:hover {
+  color: #3C5665; /*rgba(44, 47, 59, 0.6);*/ }
+
+.center {
+  text-align: center; }
+
+.text-light {
+  color: rgba(255, 255, 255, 0.6); }
+
+a.text-light:hover {
+  color: rgba(255, 255, 255, 0.8); }
+
+
+
+ .bg-yellow{
     color:white !important;
     background-color:#FFC600 !important;
   }
@@ -340,4 +398,12 @@ ul.notifList{
   .bg-red{
     color:white !important;
     background-color:#E33551 !important;
+  }
+  .bg-azure{
+    color:white !important;
+    background-color:#2BB0C6 !important;
+  }
+  .bg-prune{
+    color:white !important;
+    background-color:#C32372 !important;
   }
