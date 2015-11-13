@@ -165,9 +165,6 @@
 		showMap(false);
 		Sig.userData = <?php echo json_encode($myUser); ?>;
 		
-		<?php if(!isset(Yii::app()->session['user'])){ ?>
-			$("a.register").click(function(){ initHTML5Localisation(); });		
-		<?php } ?>
 
 	});
 
@@ -205,7 +202,9 @@
 			if($(".box-add").css("display") == "block"){
 				$(".box-add").hide(700);
 			}
-			else{
+			else if($(".box-communecter").css("display") == "block"){
+				$(".box-communecter").hide(700);
+			}else{
 				$("#ajaxSV").hide( 700 );
 			}
 			var timer = setTimeout("Sig.constructUI()", 1000);
@@ -221,39 +220,6 @@
 				$("#ajaxSV").show( 700 );
 		}
 		
-	}
-
-	function initHTML5Localisation(){
-		if (navigator.geolocation)
-		{
-		  navigator.geolocation.getCurrentPosition(
-			function(position){ //success
-			    mapBg.panTo([position.coords.latitude, position.coords.longitude], {animate:false});
-			    mapBg.setZoom(13, {animate:false});
-			    toastr.success("Votre position géographique a été trouvée");
-			},
-			function (error){	//error
-				var info = "Erreur lors de la géolocalisation : ";
-			    switch(error.code) {
-				    case error.TIMEOUT:
-				    	info += "Timeout !";
-				    break;
-				    case error.PERMISSION_DENIED:
-				    info += "Vous n’avez pas donné la permission";
-				    break;
-				    case error.POSITION_UNAVAILABLE:
-				    	info += "La position n’a pu être déterminée";
-				    break;
-				    case error.UNKNOWN_ERROR:
-				    	info += "Erreur inconnue";
-				    break;
-				}
-				toastr.error(info);
-			});
-		}
-		/*else{
-		  toastr.error("Votre navigateur ne prend pas en compte la géolocalisation HTML5");
-		}*/
 	}
 
 </script>
