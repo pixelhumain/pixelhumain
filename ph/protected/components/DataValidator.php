@@ -35,6 +35,16 @@ class DataValidator {
 	    return $res;
 	}
 
+	public static function uniqueUsername($toValidate, $objectId=null) {
+		// Is There a association with the same name ?
+	    $res = "";
+	    $uniqueUsername = PHDB::findOne(Person::COLLECTION,array( "username" => $toValidate));      
+	    if ($uniqueUsername) { 
+	    	$res = "A user with the same username allready exists";
+	    }
+	    return $res;
+	}
+
 	public static function eventStartDate($toValidate, $objectId) {
 		$event = Event::getById($objectId);
 		return self::startDate($toValidate, $event);
