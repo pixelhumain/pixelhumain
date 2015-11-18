@@ -197,7 +197,7 @@
 			$(".sigModuleBg").show( 700 );
 			$(".btn-group-map").show( 700 );
 			$("#right_tool_map").show(700);
-			$(".btn-show-map").html("<i class='fa fa-list'></i>");
+			$("#btn-show-map").html("<i class='fa fa-list'></i>");
 
 			if($(".box-add").css("display") == "block"){
 				$(".box-add").hide(700);
@@ -214,8 +214,12 @@
 			$(".btn-group-map").hide( 700 );
 			$("#right_tool_map").hide(700);
 			$(".panel_map").hide(1);
-			$(".btn-show-map").html("<i class='fa fa-map'></i>");
+			$("#btn-show-map").html("<i class='fa fa-map'></i>");
 			
+			if(Sig.currentMarkerPopupOpen != null){
+				Sig.currentMarkerPopupOpen.closePopup();
+			}
+
 			if($(".box-add").css("display") == "none")
 				$("#ajaxSV").show( 700 );
 		}
