@@ -37,5 +37,7 @@
 		"I AM A MEMBER" => "JE SUIS MEMBRE",
 		"NOT A MEMBER" => "PAS MEMBRE",
 		"Contact information" => "Informations générales",
+
+		"A citizen ask to become an admin of one of your organization" => "Un citoyen demande à devenir administrateur d'une de vos organisations",
 	);
 ?>
