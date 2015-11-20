@@ -359,10 +359,10 @@ a.text-white {
     color: white; }
 
 .text-dark {
-  color: #3C5665; /*rgba(44, 47, 59, 0.4);*/ }
+  color: #3C5665 !important; /*rgba(44, 47, 59, 0.4);*/ }
 
 a.text-dark:hover {
-  color: #3C5665; /*rgba(44, 47, 59, 0.6);*/ }
+  color: #3C5665 !important; /*rgba(44, 47, 59, 0.6);*/ }
 
 .center {
   text-align: center; }
