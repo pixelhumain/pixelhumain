@@ -6,14 +6,14 @@ class OpenData
      * Tous les pays disponible à l'inscription
      * Use the ISO_3166-1 list (http://en.wikipedia.org/wiki/ISO_3166-1)
      */
-    public static $phCountries = array( "FR"=>"France",
-                        				"GP"=>"Guadeloupe",
-                      					"GF"=>"Guyanne Française",
-                        				"MQ"=>"Martinique",
-                        				"YT"=>"Mayotte",
-                        				"NC"=>"Nouvelle-Calédonie",
-                        				"RE"=>"Réunion",
-                                        "PM"=>"St Pierre et Miquelon");
+    public static $phCountries = array( "FR"=>"France", 
+                        				"GP"=>"Guadeloupe", //971
+                      					"GF"=>"Guyanne Française", //973
+                        				"MQ"=>"Martinique", //972
+                        				"YT"=>"Mayotte", //976
+                        				"NC"=>"Nouvelle-Calédonie", //988
+                        				"RE"=>"Réunion", //9*74
+                                        "PM"=>"St Pierre et Miquelon"); //975
     
 
     /**

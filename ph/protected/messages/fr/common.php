@@ -11,6 +11,7 @@ return array(
 
 	"My Profile"=> "Mon compte",
 	"My Calendar" => "Mon calendrier",
+
 	"Log Out" => "Déconnexion",
 
 	// LANGUE
@@ -245,6 +246,7 @@ return array(
 	"MY EVENTS" 		=> "MES ÉVÉNEMENTS",
 	"MY CITY" 			=> "MA COMMUNE",
 	"ADD SOMETHING" 	=> "AJOUTER",
+	"HELP US : BUGS, IDEAS" => "AIDEZ NOUS : BUG, IDEE",
 	"LOGOUT" 			=> "DÉCONNECTER",
 
 	"LOCAL ACTORS"		=> "Les acteurs locaux",
