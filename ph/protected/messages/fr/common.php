@@ -216,6 +216,7 @@ return array(
 	"Add a participant to this organization" => "Ajouter un participant",
 	
 	"Add member" => "Ajouter un membre",
+	"Become admin" => "Devenir admin",
 	"Member" 	 => "Membre",
 	"Members" 	 => "Membres",
 	"Show tag filters" => "Filtrer par tag",
@@ -291,7 +292,7 @@ return array(
 	"Tags" => "Tags",
 
 	"Change password" => "Changer votre mot de passe",
-	"Account info" => "Informations générales",
+	"Account info" => "Infos générales",
 	/* ---- */
 	
 
