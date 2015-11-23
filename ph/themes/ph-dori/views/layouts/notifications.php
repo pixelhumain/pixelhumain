@@ -171,14 +171,15 @@ function buildNotifications(list)
 
 	$.each( list , function( notifKey , notifObj )
 	{
-		var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url.substring( 15,notifObj.notify.url.length ) : "#";
+		var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url.substring( "/ph/communecter/".length,notifObj.notify.url.length ) : "#";
 		//convert url to hash for loadByHash
-		url = "#"+url.replace("/", ".");
+		url = "#"+url.replace(/\//g, ".");
+
 		var icon = (typeof notifObj.notify != "undefined") ? notifObj.notify.icon : "fa-bell";
 		var displayName = (typeof notifObj.notify != "undefined") ? notifObj.notify.displayName : "Undefined notification";
 
 		str = "<li class='notifLi notif_"+notifKey+" hide'>"+
-				"<a class='notif' data-id='"+notifKey+"' href='"+ url +"'>"+
+				"<a class='notif' data-id='"+notifKey+"' href='javascript:;' onclick='loadByHash(\""+ url +"\")'>"+
 					"<span class='label label-primary'>"+
 						'<i class="fa '+icon+'"></i>'+
 					"</span>" + 
