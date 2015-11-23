@@ -289,7 +289,7 @@ return array(
 	"Tags" => "Tags",
 
 	"Change password" => "Changer votre mot de passe",
-	"Account info" => "Informations générales",
+	"Account info" => "Infos générales",
 	/* ---- */
 	
 
