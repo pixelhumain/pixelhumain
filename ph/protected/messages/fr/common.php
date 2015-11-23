@@ -258,6 +258,8 @@ return array(
 	"LOCAL EVENTS"				=> "ÉVÉNEMENTS",
 	"LOCAL PROJECTS"			=> "PROJETS",
 	
+	"ADD SOMETHING TO MY NETWORK" => "Ajouter à mon réseau",
+
 	"Organizations types" => "Type d'organisations",
 
 	"Add an Event" => "Créer un nouvel événement",
@@ -273,7 +275,22 @@ return array(
 	"Show Directory" => "Afficher le répertoire",
 	"City Home page" => "Page accueil de cette ville",
 
+	"Invite people you know, you like, you met, you want to follow" => "Invitez quelqu'un que vous connaissez en lui envoyant un e-mail d'invitation",
+	"Connect organizations you know, you like, you met, you want to follow" => "Communectez votre association, entreprise, groupe, que vous connaissez, que vous aimez, que vous venez de découvrir ou que vous voulez suivre",
+	"Create and Attend local events" => "Créer et partagez un événement local",
+	"Promote or contribute to local projects" => "Faites connaitre un projet local",
 	
+	"A person" => "Inviter</br>quelqu'un",
+	"An organization" => "Créer</br>une organisation",
+	"A project" => "Créer</br>un projet",
+	"An event" => "Créer</br>un événement",
+
+	"Socials" => "Réseaux sociaux",
+	"Description" => "Description",
+	"Tags" => "Tags",
+
+	"Change password" => "Changer votre mot de passe",
+	"Account info" => "Infos générales",
 	/* ---- */
 	
 
