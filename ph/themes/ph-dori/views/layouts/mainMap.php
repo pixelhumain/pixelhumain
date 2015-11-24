@@ -45,8 +45,11 @@
  	if(isset(Yii::app()->session['userId'])){
  		//error_log("enregistrement du cookie geopos");
 		$user = Person::getById(Yii::app()->session['userId']);
-		Yii::app()->request->cookies['user_geo_latitude'] = new CHttpCookie('user_geo_latitude', $user["geo"]["latitude"]);
-		Yii::app()->request->cookies['user_geo_longitude'] = new CHttpCookie('user_geo_longitude', $user["geo"]["longitude"]);
+		if(isset($user["geo"]) && isset($user["geo"]["latitude"]) && 
+		   isset($user["geo"]["longitude"])){
+			Yii::app()->request->cookies['user_geo_latitude'] = new CHttpCookie('user_geo_latitude', $user["geo"]["latitude"]);
+			Yii::app()->request->cookies['user_geo_longitude'] = new CHttpCookie('user_geo_longitude', $user["geo"]["longitude"]);
+		}
 	}else{
 		if(isset(Yii::app()->request->cookies['user_geo_longitude'])){
 				$sigParams["firstView"] = array(  "coordinates" => array( Yii::app()->request->cookies['user_geo_latitude']->value, 
