@@ -11,6 +11,7 @@ return array(
 
 	"My Profile"=> "Mon compte",
 	"My Calendar" => "Mon calendrier",
+
 	"Log Out" => "Déconnexion",
 
 	// LANGUE
@@ -215,6 +216,7 @@ return array(
 	"Add a participant to this organization" => "Ajouter un participant",
 	
 	"Add member" => "Ajouter un membre",
+	"Become admin" => "Devenir admin",
 	"Member" 	 => "Membre",
 	"Members" 	 => "Membres",
 	"Show tag filters" => "Filtrer par tag",
@@ -245,6 +247,7 @@ return array(
 	"MY EVENTS" 		=> "MES ÉVÉNEMENTS",
 	"MY CITY" 			=> "MA COMMUNE",
 	"ADD SOMETHING" 	=> "AJOUTER",
+	"HELP US : BUGS, IDEAS" => "AIDEZ NOUS : BUG, IDEE",
 	"LOGOUT" 			=> "DÉCONNECTER",
 
 	"LOCAL ACTORS"		=> "Les acteurs locaux",
