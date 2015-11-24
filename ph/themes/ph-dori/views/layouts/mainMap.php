@@ -43,7 +43,7 @@
  
  	/* COOKIE GEO POSITION */
  	if(isset(Yii::app()->session['userId'])){
- 		error_log("enregistrement du cookie geopos");
+ 		//error_log("enregistrement du cookie geopos");
 		$user = Person::getById(Yii::app()->session['userId']);
 		Yii::app()->request->cookies['user_geo_latitude'] = new CHttpCookie('user_geo_latitude', $user["geo"]["latitude"]);
 		Yii::app()->request->cookies['user_geo_longitude'] = new CHttpCookie('user_geo_longitude', $user["geo"]["longitude"]);
@@ -52,9 +52,9 @@
 				$sigParams["firstView"] = array(  "coordinates" => array( Yii::app()->request->cookies['user_geo_latitude']->value, 
 																		  Yii::app()->request->cookies['user_geo_longitude']->value),
 											 	  "zoom" => 13);
-			error_log("utilisation du cookie geopos");
+			//error_log("utilisation du cookie geopos");
 		}else{
-			error_log("aucun cookie geopos trouvé");
+			//error_log("aucun cookie geopos trouvé");
 		}
 	}
 
