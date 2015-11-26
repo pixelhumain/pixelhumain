@@ -171,7 +171,7 @@ function buildNotifications(list)
 
 	$.each( list , function( notifKey , notifObj )
 	{
-		var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url.substring( "/ph/communecter/".length,notifObj.notify.url.length ) : "#";
+		var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url.substring( "<?php echo substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1) ?>communecter/".length,notifObj.notify.url.length ) : "#";
 		//convert url to hash for loadByHash
 		url = "#"+url.replace(/\//g, ".");
 
