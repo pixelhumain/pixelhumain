@@ -416,22 +416,33 @@ blockquote{
   position: relative;
   width: 100%;
   opacity: 1 !important;
-  margin: 10px 0px -5px;
+  margin: 0px 0px 0px;
   text-align: left;
   right: 0px;
   top: 0px;
+  padding: 0px;
+  border-bottom: 1px solid lightgrey;
 }
 .panel-tools a{
-  background-color: rgba(255, 255, 255, 0.7) !important;
+  background-color: rgba(255, 255, 255, 0) !important;
   color:#3C5665 !important;
-  margin-bottom:3px;
+  margin-bottom:0px;
+  border: 0;
+  border: 1px solid transparent;
+  border-right: 1px solid lightgray;
+  border-radius: 0px;
+  margin-right: -4px;
+  /*margin-left: -4px;*/
 }
 .panel-tools a:hover{
-  border-color:#357499 !important;
+  background-color: rgba(255, 255, 255, 0) !important;
+  border-color:transparent !important;
+  border-right: 1px solid lightgray !important;
   color:#357499 !important;
 }
 .panel-tools .btn-xs{
-  border-color: rgba(255, 255, 255, 0) !important;
+  /*border-color: rgba(175, 175, 175, 0) !important;*/
+  padding:5px;
 }
 .panel-tools .btn-xs:hover{
   background-color: rgba(255, 255, 255, 1) !important;
@@ -439,4 +450,8 @@ blockquote{
 }
 .panel-tools .btn-red{
   color:#E25555 !important;
+}
+.panel-tools .btn-red:hover{
+  background-color:#E25555 !important;
+  color:#FFF !important;
 }

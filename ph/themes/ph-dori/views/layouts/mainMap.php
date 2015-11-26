@@ -239,7 +239,7 @@
 				Sig.currentMarkerPopupOpen.closePopup();
 			}
 
-			if($(".box-add").css("display") == "none")
+			if($(".box-add").css("display") == "none" && <?php echo isset(Yii::app()->session['userId']) ? "true" : "false"; ?>)
 				$("#ajaxSV").show( 700 );
 		}
 		
