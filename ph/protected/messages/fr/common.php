@@ -14,6 +14,12 @@ return array(
 
 	"Log Out" => "Déconnexion",
 
+	"YES" => "OUI",
+	"NO" => "NON",
+
+	"Yes" => "Oui",
+	"No" => "Non",
+
 	// LANGUE
 	"french" => "Français",
 	"english" => "Anglais",
