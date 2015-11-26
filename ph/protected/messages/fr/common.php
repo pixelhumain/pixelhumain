@@ -26,7 +26,7 @@ return array(
 	"SAVE" => "ENREGISTRER",
 	"LOADING" => "EN COURS",
 	"Invite" => "Inviter",
-	"Edit" => "Modifier",
+	"Edit" => "Éditer",
 	"Delete" => "Supprimer",
 	"Remove" => "Supprimer",
 	"Back" => "Retour",
