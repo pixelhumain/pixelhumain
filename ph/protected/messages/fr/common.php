@@ -183,6 +183,7 @@ return array(
 	"Send a message to this Project" 		=> "Envoyer un message au(x) responsable(s) de ce projet",
 	"Send a message to this Organization" 	=> "Envoyer un message au(x) responsable(s) de cette organisation",
 	"Send a message to this Event" 			=> "Envoyer un message au(x) responsable(s) de cet événement",
+	"Send invitations"						=> "Envoyer des invitations",
 
 	"Contact" 				=> "Contacter",
 	"Unfollow this Person" 	=> "Ne plus suivre cette personne",
@@ -196,6 +197,7 @@ return array(
 	"Leave" 						=> "Quitter",
 	"Join this Organization" 		=> "Rejoindre cette organisation",
 	"Join" 							=> "Rejoindre",
+	"Manage"						=> "Administrer",
 
 	"Declare me as admin of this organization" 	=> "Devenir administrateur de cette organisation",
 	"Become admin" 								=> "Devenir administrateur",
@@ -299,6 +301,11 @@ return array(
 
 	"Change password" => "Changer votre mot de passe",
 	"Account info" => "Infos générales",
+	
+	"No attendee for this event" => "Aucun participant pour cet évènement",
+	"No member for this organization" => "Aucun membre inscrit sur cette organisation",
+	"No contributor for this project" => "Aucun contributeur sur ce projet",
+	"Organizator detail" => "Détail de l'organisateur",
 	/* ---- */
 	
 
