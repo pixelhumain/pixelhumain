@@ -81,7 +81,7 @@ onSave: (optional) overloads the generic saveProcess
 	        fieldHTML += '<input type="hidden" name="id" value="'+((settings.formObj.id) ? settings.formObj.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
-						'<button type="submit" class="btn btn-green pull-right">'+
+						'<button id="btn-submit-form" type="submit" class="btn btn-green pull-right">'+
 							'Submit <i class="fa fa-arrow-circle-right"></i>'+
 						'</button>'+
 					'</div>';
@@ -171,10 +171,10 @@ onSave: (optional) overloads the generic saveProcess
         		
         		fieldHTML += 	'<span id="lbl-send-to">Send to <i class="fa fa-caret-right"></i>'+ 
 	        					'<div class="dropdown">' +
-								  '<a data-toggle="dropdown" class="btn btn-sm btn-default" id="btn-toogle-dropdown-scope" href="#"><i class="fa fa-group"></i> My wall <i class="fa fa-caret-down"></i></a>' +
+								  '<a data-toggle="dropdown" class="btn btn-sm btn-default" id="btn-toogle-dropdown-scope" href="#"><i class="fa fa-group"></i> Mon mur <i class="fa fa-caret-down"></i></a>' +
 								  '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">' +
 								   '<li><a href="#" id="scope-my-wall"><i class="fa fa-group"></i> My wall</a></li>' +
-								   '<li><a href="#" id="scope-select" data-toggle="modal" data-target="#modal-scope"><i class="fa fa-plus"></i> Select</a></li>' +
+								   '<li><a href="#" id="scope-select" data-toggle="modal" data-target="#modal-scope"><i class="fa fa-plus"></i> Selectionner</a></li>' +
 								  '</ul>' +
 								'</div></span>' ;
 
@@ -240,6 +240,8 @@ onSave: (optional) overloads the generic saveProcess
 														var cp = (typeof value.address != "undefined" && typeof value.address.postalCode != "undefined") ? value.address.postalCode : typeof value.cp != "undefined" ? value.cp : "";
 														var city = (typeof value.address != "undefined" && typeof value.address.addressLocality != "undefined") ? value.address.addressLocality : "";
 														var profilImageUrl = (typeof value.profilImageUrl != "undefined" && value.profilImageUrl != "") ? baseUrl + value.profilImageUrl : assetPath + "/images/news/profile_default_l.png";
+														var name =  value.name != "undefined" ? value.name : 
+																	value.username != "undefined" ? value.username : "";
 														//console.log("data contact +++++++++++ "); console.dir(value);
 				fieldHTML += 							'<li>' +
 															'<div class="btn btn-default btn-scroll-type btn-select-contact"  id="contact'+key2+'">' +
