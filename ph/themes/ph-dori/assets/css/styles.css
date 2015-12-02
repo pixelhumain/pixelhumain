@@ -5247,7 +5247,7 @@ div.portfolio-info {
   margin-right: 4px; }
 
 .portfolio-item {
-  position: relative; }
+  /*position: relative;*/ }
 
 .portfolio-item a.thumb-info span.thumb-info-title {
   background: rgba(0, 0, 0, 0.7);
@@ -5278,7 +5278,7 @@ div.portfolio-info {
   margin-bottom: 20px; }
 
 .portfolio-item {
-  position: relative;
+  /*position: relative;*/
   overflow: hidden; }
   .portfolio-item .chkbox {
     width: 18px;
