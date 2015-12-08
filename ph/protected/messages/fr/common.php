@@ -40,7 +40,7 @@ return array(
 	"View" => "Voir",
 	"Search" => "Rechercher",
 	"ADD" => "AJOUTER",
-	
+	"Unlink" => "Annuler le lien",
 	//MONTH
 	"january"=>"janvier",
 	"febuary"=>"février",
@@ -72,6 +72,10 @@ return array(
 	"Please specify your first name" => "Veuillez spécifier votre nom",
 	"Please select a type" => "Veuillez selectionner un type",
 	"Please enter an email" => "Veuillez entrer un e-mail",
+	"Please try again" => "Essaie encore s'il-te plait",
+	//Success
+	"Link divorced succesfully" => "Le lien a été supprimé avec succès",
+	"Relation applied succesfully" => "La relation a bien été crée",
 	
 	//Form
 	"Required Fields" => "Champs requis",
