@@ -3,6 +3,50 @@
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
 <!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
 <!--[if !IE]><!-->
+
+<?php 
+	/* COOKIE GEO POSITION */
+
+ 	/*	LISTE DES COOKIES
+ 		-----------------
+		-user_geo_latitude
+		-user_geo_longitude
+		-insee
+		-cityName
+ 	*/
+ 	if(isset(Yii::app()->session['userId'])){
+ 		
+ 		$user = Person::getById(Yii::app()->session['userId']);
+
+ 		$cookies = Yii::app()->request->cookies;
+ 		$coockieDuration = time() + (3600*24*365);
+
+ 		if(isset($user["geo"]) && 
+ 		   isset($user["geo"]["latitude"]) && isset($user["geo"]["longitude"]))
+		{
+			setcookie('user_geo_latitude', $user["geo"]["latitude"], $coockieDuration);
+			setcookie('user_geo_longitude', $user["geo"]["longitude"], $coockieDuration);
+		}
+
+		if(isset($user["address"]) && isset($user["address"]["codeInsee"]))
+			setcookie('insee', $user["address"]["codeInsee"], $coockieDuration);
+		
+
+		if(isset($user["address"]) && isset($user["address"]["addressLocality"]))
+			setcookie('cityName', $user["address"]["addressLocality"], $coockieDuration);
+
+	}else{ //user not connected
+		if(isset($cookies['user_geo_longitude'])){
+				$sigParams["firstView"] = array(  "coordinates" => array( $cookies['user_geo_latitude']->value, 
+																		  $cookies['user_geo_longitude']->value),
+											 	  "zoom" => 13);
+			
+		}else{
+			//error_log("aucun cookie geopos trouvé");
+		}
+	}
+
+?>
 <html lang="en" class="no-js">
 	<!--<![endif]-->
 	<!-- start: HEAD -->
