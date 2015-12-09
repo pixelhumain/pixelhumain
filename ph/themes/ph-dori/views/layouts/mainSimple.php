@@ -24,16 +24,16 @@
  		if(isset($user["geo"]) && 
  		   isset($user["geo"]["latitude"]) && isset($user["geo"]["longitude"]))
 		{
-			setcookie('user_geo_latitude', $user["geo"]["latitude"], $coockieDuration);
-			setcookie('user_geo_longitude', $user["geo"]["longitude"], $coockieDuration);
+			setcookie('user_geo_latitude', $user["geo"]["latitude"], $coockieDuration, "/ph/");
+			setcookie('user_geo_longitude', $user["geo"]["longitude"], $coockieDuration, "/ph/");
 		}
 
 		if(isset($user["address"]) && isset($user["address"]["codeInsee"]))
-			setcookie('insee', $user["address"]["codeInsee"], $coockieDuration);
+			setcookie('insee', $user["address"]["codeInsee"], $coockieDuration, "/ph/");
 		
 
 		if(isset($user["address"]) && isset($user["address"]["addressLocality"]))
-			setcookie('cityName', $user["address"]["addressLocality"], $coockieDuration);
+			setcookie('cityName', $user["address"]["addressLocality"], $coockieDuration, "/ph/");
 
 	}else{ //user not connected
 		if(isset($cookies['user_geo_longitude'])){
