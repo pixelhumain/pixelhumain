@@ -10,12 +10,15 @@
         /* MAP */
         "mapHeight" => 235,
         "mapTop" => 0,
-        "mapColor" => '',  //ex : '#456074', //'#5F8295', //'#955F5F', rgba(69, 116, 88, 0.49)
-        "mapOpacity" => 1, //ex : 0.4
+        "mapColor" => 'rgb(69, 96, 116)',  //ex : '#456074', //'#5F8295', //'#955F5F', rgba(69, 116, 88, 0.49)
+        "mapOpacity" => 0.4, //ex : 0.4
 
         /* MAP LAYERS (FOND DE CARTE) */
-        "mapTileLayer" 	  => '//{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', //'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'
+        "mapTileLayer" 	  => '//{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', //'', //'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'
         "mapAttributions" => '<a href="http://www.opencyclemap.org">OpenCycleMap</a>',	 	//'Map tiles by <a href="http://stamen.com">Stamen Design</a>'
+
+        //"mapTileLayer" 	  => '//{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', //'//{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', //'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'
+        //"mapAttributions" => '<a href="http://www.opencyclemap.org">OpenCycleMap</a>',	 	//'Map tiles by <a href="http://stamen.com">Stamen Design</a>'
 
         /* MAP BUTTONS */
         //"mapBtnBgColor" => '#4C727E', //'rgba(76, 114, 126, 0.65)', //'#E6D414',
@@ -34,32 +37,14 @@
         "useFullPage" 	 	 => true,
         "useResearchTools" 	 => true,
         "useChartsMarkers" 	 => false,
-        "useHelpCoordinates" => true,
+        "useHelpCoordinates" => false,
         
         "notClusteredTag" 	 => array(),
-        "firstView"		  	 => array(  "coordinates" => array(-1.4061088354351594, -26.015625),
+        "firstView"		  	 => array(  "coordinates" => array(23.725011735951796, 71.3671875),//array(-1.4061088354351594, -26.015625),
 									 	"zoom"		  => 3),
     );
  
- 	/* COOKIE GEO POSITION */
- 	if(isset(Yii::app()->session['userId'])){
- 		//error_log("enregistrement du cookie geopos");
-		$user = Person::getById(Yii::app()->session['userId']);
-		if(isset($user["geo"]) && isset($user["geo"]["latitude"]) && 
-		   isset($user["geo"]["longitude"])){
-			Yii::app()->request->cookies['user_geo_latitude'] = new CHttpCookie('user_geo_latitude', $user["geo"]["latitude"]);
-			Yii::app()->request->cookies['user_geo_longitude'] = new CHttpCookie('user_geo_longitude', $user["geo"]["longitude"]);
-		}
-	}else{
-		if(isset(Yii::app()->request->cookies['user_geo_longitude'])){
-				$sigParams["firstView"] = array(  "coordinates" => array( Yii::app()->request->cookies['user_geo_latitude']->value, 
-																		  Yii::app()->request->cookies['user_geo_longitude']->value),
-											 	  "zoom" => 13);
-			//error_log("utilisation du cookie geopos");
-		}else{
-			//error_log("aucun cookie geopos trouvé");
-		}
-	}
+ 	
 
 	/* ***********************************************************************************/
 	//chargement de toutes les librairies css et js indispensable pour la carto
@@ -84,6 +69,7 @@
 		position:relative !important;
 		width:100% !important;
 		height:100% !important;
+		background-color: <?php echo $sigParams["mapColor"]; ?> !important; 
 	}
 	.<?php echo $moduleName; ?>{
 		width: 100% !important;

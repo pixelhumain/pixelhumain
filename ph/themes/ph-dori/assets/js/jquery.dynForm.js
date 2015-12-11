@@ -240,9 +240,10 @@ onSave: (optional) overloads the generic saveProcess
 														var cp = (typeof value.address != "undefined" && typeof value.address.postalCode != "undefined") ? value.address.postalCode : typeof value.cp != "undefined" ? value.cp : "";
 														var city = (typeof value.address != "undefined" && typeof value.address.addressLocality != "undefined") ? value.address.addressLocality : "";
 														var profilImageUrl = (typeof value.profilImageUrl != "undefined" && value.profilImageUrl != "") ? baseUrl + value.profilImageUrl : assetPath + "/images/news/profile_default_l.png";
-														var name =  value.name != "undefined" ? value.name : 
-																	value.username != "undefined" ? value.username : "";
+														var name =  typeof value.name != "undefined" ? value.name : 
+																	typeof value.username != "undefined" ? value.username : "";
 														//console.log("data contact +++++++++++ "); console.dir(value);
+														if(name != "")
 				fieldHTML += 							'<li>' +
 															'<div class="btn btn-default btn-scroll-type btn-select-contact"  id="contact'+key2+'">' +
 																'<input type="checkbox" name="scope-'+type.name+'" class="chk-scope-'+type.name+'" id="chk-scope-'+key2+'" value="'+key2+'"> '+
