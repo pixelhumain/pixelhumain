@@ -73,10 +73,15 @@ return array(
 	"Please select a type" => "Veuillez selectionner un type",
 	"Please enter an email" => "Veuillez entrer un e-mail",
 	"Please try again" => "Essaie encore s'il-te plait",
+	"Your are already admin of" => "Vous êtes déjà admin de",
+	
 	//Success
 	"Link divorced succesfully" => "Le lien a été supprimé avec succès",
 	"Relation applied succesfully" => "La relation a bien été crée",
-	
+	"You are now admin of" => "Vous êtes maintenant admin de",
+	"New admin well register" => "Le nouvel admin est bien enregistré",
+	"New member well register" => "Le nouveau membre est bien enregistré",
+	"Your request has been sent to other admins." => "Votre demande a été envoyée aux autres admins",
 	//Form
 	"Required Fields" => "Champs requis",
 	"Save" => "Sauvegarder",
@@ -88,7 +93,10 @@ return array(
 
 	//Authorization
 	"Access denied" => "Accès refusé",
-	
+	"Accept as admin" => "Accepter comme admin",
+	"Accept as member" => "Accepter comme membre",
+	"Accept as contributor" => "Accepter comme contributeur",	
+	"Wait for confirmation" => "En attente de confirmation", 
 	//TYPES
 	"NGO" => "Association",
 	"LocalBusiness" => "Entreprise",
@@ -168,11 +176,17 @@ return array(
 
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
-	"person" => "Citoyen",
-	"organizations" => "Organisation",
-	"projects" => "Projet",
-	"events" => "Événement",
-
+	"person" => "citoyen",
+	"organization" => "organisation",
+	"project" => "projet",
+	"event" => "évènement",
+	/* ---- */
+	/*traduire un type de donnée (au singulier) avec un pronom*/
+	"this person" => "ce citoyen",
+	"this organization" => "cette organisation",
+	"this project" => "ce projet",
+	"this event" => "cet évènement",
+	
 	"PROJECT" => "PROJET",
 	"DIRECTORY " => "Répertoire",
 	"DIRECTORY of" => "Répertoire de",
