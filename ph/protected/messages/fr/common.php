@@ -74,14 +74,20 @@ return array(
 	"Please enter an email" => "Veuillez entrer un e-mail",
 	"Please try again" => "Essaie encore s'il-te plait",
 	"Your are already admin of" => "Vous êtes déjà admin de",
+	"Invalid request" => "requête incorrecte",
 	
 	//Success
-	"Link divorced succesfully" => "Le lien a été supprimé avec succès",
-	"Relation applied succesfully" => "La relation a bien été crée",
+	"Link divorced successfully" => "Le lien a été supprimé avec succès",
+	"Relation applied successfully" => "La relation a bien été crée",
 	"You are now admin of" => "Vous êtes maintenant admin de",
 	"New admin well register" => "Le nouvel admin est bien enregistré",
 	"New member well register" => "Le nouveau membre est bien enregistré",
 	"Your request has been sent to other admins." => "Votre demande a été envoyée aux autres admins",
+	"News has been successfully delated" => "La publication a été supprimée avec succès",
+	"News well updated" => "La publication a été mise à jour",
+	
+	//Confirm
+	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication?",
 	//Form
 	"Required Fields" => "Champs requis",
 	"Save" => "Sauvegarder",
