@@ -26,10 +26,10 @@ class DataValidator {
 	}
 	
 	public static function organizationSameName($toValidate, $objectId=null) {
-		// Is There a association with the same name ?
+		// Is There a association with the same name && it is not the current organization ?
 	    $res = "";
 	    $organizationSameName = PHDB::findOne(Organization::COLLECTION,array( "name" => $toValidate));      
-	    if ($organizationSameName) { 
+	    if ($organizationSameName && isset($objectId) && $objectId !=  (String) $organizationSameName["_id"]){ 
 	    	$res = "An organization with the same name allready exists";
 	    }
 	    return $res;
