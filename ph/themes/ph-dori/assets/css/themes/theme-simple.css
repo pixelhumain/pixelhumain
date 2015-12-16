@@ -54,7 +54,7 @@
 }
 
 .box-white-round{
-  background-color:rgba(255, 255, 255, 0.5) !important;
+  background-color:rgba(255, 255, 255, 0.9) !important;
   border-radius:10px !important;
 }
 
@@ -149,9 +149,32 @@ li.mix{
 }
 
 .moduleLabel{
-  margin-left:70px;
+  margin-left:70px;  
 }
 
+#menu-top-container .moduleLabel{
+  margin-left:70px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 56%;
+  /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  font-weight: 300; */ 
+}
+@media screen and (max-width: 1024px) {
+  #menu-top-container .moduleLabel{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 42%;
+    max-height: 36px;
+    font-size: 18px !important;
+    height: 36px;
+    padding-top: 5px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    font-weight: 200;
+  }
+}
 #btn-show-map{
   right: 0px !important;
 }
