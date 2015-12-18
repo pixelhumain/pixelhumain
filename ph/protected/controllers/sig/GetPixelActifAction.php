@@ -30,19 +30,38 @@ class GetPixelActifAction extends CAction
 					  );
 		
 		//rajoute les filtres choisi dans le panel (seulement s'il y a au moins 1 filtre selectionné)
-		if(isset($_POST['types']))
-		//TAG = TYPE = "citoyen,pixelActif,partnerPH,commune,association,projectLeader
-		$where['type'] = array('$in' => $_POST['types']);
-    	//si aucun filtre n'est selectionné, on ne fait pas la recherche
-    	else { 
+		
+		if(isset($_POST['types'])) {
+			$types = $_POST['types'];
+			$users = array();
+		} else { 
     		Rest::json( array("result" => "Aucun résultat") );
         	Yii::app()->end();
     	}
-    	
-    								  
-    	$users = PHDB::find(PHType::TYPE_CITOYEN, $where);
+
+		foreach ($types as $type) {
+			if ($type == "pixelActif" || $type == "projectLeader") {
+				$collection = Person::COLLECTION;
+				$where['type'] = $type;
+			} else if ($type == "association") {
+				$collection = Organization::COLLECTION;
+				$where['type'] = $type;
+			} else if ($type == "commune") {
+				$collection = City::COLLECTION;
+				$where['communected'] = true;
+			} else if ($type == "none" || $type == "all" || $type == "citoyen") {
+				$collection = Person::COLLECTION;
+				unset($where['type']);
+			} else {
+				error_log("Unknown type in getPixelActifAction : ".$type);
+				Rest::json( array("result" => "Unknown type in getPixelActifAction : ".$type) );
+        		Yii::app()->end();
+			}
+			$currentSearch = PHDB::find($collection, $where);
+			$users = array_merge($users, $currentSearch);
+		}
+		
         $users["origine"] = "getPixelActif";
-    	
     	
     	Rest::json( $users );
         Yii::app()->end();
