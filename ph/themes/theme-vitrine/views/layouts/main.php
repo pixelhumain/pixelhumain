@@ -73,7 +73,11 @@
     	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/custom.js' , CClientScript::POS_END);
     	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/bootstrap/js/bootstrap.js' , CClientScript::POS_END);
     	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.flexslider-min.js' , CClientScript::POS_END);
-
+        $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/sig/leaflet.js' , CClientScript::POS_END);
+        $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/sig/leaflet.draw-src.js' , CClientScript::POS_END);
+        $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/sig/leaflet.draw.js' , CClientScript::POS_END);
+        $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/sig/leaflet.markercluster-src.js' , CClientScript::POS_END);
+        
     ?>
   </body>
   <!-- END BODY -->
