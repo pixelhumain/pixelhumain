@@ -213,10 +213,10 @@
 		<script type="text/javascript">
 			//si l'utilisateur est connecté
 		 	<?php if($user != "NOT_CONNECTED") { ?>
-				var user_geo_latitude  = "<?php echo $user_geo_latitude; ?>"
-	  			var user_geo_longitude = "<?php echo $user_geo_longitude; ?>"
-	  			var insee 	 = "<?php echo $insee; ?>"
-	  			var cityName = "<?php echo $cityName; ?>"
+				var user_geo_latitude  = "<?php echo $user_geo_latitude; ?>";
+	  			var user_geo_longitude = "<?php echo $user_geo_longitude; ?>";
+	  			var insee 	 = "<?php echo $insee; ?>";
+	  			var cityName = "<?php echo $cityName; ?>";
 	  			//on met à jour ses cookies
 	  			jQuery(document).ready(function() {
 	  				updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
