@@ -2930,8 +2930,32 @@ body.login {
   filter: blur(5px);*/
 }
 
+/*.bgpixeltree {
+  background-image: url("../images/bg_pixeltree_2.jpg");
+  background-color: transparent;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}*/
+.bgpixeltree{
+  background-image: url(../images/bg-pixel-left-min.jpg), url(../images/bg-pixel-right-min.jpg);
+  background-position: left top, right top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.bgpixeltree_little {
+  background-image: url("../images/logoL.jpg");
+  background-color: transparent;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.bggrass {
+  background-image: url("../images/bg_grass2.jpg");
+  background-color: transparent;
+  /*background-size: 100%;*/
+  /*background-repeat: no-repeat;*/
+}
 .bgcity {
-  background-image: url("../images/bg_grass.jpg");
+  background-image: url("../images/bg_city.jpg");
   background-color: transparent;
 }
 .bgwave {
