@@ -14,7 +14,7 @@
         "mapOpacity" => 0.4, //ex : 0.4
 
         /* MAP LAYERS (FOND DE CARTE) */
-        "mapTileLayer" 	  => '//{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', //'', //'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'
+        "mapTileLayer" 	  => '//stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', //'', //'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'
         "mapAttributions" => '<a href="http://www.opencyclemap.org">OpenCycleMap</a>',	 	//'Map tiles by <a href="http://stamen.com">Stamen Design</a>'
 
         //"mapTileLayer" 	  => '//{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', //'//{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', //'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'
@@ -32,7 +32,7 @@
         "useRightList" 		 => true,
         "useZoomButton" 	 => true,
         "useHomeButton" 	 => true,
-        "useSatelliteTiles"	 => true,
+        "useSatelliteTiles"	 => false,
         "useFullScreen" 	 => true,
         "useFullPage" 	 	 => true,
         "useResearchTools" 	 => true,

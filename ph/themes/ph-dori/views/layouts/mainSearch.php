@@ -1,83 +1,5 @@
 <!DOCTYPE html>
-<!-- Template Name: Rapido - Responsive Admin Template build with Twitter Bootstrap 3.x Version: 1.0 Author: ClipTheme -->
-<!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
-<!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
-<!--[if !IE]><!-->
-
-<?php 
-	/*	if(isset(Yii::app()->session['userId'])){
- 		
- 		$user = Person::getById(Yii::app()->session['userId']);
-
- 		$cookies = Yii::app()->request->cookies;
- 		$coockieDuration = time() + (3600*24*365);
-
- 		if(isset($user["geo"]) && 
- 		   isset($user["geo"]["latitude"]) && isset($user["geo"]["longitude"]))
-		{
-			setcookie('user_geo_latitude', $user["geo"]["latitude"], $coockieDuration, "/ph/");
-			setcookie('user_geo_longitude', $user["geo"]["longitude"], $coockieDuration, "/ph/");
-		}
-
-		if(isset($user["address"]) && isset($user["address"]["codeInsee"]))
-			setcookie('insee', $user["address"]["codeInsee"], $coockieDuration, "/ph/");
-		
-
-		if(isset($user["address"]) && isset($user["address"]["addressLocality"]))
-			setcookie('cityName', $user["address"]["addressLocality"], $coockieDuration, "/ph/");
-
-	}else{ //user not connected
-		if(isset($cookies['user_geo_longitude'])){
-				$sigParams["firstView"] = array(  "coordinates" => array( $cookies['user_geo_latitude']->value, 
-																		  $cookies['user_geo_longitude']->value),
-											 	  "zoom" => 13);
-			
-		}else{
-			//error_log("aucun cookie geopos trouvé");
-		}
-	}
-*/
-
-	/* COOKIE GEO POSITION */
-
- 	/*	LISTE DES COOKIES
- 		-----------------
-		-user_geo_latitude
-		-user_geo_longitude
-		-insee
-		-cityName
- 	*/
-	$user = "NOT_CONNECTED";
- 	if(isset(Yii::app()->session['userId'])){
- 		$user = Person::getById(Yii::app()->session['userId']);
-		
-		$user_geo_latitude = ""; $user_geo_longitude = "";
-		$insee = ""; $cityName = "";
-
-		if(isset($user["geo"]) && 
- 		   isset($user["geo"]["latitude"]) && isset($user["geo"]["longitude"]))
-		{
-			$user_geo_latitude = $user["geo"]["latitude"];
-			$user_geo_longitude = $user["geo"]["longitude"];
-		}
-
-		if(isset($user["address"]) && isset($user["address"]["codeInsee"]))
-			$insee = $user["address"]["codeInsee"];
-			
-		if(isset($user["address"]) && isset($user["address"]["addressLocality"]))
-			$cityName = $user["address"]["addressLocality"];
-			
-	}else{ //user not connected
-		if(isset($cookies['user_geo_longitude'])){
-				$sigParams["firstView"] = array(  "coordinates" => array( $cookies['user_geo_latitude']->value, 
-																		  $cookies['user_geo_longitude']->value),
-											 	  "zoom" => 13);		
-		}else{
-			//error_log("aucun cookie geopos trouvé");
-		}
-	}
-
-?>
+	
 <html lang="en" class="no-js">
 	<!--<![endif]-->
 	<!-- start: HEAD -->
@@ -117,10 +39,8 @@
 		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" />
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple.css" type="text/css" id="skin_color">
 		
-		<?php if($user == "NOT_CONNECTED"){ ?>
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple-login.css" type="text/css" id="skin_color">
-		<?php } ?>
-
+		
 		<!-- end: MAIN CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
@@ -161,15 +81,8 @@
 	</head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
-	<body class="login bggrass">
+	<body class="bgpixeltree">
 		
-		<?php 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-				$this->renderPartial($layoutPath.'mainMap');  ?>
-		
-		<?php 
-			if(isset(Yii::app()->session['userId']))
-				$this->renderPartial($layoutPath.'notifications');
-		?>
 		<?php echo $content;  ?>
 		<!-- start: MAIN JAVASCRIPTS -->
 		<?php
@@ -196,10 +109,10 @@
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-cookie/jquery.cookie.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , CClientScript::POS_END);
 
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/jquery.dynForm.js' , CClientScript::POS_END);
+		//$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/jquery.dynForm.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/main.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/cookie.js' , CClientScript::POS_END);
+		//$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/cookie.js' , CClientScript::POS_END);
 
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.css');
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.min.js' , CClientScript::POS_END);
@@ -210,19 +123,6 @@
 		?>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 
-		<script type="text/javascript">
-			//si l'utilisateur est connecté
-		 	<?php if($user != "NOT_CONNECTED") { ?>
-				var user_geo_latitude  = "<?php echo $user_geo_latitude; ?>";
-	  			var user_geo_longitude = "<?php echo $user_geo_longitude; ?>";
-	  			var insee 	 = "<?php echo $insee; ?>";
-	  			var cityName = "<?php echo $cityName; ?>";
-	  			//on met à jour ses cookies
-	  			jQuery(document).ready(function() {
-	  				updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
-	  			});
-  			<?php } ?>
-		</script>
 
 	</body>
 	<!-- end: BODY -->

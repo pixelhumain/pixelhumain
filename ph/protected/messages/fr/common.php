@@ -331,7 +331,9 @@ return array(
 	"No member for this organization" => "Aucun membre inscrit sur cette organisation",
 	"No contributor for this project" => "Aucun contributeur sur ce projet",
 	"Organizator detail" => "Détail de l'organisateur",
-	/* ---- */
+	
+	"Tags" => "Tags",
+	"Places" => "Lieux",
 	
 
 );
