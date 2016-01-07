@@ -8,7 +8,7 @@ class ExtractProcessAction extends CAction{
 			$get_url = $_POST["url"]; 
 			$urlVideo="";	
 			$imageMedia="";
-			$size="";
+			$size=array("0");
 			$page_title="";
 			$page_body="";
 			/*Scénario à écrire pour les images
@@ -40,7 +40,7 @@ class ExtractProcessAction extends CAction{
 			
 			//Get Body Text
 			// Get meta description else replace with body text
-	        $has_meta_description = $get_content->find('meta[name=description]');
+	        $has_meta_description = $get_content->find('meta');
 	
 	        if($has_meta_description){ // if meta description is found
 	            foreach($get_content->find('meta') as $element) {
@@ -52,13 +52,20 @@ class ExtractProcessAction extends CAction{
 	                    }else {
 	                        $page_body = $element->content;
 	                    }
+	                } else if ($element->property == 'og:description'){
+		                $strlength = strlen($element->content);
+	                    if($strlength > 120){
+	                        $pos=strpos($element->content, ' ', 120);
+	                        $page_body = substr($element->content , 0, $pos)."...";
+	                    }else {
+	                        $page_body = $element->content;
+	                    }
 	                }
 	                if($element->property == 'og:image'){
-						
-						if(@file_get_contents($element->content)) {
-							$imageMedia = $element->content;
-							$size=getimagesize($imageMedia);
-						}
+						//if(@file_get_contents($element->content)) {
+						$imageMedia = $element->content;
+						$size=getimagesize($imageMedia);
+						//}
 	                }
 	                
 	                if ($element->property == "og:type" ){
@@ -89,25 +96,25 @@ class ExtractProcessAction extends CAction{
 	        }
 			$image_urls = array();
 			//get all images URLs in the content
+			if (empty($imageMedia)){
 			foreach($get_content->find('img') as $element) 
 			{
 					/* check image URL is valid and name isn't blank.gif/blank.png etc..
 					you can also use other methods to check if image really exist */
-				if (empty($imageMedia)){
+
 					if(!preg_match('/blank.(.*)/i', $element->src) && (filter_var($element->src, FILTER_VALIDATE_URL,FILTER_FLAG_PATH_REQUIRED)) || substr($element->src,0,2)=="//")
 					{
 						if(@file_get_contents($element->src)) {
 							$sizeNewImage = getimagesize($element->src);
 							if ($sizeNewImage["mime"]== "image/png" || $sizeNewImage["mime"]== "image/jpg" || $sizeNewImage["mime"]== "image/jpeg" ){
-								if(!empty($size)){
-									if($sizeNewImage[0] == $size[0]){
-										$image_urls[] =  $element->src;
-									}else if ($sizeNewImage[0] > $size[0]){
-										$image_urls=[];
-								$image_urls[] =  $element->src;
-										$size[0]=$sizeNewImage[0];
-									}
+								if($sizeNewImage[0] == $size[0]){
+									$image_urls[] =  $element->src;
+								}else if ($sizeNewImage[0] > $size[0]){
+									$image_urls=[];
+							$image_urls[] =  $element->src;
+									$size[0]=$sizeNewImage[0];
 								}
+
 							}
 						}
 					}
@@ -115,15 +122,14 @@ class ExtractProcessAction extends CAction{
 						if(@file_get_contents($get_url."".$element->src)) {
 							$sizeNewImage = getimagesize($get_url."".$element->src);
 							if ($sizeNewImage["mime"]== "image/png" || $sizeNewImage["mime"]== "image/jpg" || $sizeNewImage["mime"]== "image/jpeg" ){
-								if(!empty($size)){
-									if($sizeNewImage[0] == $size[0]){
-										$image_urls[] =  $get_url."".$element->src;
-									}else if ($sizeNewImage[0] > $size[0]){
-										$image_urls=[];
-										$image_urls[] =  $get_url."".$element->src;
-										$size[0]=$sizeNewImage[0];
-									}
+								if($sizeNewImage[0] == $size[0]){
+									$image_urls[] =  $get_url."".$element->src;
+								}else if ($sizeNewImage[0] > $size[0]){
+									$image_urls=[];
+									$image_urls[] =  $get_url."".$element->src;
+									$size[0]=$sizeNewImage[0];
 								}
+
 							}
 						}
 					}
