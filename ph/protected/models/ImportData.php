@@ -924,7 +924,8 @@ class ImportData
                         
                     }
                     $newOrganization = Organization::newOrganizationFromImportData($jsonData);
-                    //var_dump($newOrganization);
+                    $newOrganization["role"] = $post["role"];
+                   // var_dump($newOrganization);
                     try{
                         $arrayJson[] = Organization::getAndCheckOrganization($newOrganization) ;
                     }
@@ -938,6 +939,7 @@ class ImportData
                 $i++;
             }
 
+            //var_dump($newOrganization);
             if(!isset($arrayJson))
                 $arrayJson = [];
 
@@ -1022,9 +1024,12 @@ class ImportData
             foreach ($arrayDataImport as $key => $value) 
             {
                 $newOrganization = Organization::newOrganizationFromImportData($value);
+                /*echo "YOYOYOYOYO";
+                var_dump($newOrganization);*/
                 try{
-                    
-                    $resData[] = Organization::insert($newOrganization, Yii::app()->session["userId"]) ; 
+                    //$resData[] = $newOrganization;
+                     //var_dump("yo");
+                   $resData[] = Organization::insert($newOrganization, $post['memberId']) ; 
                 }
                 catch (CTKException $e){
                     $resData[] = $e->getMessage();
