@@ -246,6 +246,7 @@ return array(
 	"Participants list" => "Liste des participants",
 	
 	"Add a participant to this organization" => "Ajouter un participant",
+	"Add a member to this organization"=> "Ajouter un membre à cette organization",
 	
 	"Add member" => "Ajouter un membre",
 	"Become admin" => "Devenir admin",
@@ -259,6 +260,7 @@ return array(
 	"Select places to change result" => "Sélectionnez des lieux pour filtrer les résultats",
 	"Where are you looking ?" => "Où recherchez-vous ?",
 	"What are you looking for ?" => "Que recherchez-vous ?",
+	"Sent invitations" => "Envoyer des invitations",
 
 	"General information about this project" => "Information général à propos de ce projet",
 	"Project contributors" => "Les contributeurs du projet",
