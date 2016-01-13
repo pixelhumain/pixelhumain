@@ -14,21 +14,23 @@
 			<ul class="pageslide-list notifList">
 				<?php
 					$maxTimestamp = 0;
+					
 					if(isset($this->notifications))
 					{
 						foreach( $this->notifications as $item )
 				        {
 				        	if(isset($item["notify"]))
 				        	{
+					        	$timestamp = date('m-d-Y', $item["timestamp"]->sec);
 					            echo "<li class='notifLi notif_".(string)$item["_id"]."'>";
 					            echo "<a class='notif' data-id='".(string)$item["_id"]."' href='".$item["notify"]["url"]."'><span class='label label-primary'>";
 					            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message">';
 					            echo $item["notify"]["displayName"];
-					            
-					            echo "</span><span class='time'>".round(abs(time() - $item["timestamp"]) / 60)."min</span></a>";
+					            print_r($item["timestamp"]);
+					            echo "</span><span class='time'>".round(abs(time() - $timestamp) / 60)."min</span></a>";
 					            echo "</li>";
-					            if($item["timestamp"] > $maxTimestamp)
-					            	$maxTimestamp = $item["timestamp"];
+					            if($timestamp > $maxTimestamp)
+					            	$maxTimestamp = $timestamp;
 					        }
 				        } 
 				    }
