@@ -421,10 +421,16 @@ function bindEvents()
 		    	// ICI TRISTAN
 		    	// Tu peux appeler ta fonction avec nominatime 
 		    	// orgVal.address :  te donne un objet de type { "streetAddress" : "...", "codePstal" : "..." , ...}
-		  	
+		  		
+		  		//fonction appelé lorsque le résultat nominatim est trouvé dans findGeoposByNominatim(address) (sig/geoloc.js l.109)
+		  		function callbackNominatimSuccess(obj){
+		  			console.dir(obj);
+		  		}
 
-
-
+		  		//remplace les espaces par des +
+		  		var address = transformNominatimUrl(orgVal.address);
+		  		//lance la requette nominatim (sig/geoloc.js l.109)
+				findGeoposByNominatim(address);
 
 		  	});
 		});
