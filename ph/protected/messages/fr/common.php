@@ -258,8 +258,8 @@ return array(
 	"Search by place" => "Rechercher par lieu",
 	"Select tags to change result" => "Sélectionnez des tags pour filtrer les résultats",
 	"Select places to change result" => "Sélectionnez des lieux pour filtrer les résultats",
-	"Where are you looking ?" => "Où recherchez-vous ?",
-	"What are you looking for ?" => "Que recherchez-vous ?",
+	"Where are you looking ?" => "Rechercher par lieux",
+	"What are you looking for ?" => "Rechercher par tags (mots clés)",
 	"Sent invitations" => "Envoyer des invitations",
 
 	"General information about this project" => "Information général à propos de ce projet",
