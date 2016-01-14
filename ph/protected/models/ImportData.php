@@ -546,11 +546,11 @@ class ImportData
 
             if(!isset($commune))
             {
-                $jsonimport = [];
+                $jsonimport = array();
             }
             if(!isset($rejet))
             {
-                $jsonrejet = [];
+                $jsonrejet = array();
                 
             }
 
@@ -733,8 +733,8 @@ class ImportData
             }
             else
             {
-                $jsonimport = [];
-                $arrayCsvImport = [];
+                $jsonimport = array();
+                $arrayCsvImport = array();
             }
             if(isset($rejet))
             {
@@ -742,8 +742,8 @@ class ImportData
             }
             else
             {
-                $jsonrejet = [];
-                $arrayCsvRejet = [];
+                $jsonrejet = array();
+                $arrayCsvRejet = array();
             }
             
 
@@ -941,10 +941,10 @@ class ImportData
 
             //var_dump($newOrganization);
             if(!isset($arrayJson))
-                $arrayJson = [];
+                $arrayJson = array();
 
             if(!isset($arrayJsonError))
-                $arrayJsonError = [];
+                $arrayJsonError = array();
 
             $params = array("result" => true,
                             "jsonImport"=> json_encode($arrayJson),
