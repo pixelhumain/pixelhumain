@@ -2,6 +2,8 @@
 	$cs = Yii::app()->getClientScript();
 	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquery.jsonview.js' , CClientScript::POS_END);
 	$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/jsonview/jquery.jsonview.css');
+
+	$userId = Yii::app()->session["userId"] ;
 ?>
 <div class="panel panel-white">
 	<div id="config">
@@ -57,7 +59,7 @@
 			<h4 class="panel-title">Assignation des données</h4>
 		</div>
 		<div class="panel-body">
-			<div class="col-sm-12">
+			<div class="col-sm-12 col-xs-12">
 				<label for="subFile">Fichier : </label>
 				<select id="subFile">
 					<?php
@@ -72,6 +74,31 @@
 				        }
 					?>
 				</select>
+				
+			</div>
+			<br/> <br/>
+			<div class="col-sm-12 col-xs-12">
+				<div class="col-sm-4 col-xs-12">
+					<label for="selectRole">Role : </label>
+					<select id="selectRole">
+						<option value="creator">Creator</option>
+						<option value="admin">Admin</option>
+						<option value="member">Member</option>
+					</select>
+				</div>
+				<div id="divSearchMember">
+					<div class="col-sm-3 col-xs-12">
+						<input class="invite-search form-control" placeholder="Choisir une personne qui sera relié au données" autocomplete = "off" id="inviteSearch" name="inviteSearch" value="">
+			        		<ul class="dropdown-menu" id="dropdown_searchInvite" style="">
+								<li class="li-dropdown-scope">-</li>
+							</ul>
+						</input>
+						<input type="hidden" name="memberId" id="memberId" value=""/>
+					</div>
+					<div class="col-sm-4 col-xs-12">
+						People : <div id="namePeople"></div>
+					</div>
+				</div>
 			</div>
 			<br/> <br/>
 			<div id="divtab" class="table-responsive">
@@ -109,7 +136,7 @@
 			    				</select>
 			    			</td>
 			    			<td>
-								<select id="selectLinkCollection" class="col-sm-12">
+			    				<select id="selectLinkCollection" class="col-sm-12">
 									<?php
 			    						if($createLink)
 			    						{
@@ -119,6 +146,7 @@
 											
 			    							foreach ($fieldsCollection as $key => $value) 
 											{
+												//var_dump($value);
 												$pathMapping = FileHelper::arbreJson($value['mappingFields'], "", "");
 												$arrayPathMapping = explode(";",  $pathMapping);
 												foreach ($arrayPathMapping as $keyPathMapping => $valuePathMapping) 
@@ -182,20 +210,50 @@
 	</div>
 </div>
 <script type="text/javascript">
+var tabObject = [];
+var userId = "<?php echo $userId; ?>" ;
+$("#memberId").html(userId);
+
 jQuery(document).ready(function() 
 {
+	
+
 	bindEvents();
 	var createLink = "<?php echo $createLink; ?>" ;
+
 	
 	if(createLink == false)
 		$("#createLink").hide();
 	$("#verifBeforeImport").hide();
-	
+	$("#divSearchMember").hide();
 
 });
 
 function bindEvents()
 {
+
+	$('#inviteSearch').keyup(function(e){
+	    var search = $('#inviteSearch').val();
+	    if(search.length>2){
+	    	clearTimeout(timeout);
+			timeout = setTimeout('autoCompleteInviteSearch("'+encodeURI(search)+'")', 500); 
+		 }else{
+		 	$("#dropdown_searchInvite").css({"display" : "none" });	
+		 }	
+	});
+
+	$("#selectRole").change( function (){
+		var role = $("#selectRole").val();
+		if(role == "creator")
+		{
+			$("#divSearchMember").hide();
+			$("#memberId").html(userId);
+		}	
+		else
+			$("#divSearchMember").show();
+	});
+
+
 	$("#addMapping").off().on('click', function()
   	{
   		var nbLigneMapping = parseInt($("#nbLigneMapping").val()) + 1;
@@ -292,7 +350,8 @@ function bindEvents()
 		        		idCollection : $("#idCollection").val(),
 		        		jsonCSV :  $("#jsonCSV").val(),
 		        		subFile : $("#subFile").val(),
-		        		nameFile : $("#nameFile").val()
+		        		nameFile : $("#nameFile").val(),
+		        		role : $("#selectRole").val()
 		        },
 		        url: baseUrl+'/tools/previewData/',
 		        dataType : 'json',
@@ -333,7 +392,8 @@ function bindEvents()
 	        type: 'POST',
 	        data: { jsonImport : $('#jsonImport').val(), 
 	        		nameFile : $('#nameFile').val(),
-	        		jsonError : $('#jsonError').val()},
+	        		jsonError : $('#jsonError').val(),
+	        		memberId : $('#memberId').html()},
 	        url: baseUrl+'/tools/importmongo2/',
 	        dataType : 'json',
 	        success: function(data)
@@ -361,6 +421,17 @@ function bindEvents()
 		    	// ICI TRISTAN
 		    	// Tu peux appeler ta fonction avec nominatime 
 		    	// orgVal.address :  te donne un objet de type { "streetAddress" : "...", "codePstal" : "..." , ...}
+		  		
+		  		//fonction appelé lorsque le résultat nominatim est trouvé dans findGeoposByNominatim(address) (sig/geoloc.js l.109)
+		  		function callbackNominatimSuccess(obj){
+		  			console.dir(obj);
+		  		}
+
+		  		//remplace les espaces par des +
+		  		var address = transformNominatimUrl(orgVal.address);
+		  		//lance la requette nominatim (sig/geoloc.js l.109)
+				findGeoposByNominatim(address);
+
 		  	});
 		});
   	});
@@ -460,6 +531,61 @@ function verifBeforeAddSelect(arrayMap)
 	  		arrayMap.splice(position, 1);
 		//console.log("option", option);
 	});
+}
+
+function autoCompleteInviteSearch(search){
+	tabObject = [];
+
+	var data = { 
+		"search" : search,
+		"searchMode" : "personOnly"
+	};
+	var urlurl = baseUrl+"/communecter/search/searchmemberautocomplete" ;
+	console.log("url", urlurl);
+
+	ajaxPost("", urlurl, data,
+		function (data){
+			var str = "<li class='li-dropdown-scope'><a href='javascript:newInvitation()'>Pas trouvé ? Lancer une invitation à rejoindre votre réseau !</li>";
+			var compt = 0;
+			var city, postalCode = "";
+			$.each(data["citoyens"], function(k, v) { 
+				city = "";
+				postalCode = "";
+				var htmlIco ="<i class='fa fa-user fa-2x'></i>"
+				if(v.id != userId) {
+					tabObject.push(v);
+	 				if(v.profilImageUrl != ""){
+	 					var htmlIco= "<img width='50' height='50' alt='image' class='img-circle' src='"+baseUrl+v.profilImageUrl+"'/>"
+	 				}
+	 				if (v.address != null) {
+	 					city = v.address.addressLocality;
+	 					postalCode = v.address.postalCode;
+	 				}
+	  				str += 	"<li class='li-dropdown-scope'>" +
+	  						"<a href='javascript:selectPeopleForLink("+compt+")'>"+htmlIco+" "+v.name + 
+	  						"<span class='city-search'> "+postalCode+" "+city+"</span>"+"</a>"+
+	  						"</li>";
+	  				compt++;
+  				}
+			});
+			console.log("str : ", str);
+			$("#dropdown_searchInvite").html(str);
+			$("#dropdown_searchInvite").css({"display" : "inline" });
+		}
+	);	
+}
+
+
+function selectPeopleForLink(num){
+
+	var person = tabObject[num];
+	var personId = person["id"];
+
+	console.log(person, personId, person["name"]);
+	$("#memberId").html(personId);
+	$("#namePeople").html(person["name"]);
+	$("#dropdown_searchInvite").css({"display" : "none" });	
+	
 }
 
 </script>

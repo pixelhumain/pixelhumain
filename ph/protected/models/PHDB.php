@@ -61,6 +61,7 @@ class PHDB
     
     public static function findOneById( $collection, $id, $fields=null )
     {   
+        //var_dump($id);
         return self::findOne( $collection, array("_id"=>new MongoId($id)), $fields);
     }
     public static function update( $collection, $where, $action )

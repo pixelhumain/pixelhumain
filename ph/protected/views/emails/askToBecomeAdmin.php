@@ -42,7 +42,7 @@
            <?php echo yii::t("email","The user")." ".@$newPendingAdmin["username"]." ".Yii::t("email","asks to become")." ".yii::t("common",$typeOfDemand)." ".yii::t("email", "of")." ".@$parent["name"]?>.<br/>
            <?php echo yii::t("email", "For more details on the user")." ".@$newPendingAdmin["username"]?>, <?php echo yii::t("email","you can visit") ?> <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."/default/simple/#person.detail.id.".(String) @$newPendingAdmin["_id"]."?tpl=directory2&isNotSV=1"?>"><?php echo yii::t("email","sa fiche profil")?></a>.<br/>
            <?php echo yii::t("email","In order to validate this user as")." ".yii::t("common",$typeOfDemand).", ".yii::t("email","go to the members' list of your")." "; ?>
-           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."/default/simple/#organization.directory.id.".(String) $parent["_id"]."?tpl=directory2&isNotSV=1"?>"><?php echo yii::t("common",$type) ?></a>.
+           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."/default/simple/#".$type.".directory.id.".(String) $parent["_id"]."?tpl=directory2&isNotSV=1"?>"><?php echo yii::t("common",$type) ?></a>.
         </td>
       </tr>
       </table>
