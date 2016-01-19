@@ -1,8 +1,13 @@
 <?php
 class ExtractProcessAction extends CAction{
 	public $options = array();
+	
 	public function run()
     {
+	    function getDomain($url){
+			return preg_replace("/^[\w]{2,6}:\/\/([\w\d\.\-]+).*$/","$1",$url);
+		}	
+	    
 		if(isset($_POST["url"]))
 		{
 			$get_url = $_POST["url"]; 
@@ -13,6 +18,7 @@ class ExtractProcessAction extends CAction{
 			$page_body="";
 			$description=false;
 			$image_urls=array();
+			$sourceName = getDomain ($get_url);
 			/*Scénario à écrire pour les images
 			*Si une image à une size plus élevée que la size alors vider le tableau d'image 
 			*Et mettre celle qui a la plus grande size plus mettre à jour le size
@@ -22,10 +28,6 @@ class ExtractProcessAction extends CAction{
 			
 			/*--------------- 
 			*Si le lien est une image, on retourne le lien sinon on effectue le reste
-			*if (getimagesize($get_url))
-			* // image valide
-				* else
-				* // image invalide
 			*--------------*/
 			include_once("include/simple_html_dom.inc.php");
 			$extension = pathinfo($get_url, PATHINFO_EXTENSION);
@@ -184,7 +186,7 @@ class ExtractProcessAction extends CAction{
 					}	
 				}
 				//prepare for JSON 
-				$output = array('title'=>$page_title, 'images'=>$image_urls, "imageMedia"=> $imageMedia,'content'=> $page_body, 'video' => $urlVideo,"size" => $size);
+				$output = array('title'=>$page_title, 'images'=>$image_urls, "imageMedia"=> $imageMedia,'content'=> $page_body, 'video' => $urlVideo,"size" => $size, "sourceName" => $sourceName);
 				
 			}
 			echo json_encode($output); //output JSON data
