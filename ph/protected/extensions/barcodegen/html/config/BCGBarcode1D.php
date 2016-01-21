@@ -1,6 +1,6 @@
 <?php
 function baseCustomSetup($barcode, $get) {
-    $font_dir = '..' . DIRECTORY_SEPARATOR . 'font';
+    $font_dir = '../ph/protected/extensions/barcodegen/' . DIRECTORY_SEPARATOR . 'font';
 
     if (isset($get['thickness'])) {
         $barcode->setThickness(max(9, min(90, intval($get['thickness']))));
