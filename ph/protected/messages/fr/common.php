@@ -75,6 +75,7 @@ return array(
 	"Please try again" => "Essaie encore s'il-te plait",
 	"Your are already admin of" => "Vous êtes déjà admin de",
 	"Invalid request" => "requête incorrecte",
+	"Something went wrong with the url" => "Le traitement de l'url retourne une erreur",
 	
 	//Success
 	"Link divorced successfully" => "Le lien a été supprimé avec succès",
