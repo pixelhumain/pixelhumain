@@ -75,6 +75,7 @@ return array(
 	"Please try again" => "Essaie encore s'il-te plait",
 	"Your are already admin of" => "Vous êtes déjà admin de",
 	"Invalid request" => "requête incorrecte",
+	"Something went wrong with the url" => "Le traitement de l'url retourne une erreur",
 	
 	//Success
 	"Link divorced successfully" => "Le lien a été supprimé avec succès",
@@ -261,6 +262,11 @@ return array(
 	"Where are you looking ?" => "Rechercher par lieux",
 	"What are you looking for ?" => "Rechercher par tags (mots clés)",
 	"Sent invitations" => "Envoyer des invitations",
+	"You are going to ask to become an admin of the project" => "Vous allez demander à devenir admin du projet",
+	"You are going to ask to become an admin of the organization" => "Vous allez demander à devenir admin de l'organisation",
+	"Please confirm" => "Veuillez confirmer",
+	"Are you sure you want to confirm" => "Êtes-vous de confirmer",
+	"as admin" => "comme administrateur",
 
 	"General information about this project" => "Information général à propos de ce projet",
 	"Project contributors" => "Les contributeurs du projet",
@@ -291,7 +297,7 @@ return array(
 	"ENTREPRISES"				=> "ENTREPRISES",
 	"GROUPES"					=> "GROUPES",
 	"ORGANIZATIONS"				=> "ORGANISATIONS",
-	"LOCAL CONNECTED CITIZENS"	=> "CITOYENS CONNECTÉS",
+	"LOCAL CONNECTED CITIZENS"	=> "CITOYENS",
 	"LOCAL EVENTS"				=> "ÉVÉNEMENTS",
 	"LOCAL PROJECTS"			=> "PROJETS",
 	
@@ -337,7 +343,7 @@ return array(
 	"Tags" => "Tags",
 	"Places" => "Lieux",
 	
-
+	
 );
 
 ?>

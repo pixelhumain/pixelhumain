@@ -5,39 +5,7 @@
 <!--[if !IE]><!-->
 
 <?php 
-	/*	if(isset(Yii::app()->session['userId'])){
- 		
- 		$user = Person::getById(Yii::app()->session['userId']);
-
- 		$cookies = Yii::app()->request->cookies;
- 		$coockieDuration = time() + (3600*24*365);
-
- 		if(isset($user["geo"]) && 
- 		   isset($user["geo"]["latitude"]) && isset($user["geo"]["longitude"]))
-		{
-			setcookie('user_geo_latitude', $user["geo"]["latitude"], $coockieDuration, "/ph/");
-			setcookie('user_geo_longitude', $user["geo"]["longitude"], $coockieDuration, "/ph/");
-		}
-
-		if(isset($user["address"]) && isset($user["address"]["codeInsee"]))
-			setcookie('insee', $user["address"]["codeInsee"], $coockieDuration, "/ph/");
-		
-
-		if(isset($user["address"]) && isset($user["address"]["addressLocality"]))
-			setcookie('cityName', $user["address"]["addressLocality"], $coockieDuration, "/ph/");
-
-	}else{ //user not connected
-		if(isset($cookies['user_geo_longitude'])){
-				$sigParams["firstView"] = array(  "coordinates" => array( $cookies['user_geo_latitude']->value, 
-																		  $cookies['user_geo_longitude']->value),
-											 	  "zoom" => 13);
-			
-		}else{
-			//error_log("aucun cookie geopos trouvé");
-		}
-	}
-*/
-
+	
 	/* COOKIE GEO POSITION */
 
  	/*	LISTE DES COOKIES
@@ -113,6 +81,7 @@
 		$cs->registerCssFile($themeAssetsUrl. '/plugins/toastr/toastr.min.css');
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css');
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
 		?>
 		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" />
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple.css" type="text/css" id="skin_color">
