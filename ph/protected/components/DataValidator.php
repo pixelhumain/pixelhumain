@@ -99,7 +99,7 @@ class DataValidator {
 			$startDate = DateTime::createFromFormat('Y-m-d', $toValidate);
 		} 
 	    if (empty($startDate)) {
-			throw new CTKException("The end date is not well formated");
+			throw new CTKException("The start date is not well formated");
 		}
 
 	    if ($startDate > $endDate) { 
