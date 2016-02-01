@@ -1,15 +1,53 @@
 <!DOCTYPE html>
+<?php 
 	
+	/* COOKIE GEO POSITION */
+
+ 	/*	LISTE DES COOKIES
+ 		-----------------
+		-user_geo_latitude
+		-user_geo_longitude
+		-insee
+		-cityName
+ 	*/
+	$user = "NOT_CONNECTED";
+ 	if(isset(Yii::app()->session['userId'])){
+ 		$user = Person::getById(Yii::app()->session['userId']);
+		
+		$user_geo_latitude = ""; $user_geo_longitude = "";
+		$insee = ""; $cityName = "";
+
+		if(isset($user["geo"]) && 
+ 		   isset($user["geo"]["latitude"]) && isset($user["geo"]["longitude"]))
+		{
+			$user_geo_latitude = $user["geo"]["latitude"];
+			$user_geo_longitude = $user["geo"]["longitude"];
+		}
+
+		if(isset($user["address"]) && isset($user["address"]["codeInsee"]))
+			$insee = $user["address"]["codeInsee"];
+			
+		if(isset($user["address"]) && isset($user["address"]["addressLocality"]))
+			$cityName = $user["address"]["addressLocality"];
+			
+	}else{ //user not connected
+		if(isset($cookies['user_geo_longitude'])){
+				$sigParams["firstView"] = array(  "coordinates" => array( $cookies['user_geo_latitude']->value, 
+																		  $cookies['user_geo_longitude']->value),
+											 	  "zoom" => 13);		
+		}else{
+			//error_log("aucun cookie geopos trouvé");
+		}
+	}
+
+?>	
 <html lang="en" class="no-js">
 	<!--<![endif]-->
 	<!-- start: HEAD -->
 	<head>
 		<?php 
 
-		//$insee = Sig::getInseeByLatLngCp(48.85409863123821, 2.3458385467529292, "75004");
-		//echo "INSEE : "; var_dump($insee);
-		//die();
-
+		
 		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 		$this->renderPartial($layoutPath.'metas');?>
 		<!-- end: META -->
@@ -123,6 +161,19 @@
 		?>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 
+		<script type="text/javascript">
+			//si l'utilisateur est connecté
+			<?php if($user != "NOT_CONNECTED") { ?>
+				var user_geo_latitude  = "<?php echo $user_geo_latitude; ?>";
+	  			var user_geo_longitude = "<?php echo $user_geo_longitude; ?>";
+	  			var insee 	 = "<?php echo $insee; ?>";
+	  			var cityName = "<?php echo $cityName; ?>";
+	  			//on met à jour ses cookies
+	  			jQuery(document).ready(function() {
+	  				updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
+	  			});
+  			<?php } ?>
+		</script>
 
 	</body>
 	<!-- end: BODY -->
