@@ -226,6 +226,10 @@ return array(
 
 	"Declare me as admin of this organization" 	=> "Devenir administrateur de cette organisation",
 	"Become admin" 								=> "Devenir administrateur",
+	"Become member" 								=> "Devenir membre",
+	"Become contributor" 								=> "Devenir contributeur",
+	"Accept this person" => "Accepter ce citoyen",
+	"Add as admin" => "Ajouter comme admin",
 
 	"Local network" => "Réseau local",
 	"Become admin" 	=> "Devenir administrateur",
