@@ -18,11 +18,15 @@ function updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityNa
 			linkColor: '#32D8DE', // link color in disclosure panel
             scriptWrapper: 
             	function (){
-				    console.log("mise à jour des cookies");
-					$.cookie('user_geo_latitude',   user_geo_latitude,  { expires: 365, path: '/ph/' });
-					$.cookie('user_geo_longitude',  user_geo_longitude, { expires: 365, path: '/ph/' });
-					$.cookie('insee', 	  			insee, 	 			{ expires: 365, path: '/ph/' });
-					$.cookie('cityName',  			cityName,  			{ expires: 365, path: '/ph/' });
+            		var path = "/";
+            		//console.log(location.hostname.indexOf("localhost") );
+            		//console.dir(location);
+            		if(location.hostname.indexOf("localhost") >= 0) path = "/ph/";
+				    console.log("mise à jour des cookies", path);
+					$.cookie('user_geo_latitude',   user_geo_latitude,  { expires: 365, path: path });
+					$.cookie('user_geo_longitude',  user_geo_longitude, { expires: 365, path: path });
+					$.cookie('insee', 	  			insee, 	 			{ expires: 365, path: path });
+					$.cookie('cityName',  			cityName,  			{ expires: 365, path: path });
 				}
 		});
 }

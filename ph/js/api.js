@@ -58,7 +58,6 @@ function getAjax(id,url,callback,datatype,blockUI)
         cache:false,
         //dataType:"json",
         success:function(data) {
-          
           if(datatype === "html" )
             $(id).html(data);
           else if(typeof data === "string" )
