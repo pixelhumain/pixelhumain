@@ -59,6 +59,17 @@ return array(
 	"You have <span class='notifCount'></span> notifications " => "Vous avez <span class='notifCount'></span> notifications ",
 	"Mark all as Read" => "Marquer comme lu",
 	"No notifications found" => "Aucune Notification",
+	"has been disabled by" => "a été désactivé par",
+	"new post by" => "nouveau post de",
+	"wants to join" => "veut rejoindre",
+	"wants to administrate" => "veut administrer",
+	"has added" => "a ajouté",
+	"as admin of" => "comme admin de",
+	"as member of" => "comme membre de",
+	"as contributor of" => "comme contributeur de",
+	"has invited" => "a invité",
+	"to join" => "à rejoindre",
+	
 
 	// FOOTER
 	"Work in Progress" => "Travail en court",
@@ -81,6 +92,9 @@ return array(
 	"Link divorced successfully" => "Le lien a été supprimé avec succès",
 	"Relation applied successfully" => "La relation a bien été crée",
 	"You are now admin of" => "Vous êtes maintenant admin de",
+	"You are now member of" => "Vous êtes maintenant membre de",
+	"You are now contributor of" => "Vous êtes maintenant contributeur de",
+	"is now admin of" => "est maintenant admin de",
 	"New admin well register" => "Le nouvel admin est bien enregistré",
 	"New member well register" => "Le nouveau membre est bien enregistré",
 	"Your request has been sent to other admins." => "Votre demande a été envoyée aux autres admins",
