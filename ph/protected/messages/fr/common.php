@@ -266,8 +266,10 @@ return array(
 	
 	"Add a participant to this organization" => "Ajouter un participant",
 	"Add a member to this organization"=> "Ajouter un membre à cette organization",
+	"Add a contributor to this project" => "Ajouter un contributeur à ce projet",
 	
 	"Add member" => "Ajouter un membre",
+	"Add contributor" => "Ajouter un contributeur",
 	"Become admin" => "Devenir admin",
 	"Member" 	 => "Membre",
 	"Members" 	 => "Membres",
