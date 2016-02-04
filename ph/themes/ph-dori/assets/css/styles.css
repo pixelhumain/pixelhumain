@@ -2940,11 +2940,13 @@ body.login {
   background-image: url(../images/bg-pixel-left-min.png), url(../images/bg-pixel-right-min.png);
   background-position: left top, right top;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /*background-attachment: fixed;*/
   margin-left: 0px !important;
   max-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  top:0px !important;
+  left:0px !important;
 }
 .bgpixeltree_little {
   background-image: url("../images/logoL.png");
@@ -6933,3 +6935,6 @@ span.btn-tag {
     background: #58879B;
     color:white;
   }
+
+  button:focus {outline:0;}
+  input:focus {outline:0;}
