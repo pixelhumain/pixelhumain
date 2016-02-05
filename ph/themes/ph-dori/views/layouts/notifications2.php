@@ -197,8 +197,9 @@ function refreshNotifications()
 function buildNotifications(list)
 {
 	console.info("buildNotifications()");
+	console.log(typeof list);
 	$(".notifList").html("");
-	if(typeof list != "undefined"){
+	if(typeof list != "undefined" && typeof list == "array"){
 		$.each( list , function( notifKey , notifObj )
 		{
 			var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url.substring( "<?php echo substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1) ?>communecter/".length,notifObj.notify.url.length ) : "#";
