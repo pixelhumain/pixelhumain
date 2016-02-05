@@ -108,6 +108,11 @@
 		       { "userEmail":"<?php echo Yii::app()->session['userEmail']?>"}
 	       <?php } ?>
 	       ];
+	       var typesLabels = {
+		   	"<?php echo Organization::COLLECTION ?>":"Organization",
+		   		"<?php echo Event::COLLECTION ?>":"Event",
+		   		"<?php echo Project::COLLECTION ?>":"Project",
+};
 		   jQuery(document).ready(function() {
 				toastr.options = {
 				  "closeButton": false,
