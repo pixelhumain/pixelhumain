@@ -63,7 +63,7 @@ return array(
 	"new post by" => "nouveau post de",
 	"wants to join" => "veut rejoindre",
 	"wants to administrate" => "veut administrer",
-	"has added" => "a ajouté",
+	"just added" => "a ajouté",
 	"as admin of" => "comme admin de",
 	"as member of" => "comme membre de",
 	"as contributor of" => "comme contributeur de",

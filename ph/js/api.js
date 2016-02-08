@@ -217,21 +217,12 @@ function openDynamicSubview (key,collection,callback) {
 
 /* --------------------------------------------------------------- */
 
-function toggle(id)
+function toggle(id,siblingsId)
 {
-	log(id);
-	if( !$("."+id).is(":visible") ) 
-	{
-		$("."+id).removeClass("hide").attr("style","");
-		$("."+id+"Icon").removeClass('fa-eye-slash').addClass('fa-eye');
-	} 
-	else 
-	{ 
-		$("."+id).addClass("hide");
-		$("."+id+"Icon").removeClass('fa-eye').addClass('fa-eye-slash');
-		$("."+id).hide();
-	}
-	return false;
+	log(id,siblingsId);
+  $(siblingsId).addClass("hide");
+	//if( !$("."+id).is(":visible") ) 
+	$(id).removeClass("hide");
 }
 
 /* --------------------------------------------------------------- */
