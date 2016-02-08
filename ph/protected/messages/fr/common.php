@@ -172,7 +172,13 @@ return array(
 	
 	//Question
 	"Are you sure you want to delete" => "Êtes-vous sûr de supprimer",
-	
+	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
+	"Are you sure to join the organization" => "Êtes-vous sûr de rejoindre l'organization",
+	"Are you sure to join the project" => "Êtes-vous sûr de rejoindre le projet",
+	"Are you admin" => "Êtes-vous admin",
+	"as contributor" => "comme contributeur",
+	"as member" => "comme member",
+	"as admin" => "comme admin",
 	//Indication
 	"When" => "Quand",
 	"Where" => "Où",
