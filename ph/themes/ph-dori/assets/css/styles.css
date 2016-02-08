@@ -6938,3 +6938,12 @@ span.btn-tag {
 
   button:focus {outline:0;}
   input:focus {outline:0;}
+
+
+.modal{
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    padding-top: 40px !important;
+}
+.modal-backdrop{
+  display:none !important;
+}
