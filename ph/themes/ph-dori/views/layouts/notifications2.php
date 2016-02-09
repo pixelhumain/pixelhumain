@@ -181,7 +181,7 @@ function refreshNotifications()
         url: baseUrl+"/"+moduleId+"/notification/getnotifications?ts="+maxNotifTimstamp
     })
     .done(function (data) { //console.log("REFRESH NOTIF : "); console.dir(data);
-        if (data) {               
+        if (data) {       
         	buildNotifications(data);
         } else {
             toastr.error("no notifications found ");
@@ -195,11 +195,11 @@ function refreshNotifications()
 }
 
 function buildNotifications(list)
-{
+{	console.log(list);
 	console.info("buildNotifications()");
 	console.log(typeof list);
 	$(".notifList").html("");
-	if(typeof list != "undefined" && typeof list == "array"){
+	if(typeof list != "undefined" && typeof list == "object"){
 		$.each( list , function( notifKey , notifObj )
 		{
 			var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url.substring( "<?php echo substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1) ?>communecter/".length,notifObj.notify.url.length ) : "#";
@@ -231,7 +231,6 @@ function buildNotifications(list)
 		setTimeout( function(){
 	    	notifCount();
 	    }, 800);
-		
 		bindNotifEvents();
 	}
 }
