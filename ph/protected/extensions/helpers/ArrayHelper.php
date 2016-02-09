@@ -145,6 +145,31 @@ class ArrayHelper {
         }
         return $difference;
     }
+/**
+ * getValueByDotPath 
+ * 
+ * Json like syntaxe to retreive values in an associative array 
+ * ex 
+ * 
+ * @access	public
+ * @param	assocArray
+ * @param	string path can be dot seperated , ex : address.streetAddress
+ * @return	value
+ * @author : tka 
+ */
+    public static function getValueByDotPath($assocArray , $path) {
+
+	    $split = explode(".", $path);
+	    for ($i=0; $i < count($split) ; $i++) 
+	    { 
+	    	$key = $split[$i];
+	    	if( isset( $assocArray[  $key ] ) )
+				$assocArray = $assocArray[ $key ];
+			else
+				$assocArray = "<span class='text-red'>error in path : $path </span>";
+		}
+		return $assocArray;
+	}
 }
 /* End of file array_helper.php */
 /* Location: ./system/helpers/array_helper.php */
