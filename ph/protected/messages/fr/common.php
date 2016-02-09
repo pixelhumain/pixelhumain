@@ -291,7 +291,7 @@ return array(
 	"You are going to ask to become an admin of the project" => "Vous allez demander à devenir admin du projet",
 	"You are going to ask to become an admin of the organization" => "Vous allez demander à devenir admin de l'organisation",
 	"Please confirm" => "Veuillez confirmer",
-	"Are you sure you want to confirm" => "Êtes-vous de confirmer",
+	"Are you sure you want to confirm" => "Êtes-vous sûr de confirmer",
 	"as admin" => "comme administrateur",
 
 	"General information about this project" => "Information général à propos de ce projet",
