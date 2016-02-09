@@ -1,31 +1,49 @@
+<?php	$cssAnsScriptFilesModule = array(
+	'/plugins/moment/min/moment.min.js' , 
+	//	'/plugins/moment/min/langs.min.js' , 
+	'/plugins/moment/min/moment-with-langs.min.js' , 
+	//	'/plugins/moment/lang/fr.js' , 
+);
+
+HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->theme->baseUrl."/assets"); ?>
 <!-- start: PAGESLIDE RIGHT -->
 <style type="text/css">
 	
 	.notifications{
 		/*background-color: white;*/
 		color: #528195;
+		padding: 5px 0px !important;
+	}
+	.notifications .pageslide-title{
+		padding-left: 10px;
+		text-align: inherit; 
 	}
 	#notificationPanel{
-		background-color: transparent;
-		box-shadow: 0px 0px !important;
+		background-color: white;
+		/*box-shadow: 0px 0px !important;*/
 		left:unset !important;
 		right:25px;
 		width: 300px !important;
+		-moz-box-shadow: 0px 0px 3px 0px #656565;
+		-webkit-box-shadow: 0px 0px 3px 0px #656565;
+		-o-box-shadow: 0px 0px 3px 0px #656565;
+		box-shadow: 0px 0px 3px 0px #656565;
+		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);
 	}
 	.notifications a.notif{
 		background-color: white;
 	}
 	ul.notifList{
-		margin-top:-15px !important;
+		margin-top:5px !important;
 		max-height: 400px !important;
 		overflow-y:auto;
 		padding-right:10px; 
-		border-radius: 50px;
+		/*border-radius: 50px;*/
 		padding: 7px 14px;
-		-moz-box-shadow: 0px 0px 3px 0px #656565;
-		-webkit-box-shadow: 0px 0px 3px 0px #656565;
-		-o-box-shadow: 0px 0px 3px 0px #656565;
-		box-shadow: 0px 0px 3px 0px #656565;
+		-moz-box-shadow: 0px 0px 3px -1px #656565;
+		-webkit-box-shadow: 0px 0px 3px -1px #656565;
+		-o-box-shadow: 0px 0px 3px -1px #656565;
+		box-shadow: 0px 0px 3px -1px #656565;
 		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);
 	}
 
@@ -44,15 +62,16 @@
 
 	.notifications .message {
 	    padding-left: 40px;
+	    display:block;
 	}
-
+	
 </style>
 <div id="notificationPanel" class=" ">
 		<div class="notifications">
 			
-			<!-- <div class="pageslide-title">
-				You have <span class="notifCount"></span> notifications 
-			</div> -->
+			<div class="pageslide-title">
+				notifications 
+			</div> 
 			
 			<ul class="pageslide-list notifList">
 				<?php
@@ -80,7 +99,7 @@
 				    } 
 				?>
 			</ul>
-			<!-- <ul class="pageslide-list header col-xs-6 col-sm-6 col-md-6 padding-10 no-margin">
+			 <ul class="pageslide-list header col-xs-6 col-sm-6 col-md-6 padding-10 no-margin">
 				<li>
 					<a href="javascript:;" onclick='refreshNotifications()' class="btn btn-primary"><i class="fa fa-refresh"></i></a>
 				</li>
@@ -90,7 +109,7 @@
 					<a href="javascript:;" onclick='markAllAsRead()' class="btn btn-primary">Mark all as Read <i class="fa fa-check-square-o"></i></a>	
 				</li>
 			</ul>
-			-->
+
 			<?php /*
 			<div class="view-all">
 				<a href="javascript:void(0)">
@@ -205,7 +224,9 @@ function buildNotifications(list)
 			var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url.substring( "<?php echo substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1) ?>communecter/".length,notifObj.notify.url.length ) : "#";
 			//convert url to hash for loadByHash
 			url = "#"+url.replace(/\//g, ".");
-
+			//var moment = require('moment');
+			moment.lang('fr');
+			momentNotif=moment(new Date( parseInt(notifObj.timestamp.sec)*1000 )).fromNow();
 			var icon = (typeof notifObj.notify != "undefined") ? notifObj.notify.icon : "fa-bell";
 			var displayName = (typeof notifObj.notify != "undefined") ? notifObj.notify.displayName : "Undefined notification";
 
@@ -219,7 +240,7 @@ function buildNotifications(list)
 							displayName+
 						"</span>" + 
 						
-						"<span class='time'> 1 min</span>"+
+						"<span class='time'>"+momentNotif+"</span>"+
 					"</a>"+
 				  "</li>";
 
