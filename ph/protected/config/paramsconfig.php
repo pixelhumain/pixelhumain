@@ -66,8 +66,8 @@ $params = array(
 
     //Functionnal params
     //Is the organisation bellow an othe organization can be managed by her top organization
-    'isParentOrganizationAdmin' => true,
-    'adminUserId' => '520931e2f6b95c5cd3003d6c'
+    'isParentOrganizationAdmin' => false,
+    
   );
 
 $modulesDir = '/../../../../modules/';
