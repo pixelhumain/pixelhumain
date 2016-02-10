@@ -69,7 +69,7 @@ return array(
 	"as contributor of" => "comme contributeur de",
 	"has invited" => "a invité",
 	"to join" => "à rejoindre",
-	
+	"participates to the event" => "participe à l'évènement",
 
 	// FOOTER
 	"Work in Progress" => "Travail en court",
@@ -93,6 +93,7 @@ return array(
 	"Relation applied successfully" => "La relation a bien été crée",
 	"You are now admin of" => "Vous êtes maintenant admin de",
 	"You are now member of" => "Vous êtes maintenant membre de",
+	"You are now attendee of" => "Vous participez maintenant à",
 	"You are now contributor of" => "Vous êtes maintenant contributeur de",
 	"is now admin of" => "est maintenant admin de",
 	"New admin well register" => "Le nouvel admin est bien enregistré",
