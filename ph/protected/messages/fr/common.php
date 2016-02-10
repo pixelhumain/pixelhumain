@@ -175,11 +175,11 @@ return array(
 	//Question
 	"Are you sure you want to delete" => "Êtes-vous sûr de supprimer",
 	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
-	"Are you sure to join the organization" => "Êtes-vous sûr de rejoindre l'organization",
+	"Are you sure to join the organization" => "Êtes-vous sûr de rejoindre l'organisation",
 	"Are you sure to join the project" => "Êtes-vous sûr de rejoindre le projet",
 	"Are you admin" => "Êtes-vous admin",
 	"as contributor" => "comme contributeur",
-	"as member" => "comme member",
+	"as member" => "comme membre",
 	"as admin" => "comme admin",
 	//Indication
 	"When" => "Quand",
@@ -247,6 +247,9 @@ return array(
 	"Manage"						=> "Administrer",
 
 	"Declare me as admin of this organization" 	=> "Devenir administrateur de cette organisation",
+	"Declare me as member of this organization" 	=> "Devenir membre de cette organisation",
+	"Declare me as admin of this project" 	=> "Devenir administrateur de ce projet",
+	"Declare me as contributor of this project" 	=> "Devenir contributor de ce projet",
 	"Become admin" 								=> "Devenir administrateur",
 	"Become member" 								=> "Devenir membre",
 	"Become contributor" 								=> "Devenir contributeur",
@@ -293,7 +296,7 @@ return array(
 	"You are going to ask to become an admin of the project" => "Vous allez demander à devenir admin du projet",
 	"You are going to ask to become an admin of the organization" => "Vous allez demander à devenir admin de l'organisation",
 	"Please confirm" => "Veuillez confirmer",
-	"Are you sure you want to confirm" => "Êtes-vous de confirmer",
+	"Are you sure you want to confirm" => "Êtes-vous sûr de confirmer",
 	"as admin" => "comme administrateur",
 
 	"General information about this project" => "Information général à propos de ce projet",
