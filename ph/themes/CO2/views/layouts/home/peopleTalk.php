@@ -77,13 +77,6 @@ var peopleTalk = [
         "image" : "<?php echo $this->module->assetsUrl; ?>/images/testamonials/steph.JPG"
     },
     {
-        "name" : "Guillaume Rouyer",
-        "project" : "Assemblée Virtuelle",
-        "url" : "http://www.virtual-assembly.org/",
-        "comment" : "Un réseau social citoyen, open-source, par et pour les citoyens, pour favoriser la démocratie locale, les dynamiques territoriales. Communecter est un très beau projet, basé sur une nouvelle génération de technologies web dont les propriétés ouvrent la voie au peer to peer et à la décentralisation du web !",
-        "image" : "<?php echo $this->module->assetsUrl; ?>/images/testamonials/guillaumeR.png"
-    },
-    {
         "name" : "Guillaume Libersat",
         "project" : "Brasserie Unisson",
         "url" : "http://unisson.co/fr/",
@@ -96,13 +89,6 @@ var peopleTalk = [
         "url" : "http://nacelles02.com/",
         "comment" : "Communecter c’est l’espoir! l’espoir de voir naître une communauté tournée vers le vivre ensemble créatif et ouvert. ",
         "image" : "<?php echo $this->module->assetsUrl; ?>/images/testamonials/hafid.png"
-    },
-    {
-        "name" : "Julien Cantoni",
-        "project" : "P2P Foundation",
-        "url" : "http://p2pfoundation.net/",
-        "comment" : "Communecter peut faire partie des alternatives aux plateformes propriétaires qui se sont développées ces dernières années. Inclusive, équitable, interopérable, efficace, soutenable, glocale, voilà les promesses de communecter ! Nous attendons son déploiement avec impatience !",
-        "image" : "<?php echo $this->module->assetsUrl; ?>/images/testamonials/julien.png"
     },
     {
         "name" : "Francis Morel",
