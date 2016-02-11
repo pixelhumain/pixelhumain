@@ -398,7 +398,7 @@ body.login .box h1{
   }*/
 
   .box-ajaxTools .btn.tooltips:hover{
-    border-bottom: 3px solid #719FAB !important;
+    border-bottom: 0px solid #719FAB !important;
     background-color: rgba(49, 92, 110, 1);
     color:white;
     /*height: 45px;*/
