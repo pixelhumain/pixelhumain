@@ -84,13 +84,6 @@
 
 ?>
 
-<div id="smartBarContent" class="hidden">
-	<div id="smartBar" class="bg-white">
-		<button class="btn btn-link btn-smart" data-key="3g4g"><i class="fa fa-podcast"></i></button>
-		<button class="btn btn-link btn-smart" data-key="chasseAuTresorSmart"><i class="fa fa-tree"></i></button>
-	</div>
-</div>
-
 <style>
 
 	.<?php echo $moduleName; ?>{
