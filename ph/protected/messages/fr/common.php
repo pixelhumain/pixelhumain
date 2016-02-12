@@ -40,6 +40,8 @@ return array(
 	"View" => "Voir",
 	"Search" => "Rechercher",
 	"ADD" => "AJOUTER",
+	"UPDATE" => "MISE A JOUR",
+	"DELETE" => "SUPPRIMER",
 	"Unlink" => "Annuler le lien",
 	//MONTH
 	"january"=>"janvier",
