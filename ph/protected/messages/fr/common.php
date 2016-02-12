@@ -372,9 +372,8 @@ return array(
 	"No contributor for this project" => "Aucun contributeur sur ce projet",
 	"Organizator detail" => "Détail de l'organisateur",
 	
-	"Tags" => "Tags",
 	"Places" => "Lieux",
-	
+	"No more news" => "Plus de news",
 	
 );
 
