@@ -1,17 +1,17 @@
 <?php 
 $mailConfig = array(
-	'class' => 'ext.mail.YiiMail',
-	'transportType' => 'smtp',
+  'class' => 'ext.mail.YiiMail',
+  'transportType' => 'smtp',
     'transportOptions'=>array(
-	  'host'=>'smtp.gmail.com',
-      'username'=>'',
-      'password'=>'',
+    'host'=>'smtp.gmail.com',
+      'username'=>'testmail.pixelhumain',
+      'password'=>'$pixelhumain974$',
       'port'=>'465',
-      'encryption'=>'ssl',
+      'encryption'=>'tls',
     ),
-	'viewPath' => 'application.views.emails',
-	'logging' => true,
-	'dryRun' => false
+  'viewPath' => 'application.views.emails',
+  'logging' => true,
+  'dryRun' => false
 );
 
 $mailConfigTest = array(
@@ -31,7 +31,7 @@ $mailConfigTest = array(
 
 $params = array(
     // this is used in contact page
-    'adminEmail'=>'contact@pixelhumain.com',
+    'adminEmail'=>'testmail.pixelhumain@gmail.com',
     //upload base directory
     'uploadUrl' => "upload/",
     'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR,
