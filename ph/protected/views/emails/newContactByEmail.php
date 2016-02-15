@@ -8,7 +8,7 @@
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
       <tr>
         <td align="left" valign="top">
-          <img src='<?php echo Yii::app()->getRequest()->getBaseUrl(true).$this->module->assetsUrl.$logo ?>' alt="Granddir" title="Granddir"/>
+          <img src='<?php echo Yii::app()->createAbsoluteUrl("themes/theme-granddir/assets".$logo) ?>' alt="Granddir" title="Granddir"/>
         </td>
         <td align="left">
            <span>Nom : </span><?php echo $name?><br/>
