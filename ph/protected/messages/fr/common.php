@@ -162,6 +162,10 @@ return array(
 	"contributors" => "contributeurs",
 	"member" => "membre",
 	"members" => "membres",
+	"follower" => "abonné",
+	"followers" => "abonnés",
+	"Followers" => "Abonnés",
+	"follows" => "coup de coeur",
 	"Community" => "Communauté",
 	"COMMUNITY" => "COMMUNAUTÉ",
 	"General informations" => "Informations générales",
@@ -387,6 +391,7 @@ return array(
 	
 	"Places" => "Lieux",
 	"No more news" => "Plus de news",
+	"See all" => "Voir tout"
 	
 );
 
