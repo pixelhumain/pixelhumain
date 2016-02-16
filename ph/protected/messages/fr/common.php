@@ -72,6 +72,8 @@ return array(
 	"has invited" => "a invité",
 	"to join" => "à rejoindre",
 	"participates to the event" => "participe à l'évènement",
+	"is following" => "suit",
+	"is following you" => "vous suit",
 
 	// FOOTER
 	"Work in Progress" => "Travail en court",
@@ -156,6 +158,16 @@ return array(
 	"Duration" => "Durée",
 	"Directory" => "Répertoire",
 	"Contributors" => "Contributeurs",
+	"contributor" => "contributeur",
+	"contributors" => "contributeurs",
+	"member" => "membre",
+	"members" => "membres",
+	"follower" => "abonné",
+	"followers" => "abonnés",
+	"Followers" => "Abonnés",
+	"follows" => "coup de coeur",
+	"Community" => "Communauté",
+	"COMMUNITY" => "COMMUNAUTÉ",
 	"General informations" => "Informations générales",
 	
 	//Input title - Placeholder
@@ -190,6 +202,7 @@ return array(
 	"All day" => "Toute la journée",
 	"All" => "Tous",
 	"Who" => "Qui",
+	"and" => "et",
 	
 	//Attributes
 	"Me" => "Moi",
@@ -250,7 +263,7 @@ return array(
 	"Declare me as admin of this organization" 	=> "Devenir administrateur de cette organisation",
 	"Declare me as member of this organization" 	=> "Devenir membre de cette organisation",
 	"Declare me as admin of this project" 	=> "Devenir administrateur de ce projet",
-	"Declare me as contributor of this project" 	=> "Devenir contributor de ce projet",
+	"Declare me as contributor of this project" 	=> "Devenir contributeur de ce projet",
 	"Become admin" 								=> "Devenir administrateur",
 	"Become member" 								=> "Devenir membre",
 	"Become contributor" 								=> "Devenir contributeur",
@@ -268,6 +281,10 @@ return array(
 	"Contact" 	=> "Contacter",
 	"Contributors" => "Contributeurs",
 	"Contributors of project" => "Les contributeurs du projet",
+	"Community of project" => "Communauté du projet",
+	"Community of organization" => "Communauté de l&#146;organisation",
+	"Project community" => "Communauté du projet",
+	"Organization community" => "Communauté de l&#146;organisation",
 	
 	"Read all news publicated by this project" 		=> "Toute l&#146;actualité du projet",
 	"Read all news publicated by this organization" => "Toute l&#146;actualité de cette organisation",
@@ -374,6 +391,7 @@ return array(
 	
 	"Places" => "Lieux",
 	"No more news" => "Plus de news",
+	"See all" => "Voir tout"
 	
 );
 
