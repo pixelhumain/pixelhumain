@@ -2948,6 +2948,13 @@ body.login {
   top:0px !important;
   left:0px !important;
 }
+
+.bgpixeltree_sig{
+  background-image: url(../images/bg-pixel-left-min-invers.png), url(../images/bg-pixel-left-bottom-invers.png);
+  background-position: left top, left bottom;
+  background-repeat: no-repeat;
+}
+
 .bgpixeltree_little {
   background-image: url("../images/logoL.png");
   background-color: transparent;
