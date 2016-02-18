@@ -13,7 +13,7 @@
         </td>
         <?php 
           $validationKey =Person::getValidationKeyCheck($invitedUserId);
-          $url = Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."/person/activate/user/".$invitedUserId.'/validationKey/'.$validationKey;
+          $url = Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."/person/validateinvitation/user/".$invitedUserId.'/validationKey/'.$validationKey.'/invitation/1';
         ?>
         <td align="left">
            <h3>Bienvenue sur Communecter !! </h3>
