@@ -35,7 +35,7 @@
         "useSatelliteTiles"	 => false,
         "useFullScreen" 	 => true,
         "useFullPage" 	 	 => true,
-        "useResearchTools" 	 => true,
+        "useResearchTools" 	 => false,
         "useChartsMarkers" 	 => false,
         "useHelpCoordinates" => false,
         

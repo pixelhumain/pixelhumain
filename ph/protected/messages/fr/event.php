@@ -12,7 +12,7 @@
 		"Leave this Event" 		=> "Ne plus participer cet événement",
 		"Join this Event" 		=> "Participer à cet événement",
 		"Join" 					=> "Participer",
-
+		"Event Categories" => "Catégorie de l'événement"
 	)
 
 ?>
