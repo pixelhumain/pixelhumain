@@ -391,7 +391,12 @@ return array(
 	
 	"Places" => "Lieux",
 	"No more news" => "Plus de news",
-	"See all" => "Voir tout"
+	"See all" => "Voir tout",
+
+
+	"IMPORT DATA" => "IMPORT DATA",
+	"OPENAGENDA" => "OPEN AGENDA",
+	"CHECKGEOCODAGE" => "VERIFIER GEOCODAGE"
 	
 );
 
