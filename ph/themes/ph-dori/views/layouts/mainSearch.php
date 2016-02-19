@@ -74,7 +74,8 @@
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css');
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
-
+		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.css');
+		
 		?>
 		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" />
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple.css" type="text/css" id="skin_color">
@@ -99,6 +100,12 @@
 		       { "userEmail":"<?php echo Yii::app()->session['userEmail']?>"}
 	       <?php } ?>
 	       ];
+	       <?php if($user != "NOT_CONNECTED") { ?>
+				var user_geo_latitude  = "<?php echo $user_geo_latitude; ?>";
+	  			var user_geo_longitude = "<?php echo $user_geo_longitude; ?>";
+	  			var insee 	 = "<?php echo $insee; ?>";
+	  			var cityName = "<?php echo $cityName; ?>";
+	 	   <?php } ?>
 		   jQuery(document).ready(function() {
 				toastr.options = {
 				  "closeButton": false,
@@ -113,6 +120,9 @@
 				  "showMethod": "fadeIn",
 				  "hideMethod": "fadeOut"
 				};
+				<?php if($user != "NOT_CONNECTED") { ?>
+					updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
+				<?php } ?>
 			});
 		</script>
 		<style type="text/css">
@@ -148,7 +158,6 @@
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-cookie/jquery.cookie.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , CClientScript::POS_END);
 
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.css');
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.min.js' , CClientScript::POS_END);
 
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/jquery.dynForm.js' , CClientScript::POS_END);
@@ -163,17 +172,7 @@
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 
 		<script type="text/javascript">
-			//si l'utilisateur est connecté
-			<?php if($user != "NOT_CONNECTED") { ?>
-				var user_geo_latitude  = "<?php echo $user_geo_latitude; ?>";
-	  			var user_geo_longitude = "<?php echo $user_geo_longitude; ?>";
-	  			var insee 	 = "<?php echo $insee; ?>";
-	  			var cityName = "<?php echo $cityName; ?>";
-	  			//on met à jour ses cookies
-	  			jQuery(document).ready(function() {
-	  				updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
-	  			});
-  			<?php } ?>
+			
 		</script>
 
 	</body>
