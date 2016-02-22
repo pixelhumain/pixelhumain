@@ -105,7 +105,12 @@ return array(
 	"Your request has been sent to other admins." => "Votre demande a été envoyée aux autres admins",
 	"News has been successfully delated" => "La publication a été supprimée avec succès",
 	"News well updated" => "La publication a été mise à jour",
+	"Your vote has been succesfully added" => "Votre vote a été ajouté avec succès",
+	"Your vote has been succesfully removed" => "Votre vote a été supprimé avec succès",
 	
+	//Infos
+	"Remove your negative vote before" => "Enlever le vote négatif avant",
+	"Remove your positive vote before" => "Enlever le vote positif avant", 
 	//Confirm
 	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication?",
 	//Form

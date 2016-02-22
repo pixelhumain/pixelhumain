@@ -100,6 +100,12 @@
 		       { "userEmail":"<?php echo Yii::app()->session['userEmail']?>"}
 	       <?php } ?>
 	       ];
+	       <?php if($user != "NOT_CONNECTED") { ?>
+				var user_geo_latitude  = "<?php echo $user_geo_latitude; ?>";
+	  			var user_geo_longitude = "<?php echo $user_geo_longitude; ?>";
+	  			var insee 	 = "<?php echo $insee; ?>";
+	  			var cityName = "<?php echo $cityName; ?>";
+	 	   <?php } ?>
 		   jQuery(document).ready(function() {
 				toastr.options = {
 				  "closeButton": false,
@@ -114,6 +120,9 @@
 				  "showMethod": "fadeIn",
 				  "hideMethod": "fadeOut"
 				};
+				<?php if($user != "NOT_CONNECTED") { ?>
+					updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
+				<?php } ?>
 			});
 		</script>
 		<style type="text/css">
@@ -163,17 +172,7 @@
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 
 		<script type="text/javascript">
-			//si l'utilisateur est connecté
-			<?php if($user != "NOT_CONNECTED") { ?>
-				var user_geo_latitude  = "<?php echo $user_geo_latitude; ?>";
-	  			var user_geo_longitude = "<?php echo $user_geo_longitude; ?>";
-	  			var insee 	 = "<?php echo $insee; ?>";
-	  			var cityName = "<?php echo $cityName; ?>";
-	  			//on met à jour ses cookies
-	  			jQuery(document).ready(function() {
-	  				updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
-	  			});
-  			<?php } ?>
+			
 		</script>
 
 	</body>
