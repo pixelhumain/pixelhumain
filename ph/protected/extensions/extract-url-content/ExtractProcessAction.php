@@ -74,11 +74,12 @@ class ExtractProcessAction extends CAction{
 		                    }
 		                    $description = true;
 		                }
+		                
 		                if($element->property == 'og:image'){
-							//if(@file_get_contents($element->content)) {
-							$imageMedia = $element->content;
-							$size=getimagesize($imageMedia);
-							//}
+							if(@file_get_contents($element->content)) {
+								$imageMedia = $element->content;
+								$size=getimagesize($imageMedia);
+							}
 		                }
 		                
 		                if ($element->property == "og:type" ){
