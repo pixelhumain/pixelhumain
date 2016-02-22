@@ -166,7 +166,7 @@ class ArrayHelper {
 	    	if( isset( $assocArray[  $key ] ) )
 				$assocArray = $assocArray[ $key ];
 			else
-				$assocArray = "<span class='text-red'>error in path : $path </span>";
+				$assocArray = "";//"<span class='text-red'>error in path : $path </span>";
 		}
 		return $assocArray;
 	}

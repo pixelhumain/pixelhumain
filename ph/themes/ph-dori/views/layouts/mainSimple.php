@@ -193,7 +193,7 @@
 	  			var cityName = "<?php echo $cityName; ?>";
 	  			//on met à jour ses cookies
 	  			jQuery(document).ready(function() {
-	  				updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
+	  				updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);	
 	  			});
   			<?php } ?>
 		</script>
