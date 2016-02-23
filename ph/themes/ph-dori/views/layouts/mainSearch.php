@@ -11,7 +11,7 @@
 		-cityName
  	*/
 	$user = "NOT_CONNECTED";
- 	if(isset(Yii::app()->session['userId'])){
+ 	/*if(isset(Yii::app()->session['userId'])){
  		$user = Person::getById(Yii::app()->session['userId']);
 		
 		$user_geo_latitude = ""; $user_geo_longitude = "";
@@ -38,7 +38,7 @@
 		}else{
 			//error_log("aucun cookie geopos trouvé");
 		}
-	}
+	}*/
 
 ?>	
 <html lang="en" class="no-js">
@@ -121,7 +121,7 @@
 				  "hideMethod": "fadeOut"
 				};
 				<?php if($user != "NOT_CONNECTED") { ?>
-					updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
+					//updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
 				<?php } ?>
 			});
 		</script>
