@@ -401,7 +401,10 @@ a.text-dark:hover {
   color: #3C5665 !important; /*rgba(44, 47, 59, 0.6);*/ }
 
 .center {
-  text-align: center; }
+  text-align: center; 
+text-align: -webkit-center;
+text-align: -moz-center;
+  }
 
 .text-light {
   color: rgba(255, 255, 255, 0.6); }

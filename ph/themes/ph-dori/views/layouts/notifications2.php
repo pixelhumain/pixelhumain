@@ -8,7 +8,9 @@
 HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->theme->baseUrl."/assets"); ?>
 <!-- start: PAGESLIDE RIGHT -->
 <style type="text/css">
-	
+	.notifications li {
+		min-height:50px;
+	}
 	.notifications{
 		/*background-color: white;*/
 		color: #528195;
@@ -18,9 +20,25 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 		padding-left: 10px;
 		text-align: inherit; 
 	}
-	#notificationPanel{
-		background-color: white;
-		/*box-shadow: 0px 0px !important;*/
+	#notificationPanelSearch{
+		position: fixed;
+    top: 51px;
+    right: 9.2%;
+    width: 350px;
+    max-height: 80%;
+    overflow-y: auto;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
+    -webkit-box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
+    -o-box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
+    box-shadow: 0px 9px 12px 3px rgba(66, 66, 66, 0.37) !important;
+    overflow-x: hidden;
+    z-index:10;
+		/*background-color: white;
+		/*box-shadow: 0px 0px !important;
 		left:unset !important;
 		right:25px;
 		width: 300px !important;
@@ -28,14 +46,15 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 		-webkit-box-shadow: 0px 0px 3px 0px #656565;
 		-o-box-shadow: 0px 0px 3px 0px #656565;
 		box-shadow: 0px 0px 3px 0px #656565;
-		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);
+		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);*/
 	}
 	.notifications a.notif{
-		background-color: white;
+		    padding-top: 0px !important;
+		background-color: inherit;
 	}
 	ul.notifList{
 		margin-top:5px !important;
-		max-height: 400px !important;
+		max-height: 200px !important;
 		overflow-y:auto;
 		padding-right:10px; 
 		/*border-radius: 50px;*/
@@ -50,23 +69,31 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 	.notifications .pageslide-list a .label{
 		opacity: 0.7;
 		position: absolute;
-		font-size: 24px !important;
+		font-size: 20px !important;
 		border-radius: 30px !important;
 		height: 40px;
-		padding-top: 12px !important;
-		margin-top: -15px;
-		height: 50px;
-		width: 50px;
-		margin-left: -17px;
+		padding-top: 7px !important;
+		padding-left: 8px !important;
+		margin-top: 0px;
+		height: 35px;
+		width: 35px;
+		margin-left: -10px;
+		background-color: #428bca !important;
 	}
 
 	.notifications .message {
 	    padding-left: 40px;
 	    display:block;
 	}
+	.btn-notification-action{
+		background-color: #7ACF5B !important;
+		color:white;
+		width:70%;
+		margin:auto !important;
+	}
 	
 </style>
-<div id="notificationPanel" class=" ">
+<div id="notificationPanelSearch" class="">
 		<div class="notifications">
 			
 			<div class="pageslide-title">
@@ -99,14 +126,14 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 				    } 
 				?>
 			</ul>
-			 <ul class="pageslide-list header col-xs-6 col-sm-6 col-md-6 padding-10 no-margin">
-				<li>
-					<a href="javascript:;" onclick='refreshNotifications()' class="btn btn-primary"><i class="fa fa-refresh"></i></a>
+			 <ul class="pageslide-list header col-xs-6 col-sm-6 col-md-6 padding-10 no-margin" style="height:50px;">
+				<li class="center">
+					<a href="javascript:;" onclick='refreshNotifications()' class="btn-notification-action"><i class="fa fa-refresh"></i></a>
 				</li>
 			</ul> 
-			<ul  class="pageslide-list footer col-xs-6 col-sm-6 col-md-6 padding-10 no-margin"> 
-				<li class='markAllAsRead'>
-					<a href="javascript:;" onclick='markAllAsRead()' class="btn btn-primary">Mark all as Read <i class="fa fa-check-square-o"></i></a>	
+			<ul  class="pageslide-list footer col-xs-6 col-sm-6 col-md-6 padding-10 no-margin" style="height:50px;"> 
+				<li class='markAllAsRead center'>
+					<a href="javascript:;" onclick='markAllAsRead()' class="btn-notification-action">All as Read <i class="fa fa-check-square-o"></i></a>	
 				</li>
 			</ul>
 
