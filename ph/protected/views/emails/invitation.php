@@ -9,7 +9,7 @@
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
       <tr>
         <td align="left" valign="top">
-          <img src='<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/logo/logo144.png' alt="PixelHumain" title="PixelHumain"/>
+          <img src='<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/logo/logo144.png' alt="Communecter" title="Communecter"/>
         </td>
         <?php 
           $validationKey =Person::getValidationKeyCheck($invitedUserId);
@@ -17,13 +17,17 @@
         ?>
         <td align="left">
            <h3>Bienvenue sur Communecter !! </h3>
-           Vous avez été invité au projet Communecter par <?php echo $invitorName?><br/>
-           Veuillez clicker sur ce lien pour participer a cette initiative locale pour améliorer votre commune.<br/>
-           ou copier le directement dans votre navigateur.
+           Vous avez été invité au projet Communecter par <?php echo $invitorName?>.<br/>
+           Voici son message : <br/>
+           <?php echo $message ?>
+           <br/><br/>
+           Veuillez clicker sur ce lien pour rejoindre <?php echo $invitorName?> et ainsi participer a cette initiative locale pour améliorer votre commune.<br/>
            <br/>
            <a href="<?php echo $url?>">Confirmer L'invitation</a>
            <br/>
-           <?php echo $url?>
+           <br/>
+           Si le lien ne fonctionne pas vous pouvez le copier dans l'adresse de votre navigateur :
+           <br/><?php echo $url?>
         </td>
       </tr>
       </table>

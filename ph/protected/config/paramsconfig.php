@@ -65,7 +65,7 @@ $params = array(
 
     //Functionnal params
     //Is the organisation bellow an othe organization can be managed by her top organization
-    'isParentOrganizationAdmin' => true,
+    'isParentOrganizationAdmin' => false,
     'adminUserId' => '520931e2f6b95c5cd3003d6c',
     "openatlasId" => "54eed904a1aa1958b70041ef",
     "communecterId" => "56c1a474f6ca47a8378b45ef"

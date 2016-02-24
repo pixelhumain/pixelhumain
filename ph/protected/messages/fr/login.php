@@ -33,5 +33,6 @@ return array(
         'Fields with * are required.'=>"Les champs marqués d'une * sont obligatoires.",
         "Please fill out the following form with your login credentials"=>"S'il vous plaît remplir le formulaire ci-dessous avec vos informations de connexion:",
         "Full Street" => "Addresse",
+        "You've been invited : please resume the registration process in order to log in." => "Vous avez été invité : veuillez terminer le processus d'inscription pour vous connecter."
     );
 ?>
