@@ -231,8 +231,8 @@ function scrollTo(id)
 {
 	if( $(id).length )
 	{
-		console.log("initscrollTo ", id);
-	 	$("html, body").animate({ scrollTop: $(id).offset().top-70 }, 700);
+		console.log(".my-main-container initscrollTo ", id);
+	 	$(".my-main-container").animate({ scrollTop: $(id).offset().top-50 }, 1700);
 	}
 }
 
