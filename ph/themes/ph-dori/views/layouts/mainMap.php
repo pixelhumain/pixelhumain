@@ -45,7 +45,10 @@
     );
  
  	
-
+	if(!isset(Yii::app()->session['userId'])){
+		$sigParams["useHomeButton"] = false;
+	}
+	
 	/* ***********************************************************************************/
 	//chargement de toutes les librairies css et js indispensable pour la carto
 	$this->renderPartial($relativePath.'generic/mapLibs', array("sigParams" => $sigParams)); 
