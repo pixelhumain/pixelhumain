@@ -107,6 +107,9 @@ return array(
 	"News well updated" => "La publication a été mise à jour",
 	"Your vote has been succesfully added" => "Votre vote a été ajouté avec succès",
 	"Your vote has been succesfully removed" => "Votre vote a été supprimé avec succès",
+	"Event Created success" => "Évènement créé avec succès",
+	"You are not following" => "Vous n'êtes plus abonné à",
+	"You are following" => "Vous êtes abonné à",
 	
 	//Infos
 	"Remove your negative vote before" => "Enlever le vote négatif avant",
@@ -212,9 +215,9 @@ return array(
 	//Attributes
 	"Me" => "Moi",
 	"Person" => "Citoyen",
-	"Organizations" => "Organisations",
-	"Projects" => "Projets",
-	"Events" => "Événements",
+	"Organization" => "Organisation",
+	"Project" => "Projet",
+	"Event" => "Événement",
 
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
