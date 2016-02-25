@@ -37,11 +37,14 @@ return array(
         "You must validate the CGU to sign up." => "Merci de valider les conditions générales d'utilisation.",
         //Validation Process
         "Your account is not validated : please check your mailbox to validate your email address." => "Votre compte n'est pas validé : un mail vous a été envoyé sur votre boite mail.",
+        "Check your mailbox you'll soon receive a mail to validate your email address." => "Vérifiez votre boite aux lettres : un mail de validation vous a été envoyé.",
         "If you didn't receive it or lost it, click" => "Si vous ne l'avez pas reçu ou l'avez perdu, cliquez ",
         "here" => "ici",
         "to receive it again." => "pour le recevoir de nouveau.",
         //Beta test
         "Our developpers are fighting to open soon ! Check your mail that will happen soon !" => "Nos développeurs sont au taquet et ne dorment plus pour que la plateforme sorte bientôt ! Vérifiez votre boite aux lettres, ça ne devrait pas tarder !",
+        "We'll contact you as soon as we open up! Thanks for joining." => "Noux vous contacterons dès que nous ouvrirons ! Merci de nous avoir rejoint !",
+        "You are now communnected !" => "Vous êtes maintenant communecté !",
         //Invitation
         "Your account already exists on the plateform : please try to login." => "Votre compte existe déjà sur la plateforme : essayez de vous identifier.",
         "Something went wrong ! Impossible to retrieve your invitor." => "Une erreur est survenue ! Impossible de retrouver votre parrain.",
