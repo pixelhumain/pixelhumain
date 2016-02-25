@@ -14,7 +14,7 @@ return array(
 	'theme'=>'webarch',
 	
 	//SPECIFIC MODULE confis
-	//'defaultController' => 'communecter/default/index',
+	'defaultController' => 'azotlive',
 	'homeUrl' => "/ph/azotlive",//"/ph?tpl=index",
 
 	// preloading 'log' component
