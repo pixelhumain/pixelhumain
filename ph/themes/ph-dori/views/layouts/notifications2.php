@@ -15,6 +15,7 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 		/*background-color: white;*/
 		color: #528195;
 		padding: 5px 0px !important;
+		display:none;
 	}
 	.notifications .pageslide-title{
 		padding-left: 10px;
