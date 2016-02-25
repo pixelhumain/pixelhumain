@@ -22,7 +22,7 @@ $params = array(
     'defaultController' => 'azotlive',
 
     // Mail configuration
-    'adminEmail'=>'testmail.pixelhumain@gmail.com',
+    'adminEmail'=>'contact@azotlive.com',
 
     //UPLOAD Management Configuration
     //upload url without the base URL
