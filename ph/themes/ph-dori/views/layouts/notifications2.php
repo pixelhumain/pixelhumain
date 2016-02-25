@@ -15,14 +15,13 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 		/*background-color: white;*/
 		color: #528195;
 		padding: 5px 0px !important;
-		display:none;
 	}
 	.notifications .pageslide-title{
 		padding-left: 10px;
 		text-align: inherit; 
 	}
 	#notificationPanelSearch{
-		position: fixed;
+	position: fixed;
     top: 51px;
     right: 9.2%;
     width: 350px;
@@ -38,6 +37,8 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
     box-shadow: 0px 9px 12px 3px rgba(66, 66, 66, 0.37) !important;
     overflow-x: hidden;
     z-index:10;
+    
+		display:none;
 		/*background-color: white;
 		/*box-shadow: 0px 0px !important;
 		left:unset !important;
