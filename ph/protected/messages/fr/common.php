@@ -91,6 +91,7 @@ return array(
 	"Your are already admin of" => "Vous êtes déjà admin de",
 	"Invalid request" => "requête incorrecte",
 	"Something went wrong with the url" => "Le traitement de l'url retourne une erreur",
+	"Something went wrong : please contact your admin" => "Quelque chose a mal tourné: s'il vous plaît contacter votre administrateur",
 	
 	//Success
 	"Link divorced successfully" => "Le lien a été supprimé avec succès",

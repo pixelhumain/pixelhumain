@@ -225,9 +225,29 @@ class ArrayHelper {
  * @return	$value : value in json : "raphael"
  * @author : Raphael RIVIERE
  */
-	public static function getValueJson($json, $map){
-        if(isset($json[$map[0]]))
+	public static function getValueJson($json, $map){        
+		//var_dump($map);
+		if(!empty($json[$map[0]])){
+			if(count($map) == 1){
+				$value = $json[$map[0]]; 
+		    }
+		    else
+		    {
+		    	$newmap = array_splice($map, 1);
+		    	$value = ArrayHelper::getValueJson($json[$map[0]], $newmap);
+		   	}
+
+		}else{
+			$value = null ;
+		}
+
+		return $value ;
+
+
+        /*if(!empty($json[$map[0]]))
 		{
+			//var_dump('$json[$map[0]]');
+			//var_dump($json[$map[0]]);
 			if(count($map) == 1)
 		    {
 		    	$value = $json[$map[0]];
@@ -241,16 +261,26 @@ class ArrayHelper {
 		else
 		{
 			$num = intval($map[0]) ;
+			//var_dump('$num');
+			//var_dump($num);
 			if(is_int($num))
 			{
 				if(count($map) == 1)
 			    {
-			    	$value = $json[0];
+			    	if(!empty($json[0]))		    	
+			    		$value = $json[0];
+			    	else
+			    		$value = null ;	
 			    }
 			    else
 			    {
 			    	$newmap = array_splice($map, 1);
-			    	$value = ArrayHelper::getValueJson($json[0], $newmap);
+			    	//var_dump('$json');	
+			    	//var_dump($json);
+			    	if(!empty($json[0]))		    	
+			    		$value = ArrayHelper::getValueJson($json[0], $newmap);
+			    	else
+			    		$value = null ;	
 			   	}
 			}
 			else
@@ -259,7 +289,7 @@ class ArrayHelper {
 			}
 			
 		}
-	    return $value;
+	    return $value;*/
 	}
 
 }
