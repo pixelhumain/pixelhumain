@@ -16,8 +16,7 @@ class Admin
 	 * @param type $isDummy , if is true, often associated with the type , on each dummy data inserted will be added dummyData:$type
 	 * @return type
    */
-	public static function initModuleData( $moduleId, $type=null, $collection = null,$isDummy=false,$linkAllToActiveUser=false )
-	{
+	public static function initModuleData( $moduleId, $type=null, $collection = null,$isDummy=false,$linkAllToActiveUser=false ){
 		$res = array("module"=>$moduleId, "collection"=>$collection, "imported"=>array(),"errors"=>0);
 	    if( file_exists( Yii::getPathOfAlias( Yii::app()->params["modulePath"].$moduleId.".data" ) ) )
 		{
