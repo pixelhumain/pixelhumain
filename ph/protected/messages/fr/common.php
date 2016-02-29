@@ -113,6 +113,7 @@ return array(
 	"You are not following" => "Vous n'êtes plus abonné à",
 	"You are following" => "Vous êtes abonné à",
 	"Your request is well updated" => "Votre demande a bien été mise à jour",
+	"Confidentiality param well updated" => "Vos paramètres de confidentialité sont bien enregistrés",
 	
 	//Infos
 	"Remove your negative vote before" => "Enlever le vote négatif avant",
@@ -407,8 +408,16 @@ return array(
 
 	"IMPORT DATA" => "IMPORT DATA",
 	"OPENAGENDA" => "OPEN AGENDA",
-	"CHECKGEOCODAGE" => "VERIFIER GEOCODAGE"
+	"CHECKGEOCODAGE" => "VERIFIER GEOCODAGE",
 	
+	"air" => "air",
+	"seed" => "graine",
+	"germ" => "germe",
+	"plant" => "plante",
+	"tree" => "arbre",
+	"forest" => "foret",
+	"country" => "pays",
+	"planet" => "planète",
 );
 
 ?>
