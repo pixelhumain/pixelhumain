@@ -406,8 +406,16 @@ return array(
 
 	"IMPORT DATA" => "IMPORT DATA",
 	"OPENAGENDA" => "OPEN AGENDA",
-	"CHECKGEOCODAGE" => "VERIFIER GEOCODAGE"
+	"CHECKGEOCODAGE" => "VERIFIER GEOCODAGE",
 	
+	"air" => "air",
+	"seed" => "graine",
+	"germ" => "germe",
+	"plant" => "plante",
+	"tree" => "arbre",
+	"forest" => "foret",
+	"country" => "pays",
+	"planet" => "planète",
 );
 
 ?>
