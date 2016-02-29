@@ -219,7 +219,7 @@ function openDynamicSubview (key,collection,callback) {
 
 function toggle(id,siblingsId)
 {
-	log(id,siblingsId);
+	log("toggle",id,siblingsId);
   $(siblingsId).addClass("hide");
 	//if( !$("."+id).is(":visible") ) 
 	$(id).removeClass("hide");
