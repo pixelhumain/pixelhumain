@@ -1,9 +1,12 @@
 <?php 
 class Rest
 {
-	public static function json($res){
+	public static function json($res, $param = null){
 		header("Content-type: application/json; charset=utf-8");
-		echo json_encode( $res );  
+		if(empty($param))
+			echo json_encode( $res );
+		else
+			echo json_encode( $res, $param );  
 	}
 	
 	public static function sendResponse($status = 200, $body = '', $content_type = 'text/html')
