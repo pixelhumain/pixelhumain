@@ -1,8 +1,11 @@
 <?php 
 class Rest
 {
-	public static function json($res){
+	public static function json($res, $checkLoggued = true){
 		header("Content-type: application/json; charset=utf-8");
+		/*if($checkLoggued){
+			$res["sessionUserId"] = Person::logguedAndValid();
+		}*/
 		echo json_encode( $res );  
 	}
 	
@@ -69,6 +72,7 @@ class Rest
 	    }
 	    Yii::app()->end();
 	}
+
 	public static function getStatusCodeMessage($status)
 	{
 	    // these could be stored in a .ini file and loaded
@@ -86,6 +90,7 @@ class Rest
 	    );
 	    return (isset($codes[$status])) ? $codes[$status] : '';
 	}
+
 	public static function checkAuth()
 	{
 	    // Check if we have the USERNAME and PASSWORD HTTP headers set?
