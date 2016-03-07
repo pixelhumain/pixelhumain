@@ -4,6 +4,7 @@ return array(
         'You have some form errors. Please check below.' => 'Il y a des erreurs. Vérifiez ci dessous.',
         'Please verify your entries.' => 'Vérifiez vos saisies.',
         'I forgot my password' => 'Mot de passe oublié ?',
+        'Send me validation email' => 'Recevoir l\'email de validation',
         'Keep me signed in' => 'Se souvenir de moi',
         'Sign in to your account' => 'Identifiez vous',
         'Email'=>'E-mail',
