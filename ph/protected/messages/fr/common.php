@@ -263,7 +263,11 @@ return array(
 	"Unfollow" 				=> "Ne plus suivre",
 	"Follow this Person" 	=> "Suivre cette personne",
 	"Follow" 				=> "Suivre",
-
+	"Follow this person" => "Suivre cette personne",
+	"Follow this organization" => "Suivre cette organisation",
+	"Follow this project" => "Suivre ce projet",
+	"Unfollow" => "Ne plus suivre",
+	
 	"Add Something to your network" => "Ajouter quelque chose à votre réseau" ,
 	"Add"							=> "Ajouter",
 	"Leave this Organization" 		=> "Quitter cette organisation",
