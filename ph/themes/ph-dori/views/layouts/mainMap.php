@@ -193,45 +193,45 @@
 		Sig.hidePopupContent(id);
 	}
 
-	function showMap(show){
+	// function showMap(show){
 		
-		if(show === undefined) show = $("#right_tool_map").css("display") == "none";
-		if(show){
+	// 	if(show === undefined) show = $("#right_tool_map").css("display") == "none";
+	// 	if(show){
 			
-			if(Sig.currentMarkerPopupOpen != null){
-				Sig.currentMarkerPopupOpen.fire('click');
-			}
+	// 		if(Sig.currentMarkerPopupOpen != null){
+	// 			Sig.currentMarkerPopupOpen.fire('click');
+	// 		}
 
-			$(".sigModuleBg").show( 700 );
-			$(".btn-group-map").show( 700 );
-			$("#right_tool_map").show(700);
-			$("#btn-show-map").html("<i class='fa fa-list'></i>");
+	// 		$(".sigModuleBg").show( 700 );
+	// 		$(".btn-group-map").show( 700 );
+	// 		$("#right_tool_map").show(700);
+	// 		$("#btn-show-map").html("<i class='fa fa-list'></i>");
 
-			if($(".box-add").css("display") == "block"){
-				$(".box-add").hide(700);
-			}
-			else if($(".box-communecter").css("display") == "block"){
-				$(".box-communecter").hide(700);
-			}else{
-				$("#ajaxSV").hide( 700 );
-			}
-			var timer = setTimeout("Sig.constructUI()", 1000);
+	// 		if($(".box-add").css("display") == "block"){
+	// 			$(".box-add").hide(700);
+	// 		}
+	// 		else if($(".box-communecter").css("display") == "block"){
+	// 			$(".box-communecter").hide(700);
+	// 		}else{
+	// 			$("#ajaxSV").hide( 700 );
+	// 		}
+	// 		var timer = setTimeout("Sig.constructUI()", 1000);
 			
-		}else{
+	// 	}else{
 			
-			$(".btn-group-map").hide( 700 );
-			$("#right_tool_map").hide(700);
-			$(".panel_map").hide(1);
-			$("#btn-show-map").html("<i class='fa fa-map'></i>");
+	// 		$(".btn-group-map").hide( 700 );
+	// 		$("#right_tool_map").hide(700);
+	// 		$(".panel_map").hide(1);
+	// 		$("#btn-show-map").html("<i class='fa fa-map'></i>");
 			
-			if(Sig.currentMarkerPopupOpen != null){
-				Sig.currentMarkerPopupOpen.closePopup();
-			}
+	// 		if(Sig.currentMarkerPopupOpen != null){
+	// 			Sig.currentMarkerPopupOpen.closePopup();
+	// 		}
 
-			if($(".box-add").css("display") == "none" && <?php echo isset(Yii::app()->session['userId']) ? "true" : "false"; ?>)
-				$("#ajaxSV").show( 700 );
-		}
+	// 		if($(".box-add").css("display") == "none" && <?php echo isset(Yii::app()->session['userId']) ? "true" : "false"; ?>)
+	// 			$("#ajaxSV").show( 700 );
+	// 	}
 		
-	}
+	// }
 
 </script>
