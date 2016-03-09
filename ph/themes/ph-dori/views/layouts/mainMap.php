@@ -171,7 +171,7 @@
 
 		$("#right_tool_map").hide('fast');
 		
-		showMap(false);
+		//showMap(false);
 		Sig.userData = <?php echo json_encode($myUser); ?>;
 
 	});
@@ -191,6 +191,14 @@
 		Sig.centerSimple(latlng, 14);
 		
 		Sig.hidePopupContent(id);
+	}
+
+	function showMapLegende(faIcon, msgText){
+		$("#mapLegende").html("<i class='fa fa-"+faIcon+"'></i> " + msgText);
+		$("#mapLegende").show(300);
+	}
+	function hideMapLegende(){
+		$("#mapLegende").hide();
 	}
 
 	// function showMap(show){
