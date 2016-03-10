@@ -1,44 +1,9 @@
 debug = true;
 
 $(document).ready(function() { 
-	/*$('#particpateTabs a').click(function (e) {
-		  e.preventDefault();
-		  $(this).tab('show');
-		});*/
 	
 	NProgress.start();
-	/* *************************** */
-	/* Toile de delaunay en bg */
-	/* *************************** */
-	//console.log("delaunay",showDelaunay);
-	/*if( showDelaunay  )
-	{
-		var w = 1000,
-	    h = 1000;
 	
-		var vertices = d3.range(2000).map(function(d) {
-		  return [Math.random() * w, Math.random() * h];
-		});
-		
-		var delaunay = d3.geom.delaunay(vertices);
-		
-		var svgBG = d3.select("body")
-		  .append("svg")
-		      //.attr("width", "100%")
-		      //.attr("height", "100%")
-		      .attr("id", "delaunayBg")
-		      .attr("preserveAspectRatio", "xMidYMid slice")
-				//.attr("width", w)
-				//.attr("height", h)
-		    .attr("viewBox", [0, 0, w, h].join(' '))
-		
-		    svgBG.append("g")
-		  .selectAll("path")
-		    .data(delaunay)
-		  .enter().append("path")
-		    .attr("class", function(d, i) { return "q" + (i % 9) + "-9"; })
-		    .attr("d", function(d) { return "M" + d.join("L") + "Z"; });
-	}*/
 	/* *************************** */
 	
 	/* *************************** */
@@ -55,28 +20,7 @@ $(document).ready(function() {
 	
 	initSequence();
 	setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 2000);
-	/*
-	$('#sweInscriptionForm').validate(
-			 {
-			  rules: {
-			    name: {
-			      minlength: 2,
-			      required: true
-			    },
-			    email: {
-			      required: true,
-			      email: true
-			    }
-			  },
-			  highlight: function(element) {
-			    $(element).closest('.control-group').removeClass('success').addClass('error');
-			  },
-			  success: function(element) {
-			    element
-			    .text('').addClass('valid').removeClass('error')
-			    .closest('.control-group').removeClass('error').addClass('success');
-			  }
-			 });*/
+	
 });
 function toggleSpinner(){
 	if($("#logoLink").length){
