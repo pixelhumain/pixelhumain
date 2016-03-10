@@ -73,8 +73,8 @@ function getAjax(id,url,callback,datatype,blockUI)
         error:function (xhr, ajaxOptions, thrownError){
           //console.error(thrownError);
           $.blockUI({
-              message : '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> SOMETHING WENT WRONG !! <br>404 ERROR<br> PAGE AND DEMOCRACY NOT FOUND </div>'
-              +'<a class="thumb-info" href="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" data-title="There are no experiments without Errors."  data-lightbox="all">'
+              message : '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> Oups !! 404 ERROR<br> La page que vous demandez ne peut être trouvée ... </div>'
+              +'<a class="thumb-info" href="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" data-title="Il n\'existe pas d\'évolution sans erreur."  data-lightbox="all">'
               + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>',
               timeout: 3000 
           });
