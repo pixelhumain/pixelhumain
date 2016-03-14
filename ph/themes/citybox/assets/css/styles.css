@@ -1,4 +1,4 @@
-/* ---------------------------------------------------------------------- 
+/* ----------------------------------------------------------------------
 >>> TABLE OF CONTENT
 -------------------------------------------------------------------------
 1 - Basic Elements & Classes
@@ -1428,6 +1428,12 @@ a.text-white {
 a.text-dark:hover {
   color: rgba(44, 47, 59, 0.6); }
 
+  .text-green {
+    color: rgba(146, 190, 31, 1); }
+
+  a.text-green:hover {
+    color: rgba(146, 190, 31, 0.6); }
+
 .center {
   text-align: center; }
 
@@ -2073,11 +2079,11 @@ textarea.autosize {
 
 /* Style for x-editable content */
 .editable-container.editable-inline {
-    display: inline; 
+    display: inline;
 }
 
 .editable-input {
-    display: inline; 
+    display: inline;
 }
 
 /*.editableform .form-group, .editableform .form-control, .editableform .editable-input, .editable-pre-wrapped {*/
@@ -2896,7 +2902,7 @@ td.small-width {
 /*  Login
 /* ---------------------------------------------------------------------- */
 body.login {
-  overflow: visible; 
+  overflow: visible;
   /*-webkit-filter: blur(5px);
   -moz-filter: blur(5px);
   -o-filter: blur(5px);
@@ -3017,7 +3023,7 @@ body.login .box-white-round {
   body.login .box-pod2 {
   background: #FFFFFF;
   border-radius: 10px;
-  
+
   padding: 10px;
 }
 body.login .box {
@@ -3032,14 +3038,14 @@ body.login .box {
 
 body.login .box section{
   color:#666;
-  font-size:25px; 
+  font-size:25px;
   font-weight: bold;
 }
 
 body.login .form fieldset {
   border: none;
   margin: 0;
-  padding: 10px 0 0; 
+  padding: 10px 0 0;
     padding-left:70px;padding-right:70px;}
 
 body.login .form fieldset input[type="text"] {
@@ -4412,7 +4418,7 @@ div.commentline {
 div.commentline ul {
     margin: 0;
     padding: 0;
-    list-style: none; 
+    list-style: none;
     margin-top: 20px;}
 
 /* Next Levels */
@@ -4425,19 +4431,19 @@ div.commentline .level {
     display: block;
     height: 179px;
     position: absolute;
-    border-left: 1px dashed #CCCCCC; 
+    border-left: 1px dashed #CCCCCC;
     top: 0px;}
 
 div.commentline > li > ul  {
     float: left;
     width: 100%;
-    clear: right; 
+    clear: right;
 }
 
 div.commentline > li {
     float: left;
     width: 100%;
-    clear: right; 
+    clear: right;
 }
 
 div.commentline ul > li .commentline_element {
@@ -4452,7 +4458,7 @@ div.commentline ul > li .commentline_element:before {
 div.commentline ul > li .commentline_element:after {
     left: -35px;
     top: 10px; }
-    
+
   div.commentline .date_separator {
     clear: both;
     height: 60px;
