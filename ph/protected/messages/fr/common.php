@@ -119,6 +119,8 @@ return array(
 	"Confidentiality param well updated" => "Vos paramètres de confidentialité sont bien enregistrés",
 	"Project created successfully" => "Projet créée avec succès",
 	"Properties updated successfully" => "Les propriétés ont été modifiées avec succès",
+	"Task added successfully" => "La tâche a été ajoutée avec succès",
+	"TASK REMOVED SUCCESFULLY!!" => "La tâche a été supprimée avec succès",
 	//Infos
 	"Remove your negative vote before" => "Enlever le vote négatif avant",
 	"Remove your positive vote before" => "Enlever le vote positif avant", 
@@ -279,6 +281,8 @@ return array(
 	"Join this Organization" 		=> "Rejoindre cette organisation",
 	"Join" 							=> "Rejoindre",
 	"Manage"						=> "Administrer",
+	"added" => "ajouté",
+	"already" => "déjà présent",
 
 	"Declare me as admin of this organization" 	=> "Devenir administrateur de cette organisation",
 	"Declare me as member of this organization" 	=> "Devenir membre de cette organisation",
