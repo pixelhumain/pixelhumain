@@ -422,6 +422,9 @@ return array(
 	"forest" => "foret",
 	"country" => "pays",
 	"planet" => "planète",
+	
+	"Frequently Asked Questions" => "Réponses aux Questions Fréquentes",
+	"Crowdfunding : Build Together" => "Crowdfunding : Construire Ensemble"
 );
 
 ?>

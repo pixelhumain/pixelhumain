@@ -168,11 +168,6 @@
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		?>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-
-		<script type="text/javascript">
-			
-		</script>
-
 	</body>
 	<!-- end: BODY -->
 </html>
