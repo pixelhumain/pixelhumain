@@ -12,10 +12,10 @@
           <img src='<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/logo/logo144.png' alt="PixelHumain" title="PixelHumain"/>
         </td>
         <td align="left">
-           <h3>Un nouveau post sur le fil de Pixel'humain "help and debug" de <?php echo $title; ?></h3>
+           <h3>Un nouveau post sur le fil de Communecter "help and debug" de <?php echo $title; ?></h3>
            <i>"<?php echo $content ?>"</i>
            <br/>
-           <p> Retrouver les news au lien suivant <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."#news.index.type.pixels?isNotSV=1"?>" target="_blank">ici</a>
+           <p> Retrouver les news au lien suivant <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."#news.index.type.pixels"?>" target="_blank">ici</a>
            <br/>
         </td>
       </tr>
