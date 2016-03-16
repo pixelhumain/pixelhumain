@@ -198,6 +198,7 @@
 		$("#mapLegende").show(300);
 	}
 	function hideMapLegende(){
+		showMapLegende("", "");
 		$("#mapLegende").hide();
 	}
 

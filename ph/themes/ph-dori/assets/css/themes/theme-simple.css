@@ -268,9 +268,9 @@ ul.notifList{
 /* NOTIFICATIONS */
 /* BLOCK PROCESSING */
 .blockMsg{
-  width: 50% !important;
-  top: 17% !important;
-  left: 24% !important;
+  width: 50%;
+  top: 17%;
+  left: 29%;
 }
 .blockMsg img{
   max-width:70%;
