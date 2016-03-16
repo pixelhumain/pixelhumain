@@ -59,14 +59,13 @@ $params = array(
     'captcha-key' => '6LdiygUTAAAAAKZxZ0c9-G43Xqp9ZiedhWswto1s',
 
     'google' => array('client_id' => '991320747617-dnqguopevn9bn3mg21nm1k12gj305anv.apps.googleusercontent.com',
-                        'keyAPP' => "3e485c0809b44e953963c778f5a3c2a0"),
+                        'keyAPP' => "iStMgQekGCuepkvAWUc-BfkJ"),
 
     'mandrill' => '4eD8BtmL5L_Z0E7Zz69Zlw',
 
     //Functionnal params
     //Is the organisation bellow an othe organization can be managed by her top organization
     'isParentOrganizationAdmin' => false,
-    'adminUserId' => '520931e2f6b95c5cd3003d6c',
     "openatlasId" => "54eed904a1aa1958b70041ef",
     "communecterId" => "56c1a474f6ca47a8378b45ef"
   );

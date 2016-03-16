@@ -35,9 +35,12 @@ class DataValidator {
 	    return $res;
 	}
 
-	public static function uniqueUsername($toValidate, $objectId=null) {
-		// Is There a association with the same name ?
+	public static function checkUsername($toValidate, $objectId=null) {
+		// Is There a user with the same username ?
 	    $res = "";
+	    if (strlen($toValidate) < 4 || strlen($toValidate) > 32) {
+		  	$res = "The username length should be between 4 and 32 characters";
+		} 
 	    $uniqueUsername = PHDB::findOne(Person::COLLECTION,array( "username" => $toValidate));      
 	    if ($uniqueUsername) { 
 	    	$res = "A user with the same username allready exists";
