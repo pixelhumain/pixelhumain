@@ -88,12 +88,14 @@ return array(
 	"Please select a type" => "Veuillez selectionner un type",
 	"Please enter an email" => "Veuillez entrer un e-mail",
 	"Please try again" => "Essaie encore s'il-te plait",
+	"Please specify the name" => "Veuillez entrer un nom",
 	"Your are already admin of" => "Vous êtes déjà admin de",
 	"Invalid request" => "requête incorrecte",
 	"Something went wrong with the url" => "Le traitement de l'url retourne une erreur",
 	"Something went wrong : please contact your admin" => "Quelque chose a mal tourné: s'il vous plaît contacter votre administrateur",
 	
 	//Success
+	"Your form validation is successful" => "la validation du formulaire est réalisée avec succès",
 	"Link divorced successfully" => "Le lien a été supprimé avec succès",
 	"Relation applied successfully" => "La relation a bien été crée",
 	"You are now admin of" => "Vous êtes maintenant admin de",
@@ -114,7 +116,7 @@ return array(
 	"You are following" => "Vous êtes abonné à",
 	"Your request is well updated" => "Votre demande a bien été mise à jour",
 	"Confidentiality param well updated" => "Vos paramètres de confidentialité sont bien enregistrés",
-	
+	"Project created succesfully" => "Projet créée avec succès",
 	//Infos
 	"Remove your negative vote before" => "Enlever le vote négatif avant",
 	"Remove your positive vote before" => "Enlever le vote positif avant", 
