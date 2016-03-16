@@ -69,6 +69,7 @@ return array(
 	"as admin of" => "comme admin de",
 	"as member of" => "comme membre de",
 	"as contributor of" => "comme contributeur de",
+	"as attendee of" => "comme participant de",
 	"has invited" => "a invité",
 	"to join" => "à rejoindre",
 	"participates to the event" => "participe à l'évènement",
