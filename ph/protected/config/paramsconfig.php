@@ -59,7 +59,7 @@ $params = array(
     'captcha-key' => '6LdiygUTAAAAAKZxZ0c9-G43Xqp9ZiedhWswto1s',
 
     'google' => array('client_id' => '991320747617-dnqguopevn9bn3mg21nm1k12gj305anv.apps.googleusercontent.com',
-                        'keyAPP' => "3e485c0809b44e953963c778f5a3c2a0"),
+                        'keyAPP' => "iStMgQekGCuepkvAWUc-BfkJ"),
 
     'mandrill' => '4eD8BtmL5L_Z0E7Zz69Zlw',
 
