@@ -58,7 +58,10 @@ function getAjax(id,url,callback,datatype,blockUI)
         cache:false,
         //dataType:"json",
         success:function(data) {
-          if(datatype === "html" )
+          if (data.error) {
+            console.warn(data.error);
+            toastr.error(data.error.msg);
+          } else if(datatype === "html" )
             $(id).html(data);
           else if(typeof data === "string" )
             toastr.success(data);
