@@ -432,7 +432,8 @@ return array(
 	"planet" => "planète",
 	
 	"Frequently Asked Questions" => "Réponses aux Questions Fréquentes",
-	"Crowdfunding : Build Together" => "Crowdfunding : Construire Ensemble"
+	"Crowdfunding : Build Together" => "Crowdfunding : Construire Ensemble",
+	"Terms of Use" => "Mentions Légales"
 );
 
 ?>
