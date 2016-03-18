@@ -4239,6 +4239,7 @@ div.timeline {
   margin: 0 0px 0 0;
   overflow: hidden;
   position: relative;
+  min-height:350px;
   overflow: visible; }
   div.timeline .columns {
     margin: 0;
