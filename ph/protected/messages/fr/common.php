@@ -121,6 +121,7 @@ return array(
 	"Properties updated successfully" => "Les propriétés ont été modifiées avec succès",
 	"Task added successfully" => "La tâche a été ajoutée avec succès",
 	"TASK REMOVED SUCCESFULLY!!" => "La tâche a été supprimée avec succès",
+	"News added successfully!" => "News ajoutée avec succès!",
 	//Infos
 	"Remove your negative vote before" => "Enlever le vote négatif avant",
 	"Remove your positive vote before" => "Enlever le vote positif avant", 
