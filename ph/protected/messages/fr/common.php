@@ -124,6 +124,7 @@ return array(
 	//Infos
 	"Remove your negative vote before" => "Enlever le vote négatif avant",
 	"Remove your positive vote before" => "Enlever le vote positif avant", 
+	"No more notifications for the moment" => "Vous n'avez pas de notifications pour le moment",
 	//Confirm
 	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication?",
 	//Form
@@ -235,6 +236,8 @@ return array(
 	"Projects" => "Projets",
 	"Events" => "Événements",
 
+	// Button
+	"All as Read" => "Tout comme lu",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",

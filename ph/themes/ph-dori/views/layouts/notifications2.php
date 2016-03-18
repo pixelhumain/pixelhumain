@@ -135,7 +135,7 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 			</ul> 
 			<ul  class="pageslide-list footer col-xs-6 col-sm-6 col-md-6 padding-10 no-margin" style="height:50px;"> 
 				<li class='markAllAsRead center'>
-					<a href="javascript:;" onclick='markAllAsRead()' class="btn-notification-action">All as Read <i class="fa fa-check-square-o"></i></a>	
+					<a href="javascript:;" onclick='markAllAsRead()' class="btn-notification-action" style="font-size:11px;"><?php echo Yii::t("common","All as Read") ?> <i class="fa fa-check-square-o"></i></a>	
 				</li>
 			</ul>
 
@@ -234,7 +234,6 @@ function refreshNotifications()
         } else {
             toastr.error("no notifications found ");
         }
-        notifCount();
         $(".pageslide-list.header .btn-primary i.fa-refresh").removeClass("fa-spin");
     }).fail(function(){
     	toastr.error("error notifications");
@@ -298,6 +297,7 @@ function notifCount()
 		$('.notifications-count').removeClass('badge-info');
 		$(".markAllAsRead").show();
 	} else {
+		$(".notifList").append("<?php echo Yii::t("common","No more notifications for the moment") ?>");
 		//$('.notifications-count').addClass('hide');
 		$(".notifications-count").html("0");
 		$('.notifications-count').removeClass('badge-danger');
