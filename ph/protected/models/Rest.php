@@ -7,6 +7,15 @@ class Rest
 		/*if($checkLoggued){
 			$res["sessionUserId"] = Person::logguedAndValid();
 		}*/
+
+		//Log the result of the action which is logging
+		if(isset(Yii::app()->session["logsInProcess"][Yii::app()->controller->id.'/'.Yii::app()->controller->action->id])){
+			$logsInProcess = Yii::app()->session["logsInProcess"];
+			Log::setLogAfterAction($logsInProcess[Yii::app()->controller->id.'/'.Yii::app()->controller->action->id], @$res);
+			unset($logsInProcess[Yii::app()->controller->id.'/'.Yii::app()->controller->action->id]);
+			Yii::app()->session["logsInProcess"] = $logsInProcess;
+		}
+
 		if(empty($param))
 			echo json_encode( $res );
 		else
