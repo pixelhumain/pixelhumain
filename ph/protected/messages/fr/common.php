@@ -224,7 +224,7 @@ return array(
 	"All" => "Tous",
 	"Who" => "Qui",
 	"and" => "et",
-	
+	"waiting for validation" => "attente de validation",
 	//Attributes
 	"Me" => "Moi",
 	"Person" => "Citoyen",
