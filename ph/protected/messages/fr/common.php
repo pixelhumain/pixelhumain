@@ -207,6 +207,7 @@ return array(
 	
 	//Question
 	"Are you sure you want to delete" => "Êtes-vous sûr de supprimer",
+	"from your community" => "de votre communauté",
 	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
 	"Are you sure to join the organization" => "Êtes-vous sûr de rejoindre l'organisation",
 	"Are you sure to join the project" => "Êtes-vous sûr de rejoindre le projet",
