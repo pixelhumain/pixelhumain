@@ -43,6 +43,8 @@ return array(
 	"UPDATE" => "MISE A JOUR",
 	"DELETE" => "SUPPRIMER",
 	"Unlink" => "Annuler le lien",
+	"You have already made this action" => "Vous avez déjà effectué cette action",
+
 	//MONTH
 	"january"=>"janvier",
 	"febuary"=>"février",
