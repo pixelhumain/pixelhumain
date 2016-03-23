@@ -122,9 +122,11 @@ return array(
 	"Task added successfully" => "La tâche a été ajoutée avec succès",
 	"TASK REMOVED SUCCESFULLY!!" => "La tâche a été supprimée avec succès",
 	"News added successfully!" => "News ajoutée avec succès!",
+	"Thank you to report abuse ! We are dealing it as quickly as possible." => "Merci de nous signaler cet abus! L'équipe va examiner ceci le plus rapidement possible",
+	"You already reported this news as abuse" => "Vous avez déjà signalé cette news comme abus",
 	//Infos
-	"Remove your negative vote before" => "Enlever le vote négatif avant",
-	"Remove your positive vote before" => "Enlever le vote positif avant", 
+	"Remove your last opinion before" => "Enlever le dernier opinion avant",
+	//"Remove your positive vote before" => "Enlever le vote positif avant", 
 	"No more notifications for the moment" => "Vous n'avez pas de notifications pour le moment",
 	//Confirm
 	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication?",
@@ -224,7 +226,11 @@ return array(
 	"All" => "Tous",
 	"Who" => "Qui",
 	"and" => "et",
+	
+	//Status
 	"waiting for validation" => "attente de validation",
+	"unregistred" => "non inscrit-e",
+	"not activated" => "non activé-e",
 	//Attributes
 	"Me" => "Moi",
 	"Person" => "Citoyen",
