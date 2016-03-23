@@ -126,7 +126,9 @@ return array(
 	"News added successfully!" => "News ajoutée avec succès!",
 	"Thank you to report abuse ! We are dealing it as quickly as possible." => "Merci de nous signaler cet abus! L'équipe va examiner ceci le plus rapidement possible",
 	"You already reported this news as abuse" => "Vous avez déjà signalé cette news comme abus",
-	"You are going to declare an abuse : please fill the reason" => "Vous êtes en train de signaler un abus. Merci d'en préciser la raison",
+	"You are going to declare an abuse : please fill the reason" => "Vous êtes en train de signaler un contenu abusif. Merci d'en préciser la raison",	
+	"Update publication" => "Modifier la publication",
+	"Report an abuse" => "Reporter au modérateur",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
