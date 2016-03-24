@@ -156,7 +156,12 @@ return array(
 	"Local Business" => "Entreprise",
 	"Group" => "Groupe",
 	"Government Organization" => "Organisation gouvernementale",
-
+	"the NGO" => "l'association",
+	"the localBusiness" => "l'entreprise",
+	"Local Business" => "Entreprise",
+	"the group" => "le collectif",
+	"the government organization" => "l'organisation gouvernementale",
+	
 	//EMAILS
 	"New Organization created on " => "Nouvelle organisation créée sur ",
 	"New Event created on " => "Nouvel évennement créé sur ",
@@ -222,6 +227,8 @@ return array(
 	"as contributor" => "comme contributeur",
 	"as member" => "comme membre",
 	"as admin" => "comme admin",
+	"Are you sure to confirm the help from" => "Êtes vous sûre de confirmer l'aide de",
+	"Are you sure you want to help for this need" => "Êtes-vous sûre de confirmer votre aide ur le besoin",
 	//Indication
 	"When" => "Quand",
 	"Where" => "Où",
@@ -356,6 +363,8 @@ return array(
 	"Please confirm" => "Veuillez confirmer",
 	"Are you sure you want to confirm" => "Êtes-vous sûr de confirmer",
 	"as admin" => "comme administrateur",
+	"organization detail" => "Détail de l&#146;organisation",
+	"project detail" => "Détail du projet",
 
 	"General information about this project" => "Information général à propos de ce projet",
 	"Project contributors" => "Les contributeurs du projet",
@@ -406,6 +415,8 @@ return array(
 	"Know more" => "En savoir +",
 	"Show Directory" => "Afficher le répertoire",
 	"City Home page" => "Page accueil de cette ville",
+	"Back to organization" => "Revenir sur l'organisation",
+	"Back to project" => "Revenir sur le project",
 
 	"Invite people you know, you like, you met, you want to follow" => "Invitez quelqu'un que vous connaissez en lui envoyant un e-mail d'invitation",
 	"Connect organizations you know, you like, you met, you want to follow" => "Communectez votre association, entreprise, groupe, que vous connaissez, que vous aimez, que vous venez de découvrir ou que vous voulez suivre",
