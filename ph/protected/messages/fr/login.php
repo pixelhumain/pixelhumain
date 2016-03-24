@@ -44,7 +44,7 @@ return array(
         "here" => "ici",
         "to receive it again." => "pour le recevoir de nouveau.",
         //Beta test
-        "Our developpers are fighting to open soon ! Check your mail that will happen soon !" => "Nos développeurs sont au taquet et ne dorment plus pour que la plateforme sorte bientôt ! Vérifiez votre boite aux lettres, ça ne devrait pas tarder !",
+        "Our developpers are fighting to open soon ! Check your mail that will happen soon !" => "<br>Vérifiez votre boite aux lettres, pour le mail de validation !<br><span class=' text-green'>Nos développeurs sont au taquet et ne dorment plus pour que la plateforme sorte bientôt !</span>",
         "We'll contact you as soon as we open up! Thanks for joining." => "Noux vous contacterons dès que nous ouvrirons ! Merci de nous avoir rejoint !",
         "You are now communnected !" => "Vous êtes maintenant communecté !",
         //Invitation
