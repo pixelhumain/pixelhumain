@@ -77,7 +77,7 @@ return array(
 	"participates to the event" => "participe à l'évènement",
 	"is following" => "suit",
 	"is following you" => "vous suit",
-
+	"has commented your post" => "a commenté votre post",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 	
