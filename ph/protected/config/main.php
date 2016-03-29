@@ -17,7 +17,7 @@ return array(
 
 	//SPECIFIC MODULE confis
 	'defaultController' => 'communecter/default/index',
-	'homeUrl' => "/ph/",//"/ph?tpl=index",
+	'homeUrl' => "/com/",//"/ph?tpl=index",
 
 	// preloading 'log' component
 	'preload'=>array('log'),
