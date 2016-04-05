@@ -16,7 +16,10 @@
 
            <?php echo Yii::t("common", "LOCAL CONNECTED CITIZENS"); ?>
            Un nouvel utilisateur s'est inscrit sur le site : <?php echo $person["name"]?> !! </h3>
-           N'oubliez pas de le modérer sur le <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/'.Yii::app()->getController()->moduleId.'/admin'  ?>">back office</a>.
+           <?php if (@$person["inviteCode"]) {
+           echo "Code d'invitation utilisé : ".$person["inviteCode"]."</br>";
+           }?>
+           N'oubliez pas de le modérer sur le <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/'.Yii::app()->getController()->moduleId.'/#admin.directory'  ?>">back office</a>.
            <br/>
         </td>
       </tr>

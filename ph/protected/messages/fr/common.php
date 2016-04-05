@@ -166,7 +166,7 @@ return array(
 	"New Organization created on " => "Nouvelle organisation créée sur ",
 	"New Event created on " => "Nouvel évennement créé sur ",
 	"New Project created on " => "Nouveau projet créée sur ",
-	"Confirm your account on " => "Confirmer votre compte sur",
+	"Confirm your account on " => "Confirmer votre compte sur ",
 
 	//Common label
 	"Name" => "Nom",
