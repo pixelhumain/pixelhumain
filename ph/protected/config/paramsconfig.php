@@ -54,9 +54,11 @@ $params = array(
     "bucket.large"=> "pixelphotos.large",
     "bucket.thumb"=>"pixelphotos.thumb",
     
-    //Captcha
+    //Captcha 
     'captcha' => '6LdiygUTAAAAAEsbbK7LvMjJRt9PLP9lO-6QSM8K',
     'captcha-key' => '6LdiygUTAAAAAKZxZ0c9-G43Xqp9ZiedhWswto1s',
+
+    'idOpenAgenda' => '56ef8c2894ef471f0c7b23d0',
 
     'google' => array('client_id' => '991320747617-dnqguopevn9bn3mg21nm1k12gj305anv.apps.googleusercontent.com',
                         'keyAPP' => "iStMgQekGCuepkvAWUc-BfkJ"),
