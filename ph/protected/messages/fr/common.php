@@ -324,6 +324,7 @@ return array(
 	"Statistics"							=> "Statistiques",
 
 	"Activity" 	=> "Activités",
+	"News Stream" 	=> "Fil d'actualités",
 	"Details" 	=> "Détails",
 	"Contact" 	=> "Contacter",
 	"Contributors" => "Contributeurs",
@@ -333,6 +334,8 @@ return array(
 	"Project community" => "Communauté du projet",
 	"Organization community" => "Communauté de l&#146;organisation",
 	
+	"Read all news publicated by this person" 		=> "Toute l&#146;actualité de cette personne",
+	"Read all news publicated by this event" 		=> "Toute l&#146;actualité de cet événement",
 	"Read all news publicated by this project" 		=> "Toute l&#146;actualité du projet",
 	"Read all news publicated by this organization" => "Toute l&#146;actualité de cette organisation",
 	"Discover who contributes to this project" 		=> "Les contributeurs du projet",
