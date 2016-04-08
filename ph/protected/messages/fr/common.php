@@ -464,7 +464,11 @@ return array(
 	"Frequently Asked Questions" => "Réponses aux Questions Fréquentes",
 	"Crowdfunding : Build Together" => "Crowdfunding : Construire Ensemble",
 	"Terms of Use" => "Mentions Légales",
-	"Project Partners" => "Partenaires du projet"
+	"Project Partners" => "Partenaires du projet",
+
+	"updatepublication" => "Modifier",
+	"deletepublication" => "Supprimer",
+	
 );
 
 ?>
