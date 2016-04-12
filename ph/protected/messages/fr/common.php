@@ -223,6 +223,7 @@ return array(
 	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
 	"Are you sure to join the organization" => "Êtes-vous sûr de rejoindre l'organisation",
 	"Are you sure to join the project" => "Êtes-vous sûr de rejoindre le projet",
+	"Are you sure to participate to the event" => "Êtes-vous sûr de participer à cet évènement",
 	"Are you admin" => "Êtes-vous admin",
 	"as contributor" => "comme contributeur",
 	"as member" => "comme membre",
@@ -258,6 +259,8 @@ return array(
 
 	// Button
 	"All as Read" => "Tout comme lu",
+	"Participate" => "Participer",
+	"Participate to this event" => "Participer à l&#146;évènement",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
