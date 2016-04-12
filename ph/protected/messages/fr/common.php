@@ -292,6 +292,7 @@ return array(
 
 	"Contact" 				=> "Contacter",
 	"Unfollow this Person" 	=> "Ne plus suivre cette personne",
+	"Unfollow this person" 	=> "Ne plus suivre cette personne",
 	"Unfollow" 				=> "Ne plus suivre",
 	"Follow this Person" 	=> "Suivre cette personne",
 	"Follow" 				=> "Suivre",
