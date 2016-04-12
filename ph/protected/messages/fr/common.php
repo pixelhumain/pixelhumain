@@ -129,6 +129,7 @@ return array(
 	"You are going to declare an abuse : please fill the reason" => "Vous êtes en train de signaler un contenu abusif. Merci d'en préciser la raison",	
 	"Update publication" => "Modifier la publication",
 	"Report an abuse" => "Reporter au modérateur",
+	"You leave successfully this event" => "Vous avez quitté l'évènement",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
