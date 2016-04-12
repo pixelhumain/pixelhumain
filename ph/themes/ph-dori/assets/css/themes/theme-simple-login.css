@@ -527,3 +527,32 @@ body.login .box h1{
     padding: 4px 15px;
     border-radius: 30px;
   }
+
+
+
+
+@media screen and (max-width: 1024px) {  
+  .box-register {
+      width: 90% !important;
+      margin-left: 7% !important;
+      margin-right: auto !important;
+      right: unset !important;
+  }
+}
+
+
+@media screen and (min-width: 767px) and (max-width: 1024px) {
+  .box-login{
+    margin-left: 14% !important;
+  }
+} 
+
+@media screen and (max-width: 767px) {
+  .box-login{
+    width:90% !important;
+    margin-left: 5% !important;
+  }
+} 
+
+
+
