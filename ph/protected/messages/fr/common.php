@@ -129,6 +129,7 @@ return array(
 	"You are going to declare an abuse : please fill the reason" => "Vous êtes en train de signaler un contenu abusif. Merci d'en préciser la raison",	
 	"Update publication" => "Modifier la publication",
 	"Report an abuse" => "Reporter au modérateur",
+	"You leave successfully this event" => "Vous avez quitté l'évènement",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
@@ -223,6 +224,7 @@ return array(
 	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
 	"Are you sure to join the organization" => "Êtes-vous sûr de rejoindre l'organisation",
 	"Are you sure to join the project" => "Êtes-vous sûr de rejoindre le projet",
+	"Are you sure to participate to the event" => "Êtes-vous sûr de participer à cet évènement",
 	"Are you admin" => "Êtes-vous admin",
 	"as contributor" => "comme contributeur",
 	"as member" => "comme membre",
@@ -258,6 +260,8 @@ return array(
 
 	// Button
 	"All as Read" => "Tout comme lu",
+	"Participate" => "Participer",
+	"Participate to this event" => "Participer à l&#146;évènement",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
@@ -289,6 +293,7 @@ return array(
 
 	"Contact" 				=> "Contacter",
 	"Unfollow this Person" 	=> "Ne plus suivre cette personne",
+	"Unfollow this person" 	=> "Ne plus suivre cette personne",
 	"Unfollow" 				=> "Ne plus suivre",
 	"Follow this Person" 	=> "Suivre cette personne",
 	"Follow" 				=> "Suivre",
