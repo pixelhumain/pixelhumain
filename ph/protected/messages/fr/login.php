@@ -45,6 +45,7 @@ return array(
         "If you didn't receive it or lost it, click" => "Si vous ne l'avez pas reçu ou l'avez perdu, cliquez ",
         "here" => "ici",
         "to receive it again." => "pour le recevoir de nouveau.",
+        "Your account is now validated ! Please try to login." => "Votre compte est maintenant validé : vous pouvez vous identifier !",
         //Beta test
         "Our developpers are fighting to open soon ! Check your mail that will happen soon !" => "Vérifiez votre boite aux lettres, pour le mail de validation !<br><span class=' text-green'>Nos développeurs sont au taquet et ne dorment plus pour que la plateforme sorte bientôt !</span>",
         "We'll contact you as soon as we open up! Thanks for joining." => "Noux vous contacterons dès que nous ouvrirons ! Merci de nous avoir rejoint !",
