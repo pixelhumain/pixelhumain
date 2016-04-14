@@ -130,6 +130,7 @@ return array(
 	"Update publication" => "Modifier la publication",
 	"Report an abuse" => "Reporter au modérateur",
 	"You leave successfully this event" => "Vous avez quitté l'évènement",
+	"Invitation to project successfully sent" => "Invitation à rejoindre le projet bien envoyéee",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
