@@ -3,7 +3,7 @@ class Rest
 {
 
 	public static function json($res, $param = null, $checkLoggued = true){
-		header("Content-type: application/json; charset=utf-8");
+		header('Content-Type: application/json');
 		/*if($checkLoggued){
 			$res["sessionUserId"] = Person::logguedAndValid();
 		}*/

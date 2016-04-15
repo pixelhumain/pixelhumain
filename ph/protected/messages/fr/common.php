@@ -43,6 +43,8 @@ return array(
 	"UPDATE" => "MISE A JOUR",
 	"DELETE" => "SUPPRIMER",
 	"Unlink" => "Annuler le lien",
+	"You have already made this action" => "Vous avez déjà effectué cette action",
+
 	//MONTH
 	"january"=>"janvier",
 	"febuary"=>"février",
@@ -75,7 +77,7 @@ return array(
 	"participates to the event" => "participe à l'évènement",
 	"is following" => "suit",
 	"is following you" => "vous suit",
-
+	"has commented your post" => "a commenté votre post",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 	
@@ -124,6 +126,11 @@ return array(
 	"News added successfully!" => "News ajoutée avec succès!",
 	"Thank you to report abuse ! We are dealing it as quickly as possible." => "Merci de nous signaler cet abus! L'équipe va examiner ceci le plus rapidement possible",
 	"You already reported this news as abuse" => "Vous avez déjà signalé cette news comme abus",
+	"You are going to declare an abuse : please fill the reason" => "Vous êtes en train de signaler un contenu abusif. Merci d'en préciser la raison",	
+	"Update publication" => "Modifier la publication",
+	"Report an abuse" => "Reporter au modérateur",
+	"You leave successfully this event" => "Vous avez quitté l'évènement",
+	"Invitation to project successfully sent" => "Invitation à rejoindre le projet bien envoyéee",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
@@ -151,12 +158,17 @@ return array(
 	"Local Business" => "Entreprise",
 	"Group" => "Groupe",
 	"Government Organization" => "Organisation gouvernementale",
-
+	"the NGO" => "l'association",
+	"the localBusiness" => "l'entreprise",
+	"Local Business" => "Entreprise",
+	"the group" => "le collectif",
+	"the government organization" => "l'organisation gouvernementale",
+	
 	//EMAILS
 	"New Organization created on " => "Nouvelle organisation créée sur ",
 	"New Event created on " => "Nouvel évennement créé sur ",
 	"New Project created on " => "Nouveau projet créée sur ",
-	"Confirm your account on " => "Confirmer votre compte sur",
+	"Confirm your account on " => "Confirmer votre compte sur ",
 
 	//Common label
 	"Name" => "Nom",
@@ -213,10 +225,13 @@ return array(
 	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
 	"Are you sure to join the organization" => "Êtes-vous sûr de rejoindre l'organisation",
 	"Are you sure to join the project" => "Êtes-vous sûr de rejoindre le projet",
+	"Are you sure to participate to the event" => "Êtes-vous sûr de participer à cet évènement",
 	"Are you admin" => "Êtes-vous admin",
 	"as contributor" => "comme contributeur",
 	"as member" => "comme membre",
 	"as admin" => "comme admin",
+	"Are you sure to confirm the help from" => "Êtes vous sûre de confirmer l'aide de",
+	"Are you sure you want to help for this need" => "Êtes-vous sûre de confirmer votre aide ur le besoin",
 	//Indication
 	"When" => "Quand",
 	"Where" => "Où",
@@ -246,6 +261,8 @@ return array(
 
 	// Button
 	"All as Read" => "Tout comme lu",
+	"Participate" => "Participer",
+	"Participate to this event" => "Participer à l&#146;évènement",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
@@ -277,6 +294,7 @@ return array(
 
 	"Contact" 				=> "Contacter",
 	"Unfollow this Person" 	=> "Ne plus suivre cette personne",
+	"Unfollow this person" 	=> "Ne plus suivre cette personne",
 	"Unfollow" 				=> "Ne plus suivre",
 	"Follow this Person" 	=> "Suivre cette personne",
 	"Follow" 				=> "Suivre",
@@ -312,6 +330,7 @@ return array(
 	"Statistics"							=> "Statistiques",
 
 	"Activity" 	=> "Activités",
+	"News Stream" 	=> "Fil d'actualités",
 	"Details" 	=> "Détails",
 	"Contact" 	=> "Contacter",
 	"Contributors" => "Contributeurs",
@@ -321,6 +340,8 @@ return array(
 	"Project community" => "Communauté du projet",
 	"Organization community" => "Communauté de l&#146;organisation",
 	
+	"Read all news publicated by this person" 		=> "Toute l&#146;actualité de cette personne",
+	"Read all news publicated by this event" 		=> "Toute l&#146;actualité de cet événement",
 	"Read all news publicated by this project" 		=> "Toute l&#146;actualité du projet",
 	"Read all news publicated by this organization" => "Toute l&#146;actualité de cette organisation",
 	"Discover who contributes to this project" 		=> "Les contributeurs du projet",
@@ -351,6 +372,8 @@ return array(
 	"Please confirm" => "Veuillez confirmer",
 	"Are you sure you want to confirm" => "Êtes-vous sûr de confirmer",
 	"as admin" => "comme administrateur",
+	"organization detail" => "Détail de l&#146;organisation",
+	"project detail" => "Détail du projet",
 
 	"General information about this project" => "Information général à propos de ce projet",
 	"Project contributors" => "Les contributeurs du projet",
@@ -401,6 +424,8 @@ return array(
 	"Know more" => "En savoir +",
 	"Show Directory" => "Afficher le répertoire",
 	"City Home page" => "Page accueil de cette ville",
+	"Back to organization" => "Revenir sur l'organisation",
+	"Back to project" => "Revenir sur le project",
 
 	"Invite people you know, you like, you met, you want to follow" => "Invitez quelqu'un que vous connaissez en lui envoyant un e-mail d'invitation",
 	"Connect organizations you know, you like, you met, you want to follow" => "Communectez votre association, entreprise, groupe, que vous connaissez, que vous aimez, que vous venez de découvrir ou que vous voulez suivre",
@@ -444,7 +469,12 @@ return array(
 	
 	"Frequently Asked Questions" => "Réponses aux Questions Fréquentes",
 	"Crowdfunding : Build Together" => "Crowdfunding : Construire Ensemble",
-	"Terms of Use" => "Mentions Légales"
+	"Terms of Use" => "Mentions Légales",
+	"Project Partners" => "Partenaires du projet",
+
+	"updatepublication" => "Modifier",
+	"deletepublication" => "Supprimer",
+	
 );
 
 ?>
