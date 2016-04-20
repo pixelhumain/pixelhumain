@@ -263,6 +263,8 @@ return array(
 	"All as Read" => "Tout comme lu",
 	"Participate" => "Participer",
 	"Participate to this event" => "Participer à l&#146;évènement",
+	"restricted"=>"restreint",
+	"private"=>"privé",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
@@ -382,7 +384,13 @@ return array(
 	"Start contributing" => "Contribuer",
 	"Start contributing to this Project" => "Contribuer à ce projet",
 	"I want to contribute to this Project" => "Je veux contribuer à ce projet",
-
+	"Visible to all" => "Visible de tous",
+	"Visible only to me" => "Visible seulement pour moi",
+	"Visible only to the members"=>"Visible juste pour les membres",
+	"Visible only to the project's contributors" => "Visible juste pour les contributeurs",
+	"Visible to all + Posted on the city's wall"=> "Visible de tous + Posté sur le mur de la ville",
+	"Private view"=>"Vue privée",
+	"Visible to all + on city's wall" => "visible de tous + mur de la ville",
 	"Search what" => "Quoi",
 	"Search where" => "Où",
 
