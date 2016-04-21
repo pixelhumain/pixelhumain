@@ -17,6 +17,7 @@ $activeModules = array(
 	'meeteem',
 	'project',
 	'agenda',
+	'network',
 	'networkmapping',
 	'news',
 	'twh',

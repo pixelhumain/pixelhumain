@@ -122,7 +122,7 @@
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/jquery.dynForm.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/cookie.js' , CClientScript::POS_END);
-		$cs->registerScriptFile($this->module->assetsUrl. '/js/communecter.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($this->module->assetsUrl. '/js/network.js' , CClientScript::POS_END);
 
 		
 		//<!-- end: MAIN JAVASCRIPTS -->
