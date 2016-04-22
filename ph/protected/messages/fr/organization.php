@@ -44,6 +44,7 @@
 		"This action is permanent and will close this Organization (Removed from search engines, and lists) !" => "Cette action est permanente et va supprimer cette organisation (elle ne sera plus présente dans la recherche, ni dans aucune liste) !",
 		"Are you sure you want to delete the organization : " => "Etes vous sur(e) de vouloir supprimer l'organisation : ",
 		"DISABLED" => "DESACTIVEE",
+		"Organization disabled !" => "L'organisation n'est plus active !",
 
 	);
 ?>

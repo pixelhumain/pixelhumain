@@ -53,6 +53,7 @@ return array(
         //Invitation
         "Your account already exists on the plateform : please try to login." => "Votre compte existe déjà sur la plateforme : essayez de vous identifier.",
         "Something went wrong ! Impossible to retrieve your invitor." => "Une erreur est survenue ! Impossible de retrouver votre parrain.",
-        "Something went wrong !" => "Une erreur est survenue !"
+        "Something went wrong !" => "Une erreur est survenue !", 
+        "Number of invitations left" => "Nombre d'invitations restantes"
     );
 ?>
