@@ -43,7 +43,7 @@
 ?>	
 <html lang="en" class="no-js">
 	<!--<![endif]-->
-	<!-- start: HEAD -->
+	<!-- start: HEAD layout mainSearch.php -->
 	<head>
 		<?php 
 
