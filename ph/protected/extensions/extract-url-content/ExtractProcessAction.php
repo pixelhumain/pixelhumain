@@ -17,6 +17,7 @@ class ExtractProcessAction extends CAction{
 			$page_title="";
 			$page_body="";
 			$description=false;
+			$title=false;
 			$image_urls=array();
 			$sourceName = getDomain ($get_url);
 			/*Scénario à écrire pour les images
@@ -59,11 +60,6 @@ class ExtractProcessAction extends CAction{
 				//get URL content
 				$get_content = file_get_html($get_url); 
 				//print_r($get_content);
-				//Get Page Title 
-				foreach($get_content->find('title') as $element) 
-				{
-					$page_title = $element->plaintext;
-				}
 				
 				//Get Body Text
 				// Get meta description else replace with body text
@@ -95,6 +91,14 @@ class ExtractProcessAction extends CAction{
 		                    }
 		                    $description = true;
 		                }
+		                
+		                if($element->property == 'og:title'){
+			                $page_title=$element->content;
+			                if(json_encode($element->content) == "null")
+			                	$page_title = utf8_encode($page_title);
+			                $title=true;
+		                }
+		                
 		                if ($element->name == 'twitter:description'){
 			                $strlength = strlen($element->content);
 		                    if($strlength > 200){
@@ -153,6 +157,13 @@ class ExtractProcessAction extends CAction{
 		                //echo $page_body;
 		            }
 		        }
+		        //Get Page Title 
+		        if ($title != true){
+					foreach($get_content->find('title') as $element) 
+					{
+						$page_title = $element->plaintext;
+					}
+				}
 				//get all images URLs in the content
 				if (empty($imageMedia)){
 					foreach($get_content->find('img') as $element) 
