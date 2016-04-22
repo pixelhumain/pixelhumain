@@ -5,7 +5,7 @@
 <!--[if !IE]><!-->
 <html lang="en">
 	<!--<![endif]-->
-	<!-- start: HEAD -->
+	<!-- start: HEAD layout main.php -->
 	<head>
 		
 		<?php 
