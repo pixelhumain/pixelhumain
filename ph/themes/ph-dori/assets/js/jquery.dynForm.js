@@ -282,6 +282,7 @@ onSave: (optional) overloads the generic saveProcess
         else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
         	if ( fieldObj.inputType == "timestamp" )
         		value = Date.now();
+        	console.log("build a >>>>>> hidden, timestamp");
         	fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
         }
         /* **************************************
@@ -290,6 +291,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){ 
         	if(fieldObj.inputType == "wysiwyg")
         		fieldClass += " wysiwygInput";
+        	console.log("build a >>>>>> textarea, wysiwyg");
         	fieldHTML += '<textarea id="'+field+'" class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
         }
         /* **************************************
@@ -299,6 +301,7 @@ onSave: (optional) overloads the generic saveProcess
    			if(value == "") value="25/01/2014";
 	       	var checked = ( fieldObj.checked ) ? "checked" : "";
 	       	var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
+	       	console.log("build a >>>>>> checkbox");
 	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+'/> '+placeholder;
        	}
 
@@ -308,11 +311,13 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) {
        		var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
+       		console.log("build a >>>>>> select selectMultiple");
        		fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px" data-placeholder="'+placeholder+'">';
 			fieldHTML += '<option></option>';
 
 			var selected = "";
 			
+			//initialize values
 			$.each(fieldObj.options, function(optKey, optVal) {
 				selected = ( fieldObj.value && optKey == fieldObj.value ) ? "selected" : ""; 
 				fieldHTML += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
@@ -326,6 +331,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "date" ) {
         	if(placeholder == "")
         		placeholder="25/01/2014";
+        	console.log("build a >>>>>> date");
         	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -335,6 +341,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "daterange" ) {
         	if(placeholder == "")
         		placeholder="25/01/2014";
+			console.log("build a >>>>>> daterange");
         	fieldHTML += iconOpen+'<input type="text" class="form-control daterangeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -344,6 +351,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "time" ) {
         	if(placeholder == "")
         		placeholder="20:30";
+        	console.log("build a >>>>>> time");
         	fieldHTML += iconOpen+'<input type="text" class="form-control timeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -353,6 +361,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "link" ) {
         	if(fieldObj.url.indexOf("http://") < 0 )
         		fieldObj.url = "http://"+fieldObj.url;
+        	console.log("build a >>>>>> link");
         	fieldHTML += '<a class="btn btn-primary '+fieldClass+'" href="'+fieldObj.url+'">Go There</a>';
         } 
 
@@ -360,6 +369,7 @@ onSave: (optional) overloads the generic saveProcess
 		* ARRAY , is a list of sequential values
 		***************************************** */
         else if ( fieldObj.inputType == "array" ) {
+        	console.log("build a >>>>>> array list");
         	fieldHTML += '<div class="inputs array">'+
 								'<div class="col-sm-10">'+
 									'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
@@ -373,14 +383,28 @@ onSave: (optional) overloads the generic saveProcess
 								'<div class="space10"></div>'+
 						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
 				       		'</div></span>'+
-				       '<div class="space5"></div>';
-			initField = initMultiFields;
+				       '<div class="space5"></div><div class="cocotest"></div>';
+			
+
+			fieldObj.init = function(){
+				//initialize values
+				//value is an array of strings
+				$.each(fieldObj.value, function(optKey,optVal) {
+					if(optKey == 0)
+	                    $(".addmultifield").val(optVal);
+	                else 
+	                	addfield("."+field+fieldObj.inputType,optVal);
+				});
+				initMultiFields('.'+field+fieldObj.inputType);
+			}
+
         }
 
         /* **************************************
 		* PROPERTIES , is a list of pairs key/values
 		***************************************** */
         else if ( fieldObj.inputType == "properties" ) {
+        	console.log("build a >>>>>> properties list");
         	fieldHTML += '<div class="inputs properties">'+
 								'<div class="col-sm-3">'+
 									'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
@@ -396,13 +420,27 @@ onSave: (optional) overloads the generic saveProcess
 						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
 				       		'</div></span>'+
 				       '<div class="space5"></div>';
-			initField = initMultiFields;
+			
+			
+
+			initField = function(){
+				initMultiFields('.'+field+fieldObj.inputType);
+				//initialize values
+				//value is an array of objects structured like {"label":"","value":""}
+				/*$.each(fieldObj.value, function(optKey,optVal) {
+					if(optKey == 0)
+	                    $(".addmultifield").val(optVal); tweak this for properties
+	                else 
+						addfield("."+field+fieldObj.inputType,optVal );
+				});*/
+			}
         }
 
         /* **************************************
 		* CAPTCHA
 		***************************************** */
         else if ( fieldObj.inputType == "recaptcha" ) {
+        	console.log("build a >>>>>> recaptcah");
         	fieldHTML += '<div class="g-recaptcha" data-sitekey="'+fieldObj.key+'"></div>';
         } 
         
@@ -411,16 +449,20 @@ onSave: (optional) overloads the generic saveProcess
 		* CUSTOM 
 		***************************************** */
         else if ( fieldObj.inputType == "custom" ) {
+        	console.log("build a >>>>>> custom");
         	fieldHTML += fieldObj.html;
         } 
  
-        else 
+        else {
+        	console.log("build a >>>>>> input text");
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        }
         
 		fieldHTML += '</div>';
 
 		$(id).append(fieldHTML);
 
+		//Post creation initialisation
 		if( fieldObj.init && $.isFunction(fieldObj.init) )
         	fieldObj.init(field+fieldObj.inputType);
         else if(initField && $.isFunction(initField) )
@@ -572,6 +614,8 @@ onSave: (optional) overloads the generic saveProcess
 		{
 			if(  $(".addmultifield1").length )
 				$('head').append('<style type="text/css">.inputs textarea.addmultifield1{width:90%; height:34px;}</style>');
+
+			//intialise event on the add new row button 
 			$('.addPropBtn').unbind("click").click(function()
 			{ 
 				var field = $(this).data('id');
@@ -618,26 +662,32 @@ onSave: (optional) overloads the generic saveProcess
 	*
 	***************************************** */
 	/* **************************************
-	* PROPERTIES , is a list of pairs key/values
+	* add a new line to the multi line process 
+	* val can be a value when type array or {"label":"","value":""} when type property
 	***************************************** */
-	function addfield(parentContainer) 
+	function addfield(parentContainer,val) 
 	{
-		console.log("addfield",parentContainer);
+		console.log("addfield",parentContainer+' .inputs',val);
 		if(!$.isEmptyObject($(parentContainer+' .inputs')))
 	    {
 	    	if($(parentContainer+' .properties').length > 0)
-	    		$(propertyLineHTML( {"label":"","value":""} ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	    		$( propertyLineHTML( val ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
 	    	else
-	    		$(arrayLineHTML("") ).fadeIn('slow').appendTo(parentContainer+' .inputs');
-	        $(parentContainer+' .addmultifield:last').focus();
-	        initMultiFields(parentContainer);
+	    		$( arrayLineHTML( val ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	    	
 	    }else 
 	    	console.error("container doesn't seem to exist : "+parentContainer+' .inputs');
 	}
 	
-
+	/* **************************************
+	* initiliase events 
+	* prevent submitting empty fields 
+	* remove a field
+	* enter key submition
+	***************************************** */
 	function initMultiFields(parentContainer){
 		console.log("initMultiFields",parentContainer);
+	  //manage using Enter to make easy loop editing
 	  $(parentContainer+' .addmultifield').unbind('keydown').keydown(function(event) 
 	  {
 	  	if ( event.keyCode == 13)
@@ -654,6 +704,8 @@ onSave: (optional) overloads the generic saveProcess
 	    }
 	  });
 
+	  //manage using Enter to make easy loop editing
+	  //for 2nd property field
 	  $(parentContainer+' .addmultifield1').unbind('keydown').keydown(function(event) 
 	  {
 	  	if ( event.ctrlKey &&  event.keyCode == 13)
@@ -666,6 +718,7 @@ onSave: (optional) overloads the generic saveProcess
 	    }
 	  }); 
 
+	  //bind remove btn event 
 	  $(parentContainer+' .removePropLineBtn').click(function(){
 	  	$(this).parent().prev().remove();
 	  	$(this).parent().remove();
@@ -679,8 +732,14 @@ onSave: (optional) overloads the generic saveProcess
 		propertyLineHTML( {"label":"","value":""} );
 	}
 
+	/* **************************************
+	* build HTML for each element of a property list 
+	***************************************** */
 	function propertyLineHTML(propVal)
 	{
+		console.log("propertyLineHTML",propVal);
+		if( typeof propVal == "undefined" ) 
+	    	propVal = {"label":"","value":""};
 		var str = '<div class="space5"></div><div class="col-sm-3">'+
 					'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="'+propVal.label+'" />'+
 				'</div>'+
@@ -690,8 +749,15 @@ onSave: (optional) overloads the generic saveProcess
 				'</div>';
 		return str;
 	}
+
+	/* **************************************
+	* build HTML for each element of array
+	***************************************** */
 	function arrayLineHTML(val)
 	{
+		console.log("arrayLineHTML : ",val);
+		if( typeof val == "undefined" ) 
+	    	val = "";
 		var str = '<div class="space5"></div><div class="col-sm-10">'+
 					'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="'+val+'"/>'+
 					'</div>'+
@@ -700,19 +766,6 @@ onSave: (optional) overloads the generic saveProcess
 				'</div>';
 		return str;
 	}
-	
-	function drawPropertiesForm(list,where)
-	{
-		propHTML = "";
-		$.each( list , function(propKey,propVal){
-			propHTML += propertyLineHTML(propVal);
-		});
-		//console.info("editPerimeter",propHTML);
-		if(propHTML != "")
-			$("#ajaxSV "+where+" .inputs").html(propHTML);
-	}
-
-	
 
 })(jQuery);
 
