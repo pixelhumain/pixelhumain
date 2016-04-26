@@ -47,12 +47,13 @@ return array(
         "to receive it again." => "pour le recevoir de nouveau.",
         "Your account is now validated ! Please try to login." => "Votre compte est maintenant validé : vous pouvez vous identifier !",
         //Beta test
-        "Our developpers are fighting to open soon ! Check your mail that will happen soon !" => "Vérifiez votre boite aux lettres, pour le mail de validation !<br><span class=' text-green'>Nos développeurs sont au taquet et ne dorment plus pour que la plateforme sorte bientôt !</span>",
+        "Our developpers are fighting to open soon ! Check your mail that will happen soon !" => "<br><span class=' text-green'>Nos développeurs sont au taquet et ne dorment plus pour que la plateforme sorte bientôt !</span> Vérifiez votre boite aux lettres, ça arrive bientôt !",
         "We'll contact you as soon as we open up! Thanks for joining." => "Noux vous contacterons dès que nous ouvrirons ! Merci de nous avoir rejoint !",
         "You are now communnected !" => "Vous êtes maintenant communecté !",
         //Invitation
         "Your account already exists on the plateform : please try to login." => "Votre compte existe déjà sur la plateforme : essayez de vous identifier.",
         "Something went wrong ! Impossible to retrieve your invitor." => "Une erreur est survenue ! Impossible de retrouver votre parrain.",
-        "Something went wrong !" => "Une erreur est survenue !"
+        "Something went wrong !" => "Une erreur est survenue !", 
+        "Number of invitations left" => "Nombre d'invitations restantes"
     );
 ?>
