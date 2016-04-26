@@ -62,7 +62,8 @@ $params = array(
     'idOpenAgenda' => '56ef8c2894ef471f0c7b23d0',
 
     'google' => array('client_id' => '991320747617-dnqguopevn9bn3mg21nm1k12gj305anv.apps.googleusercontent.com',
-                        'keyAPP' => "iStMgQekGCuepkvAWUc-BfkJ"),
+                        'keyAPP' => "iStMgQekGCuepkvAWUc-BfkJ",
+                        'keyMaps' => "AIzaSyAzq8kVDH_-L---FPUSHfaKnz73wH9Prds"),
 
     'mandrill' => '4eD8BtmL5L_Z0E7Zz69Zlw',
 
