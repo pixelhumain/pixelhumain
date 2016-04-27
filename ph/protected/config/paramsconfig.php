@@ -71,7 +71,12 @@ $params = array(
     //Is the organisation bellow an othe organization can be managed by her top organization
     'isParentOrganizationAdmin' => false,
     "openatlasId" => "54eed904a1aa1958b70041ef",
-    "communecterId" => "56c1a474f6ca47a8378b45ef"
+    "communecterId" => "56c1a474f6ca47a8378b45ef",
+
+    //Code d'invitation
+    'validInviteCodes' => array("communs59", "communs31", "polder", "detakbaro", "kisskiss"),
+    //Number of invitation by default for a person (us only on beta test)
+    'numberOfInvitByPerson' => 10,
   );
 
 $modulesDir = '/../../../../modules/';
