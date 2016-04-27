@@ -4,7 +4,7 @@
 ?>	
 <html lang="en" class="no-js">
 	<!--<![endif]-->
-	<!-- start: HEAD -->
+	<!-- start: HEAD layout mainDirectory.php -->
 	<head>
 		<?php 
 
@@ -25,7 +25,7 @@
 		$cs->registerScriptFile($themeAssetsUrl. '/plugins/velocity/jquery.velocity.min.js' , CClientScript::POS_END);
 		$cs->registerCssFile($themeAssetsUrl. '/plugins/animate.css/animate.min.css');
 		$cs->registerCssFile($themeAssetsUrl. '/plugins/iCheck/skins/all.css');
-		$cs->registerCssFile($themeAssetsUrl. '/css/styles.css');
+		$cs->registerCssFile($themeAssetsUrl. '/css/simply_styles.css');
 		$cs->registerCssFile($themeAssetsUrl. '/css/styles-responsive.css');
 		$cs->registerCssFile($themeAssetsUrl. '/css/plugins.css');
 		$cs->registerCssFile($themeAssetsUrl. '/plugins/iCheck/skins/all.css');
@@ -122,7 +122,7 @@
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/jquery.dynForm.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/cookie.js' , CClientScript::POS_END);
-		$cs->registerScriptFile($this->module->assetsUrl. '/js/communecter.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($this->module->assetsUrl. '/js/network.js' , CClientScript::POS_END);
 
 		
 		//<!-- end: MAIN JAVASCRIPTS -->

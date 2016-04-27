@@ -483,6 +483,14 @@ return array(
 	"updatepublication" => "Modifier",
 	"deletepublication" => "Supprimer",
 	
+	//Sondage
+	'Add a proposal' => "Ajouter une propositions",
+	'All Surveys' => "Ajouter une propositions",
+	'List of all Surveys'=>'Listes des Sondages',
+	'Create a proposal for your community'=>'Créer une proposition pour votre communauté',
+	'Understanding surveys and proposals'=>'Comprendre les sondage et les propositions',
+	'Help' => 'Aide',
+
 );
 
 ?>
