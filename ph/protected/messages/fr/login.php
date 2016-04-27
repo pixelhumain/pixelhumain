@@ -39,6 +39,7 @@ return array(
         "You've been invited : please resume the registration process in order to log in." => "Vous avez été invité : veuillez terminer le processus d'inscription pour vous connecter.",
         "You must validate the CGU to sign up." => "Merci de valider les conditions générales d'utilisation.",
         "The user name is not unique : please change it." => "Ce nom d\'utilisateur est déjà utilisé. Choisissez en un autre.",
+        "Account Created!!" => "Votre compte est créé !",
         //Validation Process
         "Your account is not validated : please check your mailbox to validate your email address." => "Votre compte n'est pas validé : un mail vous a été envoyé sur votre boite mail.",
         "Check your mailbox you'll soon receive a mail to validate your email address." => "Vérifiez votre boite aux lettres : un mail de validation vous a été envoyé.",
