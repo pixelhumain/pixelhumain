@@ -32,7 +32,6 @@ $mailConfigTest = array(
 $params = array(
     //Beta Test ?
     'betaTest' => true,
-    'validInviteCodes' => array("coco"),
 
     //By default controller
     'defaultController' => 'communecter',
