@@ -485,7 +485,7 @@ return array(
 	
 	//Sondage
 	'Add a proposal' => "Ajouter une propositions",
-	'All Surveys' => "Ajouter une propositions",
+	'All Surveys' => "Sondages",
 	'List of all Surveys'=>'Listes des Sondages',
 	'Create a proposal for your community'=>'Créer une proposition pour votre communauté',
 	'Understanding surveys and proposals'=>'Comprendre les sondage et les propositions',
