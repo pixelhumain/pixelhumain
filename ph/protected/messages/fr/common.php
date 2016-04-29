@@ -265,6 +265,7 @@ return array(
 	"Participate to this event" => "Participer à l&#146;évènement",
 	"restricted"=>"restreint",
 	"private"=>"privé",
+	"my network"=>"mon réseau",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
@@ -389,6 +390,8 @@ return array(
 	"Visible only to the members"=>"Visible juste pour les membres",
 	"Visible only to the project's contributors" => "Visible juste pour les contributeurs",
 	"Visible to all + Posted on the city's wall"=> "Visible de tous + Posté sur le mur de la ville",
+	"On this wall and published to this network"=> "Sur ce mur et publié sur le réseau",
+
 	"Private view"=>"Vue privée",
 	"Visible to all + on city's wall" => "visible de tous + mur de la ville",
 	"Search what" => "Quoi",
