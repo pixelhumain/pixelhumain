@@ -178,6 +178,10 @@ This avoids a tedious task of writing a doc after hit.
 <br/>
 
 
+Help keep this project alive
+===========
+contribute or Join the NGO on [Hello Asso](https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas)
+
 ##Version 0.002
     L'homme qui déplace une montagne commence par déplacer les petites pierres.- Confucius
     Man who wants to move a mountain starts by moving pebbles
