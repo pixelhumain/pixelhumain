@@ -674,7 +674,8 @@ onSave: (optional) overloads the generic saveProcess
 	    		$( propertyLineHTML( val ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
 	    	else
 	    		$( arrayLineHTML( val ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
-	    	
+	    	$(parentContainer+' .addmultifield:last').focus();
+	        initMultiFields(parentContainer);
 	    }else 
 	    	console.error("container doesn't seem to exist : "+parentContainer+' .inputs');
 	}
