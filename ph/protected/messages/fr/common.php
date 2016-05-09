@@ -396,7 +396,7 @@ return array(
 	"Visible to all + on city's wall" => "visible de tous + mur de la ville",
 	"Visible on this wall and published on this network" => "Visible sur ce mur et publié sur ce réseau",
 	"Search what" => "Quoi",
-	"Search where" => "Où",
+	"Search where" => "Où", 
 
 	"MY DETAIL"			=> "MON PROFIL",
 	"NEWS"				=> "FIL D'ACTUALITÉS",
