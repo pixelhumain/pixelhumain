@@ -266,6 +266,7 @@ return array(
 	"restricted"=>"restreint",
 	"private"=>"privé",
 	"my network"=>"mon réseau",
+	"Show All" => "Voir tout",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
@@ -342,6 +343,7 @@ return array(
 	"Community of organization" => "Communauté de l&#146;organisation",
 	"Project community" => "Communauté du projet",
 	"Organization community" => "Communauté de l&#146;organisation",
+	"See the photo gallery" => "Voir la galerie photo",
 	
 	"Read all news publicated by this person" 		=> "Toute l&#146;actualité de cette personne",
 	"Read all news publicated by this event" 		=> "Toute l&#146;actualité de cet événement",
