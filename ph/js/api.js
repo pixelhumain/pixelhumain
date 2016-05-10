@@ -129,12 +129,16 @@ function getModal(what, url,id)
 
 /* --------------------------------------------------------------- */
 
-function toggle(id,siblingsId)
+function toggle(id,siblingsId,activate)
 {
 	log("toggle",id,siblingsId);
   $(siblingsId).addClass("hide");
+  if(activate)
+    $(siblingsId+"Btn").removeClass("active");
 	//if( !$("."+id).is(":visible") ) 
 	$(id).removeClass("hide");
+  if(activate)
+    $(id+"Btn").addClass("active");
 }
 
 /* --------------------------------------------------------------- */

@@ -17,6 +17,7 @@ class ExtractProcessAction extends CAction{
 			$page_title="";
 			$page_body="";
 			$description=false;
+			$title=false;
 			$image_urls=array();
 			$sourceName = getDomain ($get_url);
 			/*Scénario à écrire pour les images
@@ -34,8 +35,24 @@ class ExtractProcessAction extends CAction{
 			//echo $extension;
 			if($extension == "jpg" || $extension == "jpeg" || $extension == "png" || $extension == "gif" ){
 				$sizeNewImage = getimagesize($get_url);
-				$size[0]=$sizeNewImage[0];
-				$output = array('title'=>$page_title, 'images'=>$image_urls, "imageMedia"=> $get_url,'content'=> $page_body, 'video' => $urlVideo,"size" => $size);
+				$output=array('name'=>$page_title,
+							'description' => $page_body,
+							'images'=>$image_urls,
+							'url'=> $get_url,
+							"sourceName" => $sourceName
+				);
+				if(@$sizeNewImage){
+					if($sizeNewImage[0]>350)
+						$output["content"]["imageSize"]="large";
+					else 
+						$output["content"]["imageSize"]="small";
+				}
+				if($urlVideo!="")
+					$output["content"]["videoLink"]=$urlVideo;
+				//if($imageMedia!=""){
+					$output["content"]["image"]=$get_url;
+
+				//$output = array('title'=>$page_title, 'images'=>$image_urls, "imageMedia"=> $get_url,'content'=> $page_body, 'video' => $urlVideo,"size" => $size);
 			}
 			else{
 				//$homepage = file_get_contents($get_url);
@@ -43,11 +60,6 @@ class ExtractProcessAction extends CAction{
 				//get URL content
 				$get_content = file_get_html($get_url); 
 				//print_r($get_content);
-				//Get Page Title 
-				foreach($get_content->find('title') as $element) 
-				{
-					$page_title = $element->plaintext;
-				}
 				
 				//Get Body Text
 				// Get meta description else replace with body text
@@ -55,20 +67,43 @@ class ExtractProcessAction extends CAction{
 		
 		        if($has_meta_description){ // if meta description is found
 		            foreach($get_content->find('meta') as $element) {
-		                if($element->name == 'description'){
+		                if($description != true && $element->name == 'description'){
 		                    $strlength = strlen($element->content);
-		                    if($strlength > 120){
-		                        $pos=strpos($element->content, ' ', 120);
-		                        $page_body = substr($element->content , 0, $pos)."...";
+		                    if($strlength > 200){
+			                    //echo "la".$element->content;
+		                       // $pos=strpos($element->content, ' ', 120);
+		                        $page_body = substr($element->content , 0, 200)."...";
+		                        //echo "/balalala/".$page_body;
+		                        
+		                    }else {
+			                    //echo "ici".$element->content;
+		                        $page_body = $element->content;
+		                    }
+		                    $description = true;
+		                }
+		                if ($element->property == 'og:description'){
+			                $strlength = strlen($element->content);
+		                    if($strlength > 200){
+		                        //$pos=strpos($element->content, ' ', 200);
+		                        $page_body = substr($element->content , 0, 200)."...";
 		                    }else {
 		                        $page_body = $element->content;
 		                    }
 		                    $description = true;
-		                } else if ($element->property == 'og:description'){
+		                }
+		                
+		                if($element->property == 'og:title'){
+			                $page_title=$element->content;
+			                if(json_encode($element->content) == "null")
+			                	$page_title = utf8_encode($page_title);
+			                $title=true;
+		                }
+		                
+		                if ($element->name == 'twitter:description'){
 			                $strlength = strlen($element->content);
-		                    if($strlength > 120){
-		                        $pos=strpos($element->content, ' ', 120);
-		                        $page_body = substr($element->content , 0, $pos)."...";
+		                    if($strlength > 200){
+		                        //$pos=strpos($element->content, ' ', 200);
+		                        $page_body = substr($element->content , 0, 200)."...";
 		                    }else {
 		                        $page_body = $element->content;
 		                    }
@@ -76,11 +111,18 @@ class ExtractProcessAction extends CAction{
 		                }
 		                
 		                if($element->property == 'og:image'){
-							if(@file_get_contents($element->content)) {
-								$imageMedia = $element->content;
+			                $url=str_replace(' ', '%20', $element->content);
+							if(@file_get_contents($url)) {
+								$imageMedia = $url;
 								$size=getimagesize($imageMedia);
 							}
 		                }
+		                /* if($element->property == 'og:image:secure_url'){
+							if(@file_get_contents(str_replace(' ', '%20', $element->content))) {
+								$imageMedia = $element->content;
+								$size=getimagesize($imageMedia);
+							}
+		                }*/
 		                
 		                if ($element->property == "og:type" ){
 			               $type = $element -> content;   
@@ -96,16 +138,17 @@ class ExtractProcessAction extends CAction{
 			        // A APPROFONDIR
 		            foreach($get_content->find('body') as $element) 
 		            {
-		                $page_body = trim($element->plaintext);
-		                $strlength = strlen($element->content);	            
-		                if($strlength > 200){
-		                    $pos=strpos($page_body, ' ', 200); //Find the numeric position to substract
-		                    $page_body = substr($page_body,0,$pos); //shorten text to 200 chars
-		                }else {
-		                    $page_body = trim($element->plaintext);
-		                    $pos = strpos($page_body, ' ', 200);
-		                    $page_body = substr($page_body,0,$pos); //shorten text to 200 chars
-		                }
+			                $page_body = trim($element->plaintext);
+			                $strlength = strlen($element->content);	            
+			                if($strlength > 200){
+			                  //  $pos=strpos($page_body, ' ', 200); //Find the numeric position to substract
+			                    $page_body = substr($page_body,0,200); //shorten text to 200 chars
+			                }else {
+			                   // $page_body = trim($element->plaintext);
+			                    //$pos = strpos($page_body, ' ', 200);
+			                    $page_body = substr($page_body,0,200)."..."; //shorten text to 200 chars
+			                }
+		               // }
 		            }
 		            foreach($get_content->find('p') as $element) 
 		            {
@@ -114,6 +157,13 @@ class ExtractProcessAction extends CAction{
 		                //echo $page_body;
 		            }
 		        }
+		        //Get Page Title 
+		        if ($title != true){
+					foreach($get_content->find('title') as $element) 
+					{
+						$page_title = $element->plaintext;
+					}
+				}
 				//get all images URLs in the content
 				if (empty($imageMedia)){
 					foreach($get_content->find('img') as $element) 
@@ -187,7 +237,23 @@ class ExtractProcessAction extends CAction{
 					}	
 				}
 				//prepare for JSON 
-				$output = array('title'=>$page_title, 'images'=>$image_urls, "imageMedia"=> $imageMedia,'content'=> $page_body, 'video' => $urlVideo,"size" => $size, "sourceName" => $sourceName);
+				$output=array('name'=>$page_title,
+							'description' => $page_body,
+							'images'=>$image_urls,
+							'url'=> $get_url,
+							"sourceName" => $sourceName
+				);
+				if(@$size){
+					if($size[0]>350)
+						$output["content"]["imageSize"]="large";
+					else 
+						$output["content"]["imageSize"]="small";
+				}
+				if($urlVideo!="")
+					$output["content"]["videoLink"]=$urlVideo;
+				if($imageMedia!="")
+					$output["content"]["image"]=$imageMedia;
+				//$output = $json;
 				
 			}
 			echo json_encode($output); //output JSON data
