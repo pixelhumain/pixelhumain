@@ -43,6 +43,7 @@ $params = array(
     //UPLOAD Management Configuration
     //upload url without the base URL
     'uploadUrl' => "upload/",
+    'communeventUrl' => "https://communevent.communecter.org",
     //upload base directory
     'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR,
     'uploadComDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\templates\\upload\\dir\\communecter\\collection\\person",
