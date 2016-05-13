@@ -379,14 +379,14 @@ body.login .box h1{
   filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
 }
   .box-ajaxTools .btn.tooltips{
-    margin-right: 5px;
+    margin-right: 1px;
   margin-bottom: -1px;
-  font-size: 13px;
-  height: 46px;
+  font-size: 12px;
+  height: 35px;
   transition: all 0.1s ease 0s !important;
-  padding: 13px;
+  padding: 8px;
   color: #315C6E;
-  font-weight: 500;
+  font-weight: 400;
   border-radius: 30px;
   border-top-width: 0px;
   border-color: transparent;
