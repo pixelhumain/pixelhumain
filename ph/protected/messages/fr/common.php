@@ -44,7 +44,7 @@ return array(
 	"DELETE" => "SUPPRIMER",
 	"Unlink" => "Annuler le lien",
 	"You have already made this action" => "Vous avez déjà effectué cette action",
-
+	"Help" => "Aide",
 	//MONTH
 	"january"=>"janvier",
 	"febuary"=>"février",
@@ -453,6 +453,7 @@ return array(
 	"No more news" => "Plus de news",
 	"See all" => "Voir tout",
 
+	"Submit" => "Valider",
 
 	"IMPORT DATA" => "IMPORT DATA",
 	"OPENAGENDA" => "OPEN AGENDA",
@@ -474,7 +475,32 @@ return array(
 
 	"updatepublication" => "Modifier",
 	"deletepublication" => "Supprimer",
+
+	"SURVEYS" => "Salons",
+	"Rooms" => "Salons",
+	"List of all Surveys" => "Retour",
+	"Send a proposal to your community" => "Faire une proposition",
+	"Add a proposal" => "Faire une proposition",
+	"Understanding surveys and proposals" => "Comprendre les outils citoyens",
+
+	"Back to Parent Survey" => "Afficher toutes les propositions",
+	"All Surveys" => "Retour",
+	"Parent Survey" => "Retour aux propositions",
+
+	"Rooms" => "Espaces de coopération",
+	"Actions" => "Actions",
+	"All" => "Tout",
+	"Rows" => "Lignes",
+
+	"standalone version proposals" => "Afficher dans un nouvel onglet",
+
+	"Edit this proposals" => "Modifier cette proposition",
+	"Close this proposals" => "Clôture le vote",
+	"Cloturate" => "Clôturer",
+
+	"Create a proposal for your community" => "Créer une nouvelle proposition",
 	
+
 );
 
 ?>
