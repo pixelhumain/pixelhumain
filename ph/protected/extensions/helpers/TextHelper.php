@@ -503,6 +503,26 @@ class TextHelper {
 		$str = str_replace(' ', $by, $str);
 		return $str;
 	}
+
+	/**
+	 * createHashTag
+	 *
+	 * Create a tag provided string
+	 *
+	 * @param	string		string to tag
+	 */
+
+	public static function createHashTag($str){
+		header('Content-Type: text/html; charset=UTF-8');
+		$accentedCharacters = "àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ";
+		$str = preg_replace('#[^A-Za-z0-9_ '.$accentedCharacters.']#i', ' ', $str);
+		$tag = "";
+		$arrayStr = explode(" ", $str);
+		foreach ($arrayStr as $key => $mot) {
+			$tag .= ucfirst($mot);
+		}
+		return $tag;
+	}
 }
 /* End of file text_helper.php */
 /* Location: ./system/helpers/text_helper.php */

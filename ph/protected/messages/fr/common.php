@@ -44,7 +44,7 @@ return array(
 	"DELETE" => "SUPPRIMER",
 	"Unlink" => "Annuler le lien",
 	"You have already made this action" => "Vous avez déjà effectué cette action",
-	"Help" => "Aide",
+
 	//MONTH
 	"january"=>"janvier",
 	"febuary"=>"février",
@@ -124,7 +124,7 @@ return array(
 	"Task added successfully" => "La tâche a été ajoutée avec succès",
 	"TASK REMOVED SUCCESFULLY!!" => "La tâche a été supprimée avec succès",
 	"News added successfully!" => "News ajoutée avec succès!",
-	"Thank you to report abuse ! We are dealing it as quickly as possible." => "Merci de nous signaler cet abus! L'équipe va examiner ceci le plus rapidement possible",
+	"Thank you ! We are dealing it as quickly as possible. If there is more than 5 report, the news will be hidden" => "Merci ! L'équipe va examiner ceci le plus rapidement possible. S'il y a plus de 5 signalements, le contenu est automatiquement masqué",
 	"You already reported this news as abuse" => "Vous avez déjà signalé cette news comme abus",
 	"You are going to declare an abuse : please fill the reason" => "Vous êtes en train de signaler un contenu abusif. Merci d'en préciser la raison",	
 	"Update publication" => "Modifier la publication",
@@ -263,6 +263,10 @@ return array(
 	"All as Read" => "Tout comme lu",
 	"Participate" => "Participer",
 	"Participate to this event" => "Participer à l&#146;évènement",
+	"restricted"=>"restreint",
+	"private"=>"privé",
+	"my network"=>"mon réseau",
+	"Show All" => "Voir tout",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
@@ -339,6 +343,7 @@ return array(
 	"Community of organization" => "Communauté de l&#146;organisation",
 	"Project community" => "Communauté du projet",
 	"Organization community" => "Communauté de l&#146;organisation",
+	"See the photo gallery" => "Voir la galerie photo",
 	
 	"Read all news publicated by this person" 		=> "Toute l&#146;actualité de cette personne",
 	"Read all news publicated by this event" 		=> "Toute l&#146;actualité de cet événement",
@@ -382,9 +387,18 @@ return array(
 	"Start contributing" => "Contribuer",
 	"Start contributing to this Project" => "Contribuer à ce projet",
 	"I want to contribute to this Project" => "Je veux contribuer à ce projet",
-
+	"Visible to all" => "Visible de tous",
+	"Visible only to me" => "Visible seulement pour moi",
+	"Visible only to the members"=>"Visible juste pour les membres",
+	"Visible only to the project's contributors" => "Visible juste pour les contributeurs",
+	"Visible to all and posted on the city's wall"=> "Visible de tous et publié sur le mur de la ville",
+	"Visible on this wall and published on community's network"=> "Visible sur ce mur et publié sur le réseau de la communauté",
+	"Visible on my wall and published on my network"=> "Visible sur mon mur et publié sur mon réseau",
+	"Private view"=>"Vue privée",
+	"Visible to all + on city's wall" => "visible de tous + mur de la ville",
+	"Visible on this wall and published on this network" => "Visible sur ce mur et publié sur ce réseau",
 	"Search what" => "Quoi",
-	"Search where" => "Où",
+	"Search where" => "Où", 
 
 	"MY DETAIL"			=> "MON PROFIL",
 	"NEWS"				=> "FIL D'ACTUALITÉS",
@@ -453,7 +467,6 @@ return array(
 	"No more news" => "Plus de news",
 	"See all" => "Voir tout",
 
-	"Submit" => "Valider",
 
 	"IMPORT DATA" => "IMPORT DATA",
 	"OPENAGENDA" => "OPEN AGENDA",
@@ -475,32 +488,21 @@ return array(
 
 	"updatepublication" => "Modifier",
 	"deletepublication" => "Supprimer",
-
-	"SURVEYS" => "Salons",
-	"Rooms" => "Salons",
-	"List of all Surveys" => "Retour",
-	"Send a proposal to your community" => "Faire une proposition",
-	"Add a proposal" => "Faire une proposition",
-	"Understanding surveys and proposals" => "Comprendre les outils citoyens",
-
-	"Back to Parent Survey" => "Afficher toutes les propositions",
-	"All Surveys" => "Retour",
-	"Parent Survey" => "Retour aux propositions",
-
-	"Rooms" => "Espaces de coopération",
-	"Actions" => "Actions",
-	"All" => "Tout",
-	"Rows" => "Lignes",
-
-	"standalone version proposals" => "Afficher dans un nouvel onglet",
-
-	"Edit this proposals" => "Modifier cette proposition",
-	"Close this proposals" => "Clôture le vote",
-	"Cloturate" => "Clôturer",
-
-	"Create a proposal for your community" => "Créer une nouvelle proposition",
 	
+	//Sondage
+	'Add a proposal' => "Ajouter une propositions",
+	'All Surveys' => "Sondages",
+	'List of all Surveys'=>'Listes des Sondages',
+	'Create a proposal for your community'=>'Créer une proposition pour votre communauté',
+	'Understanding surveys and proposals'=>'Comprendre les sondage et les propositions',
+	'Help' => 'Aide',
 
+	//SurveyAction
+	"voteUp" => "Pour",
+	"voteAbstain" => "Amender",
+	"voteUnclear" => "Blanc",
+	"voteMoreInfo" => "Plus d'information",
+	"voteDown" => "Contre"
 );
 
 ?>

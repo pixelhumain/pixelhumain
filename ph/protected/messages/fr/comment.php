@@ -15,6 +15,7 @@
 		"Agree with that" => "Oh oui !",
 		"Disagree with that" => "Oh non !",
 		"Report an abuse" => "Reporter au modérateur",
+		"This comment has been deleted because of his content." => "Commentaire effacé - identifié comme abusif"
 	)
 
 ?>

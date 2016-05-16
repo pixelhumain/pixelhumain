@@ -8,6 +8,7 @@
 		"Something went wrong with your upload!" => "Le chargement du document ne s'est pas deroulé correctement",
 		"Document deleted" => "Document bien supprimé",
 		"Document saved successfully" => "Document bien enregistré",
+		"Image deleted" => "Image bien supprimée",
 	)
 
 ?>

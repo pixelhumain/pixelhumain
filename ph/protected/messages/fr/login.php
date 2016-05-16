@@ -39,6 +39,7 @@ return array(
         "You've been invited : please resume the registration process in order to log in." => "Vous avez été invité : veuillez terminer le processus d'inscription pour vous connecter.",
         "You must validate the CGU to sign up." => "Merci de valider les conditions générales d'utilisation.",
         "The user name is not unique : please change it." => "Ce nom d\'utilisateur est déjà utilisé. Choisissez en un autre.",
+        "Account Created!!" => "Votre compte est créé !",
         //Validation Process
         "Your account is not validated : please check your mailbox to validate your email address." => "Votre compte n'est pas validé : un mail vous a été envoyé sur votre boite mail.",
         "Check your mailbox you'll soon receive a mail to validate your email address." => "Vérifiez votre boite aux lettres : un mail de validation vous a été envoyé.",
@@ -50,6 +51,7 @@ return array(
         "Our developpers are fighting to open soon ! Check your mail that will happen soon !" => "<br><span class=' text-green'>Nos développeurs sont au taquet et ne dorment plus pour que la plateforme sorte bientôt !</span> Vérifiez votre boite aux lettres, ça arrive bientôt !",
         "We'll contact you as soon as we open up! Thanks for joining." => "Noux vous contacterons dès que nous ouvrirons ! Merci de nous avoir rejoint !",
         "You are now communnected !" => "Vous êtes maintenant communecté !",
+        "If you really want to start testing the platform before, send us an email and we'll consider your demand :)" => "Si vous voulez vraiment tester la plateforme avant, envoyez nous un email, et on verra ce qu'on peut faire :)",
         //Invitation
         "Your account already exists on the plateform : please try to login." => "Votre compte existe déjà sur la plateforme : essayez de vous identifier.",
         "Something went wrong ! Impossible to retrieve your invitor." => "Une erreur est survenue ! Impossible de retrouver votre parrain.",

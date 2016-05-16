@@ -32,7 +32,6 @@ $mailConfigTest = array(
 $params = array(
     //Beta Test ?
     'betaTest' => true,
-    'validInviteCodes' => array("coco"),
 
     //By default controller
     'defaultController' => 'communecter',
@@ -44,6 +43,7 @@ $params = array(
     //UPLOAD Management Configuration
     //upload url without the base URL
     'uploadUrl' => "upload/",
+    'communeventUrl' => "https://communevent.communecter.org",
     //upload base directory
     'uploadDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR,
     'uploadComDir' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'."\\..\\templates\\upload\\dir\\communecter\\collection\\person",
@@ -55,12 +55,15 @@ $params = array(
     "bucket.large"=> "pixelphotos.large",
     "bucket.thumb"=>"pixelphotos.thumb",
     
-    //Captcha
+    //Captcha 
     'captcha' => '6LdiygUTAAAAAEsbbK7LvMjJRt9PLP9lO-6QSM8K',
     'captcha-key' => '6LdiygUTAAAAAKZxZ0c9-G43Xqp9ZiedhWswto1s',
 
+    'idOpenAgenda' => '57220015dd0452ed27d58c84',
+
     'google' => array('client_id' => '991320747617-dnqguopevn9bn3mg21nm1k12gj305anv.apps.googleusercontent.com',
-                        'keyAPP' => "iStMgQekGCuepkvAWUc-BfkJ"),
+                        'keyAPP' => "iStMgQekGCuepkvAWUc-BfkJ",
+                        'keyMaps' => "AIzaSyAzq8kVDH_-L---FPUSHfaKnz73wH9Prds"),
 
     'mandrill' => '4eD8BtmL5L_Z0E7Zz69Zlw',
 
@@ -68,7 +71,12 @@ $params = array(
     //Is the organisation bellow an othe organization can be managed by her top organization
     'isParentOrganizationAdmin' => false,
     "openatlasId" => "54eed904a1aa1958b70041ef",
-    "communecterId" => "56c1a474f6ca47a8378b45ef"
+    "communecterId" => "56c1a474f6ca47a8378b45ef",
+
+    //Code d'invitation
+    'validInviteCodes' => array("communs59", "communs31", "polder", "detakbaro", "kisskiss"),
+    //Number of invitation by default for a person (us only on beta test)
+    'numberOfInvitByPerson' => 10,
   );
 
 $modulesDir = '/../../../../modules/';
