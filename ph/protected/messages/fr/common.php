@@ -497,6 +497,12 @@ return array(
 	'Understanding surveys and proposals'=>'Comprendre les sondage et les propositions',
 	'Help' => 'Aide',
 
+	//SurveyAction
+	"voteUp" => "Pour",
+	"voteAbstain" => "Amender",
+	"voteUnclear" => "Blanc",
+	"voteMoreInfo" => "Plus d'information",
+	"voteDown" => "Contre"
 );
 
 ?>
