@@ -3,6 +3,7 @@
 	return array(
 		"Comments" => "Commentaires",
 		"Popular" => "Populaires",
+		"Abuse" => "Signalés",
 		"Say Something" => "Exprimez-vous",
 		"You are going to declare this comment as abuse : please fill the reason ?" => "Ce commentaire contient un contenu abusif : pour quelle raison ?",
 		"Please fill a reason" => "Il faut compléter la raison pour déclarer un commmentaire abusif",
