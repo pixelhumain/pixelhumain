@@ -432,7 +432,7 @@ body.login .box h1{
   text-align: center;
   float: left !important;
   width: 100%;
-  top: 56px;
+  margin-top: -10px;
   max-height: 45px;
   left: -1px;
   margin-bottom: 20px;
