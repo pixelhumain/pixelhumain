@@ -16,6 +16,7 @@ return array(
 	"Your password has been changed with success !" => "Votre mot de passe a été changé avec succès.",
 	//Invitation process
 	"Sorry, you can't invite more people to join the platform. You do not have enough invitations left." => "Désolé mais vous ne pouvez pas inviter plus de personne à rejoindre la plateform. Vous n'avez pas assez d'invitations",
+	"The person has been updated" => "Mise à jour du citoyen réussie"
 );
 
 ?>

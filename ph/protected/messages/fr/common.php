@@ -489,12 +489,12 @@ return array(
 	"updatepublication" => "Modifier",
 	"deletepublication" => "Supprimer",
 	
-	//Sondage
+	//Survey
 	'Add a proposal' => "Ajouter une propositions",
-	'All Surveys' => "Sondages",
-	'List of all Surveys'=>'Listes des Sondages',
+	'All Surveys' => "Retour aux propositions",
+	'List of all Surveys'=>'Liste des propositions',
 	'Create a proposal for your community'=>'Créer une proposition pour votre communauté',
-	'Understanding surveys and proposals'=>'Comprendre les sondage et les propositions',
+	'Understanding surveys and proposals'=>'Comprendre les discussions et les propositions',
 	'Help' => 'Aide',
 
 	//SurveyAction
@@ -502,7 +502,8 @@ return array(
 	"voteAbstain" => "Amender",
 	"voteUnclear" => "Blanc",
 	"voteMoreInfo" => "Plus d'information",
-	"voteDown" => "Contre"
+	"voteDown" => "Contre",
+
 );
 
 ?>
