@@ -19,7 +19,7 @@ class DataValidator {
 
 	public static function email($toValidate, $objectId=null) {
 		$res = "";
-		if (! preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$toValidate)) { 
+		if (! preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$toValidate) && !empty($toValidate) ) { 
 			$res = "The email is not well formated";
 		}
 		return $res;
