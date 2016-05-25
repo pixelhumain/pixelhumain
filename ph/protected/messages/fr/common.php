@@ -107,6 +107,7 @@ return array(
 	"You are now contributor of" => "Vous êtes maintenant contributeur de",
 	"is now admin of" => "est maintenant admin de",
 	"is now attendee of" => "est maintenant participant de",
+	"is now member of" => "est maintenant membre de",
 	"New admin well register" => "Le nouvel admin est bien enregistré",
 	"New member well register" => "Le nouveau membre est bien enregistré",
 	"Your request has been sent to other admins." => "Votre demande a été envoyée aux autres admins",
