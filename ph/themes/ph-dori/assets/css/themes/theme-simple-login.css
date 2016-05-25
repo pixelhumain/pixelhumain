@@ -3,8 +3,8 @@
 /* ************************************************************** */
 /* ****************** NEW DESIGN PAGE LOGIN ********************* */
 /* ************************************************************** */
-  fieldset{
-    padding: 20px;
+  .main-login fieldset{
+    padding: 20px !important;
     padding-top:0px;
     padding-left:30px;
     background-color: white;

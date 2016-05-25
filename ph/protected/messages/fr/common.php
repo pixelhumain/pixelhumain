@@ -504,6 +504,8 @@ return array(
 	"voteMoreInfo" => "Plus d'information",
 	"voteDown" => "Contre",
 
+	"go Back" => "revenir en arrière",
+	"Back" => "retour",
 );
 
 ?>
