@@ -268,6 +268,11 @@ return array(
 	"private"=>"privé",
 	"my network"=>"mon réseau",
 	"Show All" => "Voir tout",
+	
+	// Menu Button
+	"My News Stream"=>"Mon Fil d'actualité",
+	"Newspaper" => "Journal",
+	"My newspaper" => "Mon journal",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
