@@ -41,6 +41,7 @@ class TestController extends Controller {
 	public function actionCitiesdoublon(){
 		$cities = PHDB::find( City::COLLECTION,array(), 0, array("insee", "name", "postalCodes"));
 		$i = 0 ;
+		$result = array();
 		echo "nbcommune : " .count($cities). "<br/>";
 		foreach ($cities as $key => $city) {
 			$cp = array();
@@ -52,10 +53,35 @@ class TestController extends Controller {
 				unset($cp[$key]);
 				if(in_array($value, $cp)){
 					$i++;
+					$res = array();
+					$res["insee"] = $city["insee"] ;
+					$res["name"] = $city["name"] ;
+					$res["cp"] = $value ;
+					$res["name1"] = $value ;
+					$res[""] = $value ;
+					$k = 1 ;
+					foreach ($city["postalCodes"] as $key => $c) {
+						if($c["postalCode"] == $value){
+							$res["name".$k] = $c["name"];
+							$k++;
+						}
+					}
+					$result[] = $res;
 				}
 			}
 
 		}
 		echo "Commune avec doublons : " .$i. "<br/>";
+
+		echo "<br/>insee;name;cp_doublon";
+		foreach ($result as $key => $value) {
+			echo "<br/>".$value["insee"] . ";" . $value["name"] . ";" .$value["cp"]  ;
+			$k = 1 ; 
+			while(!empty($value["name".$k])){
+				echo ";".$value["name".$k];
+				$k++;
+			}
+		}
+
 	}
 }
