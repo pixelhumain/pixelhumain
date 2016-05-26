@@ -36,4 +36,26 @@ class TestController extends Controller {
 		$me = $foaf->primaryTopic();
 		echo "My name is: ".$me->get('foaf:name')."\n";
 	}
+
+
+	public function actionCitiesdoublon(){
+		$cities = PHDB::find( City::COLLECTION,array(), 0, array("insee", "name", "postalCodes"));
+		$i = 0 ;
+		echo "nbcommune : " .count($cities). "<br/>";
+		foreach ($cities as $key => $city) {
+			$cp = array();
+			foreach ($city["postalCodes"] as $key => $value) {
+				$cp[] = $value["postalCode"];
+			}
+			$cp2 = $cp ;
+			foreach ($cp2 as $key => $value) {
+				unset($cp[$key]);
+				if(in_array($value, $cp)){
+					$i++;
+				}
+			}
+
+		}
+		echo "Commune avec doublons : " .$i. "<br/>";
+	}
 }
