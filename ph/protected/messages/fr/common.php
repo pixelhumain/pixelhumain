@@ -77,7 +77,8 @@ return array(
 	"participates to the event" => "participe à l'évènement",
 	"is following" => "suit",
 	"is following you" => "vous suit",
-	"has commented your post" => "a commenté votre post",
+	"{who} commented your post" => "{who} a commenté votre post",
+	"{who} commented on {what}" => "{who} a commenté {what}",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 	
@@ -221,6 +222,7 @@ return array(
 	"Yellow" => "Jaune",
 	
 	//Question
+	"Are you sure" => "Êtes-vous sûr",
 	"Are you sure you want to delete" => "Êtes-vous sûr de supprimer",
 	"from your community" => "de votre communauté",
 	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
