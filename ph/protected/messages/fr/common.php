@@ -512,10 +512,10 @@ return array(
 	"voteUnclear" => "Blanc",
 	"voteMoreInfo" => "Plus d'information",
 	"voteDown" => "Contre",
-
 	"Created Successfully" => "Créer avec Succés.",
 	"Quick access here" => "Accés rapide ici",
-
+	"go Back" => "revenir en arrière",
+	"Back" => "retour",
 );
 
 ?>
