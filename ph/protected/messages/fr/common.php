@@ -78,7 +78,8 @@ return array(
 	"participates to the event" => "participe à l'évènement",
 	"is following" => "suit",
 	"is following you" => "vous suit",
-	"has commented your post" => "a commenté votre post",
+	"{who} commented your post" => "{who} a commenté votre post",
+	"{who} commented on {what}" => "{who} a commenté {what}",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 	
@@ -97,7 +98,7 @@ return array(
 	"Invalid request" => "requête incorrecte",
 	"Something went wrong with the url" => "Le traitement de l'url retourne une erreur",
 	"Something went wrong : please contact your admin" => "Quelque chose a mal tourné: s'il vous plaît contacter votre administrateur",
-	
+	"You must be logged in to add a news entry !" => "Vous devez être connecté(e) pour publier une news !",
 	//Success
 	"Your form validation is successful" => "la validation du formulaire est réalisée avec succès",
 	"Link divorced successfully" => "Le lien a été supprimé avec succès",
@@ -222,6 +223,7 @@ return array(
 	"Yellow" => "Jaune",
 	
 	//Question
+	"Are you sure" => "Êtes-vous sûr",
 	"Are you sure you want to delete" => "Êtes-vous sûr de supprimer",
 	"from your community" => "de votre communauté",
 	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
@@ -510,6 +512,9 @@ return array(
 	"voteUnclear" => "Blanc",
 	"voteMoreInfo" => "Plus d'information",
 	"voteDown" => "Contre",
+
+	"Created Successfully" => "Créer avec Succés.",
+	"Quick access here" => "Accés rapide ici",
 
 );
 
