@@ -158,7 +158,7 @@ function buildNotifications(list)
 	});
 	setTimeout( function(){
     	notifCount();
-    }, 200);
+    }, 1000);
 	
 	bindNotifEvents();
 }
