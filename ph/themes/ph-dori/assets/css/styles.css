@@ -2938,8 +2938,8 @@ body.login {
   background-repeat: no-repeat;
 }*/
 .bgpixeltree{
-  background-image: url(../images/bg-pixel-left-min.png), url(../images/bg-pixel-right-min.png), url(../images/bg-pixel-right-bottom.png), url(../images/bg-pixel-left-bottom.png);
-  background-position: left top, right top, right bottom, left bottom;
+  background-image: url(../images/bg-pixel-left-min.png),  url(../images/bg-pixel-right-bottom.png), url(../images/bg-pixel-left-bottom.png);
+  background-position: left top, right bottom, left bottom;
   background-repeat: no-repeat;
   /*background-attachment: fixed;*/
   margin-left: 0px !important;
