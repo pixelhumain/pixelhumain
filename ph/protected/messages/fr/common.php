@@ -19,6 +19,7 @@ return array(
 
 	"Yes" => "Oui",
 	"No" => "Non",
+	"Cancel" => "Annuler",
 
 	// LANGUE
 	"french" => "Français",
@@ -77,7 +78,8 @@ return array(
 	"participates to the event" => "participe à l'évènement",
 	"is following" => "suit",
 	"is following you" => "vous suit",
-	"has commented your post" => "a commenté votre post",
+	"{who} commented your post" => "{who} a commenté votre post",
+	"{who} commented on {what}" => "{who} a commenté {what}",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 	
@@ -96,7 +98,7 @@ return array(
 	"Invalid request" => "requête incorrecte",
 	"Something went wrong with the url" => "Le traitement de l'url retourne une erreur",
 	"Something went wrong : please contact your admin" => "Quelque chose a mal tourné: s'il vous plaît contacter votre administrateur",
-	
+	"You must be logged in to add a news entry !" => "Vous devez être connecté(e) pour publier une news !",
 	//Success
 	"Your form validation is successful" => "la validation du formulaire est réalisée avec succès",
 	"Link divorced successfully" => "Le lien a été supprimé avec succès",
@@ -107,6 +109,7 @@ return array(
 	"You are now contributor of" => "Vous êtes maintenant contributeur de",
 	"is now admin of" => "est maintenant admin de",
 	"is now attendee of" => "est maintenant participant de",
+	"is now member of" => "est maintenant membre de",
 	"New admin well register" => "Le nouvel admin est bien enregistré",
 	"New member well register" => "Le nouveau membre est bien enregistré",
 	"Your request has been sent to other admins." => "Votre demande a été envoyée aux autres admins",
@@ -220,6 +223,7 @@ return array(
 	"Yellow" => "Jaune",
 	
 	//Question
+	"Are you sure" => "Êtes-vous sûr",
 	"Are you sure you want to delete" => "Êtes-vous sûr de supprimer",
 	"from your community" => "de votre communauté",
 	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
@@ -267,6 +271,11 @@ return array(
 	"private"=>"privé",
 	"my network"=>"mon réseau",
 	"Show All" => "Voir tout",
+	
+	// Menu Button
+	"My News Stream"=>"Mon Fil d'actualité",
+	"Newspaper" => "Journal",
+	"My newspaper" => "Mon journal",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
@@ -506,7 +515,8 @@ return array(
 	"voteUnclear" => "Blanc",
 	"voteMoreInfo" => "Plus d'information",
 	"voteDown" => "Contre",
-
+	"Created Successfully" => "Créer avec Succés.",
+	"Quick access here" => "Accés rapide ici",
 	"go Back" => "revenir en arrière",
 	"Back" => "retour",
 );

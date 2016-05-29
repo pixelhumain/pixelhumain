@@ -41,6 +41,8 @@ function ajaxPost(id,url,params,callback, datatype)
 
 function getAjax(id,url,callback,datatype,blockUI)
 {
+  $.ajaxSetup({ cache: true});
+
     if(blockUI)
         $.blockUI({
             message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
@@ -55,8 +57,7 @@ function getAjax(id,url,callback,datatype,blockUI)
     $.ajax({
         url:url,
         type:"GET",
-        cache:false,
-        //dataType:"json",
+        cache: true,
         success:function(data) {
           if (data.error) {
             console.warn(data.error);

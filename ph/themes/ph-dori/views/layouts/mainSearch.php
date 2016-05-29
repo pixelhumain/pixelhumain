@@ -92,6 +92,7 @@
 		   var moduleId = "<?php echo $this->module->id?>";
 		   var userId = "<?php echo Yii::app()->session['userId']?>";
 		   var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
+		   var currentUrl = "<?php echo "#".Yii::app()->controller->id.".".Yii::app()->controller->action->id ?>";
 		   var debugMap = [
 		    <?php if(YII_DEBUG) { ?>
 		       { "userId":"<?php echo Yii::app()->session['userId']?>"},

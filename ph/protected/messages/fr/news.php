@@ -9,7 +9,7 @@ return array(
 	"Select" => "Choisir",
 	"News" => "Fil d'actualités",
 	"Activity" => "Activités",
-	
+	"News sent to" => "Destination de la news"
 );
 
 ?>
