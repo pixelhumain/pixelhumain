@@ -20,6 +20,7 @@ return array(
 	"Yes" => "Oui",
 	"No" => "Non",
 	"Cancel" => "Annuler",
+	"I don't know" => "Je ne sais pas",
 
 	// LANGUE
 	"french" => "Français",
