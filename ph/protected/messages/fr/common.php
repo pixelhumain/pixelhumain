@@ -20,6 +20,7 @@ return array(
 	"Yes" => "Oui",
 	"No" => "Non",
 	"Cancel" => "Annuler",
+	"I don't know" => "Je ne sais pas",
 
 	// LANGUE
 	"french" => "Français",
@@ -136,6 +137,7 @@ return array(
 	"Invitation to project successfully sent" => "Invitation à rejoindre le projet bien envoyéee",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
+	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
 	"No more notifications for the moment" => "Vous n'avez pas de notifications pour le moment",
 	//Confirm
