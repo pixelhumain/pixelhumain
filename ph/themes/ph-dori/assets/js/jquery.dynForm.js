@@ -81,8 +81,8 @@ onSave: (optional) overloads the generic saveProcess
 	        fieldHTML += '<input type="hidden" name="id" value="'+((settings.formObj.id) ? settings.formObj.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
-						'<button id="btn-submit-form" type="submit" class="btn btn-green pull-right">'+
-							'Submit <i class="fa fa-arrow-circle-right"></i>'+
+						'<button id="btn-submit-form" type="submit" class="btn btn-success pull-right">'+
+							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button>'+
 					'</div>';
 
@@ -381,7 +381,7 @@ onSave: (optional) overloads the generic saveProcess
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
 							'<div class="col-sm-12">'+
 								'<div class="space10"></div>'+
-						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
+						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-success" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
 				       		'</div></span>'+
 				       '<div class="space5"></div><div class="cocotest"></div>';
 			
