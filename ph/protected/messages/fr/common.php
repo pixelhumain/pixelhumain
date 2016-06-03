@@ -134,7 +134,7 @@ return array(
 	"Update publication" => "Modifier la publication",
 	"Report an abuse" => "Reporter au modérateur",
 	"You leave successfully this event" => "Vous avez quitté l'évènement",
-	"Invitation to project successfully sent" => "Invitation à rejoindre le projet bien envoyéee",
+	"Invitation to project successfully sent" => "Invitation à rejoindre le projet bien envoyée",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
@@ -171,7 +171,7 @@ return array(
 	
 	//EMAILS
 	"New Organization created on " => "Nouvelle organisation créée sur ",
-	"New Event created on " => "Nouvel évennement créé sur ",
+	"New Event created on " => "Nouvel événement créé sur ",
 	"New Project created on " => "Nouveau projet créée sur ",
 	"Confirm your account on " => "Confirmer votre compte sur ",
 
