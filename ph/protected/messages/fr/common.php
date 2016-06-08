@@ -21,6 +21,7 @@ return array(
 	"No" => "Non",
 	"Cancel" => "Annuler",
 	"I don't know" => "Je ne sais pas",
+	"Hide info panels" => "Panneaux cachés",
 
 	// LANGUE
 	"french" => "Français",
@@ -212,7 +213,8 @@ return array(
 	"Community" => "Communauté",
 	"COMMUNITY" => "COMMUNAUTÉ",
 	"General informations" => "Informations générales",
-	
+	"General infos"=>"Infos générales",
+
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
@@ -386,7 +388,7 @@ return array(
 	"Select places to change result" => "Sélectionnez des lieux pour filtrer les résultats",
 	"Where are you looking ?" => "Rechercher par lieux",
 	"What are you looking for ?" => "Rechercher par tags (mots clés)",
-	"Sent invitations" => "Envoyer des invitations",
+	"Send invitations" => "Envoyer des invitations",
 	"You are going to ask to become an admin of the project" => "Vous allez demander à devenir admin du projet",
 	"You are going to ask to become an admin of the organization" => "Vous allez demander à devenir admin de l'organisation",
 	"Please confirm" => "Veuillez confirmer",
@@ -522,6 +524,10 @@ return array(
 	"Quick access here" => "Accés rapide ici",
 	"go Back" => "revenir en arrière",
 	"Back" => "retour",
+
+	"Modify Position"=>"Modifier la position",
+	"Edit Information"=>"Éditer les informations"
+
 );
 
 ?>
