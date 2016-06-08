@@ -1187,7 +1187,11 @@ footer {
   margin: 0 !important; }
 
 .inline {
-  display: inline; }
+  display: inline;
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+   
+}
 
 .no-radius {
   -moz-border-radius: 0 !important;
