@@ -1571,16 +1571,17 @@
 							</p>
 							<br>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							    Communecter.org n&#8217;est toujours pas officiellement ouvert (c&#8217;est pour bient&#244;t) mais vous avez en votre possession 10 invitations pour en
-							    faire profiter vos amis. Pour les inviter : Bouton
-							    <img src="https://lh5.googleusercontent.com/drv6nd-YunXwcuZQ4zx1WyRnXXsQllP6ubrbfbzirWWHhMklSkRevhvT56F4sV4m1yjMosZ60sFQx6nMrnUPtfRouQTaQ90w4cV-PJUQSGWqDcmNL-FsnJKXAp88fw0tlZeUMCAA" width="37" height="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;">
+							 <img src="https://lh5.googleusercontent.com/drv6nd-YunXwcuZQ4zx1WyRnXXsQllP6ubrbfbzirWWHhMklSkRevhvT56F4sV4m1yjMosZ60sFQx6nMrnUPtfRouQTaQ90w4cV-PJUQSGWqDcmNL-FsnJKXAp88fw0tlZeUMCAA" width="37" height="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;" align="left">
+							    Communecter.org n&#8217;est toujours pas officiellement ouvert (c&#8217;est pour bient&#244;t) mais vous avez en votre possession <strong>10 invitations</strong> pour en
+							    faire profiter vos amis. Pour les inviter : Bouton + 
 							    (en bas &#224; droite) et cliquer dans le menu d&#233;roulant apparaissant sur &#8216;inviter quelqu&#8217;un&#8221;.
 							</p>
 							<br>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							    Si vous rencontrez des difficult&#233;s ou si vous avez des remarques pour am&#233;liorer la plateforme, utiliser l&#8217;ic&#244;ne
-							    <img src="https://lh6.googleusercontent.com/HE2z4ESeUSty0O49JkAdHVpaPZJdPJYGszj--V_ksgMrlLEHMx_RBeVlwgdLWwL-Rf-6GT8lGluH1ff3qY0-IhgsMIznQ6OdKFTkCgJkQxIFllW5E9Q4XaB-_PFNQDsRi1JahD5i" width="35" height="29" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;">
+							<img src="https://lh6.googleusercontent.com/HE2z4ESeUSty0O49JkAdHVpaPZJdPJYGszj--V_ksgMrlLEHMx_RBeVlwgdLWwL-Rf-6GT8lGluH1ff3qY0-IhgsMIznQ6OdKFTkCgJkQxIFllW5E9Q4XaB-_PFNQDsRi1JahD5i" width="35" height="29" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;" align="right">
+							    Si vous rencontrez des difficult&#233;s ou si vous avez des remarques pour am&#233;liorer la plateforme, utiliser l&#8217;ic&#244;ne m&#233;gaphone
 							    dans le menu &#224; droite.
+
 							</p>
 							<br>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
