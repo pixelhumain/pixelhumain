@@ -21,6 +21,7 @@ return array(
 	"No" => "Non",
 	"Cancel" => "Annuler",
 	"I don't know" => "Je ne sais pas",
+	"Hide info panels" => "Panneaux cachés",
 
 	// LANGUE
 	"french" => "Français",
@@ -296,6 +297,7 @@ return array(
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
 	"My newspaper" => "Mon journal",
+	"MY CITIZEN COUNCIL" => "Mon Conseil Citoyen",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
@@ -400,7 +402,7 @@ return array(
 	"Select places to change result" => "Sélectionnez des lieux pour filtrer les résultats",
 	"Where are you looking ?" => "Rechercher par lieux",
 	"What are you looking for ?" => "Rechercher par tags (mots clés)",
-	"Sent invitations" => "Envoyer des invitations",
+	"Send invitations" => "Envoyer des invitations",
 	"You are going to ask to become an admin of the project" => "Vous allez demander à devenir admin du projet",
 	"You are going to ask to become an admin of the organization" => "Vous allez demander à devenir admin de l'organisation",
 	"Please confirm" => "Veuillez confirmer",
@@ -438,6 +440,7 @@ return array(
 	"MY CITY" 			=> "MA COMMUNE",
 	"ADD SOMETHING" 	=> "AJOUTER",
 	"HELP US : BUGS, IDEAS" => "AIDEZ NOUS : BUG, IDEE",
+	"BUGS, IDEAS" => "BUGs, IDÉES",
 	"LOGOUT" 			=> "DÉCONNECTER",
 
 	"LOCAL ACTORS"		=> "Les acteurs locaux",
@@ -536,6 +539,10 @@ return array(
 	"Quick access here" => "Accés rapide ici",
 	"go Back" => "revenir en arrière",
 	"Back" => "retour",
+
+	"Modify Position"=>"Modifier la position",
+	"Edit Information"=>"Éditer les informations"
+
 );
 
 ?>
