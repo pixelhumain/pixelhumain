@@ -81,6 +81,8 @@ return array(
 	"is following you" => "vous suit",
 	"{who} commented your post" => "{who} a commenté votre post",
 	"{who} commented on {what}" => "{who} a commenté {what}",
+	"has updated"=>"a modifié",
+	"has added"=>"a ajouté",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 	
@@ -212,7 +214,17 @@ return array(
 	"Community" => "Communauté",
 	"COMMUNITY" => "COMMUNAUTÉ",
 	"General informations" => "Informations générales",
-	
+	"Open edition" => "Edition libre",
+	"the name" => "le nom",
+	"the description" => "la description",
+	"the type" => "le type",
+	"the street" => "la rue",
+	"the city" => "la ville",
+	"the country" => "le pays",
+	"the duration of the event to all day" => "la durée de l'événement sur toute la journée",
+	"the start" => "le début",
+	"the end" => "la fin",
+	"the address" => "l'adresse",
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
@@ -268,7 +280,7 @@ return array(
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
-
+	"of the event" => "de l'événement",
 	// Button
 	"All as Read" => "Tout comme lu",
 	"Participate" => "Participer",
@@ -278,6 +290,7 @@ return array(
 	"my network"=>"mon réseau",
 	"Show All" => "Voir tout",
 	"Visualize" => "Visualiser",
+	"History" => "Historique",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
