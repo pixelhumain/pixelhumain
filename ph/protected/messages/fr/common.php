@@ -279,7 +279,7 @@ return array(
 	"private"=>"privé",
 	"my network"=>"mon réseau",
 	"Show All" => "Voir tout",
-	
+	"Visualize" => "Visualiser",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
