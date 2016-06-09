@@ -284,6 +284,7 @@ return array(
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
 	"My newspaper" => "Mon journal",
+	"MY CITIZEN COUNCIL" => "Mon Conseil Citoyen",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
@@ -426,6 +427,7 @@ return array(
 	"MY CITY" 			=> "MA COMMUNE",
 	"ADD SOMETHING" 	=> "AJOUTER",
 	"HELP US : BUGS, IDEAS" => "AIDEZ NOUS : BUG, IDEE",
+	"BUGS, IDEAS" => "BUGs, IDÉES",
 	"LOGOUT" 			=> "DÉCONNECTER",
 
 	"LOCAL ACTORS"		=> "Les acteurs locaux",
