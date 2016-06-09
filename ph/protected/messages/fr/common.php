@@ -214,6 +214,7 @@ return array(
 	"Community" => "Communauté",
 	"COMMUNITY" => "COMMUNAUTÉ",
 	"General informations" => "Informations générales",
+	"General infos" => "Infos générales",
 	"Open edition" => "Edition libre",
 	"the name" => "le nom",
 	"the description" => "la description",
