@@ -328,8 +328,9 @@ return array(
 	"Send invitations"						=> "Envoyer des invitations",
 
 	"Contact" 				=> "Contacter",
-	"Unfollow this Person" 	=> "Ne plus suivre cette personne",
 	"Unfollow this person" 	=> "Ne plus suivre cette personne",
+	"Unfollow this organization" 	=> "Ne plus suivre cette organisation",
+	"Unfollow this project" 	=> "Ne plus suivre ce projet",
 	"Unfollow" 				=> "Ne plus suivre",
 	"Follow this Person" 	=> "Suivre cette personne",
 	"Follow" 				=> "Suivre",
@@ -340,7 +341,8 @@ return array(
 	
 	"Add Something to your network" => "Ajouter quelque chose à votre réseau" ,
 	"Add"							=> "Ajouter",
-	"Leave this Organization" 		=> "Quitter cette organisation",
+	"Leave this organization" 		=> "Quitter cette organisation",
+	"Leave this project" 			=> "Quitter ce projet",
 	"Leave" 						=> "Quitter",
 	"Join this Organization" 		=> "Rejoindre cette organisation",
 	"Join" 							=> "Rejoindre",
@@ -386,7 +388,7 @@ return array(
 	"Participants list" => "Liste des participants",
 	
 	"Add a participant to this organization" => "Ajouter un participant",
-	"Add a member to this organization"=> "Ajouter un membre à cette organization",
+	"Add a member to this organization"=> "Ajouter un membre à cette organisation",
 	"Add a contributor to this project" => "Ajouter un contributeur à ce projet",
 	
 	"Add member" => "Ajouter un membre",
