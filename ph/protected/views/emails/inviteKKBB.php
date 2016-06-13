@@ -1474,7 +1474,7 @@
 				<table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
 					<tr style="padding: 0;vertical-align: top;text-align: left;">
 						<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							<h1 class="text-center" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 35px 0px 15px 0px;margin: 0;text-align: center;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 34px;">Derni&#232;res nouvelles sur communecter</h1>
+							<h1 class="text-center" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 35px 0px 15px 0px;margin: 0;text-align: center;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 34px;">Venez rejoindre le r&#233;seau social citoyen</h1>
 							<center style="width: 100%;min-width: 532px;">
 							<!--http://localhost:8888/ph/images/logoLTxt.jpg-->
 							<img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo2 ?>" valign="bottom" alt="Logo Communecter" align="center" class="text-center" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;margin: 0 auto;float: none;text-align: center;">
@@ -1505,7 +1505,7 @@
 					    	<!--http://localhost:8888/ph/images/betatest.png-->
 							<a href="#" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/images/bdb.png" ?>"" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;" alt="1+1=3"></a>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							    Cher Contributeur,
+							    Cher(e) Contributeur(trice),
 							</p>
 							<br>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
@@ -1513,12 +1513,12 @@
 							</p>
 							<br>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							    Comme vous avez pu le lire dans la derni&#232;re news, nous sommes sur le pont pour pr&#233;parer les contributions : <strong>t-shirts, cl&#233; USB, mugs, paniers
+							    Comme vous avez pu le lire dans la derni&#232;re actualité, nous sommes sur le pont pour pr&#233;parer les contributions : <strong>t-shirts, cl&#233; USB, mugs, paniers
 							    gourmands&#8230;</strong> Bient&#244;t des instructions pour venir le chercher &#224; un de nos rendez-vous ou pour le recevoir dans votre boite aux lettres.
 							</p>
 							<br>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							    Mais la contribution qui nous prend le plus de temps c&#8217;est la r&#233;alisation de notre site web de r&#233;seau social citoyen. Et l&#224; encore
+							    Mais la contribution qui nous prend le plus de temps c&#8217;est la r&#233;alisation de votre r&#233;seau social citoyen. Et l&#224; encore
 							    &#231;a avance &#224; grands pas : <strong>sa sortie est imminente</strong>.
 							</p>
 							<br>
@@ -1530,7 +1530,7 @@
 							<ol>
 							    <li dir="ltr">
 							        <p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							            <a href="<?php echo $url?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">Cliquer sur ce lien pour accéder à l'application.</a>
+							            <a href="<?php echo $url ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">Cliquer sur ce lien pour accéder à l'application.</a>
 										<br>
 										<br>
 										Si le lien ne fonctionne pas vous pouvez le copier dans l&apos;adresse de votre navigateur :
@@ -1549,24 +1549,24 @@
 							    </li>
 							    <li dir="ltr">
 							        <p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							            Ca y est vous &#234;tes inscrit \o/ !
+							            Ca y est vous &#234;tes inscrit(e) \o/ !
 							        </p>
 							    </li>
 							    <li dir="ltr">
 							        <p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							            Vous &#234;tes membre de votre premi&#233;re organisation : le groupe des 3C (Citoyens Contributeurs Commoners).
+							            Vous &#234;tes membre de votre premi&#232;re organisation : le groupe des 3C (Citoyens Contributeurs Commoners).
 							        </p>
 							    </li>
 							</ol>
 							<?php } else { ?>
 								<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-						            Vous pouvez continuez à utiliser communecter et à alimenter votre réseau. Nous vous avons ajouté en tant que <strong>membre du groupe des 3C </strong>(Citoyens Contributeurs Commoners).
+						            Vous pouvez continuer à utiliser communecter et à alimenter votre réseau. Nous vous avons ajouté en tant que <strong>membre du groupe des 3C </strong>(Citoyens Contributeurs Commoners).
 							    </p>
 							<?php } ?>
 							<br>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
 							    Nous sommes en pr&#233;paration de <strong>vid&#233;os tutoriels</strong> pour vous aider &#224; vous familiariser avec l&#8217;outil. Mais nous l&#8217;avons voulu simple
-							    d&#8217;utilisation et des bulles d&#8217;information apparaissent si vous laisser votre souris sur un bouton. De quoi vous aider d&#233;j&#224; &#224;
+							    d&#8217;utilisation et des bulles d&#8217;information apparaissent si vous laissez votre souris sur un bouton. De quoi vous aider d&#233;j&#224; &#224;
 							    vous rep&#233;rer.
 							</p>
 							<br>
@@ -1615,7 +1615,7 @@
       			</table>
     		</th>
         </tr></tbody></table>
-    	<? }?>
+    	<?php }?>
     </td></tr></tbody></table> <!-- End main email content -->
    
 	<table class="container text-center" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: center;background: #fefefe;width: 580px;margin: 0 auto;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"><td style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;border-collapse: collapse !important;"> <!-- Footer -->
