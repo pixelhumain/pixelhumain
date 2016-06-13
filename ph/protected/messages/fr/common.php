@@ -138,6 +138,7 @@ return array(
 	"Report an abuse" => "Reporter au modérateur",
 	"You leave successfully this event" => "Vous avez quitté l'événement",
 	"Invitation to project successfully sent" => "Invitation à rejoindre le projet bien envoyée",
+	"Comment successfully deleted" => "Le commentaire a bien été supprimé",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
@@ -541,7 +542,7 @@ return array(
 	"Quick access here" => "Accés rapide ici",
 	"go Back" => "revenir en arrière",
 	"Back" => "retour",
-
+	"Modify" => "Modifier",
 	"Modify Position"=>"Modifier la position",
 	"Edit Information"=>"Éditer les informations"
 
