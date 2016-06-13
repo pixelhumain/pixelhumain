@@ -24,7 +24,9 @@
 		"I go" => "J&rsquo;y vais",
 		"Not interested" => "Pas intéressé(e)",
 		"Invite attendees to the event" => "Inviter des personnes à participer à l&rsquo;événement",
-		"See modifications done on this event" => "Voir les modifications apportées à l&rsquo;événement"
+		"See modifications done on this event" => "Voir les modifications apportées à l&rsquo;événement",
+		"attendee" => "participant",
+		"guest" => "invité"
 	)
 
 ?>
