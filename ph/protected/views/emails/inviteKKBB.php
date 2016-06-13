@@ -1534,7 +1534,8 @@
 										<br>
 										<br>
 										Si le lien ne fonctionne pas vous pouvez le copier dans l&apos;adresse de votre navigateur :
-										<br><?php echo $url?>
+										<br>
+										<div style="word-break: break-all;"><?php echo $url?></div>
 							        </p>
 							    </li>
 							    <li dir="ltr">
