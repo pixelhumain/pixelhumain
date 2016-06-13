@@ -1530,7 +1530,7 @@
 							<ol>
 							    <li dir="ltr">
 							        <p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							            <a href="<?php echo $url?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">Cliquer sur ce lien pour accéder à l'application.</a>
+							            <a href="<?php echo $url ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">Cliquer sur ce lien pour accéder à l'application.</a>
 										<br>
 										<br>
 										Si le lien ne fonctionne pas vous pouvez le copier dans l&apos;adresse de votre navigateur :
@@ -1615,7 +1615,7 @@
       			</table>
     		</th>
         </tr></tbody></table>
-    	<? }?>
+    	<?php }?>
     </td></tr></tbody></table> <!-- End main email content -->
    
 	<table class="container text-center" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: center;background: #fefefe;width: 580px;margin: 0 auto;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"><td style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;border-collapse: collapse !important;"> <!-- Footer -->
