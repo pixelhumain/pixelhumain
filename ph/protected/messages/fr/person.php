@@ -25,6 +25,8 @@ return array(
 	"Postal Code" => "Code postal",
 	"Address" => "Adresse",
 	"Fax" => "Fax",
+	"Username" => "Nom d'utilisateur",
+	"Short Description" => "Description courte",
 
 
 	"Enter your name" => "Entrer votre nom et prénom",
