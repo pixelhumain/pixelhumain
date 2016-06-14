@@ -3,7 +3,7 @@
 return array(
 
 	'Problem inserting the new person : ' => "Problème à l'insertion du nouvel utilisateur : ",
-	'is missing' => 'est manquante',
+	'is missing' => 'est manquant',
 	'Problem inserting the new person : email is not well formated' => "Problème à l'insertion du nouvel utilisateur : l'email n'est pas bien formaté",
 	"Problem inserting the new person : a person with this email already exists in the plateform" => "Problème à l'insertion du nouvel utilisateur : une personne avec cet mail existe déjà sur la plateforme",
 	"Problem inserting the new person : a person with this username already exists in the plateform" => "Problème à l'insertion du nouvel utilisateur : une personne avec ce username existe déjà sur la plateforme",
