@@ -65,18 +65,15 @@ class ExtractProcessAction extends CAction{
 				// Get meta description else replace with body text
 		        $has_meta_description = $get_content->find('meta');
 		
-		        if($has_meta_description){ // if meta description is found
+		        if($has_meta_description){ 
+			        
+			        // if meta description is found
 		            foreach($get_content->find('meta') as $element) {
 		                if($description != true && $element->name == 'description'){
 		                    $strlength = strlen($element->content);
 		                    if($strlength > 200){
-			                    //echo "la".$element->content;
-		                       // $pos=strpos($element->content, ' ', 120);
 		                        $page_body = substr($element->content , 0, 200)."...";
-		                        //echo "/balalala/".$page_body;
-		                        
 		                    }else {
-			                    //echo "ici".$element->content;
 		                        $page_body = $element->content;
 		                    }
 		                    $description = true;
@@ -84,7 +81,6 @@ class ExtractProcessAction extends CAction{
 		                if ($element->property == 'og:description'){
 			                $strlength = strlen($element->content);
 		                    if($strlength > 200){
-		                        //$pos=strpos($element->content, ' ', 200);
 		                        $page_body = substr($element->content , 0, 200)."...";
 		                    }else {
 		                        $page_body = $element->content;
@@ -96,15 +92,14 @@ class ExtractProcessAction extends CAction{
 			                $page_title=$element->content;
 			                if(json_encode($element->content) == "null")
 			                	$page_title = utf8_encode($page_title);
-			                $title=true;
+			                $title = true;
 		                }
 		                
 		                if ($element->name == 'twitter:description'){
 			                $strlength = strlen($element->content);
 		                    if($strlength > 200){
-		                        //$pos=strpos($element->content, ' ', 200);
 		                        $page_body = substr($element->content , 0, 200)."...";
-		                    }else {
+		                    } else {
 		                        $page_body = $element->content;
 		                    }
 		                    $description = true;
@@ -117,12 +112,6 @@ class ExtractProcessAction extends CAction{
 								$size=getimagesize($imageMedia);
 							}
 		                }
-		                /* if($element->property == 'og:image:secure_url'){
-							if(@file_get_contents(str_replace(' ', '%20', $element->content))) {
-								$imageMedia = $element->content;
-								$size=getimagesize($imageMedia);
-							}
-		                }*/
 		                
 		                if ($element->property == "og:type" ){
 			               $type = $element -> content;   

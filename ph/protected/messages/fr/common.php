@@ -20,6 +20,8 @@ return array(
 	"Yes" => "Oui",
 	"No" => "Non",
 	"Cancel" => "Annuler",
+	"I don't know" => "Je ne sais pas",
+	"Hide info panels" => "Panneaux cachés",
 
 	// LANGUE
 	"french" => "Français",
@@ -75,11 +77,13 @@ return array(
 	"as attendee of" => "comme participant de",
 	"has invited" => "a invité",
 	"to join" => "à rejoindre",
-	"participates to the event" => "participe à l'évènement",
+	"participates to the event" => "participe à l'événement",
 	"is following" => "suit",
 	"is following you" => "vous suit",
 	"{who} commented your post" => "{who} a commenté votre post",
 	"{who} commented on {what}" => "{who} a commenté {what}",
+	"has updated"=>"a modifié",
+	"has added"=>"a ajouté",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 	
@@ -94,7 +98,7 @@ return array(
 	"Please enter an email" => "Veuillez entrer un e-mail",
 	"Please try again" => "Essaie encore s'il-te plait",
 	"Please specify the name" => "Veuillez entrer un nom",
-	"Your are already admin of" => "Vous êtes déjà admin de",
+	"You are already admin of" => "Vous êtes déjà admin de",
 	"Invalid request" => "requête incorrecte",
 	"Something went wrong with the url" => "Le traitement de l'url retourne une erreur",
 	"Something went wrong : please contact your admin" => "Quelque chose a mal tourné: s'il vous plaît contacter votre administrateur",
@@ -117,7 +121,7 @@ return array(
 	"News well updated" => "La publication a été mise à jour",
 	"Your vote has been successfully added" => "Votre vote a été ajouté avec succès",
 	"Your vote has been successfully removed" => "Votre vote a été supprimé avec succès",
-	"Event Created success" => "Évènement créé avec succès",
+	"Event Created success" => "Événement créé avec succès",
 	"You are not following" => "Vous n'êtes plus abonné à",
 	"You are following" => "Vous êtes abonné à",
 	"Your request is well updated" => "Votre demande a bien été mise à jour",
@@ -132,10 +136,16 @@ return array(
 	"You are going to declare an abuse : please fill the reason" => "Vous êtes en train de signaler un contenu abusif. Merci d'en préciser la raison",	
 	"Update publication" => "Modifier la publication",
 	"Report an abuse" => "Reporter au modérateur",
-	"You leave successfully this event" => "Vous avez quitté l'évènement",
-	"Invitation to project successfully sent" => "Invitation à rejoindre le projet bien envoyéee",
+	"You leave successfully this event" => "Vous avez quitté l'événement",
+	"Invitation to project successfully sent" => "Invitation à rejoindre le projet bien envoyée",
+	"Comment successfully deleted" => "Le commentaire a bien été supprimé",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
+	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
+	"is already attendee of" => "participe déjà à",
+	"is already contributor of" => "contribue déjà à",
+	"is already member of" => "est déjà membre de",
+	"is already admin of" => "est déjà admin de",
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
 	"No more notifications for the moment" => "Vous n'avez pas de notifications pour le moment",
 	//Confirm
@@ -169,7 +179,7 @@ return array(
 	
 	//EMAILS
 	"New Organization created on " => "Nouvelle organisation créée sur ",
-	"New Event created on " => "Nouvel évennement créé sur ",
+	"New Event created on " => "Nouvel événement créé sur ",
 	"New Project created on " => "Nouveau projet créée sur ",
 	"Confirm your account on " => "Confirmer votre compte sur ",
 
@@ -206,7 +216,18 @@ return array(
 	"Community" => "Communauté",
 	"COMMUNITY" => "COMMUNAUTÉ",
 	"General informations" => "Informations générales",
-	
+	"General infos" => "Infos générales",
+	"Open edition" => "Edition libre",
+	"the name" => "le nom",
+	"the description" => "la description",
+	"the type" => "le type",
+	"the street" => "la rue",
+	"the city" => "la ville",
+	"the country" => "le pays",
+	"the duration of the event to all day" => "la durée de l'événement sur toute la journée",
+	"the start" => "le début",
+	"the end" => "la fin",
+	"the address" => "l'adresse",
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
@@ -229,7 +250,7 @@ return array(
 	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
 	"Are you sure to join the organization" => "Êtes-vous sûr de rejoindre l'organisation",
 	"Are you sure to join the project" => "Êtes-vous sûr de rejoindre le projet",
-	"Are you sure to participate to the event" => "Êtes-vous sûr de participer à cet évènement",
+	"Are you sure to participate to the event" => "Êtes-vous sûr de participer à cet événement",
 	"Are you admin" => "Êtes-vous admin",
 	"as contributor" => "comme contributeur",
 	"as member" => "comme membre",
@@ -262,32 +283,34 @@ return array(
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
-
+	"of the event" => "de l'événement",
 	// Button
 	"All as Read" => "Tout comme lu",
 	"Participate" => "Participer",
-	"Participate to this event" => "Participer à l&#146;évènement",
+	"Participate to this event" => "Participer à l&#146;événement",
 	"restricted"=>"restreint",
 	"private"=>"privé",
 	"my network"=>"mon réseau",
 	"Show All" => "Voir tout",
-	
+	"Visualize" => "Visualiser",
+	"History" => "Historique",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
 	"My newspaper" => "Mon journal",
+	"MY CITIZEN COUNCIL" => "Mon Conseil Citoyen",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
 	"organization" => "organisation",
 	"project" => "projet",
-	"event" => "évènement",
+	"event" => "événement",
 	/* ---- */
 	/*traduire un type de donnée (au singulier) avec un pronom*/
 	"this person" => "ce citoyen",
 	"this organization" => "cette organisation",
 	"this project" => "ce projet",
-	"this event" => "cet évènement",
+	"this event" => "cet événement",
 	
 	"PROJECT" => "PROJET",
 	"DIRECTORY " => "Répertoire",
@@ -306,8 +329,9 @@ return array(
 	"Send invitations"						=> "Envoyer des invitations",
 
 	"Contact" 				=> "Contacter",
-	"Unfollow this Person" 	=> "Ne plus suivre cette personne",
 	"Unfollow this person" 	=> "Ne plus suivre cette personne",
+	"Unfollow this organization" 	=> "Ne plus suivre cette organisation",
+	"Unfollow this project" 	=> "Ne plus suivre ce projet",
 	"Unfollow" 				=> "Ne plus suivre",
 	"Follow this Person" 	=> "Suivre cette personne",
 	"Follow" 				=> "Suivre",
@@ -318,7 +342,8 @@ return array(
 	
 	"Add Something to your network" => "Ajouter quelque chose à votre réseau" ,
 	"Add"							=> "Ajouter",
-	"Leave this Organization" 		=> "Quitter cette organisation",
+	"Leave this organization" 		=> "Quitter cette organisation",
+	"Leave this project" 			=> "Quitter ce projet",
 	"Leave" 						=> "Quitter",
 	"Join this Organization" 		=> "Rejoindre cette organisation",
 	"Join" 							=> "Rejoindre",
@@ -364,7 +389,7 @@ return array(
 	"Participants list" => "Liste des participants",
 	
 	"Add a participant to this organization" => "Ajouter un participant",
-	"Add a member to this organization"=> "Ajouter un membre à cette organization",
+	"Add a member to this organization"=> "Ajouter un membre à cette organisation",
 	"Add a contributor to this project" => "Ajouter un contributeur à ce projet",
 	
 	"Add member" => "Ajouter un membre",
@@ -380,7 +405,7 @@ return array(
 	"Select places to change result" => "Sélectionnez des lieux pour filtrer les résultats",
 	"Where are you looking ?" => "Rechercher par lieux",
 	"What are you looking for ?" => "Rechercher par tags (mots clés)",
-	"Sent invitations" => "Envoyer des invitations",
+	"Send invitations" => "Envoyer des invitations",
 	"You are going to ask to become an admin of the project" => "Vous allez demander à devenir admin du projet",
 	"You are going to ask to become an admin of the organization" => "Vous allez demander à devenir admin de l'organisation",
 	"Please confirm" => "Veuillez confirmer",
@@ -420,7 +445,7 @@ return array(
 	"MY NEWS STREAM"	=> "MON FIL D'ACTU",
 	"ADD SOMETHING" 	=> "AJOUTER",
 	"HELP US : BUGS, IDEAS" => "AIDEZ NOUS : BUG, IDEE",
-	"BUGS, IDEAS" => "BUG, IDEE",
+	"BUGS, IDEAS" => "BUGs, IDÉES",
 	"LOGOUT" 			=> "DÉCONNECTER",
 
 	"LOCAL ACTORS"		=> "Les acteurs locaux",
@@ -470,7 +495,7 @@ return array(
 	"Change password" => "Changer votre mot de passe",
 	"Account info" => "Infos générales",
 	
-	"No attendee for this event" => "Aucun participant pour cet évènement",
+	"No attendee for this event" => "Aucun participant pour cet événement",
 	"No member for this organization" => "Aucun membre inscrit sur cette organisation",
 	"No contributor for this project" => "Aucun contributeur sur ce projet",
 	"Organizator detail" => "Détail de l'organisateur",
@@ -519,6 +544,10 @@ return array(
 	"Quick access here" => "Accés rapide ici",
 	"go Back" => "revenir en arrière",
 	"Back" => "retour",
+	"Modify" => "Modifier",
+	"Modify Position"=>"Modifier la position",
+	"Edit Information"=>"Éditer les informations"
+
 );
 
 ?>

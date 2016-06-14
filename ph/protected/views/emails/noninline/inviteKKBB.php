@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html style="min-height: 100%;background: #f0f0f0;">
+<html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
@@ -1431,119 +1431,207 @@
 	    }
 	</style>
   </head>
-<body style="min-width: 100%;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;margin: 0;padding: 0;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;text-align: left;line-height: 19px;font-size: 15px;width: 100% !important;">
-  <table class="body" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;background: #f0f0f0;height: 100%;width: 100%;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;"><tr style="padding: 0;vertical-align: top;text-align: left;"><td class="center" align="center" valign="top" style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;border-collapse: collapse !important;"><center style="width: 100%;min-width: 580px;">
-	<table class="container text-center" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: center;background: #fefefe;width: 580px;margin: 0 auto;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"><td style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;border-collapse: collapse !important;"> <!-- This container adds the grey gap at the top of the email -->
-	    <table class="row grey" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;background: #f0f0f0;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;">
-	        <th class="small-12 large-12 columns first last" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 16px;">
-	        	<table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
-					<tr style="padding: 0;vertical-align: top;text-align: left;">
-	     				<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
+<body>
+  <?php
+  $validationKey =Person::getValidationKeyCheck($invitedUserId);
+  $url = Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."/person/validateinvitation/user/".$invitedUserId.'/validationKey/'.$validationKey.'/invitation/1';
+  ?>
+  <table class="body"><tr><td class="center" align="center" valign="top"><center>
+	<table class="container text-center"><tbody><tr><td> <!-- This container adds the grey gap at the top of the email -->
+	    <table class="row grey"><tbody><tr>
+	        <th class="small-12 large-12 columns first last">
+	        	<table>
+					<tr>
+	     				<th>
 	              			&#xA0; 
 	           			</th>
-						<th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
+						<th class="expander"></th>
 					</tr>
 				</table>
 			</th>
 		</tr></tbody></table>
 	</td></tr></tbody></table>       
-    <table class="container text-center" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: center;background: #fefefe;width: 580px;margin: 0 auto;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"><td style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;border-collapse: collapse !important;"> <!-- This container is the main email content -->
-		<table class="row" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"> <!-- Logo -->
-            <th class="small-12 large-12 columns first last" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 16px;">
-				<table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
-        			<tr style="padding: 0;vertical-align: top;text-align: left;">
-						<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							<center style="width: 100%;min-width: 532px;">
-								<a href="http://www.communecter.org" align="center" class="text-center" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">
+    <table class="container text-center"><tbody><tr><td> <!-- This container is the main email content -->
+		<table class="row"><tbody><tr> <!-- Logo -->
+            <th class="small-12 large-12 columns first last">
+				<table>
+        			<tr>
+						<th>
+							<center>
+								<a href="http://www.communecter.org" align="center" class="text-center">
 								<!--http://localhost:8888/ph/images/logo-communecter.png-->
-								<img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo ?>" class="swu-logo" alt="Logo Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 170px;max-width: 100%;clear: both;display: block;border: none;height: auto;padding: 15px 0px 0px 0px;">
+								<img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo ?>" class="swu-logo" alt="Logo Image">
 								</a>
 							</center>
                 		</th>
-						<th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
+						<th class="expander"></th>
 					</tr>
 				</table>
 			</th>
 		</tr></tbody></table>
-		<table class="row masthead" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;background: #3c5665;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"> <!-- Masthead -->
-			<th class="small-12 large-12 columns first last" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 16px;">
-				<table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
-					<tr style="padding: 0;vertical-align: top;text-align: left;">
-						<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							<h1 class="text-center" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 35px 0px 15px 0px;margin: 0;text-align: center;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 34px;">Plateforme en betatest</h1>
-							<center style="width: 100%;min-width: 532px;">
+		<table class="row masthead"><tbody><tr> <!-- Masthead -->
+			<th class="small-12 large-12 columns first last">
+				<table>
+					<tr>
+						<th>
+							<h1 class="text-center">Invitation sur communecter</h1>
+							<center>
 							<!--http://localhost:8888/ph/images/logoLTxt.jpg-->
-							<img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo2 ?>" valign="bottom" alt="Logo Communecter" align="center" class="text-center" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;margin: 0 auto;float: none;text-align: center;">
+							<img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo2 ?>" valign="bottom" alt="Logo Communecter" align="center" class="text-center">
 							</center>
 						</th>
-						<th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
+						<th class="expander"></th>
         			</tr>
       			</table>
 			</th>
 		</tr></tbody></table>
-		<table class="row" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"> <!--This row adds the gap between masthead and digest content -->
-			<th class="small-12 large-12 columns first last" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 16px;">
-				<table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
-					<tr style="padding: 0;vertical-align: top;text-align: left;">
-						<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
+		<table class="row"><tbody><tr> <!--This row adds the gap between masthead and digest content -->
+			<th class="small-12 large-12 columns first last">
+				<table>
+					<tr>
+						<th>
 	                  		&#xA0; 
 	                	</th>
-						<th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
+						<th class="expander"></th>
 	        		</tr>
 	      		</table>
 			</th>
         </tr></tbody></table>
-		<table class="row" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"> <!-- Horizontal Digest Content -->
-			<th class="small-12 large-12 columns first" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 8px;">
-	      		<table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
-				    <tr style="padding: 0;vertical-align: top;text-align: left;">
-					    <th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
+		<table class="row"><tbody><tr> <!-- Horizontal Digest Content -->
+			<th class="small-12 large-12 columns first">
+	      		<table>
+				    <tr>
+					    <th>
 					    	<!--http://localhost:8888/ph/images/betatest.png-->
-					    	<a href="http://www.communecter.org" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img alt="betatest" align="right" width="200" height="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/images/betatest.png"?>"  style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;"></a>
-							<b><h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;">Beta Test Kesako ?</h5></b>
-							<p style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;"><b>Merci de vous &ecirc;tre inscrit(e)</b> sur la r&eacute;seau social citoyen libre : Communecter.org.</p>
-							<p style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">De voir chaque jour des nouveaux citoyens qui viennent nous rejoindre, c&apos;est un plaisir.</p>
-
-							<p style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">Nous sommes actuellement en <b>p&eacute;riode de beta test.</b> Beta test ?!?! Kesako ? </p>                 
-							<p style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;"><b>C&apos;est une ouverture partielle</b> : nous venons de terminer le d&eacute;veloppement de la plateforme et l&apos;avons ouverte à des utilisateurs qui nous font des retours (bugs et am&eacute;liorations) afin de peaufiner, simplifier et mettre les derniers coups de peinture en vue de l&apos;ouverture totale.</p>
-							<p style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">Si vous voulez rejoindre l&apos;&eacute;quipe de testeur, vous pouvez envoyer un mail &agrave; <a href="mailto:contact@communecter.org" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">contact@communecter.org</a> et nous vous ouvrirons les acc&egrave;s.</p>
-
-							<p style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">A tr&egrave;s bient&ocirc;t sur <a href="http://www.communecter.org" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">www.communecter.org</a></p>
-							<p style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">L&apos;&eacute;quipe de Communecter</p>
+							<a href="#"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/images/bdb.png"?>" alt="1+1=3"></a>
+							<p dir="ltr">
+							    Cher Contributeur,
+							</p>
+							<br/>
+							<p dir="ltr">
+							    Nous vous remercions encore pour votre participation au projet Communecter.
+							</p>
+							<br/>
+							<p dir="ltr">
+							    Comme vous avez pu le lire dans la derni&#232;re news, nous sommes sur le pont pour pr&#233;parer les contributions : t-shirts, cl&#233; USB, mugs, paniers
+							    gourmands&#8230; Bient&#244;t des instructions pour venir le chercher &#224; un de nos rendez-vous ou pour le recevoir dans votre boite aux lettres.
+							</p>
+							<br/>
+							<p dir="ltr">
+							    Mais la contribution qui nous prend le plus de temps c&#8217;est la r&#233;alisation de notre site web de r&#233;seau social citoyen. Et l&#224; encore
+							    &#231;a avance &#224; grands pas : sa sortie est imminente.
+							</p>
+							<br/>
+							<?php if ($isInvited) {?>
+							<p dir="ltr">
+							    Nous sommes fiers de vous inviter &#224; rejoindre la plateforme en tant que beta testers. Vous serez les premiers &#224; venir profiter de votre outil
+							    citoyen. Comment faire ?
+							</p>
+							<ol>
+							    <li dir="ltr">
+							        <p dir="ltr">
+							            <a href="<?php echo $url?>">Cliquer sur ce lien pour accéder à l'application.</a>
+										<br/>
+										<br/>
+										Si le lien ne fonctionne pas vous pouvez le copier dans l&apos;adresse de votre navigateur :
+										<br/><?php echo $url?>
+							        </p>
+							    </li>
+							    <li dir="ltr">
+							        <p dir="ltr">
+							            Valider votre compte en remplissant les infos manquantes
+							        </p>
+							    </li>
+							    <li dir="ltr">
+							        <p dir="ltr">
+							            Suivez les instructions pour vous connecter &#224; votre commune
+							        </p>
+							    </li>
+							    <li dir="ltr">
+							        <p dir="ltr">
+							            Ca y est vous &#234;tes inscrit \o/ !
+							        </p>
+							    </li>
+							    <li dir="ltr">
+							        <p dir="ltr">
+							            Vous &#234;tes membre de votre premi&#233;re organisation : le groupe des 3C (Citoyens Contributeurs Commoners).
+							        </p>
+							    </li>
+							</ol>
+							<?php } else { ?>
+								<p dir="ltr">
+						            Vous pouvez continuez à utiliser communecter et à alimenter votre réseau. Nous vous avons ajouté en tant que membre du groupe des 3C (Citoyens Contributeurs Commoners).
+							    </p>
+							<?php } ?>
+							<br/>
+							<p dir="ltr">
+							    Nous sommes en pr&#233;paration de vid&#233;os tutoriels pour vous aider &#224; vous familiariser avec l&#8217;outil. Mais nous l&#8217;avons voulu simple
+							    d&#8217;utilisation et des bulles d&#8217;information apparaissent si vous laisser votre souris sur un bouton. De quoi vous aider d&#233;j&#224; &#224;
+							    vous rep&#233;rer.
+							</p>
+							<br/>
+							<p dir="ltr">
+							    Communecter.org n&#8217;est toujours pas officiellement ouvert (c&#8217;est pour bient&#244;t) mais vous avez en votre possession 10 invitations pour en
+							    faire profiter vos amis. Pour les inviter : Bouton
+							    <img
+							        src="https://lh5.googleusercontent.com/drv6nd-YunXwcuZQ4zx1WyRnXXsQllP6ubrbfbzirWWHhMklSkRevhvT56F4sV4m1yjMosZ60sFQx6nMrnUPtfRouQTaQ90w4cV-PJUQSGWqDcmNL-FsnJKXAp88fw0tlZeUMCAA"
+							        width="37"
+							        height="32"
+							    />
+							    (en bas &#224; droite) et cliquer dans le menu d&#233;roulant apparaissant sur &#8216;inviter quelqu&#8217;un&#8221;.
+							</p>
+							<br/>
+							<p dir="ltr">
+							    Si vous rencontrez des difficult&#233;s ou si vous avez des remarques pour am&#233;liorer la plateforme, utiliser l&#8217;ic&#244;ne
+							    <img
+							        src="https://lh6.googleusercontent.com/HE2z4ESeUSty0O49JkAdHVpaPZJdPJYGszj--V_ksgMrlLEHMx_RBeVlwgdLWwL-Rf-6GT8lGluH1ff3qY0-IhgsMIznQ6OdKFTkCgJkQxIFllW5E9Q4XaB-_PFNQDsRi1JahD5i"
+							        width="35"
+							        height="29"
+							    />
+							    dans le menu &#224; droite.
+							</p>
+							<br/>
+							<p dir="ltr">
+							    Bonne journ&#233;e et bonne d&#233;vouverte de <a href="www.communecter.org">www.communecter.org</a>!
+							</p>
+							<p dir="ltr">
+							    L&#8217;&#233;quipe Communecter
+							</p>
+							<a href="mailto:contact@communecter.org">contact@communecter.org</a>
 						</th>
 				    </tr>
 	  			</table>
     		</th>
         </tr></tbody></table>
-		<hr style="max-width: 580px;height: 0;border-right: 0;border-top: 0;border-bottom: 1px solid #cacaca;border-left: 0;margin: 20px auto;clear: both;">
-		<table class="row" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"> <!-- CTA -->
-			<th class="small-12 large-12 columns first last" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 16px;">
-      			<table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
-        			<tr style="padding: 0;vertical-align: top;text-align: left;">
-          				<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
-                  			<center style="width: 100%;min-width: 532px;">
+		<hr>
+		<table class="row"><tbody><tr> <!-- CTA -->
+			<th class="small-12 large-12 columns first last">
+      			<table>
+        			<tr>
+          				<th>
+                  			<center>
                     			<br align="center" class="text-center"><br align="center" class="text-center">
-                    			<h5 align="center" class="text-center" style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: center;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;">Vous pouvez toujours naviguer sur communecter en mode non connect&eacute; !</h5>
-                    			<table class="button text-center" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: center;margin: 0 0 16px 0;width: auto !important;"><tr style="padding: 0;vertical-align: top;text-align: left;"><td style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;border-collapse: collapse !important;"><table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;"><tr style="padding: 0;vertical-align: top;text-align: left;"><td style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #fefefe;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;background: #e33551;border: 2px solid #e33551;border-collapse: collapse !important;width: auto !important;"><a href="http://www.communecter.org" style="color: #fefefe;font-family: Helvetica, Arial, sans-serif;font-weight: bold;padding: 8px 16px 8px 16px;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;font-size: 16px;display: inline-block;border: 0px solid #e33551;border-radius: 3px;">Communecter</a></td></tr></table></td></tr></table>
+                    			<h5 align="center" class="text-center">Accepter l'invitation</h5>
+                    			<table class="button text-center"><tr><td><table><tr><td><a href="?php echo $url?>">Go Communecter</a></td></tr></table></td></tr></table>
                     			<br align="center" class="text-center">
                   			</center>
                 		</th>
-						<th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
+						<th class="expander"></th>
         			</tr>
       			</table>
     		</th>
         </tr></tbody></table>
     </td></tr></tbody></table> <!-- End main email content -->
     
-	<table class="container text-center" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: center;background: #fefefe;width: 580px;margin: 0 auto;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"><td style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;border-collapse: collapse !important;"> <!-- Footer -->
-		<table class="row grey" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;background: #f0f0f0;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;">
-			<th class="small-12 large-12 columns first last" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 16px;">
-      			<table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
-        			<tr style="padding: 0;vertical-align: top;text-align: left;">
-          				<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							<p class="text-center footercopy" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 20px 0px;text-align: center;line-height: 19px;font-size: 12px;">Mail envoyé depuis communecter.org</p>
+	<table class="container text-center"><tbody><tr><td> <!-- Footer -->
+		<table class="row grey"><tbody><tr>
+			<th class="small-12 large-12 columns first last">
+      			<table>
+        			<tr>
+          				<th>
+							<p class="text-center footercopy">Mail envoyé depuis communecter.org</p>
 		                </th>
-						<th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
+						<th class="expander"></th>
         			</tr>
       			</table>
     		</th>

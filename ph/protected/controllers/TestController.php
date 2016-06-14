@@ -51,14 +51,17 @@ class TestController extends Controller {
 			$cp2 = $cp ;
 			foreach ($cp2 as $key => $value) {
 				unset($cp[$key]);
-				if(in_array($value, $cp)){
+
+
+
+
+				if(in_array($value, $cp) ){
 					$i++;
 					$res = array();
 					$res["insee"] = $city["insee"] ;
 					$res["name"] = $city["name"] ;
 					$res["cp"] = $value ;
-					$res["name1"] = $value ;
-					$res[""] = $value ;
+					
 					$k = 1 ;
 					foreach ($city["postalCodes"] as $key => $c) {
 						if($c["postalCode"] == $value){
@@ -67,9 +70,15 @@ class TestController extends Controller {
 						}
 					}
 					$result[] = $res;
+					
+					foreach ($cp as $key => $b) {
+						if($b == $value){
+							unset($cp[$key]);
+						}
+					}
+					
 				}
 			}
-
 		}
 		echo "Commune avec doublons : " .$i. "<br/>";
 
