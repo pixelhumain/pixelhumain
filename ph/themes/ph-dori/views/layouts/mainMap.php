@@ -32,7 +32,7 @@
         "useRightList" 		 => true,
         "useZoomButton" 	 => true,
         "useHomeButton" 	 => true,
-        "useSatelliteTiles"	 => false,
+        "useSatelliteTiles"	 => true,
         "useFullScreen" 	 => true,
         "useFullPage" 	 	 => true,
         "useResearchTools" 	 => false,
