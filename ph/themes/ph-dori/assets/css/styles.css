@@ -4510,6 +4510,7 @@ div.timeline {
     font-size: 50px;
     color: #FFF;
     overflow-y: none;
+    overflow-y: -moz-hidden-unscrollable;
 }
 .timeline_element .timeline_shared_picture img{
     width:100%;
