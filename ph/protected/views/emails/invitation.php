@@ -1516,7 +1516,7 @@
               <br>
               <br>
               Si le lien ne fonctionne pas vous pouvez le copier dans l&apos;adresse de votre navigateur :
-              <br><?php echo $url?>
+              <br><div style="word-break: break-all;"><?php echo $url?></div>
               <br>
               <br>
               <p style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">A tr&egrave;s bient&ocirc;t sur <a href="http://www.communecter.org" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">www.communecter.org</a></p>
