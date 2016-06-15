@@ -28,6 +28,15 @@ return array(
 	"Username" => "Nom d'utilisateur",
 	"Short Description" => "Description courte",
 
+	"My space" => "Mon espace perso",
+	"My city" => "Ma commune",
+	"My Votes / Discussions" => "Mes Votes / Discussions",
+	"Invite someone" => "Inviter quelqu'un",
+	"Create an event" => "Créer un événement",
+	"Create a project" => "Créer un projet",
+	"Create an organization" => "Référencer une organisation",
+	"Sign out" => "Déconnexion",
+
 
 	"Enter your name" => "Entrer votre nom et prénom",
 	"Enter your user name" => "Entrer votre nom d'utilisateur",
