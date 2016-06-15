@@ -39,7 +39,9 @@
 		"Contact information" => "Informations générales",
 
 		"A citizen ask to become an admin of one of your organization" => "Un citoyen demande à devenir administrateur d'une de vos organisations",
-		
+		"A citizen ask to become admin of" => "Un citoyen demande à devenir admin de",
+		"A citizen ask to become member of" => "Un citoyen demande à devenir membre de",
+		"A citizen ask to become contributor of" => "Un citoyen demande à devenir contributeur de",
 		//Delete organization
 		"This action is permanent and will close this Organization (Removed from search engines, and lists) !" => "Cette action est permanente et va supprimer cette organisation (elle ne sera plus présente dans la recherche, ni dans aucune liste) !",
 		"Are you sure you want to delete the organization : " => "Etes vous sur(e) de vouloir supprimer l'organisation : ",
