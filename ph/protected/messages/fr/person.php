@@ -43,7 +43,9 @@ return array(
 
 	"Enter your phones" => "Saisir vos numéros de téléphones fixes, séparer les numéros par une virgule.",
 	"Enter your mobiles" => "Saisir vos numéros de téléphones portables, séparer les numéros par une virgule.",
-	"Enter your fax" => "Saisir vos numéros de fax, séparer les numéros par une virgule."
+	"Enter your fax" => "Saisir vos numéros de fax, séparer les numéros par une virgule.",
+
+	"Hello, \\nCome and meet me on that website!\\nAn email, your town and you are connected to your city!\\nYou can see everything that happens in your city and act for the commons." => "Bonjour, \\nViens me rejoindre sur ce site ! \\nUn email, un code postal et tu es communecté. Tu peux voir tout ce qui se passe dans ta commune et agir pour le bien commun.\\n"
 	
 );
 
