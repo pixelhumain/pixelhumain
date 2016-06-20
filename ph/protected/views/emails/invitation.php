@@ -1505,12 +1505,12 @@
               <th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
                 <!--http://localhost:8888/ph/images/betatest.png-->
               <a href="http://www.communecter.org" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/images/bdb.png"?>" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;" alt="Intelligence collective"></a>
-              <b><h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;">Invitation à rejoindre le r&eacute;seau communecter</h5></b>
-              Vous avez &eacute;t&eacute; invit&eacute; au projet Communecter par <b><?php echo $invitorName?>.</b><br>
+              <b><h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;">Invitation à rejoindre le r&eacute;seau communecter</h5></b><br>
+              Vous avez &eacute;t&eacute; invit&eacute; au projet Communecter par <b><?php echo (empty($invitorUrl)?$invitorName:'<a href="'.$invitorUrl.'">'.$invitorName.'</a>');?>.</b><br>
               Voici son message : <br>
               <?php echo $message ?>
               <br><br>
-              Veuillez clicker sur ce lien pour rejoindre <b><?php echo $invitorName?></b> et ainsi participer a cette initiative locale pour am&eacute;liorer votre commune.<br>
+              Veuillez clicker sur ce lien pour rejoindre Communecter et ainsi participer a cette initiative locale pour am&eacute;liorer votre commune.<br>
               <br>
               <a href="<?php echo $url?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">Confirmer l&apos;invitation</a>
               <br>
