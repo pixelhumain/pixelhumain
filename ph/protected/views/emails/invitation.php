@@ -1508,7 +1508,7 @@
               <b><h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;">Invitation à rejoindre le r&eacute;seau communecter</h5></b><br>
               Vous avez &eacute;t&eacute; invit&eacute; au projet Communecter par <b><?php echo (empty($invitorUrl)?$invitorName:'<a href="'.$invitorUrl.'">'.$invitorName.'</a>');?>.</b><br>
               Voici son message : <br>
-              <?php echo htmlentities($message); ?>
+              <?php echo nl2br(htmlentities($message)); ?>
               <br><br>
               Veuillez clicker sur ce lien pour rejoindre Communecter et ainsi participer a cette initiative locale pour am&eacute;liorer votre commune.<br>
               <br>
