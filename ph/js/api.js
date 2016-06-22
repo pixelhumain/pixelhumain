@@ -16,16 +16,16 @@ function ajaxPost(id,url,params,callback, datatype)
 	console.log(id,url,params);
   /*if(dataType == null)
     dataType = "json";*/
-
-	$("#"+id).html("");
+	if(datatype != "html" )
+		$(id).html("");
 	$.ajax({
 	    url:url,
 	    data:params,
 	    type:"POST",
-	    dataType: "json",
+	  //  dataType: "json",
 	    success:function(data) {
-        if(datatype === "html" )
-          $(id).html(data);
+        	if(datatype === "html" )
+				$(id).html(data);
 	    	else if( typeof callback === "function")
 	    		callback(data,id);
 	    	else if(typeof data.msg === "string" )
