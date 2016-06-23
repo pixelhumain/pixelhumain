@@ -21,6 +21,13 @@ class DataValidator {
 		$res = "";
 		if (! preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$toValidate) && !empty($toValidate)) { 
 			$res = "The email is not well formated";
+		} else {
+			$domain = explode("@",$toValidate);
+        	$domain = array_pop($domain); 
+        	//check dns
+	  		if(! checkdnsrr(idn_to_ascii($domain),"MX")){
+				$res = "Unknown domain : please check your email !";
+			}
 		}
 		return $res;
 	}
