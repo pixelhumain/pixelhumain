@@ -546,7 +546,11 @@ return array(
 	"Back" => "retour",
 	"Modify" => "Modifier",
 	"Modify Position"=>"Modifier la position",
-	"Edit Information"=>"Éditer les informations"
+	"Edit Information"=>"Éditer les informations",
+
+	"go to documentation Index" => "Retour vers accueil documentation",
+	"Next chapter" => "Suivant",
+	"Previous chapter" => "Précédent",
 
 );
 
