@@ -31,7 +31,7 @@ $mailConfigTest = array(
 
 $params = array(
     //Beta Test ?
-    'betaTest' => true,
+    'betaTest' => false,
 
     //By default controller
     'defaultController' => 'communecter',
