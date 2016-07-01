@@ -152,8 +152,10 @@ return array(
 	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication?",
 	//Form
 	"Required Fields" => "Champs requis",
-	"Save" => "Sauvegarder",
+	"Save" => "Enregistrer",
 	"Back to Search" => "Retour sur la recherche",
+	"Please Login First" => "Logguez vous",
+	"Save Processing"=> "Enregistrement en cours",
 	
 	//DATA
 	"Your data has been saved" => "Vos données ont bien été enregistré.",
