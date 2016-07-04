@@ -31,6 +31,7 @@
             autocompleteList           : _.template('<div class="mentions-autocomplete-list"></div>'),
             autocompleteListItem       : _.template('<li data-ref-id="<%= id %>" data-ref-type="<%= type %>" data-display="<%= display %>"><%= content %></li>'),
             autocompleteListItemAvatar : _.template('<img src="<%= avatar %>" />'),
+            autocompleteListItemFa   : _.template('<div class="icon"><i class="fa fa-<%= icon %>"></i></div>'),
             autocompleteListItemIcon   : _.template('<div class="icon <%= icon %>"></div>'),
             mentionsOverlay            : _.template('<div class="mentions"><div></div></div>'),
             mentionItemSyntax          : _.template('@[<%= value %>](<%= type %>:<%= id %>)'),
@@ -444,9 +445,17 @@
 
                     //If the item has an avatar
                     if (item.avatar) {
-                        elmIcon = $(settings.templates.autocompleteListItemAvatar({ avatar : item.avatar }));
+	                    if(item.avatar != "")
+	                        elmIcon = $(settings.templates.autocompleteListItemAvatar({ avatar : item.avatar }));
+	                    else
+	                    	elmIcon = $(settings.templates.autocompleteListItemFa({ icon : "user" }));
                     } else { //If not then we set an default icon
-                        elmIcon = $(settings.templates.autocompleteListItemIcon({ icon : item.icon }));
+                        //elmIcon = $(settings.templates.autocompleteListItemIcon({ icon : item.icon }));
+                        if(item.type=="organizations")
+                        	iconType="group";
+                        else
+                        	iconType="user";
+                        elmIcon = $(settings.templates.autocompleteListItemFa({ icon : iconType }));
                     }
                     elmIcon.prependTo(elmListItem); //Inserts the elmIcon to elmListItem
                 }
