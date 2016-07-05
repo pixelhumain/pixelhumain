@@ -334,6 +334,20 @@ onSave: (optional) overloads the generic saveProcess
         	console.log("build a >>>>>> date");
         	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
+        
+        else if ( fieldObj.inputType == "image" ) {
+        	if(placeholder == "")
+        		placeholder="add Image";
+        	console.log("build a >>>>>> date");
+        	fieldHTML += '<form method="post" id="photoAddForm" enctype="multipart/form-data">'+
+							iconOpen+
+							'<input type="file" class="form-control newImage '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" accept=".gif, .jpg, .png" onchange="showMyImage2(this)"/>'+
+							iconClose+
+					'</form>'+
+					'<div id="resultsImage" class="bg-white results"></div>';
+				//alert(fieldObj.contextType+"//"+fieldObj.contextId);
+        	//initFormImages(fieldObj.contextType, fieldObj.contextId);
+        }
 
         /* **************************************
 		* DATE RANGE INPUT 
@@ -859,3 +873,266 @@ function slugify (value) {
 	.replace(/[^a-z0-9-]/g, '')
 	.replace(/\-{2,}/g,'-');
 };
+
+function initFormImages(contextType, contextId){
+	alert("init good");
+	//$("#photoAddForm").on('submit',(function(e) {
+	/*validationImage = {
+		errorElement : "span", // contain the error msg in a span tag
+		errorClass : 'help-block',
+		errorPlacement : function(error, element) {// render error placement for each input type
+			if (element.attr("type") == "radio" || element.attr("type") == "checkbox") {// for chosen elements, need to insert the error after the chosen container
+				error.insertAfter($(element).closest('.form-group').children('div').children().last());
+			} else if (element.parent().hasClass("input-icon")) {
+				error.insertAfter($(element).parent());
+			} else {
+				error.insertAfter(element);
+				// for other inputs, just perform default behavior
+			}
+		},
+		ignore : "",
+		rules : {
+			goSaveNews : {
+				required:{
+					depends: function() {
+						if($(".noGoSaveNews").length){
+							return true;
+						}
+						else{
+							return false;
+						}
+					}	
+				}
+			}
+		},
+		messages : {
+			goSaveNews: "* Image is still loading"
+
+		},
+//		e.preventDefault();
+		submitHandler : function(form) {
+			$.ajax({
+			url : baseUrl+"/"+moduleId+"/document/"+uploadUrl+"dir/"+moduleId+"/folder/"+contextParentType+"/ownerId/"+contextParentId+"/input/roomsImage",
+			type: "POST",
+			data: new FormData(this),
+			contentType: false,
+			cache: false, 
+			processData: false,
+			dataType: "json",
+			success: function(data){
+				if(debug)console.log(data);
+		  		if(data.success){
+			  		console.log("success");
+		  			imageName = data.name;
+					var doc = { 
+						"id":contextParentId,
+						"type":contextParentType,
+						"folder":contextParentType+"/"+contextParentId,
+						"moduleId":moduleId,
+						"author" : userId  , 
+						"name" : data.name , 
+						"date" : new Date() , 
+						"size" : data.size ,
+						"doctype" : docType,
+						"contentKey" : contentKey
+					};
+					console.log(doc);
+					path = "/"+data.dir+data.name;
+					$.ajax({
+					  	type: "POST",
+					  	url: baseUrl+"/"+moduleId+"/document/save",
+					  	data: doc,
+				      	dataType: "json"
+					}).done( function(data){
+				        if(data.result){
+						    toastr.success(data.msg);
+						    //setTimeout(function(){
+						    $(".imagesNews").last().val(data.id.$id);
+						    $(".imagesNews").last().attr("name","");
+						    $(".newImageAlbum").last().find("img").removeClass("grayscale");
+						    $(".newImageAlbum").last().find("i").remove();
+						    $(".newImageAlbum").last().append("<a href='javascript:;' onclick='deleteImage(\""+data.id.$id+"\",\""+data.name+"\")'><i class='fa fa-times fa-x padding-5 text-white removeImage' id='deleteImg"+data.id.$id+"'></i></a>");
+						    //},200);
+				
+						} else{
+							toastr.error(data.msg);
+							if($("#resultsImage img").length>1)
+						  		$(".newImageAlbum").last().remove();
+						  	else{
+						  		$("#resultsImage").empty();
+						  		$("#resultsImage").hide();
+						  	}
+						}
+						$("#addImage").off();
+					});
+		  		}
+		  		else{
+			  		if($("#resultsImage img").length>1)
+				  		$(".newImageAlbum").last().remove();
+				  	else{
+				  		$("#resultsImage").empty();
+				  		$("#resultsImage").hide();
+				  	}
+				  	$("#addImage").off();
+		  			toastr.error(data.msg);
+		  		}
+			},
+		});
+		}
+	};*/
+}
+
+function showMyImage2(fileInput) {
+	if($(".noGoSaveNews").length){
+		toastr.info("Wait the end of image loading");
+	}
+	else if (fileInput.files[0].size > 2097152){
+		toastr.info("Please reduce your image before to 2Mo");
+	}
+	else {
+		alert();
+		countImg=$("#resultsImage img").length;
+		idImg=countImg+1;
+		htmlImg="";
+		var files = fileInput.files;
+		if(countImg==0){
+			htmlImg = "<input type='hidden' class='type' value='gallery_images'/>";
+			htmlImg += "<input type='hidden' class='count_images' value='"+idImg+"'/>";
+			htmlImg += "<input type='hidden' class='algoNbImg' value='"+idImg+"'/>";
+			nbId=idImg;
+			$("#resultsImage").show();
+		}
+		else{
+			nbId=$(".algoNbImg").val();
+			nbId++;
+			$(".count_images").val(idImg);
+			$(".algoNbImg").val(nbId);
+		}
+		htmlImg+="<div class='newImageAlbum'><i class='fa fa-spin fa-circle-o-notch fa-3x text-green spinner-add-image noGoSaveNews'></i><img src='' id='thumbail"+nbId+"' class='grayscale' style='width:75px; height:75px;'/>"+
+		       	"<input type='hidden' class='imagesNews' name='goSaveNews' value=''/></div>";
+		$("#resultsImage").append(htmlImg);
+	    for (var i = 0; i < files.length; i++) {           
+	        var file = files[i];
+	        var imageType = /image.*/;     
+	        if (!file.type.match(imageType)) {
+	            continue;
+	        }           
+	        var img=document.getElementById("thumbail"+nbId);            
+	        img.file = file;    
+	        var reader = new FileReader();
+	        reader.onload = (function(aImg) { 
+	            return function(e) { 
+	                aImg.src = e.target.result; 
+	            }; 
+	        })(img);
+	        reader.readAsDataURL(file);
+	    }  
+	    validationImage = {
+		errorElement : "span", // contain the error msg in a span tag
+		errorClass : 'help-block',
+		errorPlacement : function(error, element) {// render error placement for each input type
+			if (element.attr("type") == "radio" || element.attr("type") == "checkbox") {// for chosen elements, need to insert the error after the chosen container
+				error.insertAfter($(element).closest('.form-group').children('div').children().last());
+			} else if (element.parent().hasClass("input-icon")) {
+				error.insertAfter($(element).parent());
+			} else {
+				error.insertAfter(element);
+				// for other inputs, just perform default behavior
+			}
+		},
+		ignore : "",
+		rules : {
+			goSaveNews : true /*{
+				required:{
+					depends: function() {
+						if($(".noGoSaveNews").length){
+							return true;
+						}
+						else{
+							return false;
+						}
+					}	
+				}
+			}*/
+		},
+		messages : {
+			goSaveNews: "* Image is still loading"
+
+		},
+//		e.preventDefault();
+		submitHandler : function(form) {
+			$.ajax({
+			url : baseUrl+"/"+moduleId+"/document/"+uploadUrl+"dir/"+moduleId+"/folder/room/ownerId/me/input/roomsImage",
+			type: "POST",
+			data: new FormData(this),
+			contentType: false,
+			cache: false, 
+			processData: false,
+			dataType: "json",
+			success: function(data){
+				if(debug)console.log(data);
+		  		if(data.success){
+			  		console.log("success");
+		  			imageName = data.name;
+					var doc = { 
+						"id":contextParentId,
+						"type":contextParentType,
+						"folder":"room/me",
+						"moduleId":moduleId,
+						"author" : userId  , 
+						"name" : data.name , 
+						"date" : new Date() , 
+						"size" : data.size ,
+						"doctype" : docType,
+						"contentKey" : contentKey
+					};
+					console.log(doc);
+					path = "/"+data.dir+data.name;
+					$.ajax({
+					  	type: "POST",
+					  	url: baseUrl+"/"+moduleId+"/document/save",
+					  	data: doc,
+				      	dataType: "json"
+					}).done( function(data){
+				        if(data.result){
+						    toastr.success(data.msg);
+						    //setTimeout(function(){
+						    $(".imagesNews").last().val(data.id.$id);
+						    $(".imagesNews").last().attr("name","");
+						    $(".newImageAlbum").last().find("img").removeClass("grayscale");
+						    $(".newImageAlbum").last().find("i").remove();
+						    $(".newImageAlbum").last().append("<a href='javascript:;' onclick='deleteImage(\""+data.id.$id+"\",\""+data.name+"\")'><i class='fa fa-times fa-x padding-5 text-white removeImage' id='deleteImg"+data.id.$id+"'></i></a>");
+						    //},200);
+				
+						} else{
+							toastr.error(data.msg);
+							if($("#resultsImage img").length>1)
+						  		$(".newImageAlbum").last().remove();
+						  	else{
+						  		$("#resultsImage").empty();
+						  		$("#resultsImage").hide();
+						  	}
+						}
+						$("#addImage").off();
+					});
+		  		}
+		  		else{
+			  		if($("#resultsImage img").length>1)
+				  		$(".newImageAlbum").last().remove();
+				  	else{
+				  		$("#resultsImage").empty();
+				  		$("#resultsImage").hide();
+				  	}
+				  	$("#addImage").off();
+		  			toastr.error(data.msg);
+		  		}
+			},
+		});
+		}
+	};
+	   alert("done here");
+	  //  var form = $('#photoAddForm').get(0);
+//$.removeData(form, 'validator');
+		form.submit(function(e) { e.preventDefault }).validate(validationImage);;	  
+	}
+}
