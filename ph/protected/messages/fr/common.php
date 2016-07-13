@@ -103,6 +103,7 @@ return array(
 	"Something went wrong with the url" => "Le traitement de l'url retourne une erreur",
 	"Something went wrong : please contact your admin" => "Quelque chose a mal tourné: s'il vous plaît contacter votre administrateur",
 	"You must be logged in to add a news entry !" => "Vous devez être connecté(e) pour publier une news !",
+	"You are not the creator. Please contact the administrator" => "Vous nêtes pas le créateur de cette fiche. Veuillez contacter un administrateur",
 	//Success
 	"Your form validation is successful" => "la validation du formulaire est réalisée avec succès",
 	"Link divorced successfully" => "Le lien a été supprimé avec succès",
