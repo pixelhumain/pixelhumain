@@ -231,6 +231,7 @@ return array(
 	"the start" => "le début",
 	"the end" => "la fin",
 	"the address" => "l'adresse",
+	"the position" => "la position",
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
