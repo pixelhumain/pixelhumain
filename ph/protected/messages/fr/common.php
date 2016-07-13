@@ -298,6 +298,7 @@ return array(
 	"Show All" => "Voir tout",
 	"Visualize" => "Visualiser",
 	"History" => "Historique",
+	"Settings" => "Paramètres",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
