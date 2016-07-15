@@ -84,6 +84,7 @@ return array(
 	"{who} commented on {what}" => "{who} a commenté {what}",
 	"has updated"=>"a modifié",
 	"has added"=>"a ajouté",
+	"has created"=>"a créé",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 	
@@ -232,6 +233,13 @@ return array(
 	"the end" => "la fin",
 	"the address" => "l'adresse",
 	"the position" => "la position",
+	"the short description" => "la description courte",
+	"the fax" => "le fax",
+	"the email" => "l'email",
+	"the website" => "le site web",
+	"the tags" => "les tags",
+	"the maturity" => "l'avancement",
+	"the licence" => "la licence",
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
@@ -288,6 +296,8 @@ return array(
 	"Projects" => "Projets",
 	"Events" => "Événements",
 	"of the event" => "de l'événement",
+	"of the organization" => "de l'organisation",
+	"of the project" => "du projet",
 	// Button
 	"All as Read" => "Tout comme lu",
 	"Participate" => "Participer",
@@ -310,6 +320,9 @@ return array(
 	"organization" => "organisation",
 	"project" => "projet",
 	"event" => "événement",
+	"the event" => "l'évènement",
+	"the organization" => "l'organisation",
+	"the project" => "le projet",
 	/* ---- */
 	/*traduire un type de donnée (au singulier) avec un pronom*/
 	"this person" => "ce citoyen",
