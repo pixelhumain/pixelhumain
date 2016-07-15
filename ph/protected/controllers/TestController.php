@@ -38,59 +38,111 @@ class TestController extends Controller {
 	}
 
 
-	public function actionCitiesdoublon(){
-		$cities = PHDB::find( City::COLLECTION,array(), 0, array("insee", "name", "postalCodes"));
-		$i = 0 ;
-		$result = array();
-		echo "nbcommune : " .count($cities). "<br/>";
-		foreach ($cities as $key => $city) {
-			$cp = array();
-			foreach ($city["postalCodes"] as $key => $value) {
-				$cp[] = $value["postalCode"];
+	public function actionAddBadgeOpenData(){
+		$types = array(Event::COLLECTION, Organization::COLLECTION, Project::COLLECTION);
+		$res = array();
+		foreach ($types as $key => $type) {
+			$entities = PHDB::find($type,array("preferences.isOpenData" => true), 0, array("_id"));
+			foreach ($entities as $key => $entity) {
+				$eeeee[] = Badge::addAndUpdateBadges("opendata", (String)$entity["_id"], $type);
 			}
-			$cp2 = $cp ;
-			foreach ($cp2 as $key => $value) {
-				unset($cp[$key]);
+			$res[$type] = $eeeee;
+
+		}
+
+		var_dump(count($res));
+
+		foreach ($res as $key => $val) {
+			echo "</br> </br>".$key;
+			foreach ($val as $key2 => $val2) {
+				echo "</br> </br>";
+				echo "-------------------</br>";
+				var_dump($val2);
+			}		
+		}
+	}
+
+	public function actionAddBadgeOpenData(){
+		$types = array(Event::COLLECTION, Organization::COLLECTION, Project::COLLECTION);
+		$res = array();
+		foreach ($types as $key => $type) {
+			$entities = PHDB::find($type,array("preferences.isOpenData" => true), 0, array("_id"));
+			foreach ($entities as $key => $entity) {
+				$eeeee[] = Badge::addAndUpdateBadges("opendata", (String)$entity["_id"], $type);
+			}
+			$res[$type] = $eeeee;
+
+		}
+
+		var_dump(count($res));
+
+		foreach ($res as $key => $val) {
+			echo "</br> </br>".$key;
+			foreach ($val as $key2 => $val2) {
+				echo "</br> </br>";
+				echo "-------------------</br>";
+				var_dump($val2);
+			}		
+		}
+	}
 
 
-
-
-				if(in_array($value, $cp) ){
-					$i++;
-					$res = array();
-					$res["insee"] = $city["insee"] ;
-					$res["name"] = $city["name"] ;
-					$res["cp"] = $value ;
-					
-					$k = 1 ;
-					foreach ($city["postalCodes"] as $key => $c) {
-						if($c["postalCode"] == $value){
-							$res["name".$k] = $c["name"];
-							$k++;
-						}
+	public function actionAddOpenEdition(){
+		$types = array(/*Event::COLLECTION, Organization::COLLECTION*/, Project::COLLECTION);
+		$res = array();
+		foreach ($types as $key => $type) {
+			$entities = PHDB::find($type,array("preferences.isOpenData" => true), 0, array("_id", "links", "preferences"));
+			foreach ($entities as $key => $entity) {
+				if(!empty($entity["links"])){
+					$isAdmin = false;
+					if($type == Project::COLLECTION){
+						foreach ($entity["links"]["contributors"] as $key => $contributors) {
+							if($contributors["isAdmin"] == true){
+								$isAdmin = true;
+								break;
+							}	
+						}	
 					}
-					$result[] = $res;
-					
-					foreach ($cp as $key => $b) {
-						if($b == $value){
-							unset($cp[$key]);
-						}
+					if($type == Event::COLLECTION){
+						foreach ($entity["links"]["attendees"] as $key => $attendees) {
+							if($attendees["isAdmin"] == true){
+								$isAdmin = true;
+								break;
+							}	
+						}	
 					}
-					
+
+					if($type == Organization::COLLECTION){
+						foreach ($entity["links"]["members"] as $key => $attendees) {
+							if($attendees["isAdmin"] == true){
+								$isAdmin = true;
+								break;
+							}	
+						}	
+					}
+
+					if($isAdmin == false){
+						$entity["preferences"]["isOpenEdition"] = true ;
+					}else{
+						$entity["preferences"]["isOpenEdition"] = false ;
+					}
+				}else{
+					$entity["preferences"]["isOpenEdition"] = true ;	
 				}
 			}
-		}
-		echo "Commune avec doublons : " .$i. "<br/>";
+			$res[$type] = $eeeee;
 
-		echo "<br/>insee;name;cp_doublon";
-		foreach ($result as $key => $value) {
-			echo "<br/>".$value["insee"] . ";" . $value["name"] . ";" .$value["cp"]  ;
-			$k = 1 ; 
-			while(!empty($value["name".$k])){
-				echo ";".$value["name".$k];
-				$k++;
-			}
 		}
 
+		foreach ($res as $key => $val) {
+			echo "</br> </br>".$key;
+			foreach ($val as $key2 => $val2) {
+				echo "</br> </br>";
+				echo "-------------------</br>";
+				var_dump($val2);
+			}		
+		}
 	}
+
+
 }
