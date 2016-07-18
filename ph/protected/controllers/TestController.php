@@ -43,6 +43,7 @@ class TestController extends Controller {
 		$res = array();
 		foreach ($types as $key => $type) {
 			$entities = PHDB::find($type,array("preferences.isOpenData" => true), 0, array("_id"));
+			$eeeee = array();
 			foreach ($entities as $key => $entity) {
 				$eeeee[] = Badge::addAndUpdateBadges("opendata", (String)$entity["_id"], $type);
 			}
@@ -50,7 +51,7 @@ class TestController extends Controller {
 
 		}
 
-		var_dump(count($res));
+		//var_dump(count($res));
 
 		foreach ($res as $key => $val) {
 			echo "</br> </br>".$key;
@@ -64,10 +65,11 @@ class TestController extends Controller {
 
 
 	public function actionAddOpenEdition(){
-		$types = array(/*Event::COLLECTION, Organization::COLLECTION*/, Project::COLLECTION);
+		$types = array(Event::COLLECTION, Organization::COLLECTION, Project::COLLECTION);
 		$res = array();
 		foreach ($types as $key => $type) {
 			$entities = PHDB::find($type,array("preferences.isOpenData" => true), 0, array("_id", "links", "preferences"));
+			$eeeee = array();
 			foreach ($entities as $key => $entity) {
 				if(!empty($entity["links"])){
 					$isAdmin = false;
@@ -105,6 +107,8 @@ class TestController extends Controller {
 				}else{
 					$entity["preferences"]["isOpenEdition"] = true ;	
 				}
+
+				$eeeee[] = $entity;
 			}
 			$res[$type] = $eeeee;
 
