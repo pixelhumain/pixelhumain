@@ -28,7 +28,7 @@ class DataValidator {
         	// idn_to_ascii comment because of undefined function depending on php version and intl extension
         	//if(! checkdnsrr(idn_to_ascii($domain),"MX")){
 
-	  		if(! checkdnsrr($domain,"MX")){
+	  		if(!empty($domain) && ! checkdnsrr($domain,"MX")){
 				$res = "Unknown domain : please check your email !";
 			}
 		}
