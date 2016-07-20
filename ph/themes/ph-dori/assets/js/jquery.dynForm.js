@@ -572,13 +572,15 @@ onSave: (optional) overloads the generic saveProcess
 			{
 				$.each($(".select2TagsInput"),function () 
 				{
-					//console.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
-					var selectOptions = {
-					  "tags": initValues[ $(this).attr("id") ]["tags"],
-					  "tokenSeparators": [',', ' '],
-					  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
-					};
-					$(this).removeClass("form-control").select2(selectOptions);
+					console.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
+					if(initValues[$(this).attr("id")]){
+						var selectOptions = {
+						  "tags": initValues[ $(this).attr("id") ]["tags"],
+						  "tokenSeparators": [',', ' '],
+						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
+						};
+						$(this).removeClass("form-control").select2(selectOptions);
+					}
 				 });
 			} else
 				console.error("select2 library is missing");
