@@ -107,14 +107,18 @@ onSave: (optional) overloads the generic saveProcess
 				$("#wizardLinks").append(wizardLinkHTML);
 
 				//build each form for each wizard step
-				$.each( sectionObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
-
+				var countProperties = 0;
+				for( var key in sectionObj.dynForm.jsonSchema.properties ) {
+						++countProperties;
+    			}
+				var inc=1;
+				$.each(sectionObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
 					if(fieldObj.rules)
 						form.rules[field] = fieldObj.rules;
 					
 					buildInputField("#"+sectionId,field, fieldObj, settings.surveyValues);
 					//Only the last section carries the submit button
-					if( sectionIndex == Object.keys(settings.surveyObj).length-1){
+					if( sectionIndex == Object.keys(settings.surveyObj).length-1 && countProperties==inc){
 						fieldHTML = '<div class="form-actions">'+
 									'<button type="submit" class="btn btn-green pull-right finish-step">'+
 										'Submit <i class="fa fa-arrow-circle-right"></i>'+
@@ -125,7 +129,7 @@ onSave: (optional) overloads the generic saveProcess
 								'</div> ';
 						$("#"+sectionId).append(fieldHTML);
 					}
-					else 
+					else if(countProperties==inc)
 					{
 						fieldHTML = '<div class="form-actions">';
 						fieldHTML += '<a href="javascript:;" class="btn-next btn btn-blue pull-right next-step">'+
@@ -136,6 +140,7 @@ onSave: (optional) overloads the generic saveProcess
 						fieldHTML += '</div> ';
 						$("#"+sectionId).append(fieldHTML);
 					}
+					inc++;
 						
 				});
 				sectionIndex++;
@@ -376,7 +381,8 @@ onSave: (optional) overloads the generic saveProcess
 				errorHandler.hide();
 				console.info("form submitted "+params.surveyId);
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
-					params.onSave();
+					console.log(params.onSave);
+					params.onSave(params);
 					return false;
 		        } 
 		        else 
@@ -384,7 +390,7 @@ onSave: (optional) overloads the generic saveProcess
 		        	toastr.info("default SaveProcess : "+params.savePath);
 		        	console.info("default SaveProcess",params.savePath);
 		        	console.dir($(params.surveyId).serializeFormJSON());
-		        	/*$.ajax({
+		        	$.ajax({
 		        	  type: "POST",
 		        	  url: params.savePath,
 		        	  data: $(params.surveyId).serializeFormJSON(),
@@ -395,7 +401,7 @@ onSave: (optional) overloads the generic saveProcess
 		                    afterDynBuildSave(data.map,data.id);
 		                console.info('saved successfully !');
 
-		        	});*/
+		        	});
 					return false;
 			    }
 			    
