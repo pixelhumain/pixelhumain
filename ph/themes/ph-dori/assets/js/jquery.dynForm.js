@@ -163,119 +163,7 @@ onSave: (optional) overloads the generic saveProcess
         	}
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
         }
-        /* 	SCOPE USER 	*/
-        else if( !fieldObj.inputType || 
-        		  fieldObj.inputType == "scope" ) {
-        	
-        		fieldClass += " select2TagsInput select2ScopeInput";
-        		
-        		fieldHTML += 	'<span id="lbl-send-to">Send to <i class="fa fa-caret-right"></i>'+ 
-	        					'<div class="dropdown">' +
-								  '<a data-toggle="dropdown" class="btn btn-sm btn-default" id="btn-toogle-dropdown-scope" href="#"><i class="fa fa-group"></i> Mon mur <i class="fa fa-caret-down"></i></a>' +
-								  '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">' +
-								   '<li><a href="#" id="scope-my-wall"><i class="fa fa-group"></i> My wall</a></li>' +
-								   '<li><a href="#" id="scope-select" data-toggle="modal" data-target="#modal-scope"><i class="fa fa-plus"></i> Selectionner</a></li>' +
-								  '</ul>' +
-								'</div></span>' ;
-
-				
-				fieldHTML += '<div class="modal fade" id="modal-scope" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'+
-							  '<div class="modal-dialog">'+
-							    '<div class="modal-content">'+
-							      '<div class="modal-header">'+
-							        //'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-							        '<input type="text" id="search-contact" class="form-control pull-right" placeholder="search">' +
-									'<h4 class="modal-title" id="myModalLabel"><i class="fa fa-search"></i> Send to ...</h4>'+
-							      '</div>'+
-							      '<div class="modal-body">'+
-								      '<div class="row no-padding bg-light">'+
-								      	'<div class="col-md-6 col-sm-6 no-padding">'+
-									        '<div class="panel panel-default">  '+	
-												'<div class="panel-body no-padding">'+
-													'<div class="list-group" id="menu-type">'+
-														'<ul class="col-xs-6 col-sm-12 col-md-12 no-padding">';
-				fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select receivers</h4>';
-														$.each(fieldObj.contactTypes, function(key, type){
-				fieldHTML += 								'<li>'+
-																'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type homestead text-'+type.color+'">' +
-																	'<input type="checkbox" name="chk-all-type'+type.name+'" id="chk-all-type'+type.name+'" value="'+type.name+'"> <span style="font-size:16px;"><i class="fa fa-'+type.icon+'"></i> My ' + type.name + "</span>" +
-																'</div>'+
-															'</li>';
-														});									
-				fieldHTML += 							'</ul>' +
-														'<ul class="col-xs-6 col-sm-12 col-md-12 no-margin no-padding select-population">' + 
-															'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select population</h4>' +
-															'<li>'+
-																'<div class="btn btn-default btn-scroll-type homestead text-red">' +
-																	'<input type="checkbox" name="chk-my-city" id="chk-my-city" value="mycity">' +
-																	'<div id="btn-scroll-type-my-city" class="inline" >' +
-																		 ' <span style="font-size:16px;"><i class="fa fa-university"></i> My City</span>' +
-																	'</div>'+
-																'</div>'+
-															'</li>' +
-															'<li>'+
-																'<div id="btn-show-other-cities"  class="btn btn-default btn-scroll-type homestead text-red">' +
-																	'<input type="checkbox" name="chk-cities" id="chk-cities" value="cities">'+
-																	'<div id="btn-scroll-type-other-cities" class="inline" >' +
-																		' <span style="font-size:16px;"><i class="fa fa-university"></i> Other cities</span></br>' +
-																	'<input type="text" name="scope-postal-code" id="scope-postal-code" style="width:100%;" class="form-control helvetica margin-top-5" placeholder="code insee">' +
-																	'</div>'+
-																'</div>'+
-															'</li>' +
-														'</ul>' +
-													'</div>'+
-												'</div>'+
-											'</div>' +
-								      	'</div>'+
-								      	'<div class="no-padding pull-right col-md-6  col-sm-6 col-xs-12 bg-white" id="list-scroll-type">';
-										$.each(fieldObj.contactTypes, function(key, type){
-				fieldHTML += 			'<div class="panel panel-default" id="scroll-type-'+type.name+'">  '+	
-											'<div class="panel-heading">'+
-												'<h4 class="homestead text-'+type.color+'"><i class="fa fa-'+type.icon+'"></i> My '+type.name+'</h4>'+			
-											'</div>'+
-											'<div class="panel-body no-padding">'+
-												'<div class="list-group padding-5">'+
-													'<ul>';
-													$.each(fieldObj.values[type.name], function(key2, value){ 
-														var cp = (typeof value.address != "undefined" && typeof value.address.postalCode != "undefined") ? value.address.postalCode : typeof value.cp != "undefined" ? value.cp : "";
-														var city = (typeof value.address != "undefined" && typeof value.address.addressLocality != "undefined") ? value.address.addressLocality : "";
-														var profilImageUrl = (typeof value.profilImageUrl != "undefined" && value.profilImageUrl != "") ? baseUrl + value.profilImageUrl : assetPath + "/images/news/profile_default_l.png";
-														var name =  typeof value.name != "undefined" ? value.name : 
-																	typeof value.username != "undefined" ? value.username : "";
-														//console.log("data contact +++++++++++ "); console.dir(value);
-														if(name != "")
-				fieldHTML += 							'<li>' +
-															'<div class="btn btn-default btn-scroll-type btn-select-contact"  id="contact'+key2+'">' +
-																'<input type="checkbox" name="scope-'+type.name+'" class="chk-scope-'+type.name+'" id="chk-scope-'+key2+'" value="'+key2+'"> '+
-																'<div class="btn-chk-contact inline" idcontact="'+key2+'">' +
-																	'<img src="'+ profilImageUrl+'" class="thumb-send-to" height="35" width="35">'+
-																	'<span class="info-contact">' +
-																		'<span class="scope-name-contact text-dark text-bold" idcontact="'+key2+'">' + value.name + '</span>'+
-																		'<br/>'+
-																		'<span class="scope-cp-contact text-light" idcontact="'+key2+'">' + cp + ' </span>'+
-																		'<span class="scope-city-contact text-light" idcontact="'+key2+'">' + city + '</span>'+
-																	'</span>' +
-																'</div>' +
-															'</div>' +
-														'</li>';
-													});									
-				fieldHTML += 						'</ul>' +	
-												'</div>'+
-											'</div>'+
-										'</div>';
-										});									
-				fieldHTML += 			'</div>' +
-									'</div>'+
-								  '</div>'+
-							      '<div class="modal-footer">'+
-							      	'<button id="btn-reset-scope" type="button" class="btn btn-default btn-sm pull-left"><i class="fa fa-repeat"></i> Reset</button>'+
-							      	'<button id="btn-cancel" type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>'+
-							      	'<button id="btn-save" type="button" class="btn btn-success btn-sm" data-dismiss="modal"><i class="fa fa-check"></i> Save</button>'+
-							      '</div>'+
-							    '</div><!-- /.modal-content -->'+
-							  '</div><!-- /.modal-dialog -->'+
-							'</div><!-- /.modal -->';
-        }
+        
         /* **************************************
 		* HIDDEN
 		***************************************** */
@@ -338,14 +226,14 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "image" ) {
         	if(placeholder == "")
         		placeholder="add Image";
-        	console.log("build a >>>>>> date");
+        	console.log("build a >>>>>> image");
         	fieldHTML += '<form method="post" id="photoAddForm" enctype="multipart/form-data">'+
 							iconOpen+
 							'<input type="file" class="form-control newImage '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" accept=".gif, .jpg, .png" onchange="showMyImage2(this)"/>'+
 							iconClose+
 					'</form>'+
 					'<div id="resultsImage" class="bg-white results"></div>';
-				//alert(fieldObj.contextType+"//"+fieldObj.contextId);
+				alert(fieldObj.contextType+"//"+fieldObj.contextId);
         	//initFormImages(fieldObj.contextType, fieldObj.contextId);
         }
 
@@ -466,6 +354,120 @@ onSave: (optional) overloads the generic saveProcess
         	console.log("build a >>>>>> custom");
         	fieldHTML += fieldObj.html;
         } 
+        /* 	*************************************
+        * SCOPE USER 	
+        ************************************** */
+        else if( fieldObj.inputType == "scope" ) {
+        	
+        		fieldClass += " select2TagsInput select2ScopeInput";
+        		
+        		fieldHTML += 	'<span id="lbl-send-to">Send to <i class="fa fa-caret-right"></i>'+ 
+	        					'<div class="dropdown">' +
+								  '<a data-toggle="dropdown" class="btn btn-sm btn-default" id="btn-toogle-dropdown-scope" href="#"><i class="fa fa-group"></i> Mon mur <i class="fa fa-caret-down"></i></a>' +
+								  '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">' +
+								   '<li><a href="#" id="scope-my-wall"><i class="fa fa-group"></i> My wall</a></li>' +
+								   '<li><a href="#" id="scope-select" data-toggle="modal" data-target="#modal-scope"><i class="fa fa-plus"></i> Selectionner</a></li>' +
+								  '</ul>' +
+								'</div></span>' ;
+
+				
+				fieldHTML += '<div class="modal fade" id="modal-scope" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'+
+							  '<div class="modal-dialog">'+
+							    '<div class="modal-content">'+
+							      '<div class="modal-header">'+
+							        //'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+							        '<input type="text" id="search-contact" class="form-control pull-right" placeholder="search">' +
+									'<h4 class="modal-title" id="myModalLabel"><i class="fa fa-search"></i> Send to ...</h4>'+
+							      '</div>'+
+							      '<div class="modal-body">'+
+								      '<div class="row no-padding bg-light">'+
+								      	'<div class="col-md-6 col-sm-6 no-padding">'+
+									        '<div class="panel panel-default">  '+	
+												'<div class="panel-body no-padding">'+
+													'<div class="list-group" id="menu-type">'+
+														'<ul class="col-xs-6 col-sm-12 col-md-12 no-padding">';
+				fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select receivers</h4>';
+														$.each(fieldObj.contactTypes, function(key, type){
+				fieldHTML += 								'<li>'+
+																'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type homestead text-'+type.color+'">' +
+																	'<input type="checkbox" name="chk-all-type'+type.name+'" id="chk-all-type'+type.name+'" value="'+type.name+'"> <span style="font-size:16px;"><i class="fa fa-'+type.icon+'"></i> My ' + type.name + "</span>" +
+																'</div>'+
+															'</li>';
+														});									
+				fieldHTML += 							'</ul>' +
+														'<ul class="col-xs-6 col-sm-12 col-md-12 no-margin no-padding select-population">' + 
+															'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select population</h4>' +
+															'<li>'+
+																'<div class="btn btn-default btn-scroll-type homestead text-red">' +
+																	'<input type="checkbox" name="chk-my-city" id="chk-my-city" value="mycity">' +
+																	'<div id="btn-scroll-type-my-city" class="inline" >' +
+																		 ' <span style="font-size:16px;"><i class="fa fa-university"></i> My City</span>' +
+																	'</div>'+
+																'</div>'+
+															'</li>' +
+															'<li>'+
+																'<div id="btn-show-other-cities"  class="btn btn-default btn-scroll-type homestead text-red">' +
+																	'<input type="checkbox" name="chk-cities" id="chk-cities" value="cities">'+
+																	'<div id="btn-scroll-type-other-cities" class="inline" >' +
+																		' <span style="font-size:16px;"><i class="fa fa-university"></i> Other cities</span></br>' +
+																	'<input type="text" name="scope-postal-code" id="scope-postal-code" style="width:100%;" class="form-control helvetica margin-top-5" placeholder="code insee">' +
+																	'</div>'+
+																'</div>'+
+															'</li>' +
+														'</ul>' +
+													'</div>'+
+												'</div>'+
+											'</div>' +
+								      	'</div>'+
+								      	'<div class="no-padding pull-right col-md-6  col-sm-6 col-xs-12 bg-white" id="list-scroll-type">';
+										$.each(fieldObj.contactTypes, function(key, type){
+				fieldHTML += 			'<div class="panel panel-default" id="scroll-type-'+type.name+'">  '+	
+											'<div class="panel-heading">'+
+												'<h4 class="homestead text-'+type.color+'"><i class="fa fa-'+type.icon+'"></i> My '+type.name+'</h4>'+			
+											'</div>'+
+											'<div class="panel-body no-padding">'+
+												'<div class="list-group padding-5">'+
+													'<ul>';
+													$.each(fieldObj.values[type.name], function(key2, value){ 
+														var cp = (typeof value.address != "undefined" && typeof value.address.postalCode != "undefined") ? value.address.postalCode : typeof value.cp != "undefined" ? value.cp : "";
+														var city = (typeof value.address != "undefined" && typeof value.address.addressLocality != "undefined") ? value.address.addressLocality : "";
+														var profilImageUrl = (typeof value.profilImageUrl != "undefined" && value.profilImageUrl != "") ? baseUrl + value.profilImageUrl : assetPath + "/images/news/profile_default_l.png";
+														var name =  typeof value.name != "undefined" ? value.name : 
+																	typeof value.username != "undefined" ? value.username : "";
+														//console.log("data contact +++++++++++ "); console.dir(value);
+														if(name != "")
+				fieldHTML += 							'<li>' +
+															'<div class="btn btn-default btn-scroll-type btn-select-contact"  id="contact'+key2+'">' +
+																'<input type="checkbox" name="scope-'+type.name+'" class="chk-scope-'+type.name+'" id="chk-scope-'+key2+'" value="'+key2+'"> '+
+																'<div class="btn-chk-contact inline" idcontact="'+key2+'">' +
+																	'<img src="'+ profilImageUrl+'" class="thumb-send-to" height="35" width="35">'+
+																	'<span class="info-contact">' +
+																		'<span class="scope-name-contact text-dark text-bold" idcontact="'+key2+'">' + value.name + '</span>'+
+																		'<br/>'+
+																		'<span class="scope-cp-contact text-light" idcontact="'+key2+'">' + cp + ' </span>'+
+																		'<span class="scope-city-contact text-light" idcontact="'+key2+'">' + city + '</span>'+
+																	'</span>' +
+																'</div>' +
+															'</div>' +
+														'</li>';
+													});									
+				fieldHTML += 						'</ul>' +	
+												'</div>'+
+											'</div>'+
+										'</div>';
+										});									
+				fieldHTML += 			'</div>' +
+									'</div>'+
+								  '</div>'+
+							      '<div class="modal-footer">'+
+							      	'<button id="btn-reset-scope" type="button" class="btn btn-default btn-sm pull-left"><i class="fa fa-repeat"></i> Reset</button>'+
+							      	'<button id="btn-cancel" type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>'+
+							      	'<button id="btn-save" type="button" class="btn btn-success btn-sm" data-dismiss="modal"><i class="fa fa-check"></i> Save</button>'+
+							      '</div>'+
+							    '</div><!-- /.modal-content -->'+
+							  '</div><!-- /.modal-dialog -->'+
+							'</div><!-- /.modal -->';
+        }
  
         else {
         	console.log("build a >>>>>> input text");
@@ -570,13 +572,15 @@ onSave: (optional) overloads the generic saveProcess
 			{
 				$.each($(".select2TagsInput"),function () 
 				{
-					//console.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
-					var selectOptions = {
-					  "tags": initValues[ $(this).attr("id") ]["tags"],
-					  "tokenSeparators": [',', ' '],
-					  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
-					};
-					$(this).removeClass("form-control").select2(selectOptions);
+					console.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
+					if(initValues[$(this).attr("id")]){
+						var selectOptions = {
+						  "tags": initValues[ $(this).attr("id") ]["tags"],
+						  "tokenSeparators": [',', ' '],
+						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
+						};
+						$(this).removeClass("form-control").select2(selectOptions);
+					}
 				 });
 			} else
 				console.error("select2 library is missing");
@@ -586,6 +590,20 @@ onSave: (optional) overloads the generic saveProcess
 		* DATE INPUT , we use https://github.com/eternicode/bootstrap-datepicker
 		***************************************** */
 		if(  $(".dateInput").length){
+			if( jQuery.isFunction(jQuery.fn.datepicker) )
+				$(".dateInput").datepicker({ 
+			        autoclose: true,
+			        language: "fr",
+			        format: "dd/mm/yyyy"
+			    });
+		    else
+				console.error("datepicker library is missing");
+		}
+
+		/* **************************************
+		* Image type 
+		***************************************** */
+		if(  $("#image").length){
 			if( jQuery.isFunction(jQuery.fn.datepicker) )
 				$(".dateInput").datepicker({ 
 			        autoclose: true,
@@ -876,110 +894,6 @@ function slugify (value) {
 
 function initFormImages(contextType, contextId){
 	alert("init good");
-	//$("#photoAddForm").on('submit',(function(e) {
-	/*validationImage = {
-		errorElement : "span", // contain the error msg in a span tag
-		errorClass : 'help-block',
-		errorPlacement : function(error, element) {// render error placement for each input type
-			if (element.attr("type") == "radio" || element.attr("type") == "checkbox") {// for chosen elements, need to insert the error after the chosen container
-				error.insertAfter($(element).closest('.form-group').children('div').children().last());
-			} else if (element.parent().hasClass("input-icon")) {
-				error.insertAfter($(element).parent());
-			} else {
-				error.insertAfter(element);
-				// for other inputs, just perform default behavior
-			}
-		},
-		ignore : "",
-		rules : {
-			goSaveNews : {
-				required:{
-					depends: function() {
-						if($(".noGoSaveNews").length){
-							return true;
-						}
-						else{
-							return false;
-						}
-					}	
-				}
-			}
-		},
-		messages : {
-			goSaveNews: "* Image is still loading"
-
-		},
-//		e.preventDefault();
-		submitHandler : function(form) {
-			$.ajax({
-			url : baseUrl+"/"+moduleId+"/document/"+uploadUrl+"dir/"+moduleId+"/folder/"+contextParentType+"/ownerId/"+contextParentId+"/input/roomsImage",
-			type: "POST",
-			data: new FormData(this),
-			contentType: false,
-			cache: false, 
-			processData: false,
-			dataType: "json",
-			success: function(data){
-				if(debug)console.log(data);
-		  		if(data.success){
-			  		console.log("success");
-		  			imageName = data.name;
-					var doc = { 
-						"id":contextParentId,
-						"type":contextParentType,
-						"folder":contextParentType+"/"+contextParentId,
-						"moduleId":moduleId,
-						"author" : userId  , 
-						"name" : data.name , 
-						"date" : new Date() , 
-						"size" : data.size ,
-						"doctype" : docType,
-						"contentKey" : contentKey
-					};
-					console.log(doc);
-					path = "/"+data.dir+data.name;
-					$.ajax({
-					  	type: "POST",
-					  	url: baseUrl+"/"+moduleId+"/document/save",
-					  	data: doc,
-				      	dataType: "json"
-					}).done( function(data){
-				        if(data.result){
-						    toastr.success(data.msg);
-						    //setTimeout(function(){
-						    $(".imagesNews").last().val(data.id.$id);
-						    $(".imagesNews").last().attr("name","");
-						    $(".newImageAlbum").last().find("img").removeClass("grayscale");
-						    $(".newImageAlbum").last().find("i").remove();
-						    $(".newImageAlbum").last().append("<a href='javascript:;' onclick='deleteImage(\""+data.id.$id+"\",\""+data.name+"\")'><i class='fa fa-times fa-x padding-5 text-white removeImage' id='deleteImg"+data.id.$id+"'></i></a>");
-						    //},200);
-				
-						} else{
-							toastr.error(data.msg);
-							if($("#resultsImage img").length>1)
-						  		$(".newImageAlbum").last().remove();
-						  	else{
-						  		$("#resultsImage").empty();
-						  		$("#resultsImage").hide();
-						  	}
-						}
-						$("#addImage").off();
-					});
-		  		}
-		  		else{
-			  		if($("#resultsImage img").length>1)
-				  		$(".newImageAlbum").last().remove();
-				  	else{
-				  		$("#resultsImage").empty();
-				  		$("#resultsImage").hide();
-				  	}
-				  	$("#addImage").off();
-		  			toastr.error(data.msg);
-		  		}
-			},
-		});
-		}
-	};*/
 }
 
 function showMyImage2(fileInput) {

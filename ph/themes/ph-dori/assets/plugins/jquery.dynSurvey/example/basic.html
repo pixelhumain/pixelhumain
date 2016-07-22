@@ -197,6 +197,34 @@ jQuery(document).ready(function() {
 			"section3" : {  dynForm : form3 },
 			"section4" : {  dynForm : form4 }
 		},
+		onSave : function(params) {
+				console.dir( $(params.surveyId).serializeFormJSON() );
+			var result = {};
+			$.each( params.surveyObj,function(section,sectionObj) { 
+				result[section] = {};
+				$.each( sectionObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
+				console.log(section+"."+field, $("#"+field).val() );
+				if( fieldObj.inputType ){
+				result[section][field] = $("#"+field).val();
+				}
+				});
+			});
+			$.ajax({
+        	  type: "POST",
+        	  url: params.savePath,
+        	  data: result,
+              dataType: "json"
+        	}).done( function(data){
+                toastr.success("Project chart well updated");
+                loadByHash("#project.detail.id."+parentId);
+               // if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
+                 //   afterDynBuildSave(data.map,data.id);
+                console.info('saved successfully !');
+
+        	});
+
+			console.dir( result );
+		},
 		collection : "smartcitizen",
 	    key : "SCSurvey"
 		//"savePath":"/ph/common/opendata"
