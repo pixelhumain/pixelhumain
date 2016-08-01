@@ -545,7 +545,7 @@ return array(
 	"deletepublication" => "Supprimer",
 	
 	//Survey
-	'Add a proposal' => "Ajouter une propositions",
+	'Add a proposal' => "Ajouter une proposition",
 	'All Surveys' => "Retour aux propositions",
 	'List of all Surveys'=>'Liste des propositions',
 	'Create a proposal for your community'=>'Créer une proposition pour votre communauté',
@@ -554,11 +554,11 @@ return array(
 
 	//SurveyAction
 	"voteUp" => "Pour",
-	"voteAbstain" => "Amender",
-	"voteUnclear" => "Blanc",
-	"voteMoreInfo" => "Plus d'information",
+	"voteAbstain" => "Blanc",
+	"voteUnclear" => "Incompris",
+	"voteMoreInfo" => "Incomplet",
 	"voteDown" => "Contre",
-	"Created Successfully" => "Créer avec Succés.",
+	"Created Successfully" => "Créer avec succés.",
 	"Quick access here" => "Accés rapide ici",
 	"go Back" => "revenir en arrière",
 	"Back" => "retour",
