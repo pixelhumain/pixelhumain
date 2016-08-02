@@ -5,9 +5,9 @@ $dbconfig = array(
     'db' => 'pixelhumain', 
 );
 $dbconfigtest = array(
-		'class' => 'mongoYii.EMongoClient',
-		'server' => 'mongodb://127.0.0.1:27017/',
-		'db' => 'pixelhumaintest',
+	'class' => 'mongoYii.EMongoClient',
+	'server' => 'mongodb://127.0.0.1:27017/',
+	'db' => 'pixelhumaintest',
 );
 $mysqldbconfig = array(
     //Mysql
