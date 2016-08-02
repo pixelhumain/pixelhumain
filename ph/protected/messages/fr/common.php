@@ -240,6 +240,8 @@ return array(
 	"the tags" => "les tags",
 	"the maturity" => "l'avancement",
 	"the licence" => "la licence",
+	"open data" => "l'open data",
+	"open edition" => "l'édition libre",
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
