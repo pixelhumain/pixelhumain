@@ -36,7 +36,7 @@ return array(
         'Fields with * are required.'=>"Les champs marqués d'une * sont obligatoires.",
         "Please fill out the following form with your login credentials"=>"S'il vous plaît remplir le formulaire ci-dessous avec vos informations de connexion :",
         "Full Street" => "Addresse",
-        "You've been invited : please resume the registration process in order to log in." => "Vous avez été invité : veuillez terminer le processus d'inscription pour vous connecter.",
+        "We already have your email on our database : you've been invited by someone or imported from another application. You just have to finish the registration process in order to log in." => "Nous avons déjà votre adresse mail dans notre base de données : vous avez été invité(e) ou automatiquement importé(e) depuis une autre application. Vous n'avez maintenant qu'à terminer le processus d'inscription pour vous connecter.",
         "You must validate the CGU to sign up." => "Merci de valider les conditions générales d'utilisation.",
         "The user name is not unique : please change it." => "Ce nom d\'utilisateur est déjà utilisé. Choisissez en un autre.",
         "Account Created!!" => "Votre compte est créé !",
