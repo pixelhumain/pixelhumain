@@ -446,6 +446,10 @@ a.text-light:hover {
     color:white !important;
     background-color:#C32372 !important;
   }
+  .bg-light{
+      color:#3C5665 !important;
+      background-color:#EFEFEF !important;
+    }
 
 blockquote{
   font-weight: 300;
