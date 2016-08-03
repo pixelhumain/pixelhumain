@@ -63,7 +63,7 @@
 /* ---------------------------------------------------------------------- */
 html, body {
   width: 100%;
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
    }
 
 body {
@@ -2955,11 +2955,11 @@ body.login {
   left:0px !important;
 }
 
-.bgpixeltree_sig{
+/*.bgpixeltree_sig{
   background-image: url(../images/bg-pixel-left-min-invers.png), url(../images/bg-pixel-left-bottom-invers.png);
   background-position: left top, left bottom;
   background-repeat: no-repeat;
-}
+}*/
 
 .bgpixeltree_little {
   background-image: url("../images/logoL_up_short.jpg");
