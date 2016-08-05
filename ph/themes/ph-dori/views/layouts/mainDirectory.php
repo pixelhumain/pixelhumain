@@ -91,7 +91,8 @@
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
 	<body class="">
-		<?php echo $content;  ?>
+		<?php  
+			echo $content;  ?>
 		<!-- start: MAIN JAVASCRIPTS -->
 		<?php
 		echo "<!-- start: MAIN JAVASCRIPTS -->";

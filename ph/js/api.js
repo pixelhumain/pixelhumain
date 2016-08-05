@@ -26,12 +26,13 @@ function ajaxPost(id,url,params,callback, datatype)
 	    success:function(data) {
         	if(datatype === "html" )
 				$(id).html(data);
-	    	else if( typeof callback === "function")
-	    		callback(data,id);
-	    	else if(typeof data.msg === "string" )
+	  	    else if(typeof data.msg === "string" )
 	    		toastr.success(data);
 	    	else
 	      		$("#"+id).html(JSON.stringify(data, null, 4));
+	      		
+	      	if( typeof callback === "function")
+            	callback(data,id);
 	    },
 	    error:function (xhr, ajaxOptions, thrownError){
 	     console.error(thrownError);
