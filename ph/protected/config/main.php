@@ -142,7 +142,7 @@ return array(
 			'charset' => 'utf8'
 		),*/
         'mongodb' => $dbconfig,
-		//'mongodb' => (($params['testActivated']==false)?$dbconfig:$dbconfigtest),
+		//'mongodb' => $dbconfigtest,
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
