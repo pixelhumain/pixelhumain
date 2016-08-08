@@ -141,8 +141,7 @@ return array(
 			//'enableParamLogging' => YII_DEBUG,
 			'charset' => 'utf8'
 		),*/
-        //'mongodb' => $dbconfig,
-		'mongodb' => $dbconfigtest,
+        'mongodb' => $dbconfig,
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',

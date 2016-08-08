@@ -139,6 +139,14 @@ RewriteRule ^(.*)$ /ph/index.php/$1 [L]
 - api URL : 127.0.0.1/ph/communecter/api
 - if any there's any initData to be installed you'll see the prompt
 - sometimes you'll need to initData to install test Data sets
+
+## Init Data Base
+
+Change to the folder modules/communecter/data is run the following commands:
+ - mongoimport --db pixelhumain --collection cities cities.json --jsonArray;
+ - mongoimport --db pixelhumain --collection lists lists.json --jsonArray ;
+
+
 YOU SUCCEED ! READY TO CODE NOW !
 
 ####Understanding the structure and Yii
@@ -147,6 +155,7 @@ ex : 127.0.0.1/ph/communecter/person/profile
 - "communecter" is the module
 - "person" is the controller file called PersonController.php
 - "profile" is the action foun called actionProfile found in the above controller file
+
 
 ### Valuing States Structure
 * page region  : List all Counties with minimal descritption
