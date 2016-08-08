@@ -104,6 +104,10 @@ function getModal(what, url,id)
 	//var params = $(form).serialize();
 	//$("#ajax-modal-modal-body").html("<i class='fa fa-cog fa-spin fa-2x icon-big'></i> Loading");
 	$('body').modalmanager('loading'); 
+  $.unblockUI();
+  $("#ajax-modal-modal-title").html("<i class='fa fa-refresh fa-spin'></i> Chargement en cours. Merci de patienter.");
+  $("#ajax-modal-modal-body").html(""); 
+  $('#ajax-modal').modal("show");
 	$.ajax({
         type: "GET",
         url: baseUrl+url
@@ -119,12 +123,16 @@ function getModal(what, url,id)
         	icon = (typeof what === "object" && what.icon ) ? what.icon : "fa-pencil";
         	desc = (typeof what === "object" && what.desc ) ? what.desc+'<div class="space20"></div>' : "";
 
-    		$("#ajax-modal-modal-title").html("<i class='fa "+icon+"'></i> "+title);
-            $("#ajax-modal-modal-body").html(desc+data); 
-            $('#ajax-modal').modal("show");
+    		  $("#ajax-modal-modal-title").html("<i class='fa fa-"+icon+"'></i> "+title);
+          $("#ajax-modal-modal-body").html(desc+data); 
+          $('#ajax-modal').modal("show");
         } else {
            console.error("bug get "+what, url,id);
         }
+    })
+    .error(function(data){
+      console.log("error getModal");
+      console.dir(data);
     });
 }
 
