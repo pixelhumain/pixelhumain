@@ -134,7 +134,11 @@
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
 	<body class="">
-		<?php echo $content;  ?>
+
+		<?php 
+		echo $content;
+		$this->renderPartial($layoutPath.'modals');
+		  ?>
 		<!-- start: MAIN JAVASCRIPTS -->
 		<?php
 		echo "<!-- start: MAIN JAVASCRIPTS -->";
