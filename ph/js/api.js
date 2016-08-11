@@ -92,6 +92,7 @@ function getAjax(id,url,callback,datatype,blockUI)
 /*
 what can be a simple string which will go into the title bar 
 or an aboject with properties like title, icon, desc
+getModal({title:"toto"},"/communecter/project/projectsv")
  */
 function getModal(what, url,id)
 {
@@ -116,7 +117,7 @@ function getModal(what, url,id)
     })
     .done(function (data) 
     {
-        if (data) {               
+        if (data) {     
         	/*if(!selectContent)
         		selectContent = data.selectContent;*/
         	title = (typeof what === "object" && what.title ) ? what.title : what;

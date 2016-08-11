@@ -268,4 +268,9 @@ class DateHelper  {
    		$res .= self::getTimezoneOffset($userTZ);	
    		return $res;
    }
+
+   public static function fromNow($ts)
+   {
+     return round(abs(time() - $ts) / 60)."min";
+   }
 }

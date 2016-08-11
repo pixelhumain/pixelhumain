@@ -5,4 +5,5 @@ $activeModules = array(
 	'communecter',
 	'network',
 	'opendata',
+	"api"
 	);
