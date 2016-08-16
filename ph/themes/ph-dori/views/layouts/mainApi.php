@@ -48,19 +48,19 @@
 		<?php 
 
 		
-		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-		$this->renderPartial($layoutPath.'metas');?>
+		//$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+		//$this->renderPartial($layoutPath.'metas');?>
 		<!-- end: META -->
 		<!-- start: MAIN CSS -->
 		<?php 
 		$themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
 
 		$cs = Yii::app()->getClientScript();
-		$cs->registerCssFile($themeAssetsUrl. '/plugins/bootstrap/css/bootstrap.min.css');
+		/*$cs->registerCssFile($themeAssetsUrl. '/plugins/bootstrap/css/bootstrap.min.css');
 		$cs->registerCssFile($themeAssetsUrl. '/plugins/ladda-bootstrap/dist/ladda.min.css');
 		$cs->registerCssFile($themeAssetsUrl. '/plugins/ladda-bootstrap/dist/ladda-themeless.min.css');
 		$cs->registerCssFile($themeAssetsUrl. '/plugins/font-awesome/css/font-awesome.min.css');
-		$cs->registerCssFile($themeAssetsUrl. '/plugins/font-awesome-custom/css/font-awesome.css');
+		$cs->registerCssFile($themeAssetsUrl. '/plugins/font-awesome-custom/css/font-awesome.css');*/
 		$cs->registerScriptFile($themeAssetsUrl. '/plugins/velocity/jquery.velocity.min.js' , CClientScript::POS_END);
 		$cs->registerCssFile($themeAssetsUrl. '/plugins/animate.css/animate.min.css');
 		$cs->registerCssFile($themeAssetsUrl. '/plugins/iCheck/skins/all.css');
@@ -133,7 +133,7 @@
 	</head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
-	<body class="">
+	<body class="swagger-section">
 
 
 		
@@ -163,11 +163,11 @@
 	$cs->registerScriptFile($this->module->assetsUrl. '/js/sig/geoloc.js' , CClientScript::POS_END);
 
 	$cssAnsScriptFilesModule = array(
-		'/js/default/globalsearch.js',
+		/*'/js/default/globalsearch.js',
 		'/js/jquery.filter_input.js',
 		'/css/search.css',
 		'/css/floopDrawerRight.css',
-		'/css/sig/sig.css',
+		'/css/sig/sig.css',*/
 	);
 	HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->assetsUrl);
 
@@ -443,7 +443,7 @@ jQuery(document).ready(function() {
 	checkScroll();
 });
 
-function startNewCommunexion(country){ 
+/*function startNewCommunexion(country){ 
 
 	clearTimeout(timeoutSearch);
 
@@ -801,7 +801,6 @@ function showLocalActorsCityCommunexion(){
 
 }
 
-
 var topMenuActivated = true;
 function showTopMenu(show){ 
 
@@ -1000,7 +999,7 @@ function setCookies(path){
 		$.cookie('nbCpbyInseeCommunexion',   	nbCpbyInseeCommunexion,  	{ expires: 365, path: path });
 		$.cookie('cityInseeCommunexion',   	cityInseeCommunexion,  	{ expires: 365, path: path });
 	}
-}
+}*/
 </script>
 
 
