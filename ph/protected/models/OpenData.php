@@ -15,7 +15,10 @@ class OpenData
                         				"RE"=>"Réunion", //9*74
                                         "PM"=>"St Pierre et Miquelon"); //975
     
-
+    public static $groupTypes = array( "NGO" => "Association",
+                                        "LocalBusiness" => "Entreprise",
+                                        "Group" => "Groupe",
+                                        "GovernmentOrganization" => "Organisation Gouvernementale"); //975
     /**
      * Classé par departement 
      * ce tableau fait le lien entre Code postal et nom de ville
