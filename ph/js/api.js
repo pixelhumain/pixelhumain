@@ -25,7 +25,7 @@ function ajaxPost(id,url,params,callback, datatype)
 	  //  dataType: "json",
 	    success:function(data) {
         	if(datatype === "html" )
-				$(id).html(data);
+				    $(id).html(data);
 	  	    else if(typeof data.msg === "string" )
 	    		toastr.success(data);
 	    	else
