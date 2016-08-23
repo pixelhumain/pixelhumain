@@ -378,11 +378,11 @@ return array(
 	"Become admin" 								=> "Devenir administrateur",
 	"Become member" 								=> "Devenir membre",
 	"Become contributor" 								=> "Devenir contributeur",
+	"Become attendee" 								=> "Participer à l'évènement",
 	"Accept this person" => "Accepter ce citoyen",
 	"Add as admin" => "Ajouter comme admin",
 
 	"Local network" => "Réseau local",
-	"Become admin" 	=> "Devenir administrateur",
 
 	"Show some statistics about this city"	=> "Afficher les statistiques de cette ville",
 	"Statistics"							=> "Statistiques",
