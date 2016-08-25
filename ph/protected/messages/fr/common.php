@@ -242,6 +242,7 @@ return array(
 	"the licence" => "la licence",
 	"open data" => "l'open data",
 	"open edition" => "l'édition libre",
+	"town of" => "commune de",
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
@@ -378,11 +379,11 @@ return array(
 	"Become admin" 								=> "Devenir administrateur",
 	"Become member" 								=> "Devenir membre",
 	"Become contributor" 								=> "Devenir contributeur",
+	"Become attendee" 								=> "Participer à l'évènement",
 	"Accept this person" => "Accepter ce citoyen",
 	"Add as admin" => "Ajouter comme admin",
 
 	"Local network" => "Réseau local",
-	"Become admin" 	=> "Devenir administrateur",
 
 	"Show some statistics about this city"	=> "Afficher les statistiques de cette ville",
 	"Statistics"							=> "Statistiques",
