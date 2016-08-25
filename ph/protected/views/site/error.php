@@ -23,7 +23,6 @@ font-family: "Homestead";
   top:70px;
   left:100px;
   color: #324553;
-  
 }
 </style>
 

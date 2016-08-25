@@ -174,7 +174,7 @@ return array(
 	"LocalBusiness" => "Entreprise",
 	"Local Business" => "Entreprise",
 	"Group" => "Groupe",
-	"Government Organization" => "Organisation gouvernementale",
+	"Government Organization" => "Service Public",
 	"the NGO" => "l'association",
 	"the localBusiness" => "l'entreprise",
 	"Local Business" => "Entreprise",
