@@ -243,6 +243,7 @@ return array(
 	"open data" => "l'open data",
 	"open edition" => "l'édition libre",
 	"town of" => "commune de",
+	"Access to all common information of" => "Accèdez au information de toute la commune de",
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
