@@ -417,6 +417,7 @@ return array(
 	"Add member" => "Ajouter un membre",
 	"Add contributor" => "Ajouter un contributeur",
 	"Become admin" => "Devenir admin",
+	"Become admin of this event" => "Devenir admin de l'évènement",
 	"Member" 	 => "Membre",
 	"Members" 	 => "Membres",
 	"Show tag filters" => "Filtrer par tag",
