@@ -48,6 +48,8 @@ return array(
         "here" => "ici",
         "to receive it again." => "pour le recevoir de nouveau.",
         "Your account is now validated ! Please try to login." => "Votre compte est maintenant validé : vous pouvez vous identifier !",
+        "Email or password does not match. Please try again !" => "Email ou Mot de Passe ne correspondent pas, rééssayez.",
+        "Impossible to find an account for this username or password." => "Erreur : impossible de trouver un compte avec ce nom d'utilisateur ou cet email.",
         //Beta test
         "Our developpers are fighting to open soon ! Check your mail that will happen soon !" => "<br><span class=' text-green'>Nos développeurs sont au taquet et ne dorment plus pour que la plateforme sorte bientôt !</span> Vérifiez votre boite aux lettres, ça arrive bientôt !",
         "We'll contact you as soon as we open up! Thanks for joining." => "Noux vous contacterons dès que nous ouvrirons ! Merci de nous avoir rejoint !",
