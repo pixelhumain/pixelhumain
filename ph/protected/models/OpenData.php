@@ -226,7 +226,7 @@ class OpenData
  "MARTINIQUE" => array("MARTINIQUE","972"),
  "GUYANE" => array("GUYANE","973"),
  "REUNION" => array("REUNION","974"),
- "MAYOTTE" => array("MAYOTTE" ,"974"),
+ "MAYOTTE" => array("MAYOTTE" ,"976"),
  "NOUVELLE-CALEDONIE" => array("NOUVELLE-CALEDONIE" ,"988"),
  "POLYNESIE" => array("POLYNESIE" ,"987","986"),
 );
@@ -258,8 +258,9 @@ class OpenData
 "MARTINIQUE" => array("MARTINIQUE","02"),
 "GUYANE" => array("GUYANE","03"),
 "REUNION" => array("REUNION","04"),
+"MAYOTTE" => array("MAYOTTE","06"),
 "NOUVELLE-CALEDONIE" => array("NOUVELLE-CALEDONIE" ,"08"),
-"POLYNESIE" => array("POLYNESIE" ,"07","06"),
+"POLYNESIE" => array("POLYNESIE" ,"07"),
   );
 
 /* Code Postal to Insee 
