@@ -148,8 +148,10 @@ function toggle(id,siblingsId,activate)
     $(siblingsId+"Btn").removeClass("active");
 	//if( !$("."+id).is(":visible") ) 
 	$(id).removeClass("hide");
-  if(activate)
-    $(id+"Btn").addClass("active");
+  if(activate){
+    idT = id.split(",");
+    $(idT[0]+"Btn").addClass("active");
+  }
 }
 
 /* --------------------------------------------------------------- */

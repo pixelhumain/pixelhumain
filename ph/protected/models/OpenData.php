@@ -28,6 +28,18 @@ class OpenData
                                         "market" => "Marché",
                                         "meeting" => "Réunion"
                                         ); //975
+    public static $categ = array(
+                                array( "name" => "Agriculture / Alimentation", "tags" => array("agriculture","alimentation") ),
+                                array( "name" =>  "Santé","tags" => array("santé") ),
+                                array( "name" =>  "Déchets","tags" => array("déchets") ),
+                                array( "name" =>  "Aménagement, Transport, Construction","tags" => array("aménagement","transport","construction") ),
+                                array( "name" =>  "Éducation, Petite-enfance","tags" => array("éducation","petite Enfance") ),
+                                array( "name" =>  "Citoyenneté","tags" => array("citoyenneté") ),
+                                array( "name" =>  "Economie Social et Solidaire","tags" => array( "ess","economie social solidaire" ) ),
+                                array( "name" =>  "Energie-Climat","tags" => array("energie" ,"climat") ),
+                                array( "name" =>  "Culture / Animation ","tags" => array("culture" ,"animation") ),
+                                array( "name" =>  "Biodiversité ","tags" => array("biodiversité") ) 
+                                );
     /**
      * Classé par departement 
      * ce tableau fait le lien entre Code postal et nom de ville
