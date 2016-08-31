@@ -232,7 +232,27 @@ class OpenData
 );
 
  public static $region = array(
-"RHONE-ALPES" => array("RHONE-ALPES","82"),
+"Auvergne-Rhône-Alpes" => array("Auvergne-Rhône-Alpes","84"),
+"Nord-Pas-de-Calais-Picardie" => array("Nord-Pas-de-Calais-Picardie","32"),
+"Bourgogne-Franche-Comté" => array("Bourgogne-Franche-Comté","27"),
+"Provence-Alpes-Côte d'Azur" => array("Provence-Alpes-Côte d'Azur","93"),
+"Alsace-Champagne-Ardenne-Lorraine" => array("Alsace-Champagne-Ardenne-Lorraine","44"),
+"Languedoc-Roussillon-Midi-Pyrénées" => array("Languedoc-Roussillon-Midi-Pyrénées","76"),
+"Normandie" => array("Normandie","28"),
+"Aquitaine-Limousin-Poitou-Charentes" => array("Aquitaine-Limousin-Poitou-Charentes","75"),
+"Centre-Val de Loire" => array("Centre-Val de Loire","24"),
+"Corse" => array("Corse","94"),
+"Bretagne" => array("Bretagne","53"),
+"Pays de la Loire" => array("Pays de la Loire","52"),
+"Île-de-France" => array("Île-de-France","11"),
+"Guadeloupe" => array("Guadeloupe","01"),
+"Martinique" => array("Martinique","02"),
+"Guyane" => array("Guyane","03"),
+"La Réunion" => array("La Réunion","04"),
+"POLYNESIE" => array("POLYNESIE","07"),
+"NOUVELLE-CALEDONIE" => array("NOUVELLE-CALEDONIE","08"),
+"Mayotte" => array("Mayotte","06"),
+/*"RHONE-ALPES" => array("RHONE-ALPES","82"),
 "PICARDIE" => array("PICARDIE","22"),
 "FRANCHE-COMTE" => array("FRANCHE-COMTE","43"),
 "AUVERGNE" => array("AUVERGNE","83"),
@@ -260,8 +280,11 @@ class OpenData
 "REUNION" => array("REUNION","04"),
 "MAYOTTE" => array("MAYOTTE","06"),
 "NOUVELLE-CALEDONIE" => array("NOUVELLE-CALEDONIE" ,"08"),
-"POLYNESIE" => array("POLYNESIE" ,"07"),
+"POLYNESIE" => array("POLYNESIE" ,"07"),*/
   );
+
+
+
 
 /* Code Postal to Insee 
  * le code insee est connecté à une commune
