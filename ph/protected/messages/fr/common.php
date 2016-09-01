@@ -179,6 +179,7 @@ return array(
 	"the localBusiness" => "l'entreprise",
 	"Local Business" => "Entreprise",
 	"the group" => "le collectif",
+	"the Group" => "le groupe",
 	"the government organization" => "l'organisation gouvernementale",
 	
 	//EMAILS
@@ -499,7 +500,7 @@ return array(
 	"Show Directory" => "Afficher le répertoire",
 	"City Home page" => "Page accueil de cette ville",
 	"Back to organization" => "Revenir sur l'organisation",
-	"Back to project" => "Revenir sur le project",
+	"Back to project" => "Revenir sur le projet",
 
 	"Invite people you know, you like, you met, you want to follow" => "Invitez quelqu'un que vous connaissez en lui envoyant un e-mail d'invitation",
 	"Connect organizations you know, you like, you met, you want to follow" => "Communectez votre association, entreprise, groupe, que vous connaissez, que vous aimez, que vous venez de découvrir ou que vous voulez suivre",
