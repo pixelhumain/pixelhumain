@@ -477,6 +477,13 @@ blockquote{
   margin-right: -4px;
   /*margin-left: -4px;*/
 }
+
+.panel-tools a.active{
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color:#3C5665 !important;
+  
+}
+
 .panel-tools a:hover{
   background-color: rgba(255, 255, 255, 0) !important;
   border-color:transparent !important;
