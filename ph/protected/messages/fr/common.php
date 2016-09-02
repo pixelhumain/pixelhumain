@@ -300,6 +300,7 @@ return array(
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
+	"Cooperative space" => "Espace coopératif",
 	"of the event" => "de l'événement",
 	"of the organization" => "de l'organisation",
 	"of the project" => "du projet",
