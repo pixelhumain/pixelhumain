@@ -110,6 +110,14 @@ return array(
 		'session' => array(
             'timeout' => 86400,
         ),
+        //'session' => [
+            //'class' => 'yii\web\DbSession',
+            // 'db' => 'mydb',
+            // 'sessionTable' => 'my_session',
+        //]
+        /*'request'=>array(
+            'enableCsrfValidation'=>true,
+        ),*/
         'user'=>array(
             'allowAutoLogin'    => true,
             'autoRenewCookie'   => true,

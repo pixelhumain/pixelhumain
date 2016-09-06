@@ -113,9 +113,9 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 				        	if(isset($item["notify"]))
 				        	{
 				        		$url = str_replace("/", ".", $item["notify"]["url"]);
-				        		$href = 'loadByHash( "'.$url.'" )';
+				        		$href = $url;
 					            echo "<li class='notifLi notif_".(string)$item["_id"]."'>";
-					            echo "<a class='notif' data-id='".(string)$item["_id"]."' href='".$href."'><span class='label label-primary'>";
+					            echo "<a class='lbh notif' data-id='".(string)$item["_id"]."' href='".$href."'><span class='label label-primary'>";
 					            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message">';
 					            echo $item["notify"]["displayName"];
 					            
@@ -156,6 +156,7 @@ var maxNotifTimstamp = <?php echo $maxTimestamp ?>;
 
 jQuery(document).ready(function() 
 {
+
 	//initNotifications();
 	bindNotifEvents();
 	refreshNotifications();
@@ -173,6 +174,8 @@ function bindNotifEvents(){
             elem.removeClass('animated bounceOutRight');
             notifCount();
         }, 200);
+
+	    bindLBHLinks();
 	});
 }
 
@@ -259,7 +262,7 @@ function buildNotifications(list)
 			var displayName = (typeof notifObj.notify != "undefined") ? notifObj.notify.displayName : "Undefined notification";
 
 			str = "<li class='notifLi notif_"+notifKey+" hide'>"+
-					"<a class='notif' data-id='"+notifKey+"' href='javascript:;' onclick='loadByHash(\""+ url +"\")'>"+
+					"<a class='notif lbh' data-id='"+notifKey+"' href='"+ url +"'>"+
 						"<span class='label bg-dark'>"+
 							'<i class="fa '+icon+'"></i>'+
 						"</span>" + 
