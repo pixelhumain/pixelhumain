@@ -50,7 +50,7 @@ return array(
         "Your account is now validated ! Please try to login." => "Votre compte est maintenant validé : vous pouvez vous identifier !",
         "Email or password does not match. Please try again !" => "Email ou Mot de Passe ne correspondent pas, rééssayez.",
         "Impossible to find an account for this username or password." => "Erreur : impossible de trouver un compte avec ce nom d'utilisateur ou cet email.",
-        "Congratulation your account is created !" => "Féliciation votre compte est maintenant créé !",
+        "Congratulation your account is created !" => "Félicitation votre compte est maintenant créé !",
         "Last step to enter : we sent you an email, click on the link to validate your mail address." => "Dernière étape pour entrer : nous vous avons envoyé un email, cliquez sur le lien pour valider votre adresse mail.",
         //Beta test
         "Our developpers are fighting to open soon ! Check your mail that will happen soon !" => "<br><span class=' text-green'>Nos développeurs sont au taquet et ne dorment plus pour que la plateforme sorte bientôt !</span> Vérifiez votre boite aux lettres, ça arrive bientôt !",

@@ -300,6 +300,7 @@ return array(
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
+	"Cooperative space" => "Espace coopératif",
 	"of the event" => "de l'événement",
 	"of the organization" => "de l'organisation",
 	"of the project" => "du projet",
@@ -575,10 +576,6 @@ return array(
 	"go to documentation Index" => "Retour vers accueil documentation",
 	"Next chapter" => "Suivant",
 	"Previous chapter" => "Précédent",
-
-
-
-
 	"You are not connected to your city" => "Vous n'êtes pas communecté",
 	"To get quick access to information in your city, to filter and map view local content, please fill your postal code on your profile page." => "Pour obtenir un accès rapide à votre commune, et filtrer les résultats et la carte en fonction de celle-ci,
 merci de renseigner votre code postal dans l'addresse de votre profil.",
