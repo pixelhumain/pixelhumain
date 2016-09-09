@@ -190,6 +190,7 @@ return array(
 
 	//Common label
 	"Name" => "Nom",
+	"Username" => "Nom d'utilisateur",
 	"Street Address" => "Rue",
 	"Address" => "Adresse",
 	"Postal Code" => "Code Postal",
@@ -401,6 +402,9 @@ return array(
 	"Project community" => "Communauté du projet",
 	"Organization community" => "Communauté de l&#146;organisation",
 	"See the photo gallery" => "Voir la galerie photo",
+	"Information"=>"Informations",
+	"Contact information"=>"Coordonnées",
+
 	
 	"Read all news publicated by this person" 		=> "Toute l&#146;actualité de cette personne",
 	"Read all news publicated by this event" 		=> "Toute l&#146;actualité de cet événement",
@@ -582,6 +586,13 @@ return array(
 	"You are not connected to your city" => "Vous n'êtes pas communecté",
 	"To get quick access to information in your city, to filter and map view local content, please fill your postal code on your profile page." => "Pour obtenir un accès rapide à votre commune, et filtrer les résultats et la carte en fonction de celle-ci,
 merci de renseigner votre code postal dans l'addresse de votre profil.",
+
+
+	"QR Code" => "QR Code",
+	"Show the QRCode for this organization" => "Voir le QR Code de cette organisation.",
+	"Show the QRCode for this person" => "Voir le QR Code de cette personne.",
+	"Show the QRCode for this event" => "Voir le QR Code de cet évènement.",
+	"Show the QRCode for this project" => "Voir le QR Code de ce projet.",
 
 );
 
