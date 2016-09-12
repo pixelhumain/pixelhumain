@@ -404,7 +404,7 @@ return array(
 	"Organization community" => "Communauté de l&#146;organisation",
 	"See the photo gallery" => "Voir la galerie photo",
 	"Information"=>"Informations",
-	"Contact information"=>"Coordonnées",
+	"Contact information"=> "Coordonnées",
 
 	
 	"Read all news publicated by this person" 		=> "Toute l&#146;actualité de cette personne",
