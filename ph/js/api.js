@@ -24,15 +24,15 @@ function ajaxPost(id,url,params,callback, datatype)
 	    type:"POST",
 	  //  dataType: "json",
 	    success:function(data) {
-        	if(datatype === "html" )
-				    $(id).html(data);
-	  	    else if(typeof data.msg === "string" )
-	    		toastr.success(data);
-	    	else
-	      		$("#"+id).html(JSON.stringify(data, null, 4));
-	      		
-	      	if( typeof callback === "function")
-            	callback(data,id);
+            if(datatype === "html" )
+    			$(id).html(data);
+    	  	else if(typeof data.msg === "string" )
+    	    	toastr.success(data.msg);
+    	    else
+    	      	$("#"+id).html(JSON.stringify(data, null, 4));
+    	      		
+          	if( typeof callback === "function")
+              callback(data,id);
 	    },
 	    error:function (xhr, ajaxOptions, thrownError){
 	     console.error(thrownError);
@@ -135,6 +135,29 @@ function getModal(what, url,id)
       console.log("error getModal");
       console.dir(data);
     });
+}
+
+//js ex : "/themes/ph-dori/assets/plugins/summernote/dist/summernote.min.js"
+//css ex : "/themes/ph-dori/assets/plugins/summernote/dist/summernote.css"
+function lazyLoad (js,css, callback) { 
+    console.warn("lazyLoad",js);
+    if( !$('script[src="'+baseUrl+js+'"]').length )
+    {
+        if(css)
+            $("<link/>", {
+               rel: "stylesheet",
+               type: "text/css",
+               href: css 
+            }).appendTo("head");
+        $.getScript( js, function( data, textStatus, jqxhr ) {
+          if( typeof callback === "function")
+            callback();
+        });
+    } else {
+        if( typeof callback === "function")
+            callback();
+    }
+
 }
 
 
