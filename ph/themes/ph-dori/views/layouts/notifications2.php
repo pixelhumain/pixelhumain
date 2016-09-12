@@ -22,15 +22,15 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 	}
 	#notificationPanelSearch{
 	position: fixed;
-    top: 51px;
-    right: 9.2%;
-    width: 350px;
-    max-height: 80%;
-    overflow-y: auto;
-    background-color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 0px 0px 10px 10px;
+	top: 51px !important;
+	right: 0%;
+	width: 430px;
+	bottom: 0px;
+	overflow-y: auto;
+	background-color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 0px;
     box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
     -webkit-box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
     -o-box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
@@ -55,11 +55,11 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 		background-color: inherit;
 	}
 	ul.notifList{
-		margin-top:5px !important;
-		/*max-height: 200px !important;*/
-		overflow-y:auto;
-		padding-right:10px; 
-		/*border-radius: 50px;*/
+		position: absolute;
+		bottom: 60px !important;
+		overflow-y: auto;
+		padding-right: 10px;
+		top: 30px;
 		padding: 7px 14px;
 		-moz-box-shadow: 0px 0px 3px -1px #656565;
 		-webkit-box-shadow: 0px 0px 3px -1px #656565;
@@ -67,6 +67,8 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 		box-shadow: 0px 0px 3px -1px #656565;
 		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);
 	}
+
+	
 
 	.notifications .pageslide-list a .label{
 		opacity: 0.7;
@@ -87,13 +89,20 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 	    padding-left: 40px;
 	    display:block;
 	}
+	.notifications .time {
+	   
+	}
 	.btn-notification-action{
 		background-color: #7ACF5B !important;
 		color:white;
 		width:70%;
 		margin:auto !important;
 	}
-	
+	.footer-notif{
+		position: absolute;
+		bottom:0px;
+		width:100%;
+	}
 </style>
 <div id="notificationPanelSearch" class="">
 		<div class="notifications">
@@ -116,10 +125,10 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 				        		$href = $url;
 					            echo "<li class='notifLi notif_".(string)$item["_id"]."'>";
 					            echo "<a class='lbh notif' data-id='".(string)$item["_id"]."' href='".$href."'><span class='label label-primary'>";
-					            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message">';
+					            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message text-dark">';
 					            echo $item["notify"]["displayName"];
 					            
-					            echo "</span><span class='time'>".round(abs(time() - $item["timestamp"]->sec) / 60)."min</span></a>";
+					            echo ", <span class='time'>".round(abs(time() - $item["timestamp"]->sec) / 60)."min</span></span></a>";
 					            echo "</li>";
 					            if($item["timestamp"]->sec > $maxTimestamp)
 					            	$maxTimestamp = $item["timestamp"]->sec;
@@ -128,6 +137,7 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 				    } 
 				?>
 			</ul>
+			<div class="footer-notif">
 			 <ul class="pageslide-list header col-xs-6 col-sm-6 col-md-6 padding-10 no-margin" style="height:50px;">
 				<li class="center">
 					<a href="javascript:;" onclick='refreshNotifications()' class="btn-notification-action"><i class="fa fa-refresh"></i></a>
@@ -138,6 +148,7 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 					<a href="javascript:;" onclick='markAllAsRead()' class="btn-notification-action" style="font-size:11px;"><?php echo Yii::t("common","All as Read") ?> <i class="fa fa-check-square-o"></i></a>	
 				</li>
 			</ul>
+			</div>
 
 			<?php /*
 			<div class="view-all">
