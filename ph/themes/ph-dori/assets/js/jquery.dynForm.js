@@ -593,14 +593,21 @@ onSave: (optional) overloads the generic saveProcess
 		* DATE INPUT , we use https://github.com/eternicode/bootstrap-datepicker
 		***************************************** */
 		if(  $(".dateInput").length){
+			var initDate = function(){
+								console.log("init dateInput");
+								$(".dateInput").datepicker({ 
+							        autoclose: true,
+							        language: "fr",
+							        format: "dd/mm/yyyy"
+							    });
+							};
 			if( jQuery.isFunction(jQuery.fn.datepicker) )
-				$(".dateInput").datepicker({ 
-			        autoclose: true,
-			        language: "fr",
-			        format: "dd/mm/yyyy"
-			    });
-		    else
-				console.error("datepicker library is missing");
+				initDate();
+		    else {
+				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js', 
+						  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datepicker/css/datepicker.css',
+						  initDate);
+		    }
 		}
 
 		/* **************************************
@@ -621,6 +628,7 @@ onSave: (optional) overloads the generic saveProcess
 		* DATE RANGE INPUT , we use https://github.com/dangrossman/bootstrap-daterangepicker
 		***************************************** */
 		if( $(".daterangeInput").length){
+
 			if( jQuery.isFunction(jQuery.fn.daterangepicker) )
 				$('#reservationtime').daterangepicker({
 		            timePicker: true,

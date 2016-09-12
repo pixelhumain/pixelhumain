@@ -1,12 +1,14 @@
-<div id="ajax-modal" class="modal modal-overflow in fade no-display" tabindex="-1" data-replace="true">
+<div id="ajax-modal" class="modal fade no-display" tabindex="-1" role="dialog" data-replace="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					&times;
-				</button>
-				<h4 class="modal-title" id="ajax-modal-modal-title" ></h4>
-			</div>
+			
+			<div class="modal-header text-dark">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h2 class="modal-title text-left" id="ajax-modal-modal-title">
+		        	<i class="fa fa-angle-down"></i> <i class="fa " id="ajax-modal-icon"></i> 
+		        	
+		        </h2>
+		    </div>
 			
 			<div id="ajax-modal-modal-body" class="modal-body">
 				
