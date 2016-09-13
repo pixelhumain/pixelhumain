@@ -1,3 +1,6 @@
+<style type="text/css">
+	#ajaxFormModal input ,#ajaxFormModal .form-group #name ,#ajaxFormModal.form-group {margin:0px; padding-left: 0px; width: 100%;}
+</style>
 <div id="ajax-modal" class="modal fade no-display" tabindex="-1" role="dialog" data-replace="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
