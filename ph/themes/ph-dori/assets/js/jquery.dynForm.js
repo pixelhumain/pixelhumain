@@ -81,6 +81,7 @@ onSave: (optional) overloads the generic saveProcess
 	        fieldHTML += '<input type="hidden" name="id" value="'+((settings.formObj.id) ? settings.formObj.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
+        				'<div class="space20"></div>'+
 						'<button id="btn-submit-form" type="submit" class="btn btn-success pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button>'+
@@ -272,15 +273,14 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "location" ) {
         	console.log("build a >>>>>> location");
-        	fieldHTML += "<a href='javascript:;' class='"+fieldClass+" locationBtn btn btn-default'><i class='fa fa-map-marker fa-2x'></i> Localiser </a>";
-        	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo.latitude" id="geo.latitude" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo.longitude" id="geo.longitude" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="Insee" name="address.codeInsee" id="address.codeInsee" value="'+( (fieldObj.address) ? fieldObj.address.codeInsee : "" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="country" name="address.addressCountry" id="address.addressCountry" value="'+( (fieldObj.address) ? fieldObj.address.addressCountry : "" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address.postalCode" id="address.postalCode" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="Locality" name="address.addressLocality" id="address.addressLocality" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="address" name="address.streetAddress" id="address.streetAddress" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
-        	
+        	fieldHTML += "<a href='javascript:;' class='"+fieldClass+" locationBtn btn btn-default'><i class='text-azure fa fa-map-marker fa-2x'></i> Localiser </a>";
+        	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Insee" name="address[codeInsee]" id="address[codeInsee]" value="'+( (fieldObj.address) ? fieldObj.address.codeInsee : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="country" name="address[addressCountry]" id="address[addressCountry]" value="'+( (fieldObj.address) ? fieldObj.address.addressCountry : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="address" name="address[streetAddress]" id="address[streetAddress]" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
         } 
 
         /* **************************************
@@ -288,7 +288,7 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "array" ) {
         	console.log("build a >>>>>> array list");
-        	fieldHTML += '<div class="inputs array">'+
+        	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
 								'<div class="col-sm-10">'+
 									'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
 								'</div>'+
@@ -299,7 +299,7 @@ onSave: (optional) overloads the generic saveProcess
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
 							'<div class="col-sm-12">'+
 								'<div class="space10"></div>'+
-						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-success" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
+						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-success" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
 				       		'</div></span>'+
 				       '<div class="space5"></div><div class="cocotest"></div>';
 			
@@ -632,8 +632,7 @@ onSave: (optional) overloads the generic saveProcess
 		{
 			//todo : for generic dynForm check if map exist 
 			$(".locationBtn").off().on( "click", function(){ 
-				alert();
-		        $("#ajax-modal").modal("hide");
+				$("#ajax-modal").modal("hide");
 		        showMap(true);
 		    });
 		}
@@ -656,17 +655,21 @@ onSave: (optional) overloads the generic saveProcess
 		* DATE RANGE INPUT , we use https://github.com/dangrossman/bootstrap-daterangepicker
 		***************************************** */
 		if( $(".daterangeInput").length){
-
+			var initDateRange = function(){
+								$('.daterangeInput').daterangepicker({
+						            timePicker: true,
+						            timePickerIncrement: 30,
+						            format: 'MM/DD/YYYY h:mm A'
+						        }, function(start, end, label) {
+						            console.log(start.toISOString(), end.toISOString(), label);
+						        });
+							};
 			if( jQuery.isFunction(jQuery.fn.daterangepicker) )
-				$('#reservationtime').daterangepicker({
-		            timePicker: true,
-		            timePickerIncrement: 30,
-		            format: 'MM/DD/YYYY h:mm A'
-		          }, function(start, end, label) {
-		            console.log(start.toISOString(), end.toISOString(), label);
-		          });
+				initDateRange();
 			else
-				console.error("daterangepicker library is missing")
+				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-daterangepicker/daterangepicker.js' ,  
+						  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css',
+						  initDateRange);
 		    /*$('.daterangeInput').val(moment().format('DD/MM/YYYY h:mm A') + ' - ' + moment().add('days', 1).format('DD/MM/YYYY h:mm A'))
 			.daterangepicker({  
 				startDate: moment(),
