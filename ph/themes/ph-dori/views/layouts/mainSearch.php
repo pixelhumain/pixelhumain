@@ -137,7 +137,7 @@
 
 		<?php 
 		echo $content;
-		//$this->renderPartial($layoutPath.'modals');
+		$this->renderPartial($layoutPath.'modals');
 		  ?>
 		<!-- start: MAIN JAVASCRIPTS -->
 		<?php
