@@ -268,6 +268,22 @@ onSave: (optional) overloads the generic saveProcess
         } 
 
         /* **************************************
+		* LOCATION
+		***************************************** */
+        else if ( fieldObj.inputType == "location" ) {
+        	console.log("build a >>>>>> location");
+        	fieldHTML += "<a href='javascript:;' class='"+fieldClass+" locationBtn btn btn-default'><i class='fa fa-map-marker fa-2x'></i> Localiser </a>";
+        	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo.latitude" id="geo.latitude" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo.longitude" id="geo.longitude" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Insee" name="address.codeInsee" id="address.codeInsee" value="'+( (fieldObj.address) ? fieldObj.address.codeInsee : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="country" name="address.addressCountry" id="address.addressCountry" value="'+( (fieldObj.address) ? fieldObj.address.addressCountry : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address.postalCode" id="address.postalCode" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Locality" name="address.addressLocality" id="address.addressLocality" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="address" name="address.streetAddress" id="address.streetAddress" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
+        	
+        } 
+
+        /* **************************************
 		* ARRAY , is a list of sequential values
 		***************************************** */
         else if ( fieldObj.inputType == "array" ) {
@@ -609,7 +625,19 @@ onSave: (optional) overloads the generic saveProcess
 						  initDate);
 		    }
 		}
-
+		/* **************************************
+		* Location type 
+		***************************************** */
+		if(  $(".locationBtn").length)
+		{
+			//todo : for generic dynForm check if map exist 
+			$(".locationBtn").off().on( "click", function(){ 
+				alert();
+		        $("#ajax-modal").modal("hide");
+		        showMap(true);
+		    });
+		}
+		
 		/* **************************************
 		* Image type 
 		***************************************** */
@@ -672,29 +700,55 @@ onSave: (optional) overloads the generic saveProcess
 		/* **************************************
 		* WYSIWYG 
 		***************************************** */
+		if(  $(".dateInput").length){
+			var initDate = function(){
+								console.log("init dateInput");
+								$(".dateInput").datepicker({ 
+							        autoclose: true,
+							        language: "fr",
+							        format: "dd/mm/yyyy"
+							    });
+							};
+			if( jQuery.isFunction(jQuery.fn.datepicker) )
+				initDate();
+		    else {
+				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js', 
+						  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datepicker/css/datepicker.css',
+						  initDate);
+		    }
+		}
 		if(  $(".wysiwygInput").length )
 		{
-			$(".wysiwygInput").summernote({
+				var initField = function(){
+					$(".wysiwygInput").summernote({
 
-				oninit: function() {
-					/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
-						$(this).code($(this).attr("placeholder"));
-					}*/
-				}, onfocus: function(e) {
-					/*if ($(this).code() == $(this).attr("placeholder")) {
-						$(this).code("");
-					}*/
-				}, onblur: function(e) {
-					/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
-						$(this).code($(this).attr("placeholder"));
-					}*/
-				}, onkeyup: function(e) {},
-				toolbar: [
-				['style', ['bold', 'italic', 'underline', 'clear']],
-				['color', ['color']],
-				['para', ['ul', 'ol', 'paragraph']],
-				]
-			});
+						oninit: function() {
+							/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
+								$(this).code($(this).attr("placeholder"));
+							}*/
+						}, onfocus: function(e) {
+							/*if ($(this).code() == $(this).attr("placeholder")) {
+								$(this).code("");
+							}*/
+						}, onblur: function(e) {
+							/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
+								$(this).code($(this).attr("placeholder"));
+							}*/
+						}, onkeyup: function(e) {},
+						toolbar: [
+						['style', ['bold', 'italic', 'underline', 'clear']],
+						['color', ['color']],
+						['para', ['ul', 'ol', 'paragraph']],
+						]
+					});
+				if( jQuery.isFunction(jQuery.fn.datepicker) )
+					initField();
+			    else {
+			    	lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/summernote/dist/summernote.min.js', 
+							  baseUrl+'/themes/ph-dori/assets/plugins/summernote/dist/summernote.css',
+							  initDate);
+		    	}
+			}
 		}
 
 	}
