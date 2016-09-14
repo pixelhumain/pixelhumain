@@ -56,7 +56,7 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 	}
 	ul.notifList{
 		margin-top:5px !important;
-		max-height: 200px !important;
+		/*max-height: 200px !important;*/
 		overflow-y:auto;
 		padding-right:10px; 
 		/*border-radius: 50px;*/
