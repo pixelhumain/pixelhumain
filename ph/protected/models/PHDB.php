@@ -279,11 +279,19 @@ class PHDB
         return $str;
     }
 
-    public static function findAndLimitAndIndex( $collection, $where=array(), $sortCriteria=array(), $limit=0, $index=0 )
+    public static function findAndLimitAndIndex( $collection, $where=array(), $limit=0, $index=0 )
+    {     
+        
+        $res = !self::checkMongoDbPhpDriverInstalled() ? null : iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where)->skip($index)->limit($limit));
+
+        return $res;
+    }
+	public static function findAndSortAndLimitAndIndex( $collection, $where=array(), $sortCriteria=array(), $limit=0, $index=0 )
     {     
         
         $res = !self::checkMongoDbPhpDriverInstalled() ? null : iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where)->sort($sortCriteria)->skip($index)->limit($limit));
 
         return $res;
     }
+
 }
