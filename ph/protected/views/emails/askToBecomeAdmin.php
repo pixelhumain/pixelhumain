@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <?php 
-	$type="organization";
+	$type="";
 	if (@$parentType){
 		if($parentType == "organizations"){
 			$type="organization";
@@ -12,7 +12,11 @@
 			$type="event";
 		}
 	} 
-	
+	if ($type == "") {
+		error_log("Unkown type when sending a mail askToBecomeAdimin");
+		$type = "Unknwon";
+	}
+
 	$subtitle = yii::t("email","Demand to")." ";
 	if (@$typeOfDemand){
 		if($typeOfDemand == "admin"){
