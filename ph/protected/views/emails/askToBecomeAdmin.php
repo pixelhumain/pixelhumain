@@ -1,16 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <?php 
+	$type="organization";
 	if (@$parentType){
 		if($parentType == "organizations"){
 			$type="organization";
 		}
 		else if ($parentType == "projects"){
 			$type="project";
+		} 
+		else if ($parentType == "events"){
+			$type="event";
 		}
-	}
-	else{
-		$type="organization";
-	}
+	} 
+	
 	$subtitle = yii::t("email","Demand to")." ";
 	if (@$typeOfDemand){
 		if($typeOfDemand == "admin"){
