@@ -286,4 +286,12 @@ class PHDB
 
         return $res;
     }
+    public static function findAndSortAndLimitAndIndex( $collection, $where=array(), $sortCriteria=array(), $limit=0, $index=0 )
+    {     
+        
+        $res = !self::checkMongoDbPhpDriverInstalled() ? null : iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where)->sort($sortCriteria)->skip($index)->limit($limit));
+
+        return $res;
+    }
+
 }
