@@ -190,8 +190,13 @@ onSave: (optional) overloads the generic saveProcess
    			if(value == "") value="25/01/2014";
 	       	var checked = ( fieldObj.checked ) ? "checked" : "";
 	       	var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
+	       	var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.switch.onText+"' data-off-text='"+fieldObj.switch.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
 	       	console.log("build a >>>>>> checkbox");
-	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+'/> '+placeholder;
+	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+' '+switchData+'/> '+placeholder;
+	       	initField = function(){
+	       		if( fieldObj.switch )
+	       			initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
+	       	};
        	}
 
 
@@ -214,15 +219,7 @@ onSave: (optional) overloads the generic saveProcess
 			fieldHTML += '</select>';
         }
 
-        /* **************************************
-		* DATE INPUT , we use bootstrap-datepicker
-		***************************************** */
-        else if ( fieldObj.inputType == "date" ) {
-        	if(placeholder == "")
-        		placeholder="25/01/2014";
-        	console.log("build a >>>>>> date");
-        	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
-        }
+        
         
         else if ( fieldObj.inputType == "image" ) {
         	if(placeholder == "")
@@ -238,6 +235,25 @@ onSave: (optional) overloads the generic saveProcess
         	//initFormImages(fieldObj.contextType, fieldObj.contextId);
         }
 
+        /* **************************************
+		* DATE INPUT , we use bootstrap-datepicker
+		***************************************** */
+        else if ( fieldObj.inputType == "date" ) {
+        	if(placeholder == "")
+        		placeholder="25/01/2014";
+        	console.log("build a >>>>>> date");
+        	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        }
+
+        /* **************************************
+		* DATE TIME INPUT , we use bootstrap-datetimepicker
+		***************************************** */
+        else if ( fieldObj.inputType == "datetime" ) {
+        	if(placeholder == "")
+        		placeholder="25/01/2014 08:30";
+        	console.log("build a >>>>>> datetime");
+        	fieldHTML += iconOpen+'<input type="text" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        }
         /* **************************************
 		* DATE RANGE INPUT 
 		***************************************** */
@@ -273,7 +289,7 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "location" ) {
         	console.log("build a >>>>>> location");
-        	fieldHTML += "<a href='javascript:;' class='"+fieldClass+" locationBtn btn btn-default'><i class='text-azure fa fa-map-marker fa-2x'></i> Localiser </a>";
+        	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" locationBtn btn btn-default'><i class='text-azure fa fa-map-marker fa-2x'></i> Localiser </a>";
         	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Insee" name="address[codeInsee]" id="address[codeInsee]" value="'+( (fieldObj.address) ? fieldObj.address.codeInsee : "" )+'"/>';
@@ -626,6 +642,22 @@ onSave: (optional) overloads the generic saveProcess
 		    }
 		}
 		/* **************************************
+		* DATE INPUT , we use https://github.com/eternicode/bootstrap-datepicker
+		***************************************** */
+		if(  $(".dateTimeInput").length){
+			var initDate = function(){
+								console.log("init dateTimeInput");
+								$(".dateTimeInput").datetimepicker();
+							};
+			if( jQuery.isFunction(jQuery.fn.datetimepicker) )
+				initDate();
+		    else {
+				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js', 
+						  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datetimepicker/css/datetimepicker.css',
+						  initDate);
+		    }
+		}
+		/* **************************************
 		* Location type 
 		***************************************** */
 		if(  $(".locationBtn").length)
@@ -744,7 +776,7 @@ onSave: (optional) overloads the generic saveProcess
 						['para', ['ul', 'ol', 'paragraph']],
 						]
 					});
-				if( jQuery.isFunction(jQuery.fn.datepicker) )
+				if( jQuery.isFunction(jQuery.fn.summernote) )
 					initField();
 			    else {
 			    	lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/summernote/dist/summernote.min.js', 
@@ -866,6 +898,31 @@ onSave: (optional) overloads the generic saveProcess
 					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-left" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
 				'</div>';
 		return str;
+	}
+
+	/* **************************************
+	* init Boostrap Switch
+	***************************************** */
+	function initbootstrapSwitch(el,change)
+	{
+		var initSwitch = function(){
+							console.log("init bootstrap switch");
+							$(el).bootstrapSwitch();
+							if(typeof change == "function"){
+								$(el).on('switchChange.bootstrapSwitch', function(event, state) {
+									change();
+								});
+							}
+							$(el).parent().parent().addClass("form-group");
+						};
+		if( jQuery.isFunction(jQuery.fn.bootstrapSwitch) )
+			initSwitch();
+	    else {
+	    	lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js', 
+					  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css',
+					  initSwitch);
+    	}
+		
 	}
 
 })(jQuery);
@@ -990,10 +1047,13 @@ function showMyImage2(fileInput) {
 			$(".count_images").val(idImg);
 			$(".algoNbImg").val(nbId);
 		}
+		
 		htmlImg+="<div class='newImageAlbum'><i class='fa fa-spin fa-circle-o-notch fa-3x text-green spinner-add-image noGoSaveNews'></i><img src='' id='thumbail"+nbId+"' class='grayscale' style='width:75px; height:75px;'/>"+
 		       	"<input type='hidden' class='imagesNews' name='goSaveNews' value=''/></div>";
 		$("#resultsImage").append(htmlImg);
-	    for (var i = 0; i < files.length; i++) {           
+
+	    for (var i = 0; i < files.length; i++) 
+	    {
 	        var file = files[i];
 	        var imageType = /image.*/;     
 	        if (!file.type.match(imageType)) {
