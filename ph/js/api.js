@@ -24,15 +24,15 @@ function ajaxPost(id,url,params,callback, datatype)
 	    type:"POST",
 	  //  dataType: "json",
 	    success:function(data) {
-        	if(datatype === "html" )
-				    $(id).html(data);
-	  	    else if(typeof data.msg === "string" )
-	    		toastr.success(data);
-	    	else
-	      		$("#"+id).html(JSON.stringify(data, null, 4));
-	      		
-	      	if( typeof callback === "function")
-            	callback(data,id);
+            if(datatype === "html" )
+    			$(id).html(data);
+    	  	else if(typeof data.msg === "string" )
+    	    	toastr.success(data.msg);
+    	    else
+    	      	$("#"+id).html(JSON.stringify(data, null, 4));
+    	      		
+          	if( typeof callback === "function")
+              callback(data,id);
 	    },
 	    error:function (xhr, ajaxOptions, thrownError){
 	     console.error(thrownError);
@@ -135,6 +135,29 @@ function getModal(what, url,id)
       console.log("error getModal");
       console.dir(data);
     });
+}
+
+//js ex : "/themes/ph-dori/assets/plugins/summernote/dist/summernote.min.js"
+//css ex : "/themes/ph-dori/assets/plugins/summernote/dist/summernote.css"
+function lazyLoad (js,css, callback) { 
+    console.warn("lazyLoad",js);
+    if( !$('script[src="'+baseUrl+js+'"]').length )
+    {
+        if(css)
+            $("<link/>", {
+               rel: "stylesheet",
+               type: "text/css",
+               href: css 
+            }).appendTo("head");
+        $.getScript( js, function( data, textStatus, jqxhr ) {
+          if( typeof callback === "function")
+            callback();
+        });
+    } else {
+        if( typeof callback === "function")
+            callback();
+    }
+
 }
 
 
@@ -292,6 +315,7 @@ var jsonHelper = {
   
    */
   a : {x : {b : 2} },
+  
   test : function(){
     console.log("init",JSON.stringify(this.a));
 
@@ -335,6 +359,59 @@ var jsonHelper = {
     console.log("this.a delete x.b.a.b.c.d.yy");
     this.deleteByPath( this.a,"x.b.a.b.c.d.yy");
     console.log(JSON.stringify(this.a));
+
+    console.log("this.a delete x.b.a.b.c.d.yy");
+    this.deleteByPath( this.a,"x.b.a.b.c.d.yy");
+    console.log(JSON.stringify(this.a));
+  },
+  strTest:"\n>name:xxx"+
+      "\n>desc:yyyyyyyyyy"+
+      "\n>email:zzzz@yyy.com"+
+      "\n>adr:102 rue ppppppp"+
+      "\n>cp:97421"+
+      "\n>latlon:21,55"+
+      "\n>type:NGO"+
+      "\n>admin:admin",
+  testStringForm : function(){
+    console.log("strTest",this.strTest);
+    console.warn("------------string to json------------------");
+    this.stringFormtoJson( this.strTest );
+    console.warn("------------building form ------------------");
+    this.stringFormtoJson( this.strTest, "testForm" );
+    console.warn("------------ form serialised ------------------");
+    console.log( $("#testForm").serialize() );
+    console.warn("------------ form serialised as JSON ------------------");
+    console.dir( $("#testForm").serializeFormJSON() );
+  },
+  /* 
+    Convert a structured string to json object
+    the simplest Form in internet history
+    can be used as a HTML hidden Form builder as well
+  */
+  stringFormtoJson : function( str,buildForm ){
+    console.log("strTest",str);
+    separator = "\n>";
+    fields = str.split(separator);
+    res = {};
+    if(buildForm){
+        if(!$("#"+buildForm).length ){
+          $(".my-main-container").append( $("<form>", {id: buildForm, "method": "POST"}) );
+          $(".my-main-container").prepend( $("<span>", {class: "errorHandler"}) );
+        }
+        else
+          $("#"+buildForm).html("");
+    }
+    $.each(fields,function(i,v) {
+      console.log(v);
+      keyVal = v.split(":");
+      if(  typeof keyVal[1] != "undefined" && keyVal[1] != "" ){
+        res[ keyVal[0] ] = keyVal[1];
+        if(buildForm)
+          $("#"+buildForm).append("<input type='hidden' id='"+keyVal[0]+"' name='"+keyVal[0]+"' value='"+keyVal[1]+"'/>");
+      }
+    })
+    console.dir(res);
+    return res;
   },
   /*
   srcObj = any json OBJCT
@@ -513,4 +590,13 @@ function notEmpty(val){
   return typeof val != "undefined"
       && val != null
       && val != "";
+}
+
+function removeEmptyAttr (jsonObj) { 
+
+    $.each(jsonObj, function(key, value){
+        if (value === "" || value === null || value === undefined){
+            delete jsonObj[key];
+        }
+    });
 }

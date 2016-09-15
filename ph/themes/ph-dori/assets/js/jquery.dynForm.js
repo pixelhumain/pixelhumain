@@ -81,6 +81,7 @@ onSave: (optional) overloads the generic saveProcess
 	        fieldHTML += '<input type="hidden" name="id" value="'+((settings.formObj.id) ? settings.formObj.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
+        				'<div class="space20"></div>'+
 						'<button id="btn-submit-form" type="submit" class="btn btn-success pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button>'+
@@ -268,11 +269,26 @@ onSave: (optional) overloads the generic saveProcess
         } 
 
         /* **************************************
+		* LOCATION
+		***************************************** */
+        else if ( fieldObj.inputType == "location" ) {
+        	console.log("build a >>>>>> location");
+        	fieldHTML += "<a href='javascript:;' class='"+fieldClass+" locationBtn btn btn-default'><i class='text-azure fa fa-map-marker fa-2x'></i> Localiser </a>";
+        	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Insee" name="address[codeInsee]" id="address[codeInsee]" value="'+( (fieldObj.address) ? fieldObj.address.codeInsee : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="country" name="address[addressCountry]" id="address[addressCountry]" value="'+( (fieldObj.address) ? fieldObj.address.addressCountry : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="address" name="address[streetAddress]" id="address[streetAddress]" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
+        } 
+
+        /* **************************************
 		* ARRAY , is a list of sequential values
 		***************************************** */
         else if ( fieldObj.inputType == "array" ) {
         	console.log("build a >>>>>> array list");
-        	fieldHTML += '<div class="inputs array">'+
+        	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
 								'<div class="col-sm-10">'+
 									'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
 								'</div>'+
@@ -283,7 +299,7 @@ onSave: (optional) overloads the generic saveProcess
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
 							'<div class="col-sm-12">'+
 								'<div class="space10"></div>'+
-						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-success" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
+						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-success" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
 				       		'</div></span>'+
 				       '<div class="space5"></div><div class="cocotest"></div>';
 			
@@ -361,14 +377,14 @@ onSave: (optional) overloads the generic saveProcess
         	
         		fieldClass += " select2TagsInput select2ScopeInput";
         		
-        		fieldHTML += 	'<span id="lbl-send-to">Send to <i class="fa fa-caret-right"></i>'+ 
+        		/*fieldHTML += 	'<span id="lbl-send-to">Send to <i class="fa fa-caret-right"></i>'+ 
 	        					'<div class="dropdown">' +
 								  '<a data-toggle="dropdown" class="btn btn-sm btn-default" id="btn-toogle-dropdown-scope" href="#"><i class="fa fa-group"></i> Mon mur <i class="fa fa-caret-down"></i></a>' +
 								  '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">' +
 								   '<li><a href="#" id="scope-my-wall"><i class="fa fa-group"></i> My wall</a></li>' +
 								   '<li><a href="#" id="scope-select" data-toggle="modal" data-target="#modal-scope"><i class="fa fa-plus"></i> Selectionner</a></li>' +
 								  '</ul>' +
-								'</div></span>' ;
+								'</div></span>' ;*/
 
 				
 				fieldHTML += '<div class="modal fade" id="modal-scope" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'+
@@ -376,26 +392,27 @@ onSave: (optional) overloads the generic saveProcess
 							    '<div class="modal-content">'+
 							      '<div class="modal-header">'+
 							        //'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-							        '<input type="text" id="search-contact" class="form-control pull-right" placeholder="search">' +
-									'<h4 class="modal-title" id="myModalLabel"><i class="fa fa-search"></i> Send to ...</h4>'+
+							        '<input type="text" id="search-contact" class="form-control pull-right" placeholder="rechercher ...">' +
+									'<h4 class="modal-title" id="myModalLabel"><i class="fa fa-search"></i> '+fieldObj.title1+'</h4>'+
 							      '</div>'+
 							      '<div class="modal-body">'+
 								      '<div class="row no-padding bg-light">'+
-								      	'<div class="col-md-6 col-sm-6 no-padding">'+
+								      	'<div class="col-md-4 col-sm-4 no-padding">'+
 									        '<div class="panel panel-default">  '+	
 												'<div class="panel-body no-padding">'+
 													'<div class="list-group" id="menu-type">'+
-														'<ul class="col-xs-6 col-sm-12 col-md-12 no-padding">';
-				fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select receivers</h4>';
+														'<ul class="col-xs-12 col-sm-12 col-md-12 no-padding">';
+				fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> '+fieldObj.title2+'</h4>';
 														$.each(fieldObj.contactTypes, function(key, type){
 				fieldHTML += 								'<li>'+
-																'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type homestead text-'+type.color+'">' +
-																	'<input type="checkbox" name="chk-all-type'+type.name+'" id="chk-all-type'+type.name+'" value="'+type.name+'"> <span style="font-size:16px;"><i class="fa fa-'+type.icon+'"></i> My ' + type.name + "</span>" +
+																'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type text-'+type.color+'">' +
+																	'<input type="checkbox" name="chk-all-type'+type.name+'" id="chk-all-type'+type.name+'" value="'+type.name+'"> '+
+																	'<span style="font-size:16px;"><i class="fa fa-'+type.icon+'"></i> ' + type.label + "</span>" +
 																'</div>'+
 															'</li>';
 														});									
-				fieldHTML += 							'</ul>' +
-														'<ul class="col-xs-6 col-sm-12 col-md-12 no-margin no-padding select-population">' + 
+				fieldHTML += 							'</ul>';
+				fieldHTML += 							/*'<ul class="col-xs-6 col-sm-12 col-md-12 no-margin no-padding select-population">' + 
 															'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select population</h4>' +
 															'<li>'+
 																'<div class="btn btn-default btn-scroll-type homestead text-red">' +
@@ -414,16 +431,16 @@ onSave: (optional) overloads the generic saveProcess
 																	'</div>'+
 																'</div>'+
 															'</li>' +
-														'</ul>' +
+														'</ul>' +*/
 													'</div>'+
 												'</div>'+
 											'</div>' +
 								      	'</div>'+
-								      	'<div class="no-padding pull-right col-md-6  col-sm-6 col-xs-12 bg-white" id="list-scroll-type">';
+								      	'<div class="no-padding pull-right col-md-8 col-sm-8 col-xs-12 bg-white" id="list-scroll-type">';
 										$.each(fieldObj.contactTypes, function(key, type){
 				fieldHTML += 			'<div class="panel panel-default" id="scroll-type-'+type.name+'">  '+	
 											'<div class="panel-heading">'+
-												'<h4 class="homestead text-'+type.color+'"><i class="fa fa-'+type.icon+'"></i> My '+type.name+'</h4>'+			
+												'<h4 class="text-'+type.color+'"><i class="fa fa-'+type.icon+'"></i> '+type.label+'</h4>'+			
 											'</div>'+
 											'<div class="panel-body no-padding">'+
 												'<div class="list-group padding-5">'+
@@ -431,21 +448,23 @@ onSave: (optional) overloads the generic saveProcess
 													$.each(fieldObj.values[type.name], function(key2, value){ 
 														var cp = (typeof value.address != "undefined" && typeof value.address.postalCode != "undefined") ? value.address.postalCode : typeof value.cp != "undefined" ? value.cp : "";
 														var city = (typeof value.address != "undefined" && typeof value.address.addressLocality != "undefined") ? value.address.addressLocality : "";
-														var profilImageUrl = (typeof value.profilImageUrl != "undefined" && value.profilImageUrl != "") ? baseUrl + value.profilImageUrl : assetPath + "/images/news/profile_default_l.png";
+														var profilThumbImageUrl = (typeof value.profilThumbImageUrl != "undefined" && value.profilThumbImageUrl != "") ? baseUrl + value.profilThumbImageUrl : assetPath + "/images/news/profile_default_l.png";
 														var name =  typeof value.name != "undefined" ? value.name : 
 																	typeof value.username != "undefined" ? value.username : "";
 														//console.log("data contact +++++++++++ "); console.dir(value);
+														var thisKey = key+''+key2;
+														var thisValue = notEmpty(value["_id"]['$id']) ? value["_id"]['$id'] : "";
 														if(name != "")
 				fieldHTML += 							'<li>' +
-															'<div class="btn btn-default btn-scroll-type btn-select-contact"  id="contact'+key2+'">' +
-																'<input type="checkbox" name="scope-'+type.name+'" class="chk-scope-'+type.name+'" id="chk-scope-'+key2+'" value="'+key2+'"> '+
-																'<div class="btn-chk-contact inline" idcontact="'+key2+'">' +
-																	'<img src="'+ profilImageUrl+'" class="thumb-send-to" height="35" width="35">'+
+															'<div class="btn btn-default btn-scroll-type btn-select-contact"  id="contact'+thisKey+'">' +
+																'<div class="col-md-1 no-padding"><input type="checkbox" name="scope-'+type.name+'" class="chk-scope-'+type.name+'" id="chk-scope-'+thisKey+'" value="'+thisValue+'" data-type="'+type.name+'"></div> '+
+																'<div class="btn-chk-contact col-md-11 no-padding" idcontact="'+thisKey+'">' +
+																	'<img src="'+ profilThumbImageUrl+'" class="thumb-send-to" height="35" width="35">'+
 																	'<span class="info-contact">' +
-																		'<span class="scope-name-contact text-dark text-bold" idcontact="'+key2+'">' + value.name + '</span>'+
+																		'<span class="scope-name-contact text-dark text-bold" idcontact="'+thisKey+'">' + value.name + '</span>'+
 																		'<br/>'+
-																		'<span class="scope-cp-contact text-light" idcontact="'+key2+'">' + cp + ' </span>'+
-																		'<span class="scope-city-contact text-light" idcontact="'+key2+'">' + city + '</span>'+
+																		'<span class="scope-cp-contact text-light" idcontact="'+thisKey+'">' + cp + ' </span>'+
+																		'<span class="scope-city-contact text-light" idcontact="'+thisKey+'">' + city + '</span>'+
 																	'</span>' +
 																'</div>' +
 															'</div>' +
@@ -460,9 +479,9 @@ onSave: (optional) overloads the generic saveProcess
 									'</div>'+
 								  '</div>'+
 							      '<div class="modal-footer">'+
-							      	'<button id="btn-reset-scope" type="button" class="btn btn-default btn-sm pull-left"><i class="fa fa-repeat"></i> Reset</button>'+
-							      	'<button id="btn-cancel" type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>'+
-							      	'<button id="btn-save" type="button" class="btn btn-success btn-sm" data-dismiss="modal"><i class="fa fa-check"></i> Save</button>'+
+							      	'<button id="btn-reset-scope" type="button" class="btn btn-default btn-sm pull-left"><i class="fa fa-repeat"></i> '+fieldObj.btnResetTitle+'</button>'+
+							      	'<button id="btn-cancel" type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> '+fieldObj.btnCancelTitle+'</button>'+
+							      	'<button id="btn-save" type="button" class="btn btn-success btn-sm" data-dismiss="modal"><i class="fa fa-check"></i> '+fieldObj.btnSaveTitle+'</button>'+
 							      '</div>'+
 							    '</div><!-- /.modal-content -->'+
 							  '</div><!-- /.modal-dialog -->'+
@@ -590,16 +609,34 @@ onSave: (optional) overloads the generic saveProcess
 		* DATE INPUT , we use https://github.com/eternicode/bootstrap-datepicker
 		***************************************** */
 		if(  $(".dateInput").length){
+			var initDate = function(){
+								console.log("init dateInput");
+								$(".dateInput").datepicker({ 
+							        autoclose: true,
+							        language: "fr",
+							        format: "dd/mm/yyyy"
+							    });
+							};
 			if( jQuery.isFunction(jQuery.fn.datepicker) )
-				$(".dateInput").datepicker({ 
-			        autoclose: true,
-			        language: "fr",
-			        format: "dd/mm/yyyy"
-			    });
-		    else
-				console.error("datepicker library is missing");
+				initDate();
+		    else {
+				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js', 
+						  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datepicker/css/datepicker.css',
+						  initDate);
+		    }
 		}
-
+		/* **************************************
+		* Location type 
+		***************************************** */
+		if(  $(".locationBtn").length)
+		{
+			//todo : for generic dynForm check if map exist 
+			$(".locationBtn").off().on( "click", function(){ 
+				$("#ajax-modal").modal("hide");
+		        showMap(true);
+		    });
+		}
+		
 		/* **************************************
 		* Image type 
 		***************************************** */
@@ -618,16 +655,21 @@ onSave: (optional) overloads the generic saveProcess
 		* DATE RANGE INPUT , we use https://github.com/dangrossman/bootstrap-daterangepicker
 		***************************************** */
 		if( $(".daterangeInput").length){
+			var initDateRange = function(){
+								$('.daterangeInput').daterangepicker({
+						            timePicker: true,
+						            timePickerIncrement: 30,
+						            format: 'MM/DD/YYYY h:mm A'
+						        }, function(start, end, label) {
+						            console.log(start.toISOString(), end.toISOString(), label);
+						        });
+							};
 			if( jQuery.isFunction(jQuery.fn.daterangepicker) )
-				$('#reservationtime').daterangepicker({
-		            timePicker: true,
-		            timePickerIncrement: 30,
-		            format: 'MM/DD/YYYY h:mm A'
-		          }, function(start, end, label) {
-		            console.log(start.toISOString(), end.toISOString(), label);
-		          });
+				initDateRange();
 			else
-				console.error("daterangepicker library is missing")
+				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-daterangepicker/daterangepicker.js' ,  
+						  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css',
+						  initDateRange);
 		    /*$('.daterangeInput').val(moment().format('DD/MM/YYYY h:mm A') + ' - ' + moment().add('days', 1).format('DD/MM/YYYY h:mm A'))
 			.daterangepicker({  
 				startDate: moment(),
@@ -661,29 +703,55 @@ onSave: (optional) overloads the generic saveProcess
 		/* **************************************
 		* WYSIWYG 
 		***************************************** */
+		if(  $(".dateInput").length){
+			var initDate = function(){
+								console.log("init dateInput");
+								$(".dateInput").datepicker({ 
+							        autoclose: true,
+							        language: "fr",
+							        format: "dd/mm/yyyy"
+							    });
+							};
+			if( jQuery.isFunction(jQuery.fn.datepicker) )
+				initDate();
+		    else {
+				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js', 
+						  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datepicker/css/datepicker.css',
+						  initDate);
+		    }
+		}
 		if(  $(".wysiwygInput").length )
 		{
-			$(".wysiwygInput").summernote({
+				var initField = function(){
+					$(".wysiwygInput").summernote({
 
-				oninit: function() {
-					/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
-						$(this).code($(this).attr("placeholder"));
-					}*/
-				}, onfocus: function(e) {
-					/*if ($(this).code() == $(this).attr("placeholder")) {
-						$(this).code("");
-					}*/
-				}, onblur: function(e) {
-					/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
-						$(this).code($(this).attr("placeholder"));
-					}*/
-				}, onkeyup: function(e) {},
-				toolbar: [
-				['style', ['bold', 'italic', 'underline', 'clear']],
-				['color', ['color']],
-				['para', ['ul', 'ol', 'paragraph']],
-				]
-			});
+						oninit: function() {
+							/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
+								$(this).code($(this).attr("placeholder"));
+							}*/
+						}, onfocus: function(e) {
+							/*if ($(this).code() == $(this).attr("placeholder")) {
+								$(this).code("");
+							}*/
+						}, onblur: function(e) {
+							/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
+								$(this).code($(this).attr("placeholder"));
+							}*/
+						}, onkeyup: function(e) {},
+						toolbar: [
+						['style', ['bold', 'italic', 'underline', 'clear']],
+						['color', ['color']],
+						['para', ['ul', 'ol', 'paragraph']],
+						]
+					});
+				if( jQuery.isFunction(jQuery.fn.datepicker) )
+					initField();
+			    else {
+			    	lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/summernote/dist/summernote.min.js', 
+							  baseUrl+'/themes/ph-dori/assets/plugins/summernote/dist/summernote.css',
+							  initDate);
+		    	}
+			}
 		}
 
 	}

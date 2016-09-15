@@ -825,8 +825,8 @@ Bootstrap Daterangepicker
   font-family: 'FontAwesome';
   font-size: 12px;
   position: relative;
-  left: 2px;
-  top: 2px; }
+  left: 6px;
+  top: 0px; }
 
 .select2-container.select2-drop-above .select2-choice {
   border-bottom-left-radius: 2px;
