@@ -135,6 +135,9 @@ RewriteRule ^(.*)$ /ph/index.php/$1 [L]
   *  https://github.com/pixelhumain/citizenToolkit
   *  https://github.com/pixelhumain/cityData
   *  https://github.com/pixelhumain/opendata
+  *  https://github.com/pixelhumain/network
+  *  https://github.com/pixelhumain/api
+  
 - front end URL : 127.0.0.1/ph/communecter
 - api URL : 127.0.0.1/ph/communecter/api
 - if any there's any initData to be installed you'll see the prompt
