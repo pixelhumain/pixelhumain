@@ -666,6 +666,7 @@ onSave: (optional) overloads the generic saveProcess
 			$(".locationBtn").off().on( "click", function(){ 
 				$("#ajax-modal").modal("hide");
 		        showMap(true);
+		        if(typeof showFormInMap != "undefined"){ showFormInMap(); }
 		    });
 		}
 		
