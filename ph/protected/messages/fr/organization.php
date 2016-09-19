@@ -25,7 +25,7 @@
 		"Are you sure you want to remove this person's :" => "Êtes-vous sûr de vouloir supprimer le rôle :",
 		"ROLE REMOVED SUCCESFULLY!!" => "Rôle effacé avec succés!!",
 		"Add me as member of" => "Ajoutez moi comme membre",
-		"Edit your information" => "Editer vos informations",
+		"Edit your informations" => "Editer vos informations",
 		"Remove from my organization" => "Supprimer de mes organisations",
 		"Add me as member of the organization" => "Devenir membre de cette organisation",
 		"Are you sure you want to remove the connection with " => "Etes vous sure de vouloir supprimer la connection avec ",

@@ -26,7 +26,9 @@
 		"Invite attendees to the event" => "Inviter des personnes à participer à l&rsquo;événement",
 		"See modifications done on this event" => "Voir les modifications apportées à l&rsquo;événement",
 		"attendee" => "participant",
-		"guest" => "invité"
+		"guest" => "invité",
+		"Contact information" => "Informations générales",
+		"Edit your informations" => "Editer vos informations",
 	)
 
 ?>

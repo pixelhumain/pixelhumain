@@ -397,6 +397,8 @@ return array(
 	"Contact" 	=> "Contacter",
 	"Contributors" => "Contributeurs",
 	"Contributors of project" => "Les contributeurs du projet",
+	"Community of person" => "Communauté du citoyen",
+	"Community of event" => "Communauté de l'évènement",
 	"Community of project" => "Communauté du projet",
 	"Community of organization" => "Communauté de l&#146;organisation",
 	"Project community" => "Communauté du projet",
@@ -404,7 +406,6 @@ return array(
 	"See the photo gallery" => "Voir la galerie photo",
 	"Information"=>"Informations",
 	"Contact information"=> "Coordonnées",
-
 	
 	"Read all news publicated by this person" 		=> "Toute l&#146;actualité de cette personne",
 	"Read all news publicated by this event" 		=> "Toute l&#146;actualité de cet événement",

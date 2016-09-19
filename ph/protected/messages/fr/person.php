@@ -27,6 +27,7 @@ return array(
 	"Fax" => "Fax",
 	"Username" => "Nom d'utilisateur",
 	"Short Description" => "Description courte",
+	"Contact information" => "Informations générales",
 
 	"My space" => "Mon espace perso",
 	"My city" => "Ma commune",
@@ -36,6 +37,7 @@ return array(
 	"Create a project" => "Créer un projet",
 	"Create an organization" => "Référencer une organisation",
 	"Sign out" => "Déconnexion",
+	"Edit your informations" => "Editer vos informations",
 
 
 	"Enter your name" => "Entrer votre nom et prénom",

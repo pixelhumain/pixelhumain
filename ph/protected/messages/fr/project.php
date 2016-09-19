@@ -7,7 +7,9 @@
  */
 
 	return array(
-		"Evaluate your projet as commons"=> "Evaluer votre projet comme un commun"
+		"Evaluate your projet as commons"=> "Evaluer votre projet comme un commun",
+			"Contact information" => "Informations générales",
+			"Edit your informations" => "Editer vos informations",
 	);
 
 
