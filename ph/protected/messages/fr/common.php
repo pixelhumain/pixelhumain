@@ -91,6 +91,7 @@ return array(
 	// Erreurs
 	"You have some form errors. Please check below." => "Des erreurs sont présentes. Vérifier ci dessous",
 	"Something went wrong!" => "Une erreur est survenue!",
+	"Something went really bad : Invalid Content" => "Une erreur s'est produite : Contenu Invalide", 
 	"Uncorrect request" => "Cette requête n&#146;a pas pu aboutir",
 	"Can not manage the type " => "Vous ne pouvez pas gérer le type",
 	"The form has been validated." => "Le formulaire a été validé avec succès.",

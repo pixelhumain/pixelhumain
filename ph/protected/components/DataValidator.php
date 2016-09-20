@@ -107,13 +107,14 @@ class DataValidator {
 		//var_dump($type); return;
 		$dataBinding = $type::$dataBinding;
 		//var_dump($dataBinding); return;
-		$res = true;
+		$res = array("result"=>true);
 		foreach ( $values as $key => $value ) 
 		{
 			try{
 			  self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value );
 			} catch( Exception $e ) {
-				$res = false;
+				$res["result"] = false;
+				$res["msg"] = $e;
 			}
 		}
 		return $res;
@@ -122,11 +123,9 @@ class DataValidator {
 	private static function startDate($toValidate, $object) {
 		// Is the start Date before endDate
 	    $res = "";
-	    
 	    $endDate = DateTime::createFromFormat('Y-m-d H:i:s', $object["endDate"]);
-	    
 	    $startDate = DateTime::createFromFormat('Y-m-d H:i', $toValidate);
-		
+	    
 		//Try to convert the startDate
 		if (empty($startDate)) {
 			$startDate = DateTime::createFromFormat('Y-m-d', $toValidate);

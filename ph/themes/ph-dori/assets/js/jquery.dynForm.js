@@ -203,12 +203,16 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* SELECT , we use select2
 		***************************************** */
-        else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) {
+        else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) 
+        {
        		var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
        		console.log("build a >>>>>> select selectMultiple");
        		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
        		fieldHTML += '<select class="'+isSelect2+' '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px" data-placeholder="'+placeholder+'">';
-			fieldHTML += '<option></option>';
+			if(placeholder)
+				fieldHTML += '<option class="text-red" style="font-weight:bold" disabled selected>'+placeholder+'</option>';
+			else
+				fieldHTML += '<option></option>';
 
 			var selected = "";
 			
@@ -219,11 +223,11 @@ onSave: (optional) overloads the generic saveProcess
 			});
 			if( fieldObj.groupOptions ){
 				$.each(fieldObj.groupOptions, function(groupKey, groupVal) {
-					var groupValue = ( groupVal.type ) ? 'data-type="'+groupKey+'"' : "";
-					fieldHTML += '<optgroup label="'+groupVal.label+'" '+groupValue+'>';
+					var data = ( groupKey ) ? 'data-type="'+groupKey+'"' : "";
+					fieldHTML += '<optgroup label="'+groupVal.label+'" >';
 						$.each(groupVal.options, function(optKey, optVal) {
 							selected = ( fieldObj.value && optKey == fieldObj.value ) ? "selected" : ""; 
-							fieldHTML += '<option value="'+optKey+'" '+selected+' '+groupValue+'>'+optVal+'</option>';
+							fieldHTML += '<option value="'+optKey+'" '+selected+' '+data+'>'+optVal+'</option>';
 						});
 					fieldHTML += '</optgroup>';
 				});
@@ -681,7 +685,12 @@ onSave: (optional) overloads the generic saveProcess
 		if(  $(".dateTimeInput").length){
 			var initDate = function(){
 								console.log("init dateTimeInput");
-								$(".dateTimeInput").datetimepicker();
+								$(".dateTimeInput").datetimepicker({
+									weekStart: 1,
+									minuteStep: 15,
+									language: 'fr',
+									format: 'dd/mm/yyyy'
+								   });
 							};
 			if( jQuery.isFunction(jQuery.fn.datetimepicker) )
 				initDate();
