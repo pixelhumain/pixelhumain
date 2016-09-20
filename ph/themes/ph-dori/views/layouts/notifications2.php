@@ -22,7 +22,8 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 	}
 	#notificationPanelSearch{
 	position: fixed;
-	top: 51px !important;
+	top: 50px !important;
+	border-top:1px solid rgba(128, 128, 128, 0.54);
 	right: 0%;
 	width: 430px;
 	bottom: 0px;
@@ -100,7 +101,7 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 	}
 	.footer-notif{
 		position: absolute;
-		bottom:0px;
+		bottom:10px;
 		width:100%;
 	}
 </style>
