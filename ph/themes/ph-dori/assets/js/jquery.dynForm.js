@@ -689,7 +689,7 @@ onSave: (optional) overloads the generic saveProcess
 									weekStart: 1,
 									minuteStep: 15,
 									language: 'fr',
-									format: 'dd/mm/yyyy'
+									format: 'dd/mm/yyyy hh:ii'
 								   });
 							};
 			if( jQuery.isFunction(jQuery.fn.datetimepicker) )
