@@ -206,7 +206,8 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) {
        		var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
        		console.log("build a >>>>>> select selectMultiple");
-       		fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px" data-placeholder="'+placeholder+'">';
+       		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
+       		fieldHTML += '<select class="'+isSelect2+' '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px" data-placeholder="'+placeholder+'">';
 			fieldHTML += '<option></option>';
 
 			var selected = "";
@@ -216,8 +217,39 @@ onSave: (optional) overloads the generic saveProcess
 				selected = ( fieldObj.value && optKey == fieldObj.value ) ? "selected" : ""; 
 				fieldHTML += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
 			});
+			if( fieldObj.groupOptions ){
+				$.each(fieldObj.groupOptions, function(groupKey, groupVal) {
+					var groupValue = ( groupVal.type ) ? 'data-type="'+groupKey+'"' : "";
+					fieldHTML += '<optgroup label="'+groupVal.label+'" '+groupValue+'>';
+						$.each(groupVal.options, function(optKey, optVal) {
+							selected = ( fieldObj.value && optKey == fieldObj.value ) ? "selected" : ""; 
+							fieldHTML += '<option value="'+optKey+'" '+selected+' '+groupValue+'>'+optVal+'</option>';
+						});
+					fieldHTML += '</optgroup>';
+				});
+			} 
 			fieldHTML += '</select>';
         }
+
+        /*else if ( fieldObj.inputType == "selectList"  ) {
+       		console.log("build a >>>>>> select selectList");
+			fieldHTML += '<ul role="menu" class="dropdown-menu scrollable-menu '+fieldClass+'" id="'+field+'" style="width: 100%;height:30px" >'+
+	            '<li class="categoryOrgaEvent col-md-12">'+
+	                '<ul class="dropOrgaEvent" id="citoyen">'+	                    
+	                    '<li class="categoryTitle" style="margin-left:inherit;"><i class="fa fa-question"></i> I dont know</li>'+
+	                    '<li><a href="javascript:;" class="btn-drop dropOrg" id="" data-id="" data-name="">I dont know</a></li>'+
+	                '</ul>'+
+	           '</li>';
+
+			var selected = "";
+			
+			//initialize values
+			$.each(fieldObj.options, function(optKey, optVal) {
+				selected = ( fieldObj.value && optKey == fieldObj.value ) ? "selected" : ""; 
+				fieldHTML += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
+			});
+			fieldHTML += '</ul>';
+        }*/
 
         
         
@@ -508,7 +540,9 @@ onSave: (optional) overloads the generic saveProcess
         	console.log("build a >>>>>> input text");
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
-        
+        if( fieldObj.custom )
+        	fieldHTML += fieldObj.custom ;
+
 		fieldHTML += '</div>';
 
 		$(id).append(fieldHTML);
