@@ -594,6 +594,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Show the QRCode for this event" => "Voir le QR Code de cet évènement.",
 	"Show the QRCode for this project" => "Voir le QR Code de ce projet.",
 
+	"Unknown Postal Code" => "Code Postal introuvable",
+
 );
 
 ?>
