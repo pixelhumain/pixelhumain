@@ -175,6 +175,12 @@
 		//<!-- end: MAIN JAVASCRIPTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		?>
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				console.log("INIT scroll shadows!");
+				$(".my-main-container").bind("scroll", function() {shadowOnHeader()});
+			});
+		</script>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 	</body>
 	<!-- end: BODY -->
