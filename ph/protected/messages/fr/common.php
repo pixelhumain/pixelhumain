@@ -595,8 +595,6 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Show the QRCode for this person" => "Voir le QR Code de cette personne.",
 	"Show the QRCode for this event" => "Voir le QR Code de cet évènement.",
 	"Show the QRCode for this project" => "Voir le QR Code de ce projet.",
-
-
 	"Public" => "Public",
 	"Private" => "Privé",
 	"Mask" => "Masqué",
@@ -610,10 +608,10 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Not visible." => "Visible pour personne.",
 	"You propose your data in free access, to contribut for commons." => "Vous proposez vos données en accès libre, afin de contribuer au bien commun.",
 	"All users can participed / modified the informations." => "Tous les utilisateurs ont la possibilité de participer / modifier les informations.",
-
-
 	"Why ?" => "Pourquoi ?",
 	"Connect to your city" => "Communectez-moi",
+	"Unknown Postal Code" => "Code Postal introuvable",
+
 );
 
 ?>

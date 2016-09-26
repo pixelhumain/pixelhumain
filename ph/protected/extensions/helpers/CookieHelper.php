@@ -14,6 +14,7 @@ class CookieHelper  {
       public static function setCookie($name, $value)
       {
         $cookie = new CHttpCookie($name,$value);
+        $cookie->expire = time()+60*60*24*180;
         Yii::app()->request->cookies[$name] = $cookie;
       }
     
