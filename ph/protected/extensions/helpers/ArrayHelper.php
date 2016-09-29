@@ -171,6 +171,35 @@ class ArrayHelper {
 		return $assocArray;
 	}
 
+	public static function setValueByDotPath($assocArray , $path, $value, $typeValue = null) {
+		if(!is_array($path))
+	    	$path = explode(".", $path);
+
+	    if(count($path) == 1){
+	    	if($typeValue == "INT")
+	    		$assocArray[$path[0]] = intval($value);
+	    	else if($typeValue == "FLOAT")
+	    		$assocArray[$path[0]] = floatval($value);
+	    	else if($typeValue == "JSON")
+                $assocArray[$path[0]] = json_decode($value, true);
+	    	else
+	    		$assocArray[$path[0]] = $value ;
+	    }
+	    else{
+	    	$newPath = array_splice($path, 1);
+	    	if(empty($assocArray[$path[0]]))
+	    		$assocArray[$path[0]] = array();
+	    	$assocArray[$path[0]] = self::setValueByDotPath($assocArray[$path[0]] , $newPath, $value, $typeValue);
+	    }
+
+		return $assocArray;
+	}
+
+
+
+
+
+
 
 /**
  * getAllBranchsJSON
