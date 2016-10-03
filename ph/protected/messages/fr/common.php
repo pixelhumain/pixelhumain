@@ -100,6 +100,7 @@ return array(
 	"Please enter an email" => "Veuillez entrer un e-mail",
 	"Please try again" => "Essaie encore s'il-te plait",
 	"Please specify the name" => "Veuillez entrer un nom",
+	"Please Log in order to vote !" => "Vous n'êtes pas connecté : vote non sauvegardé",
 	"You are already admin of" => "Vous êtes déjà admin de",
 	"Invalid request" => "requête incorrecte",
 	"Something went wrong with the url" => "Le traitement de l'url retourne une erreur",
@@ -543,7 +544,7 @@ return array(
 	"Organizator detail" => "Détail de l'organisateur",
 	
 	"Places" => "Lieux",
-	"No more news" => "Plus de news",
+	"No more news" => "fin du fil d'actus",
 	"See all" => "Voir tout",
 
 
