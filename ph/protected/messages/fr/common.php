@@ -142,6 +142,7 @@ return array(
 	"You leave successfully this event" => "Vous avez quitté l'événement",
 	"Invitation to project successfully sent" => "Invitation à rejoindre le projet bien envoyée",
 	"Comment successfully deleted" => "Le commentaire a bien été supprimé",
+	"You already invited" => "Vous avez déjà invité",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
@@ -190,6 +191,7 @@ return array(
 	"Confirm your account on " => "Confirmer votre compte sur ",
 
 	//Common label
+	"today" => "ajourd'hui",
 	"Name" => "Nom",
 	"Username" => "Nom d'utilisateur",
 	"Street Address" => "Rue",
@@ -352,6 +354,8 @@ return array(
 	"Send a message to this Organization" 	=> "Envoyer un message au(x) responsable(s) de cette organisation",
 	"Send a message to this Event" 			=> "Envoyer un message au(x) responsable(s) de cet événement",
 	"Send invitations"						=> "Envoyer des invitations",
+	"Send invitation again"					=> "Renvoyer l'invitation",
+	"Send invitation again"					=> "Renvoyer l'invitation",
 
 	"Contact" 				=> "Contacter",
 	"Unfollow this person" 	=> "Ne plus suivre cette personne",
