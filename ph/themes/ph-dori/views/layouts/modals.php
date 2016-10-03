@@ -22,6 +22,17 @@
 		background-image: url("<?php echo $this->module->assetsUrl; ?>/images/bg/tango-circle-bg-purple.png");
 		background-color: #D4CDF0 !important;
 	}
+	.bgDDA{
+		background-image: url("<?php echo $this->module->assetsUrl; ?>/images/bg/tango-circle-bg-blue.png");
+		background-color: #A0C3E7 !important;
+	}
+	.bg-lightblue{
+		background-color: #7db9e8 !important;
+	}
+	.bg-lightblue2{
+		color:white;
+		background-color: #2973C0 !important;
+	}
 </style>
 <div id="ajax-modal" class="modal fade no-display" tabindex="-1" role="dialog" data-replace="true">
 	<div class="modal-dialog modal-lg">
