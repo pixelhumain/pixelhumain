@@ -308,14 +308,14 @@ function notifCount()
 	    $(".notifications-count").html(countNotif);
 		$('.notifications-count').removeClass('hide');
 		$('.notifications-count').addClass('animated bounceIn');
-		$('.notifications-count').addClass('badge-danger');
+		$('.notifications-count').addClass('badge-success');
 		$('.notifications-count').removeClass('badge-info');
 		$(".markAllAsRead").show();
 	} else {
 		$(".notifList").append("<?php echo Yii::t("common","No more notifications for the moment") ?>");
 		//$('.notifications-count').addClass('hide');
 		$(".notifications-count").html("0");
-		$('.notifications-count').removeClass('badge-danger');
+		$('.notifications-count').removeClass('badge-success');
 		$('.notifications-count').addClass('badge-info');
 		$(".markAllAsRead").hide();
 	}
