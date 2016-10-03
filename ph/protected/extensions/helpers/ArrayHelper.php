@@ -215,7 +215,7 @@ class ArrayHelper {
  * @author : Raphael RIVIERE 
  */
 
-	public static function getAllBranchsJSON($json, $chaine=null, $pere=null){
+	public static function getAllPath($json, $chaine=null, $pere=null){
         if($chaine==null)
         	$chaine = "" ;
         //var_dump($json);
@@ -227,7 +227,7 @@ class ArrayHelper {
             	else
             		$newpere =  $pere . "." . $key ;
             	
-            	$chaine = ArrayHelper::getAllBranchsJSON($value, $chaine, $newpere);
+            	$chaine = self::getAllPath($value, $chaine, $newpere);
 
             }else{
             	
@@ -240,89 +240,7 @@ class ArrayHelper {
         
         return $chaine ;
     }
-
-
-
-/**
- * getValueJson
- * return a value JSON which is located a path($map)
- * with a path for access a value in json
- *
- * @access	public
- * @param	array	$json : { "name" : { "nom" : "riviere" , "prenom" : "raphael" }}
- * @param	array	$map : ["name", "prenom"]
- * @return	$value : value in json : "raphael"
- * @author : Raphael RIVIERE
- */
-	public static function getValueJson($json, $map){        
-		//var_dump($map);
-		if(!empty($json[$map[0]])){
-			if(count($map) == 1){
-				$value = $json[$map[0]]; 
-		    }
-		    else
-		    {
-		    	$newmap = array_splice($map, 1);
-		    	$value = ArrayHelper::getValueJson($json[$map[0]], $newmap);
-		   	}
-
-		}else{
-			$value = null ;
-		}
-
-		return $value ;
-
-
-        /*if(!empty($json[$map[0]]))
-		{
-			//var_dump('$json[$map[0]]');
-			//var_dump($json[$map[0]]);
-			if(count($map) == 1)
-		    {
-		    	$value = $json[$map[0]];
-		    }
-		    else
-		    {
-		    	$newmap = array_splice($map, 1);
-		    	$value = ArrayHelper::getValueJson($json[$map[0]], $newmap);
-		   	}
-		}
-		else
-		{
-			$num = intval($map[0]) ;
-			//var_dump('$num');
-			//var_dump($num);
-			if(is_int($num))
-			{
-				if(count($map) == 1)
-			    {
-			    	if(!empty($json[0]))		    	
-			    		$value = $json[0];
-			    	else
-			    		$value = null ;	
-			    }
-			    else
-			    {
-			    	$newmap = array_splice($map, 1);
-			    	//var_dump('$json');	
-			    	//var_dump($json);
-			    	if(!empty($json[0]))		    	
-			    		$value = ArrayHelper::getValueJson($json[0], $newmap);
-			    	else
-			    		$value = null ;	
-			   	}
-			}
-			else
-			{
-				$value = null ;	
-			}
-			
-		}
-	    return $value;*/
-	}
-
 }
-
 
 /* End of file array_helper.php */
 /* Location: ./system/helpers/array_helper.php */

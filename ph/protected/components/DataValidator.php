@@ -160,6 +160,46 @@ class DataValidator {
 	    return $res;
 	}
 
+
+	/*
+	validates each field existance, type is respected and if any rules 
+	*/
+	public static function validateImport( $type, $values ) 
+	{
+		//var_dump($type); return;
+		$dataBinding = $type::$dataBinding;
+		//var_dump($dataBinding); return;
+		$res = array("result"=>true,
+						"msg"=>"");
+		foreach ( $values as $key => $value ) 
+		{
+			try{
+			  self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value );
+			} catch( Exception $e ) {
+				$res["result"] = false;
+				$res["msg"] .= $e."</br>";
+			}
+		}
+		return $res;
+	}
+
+	public static function source($toValidate, $objectId=null) {
+		$res = "";
+		$strings = array("key", "url", "id");
+		$allKeysSource = array('id', "key", "keys", "url", "update", "insertOrign");
+		if(!empty($toValidate)){
+			foreach ($toValidate as $key => $value) {
+				if($key == "keys" && !is_array($value))
+					$res .= "Keys is not array !";
+				if(in_array($key, $strings) && !is_string($value))
+					$res .= $key." is not string !";
+				if(!in_array($key, $allKeysSource))
+					$res .= "This ".$key." is not a Source !";
+			}
+		}
+		return $res;
+	}
+
 	
 
 }

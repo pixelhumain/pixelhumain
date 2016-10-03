@@ -6521,9 +6521,9 @@ span.btn-tag {
 /* ---------------------------------------------------------------------- */
 .panel {
   background-color: #FFFFFF;
-  -webkit-box-shadow: 0 1px 2px #c3c3c3;
-  -moz-box-shadow: 0 1px 2px #c3c3c3;
-  box-shadow: 0 1px 2px #c3c3c3;
+  -webkit-box-shadow: 0 1px 8px 1px #c3c3c3;
+  -moz-box-shadow: 0 1px 8px 1px #c3c3c3;
+  box-shadow: 0 1px 8px 1px #c3c3c3;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
