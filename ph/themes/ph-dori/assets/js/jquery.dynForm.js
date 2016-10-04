@@ -350,7 +350,7 @@ onSave: (optional) overloads the generic saveProcess
 			if( fieldObj.init && $.isFunction(fieldObj.init) )
         		initField = fieldObj.init;
         	
-			fieldObj.init = function(){
+			initField = function(){
 				
 				//initialize values
 				//value is an array of strings
