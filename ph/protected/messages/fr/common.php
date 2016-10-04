@@ -65,6 +65,7 @@ return array(
 	//NOTIFICATIONS
 	"You have <span class='notifCount'></span> notifications " => "Vous avez <span class='notifCount'></span> notifications ",
 	"Mark all as Read" => "Marquer comme lu",
+	"All marked all as read" => "Tout marquer comme lu",
 	"No notifications found" => "Aucune Notification",
 	"has been disabled by" => "a été désactivé par",
 	"new post by" => "nouveau post de",
