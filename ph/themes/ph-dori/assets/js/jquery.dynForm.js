@@ -333,7 +333,8 @@ onSave: (optional) overloads the generic saveProcess
         	console.log("build a >>>>>> array list");
         	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
 								'<div class="col-sm-10">'+
-									'<input type="text" name="'+field+'[]" class="addmultifield form?-control input-md" value="" placeholder="'+placeholder+'"/>'+
+									'<input type="text" name="'+field+'[]" class="addmultifield form-control input-md value="" placeholder="'+placeholder+'"/>'+
+									'<div class="resultGetUrl"></div>'+
 								'</div>'+
 								'<div class="col-sm-2">'+
 									'<button data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
@@ -874,6 +875,10 @@ onSave: (optional) overloads the generic saveProcess
 	        else
 	        	toastr.warning("La paire (clef/valeure) doit etre remplie.");
 	    }
+	    console.log("chenaged ");
+	  	if( $(this).val().indexOf("http:") >= 0){
+	  		$( this ).parent().children(".resultGetUrl").html("<span class='text-red text-bold'>chenaged</span> ");
+	  	}
 	  });
 
 	  //manage using Enter to make easy loop editing
@@ -932,6 +937,7 @@ onSave: (optional) overloads the generic saveProcess
 	    	val = "";
 		var str = '<div class="space5"></div><div class="col-sm-10">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield form-control input-md" value="'+val+'"/>'+
+					'<div class="resultGetUrl"></div>'
 					'</div>'+
 					'<div class="col-sm-2">'+
 					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-left" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
