@@ -600,3 +600,30 @@ function removeEmptyAttr (jsonObj) {
         }
     });
 }
+
+function buildSelectOptions(list,value) { 
+  var html = "";
+  if(list){
+    $.each(list, function(optKey, optVal) {
+      selected = ( value == optKey ) ? "selected" : ""; 
+      html += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
+    });
+  }
+  return html;
+}
+
+function buildSelectGroupOptions(list,value) { 
+  var html = "";
+  if(list){
+    $.each(list, function(groupKey, groupVal) {
+      var data = ( groupKey ) ? 'data-type="'+groupKey+'"' : "";
+      html += '<optgroup label="'+groupVal.label+'" >';
+        $.each(groupVal.options, function(optKey, optVal) {
+          selected = ( optKey == value ) ? "selected" : ""; 
+          html += '<option value="'+optKey+'" '+selected+' '+data+'>'+optVal+'</option>';
+        });
+      html += '</optgroup>';
+    });
+  }
+  return html;
+}

@@ -79,9 +79,9 @@ class DataValidator {
 	}
 
 	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue, $objectId = null) {
-		$res = "";
-		if (isset($dataBinding["$fieldName"])) {
-			$data = $dataBinding["$fieldName"];
+		
+		if (isset($dataBinding[$fieldName])) {
+			$data = $dataBinding[$fieldName];
 			$name = $data["name"];
 			//Validate field
 			if (isset($data["rules"])) {
@@ -107,11 +107,16 @@ class DataValidator {
 		//var_dump($type); return;
 		$dataBinding = $type::$dataBinding;
 		//var_dump($dataBinding); return;
+		//var_dump($values); return;
 		$res = array("result"=>true);
 		foreach ( $values as $key => $value ) 
 		{
 			try{
-			  self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value );
+				if ( isset( $dataBinding[$key]) ) 
+					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value );
+				else {
+					$res["result"] = false;
+				}
 			} catch( Exception $e ) {
 				$res["result"] = false;
 				$res["msg"] = $e;

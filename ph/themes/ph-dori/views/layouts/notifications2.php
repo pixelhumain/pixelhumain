@@ -10,15 +10,21 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 <style type="text/css">
 	.notifications li {
 		min-height:50px;
+		padding: 10px;
+		background-color: rgba(197, 225, 197, 0.3);
+		border-bottom: 1px dashed #bed1be;
 	}
 	.notifications{
 		/*background-color: white;*/
 		color: #528195;
-		padding: 5px 0px !important;
+		padding: 2px 0px !important;
 	}
 	.notifications .pageslide-title{
 		padding-left: 10px;
 		text-align: inherit; 
+		color:#67B04C;
+		font-size: 14px !important;
+		text-transform: none !important;
 	}
 	#notificationPanelSearch{
 	position: fixed;
@@ -37,7 +43,7 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
     -o-box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
     box-shadow: 0px 9px 12px 3px rgba(66, 66, 66, 0.37) !important;
     overflow-x: hidden;
-    z-index:10;
+    z-index: 13000;
     
 		display:none;
 		/*background-color: white;
@@ -52,16 +58,18 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);*/
 	}
 	.notifications a.notif{
-		    padding-top: 0px !important;
-		background-color: inherit;
+		padding-top: 0px !important;
+		background-color: transparent;
+		color: #354535;
+		font-size: 13px;
 	}
 	ul.notifList{
 		position: absolute;
-		bottom: 60px !important;
+		bottom: 0px !important;
 		overflow-y: auto;
 		padding-right: 10px;
 		top: 30px;
-		padding: 7px 14px;
+		padding: 0px;
 		-moz-box-shadow: 0px 0px 3px -1px #656565;
 		-webkit-box-shadow: 0px 0px 3px -1px #656565;
 		-o-box-shadow: 0px 0px 3px -1px #656565;
@@ -83,34 +91,50 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 		height: 35px;
 		width: 35px;
 		margin-left: -10px;
-		background-color: #428bca !important;
+		background-color: #56c557 !important;
 	}
 
-	.notifications .message {
+	.notifications .message,.notifications .time {
 	    padding-left: 40px;
 	    display:block;
 	}
 	.notifications .time {
-	   
+	   color: #4d654d;
 	}
 	.btn-notification-action{
-		background-color: #7ACF5B !important;
-		color:white;
-		width:70%;
-		margin:auto !important;
+		background-color: #71CE4E !important;
+		color: white;
+		margin: 0px !important;
+		margin-top: -4px !important;
+		padding: 4px 8px !important;
+		margin-right: 10px !important;
 	}
 	.footer-notif{
 		position: absolute;
 		bottom:10px;
 		width:100%;
 	}
+	.btn-reload-notif{
+		border-radius: 50%!important;
+	    margin-left: 14px !important;
+	    margin-right: 5px !important;
+	}
+	#notificationPanelSearch{
+		width:415px !important
+	}
 </style>
 <div id="notificationPanelSearch" class="">
 		<div class="notifications">
-			
-			<div class="pageslide-title">
-				notifications 
+			<a href="javascript:;" onclick='refreshNotifications()' class="btn-notification-action pull-left btn-reload-notif">
+				<i class="fa fa-refresh"></i>
+			</a>
+			<div class="pageslide-title pull-left">
+				<i class="fa fa-angle-down"></i> <i class="fa fa-bell"></i> Notifications 
 			</div> 
+			<a href="javascript:;" onclick='markAllAsRead()' class="btn-notification-action pull-right" style="font-size:12px;">
+				<?php echo Yii::t("common","All marked all as read") ?> <i class="fa fa-check-square-o"></i>
+			</a>	
+			
 			
 			<ul class="pageslide-list notifList">
 				<?php
@@ -129,7 +153,7 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 					            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message text-dark">';
 					            echo $item["notify"]["displayName"];
 					            
-					            echo ", <span class='time'>".round(abs(time() - $item["timestamp"]->sec) / 60)."min</span></span></a>";
+					            echo ", <span class='time pull-left'>".round(abs(time() - $item["timestamp"]->sec) / 60)."min</span></span></a>";
 					            echo "</li>";
 					            if($item["timestamp"]->sec > $maxTimestamp)
 					            	$maxTimestamp = $item["timestamp"]->sec;
@@ -138,7 +162,7 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 				    } 
 				?>
 			</ul>
-			<div class="footer-notif">
+			<!-- <div class="footer-notif">
 			 <ul class="pageslide-list header col-xs-6 col-sm-6 col-md-6 padding-10 no-margin" style="height:50px;">
 				<li class="center">
 					<a href="javascript:;" onclick='refreshNotifications()' class="btn-notification-action"><i class="fa fa-refresh"></i></a>
@@ -149,7 +173,7 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->th
 					<a href="javascript:;" onclick='markAllAsRead()' class="btn-notification-action" style="font-size:11px;"><?php echo Yii::t("common","All as Read") ?> <i class="fa fa-check-square-o"></i></a>	
 				</li>
 			</ul>
-			</div>
+			</div> -->
 
 			<?php /*
 			<div class="view-all">
@@ -283,7 +307,7 @@ function buildNotifications(list)
 							displayName+
 						"</span>" + 
 						
-						"<span class='time'>"+momentNotif+"</span>"+
+						"<span class='time pull-left'>"+momentNotif+"</span>"+
 					"</a>"+
 				  "</li>";
 
