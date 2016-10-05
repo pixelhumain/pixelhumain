@@ -25,7 +25,7 @@ class Rest
 	public static function sendResponse($status = 200, $body = '', $content_type = 'text/html')
 	{
 	    // set the status
-	    $status_header = 'HTTP/1.1 ' . $status . ' ' . self::_getStatusCodeMessage($status);
+	    $status_header = 'HTTP/1.1 ' . $status . ' ' . self::getStatusCodeMessage($status);
 	    header($status_header);
 	    // and the content type
 	    header('Content-type: ' . $content_type);
@@ -71,10 +71,10 @@ class Rest
 	<html>
 	<head>
 	    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-	    <title>' . $status . ' ' . self::_getStatusCodeMessage($status) . '</title>
+	    <title>' . $status . ' ' . self::getStatusCodeMessage($status) . '</title>
 	</head>
 	<body>
-	    <h1>' . self::_getStatusCodeMessage($status) . '</h1>
+	    <h1>' . self::getStatusCodeMessage($status) . '</h1>
 	    <p>' . $message . '</p>
 	    <hr />
 	    <address>' . $signature . '</address>
