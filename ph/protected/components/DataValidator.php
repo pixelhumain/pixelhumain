@@ -130,7 +130,7 @@ class DataValidator {
 		// Is the start Date before endDate
 	    $res = "";
 	    $endDate = DateTime::createFromFormat('Y-m-d H:i:s', $object["endDate"]);
-	    $startDate = DateTime::createFromFormat('Y-m-d H:i', $toValidate);
+	    $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $toValidate);
 	    
 		//Try to convert the startDate
 		if (empty($startDate)) {
@@ -152,7 +152,8 @@ class DataValidator {
 	    $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $object["startDate"]);
 	    
 	    //Try to convert the endDate
-	    $endDate = DateTime::createFromFormat('Y-m-d H:i', $toValidate);
+	    //var_dump($toValidate);
+	    $endDate = DateTime::createFromFormat('Y-m-d H:i:s', $toValidate);
 	    if (empty($endDate)) {
 			$endDate = DateTime::createFromFormat('Y-m-d', $toValidate);
 		} 
