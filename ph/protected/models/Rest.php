@@ -25,7 +25,7 @@ class Rest
 	public static function sendResponse($status = 200, $body = '', $content_type = 'text/html')
 	{
 	    // set the status
-	    $status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);
+	    $status_header = 'HTTP/1.1 ' . $status . ' ' . self::_getStatusCodeMessage($status);
 	    header($status_header);
 	    // and the content type
 	    header('Content-type: ' . $content_type);
@@ -71,10 +71,10 @@ class Rest
 	<html>
 	<head>
 	    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-	    <title>' . $status . ' ' . $this->_getStatusCodeMessage($status) . '</title>
+	    <title>' . $status . ' ' . self::_getStatusCodeMessage($status) . '</title>
 	</head>
 	<body>
-	    <h1>' . $this->_getStatusCodeMessage($status) . '</h1>
+	    <h1>' . self::_getStatusCodeMessage($status) . '</h1>
 	    <p>' . $message . '</p>
 	    <hr />
 	    <address>' . $signature . '</address>
@@ -109,7 +109,7 @@ class Rest
 	    // Check if we have the USERNAME and PASSWORD HTTP headers set?
 	    if(!(isset($_SERVER['HTTP_X_USERNAME']) and isset($_SERVER['HTTP_X_PASSWORD']))) {
 	        // Error: Unauthorized
-	        $this->_sendResponse(401);
+	        self::_sendResponse(401);
 	    }
 	    $username = $_SERVER['HTTP_X_USERNAME'];
 	    $password = $_SERVER['HTTP_X_PASSWORD'];
@@ -117,10 +117,10 @@ class Rest
 	    $user=User::model()->find('LOWER(username)=?',array(strtolower($username)));
 	    if($user===null) {
 	        // Error: Unauthorized
-	        $this->_sendResponse(401, 'Error: User Name is invalid');
+	        self::_sendResponse(401, 'Error: User Name is invalid');
 	    } else if(!$user->validatePassword($password)) {
 	        // Error: Unauthorized
-	        $this->_sendResponse(401, 'Error: User Password is invalid');
+	        self::_sendResponse(401, 'Error: User Password is invalid');
 	    }
 	}
 }
