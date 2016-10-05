@@ -116,7 +116,7 @@ class DataValidator {
 					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value );
 				else {
 					$res["result"] = false;
-					$res["msg"] = $key;
+					$res["msg"] = "Contenu Invalide ".$key;
 				}
 			} catch( Exception $e ) {
 				$res["result"] = false;
