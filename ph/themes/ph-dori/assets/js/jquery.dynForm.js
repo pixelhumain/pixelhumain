@@ -62,7 +62,7 @@ onSave: (optional) overloads the generic saveProcess
 			* Error Section
 			***************************************** */
 			var errorHTML = '<div class="errorHandler alert alert-danger no-display">'+
-							'<i class="fa fa-remove-sign"></i> You have some form errors. Please check below.'+
+							'<i class="fa fa-remove-sign"></i> Merci de corriger les erreurs ci dessous.'+
 						'</div>';
 			$(settings.formId).append(errorHTML);
 
@@ -83,9 +83,15 @@ onSave: (optional) overloads the generic saveProcess
 	       
         	fieldHTML += '<div class="form-actions">'+
         				'<div class="space20"></div>'+
-						'<button id="btn-submit-form" type="submit" class="btn btn-success pull-right">'+
+        				
+						'<button id="btn-submit-form" type="submit" class="btn btn-default text-azure text-bold pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
-						'</button>'+
+						'</button> '+
+
+						' <a href="javascript:$(\'#ajax-modal\').modal(\'hide\');" class="btn btn-default pull-right text-red" style="margin-right:10px;">'+
+							'<i class="fa fa-times "></i> Annuler'+
+						'</a> '+
+
 					'</div>';
 
 	        $(settings.formId).append(fieldHTML);
@@ -691,7 +697,7 @@ onSave: (optional) overloads the generic saveProcess
 									weekStart: 1,
 									minuteStep: 15,
 									language: 'fr',
-									format: 'dd/mm/yyyy hh:ii'
+									format: 'yyyy/mm/dd hh:ii'
 								   });
 							};
 			if( jQuery.isFunction(jQuery.fn.datetimepicker) )
