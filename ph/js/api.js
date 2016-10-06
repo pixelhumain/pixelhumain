@@ -490,6 +490,15 @@ var jsonHelper = {
     } else
       delete nodeParent[path];
   },
+  swapJsonKeyValues : function(srcObj) {
+      var one, output = {};
+      for (one in srcObj) {
+          if (srcObj.hasOwnProperty(one)) {
+              output[srcObj[one]] = one;
+          }
+      }
+      return output;
+  },
   /*
   convert
   { "clim":75,"informatique": 223 }
