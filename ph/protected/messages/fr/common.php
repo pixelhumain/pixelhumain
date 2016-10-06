@@ -306,6 +306,13 @@ return array(
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
+	
+	"persons" => "citoyens",
+	"people" => "citoyens",
+	"organizations" => "organisations",
+	"projects" => "projets",
+	"events" => "événements",
+
 	"of the event" => "de l'événement",
 	"of the organization" => "de l'organisation",
 	"of the project" => "du projet",
