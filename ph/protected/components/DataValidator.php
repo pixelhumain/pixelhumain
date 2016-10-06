@@ -206,6 +206,11 @@ class DataValidator {
 		return $res;
 	}
 
+
+	public static function typeOrganization($toValidate) {
+		$result = (Organization::checkType($toValidate)?"":"Le type de l'organisation n'est pas conforme.");
+		return $result;
+	}
 	
 
 }
