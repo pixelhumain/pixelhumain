@@ -116,7 +116,7 @@ class DataValidator {
 					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value );
 				else {
 					$res["result"] = false;
-					$res["msg"] = $key;
+					$res["msg"] = "Contenu Invalide ".$key;
 				}
 			} catch( Exception $e ) {
 				$res["result"] = false;
@@ -130,7 +130,7 @@ class DataValidator {
 		// Is the start Date before endDate
 	    $res = "";
 	    $endDate = DateTime::createFromFormat('Y-m-d H:i:s', $object["endDate"]);
-	    $startDate = DateTime::createFromFormat('Y-m-d H:i', $toValidate);
+	    $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $toValidate);
 	    
 		//Try to convert the startDate
 		if (empty($startDate)) {
@@ -152,7 +152,8 @@ class DataValidator {
 	    $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $object["startDate"]);
 	    
 	    //Try to convert the endDate
-	    $endDate = DateTime::createFromFormat('Y-m-d H:i', $toValidate);
+	    //var_dump($toValidate);
+	    $endDate = DateTime::createFromFormat('Y-m-d H:i:s', $toValidate);
 	    if (empty($endDate)) {
 			$endDate = DateTime::createFromFormat('Y-m-d', $toValidate);
 		} 

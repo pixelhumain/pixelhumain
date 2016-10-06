@@ -72,7 +72,7 @@ mongod --dbpath data/db
 PixelHumain is set with composer in order to manage dependencies and libraries.
 - [Clone](https://github.com/pixelhumain/pixelhumain) the repository in order to recover the files
 - If you don't have it get the composer (https://getcomposer.org/)
-- Modify the file /ph/protected/config/dbconfig.php with your database name and URL
+- Create the file /ph/protected/config/dbconfig.php with your database name and URL. 
 ```
 $dbconfig = array(
     'class' => 'mongoYii.EMongoClient',
@@ -80,6 +80,7 @@ $dbconfig = array(
     'db' => 'pixelhumain',
 );
 ```
+You can find an example of dbconfig in the file /ph/protected/config/dbconfig.example.php
 - Create a new folder called "runtime" in the directory "path/to/pixelhumain/ph/protected/"
 - Create a new folder called "assets" in the directory "path/to/pixelhumain/ph"
 - Launch following commands to initiate the application :
