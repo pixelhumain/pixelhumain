@@ -262,7 +262,7 @@ To be able to run local instance of pixelhumain you need to create local folders
 <br/>
 
 ### 1- Modify config file for database access
-Modify the file `.../ph/protected/config/dbconfig.php` with your database name and URL (if you customized database name and/or database system mongo/mysql...)
+Create the file `.../ph/protected/config/dbconfig.php` with your database name and URL (if you customized database name and/or database system mongo/mysql...)
 
 
 	$dbconfig = array(
@@ -270,7 +270,7 @@ Modify the file `.../ph/protected/config/dbconfig.php` with your database name a
    		'server' => 'mongodb://127.0.0.1:27017/',
     	'db' => 'pixelhumain',    
 	);
-
+You can find an example of dbconfig in the file /ph/protected/config/dbconfig.example.php
 
 ### 2- Create local cache folders
 

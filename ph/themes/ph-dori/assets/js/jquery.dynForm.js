@@ -40,6 +40,7 @@ onSave: (optional) overloads the generic saveProcess
 				formValues: {},
 				onLoad : null,
 				onSave: null,
+				beforeSave: null,
 				savePath : '/ph/common/save'
 			};
 
@@ -573,8 +574,13 @@ onSave: (optional) overloads the generic saveProcess
 			rules : formRules,
 
 			submitHandler : function(form) {
+				$("#btn-submit-form").html('<i class="fa  fa-spinner fa-spin fa-"></i>');//.prop("disabled",true);
 				errorHandler.hide();
 				console.info("form submitted "+params.formId);
+				
+				if(params.beforeSave && jQuery.isFunction( params.beforeSave ) )
+					params.beforeSave();
+
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
 					params.onSave();
 					return false;
@@ -601,6 +607,7 @@ onSave: (optional) overloads the generic saveProcess
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
+				$("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>');//.prop("disabled",false);
 			}
 		});
 		
@@ -731,7 +738,7 @@ onSave: (optional) overloads the generic saveProcess
 								$('.daterangeInput').daterangepicker({
 						            timePicker: true,
 						            timePickerIncrement: 30,
-						            format: 'MM/DD/YYYY h:mm A'
+						            format: 'DD/MM/YYYY h:mm A'
 						        }, function(start, end, label) {
 						            console.log(start.toISOString(), end.toISOString(), label);
 						        });
