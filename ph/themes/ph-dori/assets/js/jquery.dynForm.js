@@ -340,8 +340,8 @@ onSave: (optional) overloads the generic saveProcess
         	console.log("build a >>>>>> array list");
         	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
 								'<div class="col-sm-10">'+
-									'<input type="text" name="'+field+'[]" class="addmultifield form-control input-md value="" placeholder="'+placeholder+'"/>'+
-									'<div class="resultGetUrl"></div>'+
+									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
+									'<div class="resultGetUrl resultGetUrl0"></div>'+
 								'</div>'+
 								'<div class="col-sm-2">'+
 									'<button data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
@@ -351,14 +351,16 @@ onSave: (optional) overloads the generic saveProcess
 							'<div class="col-sm-12">'+
 								'<div class="space10"></div>'+
 						        '<a href="javascript:;" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" class="addPropBtn btn btn-xs btn-success" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
+						        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
+						        
 				       		'</div></span>'+
-				       '<div class="space5"></div><div class="cocotest"></div>';
+				       '<div class="space5"></div>';
 			
 			if( fieldObj.init && $.isFunction(fieldObj.init) )
         		initField = fieldObj.init;
         	
 			initField = function(){
-				
+				//$("#loading_indicator").hide();
 				//initialize values
 				//value is an array of strings
 				$.each(fieldObj.value, function(optKey,optVal) {
@@ -888,12 +890,10 @@ onSave: (optional) overloads the generic saveProcess
 	        else
 	        	toastr.warning("La paire (clef/valeure) doit etre remplie.");
 	    }
-	    console.log("chenaged ");
-	  	if( $(this).val().indexOf("http:") >= 0){
-	  		$( this ).parent().children(".resultGetUrl").html("<span class='text-red text-bold'>chenaged</span> ");
-	  	}
 	  });
 
+	  var count = $(".addmultifield").length-1;
+	  getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count);
 	  //manage using Enter to make easy loop editing
 	  //for 2nd property field
 	  $(parentContainer+' .addmultifield1').unbind('keydown').keydown(function(event) 
@@ -931,7 +931,7 @@ onSave: (optional) overloads the generic saveProcess
 		if( typeof propVal == "undefined" ) 
 	    	propVal = {"label":"","value":""};
 		var str = '<div class="space5"></div><div class="col-sm-3">'+
-					'<input type="text" name="'+name+'[]" class="addmultifield form-control input-md" value="'+propVal.label+'" />'+
+					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
 				'</div>'+
 				'<div class="col-sm-7">'+
 					'<textarea type="text" name="values[]" class="addmultifield1 form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);" placeholder="valeur"   >'+propVal.value+'</textarea>'+
@@ -948,9 +948,10 @@ onSave: (optional) overloads the generic saveProcess
 		console.log("arrayLineHTML : ",val);
 		if( typeof val == "undefined" ) 
 	    	val = "";
+	    var count = $(".addmultifield").length;
 		var str = '<div class="space5"></div><div class="col-sm-10">'+
-					'<input type="text" name="'+name+'[]" class="addmultifield form-control input-md" value="'+val+'"/>'+
-					'<div class="resultGetUrl"></div>'
+					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'"/>'+
+					'<div class="resultGetUrl resultGetUrl'+count+'"></div>'+
 					'</div>'+
 					'<div class="col-sm-2">'+
 					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-left" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
