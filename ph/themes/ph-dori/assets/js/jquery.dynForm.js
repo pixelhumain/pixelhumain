@@ -140,8 +140,11 @@ onSave: (optional) overloads the generic saveProcess
         var style = "";
         if( fieldObj.value ) 
         	value = fieldObj.value;
-        else if (formValues && formValues[field]) 
+        else if (formValues && formValues[field]) {
         	value = formValues[field];
+        }
+        if(value!="")
+        	console.warn("--------------- dynform form Values",field,value);
 
         /* **************************************
 		* 
@@ -178,7 +181,7 @@ onSave: (optional) overloads the generic saveProcess
         else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
         	if ( fieldObj.inputType == "timestamp" )
         		value = Date.now();
-        	console.log("build a >>>>>> hidden, timestamp");
+        	console.log("build field "+field+">>>>>> hidden, timestamp");
         	fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
         }
         /* **************************************
@@ -187,7 +190,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){ 
         	if(fieldObj.inputType == "wysiwyg")
         		fieldClass += " wysiwygInput";
-        	console.log("build a >>>>>> textarea, wysiwyg");
+        	console.log("build field "+field+">>>>>> textarea, wysiwyg");
         	fieldHTML += '<textarea id="'+field+'" class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
         }
         /* **************************************
@@ -198,7 +201,7 @@ onSave: (optional) overloads the generic saveProcess
 	       	var checked = ( fieldObj.checked ) ? "checked" : "";
 	       	var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
 	       	var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.switch.onText+"' data-off-text='"+fieldObj.switch.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
-	       	console.log("build a >>>>>> checkbox");
+	       	console.log("build field "+field+">>>>>> checkbox");
 	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+' '+switchData+'/> '+placeholder;
 	       	initField = function(){
 	       		if( fieldObj.switch )
@@ -213,7 +216,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) 
         {
        		var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
-       		console.log("build a >>>>>> select selectMultiple");
+       		console.log("build field "+field+">>>>>> select selectMultiple");
        		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
        		fieldHTML += '<select class="'+isSelect2+' '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px" data-placeholder="'+placeholder+'">';
 			if(placeholder)
@@ -234,7 +237,7 @@ onSave: (optional) overloads the generic saveProcess
         }
 
         /*else if ( fieldObj.inputType == "selectList"  ) {
-       		console.log("build a >>>>>> select selectList");
+       		console.log("build field "+field+">>>>>> select selectList");
 			fieldHTML += '<ul role="menu" class="dropdown-menu scrollable-menu '+fieldClass+'" id="'+field+'" style="width: 100%;height:30px" >'+
 	            '<li class="categoryOrgaEvent col-md-12">'+
 	                '<ul class="dropOrgaEvent" id="citoyen">'+	                    
@@ -258,7 +261,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "image" ) {
         	if(placeholder == "")
         		placeholder="add Image";
-        	console.log("build a >>>>>> image");
+        	console.log("build field "+field+">>>>>> image");
         	fieldHTML += '<form method="post" id="photoAddForm" enctype="multipart/form-data">'+
 							iconOpen+
 							'<input type="file" class="form-control newImage '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" accept=".gif, .jpg, .png" onchange="showMyImage2(this)"/>'+
@@ -275,7 +278,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "date" ) {
         	if(placeholder == "")
         		placeholder="25/01/2014";
-        	console.log("build a >>>>>> date");
+        	console.log("build field "+field+">>>>>> date");
         	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -285,7 +288,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "datetime" ) {
         	if(placeholder == "")
         		placeholder="25/01/2014 08:30";
-        	console.log("build a >>>>>> datetime");
+        	console.log("build field "+field+">>>>>> datetime");
         	fieldHTML += iconOpen+'<input type="text" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
         /* **************************************
@@ -294,7 +297,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "daterange" ) {
         	if(placeholder == "")
         		placeholder="25/01/2014";
-			console.log("build a >>>>>> daterange");
+			console.log("build field "+field+">>>>>> daterange");
         	fieldHTML += iconOpen+'<input type="text" class="form-control daterangeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -304,7 +307,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "time" ) {
         	if(placeholder == "")
         		placeholder="20:30";
-        	console.log("build a >>>>>> time");
+        	console.log("build field "+field+">>>>>> time");
         	fieldHTML += iconOpen+'<input type="text" class="form-control timeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -314,7 +317,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "link" ) {
         	if(fieldObj.url.indexOf("http://") < 0 )
         		fieldObj.url = "http://"+fieldObj.url;
-        	console.log("build a >>>>>> link");
+        	console.log("build field "+field+">>>>>> link");
         	fieldHTML += '<a class="btn btn-primary '+fieldClass+'" href="'+fieldObj.url+'">Go There</a>';
         } 
 
@@ -322,7 +325,7 @@ onSave: (optional) overloads the generic saveProcess
 		* LOCATION
 		***************************************** */
         else if ( fieldObj.inputType == "location" ) {
-        	console.log("build a >>>>>> location");
+        	console.log("build field "+field+">>>>>> location");
         	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" locationBtn btn btn-default'><i class='text-azure fa fa-map-marker fa-2x'></i> Localiser </a>";
         	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
@@ -337,7 +340,7 @@ onSave: (optional) overloads the generic saveProcess
 		* ARRAY , is a list of sequential values
 		***************************************** */
         else if ( fieldObj.inputType == "array" ) {
-        	console.log("build a >>>>>> array list");
+        	console.log("build field "+field+">>>>>> array list");
         	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
 								'<div class="col-sm-10">'+
 									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
@@ -378,7 +381,7 @@ onSave: (optional) overloads the generic saveProcess
 		* PROPERTIES , is a list of pairs key/values
 		***************************************** */
         else if ( fieldObj.inputType == "properties" ) {
-        	console.log("build a >>>>>> properties list");
+        	console.log("build field "+field+">>>>>> properties list");
         	fieldHTML += '<div class="inputs properties">'+
 								'<div class="col-sm-3">'+
 									'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
@@ -414,7 +417,7 @@ onSave: (optional) overloads the generic saveProcess
 		* CAPTCHA
 		***************************************** */
         else if ( fieldObj.inputType == "recaptcha" ) {
-        	console.log("build a >>>>>> recaptcah");
+        	console.log("build field "+field+">>>>>> recaptcah");
         	fieldHTML += '<div class="g-recaptcha" data-sitekey="'+fieldObj.key+'"></div>';
         } 
         
@@ -423,7 +426,7 @@ onSave: (optional) overloads the generic saveProcess
 		* CUSTOM 
 		***************************************** */
         else if ( fieldObj.inputType == "custom" ) {
-        	console.log("build a >>>>>> custom");
+        	console.log("build field "+field+">>>>>> custom");
         	fieldHTML += fieldObj.html;
         } 
         /* 	*************************************
@@ -545,7 +548,7 @@ onSave: (optional) overloads the generic saveProcess
         }
  
         else {
-        	console.log("build a >>>>>> input text");
+        	console.log("build field "+field+">>>>>> input text");
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
         if( fieldObj.custom )
