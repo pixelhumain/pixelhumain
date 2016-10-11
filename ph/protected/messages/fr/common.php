@@ -634,6 +634,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Connect to your city" => "Communectez-moi",
 	"Unknown Postal Code" => "Code Postal introuvable",
 	"Update Locality" => "Modifier vos coordonnées",
+	"Show map" => "Voir la carte",
 
 );
 
