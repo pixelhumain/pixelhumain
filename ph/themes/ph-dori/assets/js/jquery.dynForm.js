@@ -77,9 +77,9 @@ onSave: (optional) overloads the generic saveProcess
 			/* **************************************
 			* CONTEXT ELEMENTS, used for saving purposes
 			***************************************** */
-			fieldHTML = '<input type="hidden" name="key" value="'+settings.formObj.key+'"/>';
-	        fieldHTML += '<input type="hidden" name="collection" value="'+settings.formObj.collection+'"/>';
-	        fieldHTML += '<input type="hidden" name="id" value="'+((settings.formObj.id) ? settings.formObj.id : "")+'"/>';
+			fieldHTML = '<input type="hidden" name="key" id="key" value="'+settings.formObj.key+'"/>';
+	        fieldHTML += '<input type="hidden" name="collection" id="collection" value="'+settings.formObj.collection+'"/>';
+	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues.id) ? settings.formValues.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
         				'<div class="space20"></div>'+
@@ -94,7 +94,7 @@ onSave: (optional) overloads the generic saveProcess
 
 					'</div>';
 
-	        $(settings.formId).append(fieldHTML);
+	        $( settings.formId ).append(fieldHTML);
 
 			/* **************************************
 			* bind any events Post building 
@@ -334,6 +334,17 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="address" name="address[streetAddress]" id="address[streetAddress]" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
+			
+			//locations are saved in addresses attribute
+			if( formValues.addresses ){
+				initField = function(){
+					$.each(formValues.addresses, function(i,locationObj){
+						console.warn("init location",locationObj.address.addressLocality,locationObj.address.postalCode);
+						copyMapForm2Dynform(locationObj);
+						addLocationToForm(locationObj);
+					});
+				};
+			}       
         } 
 
         /* **************************************
@@ -359,6 +370,10 @@ onSave: (optional) overloads the generic saveProcess
 				       		'</div></span>'+
 				       '<div class="space5"></div>';
 			
+			if( formValues && formValues[field] ){
+				fieldObj.value = formValues[field];
+			}
+			
 			if( fieldObj.init && $.isFunction(fieldObj.init) )
         		initField = fieldObj.init;
         	
@@ -371,6 +386,14 @@ onSave: (optional) overloads the generic saveProcess
 	                    $(".addmultifield").val(optVal);
 	                else 
 	                	addfield("."+field+fieldObj.inputType,optVal,field);
+	                if( formValues && formValues.medias ){
+	                	$.each(formValues.medias, function(i,mediaObj) {
+	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
+	                			var strHtml = buildMediaHTML(mediaObj);
+	                			$(".resultGetUrl"+optKey).html(strHtml);
+	                		}
+	                	});
+	                }
 				});
 				initMultiFields('.'+field+fieldObj.inputType,field);
 			}
@@ -397,7 +420,6 @@ onSave: (optional) overloads the generic saveProcess
 						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
 				       		'</div></span>'+
 				       '<div class="space5"></div>';
-			
 			
 
 			initField = function(){
@@ -959,6 +981,21 @@ onSave: (optional) overloads the generic saveProcess
 					'<div class="col-sm-2">'+
 					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-left" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
 				'</div>';
+		return str;
+	}
+	function buildMediaHTML(mediaObj){
+		console.log("buildMediaHTML : ",mediaObj.name);
+		var str = '<div class="extracted_url padding-10">'+
+				'<div class="extracted_thumb  col-xs-4" id="extracted_thumb">'+
+					'<a href="#" class="videoSignal text-white center"><i class="fa fa-3x fa-play-circle-o"></i>'+
+					'<input class="videoLink" value="'+mediaObj.content.url+'" type="hidden"></a>'+
+					'<img src="'+mediaObj.content.image+'" width="100" height="100">'+
+				'</div>'+
+				'<div class="extracted_content col-xs-8 padding-5">'+
+					'<h4><a href="'+mediaObj.content.url+'" target="_blank" class="lastUrl text-dark">'+mediaObj.name+'</a></h4>'+
+					'<p>'+mediaObj.description+'</p>'+
+				'</div>'+
+			'</div>';
 		return str;
 	}
 
