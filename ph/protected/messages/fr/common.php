@@ -328,6 +328,7 @@ return array(
 	"Visualize" => "Visualiser",
 	"History" => "Historique",
 	"Settings" => "Paramètres",
+	"Confidentiality params" => "Paramètres de confidentialité",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
@@ -611,10 +612,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 
 	"QR Code" => "QR Code",
-	"Show the QRCode for this organization" => "Voir le QR Code de cette organisation.",
-	"Show the QRCode for this person" => "Voir le QR Code de cette personne.",
-	"Show the QRCode for this event" => "Voir le QR Code de cet évènement.",
-	"Show the QRCode for this project" => "Voir le QR Code de ce projet.",
+	"Show the QRCode for " => "Voir le QR Code de ",
 	"Public" => "Public",
 	"Private" => "Privé",
 	"Mask" => "Masqué",
@@ -631,7 +629,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 
 	"Create" => "Créer",
-
+	"Complete or correct the informations of" => "Compléter ou corriger les informations de",
 	"Why ?" => "Pourquoi ?",
 	"Connect to your city" => "Communectez-moi",
 	"Unknown Postal Code" => "Code Postal introuvable",

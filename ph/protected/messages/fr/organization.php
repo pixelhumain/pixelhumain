@@ -47,6 +47,7 @@
 		"Are you sure you want to delete the organization : " => "Etes vous sur(e) de vouloir supprimer l'organisation : ",
 		"DISABLED" => "DESACTIVEE",
 		"Organization disabled !" => "L'organisation n'est plus active !",
+		"The organization has been updated" => "L'organisation a été mise à jour",
 
 	);
 ?>

@@ -10,6 +10,8 @@
 		"Evaluate your projet as commons"=> "Evaluer votre projet comme un commun",
 			"Contact information" => "Informations générales",
 			"Edit your informations" => "Editer vos informations",
+			"The project has been updated" => "Le projet a été mis à jour",
+			"Project licence" => "licence du projet",
 	);
 
 

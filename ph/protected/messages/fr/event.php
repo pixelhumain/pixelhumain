@@ -29,6 +29,7 @@
 		"guest" => "invité",
 		"Contact information" => "Informations générales",
 		"Edit your informations" => "Editer vos informations",
+		"The event has been updated" => "L&rsquo;événement a été mis à jour",
 	)
 
 ?>
