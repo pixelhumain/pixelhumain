@@ -400,6 +400,7 @@ return array(
 	"Become contributor" 								=> "Devenir contributeur",
 	"Become attendee" 								=> "Participer à l'évènement",
 	"Accept this person" => "Accepter ce citoyen",
+	"Accept this citoyen" => "Accepter ce citoyen",
 	"Add as admin" => "Ajouter comme admin",
 
 	"Local network" => "Réseau local",
