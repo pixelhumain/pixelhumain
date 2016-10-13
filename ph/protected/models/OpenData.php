@@ -7,8 +7,8 @@ class OpenData
      * Use the ISO_3166-1 list (http://en.wikipedia.org/wiki/ISO_3166-1)
      */
     public static $phCountries = array( 
+                                        "BE"=>"Belgique", 
                                         "FR"=>"France",
-                                        "BEL"=>"Belgique", 
                         				"GP"=>"Guadeloupe", //971
                       					"GF"=>"Guyanne Française", //973
                         				"MQ"=>"Martinique", //972
