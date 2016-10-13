@@ -364,13 +364,14 @@ onSave: (optional) overloads the generic saveProcess
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
 							'<div class="col-sm-12">'+
 								'<div class="space10"></div>'+
-						        '<a href="javascript:;" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" class="addPropBtn btn btn-xs btn-success" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
+						        '<a href="javascript:;" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" class="addPropBtn btn btn-xs btn-success w100p" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
 						        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
 						        
 				       		'</div></span>'+
 				       '<div class="space5"></div>';
 			
 			if( formValues && formValues[field] ){
+				console.warn("dynForm >> ",field, formValues[field]);
 				fieldObj.value = formValues[field];
 			}
 			
