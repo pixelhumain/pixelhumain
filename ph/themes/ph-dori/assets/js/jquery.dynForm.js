@@ -88,7 +88,7 @@ onSave: (optional) overloads the generic saveProcess
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
-						' <a href="javascript:$(\'#ajax-modal\').modal(\'hide\');" class="btn btn-default pull-right text-red" style="margin-right:10px;">'+
+						' <a href="javascript:;"" onclick="$(\'#ajax-modal\').modal(\'hide\');" class="btn btn-default pull-right text-red" style="margin-right:10px;">'+
 							'<i class="fa fa-times "></i> Annuler'+
 						'</a> '+
 
