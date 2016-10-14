@@ -194,6 +194,7 @@ jQuery(document).ready(function()
 {
 
 	//initNotifications();
+	//bindLBHLinks();
 	bindNotifEvents();
 	refreshNotifications();
 });
