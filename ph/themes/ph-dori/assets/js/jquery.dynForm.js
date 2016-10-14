@@ -608,7 +608,7 @@ onSave: (optional) overloads the generic saveProcess
 			rules : formRules,
 
 			submitHandler : function(form) {
-				$("#btn-submit-form").html('<i class="fa  fa-spinner fa-spin fa-"></i>');//.prop("disabled",true);
+				$("#btn-submit-form").html('<i class="fa  fa-spinner fa-spin fa-"></i>').prop("disabled",true);
 				errorHandler.hide();
 				console.info("form submitted "+params.formId);
 				
@@ -641,7 +641,7 @@ onSave: (optional) overloads the generic saveProcess
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
-				$("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>');//.prop("disabled",false);
+				$("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>');.prop("disabled",false);
 			}
 		});
 		
