@@ -517,13 +517,12 @@ return array(
 
 	"Organizations types" => "Type d'organisations",
 
-	"Add an Event" => "Créer un nouvel événement",
-	"Add a Project" => "Créer un nouveau projet",
-
 	"Administrator" => "Administrateur",
 	"Just a citizen wanting to give visibility to it :)" => "Juste un citoyen qui veut faire connaître cette organisation",
 	"What's your role inside this new organization ?" => "Quel est votre rôle dans cette organisation ?",
-	"Add an Organization" => "Créer une nouvelle organisation",
+	"Add an Organization" => "Ajouter une nouvelle organisation",
+	"Add an Event" => "Ajouter un nouvel événement",
+	"Add a Project" => "Ajouter un nouveau projet",
 
 	"Back to" => "Revenir sur",
 	"Know more" => "En savoir +",
@@ -635,6 +634,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Unknown Postal Code" => "Code Postal introuvable",
 	"Update Locality" => "Modifier vos coordonnées",
 	"Show map" => "Voir la carte",
+
+	"Parenthood" => "Parenté",
 
 );
 
