@@ -635,6 +635,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Update Locality" => "Modifier vos coordonnées",
 	"Show map" => "Voir la carte",
 
+	"Parenthood" => "Parenté",
+
 );
 
 ?>
