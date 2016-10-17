@@ -641,7 +641,7 @@ onSave: (optional) overloads the generic saveProcess
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
-				$("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>');.prop("disabled",false);
+				$("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false);
 			}
 		});
 		
