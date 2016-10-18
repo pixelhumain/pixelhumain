@@ -508,5 +508,11 @@ blockquote{
 .w100p{
 width : 100%
 }
+.w50p{
+width : 50%
+}
+ .text-left{
+  text-align: left;
+ }
 
 
