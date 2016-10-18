@@ -261,6 +261,7 @@ return array(
 	"All-Day" => "Journée",
 	"False" => "Non",
 	"True" => "Oui",
+	"Enter tagsList" => "Entrer des tags",
 	//Color
 	"Green" => "Vert",
 	"Blue" => "bleu",
