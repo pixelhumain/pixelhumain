@@ -86,6 +86,7 @@ return array(
 	"has updated"=>"a modifié",
 	"has added"=>"a ajouté",
 	"has created"=>"a créé",
+	"confirms your invitation and create an account." => "a confirmé(e) votre invitation et créé(e) son compte",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 	
