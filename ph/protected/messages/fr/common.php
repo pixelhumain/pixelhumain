@@ -253,6 +253,7 @@ return array(
 	"open edition" => "l'édition libre",
 	"town of" => "commune de",
 	"Access to all common information of" => "Accèdez au information de toute la commune de",
+	"empty"=>"vide",
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
@@ -405,7 +406,8 @@ return array(
 	"Accept this person" => "Accepter ce citoyen",
 	"Accept this citoyen" => "Accepter ce citoyen",
 	"Add as admin" => "Ajouter comme admin",
-
+	"Manage my parameters" => "Régler mes paramètres",
+	"Manage the parameters of" => "Régler les paramètres de",
 	"Local network" => "Réseau local",
 
 	"Show some statistics about this city"	=> "Afficher les statistiques de cette ville",
