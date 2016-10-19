@@ -505,7 +505,8 @@ return array(
 	"HELP US : BUGS, IDEAS" => "AIDEZ NOUS : BUG, IDEE",
 	"BUGS, IDEAS" => "BUGs, IDÉES",
 	"LOGOUT" 			=> "DÉCONNECTER",
-
+	"My city" 			=> "Ma commune",
+	"Communected me" 	=> "Me Communecter",
 	"LOCAL ACTORS"		=> "Les acteurs locaux",
 	"HAPHAZARD"			=> "Au hasard",
 	
