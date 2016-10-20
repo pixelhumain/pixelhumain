@@ -105,7 +105,7 @@
 <div id="mainMap">
 	<?php 
 		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-		$this->renderPartial($layoutPath.'mainMap');
+		$this->renderPartial('mainMap');
 	?>
 </div>
 
@@ -147,8 +147,7 @@
 
 <?php  
 	if(isset(Yii::app()->session['userId'])) {
-		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-		$this->renderPartial($layoutPath.'notifications2');
+		$this->renderPartial('notifications2');
 	}
 ?>
 
