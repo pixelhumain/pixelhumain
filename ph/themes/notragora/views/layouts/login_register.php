@@ -12,6 +12,7 @@
 			display:none;
 		}
 	}
+	/**/
 	.form-login, .form-register, .form-email{
 		left: unset !important;
 		right: 0% !important;
