@@ -149,10 +149,9 @@
 	<body class="">
 
 		<?php 
-		// $content;
-		//$this->renderPartial($layoutPath.'modals');
-		$this->renderPartial($layoutPath.'index');
-		$this->renderPartial($layoutPath.'modals');
+		echo $content;
+		//$this->renderPartial( $layoutPath.'index',array( "layoutPath" => $layoutPath, "content" => $content));
+		$this->renderPartial( $layoutPath.'modals' );
 		  ?>
 		<!-- start: MAIN JAVASCRIPTS -->
 		<?php

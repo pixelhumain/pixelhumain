@@ -27,19 +27,6 @@
 		'/js/jquery.filter_input.js',
 	);
 	HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->assetsUrl);
-
-	function random_pic()
-    {
-        if(file_exists ( "../../modules/communecter/assets/images/proverb" )){
-          $files = glob('../../modules/communecter/assets/images/proverb/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
-          $res = array();
-          for ($i=0; $i < 8; $i++) { 
-            array_push( $res , str_replace("../../modules/communecter/assets", Yii::app()->controller->module->assetsUrl, $files[array_rand($files)]) );
-          }
-          return $res;
-        } else
-          return array();
-    }
 ?>
 
 <?php 
@@ -104,8 +91,7 @@
 
 <div id="mainMap">
 	<?php 
-		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-		$this->renderPartial('mainMap');
+		$this->renderPartial($layoutPath.'mainMap');
 	?>
 </div>
 
@@ -122,32 +108,33 @@
    // error_log("load IndexDefault");
 ?>
 
-<?php $this->renderPartial('./menu/menuCommunexion'); ?>
+<?php $this->renderPartial($layoutPath.'/menu/menuCommunexion'); ?>
 
 <?php if(!isset($me)) $me=""; 
-	  $this->renderPartial('./menu/menuTop', array("me" => $me)); ?>
+	  $this->renderPartial($layoutPath.'/menu/menuTop', array("me" => $me)); ?>
 
-<?php $this->renderPartial('./menu/menuLeft', array("page" => "accueil", 
+<?php $this->renderPartial($layoutPath.'/menu/menuLeft', array("page" => "accueil", 
 												    "myCity" => $city)); ?>
 
 
 <div class="col-xs-12 no-padding no-margin my-main-container">
-
+	
 	<div class="footer-menu-left"></div>
 
 	<div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-xs-12 main-col-search">
+	<?php echo $content; ?>
 	</div>
 
 	<div id="floopDrawerDirectory" class="floopDrawer"></div>
 
-	<?php $this->renderPartial("login_register"); ?>
+	<?php $this->renderPartial($layoutPath."login_register"); ?>
 
 </div>
 
 
 <?php  
 	if(isset(Yii::app()->session['userId'])) {
-		$this->renderPartial('notifications2');
+		$this->renderPartial($layoutPath.'notifications2');
 	}
 ?>
 
@@ -343,9 +330,6 @@ jQuery(document).ready(function() {
 				loadByHash("#default.live");//news.index.type.citoyens.id."+userId);
 			else
 				loadByHash("#default.live");
-			//}
-
-			//loadByHash("#default.home");
 		}
 	}
 	checkScroll();

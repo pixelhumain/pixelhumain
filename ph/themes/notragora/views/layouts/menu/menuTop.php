@@ -1,14 +1,14 @@
 <?php  HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuTop.css')); ?>
 <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
 	
-	<?php // BTN CO = Live // ?>
+	<?php /* /BTN CO = Live // ?>
 	<a class="pull-left tooltips hidden-xs lbh" href="#default.live"  id="main-btn-co"
 		data-toggle="tooltip" data-placement="bottom" 
 		title="Live'n'direct" 
 		alt="Live'n'direct">
 		<img class="" id="logo-main-menu" src="<?php echo $this->module->assetsUrl?>/images/Communecter-32x32.svg"/>
 	</a>
-	<?php // BTN Doc = Doc // ?>
+	<?php */ // BTN Doc = Doc // ?>
 	<button class="btn-menu btn-menu-top bg-white text-dark tooltips pull-left" 
 			id="btn-documentation" data-hash="#default.view.page.index.dir.docs"
 			data-toggle="tooltip" data-placement="bottom" title="Lire la documentation" alt="Lire la documentation">
