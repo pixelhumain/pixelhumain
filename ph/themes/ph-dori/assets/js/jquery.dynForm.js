@@ -84,7 +84,7 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<div class="form-actions">'+
         				'<div class="space20"></div>'+
         				
-						'<button id="btn-submit-form" type="submit" class="btn btn-default text-azure text-bold pull-right">'+
+						'<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
@@ -95,6 +95,10 @@ onSave: (optional) overloads the generic saveProcess
 					'</div>';
 
 	        $( settings.formId ).append(fieldHTML);
+
+	        $("#btn-submit-form").one(function() { 
+				$( settings.formId ).submit();	        	
+	        });
 
 			/* **************************************
 			* bind any events Post building 
@@ -642,6 +646,9 @@ onSave: (optional) overloads the generic saveProcess
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
 				$("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false);
+				$("#btn-submit-form").one(function() { 
+					$( settings.formId ).submit();	        	
+		        });
 			}
 		});
 		
@@ -862,7 +869,7 @@ onSave: (optional) overloads the generic saveProcess
 			    else {
 			    	lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/summernote/dist/summernote.min.js', 
 							  baseUrl+'/themes/ph-dori/assets/plugins/summernote/dist/summernote.css',
-							  initDate);
+							  initField);
 		    	}
 			}
 		}
