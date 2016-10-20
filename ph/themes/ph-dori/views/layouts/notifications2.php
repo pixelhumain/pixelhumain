@@ -337,7 +337,7 @@ function notifCount()
 		$('.notifications-count').removeClass('badge-info');
 		$(".markAllAsRead").show();
 	} else {
-		$(".notifList").append("<?php echo Yii::t("common","No more notifications for the moment") ?>");
+		$(".notifList").append("<li><i class='fa fa-ban'></i> <?php echo Yii::t("common","No more notifications for the moment") ?></li>");
 		//$('.notifications-count').addClass('hide');
 		$(".notifications-count").html("0");
 		$('.notifications-count').removeClass('badge-success');
