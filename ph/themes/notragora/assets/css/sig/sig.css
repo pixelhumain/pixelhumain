@@ -145,7 +145,7 @@ creer des conflits : regle pas assez specfique
 	height:90%;
 	position:absolute !important;
 	right:5%;
-	top:5%;
+	top:170px !important;
 	background-color:white;
 	-moz-box-shadow: -5px -5px 1px 0px rgba(189, 189, 189, 0.40);
 	-webkit-box-shadow: -5px -5px 1px 0px rgba(189, 189, 189, 0.40);

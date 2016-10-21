@@ -9,18 +9,21 @@ HtmlHelper::registerCssAndScriptsFiles(array( '/assets/css/menus/short_info_prof
      data-tpl="default.menu.short_info_profil">
     
     <?php // MULTITAG / MULTISCOPE // ?>
-    <?php $this->renderPartial('../default/menu/multi_tag_scope', array("me"=>$me)); ?>
+    <?php //$this->renderPartial('../default/menu/multi_tag_scope', array("me"=>$me)); ?>
     
     
 
     <?php // INPUT TEXT GLOBAL SEARCH // ?>
     <div class="input-group group-globalsearch inline hidden-xs">
+      
+      <input type="text" class="text-dark input-global-search" 
+             placeholder="<?php echo Yii::t("common","Search") ?> ..."/>
+
       <span class="input-group-addon" id="basic-addon1">
         <i class="fa fa-search text-dark searchIcon tooltips" 
            data-toggle="tooltip" data-placement="bottom" title="Recherche Globale"></i>
       </span>
-      <input type="text" class="text-dark input-global-search" 
-             placeholder="<?php echo Yii::t("common","Search") ?> ..."/>
+      
     </div>
     <div class="dropdown-result-global-search"></div>
     
