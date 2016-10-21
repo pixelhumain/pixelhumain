@@ -83,6 +83,9 @@ ul.notifList {
   var timeoutGS = setTimeout(function(){ }, 100);
   var timeoutDropdownGS = setTimeout(function(){ }, 100);
   var searchPage = false;
+
+  var ICON_MAP_MENU_TOP = "map";
+
   jQuery(document).ready(function() {
     //hide burger menu if loggued user
     if (typeof userId != undefined && userId != "") {
