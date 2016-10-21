@@ -29,7 +29,7 @@ return array(
         'Processing...' => 'En cours...',
         "Check your mailbox you'll receive soon a mail to validate your email address." => "Vérifiez votre boite aux lettres, vous allez recevoir rapidement un email de validation.",
         'Welcome'=>'Bienvenue',
-        "Firstname Lastname" => 'Nom et Prénom',
+        "Firstname Lastname" => 'Prénom et Nom',
         'Username'=>'Nom d\'utilisateur',
         "Invitation Code" => "Code d'invitation",
         "Add invitation code" => "Ajouter un code d'invitation",
