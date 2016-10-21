@@ -14,7 +14,7 @@ $this->renderPartial('../default/menu/multi_scope', array("me"=>$me));
   <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
   	<?php count($this->notifications); ?>
   </span>
-</button>scpoe
+</button>
 <?php } ?>
 
 </span>
