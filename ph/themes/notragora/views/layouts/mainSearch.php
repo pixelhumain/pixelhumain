@@ -56,31 +56,16 @@
 		$themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
 
 		$cs = Yii::app()->getClientScript();
-		$cs->registerCssFile($themeAssetsUrl. '/plugins/bootstrap/css/bootstrap.min.css');
-		$cs->registerCssFile($themeAssetsUrl. '/plugins/ladda-bootstrap/dist/ladda.min.css');
-		$cs->registerCssFile($themeAssetsUrl. '/plugins/ladda-bootstrap/dist/ladda-themeless.min.css');
-		$cs->registerCssFile($themeAssetsUrl. '/plugins/font-awesome/css/font-awesome.min.css');
-		$cs->registerCssFile($themeAssetsUrl. '/plugins/font-awesome-custom/css/font-awesome.css');
-		$cs->registerScriptFile($themeAssetsUrl. '/plugins/velocity/jquery.velocity.min.js' , CClientScript::POS_END);
-		$cs->registerCssFile($themeAssetsUrl. '/plugins/animate.css/animate.min.css');
-		$cs->registerCssFile($themeAssetsUrl. '/plugins/iCheck/skins/all.css');
-		$cs->registerCssFile($themeAssetsUrl. '/css/styles.css');
-		$cs->registerCssFile($themeAssetsUrl. '/css/styles-responsive.css');
-		$cs->registerCssFile($themeAssetsUrl. '/css/plugins.css');
-		$cs->registerCssFile($themeAssetsUrl. '/plugins/iCheck/skins/all.css');
-		$cs->registerCssFile($themeAssetsUrl. '/plugins/toastr/toastr.min.css');
-		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css');
-		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-modal/js/bootstrap-modal.js' , CClientScript::POS_END);
-		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , CClientScript::POS_END);
-		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-modal/css/bootstrap-modal.css' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
 		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.css');
+
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-modal/css/bootstrap-modal.css' , CClientScript::POS_END);
+		
+		$cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
+		
 		
 		?>
 		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" />
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple.css" type="text/css" id="skin_color">
-		
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple-login.css" type="text/css" id="skin_color">
 
 		<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
@@ -301,15 +286,25 @@
 		$cssAnsScriptFilesModule = array(
 			'/assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js',
 			'/assets/plugins/bootstrap/js/bootstrap.min.js' , 
+			'/assets/plugins/bootstrap/css/bootstrap.min.css',
+			'/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , 
+			'/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css',
+			'/assets/plugins/bootstrap-modal/js/bootstrap-modal.js' , 
+			'/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , 
+			'/assets/plugins/velocity/jquery.velocity.min.js',
 			'/assets/plugins/ladda-bootstrap/dist/spin.min.js' , 
 			'/assets/plugins/ladda-bootstrap/dist/ladda.min.js' , 
+			'/assets/plugins/ladda-bootstrap/dist/ladda.min.css',
+			'/assets/plugins/ladda-bootstrap/dist/ladda-themeless.min.css',
 			'/assets/plugins/iCheck/jquery.icheck.min.js' , 
+			'/assets/plugins/iCheck/skins/all.css',
 			'/assets/plugins/jquery.transit/jquery.transit.js' , 
 			'/assets/plugins/TouchSwipe/jquery.touchSwipe.min.js' , 
 			'/assets/plugins/bootbox/bootbox.min.js' , 
 			'/assets/plugins/jquery-mockjax/jquery.mockjax.js' , 
 			'/assets/plugins/blockUI/jquery.blockUI.js' , 
 			'/assets/plugins/toastr/toastr.js' , 
+			'/assets/plugins/toastr/toastr.min.css',
 			'/assets/plugins/jquery-cookie/jquery.cookie.js' , 
 			'/assets/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
 
@@ -324,6 +319,14 @@
 			'/assets/plugins/lightbox2/css/lightbox.css',
 			'/assets/plugins/lightbox2/js/lightbox.min.js',
 
+			'/assets/plugins/animate.css/animate.min.css',
+			'/assets/plugins/font-awesome/css/font-awesome.min.css',
+			'/assets/plugins/font-awesome-custom/css/font-awesome.css',
+			
+			'/assets/css/styles.css',
+			'/assets/css/styles-responsive.css',
+			'/assets/css/plugins.css',
+			
 			'/assets/css/search.css',
 			'/assets/css/floopDrawerRight.css',
 			'/assets/css/sig/sig.css',
