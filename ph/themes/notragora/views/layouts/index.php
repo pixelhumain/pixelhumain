@@ -17,7 +17,6 @@
 
 	$cssAnsScriptFilesModule = array(
 		'/js/default/index.js',
-		'/js/communecter.js',
 		'/js/dataHelpers.js',
 		'/js/sig/localisationHtml5.js',
 		'/js/floopDrawerRight.js',
