@@ -51,8 +51,8 @@
 				FOCUS
 			</span>
 		</div>
-		<div class="col-md-12"><hr>
-			<img src="<?php echo $this->module->assetsUrl?>/images/velo.png" class="img-responsive">
+		<div class="col-md-12" id="poiParent">
+			<!--<img src="<?php echo $this->module->assetsUrl?>/images/velo.png" class="img-responsive">-->
 		</div>
 		<div class="col-md-12 margin-top-15">
 			<span class="title-menu-left">

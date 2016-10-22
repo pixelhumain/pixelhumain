@@ -1,16 +1,28 @@
-<?php  HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuTop.css')); ?>
+<?php  HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuTop.css')); 
+	$poiList = Poi::getPoiByTagsAndLimit();
+?>
 
 <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
+	<?php if (!empty($poiList)) { ?>
 	<div class="col-xs-12 no-padding main-gallery-top">
 		<div class="pull-left">
-		<?php for($i=0;$i<12;$i++){ ?>
+		<?php foreach ($poiList as $data) { 
+			if(@$data["medias"] && @$data["medias"][0]["content"]["image"] && !empty($data["medias"][0]["content"]["image"]))
+				$src = $data["medias"][0]["content"]["image"];
+			else 
+				$src = Yii::app()->getRequest()->getBaseUrl(true).$this->module->assetsUrl."/images/NA png";
+			$name = $data["name"];
+			$href = "#element.detail.type.".Poi::COLLECTION.".id.".(string)$data["_id"];
+		?>
 			<span class="item-galley-top">
-				<img src="<?php echo $this->module->assetsUrl?>/images/NA.png" class="img-galley-top">
+				<a href="<?php echo $href ?>" class="lbh">
+					<img src="<?php echo $src ?>" class="img-galley-top">
+				</a>
 			</span>
 		<?php } ?>
 		</div>
 	</div>
-	
+	<?php } ?>
 	<?php  //BTN NOTRAGORA // ?>
 	<a class="pull-left tooltips hidden-xs lbh col-md-2" href="#default.live"  id="main-btn-co"
 		data-toggle="tooltip" data-placement="bottom" 
@@ -22,27 +34,27 @@
 	
 	<?php // BTN Doc = Doc // ?>
 	<button class="btn-menu-top tooltips pull-left" 
-			id="" data-hash="#default.view.page.index.dir.docs"
+			id="" data-hash="#default.home"
 			data-toggle="tooltip" data-placement="bottom" title="Accueil" alt="Accueil">
 			<i class="fa fa-home"></i>
 	</button>
 	
 	<?php // BTN Doc = Doc // ?>
-	<button class="btn-menu-top tooltips pull-left" 
-			id="" data-hash="#default.view.page.index.dir.docs"
+	<button class="btn-menu-top tooltips pull-left lbh" 
+			id="" data-hash="#default.directory?type=projects"
 			data-toggle="tooltip" data-placement="bottom" title="Groupe de travail" alt="Groupe de travail">
 			<i class="fa fa-group"></i>
 	</button>
 	
 	<?php // BTN Doc = Doc // ?>
-	<button class="btn-menu-top tooltips pull-left" 
-			id="" data-hash="#default.view.page.index.dir.docs"
+	<button class="btn-menu-top tooltips pull-left lbh" 
+			id="" data-hash="#default.directory?type=poi"
 			data-toggle="tooltip" data-placement="bottom" title="Productions" alt="Productions">
 			<i class="fa fa-video-camera"></i>
 	</button>
 	
 	<?php // BTN Doc = Doc // ?>
-	<button class="btn-menu-top tooltips pull-left active" 
+	<button class="btn-menu-top tooltips pull-left active lbh" 
 			id="" data-hash="#default.view.page.index.dir.docs"
 			data-toggle="tooltip" data-placement="bottom" title="A propos" alt="A propos">
 			<i class="fa fa-star"></i>
