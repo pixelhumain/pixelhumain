@@ -10,7 +10,7 @@
 			if(@$data["medias"] && @$data["medias"][0]["content"]["image"] && !empty($data["medias"][0]["content"]["image"]))
 				$src = $data["medias"][0]["content"]["image"];
 			else 
-				$src = Yii::app()->getRequest()->getBaseUrl(true).$this->module->assetsUrl."/images/NA png";
+				$src = $this->module->assetsUrl."/images/thumbnail-default.jpg";
 			$name = $data["name"];
 			$href = "#element.detail.type.".Poi::COLLECTION.".id.".(string)$data["_id"];
 		?>
@@ -33,8 +33,8 @@
 	</a>
 	
 	<?php // BTN Doc = Doc // ?>
-	<button class="btn-menu-top tooltips pull-left" 
-			id="" data-hash="#default.home"
+	<button class="btn-menu-top tooltips pull-left lbh" 
+			id="" data-hash="#default.homenotragora"
 			data-toggle="tooltip" data-placement="bottom" title="Accueil" alt="Accueil">
 			<i class="fa fa-home"></i>
 	</button>

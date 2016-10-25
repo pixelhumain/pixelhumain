@@ -198,5 +198,20 @@ return array(
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
-	'params'=>$params
+	'params'=>$params,
+	//'jsonParams' => getParams("notragora")
 );
+
+
+function getParams($paramsGet=""){
+	  $pathParams = dirname(__FILE__) .'/params/';
+	  if(isset($paramsGet) && !empty($paramsGet) && is_file($pathParams.$paramsGet.'.json')){
+	    $json = file_get_contents($pathParams.$paramsGet.'.json');
+	    $jsonParams = json_decode($json, true);
+	  }
+	  else{
+	    $json = file_get_contents($pathParams."default.json");
+	    $jsonParams = json_decode($json, true);
+	  }
+	  return $jsonParams;
+}
