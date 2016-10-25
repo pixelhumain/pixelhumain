@@ -137,6 +137,10 @@
   font-size: 18px;
   padding: 14px 12px;
 }
+.searchEntity .entityCenter i.fa.fa-info-circle{
+  font-size: 18px;
+  padding: 14px 12px;
+}
 .searchEntity .entityRight{
   text-align: left;
   padding-top: 0px !important;

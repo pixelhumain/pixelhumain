@@ -351,7 +351,8 @@
 		    "city": "<?php echo City::ICON ?>",
 		    "entry": "fa-gavel",
 		    "action": "fa-cogs",
-		    "actions": "fa-cogs"
+		    "actions": "fa-cogs",
+		    "poi": "fa-info-circle"
 		  };
 		var mapColorIconTop = {
 		    "default" : "dark",
@@ -370,7 +371,8 @@
 		    "city": "red",
 		    "entry": "azure",
 		    "action": "lightblue2",
-		    "actions": "lightblue2"
+		    "actions": "lightblue2",
+		    "poi": "dark"
 		  };
 
 
