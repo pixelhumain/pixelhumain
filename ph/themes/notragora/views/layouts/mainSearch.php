@@ -56,8 +56,9 @@
 		$themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
 
 		$cs = Yii::app()->getClientScript();
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.css');
 
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-modal/js/bootstrap-modal.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , CClientScript::POS_END);
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-modal/css/bootstrap-modal.css' , CClientScript::POS_END);
 		
 		$cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
@@ -114,15 +115,7 @@
 					//updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
 				<?php } ?>
 
-				//Start of Rocket.Chat Livechat Script -->
 				
-				(function(w, d, s, u) {
-				    w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
-				    var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
-				    j.async = true; j.src = 'https://chat.initiative.place/packages/rocketchat_livechat/assets/rocket-livechat.js';
-				    h.parentNode.insertBefore(j, h);
-				})(window, document, 'script', 'https://chat.initiative.place/livechat');
-				//End of Rocket.Chat Livechat Script -->
 			});
 		</script>
 		<style type="text/css">
@@ -138,6 +131,7 @@
 
 	<?php
 	
+		$this->renderPartial( $layoutPath.'modals' );
 	
  
 	//si l'utilisateur n'est pas connecté
@@ -268,7 +262,6 @@
 		END structure 
 		*******************************************/
 
-		$this->renderPartial( $layoutPath.'modals' );
 		  ?>
 		<!-- start: MAIN JAVASCRIPTS -->
 		
@@ -289,8 +282,6 @@
 			'/assets/plugins/bootstrap/css/bootstrap.min.css',
 			'/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , 
 			'/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css',
-			'/assets/plugins/bootstrap-modal/js/bootstrap-modal.js' , 
-			'/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , 
 			'/assets/plugins/velocity/jquery.velocity.min.js',
 			'/assets/plugins/ladda-bootstrap/dist/spin.min.js' , 
 			'/assets/plugins/ladda-bootstrap/dist/ladda.min.js' , 
@@ -309,6 +300,7 @@
 			'/assets/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
 
 			'/assets/plugins/select2/select2.min.js' , 
+			'/assets/plugins/select2/select2.css',
 			'/assets/plugins/moment/min/moment.min.js' ,
 			'/assets/js/cookie.js' ,
 			

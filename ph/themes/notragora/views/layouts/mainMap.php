@@ -3,27 +3,41 @@
 	//modifier l'url relative si besoin pour trouver communecter/view/sig/
 	$relativePath = "../sig/";
 
+	$mapProvider = "OSM";
+	if(PH::notlocalServer()){
+		//error_log("NOT LOCAL");
+		if(Yii::app()->params["mapboxActive"]==true)
+		$mapProvider = "mapbox";
+	}else{
+		//error_log("LOCAL");
+		$mapProvider = "OSM";
+		if(Yii::app()->params["forceMapboxActive"]==true)
+			$mapProvider = "mapbox";
+	}
+	
 	//modifier les parametre en fonction des besoins de la carte
 	$sigParams = array(
         "sigKey" => "Bg",
 
         /* MAP */
         "mapHeight" => 235,
-        "mapTop" => 0,
-        "mapColor" => 'rgb(69, 96, 116)',  //ex : '#456074', //'#5F8295', //'#955F5F', rgba(69, 116, 88, 0.49)
+        "mapTop" => 100,
+        "mapColor" => '#FFF',//'rgb(69, 96, 116)',  //ex : '#456074', //'#5F8295', //'#955F5F', rgba(69, 116, 88, 0.49)
         "mapOpacity" => 0.4, //ex : 0.4
 
-        /* MAP LAYERS (FOND DE CARTE) */
-        "mapTileLayer" 	  => '//stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', //'', //'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'
+        "mapProvider" => $mapProvider,
+
+        /* MAP LAYERS (FOND DE CARTE) OSM */
+        "mapTileLayer" 	  => '//stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png', //'', //'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'
         "mapAttributions" => '<a href="http://www.opencyclemap.org">OpenCycleMap</a>',	 	//'Map tiles by <a href="http://stamen.com">Stamen Design</a>'
 
         //"mapTileLayer" 	  => '//{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', //'//{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', //'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'
         //"mapAttributions" => '<a href="http://www.opencyclemap.org">OpenCycleMap</a>',	 	//'Map tiles by <a href="http://stamen.com">Stamen Design</a>'
 
         /* MAP BUTTONS */
-        //"mapBtnBgColor" => '#4C727E', //'rgba(76, 114, 126, 0.65)', //'#E6D414',
+        "mapBtnBgColor" => '#242424', //'rgba(76, 114, 126, 0.65)', //'#E6D414',
         //"mapBtnColor" => 'rgba(76, 114, 126, 0.65)', //'#213042',
-        //"mapBtnBgColor_hover" => 'rgba(76, 114, 126, 0.65)', //'#5896AB',
+        "mapBtnBgColor_hover" => 'rgb(90, 90, 90)', //'#5896AB',
 
         /* USE */
         "titlePanel" 		 => '',
