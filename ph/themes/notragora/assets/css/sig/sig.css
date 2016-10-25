@@ -457,7 +457,8 @@ creer des conflits : regle pas assez specfique
 	background-color:#5896AB !important;
 }
 .btn-map#btn-back {
-    background-color: #2BB0C6 !important;
+	background-color: #DBDBDB !important;
+	color: #484848 !important;
 }
 .btn-map#btn-back:hover {
     background-color: #489EAD !important;
@@ -590,7 +591,7 @@ creer des conflits : regle pas assez specfique
 	text-transform: capitalize;
  }
  .item_panel_map:hover{
-  background-color:#5F8295 !important;
+  background-color:#878787 !important;
  }
  h3.title_panel_map{
  	margin: 0px 0px 0px 0px;
@@ -634,6 +635,7 @@ creer des conflits : regle pas assez specfique
 }
 .btn-group-map .btn-group{
 	margin-right:20px;
+	top:100px;
 }
 .btn-map{
 	background-color:#E6D414;
@@ -895,7 +897,7 @@ creer des conflits : regle pas assez specfique
 	#btn-tags .btn-map, #btn-filter .btn-map{
 		padding:14px 17px !important;
 		border-radius:0px;
-		background-color: rgba(42, 57, 69, 0.29) !important;
+		/*background-color: rgba(42, 57, 69, 0.29) !important;*/
 	}
 
 	#btn-filter{
