@@ -77,7 +77,10 @@ $params = array(
     'validInviteCodes' => array("communs59", "communs31", "polder", "detakbaro", "kisskiss"),
     //Number of invitation by default for a person (us only on beta test)
     'numberOfInvitByPerson' => 10,
-    'networkParams' => "tierslieuxlille"
+    'networkParams' => "tierslieuxlille",
+
+    'mapboxActive' => true,
+    'forceMapboxActive' => false,
   );
 
 $modulesDir = '/../../../../modules/';
