@@ -254,7 +254,7 @@ class DataValidator {
 	 */
 	public static function geoValid($toValidate) {
 		$res = "";
-		error_log("AddressValid = ".json_encode($toValidate));
+		error_log("geoValid = ".json_encode($toValidate));
 		//Check type 
 		if (empty($toValidate["@type"])) return "Type missing in the geo !";
 		if ($toValidate["@type"] != "GeoCoordinates") return "Type missing in the geo !";
@@ -276,7 +276,7 @@ class DataValidator {
 	 */
 	public static function geoPositionValid($toValidate) {
 		$res = "";
-		error_log("AddressValid = ".json_encode($toValidate));
+		error_log("geoPosition = ".json_encode($toValidate));
 		//Check type 
 		if (empty($toValidate["@type"])) return "Type missing in the geo !";
 		if ($toValidate["@type"] != "Point") return "Type missing in the geo !";
