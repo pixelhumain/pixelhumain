@@ -10,7 +10,7 @@
 			if(@$data["medias"] && @$data["medias"][0]["content"]["image"] && !empty($data["medias"][0]["content"]["image"]))
 				$src = $data["medias"][0]["content"]["image"];
 			else 
-				$src = Yii::app()->getRequest()->getBaseUrl(true).$this->module->assetsUrl."/images/NA png";
+				$src = Yii::app()->getRequest()->getBaseUrl(true).$this->module->assetsUrl."/images/NA.png";
 			$name = $data["name"];
 			$href = "#element.detail.type.".Poi::COLLECTION.".id.".(string)$data["_id"];
 		?>

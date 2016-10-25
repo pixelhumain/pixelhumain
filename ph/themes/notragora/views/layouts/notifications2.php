@@ -1,11 +1,4 @@
-<?php	$cssAnsScriptFilesModule = array(
-	'/plugins/moment/min/moment.min.js' , 
-	//	'/plugins/moment/min/langs.min.js' , 
-	'/plugins/moment/min/moment-with-langs.min.js' , 
-	//	'/plugins/moment/lang/fr.js' , 
-);
 
-HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->theme->baseUrl."/assets"); ?>
 <!-- start: PAGESLIDE RIGHT -->
 <style type="text/css">
 	.notifications li {

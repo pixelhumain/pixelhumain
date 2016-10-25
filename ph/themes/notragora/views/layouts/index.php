@@ -2,13 +2,16 @@
 	$cs = Yii::app()->getClientScript();
 
 	$cssAnsScriptFilesModule = array(
-		'/assets/plugins/jquery-validation/dist/jquery.validate.min.js',
-		'/assets/plugins/jquery-validation/localization/messages_fr.js',
-		'/assets/plugins/lightbox2/css/lightbox.css',
-		'/assets/plugins/lightbox2/js/lightbox.min.js',
-		'/assets/plugins/jquery-validation/dist/jquery.validate.min.js',
-		'/assets/plugins/select2/select2.min.js',
-
+		'/plugins/jquery-validation/dist/jquery.validate.min.js',
+		'/plugins/jquery-validation/localization/messages_fr.js',
+		'/plugins/lightbox2/css/lightbox.css',
+		'/plugins/lightbox2/js/lightbox.min.js',
+		'/plugins/jquery-validation/dist/jquery.validate.min.js',
+		'/plugins/select2/select2.min.js'
+	);
+	HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->request->baseUrl );
+	
+	$cssAnsScriptFilesModule = array(
 		'/assets/css/search.css',
 		'/assets/css/floopDrawerRight.css',
 		'/assets/css/sig/sig.css',
