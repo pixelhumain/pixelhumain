@@ -24,7 +24,7 @@
 	</div>
 	<?php } ?>
 	<?php  //BTN NOTRAGORA // ?>
-	<a class="pull-left tooltips hidden-xs lbh col-md-2" href="#default.live"  id="main-btn-co"
+	<a class="pull-left tooltips hidden-xs lbh col-md-2" href="#default.home"  id="main-btn-co"
 		data-toggle="tooltip" data-placement="bottom" 
 		title="NotrAgora" 
 		alt="NotrAgora">
@@ -34,7 +34,7 @@
 	
 	<?php // BTN Doc = Doc // ?>
 	<button class="btn-menu-top tooltips pull-left lbh" 
-			id="" data-hash="#default.homenotragora"
+			id="" data-hash="#default.home"
 			data-toggle="tooltip" data-placement="bottom" title="Accueil" alt="Accueil">
 			<i class="fa fa-home"></i>
 	</button>
