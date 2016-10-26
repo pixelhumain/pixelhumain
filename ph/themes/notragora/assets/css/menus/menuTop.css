@@ -63,7 +63,7 @@ button.btn-menu-top{
 	border: 0;
 }
 
-button.btn-menu-top.active{
+button.btn-menu-top.active, button.btn-menu-top:hover{
 	color:#656565;
 }
 

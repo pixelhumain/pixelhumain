@@ -666,6 +666,10 @@ button.btn-infos{
 .text-turkoiz{
 	color:#1C9369 !important;
 }
+.text-light-weight{
+	font-weight: 300 !important;
+}
+
 .bg-lightblue2{
 	background-color:#2973C0 !important;
 }

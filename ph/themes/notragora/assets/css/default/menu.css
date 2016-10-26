@@ -415,20 +415,21 @@ button.btn-menu10{
 
 .menuSmallBlockUI{
 	z-index: 1011 !important;
-	position: fixed !important;
-	padding: 15px !important;
-	margin: 0px !important;
-	text-align: center !important;
-	color: rgb(255, 255, 255) !important;
-	border: medium none !important;
-	border-radius: 0px !important;
-	background-color: rgba(18, 18, 18, 0.88) !important;
-	cursor: unset !important;
-	top: 50px !important;
-	bottom: 0px !important;
-	width: 83.333333% !important;
-	left: 16.66666667% !important;
-	overflow-y: auto;
+    position: fixed !important;
+    padding: 15px !important;
+    margin: 0px !important;
+    text-align: center !important;
+    color: rgb(255, 255, 255) !important;
+    border: medium none !important;
+    border-radius: 0px !important;
+    background-color: rgba(18, 18, 18, 0.88) !important;
+    cursor: unset !important;
+    top: 160px !important;
+    bottom: 0px !important;
+    width: 83.5% !important;
+    left: 16.5% !important;
+    overflow-y: auto;
+    right: 0px;
 }
 body.inSig .menuSmallBlockUI{
 	width: 100% !important;

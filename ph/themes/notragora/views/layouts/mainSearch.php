@@ -53,12 +53,13 @@
 		<!-- end: META -->
 		<!-- start: MAIN CSS -->
 		<?php 
-		
+		$themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
+
 		$cs = Yii::app()->getClientScript();
 
-		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/bootstrap-modal/js/bootstrap-modal.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , CClientScript::POS_END);
-		$cs->registerCssFile(Yii::app()->request->baseUrl.'/plugins/bootstrap-modal/css/bootstrap-modal.css' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-modal/js/bootstrap-modal.js' , CClientScript::POS_END);
+		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , CClientScript::POS_END);
+		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-modal/css/bootstrap-modal.css' , CClientScript::POS_END);
 		
 		$cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
 		
@@ -114,12 +115,6 @@
 					//updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
 				<?php } ?>
 
-				(function(w, d, s, u) {
-				    w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
-				    var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
-				    j.async = true; j.src = 'https://chat.initiative.place/packages/rocketchat_livechat/assets/rocket-livechat.js';
-				    h.parentNode.insertBefore(j, h);
-				})(window, document, 'script', 'https://chat.initiative.place/livechat');
 				
 			});
 		</script>
@@ -273,16 +268,52 @@
 		<?php
 		echo "<!-- start: MAIN JAVASCRIPTS -->";
 		echo "<!--[if lt IE 9]>";
-		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/respond.min.js' , CClientScript::POS_HEAD);
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/excanvas.min.js' , CClientScript::POS_HEAD);
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-1.11.1.min.js' , CClientScript::POS_HEAD);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl.'/assets/plugins/respond.min.js' , CClientScript::POS_HEAD);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/excanvas.min.js' , CClientScript::POS_HEAD);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery/jquery-1.11.1.min.js' , CClientScript::POS_HEAD);
 		echo "<![endif]-->";
 		echo "<!--[if gte IE 9]><!-->";
-		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
+		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
 		echo "<!--<![endif]-->";
 
 		$cssAnsScriptFilesModule = array(
+			'/assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js',
+			'/assets/plugins/bootstrap/js/bootstrap.min.js' , 
+			'/assets/plugins/bootstrap/css/bootstrap.min.css',
+			'/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , 
+			'/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css',
+			'/assets/plugins/velocity/jquery.velocity.min.js',
+			'/assets/plugins/ladda-bootstrap/dist/spin.min.js' , 
+			'/assets/plugins/ladda-bootstrap/dist/ladda.min.js' , 
+			'/assets/plugins/ladda-bootstrap/dist/ladda.min.css',
+			'/assets/plugins/ladda-bootstrap/dist/ladda-themeless.min.css',
+			'/assets/plugins/iCheck/jquery.icheck.min.js' , 
+			'/assets/plugins/iCheck/skins/all.css',
+			'/assets/plugins/jquery.transit/jquery.transit.js' , 
+			'/assets/plugins/TouchSwipe/jquery.touchSwipe.min.js' , 
+			'/assets/plugins/bootbox/bootbox.min.js' , 
+			'/assets/plugins/jquery-mockjax/jquery.mockjax.js' , 
+			'/assets/plugins/blockUI/jquery.blockUI.js' , 
+			'/assets/plugins/toastr/toastr.js' , 
+			'/assets/plugins/toastr/toastr.min.css',
+			'/assets/plugins/jquery-cookie/jquery.cookie.js' , 
+			'/assets/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
+
+			'/assets/plugins/select2/select2.min.js' , 
+			'/assets/plugins/select2/select2.css',
+			'/assets/plugins/moment/min/moment.min.js' ,
 			'/assets/js/cookie.js' ,
+			
+			'/assets/js/jquery.dynForm.js' , 
+
+			'/assets/plugins/jquery-validation/dist/jquery.validate.min.js',
+			'/assets/plugins/jquery-validation/localization/messages_fr.js',
+			'/assets/plugins/lightbox2/css/lightbox.css',
+			'/assets/plugins/lightbox2/js/lightbox.min.js',
+
+			'/assets/plugins/animate.css/animate.min.css',
+			'/assets/plugins/font-awesome/css/font-awesome.min.css',
+			'/assets/plugins/font-awesome-custom/css/font-awesome.css',
 			
 			'/assets/css/styles.css',
 			'/assets/css/styles-responsive.css',
@@ -294,44 +325,7 @@
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule);
 
-		//plugins shared by all themes
-		$cssAnsScriptFilesModule = array(
-			'/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js',
-			'/plugins/bootstrap/js/bootstrap.min.js' , 
-			'/plugins/bootstrap/css/bootstrap.min.css',
-			'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , 
-			'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css',
-			'/plugins/velocity/jquery.velocity.min.js',
-			'/plugins/ladda-bootstrap/dist/spin.min.js' , 
-			'/plugins/ladda-bootstrap/dist/ladda.min.js' , 
-			'/plugins/ladda-bootstrap/dist/ladda.min.css',
-			'/plugins/ladda-bootstrap/dist/ladda-themeless.min.css',
-			'/plugins/iCheck/jquery.icheck.min.js' , 
-			'/plugins/iCheck/skins/all.css',
-			'/plugins/jquery.transit/jquery.transit.js' , 
-			'/plugins/TouchSwipe/jquery.touchSwipe.min.js' , 
-			'/plugins/bootbox/bootbox.min.js' , 
-			'/plugins/jquery-mockjax/jquery.mockjax.js' , 
-			'/plugins/blockUI/jquery.blockUI.js' , 
-			'/plugins/toastr/toastr.js' , 
-			'/plugins/toastr/toastr.min.css',
-			'/plugins/jquery-cookie/jquery.cookie.js' , 
-			'/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
-			'/plugins/select2/select2.min.js' , 
-			'/plugins/select2/select2.css',
-			'/plugins/moment/min/moment.min.js' ,
-			'/plugins/jquery-validation/dist/jquery.validate.min.js',
-			'/plugins/jquery-validation/localization/messages_fr.js',
-			'/plugins/lightbox2/css/lightbox.css',
-			'/plugins/lightbox2/js/lightbox.min.js',
-			'/plugins/animate.css/animate.min.css',
-			'/plugins/font-awesome/css/font-awesome.min.css',
-			'/plugins/font-awesome-custom/css/font-awesome.css',
-			'/plugins/jquery.dynForm.js',
-			'/js/api.js'
-		);
-		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->request->baseUrl);
-
+		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 
 		
 		//<!-- end: MAIN JAVASCRIPTS -->
@@ -357,7 +351,8 @@
 		    "city": "<?php echo City::ICON ?>",
 		    "entry": "fa-gavel",
 		    "action": "fa-cogs",
-		    "actions": "fa-cogs"
+		    "actions": "fa-cogs",
+		    "poi": "fa-info-circle"
 		  };
 		var mapColorIconTop = {
 		    "default" : "dark",
@@ -376,7 +371,8 @@
 		    "city": "red",
 		    "entry": "azure",
 		    "action": "lightblue2",
-		    "actions": "lightblue2"
+		    "actions": "lightblue2",
+		    "poi": "dark"
 		  };
 
 
