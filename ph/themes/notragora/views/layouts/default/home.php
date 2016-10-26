@@ -2,11 +2,11 @@
 //$this->renderPartial("../docs/assets");
 $cssAnsScriptFilesTheme = array(
 		
-	'/assets/plugins/jQCloud/dist/jqcloud.min.js',
-	'/assets/plugins/jQCloud/dist/jqcloud.min.css',
+	'/plugins/jQCloud/dist/jqcloud.min.js',
+	'/plugins/jQCloud/dist/jqcloud.min.css',
 
 );
-HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesTheme);
+HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesTheme,Yii::app()->request->baseUrl);
 
 ?>
 <style type="text/css">
