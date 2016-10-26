@@ -331,7 +331,7 @@
 			'/plugins/jquery.dynForm.js',
 			'/js/api.js'
 		);
-		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->request->baseUrl);
+		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
 
 
 		
