@@ -718,7 +718,8 @@ onSave: (optional) overloads the generic saveProcess
 			$(".dateInput").datetimepicker({ 
 		        autoclose: true,
 		        lang: "fr",
-		        format: "d/m/Y"
+		        format: "d/m/Y",
+		        timepicker:false
 		    });
 		};
 
