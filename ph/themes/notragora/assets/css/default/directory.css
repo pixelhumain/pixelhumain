@@ -204,7 +204,7 @@
     /*border-top: solid rgba(128, 128, 128, 0.2) 1px;*/
     margin-left: 0% !important;
     width: 100%;
-    box-shadow: 0px 0px 5px -1px #808080b3;
+    box-shadow: 0px 0px 5px -1px #d3d3d3;
   }
   .searchEntity:hover{
     background-color: rgba(211, 211, 211, 0.2);
@@ -265,7 +265,7 @@
     min-height:150px;
     max-height: 150px;
     overflow: hidden;
-    background-color: #d3d3d366;
+    background-color: #d3d3d3;
     text-align: center;
   }
 
