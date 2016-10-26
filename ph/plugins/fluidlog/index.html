@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Fluid Graph</title>
+
+  <link rel="stylesheet" type="text/css" href="css/loglink4.6.css" />
+
+  <!--[if lt IE 11]>
+        Votre navigateur est obsolète.
+        Merci d'utiliser un navigateur récent : IE 9 (min), Firefox, Chrome ou Safari
+        <![endif]-->
+
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/d3.v3.min.js"></script>
+  <script src="js/jquery.mockjax.min.js"></script>
+  <script src="js/FileSaver.min.js"></script>
+  <script src="js/mystore.js"></script>
+
+  <script src="js/semantic2.1.2.js"></script>
+  <link rel="stylesheet" href="css/semantic2.1.2.css" />
+
+</head>
+
+<body>
+  <div class="ui right vertical labeled icon sidebar menu">
+    <a class="item" id="sidebarMenuHelpItem" data-content="Help">
+      <i class="help circle icon"></i>
+      Help
+    </a>
+    <a class="item" id="sidebarMenuSettingsItem">
+      <i class="settings icon"></i>
+      Settings
+    </a>
+    <a class="item" id="sidebarMenuDownloadGraphItem">
+      <i class="download icon"></i>
+      Download
+    </a>
+    <a class="item" id="sidebarMenuUploadGraphItem">
+      <i class="upload icon"></i>
+      Upload
+    </a>
+  </div>
+
+  <div class="pusher">
+
+    <div class="ui secondary menu" style="margin:0">
+      <a class="item" id="home" data-content="Project / Actor / Idea / Ressource">FluidGraph</a>
+      <a class="item" id="newGraph" data-content="Start a new graph">
+        <i class="file outline large icon"></i></a>
+      <a class="item" id="openGraph" data-content="Open an existing graph">
+        <i class="folder open outline large icon"></i></a>
+      <a class="item" id="saveGraph" data-content="Save the graph">
+        <i class="save large icon"></i>
+        <label style="display:inline-block" id="graphNameLabel">Untilted</label>
+      </a>
+      <a class="item" id="manageGraph" data-content="Manage graphs list">
+        <i class="browser large icon"></i>
+      </a>
+      <a class="item" id="focusContextNode" data-content="Focus on the selected node">
+        <i class="selected radio large icon"></i>
+      </a>
+      <a class="item" id="focusContextNodeOff" data-content="Return in graph mode without focus">
+        <i class="share alternate large icon"></i>
+      </a>
+      <div class="item">
+        <a class="ui toggle checkbox" id="openNodeOnHoverCheckbox">
+          <input type="checkbox">
+        </a>
+      </div>
+      <!-- <div class="item">
+        <a class="ui toggle checkbox" id="displayIdCheckbox">
+          <input type="checkbox">
+        </a>
+      </div> -->
+
+      <div class="right menu">
+          <a class="item" id="sidebarButton">
+            <i class="sidebar large icon"></i>
+          </a>
+      </div>
+    </div>
+
+
+    <!--  #################################
+
+          Modal box
+
+          ################################# -->
+
+    <div class="ui long modal" id="openGraphModal">
+      <i class="close icon"></i>
+      <div class="header">
+        Welcome to the open graph assistant !
+      </div>
+      <div class="content">
+        <div class="image">
+          <i class="folder open outline icon"></i> (Graphs are stored in the local database of your browser)
+        </div>
+        <div class="ui horizontal segments">
+          <div class="ui raised segment" id="openGraphModalList">
+            <b>Please choose the graph you want to open :</b>
+            <br>
+          </div>
+          <div class="ui raised segment" id="openGraphModalPreview">
+            <b>Extract of the content of the graph (5 first nodes) :</b>
+            <br>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="ui button deny">Cancel</div>
+        <div class="ui button approve">OK</div>
+      </div>
+    </div>
+
+    <div class="ui small modal" id="saveGraphModal">
+      <i class="close icon"></i>
+      <div class="header">
+        Welcome to the save graph assistant !
+      </div>
+      <div class="content">
+        <div class="image">
+          <i class="save icon"></i>
+        </div>
+        <div class="description" >
+            <p>Please enter the name of the graph (without illegal caracters) and press save button.</p>
+            <div class="ui input" >
+              <input type="text" id="graphNameInput" accept="text">
+            </div>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="ui button deny">Cancel</div>
+        <div class="ui button approve">Save</div>
+      </div>
+    </div>
+
+    <div class="ui small modal" id="manageGraphModal">
+      <i class="close icon"></i>
+      <div class="header">
+        Welcome to the manage graph assistant !
+      </div>
+      <div class="content">
+        <div class="image">
+          <i class="browser icon"></i>
+        </div>
+        <div class="description" id="manageGraphModalList">
+          <div class="ui segments">
+            <div class="segment">
+              <b>Please click on options relative to a graph</b>
+            </div>
+            <div class="segment">
+              <div id="manageGraphModalDivTable" style="height:100px;overflow:auto">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="ui button deny">Close</div>
+      </div>
+    </div>
+
+    <div class="ui modal" id="helpModal">
+			<i class="close icon"></i>
+			<div class="header">
+		    	Help
+			</div>
+			<div class="content">
+			    <div class="image">
+			      <i class="help circle icon"></i>
+			    </div>
+			    <div class="description" >
+					<div class="ui segment">
+            <div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal blue middle aligned segment">
+										<i class="add circle icon"></i>
+										Howto <b>Add</b> a node ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+                      <div class="item">
+                           Double-click on background
+                      </div>
+                      <div>
+                          Or
+                      </div>
+										   <div class="item">
+									          Pull the node
+											</div>
+										   <div class="item">
+									          Drop it on the background surface
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+            <div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal blue middle aligned segment">
+										<i class="move icon"></i>
+										Howto <b>move</b> a node ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+                      <div class="item">
+									          Drag it
+											</div>
+                      <div>
+									          (The node need to be free, not selected)
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+            <div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal blue middle aligned segment">
+										<i class="crosshairs icon"></i>
+										Howto <b>select</b> a node ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+                      <div class="item">
+                          Click on the node
+                      </div>
+                      <div class="item">
+                          A gray hallo appear around the node
+                      </div>
+                      <div class="item">
+									        The node is fixed and can't be moved until it's unselected
+											</div>
+                      <div>
+									        (Only one node can be selected)
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+            <div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal blue middle aligned segment">
+										<i class="edit icon"></i>
+										Howto <b>edit</b> a node ? (change type and label)
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+                      <div class="item">
+                          Double-click on the node (if another one is in edition mode, it's closed)
+                      </div>
+                      <div class="item">
+                          The node open, and a form appear to change
+                      </div>
+                      <div class="item">
+									        Click on the outside of the node, the node close it.
+											</div>
+                      <div>
+									        (No save button, it's automaticaly changed on the node when you leave it)
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+            <div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal blue middle aligned segment">
+										<i class="remove circle icon"></i>
+										Howto <b>delete</b> a node ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+                      <div class="item">
+                          Click on the node
+                      </div>
+                      <div class="item">
+                          A gray hallo appear around the node
+                      </div>
+                      <div class="item">
+									        Click on "delete" or "suppr" key.
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal blue middle aligned segment">
+										<i class="linkify icon"></i>
+										Howto make a <b>link</b> between two nodes ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+                      <div class="item">
+                          Select the first node (<i class="crosshairs small icon"></i>)
+                      </div>
+                      <div class="item">
+                          Drag to another node
+                      </div>
+                      <div class="item">
+                          A dashed line appear
+                      </div>
+										  <div class="item">
+									        Drop over the second node
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+            <div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal blue middle aligned segment">
+										<i class="zoom icon"></i>
+										    Howto <b>select multiple</b> nodes ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+										   <div class="item">
+									          This functionality is not yet supported
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal green middle aligned segment">
+										<i class="file outline icon"></i>
+										Howto <b>create a new graph</b> ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+                      <div class="item">
+                          Click on the menu icon (<i class="file outline small icon"></i>)
+                      </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+            <div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal green middle aligned segment">
+										<i class="move icon"></i>
+										Howto <b>pan</b> (panoramic) the graph ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+										   <div class="item">
+									          Click on the background surface, stay clicked, move, and pull to stop
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+            <div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal green middle aligned segment">
+										<i class="zoom icon"></i>
+										Howto <b>zoom</b> ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+										   <div class="item">
+									          Use your mouse wheel
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal green middle aligned segment">
+										<i class="save icon"></i>
+										Howto <b>save</b> the graph ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+                      <div class="item">
+                          Click on the save icon (<i class="save small icon"></i>)
+                      </div>
+                      <div class="item">
+                          If the graph is Untilted, a modal box ask you to record a name for the graph.
+                      </div>
+                      <div>
+                          (The graph is saved in the local store of the browser)
+                      </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal green middle aligned segment">
+										<i class="download icon"></i>
+										Howto <b>download</b> the graph in an external file ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+										  <div class="item">
+									        Click on the menu icon (<i class="sidebar small icon"></i>)
+											</div>
+										  <div class="item">
+									        Click on the download button (<i class="download small icon"></i>) and follow instructions.
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal green middle aligned segment">
+										<i class="upload icon"></i>
+										Howto <b>upload</b> an existing graph (from an extern file) ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+										  <div class="item">
+									        Click on the menu icon (<i class="sidebar small icon"></i>)
+											</div>
+                      <div class="item">
+									        Click on the upload button (<i class="upload small icon"></i>)
+											</div>
+                      <div class="item">
+									        Select a graph file (*.d3json)
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ui vertical segment">
+							<div class="ui two column grid">
+								<div class="column">
+									<div class="ui horizontal green middle aligned segment">
+										<i class="delete icon"></i>
+										Howto <b>delete</b> a graph ?
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui horizontal segment">
+										<div class="ui ordered animated list">
+										   <div class="item">
+									          Click on the manage graph button (<i class="browser small icon"></i>)
+											</div>
+										   <div class="item">
+									          Click on the "delete" button (<i class="delete small icon"></i>) on the line of the graph you want to delete from the local store of your browser.
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+		  	</div>
+		  	<div class="actions">
+		    	<div class="ui button approve">OK</div>
+		  	</div>
+		</div>
+
+    <div class="ui modal" id="settingsModal">
+			<i class="close icon"></i>
+			<div class="header">
+		    	Settings
+			</div>
+			<div class="content">
+			    <div class="image">
+			      <i class="settings icon"></i>
+			    </div>
+			    <div class="description" >
+  					<div class="ui segment">
+              <div class="ui vertical segment">
+                <a class="ui toggle checkbox" id="curvesLinksCheckbox">
+                  <label>Check if you want to use straight link [default : curves]</label>
+                  <input type="checkbox">
+                </a>
+  						</div>
+              <div class="ui vertical segment">
+                <a class="ui toggle checkbox" id="openNodeOnHoverCheckbox">
+                  <label>Check if you want to open node on hover [default : closed]</label>
+                  <input type="checkbox">
+                </a>
+  						</div>
+  						<div class="ui vertical segment">
+                <a class="ui toggle checkbox" id="activeForceCheckbox">
+                  <label>Check if you want to active forces [default : not active]</label>
+                  <input type="checkbox">
+                </a>
+  						</div>
+              <div class="ui vertical segment">
+                <a class="ui toggle checkbox" id="activeElasticCheckbox">
+                  <label>Check if you want to active elasticity [default : desactivated]</label>
+                  <input type="checkbox">
+                </a>
+              </div>
+              <div class="ui vertical segment">
+                <a class="ui toggle checkbox" id="displayIdCheckbox">
+                  <label>Check if you want to display id [default : hidden]</label>
+                  <input type="checkbox">
+                </a>
+              </div>
+            </div>
+          </div>
+		  	</div>
+		  	<div class="actions">
+		    	<div class="ui button approve">OK</div>
+		  	</div>
+		</div>
+
+    <div class="ui small modal" id="downloadModal">
+		  <i class="close icon"></i>
+		  <div class="header">
+		    Welcome to the download assistant
+		  </div>
+		  <div class="content">
+		    <div class="image">
+		      <i class="download icon"></i>
+		    </div>
+		    <div class="description" >
+			      <p>Click 'OK' and the graph will be downloaded in your navigator.</p>
+		    </div>
+		  </div>
+		  <div class="actions">
+		    <div class="ui button deny">Cancel</div>
+		    <div class="ui button approve">OK</div>
+		  </div>
+		</div>
+
+    <div class="ui small modal" id="uploadModal">
+		  <i class="close icon"></i>
+		  <div class="header">
+		    Welcome to the upload assistant
+		  </div>
+		  <div class="content">
+		    <div class="image">
+		      <i class="upload icon"></i>
+		    </div>
+		    <div class="description" >
+			      <p>Select the file on your computer and press 'OK'.</p>
+		    	  <div class="ui input" >
+			      	<input type="file" id="uploadInput">
+			      </div>
+		    </div>
+		  </div>
+		  <div class="actions">
+		    <div class="ui button deny">Cancel</div>
+		    <div class="ui button approve">OK</div>
+		  </div>
+		</div>
+
+    <div id="chart"></div>
+
+    <script src="js/mockdata.js"></script>
+    <script src="js/mygraph.js"></script>
+    <script src="js/mynodes.js"></script>
+    <script src="js/mylinks.js"></script>
+    <script src="js/mybackground.js"></script>
+    <script src="js/convert.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/control.js"></script>
+  </div>
+</body>
+</html>
