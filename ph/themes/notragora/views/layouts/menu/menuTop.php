@@ -83,7 +83,7 @@
 </div>
 <script>
 
-	$(".tooltips").tooltip();
+	
 	function activeMenuTop(thisJQ){
 		$(".btn-menu-top").removeClass("active");
 		thisJQ.addClass("active");
