@@ -33,14 +33,14 @@
 	</a>
 	
 	<?php // BTN Doc = Doc // ?>
-	<button class="btn-menu-top tooltips pull-left lbh" 
+	<button class="btn-menu-top tooltips pull-left lbh"  onclick="activeMenuTop($(this))"
 			id="" data-hash="#default.home"
 			data-toggle="tooltip" data-placement="bottom" title="Accueil" alt="Accueil">
 			<i class="fa fa-home"></i>
 	</button>
 	
 	<?php // BTN Doc = Doc // ?>
-	<button class="btn-menu-top tooltips pull-left lbh" 
+	<button class="btn-menu-top tooltips pull-left lbh"  onclick="activeMenuTop($(this))"
 			id="" data-hash="#default.directory?type=projects"
 			data-toggle="tooltip" data-placement="bottom" title="Groupe de travail" alt="Groupe de travail">
 			<i class="fa fa-group"></i>
@@ -48,13 +48,13 @@
 	
 	<?php // BTN Doc = Doc // ?>
 	<button class="btn-menu-top tooltips pull-left lbh" 
-			id="" data-hash="#default.directory?type=poi"
+			id="" data-hash="#default.directory?type=poi" onclick="activeMenuTop($(this))"
 			data-toggle="tooltip" data-placement="bottom" title="Productions" alt="Productions">
 			<i class="fa fa-video-camera"></i>
 	</button>
 	
 	<?php // BTN Doc = Doc // ?>
-	<button class="btn-menu-top tooltips pull-left active lbh" 
+	<button class="btn-menu-top tooltips pull-left active lbh"  onclick="activeMenuTop($(this))"
 			id="" data-hash="#default.view.page.index.dir.docs"
 			data-toggle="tooltip" data-placement="bottom" title="A propos" alt="A propos">
 			<i class="fa fa-star"></i>
@@ -81,3 +81,12 @@
 	<?php $this->renderPartial($layoutPath.'.menu.short_info_profil', array("me"=>$me)); ?> 
 
 </div>
+<script>
+
+	$(".tooltips").tooltip();
+	function activeMenuTop(thisJQ){
+		$(".btn-menu-top").removeClass("active");
+		thisJQ.addClass("active");
+	}
+
+</script>
