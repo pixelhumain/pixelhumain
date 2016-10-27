@@ -94,6 +94,25 @@
     padding-bottom:10px;
   }
 
+
+
+  .dropdown-result-global-search
+  .searchEntity{
+    box-shadow: none !important;
+    border-bottom:1px solid lightgrey;
+  }
+
+  .dropdown-result-global-search
+  .entityCenter{
+    margin-top: 5px!important;
+    float:left!important;
+  }
+  .dropdown-result-global-search
+  .entityRight{
+    margin-top: 12px;
+  }
+
+
   #notificationPanelSearch {
     top: 50px !important;
     right: 0px !important;
@@ -137,10 +156,6 @@
 
   .dropdown-result-global-search .entityRight{
     text-align: left !important;
-  }
-
-  .main-top-menu .notifications-count{
-    top: 8px;
   }
 
   .menu-info-profil .dropdown-menu{

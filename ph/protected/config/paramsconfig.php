@@ -78,9 +78,20 @@ $params = array(
     //Number of invitation by default for a person (us only on beta test)
     'numberOfInvitByPerson' => 10,
     'networkParams' => "tierslieuxlille",
-
-    'mapboxActive' => true,
+    'logoUrl' => '/images/logoNotragora.png',
+    'mapboxActive' => false,
     'forceMapboxActive' => false,
+    "front" => array (
+        "organization" => true,
+        "project" => true,
+        "event" => false,
+        "person" => true,
+        "dda" => false,
+        "live" => false,
+        "search" => false, //reanme search
+        "need" => false,
+        "poi" => true
+    )
   );
 
 $modulesDir = '/../../../../modules/';

@@ -24,7 +24,7 @@
 
 		<!-- start: MAIN JAVASCRIPTS -->
 		<?php
-			$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
+			$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
 		?>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 	</body>
