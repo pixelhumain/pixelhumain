@@ -212,6 +212,39 @@ class DataValidator {
 		$result = (Organization::checkType($toValidate)?"":"Le type de l'organisation n'est pas conforme.");
 		return $result;
 	}
+
+	/**
+	 * Check if the adress is well formated
+	 * An adress is an array and is valid with the format :
+	 *     - Country : mandatory
+	 *     - 
+	 * @param array $toValidate the adresse to validate
+	 * @return type
+	 */
+	public static function addressValid($toValidate) {
+		$res = "";
+		error_log("AddressValid = ".json_encode($toValidate));
+		//Check country => Mandatory
+		if (empty($toValidate["addressCountry"])) return "Country missing in the address !";
+		//Check insee => Mandatory
+		if (empty($toValidate["codeInsee"])) return "CityId missing in the address !";
+		//Check cp => Mandotory
+		if (empty($toValidate["postalCode"])) return "Postal Code missing in the address !";
+		
+		//Check country, cp and insee are coherent in bd
+		$city = SIG::getCityByCodeInsee($toValidate["codeInsee"]);
+		if ($city["country"] != $toValidate["addressCountry"]) return "Invalid insee code with that country !";
+		$postalCodeOk = false;
+		foreach ($city["postalCodes"] as $postalCode) {
+			if ($postalCode["postalCode"] == $toValidate["postalCode"]) {
+				$postalCodeOk = true;
+				break;
+			}
+		}
+		if (! $postalCodeOk) return "Invalid postal code and insee code";
+
+		return $res;
+	}
 	
 
 }
