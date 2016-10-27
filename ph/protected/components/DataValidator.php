@@ -278,8 +278,8 @@ class DataValidator {
 		$res = "";
 		error_log("geoPosition = ".json_encode($toValidate));
 		//Check type 
-		if (empty($toValidate["@type"])) return "Type missing in the geo !";
-		if ($toValidate["@type"] != "Point") return "Type missing in the geo !";
+		if (empty($toValidate["type"])) return "Type missing in the geo !";
+		if ($toValidate["type"] != "Point") return "Type missing in the geo !";
 		//Check longitude
 		if (empty($toValidate["coordinates"][0])) return "longitude Code missing in the geo !";
 		if (!is_float($toValidate["coordinates"][0])) return "longitude is not a float in the geo !";
