@@ -41,6 +41,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 
 
 		    <?php if(isset($me)) if(Role::isSuperAdmin($me['roles'])){?>
+
 			<div class="col-xs-12 center no-padding">
 			    <a class="btn bg-dark-red lbh" href="#admin.index">
 			        <i class="fa fa-user-secret" style="font-size: 1em!important;"></i> 
@@ -71,16 +72,6 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			    </a>
 		    </div>
 		    <div class="col-xs-12 center no-padding">
-			    <a class="btn bg-dark lbh padding-5" 
-			    	href="#rooms.index.type.citoyens.id.<?php echo Yii::app()->session['userId']?>">
-			        <i class="fa fa-comments" style="font-size: 1em!important;"></i> 
-			        <i class="fa fa-gavel" style="font-size: 1em!important;"></i> 
-			        <i class="fa fa-cogs" style="font-size: 1em!important;"></i> 
-			        <br>Coopération
-			    </a>
-		    </div>
-		    
-		    <div class="col-xs-12 center no-padding">
 			    <a class="btn bg-red padding-5" 
 			    	href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>">
 			        <i class="fa fa-sign-out"></i>
@@ -93,51 +84,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 		
 
 	  	<div class="col-md-9 col-sm-9 col-xs-12 no-padding">
-
-	  		<div class="col-md-12 col-sm-12 margin-15">
-				<div class="col-md-4 col-sm-4 center">
-					<a class="btn bg-azure lbh" href="#default.live"  >
-					<i class="fa fa-heartbeat"></i> <br class="hidden-xs">Live</a>
-				</div>
-				<div class="col-md-4 col-sm-4 center">
-			    	<a class="btn bg-azure lbh" href="#default.directory" >
-			    	<i class="fa fa-search"></i> <br class="hidden-xs">Recherche</a>
-			    </div>
-				<div class="col-md-4 col-sm-4 center">
-					<a class="btn bg-azure lbh" href="#default.agenda"  >
-					<i class="fa fa-calendar"></i> <br class="hidden-xs">Agenda</a>
-				</div>
-			</div>
-			
-
 			<div class="col-md-12 col-sm-12 padding-15">
-			    
-				<?php if(!isset($myCity)){?>
-					<div class="col-md-12 center hide-communected">
-						<a class="btn bg-red" href="javascript:;" onclick="communecterUser()">
-							<i class="fa fa-university"></i>
-							</br>Communectez-moi
-						</a>
-					</div> 
-				<?php } ?>
-
-				<div class="col-md-6 col-sm-6 col-xs-12 center visible-communected">
-					<a class="btn bg-red lbh" 
-						href="#city.detail.insee.<?php 
-							 if(@$myCity) echo $myCity["insee"]; ?>.postalCode.<?php  if(@$myCity) echo $myCity["cp"]; 
-							?>" id="btn-menuSmall-mycity">
-						<i class="fa fa-university"></i> <br class="hidden-xs">Ma commune
-					</a>
-				</div>
-				<div class="col-md-6 col-sm-6 col-xs-12 center visible-communected">
-					<a class="btn bg-red lbh" 
-						href="#rooms.index.type.cities.id.<?php if(@$myCity) echo City::getUnikey($myCity); ?>" 
-						id="btn-menuSmall-citizenCouncil">
-						<i class="fa fa-connectdevelop"></i><br class="hidden-xs">
-						<span class="hidden-xs">Mon c</span><span class="hidden-sm hidden-md hidden-lg">C</span>onseil citoyen
-					</a>
-				</div>
-				
 				<?php if(isset(Yii::app()->session['userId'])){ ?>
 					<div class="col-md-12 col-sm-12  col-xs-12 no-padding">
 						<hr style="border-top: 1px solid transparent; margin:7px;">
@@ -171,16 +118,6 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							<i class="fa fa-lightbulb-o"></i><br>
 							<span class="lbl-btn-menu-name-add">
 								<span class="hidden-xs">Un p</span><span class="hidden-sm hidden-md hidden-lg">P</span>rojet
-							</span>
-						</a>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
-
-						<a href="javascript:openForm('event')" class="btn bg-orange">
-
-							<i class="fa fa-calendar"></i><br>
-							<span class="lbl-btn-menu-name-add">
-								<span class="hidden-xs">Un é</span><span class="hidden-sm hidden-md hidden-lg">É</span>vénement
 							</span>
 						</a>
 					</div>
