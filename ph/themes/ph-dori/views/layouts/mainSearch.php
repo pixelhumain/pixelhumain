@@ -226,7 +226,7 @@
 		$me=""; 
 		  
 	$this->renderPartial($layoutPath.'.menu.menuTop', array("me" => $me, "layoutPath"=>$layoutPath)); 
-	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city)); ?>
+	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city, "layoutPath"=>$layoutPath)); ?>
 
 	<!-- **************************************
 	CENTER SECTION
@@ -290,6 +290,7 @@
 			'/assets/css/plugins.css',
 			
 			'/assets/css/search.css',
+			'/assets/css/default/directory.css',
 			'/assets/css/floopDrawerRight.css',
 			'/assets/css/sig/sig.css',
 		);
