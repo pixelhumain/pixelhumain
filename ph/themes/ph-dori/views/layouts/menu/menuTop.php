@@ -1,8 +1,10 @@
 <?php  HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuTop.css')); ?>
 <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
 	
+	
 	<?php // BTN CO = Live // ?>
 	<a class="pull-left tooltips hidden-xs lbh" href="#default.live"  id="main-btn-co"
+
 		data-toggle="tooltip" data-placement="bottom" 
 		title="Live'n'direct" 
 		alt="Live'n'direct">
