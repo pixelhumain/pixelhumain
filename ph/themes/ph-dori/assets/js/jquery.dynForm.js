@@ -706,8 +706,8 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
 		function loadDateTimePicker(callback) {
 			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
-				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/build/jquery.datetimepicker.full.min.js', 
-						  baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/jquery.datetimepicker.css',
+				lazyLoad( baseUrl+'/plugins/xdan.datetimepicker/build/jquery.datetimepicker.full.min.js', 
+						  baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.css',
 						  callback);
 		    }
 		}
@@ -787,8 +787,8 @@ onSave: (optional) overloads the generic saveProcess
 			if( jQuery.isFunction(jQuery.fn.daterangepicker) )
 				initDateRange();
 			else
-				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-daterangepicker/daterangepicker.js' ,  
-						  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css',
+				lazyLoad( baseUrl+'/plugins/bootstrap-daterangepicker/daterangepicker.js' ,  
+						  baseUrl+'/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css',
 						  initDateRange);
 		    /*$('.daterangeInput').val(moment().format('DD/MM/YYYY h:mm A') + ' - ' + moment().add('days', 1).format('DD/MM/YYYY h:mm A'))
 			.daterangepicker({  
@@ -823,23 +823,6 @@ onSave: (optional) overloads the generic saveProcess
 		/* **************************************
 		* WYSIWYG 
 		***************************************** */
-		if(  $(".dateInput").length){
-			var initDate = function(){
-								console.log("init dateInput");
-								$(".dateInput").datepicker({ 
-							        autoclose: true,
-							        language: "fr",
-							        format: "dd/mm/yyyy"
-							    });
-							};
-			if( jQuery.isFunction(jQuery.fn.datepicker) )
-				initDate();
-		    else {
-				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js', 
-						  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datepicker/css/datepicker.css',
-						  initDate);
-		    }
-		}
 		if(  $(".wysiwygInput").length )
 		{
 				var initField = function(){
@@ -867,8 +850,8 @@ onSave: (optional) overloads the generic saveProcess
 				if( jQuery.isFunction(jQuery.fn.summernote) )
 					initField();
 			    else {
-			    	lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/summernote/dist/summernote.min.js', 
-							  baseUrl+'/themes/ph-dori/assets/plugins/summernote/dist/summernote.css',
+			    	lazyLoad( baseUrl+'/plugins/summernote/dist/summernote.min.js', 
+							  baseUrl+'/plugins/summernote/dist/summernote.css',
 							  initField);
 		    	}
 			}
@@ -1025,8 +1008,8 @@ onSave: (optional) overloads the generic saveProcess
 		if( jQuery.isFunction(jQuery.fn.bootstrapSwitch) )
 			initSwitch();
 	    else {
-	    	lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js', 
-					  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css',
+	    	lazyLoad( baseUrl+'/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js', 
+					  baseUrl+'/plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css',
 					  initSwitch);
     	}
 		
