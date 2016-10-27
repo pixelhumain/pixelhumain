@@ -39,6 +39,6 @@
 	</button>
 	<?php } ?>
 
-	<?php $this->renderPartial("./menu/short_info_profil", array("me"=>$me)); ?> 
+	<?php $this->renderPartial($layoutPath.".menu.short_info_profil", array("me"=>$me)); ?> 
 
 </div>

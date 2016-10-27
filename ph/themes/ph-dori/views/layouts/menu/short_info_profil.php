@@ -14,7 +14,7 @@ HtmlHelper::registerCssAndScriptsFiles(array( '/assets/css/menus/short_info_prof
     
 
     <?php // INPUT TEXT GLOBAL SEARCH // ?>
-    <div class="input-group group-globalsearch inline hidden-xs">
+    <div class="group-globalsearch inline hidden-xs">
       <span class="input-group-addon" id="basic-addon1">
         <i class="fa fa-search text-dark searchIcon tooltips" 
            data-toggle="tooltip" data-placement="bottom" title="Recherche Globale"></i>
