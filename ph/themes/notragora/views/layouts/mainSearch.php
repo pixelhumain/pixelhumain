@@ -281,20 +281,6 @@
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
 		echo "<!--<![endif]-->";
 
-		$cssAnsScriptFilesModule = array(
-			'/assets/js/cookie.js' ,
-			
-			'/assets/css/styles.css',
-			'/assets/css/styles-responsive.css',
-			'/assets/css/plugins.css',
-			
-			'/assets/css/search.css',
-			'/assets/css/default/directory.css',
-			'/assets/css/floopDrawerRight.css',
-			'/assets/css/sig/sig.css',
-		);
-		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule);
-
 		//plugins shared by all themes
 		$cssAnsScriptFilesModule = array(
 			'/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js',
@@ -333,7 +319,21 @@
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
 
+		$cssAnsScriptFilesModule = array(
+			'/assets/js/cookie.js' ,
+			
+			'/assets/css/styles.css',
+			'/assets/css/styles-responsive.css',
+			'/assets/css/plugins.css',
+			
+			'/assets/css/search.css',
+			'/assets/css/default/directory.css',
+			'/assets/css/floopDrawerRight.css',
+			'/assets/css/sig/sig.css',
+		);
+		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule);
 
+		
 		
 		//<!-- end: MAIN JAVASCRIPTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
