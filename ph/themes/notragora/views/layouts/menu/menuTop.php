@@ -1,13 +1,13 @@
 <?php  HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuTop.css')); 
-	$poiList = Poi::getPoiByTagsAndLimit();
+	$topList = Poi::getPoiByTagsAndLimit();
 ?>
 
 <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
 	
-	<?php if (!empty($poiList)) { ?>
-	<div class="col-xs-12 no-padding main-gallery-top">
+	<?php if (!empty($topList)) { ?>
+	<div class="col-xs-12 no-padding main-gallery-top" >
 		<div class="pull-left">
-		<?php foreach ($poiList as $data) { 
+		<?php foreach ($topList as $data) { 
 			if(@$data["medias"] && @$data["medias"][0]["content"]["image"] && !empty($data["medias"][0]["content"]["image"]))
 				$src = str_replace("1280x720","720x720",$data["medias"][0]["content"]["image"]);
 			else 
