@@ -290,6 +290,7 @@
 			'/assets/css/plugins.css',
 			
 			'/assets/css/search.css',
+			'/assets/css/default/directory.css',
 			'/assets/css/floopDrawerRight.css',
 			'/assets/css/sig/sig.css',
 		);

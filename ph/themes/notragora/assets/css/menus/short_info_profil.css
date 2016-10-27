@@ -76,7 +76,7 @@
   .main-top-menu .dropdown-result-global-search{
     position: fixed;
     top: 161px;
-    right: 9.2%;
+    right: 13%;
     width: 350px;
     max-height: 80%;
     overflow-y: auto;
@@ -94,6 +94,23 @@
   .main-top-menu .dropdown-result-global-search #footerDropdownGS{
     padding-bottom:10px;
   }
+
+  .dropdown-result-global-search
+  .searchEntity{
+    box-shadow: none !important;
+    border-bottom:1px solid lightgrey;
+  }
+
+  .dropdown-result-global-search
+  .entityCenter{
+    margin-top: 5px!important;
+    float:left!important;
+  }
+  .dropdown-result-global-search
+  .entityRight{
+    margin-top: 12px;
+  }
+
 
   #notificationPanelSearch {
     top: 50px !important;
