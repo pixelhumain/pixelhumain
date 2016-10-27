@@ -642,7 +642,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 	"Parenthood" => "Parenté",
 
-	"Show map" => "Afficher sur la carte"
+	"Show map" => "Afficher sur la carte",
+	"Locality" => "Adresse"
 
 );
 

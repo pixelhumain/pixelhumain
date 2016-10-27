@@ -702,45 +702,46 @@ onSave: (optional) overloads the generic saveProcess
 		} 
 
 		/* **************************************
-		* DATE INPUT , we use https://github.com/eternicode/bootstrap-datepicker
+		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
 		***************************************** */
-		if(  $(".dateInput").length){
-			var initDate = function(){
-								console.log("init dateInput");
-								$(".dateInput").datepicker({ 
-							        autoclose: true,
-							        language: "fr",
-							        format: "dd/mm/yyyy"
-							    });
-							};
-			if( jQuery.isFunction(jQuery.fn.datepicker) )
-				initDate();
-		    else {
-				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js', 
-						  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datepicker/css/datepicker.css',
-						  initDate);
+		function loadDateTimePicker(callback) {
+			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
+				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/build/jquery.datetimepicker.full.min.js', 
+						  baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/jquery.datetimepicker.css',
+						  callback);
 		    }
 		}
+
+		var initDate = function(){
+			console.log("init dateInput");
+			jQuery.datetimepicker.setLocale('fr');
+			$(".dateInput").datetimepicker({ 
+		        autoclose: true,
+		        lang: "fr",
+		        format: "d/m/Y",
+		        timepicker:false
+		    });
+		};
+
+		if(  $(".dateInput").length){
+			loadDateTimePicker(initDate);
+		}
 		/* **************************************
-		* DATE INPUT , we use https://github.com/eternicode/bootstrap-datepicker
+		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
 		***************************************** */
+	
+		var initDateTime = function(){
+			console.log("init dateTimeInput");
+			jQuery.datetimepicker.setLocale('fr');
+			$(".dateTimeInput").datetimepicker({
+				weekStart: 1,
+				step: 15,
+				lang: 'fr',
+				format: 'Y/m/d H:i'
+			   });
+		};
 		if(  $(".dateTimeInput").length){
-			var initDate = function(){
-								console.log("init dateTimeInput");
-								$(".dateTimeInput").datetimepicker({
-									weekStart: 1,
-									minuteStep: 15,
-									language: 'fr',
-									format: 'yyyy/mm/dd hh:ii'
-								   });
-							};
-			if( jQuery.isFunction(jQuery.fn.datetimepicker) )
-				initDate();
-		    else {
-				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js', 
-						  baseUrl+'/themes/ph-dori/assets/plugins/bootstrap-datetimepicker/css/datetimepicker.css',
-						  initDate);
-		    }
+			loadDateTimePicker(initDateTime);
 		}
 		/* **************************************
 		* Location type 
