@@ -114,6 +114,7 @@
 					//updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
 				<?php } ?>
 
+				
 				(function(w, d, s, u) {
 				    w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
 				    var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
@@ -283,9 +284,6 @@
 
 		$cssAnsScriptFilesModule = array(
 			'/assets/js/cookie.js' ,
-			'/assets/js/jquery.dynForm.js' , 
-
-			
 			
 			'/assets/css/styles.css',
 			'/assets/css/styles-responsive.css',
@@ -323,7 +321,6 @@
 			'/plugins/select2/select2.min.js' , 
 			'/plugins/select2/select2.css',
 			'/plugins/moment/min/moment.min.js' ,
-			'/plugins/moment/min/moment-with-langs.min.js' , 
 			'/plugins/jquery-validation/dist/jquery.validate.min.js',
 			'/plugins/jquery-validation/localization/messages_fr.js',
 			'/plugins/lightbox2/css/lightbox.css',
@@ -331,10 +328,10 @@
 			'/plugins/animate.css/animate.min.css',
 			'/plugins/font-awesome/css/font-awesome.min.css',
 			'/plugins/font-awesome-custom/css/font-awesome.css',
-
+			'/plugins/jquery.dynForm.js',
 			'/js/api.js'
 		);
-		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->request->baseUrl);
+		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
 
 
 		
@@ -361,7 +358,8 @@
 		    "city": "<?php echo City::ICON ?>",
 		    "entry": "fa-gavel",
 		    "action": "fa-cogs",
-		    "actions": "fa-cogs"
+		    "actions": "fa-cogs",
+		    "poi": "fa-info-circle"
 		  };
 		var mapColorIconTop = {
 		    "default" : "dark",
@@ -380,7 +378,8 @@
 		    "city": "red",
 		    "entry": "azure",
 		    "action": "lightblue2",
-		    "actions": "lightblue2"
+		    "actions": "lightblue2",
+		    "poi": "dark"
 		  };
 
 

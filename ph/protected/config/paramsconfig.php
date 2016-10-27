@@ -88,9 +88,10 @@ $params = array(
         "person" => true,
         "dda" => false,
         "live" => false,
-        "recherche" => false,
+        "search" => false,
         "need" => false,
-        "poi" => true
+        "poi" => true,
+        "menuTop_List" => true,
     )
   );
 

@@ -3,6 +3,7 @@
 ?>
 
 <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
+	
 	<?php if (!empty($poiList)) { ?>
 	<div class="col-xs-12 no-padding main-gallery-top">
 		<div class="pull-left">
@@ -23,6 +24,7 @@
 		</div>
 	</div>
 	<?php } ?>
+
 	<?php  //BTN NOTRAGORA // ?>
 	<a class="pull-left tooltips hidden-xs lbh col-md-2" href="#default.home"  id="main-btn-co"
 		data-toggle="tooltip" data-placement="bottom" 
