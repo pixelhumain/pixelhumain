@@ -54,7 +54,7 @@
   }
 
   .main-top-menu .input-global-search{
-    float: right;
+    /*float: right;*/
     margin-top: 0px;
     width: 270px;
     height: 36px;
@@ -162,7 +162,7 @@
     cursor: pointer;
   }
   #basic-addon1{
-    background-color: #F6F6F666 !important;
+    background-color: #F6F6F6 !important;
     border-radius: 0 4px 4px 0 !important;
     height: 36px;
     border-color: rgba(128, 128, 128, 0.09);
