@@ -9,6 +9,8 @@
 		"Document deleted" => "Document bien supprimé",
 		"Document saved successfully" => "Document bien enregistré",
 		"Image deleted" => "Image bien supprimée",
+		"You have no rights upload document on this item, just write a message !" => "Vous n'avez pas les droits pour ajouter une image ici. Vous pouvez seulement écrire un message !",
+		"You are not allowed to modify the document of this item !" => "Vous n'êtes pas autorisé à modifier et/ou ajouter un document ici",
 	)
 
 ?>

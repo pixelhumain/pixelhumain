@@ -1,0 +1,81 @@
+{
+    "name" : "Communecter",
+    "theme" : "ph-dori",
+    "mode" : "server",
+    "skin" : {
+        "logo" : true,
+        "title" : "Communecter",
+        "displayScope" : false,
+        "displayCommunexion" : true,
+        "profilBar" : true,
+        "displayButtonGridList" : false,
+        "class" : {
+            "mainContainer" : false
+        },
+        "displayMenuTopGallery" : true,
+        "displayNotifications" : true,
+        "displayConnexionRegister" : true,
+        "iconeAdd" : false,
+        "iconeSearchPlus" : false,
+        "loginTitle":""
+    },
+    "filter" : {
+        "types" : false,
+        "linksTag" : {
+	        "focus" : {
+		        "type" : "accordeon",
+	            "element" : "projects",
+                "limitMax" : 5
+            }
+            "Les collections" : {
+	            "type" : "redirect",
+	            "href" : "#default.directory?type=poi",
+                "tags" : {
+                    "Où sont les femmes" : "OuSontLesFemmes",
+                    "Passeur d'images" : "PasseurDImages",
+                    "MHQM" : "MHQM",
+                    "MIAA" : "MIAA",
+                    "Portrait citoyens" : "PortraitCitoyens",
+                    "Parcours d'engagement" : "ParcoursDEngagement"
+                }
+            },
+            "Les genres" : {
+                "type" : "redirect",
+	            "href" : "#default.directory?type=poi",
+                "tags" : {
+                    "Documentaire" : "documentaire",
+                    "Fiction" : "fiction",
+                    "Docu-fiction" : "docuFiction",
+                    "Films outils" : "filmsOutils",
+                    "Films de commande" : "filmsDeCommande"
+                }
+            }
+        }
+    },
+    "add" : {
+        "organization" : true,
+        "project" : true,
+        "event" : false,
+        "person" : true,
+        "action" : true,
+        "survey" : true,
+        "discuss" : true,
+        "need" : true,
+        "poi" : true
+    },
+    "result" : {
+        "displayImage" : false,
+        "displayType" : false,
+        "fullLocality" : true,
+        "datesEvent" : false
+    },
+    "request" : {
+        "sourceKey" :[
+            "communecter"
+        ],
+        "pagination" : 2000,
+        "searchType" : [
+            "organizations"
+        ]
+    }
+}
