@@ -9,7 +9,7 @@
 		<div class="pull-left">
 		<?php foreach ($topList as $data) { 
 			if(@$data["medias"] && @$data["medias"][0]["content"]["image"] && !empty($data["medias"][0]["content"]["image"]))
-				$src = $data["medias"][0]["content"]["image"];
+				$src = str_replace("1280x720","720x720",$data["medias"][0]["content"]["image"]);
 			else 
 				$src = $this->module->assetsUrl."/images/thumbnail-default.jpg";
 			$name = $data["name"];
