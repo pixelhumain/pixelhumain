@@ -90,8 +90,7 @@ $params = array(
         "live" => false,
         "recherche" => false, //reanme search
         "need" => false,
-        "poi" => true,
-        "menuTop_List" => true,
+        "poi" => true
     )
   );
 
