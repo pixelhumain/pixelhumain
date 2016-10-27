@@ -3,6 +3,18 @@
 	//modifier l'url relative si besoin pour trouver communecter/view/sig/
 	$relativePath = "../sig/";
 
+	$mapProvider = "OSM";
+	if(PH::notlocalServer()){
+		//error_log("NOT LOCAL");
+		if(Yii::app()->params["mapboxActive"]==true)
+		$mapProvider = "mapbox";
+	}else{
+		//error_log("LOCAL");
+		$mapProvider = "OSM";
+		if(Yii::app()->params["forceMapboxActive"]==true)
+			$mapProvider = "mapbox";
+	}
+
 	//modifier les parametre en fonction des besoins de la carte
 	$sigParams = array(
         "sigKey" => "Bg",
@@ -13,7 +25,9 @@
         "mapColor" => 'rgb(69, 96, 116)',  //ex : '#456074', //'#5F8295', //'#955F5F', rgba(69, 116, 88, 0.49)
         "mapOpacity" => 0.4, //ex : 0.4
 
-        /* MAP LAYERS (FOND DE CARTE) */
+        "mapProvider" => $mapProvider,
+		
+		/* MAP LAYERS (FOND DE CARTE) */
         "mapTileLayer" 	  => '//stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', //'', //'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'
         "mapAttributions" => '<a href="http://www.opencyclemap.org">OpenCycleMap</a>',	 	//'Map tiles by <a href="http://stamen.com">Stamen Design</a>'
 

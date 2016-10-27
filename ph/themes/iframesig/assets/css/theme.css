@@ -1,0 +1,44 @@
+.btn-group-map.tools-btn {
+    right: 30% !important;
+    left: 30% !important;
+    text-align: center!important;
+}
+
+.btn-group-map .btn-group {
+    margin-right: 0px!important;
+}
+.btn-map {
+    font-size: 18px !important;
+}
+
+
+.btn-groupe-around-me-km .btn {
+    height: 50px;
+	float: none;
+	border: none;
+	margin: -3px;
+	padding: 0 2% !important;
+	font-size: 15px !important;
+}
+.btn-groupe-around-me-km-hz{
+right: 0%!important;
+bottom: 50px;
+top:unset!important;
+width: 100%;
+display: inline !important;
+text-align: center;
+}
+
+.my-main-container{
+	display:none!important;
+}
+
+.main-top-menu{
+	top:unset!important;
+	bottom:0px !important;
+}
+
+.main-top-menu {
+    padding-top: 15px !important;
+    font-weight: 700 !important;
+}
