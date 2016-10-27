@@ -12,31 +12,9 @@ HtmlHelper::registerCssAndScriptsFiles(array( '/assets/css/menus/short_info_prof
       <i class="fa fa-map"></i>
 </button>
 
-<div class="menu-info-profil <?php echo isset($type) ? $type : ''; ?> " 
-     data-tpl="default.menu.short_info_profil">
-    
-  
-  
-  <?php // BTN MAP // ?>
-  
 
-  <?php // INPUT TEXT GLOBAL SEARCH // ?>
-  <div class="input-group group-globalsearch inline hidden-xs">
-    
-    <input type="text" class="text-dark input-global-search" 
-           placeholder="<?php echo Yii::t("common","Search") ?> ..."/>
-
-    <span class="input-group-addon" id="basic-addon1">
-      <i class="fa fa-search text-dark searchIcon tooltips" 
-         data-toggle="tooltip" data-placement="bottom" title="Recherche Globale"></i>
-    </span>
-    
-  </div>
-  
-  <div class="dropdown-result-global-search"></div>
-  
   <?php // BTN PROFIL || BTN SUBSCRIBE-LOGIN // ?>
-  <div class="topMenuButtons pull-right"> 
+  <div class="topMenuButtons pull-right" style="margin-top: 7px;"> 
     <?php 
     if( isset( Yii::app()->session['userId']) ){
       //echo $this->renderPartial('./menu/menuProfil',array( "me"=> $me)); 
@@ -69,7 +47,31 @@ HtmlHelper::registerCssAndScriptsFiles(array( '/assets/css/menus/short_info_prof
   <?php $this->renderPartial($layoutPath.'.menu.multi_tag_scope', array("me"=>$me)); ?>
 </div>
 
-</div>
+
+<div class="menu-info-profil <?php echo isset($type) ? $type : ''; ?> " 
+     data-tpl="default.menu.short_info_profil">
+    
+  
+  
+  <?php // BTN MAP // ?>
+  
+
+  <?php // INPUT TEXT GLOBAL SEARCH // ?>
+  <div class="input-group group-globalsearch inline hidden-xs">
+    
+    <input type="text" class="text-dark input-global-search" 
+           placeholder="<?php echo Yii::t("common","Search") ?> ..."/>
+
+    <span class="input-group-addon" id="basic-addon1">
+      <i class="fa fa-search text-dark searchIcon tooltips" 
+         data-toggle="tooltip" data-placement="bottom" title="Recherche Globale"></i>
+    </span>
+    
+  </div>
+  
+  <div class="dropdown-result-global-search"></div>
+
+</div>  
 
 
 <style>
