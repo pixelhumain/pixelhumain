@@ -1189,7 +1189,7 @@ footer {
 
 .inline {
   display: inline;
-  display: -webkit-inline-box;
+  display: -webkit-inline-box !important;
   display: -moz-inline-box;
    
 }
