@@ -20,7 +20,7 @@
 	}
 	#notificationPanelSearch{
 	position: fixed;
-	top: 50px !important;
+	top: 160px !important;
 	border-top:1px solid rgba(128, 128, 128, 0.54);
 	right: 0%;
 	width: 430px;
