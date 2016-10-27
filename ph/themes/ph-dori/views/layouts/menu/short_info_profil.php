@@ -5,73 +5,59 @@ HtmlHelper::registerCssAndScriptsFiles(array( '/assets/css/menus/short_info_prof
 <style type="text/css">
  
 </style>
-
-<button class="btn-menu-top tooltips pull-right" 
-        id="btn-toogle-map"
-        data-toggle="tooltip" data-placement="bottom" title="Carte" alt="Carte">
-      <i class="fa fa-map"></i>
-</button>
-
 <div class="menu-info-profil <?php echo isset($type) ? $type : ''; ?> " 
      data-tpl="default.menu.short_info_profil">
     
-  
-  
-  <?php // BTN MAP // ?>
-  
-
-  <?php // INPUT TEXT GLOBAL SEARCH // ?>
-  <div class="input-group group-globalsearch inline hidden-xs">
+    <?php // MULTITAG / MULTISCOPE // ?>
+    <?php $this->renderPartial('../default/menu/multi_tag_scope', array("me"=>$me)); ?>
     
-    <input type="text" class="text-dark input-global-search" 
-           placeholder="<?php echo Yii::t("common","Search") ?> ..."/>
-
-    <span class="input-group-addon" id="basic-addon1">
-      <i class="fa fa-search text-dark searchIcon tooltips" 
-         data-toggle="tooltip" data-placement="bottom" title="Recherche Globale"></i>
-    </span>
     
-  </div>
-  
-  <div class="dropdown-result-global-search"></div>
-  
-  <?php // BTN PROFIL || BTN SUBSCRIBE-LOGIN // ?>
-  <div class="topMenuButtons pull-right"> 
+
+    <?php // INPUT TEXT GLOBAL SEARCH // ?>
+    <div class="input-group group-globalsearch inline hidden-xs">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-search text-dark searchIcon tooltips" 
+           data-toggle="tooltip" data-placement="bottom" title="Recherche Globale"></i>
+      </span>
+      <input type="text" class="text-dark input-global-search" 
+             placeholder="<?php echo Yii::t("common","Search") ?> ..."/>
+    </div>
+    <div class="dropdown-result-global-search"></div>
+    
+    <?php // BTN PROFIL || BTN SUBSCRIBE-LOGIN // ?>
+    <div class="topMenuButtons pull-right">
+    
+    
+    
     <?php 
     if( isset( Yii::app()->session['userId']) ){
       //echo $this->renderPartial('./menu/menuProfil',array( "me"=> $me)); 
      // IMAGE PROFIL // 
       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
-    ?>    
-        <button class="dropdown-toggle menu-name-profil text-dark" data-toggle="dropdown" onclick="javascript:openMenuSmall();">
-          <img class="img-circle" id="menu-thumb-profil" width="34" height="34" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
-        </button>
+    ?> 
+          <button class="dropdown-toggle menu-name-profil text-dark" data-toggle="dropdown" onclick="javascript:openMenuSmall();">
+            <img class="img-circle" id="menu-thumb-profil" width="34" height="34" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
+          </button>
 
     <?php }
     else { ?>
-        <?php // BTN MENU LAUNCH // ?>
-        <a class="pull-right text-dark" href="javascript:openMenuSmall();"  id="btn-menu-launch">
-          <i class="fa fa-bars fa-2x"></i>
-        </a>
-        <button class="btn-top btn btn-default hidden-xs" onclick="showPanel('box-register');">
-          <i class="fa fa-plus-circle"></i> 
-          <span class="hidden-sm hidden-md hidden-xs">S'inscrire</span>
-        </button>
+      <?php // BTN MENU LAUNCH // ?>
+      <a class="pull-right text-dark" href="javascript:openMenuSmall();"  id="btn-menu-launch">
+        <i class="fa fa-bars fa-2x"></i>
+      </a>
+      <button class="btn-top btn btn-default hidden-xs" onclick="showPanel('box-register');">
+        <i class="fa fa-plus-circle"></i> 
+        <span class="hidden-sm hidden-md hidden-xs">S'inscrire</span>
+      </button>
 
-        <button class="btn-top btn btn-success hidden-xs" style="margin-right:10px;" onclick="showPanel('box-login');">
-          <i class="fa fa-sign-in"></i> 
-          <span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
-        </button> 
+      <button class="btn-top btn btn-success hidden-xs" style="margin-right:10px;" onclick="showPanel('box-login');">
+        <i class="fa fa-sign-in"></i> 
+        <span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
+      </button> 
+
     <?php } ?>
-  
-  <?php // MULTITAG / MULTISCOPE // ?>
-  <?php $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.'; ?>
-  <?php $this->renderPartial($layoutPath.'.menu.multi_tag_scope', array("me"=>$me)); ?>
-</div>
-
-</div>
-
-
+    </div>
+  </div>
 <style>
 ul.notifList {
     max-height: unset !important;
@@ -83,9 +69,6 @@ ul.notifList {
   var timeoutGS = setTimeout(function(){ }, 100);
   var timeoutDropdownGS = setTimeout(function(){ }, 100);
   var searchPage = false;
-
-  var ICON_MAP_MENU_TOP = "map";
-
   jQuery(document).ready(function() {
     //hide burger menu if loggued user
     if (typeof userId != undefined && userId != "") {
