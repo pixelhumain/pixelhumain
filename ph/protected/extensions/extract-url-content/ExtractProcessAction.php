@@ -18,6 +18,7 @@ class ExtractProcessAction extends CAction{
 			$page_body="";
 			$description=false;
 			$title=false;
+			$urlVideoLink=false;
 			$image_urls=array();
 			$sourceName = getDomain ($get_url);
 			/*Scénario à écrire pour les images
@@ -117,8 +118,9 @@ class ExtractProcessAction extends CAction{
 			               $type = $element -> content;   
 		                }
 		                if(@$type && $type == "video"){
-			                if ($element -> property == "og:video:url"){
+			                if ($urlVideoLink != true && $element -> property == "og:video:url"){
 						        $urlVideo = $element -> content; 
+						        $urlVideoLink = true;
 					        }
 				        }
 		            }
