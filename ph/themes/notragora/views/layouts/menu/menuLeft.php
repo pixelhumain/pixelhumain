@@ -74,6 +74,11 @@
 				<i class="fa fa-angle-up pull-right"></i><br>
 				<hr>
 			</span>
+			<a href="javascript:" class="">Documentaire</a><br>
+			<a href="javascript:" class="">Fiction</a><br>
+			<a href="javascript:" class="">Docu-fiction</a><br>
+			<a href="javascript:" class="">Films outils</a><br>
+			<a href="javascript:" class="">Films de commande</a><br>
 		</div>
 		
 	</div>
