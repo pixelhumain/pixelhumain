@@ -226,7 +226,7 @@
 		$me=""; 
 		  
 	$this->renderPartial($layoutPath.'.menu.menuTop', array("me" => $me, "layoutPath"=>$layoutPath)); 
-	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city)); ?>
+	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city, "layoutPath"=>$layoutPath)); ?>
 
 	<!-- **************************************
 	CENTER SECTION
