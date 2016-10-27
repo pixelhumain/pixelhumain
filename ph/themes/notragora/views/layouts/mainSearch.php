@@ -208,10 +208,8 @@
 	      $myContacts = Person::getPersonLinksByPersonId(Yii::app()->session['userId']);
 	      $myFormContact = $myContacts; 
 	      $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
-	    }else{
+	    } else
 	      $myFormContact = null;
-
-	    }
 
 	   // error_log("load IndexDefault");
 	?>
@@ -224,8 +222,9 @@
 	<?php 
 	if(!isset($me)) 
 		$me=""; 
-		  
-	$this->renderPartial($layoutPath.'.menu.menuTop', array("me" => $me)); 
+
+	$topList = Poi::getPoiByTagsAndLimit();
+	$this->renderPartial($layoutPath.'.menu.menuTop', array( "me" => $me , "topList" => $topList )); 
 	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city)); ?>
 
 	<!-- **************************************
