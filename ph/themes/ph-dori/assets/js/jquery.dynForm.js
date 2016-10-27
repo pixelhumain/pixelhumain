@@ -706,8 +706,8 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
 		function loadDateTimePicker(callback) {
 			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
-				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/build/jquery.datetimepicker.full.min.js', 
-						  baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/jquery.datetimepicker.css',
+				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/jquery.datetimepicker.full.min.js', 
+						  baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/jquery.datetimepicker.min.css',
 						  callback);
 		    }
 		}
