@@ -331,7 +331,7 @@
 			'/assets/css/floopDrawerRight.css',
 			'/assets/css/sig/sig.css',
 		);
-		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule);
+		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
 		
 		
