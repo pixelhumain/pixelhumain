@@ -32,7 +32,7 @@ $mailConfigTest = array(
 $params = array(
     //Beta Test ?
     'betaTest' => false,
-
+'theme'=>'ph-dori',
     //By default controller
     'defaultController' => 'communecter',
 
@@ -81,7 +81,7 @@ $params = array(
     'logoUrl' => '/images/logoNotragora.png',
     'mapboxActive' => false,
     'forceMapboxActive' => false,
-    "front" => array (
+    /*"front" => array (
         "organization" => true,
         "project" => true,
         "event" => false,
@@ -91,7 +91,7 @@ $params = array(
         "search" => false, //reanme search
         "need" => false,
         "poi" => true
-    )
+    )*/
   );
 
 $modulesDir = '/../../../../modules/';
