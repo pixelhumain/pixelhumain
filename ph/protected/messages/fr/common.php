@@ -101,7 +101,7 @@ return array(
 	"Please specify your first name" => "Veuillez spécifier votre nom",
 	"Please select a type" => "Veuillez selectionner un type",
 	"Please enter an email" => "Veuillez entrer un e-mail",
-	"Please try again" => "Essaie encore s'il-te plait",
+	"Please try again" => "Merci d'essayer une nouvelle fois",
 	"Please specify the name" => "Veuillez entrer un nom",
 	"Please Log in order to vote !" => "Vous n'êtes pas connecté : vote non sauvegardé",
 	"You are already admin of" => "Vous êtes déjà admin de",
