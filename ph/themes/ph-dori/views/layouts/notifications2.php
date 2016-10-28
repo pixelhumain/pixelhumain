@@ -114,6 +114,10 @@
 	#notificationPanelSearch{
 		width:415px !important
 	}
+
+	.badge-tranparent{
+		background-color: transparent;
+	}
 </style>
 <div id="notificationPanelSearch" class="">
 		<div class="notifications">
@@ -326,14 +330,14 @@ function notifCount()
 		$('.notifications-count').removeClass('hide');
 		$('.notifications-count').addClass('animated bounceIn');
 		$('.notifications-count').addClass('badge-success');
-		$('.notifications-count').removeClass('badge-info');
+		$('.notifications-count').removeClass('badge-tranparent');
 		$(".markAllAsRead").show();
 	} else {
 		$(".notifList").append("<li><i class='fa fa-ban'></i> <?php echo Yii::t("common","No more notifications for the moment") ?></li>");
 		//$('.notifications-count').addClass('hide');
 		$(".notifications-count").html("0");
 		$('.notifications-count').removeClass('badge-success');
-		$('.notifications-count').addClass('badge-info');
+		$('.notifications-count').addClass('badge-tranparent');
 		$(".markAllAsRead").hide();
 	}
 }
