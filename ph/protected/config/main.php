@@ -10,8 +10,8 @@ Yii::setPathOfAlias('Json',dirname(__FILE__) . '/../extensions/Json');
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Notragora',
-	'theme'=>'notragora',
+	'name'=>'Communecter',
+	'theme'=>'ph-dori',
 	'sourceLanguage'=>'00',
 	'language'=>'en',
 
