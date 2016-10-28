@@ -28,7 +28,7 @@ class HtmlHelper {
      */
     public static function registerCssAndScriptsFiles($files,$path=null) {
         $cs = Yii::app()->getClientScript();
-        if(!$path)
+        if($path == null)
             $path = Yii::app()->theme->baseUrl;
         $ajaxRequest = Yii::app()->request->isAjaxRequest;
         foreach ($files as $file) {
