@@ -16,7 +16,7 @@ class OpenData
                         				"NC"=>"Nouvelle-Calédonie", //988
                         				"RE"=>"Réunion", //9*74
                                         "PM"=>"St Pierre et Miquelon",//975
-                                        "BEL"=>"Belgique"); 
+                                        ); 
     
     public static $elementTypes = array( "NGO" => "Association",
                                         "LocalBusiness" => "Entreprise",
