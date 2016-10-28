@@ -122,8 +122,8 @@
   padding: 14px 13px;
 }
 .searchEntity .entityCenter i.fa.fa-university{
-  font-size: 21px;
-  padding: 16px 17px;
+  font-size: 17px;
+  padding: 13px 13px;
 }
 .searchEntity .entityCenter i.fa.fa-lightbulb-o{
   font-size: 21px;
@@ -230,6 +230,23 @@
     margin-top: -30px;
     border-radius: 0px;
   }
+
+  
+.searchEntityContainer.cities{
+  min-height: 70px !important;
+  max-height: 70px !important;
+}
+
+.searchEntityContainer.cities .searchEntity .entityCenter{
+  margin-top:0px;
+}
+
+.searchEntityContainer.cities .entityName{
+  font-size:17px;
+}
+.searchEntityContainer.cities .entityLocality{
+  font-size:14px;
+}
 
   .bg-orange.transparent{
     background-color: #FFA200B3 !important;
