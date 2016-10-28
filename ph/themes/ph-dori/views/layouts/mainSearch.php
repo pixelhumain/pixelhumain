@@ -513,23 +513,26 @@
 			
 
 
-		    //console.log("hash", location.hash);
+		    //console.warn("hash", location.hash);
 		    //console.warn("isMapEnd 3",isMapEnd);
-		    console.log("userConnected");
-			console.dir(userConnected);
+		    //console.log("userConnected");
+			//console.dir(userConnected);
 			//si l'utilisateur doit passer par le two_step_register
 
 			if(userConnected != null && userConnected != "" && typeof userConnected != "undefined" && !location.hash){
+				//console.warn("hash 1", location.hash);
 				loadByHash("#person.detail.id."+userId);
 				return;
 			} 
 			else{ //si l'utilisateur est déjà passé par le two_step_register
 		 		if(/*location.hash != "#default.live" &&*/ location.hash != "#" && location.hash != ""){
+		 			//console.warn("hash 2", location.hash);
 					loadByHash(location.hash);
 					return;
 				}
 				else{ 
 					//console.log("userConnected", userConnected);
+					//console.warn("hash3", location.hash);
 					if(userConnected != null && userId != null  && userId != "" && typeof userId != "undefined")
 						loadByHash("#default.live");//news.index.type.citoyens.id."+userId);
 					else
