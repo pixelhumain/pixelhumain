@@ -135,66 +135,6 @@
 		<!-- **************************************
 		INDEX structure 
 		******************************************* -->
-
-	<?php
-	
-	
- 
-	//si l'utilisateur n'est pas connecté
- 	if(!isset(Yii::app()->session['userId'])){
-		$inseeCommunexion 	 = isset( Yii::app()->request->cookies['inseeCommunexion'] ) ? 
-		   			    			  Yii::app()->request->cookies['inseeCommunexion']->value : "";
-		
-		$cpCommunexion 		 = isset( Yii::app()->request->cookies['cpCommunexion'] ) ? 
-		   			    			  Yii::app()->request->cookies['cpCommunexion']->value : "";
-		
-		$cityNameCommunexion = isset( Yii::app()->request->cookies['cityNameCommunexion'] ) ? 
-		   			    			  Yii::app()->request->cookies['cityNameCommunexion']->value : "";
-
-		$regionNameCommunexion = isset( Yii::app()->request->cookies['regionNameCommunexion'] ) ? 
-		   			    			  Yii::app()->request->cookies['regionNameCommunexion']->value : "";
-
-		$countryCommunexion = isset( Yii::app()->request->cookies['countryCommunexion'] ) ? 
-		   			    			  Yii::app()->request->cookies['countryCommunexion']->value : "";
-	}
-	//si l'utilisateur est connecté
-	else{
-		$me = Person::getById(Yii::app()->session['userId']);
-		$inseeCommunexion 	 = isset( $me['address']['codeInsee'] ) ? 
-		   			    			  $me['address']['codeInsee'] : "";
-		
-		$cpCommunexion 		 = isset( $me['address']['postalCode'] ) ? 
-		   			    			  $me['address']['postalCode'] : "";
-		
-		$cityNameCommunexion = isset( $me['address']['addressLocality'] ) ? 
-		   			    			  $me['address']['addressLocality'] : "";
-		
-		$regionNameCommunexion = ""; /*not important now => multilevel is dead*/
-
-		$countryCommunexion = isset( $me['address']['addressCountry'] ) ? 
-		   			    			 $me['address']['addressCountry'] : "";	
-	}
-
-	if (@$inseeCommunexion){
-		if(@$cpCommunexion){
-			$city=City::getCityByInseeCp($inseeCommunexion, $cpCommunexion);	
-		}else{
-			$city=SIG::getCityByCodeInsee($inseeCommunexion);
-		}
-
-		if(@$me)
-		$regionNameCommunexion = @$city['regionName'] ? 
-			   			    	 $city['regionName'] : "";
-
-		$nbCpByInsee=count(@$city["postalCodes"]);
-		if($nbCpByInsee > 1){
-			$cityInsee=$city["name"];
-		}
-	}else{
-		$city = null;
-	}
-
-	?>
 	
 	<!-- **************************************
 	MAP CONTAINER
@@ -287,21 +227,7 @@
 			'/assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js',
 			'/assets/plugins/bootstrap/js/bootstrap.min.js' , 
 			'/assets/plugins/bootstrap/css/bootstrap.min.css',
-			'/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , 
-			'/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css',
-			'/assets/plugins/bootstrap-modal/js/bootstrap-modal.js' , 
-			'/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , 
 			'/assets/plugins/velocity/jquery.velocity.min.js',
-			'/assets/plugins/ladda-bootstrap/dist/spin.min.js' , 
-			'/assets/plugins/ladda-bootstrap/dist/ladda.min.js' , 
-			'/assets/plugins/ladda-bootstrap/dist/ladda.min.css',
-			'/assets/plugins/ladda-bootstrap/dist/ladda-themeless.min.css',
-			'/assets/plugins/iCheck/jquery.icheck.min.js' , 
-			'/assets/plugins/iCheck/skins/all.css',
-			'/assets/plugins/jquery.transit/jquery.transit.js' , 
-			'/assets/plugins/TouchSwipe/jquery.touchSwipe.min.js' , 
-			'/assets/plugins/bootbox/bootbox.min.js' , 
-			'/assets/plugins/jquery-mockjax/jquery.mockjax.js' , 
 			'/assets/plugins/blockUI/jquery.blockUI.js' , 
 			'/assets/plugins/toastr/toastr.js' , 
 			'/assets/plugins/toastr/toastr.min.css',
@@ -312,13 +238,6 @@
 			'/assets/plugins/moment/min/moment.min.js' ,
 			'/assets/js/cookie.js' ,
 			
-			'/assets/js/jquery.dynForm.js' , 
-
-			'/assets/plugins/jquery-validation/dist/jquery.validate.min.js',
-			'/assets/plugins/jquery-validation/localization/messages_fr.js',
-			'/assets/plugins/lightbox2/css/lightbox.css',
-			'/assets/plugins/lightbox2/js/lightbox.min.js',
-
 			'/assets/plugins/animate.css/animate.min.css',
 			'/assets/plugins/font-awesome/css/font-awesome.min.css',
 			'/assets/plugins/font-awesome-custom/css/font-awesome.css',
@@ -390,24 +309,13 @@
 		};
 
 
-		/* variables globales communexion */
-		var inseeCommunexion = "<?php echo $inseeCommunexion; ?>";
-		var cpCommunexion = "<?php echo $cpCommunexion; ?>";
-		var cityNameCommunexion = "<?php echo $cityNameCommunexion; ?>";
-		var regionNameCommunexion = "<?php echo $regionNameCommunexion; ?>";
-		var countryCommunexion = "<?php echo $countryCommunexion; ?>";
-		<?php if(@$nbCpByInsee && $nbCpByInsee > 1){ ?>
-			nbCpbyInseeCommunexion = "<?php echo $nbCpByInsee; ?>";
-			cityInseeCommunexion = "<?php echo $cityInsee; ?>";
-		<?php } ?>
-		var latCommunexion = 0;
-		var lngCommunexion = 0;
+		
 
 		/* variables globales communexion */	
 		var myContacts = <?php echo ($myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
 		var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
 
-		var proverbs = <?php echo json_encode(random_pic()) ?>;  
+		var proverbs = new Array(); //<?php echo json_encode(random_pic()) ?>;  
 
 		var hideScrollTop = true;
 		var lastUrl = null;
