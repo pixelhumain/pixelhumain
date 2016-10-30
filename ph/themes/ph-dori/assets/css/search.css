@@ -4,6 +4,28 @@
   height: 100%;
   overflow:hidden !important;
 }
+
+/*Fix tooltips display*/
+.tooltip-inner{
+	padding:10px!important;
+	font-size:14px;
+	min-width:150px;
+}
+.tooltip.bottom .tooltip-arrow{
+	top:1px!important;
+}
+.tooltip.top .tooltip-arrow{
+	bottom:1px!important;
+}
+.tooltip.left .tooltip-arrow{
+	right:1px!important;
+}
+.tooltip.right .tooltip-arrow{
+	left:1px!important;
+}
+
+
+
 #mapCanvasBg {
     visibility: visible !important;
     /*z-index: -1;*/
