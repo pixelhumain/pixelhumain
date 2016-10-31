@@ -1,4 +1,4 @@
-<?php  HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuTop.css')); 
+<?php  HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuTop.css'), Yii::app()->theme->baseUrl); 
 	$topList = Poi::getPoiByTagsAndLimit();
 ?>
 
