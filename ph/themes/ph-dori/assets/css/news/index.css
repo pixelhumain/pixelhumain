@@ -375,3 +375,22 @@ div.timeline .newsTL > .newsFeed:nth-child(2n+1) .timeline_element:before {
 #newsHistory .panel, #newsHistory .panel-body{
 	background-color: transparent !important;
 }
+
+
+/**/
+/*
+.select2-container-multi .select2-choices .select2-search-choice {
+    padding: 7px 12px 10px 24px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-right: 3px;
+    border: none;
+    margin-top: 4px;
+    background-color: #E33551 !important;
+    background-image: none;
+    color: white;
+    box-shadow: none !important;
+    font-size: 15px !important;
+}
+.select2-search-choice-close{ margin:5px!important; }
+*/
