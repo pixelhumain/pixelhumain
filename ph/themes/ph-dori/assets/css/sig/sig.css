@@ -966,6 +966,19 @@ creer des conflits : regle pas assez specfique
 	.btn-groupe-around-me-km .btn.active{
 		background-color:rgb(56, 189, 90) !important;;
 	}
+
+	/*.btn-groupe-share-around-me{
+		top: 190px;
+	}*/
+
+	#btn-share-aroundme{
+		/*width: 50px;*/
+		font-size: 15px !important;
+		color: white !important;
+		background-color: #2BB0C6 !important;
+	}
+
+
 /* style tooltip des chartsMarkers */
 
 @media screen and (max-width: 768px) {
