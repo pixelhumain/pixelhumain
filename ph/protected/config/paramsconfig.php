@@ -78,7 +78,12 @@ $params = array(
     //Number of invitation by default for a person (us only on beta test)
     'numberOfInvitByPerson' => 10,
     'networkParams' => "tierslieuxlille",
-    'logoUrl' => '/images/logoLTxt.jpg',
+    
+    //URL of logos used by mail
+    "logoUrl" => "/images/logo-communecter.png",
+    "logoUrl2" => "/images/logoLTxt.jpg",
+    
+    //map box params
     'mapboxActive' => false,
     'forceMapboxActive' => false,
     /*"front" => array (
