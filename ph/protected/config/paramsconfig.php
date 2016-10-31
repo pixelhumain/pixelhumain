@@ -78,7 +78,7 @@ $params = array(
     //Number of invitation by default for a person (us only on beta test)
     'numberOfInvitByPerson' => 10,
     'networkParams' => "tierslieuxlille",
-    'logoUrl' => '/images/logoNotragora.png',
+    'logoUrl' => '/images/logoLTxt.jpg',
     'mapboxActive' => false,
     'forceMapboxActive' => false,
     /*"front" => array (
