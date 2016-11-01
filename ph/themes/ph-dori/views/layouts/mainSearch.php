@@ -344,6 +344,7 @@
 		var mapIconTop = {
 		    "default" : "fa-arrow-circle-right",
 		    "citoyen":"<?php echo Person::ICON ?>", 
+		    "person":"<?php echo Person::ICON ?>", 
 		    "NGO":"<?php echo Organization::ICON ?>",
 		    "LocalBusiness" :"<?php echo Organization::ICON_BIZ ?>",
 		    "Group" : "<?php echo Organization::ICON_GROUP ?>",
@@ -364,6 +365,7 @@
 		var mapColorIconTop = {
 		    "default" : "dark",
 		    "citoyen":"yellow", 
+		    "person":"yellow", 
 		    "NGO":"green",
 		    "LocalBusiness" :"green",
 		    "Group" : "green",
