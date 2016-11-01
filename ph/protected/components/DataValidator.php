@@ -255,16 +255,17 @@ class DataValidator {
 	public static function geoValid($toValidate) {
 		$res = "";
 		error_log("geoValid = ".json_encode($toValidate));
-		//Check type 
-		if (empty($toValidate["@type"])) return "Type missing in the geo !";
-		if ($toValidate["@type"] != "GeoCoordinates") return "Type missing in the geo !";
-		//Check latitude
-		if (empty($toValidate["latitude"])) return "latitude missing in the geo !";
-		if (!is_string($toValidate["latitude"])) return "latitude is not a string in the geo !";
-		//Check longitude
-		if (empty($toValidate["longitude"])) return "longitude Code missing in the geo !";
-		if (!is_string($toValidate["longitude"])) return "longitude is not a string in the geo !";
-		
+		if(!empty($toValidate)){
+			//Check type 
+			if (empty($toValidate["@type"])) return "Type missing in the geo !";
+			if ($toValidate["@type"] != "GeoCoordinates") return "Type missing in the geo !";
+			//Check latitude
+			if (empty($toValidate["latitude"])) return "latitude missing in the geo !";
+			if (!is_string($toValidate["latitude"])) return "latitude is not a string in the geo !";
+			//Check longitude
+			if (empty($toValidate["longitude"])) return "longitude Code missing in the geo !";
+			if (!is_string($toValidate["longitude"])) return "longitude is not a string in the geo !";
+		}
 		return $res;
 	}
 
@@ -277,15 +278,18 @@ class DataValidator {
 	public static function geoPositionValid($toValidate) {
 		$res = "";
 		error_log("geoPosition = ".json_encode($toValidate));
-		//Check type 
-		if (empty($toValidate["type"])) return "Type missing in the geoPosition !";
-		if ($toValidate["type"] != "Point") return "Type missing in the geoPosition !";
-		//Check longitude
-		if (empty($toValidate["coordinates"][0])) return "longitude Code missing in the geoPosition !";
-		if (!is_float($toValidate["coordinates"][0])) return "longitude is not a float in the geoPosition !";
-		//Check latitude
-		if (empty($toValidate["coordinates"][1])) return "latitude missing in the geoPosition !";
-		if (!is_float($toValidate["coordinates"][1])) return "latitude is not a float in the geoPosition !";
+		if(!empty($toValidate)){
+			//Check type 
+			if (empty($toValidate["type"])) return "Type missing in the geoPosition !";
+			if ($toValidate["type"] != "Point") return "Type missing in the geoPosition !";
+			//Check longitude
+			if (empty($toValidate["coordinates"][0])) return "longitude Code missing in the geoPosition !";
+			if (!is_float($toValidate["coordinates"][0])) return "longitude is not a float in the geoPosition !";
+			//Check latitude
+			if (empty($toValidate["coordinates"][1])) return "latitude missing in the geoPosition !";
+			if (!is_float($toValidate["coordinates"][1])) return "latitude is not a float in the geoPosition !";
+		}
+		
 		
 		
 		return $res;
