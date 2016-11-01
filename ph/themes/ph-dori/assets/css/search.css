@@ -24,7 +24,9 @@
 	left:1px!important;
 }
 
-
+a.lbh:hover{
+	text-decoration: underline !important;
+}
 
 #mapCanvasBg {
     visibility: visible !important;
