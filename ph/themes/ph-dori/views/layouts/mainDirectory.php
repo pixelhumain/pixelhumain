@@ -14,7 +14,7 @@
 		<!-- end: META -->
 		<!-- start: MAIN CSS -->
 		<?php 
-		$themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
+		$themeAssetsUrl = Yii::app()->getRequest()->getBaseUrl(true);
 
 		$cs = Yii::app()->getClientScript();
 		$cs->registerCssFile($themeAssetsUrl. '/plugins/bootstrap/css/bootstrap.min.css');
@@ -33,7 +33,7 @@
 		$cs->registerCssFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css');
 		$cs->registerScriptFile($themeAssetsUrl.'/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
-		$cs->registerCssFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.css');
+		$cs->registerCssFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/select2/select2.css');
 		
 		?>
 		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" />
@@ -97,32 +97,32 @@
 		<?php
 		echo "<!-- start: MAIN JAVASCRIPTS -->";
 		echo "<!--[if lt IE 9]>";
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/respond.min.js' , CClientScript::POS_HEAD);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/excanvas.min.js' , CClientScript::POS_HEAD);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery/jquery-1.11.1.min.js' , CClientScript::POS_HEAD);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/respond.min.js' , CClientScript::POS_HEAD);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/excanvas.min.js' , CClientScript::POS_HEAD);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/jQuery/jquery-1.11.1.min.js' , CClientScript::POS_HEAD);
 		echo "<![endif]-->";
 		echo "<!--[if gte IE 9]><!-->";
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
 		echo "<!--<![endif]-->";
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootstrap/js/bootstrap.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/spin.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/ladda-bootstrap/dist/ladda.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/iCheck/jquery.icheck.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery.transit/jquery.transit.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/TouchSwipe/jquery.touchSwipe.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/bootbox/bootbox.min.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-mockjax/jquery.mockjax.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/blockUI/jquery.blockUI.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/toastr/toastr.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-cookie/jquery.cookie.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/bootstrap/js/bootstrap.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/ladda-bootstrap/dist/spin.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/ladda-bootstrap/dist/ladda.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/iCheck/jquery.icheck.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/jquery.transit/jquery.transit.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/TouchSwipe/jquery.touchSwipe.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/bootbox/bootbox.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/jquery-mockjax/jquery.mockjax.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/blockUI/jquery.blockUI.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/toastr/toastr.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/jquery-cookie/jquery.cookie.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , CClientScript::POS_END);
 
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/plugins/select2/select2.min.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/plugins/select2/select2.min.js' , CClientScript::POS_END);
 
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/jquery.dynForm.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
-		$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/assets/js/cookie.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/js/jquery.dynForm.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true).'/js/api.js' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true). '/js/cookie.js' , CClientScript::POS_END);
 		$cs->registerScriptFile($this->module->assetsUrl. '/js/network.js' , CClientScript::POS_END);
 
 		
