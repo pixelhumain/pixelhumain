@@ -55,6 +55,7 @@ onSave: (optional) overloads the generic saveProcess
 
 			console.info("build Form dynamically into form tag : ",settings.surveyId);
 			console.dir(settings.surveyObj);
+						console.dir(settings.surveyValues);
 
 			/* **************************************
 			* BUILD FORM based on surveyObj
@@ -115,8 +116,9 @@ onSave: (optional) overloads the generic saveProcess
 				$.each(sectionObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
 					if(fieldObj.rules)
 						form.rules[field] = fieldObj.rules;
-					
-					buildInputField("#"+sectionId,field, fieldObj, settings.surveyValues);
+					console.log("////////SETTTINGSSSS///////");
+					console.log(settings.surveyValues);
+					buildInputField("#"+sectionId,field, fieldObj, settings.surveyValues,sectionObj.key);
 					//Only the last section carries the submit button
 					if( sectionIndex == Object.keys(settings.surveyObj).length-1 && countProperties==inc){
 						fieldHTML = '<div class="form-actions">'+
@@ -176,7 +178,7 @@ onSave: (optional) overloads the generic saveProcess
 	*	each input field type has a corresponding HTMl to build
 	*
 	***************************************** */
-	function buildInputField(id, field, fieldObj,surveyValues)
+	function buildInputField(id, field, fieldObj,surveyValues,key)
 	{
 		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
 		var required = "";
@@ -198,8 +200,8 @@ onSave: (optional) overloads the generic saveProcess
         var style = "";
         if( fieldObj.value ) 
         	value = fieldObj.value;
-        else if (surveyValues && surveyValues[field]) 
-        	value = surveyValues[field];
+        else if (surveyValues && surveyValues[key][field]) 
+        	value = surveyValues[key][field];
 
         /* **************************************
 		* 
@@ -251,11 +253,18 @@ onSave: (optional) overloads the generic saveProcess
 		* SELECT , we use select2
 		***************************************** */
         else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) {
+	        console.log(value);
         	var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
-        	fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px">'+
-        					 '<option value="">'+placeholder+'</option>';
+        	fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px">';
+        			if(value=="")
+        				fieldHTML += '<option value="" selected="selected">'+placeholder+'</option>';
+        			//else
+        			//	fieldHTML += '<option value="'+value+'" selected="selected">'+fieldObj.options[value]+'</option>';
 			$.each(fieldObj.options, function(optKey, optVal) { 
-				fieldHTML += '<option value="'+optKey+'">'+optVal+'</option>';
+				if(value != "" && optKey == value)
+					fieldHTML += '<option value="'+value+'" selected="selected">'+fieldObj.options[value]+'</option>';
+				else
+					fieldHTML += '<option value="'+optKey+'">'+optVal+'</option>';
 			});	
 			fieldHTML += '</select>';
         }
