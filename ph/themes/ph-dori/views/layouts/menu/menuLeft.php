@@ -32,7 +32,7 @@
 <div class="hover-info2 col-md-7 col-md-offset-3 col-sm-6 col-sm-offset-5 hidden-xs panel-white padding-20"></div>
 
 
-<div class="hidden-xs main-menu-left col-md-2 col-sm-2 padding-10"  data-tpl="menuLeft">
+<div class="hidden-xs main-menu-left col-md-2 col-sm-3 padding-10"  data-tpl="menuLeft">
 	
 	<div class="menu-left-container">
 

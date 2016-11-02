@@ -6,7 +6,7 @@
 
 <button class="menu-button btn-menu btn-menu-notif tooltips text-dark" 
       data-toggle="tooltip" data-placement="left" title="Notifications" alt="Notifications">
-  <i class="fa fa-bell hidden-xs"></i>
+  <i class="fa fa-bell"></i>
   <span class="notifications-count topbar-badge badge badge-danger animated bounceIn"><?php count($this->notifications); ?></span>
 </button>
 <div class="dropdown pull-right" data-tpl="default.menu.menuProfile">
