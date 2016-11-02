@@ -122,7 +122,7 @@
 							
 							<br/>
 							<button type="submit"  data-size="s" data-style="expand-right" style="background-color:#E33551" class="loginBtn ladda-button center-block">
-								<span class="ladda-label"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Login") ?></span><span class="ladda-spinner"></span><span class="ladda-spinner"></span>
+								<span class="ladda-label"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Login") ?></span>
 							</button>
 						</div>
 						
@@ -285,7 +285,7 @@ jQuery(document).ready(function() {
 	
 	$(".box").hide();
 	Login.init();
-
+	titleAnim();
 
 	$('.form-register #username').keyup(function(e) {
 		//validateUserName();
@@ -401,11 +401,11 @@ var Login = function() {
 	var runLoginValidator = function() {
 		var form = $('.form-login');
 		var loginBtn = null;
-		Ladda.bind('.loginBtn', {
+		/*Ladda.bind('.loginBtn', {
 	        callback: function (instance) {
 	            loginBtn = instance;
 	        }
-	    });
+	    });*/
 		form.submit(function(e){e.preventDefault() });
 		var errorHandler = $('.errorHandler', form);
 		
@@ -423,7 +423,8 @@ var Login = function() {
 			submitHandler : function(form) {
 				errorHandler.hide();
 				$(".alert").hide();
-				loginBtn.start();
+				//loginBtn.start();
+				$(".loginBtn").append(" <i class='fa fa-spinner fa-spin'></i>");
 				var params = { 
 				   "email" : $("#email-login").val(), 
                    "pwd" : $("#password-login").val()
@@ -485,12 +486,14 @@ var Login = function() {
 		    		  		$('.loginResult').html(msg);
 							$('.loginResult').show();
 		    		  	}
-						loginBtn.stop();
+						//loginBtn.stop();
+						$(".loginBtn").find(".fa-spinner").remove();
 		    		  }
 		    	  },
 		    	  error: function(data) {
 		    	  	toastr.error("Something went really bad : contact your administrator !");
-		    	  	loginBtn.stop();
+		    	  	//loginBtn.stop();
+		    	  	$(".loginBtn").find(".fa-spinner").remove();
 		    	  },
 		    	  dataType: "json"
 		    	});
@@ -498,7 +501,8 @@ var Login = function() {
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
-				loginBtn.stop();
+				//loginBtn.stop();
+				$(".loginBtn").find(".fa-spinner").remove();
 			}
 		});
 	};

@@ -58,12 +58,11 @@
 					$this->renderPartial('../default/menuTitle');
 				?>
 				<form class="form-login box-white-round" action="" method="POST">
-					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;" class="pull-right hidden-xs" src="<?php echo $this->module->assetsUrl?>/images/logoL.jpg"/>
-					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;" class="pull-right visible-xs" src="<?php echo $this->module->assetsUrl?>/images/logoLTxt.jpg"/>
+					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;margin-top:20px;" class="pull-right hidden-xs" src="<?php echo $this->module->assetsUrl?>/images/logoNotragora.png"/>
+					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;margin-top:20px;" class="pull-right visible-xs" src="<?php echo $this->module->assetsUrl?>/images/logoNotragora.png"/>
 					<br/>
-					<?php //echo Yii::app()->session["requestedUrl"]." - ".Yii::app()->request->url; ?>
 					<fieldset>
-						<h2 class="text-red margin-bottom-10 text-center"><i class="fa fa-angle-down"></i> Je me connecte</h2>
+						<h2 class="margin-bottom-10 text-center" style="color:#444 !important;"><i class="fa fa-angle-down"></i> Je me connecte</h2>
 						<div class="form-group">
 							<span class="input-icon">		
 								<input type="text" class="form-control radius-10" name="email" id="email-login" placeholder="<?php echo Yii::t("login","E-mail / nom d'utilisateur") ?>" >
@@ -121,8 +120,8 @@
 							</div>
 							
 							<br/>
-							<button type="submit"  data-size="s" data-style="expand-right" style="background-color:#E33551" class="loginBtn ladda-button center-block">
-								<span class="ladda-label"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Login") ?></span><span class="ladda-spinner"></span><span class="ladda-spinner"></span>
+							<button type="submit"  data-size="s" data-style="expand-right" style="background-color:#444" class="loginBtn ladda-button center-block">
+								<span class="ladda-label"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Login") ?></span>
 							</button>
 						</div>
 						
@@ -401,11 +400,11 @@ var Login = function() {
 	var runLoginValidator = function() {
 		var form = $('.form-login');
 		var loginBtn = null;
-		Ladda.bind('.loginBtn', {
+		/*Ladda.bind('.loginBtn', {
 	        callback: function (instance) {
 	            loginBtn = instance;
 	        }
-	    });
+	    });*/
 		form.submit(function(e){e.preventDefault() });
 		var errorHandler = $('.errorHandler', form);
 		
@@ -423,7 +422,8 @@ var Login = function() {
 			submitHandler : function(form) {
 				errorHandler.hide();
 				$(".alert").hide();
-				loginBtn.start();
+				//loginBtn.start();
+				$(".loginBtn").append(" <i class='fa fa-spinner fa-spin'></i>");
 				var params = { 
 				   "email" : $("#email-login").val(), 
                    "pwd" : $("#password-login").val()
@@ -485,12 +485,14 @@ var Login = function() {
 		    		  		$('.loginResult').html(msg);
 							$('.loginResult').show();
 		    		  	}
-						loginBtn.stop();
+						//loginBtn.stop();
+						$(".loginBtn").find(".fa-spinner").remove();
 		    		  }
 		    	  },
 		    	  error: function(data) {
 		    	  	toastr.error("Something went really bad : contact your administrator !");
-		    	  	loginBtn.stop();
+		    	  	//loginBtn.stop();
+		    	  	$(".loginBtn").find(".fa-spinner").remove();
 		    	  },
 		    	  dataType: "json"
 		    	});
@@ -498,7 +500,8 @@ var Login = function() {
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
-				loginBtn.stop();
+				//loginBtn.stop();
+				$(".loginBtn").find(".fa-spinner").remove();
 			}
 		});
 	};
