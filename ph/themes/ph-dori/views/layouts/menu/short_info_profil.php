@@ -9,7 +9,7 @@ HtmlHelper::registerCssAndScriptsFiles(array( '/assets/css/menus/short_info_prof
      data-tpl="default.menu.short_info_profil">
     
     <?php // MULTITAG / MULTISCOPE // ?>
-    <?php $this->renderPartial('../default/menu/multi_tag_scope', array("me"=>$me)); ?>
+    <?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.menu.multi_tag_scope', array("me"=>$me)); ?>
     
     
 
