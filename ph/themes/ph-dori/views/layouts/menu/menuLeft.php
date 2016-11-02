@@ -64,22 +64,37 @@
 		
 			$cityExists = (isset($myCity) && $myCity != "" && isset($myCity["cp"]) && isset($myCity["insee"]));
 			$title = $cityExists ? $myCity["name"] : "Communectez-vous";
-			$hash = "javascript:"; //$cityExists ? "#city.detail.insee.".$myCity["insee"].".postalCode.".$myCity["cp"] : "";
-			$onclick = $cityExists ? "loadByHash('#city.detail.insee.".$myCity["insee"].".postalCode.".$myCity["cp"] + "')" 
-								   : "communecterUser()";
+			//$hash = "javascript:"; //$cityExists ? "#city.detail.insee.".$myCity["insee"].".postalCode.".$myCity["cp"] : "";
+			//$onclick = $cityExists ? "loadByHash('#city.detail.insee.".$myCity["insee"].".postalCode.".$myCity["cp"] + "')" 
+								   //: "communecterUser()";
 		?>
 		
-		<a href="<?php echo $hash; ?>" onclick="<?php echo $onclick; ?>"
-			class="menu-button-left lbl-btn-menu-name-city menu-button-title btn-menu text-red btn-geoloc-auto glass-hover" 
-			id="btn-geoloc-auto-menu">
+		<?php if($cityExists) { ?>
+			<a href="#city.detail.insee.<?php echo $myCity["insee"]; ?>.postalCode.<?php echo $myCity["cp"]; ?>"
+				class="lbh menu-button-left lbl-btn-menu-name-city menu-button-title btn-menu text-red btn-geoloc-auto glass-hover" 
+				id="btn-geoloc-auto-menu">
+				
+				<i class="fa fa-home tooltips"
+					data-toggle="tooltip" data-placement="right" 
+					title="Ma commune : <?php echo $title; ?>">
+				</i>
+				<span class="lbl-btn-menu"><?php echo $title; ?></span>
+			</a>
+		<?php } else { ?>
+			<a  href="javascript:" onclick="communecterUser()"
+				class="menu-button-left lbl-btn-menu-name-city menu-button-title btn-menu text-red btn-geoloc-auto glass-hover" 
+				id="btn-geoloc-auto-menu">
 			
-			<i class="fa fa-home tooltips"
-					data-toggle="tooltip" data-placement="right" title="Ma commune : <?php echo $title; ?>"></i>
-			<span class="lbl-btn-menu">
-				<?php echo $title; ?>
-			</span>
-		</a>
+				<i class="fa fa-home tooltips"
+					data-toggle="tooltip" data-placement="right" 
+					title="Ma commune : <?php echo $title; ?>">
+				</i>
+				<span class="lbl-btn-menu"><?php echo $title; ?></span>
+			</a>
+		<?php } ?>
+
 		<hr>
+
 		<?php if(isset(Yii::app()->session['userId']) && isset($me["geo"])){ ?>
 			<?php // AROUND ME // ?>
 			<a href="#element.aroundme.type.person.id.<?php echo Yii::app()->session['userId'] ?>.radius.5000" id="menu-btn-around-me"
