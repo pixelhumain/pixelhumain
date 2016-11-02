@@ -238,7 +238,7 @@
 		<!-- **************************************
 		MAIN ACTIVE SECTION
 		******************************************* -->
-		<div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-xs-12 main-col-search"></div>
+		<div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 col-xs-12 main-col-search"></div>
 		
 		<!-- **************************************
 		REPERTOIRE 
@@ -344,6 +344,7 @@
 		var mapIconTop = {
 		    "default" : "fa-arrow-circle-right",
 		    "citoyen":"<?php echo Person::ICON ?>", 
+		    "person":"<?php echo Person::ICON ?>", 
 		    "NGO":"<?php echo Organization::ICON ?>",
 		    "LocalBusiness" :"<?php echo Organization::ICON_BIZ ?>",
 		    "Group" : "<?php echo Organization::ICON_GROUP ?>",
@@ -353,6 +354,7 @@
 		    "organizations" : "<?php echo Organization::ICON ?>",
 		    "GovernmentOrganization" : "<?php echo Organization::ICON_GOV ?>",
 		    "event":"<?php echo Event::ICON ?>",
+		    "events":"<?php echo Event::ICON ?>",
 		    "project":"<?php echo Project::ICON ?>",
 		    "projects":"<?php echo Project::ICON ?>",
 		    "city": "<?php echo City::ICON ?>",
@@ -364,6 +366,7 @@
 		var mapColorIconTop = {
 		    "default" : "dark",
 		    "citoyen":"yellow", 
+		    "person":"yellow", 
 		    "NGO":"green",
 		    "LocalBusiness" :"green",
 		    "Group" : "green",
@@ -373,6 +376,7 @@
 		    "organizations" : "green",
 		    "GovernmentOrganization" : "green",
 		    "event":"orange",
+		    "events":"orange",
 		    "project":"purple",
 		    "projects":"purple",
 		    "city": "red",

@@ -8,6 +8,10 @@
 	margin-bottom:5px;
 	color:#3C5665;
 	font-weight:300;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	max-width: 90%;
 }
 .menu-button-left:hover{
 	/*color:#2BB0C6;*/
