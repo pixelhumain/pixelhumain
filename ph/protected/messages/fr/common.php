@@ -648,7 +648,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Show map" => "Afficher sur la carte",
 	"Locality" => "Adresse",
 	"Localities" => "Addresses",
-	"Choose a country" => "Choisir un pays"
+	"Choose a country" => "Choisir un pays",
+	"Are you sure you want to delete the locality" => "Etes-vous sûr de vouloir supprimer cette adresse"
 
 );
 
