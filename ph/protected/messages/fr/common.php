@@ -639,12 +639,15 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Unknown Postal Code" => "Code Postal introuvable",
 	"Update Locality" => "Modifier vos coordonnées",
 	"Remove Locality" => "Effacer vos coordonnées",
+	"Remove This Locality" => "Effacer cette addresse",
+	"Add Locality" => "Ajouter une addresse",
 	"Show map" => "Voir la carte",
 
 	"Parenthood" => "Parenté",
 
 	"Show map" => "Afficher sur la carte",
 	"Locality" => "Adresse",
+	"Localities" => "Addresses",
 	"Choose a country" => "Choisir un pays"
 
 );

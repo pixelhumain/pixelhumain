@@ -429,6 +429,7 @@
 
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
+			if(myContacts != null)
 			$.each(myContacts, function(type, list) {
 				$.each(list, function(i, obj) {
 					myContactsById[type][obj["_id"]["$id"]] = obj;
