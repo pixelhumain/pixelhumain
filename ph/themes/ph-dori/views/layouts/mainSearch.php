@@ -361,7 +361,8 @@
 		    "entry": "fa-gavel",
 		    "action": "fa-cogs",
 		    "actions": "fa-cogs",
-		    "poi": "fa-info-circle"
+		    "poi": "fa-info-circle",
+		    "video": "fa-video-camera"
 		  };
 		var mapColorIconTop = {
 		    "default" : "dark",
@@ -383,7 +384,8 @@
 		    "entry": "azure",
 		    "action": "lightblue2",
 		    "actions": "lightblue2",
-		    "poi": "dark"
+		    "poi": "dark",
+		    "video":"dark"
 		  };
 
 
