@@ -409,6 +409,7 @@
 
 		/* variables globales communexion */	
 		var myContacts = <?php echo ($myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
+		var myContactsById =<?php echo ($myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
 		var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
 
 		var proverbs = <?php echo json_encode(random_pic()) ?>;  
@@ -428,7 +429,12 @@
 
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
-
+			if(myContacts != null)
+			$.each(myContacts, function(type, list) {
+				$.each(list, function(i, obj) {
+					myContactsById[type][obj["_id"]["$id"]] = obj;
+				});
+			});
 			if(currentUser)
 				organizerList["currentUser"] = currentUser.name + " (You)";
 

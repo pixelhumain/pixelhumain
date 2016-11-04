@@ -639,13 +639,18 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Unknown Postal Code" => "Code Postal introuvable",
 	"Update Locality" => "Modifier vos coordonnées",
 	"Remove Locality" => "Effacer vos coordonnées",
+	"Remove This Locality" => "Effacer cette addresse",
+	"Add Locality" => "Ajouter une adresse",
 	"Show map" => "Voir la carte",
 
 	"Parenthood" => "Parenté",
 
 	"Show map" => "Afficher sur la carte",
 	"Locality" => "Adresse",
-	"Choose a country" => "Choisir un pays"
+	"Localities" => "Adresses",
+	"Choose a country" => "Choisir un pays",
+	"Are you sure you want to delete the locality" => "Etes-vous sûr de vouloir supprimer cette adresse",
+	"Are you sure you want to delete the locality ? You can't vote anymore in the citizen council of your city." => "Etes vous sur de vous dé-communecter ? Vous ne pourrez plus voter dans le conseil citoyen de votre commune."
 
 );
 
