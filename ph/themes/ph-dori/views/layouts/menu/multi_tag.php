@@ -57,7 +57,15 @@
    				<strong>en fonction de vos envies</strong>.
    			</blockquote>
    			<blockquote><strong>Ajoutez, supprimez, activez, désactivez</strong> vos #tag à volonté.</blockquote>
-   			<blockquote><strong>Exemple :</strong> #biodiversite #nature #laVieEstBelle #sauverLeMonde</blockquote>
+   			<!-- <blockquote><strong>Exemple :</strong> #biodiversite #nature #laVieEstBelle #sauverLeMonde</blockquote> -->
+   			<hr>
+   		</div>
+   		<div class="panel-body padding-10 text-dark center">
+   			<h3 class="homestead center">
+   				<a class="text-dark">Suggestions</a><br>
+   				<i class="fa fa-angle-down"></i>
+   			</h3>
+   			<div id="multi-tag-suggestion" class="center"></div>
    		</div>
    </ul>
 </div>
@@ -88,6 +96,19 @@ jQuery(document).ready(function() {
 
 	loadMultiTags();
 	rebuildSearchTagInput();
+
+	loadTagSuggestion({
+		"Ecologie" : { active : false },
+		"Biodiversité" : { active : false },
+		"Ressources" : { active : false },
+		"AMAP" : { active : false },
+		"Tiers lieux" : { active : false },
+		"Alimentation" : { active : false },
+		"Développement durable" : { active : false },
+		"Recyclage" : { active : false },
+		"Permaculture" : { active : false },
+	});
+
 });
 
 /* SEE MORE IN js/menus/multitags.js */

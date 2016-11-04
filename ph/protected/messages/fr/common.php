@@ -650,7 +650,12 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Localities" => "Adresses",
 	"Choose a country" => "Choisir un pays",
 	"Are you sure you want to delete the locality" => "Etes-vous sûr de vouloir supprimer cette adresse",
-	"Are you sure you want to delete the locality ? You can't vote anymore in the citizen council of your city." => "Etes vous sur de vous dé-communecter ? Vous ne pourrez plus voter dans le conseil citoyen de votre commune."
+	"Are you sure you want to delete the locality ? You can't vote anymore in the citizen council of your city." => "Etes vous sur de vous dé-communecter ? Vous ne pourrez plus voter dans le conseil citoyen de votre commune.",
+
+	"Search a projects of your city." => "Rechercher les projets de votre commune.",
+	"Search a events of your city." => "Rechercher les événements de votre commune.",
+	"Search a citizens of your city." => "Rechercher les citoyens de votre commune.",
+	"Search a organizations of your city." => "Rechercher les organisations de votre commune.",
 
 );
 
