@@ -909,7 +909,7 @@ button.btn-infos{
 
 .modal{
     background-color: rgba(0, 0, 0, 0.55) !important;
-    padding-top: 40px !important;
+    padding-top: 150px !important;
 }
 .modal-backdrop{
 	display:none !important;
