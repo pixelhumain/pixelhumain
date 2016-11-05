@@ -115,6 +115,11 @@
 		background-color:#DBBCC1 !important;
 	}
 
+	#dropdown-multi-tag .item-tag-suggest.bg-red.disabled:hover{
+		background-color: #E16277 !important;
+		cursor:pointer;
+	}
+
 	.item-scope-checker,
 	.item-tag-checker{
 		cursor:pointer;

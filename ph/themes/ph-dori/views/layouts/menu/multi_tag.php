@@ -99,14 +99,23 @@ jQuery(document).ready(function() {
 
 	loadTagSuggestion({
 		"Ecologie" : { active : false },
-		"Biodiversité" : { active : false },
-		"Ressources" : { active : false },
-		"AMAP" : { active : false },
-		"Tiers lieux" : { active : false },
+		"Logement" : { active : false },
+		"Transport" : { active : false },
+		"Alimentation" : { active : false },
+		"Environnement" : { active : false },
+		"Ecologie" : { active : false },
 		"Alimentation" : { active : false },
 		"Développement durable" : { active : false },
 		"Recyclage" : { active : false },
 		"Permaculture" : { active : false },
+		"Energie" : { active : false },
+		"Santé" : { active : false },
+		"Art" : { active : false },
+		"Sciences" : { active : false },
+		"Politique" : { active : false },
+		"Histoire" : { active : false },
+		"Tiers lieux" : { active : false },
+		
 	});
 
 });
