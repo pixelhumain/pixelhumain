@@ -41,7 +41,7 @@
 
 <div class="hover-info2 col-md-7 col-md-offset-3 col-sm-6 col-sm-offset-5 hidden-xs panel-white padding-20"></div>
 
-
+<?php $projects = PHDB::findAndSortAndLimitAndIndex( Project::COLLECTION, array("name"=>array('$exists'=>1)), array("updated" => -1), 3, 0); ?>
 <div class="hidden-xs main-menu-left col-md-2 col-sm-2 padding-10"  data-tpl="menuLeft">
 	
 	<div class="menu-left-container">
@@ -50,6 +50,37 @@
 			<span class="title-menu-left">
 				FOCUS
 			</span>
+		</div>
+		<div class="col-md-12">
+			<div id="docCarousel" class="carousel slide" data-ride="carousel">
+	  <!-- Indicators -->
+			  <ol class="carousel-indicators">
+			    <li data-target="#docCarousel" data-slide-to="0" class="active"></li>
+			    <li data-target="#docCarousel" data-slide-to="1"></li>
+			    <li data-target="#docCarousel" data-slide-to="2"></li>
+			  </ol>
+	
+	  <!-- Wrapper for slides -->
+			  <div class="carousel-inner" role="listbox">
+				<?php
+					$inc=0; 
+					foreach ($projects as $data){ ?>
+						<div class="item <?php if($inc==0) echo "active" ?>">
+							<img src="<?php echo Yii::app()->createUrl('/'.@$data["profilMediumImageUrl"]) ?>" class="col-sm-12 img-responsive ">
+						</div>
+				<?php $inc++; 
+					} ?>
+			  </div>
+			  <!-- Left and right controls -->
+			  <a class="left carousel-control" href="#docCarousel" role="button" data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="right carousel-control" href="#docCarousel" role="button" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
 		</div>
 		<div class="col-md-12" id="poiParent">
 			<!--<img src="<?php echo $this->module->assetsUrl?>/images/velo.png" class="img-responsive">-->
@@ -114,7 +145,21 @@ var urlLogout = "<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person
 
 var menuExtend = ["organization", "project", "people", "vote", "action"];
 jQuery(document).ready(function() {
+	 $(".carousel-control").click(function(){
+    var top = $("#docCarousel").position().top-30;
+    $(".my-main-container").animate({ scrollTop: top, }, 100 );
+  });
 
+  $(".btn-carousel-previous").click(function(){ //toastr.success('success!'); console.log("CAROUSEL CLICK");
+      var top = $("#docCarousel").position().top-30;
+      $(".my-main-container").animate({ scrollTop: top, }, 100 );
+      setTimeout(function(){ $(".carousel-control.left").click(); }, 500);
+    });
+   $(".btn-carousel-next").click(function(){ //toastr.success('success!'); console.log("CAROUSEL CLICK");
+      var top = $("#docCarousel").position().top-30;
+      $(".my-main-container").animate({ scrollTop: top, }, 100 );
+      setTimeout(function(){ $(".carousel-control.right").click(); }, 500);
+    });
 	showMenuExplanation = false;
 	
 	bindEventMenu();
