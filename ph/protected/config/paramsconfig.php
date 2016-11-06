@@ -29,10 +29,15 @@ $mailConfigTest = array(
 	'dryRun' => false
 );
 
+/* trick to switch theme when param tpl is used in url (share iframe) */
+if(@$_GET["tpl"] == "iframesig"){ $theme = $_GET["tpl"]; }
+else { $theme = "ph-dori"; }
+/**/
+
 $params = array(
     //Beta Test ?
     'betaTest' => false,
-'theme'=>'ph-dori',
+    'theme'=>$theme,
     //By default controller
     'defaultController' => 'communecter',
 
@@ -98,5 +103,6 @@ $params = array(
         "poi" => true
     )*/
   );
+
 
 $modulesDir = '/../../../../modules/';
