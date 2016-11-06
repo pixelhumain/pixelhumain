@@ -1,0 +1,16 @@
+{
+  "name": "timesheet.js",
+  "version": "1.0.0",
+  "description": "With Timesheet.js you can easily create simple time and data sheets or timelines using HTML5, JavaScript and CSS3. Yep, it's a Vanilla JS library!",
+  "author": "sbstjn <mail@sbstjn.com>",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.11",
+    "grunt-jslint": "~1.1.1",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-simple-mocha": "^0.4.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-sass": "^0.7.3"
+  }
+}
