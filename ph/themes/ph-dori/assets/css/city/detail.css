@@ -44,10 +44,12 @@
   }
   h1.cityName-header{
     background-color: rgba(255, 255, 255, 0.63);
-    padding: 30px;
+    padding: 30px 10px;
     margin-bottom: -3px;
     font-size: 32px;
     border-radius: 5px;
+    display: inline-block;
+    width: 100%;
   }
 
   h1.you-live{
@@ -153,20 +155,37 @@
 
   #div-discover .btn-discover{
     border-radius: 60px;
-    font-size: 50px;
+    font-size: 28px;
     font-weight: 200;
     border: 1px solid transparent;
-    width: 90px;
-    height: 90px;
-  }
-  #div-discover .btn-discover.bg-red{
-    font-size: 43px;
+    width: 65px;
+    height: 65px;
+    margin-bottom: 5px;
     padding-top: 12px;
   }
-  #div-discover .btn-discover.bg-azure:hover{
+  #div-discover .btn-discover.bg-red{
+    /*font-size: 43px;*/
+    /*padding-top: 12px;*/
+  }
+  #div-discover .btn-discover.bg-orange:hover{
     background-color: white !important;
-    border-color: #2BB0C6 !important;
-    color: #2BB0C6 !important;
+    border-color: #FFA200 !important;
+    color: #FFA200 !important;
+  }
+  #div-discover .btn-discover.bg-yellow:hover{
+    background-color: white !important;
+    border-color: #FFC600 !important;
+    color: #FFC600 !important;
+  }
+  #div-discover .btn-discover.bg-purple:hover{
+    background-color: white !important;
+    border-color: #8C5AA1 !important;
+    color: #8C5AA1 !important;
+  }
+  #div-discover .btn-discover.bg-green:hover{
+    background-color: white !important;
+    border-color: #93C020 !important;
+    color: #93C020 !important;
   }
   #div-discover .btn-discover.bg-red:hover{
     background-color: white !important;
@@ -190,10 +209,21 @@
     color: #E33551 !important;
   }
 
+  .badge.nb-localactors{
+      margin-left: -20px;
+      margin-top: -15px;
+      font-size: 18px;
+      margin-right: -10px;
+      border: #fff solid 3px;
+      border-radius: 50%;
+      font-weight: 300;
+  }
+
   @media screen and (max-width: 768px) {
     
    h1.cityName-header{
     margin-top:0px;
+    font-size:25px;
    }
    #pod-local-actors .list-group-item{
     height:90px;
@@ -205,4 +235,25 @@
    #btn-communecter{
       top:10px;
    }
+
+  #div-discover .btn-discover{
+    border-radius: 30px;
+    font-size: 24px;
+    font-weight: 200;
+    border: 1px solid transparent;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 5px;
+    padding-top: 12px;
+  }
 }
+
+
+  @media screen and (max-width: 1024px) {
+    
+    #div-discover .discover-subtitle{
+      display:none;
+    
+    }
+
+  }
