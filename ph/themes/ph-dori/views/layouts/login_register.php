@@ -59,7 +59,7 @@
 				?>
 				<form class="form-login box-white-round" action="" method="POST">
 					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;" class="pull-right hidden-xs" src="<?php echo $this->module->assetsUrl?>/images/logoL.jpg"/>
-					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;" class="pull-right visible-xs" src="<?php echo $this->module->assetsUrl?>/images/logoLTxt.jpg"/>
+					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;" class="pull-right visible-xs box-white-round" src="<?php echo $this->module->assetsUrl?>/images/logoLTxt.jpg"/>
 					<br/>
 					<?php //echo Yii::app()->session["requestedUrl"]." - ".Yii::app()->request->url; ?>
 					<fieldset>
@@ -137,6 +137,8 @@
 					</div>
 				</form>
 			</div>
+
+
 			<!-- end: LOGIN BOX -->
 			<!-- start: FORGOT BOX -->
 			<div class="box-email box box-white-round">
