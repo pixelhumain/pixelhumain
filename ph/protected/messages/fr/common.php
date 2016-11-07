@@ -657,6 +657,9 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Search a citizens of your city." => "Rechercher les citoyens de votre commune.",
 	"Search a organizations of your city." => "Rechercher les organisations de votre commune.",
 
+	"Add a primary address" => "Ajouter une adresse principal",
+	"Add a secondary address" => "Ajouter une adresse secondaire"
+
 );
 
 ?>
