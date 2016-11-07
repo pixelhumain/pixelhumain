@@ -86,6 +86,7 @@ return array(
 	"has updated"=>"a modifié",
 	"has added"=>"a ajouté",
 	"has created"=>"a créé",
+	"has deleted" => "a supprimé",
 	"confirms your invitation and create an account." => "a confirmé(e) votre invitation et créé(e) son compte",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
@@ -249,6 +250,8 @@ return array(
 	"the tags" => "les tags",
 	"the maturity" => "l'avancement",
 	"the licence" => "la licence",
+	"the main locality" => "l'adresse principale",
+	"a second locality" => "une adresse secondaire",
 	"open data" => "l'open data",
 	"open edition" => "l'édition libre",
 	"town of" => "commune de",
