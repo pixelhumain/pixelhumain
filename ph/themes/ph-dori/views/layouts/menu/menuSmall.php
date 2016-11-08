@@ -97,14 +97,30 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 					<a class="btn bg-azure lbh" href="#default.live"  >
 					<i class="fa fa-heartbeat"></i> <br class="hidden-xs">Live</a>
 				</div>
-				<div class="col-md-4 col-sm-4 center">
+				<div class="col-md-4 col-sm-4 col-xs-12 center visible-communected">
+					<a class="btn bg-red lbh" 
+						href="#city.detail.insee.<?php 
+							 if(@$myCity) echo $myCity["insee"]; ?>.postalCode.<?php  if(@$myCity) echo $myCity["cp"]; 
+							?>" id="btn-menuSmall-mycity">
+						<i class="fa fa-university"></i> <br class="hidden-xs">Ma commune
+					</a>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-12 center visible-communected">
+					<a class="btn bg-red lbh" 
+						href="#rooms.index.type.cities.id.<?php if(@$myCity) echo City::getUnikey($myCity); ?>" 
+						id="btn-menuSmall-citizenCouncil">
+						<i class="fa fa-connectdevelop"></i><br class="hidden-xs">
+						<span class="hidden-xs">Mon c</span><span class="hidden-sm hidden-md hidden-lg">C</span>onseil citoyen
+					</a>
+				</div>
+				<!-- <div class="col-md-4 col-sm-4 center">
 			    	<a class="btn bg-azure lbh" href="#default.directory" >
 			    	<i class="fa fa-search"></i> <br class="hidden-xs">Recherche</a>
 			    </div>
 				<div class="col-md-4 col-sm-4 center">
 					<a class="btn bg-azure lbh" href="#default.agenda"  >
 					<i class="fa fa-calendar"></i> <br class="hidden-xs">Agenda</a>
-				</div>
+				</div> -->
 			</div>
 			
 
@@ -118,7 +134,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 					</div> 
 				<?php } ?>
 
-				<div class="col-md-6 col-sm-6 col-xs-12 center visible-communected">
+				<!-- <div class="col-md-6 col-sm-6 col-xs-12 center visible-communected">
 					<a class="btn bg-red lbh" 
 						href="#city.detail.insee.<?php 
 							 if(@$myCity) echo $myCity["insee"]; ?>.postalCode.<?php  if(@$myCity) echo $myCity["cp"]; 
@@ -133,51 +149,58 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 						<i class="fa fa-connectdevelop"></i><br class="hidden-xs">
 						<span class="hidden-xs">Mon c</span><span class="hidden-sm hidden-md hidden-lg">C</span>onseil citoyen
 					</a>
-				</div>
+				</div> -->
 				<?php if(isset(Yii::app()->session['userId'])){ ?>
 					<div class="col-md-12 col-sm-12  col-xs-12 no-padding">
 						<hr style="border-top: 1px solid transparent; margin:7px;">
 						<h2 class="homestead text-white">
-							<i class="fa fa-plus-circle"></i> Ajouter 
+							<!-- <i class="fa fa-plus-circle"></i>  -->Explorer et contribuer 
 							<i class="fa fa-angle-down"></i> 
 						</h2>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
-						<a href="javascript:openForm('person')" class="btn bg-yellow">
+						<a href="#default.directory?type=persons" class="lbh btn bg-yellow btn-element">
 
 							<i class="fa fa-user"></i><br>
-							<span class="lbl-btn-menu-name-add">Quelqu'un</span>
+							<span class="lbl-btn-menu-name-add">Citoyens</span>
 						</a>
+						<a href="javascript:openForm('person')" class="badge btn-add bg-yellow"><i class="fa fa-plus-circle"></i></a>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
 
-						<a href="javascript:openForm('organization')" class="btn bg-green">
+						<a href="#default.directory?type=organizations" class="lbh btn bg-green btn-element">
 
 							<i class="fa fa-group"></i><br>
 							<span class="lbl-btn-menu-name-add">
-								<span class="hidden-xs">Une o</span><span class="hidden-sm hidden-md hidden-lg">O</span>rganisation
+								Organisations
+								<!-- <span class="hidden-xs">Une o</span><span class="hidden-sm hidden-md hidden-lg">O</span>rganisation -->
 							</span>
 						</a>
+						<a href="javascript:openForm('organization')" class="badge btn-add bg-green"><i class="fa fa-plus-circle"></i></a>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
 
-						<a href="javascript:openForm('project')" class="btn bg-purple">
+						<a href="#default.directory?type=projects" class="lbh btn bg-purple">
 
 							<i class="fa fa-lightbulb-o"></i><br>
 							<span class="lbl-btn-menu-name-add">
-								<span class="hidden-xs">Un p</span><span class="hidden-sm hidden-md hidden-lg">P</span>rojet
+								<!-- <span class="hidden-xs">Un p</span><span class="hidden-sm hidden-md hidden-lg">P</span>rojet -->
+								Projets
 							</span>
 						</a>
+						<a href="javascript:openForm('project')" class="badge btn-add bg-purple btn-element"><i class="fa fa-plus-circle"></i></a>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
 
-						<a href="javascript:openForm('event')" class="btn bg-orange">
+						<a href="#default.directory?type=events" class="lbh btn bg-orange">
 
 							<i class="fa fa-calendar"></i><br>
 							<span class="lbl-btn-menu-name-add">
-								<span class="hidden-xs">Un é</span><span class="hidden-sm hidden-md hidden-lg">É</span>vénement
+								<!-- <span class="hidden-xs">Un é</span><span class="hidden-sm hidden-md hidden-lg">É</span>vénement -->
+								Événements
 							</span>
 						</a>
+						<a href="javascript:openForm('event')" class="badge btn-add bg-orange btn-element"><i class="fa fa-plus-circle"></i></a>
 					</div>
 				<?php } ?>
 
