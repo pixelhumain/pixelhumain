@@ -241,16 +241,17 @@
 		<div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 col-xs-12 main-col-search"></div>
 		
 		<!-- **************************************
-		REPERTOIRE 
-		******************************************* -->
-		<div id="floopDrawerDirectory" class="floopDrawer"></div>
-
-		<!-- **************************************
 		REGISTRATION PANELS
 		******************************************* -->
 		<?php $this->renderPartial($layoutPath."login_register"); ?>
 
 	</div>
+
+	<!-- **************************************
+	REPERTOIRE 
+	******************************************* -->
+	<div id="floopDrawerDirectory" class="floopDrawer"></div>
+
 
 	<!-- **************************************
 		NOTIFICATION PANELS
