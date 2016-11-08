@@ -1088,6 +1088,11 @@ button.btn-infos{
 	.searchEntity .entityRight .entityName {
 	    font-size: 15px !important;
 	}
+
+	.box-email .form-email img.box-white-round,
+	.box-login .form-login img.box-white-round{
+		border-radius:15px !important;
+	}
 }
 
 
