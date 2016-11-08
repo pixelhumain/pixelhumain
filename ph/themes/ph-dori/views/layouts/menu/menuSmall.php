@@ -180,7 +180,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
 
-						<a href="#default.directory?type=projects" class="lbh btn bg-purple">
+						<a href="#default.directory?type=projects" class="lbh btn bg-purple btn-element">
 
 							<i class="fa fa-lightbulb-o"></i><br>
 							<span class="lbl-btn-menu-name-add">
@@ -188,11 +188,11 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 								Projets
 							</span>
 						</a>
-						<a href="javascript:openForm('project')" class="badge btn-add bg-purple btn-element"><i class="fa fa-plus-circle"></i></a>
+						<a href="javascript:openForm('project')" class="badge btn-add bg-purple"><i class="fa fa-plus-circle"></i></a>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
 
-						<a href="#default.directory?type=events" class="lbh btn bg-orange">
+						<a href="#default.directory?type=events" class="lbh btn bg-orange btn-element">
 
 							<i class="fa fa-calendar"></i><br>
 							<span class="lbl-btn-menu-name-add">
@@ -200,7 +200,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 								Événements
 							</span>
 						</a>
-						<a href="javascript:openForm('event')" class="badge btn-add bg-orange btn-element"><i class="fa fa-plus-circle"></i></a>
+						<a href="javascript:openForm('event')" class="badge btn-add bg-orange"><i class="fa fa-plus-circle"></i></a>
 					</div>
 				<?php } ?>
 
