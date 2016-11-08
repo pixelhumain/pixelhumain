@@ -359,7 +359,7 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
 								'<div class="col-sm-10">'+
 									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
-									'<div class="resultGetUrl resultGetUrl0"></div>'+
+									'<div class="resultGetUrl resultGetUrl0 col-sm-12"></div>'+
 								'</div>'+
 								'<div class="col-sm-2">'+
 									'<button data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+

@@ -358,8 +358,9 @@ onSave: (optional) overloads the generic saveProcess
         	console.log("build field "+field+">>>>>> array list");
         	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
 								'<div class="col-sm-10">'+
+									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
-									'<div class="resultGetUrl resultGetUrl0"></div>'+
+									'<div class="resultGetUrl resultGetUrl0 col-sm-12"></div>'+
 								'</div>'+
 								'<div class="col-sm-2">'+
 									'<button data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
@@ -412,6 +413,7 @@ onSave: (optional) overloads the generic saveProcess
         	console.log("build field "+field+">>>>>> properties list");
         	fieldHTML += '<div class="inputs properties">'+
 								'<div class="col-sm-3">'+
+									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 									'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
 								'</div>'+
 								'<div class="col-sm-7">'+
@@ -909,7 +911,7 @@ onSave: (optional) overloads the generic saveProcess
 	  });
 
 	  var count = $(".addmultifield").length-1;
-	  getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count);
+	  getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count,0);
 	  //manage using Enter to make easy loop editing
 	  //for 2nd property field
 	  $(parentContainer+' .addmultifield1').unbind('keydown').keydown(function(event) 
@@ -947,6 +949,7 @@ onSave: (optional) overloads the generic saveProcess
 		if( typeof propVal == "undefined" ) 
 	    	propVal = {"label":"","value":""};
 		var str = '<div class="space5"></div><div class="col-sm-3">'+
+					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
 				'</div>'+
 				'<div class="col-sm-7">'+
