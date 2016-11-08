@@ -241,16 +241,17 @@
 		<div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 col-xs-12 main-col-search"></div>
 		
 		<!-- **************************************
-		REPERTOIRE 
-		******************************************* -->
-		<div id="floopDrawerDirectory" class="floopDrawer"></div>
-
-		<!-- **************************************
 		REGISTRATION PANELS
 		******************************************* -->
 		<?php $this->renderPartial($layoutPath."login_register"); ?>
 
 	</div>
+
+	<!-- **************************************
+	REPERTOIRE 
+	******************************************* -->
+	<div id="floopDrawerDirectory" class="floopDrawer"></div>
+
 
 	<!-- **************************************
 		NOTIFICATION PANELS
@@ -423,7 +424,7 @@
 
 		//used in communecter.js dynforms
 		var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
-		var eventTypes = <?php echo json_encode( Event::$types ) ?>;
+		var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
 		var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
 		var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : null?>;
 		var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;

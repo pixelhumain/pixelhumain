@@ -112,7 +112,8 @@
 	    margin-right: 5px !important;
 	}
 	#notificationPanelSearch{
-		width:415px !important
+		width:415px !important;
+		max-width: 100%;
 	}
 
 	.badge-tranparent{

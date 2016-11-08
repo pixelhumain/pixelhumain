@@ -216,7 +216,7 @@ var isMapEnd = <?php echo (isset( $_GET["map"])) ? "true" : "false" ?>;
 
 //used in communecter.js dynforms
 var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
-var eventTypes = <?php echo json_encode( Event::$types ) ?>;
+var eventTypes = <?php $eventTypes = Event::$types; echo json_encode( asort($eventTypes)) ?>;
 var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
 var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : null?>;
 var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;

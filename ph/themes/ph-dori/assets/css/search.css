@@ -906,6 +906,12 @@ button.btn-infos{
 	.box-ajaxTools {
 	    margin-top: -50px;
 	}
+
+	
+
+	.rocketchat-widget{
+		display: none !important;
+	}
 }
 
 

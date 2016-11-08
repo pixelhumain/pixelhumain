@@ -739,7 +739,7 @@ onSave: (optional) overloads the generic saveProcess
 				weekStart: 1,
 				step: 15,
 				lang: 'fr',
-				format: 'Y/m/d H:i'
+				format: 'd/m/Y H:i'
 			   });
 		};
 		if(  $(".dateTimeInput").length){
