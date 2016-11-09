@@ -652,7 +652,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Locality" => "Adresse",
 	"Localities" => "Adresses",
 	"Choose a country" => "Choisir un pays",
-	"Are you sure you want to delete the locality" => "Etes-vous sûr de vouloir supprimer cette adresse",
+	"Are you sure you want to delete the locality?" => "Etes-vous sûr de vouloir supprimer cette adresse?",
 	"Are you sure you want to delete the locality ? You can't vote anymore in the citizen council of your city." => "Etes vous sur de vous dé-communecter ? Vous ne pourrez plus voter dans le conseil citoyen de votre commune.",
 
 	"Search a projects of your city." => "Rechercher les projets de votre commune.",
