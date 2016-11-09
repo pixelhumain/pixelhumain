@@ -216,7 +216,7 @@ div.timeline .date_separator span{
 	background: url(<?php echo $this->module->assetsUrl ?>/images/news/thumb_selection.gif) no-repeat -26px 0px;
 }
 .editable-input, .editable-container,.editableform .form-control{
-	width:100% !important;
+	/*width:100% !important;*/
 }
 .videoSignal{
 	position: absolute;
@@ -386,8 +386,9 @@ div.timeline .newsTL > .newsFeed:nth-child(2n+1) .timeline_element:before {
 
 
 #btn-submit-form{
-	right: 15px;
-	position: absolute;
+	/*right: 0px;
+	float:*/
+	margin-left:10px;
 }
 
 .main-top-menu .moduleLabel {
