@@ -24,6 +24,10 @@
 	left:1px!important;
 }
 
+.rocketchat-widget{
+	z-index:50!important;
+}
+
 
 #mapCanvasBg {
     visibility: visible !important;
