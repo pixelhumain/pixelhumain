@@ -68,8 +68,10 @@
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple.css" type="text/css" id="skin_color">
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple-login.css" type="text/css" id="skin_color">
 
+		<?php if(Yii::app()->params["forceMapboxActive"]==true || Yii::app()->params["mapboxActive"]==true){ ?>
 		<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
 		<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+		<?php } ?>
 		
 		<!-- end: MAIN CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->

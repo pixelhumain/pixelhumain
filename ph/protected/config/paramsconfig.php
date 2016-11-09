@@ -89,8 +89,8 @@ $params = array(
     "logoUrl2" => "/images/logoLTxt.jpg",
     
     //map box params
-    'mapboxActive' => false,
-    'forceMapboxActive' => false,
+    'mapboxActive' => true, //to activate mabox Prod
+    'forceMapboxActive' => false, //to force mabox localhost
     /*"front" => array (
         "organization" => true,
         "project" => true,
