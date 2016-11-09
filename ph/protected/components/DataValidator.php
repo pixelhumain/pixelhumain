@@ -295,10 +295,13 @@ class DataValidator {
 			if (empty($toValidate["coordinates"][1])) return "latitude missing in the geoPosition !";
 			if (!is_float($toValidate["coordinates"][1])) return "latitude is not a float in the geoPosition !";
 		}
-		
-		
-		
+
 		return $res;
+	}
+
+	public static function boolean($toValidate) {
+		if (!is_bool($toValidate)) 
+			return "Invalid boolean";
 	}
 	
 
