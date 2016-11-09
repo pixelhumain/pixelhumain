@@ -58,13 +58,29 @@ class DataValidator {
 	    return $res;
 	}
 
-	public static function eventStartDate($toValidate, $objectId) {
-		$event = Event::getById($objectId);
+	/**
+	 * Check if an event has a well formated startDate and if the start date is well formated
+	 * @param String $toValidate the string representation of the startdate. could be 'Y-m-d H:i' or 'Y-m-d'
+	 * @param String or array $object 
+	 * 		if is a string it represent the event id and it will be retrieve from the db (update process). 
+	 * 		Else if it's an array it is already the object (creation process)
+	 * @return String : if empty : no problemo else the error message
+	 */
+	public static function eventStartDate($toValidate, $object) {
+		if (is_string($object)) { 
+			$event = Event::getById($object);
+		} else if (is_array($object)){
+			$event = $object;
+		}
 		return self::startDate($toValidate, $event);
 	}
 
-	public static function eventEndDate($toValidate, $objectId) {
-		$event = Event::getById($objectId);
+	public static function eventEndDate($toValidate, $object) {
+		if (is_string($object)) { 
+			$event = Event::getById($object);
+		} else if (is_array($object)){
+			$event = $object;
+		}
 		return self::endDate($toValidate, $event);
 	}
 
@@ -78,8 +94,7 @@ class DataValidator {
 		return self::endDate($toValidate, $project);
 	}
 
-	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue, $objectId = null) {
-		
+	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue, $object = null) {
 		if (isset($dataBinding[$fieldName])) {
 			$data = $dataBinding[$fieldName];
 			$name = $data["name"];
@@ -87,7 +102,7 @@ class DataValidator {
 			if (isset($data["rules"])) {
 				$rules = $data["rules"];
 				foreach ($rules as $rule) {
-					$isDataValidated = DataValidator::$rule($fieldValue, $objectId);
+					$isDataValidated = DataValidator::$rule($fieldValue, $object);
 					if ($isDataValidated != "") {
 						throw new CTKException($isDataValidated);
 					}
@@ -112,34 +127,35 @@ class DataValidator {
 		foreach ( $values as $key => $value ) 
 		{
 			try{
-				if ( isset( $dataBinding[$key]) ) 
-					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value );
-				else {
+				if ( isset( $dataBinding[$key]) ) {
+					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value, $values );
+				} else {
 					$res["result"] = false;
 					$res["msg"] = "Contenu Invalide ".$key;
 				}
 			} catch( Exception $e ) {
 				$res["result"] = false;
-				$res["msg"] = $e;
+				$res["msg"] = $e->getMessage();
 			}
 		}
 		return $res;
 	}	
 
+	/**
+	 * Check the format of the startDate
+	 * compare the startDate to the endDate that is contained in the object
+	 * @param String $toValidate the startDate to validate. 
+	 * @param array $object containing the endDate value to compare with the start date
+	 * @return empty or an error message
+	 */
 	private static function startDate($toValidate, $object) {
 		// Is the start Date before endDate
+	    error_log("Validate start Date : ".$toValidate." compare to endDate ".$object["endDate"] );
 	    $res = "";
-	    $endDate = DateTime::createFromFormat('Y-m-d H:i:s', $object["endDate"]);
-	    $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $toValidate);
 	    
-		//Try to convert the startDate
-		if (empty($startDate)) {
-			$startDate = DateTime::createFromFormat('Y-m-d', $toValidate);
-		} 
-	    if (empty($startDate)) {
-			throw new CTKException("The start date is not well formated");
-		}
-
+	    $startDate = self::getDateTimeFromString($toValidate, "start date");
+	    $endDate = self::getDateTimeFromString(@$object["endDate"], "end date");
+	    
 	    if ($startDate > $endDate) { 
 	    	$res = "The start date must be before the end date";
 	    }
@@ -149,24 +165,32 @@ class DataValidator {
 	private static function endDate($toValidate, $object) {
 		// Is the end Date after start Date
 	    $res = "";
-	    $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $object["startDate"]);
+	    $startDate = self::getDateTimeFromString(@$object["startDate"], "start date");
+	    $endDate = self::getDateTimeFromString($toValidate, "end date");
 	    
-	    //Try to convert the endDate
-	    //var_dump($toValidate);
-	    $endDate = DateTime::createFromFormat('Y-m-d H:i:s', $toValidate);
-	    if (empty($endDate)) {
-			$endDate = DateTime::createFromFormat('Y-m-d', $toValidate);
-		} 
-	    if (empty($endDate)) {
-			throw new CTKException("The end date is not well formated");
-		}
-
 	    if ($startDate > $endDate) { 
 	    	$res = "The end date must be after the start date";
 	    }
 	    return $res;
 	}
 
+	public static function getDateTimeFromString($myDate, $label) {
+		$result = DateTime::createFromFormat('Y-m-d H:i', $myDate);
+	    if (empty($result)) {
+			$result = DateTime::createFromFormat('Y-m-d', $myDate);
+		}
+
+		if (empty($result)) {
+			$result = DateTime::createFromFormat('Y-m-d H:i:s', $myDate);
+		}
+
+	    if (empty($result)) {
+			error_log("Error formation : ".$myDate." (".$label.")");
+	    	throw new CTKException("The ".$label." is not well formated");
+		}
+		
+		return $result;
+	}
 
 	/*
 	validates each field existance, type is respected and if any rules 
