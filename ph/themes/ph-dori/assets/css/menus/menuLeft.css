@@ -43,10 +43,15 @@
 }
 
 #menu-extend{
-	margin-left:10px;
+	margin-left:3px;
 }
 .inSig #menu-extend{
 	margin-left:0px;
+}
+
+#menu-btn-my-profil{
+	display: inline-block;
+	max-width: 100%;
 }
 
 
