@@ -487,11 +487,12 @@ return array(
 	"Visible only to the members"=>"Visible juste pour les membres",
 	"Visible only to the project's contributors" => "Visible juste pour les contributeurs",
 	"Visible to all and posted on the city's wall"=> "Visible de tous et publié sur le mur de la ville",
-	"Visible to all on this wall and published on community's network"=> "Visible de tous sur ce mur et publié sur le réseau de la communauté",
+	"Visible to all on this wall and published on community's network"=> "Visible de tous sur ce mur et dans le réseau de la communauté",
 	"Visible to all on my wall and published on my network"=> "Visible de tous sur mon mur et publié sur mon réseau",
 	"Private view"=>"Vue privée",
 	"Visible to all + on city's wall" => "visible de tous + mur de la ville",
 	"Visible to all on this wall and published on this network" => "Visible de tous sur ce mur et publié sur ce réseau",
+	"Visible to all and posted on cities' live" => "Visible de tous dans l'actu locale",
 	"Search what" => "Quoi",
 	"Search where" => "Où", 
 
