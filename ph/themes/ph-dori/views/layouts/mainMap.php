@@ -14,7 +14,7 @@
 		if(Yii::app()->params["forceMapboxActive"]==true)
 			$mapProvider = "mapbox";
 	}
-	
+
 	//modifier les parametre en fonction des besoins de la carte
 	$sigParams = array(
         "sigKey" => "Bg",
@@ -62,6 +62,13 @@
 	if(!isset(Yii::app()->session['userId'])){
 		$sigParams["useHomeButton"] = false;
 	}
+
+	if(@Yii::app()->params["forceMapboxActive"] == true || @Yii::app()->params["mapboxActive"] == true){
+		if(@Yii::app()->params["mapboxToken"])
+			$sigParams["mapboxToken"] = Yii::app()->params["mapboxToken"];
+	}
+
+	
 	
 	/* ***********************************************************************************/
 	//chargement de toutes les librairies css et js indispensable pour la carto
