@@ -126,7 +126,7 @@
 				<i class="fa fa-refresh"></i>
 			</a>
 			<div class="pageslide-title pull-left">
-				<i class="fa fa-angle-down"></i> <i class="fa fa-bell"></i> Notifications 
+				<i class="fa fa-angle-down"></i> <i class="fa fa-bell"></i> <span class="hidden-xs">Notifications</span> 
 			</div> 
 			<a href="javascript:;" onclick='markAllAsRead()' class="btn-notification-action pull-right" style="font-size:12px;">
 				<?php echo Yii::t("common","All marked all as read") ?> <i class="fa fa-check-square-o"></i>

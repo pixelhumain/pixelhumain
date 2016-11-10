@@ -69,8 +69,13 @@ width: 100%;
 
 @media screen and (max-width: 1024px) {
 
+	.menuSmallBlockUI{
+		width: 75.5% !important;
+		left: 24.5% !important;	
+	}
+
 	.menuSmallMenu a, .lbl-btn-menu-name-add{
-		font-size: 14px;
+		font-size: 13px;
 	}
 }
 @media screen and (max-width: 767px) {
@@ -80,5 +85,16 @@ width: 100%;
 	}
 	.menuSmallMenu a.btn i{
 		font-size: 1.2em;
+	}
+
+	.col-top-xs{
+		position: absolute;
+		top: 8px;
+		left: 2%;
+		width: 96%;
+
+	}
+	.col-top-xs a{
+		width:40px !important;
 	}
 }
