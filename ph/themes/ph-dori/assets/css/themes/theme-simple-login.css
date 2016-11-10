@@ -528,8 +528,8 @@ body.login .box h1{
 
 @media screen and (max-width: 1024px) {  
   .box-register {
-      width: 90% !important;
-      margin-left: 7% !important;
+      width: 100% !important;
+      margin-left: 0% !important;
       margin-right: auto !important;
       right: unset !important;
   }
@@ -544,8 +544,8 @@ body.login .box h1{
 
 @media screen and (max-width: 767px) {
   .box-login{
-    width:90% !important;
-    margin-left: 5% !important;
+    width:100% !important;
+    margin-left: 0% !important;
   }
 } 
 

@@ -12,6 +12,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 	<div class="menuSmallMenu">
 		<?php if(!isset(Yii::app()->session['userId'])){ ?>
 		<div class="col-md-3 col-sm-3 col-xs-12 center no-padding margin-bottom-15">
+			<div class="col-xs-12 visible-xs margin-top-15"> </div>
 			<div class="col-md-12 col-sm-12 col-xs-6">
 				<a class="btn bg-green" href="javascript:;" onclick="showPanel('box-login');$.unblockUI();">
 					<i class="fa fa-sign-in"></i>
@@ -26,30 +27,39 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			</div> 
 		</div> 
 		<?php }  else { ?>
+
+		
+
 		<div class="col-md-3 col-sm-3 col-xs-12 center margin-top-15 margin-bottom-5">
 			<div class="col-md-12 col-sm-12 no-padding" id="menu-my-profil">
-				<span class="text-white label text-bold" style="font-size:16px !important;"><?php echo $me["name"]; ?></span>
+				<!-- <span class="text-white label text-bold" style="font-size:16px !important;"></span> -->
 				<div id="img-my-profil">
 					<a class="no-border lbh" href="#person.detail.id.<?php echo Yii::app()->session['userId']?>" >
 						<img class="img-responsive thumbnail" id="menu-small-thumb-profil" 
 						src="<?php echo $profilMediumImageUrl; ?>" alt="image">
-						<span id="menu-my-profil-text">Mon profil</span>
+						<span id="menu-my-profil-text"><?php echo $me["name"]; ?></span>
 					</a>
 				</div>
 			</div>
 
-
+			<div class="col-xs-12 center no-padding">
+			    <a class="btn bg-dark lbh padding-5" href="#element.aroundme.type.person.id.<?php echo Yii::app()->session['userId'] ?>.radius.5000">
+			        <i class="fa fa-crosshairs" style="font-size: 1em!important;"></i> 
+			        Autour de moi
+			    </a>
+		    </div>
+			
 		    <?php if(isset($me)) if(Role::isSuperAdmin($me['roles'])){?>
 			<div class="col-xs-12 center no-padding">
-			    <a class="btn bg-dark-red lbh" href="#admin.index">
+			    <a class="btn bg-dark-red lbh padding-5" href="#admin.index">
 			        <i class="fa fa-user-secret" style="font-size: 1em!important;"></i> 
 			        Admin
 			    </a>
 		    </div>
 			<?php } ?>	
-			<div class="col-xs-12 center no-padding">
-				<a class="btn bg-dark visible-xs padding-5" href="javascript:$('.btn-menu-notif').trigger('click');$.unblockUI();">
-			        <i class="fa fa-bell" style="font-size: 1em!important;"></i> 
+			<div class="col-xs-6 col-sm-12 center padding-5 visible-xs">
+				<a class="btn bg-dark padding-5" href="javascript:$('.btn-menu-notif').trigger('click');$.unblockUI();">
+			        <i class="fa fa-bell" style="font-size: 1em!important; margin-right: -10px;"></i> 
 			        <span class="notifications-count topbar-badge badge badge-danger animated bounceIn" 
 		        		  style="position:relative; top:-2px; left:unset;">
 		        		<?php count($this->notifications); ?>
@@ -57,19 +67,19 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			        Notifications
 			    </a>
 			</div>
-		    <div class="col-xs-12 center no-padding">
+		    <div class="col-xs-6 col-sm-12 center padding-5">
 			    <a class="btn bg-dark lbh padding-5" href="#news.index.type.citoyens.id.<?php echo Yii::app()->session['userId'] ?>.viewer.<?php echo Yii::app()->session['userId']?>"  >
 			        <i class="fa fa-newspaper-o" style="font-size: 1em!important;"></i> 
 			        Mon journal
 			    </a>
 		    </div>
-		    <div class="col-xs-12 center no-padding">
+		    <div class="col-xs-12 center no-padding hidden-xs">
 			    <a class="btn bg-dark lbh padding-5" href="#person.directory.id.<?php echo Yii::app()->session['userId'] ?>?tpl=directory2">
 			        <i class="fa fa-group" style="font-size: 1em!important;"></i> 
 			        Mon répertoire
 			    </a>
 		    </div>
-		    <div class="col-xs-12 center no-padding">
+		    <div class="col-xs-12 center no-padding hidden-xs">
 			    <a class="btn bg-dark lbh padding-5" 
 			    	href="#rooms.index.type.citoyens.id.<?php echo Yii::app()->session['userId']?>">
 			        <i class="fa fa-comments" style="font-size: 1em!important;"></i> 
@@ -78,13 +88,24 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			        <br>Coopération
 			    </a>
 		    </div>
-		    <div class="col-xs-12 center no-padding">
+		    <div class="col-xs-12 hidden-xs center no-padding">
 			    <a class="btn bg-red padding-5" 
 			    	href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>">
 			        <i class="fa fa-sign-out"></i>
 			        <br><?php echo Yii::t("person","Sign out"); ?>
 			    </a>
 		    </div>
+<!-- 
+		    <?php if(isset(Yii::app()->session['userId']) && isset($me["geo"])){ ?>
+				<?php // AROUND ME // ?>
+				<a href="#element.aroundme.type.person.id.<?php echo Yii::app()->session['userId'] ?>.radius.5000" id="menu-btn-around-me"
+						class="lbh menu-button-left glass-hover">
+						<i class="fa fa-crosshairs tooltips"
+							data-toggle="tooltip" data-placement="right" title="Autour de moi"></i> 
+						<span class="lbl-btn-menu">Autour de moi</span>
+				</a>
+				<hr>
+			<?php } ?> -->
 			   
 		</div>
 		<?php } ?>	
@@ -93,26 +114,35 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 	  	<div class="col-md-9 col-sm-9 col-xs-12 no-padding">
 
 	  		<div class="col-md-12 col-sm-12 margin-15">
-				<div class="col-md-4 col-sm-4 center">
-					<a class="btn bg-azure lbh" href="#default.live"  >
-					<i class="fa fa-heartbeat"></i> <br class="hidden-xs">Live</a>
+				<div class="col-md-4 col-sm-4 padding-5 center">
+					<a class="btn bg-azure lbh " href="#default.live" >
+					<i class="fa fa-heartbeat tooltips" data-toggle="tooltip" data-placement="bottom" alt="Toutes l'actualités"></i> <br class="hidden-xs">Live</a>
 				</div>
-				<div class="col-md-4 col-sm-4 col-xs-12 center visible-communected">
-					<a class="btn bg-red lbh" 
+				<div class="col-md-4 col-sm-4 col-xs-6 padding-5 center visible-communected">
+					<a class="btn bg-red lbh padding-5" 
 						href="#city.detail.insee.<?php 
 							 if(@$myCity) echo $myCity["insee"]; ?>.postalCode.<?php  if(@$myCity) echo $myCity["cp"]; 
 							?>" id="btn-menuSmall-mycity">
 						<i class="fa fa-university"></i> <br class="hidden-xs">Ma commune
 					</a>
 				</div>
-				<div class="col-md-4 col-sm-4 col-xs-12 center visible-communected">
-					<a class="btn bg-red lbh" 
+				<div class="col-md-4 col-sm-4 col-xs-6 padding-5 center visible-communected">
+					<a class="btn bg-red lbh padding-5" 
 						href="#rooms.index.type.cities.id.<?php if(@$myCity) echo City::getUnikey($myCity); ?>" 
 						id="btn-menuSmall-citizenCouncil">
 						<i class="fa fa-connectdevelop"></i><br class="hidden-xs">
 						<span class="hidden-xs">Mon c</span><span class="hidden-sm hidden-md hidden-lg">C</span>onseil citoyen
 					</a>
 				</div>
+				<div class="col-xs-12 padding-5 center no-padding visible-xs">
+				    <a class="btn bg-dark lbh padding-5" 
+				    	href="#rooms.index.type.citoyens.id.<?php echo Yii::app()->session['userId']?>">
+				        <i class="fa fa-comments" style="font-size: 1em!important;"></i> 
+				        <i class="fa fa-gavel" style="font-size: 1em!important;"></i> 
+				        <i class="fa fa-cogs" style="font-size: 1em!important;"></i> 
+				        <br>Coopération
+				    </a>
+			    </div>
 				<!-- <div class="col-md-4 col-sm-4 center">
 			    	<a class="btn bg-azure lbh" href="#default.directory" >
 			    	<i class="fa fa-search"></i> <br class="hidden-xs">Recherche</a>
@@ -234,6 +264,21 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			    
 			</div>
 			
-	   	</div>
+	  	</div>
+
+	  	<?php if(isset(Yii::app()->session['userId'])){ ?>
+	  	<div class="col-top-xs visible-xs">
+			<a class="btn bg-red padding-5 pull-right" 
+		    	href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>">
+		        <i class="fa fa-sign-out"></i>
+		    </a> 
+			<!-- <a class="btn bg-white padding-5 pull-right" 
+		    	href="">
+		        <i class="fa fa-bell"></i>
+		    </a>  -->
+		</div>		
+		<?php } ?>
+
+		</div>
 	</div>
 </div>
