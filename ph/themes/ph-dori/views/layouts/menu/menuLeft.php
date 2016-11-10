@@ -225,7 +225,7 @@
 				</a>
 				<?php if(isset(Yii::app()->session['userId'])){ ?>
 				<a href="javascript:openForm ( 'action' );" class="menu-button-left pull-right lbl-btn-menu">
-					<i class="fa text-red fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Ajouter une actions"></i> 
+					<i class="fa text-red fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Ajouter une action"></i> 
 				</a>
 				<?php } ?>
 				<hr>
