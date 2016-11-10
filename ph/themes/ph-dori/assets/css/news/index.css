@@ -161,7 +161,6 @@ div.timeline .date_separator span{
 .extracted_thumb {
 	float: left;
 	position:relative;
-	margin-right: 10px;
 }
 .extracted_thumb_large{
 	position:relative;
@@ -220,9 +219,10 @@ div.timeline .date_separator span{
 }
 .videoSignal{
 	position: absolute;
-    width: 100%;
-    line-height: 100px;
-    height: 100%;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
     background-color: rgba(0,0,0,0.2);
     padding-top: 5px;
 }
