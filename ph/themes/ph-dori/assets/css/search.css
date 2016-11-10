@@ -902,9 +902,10 @@ button.btn-infos{
 	}*/
 
 	.blockMsg {
-	    width: 80% !important;
-		top: 2% !important;
-		left: 10% !important;
+	    width: 100% !important;
+		top: 50px !important;
+		left: 0% !important;
+		padding: 0% !important;
 	}
 
 	.box-ajaxTools {

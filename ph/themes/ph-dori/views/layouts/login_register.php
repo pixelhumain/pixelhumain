@@ -59,7 +59,7 @@
 				?>
 				<form class="form-login box-white-round" action="" method="POST">
 					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;" class="pull-right hidden-xs" src="<?php echo $this->module->assetsUrl?>/images/logoL.jpg"/>
-					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;" class="pull-right visible-xs box-white-round" src="<?php echo $this->module->assetsUrl?>/images/logoLTxt.jpg"/>
+					<!-- <img style="width:100%; border: 10px solid white; border-bottom-width:0px;" class="pull-right visible-xs box-white-round" src="<?php echo $this->module->assetsUrl?>/images/logoLTxt.jpg"/> -->
 					<br/>
 					<?php //echo Yii::app()->session["requestedUrl"]." - ".Yii::app()->request->url; ?>
 					<fieldset>
@@ -121,9 +121,11 @@
 							</div>
 							
 							<br/>
-							<button type="submit"  data-size="s" data-style="expand-right" style="background-color:#E33551" class="loginBtn ladda-button center-block">
-								<span class="ladda-label"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Login") ?></span>
-							</button>
+							<div class="col-xs-12">
+								<button type="submit"  data-size="s" data-style="expand-right" style="background-color:#E33551" class="loginBtn ladda-button center-block">
+									<span class="ladda-label"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Login") ?></span>
+								</button>
+							</div>
 						</div>
 						
 					</fieldset>
