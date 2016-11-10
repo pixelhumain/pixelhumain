@@ -189,7 +189,7 @@ div.timeline .date_separator span{
 .removeMediaUrl{
 	position:absolute;
 	top:0px;
-	right:0px;
+	right:5px;
 }
 .thumb_sel .prev_thumb {
 	background: url(<?php echo $this->module->assetsUrl ?>/images/news/thumb_selection.gif) no-repeat -50px 0px;
