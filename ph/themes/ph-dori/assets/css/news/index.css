@@ -406,6 +406,9 @@ div.timeline .newsTL > .newsFeed:nth-child(2n+1) .timeline_element:before {
 	background-color: transparent !important;
 }
 
+.newsContentEdit{
+	min-height:200px;
+}
 
 /**/
 /*
