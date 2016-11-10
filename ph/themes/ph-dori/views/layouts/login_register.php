@@ -55,7 +55,7 @@
 			<div class="box-login box box-white-round no-padding pull-right">
 				<button class="btn btn-default btn-close-box" id=""><i class="fa fa-times"></i></button>
 				<?php 
-					$this->renderPartial('../default/menuTitle');
+					$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.default.menuTitle');
 				?>
 				<form class="form-login box-white-round" action="" method="POST">
 					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;" class="pull-right hidden-xs" src="<?php echo $this->module->assetsUrl?>/images/logoL.jpg"/>
