@@ -34,6 +34,9 @@
 	.menu-left-container a:hover{
 		color:grey;
 	}
+	.carousel-indicators{
+		bottom:-10px;
+	}
 </style>
 <div class="hover-info col-md-7 col-md-offset-3 col-sm-6 col-sm-offset-5 hidden-xs panel-white padding-20" >
 	<?php echo $this->renderPartial('explainPanels',array("class"=>"explain")); ?>
@@ -55,31 +58,31 @@
 			<div id="docCarousel" class="carousel slide" data-ride="carousel">
 	  <!-- Indicators -->
 			  <ol class="carousel-indicators">
-			    <li data-target="#docCarousel" data-slide-to="0" class="active"></li>
-			    <li data-target="#docCarousel" data-slide-to="1"></li>
-			    <li data-target="#docCarousel" data-slide-to="2"></li>
+				<?php
+					$i=0; 
+					foreach ($projects as $data){ 
+						if(@$data["profilMediumImageUrl"] && !empty($data["profilMediumImageUrl"])){ ?>
+						<li data-target="#docCarousel" data-slide-to="0" class=" <?php if($i==0) echo "active" ?>"></li>
+						<?php $i++;
+						}
+					} ?>
 			  </ol>
 	
 	  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox">
 				<?php
 					$inc=0; 
-					foreach ($projects as $data){ ?>
+					foreach ($projects as $data){
+						if(@$data["profilMediumImageUrl"] && !empty($data["profilMediumImageUrl"])){ ?>
 						<div class="item <?php if($inc==0) echo "active" ?>">
-							<img src="<?php echo Yii::app()->createUrl('/'.@$data["profilMediumImageUrl"]) ?>" class="col-sm-12 img-responsive ">
+							<a href="#project.detail.id.<?php echo (string)$data["_id"] ?>" class="lbh">
+								<img src="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/document/resized/150x150'.@$data["profilMediumImageUrl"]) ?>" class="col-sm-12 img-responsive no-padding">
+							</a>
 						</div>
 				<?php $inc++; 
-					} ?>
+					} }?>
 			  </div>
 			  <!-- Left and right controls -->
-			  <a class="left carousel-control" href="#docCarousel" role="button" data-slide="prev">
-			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-			  </a>
-			  <a class="right carousel-control" href="#docCarousel" role="button" data-slide="next">
-			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-			  </a>
 			</div>
 		</div>
 		<div class="col-md-12" id="poiParent">
@@ -147,7 +150,7 @@ var menuExtend = ["organization", "project", "people", "vote", "action"];
 jQuery(document).ready(function() {
 	 $(".carousel-control").click(function(){
     var top = $("#docCarousel").position().top-30;
-    $(".my-main-container").animate({ scrollTop: top, }, 100 );
+    $(".my-main-container").animate({ scrollTop: top, }, 300 );
   });
 
   $(".btn-carousel-previous").click(function(){ //toastr.success('success!'); console.log("CAROUSEL CLICK");
