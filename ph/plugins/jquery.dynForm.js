@@ -969,8 +969,9 @@ onSave: (optional) overloads the generic saveProcess
 	    	val = "";
 	    var count = $(".addmultifield").length;
 		var str = '<div class="space5"></div><div class="col-sm-10">'+
+					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'"/>'+
-					'<div class="resultGetUrl resultGetUrl'+count+'"></div>'+
+					'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
 					'</div>'+
 					'<div class="col-sm-2">'+
 					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-left" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+

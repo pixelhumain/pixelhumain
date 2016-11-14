@@ -206,6 +206,11 @@
     max-height: 270px !important;
     margin-bottom: 25px !important;
   }
+  .searchEntityContainer.surveys{
+    min-height: 345px !important;
+    max-height: 345px !important;
+    margin-bottom: 25px !important;
+  }
   .searchEntity{
     padding: 0px !important;
     margin: 0px !important;
