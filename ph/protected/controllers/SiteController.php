@@ -48,11 +48,11 @@ class SiteController extends Controller
 		$this->layout = "empty";
 		if($error=Yii::app()->errorHandler->error)
 		{
-			/*if(Yii::app()->request->isAjaxRequest)
+			if(Yii::app()->request->isAjaxRequest)
 				echo $error['message'];
 			else
-				$this->render('error', $error);*/
-			$this->redirect(Yii::app()->homeUrl);
+				$this->render('error', $error);
+			//$this->redirect(Yii::app()->homeUrl);
 		}
 	}
     public function actionPage($id) {
