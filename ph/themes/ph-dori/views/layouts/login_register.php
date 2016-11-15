@@ -442,17 +442,17 @@ var Login = function() {
 		    		  if(data.result)
 		    		  {
 		    		  	var url = "<?php echo (isset(Yii::app()->session["requestedUrl"])) ? Yii::app()->session["requestedUrl"] : null; ?>";
-		    		  	//console.warn(url,", has #"+url.indexOf("#"),"count / : ",url.split("/").length - 1 );
+		    		  	//mylog.warn(url,", has #"+url.indexOf("#"),"count / : ",url.split("/").length - 1 );
 		    		  	if(backUrl != null){
 		    		  		loadByHash(backUrl);
 		    		  		backUrl = null;
 		    		  	} else if(url && url.indexOf("#") >= 0 ) {
-		    		  		//console.log("login 1",url);
+		    		  		//mylog.log("login 1",url);
 		    		  		//reload to the url initialy requested
 		    		  		window.location.href = url;
 		        		} else {
 		        			if( url.split("/").length - 1 <= 3 ) {
-		        				//console.log("login 2",baseUrl+'#default.home');
+		        				//mylog.log("login 2",baseUrl+'#default.home');
 		        				//classic use case wherever you login from if not notifications/get/not/id...
 		        				//you stay on the current page
 		        				//if(location.hash == '#default.home')
@@ -461,7 +461,7 @@ var Login = function() {
 		        					window.location.href = baseUrl+'#default.home';*/
 		        			}
 		        			else {
-		        				//console.log("login 3 reload");
+		        				//mylog.log("login 3 reload");
 		        				//for urls like notifications/get/not/id...
 		        				window.location.href = baseUrl+'#default.live';
 		        				//window.location.reload();
@@ -642,7 +642,7 @@ var Login = function() {
 		    		  	$("#modalRegisterSuccess").modal({ show: 'true' }); 
 		    		  	// Hide modal if "Okay" is pressed
 					    $('#modalRegisterSuccess .btn-default').click(function() {
-					        console.log("hide modale and reload");
+					        mylog.log("hide modale and reload");
 					        $('modalRegisterSuccess').modal('hide');
 					    	window.location.href = baseUrl+'/#default.live';
 					    	window.location.reload();
@@ -689,7 +689,7 @@ function validateUserName() {
 	if(username.length >= 4) {
 		clearTimeout(timeout);
 		timeout = setTimeout(function() {
-				//console.log("bing !");
+				//mylog.log("bing !");
 				if (! isUniqueUsername(username)) {
 					var validator = $( '.form-register' ).validate();
 					validator.showErrors({
@@ -701,7 +701,7 @@ function validateUserName() {
 }
 
 function callBackFullSearch(resultNominatim){
-	console.log("callback ok");
+	mylog.log("callback ok");
 	var ok = Sig.showCityOnMap(resultNominatim, true, "person");
 	if(!ok){
 		if($('#city').val() != "") {
@@ -715,7 +715,7 @@ function callBackFullSearch(resultNominatim){
 
 //quand la recherche par code insee a fonctionné
 function callbackFindByInseeSuccessRegister(obj){
-	console.log("callbackFindByInseeSuccess");
+	mylog.log("callbackFindByInseeSuccess");
 	//si on a bien un résultat
 	if (typeof obj != "undefined" && obj != "") {
 		//récupère les coordonnées
@@ -724,8 +724,8 @@ function callbackFindByInseeSuccessRegister(obj){
 		if(typeof obj.geoShape != "undefined") Sig.showPolygon(obj.geoShape);
 		//on affiche le marker sur la carte
 		$("#alert-city-found").show();
-		//console.log("verification contenue obj");
-		//console.dir(obj);
+		//mylog.log("verification contenue obj");
+		//mylog.dir(obj);
 		Sig.showCityOnMap(obj, true, "person");
 
 		if(typeof obj.name != "undefined"){
@@ -738,7 +738,7 @@ function callbackFindByInseeSuccessRegister(obj){
 		//showGeoposFound(coords, projectId, "projects", projectData);
 	}
 	else {
-		console.log("Erreur getlatlngbyinsee vide");
+		mylog.log("Erreur getlatlngbyinsee vide");
 	}
 }
 	function searchAddressInGeoShape(){
@@ -748,8 +748,8 @@ function callbackFindByInseeSuccessRegister(obj){
 	}
 
 	function callbackFindByInseeSuccessAdd(obj){
-		console.log("callbackFindByInseeSuccessAdd");
-		console.dir(obj);
+		mylog.log("callbackFindByInseeSuccessAdd");
+		mylog.dir(obj);
 		//si on a bien un résultat
 		if (typeof obj != "undefined" && obj != "") {
 			currentCityByInsee = obj;
@@ -780,12 +780,12 @@ function callbackFindByInseeSuccessRegister(obj){
 			hideLoadingMsg();
 		}
 		else {
-			console.log("Erreur getlatlngbyinsee vide");
+			mylog.log("Erreur getlatlngbyinsee vide");
 		}
 	}
 //quand la recherche par code insee n'a pas fonctionné
 function callbackFindByInseeError(){
-	console.log("erreur getlatlngbyinsee");
+	mylog.log("erreur getlatlngbyinsee");
 }
 
 function initRegister() {

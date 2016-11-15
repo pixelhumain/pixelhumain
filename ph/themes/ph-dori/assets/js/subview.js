@@ -71,7 +71,7 @@
 									left: "0px"
 								});
 							}).off().on("click", function(e) {
-								//console.log("click Save SubView");
+								//mylog.log("click Save SubView");
 								/*$(this).hide(0, function(e) {
 									$(this).css({
 										opacity: 0
