@@ -88,6 +88,7 @@ return array(
 	"has created"=>"a créé",
 	"has deleted" => "a supprimé",
 	"confirms your invitation and create an account." => "a confirmé(e) votre invitation et créé(e) son compte",
+	"wrote a message on your wall" => "a écris un message dans votre journal",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 	
@@ -493,6 +494,13 @@ return array(
 	"Visible to all + on city's wall" => "visible de tous + mur de la ville",
 	"Visible to all on this wall and published on this network" => "Visible de tous sur ce mur et publié sur ce réseau",
 	"Visible to all and posted on cities' live" => "Visible de tous dans l'actu locale",
+	"Post a message in the wall of" => "Poster un message sur le journal de",
+	"publicly shared or to this community" => "partagé publiquement ou à la communauté",
+	"Write a private message to" => "Écrire un message privé à",
+	"Write a public message visible on the wall of selected places" => "Écrire un message public visible sur le mur des lieux sélectionnés",
+	"Write a idea, a message in the city wall of" => "Écrire une idée, un message sur le journal de la ville",
+	"Write a bug or an idea to improve the development of communecter" => "Écrire un bug ou une idée pour améliorer le développement de communecter",
+	"Published a message in your wall for your network" => "Publier un message sur votre mur, visible ou non par votre réseau",
 	"Search what" => "Quoi",
 	"Search where" => "Où", 
 
