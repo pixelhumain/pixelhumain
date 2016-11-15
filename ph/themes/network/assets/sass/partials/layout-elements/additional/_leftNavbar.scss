@@ -1,0 +1,89 @@
+/* LEFT NAVIGATION MENU */
+
+.left-navbar {
+    width: $left-navbar-width;
+    z-index: 1021;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: $top-navbar-height;
+
+    background-color: $dark01;
+
+    .navbar-content {
+        position: relative;
+    }
+
+    .navbar-content-inner {
+        position: relative;
+
+        left: 0;
+        width: 100%;
+    }
+
+    .navbar-menu {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+            position: relative;
+            margin-bottom: 3px;
+            height: $left-navbar-item-height;
+
+            font-size: 16px;
+            line-height: $left-navbar-item-height;
+
+            a {
+                position: absolute;
+                display: block;
+                top: 0;
+                left: 0;
+                height: $left-navbar-item-height;
+                width: $left-navbar-width;
+                overflow: hidden;
+
+                line-height: inherit;
+
+                color: #fff;
+                background-color: $darkBlue02;
+
+                &:hover {
+                    width: $left-navbar-hover-item-width;
+
+                    color: $dark01;
+                    background-color: #fff;
+                }
+
+                & > i {
+                    float: left;
+                    width: $left-navbar-width;
+
+                    font-size: 26px;
+                    line-height: inherit;
+                    text-align: center;
+                }
+
+                .inner {
+                    display: block;
+                    padding-left: ($left-navbar-width + 20px);
+                    width: $left-navbar-hover-item-width;
+
+                    span {
+                        display: block;
+                        padding-right: 44px;
+                    }
+
+                    i {
+                        float: right;
+                        width: 44px;
+                        font-size: 24px;
+                        line-height: inherit;
+
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
