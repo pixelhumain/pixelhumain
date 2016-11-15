@@ -16,7 +16,7 @@ return array(
 	'language'=>'en',
 
 	//SPECIFIC MODULE confis
-	'defaultController' => 'communecter/default/index',
+	'defaultController' => 'communecter/network/simplydirectory',
 	'homeUrl' => "/",//"/ph?tpl=index",
 
 	// preloading 'log' component

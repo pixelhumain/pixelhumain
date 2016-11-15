@@ -1,0 +1,65 @@
+{
+    "name" : "AlternatibaPei",
+    "mode" : "server",
+    "skin" : {
+        "logo" : false,
+        "title" : false,
+        "displayScope" : false,
+        "displayCommunexion" : true,
+        "profilBar" : true,
+        "displayButtonGridList" : false,
+        "class" : {
+            "mainContainer" : false
+        },
+        "iconeAdd" : false,
+        "iconeSearchPlus" : false,
+        "loginTitle":""
+    },
+    "filter" : {
+        "types" : false,
+        "tags" : {
+            "activate" : false,
+            "title" : "Toutes les catégories",
+            "background-color" : "#f5f5f5",
+            "image" : "All.png"
+        },
+        "linksTag" : {
+            "Tags" : {
+                "tagParent" : "Alternatiba",
+                "background-color" : "#f5f5f5",
+                "tags" : {
+                    "Agriculture" : "Agriculture",
+                    "Alimentation" : "Alimentation",
+                    "Aménagement-Transport-Construction" : "Aménagement-Transport-Construction",
+                    "Biodiversité" : "Biodiversité",
+                    "Citoyenneté" : "Citoyenneté",
+                    "Déchets" : "Déchets",
+                    "Economie Sociale et Solidaire" : "Economie Sociale et Solidaire",
+                    "Education" : "Education",
+                    "Energie" : "Energie",
+                    "Santé" : "Santé"
+                }
+            }
+        }
+    },
+    "add" : {
+        "organization" : false,
+        "project" : false,
+        "event" : false
+    },
+    "result" : {
+        "displayImage" : false,
+        "displayType" : false,
+        "fullLocality" : true,
+        "datesEvent" : false
+    },
+    "request" : {
+        "sourceKey" :[
+            "AlternatibaPei"
+        ],
+        "pagination" : 10000,
+        "searchType" : [
+            "organizations"
+        ]
+    }
+}
