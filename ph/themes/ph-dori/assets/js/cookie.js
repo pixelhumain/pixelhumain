@@ -19,10 +19,10 @@ function updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityNa
             scriptWrapper: 
             	function (){
             		var path = "/";
-            		//console.log(location.hostname.indexOf("localhost") );
-            		//console.dir(location);
+            		//mylog.log(location.hostname.indexOf("localhost") );
+            		//mylog.dir(location);
             		if(location.hostname.indexOf("localhost") >= 0) path = "/ph/";
-				    console.log("mise à jour des cookies", path);
+				    mylog.log("mise à jour des cookies", path);
 					$.cookie('user_geo_latitude',   user_geo_latitude,  { expires: 365, path: path });
 					$.cookie('user_geo_longitude',  user_geo_longitude, { expires: 365, path: path });
 					$.cookie('insee', 	  			insee, 	 			{ expires: 365, path: path });

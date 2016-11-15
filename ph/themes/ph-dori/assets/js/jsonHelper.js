@@ -4,48 +4,48 @@ var jsonHelper = {
    */
   a : {x : {b : 2} },
   test : function(){
-    console.log("init",JSON.stringify(this.a));
+    mylog.log("init",JSON.stringify(this.a));
 
     this.getValueByPath( this.a,"x.b");
-    console.log("this.a set x.b => 1000");    
+    mylog.log("this.a set x.b => 1000");    
     this.setValueByPath( this.a,"x.b",1000);
     this.getValueByPath( this.a,"x.b")
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a.x set b => 2000");
+    mylog.log("this.a.x set b => 2000");
     this.setValueByPath( this.a.x,"b",2000);
     this.getValueByPath( this.a,"x.b");
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a.x set b => {m:1000}");
+    mylog.log("this.a.x set b => {m:1000}");
     this.setValueByPath( this.a.x,"b",{m:1000});
     this.getValueByPath( this.a,"x.b");
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a set x.b.a => 4000");
+    mylog.log("this.a set x.b.a => 4000");
     this.setValueByPath( this.a,"x.b.a",4000);
     this.getValueByPath( this.a,"x.b");
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a set x.b.a => {m:1000}");
+    mylog.log("this.a set x.b.a => {m:1000}");
     this.getValueByPath( this.a,"x.b.a");
     this.setValueByPath( this.a,"x.b.a",{m:1000});
     this.getValueByPath( this.a,"x.b.a");
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a set x.b.a.b.c.d => {xx:1000}");
+    mylog.log("this.a set x.b.a.b.c.d => {xx:1000}");
     this.getValueByPath( this.a,"x.b.a.b.c.d");
     this.setValueByPath( this.a,"x.b.a.b.c.d",{xx:1000,yy:25000});
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a reset x.b.a.b.c.d.yy => 100000");
+    mylog.log("this.a reset x.b.a.b.c.d.yy => 100000");
     this.getValueByPath( this.a,"x.b.a.b.c.d.yy");
     this.setValueByPath( this.a,"x.b.a.b.c.d.yy",100000);
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a delete x.b.a.b.c.d.yy");
+    mylog.log("this.a delete x.b.a.b.c.d.yy");
     this.deleteByPath( this.a,"x.b.a.b.c.d.yy");
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
   },
   /*
   srcObj = any json OBJCT
@@ -54,7 +54,7 @@ var jsonHelper = {
   getValueByPath : function(srcObj,path)
   {
     node = srcObj;
-    //console.log("path",path);
+    //mylog.log("path",path);
     if( !path )
       return node;
     else if( typeof path == "object" && path.value )
@@ -92,14 +92,14 @@ var jsonHelper = {
       lastKey = null;
       $.each(pathArray,function(i,v){
         if(!node[v]){
-          //console.log("building node",v);
+          //mylog.log("building node",v);
           node[v] = {};
         }
         nodeParent = node;
         node = node[v]; 
         lastKey = v;
       });
-      //console.log(node,nodeParent,lastKey);
+      //mylog.log(node,nodeParent,lastKey);
       nodeParent[lastKey] = value;
     }  
     else
@@ -133,12 +133,12 @@ var jsonHelper = {
   Object2GraphArray : function ( srcObj )
   {
     destArray = [];
-    //console.dir(srcObj);
+    //mylog.dir(srcObj);
     $.each(srcObj,function(k,v){
         if(v.value != 0)
             destArray.push(v);
     });
-    //console.dir(destArray);
+    //mylog.dir(destArray);
     return destArray;
   },
 
@@ -156,18 +156,18 @@ var jsonHelper = {
   "toJson" : [],
   
   "test" : function(){
-    console.log("test");  
+    mylog.log("test");  
     this.convert();
   },
   
   "convert" : function(){
-    console.log("convert");     
+    mylog.log("convert");     
     this.toJson = [];
     $.each(this.fromJson,function(i, fromObj){
 
       newLine = this.outputLine;
       /*$.each(this.rules,function(keyTo, convertTo){
-        console.log("convert rules ",fromObj,keyTo,convertTo);     
+        mylog.log("convert rules ",fromObj,keyTo,convertTo);     
           if(typeof convertTo == "function")
             newLine[ keyTo ] = convertTo( fromObj );
           else
