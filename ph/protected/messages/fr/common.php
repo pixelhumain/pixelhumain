@@ -677,7 +677,9 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"I think that this proposal is not complete" => "Je pense que cette proposition n'est pas complète",
 	"I have not reviews" => "Je n'ai pas d'avis",
 	"I don't understand, it miss informations" => "Je n'ai pas compris, il manque des informations",
-	"I am not in favor of this proposal" => "Je suis contre cette proposition"
+	"I am not in favor of this proposal" => "Je suis contre cette proposition",
+
+	"Action room"=>"Espace d'action"
 );
 
 ?>
