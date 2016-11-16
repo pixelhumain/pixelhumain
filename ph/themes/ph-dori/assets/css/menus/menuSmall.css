@@ -67,7 +67,7 @@ width: 100%;
     background-color: #653C3C !important;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 992px) {
 
 	.menuSmallBlockUI{
 		width: 75.5% !important;
