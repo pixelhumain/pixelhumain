@@ -188,6 +188,9 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 						<span class="hidden-xs">Mon c</span><span class="hidden-sm hidden-md hidden-lg">C</span>onseil citoyen
 					</a>
 				</div> -->
+
+				<?php $col = "6"; if(isset(Yii::app()->session['userId'])) $col="4"; ?>
+
 					<div class="col-md-12 col-sm-12  col-xs-12 no-padding">
 						<hr style="border-top: 1px solid transparent; margin:7px;">
 						<h2 class="homestead text-white">
@@ -195,7 +198,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							<i class="fa fa-angle-down"></i> 
 						</h2>
 					</div>
-					<div class="col-xs-6 col-sm-6 col-md-4 center padding-5">
+					<div class="col-xs-6 col-sm-6 col-md-<?php echo $col; ?> center padding-5">
 						<a href="#default.directory?type=persons" class="lbh btn bg-yellow btn-element">
 
 							<i class="fa fa-user"></i><br>
@@ -203,7 +206,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 						</a>
 						<a href="javascript:openForm('person')" class="badge btn-add bg-yellow"><i class="fa fa-plus-circle"></i></a>
 					</div>
-					<div class="col-xs-6 col-sm-6 col-md-4 center padding-5">
+					<div class="col-xs-6 col-sm-6 col-md-<?php echo $col; ?> center padding-5">
 
 						<a href="#default.directory?type=organizations" class="lbh btn bg-green btn-element">
 
@@ -215,7 +218,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 						</a>
 						<a href="javascript:openForm('organization')" class="badge btn-add bg-green"><i class="fa fa-plus-circle"></i></a>
 					</div>
-					<div class="col-xs-6 col-sm-6 col-md-4 center padding-5">
+					<div class="col-xs-6 col-sm-6 col-md-<?php echo $col; ?> center padding-5">
 
 						<a href="#default.directory?type=projects" class="lbh btn bg-purple btn-element">
 
@@ -227,7 +230,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 						</a>
 						<a href="javascript:openForm('project')" class="badge btn-add bg-purple"><i class="fa fa-plus-circle"></i></a>
 					</div>
-					<div class="col-xs-6 col-sm-6 col-md-4 center padding-5">
+					<div class="col-xs-6 col-sm-6 col-md-<?php echo $col; ?> center padding-5">
 
 						<a href="#default.directory?type=events" class="lbh btn bg-orange btn-element">
 
