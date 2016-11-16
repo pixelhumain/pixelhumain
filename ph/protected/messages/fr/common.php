@@ -654,7 +654,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Remove This Locality" => "Effacer cette addresse",
 	"Add Locality" => "Ajouter une adresse",
 	"Show map" => "Voir la carte",
-
+	"Unknown Locality" => "Adresse non renseigné",
 	"Parenthood" => "Parenté",
 
 	"Show map" => "Afficher sur la carte",
