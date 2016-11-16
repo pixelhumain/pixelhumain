@@ -113,11 +113,17 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 
 	  	<div class="col-md-9 col-sm-9 col-xs-12 no-padding">
 
-	  		<div class="col-md-12 col-sm-12 margin-15">
+	  		<div class="col-md-12 col-sm-12">
 				<div class="col-md-4 col-sm-4 padding-5 center">
 					<a class="btn bg-azure lbh " href="#default.live" >
 					<i class="fa fa-heartbeat tooltips" data-toggle="tooltip" data-placement="bottom" alt="Toutes l'actualités"></i> <br class="hidden-xs">Live</a>
 				</div>
+				<div class="col-md-8 center hide-communected padding-5">
+					<a class="btn bg-red" href="javascript:;" onclick="communecterUser()">
+						<i class="fa fa-university"></i>
+						</br>Communectez-moi
+					</a>
+				</div> 
 				<div class="col-md-4 col-sm-4 col-xs-6 padding-5 center visible-communected">
 					<a class="btn bg-red lbh padding-5" 
 						href="#city.detail.insee.<?php 
@@ -155,14 +161,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			
 
 			<div class="col-md-12 col-sm-12 padding-15">
-				<?php if(!isset($myCity)){?>
-					<div class="col-md-12 center hide-communected">
-						<a class="btn bg-red" href="javascript:;" onclick="communecterUser()">
-							<i class="fa fa-university"></i>
-							</br>Communectez-moi
-						</a>
-					</div> 
-				<?php } ?>
+				
 
 				<!-- <div class="col-md-6 col-sm-6 col-xs-12 center visible-communected">
 					<a class="btn bg-red lbh" 
