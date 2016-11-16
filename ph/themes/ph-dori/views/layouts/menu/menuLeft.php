@@ -316,6 +316,9 @@ jQuery(document).ready(function() {
 	<?php if($myCity == null){ ?>
 		$(".visible-communected").hide(400);
 		$(".hide-communected").show(400);
+	<?php }else{ ?>
+		$(".hide-communected").hide();
+		$(".visible-communected").show(400);
 	<?php } ?>
 
 	extendMenu(true);
