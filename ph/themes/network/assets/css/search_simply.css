@@ -386,9 +386,6 @@ button.btn-menu-notif{
     position: relative;
     float: right;
 }
-button#btn-toogle-map{
-	
-}
 #btn-menu-launch{
 	font-size: 24px;
     width: 75px;
@@ -398,7 +395,7 @@ button#btn-toogle-map{
     border-radius: 0px 0px 75px 0px;
     z-index: 15;
     border: 0;
-    background-color: rgba(40,40,40,0.5)!important;
+    background-color: rgba(40,40,40,0.9)!important;
     padding: 12px;
     margin-right: 10px;
 }
@@ -406,6 +403,9 @@ button#btn-toogle-map{
 	border-radius: 0px;
     height: 50px;
     width: 16.66666667%;
+    background-color: rgba(40,40,40,0.9) !important;
+}
+.contentTitleMap.active, .showHideMoreTitleMap.active{
     background-color: rgba(40,40,40,0.9) !important;
 }
 button#btn-toogle-map{
@@ -420,7 +420,7 @@ button#btn-toogle-map{
     border-radius: 0px 0px 0px 75px;
     z-index: 15;
     border: 0;
-    background-color: rgba(40,40,40,0.5)!important;
+    background-color: rgba(40,40,40,0.9) !important;
  }
  button#btn-toogle-map i{
 	position: relative;
@@ -429,8 +429,9 @@ button#btn-toogle-map{
 }
 button#btn-toogle-map:hover, #btn-menu-launch:hover{
 	box-shadow: 2px -2px 12px 2px white !important;
-    background-color: rgba(40,40,40,0.9)!important;
+    background-color: rgba(40,40,40,1)!important;
 }
+
 button.main-btn-toogle-map{
 	font-size: 24px;
     width: 45px;
