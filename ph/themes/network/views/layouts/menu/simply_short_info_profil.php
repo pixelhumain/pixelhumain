@@ -153,6 +153,46 @@
   padding-right:10px;
   padding-left:10px;
 }
+.contentTitleMap{
+	width: 500px;
+    border-radius: 0px 0px 50px 50px;
+    color: white;
+    background-color: rgba(40,40,40,0.9)!important;
+}
+#titleMapTop{
+	position: fixed;
+    top: -20px;
+    right: 0px;
+    left: 0px;
+    height: 50px;
+    text-align: center;
+    text-align: -webkit-center;
+}
+.showHideMoreTitleMap{	
+	color: white;
+    position: relative;
+    bottom: 0px;
+    left:-5px;
+    width: 55px;
+    height: 25px;
+    font-size: 35px;
+    /* padding-top: 10px; */
+    border-radius: 0px 0px 70px 70px;
+    background-color: rgba(40,40,40,0.9) !important;
+}
+.showHideMoreTitleMap i{
+    position: relative;
+    top: -15px;	
+}
+.contentTitleMap h1{
+	font-size: 20px;
+}
+.contentShortInformationMap{
+	display:none;
+}
+#menuTopList{
+	display:none;
+}
 </style>
   <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
 
@@ -164,7 +204,7 @@
 		<span style="display:none;float:right;"> <i class="fa fa-filter"></i> Filtres</span>
 	</a>
     <?php if(@$params['skin']["logo"]){ ?>
-    
+
 <!--	<a class="pull-left tooltips" href="javascript:loadByHash('#default.view.page.index.dir.docs')"  id="main-btn-co"
 		data-toggle="tooltip" data-placement="bottom" 
 		title="Lire la documentation" 
@@ -173,26 +213,88 @@
     </a>  -->
     <?php } ?>
     <?php if(@$params['skin']["title"]){ ?>
+	<div id="titleMapTop">
+		<div class="contentTitleMap padding-10">
+			<h1><?php echo $params['skin']["title"] ?></h1>
+			<?php if(@$params['skin']["shortDescription"] || (@$params['skin']["displayCommunexion"] && $params['skin']["displayCommunexion"])){ ?>
+				<div class="contentShortInformationMap">
+					<?php if(@$params['skin']["shortDescription"]){ ?>
+					<span class="shortDescriptionMap padding-10"> 
+						<?php echo $params['skin']["shortDescription"]; ?>
+					</span>
+					<?php } ?>
+					<?php if (@$params['skin']["displayCommunexion"] && $params['skin']["displayCommunexion"]){ ?>
+					<br/>
+					<div class="centerButton">
+						<button class="btn-top btn btn-default hidden-xs" onclick="showPanel('box-register');">
+				        	<i class="fa fa-plus-circle"></i> 
+							<span class="hidden-sm hidden-md hidden-xs">S'inscrire</span>
+						</button>
+						<button class="btn-top btn btn-success hidden-xs" style="margin-right:10px;" onclick="showPanel('box-login');">
+							<i class="fa fa-sign-in"></i> 
+							<span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
+						</button>
+					</div>
+			      <?php } ?>
+				</div>
+			<?php } ?>
+		</div> 
+		<div class="showHideMoreTitleMap"><i class="fa fa-angle-down"></i></div> 
+    </div>
 	<!--<h1 class="homestead text-dark no-padding pull-left" id="main-title" style="font-size:18px;margin-bottom: 0px; display: inline-block;margin-top:15px;margin-left:10px;">
 			<?php echo $params['skin']["title"] ?>
 	</h1>-->
     <?php } ?>
-    <div class="pull-left">
-	  <?php if(isset($params['skin']['breadcrumb']) && $params['skin']['breadcrumb']) { ?>
-      <label class="menu-button btn-menu btn-default btn-menu-global-search tooltips text-dark" id="breadcum" style="cursor:pointer;">
-        <i class="breadcum_search fa fa-search fa-2x" style="padding-top: 10px;padding-left: 20px;"></i>
-      </label>
-	  <?php } ?>
-      <div class="dropdown pull-right hidden-xs">
-        <?php if(isset($params['skin']['displayButtonGridList']) && $params['skin']['displayButtonGridList']) { ?>
-           <button id="grid" class="dropdown-toggle menu-name-profil text-dark" style="display:none">
-             <i class="fa fa-th-large fa-2x"></i>
-          </button>
-           <button id="list" class="dropdown-toggle menu-name-profil text-dark">
-             <i class="fa fa-align-justify fa-2x"></i>
-          </button>
-        <?php } ?>
-      </div>
+    <button class="btn-menu btn-menu-top bg-white text-azure tooltips pull-right" id="btn-toogle-map"
+      data-toggle="tooltip" data-placement="bottom" title="Carte" alt="Carte">
+      <i class="fa fa-map-marker"></i>
+	</button>
+    <div id="menuTopList">
+	    <div class="pull-left" style="display:inline-block;">
+		  <?php if(@$params['skin']["title"]) { ?>
+		  		<h1><?php echo $params['skin']["title"] ?></h1>
+		  <?php } ?> 
+		  <?php if(isset($params['skin']['breadcrumb']) && $params['skin']['breadcrumb']) { ?>
+	      <label class="menu-button btn-menu btn-default btn-menu-global-search tooltips text-dark" id="breadcum" style="cursor:pointer;">
+	        <i class="breadcum_search fa fa-search fa-2x" style="padding-top: 10px;padding-left: 20px;"></i>
+	      </label>
+		  <?php } ?>
+	      <div class="dropdown pull-right hidden-xs">
+	        <?php if(isset($params['skin']['displayButtonGridList']) && $params['skin']['displayButtonGridList']) { ?>
+	           <button id="grid" class="dropdown-toggle menu-name-profil text-dark" style="display:none">
+	             <i class="fa fa-th-large fa-2x"></i>
+	          </button>
+	           <button id="list" class="dropdown-toggle menu-name-profil text-dark">
+	             <i class="fa fa-align-justify fa-2x"></i>
+	          </button>
+	        <?php } ?>
+	      </div>
+	    </div>
+	    <div class="menu-info-profil">
+			<div class="topMenuButtons pull-right">
+			<?php if(isset($params["skin"]['displayCommunexion']) && $params["skin"]['displayCommunexion']){ ?>
+				<?php if( isset( Yii::app()->session['userId']) ){ ?>
+				<div class="dropdown pull-right hidden-xs">
+					<button class="dropdown-toggle menu-name-profil text-dark" data-toggle="dropdown">
+						<img class="img-circle" id="menu-thumb-profil" width="34" height="34" src="<?php echo $urlPhotoProfil; ?>" alt="image" >
+						<span class="caret"></span>
+					</button>
+				</div>          
+				<?php }
+				else{ ?>
+				<button class="btn-top btn btn-success  hidden-xs" onclick="showPanel('box-register');"><i class="fa fa-plus-circle"></i> <span class="hidden-sm hidden-md hidden-xs">S'inscrire</span></button>
+				<button class="btn-top btn bg-red  hidden-xs" style="margin-right:15px;" onclick="showPanel('box-login');"><i class="fa fa-sign-in"></i> <span class="hidden-sm hidden-md hidden-xs">Se connecter</span></button> 
+				<?php } ?>
+			<?php } ?>
+			<?php if(isset($params["skin"]['displayNotifications']) && $params["skin"]['displayNotifications'] && @Yii::app()->session['userId']){ ?>
+				<button class="menu-button btn-menu btn-menu-notif tooltips text-dark hidden-xs" 
+		                data-toggle="tooltip" data-placement="left" title="Notifications" alt="Notifications">
+		            <i class="fa fa-bell"></i>
+		            <span class="notifications-count topbar-badge badge badge-danger animated bounceIn"><?php count($this->notifications); ?></span>
+		        </button>
+			<?php } ?>
+    		</div>
+  		</div>
     </div>
     <div class="pull-left">
       <div class="dropdown pull-right hidden-xs">
@@ -248,11 +350,7 @@
           <!-- </div> -->
       <!--</form>
     </div>-->
-    <button class="btn-menu btn-menu-top bg-white text-azure tooltips pull-right" id="btn-toogle-map"
-      data-toggle="tooltip" data-placement="bottom" title="Carte" alt="Carte">
-      <i class="fa fa-map-marker"></i>
-  </button>
-
+    
     <div class="dropdown pull-left hidden-xs">
       <!-- <button id="btn-start-search" class="menu-button btn-menu btn-default btn-menu-global-search tooltips text-dark" 
           data-toggle="tooltip" data-placement="left" title="Rechercher quelque chose" alt="Rechercher quelque chose">
@@ -260,65 +358,6 @@
       </button> -->
     </div>
 
-     <div class="menu-info-profil">
-	
-    <div class="topMenuButtons pull-right">
-
-
-      <?php if((isset($params['profilBar']) && $params['profilBar']) || isset(Yii::app()->session['userId'])){ ?>
-        <?php if( isset( Yii::app()->session['userId']) ){ ?>
-          <div class="dropdown pull-right hidden-xs">
-            <button class="dropdown-toggle menu-name-profil text-dark" data-toggle="dropdown">
-              <img class="img-circle" id="menu-thumb-profil" width="34" height="34" src="<?php echo $urlPhotoProfil; ?>" alt="image" >
-              <?php //echo $me["name"]; ?>
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li><a href="javascript:;" onclick="loadByHash('#person.detail.id.<?php echo Yii::app()->session['userId']?>');"            id="btn-menu-dropdown-my-profil"><i class="fa fa-user text-dark"></i> Mon profil <span class="badge badge-warning"><i class="fa fa-bookmark"></i>  <?php echo Gamification::badge( Yii::app()->session['userId'] ) ?></span> </a></li>
-              <li><a href="javascript:;" onclick="loadByHash('#person.directory.id.<?php echo Yii::app()->session['userId']?>?tpl=directory2');"         id="btn-menu-dropdown-my-directory"><i class="fa fa-bookmark fa-rotate-270 text-dark"></i> Mon répertoire</a></li>
-              <li><a href="javascript:;" onclick="loadByHash('#news.index.type.citoyens.id.<?php echo Yii::app()->session['userId']?>?isSearchDesign=1');"         id="btn-menu-dropdown-my-news"><i class="fa fa-rss text-dark"></i> Mon fil d'actualité</a></li>
-              <!-- <li><a href="javascript:" onclick="loadByHash('#news.index.type.citoyens.id.<?php echo Yii::app()->session['userId']?>');" id="btn-menu-dropdown-my-news"><i class="fa fa-rss text-dark"></i> Mon fil d'actualité</a></li> -->
-              <li><a href="javascript:;" onclick="loadByHash('#city.detail.insee.<?php echo $me["address"]["codeInsee"]?>');"             id="btn-menu-dropdown-my-city"><i class="fa fa-university text-dark"></i> Ma commune</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="javascript:;" onclick="loadByHash('#person.invite');" id="btn-menu-dropdown-add"><i class="fa fa-plus-circle text-yellow"></i> <i class="fa fa-item-menu fa-user text-yellow"></i> Inviter quelqu'un</a></li>
-              <li><a href="javascript:;" onclick="loadByHash('#event.eventsv');" id="btn-menu-dropdown-add"><i class="fa fa-plus-circle text-orange"></i> <i class="fa fa-calendar text-orange"></i> Créer un événement</a></li>
-              <li><a href="javascript:;" onclick="loadByHash('#project.projectsv');" id="btn-menu-dropdown-add"><i class="fa fa-plus-circle text-purple"></i> <i class="fa fa-lightbulb-o text-purple"></i> Créer un projet</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="javascript:;" onclick="loadByHash('#organization.addorganizationform');" id="btn-menu-dropdown-add"><i class="fa fa-plus-circle text-green"></i> <i class="fa fa-users text-green"></i> Référencer une organisation</a></li>
-              <li role="separator" class="divider"></li>
-              <?php
-                if(Role::isSourceAdmin(Role::getRolesUserId(Yii::app()->session["userId"]))){
-                  $sourceAdmin = Person::getSourceAdmin(Yii::app()->session['userId']);
-                  foreach ($sourceAdmin as $key => $value) {
-                    ?>
-                      <li><a href="javascript:;" onclick="loadByHash('#adminpublic.index?key=<?php echo $value ;?>');" id="btn-menu-dropdown-add"><i class="fa fa-cog text-blue"></i> <?php echo $value ; ?></a></li>
-                  <?php } ?>
-                  <li role="separator" class="divider"></li>
-                  <?php } ?>
-              <li>
-                <a href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" 
-                   id="btn-menu-dropdown-logout" class="text-red">
-                  <i class="fa fa-sign-out"></i> Déconnexion
-                </a>
-              </li>  
-            </ul>
-          </div>
-
-          
-          <button class="menu-button btn-menu btn-menu-notif tooltips text-dark hidden-xs" 
-                data-toggle="tooltip" data-placement="left" title="Notifications" alt="Notifications">
-            <i class="fa fa-bell"></i>
-            <span class="notifications-count topbar-badge badge badge-danger animated bounceIn"><?php count($this->notifications); ?></span>
-          </button>
-        
-        <?php }
-        else{ ?>
-          <button class="btn-top btn btn-success  hidden-xs" onclick="showPanel('box-register');"><i class="fa fa-plus-circle"></i> <span class="hidden-sm hidden-md hidden-xs">S'inscrire</span></button>
-          <button class="btn-top btn bg-red  hidden-xs" style="margin-right:15px;" onclick="showPanel('box-login');"><i class="fa fa-sign-in"></i> <span class="hidden-sm hidden-md hidden-xs">Se connecter</span></button> 
-        <?php } ?>
-      <?php } ?>
-    </div>
-  </div>
     
   </div>
 
@@ -329,7 +368,18 @@
   var timeoutDropdownGS = setTimeout(function(){ }, 100);
   jQuery(document).ready(function() {
 
-
+  	$(".showHideMoreTitleMap").click(function(){
+	  	if($(this).find("i").hasClass("fa-angle-down")){
+	  		$(".contentShortInformationMap").show("slow").addClass("active");	
+	  		$(this).addClass("active");
+	  		$(this).find("i").removeClass("fa-angle-down").addClass("fa-angle-up");
+	  	}else{
+	  		$(this).removeClass("active");
+			$(this).find("i").removeClass("fa-angle-up").addClass("fa-angle-down");
+			$(".contentShortInformationMap").hide("slow").removeClass("active");	
+	  	}
+	  	
+  	});
     $('#btn-start-search').click(function(e){
       console.log("#btn-start-search");
       if(window.location.hash == "#default.simplyDirectory") {

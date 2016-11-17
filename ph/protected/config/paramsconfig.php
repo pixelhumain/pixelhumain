@@ -31,7 +31,7 @@ $mailConfigTest = array(
 
 /* trick to switch theme when param tpl is used in url (share iframe) */
 if(@$_GET["tpl"] == "iframesig"){ $theme = $_GET["tpl"]; }
-else { $theme = "ph-dori"; }
+else { $theme = "network"; }
 /**/
 
 $params = array(
