@@ -43,7 +43,7 @@ function ajaxPost(id,url,params,callback, datatype)
 function getAjax(id,url,callback,datatype,blockUI)
 {
   $.ajaxSetup({ cache: true});
-
+  mylog.log("getAjax",id,url,callback,datatype,blockUI)
     if(blockUI)
         $.blockUI({
             message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
@@ -65,7 +65,9 @@ function getAjax(id,url,callback,datatype,blockUI)
             toastr.error(data.error.msg);
           } else if(datatype === "html" )
             $(id).html(data);
-          else if(typeof data === "string" )
+          else if(datatype === "norender" )
+            mylog.log("no render",url)
+          else if( typeof data === "string" )
             toastr.success(data);
           else
               $(id).html( JSON.stringify(data, null, 4) );
