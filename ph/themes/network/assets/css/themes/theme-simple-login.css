@@ -8,6 +8,7 @@
     padding-top:0px;
     padding-left:30px;
     background-color: white;
+    border-radius:15px;
   }
 #mapCanvasBg{
   visibility: hidden;
@@ -27,10 +28,10 @@
 }
 .box-login, .box-register, .box-email{
   position: absolute; !important;
-  top: 0px !important;
+  top: 75px !important;
   left: 0px !important;
   right: unset !important;
-  margin:0px !important;
+  margin:inherit;
   width: 400px;
   padding:0px !important;
   -moz-box-shadow: 0px 0px 5px 7px rgba(41, 41, 41, 0.35);
@@ -49,7 +50,6 @@
 }
 .box-register{
   width:530px;
-  margin-left:-100px !important;
 }
 .titleWhite, .subTitle{
   color:#3C5665 !important;
