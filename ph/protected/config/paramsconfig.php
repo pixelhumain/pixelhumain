@@ -36,7 +36,7 @@ else if(@$_GET["network"]){
 	$theme="network";
 	$networkParams = $_GET["network"];
 }
-else{ $theme = "network"; }
+else{ $theme = "ph-dori"; }
 /**/
 
 $params = array(
