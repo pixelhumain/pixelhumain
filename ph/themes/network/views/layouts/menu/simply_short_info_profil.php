@@ -193,6 +193,14 @@
 #menuTopList{
 	display:none;
 }
+#breadcrum{
+	height: 50px;
+    line-height: 30px;
+    padding: 10px;
+}
+.breadcrumAnchor{
+	font-size: 16px;
+}
 </style>
   <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
 
@@ -252,12 +260,16 @@
     <div id="menuTopList">
 	    <div class="pull-left" style="display:inline-block;">
 		  <?php if(@$params['skin']["title"]) { ?>
-		  		<h1><?php echo $params['skin']["title"] ?></h1>
+		  		<!-- <h1><?php echo $params['skin']["title"] ?></h1> -->
 		  <?php } ?> 
 		  <?php if(isset($params['skin']['breadcrumb']) && $params['skin']['breadcrumb']) { ?>
-	      <label class="menu-button btn-menu btn-default btn-menu-global-search tooltips text-dark" id="breadcum" style="cursor:pointer;">
+	      <!--<label class="menu-button btn-menu btn-default btn-menu-global-search tooltips text-dark" id="breadcum" style="cursor:pointer;">
+	      
 	        <i class="breadcum_search fa fa-search fa-2x" style="padding-top: 10px;padding-left: 20px;"></i>
-	      </label>
+	      </label>-->
+	      <div id="breadcrum">
+		  	<a href="#network.simplydirectory" onclick="breadcrumGuide(0)" class="breadcrumAnchor text-dark" style="font-size:20px !important;">Liste</a>
+	      </div>
 		  <?php } ?>
 	      <div class="dropdown pull-right hidden-xs">
 	        <?php if(isset($params['skin']['displayButtonGridList']) && $params['skin']['displayButtonGridList']) { ?>
