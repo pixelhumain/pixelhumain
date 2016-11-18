@@ -169,7 +169,7 @@ function lazyLoad (js,css, callback) {
 
 function toggle(id,siblingsId,activate)
 {
-	console.log("toggle",id,siblingsId);
+	mylog.log("toggle",id,siblingsId);
   $(siblingsId).addClass("hide");
   if(activate)
     $(siblingsId+"Btn").removeClass("active");
@@ -263,7 +263,7 @@ function showAsColumn(resp,id)
 	//log(resp,"dir");
 	if($("#"+id).hasClass("columns"))
 	{
-		log("rebuild");
+		mylog.log("rebuild");
 		$("#"+id).columns('setMaster', Object2Array(resp) );
 		$("#"+id).columns('create');
 	} else {
