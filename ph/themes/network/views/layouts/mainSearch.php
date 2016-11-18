@@ -491,8 +491,8 @@
 
 			toogleCommunexion();
 
-			$(window).on('unload',function(){
-				history.pushState(null, null, location.hash+"?network="+networkParams);
+			$(window).on('beforeunload',function(){
+				window.history.pushState(null, null, location.hash+"?network="+networkParams);
 				//window.location.href=;
 				//do something
 			});
@@ -506,6 +506,8 @@
 		      console.log("history.state",$.isEmptyObject(history.state),location.hash);
 		      console.warn("popstate history.state",history.state);
 		      if( lastUrl && "onhashchange" in window && location.hash  ){
+			      alert();
+			      
 		        if( $.isEmptyObject( history.state ) && allReadyLoad == false ){
 			        //console.warn("poped state",location.hash);
 			        //alert("popstate");

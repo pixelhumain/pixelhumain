@@ -167,6 +167,7 @@
     height: 50px;
     text-align: center;
     text-align: -webkit-center;
+    text-align: -moz-center;
 }
 .showHideMoreTitleMap{	
 	color: white;

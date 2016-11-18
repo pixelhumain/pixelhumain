@@ -165,7 +165,7 @@ function lazyLoad (js,css, callback) {
 
 function toggle(id,siblingsId,activate)
 {
-	log("toggle",id,siblingsId);
+	console.log("toggle",id,siblingsId);
   $(siblingsId).addClass("hide");
   if(activate)
     $(siblingsId+"Btn").removeClass("active");
