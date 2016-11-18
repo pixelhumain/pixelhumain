@@ -30,8 +30,13 @@ $mailConfigTest = array(
 );
 
 /* trick to switch theme when param tpl is used in url (share iframe) */
+$networkParams="";
 if(@$_GET["tpl"] == "iframesig"){ $theme = $_GET["tpl"]; }
-else { $theme = "network"; }
+else if(@$_GET["network"]){
+	$theme="network";
+	$networkParams = $_GET["network"];
+}
+else{ $theme = "network"; }
 /**/
 
 $params = array(
@@ -82,7 +87,7 @@ $params = array(
     'validInviteCodes' => array("communs59", "communs31", "polder", "detakbaro", "kisskiss"),
     //Number of invitation by default for a person (us only on beta test)
     'numberOfInvitByPerson' => 10,
-    'networkParams' => "tierslieuxlille",
+    'networkParams' => $networkParams,
     
     //URL of logos used by mail
     "logoUrl" => "/images/logo-communecter.png",

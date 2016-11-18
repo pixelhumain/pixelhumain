@@ -331,7 +331,7 @@
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		?>
 		<script type="text/javascript">
-	
+		var networkParams = "<?php echo Yii::app()->params['networkParams'] ?>";
 
 		var mapIconTop = {
 		    "default" : "fa-arrow-circle-right",
@@ -491,6 +491,11 @@
 
 			toogleCommunexion();
 
+			$(window).on('unload',function(){
+				history.pushState(null, null, location.hash+"?network="+networkParams);
+				//window.location.href=;
+				//do something
+			});
 
 			//manages the back button state 
 			//every url change (loadByHash) is pushed into history.pushState 
@@ -526,16 +531,18 @@
 
 			if(userConnected != null && userConnected != "" && typeof userConnected != "undefined" && !location.hash){
 				//console.warn("hash 1", location.hash);
-				loadByHash("#person.detail.id."+userId);
+				//loadByHash("#network.simplydirectory");
 				return;
 			} 
 			else{ //si l'utilisateur est déjà passé par le two_step_register
-		 		if(/*location.hash != "#default.live" &&*/ location.hash != "#" && location.hash != ""){
+		 		if(location.hash != "#network.simplydirectory" && location.hash != "#" && location.hash != ""){
 		 			//console.warn("hash 2", location.hash);
-					loadByHash(location.hash);
+		 			//getAjaxFiche(location.hash,0);
+					loadByHash(location.hash+"?network="+networkParams);
 					return;
 				}
 				else{ 
+					return;
 					//console.log("userConnected", userConnected);
 					//console.warn("hash3", location.hash);
 					if(userConnected != null && userId != null  && userId != "" && typeof userId != "undefined")
