@@ -32,6 +32,7 @@ class OpenData
                                         "meeting" => "Réunion"
                                         ); //975
     public static $categ = array(
+                                array( "name" => "Divers", "tags" => array("divers") ),
                                 array( "name" => "Agriculture / Alimentation", "tags" => array("agriculture","alimentation") ),
                                 array( "name" =>  "Santé","tags" => array("santé") ),
                                 array( "name" =>  "Déchets","tags" => array("déchets") ),

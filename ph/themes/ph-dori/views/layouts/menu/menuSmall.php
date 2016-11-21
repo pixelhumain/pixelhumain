@@ -244,7 +244,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 					</div>
 
 					<?php if(isset(Yii::app()->session['userId'])){ ?>
-						<div class="col-xs-6 col-sm-6 col-md-4 center padding-5">
+						<div class="col-xs-6 col-sm-6 col-md-4 center padding-5 showIfCommucted <?php if(!@Yii::app()->session['user'] || !@Yii::app()->session['user']['postalCode'] )echo "hidden"; ?>">
 
 							<a href="#default.directory?type=vote" class="lbh btn bg-azure btn-element">
 
@@ -256,7 +256,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							</a>
 							<a href="javascript:openForm('entry')" class="badge btn-add bg-azure"><i class="fa fa-plus-circle"></i></a>
 						</div>
-						<div class="col-xs-6 col-sm-6 col-md-4 center padding-5">
+						<div class="col-xs-6 col-sm-6 col-md-4 center padding-5 showIfCommucted <?php if(!@Yii::app()->session['user'] || !@Yii::app()->session['user']['postalCode'] )echo "hidden"; ?>">
 
 							<a href="#default.directory?type=actions" class="lbh btn bg-lightblue2 btn-element">
 
