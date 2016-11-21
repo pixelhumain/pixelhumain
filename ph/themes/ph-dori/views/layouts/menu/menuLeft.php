@@ -210,7 +210,7 @@
 					<span class="lbl-btn-menu">Propositions</span>
 				</a>
 				<?php if(isset(Yii::app()->session['userId'])){ ?>
-				<a href="javascript:openForm ( 'entry' );" class="menu-button-left pull-right lbl-btn-menu">
+				<a href="javascript:openForm ( 'entry' );" class="menu-button-left pull-right lbl-btn-menu showIfCommucted <?php if(!@Yii::app()->session['user'] || !@Yii::app()->session['user']['postalCode'] )echo "hidden"; ?>  ">
 					<i class="fa text-red fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Ajouter une proposition"></i> 
 				</a>
 				<?php } ?>
@@ -224,7 +224,7 @@
 					<span class="lbl-btn-menu">Actions</span>
 				</a>
 				<?php if(isset(Yii::app()->session['userId'])){ ?>
-				<a href="javascript:openForm ( 'action' );" class="menu-button-left pull-right lbl-btn-menu">
+				<a href="javascript:openForm ( 'action' );" class="menu-button-left pull-right lbl-btn-menu showIfCommucted <?php if(!@Yii::app()->session['user'] || !@Yii::app()->session['user']['postalCode'] )echo "hidden"; ?>">
 					<i class="fa text-red fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Ajouter une action"></i> 
 				</a>
 				<?php } ?>
