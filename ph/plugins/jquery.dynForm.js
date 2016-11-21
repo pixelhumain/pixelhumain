@@ -693,7 +693,7 @@ onSave: (optional) overloads the generic saveProcess
 					if(initValues[$(this).attr("id")]){
 						var selectOptions = {
 						  "tags": initValues[ $(this).attr("id") ]["tags"],
-						  "tokenSeparators": [',', ' '],
+						  "tokenSeparators": [','],
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
 						};
 						$(this).removeClass("form-control").select2(selectOptions);
