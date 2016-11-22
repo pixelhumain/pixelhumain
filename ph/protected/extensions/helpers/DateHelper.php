@@ -271,6 +271,12 @@ class DateHelper  {
 
    public static function fromNow($ts)
    {
-     return round(abs(time() - $ts) / 60)."min";
+    $now = new DateTime();
+    $date = new DateTime();
+    $date->setTimestamp($ts);
+    $interval = $date->diff($now);
+
+    return $interval->format("il y a : %aj %hh %imin");
+     //return round(abs(time() - $ts) / 60)."min";
    }
 }
