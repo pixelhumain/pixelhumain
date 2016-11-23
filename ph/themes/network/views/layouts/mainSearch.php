@@ -258,7 +258,8 @@
 		END structure 
 		*******************************************/
 
-		  ?>
+	?>
+	<?php $this->renderPartial($layoutPath.'.menu.menuBottom', array("params" => $params)); ?>
 		<!-- start: MAIN JAVASCRIPTS -->
 		
 		<?php
