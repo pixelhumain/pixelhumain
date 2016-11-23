@@ -49,9 +49,9 @@
 		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 		$this->renderPartial($layoutPath.'metas');
 		// Get source of network json
-		if(@$_GET["src"])
-			$paramsAttr = $_GET["src"].'.json';
-		else if (@Yii::app()->params['networkParams'])
+		//if(@$_GET["src"])
+		//	$paramsAttr = $_GET["src"].'.json';
+		if (@Yii::app()->params['networkParams'])
 			$paramsAttr = Yii::app()->params['networkParams'].'.json';
 		else 
 			$paramsAttr = "default.json";
