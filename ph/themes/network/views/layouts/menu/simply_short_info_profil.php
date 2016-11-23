@@ -235,6 +235,7 @@
 					<?php if (@$params['skin']["displayCommunexion"] && $params['skin']["displayCommunexion"]){ ?>
 					<br/>
 					<div class="centerButton">
+						<?php if (!@Yii::app()->session["userId"]){ ?>
 						<button class="btn-top btn btn-default hidden-xs" onclick="showPanel('box-register');">
 				        	<i class="fa fa-plus-circle"></i> 
 							<span class="hidden-sm hidden-md hidden-xs">S'inscrire</span>
@@ -243,6 +244,13 @@
 							<i class="fa fa-sign-in"></i> 
 							<span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
 						</button>
+						<?php } else { ?>
+							<a class="btn-top btn bg-red hidden-xs" href="/pixelhumain/ph/communecter/person/logout" style="margin-right:10px;" onclick="">
+							<i class="fa fa-sign-out"></i> 
+							<span class="hidden-sm hidden-md hidden-xs">Déconnexion</span>
+						</a>
+
+						<?php } ?>
 					</div>
 			      <?php } ?>
 				</div>
