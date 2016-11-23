@@ -679,7 +679,10 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"I don't understand, it miss informations" => "Je n'ai pas compris, il manque des informations",
 	"I am not in favor of this proposal" => "Je suis contre cette proposition",
 
-	"Action room"=>"Espace d'action"
+	"Action room"=>"Espace d'action",
+	"Choose" => "Choisir",
+	"Next step" => "Etape suivante",
+	"Previous step" => "Etape précédente",
 );
 
 ?>
