@@ -3,7 +3,8 @@
 <?php  
 HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuSmall.css'), Yii::app()->theme->baseUrl); 
 
-if (isset(Yii::app()->session['userId']) && !empty($me)) {
+if (isset(Yii::app()->session['userId']) ) {
+		$me = Person::getById(Yii::app()->session['userId']);
           $profilMediumImageUrl = Element::getImgProfil($me, "profilMediumImageUrl", $this->module->assetsUrl);
       }
 ?>
@@ -111,59 +112,9 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 		<?php } ?>	
 		
 
-	  	<div class="col-md-9 col-sm-9 col-xs-12 no-padding">
-
-	  		<div class="col-md-12 col-sm-12 margin-15">
-				<div class="col-md-4 col-sm-4 padding-5 center">
-					<a class="btn bg-azure lbh " href="#default.live" >
-					<i class="fa fa-heartbeat tooltips" data-toggle="tooltip" data-placement="bottom" alt="Toutes l'actualités"></i> <br class="hidden-xs">Live</a>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 padding-5 center visible-communected">
-					<a class="btn bg-red lbh padding-5" 
-						href="#city.detail.insee.<?php 
-							 if(@$myCity) echo $myCity["insee"]; ?>.postalCode.<?php  if(@$myCity) echo $myCity["cp"]; 
-							?>" id="btn-menuSmall-mycity">
-						<i class="fa fa-university"></i> <br class="hidden-xs">Ma commune
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 padding-5 center visible-communected">
-					<a class="btn bg-red lbh padding-5" 
-						href="#rooms.index.type.cities.id.<?php if(@$myCity) echo City::getUnikey($myCity); ?>" 
-						id="btn-menuSmall-citizenCouncil">
-						<i class="fa fa-connectdevelop"></i><br class="hidden-xs">
-						<span class="hidden-xs">Mon c</span><span class="hidden-sm hidden-md hidden-lg">C</span>onseil citoyen
-					</a>
-				</div>
-				<div class="col-xs-12 padding-5 center no-padding visible-xs">
-				    <a class="btn bg-dark lbh padding-5" 
-				    	href="#rooms.index.type.citoyens.id.<?php echo Yii::app()->session['userId']?>">
-				        <i class="fa fa-comments" style="font-size: 1em!important;"></i> 
-				        <i class="fa fa-gavel" style="font-size: 1em!important;"></i> 
-				        <i class="fa fa-cogs" style="font-size: 1em!important;"></i> 
-				        <br>Coopération
-				    </a>
-			    </div>
-				<!-- <div class="col-md-4 col-sm-4 center">
-			    	<a class="btn bg-azure lbh" href="#default.directory" >
-			    	<i class="fa fa-search"></i> <br class="hidden-xs">Recherche</a>
-			    </div>
-				<div class="col-md-4 col-sm-4 center">
-					<a class="btn bg-azure lbh" href="#default.agenda"  >
-					<i class="fa fa-calendar"></i> <br class="hidden-xs">Agenda</a>
-				</div> -->
-			</div>
-			
+	  	<div class="col-md-9 col-sm-9 col-xs-12 no-padding">			
 
 			<div class="col-md-12 col-sm-12 padding-15">
-				<?php if(!isset($myCity)){?>
-					<div class="col-md-12 center hide-communected">
-						<a class="btn bg-red" href="javascript:;" onclick="communecterUser()">
-							<i class="fa fa-university"></i>
-							</br>Communectez-moi
-						</a>
-					</div> 
-				<?php } ?>
-
 				<!-- <div class="col-md-6 col-sm-6 col-xs-12 center visible-communected">
 					<a class="btn bg-red lbh" 
 						href="#city.detail.insee.<?php 

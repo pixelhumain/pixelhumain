@@ -458,13 +458,20 @@ button.btn-menu-notif{
     font-weight: bold;
     color:white;
 }
-.onedivone:hover, .twodivone:hover{
+.onedivone:hover, .twodivone:hover, .threedivone:hover, .twodivtwo:hover, .threedivtwo:hover, .threedivthree:hover{
+	filter:grayscale(0%);
+}
+/*.onedivone:hover, .twodivone:hover, .threedivone:hover{
 	background-color: #93C020 !important;
 }
-.twodivtwo:hover{
+.twodivtwo:hover, .threedivtwo:hover{
 	background-color: #FFC600 !important;
 }
+.threedivthree:hover{
+	background-color: #8C5AA1 !important;
+}*/
 .twodivone{
+	opacity:0.9;
 	height: 285px !important;
     width: 285px;
     bottom: 0px !important;
@@ -478,7 +485,14 @@ button.btn-menu-notif{
     font-weight: bold;
     color: white;
 }
+.twodivone span{
+	position: absolute;
+    bottom: 30px;
+    left: 45px;
+    transform: rotate(-20deg);
+}
 .twodivtwo{
+	opacity:0.9;
     position: absolute;
     height: 285px !important;
     width: 285px;
@@ -493,23 +507,77 @@ button.btn-menu-notif{
     font-weight: bold;
     color: white;
 }
-#btn-menu-add-sub .3div1:before{
-	content: "";
+.twodivtwo span{
 	position: absolute;
-	border-top: 160px solid green;
-	border-right: 160px solid transparent;
+    bottom: 32px;
+    right: 45px;
+    transform: rotate(20deg);
 }
-#btn-menu-add-sub .3div2:before{
-	content: "";
-	position: absolute;
-	border-top: 160px solid transparent;
-	border-right: 160px solid blue;
+.threedivone{
+		filter:grayscale(50%);
+	height: 285px !important;
+    z-index: 2 !important;
+    width: 285px;
+    bottom: 0px !important;
+    left: -225px;
+    writing-mode: vertical-lr;
+    transform: rotate(-60deg);
+    padding-top: 141px !important;
+    transform-text: uppercase;
+    font-weight: bold;
+    color: white;
+
 }
-#btn-menu-add-sub .3div3:before{
-	content: "";
+.threedivone span{
+	bottom: -7px;
+    right: 80px;
+    transform: rotate(-105deg);
+    position: absolute;
+}
+.threedivtwo{
+	filter:grayscale(50%);
 	position: absolute;
-	border-top: 160px solid transparent;
-	border-right: 160px solid blue;
+    height: 285px !important;
+    z-index: 1 !important;
+    width: 285px;
+    bottom: -124px !important;
+    eft: 0px;
+    z-index: 1;
+    transform: rotate(-135deg);
+    writing-mode: vertical-lr;
+    padding-left: 225px !important;
+    padding-top: 146px !important;
+    transform-text: uppercase;
+    font-weight: bold;
+    color: white;
+}
+.threedivtwo span{
+	bottom: 70px;
+    right: 45px;
+    transform: rotate(0deg);
+    position: absolute;
+}
+.threedivthree{
+	filter:grayscale(50%);
+	position: absolute;
+    height: 285px !important;
+    width: 285px;
+    bottom: -225px !important;
+    left: 10px;
+    z-index: 1;
+    transform: rotate(63deg);
+    writing-mode: vertical-lr;
+    padding-left: 225px !important;
+    padding-top: 146px !important;
+    transform-text: uppercase;
+    font-weight: bold;
+    color: white;
+}
+.threedivthree span{
+	top: 60px;
+    left: 22px;
+    transform: rotate(190deg);
+    position: absolute;
 }
 #btn-menu-add i {
     position: relative;

@@ -101,10 +101,10 @@
         "searchType" : [
             "organizations"
         ],
-        "sourceKey" :[
+        /*"sourceKey" :[
             "Iviatic"
-        ]
-        //"mainTag" : ["TiersLieux"],
+        ]*/
+        "mainTag" : ["TiersLieux"]
         //"sourcekey" : ["Iviatic"]
     }
 }
