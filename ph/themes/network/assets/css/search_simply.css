@@ -424,6 +424,92 @@ button.btn-menu-notif{
     padding: 12px;
     margin-right: 10px;
     color:white;
+    position:absolute;
+    z-index: 10;
+}
+#btn-menu-add-sub{
+	position: absolute;
+    bottom: 0px;
+    width: 200px;
+    height: 200px;
+    border-radius: 0px 200px 0px 0px;
+    overflow: hidden;
+    background-color: rgba(40,40,40,0.9)!important;
+    display:none;
+}
+#btn-menu-add-sub a{
+	position: absolute;
+	height: 161px;
+    bottom: 0px;
+    z-index: 1;
+}
+
+.onedivone{
+	position: absolute;
+    height: 285px !important;
+    width: 285px;
+    bottom: -80px !important;
+    left: -80px;
+    z-index: 1;
+    transform: rotate(-135deg);
+    writing-mode: vertical-lr;
+    padding-left: 135px !important;
+    padding-top: 85px !important;
+    font-weight: bold;
+    color:white;
+}
+.onedivone:hover, .twodivone:hover{
+	background-color: #93C020 !important;
+}
+.twodivtwo:hover{
+	background-color: #FFC600 !important;
+}
+.twodivone{
+	height: 285px !important;
+    width: 285px;
+    bottom: 0px !important;
+    left: -200px;
+    z-index: 1;
+    transform: rotate(-135deg);
+    writing-mode: vertical-lr;
+    padding-left: 35px !important;
+    padding-top: 141px !important;
+    transform-text: uppercase;
+    font-weight: bold;
+    color: white;
+}
+.twodivtwo{
+    position: absolute;
+    height: 285px !important;
+    width: 285px;
+    bottom: -200px !important;
+    left: 0px;
+    z-index: 1;
+    transform: rotate(-135deg);
+    writing-mode: vertical-lr;
+    padding-left: 225px !important;
+    padding-top: 146px !important;
+    transform-text: uppercase;
+    font-weight: bold;
+    color: white;
+}
+#btn-menu-add-sub .3div1:before{
+	content: "";
+	position: absolute;
+	border-top: 160px solid green;
+	border-right: 160px solid transparent;
+}
+#btn-menu-add-sub .3div2:before{
+	content: "";
+	position: absolute;
+	border-top: 160px solid transparent;
+	border-right: 160px solid blue;
+}
+#btn-menu-add-sub .3div3:before{
+	content: "";
+	position: absolute;
+	border-top: 160px solid transparent;
+	border-right: 160px solid blue;
 }
 #btn-menu-add i {
     position: relative;
@@ -434,10 +520,10 @@ button.btn-menu-notif{
 	border-radius: 0px;
     height: 50px;
     width: 16.66666667%;
-    background-color: rgba(40,40,40,0.9) !important;
+    background-color: rgba(40,40,40,1) !important;
 }
-.contentTitleMap.active, .showHideMoreTitleMap.active{
-    background-color: rgba(40,40,40,0.9) !important;
+.contentTitleMap.active, .showHideMoreTitleMap.active, #btn-menu-add.active{
+    background-color: rgba(40,40,40,1) !important;
 }
 button#btn-toogle-map{
 	    /* right: -31px; */
