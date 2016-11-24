@@ -253,6 +253,8 @@
 
 	?>
 	<?php $this->renderPartial($layoutPath.'.menu.menuBottom', array("params" => $params)); ?>
+	<?php $this->renderPartial($layoutPath.".menu.menuSmall", array("params" => $params)); ?>
+
 		<!-- start: MAIN JAVASCRIPTS -->
 		
 		<?php
@@ -326,7 +328,7 @@
 		?>
 		<script type="text/javascript">
 		var networkParams = "<?php echo Yii::app()->params['networkParams'] ?>";
-
+		var globalTheme = "network";
 		var mapIconTop = {
 		    "default" : "fa-arrow-circle-right",
 		    "citoyen":"<?php echo Person::ICON ?>", 
@@ -414,7 +416,7 @@
 		var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
 		var organizerList = {};
 		var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
-
+		var allReadyLoad=false;
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
 			$(".bg-main-menu.bgpixeltree_sig").remove();
@@ -500,8 +502,6 @@
 		      console.log("history.state",$.isEmptyObject(history.state),location.hash);
 		      console.warn("popstate history.state",history.state);
 		      if( lastUrl && "onhashchange" in window && location.hash  ){
-			      alert();
-			      
 		        if( $.isEmptyObject( history.state ) && allReadyLoad == false ){
 			        //console.warn("poped state",location.hash);
 			        //alert("popstate");
