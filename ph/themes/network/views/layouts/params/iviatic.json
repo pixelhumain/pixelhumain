@@ -3,8 +3,8 @@
     "mode" : "server",
     "skin" : {
         "logo" : "",
-        "title" : "Cartographie des mobilités I-viatic",
-        "shortDescription" : "Référecement des organisations de la région portées sur mobilités ",
+        "title" : "Cartographie des mobilités",
+        "shortDescription" : "Référecement des organisations de la région portées sur mobilités",
         "displayScope" : false,
         "displayCommunexion" : true,
         "displayNotifications" : true,
@@ -20,74 +20,62 @@
     },
    "filter" : {
         "types" : false,
+        "tags" : {
+            "activate" : false,
+            "title" : "Toutes les catégories",
+            "background-color" : "#f5f5f5",
+            "image" : "All.png"
+        },
         "linksTag" : {
-            "Compétences" : {
-                "tagParent" : "Type",
+	        "Géographique" : {
+                "tagParent" : "Geographique",
                 "background-color" : "#f5f5f5",
-                "image" : "Travail.png",
+                "image" : "Marker.png",
                 "tags" : {
-                  "Transport de voyageurs" : "Transport de voyageurs",
-                  "Equipements et infrastructures" : "Equipements et infrastructures",
-                  "Mobilités actives et partagées" : "Mobilités actives et partagées",
-                  "Energie et mobilité" : "Energie et mobilité",
-                  "Services à la mobilité" : "Services à la mobilité",
-                  "TIC, numérique et data" : "TIC, numérique et data",
-                  "Ingénierie et financement de projet" : "Ingénierie et financement de projet",
-                  "Aménagement, valorisation et développement de territoire" : "Aménagement, valorisation et développement de territoire",
-                  "Organisation et management de la mobilité" : "Organisation et management de la mobilité"
+                    "Nord" : "Nord",
+                    "Pas de Calais" : "Pas de Calais",
+                    "Somme" : "Somme",
+                    "Oise" : "Oise",
+                    "Hainaut" : "Hainaut",
+                    "Hors région" : "Hors région"
                 }
             },
-            "Structures" : {
-                "tagParent" : "Service",
+	        "Structures" : {
+                "tagParent" : "Structure",
                 "background-color" : "#f5f5f5",
                 "image" : "Loisir.png",
                 "tags" : {
                     "Institutions publiques" : "Institutions publiques",
                     "Recherche et formation" : "Recherche et formation",
                     "Grandes Entreprises" : "Grandes Entreprises",
-                    "PME & ETI" : "PME & ETI",
-                    "TPE & StartUp" : "TPE & StartUp",
-                    "Structures d'accompagnement & association" : "Structures d'accompagnement & association",
-                    "Bureau d'étude & Cabinets de conseil" : "Bureau d'étude & Cabinets de conseil"
+                    "PME et ETI" : "PME et ETI",
+                    "TPE et StartUp" : "TPE et StartUp",
+                    "Structures daccompagnement et association" : "Structures daccompagnement et association",
+                    "Bureau detude et Cabinets de conseil" : "Bureau detude et Cabinets de conseil"
                 }
             },
-            "Modèle de gestion" : {
-                "tagParent" : "Modele",
+            "Compétences" : {
+                "tagParent" : "Competence",
                 "background-color" : "#f5f5f5",
-                "image" : "Loisir.png",
+                "image" : "Travail.png",
                 "tags" : {
-                  "Commun" : "Commun",
-                  "Association" : "Association",
-                  "Business" : "Business",
-                  "Public" : "Public"
-                }
-            },
-            "État du projet" : {
-                "tagParent" : "Etat",
-                "background-color" : "#f5f5f5",
-                "image" : "Reparation.png",
-                "tags" : {
-                  "En projet" : "En projet",
-                  "En démarrage" : "En démarrage",
-                  "En fonctionnement" : "En fonctionnement"
-                }
-            },
-            "Taille de l'espace" : {
-                "tagParent" : "Surface",
-                "background-color" : "#f5f5f5",
-                "image" : "Information.png",
-                "tags" : {
-                  "Moins de 60m2" : "Moins de 60m2",
-                  "Entre 60 et 200m2" : "Entre 60 et 200m2",
-                  "Plus de 200m2" : "Plus de 200m2"
+                  "Transport de voyageurs" : "Transport de voyageurs",
+                  "Equipements et infrastructures" : "Equipements et infrastructures",
+                  "Mobilites actives et partagees" : "Mobilites actives et partagees",
+                  "Energie et mobilite" : "Energie et mobilite",
+                  "Services a la mobilite" : "Services a la mobilite",
+                  "TIC, numerique et data" : "TIC, numerique et data",
+                  "Ingenierie et financement de projet" : "Ingenierie et financement de projet",
+                  "Amenagement, valorisation et developpement de territoire" : "Amenagement, valorisation et developpement de territoire",
+                  "Organisation et management de la mobilite" : "Organisation et management de la mobilite"
                 }
             }
+           
+            
           }
     },
     "add" : {
-        "organization" : true,
-        "project" : false,
-        "event" : false
+        "organization" : true
     },
     "result" : {
         "displayImage" : true,
@@ -97,14 +85,12 @@
         "displayShortDescription" : true
     },
     "request" : {
-        "pagination" : 1000,
+	    "sourceKey" :[
+            "iviatic"
+        ],
+        "pagination" : 2000,
         "searchType" : [
             "organizations"
-        ],
-        /*"sourceKey" :[
-            "Iviatic"
-        ]*/
-        "mainTag" : ["TiersLieux"]
-        //"sourcekey" : ["Iviatic"]
+        ]
     }
 }
