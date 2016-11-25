@@ -18,6 +18,8 @@ svg{
 
  .leaflet-popup-tip{
  	background-color:#FFF;
+ 	margin: 0px auto 0!important;
+	box-shadow: none !important;
  }
 
  .leaflet-popup-tip-container {
@@ -379,6 +381,7 @@ creer des conflits : regle pas assez specfique
 	border:0px white;
 	float:unset;
 	display: inline-block;
+	padding: 5px;
 }
 .item_map_list.popup-marker:hover{
 	/*background-color:#FFF !important;*/
@@ -681,6 +684,8 @@ creer des conflits : regle pas assez specfique
  .fa-purple{ color:#B081FF !important; } /*B081FF*/
  .fa-pink{ color:#DB31D3 !important; }
  .fa-white{ color:#FFF !important; }
+ .fa-azure{ color:#2BB0C6 !important; }
+ .fa-lightblue2{ color:#2973C0 !important; }
 
   .awesome-marker{
   	background:url("");

@@ -350,7 +350,7 @@
 					str = "";
 					var city, postalCode = "";
 		 			$.each(data, function(i, v) {
-		 				console.log(v, v.length, v.size);
+		 				mylog.log(v, v.length, v.size);
 		 				var typeIco = i;
 		 				if(v.length!=0){
 		 					$.each(v, function(k, o){
@@ -480,7 +480,7 @@
 
 	function openViewer () { 
 		var pathtab = window.location.href.split("#");
-		console.log("openViewer",pathtab[0]);
+		mylog.log("openViewer",pathtab[0]);
 		var idToSend = "<?php if(isset($_GET['id'])) echo $_GET['id']; else if(isset(Yii::app()->session["userId"])) echo Yii::app()->session["userId"];?>"
 		if(typeof idToSend != 'undefined' && idToSend!='')
 			openSubView('Network Viewer', '/communecter/graph/viewer/id/'+idToSend+'/type/<?php echo Yii::app()->controller->id ?>', null,null,function(){clearViewer();})
@@ -541,7 +541,7 @@
 				$(".slidingbarList").html("you don't have any tags, simply add some <a href='#'  class='addTagBtn btn btn-orange btn-xs'><i class='fa fa-plus'></i></a> ");
 			}
 		} else {
-			console.log("localStorage.myTags exists ");
+			mylog.log("localStorage.myTags exists ");
 			$(".slidingbarList").html(localStorage.myTags);
 			$(".tags-count").html(localStorage.myTagsCount);
 		}
@@ -578,9 +578,9 @@
 		$(".slidingbarTitle").html('<i class="fa fa-circle-o text-azure"></i> Tous vos térritoires : Géographique, Administratif, Organisations '+btnHTML);
 		if ( ( window.localStorage && typeof localStorage!='undefined' && !localStorage.myScope ) ) 
 		{	
-			console.log("rebuild localStorage.myScope");
+			mylog.log("rebuild localStorage.myScope");
 			$(".slidingbarList").html("<i class='fa fa-circle-o-notch fa-spin fa-3x'></i>");
-			console.dir( json );
+			mylog.dir( json );
 			if(json.result && Object.keys(json.scopes).length  )
 			{
 				var strHTML = "";
@@ -598,7 +598,7 @@
 			}
 		}
 		else{
-			console.log("localStorage.myScope exists ");
+			mylog.log("localStorage.myScope exists ");
 			$(".slidingbarList").html(localStorage.myScope);
 		}
 
@@ -623,7 +623,7 @@
 	}
 	function openSlideBar(type)
 	{
-		console.log("openSlideBar",type);
+		mylog.log("openSlideBar",type);
 		$(".slidingbar").slideDown();
 		if ( debug || ( window.localStorage && typeof localStorage!='undefined' && !localStorage.myData ) ) 
 		{	
@@ -649,7 +649,7 @@
 	}
 
 	function closeSlideBar() {  
-		console.log("closeSlideBar",openSlideBarType);
+		mylog.log("closeSlideBar",openSlideBarType);
 		$(".topBtn").removeClass("open active");
 		openSlideBarType = null;
 	}

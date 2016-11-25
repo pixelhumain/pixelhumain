@@ -79,7 +79,7 @@ function bindNotifEvents(){
 
 function markAsRead(id)
 {
-	console.log("markAsRead",id);
+	mylog.log("markAsRead",id);
 	//ajax remove Notifications by AS Id
 	$.ajax({
         type: "POST",
@@ -88,10 +88,10 @@ function markAsRead(id)
         dataType : 'json'
     })
     .done( function (data) {
-    	console.dir(data);
+    	mylog.dir(data);
         if ( data && data.result ) {               
         	$(".notifList li.notif_"+id).remove();
-        	console.log("notification cleared ",data);
+        	mylog.log("notification cleared ",data);
         } else {
             toastr.error("no notifications found ");
         }
@@ -107,10 +107,10 @@ function markAllAsRead()
         dataType : 'json'
     })
     .done( function (data) {
-    	console.dir(data);
+    	mylog.dir(data);
         if ( data && data.result ) {               
         	$(".notifList li.notifLi").remove();
-        	console.log("notifications cleared ",data);
+        	mylog.log("notifications cleared ",data);
         	$(".sb-toggle-right").trigger("click");
         } else {
             toastr.error("no notifications found ");
@@ -123,7 +123,7 @@ function markAllAsRead()
 function refreshNotifications()
 {
 	//ajax get Notifications
-	console.log("refreshNotifications",maxNotifTimstamp);
+	mylog.log("refreshNotifications",maxNotifTimstamp);
 	$.ajax({
         type: "GET",
         url: baseUrl+"/"+moduleId+"/notification/getnotifications?ts="+maxNotifTimstamp
@@ -140,7 +140,7 @@ function refreshNotifications()
 
 function buildNotifications(list)
 {
-	console.info("buildNotifications()");
+	mylog.info("buildNotifications()");
 	$(".notifList").html("");
 
 	$.each( list , function( notifKey , notifObj )

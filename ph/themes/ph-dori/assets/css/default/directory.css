@@ -234,7 +234,9 @@
     float: left;
     margin-left: -10px;
     border-radius: 0px 5px 0px 0px;
-    padding: 4px 10px;
+    padding: 5px 10px;
+    font-size: 10px;
+    height: 20px;
   }
   .searchEntity .entityDate.dateFrom{
     margin-top: -50px;

@@ -78,7 +78,7 @@
 			$('.close-subviews').trigger("click");
 		}
 		$.hideSubview();
-		console.log(pathtab[0]);
+		mylog.log(pathtab[0]);
 		/*if(pathtab[0] == baseUrl+"/"+moduleId+"/person"){
 			window.location.hash = "#panel_"+this.getAttribute('data-type');
 			pageLoad();

@@ -16,7 +16,7 @@
 <script type="text/javascript">
   function loadPage (url) { 
     $(".moduleMenu li.active").removeClass('active');
-    console.log("loadPage",baseUrl+url);
+    mylog.log("loadPage",baseUrl+url);
     getAjax("#pageContent", baseUrl+url,null,"html",true);
   }
 </script>
