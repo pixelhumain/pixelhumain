@@ -3,9 +3,9 @@
     "mode" : "server",
     "skin" : {
         "logo" : false,
-        "title" : false,
+        "title" : "Alternatiba Péi",
         "displayScope" : false,
-        "displayCommunexion" : true,
+        "displayCommunexion" : false,
         "profilBar" : true,
         "displayButtonGridList" : false,
         "class" : {

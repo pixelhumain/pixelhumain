@@ -3,7 +3,7 @@
     "mode" : "server",
     "skin" : {
         "logo" : false,
-        "title" : false,
+        "title" : "Alternatives bretonnes",
         "displayScope" : false,
         "displayCommunexion" : true,
         "profilBar" : true,

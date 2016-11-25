@@ -18,7 +18,7 @@
 				else if($key=="person")
 					$bgClass="bg-yellow";
 			?>
-				<a href="javascript:openForm('<?php echo $key ?>')" class="btn no-padding <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?> <?php echo $bgClass ?>"> <span><?php echo Yii::t("common",$key); ?></span></a>
+				<a href="javascript:openForm('<?php echo $key ?>')" class="btn no-padding <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?> <?php echo $bgClass ?>"> <span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
 			<?php $i++; } ?>
 			
 			<!--<a href="javascript:;" class="btn no-padding threedivone bg-green"> <span><?php echo Yii::t("common","Organizations"); ?></span></a>
