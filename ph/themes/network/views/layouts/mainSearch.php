@@ -51,18 +51,14 @@
 		// Get source of network json
 		//if(@$_GET["src"])
 		//	$paramsAttr = $_GET["src"].'.json';
-		echo "params: ".Yii::app()->params['networkParams'];
 		if (@Yii::app()->params['networkParams']){
 			$paramsAttr = Yii::app()->params['networkParams'].'.json';
-			echo $paramsAttr;
 		}else 
 			$paramsAttr = "default.json";
 		$pathParams =  dirname(__FILE__) . '/params/'.$paramsAttr;
 
         $json = file_get_contents($pathParams);
-        print_r($json);
         $params = json_decode($json, true);		
-        print_r($params);
 		?>
 		<!-- end: META -->
 		<!-- start: MAIN CSS -->
