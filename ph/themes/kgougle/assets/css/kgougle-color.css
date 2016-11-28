@@ -6,13 +6,13 @@
 
 .navbar-brand .letter{ margin-right:0px; letter-spacing: -9px; }
 
-.letter-blue{ color:#4285f4; }
+.letter-blue{ color:#4285f4!important; }
 
-.letter-red{ color:#ea4335; }
+.letter-red{ color:#ea4335!important; }
 
-.letter-yellow{ color:#fbbc05; }
+.letter-yellow{ color:#fbbc05!important; }
 
-.letter-green{ color:#34a853; }
+.letter-green{ color:#34a853!important; }
 
 .letter-k{
     font-size: 1.2em;

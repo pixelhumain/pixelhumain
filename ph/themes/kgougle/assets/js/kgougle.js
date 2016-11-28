@@ -178,7 +178,7 @@ function getAjax(id,url,callback,datatype,blockUI)
     });
 }
 
-function KScrollTo(target){
+function KScrollTo(target){ console.log("target", target);
 	$('html, body').stop().animate({
         scrollTop: $(target).offset().top - 100
     }, 800, '');
