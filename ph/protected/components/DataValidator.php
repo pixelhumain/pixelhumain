@@ -60,7 +60,7 @@ class DataValidator {
 
 	/**
 	 * Check if an event has a well formated startDate and if the start date is well formated
-	 * @param String $toValidate the string representation of the startdate. could be 'Y-m-d H:i' or 'Y-m-d'
+	 * @param String $toValidate the string representation of the startdate. could be 'Y-m-d H:i:s' or 'Y-m-d H:i' or 'Y-m-d'
 	 * @param String or array $object 
 	 * 		if is a string it represent the event id and it will be retrieve from the db (update process). 
 	 * 		Else if it's an array it is already the object (creation process)
