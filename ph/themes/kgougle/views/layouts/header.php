@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <button class="btn btn-default" id="main-btn-start-search"><i class="fa fa-search"></i> Lancer la recherche</button>
+                                <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button>
                                 <a href="#k.referencement" class="lbh btn btn-default" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer mon site</a>
                             </div>
                         <?php }elseif($subdomain == "referencement"){ ?>

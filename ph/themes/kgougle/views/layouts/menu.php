@@ -37,11 +37,13 @@
             <div class="col-xs-8 col-sm-5 col-md-8 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $mainTitle; ?>">
             </div>
+            <button class="btn btn-default pull-left" id="menu-btn-start-search"><i class="fa fa-search"></i></button>
         <?php } ?>
        
        <!--  <h3 class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="main-title-top">
             <i class="fa fa-angle-right"></i> Calédoogle
         </h3> -->
+
 
         <button class="btn-show-map"><i class="fa fa-map"></i></button>
 

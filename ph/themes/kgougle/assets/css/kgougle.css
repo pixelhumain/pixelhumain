@@ -139,7 +139,12 @@ input#second-search-bar{
 .navbar-custom.affix input#second-search-bar{
 	display: inline;
 }
-
+.navbar-custom.affix #menu-btn-start-search{
+	display: inline;
+}
+.navbar-custom.affix-top #menu-btn-start-search{
+	display: none;
+}
 
 .navbar-custom.affix-top .skills{
 	display: inline;
@@ -338,6 +343,14 @@ a, a:hover, a:focus, a:active, a.active{
 
 #portfolio .portfolio-item .portfolio-link {
 	text-align: center;
+	background-color: transparent;
+	border: none;
+}
+#portfolio .portfolio-item button.portfolio-link{
+	color: #2C3E50;
+}
+.text-green button.portfolio-link{
+	color: #34a853 !important;
 }
 #portfolio .portfolio-item .portfolio-link .caption{
 	background-color: transparent;
@@ -372,6 +385,21 @@ a, a:hover, a:focus, a:active, a.active{
     -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5) ;
     box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5) ;
     border:none;
+}
+
+#menu-map-btn-start-search{
+	margin-top: 6px;
+	border-color: transparent;
+	background-color: black;
+	color: white;
+	padding: 9px 14px;
+	margin-left: 3px;
+}
+#menu-btn-start-search{
+	margin-top:6px;
+	border-color: transparent;
+	padding: 9px 14px;
+	margin-left: 3px;
 }
 
 #main-btn-start-search, 
@@ -470,12 +498,16 @@ h3.title_panel_map{
 	font-size:13px;
 }
 .sigModuleBg .panel_map{
-	top: 94% !important;
+	top: 97% !important;
 }
 .leaflet-popup-content-wrapper{
 	display: flex;
 }
 .item_map_list .right-col{
+	width: 70%;
+	max-width: 70%;
+}
+.leaflet-popup-content .item_map_list .right-col{
 	width: 80%;
 	max-width: 100%;
 }
@@ -492,6 +524,28 @@ h3.title_panel_map{
 
 .leaflet-popup-content button{
 	font-size: 13px;
+}
+
+.sigModuleBg .btn-group-map.tools-btn{
+	margin-right:-35px;
+}
+
+.right_tool_map_header{
+	height: 60px!important;
+	padding-top: 2px!important;
+}
+#lbl-chk-scope{
+	margin-top:0px!important;
+}
+#btn-tags .btn-map, #btn-filter .btn-map{
+	padding: 19px 17px !important;
+	background-color: transparent!important;
+	margin-right: 25px;
+}
+
+.siteurl .right-col{
+	width:95%!important;
+	max-width:95%!important;
 }
 
 @media (max-width: 768px) {

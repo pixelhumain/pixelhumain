@@ -19,10 +19,13 @@
             </a>
         </div>
        
-        <div class="col-xs-7 col-sm-5 col-md-5 col-lg-4">
+        <div class="col-xs-7 col-sm-5 col-md-5 col-lg-4 no-padding
+        ">
             <input type="text" class="form-control margin-top-10" id="input-search-map" placeholder="Rechercher sur la carte">
         </div>
 
+        <button class="btn btn-default" id="menu-map-btn-start-search"><i class="fa fa-search"></i></button>
+        
         <button class="btn-show-map"><i class="fa fa-times"></i></button>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
