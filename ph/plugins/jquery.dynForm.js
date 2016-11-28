@@ -358,7 +358,7 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> array list");
         	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
 								'<div class="col-sm-10">'+
-									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+									'<img id="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
 									'<div class="resultGetUrl resultGetUrl0 col-sm-12"></div>'+
 								'</div>'+
@@ -384,7 +384,7 @@ onSave: (optional) overloads the generic saveProcess
         		initField = fieldObj.init;
         	
 			initField = function(){
-				//$("#loading_indicator").hide();
+				$("#loading_indicator").hide();
 				//initialize values
 				//value is an array of strings
 				$.each(fieldObj.value, function(optKey,optVal) {
@@ -397,6 +397,7 @@ onSave: (optional) overloads the generic saveProcess
 	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
 	                			var strHtml = buildMediaHTML(mediaObj);
 	                			$(".resultGetUrl"+optKey).html(strHtml);
+	                			$("#loading_indicator").hide();
 	                		}
 	                	});
 	                }
@@ -693,7 +694,7 @@ onSave: (optional) overloads the generic saveProcess
 					if(initValues[$(this).attr("id")]){
 						var selectOptions = {
 						  "tags": initValues[ $(this).attr("id") ]["tags"],
-						  "tokenSeparators": [',', ' '],
+						  "tokenSeparators": [','],
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
 						};
 						$(this).removeClass("form-control").select2(selectOptions);
