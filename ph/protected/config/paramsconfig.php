@@ -31,7 +31,7 @@ $mailConfigTest = array(
 
 /* trick to switch theme when param tpl is used in url (share iframe) */
 if(@$_GET["tpl"] == "iframesig"){ $theme = $_GET["tpl"]; }
-else { $theme = "ph-dori"; }
+else { $theme = "kgougle"; }
 /**/
 
 $params = array(
@@ -91,7 +91,7 @@ $params = array(
     //map box params
     'mapboxActive' => false, //to activate mabox Prod
     'forceMapboxActive' => false, //to force mabox localhost
-    'mapboxToken' => '',
+    'mapboxToken' => 'pk.eyJ1IjoiY29tbXVuZWN0ZXIiLCJhIjoiY2lreWRkNzNrMDA0dXc3bTA1MHkwbXdscCJ9.NbvsJ14y2bMWWdGqucR_EQ',
     /*"front" => array (
         "organization" => true,
         "project" => true,
