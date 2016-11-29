@@ -49,7 +49,7 @@
         foreach($params['filter']['linksTag'] as $category => $listTag){ ?>
             <!-- Title category -->
           <div class="panel-heading" style="background-color: <?php echo $listTag['background-color']; ?>">
-            <h4 class="panel-title" onclick="manageCollapse('<?php echo $listTag['tagParent']; ?>', 'false')">
+            <h4 class="left-title-menu" onclick="manageCollapse('<?php echo $listTag['tagParent']; ?>', 'false')">
               <!--<input type="checkbox" class="checkbox categoryFilter" value="<?php echo $listTag['tagParent']; ?>" style="vertical-align: bottom;
     display: inline-block"/>-->
               <a data-toggle="collapse" href="#<?php echo $listTag['tagParent']; ?>" style="color:#719FAB" data-label="<?php echo $listTag['tagParent']; ?>">

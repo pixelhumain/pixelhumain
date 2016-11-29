@@ -233,6 +233,12 @@
 						<?php echo $params['skin']["shortDescription"]; ?>
 					</span>
 					<?php } ?>
+					<?php if (@$params['skin']["docs"] && $params['skin']["docs"]){ ?>
+						<br/>
+						<a href="#default.view.page.index.dir.docs?network=<?php echo $params["name"]; ?>" class="tooltips lbh" id="btn-documentation"	data-toggle="tooltip" data-placement="bottom" title="Lire la documentation" alt="Lire la documentation" style="color:lightblue;"> 
+							<i class="fa fa-info-circle"></i> En savoir plus
+						</a>
+					<?php } ?>
 					<?php if (@$params['skin']["displayCommunexion"] && $params['skin']["displayCommunexion"]){ ?>
 					<br/>
 					<div class="centerButton">

@@ -41,15 +41,7 @@ if (isset(Yii::app()->session['userId']) ) {
 						<span id="menu-my-profil-text"><?php echo $me["name"]; ?></span>
 					</a>
 				</div>
-			</div>
-
-			<div class="col-xs-12 center no-padding">
-			    <a class="btn bg-dark lbh padding-5" href="#element.aroundme.type.person.id.<?php echo Yii::app()->session['userId'] ?>.radius.5000">
-			        <i class="fa fa-crosshairs" style="font-size: 1em!important;"></i> 
-			        Autour de moi
-			    </a>
-		    </div>
-			
+			</div>			
 		    <?php if(isset($me)) if(Role::isSuperAdmin($me['roles'])){?>
 			<div class="col-xs-12 center no-padding">
 			    <a class="btn bg-dark-red lbh padding-5" href="#admin.index">
@@ -58,6 +50,7 @@ if (isset(Yii::app()->session['userId']) ) {
 			    </a>
 		    </div>
 			<?php } ?>	
+			<?php if(isset($params["skin"]['displayNotifications']) && $params["skin"]['displayNotifications'] && @Yii::app()->session['userId']){ ?>
 			<div class="col-xs-6 col-sm-12 center padding-5 visible-xs">
 				<a class="btn bg-dark padding-5" href="javascript:$('.btn-menu-notif').trigger('click');$.unblockUI();">
 			        <i class="fa fa-bell" style="font-size: 1em!important; margin-right: -10px;"></i> 
@@ -68,27 +61,7 @@ if (isset(Yii::app()->session['userId']) ) {
 			        Notifications
 			    </a>
 			</div>
-		    <div class="col-xs-6 col-sm-12 center padding-5">
-			    <a class="btn bg-dark lbh padding-5" href="#news.index.type.citoyens.id.<?php echo Yii::app()->session['userId'] ?>.viewer.<?php echo Yii::app()->session['userId']?>"  >
-			        <i class="fa fa-newspaper-o" style="font-size: 1em!important;"></i> 
-			        Mon journal
-			    </a>
-		    </div>
-		    <div class="col-xs-12 center no-padding hidden-xs">
-			    <a class="btn bg-dark lbh padding-5" href="#person.directory.id.<?php echo Yii::app()->session['userId'] ?>?tpl=directory2">
-			        <i class="fa fa-group" style="font-size: 1em!important;"></i> 
-			        Mon répertoire
-			    </a>
-		    </div>
-		    <div class="col-xs-12 center no-padding hidden-xs">
-			    <a class="btn bg-dark lbh padding-5" 
-			    	href="#rooms.index.type.citoyens.id.<?php echo Yii::app()->session['userId']?>">
-			        <i class="fa fa-comments" style="font-size: 1em!important;"></i> 
-			        <i class="fa fa-gavel" style="font-size: 1em!important;"></i> 
-			        <i class="fa fa-cogs" style="font-size: 1em!important;"></i> 
-			        <br>Coopération
-			    </a>
-		    </div>
+			<?php } ?>
 		    <div class="col-xs-12 hidden-xs center no-padding">
 			    <a class="btn bg-red padding-5" 
 			    	href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>">
@@ -139,50 +112,47 @@ if (isset(Yii::app()->session['userId']) ) {
 							<i class="fa fa-angle-down"></i> 
 						</h2>
 					</div>
+					<?php if(isset($params['add']['person']) && $params['add']['person']) { ?>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
-						<a href="#default.directory?type=persons" class="lbh btn bg-yellow btn-element">
+						<a href="javascript:openForm('person')" class="btn bg-yellow btn-element">
 
 							<i class="fa fa-user"></i><br>
 							<span class="lbl-btn-menu-name-add">Citoyens</span>
-						</a>
-						<a href="javascript:openForm('person')" class="badge btn-add bg-yellow"><i class="fa fa-plus-circle"></i></a>
+						</a>						
 					</div>
+					<?php } ?>
+					 <?php if(isset($params['add']['organization']) && $params['add']['organization']) { ?>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
 
-						<a href="#default.directory?type=organizations" class="lbh btn bg-green btn-element">
+						<a href="javascript:openForm('organization')" class="btn bg-green btn-element">
 
 							<i class="fa fa-group"></i><br>
 							<span class="lbl-btn-menu-name-add">
 								Organisations
-								<!-- <span class="hidden-xs">Une o</span><span class="hidden-sm hidden-md hidden-lg">O</span>rganisation -->
 							</span>
 						</a>
-						<a href="javascript:openForm('organization')" class="badge btn-add bg-green"><i class="fa fa-plus-circle"></i></a>
 					</div>
+					<?php } ?>
+					<?php if(isset($params['add']['project']) && $params['add']['project']) { ?>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
-
-						<a href="#default.directory?type=projects" class="lbh btn bg-purple btn-element">
-
+						<a href="javascript:openForm('project')" class="btn bg-purple btn-element">
 							<i class="fa fa-lightbulb-o"></i><br>
 							<span class="lbl-btn-menu-name-add">
-								<!-- <span class="hidden-xs">Un p</span><span class="hidden-sm hidden-md hidden-lg">P</span>rojet -->
 								Projets
 							</span>
 						</a>
-						<a href="javascript:openForm('project')" class="badge btn-add bg-purple"><i class="fa fa-plus-circle"></i></a>
 					</div>
+					<?php } ?>
+					<?php if(isset($params['add']['event']) && $params['add']['event']) { ?>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
-
-						<a href="#default.directory?type=events" class="lbh btn bg-orange btn-element">
-
+						<a href="javascript:openForm('event')" class="btn bg-orange btn-element">
 							<i class="fa fa-calendar"></i><br>
 							<span class="lbl-btn-menu-name-add">
-								<!-- <span class="hidden-xs">Un é</span><span class="hidden-sm hidden-md hidden-lg">É</span>vénement -->
 								Événements
 							</span>
 						</a>
-						<a href="javascript:openForm('event')" class="badge btn-add bg-orange"><i class="fa fa-plus-circle"></i></a>
 					</div>
+					<?php } ?>
 				<?php } ?>
 
 				<div class="col-xs-12  no-padding">
@@ -194,24 +164,13 @@ if (isset(Yii::app()->session['userId']) ) {
 				</div>
 				<?php if(isset(Yii::app()->session['userId'])) $colDoc="6"; else $colDoc="6"; ?>
 				<div class="col-xs-<?php echo $colDoc;?> col-sm-<?php echo $colDoc;?> col-md-<?php echo $colDoc;?> center padding-5">
-					<a href="#default.view.page.index.dir.docs" 
+					<a href="#default.view.page.index.dir.docs?network=<?php echo $params["name"]; ?>" 
 						class="btn bg-grey lbh menu-button btn-menu btn-menu-notif tooltips text-white" 
 			            data-toggle="tooltip" data-placement="left" title="Documentation">
 				        <i class="fa fa-file"></i> 
 				        <br/>Documentation
 				    </a>
 			    </div>
-			   <?php //if(isset(Yii::app()->session['userId'])){ ?>
-			    <div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
-					<a  href="#news.index.type.pixels" 
-						class="btn bg-grey lbh menu-button btn-menu btn-menu-notif tooltips text-white" 
-			            data-toggle="tooltip" data-placement="left" title="Signaler un bug">
-				        <i class="fa fa-bullhorn"></i> 
-				        <br/>Signaler un bug
-				    </a>
-			    </div>
-			    <?php //} ?>
-
 			    
 			</div>
 			
