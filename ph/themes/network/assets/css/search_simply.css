@@ -16,7 +16,16 @@ html, body {
     background-color: #ccc;
     border: 0px solid #666;
 }
-
+.getDocHeader{
+	border-radius: 0px !important;
+    padding: 10px 50px;
+}
+.left-title-menu{
+	margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+}
 .navbar{
   background-color: #CCC;
 }
@@ -1296,7 +1305,14 @@ background-position: 0% 100%;
 {
     background: #428bca;
 }
-
+.item.list-group-item:nth-of-type(odd):hover a,.item.list-group-item:hover a
+{
+    color:white;
+}
+.item.list-group-item:nth-of-type(odd):hover p,.item.list-group-item:hover p
+{
+    color:lightgrey;
+}
 .item.list-group-item .list-group-image
 {
     margin-right: 10px;

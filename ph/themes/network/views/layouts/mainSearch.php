@@ -58,8 +58,11 @@
 		$pathParams =  dirname(__FILE__) . '/params/'.$paramsAttr;
 
         $json = file_get_contents($pathParams);
-        $params = json_decode($json, true);		
+        $params = json_decode($json, true);	
+        if(@$params["front"])
+	        Yii::app()->params["front"] = $params["front"];	
 		?>
+
 		<!-- end: META -->
 		<!-- start: MAIN CSS -->
 		<?php 
@@ -75,7 +78,6 @@
 		
 		?>
 		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" />
-		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple.css" type="text/css" id="skin_color">
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple-login.css" type="text/css" id="skin_color">
 
 		<?php if(Yii::app()->params["forceMapboxActive"]==true || Yii::app()->params["mapboxActive"]==true){ ?>
@@ -314,7 +316,7 @@
 			'/assets/css/plugins.css',
 			'/assets/css/search.css',
 			'/assets/css/search_simply.css',
-			'/assets/css/themes/theme_simple.css',
+			'/assets/css/themes/theme-simple.css',
 			'/assets/css/default/directory.css',
 			'/assets/css/floopDrawerRight.css',
 			'/assets/css/sig/sig.css',

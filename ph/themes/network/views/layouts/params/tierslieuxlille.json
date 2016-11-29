@@ -6,6 +6,7 @@
         "title" : "Cartographie des Tiers-Lieux Nord",
         "shortDescription" : "Référecement des espaces de travail partagés sur la métropole européenne de Lille",
         "displayScope" : false,
+        "docs":true,
         "displayCommunexion" : true,
         "displayNotifications" : true,
         "profilBar" : false,
@@ -115,5 +116,17 @@
             "Tourcoing"
         ],
         "mainTag" : ["TiersLieux"]
+    },
+    "front" : {
+        "organization" : true,
+        "project" : true,
+        "event" : false,
+        "person" : true,
+        "dda" : false,
+        "live" : false,
+        "search" : false,
+        "need" : true,
+        "poi" : false
     }
+
 }
