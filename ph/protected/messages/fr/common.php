@@ -183,6 +183,7 @@ return array(
 	"Local Business" => "Entreprise",
 	"Group" => "Groupe",
 	"Government Organization" => "Service Public",
+	"GovernmentOrganization" => "Service Public",
 	"the NGO" => "l'association",
 	"the localBusiness" => "l'entreprise",
 	"Local Business" => "Entreprise",
