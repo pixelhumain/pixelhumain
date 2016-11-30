@@ -1288,7 +1288,15 @@ background-position: 0% 100%;
 
 
 
-
+#newsPad, #directoryPad{
+    background: white;
+    -webkit-box-shadow: 0 1px 8px 1px #c3c3c3;
+    -moz-box-shadow: 0 1px 8px 1px #c3c3c3;
+    box-shadow: 0 1px 8px 1px #c3c3c3;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
 
 
 
@@ -1307,11 +1315,18 @@ background-position: 0% 100%;
 }
 .item.list-group-item:nth-of-type(odd):hover a,.item.list-group-item:hover a
 {
-    color:white;
+    color:lightblue;
 }
 .item.list-group-item:nth-of-type(odd):hover p,.item.list-group-item:hover p
 {
     color:lightgrey;
+}
+.item.list-group-item .entityName{
+	font-size: 16px;
+}
+.item.list-group-item:nth-of-type(odd):hover .entityName,.item.list-group-item:hover .entityName
+{
+    color:white !important;
 }
 .item.list-group-item .list-group-image
 {

@@ -394,19 +394,6 @@
   var timeoutGS = setTimeout(function(){ }, 100);
   var timeoutDropdownGS = setTimeout(function(){ }, 100);
   jQuery(document).ready(function() {
-
-  	$(".showHideMoreTitleMap").click(function(){
-	  	if($(this).find("i").hasClass("fa-angle-down")){
-	  		$(".contentShortInformationMap").show("slow").addClass("active");	
-	  		$(this).addClass("active");
-	  		$(this).find("i").removeClass("fa-angle-down").addClass("fa-angle-up");
-	  	}else{
-	  		$(this).removeClass("active");
-			$(this).find("i").removeClass("fa-angle-up").addClass("fa-angle-down");
-			$(".contentShortInformationMap").hide("slow").removeClass("active");	
-	  	}
-	  	
-  	});
     $('#btn-start-search').click(function(e){
       console.log("#btn-start-search");
       if(window.location.hash == "#default.simplyDirectory") {

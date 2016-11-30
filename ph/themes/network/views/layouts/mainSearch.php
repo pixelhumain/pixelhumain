@@ -421,6 +421,8 @@
 		var allReadyLoad=false;
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
+		
+
 			$(".bg-main-menu.bgpixeltree_sig").remove();
 			if(myContacts != null)
 			$.each(myContacts, function(type, list) {
@@ -489,12 +491,7 @@
 
 			toogleCommunexion();
 
-			$(window).on('beforeunload',function(){
-				window.history.pushState(null, null, location.hash+"?network="+networkParams);
-				//window.location.href=;
-				//do something
-			});
-
+			
 			//manages the back button state 
 			//every url change (loadByHash) is pushed into history.pushState 
 			//onclick back btn popstate is launched
