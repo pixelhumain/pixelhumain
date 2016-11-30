@@ -32,11 +32,10 @@
 .date_separator span{
 	/*font-family: "homestead";*/
 	font-size: 13px;
-	background-color: #fff !important;
+	background-color: white !important;
 	color: #315C6E !important;
 	border: none !important;
 	border-radius: 10px !important;
-	background-color: #f8f8f8 !important;
 	text-transform: capitalize;
 	height:unset !important;
 	/*-moz-box-shadow: 0px 0px 7px -2px #656565;

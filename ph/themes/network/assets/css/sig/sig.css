@@ -141,11 +141,13 @@ creer des conflits : regle pas assez specfique
 	LISTE ELEMENT MAP (RIGHT)
 */
  #right_tool_map{
-	width:300px;
-	height:90%;
+	top: 100px !important;
+    right: 51px !important;
+    left: initial !important;
+	width:275px;
+	max-height:90%;
+	height: initial !important;
 	position:absolute !important;
-	right:5%;
-	top:5%;
 	background-color:white;
 	-moz-box-shadow: -5px -5px 1px 0px rgba(189, 189, 189, 0.40);
 	-webkit-box-shadow: -5px -5px 1px 0px rgba(189, 189, 189, 0.40);
@@ -154,13 +156,13 @@ creer des conflits : regle pas assez specfique
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#cfcfcf, Direction=315, Strength=3);
 }
 .right_tool_map_header{
-	height:50px;
+	height:45px;
 	width:100%;
 	background-color:#5F8295;
 	color:white;
 }
 .right_tool_map_header_title{
-	margin-top: 7px;
+	margin-top: 5px;
 	margin-left: 20px;
 	float: left;
 	font-size: 14px;
@@ -169,7 +171,6 @@ creer des conflits : regle pas assez specfique
 }
 
 .right_tool_map_header_info{
-	margin-top:3px;
 	margin-left:20px;
 	font-weight: 300;
 	font-size: 13px;
@@ -224,8 +225,8 @@ creer des conflits : regle pas assez specfique
 	float:left;
 	width:100%;
 	padding-top:5px;
-	height:100%;
-	max-height:100%;
+	height:initial !important;
+	max-height:90%;
 /* 	margin-top:10px; */
 	overflow-y:auto;
 }
@@ -455,10 +456,10 @@ creer des conflits : regle pas assez specfique
 .btn-map:hover{
 	background-color:#5896AB !important;
 }
-.btn-map#btn-back {
+.btn-map#btn-back, .btn-map#btn-search{
     background-color: #2BB0C6 !important;
 }
-.btn-map#btn-back:hover {
+.btn-map#btn-back:hover, .btn-map#btn-search:hover {
     background-color: #489EAD !important;
 }
 .btn-full-screen{
@@ -709,10 +710,9 @@ creer des conflits : regle pas assez specfique
 
 
   #lbl-chk-scope{
-	height: 46px;
+	height: 45px;
     padding-left: 20px !important;
 	padding-top: 5px;
-    margin-top: 10px;
     width: 100%;
 	font-size:0.9em;
 	background-color: #FFF; /*#5F8295;*/
@@ -893,16 +893,18 @@ creer des conflits : regle pas assez specfique
 
 	}
 	#btn-tags .btn-map, #btn-filter .btn-map{
-		padding:14px 17px !important;
+		padding:11px 8px !important;
 		border-radius:0px;
 		background-color: rgba(42, 57, 69, 0.29) !important;
 	}
-
+	.sigModuleBg	.panel_map {
+		width: 275px !important;
+	}
 	#btn-filter{
 		right:0px;
 	}
 	#btn-tags{
-		right:49px;
+		right:50px;
 	}
 
 	#panel_map{
