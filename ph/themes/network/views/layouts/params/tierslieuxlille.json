@@ -10,7 +10,7 @@
         "displayCommunexion" : true,
         "displayNotifications" : true,
         "profilBar" : false,
-        "breadcrumb" : true,
+        "breadcrum" : true,
         "displayButtonGridList" : false,
         "class" : {
             "mainContainer" : false
@@ -91,8 +91,7 @@
     },
     "add" : {
         "organization" : true,
-        "project" : false,
-        "event" : false
+        "person" : true
     },
     "result" : {
         "displayImage" : true,
