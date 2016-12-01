@@ -29,21 +29,6 @@ $mailConfigTest = array(
 	'dryRun' => false
 );
 
-/* trick to switch theme when param tpl is used in url (share iframe) */
-$networkParams="";
-if(@$_GET["tpl"] == "iframesig"){ $theme = $_GET["tpl"]; }
-else if(@$_GET["network"]){
-	$theme="network";
-	$networkParams = $_GET["network"];
-	//Yii::app()->session["network"] = $networkParams;
-} 
-else if (@Yii::app()->session["network"]){
-	$theme="network";
-	$networkParams = "tierslieuxlille";//Yii::app()->session["network"];
-}
-else{ $theme = "ph-dori"; }
-/**/
-
 $params = array(
     //Beta Test ?
     'betaTest' => false,
