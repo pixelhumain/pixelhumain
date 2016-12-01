@@ -6,10 +6,10 @@
         "title" : "Cartographie des mobilités",
         "shortDescription" : "Référecement des organisations de la région portées sur mobilités",
         "displayScope" : false,
-        "displayCommunexion" : true,
-        "displayNotifications" : true,
+        "displayCommunexion" : false,
+        "displayNotifications" : false,
         "profilBar" : false,
-        "breadcrumb" : true,
+        "breadcrum" : true,
         "displayButtonGridList" : false,
         "class" : {
             "mainContainer" : false
