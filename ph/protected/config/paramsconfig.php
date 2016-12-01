@@ -29,12 +29,6 @@ $mailConfigTest = array(
 	'dryRun' => false
 );
 
-/* trick to switch theme when param tpl is used in url (share iframe) */
-$networkParams="";
-if(@$_GET["tpl"] == "iframesig"){ $theme = $_GET["tpl"]; }
-else { $theme = "ph-dori"; }
-/**/
-
 $params = array(
     //Beta Test ?
     'betaTest' => false,
