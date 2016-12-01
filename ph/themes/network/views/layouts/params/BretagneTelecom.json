@@ -5,7 +5,7 @@
         "logo" : false,
         "title" : "Alternatives bretonnes",
         "displayScope" : false,
-        "displayCommunexion" : true,
+        "displayCommunexion" : false,
         "profilBar" : true,
         "breadcrum":true,
         "displayButtonGridList" : false,
@@ -165,10 +165,6 @@
                 }
             }
         }
-    },
-    "add" : {
-        "organization" : true,
-        "person" : true
     },
     "result" : {
         "displayImage" : true,
