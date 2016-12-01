@@ -11,8 +11,9 @@ if (isset(Yii::app()->session['userId']) ) {
 
 <div class="hide menuSmall">
 	<div class="menuSmallMenu">
-		<?php if(!isset(Yii::app()->session['userId'])){ ?>
 		<div class="col-md-3 col-sm-3 col-xs-12 center no-padding margin-bottom-15">
+		<?php	if(!isset(Yii::app()->session['userId'])){ ?>
+			<?php if(@$params["displayCommunexion"] && $params["displayCommunexion"]){ ?>
 			<div class="col-xs-12 visible-xs margin-top-15"> </div>
 			<div class="col-md-12 col-sm-12 col-xs-6">
 				<a class="btn bg-green" href="javascript:;" onclick="showPanel('box-login');$.unblockUI();">
@@ -26,12 +27,8 @@ if (isset(Yii::app()->session['userId']) ) {
 					</br>S'inscrire
 				</a>
 			</div> 
-		</div> 
+			<?php } ?>
 		<?php }  else { ?>
-
-		
-
-		<div class="col-md-3 col-sm-3 col-xs-12 center margin-top-15 margin-bottom-5">
 			<div class="col-md-12 col-sm-12 no-padding" id="menu-my-profil">
 				<!-- <span class="text-white label text-bold" style="font-size:16px !important;"></span> -->
 				<div id="img-my-profil">
@@ -62,6 +59,7 @@ if (isset(Yii::app()->session['userId']) ) {
 			    </a>
 			</div>
 			<?php } ?>
+			<?php if(@$params["displayCommunexion"] && $params["displayCommunexion"]){ ?>
 		    <div class="col-xs-12 hidden-xs center no-padding">
 			    <a class="btn bg-red padding-5" 
 			    	href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>">
@@ -69,7 +67,8 @@ if (isset(Yii::app()->session['userId']) ) {
 			        <br><?php echo Yii::t("person","Sign out"); ?>
 			    </a>
 		    </div>
-<!-- 
+		    <?php } ?>
+<!-- 	
 		    <?php if(isset(Yii::app()->session['userId']) && isset($me["geo"])){ ?>
 				<?php // AROUND ME // ?>
 				<a href="#element.aroundme.type.person.id.<?php echo Yii::app()->session['userId'] ?>.radius.5000" id="menu-btn-around-me"
@@ -80,11 +79,15 @@ if (isset(Yii::app()->session['userId']) ) {
 				</a>
 				<hr>
 			<?php } ?> -->
-			   
+		<?php }  ?>	
+			<div class="col-xs-12 hidden-xs center no-padding">
+			    <a class="btn bg-white padding-5" 
+			    	href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'?network=666'); ?>" target="_blank">
+			        <i class="fa fa-sign-out"></i>
+			        <br><span class="text-red">Commune<span class="text-dark">cter</span></span>
+			    </a>
+		    </div>
 		</div>
-		<?php } ?>	
-		
-
 	  	<div class="col-md-9 col-sm-9 col-xs-12 no-padding">			
 
 			<div class="col-md-12 col-sm-12 padding-15">
