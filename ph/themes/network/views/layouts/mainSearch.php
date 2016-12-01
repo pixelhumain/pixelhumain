@@ -533,7 +533,7 @@
 		 		if(location.hash != "#network.simplydirectory" && location.hash != "#" && location.hash != ""){
 		 			//console.warn("hash 2", location.hash);
 		 			//getAjaxFiche(location.hash,0);
-					loadByHash(location.hash+"?network="+networkParams);
+					loadByHash(location.hash);
 					return;
 				}
 				else{ 
