@@ -117,14 +117,14 @@
         "mainTag" : ["TiersLieux"]
     },
     "front" : {
-        "organization" : true,
-        "project" : true,
+        "organization" : false,
+        "project" : false,
         "event" : false,
-        "person" : true,
+        "person" : false,
         "dda" : false,
         "live" : false,
         "search" : false,
-        "need" : true,
+        "need" : false,
         "poi" : false
     }
 

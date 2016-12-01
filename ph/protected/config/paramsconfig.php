@@ -32,7 +32,6 @@ $mailConfigTest = array(
 $params = array(
     //Beta Test ?
     'betaTest' => false,
-    'theme' => $theme,
     //By default controller
     'defaultController' => 'communecter',
 
@@ -77,7 +76,6 @@ $params = array(
     'validInviteCodes' => array("communs59", "communs31", "polder", "detakbaro", "kisskiss"),
     //Number of invitation by default for a person (us only on beta test)
     'numberOfInvitByPerson' => 10,
-    'networkParams' => $networkParams,
     
     //URL of logos used by mail
     "logoUrl" => "/images/logo-communecter.png",
