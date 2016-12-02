@@ -378,7 +378,6 @@
 		    "video":"dark"
 		  };
 
-
 		var typesLabels = {
 		  "<?php echo Organization::COLLECTION ?>":"Organization",
 		  "<?php echo Event::COLLECTION ?>":"Event",
@@ -421,8 +420,6 @@
 		var allReadyLoad=false;
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
-		
-
 			$(".bg-main-menu.bgpixeltree_sig").remove();
 			if(myContacts != null)
 			$.each(myContacts, function(type, list) {
@@ -503,7 +500,6 @@
 		      if( lastUrl && "onhashchange" in window && location.hash  ){
 		        if( $.isEmptyObject( history.state ) && allReadyLoad == false ){
 			        //console.warn("poped state",location.hash);
-			        //alert("popstate");
 			        loadByHash(location.hash,true);
 			    } 
 			    allReadyLoad = false;
@@ -523,8 +519,9 @@
 		    //console.log("userConnected");
 			//console.dir(userConnected);
 			//si l'utilisateur doit passer par le two_step_register
-
+			//window.location=window.location;
 			if(userConnected != null && userConnected != "" && typeof userConnected != "undefined" && !location.hash){
+				//location.search="?network="+networkParams
 				//console.warn("hash 1", location.hash);
 				//loadByHash("#network.simplydirectory");
 				return;
@@ -551,7 +548,6 @@
 			}
 			checkScroll();
 		});
-
 		</script>
 
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->

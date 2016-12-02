@@ -10,15 +10,16 @@
 			$i=0;
 			foreach($params['add'] as $key => $data){ 
 				if($key=="organization")
-					$bgClass="bg-green";
+					$bgStyle="	background-color: rgba(146, 191, 32, 0.6);";
 				else if($key=="project")
-					$bgClass="bg-purple";
+					$bgStyle="background-color: rgba(140, 91, 161, 0.6);";
 				else if($key=="event")
-					$bgClass="bg-orange";
+					$bgStyle="background-color: rgba(255, 163, 0, 0.6);";
 				else if($key=="person")
-					$bgClass="bg-yellow";
+					$bgStyle="background-color: rgba(255, 200, 0, 0.6);";
+					//$bgClass="bg-yellow";
 			?>
-				<a href="javascript:openForm('<?php echo $key ?>')" class="btn no-padding <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?> <?php echo $bgClass ?>"> <span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
+				<a href="javascript:openForm('<?php echo $key ?>')" class="btn no-padding hoverDiv<?php echo $key ?> <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?>" style="<?php echo $bgStyle ?>"> <span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
 			<?php $i++; } ?>
 			
 			<!--<a href="javascript:;" class="btn no-padding threedivone bg-green"> <span><?php echo Yii::t("common","Organizations"); ?></span></a>
@@ -37,6 +38,31 @@
  // var timeoutGS = setTimeout(function(){ }, 100);
   //var timeoutDropdownGS = setTimeout(function(){ }, 100);
   jQuery(document).ready(function() {
+	  $(".hoverDivorganization").hover(
+	  	function(){
+		  $(this).css("background-color","#93C020");
+	  	}, function(){
+		  $(this).css("background-color","rgba(146, 191, 32, 0.6)");
+	  	});
+	  $(".hoverDivperson").hover(
+	  	function(){
+		  $(this).css("background-color","#FFC600");
+	  	}, function(){
+		  $(this).css("background-color","rgba(255, 200, 0, 0.6)");
+	  	});
+	  $(".hoverDivevent").hover(
+	  	function(){
+		  $(this).css("background-color","#FFA200");
+	  	}, function(){
+		  $(this).css("background-color","rgba(255, 163, 0, 0.6)");
+	  	});
+	  	$(".hoverDivproject").hover(
+	  	function(){
+		  $(this).css("background-color","#8C5AA1");
+	  	}, function(){
+		  $(this).css("background-color","rgba(140, 91, 161, 0.6)");
+	  	});
+
 	  $(".showElementAdd").mouseenter(function(){
 		  $("#btn-menu-add").addClass("active");
 		  $("#btn-menu-add-sub").show(700);

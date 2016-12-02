@@ -82,7 +82,7 @@ if (isset(Yii::app()->session['userId']) ) {
 		<?php }  ?>	
 			<div class="col-xs-12 hidden-xs center no-padding">
 			    <a class="btn bg-white padding-5" 
-			    	href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'?network=666'); ?>" target="_blank">
+			    	href="<?php echo Yii::app()->createUrl('/'.$this->module->id); ?>" target="_blank">
 			        <i class="fa fa-sign-out"></i>
 			        <br><span class="text-red">Commune<span class="text-dark">cter</span></span>
 			    </a>
