@@ -468,7 +468,7 @@ button.btn-menu-notif{
     color:white;
 }
 .onedivone:hover, .twodivone:hover, .threedivone:hover, .twodivtwo:hover, .threedivtwo:hover, .threedivthree:hover{
-	filter:grayscale(0%);
+color:white;
 }
 /*.onedivone:hover, .twodivone:hover, .threedivone:hover{
 	background-color: #93C020 !important;
@@ -501,7 +501,6 @@ button.btn-menu-notif{
     transform: rotate(-20deg);
 }
 .twodivtwo{
-	opacity:0.9;
     position: absolute;
     height: 285px !important;
     width: 285px;
@@ -523,7 +522,6 @@ button.btn-menu-notif{
     transform: rotate(20deg);
 }
 .threedivone{
-		filter:grayscale(50%);
 	height: 285px !important;
     z-index: 2 !important;
     width: 285px;
@@ -544,7 +542,6 @@ button.btn-menu-notif{
     position: absolute;
 }
 .threedivtwo{
-	filter:grayscale(50%);
 	position: absolute;
     height: 285px !important;
     z-index: 1 !important;
@@ -567,7 +564,6 @@ button.btn-menu-notif{
     position: absolute;
 }
 .threedivthree{
-	filter:grayscale(50%);
 	position: absolute;
     height: 285px !important;
     width: 285px;

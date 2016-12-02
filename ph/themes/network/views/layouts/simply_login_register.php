@@ -266,7 +266,7 @@ var emailType;
 
 jQuery(document).ready(function() {
 	//Remove parameters from URLs in case of invitation without reloading the page
-	removeParametersWithoutReloading();
+	//removeParametersWithoutReloading();
 	
 	$(".box").hide();
 	Login.init();
@@ -295,7 +295,6 @@ jQuery(document).ready(function() {
 		$(".box").hide(400);
 		$(".main-col-search").animate({ top: 0, opacity:1 }, 800 );
 	});
-
 });
 function userValidatedActions() { 
 	if (userValidated) {
@@ -437,7 +436,8 @@ var Login = function() {
 		        			else {
 		        				//console.log("login 3 reload");
 		        				//for urls like notifications/get/not/id...
-		        				window.location.href = baseUrl+'#default.home';
+		        				window.location.reload();
+		        				//window.location.href = url;
 		        				//window.location.reload();
 		        			}
 		        		}
@@ -505,7 +505,6 @@ var Login = function() {
 		          data: params,
 		          success: function(data){
 					if (data.result) {
-						alert(data.msg);
 			            window.location.reload();
 					} else if (data.errId == "UNKNOWN_ACCOUNT_ID") {
 						if (confirm(data.msg)) {
