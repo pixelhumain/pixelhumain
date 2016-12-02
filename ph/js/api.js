@@ -24,15 +24,17 @@ function ajaxPost(id,url,params,callback, datatype)
 	    type:"POST",
 	  //  dataType: "json",
 	    success:function(data) {
-            if(datatype === "html" )
-    			$(id).html(data);
+          if(datatype == "none" )
+            console.log();
+          else if(datatype === "html" )
+    			  $(id).html(data);
     	  	else if(typeof data.msg === "string" )
     	    	toastr.success(data.msg);
-    	    else
-    	      	$("#"+id).html(JSON.stringify(data, null, 4));
+    	    else if( id != null )
+    	      $("#"+id).html(JSON.stringify(data, null, 4));
     	      		
-          	if( typeof callback === "function")
-              callback(data,id);
+          if( typeof callback === "function")
+            callback(data,id);
 	    },
 	    error:function (xhr, ajaxOptions, thrownError){
 	     console.error(thrownError);
