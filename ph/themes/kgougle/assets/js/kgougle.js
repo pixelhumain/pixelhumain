@@ -180,7 +180,7 @@ function getAjax(id,url,callback,datatype,blockUI)
 
 function KScrollTo(target){ console.log("target", target);
 	$('html, body').stop().animate({
-        scrollTop: $(target).offset().top - 100
+        scrollTop: $(target).offset().top - 70
     }, 800, '');
 }
 
@@ -238,6 +238,8 @@ function initKInterface(){
     	showMap();
     });
 
+    $(".tooltips").tooltip();
+    
     bindLBHLinks();
 
 }

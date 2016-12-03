@@ -74,6 +74,7 @@
                 // '/plugins/bootstrap/css/bootstrap.min.css',
                 // '/plugins/velocity/jquery.velocity.min.js',
                 '/plugins/jquery-validation/dist/jquery.validate.min.js',
+                '/plugins/bootbox/bootbox.min.js' , 
                 '/plugins/blockUI/jquery.blockUI.js' , 
                 '/plugins/jquery.dynForm.js',
                 '/plugins/jquery.ajax-cross-origin.min.js',
@@ -107,7 +108,6 @@
                 '/assets/css/kgougle.css',
                 '/assets/css/kgougle-color.css',
                 '/assets/css/kgougle-boot.css',
-                '/assets/css/timeline.css',
                 '/assets/css/sig/sig.css',
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
@@ -150,6 +150,20 @@
             var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
 
             jQuery(document).ready(function() {
+                toastr.options = {
+                  "closeButton": false,
+                  "positionClass": "toast-bottom-left",
+                  "onclick": null,
+                  "showDuration": "1000",
+                  "hideDuration": "1000",
+                  "timeOut": "5000",
+                  "extendedTimeOut": "1000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                };
+
                 loadByHash(location.hash,true);
             });
         </script>

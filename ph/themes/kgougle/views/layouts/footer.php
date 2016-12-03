@@ -7,7 +7,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="text-center">
+<footer class="text-center col-xs-12 pull-left no-padding">
     <div class="footer-above hidden">
         <div class="container">
             <div class="row">

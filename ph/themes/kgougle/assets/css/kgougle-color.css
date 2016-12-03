@@ -19,7 +19,7 @@
 }
 
 .text-black, a.text-black{
-    color:#000 !important;
+    color:#333; !important;
 }
 .text-dark, a.text-dark{
     color:#2C3E50 !important;
@@ -74,6 +74,9 @@ a.text-white:hover{
 
 .text-blue{
     color:#7bc3d1 !important;
+}
+.bg-black{
+    background-color:black !important;
 }
 .bg-blue{
     background-color:#7bc3d1 !important;

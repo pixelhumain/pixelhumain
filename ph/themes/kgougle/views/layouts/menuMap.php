@@ -26,8 +26,10 @@
 
         <button class="btn btn-default" id="menu-map-btn-start-search"><i class="fa fa-search"></i></button>
         
-        <button class="btn-show-map"><i class="fa fa-times"></i></button>
-
+        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Fermer la carte"><i class="fa fa-times"></i></button>
+        <button class="btn-show-mainmenu " title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
+            <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
+        </button>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="pull-right">
             <ul class="nav navbar-nav navbar-right">
@@ -36,7 +38,7 @@
                 </li>
                 
                 <li class="page-scroll">
-                    <a href="#contact" class="text-white font-montserrat"><i class="fa fa-sign-in"></i></a>
+                    <a href="#contact" class="text-white font-montserrat"><i class="fa fa-sign-in"></i> Se connecter</a>
                 </li>
             </ul>
         </div>
