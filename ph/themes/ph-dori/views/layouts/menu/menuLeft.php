@@ -195,7 +195,7 @@
 				<span class="lbl-btn-menu">Citoyens</span>
 			</a>
 			<?php if(isset(Yii::app()->session['userId'])){ ?>
-			<a href="javascript:openForm ( 'person' );" class="menu-button-left pull-right lbl-btn-menu">
+			<a href="#person.invite" class="lbh menu-button-left pull-right lbl-btn-menu">
 				<i class="fa text-red fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Inviter quelqu'un"></i> 
 			</a>
 			<?php } ?>

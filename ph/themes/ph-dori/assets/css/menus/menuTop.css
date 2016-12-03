@@ -51,7 +51,7 @@ button#btn-toogle-map{
 }
 
 /* Documentation button */
-button#btn-documentation{
+a#btn-documentation{
 	font-size: 24px;
 	width: 45px;
 	height: 50px;
@@ -59,6 +59,7 @@ button#btn-documentation{
 	top: 0px;
 	color:#2BB0C6;
 	border-radius: 0px 0px 0px 0px;
+	line-height: 40px;
 	z-index: 15;
 	border: 0;
 }

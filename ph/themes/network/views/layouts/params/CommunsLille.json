@@ -1,0 +1,46 @@
+{
+    "name" : "CommunsLille",
+    "mode" : "server",
+    "skin" : {
+        "logo" : false,
+        "title" : false,
+        "displayScope" : false,
+        "displayCommunexion" : false,
+        "profilBar" : false,
+        "displayButtonGridList" : false,
+        "class" : {
+            "mainContainer" : false
+        },
+        "iconeAdd" : false,
+        "iconeSearchPlus" : false,
+        "loginTitle":""
+    },
+    "filter" : {
+        "types" : false,
+        "tags" : true
+    },
+    "add" : {
+        "organization" : false,
+        "project" : false,
+        "event" : false
+    },
+    "result" : {
+        "displayImage" : false,
+        "displayType" : false,
+        "fullLocality" : true,
+        "datesEvent" : false
+    },
+    "request" : {
+        "pagination" : 1000,
+        "searchType" : [
+            "organizations"
+        ],
+        "searchLocalityNAME" : [
+            "LILLE"
+        ],
+        "searchTag" : [
+            "commun",
+            "communs"
+        ]
+    }
+}
