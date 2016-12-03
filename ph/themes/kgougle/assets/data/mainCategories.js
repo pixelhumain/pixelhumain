@@ -2,12 +2,19 @@ var mainCategories = {
 		
 		"loisir" : { 
 			"color" : "blue",
-			"items" : [ { name: "Actualité", 			faIcon: "newspaper-o" }, 
+			"items" : [ { name: "TV", 				faIcon: "television" }, 
+						{ name: "Radios", 				faIcon: "microphone" }, 
+						{ name: "Météo", 				faIcon: "sun-o" }, 
+						{ name: "Actualité", 			faIcon: "newspaper-o" }, 
+						{ name: "Transport en commun",  faIcon: "bus"},
+						{ name: "Petites annonces",  	faIcon: "tag"}, 
+						{ name: "Blog",  				faIcon: "pencil"}, 
 						{ name: "Tourisme", 			faIcon: "plane"},
-						{ name: "Sorties culturelles", 	faIcon: "ticket"},
+						{ name: "Sorties", 				faIcon: "ticket fa-rotate-90"},
 						{ name: "Bar réstaurants", 		faIcon: "glass"},
 						{ name: "Cinémas", 				faIcon: "film"},
-						{ name: "E-commerce", 			faIcon: "tag"}
+						{ name: "E-boutiques", 			faIcon: "shopping-cart"},
+						
 					  ]
 		},
 		"pratique" : {
@@ -25,12 +32,9 @@ var mainCategories = {
 		},
 		"verte" : {
 			"color" : "green",
-			"items" : [ { name: "Transport en commun",  faIcon: "bus"},
-						{ name: "Association",  		faIcon: "group"}, 
+			"items" : [ { name: "Association",  		faIcon: "group"}, 
 						{ name: "Éco-tourisme",  		faIcon: "plane"}, 
 						{ name: "Artistes",  			faIcon: "diamond"}, 
-						{ name: "Petites annonces",  	faIcon: "tag"}, 
-						{ name: "Recyclage",  			faIcon: "recycle"},
 					  ]
 		}
 	};
