@@ -38,6 +38,19 @@
     <div class="footer-below">
         <div class="container">
             <div class="row">
+                <div class="col-lg-4 text-left">
+                    <h5>Informations générales  <i class="fa fa-info-circle"></i></h5>
+                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> Conditions d'utilisations</a><br><br>
+                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> Le concept KGOUGLE</a><br>
+                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> PH : PixelHumain</a><br>
+                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> Communecter</a><br>
+                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> Alpha Tango</a><br>
+                    
+                </div>
+                <div class="col-lg-4">
+                    <span class="font-blackoutT text-yellow-PH" style="font-size:20px;">by</span> 
+                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGO_PIXEL_HUMAIN.png" height=70>
+                </div>
                 <div class="col-lg-4 text-right">
                     <ul class="list-inline">
                         <li>
@@ -50,18 +63,6 @@
                             <a href="#" class="btn-social btn-outline text-dark"><i class="fa fa-fw fa-envelope-o"></i></a>
                         </li>
                     </ul>
-                </div>
-                <div class="col-lg-4">
-                    <span class="font-blackoutT text-yellow-PH" style="font-size:20px;">by</span> 
-                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGO_PIXEL_HUMAIN.png" height=70>
-                </div>
-                <div class="col-lg-4 text-right">
-                    <h5>Informations générales  <i class="fa fa-info-circle"></i></h5>
-                    <a href="" class="text-white">Conditions d'utilisations</a> <i class="fa fa-angle-left"></i><br><br>
-                    <a href="" class="text-white">Le concept KGOUGLE</a> <i class="fa fa-angle-left"></i><br>
-                    <a href="" class="text-white">PH : PixelHumain</a> <i class="fa fa-angle-left"></i><br>
-                    <a href="" class="text-white">Communecter</a> <i class="fa fa-angle-left"></i><br>
-                    <a href="" class="text-white">Alpha Tango</a> <i class="fa fa-angle-left"></i><br>
                 </div>
             </div>
         </div>

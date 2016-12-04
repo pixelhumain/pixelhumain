@@ -1,6 +1,7 @@
     
     <!-- Header -->
     <header>
+        <?php if($subdomain != "page"){ ?>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -59,6 +60,7 @@
                     </div>
                 </div>
             </div>
+            <?php } ?>
         </div>
     </header>
 
