@@ -51,7 +51,8 @@
             <?php $this->renderPartial($layoutPath.'mainMap'); ?>
         </div>
         
-        <?php $this->renderPartial($layoutPath.'menuMap', array( "layoutPath"=>$layoutPath ) ); ?>   
+        <?php $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+              $this->renderPartial($layoutPath.'menuMap', array( "layoutPath"=>$layoutPath, "me" => $me ) ); ?>   
         
         <div class="main-container"></div>
         <?php //$this->renderPartial($layoutPath.$subdomain, array("subdomain" => $subdomain)); ?>
@@ -74,6 +75,7 @@
                 // '/plugins/bootstrap/css/bootstrap.min.css',
                 // '/plugins/velocity/jquery.velocity.min.js',
                 '/plugins/jquery-validation/dist/jquery.validate.min.js',
+                '/plugins/jquery-validation/localization/messages_fr.js',
                 '/plugins/bootbox/bootbox.min.js' , 
                 '/plugins/blockUI/jquery.blockUI.js' , 
                 '/plugins/jquery.dynForm.js',
@@ -82,6 +84,10 @@
                 '/plugins/toastr/toastr.min.css',
                 '/plugins/jquery-cookie/jquery.cookie.js' , 
                 '/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
+                '/plugins/ladda-bootstrap/dist/spin.min.js' , 
+                '/plugins/ladda-bootstrap/dist/ladda.min.js' , 
+                '/plugins/ladda-bootstrap/dist/ladda.min.css',
+                '/plugins/ladda-bootstrap/dist/ladda-themeless.min.css',
 
                 '/plugins/select2/select2.min.js' , 
                 //'/plugins/moment/min/moment.min.js' ,

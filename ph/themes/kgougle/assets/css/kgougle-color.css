@@ -51,12 +51,25 @@ a.text-white:hover{
 }
 
 
+.text-yellow-PH{
+    color:#fffc00!important;
+}
+
 .text-light, a.text-light{
     color:#5F7C92 !important;
 }
 
-.text-transparent-dark, a.text-white{
+a.text-white{
     color:rgba(255, 255, 255, 0.5) !important;
+}
+.text-transparent-dark{
+    color:rgba(0, 0, 0, 0.26) !important;
+}
+.text-transparent-red{
+    color:rgba(189, 58, 58, 0.3) !important;
+}
+.text-transparent-yellow{
+    color:rgba(206, 186, 40, 0.41) !important;
 }
 .text-azure, a.text-azure{
     color:#2BB0C6 !important;

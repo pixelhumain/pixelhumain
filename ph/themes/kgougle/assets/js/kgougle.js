@@ -5,6 +5,7 @@ var loadableUrls = {
 	"#k.live" 			: {title:"", icon : "rss"},
 	"#k.referencement" 	: {title:"", icon : "plus"},
 	"#k.agenda" 		: {title:"", icon : "calendar"},
+	"#element.detail"	: {title:"", icon : "calendar"},
 	//"": {title:'INVITE SOMEONE', icon : "share-search"},
 }
 
