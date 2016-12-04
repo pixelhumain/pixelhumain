@@ -62,9 +62,12 @@
         </div>
     </header>
 
-    <?php $this->renderPartial($layoutPath.'menu', array( "layoutPath"=>$layoutPath , 
+    <?php
+            $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+            $this->renderPartial($layoutPath.'menu', array( "layoutPath"=>$layoutPath , 
                                                             "subdomain"=>$subdomain,
                                                             "mainTitle"=>$mainTitle,
-                                                            "placeholderMainSearch"=>$placeholderMainSearch) ); ?>   
+                                                            "placeholderMainSearch"=>$placeholderMainSearch,
+                                                            "me" => $me) ); ?>   
 
     <?php //$this->renderPartial($layoutPath.'menu'); ?>    

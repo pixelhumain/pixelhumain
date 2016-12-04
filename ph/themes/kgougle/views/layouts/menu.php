@@ -48,12 +48,11 @@
 
              <!-- <button class="btn btn-default pull-left menu-btn-back-category"><i class="fa fa-cubes"></i></button> -->
         <?php } ?>
-       
-       <!--  <h3 class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="main-title-top">
-            <i class="fa fa-angle-right"></i> Calédoogle
-        </h3> -->
 
-        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Afficher la carte"><i class="fa fa-map"></i></button>
+        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Afficher la carte">
+            <i class="fa fa-map"></i>
+        </button>
+
         <button class="btn-show-mainmenu " title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
         </button>
@@ -61,18 +60,22 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <li class="page-scroll hidden">
-                    <a href="#k.web" class="lbh text-red"><i class="fa fa-search"></i> <span class="font-">Web</span></a>
-                </li>
-                <li class="page-scroll hidden">
-                    <a href="#k.live" class="lbh text-red"><i class="fa fa-rss"></i>  <span class="font-">Live</span></a>
-                </li>
-                <li class="page-scroll">
-                    <a href="#contact" class="text-red font-montserrat"><i class="fa fa-sign-in"></i> Se connecter</a>
-                </li>
+                <?php 
+                    if( isset( Yii::app()->session['userId']) ){
+                      $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
+                ?> 
+                    <button class="dropdown-toggle menu-name-profil text-dark lbh" 
+                            data-toggle="dropdown" data-hash="#element.detail.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>">
+                                <small><?php echo $me["username"]; ?></small> 
+                                <img class="img-circle" id="menu-thumb-profil" 
+                                     width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
+                    </button>
+
+                <?php } else { ?>
+                    <li class="page-scroll">
+                        <button class="text-red font-montserrat btn-menu-connect" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> SE CONNECTER</button>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
 
@@ -85,14 +88,16 @@
 
 
 <div class="portfolio-modal modal fade" id="modalMainMenu" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-content">
+    <div class="modal-content padding-top-15">
         <div class="close-modal" data-dismiss="modal">
             <div class="lr">
                 <div class="rl">
                 </div>
             </div>
         </div>
+
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-12">
                     <span class="name font-blackoutM" >
@@ -104,62 +109,141 @@
                         <span class="letter letter-green">L</span>
                         <span class="letter letter-green">E</span>
                     </span>
-                    <h3 class="letter-red no-margin">Le web, en mieux</h3>
+                    <h3 class="letter-red no-margin" style="margin-top:-15px!important;">
+                        Le web, en mieux
+                    </h3><br>
+
+                    <h5 class="text-dark no-margin" style="margin-top:-15px!important;">
+                        Retrouvez l'ensemble des services <span class="letter-blue">Kgougle</span> en quelques clicks
+                    </h5><br>
+
+                    <?php 
+                        if( isset( Yii::app()->session['userId']) ){
+                          $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
+                    ?>  
+                        <a class="btn btn-default text-red btn-sm" href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>">
+                            <i class="fa fa-sign-out"></i> Déconnecter
+                        </a>
+                    <?php }else{ ?>
+                        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalRegister"><i class="fa fa-plus-circle"></i> S'inscrire</button>
+                        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> Se connecter</button>
+                    <?php } ?>
+                    <hr>
                 </div>
-                <div class="col-lg-12">
-                    <p></p>
-                </div>
+               
             </div>
-            <div class="row">
-                <a href="#k.web" class="lbh col-lg-6" data-dismiss="modal">
+
+            <div class="row links-main-menu">
+                <a href="#k.web" class="lbh btn-main-menu  col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         
                             <h2 class="text-red"><i class="fa fa-tv padding-bottom-10"></i><br>
                                 <span class="font-blackoutT">WEB</span>
                             </h2>
                         
-                            <div class="col-md-12 text-center">
-                                <h5>Un moteur de recherche simplifié<small><br>pour un accès rapide<br>à tous sites web dont vous avez besoin</small></h5>
-                            </div>
-                        
+                            <div class="col-md-12 no-padding text-center">
+                                <h5>Un moteur de recherche simplifié
+                                    <small><br>
+                                        pour un accès rapide<br>à tous les sites web dont vous avez besoin<br>
+                                        70%
+                                    </small>
+                                </h5>
+                            </div>                 
                     </div>
                 </a>
-                <a href="#k.social" class="col-lg-6" data-dismiss="modal">
+                <a href="#k.live" class="lbh btn-main-menu  col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-red"><i class="fa fa-user-circle padding-bottom-10"></i><br><span class="font-blackoutT"> SOCIAL</span></h2>
+                        <h2 class="text-red"><i class="fa fa-newspaper-o padding-bottom-10"></i><br>
+                            <span class="font-blackoutT"> LIVE</span>
+                        </h2>
                         
-                        <div class="col-md-12 text-center">
-                            <h5>Un réseau social local<small><br>pour être connecté à son territoire<br>et à ses amis</small></h5>
+                        <div class="col-md-12 no-padding text-center">
+                            <h5>Un espace d'information
+                                <small><br>
+                                    pour suivre en direct<br>toute l'actualité du pays<br>
+                                    90%
+                                </small>
+                            </h5>
                         </div>
                     </div>
                 </a>
-            </div>
-            <div class="row margin-top-50">    
-                <a href="#k.live" class="lbh col-lg-6" data-dismiss="modal">
+            
+                <a href="#k.social" class=" btn-main-menu col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-red"><i class="fa fa-newspaper-o"></i><br><span class="font-blackoutT"> LIVE</span></h2>
+                        <h2 class="text-orange"><i class="fa fa-user-circle padding-bottom-10"></i><br>
+                            <span class="font-blackoutT"> SOCIAL</span>
+                        </h2>
                         
-                        <div class="col-md-12 text-center">
-                            <h5>Un espace d'information<small><br>pour suivre en direct<br>toute l'actualité du pays</small></h5>
+                        <div class="col-md-12 no-padding text-center">
+                            <h5>Un réseau social local
+                                <small><br>
+                                    pour être connecté à son territoire<br>et à ses amis<br>
+                                    30% (en cours)
+                                </small>
+                            </h5>
                         </div>
                     </div>
                 </a>
 
-                <a href="#k.freedom" class="col-lg-6" data-dismiss="modal">
+                <a href="#k.freedom" class=" btn-main-menu col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-red"><i class="fa fa-comments"></i><br><span class="font-blackoutT"> FREEDOM</span></h2>
+                        <h2 class="text-yellow"><i class="fa fa-comments padding-bottom-10"></i><br>
+                            <span class="font-blackoutT"> FREEDOM</span>
+                        </h2>
                         
-                        <div class="col-md-12 text-center">
-                            <h5>Un espace d'expression libre<small><br>pour discuter, échanger, partager<br>avec tous les Cagous</small></h5>
+                        <div class="col-md-12 no-padding text-center">
+                            <h5>Un espace d'expression libre
+                                <small><br>
+                                    pour discuter, échanger, partager<br>avec tous les Cagous<br>
+                                    (prochainement)
+                                </small>
+                            </h5>
                         </div>
                     </div>
-                </div>
+                </a>
                 
-                <div class="col-md-12 text-center">
+                <a href="#k.freedom" class=" btn-main-menu col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                    <div class="modal-body text-left">
+                        <h2 class="text-yellow"><i class="fa fa-calendar padding-bottom-10"></i><br>
+                            <span class="font-blackoutT"> AGENDA</span>
+                        </h2>
+                        
+                        <div class="col-md-12 no-padding text-center">
+                            <h5>Un agenda commun
+                                <small><br>
+                                    pour être informé en temps réel de toute l'activité locale<br>
+                                    (prochainement)
+                                </small>
+                            </h5>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="#k.freedom" class="col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                    <div class="modal-body text-left">
+                        <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o padding-bottom-10"></i><br>
+                            <span class="font-blackoutT"> POWER</span>
+                        </h2>
+                        
+                        <div class="col-md-12 no-padding text-center">
+                            <h5>Un espace de participation citoyenne
+                                <small><br>
+                                    pour discuter, proposer, débattre,<br>et décider ensemble<br>avec tous les Cagous<br>
+                                    (prochainement)
+                                </small>
+                            </h5>
+                        </div>
+                    </div>
+                </a>
+                
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                     <hr>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class=""></i> Retour</button>
+                    <a href="javascript:" type="button" class="" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
                 </div>
-            </a>
+
+            </div>
         </div>
     </div>
 </div>
+
+<?php $this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>

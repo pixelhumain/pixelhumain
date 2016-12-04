@@ -223,7 +223,8 @@ input#second-search-bar{
 	background-color: #0095FF;
 	color: white;
 	border: 2px solid transparent;
-	margin-top: 8px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	float: right;
 	border-radius: 50% 0px;
 	width: 50px;
@@ -241,7 +242,8 @@ input#second-search-bar{
 	background-color: #fbbc05;
 	color: white;
 	border: 2px solid transparent;
-	margin-top: 8px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	float: right;
 	border-radius: 0px 50%;
 	width: 50px;
@@ -253,6 +255,12 @@ input#second-search-bar{
 	background-color: transparent;
 	color: #fbbc05;
 	border: 2px solid #fbbc05;
+}
+.links-main-menu .btn-main-menu:hover{
+	-moz-box-shadow: 	0px 0px 20px -10px rgba(0, 0, 0, 0.68);
+	-webkit-box-shadow:	0px 0px 20px -10px rgba(0, 0, 0, 0.68);
+	-o-box-shadow: 		0px 0px 20px -10px rgba(0, 0, 0, 0.68);
+	box-shadow: 		0px 0px 20px -10px rgba(0, 0, 0, 0.68);
 }
 
 .nav > li > a:focus, .nav > li > a:hover{
@@ -600,6 +608,59 @@ h3.title_panel_map{
 	padding-right:0px !important;
 }
 
+.navbar-collapse button{
+	/*background:transparent!important;*/
+	border:none!important;
+	margin-top:15px;
+}
+
+.menu-name-profil{
+	font-weight: 300;
+    letter-spacing: 0px;
+    margin-top:2px!important;
+    margin-right:10px;
+    background-color:rgba(246,246,246,0.6)!important;
+	border-radius: 50px !important;
+	padding:8px 0 0 10px;
+	border:none;
+}
+.menu-name-profil img{
+	border:2px solid transparent;
+	margin-top: -8px;
+}
+.menu-name-profil small{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100px;
+    display: inline-block;
+}
+
+.navbar-map .menu-name-profil{
+	margin-top:4px!important;
+	background-color:rgba(10,10,10,0.6)!important;
+}
+.navbar-map .menu-name-profil:hover{
+	background-color:rgba(10,10,10,0.9)!important;
+}
+.navbar-map .menu-name-profil small{
+	color:white;
+}
+
+.menu-name-profil:hover img{
+	/*border:2px solid #fff;*/
+}
+.menu-name-profil:hover {
+	background-color:rgba(246,246,246,0.9)!important;
+}
+
+.btn-menu-connect{
+	background-color: transparent!important;
+}
+.btn-menu-connect:hover{
+	color: #2C3E50!important;
+}
+
 @media (max-width: 768px) {
 	.navbar-custom.affix .navbar-brand{
 		display: none;
@@ -624,5 +685,10 @@ h3.title_panel_map{
 		height:50px!important;
 	}
 
-
+	.links-main-menu {
+		font-size:0.4em;
+	}
+	.links-main-menu a{
+		text-decoration: none!important;
+	}
 }
