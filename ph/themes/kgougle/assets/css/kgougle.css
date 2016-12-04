@@ -623,6 +623,9 @@ h3.title_panel_map{
 	border-radius: 50px !important;
 	padding:8px 0 0 10px;
 	border:none;
+	height: 40px !important;
+	display: block;
+	text-decoration: none!important;
 }
 .menu-name-profil img{
 	border:2px solid transparent;

@@ -4,8 +4,10 @@ var loadableUrls = {
 	"#k.web"			: {title:'', icon : "share-search"},
 	"#k.live" 			: {title:"", icon : "rss"},
 	"#k.referencement" 	: {title:"", icon : "plus"},
-	"#k.agenda" 		: {title:"", icon : "calendar"},
-	"#element.detail"	: {title:"", icon : "calendar"},
+	"#k.agenda" 		: {title:"", icon : ""},
+	"#k.page.type"		: {title:"", icon : ""},
+	"#k.social.type"	: {title:"", icon : ""},
+	"#element.detail"	: {title:"", icon : ""},
 	//"": {title:'INVITE SOMEONE', icon : "share-search"},
 }
 

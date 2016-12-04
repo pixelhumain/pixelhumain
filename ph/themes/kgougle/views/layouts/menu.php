@@ -64,12 +64,13 @@
                     if( isset( Yii::app()->session['userId']) ){
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
-                    <button class="dropdown-toggle menu-name-profil text-dark lbh" 
-                            data-toggle="dropdown" data-hash="#element.detail.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>">
+                    <a  href="#k.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
+                        class="dropdown-toggle menu-name-profil text-dark lbh" 
+                        data-toggle="dropdown">
                                 <small><?php echo $me["username"]; ?></small> 
                                 <img class="img-circle" id="menu-thumb-profil" 
                                      width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
-                    </button>
+                    </a>
 
                 <?php } else { ?>
                     <li class="page-scroll">
@@ -77,6 +78,10 @@
                     </li>
                 <?php } ?>
             </ul>
+
+            <?php // MULTITAG / MULTISCOPE // ?>
+            <?php $this->renderPartial($layoutPath.'scopes/multi_tag_scope', array("me"=>$me, "layoutPath"=>$layoutPath)); ?>
+        
         </div>
 
         <!-- /.navbar-collapse -->
@@ -168,7 +173,7 @@
                     </div>
                 </a>
             
-                <a href="#k.social" class=" btn-main-menu col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#k.social.type.persons" class="lbh btn-main-menu col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-orange"><i class="fa fa-user-circle padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> SOCIAL</span>
