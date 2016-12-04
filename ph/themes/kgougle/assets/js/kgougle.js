@@ -50,7 +50,7 @@ function showAjaxPanel (url,title,icon, mapEnd) {
 		$(".main-container").html("");
 		$(".hover-info,.hover-info2").hide();
 		processingBlockUi();
-		setTitle("Chargement en cours ...", "spin fa-circle-o-notch");
+		//setTitle("Chargement en cours ...", "spin fa-circle-o-notch");
 		showMap(false);
 	}, 200);
 
