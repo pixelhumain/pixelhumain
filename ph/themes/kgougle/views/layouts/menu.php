@@ -57,6 +57,7 @@
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
         </button>
 
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -64,8 +65,16 @@
                     if( isset( Yii::app()->session['userId']) ){
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
+                    <button class="menu-button btn-menu btn-menu-notif tooltips text-dark pull-right" 
+                          data-toggle="tooltip" data-placement="left" title="Notifications" alt="Notifications">
+                      <i class="fa fa-bell"></i>
+                      <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
+                        <?php count($this->notifications); ?>
+                      </button>
+                    </a>
+
                     <a  href="#k.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="dropdown-toggle menu-name-profil text-dark lbh" 
+                        class="dropdown-toggle menu-name-profil text-dark lbh pull-right" 
                         data-toggle="dropdown">
                                 <small><?php echo $me["username"]; ?></small> 
                                 <img class="img-circle" id="menu-thumb-profil" 
@@ -79,9 +88,10 @@
                 <?php } ?>
             </ul>
 
-            <?php // MULTITAG / MULTISCOPE // ?>
-            <?php $this->renderPartial($layoutPath.'scopes/multi_tag_scope', array("me"=>$me, "layoutPath"=>$layoutPath)); ?>
-        
+            <?php // MULTITAG / MULTISCOPE / NOTIF // ?>
+            <div class="pull-right margin-5 margin-right-15">
+                <?php $this->renderPartial($layoutPath.'scopes/multi_tag_scope', array("me"=>$me, "layoutPath"=>$layoutPath)); ?>
+            </div>
         </div>
 
         <!-- /.navbar-collapse -->
@@ -139,24 +149,24 @@
             </div>
 
             <div class="row links-main-menu">
-                <a href="#k.web" class="lbh btn-main-menu  col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#k.web" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         
-                            <h2 class="text-red"><i class="fa fa-tv padding-bottom-10"></i><br>
+                            <h2 class="text-red"><i class="fa fa-search padding-bottom-10"></i><br>
                                 <span class="font-blackoutT">WEB</span>
                             </h2>
                         
                             <div class="col-md-12 no-padding text-center">
                                 <h5>Un moteur de recherche simplifié
                                     <small><br>
-                                        pour un accès rapide<br>à tous les sites web dont vous avez besoin<br>
+                                        pour un accès rapide à tous les sites web<br>dont vous avez besoin<br>
                                         70%
                                     </small>
                                 </h5>
                             </div>                 
                     </div>
                 </a>
-                <a href="#k.live" class="lbh btn-main-menu  col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#k.live" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-red"><i class="fa fa-newspaper-o padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> LIVE</span>
@@ -165,7 +175,7 @@
                         <div class="col-md-12 no-padding text-center">
                             <h5>Un espace d'information
                                 <small><br>
-                                    pour suivre en direct<br>toute l'actualité du pays<br>
+                                    pour suivre en direct<br>toute l'actu des médias du pays<br>
                                     90%
                                 </small>
                             </h5>
@@ -173,16 +183,16 @@
                     </div>
                 </a>
             
-                <a href="#k.social.type.persons" class="lbh btn-main-menu col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#k.social.type.persons" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-orange"><i class="fa fa-user-circle padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> SOCIAL</span>
                         </h2>
                         
                         <div class="col-md-12 no-padding text-center">
-                            <h5>Un réseau social local
+                            <h5>Le réseau social du Caillou
                                 <small><br>
-                                    pour être connecté à son territoire<br>et à ses amis<br>
+                                    pour être connecté au territoire<br>à ses voisins, ses amis, sa tribue<br>
                                     30% (en cours)
                                 </small>
                             </h5>
@@ -190,7 +200,7 @@
                     </div>
                 </a>
 
-                <a href="#k.freedom" class=" btn-main-menu col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#k.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-yellow"><i class="fa fa-comments padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> FREEDOM</span>
@@ -207,7 +217,7 @@
                     </div>
                 </a>
                 
-                <a href="#k.freedom" class=" btn-main-menu col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#k.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-yellow"><i class="fa fa-calendar padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> AGENDA</span>
@@ -224,7 +234,7 @@
                     </div>
                 </a>
                 
-                <a href="#k.freedom" class="col-lg-4 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#k.freedom" class="col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> POWER</span>

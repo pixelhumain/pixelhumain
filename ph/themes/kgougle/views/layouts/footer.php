@@ -19,7 +19,7 @@
 
 <!-- Footer -->
 <footer class="text-center col-xs-12 pull-left no-padding">
-    <?php if($subdomain == "web"){ ?>
+    <?php if(@$subdomain == "web"){ ?>
     <div class="footer-above">
         <div class="container">
             <div class="row text-dark">

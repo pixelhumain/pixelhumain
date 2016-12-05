@@ -55,8 +55,11 @@
               $this->renderPartial($layoutPath.'menuMap', array( "layoutPath"=>$layoutPath, "me" => $me ) ); ?>   
         
         <div class="main-container"></div>
-        <?php //$this->renderPartial($layoutPath.$subdomain, array("subdomain" => $subdomain)); ?>
 
+        <div id="floopDrawerDirectory" class="floopDrawer"></div>
+
+        <?php if(isset(Yii::app()->session['userId'])) 
+                $this->renderPartial($layoutPath.'notifications'); ?>
 
         <?php 
             echo "<!-- start: MAIN JAVASCRIPTS -->";
@@ -90,7 +93,7 @@
                 '/plugins/ladda-bootstrap/dist/ladda-themeless.min.css',
 
                 '/plugins/select2/select2.min.js' , 
-                //'/plugins/moment/min/moment.min.js' ,
+                '/plugins/moment/min/moment.min.js' ,
                 //'/js/cookie.js' ,
                 '/js/api.js',
                 

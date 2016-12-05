@@ -181,6 +181,27 @@ function getAjax(id,url,callback,datatype,blockUI)
     });
 }
 
+function initNotifications(){
+	console.log("initNotifications");
+	$('.btn-menu-notif').off().click(function(){
+	  mylog.log("click notification main-top-menu");
+      showNotif();
+    });
+    $('.btn-menu-notif').off().click(function(){
+	  mylog.log("click notification my-main-container");
+      showNotif();
+    });
+}
+function showNotif(show){
+	if(typeof show == "undefined"){
+		if($("#notificationPanelSearch").css("display") == "none") show = true; 
+    	else show = false;
+    }
+
+    if(show) $('#notificationPanelSearch').show("fast");
+	else 	 $('#notificationPanelSearch').hide("fast");
+}
+
 function KScrollTo(target){ console.log("target", target);
 	$('html, body').stop().animate({
         scrollTop: $(target).offset().top - 70
@@ -188,6 +209,8 @@ function KScrollTo(target){ console.log("target", target);
 }
 
 function initKInterface(){
+
+	$(window).off();
 
     //jQuery for page scrolling feature - requires jQuery Easing plugin
     $('.page-scroll a').bind('click', function(event) {
