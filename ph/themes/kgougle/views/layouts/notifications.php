@@ -10,7 +10,7 @@
 	    position: relative;
 	    border-radius: 0px;
 	    margin-right: 6px;
-	    margin-top: 2px;
+	    margin-top: 4px;
 		height: 40px;
 		min-width: 40px;
 	}
@@ -211,7 +211,7 @@ var maxNotifTimstamp = <?php echo $maxTimestamp ?>;
 
 jQuery(document).ready(function() 
 {
-	console.log("START NOTIF");
+	mylog.log("START NOTIF");
 	initNotifications();
 	//bindLBHLinks();
 	bindNotifEvents();
@@ -280,6 +280,7 @@ function markAllAsRead()
 
 function refreshNotifications()
 {
+	mylog.log("refreshNotifications");
 	//ajax get Notifications
 	$(".pageslide-list.header .btn-primary i.fa-refresh").addClass("fa-spin");
 	mylog.log("refreshNotifications", maxNotifTimstamp);
@@ -349,6 +350,7 @@ function notifCount()
 	$(".notifCount").html( countNotif );
 	if( countNotif > 0 )
 	{
+		mylog.log(" SHOW notifCount", countNotif);
 	    $(".notifications-count").html(countNotif);
 		$('.notifications-count').removeClass('hide');
 		$('.notifications-count').addClass('animated bounceIn');

@@ -58,8 +58,6 @@
 
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
 
-        <?php if(isset(Yii::app()->session['userId'])) 
-                $this->renderPartial($layoutPath.'notifications'); ?>
 
         <?php 
             echo "<!-- start: MAIN JAVASCRIPTS -->";
