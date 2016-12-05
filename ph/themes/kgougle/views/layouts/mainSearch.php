@@ -89,6 +89,7 @@
                 '/plugins/ladda-bootstrap/dist/ladda.min.js' , 
                 '/plugins/ladda-bootstrap/dist/ladda.min.css',
                 '/plugins/ladda-bootstrap/dist/ladda-themeless.min.css',
+                '/plugins/animate.css/animate.min.css',
 
                 '/plugins/select2/select2.min.js' , 
                 '/plugins/moment/min/moment.min.js' ,

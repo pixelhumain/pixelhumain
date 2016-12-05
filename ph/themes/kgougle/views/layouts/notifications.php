@@ -1,6 +1,12 @@
 <!-- start: PAGESLIDE RIGHT -->
 <style type="text/css">
-
+	.notifications {
+	    padding: 5px 0px !important;
+	    bottom: 0px !important;
+	    position: absolute !important;
+	    top: 10px !important;
+	    width: 100%;
+	}
 	button.btn-menu-notif {
 	    background-color: rgba(163, 116, 188, 0) !important;
 	    font-size: 20px;
@@ -76,14 +82,17 @@
 		background-color: transparent;
 		color: #354535;
 		font-size: 13px;
+		display:block;
 	}
 	ul.notifList{
 		position: absolute;
 		bottom: 0px !important;
 		overflow-y: auto;
 		padding-right: 10px;
-		top: 30px;
+		top: 35px;
 		padding: 0px;
+		width:100%;
+
 		-moz-box-shadow: 0px 0px 3px -1px #656565;
 		-webkit-box-shadow: 0px 0px 3px -1px #656565;
 		-o-box-shadow: 0px 0px 3px -1px #656565;
@@ -104,12 +113,12 @@
 		margin-top: 0px;
 		height: 35px;
 		width: 35px;
-		margin-left: -10px;
+		/*margin-left: -10px;*/
 		background-color: #56c557 !important;
 	}
 
 	.notifications .message,.notifications .time {
-	    padding-left: 40px;
+	    padding-left: 45px;
 	    display:block;
 	}
 	.notifications .time {
@@ -136,6 +145,7 @@
 	#notificationPanelSearch{
 		width:415px !important;
 		max-width: 100%;
+		top: 55px !important;
 	}
 
 	.badge-tranparent{
