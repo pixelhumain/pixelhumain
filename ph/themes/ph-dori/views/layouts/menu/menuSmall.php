@@ -204,7 +204,9 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							<i class="fa fa-user"></i><br>
 							<span class="lbl-btn-menu-name-add">Citoyens</span>
 						</a>
+						<?php if(@Yii::app()->session['userId']){ ?>
 						<a href="#person.invite" class="lbh badge btn-add bg-yellow"><i class="fa fa-plus-circle"></i></a>
+						<?php } ?>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-<?php echo $col; ?> center padding-5">
 
@@ -216,7 +218,9 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 								<!-- <span class="hidden-xs">Une o</span><span class="hidden-sm hidden-md hidden-lg">O</span>rganisation -->
 							</span>
 						</a>
+						<?php if(@Yii::app()->session['userId']){ ?>
 						<a href="javascript:openForm('organization')" class="badge btn-add bg-green"><i class="fa fa-plus-circle"></i></a>
+						<?php } ?>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-<?php echo $col; ?> center padding-5">
 
@@ -228,7 +232,9 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 								Projets
 							</span>
 						</a>
+						<?php if(@Yii::app()->session['userId']){ ?>
 						<a href="javascript:openForm('project')" class="badge btn-add bg-purple"><i class="fa fa-plus-circle"></i></a>
+						<?php } ?>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-<?php echo $col; ?> center padding-5">
 
@@ -240,7 +246,9 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 								Événements
 							</span>
 						</a>
+						<?php if(@Yii::app()->session['userId']){ ?>
 						<a href="javascript:openForm('event')" class="badge btn-add bg-orange"><i class="fa fa-plus-circle"></i></a>
+						<?php } ?>
 					</div>
 
 					<?php if(isset(Yii::app()->session['userId'])){ ?>
