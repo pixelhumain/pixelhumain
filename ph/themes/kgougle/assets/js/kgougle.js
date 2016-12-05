@@ -23,11 +23,11 @@ function loadByHash( hash , back ) { //alert("loadByHash");
 
     mylog.warn("loadByHash",hash,back);
     if( jsController(hash) ){
-    	console.log("loadByHash",hash,back);
+    	mylog.log("loadByHash",hash,back);
     	mylog.log("loadByHash >>> jsController",hash);
     }
     else {
-    	console.log("loadByHash",hash,back);
+    	mylog.log("loadByHash",hash,back);
     
         showAjaxPanel( '/k/web', 'Home Communecter ','home' );
     }
@@ -182,7 +182,7 @@ function getAjax(id,url,callback,datatype,blockUI)
 }
 
 function initNotifications(){
-	console.log("initNotifications");
+	mylog.log("initNotifications");
 	$('.btn-menu-notif').off().click(function(){
 	  mylog.log("click notification main-top-menu");
       showNotif();
@@ -202,7 +202,7 @@ function showNotif(show){
 	else 	 $('#notificationPanelSearch').hide("fast");
 }
 
-function KScrollTo(target){ console.log("target", target);
+function KScrollTo(target){ mylog.log("target", target);
 	$('html, body').stop().animate({
         scrollTop: $(target).offset().top - 70
     }, 800, '');

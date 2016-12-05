@@ -65,13 +65,7 @@
                     if( isset( Yii::app()->session['userId']) ){
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
-                    <button class="menu-button btn-menu btn-menu-notif tooltips text-dark pull-right" 
-                          data-toggle="tooltip" data-placement="left" title="Notifications" alt="Notifications">
-                      <i class="fa fa-bell"></i>
-                      <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
-                        <?php count($this->notifications); ?>
-                      </button>
-                    </a>
+                     
 
                     <a  href="#k.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
                         class="dropdown-toggle menu-name-profil text-dark lbh pull-right" 
@@ -80,7 +74,13 @@
                                 <img class="img-circle" id="menu-thumb-profil" 
                                      width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
                     </a>
-
+                    <button class="menu-button btn-menu btn-menu-notif tooltips text-dark pull-right" 
+                          data-toggle="tooltip" data-placement="left" title="Notifications" alt="Notifications">
+                      <i class="fa fa-bell"></i>
+                      <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
+                        <?php count($this->notifications); ?>
+                    </button>
+                   
                 <?php } else { ?>
                     <li class="page-scroll">
                         <button class="text-red font-montserrat btn-menu-connect" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> SE CONNECTER</button>
@@ -100,7 +100,8 @@
 
 
 </nav>
-
+<?php if(isset(Yii::app()->session['userId'])) 
+                $this->renderPartial($layoutPath.'notifications'); ?>
 
 <div class="portfolio-modal modal fade" id="modalMainMenu" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">

@@ -626,6 +626,7 @@ h3.title_panel_map{
 	height: 40px !important;
 	display: block;
 	text-decoration: none!important;
+	text-transform: none;
 }
 .menu-name-profil img{
 	border:2px solid transparent;
