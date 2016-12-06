@@ -59,8 +59,6 @@
 
         $json = file_get_contents($pathParams);
         $params = json_decode($json, true);	
-        if(@$params["front"])
-	        Yii::app()->params["front"] = $params["front"];	
 		?>
 
 		<!-- end: META -->
@@ -68,7 +66,6 @@
 		<?php 
 		
 		$cs = Yii::app()->getClientScript();
-
 		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/bootstrap-modal/js/bootstrap-modal.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , CClientScript::POS_END);
 		$cs->registerCssFile(Yii::app()->request->baseUrl.'/plugins/bootstrap-modal/css/bootstrap-modal.css' , CClientScript::POS_END);
