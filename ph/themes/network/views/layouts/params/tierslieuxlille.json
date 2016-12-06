@@ -17,7 +17,24 @@
         },
         "iconeAdd" : false,
         "iconeSearchPlus" : false,
-        "loginTitle":""
+        "loginTitle":"",
+        "front" : {
+	        "organization" : false,
+	        "project" : false,
+	        "event" : false,
+	        "person" : false,
+	        "dda" : false,
+	        "live" : false,
+	        "search" : false,
+	        "need" : false,
+	        "poi" : false
+	    },
+	    "menu" : {
+		    "aroundMe":false,
+		    "connect":false,
+		    "admin":false,
+		    "add":false
+	    }
     },
    "filter" : {
         "types" : false,
@@ -115,17 +132,6 @@
             "Tourcoing"
         ],
         "mainTag" : ["TiersLieux"]
-    },
-    "front" : {
-        "organization" : false,
-        "project" : false,
-        "event" : false,
-        "person" : false,
-        "dda" : false,
-        "live" : false,
-        "search" : false,
-        "need" : false,
-        "poi" : false
     }
 
 }
