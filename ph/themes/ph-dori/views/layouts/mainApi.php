@@ -2,31 +2,16 @@
 <html lang="en" class="no-js">
 	<!--<![endif]-->
 	<!-- start: HEAD layout mainSearch.php -->
-	<head>
-		
-		<?php 
-		$themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
-
-		$cs = Yii::app()->getClientScript();
-		?>
-	</head>
+	<head></head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
 	<body class="swagger-section">
-
 	<?php 
-
 		echo $content;
-	
-		  ?>
-
-
-
-		<!-- start: MAIN JAVASCRIPTS -->
-		<?php
-			$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
-		?>
-		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+		$cs = Yii::app()->getClientScript();
+		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
+	?>
+	<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 	</body>
 	<!-- end: BODY -->
 </html>
