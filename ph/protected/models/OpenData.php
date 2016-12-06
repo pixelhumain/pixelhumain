@@ -42,7 +42,8 @@ class OpenData
                                 array( "name" =>  "Economie Social et Solidaire","tags" => array( "ess","economie social solidaire" ) ),
                                 array( "name" =>  "Energie-Climat","tags" => array("energie" ,"climat") ),
                                 array( "name" =>  "Culture / Animation ","tags" => array("culture" ,"animation") ),
-                                array( "name" =>  "Biodiversité ","tags" => array("biodiversité") ) 
+                                array( "name" =>  "Biodiversité ","tags" => array("biodiversité") ),
+                                array( "name" =>  "TIC, Numérique, Internet ","tags" => array("numérique","tic","internet") )  
                                 );
     /**
      * Classé par departement 
