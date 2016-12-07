@@ -274,6 +274,14 @@
 		  ?>
 		<!-- start: MAIN JAVASCRIPTS -->
 		
+		<div class="hide" id="rmenu">
+            <ul>
+                <li><a href="http://www.google.com">Google</a></li>
+                <li><a href="http://localhost:8080/login">Localhost</a></li>
+				<li><a href="C:\">C</a></li>
+            </ul>
+        </div>
+
 		<?php
 		echo "<!-- start: MAIN JAVASCRIPTS -->";
 		echo "<!--[if lt IE 9]>";
@@ -308,6 +316,9 @@
 			'/plugins/toastr/toastr.min.css',
 			'/plugins/jquery-cookie/jquery.cookie.js' , 
 			'/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
 			'/plugins/select2/select2.min.js' , 
 			'/plugins/select2/select2.css',
 			'/plugins/moment/min/moment.min.js' ,
