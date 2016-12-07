@@ -17,7 +17,27 @@
         },
         "iconeAdd" : false,
         "iconeSearchPlus" : false,
-        "loginTitle":""
+        "loginTitle":"",
+        "front" : {
+	        "organization" : false,
+	        "project" : false,
+	        "event" : false,
+	        "community" : false,
+	        "dda" : false,
+	        "live" : false,
+	        "search" : false,
+	        "need" : false,
+	        "poi" : false
+	    },
+	    "menu" : {
+		    "aroundMe":false,
+		    "connectLink":false,
+		    "add":false,
+		    "detail":true,
+		    "news":false,
+		    "directory":false,
+		    "gallery":false
+	    }
     },
    "filter" : {
         "types" : false,

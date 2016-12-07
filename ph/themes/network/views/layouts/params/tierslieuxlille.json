@@ -20,20 +20,23 @@
         "loginTitle":"",
         "front" : {
 	        "organization" : false,
-	        "project" : false,
-	        "event" : false,
-	        "person" : false,
+	        "project" : true,
+	        "event" : true,
+	        "community" : true,
 	        "dda" : false,
 	        "live" : false,
 	        "search" : false,
-	        "need" : false,
-	        "poi" : false
+	        "need" : true,
+	        "poi" : true
 	    },
 	    "menu" : {
 		    "aroundMe":false,
-		    "connect":false,
-		    "admin":false,
-		    "add":false
+		    "connectLink":false,
+		    "add":true,
+		    "detail":true,
+		    "news":true,
+		    "directory":true,
+		    "gallery":true
 	    }
     },
    "filter" : {
