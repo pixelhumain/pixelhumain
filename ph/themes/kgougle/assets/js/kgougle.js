@@ -69,8 +69,8 @@ function showAjaxPanel (url,title,icon, mapEnd) {
 			/*if(!userId && userIdBefore != userId )
 				window.location.reload();*/
 
-			initNotifications(); 
-			
+			//initNotifications(); 
+			$(".modal-backdrop").hide();
 			bindExplainLinks();
 			bindTags();
 			bindLBHLinks();

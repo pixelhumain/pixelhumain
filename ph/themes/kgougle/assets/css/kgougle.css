@@ -39,6 +39,11 @@
 	src: url('../vendor/fonts/ZILAP.ttf');
 }.font-ZILAP{font-family:"ZILAP"!important;}
 
+@font-face{
+font-family: Homestead;
+src: url('../vendor/fonts/Homestead/Homestead-Display.ttf');
+}
+.homestead{font-family:"Homestead";font-weight:200!important;}
 
 .font-montserrat{font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;}
 
@@ -365,31 +370,33 @@ a, a:hover, a:focus, a:active, a.active{
 }
 
 
-#portfolio .portfolio-item {
+#mainCategories .portfolio .portfolio-item {
 	margin:0 0 15px;
 	padding:10px;
 	border-radius: 5px;
 }
-#portfolio .portfolio-item:hover {
+#mainCategories .portfolio .portfolio-item:hover {
 	background-color: #C8EBF5;
 }
 
-#portfolio .portfolio-item .portfolio-link {
+#mainCategories .portfolio .portfolio-item .portfolio-link {
 	text-align: center;
 	background-color: transparent;
 	border: none;
 }
-#portfolio .portfolio-item button.portfolio-link{
+#mainCategories .portfolio .portfolio-item button.portfolio-link{
 	color: #2C3E50;
 }
-.text-green button.portfolio-link{
-	color: #34a853 !important;
-}
-#portfolio .portfolio-item .portfolio-link .caption{
+#mainCategories .portfolio .portfolio-item .portfolio-link .caption{
 	background-color: transparent;
 }
-#portfolio .portfolio-item a.portfolio-link:hover{
+#mainCategories .portfolio .portfolio-item a.portfolio-link:hover{
 	text-decoration: none;
+}
+
+
+.text-green button.portfolio-link{
+	color: #34a853 !important;
 }
 
 #main-search-bar{
@@ -607,7 +614,9 @@ h3.title_panel_map{
 .portfolio-modal{
 	padding-right:0px !important;
 }
-
+.portfolio-modal .close-modal{
+	z-index:10;
+}
 .navbar-collapse button{
 	/*background:transparent!important;*/
 	border:none!important;

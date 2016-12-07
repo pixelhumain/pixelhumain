@@ -40,13 +40,18 @@
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
             </div>
             <button class="btn btn-default pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
+        
         <?php }elseif($subdomain == "web"){ ?>
+            
             <div class="col-xs-8 col-sm-3 col-md-5 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
             </div>
             <button class="btn btn-default pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
 
-             <!-- <button class="btn btn-default pull-left menu-btn-back-category"><i class="fa fa-cubes"></i></button> -->
+            <!-- <button class="btn btn-default pull-left menu-btn-back-category"><i class="fa fa-cubes"></i></button> -->
+        
+        <?php }elseif($subdomain == "page"){ ?>
+            <div class="col-xs-8 col-sm-3 col-md-5 col-lg-4" id="main-page-name"></div>
         <?php } ?>
 
         <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Afficher la carte">
