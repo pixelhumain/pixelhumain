@@ -9,17 +9,22 @@
 			$countAdd = count($params['add'])-1;
 			$i=0;
 			foreach($params['add'] as $key => $data){ 
+				$href="javascript:openForm('".$key."')";
+				$lbh="";
 				if($key=="organization")
 					$bgStyle="	background-color: rgba(146, 191, 32, 0.6);";
 				else if($key=="project")
 					$bgStyle="background-color: rgba(140, 91, 161, 0.6);";
 				else if($key=="event")
 					$bgStyle="background-color: rgba(255, 163, 0, 0.6);";
-				else if($key=="person")
+				else if($key=="person"){
 					$bgStyle="background-color: rgba(255, 200, 0, 0.6);";
+					$href="#person.invite";
+					$lbh="lbh";
+				}
 					//$bgClass="bg-yellow";
 			?>
-				<a href="javascript:openForm('<?php echo $key ?>')" class="btn no-padding hoverDiv<?php echo $key ?> <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?>" style="<?php echo $bgStyle ?>"> <span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
+				<a href="<?php echo $href ?>" class="<?php echo $lbh ?> btn no-padding hoverDiv<?php echo $key ?> <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?>" style="<?php echo $bgStyle ?>"> <span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
 			<?php $i++; } ?>
 			
 			<!--<a href="javascript:;" class="btn no-padding threedivone bg-green"> <span><?php echo Yii::t("common","Organizations"); ?></span></a>
