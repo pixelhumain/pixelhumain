@@ -49,7 +49,8 @@
                                 <button class="btn text-white bg-green  btn-directory-type" data-type="NGO"><i class="fa fa-group"></i> Associations</button>
                                 <button class="btn text-white bg-azure  btn-directory-type" data-type="LocalBusiness"><i class="fa fa-industry"></i> Entreprises</button>
                                 <button class="btn text-white bg-purple btn-directory-type" data-type="projects"><i class="fa fa-lightbulb-o"></i> Projets</button>
-                                <button class="btn text-black bg-white  btn-directory-type" data-type="Group"><i class="fa fa-group"></i> Groupes</button>
+                                <button class="btn text-black bg-white  btn-directory-type" data-type="Group"><i class="fa fa-group"></i> Groupes</button><br><br>
+                                <span>Rechercher parmis toutes les pages du réseau KGOUGLE</span>
                             </div>
 
                             <!-- <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button> -->
