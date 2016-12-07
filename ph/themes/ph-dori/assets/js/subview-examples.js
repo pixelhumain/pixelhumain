@@ -13,7 +13,7 @@
     if(typeof addTasks2CAlendar != 'undefined' && typeof addTasks2CAlendar == "function")
     {
       calendar = addTasks2CAlendar();
-      //console.dir("calendar",calendar);
+      //mylog.dir("calendar",calendar);
     }else{
   		var d = date.getDate();
   		var m = date.getMonth();
@@ -1126,5 +1126,5 @@
 			runNoteFormValidation();
 		}
 	};
-	console.log("SVExamples");
+	mylog.log("SVExamples");
 }();

@@ -1,0 +1,97 @@
+{
+    "name" : "iviatic",
+    "mode" : "server",
+    "skin" : {
+        "logo" : "",
+        "title" : "Cartographie des mobilités",
+        "shortDescription" : "Localisez les partenaires et compétences dont vous avez besoin pour construire votre projet de mobilité.",
+        "displayScope" : false,
+        "displayCommunexion" : false,
+        "displayNotifications" : false,
+        "docs":true,
+        "profilBar" : false,
+        "breadcrum" : true,
+        "displayButtonGridList" : false,
+        "class" : {
+            "mainContainer" : false
+        },
+        "iconeAdd" : false,
+        "iconeSearchPlus" : false,
+        "loginTitle":""
+    },
+   "filter" : {
+        "types" : false,
+        "tags" : {
+            "activate" : false,
+            "title" : "Toutes les catégories",
+            "background-color" : "#f5f5f5",
+            "image" : "All.png"
+        },
+        "linksTag" : {
+	        "Géographique" : {
+                "tagParent" : "Geographique",
+                "background-color" : "#f5f5f5",
+                "image" : "Marker.png",
+                "tags" : {
+                    "Nord" : "Nord",
+                    "Pas de Calais" : "Pas de Calais",
+                    "Somme" : "Somme",
+                    "Oise" : "Oise",
+                    "Hainaut" : "Hainaut",
+                    "Hors région" : "Hors région"
+                }
+            },
+	        "Structures" : {
+                "tagParent" : "Structure",
+                "background-color" : "#f5f5f5",
+                "image" : "Loisir.png",
+                "tags" : {
+                    "Institutions publiques" : "Institutions publiques",
+                    "Recherche et formation" : "Recherche et formation",
+                    "Grandes Entreprises" : "Grandes Entreprises",
+                    "PME et ETI" : "PME et ETI",
+                    "TPE et StartUp" : "TPE et StartUp",
+                    "Structures daccompagnement et association" : "Structures daccompagnement et association",
+                    "Bureau detude et Cabinets de conseil" : "Bureau detude et Cabinets de conseil"
+                }
+            },
+            "Compétences" : {
+                "tagParent" : "Competence",
+                "background-color" : "#f5f5f5",
+                "image" : "Travail.png",
+                "tags" : {
+                  "Transport de voyageurs" : "Transport de voyageurs",
+                  "Equipements et infrastructures" : "Equipements et infrastructures",
+                  "Mobilites actives et partagees" : "Mobilites actives et partagees",
+                  "Energie et mobilite" : "Energie et mobilite",
+                  "Services a la mobilite" : "Services a la mobilite",
+                  "TIC, numerique et data" : "TIC, numerique et data",
+                  "Ingenierie et financement de projet" : "Ingenierie et financement de projet",
+                  "Amenagement, valorisation et developpement de territoire" : "Amenagement, valorisation et developpement de territoire",
+                  "Organisation et management de la mobilite" : "Organisation et management de la mobilite"
+                }
+            }
+           
+            
+          }
+    },
+    "add" : {
+        "organization" : true
+    },
+    "result" : {
+        "displayImage" : true,
+        "displayType" : false,
+        "fullLocality" : true,
+        "datesEvent" : false,
+        "displayShortDescription" : true
+    },
+    "request" : {
+	    "sourceKey" :[
+            "iviatic"
+        ],
+        "pagination" : 2000,
+        "searchType" : [
+            "organizations"
+        ]
+    }
+}

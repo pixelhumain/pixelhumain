@@ -274,6 +274,14 @@
 		  ?>
 		<!-- start: MAIN JAVASCRIPTS -->
 		
+		<div class="hide" id="rmenu">
+            <ul>
+                <li><a href="http://www.google.com">Google</a></li>
+                <li><a href="http://localhost:8080/login">Localhost</a></li>
+				<li><a href="C:\">C</a></li>
+            </ul>
+        </div>
+
 		<?php
 		echo "<!-- start: MAIN JAVASCRIPTS -->";
 		echo "<!--[if lt IE 9]>";
@@ -308,6 +316,9 @@
 			'/plugins/toastr/toastr.min.css',
 			'/plugins/jquery-cookie/jquery.cookie.js' , 
 			'/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
 			'/plugins/select2/select2.min.js' , 
 			'/plugins/select2/select2.css',
 			'/plugins/moment/min/moment.min.js' ,
@@ -433,7 +444,7 @@
 		var organizerList = {};
 		var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
 
-		//console.warn("isMapEnd 1",isMapEnd);
+		//mylog.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
 			if(myContacts != null)
 			$.each(myContacts, function(type, list) {
@@ -466,9 +477,9 @@
 
 		    $("#mapCanvasBg").show();
 
-		    console.log("INIT scroll shadows!");
+		    mylog.log("INIT scroll shadows!");
 		    $(".my-main-container").bind("scroll", function(){
-		    	//console.log("scrolling my-container");
+		    	//mylog.log("scrolling my-container");
 		    	checkScroll();
 		    	shadowOnHeader()
 		    });
@@ -508,12 +519,12 @@
 			//onclick back btn popstate is launched
 			//
 		    $(window).bind("popstate", function(e) {
-		      //console.dir(e);
-		      console.log("history.state",$.isEmptyObject(history.state),location.hash);
-		      console.warn("popstate history.state",history.state);
+		      //mylog.dir(e);
+		      mylog.log("history.state",$.isEmptyObject(history.state),location.hash);
+		      mylog.warn("popstate history.state",history.state);
 		      if( lastUrl && "onhashchange" in window && location.hash  ){
 		        if( $.isEmptyObject( history.state ) && allReadyLoad == false ){
-			        //console.warn("poped state",location.hash);
+			        //mylog.warn("poped state",location.hash);
 			        //alert("popstate");
 			        loadByHash(location.hash,true);
 			    } 
@@ -524,31 +535,31 @@
 		    });
 
 
-			//console.log("start timeout MAIN MAP LOOOOOL");
+			//mylog.log("start timeout MAIN MAP LOOOOOL");
 			//$("#btn-toogle-map").hide();
 			
 
 
-		    //console.warn("hash", location.hash);
-		    //console.warn("isMapEnd 3",isMapEnd);
-		    //console.log("userConnected");
-			//console.dir(userConnected);
+		    //mylog.warn("hash", location.hash);
+		    //mylog.warn("isMapEnd 3",isMapEnd);
+		    //mylog.log("userConnected");
+			//mylog.dir(userConnected);
 			//si l'utilisateur doit passer par le two_step_register
 
 			if(userConnected != null && userConnected != "" && typeof userConnected != "undefined" && !location.hash){
-				//console.warn("hash 1", location.hash);
+				//mylog.warn("hash 1", location.hash);
 				loadByHash("#person.detail.id."+userId);
 				return;
 			} 
 			else{ //si l'utilisateur est déjà passé par le two_step_register
 		 		if(/*location.hash != "#default.live" &&*/ location.hash != "#" && location.hash != ""){
-		 			//console.warn("hash 2", location.hash);
+		 			//mylog.warn("hash 2", location.hash);
 					loadByHash(location.hash);
 					return;
 				}
 				else{ 
-					//console.log("userConnected", userConnected);
-					//console.warn("hash3", location.hash);
+					//mylog.log("userConnected", userConnected);
+					//mylog.warn("hash3", location.hash);
 					if(userConnected != null && userId != null  && userId != "" && typeof userId != "undefined")
 						loadByHash("#default.live");//news.index.type.citoyens.id."+userId);
 					else

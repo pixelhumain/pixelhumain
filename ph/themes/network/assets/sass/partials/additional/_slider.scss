@@ -1,0 +1,61 @@
+/* ---------------------------------------------------------------------- */
+/*  additional Slider
+/* ---------------------------------------------------------------------- */
+
+.slider {
+    &.slider-sm {
+        .slider.slider-horizontal {
+            .slider-track {
+                height: 3px !important;
+                margin-top: -3px;
+            }
+
+            .slider-handle {
+                margin-left: -6px;
+                margin-top: -5px !important;
+            }
+        }
+
+        .slider-selection {
+            background: #fff !important;
+        }
+
+        .slider-handle.round {
+            height: 12px;
+            width: 12px;
+            background: $yellow02;
+        }
+    }
+}
+
+.slider-sm-ico {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+
+    &:before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 3px;
+        top: 50%;
+        margin-top: -1px;
+        background: #fff !important;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        height: 12px;
+        width: 12px;
+        top: 50%;
+        margin-top: -6px;
+        left: 50%;
+        margin-left: -6px;
+        background: $yellow02;
+
+        border-radius: 100%;
+    }
+}

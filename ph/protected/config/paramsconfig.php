@@ -29,15 +29,9 @@ $mailConfigTest = array(
 	'dryRun' => false
 );
 
-/* trick to switch theme when param tpl is used in url (share iframe) */
-if(@$_GET["tpl"] == "iframesig"){ $theme = $_GET["tpl"]; }
-else { $theme = "ph-dori"; }
-/**/
-
 $params = array(
     //Beta Test ?
     'betaTest' => false,
-    'theme'=>$theme,
     //By default controller
     'defaultController' => 'communecter',
 
@@ -82,7 +76,6 @@ $params = array(
     'validInviteCodes' => array("communs59", "communs31", "polder", "detakbaro", "kisskiss"),
     //Number of invitation by default for a person (us only on beta test)
     'numberOfInvitByPerson' => 10,
-    'networkParams' => "tierslieuxlille",
     
     //URL of logos used by mail
     "logoUrl" => "/images/logo-communecter.png",
@@ -91,7 +84,7 @@ $params = array(
     //map box params
     'mapboxActive' => false, //to activate mabox Prod
     'forceMapboxActive' => false, //to force mabox localhost
-    'mapboxToken' => '',
+    'mapboxToken' => 'pk.eyJ1IjoiY29tbXVuZWN0ZXIiLCJhIjoiY2lreWRkNzNrMDA0dXc3bTA1MHkwbXdscCJ9.NbvsJ14y2bMWWdGqucR_EQ',
     /*"front" => array (
         "organization" => true,
         "project" => true,

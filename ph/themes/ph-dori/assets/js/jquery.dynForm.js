@@ -47,8 +47,8 @@ onSave: (optional) overloads the generic saveProcess
 			var settings = $.extend({}, defaults, options);
 			$this = this;
 
-			console.info("build Form dynamically into form tag : ",settings.formId);
-			console.dir(settings.formObj);
+			mylog.info("build Form dynamically into form tag : ",settings.formId);
+			mylog.dir(settings.formObj);
 
 			/* **************************************
 			* BUILD FORM based on formObj
@@ -112,7 +112,7 @@ onSave: (optional) overloads the generic saveProcess
 		},
 
 		/*buildForm: function() { 
-			console.dir($this.formObj);
+			mylog.dir($this.formObj);
 		},*/
 
 	});
@@ -148,7 +148,7 @@ onSave: (optional) overloads the generic saveProcess
         	value = formValues[field];
         }
         if(value!="")
-        	console.warn("--------------- dynform form Values",field,value);
+        	mylog.warn("--------------- dynform form Values",field,value);
 
         /* **************************************
 		* 
@@ -185,7 +185,7 @@ onSave: (optional) overloads the generic saveProcess
         else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
         	if ( fieldObj.inputType == "timestamp" )
         		value = Date.now();
-        	console.log("build field "+field+">>>>>> hidden, timestamp");
+        	mylog.log("build field "+field+">>>>>> hidden, timestamp");
         	fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
         }
         /* **************************************
@@ -194,7 +194,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){ 
         	if(fieldObj.inputType == "wysiwyg")
         		fieldClass += " wysiwygInput";
-        	console.log("build field "+field+">>>>>> textarea, wysiwyg");
+        	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
         	fieldHTML += '<textarea id="'+field+'" class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
         }
         /* **************************************
@@ -205,7 +205,7 @@ onSave: (optional) overloads the generic saveProcess
 	       	var checked = ( fieldObj.checked ) ? "checked" : "";
 	       	var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
 	       	var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.switch.onText+"' data-off-text='"+fieldObj.switch.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
-	       	console.log("build field "+field+">>>>>> checkbox");
+	       	mylog.log("build field "+field+">>>>>> checkbox");
 	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+' '+switchData+'/> '+placeholder;
 	       	initField = function(){
 	       		if( fieldObj.switch )
@@ -220,7 +220,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) 
         {
        		var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
-       		console.log("build field "+field+">>>>>> select selectMultiple");
+       		mylog.log("build field "+field+">>>>>> select selectMultiple");
        		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
        		fieldHTML += '<select class="'+isSelect2+' '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px;" data-placeholder="'+placeholder+'">';
 			if(placeholder)
@@ -241,7 +241,7 @@ onSave: (optional) overloads the generic saveProcess
         }
 
         /*else if ( fieldObj.inputType == "selectList"  ) {
-       		console.log("build field "+field+">>>>>> select selectList");
+       		mylog.log("build field "+field+">>>>>> select selectList");
 			fieldHTML += '<ul role="menu" class="dropdown-menu scrollable-menu '+fieldClass+'" id="'+field+'" style="width: 100%;height:30px" >'+
 	            '<li class="categoryOrgaEvent col-md-12">'+
 	                '<ul class="dropOrgaEvent" id="citoyen">'+	                    
@@ -265,7 +265,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "image" ) {
         	if(placeholder == "")
         		placeholder="add Image";
-        	console.log("build field "+field+">>>>>> image");
+        	mylog.log("build field "+field+">>>>>> image");
         	fieldHTML += '<form method="post" id="photoAddForm" enctype="multipart/form-data">'+
 							iconOpen+
 							'<input type="file" class="form-control newImage '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" accept=".gif, .jpg, .png" onchange="showMyImage2(this)"/>'+
@@ -282,7 +282,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "date" ) {
         	if(placeholder == "")
         		placeholder="25/01/2014";
-        	console.log("build field "+field+">>>>>> date");
+        	mylog.log("build field "+field+">>>>>> date");
         	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -292,7 +292,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "datetime" ) {
         	if(placeholder == "")
         		placeholder="25/01/2014 08:30";
-        	console.log("build field "+field+">>>>>> datetime");
+        	mylog.log("build field "+field+">>>>>> datetime");
         	fieldHTML += iconOpen+'<input type="text" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
         /* **************************************
@@ -301,7 +301,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "daterange" ) {
         	if(placeholder == "")
         		placeholder="25/01/2014";
-			console.log("build field "+field+">>>>>> daterange");
+			mylog.log("build field "+field+">>>>>> daterange");
         	fieldHTML += iconOpen+'<input type="text" class="form-control daterangeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -311,7 +311,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "time" ) {
         	if(placeholder == "")
         		placeholder="20:30";
-        	console.log("build field "+field+">>>>>> time");
+        	mylog.log("build field "+field+">>>>>> time");
         	fieldHTML += iconOpen+'<input type="text" class="form-control timeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -321,7 +321,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "link" ) {
         	if(fieldObj.url.indexOf("http://") < 0 )
         		fieldObj.url = "http://"+fieldObj.url;
-        	console.log("build field "+field+">>>>>> link");
+        	mylog.log("build field "+field+">>>>>> link");
         	fieldHTML += '<a class="btn btn-primary '+fieldClass+'" href="'+fieldObj.url+'">Go There</a>';
         } 
 
@@ -329,7 +329,7 @@ onSave: (optional) overloads the generic saveProcess
 		* LOCATION
 		***************************************** */
         else if ( fieldObj.inputType == "location" ) {
-        	console.log("build field "+field+">>>>>> location");
+        	mylog.log("build field "+field+">>>>>> location");
         	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" locationBtn btn btn-default'><i class='text-azure fa fa-map-marker fa-2x'></i> Localiser </a>";
         	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
@@ -343,7 +343,7 @@ onSave: (optional) overloads the generic saveProcess
 			if( formValues.addresses ){
 				initField = function(){
 					$.each(formValues.addresses, function(i,locationObj){
-						console.warn("init location",locationObj.address.addressLocality,locationObj.address.postalCode);
+						mylog.warn("init location",locationObj.address.addressLocality,locationObj.address.postalCode);
 						copyMapForm2Dynform(locationObj);
 						addLocationToForm(locationObj);
 					});
@@ -355,7 +355,7 @@ onSave: (optional) overloads the generic saveProcess
 		* ARRAY , is a list of sequential values
 		***************************************** */
         else if ( fieldObj.inputType == "array" ) {
-        	console.log("build field "+field+">>>>>> array list");
+        	mylog.log("build field "+field+">>>>>> array list");
         	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
 								'<div class="col-sm-10">'+
 									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
@@ -375,7 +375,7 @@ onSave: (optional) overloads the generic saveProcess
 				       '<div class="space5"></div>';
 			
 			if( formValues && formValues[field] ){
-				console.warn("dynForm >> ",field, formValues[field]);
+				mylog.warn("dynForm >> ",field, formValues[field]);
 				fieldObj.value = formValues[field];
 			}
 			
@@ -409,7 +409,7 @@ onSave: (optional) overloads the generic saveProcess
 		* PROPERTIES , is a list of pairs key/values
 		***************************************** */
         else if ( fieldObj.inputType == "properties" ) {
-        	console.log("build field "+field+">>>>>> properties list");
+        	mylog.log("build field "+field+">>>>>> properties list");
         	fieldHTML += '<div class="inputs properties">'+
 								'<div class="col-sm-3">'+
 									'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
@@ -444,7 +444,7 @@ onSave: (optional) overloads the generic saveProcess
 		* CAPTCHA
 		***************************************** */
         else if ( fieldObj.inputType == "recaptcha" ) {
-        	console.log("build field "+field+">>>>>> recaptcah");
+        	mylog.log("build field "+field+">>>>>> recaptcah");
         	fieldHTML += '<div class="g-recaptcha" data-sitekey="'+fieldObj.key+'"></div>';
         } 
         
@@ -453,7 +453,7 @@ onSave: (optional) overloads the generic saveProcess
 		* CUSTOM 
 		***************************************** */
         else if ( fieldObj.inputType == "custom" ) {
-        	console.log("build field "+field+">>>>>> custom");
+        	mylog.log("build field "+field+">>>>>> custom");
         	fieldHTML += fieldObj.html;
         } 
         /* 	*************************************
@@ -537,7 +537,7 @@ onSave: (optional) overloads the generic saveProcess
 														var profilThumbImageUrl = (typeof value.profilThumbImageUrl != "undefined" && value.profilThumbImageUrl != "") ? baseUrl + value.profilThumbImageUrl : assetPath + "/images/news/profile_default_l.png";
 														var name =  typeof value.name != "undefined" ? value.name : 
 																	typeof value.username != "undefined" ? value.username : "";
-														//console.log("data contact +++++++++++ "); console.dir(value);
+														//mylog.log("data contact +++++++++++ "); mylog.dir(value);
 														var thisKey = key+''+key2;
 														var thisValue = notEmpty(value["_id"]['$id']) ? value["_id"]['$id'] : "";
 														if(name != "")
@@ -575,7 +575,7 @@ onSave: (optional) overloads the generic saveProcess
         }
  
         else {
-        	console.log("build field "+field+">>>>>> input text");
+        	mylog.log("build field "+field+">>>>>> input text");
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
         if( fieldObj.custom )
@@ -604,8 +604,8 @@ onSave: (optional) overloads the generic saveProcess
 		/* **************************************
 		* FORM VALIDATION and save process binding
 		***************************************** */
-		console.info("connecting submit btn to $.validate pluggin");
-		console.dir(formRules);
+		mylog.info("connecting submit btn to $.validate pluggin");
+		mylog.dir(formRules);
 		var errorHandler = $('.errorHandler', $(params.formId));
 		$(params.formId).validate({
 
@@ -614,7 +614,7 @@ onSave: (optional) overloads the generic saveProcess
 			submitHandler : function(form) {
 				$("#btn-submit-form").html('<i class="fa  fa-spinner fa-spin fa-"></i>').prop("disabled",true);
 				errorHandler.hide();
-				console.info("form submitted "+params.formId);
+				mylog.info("form submitted "+params.formId);
 				
 				if(params.beforeSave && jQuery.isFunction( params.beforeSave ) )
 					params.beforeSave();
@@ -625,8 +625,8 @@ onSave: (optional) overloads the generic saveProcess
 		        } 
 		        else 
 		        {
-		        	console.info("default SaveProcess",params.savePath);
-		        	console.dir($(params.formId).serializeFormJSON());
+		        	mylog.info("default SaveProcess",params.savePath);
+		        	mylog.dir($(params.formId).serializeFormJSON());
 		        	$.ajax({
 		        	  type: "POST",
 		        	  url: params.savePath,
@@ -636,7 +636,7 @@ onSave: (optional) overloads the generic saveProcess
 		                
 		                if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
 		                    afterDynBuildSave(data.map,data.id);
-		                console.info('saved successfully !');
+		                mylog.info('saved successfully !');
 
 		        	});
 					return false;
@@ -651,7 +651,7 @@ onSave: (optional) overloads the generic saveProcess
 			}
 		});
 		
-		console.info("connecting any specific input event select2, datepicker...");
+		mylog.info("connecting any specific input event select2, datepicker...");
 		/* **************************************
 		* SELECTs , we use https://github.com/select2/select2
 		***************************************** */
@@ -675,7 +675,7 @@ onSave: (optional) overloads the generic saveProcess
 							}
 						);
 					else
-						console.error("select2 library is missing");
+						mylog.error("select2 library is missing");
 				 });
 			}
 		} 
@@ -687,7 +687,7 @@ onSave: (optional) overloads the generic saveProcess
 			{
 				$.each($(".select2TagsInput"),function () 
 				{
-					console.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
+					mylog.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
 					if(initValues[$(this).attr("id")]){
 						var selectOptions = {
 						  "tags": initValues[ $(this).attr("id") ]["tags"],
@@ -698,7 +698,7 @@ onSave: (optional) overloads the generic saveProcess
 					}
 				 });
 			} else
-				console.error("select2 library is missing");
+				mylog.error("select2 library is missing");
 		} 
 
 		/* **************************************
@@ -718,7 +718,7 @@ onSave: (optional) overloads the generic saveProcess
 		}
 
 		var initDate = function(){
-			console.log("init dateInput");
+			mylog.log("init dateInput");
 			jQuery.datetimepicker.setLocale('fr');
 			$(".dateInput").datetimepicker({ 
 		        autoclose: true,
@@ -736,7 +736,7 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
 	
 		var initDateTime = function(){
-			console.log("init dateTimeInput");
+			mylog.log("init dateTimeInput");
 			jQuery.datetimepicker.setLocale('fr');
 			$(".dateTimeInput").datetimepicker({
 				weekStart: 1,
@@ -773,7 +773,7 @@ onSave: (optional) overloads the generic saveProcess
 			        format: "dd/mm/yyyy"
 			    });
 		    else
-				console.error("datepicker library is missing");
+				mylog.error("datepicker library is missing");
 		}
 
 		/* **************************************
@@ -786,7 +786,7 @@ onSave: (optional) overloads the generic saveProcess
 						            timePickerIncrement: 30,
 						            format: 'DD/MM/YYYY h:mm A'
 						        }, function(start, end, label) {
-						            console.log(start.toISOString(), end.toISOString(), label);
+						            mylog.log(start.toISOString(), end.toISOString(), label);
 						        });
 							};
 			if( jQuery.isFunction(jQuery.fn.daterangepicker) )
@@ -875,7 +875,7 @@ onSave: (optional) overloads the generic saveProcess
 	***************************************** */
 	function addfield( parentContainer,val,name ) 
 	{
-		console.log("addfield",parentContainer+' .inputs',val);
+		mylog.log("addfield",parentContainer+' .inputs',val);
 		if(!$.isEmptyObject($(parentContainer+' .inputs')))
 	    {
 	    	if($(parentContainer+' .properties').length > 0)
@@ -885,7 +885,7 @@ onSave: (optional) overloads the generic saveProcess
 	    	$(parentContainer+' .addmultifield:last').focus();
 	        initMultiFields(parentContainer,name);
 	    }else 
-	    	console.error("container doesn't seem to exist : "+parentContainer+' .inputs');
+	    	mylog.error("container doesn't seem to exist : "+parentContainer+' .inputs');
 	}
 	
 	/* **************************************
@@ -895,7 +895,7 @@ onSave: (optional) overloads the generic saveProcess
 	* enter key submition
 	***************************************** */
 	function initMultiFields(parentContainer,name){
-		console.log("initMultiFields",parentContainer);
+		mylog.log("initMultiFields",parentContainer);
 	  //manage using Enter to make easy loop editing
 	  $(parentContainer+' .addmultifield').unbind('keydown').keydown(function(event) 
 	  {
@@ -948,7 +948,7 @@ onSave: (optional) overloads the generic saveProcess
 	***************************************** */
 	function propertyLineHTML(propVal,name)
 	{
-		console.log("propertyLineHTML",propVal);
+		mylog.log("propertyLineHTML",propVal);
 		if( typeof propVal == "undefined" ) 
 	    	propVal = {"label":"","value":""};
 		var str = '<div class="space5"></div><div class="col-sm-3">'+
@@ -966,7 +966,7 @@ onSave: (optional) overloads the generic saveProcess
 	***************************************** */
 	function arrayLineHTML(val,name)
 	{
-		console.log("arrayLineHTML : ",val);
+		mylog.log("arrayLineHTML : ",val);
 		if( typeof val == "undefined" ) 
 	    	val = "";
 	    var count = $(".addmultifield").length;
@@ -980,7 +980,7 @@ onSave: (optional) overloads the generic saveProcess
 		return str;
 	}
 	function buildMediaHTML(mediaObj){
-		console.log("buildMediaHTML : ",mediaObj.name);
+		mylog.log("buildMediaHTML : ",mediaObj.name);
 		var str = '<div class="extracted_url padding-10">'+
 				'<div class="extracted_thumb  col-xs-4" id="extracted_thumb">'+
 					'<a href="#" class="videoSignal text-white center"><i class="fa fa-3x fa-play-circle-o"></i>'+
@@ -1001,7 +1001,7 @@ onSave: (optional) overloads the generic saveProcess
 	function initbootstrapSwitch(el,change)
 	{
 		var initSwitch = function(){
-							console.log("init bootstrap switch");
+							mylog.log("init bootstrap switch");
 							$(el).bootstrapSwitch();
 							if(typeof change == "function"){
 								$(el).on('switchChange.bootstrapSwitch', function(event, state) {
@@ -1044,7 +1044,7 @@ $.fn.serializeFormJSON = function () {
 // here's our click function for when the forms submitted
 function getPairs(parentContainer)
 {
-	//console.log("getPairs",parentContainer);
+	//mylog.log("getPairs",parentContainer);
     var properties = {};
     $.each($(parentContainer+' .addmultifield'), function(i,el) {
     	if( $(this).val() != "" && $( this ).parent().next().children(".addmultifield1") != "" ){
@@ -1052,20 +1052,20 @@ function getPairs(parentContainer)
 	        										  "value" : $( this ).parent().next().children(".addmultifield1").val()};
 	    }
     });
-    //console.dir("getPairs",properties);
+    //mylog.dir("getPairs",properties);
     return properties;
 }
 
 function getArray(parentContainer)
 {
-	//console.log("getArray",parentContainer);
+	//mylog.log("getArray",parentContainer);
     var list = [];
     $.each($(parentContainer+' .addmultifield'), function(i,el) {
     	if( $(this).val() != ""  ){
 	        list.push( $(this).val() );
 	    }
     });
-    //console.dir("getArray",list);
+    //mylog.dir("getArray",list);
     return list;
 }
 
@@ -1207,9 +1207,9 @@ function showMyImage2(fileInput) {
 			processData: false,
 			dataType: "json",
 			success: function(data){
-				if(debug)console.log(data);
+				if(debug)mylog.log(data);
 		  		if(data.success){
-			  		console.log("success");
+			  		mylog.log("success");
 		  			imageName = data.name;
 					var doc = { 
 						"id":contextParentId,
@@ -1223,7 +1223,7 @@ function showMyImage2(fileInput) {
 						"doctype" : docType,
 						"contentKey" : contentKey
 					};
-					console.log(doc);
+					mylog.log(doc);
 					path = "/"+data.dir+data.name;
 					$.ajax({
 					  	type: "POST",

@@ -32,6 +32,7 @@ class OpenData
                                         "meeting" => "Réunion"
                                         ); //975
     public static $categ = array(
+                                array( "name" => "Divers", "tags" => array("divers") ),
                                 array( "name" => "Agriculture / Alimentation", "tags" => array("agriculture","alimentation") ),
                                 array( "name" =>  "Santé","tags" => array("santé") ),
                                 array( "name" =>  "Déchets","tags" => array("déchets") ),
@@ -41,7 +42,8 @@ class OpenData
                                 array( "name" =>  "Economie Social et Solidaire","tags" => array( "ess","economie social solidaire" ) ),
                                 array( "name" =>  "Energie-Climat","tags" => array("energie" ,"climat") ),
                                 array( "name" =>  "Culture / Animation ","tags" => array("culture" ,"animation") ),
-                                array( "name" =>  "Biodiversité ","tags" => array("biodiversité") ) 
+                                array( "name" =>  "Biodiversité ","tags" => array("biodiversité") ),
+                                array( "name" =>  "TIC, Numérique, Internet ","tags" => array("numérique","tic","internet") )  
                                 );
     /**
      * Classé par departement 

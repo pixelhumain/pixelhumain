@@ -195,7 +195,7 @@
 				<span class="lbl-btn-menu">Citoyens</span>
 			</a>
 			<?php if(isset(Yii::app()->session['userId'])){ ?>
-			<a href="javascript:openForm ( 'person' );" class="menu-button-left pull-right lbl-btn-menu">
+			<a href="#person.invite" class="lbh menu-button-left pull-right lbl-btn-menu">
 				<i class="fa text-red fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Inviter quelqu'un"></i> 
 			</a>
 			<?php } ?>
@@ -210,7 +210,7 @@
 					<span class="lbl-btn-menu">Propositions</span>
 				</a>
 				<?php if(isset(Yii::app()->session['userId'])){ ?>
-				<a href="javascript:openForm ( 'entry' );" class="menu-button-left pull-right lbl-btn-menu">
+				<a href="javascript:openForm ( 'entry' );" class="menu-button-left pull-right lbl-btn-menu showIfCommucted <?php if(!@Yii::app()->session['user'] || !@Yii::app()->session['user']['postalCode'] )echo "hidden"; ?>  ">
 					<i class="fa text-red fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Ajouter une proposition"></i> 
 				</a>
 				<?php } ?>
@@ -224,7 +224,7 @@
 					<span class="lbl-btn-menu">Actions</span>
 				</a>
 				<?php if(isset(Yii::app()->session['userId'])){ ?>
-				<a href="javascript:openForm ( 'action' );" class="menu-button-left pull-right lbl-btn-menu">
+				<a href="javascript:openForm ( 'action' );" class="menu-button-left pull-right lbl-btn-menu showIfCommucted <?php if(!@Yii::app()->session['user'] || !@Yii::app()->session['user']['postalCode'] )echo "hidden"; ?>">
 					<i class="fa text-red fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Ajouter une action"></i> 
 				</a>
 				<?php } ?>
@@ -316,6 +316,9 @@ jQuery(document).ready(function() {
 	<?php if($myCity == null){ ?>
 		$(".visible-communected").hide(400);
 		$(".hide-communected").show(400);
+	<?php }else{ ?>
+		$(".hide-communected").hide();
+		$(".visible-communected").show(400);
 	<?php } ?>
 
 	extendMenu(true);

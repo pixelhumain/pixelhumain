@@ -13,7 +13,7 @@ function checkLoggued(url)
 
 function ajaxPost(id,url,params,callback, datatype)
 {
-	console.log(id,url,params);
+	mylog.log(id,url,params);
   /*if(dataType == null)
     dataType = "json";*/
 	if(datatype != "html" )
@@ -24,18 +24,20 @@ function ajaxPost(id,url,params,callback, datatype)
 	    type:"POST",
 	  //  dataType: "json",
 	    success:function(data) {
-            if(datatype === "html" )
-    			$(id).html(data);
+          if(datatype == "none" )
+            console.log();
+          else if(datatype === "html" )
+    			  $(id).html(data);
     	  	else if(typeof data.msg === "string" )
     	    	toastr.success(data.msg);
-    	    else
-    	      	$("#"+id).html(JSON.stringify(data, null, 4));
+    	    else if( id != null )
+    	      $("#"+id).html(JSON.stringify(data, null, 4));
     	      		
-          	if( typeof callback === "function")
-              callback(data,id);
+          if( typeof callback === "function")
+            callback(data,id);
 	    },
 	    error:function (xhr, ajaxOptions, thrownError){
-	     console.error(thrownError);
+	     mylog.error(thrownError);
 	    } 
 	  });
 }
@@ -43,7 +45,7 @@ function ajaxPost(id,url,params,callback, datatype)
 function getAjax(id,url,callback,datatype,blockUI)
 {
   $.ajaxSetup({ cache: true});
-
+  mylog.log("getAjax",id,url,callback,datatype,blockUI)
     if(blockUI)
         $.blockUI({
             message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
@@ -61,11 +63,13 @@ function getAjax(id,url,callback,datatype,blockUI)
         cache: true,
         success:function(data) {
           if (data.error) {
-            console.warn(data.error);
+            mylog.warn(data.error);
             toastr.error(data.error.msg);
           } else if(datatype === "html" )
             $(id).html(data);
-          else if(typeof data === "string" )
+          else if(datatype === "norender" )
+            mylog.log("no render",url)
+          else if( typeof data === "string" )
             toastr.success(data);
           else
               $(id).html( JSON.stringify(data, null, 4) );
@@ -76,7 +80,7 @@ function getAjax(id,url,callback,datatype,blockUI)
             $.unblockUI();
         },
         error:function (xhr, ajaxOptions, thrownError){
-          //console.error(thrownError);
+          //mylog.error(thrownError);
           $.blockUI({
               message : '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> Oups !! 404 ERROR<br> La page que vous demandez ne peut être trouvée ... </div>'
               +'<a class="thumb-info" href="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" data-title="Il n\'existe pas d\'évolution sans erreur."  data-lightbox="all">'
@@ -101,7 +105,7 @@ function getModal(what, url,id)
 	$('#ajax-modal').modal("hide");
 	if(id)
 		url = url+id;
-	console.log("getModal",what,"url",url,"event",id);
+	mylog.log("getModal",what,"url",url,"event",id);
 	//var params = $(form).serialize();
 	//$("#ajax-modal-modal-body").html("<i class='fa fa-cog fa-spin fa-2x icon-big'></i> Loading");
 	$('body').modalmanager('loading'); 
@@ -128,19 +132,19 @@ function getModal(what, url,id)
           $("#ajax-modal-modal-body").html(desc+data); 
           $('#ajax-modal').modal("show");
         } else {
-           console.error("bug get "+what, url,id);
+           mylog.error("bug get "+what, url,id);
         }
     })
     .error(function(data){
-      console.log("error getModal");
-      console.dir(data);
+      mylog.log("error getModal");
+      mylog.dir(data);
     });
 }
 
 //js ex : "/themes/ph-dori/assets/plugins/summernote/dist/summernote.min.js"
 //css ex : "/themes/ph-dori/assets/plugins/summernote/dist/summernote.css"
 function lazyLoad (js,css, callback) { 
-    console.warn("lazyLoad",js);
+    mylog.warn("lazyLoad",js);
     if( !$('script[src="'+baseUrl+js+'"]').length )
     {
         if(css)
@@ -165,7 +169,7 @@ function lazyLoad (js,css, callback) {
 
 function toggle(id,siblingsId,activate)
 {
-	log("toggle",id,siblingsId);
+	mylog.log("toggle",id,siblingsId);
   $(siblingsId).addClass("hide");
   if(activate)
     $(siblingsId+"Btn").removeClass("active");
@@ -183,8 +187,8 @@ function scrollTo(id)
 {
 	if( $(id).length )
 	{
-		//console.log(".my-main-container initscrollTo ", id);
-    //console.log($(id).position().top);
+		//mylog.log(".my-main-container initscrollTo ", id);
+    //mylog.log($(id).position().top);
     
 	 	$(".my-main-container").animate({ scrollTop: $(id).position().top-50 }, 1200);
 	}
@@ -201,7 +205,7 @@ function Object2Array(obj)
 		delete v._id;
 		jsonAr.push(v);
 	});
-	console.dir(jsonAr);
+	mylog.dir(jsonAr);
 	return jsonAr;
 }
 
@@ -232,25 +236,25 @@ function inArray(needle, haystack) {
 
 /* ------------------------------- */
 
-function log(msg,type){
+/*function log(msg,type){
   if(debug){
      try {
       if(type){
         switch(type){
-          case 'info': console.info(msg); break;
-          case 'warn': console.warn(msg); break;
-          case 'debug': console.debug(msg); break;
-          case 'error': console.error(msg); break;
-          case 'dir': console.dir(msg); break;
-          default : console.log(msg);
+          case 'info': mylog.info(msg); break;
+          case 'warn': mylog.warn(msg); break;
+          case 'debug': mylog.debug(msg); break;
+          case 'error': mylog.error(msg); break;
+          case 'dir': mylog.dir(msg); break;
+          default : mylog.log(msg);
         }
       } else
-            console.log(msg);
+            mylog.log(msg);
     } catch (e) { 
        //alert(msg);
     }
   }
-}
+}*/
 
 /* --------------------------------------------------------------- */
 
@@ -259,7 +263,7 @@ function showAsColumn(resp,id)
 	//log(resp,"dir");
 	if($("#"+id).hasClass("columns"))
 	{
-		log("rebuild");
+		mylog.log("rebuild");
 		$("#"+id).columns('setMaster', Object2Array(resp) );
 		$("#"+id).columns('create');
 	} else {
@@ -317,52 +321,52 @@ var jsonHelper = {
   a : {x : {b : 2} },
   
   test : function(){
-    console.log("init",JSON.stringify(this.a));
+    mylog.log("init",JSON.stringify(this.a));
 
     this.getValueByPath( this.a,"x.b");
-    console.log("this.a set x.b => 1000");    
+    mylog.log("this.a set x.b => 1000");    
     this.setValueByPath( this.a,"x.b",1000);
     this.getValueByPath( this.a,"x.b")
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a.x set b => 2000");
+    mylog.log("this.a.x set b => 2000");
     this.setValueByPath( this.a.x,"b",2000);
     this.getValueByPath( this.a,"x.b");
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a.x set b => {m:1000}");
+    mylog.log("this.a.x set b => {m:1000}");
     this.setValueByPath( this.a.x,"b",{m:1000});
     this.getValueByPath( this.a,"x.b");
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a set x.b.a => 4000");
+    mylog.log("this.a set x.b.a => 4000");
     this.setValueByPath( this.a,"x.b.a",4000);
     this.getValueByPath( this.a,"x.b");
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a set x.b.a => {m:1000}");
+    mylog.log("this.a set x.b.a => {m:1000}");
     this.getValueByPath( this.a,"x.b.a");
     this.setValueByPath( this.a,"x.b.a",{m:1000});
     this.getValueByPath( this.a,"x.b.a");
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a set x.b.a.b.c.d => {xx:1000}");
+    mylog.log("this.a set x.b.a.b.c.d => {xx:1000}");
     this.getValueByPath( this.a,"x.b.a.b.c.d");
     this.setValueByPath( this.a,"x.b.a.b.c.d",{xx:1000,yy:25000});
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a reset x.b.a.b.c.d.yy => 100000");
+    mylog.log("this.a reset x.b.a.b.c.d.yy => 100000");
     this.getValueByPath( this.a,"x.b.a.b.c.d.yy");
     this.setValueByPath( this.a,"x.b.a.b.c.d.yy",100000);
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a delete x.b.a.b.c.d.yy");
+    mylog.log("this.a delete x.b.a.b.c.d.yy");
     this.deleteByPath( this.a,"x.b.a.b.c.d.yy");
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
 
-    console.log("this.a delete x.b.a.b.c.d.yy");
+    mylog.log("this.a delete x.b.a.b.c.d.yy");
     this.deleteByPath( this.a,"x.b.a.b.c.d.yy");
-    console.log(JSON.stringify(this.a));
+    mylog.log(JSON.stringify(this.a));
   },
   strTest:"\n>name:xxx"+
       "\n>desc:yyyyyyyyyy"+
@@ -373,15 +377,15 @@ var jsonHelper = {
       "\n>type:NGO"+
       "\n>admin:admin",
   testStringForm : function(){
-    console.log("strTest",this.strTest);
-    console.warn("------------string to json------------------");
+    mylog.log("strTest",this.strTest);
+    mylog.warn("------------string to json------------------");
     this.stringFormtoJson( this.strTest );
-    console.warn("------------building form ------------------");
+    mylog.warn("------------building form ------------------");
     this.stringFormtoJson( this.strTest, "testForm" );
-    console.warn("------------ form serialised ------------------");
-    console.log( $("#testForm").serialize() );
-    console.warn("------------ form serialised as JSON ------------------");
-    console.dir( $("#testForm").serializeFormJSON() );
+    mylog.warn("------------ form serialised ------------------");
+    mylog.log( $("#testForm").serialize() );
+    mylog.warn("------------ form serialised as JSON ------------------");
+    mylog.dir( $("#testForm").serializeFormJSON() );
   },
   /* 
     Convert a structured string to json object
@@ -389,7 +393,7 @@ var jsonHelper = {
     can be used as a HTML hidden Form builder as well
   */
   stringFormtoJson : function( str,buildForm ){
-    console.log("strTest",str);
+    mylog.log("strTest",str);
     separator = "\n>";
     fields = str.split(separator);
     res = {};
@@ -402,7 +406,7 @@ var jsonHelper = {
           $("#"+buildForm).html("");
     }
     $.each(fields,function(i,v) {
-      console.log(v);
+      mylog.log(v);
       keyVal = v.split(":");
       if(  typeof keyVal[1] != "undefined" && keyVal[1] != "" ){
         res[ keyVal[0] ] = keyVal[1];
@@ -410,7 +414,7 @@ var jsonHelper = {
           $("#"+buildForm).append("<input type='hidden' id='"+keyVal[0]+"' name='"+keyVal[0]+"' value='"+keyVal[1]+"'/>");
       }
     })
-    console.dir(res);
+    mylog.dir(res);
     return res;
   },
   /*
@@ -420,7 +424,7 @@ var jsonHelper = {
   getValueByPath : function(srcObj,path)
   {
     node = srcObj;
-    //console.log("path",path);
+    //mylog.log("path",path);
     if( !path )
       return node;
     else if( typeof path == "object" && path.value )
@@ -458,14 +462,14 @@ var jsonHelper = {
       lastKey = null;
       $.each(pathArray,function(i,v){
         if(!node[v]){
-          //console.log("building node",v);
+          //mylog.log("building node",v);
           node[v] = {};
         }
         nodeParent = node;
         node = node[v]; 
         lastKey = v;
       });
-      //console.log(node,nodeParent,lastKey);
+      //mylog.log(node,nodeParent,lastKey);
       nodeParent[lastKey] = value;
     }  
     else
@@ -508,12 +512,12 @@ var jsonHelper = {
   Object2GraphArray : function ( srcObj )
   {
     destArray = [];
-    //console.dir(srcObj);
+    //mylog.dir(srcObj);
     $.each(srcObj,function(k,v){
         if(v.value != 0)
             destArray.push(v);
     });
-    //console.dir(destArray);
+    //mylog.dir(destArray);
     return destArray;
   },
 
@@ -531,18 +535,18 @@ var jsonHelper = {
   "toJson" : [],
   
   "test" : function(){
-    console.log("test");  
+    mylog.log("test");  
     this.convert();
   },
   
   "convert" : function(){
-    console.log("convert");     
+    mylog.log("convert");     
     this.toJson = [];
     $.each(this.fromJson,function(i, fromObj){
 
       newLine = this.outputLine;
       /*$.each(this.rules,function(keyTo, convertTo){
-        console.log("convert rules ",fromObj,keyTo,convertTo);     
+        mylog.log("convert rules ",fromObj,keyTo,convertTo);     
           if(typeof convertTo == "function")
             newLine[ keyTo ] = convertTo( fromObj );
           else
@@ -579,7 +583,7 @@ function showDebugMap()
   if(debugMap && debugMap.length > 0)
   {
     $.each(debugMap, function (i,val) {
-          console.dir(val);
+          mylog.dir(val);
       });
     toastr.info("check Console for "+debugMap.length+" maps");
   }else

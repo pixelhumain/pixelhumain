@@ -88,6 +88,7 @@ return array(
 	"has created"=>"a créé",
 	"has deleted" => "a supprimé",
 	"confirms your invitation and create an account." => "a confirmé(e) votre invitation et créé(e) son compte",
+	"wrote a message on your wall" => "a écris un message dans votre journal",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
 	
@@ -182,6 +183,7 @@ return array(
 	"Local Business" => "Entreprise",
 	"Group" => "Groupe",
 	"Government Organization" => "Service Public",
+	"GovernmentOrganization" => "Service Public",
 	"the NGO" => "l'association",
 	"the localBusiness" => "l'entreprise",
 	"Local Business" => "Entreprise",
@@ -493,6 +495,13 @@ return array(
 	"Visible to all + on city's wall" => "visible de tous + mur de la ville",
 	"Visible to all on this wall and published on this network" => "Visible de tous sur ce mur et publié sur ce réseau",
 	"Visible to all and posted on cities' live" => "Visible de tous dans l'actu locale",
+	"Post a message in the wall of" => "Poster un message sur le journal de",
+	"publicly shared or to this community" => "partagé publiquement ou à la communauté",
+	"Write a private message to" => "Écrire un message privé à",
+	"Write a public message visible on the wall of selected places" => "Écrire un message public visible sur le mur des lieux sélectionnés",
+	"Write a idea, a message in the city wall of" => "Écrire une idée, un message sur le journal de la ville",
+	"Write a bug or an idea to improve the development of communecter" => "Écrire un bug ou une idée pour améliorer le développement de communecter",
+	"Published a message in your wall for your network" => "Publier un message sur votre mur, visible ou non par votre réseau",
 	"Search what" => "Quoi",
 	"Search where" => "Où", 
 
@@ -646,7 +655,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Remove This Locality" => "Effacer cette addresse",
 	"Add Locality" => "Ajouter une adresse",
 	"Show map" => "Voir la carte",
-
+	"Unknown Locality" => "Adresse non renseigné",
 	"Parenthood" => "Parenté",
 
 	"Show map" => "Afficher sur la carte",
@@ -664,6 +673,17 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Add a primary address" => "Ajouter une adresse principal",
 	"Add a secondary address" => "Ajouter une adresse secondaire",
 	"Can not update the element : you are not authorized to update that element !" => "Impossible de mettre à jour cet élément : vous n'êtes pas autorisé !",
+
+	"I am in favor of this proposal" => "Je suis favorable à cette proposition",
+	"I think that this proposal is not complete" => "Je pense que cette proposition n'est pas complète",
+	"I have not reviews" => "Je n'ai pas d'avis",
+	"I don't understand, it miss informations" => "Je n'ai pas compris, il manque des informations",
+	"I am not in favor of this proposal" => "Je suis contre cette proposition",
+
+	"Action room"=>"Espace d'action",
+	"Choose" => "Choisir",
+	"Next step" => "Etape suivante",
+	"Previous step" => "Etape précédente",
 );
 
 ?>

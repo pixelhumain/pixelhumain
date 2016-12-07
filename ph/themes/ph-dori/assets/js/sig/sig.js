@@ -90,5 +90,5 @@ var Sig = function() {
             if(chartType == "RadialMeterMarker")  		  	return new L.RadialMeterMarker(latlng, options);
         }
 	};
-	console.log("Sig");
+	mylog.log("Sig");
 }();
