@@ -320,6 +320,90 @@
     border-radius: 3px 3px 0px 0px;
   }
 
+
+
+/* affichage MIN for favorites*/
+.menuSmallBlockUI .imgHover {
+    position: absolute;
+    width: 98%;
+    margin: 0 1%;
+    top: 0px;
+    left: 0px;
+    max-height: 130px;
+    min-height: 130px;
+    overflow: hidden;
+    background-color: #302f2f;
+    border: 2px solid rgba(255, 255, 255, 0.1) !important;
+}
+.menuSmallBlockUI .searchEntityContainer:hover .imgHover {
+    border: 2px solid rgba(255, 255, 255, 0.4) !important;
+}
+.menuSmallBlockUI .contentMin {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    padding-left:3px;
+}
+.menuSmallBlockUI .contentMin .informations{
+    margin-top: 0px;
+}
+
+.menuSmallBlockUI .imgHover img{
+    opacity: 0;
+}
+.menuSmallBlockUI .searchEntity:hover .imgHover img{
+    opacity: 0.4;
+}
+
+.menuSmallBlockUI .searchEntityContainer{
+    min-height: 140px !important;
+    max-height: 140px !important;
+}
+
+.menuSmallBlockUI .searchEntity{
+  box-shadow: none!important;
+}
+
+.menuSmallBlockUI .searchEntity .entityName{
+  color:white !important;
+}
+
+.menuSmallBlockUI .btn-add-to-directory {
+    font-size: 12px !important;
+    height: 23px !important;
+    border-radius: 0px 0 0 5px !important;
+    color: #666 !important;
+    border: none !important;
+    margin-left: -1px !important;
+    padding: 3px 0px 3px !important;
+    width: 24px !important;
+    margin-top: 13px !important;
+    background-color: #212121 !important;
+    left: unset;
+    right: -1px !important;
+}
+
+.menuSmallBlockUI .searchEntity .entityRight .entityDescription{
+  display: none;
+}
+
+.menuSmallBlockUI .searchEntity .entityDate.dateFrom {
+    margin-top: 9px;
+    margin-left: -4px;
+    background-color: transparent !important;
+}
+.menuSmallBlockUI .searchEntity .entityDate.dateTo {
+    margin-top: 0px;
+    border-radius: 0px;
+    margin-left: -4px;
+    background-color: transparent !important;
+}
+
+/* affichage MIN for favorites*/
+
+
+
   @media screen and (max-width: 1024px) {
     #menu-directory-type .hidden-sm{
      display:none;

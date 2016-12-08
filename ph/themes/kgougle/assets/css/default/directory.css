@@ -331,7 +331,8 @@
 /* affichage MIN for favorites*/
 .menuSmallBlockUI .imgHover {
     position: absolute;
-    width: 100%;
+    width: 98%;
+    margin: 0 1%;
     top: 0px;
     left: 0px;
     max-height: 130px;
@@ -339,7 +340,7 @@
     overflow: hidden;
     background-color: white;
 }
-.menuSmallBlockUI.contentMin {
+.menuSmallBlockUI .contentMin {
     position: absolute;
     width: 100%;
     top: 0px;
@@ -359,6 +360,32 @@
 .menuSmallBlockUI .searchEntityContainer{
     min-height: 140px !important;
     max-height: 140px !important;
+}
+
+.menuSmallBlockUI .searchEntity{
+  box-shadow: none!important;
+}
+
+.menuSmallBlockUI .searchEntity .entityName{
+  color:white !important;
+}
+
+.menuSmallBlockUI .btn-add-to-directory {
+    font-size: 12px!important;
+    height: 23px!important;
+    border-radius: 0px 0 5px 0!important;
+    color: #666!important;
+    border: none!important;
+    margin-left: -1px!important;
+    float: left!important;
+    padding: 3px 0px 3px!important;
+    width: 24px!important;
+    margin-top: 11px!important;
+    background-color: #212121 !important;
+}
+
+.menuSmallBlockUI .searchEntity .entityRight .entityDescription{
+  display: none;
 }
 /* affichage MIN for favorites*/
 
