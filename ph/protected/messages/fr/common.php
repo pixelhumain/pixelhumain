@@ -259,6 +259,7 @@ return array(
 	"town of" => "commune de",
 	"Access to all common information of" => "Accèdez au information de toute la commune de",
 	"empty"=>"vide",
+	"organizer" => "organisateur",
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",

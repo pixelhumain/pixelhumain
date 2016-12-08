@@ -328,5 +328,13 @@ class DataValidator {
 			return "Invalid boolean";
 	}
 	
+	/**
+	 * Check the organizer
+	 * @param array $toValidate array with organizerId and organizerType
+	 * @return string empty if the organizer is valid, the error message else
+	 */
+	public static function validOrganizer($toValidate) {
+		return "";
+	}
 
 }
