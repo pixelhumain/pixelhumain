@@ -327,6 +327,42 @@
 
   }
 
+
+/* affichage MIN for favorites*/
+.menuSmallBlockUI .imgHover {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    max-height: 130px;
+    min-height: 130px;
+    overflow: hidden;
+    background-color: white;
+}
+.menuSmallBlockUI.contentMin {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+}
+.menuSmallBlockUI .contentMin .informations{
+    margin-top: 15px;
+}
+
+.menuSmallBlockUI .imgHover img{
+    opacity: 0;
+}
+.menuSmallBlockUI .searchEntity:hover .imgHover img{
+    opacity: 0.4;
+}
+
+.menuSmallBlockUI .searchEntityContainer{
+    min-height: 140px !important;
+    max-height: 140px !important;
+}
+/* affichage MIN for favorites*/
+
+
   @media screen and (max-width: 1024px) {
     #menu-directory-type .hidden-sm{
      display:none;
