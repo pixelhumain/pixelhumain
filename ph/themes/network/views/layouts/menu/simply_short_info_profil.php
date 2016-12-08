@@ -252,7 +252,7 @@
 							<span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
 						</button>
 						<?php } else { ?>
-							<a class="btn-top btn bg-red hidden-xs" href="/pixelhumain/ph/communecter/person/logout" style="margin-right:10px;" onclick="">
+							<a class="btn-top btn bg-red hidden-xs" href="/pixelhumain/ph/communecter/person/logout?network=<?php echo $params["name"] ?>" style="margin-right:10px;" onclick="">
 							<i class="fa fa-sign-out"></i> 
 							<span class="hidden-sm hidden-md hidden-xs">Déconnexion</span>
 						</a>
