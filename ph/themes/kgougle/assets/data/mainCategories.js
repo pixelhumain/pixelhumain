@@ -1,7 +1,7 @@
 var mainCategories = {
 		
 		"loisir" : { 
-			"color" : "blue",
+			"color" : "lightblue",
 			"items" : [ { name: "TV", 				faIcon: "television" }, 
 						{ name: "Radios", 				faIcon: "microphone" }, 
 						{ name: "Météo", 				faIcon: "sun-o" }, 
@@ -18,7 +18,7 @@ var mainCategories = {
 					  ]
 		},
 		"pratique" : {
-			"color" : "blue",
+			"color" : "lightblue",
 			"items" : [ { name: "Scolaire", 			faIcon: "graduation-cap" }, 
 						{ name: "Logement",  			faIcon: "building-o"}, 
 						{ name: "Véhicules",  			faIcon: "car"}, 
