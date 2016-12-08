@@ -76,6 +76,12 @@
 .margin-top-50{
 	margin-top:50px !important;
 }
+.padding-bottom-50{
+	padding-bottom:50px !important;
+}
+.padding-top-50{
+	padding-top:50px !important;
+}
 
 section h2 {
     margin: 0;

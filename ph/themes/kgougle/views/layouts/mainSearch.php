@@ -90,7 +90,10 @@
                 '/plugins/ladda-bootstrap/dist/ladda.min.css',
                 '/plugins/ladda-bootstrap/dist/ladda-themeless.min.css',
                 '/plugins/animate.css/animate.min.css',
-
+                '/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
+                '/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
+                '/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
+                
                 '/plugins/select2/select2.min.js' , 
                 '/plugins/moment/min/moment.min.js' ,
                 //'/js/cookie.js' ,
@@ -185,8 +188,8 @@
                 "citoyen":"yellow", 
                 "person":"yellow", 
                 "NGO":"green",
-                "LocalBusiness" :"green",
-                "Group" : "green",
+                "LocalBusiness" :"azure",
+                "Group" : "white",
                 "group" : "green",
                 "association" : "green",
                 "organization" : "green",

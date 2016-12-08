@@ -38,6 +38,23 @@
 
                             <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button>
 
+                        <?php }elseif($subdomain == "social"){ ?>
+                            <div class="input-group col-md-8 col-md-offset-2" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
+                                <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
+                                <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
+                            </div>
+
+                            <div class="col-md-12 hidden-top scopes">
+                                <button class="btn text-white bg-yellow btn-directory-type" data-type="persons"><i class="fa fa-user"></i> Citoyens</button>
+                                <button class="btn text-white bg-green  btn-directory-type" data-type="NGO"><i class="fa fa-group"></i> Associations</button>
+                                <button class="btn text-white bg-azure  btn-directory-type" data-type="LocalBusiness"><i class="fa fa-industry"></i> Entreprises</button>
+                                <button class="btn text-white bg-purple btn-directory-type" data-type="projects"><i class="fa fa-lightbulb-o"></i> Projets</button>
+                                <button class="btn text-black bg-white  btn-directory-type" data-type="Group"><i class="fa fa-group"></i> Groupes</button><br><br>
+                                <span>Rechercher parmis toutes les pages du réseau KGOUGLE</span>
+                            </div>
+
+                            <!-- <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button> -->
+
                         <?php }elseif($subdomain == "web"){ ?>
                             <div class="input-group col-md-8 col-md-offset-2" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">

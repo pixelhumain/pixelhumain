@@ -198,17 +198,29 @@ section.success {
     padding-top: 75px;
   }
 }
+<<<<<<< 02a365dc73fa806de206b9f6d553f12ee2d08f23
+#portfolio .portfolio-item {
+  margin: 0 0 15px;
+  right: 0;
+}
+#portfolio .portfolio-item .portfolio-link {
+=======
 .portfolio .portfolio-item {
   /*margin: 0 0 15px;*/
   right: 0;
 }
 .portfolio .portfolio-item .portfolio-link {
+>>>>>>> kgougle to dev
   display: block;
   position: relative;
   max-width: 400px;
   margin: 0 auto;
 }
+<<<<<<< 02a365dc73fa806de206b9f6d553f12ee2d08f23
+#portfolio .portfolio-item .portfolio-link .caption {
+=======
 .portfolio .portfolio-item .portfolio-link .caption {
+>>>>>>> kgougle to dev
   background: rgba(24, 188, 156, 0.9);
   position: absolute;
   width: 100%;
@@ -218,10 +230,17 @@ section.success {
   -webkit-transition: all ease 0.5s;
   -moz-transition: all ease 0.5s;
 }
+<<<<<<< 02a365dc73fa806de206b9f6d553f12ee2d08f23
+#portfolio .portfolio-item .portfolio-link .caption:hover {
+  opacity: 1;
+}
+#portfolio .portfolio-item .portfolio-link .caption .caption-content {
+=======
 .portfolio .portfolio-item .portfolio-link .caption:hover {
   opacity: 1;
 }
 .portfolio .portfolio-item .portfolio-link .caption .caption-content {
+>>>>>>> kgougle to dev
   position: absolute;
   width: 100%;
   height: 20px;
@@ -231,6 +250,21 @@ section.success {
   margin-top: -12px;
   color: white;
 }
+<<<<<<< 02a365dc73fa806de206b9f6d553f12ee2d08f23
+#portfolio .portfolio-item .portfolio-link .caption .caption-content i {
+  margin-top: -12px;
+}
+#portfolio .portfolio-item .portfolio-link .caption .caption-content h3,
+#portfolio .portfolio-item .portfolio-link .caption .caption-content h4 {
+  margin: 0;
+}
+#portfolio * {
+  z-index: 2;
+}
+@media (min-width: 767px) {
+  #portfolio .portfolio-item {
+    margin: 0 0 30px;
+=======
 .portfolio .portfolio-item .portfolio-link .caption .caption-content i {
   margin-top: -12px;
 }
@@ -244,6 +278,7 @@ section.success {
 @media (min-width: 767px) {
   .portfolio .portfolio-item {
     /*margin: 0 0 30px;*/
+>>>>>>> kgougle to dev
   }
 }
 .floating-label-form-group {

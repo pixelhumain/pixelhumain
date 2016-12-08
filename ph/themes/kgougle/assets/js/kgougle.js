@@ -6,7 +6,7 @@ var loadableUrls = {
 	"#k.referencement" 	: {title:"", icon : "plus"},
 	"#k.agenda" 		: {title:"", icon : ""},
 	"#k.page.type"		: {title:"", icon : ""},
-	"#k.social.type"	: {title:"", icon : ""},
+	"#k.social"			: {title:"", icon : ""},
 	"#element.detail"	: {title:"", icon : ""},
 	//"": {title:'INVITE SOMEONE', icon : "share-search"},
 }
@@ -69,8 +69,8 @@ function showAjaxPanel (url,title,icon, mapEnd) {
 			/*if(!userId && userIdBefore != userId )
 				window.location.reload();*/
 
-			initNotifications(); 
-			
+			//initNotifications(); 
+			$(".modal-backdrop").hide();
 			bindExplainLinks();
 			bindTags();
 			bindLBHLinks();

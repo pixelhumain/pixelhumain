@@ -141,6 +141,14 @@
   font-size: 18px;
   padding: 14px 12px;
 }
+.searchEntity .entityCenter i.fa.fa-circle-o{
+  font-size: 18px;
+  padding: 14px 12px;
+}
+.searchEntity .entityCenter i.fa.fa-industry{
+  font-size: 18px;
+  padding: 14px 12px;
+}
 .searchEntity .entityCenter i.fa.fa-video-camera {
     font-size: 21px;
     padding: 12px 14px;

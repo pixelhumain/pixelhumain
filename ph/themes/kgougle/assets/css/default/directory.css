@@ -33,7 +33,8 @@
   }
   .btn-tag{
     font-weight:300;
-    padding-left: 0px;
+    padding: 2px 7px 4px;
+    background: #f3f3f3;
   }
   .btn-tag.bold{
     font-weight:600;
@@ -138,6 +139,14 @@
   padding: 14px 12px;
 }
 .searchEntity .entityCenter i.fa.fa-info-circle{
+  font-size: 18px;
+  padding: 14px 12px;
+}
+.searchEntity .entityCenter i.fa.fa-circle-o{
+  font-size: 18px;
+  padding: 14px 12px;
+}
+.searchEntity .entityCenter i.fa.fa-industry{
   font-size: 18px;
   padding: 14px 12px;
 }
@@ -310,6 +319,12 @@
   .container-img-profil img.img-responsive{
     float: left;
     border-radius: 3px 3px 0px 0px;
+  }
+
+  .lbl-info-search,
+  .headerDirectory #bar-tools-search{
+    display:none;
+
   }
 
   @media screen and (max-width: 1024px) {

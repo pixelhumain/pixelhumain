@@ -17,6 +17,17 @@ class DataValidator {
 		return $res;
 	}
 
+	public static function notexist($toValidate, $objectId=null) {
+		$res = "";
+		$query = array("url"=>@$toValidate);
+        $siteurl = PHDB::findOne("url", $query);
+
+        if(isset($siteurl["_id"]))
+        	$res = "This url already exists";
+
+		return $res;
+	}
+
 	public static function email($toValidate, $objectId=null) {
 		$res = "";
 		if (! preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$toValidate) && !empty($toValidate)) { 
