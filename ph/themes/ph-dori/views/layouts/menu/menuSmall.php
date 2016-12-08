@@ -80,6 +80,12 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			    </a>
 		    </div>
 		    <div class="col-xs-12 center no-padding hidden-xs">
+			    <a class="btn bg-dark padding-5" href="javascript:openSmallMenuAjax(baseUrl+'/'+moduleId+'/favorites/list','Mes Favoris')">
+			        <i class="fa fa-star text-yellow" style="font-size: 1em!important;"></i> 
+			        Mes favoris
+			    </a>
+		    </div>
+		    <div class="col-xs-12 center no-padding hidden-xs">
 			    <a class="btn bg-dark lbh padding-5" 
 			    	href="#rooms.index.type.citoyens.id.<?php echo Yii::app()->session['userId']?>">
 			        <i class="fa fa-comments" style="font-size: 1em!important;"></i> 
