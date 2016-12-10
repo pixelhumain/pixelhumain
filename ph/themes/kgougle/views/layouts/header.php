@@ -36,7 +36,9 @@
                                 <button class="btn text-white bg-red btn-scope"><i class="fa fa-plus"></i></button>
                             </div>
 
-                            <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button>
+                            <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults">
+                                <i class="fa fa-search"></i> Lancer la recherche
+                            </button>
 
                         <?php }elseif($subdomain == "social"){ ?>
                             <div class="input-group col-md-8 col-md-offset-2" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
@@ -49,7 +51,8 @@
                                 <button class="btn text-white bg-green  btn-directory-type" data-type="NGO"><i class="fa fa-group"></i> Associations</button>
                                 <button class="btn text-white bg-azure  btn-directory-type" data-type="LocalBusiness"><i class="fa fa-industry"></i> Entreprises</button>
                                 <button class="btn text-white bg-purple btn-directory-type" data-type="projects"><i class="fa fa-lightbulb-o"></i> Projets</button>
-                                <button class="btn text-black bg-white  btn-directory-type" data-type="Group"><i class="fa fa-group"></i> Groupes</button><br><br>
+                                <button class="btn text-white bg-red  btn-directory-type" data-type="cities"><i class="fa fa-university"></i> Communes</button>
+                                <button class="btn text-black bg-white  btn-directory-type" data-type="Group"><i class="fa fa-circle-o"></i> Groupes</button><br><br>
                                 <span>Rechercher parmis toutes les pages du réseau KGOUGLE</span>
                             </div>
 

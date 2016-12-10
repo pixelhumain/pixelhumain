@@ -202,7 +202,7 @@ function showNotif(show){
 	else 	 $('#notificationPanelSearch').hide("fast");
 }
 
-function KScrollTo(target){ mylog.log("target", target);
+function KScrollTo(target){ mylog.log("target", target, $(target).offset().top);
 	$('html, body').stop().animate({
         scrollTop: $(target).offset().top - 70
     }, 800, '');

@@ -64,20 +64,29 @@ src: url('../vendor/fonts/Homestead/Homestead-Display.ttf');
     bottom: 0%;
     height: 45px;
 }
-
-header {
+.footer-below{
+	background-color: #233140;
+}
+header, .header {
   text-align: center;
   background: #C8EBF5;
   color: #365766;
 }
 
 header .intro-text .name , 
+.header .intro-text .name , 
 .portfolio-modal.modal .name{
     font-size: 7em;
 	letter-spacing: 0px;
 }
 
-header .container {
+header img,
+.header img {
+    display: block;
+    margin: 0 auto 20px;
+}
+header .container ,
+.header .container {
     padding-top: 115px;
 	padding-bottom: 70px;
 }
@@ -679,6 +688,7 @@ h3.title_panel_map{
 		display: none;
 	}
 	header .intro-text .name, 
+	.header .intro-text .name, 
 	.portfolio-modal.modal .name {
 	    font-size: 4em;
 		letter-spacing: 0px;
@@ -686,6 +696,7 @@ h3.title_panel_map{
 		margin-bottom: 30px;
 	}
 	header .intro-text .name .letter, 
+	.header .intro-text .name .letter, 
 	.portfolio-modal.modal .name .letter{
 		margin-right: -20px!important;
 	}

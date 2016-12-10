@@ -63,6 +63,28 @@
 }
 
 
+.margin-left-5{
+	margin-left:5px!important;
+}
+.margin-left-10{
+	margin-left:10px!important;
+}
+.margin-left-15{
+	margin-left:15px!important;
+}
+
+
+.margin-right-5{
+	margin-right:5px!important;
+}
+.margin-right-10{
+	margin-right:10px!important;
+}
+.margin-right-15{
+	margin-right:15px!important;
+}
+
+
 
 .no-padding{
 	padding:0px !important;
@@ -83,6 +105,32 @@
 	padding-top:50px !important;
 }
 
+.margin-bottom-70{
+	margin-bottom:70px !important;
+}
+.margin-top-70{
+	margin-top:70px !important;
+}
+.padding-bottom-70{
+	padding-bottom:70px !important;
+}
+.padding-top-70{
+	padding-top:70px !important;
+}
+
+.margin-bottom-100{
+	margin-bottom:100px !important;
+}
+.margin-top-100{
+	margin-top:100px !important;
+}
+.padding-bottom-100{
+	padding-bottom:100px !important;
+}
+.padding-top-100{
+	padding-top:100px !important;
+}
+
 section h2 {
     margin: 0;
     font-size: 2em;
@@ -91,3 +139,50 @@ section h2 {
 .block{ display: block; }
 .inline{ display: inline; }
 .inline-block{ display: inline-block; }
+
+.shadow-big{
+ 	-webkit-box-shadow: 0px 3px 26px 5px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0px 3px 26px 5px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 3px 26px 5px rgba(0, 0, 0, 0.2);
+}
+
+.shadow{
+ 	-webkit-box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
+    -moz-box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
+    box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
+}
+
+.shadow-left{
+ 	-webkit-box-shadow: -7px 0px 5px -4px rgba(0,0,0,0.3);
+    -moz-box-shadow: -7px 0px 5px -4px rgba(0,0,0,0.3);
+    box-shadow: -7px 0px 5px -4px rgba(0,0,0,0.3);
+}
+
+.arrow_box {
+	position: relative;
+	background: #ffffff;
+	border: 1px solid transparent;
+}
+.arrow_box:after, .arrow_box:before {
+	bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #ffffff;
+	border-width: 10px;
+	margin-left: -10px;
+}
+.arrow_box:before {
+	border-color: rgba(179, 179, 179, 0);
+	border-bottom-color: #b3b3b3;
+	border-width: 11px;
+	margin-left: -11px;
+}
