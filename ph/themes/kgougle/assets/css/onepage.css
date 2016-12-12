@@ -89,6 +89,9 @@
 	overflow: hidden;
 	font-size: 15px;
 }
+#onepage #description .item-desc.fullheight{
+	max-height:unset;
+}
 #onepage #description .text-description p{
 	font-size: 15px;
 }
@@ -296,3 +299,11 @@
 .colorpicker{
 	z-index:10;
 }
+
+.fadeout {
+    position: relative;
+	bottom: 100px;
+	height: 100px;
+	background: -webkit-linear-gradient( rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100% );
+	margin-bottom: -100px;
+} 

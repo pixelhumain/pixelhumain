@@ -20,6 +20,7 @@
     .btn-radioplay{
         background-color: transparent;
         border:none;
+        margin-bottom:4px;
     }
     .btn-radioplay img{
         border:4px solid white;
@@ -47,15 +48,19 @@
         top: 5px;
     }
 
+
 @media (max-width: 1000px) {
   .btn-radioplay img{
-    height: 50px;
+    height: 35px;
   }
   #cntr-radio{
-    background-color: #f8f8f8;
+    /*background-color: #f8f8f8;*/
     margin-top:-20px;
   }
 
+  #cntr-radio h4{
+    font-size: 8px;
+  }
 
 }
 
@@ -91,8 +96,7 @@
             <h4 style="margin-top:-10px;">lE POSTE DE RADIO</h4>
             <button class="btn btn-default margin-bottom-5 btn-radio-play hidden"><i class="fa fa-play"></i></button>
             <button class="btn btn-default margin-bottom-5 btn-radio-pause hidden"><i class="fa fa-pause"></i></button>
-            <h4 class="radio-name letter-green" aria-label="title"></h4>
-
+            
             <div class="hidden" id="radioplayer">
                 <div id="jquery_jplayer_1" class="jp-jplayer hidden"></div>
                 <div id="jp_container_1" class="jp-audio-stream" role="application" aria-label="media player">
@@ -137,6 +141,12 @@
                 <img class="img-circle" src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/rireetchanson.jpeg">
             </button>
         </div>
+
+
+        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+            <h4 class="radio-name letter-green" aria-label="title"></h4>
+        </div>
+
     </div>
 
 
@@ -147,78 +157,6 @@ jQuery(document).ready(function() {
     initRadioplayer();
 });
 
-var stream = {
-    title: "Radio Djiido",
-    mp3: "http://radiodjiido.nc:8002/;stream.mp3?_=1"
-},
-ready = false;
-
-function initRadioplayer(){
-
-    $(".btn-radioplay").click(function(){
-        //var src = $(this).data("src");
-        stream.mp3 = $(this).data("src");
-        stream.title = $(this).data("src-title");
-
-        if(ready)
-        $("#jquery_jplayer_1").jPlayer("clearMedia");
-        
-        initRadio(stream);
-
-        $("#jquery_jplayer_1").jPlayer("play");
-        $(".radio-name").html("<span class='text-dark'>vous écoutez</span><br>" + stream.title);
-
-        $(".btn-radioplay").removeClass("selected");
-        $(this).addClass("selected");
-
-        $(".btn-radio-play, .btn-radio-pause").removeClass("hidden");
-        $(".btn-radio-play").hide();
-        $(".btn-radio-pause").show();
-    });
-
-    $(".btn-radio-play").click(function(){
-        $("#jquery_jplayer_1").jPlayer("play");
-        $(".btn-radio-play").hide();
-        $(".btn-radio-pause").show();
-        $(".fa-micro").removeClass("fa-microphone-slash").addClass("fa-microphone");
-    });
-    $(".btn-radio-pause").click(function(){
-        $("#jquery_jplayer_1").jPlayer("pause");
-        $(".btn-radio-pause").hide();
-        $(".btn-radio-play").show();
-        $(".fa-micro").removeClass("fa-microphone").addClass("fa-microphone-slash");
-    });
-
-}
-
-function initRadio(stream){
-    $("#jquery_jplayer_1").jPlayer({
-        ready: function (event) {
-            ready = true;
-            $(this).jPlayer("setMedia", stream);
-            $("#jquery_jplayer_1").jPlayer("play");
-            $(".jp-title").html(stream.title);
-        },
-        pause: function() {
-            $(this).jPlayer("clearMedia");
-        },
-        error: function(event) {
-            if(ready && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
-                // Setup the media stream again and play it.
-                $(this).jPlayer("setMedia", stream).jPlayer("play");
-            }
-        },
-        swfPath: "../../dist/jplayer",
-        supplied: "mp3",
-        preload: "none",
-        wmode: "window",
-        useStateClassSkin: true,
-        autoBlur: false,
-        keyEnabled: true,
-        backgroundColor:"#FFFFF"
-    });
-
-}
 </script>
 
 

@@ -262,6 +262,7 @@
 		if(isset(Yii::app()->session['userId'])) 
 			$this->renderPartial($layoutPath.'notifications2');
 		
+
 		/* *****************************************
 		Active Content from the controller
 		******************************************* */
@@ -283,6 +284,8 @@
         </div>
 
 		<?php
+
+		
 		echo "<!-- start: MAIN JAVASCRIPTS -->";
 		echo "<!--[if lt IE 9]>";
 		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/respond.min.js' , CClientScript::POS_HEAD);
@@ -292,6 +295,9 @@
 		echo "<!--[if gte IE 9]><!-->";
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
 		echo "<!--<![endif]-->";
+
+		//$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true)."/plugins/toastr/toastr.js" , CClientScript::POS_END);
+
 
 		//plugins shared by all themes
 		$cssAnsScriptFilesModule = array(
@@ -446,6 +452,21 @@
 
 		//mylog.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
+			//alert("lol");
+			// toastr.options = {
+			// 	  "closeButton": false,
+			// 	  "positionClass": "toast-bottom-right",
+			// 	  "onclick": null,
+			// 	  "showDuration": "1000",
+			// 	  "hideDuration": "1000",
+			// 	  "timeOut": "5000",
+			// 	  "extendedTimeOut": "1000",
+			// 	  "showEasing": "swing",
+			// 	  "hideEasing": "linear",
+			// 	  "showMethod": "fadeIn",
+			// 	  "hideMethod": "fadeOut"
+			// 	};
+
 			if(myContacts != null)
 			$.each(myContacts, function(type, list) {
 				$.each(list, function(i, obj) {

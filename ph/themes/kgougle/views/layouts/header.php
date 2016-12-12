@@ -6,6 +6,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-text">    
+                        <div class="col-md-12 text-center" style="margin-bottom:30px;">
+                            <a class="lbh font-blackoutT text-red margin-right-15" href="#k.web">WEB</a> 
+                            <a class="lbh font-blackoutT text-red margin-right-15" href="#k.live">ACTU</a> 
+                            <a class="lbh font-blackoutT text-red margin-right-15" href="#k.social">SOCIAL</a> 
+                            <a class="lbh font-blackoutT text-red margin-right-15" href="#k.web">FREEDOM</a> 
+                            <a class="lbh font-blackoutT text-red margin-right-15" href="#k.web">AGENDA</a> 
+                            <a class="lbh font-blackoutT text-red margin-right-15" href="#k.web">POWER</a> 
+                        </div>
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logocagou-<?php echo $subdomain; ?>.png" class="nc_map"><br>
                         <span class="name font-blackoutM">
                             <span class="letter letter-blue font-ZILAP letter-k">K</span>
@@ -47,12 +55,30 @@
                             </div>
 
                             <div class="col-md-12 hidden-top scopes">
-                                <button class="btn text-white bg-yellow btn-directory-type" data-type="persons"><i class="fa fa-user"></i> Citoyens</button>
-                                <button class="btn text-white bg-green  btn-directory-type" data-type="NGO"><i class="fa fa-group"></i> Associations</button>
-                                <button class="btn text-white bg-azure  btn-directory-type" data-type="LocalBusiness"><i class="fa fa-industry"></i> Entreprises</button>
-                                <button class="btn text-white bg-purple btn-directory-type" data-type="projects"><i class="fa fa-lightbulb-o"></i> Projets</button>
-                                <button class="btn text-white bg-red  btn-directory-type" data-type="cities"><i class="fa fa-university"></i> Communes</button>
-                                <button class="btn text-black bg-white  btn-directory-type" data-type="Group"><i class="fa fa-circle-o"></i> Groupes</button><br><br>
+                                <button class="btn text-white bg-yellow btn-directory-type" data-type="persons">
+                                    <i class="fa fa-user"></i> 
+                                    <span class="hidden-xs">Citoyens</span>
+                                </button>
+                                <button class="btn text-white bg-green  btn-directory-type" data-type="NGO">
+                                    <i class="fa fa-group"></i> 
+                                    <span class="hidden-xs">Associations</span>
+                                </button>
+                                <button class="btn text-white bg-azure  btn-directory-type" data-type="LocalBusiness">
+                                    <i class="fa fa-industry"></i> 
+                                    <span class="hidden-xs">Entreprises</span>
+                                </button>
+                                <button class="btn text-white bg-purple btn-directory-type" data-type="projects">
+                                    <i class="fa fa-lightbulb-o"></i> 
+                                    <span class="hidden-xs">Projets</span>
+                                </button>
+                                <button class="btn text-white bg-red  btn-directory-type" data-type="cities">
+                                    <i class="fa fa-university"></i> 
+                                    <span class="hidden-xs">Communes</span>
+                                </button>
+                                <button class="btn text-black bg-white  btn-directory-type" data-type="Group">
+                                    <i class="fa fa-circle-o"></i> 
+                                    <span class="hidden-xs">Groupes</span>
+                                </button><br><br>
                                 <span>Rechercher parmis toutes les pages du réseau KGOUGLE</span>
                             </div>
 
@@ -66,7 +92,7 @@
 
                             <div class="col-md-12">
                                 <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button>
-                                <a href="#k.referencement" class="lbh btn btn-default" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer mon site</a>
+                                <a href="#k.referencement" class="lbh btn btn-default hidden-xs" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer mon site</a>
                             </div>
                         <?php }elseif($subdomain == "referencement"){ ?>
                             <p><br><small>

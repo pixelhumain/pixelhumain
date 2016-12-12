@@ -79,7 +79,6 @@
                 '/plugins/jquery-validation/localization/messages_fr.js',
                 '/plugins/bootbox/bootbox.min.js' , 
                 '/plugins/blockUI/jquery.blockUI.js' , 
-                '/plugins/jquery.dynForm.js',
                 '/plugins/jquery.ajax-cross-origin.min.js',
                 '/plugins/toastr/toastr.js' , 
                 '/plugins/toastr/toastr.min.css',
@@ -120,6 +119,11 @@
                 '/assets/css/kgougle-color.css',
                 '/assets/css/kgougle-boot.css',
                 '/assets/css/sig/sig.css',
+
+                '/assets/vendor/jPlayer-2.9.2/dist/skin/blue.monday/css/jplayer.blue.monday.min.css',
+                '/assets/vendor/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js',
+                '/assets/js/radioplayer.js' ,
+                                                  
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
         ?>

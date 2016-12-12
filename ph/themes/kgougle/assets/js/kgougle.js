@@ -7,6 +7,7 @@ var loadableUrls = {
 	"#k.agenda" 		: {title:"", icon : ""},
 	"#k.page.type"		: {title:"", icon : ""},
 	"#k.social"			: {title:"", icon : ""},
+	"#k.freedom"		: {title:"", icon : ""},
 	"#element.detail"	: {title:"", icon : ""},
 	//"": {title:'INVITE SOMEONE', icon : "share-search"},
 }

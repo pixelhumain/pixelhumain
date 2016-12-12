@@ -74,10 +74,13 @@ header, .header {
 }
 
 header .intro-text .name , 
-.header .intro-text .name , 
-.portfolio-modal.modal .name{
+.header .intro-text .name {
     font-size: 7em;
 	letter-spacing: 0px;
+}
+.portfolio-modal.modal .name{
+    font-size: 5em;
+	letter-spacing: 5px;
 }
 
 header img,
@@ -87,7 +90,7 @@ header img,
 }
 header .container ,
 .header .container {
-    padding-top: 115px;
+    padding-top: 80px;
 	padding-bottom: 70px;
 }
 
@@ -107,7 +110,7 @@ section {
 }
 
 .navbar-custom {
-    background: rgba(255, 255, 255, 0.2);
+    background: #F4FDFF;/*rgba(255, 255, 255, 0.2)*/;
     padding: 5px 0;
 	-webkit-box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
     -moz-box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
@@ -227,7 +230,7 @@ input#second-search-bar{
 .navbar-header .nc_map{
 	/*display: none;*/
 	float: left;
-	margin: 10px 15px 0 0;
+	margin: 10px 5px 0 0;
 }
 .navbar-custom.affix .navbar-header .nc_map_min{
 	display: inline;
@@ -451,6 +454,54 @@ a, a:hover, a:focus, a:active, a.active{
 	margin-left: 3px;
 }
 
+/*
+#btn-main-menu{
+	position: fixed;
+	top:85px;
+	left:20px;
+	border-radius: 1px;
+	letter-spacing: 2px;
+}*/
+
+.dropdown .dropdown-main-menu{
+	display:none;
+}
+.dropdown.open .dropdown-main-menu{
+	display:block;
+}
+
+.dropdown-main-menu{
+	position: fixed;
+	top:60px;
+	right:15px;
+	max-height:400px;
+	/*width:200px;*/
+	background-color:transparent;
+	z-index:5;
+}
+
+.dropdown-main-menu .dropdown-menu{
+	margin:0px;
+	border:none;
+	display: inline;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3) ;
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3) ;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-main-menu .dropdown-menu li a {
+	text-transform: uppercase;
+}
+
+.dropdown-main-menu .arrow_box:after, .dropdown-main-menu .arrow_box:before {
+	right: 80px;
+	left: unset;
+}
+
+.portfolio-modal .modal-content h2 {
+    font-size: 2em;
+}
+
 #main-btn-start-search, 
 #main-btn-referencement{
 	font-size: 14px;
@@ -636,7 +687,7 @@ h3.title_panel_map{
 	font-weight: 300;
     letter-spacing: 0px;
     margin-top:2px!important;
-    margin-right:10px;
+    margin-right:0px;
     background-color:rgba(246,246,246,0.6)!important;
 	border-radius: 50px !important;
 	padding:8px 0 0 10px;
@@ -654,7 +705,7 @@ h3.title_panel_map{
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 100px;
+    max-width: 95px;
     display: inline-block;
 }
 
@@ -682,8 +733,18 @@ h3.title_panel_map{
 .btn-menu-connect:hover{
 	color: #2C3E50!important;
 }
-
+.navbar-collapse{
+	border:none;
+}
+.navbar-nav{
+	margin:0;
+}
 @media (max-width: 768px) {
+
+	.sigModuleBg .btn-group-map.tools-btn{
+		margin-right:15px;
+	}
+
 	.navbar-custom.affix .navbar-brand{
 		display: none;
 	}
@@ -695,10 +756,23 @@ h3.title_panel_map{
 		margin-top: -20px;
 		margin-bottom: 30px;
 	}
+	.portfolio-modal.modal .name {
+	    font-size: 2em;
+		letter-spacing: 6px;
+		margin-top: -20px;
+		margin-bottom: 30px;
+	}
+
 	header .intro-text .name .letter, 
 	.header .intro-text .name .letter, 
 	.portfolio-modal.modal .name .letter{
 		margin-right: -20px!important;
+	}
+	.portfolio-modal .modal-content h2{
+		font-size:4em;
+	}
+	#sectionSearchResults{
+		margin-left: 15px!important;
 	}
 	.name .pastille{
 		margin-top:-30px;
@@ -714,5 +788,38 @@ h3.title_panel_map{
 	}
 	.links-main-menu a{
 		text-decoration: none!important;
+	}
+
+	.portfolio-modal .close-modal .lr,
+	.portfolio-modal .close-modal .lr .rl{
+		height:50px;
+	}
+	.portfolio-modal .close-modal {
+	    width: 55px;
+	    height: 50px;
+	}
+	#main-search-bar {
+	    font-size: 14px;
+	}
+
+	.portfolio-link h3 {
+	    font-size: 13px;
+	}
+	.portfolio-link .fa-3x {
+    	font-size: 2em;
+	}
+
+	#mainCategories h2{
+		font-size: 1.4em;
+	}
+	.menu-name-profil{
+		padding:8px 0 0 0;
+	}
+	.navbar-custom .btn-show-mainmenu{
+		margin-left:0px;
+	}
+
+	.menu-name-profil{
+		margin-right: 10px;
 	}
 }
