@@ -71,6 +71,10 @@
 		<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
 		<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
 		
+		
+		<script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+        <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' />
+        
 		<!-- end: MAIN CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
@@ -300,8 +304,8 @@
 			'/plugins/bootbox/bootbox.min.js' , 
 			'/plugins/jquery-mockjax/jquery.mockjax.js' , 
 			'/plugins/blockUI/jquery.blockUI.js' , 
-			'/plugins/toastr/toastr.js' , 
-			'/plugins/toastr/toastr.min.css',
+			// '/plugins/toastr/toastr.js' , 
+			// '/plugins/toastr/toastr.min.css',
 			'/plugins/jquery-cookie/jquery.cookie.js' , 
 			'/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
 			'/plugins/select2/select2.min.js' , 
