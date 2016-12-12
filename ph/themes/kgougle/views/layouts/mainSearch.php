@@ -29,6 +29,9 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
+        <script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+        <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' />
+        
         <?php 
             $cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
         ?>
@@ -81,8 +84,8 @@
                 '/plugins/blockUI/jquery.blockUI.js' , 
                 '/plugins/jquery.dynForm.js',
                 '/plugins/jquery.ajax-cross-origin.min.js',
-                '/plugins/toastr/toastr.js' , 
-                '/plugins/toastr/toastr.min.css',
+                // '/plugins/toastr/toastr.js' , 
+                // '/plugins/toastr/toastr.min.css',
                 '/plugins/jquery-cookie/jquery.cookie.js' , 
                 '/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
                 '/plugins/ladda-bootstrap/dist/spin.min.js' , 
