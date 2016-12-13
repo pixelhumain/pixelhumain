@@ -106,6 +106,7 @@ class DataValidator {
 	}
 
 	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue, $object = null) {
+
 		if (isset($dataBinding[$fieldName])) {
 			$data = $dataBinding[$fieldName];
 			$name = $data["name"];
@@ -334,6 +335,20 @@ class DataValidator {
 		return $res;
 	}
 
+
+	public static function geoShapeValid($toValidate) {
+		$res = "";
+		if(!empty($toValidate)){
+			//Check type 
+			if (empty($toValidate["type"])) return "Type missing in the geoShape !";
+			if ($toValidate["type"] != "Polygon") return "Type missing in the geoShape !";
+			//Check coordinates
+			if (empty($toValidate["coordinates"])) return "Value missing in the geoShape !";
+		}
+
+		return $res;
+	}
+
 	public static function boolean($toValidate) {
 		if (!is_bool($toValidate)) 
 			return "Invalid boolean";
@@ -346,6 +361,28 @@ class DataValidator {
 	 */
 	public static function validOrganizer($toValidate) {
 		return "";
+	}
+
+
+	public static function postalCodesValid($toValidate, $objectId=null) {
+		$res = "";
+		$strings = array("key", "url", "id");
+		$allKeysSource = array('id', "key", "keys", "url", "update", "insertOrign");
+		if(!empty($toValidate)){
+			foreach ($toValidate as $key => $value) {
+				if(empty($value["name"]))
+					$res .= "Il manque le nom associer au code postal !";
+				if(empty($value["postalCode"]))
+					$res .= "Il manque le code postal !";
+				if(empty($value["geo"]))
+					$res .= "Il manque la geo associer au code postal !";
+				else
+					$res .= geoValid($value["geo"]);
+				$res .= (!empty($value["geo"])?geoValid($value["geo"]):"Il manque la geo associer au code postal !");
+				$res .= (!empty($value["geoPosition"])?geoPositionValid($value["geo"]):"Il manque la geoPosition associer au code postal !");
+			}
+		}
+		return $res;
 	}
 
 }
