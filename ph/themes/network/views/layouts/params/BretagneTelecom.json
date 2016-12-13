@@ -4,6 +4,7 @@
     "skin" : {
         "logo" : false,
         "title" : "Pratiques collaboratives bretonnes",
+	"shortDescription" : "Rajoutez un projet en remplissant le formulaire ici : https://frama.link/ccform",
         "displayScope" : false,
         "displayCommunexion" : true,
         "profilBar" : true,
