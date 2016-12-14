@@ -22,6 +22,7 @@ onSave: (optional) overloads the generic saveProcess
 	thisStyle = thisBody.style, 
 	$this,
 	initValues = {},
+	initSelectNetwork = [],
 	supportTransition = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined
 	
 	/*$(subviewBackClass).on("click", function(e) {
@@ -701,8 +702,8 @@ onSave: (optional) overloads the generic saveProcess
 						  "tokenSeparators": [','],
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
-						if(typeof initSelectNetwork != "undefined")
-							selectOptions.data=initData;
+						if(typeof initSelectNetwork != "undefined" && initSelectNetwork.length > 0)
+							selectOptions.data=initSelectNetwork;
 						$(this).removeClass("form-control").select2(selectOptions);
 						if(typeof mainTag != "undefined")
 							$(this).val([mainTag]).trigger('change');
