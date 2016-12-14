@@ -167,7 +167,7 @@ function lazyLoad (js,css, callback) {
 
 /* --------------------------------------------------------------- */
 
-function toggle(id,siblingsId,activate)
+function toggle(id,siblingsId,activate,callback)
 {
 	mylog.log("toggle",id,siblingsId);
   $(siblingsId).addClass("hide");
@@ -179,6 +179,8 @@ function toggle(id,siblingsId,activate)
     idT = id.split(",");
     $(idT[0]+"Btn").addClass("active");
   }
+  if( typeof callback === "function")
+    callback();
 }
 
 /* --------------------------------------------------------------- */
@@ -640,3 +642,4 @@ function buildSelectGroupOptions(list,value) {
   }
   return html;
 }
+

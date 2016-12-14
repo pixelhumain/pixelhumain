@@ -343,6 +343,7 @@
 			'/assets/css/sig/sig.css',
 			'/assets/css/news/index.css',	
 		);
+		
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
 		

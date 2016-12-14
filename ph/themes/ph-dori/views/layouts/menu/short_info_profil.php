@@ -70,6 +70,17 @@ ul.notifList {
   var timeoutDropdownGS = setTimeout(function(){ }, 100);
   var searchPage = false;
   jQuery(document).ready(function() {
+    $(".searchIcon").click(function() { 
+      openSmallMenuS("CO²","fa-search","green",function(){
+        $('.searchSmallMenu').off().on("keyup",function() { 
+          if($(this).val().length>=3){
+            mylog.log("Finder",$(this).val());
+                clearTimeout(timeout);
+                timeout = setTimeout('searchFinder("'+$(this).val()+'")', 500);
+          }
+        });
+      });
+    });
     //hide burger menu if loggued user
     if (typeof userId != undefined && userId != "") {
       $("#btn-menu-launch").hide();

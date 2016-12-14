@@ -74,13 +74,13 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			    </a>
 		    </div>
 		    <div class="col-xs-12 center no-padding hidden-xs">
-			    <a class="btn bg-dark lbh padding-5" href="#person.directory.id.<?php echo Yii::app()->session['userId'] ?>?tpl=directory2">
-			        <i class="fa fa-group" style="font-size: 1em!important;"></i> 
+			    <a class="btn bg-dark padding-5" href="javascript:openSmallMenuAjax(baseUrl+'/'+moduleId+'/person/directory?tpl=json','Mon répertoire','fa-book','red')">
+			        <i class="fa fa-book" style="font-size: 1em!important;"></i> 
 			        Mon répertoire
 			    </a>
 		    </div>
 		    <div class="col-xs-12 center no-padding hidden-xs">
-			    <a class="btn bg-dark padding-5" href="javascript:openSmallMenuAjax(baseUrl+'/'+moduleId+'/favorites/list','Mes Favoris')">
+			    <a class="btn bg-dark padding-5" href="javascript:openSmallMenuAjax(baseUrl+'/'+moduleId+'/favorites/list','Mes Favoris','fa-star','yellow')">
 			        <i class="fa fa-star text-yellow" style="font-size: 1em!important;"></i> 
 			        Mes favoris
 			    </a>
