@@ -2,8 +2,8 @@
     "name" : "iviatic",
     "mode" : "server",
     "skin" : {
-        "logo" : "",
-        "title" : "Cartographie des mobilités",
+        "logo" : "iviatic.png",
+        "title" : "Cartographie I-viaTIC",
         "shortDescription" : "Localisez les partenaires et compétences dont vous avez besoin pour construire votre projet de mobilité.",
         "displayScope" : false,
         "displayCommunexion" : false,
