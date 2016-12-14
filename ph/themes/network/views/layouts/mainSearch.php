@@ -327,6 +327,7 @@
 		?>
 		<script type="text/javascript">
 		var networkParams = "<?php echo Yii::app()->params['networkParams'] ?>";
+		var networkJson = <?php echo json_encode($params)?>;
 		var globalTheme = "network";
 		var mapIconTop = {
 		    "default" : "fa-arrow-circle-right",
@@ -415,8 +416,40 @@
 		var organizerList = {};
 		var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
 		var allReadyLoad=false;
+		// GET LIST OF NETWORK'S TAGS
+		if(typeof networkJson.filter.linksTag != "undefined"){
+			var networkTags = [];
+			if(typeof networkJson.request.mainTag != "undefined")
+				networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
+			$.each(networkJson.filter.linksTag, function(category, properties) {
+				optgroupObject=new Object;
+				optgroupObject.text=category;
+				optgroupObject.children=[];
+				$.each(properties.tags, function(i, tag) {
+					val={id:tag,text:tag};
+					optgroupObject.children.push(val);
+				});
+				networkTags.push(optgroupObject);
+			});
+		}
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
+			// Initialize tags list for network in form of element
+			if(typeof networkJson.add != "undefined"){
+				$.each(networkJson.add, function(key, v) {
+					if(typeof networkJson.request.sourceKey != "undefined"){
+						sourceObject = {inputType:"hidden", value : networkJson.request.sourceKey[0]};
+						typeObj[key].dynForm.jsonSchema.properties.source = sourceObject;
+					}
+					if(v){
+						if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
+							typeObj[key].dynForm.jsonSchema.properties.tags.data=networkTags;
+							if(typeof networkJson.request.mainTag != "undefined")
+								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag[0];
+						}
+					}
+				});
+			}
 			$(".bg-main-menu.bgpixeltree_sig").remove();
 			if(myContacts != null)
 			$.each(myContacts, function(type, list) {
