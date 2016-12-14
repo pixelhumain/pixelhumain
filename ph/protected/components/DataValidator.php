@@ -232,7 +232,7 @@ class DataValidator {
 
 	public static function source($toValidate, $objectId=null) {
 		$res = "";
-		$strings = array("key", "url", "id");
+		$strings = array("key", "url");
 		$allKeysSource = array('id', "key", "keys", "url", "update", "insertOrign");
 		if(!empty($toValidate)){
 			foreach ($toValidate as $key => $value) {
