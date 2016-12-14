@@ -23,7 +23,7 @@
 	        "community" : false,
 	        "dda" : false,
 	        "live" : false,
-	        "search" : true,
+	        "search" : false,
 	        "need" : false,
 	        "poi" : false
 	    },
@@ -193,6 +193,9 @@
         "fullLocality" : true,
         "datesEvent" : false,
         "displayShortDescription" : true
+    },
+     "add" : {
+        "organization" : true
     },
     "request" : {
         "sourceKey" :[
