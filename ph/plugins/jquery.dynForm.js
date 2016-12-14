@@ -174,6 +174,10 @@ onSave: (optional) overloads the generic saveProcess
         				initValues[field] = {};
         			initValues[field]["tags"] = fieldObj.values;
         		}
+        		if(typeof fieldObj.data != "undefined")
+	        		initSelectNetwork=fieldObj.data;
+        		if(typeof fieldObj.mainTag != "undefined")
+					mainTag=mainTag;
         		style = "style='width:100%;margin-bottom: 10px;border: 1px solid #ccc;'";
         	}
         	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
@@ -697,9 +701,13 @@ onSave: (optional) overloads the generic saveProcess
 						var selectOptions = {
 						  "tags": initValues[ $(this).attr("id") ]["tags"],
 						  "tokenSeparators": [','],
-						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
+						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
+						if(typeof initSelectNetwork != "undefined")
+							selectOptions.data=initData;
 						$(this).removeClass("form-control").select2(selectOptions);
+						if(typeof mainTag != "undefined")
+							$(this).val([mainTag]).trigger('change');
 					}
 				 });
 			} else
@@ -1126,7 +1134,6 @@ function showMyImage2(fileInput) {
 		toastr.info("Please reduce your image before to 2Mo");
 	}
 	else {
-		alert();
 		countImg=$("#resultsImage img").length;
 		idImg=countImg+1;
 		htmlImg="";
