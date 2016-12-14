@@ -73,6 +73,9 @@
 		<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
 		<?php } ?>
 		
+		<script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+        <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' />
+        
 		<!-- end: MAIN CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
@@ -99,19 +102,6 @@
 	  			var cityName = "<?php echo $cityName; ?>";
 	 	   <?php } ?>
 		   jQuery(document).ready(function() {
-				toastr.options = {
-				  "closeButton": false,
-				  "positionClass": "toast-bottom-right",
-				  "onclick": null,
-				  "showDuration": "1000",
-				  "hideDuration": "1000",
-				  "timeOut": "5000",
-				  "extendedTimeOut": "1000",
-				  "showEasing": "swing",
-				  "hideEasing": "linear",
-				  "showMethod": "fadeIn",
-				  "hideMethod": "fadeOut"
-				};
 				<?php if($user != "NOT_CONNECTED") { ?>
 					//updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
 				<?php } ?>
@@ -304,8 +294,8 @@
 			'/plugins/bootbox/bootbox.min.js' , 
 			'/plugins/jquery-mockjax/jquery.mockjax.js' , 
 			'/plugins/blockUI/jquery.blockUI.js' , 
-			'/plugins/toastr/toastr.js' , 
-			'/plugins/toastr/toastr.min.css',
+			// '/plugins/toastr/toastr.js' , 
+			// '/plugins/toastr/toastr.min.css',
 			'/plugins/jquery-cookie/jquery.cookie.js' , 
 			'/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
 			'/plugins/select2/select2.min.js' , 
@@ -435,6 +425,20 @@
 
 		//mylog.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
+			toastr.options = {
+				  "closeButton": false,
+				  "positionClass": "toast-bottom-right",
+				  "onclick": null,
+				  "showDuration": "1000",
+				  "hideDuration": "1000",
+				  "timeOut": "5000",
+				  "extendedTimeOut": "1000",
+				  "showEasing": "swing",
+				  "hideEasing": "linear",
+				  "showMethod": "fadeIn",
+				  "hideMethod": "fadeOut"
+				};
+
 			if(myContacts != null)
 			$.each(myContacts, function(type, list) {
 				$.each(list, function(i, obj) {
