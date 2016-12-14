@@ -188,9 +188,15 @@
 }
 .contentTitleMap h1{
 	font-size: 20px;
+    display: inline-block;
 }
 .contentShortInformationMap{
 	display:none;
+	   padding: 10px 20px 1px 20px;
+}
+.contentTitleLogo{
+	height: 65px;
+    padding: 10px 0px 0px 0px;
 }
 #menuTopList{
 	display:none;
@@ -202,6 +208,20 @@
 }
 .breadcrumAnchor{
 	font-size: 16px;
+}
+.logoMap{
+	width: 40px;
+    height: 40px;
+    margin-top: -5px;
+    border-radius: 20px;
+    margin-right: 5px;
+    display: -webkit-inline-box;
+    background-color: white;
+}
+.poweredBy{
+	margin-top: 5px;
+    font-size: 11px;
+    font-weight: 200;
 }
 </style>
   <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
@@ -224,44 +244,50 @@
     <?php } ?>
     <?php if(@$params['skin']["title"]){ ?>
 	<div id="titleMapTop">
-		<div class="contentTitleMap padding-10">
-			<h1><?php echo $params['skin']["title"] ?></h1>
-			<?php if(@$params['skin']["shortDescription"] || (@$params['skin']["displayCommunexion"] && $params['skin']["displayCommunexion"])){ ?>
-				<div class="contentShortInformationMap">
-					<?php if(@$params['skin']["shortDescription"]){ ?>
-					<span class="shortDescriptionMap padding-10"> 
-						<?php echo $params['skin']["shortDescription"]; ?>
-					</span>
-					<?php } ?>
-					<?php if (@$params['skin']["docs"] && $params['skin']["docs"]){ ?>
-						<br/>
-						<a href="#default.view.page.index.dir.docs" class="tooltips lbh" id="btn-documentation"	data-toggle="tooltip" data-placement="bottom" title="Lire la documentation" alt="Lire la documentation" style="color:lightblue;"> 
-							<i class="fa fa-info-circle"></i> En savoir plus
-						</a>
-					<?php } ?>
-					<?php if (@$params['skin']["displayCommunexion"] && $params['skin']["displayCommunexion"]){ ?>
+		<div class="contentTitleMap">
+			<div class="contentTitleLogo">
+				<?php if(@$params['skin']["logo"]){ ?>
+				<img src="<?php echo $this->module->assetsUrl.'/images/'.$params['skin']["logo"] ?>" class="logoMap"/>
+				<?php } ?>
+				<h1><?php echo $params['skin']["title"] ?></h1>
+			</div>
+			<div class="contentShortInformationMap">
+				<?php if(@$params['skin']["shortDescription"]){ ?>
+				<span class="shortDescriptionMap padding-10"> 
+					<?php echo $params['skin']["shortDescription"]; ?>
+				</span>
+				<?php } ?>
+				<?php if (@$params['skin']["docs"] && $params['skin']["docs"]){ ?>
 					<br/>
-					<div class="centerButton">
-						<?php if (!@Yii::app()->session["userId"]){ ?>
-						<button class="btn-top btn btn-default hidden-xs" onclick="showPanel('box-register');">
-				        	<i class="fa fa-plus-circle"></i> 
-							<span class="hidden-sm hidden-md hidden-xs">S'inscrire</span>
-						</button>
-						<button class="btn-top btn btn-success hidden-xs" style="margin-right:10px;" onclick="showPanel('box-login');">
-							<i class="fa fa-sign-in"></i> 
-							<span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
-						</button>
-						<?php } else { ?>
-							<a class="btn-top btn bg-red hidden-xs" href="/pixelhumain/ph/communecter/person/logout?network=<?php echo $params["name"] ?>" style="margin-right:10px;" onclick="">
-							<i class="fa fa-sign-out"></i> 
-							<span class="hidden-sm hidden-md hidden-xs">Déconnexion</span>
-						</a>
+					<a href="#default.view.page.index.dir.docs" class="tooltips lbh" id="btn-documentation"	data-toggle="tooltip" data-placement="bottom" title="Lire la documentation" alt="Lire la documentation" style="color:lightblue;"> 
+						<i class="fa fa-info-circle"></i> En savoir plus
+					</a>
+				<?php } ?>
+				<?php if (@$params['skin']["displayCommunexion"] && $params['skin']["displayCommunexion"]){ ?>
+				<br/>
+				<div class="centerButton">
+					<?php if (!@Yii::app()->session["userId"]){ ?>
+					<button class="btn-top btn btn-default hidden-xs" onclick="showPanel('box-register');">
+			        	<i class="fa fa-plus-circle"></i> 
+						<span class="hidden-sm hidden-md hidden-xs">S'inscrire</span>
+					</button>
+					<button class="btn-top btn btn-success hidden-xs" style="margin-right:10px;" onclick="showPanel('box-login');">
+						<i class="fa fa-sign-in"></i> 
+						<span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
+					</button>
+					<?php } else { ?>
+						<a class="btn-top btn bg-red hidden-xs" href="/pixelhumain/ph/communecter/person/logout?network=<?php echo $params["name"] ?>" style="margin-right:10px;" onclick="">
+						<i class="fa fa-sign-out"></i> 
+						<span class="hidden-sm hidden-md hidden-xs">Déconnexion</span>
+					</a>
 
-						<?php } ?>
-					</div>
-			      <?php } ?>
+					<?php } ?>
 				</div>
-			<?php } ?>
+				<?php } ?>
+				<div class="poweredBy">
+					<span>Powered by</span> <a href="https://www.communecter.org" target="_blank" style="color:#0078A8;">@Communecter</a>
+				</div>
+			</div>
 		</div> 
 		<div class="showHideMoreTitleMap"><i class="fa fa-angle-down"></i></div> 
     </div>
