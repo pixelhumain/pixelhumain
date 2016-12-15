@@ -35,14 +35,14 @@ HtmlHelper::registerCssAndScriptsFiles(array( '/assets/css/menus/short_info_prof
      // IMAGE PROFIL // 
       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
     ?> 
-          <button class="dropdown-toggle menu-name-profil text-dark" data-toggle="dropdown" onclick="javascript:openMenuSmall();">
+          <button class="dropdown-toggle menu-name-profil text-dark" data-toggle="dropdown" onclick="javascript:smallMenu.open();">
             <img class="img-circle" id="menu-thumb-profil" width="34" height="34" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
           </button>
 
     <?php }
     else { ?>
       <?php // BTN MENU LAUNCH // ?>
-      <a class="pull-right text-dark" href="javascript:openMenuSmall();"  id="btn-menu-launch">
+      <a class="pull-right text-dark" href="javascript:smallMenu.open();"  id="btn-menu-launch">
         <i class="fa fa-bars fa-2x"></i>
       </a>
       <button class="btn-top btn btn-default hidden-xs" onclick="showPanel('box-register');">
@@ -71,7 +71,7 @@ ul.notifList {
   var searchPage = false;
   jQuery(document).ready(function() {
     $(".searchIcon").click(function() { 
-      openSmallMenuS("CO²","fa-search","green",function(){
+      smallMenu.openSmall("Moteur de Recherche","fa-search","green",function(){
         $('.searchSmallMenu').off().on("keyup",function() { 
           if($(this).val().length>=3){
             mylog.log("Finder",$(this).val());

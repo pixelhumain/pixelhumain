@@ -166,8 +166,9 @@ function lazyLoad (js,css, callback) {
 
 
 /* --------------------------------------------------------------- */
-
-function toggle(id,siblingsId,activate,callback)
+//hide all children
+//show all elements corresponding to class id
+function toggle( id, siblingsId, activate, callback )
 {
 	mylog.log("toggle",id,siblingsId);
   $(siblingsId).addClass("hide");
