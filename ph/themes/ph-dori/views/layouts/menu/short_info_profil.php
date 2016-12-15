@@ -71,7 +71,7 @@ ul.notifList {
   var searchPage = false;
   jQuery(document).ready(function() {
     $(".searchIcon").click(function() { 
-      smallMenu.openSmall("Moteur de Recherche","fa-search","green",function(){
+      smallMenu.openSmall("Recherche","fa-search","green",function(){
         $('.searchSmallMenu').off().on("keyup",function() { 
           if($(this).val().length>=3){
             mylog.log("Finder",$(this).val());
