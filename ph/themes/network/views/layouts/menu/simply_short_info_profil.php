@@ -192,7 +192,7 @@
 }
 .contentShortInformationMap{
 	display:none;
-	   padding: 10px 20px 1px 20px;
+	padding: 10px 20px 1px 20px;
 }
 .contentTitleLogo{
 	height: 65px;
