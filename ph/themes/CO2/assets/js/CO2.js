@@ -1,16 +1,17 @@
+//var loadableUrls = {};
+// var loadableUrls = {
 
-var loadableUrls = {
-
-	"#k.web"			: {title:'', icon : "share-search"},
-	"#k.live" 			: {title:"", icon : "rss"},
-	"#k.referencement" 	: {title:"", icon : "plus"},
-	"#k.agenda" 		: {title:"", icon : ""},
-	"#k.page.type"		: {title:"", icon : ""},
-	"#k.social"			: {title:"", icon : ""},
-	"#k.freedom"		: {title:"", icon : ""},
-	"#element.detail"	: {title:"", icon : ""},
-	//"": {title:'INVITE SOMEONE', icon : "share-search"},
-}
+// 	"#k.web"			: {title:'', icon : "share-search"},
+// 	"#k.live" 			: {title:"", icon : "rss"},
+// 	"#k.referencement" 	: {title:"", icon : "plus"},
+// 	"#k.agenda" 		: {title:"", icon : ""},
+// 	"#k.page.type"		: {title:"", icon : ""},
+// 	"#k.social"			: {title:"", icon : ""},
+// 	"#k.freedom"		: {title:"", icon : ""},
+// 	"#k.power"			: {title:"", icon : ""},
+// 	"#element.detail"	: {title:"", icon : ""},
+// 	//"": {title:'INVITE SOMEONE', icon : "share-search"},
+// }
 
 var CoAllReadyLoad = false;
 //back sert juste a differencier un load avec le back btn
@@ -21,6 +22,8 @@ function loadByHash( hash , back ) { //alert("loadByHash");
 	allReadyLoad = true;
 	CoAllReadyLoad = true;
 	contextData = null;
+	
+	mylog.log("loadableUrls",loadableUrls);
 
     mylog.warn("loadByHash",hash,back);
     if( jsController(hash) ){
@@ -30,7 +33,7 @@ function loadByHash( hash , back ) { //alert("loadByHash");
     else {
     	mylog.log("loadByHash",hash,back);
     
-        showAjaxPanel( '/k/web', 'Home Communecter ','home' );
+        showAjaxPanel( '/co2/web', 'Home Communecter ','home' );
     }
 
     location.hash = hash;
@@ -87,17 +90,10 @@ function showAjaxPanel (url,title,icon, mapEnd) {
 
 function  processingBlockUi() { 
 	$.blockUI({
-	 	message : '<img src="'+themeUrl+'/assets/img/logocagou-loader.png" class="nc_map pull-" height=80>'+
+	 	message : '<img src="'+themeUrl+'/assets/img/CO2G.png" class="nc_map pull-" height=80>'+
 	 			  '<i class="fa fa-spin fa-circle-o-notch"></i>'+
-	 			   '<span class="col-md-12 text-center font-blackoutM text-left">'+
-	 			    '<span class="letter letter-blue font-ZILAP">K</span>'+
-                    '<span class="letter letter-yellow">G</span>'+
-                    '<span class="letter letter-yellow font-ZILAP">O</span>'+
-                    '<span class="letter letter-yellow">U</span>'+
-                    '<span class="letter letter-green">G</span>'+
-                    '<span class="letter letter-green">L</span>'+
-                    '<span class="letter letter-green">E</span>'+
-                   '</span>'+
+	 			  //'<img src="'+themeUrl+'/assets/img/CO2G.png" class="nc_map pull-" height=80>'+
+	 			  
 
 	 			  '<h4 style="font-weight:300" class=" text-dark padding-10">'+
 	 				'Chargement en cours...'+
@@ -106,7 +102,7 @@ function  processingBlockUi() {
 	 				'Merci de patienter quelques instants'+
 	 			  '</span>'+
 	 			  '<br><br><br>'+
-	 			  '<a href="#k" class="btn btn-default btn-sm lbh">'+
+	 			  '<a href="#co2" class="btn btn-default btn-sm lbh">'+
 	 			  	"c'est trop long !"+
 	 			  '</a>'
 	 });
@@ -154,17 +150,10 @@ function getAjax(id,url,callback,datatype,blockUI)
         error:function (xhr, ajaxOptions, thrownError){
           //mylog.error(thrownError);
           $.blockUI({
-              message : '<img src="'+themeUrl+'/assets/img/logocagou-loader.png" class="nc_map pull-" height=80>'+
+              message : '<img src="'+themeUrl+'/assets/img/CO2G.png" class="nc_map pull-" height=80>'+
 			 			  '<i class="fa fa-times"></i>'+
 			 			   '<span class="col-md-12 text-center font-blackoutM text-left">'+
-			 			    '<span class="letter letter-blue font-ZILAP">K</span>'+
-		                    '<span class="letter letter-yellow">G</span>'+
-		                    '<span class="letter letter-yellow font-ZILAP">O</span>'+
-		                    '<span class="letter letter-yellow">U</span>'+
-		                    '<span class="letter letter-green">G</span>'+
-		                    '<span class="letter letter-green">L</span>'+
-		                    '<span class="letter letter-green">E</span><br>'+
-		                    '<span class="letter letter-red font-blackoutT" style="font-size:40px;">404</span>'+
+			 			    '<span class="letter letter-red font-blackoutT" style="font-size:40px;">404</span>'+
 		                   '</span>'+
 
 			 			  '<h4 style="font-weight:300" class=" text-dark padding-10">'+
@@ -361,4 +350,21 @@ function showMap(show)
 		//checkScroll();
 	}
 		
+}
+
+
+function initToastr(){
+	toastr.options = {
+      "closeButton": false,
+      "positionClass": "toast-bottom-left",
+      "onclick": null,
+      "showDuration": "1000",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
 }

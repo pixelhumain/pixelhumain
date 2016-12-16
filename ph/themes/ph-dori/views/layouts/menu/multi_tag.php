@@ -97,26 +97,28 @@ jQuery(document).ready(function() {
 	loadMultiTags();
 	rebuildSearchTagInput();
 
-	loadTagSuggestion({
-		"Ecologie" : { active : false },
-		"Logement" : { active : false },
-		"Transport" : { active : false },
-		"Alimentation" : { active : false },
-		"Environnement" : { active : false },
-		"Ecologie" : { active : false },
-		"Alimentation" : { active : false },
+	var suggestionsTags = {
+		"Écologie" 				: { active : false },
+		"Transport" 			: { active : false },
+		"Alimentation" 			: { active : false },
+		"Agriculture" 			: { active : false },
+		"Environnement" 		: { active : false },
+		"Logement" 				: { active : false },
+		"Climat" 				: { active : false },
+		"Alimentation" 			: { active : false },
 		"Développement durable" : { active : false },
-		"Recyclage" : { active : false },
-		"Permaculture" : { active : false },
-		"Energie" : { active : false },
-		"Santé" : { active : false },
-		"Art" : { active : false },
-		"Sciences" : { active : false },
-		"Politique" : { active : false },
-		"Histoire" : { active : false },
-		"Tiers lieux" : { active : false },
+		"Recyclage" 			: { active : false },
+		"Énergie" 				: { active : false },
+		"Santé" 				: { active : false },
+		"Art" 					: { active : false },
+		"Sciences" 				: { active : false },
+		"Politique" 			: { active : false },
+		"Éducation" 			: { active : false },
+		"Petite enfance" 		: { active : false },
 		
-	});
+	};
+
+	loadTagSuggestion(suggestionsTags);
 
 });
 

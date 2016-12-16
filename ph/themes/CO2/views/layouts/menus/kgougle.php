@@ -3,21 +3,17 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
-            <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-            </button> -->
-
-            <!-- <img src="img/NC_map.png" class="nc_map_min" height=30> -->
+           
             <a href="#k.web" class="btn-scroll menu-btn-back-category" data-targetid="#page-top">
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logocagou-<?php echo $subdomain; ?>.png" 
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logocagou-map.png" 
                      class="nc_map pull-left" height=30>
             </a>
+
             <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>
 
             <a class="navbar-brand font-blackoutM btn-scroll hidden-sm menu-btn-back-category" data-targetid="#page-top" href="#k.web">
                 <span class="letter letter-blue font-ZILAP letter-k">K</span>
-                <!-- <span class="letter letter-blue font-ZILAP">A</span> -->
-                 <span class="letter letter-yellow">G</span>
+                <span class="letter letter-yellow">G</span>
                 <span class="letter letter-yellow font-ZILAP">O</span>
                 <span class="letter letter-yellow">U</span>
                 <span class="letter letter-green">G</span>
@@ -48,8 +44,6 @@
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
 
-            <!-- <button class="btn btn-default pull-left menu-btn-back-category"><i class="fa fa-cubes"></i></button> -->
-        
         <?php }elseif($subdomain == "page"){ ?>
             <div class="hidden-xs col-sm-5 col-md-4 col-lg-4" id="main-page-name"></div>
         <?php } ?>
@@ -61,105 +55,7 @@
         <button class="btn-show-mainmenu" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
         </button>
-        <style>
-            .dropdown-main-menu h2{
-                font-size:23px;
-            }
-        </style>
-        <div class="dropdown hidden">
-            <button class="btn-show-mainmenu  dropdown-toggle" title="Menu principal" data-toggle="dropdown"  id="btn-main-menu">
-                <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
-            </button>
-            <div class="dropdown-main-menu font-montserrat" aria-labelledby="btn-main-menu">
-                <ul class="dropdown-menu arrow_box" style="max-width: 390px; font-size:25px; display: inline;">
-                    <div class="hidden">
-                    <?php foreach(array("web"=>"search", 
-                                        "live"=>"newspaper-o", 
-                                        "social"=>"user-circle-o", 
-                                        //"freedom"=>"comments", 
-                                        //"agenda"=>"calendar", 
-                                        //"power"=>"hand-rock-o"
-                                        ) as $link=>$icon){ ?>
-                        <li class="text-left">
-                            <a href="#k.<?php echo $link; ?>" class="lbh bg-white">
-                                <span class="font-blackoutM text-red">
-                                    <i style="width:30px;" class="text-center text-red fa fa-<?php echo $icon; ?>"></i> 
-                                    <?php echo $link; ?>
-                                </span>
-                            </a>
-                        </li>
-                    <?php } ?>
-                    </div>
-                     <div class="padding-15 links-main-menu ">
-                        <a href="#k.web" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                            <div class="modal-body text-left">
-                                <h2 class="text-red"><i class="fa fa-search padding-bottom-10"></i><br>
-                                    <span class="font-blackoutT">WEB</span>
-                                </h2>                                
-                                <div class="col-md-12 no-padding text-center">
-                                    <h5>Moteur de recherche</h5>
-                                </div>                 
-                            </div>
-                        </a>
-                        <a href="#k.live" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                            <div class="modal-body text-left">
-                                <h2 class="text-red"><i class="fa fa-newspaper-o padding-bottom-10"></i><br>
-                                    <span class="font-blackoutT"> LIVE</span>
-                                </h2>                                
-                                <div class="col-md-12 no-padding text-center">
-                                    <h5>Espace d'information</h5>
-                                </div>
-                            </div>
-                        </a>
-                    
-                        <a href="#k.social.type.persons" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                            <div class="modal-body text-left">
-                                <h2 class="text-orange"><i class="fa fa-user-circle padding-bottom-10"></i><br>
-                                    <span class="font-blackoutT"> SOCIAL</span>
-                                </h2>                                
-                                <div class="col-md-12 no-padding text-center">
-                                    <h5>Réseau social</h5>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#k.freedom" class="btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                            <div class="modal-body text-left">
-                                <h2 class="text-yellow"><i class="fa fa-comments padding-bottom-10"></i><br>
-                                    <span class="font-blackoutT"> FREEDOM</span>
-                                </h2>                                
-                                <div class="col-md-12 no-padding text-center">
-                                    <h5>Expression libre</h5>
-                                </div>
-                            </div>
-                        </a>
-                        
-                        <a href="#k.freedom" class="btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                            <div class="modal-body text-left">
-                                <h2 class="text-transparent-yellow"><i class="fa fa-calendar padding-bottom-10"></i><br>
-                                    <span class="font-blackoutT"> AGENDA</span>
-                                </h2>                                
-                                <div class="col-md-12 no-padding text-center">
-                                    <h5>Agenda commun</h5>
-                                </div>
-                            </div>
-                        </a>
-                        
-                        <a href="#k.freedom" class="btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                            <div class="modal-body text-left">
-                                <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o padding-bottom-10"></i><br>
-                                    <span class="font-blackoutT"> POWER</span>
-                                </h2>                                
-                                <div class="col-md-12 no-padding text-center">
-                                    <h5>Participation citoyenne</h5>
-                                </div>
-                            </div>
-                        </a>
-                        
-                    </div>
-                </ul>
-            </div>
-        </div>
+        
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="pull-right navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -185,7 +81,7 @@
                    
                 <?php } else { ?>
                     <li class="page-scroll">
-                        <button class="text-red font-montserrat btn-menu-connect" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> SE CONNECTER</button>
+                        <button class="letter-green font-montserrat btn-menu-connect" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> SE CONNECTER</button>
                     </li>
                 <?php } ?>
             </ul>
