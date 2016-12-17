@@ -4,14 +4,15 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <a href="#k.web" class="btn-scroll menu-btn-back-category" data-targetid="#page-top">
+            <a href="#" class="btn-scroll menu-btn-back-category" data-targetid="#page-top">
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logocagou-map.png" 
-                     class="nc_map pull-left" height=30>
+                     class="nc_map pull-left <?php if($subdomain == "page.type"){ ?>show-top<?php } ?>" height=30>
             </a>
 
             <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>
-
-            <a class="navbar-brand font-blackoutM btn-scroll hidden-sm menu-btn-back-category" data-targetid="#page-top" href="#k.web">
+           
+            <?php if($subdomain != "page.type"){ ?>
+            <a class="navbar-brand font-blackoutM btn-scroll hidden-sm menu-btn-back-category" data-targetid="#page-top" href="#co2.web">
                 <span class="letter letter-blue font-ZILAP letter-k">K</span>
                 <span class="letter letter-yellow">G</span>
                 <span class="letter letter-yellow font-ZILAP">O</span>
@@ -19,8 +20,11 @@
                 <span class="letter letter-green">G</span>
                 <span class="letter letter-green">L</span>
                 <span class="letter letter-green">E</span>
-                <small class="letter letter-red pastille font-blackoutT"><?php echo $subdomain; ?></small>
+                <small class="letter letter-red pastille font-blackoutT"><?php echo $subdomainName; ?></small>
             </a>
+            <?php }else{ ?>
+                <div id="small_profil" class="hidden-top pull-left"></div>
+            <?php } ?>
         </div>
 
         <?php if($subdomain == "live"){ ?>
@@ -38,6 +42,13 @@
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
         
         <?php }elseif($subdomain == "web"){ ?>
+            
+            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
+                <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
+            </div>
+            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
+
+        <?php }elseif($subdomain == "social" || $subdomain == "page.type"){ ?>
             
             <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
@@ -65,10 +76,10 @@
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
                      
-                    <a  href="#k.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
+                    <a  href="#co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
                         class="dropdown-toggle menu-name-profil text-dark lbh pull-right" 
                         data-toggle="dropdown">
-                                <small class="hidden-xs"><?php echo $me["username"]; ?> <?php echo $me["username"]; ?></small> 
+                                <small class="hidden-xs"><?php echo $me["name"]; ?></small> 
                                 <img class="img-circle" id="menu-thumb-profil" 
                                      width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
                     </a>
@@ -98,8 +109,19 @@
 
 
 </nav>
+
+
+
+
+
+
 <?php if(isset(Yii::app()->session['userId'])) 
                 $this->renderPartial($layoutPath.'notifications'); ?>
+
+
+
+
+
 
 <div class="portfolio-modal modal fade" id="modalMainMenu" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">
@@ -147,7 +169,7 @@
             </div>
 
             <div class="row links-main-menu">
-                <a href="#k.web" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#co2.web" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         
                             <h2 class="text-red"><i class="fa fa-search padding-bottom-10"></i><br>
@@ -164,7 +186,7 @@
                             </div>                 
                     </div>
                 </a>
-                <a href="#k.live" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#co2.live" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-red"><i class="fa fa-newspaper-o padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> LIVE</span>
@@ -181,7 +203,7 @@
                     </div>
                 </a>
             
-                <a href="#k.social.type.persons" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#co2.social.type.persons" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-orange"><i class="fa fa-user-circle padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> SOCIAL</span>
@@ -198,7 +220,7 @@
                     </div>
                 </a>
 
-                <a href="#k.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#co2.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-yellow"><i class="fa fa-comments padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> FREEDOM</span>
@@ -215,7 +237,7 @@
                     </div>
                 </a>
                 
-                <a href="#k.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#co2.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-yellow"><i class="fa fa-calendar padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> AGENDA</span>
@@ -232,7 +254,7 @@
                     </div>
                 </a>
                 
-                <a href="#k.freedom" class="col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#co2.freedom" class="col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> POWER</span>

@@ -198,7 +198,7 @@ function KScrollTo(target){ mylog.log("target", target, $(target).offset().top);
     }, 800, '');
 }
 
-function initKInterface(){
+function initKInterface(params){
 
 	$(window).off();
 
@@ -231,12 +231,17 @@ function initKInterface(){
             $('.navbar-toggle:visible').click();
     });
 
+    var affixTop = 400;
+    if(notEmpty(params)){
+    	if(notEmpty(params["affixTop"])) affixTop = params["affixTop"];
+    }
+
     // Offset for Main Navigation
     $('#mainNav').affix({
         offset: {
-            top: 400
+            top: affixTop
         }
-    })
+    });
 
     // Floating label headings for the contact form
     $(function() {

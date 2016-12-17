@@ -92,7 +92,7 @@
                 
                 '/plugins/select2/select2.min.js' , 
                 '/plugins/moment/min/moment.min.js' ,
-                '/js/cookie.js' ,
+                //'/js/cookie.js' ,
                 '/js/api.js',
                 
                 //'/plugins/animate.css/animate.min.css',

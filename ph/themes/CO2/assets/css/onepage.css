@@ -1,6 +1,6 @@
 
 .navbar-custom {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.7);
  }
 
 #main-page-name {
@@ -12,13 +12,13 @@
 #onepage .header{
 	
 	/*background: url('../img/background-onepage/abstract/wallup-290416.jpg')  no-repeat center;*/
-	background: url('../img/background-onepage/white/white1.jpg')  no-repeat center;
+	/*background: url('../img/background-onepage/white/white1.jpg')  no-repeat center;
 	-webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
-    -o-background-size: cover;
+    -o-background-size: cover;*/
 
-    /*background: url('../img/background-onepage/pattern/binding_dark/binding_dark.png')  repeat;*/
+    background: url('../img/background-onepage/pattern/witewall_3.png')  repeat;
 	background-color: white;
 
 	/*color: #FFF;*/

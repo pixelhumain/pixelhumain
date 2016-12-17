@@ -16,16 +16,19 @@
     <?php 
         $params = CO2::getThemeParams();
        //var_dump($params["pages"]); exit;
+        $useHeader              = $params["pages"]["#co2.".$page]["useHeader"];
         $subdomain              = $params["pages"]["#co2.".$page]["subdomain"];
         $subdomainName          = $params["pages"]["#co2.".$page]["subdomainName"];
         $icon                   = $params["pages"]["#co2.".$page]["icon"];
         $mainTitle              = $params["pages"]["#co2.".$page]["mainTitle"];
         $placeholderMainSearch  = $params["pages"]["#co2.".$page]["placeholderMainSearch"];
+
+
     ?>
 
     <!-- Header -->
     <header>
-        <?php if($subdomain != "page"){ ?>
+        <?php if(@$useHeader != false){ ?>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -147,6 +150,7 @@
             $this->renderPartial($layoutPath.'menus/'.$CO2DomainName, 
                                                     array( "layoutPath"=>$layoutPath , 
                                                             "subdomain"=>$subdomain,
+                                                            "subdomainName"=>$subdomainName,
                                                             "mainTitle"=>$mainTitle,
                                                             "placeholderMainSearch"=>$placeholderMainSearch,
                                                             "me" => $me) ); ?>   

@@ -7,6 +7,12 @@
 .margin-top-15{
 	margin-top:15px!important;
 }
+.margin-top-20{
+	margin-top:20px!important;
+}
+.margin-top-25{
+	margin-top:25px!important;
+}
 
 .margin-bottom-5{
 	margin-bottom:5px!important;
@@ -17,7 +23,12 @@
 .margin-bottom-15{
 	margin-bottom:15px!important;
 }
-
+.margin-bottom-20{
+	margin-bottom:20px!important;
+}
+.margin-bottom-25{
+	margin-bottom:25px!important;
+}
 
 .padding-top-5{
 	padding-top:5px!important;
@@ -161,6 +172,11 @@ section h2 {
  	-webkit-box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
     -moz-box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
     box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
+}
+.shadow2{
+ 	-webkit-box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.5) ;
+    -moz-box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.5) ;
+    box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.5) ;
 }
 
 .shadow-left{

@@ -9,6 +9,7 @@
     .btn-outline{
         background-color: rgba(255,255,255,0.5);
     }
+    
 </style>
 <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
 <div class="scroll-top page-scroll">

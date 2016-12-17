@@ -80,8 +80,18 @@
 
 
 </nav>
+
+
+
+
+
 <?php if(isset(Yii::app()->session['userId'])) 
                 $this->renderPartial($layoutPath.'notifications'); ?>
+
+
+
+
+
 
 <div class="portfolio-modal modal fade" id="modalMainMenu" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">

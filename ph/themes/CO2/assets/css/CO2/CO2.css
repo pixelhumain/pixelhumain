@@ -203,6 +203,13 @@ input#second-search-bar{
 	display: none;
 }
 
+.navbar-custom.affix .show-top{
+	display: none;
+}
+.navbar-custom.affix-top .show-top{
+	display: inline;
+}
+
 .navbar-custom .scopes{
 	margin-top:8px;
 }
