@@ -534,11 +534,12 @@
 		      if( lastUrl && "onhashchange" in window && location.hash  ){
 		        if( $.isEmptyObject( history.state ) && allReadyLoad == false ){
 			        //console.warn("poped state",location.hash);
+			        //lastUrl = location.hash;
 			        loadByHash(location.hash,true);
 			    } 
 			    allReadyLoad = false;
 		      }
-
+			  
 		      lastUrl = location.hash;
 		    });
 
