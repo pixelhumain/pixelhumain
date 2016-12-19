@@ -80,7 +80,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			    </a>
 		    </div>
 		    <div class="col-xs-12 center no-padding hidden-xs">
-			    <a class="btn bg-dark padding-5" href="javascript:smallMenu.openAjax(baseUrl+'/'+moduleId+'/favorites/list','Mes Favoris','fa-star','yellow')">
+			    <a class="btn bg-dark padding-5" href="javascript:smallMenu.openAjax(baseUrl+'/'+moduleId+'/collections/list','Mes Collections','fa-star','yellow')">
 			        <i class="fa fa-star text-yellow" style="font-size: 1em!important;"></i> 
 			        Mes favoris
 			    </a>
@@ -175,7 +175,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			</div>
 			
 
-			<div class="col-md-12 col-sm-12 padding-15">
+			<div class="col-md-12 col-sm-12 padding-15 menuSmallBtns">
 				
 
 				<!-- <div class="col-md-6 col-sm-6 col-xs-12 center visible-communected">
@@ -308,7 +308,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 				    </a>
 			    </div>
 			   <?php //if(isset(Yii::app()->session['userId'])){ ?>
-			    <div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
+			    <div class="col-xs-6 center padding-5">
 					<a  href="#news.index.type.pixels" 
 						class="btn bg-grey lbh menu-button btn-menu btn-menu-notif tooltips text-white" 
 			            data-toggle="tooltip" data-placement="left" title="Signaler un bug">
@@ -317,6 +317,34 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 				    </a>
 			    </div>
 			    <?php //} ?>
+
+				<?php if(isset(Yii::app()->session['userId'])){ ?>
+				<div class="col-xs-12  no-padding">
+					<hr style="border-top: 1px solid transparent; margin:7px;">
+					<h2 class="homestead text-white">
+						Mes Collections
+						<i class="fa fa-angle-down"></i> 
+					</h2>
+				</div>
+				<?php foreach (@$me["collections"] as $col => $list) { ?>
+					<div class="col-xs-6 center padding-5 collection">
+						<a href="javascript:smallMenu.openAjax(baseUrl+'/'+moduleId+'/collections/list/col/<?php echo $col ?>','Mes <?php echo $col ?>','fa-star','yellow')" 
+							class="btn bg-grey menu-button btn-menu btn-menu-notif tooltips text-white" 
+				            data-toggle="tooltip" data-placement="left" title="<?php echo $col ?>">
+					        <i class="fa fa-star"></i> 
+					        <br/><?php echo $col ?>
+					    </a>
+				    </div>
+			    <?php } } ?>
+
+			    <div class="col-xs-6 center padding-5">
+					<a href="javascript:collection.new()" 
+						class="btn bg-grey menu-button btn-menu btn-menu-notif tooltips text-white" 
+			            data-toggle="tooltip" data-placement="left" title="Ajouter une collection">
+				        <i class="fa fa-plus"></i> 
+				        <br/>Ajouter une collection
+				    </a>
+			    </div>
 
 			    
 			</div>
@@ -339,3 +367,21 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	
+	function buildCollectionList () {
+		$(".collection").remove();
+		str = "";
+		$.each(userConnected.collections, function(col,list){ 
+			str +=  ' <div class="col-xs-6 center padding-5 collection">'+
+					'<a href="javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+col+'\',\'Mes '+col+'\',\'fa-folder-open\',\'yellow\')" '+
+						'class="btn bg-grey menu-button btn-menu btn-menu-notif tooltips text-white" '+
+					    'data-toggle="tooltip" data-placement="left" title="'+col+'">'+
+						'<i class="fa fa-folder-open text-yellow"></i> '+
+						'<br/>'+col+
+					'</a>'+
+				    '</div>';
+		});
+		$(".menuSmallBtns").append(str);
+	}
+</script>
