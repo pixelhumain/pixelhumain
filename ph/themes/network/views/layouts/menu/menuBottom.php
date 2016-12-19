@@ -37,7 +37,6 @@
 		</a>
 		</div>
 	<?php } ?>
-	
 </div>
 <script>
  // var timeoutGS = setTimeout(function(){ }, 100);

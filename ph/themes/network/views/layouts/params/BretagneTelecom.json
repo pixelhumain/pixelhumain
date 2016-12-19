@@ -3,9 +3,10 @@
     "mode" : "server",
     "skin" : {
         "logo" : false,
-        "title" : "Alternatives bretonnes",
+        "title" : "Pratiques collaboratives bretonnes",
+	"shortDescription" : "Rajoutez un projet en remplissant le formulaire ici : https://frama.link/ccform",
         "displayScope" : false,
-        "displayCommunexion" : false,
+        "displayCommunexion" : true,
         "profilBar" : true,
         "breadcrum":true,
         "displayButtonGridList" : false,
@@ -17,22 +18,22 @@
         "loginTitle":"",
         "front" : {
 	        "organization" : false,
-	        "project" : true,
-	        "event" : true,
-	        "community" : true,
+	        "project" : false,
+	        "event" : false,
+	        "community" : false,
 	        "dda" : false,
 	        "live" : false,
 	        "search" : false,
-	        "need" : true,
-	        "poi" : true
+	        "need" : false,
+	        "poi" : false
 	    },
 	    "menu" : {
 		    "aroundMe":false,
 		    "connectLink":false,
 		    "add":true,
 		    "detail":true,
-		    "news":true,
-		    "directory":true,
+		    "news":false,
+		    "directory":false,
 		    "gallery":true
 	    }
     },
@@ -40,7 +41,7 @@
         "types" : false,
         "tags" : {
             "activate" : true,
-            "title" : "Toutes les catégories",
+            "title" : "Autre",
             "background-color" : "#f5f5f5",
             "image" : "All.png",
             "tagsAdditional" : {
@@ -192,6 +193,9 @@
         "fullLocality" : true,
         "datesEvent" : false,
         "displayShortDescription" : true
+    },
+     "add" : {
+        "organization" : true
     },
     "request" : {
         "sourceKey" :[
