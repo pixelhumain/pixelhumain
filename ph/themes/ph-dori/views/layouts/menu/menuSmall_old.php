@@ -22,7 +22,7 @@
 ?>
 
 <!-- <div class="dropdown pull-left hidden-md hidden-lg hidden-sm " style="margin-top: 10px; margin-right: 10px;">
-	<a href="javascript:openMenuSmall();" class=" application-menu text-dark" >
+	<a href="javascript:smallMenu.open();" class=" application-menu text-dark" >
 	  <i class="fa fa-bars fa-2x"></i>
 	</a>
 </div> -->

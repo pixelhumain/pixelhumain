@@ -1464,7 +1464,9 @@ a.text-light:hover {
 
 .text-right {
   text-align: right; }
-
+.text-break{
+word-wrap: break-word;
+}
 .panel-white .text-light, .partition-white .text-light {
   color: rgba(0, 0, 0, 0.3) !important; }
 
@@ -2047,6 +2049,8 @@ textarea.autosize {
   word-wrap: break-word;
   resize: horizontal;
   height: 69px; }
+
+
 
 .radio label.radio-inline, .checkbox label.checkbox-inline {
   display: inline-block; }

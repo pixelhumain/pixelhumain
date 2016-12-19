@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 
 <?php 
-    $user = "NOT_CONNECTED";
     $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
     $themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
     $cs = Yii::app()->getClientScript();
-?>
 
-<?php $subdomain = "live" ?>
+    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+?>
 
 <html lang="en" class="no-js">
 
@@ -55,7 +54,7 @@
         </div>
         
         <?php $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
-              $this->renderPartial($layoutPath.'menuMap', array( "layoutPath"=>$layoutPath, "me" => $me ) ); ?>   
+              $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); ?>   
         
         <div class="main-container"></div>
 
@@ -75,16 +74,11 @@
 
             $cssAnsScriptFilesModule = array(
                 '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js',
-                // '/plugins/bootstrap/js/bootstrap.min.js' , 
-                // '/plugins/bootstrap/css/bootstrap.min.css',
-                // '/plugins/velocity/jquery.velocity.min.js',
                 '/plugins/jquery-validation/dist/jquery.validate.min.js',
                 '/plugins/jquery-validation/localization/messages_fr.js',
                 '/plugins/bootbox/bootbox.min.js' , 
                 '/plugins/blockUI/jquery.blockUI.js' , 
                 '/plugins/jquery.ajax-cross-origin.min.js',
-                // '/plugins/toastr/toastr.js' , 
-                // '/plugins/toastr/toastr.min.css',
                 '/plugins/jquery-cookie/jquery.cookie.js' , 
                 '/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
                 '/plugins/ladda-bootstrap/dist/spin.min.js' , 
@@ -98,7 +92,7 @@
                 
                 '/plugins/select2/select2.min.js' , 
                 '/plugins/moment/min/moment.min.js' ,
-                //'/js/cookie.js' ,
+                '/js/cookie.js' ,
                 '/js/api.js',
                 
                 //'/plugins/animate.css/animate.min.css',
@@ -114,121 +108,42 @@
                 '/assets/data/mainCategories.js' ,
                 
                 '/assets/vendor/bootstrap/js/bootstrap.min.js',
-                '/assets/js/kgougle.js' ,
+                '/assets/js/CO2.js' ,
                 
                 '/assets/vendor/bootstrap/css/bootstrap.min.css',
-                '/assets/css/freelancer.css',
-                '/assets/css/kgougle.css',
-                '/assets/css/kgougle-color.css',
-                '/assets/css/kgougle-boot.css',
                 '/assets/css/sig/sig.css',
+                '/assets/css/freelancer.css',
 
+                '/assets/css/CO2/CO2-boot.css',
+                '/assets/css/CO2/CO2-color.css',
+                '/assets/css/CO2/CO2.css',
+                 
                 '/assets/vendor/jPlayer-2.9.2/dist/skin/blue.monday/css/jplayer.blue.monday.min.css',
                 '/assets/vendor/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js',
                 '/assets/js/radioplayer.js' ,
                                                   
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
+
+            //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin)
+            if($CO2DomainName != "CO2"){
+                $cssAnsScriptFilesModule = array(
+                    '/assets/css/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
+                    '/assets/css/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
+                    '/assets/js/themes/'.$CO2DomainName.'.js',
+                );
+                HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
+            }
         ?>
 
-        <!-- Plugin JavaScript -->
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> -->
-        <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+        <?php $this->renderPartial($layoutPath.'initJs'); ?>
 
         <script>
-            //used in communecter.js dynforms
-            var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
-            var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
-            var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
-            var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : "null"?>;
-            var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
-            var organizerList = {}; 
-            var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
-
-            var proverbs = new Array();
-            var initT = new Object();
-            var showDelaunay = true;
-            var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
-            var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
-            var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
-            var moduleId = "<?php echo $this->module->id?>";
-            var userId = "<?php echo Yii::app()->session['userId']?>";
-            var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
-            var currentUrl = "<?php echo "#".Yii::app()->controller->id.".".Yii::app()->controller->action->id ?>";
-            var debugMap = [
-                <?php if(YII_DEBUG) { ?>
-                   { "userId":"<?php echo Yii::app()->session['userId']?>"},
-                   { "userEmail":"<?php echo Yii::app()->session['userEmail']?>"}
-                <?php } ?>
-                ];
-
-            /* variables globales communexion */    
-            var myContacts = <?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
-            var myContactsById =<?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
-            var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
-
-            var mapIconTop = {
-                "default" : "fa-arrow-circle-right",
-                "citoyen":"<?php echo Person::ICON ?>", 
-                "person":"<?php echo Person::ICON ?>", 
-                "NGO":"<?php echo Organization::ICON ?>",
-                "LocalBusiness" :"<?php echo Organization::ICON_BIZ ?>",
-                "Group" : "<?php echo Organization::ICON_GROUP ?>",
-                "group" : "<?php echo Organization::ICON ?>",
-                "association" : "<?php echo Organization::ICON ?>",
-                "organization" : "<?php echo Organization::ICON ?>",
-                "organizations" : "<?php echo Organization::ICON ?>",
-                "GovernmentOrganization" : "<?php echo Organization::ICON_GOV ?>",
-                "event":"<?php echo Event::ICON ?>",
-                "events":"<?php echo Event::ICON ?>",
-                "project":"<?php echo Project::ICON ?>",
-                "projects":"<?php echo Project::ICON ?>",
-                "city": "<?php echo City::ICON ?>",
-                "entry": "fa-gavel",
-                "action": "fa-cogs",
-                "actions": "fa-cogs",
-                "poi": "fa-info-circle",
-                "video": "fa-video-camera"
-            };
-            var mapColorIconTop = {
-                "default" : "dark",
-                "citoyen":"yellow", 
-                "person":"yellow", 
-                "NGO":"green",
-                "LocalBusiness" :"azure",
-                "Group" : "white",
-                "group" : "green",
-                "association" : "green",
-                "organization" : "green",
-                "organizations" : "green",
-                "GovernmentOrganization" : "green",
-                "event":"orange",
-                "events":"orange",
-                "project":"purple",
-                "projects":"purple",
-                "city": "red",
-                "entry": "azure",
-                "action": "lightblue2",
-                "actions": "lightblue2",
-                "poi": "dark",
-                "video":"dark"
-            };
+            <?php $params = CO2::getThemeParams(); ?>
 
             jQuery(document).ready(function() {
-                toastr.options = {
-                  "closeButton": false,
-                  "positionClass": "toast-bottom-left",
-                  "onclick": null,
-                  "showDuration": "1000",
-                  "hideDuration": "1000",
-                  "timeOut": "5000",
-                  "extendedTimeOut": "1000",
-                  "showEasing": "swing",
-                  "hideEasing": "linear",
-                  "showMethod": "fadeIn",
-                  "hideMethod": "fadeOut"
-                };
-
+                loadableUrls = <?php echo json_encode($params["pages"]); ?>;
+                initToastr();
                 loadByHash(location.hash,true);
             });
         </script>

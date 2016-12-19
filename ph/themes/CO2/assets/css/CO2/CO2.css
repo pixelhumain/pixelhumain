@@ -1,47 +1,52 @@
 
 @font-face{
 	font-family: youregone;
-	src: url('../vendor/fonts/youregone/youregone.ttf');
+	src: url('../../vendor/fonts/youregone/youregone.ttf');
 }.font-youregone{font-family:"youregone"!important;font-weight:200!important;}
 
 @font-face{
 	font-family: Ridge-Regular;
-	src: url('../vendor/fonts/Ridge-Regular/Ridge-Regular.otf');
+	src: url('../../vendor/fonts/Ridge-Regular/Ridge-Regular.otf');
 }.font-ridge{font-family:"Ridge-Regular"!important;font-weight:200!important;}
 
 @font-face{
 	font-family: VAL;
-	src: url('../vendor/fonts/VAL/VAL.otf');
+	src: url('../../vendor/fonts/VAL/VAL.otf');
 }.font-VAL{font-family:"VAL"!important;}
 
 @font-face{
 	font-family: LondrinaSketch;
-	src: url('../vendor/fonts/LondrinaSketch-Regular.ttf');
+	src: url('../../vendor/fonts/LondrinaSketch-Regular.ttf');
 }.font-londrina{font-family:"LondrinaSketch"!important;}
 
 @font-face{
 	font-family: BlackoutM;
-	src: url('../vendor/fonts/blackout/Blackout Midnight.ttf');
+	src: url('../../vendor/fonts/blackout/Blackout Midnight.ttf');
 }.font-blackoutM{font-family:"BlackoutM"!important;}
 
 @font-face{
 	font-family: BlackoutS;
-	src: url('../vendor/fonts/blackout/Blackout Sunrise.ttf');
+	src: url('../../vendor/fonts/blackout/Blackout Sunrise.ttf');
 }.font-blackoutS{font-family:"BlackoutS"!important;}
 
 @font-face{
 	font-family: BlackoutT;
-	src: url('../vendor/fonts/blackout/Blackout Two AM.ttf');
+	src: url('../../vendor/fonts/blackout/Blackout Two AM.ttf');
 }.font-blackoutT{font-family:"BlackoutT"!important;}
 
 @font-face{
 	font-family: ZILAP;
-	src: url('../vendor/fonts/ZILAP.ttf');
+	src: url('../../vendor/fonts/ZILAP.ttf');
 }.font-ZILAP{font-family:"ZILAP"!important;}
 
 @font-face{
+	font-family: coconut;
+	src: url('../../vendor/fonts/Coconut_Point.otf');
+}.font-coconut{font-family:"coconut"!important;}
+
+@font-face{
 font-family: Homestead;
-src: url('../vendor/fonts/Homestead/Homestead-Display.ttf');
+src: url('../../vendor/fonts/Homestead/Homestead-Display.ttf');
 }
 .homestead{font-family:"Homestead";font-weight:200!important;}
 
@@ -69,7 +74,8 @@ src: url('../vendor/fonts/Homestead/Homestead-Display.ttf');
 }
 header, .header {
   text-align: center;
-  background: #C8EBF5;
+  background: #F6F6F6;
+  background-image: url("../../img/background-onepage/pattern/witewall_3.png");
   color: #365766;
 }
 
@@ -110,7 +116,7 @@ section {
 }
 
 .navbar-custom {
-    background: #F4FDFF;/*rgba(255, 255, 255, 0.2)*/;
+    background: #FFF;/*rgba(255, 255, 255, 0.2)*/;
     padding: 5px 0;
 	-webkit-box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
     -moz-box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
@@ -238,6 +244,7 @@ input#second-search-bar{
 
 .navbar-custom .btn-show-map{
 	background-color: #0095FF;
+	/*background-color: #7bd18f;*/
 	color: white;
 	border: 2px solid transparent;
 	margin-top: 5px;
@@ -257,6 +264,7 @@ input#second-search-bar{
 
 .navbar-custom .btn-show-mainmenu{
 	background-color: #fbbc05;
+	/*background-color: #354c57;*/
 	color: white;
 	border: 2px solid transparent;
 	margin-top: 5px;
