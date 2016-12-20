@@ -261,7 +261,15 @@ function initKInterface(params){
 
     $(".tooltips").tooltip();
     
+
     bindLBHLinks();
+
+    $(".menu-name-profil #menu-thumb-profil, .menu-name-profil #menu-name-profil").mouseenter(function(){
+        $("#dropdown-user").addClass("open");
+    });
+    $("#dropdown-user").mouseleave(function(){
+        $("#dropdown-user").removeClass("open");
+    });
 
 }
 
