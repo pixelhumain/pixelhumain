@@ -73,7 +73,7 @@
                     "PME et ETI" : "PME et ETI",
                     "TPE et Start Up" : "TPE et Start Up",
                     "Structures d'accompagnement et associations" : "Structures d'accompagnement et associations",
-                    "Bureau d'étude/cabinet de conseil" : "Bureau d'étude/cabinet de conseil"
+                    "Bureau d'étude et cabinet de conseil" : "Bureau d'étude et cabinet de conseil"
                 }
             },
             "Compétences" : {
@@ -86,7 +86,8 @@
                   "Mobilités actives et partagées" : "Mobilités actives et partagées",
                   "Energie et mobilité" : "Energie et mobilité",
                   "Services à la mobilité" : "Services à la mobilité",
-                  "TIC numérique data" : "TIC numérique data",
+                  "TIC" : "TIC",
+                  "numérique et data" : "numérique et data",
                   "Ingénierie et financement" : "Ingénierie et financement",
                   "Aménagement valo et dév" : "Aménagement valo et dév",
                   "Orga et mgmt de la mobilité" : "Orga et mgmt de la mobilité"
