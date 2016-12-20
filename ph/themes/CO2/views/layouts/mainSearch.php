@@ -5,7 +5,7 @@
     $themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
     $cs = Yii::app()->getClientScript();
 
-    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+    $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
 ?>
 
 <html lang="en" class="no-js">
