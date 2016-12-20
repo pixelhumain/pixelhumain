@@ -200,6 +200,10 @@ class DataValidator {
 			$result = DateTime::createFromFormat('Y-m-d H:i:s', $myDate);
 		}
 
+		if (empty($result)) {
+			$result = DateTime::createFromFormat(DateTime::ISO8601, $myDate);
+		}
+
 	    if (empty($result)) {
 			error_log("Error formation : ".$myDate." (".$label.")");
 	    	throw new CTKException("The ".$label." is not well formated");
