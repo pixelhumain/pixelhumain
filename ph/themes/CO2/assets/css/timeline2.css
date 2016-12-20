@@ -132,7 +132,7 @@
 .timeline > li.timeline-inverted{
   float: right; 
   clear: right;
-  margin-top: 30px;
+  margin-top: 0px;
   margin-bottom: 30px;
 }
 .timeline > li:nth-child(2){
@@ -189,7 +189,7 @@
 .timeline > li.timeline-inverted{
   float: left; 
   clear: left;
-  margin-top: 30px;
+  margin-top: 0px;
   margin-bottom: 30px;
 }
 
