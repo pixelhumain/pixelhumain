@@ -3,7 +3,7 @@
     "mode" : "server",
     "skin" : {
         "logo" : "mel.png",
-        "title" : "Cartographie des Tiers-Lieux Nord",
+        "title" : "Cartographie des Tiers-Lieux de la Métropole lilloise",
         "shortDescription" : "Référecement des espaces de travail partagés sur la métropole européenne de Lille",
         "displayScope" : false,
         "docs":true,
