@@ -26,6 +26,13 @@
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
         
+        <?php }elseif($subdomain == "social" || $subdomain == "page.type"){ ?>
+            
+            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
+                <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
+            </div>
+            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
+
         <?php }elseif($subdomain == "page"){ ?>
             <div class="hidden-xs col-sm-5 col-md-4 col-lg-4" id="main-page-name"></div>
         <?php } ?>
@@ -47,13 +54,40 @@
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
                      
-                    <a  href="#k.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="dropdown-toggle menu-name-profil text-dark lbh pull-right" 
+                    <a  href="#co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
+                        class="menu-name-profil text-dark lbh pull-right" 
                         data-toggle="dropdown">
-                                <small class="hidden-xs"><?php echo $me["username"]; ?> <?php echo $me["username"]; ?></small> 
+                                <small class="hidden-xs" id="menu-name-profil"><?php echo $me["username"]; ?> <?php echo $me["username"]; ?></small> 
                                 <img class="img-circle" id="menu-thumb-profil" 
                                      width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
                     </a>
+
+                    <div class="dropdown pull-right" id="dropdown-user">
+                        <div class="dropdown-main-menu">
+                            <ul class="dropdown-menu arrow_box">
+                                <li class="text-left">
+                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-plus-circle"></i> Créer une page
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider">
+                                </li>
+                                <li class="text-left">
+                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-search"></i> Rechercher
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider">
+                                </li>
+                                <li class="text-left">
+                                    <a href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" class="lbh bg-white letter-red">
+                                        <i class="fa fa-sign-out"></i> Déconnecter
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <button class="menu-button btn-menu btn-menu-notif tooltips text-dark pull-right" 
                           data-toggle="tooltip" data-placement="left" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
@@ -80,8 +114,18 @@
 
 
 </nav>
+
+
+
+
+
 <?php if(isset(Yii::app()->session['userId'])) 
                 $this->renderPartial($layoutPath.'notifications'); ?>
+
+
+
+
+
 
 <div class="portfolio-modal modal fade" id="modalMainMenu" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">

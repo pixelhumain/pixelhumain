@@ -5,7 +5,7 @@
     $themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
     $cs = Yii::app()->getClientScript();
 
-    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+    $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
 ?>
 
 <html lang="en" class="no-js">
@@ -92,7 +92,7 @@
                 
                 '/plugins/select2/select2.min.js' , 
                 '/plugins/moment/min/moment.min.js' ,
-                '/js/cookie.js' ,
+                //'/js/cookie.js' ,
                 '/js/api.js',
                 
                 //'/plugins/animate.css/animate.min.css',

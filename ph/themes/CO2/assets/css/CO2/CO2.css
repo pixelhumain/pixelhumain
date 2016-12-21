@@ -203,6 +203,13 @@ input#second-search-bar{
 	display: none;
 }
 
+.navbar-custom.affix .show-top{
+	display: none!important;
+}
+.navbar-custom.affix-top .show-top{
+	display: inline!important;
+}
+
 .navbar-custom .scopes{
 	margin-top:8px;
 }
@@ -481,7 +488,7 @@ a, a:hover, a:focus, a:active, a.active{
 .dropdown-main-menu{
 	position: fixed;
 	top:60px;
-	right:15px;
+	right:85px;
 	max-height:400px;
 	/*width:200px;*/
 	background-color:transparent;

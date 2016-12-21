@@ -16,16 +16,19 @@
     <?php 
         $params = CO2::getThemeParams();
        //var_dump($params["pages"]); exit;
+        $useHeader              = $params["pages"]["#co2.".$page]["useHeader"];
         $subdomain              = $params["pages"]["#co2.".$page]["subdomain"];
         $subdomainName          = $params["pages"]["#co2.".$page]["subdomainName"];
         $icon                   = $params["pages"]["#co2.".$page]["icon"];
         $mainTitle              = $params["pages"]["#co2.".$page]["mainTitle"];
         $placeholderMainSearch  = $params["pages"]["#co2.".$page]["placeholderMainSearch"];
+
+
     ?>
 
     <!-- Header -->
     <header>
-        <?php if($subdomain != "page"){ ?>
+        <?php if(@$useHeader != false){ ?>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -123,7 +126,7 @@
 
                             <div class="col-md-12">
                                 <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button>
-                                <a href="#k.referencement" class="lbh btn btn-default hidden-xs" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer mon site</a>
+                                <a href="#co2.referencement" class="lbh btn btn-default hidden-xs" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer mon site</a>
                             </div>
                         <?php }elseif($subdomain == "referencement"){ ?>
                             <p><br><small>
@@ -147,6 +150,7 @@
             $this->renderPartial($layoutPath.'menus/'.$CO2DomainName, 
                                                     array( "layoutPath"=>$layoutPath , 
                                                             "subdomain"=>$subdomain,
+                                                            "subdomainName"=>$subdomainName,
                                                             "mainTitle"=>$mainTitle,
                                                             "placeholderMainSearch"=>$placeholderMainSearch,
                                                             "me" => $me) ); ?>   
