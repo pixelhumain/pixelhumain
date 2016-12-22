@@ -381,4 +381,14 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 		});
 		$(".menuSmallBtns").append(str);
 	}
+
+	function buildCollectionMenu() { 
+		$("#listCollections").html("<h2 class='homestead'>Collections</h2>");
+		str = "";
+		$.each(userConnected.collections, function(col,list){ 
+			str += '<a href="javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+col+'\',\''+col+'\',\'fa-folder-open\',\'yellow\')" '+
+						'class="btn btn-xs btn-link text-white text-left w100p"><i class="fa fa-folder-open text-yellow"></i> '+col+'</a><br/>'
+		});
+		$("#listCollections").append(str);
+	 }
 </script>
