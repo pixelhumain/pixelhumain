@@ -80,12 +80,6 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			    </a>
 		    </div>
 		    <div class="col-xs-12 center no-padding hidden-xs">
-			    <a class="btn bg-dark padding-5" href="javascript:smallMenu.openAjax(baseUrl+'/'+moduleId+'/collections/list','Mes Collections','fa-star','yellow')">
-			        <i class="fa fa-star text-yellow" style="font-size: 1em!important;"></i> 
-			        Mes favoris
-			    </a>
-		    </div>
-		    <div class="col-xs-12 center no-padding hidden-xs">
 			    <a class="btn bg-dark lbh padding-5" 
 			    	href="#rooms.index.type.citoyens.id.<?php echo Yii::app()->session['userId']?>">
 			        <i class="fa fa-comments" style="font-size: 1em!important;"></i> 
@@ -347,6 +341,19 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 				    </a>
 			    </div>
 
+			    <?php 
+			    if (@$me["collections"]){
+			    foreach (@$me["collections"] as $col => $list) { ?>
+					<div class="col-xs-6 center padding-5 collection">
+						<a href="javascript:smallMenu.openAjax(baseUrl+'/'+moduleId+'/collections/list/col/<?php echo $col ?>','<?php echo $col ?>','fa-folder-open','yellow')" 
+							class="btn bg-grey menu-button btn-menu btn-menu-notif tooltips text-white" 
+				            data-toggle="tooltip" data-placement="left" title="<?php echo $col ?>">
+					        <i class="fa fa-folder-open  text-yellow"></i> 
+					        <br/><?php echo $col ?>
+					    </a>
+				    </div>
+			    <?php } } } ?>
+
 			    
 			</div>
 			
@@ -375,7 +382,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 		str = "";
 		$.each(userConnected.collections, function(col,list){ 
 			str +=  ' <div class="col-xs-6 center padding-5 collection">'+
-					'<a href="javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+col+'\',\'Mes '+col+'\',\'fa-folder-open\',\'yellow\')" '+
+					'<a href="javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+col+'\',\''+col+'\',\'fa-folder-open\',\'yellow\')" '+
 						'class="btn bg-grey menu-button btn-menu btn-menu-notif tooltips text-white" '+
 					    'data-toggle="tooltip" data-placement="left" title="'+col+'">'+
 						'<i class="fa fa-folder-open text-yellow"></i> '+
@@ -385,4 +392,14 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 		});
 		$(".menuSmallBtns").append(str);
 	}
+
+	function buildCollectionMenu() { 
+		$("#listCollections").html("<h2 class='homestead'>Collections</h2>");
+		str = "";
+		$.each(userConnected.collections, function(col,list){ 
+			str += '<a href="javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+col+'\',\''+col+'\',\'fa-folder-open\',\'yellow\')" '+
+						'class="btn btn-xs btn-link text-white text-left w100p"><i class="fa fa-folder-open text-yellow"></i> '+col+'</a><br/>'
+		});
+		$("#listCollections").append(str);
+	 }
 </script>
