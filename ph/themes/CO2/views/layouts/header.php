@@ -34,12 +34,12 @@
                 <div class="col-lg-12">
                     <div class="intro-text">  
 
-                        <div class="col-md-12 text-center " style="margin-bottom:110px;">
+                        <div class="col-md-12 text-center main-menu-app" style="">
                             <?php foreach ($params["pages"] as $key => $value) {
                                     if(@$value["inMenu"]==true){ ?>
                                     <a  class="lbh letter-red font-blackoutM margin-right-25" 
                                         href="<?php echo $key; ?>">
-                                        <i class="fa fa-<?php echo $value["icon"]; ?>"></i> <?php echo $value["subdomain"]; ?>
+                                        <i class="fa fa-<?php echo $value["icon"]; ?>"></i><span class="hidden-xs"> <?php echo $value["subdomain"]; ?></span>
                                     </a>    
                             <?php   }
                                  }  ?>
@@ -61,7 +61,7 @@
 
                        
                         <?php if($subdomain == "live"){ ?>
-                            <div class="input-group col-md-8 col-md-offset-2" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
+                            <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
@@ -79,12 +79,12 @@
                             </button>
 
                         <?php }elseif($subdomain == "social"){ ?>
-                            <div class="input-group col-md-8 col-md-offset-2" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
+                            <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
-                            <div class="col-md-12 hidden-top scopes">
+                            <div class="col-md-12 no-padding hidden-top scopes">
                                 <button class="btn text-black bg-white btn-directory-type" data-type="all">
                                     <i class="fa fa-search"></i> 
                                     <span class="hidden-xs">Tous</span>
@@ -119,14 +119,14 @@
                             <!-- <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button> -->
 
                         <?php }elseif($subdomain == "web"){ ?>
-                            <div class="input-group col-md-8 col-md-offset-2" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
+                            <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
                             <div class="col-md-12">
                                 <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button>
-                                <a href="#co2.referencement" class="lbh btn btn-default hidden-xs" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer mon site</a>
+                                <a href="#co2.referencement" class="lbh btn btn-default hidden-xs" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer un site</a>
                             </div>
                         <?php }elseif($subdomain == "referencement"){ ?>
                             <p><br><small>

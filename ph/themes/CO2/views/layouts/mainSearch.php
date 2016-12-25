@@ -61,6 +61,8 @@
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
 
 
+        <?php $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); ?> 
+
         <?php 
             echo "<!-- start: MAIN JAVASCRIPTS -->";
             echo "<!--[if lt IE 9]>";

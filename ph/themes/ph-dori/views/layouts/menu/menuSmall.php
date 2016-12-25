@@ -326,7 +326,8 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 						<i class="fa fa-angle-down"></i> 
 					</h2>
 				</div>
-				<?php foreach (@$me["collections"] as $col => $list) { ?>
+				<?php if(isset($me["collections"])) 
+						foreach (@$me["collections"] as $col => $list) { ?>
 					<div class="col-xs-6 center padding-5 collection">
 						<a href="javascript:smallMenu.openAjax(baseUrl+'/'+moduleId+'/collections/list/col/<?php echo $col ?>','Mes <?php echo $col ?>','fa-star','yellow')" 
 							class="btn bg-grey menu-button btn-menu btn-menu-notif tooltips text-white" 

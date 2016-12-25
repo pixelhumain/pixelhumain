@@ -1,4 +1,4 @@
-
+<?php $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.'; ?>
 <style>
     .footer-above{
         background-color: #F2F2F2!important;
@@ -12,6 +12,12 @@
     
 </style>
 <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="radio-tool">
+    <a class="btn btn-primary" href="#page-top" data-target="#modalRadioTool" data-toggle="modal">
+        <i class="fa fa-microphone"></i>
+    </a>
+</div>
+
 <div class="scroll-top page-scroll">
     <a class="btn btn-primary" href="#page-top">
         <i class="fa fa-chevron-up"></i>
@@ -69,3 +75,6 @@
         </div>
     </div>
 </footer>
+
+
+

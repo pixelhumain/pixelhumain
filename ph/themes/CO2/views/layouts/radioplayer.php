@@ -1,69 +1,7 @@
 
+<?php HtmlHelper::registerCssAndScriptsFiles( array('/css/radioplayer.css', ) , Yii::app()->theme->baseUrl. '/assets'); ?>
+
 <style>
-    .jp-audio, .jp-audio-stream, .jp-video{
-        border: 0px solid #009be3;
-    }
-    .jp-audio-stream {
-        width:100%;
-    }
-    /*.jp-interface{
-        background-color: transparent;
-    }
-    .jp-controls button{
-        background:none;
-        text-indent:0;
-    }
-    .jp-play{
-        background:none;
-    }*/
-
-    .btn-radioplay{
-        background-color: transparent;
-        border:none;
-        margin-bottom:4px;
-    }
-    .btn-radioplay img{
-        border:4px solid white;
-        height: 70px;
-        background-color: white;
-    }
-
-    .btn-radioplay:hover img{
-        border:4px solid  #34a853;
-    }
-
-    .btn-radioplay.selected img{
-        border:4px solid #34a853;
-    }
-
-    #cntr-radio{
-        margin-top:-35px;
-        min-height:110px;
-    }
-
-    .jp-audio .jp-interface, .jp-audio-stream .jp-interface {
-        height: 24px;
-    }
-    .jp-volume-controls {
-        top: 5px;
-    }
-
-
-@media (max-width: 1000px) {
-  .btn-radioplay img{
-    height: 35px;
-  }
-  #cntr-radio{
-    /*background-color: #f8f8f8;*/
-    margin-top:-20px;
-  }
-
-  #cntr-radio h4{
-    font-size: 8px;
-  }
-
-}
-
 </style>
 
 

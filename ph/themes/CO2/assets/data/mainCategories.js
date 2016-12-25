@@ -26,7 +26,8 @@ var mainCategories = {
 						{ name: "Banques",  			faIcon: "dollar"}, 
 						{ name: "Santé",  				faIcon: "medkit"}, 
 						{ name: "Travail",  			faIcon: "briefcase"}, 
-						{ name: "Entreprises",  		faIcon: "industry"}, 
+						{ name: "Entreprises",  		faIcon: "industry"},  
+						{ name: "Organismes",  			faIcon: "certificate"}, 
 					  ]
 		},
 		"verte" : {

@@ -1,0 +1,55 @@
+#mainCategoriesEdit{
+	padding: 30px;
+	background-color: white;
+	box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+
+#mainCategoriesEdit section#portfolio{
+	padding:0px 0 0 0 !important;
+}
+
+#mainCategoriesEdit button.btn-select-category{
+	background-color: transparent!important;
+	border:none!important;
+	color:#2C3E50;
+}
+
+#mainCategoriesEdit .search-eco button.btn-select-category{
+	color:#34a853;
+}
+
+
+#mainCategoriesEdit .portfolio-item {
+	border-radius: 10px;
+}
+
+#mainCategoriesEdit .portfolio-item:hover {
+    background-color: #C8EBF5;
+}
+
+#mainCategoriesEdit .portfolio-item.selected, .portfolio-item.selected:hover{
+	background-color: #2C3E50 !important;
+}
+
+#mainCategoriesEdit .search-eco .portfolio-item.selected, .search-eco .portfolio-item.selected:hover{
+	background-color: #34a853!important;
+}
+
+#mainCategoriesEdit .portfolio-item.selected button{
+	color:white!important;
+}
+#mainCategoriesEdit .portfolio-item{
+	border: white 2px solid;
+	height: 70px;
+	padding-top: 5px;
+	margin-top: 5px;
+}
+
+#mainCategoriesEdit .portfolio-link h3{
+	font-size:11px;
+}

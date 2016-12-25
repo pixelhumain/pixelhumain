@@ -20,6 +20,49 @@
     font-size: 1.2em;
 }
 
+
+.c100.blue .bar,
+.c100.blue .fill {
+  border-color: #4da9c8 !important;
+}
+.c100.blue:hover > span {
+  color: #4da9c8;
+}
+
+.c100.orange .bar,
+.c100.orange .fill {
+  border-color: #ffad05 !important;
+}
+.c100.orange:hover > span {
+  color: #ffad05;
+}
+
+.c100.red .bar,
+.c100.red .fill {
+  border-color: #ea4335 !important;
+}
+.c100.red:hover > span {
+  color: #ea4335;
+}
+
+
+.c100.green .bar,
+.c100.green .fill {
+  border-color: #34a853 !important;
+}
+.c100.green:hover > span {
+  color: #34a853;
+}
+
+.c100.yellow .bar,
+.c100.yellow .fill {
+  border-color: #fbbc05 !important;
+}
+.c100.yellow:hover > span {
+  color: #fbbc05;
+}
+
+
 .text-black, a.text-black{
     color:#333; !important;
 }
