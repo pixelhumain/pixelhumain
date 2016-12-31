@@ -4,8 +4,8 @@
 HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuSmall.css'), Yii::app()->theme->baseUrl); 
 
 if (isset(Yii::app()->session['userId']) && !empty($me)) {
-          $profilMediumImageUrl = Element::getImgProfil($me, "profilMediumImageUrl", $this->module->assetsUrl);
-      }
+  $profilMediumImageUrl = Element::getImgProfil($me, "profilMediumImageUrl", $this->module->assetsUrl);
+}
 ?>
 
 <div class="hide menuSmall">
@@ -320,20 +320,9 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 						<i class="fa fa-angle-down"></i> 
 					</h2>
 				</div>
-				<?php if(isset($me["collections"])) 
-						foreach (@$me["collections"] as $col => $list) { ?>
-					<div class="col-xs-6 center padding-5 collection">
-						<a href="javascript:smallMenu.openAjax(baseUrl+'/'+moduleId+'/collections/list/col/<?php echo $col ?>','Mes <?php echo $col ?>','fa-star','yellow')" 
-							class="btn bg-grey menu-button btn-menu btn-menu-notif tooltips text-white" 
-				            data-toggle="tooltip" data-placement="left" title="<?php echo $col ?>">
-					        <i class="fa fa-star"></i> 
-					        <br/><?php echo $col ?>
-					    </a>
-				    </div>
-			    <?php } } ?>
 
 			    <div class="col-xs-6 center padding-5">
-					<a href="javascript:collection.new()" 
+					<a href="javascript:collection.crud()" 
 						class="btn bg-grey menu-button btn-menu btn-menu-notif tooltips text-white" 
 			            data-toggle="tooltip" data-placement="left" title="Ajouter une collection">
 				        <i class="fa fa-plus"></i> 
@@ -342,17 +331,20 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			    </div>
 
 			    <?php 
-			    if (@$me["collections"]){
-			    foreach (@$me["collections"] as $col => $list) { ?>
+			    if (@$me["collections"])
+			    {
+			    foreach (@$me["collections"] as $col => $list) 
+			    	{ ?>
 					<div class="col-xs-6 center padding-5 collection">
-						<a href="javascript:smallMenu.openAjax(baseUrl+'/'+moduleId+'/collections/list/col/<?php echo $col ?>','<?php echo $col ?>','fa-folder-open','yellow')" 
+						<a href="javascript:smallMenu.openAjax(baseUrl+'/'+moduleId+'/collections/list/col/<?php echo $col ?>','<?php echo $col ?>','fa-folder-open','yellow',null,null,function(){ $('.menuSmallTools').removeClass('hide');})" 
 							class="btn bg-grey menu-button btn-menu btn-menu-notif tooltips text-white" 
 				            data-toggle="tooltip" data-placement="left" title="<?php echo $col ?>">
 					        <i class="fa fa-folder-open  text-yellow"></i> 
-					        <br/><?php echo $col ?>
+					        <br/><?php echo $col." (".count($list).")" ?>
 					    </a>
 				    </div>
-			    <?php } } } ?>
+			    <?php } 
+			    } } ?>
 
 			    
 			</div>
@@ -376,30 +368,38 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 	</div>
 </div>
 <script type="text/javascript">
+	var js_templates = {
+		col_Link_Label_Count : function(obj){
+			return ' <div class="col-xs-6 center padding-5 collection">'+
+						'<a href="javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+obj.label+'\',\''+obj.label+'\',\'fa-folder-open\',\'yellow\',null,null,function(){ $(\'.menuSmallTools\').removeClass(\'hide\');})" '+
+							'class="btn bg-grey menu-button btn-menu btn-menu-notif tooltips text-white" '+
+						    'data-toggle="tooltip" data-placement="left" title="'+obj.label+'">'+
+							'<i class="fa fa-folder-open text-yellow"></i> '+
+							'<br/>'+obj.label+' ('+obj.labelCount+')'+
+						'</a>'+
+				    '</div>'
+		},
+		linkList : function (obj){
+			return '<a href="javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+obj.label+'\',\''+obj.label+'\',\'fa-folder-open\',\'yellow\',null,null,function(){ $(\'.menuSmallTools\').removeClass(\'hide\');})" '+
+						'class="btn btn-xs btn-link text-white text-left w100p"><i class="fa fa-folder-open text-yellow"></i> '+obj.label+' ('+obj.labelCount+')</a><br/>'
+		}
+	};
 	
-	function buildCollectionList () {
-		$(".collection").remove();
+	function buildCollectionList (tpl, appendTo, reset) {
+		if(typeof reset == "function")
+			reset();
 		str = "";
 		$.each(userConnected.collections, function(col,list){ 
-			str +=  ' <div class="col-xs-6 center padding-5 collection">'+
-					'<a href="javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+col+'\',\''+col+'\',\'fa-folder-open\',\'yellow\')" '+
-						'class="btn bg-grey menu-button btn-menu btn-menu-notif tooltips text-white" '+
-					    'data-toggle="tooltip" data-placement="left" title="'+col+'">'+
-						'<i class="fa fa-folder-open text-yellow"></i> '+
-						'<br/>'+col+
-					'</a>'+
-				    '</div>';
+			var colcount = 0;
+			$.each(list, function(type,entries){
+				colcount += Object.keys(entries).length;
+			}); 
+			str += js_templates[ tpl ]({
+				label : col,
+				labelCount : colcount
+			}) ;
 		});
-		$(".menuSmallBtns").append(str);
+		$(appendTo).append(str);
 	}
 
-	function buildCollectionMenu() { 
-		$("#listCollections").html("<h2 class='homestead'>Collections</h2>");
-		str = "";
-		$.each(userConnected.collections, function(col,list){ 
-			str += '<a href="javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+col+'\',\''+col+'\',\'fa-folder-open\',\'yellow\')" '+
-						'class="btn btn-xs btn-link text-white text-left w100p"><i class="fa fa-folder-open text-yellow"></i> '+col+'</a><br/>'
-		});
-		$("#listCollections").append(str);
-	 }
 </script>
