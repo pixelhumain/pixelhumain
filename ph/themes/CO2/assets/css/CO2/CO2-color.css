@@ -12,15 +12,25 @@
 
 .letter-red{ color:#ea4335!important; }
 
+.letter-orange{ color:#FFA200!important; }
+
 .letter-yellow{ color:#fbbc05!important; }
 
 .letter-green{ color:#34a853!important; }
 
 .letter-lightblue{ color:#7bc3d1 !important; }
 
+.letter-turq{
+    color: #229296!important;
+}
+
 .letter-k{
     font-size: 1.2em;
 }
+.letter-azure{
+    color:#2BB0C6 !important;
+}
+
 
 .c100.blue .bar,
 .c100.blue .fill {
@@ -131,6 +141,9 @@ a.text-white{
 }
 
 
+.text-turq{
+    color: #229296!important;
+}
 .text-blue{
     color:#7bc3d1 !important;
 }
@@ -177,6 +190,10 @@ a.text-white{
 
 .bg-green-k{
     background-color:#34a853 !important;
+}
+
+.bg-turq{
+    background-color: #229296!important;
 }
 
 hr.angle-down::after {

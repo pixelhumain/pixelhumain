@@ -154,6 +154,12 @@
 		visibility: hidden;*/
 	}
 
+	#mapLegende{
+		color:white!important;
+		left:10px!important;
+		font-size:14px!important;
+	}
+
 	/*.box-ajax{top:100px;}*/
 	
 	/* XS */
@@ -218,11 +224,11 @@
 		Sig.hidePopupContent(id);
 	}
 
-	function showMapLegende(faIcon, msgText){
+	function showMapLegende(faIcon, msgText){ 
 		$("#mapLegende").html("<i class='fa fa-"+faIcon+"'></i> " + msgText);
 		$("#mapLegende").show(300);
 	}
-	function hideMapLegende(){
+	function hideMapLegende(){ 
 		showMapLegende("", "");
 		$("#mapLegende").hide();
 	}

@@ -6,16 +6,18 @@
 
             <a href="#page-top"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logocagou-map.png" class="nc_map pull-left" height=30></a>
             
-            <a class="navbar-brand font-blackoutM hidden-xs  hidden-sm" href="#page-top">
-                <span class="letter letter-blue font-ZILAP letter-k">K</span>
-                <!-- <span class="letter letter-blue font-ZILAP">A</span> -->
+            <a class="navbar-brand font-blackoutM hidden-xs  hidden-sm" href="#page-top" style="padding-right:20px;">
+                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
+                     class="nc_map pull-left" height=25>
+                <!-- <span class="letter letter-blue font-ZILAP letter-k">K</span>
+                <!- - <span class="letter letter-blue font-ZILAP">A</span> - ->
                  <span class="letter letter-yellow">G</span>
                 <span class="letter letter-yellow font-ZILAP">O</span>
                 <span class="letter letter-yellow">U</span>
                 <span class="letter letter-green">G</span>
                 <span class="letter letter-green">L</span>
-                <span class="letter letter-green">E</span>
-                <small class="letter letter-red pastille font-blackoutT">map</small>
+                <span class="letter letter-green">E</span> -->
+                <small class="letter letter-red pastille font-blackoutT" style="margin-top:32px;">map</small>
             </a>
         </div>
        
@@ -62,8 +64,8 @@
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
                       <button class="dropdown-toggle menu-name-profil text-dark lbh" 
-                              data-toggle="dropdown" data-hash="#element.detail.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>">
-                                <small class="hidden-xs"><?php echo $me["username"]; ?></small> 
+                              data-toggle="dropdown" data-hash="#co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>">
+                                <small class="hidden-xs"><?php echo $me["name"]; ?></small> 
                                 <img class="img-circle" id="menu-thumb-profil" 
                                      width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
                       </button>

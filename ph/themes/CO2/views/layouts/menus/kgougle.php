@@ -114,14 +114,26 @@ input#second-search-bar{
                             <ul class="dropdown-menu arrow_box">
                                 <li class="text-left">
                                     <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-user-circle"></i> Ma page
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-plus-circle"></i> Créer une page
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-search"></i> Rechercher des contacts
                                     </a>
                                 </li>
                                 <li role="separator" class="divider">
                                 </li>
                                 <li class="text-left">
                                     <a href="#co2.social" target="_blank" class="lbh bg-white">
-                                        <i class="fa fa-search"></i> Rechercher des contacts
+                                        <i class="fa fa-crosshairs"></i> Autour de moi
                                     </a>
                                 </li>
                                 <li role="separator" class="divider">
@@ -152,9 +164,15 @@ input#second-search-bar{
             </ul>
 
             <?php // MULTITAG / MULTISCOPE / NOTIF // ?>
-            <div class="margin-5 margin-right-15">
-                <?php $this->renderPartial($layoutPath.'scopes/multi_tag_scope', array("me"=>$me, "layoutPath"=>$layoutPath)); ?>
-            </div>
+            <!-- <div class="margin-5 margin-right-15">
+                <?php 
+                        // $cities = CO2::getCitiesNewCaledonia();
+                        // $this->renderPartial($layoutPath.'scopes/kgougle/multi_scope', 
+                        //         array(  "me"=>$me, 
+                        //                 "layoutPath"=>$layoutPath, 
+                        //                 "cities"=>$cities)); 
+                ?>
+            </div> -->
         </div>
 
         <!-- /.navbar-collapse -->

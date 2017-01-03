@@ -22,19 +22,23 @@ var mainCategories = {
 						{ name: "Transport en commun",  faIcon: "bus"},
 						{ name: "Petites annonces",  	faIcon: "tag"}, 
 						{ name: "Tourisme", 			faIcon: "plane"},
-						{ name: "Administratif",  		faIcon: "id-card"}, 
+						{ name: "Administrations",  	faIcon: "id-card"}, 
 						{ name: "Banques",  			faIcon: "dollar"}, 
 						{ name: "Santé",  				faIcon: "medkit"}, 
 						{ name: "Travail",  			faIcon: "briefcase"}, 
 						{ name: "Entreprises",  		faIcon: "industry"},  
+						{ name: "Culture",  			faIcon: "book"}, 
+						{ name: "Petite enfance",  		faIcon: "child"}, 
 						{ name: "Organismes",  			faIcon: "certificate"}, 
+						{ name: "Services en ligne",  	faIcon: "flash"}, 
 					  ]
 		},
 		"verte" : {
 			"color" : "green",
 			"items" : [ { name: "Association",  		faIcon: "group"}, 
-						{ name: "Éco-tourisme",  		faIcon: "plane"}, 
+						{ name: "Environnement",  		faIcon: "plane"}, 
 						{ name: "Artistes",  			faIcon: "diamond"}, 
+						{ name: "Éco-conso",  			faIcon: "shopping-cart"}, 
 					  ]
 		}
 	};
