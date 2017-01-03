@@ -18,7 +18,7 @@ function initRadioplayer(){
         initRadio(stream);
 
         $("#jquery_jplayer_1").jPlayer("play");
-        $(".radio-name").html("<span class='text-dark'>vous écoutez</span><br>" + stream.title);
+        $(".radio-name").html("<span class='text-white'>vous écoutez</span> " + stream.title);
 
         $(".btn-radioplay").removeClass("selected");
         $(this).addClass("selected");

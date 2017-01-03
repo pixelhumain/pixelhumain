@@ -29,18 +29,24 @@ input#second-search-bar{
                      class="nc_map pull-left <?php if($subdomain == "page.type"){ ?>show-top<?php } ?>" height=30>
             </a>
 
-            <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>
+            <span class="hidden-xs skills font-montserrat <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
+                <?php echo $mainTitle; ?>
+            </span>
            
             <?php if($subdomain != "page.type"){ ?>
             <a class="navbar-brand font-blackoutM btn-scroll hidden-sm menu-btn-back-category" data-targetid="#page-top" href="#co2.web">
-                <span class="letter letter-blue font-ZILAP letter-k">K</span>
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
+                     class="nc_map pull-left" height=30>
+                <!-- <span class="letter letter-blue font-ZILAP letter-k">K</span>
                 <span class="letter letter-yellow">G</span>
                 <span class="letter letter-yellow font-ZILAP">O</span>
                 <span class="letter letter-yellow">U</span>
                 <span class="letter letter-green">G</span>
                 <span class="letter letter-green">L</span>
-                <span class="letter letter-green">E</span>
-                <small class="letter letter-red pastille font-blackoutT"><?php echo $subdomainName; ?></small>
+                <span class="letter letter-green">E</span> -->
+                <small class="letter letter-red pastille font-blackoutT <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
+                    <?php echo $subdomainName; ?>
+                </small>
             </a>
             <?php }else{ ?>
                 <div id="small_profil" class="hidden-top pull-left"></div>
@@ -108,14 +114,26 @@ input#second-search-bar{
                             <ul class="dropdown-menu arrow_box">
                                 <li class="text-left">
                                     <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-user-circle"></i> Ma page
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-plus-circle"></i> Créer une page
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-search"></i> Rechercher des contacts
                                     </a>
                                 </li>
                                 <li role="separator" class="divider">
                                 </li>
                                 <li class="text-left">
                                     <a href="#co2.social" target="_blank" class="lbh bg-white">
-                                        <i class="fa fa-search"></i> Rechercher
+                                        <i class="fa fa-crosshairs"></i> Autour de moi
                                     </a>
                                 </li>
                                 <li role="separator" class="divider">
@@ -146,9 +164,15 @@ input#second-search-bar{
             </ul>
 
             <?php // MULTITAG / MULTISCOPE / NOTIF // ?>
-            <div class="margin-5 margin-right-15">
-                <?php $this->renderPartial($layoutPath.'scopes/multi_tag_scope', array("me"=>$me, "layoutPath"=>$layoutPath)); ?>
-            </div>
+            <!-- <div class="margin-5 margin-right-15">
+                <?php 
+                        // $cities = CO2::getCitiesNewCaledonia();
+                        // $this->renderPartial($layoutPath.'scopes/kgougle/multi_scope', 
+                        //         array(  "me"=>$me, 
+                        //                 "layoutPath"=>$layoutPath, 
+                        //                 "cities"=>$cities)); 
+                ?>
+            </div> -->
         </div>
 
         <!-- /.navbar-collapse -->
@@ -285,7 +309,7 @@ input#second-search-bar{
                     </div>
                 </a>
                 
-                <a href="#co2.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#co2.agenda" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-yellow"><i class="fa fa-calendar padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> AGENDA</span>

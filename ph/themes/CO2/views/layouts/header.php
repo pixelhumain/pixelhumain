@@ -34,23 +34,15 @@
                 <div class="col-lg-12">
                     <div class="intro-text">  
 
-                        <div class="col-md-12 text-center " style="margin-bottom:110px;">
+                        <div class="col-md-12 text-center main-menu-app" style="">
                             <?php foreach ($params["pages"] as $key => $value) {
                                     if(@$value["inMenu"]==true){ ?>
                                     <a  class="lbh letter-red font-blackoutM margin-right-25" 
                                         href="<?php echo $key; ?>">
-                                        <i class="fa fa-<?php echo $value["icon"]; ?>"></i> <?php echo $value["subdomain"]; ?>
+                                        <i class="fa fa-<?php echo $value["icon"]; ?>"></i><span class="hidden-xs"> <?php echo $value["subdomain"]; ?></span>
                                     </a>    
                             <?php   }
                                  }  ?>
-
-                            <!-- <a class="lbh text-dark homestead margin-right-25" href="#k.web"><i class="fa fa-search"></i> WEB</a>
-                            <a class="lbh text-dark homestead margin-right-25" href="#k.live"><i class="fa fa-newspaper-o"></i> MEDIA</a>
-                            <a class="lbh text-dark homestead margin-right-25" href="#k.social"><i class="fa fa-user-circle"></i> NETWORK</a>
-                            <a class="lbh text-dark homestead margin-right-25" href="#k.web"><i class="fa fa-rss"></i> LIVE</a>
-                            <a class="lbh text-dark homestead margin-right-25" href="#k.web"><i class="fa fa-calendar"></i> AGENDA</a>
-                            <a class="lbh text-dark homestead margin-right-25" href="#k.social.type.surveys"><i class="fa fa-hand-rock-o"></i> POWER</a>
-                            <a class="lbh text-dark homestead margin-right-25" href="#k.power"><i class="fa fa-microphone"></i> RADIO</a> -->
                         </div>
                         
                         <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"], 
@@ -61,16 +53,13 @@
 
                        
                         <?php if($subdomain == "live"){ ?>
-                            <div class="input-group col-md-8 col-md-offset-2" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
+                            <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
                             <!-- <div class="col-md-12 hidden-top scopes hidden">
                                 <button class="btn text-red bg-white btn-scope"><i class="fa fa-circle-o"></i> Nouméa</button>
-                                <button class="btn text-white bg-red btn-scope"><i class="fa fa-bullseye"></i> Province Sud</button>
-                                <button class="btn text-white bg-red btn-scope"><i class="fa fa-bullseye"></i> Province Nord</button>
-                                <button class="btn text-white bg-red btn-scope"><i class="fa fa-bullseye"></i> Province des Îles</button>
                                 <button class="btn text-white bg-red btn-scope"><i class="fa fa-plus"></i></button>
                             </div> -->
 
@@ -78,13 +67,15 @@
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button>
 
-                        <?php }elseif($subdomain == "social"){ ?>
-                            <div class="input-group col-md-8 col-md-offset-2" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
+                        <?php }elseif($subdomain == "social" || $subdomain == "agenda" || $subdomain == "power"){ ?>
+
+                            <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
-                            <div class="col-md-12 hidden-top scopes">
+                            <?php if($subdomain == "social"){ ?>                  
+                            <div class="col-md-12 no-padding hidden-top scopes">
                                 <button class="btn text-black bg-white btn-directory-type" data-type="all">
                                     <i class="fa fa-search"></i> 
                                     <span class="hidden-xs">Tous</span>
@@ -105,34 +96,42 @@
                                     <i class="fa fa-lightbulb-o"></i> 
                                     <span class="hidden-xs">Projets</span>
                                 </button>
-                                <button class="btn text-white bg-red  btn-directory-type" data-type="cities">
+                                <!-- <button class="btn text-white bg-red  btn-directory-type" data-type="cities">
                                     <i class="fa fa-university"></i> 
                                     <span class="hidden-xs">Communes</span>
-                                </button>
-                                <button class="btn text-black bg-white  btn-directory-type" data-type="Group">
+                                </button> -->
+                                <button class="btn text-white bg-turq btn-directory-type" data-type="Group">
                                     <i class="fa fa-circle-o"></i> 
                                     <span class="hidden-xs">Groupes</span>
                                 </button><br><br>
                                 <!-- <span>Rechercher parmis toutes les pages du réseau COMMUNECTER</span> -->
                             </div>
+                            <?php }else{ ?>
+                                 <button class="btn btn-default btn-scroll btn-directory-type" data-type="<?php echo @$type; ?>" data-targetid="#page">
+                                    <i class="fa fa-search"></i> Lancer la recherche
+                                </button> 
+                                <button class="btn btn-default text-azure" id="main-btn-start-search">
+                                    <i class="fa fa-plus-circle"></i> Faire une proposition
+                                </button>
 
+                            <?php } ?>
                             <!-- <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button> -->
 
                         <?php }elseif($subdomain == "web"){ ?>
-                            <div class="input-group col-md-8 col-md-offset-2" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
+                            <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
                             <div class="col-md-12">
                                 <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button>
-                                <a href="#co2.referencement" class="lbh btn btn-default hidden-xs" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer mon site</a>
+                                <a href="#co2.referencement" class="lbh btn btn-default hidden-xs" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer un site</a>
                             </div>
                         <?php }elseif($subdomain == "referencement"){ ?>
                             <p><br><small>
-                                Vous souhaitez <span class="letter-blue">référencer une page web</span> sur notre moteur de recherche ?<br>
-                                Remplissez <span class="text-green">gratuitement</span> le formulaire ci-dessous<br> 
-                                et rejoignez-nous <span class="text-red">en quelques minutes ...</span>
+                                Vous souhaitez <span class="letter-blue">référencer une page web</span> ?<br>
+                                Remplissez <span class="letter-green">gratuitement</span> le formulaire ci-dessous<br> 
+                                C'est simple, et ça prend seulement <span class="text-red"> quelques secondes ...</span>
                                 </small>
                             </p>
                         <?php } ?>
@@ -156,3 +155,11 @@
                                                             "me" => $me) ); ?>   
 
     <?php //$this->renderPartial($layoutPath.'menu'); ?>    
+
+
+    <?php   if($subdomain != "referencement"){
+                        $cities = CO2::getCitiesNewCaledonia();
+                        $this->renderPartial($layoutPath.'scopes/kgougle/multi_scope', 
+                                array(  "cities"=>$cities, "me"=>$me)); 
+            }
+    ?>

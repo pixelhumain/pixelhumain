@@ -56,19 +56,52 @@ src: url('../../vendor/fonts/Homestead/Homestead-Display.ttf');
 
 .scroll-top .btn {
     font-size: 20px;
-    width: 50px;
-    height: 45px;
-    border-radius: 35% 0 0;
+    width: 65px;
+	height: 65px;
+    border-radius: 100% 0 0;
 	line-height: 28px;
 	border: none;
 	background-color: #1a67e7;
+	padding-top: 25px;
+	padding-left: 25px;
+}
+
+.scroll-top .btn:hover {
+	background-color: #407ee4;
 }
 
 .scroll-top {
     right: 0%;
     bottom: 0%;
-    height: 45px;
+    width: 65px;
+	height: 65px;
 }
+
+
+.radio-tool .btn {
+    font-size: 20px;
+    width: 65px;
+	height: 65px;
+    border-radius: 0 100% 0 0;
+	line-height: 28px;
+	border: none;
+	background-color: #233140;
+	padding-top: 25px;
+	padding-right: 25px;
+}
+.radio-tool .btn:hover {
+	background-color: #303030;
+}
+
+.radio-tool {
+	position: fixed;
+    left: 0%;
+    bottom: 0%;
+    width: 65px;
+	height: 65px;
+	z-index:1049;
+}
+
 .footer-below{
 	background-color: #233140;
 }
@@ -81,8 +114,9 @@ header, .header {
 
 header .intro-text .name , 
 .header .intro-text .name {
-    font-size: 7em;
+    font-size: 40px;
 	letter-spacing: 0px;
+	margin-bottom: -10px;
 }
 .portfolio-modal.modal .name{
     font-size: 5em;
@@ -126,6 +160,9 @@ section {
     transition: all 0.3s;
 }
 .navbar-custom .navbar-nav li a{
+	color:#2C3E50;
+}
+.navbar-custom .navbar-nav li a:hover{
 	color:#2C3E50;
 }
 
@@ -223,7 +260,7 @@ input#second-search-bar{
 }
 
 .btn-scope:hover{    
-	background-color: #ea4335;
+	background-color: #e65c50;
 	color: #fff;
 }
 .btn-scope.selected{    
@@ -367,10 +404,13 @@ input#second-search-bar{
 
 
 .nc_map{
-	margin-bottom: -20px;
+	margin-bottom: -10px;
 }
 header .nc_map{
-	height:100px;
+	height:70px;
+}
+.navbar-brand {
+    padding: 0 0 0 20px;
 }
 
 a, a:hover, a:focus, a:active, a.active{
@@ -378,7 +418,7 @@ a, a:hover, a:focus, a:active, a.active{
 }
 .navbar-custom a:hover, .navbar-custom a:focus, 
 .navbar-custom a:active, .navbar-custom a.active{
-	color:#ea4335!important;
+	background-color:transparent;
 }
 
 .navbar-custom .navbar-nav li.active a{
@@ -518,7 +558,8 @@ a, a:hover, a:focus, a:active, a.active{
 }
 
 #main-btn-start-search, 
-#main-btn-referencement{
+#main-btn-referencement, 
+#btn-new-search{
 	font-size: 14px;
 	height: 37px;
 	border-color: #dedede;
@@ -543,19 +584,23 @@ a, a:hover, a:focus, a:active, a.active{
 }
 
 .name .pastille{
-	margin-top: -50px;
+	margin-top: -25px;
 	display: block;
 	text-align: right;
-	max-width: 77%;
+	max-width: 63%;
 	font-size: 0.5em;
 }
 .navbar-brand .pastille{
-	margin-top: -63px;
+	margin-top: 35px;
 	text-align: right;
 	font-size: 0.5em;
-	letter-spacing: -2px!important;
+	letter-spacing: -2px !important;
+	display: inline-block;
+	margin-left: -20px;
 }
-
+.main-menu-app{
+	margin-bottom:70px;
+}
 .search-eco a{
 	color:#34a853;
 }
@@ -679,12 +724,6 @@ h3.title_panel_map{
 }
 
 
-.row-radio{
-	/*background-image: url("../img/seigaiha.png");*/
-	-webkit-box-shadow: 0px 3px 26px 5px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0px 3px 26px 5px rgba(0, 0, 0, 0.2);
-	box-shadow: 0px 3px 26px 5px rgba(0, 0, 0, 0.2);
-}
 
 .portfolio-modal{
 	padding-right:0px !important;
@@ -739,7 +778,7 @@ h3.title_panel_map{
 	/*border:2px solid #fff;*/
 }
 .menu-name-profil:hover {
-	background-color:rgba(246,246,246,0.9)!important;
+	background-color:#ddd!important;
 }
 
 .btn-menu-connect{
@@ -768,8 +807,8 @@ h3.title_panel_map{
 	.portfolio-modal.modal .name {
 	    font-size: 4em;
 		letter-spacing: 0px;
-		margin-top: -20px;
-		margin-bottom: 30px;
+		margin-top: -15px;
+		margin-bottom: 5px;
 	}
 	.portfolio-modal.modal .name {
 	    font-size: 2em;
@@ -790,12 +829,17 @@ h3.title_panel_map{
 		margin-left: 15px!important;
 	}
 	.name .pastille{
-		margin-top:-30px;
+		margin-top:-40px;
+		max-width: 82%;
+		font-size: 0.4em;
 	}
 
 	header .nc_map{
-		margin-bottom: -20px;
+		margin-bottom: 0px;
 		height:50px!important;
+	}
+	.name img{
+		max-height:40px;
 	}
 
 	.links-main-menu {
@@ -836,5 +880,72 @@ h3.title_panel_map{
 
 	.menu-name-profil{
 		margin-right: 10px;
+	}
+	.main-menu-app {
+	    margin-bottom: 20px;
+	}
+
+	.dropdown-main-menu{
+		right: 70px;
+	}
+	.navbar-nav #dropdown-user.open .dropdown-menu{
+		-webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.3);
+		-moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.3);
+		box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3) !important;
+		background-color: white !important;
+		display: block;
+	}
+
+	.scopes .btn-directory-type{
+
+	}
+
+	header .container, 
+	.header .container{
+		padding-bottom: 30px;
+	}
+
+	section{
+		padding:25px 0 0 0;
+	}
+
+
+	.scroll-top .btn {
+	    font-size: 17px;
+	    width: 45px;
+		height: 45px;
+	    border-radius: 100% 0 0;
+		line-height: 28px;
+		border: none;
+		background-color: #1a67e7;
+		padding-top: 10px;
+		padding-left: 18px;
+	}
+
+	.scroll-top {
+	    right: 0%;
+	    bottom: 0%;
+	    width: 45px;
+		height: 45px;
+	}
+
+
+	.radio-tool .btn {
+	    font-size: 17px;
+	    width: 45px;
+		height: 45px;
+	    border-radius: 0 100% 0 0;
+		line-height: 28px;
+		border: none;
+		padding-top: 10px;
+		padding-left: 12px;
+	}
+
+	.radio-tool {
+		position: fixed;
+	    left: 0%;
+	    bottom: 0%;
+	    width: 45px;
+		height: 45px;
 	}
 }

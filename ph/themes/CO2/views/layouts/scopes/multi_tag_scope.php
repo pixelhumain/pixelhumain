@@ -3,7 +3,7 @@
 
 <?php  HtmlHelper::registerCssAndScriptsFiles(array('/js/menus/multi_tags_scopes.js'), $this->module->assetsUrl); ?>
 
-<span class="hidden" data-tpl="default.scopes.multi_tag_scope">
+<span class="" data-tpl="default.scopes.multi_tag_scope">
 <?php 
 	$this->renderPartial($layoutPath.'scopes/multi_tag', array("me"=>$me)); 
 	$this->renderPartial($layoutPath.'scopes/multi_scope', array("me"=>$me));

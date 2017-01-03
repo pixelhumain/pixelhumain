@@ -192,12 +192,16 @@ function showNotif(show){
 	else 	 $('#notificationPanelSearch').hide("fast");
 }
 
-function KScrollTo(target){ mylog.log("target", target, $(target).offset().top);
+function KScrollTo(target){ 
+	mylog.log("target", target);
+	if(!$(target)) return;
+
 	$('html, body').stop().animate({
         scrollTop: $(target).offset().top - 70
     }, 800, '');
 }
 
+var timerCloseDropdownUser = false;
 function initKInterface(params){
 
 	$(window).off();
@@ -264,8 +268,21 @@ function initKInterface(params){
 
     bindLBHLinks();
 
-    $(".menu-name-profil #menu-thumb-profil, .menu-name-profil #menu-name-profil").mouseenter(function(){
+
+    $(".menu-name-profil #menu-thumb-profil, "+
+      ".menu-name-profil #menu-name-profil").mouseenter(function(){
         $("#dropdown-user").addClass("open");
+    });
+    $(".menu-name-profil #menu-thumb-profil, "+
+      ".menu-name-profil #menu-name-profil").mouseleave(function(){
+      	timerCloseDropdownUser=true;
+        setTimeout(function(){
+        	if(timerCloseDropdownUser==true)
+        	$("#dropdown-user").removeClass("open");
+        },1000);
+    });
+    $("#dropdown-user").mouseenter(function(){
+    	timerCloseDropdownUser = false;
     });
     $("#dropdown-user").mouseleave(function(){
         $("#dropdown-user").removeClass("open");
@@ -290,8 +307,8 @@ function showMap(show)
 		currentScrollTop = $('html').scrollTop();
 		
 
-		$("#mapLegende").html("");
-		$("#mapLegende").hide();
+		//$("#mapLegende").html("");
+		//$("#mapLegende").hide();
 
 		showTopMenu(true);
 		if(Sig.currentMarkerPopupOpen != null){

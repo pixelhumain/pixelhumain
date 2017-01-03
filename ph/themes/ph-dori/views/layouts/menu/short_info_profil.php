@@ -71,14 +71,24 @@ ul.notifList {
   var searchPage = false;
   jQuery(document).ready(function() {
     $(".searchIcon").click(function() { 
-      smallMenu.openSmall("Recherche","fa-search","green",function(){
-        $('.searchSmallMenu').off().on("keyup",function() { 
-          if($(this).val().length>=3){
+      smallMenu.openSmall("Recherche","fa-search","green",function()
+      {
+        directory.addMultiTagsAndScope();
+        $(".menuSmallTools").addClass("hide");
+
+        $('.searchSmallMenu').off().on("keyup",function(){ 
+          if($(this).val().length>=3)
+          {
             mylog.log("Finder",$(this).val());
-                clearTimeout(timeout);
-                timeout = setTimeout('searchFinder("'+$(this).val()+'")', 500);
+            clearTimeout(timeout);
+            timeout = setTimeout('searchFinder("'+$(this).val()+'")', 500);
           }
         });
+
+        $('.menuSmallBlockUI .fa-search').off().on("click",function(){ 
+          $(".searchIcon").trigger("click");
+        });
+
       });
     });
     //hide burger menu if loggued user

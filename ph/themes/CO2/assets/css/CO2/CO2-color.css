@@ -6,9 +6,13 @@
 
 .navbar-brand .letter{ margin-right:0px; letter-spacing: -9px; }
 
+.letter-lightblue{ color:#7bc3d1!important; }
+
 .letter-blue{ color:#4285f4!important; }
 
 .letter-red{ color:#ea4335!important; }
+
+.letter-orange{ color:#FFA200!important; }
 
 .letter-yellow{ color:#fbbc05!important; }
 
@@ -16,9 +20,59 @@
 
 .letter-lightblue{ color:#7bc3d1 !important; }
 
+.letter-turq{
+    color: #229296!important;
+}
+
 .letter-k{
     font-size: 1.2em;
 }
+.letter-azure{
+    color:#2BB0C6 !important;
+}
+
+
+.c100.blue .bar,
+.c100.blue .fill {
+  border-color: #4da9c8 !important;
+}
+.c100.blue:hover > span {
+  color: #4da9c8;
+}
+
+.c100.orange .bar,
+.c100.orange .fill {
+  border-color: #ffad05 !important;
+}
+.c100.orange:hover > span {
+  color: #ffad05;
+}
+
+.c100.red .bar,
+.c100.red .fill {
+  border-color: #ea4335 !important;
+}
+.c100.red:hover > span {
+  color: #ea4335;
+}
+
+
+.c100.green .bar,
+.c100.green .fill {
+  border-color: #34a853 !important;
+}
+.c100.green:hover > span {
+  color: #34a853;
+}
+
+.c100.yellow .bar,
+.c100.yellow .fill {
+  border-color: #fbbc05 !important;
+}
+.c100.yellow:hover > span {
+  color: #fbbc05;
+}
+
 
 .text-black, a.text-black{
     color:#333; !important;
@@ -87,6 +141,9 @@ a.text-white{
 }
 
 
+.text-turq{
+    color: #229296!important;
+}
 .text-blue{
     color:#7bc3d1 !important;
 }
@@ -131,6 +188,13 @@ a.text-white{
     background-color:#141414 !important;
 }
 
+.bg-green-k{
+    background-color:#34a853 !important;
+}
+
+.bg-turq{
+    background-color: #229296!important;
+}
 
 hr.angle-down::after {
     background-color: #7bc3d1;
