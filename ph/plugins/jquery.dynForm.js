@@ -633,8 +633,11 @@ onSave: (optional) overloads the generic saveProcess
 					params.onSave();
 					return false;
 		        } 
-		        else 
-		        {
+		        else {
+		        	//TODO SBAR - Remove notPost form element
+		        	/*$.each($(params.formId).serializeArray()).function() {
+		        		if ($this.)
+		        	}*/
 		        	mylog.info("default SaveProcess",params.savePath);
 		        	mylog.dir($(params.formId).serializeFormJSON());
 		        	$.ajax({
@@ -643,7 +646,6 @@ onSave: (optional) overloads the generic saveProcess
 		        	  data: $(params.formId).serializeFormJSON(),
 		              dataType: "json"
 		        	}).done( function(data){
-		                
 		                if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
 		                    afterDynBuildSave(data.map,data.id);
 		                mylog.info('saved successfully !');
