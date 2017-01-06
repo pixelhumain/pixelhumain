@@ -6,30 +6,52 @@ var mainCategories = {
 						{ name: "Radios", 				faIcon: "microphone" }, 
 						{ name: "Météo", 				faIcon: "sun-o" }, 
 						{ name: "TV", 					faIcon: "television" }, 
-						{ name: "Sorties", 				faIcon: "ticket fa-rotate-90"},
+						{ name: "Sorties", 				faIcon: "ticket fa-rotate-90",
+							keywords: ["sortir", "concert", "théâtre", "culture", "restaurant"]
+						},
 						{ name: "Bar réstaurants", 		faIcon: "glass"},
 						{ name: "Cinémas", 				faIcon: "film"},
-						{ name: "E-boutiques", 			faIcon: "shopping-cart"},
+						{ name: "E-boutiques", 			faIcon: "shopping-cart",
+							keywords: ["market", "shop", "vêtement", "chaussure", "bio", "jouet", "accessoire"]
+						},
 						
 					  ]
 		},
 		"pratique" : {
 			"color" : "lightblue",
-			"items" : [ { name: "Scolaire", 			faIcon: "graduation-cap" }, 
+			"items" : [ { name: "Scolaire", 			faIcon: "graduation-cap" ,
+							keywords: ["univ", "bibliothèque", "médiathèque", "documentation", "formation", "école"]
+						}, 
 						{ name: "Logement",  			faIcon: "building-o"}, 
-						{ name: "Véhicules",  			faIcon: "car"}, 
+						{ name: "Véhicules",  			faIcon: "car",
+							keywords: ["achat", "vente", "location", "garage", "pièce", "casse", "immatriculation", "assurance"]
+						}, 
+
 						{ name: "Télécom", 				faIcon: "volume-control-phone"}, 
 						{ name: "Transport en commun",  faIcon: "bus"},
-						{ name: "Petites annonces",  	faIcon: "tag"}, 
-						{ name: "Tourisme", 			faIcon: "plane"},
-						{ name: "Administrations",  	faIcon: "id-card"}, 
+						{ name: "Petites annonces",  	faIcon: "tag",
+							keywords: ["annonce", "auto", "pièce auto", "embauche"]
+						}, 
+						{ name: "Tourisme", 			faIcon: "plane",
+							keywords: ["hotel", "gite", "sortie", "guide", "auberge", "voiture", "transport"]
+						},
+						{ name: "Administrations",  	faIcon: "id-card",
+							keywords: ["impot", "fisc", "développement", "entreprise", 
+										"logement", "province", "congrès", "compétence", "service", "agriculture", "commune", "etat"]
+						}, 
+
 						{ name: "Banques",  			faIcon: "dollar"}, 
 						{ name: "Santé",  				faIcon: "medkit"}, 
-						{ name: "Travail",  			faIcon: "briefcase"}, 
+						{ name: "Travail",  			faIcon: "briefcase",
+							keywords: ["emplois", "formation", "administration", "metier", "interim", "recrutement", "patente"]
+						}, 
 						{ name: "Entreprises",  		faIcon: "industry"},  
 						{ name: "Culture",  			faIcon: "book"}, 
 						{ name: "Petite enfance",  		faIcon: "child"}, 
-						{ name: "Organismes",  			faIcon: "certificate"}, 
+						{ name: "Organismes",  			faIcon: "certificate",
+							keywords: ["recrutement", "recherche", "institut", "recyclage", "agriculture", 
+										"société", "province", "entreprise", "technologique", "interim", "immo"]
+						}, 
 						{ name: "Services en ligne",  	faIcon: "flash"}, 
 					  ]
 		},

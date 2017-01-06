@@ -130,8 +130,8 @@ onSave: (optional) overloads the generic saveProcess
 			required = "*";
 
 		if(fieldObj.label)
-			fieldHTML += '<label class=" control-label" for="'+field+'">'+
-                fieldObj.label+required+
+			fieldHTML += '<label class="col-md-12 text-left control-label no-padding" for="'+field+'">'+
+              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+
             '</label>';
 
         var iconOpen = (fieldObj.icon) ? '<span class="input-icon">'   : '';
@@ -176,7 +176,8 @@ onSave: (optional) overloads the generic saveProcess
         		}
         		style = "style='width:100%;margin-bottom: 10px;border: 1px solid #ccc;'";
         	}
-        	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
+        	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
+        	fieldHTML += iconOpen+' <input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
         }
         
         /* **************************************
@@ -195,6 +196,7 @@ onSave: (optional) overloads the generic saveProcess
         	if(fieldObj.inputType == "wysiwyg")
         		fieldClass += " wysiwygInput";
         	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
+        	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
         	fieldHTML += '<textarea id="'+field+'" class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
         }
         /* **************************************
