@@ -15,15 +15,13 @@
 
     <?php 
         $params = CO2::getThemeParams();
-       //var_dump($params["pages"]); exit;
+       
         $useHeader              = $params["pages"]["#co2.".$page]["useHeader"];
         $subdomain              = $params["pages"]["#co2.".$page]["subdomain"];
         $subdomainName          = $params["pages"]["#co2.".$page]["subdomainName"];
         $icon                   = $params["pages"]["#co2.".$page]["icon"];
         $mainTitle              = $params["pages"]["#co2.".$page]["mainTitle"];
         $placeholderMainSearch  = $params["pages"]["#co2.".$page]["placeholderMainSearch"];
-
-
     ?>
 
     <!-- Header -->
@@ -39,7 +37,7 @@
                                     if(@$value["inMenu"]==true){ ?>
                                     <a  class="lbh letter-red font-blackoutM margin-right-25" 
                                         href="<?php echo $key; ?>">
-                                        <i class="fa fa-<?php echo $value["icon"]; ?>"></i><span class="hidden-xs"> <?php echo $value["subdomain"]; ?></span>
+                                        <i class="fa fa-<?php echo $value["icon"]; ?>"></i><span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
                                     </a>    
                             <?php   }
                                  }  ?>
@@ -159,7 +157,7 @@
 
     <?php   if($subdomain != "referencement"){
                         $cities = CO2::getCitiesNewCaledonia();
-                        $this->renderPartial($layoutPath.'scopes/kgougle/multi_scope', 
+                        $this->renderPartial($layoutPath.'scopes/'.$CO2DomainName.'/multi_scope', 
                                 array(  "cities"=>$cities, "me"=>$me)); 
             }
     ?>

@@ -133,7 +133,9 @@ header .container ,
     padding-top: 80px;
 	padding-bottom: 70px;
 }
-
+/*.intro-text a.menu-top {
+    color: #34a853 !important;
+}*/
 .main-container{
 	background-color: white;
 	min-height:1000px;
@@ -634,10 +636,11 @@ a, a:hover, a:focus, a:active, a.active{
 
 .blockUI.blockMsg.blockPage i.fa{
 	position: absolute;
-	left: 50%;
-	top: 140px;
+	left: 49%;
+	top: 200px;
 	margin-left: 8px;
 }
+
 
 #refResult{
 	margin-top:20px;
