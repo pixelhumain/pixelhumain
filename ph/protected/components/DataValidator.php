@@ -385,4 +385,9 @@ class DataValidator {
 		return $res;
 	}
 
+	/*public static function contact($toValidate) {
+
+		return $res;
+	}*/
+
 }

@@ -14,7 +14,7 @@ class OpenData
                       					"GF"=>"Guyanne Française", //973
                         				"MQ"=>"Martinique", //972
                         				"YT"=>"Mayotte", //976
-                                        "MX​"=>"Mexique",
+                                        "MX"=>"Mexique",
                         				"NC"=>"Nouvelle-Calédonie", //988
                         				"RE"=>"Réunion", //9*74
                                         "PM"=>"St Pierre et Miquelon",
