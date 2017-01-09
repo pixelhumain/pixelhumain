@@ -94,6 +94,7 @@
                 
                 '/plugins/select2/select2.min.js' , 
                 '/plugins/moment/min/moment.min.js' ,
+                '/plugins/jquery.dynForm.js',
                 //'/js/cookie.js' ,
                 '/js/api.js',
                 
@@ -123,6 +124,7 @@
                 '/assets/vendor/jPlayer-2.9.2/dist/skin/blue.monday/css/jplayer.blue.monday.min.css',
                 '/assets/vendor/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js',
                 '/assets/js/radioplayer.js' ,
+                '/assets/js/KDynForm.js' ,
                                                   
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);

@@ -239,6 +239,15 @@ function inArray(needle, haystack) {
 
 /* ------------------------------- */
 
+function intersection_destructive(array1, array2)
+{
+  var result = $.grep(array1, function(element) {
+      return $.inArray(element, array2 ) !== -1;
+  });
+
+  return result;
+}
+
 /*function log(msg,type){
   if(debug){
      try {

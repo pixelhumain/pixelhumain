@@ -193,6 +193,7 @@ input#second-search-bar{
 
 
 
+<?php $this->renderPartial($layoutPath.'formCreateElement'); ?>
 
 
 <div class="portfolio-modal modal fade" id="modalMainMenu" tabindex="-1" role="dialog" aria-hidden="true">
@@ -208,7 +209,7 @@ input#second-search-bar{
 
             <div class="row">
                 <div class="col-lg-12">
-                    <span class="name font-blackoutM" >
+                    <!-- <span class="name font-blackoutM" >
                         <span class="letter letter-blue font-ZILAP letter-k">K</span>
                         <span class="letter letter-yellow">G</span>
                         <span class="letter letter-yellow font-ZILAP">O</span>
@@ -216,8 +217,9 @@ input#second-search-bar{
                         <span class="letter letter-green">G</span>
                         <span class="letter letter-green">L</span>
                         <span class="letter letter-green">E</span>
-                    </span>
-                    <h3 class="letter-red no-margin hidden-xs" style="margin-top:-15px!important;">
+                    </span> -->
+                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="50" class="inline margin-top-25 margin-bottom-5"><br>
+                    <h3 class="letter-red no-margin hidden-xs" style="">
                         MENU PRINCIPAL<br>
                     </h3>
                     <h5 class="text-dark no-margin hidden" style="margin-top:-15px!important;">
@@ -284,7 +286,7 @@ input#second-search-bar{
                         <div class="col-md-12 no-padding text-center hidden-xs">
                             <h5>Le réseau social du Caillou
                                 <small class="hidden-xs"><br>
-                                    pour être connecté au territoire<br>à ses voisins, ses amis, sa tribue<br>
+                                    pour être connecté au territoire<br>à ses voisins, ses amis, sa famille<br>
                                     30% (en cours)
                                 </small>
                             </h5>

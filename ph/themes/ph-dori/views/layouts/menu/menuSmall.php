@@ -369,23 +369,84 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 </div>
 <script type="text/javascript">
 	var js_templates = {
-		col_Link_Label_Count : function(obj){
-			return ' <div class="col-xs-6 center padding-5 collection">'+
-						'<a href="javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+obj.label+'\',\''+obj.label+'\',\'fa-folder-open\',\'yellow\',null,null,function(){ $(\'.menuSmallTools\').removeClass(\'hide\');})" '+
-							'class="btn bg-grey menu-button btn-menu btn-menu-notif tooltips text-white" '+
-						    'data-toggle="tooltip" data-placement="left" title="'+obj.label+'">'+
-							'<i class="fa fa-folder-open text-yellow"></i> '+
-							'<br/>'+obj.label+' ('+obj.labelCount+')'+
+		objectify : function(obj)
+		{
+			var tplObj = { label : obj.label };
+			tplObj.lblCount = (notNull(obj.labelCount)) ? ' <span class="labelCount">('+obj.labelCount+')</span>' : '';
+			tplObj.action = (notNull(obj.action)) ? obj.action : 'javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+obj.label+'\',\''+obj.label+'\',\'fa-folder-open\',\'yellow\'})';
+			tplObj.icon = (notNull(obj.icon)) ? obj.icon : "fa-folder-open";
+			tplObj.classes = (notNull(obj.classes)) ? obj.classes : "col-xs-3 collection"; 
+      		tplObj.parentClass = (notNull(obj.parentClass)) ? obj.parentClass : ""; 
+      		tplObj.key = (notNull(obj.key)) ? ' data-key="'+obj.key+'"' : ""; 
+			tplObj.color = (notNull(obj.color)) ? obj.color : "white"; 
+			tplObj.tooltip = (notNull(obj.tooltip)) ? 'data-toggle="tooltip" data-placement="left" title="'+tooltip+'"' : ""; 
+			return tplObj;
+		},
+
+		//params :
+		//classes :: applies a class on each rendered element
+		//open / close :: is a globale container
+		//el_open/el_close :: is a container for each element of the list rendering
+		loop : function(obj,tpl,tplparams)
+		{
+      		var str = (notNull(tplparams.open)) ? tplparams.open : "";
+      		var cleanup = false;
+      		$.each(obj ,function(k,v){
+          		if( !notNull( v.classes ) && notNull(tplparams) && notNull( tplparams.classes )){
+          			v.classes = tplparams.classes;
+          			cleanup = true;
+          		}
+        		if( !notNull( v.parentClass ) && notNull(tplparams) && notNull( tplparams.parentClass ))
+           			v.parentClass = tplparams.parentClass;
+         		var opener = (notNull(tplparams.el_open)) ? tplparams.el_open : "";
+		     	str += opener+js_templates[tpl]( v );
+         		if(notNull(tplparams.el_close)) str += tplparams.el_close;
+         		if(cleanup)
+         			delete v.classes;
+		   	});
+        	if(notNull(tplparams.close)) str += tplparams.close;
+		   	return str;
+		},
+
+		col_Link_Label_Count : function(obj)
+		{
+			var tplObj = js_templates.objectify(obj);
+			return ' <div class="'+tplObj.parentClass+' center padding-5 ">'+
+						'<a href="'+tplObj.action+'" '+
+							'class="'+tplObj.classes+' btn tooltips text-'+tplObj.color+'" '+tplObj.tooltip+' '+tplObj.key+'>'+
+							'<i class="fa '+tplObj.icon+' text-'+tplObj.color+'"></i> '+
+							'<br/>'+tplObj.label+tplObj.lblCount+
 						'</a>'+
 				    '</div>'
 		},
-		linkList : function (obj){
-			return '<a href="javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+obj.label+'\',\''+obj.label+'\',\'fa-folder-open\',\'yellow\',null,null,function(){ $(\'.menuSmallTools\').removeClass(\'hide\');})" '+
-						'class="btn btn-xs btn-link text-white text-left w100p"><i class="fa fa-folder-open text-yellow"></i> '+obj.label+' ('+obj.labelCount+')</a><br/>'
+
+		linkList : function (obj) 
+		{ 
+			var tplObj = js_templates.objectify(obj);
+			mylog.log("classes",tplObj.classes);
+			return '<a href="'+tplObj.action+'" class="'+tplObj.classes+' btn btn-xs btn-link text-white text-left w100p" '+tplObj.key+'><i class="fa '+tplObj.icon+' text-'+tplObj.color+'"></i> '+tplObj.label+tplObj.lblCount+'</a><br/>';
+		},
+
+		leftMenu_content : function(params)
+		{
+		     //left menu section 
+		     var str = '<div class="menuSmallMenu"><div class="menuSmallLeftMenu col-sm-3 col-xs-12 center margin-top-15 margin-bottom-5">';
+		     str += js_templates.loop( params.menu,"linkList",{ classes : "padding-5 bg-dark center  col-xs-12 ", el_open:'<div class="col-xs-12 center no-padding">', el_close:'</div>'} );
+		     str += '</div>'+
+		     //right content section 
+		    	'<div class="col-sm-9 col-xs-12 no-padding">';
+
+		    str += "<div class='homestead titleSmallMenu' style='font-size:45px'> "+
+		       params.title1+' <i class="fa fa-angle-right"></i> '+params.title2+"</div>";
+
+		    str += js_templates.loop( params.list,"col_Link_Label_Count", { classes : "bg-red kickerBtn", parentClass : "col-xs-12 col-sm-4 "} );
+		     str += '</div></div>';
+		     return str;
 		}
+
 	};
 	
-	function buildCollectionList (tpl, appendTo, reset) {
+	function buildCollectionList ( tpl, appendTo, reset ) {
 		if(typeof reset == "function")
 			reset();
 		str = "";

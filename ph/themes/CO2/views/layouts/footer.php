@@ -31,7 +31,7 @@
                 <div class="col-lg-4 text-left">
                     <h5><i class="fa fa-info-circle"></i> Informations générales</h5>
                     <a href="" class="text-white"><i class="fa fa-angle-right"></i> Conditions d'utilisations</a><br><br>
-                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> KGOUGLE</a><br>
+                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> A propos</a><br>
                     <a href="" class="text-white"><i class="fa fa-angle-right"></i> PixelHumain</a><br>
                     <a href="" class="text-white"><i class="fa fa-angle-right"></i> Communecter</a><br>
                     <a href="" class="text-white"><i class="fa fa-angle-right"></i> Alpha Tango</a><br>

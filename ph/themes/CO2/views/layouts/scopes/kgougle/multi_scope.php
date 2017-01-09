@@ -27,6 +27,9 @@
         border-radius: 50px;
     }
 
+    .item-scope-checker{
+
+    }
     
     @media (max-width: 768px) {
         .portfolio-modal .modal-content h2 {
@@ -56,9 +59,10 @@
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1">
                     <div class="modal-body text-center">
-                        <h2 class="text-red"><i class="fa fa-bullseye fa-2x"></i><br>
-                        <span class="text-dark">Filtrer par </span>lieux</h2>
-                        <h5 class="text-dark">Clickez pour sélectionner des zones de recherche</h5>
+                        <h2 class="text-red"><!-- <i class="fa fa-bullseye fa-2x"></i> -->
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=70><br>
+                        <span class="text-dark">Recherche </span>ciblée</h2>
+                        <h5 class="text-dark">Sélectionnez des zones de recherche</h5>
                         <div class="col-md-12  col-sm-12 col-xs-12 text-center">
                             <button type="button" class="btn btn-default" data-dismiss="modal">
                                 <i class="fa fa-times"></i> Annuler
@@ -182,7 +186,7 @@
     .item-scope-dep.disabled{
         color:red;
     }
-    #modalScopes{
+    .modal{
         z-index:1100;
     }
 </style>
@@ -213,6 +217,7 @@
             }else{
                 addScopeToMultiscope( $(this).data("scope-value"), $(this).data("scope-name"));
                 $(this).addClass("selected");
+                toastr.success('Ajout de "' + $(this).data("scope-name")+'"');
             }
             checkScopeMax();            
             
@@ -248,7 +253,7 @@
             if(typeof value.name == "undefined") value.name = key;
             html +=     "<span data-toggle='dropdown' data-target='dropdown-multi-scope' "+
                             "class='text-red "+disabled+" item-scope-checker  item-scope-city margin-right-10' data-scope-value='"+ key + "'>" + 
-                            "<i class='fa fa-bullseye'></i> " + value.name + 
+                            "<i class='fa fa-check-circle'></i> " + value.name + 
                         "</span> ";
         });
         // if (numberOfScope == 0) {
