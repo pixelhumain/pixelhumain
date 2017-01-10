@@ -175,8 +175,9 @@ onSave: (optional) overloads the generic saveProcess
         				initValues[field] = {};
         			initValues[field]["tags"] = fieldObj.values;
         		}
-        		if(typeof fieldObj.data != "undefined")
-	        		initSelectNetwork=fieldObj.data;
+        		if(typeof fieldObj.data != "undefined"){
+	        		initSelectNetwork[field]=fieldObj.data;
+	        	}
         		if(typeof fieldObj.mainTag != "undefined")
 					mainTag=mainTag;
         		style = "style='width:100%;margin-bottom: 10px;border: 1px solid #ccc;'";
@@ -706,8 +707,9 @@ onSave: (optional) overloads the generic saveProcess
 						  "tokenSeparators": [','],
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
-						if(typeof initSelectNetwork != "undefined" && initSelectNetwork.length > 0)
-							selectOptions.data=initSelectNetwork;
+						if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[$(this).attr("id")] != "undefined" && initSelectNetwork[$(this).attr("id")].length > 0){
+							selectOptions.data=initSelectNetwork[$(this).attr("id")];
+						}
 						$(this).removeClass("form-control").select2(selectOptions);
 						if(typeof mainTag != "undefined")
 							$(this).val([mainTag]).trigger('change');

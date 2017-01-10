@@ -226,10 +226,25 @@
 	<?php 
 	if(!isset($me)) 
 		$me=""; 
+	$collectionsType=array(
+		"Où sont les femmes",
+		"Passeur d'images",
+		"MHQM",
+		"MIAA",
+		"Portrait citoyens",
+		"Parcours d'engagement"
+	);
+	$genresType=array(
+		"Documentaire",
+		"Fiction",
+		"Docu-fiction",
+		"Films outils",
+		"Films de commande"
+	);
 
 	$topList = Poi::getPoiByTagsAndLimit();
 	$this->renderPartial($layoutPath.'.menu.menuTop', array( "me" => $me , "topList" => $topList )); 
-	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city)); ?>
+	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city, "collections"=>$collectionsType, "genres" => $genresType)); ?>
 
 	<!-- **************************************
 	CENTER SECTION
@@ -427,9 +442,46 @@
 		var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
 		var organizerList = {};
 		var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
+		var collectionsType=<?php echo json_encode( $collectionsType ) ?>;
+		var genresType=<?php echo json_encode( $genresType ) ?>;
+		genresTypeData=[];
+		$.each(genresType, function(i, tag) {
+					val={id:tag,text:tag};
+					genresTypeData.push(val);
+		});
+		collectionsTypeData=[];
+		$.each(collectionsType, function(i, tag2) {
+					val2={id:tag2,text:tag2};
+					collectionsTypeData.push(val2);
+		});
 
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
+			typeObj["poi"].dynForm.jsonSchema.title="Ajouter une réalisation";
+			typeObj["poi"].dynForm.jsonSchema.icon="video-camera";
+			collectionForm = {
+		                "inputType" : "tags",
+		                "placeholder" : "Collections de la réalisation",
+		                "values" : tagsList,
+		                "data" : collectionsTypeData
+		    };
+		    typeObj["poi"].dynForm.jsonSchema.properties.collections={};
+		    typeObj["poi"].dynForm.jsonSchema.properties.collections=collectionForm;
+			genreForm = {
+		                "inputType" : "tags",
+		                "placeholder" : "Genres de la réalisation",
+		                "values" : tagsList,
+		                "data" : genresTypeData
+		    };
+		    typeObj["poi"].dynForm.jsonSchema.properties.genres={};
+		    typeObj["poi"].dynForm.jsonSchema.properties.genres=genreForm;
+
+			/*if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
+				typeObj[key].dynForm.jsonSchema.properties.tags.data=networkTags;
+				if(typeof networkJson.request.mainTag != "undefined")
+					typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag[0];
+			}*/
+
 
 			if(currentUser)
 				organizerList["currentUser"] = currentUser.name + " (You)";
