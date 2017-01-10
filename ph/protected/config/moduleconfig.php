@@ -6,4 +6,5 @@ $activeModules = array(
 	'network',
 	'opendata',
 	'api',
+	'datatools',
 	);
