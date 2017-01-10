@@ -537,9 +537,9 @@
 				else{ 
 					//console.log("userConnected", userConnected);
 					if(userConnected != null && userId != null  && userId != "" && typeof userId != "undefined")
-						loadByHash("#default.live");//news.index.type.citoyens.id."+userId);
+						loadByHash("#default.home");//news.index.type.citoyens.id."+userId);
 					else
-						loadByHash("#default.live");
+						loadByHash("#default.home");
 					//}
 
 					//loadByHash("#default.home");
