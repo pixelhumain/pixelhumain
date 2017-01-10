@@ -43,14 +43,14 @@
 	
 	<?php // BTN Doc = Doc // ?>
 	<button class="btn-menu-top tooltips pull-left lbh"  onclick="activeMenuTop($(this))"
-			id="" data-hash="#default.directory?type=projects"
+			id="" data-hash="#default.directoryjs?type=projects"
 			data-toggle="tooltip" data-placement="bottom" title="Groupe de travail" alt="Groupe de travail">
 			<i class="fa fa-group"></i>
 	</button>
 	
 	<?php // BTN Doc = Doc // ?>
 	<button class="btn-menu-top tooltips pull-left lbh" 
-			id="" data-hash="#default.directory?type=poi" onclick="activeMenuTop($(this))"
+			id="" data-hash="#default.directoryjs?type=poi" onclick="activeMenuTop($(this))"
 			data-toggle="tooltip" data-placement="bottom" title="Productions" alt="Productions">
 			<i class="fa fa-video-camera"></i>
 	</button>
