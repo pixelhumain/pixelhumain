@@ -2,8 +2,8 @@
     "name" : "iviatic",
     "mode" : "server",
     "skin" : {
-        "logo" : "",
-        "title" : "Cartographie des mobilités",
+        "logo" : "iviatic.png",
+        "title" : "Cartographie I-viaTIC",
         "shortDescription" : "Localisez les partenaires et compétences dont vous avez besoin pour construire votre projet de mobilité.",
         "displayScope" : false,
         "displayCommunexion" : false,
@@ -17,7 +17,27 @@
         },
         "iconeAdd" : false,
         "iconeSearchPlus" : false,
-        "loginTitle":""
+        "loginTitle":"",
+        "front" : {
+	        "organization" : false,
+	        "project" : false,
+	        "event" : false,
+	        "community" : false,
+	        "dda" : false,
+	        "live" : false,
+	        "search" : false,
+	        "need" : false,
+	        "poi" : false
+	    },
+	    "menu" : {
+		    "aroundMe":false,
+		    "connectLink":false,
+		    "add":false,
+		    "detail":true,
+		    "news":false,
+		    "directory":false,
+		    "gallery":false
+	    }
     },
    "filter" : {
         "types" : false,
@@ -37,8 +57,9 @@
                     "Pas de Calais" : "Pas de Calais",
                     "Somme" : "Somme",
                     "Oise" : "Oise",
-                    "Hainaut" : "Hainaut",
-                    "Hors région" : "Hors région"
+                    "Aisne" : "Aisne",
+                    "Hors région" : "Hors région",
+                    "MEL" : "MEL"
                 }
             },
 	        "Structures" : {
@@ -50,9 +71,9 @@
                     "Recherche et formation" : "Recherche et formation",
                     "Grandes Entreprises" : "Grandes Entreprises",
                     "PME et ETI" : "PME et ETI",
-                    "TPE et StartUp" : "TPE et StartUp",
-                    "Structures daccompagnement et association" : "Structures daccompagnement et association",
-                    "Bureau detude et Cabinets de conseil" : "Bureau detude et Cabinets de conseil"
+                    "TPE et Start Up" : "TPE et Start Up",
+                    "Structures d'accompagnement et associations" : "Structures d'accompagnement et associations",
+                    "Bureau d'étude et cabinet de conseil" : "Bureau d'étude et cabinet de conseil"
                 }
             },
             "Compétences" : {
@@ -62,13 +83,14 @@
                 "tags" : {
                   "Transport de voyageurs" : "Transport de voyageurs",
                   "Equipements et infrastructures" : "Equipements et infrastructures",
-                  "Mobilites actives et partagees" : "Mobilites actives et partagees",
-                  "Energie et mobilite" : "Energie et mobilite",
-                  "Services a la mobilite" : "Services a la mobilite",
-                  "TIC, numerique et data" : "TIC, numerique et data",
-                  "Ingenierie et financement de projet" : "Ingenierie et financement de projet",
-                  "Amenagement, valorisation et developpement de territoire" : "Amenagement, valorisation et developpement de territoire",
-                  "Organisation et management de la mobilite" : "Organisation et management de la mobilite"
+                  "Mobilités actives et partagées" : "Mobilités actives et partagées",
+                  "Energie et mobilité" : "Energie et mobilité",
+                  "Services à la mobilité" : "Services à la mobilité",
+                  "TIC" : "TIC",
+                  "numérique et data" : "numérique et data",
+                  "Ingénierie et financement" : "Ingénierie et financement",
+                  "Aménagement valo et dév" : "Aménagement valo et dév",
+                  "Orga et mgmt de la mobilité" : "Orga et mgmt de la mobilité"
                 }
             }
            

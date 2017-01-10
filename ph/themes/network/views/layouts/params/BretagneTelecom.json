@@ -3,9 +3,10 @@
     "mode" : "server",
     "skin" : {
         "logo" : false,
-        "title" : "Alternatives bretonnes",
+        "title" : "Pratiques collaboratives bretonnes",
+	"shortDescription" : "Rajoutez un projet en cliquant sur le + en bas à gauche une fois connecté",
         "displayScope" : false,
-        "displayCommunexion" : false,
+        "displayCommunexion" : true,
         "profilBar" : true,
         "breadcrum":true,
         "displayButtonGridList" : false,
@@ -14,13 +15,33 @@
         },
         "iconeAdd" : false,
         "iconeSearchPlus" : false,
-        "loginTitle":""
+        "loginTitle":"",
+        "front" : {
+	        "organization" : false,
+	        "project" : false,
+	        "event" : false,
+	        "community" : false,
+	        "dda" : false,
+	        "live" : false,
+	        "search" : false,
+	        "need" : false,
+	        "poi" : false
+	    },
+	    "menu" : {
+		    "aroundMe":false,
+		    "connectLink":false,
+		    "add":true,
+		    "detail":true,
+		    "news":false,
+		    "directory":false,
+		    "gallery":true
+	    }
     },
     "filter" : {
         "types" : false,
         "tags" : {
             "activate" : true,
-            "title" : "Toutes les catégories",
+            "title" : "Autre",
             "background-color" : "#f5f5f5",
             "image" : "All.png",
             "tagsAdditional" : {
@@ -172,6 +193,9 @@
         "fullLocality" : true,
         "datesEvent" : false,
         "displayShortDescription" : true
+    },
+     "add" : {
+        "organization" : true
     },
     "request" : {
         "sourceKey" :[

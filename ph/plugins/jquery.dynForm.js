@@ -22,6 +22,7 @@ onSave: (optional) overloads the generic saveProcess
 	thisStyle = thisBody.style, 
 	$this,
 	initValues = {},
+	initSelectNetwork = [],
 	supportTransition = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined
 	
 	/*$(subviewBackClass).on("click", function(e) {
@@ -174,6 +175,10 @@ onSave: (optional) overloads the generic saveProcess
         				initValues[field] = {};
         			initValues[field]["tags"] = fieldObj.values;
         		}
+        		if(typeof fieldObj.data != "undefined")
+	        		initSelectNetwork=fieldObj.data;
+        		if(typeof fieldObj.mainTag != "undefined")
+					mainTag=mainTag;
         		style = "style='width:100%;margin-bottom: 10px;border: 1px solid #ccc;'";
         	}
         	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
@@ -628,8 +633,11 @@ onSave: (optional) overloads the generic saveProcess
 					params.onSave();
 					return false;
 		        } 
-		        else 
-		        {
+		        else {
+		        	//TODO SBAR - Remove notPost form element
+		        	/*$.each($(params.formId).serializeArray()).function() {
+		        		if ($this.)
+		        	}*/
 		        	mylog.info("default SaveProcess",params.savePath);
 		        	mylog.dir($(params.formId).serializeFormJSON());
 		        	$.ajax({
@@ -638,7 +646,6 @@ onSave: (optional) overloads the generic saveProcess
 		        	  data: $(params.formId).serializeFormJSON(),
 		              dataType: "json"
 		        	}).done( function(data){
-		                
 		                if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
 		                    afterDynBuildSave(data.map,data.id);
 		                mylog.info('saved successfully !');
@@ -697,9 +704,13 @@ onSave: (optional) overloads the generic saveProcess
 						var selectOptions = {
 						  "tags": initValues[ $(this).attr("id") ]["tags"],
 						  "tokenSeparators": [','],
-						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
+						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
+						if(typeof initSelectNetwork != "undefined" && initSelectNetwork.length > 0)
+							selectOptions.data=initSelectNetwork;
 						$(this).removeClass("form-control").select2(selectOptions);
+						if(typeof mainTag != "undefined")
+							$(this).val([mainTag]).trigger('change');
 					}
 				 });
 			} else
@@ -1126,7 +1137,6 @@ function showMyImage2(fileInput) {
 		toastr.info("Please reduce your image before to 2Mo");
 	}
 	else {
-		alert();
 		countImg=$("#resultsImage img").length;
 		idImg=countImg+1;
 		htmlImg="";

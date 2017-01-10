@@ -1320,6 +1320,12 @@ background-position: 0% 100%;
 .item.list-group-item .entityName{
 	font-size: 16px;
 }
+.item.list-group-item .entityLocality{
+	color:#719FAB;
+}
+.item.list-group-item:nth-of-type(odd):hover .entityLocality, .item.list-group-item:hover .entityLocality{
+ 	color:lightblue;
+}
 .item.list-group-item:nth-of-type(odd):hover .entityName,.item.list-group-item:hover .entityName
 {
     color:white !important;

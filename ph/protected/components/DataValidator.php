@@ -105,19 +105,22 @@ class DataValidator {
 		return self::endDate($toValidate, $project);
 	}
 
-	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue, $object = null) {
-
+	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue, $object = null, $import=null) {
 		if (isset($dataBinding[$fieldName])) {
 			$data = $dataBinding[$fieldName];
 			$name = $data["name"];
 			//Validate field
 			if (isset($data["rules"])) {
 				$rules = $data["rules"];
+				$functionImport = array("organizationSameName") ;
+				
 				foreach ($rules as $rule) {
-					$isDataValidated = DataValidator::$rule($fieldValue, $object);
-					if ($isDataValidated != "") {
-						throw new CTKException($isDataValidated);
-					}
+					if( empty($import) || !in_array($rule, $functionImport) ){
+						$isDataValidated = DataValidator::$rule($fieldValue, $object);
+						if ($isDataValidated != "") {
+							throw new CTKException($isDataValidated);
+						}
+					}	
 				}	
 			}
 		} else {
@@ -129,18 +132,19 @@ class DataValidator {
 	/*
 	validates each field existance, type is respected and if any rules 
 	*/
-	public static function validate( $type, $values ) 
+	public static function validate( $type, $values, $import = null ) 
 	{
 		//var_dump($type); return;
 		$dataBinding = $type::$dataBinding;
 		//var_dump($dataBinding); return;
 		//var_dump($values); return;
+		
 		$res = array("result"=>true);
 		foreach ( $values as $key => $value ) 
 		{
 			try{
 				if ( isset( $dataBinding[$key]) ) {
-					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value, $values );
+					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value, $values, $import);
 				} else {
 					$res["result"] = false;
 					$res["msg"] = "Contenu Invalide ".$key;
@@ -196,6 +200,10 @@ class DataValidator {
 			$result = DateTime::createFromFormat('Y-m-d H:i:s', $myDate);
 		}
 
+		if (empty($result)) {
+			$result = DateTime::createFromFormat(DateTime::ISO8601, $myDate);
+		}
+
 	    if (empty($result)) {
 			error_log("Error formation : ".$myDate." (".$label.")");
 	    	throw new CTKException("The ".$label." is not well formated");
@@ -228,7 +236,7 @@ class DataValidator {
 
 	public static function source($toValidate, $objectId=null) {
 		$res = "";
-		$strings = array("key", "url", "id");
+		$strings = array("key", "url");
 		$allKeysSource = array('id', "key", "keys", "url", "update", "insertOrign");
 		if(!empty($toValidate)){
 			foreach ($toValidate as $key => $value) {

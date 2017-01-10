@@ -47,7 +47,7 @@ if (isset(Yii::app()->session['userId']) ) {
 			    </a>
 		    </div>
 			<?php } ?>	
-			<?php if(isset($params["skin"]['displayNotifications']) && $params["skin"]['displayNotifications'] && @Yii::app()->session['userId']){ ?>
+			<?php if(isset($params["skin"]['displayNotifications']) && $params["skin"]['displayNotifications']){ ?>
 			<div class="col-xs-6 col-sm-12 center padding-5 visible-xs">
 				<a class="btn bg-dark padding-5" href="javascript:$('.btn-menu-notif').trigger('click');$.unblockUI();">
 			        <i class="fa fa-bell" style="font-size: 1em!important; margin-right: -10px;"></i> 
@@ -59,10 +59,10 @@ if (isset(Yii::app()->session['userId']) ) {
 			    </a>
 			</div>
 			<?php } ?>
-			<?php if(@$params["displayCommunexion"] && $params["displayCommunexion"]){ ?>
+			<?php if(@$params["skin"]["displayCommunexion"] && $params["skin"]["displayCommunexion"]){ ?>
 		    <div class="col-xs-12 hidden-xs center no-padding">
 			    <a class="btn bg-red padding-5" 
-			    	href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>">
+			    	href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout?network='.$params["name"]); ?>">
 			        <i class="fa fa-sign-out"></i>
 			        <br><?php echo Yii::t("person","Sign out"); ?>
 			    </a>
@@ -117,14 +117,14 @@ if (isset(Yii::app()->session['userId']) ) {
 					</div>
 					<?php if(isset($params['add']['person']) && $params['add']['person']) { ?>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
-						<a href="javascript:openForm('person')" class="btn bg-yellow btn-element">
+						<a href="#person.invite" class="lbh btn bg-yellow btn-element">
 
 							<i class="fa fa-user"></i><br>
 							<span class="lbl-btn-menu-name-add">Citoyens</span>
 						</a>						
 					</div>
 					<?php } ?>
-					 <?php if(isset($params['add']['organization']) && $params['add']['organization']) { ?>
+					<?php if(isset($params['add']['organization']) && $params['add']['organization']) { ?>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
 
 						<a href="javascript:openForm('organization')" class="btn bg-green btn-element">
