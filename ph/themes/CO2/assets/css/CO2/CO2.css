@@ -797,6 +797,72 @@ h3.title_panel_map{
 .navbar-nav{
 	margin:0;
 }
+
+
+#sub-menu-left{
+    margin-top:180px;
+    /*text-align: right;*/
+}
+
+#sub-menu-left .btn{
+    background-color: #4285f4;
+    border-color: #4285f4;
+	color:white;
+}
+#sub-menu-left .btn.active{
+    background-color: #fff;
+    color: #4285f4;
+}
+#sub-menu-left .btn:hover{
+    background-color: #1c6df5;
+    border-color: #4285f4;
+}
+#sub-menu-left .btn.active:hover{
+    background-color: #fff;
+    color: #4285f4;
+}
+
+.btn-favory{
+	margin-left:-30px; 
+	margin-right:13px;
+}
+
+.btn-favory .fa-star{
+	display: none;
+}
+.btn-favory:hover{
+	text-decoration: none;
+}
+.btn-favory:hover .fa-star-o{
+	display: none;
+}
+.btn-favory:hover .fa-star{
+	display: inline;
+}
+
+
+.main-btn-scopes {
+    margin-top: -37px;
+    z-index: 10;
+    border-radius: 50%;
+    padding:3px;
+    border: 3px solid transparent!important;
+    -webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5);
+    /*-ms-transform: rotate(7deg);
+    -webkit-transform: rotate(7deg);
+    transform: rotate(-45deg);*/
+}
+
+.main-btn-scopes:hover{
+    background-color: white!important;
+    color:#ea4335!important;
+    border: 3px solid #ea4335!important;
+
+}
+
+
 @media (max-width: 768px) {
 
 	.sigModuleBg .btn-group-map.tools-btn{
@@ -952,4 +1018,9 @@ h3.title_panel_map{
 	    width: 45px;
 		height: 45px;
 	}
+
+	#sub-menu-left{
+        margin-top:10px;
+        text-align: left;
+    }
 }
