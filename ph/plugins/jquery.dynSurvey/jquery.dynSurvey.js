@@ -49,13 +49,14 @@ onSave: (optional) overloads the generic saveProcess
 			};
 
 			var settings = $.extend({}, defaults, options);
+			console.log(settings);
 			$this = this;
 			survey = settings.surveyObj;
 			navBtnAction = false;
 
 			console.info("build Form dynamically into form tag : ",settings.surveyId);
 			console.dir(settings.surveyObj);
-						console.dir(settings.surveyValues);
+			console.dir(settings.surveyValues);
 
 			/* **************************************
 			* BUILD FORM based on surveyObj
@@ -163,7 +164,8 @@ onSave: (optional) overloads the generic saveProcess
 			* bind any events Post building 
 			***************************************** */
 			bindDynFormEvents(settings,form.rules);
-
+			if(typeof (settings.onLoad) != "undefined")
+				console.dir(settings.onLoad);
 			if(settings.onLoad && jQuery.isFunction( settings.onLoad ) )
 				settings.onLoad();
 		    
@@ -198,9 +200,10 @@ onSave: (optional) overloads the generic saveProcess
         var initField = '';
         var value = "";
         var style = "";
+        console.log(surveyValues);
         if( fieldObj.value ) 
         	value = fieldObj.value;
-        else if (surveyValues && surveyValues[key][field]) 
+        else if (surveyValues && typeof surveyValues[key] != "undefined" && surveyValues[key][field]) 
         	value = surveyValues[key][field];
 
         /* **************************************
