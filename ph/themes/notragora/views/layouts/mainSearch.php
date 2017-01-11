@@ -84,6 +84,7 @@
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
+		   var theme = "<?php echo Yii::app()->theme->name;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
 		   var userId = "<?php echo Yii::app()->session['userId']?>";
 		   var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
