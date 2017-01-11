@@ -453,6 +453,7 @@
 		var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
 		var collectionsType=<?php echo json_encode( $collectionsType ) ?>;
 		var genresType=<?php echo json_encode( $genresType ) ?>;
+		var searchType = [ "persons" ];
 		genresTypeData=[];
 		$.each(genresType, function(i, tag) {
 					val={id:tag,text:tag};
@@ -466,39 +467,7 @@
 
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
-			typeObj["poi"].dynForm.jsonSchema.title="Ajouter une réalisation";
-			typeObj["poi"].dynForm.jsonSchema.icon="video-camera";
-			collectionForm = {
-		                "inputType" : "tags",
-		                "placeholder" : "Collections de la réalisation",
-		                "values" : tagsList,
-		                "data" : collectionsTypeData
-		    };
-		    typeObj["poi"].dynForm.jsonSchema.properties.collections={};
-		    typeObj["poi"].dynForm.jsonSchema.properties.collections=collectionForm;
-			genreForm = {
-		                "inputType" : "tags",
-		                "placeholder" : "Genres de la réalisation",
-		                "values" : tagsList,
-		                "data" : genresTypeData
-		    };
-		    typeObj["poi"].dynForm.jsonSchema.properties.genres={};
-		    typeObj["poi"].dynForm.jsonSchema.properties.genres=genreForm;
-			poiFormType =  {
-				"values" : "video",
-	            "inputType" : "hidden"
-			};
-			typeObj["poi"].dynForm.jsonSchema.properties.type=poiFormType;
-			poiFormUrls = {
-	        	placeholder : "url",
-	            "inputType" : "array",
-	            "value" : [],
-	            init:function(){
-		            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",0);			            
-	            }
-	        };
-	        typeObj["poi"].dynForm.jsonSchema.properties.urls=poiFormUrls;
-			typeObj["poi"].dynForm.jsonSchema.properties.info.html="<p><i class='fa fa-info-circle'></i> Rajouter une video en la chargeant l'url présente sur le compte vimeo de passeur d'image. Cette réalisation sera liée à votre groupe de travail</p>";
+			notragora.init();
 			/*if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
 				typeObj[key].dynForm.jsonSchema.properties.tags.data=networkTags;
 				if(typeof networkJson.request.mainTag != "undefined")
@@ -622,7 +591,43 @@
 			}
 			checkScroll();
 		});
-
+		var notragora = {
+			init : function(){
+				typeObj["poi"].dynForm.jsonSchema.title="Ajouter une réalisation";
+				typeObj["poi"].dynForm.jsonSchema.icon="video-camera";
+				collectionForm = {
+			                "inputType" : "tags",
+			                "placeholder" : "Collections de la réalisation",
+			                "values" : tagsList,
+			                "data" : collectionsTypeData
+			    };
+			    typeObj["poi"].dynForm.jsonSchema.properties.collections={};
+			    typeObj["poi"].dynForm.jsonSchema.properties.collections=collectionForm;
+				genreForm = {
+			                "inputType" : "tags",
+			                "placeholder" : "Genres de la réalisation",
+			                "values" : tagsList,
+			                "data" : genresTypeData
+			    };
+			    typeObj["poi"].dynForm.jsonSchema.properties.genres={};
+			    typeObj["poi"].dynForm.jsonSchema.properties.genres=genreForm;
+				poiFormType =  {
+					"values" : "video",
+		            "inputType" : "hidden"
+				};
+				typeObj["poi"].dynForm.jsonSchema.properties.type=poiFormType;
+				poiFormUrls = {
+		        	placeholder : "url",
+		            "inputType" : "array",
+		            "value" : [],
+		            init:function(){
+			            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",0);			            
+		            }
+		        };
+		        typeObj["poi"].dynForm.jsonSchema.properties.urls=poiFormUrls;
+				typeObj["poi"].dynForm.jsonSchema.properties.info.html="<p><i class='fa fa-info-circle'></i> Rajouter une video en la chargeant l'url présente sur le compte vimeo de passeur d'image. Cette réalisation sera liée à votre groupe de travail</p>";
+			}
+		}
 		</script>
 
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->

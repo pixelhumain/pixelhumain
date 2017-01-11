@@ -1,5 +1,6 @@
 <?php  HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuTop.css'), Yii::app()->theme->baseUrl); 
 	$topList = Poi::getPoiByTagsAndLimit();
+	$tagsPoiList = array();
 ?>
 
 <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
@@ -8,14 +9,23 @@
 	<div class="col-xs-12 no-padding main-gallery-top" >
 		<div class="pull-left">
 		<?php foreach ($topList as $data) { 
+			if(@$data["tags"]){
+				foreach($data["tags"] as $val){
+					if (!in_array($val, $tagsPoiList)) 
+						array_push($tagsPoiList,$val);
+				}
+			}
 			if(@$data["medias"] && @$data["medias"][0]["content"]["image"] && !empty($data["medias"][0]["content"]["image"]))
 				$src = str_replace("1280x720","720x720",$data["medias"][0]["content"]["image"]);
 			else 
 				$src = $this->module->assetsUrl."/images/thumbnail-default.jpg";
 			$name = $data["name"];
+			$tags = "";
+			if (@$data["tags"])
+				$tags = strtolower(implode(" ", $data["tags"]));
 			$href = "#element.detail.type.".Poi::COLLECTION.".id.".(string)$data["_id"];
 		?>
-			<span class="item-galley-top">
+			<span class="item-galley-top searchEntityContainer <?php echo $tags ?>">
 				<a href="<?php echo $href ?>" class="lbh">
 					<img src="<?php echo $src ?>" class="img-galley-top">
 				</a>
@@ -84,7 +94,7 @@
 
 </div>
 <script>
-
+	var poiListTags = <?php echo json_encode($tagsPoiList) ?>;
 	
 	function activeMenuTop(thisJQ){
 		$(".btn-menu-top").removeClass("active");
