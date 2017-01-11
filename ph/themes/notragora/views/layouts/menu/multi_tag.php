@@ -1,7 +1,7 @@
 
 <?php  HtmlHelper::registerCssAndScriptsFiles(array('/js/menus/multitags.js'), $this->module->assetsUrl); ?>
 
-<div class="dropdown pull-left" id="dropdown-content-multi-tag">
+<div class="dropdown pull-left hidden" id="dropdown-content-multi-tag">
 
   <button class="pull-left"  data-toggle="dropdown"  id="btn-modal-multi-tag"
 	data-toggle="tooltip" data-placement="right" 

@@ -67,7 +67,7 @@ input#second-search-bar{
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
         
-        <?php }elseif($subdomain == "web"){ ?>
+        <?php }elseif($subdomain == "web" || $subdomain == "freedom"){ ?>
             
             <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">

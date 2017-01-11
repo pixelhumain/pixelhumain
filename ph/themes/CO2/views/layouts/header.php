@@ -15,15 +15,13 @@
 
     <?php 
         $params = CO2::getThemeParams();
-       //var_dump($params["pages"]); exit;
+       
         $useHeader              = $params["pages"]["#co2.".$page]["useHeader"];
         $subdomain              = $params["pages"]["#co2.".$page]["subdomain"];
         $subdomainName          = $params["pages"]["#co2.".$page]["subdomainName"];
         $icon                   = $params["pages"]["#co2.".$page]["icon"];
         $mainTitle              = $params["pages"]["#co2.".$page]["mainTitle"];
         $placeholderMainSearch  = $params["pages"]["#co2.".$page]["placeholderMainSearch"];
-
-
     ?>
 
     <!-- Header -->
@@ -39,7 +37,7 @@
                                     if(@$value["inMenu"]==true){ ?>
                                     <a  class="lbh letter-red font-blackoutM margin-right-25" 
                                         href="<?php echo $key; ?>">
-                                        <i class="fa fa-<?php echo $value["icon"]; ?>"></i><span class="hidden-xs"> <?php echo $value["subdomain"]; ?></span>
+                                        <i class="fa fa-<?php echo $value["icon"]; ?>"></i><span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
                                     </a>    
                             <?php   }
                                  }  ?>
@@ -107,10 +105,10 @@
                                 <!-- <span>Rechercher parmis toutes les pages du réseau COMMUNECTER</span> -->
                             </div>
                             <?php }else{ ?>
-                                 <button class="btn btn-default btn-scroll btn-directory-type" data-type="<?php echo @$type; ?>" data-targetid="#page">
+                                 <button class="btn btn-default btn-scroll btn-directory-type" id="main-btn-start-search" data-type="<?php echo @$type; ?>" data-targetid="#page">
                                     <i class="fa fa-search"></i> Lancer la recherche
                                 </button> 
-                                <button class="btn btn-default text-azure" id="main-btn-start-search">
+                                <button class="btn btn-default text-azure bold" id="">
                                     <i class="fa fa-plus-circle"></i> Faire une proposition
                                 </button>
 
@@ -134,6 +132,20 @@
                                 C'est simple, et ça prend seulement <span class="text-red"> quelques secondes ...</span>
                                 </small>
                             </p>
+                        <?php }elseif($subdomain == "freedom"){ ?>
+                            <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
+                                <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
+                                <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults">
+                                    <i class="fa fa-search"></i> Lancer la recherche
+                                </button>
+                                <a href="#co2.referencement" class="lbh btn btn-default letter-green hidden-xs bold" id="">
+                                    <i class="fa fa-plus-circle"></i> Publier une annonce
+                                </a>
+                            </div>
                         <?php } ?>
 
                     </div>
@@ -159,7 +171,7 @@
 
     <?php   if($subdomain != "referencement"){
                         $cities = CO2::getCitiesNewCaledonia();
-                        $this->renderPartial($layoutPath.'scopes/kgougle/multi_scope', 
+                        $this->renderPartial($layoutPath.'scopes/'.$CO2DomainName.'/multi_scope', 
                                 array(  "cities"=>$cities, "me"=>$me)); 
             }
     ?>

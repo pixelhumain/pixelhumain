@@ -63,6 +63,8 @@
 
         <?php $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); ?> 
 
+        <?php //echo Yii::app()->theme->name;?>
+
         <?php 
             echo "<!-- start: MAIN JAVASCRIPTS -->";
             echo "<!--[if lt IE 9]>";
@@ -145,6 +147,7 @@
         <script>
             <?php $params = CO2::getThemeParams(); ?>
 
+            var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() {
                 loadableUrls = <?php echo json_encode($params["pages"]); ?>;
                 initToastr();

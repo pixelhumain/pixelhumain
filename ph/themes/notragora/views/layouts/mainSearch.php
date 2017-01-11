@@ -320,6 +320,7 @@
 			'/plugins/bootbox/bootbox.min.js' , 
 			'/plugins/jquery-mockjax/jquery.mockjax.js' , 
 			'/plugins/blockUI/jquery.blockUI.js' , 
+
 			// '/plugins/toastr/toastr.js' , 
 			// '/plugins/toastr/toastr.min.css',
 			'/plugins/jquery-cookie/jquery.cookie.js' , 
@@ -338,7 +339,11 @@
 			'/plugins/font-awesome/css/font-awesome.min.css',
 			'/plugins/font-awesome-custom/css/font-awesome.css',
 			'/plugins/jquery.dynForm.js',
-			'/js/api.js'
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
+			'/js/api.js',
+
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
 
