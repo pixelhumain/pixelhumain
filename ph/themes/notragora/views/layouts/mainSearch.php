@@ -484,7 +484,21 @@
 		    };
 		    typeObj["poi"].dynForm.jsonSchema.properties.genres={};
 		    typeObj["poi"].dynForm.jsonSchema.properties.genres=genreForm;
-
+			poiFormType =  {
+				"values" : "video",
+	            "inputType" : "hidden"
+			};
+			typeObj["poi"].dynForm.jsonSchema.properties.type=poiFormType;
+			poiFormUrls = {
+	        	placeholder : "url",
+	            "inputType" : "array",
+	            "value" : [],
+	            init:function(){
+		            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",0);			            
+	            }
+	        };
+	        typeObj["poi"].dynForm.jsonSchema.properties.urls=poiFormUrls;
+			typeObj["poi"].dynForm.jsonSchema.properties.info.html="<p><i class='fa fa-info-circle'></i> Rajouter une video en la chargeant l'url présente sur le compte vimeo de passeur d'image. Cette réalisation sera liée à votre groupe de travail</p>";
 			/*if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
 				typeObj[key].dynForm.jsonSchema.properties.tags.data=networkTags;
 				if(typeof networkJson.request.mainTag != "undefined")
