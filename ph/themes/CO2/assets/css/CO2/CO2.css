@@ -678,7 +678,10 @@ h3.title_panel_map{
 #right_tool_map .item_map_list .separation{
 	min-width: 95%;
 }
-
+.item_map_list i.fa-map-marker.fa-2x{
+	font-size: 2em;
+	margin-top: -7px;
+}
 .form-in-map #newElement_country{
 	display: none;
 }
@@ -735,10 +738,12 @@ h3.title_panel_map{
 .portfolio-modal .close-modal{
 	z-index:10;
 }
-.navbar-collapse button{
+.navbar-collapse button,
+.navbar-nav button{
 	/*background:transparent!important;*/
 	border:none!important;
 	margin-top:15px;
+	background-color: transparent;
 }
 
 .menu-name-profil{
@@ -861,6 +866,7 @@ h3.title_panel_map{
     border: 3px solid #ea4335!important;
 
 }
+
 
 
 @media (max-width: 768px) {

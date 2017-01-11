@@ -22,7 +22,7 @@
         </div>
        
         <div class="hidden-xs col-sm-5 col-md-4 col-lg-4 no-padding">
-            <input type="text" class="form-control" id="input-search-map" placeholder="Rechercher sur la carte">
+            <input type="text" class="form-control" id="input-search-map" placeholder="Rechercher...">
         </div>
 
         <button class="btn btn-default hidden-xs" id="menu-map-btn-start-search"><i class="fa fa-search"></i></button>
@@ -71,9 +71,9 @@
                       </button>
 
                 <?php } else { ?>
-                    <li class="page-scroll">
-                        <button class="text-red font-montserrat" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> SE CONNECTER</button>
-                    </li>
+                    <!-- <li class="page-scroll">
+                        <button class="letter-green font-montserrat" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> SE CONNECTER</button>
+                    </li> -->
                 <?php } ?>
             </ul>
         </div>
