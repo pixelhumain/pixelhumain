@@ -5,7 +5,7 @@
         <div class="navbar-header pull-left">
            
             <a href="#co2.web" class="btn-scroll menu-btn-back-category" data-targetid="#page-top">
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2G.png" 
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="nc_map pull-left" height=30>
             </a>
             <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>
@@ -67,14 +67,26 @@
                             <ul class="dropdown-menu arrow_box">
                                 <li class="text-left">
                                     <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-user-circle"></i> Ma page
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-plus-circle"></i> Créer une page
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-search"></i> Rechercher des contacts
                                     </a>
                                 </li>
                                 <li role="separator" class="divider">
                                 </li>
                                 <li class="text-left">
                                     <a href="#co2.social" target="_blank" class="lbh bg-white">
-                                        <i class="fa fa-search"></i> Rechercher
+                                        <i class="fa fa-crosshairs"></i> Autour de moi
                                     </a>
                                 </li>
                                 <li role="separator" class="divider">
@@ -103,8 +115,8 @@
             </ul>
 
             <?php // MULTITAG / MULTISCOPE / NOTIF // ?>
-            <div class="margin-5 margin-right-15">
-                <?php $this->renderPartial($layoutPath.'scopes/multi_tag_scope', array("me"=>$me, "layoutPath"=>$layoutPath)); ?>
+            <div class="margin-5 margin-right-15 hidden">
+                <?php //$this->renderPartial($layoutPath.'scopes/multi_tag_scope', array("me"=>$me, "layoutPath"=>$layoutPath)); ?>
             </div>
         </div>
 

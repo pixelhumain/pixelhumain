@@ -28,12 +28,11 @@ function loadByHash( hash , back ) { //alert("loadByHash");
     mylog.warn("loadByHash",hash,back);
     if( jsController(hash) ){
     	mylog.log("loadByHash",hash,back);
-    	mylog.log("loadByHash >>> jsController",hash);
+    	//mylog.log("loadByHash >>> jsController",hash);
     }
     else {
-    	mylog.log("loadByHash",hash,back);
-    
-        showAjaxPanel( '/co2/web', 'Home Communecter ','home' );
+    	mylog.log("loadByHash",hash,back);    	
+        showAjaxPanel( '/co2/index', 'Home','home' );
     }
 
     location.hash = hash;
@@ -89,12 +88,14 @@ function showAjaxPanel (url,title,icon, mapEnd) {
 }
 
 function  processingBlockUi() { 
-	$.blockUI({
-	 	message : '<img src="'+themeUrl+'/assets/img/CO2G.png" class="nc_map pull-" height=80>'+
-	 			  '<i class="fa fa-spin fa-circle-o-notch"></i>'+
-	 			  //'<img src="'+themeUrl+'/assets/img/CO2G.png" class="nc_map pull-" height=80>'+
-	 			  
+	var imgLoad = "CO2r.png";
+	if(typeof CO2DomainName != "undefined")
+		if(CO2DomainName=="kgougle")
+			imgLoad = "logocagou-loader.png";
 
+	$.blockUI({
+	 	message : '<img src="'+themeUrl+'/assets/img/'+imgLoad+'" class="nc_map" height=80>'+
+	 			  '<i class="fa fa-spin fa-circle-o-notch"></i>'+
 	 			  '<h4 style="font-weight:300" class=" text-dark padding-10">'+
 	 				'Chargement en cours...'+
 	 			  '</h4>'+

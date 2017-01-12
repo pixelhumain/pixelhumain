@@ -421,7 +421,7 @@ onSave: (optional) overloads the generic saveProcess
 	                if( formValues && formValues.medias ){
 	                	$.each(formValues.medias, function(i,mediaObj) {
 	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
-	                			var strHtml = buildMediaHTML(mediaObj);
+	                			var strHtml = getMediaCommonHtml(mediaObj,"save");//buildMediaHTML(mediaObj);
 	                			$(".resultGetUrl"+optKey).html(strHtml);
 	                			$("#loading_indicator").hide();
 	                		}

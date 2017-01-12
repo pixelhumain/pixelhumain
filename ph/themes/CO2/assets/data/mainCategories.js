@@ -22,7 +22,8 @@ var mainCategories = {
 			"items" : [ { name: "Scolaire", 			faIcon: "graduation-cap" ,
 							keywords: ["univ", "bibliothèque", "médiathèque", "documentation", "formation", "école"]
 						}, 
-						{ name: "Logement",  			faIcon: "building-o"}, 
+						{ name: "Logement",  			faIcon: "building-o",
+							keywords: ["BienMeLoger", "SIC", "aide au logement", "agence"]}, 
 						{ name: "Véhicules",  			faIcon: "car",
 							keywords: ["achat", "vente", "location", "garage", "pièce", "casse", "immatriculation", "assurance"]
 						}, 
@@ -30,7 +31,7 @@ var mainCategories = {
 						{ name: "Télécom", 				faIcon: "volume-control-phone"}, 
 						{ name: "Transport en commun",  faIcon: "bus"},
 						{ name: "Petites annonces",  	faIcon: "tag",
-							keywords: ["annonce", "auto", "pièce auto", "embauche"]
+							keywords: ["annonce", "auto", "pièce auto", "immobilier", "embauche"]
 						}, 
 						{ name: "Tourisme", 			faIcon: "plane",
 							keywords: ["hotel", "gite", "sortie", "guide", "auberge", "voiture", "transport"]
@@ -64,3 +65,9 @@ var mainCategories = {
 					  ]
 		}
 	};
+
+	/*
+	1 don de 10 000 CFP == 1 journée de publicité
+	1 don de 50 000 CFP == 1 semaine de publicité
+	1 don de 150 000 CFP == 1 mois de publicité
+	*/

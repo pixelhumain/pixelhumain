@@ -37,7 +37,6 @@ $params = array(
     // Mail configuration
     'adminEmail'=>'testmail.pixelhumain@gmail.com',
     'forceMailSend' => true,
-
     //UPLOAD Management Configuration
     //upload url without the base URL
     'uploadUrl' => "upload/",

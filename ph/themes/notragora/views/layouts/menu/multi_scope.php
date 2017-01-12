@@ -5,7 +5,7 @@ HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/multiscopes.css'
 HtmlHelper::registerCssAndScriptsFiles(array( '/js/menus/multiscopes.js'), $this->module->assetsUrl);
 ?>
 
-<div class="dropdown pull-left" id="dropdown-content-multi-scope">
+<div class="dropdown pull-left hidden" id="dropdown-content-multi-scope">
   <button class="pull-left"  data-toggle="dropdown"  id="btn-modal-multi-scope"
 	data-toggle="tooltip" data-placement="right" 
 	title="Mes lieux favoris">
