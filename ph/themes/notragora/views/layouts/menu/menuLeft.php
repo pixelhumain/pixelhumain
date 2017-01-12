@@ -94,27 +94,26 @@
 				<i class="fa fa-angle-down pull-right"></i><br>
 				<hr>
 			</span>
-			<a href="javascript:" class="">Où sont les femmes</a><br>
-			<a href="javascript:" class="">Passeur d'images</a><br>
-			<a href="javascript:" class="">MHQM</a><br>
-			<a href="javascript:" class="">MIAA</a><br>
-			<a href="javascript:" class="">Portrait citoyens</a><br>
-			<a href="javascript:" class="">Parcours d'engagement</a>
+			<?php foreach ($collections as $tag){ 
+				$tagLink=addslashes(strtolower($tag));
+			?>
+				<a href="javascript:directory.toggleEmptyParentSection('.favSection','.<?php echo $tagLink ?>','.searchPoiContainer',1)" class="favElBtn <?php echo $tagLink ?>Btn" data-tag="<?php echo $tagLink ?>"><?php echo $tag ?></a><br>
+			<?php } ?>			
 		</div>
 
 		<div class="col-md-12 margin-top-15">
 			<span class="title-menu-left">
 				LES GENRES
-				<i class="fa fa-angle-up pull-right"></i><br>
+				<i class="fa fa-angle-down pull-right"></i><br>
 				<hr>
 			</span>
-			<a href="javascript:" class="">Documentaire</a><br>
-			<a href="javascript:" class="">Fiction</a><br>
-			<a href="javascript:" class="">Docu-fiction</a><br>
-			<a href="javascript:" class="">Films outils</a><br>
-			<a href="javascript:" class="">Films de commande</a><br>
-		</div>
-		
+			<?php foreach ($genres as $tag){ 
+				$tagLink=addslashes(strtolower($tag));
+				$tagLink=str_replace(" ", "-",$tagLink);
+			?>
+				<a href="javascript:directory.toggleEmptyParentSection('.favSection','.<?php echo $tagLink ?>','.searchPoiContainer',1)" class="favElBtn <?php echo $tagLink ?>Btn" data-tag="<?php echo $tagLink ?>"><?php echo $tag ?></a><br>
+			<?php } ?>
+		</div>		
 	</div>
 	
 </div>

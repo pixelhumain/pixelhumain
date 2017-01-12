@@ -99,7 +99,7 @@ jQuery(document).ready(function() {
 	$.each(poiListTags,function(i,v){
 		obj={text: v, 
 			weight : weightList[getRandomInt(0, 5)],
-			link : {href:'javascript:directory.toggleEmptyParentSection(".favSection",".'+slugify(v)+'",".searchEntityContainer",1)', class: "favElBtn "+slugify(v)+"Btn", "data-tag":""+slugify(v)+""}
+			link : {href:'javascript:directory.toggleEmptyParentSection(".favSection",".'+slugify(v)+'",".searchPoiContainer",1)', class: "favElBtn "+slugify(v)+"Btn", "data-tag":""+slugify(v)+""}
 			//html:{ class: "favElBtn "+slugify(v)+"Btn"}
 		/*	handlers : {
 				click: function() { 
