@@ -63,7 +63,7 @@
 
         <?php $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); ?> 
 
-        <?php //echo Yii::app()->theme->name;?>
+        
 
         <?php 
             echo "<!-- start: MAIN JAVASCRIPTS -->";

@@ -272,3 +272,8 @@ section h2 {
 	border-width: 11px;
 	margin-left: -11px;
 }
+
+
+.uppercase{
+	text-transform: uppercase;
+}
