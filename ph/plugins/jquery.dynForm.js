@@ -175,6 +175,9 @@ onSave: (optional) overloads the generic saveProcess
         				initValues[field] = {};
         			initValues[field]["tags"] = fieldObj.values;
         		}
+        		if(fieldObj.maximumSelectionLength)
+        			initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
+        		
         		if(typeof fieldObj.data != "undefined"){
 	        		initSelectNetwork[field]=fieldObj.data;
 	        	}
@@ -700,13 +703,15 @@ onSave: (optional) overloads the generic saveProcess
 			{
 				$.each($(".select2TagsInput"),function () 
 				{
-					mylog.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
-					if(initValues[$(this).attr("id")]){
+					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ] );
+					if( initValues[ $(this).attr("id") ] ){
 						var selectOptions = {
-						  "tags": initValues[ $(this).attr("id") ]["tags"],
+						  "tags": initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
+						if(initValues[ $(this).attr("id") ].maximumSelectionLength)
+							selectOptions.maximumSelectionLength = initValues[$(this).attr("id")]["maximumSelectionLength"];
 						if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[$(this).attr("id")] != "undefined" && initSelectNetwork[$(this).attr("id")].length > 0){
 							selectOptions.data=initSelectNetwork[$(this).attr("id")];
 						}
