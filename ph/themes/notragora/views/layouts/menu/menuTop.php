@@ -46,7 +46,7 @@
 						if(strlen ( $description) > 140)
 							$description=substr($description, 0, 140)."[...]";
 						} else
-							$description= "pas de description sur cette production";
+							$description= "Pas de description sur cette production";
 					?>
 					<span class="poiTopDescription"><?php echo $description ?></span>
 					<a href="<?php echo $href ?>" class="btn btn-dark-grey lbh">

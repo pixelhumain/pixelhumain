@@ -948,8 +948,12 @@ button.btn-infos{
 	}
 }
 
-
-
+.footer-comments {
+	background-color: inherit !important;
+}
+.item-comment img {
+	border-radius:16px !important;	
+}
 
 
 
