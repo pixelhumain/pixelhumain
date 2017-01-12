@@ -357,6 +357,24 @@ onSave: (optional) overloads the generic saveProcess
 					});
 				};
 			}       
+        }else if ( fieldObj.inputType == "postalcode" ) {
+        	mylog.log("build field "+field+">>>>>> postalcode");
+        	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" postalCodeBtn btn btn-default'><i class='text-azure fa fa-plus fa-2x'></i> Postal Code </a>";
+        	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
+        	
+			//locations are saved in addresses attribute
+			if( formValues.postalCodes ){
+				initField = function(){
+					$.each(formValues.postalCodes, function(i,postalCodeObj){
+						mylog.warn("init location",postalCodeObj.name,postalCodeObj.postalCode);
+						copyPCForm2Dynform(postalCodeObj);
+						addPostalCodeToForm(postalCodeObj);
+					});
+				};
+			}       
         } 
 
         /* **************************************
@@ -772,6 +790,20 @@ onSave: (optional) overloads the generic saveProcess
 		        showMap(true);
 		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
 		        if(typeof showMarkerNewElement != "undefined"){ showMarkerNewElement(); }
+		    });
+		}
+
+		/* **************************************
+		* Postal Code type 
+		***************************************** */
+		if(  $(".postalCodeBtn").length)
+		{
+			//todo : for generic dynForm check if map exist 
+			$(".postalCodeBtn").off().on( "click", function(){ 
+				$("#ajax-modal").modal("hide");
+		        showMap(true);
+		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
+		        if(typeof showMarkerNewElement != "undefined"){ showMarkerNewElement(true); }
 		    });
 		}
 		
