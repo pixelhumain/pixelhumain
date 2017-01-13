@@ -90,8 +90,8 @@
 	</button>
 	
 	<?php // BTN Doc = Doc // ?>
-	<button class="btn-menu-top tooltips pull-left active lbh"  onclick="activeMenuTop($(this))"
-			id="" data-hash="#default.view.page.index.dir.docs"
+	<button class="btn-menu-top tooltips pull-left lbh"  onclick="activeMenuTop($(this))"
+			id="" data-hash="#default.apropos"
 			data-toggle="tooltip" data-placement="bottom" title="A propos" alt="A propos">
 			<i class="fa fa-star"></i>
 	</button>
