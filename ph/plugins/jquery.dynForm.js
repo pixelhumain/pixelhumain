@@ -337,6 +337,17 @@ onSave: (optional) overloads the generic saveProcess
         } 
 
         /* **************************************
+		* TAG List
+		***************************************** */
+        else if ( fieldObj.inputType == "tagList" ) {
+        	mylog.log("build field "+field+">>>>>> tagList");
+        	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
+        	$.each(fieldObj.list,function(k,v) { 
+        		fieldHTML += '<a class="btn btn-link tagListEl '+field+' '+k+'Btn '+fieldClass+'" data-tag="'+k+'" href="'+action+'">'+v+'</a>';
+        	});
+        } 
+
+        /* **************************************
 		* LOCATION
 		***************************************** */
         else if ( fieldObj.inputType == "location" ) {
