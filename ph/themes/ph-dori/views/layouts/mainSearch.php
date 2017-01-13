@@ -87,6 +87,7 @@
 		   var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
+		   var globalTheme = "<?php echo Yii::app()->theme->name;?>";
 		   var userId = "<?php echo Yii::app()->session['userId']?>";
 		   var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
 		   var currentUrl = "<?php echo "#".Yii::app()->controller->id.".".Yii::app()->controller->action->id ?>";
@@ -441,6 +442,8 @@
 		var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
 		var organizerList = {};
 		var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
+		var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
+		var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
 
 		//mylog.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {

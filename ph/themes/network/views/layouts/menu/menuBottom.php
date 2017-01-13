@@ -9,7 +9,7 @@
 			$countAdd = count($params['add'])-1;
 			$i=0;
 			foreach($params['add'] as $key => $data){ 
-				$href="javascript:openForm('".$key."')";
+				$href="javascript:elementLib.openForm('".$key."')";
 				$lbh="";
 				if($key=="organization")
 					$bgStyle="	background-color: rgba(146, 191, 32, 0.6);";

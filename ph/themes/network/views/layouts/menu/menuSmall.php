@@ -127,7 +127,7 @@ if (isset(Yii::app()->session['userId']) ) {
 					<?php if(isset($params['add']['organization']) && $params['add']['organization']) { ?>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
 
-						<a href="javascript:openForm('organization')" class="btn bg-green btn-element">
+						<a href="javascript:elementLib.openForm('organization')" class="btn bg-green btn-element">
 
 							<i class="fa fa-group"></i><br>
 							<span class="lbl-btn-menu-name-add">
@@ -138,7 +138,7 @@ if (isset(Yii::app()->session['userId']) ) {
 					<?php } ?>
 					<?php if(isset($params['add']['project']) && $params['add']['project']) { ?>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
-						<a href="javascript:openForm('project')" class="btn bg-purple btn-element">
+						<a href="javascript:elementLib.openForm('project')" class="btn bg-purple btn-element">
 							<i class="fa fa-lightbulb-o"></i><br>
 							<span class="lbl-btn-menu-name-add">
 								Projets
@@ -148,7 +148,7 @@ if (isset(Yii::app()->session['userId']) ) {
 					<?php } ?>
 					<?php if(isset($params['add']['event']) && $params['add']['event']) { ?>
 					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
-						<a href="javascript:openForm('event')" class="btn bg-orange btn-element">
+						<a href="javascript:elementLib.openForm('event')" class="btn bg-orange btn-element">
 							<i class="fa fa-calendar"></i><br>
 							<span class="lbl-btn-menu-name-add">
 								Événements
