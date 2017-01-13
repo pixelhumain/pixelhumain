@@ -139,14 +139,14 @@ button#btn-toogle-map{
 	left:5px; 
 }
 .description-poi h3{
-	font-size: 12px;
-    padding: 5px;
+	font-size: 11px;
+    padding: 2px 3px;
     margin: inherit;
     text-align: -webkit-left;
 }
 .description-poi span{
-	padding: 5px;
-    font-size: 11px;
+	padding: 0px 3px;
+    font-size: 10px;
     white-space: initial;
     width: 120px;
     float: left;
