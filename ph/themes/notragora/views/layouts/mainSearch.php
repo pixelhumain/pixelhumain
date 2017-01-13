@@ -245,7 +245,7 @@
 
 	$topList = Poi::getPoiByTagsAndLimit();
 	$this->renderPartial($layoutPath.'.menu.menuTop', array( "me" => $me , "topList" => $topList )); 
-	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city, "collections"=>$collectionsType, "genres" => $genresType)); ?>
+	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city)); ?>
 
 	<!-- **************************************
 	CENTER SECTION
@@ -457,13 +457,13 @@
 		var searchType = [ "persons" ];
 		genresTypeData=[];
 		$.each(genresType, function(i, tag) {
-					val={id:tag,text:tag};
-					genresTypeData.push(val);
+			val={id:tag,text:tag};
+			genresTypeData.push(val);
 		});
 		collectionsTypeData=[];
 		$.each(collectionsType, function(i, tag2) {
-					val2={id:tag2,text:tag2};
-					collectionsTypeData.push(val2);
+			val2={id:tag2,text:tag2};
+			collectionsTypeData.push(val2);
 		});
 
 		//console.warn("isMapEnd 1",isMapEnd);
