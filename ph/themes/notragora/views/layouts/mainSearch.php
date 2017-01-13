@@ -412,6 +412,7 @@
 		    "video": "dark"
 		  };
 
+		 var classifiedTypes = "";
 
 		var typesLabels = {
 		  "<?php echo Organization::COLLECTION ?>":"Organization",
