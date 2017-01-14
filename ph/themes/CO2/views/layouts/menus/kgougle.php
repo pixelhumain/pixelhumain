@@ -1,5 +1,5 @@
 <style>
-<?php if($subdomain == "page.type"){ ?>    
+<?php if($subdomain == "page.type" || $subdomain == "freedom-"){ ?>    
 .navbar-custom.affix #main-title-top{
     display: inline;
 }
@@ -34,7 +34,7 @@ input#second-search-bar{
             </span>
            
             <?php if($subdomain != "page.type"){ ?>
-            <a class="navbar-brand font-blackoutM btn-scroll hidden-sm menu-btn-back-category" data-targetid="#page-top" href="#co2.web">
+            <a class="navbar-brand font-blackoutM btn-scroll hidden-sm menu-btn-back-category" data-targetid="#page-top">
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
                      class="nc_map pull-left" height=30>
                 <!-- <span class="letter letter-blue font-ZILAP letter-k">K</span>
@@ -67,14 +67,14 @@ input#second-search-bar{
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
         
-        <?php }elseif($subdomain == "web" || $subdomain == "freedom"){ ?>
+        <?php }elseif($subdomain == "web"){ ?>
             
             <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
 
-        <?php }elseif($subdomain == "social" || $subdomain == "page.type"){ ?>
+        <?php }elseif($subdomain == "social" || $subdomain == "page.type" || $subdomain == "freedom"){ ?>
             
             <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">

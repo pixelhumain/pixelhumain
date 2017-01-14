@@ -11,6 +11,15 @@
             margin-right: 57%;
             margin-top: -73px;
         }
+
+
+
+@media (max-width: 768px) {
+    #main-input-group{
+        margin-top:10px;
+    }
+}
+
     </style>
 
     <?php 
@@ -51,7 +60,7 @@
 
                        
                         <?php if($subdomain == "live"){ ?>
-                            <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
+                            <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
@@ -67,7 +76,7 @@
 
                         <?php }elseif($subdomain == "social" || $subdomain == "agenda" || $subdomain == "power"){ ?>
 
-                            <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
+                            <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
@@ -116,7 +125,7 @@
                             <!-- <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button> -->
 
                         <?php }elseif($subdomain == "web"){ ?>
-                            <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
+                            <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
@@ -133,11 +142,11 @@
                                 </small>
                             </p>
                         <?php }elseif($subdomain == "freedom"){ ?>
-                            <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-top:0px;margin-bottom:15px;">
+                            <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
-
+                            <!-- 
                             <div class="col-md-12">
                                 <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults">
                                     <i class="fa fa-search"></i> Lancer la recherche
@@ -145,7 +154,33 @@
                                 <a href="#co2.referencement" class="lbh btn btn-default letter-green hidden-xs bold" id="">
                                     <i class="fa fa-plus-circle"></i> Publier une annonce
                                 </a>
+                            </div> -->
+                            <div class="col-md-12 col-sm-12 no-padding" id="sub-menu-left">
+                                <div class="col-md-1 col-sm-1 padding-5"></div>
+                                <div class="col-md-2 col-sm-2 col-xs-12 text-center padding-5">
+                                <?php 
+                                        $freedomTags = CO2::getFreedomTags();
+                                        $currentSection = 1;
+                                        $align="right";
+                                        foreach ($freedomTags as $key => $tag) { ?>
+                                            <?php if($currentSection > 1){ ?>
+                                                <?php if($tag["section"] > $currentSection){ 
+                                                        $currentSection++; 
+                                                        $align = "center"; //$align=="left"?"left":"left";
+                                                ?>
+                                                </div>
+                                                <div class="col-sm-2 col-xs-12 col-md-2 text-<?php echo $align; ?> padding-5">
+                                                <?php } ?>
+                                                <button class="col-xs-5 col-sm-12 col-md-12 btn btn-default margin-bottom-5 margin-left-5 btn-select-type-anc btn-anc-color-<?php echo @$tag["color"]; ?>"  
+                                                        data-type-anc="<?php echo @$tag["key"]; ?>">
+                                                    <i class="fa fa-<?php echo @$tag["icon"]; ?> hidden-xs hidden-sm"></i> <?php echo @$tag["label"]; ?>
+                                                </button><br class="hidden-xs hidden-sm">
+                                            
+                                            <?php   }else{ $currentSection++; } ?>
+                                <?php   } ?>
+                                </div>
                             </div>
+
                         <?php } ?>
 
                     </div>

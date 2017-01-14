@@ -147,8 +147,9 @@
         <script>
             <?php $params = CO2::getThemeParams(); ?>
 
-            var classifiedTypes = "";
-
+            var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;;
+            var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
+            
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() {
                 loadableUrls = <?php echo json_encode($params["pages"]); ?>;

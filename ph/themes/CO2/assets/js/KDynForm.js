@@ -37,7 +37,7 @@
 
 
 
-function openForm (type, afterLoad,data) { 
+elementLib.openForm = function (type, afterLoad,data) { 
     //mylog.clear();
     $.unblockUI();
     mylog.warn("--------------- Open Form "+type+" ---------------------",data);
@@ -66,14 +66,14 @@ function openForm (type, afterLoad,data) {
 	  	$('#ajax-modal').modal("show");
 	  	afterLoad = ( notNull(afterLoad) ) ? afterLoad : null;
 	  	data = ( notNull(data) ) ? data : {};
-	  	buildDynForm(specs, afterLoad, data);
+	  	elementLib.buildDynForm(specs, afterLoad, data);
 	} else 
 		toastr.error("Vous devez être connecté pour afficher les formulaires de création");
 }
 
 
-function buildDynForm(elementObj, afterLoad,data) { 
-	mylog.warn("--------------- buildDynForm", elementObj, afterLoad,data);
+elementLib.buildDynForm = function (elementObj, afterLoad, data) { 
+	mylog.warn("--------------- build K DynForm", elementObj, afterLoad,data);
 	if(userId)
 	{
 		var form = $.dynForm({
@@ -83,8 +83,10 @@ function buildDynForm(elementObj, afterLoad,data) {
 		      onLoad : function  () {
 		        $("#ajax-modal-modal-title").html("<i class='fa fa-"+elementObj.dynForm.jsonSchema.icon+"'></i> "+elementObj.dynForm.jsonSchema.title);
 		        $("#ajax-modal-modal-title").removeClass("text-green").removeClass("text-purple").removeClass("text-orange").removeClass("text-azure");
-		        $("#ajax-modal-modal-title").addClass("text-"+KSpec[currentKFormType].color);
 		        $("#ajax-modal-modal-body").append("<div class='space20'></div>");
+		        if(typeof currentKFormType != "undefined")
+		        	$("#ajax-modal-modal-title").addClass("text-"+KSpec[currentKFormType].color);
+		        
 		        $(".locationBtn").on( "click", function(){
 					 setTimeout(function(){
 					 	$('[name="newElement_country"]').val("NC");
@@ -131,7 +133,7 @@ function buildDynForm(elementObj, afterLoad,data) {
 
 function initKSpec(){
 
-	if(typeof KSpec[currentKFormType] != "undefined"){
+	if(typeof currentKFormType != "undefined" && typeof KSpec[currentKFormType] != "undefined"){
 		var title = KSpec[currentKFormType].title;
 		var title2 = KSpec[currentKFormType].title2;
 		var title3 = KSpec[currentKFormType].title3;
