@@ -43,10 +43,10 @@
 					<h3><?php echo $data["name"]; ?></h3>
 					<?php if (@$data["description"]){ 
 						$description=strip_tags($data["description"]);
-						if(strlen ( $description) > 140)
-							$description=substr($description, 0, 140)."[...]";
+						if(strlen ( $description) > 80)
+							$description=substr($description, 0, 80)."[...]";
 						} else
-							$description= "Pas de description sur cette production";
+							$description= "<i>Pas de description sur cette production</i>";
 					?>
 					<span class="poiTopDescription"><?php echo $description ?></span>
 					<a href="<?php echo $href ?>" class="btn btn-dark-grey lbh">
@@ -90,8 +90,8 @@
 	</button>
 	
 	<?php // BTN Doc = Doc // ?>
-	<button class="btn-menu-top tooltips pull-left active lbh"  onclick="activeMenuTop($(this))"
-			id="" data-hash="#default.view.page.index.dir.docs"
+	<button class="btn-menu-top tooltips pull-left lbh"  onclick="activeMenuTop($(this))"
+			id="" data-hash="#default.apropos"
 			data-toggle="tooltip" data-placement="bottom" title="A propos" alt="A propos">
 			<i class="fa fa-star"></i>
 	</button>

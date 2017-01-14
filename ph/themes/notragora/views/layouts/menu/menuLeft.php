@@ -94,11 +94,8 @@
 				<i class="fa fa-angle-down pull-right"></i><br>
 				<hr>
 			</span>
-			<?php foreach ($collections as $tag){ 
-				$tagLink=addslashes(strtolower($tag));
-			?>
-				<a href="javascript:directory.toggleEmptyParentSection('.favSection','.<?php echo $tagLink ?>','.searchPoiContainer',1)" class="favElBtn <?php echo $tagLink ?>Btn" data-tag="<?php echo $tagLink ?>"><?php echo $tag ?></a><br>
-			<?php } ?>			
+			<div class="collectionsList">
+			</div>
 		</div>
 
 		<div class="col-md-12 margin-top-15">
@@ -107,12 +104,8 @@
 				<i class="fa fa-angle-down pull-right"></i><br>
 				<hr>
 			</span>
-			<?php foreach ($genres as $tag){ 
-				$tagLink=addslashes(strtolower($tag));
-				$tagLink=str_replace(" ", "-",$tagLink);
-			?>
-				<a href="javascript:directory.toggleEmptyParentSection('.favSection','.<?php echo $tagLink ?>','.searchPoiContainer',1)" class="favElBtn <?php echo $tagLink ?>Btn" data-tag="<?php echo $tagLink ?>"><?php echo $tag ?></a><br>
-			<?php } ?>
+			<div class="genresList">
+			</div>
 		</div>		
 	</div>
 	
@@ -147,6 +140,18 @@ var urlLogout = "<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person
 
 var menuExtend = ["organization", "project", "people", "vote", "action"];
 jQuery(document).ready(function() {
+	genresHtml="";
+	console.log("gennnnnres",genresType);
+	$.each(genresType, function(i, v) {
+		genresHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(v)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(v)+'Btn" data-tag="'+slugify(v)+'">'+v+'</a><br>';
+		$(".genresList").append(genresHtml);
+	});
+	collectionsHtml="";
+	$.each(collectionsType, function(i, v) {
+		collectionsHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(v)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(v)+'Btn" data-tag="'+slugify(v)+'">'+v+'</a><br>';
+		$(".collectionsList").append(collectionsHtml);
+	});
+
 	 $(".carousel-control").click(function(){
     var top = $("#docCarousel").position().top-30;
     $(".my-main-container").animate({ scrollTop: top, }, 300 );
