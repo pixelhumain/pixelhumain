@@ -249,6 +249,7 @@
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
+		
 		$cssAnsScriptFilesModule = array(
 			'/assets/js/cookie.js' ,
 			
