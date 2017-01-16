@@ -229,6 +229,21 @@
 				</a>
 				<?php } ?>
 				<hr>
+
+				<?php // Action // ?>
+				<a href="#default.directory?type=classified" id="menu-btn-classified"
+						class="menu-button-left glass-hover lbh">
+					<i class="fa fa-bullhorn tooltips"
+						data-toggle="tooltip" data-placement="right" title="Des Petites et des Grandes Annonces"></i> 
+					<span class="lbl-btn-menu"> Annonces</span>
+				</a>
+				<?php if(isset(Yii::app()->session['userId'])){ ?>
+				<a href="javascript:elementLib.openForm ( 'classified' );" class="menu-button-left pull-right lbl-btn-menu showIfCommucted <?php if(!@Yii::app()->session['user'] || !@Yii::app()->session['user']['postalCode'] )echo "hidden"; ?>">
+					<i class="fa text-red fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Ajouter une annonce"></i> 
+				</a>
+				<?php } ?>
+				<hr>
+
 			<?php } ?>
 			
 			<?php // Commune // ?>

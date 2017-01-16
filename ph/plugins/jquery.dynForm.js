@@ -83,17 +83,17 @@ onSave: (optional) overloads the generic saveProcess
 	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues.id) ? settings.formValues.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
-        				'<div class="space20"></div>'+
-        				
-						'<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
+        				'<div class="space20"></div>';
+        	if( !settings.formObj.jsonSchema.noSubmitBtns )
+				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
 						' <a href="javascript:;" onclick="$(\'#ajax-modal\').modal(\'hide\');" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
 							'<i class="fa fa-times "></i> Annuler'+
-						'</a> '+
+						'</a> ';
 
-					'</div>';
+			fieldHTML += '</div>';
 
 	        $( settings.formId ).append(fieldHTML);
 
@@ -479,7 +479,8 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "custom" ) {
         	mylog.log("build field "+field+">>>>>> custom");
-        	fieldHTML += fieldObj.html;
+
+        	fieldHTML += (typeof fieldObj.html == "function") ? fieldObj.html() : fieldObj.html;
         } 
         /* 	*************************************
         * SCOPE USER 	
