@@ -455,16 +455,7 @@
 		var collectionsType=<?php echo json_encode( $collectionsType ) ?>;
 		var genresType=<?php echo json_encode( $genresType ) ?>;
 		var searchType = [ "persons" ];
-		genresTypeData=[];
-		$.each(genresType, function(i, tag) {
-			val={id:tag,text:tag};
-			genresTypeData.push(val);
-		});
-		collectionsTypeData=[];
-		$.each(collectionsType, function(i, tag2) {
-			val2={id:tag2,text:tag2};
-			collectionsTypeData.push(val2);
-		});
+
 
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
@@ -594,6 +585,22 @@
 		});
 		var notragora = {
 			init : function(){
+				genresTypeData=[];
+				genresHtml="";
+				$.each(genresType, function(i, tag) {
+					val={id:tag,text:tag};
+					genresTypeData.push(val);
+					genresHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag)+'Btn" data-tag="'+slugify(tag)+'">'+tag+'</a><br>';
+				});
+				$(".genresList").append(genresHtml);
+				collectionsTypeData=[];
+				collectionsHtml="";
+				$.each(collectionsType, function(i, tag2) {
+					val2={id:tag2,text:tag2};
+					collectionsTypeData.push(val2);
+					collectionsHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag2)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag2)+'Btn" data-tag="'+slugify(tag2)+'">'+tag2+'</a><br>';
+				});
+				$(".collectionsList").append(collectionsHtml);
 				typeObj["poi"].dynForm.jsonSchema.title="Ajouter une réalisation";
 				typeObj["poi"].dynForm.jsonSchema.icon="video-camera";
 				collectionForm = {

@@ -140,7 +140,7 @@ var urlLogout = "<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person
 
 var menuExtend = ["organization", "project", "people", "vote", "action"];
 jQuery(document).ready(function() {
-	genresHtml="";
+	/*genresHtml="";
 	console.log("gennnnnres",genresType);
 	$.each(genresType, function(i, v) {
 		genresHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(v)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(v)+'Btn" data-tag="'+slugify(v)+'">'+v+'</a><br>';
@@ -150,7 +150,7 @@ jQuery(document).ready(function() {
 	$.each(collectionsType, function(i, v) {
 		collectionsHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(v)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(v)+'Btn" data-tag="'+slugify(v)+'">'+v+'</a><br>';
 		$(".collectionsList").append(collectionsHtml);
-	});
+	});*/
 
 	 $(".carousel-control").click(function(){
     var top = $("#docCarousel").position().top-30;
