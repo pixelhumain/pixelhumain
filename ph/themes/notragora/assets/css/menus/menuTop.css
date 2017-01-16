@@ -129,7 +129,41 @@ button#btn-toogle-map{
 	height:120px;
 	width:120px;
 }
-
+.description-poi{
+	height:120px;
+	width:120px;
+	position:absolute;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: white;
+	top:10px;
+	left:5px; 
+}
+.description-poi h3{
+	font-size: 11px;
+    padding: 2px 3px;
+    margin: inherit;
+    text-align: -webkit-left;
+}
+.description-poi span{
+	padding: 0px 3px;
+    font-size: 10px;
+    white-space: initial;
+    width: 120px;
+    float: left;
+    margin: inherit;
+    /* color: grey; */
+    text-rendering: geometricPrecision;
+}
+.description-poi a{
+	border-radius: 5px !important;
+    background: transparent;
+    font-size: 10px;
+    padding: 4px !important;
+    float: right;
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+}
 @media screen and (max-width: 767px){
 	#notificationPanelSearch{
 		position: fixed;

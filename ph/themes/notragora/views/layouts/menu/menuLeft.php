@@ -94,27 +94,19 @@
 				<i class="fa fa-angle-down pull-right"></i><br>
 				<hr>
 			</span>
-			<a href="javascript:" class="">Où sont les femmes</a><br>
-			<a href="javascript:" class="">Passeur d'images</a><br>
-			<a href="javascript:" class="">MHQM</a><br>
-			<a href="javascript:" class="">MIAA</a><br>
-			<a href="javascript:" class="">Portrait citoyens</a><br>
-			<a href="javascript:" class="">Parcours d'engagement</a>
+			<div class="collectionsList">
+			</div>
 		</div>
 
 		<div class="col-md-12 margin-top-15">
 			<span class="title-menu-left">
 				LES GENRES
-				<i class="fa fa-angle-up pull-right"></i><br>
+				<i class="fa fa-angle-down pull-right"></i><br>
 				<hr>
 			</span>
-			<a href="javascript:" class="">Documentaire</a><br>
-			<a href="javascript:" class="">Fiction</a><br>
-			<a href="javascript:" class="">Docu-fiction</a><br>
-			<a href="javascript:" class="">Films outils</a><br>
-			<a href="javascript:" class="">Films de commande</a><br>
-		</div>
-		
+			<div class="genresList">
+			</div>
+		</div>		
 	</div>
 	
 </div>
@@ -148,6 +140,18 @@ var urlLogout = "<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person
 
 var menuExtend = ["organization", "project", "people", "vote", "action"];
 jQuery(document).ready(function() {
+	genresHtml="";
+	console.log("gennnnnres",genresType);
+	$.each(genresType, function(i, v) {
+		genresHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(v)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(v)+'Btn" data-tag="'+slugify(v)+'">'+v+'</a><br>';
+		$(".genresList").append(genresHtml);
+	});
+	collectionsHtml="";
+	$.each(collectionsType, function(i, v) {
+		collectionsHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(v)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(v)+'Btn" data-tag="'+slugify(v)+'">'+v+'</a><br>';
+		$(".collectionsList").append(collectionsHtml);
+	});
+
 	 $(".carousel-control").click(function(){
     var top = $("#docCarousel").position().top-30;
     $(".my-main-container").animate({ scrollTop: top, }, 300 );

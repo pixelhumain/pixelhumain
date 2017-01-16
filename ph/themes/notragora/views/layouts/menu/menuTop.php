@@ -1,3 +1,11 @@
+<style>
+	.searchPoiContainer{
+		position:relative;
+		display: inline;
+		display: -webkit-inline-box;
+		display: -moz-inline-box;
+	}
+</style>
 <?php  HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuTop.css'), Yii::app()->theme->baseUrl); 
 	$topList = Poi::getPoiByTagsAndLimit();
 	$tagsPoiList = array();
@@ -25,11 +33,27 @@
 				$tags = strtolower(implode(" ", $data["tags"]));
 			$href = "#element.detail.type.".Poi::COLLECTION.".id.".(string)$data["_id"];
 		?>
-			<span class="item-galley-top searchEntityContainer <?php echo $tags ?>">
-				<a href="<?php echo $href ?>" class="lbh">
-					<img src="<?php echo $src ?>" class="img-galley-top">
-				</a>
-			</span>
+			<div class="searchPoiContainer <?php echo $tags ?>">
+				<span class="item-galley-top">
+					<a href="<?php echo $href ?>" class="lbh">
+						<img src="<?php echo $src ?>" class="img-galley-top">
+					</a>
+				</span>
+				<span class="description-poi" style="display:none;">
+					<h3><?php echo $data["name"]; ?></h3>
+					<?php if (@$data["description"]){ 
+						$description=strip_tags($data["description"]);
+						if(strlen ( $description) > 80)
+							$description=substr($description, 0, 80)."[...]";
+						} else
+							$description= "<i>Pas de description sur cette production</i>";
+					?>
+					<span class="poiTopDescription"><?php echo $description ?></span>
+					<a href="<?php echo $href ?>" class="btn btn-dark-grey lbh">
+						Voir la réalisation
+					</a>
+				</span>
+			</div>
 		<?php } ?>
 		</div>
 	</div>
@@ -66,8 +90,8 @@
 	</button>
 	
 	<?php // BTN Doc = Doc // ?>
-	<button class="btn-menu-top tooltips pull-left active lbh"  onclick="activeMenuTop($(this))"
-			id="" data-hash="#default.view.page.index.dir.docs"
+	<button class="btn-menu-top tooltips pull-left lbh"  onclick="activeMenuTop($(this))"
+			id="" data-hash="#default.apropos"
 			data-toggle="tooltip" data-placement="bottom" title="A propos" alt="A propos">
 			<i class="fa fa-star"></i>
 	</button>
@@ -100,5 +124,11 @@
 		$(".btn-menu-top").removeClass("active");
 		thisJQ.addClass("active");
 	}
-
+	jQuery(document).ready(function() {
+		$(".searchPoiContainer").mouseenter(function(){
+			$(this).find(".description-poi").show();
+		}).mouseleave(function(){
+			$(this).find(".description-poi").hide();
+		});
+	});
 </script>

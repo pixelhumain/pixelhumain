@@ -83,17 +83,17 @@ onSave: (optional) overloads the generic saveProcess
 	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues.id) ? settings.formValues.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
-        				'<div class="space20"></div>'+
-        				
-						'<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
+        				'<div class="space20"></div>';
+        	if( !settings.formObj.jsonSchema.noSubmitBtns )
+				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
 						' <a href="javascript:;" onclick="$(\'#ajax-modal\').modal(\'hide\');" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
 							'<i class="fa fa-times "></i> Annuler'+
-						'</a> '+
+						'</a> ';
 
-					'</div>';
+			fieldHTML += '</div>';
 
 	        $( settings.formId ).append(fieldHTML);
 
@@ -175,6 +175,9 @@ onSave: (optional) overloads the generic saveProcess
         				initValues[field] = {};
         			initValues[field]["tags"] = fieldObj.values;
         		}
+        		if(fieldObj.maximumSelectionLength)
+        			initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
+        		
         		if(typeof fieldObj.data != "undefined"){
 	        		initSelectNetwork[field]=fieldObj.data;
 	        	}
@@ -334,6 +337,17 @@ onSave: (optional) overloads the generic saveProcess
         } 
 
         /* **************************************
+		* TAG List
+		***************************************** */
+        else if ( fieldObj.inputType == "tagList" ) {
+        	mylog.log("build field "+field+">>>>>> tagList");
+        	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
+        	$.each(fieldObj.list,function(k,v) { 
+        		fieldHTML += '<a class="btn btn-link tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'" data-tag="'+k+'" href="'+action+'">'+v+'</a>';
+        	});
+        } 
+
+        /* **************************************
 		* LOCATION
 		***************************************** */
         else if ( fieldObj.inputType == "location" ) {
@@ -483,7 +497,8 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "custom" ) {
         	mylog.log("build field "+field+">>>>>> custom");
-        	fieldHTML += fieldObj.html;
+
+        	fieldHTML += (typeof fieldObj.html == "function") ? fieldObj.html() : fieldObj.html;
         } 
         /* 	*************************************
         * SCOPE USER 	
@@ -718,13 +733,15 @@ onSave: (optional) overloads the generic saveProcess
 			{
 				$.each($(".select2TagsInput"),function () 
 				{
-					mylog.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
-					if(initValues[$(this).attr("id")]){
+					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ] );
+					if( initValues[ $(this).attr("id") ] ){
 						var selectOptions = {
-						  "tags": initValues[ $(this).attr("id") ]["tags"],
+						  "tags": initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
+						if(initValues[ $(this).attr("id") ].maximumSelectionLength)
+							selectOptions.maximumSelectionLength = initValues[$(this).attr("id")]["maximumSelectionLength"];
 						if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[$(this).attr("id")] != "undefined" && initSelectNetwork[$(this).attr("id")].length > 0){
 							selectOptions.data=initSelectNetwork[$(this).attr("id")];
 						}

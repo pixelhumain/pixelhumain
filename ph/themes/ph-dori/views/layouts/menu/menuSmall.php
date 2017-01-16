@@ -227,7 +227,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							</span>
 						</a>
 						<?php if(@Yii::app()->session['userId']){ ?>
-						<a href="javascript:openForm('organization')" class="badge btn-add bg-green"><i class="fa fa-plus-circle"></i></a>
+						<a href="javascript:elementLib.openForm('organization')" class="badge btn-add bg-green"><i class="fa fa-plus-circle"></i></a>
 						<?php } ?>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-<?php echo $col; ?> center padding-5">
@@ -241,7 +241,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							</span>
 						</a>
 						<?php if(@Yii::app()->session['userId']){ ?>
-						<a href="javascript:openForm('project')" class="badge btn-add bg-purple"><i class="fa fa-plus-circle"></i></a>
+						<a href="javascript:elementLib.openForm('project')" class="badge btn-add bg-purple"><i class="fa fa-plus-circle"></i></a>
 						<?php } ?>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-<?php echo $col; ?> center padding-5">
@@ -255,7 +255,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							</span>
 						</a>
 						<?php if(@Yii::app()->session['userId']){ ?>
-						<a href="javascript:openForm('event')" class="badge btn-add bg-orange"><i class="fa fa-plus-circle"></i></a>
+						<a href="javascript:elementLib.openForm('event')" class="badge btn-add bg-orange"><i class="fa fa-plus-circle"></i></a>
 						<?php } ?>
 					</div>
 
@@ -270,7 +270,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 									Propositions
 								</span>
 							</a>
-							<a href="javascript:openForm('entry')" class="badge btn-add bg-azure"><i class="fa fa-plus-circle"></i></a>
+							<a href="javascript:elementLib.openForm('entry')" class="badge btn-add bg-azure"><i class="fa fa-plus-circle"></i></a>
 						</div>
 						<div class="col-xs-6 col-sm-6 col-md-4 center padding-5 showIfCommucted <?php if(!@Yii::app()->session['user'] || !@Yii::app()->session['user']['postalCode'] )echo "hidden"; ?>">
 
@@ -282,7 +282,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 									Actions
 								</span>
 							</a>
-							<a href="javascript:openForm('action')" class="badge btn-add bg-lightblue2"><i class="fa fa-plus-circle"></i></a>
+							<a href="javascript:elementLib.openForm('action')" class="badge btn-add bg-lightblue2"><i class="fa fa-plus-circle"></i></a>
 						</div>
 						<div class="col-xs-12 padding-5 center no-padding hidden-xs">
 						    <a class="btn bg-red lbh padding-5" 
@@ -382,8 +382,8 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			var tplObj = { label : obj.label };
 			tplObj.lblCount = (notNull(obj.labelCount)) ? ' <span class="labelCount">('+obj.labelCount+')</span>' : '';
 			tplObj.action = (notNull(obj.action)) ? obj.action : 'javascript:smallMenu.openAjax(\''+baseUrl+'/'+moduleId+'/collections/list/col/'+obj.label+'\',\''+obj.label+'\',\'fa-folder-open\',\'yellow\'})';
-			tplObj.icon = (notNull(obj.icon)) ? obj.icon : "fa-folder-open";
-			tplObj.classes = (notNull(obj.classes)) ? obj.classes : "col-xs-3 collection"; 
+			tplObj.icon = (notNull(obj.icon)) ? obj.icon : "fa-question-circle-o";
+			tplObj.classes = (notNull(obj.classes)) ? obj.classes : ""; 
       		tplObj.parentClass = (notNull(obj.parentClass)) ? obj.parentClass : ""; 
       		tplObj.key = (notNull(obj.key)) ? ' data-key="'+obj.key+'"' : ""; 
 			tplObj.color = (notNull(obj.color)) ? obj.color : "white"; 
@@ -392,6 +392,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 		},
 
 		//params :
+		//obj : 
 		//classes :: applies a class on each rendered element
 		//open / close :: is a globale container
 		//el_open/el_close :: is a container for each element of the list rendering

@@ -74,6 +74,7 @@ class OpenData
                                     "icon" => "fa-laptop",
                                     "tags" => array("numérique","tic","internet") )  
                                 );
+    
     /**
      * Classé par departement 
      * ce tableau fait le lien entre Code postal et nom de ville
