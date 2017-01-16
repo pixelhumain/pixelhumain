@@ -56,7 +56,15 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			        Admin
 			    </a>
 		    </div>
-			<?php } ?>	
+			<?php } ?>
+			<?php if(isset($me)) if(Role::isSourceAdmin($me['roles']) || Role::isSuperAdmin($me['roles'])){?>
+			<div class="col-xs-12 center no-padding">
+			    <a class="btn bg-dark-red lbh padding-5" href="#adminpublic.index">
+			        <i class="fa fa-user-secret" style="font-size: 1em!important;"></i> 
+			        Admin Public
+			    </a>
+		    </div>
+			<?php } ?>		
 			<div class="col-xs-6 col-sm-12 center padding-5 visible-xs">
 				<a class="btn bg-dark padding-5" href="javascript:$('.btn-menu-notif').trigger('click');$.unblockUI();">
 			        <i class="fa fa-bell" style="font-size: 1em!important; margin-right: -10px;"></i> 
