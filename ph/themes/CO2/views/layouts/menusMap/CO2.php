@@ -3,11 +3,11 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll pull-left">
-            <a href="#page-top"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2G.png" class="nc_map pull-left" height=30></a>
+            <a href="#page-top"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" style="padding-right:20px;" class="nc_map pull-left" height=30></a>
             
-            <a class="navbar-brand font-blackoutM hidden-xs  hidden-sm" href="#page-top">
+           <!--  <a class="navbar-brand font-blackoutM hidden-xs  hidden-sm" href="#page-top">
                 <small class="letter letter-red pastille font-blackoutT">map</small>
-            </a>
+            </a> -->
         </div>
        
         <div class="hidden-xs col-sm-5 col-md-4 col-lg-4 no-padding">

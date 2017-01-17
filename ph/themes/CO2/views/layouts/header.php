@@ -6,7 +6,7 @@
             margin-top: -41px;
         }
         .pastille-subdomain-icon {
-            font-size: 34px;
+            font-size: 24px;
             float: right;
             margin-right: 57%;
             margin-top: -73px;
@@ -117,10 +117,15 @@
                                  <button class="btn btn-default btn-scroll btn-directory-type" id="main-btn-start-search" data-type="<?php echo @$type; ?>" data-targetid="#page">
                                     <i class="fa fa-search"></i> Lancer la recherche
                                 </button> 
-                                <button class="btn btn-default text-azure bold" id="">
-                                    <i class="fa fa-plus-circle"></i> Faire une proposition
+                                <?php if($subdomain == "agenda"){ ?>                  
+                                <button class="btn btn-default text-orange bold" id="">
+                                    <i class="fa fa-plus-circle"></i> Créer un événement
                                 </button>
-
+                                <?php }else{ ?>
+                                    <button class="btn btn-default text-azure bold" id="">
+                                        <i class="fa fa-plus-circle"></i> Faire une proposition
+                                    </button>
+                                <?php } ?>
                             <?php } ?>
                             <!-- <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button> -->
 

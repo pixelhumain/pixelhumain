@@ -93,8 +93,8 @@ function  processingBlockUi() {
 		if(CO2DomainName=="kgougle")
 			imgLoad = "logocagou-loader.png";
 
-	$.blockUI({
-	 	message : '<img src="'+themeUrl+'/assets/img/'+imgLoad+'" class="nc_map" height=80>'+
+
+	var msgBlock = '<img src="'+themeUrl+'/assets/img/'+imgLoad+'" class="nc_map" height=80>'+
 	 			  '<i class="fa fa-spin fa-circle-o-notch"></i>'+
 	 			  '<h4 style="font-weight:300" class=" text-dark padding-10">'+
 	 				'Chargement en cours...'+
@@ -103,9 +103,28 @@ function  processingBlockUi() {
 	 				'Merci de patienter quelques instants'+
 	 			  '</span>'+
 	 			  '<br><br><br>'+
-	 			  '<a href="#co2" class="btn btn-default btn-sm lbh">'+
+	 			  '<a href="#" class="btn btn-default btn-sm lbh">'+
 	 			  	"c'est trop long !"+
-	 			  '</a>'
+	 			  '</a>';
+
+	if(CO2DomainName=="CO2") msgBlock +=
+	'<h4 class="text-dark no-margin" style="margin-top:5px!important;">'+
+        'VERSION DE TEST EN COURS DE DÉVELOPPEMENT !!!'+
+        '<br>'+
+        '<span class="letter-red"></span>'+
+    '</h4>'+
+	'<p class="letter-red no-margin" style="font-size:13px; margin-top:5px!important;">'+
+        'Cette nouvelle interface est en cours de développement, Merci de ne pas tenir compte des bug.<br>'+
+        'Nous sommes en train de basculer les fonctionnalités de communecter.org sur cette interface, '+
+        'afin de rendre la navigation plus simple et compréhensible pour tous.<br>'+
+        'L\'objectif est de proposer une page/interface pour chaque grande fonctionnalité de communecter, '+
+        'afin de créer des portes d\'entrées indépendantes sur le réseau, en fonction des besoins de chacun.<br><br>'+
+        '<b>Vos remarques et idées à ce propos sont les bienvenues.<br>'+
+        'Merci de nous en faire part sur le channel dédié <a href="" class="letter-blue">#CO2 test & idées</a></b>'+
+    '</p>';
+
+	$.blockUI({
+	 	message : msgBlock
 	 });
 	bindLBHLinks();
 }

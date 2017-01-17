@@ -4,7 +4,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <a href="#co2.web" class="btn-scroll menu-btn-back-category" data-targetid="#page-top">
+            <a href="#co2.web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="nc_map pull-left" height=30>
             </a>
@@ -71,12 +71,12 @@
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
-                                <li class="text-left">
-                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                <!-- <li class="text-left">
+                                    <a href="" data-target="#dash-create-modal" data-toggle="modal" class="bg-white">
                                         <i class="fa fa-plus-circle"></i> Créer une page
                                     </a>
                                 </li>
-                                <li role="separator" class="divider"></li>
+                                <li role="separator" class="divider"></li> -->
                                 <li class="text-left">
                                     <a href="#co2.social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-search"></i> Rechercher des contacts
@@ -84,12 +84,12 @@
                                 </li>
                                 <li role="separator" class="divider">
                                 </li>
-                                <li class="text-left">
+                                <!-- <li class="text-left">
                                     <a href="#co2.social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-crosshairs"></i> Autour de moi
                                     </a>
                                 </li>
-                                <li role="separator" class="divider">
+                                <li role="separator" class="divider"> -->
                                 </li>
                                 <li class="text-left">
                                     <a href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" class="lbh bg-white letter-red">
@@ -112,6 +112,7 @@
                         <button class="letter-green font-montserrat btn-menu-connect" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> SE CONNECTER</button>
                     </li>
                 <?php } ?>
+                
             </ul>
 
             <?php // MULTITAG / MULTISCOPE / NOTIF // ?>
@@ -152,14 +153,23 @@
 
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2G.png" 
+                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="nc_map" height=130>
-                    <h3 class="letter-green no-margin hidden-xs" style="margin-top:-15px!important;">
+                    <h3 class="letter-red no-margin hidden-xs" style="margin-top:5px!important;">
                         MENU PRINCIPAL<br>
                     </h3>
-                    <h5 class="text-dark no-margin hidden" style="margin-top:-15px!important;">
-                        Retrouvez l'ensemble des services du réseau <span class="letter-green homestead">CO2</span> en quelques clicks
-                    </h5>
+                    <h4 class="text-dark no-margin" style="margin-top:5px!important;">
+                        <i class="fa fa-exclamation-circle letter-red fa-2x"></i> VERSION DE TEST EN COURS DE DÉVELOPPEMENT
+                        <i class="fa fa-exclamation-circle letter-red fa-2x"></i> <br>
+                        <span class="letter-red"></span>
+                    </h4>
+                    <p class="letter-red no-margin" style="font-size:13px; margin-top:5px!important;">
+                        Cette nouvelle interface est en cours de développement, Merci de ne pas tenir compte des bug.<br>
+                        Nous sommes en train de basculer les fonctionnalités de communecter.org sur cette interface, afin de rendre la navigation plus simple et compréhensible pour tous.<br>
+                        L'objectif est de proposer une page/interface pour chaque grande fonctionnalité de communecter, afin de créer des portes d'entrées indépendantes sur le réseau, en fonction des besoins de chacun.<br><br>
+                        <b>Vos remarques et idées à ce propos sont les bienvenues.<br>
+                        Merci de nous en faire part sur le channel dédié <a href="" class="letter-blue">#CO2 test & idées</a></b>
+                    </p>
                     <br>
                     <?php 
                         if( isset( Yii::app()->session['userId']) ){
@@ -178,7 +188,7 @@
             </div>
 
             <div class="row links-main-menu">
-                <a href="#k.web" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <!-- <a href="#k.web" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         
                             <h2 class="text-red"><i class="fa fa-search padding-bottom-10"></i><br>
@@ -194,42 +204,45 @@
                                 </h5>
                             </div>                 
                     </div>
-                </a>
-                <a href="#k.live" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                </a> -->
+
+                <a href="#co2.social.type.persons" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-red"><i class="fa fa-newspaper-o padding-bottom-10"></i><br>
-                            <span class="font-blackoutT"> LIVE</span>
+                        <h2 class="text-red"><i class="fa fa-user-circle padding-bottom-10"></i><br>
+                            <span class="font-blackoutT"> RECHERCHE</span>
                         </h2>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
-                            <h5>Un espace d'information
-                                <small class="hidden-xs"><br>
-                                    pour suivre en direct<br>toute l'actu des médias du pays<br>
-                                    90%
-                                </small>
-                            </h5>
-                        </div>
-                    </div>
-                </a>
-            
-                <a href="#k.social.type.persons" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                    <div class="modal-body text-left">
-                        <h2 class="text-orange"><i class="fa fa-user-circle padding-bottom-10"></i><br>
-                            <span class="font-blackoutT"> SOCIAL</span>
-                        </h2>
-                        
-                        <div class="col-md-12 no-padding text-center hidden-xs">
-                            <h5>Le réseau social du Caillou
+                            <h5>Le moteur de recherche
                                 <small class="hidden-xs"><br>
                                     pour être connecté au territoire<br>à ses voisins, ses amis, sa tribue<br>
-                                    30% (en cours)
+                                    80% (en cours)
                                 </small>
                             </h5>
                         </div>
                     </div>
                 </a>
 
-                <a href="#k.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#co2.freedom" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                    <div class="modal-body text-left">
+                        <h2 class="text-orange"><i class="fa fa-newspaper-o padding-bottom-10"></i><br>
+                            <span class="font-blackoutT"> ANNONCES</span>
+                        </h2>
+                        
+                        <div class="col-md-12 no-padding text-center hidden-xs">
+                            <h5>Un espace d'information
+                                <small class="hidden-xs"><br>
+                                    Un système de petites annonces révolutionnaire<br><br>
+                                    50% (en cours)
+                                </small>
+                            </h5>
+                        </div>
+                    </div>
+                </a>
+            
+                
+
+                <!-- <a href="#co2.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-yellow"><i class="fa fa-comments padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> FREEDOM</span>
@@ -244,9 +257,9 @@
                             </h5>
                         </div>
                     </div>
-                </a>
+                </a> -->
                 
-                <a href="#k.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#co2.agenda" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-yellow"><i class="fa fa-calendar padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> AGENDA</span>
@@ -256,14 +269,14 @@
                             <h5>Un agenda commun
                                 <small class="hidden-xs"><br>
                                     pour être informé en temps réel de toute l'activité locale<br>
-                                    (prochainement)
+                                    50% (en cours)
                                 </small>
                             </h5>
                         </div>
                     </div>
                 </a>
                 
-                <a href="#k.freedom" class="col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#co2.power" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> POWER</span>
@@ -272,8 +285,8 @@
                         <div class="col-md-12 no-padding text-center hidden-xs">
                             <h5>Un espace de participation citoyenne
                                 <small class="hidden-xs"><br>
-                                    pour discuter, proposer, débattre,<br>et décider ensemble<br>avec tous les Cagous<br>
-                                    (prochainement)
+                                    La démocratie participative / collaborative / en ligne / de demain
+                                    10% (refonte à réaliser)
                                 </small>
                             </h5>
                         </div>
