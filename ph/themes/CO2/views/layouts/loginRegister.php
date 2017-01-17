@@ -22,13 +22,18 @@
             <div class="row">
                 <div class="col-lg-12">
                     <span class="name font-blackoutM" >
-                        <span class="letter letter-blue font-ZILAP letter-k">K</span>
-                        <span class="letter letter-yellow">G</span>
-                        <span class="letter letter-yellow font-ZILAP">O</span>
-                        <span class="letter letter-yellow">U</span>
-                        <span class="letter letter-green">G</span>
-                        <span class="letter letter-green">L</span>
-                        <span class="letter letter-green">E</span>
+                        <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
+                            <!-- <span class="letter letter-blue font-ZILAP letter-k">K</span>
+                            <span class="letter letter-yellow">G</span>
+                            <span class="letter letter-yellow font-ZILAP">O</span>
+                            <span class="letter letter-yellow">U</span>
+                            <span class="letter letter-green">G</span>
+                            <span class="letter letter-green">L</span>
+                            <span class="letter letter-green">E</span> -->
+                        <?php } else { ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">
+                        <?php } ?>
                     </span>
                     <h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>
                 </div>

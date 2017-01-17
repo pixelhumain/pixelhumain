@@ -255,6 +255,10 @@ function initKInterface(params){
             $('.navbar-toggle:visible').click();
     });
 
+    $(".logout").click(function(){
+    	document.location.href="/ph/communecter/person/logout";
+    });
+
     var affixTop = 400;
     if(notEmpty(params)){
     	if(notEmpty(params["affixTop"])) affixTop = params["affixTop"];
