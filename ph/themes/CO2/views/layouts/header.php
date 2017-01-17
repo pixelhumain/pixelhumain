@@ -146,17 +146,9 @@
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
-                            <!-- 
-                            <div class="col-md-12">
-                                <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults">
-                                    <i class="fa fa-search"></i> Lancer la recherche
-                                </button>
-                                <a href="#co2.referencement" class="lbh btn btn-default letter-green hidden-xs bold" id="">
-                                    <i class="fa fa-plus-circle"></i> Publier une annonce
-                                </a>
-                            </div> -->
+                             <hr>
                             <div class="col-md-12 col-sm-12 no-padding" id="sub-menu-left">
-                                <div class="col-md-1 col-sm-1 padding-5"></div>
+                                <div class="col-md-2 col-sm-2 padding-5"></div>
                                 <div class="col-md-2 col-sm-2 col-xs-12 text-center padding-5">
                                 <?php 
                                         $freedomTags = CO2::getFreedomTags();
@@ -179,6 +171,16 @@
                                             <?php   }else{ $currentSection++; } ?>
                                 <?php   } ?>
                                 </div>
+                            </div>
+
+                            <div class="col-md-12">
+                            <hr>
+                                <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults">
+                                    <i class="fa fa-angle-down"></i> Lire les annonces
+                                </button>
+                                <a href="#co2.referencement" class="lbh btn btn-default letter-green hidden-xs bold" id="">
+                                    <i class="fa fa-plus-circle"></i> Publier une annonce
+                                </a>
                             </div>
 
                         <?php } ?>
