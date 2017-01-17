@@ -203,6 +203,8 @@
 	var assetPath 	= "<?php echo $this->module->assetsUrl; ?>";
 	var typeSearchInternational = "address";
 
+	var CO2DomainName = "<?php echo @Yii::app()->params["CO2DomainName"]; ?>";
+
 	jQuery(document).ready(function()
 	{
 		//création de l'objet SIG
@@ -228,12 +230,14 @@
 		var timeoutFindPlace;
 		$(Sig.cssModuleName + ' .txt-find-place').off().keyup(function(event) { //alert("start custom recherche");
 				clearTimeout(timeoutFindPlace);
+
+				var country = CO2DomainName=="kgougle" ? "NC" : "FR";
 				var thisInput = this;
 				var action =  "";//"Sig.findPlace(1)";//"+$(thisSig.cssModuleName + " #txt-find-place").val()+"')";
 				timeoutFindPlace = setTimeout(function(){
 					var requestPart = $(thisInput).val();
 					typeSearchInternational = "address";
-					callNominatim(requestPart, "NC");
+					callNominatim(requestPart, country);
 				}, 1000);
 			//}
 		});
@@ -260,7 +264,7 @@
 				res[key]["typeSig"] = "address";
 
 				var country = res[key]["country"];
-				if(country != "Nouvelle-Calédonie")
+				if(CO2DomainName=="kgougle" && country != "Nouvelle-Calédonie")
 					res[key] = "";
 			});
 
