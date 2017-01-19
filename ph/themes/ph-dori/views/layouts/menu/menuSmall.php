@@ -433,7 +433,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 		{ 
 			var tplObj = js_templates.objectify(obj);
 			mylog.log("classes",tplObj.classes);
-			return '<a href="'+tplObj.action+'" class="'+tplObj.classes+' btn btn-xs btn-link text-white text-left w100p" '+tplObj.key+'><i class="fa '+tplObj.icon+' text-'+tplObj.color+'"></i> '+tplObj.label+tplObj.lblCount+'</a><br/>';
+			return '<a href="'+tplObj.action+'" class="'+tplObj.classes+' btn btn-xs btn-link text-white text-left w100p" '+tplObj.key+'><i class="fa '+tplObj.icon+'  text-'+tplObj.color+'"></i> '+tplObj.label+tplObj.lblCount+'</a><br/>';
 		},
 
 		leftMenu_content : function(params)
