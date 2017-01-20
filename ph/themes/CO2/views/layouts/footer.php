@@ -28,21 +28,21 @@
     <div class="footer-below">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 text-left">
+                <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                     <h5><i class="fa fa-info-circle"></i> Informations générales</h5>
                     <a href="" class="text-white"><i class="fa fa-angle-right"></i> Conditions d'utilisations</a><br><br>
-                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> A propos</a><br>
-                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> PixelHumain</a><br>
-                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> Communecter</a><br>
-                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> Alpha Tango</a><br>
+                    <a href="#co2.info.p.apropos"       class="lbh text-white"><i class="fa fa-angle-right"></i> A propos</a><br>
+                    <a href="#co2.info.p.ph"            class="lbh text-white"><i class="fa fa-angle-right"></i> PixelHumain</a><br>
+                    <a href="#co2.info.p.communecter"   class="lbh text-white"><i class="fa fa-angle-right"></i> Communecter</a><br>
+                    <a href="#co2.info.p.alphatango"    class="lbh text-white"><i class="fa fa-angle-right"></i> Alpha Tango</a><br>
                     
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4">
                     <span class="font-blackoutT text-yellow-PH" style="font-size:20px;">by</span> 
                     <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGO_PIXEL_HUMAIN.png" height=70>
                     
                 </div>
-                <div class="col-lg-4 text-right">
+                <div class="col-lg-4 col-md-4 col-sm-4 text-right">
                     <h5>Contacts <i class="fa fa-address-card"></i></h5>
                     <ul class="list-inline">
                         <li>
