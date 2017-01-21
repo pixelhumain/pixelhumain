@@ -42,7 +42,7 @@
                     <div class="intro-text">  
 
                         <div class="col-md-12 text-center main-menu-app" style="">
-                            <?php foreach ($params["pages"] as $key => $value) {
+                            <?php if(true) foreach ($params["pages"] as $key => $value) {
                                     if(@$value["inMenu"]==true){ ?>
                                     <a  class="lbh letter-red font-blackoutM margin-right-25" 
                                         href="<?php echo $key; ?>">

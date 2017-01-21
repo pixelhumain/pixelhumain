@@ -101,7 +101,7 @@ input#second-search-bar{
             <i class="fa fa-map"></i>
         </button>
 
-        <button class="btn-show-mainmenu" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
+        <button class="btn-show-mainmenu hidden" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
         </button>
         
@@ -171,7 +171,7 @@ input#second-search-bar{
                     </button>
                    
                 <?php } else { ?>
-                    <li class="page-scroll">
+                    <li class="page-scroll hidden">
                         <button class="letter-green font-montserrat btn-menu-connect" data-toggle="modal" data-target="#modalLogin">
                         <i class="fa fa-sign-in"></i> SE CONNECTER</button>
                     </li>
@@ -193,8 +193,8 @@ input#second-search-bar{
         </div>
 
         <?php if($subdomain == "web"){ ?>
-            <button class="btn btn-link letter-yellow tooltips btn-star-fav pull-right"  
-                    data-placement="bottom" title="Afficher vos favoris"
+            <button class="btn btn-link letter-yellow tooltips btn-star-fav pull-right font-montserrat"  
+                    data-placement="left" title="Afficher vos favoris"
                     data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i></button>
         <?php } ?>
 

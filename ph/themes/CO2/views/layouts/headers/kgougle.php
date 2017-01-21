@@ -21,7 +21,9 @@
     <span class="letter letter-green font-blackoutT">A</span>
     <span class="letter letter-green font-blackoutT">N</span>
     <span class="letter letter-green font-blackoutT">D</span> <br> -->
-    <small class="letter letter-red pastille font-blackoutT"><?php echo $subdomainName; ?></small>
+    <?php if(false){ ?>
+        <small class="letter letter-red pastille font-blackoutT"><?php echo $subdomainName; ?></small>
+    <?php } ?>
 </span>
 
 <div class="inline-block hidden-xs margin-top-15" id="subtitle">

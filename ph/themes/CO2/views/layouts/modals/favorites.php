@@ -39,7 +39,7 @@
                 <div class="col-lg-12">
                     <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="50" class="inline margin-top-25 margin-bottom-5"><br>
                     <h3 class="letter-red no-margin hidden-xs" style="">
-                        En favoris<br>
+                        Vos favoris<br>
                     </h3>
                     <h5 class="text-dark no-margin" style="margin-top:5px!important;">
                         Conservez tous les sites web que vous utilisez souvent,<br>et ne les cherchez plus !

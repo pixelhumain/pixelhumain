@@ -30,20 +30,27 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                     <h5><i class="fa fa-info-circle"></i> Informations générales</h5>
-                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> Conditions d'utilisations</a><br><br>
-                    <a href="#co2.info.p.apropos"       class="lbh text-white"><i class="fa fa-angle-right"></i> A propos</a><br>
-                    <a href="#co2.info.p.ph"            class="lbh text-white"><i class="fa fa-angle-right"></i> PixelHumain</a><br>
-                    <a href="#co2.info.p.communecter"   class="lbh text-white"><i class="fa fa-angle-right"></i> Communecter</a><br>
-                    <a href="#co2.info.p.alphatango"    class="lbh text-white"><i class="fa fa-angle-right"></i> Alpha Tango</a><br>
+                    <a href="" class="text-white"><i class="fa fa-angle-right"></i> Conditions d'utilisations</a><br>
+                    <a href="#co2.info.p.apropos" class="lbh text-white"><i class="fa fa-angle-right"></i> A propos</a><br>
+                    <a href="#co2.info.p.alphatango" class="lbh text-white"><i class="fa fa-angle-right"></i> Alpha Tango</a><br><br>
+
+                    <button class="btn btn-link text-white"  
+                        data-toggle="modal" data-target="#modalLogin"><i class="fa fa-lock"></i> Admin</button><br>
                     
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <span class="font-blackoutT text-yellow-PH" style="font-size:20px;">by</span> 
-                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGO_PIXEL_HUMAIN.png" height=70>
+                    <a href="https://github.com/pixelhumain" target="_blank">
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGO_PIXEL_HUMAIN.png" height=70>
+                    </a><br><br>
+                    <a href="https://www.communecter.org/" target="_blank">
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height=30>
+                    </a>
+                    <!-- <h5 class="homestead letter-red">COMMUNECTER</h5> -->
                     
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 text-right">
-                    <h5>Contacts <i class="fa fa-address-card"></i></h5>
+                    <h5>Contacter <span class="letter-green">@Alpha_Tango</span> <i class="fa fa-address-card"></i></h5>
                     <ul class="list-inline">
                         <li>
                             <a href="#" class="btn-social btn-outline text-dark"><i class="fa fa-fw fa-github"></i></a>
@@ -55,6 +62,7 @@
                             <a href="#" class="btn-social btn-outline text-dark"><i class="fa fa-fw fa-envelope-o"></i></a>
                         </li>
                     </ul>
+                    <br><br>
                 </div>
             </div>
         </div>
