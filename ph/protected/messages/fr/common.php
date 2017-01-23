@@ -310,6 +310,7 @@ return array(
 	"Organization" => "Organisation",
 	"Project" => "Projet",
 	"Event" => "Événement",
+	"Agenda" => "Agenda",
 
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
