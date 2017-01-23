@@ -869,6 +869,73 @@ h3.title_panel_map{
 }
 
 
+/*onepage dropdown menu btn*/
+#btn-onepage-main-menu{
+		position: fixed;
+		top:85px;
+		left:20px;
+		border-radius: 1px;
+		letter-spacing: 2px;
+	}
+
+.dropdown .dropdown-onepage-main-menu{
+	display:none;
+}
+.dropdown.open .dropdown-onepage-main-menu{
+	display:block;
+}
+
+.dropdown-onepage-main-menu{
+	position: fixed;
+	top:130px;
+	left:20px;
+	max-height:400px;
+	/*width:200px;*/
+	background-color:transparent;
+	z-index:5;
+}
+
+.dropdown-onepage-main-menu .dropdown-menu{
+	margin:0px;
+	border:none;
+	display: inline;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3) ;
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3) ;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-onepage-main-menu .dropdown-menu li a {
+	text-transform: uppercase;
+	font-size:16px;
+}
+
+
+
+/*Fix tooltips display*/
+.tooltip-inner{
+	padding:10px!important;
+	font-size:14px;
+	min-width:150px;
+}
+.tooltip.bottom .tooltip-arrow{
+	top:1px!important;
+}
+.tooltip.top .tooltip-arrow{
+	bottom:1px!important;
+}
+.tooltip.left .tooltip-arrow{
+	right:1px!important;
+}
+.tooltip.right .tooltip-arrow{
+	left:1px!important;
+}
+
+
+@media screen and (max-width: 1024px) {
+.menu-name-profil small{
+    max-width: 45px;
+}
+}
 
 @media (max-width: 768px) {
 

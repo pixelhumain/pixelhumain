@@ -120,7 +120,7 @@ function  processingBlockUi() {
         'L\'objectif est de proposer une page/interface pour chaque grande fonctionnalité de communecter, '+
         'afin de créer des portes d\'entrées indépendantes sur le réseau, en fonction des besoins de chacun.<br><br>'+
         '<b>Vos remarques et idées à ce propos sont les bienvenues.<br>'+
-        'Merci de nous en faire part sur le channel dédié <a href="" class="letter-blue">#CO2 test & idées</a></b>'+
+        'Merci de nous en faire part sur le channel dédié <a href="https://chat.initiative.place/channel/co2_brainstorm" class="letter-blue">#CO2_brainstorm</a></b>'+
     '</p>';
 
 	$.blockUI({
@@ -170,7 +170,7 @@ function getAjax(id,url,callback,datatype,blockUI)
         error:function (xhr, ajaxOptions, thrownError){
           //mylog.error(thrownError);
           $.blockUI({
-              message : '<img src="'+themeUrl+'/assets/img/CO2G.png" class="nc_map pull-" height=80>'+
+              message : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map pull-" height=80>'+
 			 			  '<i class="fa fa-times"></i>'+
 			 			   '<span class="col-md-12 text-center font-blackoutM text-left">'+
 			 			    '<span class="letter letter-red font-blackoutT" style="font-size:40px;">404</span>'+

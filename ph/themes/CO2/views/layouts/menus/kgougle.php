@@ -16,6 +16,11 @@ input#second-search-bar{
     display: inline;
 }
 <?php } ?>
+
+.btn-star-fav {
+    font-size: 20px;
+    margin-top: 2px;
+}
 </style>
 
 <!-- Navigation -->
@@ -32,7 +37,9 @@ input#second-search-bar{
             <span class="hidden-xs skills font-montserrat <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
                 <?php echo $mainTitle; ?>
             </span>
-           
+            
+            
+
             <?php if($subdomain != "page.type"){ ?>
             <a class="navbar-brand font-blackoutM btn-scroll hidden-sm menu-btn-back-category" data-targetid="#page-top">
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
@@ -73,6 +80,11 @@ input#second-search-bar{
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
+            <!-- <button class="btn btn-link letter-yellow hidden-top btn-star-fav margin-top-5 tooltips"  
+                    data-placement="right" title="Afficher vos favoris"
+                    data-target="#modalFavorites" data-toggle="modal">
+                    <i class="fa fa-star"></i>
+            </button> -->
 
         <?php }elseif($subdomain == "social" || $subdomain == "page.type" || $subdomain == "freedom"){ ?>
             
@@ -89,10 +101,12 @@ input#second-search-bar{
             <i class="fa fa-map"></i>
         </button>
 
-        <button class="btn-show-mainmenu" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
+        <button class="btn-show-mainmenu hidden" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
         </button>
         
+        
+
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="pull-right navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -150,17 +164,20 @@ input#second-search-bar{
 
 
                     <button class="menu-button btn-menu btn-menu-notif tooltips text-dark pull-right" 
-                          data-toggle="tooltip" data-placement="left" title="Notifications" alt="Notifications">
+                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
                         <?php count($this->notifications); ?>
                     </button>
                    
                 <?php } else { ?>
-                    <li class="page-scroll">
-                        <button class="letter-green font-montserrat btn-menu-connect" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> SE CONNECTER</button>
+                    <li class="page-scroll hidden">
+                        <button class="letter-green font-montserrat btn-menu-connect" data-toggle="modal" data-target="#modalLogin">
+                        <i class="fa fa-sign-in"></i> SE CONNECTER</button>
                     </li>
                 <?php } ?>
+
+                
             </ul>
 
             <?php // MULTITAG / MULTISCOPE / NOTIF // ?>
@@ -174,6 +191,12 @@ input#second-search-bar{
                 ?>
             </div> -->
         </div>
+
+        <?php if($subdomain == "web"){ ?>
+            <button class="btn btn-link letter-yellow tooltips btn-star-fav pull-right font-montserrat"  
+                    data-placement="left" title="Afficher vos favoris"
+                    data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i></button>
+        <?php } ?>
 
         <!-- /.navbar-collapse -->
     </div>

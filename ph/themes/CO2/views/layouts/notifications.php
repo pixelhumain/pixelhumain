@@ -15,7 +15,7 @@
 	    float: right;
 	    position: relative;
 	    border-radius: 0px;
-	    margin-right: 6px;
+	    margin-right: 15px;
 	    margin-top: 4px;
 		height: 40px;
 		min-width: 40px;
