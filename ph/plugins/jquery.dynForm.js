@@ -277,14 +277,89 @@ onSave: (optional) overloads the generic saveProcess
         	if(placeholder == "")
         		placeholder="add Image";
         	mylog.log("build field "+field+">>>>>> image");
-        	fieldHTML += '<form method="post" id="photoAddForm" enctype="multipart/form-data">'+
-							iconOpen+
-							'<input type="file" class="form-control newImage '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" accept=".gif, .jpg, .png" onchange="showMyImage2(this)"/>'+
-							iconClose+
-					'</form>'+
-					'<div id="resultsImage" class="bg-white results"></div>';
-				alert(fieldObj.contextType+"//"+fieldObj.contextId);
-        	//initFormImages(fieldObj.contextType, fieldObj.contextId);
+        	fieldHTML += '<div class="fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>'+
+							'<script type="text/template" id="qq-template-gallery">'+
+							'<div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">'+
+							'<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">'+
+							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>'+
+							'</div>'+
+							'<div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>'+
+							'<span class="qq-upload-drop-area-text-selector"></span>'+
+							'</div>'+
+							'<div class="qq-upload-button-selector btn btn-primary">'+
+							'<div>Upload a file</div>'+
+							'</div>'+
+							'<button type="button" id="trigger-upload" class="btn btn-danger hide">'+
+			                '<i class="icon-upload icon-white"></i> Upload'+
+			                '</button>'+
+							'<span class="qq-drop-processing-selector qq-drop-processing">'+
+							'<span>Processing dropped files...</span>'+
+							'<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>'+
+							'</span>'+
+							'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
+							'<li>'+
+							'<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
+							'<div class="qq-progress-bar-container-selector qq-progress-bar-container">'+
+							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
+							'</div>'+
+							'<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
+							'<div class="qq-thumbnail-wrapper">'+
+							'<img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>'+
+							'</div>'+
+							'<button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>'+
+							'<button type="button" class="qq-upload-retry-selector qq-upload-retry">'+
+							'<span class="qq-btn qq-retry-icon" aria-label="Retry"></span>'+
+							'Retry'+
+							'</button>'+
+							''+
+							'<div class="qq-file-info">'+
+							'<div class="qq-file-name">'+
+							'<span class="qq-upload-file-selector qq-upload-file"></span>'+
+							'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+							'</div>'+
+							'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
+							'<span class="qq-upload-size-selector qq-upload-size"></span>'+
+							'<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">'+
+							'<span class="qq-btn qq-delete-icon" aria-label="Delete"></span>'+
+							'</button>'+
+							'<button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">'+
+							'<span class="qq-btn qq-pause-icon" aria-label="Pause"></span>'+
+							'</button>'+
+							'<button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">'+
+							'<span class="qq-btn qq-continue-icon" aria-label="Continue"></span>'+
+							'</button>'+
+							'</div>'+
+							'</li>'+
+							'</ul>'+
+							''+
+							'<dialog class="qq-alert-dialog-selector">'+
+							'<div class="qq-dialog-message-selector"></div>'+
+							'<div class="qq-dialog-buttons">'+
+							'<button type="button" class="qq-cancel-button-selector">Close</button>'+
+							'</div>'+
+							'</dialog>'+
+							''+
+							'<dialog class="qq-confirm-dialog-selector">'+
+							'<div class="qq-dialog-message-selector"></div>'+
+							'<div class="qq-dialog-buttons">'+
+							'<button type="button" class="qq-cancel-button-selector">No</button>'+
+							'<button type="button" class="qq-ok-button-selector">Yes</button>'+
+							'</div>'+
+							'</dialog>'+
+							''+
+							'<dialog class="qq-prompt-dialog-selector">'+
+							'<div class="qq-dialog-message-selector"></div>'+
+							'<input type="text">'+
+							'<div class="qq-dialog-buttons">'+
+							'<button type="button" class="qq-cancel-button-selector">Cancel</button>'+
+							'<button type="button" class="qq-ok-button-selector">Ok</button>'+
+							'</div>'+
+							'</dialog>'+
+							'</div>'+
+							'</script>';
+			if( fieldObj.afterLoad && $.isFunction(fieldObj.afterLoad) )
+        		initValues["fine-uploader-manual-trigger"].afterLoad = fieldObj.afterLoad;
+
         }
 
         /* **************************************
@@ -825,17 +900,71 @@ onSave: (optional) overloads the generic saveProcess
 		}
 		
 		/* **************************************
-		* Image type 
+		* Image uploader , we use https://github.com/FineUploader/fine-uploader
 		***************************************** */
-		if(  $("#image").length){
-			if( jQuery.isFunction(jQuery.fn.datepicker) )
-				$(".dateInput").datepicker({ 
-			        autoclose: true,
-			        language: "fr",
-			        format: "dd/mm/yyyy"
-			    });
-		    else
-				mylog.error("datepicker library is missing");
+		function loadFineUploader(callback) {
+			if( ! jQuery.isFunction(jQuery.fineUploader) ) {
+				lazyLoad( baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js', 
+						  baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
+						  callback);
+		    }
+		}
+
+		var FineUploader = function(){
+			mylog.log("init fineUploader");
+			$(".fine-uploader-manual-trigger").fineUploader({
+	            template: 'qq-template-gallery',//'qq-template-manual-trigger',
+	            request: {
+	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+moduleId+"/folder/"+contextData.type+"/ownerId/"+contextData.id+"/input/qqfile",
+	            },
+	            callbacks: {
+	            	//when a img is selected
+				    /*onSubmit: function(id, fileName) {
+				      $('#trigger-upload').removeClass("hide")
+				    },
+				    //launches request endpoint
+				    //onUpload: function(id, fileName) {
+				      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
+				      //alert(" > request : "+baseUrl+"/"+moduleId+"/document/upload/dir/"+moduleId+"/folder/"+contextData.type+"/ownerId/"+contextData.id+"/input/dynform");
+				      //documents.saveImages(contextData.type, contextData.id);
+				    //},
+				    //launched on upload
+				    /*onProgress: function(id, fileName, uploadedBytes,totalBytes) {
+				      alert("progress");
+				    },*/
+				    //when every img finish upload process whatever the status
+				    onComplete: function(id, fileName,responseJSON,xhr) {
+				      
+				    },
+				    //when all upload is complete whatever the result
+				    onAllComplete: function(succeeded, failed) {
+				      alert("all complete");
+				    },
+				    //on click a photo delete btn and launches delete endpoint
+				    /*onDelete: function(id) {
+				      alert("submit delete"+id);
+				    },*/
+				    //if any error during upload
+				    onError: function(id) {
+				      toastr.info("something went wrong");
+				    }
+				},
+	            thumbnails: {
+	                placeholders: {
+	                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
+	                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
+	                }
+	            },
+	            autoUpload: false
+	        });
+	        /*$('#trigger-upload').click(function() {
+	        	//'getUploads'
+	            $('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+	        });*/
+		};
+
+		if(  $(".fine-uploader-manual-trigger").length){
+			loadFineUploader(FineUploader);
 		}
 
 		/* **************************************
@@ -1176,163 +1305,3 @@ function slugify (value) {
 	.replace(/\-{2,}/g,'-');
 };
 
-function initFormImages(contextType, contextId){
-	alert("init good");
-}
-
-function showMyImage2(fileInput) {
-	if($(".noGoSaveNews").length){
-		toastr.info("Wait the end of image loading");
-	}
-	else if (fileInput.files[0].size > 2097152){
-		toastr.info("Please reduce your image before to 2Mo");
-	}
-	else {
-		countImg=$("#resultsImage img").length;
-		idImg=countImg+1;
-		htmlImg="";
-		var files = fileInput.files;
-		if(countImg==0){
-			htmlImg = "<input type='hidden' class='type' value='gallery_images'/>";
-			htmlImg += "<input type='hidden' class='count_images' value='"+idImg+"'/>";
-			htmlImg += "<input type='hidden' class='algoNbImg' value='"+idImg+"'/>";
-			nbId=idImg;
-			$("#resultsImage").show();
-		}
-		else{
-			nbId=$(".algoNbImg").val();
-			nbId++;
-			$(".count_images").val(idImg);
-			$(".algoNbImg").val(nbId);
-		}
-		
-		htmlImg+="<div class='newImageAlbum'><i class='fa fa-spin fa-circle-o-notch fa-3x text-green spinner-add-image noGoSaveNews'></i><img src='' id='thumbail"+nbId+"' class='grayscale' style='width:75px; height:75px;'/>"+
-		       	"<input type='hidden' class='imagesNews' name='goSaveNews' value=''/></div>";
-		$("#resultsImage").append(htmlImg);
-
-	    for (var i = 0; i < files.length; i++) 
-	    {
-	        var file = files[i];
-	        var imageType = /image.*/;     
-	        if (!file.type.match(imageType)) {
-	            continue;
-	        }           
-	        var img=document.getElementById("thumbail"+nbId);            
-	        img.file = file;    
-	        var reader = new FileReader();
-	        reader.onload = (function(aImg) { 
-	            return function(e) { 
-	                aImg.src = e.target.result; 
-	            }; 
-	        })(img);
-	        reader.readAsDataURL(file);
-	    }  
-	    validationImage = {
-		errorElement : "span", // contain the error msg in a span tag
-		errorClass : 'help-block',
-		errorPlacement : function(error, element) {// render error placement for each input type
-			if (element.attr("type") == "radio" || element.attr("type") == "checkbox") {// for chosen elements, need to insert the error after the chosen container
-				error.insertAfter($(element).closest('.form-group').children('div').children().last());
-			} else if (element.parent().hasClass("input-icon")) {
-				error.insertAfter($(element).parent());
-			} else {
-				error.insertAfter(element);
-				// for other inputs, just perform default behavior
-			}
-		},
-		ignore : "",
-		rules : {
-			goSaveNews : true /*{
-				required:{
-					depends: function() {
-						if($(".noGoSaveNews").length){
-							return true;
-						}
-						else{
-							return false;
-						}
-					}	
-				}
-			}*/
-		},
-		messages : {
-			goSaveNews: "* Image is still loading"
-
-		},
-//		e.preventDefault();
-		submitHandler : function(form) {
-			$.ajax({
-			url : baseUrl+"/"+moduleId+"/document/"+uploadUrl+"dir/"+moduleId+"/folder/room/ownerId/me/input/roomsImage",
-			type: "POST",
-			data: new FormData(this),
-			contentType: false,
-			cache: false, 
-			processData: false,
-			dataType: "json",
-			success: function(data){
-				if(debug)mylog.log(data);
-		  		if(data.success){
-			  		mylog.log("success");
-		  			imageName = data.name;
-					var doc = { 
-						"id":contextParentId,
-						"type":contextParentType,
-						"folder":"room/me",
-						"moduleId":moduleId,
-						"author" : userId  , 
-						"name" : data.name , 
-						"date" : new Date() , 
-						"size" : data.size ,
-						"doctype" : docType,
-						"contentKey" : contentKey
-					};
-					mylog.log(doc);
-					path = "/"+data.dir+data.name;
-					$.ajax({
-					  	type: "POST",
-					  	url: baseUrl+"/"+moduleId+"/document/save",
-					  	data: doc,
-				      	dataType: "json"
-					}).done( function(data){
-				        if(data.result){
-						    toastr.success(data.msg);
-						    //setTimeout(function(){
-						    $(".imagesNews").last().val(data.id.$id);
-						    $(".imagesNews").last().attr("name","");
-						    $(".newImageAlbum").last().find("img").removeClass("grayscale");
-						    $(".newImageAlbum").last().find("i").remove();
-						    $(".newImageAlbum").last().append("<a href='javascript:;' onclick='deleteImage(\""+data.id.$id+"\",\""+data.name+"\")'><i class='fa fa-times fa-x padding-5 text-white removeImage' id='deleteImg"+data.id.$id+"'></i></a>");
-						    //},200);
-				
-						} else{
-							toastr.error(data.msg);
-							if($("#resultsImage img").length>1)
-						  		$(".newImageAlbum").last().remove();
-						  	else{
-						  		$("#resultsImage").empty();
-						  		$("#resultsImage").hide();
-						  	}
-						}
-						$("#addImage").off();
-					});
-		  		}
-		  		else{
-			  		if($("#resultsImage img").length>1)
-				  		$(".newImageAlbum").last().remove();
-				  	else{
-				  		$("#resultsImage").empty();
-				  		$("#resultsImage").hide();
-				  	}
-				  	$("#addImage").off();
-		  			toastr.error(data.msg);
-		  		}
-			},
-		});
-		}
-	};
-	   alert("done here");
-	  //  var form = $('#photoAddForm').get(0);
-//$.removeData(form, 'validator');
-		form.submit(function(e) { e.preventDefault }).validate(validationImage);;	  
-	}
-}
