@@ -310,6 +310,7 @@ return array(
 	"Organization" => "Organisation",
 	"Project" => "Projet",
 	"Event" => "Événement",
+	"Agenda" => "Agenda",
 
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
@@ -685,6 +686,9 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Choose" => "Choisir",
 	"Next step" => "Etape suivante",
 	"Previous step" => "Etape précédente",
+
+	"Link" => "Lien",
+	"Not link" => "Aucun lien",
 );
 
 ?>

@@ -62,6 +62,12 @@
 .padding-15{
 	padding:15px!important;
 }
+.padding-20{
+	padding:20px!important;
+}
+.padding-25{
+	padding:25px!important;
+}
 
 .margin-5{
 	margin:5px!important;
@@ -71,6 +77,12 @@
 }
 .margin-15{
 	margin:15px!important;
+}
+.margin-20{
+	margin:20px!important;
+}
+.margin-25{
+	margin:25px!important;
 }
 
 
@@ -259,4 +271,17 @@ section h2 {
 	border-bottom-color: #b3b3b3;
 	border-width: 11px;
 	margin-left: -11px;
+}
+
+
+.uppercase{
+	text-transform: uppercase;
+}
+
+.elipsis{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	max-width: 98%;
+	display: inline-block;
 }

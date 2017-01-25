@@ -55,7 +55,10 @@
 			$paramsAttr = Yii::app()->params['networkParams'].'.json';
 		}else 
 			$paramsAttr = "default.json";
+
 		$pathParams =  dirname(__FILE__) . '/params/'.$paramsAttr;
+		if ( @Yii::app()->params['networkParams'] && ( stripos(Yii::app()->params['networkParams'], "http") !== false || stripos(Yii::app()->params['networkParams'], "https") !== false ) ) 
+			$pathParams = Yii::app()->params['networkParams'];
 
         $json = file_get_contents($pathParams);
         $params = json_decode($json, true);	
@@ -294,6 +297,9 @@
 			// '/plugins/toastr/toastr.min.css',
 			'/plugins/jquery-cookie/jquery.cookie.js' , 
 			'/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
 			'/plugins/select2/select2.min.js' , 
 			'/plugins/select2/select2.css',
 			'/plugins/moment/min/moment.min.js' ,
@@ -420,6 +426,10 @@
 		var organizerList = {};
 		var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
 		var allReadyLoad=false;
+
+		var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
+		var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
+		var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
 		// GET LIST OF NETWORK'S TAGS
 		if(typeof networkJson.filter.linksTag != "undefined"){
 			var networkTags = [];

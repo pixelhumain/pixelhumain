@@ -1,0 +1,77 @@
+{
+  "name": "fine-uploader",
+  "title": "Fine Uploader",
+  "main": "lib/traditional.js",
+  "version": "5.12.0",
+  "description": "Multiple file upload plugin with progress-bar, drag-and-drop, direct-to-S3 & Azure uploading, client-side image scaling, preview generation, form support, chunking, auto-resume, and tons of other features.",
+  "keywords": [
+    "amazon",
+    "api",
+    "aws",
+    "azure",
+    "chunk",
+    "chunking",
+    "cross-domain",
+    "cross-site",
+    "drag",
+    "drop",
+    "file",
+    "file-input",
+    "file-uploader",
+    "input",
+    "jquery",
+    "jquery-plugin",
+    "multiple",
+    "preview",
+    "progress",
+    "resume",
+    "s3",
+    "selection",
+    "upload",
+    "widget"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FineUploader/fine-uploader.git"
+  },
+  "author": {
+    "name": "Widen Enterprises, Inc."
+  },
+  "contributors": [
+    {
+      "name": "Ray Nicholus",
+      "url": "http://raynicholus.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FineUploader/fine-uploader/issues"
+  },
+  "devDependencies": {
+    "clean-css": "3.4.23",
+    "jscs": "3.0.7",
+    "jshint": "2.9.4",
+    "karma": "1.3.0",
+    "karma-firefox-launcher": "1.0.0",
+    "karma-mocha": "1.3.0",
+    "karma-spec-reporter": "0.0.26",
+    "mocha": "3.2.0",
+    "node-static": "0.7.9",
+    "pica": "latest",
+    "uglify-js": "2.7.5"
+  },
+  "scripts": {
+    "build": "make clean; make build-all-ui",
+    "lint": "make lint",
+    "start": "make start-local-dev",
+    "test": "make lint && make test"
+  },
+  "readme": "<a href=\"http://fineuploader.com\">\n   <img src=\"http://fineuploader.smartimage.com/pimg/a8680d51\" width=\"300\">\n</a>\n\n[![Build Status](https://travis-ci.org/FineUploader/fine-uploader.svg?branch=master)](https://travis-ci.org/FineUploader/fine-uploader)\n[![npm](https://img.shields.io/npm/v/fine-uploader.svg)](https://www.npmjs.com/package/fine-uploader)\n[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)\n[![Stackoverflow](https://img.shields.io/badge/ask-on%20stack%20overflow-brightgreen.svg)](http://stackoverflow.com/questions/tagged/fine-uploader)\n[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fineuploader.svg?style=social&label=Follow%20%40FineUploader)](https://twitter.com/fineuploader)\n\n[**Documentation**](http://docs.fineuploader.com) |\n[**Examples**](http://fineuploader.com/demos) |\n[**Support**](http://fineuploader.com/support.html) |\n[**Blog**](http://blog.fineuploader.com/) |\n[**Changelog**](../../releases)\n\n---\n\nFine Uploader is:\n\n- Cross-browser\n- Dependency-free\n- 100% JavaScript\n- 100% Free Open Source Software\n\nFineUploader is also simple to use. In the simplest case, you only need to include one JavaScript file.\nThere are absolutely no other required external dependencies. For more information, please see the [**documentation**](http://docs.fineuploader.com).\n\n\n## Contributing\n\nFine Uploader and all other projects in this organization thrive thanks to donations by Widen (the project's sponsor)\nand support by developers in the community. If you'd like to help and keep this project strong and relevant, you have several options.\n\n\n### File a bug report\n\nIf you see something that isn't quite right, whether it be in the code, or on the docs site, or even on FineUploader.com (which is hosted on GitHub), _please_ file a bug report. Be sure to make sure the [bug hasn't already been filed][issues] by someone else. If it has, feel free to upvote the issue and/or add your comments.\n\n\n### Join the team\n\nAre you interested in working on a very popular JavaScript-based file upload library with countless users? If you're strong in JavaScript, HTML, and CSS, and have a desire to help push the FOSS movement forward, let us know! The project can always use more experts.\n\n\n### Help spread the word\n\nAre you using Fine Uploader in your library or project? If so, let us know and we may add a link to your project or application _and_ your logo to FineUploader.com. If you care to write an article about Fine Uploader, we would be open to reading and publicizing it through our site, blog, or Twitter feed.\n\n\n### Develop an integration library\n\nAre you using Fine Uploader inside of a larger framework (such as React, Angular2, Ember.js, etc)? If so, perhaps you've already written a library that wraps Fine Uploader and makes it simple to use Fine Uploader in this context. Let us know and it may make sense to either link to your library, or even move it into the FineUploader GitHub organization (with your approval, of course). We'd also love to see libraries that make it simple to pair Fine Uploader with other useful libraries, such as image editors and rich text editors.\n\n\n### Contribute code\n\nThe best way to contribute code is to open up a pull request that addresses one of the open [feature requests or bugs][issues]. In order to get started developing Fine Uploader, read this entire section to get the project up and running on your local development machine. This section describes how you can build and test Fine Uploader locally. You may use these instructions to build a copy for yourself, or to contribute changes back to the library. \n\n#### Setup\n\nYou must have Node.js instaled locally (any version should be fine), _and_ you must have Unix-like environment to work with. Linux, FreeBSD/OS X, Cygwin, and Windows 10 bash all _should_ be acceptable environments. Please open up a new issue if you have trouble building. The build process is centered around a single Makefile, so GNU Make is required as well (though most if not all Unix-like OSes should already have this installed). Finally, you will need a git client.\n\nTo pull down the project & build dependencies:\n\n1. Download the project repository: `git clone https://github.com/FineUploader/fine-uploader.git`.\n2. Install all project development dependencies: `npm install`.\n\n#### Generating build artifacts\n\n- To build all build artifacts for all endpoint types: `make build`. You can speed this process up a bit by using the parallel recipes feature of Make: `make build -j`. If you would like to build only a specific endpoint type, see the Makefile for the appropriate recipe. The build output will be created in the `_build` directory. \n- To build zip files for all endpoint types: `make zip`. To build a zip for only a specific endpoint type, see the Makefile for the appropriate recipe. The zip files will be included alongside the build output in the `_build` directory.\n- To rev the version number: `make rev-version target=NEW_VERSION`, where `NEW_VERSION` is the semver-compatible target version identifier.\n\n#### Running tests\n\nTo build, run the tests & linter: `npm test` (you'll need Firefox installed locally).\n\n#### Commiting new code and changes\n\n- Follow the [Angular.js commit guidelines][angular-commit].\n- Follow the [Git Flow][git-flow] branching strategy.\n\n\n*Fine Uploader is a code library sponsored by [Widen Enterprises, Inc.](http://www.widen.com/)*\n\n[angular-commit]: https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit\n[git-flow]: http://nvie.com/posts/a-successful-git-branching-model/\n[issues]: https://github.com/FineUploader/fine-uploader/issues\n",
+  "readmeFilename": "README.md",
+  "_id": "fine-uploader@5.12.0",
+  "dist": {
+    "shasum": "6d6df8b1478df6cd45e6e81c4b3f34cb2ed39c2c"
+  },
+  "_from": "fine-uploader@",
+  "_resolved": "https://registry.npmjs.org/fine-uploader/-/fine-uploader-5.12.0.tgz"
+}

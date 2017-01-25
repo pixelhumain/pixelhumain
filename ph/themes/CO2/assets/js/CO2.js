@@ -28,12 +28,11 @@ function loadByHash( hash , back ) { //alert("loadByHash");
     mylog.warn("loadByHash",hash,back);
     if( jsController(hash) ){
     	mylog.log("loadByHash",hash,back);
-    	mylog.log("loadByHash >>> jsController",hash);
+    	//mylog.log("loadByHash >>> jsController",hash);
     }
     else {
-    	mylog.log("loadByHash",hash,back);
-    
-        showAjaxPanel( '/co2/web', 'Home Communecter ','home' );
+    	mylog.log("loadByHash",hash,back);    	
+        showAjaxPanel( '/co2/index', 'Home','home' );
     }
 
     location.hash = hash;
@@ -89,12 +88,14 @@ function showAjaxPanel (url,title,icon, mapEnd) {
 }
 
 function  processingBlockUi() { 
-	$.blockUI({
-	 	message : '<img src="'+themeUrl+'/assets/img/CO2G.png" class="nc_map pull-" height=80>'+
-	 			  '<i class="fa fa-spin fa-circle-o-notch"></i>'+
-	 			  //'<img src="'+themeUrl+'/assets/img/CO2G.png" class="nc_map pull-" height=80>'+
-	 			  
+	var imgLoad = "CO2r.png";
+	if(typeof CO2DomainName != "undefined")
+		if(CO2DomainName=="kgougle")
+			imgLoad = "logocagou-loader.png";
 
+
+	var msgBlock = '<img src="'+themeUrl+'/assets/img/'+imgLoad+'" class="nc_map" height=80>'+
+	 			  '<i class="fa fa-spin fa-circle-o-notch"></i>'+
 	 			  '<h4 style="font-weight:300" class=" text-dark padding-10">'+
 	 				'Chargement en cours...'+
 	 			  '</h4>'+
@@ -102,9 +103,28 @@ function  processingBlockUi() {
 	 				'Merci de patienter quelques instants'+
 	 			  '</span>'+
 	 			  '<br><br><br>'+
-	 			  '<a href="#co2" class="btn btn-default btn-sm lbh">'+
+	 			  '<a href="#" class="btn btn-default btn-sm lbh">'+
 	 			  	"c'est trop long !"+
-	 			  '</a>'
+	 			  '</a>';
+
+	if(CO2DomainName=="CO2") msgBlock +=
+	'<h4 class="text-dark no-margin" style="margin-top:5px!important;">'+
+        'VERSION DE TEST EN COURS DE DÉVELOPPEMENT !!!'+
+        '<br>'+
+        '<span class="letter-red"></span>'+
+    '</h4>'+
+	'<p class="letter-red no-margin" style="font-size:13px; margin-top:5px!important;">'+
+        'Cette nouvelle interface est en cours de développement, Merci de ne pas tenir compte des bug.<br>'+
+        'Nous sommes en train de basculer les fonctionnalités de communecter.org sur cette interface, '+
+        'afin de rendre la navigation plus simple et compréhensible pour tous.<br>'+
+        'L\'objectif est de proposer une page/interface pour chaque grande fonctionnalité de communecter, '+
+        'afin de créer des portes d\'entrées indépendantes sur le réseau, en fonction des besoins de chacun.<br><br>'+
+        '<b>Vos remarques et idées à ce propos sont les bienvenues.<br>'+
+        'Merci de nous en faire part sur le channel dédié <a href="https://chat.initiative.place/channel/co2_brainstorm" class="letter-blue">#CO2_brainstorm</a></b>'+
+    '</p>';
+
+	$.blockUI({
+	 	message : msgBlock
 	 });
 	bindLBHLinks();
 }
@@ -150,7 +170,7 @@ function getAjax(id,url,callback,datatype,blockUI)
         error:function (xhr, ajaxOptions, thrownError){
           //mylog.error(thrownError);
           $.blockUI({
-              message : '<img src="'+themeUrl+'/assets/img/CO2G.png" class="nc_map pull-" height=80>'+
+              message : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map pull-" height=80>'+
 			 			  '<i class="fa fa-times"></i>'+
 			 			   '<span class="col-md-12 text-center font-blackoutM text-left">'+
 			 			    '<span class="letter letter-red font-blackoutT" style="font-size:40px;">404</span>'+
@@ -233,6 +253,10 @@ function initKInterface(params){
     // Closes the Responsive Menu on Menu Item Click
     $('.navbar-collapse ul li a').click(function(){ 
             $('.navbar-toggle:visible').click();
+    });
+
+    $(".logout").click(function(){
+    	document.location.href="/ph/communecter/person/logout";
     });
 
     var affixTop = 400;

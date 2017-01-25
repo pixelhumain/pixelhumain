@@ -84,6 +84,7 @@
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
+		   var globalTheme = "<?php echo Yii::app()->theme->name;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
 		   var userId = "<?php echo Yii::app()->session['userId']?>";
 		   var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
@@ -226,6 +227,21 @@
 	<?php 
 	if(!isset($me)) 
 		$me=""; 
+	$collectionsType=array(
+		"Où sont les femmes",
+		"Passeur d'images",
+		"MHQM",
+		"MIAA",
+		"Portrait citoyens",
+		"Parcours d'engagement"
+	);
+	$genresType=array(
+		"Documentaire",
+		"Fiction",
+		"Docu-fiction",
+		"Films outils",
+		"Films de commande"
+	);
 
 	$topList = Poi::getPoiByTagsAndLimit();
 	$this->renderPartial($layoutPath.'.menu.menuTop', array( "me" => $me , "topList" => $topList )); 
@@ -304,10 +320,14 @@
 			'/plugins/bootbox/bootbox.min.js' , 
 			'/plugins/jquery-mockjax/jquery.mockjax.js' , 
 			'/plugins/blockUI/jquery.blockUI.js' , 
+
 			// '/plugins/toastr/toastr.js' , 
 			// '/plugins/toastr/toastr.min.css',
 			'/plugins/jquery-cookie/jquery.cookie.js' , 
 			'/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' ,
 			'/plugins/select2/select2.min.js' , 
 			'/plugins/select2/select2.css',
 			'/plugins/moment/min/moment.min.js' ,
@@ -319,7 +339,11 @@
 			'/plugins/font-awesome/css/font-awesome.min.css',
 			'/plugins/font-awesome-custom/css/font-awesome.css',
 			'/plugins/jquery.dynForm.js',
-			'/js/api.js'
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
+			'/js/api.js',
+
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
 
@@ -388,6 +412,7 @@
 		    "video": "dark"
 		  };
 
+		 var classifiedTypes = "";
 
 		var typesLabels = {
 		  "<?php echo Organization::COLLECTION ?>":"Organization",
@@ -427,9 +452,20 @@
 		var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
 		var organizerList = {};
 		var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
+		var collectionsType=<?php echo json_encode( $collectionsType ) ?>;
+		var genresType=<?php echo json_encode( $genresType ) ?>;
+		var searchType = [ "persons" ];
+
 
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
+			notragora.init();
+			/*if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
+				typeObj[key].dynForm.jsonSchema.properties.tags.data=networkTags;
+				if(typeof networkJson.request.mainTag != "undefined")
+					typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag[0];
+			}*/
+
 
 			if(currentUser)
 				organizerList["currentUser"] = currentUser.name + " (You)";
@@ -537,9 +573,9 @@
 				else{ 
 					//console.log("userConnected", userConnected);
 					if(userConnected != null && userId != null  && userId != "" && typeof userId != "undefined")
-						loadByHash("#default.live");//news.index.type.citoyens.id."+userId);
+						loadByHash("#default.home");//news.index.type.citoyens.id."+userId);
 					else
-						loadByHash("#default.live");
+						loadByHash("#default.home");
 					//}
 
 					//loadByHash("#default.home");
@@ -547,7 +583,59 @@
 			}
 			checkScroll();
 		});
-
+		var notragora = {
+			init : function(){
+				genresTypeData=[];
+				genresHtml="";
+				$.each(genresType, function(i, tag) {
+					val={id:tag,text:tag};
+					genresTypeData.push(val);
+					genresHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag)+'Btn" data-tag="'+slugify(tag)+'">'+tag+'</a><br>';
+				});
+				$(".genresList").append(genresHtml);
+				collectionsTypeData=[];
+				collectionsHtml="";
+				$.each(collectionsType, function(i, tag2) {
+					val2={id:tag2,text:tag2};
+					collectionsTypeData.push(val2);
+					collectionsHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag2)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag2)+'Btn" data-tag="'+slugify(tag2)+'">'+tag2+'</a><br>';
+				});
+				$(".collectionsList").append(collectionsHtml);
+				typeObj["poi"].dynForm.jsonSchema.title="Ajouter une réalisation";
+				typeObj["poi"].dynForm.jsonSchema.icon="video-camera";
+				collectionForm = {
+			                "inputType" : "tags",
+			                "placeholder" : "Collections de la réalisation",
+			                "values" : tagsList,
+			                "data" : collectionsTypeData
+			    };
+			    typeObj["poi"].dynForm.jsonSchema.properties.collections={};
+			    typeObj["poi"].dynForm.jsonSchema.properties.collections=collectionForm;
+				genreForm = {
+			                "inputType" : "tags",
+			                "placeholder" : "Genres de la réalisation",
+			                "values" : tagsList,
+			                "data" : genresTypeData
+			    };
+			    typeObj["poi"].dynForm.jsonSchema.properties.genres={};
+			    typeObj["poi"].dynForm.jsonSchema.properties.genres=genreForm;
+				poiFormType =  {
+					"values" : "video",
+		            "inputType" : "hidden"
+				};
+				typeObj["poi"].dynForm.jsonSchema.properties.type=poiFormType;
+				poiFormUrls = {
+		        	placeholder : "url",
+		            "inputType" : "array",
+		            "value" : [],
+		            init:function(){
+			            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",0);			            
+		            }
+		        };
+		        typeObj["poi"].dynForm.jsonSchema.properties.urls=poiFormUrls;
+				typeObj["poi"].dynForm.jsonSchema.properties.info.html="<p><i class='fa fa-info-circle'></i> Rajouter une video en la chargeant l'url présente sur le compte vimeo de passeur d'image. Cette réalisation sera liée à votre groupe de travail</p>";
+			}
+		}
 		</script>
 
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->

@@ -50,7 +50,7 @@
         "useFullScreen" 	 => true,
         "useFullPage" 	 	 => true,
         "useBtnCloseMap"	 => false,
-        "useResearchTools" 	 => false,
+        "useResearchTools" 	 => true,
         "useChartsMarkers" 	 => false,
         "useHelpCoordinates" => false,
         
@@ -124,8 +124,16 @@
 	}
 	.<?php echo $moduleName; ?> .btn-group-map.tools-btn.input-search-place{
 		left: 90px !important;
-		top:70px !important;
+		/*top:70px !important;*/
 		/*background-color: rgba(76, 114, 126, 0.65) !important;*/
+	}
+
+	.<?php echo $moduleName; ?> .input-search-place{
+		left:22%!important;
+		bottom:25px;
+		top:unset!important;
+		width: 29% !important;
+		max-width: 29% !important;
 	}
 
 	.<?php echo $moduleName; ?> .panel_map, .panel_filter{
@@ -149,6 +157,13 @@
 		display: none;
 	}
 
+	.input-search-place input.input-search-place-in-map{
+		width:100%;
+		background-color: rgba(38, 44, 50, 0.7) !important;
+		border-color: rgba(255, 255, 255, 0.8) !important;
+		font-size: 17px;
+	}
+
 	.leaflet-popup{
 		/*display:none;
 		visibility: hidden;*/
@@ -159,6 +174,9 @@
 		left:10px!important;
 		font-size:14px!important;
 	}
+
+
+	
 
 	/*.box-ajax{top:100px;}*/
 	
@@ -183,6 +201,9 @@
 
 	//mémorise l'url des assets (si besoin)
 	var assetPath 	= "<?php echo $this->module->assetsUrl; ?>";
+	var typeSearchInternational = "address";
+
+	var CO2DomainName = "<?php echo @Yii::app()->params["CO2DomainName"]; ?>";
 
 	jQuery(document).ready(function()
 	{
@@ -204,6 +225,78 @@
 		
 		//showMap(false);
 		Sig.userData = <?php echo json_encode($myUser); ?>;
+
+
+		var timeoutFindPlace;
+		$(Sig.cssModuleName + ' .txt-find-place').off().keyup(function(event) { //alert("start custom recherche");
+				clearTimeout(timeoutFindPlace);
+
+				var country = CO2DomainName=="kgougle" ? "NC" : "FR";
+				var thisInput = this;
+				var action =  "";//"Sig.findPlace(1)";//"+$(thisSig.cssModuleName + " #txt-find-place").val()+"')";
+				timeoutFindPlace = setTimeout(function(){
+					var requestPart = $(thisInput).val();
+					typeSearchInternational = "address";
+					callNominatim(requestPart, country);
+				}, 1000);
+			//}
+		});
+
+		addResultsInForm = function(commonGeoObj, countryCode){
+			//success
+			mylog.log("success callGeoWebService KGOU");
+			//mylog.dir(objs);
+			var res = commonGeoObj; //getCommonGeoObject(objs, providerName);
+			mylog.dir(res);
+			var html = "";
+			var id = 0;
+			$.each(res, function(key, value){ mylog.log("resultat : ",value);
+				// if(notEmpty(value.countryCode)){
+				// 	mylog.log("Country Code",value.country.toLowerCase(), countryCode.toLowerCase());
+				// 	if(value.country == "Nouvelle-Calédonie"){ 
+				// 		html += "<li><a href='javascript:' class='item-street-found' data-lat='"+value.geo.latitude+"' data-lng='"+value.geo.longitude+"'><i class='fa fa-marker-map'></i> "+value.name+"</a></li>";
+				// 	}
+				// }
+				
+				
+				id++;
+				res[key]["id"] = id;
+				res[key]["typeSig"] = "address";
+
+				var country = res[key]["country"];
+				if(CO2DomainName=="kgougle" && country != "Nouvelle-Calédonie")
+					res[key] = "";
+			});
+
+			
+			//if(html == "") html = "<i class='fa fa-ban'></i> Aucun résultat";
+			
+			//$("#liste_map_element").html(html);
+			//$("#liste_map_element").show();
+			showMsgListRes("");
+			Sig.showMapElements(Sig.map, res);
+			
+
+			// $(".item-street-found").click(function(){
+			// 	Sig.markerFindPlace.setLatLng([$(this).data("lat"), $(this).data("lng")]);
+			// 	Sig.map.panTo([$(this).data("lat"), $(this).data("lng")]);
+			// 	Sig.map.setZoom(16);
+			// 	mylog.log("lat lon", $(this).data("lat"), $(this).data("lng"));
+			// 	$("#dropdown-newElement_streetAddress-found").hide();
+			// 	$('[name="newElement_lat"]').val($(this).data("lat"));
+			// 	$('[name="newElement_lng"]').val($(this).data("lng"));
+			// 	NE_lat = $(this).data("lat");
+			// 	NE_lng = $(this).data("lng");
+			// 	updateHtmlInseeLatLon();
+			// });
+		};
+
+		showMsgListRes = function(msg){ mylog.log("showMsgListRes", msg);
+			msg = msg != "" ? "<li class='padding-5'>" + msg + "</li>" : "";
+
+			$("#liste_map_element").html(msg);
+		};
+	 
 
 	});
 
@@ -233,4 +326,8 @@
 		$("#mapLegende").hide();
 	}
 
+
+	/* affiche les résultat de la recherche dans la div #result (à placer dans l'interface au préalable) */
+	var markerListEntity = null;
+	
 </script>
