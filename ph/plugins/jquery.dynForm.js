@@ -915,7 +915,7 @@ onSave: (optional) overloads the generic saveProcess
 			$(".fine-uploader-manual-trigger").fineUploader({
 	            template: 'qq-template-gallery',//'qq-template-manual-trigger',
 	            request: {
-	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+moduleId+"/folder/"+contextData.type+"/ownerId/"+contextData.id+"/input/qqfile",
+	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+moduleId+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile",
 	            },
 	            callbacks: {
 	            	//when a img is selected
