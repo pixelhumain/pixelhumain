@@ -35,6 +35,9 @@
         "google/recaptcha": "~1.1",
         "mandrill/mandrill": "1.0.*"
 	},
+	"config": {
+		"secure-http":false
+	},
 	"autoload": {
     	"psr-0": {
         	"PixelHumain": "./src"
