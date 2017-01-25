@@ -114,6 +114,7 @@
         "pagination" : 2000,
         "searchType" : [
             "organizations"
-        ]
+        ],
+        "searchPrefTag" : "$or"
     }
 }
