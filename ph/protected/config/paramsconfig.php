@@ -86,6 +86,7 @@ $params = array(
 
     'CO2DomainName' => 'kgougle', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
 
+
     /*"front" => array (
         "organization" => true,
         "project" => true,
