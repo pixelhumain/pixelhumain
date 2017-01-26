@@ -3,7 +3,7 @@
     "mode" : "server",
     "skin" : {
         "logo" : "iviatic.png",
-        "title" : "Cartographie I-viaTIC",
+        "title" : "Cartographie des compétences",
         "shortDescription" : "Localisez les partenaires et compétences dont vous avez besoin pour construire votre projet de mobilité.",
         "displayScope" : false,
         "displayCommunexion" : false,
@@ -87,9 +87,9 @@
                   "Energie et mobilité" : "Energie et mobilité",
                   "Services à la mobilité" : "Services à la mobilité",
                   "TIC" : "TIC",
-                  "numérique et data" : "numérique et data",
+                  "Numérique et Data" : "numérique et data",
                   "Ingénierie et financement" : "Ingénierie et financement",
-                  "Aménagement valo et dév" : "Aménagement valo et dév",
+                  "Aménagement, valorisation et développement" : "Aménagement valo et dév",
                   "Orga et mgmt de la mobilité" : "Orga et mgmt de la mobilité"
                 }
             }

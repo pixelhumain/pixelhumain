@@ -210,7 +210,7 @@
 	font-size: 16px;
 }
 .logoMap{
-	width: 40px;
+	width: 60px;
     height: 40px;
     margin-top: -5px;
     border-radius: 20px;
@@ -218,6 +218,15 @@
     display: -webkit-inline-box;
     background-color: white;
 }
+
+.logoMapOld{
+  width: 60px;
+    height: 40px;
+    margin-top: -5px;
+    margin-right: 5px;
+    background-color: white;
+}
+
 .poweredBy{
 	margin-top: 5px;
     font-size: 11px;
