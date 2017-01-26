@@ -268,7 +268,7 @@
 				<?php } ?>
 				<?php if (@$params['skin']["docs"] && $params['skin']["docs"]){ ?>
 					<br/>
-					<a href="#default.view.page.index.dir.docs" class="tooltips lbh" id="btn-documentation"	data-toggle="tooltip" data-placement="bottom" title="Lire la documentation" alt="Lire la documentation" style="color:lightblue;"> 
+					<a href="javascript:;" onclick="getAjaxFiche('#network.savoir',1)" class="tooltips lbh"	data-toggle="tooltip" data-placement="bottom" title="En savoir plus" alt="En savoir plus" style="color:lightblue;"> 
 						<i class="fa fa-info-circle"></i> En savoir plus
 					</a>
 				<?php } ?>
