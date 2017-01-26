@@ -685,6 +685,16 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Choose" => "Choisir",
 	"Next step" => "Etape suivante",
 	"Previous step" => "Etape précédente",
+
+
+	"Semicolon"=>"Point virgule",
+	"Comma" => "Virgule",
+	"Space" => "Espace",
+	"Quotes" => "Quotes",
+	"Quotation marks" => "Guillemets",
+	"Nothing" => "Rien",
+
+
 );
 
 ?>
