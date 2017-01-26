@@ -687,8 +687,18 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Next step" => "Etape suivante",
 	"Previous step" => "Etape précédente",
 
+
 	"Link" => "Lien",
 	"Not link" => "Aucun lien",
+	"Semicolon"=>"Point virgule",
+	"Comma" => "Virgule",
+	"Space" => "Espace",
+	"Quotes" => "Quotes",
+	"Quotation marks" => "Guillemets",
+	"Nothing" => "Rien",
+
+
+
 );
 
 ?>

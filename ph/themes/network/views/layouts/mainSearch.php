@@ -60,6 +60,9 @@
 		if ( @Yii::app()->params['networkParams'] && ( stripos(Yii::app()->params['networkParams'], "http") !== false || stripos(Yii::app()->params['networkParams'], "https") !== false ) ) 
 			$pathParams = Yii::app()->params['networkParams'];
 
+		if ( @Yii::app()->params['networkParams'] && ( stripos(Yii::app()->params['networkParams'], "http") !== false || stripos(Yii::app()->params['networkParams'], "https") !== false ) ) 
+			$pathParams = Yii::app()->params['networkParams'];
+
         $json = file_get_contents($pathParams);
         $params = json_decode($json, true);	
 		?>
