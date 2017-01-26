@@ -39,6 +39,7 @@ onSave: (optional) overloads the generic saveProcess
 				formId : "", 
 				formObj: {},
 				formValues: {},
+				beforeBuild : null,
 				onLoad : null,
 				onSave: null,
 				beforeSave: null,
@@ -66,6 +67,9 @@ onSave: (optional) overloads the generic saveProcess
 							'<i class="fa fa-remove-sign"></i> Merci de corriger les erreurs ci dessous.'+
 						'</div>';
 			$(settings.formId).append(errorHTML);
+
+			if(settings.beforeBuild && jQuery.isFunction( settings.beforeBuild ) )
+				settings.beforeBuild();
 
 			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
 
@@ -915,13 +919,15 @@ onSave: (optional) overloads the generic saveProcess
 			$(".fine-uploader-manual-trigger").fineUploader({
 	            template: 'qq-template-gallery',//'qq-template-manual-trigger',
 	            request: {
-	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+moduleId+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile",
+	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+moduleId+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile"
+	                //params : uploadObj
 	            },
 	            callbacks: {
 	            	//when a img is selected
-				    /*onSubmit: function(id, fileName) {
+				    onSubmit: function(id, fileName) {
 				      $('#trigger-upload').removeClass("hide")
 				    },
+				    /*
 				    //launches request endpoint
 				    //onUpload: function(id, fileName) {
 				      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
@@ -933,12 +939,12 @@ onSave: (optional) overloads the generic saveProcess
 				      alert("progress");
 				    },*/
 				    //when every img finish upload process whatever the status
-				    onComplete: function(id, fileName,responseJSON,xhr) {
+				    /*onComplete: function(id, fileName,responseJSON,xhr) {
 				      
-				    },
+				    },*/
 				    //when all upload is complete whatever the result
 				    onAllComplete: function(succeeded, failed) {
-				      alert("all complete");
+				      toastr.info("Files uploaded succesfuslly!!");
 				    },
 				    //on click a photo delete btn and launches delete endpoint
 				    /*onDelete: function(id) {
