@@ -286,7 +286,7 @@ onSave: (optional) overloads the generic saveProcess
         	if(placeholder == "")
         		placeholder="add Image";
         	mylog.log("build field "+field+">>>>>> image");
-        	fieldHTML += '<div class="fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>'+
+        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>'+
 							'<script type="text/template" id="qq-template-gallery">'+
 							'<div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">'+
 							'<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">'+
@@ -366,9 +366,9 @@ onSave: (optional) overloads the generic saveProcess
 							'</dialog>'+
 							'</div>'+
 							'</script>';
-			if( fieldObj.afterLoad && $.isFunction(fieldObj.afterLoad) )
-        		initValues["fine-uploader-manual-trigger"].afterLoad = fieldObj.afterLoad;
 
+			if( $.isFunction( fieldObj.afterUploadComplete ) )
+        		initValues.afterUploadComplete = fieldObj.afterUploadComplete;
         }
 
         /* **************************************
@@ -818,17 +818,19 @@ onSave: (optional) overloads the generic saveProcess
 				$.each($(".select2TagsInput"),function () 
 				{
 					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ] );
-					if( initValues[ $(this).attr("id") ] ){
-						var selectOptions = {
+					if( initValues[ $(this).attr("id") ] )
+					{
+						var selectOptions = 
+						{
 						  "tags": initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
 						if(initValues[ $(this).attr("id") ].maximumSelectionLength)
 							selectOptions.maximumSelectionLength = initValues[$(this).attr("id")]["maximumSelectionLength"];
-						if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[$(this).attr("id")] != "undefined" && initSelectNetwork[$(this).attr("id")].length > 0){
+						if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[$(this).attr("id")] != "undefined" && initSelectNetwork[$(this).attr("id")].length > 0)
 							selectOptions.data=initSelectNetwork[$(this).attr("id")];
-						}
+						
 						$(this).removeClass("form-control").select2(selectOptions);
 						if(typeof mainTag != "undefined")
 							$(this).val([mainTag]).trigger('change');
@@ -930,7 +932,7 @@ onSave: (optional) overloads the generic saveProcess
 	            callbacks: {
 	            	//when a img is selected
 				    onSubmit: function(id, fileName) {
-				      $('#trigger-upload').removeClass("hide")
+				      //$('#trigger-upload').removeClass("hide")
 				    },
 				    /*
 				    //launches request endpoint
@@ -944,12 +946,16 @@ onSave: (optional) overloads the generic saveProcess
 				      alert("progress");
 				    },*/
 				    //when every img finish upload process whatever the status
-				    /*onComplete: function(id, fileName,responseJSON,xhr) {
-				      
-				    },*/
+				    onComplete: function(id, fileName,responseJSON,xhr) {
+				    	if(!responseJSON.result){
+				    		toastr.error("something went wrong : "+responseJSON.msg );		
+				    	}
+				    },
 				    //when all upload is complete whatever the result
 				    onAllComplete: function(succeeded, failed) {
 				      toastr.info("Files uploaded succesfuslly!!");
+				      if( jQuery.isFunction(initValues.afterUploadComplete) )
+				      	initValues.afterUploadComplete();
 				    },
 				    //on click a photo delete btn and launches delete endpoint
 				    /*onDelete: function(id) {
