@@ -361,9 +361,9 @@ onSave: (optional) overloads the generic saveProcess
 							'</dialog>'+
 							'</div>'+
 							'</script>';
-			if( fieldObj.afterLoad && $.isFunction(fieldObj.afterLoad) )
-        		initValues["fine-uploader-manual-trigger"].afterLoad = fieldObj.afterLoad;
 
+			if( $.isFunction( fieldObj.afterUploadComplete ) )
+        		initValues.afterUploadComplete = fieldObj.afterUploadComplete;
         }
 
         /* **************************************
@@ -813,17 +813,19 @@ onSave: (optional) overloads the generic saveProcess
 				$.each($(".select2TagsInput"),function () 
 				{
 					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ] );
-					if( initValues[ $(this).attr("id") ] ){
-						var selectOptions = {
+					if( initValues[ $(this).attr("id") ] )
+					{
+						var selectOptions = 
+						{
 						  "tags": initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
 						if(initValues[ $(this).attr("id") ].maximumSelectionLength)
 							selectOptions.maximumSelectionLength = initValues[$(this).attr("id")]["maximumSelectionLength"];
-						if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[$(this).attr("id")] != "undefined" && initSelectNetwork[$(this).attr("id")].length > 0){
+						if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[$(this).attr("id")] != "undefined" && initSelectNetwork[$(this).attr("id")].length > 0)
 							selectOptions.data=initSelectNetwork[$(this).attr("id")];
-						}
+						
 						$(this).removeClass("form-control").select2(selectOptions);
 						if(typeof mainTag != "undefined")
 							$(this).val([mainTag]).trigger('change');
@@ -947,6 +949,8 @@ onSave: (optional) overloads the generic saveProcess
 				    //when all upload is complete whatever the result
 				    onAllComplete: function(succeeded, failed) {
 				      toastr.info("Files uploaded succesfuslly!!");
+				      if( jQuery.isFunction(initValues.afterUploadComplete) )
+				      	initValues.afterUploadComplete();
 				    },
 				    //on click a photo delete btn and launches delete endpoint
 				    /*onDelete: function(id) {
