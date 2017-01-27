@@ -19,7 +19,7 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 
 </span>
 
-<script>
+<script type="text/javascript">
 jQuery(document).ready(function() {
 	
 	showEmptyMsg();

@@ -61,7 +61,7 @@
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/print.css" type="text/css" media="print"/>
 		<!-- end: CORE CSS -->
 		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset($this->module->assetsUrl) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" />
-		<script>
+		<script type="text/javascript">
 		   var initT = new Object();
 		   //var showDelaunay = true;
 		   // A supprimer une fois le redirect corrigé 
