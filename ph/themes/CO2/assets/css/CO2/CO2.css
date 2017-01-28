@@ -809,6 +809,10 @@ h3.title_panel_map{
     margin-top:180px;
     /*text-align: right;*/
 }
+#sub-menu-right{
+    margin-top: 110px;
+    /*text-align: right;*/
+}
 /*
 #sub-menu-left .btn{
     background-color: #4285f4;
@@ -932,9 +936,9 @@ h3.title_panel_map{
 
 
 @media screen and (max-width: 1024px) {
-.menu-name-profil small{
-    max-width: 45px;
-}
+	.menu-name-profil small{
+	    max-width: 45px;
+	}
 }
 
 @media (max-width: 768px) {
