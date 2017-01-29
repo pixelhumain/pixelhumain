@@ -143,6 +143,12 @@
 				        {
 				        	if(isset($item["notify"]))
 				        	{
+				        		if(@$item["updated"])
+				        			$timestamp=$item["updated"];
+				        		else if (@$item["timestamp"])
+				        			$timestamp=$item["timestamp"];
+				        		else
+				        			$timestamp=$item["created"];
 				        		$url = str_replace("/", ".", $item["notify"]["url"]);
 				        		$href = $url;
 					            echo "<li class='notifLi notif_".(string)$item["_id"]."'>";
@@ -150,10 +156,10 @@
 					            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message text-dark">';
 					            echo $item["notify"]["displayName"];
 					            
-					            echo ", <span class='time pull-left'>".round(abs(time() - $item["timestamp"]->sec) / 60)."min</span></span></a>";
+					            echo ", <span class='time pull-left'>".round(abs(time() - $timestamp->sec) / 60)."min</span></span></a>";
 					            echo "</li>";
-					            if($item["timestamp"]->sec > $maxTimestamp)
-					            	$maxTimestamp = $item["timestamp"]->sec;
+					            if($timestamp->sec > $maxTimestamp)
+					            	$maxTimestamp = $timestamp->sec;
 					        }
 				        } 
 				    } 
