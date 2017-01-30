@@ -251,12 +251,12 @@
 			var html = "";
 			var id = 0;
 			$.each(res, function(key, value){ mylog.log("resultat : ",value);
-				// if(notEmpty(value.countryCode)){
-				// 	mylog.log("Country Code",value.country.toLowerCase(), countryCode.toLowerCase());
-				// 	if(value.country == "Nouvelle-Calédonie"){ 
-				// 		html += "<li><a href='javascript:' class='item-street-found' data-lat='"+value.geo.latitude+"' data-lng='"+value.geo.longitude+"'><i class='fa fa-marker-map'></i> "+value.name+"</a></li>";
-				// 	}
-				// }
+				if(notEmpty(value.countryCode)){
+					mylog.log("Country Code",value.country.toLowerCase(), countryCode.toLowerCase());
+					if(value.country == "Nouvelle-Calédonie"){ 
+						html += "<li><a href='javascript:' class='item-street-found' data-lat='"+value.geo.latitude+"' data-lng='"+value.geo.longitude+"'><i class='fa fa-marker-map'></i> "+value.name+"</a></li>";
+					}
+				}
 				
 				
 				id++;
@@ -269,33 +269,41 @@
 			});
 
 			
-			//if(html == "") html = "<i class='fa fa-ban'></i> Aucun résultat";
+			if(html == "") html = "<span class='padding-15'><i class='fa fa-ban'></i> Aucun résultat</span>";
 			
-			//$("#liste_map_element").html(html);
-			//$("#liste_map_element").show();
-			showMsgListRes("");
-			Sig.showMapElements(Sig.map, res);
 			
+			if($("#dropdown-newElement_streetAddress-found")){ //si on a cet id = on est dans formInMap
+				console.log("TOALALALALA 1");
+				$("#dropdown-newElement_streetAddress-found").html(html);
+				$("#dropdown-newElement_streetAddress-found").show();
+				
 
-			// $(".item-street-found").click(function(){
-			// 	Sig.markerFindPlace.setLatLng([$(this).data("lat"), $(this).data("lng")]);
-			// 	Sig.map.panTo([$(this).data("lat"), $(this).data("lng")]);
-			// 	Sig.map.setZoom(16);
-			// 	mylog.log("lat lon", $(this).data("lat"), $(this).data("lng"));
-			// 	$("#dropdown-newElement_streetAddress-found").hide();
-			// 	$('[name="newElement_lat"]').val($(this).data("lat"));
-			// 	$('[name="newElement_lng"]').val($(this).data("lng"));
-			// 	NE_lat = $(this).data("lat");
-			// 	NE_lng = $(this).data("lng");
-			// 	updateHtmlInseeLatLon();
-			// });
+				$(".item-street-found").click(function(){
+					Sig.markerFindPlace.setLatLng([$(this).data("lat"), $(this).data("lng")]);
+					Sig.map.panTo([$(this).data("lat"), $(this).data("lng")]);
+					Sig.map.setZoom(16);
+					mylog.log("lat lon", $(this).data("lat"), $(this).data("lng"));
+					$("#dropdown-newElement_streetAddress-found").hide();
+					$('[name="newElement_lat"]').val($(this).data("lat"));
+					$('[name="newElement_lng"]').val($(this).data("lng"));
+					NE_lat = $(this).data("lat");
+					NE_lng = $(this).data("lng");
+					updateHtmlInseeLatLon();	
+				});
+			}else{		
+				console.log("TOALALALALA 2");
+				showMsgListRes("");
+				Sig.showMapElements(Sig.map, res);	
+				
+			}
+			
 		};
 
-		showMsgListRes = function(msg){ mylog.log("showMsgListRes", msg);
-			msg = msg != "" ? "<li class='padding-5'>" + msg + "</li>" : "";
+		// showMsgListRes = function(msg){ mylog.log("showMsgListRes", msg);
+		// 	msg = msg != "" ? "<li class='padding-5'>" + msg + "</li>" : "";
 
-			$("#liste_map_element").html(msg);
-		};
+		// 	$("#liste_map_element").html(msg);
+		// };
 	 
 
 	});
