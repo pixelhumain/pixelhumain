@@ -60,7 +60,10 @@
 		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , CClientScript::POS_END);
 		$cs->registerCssFile(Yii::app()->request->baseUrl.'/plugins/bootstrap-modal/css/bootstrap-modal.css' , CClientScript::POS_END);
 		
+		//javascript translations
 		$cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
+		
+		
 		
 		
 		?>
@@ -79,13 +82,14 @@
 		<!-- end: MAIN CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
-		<script>
+		<script type="text/javascript">
 		   var initT = new Object();
 		   var showDelaunay = true;
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
+		   var globalTheme = "<?php echo Yii::app()->theme->name;?>";
 		   var userId = "<?php echo Yii::app()->session['userId']?>";
 		   var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
 		   var currentUrl = "<?php echo "#".Yii::app()->controller->id.".".Yii::app()->controller->action->id ?>";
@@ -252,6 +256,7 @@
 		if(isset(Yii::app()->session['userId'])) 
 			$this->renderPartial($layoutPath.'notifications2');
 		
+
 		/* *****************************************
 		Active Content from the controller
 		******************************************* */
@@ -264,7 +269,17 @@
 		  ?>
 		<!-- start: MAIN JAVASCRIPTS -->
 		
+		<div class="hide" id="rmenu">
+            <ul>
+                <li><a href="http://www.google.com">Google</a></li>
+                <li><a href="http://localhost:8080/login">Localhost</a></li>
+				<li><a href="C:\">C</a></li>
+            </ul>
+        </div>
+
 		<?php
+
+		
 		echo "<!-- start: MAIN JAVASCRIPTS -->";
 		echo "<!--[if lt IE 9]>";
 		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/respond.min.js' , CClientScript::POS_HEAD);
@@ -274,6 +289,9 @@
 		echo "<!--[if gte IE 9]><!-->";
 		$cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
 		echo "<!--<![endif]-->";
+
+		//$cs->registerScriptFile(Yii::app()->getRequest()->getBaseUrl(true)."/plugins/toastr/toastr.js" , CClientScript::POS_END);
+
 
 		//plugins shared by all themes
 		$cssAnsScriptFilesModule = array(
@@ -298,6 +316,9 @@
 			// '/plugins/toastr/toastr.min.css',
 			'/plugins/jquery-cookie/jquery.cookie.js' , 
 			'/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
+			'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
 			'/plugins/select2/select2.min.js' , 
 			'/plugins/select2/select2.css',
 			'/plugins/moment/min/moment-with-locales.min.js' ,
@@ -326,6 +347,7 @@
 			'/assets/css/sig/sig.css',
 			'/assets/css/news/index.css',	
 		);
+		
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
 		
@@ -417,11 +439,14 @@
 		//used in communecter.js dynforms
 		var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
 		var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
+		var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
 		var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
 		var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : null?>;
 		var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
 		var organizerList = {};
 		var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
+		var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
+		var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
 
 		//mylog.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
