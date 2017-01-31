@@ -59,7 +59,7 @@ var mainCategories = {
 		"verte" : {
 			"color" : "green",
 			"items" : [ { name: "Association",  		faIcon: "group"}, 
-						{ name: "Environnement",  		faIcon: "plane"}, 
+						{ name: "Environnement",  		faIcon: "globe"}, 
 						{ name: "Artistes",  			faIcon: "diamond"}, 
 						{ name: "Éco-conso",  			faIcon: "shopping-cart"}, 
 					  ]
