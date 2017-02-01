@@ -366,7 +366,8 @@ onSave: (optional) overloads the generic saveProcess
 							'</dialog>'+
 							'</div>'+
 							'</script>';
-
+			if( fieldObj.showUploadBtn )
+        		initValues.showUploadBtn = fieldObj.showUploadBtn;
 			if( $.isFunction( fieldObj.afterUploadComplete ) )
         		initValues.afterUploadComplete = fieldObj.afterUploadComplete;
         }
@@ -932,7 +933,8 @@ onSave: (optional) overloads the generic saveProcess
 	            callbacks: {
 	            	//when a img is selected
 				    onSubmit: function(id, fileName) {
-				      //$('#trigger-upload').removeClass("hide")
+				      if(initValues.showUploadBtn)
+				      	$('#trigger-upload').removeClass("hide")
 				    },
 				    /*
 				    //launches request endpoint
