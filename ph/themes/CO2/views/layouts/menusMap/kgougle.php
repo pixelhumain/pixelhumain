@@ -31,7 +31,7 @@
         <!-- <button class="btn-show-mainmenu" onclick="showMap(false);" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
         </button> -->
-        <div class="dropdown pull-right">
+        <!-- <div class="dropdown pull-right">
             <button class="btn-show-mainmenu  dropdown-toggle" title="Menu principal" data-toggle="dropdown"  id="btn-main-menu">
                 <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
             </button>
@@ -55,7 +55,7 @@
                     <?php } ?>
                 </ul>
             </div>
-        </div>
+        </div> -->
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="pull-right">
             <ul class="nav navbar-nav navbar-right">

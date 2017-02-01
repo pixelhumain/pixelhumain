@@ -312,15 +312,27 @@ function initKInterface(params){
         $("#dropdown-user").removeClass("open");
     });
 
+    setTimeout(function(){ 
+      mapBg = Sig.loadMap("mapCanvas", initSigParams);
+      Sig.showIcoLoading(false);
+    }, 500);
+
 }
 
 var currentScrollTop = 0;
 var isMapEnd = false;
 function showMap(show)
 {
+
+  if(mapBg == null) return;
+
 	//if(typeof Sig == "undefined") { alert("Pas de SIG"); return; } 
 	mylog.log("typeof SIG : ", typeof Sig);
 	if(typeof Sig == "undefined") show = false;
+
+  //chargement de la carte
+
+
 
 	mylog.log("showMap");
 	if(show === undefined) show = !isMapEnd;

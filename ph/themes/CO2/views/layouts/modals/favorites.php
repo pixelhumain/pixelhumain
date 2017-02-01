@@ -54,10 +54,9 @@
 
             <div class="col-md-12 padding-25" id="listFav">
                 <?php  if(empty(@$myWebFavorites)) { ?>
-                Vous n'avez aucun site dans vos favoris.
+                <b>Vous n'avez aucun site dans vos favoris.</b>
                 <hr>
                 Pour remplir votre liste de favoris, utiliser le moteur de recherche,<br>et cliquez sur <i class="fa fa-star letter-yellow"></i> pour ajouter un site à votre liste.
-                <hr>
                 <?php }else { ?>
                     <?php  
 

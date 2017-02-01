@@ -50,6 +50,18 @@
                                     </a>    
                             <?php   }
                                  }  ?>
+
+                            <?php if($subdomainName == "web") { ?>
+                                <br>
+                                    <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
+                                        href="#co2.info.p.apropos">
+                                        <i class="fa fa-info-circle"></i><span class="hidden-xs"> A propos</span>
+                                    </a>    
+                                    <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
+                                        href="#co2.info.p.alphatango">
+                                        <i class="fa fa-envelope"></i><span class="hidden-xs"> Contact</span>
+                                    </a>    
+                            <?php } ?>
                         </div>
                         
                         <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"], 

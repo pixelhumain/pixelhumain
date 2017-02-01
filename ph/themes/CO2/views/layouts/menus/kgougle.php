@@ -21,6 +21,13 @@ input#second-search-bar{
     font-size: 20px;
     margin-top: 2px;
 }
+
+#btn-sethome:hover{
+    color:white!important;
+    background-color: #ea4335 !important;
+    border:transparent;
+}
+
 </style>
 
 <!-- Navigation -->
@@ -194,8 +201,15 @@ input#second-search-bar{
 
         <?php if($subdomain == "web"){ ?>
             <button class="btn btn-link letter-yellow tooltips btn-star-fav pull-right font-montserrat"  
-                    data-placement="left" title="Afficher vos favoris"
-                    data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i></button>
+                    data-placement="bottom" title="Afficher vos favoris"
+                    data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i>
+            </button> 
+
+            <a href="#co2.info.p.sethome" class="lbh btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
+                    id="btn-sethome" style=" margin-top:8px;"  
+                    data-placement="bottom" title="Utiliser Kgougle en page d'accueil sur votre navigateur">
+                    <i class="fa fa-home"></i> <span class="hidden-xs">Garder </span>en page d'accueil !
+            </a>
         <?php } ?>
 
         <!-- /.navbar-collapse -->
