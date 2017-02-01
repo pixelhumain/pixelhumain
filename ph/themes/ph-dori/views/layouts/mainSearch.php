@@ -439,14 +439,14 @@
 		//used in communecter.js dynforms
 		var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
 		var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
-		var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
+		//var urlTypes = <?php //asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
 		var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
 		var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : null?>;
 		var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
 		var organizerList = {};
 		var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
-		var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
-		var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
+		//var classifiedTypes = <?php //echo json_encode( Classified::$classifiedTypes ) ?>;
+		//var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
 
 		//mylog.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
