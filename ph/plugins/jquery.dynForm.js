@@ -979,6 +979,7 @@ onSave: (optional) overloads the generic saveProcess
 	        /*$('#trigger-upload').click(function() {
 	        	//'getUploads'
 	            $('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+	            $('.fine-uploader-manual-trigger').fineUploader('getUploads');
 	        });*/
 		};
 
