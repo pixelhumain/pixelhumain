@@ -72,10 +72,8 @@ onSave: (optional) overloads the generic saveProcess
 				settings.beforeBuild();
 
 			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
-
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
-				
 				buildInputField(settings.formId,field, fieldObj, settings.formValues);
 			});
 			
@@ -249,13 +247,13 @@ onSave: (optional) overloads the generic saveProcess
 				fieldHTML += '<option></option>';
 
 			var selected = "";
-			
+			mylog.log("fieldObj select", fieldObj)
 			//initialize values
 			if(fieldObj.options)
-				fieldHTML += buildSelectOptions(fieldObj.options, fieldObj.value);
+				fieldHTML += buildSelectOptions(fieldObj.options, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
 			
 			if( fieldObj.groupOptions ){
-				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, fieldObj.value);
+				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
 			} 
 			fieldHTML += '</select>';
         }

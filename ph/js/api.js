@@ -630,6 +630,7 @@ function buildSelectOptions(list,value) {
   var html = "";
   if(list){
     $.each(list, function(optKey, optVal) {
+      mylog.log("buildSelectOptions", value, optKey, optVal);
       selected = ( value == optKey ) ? "selected" : ""; 
       html += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
     });
