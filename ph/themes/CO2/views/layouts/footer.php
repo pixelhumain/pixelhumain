@@ -1,4 +1,5 @@
 <?php $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.'; ?>
+
 <style>
     .footer-above{
         background-color: #F2F2F2!important;
@@ -6,8 +7,6 @@
     .btn-outline{
         background-color: rgba(255,255,255,0.5);
     }
-
-
 
 @media screen and (max-width: 1024px) {
     

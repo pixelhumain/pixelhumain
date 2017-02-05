@@ -12,8 +12,6 @@
             margin-top: -73px;
         }
 
-
-
 @media (max-width: 768px) {
     #main-input-group{
         margin-top:10px;
@@ -42,7 +40,7 @@
                     <div class="intro-text">  
 
                         <div class="col-md-12 text-center main-menu-app" style="">
-                            <?php if(true) foreach ($params["pages"] as $key => $value) {
+                            <?php if($subdomainName != "web") foreach ($params["pages"] as $key => $value) {
                                     if(@$value["inMenu"]==true){ ?>
                                     <a  class="lbh letter-red font-blackoutM margin-right-25" 
                                         href="<?php echo $key; ?>">
@@ -51,18 +49,21 @@
                             <?php   }
                                  }  ?>
 
+
                             <?php if($subdomainName == "web") { ?>
-                                <br>
+                                
                                     <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
                                         href="#co2.info.p.apropos">
-                                        <i class="fa fa-info-circle"></i><span class="hidden-xs"> A propos</span>
+                                        <span class="">c koissa ?!?</span>
                                     </a>    
                                     <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
                                         href="#co2.info.p.alphatango">
-                                        <i class="fa fa-envelope"></i><span class="hidden-xs"> Contact</span>
+                                        <i class="fa fa-envelope"></i><span class=""> Contact</span>
                                     </a>    
                             <?php } ?>
+                            
                         </div>
+
                         
                         <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"], 
                                                     array("mainTitle"=>$mainTitle,
@@ -71,7 +72,8 @@
 
 
                        
-                        <?php if($subdomain == "live"){ ?>
+
+                        <?php if($subdomain == "media"){ ?>
                             <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
@@ -220,9 +222,7 @@
                                                             "placeholderMainSearch"=>$placeholderMainSearch,
                                                             "me" => $me) ); ?>   
 
-    <?php //$this->renderPartial($layoutPath.'menu'); ?>    
-
-
+    
     <?php   if($subdomain != "referencement"){
                         $cities = CO2::getCitiesNewCaledonia();
                         $this->renderPartial($layoutPath.'scopes/'.$CO2DomainName.'/multi_scope', 

@@ -287,7 +287,6 @@ function initKInterface(params){
     	showMap();
     });
 
-    $(".tooltips").tooltip();
     
 
     bindLBHLinks();
@@ -313,6 +312,8 @@ function initKInterface(params){
     });
 
     setTimeout(function(){ 
+      
+    $(".tooltips").tooltip();
       mapBg = Sig.loadMap("mapCanvas", initSigParams);
       Sig.showIcoLoading(false);
     }, 500);
