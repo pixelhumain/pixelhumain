@@ -455,6 +455,7 @@
 		var collectionsType=<?php echo json_encode( $collectionsType ) ?>;
 		var genresType=<?php echo json_encode( $genresType ) ?>;
 		var searchType = [ "persons" ];
+		var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
 
 
 		//console.warn("isMapEnd 1",isMapEnd);

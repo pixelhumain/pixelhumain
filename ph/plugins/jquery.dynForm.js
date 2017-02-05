@@ -211,6 +211,11 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
         	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
         	fieldHTML += '<textarea id="'+field+'" class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
+        }else if ( fieldObj.inputType == "markdown"){ 
+        	mylog.log("build field "+field+">>>>>> textarea, markdown");
+        	fieldClass += " markdownInput";
+        	//fieldHTML +='<textarea id="'+field+'" name="'+field+'" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" data-provide="markdown" data-savable="true" rows="10"></textarea>';
+        	fieldHTML +='<textarea name="target-editor" id="'+field+'" data-provide="markdown" data-savable="true" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" rows="10"></textarea>';
         }
         /* **************************************
 		* CHECKBOX
@@ -277,10 +282,10 @@ onSave: (optional) overloads the generic saveProcess
 
         
         
-        else if ( fieldObj.inputType == "image" ) {
+        else if ( fieldObj.inputType == "uploader" ) {
         	if(placeholder == "")
         		placeholder="add Image";
-        	mylog.log("build field "+field+">>>>>> image");
+        	mylog.log("build field "+field+">>>>>> uploader");
         	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>'+
 							'<script type="text/template" id="qq-template-gallery">'+
 							'<div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">'+
@@ -361,7 +366,10 @@ onSave: (optional) overloads the generic saveProcess
 							'</dialog>'+
 							'</div>'+
 							'</script>';
-
+			if( fieldObj.showUploadBtn )
+        		initValues.showUploadBtn = fieldObj.showUploadBtn;
+        	if( fieldObj.filetypes )
+        		initValues.filetypes = fieldObj.filetypes;
 			if( $.isFunction( fieldObj.afterUploadComplete ) )
         		initValues.afterUploadComplete = fieldObj.afterUploadComplete;
         }
@@ -924,10 +932,18 @@ onSave: (optional) overloads the generic saveProcess
 	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+moduleId+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile"
 	                //params : uploadObj
 	            },
+	            validation: {
+	                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
+	                sizeLimit: 2000000
+	            },
+	            messages: {
+			        sizeError: '{file} est trop lourde! limite max : {sizeLimit}.'
+			    },
 	            callbacks: {
 	            	//when a img is selected
 				    onSubmit: function(id, fileName) {
-				      //$('#trigger-upload').removeClass("hide")
+				      if(initValues.showUploadBtn)
+				      	$('#trigger-upload').removeClass("hide")
 				    },
 				    /*
 				    //launches request endpoint
@@ -972,6 +988,7 @@ onSave: (optional) overloads the generic saveProcess
 	        /*$('#trigger-upload').click(function() {
 	        	//'getUploads'
 	            $('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+	            $('.fine-uploader-manual-trigger').fineUploader('getUploads');
 	        });*/
 		};
 
@@ -1033,6 +1050,7 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
 		if(  $(".wysiwygInput").length )
 		{
+			console.log("wysiwygInput wysiwygInput");
 				var initField = function(){
 					$(".wysiwygInput").summernote({
 
@@ -1066,6 +1084,44 @@ onSave: (optional) overloads the generic saveProcess
 		}
 
 	}
+
+	/* **************************************
+	* MARKDOWN 
+	***************************************** */
+	if(  $(".markdownInput").length )
+	{
+		console.log("markdownInput");
+		var initField = function(){
+			$(".markdownInput").markdown({
+					savable:true,
+					onPreview: function(e) {
+						var previewContent = "";
+					    mylog.log(e);
+					    mylog.log(e.isDirty());
+					    if (e.isDirty()) {
+					    	var converter = new showdown.Converter(),
+					    		text      = e.getContent(),
+					    		previewContent      = converter.makeHtml(text);
+					    } else {
+					    	previewContent = "Default content";
+					    }
+					    return previewContent;
+				  	},
+				  	onSave: function(e) {
+				  		mylog.log(e);
+				  	},
+				});
+
+			
+			lazyLoad( 	baseUrl+'/plugins/showdown/showdown.min.js',
+							baseUrl+'/plugins/bootstrap-markdown/js/bootstrap-markdown.js',
+							baseUrl+'/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css',
+							initField);
+	    	
+		}
+	}
+
+	
 
 	/* **************************************
 	*
