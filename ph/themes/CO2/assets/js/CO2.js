@@ -37,10 +37,10 @@ function loadByHash( hash , back ) { //alert("loadByHash");
 
     location.hash = hash;
 
-    /*if(!back){
+    if(!back){
     	history.replaceState( { "hash" :location.hash} , null, location.hash ); //changes the history.state
 	    mylog.warn("replaceState history.state",history.state);
-	}*/
+	}
 }
 
 
@@ -312,11 +312,10 @@ function initKInterface(params){
     });
 
     setTimeout(function(){ 
-      
-    $(".tooltips").tooltip();
+      $(".tooltips").tooltip();
       mapBg = Sig.loadMap("mapCanvas", initSigParams);
       Sig.showIcoLoading(false);
-    }, 500);
+    }, 3000);
 
 }
 
