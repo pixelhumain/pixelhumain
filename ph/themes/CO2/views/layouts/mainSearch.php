@@ -142,7 +142,7 @@
             }
         ?>
 
-        <?php $this->renderPartial($layoutPath.'initJs'); ?>
+        <?php $this->renderPartial($layoutPath.'initJs', array("me"=>$me)); ?>
 
         <script>
             <?php $params = CO2::getThemeParams(); ?>
