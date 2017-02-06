@@ -153,7 +153,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 .photosgurdeep > a {
     background: #ffffff none repeat scroll 0 0;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
     display: inline-block !important;
     padding: 0 !important;
 }
@@ -237,7 +237,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     transition: all 0.4s ease;
 }
 
-.profilSocial .accordion li i.fa-chevron-down {
+.profilSocial .accordion li i.fa-chevron-down,
+.profilSocial .accordion li i.fa-chevron-right {
     right: 12px;
     left: auto;
     font-size: 16px;

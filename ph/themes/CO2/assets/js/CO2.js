@@ -107,7 +107,7 @@ function  processingBlockUi() {
 	 			  	"c'est trop long !"+
 	 			  '</a>';
 
-	if(CO2DomainName=="CO2") msgBlock +=
+	if(CO2DomainName=="CO2" && false) msgBlock +=
 	'<h4 class="text-dark no-margin" style="margin-top:5px!important;">'+
         'VERSION DE TEST EN COURS DE DÉVELOPPEMENT !!!'+
         '<br>'+
