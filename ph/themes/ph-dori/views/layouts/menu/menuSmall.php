@@ -375,24 +375,3 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	
-	
-	function buildCollectionList ( tpl, appendTo, reset ) {
-		if(typeof reset == "function")
-			reset();
-		str = "";
-		$.each(userConnected.collections, function(col,list){ 
-			var colcount = 0;
-			$.each(list, function(type,entries){
-				colcount += Object.keys(entries).length;
-			}); 
-			str += js_templates[ tpl ]({
-				label : col,
-				labelCount : colcount
-			}) ;
-		});
-		$(appendTo).append(str);
-	}
-
-</script>
