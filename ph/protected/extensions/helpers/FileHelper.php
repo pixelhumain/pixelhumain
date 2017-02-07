@@ -1,5 +1,5 @@
 <?php
-class fileHelper {
+class FileHelper {
 /**
  * CodeIgniter
  *
@@ -148,6 +148,8 @@ class fileHelper {
 
 		return TRUE;
 	}
+
+	
 
 // ------------------------------------------------------------------------
 

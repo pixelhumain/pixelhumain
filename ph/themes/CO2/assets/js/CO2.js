@@ -37,10 +37,10 @@ function loadByHash( hash , back ) { //alert("loadByHash");
 
     location.hash = hash;
 
-    /*if(!back){
+    if(!back){
     	history.replaceState( { "hash" :location.hash} , null, location.hash ); //changes the history.state
 	    mylog.warn("replaceState history.state",history.state);
-	}*/
+	}
 }
 
 
@@ -107,7 +107,7 @@ function  processingBlockUi() {
 	 			  	"c'est trop long !"+
 	 			  '</a>';
 
-	if(CO2DomainName=="CO2") msgBlock +=
+	if(CO2DomainName=="CO2" && false) msgBlock +=
 	'<h4 class="text-dark no-margin" style="margin-top:5px!important;">'+
         'VERSION DE TEST EN COURS DE DÉVELOPPEMENT !!!'+
         '<br>'+
@@ -287,7 +287,6 @@ function initKInterface(params){
     	showMap();
     });
 
-    $(".tooltips").tooltip();
     
 
     bindLBHLinks();
@@ -312,15 +311,28 @@ function initKInterface(params){
         $("#dropdown-user").removeClass("open");
     });
 
+    setTimeout(function(){ 
+      $(".tooltips").tooltip();
+      mapBg = Sig.loadMap("mapCanvas", initSigParams);
+      Sig.showIcoLoading(false);
+    }, 3000);
+
 }
 
 var currentScrollTop = 0;
 var isMapEnd = false;
 function showMap(show)
 {
+
+  if(mapBg == null) return;
+
 	//if(typeof Sig == "undefined") { alert("Pas de SIG"); return; } 
 	mylog.log("typeof SIG : ", typeof Sig);
 	if(typeof Sig == "undefined") show = false;
+
+  //chargement de la carte
+
+
 
 	mylog.log("showMap");
 	if(show === undefined) show = !isMapEnd;

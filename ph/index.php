@@ -12,6 +12,7 @@ if( stripos($_SERVER['SERVER_NAME'], "127.0.0.1") === false &&
     defined('YII_DEBUG') or define('YII_DEBUG',false); // PROD
 else {
 	error_reporting(E_ALL);	
+	ini_set('display_errors', 'On');
     defined('YII_DEBUG') or define('YII_DEBUG',true);//LOCAL DEV    
 }
     

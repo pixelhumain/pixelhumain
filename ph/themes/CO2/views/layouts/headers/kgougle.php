@@ -7,9 +7,13 @@
 .name .pastille{
     letter-spacing: 0px;
 }
+
+header .intro-text .skills{
+    font-size: 15px !important;
+}
 </style>
 
-<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logocagou-<?php echo $subdomainName; ?>.png" class="nc_map"><br>
+<!-- <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logocagou-<?php echo $subdomainName; ?>.png" class="nc_map"><br> -->
 <span class="name font-blackoutM">
     <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15"><br>
 
@@ -21,7 +25,7 @@
     <span class="letter letter-green font-blackoutT">A</span>
     <span class="letter letter-green font-blackoutT">N</span>
     <span class="letter letter-green font-blackoutT">D</span> <br> -->
-    <?php if(false){ ?>
+    <?php if(true){ ?>
         <small class="letter letter-red pastille font-blackoutT"><?php echo $subdomainName; ?></small>
     <?php } ?>
 </span>

@@ -280,10 +280,10 @@ onSave: (optional) overloads the generic saveProcess
 
         
         
-        else if ( fieldObj.inputType == "image" ) {
+        else if ( fieldObj.inputType == "uploader" ) {
         	if(placeholder == "")
         		placeholder="add Image";
-        	mylog.log("build field "+field+">>>>>> image");
+        	mylog.log("build field "+field+">>>>>> uploader");
         	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>'+
 							'<script type="text/template" id="qq-template-gallery">'+
 							'<div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">'+
@@ -364,7 +364,10 @@ onSave: (optional) overloads the generic saveProcess
 							'</dialog>'+
 							'</div>'+
 							'</script>';
-
+			if( fieldObj.showUploadBtn )
+        		initValues.showUploadBtn = fieldObj.showUploadBtn;
+        	if( fieldObj.filetypes )
+        		initValues.filetypes = fieldObj.filetypes;
 			if( $.isFunction( fieldObj.afterUploadComplete ) )
         		initValues.afterUploadComplete = fieldObj.afterUploadComplete;
         }
@@ -927,10 +930,18 @@ onSave: (optional) overloads the generic saveProcess
 	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+moduleId+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile"
 	                //params : uploadObj
 	            },
+	            validation: {
+	                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
+	                sizeLimit: 2000000
+	            },
+	            messages: {
+			        sizeError: '{file} est trop lourde! limite max : {sizeLimit}.'
+			    },
 	            callbacks: {
 	            	//when a img is selected
 				    onSubmit: function(id, fileName) {
-				      //$('#trigger-upload').removeClass("hide")
+				      if(initValues.showUploadBtn)
+				      	$('#trigger-upload').removeClass("hide")
 				    },
 				    /*
 				    //launches request endpoint
@@ -975,6 +986,7 @@ onSave: (optional) overloads the generic saveProcess
 	        /*$('#trigger-upload').click(function() {
 	        	//'getUploads'
 	            $('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+	            $('.fine-uploader-manual-trigger').fineUploader('getUploads');
 	        });*/
 		};
 
