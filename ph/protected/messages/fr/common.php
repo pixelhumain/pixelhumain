@@ -149,6 +149,7 @@ return array(
 	"Invitation to project successfully sent" => "Invitation à rejoindre le projet bien envoyée",
 	"Comment successfully deleted" => "Le commentaire a bien été supprimé",
 	"You already invited" => "Vous avez déjà invité",
+	"Your answer has been succesfully register" => "Votre réponse a été enregistrée avec succès",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
@@ -323,6 +324,7 @@ return array(
 	"projects" => "projets",
 	"events" => "événements",
 
+	"a news" => "un post",
 	"of the event" => "de l'événement",
 	"of the organization" => "de l'organisation",
 	"of the project" => "du projet",
@@ -338,6 +340,10 @@ return array(
 	"History" => "Historique",
 	"Settings" => "Paramètres",
 	"Confidentiality params" => "Paramètres de confidentialité",
+	"I go" => "J&rsquo;y vais",
+	"Not interested" => "Pas intéressé(e)",
+	"Accept" => "Accepter",
+	"Refuse" => "Refuser",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
