@@ -28,8 +28,15 @@ svg{
  .leaflet-popup-content{
  	margin:5px 0px 0px -1px !important;
  	min-width:280px;
- 	padding-bottom:0px;
+ 	padding:0px !important;
+ 	font-size:11px !important;
+ 	line-height: 1.4 !important;
  }
+
+ .leaflet-popup-content p {
+ 	font-size:11px !important;
+ }
+
  .pod-local-actors{
  	padding: 10px;
  }
@@ -65,13 +72,14 @@ svg{
 	border-color: #82b440;
 }
 
- .popup-info-profil{
+ .popup-info-profil {
  	width:100%;
  	text-align:left;
  	font-size:11px;
  	color:grey;
  	margin-left: 5px;
  }
+
  .popup-subtitle {
     font-weight: 400;
     border-bottom: 1px solid lightgray;
