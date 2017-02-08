@@ -133,10 +133,8 @@ RewriteRule ^(.*)$ /ph/index.php/$1 [L]
 - cd modules
 - git clone "any of the modules". Currently maintained modules are:
   *  https://github.com/pixelhumain/communecter
-  *  https://github.com/pixelhumain/citizenToolkit
-  *  https://github.com/pixelhumain/cityData
+  *  https://github.com/pixelhumain/citizenToolKit
   *  https://github.com/pixelhumain/opendata
-  *  https://github.com/pixelhumain/network
   *  https://github.com/pixelhumain/api
   
 - front end URL : 127.0.0.1/ph/communecter
