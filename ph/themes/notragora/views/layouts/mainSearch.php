@@ -460,7 +460,7 @@
 
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
-			notragora.init();
+			theme.init();
 			/*if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
 				typeObj[key].dynForm.jsonSchema.properties.tags.data=networkTags;
 				if(typeof networkJson.request.mainTag != "undefined")
@@ -584,14 +584,20 @@
 			}
 			checkScroll();
 		});
-		var notragora = {
+
+		var theme = {
+			headerParams : {
+				organizations : { color: "green",   icon: "group",        name: "Groupes de travail" },
+				projects      : { color: "purple",  icon: "lightbulb-o",  name: "Projets" },
+				poi       	  : { color: "black",   icon: "video-camera",   name: "Productions des groupes de travail" }
+			},
 			init : function(){
 				genresTypeData=[];
 				genresHtml="";
 				$.each(genresType, function(i, tag) {
 					val={id:tag,text:tag};
 					genresTypeData.push(val);
-					genresHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag)+'Btn" data-tag="'+slugify(tag)+'">'+tag+'</a><br>';
+					genresHtml+='<a href="javascript:directory.showAll(\'.favSection\',\'.searchPoiContainer\');directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag)+'Btn" data-tag="'+slugify(tag)+'">'+tag+'</a><br>';
 				});
 				$(".genresList").append(genresHtml);
 				collectionsTypeData=[];
@@ -599,7 +605,7 @@
 				$.each(collectionsType, function(i, tag2) {
 					val2={id:tag2,text:tag2};
 					collectionsTypeData.push(val2);
-					collectionsHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag2)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag2)+'Btn" data-tag="'+slugify(tag2)+'">'+tag2+'</a><br>';
+					collectionsHtml+='<a href="javascript:directory.showAll(\'.favSection\',\'.searchPoiContainer\');directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag2)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag2)+'Btn" data-tag="'+slugify(tag2)+'">'+tag2+'</a><br>';
 				});
 				$(".collectionsList").append(collectionsHtml);
 				typeObj["poi"].dynForm.jsonSchema.title="Ajouter une réalisation";
@@ -610,6 +616,7 @@
 			                "values" : tagsList,
 			                "data" : collectionsTypeData
 			    };
+
 			    typeObj["poi"].dynForm.jsonSchema.properties.collections={};
 			    typeObj["poi"].dynForm.jsonSchema.properties.collections=collectionForm;
 				genreForm = {

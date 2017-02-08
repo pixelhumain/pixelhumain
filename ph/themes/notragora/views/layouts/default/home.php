@@ -95,11 +95,14 @@ var words = [
   {text: "ParcoursDEngagement", weight: 8},
   {text: "PasseurDImages", weight: 13},*/
 ];
-jQuery(document).ready(function() {
+jQuery(document).ready( function() {
 	$.each(poiListTags,function(i,v){
-		obj={text: v, 
+		obj={
+			text: v, 
 			weight : weightList[getRandomInt(0, 5)],
-			link : {href:'javascript:directory.toggleEmptyParentSection(".favSection",".'+slugify(v)+'",".searchPoiContainer",1)', class: "favElBtn "+slugify(v)+"Btn", "data-tag":""+slugify(v)+""}
+			link : {
+				href:'javascript:directory.showAll(".favSection",".searchPoiContainer");directory.toggleEmptyParentSection(".favSection",".'+slugify(v)+'",".searchPoiContainer",1)', 
+				class: "favElBtn "+slugify(v)+"Btn", "data-tag":""+slugify(v)+""}
 			//html:{ class: "favElBtn "+slugify(v)+"Btn"}
 		/*	handlers : {
 				click: function() { 
@@ -110,16 +113,16 @@ jQuery(document).ready(function() {
 		words.push(obj);
 	});
 	$('#canvas').jQCloud(words, {
-  height: 400,
-  autoResize: true,
-   shape: 'rectangular',
-   colors: ["#484848", "#6c6969", "#929292"],
-  fontSize: {
-    from: 0.1,
-    to: 0.02
-  }
-});
-  setTitle("<span class='text-red'>Commune<span class='text-dark'>cter</span> : la doc</span>","connectdevelop", "Communecter : La Doc");
+	    height: 400,
+	    autoResize: true,
+	    shape: 'rectangular',
+	    colors: ["#484848", "#6c6969", "#929292"],
+	    fontSize: {
+		    from: 0.1,
+		    to: 0.02
+		}
+	});
+  	setTitle("<span class='text-red'>Commune<span class='text-dark'>cter</span> : la doc</span>","connectdevelop", "Communecter : La Doc");
 });
 function getRandomInt(min, max) {
   min = Math.ceil(min);
