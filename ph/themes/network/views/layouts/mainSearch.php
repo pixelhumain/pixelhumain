@@ -49,8 +49,8 @@
 		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 		$this->renderPartial($layoutPath.'metas');
 
-		//Move the paramsNetwork management to CommunecterModule
-		$params = $this->module->getNetworkParams();
+		//Management of network configuration is in Network model
+		$params = Network::getNetworkJson(Yii::app()->params['networkParams']);
 		// Get source of network json
 		//if(@$_GET["src"])
 		//	$paramsAttr = $_GET["src"].'.json';
