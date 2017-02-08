@@ -617,9 +617,12 @@ function notEmpty(val){
       && val != "";
 }
 
-function removeEmptyAttr (jsonObj) { 
+function removeEmptyAttr (jsonObj, sourceObj) { 
 
     $.each(jsonObj, function(key, value){
+      if(sourceObj && sourceObj[key]){
+
+      }
         if (value === "" || value === null || value === undefined){
             delete jsonObj[key];
         }
