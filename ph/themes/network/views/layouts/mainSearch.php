@@ -48,10 +48,13 @@
 		<?php 	
 		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 		$this->renderPartial($layoutPath.'metas');
+
+		//Move the paramsNetwork management to CommunecterModule
+		$params = $this->module->getNetworkParams();
 		// Get source of network json
 		//if(@$_GET["src"])
 		//	$paramsAttr = $_GET["src"].'.json';
-		if (@Yii::app()->params['networkParams']){
+		/*if (@Yii::app()->params['networkParams']){
 			$paramsAttr = Yii::app()->params['networkParams'].'.json';
 		}else 
 			$paramsAttr = "default.json";
@@ -61,7 +64,7 @@
 			$pathParams = Yii::app()->params['networkParams'];
 
         $json = file_get_contents($pathParams);
-        $params = json_decode($json, true);	
+        $params = json_decode($json, true);	*/
 		?>
 
 		<!-- end: META -->

@@ -247,8 +247,14 @@
 	<div id="titleMapTop">
 		<div class="contentTitleMap">
 			<div class="contentTitleLogo">
-				<?php if(@$params['skin']["logo"]){ ?>
-				<img src="<?php echo $this->module->assetsUrl.'/images/'.$params['skin']["logo"] ?>"  class="<?php echo (!empty($params['skin']['paramsLogo']['origin']) ? 'logoMapOrigine' : 'logoMap' )?>"/>
+				<?php 
+          if(@$params['skin']["logo"]){ 
+            if ( stripos($params['skin']["logo"], "http") != false || stripos($params['skin']["logo"], "https") != false ) {
+              $logoURL = $this->module->assetsUrl.'/images/'.$params['skin']["logo"];
+            } else 
+              $logoURL = $params['skin']["logo"];
+          ?>
+				<img src="<?php echo $logoURL ?>"  class="<?php echo (!empty($params['skin']['paramsLogo']['origin']) ? 'logoMapOrigine' : 'logoMap' )?>"/>
 				<?php } ?>
 				<h1><?php echo $params['skin']["title"] ?></h1>
 			</div>
