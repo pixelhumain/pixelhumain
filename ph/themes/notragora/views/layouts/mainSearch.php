@@ -457,6 +457,7 @@
 		var searchType = [ "persons" ];
 		var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
 
+		var topList = <?php echo json_encode($topList); ?>;
 
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
@@ -583,6 +584,8 @@
 				}
 			}
 			checkScroll();
+
+			Sig.showMapElement(topList);
 		});
 
 		var theme = {
