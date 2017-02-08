@@ -214,8 +214,6 @@ function bindNotifEvents(){
             elem.removeClass('animated bounceOutRight');
             notifCount();
         }, 200);
-
-	    bindLBHLinks();
 	});
 }
 
@@ -292,12 +290,17 @@ function buildNotifications(list)
 	if(typeof list != "undefined" && typeof list == "object"){
 		$.each( list , function( notifKey , notifObj )
 		{
-			var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url.substring( "<?php echo substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1) ?>communecter/".length,notifObj.notify.url.length ) : "#";
+			var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url : "#";
 			//convert url to hash for loadByHash
 			url = "#"+url.replace(/\//g, ".");
 			//var moment = require('moment');
 			moment.lang('fr');
-			momentNotif=moment(new Date( parseInt(notifObj.timestamp.sec)*1000 )).fromNow();
+			if(typeof notifObj.updated != "undefined")
+				momentNotif=moment(new Date( parseInt(notifObj.updated.sec)*1000 )).fromNow();
+			else if(typeof notifObj.created != "undefined")
+				momentNotif=moment(new Date( parseInt(notifObj.created.sec)*1000 )).fromNow();
+			else if(typeof notifObj.timestamp != "undefined")
+				momentNotif=moment(new Date( parseInt(notifObj.timestamp.sec)*1000 )).fromNow();
 			var icon = (typeof notifObj.notify != "undefined") ? notifObj.notify.icon : "fa-bell";
 			var displayName = (typeof notifObj.notify != "undefined") ? notifObj.notify.displayName : "Undefined notification";
 
@@ -322,6 +325,7 @@ function buildNotifications(list)
 		});
 		setTimeout( function(){
 	    	notifCount();
+	    	bindLBHLinks();
 	    }, 800);
 		bindNotifEvents();
 	}
