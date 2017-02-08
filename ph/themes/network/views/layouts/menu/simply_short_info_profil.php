@@ -249,7 +249,7 @@
 			<div class="contentTitleLogo">
 				<?php 
           if(@$params['skin']["logo"]){ 
-            if ( stripos($params['skin']["logo"], "http") != false || stripos($params['skin']["logo"], "https") != false ) {
+            if ( stripos($params['skin']["logo"], "http") === false) {
               $logoURL = $this->module->assetsUrl.'/images/'.$params['skin']["logo"];
             } else 
               $logoURL = $params['skin']["logo"];
