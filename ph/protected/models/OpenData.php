@@ -8,6 +8,7 @@ class OpenData
      */
     public static $phCountries = array( 
                                         "BE"=>"Belgique",
+                                        "BR"=>"Brésil",
                                         "ES"=>"Espagne",
                                         "FR"=>"France",
                         				"GP"=>"Guadeloupe", //971
