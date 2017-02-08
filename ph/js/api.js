@@ -69,7 +69,7 @@ function getAjax(id,url,callback,datatype,blockUI)
             $(id).html(data);
           else if(datatype === "norender" )
             mylog.log("no render",url)
-          else if( typeof data === "string" )
+          else if( typeof data === "string" && datatype != null )
             toastr.success(data);
           else
               $(id).html( JSON.stringify(data, null, 4) );
