@@ -573,8 +573,9 @@ return array(
 	"Account info" => "Infos générales",
 	
 	"No attendee for this event" => "Aucun participant pour cet événement",
-	"No member for this organization" => "Aucun membre inscrit sur cette organisation",
+	"No member for this organization" => "Aucun membre inscrit dans cette organisation",
 	"No contributor for this project" => "Aucun contributeur sur ce projet",
+	"No member for this person" => "Personne dans cette communauté",
 	"Organizator detail" => "Détail de l'organisateur",
 	
 	"Places" => "Lieux",
