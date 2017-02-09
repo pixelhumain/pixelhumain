@@ -314,6 +314,10 @@ return array(
 
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
+	"Citoyens" => "Citoyens",
+	"citoyens" => "citoyens",
+	"Citoyen" => "Citoyen",
+	"citoyen" => "citoyen",
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",

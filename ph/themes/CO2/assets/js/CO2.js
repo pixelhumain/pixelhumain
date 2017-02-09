@@ -14,6 +14,7 @@
 // }
 
 var CoAllReadyLoad = false;
+var CoSigAllReadyLoad = false;
 //back sert juste a differencier un load avec le back btn
 //ne sert plus, juste a savoir d'ou vient drait l'appel
 function loadByHash( hash , back ) { //alert("loadByHash");
@@ -315,6 +316,7 @@ function initKInterface(params){
       $(".tooltips").tooltip();
       mapBg = Sig.loadMap("mapCanvas", initSigParams);
       Sig.showIcoLoading(false);
+      CoSigAllReadyLoad = true;
     }, 3000);
 
 }

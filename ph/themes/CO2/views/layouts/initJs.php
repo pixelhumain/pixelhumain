@@ -82,5 +82,16 @@
         "video":"dark"
     };
  
+
+    var theme = {
+            headerParams : {
+                // organizations : { color: "green",   icon: "group",        name: "Groupes de travail" },
+                // projects      : { color: "purple",  icon: "lightbulb-o",  name: "Projets" },
+                // poi           : { color: "black",   icon: "video-camera",   name: "Productions des groupes de travail" }
+            },
+            init : function(){
+                
+            }
+        }
     
 </script>
