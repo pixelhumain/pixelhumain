@@ -568,6 +568,22 @@ onSave: (optional) overloads the generic saveProcess
 			}
         }
 
+         /* **************************************
+		* DropDown , searchInvite
+		***************************************** */
+        else if ( fieldObj.inputType == "searchInvite" ) {
+        	mylog.log("build field "+field+">>>>>> searchInvite");
+
+			fieldHTML += '<input class="invite-search '+fieldClass+' form-control text-left" placeholder="Un nom, un e-mail ..." autocomplete = "off" id="inviteSearch" name="inviteSearch" value="">'+
+				        		'<ul class="dropdown-menu" id="dropdown_searchInvite" style="">'+
+									'<li class="li-dropdown-scope">-</li>'+
+								'</ul>'+
+							'</input>';
+			
+
+			
+        }
+
         /* **************************************
 		* CAPTCHA
 		***************************************** */
