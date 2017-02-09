@@ -170,7 +170,7 @@ function lazyLoad (js,css, callback) {
 //show all elements corresponding to class id
 function toggle( id, siblingsId, activate, callback )
 {
-	mylog.log("toggle",id,siblingsId);
+	mylog.log("toggle('"+id+"','"+siblingsId+"')");
   $(siblingsId).addClass("hide");
   if(activate)
     $(siblingsId+"Btn").removeClass("active");
@@ -612,9 +612,9 @@ function notNull(val){
       && val != null;
 }
 function notEmpty(val){
-  return typeof val != "undefined"
-      && val != null
-      && val != "";
+  
+    return (typeof val != "undefined" && val != null && val != "");
+   
 }
 
 function removeEmptyAttr (jsonObj) { 

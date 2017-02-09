@@ -461,7 +461,7 @@
 
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
-			theme.init();
+			themeObj.init();
 			/*if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
 				typeObj[key].dynForm.jsonSchema.properties.tags.data=networkTags;
 				if(typeof networkJson.request.mainTag != "undefined")
@@ -559,8 +559,8 @@
 
 		    //console.log("hash", location.hash);
 		    //console.warn("isMapEnd 3",isMapEnd);
-		    console.log("userConnected");
-			console.dir(userConnected);
+		    //console.log("userConnected");
+			//console.dir(userConnected);
 			//si l'utilisateur doit passer par le two_step_register
 
 			if(userConnected != null && userConnected != "" && typeof userConnected != "undefined" && !location.hash){
@@ -588,13 +588,14 @@
 			Sig.showMapElement(topList);
 		});
 
-		var theme = {
+		var themeObj = {
 			headerParams : {
 				organizations : { color: "green",   icon: "group",        name: "Groupes de travail" },
-				projects      : { color: "purple",  icon: "lightbulb-o",  name: "Projets" },
+				projects      : { color: "purple",  icon: "lightbulb-o",  name: "Groupes de travail" },
 				poi       	  : { color: "black",   icon: "video-camera",   name: "Productions des groupes de travail" }
 			},
 			init : function(){
+
 				genresTypeData=[];
 				genresHtml="";
 				$.each(genresType, function(i, tag) {
@@ -603,6 +604,7 @@
 					genresHtml+='<a href="javascript:directory.showAll(\'.favSection\',\'.searchPoiContainer\');directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag)+'Btn" data-tag="'+slugify(tag)+'">'+tag+'</a><br>';
 				});
 				$(".genresList").append(genresHtml);
+
 				collectionsTypeData=[];
 				collectionsHtml="";
 				$.each(collectionsType, function(i, tag2) {
@@ -611,6 +613,7 @@
 					collectionsHtml+='<a href="javascript:directory.showAll(\'.favSection\',\'.searchPoiContainer\');directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag2)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag2)+'Btn" data-tag="'+slugify(tag2)+'">'+tag2+'</a><br>';
 				});
 				$(".collectionsList").append(collectionsHtml);
+
 				typeObj["poi"].dynForm.jsonSchema.title="Ajouter une réalisation";
 				typeObj["poi"].dynForm.jsonSchema.icon="video-camera";
 				collectionForm = {
@@ -620,6 +623,7 @@
 			                "data" : collectionsTypeData
 			    };
 
+			    //specific types as collections added to the atgs field
 			    typeObj["poi"].dynForm.jsonSchema.properties.collections={};
 			    typeObj["poi"].dynForm.jsonSchema.properties.collections=collectionForm;
 				genreForm = {
@@ -628,13 +632,24 @@
 			                "values" : tagsList,
 			                "data" : genresTypeData
 			    };
+
+			    //specific types as genres added to the atgs field
 			    typeObj["poi"].dynForm.jsonSchema.properties.genres={};
 			    typeObj["poi"].dynForm.jsonSchema.properties.genres=genreForm;
+
+				//types can only be videos and will be hidden
 				poiFormType =  {
 					"values" : "video",
 		            "inputType" : "hidden"
 				};
 				typeObj["poi"].dynForm.jsonSchema.properties.type=poiFormType;
+
+				//remove image 
+				delete typeObj["poi"].dynForm.jsonSchema.properties.image;
+				delete typeObj["poi"].dynForm.jsonSchema.afterSave;
+				delete typeObj["poi"].dynForm.jsonSchema.beforeBuild;
+
+				//urls are always shown
 				poiFormUrls = {
 		        	placeholder : "url",
 		            "inputType" : "array",
