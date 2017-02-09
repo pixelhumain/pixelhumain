@@ -138,9 +138,9 @@ function getAjax(id,url,callback,datatype,blockUI)
     if(blockUI)
         $.blockUI({
             message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
-                '<blockquote>'+
-                  '<p>Art is the heart of our culture.</p>'+
-                '</blockquote> '
+                      '<blockquote>'+
+                        '<p>Art is the heart of our culture.</p>'+
+                      '</blockquote> '
         });
   
     if(datatype != "html" )
