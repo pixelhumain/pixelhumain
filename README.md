@@ -81,8 +81,6 @@ $dbconfig = array(
 );
 ```
 You can find an example of dbconfig in the file /ph/protected/config/dbconfig.example.php
-- Create a new folder called "runtime" in the directory "path/to/pixelhumain/ph/protected/"
-- Create a new folder called "assets" in the directory "path/to/pixelhumain/ph"
 - Launch following commands to initiate the application :
 in
 cd path/to/pixelhumain/ph
