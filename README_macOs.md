@@ -297,6 +297,21 @@ Launch following commands to initiate the application :
 <br/>
 <br/>
 
+## Add the module citizenToolKit
+
+
+To launch the application, you need to install the module citizenToolKit. See below to see how to install modules.
+
+This module can be found at https://github.com/pixelhumain/citizenToolKit
+
+
+<br/>
+<br/>
+
+---
+
+<br/>
+<br/>
 
 ## Launch the application ph
 

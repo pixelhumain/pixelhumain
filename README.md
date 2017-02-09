@@ -91,6 +91,10 @@ composer update
 composer install
 ```
 
+####Add the module citizenToolKit
+
+To launch the application, you need to install the module citizenToolKit. See below to see how to install modules.
+
 ####Launch the application
 - Launch you http webserver
 - depending on how you webservers alias is configured here the alias is called ''ph'' and pointing to the folder you cloned test this url :
