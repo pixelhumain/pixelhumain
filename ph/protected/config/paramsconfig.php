@@ -84,6 +84,11 @@ $params = array(
     'mapboxActive' => false, //to activate mabox Prod
     'forceMapboxActive' => false, //to force mabox localhost
     'mapboxToken' => 'pk.eyJ1IjoiY29tbXVuZWN0ZXIiLCJhIjoiY2lreWRkNzNrMDA0dXc3bTA1MHkwbXdscCJ9.NbvsJ14y2bMWWdGqucR_EQ',
+    
+    //rocketchat params
+    'rocketchatEnabled' => false,
+    'rocketchatURL' => "http://chat.lescommuns.org",
+
     /*"front" => array (
         "organization" => true,
         "project" => true,
