@@ -77,7 +77,7 @@
 	
 	<?php // BTN Doc = Doc // ?>
 	<button class="btn-menu-top tooltips pull-left lbh"  onclick="activeMenuTop($(this))"
-			id="" data-hash="#default.directoryjs?type=projects"
+			id="" data-hash="#default.directoryjs?type=organizations"
 			data-toggle="tooltip" data-placement="bottom" title="Groupe de travail" alt="Groupe de travail">
 			<i class="fa fa-group"></i>
 	</button>

@@ -616,8 +616,9 @@
 				});
 				$(".collectionsList").append(collectionsHtml);
 
-				typeObj["poi"].dynForm.jsonSchema.title="Ajouter une réalisation";
-				typeObj["poi"].dynForm.jsonSchema.icon="video-camera";
+				typeObjPoi = typeObj["poi"].dynForm.jsonSchema;
+				typeObjPoi.title="Ajouter une réalisation";
+				typeObjPoi.icon="video-camera";
 				collectionForm = {
 			                "inputType" : "tags",
 			                "placeholder" : "Collections de la réalisation",
@@ -626,8 +627,8 @@
 			    };
 
 			    //specific types as collections added to the atgs field
-			    typeObj["poi"].dynForm.jsonSchema.properties.collections={};
-			    typeObj["poi"].dynForm.jsonSchema.properties.collections=collectionForm;
+			    typeObjPoi.properties.collections={};
+			    typeObjPoi.properties.collections=collectionForm;
 				genreForm = {
 			                "inputType" : "tags",
 			                "placeholder" : "Genres de la réalisation",
@@ -636,20 +637,19 @@
 			    };
 
 			    //specific types as genres added to the atgs field
-			    typeObj["poi"].dynForm.jsonSchema.properties.genres={};
-			    typeObj["poi"].dynForm.jsonSchema.properties.genres=genreForm;
+			    typeObjPoi.properties.genres={};
+			    typeObjPoi.properties.genres=genreForm;
 
 				//types can only be videos and will be hidden
-				poiFormType =  {
-					"values" : "video",
+				typeObjPoi.properties.type={
+					"value" : "video",
 		            "inputType" : "hidden"
 				};
-				typeObj["poi"].dynForm.jsonSchema.properties.type=poiFormType;
 
 				//remove image 
-				delete typeObj["poi"].dynForm.jsonSchema.properties.image;
-				delete typeObj["poi"].dynForm.jsonSchema.afterSave;
-				delete typeObj["poi"].dynForm.jsonSchema.beforeBuild;
+				delete typeObjPoi.properties.image;
+				delete typeObjPoi.afterSave;
+				delete typeObjPoi.beforeBuild;
 
 				//urls are always shown
 				poiFormUrls = {
@@ -660,8 +660,8 @@
 			            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",0);			            
 		            }
 		        };
-		        typeObj["poi"].dynForm.jsonSchema.properties.urls=poiFormUrls;
-				typeObj["poi"].dynForm.jsonSchema.properties.info.html="<p><i class='fa fa-info-circle'></i> Rajouter une video en la chargeant l'url présente sur le compte vimeo de passeur d'image. Cette réalisation sera liée à votre groupe de travail</p>";
+		        typeObjPoi.properties.urls=poiFormUrls;
+				typeObjPoi.properties.info.html="<p><i class='fa fa-info-circle'></i> Rajouter une video en la chargeant l'url présente sur le compte vimeo de passeur d'image. Cette réalisation sera liée à votre groupe de travail</p>";
 			}
 		}
 		</script>
