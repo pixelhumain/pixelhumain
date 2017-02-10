@@ -44,6 +44,7 @@
     },
    "filter" : {
         "types" : false,
+        "paramsFiltre" : "$all",
         "tags" : {
             "activate" : false,
             "title" : "Toutes les catégories",
@@ -96,9 +97,7 @@
                   "Organisation et management de la mobilité" : "Organisation et management de la mobilité"
                 }
             }
-           
-            
-          }
+        }
     },
     "add" : {
         "organization" : true

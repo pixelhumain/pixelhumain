@@ -427,6 +427,7 @@
 		var organizerList = {};
 		var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
 		var allReadyLoad=false;
+
 		// GET LIST OF NETWORK'S TAGS
 		if(typeof networkJson.filter.linksTag != "undefined"){
 			var networkTags = [];
@@ -445,6 +446,7 @@
 		}
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
+			setTitle(networkJson.name , "", networkJson.name+ " : "+networkJson.skin.title, networkJson.name,networkJson.skin.shortDescription);
 			// Initialize tags list for network in form of element
 			if(typeof networkJson.add != "undefined"){
 				$.each(networkJson.add, function(key, v) {
