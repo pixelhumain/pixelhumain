@@ -16,17 +16,25 @@
 	<?php if (!empty($topList)) { ?>
 	<div class="col-xs-12 no-padding main-gallery-top" >
 		<div class="pull-left">
-		<?php foreach ($topList as $data) { 
+		<?php foreach ($topList as $key => $data) { 
 			if(@$data["tags"]){
 				foreach($data["tags"] as $val){
 					if (!in_array($val, $tagsPoiList)) 
 						array_push($tagsPoiList,$val);
 				}
 			}
-			if(@$data["medias"] && @$data["medias"][0]["content"]["image"] && !empty($data["medias"][0]["content"]["image"]))
+			if(@$data["medias"] && @$data["medias"][0]["content"]["image"] && !empty($data["medias"][0]["content"]["image"])){
 				$src = str_replace("1280x720","720x720",$data["medias"][0]["content"]["image"]);
-			else 
+				$topList[$key]["profilExternImageUrl"] = $src;
+			}
+			else {
 				$src = $this->module->assetsUrl."/images/thumbnail-default.jpg";
+				
+			}
+			
+			$topList[$key]["typeSig"] = "poi";
+
+			
 			$name = $data["name"];
 			$tags = "";
 			if (@$data["tags"])
@@ -117,6 +125,7 @@
 </div>
 <script>
 	var poiListTags = <?php echo json_encode($tagsPoiList) ?>;
+	var topList = <?php echo json_encode($topList) ?>;
 	
 	function activeMenuTop(thisJQ){
 		$(".btn-menu-top").removeClass("active");
@@ -128,5 +137,8 @@
 		}).mouseleave(function(){
 			$(this).find(".description-poi").hide();
 		});
+
+		console.log("topList", topList);
+		Sig.showMapElements(Sig.map, topList);
 	});
 </script>

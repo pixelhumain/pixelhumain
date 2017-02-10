@@ -457,7 +457,7 @@
 		var searchType = [ "persons" ];
 		var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
 
-		var topList = <?php echo json_encode($topList); ?>;
+		//var topList = <?php echo json_encode($topList); ?>;
 
 		var CoSigAllReadyLoad = true;
 
@@ -587,7 +587,7 @@
 			}
 			checkScroll();
 
-			Sig.showMapElement(topList);
+			//Sig.showMapElement(topList);
 		});
 
 		var themeObj = {
