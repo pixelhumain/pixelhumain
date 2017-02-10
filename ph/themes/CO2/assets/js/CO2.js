@@ -288,10 +288,7 @@ function initKInterface(params){
     	showMap();
     });
 
-    
-
     bindLBHLinks();
-
 
     $(".menu-name-profil #menu-thumb-profil, "+
       ".menu-name-profil #menu-name-profil").mouseenter(function(){

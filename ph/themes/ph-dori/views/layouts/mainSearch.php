@@ -448,6 +448,8 @@
 		var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
 		var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
 
+		var CoSigAllReadyLoad = true;
+
 		//mylog.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
 			toastr.options = {

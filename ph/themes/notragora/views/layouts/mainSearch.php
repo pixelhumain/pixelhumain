@@ -459,6 +459,8 @@
 
 		var topList = <?php echo json_encode($topList); ?>;
 
+		var CoSigAllReadyLoad = true;
+
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
 			themeObj.init();

@@ -21,7 +21,7 @@
 
         /* MAP */
         "mapHeight" => 235,
-        "mapTop" => 0,
+        "mapTop" => 40,
         "mapColor" => 'rgb(69, 96, 116)',  //ex : '#456074', //'#5F8295', //'#955F5F', rgba(69, 116, 88, 0.49)
         "mapOpacity" => 0.4, //ex : 0.4
 
