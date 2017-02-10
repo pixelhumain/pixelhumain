@@ -4,6 +4,15 @@ return array(
 	//FOLLOW
 	"{who} is following {where}" => "{who} suit {where}",
 	"{who} are following {where}" => "{who} suivent {where}",
+	//JOIN
+	"{who} participates to {where}" => "{who} participe à {where}",
+	"{who} participate to {where}" => "{who} participent à {where}",
+	"{who} joins {where}" => "{who} a rejoint {where}",
+	"{who} join {where}" => "{who} ont rejoint {where}",
+	"{who} contributes {where}" => "{who} contribue à {where}",
+	"{who} contribute {where}" => "{who} contribuent à {where}",
+	"{who} becomes administrator of {where}" => "{who} est devenu(e) administeur(trice) de {where}",
+	"{who} become administrator of {where}" => "{who} sont devenu(e)s administeur(trice)s de {where}",
 	//ASK
 	"{who} wants to join {where}"=> "{who} veut rejoindre {where}",
 	"{who} want to join {where}"=> "{who} veulent rejoindre {where}",
@@ -48,7 +57,14 @@ return array(
 	"{who} disapprove your news" => "{who} désapprouvent vote post",
 	"{who} disapproves your comment on {where}" =>"{who} désapprouve votre commentaire sur {where}",
 	"{who} disapprove your comment on {where}" => "{who} désapprouvent votre commentaire {where}",
-	//ROOM
+	//POST
+	"{where} publishes a new post"=>"{where} a publié un post",
+	"{where} publishes new posts"=>"{where} a pubié plusieurs posts",
+	"{who} writes a post on your wall"=>"{who} a écrit un post sur votre mur",
+	"{who} write posts on your wall"=>"{who} ont écrit plusieurs posts sur votre mur",
+	"{who} writes a post on the wall of {where}" => "{who} a écrit un post sur le mur de {where}",
+	"{who} write posts on the wall of {where}" => "{who} ont écrit plusieurs posts sur le mur de {where}",
+	//ADD
 	"{who} added a new voting room on {where}" => "{who} a ajouté une salle de décision sur {where}",
 	"{who} added a new discussion room on {where}" => "{who} a ajouté une salle de discussion sur {where}",
 	"{who} added a new actions list on {where}" => "{who} a ajouté une salle d'action sur {where}",
