@@ -106,18 +106,14 @@
 	  			var cityName = "<?php echo $cityName; ?>";
 	 	   <?php } ?>
 		   jQuery(document).ready(function() {
-				<?php if($user != "NOT_CONNECTED") { ?>
-					//updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
+				<?php if(@Yii::app()->params["rocketchatEnabled"] == true) { ?>
+					(function(w, d, s, u) {
+					    w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
+					    var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
+					    j.async = true; j.src = '<?php echo Yii::app()->params["rocketchatURL"] ?>/packages/rocketchat_livechat/assets/rocket-livechat.js';
+					    h.parentNode.insertBefore(j, h);
+					})(window, document, 'script', '<?php echo Yii::app()->params["rocketchatURL"] ?>/livechat');
 				<?php } ?>
-
-				
-				(function(w, d, s, u) {
-				    w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
-				    var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
-				    j.async = true; j.src = 'https://chat.initiative.place/packages/rocketchat_livechat/assets/rocket-livechat.js';
-				    h.parentNode.insertBefore(j, h);
-				})(window, document, 'script', 'https://chat.initiative.place/livechat');
-				
 			});
 		</script>
 		<style type="text/css">
@@ -316,9 +312,6 @@
 			// '/plugins/toastr/toastr.min.css',
 			'/plugins/jquery-cookie/jquery.cookie.js' , 
 			'/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
-			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
-			'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
-			'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
 			'/plugins/select2/select2.min.js' , 
 			'/plugins/select2/select2.css',
 			'/plugins/moment/min/moment-with-locales.min.js' ,
