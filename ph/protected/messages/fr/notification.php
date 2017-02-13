@@ -4,6 +4,8 @@ return array(
 	//FOLLOW
 	"{who} is following {where}" => "{who} suit {where}",
 	"{who} are following {where}" => "{who} suivent {where}",
+	"{who} is following you" => "{who} vous suit",
+	"{who} are following you" => "{who} vous suivent",
 	//JOIN
 	"{who} participates to {where}" => "{who} participe à {where}",
 	"{who} participate to {where}" => "{who} participent à {where}",
@@ -34,8 +36,10 @@ return array(
 	"{who} confirmed the invitation to administrate {where}" => "{who} a confirmé l'invitation pour administrer {where}",
 	"{who} have confirmed the invitation to administrate {where}" => "{who} ont confirmé l'invitation pour administrer {where}",
 	//COMMENT
-	"{who} commented on your news" => "{who} a commenté votre post",
-	"{who} added comments on your news" => "{who} ont commenté votre post",
+	"{who} commented on your news {what}" => "{who} a commenté votre post {what}",
+	"{who} added comments on your news {what}" => "{who} ont commenté votre post {what}",
+	"{who} commented a news {what} posted on {where}" => "{who} a commenté le post {what} publié sur {where}",
+	"{who} added comments on a news {what} posted on {where}" => "{who} ont commenté le post {what} publié sur {where}",
 	"{who} answered to your comment posted on {where}" => "{who} a répondu à votre commentaire posté sur {where}" ,
 	"{who} added comments on your comments posted on {where}" => "{who} ont répondu à vos commentaires postés sur {where}",
 	"{who} commented on proposal {what} in {where}" => "{who} a commenté la proposition {what} dans {where}",
@@ -45,18 +49,20 @@ return array(
 	"{who} commented on discussion {what} in {where}" => "{who} a participé à la discussion {what} dans {where}",
 	"{who} added comments on discussion {what} in {where}" => "{who} ont participé à la discussion {what} dans {where}",
 	//LIKE&uNLIKE
-	"{who} likes a news from {where}" => "{who} aime un post de {where}",
-	"{who} like a news from {where}" => "{who} aiment un post de {where}",
-	"{who} likes your news" => "{who} aime votre post",
-	"{who} like your news" => "{who} aiment vote post",
+	"{who} likes a news {what} from {where}" => "{who} aime un post {what} de {where}",
+	"{who} like a news {what} from {where}" => "{who} aiment un post {what} de {where}",
+	"{who} likes your news {what}" => "{who} aime votre post {what}",
+	"{who} like your news {what}" => "{who} aiment vote post {what}",
 	"{who} likes your comment on {where}" =>"{who} aime votre commentaire sur {where}",
 	"{who} like your comment on {where}" => "{who} aiment votre commentaire sur {where}",
-	"{who} disapproves a news from {where}" => "{who} désapprouve un post de {where}",
-	"{who} disapprove a news from {where}" => "{who} désapprouvent un post de {where}",
-	"{who} disapproves your news" => "{who} désapprouve votre post",
-	"{who} disapprove your news" => "{who} désapprouvent vote post",
+	"{who} disapproves a news {what} from {where}" => "{who} désapprouve un post {what} de {where}",
+	"{who} disapprove a news {what} from {where}" => "{who} désapprouvent un post {what} de {where}",
+	"{who} disapproves your news {what}" => "{who} désapprouve votre post {what}",
+	"{who} disapprove your news {what}" => "{who} désapprouvent vote post {what}",
 	"{who} disapproves your comment on {where}" =>"{who} désapprouve votre commentaire sur {where}",
 	"{who} disapprove your comment on {where}" => "{who} désapprouvent votre commentaire {where}",
+	"the news of" => "le post de",
+	"your news" => "votre post",
 	//POST
 	"{where} publishes a new post"=>"{where} a publié un post",
 	"{where} publishes new posts"=>"{where} a pubié plusieurs posts",
@@ -76,6 +82,9 @@ return array(
 	"{who} added a new post in {where}" => "{who} a ajouté un post dans {where}",
 	"{who} added a new profil image on {where}" => "{who} a ajouté une nouvelle image de profil dans {where}",
 	"{who} added new images to the album of {where}" => "{who} a ajouté des images à l'album de {where}",
-	"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}"
+	"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
+	//VOTE
+	"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
+	"{who} have voted on {what} in {where}" => "{who} ont voté sur {what} dans {where}"
 );
 ?>
