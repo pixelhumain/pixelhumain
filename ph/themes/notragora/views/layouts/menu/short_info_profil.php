@@ -51,13 +51,11 @@ HtmlHelper::registerCssAndScriptsFiles(array( '/assets/css/menus/short_info_prof
 <div class="menu-info-profil <?php echo isset($type) ? $type : ''; ?> " 
      data-tpl="default.menu.short_info_profil">
     
-  
-  
   <?php // BTN MAP // ?>
   
 
   <?php // INPUT TEXT GLOBAL SEARCH // ?>
-  <div class="input-group group-globalsearch inline hidden-xs">
+  <div class="input-group group-globalsearch inline hidden-xs margin-right-10">
     
     <input type="text" class="text-dark input-global-search" 
            placeholder="<?php echo Yii::t("common","Search") ?> ..."/>
