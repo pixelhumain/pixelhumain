@@ -122,7 +122,7 @@ jQuery(document).ready( function() {
 		    to: 0.02
 		}
 	});
-  	setTitle("<span class='text-red'>Commune<span class='text-dark'>cter</span> : la doc</span>","connectdevelop", "Communecter : La Doc");
+  	setTitle("<span class='text-red'>Notragora : Association Hord-Cadre</span>","connectdevelop", "Notragora : Association Hord-Cadre");
 });
 function getRandomInt(min, max) {
   min = Math.ceil(min);

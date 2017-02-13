@@ -16,7 +16,9 @@
 	<?php if (!empty($topList)) { ?>
 	<div class="col-xs-12 no-padding main-gallery-top" >
 		<div class="pull-left">
-		<?php foreach ($topList as $key => $data) { 
+		<?php 
+		foreach ($topList as $key => $data) 
+		{ 
 			if(@$data["tags"]){
 				foreach($data["tags"] as $val){
 					if (!in_array($val, $tagsPoiList)) 
@@ -37,8 +39,11 @@
 			
 			$name = $data["name"];
 			$tags = "";
-			if (@$data["tags"])
-				$tags = strtolower(implode(" ", $data["tags"]));
+			if (@$data["tags"]){
+				foreach ($data["tags"] as $t ) {
+					$tags .= " ".strtolower( InflectorHelper::slugify2( $t ) );
+				}
+			}
 			$href = "#element.detail.type.".Poi::COLLECTION.".id.".(string)$data["_id"];
 		?>
 			<div class="searchPoiContainer <?php echo $tags ?>">
@@ -62,7 +67,8 @@
 					</a>
 				</span>
 			</div>
-		<?php } ?>
+	<?php
+		} ?>
 		</div>
 	</div>
 	<?php } ?>
@@ -139,6 +145,6 @@
 		});
 
 		console.log("topList", topList);
-		Sig.showMapElements(Sig.map, topList);
+		//Sig.showMapElements(Sig.map, topList);
 	});
 </script>
