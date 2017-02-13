@@ -387,7 +387,7 @@
 		    "entry": "fa-gavel",
 		    "action": "fa-cogs",
 		    "actions": "fa-cogs",
-		    "poi": "fa-info-circle",
+		    "poi": "fa-video-camera",
 			"video": "fa-video-camera"
 		  };
 		var mapColorIconTop = {
