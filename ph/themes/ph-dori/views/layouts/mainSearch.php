@@ -531,7 +531,7 @@
 				$(".search-loader").html("<i class='fa fa-check'></i> Vous êtes communecté à " + cityNameCommunexion + ', ' + cpCommunexion);
 			}
 
-			toogleCommunexion();
+			//toogleCommunexion();
 
 
 			//manages the back button state 

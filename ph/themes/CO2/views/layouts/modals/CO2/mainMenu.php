@@ -17,7 +17,7 @@
                     <h3 class="letter-red no-margin hidden-xs" style="margin-top:5px!important;">
                         MENU PRINCIPAL<br>
                     </h3>
-                    <h4 class="text-dark no-margin" style="margin-top:5px!important;">
+                    <!-- <h4 class="text-dark no-margin" style="margin-top:5px!important;">
                         <i class="fa fa-exclamation-circle letter-red fa-2x"></i> VERSION DE TEST EN COURS DE DÉVELOPPEMENT
                         <i class="fa fa-exclamation-circle letter-red fa-2x"></i> <br>
                         <span class="letter-red"></span>
@@ -28,7 +28,7 @@
                         L'objectif est de proposer une page/interface pour chaque grande fonctionnalité de communecter, afin de créer des portes d'entrées indépendantes sur le réseau, en fonction des besoins de chacun.<br><br>
                         <b>Vos remarques et idées à ce propos sont les bienvenues.<br>
                         Merci de nous en faire part sur le channel dédié <a href="https://chat.initiative.place/channel/co2_brainstorm" class="letter-blue">#CO2_brainstorm</a></b>
-                    </p>
+                    </p> -->
                     <br>
                     <?php 
                         if( isset( Yii::app()->session['userId']) ){

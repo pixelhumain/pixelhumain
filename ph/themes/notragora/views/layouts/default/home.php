@@ -95,7 +95,7 @@ var words = [
   {text: "ParcoursDEngagement", weight: 8},
   {text: "PasseurDImages", weight: 13},*/
 ];
-jQuery(document).ready( function() {
+jQuery(document).ready( function() { 
 	$.each(poiListTags,function(i,v){
 		obj={
 			text: v, 

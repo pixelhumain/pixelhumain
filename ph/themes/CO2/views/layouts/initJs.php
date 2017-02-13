@@ -38,7 +38,9 @@
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",
         "citoyen":"<?php echo Person::ICON ?>", 
+        "citoyens":"<?php echo Person::ICON ?>", 
         "person":"<?php echo Person::ICON ?>", 
+        "people":"<?php echo Person::ICON ?>", 
         "NGO":"<?php echo Organization::ICON ?>",
         "LocalBusiness" :"<?php echo Organization::ICON_BIZ ?>",
         "Group" : "<?php echo Organization::ICON_GROUP ?>",
@@ -61,7 +63,9 @@
     var mapColorIconTop = {
         "default" : "dark",
         "citoyen":"yellow", 
+        "citoyens":"yellow", 
         "person":"yellow", 
+        "people":"yellow", 
         "NGO":"green",
         "LocalBusiness" :"azure",
         "Group" : "white",
