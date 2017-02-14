@@ -44,7 +44,6 @@
     },
    "filter" : {
         "types" : false,
-        "paramsFiltre" : "$all",
         "tags" : {
             "activate" : false,
             "title" : "Toutes les catégories",
