@@ -14,6 +14,7 @@
 // }
 
 var CoAllReadyLoad = false;
+var CoSigAllReadyLoad = false;
 //back sert juste a differencier un load avec le back btn
 //ne sert plus, juste a savoir d'ou vient drait l'appel
 function loadByHash( hash , back ) { //alert("loadByHash");
@@ -37,10 +38,10 @@ function loadByHash( hash , back ) { //alert("loadByHash");
 
     location.hash = hash;
 
-    /*if(!back){
+    if(!back){
     	history.replaceState( { "hash" :location.hash} , null, location.hash ); //changes the history.state
 	    mylog.warn("replaceState history.state",history.state);
-	}*/
+	}
 }
 
 
@@ -107,7 +108,7 @@ function  processingBlockUi() {
 	 			  	"c'est trop long !"+
 	 			  '</a>';
 
-	if(CO2DomainName=="CO2") msgBlock +=
+	if(CO2DomainName=="CO2" && false) msgBlock +=
 	'<h4 class="text-dark no-margin" style="margin-top:5px!important;">'+
         'VERSION DE TEST EN COURS DE DÉVELOPPEMENT !!!'+
         '<br>'+
@@ -137,9 +138,9 @@ function getAjax(id,url,callback,datatype,blockUI)
     if(blockUI)
         $.blockUI({
             message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
-                '<blockquote>'+
-                  '<p>Art is the heart of our culture.</p>'+
-                '</blockquote> '
+                      '<blockquote>'+
+                        '<p>Art is the heart of our culture.</p>'+
+                      '</blockquote> '
         });
   
     if(datatype != "html" )
@@ -287,11 +288,7 @@ function initKInterface(params){
     	showMap();
     });
 
-    $(".tooltips").tooltip();
-    
-
     bindLBHLinks();
-
 
     $(".menu-name-profil #menu-thumb-profil, "+
       ".menu-name-profil #menu-name-profil").mouseenter(function(){
@@ -312,15 +309,29 @@ function initKInterface(params){
         $("#dropdown-user").removeClass("open");
     });
 
+    setTimeout(function(){ 
+      $(".tooltips").tooltip();
+      mapBg = Sig.loadMap("mapCanvas", initSigParams);
+      Sig.showIcoLoading(false);
+      CoSigAllReadyLoad = true;
+    }, 3000);
+
 }
 
 var currentScrollTop = 0;
 var isMapEnd = false;
 function showMap(show)
 {
+
+  if(mapBg == null) return;
+
 	//if(typeof Sig == "undefined") { alert("Pas de SIG"); return; } 
 	mylog.log("typeof SIG : ", typeof Sig);
 	if(typeof Sig == "undefined") show = false;
+
+  //chargement de la carte
+
+
 
 	mylog.log("showMap");
 	if(show === undefined) show = !isMapEnd;

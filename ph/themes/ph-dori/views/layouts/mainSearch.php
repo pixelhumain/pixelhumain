@@ -64,6 +64,8 @@
 		$cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
 		
 		
+		
+		
 		?>
 		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" />
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple.css" type="text/css" id="skin_color">
@@ -80,7 +82,7 @@
 		<!-- end: MAIN CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
-		<script>
+		<script type="text/javascript">
 		   var initT = new Object();
 		   var showDelaunay = true;
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
@@ -446,6 +448,8 @@
 		var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
 		var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
 
+		var CoSigAllReadyLoad = true;
+
 		//mylog.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
 			toastr.options = {
@@ -527,7 +531,7 @@
 				$(".search-loader").html("<i class='fa fa-check'></i> Vous êtes communecté à " + cityNameCommunexion + ', ' + cpCommunexion);
 			}
 
-			toogleCommunexion();
+			//toogleCommunexion();
 
 
 			//manages the back button state 

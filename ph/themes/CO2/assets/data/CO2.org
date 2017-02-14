@@ -1,0 +1,37 @@
+
+* ************************************************************    
+* Refontes CO2
+* ************************************************************   
+[ ] Directory => transformer le tpl JS en tpl PHP unique
+
+[ ] Eclater Communecter.js
+  [ ] sortir var typeObj
+  [ ] sortir var collection
+  [ ] sortir var documents
+  [ ] sortir var keyboardNav
+  [ ] sortir var js_templates
+  [ ] sortir var album
+  [ ] sortir var elementLib
+  [ ] sortir var loadableUrls
+
+
+* ************************************************************    
+* Paramètrage CO2
+* ************************************************************   
+[ ] Créer des fichiers JSON pour définir les parametres du theme selon le nom de domaine
+[ ] Créer des fichiers JSON pour définir les listes de tag contextuelles 
+(/par domaine /par appli)
+
+
+* ************************************************************    
+* Evolutions / New Features
+* ************************************************************   
+[ ] Finir le système de petites annonces (cf : parametrage tags context)
+[ ] Faire le système de publicité sur Kgougle
+[ ] Finir la refonte du tpl News (==media) PHP
+[ ] Messagerie privée / RocketChat
+[ ] Pouvoir partager les news
+[ ] Notifications
+[ ] Paramètres de confidentialité / autres paramètres
+[ ] Finir les pages perso 
+[ ] Finir les OnePages

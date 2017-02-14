@@ -357,8 +357,9 @@ div.timeline .newsTL > .newsFeed:nth-child(2n+1) .timeline_element:before {
 
 
 #btn-submit-form{
-	right: 15px;
+	margin-left: 10px;
 	position: absolute;
+	margin-bottom: 10px;
 }
 
 .main-top-menu .moduleLabel {

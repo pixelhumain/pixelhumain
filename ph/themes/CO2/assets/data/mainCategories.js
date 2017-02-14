@@ -3,14 +3,16 @@ var mainCategories = {
 		"loisir" : { 
 			"color" : "lightblue",
 			"items" : [ { name: "Actualité", 			faIcon: "newspaper-o" }, 
-						{ name: "Radios", 				faIcon: "microphone" }, 
 						{ name: "Météo", 				faIcon: "sun-o" }, 
 						{ name: "TV", 					faIcon: "television" }, 
+						{ name: "Cinémas", 				faIcon: "film"},
 						{ name: "Sorties", 				faIcon: "ticket fa-rotate-90",
 							keywords: ["sortir", "concert", "théâtre", "culture", "restaurant"]
 						},
+						{ name: "Tourisme", 			faIcon: "plane",
+							keywords: ["hotel", "gite", "sortie", "guide", "auberge", "voiture", "transport"]
+						},
 						{ name: "Bar réstaurants", 		faIcon: "glass"},
-						{ name: "Cinémas", 				faIcon: "film"},
 						{ name: "E-boutiques", 			faIcon: "shopping-cart",
 							keywords: ["market", "shop", "vêtement", "chaussure", "bio", "jouet", "accessoire"]
 						},
@@ -33,9 +35,7 @@ var mainCategories = {
 						{ name: "Petites annonces",  	faIcon: "tag",
 							keywords: ["annonce", "auto", "pièce auto", "immobilier", "embauche"]
 						}, 
-						{ name: "Tourisme", 			faIcon: "plane",
-							keywords: ["hotel", "gite", "sortie", "guide", "auberge", "voiture", "transport"]
-						},
+						{ name: "Radios", 				faIcon: "microphone" }, 
 						{ name: "Administrations",  	faIcon: "id-card",
 							keywords: ["impot", "fisc", "développement", "entreprise", 
 										"logement", "province", "congrès", "compétence", "service", "agriculture", "commune", "etat"]

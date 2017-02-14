@@ -17,6 +17,10 @@ class TestController extends Controller {
         else
 	   		$this->render("index");
 	}
+	public function actionInfo() {
+	    $this->layout = "test";
+	    phpinfo();
+	}
 
 	public function actionTest() {
         Rest::json($_SERVER);    		

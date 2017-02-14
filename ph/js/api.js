@@ -69,7 +69,7 @@ function getAjax(id,url,callback,datatype,blockUI)
             $(id).html(data);
           else if(datatype === "norender" )
             mylog.log("no render",url)
-          else if( typeof data === "string" )
+          else if( typeof data === "string" && datatype != null )
             toastr.success(data);
           else
               $(id).html( JSON.stringify(data, null, 4) );
@@ -170,7 +170,7 @@ function lazyLoad (js,css, callback) {
 //show all elements corresponding to class id
 function toggle( id, siblingsId, activate, callback )
 {
-	mylog.log("toggle",id,siblingsId);
+	mylog.log("toggle('"+id+"','"+siblingsId+"')");
   $(siblingsId).addClass("hide");
   if(activate)
     $(siblingsId+"Btn").removeClass("active");
@@ -612,9 +612,9 @@ function notNull(val){
       && val != null;
 }
 function notEmpty(val){
-  return typeof val != "undefined"
-      && val != null
-      && val != "";
+  
+    return (typeof val != "undefined" && val != null && val != "");
+   
 }
 
 function removeEmptyAttr (jsonObj) { 

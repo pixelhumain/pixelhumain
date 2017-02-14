@@ -94,8 +94,7 @@
 				<i class="fa fa-angle-down pull-right"></i><br>
 				<hr>
 			</span>
-			<div class="collectionsList">
-			</div>
+			<div class="collectionsList"> </div>
 		</div>
 
 		<div class="col-md-12 margin-top-15">
@@ -104,8 +103,7 @@
 				<i class="fa fa-angle-down pull-right"></i><br>
 				<hr>
 			</span>
-			<div class="genresList">
-			</div>
+			<div class="genresList"> </div>
 		</div>		
 	</div>
 	

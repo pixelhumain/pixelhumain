@@ -115,18 +115,7 @@
 				  "showMethod": "fadeIn",
 				  "hideMethod": "fadeOut"
 				};
-				<?php if($user != "NOT_CONNECTED") { ?>
-					//updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
-				<?php } ?>
 
-				/*
-				(function(w, d, s, u) {
-				    w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
-				    var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
-				    j.async = true; j.src = 'https://chat.initiative.place/packages/rocketchat_livechat/assets/rocket-livechat.js';
-				    h.parentNode.insertBefore(j, h);
-				})(window, document, 'script', 'https://chat.initiative.place/livechat');
-				*/
 			});
 		</script>
 		<style type="text/css">
@@ -387,7 +376,7 @@
 		    "entry": "fa-gavel",
 		    "action": "fa-cogs",
 		    "actions": "fa-cogs",
-		    "poi": "fa-info-circle",
+		    "poi": "fa-video-camera",
 			"video": "fa-video-camera"
 		  };
 		var mapColorIconTop = {
@@ -456,10 +445,12 @@
 		var genresType=<?php echo json_encode( $genresType ) ?>;
 		var searchType = [ "persons" ];
 		var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
+		var CoSigAllReadyLoad = true;
 
 		//console.warn("isMapEnd 1",isMapEnd);
-		jQuery(document).ready(function() {
-			notragora.init();
+		jQuery(document).ready(function() { 
+			
+			themeObj.init();
 			/*if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
 				typeObj[key].dynForm.jsonSchema.properties.tags.data=networkTags;
 				if(typeof networkJson.request.mainTag != "undefined")
@@ -499,7 +490,7 @@
 		    	shadowOnHeader()
 		    });
 
-
+		    //alert("on ready 1");
 		    $(".btn-scope").click(function(){
 		    	var level = $(this).attr("level");
 		    	selectScopeLevelCommunexion(level);
@@ -526,7 +517,8 @@
 				$(".search-loader").html("<i class='fa fa-check'></i> Vous êtes communecté à " + cityNameCommunexion + ', ' + cpCommunexion);
 			}
 
-			toogleCommunexion();
+			//alert("on ready 2");
+		   // toogleCommunexion();
 
 
 			//manages the back button state 
@@ -557,16 +549,18 @@
 
 		    //console.log("hash", location.hash);
 		    //console.warn("isMapEnd 3",isMapEnd);
-		    console.log("userConnected");
-			console.dir(userConnected);
+		    //console.log("userConnected");
+			//console.dir(userConnected);
 			//si l'utilisateur doit passer par le two_step_register
 
+			//alert("before loadByHash");
 			if(userConnected != null && userConnected != "" && typeof userConnected != "undefined" && !location.hash){
 				loadByHash("#person.detail.id."+userId);
 				return;
 			} 
 			else{ //si l'utilisateur est déjà passé par le two_step_register
 		 		if(/*location.hash != "#default.live" &&*/ location.hash != "#" && location.hash != ""){
+
 					loadByHash(location.hash);
 					return;
 				}
@@ -582,48 +576,72 @@
 				}
 			}
 			checkScroll();
+
+			//Sig.showMapElement(topList);
 		});
-		var notragora = {
+
+		var themeObj = {
+			headerParams : {
+				organizations : { color: "green",   icon: "group",        name: "Groupes de travail" },
+				projects      : { color: "purple",  icon: "lightbulb-o",  name: "Groupes de travail" },
+				poi       	  : { color: "black",   icon: "video-camera",   name: "Productions des groupes de travail" }
+			},
 			init : function(){
+
 				genresTypeData=[];
 				genresHtml="";
 				$.each(genresType, function(i, tag) {
 					val={id:tag,text:tag};
 					genresTypeData.push(val);
-					genresHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag)+'Btn" data-tag="'+slugify(tag)+'">'+tag+'</a><br>';
+					genresHtml+='<a href="javascript:directory.showAll(\'.favSection\',\'.searchPoiContainer\');directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag)+'Btn" data-tag="'+slugify(tag)+'">'+tag+'</a><br>';
 				});
 				$(".genresList").append(genresHtml);
+
 				collectionsTypeData=[];
 				collectionsHtml="";
 				$.each(collectionsType, function(i, tag2) {
 					val2={id:tag2,text:tag2};
 					collectionsTypeData.push(val2);
-					collectionsHtml+='<a href="javascript:directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag2)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag2)+'Btn" data-tag="'+slugify(tag2)+'">'+tag2+'</a><br>';
+					collectionsHtml+='<a href="javascript:directory.showAll(\'.favSection\',\'.searchPoiContainer\');directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag2)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag2)+'Btn" data-tag="'+slugify(tag2)+'">'+tag2+'</a><br>';
 				});
 				$(".collectionsList").append(collectionsHtml);
-				typeObj["poi"].dynForm.jsonSchema.title="Ajouter une réalisation";
-				typeObj["poi"].dynForm.jsonSchema.icon="video-camera";
+
+				typeObjPoi = typeObj["poi"].dynForm.jsonSchema;
+				typeObjPoi.title="Ajouter une réalisation";
+				typeObjPoi.icon="video-camera";
 				collectionForm = {
 			                "inputType" : "tags",
 			                "placeholder" : "Collections de la réalisation",
 			                "values" : tagsList,
 			                "data" : collectionsTypeData
 			    };
-			    typeObj["poi"].dynForm.jsonSchema.properties.collections={};
-			    typeObj["poi"].dynForm.jsonSchema.properties.collections=collectionForm;
+
+			    //specific types as collections added to the atgs field
+			    typeObjPoi.properties.collections={};
+			    typeObjPoi.properties.collections=collectionForm;
 				genreForm = {
 			                "inputType" : "tags",
 			                "placeholder" : "Genres de la réalisation",
 			                "values" : tagsList,
 			                "data" : genresTypeData
 			    };
-			    typeObj["poi"].dynForm.jsonSchema.properties.genres={};
-			    typeObj["poi"].dynForm.jsonSchema.properties.genres=genreForm;
-				poiFormType =  {
-					"values" : "video",
+
+			    //specific types as genres added to the atgs field
+			    typeObjPoi.properties.genres={};
+			    typeObjPoi.properties.genres=genreForm;
+
+				//types can only be videos and will be hidden
+				typeObjPoi.properties.type={
+					"value" : "video",
 		            "inputType" : "hidden"
 				};
-				typeObj["poi"].dynForm.jsonSchema.properties.type=poiFormType;
+
+				//remove image 
+				delete typeObjPoi.properties.image;
+				delete typeObjPoi.afterSave;
+				delete typeObjPoi.beforeBuild;
+
+				//urls are always shown
 				poiFormUrls = {
 		        	placeholder : "url",
 		            "inputType" : "array",
@@ -632,10 +650,12 @@
 			            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",0);			            
 		            }
 		        };
-		        typeObj["poi"].dynForm.jsonSchema.properties.urls=poiFormUrls;
-				typeObj["poi"].dynForm.jsonSchema.properties.info.html="<p><i class='fa fa-info-circle'></i> Rajouter une video en la chargeant l'url présente sur le compte vimeo de passeur d'image. Cette réalisation sera liée à votre groupe de travail</p>";
+		        typeObjPoi.properties.urls=poiFormUrls;
+				typeObjPoi.properties.info.html="<p><i class='fa fa-info-circle'></i> Rajouter une video en la chargeant l'url présente sur le compte vimeo de passeur d'image. Cette réalisation sera liée à votre groupe de travail</p>";
 			}
 		}
+
+		
 		</script>
 
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->

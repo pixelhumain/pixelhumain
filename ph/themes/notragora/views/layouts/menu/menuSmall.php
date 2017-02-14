@@ -93,7 +93,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							<i class="fa fa-angle-down"></i> 
 						</h2>
 					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
+					<div class="col-xs-4 col-sm-4 col-md-4 center padding-5">
 
 						<a href="javascript:elementLib.openForm('person')" class="btn bg-yellow">
 
@@ -101,7 +101,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							<span class="lbl-btn-menu-name-add">Quelqu'un</span>
 						</a>
 					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
+					<div class="col-xs-4 col-sm-4 col-md-4 center padding-5">
 
 						<a href="javascript:elementLib.openForm('organization')" class="btn bg-green">
 
@@ -111,7 +111,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							</span>
 						</a>
 					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 center padding-5">
+					<div class="col-xs-4 col-sm-4 col-md-4 center padding-5">
 
 						<a href="javascript:elementLib.openForm('project')" class="btn bg-purple">
 
