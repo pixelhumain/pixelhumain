@@ -1,5 +1,8 @@
 {
 	"name": "pixelhumain/webapp",
+	"config": {
+		"secure-http": false
+	},
 	"description": "Webapp of Pixelhumain",
 	"keywords": ["PixelHumain"],
 	"type": "webapp",
