@@ -643,6 +643,7 @@ function buildSelectOptions(list,value) {
 
 function buildSelectGroupOptions(list,value) { 
   var html = "";
+  mylog.log("list", list)
   if(list){
     $.each(list, function(groupKey, groupVal) {
       var data = ( groupKey ) ? 'data-type="'+groupKey+'"' : "";
