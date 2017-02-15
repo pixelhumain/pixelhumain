@@ -56,7 +56,7 @@
                 "background-color" : "#f5f5f5",
                 "image" : "Marker.png",
                 "tags" : {
-                    "Nord" : "Nord",
+                    "Nord" : ["Nord","MEL"],
                     "Pas de Calais" : "Pas de Calais",
                     "Somme" : "Somme",
                     "Oise" : "Oise",
@@ -89,8 +89,7 @@
                   "Mobilités actives et partagées" : "Mobilités actives et partagées",
                   "Energie et mobilité" : "Energie et mobilité",
                   "Services à la mobilité" : "Services à la mobilité",
-                  "TIC" : "TIC",
-                  "Numérique et Data" : "Numérique et Data",
+                  "TIC, Numérique et Data" : "TIC, Numérique et Data",
                   "Ingénierie et financement" : "Ingénierie et financement",
                   "Aménagement, valorisation et développement" : "Aménagement, valorisation et développement",
                   "Organisation et management de la mobilité" : "Organisation et management de la mobilité"
