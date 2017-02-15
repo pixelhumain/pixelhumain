@@ -81,8 +81,6 @@ $dbconfig = array(
 );
 ```
 You can find an example of dbconfig in the file /ph/protected/config/dbconfig.example.php
-- Create a new folder called "runtime" in the directory "path/to/pixelhumain/ph/protected/"
-- Create a new folder called "assets" in the directory "path/to/pixelhumain/ph"
 - Launch following commands to initiate the application :
 in
 cd path/to/pixelhumain/ph
@@ -92,6 +90,10 @@ composer update
 ...
 composer install
 ```
+
+####Add the module citizenToolKit
+
+To launch the application, you need to install the module citizenToolKit. See below to see how to install modules.
 
 ####Launch the application
 - Launch you http webserver
@@ -133,10 +135,8 @@ RewriteRule ^(.*)$ /ph/index.php/$1 [L]
 - cd modules
 - git clone "any of the modules". Currently maintained modules are:
   *  https://github.com/pixelhumain/communecter
-  *  https://github.com/pixelhumain/citizenToolkit
-  *  https://github.com/pixelhumain/cityData
+  *  https://github.com/pixelhumain/citizenToolKit
   *  https://github.com/pixelhumain/opendata
-  *  https://github.com/pixelhumain/network
   *  https://github.com/pixelhumain/api
   
 - front end URL : 127.0.0.1/ph/communecter

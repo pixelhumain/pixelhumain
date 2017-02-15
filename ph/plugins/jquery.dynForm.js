@@ -91,9 +91,9 @@ onSave: (optional) overloads the generic saveProcess
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
-						' <a href="javascript:;" onclick="$(\'#ajax-modal\').modal(\'hide\');" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
+						' <button onclick="$(\'#ajax-modal\').modal(\'hide\');" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
 							'<i class="fa fa-times "></i> Annuler'+
-						'</a> ';
+						'</button> ';
 
 			fieldHTML += '</div>';
 

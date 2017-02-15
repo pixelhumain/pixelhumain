@@ -106,18 +106,14 @@
 	  			var cityName = "<?php echo $cityName; ?>";
 	 	   <?php } ?>
 		   jQuery(document).ready(function() {
-				<?php if($user != "NOT_CONNECTED") { ?>
-					//updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
+				<?php if(@Yii::app()->params["rocketchatEnabled"] == true) { ?>
+					(function(w, d, s, u) {
+					    w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
+					    var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
+					    j.async = true; j.src = '<?php echo Yii::app()->params["rocketchatURL"] ?>/packages/rocketchat_livechat/assets/rocket-livechat.js';
+					    h.parentNode.insertBefore(j, h);
+					})(window, document, 'script', '<?php echo Yii::app()->params["rocketchatURL"] ?>/livechat');
 				<?php } ?>
-
-				
-				(function(w, d, s, u) {
-				    w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
-				    var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
-				    j.async = true; j.src = 'https://chat.initiative.place/packages/rocketchat_livechat/assets/rocket-livechat.js';
-				    h.parentNode.insertBefore(j, h);
-				})(window, document, 'script', 'https://chat.initiative.place/livechat');
-				
 			});
 		</script>
 		<style type="text/css">
@@ -440,14 +436,18 @@
 		var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
 		var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
 		var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
+
 		var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
 		var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
 		var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : null?>;
 		var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
 		var organizerList = {};
 		var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
+
 		var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
 		var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
+
+		var CoSigAllReadyLoad = true;
 
 		//mylog.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
@@ -530,7 +530,7 @@
 				$(".search-loader").html("<i class='fa fa-check'></i> Vous êtes communecté à " + cityNameCommunexion + ', ' + cpCommunexion);
 			}
 
-			toogleCommunexion();
+			//toogleCommunexion();
 
 
 			//manages the back button state 

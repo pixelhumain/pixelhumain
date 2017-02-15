@@ -21,7 +21,7 @@
 
         /* MAP */
         "mapHeight" => 235,
-        "mapTop" => 100,
+        "mapTop" => 180,
         "mapColor" => '#FFF',//'rgb(69, 96, 116)',  //ex : '#456074', //'#5F8295', //'#955F5F', rgba(69, 116, 88, 0.49)
         "mapOpacity" => 0.4, //ex : 0.4
 
@@ -106,12 +106,16 @@
 		background-color: rgba(42, 57, 69, 0.7) !important; /*rgba(111, 161, 177, 0.74) !important;*/
 	}
 	.<?php echo $moduleName; ?> .btn-group-map{
-		top:70px !important;
+		/*top:70px !important;*/
 		display:none;
+	}
+
+	.<?php echo $moduleName; ?> .btn-group-map .btn-group{
+		top:0px !important;
 	}
 	.<?php echo $moduleName; ?> .btn-group-map.tools-btn{
 		left: unset; /*90px !important;*/
-		top:70px !important;
+		/*top:70px !important;*/
 		/*background-color: rgba(76, 114, 126, 0.65) !important;*/
 	}
 	.<?php echo $moduleName; ?> .btn-group-map.tools-btn.input-search-place{
