@@ -6,6 +6,9 @@
 		background-color: rgba(197, 225, 197, 0.3);
 		border-bottom: 1px dashed #bed1be;
 	}
+	.notifications li.read{
+		background-color:white !important;
+	}
 	.notifications{
 		/*background-color: white;*/
 		color: #528195;
@@ -119,6 +122,21 @@
 	.badge-tranparent{
 		background-color: transparent;
 	}
+	.removeBtn{
+		position: absolute !important;
+		right: 3px;
+		bottom: -4px;
+		border-radius:25px !important;
+		border:1px solid grey;
+		color: grey;
+	}
+	.removeBtn:hover{
+		background-color: grey;
+		color: white;
+	};
+	.removeBtn i{
+		font-size:12px;
+	}
 </style>
 <div id="notificationPanelSearch" class="">
 		<div class="notifications">
@@ -195,7 +213,6 @@ var maxNotifTimstamp = <?php echo $maxTimestamp ?>;
 
 jQuery(document).ready(function() 
 {
-
 	//initNotifications();
 	//bindLBHLinks();
 	bindNotifEvents();
@@ -206,19 +223,74 @@ function bindNotifEvents(){
 	$(".notifList a.notif").off().on("click",function () 
 	{
 		markAsRead( $(this).data("id") );
+		hash = $(this).data("href");
 		elem = $(this).parent();
-		elem.removeClass('animated bounceInRight').addClass("animated bounceOutRight");
-		elem.removeClass("enable");
+		//elem.removeClass('animated bounceInRight').addClass("animated bounceOutRight");
+		//elem.removeClass("enable");
 		setTimeout(function(){
-            elem.addClass('hide');
-            elem.removeClass('animated bounceOutRight');
-            notifCount();
+          //  elem.addClass("read");
+            //elem.removeClass('animated bounceOutRight');
+            loadByHash(hash);
+            //notifCount();
         }, 200);
 	});
+	$('.tooltips').tooltip();
+	$(".notifList li").mouseenter(function(){
+		$(this).find(".removeBtn").show();
+	}).mouseleave(function(){
+		$(this).find(".removeBtn").hide();
+	})
 }
+function updateNotification(action, id)
+{ 
+	var action = action;
+	var all = true;
+	data = new Object;
+	if(id != null){
+		var notifId=id;
+		all=false;
+		data.id=id
+	} else {
+		data.action=action;
+		data.all=all;
+	}
+	//ajax remove Notifications by AS Id
+	$.ajax({
+        type: "POST",
+        url: baseUrl+"/"+moduleId+"/notification/update",
+        data: data,
+        dataType : 'json'
+    })
+    .done( function (data) {
+    	mylog.dir(data);
+        if ( data && data.result ) {
+        	if(action=="seen")    
+        		notifCount();
+        	else{           
+        		if(all)
+        			$(".notifList li.notifLi").addClass("read");
+        		else
+        			$(".notifList li.notif_"+notifId).addClass("read");
+        	}
+        	mylog.log("notification cleared ",data);
+        } else {
+            toastr.error("no notifications found ");
+        }
 
-function markAsRead(id)
-{
+    });
+}
+function markAllAsSeen(){
+	updateNotification("seen");
+}
+function markAsRead(id){
+	updateNotification("read",id);
+}
+function markAllAsRead()
+{ 
+	updateNotification("read");
+}
+function removeNotification(id)
+{ // Ancienne markAsRead
 	mylog.log("markAsRead",id);
 	//ajax remove Notifications by AS Id
 	$.ajax({
@@ -228,7 +300,7 @@ function markAsRead(id)
         dataType : 'json'
     })
     .done( function (data) {
-    	mylog.dir(data);
+    	//mylog.dir(data);
         if ( data && data.result ) {               
         	$(".notifList li.notif_"+id).remove();
         	mylog.log("notification cleared ",data);
@@ -239,8 +311,9 @@ function markAsRead(id)
     });
 }
 
-function markAllAsRead()
-{
+function removeAllNotifications()
+{ 
+	//Ancienne markAllAsRead
 	$.ajax({
         type: "POST",
         url: baseUrl+"/"+moduleId+"/notification/markallnotificationasread",
@@ -281,7 +354,26 @@ function refreshNotifications()
         $(".pageslide-list.header .btn-primary i.fa-refresh").removeClass("fa-spin");
     });
 }
+/*function markAllNotificationsAsSeen()
+{
+	$.ajax({
+        type: "POST",
+        data:{"action":"seen","all":true}
+        url: baseUrl+"/"+moduleId+"/notification/update"
+    })
+    .done(function (data) { //mylog.log("REFRESH NOTIF : "); mylog.dir(data);
+        if (data) {       
+        	countNotif(true);
+        } else {
+            //toastr.error("no notifications found ");
+        }
+        $(".pageslide-list.header .btn-primary i.fa-refresh").removeClass("fa-spin");
+    }).fail(function(){
+    	toastr.error("error notifications");
+        $(".pageslide-list.header .btn-primary i.fa-refresh").removeClass("fa-spin");
+    });
 
+}*/
 function buildNotifications(list)
 {	mylog.log(list);
 	mylog.info("buildNotifications()");
@@ -303,9 +395,15 @@ function buildNotifications(list)
 				momentNotif=moment(new Date( parseInt(notifObj.timestamp.sec)*1000 )).fromNow();
 			var icon = (typeof notifObj.notify != "undefined") ? notifObj.notify.icon : "fa-bell";
 			var displayName = (typeof notifObj.notify != "undefined") ? notifObj.notify.displayName : "Undefined notification";
+			//console.log(notifObj);
+			//console.log(userId);
+			//console.log(notifObj.notify);
+			//console.log(notifObj.notify.id[userId]);
+			var isSeen = (typeof notifObj.notify.id[userId] != "undefined" && typeof notifObj.notify.id[userId].isUnsee != "undefined") ? "" : "seen";
+			var isRead = (typeof notifObj.notify.id[userId] != "undefined" && typeof notifObj.notify.id[userId].isUnread != "undefined") ? "" : "read";
 
-			str = "<li class='notifLi notif_"+notifKey+" hide'>"+
-					"<a class='notif lbh' data-id='"+notifKey+"' href='"+ url +"'>"+
+			str = "<li class='notifLi notif_"+notifKey+" "+isSeen+" "+isRead+" hide'>"+
+					"<a href='javascript:;' class='notif' data-id='"+notifKey+"' data-href='"+ url +"'>"+
 						"<span class='label bg-dark'>"+
 							'<i class="fa '+icon+'"></i>'+
 						"</span>" + 
@@ -316,6 +414,9 @@ function buildNotifications(list)
 						
 						"<span class='time pull-left'>"+momentNotif+"</span>"+
 					"</a>"+
+					"<a href='javascript:;' class='label removeBtn tooltips' onclick='removeNotification(\""+notifKey+"\")' data-toggle='tooltip' data-placement='left' title='<?php echo Yii::t("common","Delete"); ?>' style='display:none;'>"+
+							'<i class="fa fa-remove"></i>'+
+						"</a>" + 
 				  "</li>";
 
 			$(".notifList").append(str);
@@ -325,17 +426,24 @@ function buildNotifications(list)
 		});
 		setTimeout( function(){
 	    	notifCount();
-	    	bindLBHLinks();
+	    	bindNotifEvents();
+	    	//bindLBHLinks();
 	    }, 800);
-		bindNotifEvents();
+		//bindNotifEvents();
 	}
 }
 
-function notifCount()
+function notifCount(upNotifUnsee)
 { 	var countNotif = $(".notifList li.enable").length;
+	var countNotifSee = $(".notifList li.seen").length;
+	var countNotifUnsee = countNotif-countNotifSee;
+	if(upNotifUnsee)
+		countNotifUnsee=0;
 	mylog.log(" !!!! notifCount", countNotif);
 	$(".notifCount").html( countNotif );
-	if( countNotif > 0 )
+	if(countNotif == 0)
+		$(".notifList").append("<li><i class='fa fa-ban'></i> <?php echo Yii::t("common","No more notifications for the moment") ?></li>");
+	if( countNotifUnsee > 0)
 	{
 	    $(".notifications-count").html(countNotif);
 		$('.notifications-count').removeClass('hide');
@@ -344,9 +452,9 @@ function notifCount()
 		$('.notifications-count').removeClass('badge-tranparent');
 		$(".markAllAsRead").show();
 	} else {
-		$(".notifList").append("<li><i class='fa fa-ban'></i> <?php echo Yii::t("common","No more notifications for the moment") ?></li>");
 		//$('.notifications-count').addClass('hide');
-		$(".notifications-count").html("0");
+		//$(".notifications-count").html("0");
+		$('.notifications-count').addClass('hide');
 		$('.notifications-count').removeClass('badge-success');
 		$('.notifications-count').addClass('badge-tranparent');
 		$(".markAllAsRead").hide();
