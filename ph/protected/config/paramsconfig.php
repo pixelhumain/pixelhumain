@@ -87,7 +87,7 @@ $params = array(
     
     //rocketchat params
     'rocketchatEnabled' => false,
-    'rocketchatURL' => "http://chat.lescommuns.org",
+    'rocketchatURL' => "https://chat.lescommuns.org",
 
     /*"front" => array (
         "organization" => true,
