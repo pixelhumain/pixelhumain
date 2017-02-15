@@ -93,7 +93,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							<i class="fa fa-angle-down"></i> 
 						</h2>
 					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 center padding-5">
+					<div class="col-xs-6 center padding-5">
 
 						<a href="javascript:elementLib.openForm('person')" class="btn bg-yellow">
 
@@ -101,16 +101,17 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							<span class="lbl-btn-menu-name-add">Quelqu'un</span>
 						</a>
 					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 center padding-5">
+					<div class="col-xs-6 center padding-5">
 
 						<a href="javascript:elementLib.openForm('organization')" class="btn bg-green">
 
 							<i class="fa fa-group"></i><br>
 							<span class="lbl-btn-menu-name-add">
-								<span class="hidden-xs">Une o</span><span class="hidden-sm hidden-md hidden-lg">O</span>rganisation
+								<span class="hidden-xs">Un groupe de travail</span>
 							</span>
 						</a>
 					</div>
+					<?php /* ?>
 					<div class="col-xs-4 col-sm-4 col-md-4 center padding-5">
 
 						<a href="javascript:elementLib.openForm('project')" class="btn bg-purple">
@@ -121,6 +122,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							</span>
 						</a>
 					</div>
+					<?php */ ?>
 				<?php } ?>
 
 				<div class="col-xs-12  no-padding">
