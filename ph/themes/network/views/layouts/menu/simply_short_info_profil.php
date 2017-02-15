@@ -155,7 +155,7 @@
   padding-left:10px;
 }
 .contentTitleMap{
-	width: 500px;
+    width: 500px;
     border-radius: 0px 0px 50px 50px;
     color: white;
     background-color: rgba(40,40,40,0.9)!important;
@@ -210,7 +210,7 @@
 	font-size: 16px;
 }
 .logoMap{
-	width: 40px;
+    width: 40px;
     height: 40px;
     margin-top: -5px;
     border-radius: 20px;
@@ -218,6 +218,15 @@
     display: -webkit-inline-box;
     background-color: white;
 }
+
+.logoMapOrigine{
+    width: 60px;
+    height: 40px;
+    margin-top: -5px;
+    margin-right: 5px;
+    background-color: white;
+}
+
 .poweredBy{
 	margin-top: 5px;
     font-size: 11px;
@@ -233,21 +242,19 @@
 		<i class="fa fa-filter firstIcon"></i>
 		<span style="display:none;float:right;"> <i class="fa fa-filter"></i> Filtres</span>
 	</a>
-    <?php if(@$params['skin']["logo"]){ ?>
 
-<!--	<a class="pull-left tooltips" href="javascript:loadByHash('#default.view.page.index.dir.docs')"  id="main-btn-co"
-		data-toggle="tooltip" data-placement="bottom" 
-		title="Lire la documentation" 
-		alt="Lire la documentation">
-    	<img src="<?php echo $this->module->assetsUrl.'/images/'.$params['skin']["logo"] ?>" />
-    </a>  -->
-    <?php } ?>
     <?php if(@$params['skin']["title"]){ ?>
 	<div id="titleMapTop">
 		<div class="contentTitleMap">
 			<div class="contentTitleLogo">
-				<?php if(@$params['skin']["logo"]){ ?>
-				<img src="<?php echo $this->module->assetsUrl.'/images/'.$params['skin']["logo"] ?>" class="logoMap"/>
+				<?php 
+          if(@$params['skin']["logo"]){ 
+            if ( stripos($params['skin']["logo"], "http") === false) {
+              $logoURL = $this->module->assetsUrl.'/images/'.$params['skin']["logo"];
+            } else 
+              $logoURL = $params['skin']["logo"];
+          ?>
+				<img src="<?php echo $logoURL ?>"  class="<?php echo (!empty($params['skin']['paramsLogo']['origin']) ? 'logoMapOrigine' : 'logoMap' )?>"/>
 				<?php } ?>
 				<h1><?php echo $params['skin']["title"] ?></h1>
 			</div>
@@ -258,10 +265,9 @@
 				</span>
 				<?php } ?>
 				<?php if (@$params['skin']["docs"] && $params['skin']["docs"]){ ?>
-					<br/>
-					<a href="#default.view.page.index.dir.docs" class="tooltips lbh" id="btn-documentation"	data-toggle="tooltip" data-placement="bottom" title="Lire la documentation" alt="Lire la documentation" style="color:lightblue;"> 
-						<i class="fa fa-info-circle"></i> En savoir plus
-					</a>
+          <a href="javascript:;" class="tooltips" id="btn-documentation" data-toggle="tooltip" data-placement="bottom" title="Lire la documentation" alt="Lire la documentation" style="color:lightblue;"> 
+            <i class="fa fa-info-circle"></i> En savoir plus
+          </a>
 				<?php } ?>
 				<?php if (@$params['skin']["displayCommunexion"] && $params['skin']["displayCommunexion"]){ ?>
 				<br/>
@@ -415,6 +421,29 @@
   </div>
 
  </div>
+<?php 
+          $enSavoirPlus = "";
+          if (  @$params['enSavoirPlus'] && 
+                ( stripos($params['enSavoirPlus'], "http") !== false || 
+                  stripos($params['enSavoirPlus'], "https") !== false ) ) 
+                  $enSavoirPlus = file_get_contents($params["enSavoirPlus"]);
+          
+          ?>
+
+ <div class="modal fade" role="dialog" id="modal-confidentiality">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title"><i class="fa fa-cog"></i> En savoir plus</h4>
+        </div>
+        <div class="modal-body" id="savoirBody"><?php echo $enSavoirPlus ; ?></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success btn-confidentialitySettings" data-dismiss="modal" aria-label="Close" >OK</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
 <script>
   var timeoutGS = setTimeout(function(){ }, 100);
@@ -431,7 +460,7 @@
         loadByHash("#default.simplydirectory");
         startSearch(0, 100);
       }
-       
+      //enSavoirPlus(); 
     });
 
 
@@ -469,6 +498,12 @@
         timeoutDropdownGS = setTimeout(function(){ 
             showDropDownGS(false);
         }, 300);
+    });
+
+    $("#btn-documentation").on("click", function(){
+        enSavoirPlus();
+        mylog.log("confidentiality");
+        $("#modal-confidentiality").modal("show");        
     });
 
     showDropDownGS(false);
@@ -782,6 +817,17 @@ function autoCompleteSearchGS(search, indexMin, indexMax){
 
                     
   }
+
+
+  function enSavoirPlus(){
+    mylog.log("enSavoirPlus");
+    var text = $("#savoirBody").html();
+    mylog.log("text",text);
+    var res = markdownToHtml(text);
+     mylog.log("res",res);
+    $("#savoirBody").html(res);
+  }   
+
 
 
 
