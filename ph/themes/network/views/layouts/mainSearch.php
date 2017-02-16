@@ -603,6 +603,8 @@
 			}
 			checkScroll();
 		});
+
+		
 		</script>
 
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
