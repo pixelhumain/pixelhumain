@@ -35,6 +35,7 @@
     var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     
+    var globalTheme = "<?php echo Yii::app()->theme->name;?>";
 
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",

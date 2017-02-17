@@ -2,7 +2,7 @@
 * ************************************************************    
 * Refontes CO2
 * ************************************************************   
-[ ] Directory => transformer le tpl JS en tpl PHP unique
+[ ] Directory => transformer le tpl JS en tpl PHP unique (ou refactor tpl JS)
 
 [ ] Eclater Communecter.js
   [ ] sortir var typeObj
@@ -26,12 +26,14 @@
 * ************************************************************    
 * Evolutions / New Features
 * ************************************************************   
-[ ] Finir le système de petites annonces (cf : parametrage tags context)
+[ ] Mettre en ligne Kgougle
 [ ] Faire le système de publicité sur Kgougle
+
+[ ] Finir le système de petites annonces
 [ ] Finir la refonte du tpl News (==media) PHP
 [ ] Messagerie privée / RocketChat
 [ ] Pouvoir partager les news
-[ ] Notifications
+[ ] Nouveau système de notifications
 [ ] Paramètres de confidentialité / autres paramètres
 [ ] Finir les pages perso 
 [ ] Finir les OnePages

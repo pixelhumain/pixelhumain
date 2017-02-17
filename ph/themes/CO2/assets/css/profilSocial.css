@@ -241,7 +241,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .profilSocial .accordion li i.fa-chevron-right {
     right: 12px;
     left: auto;
-    font-size: 16px;
+    font-size: 13px;
 }
 
 .profilSocial .accordion li.open .link {
@@ -294,13 +294,26 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
  }
 
 
+.searchSmallMenu{
+    font-weight: 300;
+}
+
+#social-header{
+    min-height: 240px;
+}
 
 
 
 
+@media screen and (max-width: 1024px) {
+    #main-name-element{
+        font-size: 1.2em;
+    }
+}
 
+@media (max-width: 768px) {
 
-
+}
 
 
 
