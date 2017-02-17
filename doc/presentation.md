@@ -14,13 +14,13 @@ pixelhumain Version 0.01
 Serveur : __Php__ :
 
   * open source
-  * ouplesse
+  * souplesse
   * language populaire donc plus suceptible d'interresser les devs
  
 BDD : __MongoDB__ hébergé chez __MongoLab__ :
 
   * souplesse noSQL
-  * s'adapte a tout les languages actuels
+  * s'adapte a tous les languages actuels
   * simplicité de lecture et d'utilisation
 
 
@@ -29,7 +29,7 @@ BDD : __MongoDB__ hébergé chez __MongoLab__ :
 on a une collection 'france'
 qui contient chaque : 
 * région referencé par son indicatif ex : 974 pour la Réunion
-* commune referencé par son codepostal ex : 97421 pour la Rivière
+* commune referencé par son code postal ex : 97421 pour la Rivière
 
 une commune est décrite comme cela 
 automatiquement rempli (en parti) en recuperant directement les infos chez wikipedia 
