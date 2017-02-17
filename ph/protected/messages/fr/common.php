@@ -693,6 +693,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Quotes" => "Quotes",
 	"Quotation marks" => "Guillemets",
 	"Nothing" => "Rien",
+	"The following attributs has been updated : " => "Les attributs suivants ont été mis à jour",
+	"name" => "nom",
 
 
 );
