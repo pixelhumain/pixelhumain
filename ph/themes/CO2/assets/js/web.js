@@ -3,8 +3,12 @@ function startWebSearch(search, category){
 
     var searchSpace = search.replace(/\s+/g, '');
 
-    if((!notEmpty(search) && !notEmpty(category)) || (searchSpace=="" && !notEmpty(category))) {
+    if((!notEmpty(search) && !notEmpty(category)) || 
+        (searchSpace=="" && !notEmpty(category))) {
         toastr.info("Champ de recherche vide !");
+        return;
+    }else if(searchSpace.length == 1 && !notEmpty(category)){
+        toastr.info("Votre recherche est trop courte : merci d'utiliser 2 lettres au minimum");
         return;
     }
 
