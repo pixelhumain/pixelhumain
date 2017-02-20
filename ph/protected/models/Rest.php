@@ -21,6 +21,50 @@ class Rest
 		else
 			echo json_encode( $res, $param );  
 	}
+
+	// function to convert array to xml
+	public static function array_to_xml( $data, $xml_data ) {
+		
+	    foreach( $data as $key => $value ) {
+	        if( is_numeric($key) ){
+	            $key = 'item'; //dealing with <0/>..<n/> issues
+	            
+	        }
+	        if( is_array($value) ) {
+	            $subnode = $xml_data->addChild($key);
+	            self::array_to_xml($value, $subnode);
+
+	        } else {
+	        	
+	            $xml_data->addChild("$key",htmlspecialchars("$value"));
+	            
+	        }
+	     }
+
+	     return $xml_data;
+	}
+
+	public static function xml($res, $xml_element) { 
+
+
+		/*$xml_element = new SimpleXMLElement(
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss version=\"2.0\">
+				<channel></channel>
+				<title> Fil d'actualité de </title>
+				<description>Communecter, un site fait par les communs pour les communs </description>
+				<image>
+      			<url>http://127.0.0.1/ph/assets/7d331fe5/images/Communecter-32x32.svg</url></image>
+				</rss>"); */
+
+		header("Content-type: text/xml");
+
+
+		$xml_inter = self::array_to_xml($res,$xml_element);
+
+		$xml_result = $xml_inter -> asXML();
+
+		echo $xml_result;
+	}
 	
 	public static function sendResponse($status = 200, $body = '', $content_type = 'text/html')
 	{
