@@ -402,6 +402,9 @@ return array(
 	"Leave this event" 				=> "Quitter cet évènement",
 	"Leave" 						=> "Quitter",
 	"Join this Organization" 		=> "Rejoindre cette organisation",
+	"Join this organization" 		=> "Rejoindre cette organisation",
+	"Join this project" 		=> "Rejoindre ce projet",
+	"Go to the event" => "Participer à l'événement",
 	"Join" 							=> "Rejoindre",
 	"Manage"						=> "Administrer",
 	"added" => "ajouté",
@@ -662,7 +665,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Remove This Locality" => "Effacer cette addresse",
 	"Add Locality" => "Ajouter une adresse",
 	"Show map" => "Voir la carte",
-	"Unknown Locality" => "Adresse non renseigné",
+	"Unknown Locality" => "Adresse non renseignée",
 	"Parenthood" => "Parenté",
 
 	"Show map" => "Afficher sur la carte",
@@ -691,6 +694,9 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Choose" => "Choisir",
 	"Next step" => "Etape suivante",
 	"Previous step" => "Etape précédente",
+	"by" => "par",
+	"on" => "sur",
+
 );
 
 ?>
