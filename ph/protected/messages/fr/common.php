@@ -694,6 +694,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Quotation marks" => "Guillemets",
 	"Nothing" => "Rien",
 
+	"Disabled" => "Désactivé",
 
 );
 

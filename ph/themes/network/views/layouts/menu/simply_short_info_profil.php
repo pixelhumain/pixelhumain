@@ -281,8 +281,11 @@
 						<i class="fa fa-sign-in"></i> 
 						<span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
 					</button>
-					<?php } else { ?>
-						<a class="btn-top btn bg-red hidden-xs" href="/ph/communecter/person/logout?network=<?php echo $params["name"] ?>" style="margin-right:10px;" onclick="">
+					<?php } else { 
+///ph/communecter/person/logout?network=<?php echo $params["name"]
+            ?>
+          
+						<a class="btn-top btn bg-red hidden-xs" href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout').'?network='.$params['name']; ?>" style="margin-right:10px;" onclick="">
   						<i class="fa fa-sign-out"></i> 
   						<span class="hidden-sm hidden-md hidden-xs">Déconnexion</span>
   					</a>
