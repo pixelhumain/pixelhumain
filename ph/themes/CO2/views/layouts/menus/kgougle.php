@@ -23,6 +23,7 @@ input#second-search-bar{
 }
 
 #btn-sethome{
+    background-color: transparent !important;
     border:transparent;
 }
 #btn-sethome:hover{

@@ -15,7 +15,7 @@ header .intro-text .skills{
 
 <!-- <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logocagou-<?php echo $subdomainName; ?>.png" class="nc_map"><br> -->
 <span class="name font-blackoutM">
-    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15"><br>
+    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15 margin-top-25"><br>
 
     <!-- <span class="letter letter-blue font-ZILAP letter-k">K</span>
     <span class="letter letter-yellow">G</span>
