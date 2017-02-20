@@ -264,9 +264,10 @@ function updateNotification(action, id)
     .done( function (data) {
     	mylog.dir(data);
         if ( data && data.result ) {
-        	if(action=="seen")    
+        	if(action=="seen"){  
+        		$(".notifList li.notifLi").addClass("seen")  
         		notifCount();
-        	else{           
+        	}else{           
         		if(all)
         			$(".notifList li.notifLi").addClass("read");
         		else
