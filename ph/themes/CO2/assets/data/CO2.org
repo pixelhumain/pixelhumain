@@ -2,7 +2,6 @@
 * ************************************************************    
 * Refontes CO2
 * ************************************************************   
-[ ] Directory => transformer le tpl JS en tpl PHP unique (ou refactor tpl JS)
 
 [ ] Eclater Communecter.js
   [ ] sortir var typeObj
@@ -20,7 +19,7 @@
 * ************************************************************   
 [ ] Créer des fichiers JSON pour définir les parametres du theme selon le nom de domaine
 [ ] Créer des fichiers JSON pour définir les listes de tag contextuelles 
-(/par domaine /par appli)
+  [ ] Application PRO
 
 
 * ************************************************************    
@@ -34,14 +33,27 @@
 * ************************************************************    
 * Evolutions / New Features
 * ************************************************************   
-[ ] Mettre en ligne Kgougle
-[ ] Faire le système de publicité sur Kgougle
+[ ] Mettre en ligne Kgougle :::Sylvain
+[ ] Faire le système de publicité sur Kgougle :::Tango
 
-[ ] Finir le système de petites annonces
-[ ] Finir la refonte du tpl News (==media) PHP
-[ ] Messagerie privée / RocketChat
-[ ] Pouvoir partager les news
-[ ] Nouveau système de notifications
-[ ] Paramètres de confidentialité / autres paramètres
-[ ] Finir les pages perso 
-[ ] Finir les OnePages
+[ ] Finir les pages perso :::Tango
+  [ ] Paramètres de confidentialité / autres paramètres :::Rapha
+  [ ] Nouveau système de notifications :::Clem
+  [ ] Edition des données perso :::Rapha
+
+[ ] Réintégrer les City  :::Rapha
+  [ ] Filiaires thématiques   :::Tib
+
+[ ] Finir le système de petites annonces   :::Tib   :::Tango
+[ ] Finir la refonte du tpl News (==media) PHP :::Tango
+
+
+[ ] Pouvoir partager les news (in / out) :::
+
+[ ] Finir les OnePages :::Tango
+[ ] Directory => transformer le tpl JS en tpl PHP unique (ou refactor tpl JS) :::
+
+[ ] DDA :::Tango :::Tib
+
+[ ] Messagerie privée / RocketChat :::Tib
+
