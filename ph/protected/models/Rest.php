@@ -23,54 +23,44 @@ class Rest
 	}
 
 	// function to convert array to xml
-	public static function array_to_xml( $data, $xml_data, $format="xml") {		
-
-		foreach($data as $key => $value) {
-			if ($format == Translate::FORMAT_KML)
-				$key = 'Folder';
-
-			if( is_numeric($key) )
-				$key = 'Placemark';
-
-			if( $format == Translate::FORMAT_RSS )
-				$key = 'item';
-
-			if( is_array($value) ) {
-				$subnode = $xml_data->addChild($key);
-				self::array_to_xml($value, $subnode);
-			} else {
-				$xml_data->addChild("$key",htmlspecialchars("$value"));
-
-				if ($key == "img") {
-					$img = $xml_data->children();
-					$img->addAttribute('src',$value);
-				} else if ($key == "enclosure") {
-					if (isset($xml_data)) {
-						foreach ($xml_data->children() as $parent => $child){ 
-							if ($parent == "enclosure") {
-								$child->addAttribute('url',$value);
-								$child->addAttribute('type', 'image/jpeg');
-							}
-						}
-					}
-				}
-	        }
-	    }
+	public static function array_to_xml( $data, $xml_data ) {
 		
-		return $xml_data;
+	    foreach( $data as $key => $value ) {
+	        if( is_numeric($key) ){
+	            $key = 'item'; //dealing with <0/>..<n/> issues
+	            
+	        }
+	        if( is_array($value) ) {
+	            $subnode = $xml_data->addChild($key);
+	            self::array_to_xml($value, $subnode);
+
+	        } else {
+	        	
+	            $xml_data->addChild("$key",htmlspecialchars("$value"));
+	            
+	        }
+	     }
+
+	     return $xml_data;
 	}
 
-	public static function xml($res, $xml_element, $format) { 
+	public static function xml($res, $xml_element) { 
+
+
+		/*$xml_element = new SimpleXMLElement(
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss version=\"2.0\">
+				<channel></channel>
+				<title> Fil d'actualité de </title>
+				<description>Communecter, un site fait par les communs pour les communs </description>
+				<image>
+      			<url>http://127.0.0.1/ph/assets/7d331fe5/images/Communecter-32x32.svg</url></image>
+				</rss>"); */
 
 		header("Content-type: text/xml");
 
-		if ($format == Translate::FORMAT_KML) {
-			$res2["Folder"] = array();
-			array_push($res2["Folder"], $res);
-			$res = $res2["Folder"];
-		}
 
-		$xml_inter = self::array_to_xml( $res, $xml_element, $format );
+		$xml_inter = self::array_to_xml($res,$xml_element);
+
 		$xml_result = $xml_inter -> asXML();
 
 		echo $xml_result;
