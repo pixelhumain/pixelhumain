@@ -30,6 +30,8 @@ $mailConfigTest = array(
 );
 
 $params = array(
+    //Application Name 
+    'name' => 'communecter',
     //Beta Test ?
     'betaTest' => false,
     //By default controller
@@ -37,6 +39,8 @@ $params = array(
     // Mail configuration
     'adminEmail'=>'testmail.pixelhumain@gmail.com',
     'forceMailSend' => true,
+    // mail is sent on each element creation when true
+    'mailForSuperAdmin' => false,
 
     //UPLOAD Management Configuration
     //upload url without the base URL
