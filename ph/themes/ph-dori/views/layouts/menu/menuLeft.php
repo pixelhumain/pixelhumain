@@ -153,7 +153,7 @@
 				<span class="lbl-btn-menu">Agenda</span>
 			</a>
 			<?php if(isset(Yii::app()->session['userId'])){ ?>
-			<a href="javascript:openForm ( 'event' );" class="menu-button-left pull-right lbl-btn-menu">
+			<a href="javascript:elementLib.openForm ( 'event' );" class="menu-button-left pull-right lbl-btn-menu">
 				<i class="fa text-red fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Ajouter un évènement"></i> 
 			</a>
 			<?php } ?>
