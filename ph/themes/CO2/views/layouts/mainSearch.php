@@ -18,7 +18,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Kgougle</title>
+        <title><?php echo $CO2DomainName; ?></title>
 
         <!-- <link rel='shortcut icon' type='image/x-icon' href="<?php //echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" /> -->
 
@@ -82,6 +82,8 @@
                 '/plugins/jquery-validation/localization/messages_fr.js',
                 '/plugins/bootbox/bootbox.min.js' , 
                 '/plugins/blockUI/jquery.blockUI.js' , 
+                '/plugins/toastr/toastr.js' , 
+                '/plugins/toastr/toastr.min.css',
                 '/plugins/jquery.ajax-cross-origin.min.js',
                 '/plugins/jquery-cookie/jquery.cookie.js' , 
                 '/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
@@ -142,14 +144,12 @@
             }
         ?>
 
-        <?php $this->renderPartial($layoutPath.'initJs'); ?>
+        <?php $this->renderPartial($layoutPath.'initJs', 
+                                    array("me"=>$me, "myFormContact" => @$myFormContact)); ?>
 
-        <script>
-            <?php $params = CO2::getThemeParams(); ?>
+        <?php $params = CO2::getThemeParams(); ?>
 
-            var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;;
-            var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
-            
+        <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() {
                 loadableUrls = <?php echo json_encode($params["pages"]); ?>;

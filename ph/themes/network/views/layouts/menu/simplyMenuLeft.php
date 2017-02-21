@@ -65,7 +65,7 @@
             <ul class="list-group">
                <!-- Tags -->
               <?php foreach($listTag['tags'] as $label => $tag){?>
-                <li class="list-group-item"><input type="checkbox" class="checkbox tagFilter" value="<?php echo $tag; ?>" data-parent="<?php echo $listTag['tagParent']; ?>" data-label="<?php echo $label; ?>"/><?php echo $label; ?></li>
+                <li class="list-group-item"><input type="checkbox" class="checkbox tagFilter" value="<?php echo $label; ?>" data-parent="<?php echo $listTag['tagParent']; ?>" data-label="<?php echo $label; ?>"/><?php echo $label; ?></li>
               <?php } ?>
             </ul>
           </div>
@@ -87,7 +87,7 @@
         <div id="list_tags" class="panel-collapse collapse">
           <ul class="list-group no-margin">
              <!-- Tags -->
-              <?php if(isset($params['filter']['tags']['tagsAdditional']) && is_array($params['filter']['tags']['tagsAdditional']))foreach($params['filter']['tags']['tagsAdditional'] as $label => $tag){?>
+              <?php if(isset($params['filter']['tags']['tagsAdditional']) && is_array($params['filter']['tags']['tagsAdditional']))foreach($params['filter']['tags']['tagsAdditional'] as $label => $tag) { ?>
                 <li class="list-group-item"><input type="checkbox" class="checkbox tagFilter" value="<?php echo $tag; ?>" data-parent="tags" data-label="<?php echo $label; ?>"/><?php echo $label; ?></li>
               <?php } ?>
           </ul>
@@ -116,9 +116,11 @@
       <?php } ?>
 
       <div class="panel-heading">
-         <h4 class="panel-title">
-          <center><a id="reset" ><i class="fa fa-refresh"></i>Réinitialiser</a></center>
-        </h4>
+        <a id="reset" href="javascript:;">
+          <h4 class="panel-title">
+            <center><i class="fa fa-refresh"></i>Réinitialiser</center>
+          </h4>
+        </a>
       </div>
     </div>
   </div>

@@ -52,7 +52,7 @@ font-family: "Homestead";
     </div>
 </div>
 
-<script>
+<script>/*
 initT['animError'] = function(){
 (function ani(){
 		//TweenMax.to("#logoERror",  3, {left:"440px", ease:Bounce.easeOut});
@@ -61,5 +61,5 @@ initT['animError'] = function(){
 	  //TweenMax.staggerFromTo("#error h1", 2, {alpha:1}, {alpha:0.7, delay:0.7},1);
 	  TweenMax.staggerFromTo("#error h2", 7, {scaleX:0, scaleY:0}, {scaleX:1.2, scaleY:1.2},1);
 	})();
-};
+};*/
 </script>

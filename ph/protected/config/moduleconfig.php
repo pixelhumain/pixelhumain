@@ -3,6 +3,7 @@
 $activeModules = array(
 	'citizenToolKit',
 	'communecter',
+	'co2',
 	'network',
 	'opendata',
 	'api',

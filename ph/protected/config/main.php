@@ -12,6 +12,7 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Communecter',
 	'sourceLanguage'=>'00',
+    //'theme'=>"CO2",
 	'language'=>'en',
 
 	//SPECIFIC MODULE confis

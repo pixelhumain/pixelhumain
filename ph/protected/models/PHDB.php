@@ -9,9 +9,13 @@ Generic Database Method shared Throught the project
  */
 class PHDB
 {
+    private static function beforeCall()
+    {
+      Yii::app()->session["dbAccess"] = Yii::app()->session["dbAccess"]+1;
+    }
     public static function find( $collection, $where=array(),$fields=null )
     {    	
-        
+        self::beforeCall();
         if(!$fields)
             $res = !self::checkMongoDbPhpDriverInstalled() ? null : iterator_to_array(Yii::app()->mongodb->selectCollection($collection)->find($where));
         else
@@ -21,6 +25,7 @@ class PHDB
 
     public static function findAndSort( $collection, $where=array(), $sortCriteria, $limit=0, $fields=null)
     {  
+      self::beforeCall();
         if (!self::checkMongoDbPhpDriverInstalled()) return null;
           if ($fields) {
             $res = Yii::app()->mongodb->selectCollection($collection)->find($where, $fields)->sort($sortCriteria);
@@ -30,29 +35,35 @@ class PHDB
         
         if($limit)
           $res = $res->limit($limit);
-
+        
         return iterator_to_array($res);
     }
 
     public static function findAndModify( $collection, $where, $action, $options=null )
     {       
+      self::beforeCall();
         return !self::checkMongoDbPhpDriverInstalled() ? null : 
             Yii::app()->mongodb->selectCollection($collection)->findAndModify($where, $action, null, $options);
+
     }
     public static function distinct( $collection, $key, $where=array() )
-    {     
+    {   
+      self::beforeCall();  
         return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->distinct($key,$where);
     }
     public static function count( $collection, $where=array() )
     {    	
+      self::beforeCall();
         return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->count($where);
     }
     public static function countWFields( $collection, $where=array(),$fields=array() )
     {    	
+      self::beforeCall();
         return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->count($where,$fields);
     }
     public static function findOne( $collection, $where ,$fields=null)
     {    	
+      self::beforeCall();
         if($fields)
           return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->findOne($where,$fields);
         else  
@@ -61,26 +72,31 @@ class PHDB
     
     public static function findOneById( $collection, $id, $fields=null )
     {   
-        //var_dump($id);
+        self::beforeCall();
         return self::findOne( $collection, array("_id"=>new MongoId($id)), $fields);
     }
     public static function update( $collection, $where, $action )
     {    	
+      self::beforeCall();
         return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->update($where,$action);
     }
      public static function updateWithOptions( $collection, $where, $action,$options )
     {
+      self::beforeCall();
         return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->update($where,$action,$options);
     }
     public static function insert( $collection, $info )
     {    	
+      self::beforeCall();
         return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->insert($info);
     }
     public static function remove( $collection, $where )
     {    	
+      self::beforeCall();
         return !self::checkMongoDbPhpDriverInstalled()? null :Yii::app()->mongodb->selectCollection($collection)->remove($where);
     }
     public static function batchInsert($collection,$rows){
+      self::beforeCall();
         return !self::checkMongoDbPhpDriverInstalled() ? null : Yii::app()->mongodb->selectCollection($collection)->batchInsert($rows);   
     }
     /*

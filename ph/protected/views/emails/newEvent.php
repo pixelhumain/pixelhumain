@@ -9,7 +9,7 @@
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
       <tr>
         <td align="left">
-           <h3>Un nouvel évennment créé <?php echo $title?> par <?php echo $creatorName?>!! </h3>
+           <h3>Un nouvel évènement créé <?php echo $title?> par <?php echo $creatorName?>!! </h3>
            suivez le lien pour découvrir<br/>
            ou copier le directement dans votre navigateur 
            <br/>

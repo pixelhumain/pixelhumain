@@ -14,6 +14,7 @@
 // }
 
 var CoAllReadyLoad = false;
+var CoSigAllReadyLoad = false;
 //back sert juste a differencier un load avec le back btn
 //ne sert plus, juste a savoir d'ou vient drait l'appel
 function loadByHash( hash , back ) { //alert("loadByHash");
@@ -23,8 +24,7 @@ function loadByHash( hash , back ) { //alert("loadByHash");
 	CoAllReadyLoad = true;
 	contextData = null;
 	
-	mylog.log("loadableUrls",loadableUrls);
-
+	
     mylog.warn("loadByHash",hash,back);
     if( jsController(hash) ){
     	mylog.log("loadByHash",hash,back);
@@ -37,10 +37,10 @@ function loadByHash( hash , back ) { //alert("loadByHash");
 
     location.hash = hash;
 
-    /*if(!back){
+    if(!back){
     	history.replaceState( { "hash" :location.hash} , null, location.hash ); //changes the history.state
 	    mylog.warn("replaceState history.state",history.state);
-	}*/
+	}
 }
 
 
@@ -107,7 +107,7 @@ function  processingBlockUi() {
 	 			  	"c'est trop long !"+
 	 			  '</a>';
 
-	if(CO2DomainName=="CO2") msgBlock +=
+	if(CO2DomainName=="CO2" && false) msgBlock +=
 	'<h4 class="text-dark no-margin" style="margin-top:5px!important;">'+
         'VERSION DE TEST EN COURS DE DÉVELOPPEMENT !!!'+
         '<br>'+
@@ -120,7 +120,7 @@ function  processingBlockUi() {
         'L\'objectif est de proposer une page/interface pour chaque grande fonctionnalité de communecter, '+
         'afin de créer des portes d\'entrées indépendantes sur le réseau, en fonction des besoins de chacun.<br><br>'+
         '<b>Vos remarques et idées à ce propos sont les bienvenues.<br>'+
-        'Merci de nous en faire part sur le channel dédié <a href="" class="letter-blue">#CO2 test & idées</a></b>'+
+        'Merci de nous en faire part sur le channel dédié <a href="https://chat.initiative.place/channel/co2_brainstorm" class="letter-blue">#CO2_brainstorm</a></b>'+
     '</p>';
 
 	$.blockUI({
@@ -137,9 +137,9 @@ function getAjax(id,url,callback,datatype,blockUI)
     if(blockUI)
         $.blockUI({
             message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
-                '<blockquote>'+
-                  '<p>Art is the heart of our culture.</p>'+
-                '</blockquote> '
+                      '<blockquote>'+
+                        '<p>Art is the heart of our culture.</p>'+
+                      '</blockquote> '
         });
   
     if(datatype != "html" )
@@ -170,7 +170,7 @@ function getAjax(id,url,callback,datatype,blockUI)
         error:function (xhr, ajaxOptions, thrownError){
           //mylog.error(thrownError);
           $.blockUI({
-              message : '<img src="'+themeUrl+'/assets/img/CO2G.png" class="nc_map pull-" height=80>'+
+              message : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map pull-" height=80>'+
 			 			  '<i class="fa fa-times"></i>'+
 			 			   '<span class="col-md-12 text-center font-blackoutM text-left">'+
 			 			    '<span class="letter letter-red font-blackoutT" style="font-size:40px;">404</span>'+
@@ -287,11 +287,7 @@ function initKInterface(params){
     	showMap();
     });
 
-    $(".tooltips").tooltip();
-    
-
     bindLBHLinks();
-
 
     $(".menu-name-profil #menu-thumb-profil, "+
       ".menu-name-profil #menu-name-profil").mouseenter(function(){
@@ -312,15 +308,29 @@ function initKInterface(params){
         $("#dropdown-user").removeClass("open");
     });
 
+    setTimeout(function(){ 
+      $(".tooltips").tooltip();
+      mapBg = Sig.loadMap("mapCanvas", initSigParams);
+      Sig.showIcoLoading(false);
+      CoSigAllReadyLoad = true;
+    }, 3000);
+
 }
 
 var currentScrollTop = 0;
 var isMapEnd = false;
 function showMap(show)
 {
+
+  if(mapBg == null) return;
+
 	//if(typeof Sig == "undefined") { alert("Pas de SIG"); return; } 
 	mylog.log("typeof SIG : ", typeof Sig);
 	if(typeof Sig == "undefined") show = false;
+
+  //chargement de la carte
+
+
 
 	mylog.log("showMap");
 	if(show === undefined) show = !isMapEnd;

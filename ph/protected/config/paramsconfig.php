@@ -86,6 +86,10 @@ $params = array(
 
     'CO2DomainName' => 'CO2', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
 
+    //rocketchat params
+    'rocketchatEnabled' => false,
+    'rocketchatURL' => "https://chat.lescommuns.org",
+
     /*"front" => array (
         "organization" => true,
         "project" => true,

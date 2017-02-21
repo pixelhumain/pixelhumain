@@ -69,7 +69,7 @@ function getAjax(id,url,callback,datatype,blockUI)
             $(id).html(data);
           else if(datatype === "norender" )
             mylog.log("no render",url)
-          else if( typeof data === "string" )
+          else if( typeof data === "string" && datatype != null )
             toastr.success(data);
           else
               $(id).html( JSON.stringify(data, null, 4) );
@@ -170,7 +170,7 @@ function lazyLoad (js,css, callback) {
 //show all elements corresponding to class id
 function toggle( id, siblingsId, activate, callback )
 {
-	mylog.log("toggle",id,siblingsId);
+	mylog.log("toggle('"+id+"','"+siblingsId+"')");
   $(siblingsId).addClass("hide");
   if(activate)
     $(siblingsId+"Btn").removeClass("active");
@@ -612,14 +612,17 @@ function notNull(val){
       && val != null;
 }
 function notEmpty(val){
-  return typeof val != "undefined"
-      && val != null
-      && val != "";
+  
+    return (typeof val != "undefined" && val != null && val != "");
+   
 }
 
-function removeEmptyAttr (jsonObj) { 
+function removeEmptyAttr (jsonObj, sourceObj) { 
 
     $.each(jsonObj, function(key, value){
+      if(sourceObj && sourceObj[key]){
+
+      }
         if (value === "" || value === null || value === undefined){
             delete jsonObj[key];
         }
@@ -630,6 +633,7 @@ function buildSelectOptions(list,value) {
   var html = "";
   if(list){
     $.each(list, function(optKey, optVal) {
+      mylog.log("buildSelectOptions", value, optKey, optVal);
       selected = ( value == optKey ) ? "selected" : ""; 
       html += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
     });
@@ -639,6 +643,7 @@ function buildSelectOptions(list,value) {
 
 function buildSelectGroupOptions(list,value) { 
   var html = "";
+  mylog.log("list", list)
   if(list){
     $.each(list, function(groupKey, groupVal) {
       var data = ( groupKey ) ? 'data-type="'+groupKey+'"' : "";

@@ -16,21 +16,46 @@
 	<?php if (!empty($topList)) { ?>
 	<div class="col-xs-12 no-padding main-gallery-top" >
 		<div class="pull-left">
-		<?php foreach ($topList as $data) { 
+		<?php 
+		foreach ($topList as $key => $data) 
+		{ 
 			if(@$data["tags"]){
 				foreach($data["tags"] as $val){
-					if (!in_array($val, $tagsPoiList)) 
-						array_push($tagsPoiList,$val);
+					$found = false;
+					foreach ($tagsPoiList as $ix => $value) {
+						if($value["text"] == $val)
+							$found = $ix;
+					}
+					if ( !$found ) 
+						array_push($tagsPoiList,array("text"=>$val,
+													  "weight"=>1,
+													  "link"=>array(
+													  	"href" => 'javascript:directory.showAll(".favSection",".searchPoiContainer");directory.toggleEmptyParentSection(".favSection",".'.InflectorHelper::slugify2($val).'",".searchPoiContainer",1)', 
+														"class" => "favElBtn ".InflectorHelper::slugify2($val)."Btn", 
+														"data-tag" => InflectorHelper::slugify2($val)
+													  	)) );
+					else 
+						$tagsPoiList[$found]["weight"]++;
 				}
 			}
-			if(@$data["medias"] && @$data["medias"][0]["content"]["image"] && !empty($data["medias"][0]["content"]["image"]))
+			if(@$data["medias"] && @$data["medias"][0]["content"]["image"] && !empty($data["medias"][0]["content"]["image"])){
 				$src = str_replace("1280x720","720x720",$data["medias"][0]["content"]["image"]);
-			else 
+				$topList[$key]["profilExternImageUrl"] = $src;
+			}
+			else {
 				$src = $this->module->assetsUrl."/images/thumbnail-default.jpg";
+				
+			}
+			
+			$topList[$key]["typeSig"] = "poi";
+			
 			$name = $data["name"];
 			$tags = "";
-			if (@$data["tags"])
-				$tags = strtolower(implode(" ", $data["tags"]));
+			if (@$data["tags"]){
+				foreach ($data["tags"] as $t ) {
+					$tags .= " ".strtolower( InflectorHelper::slugify2( $t ) );
+				}
+			}
 			$href = "#element.detail.type.".Poi::COLLECTION.".id.".(string)$data["_id"];
 		?>
 			<div class="searchPoiContainer <?php echo $tags ?>">
@@ -54,7 +79,8 @@
 					</a>
 				</span>
 			</div>
-		<?php } ?>
+	<?php
+		} ?>
 		</div>
 	</div>
 	<?php } ?>
@@ -77,7 +103,7 @@
 	
 	<?php // BTN Doc = Doc // ?>
 	<button class="btn-menu-top tooltips pull-left lbh"  onclick="activeMenuTop($(this))"
-			id="" data-hash="#default.directoryjs?type=projects"
+			id="" data-hash="#default.directoryjs?type=organizations"
 			data-toggle="tooltip" data-placement="bottom" title="Groupe de travail" alt="Groupe de travail">
 			<i class="fa fa-group"></i>
 	</button>
@@ -95,8 +121,6 @@
 			data-toggle="tooltip" data-placement="bottom" title="A propos" alt="A propos">
 			<i class="fa fa-star"></i>
 	</button>
-
-	
 
 	<?php // MAIN TITLE // ?>
 	<!-- <h1 class="homestead text-dark no-padding moduleLabel hidden-xs	
@@ -119,6 +143,7 @@
 </div>
 <script>
 	var poiListTags = <?php echo json_encode($tagsPoiList) ?>;
+	var topList = <?php echo json_encode($topList) ?>;
 	
 	function activeMenuTop(thisJQ){
 		$(".btn-menu-top").removeClass("active");
@@ -130,5 +155,8 @@
 		}).mouseleave(function(){
 			$(this).find(".description-poi").hide();
 		});
+
+		console.log("topList", topList);
+		//Sig.showMapElements(Sig.map, topList);
 	});
 </script>

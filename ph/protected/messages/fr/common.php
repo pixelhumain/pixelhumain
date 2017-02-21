@@ -311,9 +311,14 @@ return array(
 	"Organization" => "Organisation",
 	"Project" => "Projet",
 	"Event" => "Événement",
+	"Agenda" => "Agenda",
 
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
+	"Citoyens" => "Citoyens",
+	"citoyens" => "citoyens",
+	"Citoyen" => "Citoyen",
+	"citoyen" => "citoyen",
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
@@ -577,8 +582,9 @@ return array(
 	"Account info" => "Infos générales",
 	
 	"No attendee for this event" => "Aucun participant pour cet événement",
-	"No member for this organization" => "Aucun membre inscrit sur cette organisation",
+	"No member for this organization" => "Aucun membre inscrit dans cette organisation",
 	"No contributor for this project" => "Aucun contributeur sur ce projet",
+	"No member for this person" => "Personne dans cette communauté",
 	"Organizator detail" => "Détail de l'organisateur",
 	
 	"Places" => "Lieux",
@@ -694,6 +700,19 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Choose" => "Choisir",
 	"Next step" => "Etape suivante",
 	"Previous step" => "Etape précédente",
+
+
+	"Link" => "Lien",
+	"Not link" => "Aucun lien",
+	"Semicolon"=>"Point virgule",
+	"Comma" => "Virgule",
+	"Space" => "Espace",
+	"Quotes" => "Quotes",
+	"Quotation marks" => "Guillemets",
+	"Nothing" => "Rien",
+
+
+
 	"by" => "par",
 	"on" => "sur",
 
