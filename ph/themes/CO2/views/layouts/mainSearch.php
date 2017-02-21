@@ -136,7 +136,7 @@
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin)
             if($CO2DomainName != "CO2"){
                 $cssAnsScriptFilesModule = array(
-                    '/assets/css  /'.$CO2DomainName.'/'.$CO2DomainName.'.css',
+                    '/assets/css/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
                     '/assets/css/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
                     '/assets/js/themes/'.$CO2DomainName.'.js',
                 );
@@ -144,11 +144,12 @@
             }
         ?>
 
-        <?php $this->renderPartial($layoutPath.'initJs', array("me"=>$me, "myFormContact" => @$myFormContact)); ?>
+        <?php $this->renderPartial($layoutPath.'initJs', 
+                                    array("me"=>$me, "myFormContact" => @$myFormContact)); ?>
 
-        <script>
-            <?php $params = CO2::getThemeParams(); ?>
+        <?php $params = CO2::getThemeParams(); ?>
 
+        <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() {
                 loadableUrls = <?php echo json_encode($params["pages"]); ?>;

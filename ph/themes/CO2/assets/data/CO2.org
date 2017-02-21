@@ -17,9 +17,9 @@
 * ************************************************************    
 * Paramètrage CO2
 * ************************************************************   
-[ ] Créer des fichiers JSON pour définir les parametres du theme selon le nom de domaine
-[ ] Créer des fichiers JSON pour définir les listes de tag contextuelles 
-  [ ] Application PRO
+[X] Créer des fichiers JSON pour définir les parametres du theme selon le nom de domaine
+[X] Créer des fichiers JSON pour définir les listes de tag contextuelles 
+  [X] Application PRO
 
 
 * ************************************************************    
@@ -34,26 +34,39 @@
 * Evolutions / New Features
 * ************************************************************   
 [ ] Mettre en ligne Kgougle :::Sylvain
-[ ] Faire le système de publicité sur Kgougle :::Tango
 
-[ ] Finir les pages perso :::Tango
-  [ ] Paramètres de confidentialité / autres paramètres :::Rapha
-  [ ] Nouveau système de notifications :::Clem
-  [ ] Edition des données perso :::Rapha
+RECHERCHE (&AGENDA  &POWER) :::ALL  (1J)
+[ ] Finir et valider la page de recherche
+  [ ] Recherche Element
+  [ ] Recherche Agenda
+  [ ] Recherche DDA
 
+ANNONCES :::Tib :::Tango (5J)
+[ ] Finir le système de petites annonces
+  [ ] Système de Mot Clé Contextuel
+  [ ] Finir DynForm Annonce
+  [ ] Refonte NEWS ?
+    -> Séparer les news public et private ? == NewsPublic devient : Annonce
+
+CITIES :::Rapha :::Tib (10J)
 [ ] Réintégrer les City  :::Rapha
   [ ] Filiaires thématiques   :::Tib
 
-[ ] Finir le système de petites annonces   :::Tib   :::Tango
-[ ] Finir la refonte du tpl News (==media) PHP :::Tango
+PAGE PROFIL PERSO :::ALL
+[ ] Finir les pages perso :::ALL
+  [ ] Paramètres de confidentialité / autres paramètres :::Rapha
+  [ ] Nouveau système de notifications :::Clem
+  [ ] Edition des données perso :::Rapha
+  [ ] Option Follow / Favoris / Devenir membre / etc
+  [ ] Refactor Directory - Communauté / Collection :::Tango :::Tib
+  [ ] Messagerie privée / RocketChat :::Tib
+  [ ] Besoins / Need pour orga&projets
+  [ ] Pouvoir partager les news (in / out) :::
+  [ ] Finir les OnePages :::Tango (5J)
 
+DDA
+[ ] Refonte DDA :::Tango :::Tib
+  [ ] Unifier Discusion/Vote/Action
 
-[ ] Pouvoir partager les news (in / out) :::
-
-[ ] Finir les OnePages :::Tango
-[ ] Directory => transformer le tpl JS en tpl PHP unique (ou refactor tpl JS) :::
-
-[ ] DDA :::Tango :::Tib
-
-[ ] Messagerie privée / RocketChat :::Tib
-
+PUB
+[ ] Faire le système de publicité sur Kgougle :::Tango

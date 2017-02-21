@@ -170,21 +170,21 @@
                                 <div class="col-md-2 col-sm-2 padding-5"></div>
                                 <div class="col-md-2 col-sm-2 col-xs-12 text-center padding-5">
                                 <?php 
-                                        $freedomTags = CO2::getFreedomTags();
+                                        $freedomSections = CO2::getContextList("freedomSections");
                                         $currentSection = 1;
                                         $align="right";
-                                        foreach ($freedomTags as $key => $tag) { ?>
+                                        foreach ($freedomSections as $key => $section) { ?>
                                             <?php if($currentSection > 1){ ?>
-                                                <?php if($tag["section"] > $currentSection){ 
+                                                <?php if($section["section"] > $currentSection){ 
                                                         $currentSection++; 
                                                         $align = "center"; //$align=="left"?"left":"left";
                                                 ?>
                                                 </div>
                                                 <div class="col-sm-2 col-xs-12 col-md-2 text-<?php echo $align; ?> padding-5">
                                                 <?php } ?>
-                                                <button class="col-xs-5 col-sm-12 col-md-12 btn btn-default margin-bottom-5 margin-left-5 btn-select-type-anc btn-anc-color-<?php echo @$tag["color"]; ?>"  
-                                                        data-type-anc="<?php echo @$tag["key"]; ?>">
-                                                    <i class="fa fa-<?php echo @$tag["icon"]; ?> hidden-xs hidden-sm"></i> <?php echo @$tag["label"]; ?>
+                                                <button class="col-xs-5 col-sm-12 col-md-12 btn btn-default margin-bottom-5 margin-left-5 btn-select-type-anc btn-anc-color-<?php echo @$section["color"]; ?>"  
+                                                        data-type-anc="<?php echo @$section["key"]; ?>">
+                                                    <i class="fa fa-<?php echo @$section["icon"]; ?> hidden-xs hidden-sm"></i> <?php echo @$section["label"]; ?>
                                                 </button><br class="hidden-xs hidden-sm">
                                             
                                             <?php   }else{ $currentSection++; } ?>

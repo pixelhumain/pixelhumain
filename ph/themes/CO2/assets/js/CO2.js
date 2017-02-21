@@ -24,8 +24,7 @@ function loadByHash( hash , back ) { //alert("loadByHash");
 	CoAllReadyLoad = true;
 	contextData = null;
 	
-	mylog.log("loadableUrls",loadableUrls);
-
+	
     mylog.warn("loadByHash",hash,back);
     if( jsController(hash) ){
     	mylog.log("loadByHash",hash,back);

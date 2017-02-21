@@ -84,7 +84,7 @@ $params = array(
     'forceMapboxActive' => false, //to force mabox localhost
     'mapboxToken' => 'pk.eyJ1IjoiY29tbXVuZWN0ZXIiLCJhIjoiY2lreWRkNzNrMDA0dXc3bTA1MHkwbXdscCJ9.NbvsJ14y2bMWWdGqucR_EQ',
 
-    'CO2DomainName' => 'kgougle', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
+    'CO2DomainName' => 'CO2', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
 
     //rocketchat params
     'rocketchatEnabled' => false,
