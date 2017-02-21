@@ -99,6 +99,7 @@
 		<script>
 		   var initT = new Object();
 		   var showDelaunay = true;
+		   var seeDisable = false;
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
@@ -420,6 +421,7 @@
 
 		//used in communecter.js dynforms
 		var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
+		//var tagsList = [];
 		var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
 		var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
 		//var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : null?>;
@@ -431,6 +433,7 @@
 		// GET LIST OF NETWORK'S TAGS
 		if(typeof networkJson.filter.linksTag != "undefined"){
 			var networkTags = [];
+			tagsList = [];
 			if(typeof networkJson.request.mainTag != "undefined")
 				networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
 			$.each(networkJson.filter.linksTag, function(category, properties) {
@@ -438,8 +441,23 @@
 				optgroupObject.text=category;
 				optgroupObject.children=[];
 				$.each(properties.tags, function(i, tag) {
-					val={id:tag,text:tag};
-					optgroupObject.children.push(val);
+					if($.isArray(tag)){
+						$.each(tag, function(keyTag, textTag) {
+							val={id:textTag,text:textTag};
+							if(jQuery.inArray( textTag, tagsList ) == -1 ){
+								optgroupObject.children.push(val);
+								tagsList.push(textTag);
+							}
+						});
+					}else{
+						val={id:tag,text:tag};
+						if(jQuery.inArray( tag, tagsList ) == -1 ){
+							optgroupObject.children.push(val);
+							tagsList.push(tag);
+						}
+					}
+					
+					//tagsList.push(val);
 				});
 				networkTags.push(optgroupObject);
 			});
@@ -453,6 +471,10 @@
 					if(typeof networkJson.request.sourceKey != "undefined"){
 						sourceObject = {inputType:"hidden", value : networkJson.request.sourceKey[0]};
 						typeObj[key].dynForm.jsonSchema.properties.source = sourceObject;
+					}
+					if(typeof networkJson.skin.moderation != "undefined" && networkJson.skin.moderation != "true"){
+						sourceDisabled = {inputType:"hidden", value : true};
+						typeObj[key].dynForm.jsonSchema.properties.disabled = sourceDisabled;
 					}
 					if(v){
 						if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){

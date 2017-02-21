@@ -21,6 +21,12 @@
   margin-top: 50px;
 }
 
+.btn-disable{
+  font-size: medium;
+}
+
+
+
 </style>
 <div class="hidden-xs main-menu-left col-md-2 col-sm-3 menu-col-search no-padding"  data-tpl="menuLeft">
 <div  class="col-md-12 no-padding" id="dropdown_params">
@@ -113,8 +119,18 @@
               <?php } ?>
           </ul>
         </div>
-      <?php } ?>
-
+      <?php } 
+        $roles = Role::getRolesUserId(Yii::app()->session["userId"]);
+        if(@$roles["superAdmin"] == true){?>
+          <div class="panel-heading">
+              <label class="btn-disable text-blue" >
+                <?php echo Yii::t("common","Disable")." "; ?> 
+                <input type="checkbox" class="checkbox disableCheckbox" value="disable" data-label="<?php echo Yii::t("common","Disable"); ?>" style="float: right; " />
+              </label>
+            </div>
+        <?php
+        }
+      ?>
       <div class="panel-heading">
         <a id="reset" href="javascript:;">
           <h4 class="panel-title">

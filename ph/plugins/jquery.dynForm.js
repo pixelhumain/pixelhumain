@@ -178,7 +178,8 @@ onSave: (optional) overloads the generic saveProcess
         		if(typeof fieldObj.data != "undefined")
 	        		initSelectNetwork=fieldObj.data;
         		if(typeof fieldObj.mainTag != "undefined")
-					mainTag=mainTag;
+					mainTag=fieldObj.mainTag;
+				
         		style = "style='width:100%;margin-bottom: 10px;border: 1px solid #ccc;'";
         	}
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
@@ -695,6 +696,7 @@ onSave: (optional) overloads the generic saveProcess
 		{
 			if( jQuery.isFunction(jQuery.fn.select2) )
 			{
+				
 				$.each($(".select2TagsInput"),function () 
 				{
 					mylog.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
@@ -704,6 +706,7 @@ onSave: (optional) overloads the generic saveProcess
 						  "tokenSeparators": [','],
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
+						
 						if(typeof initSelectNetwork != "undefined" && initSelectNetwork.length > 0)
 							selectOptions.data=initSelectNetwork;
 						$(this).removeClass("form-control").select2(selectOptions);

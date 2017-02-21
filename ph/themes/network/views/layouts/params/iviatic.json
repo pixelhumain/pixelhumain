@@ -11,6 +11,7 @@
         "displayScope" : false,
         "displayCommunexion" : true,
         "displayNotifications" : false,
+        "moderation" : true,
         "docs":false,
         "profilBar" : false,
         "breadcrum" : true,
@@ -89,9 +90,9 @@
                   "Mobilités actives et partagées" : "Mobilités actives et partagées",
                   "Energie et mobilité" : "Energie et mobilité",
                   "Services à la mobilité" : "Services à la mobilité",
-                  "TIC, Numérique et Data" : "TIC, Numérique et Data",
+                  "TIC Numérique et Data" : "TIC Numérique et Data",
                   "Ingénierie et financement" : "Ingénierie et financement",
-                  "Aménagement, valorisation et développement" : "Aménagement, valorisation et développement",
+                  "Aménagement valorisation et développement" : "Aménagement valorisation et développement",
                   "Organisation et management de la mobilité" : "Organisation et management de la mobilité"
                 }
             }
