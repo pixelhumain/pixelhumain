@@ -40,7 +40,7 @@ $params = array(
     'adminEmail'=>'testmail.pixelhumain@gmail.com',
     'forceMailSend' => true,
     // mail is sent on each element creation when true
-    'mailForSuperAdmin' => false,
+    'mailForSuperAdmin' => true,
 
     //UPLOAD Management Configuration
     //upload url without the base URL
