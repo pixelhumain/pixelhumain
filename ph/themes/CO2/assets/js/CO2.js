@@ -256,20 +256,22 @@ function initKInterface(params){
     });
 
     $(".logout").click(function(){
-    	document.location.href="/ph/communecter/person/logout";
+    	document.location.href="/ph/co2/person/logout";
     });
 
     var affixTop = 400;
     if(notEmpty(params)){
-    	if(notEmpty(params["affixTop"])) affixTop = params["affixTop"];
+    	if(typeof params["affixTop"] != "undefined") affixTop = params["affixTop"];
     }
-
-    // Offset for Main Navigation
-    $('#mainNav').affix({
-        offset: {
-            top: affixTop
-        }
-    });
+    console.log("affixTop", affixTop);
+    if(affixTop > 0){
+      // Offset for Main Navigation
+      $('#mainNav').affix({
+          offset: {
+              top: affixTop
+          }
+      });
+    }
 
     // Floating label headings for the contact form
     $(function() {
@@ -292,6 +294,7 @@ function initKInterface(params){
     $(".menu-name-profil #menu-thumb-profil, "+
       ".menu-name-profil #menu-name-profil").mouseenter(function(){
         $("#dropdown-user").addClass("open");
+        clearTimeout(timerCloseDropdownUser);
     });
     $(".menu-name-profil #menu-thumb-profil, "+
       ".menu-name-profil #menu-name-profil").mouseleave(function(){

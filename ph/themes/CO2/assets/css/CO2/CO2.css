@@ -935,6 +935,68 @@ h3.title_panel_map{
 }
 
 
+/* DROPDOWN GLOBAL SEARCH*/
+
+  #mainNav .dropdown-result-global-search{
+    position: fixed;
+    top: 67px;
+    left: 100px;
+    max-height: 100%;
+    overflow-y: auto;
+    background-color: white;
+    padding:10px;
+    border-radius: 0px 0px 5px 0px;
+    box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
+    -webkit-box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
+    -o-box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
+    box-shadow: 0px 9px 12px 3px rgba(66, 66, 66, 0.37) !important;
+    overflow-x: hidden;
+    display: none;
+    border-top: 1px solid #c6c6c6;
+  }
+  .dropdown-result-global-search .entityCenter .fa{
+  	color:white!important;
+  }
+
+  #mainNav .dropdown-result-global-search #footerDropdownGS{
+    padding: 20px;
+	float: left;
+	width: 100%;
+  }
+
+  .dropdown-result-global-search
+  .searchEntity{
+    box-shadow: none !important;
+    border-bottom:1px solid lightgrey;
+  }
+
+  .dropdown-result-global-search
+  .entityCenter{
+    margin-top: 5px!important;
+    float:left!important;
+  }
+  .dropdown-result-global-search
+  .entityRight{
+    margin-top: 12px;
+  }
+
+
+  #mainNav .dropdown-result-global-search .searchEntity,
+  .searchEntity .entityRight .entityName,
+  .searchEntity .entityRight .entityLocality,
+  .searchEntity a{
+  	text-transform: none !important;
+  	font-family: unset;
+  	font-weight:300!important;
+  }
+  .searchEntity .entityRight .entityName{
+  	font-size:16px !important;
+  }
+  .searchEntity .entityRight .entityLocality{
+  	font-size: 12px !important;
+	opacity: 0.7;
+  }
+
 @media screen and (max-width: 1024px) {
 	.menu-name-profil small{
 	    max-width: 45px;

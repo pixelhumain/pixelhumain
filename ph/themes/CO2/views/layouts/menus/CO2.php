@@ -30,6 +30,9 @@
             
             <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
+                <?php if($subdomain == "page.type"){ ?>
+                    <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
+                <?php } ?>
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
 
@@ -65,25 +68,38 @@
                     <div class="dropdown pull-right" id="dropdown-user">
                         <div class="dropdown-main-menu">
                             <ul class="dropdown-menu arrow_box">
-                                <li class="text-left">
-                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
-                                        <i class="fa fa-user-circle"></i> Ma page
-                                    </a>
-                                </li>
-                                <li role="separator" class="divider"></li>
-                                <li class="text-left">
-                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
-                                        <i class="fa fa-search"></i> Rechercher des contacts
-                                    </a>
-                                </li>
-                                <li role="separator" class="divider">
-                                </li>
-                                </li>
-                                <li class="text-left">
-                                    <a href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" class="logout bg-white letter-red">
-                                        <i class="fa fa-sign-out"></i> Déconnecter
-                                    </a>
-                                </li>
+                                    <li class="text-left">
+                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                            <i class="fa fa-user-circle"></i> Ma page
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="text-left">
+                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                            <i class="fa fa-plus-circle"></i> Créer une page
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="text-left">
+                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                            <i class="fa fa-search"></i> Rechercher des contacts
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider">
+                                    </li>
+                                    <li class="text-left">
+                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                            <i class="fa fa-crosshairs"></i> Autour de moi
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider">
+                                    </li>
+                                    <li class="text-left">
+                                        <a href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" class="bg-white letter-red">
+                                            <i class="fa fa-sign-out"></i> Déconnecter
+                                        </a>
+                                    </li>
+
                             </ul>
                         </div>
                     </div>

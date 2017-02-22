@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
-                     class="nc_map" height=130>
+                     class="nc_map" height=50>
                     <h3 class="letter-red no-margin hidden-xs" style="margin-top:5px!important;">
                         MENU PRINCIPAL<br>
                     </h3>
