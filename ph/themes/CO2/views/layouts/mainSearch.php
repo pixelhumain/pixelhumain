@@ -147,6 +147,8 @@
         <?php $this->renderPartial($layoutPath.'initJs', 
                                     array("me"=>$me, "myFormContact" => @$myFormContact)); ?>
 
+        <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
+
         <?php $params = CO2::getThemeParams(); ?>
 
         <script>          
