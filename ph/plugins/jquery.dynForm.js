@@ -294,13 +294,13 @@ onSave: (optional) overloads the generic saveProcess
 							'<span class="qq-upload-drop-area-text-selector"></span>'+
 							'</div>'+
 							'<div class="qq-upload-button-selector btn btn-primary">'+
-							'<div>Upload a file</div>'+
+							'<div>Ajouter une image</div>'+
 							'</div>'+
 							'<button type="button" id="trigger-upload" class="btn btn-danger hide">'+
-			                '<i class="icon-upload icon-white"></i> Upload'+
+			                '<i class="icon-upload icon-white"></i> Enregistrer'+
 			                '</button>'+
 							'<span class="qq-drop-processing-selector qq-drop-processing">'+
-							'<span>Processing dropped files...</span>'+
+							'<span>En cours de progression...</span>'+
 							'<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>'+
 							'</span>'+
 							'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
@@ -322,7 +322,7 @@ onSave: (optional) overloads the generic saveProcess
 							'<div class="qq-file-info">'+
 							'<div class="qq-file-name">'+
 							'<span class="qq-upload-file-selector qq-upload-file"></span>'+
-							'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+							//'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
 							'</div>'+
 							'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
 							'<span class="qq-upload-size-selector qq-upload-size"></span>'+
@@ -951,7 +951,8 @@ onSave: (optional) overloads the generic saveProcess
 	                sizeLimit: 2000000
 	            },
 	            messages: {
-			        sizeError: '{file} est trop lourde! limite max : {sizeLimit}.'
+			        sizeError : '{file} est trop lourde! limite max : {sizeLimit}.',
+			        typeError : '{file} extension invalide. Extension(s) acceptable: {extensions}.'
 			    },
 	            callbacks: {
 	            	//when a img is selected
@@ -973,12 +974,12 @@ onSave: (optional) overloads the generic saveProcess
 				    //when every img finish upload process whatever the status
 				    onComplete: function(id, fileName,responseJSON,xhr) {
 				    	if(!responseJSON.result){
-				    		toastr.error("something went wrong : "+responseJSON.msg );		
+				    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
 				    	}
 				    },
 				    //when all upload is complete whatever the result
 				    onAllComplete: function(succeeded, failed) {
-				      toastr.info("Files uploaded succesfuslly!!");
+				      toastr.info("Fichiers bien chargés !!");
 				      if( jQuery.isFunction(initValues.afterUploadComplete) )
 				      	initValues.afterUploadComplete();
 				    },
@@ -988,7 +989,7 @@ onSave: (optional) overloads the generic saveProcess
 				    },*/
 				    //if any error during upload
 				    onError: function(id) {
-				      toastr.info("something went wrong");
+				      toastr.info(trad["somethingwentwrong"]);
 				    }
 				},
 	            thumbnails: {
