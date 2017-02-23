@@ -45,6 +45,10 @@
     },
    "filter" : {
         "types" : false,
+        "paramsFiltre" : {
+            "conditionBlock" :"or",
+            "conditionTagsInBlock" :"and"
+        },
         "tags" : {
             "activate" : false,
             "title" : "Toutes les catégories",

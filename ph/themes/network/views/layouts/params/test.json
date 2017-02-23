@@ -40,9 +40,6 @@
     },
    "filter" : {
         "types" : false,
-		"paramsFiltre" : {
-			"conditionBlock" :"and"
-		},
         "linksTag" : {
 	    "Je me nourris" : {
                 "tagParent" : "Alimentation",
