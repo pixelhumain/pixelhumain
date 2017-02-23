@@ -131,6 +131,7 @@
 <?php if(isset(Yii::app()->session['userId'])) 
         $this->renderPartial($layoutPath.'notifications'); ?>
 
+<?php $this->renderPartial($layoutPath.'formCreateElement'); ?>
 
 <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
 

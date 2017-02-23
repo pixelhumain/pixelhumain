@@ -1,17 +1,4 @@
 <script>
-	//used in communecter.js dynforms
-    var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
-    var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
-    var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
-    var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
-    var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : "null"?>;
-    var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
-    var organizerList = {}; 
-    var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
-
-    var proverbs = new Array();
-    var initT = new Object();
-    var showDelaunay = true;
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
     var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
     var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
@@ -25,6 +12,85 @@
            { "userEmail":"<?php echo Yii::app()->session['userEmail']?>"}
         <?php } ?>
         ];
+
+    var themeObj = {
+        init : function(){
+            toastr.options = {
+              "closeButton": false,
+              "positionClass": "toast-bottom-left",
+              "onclick": null,
+              "showDuration": "1000",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            };
+        },
+        imgLoad : "CO2r.png" ,
+        mainContainer : ".main-container",
+        blockUi : {
+            processingBlockUi : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
+                  '<i class="fa fa-spin fa-circle-o-notch"></i>'+
+                  '<h4 style="font-weight:300" class=" text-dark padding-10">'+
+                    'Chargement en cours...'+
+                  '</h4>'+
+                  '<span style="font-weight:300" class=" text-dark">'+
+                    'Merci de patienter quelques instants'+
+                  '</span>'+
+                  '<br><br><br>'+
+                  '<a href="#" class="btn btn-default btn-sm lbh">'+
+                    "c'est trop long !"+
+                  '</a>', 
+            error : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map pull-" height=80>'+
+              '<i class="fa fa-times"></i>'+
+               '<span class="col-md-12 text-center font-blackoutM text-left">'+
+                '<span class="letter letter-red font-blackoutT" style="font-size:40px;">404</span>'+
+               '</span>'+
+
+              '<h4 style="font-weight:300" class=" text-dark padding-10">'+
+                'Oups ! Une erreur s\'est produite'+
+              '</h4>'+
+              '<span style="font-weight:300" class=" text-dark">'+
+                'Vous allez être redirigé vers la page d\'accueil'+
+              '</span>'
+        },
+        dynForm : {
+            onLoadPanel : function (elementObj) { 
+                $("#ajax-modal-modal-title").html("<i class='fa fa-"+elementObj.dynForm.jsonSchema.icon+"'></i> "+elementObj.dynForm.jsonSchema.title);
+                $("#ajax-modal-modal-title").removeClass("text-green").removeClass("text-purple").removeClass("text-orange").removeClass("text-azure");
+                $("#ajax-modal-modal-body").append("<div class='space20'></div>");
+                if(typeof currentKFormType != "undefined")
+                    $("#ajax-modal-modal-title").addClass("text-"+KSpec[currentKFormType].color);
+                
+                $(".locationBtn").on( "click", function(){
+                     setTimeout(function(){
+                        $('[name="newElement_country"]').val("NC");
+                        $('[name="newElement_country"]').trigger("change");
+                     },1000); 
+                });
+                $(".locationBtn").html("<i class='fa fa-home'></i> Addresse principale")
+                $(".locationBtn").addClass("letter-red bold");
+                $("#btn-submit-form").removeClass("text-azure").addClass("letter-green");
+                if(typeof currentKFormType != "undefined")
+                    $("#ajaxFormModal #type").val(currentKFormType);
+            }
+        }
+    };
+
+    var currentScrollTop = 0;
+    var isMapEnd = false;
+	//used in communecter.js dynforms
+    var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
+    var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
+    var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
+    var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
+    var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : "null"?>;
+    var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
+    var organizerList = {}; 
+    var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
 
     var myContacts = <?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
     var myContactsById =<?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
@@ -88,15 +154,6 @@
     };
  
 
-    var theme = {
-            headerParams : {
-                // organizations : { color: "green",   icon: "group",        name: "Groupes de travail" },
-                // projects      : { color: "purple",  icon: "lightbulb-o",  name: "Projets" },
-                // poi           : { color: "black",   icon: "video-camera",   name: "Productions des groupes de travail" }
-            },
-            init : function(){
-                
-            }
-        }
+    
     
 </script>
