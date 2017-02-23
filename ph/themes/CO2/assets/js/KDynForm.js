@@ -36,42 +36,6 @@
 	};
 
 
-
-elementLib.openForm = function (type, afterLoad,data) { 
-    //mylog.clear();
-    $.unblockUI();
-    mylog.warn("--------------- Open Form "+type+" ---------------------",data);
-    mylog.dir(data);
-    elementLocation = null;
-    elementLocations = [];
-    centerLocation = null;
-    updateLocality = false;
-    formType = type;
-    initKSpec(type);
-    specs = typeObj[type];
-    if(userId)
-	{
-		mylog.dir(specs);
-		$("#ajax-modal").removeClass("bgEvent bgOrga bgProject bgPerson bgDDA");//.addClass(specs.bgClass);
-		$("#ajax-modal-modal-title").html("<i class='fa fa-refresh fa-spin'></i> Chargement en cours. Merci de patienter.");
-		$(".modal-header").removeClass("bg-purple bg-green bg-orange bg-yellow bg-lightblue ");//.addClass(specs.titleClass);
-	  	$("#ajax-modal-modal-body").html( "<div class='row bg-white'>"+
-	  										"<div class='col-sm-10 col-sm-offset-1'>"+
-							              	"<div class='space20'></div>"+
-							              	//"<h1 id='proposerloiFormLabel' >Faire une proposition</h1>"+
-							              	"<form id='ajaxFormModal' enctype='multipart/form-data'></form>"+
-							              	"</div>"+
-							              "</div>");
-	  	$('.modal-footer').hide();
-	  	$('#ajax-modal').modal("show");
-	  	afterLoad = ( notNull(afterLoad) ) ? afterLoad : null;
-	  	data = ( notNull(data) ) ? data : {};
-	  	elementLib.buildDynForm(specs, afterLoad, data);
-	} else 
-		toastr.error("Vous devez être connecté pour afficher les formulaires de création");
-}
-
-
 elementLib.buildDynForm = function (elementObj, afterLoad, data) { 
 	mylog.warn("--------------- build K DynForm", elementObj, afterLoad,data);
 	if(userId)

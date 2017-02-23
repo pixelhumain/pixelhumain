@@ -48,10 +48,10 @@ function getAjax(id,url,callback,datatype,blockUI)
   mylog.log("getAjax",id,url,callback,datatype,blockUI)
     if(blockUI)
         $.blockUI({
-            message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
+            message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.processing") ) ? themeObj.blockUi.processing : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
                 '<blockquote>'+
                   '<p>Art is the heart of our culture.</p>'+
-                '</blockquote> '
+                '</blockquote> ' )
         });
   
     if(datatype != "html" )
@@ -82,9 +82,9 @@ function getAjax(id,url,callback,datatype,blockUI)
         error:function (xhr, ajaxOptions, thrownError){
           //mylog.error(thrownError);
           $.blockUI({
-              message : '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> Oups !! 404 ERROR<br> La page que vous demandez ne peut être trouvée ... </div>'
+              message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.error") ) ? themeObj.blockUi.error : '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> Oups !! 404 ERROR<br> La page que vous demandez ne peut être trouvée ... </div>'
               +'<a class="thumb-info" href="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" data-title="Il n\'existe pas d\'évolution sans erreur."  data-lightbox="all">'
-              + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>',
+              + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>'),
               timeout: 3000 
           });
           setTimeout(function(){loadByHash('#')},3000);
@@ -532,6 +532,34 @@ var jsonHelper = {
     //mylog.dir(destArray);
     return destArray;
   },
+  //tests existance of every step of a json path 
+  //can also validate element type 
+  // ex : 
+  //jsonHelper.notNull("themeObj.blockUi") > test themeObj > test themeObj.blockUi ...etc if more steps
+  //jsonHelper.notNull("themeObj.blockUi","function") > false or true accordingly
+  notNull : function (pathJson,type) 
+  {
+    var pathT = pathJson.split(".");
+    res = false;
+    var dynPath = "";
+    $.each( pathT , function (i,k) {
+      dynPath = (i == 0) ? k : dynPath+"."+k ;
+      //typeof eval("typeObj.poi") != "undefined"
+      if(typeof eval(dynPath) != "undefined"){
+        //mylog.log(dynPath);
+        if(i == pathT.length - 1){
+          res = true;
+          if( type != null && typeof eval(dynPath) != type )
+              res = false;      
+        }
+      } else {
+        mylog.error(dynPath," is undefined");
+        res = false;
+        return false;    
+      }
+    });
+    return res;
+  }, 
 
   jsonFromToJson : {
 
