@@ -1,9 +1,10 @@
 {
-    "name" : "Carte ZéroDéchet",
+    "name" : "Restaurants végétariens de la réunion",
     "mode" : "server",
     "skin" : {
-        "title" : "Carte Zéro Déchet Versailles Grand Parc",
-        "shortDescription" : "Carte Zéro Déchet des Colibris Versailles Grand Parc (v2017/02/19-15h07)",
+        "logo" : "",
+        "title" : "Restaurants végétariens de la réunion",
+        "shortDescription" : "Liste des restaurants végétariens et végétaliens de l'ile de la Réunion",
         "displayScope" : false,
         "docs":true,
         "displayCommunexion" : true,
@@ -14,197 +15,82 @@
         "class" : {
             "mainContainer" : false
         },
+
         "iconeAdd" : false,
         "iconeSearchPlus" : false,
-        "loginTitle":"",
+        "loginTitle": "",
         "front" : {
-	        "organization" : true,
-	        "project" : false,
-	        "event" : false,
-	        "community" : false,
-	        "dda" : false,
-	        "live" : false,
-	        "search" : false,
-	        "need" : false,
-	        "poi" : true
-	    },
-	    "menu" : {
-		    "aroundMe":false,
-		    "connectLink":false,
-		    "add":true,
-		    "detail":true,
-		    "news":true,
-		    "directory":true,
-		    "gallery":true
-	    }
+            "organization" : true,
+            "project" : false,
+            "event" : false,
+            "community" : false,
+            "dda" : false,
+            "live" : false,
+            "search" : false,
+            "need" : false,
+            "poi" : true
+        },
+
+        "menu" : {
+            "aroundMe" : false,
+            "connectLink" : false,
+            "add" : true,
+            "detail" : true,
+            "news" : true,
+            "directory" : true,
+            "gallery" : true
+        }
     },
-   "filter" : {
+
+    "filter" : {
         "types" : false,
         "linksTag" : {
-	    "Je me nourris" : {
+            "Prix moyen" : {
+                "tagParent" : "Cout",
+                "background-color" : "#f5f5f5",
+                "image" : "Financement.png",
+                "tags" : {
+                    "Inférieur à 10€" : "inferieur10",
+                    "Entre 10€ et 15€" : "entre10et15",
+                    "Entre 15€ et 20€" : "entre15et20",
+                    "Supérieur à 20€" : "superieur20"
+                }
+            },
+            
+            "Influences" : {
                 "tagParent" : "Alimentation",
                 "background-color" : "#f5f5f5",
                 "image" : "Alimentation.png",
                 "tags" : {
-                  	">Accepte Contenant":"Accepte Contenant",
-			">Vrac":"Vrac",
-			"Produits biologiques":"Produits biologiques",
-			"Vente directe":"Vente directe",
-			"Groupement d'achat":"GroupementDAchat",
-			"Livraison de paniers":"Livraison de paniers",
-			">Marché":"Marché",
-			"Alimentation":"Alimentation",
-			"Amap":"Amap",
-			"Boucherie":"Boucherie",
-			"Boulangerie":"Boulangerie",
-			"Caviste":"Caviste",
-			"Épicerie":"Épicerie",
-			"Fromagerie":"Fromagerie",
-			"Pâtisserie":"Pâtisserie",
-			"Poissonnerie":"Poissonnerie",
-			"Primeur":"Primeur",
-			"Restaurant":"Restaurant",
-			"Traiteur":"Traiteur",
-			">Jardin partagé":"Jardin partagé",
-			">Grainothèque":"Grainothèque",
-			">Source d'eau potable":"Eau potable"
+                    "Japonais": "japonais" ,
+                    "Indien" : "indien",
+                    "Italien" : "italien"
                 }
-            },
-		"Je donne j'echange et j'achète d'occasion" : {
-                "tagParent" : "Equipement",
-                "background-color" : "#f5f5f5",
-                "image" : "Equipement.png",
-                "tags" : {
-			">Occasion":"Occasion",
-			">Don":"Don",
-			">Troc":"Troc",
-			">Ressourcerie":"Ressourcerie",
-			"Meuble":"Meuble",
-			"Électroménager":"Électroménager",
-			"Informatique":"Informatique",
-			"Jouet":"Jouet",
-			"Outil":"Outil",
-			"Puériculture":"Puériculture",
-			">Friperie":"Friperie",
-			"Vêtement":"Vêtement"
-                }
-            },
-	    
-	    "Je prends soin de moi et de ma maison" : {
-                "tagParent" : "Maison",
-                "background-color" : "#f5f5f5",
-                "image" : "Logement.png",
-                "tags" : {
-			"Cosmétique":"Cosmétique",
-			"Déco-Bijoux":"Déco-Bijoux",
-			"Bien-être":"Bien-être",
-			"Droguerie":"Droguerie"
-                }
-            },
-           
-            "Je fais moi même ou je répare" : {
-                "tagParent" : "Réparation",
-                "background-color" : "#f5f5f5",
-                "image" : "Reparation.png",
-                "tags" : {
-			">Réparation":"Réparation",
-			">Atelier":"Atelier",
-			">DIY":"DIY",
-			">Fablab":"Fablab",
-			">Repair Café":"RepairCafé",
-			">Couturier":"Couturier"
-                }
-            },
+            }
+        }
+    },
 
-            "Je recherche un service culturel ou à la personne" : {
-                "tagParent" : "Surface",
-                "background-color" : "#f5f5f5",
-                "image" : "Loisir.png",
-                "tags" : {
-			">Artothèque":"Artothèque",
-			">Bibliothèque":"Bibliothèque",
-			">Cinéma":"Cinéma",
-			"Crèche":"Crèche",
-			">Location":"Location",
-			">Ludothèque":"Ludothèque",
-			">Médiathèque":"Médiathèque",
-			">Outillothèque":"Outillothèque"
-                }
-            },
-	      "Je composte et je recycle" : {
-                "tagParent" : "Conteneur",
-                "background-color" : "#f5f5f5",
-                "image" : "Service.png",
-                "tags" : {
-			">Compost":"Compost",
-			">Déchèterie":"Déchèterie",
-			">Conteneur":"Conteneur",
-			"Électronique":"Électronique",
-			"Papier":"Papier",
-			"Pile":"Pile",
-			"Textile":"Textile",
-			"Verre":"Verre"
-                }
-            },
-	       "Type de structure" : {
-                "tagParent" : "Structure",
-                "background-color" : "#f5f5f5",
-                "image" : "Information.png",
-                "tags" : {
-			"Association":"Association",
-			"Commerce":"Commerce",
-			"Entreprise":"Entreprise",
-			"Groupe de citoyen":"Groupe",
-			"Institution":"Institution",
-			"Monnaie Locale":"Monnaie Locale"
-                }
-            }	    
-       }
-},
     "add" : {
         "organization" : true
     },
+
     "result" : {
         "displayImage" : true,
         "displayType" : true,
         "fullLocality" : true,
         "datesEvent" : false,
-	"displayShortDescription" : true
+        "displayShortDescription" : true
     },
+
     "request" : {
-        "sourcekey" : "zeroDechet",
+        "sourcekey" : "reunionVege",
         "pagination" : 1000,
         "searchType" : [
             "organizations"
         ],
-
-        "searchTag" : [
-		"Accepte Contenant",
-		"Vrac",
-		"Marché",
-		"Grainothèque",
-		"Eau potable",
-		"Ressourcerie",
-		"Friperie",
-		"Occasion",
-		"Don",
-		"Troc",
-		"Atelier",
-		"Couturier",
-		"DIY",
-		"Fablab",
-		"RepairCafé",
-		"Réparation",
-		"Artothèque",
-		"Bibliothèque",
-		"Cinéma",
-		"Location",
-		"Ludothèque",
-		"Médiathèque",
-		"Outillothèque",
-		"Compost",
-		"Déchèterie",
-		"Conteneur"
-	]
+        "searchLocalityDEPARTEMENT" : [
+            "REUNION"
+        ],
+        "mainTag" : ["Chanson"]
     }
 }
