@@ -138,6 +138,9 @@
           </h4>
         </a>
       </div>
+      <div class="panel-heading">
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      </div>
     </div>
   </div>
 </div>
