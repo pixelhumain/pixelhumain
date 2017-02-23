@@ -54,6 +54,8 @@ src: url('../../vendor/fonts/Homestead/Homestead-Display.ttf');
 
 .bold{ font-weight:700!important; }
 
+.font-light{ font-weight: 300!important; }
+
 .scroll-top .btn {
     font-size: 20px;
     width: 65px;
@@ -108,7 +110,7 @@ src: url('../../vendor/fonts/Homestead/Homestead-Display.ttf');
 header, .header {
   text-align: center;
   background: #F6F6F6;
-  background-image: url("../../img/background-onepage/pattern/witewall_3.png");
+  /*background-image: url("../../img/background-onepage/pattern/witewall_3.png");*/
   color: #365766;
 }
 
@@ -562,7 +564,7 @@ a, a:hover, a:focus, a:active, a.active{
 }
 
 #main-btn-start-search, 
-#main-btn-referencement, 
+.main-btn-create, 
 #btn-new-search{
 	font-size: 14px;
 	height: 37px;
@@ -570,13 +572,16 @@ a, a:hover, a:focus, a:active, a.active{
 	color: #6f6f6f;
 	font-weight: 700;
 	background-color: #f8f8f8;
+	margin-bottom:5px;
 }
 #main-btn-start-search:hover, 
-#main-btn-referencement:hover{
+.main-btn-create:hover{
 	background-color: #fff;
 	color:#4b4b4b;
 	font-weight: 700;
 }
+
+
 
 .skills{
 	font-size:11px !important;

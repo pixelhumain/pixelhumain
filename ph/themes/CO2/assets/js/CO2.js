@@ -318,6 +318,8 @@ function initKInterface(params){
       CoSigAllReadyLoad = true;
     }, 3000);
 
+    KScrollTo(".main-container");
+
 }
 
 var currentScrollTop = 0;

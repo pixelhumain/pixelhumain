@@ -14,9 +14,13 @@
             <input type="text" class="form-control" id="input-search-map" placeholder="Rechercher sur la carte">
         </div>
 
-        <button class="btn btn-default hidden-xs" id="menu-map-btn-start-search"><i class="fa fa-search"></i></button>
-        
-        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Fermer la carte"><i class="fa fa-times"></i></button>
+        <button class="btn btn-default hidden-xs" id="menu-map-btn-start-search">
+            <i class="fa fa-search"></i>
+        </button>
+        <span id="map-loading-data">Chargement en cours...</span>
+        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Fermer la carte">
+            <i class="fa fa-times"></i>
+        </button>
         <!-- <button class="btn-show-mainmenu" onclick="showMap(false);" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
         </button> -->

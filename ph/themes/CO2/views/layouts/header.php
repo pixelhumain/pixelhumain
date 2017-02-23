@@ -71,18 +71,11 @@
                                                           "subdomain"=>$subdomain)); ?>
 
 
-                       
-
                         <?php if($subdomain == "media"){ ?>
                             <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
-
-                            <!-- <div class="col-md-12 hidden-top scopes hidden">
-                                <button class="btn text-red bg-white btn-scope"><i class="fa fa-circle-o"></i> Nouméa</button>
-                                <button class="btn text-white bg-red btn-scope"><i class="fa fa-plus"></i></button>
-                            </div> -->
 
                             <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults">
                                 <i class="fa fa-search"></i> Lancer la recherche
@@ -95,7 +88,7 @@
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
-                            <?php if($subdomain == "social"){ ?>                  
+                            <?php if($subdomain == "social" && false){ ?>                  
                             <div class="col-md-12 no-padding hidden-top scopes">
                                 <button class="btn text-black bg-white btn-directory-type" data-type="all">
                                     <i class="fa fa-search"></i> 
@@ -132,11 +125,16 @@
                                     <i class="fa fa-search"></i> Lancer la recherche
                                 </button> 
                                 <?php if($subdomain == "agenda"){ ?>                  
-                                <button class="btn btn-default text-orange bold" id="">
-                                    <i class="fa fa-plus-circle"></i> Créer un événement
-                                </button>
+                                    <button class="btn btn-default text-orange bold main-btn-create" id="">
+                                        <i class="fa fa-plus-circle"></i> Créer un événement
+                                    </button>
+                                <?php }elseif($subdomain == "social"){ ?>                  
+                                    <button class="btn btn-default text-dark bold main-btn-create" 
+                                            data-target="#dash-create-modal" data-toggle="modal" id="">
+                                        <i class="fa fa-plus-circle"></i> Créer une page
+                                    </button>
                                 <?php }else{ ?>
-                                    <button class="btn btn-default text-azure bold" id="">
+                                    <button class="btn btn-default text-azure bold main-btn-create" id="">
                                         <i class="fa fa-plus-circle"></i> Faire une proposition
                                     </button>
                                 <?php } ?>
@@ -151,7 +149,7 @@
 
                             <div class="col-md-12">
                                 <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button>
-                                <a href="#co2.referencement" class="lbh btn btn-default hidden-xs" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer un site</a>
+                                <a href="#co2.referencement" class="lbh btn btn-default hidden-xs main-btn-create" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer un site</a>
                             </div>
                         <?php }elseif($subdomain == "referencement"){ ?>
                             <p><br><small>

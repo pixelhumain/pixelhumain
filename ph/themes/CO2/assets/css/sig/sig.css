@@ -983,7 +983,12 @@ creer des conflits : regle pas assez specfique
 		background-color: #2BB0C6 !important;
 	}
 
-
+	#map-loading-data{
+		font-size: 13px !important;
+		font-weight: 300 !important;
+		text-transform: none !important;
+		padding: 15px;
+	}
 /* style tooltip des chartsMarkers */
 
 @media screen and (max-width: 768px) {
