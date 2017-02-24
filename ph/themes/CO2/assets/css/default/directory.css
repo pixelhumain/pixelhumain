@@ -51,9 +51,12 @@
 
   }
   .search-loader{
-    padding:20px !important;
     margin-left:0px;
     float:left;
+    font-size: 15px;
+    border-bottom: 1px solid #e6e6e6;
+    padding-top: 7px !important;
+    padding-bottom: 30px !important;
   }
 
   #dropdown_search{

@@ -56,9 +56,9 @@
                     if( isset( Yii::app()->session['userId']) ){
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
-                     
-                    <a  href="#co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="menu-name-profil text-dark lbh pull-right" 
+                     <!-- #co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
+                    <a  href="javascript:"
+                        class="menu-name-profil text-dark pull-right" 
                         data-toggle="dropdown">
                                 <small class="hidden-xs" id="menu-name-profil"><?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?></small> 
                                 <img class="img-circle" id="menu-thumb-profil" 
@@ -73,6 +73,18 @@
                                             <i class="fa fa-user-circle"></i> Ma page
                                         </a>
                                     </li>
+                                    </li>
+                                    <li class="text-left">
+                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                            <i class="fa fa-university"></i> Ma commune
+                                        </a>
+                                    </li>
+                                    </li>
+                                    <li class="text-left">
+                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                            <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
+                                        </a>
+                                    </li>
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
                                         <a href="#co2.social" target="_blank" class="lbh bg-white">
@@ -85,11 +97,19 @@
                                             <i class="fa fa-search"></i> Rechercher des contacts
                                         </a>
                                     </li>
-                                    <li role="separator" class="divider">
+                                    <li class="text-left">
+                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                            <i class="fa fa-newspaper-o"></i> Petites annonces
+                                        </a>
                                     </li>
                                     <li class="text-left">
                                         <a href="#co2.social" target="_blank" class="lbh bg-white">
-                                            <i class="fa fa-crosshairs"></i> Autour de moi
+                                            <i class="fa fa-calendar"></i> Agenda
+                                        </a>
+                                    </li>
+                                    <li class="text-left">
+                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                            <i class="fa fa-hand-rock-o"></i> Power
                                         </a>
                                     </li>
                                     <li role="separator" class="divider">

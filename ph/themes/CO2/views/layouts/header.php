@@ -129,7 +129,7 @@
                                         <i class="fa fa-plus-circle"></i> Créer un événement
                                     </button>
                                 <?php }elseif($subdomain == "social"){ ?>                  
-                                    <button class="btn btn-default text-dark bold main-btn-create" 
+                                    <button class="btn btn-default letter-green bold main-btn-create" 
                                             data-target="#dash-create-modal" data-toggle="modal" id="">
                                         <i class="fa fa-plus-circle"></i> Créer une page
                                     </button>
