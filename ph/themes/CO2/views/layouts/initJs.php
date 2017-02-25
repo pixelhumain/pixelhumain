@@ -32,7 +32,7 @@
         imgLoad : "CO2r.png" ,
         mainContainer : ".main-container",
         blockUi : {
-            processingBlockUi : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
+            processingMsg : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
                   '<i class="fa fa-spin fa-circle-o-notch"></i>'+
                   '<h4 style="font-weight:300" class=" text-dark padding-10">'+
                     'Chargement en cours...'+
@@ -44,8 +44,8 @@
                   '<a href="#" class="btn btn-default btn-sm lbh">'+
                     "c'est trop long !"+
                   '</a>', 
-            error : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map pull-" height=80>'+
-              '<i class="fa fa-times"></i>'+
+            errorMsg : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
+              '<i class="fa fa-times"></i><br>'+
                '<span class="col-md-12 text-center font-blackoutM text-left">'+
                 '<span class="letter letter-red font-blackoutT" style="font-size:40px;">404</span>'+
                '</span>'+

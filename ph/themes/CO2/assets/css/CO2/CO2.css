@@ -48,6 +48,10 @@
 font-family: Homestead;
 src: url('../../vendor/fonts/Homestead/Homestead-Display.ttf');
 }
+
+.colorpicker{
+	display: none;
+}
 .homestead{font-family:"Homestead";font-weight:200!important;}
 
 .font-montserrat{font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;}
@@ -155,7 +159,7 @@ section {
 
 .navbar-custom {
     background: rgba(251, 251, 251, 0.98); /*#FFF;/*rgba(255, 255, 255, 0.2)*/;
-    padding: 5px 0;
+    padding: 8px 0;
 	-webkit-box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
     -moz-box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
     box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.5) ;
@@ -1002,6 +1006,18 @@ h3.title_panel_map{
 	opacity: 0.7;
   }
 
+  .btn-menu-to-app{
+  	font-size: 18px;
+	padding: 5px;
+	padding-top: 10px;
+	margin: 0 7px;
+  }
+
+  .btn-menu-to-app:hover,
+  .btn-menu-to-app.active{
+	border-bottom: 2px solid #e43636;
+  }
+  
 @media screen and (max-width: 1024px) {
 	.menu-name-profil small{
 	    max-width: 45px;

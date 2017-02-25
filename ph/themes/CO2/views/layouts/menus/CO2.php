@@ -12,32 +12,21 @@
 
         </div>
 
-        <?php if($subdomain == "live"){ ?>
+        <?php if( $subdomain == "social" ||
+                  $subdomain == "agenda" ||
+                  $subdomain == "power"  ||
+                  $subdomain == "freedom"||
+                  $subdomain == "page.type" ){ ?>
         
             <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
-                <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
-            </div>
-            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
-        
-        <?php }elseif($subdomain == "web"){ ?>
-            
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
-                <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
-            </div>
-            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
-        
-        <?php }elseif($subdomain == "social" || $subdomain == "page.type"){ ?>
-            
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
-                <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
+                <input type="text" class="form-control" id="second-search-bar" 
+                        placeholder="<?php echo $placeholderMainSearch; ?>">
                 <?php if($subdomain == "page.type"){ ?>
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
                 <?php } ?>
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
 
-        <?php }elseif($subdomain == "page"){ ?>
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4" id="main-page-name"></div>
         <?php } ?>
 
         <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Afficher la carte">
@@ -57,65 +46,69 @@
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
                      <!-- #co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
-                    <a  href="javascript:"
+                    <a  href="#co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
                         class="menu-name-profil text-dark pull-right" 
                         data-toggle="dropdown">
-                                <small class="hidden-xs" id="menu-name-profil"><?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?></small> 
-                                <img class="img-circle" id="menu-thumb-profil" 
-                                     width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
+                            <small class="hidden-xs" id="menu-name-profil">
+                                <?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?>
+                            </small> 
+                            <img class="img-circle" id="menu-thumb-profil" 
+                                 width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
                     </a>
 
                     <div class="dropdown pull-right" id="dropdown-user">
                         <div class="dropdown-main-menu">
                             <ul class="dropdown-menu arrow_box">
                                     <li class="text-left">
-                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <a href="#co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>" 
+                                            class="lbh bg-white">
                                             <i class="fa fa-user-circle"></i> Ma page
                                         </a>
                                     </li>
                                     </li>
                                     <li class="text-left">
-                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <a href="#co2.social" class="lbh bg-white">
                                             <i class="fa fa-university"></i> Ma commune
                                         </a>
                                     </li>
                                     </li>
                                     <li class="text-left">
-                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <a href="#co2.social" class="lbh bg-white">
                                             <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
-                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <a href="javascript:" class="lbh bg-white">
                                             <i class="fa fa-plus-circle"></i> Créer une page
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
-                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <a href="#co2.social" class="lbh bg-white">
                                             <i class="fa fa-search"></i> Rechercher des contacts
                                         </a>
                                     </li>
                                     <li class="text-left">
-                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <a href="#co2.freedom" class="lbh bg-white">
                                             <i class="fa fa-newspaper-o"></i> Petites annonces
                                         </a>
                                     </li>
                                     <li class="text-left">
-                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                        <a href="#co2.agenda" class="lbh bg-white">
                                             <i class="fa fa-calendar"></i> Agenda
                                         </a>
                                     </li>
-                                    <li class="text-left">
-                                        <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                    <li class="text-power">
+                                        <a href="#co2.social" class="lbh bg-white">
                                             <i class="fa fa-hand-rock-o"></i> Power
                                         </a>
                                     </li>
                                     <li role="separator" class="divider">
                                     </li>
                                     <li class="text-left">
-                                        <a href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" class="bg-white letter-red">
+                                        <a href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" 
+                                            class="bg-white letter-red logout">
                                             <i class="fa fa-sign-out"></i> Déconnecter
                                         </a>
                                     </li>
@@ -125,23 +118,49 @@
                     </div>
 
                     <button class="menu-button btn-menu btn-menu-notif tooltips text-dark pull-right" 
-                          data-toggle="tooltip" data-placement="left" title="Notifications" alt="Notifications">
+                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
                         <?php count($this->notifications); ?>
                     </button>
-                   
+
+                    
+                    
                 <?php } else { ?>
                     <li class="page-scroll">
-                        <button class="letter-green font-montserrat btn-menu-connect" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> SE CONNECTER</button>
+                        <button class="letter-green font-montserrat btn-menu-connect" 
+                                data-toggle="modal" data-target="#modalLogin">
+                            <i class="fa fa-sign-in"></i> SE CONNECTER
+                        </button>
                     </li>
                 <?php } ?>
                 
             </ul>
 
         </div>
-
         <!-- /.navbar-collapse -->
+
+        <a href="#co2.power" 
+            class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="power") echo 'active'; ?>"
+            data-toggle="tooltip" data-placement="bottom" title="Power" alt="Power">
+            <i class="fa fa-hand-rock-o"></i>
+        </a>
+        <a href="#co2.agenda" 
+            class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="agenda") echo 'active'; ?>"
+            data-toggle="tooltip" data-placement="bottom" title="Agenda">
+            <i class="fa fa-calendar"></i>
+        </a>
+        <a href="#co2.freedom" 
+            class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="freedom") echo 'active'; ?>"
+            data-toggle="tooltip" data-placement="bottom" title="Annonces">
+            <i class="fa fa-newspaper-o"></i>
+        </a>
+        <a href="#co2.social" 
+            class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="social") echo 'active'; ?>"
+            data-toggle="tooltip" data-placement="bottom" title="Recherche" alt="Recherche">
+            <i class="fa fa-search"></i>
+        </a>
+
     </div>
     <!-- /.container-fluid -->
 
@@ -157,3 +176,9 @@
 
 
 <?php $this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
+
+<script>
+jQuery(document).ready(function() {    
+    setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
+});
+</script> 

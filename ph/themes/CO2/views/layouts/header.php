@@ -67,6 +67,7 @@
                         
                         <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"], 
                                                     array("mainTitle"=>$mainTitle,
+                                                          "icon"=>$icon,
                                                           "subdomainName"=>$subdomainName,
                                                           "subdomain"=>$subdomain)); ?>
 
@@ -81,64 +82,39 @@
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button>
 
-                        <?php }elseif($subdomain == "social" || $subdomain == "agenda" || $subdomain == "power"){ ?>
+                        <?php }elseif($subdomain == "social" ||
+                                      $subdomain == "agenda" ||
+                                      $subdomain == "power" ||
+                                      $subdomain == "freedom"){ ?>
 
                             <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
-                            <?php if($subdomain == "social" && false){ ?>                  
-                            <div class="col-md-12 no-padding hidden-top scopes">
-                                <button class="btn text-black bg-white btn-directory-type" data-type="all">
-                                    <i class="fa fa-search"></i> 
-                                    <span class="hidden-xs">Tous</span>
+                            
+                            <button class="btn btn-default btn-scroll btn-directory-type" id="main-btn-start-search" data-type="<?php echo @$type; ?>" data-targetid="#page">
+                                <i class="fa fa-search"></i> Lancer la recherche
+                            </button> 
+                            <?php if($subdomain == "agenda"){ ?>                  
+                                <button class="btn btn-default text-orange bold main-btn-create" id="">
+                                    <i class="fa fa-plus-circle"></i> Créer un événement
                                 </button>
-                                <button class="btn text-white bg-yellow btn-directory-type" data-type="persons">
-                                    <i class="fa fa-user"></i> 
-                                    <span class="hidden-xs">Citoyens</span>
+                            <?php }elseif($subdomain == "social"){ ?>                  
+                                <button class="btn btn-default letter-green bold main-btn-create" 
+                                        data-target="#dash-create-modal" data-toggle="modal" id="">
+                                    <i class="fa fa-plus-circle"></i> Créer une page
                                 </button>
-                                <button class="btn text-white bg-green  btn-directory-type" data-type="NGO">
-                                    <i class="fa fa-group"></i> 
-                                    <span class="hidden-xs">Associations</span>
+                            <?php }elseif($subdomain == "freedom"){ ?>
+                                <button class="btn btn-default letter-green bold main-btn-create" id="">
+                                    <i class="fa fa-plus-circle"></i> Publier une annonce
                                 </button>
-                                <button class="btn text-white bg-azure  btn-directory-type" data-type="LocalBusiness">
-                                    <i class="fa fa-industry"></i> 
-                                    <span class="hidden-xs">Entreprises</span>
+                            <?php }elseif($subdomain == "power"){ ?>
+                                <button class="btn btn-default text-azure bold main-btn-create" id="">
+                                    <i class="fa fa-plus-circle"></i> Faire une proposition
                                 </button>
-                                <button class="btn text-white bg-purple btn-directory-type" data-type="projects">
-                                    <i class="fa fa-lightbulb-o"></i> 
-                                    <span class="hidden-xs">Projets</span>
-                                </button>
-                                <!-- <button class="btn text-white bg-red  btn-directory-type" data-type="cities">
-                                    <i class="fa fa-university"></i> 
-                                    <span class="hidden-xs">Communes</span>
-                                </button> -->
-                                <button class="btn text-white bg-turq btn-directory-type" data-type="Group">
-                                    <i class="fa fa-circle-o"></i> 
-                                    <span class="hidden-xs">Groupes</span>
-                                </button><br><br>
-                                <!-- <span>Rechercher parmis toutes les pages du réseau COMMUNECTER</span> -->
-                            </div>
-                            <?php }else{ ?>
-                                 <button class="btn btn-default btn-scroll btn-directory-type" id="main-btn-start-search" data-type="<?php echo @$type; ?>" data-targetid="#page">
-                                    <i class="fa fa-search"></i> Lancer la recherche
-                                </button> 
-                                <?php if($subdomain == "agenda"){ ?>                  
-                                    <button class="btn btn-default text-orange bold main-btn-create" id="">
-                                        <i class="fa fa-plus-circle"></i> Créer un événement
-                                    </button>
-                                <?php }elseif($subdomain == "social"){ ?>                  
-                                    <button class="btn btn-default letter-green bold main-btn-create" 
-                                            data-target="#dash-create-modal" data-toggle="modal" id="">
-                                        <i class="fa fa-plus-circle"></i> Créer une page
-                                    </button>
-                                <?php }else{ ?>
-                                    <button class="btn btn-default text-azure bold main-btn-create" id="">
-                                        <i class="fa fa-plus-circle"></i> Faire une proposition
-                                    </button>
-                                <?php } ?>
                             <?php } ?>
+
                             <!-- <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button> -->
 
                         <?php }elseif($subdomain == "web"){ ?>
@@ -158,8 +134,8 @@
                                 C'est simple, et ça prend seulement <span class="text-red"> quelques secondes ...</span>
                                 </small>
                             </p>
-                        <?php }elseif($subdomain == "freedom"){ ?>
-                            <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-bottom:15px;">
+                        <?php// }elseif($subdomain == "freedom"){ ?>
+                            <!-- <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
@@ -198,7 +174,7 @@
                                 <a href="#co2.referencement" class="lbh btn btn-default letter-green hidden-xs bold" id="">
                                     <i class="fa fa-plus-circle"></i> Publier une annonce
                                 </a>
-                            </div>
+                            </div> -->
 
                         <?php } ?>
 
