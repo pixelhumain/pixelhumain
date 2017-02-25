@@ -400,7 +400,7 @@ function buildNotifications(list)
 			//console.log(userId);
 			//console.log(notifObj.notify);
 			//console.log(notifObj.notify.id[userId]);
-			var isSeen = (typeof notifObj.notify.id[userId] != "undefined" && typeof notifObj.notify.id[userId].isUnsee != "undefined") ? "" : "seen";
+			var isSeen = (typeof notifObj.notify.id[userId] != "undefined" && typeof notifObj.notify.id[userId].isUnseen != "undefined") ? "" : "seen";
 			var isRead = (typeof notifObj.notify.id[userId] != "undefined" && typeof notifObj.notify.id[userId].isUnread != "undefined") ? "" : "read";
 
 			str = "<li class='notifLi notif_"+notifKey+" "+isSeen+" "+isRead+" hide'>"+
@@ -434,17 +434,17 @@ function buildNotifications(list)
 	}
 }
 
-function notifCount(upNotifUnsee)
+function notifCount(upNotifUnseen)
 { 	var countNotif = $(".notifList li.enable").length;
-	var countNotifSee = $(".notifList li.seen").length;
-	var countNotifUnsee = countNotif-countNotifSee;
-	if(upNotifUnsee)
-		countNotifUnsee=0;
+	var countNotifSeen = $(".notifList li.seen").length;
+	var countNotifUnseen = countNotif-countNotifSeen;
+	if(upNotifUnseen)
+		countNotifUnseen=0;
 	mylog.log(" !!!! notifCount", countNotif);
 	$(".notifCount").html( countNotif );
 	if(countNotif == 0)
 		$(".notifList").append("<li><i class='fa fa-ban'></i> <?php echo Yii::t("common","No more notifications for the moment") ?></li>");
-	if( countNotifUnsee > 0)
+	if( countNotifUnseen > 0)
 	{
 	    $(".notifications-count").html(countNotif);
 		$('.notifications-count').removeClass('hide');
