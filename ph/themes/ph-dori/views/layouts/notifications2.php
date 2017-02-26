@@ -1,4 +1,11 @@
 <!-- start: PAGESLIDE RIGHT -->
+<?php 
+$cssAnsScriptFilesModule = array(
+	'/js/default/notifications.js'
+	//'/js/news/autosize.js',
+);
+HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->assetsUrl);
+?>
 <style type="text/css">
 	.notifications li {
 		min-height:50px;
@@ -140,7 +147,7 @@
 </style>
 <div id="notificationPanelSearch" class="">
 		<div class="notifications">
-			<a href="javascript:;" onclick='refreshNotifications()' class="btn-notification-action pull-left btn-reload-notif">
+			<a href="javascript:;" onclick='refreshNotifications("<?php echo Yii::app()->session["userId"]?>","<?php echo Person::COLLECTION ?>","")' class="btn-notification-action pull-left btn-reload-notif">
 				<i class="fa fa-refresh"></i>
 			</a>
 			<div class="pageslide-title pull-left">
@@ -154,7 +161,7 @@
 			<ul class="pageslide-list notifList">
 				<?php
 					$maxTimestamp = 0;
-					if(isset($this->notifications))
+					/*if(isset($this->notifications))
 					{
 						//for($i=0; $i<10; $i++)
 						foreach( $this->notifications as $item )
@@ -180,7 +187,7 @@
 					            	$maxTimestamp = $timestamp->sec;
 					        }
 				        } 
-				    } 
+				    } */
 				?>
 			</ul>
 			<!-- <div class="footer-notif">
@@ -215,11 +222,11 @@ jQuery(document).ready(function()
 {
 	//initNotifications();
 	//bindLBHLinks();
-	bindNotifEvents();
-	refreshNotifications();
+	bindNotifEvents("");
+	refreshNotifications(userId,"<?php echo Person::COLLECTION ?>","");
 });
 
-function bindNotifEvents(){
+/*function bindNotifEvents(){
 	$(".notifList a.notif").off().on("click",function () 
 	{
 		markAsRead( $(this).data("id") );
@@ -374,7 +381,7 @@ function refreshNotifications()
         $(".pageslide-list.header .btn-primary i.fa-refresh").removeClass("fa-spin");
     });
 
-}*/
+}
 function buildNotifications(list)
 {	mylog.log(list);
 	mylog.info("buildNotifications()");
@@ -460,5 +467,5 @@ function notifCount(upNotifUnseen)
 		$('.notifications-count').addClass('badge-tranparent');
 		$(".markAllAsRead").hide();
 	}
-}
+}*/
 </script>
