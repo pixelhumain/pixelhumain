@@ -37,6 +37,7 @@ return array(
 	"Invite" => "Inviter",
 	"Edit" => "Éditer",
 	"Delete" => "Supprimer",
+	"Disable" => "Désactiver",
 	"Remove" => "Supprimer",
 	"Back" => "Retour",
 	"Next" => "Suivant",
