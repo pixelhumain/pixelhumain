@@ -23,12 +23,12 @@
     <?php 
         $params = CO2::getThemeParams();
        
-        $useHeader              = $params["pages"]["#app.".$page]["useHeader"];
-        $subdomain              = $params["pages"]["#app.".$page]["subdomain"];
-        $subdomainName          = $params["pages"]["#app.".$page]["subdomainName"];
-        $icon                   = $params["pages"]["#app.".$page]["icon"];
-        $mainTitle              = $params["pages"]["#app.".$page]["mainTitle"];
-        $placeholderMainSearch  = $params["pages"]["#app.".$page]["placeholderMainSearch"];
+        $useHeader              = $params["pages"]["#".$page]["useHeader"];
+        $subdomain              = $params["pages"]["#".$page]["subdomain"];
+        $subdomainName          = $params["pages"]["#".$page]["subdomainName"];
+        $icon                   = $params["pages"]["#".$page]["icon"];
+        $mainTitle              = $params["pages"]["#".$page]["mainTitle"];
+        $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
     ?>
 
     <!-- Header -->
@@ -82,10 +82,10 @@
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button>
 
-                        <?php }elseif($subdomain == "social" ||
+                        <?php }elseif($subdomain == "search" ||
                                       $subdomain == "agenda" ||
                                       $subdomain == "power" ||
-                                      $subdomain == "freedom"){ ?>
+                                      $subdomain == "annonces"){ ?>
 
                             <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
@@ -100,12 +100,12 @@
                                 <button class="btn btn-default text-orange bold main-btn-create" id="">
                                     <i class="fa fa-plus-circle"></i> Créer un événement
                                 </button>
-                            <?php }elseif($subdomain == "social"){ ?>                  
+                            <?php }elseif($subdomain == "search"){ ?>                  
                                 <button class="btn btn-default letter-green bold main-btn-create" 
                                         data-target="#dash-create-modal" data-toggle="modal" id="">
                                     <i class="fa fa-plus-circle"></i> Créer une page
                                 </button>
-                            <?php }elseif($subdomain == "freedom"){ ?>
+                            <?php }elseif($subdomain == "annonces"){ ?>
                                 <button class="btn btn-default letter-green bold main-btn-create" id="">
                                     <i class="fa fa-plus-circle"></i> Publier une annonce
                                 </button>

@@ -15,7 +15,7 @@
         <?php if( $subdomain == "social" ||
                   $subdomain == "agenda" ||
                   $subdomain == "power"  ||
-                  $subdomain == "freedom"||
+                  $subdomain == "annonces"||
                   $subdomain == "page.type" ){ ?>
         
             <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
@@ -67,13 +67,13 @@
                                     </li>
                                     </li>
                                     <li class="text-left">
-                                        <a href="#app.social" class="lbh bg-white">
+                                        <a href="#social" class="lbh bg-white">
                                             <i class="fa fa-university"></i> Ma commune
                                         </a>
                                     </li>
                                     </li>
                                     <li class="text-left">
-                                        <a href="#app.social" class="lbh bg-white">
+                                        <a href="#social" class="lbh bg-white">
                                             <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
                                         </a>
                                     </li>
@@ -85,22 +85,22 @@
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
-                                        <a href="#app.social" class="lbh bg-white">
+                                        <a href="#social" class="lbh bg-white">
                                             <i class="fa fa-search"></i> Rechercher des contacts
                                         </a>
                                     </li>
                                     <li class="text-left">
-                                        <a href="#app.freedom" class="lbh bg-white">
+                                        <a href="#annonces" class="lbh bg-white">
                                             <i class="fa fa-newspaper-o"></i> Petites annonces
                                         </a>
                                     </li>
                                     <li class="text-left">
-                                        <a href="#app.agenda" class="lbh bg-white">
+                                        <a href="#agenda" class="lbh bg-white">
                                             <i class="fa fa-calendar"></i> Agenda
                                         </a>
                                     </li>
                                     <li class="text-power">
-                                        <a href="#app.social" class="lbh bg-white">
+                                        <a href="#social" class="lbh bg-white">
                                             <i class="fa fa-hand-rock-o"></i> Power
                                         </a>
                                     </li>
@@ -150,8 +150,8 @@
             data-toggle="tooltip" data-placement="bottom" title="Agenda">
             <i class="fa fa-calendar"></i>
         </a>
-        <a href="#app.freedom" 
-            class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="freedom") echo 'active'; ?>"
+        <a href="#app.annonces" 
+            class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="annonces") echo 'active'; ?>"
             data-toggle="tooltip" data-placement="bottom" title="Annonces">
             <i class="fa fa-newspaper-o"></i>
         </a>
