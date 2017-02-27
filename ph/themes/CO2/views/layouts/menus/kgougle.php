@@ -112,7 +112,7 @@ input#second-search-bar{
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
                      
-                    <a  href="#co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
+                    <a  href="#app.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
                         class="menu-name-profil lbh text-dark pull-right">
                                 <small class="hidden-xs" id="menu-name-profil"><?php echo $me["name"]; ?></small> 
                                 <img class="img-circle" id="menu-thumb-profil" 
@@ -123,26 +123,26 @@ input#second-search-bar{
                         <div class="dropdown-main-menu">
                             <ul class="dropdown-menu arrow_box">
                                 <li class="text-left">
-                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                    <a href="#app.social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-user-circle"></i> Ma page
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="text-left">
-                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                    <a href="#app.social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-plus-circle"></i> Créer une page
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="text-left">
-                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                    <a href="#app.social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-search"></i> Rechercher des contacts
                                     </a>
                                 </li>
                                 <li role="separator" class="divider">
                                 </li>
                                 <li class="text-left">
-                                    <a href="#co2.social" target="_blank" class="lbh bg-white">
+                                    <a href="#app.social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-crosshairs"></i> Autour de moi
                                     </a>
                                 </li>
@@ -181,7 +181,7 @@ input#second-search-bar{
                     data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i>
             </button> 
 
-            <a href="#co2.info.p.sethome" class=" btn btn-default lbh btn-sm letter-red tooltips pull-right font-montserrat hidden-xs" 
+            <a href="#app.info.p.sethome" class=" btn btn-default lbh btn-sm letter-red tooltips pull-right font-montserrat hidden-xs" 
                     id="btn-sethome" style=" margin-top:6px;"  
                     data-placement="bottom" title="Utiliser Kgougle en page d'accueil sur votre navigateur">
                     <i class="fa fa-plus"></i> <i class="fa fa-home fa-2x"></i>

@@ -64,7 +64,7 @@
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
                       <button class="dropdown-toggle menu-name-profil text-dark lbh" 
-                              data-toggle="dropdown" data-hash="#co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>">
+                              data-toggle="dropdown" data-hash="#app.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>">
                                 <small class="hidden-xs"><?php echo $me["name"]; ?></small> 
                                 <img class="img-circle" id="menu-thumb-profil" 
                                      width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >

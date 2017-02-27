@@ -4,7 +4,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <a href="#co2.web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
+            <a href="#app.web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="nc_map pull-left" height=30>
             </a>
@@ -45,8 +45,8 @@
                     if( isset( Yii::app()->session['userId']) ){
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
-                     <!-- #co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
-                    <a  href="#co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
+                     <!-- #app.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
+                    <a  href="#app.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
                         class="menu-name-profil text-dark pull-right" 
                         data-toggle="dropdown">
                             <small class="hidden-xs" id="menu-name-profil">
@@ -60,20 +60,20 @@
                         <div class="dropdown-main-menu">
                             <ul class="dropdown-menu arrow_box">
                                     <li class="text-left">
-                                        <a href="#co2.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>" 
+                                        <a href="#app.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>" 
                                             class="lbh bg-white">
                                             <i class="fa fa-user-circle"></i> Ma page
                                         </a>
                                     </li>
                                     </li>
                                     <li class="text-left">
-                                        <a href="#co2.social" class="lbh bg-white">
+                                        <a href="#app.social" class="lbh bg-white">
                                             <i class="fa fa-university"></i> Ma commune
                                         </a>
                                     </li>
                                     </li>
                                     <li class="text-left">
-                                        <a href="#co2.social" class="lbh bg-white">
+                                        <a href="#app.social" class="lbh bg-white">
                                             <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
                                         </a>
                                     </li>
@@ -85,22 +85,22 @@
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
-                                        <a href="#co2.social" class="lbh bg-white">
+                                        <a href="#app.social" class="lbh bg-white">
                                             <i class="fa fa-search"></i> Rechercher des contacts
                                         </a>
                                     </li>
                                     <li class="text-left">
-                                        <a href="#co2.freedom" class="lbh bg-white">
+                                        <a href="#app.freedom" class="lbh bg-white">
                                             <i class="fa fa-newspaper-o"></i> Petites annonces
                                         </a>
                                     </li>
                                     <li class="text-left">
-                                        <a href="#co2.agenda" class="lbh bg-white">
+                                        <a href="#app.agenda" class="lbh bg-white">
                                             <i class="fa fa-calendar"></i> Agenda
                                         </a>
                                     </li>
                                     <li class="text-power">
-                                        <a href="#co2.social" class="lbh bg-white">
+                                        <a href="#app.social" class="lbh bg-white">
                                             <i class="fa fa-hand-rock-o"></i> Power
                                         </a>
                                     </li>
@@ -140,22 +140,22 @@
         </div>
         <!-- /.navbar-collapse -->
 
-        <a href="#co2.power" 
+        <a href="#app.power" 
             class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="power") echo 'active'; ?>"
             data-toggle="tooltip" data-placement="bottom" title="Power" alt="Power">
             <i class="fa fa-hand-rock-o"></i>
         </a>
-        <a href="#co2.agenda" 
+        <a href="#app.agenda" 
             class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="agenda") echo 'active'; ?>"
             data-toggle="tooltip" data-placement="bottom" title="Agenda">
             <i class="fa fa-calendar"></i>
         </a>
-        <a href="#co2.freedom" 
+        <a href="#app.freedom" 
             class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="freedom") echo 'active'; ?>"
             data-toggle="tooltip" data-placement="bottom" title="Annonces">
             <i class="fa fa-newspaper-o"></i>
         </a>
-        <a href="#co2.social" 
+        <a href="#app.social" 
             class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="social") echo 'active'; ?>"
             data-toggle="tooltip" data-placement="bottom" title="Recherche" alt="Recherche">
             <i class="fa fa-search"></i>

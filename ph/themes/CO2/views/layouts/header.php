@@ -23,12 +23,12 @@
     <?php 
         $params = CO2::getThemeParams();
        
-        $useHeader              = $params["pages"]["#co2.".$page]["useHeader"];
-        $subdomain              = $params["pages"]["#co2.".$page]["subdomain"];
-        $subdomainName          = $params["pages"]["#co2.".$page]["subdomainName"];
-        $icon                   = $params["pages"]["#co2.".$page]["icon"];
-        $mainTitle              = $params["pages"]["#co2.".$page]["mainTitle"];
-        $placeholderMainSearch  = $params["pages"]["#co2.".$page]["placeholderMainSearch"];
+        $useHeader              = $params["pages"]["#app.".$page]["useHeader"];
+        $subdomain              = $params["pages"]["#app.".$page]["subdomain"];
+        $subdomainName          = $params["pages"]["#app.".$page]["subdomainName"];
+        $icon                   = $params["pages"]["#app.".$page]["icon"];
+        $mainTitle              = $params["pages"]["#app.".$page]["mainTitle"];
+        $placeholderMainSearch  = $params["pages"]["#app.".$page]["placeholderMainSearch"];
     ?>
 
     <!-- Header -->
@@ -53,11 +53,11 @@
                             <?php if($subdomainName == "web") { ?>
                                 
                                     <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
-                                        href="#co2.info.p.apropos">
+                                        href="#app.info.p.apropos">
                                         <span class="">c koissa ?!?</span>
                                     </a>    
                                     <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
-                                        href="#co2.info.p.alphatango">
+                                        href="#app.info.p.alphatango">
                                         <i class="fa fa-envelope"></i><span class=""> Contact</span>
                                     </a>    
                             <?php } ?>
@@ -125,7 +125,7 @@
 
                             <div class="col-md-12">
                                 <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button>
-                                <a href="#co2.referencement" class="lbh btn btn-default hidden-xs main-btn-create" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer un site</a>
+                                <a href="#app.referencement" class="lbh btn btn-default hidden-xs main-btn-create" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer un site</a>
                             </div>
                         <?php }elseif($subdomain == "referencement"){ ?>
                             <p><br><small>
@@ -171,7 +171,7 @@
                                 <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults">
                                     <i class="fa fa-angle-down"></i> Lire les annonces
                                 </button>
-                                <a href="#co2.referencement" class="lbh btn btn-default letter-green hidden-xs bold" id="">
+                                <a href="#app.referencement" class="lbh btn btn-default letter-green hidden-xs bold" id="">
                                     <i class="fa fa-plus-circle"></i> Publier une annonce
                                 </a>
                             </div> -->
