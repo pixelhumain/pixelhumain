@@ -474,10 +474,6 @@
 						sourceObject = {inputType:"hidden", value : networkJson.request.sourceKey[0]};
 						typeObj[key].dynForm.jsonSchema.properties.source = sourceObject;
 					}
-					if(typeof networkJson.skin.moderation != "undefined" && networkJson.skin.moderation != "true"){
-						sourceDisabled = {inputType:"hidden", value : true};
-						typeObj[key].dynForm.jsonSchema.properties.disabled = sourceDisabled;
-					}
 					if(v){
 						if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
 							typeObj[key].dynForm.jsonSchema.properties.tags.data=networkTags;
