@@ -1,24 +1,23 @@
-    <style>
-        .pastille-subdomain {
-            font-size: 20px;
-            float: left;
-            margin-left: 55.3%;
-            margin-top: -41px;
-        }
-        .pastille-subdomain-icon {
-            font-size: 24px;
-            float: right;
-            margin-right: 57%;
-            margin-top: -73px;
-        }
-
-@media (max-width: 768px) {
-    #main-input-group{
-        margin-top:10px;
+<style>
+    .pastille-subdomain {
+        font-size: 20px;
+        float: left;
+        margin-left: 55.3%;
+        margin-top: -41px;
     }
-}
+    .pastille-subdomain-icon {
+        font-size: 24px;
+        float: right;
+        margin-right: 57%;
+        margin-top: -73px;
+    }
 
-    </style>
+    @media (max-width: 768px) {
+        #main-input-group{
+            margin-top:10px;
+        }
+    }
+</style>
 
     <?php 
         $params = CO2::getThemeParams();

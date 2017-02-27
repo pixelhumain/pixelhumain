@@ -237,6 +237,10 @@
     </div>
 </div>
 
+<?php 
+    $communexion = CO2::getCommunexionCookies(); 
+?>
+
 <input id="searchLocalityCITYKEY" type="hidden" />
 <input id="searchLocalityCODE_POSTAL" type="hidden" />
 <input id="searchLocalityDEPARTEMENT" type="hidden"/>
