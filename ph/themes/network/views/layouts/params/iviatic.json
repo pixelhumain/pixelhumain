@@ -11,7 +11,6 @@
         "displayScope" : false,
         "displayCommunexion" : true,
         "displayNotifications" : false,
-        "moderation" : true,
         "docs":false,
         "profilBar" : false,
         "breadcrum" : true,
