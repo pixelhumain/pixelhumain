@@ -50,13 +50,12 @@
 
 
                             <?php if($subdomainName == "web") { ?>
-                                
                                     <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
-                                        href="#app.info.p.apropos">
+                                        href="#info.p.apropos">
                                         <span class="">c koissa ?!?</span>
                                     </a>    
                                     <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
-                                        href="#app.info.p.alphatango">
+                                        href="#info.p.alphatango">
                                         <i class="fa fa-envelope"></i><span class=""> Contact</span>
                                     </a>    
                             <?php } ?>
@@ -124,7 +123,7 @@
 
                             <div class="col-md-12">
                                 <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button>
-                                <a href="#app.referencement" class="lbh btn btn-default hidden-xs main-btn-create" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer un site</a>
+                                <a href="#referencement" class="lbh btn btn-default hidden-xs main-btn-create" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer un site</a>
                             </div>
                         <?php }elseif($subdomain == "referencement"){ ?>
                             <p><br><small>
@@ -133,7 +132,7 @@
                                 C'est simple, et ça prend seulement <span class="text-red"> quelques secondes ...</span>
                                 </small>
                             </p>
-                        <?php// }elseif($subdomain == "freedom"){ ?>
+                        <?php// }elseif($subdomain == "annonces"){ ?>
                             <!-- <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
@@ -170,7 +169,7 @@
                                 <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults">
                                     <i class="fa fa-angle-down"></i> Lire les annonces
                                 </button>
-                                <a href="#app.referencement" class="lbh btn btn-default letter-green hidden-xs bold" id="">
+                                <a href="#referencement" class="lbh btn btn-default letter-green hidden-xs bold" id="">
                                     <i class="fa fa-plus-circle"></i> Publier une annonce
                                 </a>
                             </div> -->

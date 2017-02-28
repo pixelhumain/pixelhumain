@@ -4,7 +4,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <a href="#app.web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
+            <a href="#web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="nc_map pull-left" height=30>
             </a>
@@ -12,16 +12,16 @@
 
         </div>
 
-        <?php if( $subdomain == "social" ||
+        <?php if( $subdomain == "search" ||
                   $subdomain == "agenda" ||
                   $subdomain == "power"  ||
                   $subdomain == "annonces"||
-                  $subdomain == "page.type" ){ ?>
+                  $subdomain == "page" ){ ?>
         
             <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo $placeholderMainSearch; ?>">
-                <?php if($subdomain == "page.type"){ ?>
+                <?php if($subdomain == "page"){ ?>
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
                 <?php } ?>
             </div>
@@ -33,8 +33,12 @@
             <i class="fa fa-map"></i>
         </button>
 
-        <button class="btn-show-mainmenu" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
+        <!-- <button class="btn-show-mainmenu" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
+        </button> -->
+
+        <button class="btn-show-communexion lbh" data-hash="#search?type=cities" title="Communectez-vous">
+            <i class="fa fa-university tooltips" data-toggle="tooltip" data-placement="bottom" title="Communectez-vous"></i>
         </button>
 
 
@@ -45,8 +49,8 @@
                     if( isset( Yii::app()->session['userId']) ){
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
-                     <!-- #app.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
-                    <a  href="#app.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
+                     <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
+                    <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
                         class="menu-name-profil text-dark pull-right" 
                         data-toggle="dropdown">
                             <small class="hidden-xs" id="menu-name-profil">
@@ -60,20 +64,20 @@
                         <div class="dropdown-main-menu">
                             <ul class="dropdown-menu arrow_box">
                                     <li class="text-left">
-                                        <a href="#app.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>" 
+                                        <a href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>" 
                                             class="lbh bg-white">
                                             <i class="fa fa-user-circle"></i> Ma page
                                         </a>
                                     </li>
                                     </li>
-                                    <li class="text-left">
+                                    <!-- <li class="text-left">
                                         <a href="#social" class="lbh bg-white">
                                             <i class="fa fa-university"></i> Ma commune
                                         </a>
-                                    </li>
+                                    </li> -->
                                     </li>
                                     <li class="text-left">
-                                        <a href="#social" class="lbh bg-white">
+                                        <a href="#search" class="lbh bg-white">
                                             <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
                                         </a>
                                     </li>
@@ -85,8 +89,8 @@
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
-                                        <a href="#social" class="lbh bg-white">
-                                            <i class="fa fa-search"></i> Rechercher des contacts
+                                        <a href="#search" class="lbh bg-white">
+                                            <i class="fa fa-search"></i> Rechercher
                                         </a>
                                     </li>
                                     <li class="text-left">
@@ -100,7 +104,7 @@
                                         </a>
                                     </li>
                                     <li class="text-power">
-                                        <a href="#social" class="lbh bg-white">
+                                        <a href="#power" class="lbh bg-white">
                                             <i class="fa fa-hand-rock-o"></i> Power
                                         </a>
                                     </li>
@@ -139,27 +143,38 @@
 
         </div>
         <!-- /.navbar-collapse -->
-
-        <a href="#app.power" 
+        <?php 
+            $params = CO2::getThemeParams();
+            if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
+                if(@$value["inMenu"]==true){ ?>
+                <a href="<?php echo $key; ?>" 
+                    class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top 
+                            <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>"
+                    data-toggle="tooltip" data-placement="bottom" title="<?php echo $value["subdomainName"]; ?>">
+                    <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+                </a>  
+        <?php   }
+             }  ?>
+       <!--  <a href="#power" 
             class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="power") echo 'active'; ?>"
             data-toggle="tooltip" data-placement="bottom" title="Power" alt="Power">
             <i class="fa fa-hand-rock-o"></i>
         </a>
-        <a href="#app.agenda" 
+        <a href="#agenda" 
             class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="agenda") echo 'active'; ?>"
             data-toggle="tooltip" data-placement="bottom" title="Agenda">
             <i class="fa fa-calendar"></i>
         </a>
-        <a href="#app.annonces" 
+        <a href="#annonces" 
             class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="annonces") echo 'active'; ?>"
             data-toggle="tooltip" data-placement="bottom" title="Annonces">
             <i class="fa fa-newspaper-o"></i>
         </a>
-        <a href="#app.social" 
+        <a href="#search" 
             class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="social") echo 'active'; ?>"
             data-toggle="tooltip" data-placement="bottom" title="Recherche" alt="Recherche">
             <i class="fa fa-search"></i>
-        </a>
+        </a> -->
 
     </div>
     <!-- /.container-fluid -->

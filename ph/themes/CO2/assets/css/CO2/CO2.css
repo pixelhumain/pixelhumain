@@ -333,6 +333,25 @@ input#second-search-bar{
 	color: #fbbc05;
 	border: 2px solid #fbbc05;
 }
+.navbar-custom .btn-show-communexion{
+	background-color: #ea4335;
+	/*background-color: #354c57;*/
+	color: white;
+	border: 2px solid transparent;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	float: right;
+	border-radius: 0px 50%;
+	width: 50px;
+	height: 35px;
+	font-size: 17px;
+	margin-left: 25px;
+}
+.navbar-custom .btn-show-communexion:hover{
+	background-color: transparent;
+	color: #ea4335;
+	border: 2px solid #ea4335;
+}
 .links-main-menu .btn-main-menu:hover,
 .links-create-element .btn-create-elem:hover{
 	-moz-box-shadow: 	0px 0px 20px -10px rgba(0, 0, 0, 0.68);

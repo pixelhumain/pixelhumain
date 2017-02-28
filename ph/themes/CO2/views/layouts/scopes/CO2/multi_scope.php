@@ -13,7 +13,6 @@
     //                 Yii::app()->request->cookies['multiscopes']->value : "{}";  
 
     $multiscopes = @$me["multiscopes"] ? @$me["multiscopes"] : "{}";
-    //var_dump($multiscopes); exit;
 ?>
 <style>
     .modal-content{
@@ -29,6 +28,18 @@
 
     .item-scope-name{
         color:white;
+    }
+
+    .btn-decommunecter {
+        margin-top: -10px;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        padding: 0px;
+        margin-right: 15px;
+        margin-left: 20px;
+        font-size: 13px;
+        border: 1px solid #ea4335;
     }
     
     @media (max-width: 768px) {
@@ -237,11 +248,8 @@
     </div>
 </div>
 
-<?php 
-    $communexion = CO2::getCommunexionCookies(); 
-?>
+<input id="searchLocalityCITYKEY" type="hidden" val=""/>
 
-<input id="searchLocalityCITYKEY" type="hidden" />
 <input id="searchLocalityCODE_POSTAL" type="hidden" />
 <input id="searchLocalityDEPARTEMENT" type="hidden"/>
 <input id="searchLocalityREGION" type="hidden" />
@@ -328,12 +336,33 @@
         $("#btn-validate-scope").click(function(){
             startSearch(0, indexStepInit);
         });
+
+        
+        $(".item-globalscope-checker").click(function(){  
+            mylog.log("globalscope-checker",  $(this).data("scope-name"), $(this).data("scope-type"));
+            setGlobalScope( $(this).data("scope-value"), $(this).data("scope-name"), $(this).data("scope-type") ) ;
+        });
+
+        $(".start-new-communexion").click(function(){  
+            activateGlobalCommunexion(true);
+        });
+
+
         
         loadMultiScopes();
 
         rebuildSearchScopeInput();
-
         showTagsScopesMin(".scope-min-header");
+        
+        mylog.log("communexionActivated cookie", $.cookie('communexionActivated'), typeof $.cookie('communexionActivated'));
+        if($.cookie('communexionActivated') == "true"){
+            console.log("communexionActivated ok", $.cookie('communexionValue'));
+            var communexionValue = $.cookie('communexionValue');
+            var communexionName = $.cookie('communexionName');
+            var communexionType = $.cookie('communexionType');
+            setGlobalScope(communexionValue, communexionName, communexionType);
+        }
+        
         loadingScope = false;
     });
 
