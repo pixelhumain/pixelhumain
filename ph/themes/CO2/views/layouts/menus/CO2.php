@@ -25,7 +25,10 @@
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
                 <?php } ?>
             </div>
-            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
+            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search btn-directory-type" 
+                    data-type="<?php echo @$type; ?>">
+                    <i class="fa fa-search"></i>
+            </button>
 
         <?php } ?>
 
@@ -37,7 +40,7 @@
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
         </button> -->
 
-        <button class="btn-show-communexion lbh" data-hash="#search?type=cities" title="Communectez-vous">
+        <button class="btn-show-communexion lbh" data-hash="#search.type.cities" title="Communectez-vous">
             <i class="fa fa-university tooltips" data-toggle="tooltip" data-placement="bottom" title="Communectez-vous"></i>
         </button>
 
@@ -83,7 +86,7 @@
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
-                                        <a href="javascript:" class="lbh bg-white">
+                                        <a href="javascript:" class="bg-white" data-target="#dash-create-modal" data-toggle="modal">
                                             <i class="fa fa-plus-circle"></i> Créer une page
                                         </a>
                                     </li>

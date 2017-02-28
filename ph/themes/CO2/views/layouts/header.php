@@ -91,7 +91,7 @@
                             </div>
 
                             
-                            <button class="btn btn-default btn-scroll btn-directory-type" id="main-btn-start-search" data-type="<?php echo @$type; ?>" data-targetid="#page">
+                            <button class="btn btn-default btn-directory-type" id="main-btn-start-search" data-type="<?php echo @$type; ?>">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button> 
                             <?php if($subdomain == "agenda"){ ?>                  
@@ -192,6 +192,7 @@
                                                             "subdomainName"=>$subdomainName,
                                                             "mainTitle"=>$mainTitle,
                                                             "placeholderMainSearch"=>$placeholderMainSearch,
+                                                            "type"=>$type,
                                                             "me" => $me) ); ?>   
 
     

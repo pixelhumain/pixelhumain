@@ -83,6 +83,13 @@ src: url('../../vendor/fonts/Homestead/Homestead-Display.ttf');
 	height: 65px;
 }
 
+.modal-backdrop{
+	display: none!important;
+	top: 40px!important;
+}
+#modalItemNotLocated{
+
+}
 
 .radio-tool .btn {
     font-size: 20px;

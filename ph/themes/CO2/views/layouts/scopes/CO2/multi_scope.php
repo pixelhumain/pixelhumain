@@ -30,7 +30,7 @@
         color:white;
     }
 
-    .btn-decommunecter {
+    .breadcrum-communexion .btn-decommunecter {
         margin-top: -10px;
         border-radius: 50%;
         height: 30px;
@@ -339,8 +339,13 @@
 
         
         $(".item-globalscope-checker").click(function(){  
+            $(".item-globalscope-checker").addClass("inactive");
+            $(this).removeClass("inactive");
+
             mylog.log("globalscope-checker",  $(this).data("scope-name"), $(this).data("scope-type"));
-            setGlobalScope( $(this).data("scope-value"), $(this).data("scope-name"), $(this).data("scope-type") ) ;
+            setGlobalScope( $(this).data("scope-value"), $(this).data("scope-name"), $(this).data("scope-type"),
+                             $(this).data("insee-communexion"), $(this).data("name-communexion"), $(this).data("cp-communexion"), 
+                             $(this).data("region-communexion"), $(this).data("country-communexion") ) ;
         });
 
         $(".start-new-communexion").click(function(){  
@@ -360,7 +365,15 @@
             var communexionValue = $.cookie('communexionValue');
             var communexionName = $.cookie('communexionName');
             var communexionType = $.cookie('communexionType');
-            setGlobalScope(communexionValue, communexionName, communexionType);
+
+            /*var inseeCommunexion = $.cookie('inseeCommunexion');
+            var cityNameCommunexion = $.cookie('cityNameCommunexion');
+            var cpCommunexion = $.cookie('cpCommunexion');
+            var regionNameCommunexion = $.cookie('regionNameCommunexion');
+            var countryCommunexion = $.cookie('countryCommunexion');
+            */
+            setGlobalScope(communexionValue, communexionName, communexionType);//,
+                          // inseeCommunexion, cityNameCommunexion, cpCommunexion, regionNameCommunexion, countryCommunexion);
         }
         
         loadingScope = false;

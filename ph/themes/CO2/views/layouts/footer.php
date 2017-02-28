@@ -25,15 +25,18 @@
 
     
 </style>
+
+<?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
 <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
 <div class="radio-tool">
     <a class="btn btn-primary" href="#page-top" data-target="#modalRadioTool" data-toggle="modal">
         <i class="fa fa-microphone"></i>
     </a>
 </div>
+<?php } ?>
 
-<div class="scroll-top page-scroll">
-    <a class="btn btn-primary" href="#page-top">
+<div class="scroll-top">
+    <a class="btn btn-primary" href="javascript:KScroll('.main-container');">
         <i class="fa fa-chevron-up"></i>
     </a>
 </div>
