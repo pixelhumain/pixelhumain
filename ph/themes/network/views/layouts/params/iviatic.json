@@ -40,7 +40,11 @@
 		    "news":false,
 		    "directory":false,
 		    "gallery":false
-	    }
+	    },
+        "tooltips" : {
+            ".btnConnectted" : "Se connecter",
+            ".btnSignIn" : "S'inscrire"
+        }
     },
    "filter" : {
         "types" : false,

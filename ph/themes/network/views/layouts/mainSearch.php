@@ -431,7 +431,7 @@
 		var allReadyLoad=false;
 
 		// GET LIST OF NETWORK'S TAGS
-		if(typeof networkJson.filter.linksTag != "undefined"){
+		if(networkJson != null && typeof networkJson.filter.linksTag != "undefined"){
 			var networkTags = [];
 			tagsList = [];
 			if(typeof networkJson.request.mainTag != "undefined")
