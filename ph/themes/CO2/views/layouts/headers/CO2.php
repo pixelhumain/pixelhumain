@@ -16,6 +16,16 @@
 		margin-left: 5px;
 		margin-right: -20px;
 	}
+
+	header .btn-decommunecter{
+		border-radius: 50px;
+		background-color: white;
+		padding: 0px 0px 0px 0px;
+		height: 75px;
+		width: 75px;
+		margin-bottom: 10px;
+		box-shadow: 0px 0px 3px -1px grey;
+	}
 </style>
 
 <?php
@@ -31,12 +41,12 @@
 	<h1 class="text-red homestead">
 		<button class="btn btn-link tooltips btn-decommunecter"
 				data-toggle="tooltip" data-placement="right" title="Quitter la communexion" >
-			<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="40" 
+			<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO.png" height="40" 
 			 class="inline no-margin">
 		</button>
 		<br>
-		<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO-link.png" height="30" class="inline no-margin">
-		<br>
+		<!-- <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO-link.png" height="30" class="inline no-margin">
+		<br> -->
 		<span id="main-scope-name"><?php echo @$communexion["values"]["cityName"]; ?></span> 
 	</h1>
 <?php } ?>
@@ -45,6 +55,7 @@
 </small>
 <br>
 <small class="text-dark pastille block" style="font-size:20px; margin-top:-30px;">
+	<i class="fa fa-<?php echo @$icon; ?>"></i>
 	<?php echo $mainTitle; ?> 
 	<?php if($communexion["state"] == false){ ?>
 	<button class="btn btn-link bg-white text-red tooltips item-globalscope-checker start-new-communexion"

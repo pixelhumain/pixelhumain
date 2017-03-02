@@ -11,6 +11,10 @@
         margin-right: 57%;
         margin-top: -73px;
     }
+    .link-submenu-header{
+        text-transform: uppercase;
+        font-weight: 800;
+    }
 
     @media (max-width: 768px) {
         #main-input-group{
@@ -41,9 +45,10 @@
                         <div class="col-md-12 text-center main-menu-app" style="">
                             <?php if($subdomainName != "web") foreach ($params["pages"] as $key => $value) {
                                     if(@$value["inMenu"]==true){ ?>
-                                    <a  class="lbh letter-red font-blackoutM margin-right-25" 
+                                    <a  class="lbh letter-red font-montserrat link-submenu-header  margin-right-25" 
                                         href="<?php echo $key; ?>">
-                                        <i class="fa fa-<?php echo $value["icon"]; ?>"></i><span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
+                                        <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+                                        <span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
                                     </a>    
                             <?php   }
                                  }  ?>
@@ -81,6 +86,7 @@
                             </button>
 
                         <?php }elseif($subdomain == "search" ||
+                                      $subdomain == "social" ||
                                       $subdomain == "agenda" ||
                                       $subdomain == "power" ||
                                       $subdomain == "annonces"){ ?>
@@ -98,7 +104,7 @@
                                 <button class="btn btn-default text-orange bold main-btn-create" id="">
                                     <i class="fa fa-plus-circle"></i> Créer un événement
                                 </button>
-                            <?php }elseif($subdomain == "search"){ ?>                  
+                            <?php }elseif($subdomain == "search" || $subdomain == "social"){ ?>                  
                                 <button class="btn btn-default letter-green bold main-btn-create" 
                                         data-target="#dash-create-modal" data-toggle="modal" id="">
                                     <i class="fa fa-plus-circle"></i> Créer une page
@@ -192,7 +198,7 @@
                                                             "subdomainName"=>$subdomainName,
                                                             "mainTitle"=>$mainTitle,
                                                             "placeholderMainSearch"=>$placeholderMainSearch,
-                                                            "type"=>$type,
+                                                            "type"=>@$type,
                                                             "me" => $me) ); ?>   
 
     

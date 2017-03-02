@@ -249,7 +249,6 @@
 </div>
 
 <input id="searchLocalityCITYKEY" type="hidden" val=""/>
-
 <input id="searchLocalityCODE_POSTAL" type="hidden" />
 <input id="searchLocalityDEPARTEMENT" type="hidden"/>
 <input id="searchLocalityREGION" type="hidden" />

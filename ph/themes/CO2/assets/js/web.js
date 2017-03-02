@@ -24,7 +24,7 @@ function startWebSearch(search, category){
 
     $.ajax({ 
         type: "POST",
-        url: baseUrl+"/"+moduleId+"/co2/websearch/",
+        url: baseUrl+"/"+moduleId+"/app/websearch/",
         data: params,
         //dataType: "json",
         success:

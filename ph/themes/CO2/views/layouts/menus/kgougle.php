@@ -112,8 +112,9 @@ input#second-search-bar{
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
                      
-                    <a  href="#app.page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="menu-name-profil lbh text-dark pull-right">
+                    <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
+                        class="menu-name-profil text-dark pull-right"
+                        data-toggle="dropdown">
                                 <small class="hidden-xs" id="menu-name-profil"><?php echo $me["name"]; ?></small> 
                                 <img class="img-circle" id="menu-thumb-profil" 
                                      width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
@@ -123,33 +124,34 @@ input#second-search-bar{
                         <div class="dropdown-main-menu">
                             <ul class="dropdown-menu arrow_box">
                                 <li class="text-left">
-                                    <a href="#app.social" target="_blank" class="lbh bg-white">
+                                    <a href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
+                                       target="_blank" class="lbh bg-white">
                                         <i class="fa fa-user-circle"></i> Ma page
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="text-left">
-                                    <a href="#app.social" target="_blank" class="lbh bg-white">
+                                    <a href="#social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-plus-circle"></i> Créer une page
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="text-left">
-                                    <a href="#app.social" target="_blank" class="lbh bg-white">
+                                    <a href="#social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-search"></i> Rechercher des contacts
                                     </a>
                                 </li>
                                 <li role="separator" class="divider">
                                 </li>
-                                <li class="text-left">
-                                    <a href="#app.social" target="_blank" class="lbh bg-white">
+                                <!-- <li class="text-left">
+                                    <a href="#" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-crosshairs"></i> Autour de moi
                                     </a>
-                                </li>
+                                </li> -->
                                 <li role="separator" class="divider">
                                 </li>
                                 <li class="text-left">
-                                    <a href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" class="bg-white letter-red">
+                                    <a href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" class="bg-white letter-red logout">
                                         <i class="fa fa-sign-out"></i> Déconnecter
                                     </a>
                                 </li>
@@ -181,7 +183,7 @@ input#second-search-bar{
                     data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i>
             </button> 
 
-            <a href="#app.info.p.sethome" class=" btn btn-default lbh btn-sm letter-red tooltips pull-right font-montserrat hidden-xs" 
+            <a href="#info.p.sethome" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-xs" 
                     id="btn-sethome" style=" margin-top:6px;"  
                     data-placement="bottom" title="Utiliser Kgougle en page d'accueil sur votre navigateur">
                     <i class="fa fa-plus"></i> <i class="fa fa-home fa-2x"></i>
