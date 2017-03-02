@@ -9,10 +9,16 @@
 
     $cities = CO2::getCitiesNewCaledonia();
 
-    // $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
-    //                 Yii::app()->request->cookies['multiscopes']->value : "{}";  
+    $multiscopes = "{}";
+    if(@$me["multiscopes"]){
+        $multiscopes = @$me["multiscopes"] ? @$me["multiscopes"] : "{}";
+    }else{
+        $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
+                        json_decode(Yii::app()->request->cookies['multiscopes']->value) : "{}";
 
-    $multiscopes = @$me["multiscopes"] ? @$me["multiscopes"] : "{}";
+        $multiscopesStr = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
+                        Yii::app()->request->cookies['multiscopes']->value : "{}";  
+    }
 ?>
 <style>
     .modal-content{
@@ -269,7 +275,7 @@
     var myMultiTags = {};
     var myMultiScopes = <?php echo isset($me) && isset($me["multiscopes"]) ? 
                                 json_encode($me["multiscopes"]) :  
-                                $multiscopes; 
+                                $multiscopesStr; 
                     ?>;
 
 
