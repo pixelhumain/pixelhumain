@@ -127,7 +127,8 @@ return array(
 	"New admin well register" => "Le nouvel admin est bien enregistré",
 	"New member well register" => "Le nouveau membre est bien enregistré",
 	"Your request has been sent to other admins." => "Votre demande a été envoyée aux autres admins",
-	"News has been successfully delated" => "La publication a été supprimée avec succès",
+	"News has been successfully deleted" => "La publication a été supprimée avec succès",
+	"Chat room has been successfully deleted" => "La salle de discussion a été supprimée avec succès",
 	"News well updated" => "La publication a été mise à jour",
 	"Your vote has been successfully added" => "Votre vote a été ajouté avec succès",
 	"Your vote has been successfully removed" => "Votre vote a été supprimé avec succès",
@@ -160,7 +161,8 @@ return array(
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
 	"No more notifications for the moment" => "Vous n'avez pas de notifications pour le moment",
 	//Confirm
-	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication?",
+	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication ?",
+	"Are you sure you want to delete this chat room" => "Êtes-vous sûr de vouloir supprimer cette salle de discussion ?",
 	//Form
 	"Required Fields" => "Champs requis",
 	"Save" => "Enregistrer",
