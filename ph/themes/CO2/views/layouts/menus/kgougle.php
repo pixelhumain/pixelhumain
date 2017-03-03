@@ -41,8 +41,8 @@ input#second-search-bar{
         <div class="navbar-header pull-left">
            
             <a href="#" class="btn-scroll menu-btn-back-category" data-targetid="#page-top">
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logocagou-map.png" 
-                     class="nc_map pull-left <?php if($subdomain == "page.type"){ ?>show-top<?php } ?>" height=30>
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
+                     class="nc_map pull-left show-top" height=20>
             </a>
 
             <span class="hidden-xs skills font-montserrat <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
@@ -62,9 +62,9 @@ input#second-search-bar{
                 <span class="letter letter-green">G</span>
                 <span class="letter letter-green">L</span>
                 <span class="letter letter-green">E</span> -->
-                <small class="letter letter-red pastille font-blackoutT <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
+                <!-- <small class="letter letter-red pastille font-blackoutT <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
                     <?php echo $subdomainName; ?>
-                </small>
+                </small> -->
             </a>
             <?php }else{ ?>
                 <div id="small_profil" class="hidden-top pull-left"></div>

@@ -1,7 +1,7 @@
 
 
 themeObj.blockUi.processingMsg = 
-	 	'<img src="'+themeUrl+'/assets/img/logocagou-loader.png" class="nc_map pull-" height=80>'+
+	 	//'<img src="'+themeUrl+'/assets/img/logoK.png" class="nc_map pull-" height=80>'+
 	 			  '<i class="fa fa-spin fa-circle-o-notch"></i>'+
 	 			   '<span class="col-md-12 text-center font-blackoutM text-left">'+
 	 			    '<span class="letter letter-blue font-ZILAP">K</span>'+
@@ -27,7 +27,7 @@ themeObj.blockUi.processingMsg =
 
 
 themeObj.blockUi.errorMsg = 
-    '<img src="'+themeUrl+'/assets/img/logocagou-loader.png" class="nc_map pull-" height=80>'+
+   // '<img src="'+themeUrl+'/assets/img/logoK.png" class="nc_map pull-" height=80>'+
     '<i class="fa fa-times"></i>'+
      '<span class="col-md-12 text-center font-blackoutM text-left">'+
       '<span class="letter letter-blue font-ZILAP">K</span>'+

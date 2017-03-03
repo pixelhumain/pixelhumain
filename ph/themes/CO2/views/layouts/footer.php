@@ -36,7 +36,7 @@
 <?php } ?>
 
 <div class="scroll-top">
-    <a class="btn btn-primary" href="javascript:KScroll('.main-container');">
+    <a class="btn btn-primary" href="javascript:KScrollTo('.main-container');">
         <i class="fa fa-chevron-up"></i>
     </a>
 </div>

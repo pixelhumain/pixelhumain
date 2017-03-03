@@ -43,15 +43,17 @@
                     <div class="intro-text">  
 
                         <div class="col-md-12 text-center main-menu-app" style="">
-                            <?php if($subdomainName != "web") foreach ($params["pages"] as $key => $value) {
-                                    if(@$value["inMenu"]==true){ ?>
-                                    <a  class="lbh letter-red font-montserrat link-submenu-header  margin-right-25" 
-                                        href="<?php echo $key; ?>">
-                                        <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
-                                        <span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
-                                    </a>    
-                            <?php   }
-                                 }  ?>
+                            <?php if($subdomainName != "web") 
+                                    foreach ($params["pages"] as $key => $value) {
+                                        if(@$value["inMenu"]==true){ ?>
+                                        <a  class="lbh letter-red font-montserrat link-submenu-header  margin-right-25" 
+                                            href="<?php echo $key; ?>">
+                                            <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+                                            <span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
+                                        </a>    
+                            <?php       }
+                                    }  
+                            ?>
 
 
                             <?php if($subdomainName == "web") { ?>
@@ -97,7 +99,8 @@
                             </div>
 
                             
-                            <button class="btn btn-default btn-directory-type" id="main-btn-start-search" data-type="<?php echo @$type; ?>">
+                            <button class="btn btn-default btn-directory-type" id="main-btn-start-search" 
+                                    data-type="<?php echo @$type; ?>">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button> 
                             <?php if($subdomain == "agenda"){ ?>                  

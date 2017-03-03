@@ -39,12 +39,12 @@
 	<br>
 <?php }else{ ?>
 	<h1 class="text-red homestead">
-		<button class="btn btn-link tooltips btn-decommunecter"
+		<!-- <button class="btn btn-link tooltips btn-decommunecter"
 				data-toggle="tooltip" data-placement="right" title="Quitter la communexion" >
 			<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO.png" height="40" 
 			 class="inline no-margin">
 		</button>
-		<br>
+		<br> -->
 		<!-- <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO-link.png" height="30" class="inline no-margin">
 		<br> -->
 		<span id="main-scope-name"><?php echo @$communexion["values"]["cityName"]; ?></span> 
