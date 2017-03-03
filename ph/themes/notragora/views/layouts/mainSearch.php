@@ -652,7 +652,34 @@
 		        };
 		        typeObjPoi.properties.urls=poiFormUrls;
 				typeObjPoi.properties.info.html="<p><i class='fa fa-info-circle'></i> Rajouter une video en la chargeant l'url présente sur le compte vimeo de passeur d'image. Cette réalisation sera liée à votre groupe de travail</p>";
-			}
+			},
+			dynForm : {
+            	editElementPOI : function(type,data){
+            		if(type=="poi"){
+						if(typeof data.map["tags"] != "undefined" && data.map["tags"].length > 0){
+					  		$.each(data.map["tags"], function(i,e){
+						  		if(jQuery.inArray( e, collectionsType ) >= 0){
+							   		 data.map["collections"]=[];
+							   		 data.map["collections"].push(e);
+							   		 var i = data.map["tags"].indexOf(e);
+									if(i != -1) {
+										data.map["tags"].splice(i, 1);
+									}
+								}
+								if(jQuery.inArray( e, genresType ) >= 0){
+							   		 data.map["genres"]=[];
+							   		 data.map["genres"].push(e);
+							   		 var i = data.map["tags"].indexOf(e);
+									if(i != -1) {
+										data.map["tags"].splice(i, 1);
+									}
+								}
+
+					  		});
+			  			}
+		  			}
+            	}
+            }
 		}
 
 		
