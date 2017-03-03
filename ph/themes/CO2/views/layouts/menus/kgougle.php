@@ -130,20 +130,26 @@ input#second-search-bar{
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
-                                <li class="text-left">
+                                <!-- <li class="text-left">
                                     <a href="#social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-plus-circle"></i> Créer une page
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li> -->
+                                <li class="text-left">
+                                    <a href="#web" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-search"></i> Rechercher sur le web
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="text-left">
                                     <a href="#social" target="_blank" class="lbh bg-white">
-                                        <i class="fa fa-search"></i> Rechercher des contacts
+                                        <i class="fa fa-user-circle"></i> Rechercher des contacts
                                     </a>
                                 </li>
-                                <li role="separator" class="divider">
+                                <!-- <li role="separator" class="divider">
                                 </li>
-                                <!-- <li class="text-left">
+                                <li class="text-left">
                                     <a href="#" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-crosshairs"></i> Autour de moi
                                     </a>

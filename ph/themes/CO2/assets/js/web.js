@@ -17,6 +17,8 @@ function startWebSearch(search, category){
     $("#sectionSearchResults").removeClass("hidden");
     $("#searchResults").html("<i class='fa fa-spin fa-refresh'></i> recherche en cours. Merci de patienter quelques instants...");
 
+    search = search.replace("<?", '');
+
     var params = {
         search:search,
         category:category

@@ -17,7 +17,7 @@
         init : function(){
             toastr.options = {
               "closeButton": false,
-              "positionClass": "toast-bottom-left",
+              "positionClass": "toast-bottom-right",
               "onclick": null,
               "showDuration": "1000",
               "hideDuration": "1000",

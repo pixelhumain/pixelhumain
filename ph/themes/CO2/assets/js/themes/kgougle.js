@@ -1,26 +1,19 @@
 
 
 themeObj.blockUi.processingMsg = 
-	 	//'<img src="'+themeUrl+'/assets/img/logoK.png" class="nc_map pull-" height=80>'+
-	 			  '<i class="fa fa-spin fa-circle-o-notch"></i>'+
-	 			   '<span class="col-md-12 text-center font-blackoutM text-left">'+
-	 			    '<span class="letter letter-blue font-ZILAP">K</span>'+
-                    '<span class="letter letter-yellow">G</span>'+
-                    '<span class="letter letter-yellow font-ZILAP">O</span>'+
-                    '<span class="letter letter-yellow">U</span>'+
-                    '<span class="letter letter-green">G</span>'+
-                    '<span class="letter letter-green">L</span>'+
-                    '<span class="letter letter-green">E</span>'+
-                   '</span>'+
+	 			  '<div class="col-md-12 text-center font-blackoutM text-left">'+
+            '<img src="'+themeUrl+'/assets/img/KGOUGLE-logo.png" class="" height=40>'+
+	 			    '<i class="fa fa-spin fa-3x letter-red fa-circle-o-notch"></i>'+  
+          '</div>'+
 
-	 			  '<h4 style="font-weight:300" class=" text-dark padding-10">'+
+	 			  '<h5 style="font-weight:300" class=" text-dark">'+
 	 				'Chargement en cours...'+
-	 			  '</h4>'+
+	 			  '</h5>'+
 	 			  '<span style="font-weight:300" class=" text-dark">'+
 	 				'Merci de patienter quelques instants'+
 	 			  '</span>'+
 	 			  '<br><br><br>'+
-	 			  '<a href="#k" class="btn btn-default btn-sm lbh">'+
+	 			  '<a href="#web" class="btn btn-default btn-sm lbh">'+
 	 			  	"c'est trop long !"+
 	 			  '</a>';
 
@@ -28,21 +21,14 @@ themeObj.blockUi.processingMsg =
 
 themeObj.blockUi.errorMsg = 
    // '<img src="'+themeUrl+'/assets/img/logoK.png" class="nc_map pull-" height=80>'+
-    '<i class="fa fa-times"></i>'+
-     '<span class="col-md-12 text-center font-blackoutM text-left">'+
-      '<span class="letter letter-blue font-ZILAP">K</span>'+
-              '<span class="letter letter-yellow">G</span>'+
-              '<span class="letter letter-yellow font-ZILAP">O</span>'+
-              '<span class="letter letter-yellow">U</span>'+
-              '<span class="letter letter-green">G</span>'+
-              '<span class="letter letter-green">L</span>'+
-              '<span class="letter letter-green">E</span><br>'+
-              '<span class="letter letter-red font-blackoutT" style="font-size:40px;">404</span>'+
-             '</span>'+
+    '<div class="col-md-12 text-center font-blackoutM text-left">'+
+            '<img src="'+themeUrl+'/assets/img/KGOUGLE-logo.png" class="" height=40>'+
+            '<i class="fa fa-spin fa-3x letter-red fa-circle-o-notch"></i>'+  
+          '</div>'+
 
-    '<h4 style="font-weight:300" class=" text-dark padding-10">'+
+    '<h5 style="font-weight:300" class=" text-dark padding-10">'+
     'Oups ! Une erreur s\'est produite'+
-    '</h4>'+
+    '</h5>'+
     '<span style="font-weight:300" class=" text-dark">'+
     'Vous allez être redirigé vers la page d\'accueil'+
     '</span>';
