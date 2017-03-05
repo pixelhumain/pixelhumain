@@ -85,6 +85,14 @@ return array(
 	"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
 	//VOTE
 	"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
-	"{who} have voted on {what} in {where}" => "{who} ont voté sur {what} dans {where}"
+	"{who} have voted on {what} in {where}" => "{who} ont voté sur {what} dans {where}",
+	//FRONT NOTIFICATION
+	"asks to become admin of" => "veut devenir administrateur de",
+	"asks to become contributor of" => "veut devenir contributeur de",
+	"asks to become member of" => "veut devenir membre de",
+	"Waiting for answer" => "En attente de réponse",
+	"New contributor well registered" => "Nouveau contriuteur bien enregistré",
+	"New member well registered" => "Nouveau membre bien enregistré",
+	"New admin well registered" => "Nouvel administrateur bien enregistré",
 );
 ?>
