@@ -11,11 +11,11 @@ themeObj.blockUi.processingMsg =
 	 			  '</h5>'+
 	 			  '<span style="font-weight:300" class=" text-dark">'+
 	 				'Merci de patienter quelques instants'+
-	 			  '</span>'+
-	 			  '<br><br><br>'+
-	 			  '<a href="#web" class="btn btn-default btn-sm lbh">'+
-	 			  	"c'est trop long !"+
-	 			  '</a>';
+	 			  '</span>';//+
+	 			  //'<br><br><br>'+
+	 			  //'<a href="#web" class="btn btn-default btn-sm lbh tooltips" data-toggle="tooltip" data-placement="bottom" title="recharger la page">'+
+	 			  //	"<i class='fa fa-refresh'></i>"+
+	 			  //'</a>';
 
 
 
