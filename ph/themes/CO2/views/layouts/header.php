@@ -43,7 +43,7 @@
                     <div class="intro-text">  
 
                         <div class="col-md-12 text-center main-menu-app" style="">
-                            <?php if($subdomainName != "web") 
+                            <?php if($subdomainName != "web" && $subdomainName != "referencement") 
                                     foreach ($params["pages"] as $key => $value) {
                                         if(@$value["inMenu"]==true){ ?>
                                         <a  class="lbh letter-red font-montserrat link-submenu-header  margin-right-25" 
@@ -65,6 +65,14 @@
                                         href="#info.p.alphatango">
                                         <i class="fa fa-envelope"></i><span class=""> Contact</span>
                                     </a>    
+                            <?php } ?>
+
+
+                            <?php if($subdomainName == "referencement") { ?>
+                                    <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
+                                        href="#web">
+                                        <i class="fa fa-arrow-left"></i> <span class="">Retour a la recherche</span>
+                                    </a>
                             <?php } ?>
                             
                         </div>

@@ -907,7 +907,17 @@ h3.title_panel_map{
 
 }
 
-
+.url-div .btn-edit-url{
+	display: none;
+	margin-top:-4px;
+}
+.url-div:hover .btn-edit-url{
+	display: inline;
+}
+.portfolio-modal.modal {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
 /*onepage dropdown menu btn*/
 #btn-onepage-main-menu{
 		position: fixed;

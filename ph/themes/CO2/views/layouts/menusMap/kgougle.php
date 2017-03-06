@@ -3,59 +3,27 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll pull-left">
-
-            <a href="#page-top"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logocagou-map.png" class="nc_map pull-left" height=30></a>
             
-            <a class="navbar-brand font-blackoutM hidden-xs  hidden-sm" href="#page-top" style="padding-right:20px;">
+            <a class="navbar-brand hidden-xs font-blackoutM" style="padding-right:20px;">
                  <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
-                     class="nc_map pull-left" height=25>
-                <!-- <span class="letter letter-blue font-ZILAP letter-k">K</span>
-                <!- - <span class="letter letter-blue font-ZILAP">A</span> - ->
-                 <span class="letter letter-yellow">G</span>
-                <span class="letter letter-yellow font-ZILAP">O</span>
-                <span class="letter letter-yellow">U</span>
-                <span class="letter letter-green">G</span>
-                <span class="letter letter-green">L</span>
-                <span class="letter letter-green">E</span> -->
+                     class="nc_map pull-left" height=25>           
                 <small class="letter letter-red pastille font-blackoutT" style="margin-top:32px;">map</small>
             </a>
+            
         </div>
        
-        <div class="hidden-xs col-sm-5 col-md-4 col-lg-4 no-padding">
+        <div class="col-sm-5 col-md-4 col-lg-4 col-xs-7 no-padding">
             <input type="text" class="form-control" id="input-search-map" placeholder="Rechercher...">
         </div>
 
-        <button class="btn btn-default hidden-xs" id="menu-map-btn-start-search"><i class="fa fa-search"></i></button>
+        <button class="btn btn-default hidden-xs" id="menu-map-btn-start-search">
+            <i class="fa fa-search"></i>
+        </button>
         
-        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Fermer la carte"><i class="fa fa-times"></i></button>
-        <!-- <button class="btn-show-mainmenu" onclick="showMap(false);" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
-            <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
-        </button> -->
-        <!-- <div class="dropdown pull-right">
-            <button class="btn-show-mainmenu  dropdown-toggle" title="Menu principal" data-toggle="dropdown"  id="btn-main-menu">
-                <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
-            </button>
-            <div class="dropdown-main-menu font-montserrat" aria-labelledby="btn-main-menu">
-                <ul class="dropdown-menu arrow_box">
-                    <?php foreach(array("web"=>"search", 
-                                        "live"=>"newspaper-o", 
-                                        "social"=>"user-circle-o", 
-                                        //"freedom"=>"comments", 
-                                        //"agenda"=>"calendar", 
-                                        //"power"=>"hand-rock-o"
-                                        ) as $link=>$icon){ ?>
-                        <li class="text-left" style="font-size:25px; ">
-                            <a href="#k.<?php echo $link; ?>" class="lbh bg-white">
-                                <span class="font-blackoutM text-red">
-                                    <i style="width:30px;" class="text-center text-red fa fa-<?php echo $icon; ?>"></i> 
-                                    <?php echo $link; ?>
-                                </span>
-                            </a>
-                        </li>
-                    <?php } ?>
-                </ul>
-            </div>
-        </div> -->
+        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Fermer la carte">
+            <i class="fa fa-times"></i>
+        </button>
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="pull-right">
             <ul class="nav navbar-nav navbar-right">
@@ -70,10 +38,6 @@
                                      width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
                       </button>
 
-                <?php } else { ?>
-                    <!-- <li class="page-scroll">
-                        <button class="letter-green font-montserrat" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> SE CONNECTER</button>
-                    </li> -->
                 <?php } ?>
             </ul>
         </div>

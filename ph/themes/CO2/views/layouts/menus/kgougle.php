@@ -31,7 +31,9 @@ input#second-search-bar{
     background-color: #ea4335 !important;
     border:transparent;
 }
-
+.menu-btn-back-category{
+    cursor:pointer;
+}
 </style>
 
 <!-- Navigation -->
@@ -40,8 +42,12 @@ input#second-search-bar{
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <a href="#" class="btn-scroll menu-btn-back-category" data-targetid="#page-top">
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
+            <?php if($subdomain == "web"){ ?>
+                <a href="#web" class=" menu-btn-back-category">
+            <?php } else { ?>
+                <a href="#web" class="lbh menu-btn-back-category">
+            <?php } ?>
+            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
                      class="nc_map pull-left show-top" height=20>
             </a>
 
@@ -52,18 +58,16 @@ input#second-search-bar{
             
 
             <?php if($subdomain != "page.type"){ ?>
-            <a class="navbar-brand font-blackoutM btn-scroll hidden-sm menu-btn-back-category" data-targetid="#page-top">
+                <?php if($subdomain == "web"){ ?>
+                    <a href="#web" class="navbar-brand font-blackoutM menu-btn-back-category">
+                <?php } else { ?>
+                    <a href="#web" class="lbh navbar-brand font-blackoutM menu-btn-back-category">
+                <?php } ?>
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
                      class="nc_map pull-left" height=30>
-                <!-- <span class="letter letter-blue font-ZILAP letter-k">K</span>
-                <span class="letter letter-yellow">G</span>
-                <span class="letter letter-yellow font-ZILAP">O</span>
-                <span class="letter letter-yellow">U</span>
-                <span class="letter letter-green">G</span>
-                <span class="letter letter-green">L</span>
-                <span class="letter letter-green">E</span> -->
+                
                 <!-- <small class="letter letter-red pastille font-blackoutT <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
-                    <?php echo $subdomainName; ?>
+                    <?php //echo $subdomainName; ?>
                 </small> -->
             </a>
             <?php }else{ ?>
@@ -79,10 +83,10 @@ input#second-search-bar{
         
         <?php }elseif($subdomain == "web"){ ?>
             
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
+            <div class="hidden-xs hidden-sm col-sm-5 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
             </div>
-            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
+            <button class="btn btn-default hidden-xs hidden-sm pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
 
         <?php }elseif($subdomain == "social" || $subdomain == "page.type" || $subdomain == "freedom"){ ?>
             
@@ -130,20 +134,26 @@ input#second-search-bar{
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
-                                <li class="text-left">
+                                <!-- <li class="text-left">
                                     <a href="#social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-plus-circle"></i> Créer une page
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li> -->
+                                <li class="text-left">
+                                    <a href="#web" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-search"></i> Rechercher sur le web
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="text-left">
                                     <a href="#social" target="_blank" class="lbh bg-white">
-                                        <i class="fa fa-search"></i> Rechercher des contacts
+                                        <i class="fa fa-user-circle"></i> Rechercher des contacts
                                     </a>
                                 </li>
-                                <li role="separator" class="divider">
+                                <!-- <li role="separator" class="divider">
                                 </li>
-                                <!-- <li class="text-left">
+                                <li class="text-left">
                                     <a href="#" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-crosshairs"></i> Autour de moi
                                     </a>

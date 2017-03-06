@@ -26,18 +26,21 @@
     
 </style>
 
-<?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
-<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-<div class="radio-tool">
-    <a class="btn btn-primary" href="#page-top" data-target="#modalRadioTool" data-toggle="modal">
-        <i class="fa fa-microphone"></i>
-    </a>
-</div>
-<?php } ?>
+<?php
+    $iconBtnRightBottom = "chevron-up";
+    if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
+    <div class="radio-tool">
+        <a class="btn btn-primary" href="#page-top" data-target="#modalRadioTool" data-toggle="modal">
+            <i class="fa fa-microphone"></i>
+        </a>
+    </div>
+<?php }
+    $iconBtnRightBottom = "search";
+ ?>
 
 <div class="scroll-top">
     <a class="btn btn-primary" href="javascript:KScrollTo('.main-container');">
-        <i class="fa fa-chevron-up"></i>
+        <i class="fa fa-<?php echo $iconBtnRightBottom; ?>"></i>
     </a>
 </div>
 
