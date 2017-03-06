@@ -38,7 +38,7 @@
   <div class="panel-group">
 
 
-    <div class="panel panel-default">
+    <div id="divFiltre" class="panel panel-default">
       <?php if(isset($params['skin']['iconeAdd']) && $params['skin']['iconeAdd']){ ?>
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -49,7 +49,25 @@
       <?php } ?>
 
       <!--<input id="searchClientBarText" type="text" placeholder="Que recherchez-vous ?" class="form-control">-->
-
+      <div id="divTags"></div>
+      <div id="divTypes"></div>
+      <div id="divRoles">
+          <div class="panel-heading" style="background-color: #f5f5f5;">
+            <h4 class="left-title-menu" onclick="manageCollapse('roles', 'false')">
+             <a data-toggle="collapse" href="#roles" style="color:#719FAB" data-label="roles">
+                Tous les rôles
+                <i class="fa fa-chevron-right right" aria-hidden="true" id="fa_roles"></i>
+              </a>
+            </h4>
+          </div>
+          <div id="list_roles" class="panel-collapse collapse">
+            <ul class="list-group">
+                <li class="list-group-item"><input type="checkbox" class="checkbox rolesFilterAuto" value="creator" data-parent="roles" data-label="creator"/>creator</li>
+                <li class="list-group-item"><input type="checkbox" class="checkbox rolesFilterAuto" value="members" data-parent="roles" data-label="members"/>Membre</li>
+                <li class="list-group-item"><input type="checkbox" class="checkbox rolesFilterAuto" value="admin" data-parent="roles" data-label="admin"/>Admin</li>
+            </ul>
+          </div>
+      </div>
       <?php
       if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){
         foreach($params['filter']['linksTag'] as $category => $listTag){ ?>

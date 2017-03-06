@@ -1,10 +1,10 @@
 {
-    "name" : "Restaurants végétariens de la réunion",
+    "name" : "MyNetwork",
     "mode" : "server",
     "skin" : {
         "logo" : "",
-        "title" : "Restaurants végétariens de la réunion",
-        "shortDescription" : "Liste des restaurants végétariens et végétaliens de l'ile de la Réunion",
+        "title" : "My Network",
+        "shortDescription" : "My Network",
         "displayScope" : false,
         "docs":true,
         "displayCommunexion" : true,
@@ -15,22 +15,20 @@
         "class" : {
             "mainContainer" : false
         },
-
         "iconeAdd" : false,
         "iconeSearchPlus" : false,
         "loginTitle": "",
         "front" : {
             "organization" : true,
-            "project" : false,
-            "event" : false,
-            "community" : false,
-            "dda" : false,
+            "project" : true,
+            "event" : true,
+            "community" : true,
+            "dda" : true,
             "live" : false,
             "search" : false,
             "need" : false,
-            "poi" : true
+            "poi" : false
         },
-
         "menu" : {
             "aroundMe" : false,
             "connectLink" : false,
@@ -41,39 +39,14 @@
             "gallery" : true
         }
     },
-
     "filter" : {
-        "types" : false,
-        "linksTag" : {
-            "Prix moyen" : {
-                "tagParent" : "Cout",
-                "background-color" : "#f5f5f5",
-                "image" : "Financement.png",
-                "tags" : {
-                    "Inférieur à 10€" : "inferieur10",
-                    "Entre 10€ et 15€" : "entre10et15",
-                    "Entre 15€ et 20€" : "entre15et20",
-                    "Supérieur à 20€" : "superieur20"
-                }
-            },
-            
-            "Influences" : {
-                "tagParent" : "Alimentation",
-                "background-color" : "#f5f5f5",
-                "image" : "Alimentation.png",
-                "tags" : {
-                    "Japonais": "japonais" ,
-                    "Indien" : "indien",
-                    "Italien" : "italien"
-                }
-            }
-        }
+        "types" : true
     },
-
     "add" : {
-        "organization" : true
+        "organization" : true,
+        "event" : true,
+        "project" : true
     },
-
     "result" : {
         "displayImage" : true,
         "displayType" : true,
@@ -81,16 +54,17 @@
         "datesEvent" : false,
         "displayShortDescription" : true
     },
-
     "request" : {
-        "sourcekey" : "reunionVege",
+        "sourceKey" :[
+            "5816e00e94ef47a5128b456b@citoyens"
+        ],
+        "oneElement" : true,
         "pagination" : 1000,
         "searchType" : [
-            "organizations"
-        ],
-        "searchLocalityDEPARTEMENT" : [
-            "REUNION"
-        ],
-        "mainTag" : ["Chanson"]
+            "organizations",
+            "citoyens",
+            "events",
+            "projects"
+        ]
     }
 }
