@@ -28,15 +28,15 @@
 
 <?php
     $iconBtnRightBottom = "chevron-up";
-    if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
+    if($subdomain == "web"){ 
+        $iconBtnRightBottom = "search";
+?>
     <div class="radio-tool">
         <a class="btn btn-primary" href="#page-top" data-target="#modalRadioTool" data-toggle="modal">
             <i class="fa fa-microphone"></i>
         </a>
     </div>
-<?php }
-    $iconBtnRightBottom = "search";
- ?>
+<?php } ?>
 
 <div class="scroll-top">
     <a class="btn btn-primary" href="javascript:KScrollTo('.main-container');">

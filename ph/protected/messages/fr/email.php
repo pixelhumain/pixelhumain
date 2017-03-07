@@ -15,7 +15,8 @@ return array(
 	"you can visit" => "vous pouvez visiter",
 	"his profile" => "sa fiche profil",
 	"In order to validate this user as" => "Afin de valider cet utilisateur comme",
-	"go to the members' list of your" => "rendez vous sur la liste des membres de votre"
+	"go to the members' list of your" => "rendez vous sur la liste des membres de votre",
+	"New message from" => "Nouveau message de"
 );
 
 ?>
