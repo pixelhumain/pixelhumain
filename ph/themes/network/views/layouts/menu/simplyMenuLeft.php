@@ -49,9 +49,9 @@
       <?php } ?>
 
       <!--<input id="searchClientBarText" type="text" placeholder="Que recherchez-vous ?" class="form-control">-->
-      <div id="divTags"></div>
-      <div id="divTypes"></div>
-      <div id="divRoles">
+      <div id="divTagsMenu"></div>
+      <div id="divTypesMenu"></div>
+      <div id="divRolesMenu">
           <div class="panel-heading" style="background-color: #f5f5f5;">
             <h4 class="left-title-menu" onclick="manageCollapse('roles', 'false')">
              <a data-toggle="collapse" href="#roles" style="color:#719FAB" data-label="roles">
