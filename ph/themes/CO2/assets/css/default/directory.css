@@ -214,7 +214,7 @@
 
 
   .searchEntityContainer{
-    min-height: 270px !important;
+    min-height: 160px !important;
     max-height: 270px !important;
     margin-bottom: 25px !important;
   }
