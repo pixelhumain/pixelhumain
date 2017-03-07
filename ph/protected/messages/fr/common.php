@@ -696,6 +696,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 	"Disabled" => "Désactivé",
 	"Organization Disabled" => "Cette organisation est désactivé.",
+	"Creator" => "Createur",
+	"Members" => "Createur",
 
 );
 
