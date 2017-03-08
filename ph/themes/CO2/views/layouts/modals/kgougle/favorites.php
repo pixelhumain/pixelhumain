@@ -65,7 +65,7 @@
                     ?>
                         <div class="col-md-6 div-fav margin-bottom-15 text-<?php echo $side; ?>" id="fav<?php echo $siteurl["_id"]; ?>">
 
-                            <a href="#co2.web" class="btn-favory tooltips" data-idFav="<?php echo $siteurl['_id']; ?>" 
+                            <a href="#app.web" class="btn-favory tooltips" data-idFav="<?php echo $siteurl['_id']; ?>" 
                                     data-placement="top" data-toggle="tooltip" title="Supprimer des favoris">
                                 <i class="fa fa-star-o"></i><i class="fa fa-star letter-yellow"></i>
                             </a>

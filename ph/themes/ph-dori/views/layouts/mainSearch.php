@@ -450,7 +450,11 @@
 		var CoSigAllReadyLoad = true;
 
 		//mylog.warn("isMapEnd 1",isMapEnd);
+		var themeObj = null;
 		jQuery(document).ready(function() {
+			themeObj = {
+				mainContainer : ".main-col-search"
+			};
 			toastr.options = {
 				  "closeButton": false,
 				  "positionClass": "toast-bottom-right",

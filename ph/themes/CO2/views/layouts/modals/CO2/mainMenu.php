@@ -12,8 +12,7 @@
 
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
-                     class="nc_map" height=130>
+                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" style="margin-bottom:20px;" class="nc_map" height=50>
                     <h3 class="letter-red no-margin hidden-xs" style="margin-top:5px!important;">
                         MENU PRINCIPAL<br>
                     </h3>
@@ -27,13 +26,17 @@
                         Nous sommes en train de basculer les fonctionnalités de communecter.org sur cette interface, afin de rendre la navigation plus simple et compréhensible pour tous.<br>
                         L'objectif est de proposer une page/interface pour chaque grande fonctionnalité de communecter, afin de créer des portes d'entrées indépendantes sur le réseau, en fonction des besoins de chacun.<br><br>
                         <b>Vos remarques et idées à ce propos sont les bienvenues.<br>
-                        Merci de nous en faire part sur le channel dédié <a href="https://chat.initiative.place/channel/co2_brainstorm" class="letter-blue">#CO2_brainstorm</a></b>
+                        Merci de nous en faire part sur le channel dédié <a href="https://chat.initiative.place/channel/co2_brainstorm" class="letter-blue">#app_brainstorm</a></b>
                     </p> -->
                     <br>
                     <?php 
                         if( isset( Yii::app()->session['userId']) ){
                           $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                     ?>  
+                        <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>" class="lbh">
+                            <img class="img-circle" id="menu-thumb-profil" 
+                                      src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
+                        </a>
                         <a class="btn btn-default text-red btn-sm" href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>">
                             <i class="fa fa-sign-out"></i> Déconnecter
                         </a>
@@ -48,9 +51,9 @@
 
             <div class="row links-main-menu">
                
-                <a href="#co2.social.type.persons" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#social" class="lbh btn-main-menu col-xs-3" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-red"><i class="fa fa-user-circle padding-bottom-10"></i><br>
+                        <h2 class="text-red"><i class="fa fa-search fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> RECHERCHE</span>
                         </h2>
                         
@@ -65,9 +68,9 @@
                     </div>
                 </a>
 
-                <a href="#co2.freedom" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#annonces" class="lbh btn-main-menu col-xs-3" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-orange"><i class="fa fa-newspaper-o padding-bottom-10"></i><br>
+                        <h2 class="text-orange"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> ANNONCES</span>
                         </h2>
                         
@@ -82,9 +85,9 @@
                     </div>
                 </a>
                            
-                <a href="#co2.agenda" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#agenda" class="lbh btn-main-menu col-xs-3" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-yellow"><i class="fa fa-calendar padding-bottom-10"></i><br>
+                        <h2 class="text-yellow"><i class="fa fa-calendar fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> AGENDA</span>
                         </h2>
                         
@@ -99,9 +102,9 @@
                     </div>
                 </a>
                 
-                <a href="#co2.power" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#power" class="lbh btn-main-menu col-xs-3" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o padding-bottom-10"></i><br>
+                        <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> POWER</span>
                         </h2>
                         
@@ -116,7 +119,16 @@
                     </div>
                 </a>
                 
-                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+
+                <div class="col-xs-12 text-center">
+                <?php 
+                        if( isset( Yii::app()->session['userId']) ){
+                    ?> 
+                    <a href="javascript:;" style="font-size:25px;" class="btn btn-default letter-green bold " 
+                                        data-target="#dash-create-modal" data-toggle="modal" id="">
+                                    <i class="fa fa-plus-circle"></i> CRÉER UNE PAGE
+                                </a>
+                    <?php } ?> 
                     <hr>
                     <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
                 </div>

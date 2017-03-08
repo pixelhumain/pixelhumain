@@ -313,11 +313,11 @@
 			
 		};
 
-		// showMsgListRes = function(msg){ mylog.log("showMsgListRes", msg);
-		// 	msg = msg != "" ? "<li class='padding-5'>" + msg + "</li>" : "";
+		showMsgListRes = function(msg){ mylog.log("showMsgListRes", msg);
+			msg = msg != "" ? "<li class='padding-5'>" + msg + "</li>" : "";
 
-		// 	$("#liste_map_element").html(msg);
-		// };
+			$("#liste_map_element").html(msg);
+		};
 	 
 
 	});

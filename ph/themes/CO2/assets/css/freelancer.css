@@ -464,7 +464,7 @@ fieldset[disabled] .btn-success.active {
   font-size: 3em;
 }
 .portfolio-modal .modal-content img {
-  margin-bottom: 30px;
+  /*margin-bottom: 30px;*/
 }
 .portfolio-modal .modal-content .item-details {
   margin: 30px 0;

@@ -1,6 +1,7 @@
 
 function startWebSearch(search, category){
 
+
     var searchSpace = search.replace(/\s+/g, '');
 
     if((!notEmpty(search) && !notEmpty(category)) || 
@@ -17,6 +18,10 @@ function startWebSearch(search, category){
     $("#sectionSearchResults").removeClass("hidden");
     $("#searchResults").html("<i class='fa fa-spin fa-refresh'></i> recherche en cours. Merci de patienter quelques instants...");
 
+    KScrollTo("#section-fav");
+    
+    search = search.replace("<?", '');
+
     var params = {
         search:search,
         category:category
@@ -24,7 +29,7 @@ function startWebSearch(search, category){
 
     $.ajax({ 
         type: "POST",
-        url: baseUrl+"/"+moduleId+"/co2/websearch/",
+        url: baseUrl+"/"+moduleId+"/app/websearch/",
         data: params,
         //dataType: "json",
         success:
@@ -33,7 +38,7 @@ function startWebSearch(search, category){
                 // setTimeout(function(){ 
                 //     showMapLegende("crosshairs", "Site web géolocalisés ...");
                 // }, 1000);
-                KScrollTo("#sectionSearchResults");
+                
             },
         error:function(xhr, status, error){
             $("#searchResults").html("erreur");
