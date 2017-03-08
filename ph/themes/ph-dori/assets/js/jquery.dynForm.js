@@ -197,6 +197,10 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
         	fieldHTML += '<textarea id="'+field+'" class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
         }
+        else if ( fieldObj.inputType == "markdown"){ 
+        	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
+        	fieldHTML +='<textarea id="'+field+'" name="'+field+'" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" data-provide="markdown" data-savable="true" rows="10"></textarea>';
+        }
         /* **************************************
 		* CHECKBOX
 		***************************************** */
@@ -575,7 +579,7 @@ onSave: (optional) overloads the generic saveProcess
         }
  
         else {
-        	mylog.log("build field "+field+">>>>>> input text");
+        	mylog.log("build field "+field+">>>>>> input text", fieldObj.inputType);
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
         if( fieldObj.custom )

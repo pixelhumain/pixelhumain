@@ -72,10 +72,8 @@ onSave: (optional) overloads the generic saveProcess
 				settings.beforeBuild();
 
 			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
-
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
-				
 				buildInputField(settings.formId,field, fieldObj, settings.formValues);
 			});
 			
@@ -93,9 +91,9 @@ onSave: (optional) overloads the generic saveProcess
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
-						' <a href="javascript:;" onclick="$(\'#ajax-modal\').modal(\'hide\');" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
+						' <button onclick="$(\'#ajax-modal\').modal(\'hide\');" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
 							'<i class="fa fa-times "></i> Annuler'+
-						'</a> ';
+						'</button> ';
 
 			fieldHTML += '</div>';
 
@@ -211,6 +209,11 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
         	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
         	fieldHTML += '<textarea id="'+field+'" class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
+        }else if ( fieldObj.inputType == "markdown"){ 
+        	mylog.log("build field "+field+">>>>>> textarea, markdown");
+        	fieldClass += " markdownInput";
+        	//fieldHTML +='<textarea id="'+field+'" name="'+field+'" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" data-provide="markdown" data-savable="true" rows="10"></textarea>';
+        	fieldHTML +='<textarea name="target-editor" id="'+field+'" data-provide="markdown" data-savable="true" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" rows="10"></textarea>';
         }
         /* **************************************
 		* CHECKBOX
@@ -244,13 +247,13 @@ onSave: (optional) overloads the generic saveProcess
 				fieldHTML += '<option></option>';
 
 			var selected = "";
-			
+			mylog.log("fieldObj select", fieldObj)
 			//initialize values
 			if(fieldObj.options)
-				fieldHTML += buildSelectOptions(fieldObj.options, fieldObj.value);
+				fieldHTML += buildSelectOptions(fieldObj.options, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
 			
 			if( fieldObj.groupOptions ){
-				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, fieldObj.value);
+				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
 			} 
 			fieldHTML += '</select>';
         }
@@ -277,10 +280,10 @@ onSave: (optional) overloads the generic saveProcess
 
         
         
-        else if ( fieldObj.inputType == "image" ) {
+        else if ( fieldObj.inputType == "uploader" ) {
         	if(placeholder == "")
         		placeholder="add Image";
-        	mylog.log("build field "+field+">>>>>> image");
+        	mylog.log("build field "+field+">>>>>> uploader");
         	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>'+
 							'<script type="text/template" id="qq-template-gallery">'+
 							'<div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">'+
@@ -291,13 +294,13 @@ onSave: (optional) overloads the generic saveProcess
 							'<span class="qq-upload-drop-area-text-selector"></span>'+
 							'</div>'+
 							'<div class="qq-upload-button-selector btn btn-primary">'+
-							'<div>Upload a file</div>'+
+							'<div>Ajouter une image</div>'+
 							'</div>'+
 							'<button type="button" id="trigger-upload" class="btn btn-danger hide">'+
-			                '<i class="icon-upload icon-white"></i> Upload'+
+			                '<i class="icon-upload icon-white"></i> Enregistrer'+
 			                '</button>'+
 							'<span class="qq-drop-processing-selector qq-drop-processing">'+
-							'<span>Processing dropped files...</span>'+
+							'<span>En cours de progression...</span>'+
 							'<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>'+
 							'</span>'+
 							'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
@@ -319,7 +322,7 @@ onSave: (optional) overloads the generic saveProcess
 							'<div class="qq-file-info">'+
 							'<div class="qq-file-name">'+
 							'<span class="qq-upload-file-selector qq-upload-file"></span>'+
-							'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+							//'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
 							'</div>'+
 							'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
 							'<span class="qq-upload-size-selector qq-upload-size"></span>'+
@@ -361,7 +364,10 @@ onSave: (optional) overloads the generic saveProcess
 							'</dialog>'+
 							'</div>'+
 							'</script>';
-
+			if( fieldObj.showUploadBtn )
+        		initValues.showUploadBtn = fieldObj.showUploadBtn;
+        	if( fieldObj.filetypes )
+        		initValues.filetypes = fieldObj.filetypes;
 			if( $.isFunction( fieldObj.afterUploadComplete ) )
         		initValues.afterUploadComplete = fieldObj.afterUploadComplete;
         }
@@ -560,6 +566,22 @@ onSave: (optional) overloads the generic saveProcess
 						addfield("."+field+fieldObj.inputType,optVal );
 				});*/
 			}
+        }
+
+         /* **************************************
+		* DropDown , searchInvite
+		***************************************** */
+        else if ( fieldObj.inputType == "searchInvite" ) {
+        	mylog.log("build field "+field+">>>>>> searchInvite");
+
+			fieldHTML += '<input class="invite-search '+fieldClass+' form-control text-left" placeholder="Un nom, un e-mail ..." autocomplete = "off" id="inviteSearch" name="inviteSearch" value="">'+
+				        		'<ul class="dropdown-menu" id="dropdown_searchInvite" style="">'+
+									'<li class="li-dropdown-scope">-</li>'+
+								'</ul>'+
+							'</input>';
+			
+
+			
         }
 
         /* **************************************
@@ -924,10 +946,19 @@ onSave: (optional) overloads the generic saveProcess
 	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+moduleId+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile"
 	                //params : uploadObj
 	            },
+	            validation: {
+	                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
+	                sizeLimit: 2000000
+	            },
+	            messages: {
+			        sizeError : '{file} est trop lourde! limite max : {sizeLimit}.',
+			        typeError : '{file} extension invalide. Extension(s) acceptable: {extensions}.'
+			    },
 	            callbacks: {
 	            	//when a img is selected
 				    onSubmit: function(id, fileName) {
-				      //$('#trigger-upload').removeClass("hide")
+				      if(initValues.showUploadBtn)
+				      	$('#trigger-upload').removeClass("hide")
 				    },
 				    /*
 				    //launches request endpoint
@@ -943,12 +974,12 @@ onSave: (optional) overloads the generic saveProcess
 				    //when every img finish upload process whatever the status
 				    onComplete: function(id, fileName,responseJSON,xhr) {
 				    	if(!responseJSON.result){
-				    		toastr.error("something went wrong : "+responseJSON.msg );		
+				    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
 				    	}
 				    },
 				    //when all upload is complete whatever the result
 				    onAllComplete: function(succeeded, failed) {
-				      toastr.info("Files uploaded succesfuslly!!");
+				      toastr.info("Fichiers bien chargés !!");
 				      if( jQuery.isFunction(initValues.afterUploadComplete) )
 				      	initValues.afterUploadComplete();
 				    },
@@ -958,7 +989,7 @@ onSave: (optional) overloads the generic saveProcess
 				    },*/
 				    //if any error during upload
 				    onError: function(id) {
-				      toastr.info("something went wrong");
+				      toastr.info(trad["somethingwentwrong"]);
 				    }
 				},
 	            thumbnails: {
@@ -972,6 +1003,7 @@ onSave: (optional) overloads the generic saveProcess
 	        /*$('#trigger-upload').click(function() {
 	        	//'getUploads'
 	            $('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+	            $('.fine-uploader-manual-trigger').fineUploader('getUploads');
 	        });*/
 		};
 
@@ -1033,6 +1065,7 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
 		if(  $(".wysiwygInput").length )
 		{
+			console.log("wysiwygInput wysiwygInput");
 				var initField = function(){
 					$(".wysiwygInput").summernote({
 
@@ -1066,6 +1099,44 @@ onSave: (optional) overloads the generic saveProcess
 		}
 
 	}
+
+	/* **************************************
+	* MARKDOWN 
+	***************************************** */
+	if(  $(".markdownInput").length )
+	{
+		console.log("markdownInput");
+		var initField = function(){
+			$(".markdownInput").markdown({
+					savable:true,
+					onPreview: function(e) {
+						var previewContent = "";
+					    mylog.log(e);
+					    mylog.log(e.isDirty());
+					    if (e.isDirty()) {
+					    	var converter = new showdown.Converter(),
+					    		text      = e.getContent(),
+					    		previewContent      = converter.makeHtml(text);
+					    } else {
+					    	previewContent = "Default content";
+					    }
+					    return previewContent;
+				  	},
+				  	onSave: function(e) {
+				  		mylog.log(e);
+				  	},
+				});
+
+			
+			lazyLoad( 	baseUrl+'/plugins/showdown/showdown.min.js',
+							baseUrl+'/plugins/bootstrap-markdown/js/bootstrap-markdown.js',
+							baseUrl+'/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css',
+							initField);
+	    	
+		}
+	}
+
+	
 
 	/* **************************************
 	*

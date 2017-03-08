@@ -314,6 +314,10 @@ return array(
 
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
+	"Citoyens" => "Citoyens",
+	"citoyens" => "citoyens",
+	"Citoyen" => "Citoyen",
+	"citoyen" => "citoyen",
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
@@ -569,8 +573,9 @@ return array(
 	"Account info" => "Infos générales",
 	
 	"No attendee for this event" => "Aucun participant pour cet événement",
-	"No member for this organization" => "Aucun membre inscrit sur cette organisation",
+	"No member for this organization" => "Aucun membre inscrit dans cette organisation",
 	"No contributor for this project" => "Aucun contributeur sur ce projet",
+	"No member for this person" => "Personne dans cette communauté",
 	"Organizator detail" => "Détail de l'organisateur",
 	
 	"Places" => "Lieux",
@@ -657,7 +662,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Remove This Locality" => "Effacer cette addresse",
 	"Add Locality" => "Ajouter une adresse",
 	"Show map" => "Voir la carte",
-	"Unknown Locality" => "Adresse non renseigné",
+	"Unknown Locality" => "Addresse non renseignée",
 	"Parenthood" => "Parenté",
 
 	"Show map" => "Afficher sur la carte",

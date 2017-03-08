@@ -21,7 +21,7 @@
 
         /* MAP */
         "mapHeight" => 235,
-        "mapTop" => 0,
+        "mapTop" => 20,
         "mapColor" => 'rgb(69, 96, 116)',  //ex : '#456074', //'#5F8295', //'#955F5F', rgba(69, 116, 88, 0.49)
         "mapOpacity" => 0.4, //ex : 0.4
 
@@ -45,7 +45,7 @@
         "useFilterType" 	 => true,
         "useRightList" 		 => true,
         "useZoomButton" 	 => true,
-        "useHomeButton" 	 => true,
+        "useHomeButton" 	 => false,
         "useSatelliteTiles"	 => true,
         "useFullScreen" 	 => true,
         "useFullPage" 	 	 => true,
@@ -145,7 +145,7 @@
 	}
 
 	.<?php echo $moduleName; ?> #right_tool_map{
-		top:70px;
+		top:60px!important;
 		z-index: 0;
 		display:none;
 	}
@@ -157,26 +157,28 @@
 		display: none;
 	}
 
-	.input-search-place input.input-search-place-in-map{
+	.<?php echo $moduleName; ?> .input-search-place input.input-search-place-in-map{
 		width:100%;
 		background-color: rgba(38, 44, 50, 0.7) !important;
 		border-color: rgba(255, 255, 255, 0.8) !important;
 		font-size: 17px;
 	}
 
-	.leaflet-popup{
+	.<?php echo $moduleName; ?> .leaflet-popup{
 		/*display:none;
 		visibility: hidden;*/
 	}
 
-	#mapLegende{
+	.<?php echo $moduleName; ?> #mapLegende{
 		color:white!important;
 		left:10px!important;
 		font-size:14px!important;
 	}
 
 
-	
+	.<?php echo $moduleName; ?> #dropdown-find-place{
+		display: none;
+	}
 
 	/*.box-ajax{top:100px;}*/
 	
@@ -184,6 +186,12 @@
 	@media screen and (max-width: 768px) {
 		.<?php echo $moduleName; ?> .mapCanvas{}
 		.<?php echo $moduleName; ?> .btn-group-map{}
+
+		.<?php echo $moduleName; ?> .input-search-place{
+			left:5%!important;
+			width: 90% !important;
+			max-width: 90% !important;
+		}
 	}
 </style>
 <?php 
@@ -196,7 +204,7 @@
 		
 	/**************************** DONNER UN NOM DIFFERENT A LA MAP POUR CHAQUE CARTE ******************************/
 	//le nom de cette variable doit changer dans chaque vue pour éviter les conflits (+ vérifier dans la suite du script)
-	var mapBg;
+	var mapBg = null;
 	/**************************************************************************************************************/
 
 	//mémorise l'url des assets (si besoin)
@@ -205,6 +213,8 @@
 
 	var CO2DomainName = "<?php echo @Yii::app()->params["CO2DomainName"]; ?>";
 
+	var initSigParams =  <?php echo json_encode($sigParams); ?>;
+	
 	jQuery(document).ready(function()
 	{
 		//création de l'objet SIG
@@ -213,13 +223,12 @@
 		//affiche l'icone de chargement
 		Sig.showIcoLoading(true);
 		//chargement des paramètres d'initialisation à partir des params PHP definis plus haut
-		var initParams =  <?php echo json_encode($sigParams); ?>;
-	
+		
 
 		//chargement de la carte
-		mapBg = Sig.loadMap("mapCanvas", initParams);
+		//mapBg = Sig.loadMap("mapCanvas", initSigParams);
 
-		Sig.showIcoLoading(false);
+		//Sig.showIcoLoading(false);
 
 		$("#right_tool_map").hide('fast');
 		
@@ -242,7 +251,7 @@
 			//}
 		});
 
-		addResultsInForm = function(commonGeoObj, countryCode){
+		addResultsInForm = function(commonGeoObj, countryCode){ //surcharge pour la recherche d'addresse
 			//success
 			mylog.log("success callGeoWebService KGOU");
 			//mylog.dir(objs);
@@ -254,7 +263,13 @@
 				if(notEmpty(value.countryCode)){
 					mylog.log("Country Code",value.country.toLowerCase(), countryCode.toLowerCase());
 					if(value.country == "Nouvelle-Calédonie"){ 
-						html += "<li><a href='javascript:' class='item-street-found' data-lat='"+value.geo.latitude+"' data-lng='"+value.geo.longitude+"'><i class='fa fa-marker-map'></i> "+value.name+"</a></li>";
+						html += 
+						"<li><a href='javascript:' class='item-street-found' "+
+								"data-lat='"+value.geo.latitude+"' "+
+								"data-lng='"+value.geo.longitude+"'>"+
+							 "<i class='fa fa-marker-map'></i> "+value.name+
+							 "</a>"+
+						"</li>";
 					}
 				}
 				
@@ -263,17 +278,17 @@
 				res[key]["id"] = id;
 				res[key]["typeSig"] = "address";
 
-				var country = res[key]["country"];
-				if(CO2DomainName=="kgougle" && country != "Nouvelle-Calédonie")
+				var country = typeof res[key]["country"] != "undefined" ? res[key]["country"] : "";
+				var resCountryCode = typeof res[key]["countryCode"] != "undefined" ? res[key]["countryCode"] : "";
+				if(CO2DomainName=="kgougle" && country != "Nouvelle-Calédonie" && resCountryCode != countryCode)//"NC" )
 					res[key] = "";
 			});
 
 			
 			if(html == "") html = "<span class='padding-15'><i class='fa fa-ban'></i> Aucun résultat</span>";
 			
-			
-			if($("#dropdown-newElement_streetAddress-found")){ //si on a cet id = on est dans formInMap
-				console.log("TOALALALALA 1");
+			console.log("NORES", html);
+			if($("#dropdown-newElement_streetAddress-found").length){ //si on a cet id = on est dans formInMap
 				$("#dropdown-newElement_streetAddress-found").html(html);
 				$("#dropdown-newElement_streetAddress-found").show();
 				
@@ -291,19 +306,18 @@
 					updateHtmlInseeLatLon();	
 				});
 			}else{		
-				console.log("TOALALALALA 2");
-				showMsgListRes("");
+				showMsgListRes(html);
 				Sig.showMapElements(Sig.map, res);	
 				
 			}
 			
 		};
 
-		// showMsgListRes = function(msg){ mylog.log("showMsgListRes", msg);
-		// 	msg = msg != "" ? "<li class='padding-5'>" + msg + "</li>" : "";
+		showMsgListRes = function(msg){ mylog.log("showMsgListRes", msg);
+			msg = msg != "" ? "<li class='padding-5'>" + msg + "</li>" : "";
 
-		// 	$("#liste_map_element").html(msg);
-		// };
+			$("#liste_map_element").html(msg);
+		};
 	 
 
 	});
