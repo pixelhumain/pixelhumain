@@ -51,9 +51,12 @@
 
   }
   .search-loader{
-    padding:20px !important;
     margin-left:0px;
     float:left;
+    font-size: 15px;
+    border-bottom: 1px solid #e6e6e6;
+    padding-top: 7px !important;
+    padding-bottom: 30px !important;
   }
 
   #dropdown_search{
@@ -174,7 +177,7 @@
   white-space: nowrap;
 }
 .searchEntity .entityRight .entityName:hover{
-  text-decoration: underline!important;
+  
 }
 .searchEntity .entityRight .entityLocality{
   font-size: 10px;
@@ -211,7 +214,7 @@
 
 
   .searchEntityContainer{
-    min-height: 270px !important;
+    min-height: 250px !important;
     max-height: 270px !important;
     margin-bottom: 25px !important;
   }
@@ -229,7 +232,7 @@
     box-shadow: 0px 0px 5px -1px #d3d3d3;
   }
   .searchEntity:hover{
-    background-color: rgba(211, 211, 211, 0.2);
+    background-color: rgba(211, 211, 211, 0.2) !important;
   }
 
   .searchEntity .tagsContainer{

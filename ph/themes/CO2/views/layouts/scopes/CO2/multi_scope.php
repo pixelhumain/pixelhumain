@@ -9,11 +9,16 @@
 
     $cities = CO2::getCitiesNewCaledonia();
 
-    // $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
-    //                 Yii::app()->request->cookies['multiscopes']->value : "{}";  
+    $multiscopes = "{}";
+    if(@$me["multiscopes"]){
+        $multiscopes = @$me["multiscopes"] ? @$me["multiscopes"] : "{}";
+    }else{
+        $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
+                        json_decode(Yii::app()->request->cookies['multiscopes']->value) : "{}";
 
-    $multiscopes = @$me["multiscopes"] ? @$me["multiscopes"] : "{}";
-    //var_dump($multiscopes); exit;
+        $multiscopesStr = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
+                        Yii::app()->request->cookies['multiscopes']->value : "{}";  
+    }
 ?>
 <style>
     .modal-content{
@@ -27,12 +32,20 @@
         border-radius: 50px;
     }
 
-    .item-scope-checker{
-
-    }
-
     .item-scope-name{
         color:white;
+    }
+
+    .breadcrum-communexion .btn-decommunecter {
+        margin-top: -10px;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        padding: 0px;
+        margin-right: 15px;
+        margin-left: 20px;
+        font-size: 13px;
+        border: 1px solid #ea4335;
     }
     
     @media (max-width: 768px) {
@@ -63,18 +76,11 @@
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1">
                     <div class="modal-body text-center">
-                        <h2 class="text-red"><!-- <i class="fa fa-bullseye fa-2x"></i> -->
+                        <h3 class="text-red"><!-- <i class="fa fa-bullseye fa-2x"></i> -->
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=70><br>
-                        <span class="text-dark">Recherche </span>ciblée</h2>
+                        <span class="text-dark">Recherche </span>ciblée</h3>
                         <h5 class="text-dark">Sélectionnez des zones de recherche</h5>
-                        <div class="col-md-12  col-sm-12 col-xs-12 text-center">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                <i class="fa fa-times"></i> Annuler
-                            </button>
-                            <button type="button" class="btn btn-success" id="btn-validate-scope" data-dismiss="modal">
-                                <i class="fa fa-check"></i> Valider
-                            </button>
-                        </div>
+                       
                         
                         <div class="col-md-6 col-md-offset-3 no-padding">
                             <div class="">
@@ -156,18 +162,7 @@
                                      
                                     </div>
                                 </div>
-                                <div class="col-md-12 text-left margin-top-25">
-                                    <button class="btnShowAllScope btn btn-default tooltips" onclick="javascript:selectAllScopes(true)"
-                                            data-toggle="tooltip" data-placement="bottom" 
-                                            title="Sélectionner tout les lieux">
-                                    <i class="fa fa-check-circle"></i> Sélectionner tout
-                                    </button>
-                                    <button class="btnHideAllScope btn btn-default tooltips" onclick="javascript:selectAllScopes(false)"
-                                            data-toggle="tooltip" data-placement="bottom" 
-                                            title="Sélectionner aucun lieu">
-                                        <i class="fa fa-circle-o"></i> Sélectionner aucun
-                                    </button>
-                                </div>
+                                
                             </div>
                             <div class="text-left">                    
                                 <div id="multi-scope-list-city" class="col-md-12 margin-top-15">
@@ -191,11 +186,36 @@
                                     <div class="label label-info label-sm block text-left" id="lbl-info-select-multi-scope"></div>
                                 </div>
                             </div>
+
+
+                            <div class="col-md-12 text-left margin-top-25 hidden-empty">
+                                <button class="btnShowAllScope btn btn-default tooltips" 
+                                        onclick="javascript:selectAllScopes(true)"
+                                        data-toggle="tooltip" data-placement="bottom" 
+                                        title="Sélectionner tout les lieux">
+                                <i class="fa fa-check-circle"></i> Sélectionner tout
+                                </button>
+                                <button class="btnHideAllScope btn btn-default tooltips hidden-empty" 
+                                        onclick="javascript:selectAllScopes(false)"
+                                        data-toggle="tooltip" data-placement="bottom" 
+                                        title="Sélectionner aucun lieu">
+                                    <i class="fa fa-circle-o"></i> aucun
+                                </button>
+
+                                <button type="button" class="btn btn-success pull-right" id="btn-validate-scope" data-dismiss="modal">
+                                    <i class="fa fa-check"></i> Valider
+                                </button>
+                                <!-- <button type="button" class="btn btn-default pull-right" data-dismiss="modal">
+                                <i class="fa fa-times"></i> Annuler
+                                </button> -->
+                                
+                            </div>
                         </div>   
 
-                        <div class="col-md-6 col-md-offset-3  visible-empty text-dark">
+
+                        <div class="col-md-6 col-md-offset-3  visible-empty text-dark text-left">
                             <blockquote>
-                                Pour rester en contact permanent avec les zones géographiques qui vous intéressent le plus, définissez votre liste de lieux favoris, en sélectionnant <strong>des communes, des codes postaux, des départements, ou des régions</strong>.
+                                Pour rester en contact permanent avec les zones géographiques qui vous intéressent le plus, définissez vos lieux favoris, en sélectionnant <strong>des communes, des codes postaux, des départements, ou des régions</strong>.
                             </blockquote>
                             <blockquote> <strong>Ajoutez, supprimez, activez, désactivez </strong> vos <i>lieux favoris</i> à volonté.</blockquote>
                             
@@ -211,8 +231,9 @@
                                 </span>
                             <?php }else if(isset($me["address"]["addressLocality"])){ ?>
                                 <span class="text-red msg-scope-co">
-                                    <a href="#person.detail.id.<?php echo Yii::app()->session['userId']; ?>" 
-                                      class="lbh btn btn-sm btn-default"><i class="fa fa-cogs"></i></a> 
+                                    <!-- <a href="#person.detail.id.<?php echo Yii::app()->session['userId']; ?>" 
+                                      class="lbh btn btn-sm btn-default"><i class="fa fa-cogs"></i></a>  -->
+                                      <hr>
                                      <span><i class='fa fa-home'></i> Vous êtes communecté à <?php echo $me["address"]["addressLocality"]; ?></span>
                                 </span>
                             <?php } ?>
@@ -233,7 +254,7 @@
     </div>
 </div>
 
-<input id="searchLocalityCITYKEY" type="hidden" />
+<input id="searchLocalityCITYKEY" type="hidden" val=""/>
 <input id="searchLocalityCODE_POSTAL" type="hidden" />
 <input id="searchLocalityDEPARTEMENT" type="hidden"/>
 <input id="searchLocalityREGION" type="hidden" />
@@ -254,13 +275,13 @@
     var myMultiTags = {};
     var myMultiScopes = <?php echo isset($me) && isset($me["multiscopes"]) ? 
                                 json_encode($me["multiscopes"]) :  
-                                $multiscopes; 
+                                $multiscopesStr; 
                     ?>;
 
 
     var currentScopeType = "city";
     var timeoutAddScope;
-
+    var interval;
     var loadingScope = true;
     jQuery(document).ready(function() {
 
@@ -320,69 +341,50 @@
         $("#btn-validate-scope").click(function(){
             startSearch(0, indexStepInit);
         });
+
+        
+        $(".item-globalscope-checker").click(function(){  
+            $(".item-globalscope-checker").addClass("inactive");
+            $(this).removeClass("inactive");
+
+            mylog.log("globalscope-checker",  $(this).data("scope-name"), $(this).data("scope-type"));
+            setGlobalScope( $(this).data("scope-value"), $(this).data("scope-name"), $(this).data("scope-type"),
+                             $(this).data("insee-communexion"), $(this).data("name-communexion"), $(this).data("cp-communexion"), 
+                             $(this).data("region-communexion"), $(this).data("country-communexion") ) ;
+        });
+
+        $(".start-new-communexion").click(function(){  
+            activateGlobalCommunexion(true);
+        });
+
+
         
         loadMultiScopes();
 
         rebuildSearchScopeInput();
-
         showTagsScopesMin(".scope-min-header");
+        
+        mylog.log("communexionActivated cookie", $.cookie('communexionActivated'), typeof $.cookie('communexionActivated'));
+        if($.cookie('communexionActivated') == "true"){
+            console.log("communexionActivated ok", $.cookie('communexionValue'));
+            var communexionValue = $.cookie('communexionValue');
+            var communexionName = $.cookie('communexionName');
+            var communexionType = $.cookie('communexionType');
+
+            /*var inseeCommunexion = $.cookie('inseeCommunexion');
+            var cityNameCommunexion = $.cookie('cityNameCommunexion');
+            var cpCommunexion = $.cookie('cpCommunexion');
+            var regionNameCommunexion = $.cookie('regionNameCommunexion');
+            var countryCommunexion = $.cookie('countryCommunexion');
+            */
+            setGlobalScope(communexionValue, communexionName, communexionType);//,
+                          // inseeCommunexion, cityNameCommunexion, cpCommunexion, regionNameCommunexion, countryCommunexion);
+        }
+        
         loadingScope = false;
     });
 
-    function showTagsScopesMin(htmlId){
-        htmlId=".scope-min-header";
-
-        /************** SCOPES **************/
-        var iconSelectScope = "<i class='fa fa-circle-o'></i>";
-        var scopeSelected = false;
-
-        
-        html = "<div class='list-select-scopes'>";
-        
-        var numberOfScope = 0;
-        if(typeof myMultiScopes != "undefined")
-        $.each(myMultiScopes, function(key, value){
-            numberOfScope++;
-            var disabled = value.active == false ? "disabled" : "";
-            if(typeof value.name == "undefined") value.name = key;
-            html +=     "<span data-toggle='dropdown' data-target='dropdown-multi-scope' "+
-                            "class='text-red "+disabled+" item-scope-checker  item-scope-city margin-right-10' data-scope-value='"+ key + "'>" + 
-                            "<i class='fa fa-check-circle'></i> " + value.name + 
-                        "</span> ";
-        });
-        // if (numberOfScope == 0) {
-        //     html +=     '<span id="helpMultiScope" class="toggle-scope-dropdown" style="padding-left:0px">'+
-        //                     '<a href="javascript:"> Ajouter des filtres géographiques ?</a>'+
-        //                 '</span>';
-        // }
-        html +=     "</span>";
-        html += "</div>";
-
-        $(htmlId).html(html);
-        multiTagScopeLbl();
-
-        $(".item-scope-checker").off().click(function(){ 
-            toogleScopeMultiscope( $(this).data("scope-value") );
-
-            checkScopeMax();
-        });
-        
-        $(".toggle-scope-dropdown").click(function(){ //mylog.log("toogle");
-            if(!$("#dropdown-content-multi-scope").hasClass('open'))
-            setTimeout(function(){ $("#dropdown-content-multi-scope").addClass('open'); }, 300);
-        });
-
-        
-        if(scopeSelected){ $(".btnShowAllScope").hide(); $(".btnHideAllScope").show(); } 
-        else             { $(".btnShowAllScope").show(); $(".btnHideAllScope").hide(); }
-
-        checkScopeMax();
-        rebuildSearchScopeInput();
-
-
-        if(!loadingScope)
-        startSearch(0, indexStepInit);
-    }
+   
 
     function checkScopeMax(){
         var empty = true;
