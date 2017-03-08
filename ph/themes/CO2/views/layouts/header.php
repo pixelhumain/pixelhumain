@@ -112,7 +112,8 @@
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button> 
                             <?php if($subdomain == "agenda"){ ?>                  
-                                <button class="btn btn-default text-orange bold main-btn-create" id="">
+                                <button class="btn btn-default text-orange bold main-btn-create"  
+                                        data-type="<?php echo @$type; ?>">
                                     <i class="fa fa-plus-circle"></i> Créer un événement
                                 </button>
                             <?php }elseif($subdomain == "search" || $subdomain == "social"){ ?>                  
@@ -121,11 +122,13 @@
                                     <i class="fa fa-plus-circle"></i> Créer une page
                                 </button>
                             <?php }elseif($subdomain == "annonces"){ ?>
-                                <button class="btn btn-default letter-green bold main-btn-create" id="">
+                                <button class="btn btn-default letter-green bold main-btn-create"
+                                        data-type="<?php echo @$type; ?>">
                                     <i class="fa fa-plus-circle"></i> Publier une annonce
                                 </button>
                             <?php }elseif($subdomain == "power"){ ?>
-                                <button class="btn btn-default text-azure bold main-btn-create" id="">
+                                <button class="btn btn-default text-azure bold main-btn-create"
+                                        data-type="<?php echo @$type; ?>">
                                     <i class="fa fa-plus-circle"></i> Faire une proposition
                                 </button>
                             <?php } ?>
