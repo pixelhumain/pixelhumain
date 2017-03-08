@@ -119,12 +119,16 @@
                     </div>
                 </a>
                 
-                <div class="col-xs-12 text-center">
 
+                <div class="col-xs-12 text-center">
+                <?php 
+                        if( isset( Yii::app()->session['userId']) ){
+                    ?> 
                     <a href="javascript:;" style="font-size:25px;" class="btn btn-default letter-green bold " 
                                         data-target="#dash-create-modal" data-toggle="modal" id="">
                                     <i class="fa fa-plus-circle"></i> CRÉER UNE PAGE
                                 </a>
+                    <?php } ?> 
                     <hr>
                     <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
                 </div>
