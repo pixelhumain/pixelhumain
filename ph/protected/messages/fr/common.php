@@ -311,6 +311,7 @@ return array(
 	"Project" => "Projet",
 	"Event" => "Événement",
 	"Agenda" => "Agenda",
+	"Classified" => "Annonce",
 
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
@@ -327,6 +328,7 @@ return array(
 	"organizations" => "organisations",
 	"projects" => "projets",
 	"events" => "événements",
+	"classified" => "annonce",
 
 	"of the event" => "de l'événement",
 	"of the organization" => "de l'organisation",

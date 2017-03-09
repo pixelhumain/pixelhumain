@@ -141,6 +141,7 @@
                 '/assets/vendor/bootstrap/css/bootstrap.min.css',
                 '/assets/css/sig/sig.css',
                 '/assets/css/freelancer.css',
+                '/assets/css/default/dynForm.css',
 
                 '/assets/css/CO2/CO2-boot.css',
                 '/assets/css/CO2/CO2-color.css',
@@ -179,7 +180,7 @@
                 url.loadableUrls = <?php echo json_encode($params["pages"]); ?>;
                 themeObj.init();
                 url.loadByHash(location.hash,true);
-                
+
             });
         </script>
 
