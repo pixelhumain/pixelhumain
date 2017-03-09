@@ -87,7 +87,7 @@
     color:#FFC600 !important;
 }
 .text-red, a.text-red{
-    color:#ea4335 !important;
+    color:#e6344d !important;
 }
 a.text-red:hover{
     color:#2C3E50 !important;
@@ -190,6 +190,9 @@ a.text-white{
 
 .bg-green-k{
     background-color:#34a853 !important;
+}
+.bg-blue-k{
+    background-color:#4285f4 !important;
 }
 
 .bg-turq{

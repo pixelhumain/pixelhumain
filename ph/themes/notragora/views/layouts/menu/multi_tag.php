@@ -63,15 +63,16 @@
 </div>
 
 <?php 
-	$multitags = ( empty($me) && isset( Yii::app()->request->cookies['multitags'] ) ) ? 
-		   			    	Yii::app()->request->cookies['multitags'] : "{}";	
+	$multitags = "{}"; //(Yii::app()->theme->name != "notragora" &&
+					 //empty($me) && isset( Yii::app()->request->cookies['multitags'] ) ) ? 
+		   			   // 	Yii::app()->request->cookies['multitags'] : "{}";	
 ?>
 <script type="text/javascript"> 
 
-var myMultiTags = <?php echo isset($me) && isset($me["multitags"]) ? 
-						json_encode($me["multitags"]) : 
-						$multitags; 
-				    ?>;
+var myMultiTags = {}; 	<?php 	//echo isset($me) && isset($me["multitags"]) ? 
+								//json_encode($me["multitags"]) : 
+								//$multitags; 
+				    	?>;
 
 if(myMultiTags.length == 0) myMultiTags = {};
 

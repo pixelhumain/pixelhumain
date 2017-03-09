@@ -149,6 +149,7 @@ return array(
 	"Invitation to project successfully sent" => "Invitation à rejoindre le projet bien envoyée",
 	"Comment successfully deleted" => "Le commentaire a bien été supprimé",
 	"You already invited" => "Vous avez déjà invité",
+	"Your answer has been succesfully register" => "Votre réponse a été enregistrée avec succès",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
@@ -310,9 +311,14 @@ return array(
 	"Organization" => "Organisation",
 	"Project" => "Projet",
 	"Event" => "Événement",
+	"Agenda" => "Agenda",
 
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
+	"Citoyens" => "Citoyens",
+	"citoyens" => "citoyens",
+	"Citoyen" => "Citoyen",
+	"citoyen" => "citoyen",
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
@@ -323,6 +329,7 @@ return array(
 	"projects" => "projets",
 	"events" => "événements",
 
+	"a news" => "un post",
 	"of the event" => "de l'événement",
 	"of the organization" => "de l'organisation",
 	"of the project" => "du projet",
@@ -338,6 +345,10 @@ return array(
 	"History" => "Historique",
 	"Settings" => "Paramètres",
 	"Confidentiality params" => "Paramètres de confidentialité",
+	"I go" => "J&rsquo;y vais",
+	"Not interested" => "Pas intéressé(e)",
+	"Accept" => "Accepter",
+	"Refuse" => "Refuser",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
@@ -396,6 +407,9 @@ return array(
 	"Leave this event" 				=> "Quitter cet évènement",
 	"Leave" 						=> "Quitter",
 	"Join this Organization" 		=> "Rejoindre cette organisation",
+	"Join this organization" 		=> "Rejoindre cette organisation",
+	"Join this project" 		=> "Rejoindre ce projet",
+	"Go to the event" => "Participer à l'événement",
 	"Join" 							=> "Rejoindre",
 	"Manage"						=> "Administrer",
 	"added" => "ajouté",
@@ -568,8 +582,9 @@ return array(
 	"Account info" => "Infos générales",
 	
 	"No attendee for this event" => "Aucun participant pour cet événement",
-	"No member for this organization" => "Aucun membre inscrit sur cette organisation",
+	"No member for this organization" => "Aucun membre inscrit dans cette organisation",
 	"No contributor for this project" => "Aucun contributeur sur ce projet",
+	"No member for this person" => "Personne dans cette communauté",
 	"Organizator detail" => "Détail de l'organisateur",
 	
 	"Places" => "Lieux",
@@ -656,7 +671,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Remove This Locality" => "Effacer cette addresse",
 	"Add Locality" => "Ajouter une adresse",
 	"Show map" => "Voir la carte",
-	"Unknown Locality" => "Adresse non renseigné",
+	"Unknown Locality" => "Addresse non renseignée",
 	"Parenthood" => "Parenté",
 
 	"Show map" => "Afficher sur la carte",
@@ -685,6 +700,22 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Choose" => "Choisir",
 	"Next step" => "Etape suivante",
 	"Previous step" => "Etape précédente",
+
+
+	"Link" => "Lien",
+	"Not link" => "Aucun lien",
+	"Semicolon"=>"Point virgule",
+	"Comma" => "Virgule",
+	"Space" => "Espace",
+	"Quotes" => "Quotes",
+	"Quotation marks" => "Guillemets",
+	"Nothing" => "Rien",
+
+
+
+	"by" => "par",
+	"on" => "sur",
+
 );
 
 ?>

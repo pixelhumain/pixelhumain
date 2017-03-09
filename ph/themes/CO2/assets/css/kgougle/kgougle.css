@@ -1,7 +1,12 @@
 
 .blockUI.blockMsg.blockPage i.fa{
-	position: absolute;
-	left: 50%;
-	top: 140px;
-	margin-left: 8px;
+	position: relative;
+	left: unset;
+	top: unset;
+	margin-left: unset;
+}
+
+
+header, .header {
+  background-image: url("../../img/background-onepage/pattern/witewall_3.png");
 }

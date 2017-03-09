@@ -36,6 +36,7 @@
                         <?php } ?>
                     </span>
                     <h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>
+                    <p>La connexion est réservée aux administrateurs du réseau.<hr></p>
                 </div>
                 <div class="col-lg-12">
                     <p></p>
@@ -96,10 +97,11 @@
                     </button>
                     <br><br>
                     
-
-                    <button class="btn btn-default" data-toggle="modal" data-target="#modalRegister">
-                        <i class="fa fa-sign-in"></i> Je veux m'inscrire
-                    </button>
+                    <?php if(false){ //bloquage des inscriptions ?>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#modalRegister">
+                            <i class="fa fa-sign-in"></i> Je veux m'inscrire
+                        </button>
+                    <?php } ?>
                 </div>
 
                 <br><hr>
@@ -114,7 +116,7 @@
     </div>
 </form>
 
-
+<?php if(false){ //bloquage des inscriptions ?>
 <div class="portfolio-modal modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-hidden="true">
     <form class="modal-content form-register box-register padding-top-15"  >
         <div class="close-modal" data-dismiss="modal">
@@ -224,6 +226,7 @@
         </div>
     </div>
 </div>
+<?php } ?>
 
 <script>
     

@@ -6,6 +6,12 @@
     $cs = Yii::app()->getClientScript();
 
     $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
+
+    $params = CO2::getThemeParams();
+
+    $metaDesc = @$params["metaDesc"]; 
+    $metaImg = Yii::app()->theme->baseUrl.@$params["metaImg"];
+    
 ?>
 
 <html lang="en" class="no-js">
@@ -15,10 +21,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
 
-        <title>Kgougle</title>
+        <meta name="description" content="<?php echo $metaDesc; ?>">
+        <meta name="author" content="pixelhumain">
+
+        <meta property="og:image" content="<?php echo $metaImg; ?>"/>
+        <meta property="og:description" content="<?php echo $metaDesc; ?>"/>
+
+        <title><?php echo $CO2DomainName; ?></title>
 
         <!-- <link rel='shortcut icon' type='image/x-icon' href="<?php //echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" /> -->
 
@@ -52,6 +62,18 @@
         <div id="mainMap">
             <?php $this->renderPartial($layoutPath.'mainMap'); ?>
         </div>
+
+        <?php //get all my link to put in floopDrawer
+            if(isset(Yii::app()->session['userId'])){
+              $myContacts = Person::getPersonLinksByPersonId(Yii::app()->session['userId']);
+              $myFormContact = $myContacts; 
+              $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
+            }else{
+              $myFormContact = null;
+
+            }
+           // error_log("load IndexDefault");
+        ?>
         
         <?php $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
               $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); ?>   
@@ -82,6 +104,8 @@
                 '/plugins/jquery-validation/localization/messages_fr.js',
                 '/plugins/bootbox/bootbox.min.js' , 
                 '/plugins/blockUI/jquery.blockUI.js' , 
+                '/plugins/toastr/toastr.js' , 
+                '/plugins/toastr/toastr.min.css',
                 '/plugins/jquery.ajax-cross-origin.min.js',
                 '/plugins/jquery-cookie/jquery.cookie.js' , 
                 '/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
@@ -113,7 +137,6 @@
                 '/assets/data/mainCategories.js' ,
                 
                 '/assets/vendor/bootstrap/js/bootstrap.min.js',
-                '/assets/js/CO2.js' ,
                 
                 '/assets/vendor/bootstrap/css/bootstrap.min.css',
                 '/assets/css/sig/sig.css',
@@ -125,13 +148,17 @@
                  
                 '/assets/vendor/jPlayer-2.9.2/dist/skin/blue.monday/css/jplayer.blue.monday.min.css',
                 '/assets/vendor/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js',
-                '/assets/js/radioplayer.js' ,
-                '/assets/js/KDynForm.js' ,
+                '/assets/js/radioplayer.js',
+    
+                '/assets/css/floopDrawerRight.css'
                                                   
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
-            //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin)
+            $this->renderPartial($layoutPath.'initJs', 
+                                 array("me"=>$me, "myFormContact" => @$myFormContact));
+
+            //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
             if($CO2DomainName != "CO2"){
                 $cssAnsScriptFilesModule = array(
                     '/assets/css/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
@@ -142,19 +169,17 @@
             }
         ?>
 
-        <?php $this->renderPartial($layoutPath.'initJs'); ?>
+        
+        <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
 
-        <script>
-            <?php $params = CO2::getThemeParams(); ?>
-
-            var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;;
-            var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
-            
+        <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() {
-                loadableUrls = <?php echo json_encode($params["pages"]); ?>;
-                initToastr();
-                loadByHash(location.hash,true);
+
+                url.loadableUrls = <?php echo json_encode($params["pages"]); ?>;
+                themeObj.init();
+                url.loadByHash(location.hash,true);
+                
             });
         </script>
 
