@@ -124,7 +124,7 @@
                         </div>
                     </div>
 
-                    <button class="menu-button btn-menu btn-menu-notif tooltips text-dark pull-right" 
+                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
