@@ -1,44 +1,19 @@
-<?php 
+  <?php
   $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header');
-	$type="";
-	if (@$parentType){
-		if($parentType == "organizations"){
-			$type="organization";
-		}
-		else if ($parentType == "projects"){
-			$type="project";
-		} 
-		else if ($parentType == "events"){
-			$type="event";
-		}
-	} 
-	if ($type == "") {
-		error_log("Unkown type when sending a mail askToBecomeAdimin");
-		$type = "Unknwon";
-	}
-
-	$subtitle = yii::t("email","Demand to")." ";
-	if (@$typeOfDemand){
-		if($typeOfDemand == "admin"){
-			$subtitle .= yii::t("email","administrate");
-		}
-		else if($typeOfDemand == "member"){
-			$subtitle .= yii::t("email","join as member");
-		}
-		else if ($typeOfDemand == "contributor"){
-			$subtitle .= yii::t("email","join as contributor");
-		}
-	}else{
-		$subtitle .= yii::t("email","administrate");
-		$typeOfDemand = "admin";
-	}
-	$subtitle .= " ".yii::t("email","the ".$type);
-	$url=Yii::app()->getRequest()->getBaseUrl(true)."/#".$type.".directory.id.".(String) $parent["_id"]."?tpl=directory2";
-?>
-<table class="row" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"> <!-- Horizontal Digest Content -->
+  $url = Yii::app()->getRequest()->getBaseUrl(true)."/#".Element::getControlerByCollection($parentType).".directory.id.".(string)$parent["_id"];
+  $verbAction=Yii::t("mail","is following").$parent["name"];
+  $explain= Yii::t("mail","is now connected to the news stream of")." <a href='".$url."'>".$parent["name"]."</a>. ".Yii::t("mail","When you post a news with the network target, he/she will received the news on his/her news");
+  $links=Yii::t("mail","All followers on")." ".$parent["name"];
+  if($parentType==Person::COLLECTION){
+      $verbAction=Yii::t("mail","is following you");
+     $explain= Yii::t("mail","is now connected to your news stream").". ".Yii::t("mail","When you post a news with the network target, he/she will received the news on his/her news");
+     $links=Yii::t("mail","All my followers");
+  }
+  ?>
+    <table class="row" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"> <!-- Horizontal Digest Content -->
       <th class="small-12 large-12 columns first" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 8px;">
 
-              <h1 class="text-center" style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 35px 0px 15px 0px;margin: 0;text-align: center;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 34px;"><?php echo $subtitle ?> <?php echo @$parent["name"]?></h1>
+              <h1 class="text-center" style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 35px 0px 15px 0px;margin: 0;text-align: center;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 34px;"><?php echo Yii::t("mail","New follower") ?> !!</h1>
             <table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
             <tr style="padding: 0;vertical-align: top;text-align: left;">
               <th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
@@ -46,14 +21,12 @@
               <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/images/bdb.png"?>" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;" alt="Intelligence collective"></a>
               <b>
               <h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;"></h5></b><br>
-              <b><?php echo yii::t("email","The user")." ".@$newPendingAdmin["username"]." ".Yii::t("email","asks to become")." ".yii::t("common",$typeOfDemand)." ".yii::t("email", "of")." ".@$parent["name"]?>.
-              <br>
+              <b><a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/#person.detail.id.<?php echo $authorId ?>" target="_blank"><?php echo ucfirst($authorName); ?></a></b> <?php echo $verbAction ?><br>
               <br><br>
-               <?php echo yii::t("email", "For more details on the user")." ".@$newPendingAdmin["username"]?>, <?php echo yii::t("email","you can visit") ?> <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."#person.detail.id.".(String) @$newPendingAdmin["_id"]."?tpl=directory2"?>"><?php echo yii::t("email","sa fiche profil")?></a>.
+              <?php echo $authorName." ".$explain."." ?>
               <br>
               <br>
-                <?php echo yii::t("email","In order to validate this user as")." ".yii::t("common",$typeOfDemand).", ".yii::t("email","go to the members' list of your")." "; ?>
-           		<a href="<?php echo $url ?>"><?php echo yii::t("common",$type) ?></a>.
+              <a href="<?php echo $url?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><?php echo $links ?></a>
               <br>
               <br>
               <?php echo Yii::t("mail","If the link doesn&apos;t work, you can copy it in your browser&apos;s address"); ?> :

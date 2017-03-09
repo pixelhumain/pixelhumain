@@ -136,10 +136,10 @@
         dynForm : {
             onLoadPanel : function (elementObj) { 
                 $("#ajax-modal-modal-title").html("<i class='fa fa-"+elementObj.dynForm.jsonSchema.icon+"'></i> "+elementObj.dynForm.jsonSchema.title);
-                $("#ajax-modal-modal-title").removeClass("text-green").removeClass("text-purple").removeClass("text-orange").removeClass("text-azure");
+                $("#ajax-modal-modal-title").removeClass("text-green text-purple text-orange text-azure");
                 $("#ajax-modal-modal-body").append("<div class='space20'></div>");
                 if(typeof currentKFormType != "undefined")
-                    $("#ajax-modal-modal-title").addClass("text-"+KSpec[currentKFormType].color);
+                    $("#ajax-modal-modal-title").addClass("text-"+typeObj[currentKFormType].color);
                 
                 $(".locationBtn").on( "click", function(){
                      setTimeout(function(){

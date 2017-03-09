@@ -1,10 +1,20 @@
 <!-- start: PAGESLIDE RIGHT -->
+<?php 
+$cssAnsScriptFilesModule = array(
+	'/js/default/notifications.js'
+	//'/js/news/autosize.js',
+);
+HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->assetsUrl);
+?>
 <style type="text/css">
 	.notifications li {
 		min-height:50px;
 		padding: 10px;
 		background-color: rgba(197, 225, 197, 0.3);
 		border-bottom: 1px dashed #bed1be;
+	}
+	.notifications li.read{
+		background-color:white !important;
 	}
 	.notifications{
 		/*background-color: white;*/
@@ -119,10 +129,25 @@
 	.badge-tranparent{
 		background-color: transparent;
 	}
+	.removeBtn{
+		position: absolute !important;
+		right: 3px;
+		bottom: -4px;
+		border-radius:25px !important;
+		border:1px solid grey;
+		color: grey;
+	}
+	.removeBtn:hover{
+		background-color: grey;
+		color: white;
+	};
+	.removeBtn i{
+		font-size:12px;
+	}
 </style>
 <div id="notificationPanelSearch" class="">
 		<div class="notifications">
-			<a href="javascript:;" onclick='refreshNotifications()' class="btn-notification-action pull-left btn-reload-notif">
+			<a href="javascript:;" onclick='refreshNotifications("<?php echo Yii::app()->session["userId"]?>","<?php echo Person::COLLECTION ?>","")' class="btn-notification-action pull-left btn-reload-notif">
 				<i class="fa fa-refresh"></i>
 			</a>
 			<div class="pageslide-title pull-left">
@@ -136,13 +161,19 @@
 			<ul class="pageslide-list notifList">
 				<?php
 					$maxTimestamp = 0;
-					if(isset($this->notifications))
+					/*if(isset($this->notifications))
 					{
 						//for($i=0; $i<10; $i++)
 						foreach( $this->notifications as $item )
 				        {
 				        	if(isset($item["notify"]))
 				        	{
+				        		if(@$item["updated"])
+				        			$timestamp=$item["updated"];
+				        		else if (@$item["timestamp"])
+				        			$timestamp=$item["timestamp"];
+				        		else
+				        			$timestamp=$item["created"];
 				        		$url = str_replace("/", ".", $item["notify"]["url"]);
 				        		$href = $url;
 					            echo "<li class='notifLi notif_".(string)$item["_id"]."'>";
@@ -150,13 +181,13 @@
 					            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message text-dark">';
 					            echo $item["notify"]["displayName"];
 					            
-					            echo ", <span class='time pull-left'>".round(abs(time() - $item["timestamp"]->sec) / 60)."min</span></span></a>";
+					            echo ", <span class='time pull-left'>".round(abs(time() - $timestamp->sec) / 60)."min</span></span></a>";
 					            echo "</li>";
-					            if($item["timestamp"]->sec > $maxTimestamp)
-					            	$maxTimestamp = $item["timestamp"]->sec;
+					            if($timestamp->sec > $maxTimestamp)
+					            	$maxTimestamp = $timestamp->sec;
 					        }
 				        } 
-				    } 
+				    } */
 				?>
 			</ul>
 			<!-- <div class="footer-notif">
@@ -189,32 +220,85 @@ var maxNotifTimstamp = <?php echo $maxTimestamp ?>;
 
 jQuery(document).ready(function() 
 {
-
 	//initNotifications();
 	//bindLBHLinks();
-	bindNotifEvents();
-	refreshNotifications();
+	bindNotifEvents("");
+	refreshNotifications(userId,"<?php echo Person::COLLECTION ?>","");
 });
 
-function bindNotifEvents(){
+/*function bindNotifEvents(){
 	$(".notifList a.notif").off().on("click",function () 
 	{
 		markAsRead( $(this).data("id") );
+		hash = $(this).data("href");
 		elem = $(this).parent();
-		elem.removeClass('animated bounceInRight').addClass("animated bounceOutRight");
-		elem.removeClass("enable");
+		//elem.removeClass('animated bounceInRight').addClass("animated bounceOutRight");
+		//elem.removeClass("enable");
 		setTimeout(function(){
-            elem.addClass('hide');
-            elem.removeClass('animated bounceOutRight');
-            notifCount();
+          //  elem.addClass("read");
+            //elem.removeClass('animated bounceOutRight');
+            loadByHash(hash);
+            //notifCount();
         }, 200);
-
-	    bindLBHLinks();
 	});
+	$('.tooltips').tooltip();
+	$(".notifList li").mouseenter(function(){
+		$(this).find(".removeBtn").show();
+	}).mouseleave(function(){
+		$(this).find(".removeBtn").hide();
+	})
 }
+function updateNotification(action, id)
+{ 
+	var action = action;
+	var all = true;
+	data = new Object;
+	if(id != null){
+		var notifId=id;
+		all=false;
+		data.id=id
+	} else {
+		data.action=action;
+		data.all=all;
+	}
+	//ajax remove Notifications by AS Id
+	$.ajax({
+        type: "POST",
+        url: baseUrl+"/"+moduleId+"/notification/update",
+        data: data,
+        dataType : 'json'
+    })
+    .done( function (data) {
+    	mylog.dir(data);
+        if ( data && data.result ) {
+        	if(action=="seen"){  
+        		$(".notifList li.notifLi").addClass("seen")  
+        		notifCount();
+        	}else{           
+        		if(all)
+        			$(".notifList li.notifLi").addClass("read");
+        		else
+        			$(".notifList li.notif_"+notifId).addClass("read");
+        	}
+        	mylog.log("notification cleared ",data);
+        } else {
+            toastr.error("no notifications found ");
+        }
 
-function markAsRead(id)
-{
+    });
+}
+function markAllAsSeen(){
+	updateNotification("seen");
+}
+function markAsRead(id){
+	updateNotification("read",id);
+}
+function markAllAsRead()
+{ 
+	updateNotification("read");
+}
+function removeNotification(id)
+{ // Ancienne markAsRead
 	mylog.log("markAsRead",id);
 	//ajax remove Notifications by AS Id
 	$.ajax({
@@ -224,7 +308,7 @@ function markAsRead(id)
         dataType : 'json'
     })
     .done( function (data) {
-    	mylog.dir(data);
+    	//mylog.dir(data);
         if ( data && data.result ) {               
         	$(".notifList li.notif_"+id).remove();
         	mylog.log("notification cleared ",data);
@@ -235,8 +319,9 @@ function markAsRead(id)
     });
 }
 
-function markAllAsRead()
-{
+function removeAllNotifications()
+{ 
+	//Ancienne markAllAsRead
 	$.ajax({
         type: "POST",
         url: baseUrl+"/"+moduleId+"/notification/markallnotificationasread",
@@ -277,7 +362,26 @@ function refreshNotifications()
         $(".pageslide-list.header .btn-primary i.fa-refresh").removeClass("fa-spin");
     });
 }
+/*function markAllNotificationsAsSeen()
+{
+	$.ajax({
+        type: "POST",
+        data:{"action":"seen","all":true}
+        url: baseUrl+"/"+moduleId+"/notification/update"
+    })
+    .done(function (data) { //mylog.log("REFRESH NOTIF : "); mylog.dir(data);
+        if (data) {       
+        	countNotif(true);
+        } else {
+            //toastr.error("no notifications found ");
+        }
+        $(".pageslide-list.header .btn-primary i.fa-refresh").removeClass("fa-spin");
+    }).fail(function(){
+    	toastr.error("error notifications");
+        $(".pageslide-list.header .btn-primary i.fa-refresh").removeClass("fa-spin");
+    });
 
+}
 function buildNotifications(list)
 {	mylog.log(list);
 	mylog.info("buildNotifications()");
@@ -286,17 +390,28 @@ function buildNotifications(list)
 	if(typeof list != "undefined" && typeof list == "object"){
 		$.each( list , function( notifKey , notifObj )
 		{
-			var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url.substring( "<?php echo substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1) ?>communecter/".length,notifObj.notify.url.length ) : "#";
+			var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url : "#";
 			//convert url to hash for loadByHash
 			url = "#"+url.replace(/\//g, ".");
 			//var moment = require('moment');
 			moment.lang('fr');
-			momentNotif=moment(new Date( parseInt(notifObj.timestamp.sec)*1000 )).fromNow();
+			if(typeof notifObj.updated != "undefined")
+				momentNotif=moment(new Date( parseInt(notifObj.updated.sec)*1000 )).fromNow();
+			else if(typeof notifObj.created != "undefined")
+				momentNotif=moment(new Date( parseInt(notifObj.created.sec)*1000 )).fromNow();
+			else if(typeof notifObj.timestamp != "undefined")
+				momentNotif=moment(new Date( parseInt(notifObj.timestamp.sec)*1000 )).fromNow();
 			var icon = (typeof notifObj.notify != "undefined") ? notifObj.notify.icon : "fa-bell";
 			var displayName = (typeof notifObj.notify != "undefined") ? notifObj.notify.displayName : "Undefined notification";
+			//console.log(notifObj);
+			//console.log(userId);
+			//console.log(notifObj.notify);
+			//console.log(notifObj.notify.id[userId]);
+			var isSeen = (typeof notifObj.notify.id[userId] != "undefined" && typeof notifObj.notify.id[userId].isUnseen != "undefined") ? "" : "seen";
+			var isRead = (typeof notifObj.notify.id[userId] != "undefined" && typeof notifObj.notify.id[userId].isUnread != "undefined") ? "" : "read";
 
-			str = "<li class='notifLi notif_"+notifKey+" hide'>"+
-					"<a class='notif lbh' data-id='"+notifKey+"' href='"+ url +"'>"+
+			str = "<li class='notifLi notif_"+notifKey+" "+isSeen+" "+isRead+" hide'>"+
+					"<a href='javascript:;' class='notif' data-id='"+notifKey+"' data-href='"+ url +"'>"+
 						"<span class='label bg-dark'>"+
 							'<i class="fa '+icon+'"></i>'+
 						"</span>" + 
@@ -307,6 +422,9 @@ function buildNotifications(list)
 						
 						"<span class='time pull-left'>"+momentNotif+"</span>"+
 					"</a>"+
+					"<a href='javascript:;' class='label removeBtn tooltips' onclick='removeNotification(\""+notifKey+"\")' data-toggle='tooltip' data-placement='left' title='<?php echo Yii::t("common","Delete"); ?>' style='display:none;'>"+
+							'<i class="fa fa-remove"></i>'+
+						"</a>" + 
 				  "</li>";
 
 			$(".notifList").append(str);
@@ -316,16 +434,24 @@ function buildNotifications(list)
 		});
 		setTimeout( function(){
 	    	notifCount();
+	    	bindNotifEvents();
+	    	//bindLBHLinks();
 	    }, 800);
-		bindNotifEvents();
+		//bindNotifEvents();
 	}
 }
 
-function notifCount()
+function notifCount(upNotifUnseen)
 { 	var countNotif = $(".notifList li.enable").length;
+	var countNotifSeen = $(".notifList li.seen").length;
+	var countNotifUnseen = countNotif-countNotifSeen;
+	if(upNotifUnseen)
+		countNotifUnseen=0;
 	mylog.log(" !!!! notifCount", countNotif);
 	$(".notifCount").html( countNotif );
-	if( countNotif > 0 )
+	if(countNotif == 0)
+		$(".notifList").append("<li><i class='fa fa-ban'></i> <?php echo Yii::t("common","No more notifications for the moment") ?></li>");
+	if( countNotifUnseen > 0)
 	{
 	    $(".notifications-count").html(countNotif);
 		$('.notifications-count').removeClass('hide');
@@ -334,12 +460,12 @@ function notifCount()
 		$('.notifications-count').removeClass('badge-tranparent');
 		$(".markAllAsRead").show();
 	} else {
-		$(".notifList").append("<li><i class='fa fa-ban'></i> <?php echo Yii::t("common","No more notifications for the moment") ?></li>");
 		//$('.notifications-count').addClass('hide');
-		$(".notifications-count").html("0");
+		//$(".notifications-count").html("0");
+		$('.notifications-count').addClass('hide');
 		$('.notifications-count').removeClass('badge-success');
 		$('.notifications-count').addClass('badge-tranparent');
 		$(".markAllAsRead").hide();
 	}
-}
+}*/
 </script>
