@@ -227,15 +227,29 @@
     max-height: 345px !important;
     margin-bottom: 25px !important;
   }
+  .searchEntityContainer.classified{
+    min-height: 375px !important;
+    max-height: 375px !important;
+    margin-bottom: 25px !important;
+  }
   .searchEntityContainer.classified .entityName{
-    font-size:23px!important;
-    line-height:23px!important;
+    font-size: 21px !important;
+    line-height: 21px !important;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 800 !important;
   }
 
   .searchEntityContainer.classified .entityPrice{
     font-size:17px!important;
-    line-height:17px!important;
-    text-decoration: bold;
+    line-height:25px!important;
+    text-decoration: bold !important;
+  } 
+  .searchEntityContainer.classified .entityDescription{
+    font-size:15px!important;
+    line-height:20px!important;
+    max-height: 62px;
+    overflow: hidden;
   } 
 
 
