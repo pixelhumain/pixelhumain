@@ -232,8 +232,8 @@
     margin-bottom: 25px !important;
   }
   .searchEntityContainer.surveys{
-    min-height: 345px !important;
-    max-height: 345px !important;
+    min-height: 150px !important;
+    max-height: 150px !important;
     margin-bottom: 25px !important;
   }
   .searchEntityContainer.classified{
