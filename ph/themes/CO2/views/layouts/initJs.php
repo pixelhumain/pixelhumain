@@ -30,7 +30,7 @@
     var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
 
     var classifiedTypes = <?php echo json_encode( CO2::getContextList("classifiedCategories") ) ?>;
-    var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
+    //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     
     var globalTheme = "<?php echo Yii::app()->theme->name;?>";
@@ -58,7 +58,8 @@
         "action": "fa-cogs",
         "actions": "fa-cogs",
         "poi": "fa-info-circle",
-        "video": "fa-video-camera"
+        "video": "fa-video-camera",
+        "classified" : "fa-bullhorn"
     };
     var mapColorIconTop = {
         "default" : "dark",
@@ -83,7 +84,8 @@
         "action": "lightblue2",
         "actions": "lightblue2",
         "poi": "dark",
-        "video":"dark"
+        "video":"dark",
+        "classified" : "yellow"
     };
 
 
