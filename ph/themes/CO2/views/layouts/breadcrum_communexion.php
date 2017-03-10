@@ -19,7 +19,7 @@
         <?php } ?> 
 
     <?php }else{ ?>
-        <div class="breadcrum-communexion  hidden-xs margin-top-15 col-md-12">
+        <div class="breadcrum-communexion hidden-xs col-md-12">
             <button class="btn btn-link text-red btn-decommunecter tooltips"
                     data-toggle="tooltip" data-placement="right" 
                     title="Quitter la communexion">
