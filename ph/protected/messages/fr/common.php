@@ -163,6 +163,10 @@ return array(
 	//Confirm
 	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication ?",
 	"Are you sure you want to delete this chat room" => "Êtes-vous sûr de vouloir supprimer cette salle de discussion ?",
+	"Are you sure you want to delete this decision room" => "Êtes-vous sûr de vouloir supprimer cette salle de décision ?",
+	"Are you sure you want to delete this survey" => "Êtes-vous sûr de vouloir supprimer ce vote ?",
+	"Are you sure you want to delete this action room" => "Êtes-vous sûr de vouloir supprimer cette salle action ?",
+	"Are you sure you want to delete this action" => "Êtes-vous sûr de vouloir supprimer cette action ?",
 	//Form
 	"Required Fields" => "Champs requis",
 	"Save" => "Enregistrer",
