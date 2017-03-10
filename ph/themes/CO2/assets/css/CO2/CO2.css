@@ -718,9 +718,9 @@ h3.title_panel_map{
 	font-size: 2em;
 	margin-top: -7px;
 }
-.form-in-map #newElement_country{
+/*.form-in-map #newElement_country{
 	display: none;
-}
+}*/
 #newElement_btnSearchAddress{
 	padding: 6px 0 !important;
 }

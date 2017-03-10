@@ -11,35 +11,34 @@ function checkLoggued(url)
     return true;
 }
 
-function ajaxPost(id,url,params,callback, datatype)
-{
-	mylog.log(id,url,params);
-  /*if(dataType == null)
+function ajaxPost(id,url,params,callback, datatype){
+    mylog.log(id,url,params);
+    /*if(dataType == null)
     dataType = "json";*/
-	if(datatype != "html" )
-		$(id).html("");
-	$.ajax({
-	    url:url,
-	    data:params,
-	    type:"POST",
-	  //  dataType: "json",
-	    success:function(data) {
-          if(datatype == "none" )
-            console.log();
-          else if(datatype === "html" )
-    			  $(id).html(data);
-    	  	else if(typeof data.msg === "string" )
-    	    	toastr.success(data.msg);
-    	    else if( id != null )
-    	      $("#"+id).html(JSON.stringify(data, null, 4));
-    	      		
-          if( typeof callback === "function")
-            callback(data,id);
-	    },
-	    error:function (xhr, ajaxOptions, thrownError){
-	     mylog.error(thrownError);
-	    } 
-	  });
+    if(datatype != "html" )
+        $(id).html("");
+    $.ajax({
+        url:url,
+        data:params,
+        type:"POST",
+        //  dataType: "json",
+        success:function(data) {
+            if(datatype == "none" )
+                console.log();
+            else if(datatype === "html" )
+                $(id).html(data);
+            else if(typeof data.msg === "string" )
+                toastr.success(data.msg);
+            else if( id != null )
+                $("#"+id).html(JSON.stringify(data, null, 4));
+
+            if( typeof callback === "function")
+                callback(data,id);
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+            mylog.error(thrownError);
+        } 
+    });
 }
 
 function getAjax(id,url,callback,datatype,blockUI)
@@ -553,7 +552,7 @@ var jsonHelper = {
               res = false;      
         }
       } else {
-        mylog.error(dynPath," is undefined");
+        //mylog.error(dynPath," is undefined");
         res = false;
         return false;    
       }
