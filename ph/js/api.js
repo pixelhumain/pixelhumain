@@ -42,10 +42,10 @@ function ajaxPost(id,url,params,callback, datatype)
 	  });
 }
 
-function getAjax(id,url,callback,datatype,blockUI)
+function getAjax(id,ajaxUrl,callback,datatype,blockUI)
 {
   $.ajaxSetup({ cache: true});
-  mylog.log("getAjax",id,url,callback,datatype,blockUI)
+  mylog.log("getAjax",id,ajaxUrl,callback,datatype,blockUI)
     if(blockUI)
         $.blockUI({
             message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.processingMsg") ) ? themeObj.blockUi.processingMsg : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
@@ -58,7 +58,7 @@ function getAjax(id,url,callback,datatype,blockUI)
         $(id).html( "<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>" );
   
     $.ajax({
-        url:url,
+        url:ajaxUrl,
         type:"GET",
         cache: true,
         success:function(data) {
@@ -68,7 +68,7 @@ function getAjax(id,url,callback,datatype,blockUI)
           } else if(datatype === "html" )
             $(id).html(data);
           else if(datatype === "norender" )
-            mylog.log("no render",url)
+            mylog.log("no render",ajaxUrl)
           else if( typeof data === "string" && datatype != null )
             toastr.success(data);
           else
@@ -87,7 +87,8 @@ function getAjax(id,url,callback,datatype,blockUI)
               + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>'),
               timeout: 3000 
           });
-          setTimeout(function(){loadByHash('#')},3000);
+          //mylog.log("URL : ", url);
+          setTimeout(function(){url.loadByHash('#')},3000);
           if(blockUI)
             $.unblockUI();
         } 
