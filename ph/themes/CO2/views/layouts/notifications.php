@@ -225,7 +225,7 @@ jQuery(document).ready(function()
 	initNotifications();
 	//bindLBHLinks();
 	bindNotifEvents("");
-	refreshNotifications(userId,"<?php echo Person::COLLECTION ?>","");
+	//refreshNotifications(userId,"<?php echo Person::COLLECTION ?>","");
 	$("#notificationPanelSearch").mouseleave(function(){
 		showNotif();
 	});
