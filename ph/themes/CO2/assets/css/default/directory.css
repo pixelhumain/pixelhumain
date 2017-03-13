@@ -106,8 +106,8 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  font-size: 33px;
-  padding: 19px 21px;
+  font-size: 20px;
+  padding: 12px 10px;
 }
 .searchEntity .entityCenter img{
   padding: 3px;
@@ -153,6 +153,10 @@
   font-size: 18px;
   padding: 14px 12px;
 }
+.searchEntity .entityCenter i.fa.fa-bullhorn{
+  font-size: 20px;
+  padding: 12px 0px;
+}
 .searchEntity .entityCenter i.fa.fa-video-camera {
     font-size: 21px;
     padding: 12px 14px;
@@ -164,7 +168,7 @@
 .searchEntity .entityRight{
   text-align: left;
   padding-top: 0px !important;
-  margin-left: -1%;
+  /*margin-left: -1%;*/
 }
 
 .searchEntity .entityRight .entityName{
@@ -223,6 +227,32 @@
     max-height: 345px !important;
     margin-bottom: 25px !important;
   }
+  .searchEntityContainer.classified{
+    min-height: 375px !important;
+    max-height: 375px !important;
+    margin-bottom: 25px !important;
+  }
+  .searchEntityContainer.classified .entityName{
+    font-size: 19px !important;
+    line-height: 21px !important;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 800 !important;
+  }
+
+  .searchEntityContainer.classified .entityPrice{
+    font-size:17px!important;
+    line-height:25px!important;
+    text-decoration: bold !important;
+  } 
+  .searchEntityContainer.classified .entityDescription{
+    font-size:15px!important;
+    line-height:20px!important;
+    max-height: 62px;
+    overflow: hidden;
+  } 
+
+
   .searchEntity{
     padding: 0px !important;
     margin: 0px !important;
@@ -260,12 +290,12 @@
 
   
 .searchEntityContainer.cities{
-  min-height: 70px !important;
-  max-height: 70px !important;
+  min-height: 95px !important;
+  max-height: 95px !important;
 }
 
-.searchEntityContainer.cities .searchEntity .entityCenter{
-  margin-top:0px;
+.searchEntityContainer.cities .searchEntity{
+  border-radius:15px;
 }
 
 .searchEntityContainer.cities .entityName{
@@ -397,6 +427,17 @@
     #menu-directory-type .hidden-sm{
      display:none;
     }
+
+    .searchEntityContainer.classified .entityName{
+      font-size:19px!important;
+      line-height:19px!important;
+    }
+
+    .searchEntityContainer.classified .entityPrice{
+      font-size:15px!important;
+      line-height:15px!important;
+      text-decoration: bold;
+    } 
   }
 
 @media screen and (max-width: 767px) {

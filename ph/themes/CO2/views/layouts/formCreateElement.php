@@ -86,7 +86,7 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
             </div>
 
 	        <div class="row">
-	            <div class="col-lg-8 col-lg-offset-2">
+	            <div class="col-lg-12">
 					<div class="modal-header text-dark">
 				        <h3 class="modal-title text-center" id="ajax-modal-modal-title">
 				        	<i class="fa fa-angle-down"></i> <i class="fa " id="ajax-modal-icon"></i> 

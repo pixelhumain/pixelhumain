@@ -108,6 +108,8 @@
                 '/plugins/toastr/toastr.min.css',
                 '/plugins/jquery.ajax-cross-origin.min.js',
                 '/plugins/jquery-cookie/jquery.cookie.js' , 
+                '/plugins/lightbox2/css/lightbox.css',
+                '/plugins/lightbox2/js/lightbox.min.js',
                 '/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
                 '/plugins/ladda-bootstrap/dist/spin.min.js' , 
                 '/plugins/ladda-bootstrap/dist/ladda.min.js' , 
