@@ -111,27 +111,13 @@
                                     data-type="<?php echo @$type; ?>">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button> 
-                            <?php if($subdomain == "agenda"){ ?>                  
-                                <button class="btn btn-default text-orange bold main-btn-create"  
+
+                            <?php $lblC = @$params["pages"]["#".$page]["lblBtnCreate"]; ?>
+                            <?php $colorC = @$params["pages"]["#".$page]["colorBtnCreate"]; ?>
+                            <button class="btn btn-default letter-<?php echo @$colorC; ?> bold main-btn-create"
                                         data-type="<?php echo @$type; ?>">
-                                    <i class="fa fa-plus-circle"></i> Créer un événement
+                                    <i class="fa fa-plus-circle"></i> <?php echo @$lblC; ?>
                                 </button>
-                            <?php }elseif($subdomain == "search" || $subdomain == "social"){ ?>                  
-                                <button class="btn btn-default letter-green bold main-btn-create" 
-                                        data-target="#dash-create-modal" data-toggle="modal" id="">
-                                    <i class="fa fa-plus-circle"></i> Créer une page
-                                </button>
-                            <?php }elseif($subdomain == "annonces"){ ?>
-                                <button class="btn btn-default letter-green bold main-btn-create"
-                                        data-type="<?php echo @$type; ?>">
-                                    <i class="fa fa-plus-circle"></i> Publier une annonce
-                                </button>
-                            <?php }elseif($subdomain == "power"){ ?>
-                                <button class="btn btn-default text-azure bold main-btn-create"
-                                        data-type="<?php echo @$type; ?>">
-                                    <i class="fa fa-plus-circle"></i> Faire une proposition
-                                </button>
-                            <?php } ?>
 
                             <!-- <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button> -->
 

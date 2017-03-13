@@ -4,12 +4,12 @@
     ?>
 
         <?php if($type != "cities"){ ?>            
-            <h5 class="pull-left letter-red" style="margin-bottom: -8px;">
-                    <button class="btn btn-default main-btn-scopes text-white tooltips margin-bottom-5 margin-left-25 margin-right-10" 
+            <h5 class="pull-left letter-red" style="margin-bottom: -8px;margin-top: 14px;">
+                    <button class="btn btn-default main-btn-scopes text-white tooltips margin-bottom-5 margin-left-10 margin-right-10" 
                         data-target="#modalScopes" data-toggle="modal"
                         data-toggle="tooltip" data-placement="top" 
                                             title="Sélectionner des lieux de recherche">
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=32>
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=25>
                     </button> 
                     recherche ciblée <i class="fa fa-angle-right"></i> 
             </h5>
