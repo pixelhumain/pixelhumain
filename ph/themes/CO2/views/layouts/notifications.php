@@ -226,6 +226,9 @@ jQuery(document).ready(function()
 	//bindLBHLinks();
 	bindNotifEvents("");
 	refreshNotifications(userId,"<?php echo Person::COLLECTION ?>","");
+	$("#notificationPanelSearch").mouseleave(function(){
+		showNotif();
+	});
 });
 
 /*function bindNotifEvents(){
