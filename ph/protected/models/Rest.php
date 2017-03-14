@@ -23,11 +23,22 @@ class Rest
 	}
 
 	// function to convert array to xml
-	public static function array_to_xml( $data, $xml_data ) {
+	public static function array_to_xml( $data, $xml_data, $format="xml") {
 		
-	    foreach( $data as $key => $value ) {
-	        if( is_numeric($key) ){
-	            $key = 'item'; //dealing with <0/>..<n/> issues
+		// if ($format == Translate::FORMAT_KML) {
+
+		 // var_dump($data);
+
+	    foreach($data as $key => $value) {
+	    	if ($format == Translate::FORMAT_KML) {
+	    		$key = 'Folder';
+	    	}
+	    	if( is_numeric($key) ){
+            $key = 'Placemark';
+        	}
+	    	
+	        if( $format == Translate::FORMAT_RSS ){
+	            $key = 'item'; 
 	            
 	        }
 	        if( is_array($value) ) {
@@ -37,29 +48,29 @@ class Rest
 	        } else {
 	        	
 	            $xml_data->addChild("$key",htmlspecialchars("$value"));
+
 	            
 	        }
-	     }
+	    }
 
-	     return $xml_data;
+	    return $xml_data;
 	}
 
-	public static function xml($res, $xml_element) { 
-
-
-		/*$xml_element = new SimpleXMLElement(
-			"<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss version=\"2.0\">
-				<channel></channel>
-				<title> Fil d'actualité de </title>
-				<description>Communecter, un site fait par les communs pour les communs </description>
-				<image>
-      			<url>http://127.0.0.1/ph/assets/7d331fe5/images/Communecter-32x32.svg</url></image>
-				</rss>"); */
+	public static function xml($res, $xml_element, $format) { 
 
 		header("Content-type: text/xml");
 
+		if ($format == Translate::FORMAT_KML) {
 
-		$xml_inter = self::array_to_xml($res,$xml_element);
+			$res2["Folder"] = array();
+			array_push($res2["Folder"], $res);
+
+			$res = $res2["Folder"];
+
+			
+		}
+
+		$xml_inter = self::array_to_xml($res,$xml_element, $format);
 
 		$xml_result = $xml_inter -> asXML();
 
