@@ -356,13 +356,13 @@
     min-height:150px;
     max-height: 150px;
     overflow: hidden;
-    background-color: #d3d3d3;
+    background-color: #f3f3f3;
     text-align: center;
   }
 
   .events .container-img-profil{
     min-height:180px;
-    max-height: 180px;
+    max-height: unset;
   }
 
   .container-img-profil i.fa {
@@ -507,3 +507,12 @@
   -o-box-shadow: 0px 0px 4px -2px rgb(0, 0, 0);
   box-shadow: 0px 0px 4px -2px rgb(0, 0, 0);
 }
+
+
+
+
+  .searchEntityContainer.events{
+    max-height: unset!important;
+    min-height: unset!important;
+    margin-bottom: 45px !important;
+  }

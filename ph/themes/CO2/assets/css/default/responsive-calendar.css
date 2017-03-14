@@ -1,6 +1,6 @@
 .responsive-calendar{
   background-color: rgb(42, 59, 68);
-  margin-top: 15px;
+  /*margin-top: 15px;*/
 }
 .responsive-calendar .controls {
   text-align: center;
@@ -126,6 +126,7 @@
 
 .responsive-calendar.light{
   background-color: rgb(246, 246, 246);
+  box-shadow: 0px 2px 7px -3px grey;
 }
 
 .responsive-calendar.light .day{
