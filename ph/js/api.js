@@ -554,7 +554,7 @@ var jsonHelper = {
               res = false;      
         }
       } else {
-        mylog.error(dynPath," is undefined");
+        //mylog.error(dynPath," is undefined");
         res = false;
         return false;    
       }
