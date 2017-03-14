@@ -171,6 +171,10 @@
   /*margin-left: -1%;*/
 }
 
+.event .searchEntity .entityName{
+  font-size:20px;
+}
+
 .searchEntity .entityRight .entityName{
   font-size:13px;
   line-height: 17px;
@@ -314,6 +318,10 @@
   font-size:14px;
 }
 
+.event .searchEntity .entityLocality{
+  font-size:13px;
+  margin-top:4px;
+}
   .bg-orange.transparent{
     background-color: #FFA200B3 !important;
   }

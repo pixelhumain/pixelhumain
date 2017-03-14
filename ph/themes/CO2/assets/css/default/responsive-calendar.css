@@ -122,3 +122,34 @@
       text-align: right;
   }
 }
+
+
+.responsive-calendar.light{
+  background-color: rgb(246, 246, 246);
+}
+
+.responsive-calendar.light .day{
+  border: 1px solid rgba(207, 207, 207, 0.8);
+  border-top: 0px;
+  border-right: 0px;
+}
+
+.responsive-calendar.light .day .dayNum{
+  color: #606060;
+}
+
+.responsive-calendar.light .day.header{
+  border-bottom: 1px #b1b1b1 solid;
+  background-color: rgba(230, 230, 230, 0.8);
+  color: black;
+}
+
+.responsive-calendar.light .day.active{
+  background-color: #f0ceb5;
+}
+
+.responsive-calendar.light #btn-month-before,
+.responsive-calendar.light #btn-month-next,
+.responsive-calendar.light .controls h4{
+  color:rgba(0, 0, 0, 0.7) !important;
+}
