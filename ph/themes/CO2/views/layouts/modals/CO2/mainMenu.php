@@ -1,4 +1,23 @@
 
+<div class="portfolio-modal modal fade" id="openModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="col-sm-12 container"></div>
+        <div class="col-xs-12 text-center" style="margin-top:50px;">
+        <?php 
+                if( isset( Yii::app()->session['userId']) ){
+            ?> 
+            <a href="javascript:;" style="font-size:25px;" class="btn btn-default letter-green bold " 
+                                data-target="#dash-create-modal" data-toggle="modal" id="">
+                            <i class="fa fa-arrow-circle-right"></i> Savoir plus
+                        </a>
+            <?php } ?> 
+            <hr>
+            <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal">
+            <i class="fa fa-times"></i> Retour</a>
+        </div>
+    </div>
+</div>
+
 <div class="portfolio-modal modal fade" id="modalMainMenu" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">
         <div class="close-modal" data-dismiss="modal">
