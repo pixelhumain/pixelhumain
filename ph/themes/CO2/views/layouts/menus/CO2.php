@@ -51,6 +51,7 @@
                 <?php 
                     if( isset( Yii::app()->session['userId']) ){
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
+                      $countNotifElement = ActivityStream::countUnseenNotifications(Yii::app()->session["userId"], Person::COLLECTION, Yii::app()->session["userId"]);
                 ?> 
                      <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
                     <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
@@ -127,11 +128,10 @@
                     <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
-                      <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
-                        <?php count($this->notifications); ?>
+                      <span class="notifications-count topbar-badge badge animated bounceIn <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
+                            <?php echo @$countNotifElement ?>
+                        </span>
                     </button>
-
-                    
                     
                 <?php } else { ?>
                     <li class="page-scroll">
