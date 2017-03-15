@@ -54,7 +54,7 @@
                             <?php if($subdomainName != "web" && $subdomainName != "referencement") 
                                     foreach ($params["pages"] as $key => $value) {
                                         if(@$value["inMenu"]==true){ ?>
-                                        <a  class="lbh text-red font-montserrat link-submenu-header  margin-right-25" 
+                                        <a  class="lbh text-red homestead link-submenu-header  margin-right-25" 
                                             href="<?php echo $key; ?>">
                                             <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                                             <span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
@@ -100,7 +100,7 @@
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
-                            <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults">
+                            <button class="btn btn-default" id="main-btn-start-search">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button>
 
