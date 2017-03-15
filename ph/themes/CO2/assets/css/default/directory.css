@@ -211,8 +211,10 @@
   width:unset;
 }
 
-.events.searchEntity .entityRight .entityName{
-  margin-top: 15px;
+.events .searchEntity .entityRight .entityName{
+  margin-top: 5px;
+  font-size: 20px !important;
+  padding: 5px 0px;
 }
 
 .searchEntity .entityRight .entityDate{
@@ -227,6 +229,20 @@
   /*background-color: rgb(190, 223, 228) !important;
   color: rgb(45, 99, 125) !important;*/
   font-weight: 500;
+}
+
+.searchEntity .entityOrganizer{
+  border-top: 1px solid rgba(0,0,0,0.2);
+  padding:10px 10px 0 10px;
+}
+
+.searchEntity .entityOrganizer img{
+  margin-right:10px;
+  border-radius: 60px
+}
+.searchEntity .entityOrganizer .entityOrganizerName{
+  font-size:14px;
+  font-weight: bold;
 }
 
 
@@ -359,17 +375,25 @@
     background-color: #f3f3f3;
     text-align: center;
   }
-
-  .events .container-img-profil{
-    min-height:180px;
-    max-height: unset;
-  }
+    .events .container-img-profil{
+      min-height:110px;
+      max-height: unset;
+      margin:7%;
+      width: 86%;
+      max-width: 86%;
+      border-radius:20px;
+    }
 
   .container-img-profil i.fa {
       margin-top: 45px;
       font-size: 50px;
       color:rgba(255, 255,255, 0.8);
   }
+
+
+    .events .container-img-profil i.fa {
+      margin-top: 30px;
+    }
 
   .container-img-profil img.img-responsive{
     float: left;

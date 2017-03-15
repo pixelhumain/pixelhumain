@@ -18,6 +18,7 @@
 	//used in communecter.js dynforms
     var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
     var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
+    console.log("eventTypes", eventTypes);
     var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
     var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
     var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : "null"?>;
