@@ -718,6 +718,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"by" => "par",
 	"on" => "sur",
 
+	"About" => "A propos",
+
 );
 
 ?>
