@@ -166,6 +166,48 @@ function lazyLoad (js,css, callback) {
 }
 
 
+var mylog = (function () {
+    
+    return {
+        log: function() {
+          if(debug){
+            var args = Array.prototype.slice.call(arguments);
+            console.log.apply(console, args);
+          }
+        },
+        warn: function() {
+            if( debug){
+              var args = Array.prototype.slice.call(arguments);
+              console.warn.apply(console, args);
+          }
+        },
+        debug: function() {
+            if(debug){
+              var args = Array.prototype.slice.call(arguments);
+              console.debug.apply(console, args);
+          }
+        },
+        info: function() {
+            if(debug){
+              var args = Array.prototype.slice.call(arguments);
+              console.info.apply(console, args);
+          }
+        },
+        dir: function() {
+            if(debug){
+              var args = Array.prototype.slice.call(arguments);
+              console.warn.apply(console, args);
+          }
+        },
+        error: function() {
+            if(debug){
+            var args = Array.prototype.slice.call(arguments);
+            console.error.apply(console, args);
+        }
+        }
+    }
+}());
+
 /* --------------------------------------------------------------- */
 //hide all children
 //show all elements corresponding to class id

@@ -141,7 +141,6 @@
                         </button>
                     </li>
                 <?php } ?>
-                
             </ul>
 
         </div>
@@ -157,7 +156,7 @@
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                 </a>  
         <?php   }
-             }  ?>
+            }  ?>
        <!--  <a href="#power" 
             class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="power") echo 'active'; ?>"
             data-toggle="tooltip" data-placement="bottom" title="Power" alt="Power">
