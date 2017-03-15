@@ -25,13 +25,21 @@
 
     <?php 
         $params = CO2::getThemeParams();
-       
+        
+        if(@$type=="cities")    { 
+            $lblCreate = "";
+            $params["pages"]["#".$page]["mainTitle"] = "Rechercher une commune"; 
+            $params["pages"]["#".$page]["placeholderMainSearch"] = "Rechercher une commune"; 
+        }
+
         $useHeader              = $params["pages"]["#".$page]["useHeader"];
         $subdomain              = $params["pages"]["#".$page]["subdomain"];
         $subdomainName          = $params["pages"]["#".$page]["subdomainName"];
         $icon                   = $params["pages"]["#".$page]["icon"];
         $mainTitle              = $params["pages"]["#".$page]["mainTitle"];
         $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
+
+
     ?>
 
     <!-- Header -->
@@ -46,7 +54,7 @@
                             <?php if($subdomainName != "web" && $subdomainName != "referencement") 
                                     foreach ($params["pages"] as $key => $value) {
                                         if(@$value["inMenu"]==true){ ?>
-                                        <a  class="lbh letter-red font-montserrat link-submenu-header  margin-right-25" 
+                                        <a  class="lbh text-red homestead link-submenu-header  margin-right-25" 
                                             href="<?php echo $key; ?>">
                                             <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                                             <span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
@@ -57,11 +65,11 @@
 
 
                             <?php if($subdomainName == "web") { ?>
-                                    <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
+                                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
                                         href="#info.p.apropos">
                                         <span class="">c koissa ?!?</span>
                                     </a>    
-                                    <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
+                                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
                                         href="#info.p.alphatango">
                                         <i class="fa fa-envelope"></i><span class=""> Contact</span>
                                     </a>    
@@ -69,7 +77,7 @@
 
 
                             <?php if($subdomainName == "referencement") { ?>
-                                    <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
+                                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
                                         href="#web">
                                         <i class="fa fa-arrow-left"></i> <span class="">Retour a la recherche</span>
                                     </a>
@@ -82,7 +90,8 @@
                                                     array("mainTitle"=>$mainTitle,
                                                           "icon"=>$icon,
                                                           "subdomainName"=>$subdomainName,
-                                                          "subdomain"=>$subdomain)); ?>
+                                                          "subdomain"=>$subdomain,
+                                                          "type"=>@$type)); ?>
 
 
                         <?php if($subdomain == "media"){ ?>
@@ -91,7 +100,7 @@
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
-                            <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults">
+                            <button class="btn btn-default" id="main-btn-start-search">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button>
 

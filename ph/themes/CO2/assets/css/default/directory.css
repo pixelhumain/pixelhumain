@@ -167,8 +167,12 @@
 }
 .searchEntity .entityRight{
   text-align: left;
-  padding-top: 0px !important;
+  /*padding-top: 0px !important;*/
   /*margin-left: -1%;*/
+}
+
+.event .searchEntity .entityName{
+  font-size:20px;
 }
 
 .searchEntity .entityRight .entityName{
@@ -202,6 +206,15 @@
   margin-bottom: 5px;
 }
 
+.events .searchEntity .entityRight .entityDescription{
+  font-size: 13px;
+  width:unset;
+}
+
+.events.searchEntity .entityRight .entityName{
+  margin-top: 15px;
+}
+
 .searchEntity .entityRight .entityDate{
   font-size: 12px;
   line-height: 17px;
@@ -223,8 +236,8 @@
     margin-bottom: 25px !important;
   }
   .searchEntityContainer.surveys{
-    min-height: 345px !important;
-    max-height: 345px !important;
+    min-height: 150px !important;
+    max-height: 150px !important;
     margin-bottom: 25px !important;
   }
   .searchEntityContainer.classified{
@@ -305,6 +318,10 @@
   font-size:14px;
 }
 
+.event .searchEntity .entityLocality{
+  font-size:13px;
+  margin-top:4px;
+}
   .bg-orange.transparent{
     background-color: #FFA200B3 !important;
   }
@@ -339,8 +356,13 @@
     min-height:150px;
     max-height: 150px;
     overflow: hidden;
-    background-color: #d3d3d3;
+    background-color: #f3f3f3;
     text-align: center;
+  }
+
+  .events .container-img-profil{
+    min-height:180px;
+    max-height: unset;
   }
 
   .container-img-profil i.fa {
@@ -485,3 +507,12 @@
   -o-box-shadow: 0px 0px 4px -2px rgb(0, 0, 0);
   box-shadow: 0px 0px 4px -2px rgb(0, 0, 0);
 }
+
+
+
+
+  .searchEntityContainer.events{
+    max-height: unset!important;
+    min-height: unset!important;
+    margin-bottom: 45px !important;
+  }
