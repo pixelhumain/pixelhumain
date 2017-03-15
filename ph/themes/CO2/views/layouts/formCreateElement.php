@@ -53,9 +53,6 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
 		padding-left:15px !important;
 	}
 
-	#ajax-modal .form-group.typeselect{
-		display: none;
-	}
 </style>
 
 

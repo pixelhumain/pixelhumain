@@ -56,7 +56,7 @@
 <small class="text-dark homestead pastille-subdomain hidden"><?php echo @$subdomainName; ?> 
 </small>
 <br>-->
-<h3 class="text-dark" style="font-size:20px; margin-top:0px;">
+<h3 class="text-dark homestead" style="font-size:20px; margin-top:0px;">
 	<i class="fa fa-<?php echo @$icon; ?>"></i>
 	<?php echo $mainTitle; ?> 
 	<?php if($communexion["state"] == false && @$type != "cities"){ ?>
