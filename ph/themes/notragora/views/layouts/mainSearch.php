@@ -115,18 +115,7 @@
 				  "showMethod": "fadeIn",
 				  "hideMethod": "fadeOut"
 				};
-				<?php if($user != "NOT_CONNECTED") { ?>
-					//updateCookieValues(user_geo_latitude, user_geo_longitude, insee, cityName);
-				<?php } ?>
 
-				/*
-				(function(w, d, s, u) {
-				    w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
-				    var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
-				    j.async = true; j.src = 'https://chat.initiative.place/packages/rocketchat_livechat/assets/rocket-livechat.js';
-				    h.parentNode.insertBefore(j, h);
-				})(window, document, 'script', 'https://chat.initiative.place/livechat');
-				*/
 			});
 		</script>
 		<style type="text/css">
@@ -387,7 +376,7 @@
 		    "entry": "fa-gavel",
 		    "action": "fa-cogs",
 		    "actions": "fa-cogs",
-		    "poi": "fa-info-circle",
+		    "poi": "fa-video-camera",
 			"video": "fa-video-camera"
 		  };
 		var mapColorIconTop = {
@@ -448,6 +437,7 @@
 		var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
 		var eventTypes = <?php echo json_encode( Event::$types ) ?>;
 		var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
+		var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
 		var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : null?>;
 		var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
 		var organizerList = {};
@@ -462,7 +452,8 @@
 		var CoSigAllReadyLoad = true;
 
 		//console.warn("isMapEnd 1",isMapEnd);
-		jQuery(document).ready(function() {
+		jQuery(document).ready(function() { 
+			
 			themeObj.init();
 			/*if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
 				typeObj[key].dynForm.jsonSchema.properties.tags.data=networkTags;
@@ -503,7 +494,7 @@
 		    	shadowOnHeader()
 		    });
 
-
+		    //alert("on ready 1");
 		    $(".btn-scope").click(function(){
 		    	var level = $(this).attr("level");
 		    	selectScopeLevelCommunexion(level);
@@ -530,7 +521,8 @@
 				$(".search-loader").html("<i class='fa fa-check'></i> Vous êtes communecté à " + cityNameCommunexion + ', ' + cpCommunexion);
 			}
 
-			toogleCommunexion();
+			//alert("on ready 2");
+		   // toogleCommunexion();
 
 
 			//manages the back button state 
@@ -565,12 +557,14 @@
 			//console.dir(userConnected);
 			//si l'utilisateur doit passer par le two_step_register
 
+			//alert("before loadByHash");
 			if(userConnected != null && userConnected != "" && typeof userConnected != "undefined" && !location.hash){
 				loadByHash("#person.detail.id."+userId);
 				return;
 			} 
 			else{ //si l'utilisateur est déjà passé par le two_step_register
 		 		if(/*location.hash != "#default.live" &&*/ location.hash != "#" && location.hash != ""){
+
 					loadByHash(location.hash);
 					return;
 				}
@@ -664,6 +658,8 @@
 				typeObjPoi.properties.info.html="<p><i class='fa fa-info-circle'></i> Rajouter une video en la chargeant l'url présente sur le compte vimeo de passeur d'image. Cette réalisation sera liée à votre groupe de travail</p>";
 			}
 		}
+
+		
 		</script>
 
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->

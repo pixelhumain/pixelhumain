@@ -1,33 +1,39 @@
 
-function  processingBlockUi() { 
-	$.blockUI({
-	 	message : '<img src="'+themeUrl+'/assets/img/logocagou-loader.png" class="nc_map pull-" height=80>'+
-	 			  '<i class="fa fa-spin fa-circle-o-notch"></i>'+
-	 			   '<span class="col-md-12 text-center font-blackoutM text-left">'+
-	 			    '<span class="letter letter-blue font-ZILAP">K</span>'+
-                    '<span class="letter letter-yellow">G</span>'+
-                    '<span class="letter letter-yellow font-ZILAP">O</span>'+
-                    '<span class="letter letter-yellow">U</span>'+
-                    '<span class="letter letter-green">G</span>'+
-                    '<span class="letter letter-green">L</span>'+
-                    '<span class="letter letter-green">E</span>'+
-                   '</span>'+
 
-	 			  '<h4 style="font-weight:300" class=" text-dark padding-10">'+
+themeObj.blockUi.processingMsg = 
+	 			  '<div class="col-md-12 text-center font-blackoutM text-left">'+
+            '<img src="'+themeUrl+'/assets/img/KGOUGLE-logo.png" class="" height=40>'+
+	 			    '<i class="fa fa-spin fa-3x letter-red fa-circle-o-notch"></i>'+  
+          '</div>'+
+
+	 			  '<h5 style="font-weight:300" class=" text-dark">'+
 	 				'Chargement en cours...'+
-	 			  '</h4>'+
+	 			  '</h5>'+
 	 			  '<span style="font-weight:300" class=" text-dark">'+
 	 				'Merci de patienter quelques instants'+
-	 			  '</span>'+
-	 			  '<br><br><br>'+
-	 			  '<a href="#k" class="btn btn-default btn-sm lbh">'+
-	 			  	"c'est trop long !"+
-	 			  '</a>'
-	 });
-	bindLBHLinks();
-}
+	 			  '</span>';//+
+	 			  //'<br><br><br>'+
+	 			  //'<a href="#web" class="btn btn-default btn-sm lbh tooltips" data-toggle="tooltip" data-placement="bottom" title="recharger la page">'+
+	 			  //	"<i class='fa fa-refresh'></i>"+
+	 			  //'</a>';
 
 
+
+themeObj.blockUi.errorMsg = 
+   // '<img src="'+themeUrl+'/assets/img/logoK.png" class="nc_map pull-" height=80>'+
+    '<div class="col-md-12 text-center font-blackoutM text-left">'+
+            '<img src="'+themeUrl+'/assets/img/KGOUGLE-logo.png" class="" height=40>'+
+            '<i class="fa fa-spin fa-3x letter-red fa-circle-o-notch"></i>'+  
+          '</div>'+
+
+    '<h5 style="font-weight:300" class=" text-dark padding-10">'+
+    'Oups ! Une erreur s\'est produite'+
+    '</h5>'+
+    '<span style="font-weight:300" class=" text-dark">'+
+    'Vous allez être redirigé vers la page d\'accueil'+
+    '</span>';
+
+/*
 function getAjax(id,url,callback,datatype,blockUI)
 {
   $.ajaxSetup({ cache: true});
@@ -89,9 +95,10 @@ function getAjax(id,url,callback,datatype,blockUI)
 			 			  '</span>',
               timeout: 3000 
           });
-          setTimeout(function(){loadByHash('#')},3000);
+          setTimeout(function(){url.loadByHash('#')},3000);
           if(blockUI)
             $.unblockUI();
         } 
     });
 }
+*/

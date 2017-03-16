@@ -909,7 +909,10 @@ button.btn-infos{
 
 .modal{
     background-color: rgba(0, 0, 0, 0.55) !important;
-    padding-top: 150px !important;
+    padding-top: 155px !important;
+}
+.modal-header{
+	padding-top: 22px;
 }
 .modal-backdrop{
 	display:none !important;

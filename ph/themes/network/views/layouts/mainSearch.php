@@ -48,10 +48,13 @@
 		<?php 	
 		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 		$this->renderPartial($layoutPath.'metas');
+
+		//Management of network configuration is in Network model
+		$params = Network::getNetworkJson(Yii::app()->params['networkParams']);
 		// Get source of network json
 		//if(@$_GET["src"])
 		//	$paramsAttr = $_GET["src"].'.json';
-		if (@Yii::app()->params['networkParams']){
+		/*if (@Yii::app()->params['networkParams']){
 			$paramsAttr = Yii::app()->params['networkParams'].'.json';
 		}else 
 			$paramsAttr = "default.json";
@@ -64,7 +67,7 @@
 			$pathParams = Yii::app()->params['networkParams'];
 
         $json = file_get_contents($pathParams);
-        $params = json_decode($json, true);	
+        $params = json_decode($json, true);	*/
 		?>
 
 		<!-- end: META -->
@@ -75,6 +78,7 @@
 		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/bootstrap-modal/js/bootstrap-modal.js' , CClientScript::POS_END);
 		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' , CClientScript::POS_END);
 		$cs->registerCssFile(Yii::app()->request->baseUrl.'/plugins/bootstrap-modal/css/bootstrap-modal.css' , CClientScript::POS_END);
+		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/showdown/showdown.min.js' , CClientScript::POS_END);
 		
 		$cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
 		
@@ -424,6 +428,7 @@
 		var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
 		var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
 		var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
+		var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
 		//var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : null?>;
 		var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
 		var organizerList = {};
@@ -433,6 +438,7 @@
 		var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
 		var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
 		var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
+
 		// GET LIST OF NETWORK'S TAGS
 		if(typeof networkJson.filter.linksTag != "undefined"){
 			var networkTags = [];
@@ -451,6 +457,7 @@
 		}
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
+			setTitle(networkJson.name , "", networkJson.name+ " : "+networkJson.skin.title, networkJson.name,networkJson.skin.shortDescription);
 			// Initialize tags list for network in form of element
 			if(typeof networkJson.add != "undefined"){
 				$.each(networkJson.add, function(key, v) {
@@ -596,6 +603,8 @@
 			}
 			checkScroll();
 		});
+
+		
 		</script>
 
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->

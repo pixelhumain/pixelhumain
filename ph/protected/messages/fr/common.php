@@ -149,6 +149,7 @@ return array(
 	"Invitation to project successfully sent" => "Invitation à rejoindre le projet bien envoyée",
 	"Comment successfully deleted" => "Le commentaire a bien été supprimé",
 	"You already invited" => "Vous avez déjà invité",
+	"Your answer has been succesfully register" => "Votre réponse a été enregistrée avec succès",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
@@ -311,6 +312,7 @@ return array(
 	"Project" => "Projet",
 	"Event" => "Événement",
 	"Agenda" => "Agenda",
+	"Classified" => "Annonce",
 
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
@@ -327,7 +329,9 @@ return array(
 	"organizations" => "organisations",
 	"projects" => "projets",
 	"events" => "événements",
+	"classified" => "annonce",
 
+	"a news" => "un post",
 	"of the event" => "de l'événement",
 	"of the organization" => "de l'organisation",
 	"of the project" => "du projet",
@@ -343,6 +347,10 @@ return array(
 	"History" => "Historique",
 	"Settings" => "Paramètres",
 	"Confidentiality params" => "Paramètres de confidentialité",
+	"I go" => "J&rsquo;y vais",
+	"Not interested" => "Pas intéressé(e)",
+	"Accept" => "Accepter",
+	"Refuse" => "Refuser",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
@@ -401,6 +409,9 @@ return array(
 	"Leave this event" 				=> "Quitter cet évènement",
 	"Leave" 						=> "Quitter",
 	"Join this Organization" 		=> "Rejoindre cette organisation",
+	"Join this organization" 		=> "Rejoindre cette organisation",
+	"Join this project" 		=> "Rejoindre ce projet",
+	"Go to the event" => "Participer à l'événement",
 	"Join" 							=> "Rejoindre",
 	"Manage"						=> "Administrer",
 	"added" => "ajouté",
@@ -662,7 +673,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Remove This Locality" => "Effacer cette addresse",
 	"Add Locality" => "Ajouter une adresse",
 	"Show map" => "Voir la carte",
-	"Unknown Locality" => "Adresse non renseigné",
+	"Unknown Locality" => "Addresse non renseignée",
 	"Parenthood" => "Parenté",
 
 	"Show map" => "Afficher sur la carte",
@@ -703,6 +714,9 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Nothing" => "Rien",
 
 
+
+	"by" => "par",
+	"on" => "sur",
 
 );
 

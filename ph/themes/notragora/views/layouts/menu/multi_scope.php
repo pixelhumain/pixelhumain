@@ -174,9 +174,9 @@ HtmlHelper::registerCssAndScriptsFiles(array( '/js/menus/multiscopes.js'), $this
 ?>
 <script type="text/javascript"> 
 
-var myMultiScopes = <?php echo isset($me) && isset($me["multiscopes"]) ? 
+var myMultiScopes = {}; <?php /*echo isset($me) && isset($me["multiscopes"]) ? 
 								json_encode($me["multiscopes"]) :  
-								$multiscopes; 
+								$multiscopes; */
 					?>;
 
 if(myMultiScopes.length == 0) myMultiScopes = {};
