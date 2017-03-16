@@ -23,15 +23,12 @@ class Rest
 	}
 
 	// function to convert array to xml
-	public static function array_to_xml( $data, $xml_data, $format="xml") {
-		
-		// if ($format == Translate::FORMAT_KML) {
-
-		 // var_dump($data);
+	public static function array_to_xml( $data, $xml_data, $format="xml") {		
 
 	    foreach($data as $key => $value) {
 	    	if ($format == Translate::FORMAT_KML) {
 	    		$key = 'Folder';
+
 	    	}
 	    	if( is_numeric($key) ){
             $key = 'Placemark';
@@ -46,12 +43,53 @@ class Rest
 	            self::array_to_xml($value, $subnode);
 
 	        } else {
-	        	
+
 	            $xml_data->addChild("$key",htmlspecialchars("$value"));
 
+	            if ($key == "img") {
+
+	            	$img = $xml_data->children();
+
+	            	$img->addAttribute('src',$value);
+
+					// $img = $xml_data->addChild('img', '');
+
+	            } elseif ($key == "enclosure") {
+
+
+	            	if (isset($xml_data)) {
+
+	            	foreach ($xml_data->children() as $parent => $child){ 
+	            		if ($parent == "enclosure") {
+
+
+	            			$child->addAttribute('url',$value);
+	            			$child->addAttribute('type', 'image/jpeg');
+	            			// $child->addAttribute('length', '34870');
+
+	      
+	      					//$y = $child.childNodes[0];
+							// $child.removeChild($y);
+							// unset($child['0']['0']); 
+
+							// var_dump($child['0']);
+	            			
+
+	            		}
+
+	            	}
+
+	            }
+	            	
+
+	            	
+
+	            }
+	            //var_dump($xml_data);
 	            
 	        }
 	    }
+
 
 	    return $xml_data;
 	}
@@ -66,12 +104,10 @@ class Rest
 			array_push($res2["Folder"], $res);
 
 			$res = $res2["Folder"];
-
 			
 		}
 
-		$xml_inter = self::array_to_xml($res,$xml_element, $format);
-
+		$xml_inter = self::array_to_xml( $res, $xml_element, $format );
 		$xml_result = $xml_inter -> asXML();
 
 		echo $xml_result;
