@@ -15,6 +15,8 @@ $cssAnsScriptFilesModule = array(
 );
 //error_log("BasURL : ".Yii::app()->request->baseUrl);
 HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->request->baseUrl);
+
+$CO2DomainName = Yii::app()->params["CO2DomainName"];
 ?>
 
 <style>
@@ -51,9 +53,6 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->re
 		padding-left:15px !important;
 	}
 
-	#ajax-modal .form-group.typeselect{
-		display: none;
-	}
 </style>
 
 
@@ -70,18 +69,21 @@ HtmlHelper::registerCssAndScriptsFiles( $cssAnsScriptFilesModule ,Yii::app()->re
 
             <div class="row">
                 <div class="col-lg-12">
-                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="50" class="inline margin-top-25 margin-bottom-5"><br>
-                    <!-- <h3 class="letter-red no-margin hidden-xs">
-                        Créer une page<br>
-                    </h3> -->
-                   <!-- <hr> -->
-                    
+                	<?php if($CO2DomainName == "kgougle"){ ?>
+                    	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
+                    			height="50" class="inline margin-top-25 margin-bottom-5">
+                    <?php } ?>
+                    <?php if($CO2DomainName == "CO2"){ ?>
+                    	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
+                    			height="50" class="inline margin-top-25 margin-bottom-5">
+                    <?php } ?>
+                    <br>
                 </div>
                
             </div>
 
 	        <div class="row">
-	            <div class="col-lg-8 col-lg-offset-2">
+	            <div class="col-lg-12">
 					<div class="modal-header text-dark">
 				        <h3 class="modal-title text-center" id="ajax-modal-modal-title">
 				        	<i class="fa fa-angle-down"></i> <i class="fa " id="ajax-modal-icon"></i> 

@@ -72,10 +72,8 @@ onSave: (optional) overloads the generic saveProcess
 				settings.beforeBuild();
 
 			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
-
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
-				
 				buildInputField(settings.formId,field, fieldObj, settings.formValues);
 			});
 			
@@ -87,7 +85,7 @@ onSave: (optional) overloads the generic saveProcess
 	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues.id) ? settings.formValues.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
-        				'<div class="space20"></div>';
+        				'<hr class="col-md-12">';
         	if( !settings.formObj.jsonSchema.noSubmitBtns )
 				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
@@ -249,13 +247,13 @@ onSave: (optional) overloads the generic saveProcess
 				fieldHTML += '<option></option>';
 
 			var selected = "";
-			
+			mylog.log("fieldObj select", fieldObj)
 			//initialize values
 			if(fieldObj.options)
-				fieldHTML += buildSelectOptions(fieldObj.options, fieldObj.value);
+				fieldHTML += buildSelectOptions(fieldObj.options, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
 			
 			if( fieldObj.groupOptions ){
-				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, fieldObj.value);
+				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
 			} 
 			fieldHTML += '</select>';
         }
@@ -296,13 +294,13 @@ onSave: (optional) overloads the generic saveProcess
 							'<span class="qq-upload-drop-area-text-selector"></span>'+
 							'</div>'+
 							'<div class="qq-upload-button-selector btn btn-primary">'+
-							'<div>Upload a file</div>'+
+							'<div>Ajouter une image</div>'+
 							'</div>'+
 							'<button type="button" id="trigger-upload" class="btn btn-danger hide">'+
-			                '<i class="icon-upload icon-white"></i> Upload'+
+			                '<i class="icon-upload icon-white"></i> Enregistrer'+
 			                '</button>'+
 							'<span class="qq-drop-processing-selector qq-drop-processing">'+
-							'<span>Processing dropped files...</span>'+
+							'<span>En cours de progression...</span>'+
 							'<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>'+
 							'</span>'+
 							'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
@@ -324,7 +322,7 @@ onSave: (optional) overloads the generic saveProcess
 							'<div class="qq-file-info">'+
 							'<div class="qq-file-name">'+
 							'<span class="qq-upload-file-selector qq-upload-file"></span>'+
-							'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+							//'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
 							'</div>'+
 							'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
 							'<span class="qq-upload-size-selector qq-upload-size"></span>'+
@@ -430,7 +428,11 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> tagList");
         	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
         	$.each(fieldObj.list,function(k,v) { 
-        		fieldHTML += '<a class="btn btn-link tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'" data-tag="'+k+'" href="'+action+'">'+v+'</a>';
+        		var lbl = ( fieldObj.trad && fieldObj.trad[k] ) ? fieldObj.trad[k] : k;
+        		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
+        						'<a class="btn tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'"'+
+        						' data-tag="'+lbl+'" data-key="'+k+'" href="'+action+'"><i class="fa fa-'+v.icon+'"></i> <br>'+lbl+'</a>'+
+        					 '</div>';
         	});
         } 
 
@@ -483,24 +485,23 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "array" ) {
         	mylog.log("build field "+field+">>>>>> array list");
-        	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
-								'<div class="col-sm-10">'+
+        	fieldHTML +=   '<div class="inputs array">'+
+								'<div class="col-sm-10 no-padding">'+
 									'<img id="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
 									'<div class="resultGetUrl resultGetUrl0 col-sm-12"></div>'+
 								'</div>'+
-								'<div class="col-sm-2">'+
-									'<button data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+								'<div class="col-sm-2 sectionRemovePropLineBtn">'+
+									'<a href="javascript:" data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
 								'</div>'+
 							'</div>'+
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
-							'<div class="col-sm-12">'+
-								'<div class="space10"></div>'+
-						        '<a href="javascript:;" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" class="addPropBtn btn btn-xs btn-success w100p" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
-						        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
-						        
-				       		'</div></span>'+
-				       '<div class="space5"></div>';
+								'<div class="col-sm-12 no-padding margin-top-5 margin-bottom-15">'+
+									'<a href="javascript:" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" class="addPropBtn btn btn-link w100p letter-green" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
+							        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
+							        
+					       		'</div>'+
+				       		'</span>';
 			
 			if( formValues && formValues[field] ){
 				mylog.warn("dynForm >> ",field, formValues[field]);
@@ -568,6 +569,22 @@ onSave: (optional) overloads the generic saveProcess
 						addfield("."+field+fieldObj.inputType,optVal );
 				});*/
 			}
+        }
+
+         /* **************************************
+		* DropDown , searchInvite
+		***************************************** */
+        else if ( fieldObj.inputType == "searchInvite" ) {
+        	mylog.log("build field "+field+">>>>>> searchInvite");
+
+			fieldHTML += '<input class="invite-search '+fieldClass+' form-control text-left" placeholder="Un nom, un e-mail ..." autocomplete = "off" id="inviteSearch" name="inviteSearch" value="">'+
+				        		'<ul class="dropdown-menu" id="dropdown_searchInvite" style="">'+
+									'<li class="li-dropdown-scope">-</li>'+
+								'</ul>'+
+							'</input>';
+			
+
+			
         }
 
         /* **************************************
@@ -937,7 +954,8 @@ onSave: (optional) overloads the generic saveProcess
 	                sizeLimit: 2000000
 	            },
 	            messages: {
-			        sizeError: '{file} est trop lourde! limite max : {sizeLimit}.'
+			        sizeError : '{file} est trop lourde! limite max : {sizeLimit}.',
+			        typeError : '{file} extension invalide. Extension(s) acceptable: {extensions}.'
 			    },
 	            callbacks: {
 	            	//when a img is selected
@@ -959,12 +977,12 @@ onSave: (optional) overloads the generic saveProcess
 				    //when every img finish upload process whatever the status
 				    onComplete: function(id, fileName,responseJSON,xhr) {
 				    	if(!responseJSON.result){
-				    		toastr.error("something went wrong : "+responseJSON.msg );		
+				    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
 				    	}
 				    },
 				    //when all upload is complete whatever the result
 				    onAllComplete: function(succeeded, failed) {
-				      toastr.info("Files uploaded succesfuslly!!");
+				      toastr.info("Fichiers bien chargés !!");
 				      if( jQuery.isFunction(initValues.afterUploadComplete) )
 				      	initValues.afterUploadComplete();
 				    },
@@ -974,7 +992,7 @@ onSave: (optional) overloads the generic saveProcess
 				    },*/
 				    //if any error during upload
 				    onError: function(id) {
-				      toastr.info("something went wrong");
+				      toastr.info(trad["somethingwentwrong"]);
 				    }
 				},
 	            thumbnails: {
@@ -1031,8 +1049,8 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
 		if(  $(".addmultifield").length )
 		{
-			if(  $(".addmultifield1").length )
-				$('head').append('<style type="text/css">.inputs textarea.addmultifield1{width:90%; height:34px;}</style>');
+			//if(  $(".addmultifield1").length )
+			//	$('head').append('<style type="text/css">.inputs textarea.addmultifield1{width:90%; height:34px;}</style>');
 
 			//intialise event on the add new row button 
 			$('.addPropBtn').unbind("click").click(function()
@@ -1141,6 +1159,9 @@ onSave: (optional) overloads the generic saveProcess
 	    		$( propertyLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
 	    	else
 	    		$( arrayLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	    	
+	    	$(".loading_indicator").hide();
+
 	    	$(parentContainer+' .addmultifield:last').focus();
 	        initMultiFields(parentContainer,name);
 	    }else 
@@ -1230,14 +1251,26 @@ onSave: (optional) overloads the generic saveProcess
 		if( typeof val == "undefined" ) 
 	    	val = "";
 	    var count = $(".addmultifield").length;
-		var str = '<div class="space5"></div><div class="col-sm-10">'+
+		var str = 	'<div class="col-sm-12 no-padding margin-top-10">'+
+					'<div class="col-sm-10 no-padding">'+
+							'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md value="" placeholder="..."/>'+
+							'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
+						'</div>'+
+						'<div class="col-sm-2 sectionRemovePropLineBtn">'+
+							'<a href="javascript:" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
+						'</div>'+
+					'</div>';
+
+
+		/*'<div class="space5"></div><div class="col-sm-10">'+
 					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'"/>'+
 					'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
 					'</div>'+
 					'<div class="col-sm-2">'+
 					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-left" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
-				'</div>';
+				'</div>';*/
 		return str;
 	}
 	function buildMediaHTML(mediaObj){

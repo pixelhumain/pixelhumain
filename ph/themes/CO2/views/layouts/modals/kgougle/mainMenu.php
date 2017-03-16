@@ -45,7 +45,7 @@
             </div>
 
             <div class="row links-main-menu">
-                <a href="#co2.web" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#app.web" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         
                             <h2 class="text-red"><i class="fa fa-search padding-bottom-10"></i><br>
@@ -62,7 +62,7 @@
                             </div>                 
                     </div>
                 </a>
-                <a href="#co2.live" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#app.live" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-red"><i class="fa fa-newspaper-o padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> LIVE</span>
@@ -79,7 +79,7 @@
                     </div>
                 </a>
             
-                <a href="#co2.social.type.persons" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#app.social.type.persons" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-orange"><i class="fa fa-user-circle padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> SOCIAL</span>
@@ -96,7 +96,7 @@
                     </div>
                 </a>
 
-                <a href="#co2.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#app.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-yellow"><i class="fa fa-comments padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> FREEDOM</span>
@@ -113,7 +113,7 @@
                     </div>
                 </a>
                 
-                <a href="#co2.agenda" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#app.agenda" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-yellow"><i class="fa fa-calendar padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> AGENDA</span>
@@ -130,7 +130,7 @@
                     </div>
                 </a>
                 
-                <a href="#co2.freedom" class="col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#app.freedom" class="col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> POWER</span>

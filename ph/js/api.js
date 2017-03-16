@@ -42,23 +42,23 @@ function ajaxPost(id,url,params,callback, datatype)
 	  });
 }
 
-function getAjax(id,url,callback,datatype,blockUI)
+function getAjax(id,ajaxUrl,callback,datatype,blockUI)
 {
   $.ajaxSetup({ cache: true});
-  mylog.log("getAjax",id,url,callback,datatype,blockUI)
+  mylog.log("getAjax",id,ajaxUrl,callback,datatype,blockUI)
     if(blockUI)
         $.blockUI({
-            message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
+            message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.processingMsg") ) ? themeObj.blockUi.processingMsg : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
                 '<blockquote>'+
                   '<p>Art is the heart of our culture.</p>'+
-                '</blockquote> '
+                '</blockquote> ' )
         });
   
     if(datatype != "html" )
         $(id).html( "<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>" );
   
     $.ajax({
-        url:url,
+        url:ajaxUrl,
         type:"GET",
         cache: true,
         success:function(data) {
@@ -68,7 +68,7 @@ function getAjax(id,url,callback,datatype,blockUI)
           } else if(datatype === "html" )
             $(id).html(data);
           else if(datatype === "norender" )
-            mylog.log("no render",url)
+            mylog.log("no render",ajaxUrl)
           else if( typeof data === "string" && datatype != null )
             toastr.success(data);
           else
@@ -82,12 +82,13 @@ function getAjax(id,url,callback,datatype,blockUI)
         error:function (xhr, ajaxOptions, thrownError){
           //mylog.error(thrownError);
           $.blockUI({
-              message : '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> Oups !! 404 ERROR<br> La page que vous demandez ne peut être trouvée ... </div>'
+              message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.errorMsg") ) ? themeObj.blockUi.errorMsg : '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> Oups !! 404 ERROR<br> La page que vous demandez ne peut être trouvée ... </div>'
               +'<a class="thumb-info" href="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" data-title="Il n\'existe pas d\'évolution sans erreur."  data-lightbox="all">'
-              + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>',
+              + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>'),
               timeout: 3000 
           });
-          setTimeout(function(){loadByHash('#')},3000);
+          //mylog.log("URL : ", url);
+          setTimeout(function(){url.loadByHash('#')},3000);
           if(blockUI)
             $.unblockUI();
         } 
@@ -164,6 +165,48 @@ function lazyLoad (js,css, callback) {
 
 }
 
+
+var mylog = (function () {
+    
+    return {
+        log: function() {
+          if(debug){
+            var args = Array.prototype.slice.call(arguments);
+            console.log.apply(console, args);
+          }
+        },
+        warn: function() {
+            if( debug){
+              var args = Array.prototype.slice.call(arguments);
+              console.warn.apply(console, args);
+          }
+        },
+        debug: function() {
+            if(debug){
+              var args = Array.prototype.slice.call(arguments);
+              console.debug.apply(console, args);
+          }
+        },
+        info: function() {
+            if(debug){
+              var args = Array.prototype.slice.call(arguments);
+              console.info.apply(console, args);
+          }
+        },
+        dir: function() {
+            if(debug){
+              var args = Array.prototype.slice.call(arguments);
+              console.warn.apply(console, args);
+          }
+        },
+        error: function() {
+            if(debug){
+            var args = Array.prototype.slice.call(arguments);
+            console.error.apply(console, args);
+        }
+        }
+    }
+}());
 
 /* --------------------------------------------------------------- */
 //hide all children
@@ -532,6 +575,34 @@ var jsonHelper = {
     //mylog.dir(destArray);
     return destArray;
   },
+  //tests existance of every step of a json path 
+  //can also validate element type 
+  // ex : 
+  //jsonHelper.notNull("themeObj.blockUi") > test themeObj > test themeObj.blockUi ...etc if more steps
+  //jsonHelper.notNull("themeObj.blockUi","function") > false or true accordingly
+  notNull : function (pathJson,type) 
+  {
+    var pathT = pathJson.split(".");
+    res = false;
+    var dynPath = "";
+    $.each( pathT , function (i,k) {
+      dynPath = (i == 0) ? k : dynPath+"."+k ;
+      //typeof eval("typeObj.poi") != "undefined"
+      if(typeof eval(dynPath) != "undefined"){
+        //mylog.log(dynPath);
+        if(i == pathT.length - 1){
+          res = true;
+          if( type != null && typeof eval(dynPath) != type )
+              res = false;      
+        }
+      } else {
+        //mylog.error(dynPath," is undefined");
+        res = false;
+        return false;    
+      }
+    });
+    return res;
+  }, 
 
   jsonFromToJson : {
 
@@ -617,9 +688,12 @@ function notEmpty(val){
    
 }
 
-function removeEmptyAttr (jsonObj) { 
+function removeEmptyAttr (jsonObj, sourceObj) { 
 
     $.each(jsonObj, function(key, value){
+      if(sourceObj && sourceObj[key]){
+
+      }
         if (value === "" || value === null || value === undefined){
             delete jsonObj[key];
         }
@@ -630,6 +704,7 @@ function buildSelectOptions(list,value) {
   var html = "";
   if(list){
     $.each(list, function(optKey, optVal) {
+      mylog.log("buildSelectOptions", value, optKey, optVal);
       selected = ( value == optKey ) ? "selected" : ""; 
       html += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
     });
@@ -639,6 +714,7 @@ function buildSelectOptions(list,value) {
 
 function buildSelectGroupOptions(list,value) { 
   var html = "";
+  mylog.log("list", list)
   if(list){
     $.each(list, function(groupKey, groupVal) {
       var data = ( groupKey ) ? 'data-type="'+groupKey+'"' : "";

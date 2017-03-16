@@ -21,7 +21,7 @@
 
         /* MAP */
         "mapHeight" => 235,
-        "mapTop" => 0,
+        "mapTop" => 20,
         "mapColor" => 'rgb(69, 96, 116)',  //ex : '#456074', //'#5F8295', //'#955F5F', rgba(69, 116, 88, 0.49)
         "mapOpacity" => 0.4, //ex : 0.4
 
@@ -145,7 +145,7 @@
 	}
 
 	.<?php echo $moduleName; ?> #right_tool_map{
-		top:70px;
+		top:60px!important;
 		z-index: 0;
 		display:none;
 	}
@@ -186,6 +186,12 @@
 	@media screen and (max-width: 768px) {
 		.<?php echo $moduleName; ?> .mapCanvas{}
 		.<?php echo $moduleName; ?> .btn-group-map{}
+
+		.<?php echo $moduleName; ?> .input-search-place{
+			left:5%!important;
+			width: 90% !important;
+			max-width: 90% !important;
+		}
 	}
 </style>
 <?php 
@@ -257,7 +263,13 @@
 				if(notEmpty(value.countryCode)){
 					mylog.log("Country Code",value.country.toLowerCase(), countryCode.toLowerCase());
 					if(value.country == "Nouvelle-Calédonie"){ 
-						html += "<li><a href='javascript:' class='item-street-found' data-lat='"+value.geo.latitude+"' data-lng='"+value.geo.longitude+"'><i class='fa fa-marker-map'></i> "+value.name+"</a></li>";
+						html += 
+						"<li><a href='javascript:' class='item-street-found' "+
+								"data-lat='"+value.geo.latitude+"' "+
+								"data-lng='"+value.geo.longitude+"'>"+
+							 "<i class='fa fa-marker-map'></i> "+value.name+
+							 "</a>"+
+						"</li>";
 					}
 				}
 				
@@ -275,10 +287,8 @@
 			
 			if(html == "") html = "<span class='padding-15'><i class='fa fa-ban'></i> Aucun résultat</span>";
 			
-			
+			console.log("NORES", html);
 			if($("#dropdown-newElement_streetAddress-found").length){ //si on a cet id = on est dans formInMap
-				console.log("TOALALALALA 1");
-				console.dir($("#dropdown-newElement_streetAddress-found"));
 				$("#dropdown-newElement_streetAddress-found").html(html);
 				$("#dropdown-newElement_streetAddress-found").show();
 				
@@ -296,19 +306,18 @@
 					updateHtmlInseeLatLon();	
 				});
 			}else{		
-				console.log("TOALALALALA 2");
-				showMsgListRes("");
+				showMsgListRes(html);
 				Sig.showMapElements(Sig.map, res);	
 				
 			}
 			
 		};
 
-		// showMsgListRes = function(msg){ mylog.log("showMsgListRes", msg);
-		// 	msg = msg != "" ? "<li class='padding-5'>" + msg + "</li>" : "";
+		showMsgListRes = function(msg){ mylog.log("showMsgListRes", msg);
+			msg = msg != "" ? "<li class='padding-5'>" + msg + "</li>" : "";
 
-		// 	$("#liste_map_element").html(msg);
-		// };
+			$("#liste_map_element").html(msg);
+		};
 	 
 
 	});

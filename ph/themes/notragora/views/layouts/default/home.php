@@ -66,68 +66,27 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesTheme,Yii::app()->reque
 	</div>
 </div>
 <script type="text/javascript">
-console.log("poiTags",poiListTags);
-var weightList = [
-	"13",
-	"8",
-	"5",
-	"6.2",
-	"9.4",
-	"10.5"
-]
-var words = [
-  /*{text: "Réseaux", weight: 13},
-  {text: "Vidéo", weight: 10.5},
-  {text: "Harcèlement", weight: 9.4},
-  {text: "Intégration", weight: 8},
-  {text: "Différence", weight: 6.2},
-  {text: "Portrait", weight: 5},
-  {text: "Identité", weight: 5},
-  {text: "Intégration", weight: 13},
-  {text: "Insertion", weight: 10.5},
-  {text: "Emploi", weight: 9.4},
-  {text: "Avenir", weight: 8},
-  {text: "Documentaire", weight: 6.2},
-  {text: "Fiction", weight: 5},
-  {text: "FilmsOutils", weight: 13},
-  {text: "FilmDeCommande", weight: 5},
-  {text: "PortraitCitoyens", weight: 9.4},
-  {text: "ParcoursDEngagement", weight: 8},
-  {text: "PasseurDImages", weight: 13},*/
-];
-jQuery(document).ready( function() {
-	$.each(poiListTags,function(i,v){
-		obj={
-			text: v, 
-			weight : weightList[getRandomInt(0, 5)],
-			link : {
-				href:'javascript:directory.showAll(".favSection",".searchPoiContainer");directory.toggleEmptyParentSection(".favSection",".'+slugify(v)+'",".searchPoiContainer",1)', 
-				class: "favElBtn "+slugify(v)+"Btn", "data-tag":""+slugify(v)+""}
-			//html:{ class: "favElBtn "+slugify(v)+"Btn"}
-		/*	handlers : {
-				click: function() { 
-					directory.toggleEmptyParentSection(".favSection","."+slugify(v)+"",directory.elemClass,1); 
-				} 
-			}*/
-		};
-		words.push(obj);
-	});
-	$('#canvas').jQCloud(words, {
-	    height: 400,
+
+jQuery(document).ready( function() { 
+	$('#canvas').jQCloud(poiListTags, {
+	    height: 500,
 	    autoResize: true,
 	    shape: 'rectangular',
 	    colors: ["#484848", "#6c6969", "#929292"],
-	    fontSize: {
+	    fontSize: { 
 		    from: 0.1,
 		    to: 0.02
-		}
+		},
+		//delay:50
 	});
-  	setTitle("<span class='text-red'>Commune<span class='text-dark'>cter</span> : la doc</span>","connectdevelop", "Communecter : La Doc");
+  	setTitle("<span class='text-red'>Notragora : Association Hord-Cadre</span>","connectdevelop", "Notragora : Association Hord-Cadre");
 });
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor( Math.random() * (max - min) ) + min;
 }
+
 </script>
 

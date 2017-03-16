@@ -9,10 +9,16 @@
 
     $cities = CO2::getCitiesNewCaledonia();
 
-    // $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
-    //                 Yii::app()->request->cookies['multiscopes']->value : "{}";  
+    $multiscopes = "{}";
+    if(@$me["multiscopes"]){
+        $multiscopes = @$me["multiscopes"] ? @$me["multiscopes"] : "{}";
+    }else{
+        $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
+                        json_decode(Yii::app()->request->cookies['multiscopes']->value) : "{}";
 
-    $multiscopes = @$me["multiscopes"] ? @$me["multiscopes"] : "{}";
+        $multiscopesStr = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
+                        Yii::app()->request->cookies['multiscopes']->value : "{}";  
+    }
     //var_dump($multiscopes); exit;
 ?>
 <style>
@@ -27,8 +33,15 @@
         border-radius: 50px;
     }
 
-    .item-scope-checker{
-
+    .item-scope-select.disabled{
+       cursor:pointer;
+       opacity:1;
+    }
+    .item-scope-select.disabled.selected{
+        opacity:0.5;
+    }
+    .btn-scope:hover{
+        background-color: #e77e75;
     }
     
     @media (max-width: 768px) {
@@ -70,28 +83,29 @@
                             <button type="button" class="btn btn-success" id="btn-validate-scope" data-dismiss="modal">
                                 <i class="fa fa-check"></i> Valider
                             </button>
+                            <hr>
+                            
                         </div>
                         
-                        <div class="col-md-12">
+                        <!-- <div class="col-md-12 ">
                             <hr>
-                            <button class="btn btn-scope item-scope-dep" data-dismiss="modal"
+                            <button class="btn btn-scope item-scope-select item-scope-dep disabled" data-dismiss="modal"
                                     data-scope-value="Province Sud"
                                     data-scope-name="Province Sud">
                                 <h4><i class="fa fa-bullseye"></i> Province Sud</h4>
                             </button> 
-                            <button class="btn btn-scope item-scope-dep" data-dismiss="modal"
+                            <button class="btn btn-scope item-scope-select item-scope-dep disabled" data-dismiss="modal"
                                     data-scope-value="Province Nord"
                                     data-scope-name="Province Nord">
                                 <h4><i class="fa fa-bullseye"></i> Province Nord</h4>
                             </button> 
-                            <button class="btn btn-scope item-scope-dep" data-dismiss="modal"
+                            <button class="btn btn-scope item-scope-select item-scope-dep disabled" data-dismiss="modal"
                                     data-scope-value="Province Des Iles"
                                     data-scope-name="Province Des Iles">
                                 <h4><i class="fa fa-bullseye"></i> Province des Îles</h4>
-                            </button> 
-                        </div> <hr>
-                        <div class="col-md-6">
-                            <hr>
+                            </button>
+                        </div>  -->
+                        <div class="col-md-6 col-sm-6 col-xs-12">
                             <h4 class="title-scope"><i class="fa fa-angle-down"></i> Grand Nouméa</h4>
                             <?php foreach($cities["GN"] as $city){ ?>
                                 <?php 
@@ -102,7 +116,7 @@
                                         if($key == City::getUnikey($city)) $selected="selected";
                                     }
                                 ?>
-                                <button class="btn btn-scope item-scope-select margin-bottom-5 <?php echo $selected; ?>" 
+                                <button class="btn btn-scope item-scope-select item-scope-city disabled margin-bottom-5 <?php echo $selected; ?>" 
                                         data-scope-value="<?php echo City::getUnikey($city); ?>"
                                         data-scope-name="<?php echo $city["name"]; ?>"
                                         >
@@ -110,8 +124,8 @@
                                 </button> 
                             <?php } ?>
                         </div>
-                        <div class="col-md-6">
-                            <hr>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            
                             <h4 class="title-scope"><i class="fa fa-angle-down"></i> Les îles</h4>
                             <?php foreach($cities["Iles"] as $city){ ?>
                                 <?php 
@@ -122,7 +136,7 @@
                                         if($key == City::getUnikey($city)) $selected="selected";
                                     }
                                 ?>
-                                <button class="btn btn-scope item-scope-select margin-bottom-5 <?php echo $selected; ?>" 
+                                <button class="btn btn-scope item-scope-select item-scope-city disabled margin-bottom-5 <?php echo $selected; ?>" 
                                         data-scope-value="<?php echo City::getUnikey($city); ?>"
                                         data-scope-name="<?php echo $city["name"]; ?>"
                                         >
@@ -134,7 +148,6 @@
                 </div>
             </div>
             <div class="row ">
-                <hr>
                 <!-- <h4>Grande Terre<br><i class="fa fa-angle-down"></i></h4> -->
                 
                 <div class="col-lg-10 col-lg-offset-1">
@@ -157,7 +170,7 @@
                                     }
                                 ?>
                                 <div class="col-md-3 col-sm-6 col-xs-6">
-                                    <button class="btn btn-scope item-scope-select margin-bottom-5 <?php echo $selected; ?>" 
+                                    <button class="btn btn-scope item-scope-select item-scope-city disabled margin-bottom-5 <?php echo $selected; ?>" 
                                             data-scope-value="<?php echo City::getUnikey($city); ?>"
                                             data-scope-name="<?php echo $city["name"]; ?>"
                                             >
@@ -180,6 +193,7 @@
 <input id="searchLocalityDEPARTEMENT" type="hidden"/>
 <input id="searchLocalityREGION" type="hidden" />
 <input id="searchTags" type="hidden" />
+
 <div class="item-scope-region hidden" id="scope-max-dep" data-scope-value="Nouvelle-Calédonie"></div>
 
 <style>
@@ -195,11 +209,16 @@
     var myMultiTags = {};
     var myMultiScopes = <?php echo isset($me) && isset($me["multiscopes"]) ? 
                                 json_encode($me["multiscopes"]) :  
-                                $multiscopes; 
+                                $multiscopesStr; 
                     ?>;
 
     var loadingScope = true;
     jQuery(document).ready(function() {
+
+        $("#dropdown-multi-scope-found").hide();
+
+        $('ul.dropdown-menu').click(function(){ return false });
+
 
         $.each(myMultiScopes, function(key, val){
             myMultiScopes[key]["active"] = false;
@@ -213,11 +232,13 @@
                 if(scopeExists(scopeValue)){
                     delete myMultiScopes[scopeValue];
                     $(this).removeClass("selected");
+                    $(this).addClass("disabled");
                 }
             }else{
                 addScopeToMultiscope( $(this).data("scope-value"), $(this).data("scope-name"));
                 $(this).addClass("selected");
-                toastr.success('Ajout de "' + $(this).data("scope-name")+'"');
+                $(this).removeClass("disabled");
+                toastr.success('Nouvelle cible de recherche ajoutée : ' + $(this).data("scope-name"));
             }
             checkScopeMax();            
             
@@ -225,20 +246,106 @@
             showTagsScopesMin(".scope-min-header");
         });
 
+        $('#input-add-multi-scope').filter_input({regex:'[^@#\'\"\`\\\\]'}); //[a-zA-Z0-9_] 
+        $('#input-add-multi-scope').keyup(function(){ 
+            $("#dropdown-multi-scope-found").show();
+            if($('#input-add-multi-scope').val()!=""){
+                if(typeof timeoutAddScope != "undefined") clearTimeout(timeoutAddScope);
+                timeoutAddScope = setTimeout(function(){ autocompleteMultiScope(); }, 500);
+            }
+        });
+        $('#input-add-multi-scope').click(function(){ //mylog.log("$('#input-add-multi-scope').click");
+            if($('#input-add-multi-scope').val()!="")
+                setTimeout(function(){$("#dropdown-multi-scope-found").show();}, 500);
+        });
+
+        $(".btn-group-scope-type .btn-default").click(function(){
+            currentScopeType = $(this).data("scope-type");
+            $(".btn-group-scope-type .btn-default").removeClass("active");
+            $(this).addClass("active");
+            //mylog.log("change scope type :", currentScopeType);
+            if(currentScopeType == "city") $('#input-add-multi-scope').attr("placeholder", "Ajouter une commune ...");
+            if(currentScopeType == "cp") $('#input-add-multi-scope').attr("placeholder", "Ajouter un code postal ...");
+            if(currentScopeType == "dep") $('#input-add-multi-scope').attr("placeholder", "Ajouter un département ...");
+            if(currentScopeType == "region") $('#input-add-multi-scope').attr("placeholder", "Ajouter une région ...");
+        });
+
         $("#btn-validate-scope").click(function(){
             startSearch(0, indexStepInit);
         });
 
-        rebuildSearchScopeInput();
+        
+        $(".item-globalscope-checker").click(function(){  
+            $(".item-globalscope-checker").addClass("inactive");
+            $(this).removeClass("inactive");
 
+            mylog.log("globalscope-checker",  $(this).data("scope-name"), $(this).data("scope-type"));
+            setGlobalScope( $(this).data("scope-value"), $(this).data("scope-name"), $(this).data("scope-type"),
+                             $(this).data("insee-communexion"), $(this).data("name-communexion"), $(this).data("cp-communexion"), 
+                             $(this).data("region-communexion"), $(this).data("country-communexion") ) ;
+        });
+
+        $(".start-new-communexion").click(function(){  
+            activateGlobalCommunexion(true);
+        });
+
+
+        
+        loadMultiScopes();
+
+        rebuildSearchScopeInput();
         showTagsScopesMin(".scope-min-header");
+        
+        mylog.log("communexionActivated cookie", $.cookie('communexionActivated'), typeof $.cookie('communexionActivated'));
+        if($.cookie('communexionActivated') == "true"){
+            console.log("communexionActivated ok", $.cookie('communexionValue'));
+            var communexionValue = $.cookie('communexionValue');
+            var communexionName = $.cookie('communexionName');
+            var communexionType = $.cookie('communexionType');
+
+            /*var inseeCommunexion = $.cookie('inseeCommunexion');
+            var cityNameCommunexion = $.cookie('cityNameCommunexion');
+            var cpCommunexion = $.cookie('cpCommunexion');
+            var regionNameCommunexion = $.cookie('regionNameCommunexion');
+            var countryCommunexion = $.cookie('countryCommunexion');
+            */
+            setGlobalScope(communexionValue, communexionName, communexionType);//,
+                          // inseeCommunexion, cityNameCommunexion, cpCommunexion, regionNameCommunexion, countryCommunexion);
+        }
+        
         loadingScope = false;
     });
 
-    function showTagsScopesMin(htmlId){
+
+function toogleScopeMultiscope(scopeValue, selected){ mylog.log("toogleScopeMultiscope(scopeValue)", scopeValue);
+    if(scopeExists(scopeValue)){
+        myMultiScopes[scopeValue].active = !myMultiScopes[scopeValue].active;
+        
+        if(typeof selected == "undefined") saveMultiScope();
+        else myMultiScopes[scopeValue].active = selected;
+        
+        if(myMultiScopes[scopeValue].active){
+            $("[data-scope-value='"+scopeValue+"'] .item-scope-checker i.fa").removeClass("fa-circle-o");
+            $("[data-scope-value='"+scopeValue+"'] .item-scope-checker i.fa").addClass("fa-check-circle");
+            $("[data-scope-value='"+scopeValue+"'].item-scope-input").removeClass("disabled");
+            $("[data-scope-value='"+scopeValue+"'].item-scope-select").removeClass("disabled");
+        }else{
+            $("[data-scope-value='"+scopeValue+"'] .item-scope-checker i.fa").addClass("fa-circle-o");
+            $("[data-scope-value='"+scopeValue+"'] .item-scope-checker i.fa").removeClass("fa-check-circle");
+            $("[data-scope-value='"+scopeValue+"'].item-scope-input").addClass("disabled");
+            $("[data-scope-value='"+scopeValue+"'].item-scope-select").addClass("disabled");
+        }
+        console.log("before rebuildSearchScopeInput from toogleScope");
+        rebuildSearchScopeInput();
+    }else{
+        //showMsgInfoMultiScope("Ce scope n'existe pas", "danger");
+    }
+}
+
+  /*  function showTagsScopesMin(htmlId){
         htmlId=".scope-min-header";
 
-        /************** SCOPES **************/
+        /************** SCOPES ************* * /
         var iconSelectScope = "<i class='fa fa-circle-o'></i>";
         var scopeSelected = false;
 
@@ -289,7 +396,7 @@
         if(!loadingScope)
         startSearch(0, indexStepInit);
     }
-
+*/
     function checkScopeMax(){
         var empty = true;
         $.each(myMultiScopes, function(key, val){

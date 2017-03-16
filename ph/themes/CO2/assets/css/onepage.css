@@ -18,9 +18,9 @@
     background-size: cover;
     -o-background-size: cover;*/
 
-    background: url('../img/background-onepage/pattern/witewall_3.png')  repeat;
-	background-color: white;
-
+    /*background: url('../img/background-onepage/pattern/witewall_3.png')  repeat;
+	background-color: white;*/
+	background: #ECECEC;
 	/*color: #FFF;*/
 }
 
