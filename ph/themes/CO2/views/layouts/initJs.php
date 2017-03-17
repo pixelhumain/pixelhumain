@@ -18,6 +18,7 @@
 	//used in communecter.js dynforms
     var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
     var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
+    console.log("eventTypes", eventTypes);
     var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
     var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
     var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : "null"?>;
@@ -143,12 +144,15 @@
                 if(typeof currentKFormType != "undefined")
                     $("#ajax-modal-modal-title").addClass("text-"+typeObj[currentKFormType].color);
                 
+                <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                 $(".locationBtn").on( "click", function(){
                      setTimeout(function(){
                         $('[name="newElement_country"]').val("NC");
                         $('[name="newElement_country"]').trigger("change");
                      },1000); 
                 });
+                <?php } ?>
+                
                 $(".locationBtn").html("<i class='fa fa-home'></i> Addresse principale")
                 $(".locationBtn").addClass("letter-red bold");
                 $("#btn-submit-form").removeClass("text-azure").addClass("letter-green");

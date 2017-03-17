@@ -124,7 +124,7 @@
                 <a href="#power" class="lbh btn-main-menu col-xs-3" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
                         <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o fa-2x padding-bottom-10"></i><br>
-                            <span class="font-blackoutT"> POWER</span>
+                            <span class="font-blackoutT"> DEMOCRATIE</span>
                         </h2>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
@@ -138,6 +138,32 @@
                     </div>
                 </a>
                 
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center subsub" id="sub-menu-filliaire">
+                <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
+                <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
+                      //var_dump($categories); exit;
+                      foreach ($filliaireCategories as $key => $cat) { 
+                  ?>
+                      <?php if(is_array($cat)) { ?>
+                      <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
+                        <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 btn-select-filliaire" 
+                                data-fkey="<?php echo $key; ?>"
+                                style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
+                                data-keycat="<?php echo $cat["name"]; ?>">
+                          <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo $cat["name"]; ?>
+                        </button>
+                      </div>
+                        <?php //foreach ($cat as $key2 => $cat2) { ?>
+                          <!-- <button class="btn btn-default text-dark margin-bottom-5 margin-left-15 hidden keycat keycat-<?php //echo $key; ?>">
+                            <i class="fa fa-angle-right"></i> <?php //echo $cat2; ?>
+                          </button><br class="hidden"> -->
+                        <?php //} ?>
+                      <?php } ?>
+                    </button>
+                  <?php } ?>
+                  <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result">
+                </div>
 
                 <div class="col-xs-12 text-center">
                 <?php 

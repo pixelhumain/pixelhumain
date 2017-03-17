@@ -189,14 +189,21 @@ input#second-search-bar{
 
         <?php if($subdomain == "web"){ ?>
             <button class="btn btn-link letter-yellow tooltips btn-star-fav pull-right font-montserrat"  
-                    data-placement="bottom" title="Afficher vos favoris"
+                    data-placement="bottom" title="Gérer vos favoris"
                     data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i>
             </button> 
 
             <a href="#info.p.sethome" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-xs" 
                     id="btn-sethome" style=" margin-top:6px;"  
-                    data-placement="bottom" title="Utiliser Kgougle en page d'accueil sur votre navigateur">
+                    data-placement="bottom" title="Utiliser KGOUGLE en page d'accueil sur votre navigateur">
                     <i class="fa fa-plus"></i> <i class="fa fa-home fa-2x"></i>
+            </a>
+
+
+            <a href="#media" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-xs" 
+                    id="btn-sethome" style=" margin-top:6px;"  
+                    data-placement="bottom" title="C KOISSA KGOUGLE ?!?">
+                    <i class="fa fa-question-circle fa-2x"></i>
             </a>
         <?php } ?>
 

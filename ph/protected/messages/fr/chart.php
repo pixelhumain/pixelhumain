@@ -14,6 +14,14 @@
 		"Degree of project's openness (0% = very closed, 100% = very opened)" => "Degré d'ouverture du projet (0% = très fermé, 100% = très ouvert)",
 		"Add<br/>A new<br/>Property" => "Ajouter<br/>Une nouvelle<br/>Propriété",
 		"Values and Cultures" => "Valeurs et Cultures", 
+		"Chart of commons" => "Charte des communs",
+		"Open chart" => "Charte libre",
+		"Don't want" => "Ne souhaite pas",
+		"Not applicable" => "Pas applicable",
+		"Want but not started" => "Souhait mais pas démarré",
+		"Started"=> "démarré",
+		"In progress" => "En progression",
+		"Finished" => "Réalisé"
 	)
 
 ?>
