@@ -136,13 +136,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     transition: all 0.4s ease;
 }
 .btn-o:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.4) !important;
     color: #fff !important;
   }
 .btn-o:focus {
-   background:#0095FF;
+   background:#0095FF !important;
     color: #fff;
-    border: 1px solid #0095FF;
+    border: 1px solid #0095FF !important;
 }
 .submenu .iamgurdeeposahan {
     background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0 !important;
