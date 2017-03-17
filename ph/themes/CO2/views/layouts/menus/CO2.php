@@ -197,5 +197,15 @@
 <script>
 jQuery(document).ready(function() {    
     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
+    $('#modalMainMenu').on('show', function (e) {alert();
+            $(".btn-main-menu").mouseenter(function(){
+                
+                if( $(this).data("type") ){
+                    alert( $(this).data("type") );
+                    $(".menuSection2").addClass("hidden");
+                    $("."+$(this).data("type")+"Section2").removeClass("hidden");
+                }
+            });
+        });
 });
 </script> 
