@@ -139,7 +139,7 @@
                 </a>
                 
 
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center subsub" id="sub-menu-filliaire">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center subsub" id="sub-menu-filliaire-menu">
                 <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
                 <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
                       //var_dump($categories); exit;
