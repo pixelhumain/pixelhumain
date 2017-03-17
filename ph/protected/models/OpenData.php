@@ -17,6 +17,7 @@ class OpenData
                         				"YT"=>"Mayotte", //976
                                         "MX"=>"Mexique",
                         				"NC"=>"Nouvelle-Calédonie", //988
+                                        "PE"=>"Pérou",
                         				"RE"=>"Réunion", //9*74
                                         "PM"=>"St Pierre et Miquelon",
                                         "CH"=>"Suisse",//975

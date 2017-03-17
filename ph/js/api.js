@@ -1,45 +1,44 @@
-function checkLoggued(url)
+function checkLoggued(ajaxUrl)
 {
   if(userId == "") {
     //TODO Replace with a modal version of the login page
     bootbox.confirm("You need to be loggued to do this, login first ?",
           function(result) {
             if (result) 
-              window.location.href = baseUrl+"/"+moduleId+"/person/login?backUrl="+url;
+              window.location.href = baseUrl+"/"+moduleId+"/person/login?backUrl="+ajaxUrl;
      });
   } else
     return true;
 }
 
-function ajaxPost(id,url,params,callback, datatype)
-{
-	mylog.log(id,url,params);
-  /*if(dataType == null)
+function ajaxPost(id,ajaxUrl,params,callback, datatype){
+    mylog.log("ajaxPost", id,ajaxUrl,params);
+    /*if(dataType == null)
     dataType = "json";*/
-	if(datatype != "html" )
-		$(id).html("");
-	$.ajax({
-	    url:url,
-	    data:params,
-	    type:"POST",
-	  //  dataType: "json",
-	    success:function(data) {
-          if(datatype == "none" )
-            console.log();
-          else if(datatype === "html" )
-    			  $(id).html(data);
-    	  	else if(typeof data.msg === "string" )
-    	    	toastr.success(data.msg);
-    	    else if( id != null )
-    	      $("#"+id).html(JSON.stringify(data, null, 4));
-    	      		
-          if( typeof callback === "function")
-            callback(data,id);
-	    },
-	    error:function (xhr, ajaxOptions, thrownError){
-	     mylog.error(thrownError);
-	    } 
-	  });
+    if(datatype != "html" )
+        $(id).html("");
+    $.ajax({
+        url:ajaxUrl,
+        data:params,
+        type:"POST",
+        //  dataType: "json",
+        success:function(data) {
+            if(datatype == "none" )
+                console.log();
+            else if(datatype === "html" )
+                $(id).html(data);
+            else if(typeof data.msg === "string" )
+                toastr.success(data.msg);
+            else if( id != null )
+                $("#"+id).html(JSON.stringify(data, null, 4));
+
+            if( typeof callback === "function")
+                callback(data,id);
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+            mylog.error(thrownError);
+        } 
+    });
 }
 
 function getAjax(id,ajaxUrl,callback,datatype,blockUI)
@@ -88,7 +87,7 @@ function getAjax(id,ajaxUrl,callback,datatype,blockUI)
               timeout: 3000 
           });
           //mylog.log("URL : ", url);
-          setTimeout(function(){url.loadByHash('#')},3000);
+          setTimeout(function(){ajaxUrl.loadByHash('#')},3000);
           if(blockUI)
             $.unblockUI();
         } 
@@ -99,14 +98,14 @@ what can be a simple string which will go into the title bar
 or an aboject with properties like title, icon, desc
 getModal({title:"toto"},"/communecter/project/projectsv")
  */
-function getModal(what, url,id)
+function getModal(what, ajaxUrl,id)
 {
 	
 	loaded = {};
 	$('#ajax-modal').modal("hide");
-	if(id)
-		url = url+id;
-	mylog.log("getModal",what,"url",url,"event",id);
+	if(id)ajaxUrl
+		ajaxUrl = ajaxUrl+id;
+	mylog.log("getModal",what,"ajaxUrl",ajaxUrl,"event",id);
 	//var params = $(form).serialize();
 	//$("#ajax-modal-modal-body").html("<i class='fa fa-cog fa-spin fa-2x icon-big'></i> Loading");
 	$('body').modalmanager('loading'); 
@@ -116,7 +115,7 @@ function getModal(what, url,id)
   $('#ajax-modal').modal("show");
 	$.ajax({
         type: "GET",
-        url: baseUrl+url
+        url: baseUrl+ajaxUrl
         //dataType : "json"
         //data: params
     })
@@ -133,7 +132,7 @@ function getModal(what, url,id)
           $("#ajax-modal-modal-body").html(desc+data); 
           $('#ajax-modal').modal("show");
         } else {
-           mylog.error("bug get "+what, url,id);
+           mylog.error("bug get "+what, ajaxUrl,id);
         }
     })
     .error(function(data){
@@ -596,7 +595,7 @@ var jsonHelper = {
               res = false;      
         }
       } else {
-        //mylog.error(dynPath," is undefined");
+      //  mylog.error("notNull", dynPath," is undefined");
         res = false;
         return false;    
       }

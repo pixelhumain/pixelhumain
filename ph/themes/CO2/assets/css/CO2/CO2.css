@@ -146,6 +146,11 @@ header .container ,
     padding-top: 80px;
 	padding-bottom: 70px;
 }
+.link-submenu-header{
+    text-transform: uppercase;
+    /*font-weight: 800;*/
+	font-family: Homestead;
+}
 /*.intro-text a.menu-top {
     color: #34a853 !important;
 }*/
@@ -718,9 +723,7 @@ h3.title_panel_map{
 	font-size: 2em;
 	margin-top: -7px;
 }
-.form-in-map #newElement_country{
-	display: none;
-}
+
 #newElement_btnSearchAddress{
 	padding: 6px 0 !important;
 }
