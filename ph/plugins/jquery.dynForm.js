@@ -91,7 +91,7 @@ onSave: (optional) overloads the generic saveProcess
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
-						' <button onclick="$(\'#ajax-modal\').modal(\'hide\');" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
+						' <button onclick="elementLib.closeForm()" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
 							'<i class="fa fa-times "></i> Annuler'+
 						'</button> ';
 
@@ -636,7 +636,7 @@ onSave: (optional) overloads the generic saveProcess
 												'<div class="panel-body no-padding">'+
 													'<div class="list-group" id="menu-type">'+
 														'<ul class="col-xs-12 col-sm-12 col-md-12 no-padding">';
-				fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> '+fieldObj.title2+'</h4>';
+				fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> ! '+fieldObj.title2+'</h4>';
 														$.each(fieldObj.contactTypes, function(key, type){
 				fieldHTML += 								'<li>'+
 																'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type text-'+type.color+'">' +

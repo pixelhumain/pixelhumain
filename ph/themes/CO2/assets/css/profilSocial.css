@@ -12,7 +12,7 @@
 .iamgurdeep-pic {
     position: relative;
 }
-.profilSocial .username {
+.profilSocial .blockUsername {
     bottom: 0;
     color: #ffffff;
     padding: 30px 15px 4px;
@@ -24,11 +24,11 @@ background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, #1b1b1b 100%); /* FF3.6-
 background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, #1b1b1b 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #1b1b1b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a64d4d4d',GradientType=0 ); /* IE6-9 */
-}
+} */
 .iamgurdeeposahan {
     border-radius: 4px 4px 0 0;
 }
-.profilSocial .username > h2 {
+.profilSocial .blockUsername > h2 {
     /*font-family: oswald;*/
     font-size: 27px;
     font-weight: lighter;
@@ -37,14 +37,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     text-shadow: 1px 1px 2px #000000;
     text-transform: uppercase;
 }
-.profilSocial .username > h2 small {
+.profilSocial .blockUsername > h2 small {
     color: #ffffff;
     /*font-family: open sans;*/
     font-size: 13px;
     font-weight: 400;
     position: relative;
 }
-.profilSocial .username .fa{
+.profilSocial .blockUsername .fa{
     color: #ffffff;
     font-size: 14px;
     margin: 0 0 0 4px;
