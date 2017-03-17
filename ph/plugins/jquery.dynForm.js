@@ -946,7 +946,7 @@ onSave: (optional) overloads the generic saveProcess
 			$(".fine-uploader-manual-trigger").fineUploader({
 	            template: 'qq-template-gallery',//'qq-template-manual-trigger',
 	            request: {
-	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+moduleId+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile"
+	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile"
 	                //params : uploadObj
 	            },
 	            validation: {
@@ -978,6 +978,7 @@ onSave: (optional) overloads the generic saveProcess
 				    onComplete: function(id, fileName,responseJSON,xhr) {
 				    	if(!responseJSON.result){
 				    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
+				    		console.error(trad["somethingwentwrong"] , responseJSON.msg)
 				    	}
 				    },
 				    //when all upload is complete whatever the result
