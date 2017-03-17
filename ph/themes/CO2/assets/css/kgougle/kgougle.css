@@ -20,3 +20,8 @@ header, .header {
     margin-bottom: 50px;
     margin-top: 15px;
 }
+
+
+.form-in-map #newElement_country{
+	display: none;
+}
