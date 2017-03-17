@@ -10,3 +10,13 @@
 header, .header {
   background-image: url("../../img/background-onepage/pattern/witewall_3.png");
 }
+
+.link-submenu-header{
+	font-size: 18px;
+	font-family: BlackoutM;
+}
+
+.main-menu-app {
+    margin-bottom: 50px;
+    margin-top: 15px;
+}
