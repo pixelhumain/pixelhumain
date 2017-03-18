@@ -85,13 +85,13 @@ onSave: (optional) overloads the generic saveProcess
 	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues.id) ? settings.formValues.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
-        				'<div class="space20"></div>';
+        				'<hr class="col-md-12">';
         	if( !settings.formObj.jsonSchema.noSubmitBtns )
 				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
-						' <button onclick="$(\'#ajax-modal\').modal(\'hide\');" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
+						' <button onclick="elementLib.closeForm()" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
 							'<i class="fa fa-times "></i> Annuler'+
 						'</button> ';
 
@@ -428,7 +428,11 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> tagList");
         	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
         	$.each(fieldObj.list,function(k,v) { 
-        		fieldHTML += '<a class="btn btn-link tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'" data-tag="'+k+'" href="'+action+'">'+v+'</a>';
+        		var lbl = ( fieldObj.trad && fieldObj.trad[k] ) ? fieldObj.trad[k] : k;
+        		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
+        						'<a class="btn tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'"'+
+        						' data-tag="'+lbl+'" data-key="'+k+'" href="'+action+'"><i class="fa fa-'+v.icon+'"></i> <br>'+lbl+'</a>'+
+        					 '</div>';
         	});
         } 
 
@@ -481,24 +485,23 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "array" ) {
         	mylog.log("build field "+field+">>>>>> array list");
-        	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
-								'<div class="col-sm-10">'+
+        	fieldHTML +=   '<div class="inputs array">'+
+								'<div class="col-sm-10 no-padding">'+
 									'<img id="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
 									'<div class="resultGetUrl resultGetUrl0 col-sm-12"></div>'+
 								'</div>'+
-								'<div class="col-sm-2">'+
-									'<button data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+								'<div class="col-sm-2 sectionRemovePropLineBtn">'+
+									'<a href="javascript:" data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
 								'</div>'+
 							'</div>'+
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
-							'<div class="col-sm-12">'+
-								'<div class="space10"></div>'+
-						        '<a href="javascript:;" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" class="addPropBtn btn btn-xs btn-success w100p" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
-						        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
-						        
-				       		'</div></span>'+
-				       '<div class="space5"></div>';
+								'<div class="col-sm-12 no-padding margin-top-5 margin-bottom-15">'+
+									'<a href="javascript:" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" class="addPropBtn btn btn-link w100p letter-green" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
+							        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
+							        
+					       		'</div>'+
+				       		'</span>';
 			
 			if( formValues && formValues[field] ){
 				mylog.warn("dynForm >> ",field, formValues[field]);
@@ -633,7 +636,7 @@ onSave: (optional) overloads the generic saveProcess
 												'<div class="panel-body no-padding">'+
 													'<div class="list-group" id="menu-type">'+
 														'<ul class="col-xs-12 col-sm-12 col-md-12 no-padding">';
-				fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> '+fieldObj.title2+'</h4>';
+				fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> ! '+fieldObj.title2+'</h4>';
 														$.each(fieldObj.contactTypes, function(key, type){
 				fieldHTML += 								'<li>'+
 																'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type text-'+type.color+'">' +
@@ -943,7 +946,7 @@ onSave: (optional) overloads the generic saveProcess
 			$(".fine-uploader-manual-trigger").fineUploader({
 	            template: 'qq-template-gallery',//'qq-template-manual-trigger',
 	            request: {
-	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+moduleId+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile"
+	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile"
 	                //params : uploadObj
 	            },
 	            validation: {
@@ -975,6 +978,7 @@ onSave: (optional) overloads the generic saveProcess
 				    onComplete: function(id, fileName,responseJSON,xhr) {
 				    	if(!responseJSON.result){
 				    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
+				    		console.error(trad["somethingwentwrong"] , responseJSON.msg)
 				    	}
 				    },
 				    //when all upload is complete whatever the result
@@ -1046,8 +1050,8 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
 		if(  $(".addmultifield").length )
 		{
-			if(  $(".addmultifield1").length )
-				$('head').append('<style type="text/css">.inputs textarea.addmultifield1{width:90%; height:34px;}</style>');
+			//if(  $(".addmultifield1").length )
+			//	$('head').append('<style type="text/css">.inputs textarea.addmultifield1{width:90%; height:34px;}</style>');
 
 			//intialise event on the add new row button 
 			$('.addPropBtn').unbind("click").click(function()
@@ -1156,6 +1160,9 @@ onSave: (optional) overloads the generic saveProcess
 	    		$( propertyLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
 	    	else
 	    		$( arrayLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	    	
+	    	$(".loading_indicator").hide();
+
 	    	$(parentContainer+' .addmultifield:last').focus();
 	        initMultiFields(parentContainer,name);
 	    }else 
@@ -1245,14 +1252,26 @@ onSave: (optional) overloads the generic saveProcess
 		if( typeof val == "undefined" ) 
 	    	val = "";
 	    var count = $(".addmultifield").length;
-		var str = '<div class="space5"></div><div class="col-sm-10">'+
+		var str = 	'<div class="col-sm-12 no-padding margin-top-10">'+
+					'<div class="col-sm-10 no-padding">'+
+							'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md value="" placeholder="..."/>'+
+							'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
+						'</div>'+
+						'<div class="col-sm-2 sectionRemovePropLineBtn">'+
+							'<a href="javascript:" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
+						'</div>'+
+					'</div>';
+
+
+		/*'<div class="space5"></div><div class="col-sm-10">'+
 					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'"/>'+
 					'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
 					'</div>'+
 					'<div class="col-sm-2">'+
 					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-left" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
-				'</div>';
+				'</div>';*/
 		return str;
 	}
 	function buildMediaHTML(mediaObj){

@@ -21,8 +21,6 @@
 		"Create sub-events to show the event's program.<br/>And Organize the event's sequence"=> "Créer des sous-événement pour montrer le programme de l'événement.<br/>Et organiser le déroulement de l'événement.",
 		"Attendees" => "Particpants",
 		"Guests" => "Invités",
-		"I go" => "J&rsquo;y vais",
-		"Not interested" => "Pas intéressé(e)",
 		"Invite attendees to the event" => "Inviter des personnes à participer à l&rsquo;événement",
 		"See modifications done on this event" => "Voir les modifications apportées à l&rsquo;événement",
 		"attendee" => "participant",

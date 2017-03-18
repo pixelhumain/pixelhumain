@@ -11,10 +11,7 @@
         margin-right: 57%;
         margin-top: -73px;
     }
-    .link-submenu-header{
-        text-transform: uppercase;
-        font-weight: 800;
-    }
+    
 
     @media (max-width: 768px) {
         #main-input-group{
@@ -25,13 +22,21 @@
 
     <?php 
         $params = CO2::getThemeParams();
-       
+        
+        if(@$type=="cities")    { 
+            $lblCreate = "";
+            $params["pages"]["#".$page]["mainTitle"] = "Rechercher une commune"; 
+            $params["pages"]["#".$page]["placeholderMainSearch"] = "Rechercher une commune"; 
+        }
+
         $useHeader              = $params["pages"]["#".$page]["useHeader"];
         $subdomain              = $params["pages"]["#".$page]["subdomain"];
         $subdomainName          = $params["pages"]["#".$page]["subdomainName"];
         $icon                   = $params["pages"]["#".$page]["icon"];
         $mainTitle              = $params["pages"]["#".$page]["mainTitle"];
         $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
+
+
     ?>
 
     <!-- Header -->
@@ -43,25 +48,25 @@
                     <div class="intro-text">  
 
                         <div class="col-md-12 text-center main-menu-app" style="">
-                            <?php if($subdomainName != "web" && $subdomainName != "referencement") 
+                            <?php //if($subdomainName != "web" && $subdomainName != "referencement") 
                                     foreach ($params["pages"] as $key => $value) {
-                                        if(@$value["inMenu"]==true){ ?>
-                                        <a  class="lbh letter-red font-montserrat link-submenu-header  margin-right-25" 
-                                            href="<?php echo $key; ?>">
-                                            <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
-                                            <span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
-                                        </a>    
+                                        if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
+                                            <a  class="lbh text-red link-submenu-header margin-right-25" 
+                                                href="<?php echo $key; ?>">
+                                                <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+                                                <span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
+                                            </a>    
                             <?php       }
                                     }  
                             ?>
 
 
-                            <?php if($subdomainName == "web") { ?>
-                                    <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
+                            <?php if(false && $subdomainName == "web") { ?>
+                                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
                                         href="#info.p.apropos">
                                         <span class="">c koissa ?!?</span>
                                     </a>    
-                                    <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
+                                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
                                         href="#info.p.alphatango">
                                         <i class="fa fa-envelope"></i><span class=""> Contact</span>
                                     </a>    
@@ -69,7 +74,7 @@
 
 
                             <?php if($subdomainName == "referencement") { ?>
-                                    <a  class="lbh letter-red font-blackoutM margin-right-25" target="_blank"
+                                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
                                         href="#web">
                                         <i class="fa fa-arrow-left"></i> <span class="">Retour a la recherche</span>
                                     </a>
@@ -82,7 +87,8 @@
                                                     array("mainTitle"=>$mainTitle,
                                                           "icon"=>$icon,
                                                           "subdomainName"=>$subdomainName,
-                                                          "subdomain"=>$subdomain)); ?>
+                                                          "subdomain"=>$subdomain,
+                                                          "type"=>@$type)); ?>
 
 
                         <?php if($subdomain == "media"){ ?>
@@ -91,7 +97,7 @@
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
-                            <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults">
+                            <button class="btn btn-default" id="main-btn-start-search">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button>
 
@@ -111,27 +117,13 @@
                                     data-type="<?php echo @$type; ?>">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button> 
-                            <?php if($subdomain == "agenda"){ ?>                  
-                                <button class="btn btn-default text-orange bold main-btn-create"  
+
+                            <?php $lblC = @$params["pages"]["#".$page]["lblBtnCreate"]; ?>
+                            <?php $colorC = @$params["pages"]["#".$page]["colorBtnCreate"]; ?>
+                            <button class="btn btn-default letter-<?php echo @$colorC; ?> bold main-btn-create"
                                         data-type="<?php echo @$type; ?>">
-                                    <i class="fa fa-plus-circle"></i> Créer un événement
+                                    <i class="fa fa-plus-circle"></i> <?php echo @$lblC; ?>
                                 </button>
-                            <?php }elseif($subdomain == "search" || $subdomain == "social"){ ?>                  
-                                <button class="btn btn-default letter-green bold main-btn-create" 
-                                        data-target="#dash-create-modal" data-toggle="modal" id="">
-                                    <i class="fa fa-plus-circle"></i> Créer une page
-                                </button>
-                            <?php }elseif($subdomain == "annonces"){ ?>
-                                <button class="btn btn-default letter-green bold main-btn-create"
-                                        data-type="<?php echo @$type; ?>">
-                                    <i class="fa fa-plus-circle"></i> Publier une annonce
-                                </button>
-                            <?php }elseif($subdomain == "power"){ ?>
-                                <button class="btn btn-default text-azure bold main-btn-create"
-                                        data-type="<?php echo @$type; ?>">
-                                    <i class="fa fa-plus-circle"></i> Faire une proposition
-                                </button>
-                            <?php } ?>
 
                             <!-- <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button> -->
 

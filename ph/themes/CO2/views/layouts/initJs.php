@@ -18,6 +18,7 @@
 	//used in communecter.js dynforms
     var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
     var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
+    console.log("eventTypes", eventTypes);
     var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
     var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
     var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : "null"?>;
@@ -29,8 +30,8 @@
     var myContactsById =<?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
     var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
 
-    var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
-    var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
+    var classifiedTypes = <?php echo json_encode( CO2::getContextList("classifiedCategories") ) ?>;
+    //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     
     var globalTheme = "<?php echo Yii::app()->theme->name;?>";
@@ -58,7 +59,8 @@
         "action": "fa-cogs",
         "actions": "fa-cogs",
         "poi": "fa-info-circle",
-        "video": "fa-video-camera"
+        "video": "fa-video-camera",
+        "classified" : "fa-bullhorn"
     };
     var mapColorIconTop = {
         "default" : "dark",
@@ -83,7 +85,8 @@
         "action": "lightblue2",
         "actions": "lightblue2",
         "poi": "dark",
-        "video":"dark"
+        "video":"dark",
+        "classified" : "yellow"
     };
 
 
@@ -136,17 +139,20 @@
         dynForm : {
             onLoadPanel : function (elementObj) { 
                 $("#ajax-modal-modal-title").html("<i class='fa fa-"+elementObj.dynForm.jsonSchema.icon+"'></i> "+elementObj.dynForm.jsonSchema.title);
-                $("#ajax-modal-modal-title").removeClass("text-green").removeClass("text-purple").removeClass("text-orange").removeClass("text-azure");
+                $("#ajax-modal-modal-title").removeClass("text-green text-purple text-orange text-azure");
                 $("#ajax-modal-modal-body").append("<div class='space20'></div>");
                 if(typeof currentKFormType != "undefined")
-                    $("#ajax-modal-modal-title").addClass("text-"+KSpec[currentKFormType].color);
+                    $("#ajax-modal-modal-title").addClass("text-"+typeObj[currentKFormType].color);
                 
+                <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                 $(".locationBtn").on( "click", function(){
                      setTimeout(function(){
                         $('[name="newElement_country"]').val("NC");
                         $('[name="newElement_country"]').trigger("change");
                      },1000); 
                 });
+                <?php } ?>
+                
                 $(".locationBtn").html("<i class='fa fa-home'></i> Addresse principale")
                 $(".locationBtn").addClass("letter-red bold");
                 $("#btn-submit-form").removeClass("text-azure").addClass("letter-green");

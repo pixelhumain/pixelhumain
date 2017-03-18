@@ -12,7 +12,7 @@
 .iamgurdeep-pic {
     position: relative;
 }
-.profilSocial .username {
+.profilSocial .blockUsername {
     bottom: 0;
     color: #ffffff;
     padding: 30px 15px 4px;
@@ -24,11 +24,11 @@ background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, #1b1b1b 100%); /* FF3.6-
 background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, #1b1b1b 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #1b1b1b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a64d4d4d',GradientType=0 ); /* IE6-9 */
-}
+} */
 .iamgurdeeposahan {
     border-radius: 4px 4px 0 0;
 }
-.profilSocial .username > h2 {
+.profilSocial .blockUsername > h2 {
     /*font-family: oswald;*/
     font-size: 27px;
     font-weight: lighter;
@@ -37,14 +37,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     text-shadow: 1px 1px 2px #000000;
     text-transform: uppercase;
 }
-.profilSocial .username > h2 small {
+.profilSocial .blockUsername > h2 small {
     color: #ffffff;
     /*font-family: open sans;*/
     font-size: 13px;
     font-weight: 400;
     position: relative;
 }
-.profilSocial .username .fa{
+.profilSocial .blockUsername .fa{
     color: #ffffff;
     font-size: 14px;
     margin: 0 0 0 4px;
@@ -136,13 +136,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     transition: all 0.4s ease;
 }
 .btn-o:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.4) !important;
     color: #fff !important;
   }
 .btn-o:focus {
-   background:#0095FF;
+   background:#0095FF !important;
     color: #fff;
-    border: 1px solid #0095FF;
+    border: 1px solid #0095FF !important;
 }
 .submenu .iamgurdeeposahan {
     background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0 !important;
@@ -221,7 +221,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     -o-transition: all 0.4s ease;
     transition: all 0.4s ease;
 }
-
+.profilSocial .accordion .subLink {
+    cursor: pointer;
+    display: block;
+    color: #4D4D4D;
+    font-size: 14px;
+    font-weight: 700;
+    position: relative;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
 .profilSocial .accordion li:last-child .link {
     border-bottom: 0;
 }
