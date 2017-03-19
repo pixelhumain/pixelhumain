@@ -1,51 +1,50 @@
-function checkLoggued(url)
+function checkLoggued(ajaxUrl)
 {
   if(userId == "") {
     //TODO Replace with a modal version of the login page
     bootbox.confirm("You need to be loggued to do this, login first ?",
           function(result) {
             if (result) 
-              window.location.href = baseUrl+"/"+moduleId+"/person/login?backUrl="+url;
+              window.location.href = baseUrl+"/"+moduleId+"/person/login?backUrl="+ajaxUrl;
      });
   } else
     return true;
 }
 
-function ajaxPost(id,url,params,callback, datatype)
-{
-	mylog.log(id,url,params);
-  /*if(dataType == null)
+function ajaxPost(id,ajaxUrl,params,callback, datatype){
+    mylog.log("ajaxPost", id,ajaxUrl,params);
+    /*if(dataType == null)
     dataType = "json";*/
-	if(datatype != "html" )
-		$(id).html("");
-	$.ajax({
-	    url:url,
-	    data:params,
-	    type:"POST",
-	  //  dataType: "json",
-	    success:function(data) {
-          if(datatype == "none" )
-            console.log();
-          else if(datatype === "html" )
-    			  $(id).html(data);
-    	  	else if(typeof data.msg === "string" )
-    	    	toastr.success(data.msg);
-    	    else if( id != null )
-    	      $("#"+id).html(JSON.stringify(data, null, 4));
-    	      		
-          if( typeof callback === "function")
-            callback(data,id);
-	    },
-	    error:function (xhr, ajaxOptions, thrownError){
-	     mylog.error(thrownError);
-	    } 
-	  });
+    if(datatype != "html" )
+        $(id).html("");
+    $.ajax({
+        url:ajaxUrl,
+        data:params,
+        type:"POST",
+        //  dataType: "json",
+        success:function(data) {
+            if(datatype == "none" )
+                console.log();
+            else if(datatype === "html" )
+                $(id).html(data);
+            else if(typeof data.msg === "string" )
+                toastr.success(data.msg);
+            else if( id != null )
+                $("#"+id).html(JSON.stringify(data, null, 4));
+
+            if( typeof callback === "function")
+                callback(data,id);
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+            mylog.error(thrownError);
+        } 
+    });
 }
 
-function getAjax(id,url,callback,datatype,blockUI)
+function getAjax(id,ajaxUrl,callback,datatype,blockUI)
 {
   $.ajaxSetup({ cache: true});
-  mylog.log("getAjax",id,url,callback,datatype,blockUI)
+  mylog.log("getAjax",id,ajaxUrl,callback,datatype,blockUI)
     if(blockUI)
         $.blockUI({
             message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.processingMsg") ) ? themeObj.blockUi.processingMsg : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
@@ -58,7 +57,7 @@ function getAjax(id,url,callback,datatype,blockUI)
         $(id).html( "<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>" );
   
     $.ajax({
-        url:url,
+        url:ajaxUrl,
         type:"GET",
         cache: true,
         success:function(data) {
@@ -68,7 +67,7 @@ function getAjax(id,url,callback,datatype,blockUI)
           } else if(datatype === "html" )
             $(id).html(data);
           else if(datatype === "norender" )
-            mylog.log("no render",url)
+            mylog.log("no render",ajaxUrl)
           else if( typeof data === "string" && datatype != null )
             toastr.success(data);
           else
@@ -87,7 +86,8 @@ function getAjax(id,url,callback,datatype,blockUI)
               + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>'),
               timeout: 3000 
           });
-          setTimeout(function(){loadByHash('#')},3000);
+          //mylog.log("URL : ", url);
+          setTimeout(function(){ajaxUrl.loadByHash('#')},3000);
           if(blockUI)
             $.unblockUI();
         } 
@@ -98,14 +98,14 @@ what can be a simple string which will go into the title bar
 or an aboject with properties like title, icon, desc
 getModal({title:"toto"},"/communecter/project/projectsv")
  */
-function getModal(what, url,id)
+function getModal(what, ajaxUrl,id)
 {
 	
 	loaded = {};
 	$('#ajax-modal').modal("hide");
-	if(id)
-		url = url+id;
-	mylog.log("getModal",what,"url",url,"event",id);
+	if(id)ajaxUrl
+		ajaxUrl = ajaxUrl+id;
+	mylog.log("getModal",what,"ajaxUrl",ajaxUrl,"event",id);
 	//var params = $(form).serialize();
 	//$("#ajax-modal-modal-body").html("<i class='fa fa-cog fa-spin fa-2x icon-big'></i> Loading");
 	$('body').modalmanager('loading'); 
@@ -115,7 +115,7 @@ function getModal(what, url,id)
   $('#ajax-modal').modal("show");
 	$.ajax({
         type: "GET",
-        url: baseUrl+url
+        url: baseUrl+ajaxUrl
         //dataType : "json"
         //data: params
     })
@@ -132,7 +132,7 @@ function getModal(what, url,id)
           $("#ajax-modal-modal-body").html(desc+data); 
           $('#ajax-modal').modal("show");
         } else {
-           mylog.error("bug get "+what, url,id);
+           mylog.error("bug get "+what, ajaxUrl,id);
         }
     })
     .error(function(data){
@@ -164,6 +164,48 @@ function lazyLoad (js,css, callback) {
 
 }
 
+
+var mylog = (function () {
+    
+    return {
+        log: function() {
+          if(debug){
+            var args = Array.prototype.slice.call(arguments);
+            console.log.apply(console, args);
+          }
+        },
+        warn: function() {
+            if( debug){
+              var args = Array.prototype.slice.call(arguments);
+              console.warn.apply(console, args);
+          }
+        },
+        debug: function() {
+            if(debug){
+              var args = Array.prototype.slice.call(arguments);
+              console.debug.apply(console, args);
+          }
+        },
+        info: function() {
+            if(debug){
+              var args = Array.prototype.slice.call(arguments);
+              console.info.apply(console, args);
+          }
+        },
+        dir: function() {
+            if(debug){
+              var args = Array.prototype.slice.call(arguments);
+              console.warn.apply(console, args);
+          }
+        },
+        error: function() {
+            if(debug){
+            var args = Array.prototype.slice.call(arguments);
+            console.error.apply(console, args);
+        }
+        }
+    }
+}());
 
 /* --------------------------------------------------------------- */
 //hide all children
@@ -553,7 +595,7 @@ var jsonHelper = {
               res = false;      
         }
       } else {
-        mylog.error(dynPath," is undefined");
+      //  mylog.error("notNull", dynPath," is undefined");
         res = false;
         return false;    
       }

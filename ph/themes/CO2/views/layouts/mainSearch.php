@@ -62,6 +62,18 @@
         <div id="mainMap">
             <?php $this->renderPartial($layoutPath.'mainMap'); ?>
         </div>
+
+        <?php //get all my link to put in floopDrawer
+            if(isset(Yii::app()->session['userId'])){
+              $myContacts = Person::getPersonLinksByPersonId(Yii::app()->session['userId']);
+              $myFormContact = $myContacts; 
+              $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
+            }else{
+              $myFormContact = null;
+
+            }
+           // error_log("load IndexDefault");
+        ?>
         
         <?php $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
               $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); ?>   
@@ -96,6 +108,8 @@
                 '/plugins/toastr/toastr.min.css',
                 '/plugins/jquery.ajax-cross-origin.min.js',
                 '/plugins/jquery-cookie/jquery.cookie.js' , 
+                '/plugins/lightbox2/css/lightbox.css',
+                '/plugins/lightbox2/js/lightbox.min.js',
                 '/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
                 '/plugins/ladda-bootstrap/dist/spin.min.js' , 
                 '/plugins/ladda-bootstrap/dist/ladda.min.js' , 
@@ -129,14 +143,18 @@
                 '/assets/vendor/bootstrap/css/bootstrap.min.css',
                 '/assets/css/sig/sig.css',
                 '/assets/css/freelancer.css',
+                '/assets/css/default/dynForm.css',
 
                 '/assets/css/CO2/CO2-boot.css',
                 '/assets/css/CO2/CO2-color.css',
                 '/assets/css/CO2/CO2.css',
+                '/assets/css/plugins.css',
                  
                 '/assets/vendor/jPlayer-2.9.2/dist/skin/blue.monday/css/jplayer.blue.monday.min.css',
                 '/assets/vendor/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js',
-                '/assets/js/radioplayer.js' 
+                '/assets/js/radioplayer.js',
+    
+                '/assets/css/floopDrawerRight.css'
                                                   
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
@@ -161,7 +179,6 @@
         <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() {
-                
                 url.loadableUrls = <?php echo json_encode($params["pages"]); ?>;
                 themeObj.init();
                 url.loadByHash(location.hash,true);

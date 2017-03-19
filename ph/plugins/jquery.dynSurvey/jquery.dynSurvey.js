@@ -212,7 +212,7 @@ onSave: (optional) overloads the generic saveProcess
         if( field.indexOf("separator")>=0 ) {
         	if(fieldClass == '' ) 
         		fieldClass = "panel-blue";
-        	fieldHTML += '<div class="text-large text-bold '+fieldClass+' text-white center padding-10 ">'+iconOpen+iconClose+fieldObj.title+'</div>';
+        	fieldHTML += '<div class="text-large text-bold '+fieldClass+' center padding-10 ">'+iconOpen+iconClose+fieldObj.title+'</div>';
         }
         
         /* **************************************

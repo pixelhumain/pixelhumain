@@ -18,7 +18,7 @@
                   $subdomain == "annonces"||
                   $subdomain == "page" ){ ?>
         
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-5 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo $placeholderMainSearch; ?>">
                 <?php if($subdomain == "page"){ ?>
@@ -51,6 +51,7 @@
                 <?php 
                     if( isset( Yii::app()->session['userId']) ){
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
+                      $countNotifElement = ActivityStream::countUnseenNotifications(Yii::app()->session["userId"], Person::COLLECTION, Yii::app()->session["userId"]);
                 ?> 
                      <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
                     <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
@@ -114,7 +115,7 @@
                                     <li role="separator" class="divider">
                                     </li>
                                     <li class="text-left">
-                                        <a href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" 
+                                        <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
                                             class="bg-white letter-red logout">
                                             <i class="fa fa-sign-out"></i> Déconnecter
                                         </a>
@@ -124,14 +125,13 @@
                         </div>
                     </div>
 
-                    <button class="menu-button btn-menu btn-menu-notif tooltips text-dark pull-right" 
+                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
-                      <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
-                        <?php count($this->notifications); ?>
+                      <span class="notifications-count topbar-badge badge animated bounceIn <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
+                            <?php echo @$countNotifElement ?>
+                        </span>
                     </button>
-
-                    
                     
                 <?php } else { ?>
                     <li class="page-scroll">
@@ -141,7 +141,6 @@
                         </button>
                     </li>
                 <?php } ?>
-                
             </ul>
 
         </div>
@@ -157,7 +156,7 @@
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                 </a>  
         <?php   }
-             }  ?>
+            }  ?>
        <!--  <a href="#power" 
             class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="power") echo 'active'; ?>"
             data-toggle="tooltip" data-placement="bottom" title="Power" alt="Power">
@@ -198,5 +197,15 @@
 <script>
 jQuery(document).ready(function() {    
     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
+    $('#modalMainMenu').on('show', function (e) {alert();
+            $(".btn-main-menu").mouseenter(function(){
+                
+                if( $(this).data("type") ){
+                    alert( $(this).data("type") );
+                    $(".menuSection2").addClass("hidden");
+                    $("."+$(this).data("type")+"Section2").removeClass("hidden");
+                }
+            });
+        });
 });
 </script> 

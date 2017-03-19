@@ -1,4 +1,23 @@
 
+<div class="portfolio-modal modal fade" id="openModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="col-sm-12 container"></div>
+        <div class="col-xs-12 text-center" style="margin-top:50px;">
+        <?php 
+                if( isset( Yii::app()->session['userId']) ){
+            ?> 
+            <a href="javascript:;" style="font-size:25px;" class="btn btn-default letter-green bold " 
+                                data-target="#dash-create-modal" data-toggle="modal" id="">
+                            <i class="fa fa-arrow-circle-right"></i> Savoir plus
+                        </a>
+            <?php } ?> 
+            <hr>
+            <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal">
+            <i class="fa fa-times"></i> Retour</a>
+        </div>
+    </div>
+</div>
+
 <div class="portfolio-modal modal fade" id="modalMainMenu" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">
         <div class="close-modal" data-dismiss="modal">
@@ -12,8 +31,7 @@
 
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
-                     class="nc_map" height=50>
+                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" style="margin-bottom:20px;" class="nc_map" height=50>
                     <h3 class="letter-red no-margin hidden-xs" style="margin-top:5px!important;">
                         MENU PRINCIPAL<br>
                     </h3>
@@ -34,6 +52,10 @@
                         if( isset( Yii::app()->session['userId']) ){
                           $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                     ?>  
+                        <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>" class="lbh">
+                            <img class="img-circle" id="menu-thumb-profil" 
+                                      src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
+                        </a>
                         <a class="btn btn-default text-red btn-sm" href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>">
                             <i class="fa fa-sign-out"></i> Déconnecter
                         </a>
@@ -48,9 +70,9 @@
 
             <div class="row links-main-menu">
                
-                <a href="#social" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#social" class="lbh btn-main-menu col-xs-3"  data-type="search" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-red"><i class="fa fa-user-circle padding-bottom-10"></i><br>
+                        <h2 class="text-red"><i class="fa fa-search fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> RECHERCHE</span>
                         </h2>
                         
@@ -65,9 +87,9 @@
                     </div>
                 </a>
 
-                <a href="#annonces" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#annonces" class="lbh btn-main-menu col-xs-3" data-type="classified" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-orange"><i class="fa fa-newspaper-o padding-bottom-10"></i><br>
+                        <h2 class="text-orange"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> ANNONCES</span>
                         </h2>
                         
@@ -82,9 +104,9 @@
                     </div>
                 </a>
                            
-                <a href="#agenda" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#agenda" class="lbh btn-main-menu col-xs-3" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-yellow"><i class="fa fa-calendar padding-bottom-10"></i><br>
+                        <h2 class="text-yellow"><i class="fa fa-calendar fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> AGENDA</span>
                         </h2>
                         
@@ -99,10 +121,10 @@
                     </div>
                 </a>
                 
-                <a href="#power" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#power" class="lbh btn-main-menu col-xs-3" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o padding-bottom-10"></i><br>
-                            <span class="font-blackoutT"> POWER</span>
+                        <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o fa-2x padding-bottom-10"></i><br>
+                            <span class="font-blackoutT"> DEMOCRATIE</span>
                         </h2>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
@@ -116,7 +138,67 @@
                     </div>
                 </a>
                 
-                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 searchSection2" id="sub-menu-filliaire-menu">
+                <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
+                <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
+                      //var_dump($categories); exit;
+                      foreach ($filliaireCategories as $key => $cat) { 
+                  ?>
+                      <?php if(is_array($cat)) { ?>
+                      <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
+                        <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 btn-select-filliaire" 
+                                data-fkey="<?php echo $key; ?>"
+                                style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
+                                data-keycat="<?php echo $cat["name"]; ?>">
+                          <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo $cat["name"]; ?>
+                        </button>
+                      </div>
+                        <?php //foreach ($cat as $key2 => $cat2) { ?>
+                          <!-- <button class="btn btn-default text-dark margin-bottom-5 margin-left-15 hidden keycat keycat-<?php //echo $key; ?>">
+                            <i class="fa fa-angle-right"></i> <?php //echo $cat2; ?>
+                          </button><br class="hidden"> -->
+                        <?php //} ?>
+                      <?php } ?>
+                    </button>
+                  <?php } ?>
+                  <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result">
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 classifiedSection2 hidden">
+                <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
+                <?php $freedomSections = CO2::getContextList("freedomSections"); 
+                      //var_dump($categories); exit;
+                      foreach ($freedomSections as $key => $cat) { 
+                  ?>
+                      <?php if(is_array($cat)) { ?>
+                      <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
+                        <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5" 
+                                data-fkey="<?php echo $key; ?>"
+                                style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
+                                data-keycat="<?php echo $cat["label"]; ?>">
+                          <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo $cat["label"]; ?>
+                        </button>
+                      </div>
+                        <?php //foreach ($cat as $key2 => $cat2) { ?>
+                          <!-- <button class="btn btn-default text-dark margin-bottom-5 margin-left-15 hidden keycat keycat-<?php //echo $key; ?>">
+                            <i class="fa fa-angle-right"></i> <?php //echo $cat2; ?>
+                          </button><br class="hidden"> -->
+                        <?php //} ?>
+                      <?php } ?>
+                    </button>
+                  <?php } ?>
+                  <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result">
+                </div>
+
+                <div class="col-xs-12 text-center">
+                <?php 
+                        if( isset( Yii::app()->session['userId']) ){
+                    ?> 
+                    <a href="javascript:;" style="font-size:25px;" class="btn btn-default letter-green bold " 
+                                        data-target="#dash-create-modal" data-toggle="modal" id="">
+                                    <i class="fa fa-plus-circle"></i> CRÉER UNE PAGE
+                                </a>
+                    <?php } ?> 
                     <hr>
                     <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
                 </div>
@@ -125,3 +207,18 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$( "#modalMainMenu" ).on('shown.bs.modal', function(){
+
+    $(".btn-main-menu").mouseenter(function(){alert();
+        if( $(this).data("type") ){
+            alert( $(this).data("type") );
+            $(".menuSection2").addClass("hidden");
+            $("."+$(this).data("type")+"Section2").removeClass("hidden");
+        }
+    });
+    
+});
+  
+</script>

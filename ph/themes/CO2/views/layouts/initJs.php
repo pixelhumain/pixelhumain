@@ -13,6 +13,83 @@
         <?php } ?>
         ];
 
+    var currentScrollTop = 0;
+    var isMapEnd = false;
+	//used in communecter.js dynforms
+    var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
+    var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
+    console.log("eventTypes", eventTypes);
+    var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
+    var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
+    var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : "null"?>;
+    var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
+    var organizerList = {}; 
+    var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
+
+    var myContacts = <?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
+    var myContactsById =<?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
+    var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
+
+    var classifiedTypes = <?php echo json_encode( CO2::getContextList("classifiedCategories") ) ?>;
+    //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
+    var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
+    
+    var globalTheme = "<?php echo Yii::app()->theme->name;?>";
+
+    var mapIconTop = {
+        "default" : "fa-arrow-circle-right",
+        "citoyen":"<?php echo Person::ICON ?>", 
+        "citoyens":"<?php echo Person::ICON ?>", 
+        "person":"<?php echo Person::ICON ?>", 
+        "people":"<?php echo Person::ICON ?>", 
+        "NGO":"<?php echo Organization::ICON ?>",
+        "LocalBusiness" :"<?php echo Organization::ICON_BIZ ?>",
+        "Group" : "<?php echo Organization::ICON_GROUP ?>",
+        "group" : "<?php echo Organization::ICON ?>",
+        "association" : "<?php echo Organization::ICON ?>",
+        "organization" : "<?php echo Organization::ICON ?>",
+        "organizations" : "<?php echo Organization::ICON ?>",
+        "GovernmentOrganization" : "<?php echo Organization::ICON_GOV ?>",
+        "event":"<?php echo Event::ICON ?>",
+        "events":"<?php echo Event::ICON ?>",
+        "project":"<?php echo Project::ICON ?>",
+        "projects":"<?php echo Project::ICON ?>",
+        "city": "<?php echo City::ICON ?>",
+        "entry": "fa-gavel",
+        "action": "fa-cogs",
+        "actions": "fa-cogs",
+        "poi": "fa-info-circle",
+        "video": "fa-video-camera",
+        "classified" : "fa-bullhorn"
+    };
+    var mapColorIconTop = {
+        "default" : "dark",
+        "citoyen":"yellow", 
+        "citoyens":"yellow", 
+        "person":"yellow", 
+        "people":"yellow", 
+        "NGO":"green",
+        "LocalBusiness" :"azure",
+        "Group" : "white",
+        "group" : "green",
+        "association" : "green",
+        "organization" : "green",
+        "organizations" : "green",
+        "GovernmentOrganization" : "green",
+        "event":"orange",
+        "events":"orange",
+        "project":"purple",
+        "projects":"purple",
+        "city": "red",
+        "entry": "azure",
+        "action": "lightblue2",
+        "actions": "lightblue2",
+        "poi": "dark",
+        "video":"dark",
+        "classified" : "yellow"
+    };
+
+
     var themeObj = {
         init : function(){
             toastr.options = {
@@ -28,6 +105,8 @@
               "showMethod": "fadeIn",
               "hideMethod": "fadeOut"
             };
+            initFloopDrawer();
+            resizeInterface();
         },
         imgLoad : "CO2r.png" ,
         mainContainer : ".main-container",
@@ -60,17 +139,20 @@
         dynForm : {
             onLoadPanel : function (elementObj) { 
                 $("#ajax-modal-modal-title").html("<i class='fa fa-"+elementObj.dynForm.jsonSchema.icon+"'></i> "+elementObj.dynForm.jsonSchema.title);
-                $("#ajax-modal-modal-title").removeClass("text-green").removeClass("text-purple").removeClass("text-orange").removeClass("text-azure");
+                $("#ajax-modal-modal-title").removeClass("text-green text-purple text-orange text-azure");
                 $("#ajax-modal-modal-body").append("<div class='space20'></div>");
                 if(typeof currentKFormType != "undefined")
-                    $("#ajax-modal-modal-title").addClass("text-"+KSpec[currentKFormType].color);
+                    $("#ajax-modal-modal-title").addClass("text-"+typeObj[currentKFormType].color);
                 
+                <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                 $(".locationBtn").on( "click", function(){
                      setTimeout(function(){
                         $('[name="newElement_country"]').val("NC");
                         $('[name="newElement_country"]').trigger("change");
                      },1000); 
                 });
+                <?php } ?>
+                
                 $(".locationBtn").html("<i class='fa fa-home'></i> Addresse principale")
                 $(".locationBtn").addClass("letter-red bold");
                 $("#btn-submit-form").removeClass("text-azure").addClass("letter-green");
@@ -79,80 +161,6 @@
             }
         }
     };
-
-    var currentScrollTop = 0;
-    var isMapEnd = false;
-	//used in communecter.js dynforms
-    var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
-    var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
-    var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
-    var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
-    var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : "null"?>;
-    var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
-    var organizerList = {}; 
-    var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
-
-    var myContacts = <?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
-    var myContactsById =<?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
-    var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
-
-    var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
-    var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
-    var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
-    
-    var globalTheme = "<?php echo Yii::app()->theme->name;?>";
-
-    var mapIconTop = {
-        "default" : "fa-arrow-circle-right",
-        "citoyen":"<?php echo Person::ICON ?>", 
-        "citoyens":"<?php echo Person::ICON ?>", 
-        "person":"<?php echo Person::ICON ?>", 
-        "people":"<?php echo Person::ICON ?>", 
-        "NGO":"<?php echo Organization::ICON ?>",
-        "LocalBusiness" :"<?php echo Organization::ICON_BIZ ?>",
-        "Group" : "<?php echo Organization::ICON_GROUP ?>",
-        "group" : "<?php echo Organization::ICON ?>",
-        "association" : "<?php echo Organization::ICON ?>",
-        "organization" : "<?php echo Organization::ICON ?>",
-        "organizations" : "<?php echo Organization::ICON ?>",
-        "GovernmentOrganization" : "<?php echo Organization::ICON_GOV ?>",
-        "event":"<?php echo Event::ICON ?>",
-        "events":"<?php echo Event::ICON ?>",
-        "project":"<?php echo Project::ICON ?>",
-        "projects":"<?php echo Project::ICON ?>",
-        "city": "<?php echo City::ICON ?>",
-        "entry": "fa-gavel",
-        "action": "fa-cogs",
-        "actions": "fa-cogs",
-        "poi": "fa-info-circle",
-        "video": "fa-video-camera"
-    };
-    var mapColorIconTop = {
-        "default" : "dark",
-        "citoyen":"yellow", 
-        "citoyens":"yellow", 
-        "person":"yellow", 
-        "people":"yellow", 
-        "NGO":"green",
-        "LocalBusiness" :"azure",
-        "Group" : "white",
-        "group" : "green",
-        "association" : "green",
-        "organization" : "green",
-        "organizations" : "green",
-        "GovernmentOrganization" : "green",
-        "event":"orange",
-        "events":"orange",
-        "project":"purple",
-        "projects":"purple",
-        "city": "red",
-        "entry": "azure",
-        "action": "lightblue2",
-        "actions": "lightblue2",
-        "poi": "dark",
-        "video":"dark"
-    };
- 
 
     
     

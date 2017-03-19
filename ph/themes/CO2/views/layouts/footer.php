@@ -28,7 +28,7 @@
 
 <?php
     $iconBtnRightBottom = "chevron-up";
-    if($subdomain == "web"){ 
+    if(Yii::app()->params["CO2DomainName"] == "kgougle"){ 
         $iconBtnRightBottom = "search";
 ?>
     <div class="radio-tool">
@@ -76,17 +76,17 @@
                     <h5>Contacter <a href="#info.p.alphatango" class="lbh text-azure">@Alpha_Tango</a></h5>
                     <ul class="list-inline">
                         <li>
-                            <a href="https://github.com/Kgneo" class="btn-social btn-outline text-dark">
+                            <a href="https://github.com/Kgneo" target="_blank" class="btn-social btn-outline text-dark">
                                 <i class="fa fa-fw fa-github"></i>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#" class="btn-social btn-outline text-dark">
                                 <i class="fa fa-fw fa-facebook"></i>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
-                            <a href="#info.p.alphatango" class="btn-social btn-outline text-dark">
+                            <a href="#info.p.alphatango" class="btn-social btn-outline text-dark lbh">
                                 <i class="fa fa-fw fa-envelope-o"></i>
                             </a>
                         </li>
