@@ -260,38 +260,44 @@
 			var html = "";
 			var id = 0;
 			$.each(res, function(key, value){ mylog.log("resultat : ",value);
-				if(notEmpty(value.countryCode)){
-					mylog.log("Country Code",value.country.toLowerCase(), countryCode.toLowerCase());
-					if(value.country == "Nouvelle-Calédonie"){ 
-						html += 
-						"<li><a href='javascript:' class='item-street-found' "+
-								"data-lat='"+value.geo.latitude+"' "+
-								"data-lng='"+value.geo.longitude+"'>"+
-							 "<i class='fa fa-marker-map'></i> "+value.name+
-							 "</a>"+
-						"</li>";
-					}
-				}
-				
-				
 				id++;
 				res[key]["id"] = id;
 				res[key]["typeSig"] = "address";
 
-				var country = typeof res[key]["country"] != "undefined" ? res[key]["country"] : "";
-				var resCountryCode = typeof res[key]["countryCode"] != "undefined" ? res[key]["countryCode"] : "";
-				if(CO2DomainName=="kgougle" && country != "Nouvelle-Calédonie" && resCountryCode != countryCode)//"NC" )
-					res[key] = "";
+				if(CO2DomainName=="kgougle"){ //pour kgougle on supprime tous les resultat en dehors de NC
+					var state = typeof res[key]["state"] != "undefined" ? res[key]["state"] : "";
+					var country = typeof res[key]["country"] != "undefined" ? res[key]["country"] : "";
+					var resCountryCode = typeof res[key]["countryCode"] != "undefined" ? res[key]["countryCode"] : "";
+					if(country != "Nouvelle-Calédonie" && state != "Nouvelle-Calédonie")//"NC" )
+						res[key] = "";
+				}
 			});
 
 			
-			if(html == "") html = "<span class='padding-15'><i class='fa fa-ban'></i> Aucun résultat</span>";
+			$.each(res, function(key, value){ mylog.log("resultat : ",value);
+				if(notEmpty(value.countryCode)){
+					//mylog.log("Country Code",value.country.toLowerCase(), countryCode.toLowerCase());
+					//if(value.country == "Nouvelle-Calédonie" || value.state == "Nouvelle-Calédonie"){ 
+						html += 
+						"<li><a href='javascript:' class='item-street-found' "+
+								"data-lat='"+value.geo.latitude+"' "+
+								"data-lng='"+value.geo.longitude+"'>"+
+							 "<i class='fa fa-map-marker'></i> "+value.name+
+							 "</a>"+
+						"</li>";
+					//}
+				}
+			});
+
 			
-			console.log("NORES", html);
+			//else html = "";
+			console.log("NORES", html, res.length);
 			if($("#dropdown-newElement_streetAddress-found").length){ //si on a cet id = on est dans formInMap
-				$("#dropdown-newElement_streetAddress-found").html(html);
-				$("#dropdown-newElement_streetAddress-found").show();
+				if(html=="") 
+					html = "<span class='padding-15'><i class='fa fa-ban'></i> Aucun résultat</span>";
 				
+				$("#dropdown-newElement_streetAddress-found").html(html);
+				$("#dropdown-newElement_streetAddress-found").show();			
 
 				$(".item-street-found").click(function(){
 					Sig.markerFindPlace.setLatLng([$(this).data("lat"), $(this).data("lng")]);
@@ -305,7 +311,9 @@
 					NE_lng = $(this).data("lng");
 					updateHtmlInseeLatLon();	
 				});
-			}else{		
+			}else{
+				if(html=="") html = "<span class='padding-15'><i class='fa fa-ban'></i> Aucun résultat</span>";
+				else html = "";
 				showMsgListRes(html);
 				Sig.showMapElements(Sig.map, res);	
 				
@@ -315,7 +323,6 @@
 
 		showMsgListRes = function(msg){ mylog.log("showMsgListRes", msg);
 			msg = msg != "" ? "<li class='padding-5'>" + msg + "</li>" : "";
-
 			$("#liste_map_element").html(msg);
 		};
 	 
