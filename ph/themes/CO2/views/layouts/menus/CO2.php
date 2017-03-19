@@ -18,7 +18,7 @@
                   $subdomain == "annonces"||
                   $subdomain == "page" ){ ?>
         
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-5 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo $placeholderMainSearch; ?>">
                 <?php if($subdomain == "page"){ ?>
