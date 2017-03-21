@@ -28,7 +28,7 @@ php composer.phar update
 php composer.phar install
 cd ../../
 
-cd modules
+cd /var/www/web/modules
 git clone https://github.com/pixelhumain/citizenToolKit
 git clone https://github.com/pixelhumain/communecter
 git clone https://github.com/pixelhumain/network
