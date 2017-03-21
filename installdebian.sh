@@ -48,6 +48,9 @@ chown -R www-data:www-data *
 #Renommage du fichier de configuration de la bae de donnée
 mv pixelhumain/ph/protected/config/dbconfig.example.php pixelhumain/ph/protected/config/dbconfig.php 
 
+#Création du vhost communecter
+#Making communected vhost apache file
+
 echo "<VirtualHost 127.0.0.1:80>
 
 	ServerName communecter.local
@@ -89,6 +92,8 @@ echo "Communecte is now available : http://127.0.0.1/ph"
 echo "N oubliez pas de modifier le fichier ph/protected/config/paramsconfig.php avec vos parametres SMTP et de vous rendre sur http://127.0.0.1/communecter/test/docron pour lancer le processus d envoi de mail"
 echo "don't forget to use this url to start the mail cron http://127.0.0.1/communecter/test/docron"
 
+#Lancement de mongod (BDD de communecter sous mongoDB)
+#Starting mongod (communecter Database Engine)
 mongod --fork --dbpath "/var/www/web/data/db" --logpath /var/log/mongod.log
 
 #Making the Data folder for MongoDB
@@ -96,13 +101,25 @@ mongod --fork --dbpath "/var/www/web/data/db" --logpath /var/log/mongod.log
 mkdir data/
 mkdir data/db
 
+#Création du script d'ajout de l'utilisateur pixelhumain
+#Making user adding script of pixelhumain user
 echo "db.createUser({     user: "pixelhumain",     pwd: "pixelhumain",     roles: [{role:"readWrite", db:"pixelhumain"}]})" > adduserpixelhumaindb.js                                                   
 mongo pixelhumain adduserpixelhumaindb.js
+
+#Suppression du script après utilisation
+#Deleting script after use
 rm adduserpixelhumaindb.js
 
+#Decompression du fichier contenant les villes
+#Uncompressing file who contain the town data
 cd /var/www/web/modules/communecter/data
 unzip cities.json.zip
 
+#Importation des données dans la base pixelhumain
+#Importing data in pixelhumain database
 mongoimport --db pixelhumain --collection cities cities.json --jsonArray;
 mongoimport --db pixelhumain --collection lists lists.json --jsonArray ;
 cd ../
+
+#fin du script
+#The END
