@@ -79,40 +79,6 @@ chown -R www-data:www-data *
 
 mv pixelhumain/ph/protected/config/dbconfig.example.php pixelhumain/ph/protected/config/dbconfig.php 
 
-
-
-#Making the Data folder for MongoDB
-
-#Création du dossier accueillant la base de données
-
-
-
-mkdir ~/communecte
-
-mkdir ~/communecte/data/
-
-mkdir ~/communecte/data/db
-
-
-
-echo "db.createUser({     user: "pixelhumain",     pwd: "pixelhumain",     roles: [{role:"readWrite", db:"pixelhumain"}]})" > adduserpixelhumaindb.js                                                   
-
-mongo pixelhumain adduserpixelhumaindb.js
-
-rm adduserpixelhumaindb.js
-
-
-
-cd modules/communecter/data
-
-mongoimport --db pixelhumain --collection cities cities.json --jsonArray;
-
-mongoimport --db pixelhumain --collection lists lists.json --jsonArray ;
-
-cd ../
-
-
-
 echo "<VirtualHost 127.0.0.1:80>
 
 	# The ServerName directive sets the request scheme, hostname and port that
@@ -265,3 +231,17 @@ echo "N oubliez pas de modifier le fichier ph/protected/config/paramsconfig.php 
 echo "don't forget to use this url to start the mail cron http://127.0.0.1/communecter/test/docron"
 
 mongod --dbpath "~/communecte/data/db"
+
+#Making the Data folder for MongoDB
+#Création du dossier accueillant la base de données
+mkdir data/
+mkdir data/db
+
+echo "db.createUser({     user: "pixelhumain",     pwd: "pixelhumain",     roles: [{role:"readWrite", db:"pixelhumain"}]})" > adduserpixelhumaindb.js                                                   
+mongo pixelhumain adduserpixelhumaindb.js
+rm adduserpixelhumaindb.js
+
+cd modules/communecter/data
+mongoimport --db pixelhumain --collection cities cities.json --jsonArray;
+mongoimport --db pixelhumain --collection lists lists.json --jsonArray ;
+cd ../
