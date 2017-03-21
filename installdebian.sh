@@ -2,13 +2,12 @@
 #Please make this script executable (chmod +x installdebian.sh) and run as root.
 #Veuillez rendre ce script executable et l'executer avec l'utilisateur root.
 
-
 #Ajout du dépôt - Adding repository in apt to /etc/sources.list.d/
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 echo "deb http://repo.mongodb.com/apt/debian jessie/mongodb-enterprise/3.4 main" | tee /etc/apt/sources.list.d/mongodb-enterprise.list
 
 apt-get update
-apt-get install git mongodb-org php5-mongo -y
+apt-get install git unzip screen mongodb-org php5-mongo -y
 
 #Création du dossier accueillant communecte et ses modules
 #Making folder web who hosting communecte and his modules
@@ -19,11 +18,15 @@ mkdir /var/www/web && mkdir /var/www/web/modules && cd /var/www/web
 git clone https://github.com/pixelhumain/pixelhumain
 cd pixelhumain/ph
 
+#Téléchargement de Composer
+#Downloading Composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 
+#Mise à jour des composants
+#Updating components
 php composer.phar update
 php composer.phar install
 cd ../../
@@ -70,7 +73,7 @@ IndexIgnore */*
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond $1 !^(index\.php|assets|robots\.txt)
+RewriteCond \$1\ !^(index\.php|assets|robots\.txt)
 RewriteRule ^(.*)$ /ph/index.php/$1 [L]
 </IfModule>
 
@@ -86,7 +89,7 @@ echo "Communecte is now available : http://127.0.0.1/ph"
 echo "N oubliez pas de modifier le fichier ph/protected/config/paramsconfig.php avec vos parametres SMTP et de vous rendre sur http://127.0.0.1/communecter/test/docron pour lancer le processus d envoi de mail"
 echo "don't forget to use this url to start the mail cron http://127.0.0.1/communecter/test/docron"
 
-mongod --dbpath "~/communecte/data/db"
+mongod --fork --dbpath "/var/www/web/data/db" --logpath /var/log/mongod.log
 
 #Making the Data folder for MongoDB
 #Création du dossier accueillant la base de données
@@ -97,7 +100,9 @@ echo "db.createUser({     user: "pixelhumain",     pwd: "pixelhumain",     roles
 mongo pixelhumain adduserpixelhumaindb.js
 rm adduserpixelhumaindb.js
 
-cd modules/communecter/data
+cd /var/www/web/modules/communecter/data
+unzip cities.json.zip
+
 mongoimport --db pixelhumain --collection cities cities.json --jsonArray;
 mongoimport --db pixelhumain --collection lists lists.json --jsonArray ;
 cd ../
