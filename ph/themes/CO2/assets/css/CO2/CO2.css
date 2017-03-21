@@ -1159,7 +1159,8 @@ h3.title_panel_map{
 		margin-right: 10px;
 	}
 	.main-menu-app {
-	    margin-bottom: 20px;
+	    margin-bottom: 35px !important;
+		margin-top: 15px !important;
 	}
 
 	.dropdown-main-menu{
@@ -1187,7 +1188,7 @@ h3.title_panel_map{
 	}
 
 
-	.scroll-top .btn {
+	/*.scroll-top .btn {
 	    font-size: 17px;
 	    width: 45px;
 		height: 45px;
@@ -1224,7 +1225,7 @@ h3.title_panel_map{
 	    bottom: 0%;
 	    width: 45px;
 		height: 45px;
-	}
+	}*/
 
 	#sub-menu-left{
         margin-top:10px;

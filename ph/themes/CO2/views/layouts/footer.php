@@ -28,12 +28,12 @@
 
 <?php
     $iconBtnRightBottom = "chevron-up";
-    if(Yii::app()->params["CO2DomainName"] == "kgougle"){ 
+    if(Yii::app()->params["CO2DomainName"] == "kgougle" && false){ 
         $iconBtnRightBottom = "search";
 ?>
-    <div class="radio-tool">
+    <div class="radio-tool tooltips" data-toggle="tooltip" data-placement="right" title="Écouter la radio">
         <a class="btn btn-primary" href="#page-top" data-target="#modalRadioTool" data-toggle="modal">
-            <i class="fa fa-microphone"></i>
+            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/radio-icon-2.png" height="30">
         </a>
     </div>
 <?php } ?>

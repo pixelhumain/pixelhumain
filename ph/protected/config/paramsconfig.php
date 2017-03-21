@@ -33,7 +33,7 @@ $params = array(
     //Beta Test ?
     'betaTest' => false,
     //By default controller
-    'defaultController' => 'communecter',
+    'defaultController' => 'co2',
     // Mail configuration
     'adminEmail'=>'testmail.pixelhumain@gmail.com',
     'forceMailSend' => true,

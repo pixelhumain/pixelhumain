@@ -64,7 +64,7 @@
                                                         <?php if("#".$subdomain == $key) echo "active"; ?>" 
                                                 href="<?php echo $key; ?>">
                                                 <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
-                                                <span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
+                                                <span class=""> <?php echo $value["subdomainName"]; ?></span>
                                             </a>    
                             <?php       }
                                     }  
