@@ -12,7 +12,7 @@ apt-get install mongodb-org php5-mongo -y
 
 #Création du dossier accueillant communecte et ses modules
 #Making folder web who hosting communecte and his modules
-mkdir /var/www/web && cd /var/www/web
+mkdir /var/www/web && mkdir /var/www/web/modules && cd /var/www/web
 
 #Clonage des dépôts
 #Cloning git repo
