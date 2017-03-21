@@ -433,6 +433,9 @@
 		// GET LIST OF NETWORK'S TAGS
 		if(networkJson != null && typeof networkJson.filter.linksTag != "undefined"){
 			var networkTags = [];
+			var networkTags2 = {};
+			var networkTags3 = {};
+			//var optgroupArray = {};
 			tagsList = [];
 			if(typeof networkJson.request.mainTag != "undefined")
 				networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
@@ -440,6 +443,9 @@
 				optgroupObject=new Object;
 				optgroupObject.text=category;
 				optgroupObject.children=[];
+				networkTags2[category]=[];
+				networkTags3[category]=[];
+				//optgroupArray[category]=[];
 				$.each(properties.tags, function(i, tag) {
 					if($.isArray(tag)){
 						$.each(tag, function(keyTag, textTag) {
@@ -447,6 +453,10 @@
 							if(jQuery.inArray( textTag, tagsList ) == -1 ){
 								optgroupObject.children.push(val);
 								tagsList.push(textTag);
+								//optgroupArray[category].push(textTag);
+								optgroupObject2=new Object;
+								optgroupObject2.text=textTag;
+								networkTags2[category].push(optgroupObject2);
 							}
 						});
 					}else{
@@ -454,15 +464,23 @@
 						if(jQuery.inArray( tag, tagsList ) == -1 ){
 							optgroupObject.children.push(val);
 							tagsList.push(tag);
+							//optgroupArray[category].push(tag);
+							optgroupObject2=new Object;
+							optgroupObject2.text=tag;
+							networkTags2[category].push(optgroupObject2);
 						}
 					}
 					
 					//tagsList.push(val);
 				});
 				networkTags.push(optgroupObject);
+				networkTags3[category].push(optgroupObject);
 			});
 		}
-		//console.warn("isMapEnd 1",isMapEnd);
+
+
+
+
 		jQuery(document).ready(function() {
 
 			if(networkJson != null)
@@ -480,9 +498,35 @@
 							if(typeof networkJson.request.mainTag != "undefined")
 								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag[0];
 						}
+
+						mylog.log("networkJson.dynForm");
+						if(notNull(networkJson.dynForm)){
+							mylog.log("networkJson.dynForm", "networkJson.dynForm");
+							if(notNull(networkJson.dynForm.extra)){
+								var nbListTags = 1 ;
+								mylog.log("networkJson.dynForm.extra.tags", "networkJson.dynForm.extra.tags"+nbListTags);
+								mylog.log(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags));
+								while(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags)){
+									typeObj[key].dynForm.jsonSchema.properties["tags"+nbListTags] = {
+										"inputType" : "tags",
+										"placeholder" : networkJson.dynForm.extra["tags"+nbListTags].placeholder,
+										"values" : networkTags3[ networkJson.dynForm.extra["tags"+nbListTags].list ],
+										"data" : networkTags3[ networkJson.dynForm.extra["tags"+nbListTags].list ]
+									};
+									nbListTags++;
+									mylog.log("networkJson.dynForm.extra.tags", "networkJson.dynForm.extra.tags"+nbListTags);
+									mylog.log(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags));
+								}
+								delete typeObj[key].dynForm.jsonSchema.properties.tags;
+							}
+						}
 					}
 				});
 			}
+			
+
+
+
 			$(".bg-main-menu.bgpixeltree_sig").remove();
 			if(myContacts != null)
 			$.each(myContacts, function(type, list) {

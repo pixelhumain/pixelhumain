@@ -46,6 +46,22 @@
             ".btnSignIn" : "S'inscrire"
         }
     },
+    "dynForm" : {
+        "extra" : {
+                "tags1" : { 
+                    "list" : "Géographique",
+                    "placeholder" : "Ajouter une Géographique"
+                },
+                "tags2" : { 
+                    "list" : "Structures",
+                    "placeholder" : "Ajouter une Structures"
+                },
+                "tags3" : { 
+                    "list" : "Compétences",
+                    "placeholder" : "Ajouter une Compétences"
+                }
+        }
+    },
    "filter" : {
         "types" : false,
         "tags" : {
