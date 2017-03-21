@@ -260,5 +260,8 @@ a2ensite communecter && service apache2 reload
 echo "ne pas oublier de lancer mongod !"
 
 echo "Communecte est maintenant disponible depuis http://127.0.0.1/ph/"
-
+echo "Communecte is now available : http://127.0.0.1/ph"
+echo "N oubliez pas de modifier le fichier ph/protected/config/paramsconfig.php avec vos parametres SMTP et de vous rendre sur http://127.0.0.1/communecter/test/docron pour lancer le processus d envoi de mail"
+echo "don't forget to use this url to start the mail cron http://127.0.0.1/communecter/test/docron"
+echo "o
 mongod --dbpath "~/communecte/data/db"
