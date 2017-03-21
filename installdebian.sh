@@ -8,7 +8,7 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A145185
 echo "deb http://repo.mongodb.com/apt/debian jessie/mongodb-enterprise/3.4 main" | tee /etc/apt/sources.list.d/mongodb-enterprise.list
 
 apt-get update
-apt-get install mongodb-org php5-mongo -y
+apt-get install git mongodb-org php5-mongo -y
 
 #Création du dossier accueillant communecte et ses modules
 #Making folder web who hosting communecte and his modules
