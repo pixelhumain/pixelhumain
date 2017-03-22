@@ -130,7 +130,8 @@ service cron restart
 #Ajout de mongodb au démarrage et création du script utilisé
 #Adding mongodb at startup and making the using script
 
-echo "#!/bin/sh mongod --fork --dbpath "/var/www/web/data/db" --logpath /var/log/mongod.log" > /etc/init.d/communecterdb
+echo "#!/bin/sh" > /etc/init.d/communecterdb
+echo "mongod --fork --dbpath "/var/www/web/data/db" --logpath /var/log/mongod.log" >> /etc/init.d/communecterdb
 chmod +x /etc/init.d/communecterdb
 chown root:root /etc/init.d/communecterdb
 update-rc.d communecterdb defaults
