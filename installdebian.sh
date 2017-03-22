@@ -4,10 +4,10 @@
 
 #Ajout du dépôt - Adding repository in apt to /etc/sources.list.d/
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
-echo "deb http://repo.mongodb.com/apt/debian jessie/mongodb-enterprise/3.4 main" | tee /etc/apt/sources.list.d/mongodb-enterprise.list
+echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/3.4 main" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 
 apt-get update
-apt-get install apache2 libapache2-mod-php5 php5 php5-common php5-dev php5-intl php5-gd php5-json git unzip mongodb-org php5-mongo -y
+apt-get install apache2 libapache2-mod-php5 php5 php5-common php5-dev php5-intl php5-gd php5-json git unzip mongodb-org php5-mongo curl screen -y
 
 #Création du dossier accueillant communecte et ses modules
 #Making folder web who hosting communecte and his modules
@@ -84,13 +84,9 @@ RewriteRule ^(.*)$ /ph/index.php/$1 [L]
 
 </VirtualHost>" > /etc/apache2/sites-available/communecter.conf
 
+#Activation du vhost et rechargement du fichier de conf dans apache
+#Vhost activation et apache config file reloading
 a2ensite communecter && service apache2 reload
-
-echo "ne pas oublier de lancer mongod !"
-echo "Communecte est maintenant disponible depuis http://127.0.0.1/ph/"
-echo "Communecte is now available : http://127.0.0.1/ph"
-echo "N oubliez pas de modifier le fichier ph/protected/config/paramsconfig.php avec vos parametres SMTP et de vous rendre sur http://127.0.0.1/communecter/test/docron pour lancer le processus d envoi de mail"
-echo "don't forget to use this url to start the mail cron http://127.0.0.1/communecter/test/docron"
 
 #Lancement de mongod (BDD de communecter sous mongoDB)
 #Starting mongod (communecter Database Engine)
@@ -120,6 +116,14 @@ unzip cities.json.zip
 mongoimport --db pixelhumain --collection cities cities.json --jsonArray;
 mongoimport --db pixelhumain --collection lists lists.json --jsonArray ;
 cd ../
+
+cron="*/10 * * * * curl http://127.0.0.1/communecter/test/docron"
+(crontab -u root -l; echo "$cron" ) | crontab -u root -
+
+echo "Communecte est maintenant disponible depuis http://127.0.0.1/ph/"
+echo "Communecte is now available : http://127.0.0.1/ph/"
+echo "N oubliez pas de modifier le fichier ph/protected/config/paramsconfig.php avec vos parametres SMTP et de vous rendre sur http://127.0.0.1/communecter/test/docron pour lancer le processus d envoi de mail"
+#echo "don't forget to use this url to start the mail cron http://127.0.0.1/communecter/test/docron"
 
 #fin du script
 #The END
