@@ -50,7 +50,7 @@ mv pixelhumain/ph/protected/config/dbconfig.example.php pixelhumain/ph/protected
 
 echo "<VirtualHost 127.0.0.1:80>
 
-	ServerName communecter.local
+	#ServerName communecter.local
 	ServerAdmin webmaster@localhost
 	DocumentRoot /var/www/web/pixelhumain/ph
 
