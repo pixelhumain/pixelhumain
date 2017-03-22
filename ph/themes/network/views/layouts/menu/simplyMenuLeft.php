@@ -150,7 +150,7 @@
         }
       ?>
       <div class="panel-heading">
-        <a id="reset" href="javascript:;">
+        <a id="reset" class="reset" href="javascript:;">
           <h4 class="panel-title">
             <center><i class="fa fa-refresh"></i>Réinitialiser</center>
           </h4>
