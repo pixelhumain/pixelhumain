@@ -128,6 +128,15 @@ cron="*/10 * * * * curl http://127.0.0.1/communecter/test/docron"
 #Restarting cron
 service cron restart
 
+#Ajout de mongodb au démarrage et création du script utilisé
+#Adding mongodb at startup and making the using script
+
+echo "#!\bin\sh mongod --fork --dbpath "/var/www/web/data/db" --logpath /var/log/mongod.log" > /etc/init.d/communecterdb
+chmod +x /etc/init.d/communecterdb
+chown root:root /etc/init.d/communecterdb
+update-rc.d communecterdb defaults
+update-rc.d communecterdb enable
+
 echo "Communecte est maintenant disponible depuis http://127.0.0.1/ph/"
 echo "Communecte is now available : http://127.0.0.1/ph/"
 echo "N oubliez pas de modifier le fichier ph/protected/config/paramsconfig.php avec vos parametres SMTP et de vous rendre sur http://127.0.0.1/communecter/test/docron pour lancer le processus d envoi de mail"
