@@ -117,8 +117,14 @@ mongoimport --db pixelhumain --collection cities cities.json --jsonArray;
 mongoimport --db pixelhumain --collection lists lists.json --jsonArray ;
 cd ../
 
+#Ajout de la tache cron pour l'envoi des mails
+#Adding sent mail job in cron
 cron="*/10 * * * * curl http://127.0.0.1/communecter/test/docron"
 (crontab -u root -l; echo "$cron" ) | crontab -u root -
+
+#Redemarrage de cron
+#Restarting cron
+service cron restart
 
 echo "Communecte est maintenant disponible depuis http://127.0.0.1/ph/"
 echo "Communecte is now available : http://127.0.0.1/ph/"
