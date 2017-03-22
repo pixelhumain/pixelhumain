@@ -73,7 +73,8 @@ IndexIgnore */*
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond \$1\ !^(index\.php|assets|robots\.txt)
+RewriteCond $1 !^(index\.php|assets|robots\.txt)
+RewriteCond \$\1 !^(index\.php|assets|robots\.txt)
 RewriteRule ^(.*)$ /ph/index.php/$1 [L]
 </IfModule>
 
@@ -81,9 +82,9 @@ RewriteRule ^(.*)$ /ph/index.php/$1 [L]
 
 </VirtualHost>" > /etc/apache2/sites-available/communecter.conf
 
-#Activation du vhost et rechargement du fichier de conf dans apache
-#Vhost activation et apache config file reloading
-a2ensite communecter && service apache2 reload
+#Activation du vhost, du mod rewrite et rechargement du fichier de conf dans apache
+#Vhost activation, rewrite mod activation et apache config file reloading
+a2ensite communecter && a2enmod rewrite && service apache2 reload
 
 #Making the Data folder for MongoDB
 #Création du dossier accueillant la base de données
