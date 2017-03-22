@@ -22,7 +22,7 @@ input#second-search-bar{
     margin-top: 2px;
 }
 
-#btn-sethome, #btn-apropos{
+#btn-sethome, #btn-apropos, #btn-radio{
     background-color: transparent !important;
     border:transparent;
 }
@@ -207,6 +207,12 @@ input#second-search-bar{
             <i class="fa fa-question-circle fa-2x"></i>
         </a>
 
+        <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
+            id="btn-radio" style=" margin-top:6px;"  
+            data-target="#modalRadioTool" data-toggle="modal"
+            data-placement="bottom" title="Écouter la radio">
+            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/radio-ico.png" height="25">
+        </button>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
