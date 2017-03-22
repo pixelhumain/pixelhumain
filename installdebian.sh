@@ -41,10 +41,6 @@ php composer.phar update
 php composer.phar install
 cd ../../
 
-#Making all files availables from www-data
-#Attribution des droits www-data sur tous les dossiers
-chown -R www-data:www-data *
-
 #Rename the dbconfig file
 #Renommage du fichier de configuration de la bae de donnée
 mv pixelhumain/ph/protected/config/dbconfig.example.php pixelhumain/ph/protected/config/dbconfig.php 
@@ -117,6 +113,10 @@ unzip cities.json.zip
 mongoimport --db pixelhumain --collection cities cities.json --jsonArray;
 mongoimport --db pixelhumain --collection lists lists.json --jsonArray ;
 cd ../
+
+#Making all files availables from www-data
+#Attribution des droits www-data sur tous les dossiers
+chown -R www-data:www-data /var/www/web/*
 
 #Ajout de la tache cron pour l'envoi des mails
 #Adding sent mail job in cron
