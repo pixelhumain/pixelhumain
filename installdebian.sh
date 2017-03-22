@@ -74,8 +74,8 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond $1 !^(index\.php|assets|robots\.txt)
-RewriteCond \$\1 !^(index\.php|assets|robots\.txt)
-RewriteRule ^(.*)$ /ph/index.php/$1 [L]
+RewriteCond \$1\ !^(index\.php|assets|robots\.txt)
+RewriteRule ^(.*)$ /ph/index.php/\$1\ [L]
 </IfModule>
 
 </Directory>
