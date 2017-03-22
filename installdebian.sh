@@ -7,7 +7,7 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A145185
 echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/3.4 main" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 
 apt-get update
-apt-get install apache2 libapache2-mod-php5 php5 php5-common php5-dev php5-intl php5-gd php5-json git unzip mongodb-org php5-mongo curl screen -y
+apt-get install apache2 libapache2-mod-php5 php5 php5-common php5-dev php5-intl php5-gd php5-json git unzip mongodb-org php5-mongo curl -y
 
 #Création du dossier accueillant communecte et ses modules
 #Making folder web who hosting communecte and his modules
@@ -16,7 +16,19 @@ mkdir /var/www/web && mkdir /var/www/web/modules && cd /var/www/web
 #Clonage des dépôts
 #Cloning git repo
 git clone https://github.com/pixelhumain/pixelhumain
-cd pixelhumain/ph
+
+cd modules/
+git clone https://github.com/pixelhumain/citizenToolKit
+git clone https://github.com/pixelhumain/communecter
+git clone https://github.com/pixelhumain/network
+git clone https://github.com/pixelhumain/api
+git clone https://github.com/pixelhumain/opendata
+git clone https://github.com/pixelhumain/cityData
+cd ../
+
+#Mise à jour des composants
+#Updating components
+cd pixelhumain/ph/
 
 #Téléchargement de Composer
 #Downloading Composer
@@ -25,20 +37,9 @@ php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 
-#Mise à jour des composants
-#Updating components
 php composer.phar update
 php composer.phar install
 cd ../../
-
-cd /var/www/web/modules
-git clone https://github.com/pixelhumain/citizenToolKit
-git clone https://github.com/pixelhumain/communecter
-git clone https://github.com/pixelhumain/network
-git clone https://github.com/pixelhumain/api
-git clone https://github.com/pixelhumain/opendata
-git clone https://github.com/pixelhumain/cityData
-cd ../
 
 #Making all files availables from www-data
 #Attribution des droits www-data sur tous les dossiers
@@ -88,14 +89,14 @@ RewriteRule ^(.*)$ /ph/index.php/$1 [L]
 #Vhost activation et apache config file reloading
 a2ensite communecter && service apache2 reload
 
-#Lancement de mongod (BDD de communecter sous mongoDB)
-#Starting mongod (communecter Database Engine)
-mongod --fork --dbpath "/var/www/web/data/db" --logpath /var/log/mongod.log
-
 #Making the Data folder for MongoDB
 #Création du dossier accueillant la base de données
 mkdir data/
 mkdir data/db
+
+#Lancement de mongod (BDD de communecter sous mongoDB)
+#Starting mongod (communecter Database Engine)
+mongod --fork --dbpath "/var/www/web/data/db" --logpath /var/log/mongod.log
 
 #Création du script d'ajout de l'utilisateur pixelhumain
 #Making user adding script of pixelhumain user
