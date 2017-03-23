@@ -721,6 +721,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 	"About" => "A propos",
 
+	"Update Params" => "Mettre à jour vos paramètres",
+
 );
 
 ?>
