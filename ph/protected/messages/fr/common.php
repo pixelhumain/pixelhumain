@@ -744,6 +744,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 	"Update Params" => "Mettre à jour vos paramètres",
 
+<<<<<<< 8b4db599e9aa3849146f35389828b968bd841b0d
 	"Not specified" => "Non renseigné",
 	"Update general information" => "Mettre à jour les informations générales",
 	"Update description" => "Mettre à jour la description",
@@ -751,6 +752,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 	"General information" => "Informations générales",
 
+=======
+>>>>>>> Modif
 );
 
 ?>
