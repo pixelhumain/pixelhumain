@@ -363,6 +363,7 @@ return array(
 	"Be {what}" => "Être {what}",
 	"Following" => "Abonné",
 	"Become administrator" => "Devenir administrateur",
+	"Delete {what}" => "Supprimer {what}",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
@@ -594,6 +595,7 @@ return array(
 	"Tags" => "Tags",
 
 	"Change password" => "Changer votre mot de passe",
+	"Download your profil" => "Télécharger votre profil",
 	"Account info" => "Infos générales",
 	
 	"No attendee for this event" => "Aucun participant pour cet événement",
