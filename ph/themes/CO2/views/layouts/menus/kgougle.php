@@ -22,11 +22,11 @@ input#second-search-bar{
     margin-top: 2px;
 }
 
-#btn-sethome{
+#btn-sethome, #btn-apropos, #btn-radio{
     background-color: transparent !important;
     border:transparent;
 }
-#btn-sethome:hover{
+#btn-sethome:hover, #btn-apropos:hover{
     color:white!important;
     background-color: #ea4335 !important;
     border:transparent;
@@ -76,21 +76,21 @@ input#second-search-bar{
         </div>
 
         <?php if($subdomain == "live"){ ?>
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
+            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4" id="input-sec-search">
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
         
-        <?php }elseif($subdomain == "web"){ ?>
+        <?php }elseif($subdomain == "web" || $subdomain == "media"){ ?>
             
-            <div class="hidden-xs hidden-sm col-sm-5 col-md-4 col-lg-4">
+            <div class="hidden-xs hidden-sm col-sm-5 col-md-4 col-lg-4" id="input-sec-search">
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
             </div>
             <button class="btn btn-default hidden-xs hidden-sm pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
 
         <?php }elseif($subdomain == "social" || $subdomain == "page.type" || $subdomain == "freedom"){ ?>
             
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
+            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4" id="input-sec-search">
                 <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
@@ -189,17 +189,30 @@ input#second-search-bar{
 
         <?php if($subdomain == "web"){ ?>
             <button class="btn btn-link letter-yellow tooltips btn-star-fav pull-right font-montserrat"  
-                    data-placement="bottom" title="Afficher vos favoris"
+                    data-placement="bottom" title="Gérer vos favoris"
                     data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i>
-            </button> 
-
-            <a href="#info.p.sethome" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-xs" 
-                    id="btn-sethome" style=" margin-top:6px;"  
-                    data-placement="bottom" title="Utiliser Kgougle en page d'accueil sur votre navigateur">
-                    <i class="fa fa-plus"></i> <i class="fa fa-home fa-2x"></i>
-            </a>
+            </button>     
         <?php } ?>
 
+        <a href="#info.p.sethome" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-xs" 
+            id="btn-sethome" style=" margin-top:6px;"  
+            data-placement="bottom" title="Utiliser KGOUGLE en page d'accueil sur votre navigateur">
+            <i class="fa fa-plus"></i> <i class="fa fa-home fa-2x"></i>
+        </a>
+
+
+        <a href="#info.p.apropos" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-xs" 
+            id="btn-apropos" style=" margin-top:6px;"  
+            data-placement="bottom" title="A propos de KGOUGLE">
+            <i class="fa fa-question-circle fa-2x"></i>
+        </a>
+
+        <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
+            id="btn-radio" style=" margin-top:6px;"  
+            data-target="#modalRadioTool" data-toggle="modal"
+            data-placement="bottom" title="Écouter la radio">
+            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/radio-ico.png" height="25">
+        </button>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->

@@ -11,9 +11,15 @@
         margin-right: 57%;
         margin-top: -73px;
     }
-    .link-submenu-header{
-        text-transform: uppercase;
-        font-weight: 800;
+    a.link-submenu-header{
+        padding: 5px;
+    }
+    a.link-submenu-header.active, 
+    a.link-submenu-header:hover, 
+    a.link-submenu-header:active{  
+        border-bottom: 2px solid #ea4335;
+        color:#ea4335 !important;
+        text-decoration: none;
     }
 
     @media (max-width: 768px) {
@@ -51,20 +57,21 @@
                     <div class="intro-text">  
 
                         <div class="col-md-12 text-center main-menu-app" style="">
-                            <?php if($subdomainName != "web" && $subdomainName != "referencement") 
+                            <?php //if($subdomainName != "web" && $subdomainName != "referencement") 
                                     foreach ($params["pages"] as $key => $value) {
-                                        if(@$value["inMenu"]==true){ ?>
-                                        <a  class="lbh text-red homestead link-submenu-header  margin-right-25" 
-                                            href="<?php echo $key; ?>">
-                                            <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
-                                            <span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
-                                        </a>    
+                                        if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
+                                            <a  class="lbh text-red link-submenu-header margin-right-25 
+                                                        <?php if("#".$subdomain == $key) echo "active"; ?>" 
+                                                href="<?php echo $key; ?>">
+                                                <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+                                                <span class=""> <?php echo $value["subdomainName"]; ?></span>
+                                            </a>    
                             <?php       }
                                     }  
                             ?>
 
 
-                            <?php if($subdomainName == "web") { ?>
+                            <?php if(false && $subdomainName == "web") { ?>
                                     <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
                                         href="#info.p.apropos">
                                         <span class="">c koissa ?!?</span>

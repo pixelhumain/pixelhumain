@@ -146,6 +146,11 @@ header .container ,
     padding-top: 80px;
 	padding-bottom: 70px;
 }
+.link-submenu-header{
+    text-transform: uppercase;
+    /*font-weight: 800;*/
+	font-family: Homestead;
+}
 /*.intro-text a.menu-top {
     color: #34a853 !important;
 }*/
@@ -718,9 +723,7 @@ h3.title_panel_map{
 	font-size: 2em;
 	margin-top: -7px;
 }
-.form-in-map #newElement_country{
-	display: none;
-}
+
 #newElement_btnSearchAddress{
 	padding: 6px 0 !important;
 }
@@ -750,7 +753,9 @@ h3.title_panel_map{
 	width:95%!important;
 	max-width:95%!important;
 }
-
+#input-sec-search{
+	padding-right:0px;
+}
 .menu-btn-start-search{
 	border-radius: 50px;
 	height: 38px;
@@ -758,7 +763,7 @@ h3.title_panel_map{
 	margin-right: 4px;
 	background: #F3F3F3;
 	margin-top: 6px;
-	margin-left: -30px;
+	margin-left: -17px;
 	width: 65px;
 	padding-left: 20px;
 	-webkit-box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5);
@@ -1053,6 +1058,11 @@ h3.title_panel_map{
   .btn-menu-to-app.active{
 	border-bottom: 2px solid #e43636;
   }
+
+
+#main-search-bar-addon{
+    cursor: pointer;
+}
   
 @media screen and (max-width: 1024px) {
 	.menu-name-profil small{
@@ -1149,7 +1159,8 @@ h3.title_panel_map{
 		margin-right: 10px;
 	}
 	.main-menu-app {
-	    margin-bottom: 20px;
+	    margin-bottom: 35px !important;
+		margin-top: 15px !important;
 	}
 
 	.dropdown-main-menu{
@@ -1177,7 +1188,7 @@ h3.title_panel_map{
 	}
 
 
-	.scroll-top .btn {
+	/*.scroll-top .btn {
 	    font-size: 17px;
 	    width: 45px;
 		height: 45px;
@@ -1214,7 +1225,7 @@ h3.title_panel_map{
 	    bottom: 0%;
 	    width: 45px;
 		height: 45px;
-	}
+	}*/
 
 	#sub-menu-left{
         margin-top:10px;
