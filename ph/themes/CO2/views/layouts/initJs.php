@@ -144,12 +144,15 @@
                 if(typeof currentKFormType != "undefined")
                     $("#ajax-modal-modal-title").addClass("text-"+typeObj[currentKFormType].color);
                 
+                <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                 $(".locationBtn").on( "click", function(){
                      setTimeout(function(){
                         $('[name="newElement_country"]').val("NC");
                         $('[name="newElement_country"]').trigger("change");
                      },1000); 
                 });
+                <?php } ?>
+                
                 $(".locationBtn").html("<i class='fa fa-home'></i> Addresse principale")
                 $(".locationBtn").addClass("letter-red bold");
                 $("#btn-submit-form").removeClass("text-azure").addClass("letter-green");

@@ -351,11 +351,24 @@ return array(
 	"Not interested" => "Pas intéressé(e)",
 	"Accept" => "Accepter",
 	"Refuse" => "Refuser",
+	"Already {what}" => "Déjà {what}",
+	"Already admin" => "Déjà admin",
+	"Already following" => "Déjà abonné",
+	"Don't follow this page" => "Ne plus suivre cette page",
+	"Waiting"=>"En attente",
+	"Waiting an answer to administrate"=> "En attente de réponse to administrate",
+	"Waiting an answer to become {what}"=>"En attente de réponse pour devenir {what}",
+	"Leave this page" => "Quitter cette page",
+	"Favorites" => "Favoris",
+	"Be {what}" => "Être {what}",
+	"Following" => "Abonné",
+	"Become administrator" => "Devenir administrateur",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
 	"My newspaper" => "Mon journal",
 	"MY CITIZEN COUNCIL" => "Mon Conseil Citoyen",
+	"My notifications" => "Mes notifications",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
@@ -396,7 +409,7 @@ return array(
 	"Unfollow this project" 	=> "Ne plus suivre ce projet",
 	"Unfollow" 				=> "Ne plus suivre",
 	"Follow this Person" 	=> "Suivre cette personne",
-	"Follow" 				=> "Suivre",
+	"Follow" 				=> "S'abonner",
 	"Follow this person" => "Suivre cette personne",
 	"Follow this organization" => "Suivre cette organisation",
 	"Follow this project" => "Suivre ce projet",
@@ -679,6 +692,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Show map" => "Afficher sur la carte",
 	"Locality" => "Adresse",
 	"Localities" => "Adresses",
+	"Localitie(s)" => "Adresse(s)",
 	"Choose a country" => "Choisir un pays",
 	"Are you sure you want to delete the locality?" => "Etes-vous sûr de vouloir supprimer cette adresse?",
 	"Are you sure you want to delete the locality ? You can't vote anymore in the citizen council of your city." => "Etes vous sur de vous dé-communecter ? Vous ne pourrez plus voter dans le conseil citoyen de votre commune.",
@@ -717,6 +731,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 	"by" => "par",
 	"on" => "sur",
+
+	"About" => "A propos",
 
 );
 

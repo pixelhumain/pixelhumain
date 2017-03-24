@@ -40,8 +40,8 @@
 	margin:0px !important;
 }
 .form-group #name{
-	margin:3%;
-	width:94%;
+	/*margin:3%;
+	width:94%;*/
 	border: 1px solid #CBCBCB !important;
 	border-radius: 3px !important;
 	padding-left: 12px;
