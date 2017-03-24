@@ -365,10 +365,13 @@ return array(
 	"Following" => "Abonné",
 	"Become administrator" => "Devenir administrateur",
 	"Delete {what}" => "Supprimer {what}",
+<<<<<<< 9e104b5670796d7301b6f2b5bb760ecc27e53727
 	"New project" => "Nouveau projet",
 	"New event" => "Nouvel évènement",
 	"New point of interests" => "Nouveau point d'intérêts",
 	"Add points of interests to {what}" => "Ajouter des points d'intérêts à {what}",
+=======
+>>>>>>> fr trad
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
@@ -742,17 +745,12 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"About" => "A propos",
 
 	"Update Params" => "Mettre à jour vos paramètres",
-
-<<<<<<< 8b4db599e9aa3849146f35389828b968bd841b0d
 	"Not specified" => "Non renseigné",
 	"Update general information" => "Mettre à jour les informations générales",
 	"Update description" => "Mettre à jour la description",
 	"Update network" => "Mettre à jour les réseaux sociaux",
 
 	"General information" => "Informations générales",
-
-=======
->>>>>>> Modif
 );
 
 ?>
