@@ -18,7 +18,6 @@
 	//used in communecter.js dynforms
     var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
     var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
-    console.log("eventTypes", eventTypes);
     var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
     var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
     var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : "null"?>;
@@ -31,6 +30,9 @@
     var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
 
     var classifiedTypes = <?php echo json_encode( CO2::getContextList("classifiedCategories") ) ?>;
+
+    var placesFilters = <?php echo json_encode( CO2::getContextList("placesFilters") ) ?>;
+    var placeSections = <?php echo json_encode( CO2::getContextList("placeSections") ) ?>;
     //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     

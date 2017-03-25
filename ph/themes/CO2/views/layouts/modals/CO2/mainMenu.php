@@ -1,16 +1,24 @@
 
 <div class="portfolio-modal modal fade" id="openModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr"> <div class="rl"> </div> </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a href="javascript:;" onclick="$('#modalMainMenu').modal('show');"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" style="margin-bottom:20px;" class="pull-left" height=50></a>
+            </div>
+        </div>
         <div class="col-sm-12 container"></div>
         <div class="col-xs-12 text-center" style="margin-top:50px;">
         <?php 
-                if( isset( Yii::app()->session['userId']) ){
+            /*    if( isset( Yii::app()->session['userId']) ){
             ?> 
             <a href="javascript:;" style="font-size:25px;" class="btn btn-default letter-green bold " 
                                 data-target="#dash-create-modal" data-toggle="modal" id="">
                             <i class="fa fa-arrow-circle-right"></i> Savoir plus
                         </a>
-            <?php } ?> 
+            <?php }*/ ?> 
             <hr>
             <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal">
             <i class="fa fa-times"></i> Retour</a>
@@ -89,7 +97,7 @@
 
                 <a href="#annonces" class="lbh btn-main-menu col-xs-3" data-type="classified" date-target="#modalMainMenu" data-dismiss="modal">
                     <div class="modal-body text-left">
-                        <h2 class="text-orange"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
+                        <h2 class="text-azure"><i class="fa fa-bullhorn fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> ANNONCES</span>
                         </h2>
                         

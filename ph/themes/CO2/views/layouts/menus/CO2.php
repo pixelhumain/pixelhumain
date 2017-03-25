@@ -16,7 +16,8 @@
                   $subdomain == "agenda" ||
                   $subdomain == "power"  ||
                   $subdomain == "annonces"||
-                  $subdomain == "page" ){ ?>
+                  $subdomain == "page" ||
+                  $subdomain == "place" ){ ?>
         
             <div id="input-sec-search" class="hidden-xs col-sm-5 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
