@@ -35,7 +35,7 @@ $params = array(
     //By default controller
     'defaultController' => 'communecter',
     // Mail configuration
-    'adminEmail'=>'testmail.pixelhumain@gmail.com',
+    'adminEmail'=>'tango@communecter.org',
     'forceMailSend' => true,
     //UPLOAD Management Configuration
     //upload url without the base URL
