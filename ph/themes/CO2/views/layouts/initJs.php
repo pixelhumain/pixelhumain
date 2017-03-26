@@ -34,6 +34,9 @@
 
     var placesFilters = <?php echo json_encode( CO2::getContextList("placesFilters") ) ?>;
     var placeSections = <?php echo json_encode( CO2::getContextList("placeSections") ) ?>;
+
+    var rscSections = <?php echo json_encode( CO2::getContextList("ressource") ) ?>;
+
     //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     
