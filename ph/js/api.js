@@ -279,6 +279,25 @@ function inArray(needle, haystack) {
   return false;
 }
 
+/*var list = [];
+jsonHelper.getKeys = function(obj)
+{
+  list = Object.keys(obj);
+  $.each( obj,function(k,v)
+  {
+    if(v.subtype)
+    {
+      var s = jsonHelper.getKeys(v.subtype);
+      $.each( s ,(i,ki){
+        list.push(ki);
+      });
+    }
+  })
+  return list;
+} 
+jsonHelper.getKeys(typeObj);
+*/
+
 /* ------------------------------- */
 
 function intersection_destructive(array1, array2)
