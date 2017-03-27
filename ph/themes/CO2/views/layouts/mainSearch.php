@@ -110,6 +110,8 @@
                 '/plugins/jquery-cookie/jquery.cookie.js' , 
                 '/plugins/lightbox2/css/lightbox.css',
                 '/plugins/lightbox2/js/lightbox.min.js',
+                '/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , 
+                   '/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css',
                 '/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
                 '/plugins/ladda-bootstrap/dist/spin.min.js' , 
                 '/plugins/ladda-bootstrap/dist/ladda.min.js' , 
@@ -179,11 +181,9 @@
         <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() {
-
                 url.loadableUrls = <?php echo json_encode($params["pages"]); ?>;
                 themeObj.init();
                 url.loadByHash(location.hash,true);
-
             });
         </script>
 

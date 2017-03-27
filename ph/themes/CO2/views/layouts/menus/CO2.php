@@ -18,7 +18,7 @@
                   $subdomain == "annonces"||
                   $subdomain == "page" ){ ?>
         
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-5 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo $placeholderMainSearch; ?>">
                 <?php if($subdomain == "page"){ ?>
@@ -197,5 +197,15 @@
 <script>
 jQuery(document).ready(function() {    
     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
+    $('#modalMainMenu').on('show', function (e) {alert();
+            $(".btn-main-menu").mouseenter(function(){
+                
+                if( $(this).data("type") ){
+                    alert( $(this).data("type") );
+                    $(".menuSection2").addClass("hidden");
+                    $("."+$(this).data("type")+"Section2").removeClass("hidden");
+                }
+            });
+        });
 });
 </script> 

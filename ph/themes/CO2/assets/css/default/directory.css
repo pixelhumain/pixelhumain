@@ -69,7 +69,7 @@
     position: absolute;
     right: 15px;
     top: 0px;
-    background: #2a2a2ab3;
+    background: rgba(0,0,0,0.7);
     padding: 2px 8px;
     border-radius: 0px 0px 0px 7px;
     font-size: 12px;
@@ -281,7 +281,9 @@
     overflow: hidden;
   } 
 
-
+  .events .searchEntity{
+    background-color: rgba(211, 211, 211, 0.2) !important;
+  }
   .searchEntity{
     padding: 0px !important;
     margin: 0px !important;

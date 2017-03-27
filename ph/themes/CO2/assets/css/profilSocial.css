@@ -15,7 +15,7 @@
 .profilSocial .blockUsername {
     bottom: 0;
     color: #ffffff;
-    padding: 30px 15px 4px;
+    padding: 30px 0px 0px;
     position: absolute;
     width: 100%;
     text-shadow: 1px 1px 2px #000000;
@@ -66,11 +66,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     transition: all 0.4s ease;
     text-decoration: none !important;
      display: list-item;
-     background-color: rgba(255, 255, 255, 0.1)
+     background-color: rgba(255, 255, 255, 0.6) !important;
 }
 .edit-pic a:hover {
    font-size: 17px;
    opacity: 0.9;
+ background-color: rgba(255, 255, 255, 0.9) !important;
   }
 .edit-pic a:focus {
    background:#0095FF;
@@ -136,13 +137,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     transition: all 0.4s ease;
 }
 .btn-o:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.4) !important;
     color: #fff !important;
   }
 .btn-o:focus {
-   background:#0095FF;
+   background:#0095FF !important;
     color: #fff;
-    border: 1px solid #0095FF;
+    border: 1px solid #0095FF !important;
 }
 .submenu .iamgurdeeposahan {
     background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0 !important;
