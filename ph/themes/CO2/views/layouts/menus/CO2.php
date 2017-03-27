@@ -142,8 +142,9 @@
                             <span><i class="fa fa-sign-in"></i> SE CONNECTER</span>
                         </button>
                         <button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
-                                data-toggle="modal" data-target="#modalLogin" style="font-size:20px;">
-                            <span><i class="fa fa-sign-in"></i></span>
+                                data-toggle="modal" data-target="#modalLogin">
+                            <span><i class="fa fa-sign-in fa-2x"></i></span>
+
                         </button>
                     </li>
                 <?php } ?>
