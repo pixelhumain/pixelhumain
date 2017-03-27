@@ -26,9 +26,6 @@ return array(
     	'vendor' => realpath(__DIR__ . '/../../vendor/'),
     	'mongoYii' => realpath(__DIR__ . '/../../vendor/sammaye/mongoyii'),
     	'recaptcha' => realpath(__DIR__ . '/../../vendor/google/recaptcha/src/ReCaptcha'),
-    	'bootstrap' => realpath(__DIR__ . '/../../vendor/2amigos/yiistrap'),
-		'yiiwheels' => realpath(__DIR__ . '/../../vendor/2amigos/yiiwheels'), 
-        'mandrill' => realpath(__DIR__ . '/../../vendor/mandrill/mandrill/src'), 
         'citizenToolKit' => realpath(__DIR__ . $modulesDir.'/citizenToolKit'), 
     ),
     'controllerMap'=>array(
@@ -43,7 +40,6 @@ return array(
         'citizenToolKit.components.*',
         'citizenToolKit.messages.*',
 
-		'bootstrap.helpers.TbHtml',
     	'ext.mail.YiiMailMessage',
         'ext.mail.YiiMail',
     	'ext.mobile.Mobile_Detect',
@@ -56,18 +52,6 @@ return array(
         //'ext.easyrdf.lib.*'
 	),
 	'modules'=>array_merge($activeModules,array(
-
-		// uncomment the following to enable the Gii tool
-		/*'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'Enter Your Password Here',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
-        	'generatorPaths' => array('bootstrap.gii'),
-		),*/
-		/*'importcsv'=>array(
-            'path'=>'upload/importCsv/', // path to folder for saving csv file and file with import params
-        ),*/
 		'opauth' => array(
             'opauthParams' => array(
                 'security_salt' => '322e94bf816b18a9d85b0d70274af5614efd3748a10170c9be6c2b3c16bb1500',
@@ -100,9 +84,6 @@ return array(
 
 	// application components
 	'components'=>array(
-        /*'themeManager' => array(
-            'basePath' => realpath(__DIR__ . $modulesDir)."/granddir/themes"
-        ),*/
 		'communecter' => array(
             'class'=>'CPhpMessageSource',
             'basePath'=>realpath(__DIR__ .$modulesDir.'communecter/messages')
@@ -110,14 +91,6 @@ return array(
 		'session' => array(
             'timeout' => 86400,
         ),
-        //'session' => [
-            //'class' => 'yii\web\DbSession',
-            // 'db' => 'mydb',
-            // 'sessionTable' => 'my_session',
-        //]
-        /*'request'=>array(
-            'enableCsrfValidation'=>true,
-        ),*/
         'user'=>array(
             'allowAutoLogin'    => true,
             'autoRenewCookie'   => true,
@@ -134,21 +107,12 @@ return array(
 			'showScriptName'=>false,
 			'caseSensitive'=>false,
 			'rules'=>array(
-				/*'<action>'=>'site/<action>',*/
                '' => @$params['defaultController'],
                '<controller:\w+>/<id:\d+>' => '<controller>/view',
                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 			),
 		),
-		/*'db' => array(
-			'connectionString' => $mysqldbconfig['db.connectionString'],
-			'username' => $mysqldbconfig['db.username'],
-			'password' => $mysqldbconfig['db.password'],
-			//'schemaCachingDuration' => YII_DEBUG ? 0 : 86400000, // 1000 days
-			//'enableParamLogging' => YII_DEBUG,
-			'charset' => 'utf8'
-		),*/
         'mongodb' => $dbconfig,
         //'mongodb' => $dbconfigtest,
 		'errorHandler'=>array(
@@ -174,9 +138,6 @@ return array(
 		'bootstrap' => array(
             'class' => 'bootstrap.components.TbApi',   
         ),
-        'yiiwheels' => array(
-            'class' => 'yiiwheels.YiiWheels',   
-        ),
         'ePdf' => array(
             'class'         => 'ext.yii-pdf.EYiiPdf',
             'params'        => array(
@@ -199,6 +160,4 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>$params
-
-	//'jsonParams' => getParams("notragora")
 );
