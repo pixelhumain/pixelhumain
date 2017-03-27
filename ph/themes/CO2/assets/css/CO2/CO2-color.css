@@ -23,7 +23,6 @@
 .letter-turq{
     color: #229296!important;
 }
-
 .letter-k{
     font-size: 1.2em;
 }
@@ -222,3 +221,6 @@ hr.angle-down {
     max-width: 250px;
     margin: 25px auto 30px;
 }
+
+
+.text-red-light-moderation{ color:#cbb4b2!important; }
