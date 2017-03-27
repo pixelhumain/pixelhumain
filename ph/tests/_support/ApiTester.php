@@ -23,4 +23,11 @@ class ApiTester extends \Codeception\Actor
    /**
     * Define custom actions here
     */
+    public function login($email, $password)
+    {
+        $I = $this;
+        $I->haveHttpHeader('Content-Type', 'application/x-www-form-urlencoded');
+		$I->sendPOST('/person/authenticate', ['email' => $email, 'pwd' => $password]);
+		$I->seeResponseCodeIs("200");
+    }
 }
