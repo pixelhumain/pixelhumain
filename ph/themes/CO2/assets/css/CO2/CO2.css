@@ -148,8 +148,8 @@ header .container ,
 }
 .link-submenu-header{
     text-transform: uppercase;
-    /*font-weight: 800;*/
-	font-family: Homestead;
+    font-weight: 800;
+	/*font-family: Homestead;*/
 }
 /*.intro-text a.menu-top {
     color: #34a853 !important;
