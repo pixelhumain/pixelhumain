@@ -177,7 +177,7 @@
 
 .searchEntity .entityRight .entityName{
   font-size:13px;
-  line-height: 17px;
+  line-height: 19px;
   font-weight: 600;
   display: block;
   overflow: hidden;
@@ -257,8 +257,8 @@
     margin-bottom: 25px !important;
   }
   .searchEntityContainer.classified{
-    min-height: 375px !important;
-    max-height: 375px !important;
+    min-height: 500px !important;
+    max-height: 455px !important;
     margin-bottom: 25px !important;
   }
   .searchEntityContainer.classified .entityName{
@@ -377,6 +377,12 @@
     background-color: #f3f3f3;
     text-align: center;
   }
+
+
+  .classified .container-img-profil{
+    max-height: 300px;
+  }
+
     .events .container-img-profil{
       min-height:110px;
       max-height: unset;

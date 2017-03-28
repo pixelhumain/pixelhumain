@@ -53,7 +53,9 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-left col-footer">
                     <h5><i class="fa fa-info-circle hidden-xs"></i> Informations générales</h5>
-                    <a href="#info.p.cgu" class="lbh text-white"><i class="fa fa-angle-right"></i> Conditions d'utilisations</a><br>
+                    <a href="../doc/Conditions Générales d'Utilisation.pdf" class="text-white">
+                        <i class="fa fa-angle-right"></i> Conditions d'utilisations
+                    </a><br>
                     <a href="#info.p.apropos" class="lbh text-white"><i class="fa fa-angle-right"></i> A propos</a><br>
                     <a href="#info.p.alphatango" class="lbh text-white"><i class="fa fa-angle-right"></i> Alpha Tango</a><br><br>
 
