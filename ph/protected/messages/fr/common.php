@@ -323,6 +323,7 @@ return array(
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
+	"Points of interests" => "Points d'intérêts",
 	
 	"persons" => "citoyens",
 	"people" => "citoyens",
@@ -364,6 +365,10 @@ return array(
 	"Following" => "Abonné",
 	"Become administrator" => "Devenir administrateur",
 	"Delete {what}" => "Supprimer {what}",
+	"New project" => "Nouveau projet",
+	"New event" => "Nouvel évènement",
+	"New point of interests" => "Nouveau point d'intérêts",
+	"Add points of interests to {what}" => "Ajouter des points d'intérêts à {what}",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
