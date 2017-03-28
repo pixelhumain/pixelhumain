@@ -32,13 +32,11 @@
     $communexion = CO2::getCommunexionCookies();  
     if($communexion["state"] == false){
 ?>
-	
 	<!-- <i class="fa fa-<?php echo @$icon; ?> fa-3x"></i><br> -->
 	<a href="#web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
 	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="60" class="inline margin-bottom-15">
 	</a>
-
-	<!-- <br> -->
+	<br>
 <?php }else{ ?>
 	<h1 class="text-red homestead">
 		<!-- <button class="btn btn-link tooltips btn-decommunecter"
@@ -57,7 +55,8 @@
 <small class="text-dark homestead pastille-subdomain hidden"><?php echo @$subdomainName; ?> 
 </small>
 <br>-->
-<h3 class="text-dark homestead" style="font-size:20px; margin-top:0px;">
+
+<div class="text-dark" style="font-size:20px; margin-bottom:10px;">
 	<i class="fa fa-<?php echo @$icon; ?>"></i>
 	<?php echo $mainTitle; ?> 
 	<?php if($communexion["state"] == false && @$type != "cities"){ ?>
@@ -70,5 +69,5 @@
 			<i class="fa fa-university"></i>
 	</button>
 	<?php } ?>
-	</h3>
+</div>
 
