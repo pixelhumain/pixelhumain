@@ -26,29 +26,17 @@
 
 #onepage .bulle-desc {
     padding: 8px 15px;
-    max-height: 80px;
+    max-height: 75px;
     border-radius: 3px;
     margin-left:0px;
     max-width: 65%;
-    -webkit-box-shadow: 0px 0px 11px -7px rgba(0, 0, 0, 0.63);
-	-moz-box-shadow: 0px 0px 11px -7px rgba(0, 0, 0, 0.63);
-	box-shadow: 0px 0px 11px -7px rgba(0, 0, 0, 0.63);
-    /*overflow-y: hidden;*/
-}
-#onepage .bulle-desc #shortDescriptionHeader{
-	max-height: 65px;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 .bulle-desc.arrow_box::after, 
 .bulle-desc.arrow_box::before{
 	left: 5%;
 }
 
-#main-name-element{
-	-webkit-box-shadow: 0px 0px 11px -7px rgba(0, 0, 0, 0.63);
-	-moz-box-shadow: 0px 0px 11px -7px rgba(0, 0, 0, 0.63);
-	box-shadow: 0px 0px 11px -7px rgba(0, 0, 0, 0.63);
-}
 #onepage .header img{
 	max-height:250px;
 }
