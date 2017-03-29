@@ -100,11 +100,6 @@ jQuery(document).ready(function() {
 		sendEmail();
 	});
 
-	$('#emailSender').filter_input({regex:'[^<>#\"\`/\(|\)/\\\\]'});
-	$('#name').filter_input({regex:'[^<>#\"\`/\(|\)/\\\\]'});
-	$('#message').filter_input({regex:'[^<>#\"\`/\(|\)/\\\\]'});
-	$('#subject').filter_input({regex:'[^<>#\"\`/\(|\)/\\\\]'});
-
 	$("#captcha").realperson({length: 4});
 });
 
