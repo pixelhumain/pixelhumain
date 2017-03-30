@@ -248,6 +248,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     transition: all 0.4s ease;
 }
 
+
+.profilSocial .accordion li .link  i.fa-cog {
+    right: 32px;
+    left:unset;
+    font-size: 15px;
+}
+
 .profilSocial .accordion li i.fa-chevron-down,
 .profilSocial .accordion li i.fa-chevron-right {
     right: 12px;
