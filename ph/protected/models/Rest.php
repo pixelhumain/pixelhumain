@@ -21,6 +21,97 @@ class Rest
 		else
 			echo json_encode( $res, $param );  
 	}
+
+	// function to convert array to xml
+	public static function array_to_xml( $data, $xml_data, $format="xml") {		
+
+	    foreach($data as $key => $value) {
+	    	if ($format == Translate::FORMAT_KML) {
+	    		$key = 'Folder';
+
+	    	}
+	    	if( is_numeric($key) ){
+            $key = 'Placemark';
+        	}
+	    	
+	        if( $format == Translate::FORMAT_RSS ){
+	            $key = 'item'; 
+	            
+	        }
+	        if( is_array($value) ) {
+	            $subnode = $xml_data->addChild($key);
+	            self::array_to_xml($value, $subnode);
+
+	        } else {
+
+	            $xml_data->addChild("$key",htmlspecialchars("$value"));
+
+	            if ($key == "img") {
+
+	            	$img = $xml_data->children();
+
+	            	$img->addAttribute('src',$value);
+
+					// $img = $xml_data->addChild('img', '');
+
+	            } elseif ($key == "enclosure") {
+
+
+	            	if (isset($xml_data)) {
+
+	            	foreach ($xml_data->children() as $parent => $child){ 
+	            		if ($parent == "enclosure") {
+
+
+	            			$child->addAttribute('url',$value);
+	            			$child->addAttribute('type', 'image/jpeg');
+	            			// $child->addAttribute('length', '34870');
+
+	      
+	      					//$y = $child.childNodes[0];
+							// $child.removeChild($y);
+							// unset($child['0']['0']); 
+
+							// var_dump($child['0']);
+	            			
+
+	            		}
+
+	            	}
+
+	            }
+	            	
+
+	            	
+
+	            }
+	            //var_dump($xml_data);
+	            
+	        }
+	    }
+
+
+	    return $xml_data;
+	}
+
+	public static function xml($res, $xml_element, $format) { 
+
+		header("Content-type: text/xml");
+
+		if ($format == Translate::FORMAT_KML) {
+
+			$res2["Folder"] = array();
+			array_push($res2["Folder"], $res);
+
+			$res = $res2["Folder"];
+			
+		}
+
+		$xml_inter = self::array_to_xml( $res, $xml_element, $format );
+		$xml_result = $xml_inter -> asXML();
+
+		echo $xml_result;
+	}
 	
 	public static function sendResponse($status = 200, $body = '', $content_type = 'text/html')
 	{
