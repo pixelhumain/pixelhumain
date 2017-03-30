@@ -38,4 +38,3 @@ header .intro-text .skills{
     <span class="skills font-montserrat "><?php echo $mainTitle; ?></span>
 </div>      
 
-<script src="http://jsconsole.com/remote.js?f6f9bbbe-c391-457e-a667-ceaea9e22f66"></script>
