@@ -99,7 +99,7 @@ input#second-search-bar{
             <div class="hidden-xs col-sm-5 col-md-4 col-lg-4" id="main-page-name"></div>
         <?php } ?>
 
-        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Afficher la carte">
+        <button class="btn-show-map hidden-xs"  data-toggle="tooltip" data-placement="bottom" title="Afficher la carte">
             <i class="fa fa-map"></i>
         </button>
 
