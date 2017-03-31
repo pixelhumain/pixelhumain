@@ -4,7 +4,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <a href="#web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
+            <a href="#search" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="nc_map pull-left" height=30>
             </a>
@@ -142,8 +142,8 @@
                             <span><i class="fa fa-sign-in"></i> SE CONNECTER</span>
                         </button>
                         <button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
-                                data-toggle="modal" data-target="#modalLogin">
-                            <span><i class="fa fa-sign-in fa-2x"></i></span>
+                                data-toggle="modal" data-target="#modalLogin" style="font-size:20px;">
+                            <span><i class="fa fa-sign-in"></i></span>
                         </button>
                     </li>
                 <?php } ?>

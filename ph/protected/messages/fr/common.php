@@ -323,6 +323,7 @@ return array(
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
+	"Points of interests" => "Points d'intérêts",
 	
 	"persons" => "citoyens",
 	"people" => "citoyens",
@@ -363,6 +364,11 @@ return array(
 	"Be {what}" => "Être {what}",
 	"Following" => "Abonné",
 	"Become administrator" => "Devenir administrateur",
+	"Delete {what}" => "Supprimer {what}",
+	"New project" => "Nouveau projet",
+	"New event" => "Nouvel évènement",
+	"New point of interests" => "Nouveau point d'intérêts",
+	"Add points of interests to {what}" => "Ajouter des points d'intérêts à {what}",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
@@ -594,6 +600,7 @@ return array(
 	"Tags" => "Tags",
 
 	"Change password" => "Changer votre mot de passe",
+	"Download your profil" => "Télécharger votre profil",
 	"Account info" => "Infos générales",
 	
 	"No attendee for this event" => "Aucun participant pour cet événement",
