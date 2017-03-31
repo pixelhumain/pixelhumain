@@ -87,7 +87,7 @@ function getAjax(id,ajaxUrl,callback,datatype,blockUI)
               timeout: 3000 
           });
           //mylog.log("URL : ", url);
-          setTimeout(function(){ajaxUrl.loadByHash('#')},3000);
+          setTimeout(function(){url.loadByHash('#')},3000);
           if(blockUI)
             $.unblockUI();
         } 

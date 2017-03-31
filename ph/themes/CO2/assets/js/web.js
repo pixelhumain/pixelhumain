@@ -16,7 +16,9 @@ function startWebSearch(search, category){
     $("#second-search-bar").val(search);
     $("#mainCategories").hide();
     $("#sectionSearchResults").removeClass("hidden");
-    $("#searchResults").html("<i class='fa fa-spin fa-refresh'></i> recherche en cours. Merci de patienter quelques instants...");
+    $("#searchResults").html("<div class='col-md-12 margin-top-25'>"+
+                                "<i class='fa fa-spin fa-refresh'></i> recherche en cours. Merci de patienter quelques instants..."+
+                             "</div>");
 
     KScrollTo("#sectionSearchResults");
     
@@ -74,7 +76,7 @@ function buildListCategories(){
 
         $.each(params.items, function(keyC, val){
             //console.log(keyC, val);
-            html +=             '<div class="col-sm-3 col-xs-6 portfolio-item">'+
+            html +=             '<div class="col-sm-3 col-xs-4 portfolio-item">'+
                                     '<button class="portfolio-link category-search-link" data-category="'+val.name+'">'+
                                         '<div class="caption">'+
                                             '<div class="caption-content">'+
