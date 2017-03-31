@@ -1087,8 +1087,13 @@ h3.title_panel_map{
 	}
 
 	.navbar-custom.affix .navbar-brand{
-		display: none;
+		padding:0px;
 	}
+	.navbar-custom.affix .navbar-brand img{
+		max-height: 24px;
+		height: 24px;
+	}
+
 	header .intro-text .name, 
 	.header .intro-text .name, 
 	.portfolio-modal.modal .name {
