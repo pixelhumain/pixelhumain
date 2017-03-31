@@ -9,8 +9,8 @@ MongoDB : 2.6.X (tested version - minimum)
 Mongo Driver : 1.4.5 (tested version - minimum)
 
 
-##Installation
-####Configure your php
+## Installation
+### Configure your php
 Verify your php configuration is right done lauching the command line
 ```
 php --ini
@@ -18,7 +18,7 @@ php --ini
 The php.ini specified in the "Loaded Configuration File" option should be the right one.
 Check in this php.ini file the openssl extension is activated.
 
-####must install a Php webserver
+### must install a Php webserver
 Choose your favorite webserver (apache) or package (easyPhp, Wamp...)
 Edit the httpd.conf file and activate the line
 ```
@@ -53,7 +53,7 @@ extension=php_mongo-1.4.1-5.3-vc9.dll
  * [manuel d'installation officiel PHP](http://www.php.net/manual/fr/mongo.installation.php)
 
 
-####install a mongo Database instance and admin tool
+#### install a mongo Database instance and admin tool
 - [Mongo installation](http://docs.mongodb.org/manual/installation/)
 - [Mongo administration-interfaces](http://docs.mongodb.org/ecosystem/tools/administration-interfaces/)
 - [many of us use ROBOMONGO](http://robomongo.org/)
@@ -68,7 +68,7 @@ mongod --dbpath data/db
  - use pixelhumain
  - db.addUser( "pixelhumain","pixelhumain" )
 
-####Composer installation
+#### Composer installation
 PixelHumain is set with composer in order to manage dependencies and libraries.
 - [Clone](https://github.com/pixelhumain/pixelhumain) the repository in order to recover the files
 - If you don't have it get the composer (https://getcomposer.org/)
@@ -91,11 +91,11 @@ composer update
 composer install
 ```
 
-####Add the module citizenToolKit
+#### Add the module citizenToolKit
 
 To launch the application, you need to install the module citizenToolKit. See below to see how to install modules.
 
-####Launch the application
+#### Launch the application
 - Launch you http webserver
 - depending on how you webservers alias is configured here the alias is called ''ph'' and pointing to the folder you cloned test this url :
 http://localhost:8080/ph/index.php/test
@@ -124,7 +124,7 @@ RewriteRule ^(.*)$ /ph/index.php/$1 [L]
 </Directory>
 ```
 
-####Adding a Module
+#### Adding a Module
 - at the same level of the /pixelhumain folder , create a folder called /modules
 ```
 /pixelhumain
@@ -153,7 +153,7 @@ Change to the folder modules/communecter/data is run the following commands:
 
 YOU SUCCEED ! READY TO CODE NOW !
 
-####Understanding the structure and Yii
+#### Understanding the structure and Yii
 Now you can follow urls to understand and dive into the code, which is a fairly standard and simple MVC
 ex : 127.0.0.1/ph/communecter/person/profile
 - "communecter" is the module
@@ -166,16 +166,16 @@ ex : 127.0.0.1/ph/communecter/person/profile
 * city page : List local actors(directory), local Places
 * people page :
 
-##Roadmap short term
+## Roadmap short term
 * add a person/citizen
 * add and Association, Company
 * add a State entity (city, county...)
 
-##Document before coding
+## Document before coding
 Make a good habit of writing a doc or a doc corrected before embarking in the code.
 This avoids a tedious task of writing a doc after hit.
 
-##More info
+## More info
 * [Specific readme.md for Mac OSX](https://github.com/pixelhumain/pixelhumain/blob/master/README_macOs.md/)
 * [le site](http://www.pixelhumain.com/)
 * [le blog](http://blog.pixelhumain.com/)
@@ -195,6 +195,6 @@ Help keep this project alive
 ===========
 contribute or Join the NGO on [Hello Asso](https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas)
 
-##Version 0.002
+## Version 0.002
     L'homme qui déplace une montagne commence par déplacer les petites pierres.- Confucius
     Man who wants to move a mountain starts by moving pebbles
