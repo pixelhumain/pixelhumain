@@ -78,16 +78,26 @@ function getAjax(id,url,callback,datatype,blockUI)
             $.unblockUI();
         },
         error:function (xhr, ajaxOptions, thrownError){
-          //mylog.error(thrownError);
-          $.blockUI({
-              message : '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> Oups !! 404 ERROR<br> La page que vous demandez ne peut être trouvée ... </div>'
+          var autoReload = true;
+          var message = '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> Oups !! 404 ERROR<br> La page que vous demandez ne peut être trouvée ... </div>'
               +'<a class="thumb-info" href="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" data-title="Il n\'existe pas d\'évolution sans erreur."  data-lightbox="all">'
-              + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>',
-              timeout: 3000 
+              + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>'
+          
+          //message need to be displayed to the user
+          if (notNull(xhr.responseText)) {
+            message = '<div class="title-processing homestead text-red">'+xhr.responseText+'</div><button class="center btn btn-secondary" onclick="loadByHash(\'#\')">Ok</button><br>';
+            autoReload = false;
+          }
+          
+          $.blockUI({
+              message,
           });
-          setTimeout(function(){loadByHash('#')},3000);
-          if(blockUI)
-            $.unblockUI();
+          
+          if (autoReload) {
+            setTimeout(function(){loadByHash('#')},3000);
+            if(blockUI)
+              $.unblockUI();
+          }
         } 
     });
 }
