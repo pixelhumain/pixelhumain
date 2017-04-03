@@ -4,7 +4,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <a href="#web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
+            <a href="#search" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="nc_map pull-left" height=30>
             </a>

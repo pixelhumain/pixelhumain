@@ -231,6 +231,19 @@ onSave: (optional) overloads the generic saveProcess
 	       	};
        	}
 
+       	/* **************************************
+		* RADIO
+		***************************************** */
+        else if ( fieldObj.inputType == "radio" ) {
+   			
+	       	mylog.log("build field "+field+">>>>>> radio");
+	       	fieldHTML += '<div class="btn-group" data-toggle="buttons">';
+	       	value = ( (typeof fieldObj.value != "undefined") ? fieldObj.value : value ) ;
+	       	if(fieldObj.options)
+	       		fieldHTML += buildRadioOptions(fieldObj.options,value, field) ;
+	       	fieldHTML += '</div>';
+       	}
+
 
         /* **************************************
 		* SELECT , we use select2

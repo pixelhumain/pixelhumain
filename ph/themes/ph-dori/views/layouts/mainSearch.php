@@ -495,7 +495,10 @@
 		  		$(".btn-menu2, .btn-menu3, .btn-menu4, .btn-menu9 ").show(400);
 		  	}
 		  	
-		  	$('#btn-toogle-map').click(function(e){ showMap();  	});
+		  	$('#btn-toogle-map').click(function(e){ Sig.showMapElements(Sig.map, contextMap); showMap();
+
+		  	  	}); 
+
 		    $('.main-btn-toogle-map').click(function(e){ showMap(); });
 
 		    $("#mapCanvasBg").show();
