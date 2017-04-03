@@ -748,6 +748,12 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Update network" => "Mettre à jour les réseaux sociaux",
 
 	"General information" => "Informations générales",
+	"Not specified" => "Non renseigné",
+	"Update general information" => "Mettre à jour les informations générales",
+	"Update description" => "Mettre à jour la description",
+	"Update network" => "Mettre à jour les réseaux sociaux",
+
+	"General information" => "Informations générales"
 );
 
 ?>
