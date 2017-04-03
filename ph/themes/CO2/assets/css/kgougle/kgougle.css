@@ -25,3 +25,14 @@ header, .header {
 .form-in-map #newElement_country{
 	display: none;
 }
+
+
+
+
+@media (max-width: 768px) {
+
+    .navbar-header{
+        padding: 2px 10px;
+    }
+
+}
