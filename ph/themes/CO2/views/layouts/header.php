@@ -11,7 +11,16 @@
         margin-right: 57%;
         margin-top: -73px;
     }
-    
+    a.link-submenu-header{
+        padding: 5px;
+    }
+    a.link-submenu-header.active, 
+    a.link-submenu-header:hover, 
+    a.link-submenu-header:active{  
+        border-bottom: 2px solid #ea4335;
+        color:#ea4335 !important;
+        text-decoration: none;
+    }
 
     @media (max-width: 768px) {
         #main-input-group{
@@ -51,10 +60,11 @@
                             <?php //if($subdomainName != "web" && $subdomainName != "referencement") 
                                     foreach ($params["pages"] as $key => $value) {
                                         if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
-                                            <a  class="lbh text-red link-submenu-header margin-right-25" 
+                                            <a  class="lbh text-red link-submenu-header margin-right-25 
+                                                        <?php if("#".$subdomain == $key) echo "active"; ?>" 
                                                 href="<?php echo $key; ?>">
                                                 <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
-                                                <span class="hidden-xs"> <?php echo $value["subdomainName"]; ?></span>
+                                                <span class=""> <?php echo $value["subdomainName"]; ?></span>
                                             </a>    
                             <?php       }
                                     }  
@@ -97,7 +107,7 @@
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
-                            <button class="btn btn-default" id="main-btn-start-search">
+                            <button class="btn btn-default hidden-xs" id="main-btn-start-search">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button>
 
@@ -113,7 +123,7 @@
                             </div>
 
                             
-                            <button class="btn btn-default btn-directory-type" id="main-btn-start-search" 
+                            <button class="btn btn-default btn-directory-type hidden-xs" id="main-btn-start-search" 
                                     data-type="<?php echo @$type; ?>">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button> 

@@ -133,9 +133,9 @@ onSave: (optional) overloads the generic saveProcess
 			required = "*";
 
 		if(fieldObj.label)
-			fieldHTML += '<label class="col-md-12 text-left control-label no-padding" for="'+field+'">'+
-              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+
-            '</label>';
+			fieldHTML += '<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="'+field+'">'+
+			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+
+			            '</label>';
 
         var iconOpen = (fieldObj.icon) ? '<span class="input-icon">'   : '';
         var iconClose = (fieldObj.icon) ? '<i class="'+fieldObj.icon+'"></i> </span>' : '';
@@ -168,7 +168,8 @@ onSave: (optional) overloads the generic saveProcess
         else if( !fieldObj.inputType || 
         		  fieldObj.inputType == "text" || 
         		  fieldObj.inputType == "numeric" || 
-        		  fieldObj.inputType == "tags" ) {
+        		  fieldObj.inputType == "tags" || 
+        		  fieldObj.inputType == "price" ) {
         	if(fieldObj.inputType == "tags")
         	{
         		fieldClass += " select2TagsInput";
@@ -189,6 +190,14 @@ onSave: (optional) overloads the generic saveProcess
         	}
         	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
         	fieldHTML += iconOpen+' <input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
+        
+        	if(fieldObj.inputType == "price"){       		
+        		fieldHTML += '<select class="'+fieldClass+'" name="devise" id="devise" style="">';
+				fieldHTML += 	'<option class="bold" value="€">euro €</option>';
+				fieldHTML += 	'<option class="bold" value="$">dollars $</option>';
+				fieldHTML += 	'<option class="bold" value="CFP">CFP</option>';
+				fieldHTML += '</select>';
+        	}
         }
         
         /* **************************************
@@ -229,6 +238,19 @@ onSave: (optional) overloads the generic saveProcess
 	       		if( fieldObj.switch )
 	       			initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
 	       	};
+       	}
+
+       	/* **************************************
+		* RADIO
+		***************************************** */
+        else if ( fieldObj.inputType == "radio" ) {
+   			
+	       	mylog.log("build field "+field+">>>>>> radio");
+	       	fieldHTML += '<div class="btn-group" data-toggle="buttons">';
+	       	value = ( (typeof fieldObj.value != "undefined") ? fieldObj.value : value ) ;
+	       	if(fieldObj.options)
+	       		fieldHTML += buildRadioOptions(fieldObj.options,value, field) ;
+	       	fieldHTML += '</div>';
        	}
 
 

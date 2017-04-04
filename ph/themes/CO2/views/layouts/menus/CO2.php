@@ -4,7 +4,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <a href="#web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
+            <a href="#search" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="nc_map pull-left" height=30>
             </a>
@@ -18,7 +18,7 @@
                   $subdomain == "annonces"||
                   $subdomain == "page" ){ ?>
         
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo $placeholderMainSearch; ?>">
                 <?php if($subdomain == "page"){ ?>
@@ -128,16 +128,22 @@
                     <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
-                      <span class="notifications-count topbar-badge badge animated bounceIn <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
+                      <span class="notifications-count topbar-badge badge animated bounceIn 
+                              <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
+                              echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
                             <?php echo @$countNotifElement ?>
                         </span>
                     </button>
                     
                 <?php } else { ?>
                     <li class="page-scroll">
-                        <button class="letter-green font-montserrat btn-menu-connect" 
+                        <button class="hidden-xs hidden-sm letter-green font-montserrat btn-menu-connect margin-left-10" 
                                 data-toggle="modal" data-target="#modalLogin">
-                            <i class="fa fa-sign-in"></i> SE CONNECTER
+                            <span><i class="fa fa-sign-in"></i> SE CONNECTER</span>
+                        </button>
+                        <button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
+                                data-toggle="modal" data-target="#modalLogin" style="font-size:20px;">
+                            <span><i class="fa fa-sign-in"></i></span>
                         </button>
                     </li>
                 <?php } ?>
@@ -150,34 +156,13 @@
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
-                    class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top 
+                    class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>"
                     data-toggle="tooltip" data-placement="bottom" title="<?php echo $value["subdomainName"]; ?>">
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                 </a>  
         <?php   }
             }  ?>
-       <!--  <a href="#power" 
-            class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="power") echo 'active'; ?>"
-            data-toggle="tooltip" data-placement="bottom" title="Power" alt="Power">
-            <i class="fa fa-hand-rock-o"></i>
-        </a>
-        <a href="#agenda" 
-            class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="agenda") echo 'active'; ?>"
-            data-toggle="tooltip" data-placement="bottom" title="Agenda">
-            <i class="fa fa-calendar"></i>
-        </a>
-        <a href="#annonces" 
-            class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="annonces") echo 'active'; ?>"
-            data-toggle="tooltip" data-placement="bottom" title="Annonces">
-            <i class="fa fa-newspaper-o"></i>
-        </a>
-        <a href="#search" 
-            class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top <?php if($subdomain=="social") echo 'active'; ?>"
-            data-toggle="tooltip" data-placement="bottom" title="Recherche" alt="Recherche">
-            <i class="fa fa-search"></i>
-        </a> -->
-
     </div>
     <!-- /.container-fluid -->
 

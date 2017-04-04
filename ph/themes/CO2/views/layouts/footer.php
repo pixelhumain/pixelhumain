@@ -28,12 +28,12 @@
 
 <?php
     $iconBtnRightBottom = "chevron-up";
-    if($subdomain == "web"){ 
+    if(Yii::app()->params["CO2DomainName"] == "kgougle" && false){ 
         $iconBtnRightBottom = "search";
 ?>
-    <div class="radio-tool">
+    <div class="radio-tool tooltips" data-toggle="tooltip" data-placement="right" title="Écouter la radio">
         <a class="btn btn-primary" href="#page-top" data-target="#modalRadioTool" data-toggle="modal">
-            <i class="fa fa-microphone"></i>
+            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/radio-icon-2.png" height="30">
         </a>
     </div>
 <?php } ?>
@@ -53,7 +53,9 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-left col-footer">
                     <h5><i class="fa fa-info-circle hidden-xs"></i> Informations générales</h5>
-                    <a href="#info.p.cgu" class="lbh text-white"><i class="fa fa-angle-right"></i> Conditions d'utilisations</a><br>
+                    <a href="../doc/Conditions Générales d'Utilisation.pdf" class="text-white">
+                        <i class="fa fa-angle-right"></i> Conditions d'utilisations
+                    </a><br>
                     <a href="#info.p.apropos" class="lbh text-white"><i class="fa fa-angle-right"></i> A propos</a><br>
                     <a href="#info.p.alphatango" class="lbh text-white"><i class="fa fa-angle-right"></i> Alpha Tango</a><br><br>
 
@@ -76,17 +78,17 @@
                     <h5>Contacter <a href="#info.p.alphatango" class="lbh text-azure">@Alpha_Tango</a></h5>
                     <ul class="list-inline">
                         <li>
-                            <a href="https://github.com/Kgneo" class="btn-social btn-outline text-dark">
+                            <a href="https://github.com/Kgneo" target="_blank" class="btn-social btn-outline text-dark">
                                 <i class="fa fa-fw fa-github"></i>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#" class="btn-social btn-outline text-dark">
                                 <i class="fa fa-fw fa-facebook"></i>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
-                            <a href="#info.p.alphatango" class="btn-social btn-outline text-dark">
+                            <a href="#info.p.alphatango" class="btn-social btn-outline text-dark lbh">
                                 <i class="fa fa-fw fa-envelope-o"></i>
                             </a>
                         </li>

@@ -323,6 +323,7 @@ return array(
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
+	"Points of interests" => "Points d'intérêts",
 	
 	"persons" => "citoyens",
 	"people" => "citoyens",
@@ -363,6 +364,11 @@ return array(
 	"Be {what}" => "Être {what}",
 	"Following" => "Abonné",
 	"Become administrator" => "Devenir administrateur",
+	"Delete {what}" => "Supprimer {what}",
+	"New project" => "Nouveau projet",
+	"New event" => "Nouvel évènement",
+	"New point of interests" => "Nouveau point d'intérêts",
+	"Add points of interests to {what}" => "Ajouter des points d'intérêts à {what}",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
@@ -590,10 +596,11 @@ return array(
 	"An event" => "Créer</br>un événement",
 
 	"Socials" => "Réseaux sociaux",
-	"Description" => "Description",
+	"Descriptions" => "Descriptions",
 	"Tags" => "Tags",
 
 	"Change password" => "Changer votre mot de passe",
+	"Download your profil" => "Télécharger votre profil",
 	"Account info" => "Infos générales",
 	
 	"No attendee for this event" => "Aucun participant pour cet événement",
@@ -694,8 +701,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Localities" => "Adresses",
 	"Localitie(s)" => "Adresse(s)",
 	"Choose a country" => "Choisir un pays",
-	"Are you sure you want to delete the locality?" => "Etes-vous sûr de vouloir supprimer cette adresse?",
-	"Are you sure you want to delete the locality ? You can't vote anymore in the citizen council of your city." => "Etes vous sur de vous dé-communecter ? Vous ne pourrez plus voter dans le conseil citoyen de votre commune.",
+	"Are you sure you want to delete the locality ?" => "Etes-vous sûr de vouloir supprimer cette adresse ?",
+	"Are you sure you want to delete the locality ? You can't vote anymore in the citizen council of your city." => "Etes-vous sûr de vouloir vous dé-communectez ? Vous ne pourrez plus voter dans le conseil citoyen de votre commune.",
 
 	"Search a projects of your city." => "Rechercher les projets de votre commune.",
 	"Search a events of your city." => "Rechercher les événements de votre commune.",
@@ -733,6 +740,15 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"on" => "sur",
 
 	"About" => "A propos",
+
+	"Update Params" => "Mettre à jour vos paramètres",
+
+	"Not specified" => "Non renseigné",
+	"Update general information" => "Mettre à jour les informations générales",
+	"Update description" => "Mettre à jour la description",
+	"Update network" => "Mettre à jour les réseaux sociaux",
+
+	"General information" => "Informations générales",
 
 );
 
