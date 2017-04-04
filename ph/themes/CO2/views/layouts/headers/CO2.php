@@ -26,6 +26,14 @@
 		margin-bottom: 10px;
 		box-shadow: 0px 0px 3px -1px grey;
 	}
+
+
+	@media (max-width: 768px) {
+		.link-submenu-header span{
+			display: none;
+		}
+	}
+
 </style>
 
 <?php

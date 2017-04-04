@@ -1075,6 +1075,23 @@ h3.title_panel_map{
 	margin-right: 7px;
 }
   
+.form-group.priceprice input#price{
+	width: 70%!important;
+	display: inline-block;
+}
+.form-group.priceprice select#devise{
+	width: 28%;
+	height:30px;
+	margin-left: 5px;
+	display: inline-block;
+}
+
+
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+
+
 @media screen and (max-width: 1024px) {
 	.menu-name-profil small{
 	    max-width: 45px;
