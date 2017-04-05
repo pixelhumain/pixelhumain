@@ -279,6 +279,25 @@ function inArray(needle, haystack) {
   return false;
 }
 
+/*var list = [];
+jsonHelper.getKeys = function(obj)
+{
+  list = Object.keys(obj);
+  $.each( obj,function(k,v)
+  {
+    if(v.subtype)
+    {
+      var s = jsonHelper.getKeys(v.subtype);
+      $.each( s ,(i,ki){
+        list.push(ki);
+      });
+    }
+  })
+  return list;
+} 
+jsonHelper.getKeys(typeObj);
+*/
+
 /* ------------------------------- */
 
 function intersection_destructive(array1, array2)
@@ -726,5 +745,29 @@ function buildSelectGroupOptions(list,value) {
     });
   }
   return html;
+}
+
+
+function buildRadioOptions(list,value, nameOption) { 
+    var html = "";
+    if(list){
+        $.each(list, function(optKey, optVal) {
+            mylog.log("buildSelectOptions", value, optKey, optVal);
+            selected = ( value == optKey ) ? "selected" : ""; 
+            if(selected != ""){
+                html += '<label class="btn btn-default">'+
+                            '<input type="radio" name="'+nameOption+'" id="'+nameOption+'" autocomplete="off">'+
+                            '<span class="glyphicon glyphicon-ok"></span>'+
+                        '</label>';
+            }else{
+                html += '<label class="btn btn-success active">'+
+                            '<input type="radio" name="'+nameOption+'" id="'+nameOption+'" autocomplete="off" checked>'+
+                            '<span class="glyphicon glyphicon-ok"></span>'+
+                        '</label>';
+            }
+
+        });
+    }
+    return html;
 }
 

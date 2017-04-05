@@ -11,6 +11,17 @@
 header .intro-text .skills{
     font-size: 15px !important;
 }
+
+
+@media (max-width: 768px) {
+    header .intro-text .name, 
+    .header .intro-text .name{
+        font-size: 40px;
+    }
+    header .name img{
+        max-height: 30px;
+    }
+}
 </style>
 
 <!-- <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logocagou-<?php echo $subdomainName; ?>.png" class="nc_map"><br> -->

@@ -240,7 +240,22 @@ class ArrayHelper {
         
         return $chaine ;
     }
+
+
+     public static function getAllPathJson($json, $attributesElt=null){
+        $arrayJson = json_decode($json, true);
+        if($attributesElt==null)
+            $attributesElt = array() ;
+        $arrayPathMapping = explode(";", self::getAllPath($arrayJson));
+        foreach ($arrayPathMapping as $keyPathMapping => $valuePathMapping){
+            if(!empty($valuePathMapping) && !in_array($valuePathMapping, $attributesElt))
+                $attributesElt[] =  $valuePathMapping;
+        }
+        return $attributesElt ;
+    }
 }
+
+
 
 /* End of file array_helper.php */
 /* Location: ./system/helpers/array_helper.php */

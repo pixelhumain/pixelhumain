@@ -101,13 +101,15 @@
                                                           "type"=>@$type)); ?>
 
 
-                        <?php if($subdomain == "media"){ ?>
+                        <?php 
+
+                        if($subdomain == "media"){ ?>
                             <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
-                            <button class="btn btn-default" id="main-btn-start-search">
+                            <button class="btn btn-default hidden-xs" id="main-btn-start-search">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button>
 
@@ -123,7 +125,7 @@
                             </div>
 
                             
-                            <button class="btn btn-default btn-directory-type" id="main-btn-start-search" 
+                            <button class="btn btn-default btn-directory-type hidden-xs" id="main-btn-start-search" 
                                     data-type="<?php echo @$type; ?>">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button> 

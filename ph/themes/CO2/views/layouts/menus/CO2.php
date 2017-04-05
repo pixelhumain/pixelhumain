@@ -4,7 +4,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <a href="#web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
+            <a href="#search" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="nc_map pull-left" height=30>
             </a>
@@ -80,11 +80,11 @@
                                         </a>
                                     </li> -->
                                     </li>
-                                    <li class="text-left">
+                                    <!-- <li class="text-left">
                                         <a href="#search" class="lbh bg-white">
                                             <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
                                         <a href="javascript:" class="bg-white" data-target="#dash-create-modal" data-toggle="modal">
@@ -156,7 +156,7 @@
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
-                    class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top 
+                    class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>"
                     data-toggle="tooltip" data-placement="bottom" title="<?php echo $value["subdomainName"]; ?>">
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>

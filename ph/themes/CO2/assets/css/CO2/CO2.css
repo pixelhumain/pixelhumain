@@ -775,6 +775,7 @@ h3.title_panel_map{
 
 .portfolio-modal{
 	padding-right:0px !important;
+	background-color: white;
 }
 .portfolio-modal .close-modal{
 	z-index:10;
@@ -1074,6 +1075,23 @@ h3.title_panel_map{
 	margin-right: 7px;
 }
   
+.form-group.priceprice input#price{
+	width: 70%!important;
+	display: inline-block;
+}
+.form-group.priceprice select#devise{
+	width: 28%;
+	height:30px;
+	margin-left: 5px;
+	display: inline-block;
+}
+
+
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+
+
 @media screen and (max-width: 1024px) {
 	.menu-name-profil small{
 	    max-width: 45px;
@@ -1087,8 +1105,10 @@ h3.title_panel_map{
 	}
 
 	.navbar-custom.affix .navbar-brand{
-		display: none;
+		padding:0px;
 	}
+
+    
 	header .intro-text .name, 
 	.header .intro-text .name, 
 	.portfolio-modal.modal .name {
