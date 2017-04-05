@@ -233,72 +233,64 @@
     font-weight: 200;
 }
 </style>
-  <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
+<div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
 
-<!--<div class="col-md-12 col-sm-12 col-xs-12 menu-info-simply row <?php echo isset($type) ? $type : ''; ?> no-padding">-->
-    <!-- <input type="text" class="text-dark input-global-search hidden-xs" placeholder="rechercher ..."/>-->
-    <div class="dropdown-result-global-search"></div>
+	<!--<div class="col-md-12 col-sm-12 col-xs-12 menu-info-simply row <?php echo isset($type) ? $type : ''; ?> no-padding">-->
+	<!-- <input type="text" class="text-dark input-global-search hidden-xs" placeholder="rechercher ..."/>-->
+	<div class="dropdown-result-global-search"></div>
 	<a class="pull-left text-white"  id="btn-menu-launch">
 		<i class="fa fa-filter firstIcon"></i>
 		<span style="display:none;float:right;"> <i class="fa fa-filter"></i> Filtres</span>
 	</a>
 
-    <?php if(@$params['skin']["title"]){ ?>
+	<?php if(@$params['skin']["title"]){ ?>
 	<div id="titleMapTop">
 		<div class="contentTitleMap">
 			<div class="contentTitleLogo">
 				<?php 
-          if(@$params['skin']["logo"]){ 
-            if ( stripos($params['skin']["logo"], "http") === false) {
-              $logoURL = $this->module->assetsUrl.'/images/'.$params['skin']["logo"];
-            } else 
-              $logoURL = $params['skin']["logo"];
-          ?>
-				<img src="<?php echo $logoURL ?>"  class="<?php echo (!empty($params['skin']['paramsLogo']['origin']) ? 'logoMapOrigine' : 'logoMap' )?>"/>
+				if(@$params['skin']["logo"]){ 
+					if ( stripos($params['skin']["logo"], "http") === false) {
+						$logoURL = $this->module->assetsUrl.'/images/'.$params['skin']["logo"];
+					} else 
+						$logoURL = $params['skin']["logo"];
+					?>
+					<img src="<?php echo $logoURL ?>"  class="<?php echo (!empty($params['skin']['paramsLogo']['origin']) ? 'logoMapOrigine' : 'logoMap' )?>"/>
 				<?php } ?>
 				<h1><?php echo $params['skin']["title"] ?></h1>
 			</div>
 			<div class="contentShortInformationMap">
 				<?php if(@$params['skin']["shortDescription"]){ ?>
-				<span class="shortDescriptionMap padding-10"> 
-					<?php echo $params['skin']["shortDescription"]; ?>
-				</span>
+					<span class="shortDescriptionMap padding-10"> 
+				<?php echo $params['skin']["shortDescription"]; ?>
+					</span>
 				<?php } ?>
 				<?php if (@$params['skin']["docs"] && $params['skin']["docs"]){ ?>
-          <a href="javascript:;" class="tooltips" id="btn-documentation" data-toggle="tooltip" data-placement="bottom" title="Lire la documentation" alt="Lire la documentation" style="color:lightblue;"> 
-            <i class="fa fa-info-circle"></i> En savoir plus
-          </a>
-				<?php } ?>
-				<?php if (@$params['skin']["displayCommunexion"] && $params['skin']["displayCommunexion"]){ ?>
-				<br/>
-				<div class="centerButton">
-					<?php if (!@Yii::app()->session["userId"]){ 
+						<a href="javascript:;" class="tooltips" id="btn-documentation" data-toggle="tooltip" data-placement="bottom" title="Lire la documentation" alt="Lire la documentation" style="color:lightblue;"><i class="fa fa-info-circle"></i></a>
+				<?php } 
 
-            
-              $connected = "" ;/*( (!empty($params['skin']["tooltips"]["connected"])) ? 'data-toggle="tooltip" data-placement="bottom" title="'.$params['skin']["tooltips"]["connected"].'"' : "" );*/
-
-              $signin = "" ;/*( (!empty($params['skin']["tooltips"]["signin"])) ? 'data-toggle="tooltip" data-placement="bottom" title="'.$params['skin']["tooltips"]["signin"].'"' : "" );*/
-
-            ?>
-					<button class="btn-top btn btn-default hidden-xs btnSignIn" <?php echo $signin ; ?> onclick="showPanel('box-register');">
-			        	<i class="fa fa-plus-circle"></i> 
-						<span class="hidden-sm hidden-md hidden-xs">S'inscrire</span>
-					</button>
-					<button class="btn-top btn btn-success hidden-xs btnConnectted" <?php echo $connected ; ?> style="margin-right:10px;" onclick="showPanel('box-login');">
-						<i class="fa fa-sign-in"></i> 
-						<span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
-					</button>
-					<?php } else { 
-///ph/communecter/person/logout?network=<?php echo $params["name"]
-            ?>
-          
-						<a class="btn-top btn bg-red hidden-xs" href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout').'?network='.$params['name']; ?>" style="margin-right:10px;" onclick="">
-  						<i class="fa fa-sign-out"></i> 
-  						<span class="hidden-sm hidden-md hidden-xs">Déconnexion</span>
-  					</a>
-
-					<?php } ?>
-				</div>
+				if (@$params['skin']["displayCommunexion"] && $params['skin']["displayCommunexion"]){ ?>
+						<br/>
+						<div class="centerButton">
+							<?php if (!@Yii::app()->session["userId"]){
+								$connected = "" ;/*( (!empty($params['skin']["tooltips"]["connected"])) ? 'data-toggle="tooltip" data-placement="bottom" title="'.$params['skin']["tooltips"]["connected"].'"' : "" );*/
+								$signin = "" ;/*( (!empty($params['skin']["tooltips"]["signin"])) ? 'data-toggle="tooltip" data-placement="bottom" title="'.$params['skin']["tooltips"]["signin"].'"' : "" );*/
+								if (!isset($params['skin']["signup"]) || $params['skin']["signup"]== true){ ?>
+									<button class="btn-top btn btn-default hidden-xs btnSignIn" <?php echo $signin ; ?> onclick="showPanel('box-register');">
+										<i class="fa fa-plus-circle"></i> 
+										<span class="hidden-sm hidden-md hidden-xs">S'inscrire</span>
+									</button>
+								<?php } ?>
+									<button class="btn-top btn btn-success hidden-xs btnConnectted" <?php echo $connected ; ?> style="margin-right:10px;" onclick="showPanel('box-login');">
+										<i class="fa fa-sign-in"></i> 
+										<span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
+									</button>
+							<?php } else { ?>
+								<a class="btn-top btn bg-red hidden-xs" href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout').'?network='.$params['name']; ?>" style="margin-right:10px;" onclick="">
+									<i class="fa fa-sign-out"></i>
+									<span class="hidden-sm hidden-md hidden-xs">Déconnexion</span>
+								</a>
+							<?php } ?>
+						</div>
 				<?php } ?>
 				<div class="poweredBy">
 					<span>Powered by</span> <a href="https://www.communecter.org" target="_blank" style="color:#0078A8;">@Communecter</a>
