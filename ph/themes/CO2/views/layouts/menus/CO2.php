@@ -80,11 +80,11 @@
                                         </a>
                                     </li> -->
                                     </li>
-                                    <li class="text-left">
+                                    <!-- <li class="text-left">
                                         <a href="#search" class="lbh bg-white">
                                             <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
                                         <a href="javascript:" class="bg-white" data-target="#dash-create-modal" data-toggle="modal">

@@ -467,6 +467,7 @@ return array(
 	"Project community" => "Communauté du projet",
 	"Organization community" => "Communauté de l&#146;organisation",
 	"See the photo gallery" => "Voir la galerie photo",
+	"Gallery" => "Photos",
 	"Information"=>"Informations",
 	"Contact information"=> "Coordonnées",
 	
