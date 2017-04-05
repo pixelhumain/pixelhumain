@@ -698,8 +698,14 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 	"Disabled" => "Désactivé",
 	"Organization Disabled" => "Cette organisation est désactivé.",
-	"Creator" => "Createur"
+	"Creator" => "Createur",
 
+
+	"Update Contact information" => "Modifier les informations générales",
+	"Update Contact information" => "Modifier les contacts",
+	"Update When" => "Modifier les informations",
+	"Update the organizer" => "Modifier l'organisateur",
+	"Update Description" => "Modifier les descriptions",
 );
 
 ?>
