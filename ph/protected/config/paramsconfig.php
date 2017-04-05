@@ -30,6 +30,8 @@ $mailConfigTest = array(
 );
 
 $params = array(
+    //Application Name 
+    'name' => 'communecter',
     //Beta Test ?
     'betaTest' => false,
     //By default controller
@@ -37,6 +39,14 @@ $params = array(
     // Mail configuration
     'adminEmail'=>'testmail.pixelhumain@gmail.com',
     'forceMailSend' => true,
+    // mail is sent on each element creation when true
+    'mailForSuperAdmin' => false,
+
+    //Theme
+    //'theme' => 'network',
+    //network configuration : this param is used when communecter is used as a dedicated network instance. 
+    //it contains the configuration file
+    //'networkConfigurationFile' => 'iviatic',
 
     //UPLOAD Management Configuration
     //upload url without the base URL

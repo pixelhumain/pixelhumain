@@ -201,6 +201,7 @@
 
 	function openMainPanelFromPanel(url, title, icon, id){
 		$(Sig.cssModuleName + " .item_map_list_" + id).click();
+		mylog.log("openMainPanelFromPanel");
 		openMainPanel(url, title, icon, id);
 	}
 

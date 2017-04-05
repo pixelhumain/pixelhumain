@@ -155,7 +155,7 @@
   padding-left:10px;
 }
 .contentTitleMap{
-    width: 500px;
+    width: 580px;
     border-radius: 0px 0px 50px 50px;
     color: white;
     background-color: rgba(40,40,40,0.9)!important;
@@ -272,20 +272,30 @@
 				<?php if (@$params['skin']["displayCommunexion"] && $params['skin']["displayCommunexion"]){ ?>
 				<br/>
 				<div class="centerButton">
-					<?php if (!@Yii::app()->session["userId"]){ ?>
-					<button class="btn-top btn btn-default hidden-xs" onclick="showPanel('box-register');">
+					<?php if (!@Yii::app()->session["userId"]){ 
+
+            
+              $connected = "" ;/*( (!empty($params['skin']["tooltips"]["connected"])) ? 'data-toggle="tooltip" data-placement="bottom" title="'.$params['skin']["tooltips"]["connected"].'"' : "" );*/
+
+              $signin = "" ;/*( (!empty($params['skin']["tooltips"]["signin"])) ? 'data-toggle="tooltip" data-placement="bottom" title="'.$params['skin']["tooltips"]["signin"].'"' : "" );*/
+
+            ?>
+					<button class="btn-top btn btn-default hidden-xs btnSignIn" <?php echo $signin ; ?> onclick="showPanel('box-register');">
 			        	<i class="fa fa-plus-circle"></i> 
 						<span class="hidden-sm hidden-md hidden-xs">S'inscrire</span>
 					</button>
-					<button class="btn-top btn btn-success hidden-xs" style="margin-right:10px;" onclick="showPanel('box-login');">
+					<button class="btn-top btn btn-success hidden-xs btnConnectted" <?php echo $connected ; ?> style="margin-right:10px;" onclick="showPanel('box-login');">
 						<i class="fa fa-sign-in"></i> 
 						<span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
 					</button>
-					<?php } else { ?>
-						<a class="btn-top btn bg-red hidden-xs" href="/pixelhumain/ph/communecter/person/logout?network=<?php echo $params["name"] ?>" style="margin-right:10px;" onclick="">
-						<i class="fa fa-sign-out"></i> 
-						<span class="hidden-sm hidden-md hidden-xs">Déconnexion</span>
-					</a>
+					<?php } else { 
+///ph/communecter/person/logout?network=<?php echo $params["name"]
+            ?>
+          
+						<a class="btn-top btn bg-red hidden-xs" href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout').'?network='.$params['name']; ?>" style="margin-right:10px;" onclick="">
+  						<i class="fa fa-sign-out"></i> 
+  						<span class="hidden-sm hidden-md hidden-xs">Déconnexion</span>
+  					</a>
 
 					<?php } ?>
 				</div>
@@ -341,8 +351,8 @@
 				</div>          
 				<?php }
 				else{ ?>
-				<button class="btn-top btn btn-success  hidden-xs" onclick="showPanel('box-register');"><i class="fa fa-plus-circle"></i> <span class="hidden-sm hidden-md hidden-xs">S'inscrire</span></button>
-				<button class="btn-top btn bg-red  hidden-xs" style="margin-right:15px;" onclick="showPanel('box-login');"><i class="fa fa-sign-in"></i> <span class="hidden-sm hidden-md hidden-xs">Se connecter</span></button> 
+				<button class="btn-top btn btn-success hidden-xs btnSignIn" onclick="showPanel('box-register');"><i class="fa fa-plus-circle"></i> <span class="hidden-sm hidden-md hidden-xs">S'inscrire</span></button>
+				<button class="btn-top btn bg-red  hidden-xs btnConnectted" style="margin-right:15px;" onclick="showPanel('box-login');"><i class="fa fa-sign-in"></i> <span class="hidden-sm hidden-md hidden-xs">Se connecter</span></button> 
 				<?php } ?>
 			<?php } ?>
 			<?php if(isset($params["skin"]['displayNotifications']) && $params["skin"]['displayNotifications'] && @Yii::app()->session['userId']){ ?>

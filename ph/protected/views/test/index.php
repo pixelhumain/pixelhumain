@@ -174,7 +174,7 @@ var_dump($this::$a);
             	if(extension_loaded("mongo"))            
                 	echo '<span style="color:green"> extension Mongo v'.phpversion("mongo").' is installed. Used as database by PH</span>';
             	else
-					echo '<span style="color:red"> extension Mongo is not installed. Please install it on your PHP server. It is requiredfor all database stuff</span>';            
+					echo '<span style="color:red"> extension Mongo is not installed. Please install it on your PHP server. It is required for all database stuff</span>';
             	?>
             </li>     
             
@@ -182,7 +182,7 @@ var_dump($this::$a);
             	if(PHDB::checkMongoDbPhpDriverInstalled(false))            
                 	echo '<span style="color:green"> Yii::app()->mongodb is instanciated. Access to mongodb is OK.</span>';
             	else
-					echo '<span style="color:red"> Yii::app()->mongodb is not instanciated. Fix credentails on protected/config/dbconfig.php and</span>';            
+					echo '<span style="color:red"> Yii::app()->mongodb is not instanciated. Fix credentials on protected/config/dbconfig.php and</span>';
             	?>
             </li>             
 

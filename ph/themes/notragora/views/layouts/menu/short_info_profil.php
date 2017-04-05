@@ -8,7 +8,7 @@ HtmlHelper::registerCssAndScriptsFiles(array( '/assets/css/menus/short_info_prof
 
 <button class="btn-menu-top tooltips pull-right" 
         id="btn-toogle-map"
-        data-toggle="tooltip" data-placement="bottom" title="Carte" alt="Carte">
+        data-toggle="tooltip" data-placement="bottom" title="Annuaire" alt="Annuaire">
       <i class="fa fa-map"></i>
 </button>
 
