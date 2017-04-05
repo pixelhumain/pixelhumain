@@ -879,12 +879,13 @@ creer des conflits : regle pas assez specfique
 		text-decoration: none !important;
 	}
 
-	.leaflet-popup-content h1, h2{
+	.leaflet-popup-content h1{
 		font-size: 17px;
 		text-align: center;
 	}
 	.leaflet-popup-content h2{
 		font-size: 15px;
+		text-align: center;
 	}
 
 	.leaflet-popup-content #btn-validate-geopos{

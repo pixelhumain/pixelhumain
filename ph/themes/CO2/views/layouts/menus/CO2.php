@@ -162,7 +162,7 @@
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
-                    class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top 
+                    class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>"
                     data-toggle="tooltip" data-placement="bottom" title="<?php echo $value["subdomainName"]; ?>">
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
