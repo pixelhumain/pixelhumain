@@ -99,6 +99,7 @@
 		<script>
 		   var initT = new Object();
 		   var showDelaunay = true;
+		   var seeDisable = false;
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
 		   var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
@@ -420,6 +421,7 @@
 
 		//used in communecter.js dynforms
 		var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
+		//var tagsList = [];
 		var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
 		var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
 		//var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : null?>;
@@ -429,24 +431,60 @@
 		var allReadyLoad=false;
 
 		// GET LIST OF NETWORK'S TAGS
-		if(typeof networkJson.filter.linksTag != "undefined"){
+		if(networkJson != null && typeof networkJson.filter.linksTag != "undefined"){
 			var networkTags = [];
+			var networkTags2 = {};
+			var networkTags3 = {};
+			//var optgroupArray = {};
+			tagsList = [];
 			if(typeof networkJson.request.mainTag != "undefined")
 				networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
 			$.each(networkJson.filter.linksTag, function(category, properties) {
 				optgroupObject=new Object;
 				optgroupObject.text=category;
 				optgroupObject.children=[];
+				networkTags2[category]=[];
+				networkTags3[category]=[];
+				//optgroupArray[category]=[];
 				$.each(properties.tags, function(i, tag) {
-					val={id:tag,text:tag};
-					optgroupObject.children.push(val);
+					if($.isArray(tag)){
+						$.each(tag, function(keyTag, textTag) {
+							val={id:textTag,text:textTag};
+							if(jQuery.inArray( textTag, tagsList ) == -1 ){
+								optgroupObject.children.push(val);
+								tagsList.push(textTag);
+								//optgroupArray[category].push(textTag);
+								optgroupObject2=new Object;
+								optgroupObject2.text=textTag;
+								networkTags2[category].push(optgroupObject2);
+							}
+						});
+					}else{
+						val={id:tag,text:tag};
+						if(jQuery.inArray( tag, tagsList ) == -1 ){
+							optgroupObject.children.push(val);
+							tagsList.push(tag);
+							//optgroupArray[category].push(tag);
+							optgroupObject2=new Object;
+							optgroupObject2.text=tag;
+							networkTags2[category].push(optgroupObject2);
+						}
+					}
+					
+					//tagsList.push(val);
 				});
 				networkTags.push(optgroupObject);
+				networkTags3[category].push(optgroupObject);
 			});
 		}
-		//console.warn("isMapEnd 1",isMapEnd);
+
+
+
+
 		jQuery(document).ready(function() {
-			setTitle(networkJson.name , "", networkJson.name+ " : "+networkJson.skin.title, networkJson.name,networkJson.skin.shortDescription);
+
+			if(networkJson != null)
+				setTitle(networkJson.name , "", networkJson.name+ " : "+networkJson.skin.title, networkJson.name,networkJson.skin.shortDescription);
 			// Initialize tags list for network in form of element
 			if(typeof networkJson.add != "undefined"){
 				$.each(networkJson.add, function(key, v) {
@@ -460,9 +498,35 @@
 							if(typeof networkJson.request.mainTag != "undefined")
 								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag[0];
 						}
+
+						mylog.log("networkJson.dynForm");
+						if(notNull(networkJson.dynForm)){
+							mylog.log("networkJson.dynForm", "networkJson.dynForm");
+							if(notNull(networkJson.dynForm.extra)){
+								var nbListTags = 1 ;
+								mylog.log("networkJson.dynForm.extra.tags", "networkJson.dynForm.extra.tags"+nbListTags);
+								mylog.log(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags));
+								while(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags)){
+									typeObj[key].dynForm.jsonSchema.properties["tags"+nbListTags] = {
+										"inputType" : "tags",
+										"placeholder" : networkJson.dynForm.extra["tags"+nbListTags].placeholder,
+										"values" : networkTags3[ networkJson.dynForm.extra["tags"+nbListTags].list ],
+										"data" : networkTags3[ networkJson.dynForm.extra["tags"+nbListTags].list ]
+									};
+									nbListTags++;
+									mylog.log("networkJson.dynForm.extra.tags", "networkJson.dynForm.extra.tags"+nbListTags);
+									mylog.log(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags));
+								}
+								delete typeObj[key].dynForm.jsonSchema.properties.tags;
+							}
+						}
 					}
 				});
 			}
+			
+
+
+
 			$(".bg-main-menu.bgpixeltree_sig").remove();
 			if(myContacts != null)
 			$.each(myContacts, function(type, list) {

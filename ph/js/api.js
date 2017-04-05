@@ -528,6 +528,34 @@ var jsonHelper = {
     //mylog.dir(destArray);
     return destArray;
   },
+  //tests existance of every step of a json path 
+  //can also validate element type 
+  // ex : 
+  //jsonHelper.notNull("themeObj.blockUi") > test themeObj > test themeObj.blockUi ...etc if more steps
+  //jsonHelper.notNull("themeObj.blockUi","function") > false or true accordingly
+  notNull : function (pathJson,type) 
+  {
+    var pathT = pathJson.split(".");
+    res = false;
+    var dynPath = "";
+    $.each( pathT , function (i,k) {
+      dynPath = (i == 0) ? k : dynPath+"."+k ;
+      //typeof eval("typeObj.poi") != "undefined"
+      if(typeof eval(dynPath) != "undefined"){
+        //mylog.log(dynPath);
+        if(i == pathT.length - 1){
+          res = true;
+          if( type != null && typeof eval(dynPath) != type )
+              res = false;      
+        }
+      } else {
+      //  mylog.error("notNull", dynPath," is undefined");
+        res = false;
+        return false;    
+      }
+    });
+    return res;
+  },
 
   jsonFromToJson : {
 

@@ -42,6 +42,12 @@ $params = array(
     // mail is sent on each element creation when true
     'mailForSuperAdmin' => false,
 
+    //Theme
+    //'theme' => 'network',
+    //network configuration : this param is used when communecter is used as a dedicated network instance. 
+    //it contains the configuration file
+    //'networkConfigurationFile' => 'iviatic',
+
     //UPLOAD Management Configuration
     //upload url without the base URL
     'uploadUrl' => "upload/",

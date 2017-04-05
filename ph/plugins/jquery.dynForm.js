@@ -175,12 +175,17 @@ onSave: (optional) overloads the generic saveProcess
         				initValues[field] = {};
         			initValues[field]["tags"] = fieldObj.values;
         		}
-        		if(typeof fieldObj.data != "undefined")
-	        		initSelectNetwork=fieldObj.data;
+        		if(typeof fieldObj.data != "undefined"){
+        			mylog.log("Before initSelectNetwork", fieldObj.data);
+	        		initSelectNetwork[field]=fieldObj.data;
+        		}
         		if(typeof fieldObj.mainTag != "undefined")
-					mainTag=mainTag;
+					mainTag=fieldObj.mainTag;
+				
         		style = "style='width:100%;margin-bottom: 10px;border: 1px solid #ccc;'";
         	}
+        	//mylog.log("HERERERE", value, fieldObj.values);
+        	//mylog.log("HERERERE", fieldObj.values);
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
         }
         
@@ -695,6 +700,7 @@ onSave: (optional) overloads the generic saveProcess
 		{
 			if( jQuery.isFunction(jQuery.fn.select2) )
 			{
+				
 				$.each($(".select2TagsInput"),function () 
 				{
 					mylog.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
@@ -704,8 +710,13 @@ onSave: (optional) overloads the generic saveProcess
 						  "tokenSeparators": [','],
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
-						if(typeof initSelectNetwork != "undefined" && initSelectNetwork.length > 0)
-							selectOptions.data=initSelectNetwork;
+
+						mylog.log("initSelectNetwork", initSelectNetwork, $(this).attr("id"));
+						
+						if(	typeof initSelectNetwork != "undefined" && initSelectNetwork.length > 0 && 
+							typeof initSelectNetwork[$(this).attr("id")] != "undefined" && 
+							initSelectNetwork[$(this).attr("id")].length > 0)
+							selectOptions.data=initSelectNetwork[$(this).attr("id")];
 						$(this).removeClass("form-control").select2(selectOptions);
 						if(typeof mainTag != "undefined")
 							$(this).val([mainTag]).trigger('change');

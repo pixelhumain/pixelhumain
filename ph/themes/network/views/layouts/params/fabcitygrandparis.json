@@ -1,0 +1,131 @@
+{
+    "name" : "fabcitygrandparis",
+    "mode" : "server",
+    "skin" : {
+        "logo" : "https://raw.githubusercontent.com/juliecolin/pixelhumain/a8f52b1236fd3e401258a217a9404791cfe8795f/Fab%20City%20-%20logo%20Communecter.png",
+        "title" : "Cartographie des acteurs de la FabCity du Grand Paris",
+        "shortDescription" : "Visualisation des acteurs, lieux et écosystèmes de la production (biens manufacturés, alimentaires, énergie) dans leur rapport au territoire francilien",
+        "displayScope" : false,
+        "docs":true,
+        "displayCommunexion" : true,
+        "displayNotifications" : true,
+        "profilBar" : false,
+        "breadcrum" : true,
+        "displayButtonGridList" : false,
+        "class" : {
+            "mainContainer" : false
+        },
+        "iconeAdd" : false,
+        "iconeSearchPlus" : false,
+        "loginTitle":"",
+        "front" : {
+          "organization" : false,
+          "project" : true,
+          "event" : true,
+          "community" : true,
+          "dda" : false,
+          "live" : false,
+          "search" : false,
+          "need" : true,
+          "poi" : true
+      },
+      "menu" : {
+        "aroundMe":false,
+        "connectLink":false,
+        "add":true,
+        "detail":true,
+        "news":true,
+        "directory":true,
+        "gallery":true
+      }
+    },
+   "filter" : {
+        "types" : false,
+        "linksTag" : {
+            "Types de production" : {
+                "tagParent" : "Typesdeproduction",
+                "background-color" : "#f5f5f5",
+                "image" : "Travail.png",
+                "tags" : {
+                  "Biens/Produits" : "Biens/Produits",
+                  "Alimentaire" : "Alimentaire",
+                  "Energie" : "Energie"
+                }
+            },
+            "Types de lieux" : {
+                "tagParent" : "Typesdelieux",
+                "background-color" : "#f5f5f5",
+                "image" : "Service.png",
+                "tags" : {
+                    "Lieux de Fabrication Innovante" : "Lieux de Fabrication Innovante",
+                    "Sites Industriels Remarquables" : "Sites Industriels Remarquables",
+                    "Zones de Production Agricole" : "Zones de Production Agricole",
+                    "Sites de Production d'Energie" : "Sites de Production d'Energie",
+                    "Sites de Réemploi et de Recyclage" : "Sites de Réemploi et de Recyclage",
+                    "Grands Pôles Logistiques" : "Grands Pôles Logistiques",
+                    "Commerce et Distribution" : "Commerce et Distribution",
+                    "Incubateurs et Coworking" : "Incubateurs et Coworking",
+                    "Startups et Innovateurs" : "Startups et Innovateurs",
+                    "Lieux Universitaires" : "Lieux Universitaires",
+                    "Living lab":"Living lab"
+                }
+            },
+            "Thématiques" : {
+                "tagParent" : "Thématiques",
+                "background-color" : "#f5f5f5",
+                "image" : "Loisir.png",
+                "tags" : {
+                  "Architecture et Urbanisme" : "Architecture et Urbanisme",
+                  "Startups et Design Produit" : "Startups et Design Produit",
+                  "Fabrication Numérique" : "Fabrication Numérique",
+                  "Outils de Production" : "Outils de Production",
+                  "Matériaux et Procédés":"Matériaux et Procédés",
+                  "Plateformes et Réseaux":"Plateformes et Réseaux",
+                  "Industrie du Futur / 4.0":"Industrie du Futur / 4.0",
+                  "Economie Circulaire":"Economie Circulaire",
+                  "Logistique Urbaine":"Logistique Urbaine",
+                  "Open Source":"Open Source",
+                  "Circuits Courts":"Circuits Courts",
+                  "Agriculture Urbaine":"Agriculture Urbaine",
+                  "Agriculture Régionale":"Agriculture Régionale",
+                  "Artisanat":"Artisanat",
+                  "Mobilier et Design":"Mobilier et Design",
+                  "Textile et Mode":"Textile et Mode",
+                  "Automobile":"Automobile",
+                  "Aérospace":"Aérospace",
+                  "Santé":"Santé",
+                  "Biotech":"Biotech",
+                  "Biomatériaux":"Biomatériaux",
+                  "Biodéchets":"Biodéchets",
+                  "Electricité, Eau et Gaz":"Electricité, Eau et Gaz",
+                  "Recyclage":"Recyclage",
+                  "Réemploi":"Réemploi",
+                  "Réparation":"Réparation",
+                  "Restauration":"Restauration"
+                }
+            }
+          }
+    },
+    "result" : {
+        "displayImage" : true,
+        "displayType" : false,
+        "fullLocality" : true,
+        "datesEvent" : false,
+        "displayShortDescription" : true
+    },
+     "add" : {
+        "organization" : true
+    },
+    "request" : {
+        "sourceKey" :[
+            "fabcitygrandparis"
+        ],
+        "searchLocalityREGION" : [
+        "Île-de-France"
+        ],  
+        "pagination" : 2000,
+        "searchType" : [
+            "organizations"
+        ]
+    }
+}

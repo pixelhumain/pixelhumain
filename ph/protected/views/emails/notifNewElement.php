@@ -1504,7 +1504,7 @@
 							</p>
 							<br>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							    Un nouvel élément "<?php echo $elementName ?>" de type <?php echo $elementType ?> a été créée par <?php echo $elementCreator ?>
+							    Un nouvel élément "<?php echo $elementName ?>" de type <?php echo Yii::t("common",$elementType); ?> a été créée par <?php echo $elementCreator ?>
 							</p>
 							<br>
 					        <p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">

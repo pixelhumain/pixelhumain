@@ -21,6 +21,12 @@
   margin-top: 50px;
 }
 
+.btn-disable{
+  font-size: medium;
+}
+
+
+
 </style>
 <div class="hidden-xs main-menu-left col-md-2 col-sm-3 menu-col-search no-padding"  data-tpl="menuLeft">
 <div  class="col-md-12 no-padding" id="dropdown_params">
@@ -32,7 +38,7 @@
   <div class="panel-group">
 
 
-    <div class="panel panel-default">
+    <div id="divFiltre" class="panel panel-default">
       <?php if(isset($params['skin']['iconeAdd']) && $params['skin']['iconeAdd']){ ?>
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -43,7 +49,25 @@
       <?php } ?>
 
       <!--<input id="searchClientBarText" type="text" placeholder="Que recherchez-vous ?" class="form-control">-->
-
+      <div id="divTagsMenu"></div>
+      <div id="divTypesMenu"></div>
+      <div id="divRolesMenu">
+          <div class="panel-heading" style="background-color: #f5f5f5;">
+            <h4 class="left-title-menu" onclick="manageCollapse('roles', 'false')">
+             <a data-toggle="collapse" href="#roles" style="color:#719FAB" data-label="roles">
+                Tous les rôles
+                <i class="fa fa-chevron-right right" aria-hidden="true" id="fa_roles"></i>
+              </a>
+            </h4>
+          </div>
+          <div id="list_roles" class="panel-collapse collapse">
+            <ul class="list-group">
+                <li class="list-group-item"><input type="checkbox" class="checkbox rolesFilterAuto" value="creator" data-parent="roles" data-label="creator"/><?php echo Yii::t("common","Creator") ?></li>
+                <li class="list-group-item"><input type="checkbox" class="checkbox rolesFilterAuto" value="members" data-parent="roles" data-label="members"/><?php echo Yii::t("common","Member") ?></li>
+                <li class="list-group-item"><input type="checkbox" class="checkbox rolesFilterAuto" value="admin" data-parent="roles" data-label="admin"/><?php echo Yii::t("common","Administrator") ?></li>
+            </ul>
+          </div>
+      </div>
       <?php
       if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){
         foreach($params['filter']['linksTag'] as $category => $listTag){ ?>
@@ -113,14 +137,27 @@
               <?php } ?>
           </ul>
         </div>
-      <?php } ?>
-
+      <?php } 
+        $roles = Role::getRolesUserId(Yii::app()->session["userId"]);
+        if(@$roles["superAdmin"] == true){?>
+          <div class="panel-heading">
+              <label class="btn-disable text-blue" >
+                <?php echo Yii::t("common","Disable")." "; ?> 
+                <input type="checkbox" class="checkbox disableCheckbox" value="disable" data-label="<?php echo Yii::t("common","Disable"); ?>" style="float: right; " />
+              </label>
+            </div>
+        <?php
+        }
+      ?>
       <div class="panel-heading">
-        <a id="reset" href="javascript:;">
+        <a id="reset" class="reset" href="javascript:;">
           <h4 class="panel-title">
             <center><i class="fa fa-refresh"></i>Réinitialiser</center>
           </h4>
         </a>
+      </div>
+      <div class="panel-heading">
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       </div>
     </div>
   </div>

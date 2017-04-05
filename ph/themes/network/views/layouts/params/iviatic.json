@@ -40,7 +40,27 @@
 		    "news":false,
 		    "directory":false,
 		    "gallery":false
-	    }
+	    },
+        "tooltips" : {
+            ".btnConnectted" : "Se connecter",
+            ".btnSignIn" : "S'inscrire"
+        }
+    },
+    "dynForm" : {
+        "extra" : {
+                "tags1" : { 
+                    "list" : "Géographique",
+                    "placeholder" : "Ajouter une Géographique"
+                },
+                "tags2" : { 
+                    "list" : "Structures",
+                    "placeholder" : "Ajouter une Structures"
+                },
+                "tags3" : { 
+                    "list" : "Compétences",
+                    "placeholder" : "Ajouter une Compétences"
+                }
+        }
     },
    "filter" : {
         "types" : false,
@@ -89,9 +109,9 @@
                   "Mobilités actives et partagées" : "Mobilités actives et partagées",
                   "Energie et mobilité" : "Energie et mobilité",
                   "Services à la mobilité" : "Services à la mobilité",
-                  "TIC, Numérique et Data" : "TIC, Numérique et Data",
+                  "TIC Numérique et Data" : "TIC Numérique et Data",
                   "Ingénierie et financement" : "Ingénierie et financement",
-                  "Aménagement, valorisation et développement" : "Aménagement, valorisation et développement",
+                  "Aménagement valorisation et développement" : "Aménagement valorisation et développement",
                   "Organisation et management de la mobilité" : "Organisation et management de la mobilité"
                 }
             }
