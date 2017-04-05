@@ -700,13 +700,22 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Quotes" => "Quotes",
 	"Quotation marks" => "Guillemets",
 	"Nothing" => "Rien",
+	"The following attributs has been updated : " => "Les attributs suivants ont été mis à jour",
+	"name" => "nom",
 
 	"Disabled" => "Désactivé",
 	"Are you sure you want to delete this element ? </br> The element will be deleted : it will not be referenced in all their projects or events. But these last ones will not be deleted. <span class=\"text-red\">Warning:</span> this action can not be cancelled" => "Etes vous sur(e) de vouloir supprimer cet élément ? </br> L'élément sera supprimé : il ne sera plus référencé dans les événements/projets qu'il porte. Mais ces derniers ne seront pas supprimés. <span class=\"text-red\">Attention :</span> Cette action ne peut pas être annulée !",
 	'I confim the delete !' => 'Je confirme la suppression',
 	'You can add bellow the reason why you want to delete this element :' => "Vous pouvez ajouter ci dessous pourquoi vous souhaitez supprimer cet élément :",
 	"Organization Disabled" => "Cette organisation est désactivé.",
-	"Creator" => "Createur"
+	"Creator" => "Createur",
+
+
+	"Update Contact information" => "Modifier les informations générales",
+	"Update Contact information" => "Modifier les contacts",
+	"Update When" => "Modifier les informations",
+	"Update the organizer" => "Modifier l'organisateur",
+	"Update Description" => "Modifier les descriptions",
 );
 
 ?>
