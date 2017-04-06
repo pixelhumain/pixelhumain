@@ -45,7 +45,6 @@
         $mainTitle              = $params["pages"]["#".$page]["mainTitle"];
         $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
 
-
     ?>
 
     <!-- Header -->
@@ -98,7 +97,8 @@
                                                           "icon"=>$icon,
                                                           "subdomainName"=>$subdomainName,
                                                           "subdomain"=>$subdomain,
-                                                          "type"=>@$type)); ?>
+                                                          "type"=>@$type,
+                                                          "explain"=>@$explain)); ?>
 
 
                         <?php 

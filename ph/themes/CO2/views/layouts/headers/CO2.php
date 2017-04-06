@@ -77,5 +77,10 @@
 			<i class="fa fa-university"></i>
 	</button>
 	<?php } ?>
+	<?php if(@$explain && !empty($explain)){ ?>
+		</br><i class="fa fa-info-circle"></i> 
+		<span id='msg_live_type'><?php echo $explain ?></span>
+	<?php } ?>
+	
 </div>
 
