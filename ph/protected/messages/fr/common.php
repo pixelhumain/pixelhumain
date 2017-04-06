@@ -712,6 +712,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 	"Add a primary address" => "Ajouter une adresse principal",
 	"Add a secondary address" => "Ajouter une adresse secondaire",
+	"Add an address" => "Ajouter une adresse",
 	"Can not update the element : you are not authorized to update that element !" => "Impossible de mettre à jour cet élément : vous n'êtes pas autorisé !",
 
 	"I am in favor of this proposal" => "Je suis favorable à cette proposition",
