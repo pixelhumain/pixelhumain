@@ -631,8 +631,8 @@ a, a:hover, a:focus, a:active, a.active{
 	margin-top: -25px;
 	display: block;
 	text-align: right;
-	max-width: 63%;
-	font-size: 0.3em;
+	max-width: 65%;
+	font-size: 0.4em;
 }
 .navbar-brand .pastille{
 	margin-top: 35px;
@@ -1095,6 +1095,15 @@ h3.title_panel_map{
 @media screen and (max-width: 1024px) {
 	.menu-name-profil small{
 	    max-width: 45px;
+	}
+
+
+	.name .pastille{
+		margin-top: -25px;
+		display: block;
+		text-align: right;
+		max-width: 74%;
+		font-size: 0.4em;
 	}
 }
 

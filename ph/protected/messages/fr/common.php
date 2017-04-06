@@ -467,6 +467,7 @@ return array(
 	"Project community" => "Communauté du projet",
 	"Organization community" => "Communauté de l&#146;organisation",
 	"See the photo gallery" => "Voir la galerie photo",
+	"Gallery" => "Photos",
 	"Information"=>"Informations",
 	"Contact information"=> "Coordonnées",
 	
@@ -742,14 +743,12 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"About" => "A propos",
 
 	"Update Params" => "Mettre à jour vos paramètres",
-
 	"Not specified" => "Non renseigné",
 	"Update general information" => "Mettre à jour les informations générales",
 	"Update description" => "Mettre à jour la description",
 	"Update network" => "Mettre à jour les réseaux sociaux",
 
 	"General information" => "Informations générales",
-
 );
 
 ?>

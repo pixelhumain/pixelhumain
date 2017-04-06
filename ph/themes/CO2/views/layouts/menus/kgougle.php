@@ -43,7 +43,7 @@ input#second-search-bar{
         <div class="navbar-header pull-left">
            
             <?php if($subdomain == "web"){ ?>
-                <a href="#web" class=" menu-btn-back-category">
+                <a href="#web" class="menu-btn-back-category">
             <?php } else { ?>
                 <a href="#web" class="lbh menu-btn-back-category">
             <?php } ?>
@@ -151,6 +151,12 @@ input#second-search-bar{
                                         <i class="fa fa-user-circle"></i> Rechercher des contacts
                                     </a>
                                 </li>
+                                <li class="text-left">
+                                    <a href="#web" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-search"></i> Actualités
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
                                 <!-- <li role="separator" class="divider">
                                 </li>
                                 <li class="text-left">
