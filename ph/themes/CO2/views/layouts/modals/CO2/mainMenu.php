@@ -69,7 +69,7 @@
 
             <div class="row links-main-menu">
                
-                <a href="#social" class="lbh btn-main-menu col-xs-3"  data-type="search" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#social" class=" btn-main-menu col-xs-3"  data-type="search" >
                     <div class="modal-body text-left">
                         <h2 class="text-red"><i class="fa fa-search fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> RECHERCHE</span>
@@ -86,7 +86,7 @@
                     </div>
                 </a>
 
-                <a href="#annonces" class="lbh btn-main-menu col-xs-3" data-type="classified" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#annonces" class=" btn-main-menu col-xs-3" data-type="classified" >
                     <div class="modal-body text-left">
                         <h2 class="text-orange"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> ANNONCES</span>
@@ -103,7 +103,7 @@
                     </div>
                 </a>
                            
-                <a href="#agenda" class="lbh btn-main-menu col-xs-3" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#agenda" class=" btn-main-menu col-xs-3" data-type="agenda"  >
                     <div class="modal-body text-left">
                         <h2 class="text-yellow"><i class="fa fa-calendar fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> AGENDA</span>
@@ -120,7 +120,7 @@
                     </div>
                 </a>
                 
-                <a href="#power" class="lbh btn-main-menu col-xs-3" date-target="#modalMainMenu" data-dismiss="modal">
+                <a href="#power" class="btn-main-menu col-xs-3" >
                     <div class="modal-body text-left">
                         <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> DEMOCRATIE</span>
@@ -163,11 +163,11 @@
                   <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result">
                 </div>
 
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 classifiedSection2 hidden">
+                <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 classifiedSection2 hidden">
                 <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
-                <?php $freedomSections = CO2::getContextList("freedomSections"); 
+                <?php $classified = CO2::getContextList("classified"); 
                       //var_dump($categories); exit;
-                      foreach ($freedomSections as $key => $cat) { 
+                      foreach ($classified['sections'] as $key => $cat) { 
                   ?>
                       <?php if(is_array($cat)) { ?>
                       <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
@@ -175,7 +175,7 @@
                                 data-fkey="<?php echo $key; ?>"
                                 style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
                                 data-keycat="<?php echo $cat["label"]; ?>">
-                          <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo $cat["label"]; ?>
+                          <i class="fa fa-<?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo $cat["label"]; ?>
                         </button>
                       </div>
                         <?php //foreach ($cat as $key2 => $cat2) { ?>
@@ -188,6 +188,34 @@
                   <?php } ?>
                   <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result">
                 </div>
+
+                <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 agendaSection2 hidden">
+                <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
+                <?php $events = CO2::getContextList("event"); 
+                      //var_dump($categories); exit;
+                      foreach ($events['sections'] as $key => $cat) { 
+                  ?>
+                      <?php if(is_array($cat)) { ?>
+                      <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
+                        <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5" 
+                                data-fkey="<?php echo $key; ?>"
+                                style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
+                                data-keycat="<?php echo $cat["label"]; ?>">
+                          <i class="fa fa-<?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo $cat["label"]; ?>
+                        </button>
+                      </div>
+                        <?php //foreach ($cat as $key2 => $cat2) { ?>
+                          <!-- <button class="btn btn-default text-dark margin-bottom-5 margin-left-15 hidden keycat keycat-<?php //echo $key; ?>">
+                            <i class="fa fa-angle-right"></i> <?php //echo $cat2; ?>
+                          </button><br class="hidden"> -->
+                        <?php //} ?>
+                      <?php } ?>
+                    </button>
+                  <?php } ?>
+                  <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result">
+                </div>
+
+
 
                 <div class="col-xs-12 text-center">
                 <?php 
@@ -208,16 +236,24 @@
 </div>
 
 <script type="text/javascript">
-$( "#modalMainMenu" ).on('shown.bs.modal', function(){
 
-    $(".btn-main-menu").mouseenter(function(){alert();
-        if( $(this).data("type") ){
-            alert( $(this).data("type") );
-            $(".menuSection2").addClass("hidden");
+jQuery(document).ready(function() {
+    $(".btn-main-menu").mouseenter(function(){
+        $(".menuSection2").addClass("hidden");
+        if( $(this).data("type") )
             $("."+$(this).data("type")+"Section2").removeClass("hidden");
-        }
+    }).click(function(e) { 
+        e.preventDefault();
+        $('#modalMainMenu').modal("hide");
+        mylog.warn("***************************************");
+        mylog.warn("bindLBHLinks",$(this).attr("href"));
+        mylog.warn("***************************************");
+        var h = ($(this).data("hash")) ? $(this).data("hash") : $(this).attr("href");
+        url.loadByHash( h );
     });
-    
 });
+
+
+    
   
 </script>
