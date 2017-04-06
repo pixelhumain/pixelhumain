@@ -450,6 +450,7 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> tagList");
         	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
         	$.each(fieldObj.list,function(k,v) { 
+        		//mylog.log("build field ",k,v);
         		var lbl = ( fieldObj.trad && fieldObj.trad[k] ) ? fieldObj.trad[k] : k;
         		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
         						'<a class="btn tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'"'+
