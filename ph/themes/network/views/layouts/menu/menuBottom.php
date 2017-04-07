@@ -1,4 +1,4 @@
-<div class="col-xs-4 main-bottom-menu no-padding"  data-tpl="default.menu.menuBottom">
+<div class="col-xs-1 main-bottom-menu no-padding"  data-tpl="default.menu.menuBottom">
 	
 	<?php if(@Yii::app()->session["userId"] && @$params['add']){ ?>
 		<div class="showElementAdd">
