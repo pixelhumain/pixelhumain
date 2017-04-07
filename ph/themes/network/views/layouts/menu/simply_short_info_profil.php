@@ -343,7 +343,11 @@
 				</div>          
 				<?php }
 				else{ ?>
-				<button class="btn-top btn btn-success hidden-xs btnSignIn" onclick="showPanel('box-register');"><i class="fa fa-plus-circle"></i> <span class="hidden-sm hidden-md hidden-xs">S'inscrire</span></button>
+
+         <?php if (!isset($params['skin']["signup"]) || $params['skin']["signup"]== true){ ?>
+                  <button class="btn-top btn btn-success hidden-xs btnSignIn" onclick="showPanel('box-register');"><i class="fa fa-plus-circle"></i> <span class="hidden-sm hidden-md hidden-xs">S'inscrire</span></button>
+                <?php } ?>
+				
 				<button class="btn-top btn bg-red  hidden-xs btnConnectted" style="margin-right:15px;" onclick="showPanel('box-login');"><i class="fa fa-sign-in"></i> <span class="hidden-sm hidden-md hidden-xs">Se connecter</span></button> 
 				<?php } ?>
 			<?php } ?>
