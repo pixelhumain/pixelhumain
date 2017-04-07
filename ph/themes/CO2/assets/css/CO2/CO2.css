@@ -529,9 +529,9 @@ a, a:hover, a:focus, a:active, a.active{
 	height:44px;
 	font-weight: 200;
 	margin-top:3px;
-	-webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5) ;
-    -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5) ;
-    box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5) ;
+	-webkit-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
+    -moz-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
+    box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
     border:none;
 }
 
@@ -766,9 +766,9 @@ h3.title_panel_map{
 	margin-left: -17px;
 	width: 65px;
 	padding-left: 20px;
-	-webkit-box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5);
-	box-shadow: 0px 0px 6px -1px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 2px -1px rgba(0, 0, 0, 0.5);
 }
 
 

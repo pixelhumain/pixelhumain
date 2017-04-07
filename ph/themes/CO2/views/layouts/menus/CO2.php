@@ -183,8 +183,6 @@
 <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
 
 
-<?php $this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
-
 <script>
 jQuery(document).ready(function() {    
     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);

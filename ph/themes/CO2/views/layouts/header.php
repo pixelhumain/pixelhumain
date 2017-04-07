@@ -96,7 +96,8 @@
                                                           "icon"=>$icon,
                                                           "subdomainName"=>$subdomainName,
                                                           "subdomain"=>$subdomain,
-                                                          "type"=>@$type)); ?>
+                                                          "type"=>@$type,
+                                                          "explain"=>@$explain)); ?>
 
 
                         <?php 

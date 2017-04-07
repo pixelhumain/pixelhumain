@@ -31,7 +31,7 @@
     var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
 
     var classified = <?php echo json_encode( CO2::getContextList("classified") ) ?>;
-    var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;    
+    var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;
     var ressource = <?php echo json_encode( CO2::getContextList("ressource") ) ?>;
 
     //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;

@@ -86,7 +86,6 @@
         <?php $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); ?> 
 
         
-
         <?php 
             echo "<!-- start: MAIN JAVASCRIPTS -->";
             echo "<!--[if lt IE 9]>";
@@ -177,6 +176,8 @@
 
         
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
+        <?php $this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
+
 
         <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
