@@ -95,9 +95,10 @@ return array(
 	
 	// Erreurs
 	"You have some form errors. Please check below." => "Des erreurs sont présentes. Vérifier ci dessous",
-	"Something went wrong!" => "Une erreur est survenue!",
+	"Something went wrong!" => "Une erreur est survenue !",
 	"Something went really bad : Invalid Content" => "Une erreur s'est produite : Contenu Invalide",
 	"Something went really bad : " => "Une erreur s'est produite : ", 
+	"Something went really bad ! Please contact the administrator." => "Une erreur s'est produite : merci de contacter votre administrateur",
 	"Uncorrect request" => "Cette requête n&#146;a pas pu aboutir",
 	"Can not manage the type " => "Vous ne pouvez pas gérer le type",
 	"The form has been validated." => "Le formulaire a été validé avec succès.",
@@ -701,12 +702,26 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Quotation marks" => "Guillemets",
 	"Nothing" => "Rien",
 
+	//Delete element section
 	"Disabled" => "Désactivé",
 	"Are you sure you want to delete this element ? </br> The element will be deleted : it will not be referenced in all their projects or events. But these last ones will not be deleted. <span class=\"text-red\">Warning:</span> this action can not be cancelled" => "Etes vous sur(e) de vouloir supprimer cet élément ? </br> L'élément sera supprimé : il ne sera plus référencé dans les événements/projets qu'il porte. Mais ces derniers ne seront pas supprimés. <span class=\"text-red\">Attention :</span> Cette action ne peut pas être annulée !",
 	'I confim the delete !' => 'Je confirme la suppression',
 	'You can add bellow the reason why you want to delete this element :' => "Vous pouvez ajouter ci dessous pourquoi vous souhaitez supprimer cet élément :",
 	"Organization Disabled" => "Cette organisation est désactivé.",
-	"Creator" => "Createur"
+	"Creator" => "Createur",
+	"This element is in status 'delete pending'. It will be deleted in {nbDaysBeforeDelete} days." => "Cet élément possède le statut 'En cours de suppression. Il va être supprimer dans {nbDaysBeforeDelete} jours.'",
+	"As an admin of this element, if you think it's a mistake you can stop the process." => "En tant qu'admin de cet élément, si vous pensez que c'est sur erreur, vous pouvez stopper le processus.",
+	"Do you want to stop the delete process of this element ?" => "Voulez vous stopper la suppression de cet élément ?",
+	"Stop the delete !" => "Stopper la suppression !",
+	"No : this element will be deleted" => 'Non : cet élément doit être supprimé',
+	"Delete Pending" => "En cours de suppression",
+	"You are not allowed to delete this element !" => "Vous n'avez pas les droits pour supprimer cet élément !",
+	"This element is not pending : impossible to stop the process." => "Cet élément n'est pas en cours de suppression : impossible de stopper le processus",
+	"Impossible to stop deleting that kind of element" => "Impossible de supprimer ce type d'élément",
+	"The element is no more in 'delete pending' status" => "L'élément n'est plus dans le statut 'suppression en cours'",
+	"The element has been put in status 'delete pending', waiting the admin to confirm the delete." => "L'élément a été positionné au statut 'suppression en cours', en attendant que le(s) admin(s) confirme(nt) la suppression",
+	"Error trying to delete this element : please contact your administrator." => "Erreur en essayant de supprimer cet élément : contactez votre administrateur.",
+	"The element {elementName} of type {elementType} has been deleted with success." => "L'élément {elementName} de type {elementType} a été supprimé avec succès.",
 );
 
 ?>
