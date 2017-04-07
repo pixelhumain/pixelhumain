@@ -176,6 +176,8 @@
 
         
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
+        <?php $this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
+
 
         <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
