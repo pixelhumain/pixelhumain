@@ -92,11 +92,9 @@ onSave: (optional) overloads the generic saveProcess
 				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
-
 						' <button onclick="$(\'#ajax-modal\').modal(\'hide\');" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
 							'<i class="fa fa-times "></i> Annuler'+
 						'</button> ';
-
 			fieldHTML += '</div>';
 
 	        $( settings.formId ).append(fieldHTML);
@@ -151,6 +149,7 @@ onSave: (optional) overloads the generic saveProcess
         	value = fieldObj.value;
         else if (formValues && formValues[field]) {
         	value = formValues[field];
+        	fieldObj.value = formValues[field];
         }
         if(value!="")
         	mylog.warn("--------------- dynform form Values",field,value);
@@ -249,7 +248,6 @@ onSave: (optional) overloads the generic saveProcess
 				fieldHTML += '<option></option>';
 
 			var selected = "";
-			
 			//initialize values
 			if(fieldObj.options)
 				fieldHTML += buildSelectOptions(fieldObj.options, fieldObj.value);
@@ -481,7 +479,7 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* ARRAY , is a list of sequential values
 		***************************************** */
-        else if ( fieldObj.inputType == "array" ) {
+        else if ( fieldObj.inputType == "array" ) { 
         	mylog.log("build field "+field+">>>>>> array list");
         	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
 								'<div class="col-sm-10">'+
@@ -556,7 +554,6 @@ onSave: (optional) overloads the generic saveProcess
 				       		'</div></span>'+
 				       '<div class="space5"></div>';
 			
-
 			initField = function(){
 				initMultiFields('.'+field+fieldObj.inputType,field);
 				//initialize values
