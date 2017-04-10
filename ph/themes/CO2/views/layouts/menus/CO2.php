@@ -115,7 +115,7 @@
                                     </li>
                                     <li class="text-admin">
                                         <a href="#admin" class="lbh bg-white">
-                                            <i class="fa fa-hand-rock-o"></i> Admin
+                                            <i class="fa fa-user-circle-o"></i> Admin
                                         </a>
                                     </li>
                                     <li role="separator" class="divider">
