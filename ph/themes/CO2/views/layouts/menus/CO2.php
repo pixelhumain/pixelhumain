@@ -16,6 +16,7 @@
                   $subdomain == "agenda" ||
                   $subdomain == "power"  ||
                   $subdomain == "annonces"||
+                  $subdomain == "admin"||
                   $subdomain == "page" ){ ?>
         
             <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4">
@@ -110,6 +111,11 @@
                                     <li class="text-power">
                                         <a href="#power" class="lbh bg-white">
                                             <i class="fa fa-hand-rock-o"></i> Power
+                                        </a>
+                                    </li>
+                                    <li class="text-admin">
+                                        <a href="#admin" class="lbh bg-white">
+                                            <i class="fa fa-user-circle-o"></i> Admin
                                         </a>
                                     </li>
                                     <li role="separator" class="divider">
