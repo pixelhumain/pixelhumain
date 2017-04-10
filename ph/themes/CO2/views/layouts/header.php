@@ -44,7 +44,6 @@
         $icon                   = $params["pages"]["#".$page]["icon"];
         $mainTitle              = $params["pages"]["#".$page]["mainTitle"];
         $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
-
     ?>
 
     <!-- Header -->
@@ -113,7 +112,7 @@
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button>
 
-                        <?php }elseif($subdomain == "search" ||
+                        <?php  } elseif($subdomain == "search" ||
                                       $subdomain == "social" ||
                                       $subdomain == "agenda" ||
                                       $subdomain == "power" ||
