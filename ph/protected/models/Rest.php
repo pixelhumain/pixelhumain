@@ -52,7 +52,6 @@ class Rest
 
 	            	$img->addAttribute('src',$value);
 
-					// $img = $xml_data->addChild('img', '');
 
 	            } elseif ($key == "enclosure") {
 
@@ -65,16 +64,6 @@ class Rest
 
 	            			$child->addAttribute('url',$value);
 	            			$child->addAttribute('type', 'image/jpeg');
-	            			// $child->addAttribute('length', '34870');
-
-	      
-	      					//$y = $child.childNodes[0];
-							// $child.removeChild($y);
-							// unset($child['0']['0']); 
-
-							// var_dump($child['0']);
-	            			
-
 	            		}
 
 	            	}
@@ -85,7 +74,6 @@ class Rest
 	            	
 
 	            }
-	            //var_dump($xml_data);
 	            
 	        }
 	    }
