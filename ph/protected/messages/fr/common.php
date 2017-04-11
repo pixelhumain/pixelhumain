@@ -751,6 +751,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Update network" => "Mettre à jour les réseaux sociaux",
 
 	"General information" => "Informations générales",
+
+	"character(s)" => "caractère(s)",
 );
 
 ?>
