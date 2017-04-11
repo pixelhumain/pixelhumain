@@ -701,7 +701,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Quotes" => "Quotes",
 	"Quotation marks" => "Guillemets",
 	"Nothing" => "Rien",
-	"The following attributs has been updated : " => "Les attributs suivants ont été mis à jour",
+	"The following attributs has been updated :" => "Les attributs suivants ont été mis à jour :",
 	"name" => "nom",
 
 	"Update general information" => "Modifier les informations générales",
@@ -730,6 +730,27 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"The element has been put in status 'delete pending', waiting the admin to confirm the delete." => "L'élément a été positionné au statut 'suppression en cours', en attendant que le(s) admin(s) confirme(nt) la suppression",
 	"Error trying to delete this element : please contact your administrator." => "Erreur en essayant de supprimer cet élément : contactez votre administrateur.",
 	"The element {elementName} of type {elementType} has been deleted with success." => "L'élément {elementName} de type {elementType} a été supprimé avec succès.",
+
+
+
+	"character(s)" => "caractère(s)",
+	//Mardown
+	'Bold' => "Gras",
+	'Italic' => "Italique",
+	'Heading' => "Titre",
+	'URL/Link' => "Insérer un lien HTTP",
+	'Image' => "Insérer une image",
+	'List' => "Liste à puces",
+	'Preview' => "Prévisualiser",
+	'strong text' => "texte important",
+	'emphasized text' => "texte souligné",
+	'heading text' => "texte d'entête",
+	'enter link description here' => "entrez la description du lien ici",
+	'Insert Hyperlink' => "Insérez le lien hypertexte",
+	'enter image description here' => "entrez la description de l'image ici",
+	'Insert Image Hyperlink' => "Insérez le lien hypertexte de l'image",
+	'enter image title here' => "entrez le titre de l'image ici",
+	'list text here' => "texte à puce ici",
 
 );
 

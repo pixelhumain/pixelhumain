@@ -208,9 +208,20 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){ 
         	if(fieldObj.inputType == "wysiwyg")
         		fieldClass += " wysiwygInput";
+
+        	var maxlength = "";
+        	var minlength = 0;
+        	if(notNull(fieldObj.rules) && notNull(fieldObj.rules.maxlength) ){
+        		fieldClass += " maxlengthTextarea";
+        		maxlength = fieldObj.rules.maxlength;
+        		minlength = value.length ;
+        	} 
         	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
         	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
-        	fieldHTML += '<textarea id="'+field+'" class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
+        	fieldHTML += '<textarea id="'+field+'"  maxlength="'+maxlength+'" class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
+        	if(maxlength > 0)
+        		fieldHTML += '<span><span id="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> ';
+
         }else if ( fieldObj.inputType == "markdown"){ 
         	mylog.log("build field "+field+">>>>>> textarea, markdown");
         	fieldClass += " markdownInput";
