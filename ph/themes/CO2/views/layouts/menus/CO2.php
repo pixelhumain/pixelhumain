@@ -80,7 +80,7 @@
                                             <i class="fa fa-university"></i> Ma commune
                                         </a>
                                     </li> -->
-                                    </li>
+                                    <!-- </li> -->
                                     <!-- <li class="text-left">
                                         <a href="#search" class="lbh bg-white">
                                             <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
@@ -88,8 +88,8 @@
                                     </li> -->
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
-                                        <a href="javascript:" class="bg-white" data-target="#dash-create-modal" data-toggle="modal">
-                                            <i class="fa fa-plus-circle"></i> Créer une page
+                                        <a href="" class="bg-white letter-green openModalSelectCreate">
+                                            <i class="fa fa-plus-circle"></i> Créer 
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>
@@ -100,7 +100,7 @@
                                     </li>
                                     <li class="text-left">
                                         <a href="#annonces" class="lbh bg-white">
-                                            <i class="fa fa-newspaper-o"></i> Petites annonces
+                                            <i class="fa fa-bullhorn"></i> Petites annonces
                                         </a>
                                     </li>
                                     <li class="text-left">
@@ -109,8 +109,8 @@
                                         </a>
                                     </li>
                                     <li class="text-power">
-                                        <a href="#power" class="lbh bg-white">
-                                            <i class="fa fa-hand-rock-o"></i> Power
+                                        <a href="#power" class="bg-white disabled">
+                                            <i class="fa fa-comments"></i> Démocratie
                                         </a>
                                     </li>
                                     <li class="text-admin">
@@ -169,11 +169,17 @@
                 </a>  
         <?php   }
             }  ?>
+
     </div>
     <!-- /.container-fluid -->
 
 </nav>
 
+<?php if(isset(Yii::app()->session['userId'])) {
+        $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
+        $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.selectCreate',  array( ) ); 
+     }
+?>
 
 <?php if(isset(Yii::app()->session['userId'])) 
         $this->renderPartial($layoutPath.'notifications'); ?>
@@ -186,15 +192,9 @@
 <script>
 jQuery(document).ready(function() {    
     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
-    $('#modalMainMenu').on('show', function (e) {alert();
-            $(".btn-main-menu").mouseenter(function(){
-                
-                if( $(this).data("type") ){
-                    alert( $(this).data("type") );
-                    $(".menuSection2").addClass("hidden");
-                    $("."+$(this).data("type")+"Section2").removeClass("hidden");
-                }
-            });
-        });
+    
+    $(".openModalSelectCreate").click(function(){
+        $("#selectCreate").modal("show");
+    });
 });
 </script> 
