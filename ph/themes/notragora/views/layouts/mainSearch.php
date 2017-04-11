@@ -487,7 +487,7 @@
 		    $(".my-main-container").bind("scroll", function(){
 		    	//console.log("scrolling my-container");
 		    	checkScroll();
-		    	shadowOnHeader()
+		    	shadowOnHeader();
 		    });
 
 		    //alert("on ready 1");
