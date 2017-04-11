@@ -751,6 +751,28 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Update network" => "Mettre à jour les réseaux sociaux",
 
 	"General information" => "Informations générales",
+
+	"character(s)" => "caractère(s)",
+
+
+
+	//Mardown
+	'Bold' => "Gras",
+	'Italic' => "Italique",
+	'Heading' => "Titre",
+	'URL/Link' => "Insérer un lien HTTP",
+	'Image' => "Insérer une image",
+	'List' => "Liste à puces",
+	'Preview' => "Prévisualiser",
+	'strong text' => "texte important",
+	'emphasized text' => "texte souligné",
+	'heading text' => "texte d'entête",
+	'enter link description here' => "entrez la description du lien ici",
+	'Insert Hyperlink' => "Insérez le lien hypertexte",
+	'enter image description here' => "entrez la description de l'image ici",
+	'Insert Image Hyperlink' => "Insérez le lien hypertexte de l'image",
+	'enter image title here' => "entrez le titre de l'image ici",
+	'list text here' => "texte à puce ici",
 );
 
 ?>
