@@ -229,6 +229,7 @@ return array(
 	"follower" => "abonné",
 	"followers" => "abonnés",
 	"Followers" => "Abonnés",
+	"Follow" => "Abonnements",
 	"follows" => "coup de coeur",
 	"Community" => "Communauté",
 	"COMMUNITY" => "COMMUNAUTÉ",
