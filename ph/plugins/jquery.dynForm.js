@@ -216,7 +216,7 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> textarea, wysiwyg", fieldObj);
         	if(fieldObj.inputType == "wysiwyg")
         		fieldClass += " wysiwygInput";
-        	var maxlength = 0;
+        	var maxlength = "";
         	var minlength = 0;
         	if(notNull(fieldObj.rules) && notNull(fieldObj.rules.maxlength) ){
         		fieldClass += " maxlengthTextarea";
