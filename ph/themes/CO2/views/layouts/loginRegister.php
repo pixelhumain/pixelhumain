@@ -109,7 +109,7 @@
 
                 <div class="col-md-12 text-center">
                     <br><hr>
-                    <a href="javascript:" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
+                    <a href="javascript:" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
                 </div>
 
             </div>      
@@ -181,7 +181,7 @@
                     </div>
                 </div>
 
-                <a href="javascript:" class="pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
+                <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
                 <button class="btn bg-red text-white pull-right createBtn"><i class="fa fa-sign-in"></i> S'inscrire</button>
                 
                 
@@ -189,9 +189,6 @@
             </div>      
         </div>
     </form>
-    <div class="col-md-12 text-center margin-bottom-50">
-        <button class="btn btn-default" data-toggle="modal" data-target="#modalRegisterSuccess">Success</button>
-    </div>
 </div>
 
 <div class="modal fade" role="dialog" id="modalRegisterSuccess">
@@ -227,7 +224,7 @@
 <?php } ?>
 
 <div class="portfolio-modal modal fade" id="modalForgot" tabindex="-1" role="dialog" aria-hidden="true">
-    <form class="modal-content form-emai box-email padding-top-15"  >
+    <form class="modal-content form-email box-email padding-top-15"  >
         <div class="close-modal" data-dismiss="modal">
             <div class="lr">
                 <div class="rl">
@@ -254,7 +251,7 @@
             <div class="col-md-4 col-md-offset-4 text-left">
                 
                 <label class="letter-black"><i class="fa fa-envelope"></i> E-mail</label><br>
-                <input class="form-control" id="email3" name="email2" type="text" placeholder="E-mail"><br/>
+                <input class="form-control" id="email2" name="email2" type="text" placeholder="E-mail"><br/>
                 
                 <hr>
 
@@ -270,17 +267,14 @@
                     </button>
                 </div> -->
 
-                <a href="javascript:" class="pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
-                <button class="btn bg-red text-white pull-right forgotBtn"><i class="fa fa-sign-in"></i> Envoyer</button>
+                <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
+                <button class="btn btn-success text-white pull-right forgotBtn"><i class="fa fa-sign-in"></i> Envoyer</button>
                 
                 
                 <div class="col-md-12 margin-top-50 margin-bottom-50"></div>
             </div>      
         </div>
     </form>
-    <div class="col-md-12 text-center margin-bottom-50">
-        <button class="btn btn-default" data-toggle="modal" data-target="#modalRegisterSuccess">Success</button>
-    </div>
 </div>
 
 <script>
