@@ -773,6 +773,11 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	'Insert Image Hyperlink' => "Insérez le lien hypertexte de l'image",
 	'enter image title here' => "entrez le titre de l'image ici",
 	'list text here' => "texte à puce ici",
+
+
+	"Old password" => "Ancien mot de passe",
+	"New password" => "Nouveau mot de passe",
+	"Repeat your new password" => "Répéter votre nouveau mot de passe",
 );
 
 ?>

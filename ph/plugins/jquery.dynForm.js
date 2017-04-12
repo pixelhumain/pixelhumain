@@ -756,8 +756,11 @@ onSave: (optional) overloads the generic saveProcess
 							    '</div><!-- /.modal-content -->'+
 							  '</div><!-- /.modal-dialog -->'+
 							'</div><!-- /.modal -->';
-        }
- 
+        } 
+        else if ( fieldObj.inputType == "password" ) {
+        	mylog.log("build field "+field+">>>>>> password");
+        	fieldHTML += '<input id="'+field+'" name="'+field+'" class="form-control" type="password"/>';
+       	}
         else {
         	mylog.log("build field "+field+">>>>>> input text");
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
