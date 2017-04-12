@@ -157,6 +157,9 @@
 
         </div>
         <!-- /.navbar-collapse -->
+        <a type="button" class="lbh btn btn-link pull-right btn-menu-to-app hidden-top hidden-xs letter-green" data-target="#selectCreate" data-toggle="modal">
+            <i class="fa fa-plus-circle"></i>           
+        </a>
         <?php 
             $params = CO2::getThemeParams();
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
@@ -169,7 +172,7 @@
                 </a>  
         <?php   }
             }  ?>
-
+        
     </div>
     <!-- /.container-fluid -->
 
