@@ -70,6 +70,7 @@
                                 function() {
                                     emailType = 'validateEmail';
                                     $('#email2').val($('#email-login').val());
+                                    $('#email3').val($('#email-login').val());
                                     $('.forgotBtn .ladda-label').text(buttonLabel[emailType])});">
                               <?php echo Yii::t("login","here") ?></a> <?php echo Yii::t("login","to receive it again.") ?> 
                     </div>
@@ -92,14 +93,14 @@
 
                 <div class="col-md-12 no-padding text-center">
                     <hr>
-                    <button class="btn btn-xs bg-white">
-                        <i class="fa fa-s"></i> J'ai perdu mon mot de passe
+                    <button class="btn btn-xs bg-white" data-toggle="modal" data-target="#modalForgot">
+                        <!-- <i class="fa fa-s"></i> -->J'ai perdu mon mot de passe
                     </button>
                     <br><br>
                     
-                    <?php if(false){ //bloquage des inscriptions ?>
-                        <button class="btn btn-default" data-toggle="modal" data-target="#modalRegister">
-                            <i class="fa fa-sign-in"></i> Je veux m'inscrire
+                    <?php  if(Yii::app()->params["CO2DomainName"] != "kgougle"){ ?>
+                        <button class="btn btn-xs bg-white" data-toggle="modal" data-target="#modalRegister">
+                             <!-- <i class="fa fa-sign-in"></i> --> Je veux m'inscrire
                         </button>
                     <?php } ?>
                 </div>
@@ -116,7 +117,7 @@
     </div>
 </form>
 
-<?php if(false){ //bloquage des inscriptions ?>
+<?php if(Yii::app()->params["CO2DomainName"] != "kgougle"){ //bloquage des inscriptions ?>
 <div class="portfolio-modal modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-hidden="true">
     <form class="modal-content form-register box-register padding-top-15"  >
         <div class="close-modal" data-dismiss="modal">
@@ -129,15 +130,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <span class="name font-blackoutM" >
-                        <span class="letter letter-blue font-ZILAP letter-k">K</span>
-                        <span class="letter letter-yellow">G</span>
-                        <span class="letter letter-yellow font-ZILAP">O</span>
-                        <span class="letter letter-yellow">U</span>
-                        <span class="letter letter-green">G</span>
-                        <span class="letter letter-green">L</span>
-                        <span class="letter letter-green">E</span>
+                        <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
+                       <?php } else { ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">
+                        <?php } ?>
                     </span>
-                    <h3 class="letter-red no-margin" style="margin-top:-15px!important;">Je m'inscris</h3><br>
+                    <h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>
+                    <p>La connexion est réservée aux administrateurs du réseau.<hr></p>
                 </div>
                 <div class="col-lg-12">
                     <p></p>
@@ -145,25 +145,23 @@
             </div>
             <div class="col-md-4 col-md-offset-4 text-left">
                 
-                <label class="letter-black hidden"><i class="fa fa-address-book-o"></i> Nom et prénom</label>
-                <input class="form-control hidden" id="registerName" name="name" type="text" placeholder="Nom et prénom">
+                <label class="letter-black"><i class="fa fa-address-book-o"></i> Nom et prénom</label>
+                <input class="form-control" id="registerName" name="name" type="text" placeholder="Nom et prénom"><br/>
                 
                 <label class="letter-black"><i class="fa fa-user-circle-o"></i> Nom d'utilisateur</label><br>
-                <input class="form-control" id="username" name="username" type="text" placeholder="Nom d'utilisateur"><br>
+                <input class="form-control" id="username" name="username" type="text" placeholder="Nom d'utilisateur"><br/>
                 
                 <label class="letter-black"><i class="fa fa-envelope"></i> E-mail</label><br>
-                <input class="form-control" id="email3" name="email3" type="text" placeholder="e-mail"><br>
+                <input class="form-control" id="email3" name="email3" type="text" placeholder="e-mail"><br/>
                 
-                <label class="letter-black"><i class="fa fa-key"></i> Mot de passe</label><br>
-                <input class="form-control" id="password3" name="password3" type="password" placeholder="mot de passe"><br>
+                <label class="letter-black"><i class="fa fa-key"></i> Mot de passe</label><br/>
+                <input class="form-control" id="password3" name="password3" type="password" placeholder="mot de passe"><br/>
                 
-                <label class="letter-black"><i class="fa fa-key"></i> Répétez le mot de passe</label><br>
+                <label class="letter-black"><i class="fa fa-key"></i> Répétez le mot de passe</label><br/>
                 <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="mot de passe (confirmation)">
                 
                 <hr>
 
-                <!-- <input class="pull-left margin-top-10 agree" id="agree" name="agree" type="checkbox"> -->
-                <!-- <label class="padding-5 text-red">Je suis d'accord avec <a href="#k.CGC">les règles de confidentialité</a></label> -->
                 <label for="agree" class="checkbox-inline letter-red">
                     <input type="checkbox" class="grey agree" id="agree" name="agree">
                     <?php echo Yii::t("login","I agree to the Terms of") ?> 
@@ -205,12 +203,12 @@
             <div class="modal-body center text-dark hidden" id="modalRegisterSuccessContent"></div>
             <div class="modal-body center text-dark">
                 
-                <h4 class="letter-green no-margin"><i class="fa fa-check-circle"></i> Confirmez votre addresse e-mail</h4>
+                <h4 class="letter-green no-margin"><i class="fa fa-check-circle"></i> Confirmez votre adresse e-mail</h4>
                 <h4 class="no-margin">
                     <small>afin d'accéder à votre compte</small>
                 </h4>
                 <small class="no-margin">
-                    <i class="fa fa-lock"></i> Pour des raisons de sécurité, vous devez confirmer votre addresse e-mail avant de pouvoir vous connecter.
+                    <i class="fa fa-lock"></i> Pour des raisons de sécurité, vous devez confirmer votre adresse e-mail avant de pouvoir vous connecter.
                 </small>
                 <br><br>
                 <h5><i class="fa fa-angle-down"></i> Comment faire ?</h5>
@@ -227,6 +225,63 @@
     </div>
 </div>
 <?php } ?>
+
+<div class="portfolio-modal modal fade" id="modalForgot" tabindex="-1" role="dialog" aria-hidden="true">
+    <form class="modal-content form-emai box-email padding-top-15"  >
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="name font-blackoutM" >
+                        <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
+                       <?php } else { ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">
+                        <?php } ?>
+                    </span>
+                    <h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>
+                    <p>La connexion est réservée aux administrateurs du réseau.<hr></p>
+                </div>
+                <div class="col-lg-12">
+                    <p></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-md-offset-4 text-left">
+                
+                <label class="letter-black"><i class="fa fa-envelope"></i> E-mail</label><br>
+                <input class="form-control" id="email3" name="email2" type="text" placeholder="E-mail"><br/>
+                
+                <hr>
+
+                <div class="pull-left form-actions no-margin" style="width:100%; padding:10px;">
+                    <div class="errorHandler alert alert-danger no-display registerResult pull-left " style="width:100%;">
+                        <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","You have some form errors. Please check below.") ?>
+                    </div>
+                </div>
+
+                <!-- <div class="form-actions">
+                     <button type="submit"  data-size="s" data-style="expand-right" style="background-color:#E33551" class="forgotBtn ladda-button center center-block">
+                        <span class="ladda-label">XXXXXXXX</span><span class="ladda-spinner"></span><span class="ladda-spinner"></span>
+                    </button>
+                </div> -->
+
+                <a href="javascript:" class="pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
+                <button class="btn bg-red text-white pull-right forgotBtn"><i class="fa fa-sign-in"></i> Envoyer</button>
+                
+                
+                <div class="col-md-12 margin-top-50 margin-bottom-50"></div>
+            </div>      
+        </div>
+    </form>
+    <div class="col-md-12 text-center margin-bottom-50">
+        <button class="btn btn-default" data-toggle="modal" data-target="#modalRegisterSuccess">Success</button>
+    </div>
+</div>
 
 <script>
     
@@ -277,6 +332,8 @@ jQuery(document).ready(function() {
     if(email != ''){
         $('#email-login').val(email);
         $('#email-login').prop('disabled', true);
+        $('#email2').val(email);
+        $('#email2').prop('disabled', true);
         $('#email3').val(email);
         $('#email3').prop('disabled', true);
     }
