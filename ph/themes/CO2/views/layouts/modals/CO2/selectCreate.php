@@ -23,6 +23,14 @@
         text-decoration: none;
     }
 
+
+@media (max-width: 768px) {
+    #div-select-create small{
+        font-size: 9px;
+        text-transform: none !important;
+        font-weight: bold;
+    }
+}
     /*#selectCreate.portfolio-modal.modal {
         overflow-x: hidden !important;
         overflow-y: auto !important;
@@ -58,7 +66,7 @@
 
             <div class="row links-main-menu" id="div-select-create">
                
-               <h4 class="text-left" style="padding-left:50px;"><i class="fa fa-angle-down"></i> Publier quelque chose</h4>
+               <h4 class="text-center" style="padding-left:0px;"><i class="fa fa-angle-down"></i> Publier quelque chose</h4>
                 <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 
                 <button data-form-type="event"  data-dismiss="modal"
@@ -82,7 +90,7 @@
                     <small>Faire connaître un lieu intéressant<br>Contribuer à la carte collaborative<br>Connecter son territoire</small>
                 </button>
                 <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
-                <h4 class="text-left no-margin" style="padding-left:50px;"><i class="fa fa-angle-down"></i> Créer une page</h4>
+                <h4 class="text-center no-margin" style="padding-left:0px;"><i class="fa fa-angle-down"></i> Créer une page</h4>
                 <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
                 
 

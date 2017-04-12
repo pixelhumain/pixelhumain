@@ -69,7 +69,7 @@
 
             <div class="row links-main-menu">
                
-                <a href="#social" class=" btn-main-menu col-xs-3"  data-type="search" >    <div class="modal-body text-left">
+                <a href="#social" class=" btn-main-menu col-xs-3"  data-type="search" >    <div class="modal-body text-center">
                         <h2 class="text-red"><i class="fa fa-search fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> RECHERCHE</span>
                         </h2>
@@ -85,7 +85,7 @@
                     </div>
                 </a>
                 <a href="#annonces" class=" btn-main-menu col-xs-3" data-type="classified" >
-                    <div class="modal-body text-left">
+                    <div class="modal-body text-center">
                         <h2 class="text-orange"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> ANNONCES</span>
                         </h2>
@@ -102,7 +102,7 @@
                 </a>
                            
                 <a href="#agenda" class=" btn-main-menu col-xs-3" data-type="agenda">
-                    <div class="modal-body text-left">
+                    <div class="modal-body text-center">
                         <h2 class="text-yellow"><i class="fa fa-calendar fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> AGENDA</span>
                         </h2>
@@ -119,7 +119,7 @@
                 </a>
                 
                <a href="#power" class="btn-main-menu col-xs-3" > 
-                    <div class="modal-body text-left">
+                    <div class="modal-body text-center">
                         <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> DEMOCRATIE</span>
                         </h2>
@@ -215,7 +215,7 @@
                         if( isset( Yii::app()->session['userId']) ){
                     ?> 
                     <a href="javascript:;" style="font-size:25px;" class="btn btn-default letter-green bold " 
-                                        data-target="#dash-create-modal" data-toggle="modal" id="">
+                                        data-target="#dash-create-modal" data-toggle="modal" data-dismiss="modal" id="">
                                     <i class="fa fa-plus-circle"></i> CRÉER UNE PAGE
                                 </a>
                     <?php } ?> 

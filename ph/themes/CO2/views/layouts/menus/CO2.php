@@ -89,7 +89,7 @@
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
                                         <a href="" class="bg-white letter-green openModalSelectCreate">
-                                            <i class="fa fa-plus-circle"></i> Créer 
+                                            <i class="fa fa-plus-circle"></i> Nouveau... 
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>
