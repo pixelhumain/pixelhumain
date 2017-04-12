@@ -255,6 +255,8 @@ return array(
 	"the position" => "la position",
 	"the short description" => "la description courte",
 	"the fax" => "le fax",
+	"the mobile" => "le(s) numéro(s) mobile(s)",
+	"the fixe" => "le(s) numéro(s) fixe(s)",
 	"the email" => "l'email",
 	"the website" => "le site web",
 	"the tags" => "les tags",
