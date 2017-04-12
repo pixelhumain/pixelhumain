@@ -314,7 +314,8 @@ return array(
 	"Event" => "Événement",
 	"Agenda" => "Agenda",
 	"Classified" => "Annonce",
-
+	"Point of interest" => "Point d'intêret",
+	
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
 	"Citoyens" => "Citoyens",
