@@ -21,7 +21,12 @@ input#second-search-bar{
     font-size: 20px;
     margin-top: 2px;
 }
-
+.navbar-header .nc_map {
+    margin: 10px 5px 0 -10px;
+}
+.affix .navbar-header .nc_map {
+    margin: 10px 10px 0 -15px;
+}
 #btn-sethome, #btn-apropos, #btn-radio{
     background-color: transparent !important;
     border:transparent;
