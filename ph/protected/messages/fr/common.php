@@ -234,6 +234,7 @@ return array(
 	"Follow" => "Abonnements",
 	"follows" => "Abonnements",
 	"Follows" => "Abonnements",
+	"Collections" => "Collections",
 	"Community" => "Communauté",
 	"COMMUNITY" => "COMMUNAUTÉ",
 	"General informations" => "Informations générales",
@@ -336,6 +337,8 @@ return array(
 	"projects" => "projets",
 	"events" => "événements",
 	"classified" => "annonce",
+	"Classifieds" => "Annonces",
+	"Cooperative space" => "Espace coopératif",
 
 	"a news" => "un post",
 	"of the event" => "de l'événement",
