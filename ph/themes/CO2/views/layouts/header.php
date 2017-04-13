@@ -88,9 +88,9 @@
                                     </a>
                             <?php } ?>
 
-                            <button type="button" class="btn btn-default bold letter-green" data-target="#selectCreate" data-toggle="modal">
+                            <!-- <button type="button" class="btn btn-default bold letter-green" data-target="#selectCreate" data-toggle="modal">
                                 <i class="fa fa-plus-circle fa-2x"></i>           
-                            </button>
+                            </button> -->
                             
                         </div>
 

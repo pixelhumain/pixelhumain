@@ -12,9 +12,8 @@
 
 	#btn-my-co{
 		border-radius: 50px;
-		margin-top: -7px;
+		margin-top: 21px;
 		margin-left: 5px;
-		margin-right: -20px;
 	}
 
 	header .btn-decommunecter{
@@ -67,20 +66,7 @@
 <div class="text-dark" style="font-size:20px; margin-bottom:10px;">
 	<i class="fa fa-<?php echo @$icon; ?>"></i>
 	<?php echo $mainTitle; ?> 
-	<?php if($communexion["state"] == false && @$type != "cities"){ ?>
-	<button class="btn btn-link bg-white text-red tooltips item-globalscope-checker start-new-communexion"
-			data-toggle="tooltip" data-placement="right" title="Communecter avec <?php echo @$communexion["currentName"]; ?>" 
-			data-scope-value='<?php echo @$communexion["values"]["cityKey"]; ?>'
-            data-scope-name='<?php echo @$communexion["values"]["cityName"]; ?>'
-            data-scope-type='city'
-			id="btn-my-co">
-			<i class="fa fa-university"></i>
-	</button>
-	<?php } ?>
-	<?php if(@$explain && !empty($explain)){ ?>
-		</br><i class="fa fa-info-circle"></i> 
-		<span id='msg_live_type'><?php echo $explain ?></span>
-	<?php } ?>
+	
 	
 </div>
 
