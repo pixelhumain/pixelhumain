@@ -3,25 +3,42 @@
         if($communexion["state"] == false){
     ?>
 
+    <?php if($communexion["state"] == false && @$type != "cities"){ ?>
+    <button class="pull-left btn btn-link bg-white text-red tooltips item-globalscope-checker start-new-communexion"
+            data-toggle="tooltip" data-placement="top" title="Communecter avec <?php echo @$communexion["currentName"]; ?>" 
+            data-scope-value='<?php echo @$communexion["values"]["cityKey"]; ?>'
+            data-scope-name='<?php echo @$communexion["values"]["cityName"]; ?>'
+            data-scope-type='city'
+            id="btn-my-co">
+            <i class="fa fa-university"></i>
+    </button>
+    <?php } ?>
+    <?php if(@$explain && !empty($explain)){ ?>
+        </br><i class="fa fa-info-circle"></i> 
+        <span id='msg_live_type'><?php echo $explain ?></span>
+    <?php } ?>
+
+
+
         <?php if($type != "cities"){ ?>            
             <h5 class="pull-left letter-red" style="margin-bottom: -8px;margin-top: 14px;">
-                    <button class="btn btn-default main-btn-scopes text-white tooltips margin-bottom-5 margin-left-10 margin-right-10" 
-                        data-target="#modalScopes" data-toggle="modal"
-                        data-toggle="tooltip" data-placement="top" 
-                                            title="Sélectionner des lieux de recherche">
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=25>
-                    </button> 
-                    recherche ciblée <i class="fa fa-angle-right"></i> 
+                <button class="btn btn-default main-btn-scopes text-white tooltips margin-bottom-5 margin-left-10 margin-right-10" 
+                    data-target="#modalScopes" data-toggle="modal"
+                    data-toggle="tooltip" data-placement="top" 
+                                        title="Sélectionner des lieux de recherche">
+                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=25>
+                </button> 
+                recherche ciblée <i class="fa fa-angle-right"></i> 
             </h5>
          
-            <div class="scope-min-header list_tags_scopes hidden-xs text-left">
+            <div class="scope-min-header list_tags_scopes hidden-xs text-left ellipsis">
             </div>
         <?php } ?> 
 
     <?php }else{ ?>
         <div class="breadcrum-communexion hidden-xs col-md-12">
             <button class="btn btn-link text-red btn-decommunecter tooltips"
-                    data-toggle="tooltip" data-placement="right" 
+                    data-toggle="tooltip" data-placement="top" 
                     title="Quitter la communexion">
                 <i class="fa fa-times"></i>
             </button>

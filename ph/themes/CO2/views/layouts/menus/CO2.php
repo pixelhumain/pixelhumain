@@ -41,8 +41,8 @@
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
         </button> -->
 
-        <button class="btn-show-communexion lbh" data-hash="#search.type.cities" title="Communectez-vous">
-            <i class="fa fa-university tooltips" data-toggle="tooltip" data-placement="bottom" title="Communectez-vous"></i>
+        <button class="btn-show-mainmenu lbh" data-hash="#search.type.cities" title="Communectez-vous">
+            <i class="fa fa-bars tooltips" data-toggle="tooltip" data-placement="bottom" title=""></i>
         </button>
 
 
@@ -68,13 +68,12 @@
                     <div class="dropdown pull-right" id="dropdown-user">
                         <div class="dropdown-main-menu">
                             <ul class="dropdown-menu arrow_box">
-                                    <li class="text-left">
+                                    <!-- <li class="text-left">
                                         <a href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>" 
                                             class="lbh bg-white">
                                             <i class="fa fa-user-circle"></i> Ma page
                                         </a>
-                                    </li>
-                                    </li>
+                                    </li> -->
                                     <!-- <li class="text-left">
                                         <a href="#social" class="lbh bg-white">
                                             <i class="fa fa-university"></i> Ma commune
@@ -86,7 +85,6 @@
                                             <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
                                         </a>
                                     </li> -->
-                                    <li role="separator" class="divider"></li>
                                     <li class="text-left">
                                         <a href="" class="bg-white letter-green openModalSelectCreate">
                                             <i class="fa fa-plus-circle"></i> Nouveau... 
@@ -94,6 +92,11 @@
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
+                                        <a href="" class="bg-white openModalSelectCreate">
+                                            <i class="fa fa-university"></i> Communexion
+                                        </a>
+                                    </li>
+                                    <!-- <li class="text-left">
                                         <a href="#search" class="lbh bg-white">
                                             <i class="fa fa-search"></i> Rechercher
                                         </a>
@@ -112,10 +115,15 @@
                                         <a href="#power" class="bg-white disabled">
                                             <i class="fa fa-comments"></i> Démocratie
                                         </a>
+                                    </li> -->
+                                    <li class="text-admin">
+                                        <a href="#admin" class="lbh bg-white">
+                                            <i class="fa fa-cogs"></i> Mes paramètres
+                                        </a>
                                     </li>
                                     <li class="text-admin">
                                         <a href="#admin" class="lbh bg-white">
-                                            <i class="fa fa-user-circle-o"></i> Admin
+                                            <i class="fa fa-user-secret"></i> Admin
                                         </a>
                                     </li>
                                     <li role="separator" class="divider">
@@ -157,9 +165,9 @@
 
         </div>
         <!-- /.navbar-collapse -->
-        <a type="button" class="lbh btn btn-link pull-right btn-menu-to-app hidden-top hidden-xs letter-green" data-target="#selectCreate" data-toggle="modal">
+        <!-- <a type="button" class="lbh btn btn-link pull-right btn-menu-to-app hidden-top hidden-xs letter-green" data-target="#selectCreate" data-toggle="modal">
             <i class="fa fa-plus-circle"></i>           
-        </a>
+        </a> -->
         <?php 
             $params = CO2::getThemeParams();
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {

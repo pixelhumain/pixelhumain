@@ -89,33 +89,34 @@
                     <h6><i class="fa fa-map-marker fa-2x bg-green"></i><br> Point d'intérêt</h6>
                     <small>Faire connaître un lieu intéressant<br>Contribuer à la carte collaborative<br>Connecter son territoire</small>
                 </button>
-                <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
-                <h4 class="text-center no-margin" style="padding-left:0px;"><i class="fa fa-angle-down"></i> Créer une page</h4>
-                <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
-                
 
-                <button data-form-type="project"  data-dismiss="modal"
-                        class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-purple">
-                    <h6><i class="fa fa-lightbulb-o fa-2x bg-purple"></i><br> Projet</h6>
-                    <small>Faire connaitre votre projet<br>Trouver du soutien<br>Construire une communauté</small>
-                </button>
-                <button data-form-type="organization" data-form-subtype="association"  data-dismiss="modal"
-                        class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-green">
-                    <h6><i class="fa fa-group fa-2x bg-green"></i><br> Association</h6>
-                    <small>Faire connaitre votre association<br>Gérer les adhérents<br>Partager votre actualité</small>
-                </button>
-                <button data-form-type="organization" data-form-subtype="business"  data-dismiss="modal"
-                        class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-azure">
-                    <h6><i class="fa fa-industry fa-2x bg-azure"></i><br> Entreprise</h6>
-                    <small>Faire connaitre votre entreprise<br>Trouver de nouveaux clients<br>Gérer vos contacts</small>
-                </button>
-                
-                <button data-form-type="organization" data-form-subtype="group"  data-dismiss="modal"
-                        class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 letter-turq">
-                    <h6><i class="fa fa-group fa-2x bg-turq"></i><br> Groupe</h6>
-                    <small>Créer un groupe<br>Partager vos centres d'intêrets<br>Discuter Communiquer S'amuser</small>
-                </button>
-
+                <div class="section-create-page">
+                    <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
+                    <h4 class="text-center no-margin" style="padding-left:0px;"><i class="fa fa-angle-down"></i> Créer une page</h4>
+                    <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
+                    
+                    <button data-form-type="project"  data-dismiss="modal"
+                            class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-purple">
+                        <h6><i class="fa fa-lightbulb-o fa-2x bg-purple"></i><br> Projet</h6>
+                        <small>Faire connaitre votre projet<br>Trouver du soutien<br>Construire une communauté</small>
+                    </button>
+                    <button data-form-type="organization" data-form-subtype="association"  data-dismiss="modal"
+                            class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-green">
+                        <h6><i class="fa fa-group fa-2x bg-green"></i><br> Association</h6>
+                        <small>Faire connaitre votre association<br>Gérer les adhérents<br>Partager votre actualité</small>
+                    </button>
+                    <button data-form-type="organization" data-form-subtype="business"  data-dismiss="modal"
+                            class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-azure">
+                        <h6><i class="fa fa-industry fa-2x bg-azure"></i><br> Entreprise</h6>
+                        <small>Faire connaitre votre entreprise<br>Trouver de nouveaux clients<br>Gérer vos contacts</small>
+                    </button>
+                    
+                    <button data-form-type="organization" data-form-subtype="group"  data-dismiss="modal"
+                            class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 letter-turq">
+                        <h6><i class="fa fa-group fa-2x bg-turq"></i><br> Groupe</h6>
+                        <small>Créer un groupe<br>Partager vos centres d'intêrets<br>Discuter Communiquer S'amuser</small>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

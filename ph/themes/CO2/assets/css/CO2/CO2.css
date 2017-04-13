@@ -357,7 +357,7 @@ input#second-search-bar{
 	width: 50px;
 	height: 35px;
 	font-size: 17px;
-	margin-left: 5px;
+	margin-left: 10px;
 }
 .navbar-custom .btn-show-communexion:hover{
 	background-color: transparent;
@@ -405,10 +405,12 @@ input#second-search-bar{
 	display: inline;
 }
 
-.navbar-map .navbar-header .nc_map{
-	margin: 10px 0px 0 0;
-}
 
+.navbar-header .nc_map{
+	/*display: none;*/
+	float: left;
+	margin: 10px 5px 0 -20px;
+}
 #right_tool_map{
 	top: 60px!important;
 	left:unset!important;
@@ -569,7 +571,7 @@ a, a:hover, a:focus, a:active, a.active{
 .dropdown-main-menu{
 	position: fixed;
 	top:60px;
-	right:85px;
+	right:15px;
 	max-height:400px;
 	/*width:200px;*/
 	background-color:transparent;
@@ -754,18 +756,18 @@ h3.title_panel_map{
 	max-width:95%!important;
 }
 #input-sec-search{
-	padding-right:0px;
+	padding:0px;
 }
 .menu-btn-start-search{
-	border-radius: 50px;
-	height: 38px;
+	border-radius: 0px 4px 4px 0px;
+	height: 42px;
 	border: none;
 	margin-right: 4px;
 	background: #F3F3F3;
-	margin-top: 6px;
-	margin-left: -17px;
-	width: 65px;
-	padding-left: 20px;
+	margin-top: 4px;
+	margin-left: -5px;
+	width: 40px;
+	padding-left: 15px;
 	-webkit-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5);
 	-moz-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5);
 	box-shadow: 0px 0px 2px -1px rgba(0, 0, 0, 0.5);
@@ -1141,6 +1143,15 @@ h3.title_panel_map{
 }
 
 @media (max-width: 768px) {
+
+
+	.navbar-header .nc_map{
+		margin: 10px 0px 0 0px !important;
+	}
+
+	.navbar-map .navbar-header .nc_map{
+		margin: 10px 0px 0 -10px;
+	}
 
 	.sigModuleBg .btn-group-map.tools-btn{
 		margin-right:15px;
