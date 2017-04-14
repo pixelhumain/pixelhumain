@@ -1189,7 +1189,7 @@ h3.title_panel_map{
 		font-size:4em;
 	}
 	#sectionSearchResults{
-		margin-left: 15px!important;
+		/*margin-left: 15px!important;*/
 	}
 	.name .pastille{
 		margin-top:-40px;
@@ -1273,48 +1273,12 @@ h3.title_panel_map{
 		padding:25px 0 0 0;
 	}
 
-
-	/*.scroll-top .btn {
-	    font-size: 17px;
-	    width: 45px;
-		height: 45px;
-	    border-radius: 100% 0 0;
-		line-height: 28px;
-		border: none;
-		background-color: #1a67e7;
-		padding-top: 10px;
-		padding-left: 18px;
-	}
-
-	.scroll-top {
-	    right: 0%;
-	    bottom: 0%;
-	    width: 45px;
-		height: 45px;
-	}
-
-
-	.radio-tool .btn {
-	    font-size: 17px;
-	    width: 45px;
-		height: 45px;
-	    border-radius: 0 100% 0 0;
-		line-height: 28px;
-		border: none;
-		padding-top: 10px;
-		padding-left: 12px;
-	}
-
-	.radio-tool {
-		position: fixed;
-	    left: 0%;
-	    bottom: 0%;
-	    width: 45px;
-		height: 45px;
-	}*/
-
 	#sub-menu-left{
         margin-top:10px;
         text-align: left;
+    }
+
+    .col-footer a{
+    	padding:10px;
     }
 }

@@ -81,13 +81,6 @@
                             <?php } ?>
 
 
-                            <?php if($subdomainName == "referencement") { ?>
-                                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
-                                        href="#web">
-                                        <i class="fa fa-arrow-left"></i> <span class="">Retour a la recherche</span>
-                                    </a>
-                            <?php } ?>
-
                             <!-- <button type="button" class="btn btn-default bold letter-green" data-target="#selectCreate" data-toggle="modal">
                                 <i class="fa fa-plus-circle fa-2x"></i>           
                             </button> -->
