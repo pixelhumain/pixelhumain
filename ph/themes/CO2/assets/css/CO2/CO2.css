@@ -1136,14 +1136,16 @@ h3.title_panel_map{
 	}
 
 
-	.name .pastille{
-		margin-top: -25px;
-		display: block;
-		text-align: right;
-		max-width: 74%;
-		font-size: 0.4em;
-	}
+	
 }
+
+@media screen and (max-width: 992px) {
+    .name .pastille{
+        margin-top: -25px;
+        max-width: 73%;
+        font-size: 0.4em;
+    }
+} 
 
 @media (max-width: 768px) {
 
