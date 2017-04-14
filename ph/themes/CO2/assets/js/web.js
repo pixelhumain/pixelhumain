@@ -150,6 +150,8 @@ function initKeywords(){
             }
         });
     });
+    if(html != ""){ $("#sub-menu-left").removeClass("hidden-xs");
+    }else{  $("#sub-menu-left").addClass("hidden-xs"); }
     $("#sub-menu-left").html(html);
 
     $(".btn-keyword").click(function(){

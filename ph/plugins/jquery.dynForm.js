@@ -133,9 +133,9 @@ onSave: (optional) overloads the generic saveProcess
 			required = "*";
 
 		if(fieldObj.label)
-			fieldHTML += '<label class="col-md-12 text-left control-label no-padding" for="'+field+'">'+
-              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+
-            '</label>';
+			fieldHTML += '<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="'+field+'">'+
+			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+
+			            '</label>';
 
         var iconOpen = (fieldObj.icon) ? '<span class="input-icon">'   : '';
         var iconClose = (fieldObj.icon) ? '<i class="'+fieldObj.icon+'"></i> </span>' : '';
@@ -168,7 +168,8 @@ onSave: (optional) overloads the generic saveProcess
         else if( !fieldObj.inputType || 
         		  fieldObj.inputType == "text" || 
         		  fieldObj.inputType == "numeric" || 
-        		  fieldObj.inputType == "tags" ) {
+        		  fieldObj.inputType == "tags" || 
+        		  fieldObj.inputType == "price" ) {
         	if(fieldObj.inputType == "tags")
         	{
         		fieldClass += " select2TagsInput";
@@ -189,6 +190,14 @@ onSave: (optional) overloads the generic saveProcess
         	}
         	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
         	fieldHTML += iconOpen+' <input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
+        
+        	if(fieldObj.inputType == "price"){       		
+        		fieldHTML += '<select class="'+fieldClass+'" name="devise" id="devise" style="">';
+				fieldHTML += 	'<option class="bold" value="€">euro €</option>';
+				fieldHTML += 	'<option class="bold" value="$">dollars $</option>';
+				fieldHTML += 	'<option class="bold" value="CFP">CFP</option>';
+				fieldHTML += '</select>';
+        	}
         }
         
         /* **************************************
@@ -203,12 +212,25 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* TEXTAREA
 		***************************************** */
-        else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){ 
+        else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){
+        	mylog.log("build field "+field+">>>>>> textarea, wysiwyg", fieldObj);
         	if(fieldObj.inputType == "wysiwyg")
         		fieldClass += " wysiwygInput";
+        	var maxlength = "";
+        	var minlength = 0;
+        	if(notNull(fieldObj.rules) && notNull(fieldObj.rules.maxlength) ){
+        		fieldClass += " maxlengthTextarea";
+        		maxlength = fieldObj.rules.maxlength;
+        		minlength = value.length ;
+        	}
+
         	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
-        	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
-        	fieldHTML += '<textarea id="'+field+'" class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
+        	fieldHTML += '<textarea id="'+field+'" maxlength="'+maxlength+'"  class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
+        	
+        	if(maxlength > 0)
+        		fieldHTML += '<span><span id="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
+
+
         }else if ( fieldObj.inputType == "markdown"){ 
         	mylog.log("build field "+field+">>>>>> textarea, markdown");
         	fieldClass += " markdownInput";
@@ -229,6 +251,19 @@ onSave: (optional) overloads the generic saveProcess
 	       		if( fieldObj.switch )
 	       			initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
 	       	};
+       	}
+
+       	/* **************************************
+		* RADIO
+		***************************************** */
+        else if ( fieldObj.inputType == "radio" ) {
+   			
+	       	mylog.log("build field "+field+">>>>>> radio");
+	       	fieldHTML += '<div class="btn-group" data-toggle="buttons">';
+	       	value = ( (typeof fieldObj.value != "undefined") ? fieldObj.value : value ) ;
+	       	if(fieldObj.options)
+	       		fieldHTML += buildRadioOptions(fieldObj.options,value, field) ;
+	       	fieldHTML += '</div>';
        	}
 
 
@@ -428,6 +463,7 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> tagList");
         	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
         	$.each(fieldObj.list,function(k,v) { 
+        		//mylog.log("build field ",k,v);
         		var lbl = ( fieldObj.trad && fieldObj.trad[k] ) ? fieldObj.trad[k] : k;
         		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
         						'<a class="btn tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'"'+
@@ -720,8 +756,11 @@ onSave: (optional) overloads the generic saveProcess
 							    '</div><!-- /.modal-content -->'+
 							  '</div><!-- /.modal-dialog -->'+
 							'</div><!-- /.modal -->';
-        }
- 
+        } 
+        else if ( fieldObj.inputType == "password" ) {
+        	mylog.log("build field "+field+">>>>>> password");
+        	fieldHTML += '<input id="'+field+'" name="'+field+'" class="form-control" type="password"/>';
+       	}
         else {
         	mylog.log("build field "+field+">>>>>> input text");
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
@@ -1139,6 +1178,16 @@ onSave: (optional) overloads the generic saveProcess
 	    	
 		}
 	}
+
+
+	//if(  $(".maxlengthTextarea").length ){
+	//	mylog.log("here .maxlengthTextarea"); 
+
+		/*$(".maxlengthTextarea").off().keyup(function(){
+			mylog.log(".maxlengthTextarea", $(this).attr("id"), $(this).html().length)
+			$(".maxlength"+$(this).attr("id")).html($(this).html().length );
+		});*/
+	//}
 
 	
 

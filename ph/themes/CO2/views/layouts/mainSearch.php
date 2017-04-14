@@ -86,7 +86,6 @@
         <?php $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); ?> 
 
         
-
         <?php 
             echo "<!-- start: MAIN JAVASCRIPTS -->";
             echo "<!--[if lt IE 9]>";
@@ -111,7 +110,7 @@
                 '/plugins/lightbox2/css/lightbox.css',
                 '/plugins/lightbox2/js/lightbox.min.js',
                 '/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , 
-                   '/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css',
+                '/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css',
                 '/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
                 '/plugins/ladda-bootstrap/dist/spin.min.js' , 
                 '/plugins/ladda-bootstrap/dist/ladda.min.js' , 
@@ -177,6 +176,8 @@
 
         
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
+        <?php $this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
+
 
         <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";

@@ -21,7 +21,12 @@ input#second-search-bar{
     font-size: 20px;
     margin-top: 2px;
 }
-
+.navbar-header .nc_map {
+    margin: 10px 5px 0 -10px;
+}
+.affix .navbar-header .nc_map {
+    margin: 10px 10px 0 -15px;
+}
 #btn-sethome, #btn-apropos, #btn-radio{
     background-color: transparent !important;
     border:transparent;
@@ -43,7 +48,7 @@ input#second-search-bar{
         <div class="navbar-header pull-left">
            
             <?php if($subdomain == "web"){ ?>
-                <a href="#web" class=" menu-btn-back-category">
+                <a href="#web" class="menu-btn-back-category">
             <?php } else { ?>
                 <a href="#web" class="lbh menu-btn-back-category">
             <?php } ?>
@@ -75,37 +80,37 @@ input#second-search-bar{
             <?php } ?>
         </div>
 
-        <?php if($subdomain == "live"){ ?>
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4" id="input-sec-search">
-                <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
-            </div>
-            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
+        <?php if( $subdomain == "web" ||
+                  $subdomain == "search" ||
+                  $subdomain == "agenda" ||
+                  $subdomain == "power"  ||
+                  $subdomain == "freedom"||
+                  $subdomain == "admin"||
+                  $subdomain == "page" ){ ?>
         
-        <?php }elseif($subdomain == "web" || $subdomain == "media"){ ?>
-            
-            <div class="hidden-xs hidden-sm col-sm-5 col-md-4 col-lg-4" id="input-sec-search">
-                <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
+            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4">
+                <input type="text" class="form-control" id="second-search-bar" 
+                        placeholder="<?php echo $placeholderMainSearch; ?>">
+                <?php if($subdomain == "page"){ ?>
+                    <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
+                <?php } ?>
             </div>
-            <button class="btn btn-default hidden-xs hidden-sm pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
+            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search btn-directory-type" 
+                    data-type="<?php echo @$type; ?>">
+                    <i class="fa fa-search"></i>
+            </button>
 
-        <?php }elseif($subdomain == "social" || $subdomain == "page.type" || $subdomain == "freedom"){ ?>
-            
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4" id="input-sec-search">
-                <input type="text" class="form-control" id="second-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
-            </div>
-            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search"><i class="fa fa-search"></i></button>
-
-        <?php }elseif($subdomain == "page"){ ?>
-            <div class="hidden-xs col-sm-5 col-md-4 col-lg-4" id="main-page-name"></div>
         <?php } ?>
 
         <button class="btn-show-map hidden-xs"  data-toggle="tooltip" data-placement="bottom" title="Afficher la carte">
             <i class="fa fa-map"></i>
         </button>
 
-        <button class="btn-show-mainmenu hidden" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
-            <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
-        </button>
+       <?php if( isset( Yii::app()->session['userId']) ){ ?>
+            <button class="btn-show-mainmenu btn btn-link" title="Menu">
+                <i class="fa fa-bars tooltips" data-toggle="tooltip" data-placement="bottom" title=""></i>
+            </button>
+        <?php } ?>
         
         
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -117,7 +122,7 @@ input#second-search-bar{
                 ?> 
                      
                     <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="menu-name-profil text-dark pull-right"
+                        class="menu-name-profil lbh text-dark pull-right"
                         data-toggle="dropdown">
                                 <small class="hidden-xs" id="menu-name-profil"><?php echo $me["name"]; ?></small> 
                                 <img class="img-circle" id="menu-thumb-profil" 
@@ -127,19 +132,25 @@ input#second-search-bar{
                     <div class="dropdown pull-right" id="dropdown-user">
                         <div class="dropdown-main-menu">
                             <ul class="dropdown-menu arrow_box">
-                                <li class="text-left">
+                                <!-- <li class="text-left">
                                     <a href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
                                        target="_blank" class="lbh bg-white">
                                         <i class="fa fa-user-circle"></i> Ma page
                                     </a>
                                 </li>
-                                <li role="separator" class="divider"></li>
+                                <li role="separator" class="divider"></li> -->
                                 <!-- <li class="text-left">
                                     <a href="#social" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-plus-circle"></i> Créer une page
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li> -->
+                                <li class="text-left">
+                                    <a href="#search.type.cities" target="_blank" class="lbh text-red bg-white">
+                                        <i class="fa fa-university"></i> Communexion
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
                                 <li class="text-left">
                                     <a href="#web" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-search"></i> Rechercher sur le web
@@ -151,15 +162,22 @@ input#second-search-bar{
                                         <i class="fa fa-user-circle"></i> Rechercher des contacts
                                     </a>
                                 </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#media" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-newspaper-o"></i> Actualités
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
                                 <!-- <li role="separator" class="divider">
                                 </li>
                                 <li class="text-left">
                                     <a href="#" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-crosshairs"></i> Autour de moi
                                     </a>
-                                </li> -->
+                                </li> 
                                 <li role="separator" class="divider">
-                                </li>
+                                </li>-->
                                 <li class="text-left">
                                     <a href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" class="bg-white letter-red logout">
                                         <i class="fa fa-sign-out"></i> Déconnecter
@@ -176,6 +194,7 @@ input#second-search-bar{
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
                         <?php count($this->notifications); ?>
+                      </span>
                     </button>
                    
                 <?php } else { ?>
@@ -194,7 +213,7 @@ input#second-search-bar{
             </button>     
         <?php } ?>
 
-        <a href="#info.p.sethome" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-xs" 
+        <a href="#info.p.sethome" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-sm hidden-xs" 
             id="btn-sethome" style=" margin-top:6px;"  
             data-placement="bottom" title="Utiliser KGOUGLE en page d'accueil sur votre navigateur">
             <i class="fa fa-plus"></i> <i class="fa fa-home fa-2x"></i>

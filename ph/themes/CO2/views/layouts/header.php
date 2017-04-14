@@ -44,8 +44,6 @@
         $icon                   = $params["pages"]["#".$page]["icon"];
         $mainTitle              = $params["pages"]["#".$page]["mainTitle"];
         $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
-
-
     ?>
 
     <!-- Header -->
@@ -83,12 +81,9 @@
                             <?php } ?>
 
 
-                            <?php if($subdomainName == "referencement") { ?>
-                                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
-                                        href="#web">
-                                        <i class="fa fa-arrow-left"></i> <span class="">Retour a la recherche</span>
-                                    </a>
-                            <?php } ?>
+                            <!-- <button type="button" class="btn btn-default bold letter-green" data-target="#selectCreate" data-toggle="modal">
+                                <i class="fa fa-plus-circle fa-2x"></i>           
+                            </button> -->
                             
                         </div>
 
@@ -98,20 +93,23 @@
                                                           "icon"=>$icon,
                                                           "subdomainName"=>$subdomainName,
                                                           "subdomain"=>$subdomain,
-                                                          "type"=>@$type)); ?>
+                                                          "type"=>@$type,
+                                                          "explain"=>@$explain)); ?>
 
 
-                        <?php if($subdomain == "media"){ ?>
+                        <?php 
+
+                        if($subdomain == "media"){ ?>
                             <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
                             </div>
 
-                            <button class="btn btn-default" id="main-btn-start-search">
+                            <button class="btn btn-default hidden-xs" id="main-btn-start-search">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button>
 
-                        <?php }elseif($subdomain == "search" ||
+                        <?php  } elseif($subdomain == "search" ||
                                       $subdomain == "social" ||
                                       $subdomain == "agenda" ||
                                       $subdomain == "power" ||
@@ -119,11 +117,13 @@
 
                             <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
-                                <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
+                                <span class="input-group-addon bg-white" id="main-search-bar-addon">
+                                    <i class="fa fa-search"></i>
+                                </span>
                             </div>
 
                             
-                            <button class="btn btn-default btn-directory-type" id="main-btn-start-search" 
+                            <button class="btn btn-default btn-directory-type hidden-xs" id="main-btn-start-search" 
                                     data-type="<?php echo @$type; ?>">
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button> 
