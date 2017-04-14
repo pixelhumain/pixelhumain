@@ -81,6 +81,7 @@ input#second-search-bar{
         </div>
 
         <?php if( $subdomain == "web" ||
+                  $subdomain == "media" ||
                   $subdomain == "search" ||
                   $subdomain == "agenda" ||
                   $subdomain == "power"  ||
@@ -88,7 +89,7 @@ input#second-search-bar{
                   $subdomain == "admin"||
                   $subdomain == "page" ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-4 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo $placeholderMainSearch; ?>">
                 <?php if($subdomain == "page"){ ?>
@@ -220,7 +221,7 @@ input#second-search-bar{
         </a>
 
 
-        <a href="#info.p.apropos" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-xs" 
+        <a href="#info.p.apropos" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
             id="btn-apropos" style=" margin-top:6px;"  
             data-placement="bottom" title="A propos de KGOUGLE">
             <i class="fa fa-question-circle fa-2x"></i>

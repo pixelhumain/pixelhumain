@@ -1147,7 +1147,7 @@ h3.title_panel_map{
     }
 } 
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 
 
 	.navbar-header .nc_map{
@@ -1193,11 +1193,11 @@ h3.title_panel_map{
 	#sectionSearchResults{
 		/*margin-left: 15px!important;*/
 	}
-	.name .pastille{
+	/*.name .pastille{
 		margin-top:-40px;
 		max-width: 82%;
 		font-size: 0.4em;
-	}
+	}*/
 
 	header .nc_map{
 		margin-bottom: 0px;
