@@ -327,9 +327,12 @@ input#second-search-bar{
 }
 
 .navbar-custom .btn-show-mainmenu{
-	background-color: #fbbc05;
+	float:right;
+	margin-top:10px;
+	margin-left:-5px;
+	/*background-color: #fbbc05;*/
 	/*background-color: #354c57;*/
-	color: white;
+	/*color: white;
 	border: 2px solid transparent;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -338,12 +341,12 @@ input#second-search-bar{
 	width: 50px;
 	height: 35px;
 	font-size: 17px;
-	margin-left: 25px;
+	margin-left: 25px;*/
 }
 .navbar-custom .btn-show-mainmenu:hover{
-	background-color: transparent;
+	/*background-color: transparent;
 	color: #fbbc05;
-	border: 2px solid #fbbc05;
+	border: 2px solid #fbbc05;*/
 }
 .navbar-custom .btn-show-communexion{
 	background-color: #ea4335;
@@ -592,7 +595,7 @@ a, a:hover, a:focus, a:active, a.active{
 }
 
 .dropdown-main-menu .arrow_box:after, .dropdown-main-menu .arrow_box:before {
-	right: 80px;
+	right: 75px;
 	left: unset;
 }
 
@@ -794,7 +797,7 @@ h3.title_panel_map{
 .menu-name-profil{
 	font-weight: 300;
     letter-spacing: 0px;
-    margin-top:2px!important;
+    margin-top:5px!important;
     margin-right:0px;
     background-color:rgba(246,246,246,0.6)!important;
 	border-radius: 50px !important;

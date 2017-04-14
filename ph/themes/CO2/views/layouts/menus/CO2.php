@@ -41,9 +41,11 @@
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
         </button> -->
 
-        <button class="btn-show-mainmenu lbh" data-hash="#search.type.cities" title="Communectez-vous">
-            <i class="fa fa-bars tooltips" data-toggle="tooltip" data-placement="bottom" title=""></i>
-        </button>
+        <?php if( isset( Yii::app()->session['userId']) ){ ?>
+            <button class="btn-show-mainmenu btn btn-link" title="Menu">
+                <i class="fa fa-bars tooltips" data-toggle="tooltip" data-placement="bottom" title=""></i>
+            </button>
+        <?php } ?>
 
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,7 +58,7 @@
                 ?> 
                      <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
                     <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="menu-name-profil text-dark pull-right" 
+                        class="menu-name-profil lbh text-dark pull-right" 
                         data-toggle="dropdown">
                             <small class="hidden-xs" id="menu-name-profil">
                                 <?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?>
