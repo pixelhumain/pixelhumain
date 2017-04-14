@@ -22,7 +22,7 @@
         text-decoration: none;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
         #main-input-group{
             margin-top:10px;
         }
