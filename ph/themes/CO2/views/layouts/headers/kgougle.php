@@ -13,7 +13,7 @@ header .intro-text .skills{
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     header .intro-text .name, 
     .header .intro-text .name{
         font-size: 40px;
