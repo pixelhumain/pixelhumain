@@ -697,8 +697,8 @@ function exists(val){
   return typeof val != "undefined";
 }
 function notNull(val){
-  return typeof val != "undefined"
-      && val != null;
+  return (typeof val != "undefined"
+      && val != null);
 }
 function notEmpty(val){
   
