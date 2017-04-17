@@ -197,86 +197,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     color: #c12c42;
     font-size: 16px;
  }
-
- .profilSocial .accordion {
-    width: 100%;
-    max-width: 400px;
-    /*margin: 30px auto 20px;*/
-    background: #FFF;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    padding: 0;
- }
-
-.profilSocial .accordion .link {
-    cursor: pointer;
-    display: block;
-    padding: 15px 15px 15px 42px;
-    color: #4D4D4D;
-    font-size: 14px;
-    font-weight: 700;
-    border-bottom: 1px solid #CCC;
-    position: relative;
-    -webkit-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-}
-.profilSocial .accordion .subLink {
-    cursor: pointer;
-    display: block;
-    color: #4D4D4D;
-    font-size: 14px;
-    font-weight: 700;
-    position: relative;
-    -webkit-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-}
-.profilSocial .accordion li:last-child .link {
-    border-bottom: 0;
-}
-
-.profilSocial .accordion li .link  i {
-    position: absolute;
-    top: 16px;
-    left: 12px;
-    font-size: 18px;
-    color: #595959;
-    -webkit-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-}
-
-
-.profilSocial .accordion li .link  i.fa-cog {
-    right: 32px;
-    left:unset;
-    font-size: 15px;
-}
-
-.profilSocial .accordion li i.fa-chevron-down,
-.profilSocial .accordion li i.fa-chevron-right {
-    right: 12px;
-    left: auto;
-    font-size: 13px;
-}
-
-.profilSocial .accordion li.open .link {
-    color: #0095FF;
-}
-
-.profilSocial .accordion li.open .link i {
-    color: #0095FF;
-}
-.profilSocial .accordion li.open i.fa-chevron-down {
-    -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
-}
-
-.profilSocial .accordion li.default .submenu {display: block;}
 /**
  * Submenu
  -----------------------------*/
@@ -322,8 +242,240 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     padding-top: 53px !important;
 }
 
+/*********************************************/
+.header{
+        position: absolute;
+        width:100%;
+        height:300px;
+    }
+    .social-main-container, #central-container{
+        background-color: #f8f8f8;
+        min-height:1200px;
+    }
+
+    #shortDescription *{
+        font-size:0px !important;
+    }
+
+    iframe.wysihtml5-sandbox{
+        border:1px solid lightgrey!important;
+        padding:10px!important;
+    }
+
+    section#timeline-social{
+        /*position: absolute;*/
+        /*top:300px;*/
+    }
+
+    .profilSocial{
+        /*position: absolute;
+        top:0px;*/
+    }
+    .sub-menu-social{
+        margin-top:-15px;
+        background-color: white;
+        border-top: 1px solid #ccc !important;
+        border-bottom: 1px solid #ccc !important;
+    }
+    .sub-menu-social button{
+        background-color: #fff;
+        border: 1px solid #ccc !important;
+        border-top: 0px !important;
+        border-bottom: 0px !important;
+        height:45px;
+        margin-top: 0px;
+        border-radius: 0px !important;
+    }
+    footer{
+        /*position: absolute!important;*/
+        bottom: 0px;
+    }
+
+    #small_profil{
+        font-weight: 300;
+        text-transform: none;
+        font-size:13px;
+        margin-top:4px;
+    }
 
 
+#central-container .bg-dark {
+    color: white !important;
+    background-color: #3C5665 !important;
+}
+#central-container .bg-red{
+    background-color:#E33551 !important;
+    color:white!important;
+}
+#central-container .bg-blue{
+    background-color: #5f8295 !important;
+    color:white!important;
+}
+#central-container .bg-green{
+    background-color:#93C020 !important;
+    color:white!important;
+}
+#central-container .bg-orange{
+    background-color:#FFA200 !important;
+    color:white!important;
+}
+#central-container .bg-yellow{
+    background-color:#FFC600 !important;
+    color:white!important;
+}
+#central-container .bg-purple{
+    background-color:#8C5AA1 !important;
+    color:white!important;
+}
+#central-container #dropdown_search{
+    min-height:500px;
+    margin-top:30px;
+}
+#central-container .row.headerDirectory{
+    margin-top: 20px;
+    display: none;
+}
+#central-container p {
+    font-size: 13px;
+}
+
+#listCollections .text-white{
+  color:black!important;
+}
+
+.notif-column .alert{
+    font-size:12px;
+    border:none!important;
+    border-radius: 0px;
+}
+.notif-column a .fa-times{
+    margin-left:-5px;
+}
+
+
+
+.favElBtn, .favAllBtn{
+  padding: 5px 8px;
+  font-weight: 800;
+  margin-bottom:5px;
+}
+.menu-params{
+    position: absolute;
+    top: 60px;
+    left: -25px;
+}
+
+#main-name-element{
+    /*background-color: white;
+    border-radius:50px;
+    padding:10px;
+    padding-right: 22px;*/
+}
+#second-name-element{
+  margin-top:5px;
+}
+#uploadScropResizeAndSaveImage{
+    /*position:absolute;
+    top:0px;
+    bottom: 0px;
+    left:0px;
+    right: 0px;
+    background-color: rgba(1,1,1,0.8);
+    padding-top: 150px;
+    padding-left: 50px;*/
+}
+#banniere_photoAdd{
+    position:absolute;
+    z-index: 1000;
+}
+
+
+
+.pastille-type-element{
+    border-radius: 50px;
+    height: 20px;
+    width: 20px;
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+    margin-right: 10px;
+    margin: 5px;
+}
+.name-header{
+    line-height: 30px;
+    font-size: 20px;
+    text-transform: none;
+}
+#shortDescriptionHeader{
+    white-space: pre-line;
+    font-size: 16px;
+    line-height: 19px;
+}
+.contentHeaderInformation{
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 50%);
+    padding: 35px 0px;
+    position: absolute;
+    bottom: 0px;
+}
+#col-banniere{
+    min-height:280px;
+}
+#fileuploadContainer{
+    box-shadow: 0px 0px 5px 0px grey;
+}
+
+.sub-menu-social.affix {
+    top: 81px !important;
+    position: fixed;
+    right: 0;
+    z-index: 10;
+    width:100%!important;
+    -webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
+}
+
+#fileuploadContainer{
+    box-shadow: 1px -1px 3px 0px #969696;
+}
+
+.identity-min{
+    display: none;
+}
+.identity-min .pastille-type-element{
+    margin-top:12px;
+}
+.sub-menu-social.affix .identity-min{
+    display: inline;
+}
+
+#name-lbl-title{
+    text-decoration: none;
+    font-weight: 800;
+    font-size:20px;
+}
+.labelTitleDir{
+    font-size: 18px;
+}
+
+
+.divInvited {
+    border: 1px solid #ccc !important;
+    padding: 5px;
+    background-color: blanchedalmond;
+}
+
+.section-date{
+    font-size: 20px;
+    font-weight: bold;
+    padding:10px 20px;
+    background-color: rgba(255,255,255,0.4);
+    border-radius: 7px;
+}
+
+.section-date .numday{
+    font-size: 30px;
+}
 
 @media screen and (max-width: 1024px) {
     #main-name-element{
@@ -333,6 +485,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 @media (max-width: 768px) {
 
+    #shortDescriptionHeader{
+        font-size: 13px;
+        line-height: 17px;
+    }
 }
 
 
