@@ -182,7 +182,10 @@
         <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() {
-                url.loadableUrls = <?php echo json_encode($params["pages"]); ?>;
+                var pageUrls = <?php echo json_encode($params["pages"]); ?>;
+                $.each( pageUrls ,function(k , v){ 
+                    url.loadableUrls[k] = v;
+                });
                 themeObj.init();
                 url.loadByHash(location.hash,true);
             });

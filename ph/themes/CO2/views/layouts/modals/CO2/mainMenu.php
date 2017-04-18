@@ -219,10 +219,20 @@
                                     <i class="fa fa-plus-circle"></i> CRÉER UNE PAGE
                                 </a>
                     <?php } ?> 
-                    <hr>
-                    <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
+                    
                 </div>
+                
+            </div>
+            <br/>
+            <div class="col-xs-12 text-center">
+                <hr>
+                    <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
+                <br/><hr>    
+                <a class="btn btn-default btn-sm" data-dismiss="modal" href="javascript:smallMenu.openAjaxHTML(baseUrl+'/'+moduleId+'/default/view/page/help')" style="font-size: 13px;"><i class="fa fa-keyboard-o"></i> ShortCuts</a>
 
+                <a class="btn btn-default btn-sm" data-dismiss="modal" href="javascript:smallMenu.openAjaxHTML(baseUrl+'/'+moduleId+'/default/view/page/links')" style="font-size: 13px;"><i class="fa fa-link"></i> Links</a>
+
+                <a class="btn btn-default btn-sm lbh" href="#default.view.page.index.dir.docs" data-dismiss="modal" style="font-size: 13px;"><i class="fa fa-book"></i> Docs</a>
             </div>
         </div>
     </div>
