@@ -49,45 +49,45 @@
     <!-- Header -->
     <header>
         <?php if(@$useHeader != false){ ?>
+        <div class="col-md-12 text-center main-menu-app" style="">
+            <?php //if($subdomainName != "web" && $subdomainName != "referencement") 
+                    foreach ($params["pages"] as $key => $value) {
+                        if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
+                            <a  class="lbh text-red link-submenu-header margin-right-25 
+                                        <?php if("#".$subdomain == $key) echo "active"; ?>" 
+                                href="<?php echo $key; ?>">
+                                <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+                                <span class=""> <?php echo $value["subdomainName"]; ?></span>
+                            </a>    
+            <?php       }
+                    }  
+            ?>
+
+
+            <?php if(false && $subdomainName == "web") { ?>
+                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
+                        href="#info.p.apropos">
+                        <span class="">c koissa ?!?</span>
+                    </a>    
+                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
+                        href="#info.p.alphatango">
+                        <i class="fa fa-envelope"></i><span class=""> Contact</span>
+                    </a>    
+            <?php } ?>
+
+
+            <!-- <button type="button" class="btn btn-default bold letter-green" data-target="#selectCreate" data-toggle="modal">
+                <i class="fa fa-plus-circle fa-2x"></i>           
+            </button> -->
+            
+        </div>
+
+        
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-text">  
 
-                        <div class="col-md-12 text-center main-menu-app" style="">
-                            <?php //if($subdomainName != "web" && $subdomainName != "referencement") 
-                                    foreach ($params["pages"] as $key => $value) {
-                                        if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
-                                            <a  class="lbh text-red link-submenu-header margin-right-25 
-                                                        <?php if("#".$subdomain == $key) echo "active"; ?>" 
-                                                href="<?php echo $key; ?>">
-                                                <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
-                                                <span class=""> <?php echo $value["subdomainName"]; ?></span>
-                                            </a>    
-                            <?php       }
-                                    }  
-                            ?>
-
-
-                            <?php if(false && $subdomainName == "web") { ?>
-                                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
-                                        href="#info.p.apropos">
-                                        <span class="">c koissa ?!?</span>
-                                    </a>    
-                                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
-                                        href="#info.p.alphatango">
-                                        <i class="fa fa-envelope"></i><span class=""> Contact</span>
-                                    </a>    
-                            <?php } ?>
-
-
-                            <!-- <button type="button" class="btn btn-default bold letter-green" data-target="#selectCreate" data-toggle="modal">
-                                <i class="fa fa-plus-circle fa-2x"></i>           
-                            </button> -->
-                            
-                        </div>
-
-                        
                         <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"], 
                                                     array("mainTitle"=>$mainTitle,
                                                           "icon"=>$icon,

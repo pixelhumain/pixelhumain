@@ -60,12 +60,19 @@
                 data-scope-type='dep'>
                 <i class='fa fa-angle-right'></i>  <?php echo @$communexion["values"]["depName"]; ?>
             </button> 
+            <?php 
+                $tips="";
+                foreach(@$communexion["values"]["cities"] as $city){
+                    $tips.=$city." / ";
+                } ?>
+            <?php if($communexion["currentLevel"]=="inseeCommunexion"){ ?> 
             <button data-toggle='dropdown' data-target='dropdown-multi-scope'
-                class='btn btn-link text-red item-globalscope-checker homestead
+                class='btn btn-link text-red item-globalscope-checker homestead tooltips
                       <?php if(@$communexion["currentName"]!=@$communexion["values"]["cityCp"]) echo "inactive"; ?>' 
                 data-scope-value='<?php echo @$communexion["values"]["cityCp"]; ?>'
                 data-scope-name='<?php echo @$communexion["values"]["cityCp"]; ?>'
-                data-scope-type='cp'>
+                data-scope-type='cp'
+                data-toggle="tooltip" data-placement="bottom" data-original-title="<?php echo $tip ?>">
                 <i class='fa fa-angle-right'></i>  <?php echo @$communexion["values"]["cityCp"]; ?>
             </button> 
             <button data-toggle='dropdown' data-target='dropdown-multi-scope'
@@ -76,6 +83,26 @@
                 data-scope-type='city'>
                 <i class='fa fa-angle-right'></i>  <?php echo @$communexion["values"]["cityName"]; ?>
             </button> 
+            <?php }else{ ?>
+            <button data-toggle='dropdown' data-target='dropdown-multi-scope'
+                class='btn btn-link text-red item-globalscope-checker homestead tooltips
+                      <?php if(@$communexion["currentName"]!=@$communexion["values"]["inseeName"]) echo "inactive"; ?>'
+                data-scope-value='<?php echo @$communexion["values"]["cityKey"]; ?>'
+                data-scope-name='<?php echo @$communexion["values"]["inseeName"]." (".Yii::t("common","all city").")"; ?>'
+                data-scope-type='city'
+                data-toggle="tooltip" data-placement="bottom" data-original-title="<?php echo $tips ?>">
+                <i class='fa fa-angle-right'></i>  <?php echo @$communexion["values"]["inseeName"]." (".Yii::t("common","all city").")"; ?>
+            </button> 
+           <button data-toggle='dropdown' data-target='dropdown-multi-scope'
+                class='btn btn-link text-red item-globalscope-checker homestead
+                      <?php if(@$communexion["currentName"]!=@$communexion["values"]["cityCp"]) echo "inactive"; ?>' 
+                data-scope-value='<?php echo @$communexion["values"]["cityCp"]; ?>'
+                data-scope-name='<?php echo @$communexion["values"]["cityName"]; ?>'
+                data-scope-type='cp'>
+                <i class='fa fa-angle-right'></i>  <?php echo @$communexion["values"]["cityName"]; ?>
+            </button> 
+            <?php } ?>
+
             <?php //echo @$communexion["currentName"]." != ".@$communexion["values"]["cityName"]; ?>
              
             <?php   //$icon = @$params["pages"]["#".$page]["icon"]; 
