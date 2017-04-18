@@ -60,12 +60,17 @@
                     <a href="../doc/Conditions Générales d'Utilisation.pdf" class="text-white">
                         <i class="fa fa-angle-right"></i> Conditions d'utilisations
                     </a><br><br>
-                    <a href="#info.p.communecter" target="_blank" class="margin-right-10 hidden-xs">
+                    <!-- <a href="#info.p.communecter" target="_blank" class="margin-right-10 hidden-xs">
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/Logo_Licence_Ouverte_noir_avec_texte.gif" height=30>
-                    </a>
+                    </a> -->
                     
-                    <a href="#info.p.communecter" target="_blank" class=" hidden-xs">
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/opensource.gif" height=30>
+                    <a href="https://fr.wikipedia.org/wiki/Open_source" target="_blank" class=" hidden-xs">
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/opensource.gif" height=40 
+                            style="margin-top: -10px;border-radius: 3px;">
+                    </a>
+                   <a href="https://github.com/pixelhumain" target="_blank" 
+                        class=" hidden-xs">
+                        <i class="fa fa-github fa-2x bg-white img-circle padding-5 margin-5"></i>
                     </a>
                     
                     

@@ -300,7 +300,7 @@ input#second-search-bar{
 .navbar-header .nc_map{
 	/*display: none;*/
 	float: left;
-	margin: 10px 5px 0 0;
+	margin: 8px 5px 0 0;
 }
 .navbar-custom.affix .navbar-header .nc_map_min{
 	display: inline;
@@ -412,7 +412,7 @@ input#second-search-bar{
 .navbar-header .nc_map{
 	/*display: none;*/
 	float: left;
-	margin: 10px 5px 0 -20px;
+	margin: 8px 5px 0 -20px;
 }
 #right_tool_map{
 	top: 60px!important;
@@ -537,7 +537,7 @@ a, a:hover, a:focus, a:active, a.active{
 	-webkit-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
     -moz-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
     box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
-    border:none;
+    border:1px solid #dadada;
 }
 
 #menu-map-btn-start-search{
@@ -649,6 +649,7 @@ a, a:hover, a:focus, a:active, a.active{
 }
 .main-menu-app{
 	margin-bottom:70px;
+	padding-top:80px;
 }
 .search-eco a{
 	color:#34a853;
@@ -801,7 +802,7 @@ h3.title_panel_map{
     margin-right:0px;
     background-color:rgba(246,246,246,0.6)!important;
 	border-radius: 50px !important;
-	padding:8px 0 0 10px;
+	padding:8px 0 0 0px;
 	border:none;
 	height: 40px !important;
 	display: block;
@@ -1151,11 +1152,11 @@ h3.title_panel_map{
 
 
 	.navbar-header .nc_map{
-		margin: 10px 0px 0 0px !important;
+		margin: 8px 0px 0 0px !important;
 	}
 
 	.navbar-map .navbar-header .nc_map{
-		margin: 10px 0px 0 -10px;
+		margin: 8px 0px 0 -10px;
 	}
 
 	.sigModuleBg .btn-group-map.tools-btn{
@@ -1248,7 +1249,7 @@ h3.title_panel_map{
 	}
 	.main-menu-app {
 	    margin-bottom: 35px !important;
-		margin-top: 15px !important;
+		/*margin-top: 15px !important;*/
 	}
 
 	.dropdown-main-menu{
