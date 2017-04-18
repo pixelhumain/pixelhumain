@@ -377,6 +377,7 @@ return array(
 	"New event" => "Nouvel évènement",
 	"New point of interests" => "Nouveau point d'intérêts",
 	"Add points of interests to {what}" => "Ajouter des points d'intérêts à {what}",
+	"all city" => "toute la ville",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
