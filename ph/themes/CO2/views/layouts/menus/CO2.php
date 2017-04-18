@@ -219,5 +219,12 @@ jQuery(document).ready(function() {
     $(".openModalSelectCreate").click(function(){
         $("#selectCreate").modal("show");
     });
+
+    $("#menu-name-profil").mouseenter(function(){ 
+        showFloopDrawer(true);
+    });
+    $("#floopDrawerDirectory").mouseleave(function(){ 
+        showFloopDrawer(false);
+    });
 });
 </script> 
