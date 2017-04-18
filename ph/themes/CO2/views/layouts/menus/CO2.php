@@ -9,7 +9,17 @@
                      class="nc_map pull-left" height=30>
             </a>
             <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>
-
+            <?php 
+                $params = CO2::getThemeParams();  
+                $icon = "";
+                foreach ($params["pages"] as $key => $value) {
+                    if($subdomain==@$value["subdomain"]) {
+                        $icon = $value["icon"];
+                    } 
+                }
+            ?>
+            <i class="fa fa-<?php echo $icon; ?> hidden-top margin-top-15 margin-right-5 margin-left-10 pull-left text-red" 
+                style="font-size:20px;"></i>
         </div>
 
         <?php if( $subdomain == "search" ||
@@ -60,7 +70,7 @@
                     <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
                         class="menu-name-profil lbh text-dark pull-right" 
                         data-toggle="dropdown">
-                            <small class="hidden-xs" id="menu-name-profil">
+                            <small class="hidden-xs hidden-sm margin-left-10" id="menu-name-profil">
                                 <?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?>
                             </small> 
                             <img class="img-circle" id="menu-thumb-profil" 
@@ -208,6 +218,13 @@ jQuery(document).ready(function() {
     
     $(".openModalSelectCreate").click(function(){
         $("#selectCreate").modal("show");
+    });
+
+    $("#menu-name-profil").mouseenter(function(){ 
+        showFloopDrawer(true);
+    });
+    $("#floopDrawerDirectory").mouseleave(function(){ 
+        showFloopDrawer(false);
     });
 });
 </script> 
