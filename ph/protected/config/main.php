@@ -26,8 +26,6 @@ return array(
     	'vendor' => realpath(__DIR__ . '/../../vendor/'),
     	'mongoYii' => realpath(__DIR__ . '/../../vendor/sammaye/mongoyii'),
     	'recaptcha' => realpath(__DIR__ . '/../../vendor/google/recaptcha/src/ReCaptcha'),
-    	'bootstrap' => realpath(__DIR__ . '/../../vendor/2amigos/yiistrap'),
-		'yiiwheels' => realpath(__DIR__ . '/../../vendor/2amigos/yiiwheels'), 
         'mandrill' => realpath(__DIR__ . '/../../vendor/mandrill/mandrill/src'), 
         'citizenToolKit' => realpath(__DIR__ . $modulesDir.'/citizenToolKit'), 
     ),
@@ -43,7 +41,6 @@ return array(
         'citizenToolKit.components.*',
         'citizenToolKit.messages.*',
 
-		'bootstrap.helpers.TbHtml',
     	'ext.mail.YiiMailMessage',
         'ext.mail.YiiMail',
     	'ext.mobile.Mobile_Detect',
