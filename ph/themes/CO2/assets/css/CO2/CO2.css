@@ -719,8 +719,8 @@ h3.title_panel_map{
 	max-width: 70%;
 }
 .leaflet-popup-content .item_map_list .right-col{
-	width: 80%;
-	max-width: 100%;
+	width: 65%;
+	max-width: 65%;
 }
 #right_tool_map .item_map_list .separation{
 	min-width: 95%;
