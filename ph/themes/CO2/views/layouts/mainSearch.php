@@ -76,7 +76,8 @@
         ?>
         
         <?php $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
-              $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); ?>   
+              $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); 
+              ?>   
         
         <div class="main-container">
             <?php 
@@ -189,7 +190,6 @@
             }
         ?>
 
-        
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
         <?php $this->renderPartial($layoutPath.'loginRegister', array()); ?>
 
@@ -204,6 +204,7 @@
                 themeObj.init();
                 url.loadByHash(location.hash,true);
             });
+            console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
         </script>
 
     </body>
