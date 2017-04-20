@@ -46,6 +46,8 @@
         $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
     ?>
 
+    
+   
     <!-- Header -->
     <header>
         <?php if(@$useHeader != false){ ?>
@@ -204,8 +206,8 @@
             <?php } ?>
         </div>
     </header>
-
-    <?php
+  
+     <?php
             $CO2DomainName = Yii::app()->params["CO2DomainName"];
             $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
             $this->renderPartial($layoutPath.'menus/'.$CO2DomainName, 
@@ -215,7 +217,7 @@
                                                             "mainTitle"=>$mainTitle,
                                                             "placeholderMainSearch"=>$placeholderMainSearch,
                                                             "type"=>@$type,
-                                                            "me" => $me) ); ?>   
+                                                            "me" => $me) ); ?> 
 
     
     <?php   if($subdomain != "referencement"){
