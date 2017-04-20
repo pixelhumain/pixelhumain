@@ -28,56 +28,37 @@ class Rest
 	    foreach($data as $key => $value) {
 	    	if ($format == Translate::FORMAT_KML) {
 	    		$key = 'Folder';
-
 	    	}
 	    	if( is_numeric($key) ){
             $key = 'Placemark';
         	}
-	    	
 	        if( $format == Translate::FORMAT_RSS ){
-	            $key = 'item'; 
-	            
+	            $key = 'item';     
 	        }
 	        if( is_array($value) ) {
 	            $subnode = $xml_data->addChild($key);
 	            self::array_to_xml($value, $subnode);
-
 	        } else {
-
 	            $xml_data->addChild("$key",htmlspecialchars("$value"));
 
 	            if ($key == "img") {
-
 	            	$img = $xml_data->children();
-
 	            	$img->addAttribute('src',$value);
-
 
 	            } elseif ($key == "enclosure") {
 
-
 	            	if (isset($xml_data)) {
 
-	            	foreach ($xml_data->children() as $parent => $child){ 
-	            		if ($parent == "enclosure") {
-
-
-	            			$child->addAttribute('url',$value);
-	            			$child->addAttribute('type', 'image/jpeg');
-	            		}
-
+		            	foreach ($xml_data->children() as $parent => $child){ 
+		            		if ($parent == "enclosure") {
+		            			$child->addAttribute('url',$value);
+		            			$child->addAttribute('type', 'image/jpeg');
+		            		}
+		            	}
 	            	}
-
-	            }
-	            	
-
-	            	
-
-	            }
-	            
+	            }	           
 	        }
 	    }
-
 
 	    return $xml_data;
 	}

@@ -218,7 +218,6 @@ class ArrayHelper {
 	public static function getAllPath($json, $chaine=null, $pere=null){
         if($chaine==null)
         	$chaine = "" ;
-        //var_dump($json);
         foreach ($json as $key => $value){
         	if(is_array($value)==true){
 
