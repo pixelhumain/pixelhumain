@@ -81,7 +81,7 @@ input#second-search-bar{
         </div>
 
         <?php if( $subdomain == "web" ||
-                  $subdomain == "media" ||
+                  $subdomain == "actu" ||
                   $subdomain == "search" ||
                   $subdomain == "agenda" ||
                   $subdomain == "power"  ||
@@ -165,7 +165,7 @@ input#second-search-bar{
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="text-left">
-                                    <a href="#media" target="_blank" class="lbh bg-white">
+                                    <a href="#actu" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-newspaper-o"></i> Actualités
                                     </a>
                                 </li>
