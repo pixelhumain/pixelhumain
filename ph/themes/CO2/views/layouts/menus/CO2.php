@@ -12,9 +12,10 @@
             <?php 
                 $params = CO2::getThemeParams();  
                 $icon = "";
+                //echo "params : "; var_dump($params);// exit; 
                 foreach ($params["pages"] as $key => $value) {
                     if($subdomain==@$value["subdomain"]) {
-                        $icon = $value["icon"];
+                        $icon = @$value["icon"];
                     } 
                 }
             ?>
@@ -198,6 +199,7 @@
 
 </nav>
 
+
 <?php if(isset(Yii::app()->session['userId'])) {
         $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
         $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.selectCreate',  array( ) ); 
@@ -210,6 +212,10 @@
 <?php $this->renderPartial($layoutPath.'formCreateElement'); ?>
 
 <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
+
+
+
+<div class="page-content"></div>
 
 
 <script>

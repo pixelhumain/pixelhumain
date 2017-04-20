@@ -78,7 +78,22 @@
         <?php $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
               $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); ?>   
         
-        <div class="main-container"></div>
+        <div class="main-container">
+            <?php 
+                    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+                    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+                    $this->renderPartial($layoutPath.'menus/'.$CO2DomainName, 
+                                            array( "layoutPath"=>$layoutPath , 
+                                                    "subdomain"=>"", //$subdomain,
+                                                    "subdomainName"=>"", //$subdomainName,
+                                                    "mainTitle"=>"", //$mainTitle,
+                                                    "placeholderMainSearch"=>"", //$placeholderMainSearch,
+                                                    "type"=>@$type,
+                                                    "me" => $me) );
+            ?>
+            <div class="page-content"></div>
+        </div>
+
 
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
 
@@ -176,7 +191,7 @@
 
         
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
-        <?php $this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
+        <?php $this->renderPartial($layoutPath.'loginRegister', array()); ?>
 
 
         <script>          
