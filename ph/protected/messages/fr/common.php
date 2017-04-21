@@ -719,8 +719,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	'You can add bellow the reason why you want to delete this element :' => "Vous pouvez ajouter ci dessous pourquoi vous souhaitez supprimer cet élément :",
 	"Organization Disabled" => "Cette organisation est désactivé.",
 	"Creator" => "Createur",
-	"This element is in status 'delete pending'. It will be deleted in {nbDaysBeforeDelete} days." => "Cet élément possède le statut 'En cours de suppression. Il va être supprimer dans {nbDaysBeforeDelete} jours.'",
-	"As an admin of this element, if you think it's a mistake you can stop the process." => "En tant qu'admin de cet élément, si vous pensez que c'est sur erreur, vous pouvez stopper le processus.",
+	"This element is in status 'delete pending'. It will be deleted in {nbDaysBeforeDelete} days." => "Cet élément possède le statut 'En cours de suppression'. Il va être supprimer dans {nbDaysBeforeDelete} jours.",
+	"As an admin of this element, if you think it's a mistake you can stop the process." => "En tant qu'admin de cet élément, si vous pensez que c'est une erreur, vous pouvez stopper le processus.",
 	"Do you want to stop the delete process of this element ?" => "Voulez vous stopper la suppression de cet élément ?",
 	"Stop the delete !" => "Stopper la suppression !",
 	"No : this element will be deleted" => 'Non : cet élément doit être supprimé',
@@ -732,8 +732,6 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"The element has been put in status 'delete pending', waiting the admin to confirm the delete." => "L'élément a été positionné au statut 'suppression en cours', en attendant que le(s) admin(s) confirme(nt) la suppression",
 	"Error trying to delete this element : please contact your administrator." => "Erreur en essayant de supprimer cet élément : contactez votre administrateur.",
 	"The element {elementName} of type {elementType} has been deleted with success." => "L'élément {elementName} de type {elementType} a été supprimé avec succès.",
-
-
 
 	"character(s)" => "caractère(s)",
 	//Mardown
