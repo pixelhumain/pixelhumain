@@ -78,6 +78,7 @@
         <?php $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
               $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); ?>   
         
+        <?php $this->renderPartial($layoutPath.'loginRegister', array()); ?>
         <div class="main-container">
             <?php 
                     $CO2DomainName = Yii::app()->params["CO2DomainName"];
@@ -98,7 +99,9 @@
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
 
 
-        <?php $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); ?> 
+        <?php if($CO2DomainName == "kgougle")
+              $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
+        ?> 
 
         
         <?php 
@@ -191,8 +194,7 @@
 
         
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
-        <?php $this->renderPartial($layoutPath.'loginRegister', array()); ?>
-
+        
 
         <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
