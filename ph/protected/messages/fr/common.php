@@ -681,7 +681,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Search a citizens of your city." => "Rechercher les citoyens de votre commune.",
 	"Search a organizations of your city." => "Rechercher les organisations de votre commune.",
 
-	"Add a primary address" => "Ajouter une adresse principal",
+	"Add a primary address" => "Ajouter une adresse principale",
 	"Add a secondary address" => "Ajouter une adresse secondaire",
 	"Can not update the element : you are not authorized to update that element !" => "Impossible de mettre à jour cet élément : vous n'êtes pas autorisé !",
 
