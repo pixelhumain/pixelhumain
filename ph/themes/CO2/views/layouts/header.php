@@ -46,8 +46,6 @@
         $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
     ?>
 
-    
-   
     <!-- Header -->
     <header>
         <?php if(@$useHeader != false){ ?>
@@ -101,7 +99,7 @@
 
                         <?php 
 
-                        if($subdomain == "media"){ ?>
+                        if($subdomain == "actu"){ ?>
                             <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
@@ -206,8 +204,8 @@
             <?php } ?>
         </div>
     </header>
-  
-     <?php
+
+    <?php
             $CO2DomainName = Yii::app()->params["CO2DomainName"];
             $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
             $this->renderPartial($layoutPath.'menus/'.$CO2DomainName, 
@@ -217,7 +215,7 @@
                                                             "mainTitle"=>$mainTitle,
                                                             "placeholderMainSearch"=>$placeholderMainSearch,
                                                             "type"=>@$type,
-                                                            "me" => $me) ); ?> 
+                                                            "me" => $me) ); ?>   
 
     
     <?php   if($subdomain != "referencement"){

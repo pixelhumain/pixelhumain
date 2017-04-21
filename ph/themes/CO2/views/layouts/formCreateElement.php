@@ -6,11 +6,11 @@ $cssAnsScriptFilesModule = array(
   '/plugins/select2/select2.css',
   //X-editable...
  // '/plugins/x-editable/js/bootstrap-editable.js' , 
-  '/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' , 
-  '/plugins/wysihtml5/wysihtml5.js',
+  //'/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' , 
+  //'/plugins/wysihtml5/wysihtml5.js',
   '/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js',
   '/plugins/jquery.appear/jquery.appear.js',
-  '/plugins/jquery.elastic/elastic.js',
+  //'/plugins/jquery.elastic/elastic.js',
   
 );
 //error_log("BasURL : ".Yii::app()->request->baseUrl);

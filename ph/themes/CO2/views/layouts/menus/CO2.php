@@ -213,6 +213,7 @@
 
 <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
 
+<?php //$this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
 
 
 <div class="page-content"></div>
