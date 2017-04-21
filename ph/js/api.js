@@ -87,7 +87,7 @@ function getAjax(id,ajaxUrl,callback,datatype,blockUI)
               timeout: 3000 
           });
           //mylog.log("URL : ", url);
-          setTimeout(function(){ajaxUrl.loadByHash('#')},3000);
+          setTimeout(function(){url.loadByHash('#')},3000);
           if(blockUI)
             $.unblockUI();
         } 
@@ -278,6 +278,25 @@ function inArray(needle, haystack) {
   }
   return false;
 }
+
+/*var list = [];
+jsonHelper.getKeys = function(obj)
+{
+  list = Object.keys(obj);
+  $.each( obj,function(k,v)
+  {
+    if(v.subtype)
+    {
+      var s = jsonHelper.getKeys(v.subtype);
+      $.each( s ,(i,ki){
+        list.push(ki);
+      });
+    }
+  })
+  return list;
+} 
+jsonHelper.getKeys(typeObj);
+*/
 
 /* ------------------------------- */
 
@@ -678,8 +697,8 @@ function exists(val){
   return typeof val != "undefined";
 }
 function notNull(val){
-  return typeof val != "undefined"
-      && val != null;
+  return (typeof val != "undefined"
+      && val != null);
 }
 function notEmpty(val){
   

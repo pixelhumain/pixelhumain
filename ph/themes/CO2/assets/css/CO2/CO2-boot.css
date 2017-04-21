@@ -285,3 +285,7 @@ section h2 {
 	max-width: 98%;
 	display: inline-block;
 }
+
+.capitalize{
+	text-transform: capitalize;
+}

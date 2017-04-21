@@ -53,6 +53,14 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
 		padding-left:15px !important;
 	}
 
+	#ajax-modal .modal-header{
+		width: 70%;
+		margin-left: 15%;
+		border-radius: 100px;
+		margin-top: 10px;
+		color: white !important;
+	}
+
 </style>
 
 
@@ -96,7 +104,7 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+				<button type="button" data-dismiss="modal" class="btn btn-default">Fermer</button>
 			</div>
 		</div>
 	</div>

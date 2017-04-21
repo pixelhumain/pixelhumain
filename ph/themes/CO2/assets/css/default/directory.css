@@ -548,3 +548,18 @@
     min-height: unset!important;
     margin-bottom: 45px !important;
   }
+
+
+.grayscale {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+.btn-params-directory{
+    font-size: 14px;
+    border: 1px solid rgba(188, 185, 185, 0.69);
+    margin-right: 6px;
+    padding: 4px 2px;
+    position: absolute;
+    right: 10px;
+  }
