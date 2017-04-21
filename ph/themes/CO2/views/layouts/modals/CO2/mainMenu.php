@@ -34,18 +34,6 @@
                     <h3 class="letter-red no-margin hidden-xs" style="margin-top:5px!important;">
                         MENU PRINCIPAL<br>
                     </h3>
-                    <!-- <h4 class="text-dark no-margin" style="margin-top:5px!important;">
-                        <i class="fa fa-exclamation-circle letter-red fa-2x"></i> VERSION DE TEST EN COURS DE DÉVELOPPEMENT
-                        <i class="fa fa-exclamation-circle letter-red fa-2x"></i> <br>
-                        <span class="letter-red"></span>
-                    </h4>
-                    <p class="letter-red no-margin" style="font-size:13px; margin-top:5px!important;">
-                        Cette nouvelle interface est en cours de développement, Merci de ne pas tenir compte des bug.<br>
-                        Nous sommes en train de basculer les fonctionnalités de communecter.org sur cette interface, afin de rendre la navigation plus simple et compréhensible pour tous.<br>
-                        L'objectif est de proposer une page/interface pour chaque grande fonctionnalité de communecter, afin de créer des portes d'entrées indépendantes sur le réseau, en fonction des besoins de chacun.<br><br>
-                        <b>Vos remarques et idées à ce propos sont les bienvenues.<br>
-                        Merci de nous en faire part sur le channel dédié <a href="https://chat.initiative.place/channel/co2_brainstorm" class="letter-blue">#app_brainstorm</a></b>
-                    </p> -->
                     <br>
                     <?php 
                         if( isset( Yii::app()->session['userId']) ){
@@ -63,13 +51,13 @@
                         <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> Se connecter</button>
                     <?php } ?>
                     <hr>
-                </div>
-               
+                </div>              
             </div>
 
             <div class="row links-main-menu">
                
-                <a href="#social" class=" btn-main-menu col-xs-3"  data-type="search" >    <div class="modal-body text-center">
+                <a href="#social" class=" btn-main-menu col-xs-3"  data-type="search" >    
+                    <div class="modal-body text-center">
                         <h2 class="text-red"><i class="fa fa-search fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> RECHERCHE</span>
                         </h2>
@@ -84,6 +72,7 @@
                         </div>
                     </div>
                 </a>
+
                 <a href="#annonces" class=" btn-main-menu col-xs-3" data-type="classified" >
                     <div class="modal-body text-center">
                         <h2 class="text-orange"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
@@ -118,7 +107,7 @@
                     </div>
                 </a>
                 
-               <a href="#power" class="btn-main-menu col-xs-3" > 
+                <a href="#power" class="btn-main-menu col-xs-3" > 
                     <div class="modal-body text-center">
                         <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> DEMOCRATIE</span>
@@ -135,80 +124,71 @@
                     </div>
                 </a>
                 
-                <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 searchSection2" id="sub-menu-filliaire-menu">
-                <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
-                <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
-                      //var_dump($categories); exit;
-                      foreach ($filliaireCategories as $key => $cat) { 
-                  ?>
-                      <?php if(is_array($cat)) { ?>
-                      <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
-                        <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 btn-select-filliaire" 
-                                data-fkey="<?php echo $key; ?>"
-                                style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
-                                data-keycat="<?php echo $cat["name"]; ?>">
-                          <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo $cat["name"]; ?>
-                        </button>
-                      </div>
-                        <?php //foreach ($cat as $key2 => $cat2) { ?>
-                          <!-- <button class="btn btn-default text-dark margin-bottom-5 margin-left-15 hidden keycat keycat-<?php //echo $key; ?>">
-                            <i class="fa fa-angle-right"></i> <?php //echo $cat2; ?>
-                          </button><br class="hidden"> -->
-                        <?php //} ?>
-                      <?php } ?>
-                    </button>
-                  <?php } ?>
-                  <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result">
+                <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 searchSection2" 
+                     id="sub-menu-filliaire-menu">
+                    <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
+                    <?php 
+                        $filliaireCategories = CO2::getContextList("filliaireCategories"); 
+                        foreach ($filliaireCategories as $key => $cat) { 
+                            if(is_array($cat)) { 
+                    ?>
+                                <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
+                                    <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 btn-select-filliaire" 
+                                            data-fkey="<?php echo $key; ?>"
+                                            style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
+                                            data-keycat="<?php echo $cat["name"]; ?>">
+                                        <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br>
+                                        <?php echo $cat["name"]; ?>
+                                    </button>
+                                </div>
+                    <?php   } 
+                        } 
+                    ?>
+                    <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result">
                 </div>
 
                 <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 classifiedSection2 hidden">
-                <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
-                  <?php $classified = CO2::getContextList("classified"); 
-                      //var_dump($categories); exit;
-                    foreach ($classified['sections'] as $key => $cat) {   
-                  ?>
-                      <?php if(is_array($cat)) { ?>
-                      <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
-                        <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5" 
-                                data-fkey="<?php echo $key; ?>"
-                                style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
-                                data-keycat="<?php echo $cat["label"]; ?>">
-                          <i class="fa fa-<?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo $cat["label"]; ?> 
-                        </button>
-                      </div>
-                        <?php //foreach ($cat as $key2 => $cat2) { ?>
-                          <!-- <button class="btn btn-default text-dark margin-bottom-5 margin-left-15 hidden keycat keycat-<?php //echo $key; ?>">
-                            <i class="fa fa-angle-right"></i> <?php //echo $cat2; ?>
-                          </button><br class="hidden"> -->
-                        <?php //} ?>
-                      <?php } ?>
-                    </button>
-                  <?php } ?>
-                   <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 agendaSection2 hidden"> 
+                    <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
+                    <?php $classified = CO2::getContextList("classified"); 
+                        foreach ($classified['sections'] as $key => $cat) {   
+                            if(is_array($cat)) { 
+                    ?>
+                                <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
+                                    <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5" 
+                                            data-fkey="<?php echo $key; ?>"
+                                            style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
+                                            data-keycat="<?php echo $cat["label"]; ?>">
+                                        <i class="fa fa-<?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br>
+                                        <?php echo $cat["label"]; ?> 
+                                    </button>
+                              </div>
+                     <?php   } 
+                        } 
+                    ?>
+                </div>
+
+                <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 agendaSection2 hidden"> 
                 <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> --> 
                 <?php $events = CO2::getContextList("event");  
                       //var_dump($categories); exit; 
-                      foreach ($events['sections'] as $key => $cat) {  
-                  ?> 
-                      <?php if(is_array($cat)) { ?> 
-                      <div class="col-md-2 col-sm-3 col-sm-6 no-padding"> 
-                        <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5"  
-                                data-fkey="<?php echo $key; ?>" 
-                                style="border-radius:0px; border-color: transparent; text-transform: uppercase;"  
-                                data-keycat="<?php echo $cat["label"]; ?>"> 
-                          <i class="fa fa-<?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo $cat["label"]; ?> 
-                        </button> 
-                      </div> 
-                        <?php //foreach ($cat as $key2 => $cat2) { ?> 
-                          <!-- <button class="btn btn-default text-dark margin-bottom-5 margin-left-15 hidden keycat keycat-<?php //echo $key; ?>"> 
-                            <i class="fa fa-angle-right"></i> <?php //echo $cat2; ?> 
-                          </button><br class="hidden"> --> 
-                        <?php //} ?> 
-                      <?php } ?> 
-                    </button> 
-                  <?php } ?> 
+                      foreach ($classified['sections'] as $key => $cat) {   
+                            if(is_array($cat)) { 
+                    ?>
+                                <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
+                                    <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5" 
+                                            data-fkey="<?php echo $key; ?>"
+                                            style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
+                                            data-keycat="<?php echo $cat["label"]; ?>">
+                                        <i class="fa fa-<?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br>
+                                        <?php echo $cat["label"]; ?> 
+                                    </button>
+                              </div>
+                     <?php   } 
+                        } 
+                    ?>
                   <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result"> 
                 </div> 
+
 
                 <div class="col-xs-12 text-center">
                 <?php 
@@ -220,10 +200,11 @@
                                 </a>
                     <?php } ?> 
                     
-                </div>
-                
+                </div>                
             </div>
+
             <br/>
+
             <div class="col-xs-12 text-center">
                 <hr>
                     <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
@@ -234,6 +215,7 @@
 
                 <a class="btn btn-default btn-sm lbh" href="#default.view.page.index.dir.docs" data-dismiss="modal" style="font-size: 13px;"><i class="fa fa-book"></i> Docs</a>
             </div>
+            
         </div>
     </div>
 </div>
