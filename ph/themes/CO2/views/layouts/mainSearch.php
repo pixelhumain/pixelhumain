@@ -79,6 +79,7 @@
               $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); 
               ?>   
         
+        <?php $this->renderPartial($layoutPath.'loginRegister', array()); ?>
         <div class="main-container">
             <?php 
                     $CO2DomainName = Yii::app()->params["CO2DomainName"];
@@ -115,8 +116,8 @@
             </header>
             <div class="pageContent"></div>
         </div>
+        
 
-    
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
 
         
@@ -213,7 +214,6 @@
 
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
         <?php $this->renderPartial($layoutPath.'loginRegister', array()); ?>
-        <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
 
         <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";

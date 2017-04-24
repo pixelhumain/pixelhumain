@@ -175,7 +175,6 @@
                     </li>
                 <?php } ?>
             </ul>
-
         </div>
         <!-- /.navbar-collapse -->
         <!-- <a type="button" class="lbh btn btn-link pull-right btn-menu-to-app hidden-top hidden-xs letter-green" data-target="#selectCreate" data-toggle="modal">
