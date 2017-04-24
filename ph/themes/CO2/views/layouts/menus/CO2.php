@@ -181,7 +181,6 @@
             <i class="fa fa-plus-circle"></i>           
         </a> -->
         <?php 
-            $params = CO2::getThemeParams();
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
@@ -192,7 +191,7 @@
                 </a>  
         <?php   }
             }  ?>
-        
+            
     </div>
     <!-- /.container-fluid -->
 
@@ -209,13 +208,6 @@
         $this->renderPartial($layoutPath.'notifications'); ?>
 
 <?php $this->renderPartial($layoutPath.'formCreateElement'); ?>
-
-<?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
-
-<?php //$this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
-
-
-<div class="page-content"></div>
 
 
 <script>
