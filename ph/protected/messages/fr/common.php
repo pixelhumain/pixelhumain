@@ -734,6 +734,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"The element {elementName} of type {elementType} has been deleted with success." => "L'élément {elementName} de type {elementType} a été supprimé avec succès.",
 
 	"character(s)" => "caractère(s)",
+	
 	//Mardown
 	'Bold' => "Gras",
 	'Italic' => "Italique",
