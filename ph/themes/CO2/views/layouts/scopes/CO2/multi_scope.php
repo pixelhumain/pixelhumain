@@ -283,6 +283,7 @@
     var timeoutAddScope;
     var interval;
     var loadingScope = true;
+    var actionOnSetGlobalScope="filter";
     jQuery(document).ready(function() {
 
         $("#dropdown-multi-scope-found").hide();
@@ -346,23 +347,19 @@
         $(".item-globalscope-checker").click(function(){  
             $(".item-globalscope-checker").addClass("inactive");
             $(this).removeClass("inactive");
-
+            alert();
             mylog.log("globalscope-checker",  $(this).data("scope-name"), $(this).data("scope-type"));
             setGlobalScope( $(this).data("scope-value"), $(this).data("scope-name"), $(this).data("scope-type"),
                              $(this).data("insee-communexion"), $(this).data("name-communexion"), $(this).data("cp-communexion"), 
-                             $(this).data("region-communexion"), $(this).data("country-communexion") ) ;
+                             $(this).data("region-communexion"), $(this).data("country-communexion"),"filter" ) ;
         });
 
-        $(".start-new-communexion").click(function(){  
+        /*$(".start-new-communexion").click(function(){  
             activateGlobalCommunexion(true);
-        });
+        });*/
 
-
-        
-        loadMultiScopes();
-
-        rebuildSearchScopeInput();
-        showTagsScopesMin(".scope-min-header");
+        //rebuildSearchScopeInput();
+        //showTagsScopesMin(".scope-min-header");
         
         mylog.log("communexionActivated cookie", $.cookie('communexionActivated'), typeof $.cookie('communexionActivated'));
         if($.cookie('communexionActivated') == "true"){
