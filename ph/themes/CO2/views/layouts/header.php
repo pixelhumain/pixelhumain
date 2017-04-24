@@ -52,19 +52,10 @@
     <header>
         <?php if(@$useHeader != false){ ?>
         <div class="col-md-12 text-center main-menu-app" style="">
-            <?php //if($subdomainName != "web" && $subdomainName != "referencement") 
-                    foreach ($params["pages"] as $key => $value) {
-                        if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
-                            <a  class="lbh text-red link-submenu-header margin-right-25 
-                                        <?php if("#".$subdomain == $key) echo "active"; ?>" 
-                                href="<?php echo $key; ?>">
-                                <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
-                                <span class=""> <?php echo $value["subdomainName"]; ?></span>
-                            </a>    
-            <?php       }
-                    }  
+            <?php 
+                $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
+                                                                            "subdomain"  => ""));
             ?>
-
 
             <?php if(false && $subdomainName == "web") { ?>
                     <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
@@ -98,9 +89,8 @@
                                                           "type"=>@$type,
                                                           "explain"=>@$explain)); ?>
 
-
+                    <div class="subModuleTitle">  
                         <?php 
-
                         if($subdomain == "media"){ ?>
                             <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
@@ -158,7 +148,7 @@
                             </p>
                        
                         <?php } ?>
-
+                        </div>
                     </div>
                 </div>
             </div>

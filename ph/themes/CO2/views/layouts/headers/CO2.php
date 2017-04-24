@@ -63,9 +63,9 @@
 </small>
 <br>-->
 
-<div class="text-dark" style="font-size:20px; margin-bottom:10px;">
+<div class="text-dark moduleTitle" style="font-size:20px; margin-bottom:10px;">
 	<i class="fa fa-<?php echo @$icon; ?>"></i>
-	<?php echo $mainTitle; ?> 
+	<?php echo @$mainTitle; ?> 
 	
 	
 </div>
