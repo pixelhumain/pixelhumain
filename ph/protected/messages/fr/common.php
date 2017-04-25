@@ -457,6 +457,7 @@ return array(
 	"Accept this citoyen" => "Accepter ce citoyen",
 	"Add as admin" => "Ajouter en tant qu&#146;admin",
 	"Manage my parameters" => "Régler mes paramètres",
+	"My parameters" => "Mes paramètres",
 	"Manage the parameters of" => "Régler les paramètres de",
 	"Local network" => "Réseau local",
 
@@ -807,6 +808,10 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Invitation  accept" => "Invitation acceptée",
 	
 	"Not interested by the invitation" => "Vous n'êtes pas intéressé par cette invitation",
+
+	'Admin' => "Admin",
+	'Admin public' => "Admin public",
+	'Preview' => "Prévisualiser",
 
 );
 
