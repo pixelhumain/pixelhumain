@@ -316,6 +316,7 @@ function buildNotifications(list)
 		});
 		setTimeout( function(){
 	    	notifCount();
+	    	bindLBHLinks();
 	    }, 800);
 		bindNotifEvents();
 	}

@@ -43,16 +43,14 @@ class SiteController extends Controller
 	/**
 	 * This is the action to handle external exceptions.
 	 */
-	public function actionError()
-	{
+	public function actionError() {
 		$this->layout = "empty";
-		if($error=Yii::app()->errorHandler->error)
-		{
+		if($error=Yii::app()->errorHandler->error) {
 			if(Yii::app()->request->isAjaxRequest)
 				echo $error['message'];
-			else
+			else {
 				$this->render('error', $error);
-			//$this->redirect(Yii::app()->homeUrl);
+			}
 		}
 	}
     public function actionPage($id) {

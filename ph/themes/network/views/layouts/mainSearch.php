@@ -424,6 +424,7 @@
 		//var tagsList = [];
 		var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
 		var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
+		var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
 		//var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : null?>;
 		var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
 		var organizerList = {};
