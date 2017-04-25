@@ -258,6 +258,7 @@
 <input id="searchLocalityCODE_POSTAL" type="hidden" />
 <input id="searchLocalityDEPARTEMENT" type="hidden"/>
 <input id="searchLocalityREGION" type="hidden" />
+<input id="searchLocalityLEVEL" type="hidden" />
 <input id="searchTags" type="hidden" />
 <!-- <div class="item-scope-region hidden" id="scope-max-dep" data-scope-value="Nouvelle-Calédonie"></div> -->
 
@@ -283,6 +284,7 @@
     var timeoutAddScope;
     var interval;
     var loadingScope = true;
+    var actionOnSetGlobalScope="filter";
     jQuery(document).ready(function() {
 
         $("#dropdown-multi-scope-found").hide();
@@ -290,13 +292,13 @@
         $('ul.dropdown-menu').click(function(){ return false });
 
 
-        $.each(myMultiScopes, function(key, val){
-            myMultiScopes[key]["active"] = false;
-        });
+       // $.each(myMultiScopes, function(key, val){
+         //   myMultiScopes[key]["active"] = false;
+        //});
 
         $(".item-scope-select").off().click(function(){
             currentScopeType = "city";
-
+            alert("scopeselect");
             if($(this).hasClass("selected")){
                 var scopeValue = $(this).data("scope-value");
                 if(scopeExists(scopeValue)){
@@ -343,44 +345,24 @@
         });
 
         
-        $(".item-globalscope-checker").click(function(){  
+       /* $(".item-globalscope-checker").click(function(){  
             $(".item-globalscope-checker").addClass("inactive");
             $(this).removeClass("inactive");
-
+            alert("click itemchecker");
             mylog.log("globalscope-checker",  $(this).data("scope-name"), $(this).data("scope-type"));
             setGlobalScope( $(this).data("scope-value"), $(this).data("scope-name"), $(this).data("scope-type"),
                              $(this).data("insee-communexion"), $(this).data("name-communexion"), $(this).data("cp-communexion"), 
-                             $(this).data("region-communexion"), $(this).data("country-communexion") ) ;
-        });
+                             $(this).data("region-communexion"), $(this).data("country-communexion"),"filter" ) ;
+        });*/
 
-        $(".start-new-communexion").click(function(){  
+        /*$(".start-new-communexion").click(function(){  
             activateGlobalCommunexion(true);
-        });
+        });*/
 
-
-        
-        loadMultiScopes();
-
-        rebuildSearchScopeInput();
-        showTagsScopesMin(".scope-min-header");
+        //rebuildSearchScopeInput();
+        //showTagsScopesMin(".scope-min-header");
         
         mylog.log("communexionActivated cookie", $.cookie('communexionActivated'), typeof $.cookie('communexionActivated'));
-        if($.cookie('communexionActivated') == "true"){
-            console.log("communexionActivated ok", $.cookie('communexionValue'));
-            var communexionValue = $.cookie('communexionValue');
-            var communexionName = $.cookie('communexionName');
-            var communexionType = $.cookie('communexionType');
-
-            /*var inseeCommunexion = $.cookie('inseeCommunexion');
-            var cityNameCommunexion = $.cookie('cityNameCommunexion');
-            var cpCommunexion = $.cookie('cpCommunexion');
-            var regionNameCommunexion = $.cookie('regionNameCommunexion');
-            var countryCommunexion = $.cookie('countryCommunexion');
-            */
-            setGlobalScope(communexionValue, communexionName, communexionType);//,
-                          // inseeCommunexion, cityNameCommunexion, cpCommunexion, regionNameCommunexion, countryCommunexion);
-        }
-        
         loadingScope = false;
     });
 

@@ -605,8 +605,9 @@ var jsonHelper = {
     var dynPath = "";
     $.each( pathT , function (i,k) {
       dynPath = (i == 0) ? k : dynPath+"."+k ;
+      //mylog.log(dynPath);
       //typeof eval("typeObj.poi") != "undefined"
-      if(typeof eval(dynPath) != "undefined"){
+      if( typeof eval( dynPath ) != "undefined" ){
         //mylog.log(dynPath);
         if(i == pathT.length - 1){
           res = true;
