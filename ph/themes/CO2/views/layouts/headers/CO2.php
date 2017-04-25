@@ -34,7 +34,8 @@
 	}
 
 </style>
-
+<h1 class="text-red homestead">
+	<span id="main-scope-name">
 <?php
     $communexion = CO2::getCommunexionCookies();  
     if($communexion["state"] == false){
@@ -45,18 +46,10 @@
 	</a>
 	<br>
 <?php }else{ ?>
-	<h1 class="text-red homestead">
-		<!-- <button class="btn btn-link tooltips btn-decommunecter"
-				data-toggle="tooltip" data-placement="right" title="Quitter la communexion" >
-			<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO.png" height="40" 
-			 class="inline no-margin">
-		</button>
-		<br> -->
-		<!-- <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO-link.png" height="30" class="inline no-margin">
-		<br> -->
-		<span id="main-scope-name"><?php echo @$communexion["values"]["cityName"]; ?></span> 
-	</h1>
+		<?php echo @$communexion["values"]["cityName"]; ?> 
 <?php } ?>
+	</span>
+</h1>
 
 <!-- 
 <small class="text-dark homestead pastille-subdomain hidden"><?php echo @$subdomainName; ?> 
