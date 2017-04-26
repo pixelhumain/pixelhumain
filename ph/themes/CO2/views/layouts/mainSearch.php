@@ -199,7 +199,7 @@
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
             $this->renderPartial($layoutPath.'initJs', 
-                                 array("me"=>$me, "myFormContact" => @$myFormContact));
+                                 array( "me"=>$me, "myFormContact" => @$myFormContact));
 
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
             if($CO2DomainName != "CO2"){
@@ -221,16 +221,16 @@
             jQuery(document).ready(function() {
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
-                    if(typeof url.loadableUrls[k] == "undefined")
-                        url.loadableUrls[k] = v;
+                    if(typeof urlCtrl.loadableUrls[k] == "undefined")
+                        urlCtrl.loadableUrls[k] = v;
                     else {
                         $.each( v ,function(ki , vi){ 
-                            url.loadableUrls[k][ki] = vi;
+                            urlCtrl.loadableUrls[k][ki] = vi;
                         });
                     }
                 });
                 themeObj.init();
-                url.loadByHash(location.hash,true);
+                urlCtrl.loadByHash(location.hash,true);
             });
             console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
         </script>

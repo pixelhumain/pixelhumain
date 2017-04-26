@@ -138,7 +138,7 @@
                             if(is_array($cat)) { 
                     ?>
                                 <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
-                                    <a href="" class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 filterBtns tagSearchBtn" data-tags="<?php echo implode(",",$cat["tags"]); ?>" type="persons,organizations,projects"  data-app="#search" >
+                                    <a href="" class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 filterBtns tagSearchBtn" data-tags="<?php echo implode(",",$cat["tags"]); ?>" data-type="persons,organizations,projects"  data-app="#search" >
                                         <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br>
                                         <?php echo $cat["name"]; ?>
                                     </a>
@@ -230,20 +230,22 @@ jQuery(document).ready(function() {
         mylog.warn("bindLBHLinks",$(this).attr("href")); 
         mylog.warn("***************************************"); 
         var h = ($(this).data("hash")) ? $(this).data("hash") : $(this).attr("href"); 
-        url.loadByHash( h ); 
+        urlCtrl.loadByHash( h ); 
     }); 
 
     $(".tagSearchBtn").click(function(e) {  
         e.preventDefault(); 
         $('#modalMainMenu').modal("hide"); 
-        url.loadByHash($(this).data("app"));
-        url.afterLoad = function () {  
-            alert($(this).data("type")+" searchByTags *******************"+ $(this).data("tags"));
-            searchType = $(this).data("type").split(",");
-            if( $(this).data("stype") )
-                $('#searchSType').val($(this).data("stype"));
-            else
-                $('#searchTags').val($(this).data("tags"));
+        mylog.warn( ".tagSearchBtn",$(this).data("type"),$(this).data("stype"),$(this).data("tags") ); 
+        searchType = $(this).data("type").split(",");
+        
+        if( $(this).data("stype") )
+            $('#searchSType').val($(this).data("stype"));
+        else
+            $('#searchTags').val($(this).data("tags"));
+
+        urlCtrl.loadByHash($(this).data("app"));
+        urlCtrl.afterLoad = function () {              
             startSearch();
         }
     }); 
