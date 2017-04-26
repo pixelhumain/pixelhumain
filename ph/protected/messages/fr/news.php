@@ -9,7 +9,9 @@ return array(
 	"Select" => "Choisir",
 	"News" => "Fil d'actualités",
 	"Activity" => "Activités",
-	"News sent to" => "Destination de la news"
+	"News sent to" => "Destination de la news",
+	"verb create" => "a créé",
+	"verb share" => "a partagé"
 );
 
 ?>
