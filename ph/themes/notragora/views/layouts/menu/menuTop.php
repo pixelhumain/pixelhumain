@@ -15,7 +15,7 @@
 	
 	<?php if (!empty($topList)) { ?>
 	<div class="col-xs-12 no-padding main-gallery-top" >
-		<div class="pull-left">
+		<div class="pull-left" style="width: -moz-max-content;">
 		<?php 
 		foreach ($topList as $key => $data) 
 		{ 
