@@ -39,7 +39,7 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesTheme,Yii::app()->reque
 	<div class="panel-white padding-15">
 		<div class="col-md-12 no-padding">
 			<span class="pointCircle"></span>
-			<h4 clss="title-menu-left" style="color:#484848">Bienvenu sur la plateforme Notragora</h4>
+			<h4 clss="title-menu-left" style="color:#484848">Bienvenue sur la plateforme Notragora</h4>
 			<span>
 				NotrAgora est une plateforme internet contributive qui se construit pas à pas, en relation avec ses usagers, ses partenaires et les habitants du Nord-Pas de Calais.<br/>Elle est un espace de production et de diffusion des productions mise en œuvre dans le cadre de projets participatifs menés par l'association Hors Cadre et ses partenaires.<br/>C'est une plateforme Web qui éclaire la production, c'est-à-dire le résultat d'un projet, par des éléments sur la fabrication de cette production, tels que le parcours du projet et de ses acteurs.<br/>NotrAgora offre plusieurs cheminements pour découvrir les contenus et favoriser la convergence ou les confrontations d'expériences.<br/><br/>NotrAgora favorise la médiation par l'internaute et ses amis, le média pouvant être signalé, commenté, partagé et diffusé par le porteur de média qui dispose d'espace permettant d'expliquer sa <br/><br/>
 			</span>
@@ -79,7 +79,7 @@ jQuery(document).ready( function() {
 		},
 		//delay:50
 	});
-  	setTitle("<span class='text-red'>Notragora : Association Hord-Cadre</span>","connectdevelop", "Notragora : Association Hord-Cadre");
+  	setTitle("<span class='text-red'>Notragora : Association Hors-Cadre</span>","connectdevelop", "Notragora : Association Hors-Cadre");
 });
 
 function getRandomInt(min, max) {
