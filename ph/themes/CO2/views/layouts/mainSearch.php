@@ -214,13 +214,20 @@
 
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
         <?php $this->renderPartial($layoutPath.'loginRegister', array()); ?>
+        <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
 
         <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() {
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
-                    url.loadableUrls[k] = v;
+                    if(typeof url.loadableUrls[k] == "undefined")
+                        url.loadableUrls[k] = v;
+                    else {
+                        $.each( v ,function(ki , vi){ 
+                            url.loadableUrls[k][ki] = vi;
+                        });
+                    }
                 });
                 themeObj.init();
                 url.loadByHash(location.hash,true);
