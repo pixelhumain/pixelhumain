@@ -227,7 +227,7 @@ jQuery(document).ready(function() {
 	});
 
 	loadMultiScopes();
-	rebuildSearchScopeInput();
+	//rebuildSearchScopeInput();
 });
 
 /* SEE MORE IN js/menus/multiscope.js */

@@ -130,23 +130,32 @@
                                         </a>
                                     </li> -->
                                     <li class="text-admin">
-                                        <a href="#admin" class="lbh bg-white">
-                                            <i class="fa fa-cogs"></i> Mes paramètres
+                                        <a href="#params" class="lbh bg-white">
+                                            <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parametersc") ; ?>
                                         </a>
                                     </li>
-                                    <li class="text-admin">
-                                        <a href="#admin" class="lbh bg-white">
-                                            <i class="fa fa-user-secret"></i> Admin
-                                        </a>
-                                    </li>
+                                    <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
+                                        <li class="text-admin">
+                                            <a href="#admin" class="lbh bg-white">
+                                                <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin") ; ?>
+                                            </a>
+                                        </li>
+                                    <?php }else if( Yii::app()->session[ "userIsAdminPublic" ] ) { ?>
+                                        <li class="text-admin">
+                                            <a href="#adminpublic" class="lbh bg-white">
+                                                <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin public") ; ?>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
                                     <li role="separator" class="divider">
                                     </li>
                                     <li class="text-left">
                                         <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
                                             class="bg-white letter-red logout">
-                                            <i class="fa fa-sign-out"></i> Déconnecter
+                                            <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log out") ; ?>
                                         </a>
                                     </li>
+
 
                             </ul>
                         </div>
@@ -181,7 +190,6 @@
             <i class="fa fa-plus-circle"></i>           
         </a> -->
         <?php 
-            $params = CO2::getThemeParams();
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
@@ -192,7 +200,7 @@
                 </a>  
         <?php   }
             }  ?>
-        
+            
     </div>
     <!-- /.container-fluid -->
 
@@ -209,13 +217,6 @@
         $this->renderPartial($layoutPath.'notifications'); ?>
 
 <?php $this->renderPartial($layoutPath.'formCreateElement'); ?>
-
-<?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
-
-<?php //$this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
-
-
-<div class="page-content"></div>
 
 
 <script>

@@ -563,3 +563,9 @@
     position: absolute;
     right: 10px;
   }
+
+.contactPanelHtml{
+  max-height: 100px !important;
+  min-height: 100px !important;
+
+}
