@@ -75,7 +75,7 @@
 					foreach ($projects as $data){
 						if(@$data["profilMediumImageUrl"] && !empty($data["profilMediumImageUrl"])){ ?>
 						<div class="item <?php if($inc==0) echo "active" ?>">
-							<a href="#project.detail.id.<?php echo (string)$data["_id"] ?>" class="lbh">
+							<a href="#organization.detail.id.<?php echo (string)$data["_id"] ?>" class="lbh">
 								<img src="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/document/resized/150x150'.@$data["profilMediumImageUrl"]) ?>" class="col-sm-12 img-responsive no-padding">
 							</a>
 						</div>
