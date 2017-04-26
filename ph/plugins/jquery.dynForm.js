@@ -456,6 +456,21 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<a class="btn btn-primary '+fieldClass+'" href="'+fieldObj.url+'">Go There</a>';
         } 
 
+         /* **************************************
+		* CAPCHAT
+		***************************************** */
+        else if ( fieldObj.inputType == "captcha" ) {
+        	mylog.log("build field "+field+">>>>>> captcha");
+        	fieldHTML += '<div class="col-md-8 pull-right text-right">';
+				fieldHTML += '<h5 for="message" class="letter-green margin-bottom-25">';
+					fieldHTML += '<span class="letter-red"><i class="fa fa-lock fa-2x"></i> sécurité</span><br>'; 
+					fieldHTML += 'merci de recopier le code ci-dessous<br>afin de valider votre message <i class="fa fa-chevron-down"></i>';
+				fieldHTML += '</h5>';
+				fieldHTML += '<input placeholder="taper le code ici" class="col-md-6 txt-captcha text-right pull-right" id="captcha">';
+			fieldHTML += '</div>';
+        }
+
+
         /* **************************************
 		* TAG List
 		***************************************** */
