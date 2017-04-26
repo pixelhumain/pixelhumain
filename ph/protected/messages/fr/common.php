@@ -259,6 +259,7 @@ return array(
 	"the maturity" => "l'avancement",
 	"the licence" => "la licence",
 	"the main locality" => "l'adresse principale",
+	"Main locality" => "Adresse principale",
 	"a second locality" => "une adresse secondaire",
 	"open data" => "l'open data",
 	"open edition" => "l'édition libre",
