@@ -145,10 +145,10 @@
 					            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message text-dark">';
 					            echo $item["notify"]["displayName"];
 					            
-					            echo ", <span class='time pull-left'>".round(abs(time() - $item["timestamp"]->sec) / 60)."min</span></span></a>";
+					            echo ", <span class='time pull-left'>".round(abs(time() - @$item["timestamp"]->sec) / 60)."min</span></span></a>";
 					            echo "</li>";
-					            if($item["timestamp"]->sec > $maxTimestamp)
-					            	$maxTimestamp = $item["timestamp"]->sec;
+					            if(@$item["timestamp"]->sec > $maxTimestamp)
+					            	$maxTimestamp = @$item["timestamp"]->sec;
 					        }
 				        } 
 				    } 
