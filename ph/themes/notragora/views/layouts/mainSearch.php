@@ -233,13 +233,14 @@
 	);
 
 	$topList = Poi::getPoiByTagsAndLimit();
+	if (empty($topList)) $emptyTop=true; 
 	$this->renderPartial($layoutPath.'.menu.menuTop', array( "me" => $me , "topList" => $topList )); 
 	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city)); ?>
 
 	<!-- **************************************
 	CENTER SECTION
 	******************************************* -->
-	<div class="col-xs-12 no-padding no-margin my-main-container">
+	<div class="col-xs-12 no-padding no-margin my-main-container" <?php if (@$emptyTop) { ?> style="top:50px !important;" <?php } ?>>
 
 		<div class="footer-menu-left"></div>
 		

@@ -11,7 +11,7 @@
 	$tagsPoiList = array();
 ?>
 
-<div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
+<div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop" <?php if (empty($topList)) { ?> style="height:50px !important;" <?php } ?>>
 	
 	<?php if (!empty($topList)) { ?>
 	<div class="col-xs-12 no-padding main-gallery-top" >

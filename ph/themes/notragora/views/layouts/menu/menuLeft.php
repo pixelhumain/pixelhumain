@@ -45,10 +45,10 @@
 <div class="hover-info2 col-md-7 col-md-offset-3 col-sm-6 col-sm-offset-5 hidden-xs panel-white padding-20"></div>
 
 <?php $projects = PHDB::findAndSortAndLimitAndIndex( Organization::COLLECTION, array("name"=>array('$exists'=>1)), array("updated" => -1), 3, 0); ?>
-<div class="hidden-xs main-menu-left col-md-2 col-sm-2 padding-10"  data-tpl="menuLeft">
+<div class="hidden-xs main-menu-left col-md-2 col-sm-2 padding-10"  data-tpl="menuLeft" <?php if (@$emptyTop && $emptyTop==true) { ?> style="top:50px !important;" <?php } ?>>
 	
 	<div class="menu-left-container">
-
+	<?php if (@$projects && !empty($projects)){ ?>
 		<div class="col-md-12">
 			<span class="title-menu-left">
 				FOCUS
@@ -85,6 +85,7 @@
 			  <!-- Left and right controls -->
 			</div>
 		</div>
+	<?php } ?>
 		<div class="col-md-12" id="poiParent">
 			<!--<img src="<?php echo $this->module->assetsUrl?>/images/velo.png" class="img-responsive">-->
 		</div>
@@ -150,7 +151,7 @@ jQuery(document).ready(function() {
 		$(".collectionsList").append(collectionsHtml);
 	});*/
 
-	 $(".carousel-control").click(function(){
+	$(".carousel-control").click(function(){
     var top = $("#docCarousel").position().top-30;
     $(".my-main-container").animate({ scrollTop: top, }, 300 );
   });
