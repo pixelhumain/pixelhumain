@@ -44,7 +44,7 @@
 
 <div class="hover-info2 col-md-7 col-md-offset-3 col-sm-6 col-sm-offset-5 hidden-xs panel-white padding-20"></div>
 
-<?php $projects = PHDB::findAndSortAndLimitAndIndex( Organization::COLLECTION, array("name"=>array('$exists'=>1)), array("updated" => -1), 3, 0); ?>
+<?php $projects = PHDB::findAndSortAndLimitAndIndex( Organization::COLLECTION, array("name"=>array('$exists'=>1),"profilMediumImageUrl"=>array('$exists'=>1)), array("updated" => -1), 3, 0); ?>
 <div class="hidden-xs main-menu-left col-md-2 col-sm-2 padding-10"  data-tpl="menuLeft" <?php if (@$emptyTop && $emptyTop==true) { ?> style="top:50px !important;" <?php } ?>>
 	
 	<div class="menu-left-container">

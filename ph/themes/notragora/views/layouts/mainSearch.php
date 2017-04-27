@@ -235,7 +235,7 @@
 	$topList = Poi::getPoiByTagsAndLimit();
 	if (empty($topList)) $emptyTop=true; 
 	$this->renderPartial($layoutPath.'.menu.menuTop', array( "me" => $me , "topList" => $topList )); 
-	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city)); ?>
+	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city, "emptyTop"=>@$emptyTop)); ?>
 
 	<!-- **************************************
 	CENTER SECTION
