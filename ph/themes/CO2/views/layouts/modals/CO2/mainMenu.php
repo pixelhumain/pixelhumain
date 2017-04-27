@@ -217,7 +217,7 @@
 </div>
 
 <script type="text/javascript">
-
+var searchObj = {};
 jQuery(document).ready(function() { 
     $(".btn-main-menu").mouseenter(function(){ 
         $(".menuSection2").addClass("hidden"); 
@@ -237,16 +237,25 @@ jQuery(document).ready(function() {
         e.preventDefault(); 
         $('#modalMainMenu').modal("hide"); 
         mylog.warn( ".tagSearchBtn",$(this).data("type"),$(this).data("stype"),$(this).data("tags") ); 
-        searchType = $(this).data("type").split(",");
+
+        searchObj.types = $(this).data("type").split(",");
         
         if( $(this).data("stype") )
-            $('#searchSType').val($(this).data("stype"));
+            searchObj.stype = $(this).data("stype");
         else
-            $('#searchTags').val($(this).data("tags"));
-
+            searchObj.tags = $(this).data("tags");
+        
         urlCtrl.loadByHash($(this).data("app"));
-        urlCtrl.afterLoad = function () {              
+        urlCtrl.afterLoad = function () {     
+            //we have to pass by a variable to set the values         
+            searchType = searchObj.types;
+        
+            if( $(this).data("stype") )
+                $('#searchSType').val(searchObj.stype);
+            else
+                $('#searchTags').val(searchObj.tags);
             startSearch();
+            searchObj = {};
         }
     }); 
 });
