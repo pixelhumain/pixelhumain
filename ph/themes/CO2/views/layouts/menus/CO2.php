@@ -105,8 +105,8 @@
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li class="text-left">
-                                        <a href="" class="bg-white openModalSelectCreate">
-                                            <i class="fa fa-university"></i> Communexion
+                                        <a href="" class="bg-white" onclick="communecterUser();">
+                                            <i class="fa fa-university"></i> <?php echo Yii::t("common", "Connect to your city");?>
                                         </a>
                                     </li>
                                     <!-- <li class="text-left">
