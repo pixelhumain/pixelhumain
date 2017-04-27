@@ -74,6 +74,7 @@ onSave: (optional) overloads the generic saveProcess
 			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
+				mylog.log(field,fieldObj);
 				buildInputField(settings.formId,field, fieldObj, settings.formValues);
 			});
 			
