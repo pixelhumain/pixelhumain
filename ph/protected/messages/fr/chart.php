@@ -3,6 +3,7 @@
 	return array(
 		"Commons" => "Bien-commun",
 		"Open" => "Libre",
+		"Our values" => "Nos valeurs",
 		"Choose which kind of form to complete" => "Choisir le type de formulaire que vous souhaitez remplir",
 		"Add properties which defined your organization" => "Ajouter des propriétés qui définissent votre organisation",
 		"Add properties which defined your project" => "Ajouter des propriétés qui définissent votre projet",
