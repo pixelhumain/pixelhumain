@@ -189,11 +189,10 @@ function activateGlobalCommunexion(active){  mylog.log("activateGlobalCommunexio
     globalCommunexion=active;
     if(active){
         headerHtml='<i class="fa fa-university"></i> ' + $.cookie('communexionName') + "<small class='text-dark'>.CO</small>"
-        if(actionOnSetGlobalScope=="save")
-            $("#scopeListContainer").html(scopeHtml);
         setGlobalScope($.cookie('communexionValue'), $.cookie('communexionName'), $.cookie('communexionType'), $.cookie('communexionLevel'));
         $("#container-scope-filter").html(getBreadcrumCommunexion());
-        
+        if(actionOnSetGlobalScope=="save")
+            $("#scopeListContainerForm").html(getBreadcrumCommunexion());
     }
     else{
         headerHtml='<a href="#web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">'+
@@ -202,7 +201,8 @@ function activateGlobalCommunexion(active){  mylog.log("activateGlobalCommunexio
         saveCookieMultiscope();
         //rebuildSearchScopeInput();
         showTagsScopesMin();
-        startSearch(0, indexStepInit);
+        if(actionOnSetGlobalScope=="filter")
+            startSearch(0, indexStepInit);
     }
     $("#main-scope-name").html(headerHtml);
     bindCommunexionScopeEvents();
@@ -223,7 +223,7 @@ function getBreadcrumCommunexion(){
             '<i class="fa fa-times"></i>'+
         '</a>';
     }
-        htmlCommunexion+='<i class="fa fa-university fa-2x text-red"></i>'+ 
+    htmlCommunexion+='<i class="fa fa-university fa-2x text-red"></i>'+ 
         '<div class="getFormLive" style="display:inline-block;">'+
             '<button data-toggle="dropdown" data-target="dropdown-multi-scope" '+
                 'class="btn btn-link text-red item-globalscope-checker homestead '; 
