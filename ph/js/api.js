@@ -143,9 +143,11 @@ function getModal(what, ajaxUrl,id)
 
 //js ex : "/themes/ph-dori/assets/plugins/summernote/dist/summernote.min.js"
 //css ex : "/themes/ph-dori/assets/plugins/summernote/dist/summernote.css"
-function lazyLoad (js,css, callback) { 
-    mylog.warn("lazyLoad",js);
-    if( !$('script[src="'+baseUrl+js+'"]').length )
+function lazyLoad (js,css, callback, notBase) { 
+    mylog.warn("lazyLoad",js, css, callback, notBase);
+    var url = (notBase==true ? js : baseUrl+js);
+    mylog.warn("url",url);
+    if( !$('script[src="'+url+'"]').length )
     {
         if(css)
             $("<link/>", {
@@ -154,14 +156,15 @@ function lazyLoad (js,css, callback) {
                href: css 
             }).appendTo("head");
         $.getScript( js, function( data, textStatus, jqxhr ) {
+          mylog.log("lazyLoad getScript");
           if( typeof callback === "function")
             callback();
         });
     } else {
+        mylog.log("lazyLoad notScript");
         if( typeof callback === "function")
             callback();
     }
-
 }
 
 

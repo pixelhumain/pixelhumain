@@ -132,7 +132,7 @@
 	.removeBtn:hover{
 		background-color: grey;
 		color: white;
-	};
+	}
 	.removeBtn i{
 		font-size:12px;
 	}
@@ -147,7 +147,7 @@
 		color: #71CE4E !important;
 		background-color: white;
 		border: 1px solid #71CE4E;
-	};
+	}
 	.acceptBtn i{
 		font-size:12px;
 	}
@@ -162,7 +162,7 @@
 		color: #E33551 !important;
 		background-color: white;
 		border: 1px solid #E33551;
-	};
+	}
 	.refuseBtn i{
 		font-size:12px;
 	}
