@@ -22,7 +22,14 @@
 		"Want but not started" => "Souhait mais pas démarré",
 		"Started"=> "démarré",
 		"In progress" => "En progression",
-		"Finished" => "Réalisé"
+		"Finished" => "Réalisé",
+		"Describe this property"=> "Décrire la propriété",
+		"Values {what}" => "Valeurs {what}",
+		"Edit values" => "Editer les valeurs",
+		"Organization&#146;s values well updated"=> "Valeurs de l&#146;organisation modifiées avec succès",
+		"Project&#146;s values well updated"=> "Valeurs du projet modifiées avec succès",
+		"Edit chart" => "Editer la charte",
+		"Add chart" => "Ajouter la charte",
 	)
 
 ?>
