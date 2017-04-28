@@ -465,16 +465,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     background-color: blanchedalmond;
 }
 
-.section-date{
+.section-date, .section-address{
     font-size: 20px;
     font-weight: bold;
     padding:10px 20px;
-    background-color: rgba(255,255,255,0.4);
+    background-color: rgba(255,255,255,0.6);
     border-radius: 7px;
+    position: absolute;
+    top: 55px;
+    z-index: 1;
+    right: 15px;
+}
+.section-address{
+    font-size: 16px;
+    top: 0px;
 }
 
 .section-date .numday{
+    font-size: 16px;
     font-size: 30px;
+}
+.section-date .letter-orange{
+    color:#2C3E50 !important;
 }
 
 @media screen and (max-width: 1024px) {
