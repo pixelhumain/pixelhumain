@@ -72,9 +72,10 @@ onSave: (optional) overloads the generic saveProcess
 				settings.beforeBuild();
 
 			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
+				mylog.log("??????????????????????????",field,fieldObj);
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
-				mylog.log(field,fieldObj);
+				
 				buildInputField(settings.formId,field, fieldObj, settings.formValues);
 			});
 			
@@ -88,7 +89,7 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<div class="form-actions">'+
         				'<hr class="col-md-12">';
         	if( !settings.formObj.jsonSchema.noSubmitBtns )
-				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
+				fieldHTML += '<button id="btn-submit-form" style="display:none" class="btn btn-default text-azure text-bold pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
