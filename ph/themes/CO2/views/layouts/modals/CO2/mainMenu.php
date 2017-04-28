@@ -17,6 +17,11 @@
     </div>
 </div>
 
+<style type="text/css">
+    .filterBtns{
+        border-radius:0px; border-color: transparent; text-transform: uppercase;
+    }
+</style>
 <div class="portfolio-modal modal fade" id="modalMainMenu" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">
         <div class="close-modal" data-dismiss="modal">
@@ -133,13 +138,10 @@
                             if(is_array($cat)) { 
                     ?>
                                 <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
-                                    <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 btn-select-filliaire" 
-                                            data-fkey="<?php echo $key; ?>"
-                                            style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
-                                            data-keycat="<?php echo $cat["name"]; ?>">
+                                    <a href="" class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 filterBtns tagSearchBtn" data-tags="<?php echo implode(",",$cat["tags"]); ?>" data-type="persons,organizations,projects"  data-app="#search" >
                                         <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br>
                                         <?php echo $cat["name"]; ?>
-                                    </button>
+                                    </a>
                                 </div>
                     <?php   } 
                         } 
@@ -154,10 +156,7 @@
                             if(is_array($cat)) { 
                     ?>
                                 <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
-                                    <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5" 
-                                            data-fkey="<?php echo $key; ?>"
-                                            style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
-                                            data-keycat="<?php echo $cat["label"]; ?>">
+                                    <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 filterBtns tagSearchBtn" data-tags="<?php echo $cat["label"] ?>" data-type="classified" data-app="#annonces"  >
                                         <i class="fa fa-<?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br>
                                         <?php echo $cat["label"]; ?> 
                                     </button>
@@ -171,14 +170,11 @@
                 <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> --> 
                 <?php $events = CO2::getContextList("event");  
                       //var_dump($categories); exit; 
-                      foreach ($classified['sections'] as $key => $cat) {   
+                      foreach ($events['sections'] as $key => $cat) {   
                             if(is_array($cat)) { 
                     ?>
                                 <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
-                                    <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5" 
-                                            data-fkey="<?php echo $key; ?>"
-                                            style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
-                                            data-keycat="<?php echo $cat["label"]; ?>">
+                                    <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 filterBtns tagSearchBtn" data-stype="<?php echo $cat["label"] ?>" data-type="events" data-app="#agenda">
                                         <i class="fa fa-<?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br>
                                         <?php echo $cat["label"]; ?> 
                                     </button>
@@ -221,6 +217,7 @@
 </div>
 
 <script type="text/javascript">
+var searchObj = {};
 jQuery(document).ready(function() { 
     $(".btn-main-menu").mouseenter(function(){ 
         $(".menuSection2").addClass("hidden"); 
@@ -233,7 +230,33 @@ jQuery(document).ready(function() {
         mylog.warn("bindLBHLinks",$(this).attr("href")); 
         mylog.warn("***************************************"); 
         var h = ($(this).data("hash")) ? $(this).data("hash") : $(this).attr("href"); 
-        url.loadByHash( h ); 
+        urlCtrl.loadByHash( h ); 
+    }); 
+
+    $(".tagSearchBtn").click(function(e) {  
+        e.preventDefault(); 
+        $('#modalMainMenu').modal("hide"); 
+        mylog.warn( ".tagSearchBtn",$(this).data("type"),$(this).data("stype"),$(this).data("tags") ); 
+
+        searchObj.types = $(this).data("type").split(",");
+        
+        if( $(this).data("stype") )
+            searchObj.stype = $(this).data("stype");
+        else
+            searchObj.tags = $(this).data("tags");
+        
+        urlCtrl.loadByHash($(this).data("app"));
+        urlCtrl.afterLoad = function () {     
+            //we have to pass by a variable to set the values         
+            searchType = searchObj.types;
+        
+            if( $(this).data("stype") )
+                $('#searchSType').val(searchObj.stype);
+            else
+                $('#searchTags').val(searchObj.tags);
+            startSearch();
+            searchObj = {};
+        }
     }); 
 });
   

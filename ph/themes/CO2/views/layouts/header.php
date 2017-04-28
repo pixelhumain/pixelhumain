@@ -50,19 +50,10 @@
     <header>
         <?php if(@$useHeader != false){ ?>
         <div class="col-md-12 text-center main-menu-app" style="">
-            <?php //if($subdomainName != "web" && $subdomainName != "referencement") 
-                    foreach ($params["pages"] as $key => $value) {
-                        if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
-                            <a  class="lbh text-red link-submenu-header margin-right-25 
-                                        <?php if("#".$subdomain == $key) echo "active"; ?>" 
-                                href="<?php echo $key; ?>">
-                                <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
-                                <span class=""> <?php echo $value["subdomainName"]; ?></span>
-                            </a>    
-            <?php       }
-                    }  
+            <?php 
+                $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
+                                                                            "subdomain"  => ""));
             ?>
-
 
             <?php if(false && $subdomainName == "web") { ?>
                     <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
@@ -96,7 +87,7 @@
                                                           "type"=>@$type,
                                                           "explain"=>@$explain)); ?>
 
-
+                    <div class="subModuleTitle">  
                         <?php 
 
                         if($subdomain == "actu"){ ?>
@@ -154,50 +145,9 @@
                                 C'est simple, et ça prend seulement <span class="text-red"> quelques secondes ...</span>
                                 </small>
                             </p>
-                        <?php// }elseif($subdomain == "annonces"){ ?>
-                            <!-- <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-bottom:15px;">
-                                <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
-                                <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
-                            </div>
-                             <hr>
-                            <div class="col-md-12 col-sm-12 no-padding" id="sub-menu-left">
-                                <div class="col-md-2 col-sm-2 padding-5"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-12 text-center padding-5">
-                                <?php 
-                                        $freedomSections = CO2::getContextList("freedomSections");
-                                        $currentSection = 1;
-                                        $align="right";
-                                        foreach ($freedomSections as $key => $section) { ?>
-                                            <?php if($currentSection > 1){ ?>
-                                                <?php if($section["section"] > $currentSection){ 
-                                                        $currentSection++; 
-                                                        $align = "center"; //$align=="left"?"left":"left";
-                                                ?>
-                                                </div>
-                                                <div class="col-sm-2 col-xs-12 col-md-2 text-<?php echo $align; ?> padding-5">
-                                                <?php } ?>
-                                                <button class="col-xs-5 col-sm-12 col-md-12 btn btn-default margin-bottom-5 margin-left-5 btn-select-type-anc btn-anc-color-<?php echo @$section["color"]; ?>"  
-                                                        data-type-anc="<?php echo @$section["key"]; ?>">
-                                                    <i class="fa fa-<?php echo @$section["icon"]; ?> hidden-xs hidden-sm"></i> <?php echo @$section["label"]; ?>
-                                                </button><br class="hidden-xs hidden-sm">
-                                            
-                                            <?php   }else{ $currentSection++; } ?>
-                                <?php   } ?>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                            <hr>
-                                <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults">
-                                    <i class="fa fa-angle-down"></i> Lire les annonces
-                                </button>
-                                <a href="#referencement" class="lbh btn btn-default letter-green hidden-xs bold" id="">
-                                    <i class="fa fa-plus-circle"></i> Publier une annonce
-                                </a>
-                            </div> -->
-
+                       
                         <?php } ?>
-
+                        </div>
                     </div>
                 </div>
             </div>

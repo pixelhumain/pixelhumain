@@ -259,6 +259,7 @@ return array(
 	"the maturity" => "l'avancement",
 	"the licence" => "la licence",
 	"the main locality" => "l'adresse principale",
+	"Main locality" => "Adresse principale",
 	"a second locality" => "une adresse secondaire",
 	"open data" => "l'open data",
 	"open edition" => "l'édition libre",
@@ -457,6 +458,7 @@ return array(
 	"Accept this citoyen" => "Accepter ce citoyen",
 	"Add as admin" => "Ajouter en tant qu&#146;admin",
 	"Manage my parameters" => "Régler mes paramètres",
+	"My parameters" => "Mes paramètres",
 	"Manage the parameters of" => "Régler les paramètres de",
 	"Local network" => "Réseau local",
 
@@ -726,7 +728,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Search a citizens of your city." => "Rechercher les citoyens de votre commune.",
 	"Search a organizations of your city." => "Rechercher les organisations de votre commune.",
 
-	"Add a primary address" => "Ajouter une adresse principal",
+	"Add a primary address" => "Ajouter une adresse principale",
 	"Add a secondary address" => "Ajouter une adresse secondaire",
 	"Add an address" => "Ajouter une adresse",
 	"Can not update the element : you are not authorized to update that element !" => "Impossible de mettre à jour cet élément : vous n'êtes pas autorisé !",
@@ -807,6 +809,10 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Invitation  accept" => "Invitation acceptée",
 	
 	"Not interested by the invitation" => "Vous n'êtes pas intéressé par cette invitation",
+
+	'Admin' => "Admin",
+	'Admin public' => "Admin public",
+	'Preview' => "Prévisualiser",
 
 );
 

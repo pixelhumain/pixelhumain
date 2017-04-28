@@ -76,14 +76,14 @@
         ?>
         
         <?php $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
-              $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); ?>   
+              $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); 
+              ?>   
         
         <?php $this->renderPartial($layoutPath.'loginRegister', array()); ?>
         <div class="main-container">
             <?php 
                     $CO2DomainName = Yii::app()->params["CO2DomainName"];
-                    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
-                    $this->renderPartial($layoutPath.'menus/'.$CO2DomainName, 
+                    $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
                                             array( "layoutPath"=>$layoutPath , 
                                                     "subdomain"=>"", //$subdomain,
                                                     "subdomainName"=>"", //$subdomainName,
@@ -92,16 +92,36 @@
                                                     "type"=>@$type,
                                                     "me" => $me) );
             ?>
-            <div class="page-content"></div>
+            <header>
+                <div class="col-md-12 text-center main-menu-app" style="">
+                    <?php 
+                    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+                    $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
+                                                                                "subdomain"  => ""));
+                        ?>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="intro-text">  
+
+                                <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"]); ?>
+
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="pageContent"></div>
         </div>
         
 
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
 
-
-        <?php if($CO2DomainName == "kgougle")
-              $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
-        ?> 
+        
+        <?php $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); ?> 
 
         
         <?php 
@@ -179,7 +199,7 @@
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
             $this->renderPartial($layoutPath.'initJs', 
-                                 array("me"=>$me, "myFormContact" => @$myFormContact));
+                                 array( "me"=>$me, "myFormContact" => @$myFormContact));
 
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
             if($CO2DomainName != "CO2"){
@@ -192,20 +212,27 @@
             }
         ?>
 
-        
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
-        
+        <?php $this->renderPartial($layoutPath.'loginRegister', array()); ?>
+        <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
 
         <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() {
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
-                    url.loadableUrls[k] = v;
+                    if(typeof urlCtrl.loadableUrls[k] == "undefined")
+                        urlCtrl.loadableUrls[k] = v;
+                    else {
+                        $.each( v ,function(ki , vi){ 
+                            urlCtrl.loadableUrls[k][ki] = vi;
+                        });
+                    }
                 });
                 themeObj.init();
-                url.loadByHash(location.hash,true);
+                urlCtrl.loadByHash(location.hash,true);
             });
+            console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
         </script>
 
     </body>

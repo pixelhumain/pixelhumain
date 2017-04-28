@@ -242,7 +242,7 @@ jQuery(document).ready(function()
 		setTimeout(function(){
           //  elem.addClass("read");
             //elem.removeClass('animated bounceOutRight');
-            loadByHash(hash);
+            urlCtrl.loadByHash(hash);
             //notifCount();
         }, 200);
 	});
@@ -397,7 +397,7 @@ function buildNotifications(list)
 		{
 			var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url : "#";
 			//convert url to hash for loadByHash
-			url = "#"+url.replace(/\//g, ".");
+			url = "#"+urlCtrl.replace(/\//g, ".");
 			//var moment = require('moment');
 			moment.lang('fr');
 			if(typeof notifObj.updated != "undefined")

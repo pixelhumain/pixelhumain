@@ -21,34 +21,7 @@
         <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Fermer la carte">
             <i class="fa fa-times"></i>
         </button>
-        <!-- <button class="btn-show-mainmenu" onclick="showMap(false);" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
-            <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
-        </button> -->
-        <div class="dropdown pull-right">
-            <button class="btn-show-mainmenu  dropdown-toggle" title="Menu principal" data-toggle="dropdown"  id="btn-main-menu">
-                <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
-            </button>
-            <div class="dropdown-main-menu font-montserrat" aria-labelledby="btn-main-menu">
-                <ul class="dropdown-menu arrow_box">
-                    <?php foreach(array("web"=>"search", 
-                                        "live"=>"newspaper-o", 
-                                        "social"=>"user-circle-o", 
-                                        //"freedom"=>"comments", 
-                                        //"agenda"=>"calendar", 
-                                        //"power"=>"hand-rock-o"
-                                        ) as $link=>$icon){ ?>
-                        <li class="text-left" style="font-size:25px; ">
-                            <a href="#k.<?php echo $link; ?>" class="lbh bg-white">
-                                <span class="font-blackoutM text-red">
-                                    <i style="width:30px;" class="text-center text-red fa fa-<?php echo $icon; ?>"></i> 
-                                    <?php echo $link; ?>
-                                </span>
-                            </a>
-                        </li>
-                    <?php } ?>
-                </ul>
-            </div>
-        </div>
+        
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="pull-right">
             <ul class="nav navbar-nav navbar-right">
