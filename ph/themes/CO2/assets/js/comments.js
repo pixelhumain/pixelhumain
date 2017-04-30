@@ -30,7 +30,7 @@ function initCommentsTools(thisMedias){
         lblCommentCount =  lblCommentCount+
                            "<button class='text-dark btn btn-link no-padding margin-right-10 btn-share bold'"+
                               " style='margin-top:-3px;'" +
-                              " data-ownerlink='share' data-id='"+idMediaShare+"' data-type='"+typeMediaShare+"'>"+
+                              " data-id='"+idMediaShare+"' data-type='"+typeMediaShare+"'>"+
                               "<i class='fa fa-share'></i> Partager"+
                            "</button>";
 
