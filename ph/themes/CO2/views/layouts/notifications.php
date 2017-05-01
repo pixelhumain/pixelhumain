@@ -30,7 +30,7 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->
 	}
 	#notificationPanelSearch{
 	position: fixed;
-	top: 62px !important;
+	top: 68px !important;
 	/*border-top:1px solid rgba(128, 128, 128, 0.54);*/
 	right: 0%;
 	width: 430px;
