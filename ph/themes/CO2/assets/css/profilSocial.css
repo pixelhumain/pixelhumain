@@ -489,6 +489,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     color:#2C3E50 !important;
 }
 
+#noMoreNews{
+    position: relative;
+    padding: 0px 40px;
+    bottom:0px;
+}
+
 @media screen and (max-width: 1024px) {
     #main-name-element{
         font-size: 1.2em;
