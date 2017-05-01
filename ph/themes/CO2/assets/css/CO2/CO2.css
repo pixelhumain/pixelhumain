@@ -790,7 +790,7 @@ h3.title_panel_map{
 .navbar-nav button{
 	margin-top: 15px;
 	background-color: transparent;
-	padding-left: 10px;
+	padding: 0 10px;
 	border: none !important;
 	border-left: 1px solid #e3e3e3 !important;
 }

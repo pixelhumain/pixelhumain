@@ -3,6 +3,7 @@
 	return array(
 		"Commons" => "Bien-commun",
 		"Open" => "Libre",
+		"Our values" => "Nos valeurs",
 		"Choose which kind of form to complete" => "Choisir le type de formulaire que vous souhaitez remplir",
 		"Add properties which defined your organization" => "Ajouter des propriétés qui définissent votre organisation",
 		"Add properties which defined your project" => "Ajouter des propriétés qui définissent votre projet",
@@ -21,7 +22,14 @@
 		"Want but not started" => "Souhait mais pas démarré",
 		"Started"=> "démarré",
 		"In progress" => "En progression",
-		"Finished" => "Réalisé"
+		"Finished" => "Réalisé",
+		"Describe this property"=> "Décrire la propriété",
+		"Values {what}" => "Valeurs {what}",
+		"Edit values" => "Editer les valeurs",
+		"Organization&#146;s values well updated"=> "Valeurs de l&#146;organisation modifiées avec succès",
+		"Project&#146;s values well updated"=> "Valeurs du projet modifiées avec succès",
+		"Edit chart" => "Editer la charte",
+		"Add chart" => "Ajouter la charte",
 	)
 
 ?>

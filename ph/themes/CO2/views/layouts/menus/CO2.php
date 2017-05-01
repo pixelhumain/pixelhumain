@@ -170,6 +170,10 @@
                             <?php echo @$countNotifElement ?>
                         </span>
                     </button>
+                    <button class="menu-button btn-menu btn-open-floopdrawer text-dark pull-right" 
+                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                      <i class="fa fa-bookmark fa-rotate-270"></i>
+                    </button>
                     
                 <?php } else { ?>
                     <li class="page-scroll">
@@ -227,7 +231,7 @@ jQuery(document).ready(function() {
         $("#selectCreate").modal("show");
     });
 
-    $("#menu-name-profil").mouseenter(function(){ 
+    $(".btn-open-floopdrawer").click(function(){ 
         showFloopDrawer(true);
     });
     $("#floopDrawerDirectory").mouseleave(function(){ 

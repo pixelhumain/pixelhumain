@@ -391,6 +391,9 @@
       max-width: 86%;
       border-radius:20px;
     }
+    .events .container-img-profil img.img-responsive{
+      border-radius:20px;
+    }
 
   .container-img-profil i.fa {
       margin-top: 45px;

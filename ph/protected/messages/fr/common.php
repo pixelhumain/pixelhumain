@@ -342,8 +342,8 @@ return array(
 	"Cooperative space" => "Espace coopératif",
 
 	"a news" => "un post",
-	"of the event" => "de l'événement",
-	"of the organization" => "de l'organisation",
+	"of the event" => "de l&#146;événement",
+	"of the organization" => "de l&#146;organisation",
 	"of the project" => "du projet",
 	// Button
 	"All as Read" => "Tout comme lu",
