@@ -128,9 +128,9 @@ jQuery(document).ready(function() {
     $(".btn-open-form").click(function(){
         var typeForm = $(this).data("form-type");
         /*if(contextData.type && contextData.id )
-            elementLib.openForm(typeForm,"sub");
+            dyFObj.openForm(typeForm,"sub");
         else*/
-            elementLib.openForm(typeForm);
+            dyFObj.openForm(typeForm);
     });
 });
 </script>
