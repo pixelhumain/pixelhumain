@@ -30,6 +30,8 @@ $mailConfigTest = array(
 );
 
 $params = array(
+    //Application Name 
+    'name' => 'NA',
     //Beta Test ?
     'betaTest' => false,
     //By default controller
@@ -98,6 +100,9 @@ $params = array(
         "need" => false,
         "poi" => true
     )*/
+    //URL of logos used by mail
+    "logoUrl" => "/images/logoNotragora.png",
+    "logoUrl2" => "/images/logoNotragora.png",
   );
 
 
