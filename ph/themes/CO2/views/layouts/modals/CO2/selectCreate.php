@@ -127,7 +127,7 @@
 jQuery(document).ready(function() { 
     $(".btn-open-form").click(function(){
         var typeForm = $(this).data("form-type");
-        alert(contextData.type+" && "+contextData.id+" : "+typeForm);
+        //alert(contextData.type+" && "+contextData.id+" : "+typeForm);
         if(contextData.type && contextData.id )
             dyFObj.openForm(typeForm,"sub");
         else

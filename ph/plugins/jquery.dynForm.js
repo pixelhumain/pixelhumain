@@ -72,7 +72,7 @@ onSave: (optional) overloads the generic saveProcess
 				settings.beforeBuild();
 
 			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
-				mylog.log("??????????????????????????",field,fieldObj);
+//				mylog.log("??????????????????????????",field,fieldObj);
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
 				
@@ -89,13 +89,13 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<div class="form-actions">'+
         				'<hr class="col-md-12">';
         	if( !settings.formObj.jsonSchema.noSubmitBtns )
-				fieldHTML += '<button id="btn-submit-form" style="display:none" class="btn btn-default text-azure text-bold pull-right">'+
+				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
-						' <button onclick="elementLib.closeForm()" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
+						' <a href="javascript:dyfObj.closeForm(); return false;" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
 							'<i class="fa fa-times "></i> Annuler'+
-						'</button> ';
+						'</a> ';
 
 			fieldHTML += '</div>';
 
