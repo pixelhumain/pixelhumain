@@ -172,7 +172,7 @@
                     </button>
                     <button class="menu-button btn-menu btn-open-floopdrawer text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
-                      <i class="fa fa-bookmark fa-rotate-270"></i>
+                      <i class="fa fa-link"></i>
                     </button>
                     
                 <?php } else { ?>
