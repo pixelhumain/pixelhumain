@@ -688,8 +688,8 @@ function showDebugMap()
   if(debugMap && debugMap.length > 0)
   {
     $.each(debugMap, function (i,val) {
-          mylog.dir(val);
-      });
+      mylog.dir(val);
+    });
     toastr.info("check Console for "+debugMap.length+" maps");
   }else
     toastr.error("no maps to show, please do debugMap.push(something)");
@@ -701,7 +701,7 @@ function exists(val){
   return typeof val != "undefined";
 }
 function notNull(val){
-  return (typeof val != "undefined"
+  return ( typeof val != "undefined" 
       && val != null);
 }
 function notEmpty(val){

@@ -127,9 +127,10 @@
 jQuery(document).ready(function() { 
     $(".btn-open-form").click(function(){
         var typeForm = $(this).data("form-type");
-        /*if(contextData.type && contextData.id )
+        //alert(contextData.type+" && "+contextData.id+" : "+typeForm);
+        if(contextData.type && contextData.id )
             dyFObj.openForm(typeForm,"sub");
-        else*/
+        else
             dyFObj.openForm(typeForm);
     });
 });
