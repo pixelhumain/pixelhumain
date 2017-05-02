@@ -37,17 +37,17 @@
 <h1 class="text-red homestead">
 	<span id="main-scope-name">
 <?php
-    $communexion = CO2::getCommunexionCookies();  
-    if($communexion["state"] == false){
+   // $communexion = CO2::getCommunexionCookies();  
+   // if($communexion["state"] == false){
 ?>
 	<!-- <i class="fa fa-<?php echo @$icon; ?> fa-3x"></i><br> -->
 	<a href="#web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
 	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="60" class="inline margin-bottom-15">
 	</a>
 	<br>
-<?php }else{ ?>
-		<?php echo @$communexion["values"]["cityName"]; ?> 
-<?php } ?>
+<?php /*}else{ 
+	 echo @$communexion["values"]["cityName"];  
+<?php } */ ?>
 	</span>
 </h1>
 

@@ -170,6 +170,10 @@
                             <?php echo @$countNotifElement ?>
                         </span>
                     </button>
+                    <button class="menu-button btn-menu btn-open-floopdrawer text-dark pull-right" 
+                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                      <i class="fa fa-link"></i>
+                    </button>
                     
                 <?php } else { ?>
                     <li class="page-scroll">
