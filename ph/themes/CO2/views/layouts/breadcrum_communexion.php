@@ -68,7 +68,7 @@
             <span class="font-blackoutM text-red"> <?php //echo $subdomainName; ?></span>
             <i class="fa fa-<?php //echo $icon; ?> fa-2x text-red"></i> 
         </span> -->
-        <a href="javascript:buildOpenDatasoftModal()" class="pull-right">
+       <!--  <a href="javascript:buildOpenDatasoftModal()" class="pull-right">
           <img style="margin-left:30px;" width=80 src="<?php echo $this->module->assetsUrl; ?>/images/logos/opendata-soft-logo.png">
         </a>
         <a href="javascript:buildOsmModal()" class="pull-right">
@@ -79,9 +79,9 @@
         </a>
         <a href="javascript:getWiki('<?php echo @$communexion["values"]["wikidataID"]; ?>')" class="pull-right">
           <img style="margin-left:30px;" width=50 src="<?php echo $this->module->assetsUrl; ?>/images/logos/Wikipedia-logo-en-big.png">
-        </a>
+        </a> -->
     </div>
-    <script src="https://www.data.gouv.fr/static/widgets.js" id="udata"></script>
+    <!-- <script src="https://www.data.gouv.fr/static/widgets.js" id="udata"></script> -->
 <?php } ?>
 
 <script type="text/javascript" >
@@ -216,9 +216,9 @@ function getWiki(q){
 
     getModalTitle("wiki");   
 
-    url ="https://www.wikidata.org/wiki/Special:EntityData/"+q+".json" 
+    url_wiki ="https://www.wikidata.org/wiki/Special:EntityData/"+q+".json" 
     $.ajax({
-        url:url,
+        url:url_wiki,
         type:"GET",
         dataType: "json",
         success:function(data) {
@@ -659,35 +659,26 @@ function getDatasets(insee) {
 
     getModalTitle("datagouv");
 
-    var button_breadcrum = document.getElementsByClassName("btn btn-link text-red item-globalscope-checker homestead");
-
-    $.each(button_breadcrum, function( index, value ) {
-        mylog.log('Les boutons du breadcrum');
-        if ((value.getAttribute("class").search("inactive")) == -1) {
-            data_scope_type = value.getAttribute("data-scope-type");
-        }
-    });
-
     if (typeof(data_scope_type) !== "undefined") {
         if (data_scope_type == "region") {
-            url = "";
+            url_datagouv = "";
             search_target = "de la Région : "+communexion.values.regionName;
         } else if (data_scope_type == "dep") {
-            url = "https://www.data.gouv.fr/api/1/spatial/zone/fr/county/"+communexion.values.dep+"/datasets";
+            url_datagouv = "https://www.data.gouv.fr/api/1/spatial/zone/fr/county/"+communexion.values.dep+"/datasets";
             search_target = "du Département : "+communexion.values.depName;
         } else {
-            url = "https://www.data.gouv.fr/api/1/spatial/zone/fr/town/"+insee+"/datasets";
+            url_datagouv = "https://www.data.gouv.fr/api/1/spatial/zone/fr/town/"+insee+"/datasets";
             search_target = "de la Ville : "+communexion.values.cityName;
         }
     } else {
-        url = "https://www.data.gouv.fr/api/1/spatial/zone/fr/town/"+insee+"/datasets";
+        url_datagouv = "https://www.data.gouv.fr/api/1/spatial/zone/fr/town/"+insee+"/datasets";
         search_target = "de la Ville : "+communexion.values.cityName;
     }
 
     var list_orga_id = [];
 
     $.ajax({
-        url: url,
+        url: url_datagouv,
         type:"GET",
         dataType: "json",
         async: false,
@@ -793,15 +784,15 @@ function getAllOsmDataCity() {
 
     geoShape = getGeoShape();
 
-    url = 'http://overpass-api.de/api/interpreter?data=[out:json];node["name"](poly:"'+geoShape+'");out;';
+    url_osm = 'http://overpass-api.de/api/interpreter?data=[out:json];node["name"](poly:"'+geoShape+'");out;';
 
     $.ajax({
-        url : url,
+        url : url_osm,
         type: "GET",
         dataType: "json",
         async:false,
         success:function(data) {
-            mylog.log('Toute la data de la ville');
+            mylog.log('Toute la data OSM de la ville');
             all_data_city = data.elements;
             mylog.log(all_data_city);
         }
@@ -952,13 +943,13 @@ function putEventOnResultButton(value) {
 function putEventOnResultButtonForActivity(activity) {
 
     $("#btn_"+activity+"").off().on('click', function(e){
-        value_with_spec = value_with_spec.replace(/_SPACE_/g, " ");
-        value_with_spec = value_with_spec.replace(/_DOT_/g, ".");
-        value_with_spec = value_with_spec.replace(/_AND_/g, "&");
-        value_with_spec = value_with_spec.replace(/_PAR-OUVRANT_/g, "(");
-        value_with_spec = value_with_spec.replace(/_PAR-FERMANT_/g, ")");
-        value_with_spec = value_with_spec.replace(/_SQUOTE_/g, "'");
-        value_with_spec = value_with_spec.replace(/_VIRGULE_/g, ",");
+        value_with_spec = activity.replace(/_SPACE_/g, " ");
+        value_with_spec = activity.replace(/_DOT_/g, ".");
+        value_with_spec = activity.replace(/_AND_/g, "&");
+        value_with_spec = activity.replace(/_PAR-OUVRANT_/g, "(");
+        value_with_spec = activity.replace(/_PAR-FERMANT_/g, ")");
+        value_with_spec = activity.replace(/_SQUOTE_/g, "'");
+        value_with_spec = activity.replace(/_VIRGULE_/g, ",");
         $("#select_activity").val(activity);
         $("#activity_selected_div").html("<h2>Activité selectionné : "+value_with_spec+"<br/></h3>");
         getOpendatasoftItem(limit,0);
