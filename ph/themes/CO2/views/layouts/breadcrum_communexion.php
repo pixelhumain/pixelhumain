@@ -120,13 +120,15 @@
 
 var globalCommunexion="<?php echo $communexion["state"] ?>";
 var communexion=<?php echo json_encode($communexion) ?>;
+console.log("communexion bread",communexion);
 jQuery(document).ready(function() {
     loadMultiScopes();
-    $.cookie('communexionType', communexion.currentLevel, { expires: 365, path: location.pathname });
-    $.cookie('communexionValue', communexion.currentValue, { expires: 365, path: location.pathname });
-    $.cookie('communexionName', communexion.currentName, { expires: 365, path: location.pathname });
-    $.cookie('communexionLevel', communexion.levelMinCommunexion, { expires: 365, path: location.pathname });
-        
+    if(typeof communexion.currentName != "undefined" && communexion.currentName!=""){
+        $.cookie('communexionType', communexion.currentLevel, { expires: 365, path: location.pathname });
+        $.cookie('communexionValue', communexion.currentValue, { expires: 365, path: location.pathname });
+        $.cookie('communexionName', communexion.currentName, { expires: 365, path: location.pathname });
+        $.cookie('communexionLevel', communexion.levelMinCommunexion, { expires: 365, path: location.pathname });
+    }   
     if($.cookie('communexionActivated') == "true"){
         console.log("communexionActivated ok", $.cookie('communexionValue'));
         setGlobalScope($.cookie('communexionValue'), $.cookie('communexionName'), $.cookie('communexionType'), $.cookie('communexionLevel'));
@@ -138,10 +140,10 @@ jQuery(document).ready(function() {
 });
 
 function bindCommunexionScopeEvents(){
-    $(".btn-decommunecter").off().click(function(){
+    $(".btn-decommunecter").click(function(){
         activateGlobalCommunexion(false); 
     });
-    $(".item-globalscope-checker").off().click(function(){  
+    $(".item-globalscope-checker").click(function(){  
         $(".item-globalscope-checker").addClass("inactive");
         $(this).removeClass("inactive");
         mylog.log("globalscope-checker",  $(this).data("scope-name"), $(this).data("scope-type"));
@@ -149,7 +151,7 @@ function bindCommunexionScopeEvents(){
                          $(this).data("insee-communexion"), $(this).data("name-communexion"), $(this).data("cp-communexion"), 
                          $(this).data("region-communexion"), $(this).data("country-communexion")) ;
     });
-    $(".item-scope-input").off().click(function(){ 
+    $(".item-scope-input").click(function(){ 
             scopeValue=$(this).data("scope-value");
             if($(this).hasClass("disabled")){
                 $("[data-scope-value='"+scopeValue+"'] .item-scope-checker i.fa").removeClass("fa-circle-o");
@@ -182,7 +184,7 @@ function bindCommunexionScopeEvents(){
             checkScopeMax();
         });
 
-    $(".start-new-communexion").off().click(function(){  
+    $(".start-new-communexion").click(function(){  
         activateGlobalCommunexion(true); 
     });
 }
