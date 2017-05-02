@@ -100,11 +100,11 @@
                                 <i class="fa fa-search"></i> Lancer la recherche
                             </button>
 
-                        <?php  } elseif($subdomain == "search" ||
-                                      $subdomain == "social" ||
-                                      $subdomain == "agenda" ||
-                                      $subdomain == "power" ||
-                                      $subdomain == "annonces"){ ?>
+                        <?php  } elseif(  $subdomain == "search" ||
+                                          $subdomain == "social" ||
+                                          $subdomain == "agenda" ||
+                                          $subdomain == "power" ||
+                                          $subdomain == "annonces"){ ?>
 
                             <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
@@ -145,8 +145,18 @@
                                 C'est simple, et ça prend seulement <span class="text-red"> quelques secondes ...</span>
                                 </small>
                             </p>
-                       
+                        <?php }elseif($subdomain == "live"){ ?>
+                            <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-bottom:15px;">
+                                <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
+                                <span class="input-group-addon bg-white" id="main-search-bar-addon"><i class="fa fa-search"></i></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button>
+                                <!-- <a href="#referencement" class="lbh btn btn-default hidden-xs main-btn-create" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer un site</a> -->
+                            </div>
                         <?php } ?>
+
                         </div>
                     </div>
                 </div>
