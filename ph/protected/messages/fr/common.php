@@ -814,6 +814,21 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	'Admin public' => "Admin public",
 	'Preview' => "Prévisualiser",
 
+
+	"Enter an address for automatic placement" => "Indiquez une adresse pour un placement automatique",
+	'Move the icon with the mouse for a more precise placement' => "Déplacez l'icon avec la souris pour un placement plus précis",
+	'Search a city, a town or a postal code' => "Rechercher une ville, un village ou un code postal",
+	'Currently researching' => "Recherche en cours",
+	'Warning' => "Attention",
+	'Do not forget to geolocate your address.' => "N'oubliez pas de géolocaliser votre adresse.",
+	'Address Summary' => "Récapitulatif de l'adresse",
+	'ValideFormInMap' => "Valider <span class='hidden-xs'>l'adresse et la position</span>",
+	'City Informations' => "Informations sur la commune",
+	'Insee' => "Insee",
+	'level3' => "Region",
+	'level4' => "Departement",
+	'latlng' => "Latitude / longitude",
+	'streetFormInMap' => "(N° rue) + Adresse",
 );
 
 ?>

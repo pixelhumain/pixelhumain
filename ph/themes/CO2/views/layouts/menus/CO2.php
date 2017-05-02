@@ -53,10 +53,16 @@
         </button> -->
 
         <?php if( isset( Yii::app()->session['userId']) ){ ?>
+            
+            <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
+                  data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+              <i class="fa fa-link"></i>
+            </button>
             <button class="btn-show-mainmenu btn btn-link" title="Menu">
                 <i class="fa fa-bars tooltips" data-toggle="tooltip" data-placement="bottom" title=""></i>
             </button>
         <?php } ?>
+        
 
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -161,6 +167,7 @@
                         </div>
                     </div>
 
+
                     <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
@@ -169,10 +176,6 @@
                               echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
                             <?php echo @$countNotifElement ?>
                         </span>
-                    </button>
-                    <button class="menu-button btn-menu btn-open-floopdrawer text-dark pull-right" 
-                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
-                      <i class="fa fa-link"></i>
                     </button>
                     
                 <?php } else { ?>
@@ -231,7 +234,7 @@ jQuery(document).ready(function() {
         $("#selectCreate").modal("show");
     });
 
-    $(".btn-open-floopdrawer").click(function(){ 
+    $("#menu-name-profil").mouseenter(function(){ 
         showFloopDrawer(true);
     });
     $("#floopDrawerDirectory").mouseleave(function(){ 
