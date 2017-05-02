@@ -827,10 +827,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	'Insee' => "Insee",
 	'level3' => "Region",
 	'level4' => "Departement",
-	'latlgn' => "Latitude / longitude",
-	'streetFormInMap' => "N° et le nom de la rue",
-	'Preview' => "Prévisualiser",
-	'Preview' => "Prévisualiser",
+	'latlng' => "Latitude / longitude",
+	'streetFormInMap' => "(N° rue) + Adresse",
 );
 
 ?>
