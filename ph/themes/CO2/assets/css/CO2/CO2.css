@@ -348,6 +348,12 @@ input#second-search-bar{
 	color: #fbbc05;
 	border: 2px solid #fbbc05;*/
 }
+.navbar-custom .btn-open-floopdrawer{
+	float: right;
+	margin-top: 15px;
+	border-left: 1px solid #DDD;
+	padding: 0px 7px;
+}
 .navbar-custom .btn-show-communexion{
 	background-color: #ea4335;
 	/*background-color: #354c57;*/
