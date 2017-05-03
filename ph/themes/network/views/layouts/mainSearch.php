@@ -338,7 +338,8 @@
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
-		
+		$this->renderPartial('webroot.themes.CO2.views.layouts.initJs', 
+                                 array( "me"=>$me, "myFormContact" => @$myFormContact));
 		//<!-- end: MAIN JAVASCRIPTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		?>
@@ -459,7 +460,7 @@
 		jQuery(document).ready(function() {
 			setTitle(networkJson.name , "", networkJson.name+ " : "+networkJson.skin.title, networkJson.name,networkJson.skin.shortDescription);
 			// Initialize tags list for network in form of element
-			if(typeof networkJson.add != "undefined"){
+			/*if(typeof networkJson.add != "undefined"){
 				$.each(networkJson.add, function(key, v) {
 					if(typeof networkJson.request.sourceKey != "undefined"){
 						sourceObject = {inputType:"hidden", value : networkJson.request.sourceKey[0]};
@@ -473,7 +474,7 @@
 						}
 					}
 				});
-			}
+			} */
 			$(".bg-main-menu.bgpixeltree_sig").remove();
 			if(myContacts != null)
 			$.each(myContacts, function(type, list) {

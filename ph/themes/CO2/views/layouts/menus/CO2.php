@@ -234,7 +234,7 @@ jQuery(document).ready(function() {
         $("#selectCreate").modal("show");
     });
 
-    $(".btn-open-floopdrawer").click(function(){ 
+    $("#menu-name-profil").mouseenter(function(){ 
         showFloopDrawer(true);
     });
     $("#floopDrawerDirectory").mouseleave(function(){ 

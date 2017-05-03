@@ -12,11 +12,10 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Communecter',
 	'sourceLanguage'=>'00',
-    //'theme'=>"CO2",
 	'language'=>'en',
 
 	//SPECIFIC MODULE confis
-	'defaultController' => 'communecter/network/simplydirectory',
+	'defaultController' => 'CO2',
 	'homeUrl' => "/",//"/ph?tpl=index",
 
 	// preloading 'log' component
@@ -26,9 +25,6 @@ return array(
     	'vendor' => realpath(__DIR__ . '/../../vendor/'),
     	'mongoYii' => realpath(__DIR__ . '/../../vendor/sammaye/mongoyii'),
     	'recaptcha' => realpath(__DIR__ . '/../../vendor/google/recaptcha/src/ReCaptcha'),
-    	'bootstrap' => realpath(__DIR__ . '/../../vendor/2amigos/yiistrap'),
-		'yiiwheels' => realpath(__DIR__ . '/../../vendor/2amigos/yiiwheels'), 
-        'mandrill' => realpath(__DIR__ . '/../../vendor/mandrill/mandrill/src'), 
         'citizenToolKit' => realpath(__DIR__ . $modulesDir.'/citizenToolKit'), 
     ),
     'controllerMap'=>array(
@@ -43,7 +39,6 @@ return array(
         'citizenToolKit.components.*',
         'citizenToolKit.messages.*',
 
-		'bootstrap.helpers.TbHtml',
     	'ext.mail.YiiMailMessage',
         'ext.mail.YiiMail',
     	'ext.mobile.Mobile_Detect',

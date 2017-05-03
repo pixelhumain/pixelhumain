@@ -65,6 +65,7 @@
         "video": "fa-video-camera",
         "classified" : "fa-bullhorn"
     };
+    
     var mapColorIconTop = {
         "default" : "dark",
         "citoyen":"yellow", 
@@ -91,7 +92,6 @@
         "video":"dark",
         "classified" : "yellow"
     };
-
 
     var themeObj = {
         init : function(){
