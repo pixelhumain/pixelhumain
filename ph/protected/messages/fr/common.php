@@ -832,5 +832,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	'streetFormInMap' => "(N° rue) + Adresse",
 	"Add link"  => "Ajouter une URL",
 	"Add contact"  => "Ajouter un point contact",
+
+	"The following attributs has been updated :" => "Les attributs suivants ont été mis à jour :",
+	"name" => "nom",
 );
 ?>
