@@ -117,8 +117,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 
 .btn-o {
-    
-    background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 2px;
     color: #ffffff !important;
@@ -130,8 +128,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     padding: 5px 11px;
     text-decoration: none !important;
     text-transform: uppercase;
-    
-   background-color: rgba(255, 255, 255, 0.1);
     -webkit-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
     transition: all 0.4s ease;
@@ -140,11 +136,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   background-color: rgba(255, 255, 255, 0.4) !important;
     color: #fff !important;
   }
-.btn-o:focus {
+.btn-o:hover {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+    color: #fff !important;
+  }
+.blockUsername .navbar-nav:hover .btn-o{
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    color: #fff !important;
+}
+/*.btn-o:focus {
    background:#0095FF !important;
     color: #fff;
     border: 1px solid #0095FF !important;
-}
+}*/
 .submenu .iamgurdeeposahan {
     background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0 !important;
     border-radius: 50%;
