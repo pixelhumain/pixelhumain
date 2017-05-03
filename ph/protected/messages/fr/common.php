@@ -211,7 +211,7 @@ return array(
 	"Phone Number" => "Téléphone",
 	"Website URL" => "URL du site web",
 	"Description" => "Description",
-	"Short Description" => "Description courte",
+	"Short description" => "Description courte",
 	"Start" => "Début",
 	"End" => "Fin",
 	"Color" => "Couleur",
@@ -302,6 +302,7 @@ return array(
 	"When" => "Quand",
 	"Where" => "Où",
 	"From" => "De",
+	"FromDate" => "Du",
 	"To" => "Au",
 	"All day" => "Toute la journée",
 	"All" => "Tous",
@@ -834,6 +835,18 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Add contact"  => "Ajouter un point contact",
 
 	"The following attributs has been updated :" => "Les attributs suivants ont été mis à jour :",
+	
 	"name" => "nom",
+	"type" => "type",
+	"allDay" => "toute la journée",
+	"startDate" => "date de début", 
+	"endDate" => "date de fin",
+	"tags" => "tags",
+	"medias" => "medias",
+	"urls" => "urls",
+	"url" => "url",
+	"description" => "description",
+	"shortDescription" => "description courte",
+	
 );
 ?>
