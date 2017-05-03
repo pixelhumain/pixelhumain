@@ -123,10 +123,10 @@
 
                     <button data-form-type="organization" data-form-subtype="GovernmentOrganization"  data-dismiss="modal"
                             class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-green">
-                        <h6><i class="fa fa-group fa-2x bg-green"></i><br> Service public</h6>
+                        <h6><i class="fa fa-university fa-2x bg-green"></i><br> Service public</h6>
                         <small>Faire connaitre votre association<br>Gérer les adhérents<br>Partager votre actualité</small>
                     </button>
-                    
+
                 </div>
             </div>
         </div>
@@ -137,8 +137,9 @@
 jQuery(document).ready(function() { 
     $(".btn-open-form").click(function(){
         var typeForm = $(this).data("form-type");
+        currentKFormType = ($(this).data("form-subtype")) ? $(this).data("form-subtype") : null;
         //alert(contextData.type+" && "+contextData.id+" : "+typeForm);
-        if(contextData.type && contextData.id )
+        if(contextData && contextData.type && contextData.id )
             dyFObj.openForm(typeForm,"sub");
         else
             dyFObj.openForm(typeForm);
