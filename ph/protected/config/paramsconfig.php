@@ -30,10 +30,12 @@ $mailConfigTest = array(
 );
 
 $params = array(
+    //Theme 
+    'theme' => 'CO2',
     //Beta Test ?
     'betaTest' => false,
     //By default controller
-    'defaultController' => 'communecter',
+    'defaultController' => 'CO2',
     // Mail configuration
     'adminEmail'=>'testmail.pixelhumain@gmail.com',
     'forceMailSend' => true,
