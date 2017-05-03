@@ -381,6 +381,10 @@ return array(
 	"New point of interests" => "Nouveau point d'intérêts",
 	"Add points of interests to {what}" => "Ajouter des points d'intérêts à {what}",
 	"all city" => "toute la ville",
+	"Edit banner" => "Editer la bannière",
+	"Add a banner" => "Ajouter une bannière",
+	"Add a photo" => "Ajouter une photo",
+	"Edit photo" => "Editer la photo",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
