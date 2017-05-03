@@ -388,7 +388,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     padding-top: 150px;
     padding-left: 50px;*/
 }
-#banniere_photoAdd{
+#banner_photoAdd{
     position:absolute;
     z-index: 1000;
 }
@@ -421,7 +421,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     position: absolute;
     bottom: 0px;
 }
-#col-banniere{
+#col-banner{
     min-height:280px;
 }
 #fileuploadContainer{
