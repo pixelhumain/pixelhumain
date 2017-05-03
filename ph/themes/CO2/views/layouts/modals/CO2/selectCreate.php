@@ -96,16 +96,19 @@
                     <h4 class="text-center no-margin" style="padding-left:0px;"><i class="fa fa-angle-down"></i> Créer une page</h4>
                     <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
                     
+                    <!--
                     <button data-form-type="entry"  data-dismiss="modal"
                             class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 letter-yellow">
                         <h6><i class="fa fa-gavel fa-2x bg-yellow-k"></i><br> Proposition</h6>
                         <small>Faire une proposition citoyenne<br>Participer à la démocratie locale<br>Être un citoyen actif</small>
                     </button>
+                    -->
                     <button data-form-type="organization" data-form-subtype="association"  data-dismiss="modal"
                             class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-green">
                         <h6><i class="fa fa-group fa-2x bg-green"></i><br> Association</h6>
                         <small>Faire connaitre votre association<br>Gérer les adhérents<br>Partager votre actualité</small>
                     </button>
+                    
                     <button data-form-type="organization" data-form-subtype="business"  data-dismiss="modal"
                             class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-azure">
                         <h6><i class="fa fa-industry fa-2x bg-azure"></i><br> Entreprise</h6>
@@ -117,6 +120,13 @@
                         <h6><i class="fa fa-group fa-2x bg-turq"></i><br> Groupe</h6>
                         <small>Créer un groupe<br>Partager vos centres d'intêrets<br>Discuter Communiquer S'amuser</small>
                     </button>
+
+                    <button data-form-type="organization" data-form-subtype="GovernmentOrganization"  data-dismiss="modal"
+                            class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-green">
+                        <h6><i class="fa fa-group fa-2x bg-green"></i><br> Service public</h6>
+                        <small>Faire connaitre votre association<br>Gérer les adhérents<br>Partager votre actualité</small>
+                    </button>
+                    
                 </div>
             </div>
         </div>
