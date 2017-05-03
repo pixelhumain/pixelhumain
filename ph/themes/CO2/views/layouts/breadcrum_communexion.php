@@ -3,6 +3,7 @@
     if($communexion["state"] == false){
 ?>
 
+
 <?php if($communexion["state"] == false && @$type != "cities"){ ?>
 <button class="pull-left btn btn-link bg-white text-red tooltips item-globalscope-checker start-new-communexion"
         data-toggle="tooltip" data-placement="top" title="Communecter avec <?php echo @$communexion["currentName"]; ?>" 
@@ -35,6 +36,7 @@
         <div class="scope-min-header list_tags_scopes hidden-xs text-left ellipsis">
         </div>
     <?php } ?> 
+
 <?php }else{ ?>
     <div class="breadcrum-communexion hidden-xs col-md-12">
         <button class="btn btn-link text-red btn-decommunecter tooltips"
@@ -113,6 +115,22 @@
             <span class="font-blackoutM text-red"> <?php //echo $subdomainName; ?></span>
             <i class="fa fa-<?php //echo $icon; ?> fa-2x text-red"></i> 
         </span> -->
+       <!--  <a href="javascript:buildOpenDatasoftModal()" class="pull-right">
+          <img style="margin-left:30px;" width=80 src="<?php echo $this->module->assetsUrl; ?>/images/logos/opendata-soft-logo.png">
+        </a>
+        <a href="javascript:buildOsmModal()" class="pull-right">
+          <img style="margin-left:30px;" width=80 src="<?php echo $this->module->assetsUrl; ?>/images/logos/OSM-logo.png">
+        </a>
+        <a href="javascript:getDatasets('<?php echo @$communexion["values"]["insee"]; ?>')" class="pull-right" >
+          <img style="margin-left:30px;" width=70 src="<?php echo $this->module->assetsUrl; ?>/images/logos/data-gouv-logo.png">
+        </a>
+        <a href="javascript:getWiki('<?php echo @$communexion["values"]["wikidataID"]; ?>')" class="pull-right">
+          <img style="margin-left:30px;" width=50 src="<?php echo $this->module->assetsUrl; ?>/images/logos/Wikipedia-logo-en-big.png">
+        </a> -->
+    </div>
+    <!-- <script src="https://www.data.gouv.fr/static/widgets.js" id="udata"></script> -->
+<?php } ?>
+
     </div>
 <?php } ?>
 <script type="text/javascript">
