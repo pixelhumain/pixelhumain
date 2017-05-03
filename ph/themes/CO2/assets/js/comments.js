@@ -1,12 +1,19 @@
 
-function initCommentsTools(thisMedias){
+function initCommentsTools(thisMedias){ 
   //ajoute la barre de commentaire & vote up down signalement sur tous les medias
   $.each(thisMedias, function(key, media){
     if(typeof media._id != "undefined"){
-        media.target = "news";
+        media.target = "news"; 
         
         var commentCount = 0;
         idMedia=media._id['$id']; console.log("idMedia",idMedia);
+        idMediaShare=media._id['$id']; console.log("idMedia",idMedia);
+        var typeMediaShare = "news";
+        if(media.type=="activityStream") {
+          idMediaShare = media.object.id;
+          typeMediaShare = media.object.type;
+        }
+
         if ("undefined" != typeof media.commentCount) 
           commentCount = media.commentCount;
         
@@ -20,13 +27,24 @@ function initCommentsTools(thisMedias){
 
         lblCommentCount = '<a href="javascript:" class="newsAddComment letter-blue" data-media-id="'+idMedia+'">' + lblCommentCount + '</a>';
 
+        lblCommentCount =  lblCommentCount+
+                           "<button class='text-dark btn btn-link no-padding margin-right-10 btn-share bold'"+
+                              " style='margin-top:-3px;'" +
+                              " data-id='"+idMediaShare+"' data-type='"+typeMediaShare+"'>"+
+                              "<i class='fa fa-share'></i> Partager"+
+                           "</button>";
+
+
         var voteTools = voteCheckAction(media._id['$id'], media);
 
         voteTools = lblCommentCount + voteTools;
 
         $("#footer-media-"+media._id['$id']).html(voteTools);
+
     }
   });
+
+  initBtnShare();
 
   $(".newsAddComment").click(function(){
     var id = $(this).data("media-id");

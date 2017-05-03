@@ -84,7 +84,7 @@
                     <h6><i class="fa fa-lightbulb-o fa-2x bg-purple"></i><br> Projet</h6>
                     <small>Faire connaitre votre projet<br>Trouver du soutien<br>Construire une communauté</small>
                 </button>
-                
+
                 <button data-form-type="poi"  data-dismiss="modal"
                         class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-green">
                     <h6><i class="fa fa-map-marker fa-2x bg-green"></i><br> Point d'intérêt</h6>
@@ -127,11 +127,11 @@
 jQuery(document).ready(function() { 
     $(".btn-open-form").click(function(){
         var typeForm = $(this).data("form-type");
-        elementLib.openForm(typeForm);
+        //alert(contextData.type+" && "+contextData.id+" : "+typeForm);
+        if(contextData.type && contextData.id )
+            dyFObj.openForm(typeForm,"sub");
+        else
+            dyFObj.openForm(typeForm);
     });
-        //$("#div-select-create").hide();
-        
 });
-
-
 </script>

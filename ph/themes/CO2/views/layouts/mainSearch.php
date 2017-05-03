@@ -80,7 +80,14 @@
               ?>   
         
         <?php $this->renderPartial($layoutPath.'loginRegister', array()); ?>
+
+        <?php  if( isset(Yii::app()->session["userId"]) )
+                $this->renderPartial('../news/modalShare',
+                                     array());
+        ?>
+            
         <div class="main-container">
+
             <?php 
                     $CO2DomainName = Yii::app()->params["CO2DomainName"];
                     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
@@ -121,6 +128,7 @@
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
 
         
+
         <?php $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); ?> 
 
         
