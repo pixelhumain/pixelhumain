@@ -124,10 +124,10 @@ onSave: (optional) overloads the generic saveProcess
 					if( sectionIndex == Object.keys(settings.surveyObj).length-1 && countProperties==inc){
 						fieldHTML = '<div class="form-actions">'+
 									'<button type="submit" class="btn btn-green pull-right finish-step">'+
-										'Submit <i class="fa fa-arrow-circle-right"></i>'+
+										'Enregistrer <i class="fa fa-arrow-circle-right"></i>'+
 									'</button> '+
 									' <a  href="javascript:;" class="btn-prev btn btn-blue pull-right back-step">'+
-										'<i class="fa fa-arrow-circle-left"></i> Prev'+
+										'<i class="fa fa-arrow-circle-left"></i> Precedent'+
 									'</a>'+
 								'</div> ';
 						$("#"+sectionId).append(fieldHTML);
@@ -136,10 +136,10 @@ onSave: (optional) overloads the generic saveProcess
 					{
 						fieldHTML = '<div class="form-actions">';
 						fieldHTML += '<a href="javascript:;" class="btn-next btn btn-blue pull-right next-step">'+
-										'Next <i class="fa fa-arrow-circle-right"></i>'+
+										'Suivant <i class="fa fa-arrow-circle-right"></i>'+
 									'</a> ';
 						fieldHTML += (sectionIndex>0) ? ' <a href="javascript:;" class="btn-prev btn btn-blue pull-right back-step">'+
-										'<i class="fa fa-arrow-circle-left"></i> Prev</a> ' : "";
+										'<i class="fa fa-arrow-circle-left"></i> Precedent</a> ' : "";
 						fieldHTML += '</div> ';
 						$("#"+sectionId).append(fieldHTML);
 					}

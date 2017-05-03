@@ -11,7 +11,7 @@
   [ ] sortir var keyboardNav
   [ ] sortir var js_templates
   [ ] sortir var album
-  [ ] sortir var elementLib
+  [ ] sortir var dyFObj
   [ ] sortir var loadableUrls
 
 

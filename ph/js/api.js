@@ -87,7 +87,7 @@ function getAjax(id,ajaxUrl,callback,datatype,blockUI)
               timeout: 3000 
           });
           //mylog.log("URL : ", url);
-          setTimeout(function(){ajaxUrl.loadByHash('#')},3000);
+          setTimeout(function(){ urlCtrl.loadByHash('#')},3000);
           if(blockUI)
             $.unblockUI();
         } 
@@ -143,9 +143,11 @@ function getModal(what, ajaxUrl,id)
 
 //js ex : "/themes/ph-dori/assets/plugins/summernote/dist/summernote.min.js"
 //css ex : "/themes/ph-dori/assets/plugins/summernote/dist/summernote.css"
-function lazyLoad (js,css, callback) { 
-    mylog.warn("lazyLoad",js);
-    if( !$('script[src="'+baseUrl+js+'"]').length )
+function lazyLoad (js,css, callback, notBase) { 
+    mylog.warn("lazyLoad",js, css, callback, notBase);
+    var url = (notBase==true ? js : baseUrl+js);
+    mylog.warn("url",url);
+    if( !$('script[src="'+url+'"]').length )
     {
         if(css)
             $("<link/>", {
@@ -154,14 +156,15 @@ function lazyLoad (js,css, callback) {
                href: css 
             }).appendTo("head");
         $.getScript( js, function( data, textStatus, jqxhr ) {
+          mylog.log("lazyLoad getScript");
           if( typeof callback === "function")
             callback();
         });
     } else {
+        mylog.log("lazyLoad notScript");
         if( typeof callback === "function")
             callback();
     }
-
 }
 
 
@@ -278,6 +281,25 @@ function inArray(needle, haystack) {
   }
   return false;
 }
+
+/*var list = [];
+jsonHelper.getKeys = function(obj)
+{
+  list = Object.keys(obj);
+  $.each( obj,function(k,v)
+  {
+    if(v.subtype)
+    {
+      var s = jsonHelper.getKeys(v.subtype);
+      $.each( s ,(i,ki){
+        list.push(ki);
+      });
+    }
+  })
+  return list;
+} 
+jsonHelper.getKeys(typeObj);
+*/
 
 /* ------------------------------- */
 
@@ -586,8 +608,9 @@ var jsonHelper = {
     var dynPath = "";
     $.each( pathT , function (i,k) {
       dynPath = (i == 0) ? k : dynPath+"."+k ;
+      //mylog.log(dynPath);
       //typeof eval("typeObj.poi") != "undefined"
-      if(typeof eval(dynPath) != "undefined"){
+      if( typeof eval( dynPath ) != "undefined" ){
         //mylog.log(dynPath);
         if(i == pathT.length - 1){
           res = true;
@@ -665,8 +688,8 @@ function showDebugMap()
   if(debugMap && debugMap.length > 0)
   {
     $.each(debugMap, function (i,val) {
-          mylog.dir(val);
-      });
+      mylog.dir(val);
+    });
     toastr.info("check Console for "+debugMap.length+" maps");
   }else
     toastr.error("no maps to show, please do debugMap.push(something)");
@@ -678,8 +701,8 @@ function exists(val){
   return typeof val != "undefined";
 }
 function notNull(val){
-  return typeof val != "undefined"
-      && val != null;
+  return ( typeof val != "undefined" 
+      && val != null);
 }
 function notEmpty(val){
   
@@ -726,5 +749,29 @@ function buildSelectGroupOptions(list,value) {
     });
   }
   return html;
+}
+
+
+function buildRadioOptions(list,value, nameOption) { 
+    var html = "";
+    if(list){
+        $.each(list, function(optKey, optVal) {
+            mylog.log("buildSelectOptions", value, optKey, optVal);
+            selected = ( value == optKey ) ? "selected" : ""; 
+            if(selected != ""){
+                html += '<label class="btn btn-default">'+
+                            '<input type="radio" name="'+nameOption+'" id="'+nameOption+'" autocomplete="off">'+
+                            '<span class="glyphicon glyphicon-ok"></span>'+
+                        '</label>';
+            }else{
+                html += '<label class="btn btn-success active">'+
+                            '<input type="radio" name="'+nameOption+'" id="'+nameOption+'" autocomplete="off" checked>'+
+                            '<span class="glyphicon glyphicon-ok"></span>'+
+                        '</label>';
+            }
+
+        });
+    }
+    return html;
 }
 

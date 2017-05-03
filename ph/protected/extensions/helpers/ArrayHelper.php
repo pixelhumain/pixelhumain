@@ -252,6 +252,14 @@ class ArrayHelper {
         }
         return $attributesElt ;
     }
+
+    public static function arrayToString($array, $separator = ", ") {
+		$str = "";
+		foreach ($array as $key => $val) {
+			$str .= ($str != "") ? $separator.trim($val) : trim($val);
+		}
+		return $str ;
+	}
 }
 
 

@@ -95,7 +95,7 @@ function getAjax(id,url,callback,datatype,blockUI)
 			 			  '</span>',
               timeout: 3000 
           });
-          setTimeout(function(){url.loadByHash('#')},3000);
+          setTimeout(function(){urlCtrl.loadByHash('#')},3000);
           if(blockUI)
             $.unblockUI();
         } 

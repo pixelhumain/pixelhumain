@@ -5,12 +5,12 @@ $cssAnsScriptFilesModule = array(
   '/plugins/bootstrap-datetimepicker/css/datetimepicker.css',
   '/plugins/select2/select2.css',
   //X-editable...
-  '/plugins/x-editable/js/bootstrap-editable.js' , 
-  '/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' , 
-  '/plugins/wysihtml5/wysihtml5.js',
+// 	'/plugins/x-editable/js/bootstrap-editable.js' , 
+  //	'/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' , 
+  //'/plugins/wysihtml5/wysihtml5.js',
   '/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js',
   '/plugins/jquery.appear/jquery.appear.js',
-  '/plugins/jquery.elastic/elastic.js',
+  //'/plugins/jquery.elastic/elastic.js',
   
 );
 //error_log("BasURL : ".Yii::app()->request->baseUrl);
@@ -51,6 +51,14 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
 	}
 	#ajax-modal .descriptionwysiwyg .control-label{
 		padding-left:15px !important;
+	}
+
+	#ajax-modal .modal-header{
+		width: 70%;
+		margin-left: 15%;
+		border-radius: 100px;
+		margin-top: 10px;
+		color: white !important;
 	}
 
 </style>
@@ -96,7 +104,7 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+				<button type="button" data-dismiss="modal" class="btn btn-default">Fermer</button>
 			</div>
 		</div>
 	</div>

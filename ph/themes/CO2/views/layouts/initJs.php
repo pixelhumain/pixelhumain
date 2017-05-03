@@ -18,7 +18,6 @@
 	//used in communecter.js dynforms
     var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
     var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
-    console.log("eventTypes", eventTypes);
     var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
     var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
     var currentUser = <?php echo isset($me) ? json_encode(Yii::app()->session["user"]) : "null"?>;
@@ -30,7 +29,11 @@
     var myContactsById =<?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
     var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
 
-    var classifiedTypes = <?php echo json_encode( CO2::getContextList("classifiedCategories") ) ?>;
+    var classified = <?php echo json_encode( CO2::getContextList("classified") ) ?>;
+    var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;
+    var ressource = <?php echo json_encode( CO2::getContextList("ressource") ) ?>;
+    var poi = <?php echo json_encode( CO2::getContextList("poi") ) ?>;
+
     //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     
@@ -62,6 +65,7 @@
         "video": "fa-video-camera",
         "classified" : "fa-bullhorn"
     };
+    
     var mapColorIconTop = {
         "default" : "dark",
         "citoyen":"yellow", 
@@ -88,7 +92,6 @@
         "video":"dark",
         "classified" : "yellow"
     };
-
 
     var themeObj = {
         init : function(){
@@ -139,10 +142,11 @@
         dynForm : {
             onLoadPanel : function (elementObj) { 
                 $("#ajax-modal-modal-title").html("<i class='fa fa-"+elementObj.dynForm.jsonSchema.icon+"'></i> "+elementObj.dynForm.jsonSchema.title);
-                $("#ajax-modal-modal-title").removeClass("text-green text-purple text-orange text-azure");
+                $("#ajax-modal-modal-title").removeClass("bg-green bg-turq bg-purple bg-orange bg-azure");
                 $("#ajax-modal-modal-body").append("<div class='space20'></div>");
-                if(typeof currentKFormType != "undefined")
-                    $("#ajax-modal-modal-title").addClass("text-"+typeObj[currentKFormType].color);
+                
+                //if(typeof currentKFormType != "undefined" && typeObj[currentKFormType] && typeObj[currentKFormType].color)
+                    //$("#ajax-modal-modal-title").addClass("bg-"+typeObj[currentKFormType].color);
                 
                 <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                 $(".locationBtn").on( "click", function(){

@@ -226,10 +226,15 @@ return array(
 	"contributors" => "contributeurs",
 	"member" => "membre",
 	"members" => "membres",
+	"attendees" => "invités",
+	"members" => "membres",
 	"follower" => "abonné",
 	"followers" => "abonnés",
 	"Followers" => "Abonnés",
-	"follows" => "coup de coeur",
+	"Follow" => "Abonnements",
+	"follows" => "Abonnements",
+	"Follows" => "Abonnements",
+	"Collections" => "Collections",
 	"Community" => "Communauté",
 	"COMMUNITY" => "COMMUNAUTÉ",
 	"General informations" => "Informations générales",
@@ -254,6 +259,7 @@ return array(
 	"the maturity" => "l'avancement",
 	"the licence" => "la licence",
 	"the main locality" => "l'adresse principale",
+	"Main locality" => "Adresse principale",
 	"a second locality" => "une adresse secondaire",
 	"open data" => "l'open data",
 	"open edition" => "l'édition libre",
@@ -313,7 +319,8 @@ return array(
 	"Event" => "Événement",
 	"Agenda" => "Agenda",
 	"Classified" => "Annonce",
-
+	"Point of interest" => "Point d'intêret",
+	
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
 	"Citoyens" => "Citoyens",
@@ -323,6 +330,7 @@ return array(
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
+	"Points of interests" => "Points d'intérêts",
 	
 	"persons" => "citoyens",
 	"people" => "citoyens",
@@ -330,10 +338,12 @@ return array(
 	"projects" => "projets",
 	"events" => "événements",
 	"classified" => "annonce",
+	"Classifieds" => "Annonces",
+	"Cooperative space" => "Espace coopératif",
 
 	"a news" => "un post",
-	"of the event" => "de l'événement",
-	"of the organization" => "de l'organisation",
+	"of the event" => "de l&#146;événement",
+	"of the organization" => "de l&#146;organisation",
 	"of the project" => "du projet",
 	// Button
 	"All as Read" => "Tout comme lu",
@@ -363,6 +373,12 @@ return array(
 	"Be {what}" => "Être {what}",
 	"Following" => "Abonné",
 	"Become administrator" => "Devenir administrateur",
+	"Delete {what}" => "Supprimer {what}",
+	"New project" => "Nouveau projet",
+	"New event" => "Nouvel évènement",
+	"New point of interests" => "Nouveau point d'intérêts",
+	"Add points of interests to {what}" => "Ajouter des points d'intérêts à {what}",
+	"all city" => "toute la ville",
 	// Menu Button
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
@@ -399,8 +415,8 @@ return array(
 	"Send a message to this Project" 		=> "Envoyer un message au(x) responsable(s) de ce projet",
 	"Send a message to this Organization" 	=> "Envoyer un message au(x) responsable(s) de cette organisation",
 	"Send a message to this Event" 			=> "Envoyer un message au(x) responsable(s) de cet événement",
+	"Send invitation"						=> "Envoyer l'invitation",
 	"Send invitations"						=> "Envoyer des invitations",
-	"Send invitation again"					=> "Renvoyer l'invitation",
 	"Send invitation again"					=> "Renvoyer l'invitation",
 
 	"Contact" 				=> "Contacter",
@@ -440,8 +456,9 @@ return array(
 	"Become attendee" 								=> "Participer à l'évènement",
 	"Accept this person" => "Accepter ce citoyen",
 	"Accept this citoyen" => "Accepter ce citoyen",
-	"Add as admin" => "Ajouter comme admin",
+	"Add as admin" => "Ajouter en tant qu&#146;admin",
 	"Manage my parameters" => "Régler mes paramètres",
+	"My parameters" => "Mes paramètres",
 	"Manage the parameters of" => "Régler les paramètres de",
 	"Local network" => "Réseau local",
 
@@ -461,8 +478,10 @@ return array(
 	"Project community" => "Communauté du projet",
 	"Organization community" => "Communauté de l&#146;organisation",
 	"See the photo gallery" => "Voir la galerie photo",
+	"Gallery" => "Photos",
 	"Information"=>"Informations",
 	"Contact information"=> "Coordonnées",
+	"Add Photos" => "Ajouter une image",
 	
 	"Read all news publicated by this person" 		=> "Toute l&#146;actualité de cette personne",
 	"Read all news publicated by this event" 		=> "Toute l&#146;actualité de cet événement",
@@ -590,10 +609,11 @@ return array(
 	"An event" => "Créer</br>un événement",
 
 	"Socials" => "Réseaux sociaux",
-	"Description" => "Description",
+	"Descriptions" => "Descriptions",
 	"Tags" => "Tags",
 
 	"Change password" => "Changer votre mot de passe",
+	"Download your profil" => "Télécharger votre profil",
 	"Account info" => "Infos générales",
 	
 	"No attendee for this event" => "Aucun participant pour cet événement",
@@ -601,6 +621,12 @@ return array(
 	"No contributor for this project" => "Aucun contributeur sur ce projet",
 	"No member for this person" => "Personne dans cette communauté",
 	"Organizator detail" => "Détail de l'organisateur",
+	"No results match in your search" =>  "Aucun résultat ne correspond à votre recherche",
+	"Invite by mail" => "Inviter par e-mail",
+	"a citizen" => "un citoyen",
+	"an citizen" => "une organisation",
+	"a project" => "un projet",
+	"an event" => "un événement",
 	
 	"Places" => "Lieux",
 	"No more news" => "fin du fil d'actus",
@@ -694,16 +720,17 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Localities" => "Adresses",
 	"Localitie(s)" => "Adresse(s)",
 	"Choose a country" => "Choisir un pays",
-	"Are you sure you want to delete the locality?" => "Etes-vous sûr de vouloir supprimer cette adresse?",
-	"Are you sure you want to delete the locality ? You can't vote anymore in the citizen council of your city." => "Etes vous sur de vous dé-communecter ? Vous ne pourrez plus voter dans le conseil citoyen de votre commune.",
+	"Are you sure you want to delete the locality ?" => "Etes-vous sûr de vouloir supprimer cette adresse ?",
+	"Are you sure you want to delete the locality ? You can't vote anymore in the citizen council of your city." => "Etes-vous sûr de vouloir vous dé-communectez ? Vous ne pourrez plus voter dans le conseil citoyen de votre commune.",
 
 	"Search a projects of your city." => "Rechercher les projets de votre commune.",
 	"Search a events of your city." => "Rechercher les événements de votre commune.",
 	"Search a citizens of your city." => "Rechercher les citoyens de votre commune.",
 	"Search a organizations of your city." => "Rechercher les organisations de votre commune.",
 
-	"Add a primary address" => "Ajouter une adresse principal",
+	"Add a primary address" => "Ajouter une adresse principale",
 	"Add a secondary address" => "Ajouter une adresse secondaire",
+	"Add an address" => "Ajouter une adresse",
 	"Can not update the element : you are not authorized to update that element !" => "Impossible de mettre à jour cet élément : vous n'êtes pas autorisé !",
 
 	"I am in favor of this proposal" => "Je suis favorable à cette proposition",
@@ -734,6 +761,74 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 	"About" => "A propos",
 
+	"Update Params" => "Mettre à jour vos paramètres",
+	"Not specified" => "Non renseigné",
+	"Update general information" => "Mettre à jour les informations générales",
+	"Update description" => "Mettre à jour la description",
+	"Update network" => "Mettre à jour les réseaux sociaux",
+
+	"General information" => "Informations générales",
+
+	"character(s)" => "caractère(s)",
+
+
+
+	//Mardown
+	'Bold' => "Gras",
+	'Italic' => "Italique",
+	'Heading' => "Titre",
+	'URL/Link' => "Insérer un lien HTTP",
+	'Image' => "Insérer une image",
+	'List' => "Liste à puces",
+	'Preview' => "Prévisualiser",
+	'strong text' => "texte important",
+	'emphasized text' => "texte souligné",
+	'heading text' => "texte d'entête",
+	'enter link description here' => "entrez la description du lien ici",
+	'Insert Hyperlink' => "Insérez le lien hypertexte",
+	'enter image description here' => "entrez la description de l'image ici",
+	'Insert Image Hyperlink' => "Insérez le lien hypertexte de l'image",
+	'enter image title here' => "entrez le titre de l'image ici",
+	'list text here' => "texte à puce ici",
+
+
+	"Old password" => "Ancien mot de passe",
+	"New password" => "Nouveau mot de passe",
+	"Repeat your new password" => "Répéter votre nouveau mot de passe",
+
+
+	"Add members ..." => "Ajouter des membres ...",
+	"Among my contacts ..." => "Parmis mes contacts ...",
+	"Others ..." => "Autres ...",
+	"Add this contacts" => "Ajouter ces contacts",
+	"Cancel all" => "Tout annuler",
+	"Invite your contacts" => "Inviter vos contacts",
+	"Select among my contacts" => "Sélectionner parmis mes contacts",
+	"Research a name or e-mail address..." => "Recherchez un nom ou une addresse e-mail...",
+
+	"Invitation  accept" => "Invitation acceptée",
+	
+	"Not interested by the invitation" => "Vous n'êtes pas intéressé par cette invitation",
+
+	'Admin' => "Admin",
+	'Admin public' => "Admin public",
+	'Preview' => "Prévisualiser",
+
+
+	"Enter an address for automatic placement" => "Indiquez une adresse pour un placement automatique",
+	'Move the icon with the mouse for a more precise placement' => "Déplacez l'icon avec la souris pour un placement plus précis",
+	'Search a city, a town or a postal code' => "Rechercher une ville, un village ou un code postal",
+	'Currently researching' => "Recherche en cours",
+	'Warning' => "Attention",
+	'Do not forget to geolocate your address.' => "N'oubliez pas de géolocaliser votre adresse.",
+	'Address Summary' => "Récapitulatif de l'adresse",
+	'ValideFormInMap' => "Valider <span class='hidden-xs'>l'adresse et la position</span>",
+	'City Informations' => "Informations sur la commune",
+	'Insee' => "Insee",
+	'level3' => "Region",
+	'level4' => "Departement",
+	'latlng' => "Latitude / longitude",
+	'streetFormInMap' => "(N° rue) + Adresse",
 );
 
 ?>

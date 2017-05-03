@@ -1,30 +1,50 @@
 
-function initCommentsTools(thisMedias){
+function initCommentsTools(thisMedias){ 
   //ajoute la barre de commentaire & vote up down signalement sur tous les medias
   $.each(thisMedias, function(key, media){
-    media.target = "news";
-    
-    var commentCount = 0;
-    idMedia=media._id['$id']; console.log("idMedia",idMedia);
-    if ("undefined" != typeof media.commentCount) 
-      commentCount = media.commentCount;
-    
-    idSession = typeof idSession != "undefined" ? idSession : false;
+    if(typeof media._id != "undefined"){
+        media.target = "news"; 
+        
+        var commentCount = 0;
+        idMedia=media._id['$id']; console.log("idMedia",idMedia);
+        idMediaShare=media._id['$id']; console.log("idMedia",idMedia);
+        var typeMediaShare = "news";
+        if(media.type=="activityStream") {
+          idMediaShare = media.object.id;
+          typeMediaShare = media.object.type;
+        }
 
-    var lblCommentCount = '';
-    if(commentCount == 0 && idSession) lblCommentCount = "<i class='fa fa-comment'></i>  Commenter";
-    if(commentCount == 1) lblCommentCount = "<i class='fa fa-comment'></i> <span class='nbNewsComment'>" + commentCount + "</span> commentaire";
-    if(commentCount > 1) lblCommentCount = "<i class='fa fa-comment'></i> <span class='nbNewsComment'>" + commentCount + "</span> commentaires";
-    if(commentCount == 0 && !idSession) lblCommentCount = "0 <i class='fa fa-comment'></i> ";
+        if ("undefined" != typeof media.commentCount) 
+          commentCount = media.commentCount;
+        
+        idSession = typeof idSession != "undefined" ? idSession : false;
 
-    lblCommentCount = '<a href="javascript:" class="newsAddComment letter-blue" data-media-id="'+idMedia+'">' + lblCommentCount + '</a>';
+        var lblCommentCount = '';
+        if(commentCount == 0 && idSession) lblCommentCount = "<i class='fa fa-comment'></i>  Commenter";
+        if(commentCount == 1) lblCommentCount = "<i class='fa fa-comment'></i> <span class='nbNewsComment'>" + commentCount + "</span> commentaire";
+        if(commentCount > 1) lblCommentCount = "<i class='fa fa-comment'></i> <span class='nbNewsComment'>" + commentCount + "</span> commentaires";
+        if(commentCount == 0 && !idSession) lblCommentCount = "0 <i class='fa fa-comment'></i> ";
 
-    var voteTools = voteCheckAction(media._id['$id'], media);
+        lblCommentCount = '<a href="javascript:" class="newsAddComment letter-blue" data-media-id="'+idMedia+'">' + lblCommentCount + '</a>';
 
-    voteTools = lblCommentCount + voteTools;
+        lblCommentCount =  lblCommentCount+
+                           "<button class='text-dark btn btn-link no-padding margin-right-10 btn-share bold'"+
+                              " style='margin-top:-3px;'" +
+                              " data-id='"+idMediaShare+"' data-type='"+typeMediaShare+"'>"+
+                              "<i class='fa fa-share'></i> Partager"+
+                           "</button>";
 
-    $("#footer-media-"+media._id['$id']).html(voteTools);
+
+        var voteTools = voteCheckAction(media._id['$id'], media);
+
+        voteTools = lblCommentCount + voteTools;
+
+        $("#footer-media-"+media._id['$id']).html(voteTools);
+
+    }
   });
+
+  initBtnShare();
 
   $(".newsAddComment").click(function(){
     var id = $(this).data("media-id");

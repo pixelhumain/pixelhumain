@@ -1,23 +1,27 @@
 
 <div class="portfolio-modal modal fade" id="openModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
         <div class="col-sm-12 container"></div>
-        <div class="col-xs-12 text-center" style="margin-top:50px;">
-        <?php 
-                if( isset( Yii::app()->session['userId']) ){
-            ?> 
-            <a href="javascript:;" style="font-size:25px;" class="btn btn-default letter-green bold " 
-                                data-target="#dash-create-modal" data-toggle="modal" id="">
-                            <i class="fa fa-arrow-circle-right"></i> Savoir plus
-                        </a>
-            <?php } ?> 
+        <div class="col-xs-12 text-center" style="margin-top:50px;margin-bottom:50px;">
             <hr>
             <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal">
-            <i class="fa fa-times"></i> Retour</a>
+            <i class="fa fa-times"></i> Retour
+            </a>
         </div>
     </div>
 </div>
 
+<style type="text/css">
+    .filterBtns{
+        border-radius:0px; border-color: transparent; text-transform: uppercase;
+    }
+</style>
 <div class="portfolio-modal modal fade" id="modalMainMenu" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">
         <div class="close-modal" data-dismiss="modal">
@@ -35,18 +39,6 @@
                     <h3 class="letter-red no-margin hidden-xs" style="margin-top:5px!important;">
                         MENU PRINCIPAL<br>
                     </h3>
-                    <!-- <h4 class="text-dark no-margin" style="margin-top:5px!important;">
-                        <i class="fa fa-exclamation-circle letter-red fa-2x"></i> VERSION DE TEST EN COURS DE DÉVELOPPEMENT
-                        <i class="fa fa-exclamation-circle letter-red fa-2x"></i> <br>
-                        <span class="letter-red"></span>
-                    </h4>
-                    <p class="letter-red no-margin" style="font-size:13px; margin-top:5px!important;">
-                        Cette nouvelle interface est en cours de développement, Merci de ne pas tenir compte des bug.<br>
-                        Nous sommes en train de basculer les fonctionnalités de communecter.org sur cette interface, afin de rendre la navigation plus simple et compréhensible pour tous.<br>
-                        L'objectif est de proposer une page/interface pour chaque grande fonctionnalité de communecter, afin de créer des portes d'entrées indépendantes sur le réseau, en fonction des besoins de chacun.<br><br>
-                        <b>Vos remarques et idées à ce propos sont les bienvenues.<br>
-                        Merci de nous en faire part sur le channel dédié <a href="https://chat.initiative.place/channel/co2_brainstorm" class="letter-blue">#app_brainstorm</a></b>
-                    </p> -->
                     <br>
                     <?php 
                         if( isset( Yii::app()->session['userId']) ){
@@ -64,14 +56,13 @@
                         <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> Se connecter</button>
                     <?php } ?>
                     <hr>
-                </div>
-               
+                </div>              
             </div>
 
             <div class="row links-main-menu">
                
-                <a href="#social" class="lbh btn-main-menu col-xs-3"  data-type="search" date-target="#modalMainMenu" data-dismiss="modal">
-                    <div class="modal-body text-left">
+                <a href="#social" class=" btn-main-menu col-xs-3"  data-type="search" >    
+                    <div class="modal-body text-center">
                         <h2 class="text-red"><i class="fa fa-search fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> RECHERCHE</span>
                         </h2>
@@ -87,8 +78,8 @@
                     </div>
                 </a>
 
-                <a href="#annonces" class="lbh btn-main-menu col-xs-3" data-type="classified" date-target="#modalMainMenu" data-dismiss="modal">
-                    <div class="modal-body text-left">
+                <a href="#annonces" class=" btn-main-menu col-xs-3" data-type="classified" >
+                    <div class="modal-body text-center">
                         <h2 class="text-orange"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> ANNONCES</span>
                         </h2>
@@ -104,8 +95,8 @@
                     </div>
                 </a>
                            
-                <a href="#agenda" class="lbh btn-main-menu col-xs-3" date-target="#modalMainMenu" data-dismiss="modal">
-                    <div class="modal-body text-left">
+                <a href="#agenda" class=" btn-main-menu col-xs-3" data-type="agenda">
+                    <div class="modal-body text-center">
                         <h2 class="text-yellow"><i class="fa fa-calendar fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> AGENDA</span>
                         </h2>
@@ -121,8 +112,8 @@
                     </div>
                 </a>
                 
-                <a href="#power" class="lbh btn-main-menu col-xs-3" date-target="#modalMainMenu" data-dismiss="modal">
-                    <div class="modal-body text-left">
+                <a href="#power" class="btn-main-menu col-xs-3" > 
+                    <div class="modal-body text-center">
                         <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o fa-2x padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> DEMOCRATIE</span>
                         </h2>
@@ -138,87 +129,135 @@
                     </div>
                 </a>
                 
-                <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 searchSection2" id="sub-menu-filliaire-menu">
-                <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
-                <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
-                      //var_dump($categories); exit;
-                      foreach ($filliaireCategories as $key => $cat) { 
-                  ?>
-                      <?php if(is_array($cat)) { ?>
-                      <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
-                        <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 btn-select-filliaire" 
-                                data-fkey="<?php echo $key; ?>"
-                                style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
-                                data-keycat="<?php echo $cat["name"]; ?>">
-                          <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo $cat["name"]; ?>
-                        </button>
-                      </div>
-                        <?php //foreach ($cat as $key2 => $cat2) { ?>
-                          <!-- <button class="btn btn-default text-dark margin-bottom-5 margin-left-15 hidden keycat keycat-<?php //echo $key; ?>">
-                            <i class="fa fa-angle-right"></i> <?php //echo $cat2; ?>
-                          </button><br class="hidden"> -->
-                        <?php //} ?>
-                      <?php } ?>
-                    </button>
-                  <?php } ?>
-                  <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result">
+                <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 searchSection2" 
+                     id="sub-menu-filliaire-menu">
+                    <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
+                    <?php 
+                        $filliaireCategories = CO2::getContextList("filliaireCategories"); 
+                        foreach ($filliaireCategories as $key => $cat) { 
+                            if(is_array($cat)) { 
+                    ?>
+                                <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
+                                    <a href="" class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 filterBtns tagSearchBtn" data-tags="<?php echo implode(",",$cat["tags"]); ?>" data-type="persons,organizations,projects"  data-app="#search" >
+                                        <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br>
+                                        <?php echo $cat["name"]; ?>
+                                    </a>
+                                </div>
+                    <?php   } 
+                        } 
+                    ?>
+                    <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result">
                 </div>
 
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 classifiedSection2 hidden">
-                <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
-                <?php $freedomSections = CO2::getContextList("freedomSections"); 
-                      //var_dump($categories); exit;
-                      foreach ($freedomSections as $key => $cat) { 
-                  ?>
-                      <?php if(is_array($cat)) { ?>
-                      <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
-                        <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5" 
-                                data-fkey="<?php echo $key; ?>"
-                                style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
-                                data-keycat="<?php echo $cat["label"]; ?>">
-                          <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo $cat["label"]; ?>
-                        </button>
-                      </div>
-                        <?php //foreach ($cat as $key2 => $cat2) { ?>
-                          <!-- <button class="btn btn-default text-dark margin-bottom-5 margin-left-15 hidden keycat keycat-<?php //echo $key; ?>">
-                            <i class="fa fa-angle-right"></i> <?php //echo $cat2; ?>
-                          </button><br class="hidden"> -->
-                        <?php //} ?>
-                      <?php } ?>
-                    </button>
-                  <?php } ?>
-                  <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result">
+                <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 classifiedSection2 hidden">
+                    <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
+                    <?php $classified = CO2::getContextList("classified"); 
+                        foreach ($classified['sections'] as $key => $cat) {   
+                            if(is_array($cat)) { 
+                    ?>
+                                <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
+                                    <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 filterBtns tagSearchBtn" data-tags="<?php echo $cat["label"] ?>" data-type="classified" data-app="#annonces"  >
+                                        <i class="fa fa-<?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br>
+                                        <?php echo $cat["label"]; ?> 
+                                    </button>
+                              </div>
+                     <?php   } 
+                        } 
+                    ?>
                 </div>
+
+                <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 agendaSection2 hidden"> 
+                <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> --> 
+                <?php $events = CO2::getContextList("event");  
+                      //var_dump($categories); exit; 
+                      foreach ($events['sections'] as $key => $cat) {   
+                            if(is_array($cat)) { 
+                    ?>
+                                <div class="col-md-2 col-sm-3 col-sm-6 no-padding">
+                                    <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis margin-bottom-5 filterBtns tagSearchBtn" data-stype="<?php echo $cat["label"] ?>" data-type="events" data-app="#agenda">
+                                        <i class="fa fa-<?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br>
+                                        <?php echo $cat["label"]; ?> 
+                                    </button>
+                              </div>
+                     <?php   } 
+                        } 
+                    ?>
+                  <hr class="col-md-12 col-sm-12 col-xs-12 no-padding" id="before-section-result"> 
+                </div> 
+
 
                 <div class="col-xs-12 text-center">
                 <?php 
                         if( isset( Yii::app()->session['userId']) ){
                     ?> 
                     <a href="javascript:;" style="font-size:25px;" class="btn btn-default letter-green bold " 
-                                        data-target="#dash-create-modal" data-toggle="modal" id="">
+                                        data-target="#dash-create-modal" data-toggle="modal" data-dismiss="modal" id="">
                                     <i class="fa fa-plus-circle"></i> CRÉER UNE PAGE
                                 </a>
                     <?php } ?> 
-                    <hr>
-                    <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
-                </div>
-
+                    
+                </div>                
             </div>
+
+            <br/>
+
+            <div class="col-xs-12 text-center">
+                <hr>
+                    <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
+                <br/><hr>    
+                <a class="btn btn-default btn-sm" data-dismiss="modal" href="javascript:smallMenu.openAjaxHTML(baseUrl+'/'+moduleId+'/default/view/page/help')" style="font-size: 13px;"><i class="fa fa-keyboard-o"></i> ShortCuts</a>
+
+                <a class="btn btn-default btn-sm" data-dismiss="modal" href="javascript:smallMenu.openAjaxHTML(baseUrl+'/'+moduleId+'/default/view/page/links')" style="font-size: 13px;"><i class="fa fa-link"></i> Links</a>
+
+                <a class="btn btn-default btn-sm lbh" href="#default.view.page.index.dir.docs" data-dismiss="modal" style="font-size: 13px;"><i class="fa fa-book"></i> Docs</a>
+            </div>
+            
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
-$( "#modalMainMenu" ).on('shown.bs.modal', function(){
-
-    $(".btn-main-menu").mouseenter(function(){alert();
-        if( $(this).data("type") ){
-            alert( $(this).data("type") );
-            $(".menuSection2").addClass("hidden");
+var searchObj = {};
+jQuery(document).ready(function() { 
+    $(".btn-main-menu").mouseenter(function(){ 
+        $(".menuSection2").addClass("hidden"); 
+        if( $(this).data("type") ) 
             $("."+$(this).data("type")+"Section2").removeClass("hidden");
+    }).click(function(e) {  
+        e.preventDefault(); 
+        $('#modalMainMenu').modal("hide"); 
+        mylog.warn("***************************************"); 
+        mylog.warn("bindLBHLinks",$(this).attr("href")); 
+        mylog.warn("***************************************"); 
+        var h = ($(this).data("hash")) ? $(this).data("hash") : $(this).attr("href"); 
+        urlCtrl.loadByHash( h ); 
+    }); 
+
+    $(".tagSearchBtn").click(function(e) {  
+        e.preventDefault(); 
+        $('#modalMainMenu').modal("hide"); 
+        mylog.warn( ".tagSearchBtn",$(this).data("type"),$(this).data("stype"),$(this).data("tags") ); 
+
+        searchObj.types = $(this).data("type").split(",");
+        
+        if( $(this).data("stype") )
+            searchObj.stype = $(this).data("stype");
+        else
+            searchObj.tags = $(this).data("tags");
+        
+        urlCtrl.loadByHash($(this).data("app"));
+        urlCtrl.afterLoad = function () {     
+            //we have to pass by a variable to set the values         
+            searchType = searchObj.types;
+        
+            if( $(this).data("stype") )
+                $('#searchSType').val(searchObj.stype);
+            else
+                $('#searchTags').val(searchObj.tags);
+            startSearch();
+            searchObj = {};
         }
-    });
-    
+    }); 
 });
   
 </script>

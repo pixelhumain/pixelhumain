@@ -30,7 +30,7 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->
 	}
 	#notificationPanelSearch{
 	position: fixed;
-	top: 62px !important;
+	top: 68px !important;
 	/*border-top:1px solid rgba(128, 128, 128, 0.54);*/
 	right: 0%;
 	width: 430px;
@@ -242,7 +242,7 @@ jQuery(document).ready(function()
 		setTimeout(function(){
           //  elem.addClass("read");
             //elem.removeClass('animated bounceOutRight');
-            loadByHash(hash);
+            urlCtrl.loadByHash(hash);
             //notifCount();
         }, 200);
 	});
@@ -397,7 +397,7 @@ function buildNotifications(list)
 		{
 			var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url : "#";
 			//convert url to hash for loadByHash
-			url = "#"+url.replace(/\//g, ".");
+			url = "#"+urlCtrl.replace(/\//g, ".");
 			//var moment = require('moment');
 			moment.lang('fr');
 			if(typeof notifObj.updated != "undefined")
