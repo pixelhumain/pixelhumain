@@ -43,6 +43,7 @@ return array(
 	"View" => "Voir",
 	"Search" => "Rechercher",
 	"ADD" => "AJOUTER",
+	"Update" => "Modifier",
 	"UPDATE" => "MISE A JOUR",
 	"DELETE" => "SUPPRIMER",
 	"Unlink" => "Annuler le lien",
@@ -829,6 +830,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	'level4' => "Departement",
 	'latlng' => "Latitude / longitude",
 	'streetFormInMap' => "(N° rue) + Adresse",
+	"Add link"  => "Ajouter une URL",
+	"Add contact"  => "Ajouter un point contact",
 );
-
 ?>
