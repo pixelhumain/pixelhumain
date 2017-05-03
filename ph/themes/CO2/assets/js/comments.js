@@ -6,8 +6,8 @@ function initCommentsTools(thisMedias){
         media.target = "news"; 
         
         var commentCount = 0;
-        idMedia=media._id['$id']; console.log("idMedia",idMedia);
-        idMediaShare=media._id['$id']; console.log("idMedia",idMedia);
+        idMedia=media._id['$id']; //console.log("idMedia",idMedia);
+        idMediaShare=media._id['$id']; //console.log("idMedia",idMedia);
         var typeMediaShare = "news";
         if(media.type=="activityStream") {
           idMediaShare = media.object.id;
