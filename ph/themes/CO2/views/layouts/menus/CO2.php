@@ -55,11 +55,12 @@
         <?php if( isset( Yii::app()->session['userId']) ){ ?>
             
             <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
-                  data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                  data-toggle="tooltip" data-placement="left" title="Mon réseau" alt="Mon réseau">
               <i class="fa fa-link"></i>
             </button>
-            <button class="btn-show-mainmenu btn btn-link" title="Menu">
-                <i class="fa fa-bars tooltips" data-toggle="tooltip" data-placement="bottom" title=""></i>
+            <button class="btn-show-mainmenu btn btn-link" 
+                    data-toggle="tooltip" data-placement="left" title="Menu">
+                <i class="fa fa-bars tooltips" ></i>
             </button>
         <?php } ?>
         
@@ -234,7 +235,7 @@ jQuery(document).ready(function() {
         $("#selectCreate").modal("show");
     });
 
-    $("#menu-name-profil").mouseenter(function(){ 
+    $(".btn-open-floopdrawer").click(function(){ 
         showFloopDrawer(true);
     });
     $("#floopDrawerDirectory").mouseleave(function(){ 
