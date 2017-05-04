@@ -55,11 +55,12 @@
         <?php if( isset( Yii::app()->session['userId']) ){ ?>
             
             <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
-                  data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                  data-dismiss="tooltip" data-placement="left" title="Mon réseau" alt="Mon réseau">
               <i class="fa fa-link"></i>
             </button>
-            <button class="btn-show-mainmenu btn btn-link" title="Menu">
-                <i class="fa fa-bars tooltips" data-toggle="tooltip" data-placement="bottom" title=""></i>
+            <button class="btn-show-mainmenu btn btn-link" 
+                    data-toggle="tooltip" data-placement="left" title="Menu">
+                <i class="fa fa-bars tooltips" ></i>
             </button>
         <?php } ?>
         
@@ -110,8 +111,13 @@
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>
+                                    <?php 
+                                    $class = "hidden" ;
+                                    if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
+                                        $class = ""
+                                    ?>
                                     <li class="text-left">
-                                        <a href="" class="bg-white" onclick="communecterUser();">
+                                        <a href="" class="communecter-btn bg-white <?php echo $class ; ?>" onclick="communecterUser();">
                                             <i class="fa fa-university"></i> <?php echo Yii::t("common", "Connect to your city");?>
                                         </a>
                                     </li>
@@ -227,18 +233,7 @@
 
 
 <script>
-jQuery(document).ready(function() {    
-    setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
-    
-    $(".openModalSelectCreate").click(function(){
-        $("#selectCreate").modal("show");
-    });
-
-    $("#menu-name-profil").mouseenter(function(){ 
-        showFloopDrawer(true);
-    });
-    $("#floopDrawerDirectory").mouseleave(function(){ 
-        showFloopDrawer(false);
-    });
-});
+// jQuery(document).ready(function() {    
+//     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
+// });
 </script> 
