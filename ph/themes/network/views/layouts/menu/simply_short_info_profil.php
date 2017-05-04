@@ -371,7 +371,7 @@
                 <ul class="dropdown-menu dropdown-menu-right">
                   <?php if(isset($params['add']['organization']) && $params['add']['organization']) { ?>
                  <li>
-                  <a onclick="loadByHash('#organization.addorganizationform');">
+                  <a onclick="urlCtrl.loadByHash('#organization.addorganizationform');">
                     <i class="fa fa-group fa-2x text-green"></i>
                     <span class="add-title">une organisation</span>
                   </a>
@@ -379,7 +379,7 @@
                 <?php } ?>
                 <?php if(isset($params['add']['project']) && $params['add']['project']) { ?>
                 <li>
-                  <a onclick="loadByHash('#project.projectsv');">
+                  <a onclick="urlCtrl.loadByHash('#project.projectsv');">
                     <i class="fa fa-lightbulb-o fa-2x text-purple"></i>
                     <span class="add-title">un projet</span>
                   </a>
@@ -387,7 +387,7 @@
                 <?php } ?>
                 <?php if(isset($params['add']['event']) && $params['add']['event']) { ?>
                 <li>
-                  <a onclick="loadByHash('#event.eventsv');">
+                  <a onclick="urlCtrl.loadByHash('#event.eventsv');">
                     <i class="fa fa-calendar fa-2x text-orange"></i>
                     <span class="add-title">un événement</span>
                   </a>
@@ -457,7 +457,7 @@
         startSearch(0, 100);
       } else {
         // Fragment doesn't exist
-        loadByHash("#default.simplydirectory");
+        urlCtrl.loadByHash("#default.simplydirectory");
         startSearch(0, 100);
       }
       //enSavoirPlus(); 
@@ -648,14 +648,14 @@ function autoCompleteSearchGS(search, indexMin, indexMax){
                   type = o.type;
                   if(type=="citoyen") type = "person";
                   var url = "javascript:"; //baseUrl+'/'+moduleId+ "/default/simple#" + o.type + ".detail.id." + id;
-                  var onclick = 'loadByHash("#' + type + '.detail.id.' + id + '");';
+                  var onclick = 'urlCtrl.loadByHash("#' + type + '.detail.id.' + id + '");';
                   var onclickCp = "";
                   var target = " target='_blank'";
                   var dataId = "";
                   if(type == "city"){
                     url = "javascript:"; //#main-col-search";
-                    onclick = 'loadByHash("#city.detail.insee.' + insee + '");'; //"'+o.name.replace("'", "\'")+'");';
-                    onclickCp = 'loadByHash("#city.detail.insee.' + insee + '");';
+                    onclick = 'urlCtrl.loadByHash("#city.detail.insee.' + insee + '");'; //"'+o.name.replace("'", "\'")+'");';
+                    onclickCp = 'urlCtrl.loadByHash("#city.detail.insee.' + insee + '");';
                     target = "";
                     dataId = o.name; //.replace("'", "\'");
                   }

@@ -111,8 +111,13 @@
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>
+                                    <?php 
+                                    $class = "hidden" ;
+                                    if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
+                                        $class = ""
+                                    ?>
                                     <li class="text-left">
-                                        <a href="" class="bg-white" onclick="communecterUser();">
+                                        <a href="" class="communecter-btn bg-white <?php echo $class ; ?>" onclick="communecterUser();">
                                             <i class="fa fa-university"></i> <?php echo Yii::t("common", "Connect to your city");?>
                                         </a>
                                     </li>

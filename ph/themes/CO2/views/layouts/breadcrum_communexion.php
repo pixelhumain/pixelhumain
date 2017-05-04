@@ -64,10 +64,13 @@
         </button> 
         <?php 
             $tips="";
-            foreach(@$communexion["values"]["cities"] as $city){
-                $tips.=$city." / ";
-            }  ?>
-        <?php if(@$communexion["levelMinCommunexion"]=="inseeCommunexion"){ ?> 
+            if(!empty($communexion["values"]["cities"])){
+                foreach(@$communexion["values"]["cities"] as $city){
+                    $tips.=$city." / ";
+                }
+            }
+
+        if(@$communexion["levelMinCommunexion"]=="inseeCommunexion"){ ?> 
         <button data-toggle='dropdown' data-target='dropdown-multi-scope'
             class='btn btn-link text-red item-globalscope-checker homestead tooltips
                   <?php if(@$communexion["currentName"]!=@$communexion["values"]["cityCp"]) echo "inactive"; ?>' 
