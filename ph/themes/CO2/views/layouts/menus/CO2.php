@@ -55,7 +55,7 @@
         <?php if( isset( Yii::app()->session['userId']) ){ ?>
             
             <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
-                  data-toggle="tooltip" data-placement="left" title="Mon réseau" alt="Mon réseau">
+                  data-dismiss="tooltip" data-placement="left" title="Mon réseau" alt="Mon réseau">
               <i class="fa fa-link"></i>
             </button>
             <button class="btn-show-mainmenu btn btn-link" 
@@ -228,18 +228,7 @@
 
 
 <script>
-jQuery(document).ready(function() {    
-    setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
-    
-    $(".openModalSelectCreate").click(function(){
-        $("#selectCreate").modal("show");
-    });
-
-    $(".btn-open-floopdrawer").click(function(){ 
-        showFloopDrawer(true);
-    });
-    $("#floopDrawerDirectory").mouseleave(function(){ 
-        showFloopDrawer(false);
-    });
-});
+// jQuery(document).ready(function() {    
+//     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
+// });
 </script> 
