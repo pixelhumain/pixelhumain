@@ -363,6 +363,8 @@ return array(
 	"Not interested" => "Pas intéressé(e)",
 	"Accept" => "Accepter",
 	"Refuse" => "Refuser",
+	"Inviting" => "Invité(e)",
+	"Not interested by the invitation" => "Pas intéressé(e) par l&rsquo;invitation",
 	"Already {what}" => "Déjà {what}",
 	"Already admin" => "Déjà admin",
 	"Already following" => "Déjà abonné",

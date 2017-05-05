@@ -46,8 +46,9 @@
 	<!-- start: HEAD layout mainSearch.php -->
 	<head>
 		<?php 	
-		$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-		$this->renderPartial($layoutPath.'metas');
+		$layoutPathNetwork = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+		$layoutPath = 'webroot.themes.CO2.views.layouts.';
+		$this->renderPartial($layoutPathNetwork.'metas');
 
 		//Management of network configuration is in Network model
 		$params = Network::getNetworkJson(Yii::app()->params['networkParams']);
@@ -155,7 +156,7 @@
 
 	<?php
 	
-		$this->renderPartial( $layoutPath.'modals' );
+		$this->renderPartial( $layoutPathNetwork.'modals' );
 	
  
 	//si l'utilisateur n'est pas connecté
@@ -218,7 +219,7 @@
 	MAP CONTAINER
 	******************************************* -->
 	<div id="mainMap">
-		<?php $this->renderPartial($layoutPath.'mainMap'); ?>
+		<?php $this->renderPartial($layoutPathNetwork.'mainMap'); ?>
 	</div>
 
 	<?php //get all my link to put in floopDrawer
@@ -236,8 +237,8 @@
 	<!-- **************************************
 	MENUS TOP AND LEFT CONTAINER
 	******************************************* -->
-	<?php $this->renderPartial($layoutPath.'.menu.simply_short_info_profil', array("params" => $params)); ?>
-	<?php $this->renderPartial($layoutPath."menu.simplyMenuLeft", array("params" => $params)); ?>
+	<?php $this->renderPartial($layoutPathNetwork.'menu.simply_short_info_profil', array("params" => $params)); ?>
+	<?php $this->renderPartial($layoutPathNetwork."menu.simplyMenuLeft", array("params" => $params)); ?>
 		<div class="col-md-12 col-sm-12 col-xs-12 my-main-container no-padding" style="top: 50px">
 			<div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 col-xs-12 main-col-search no-padding" style="min-height: 490px; opacity: 1;">
 			<?php $this->renderPartial("../network/simplyDirectory",array("params" => $params)); ?>
@@ -246,7 +247,7 @@
 	
 	
 		<?php //if(!isset(Yii::app()->session['userId']))
-		$this->renderPartial($layoutPath."simply_login_register", array("params" => $params));
+		$this->renderPartial($layoutPathNetwork."simply_login_register", array("params" => $params));
 		?>
 
 	<!-- **************************************
@@ -254,7 +255,7 @@
 		******************************************* -->
 	<?php  
 		if(isset(Yii::app()->session['userId'])) 
-			$this->renderPartial($layoutPath.'notifications2');
+			$this->renderPartial($layoutPathNetwork.'notifications2');
 		
 		/* *****************************************
 		Active Content from the controller
@@ -265,8 +266,8 @@
 		*******************************************/
 
 	?>
-	<?php $this->renderPartial($layoutPath.'.menu.menuBottom', array("params" => $params)); ?>
-	<?php $this->renderPartial($layoutPath.".menu.menuSmall", array("params" => $params)); ?>
+	<?php $this->renderPartial($layoutPathNetwork.'menu.menuBottom', array("params" => $params)); ?>
+	<?php $this->renderPartial($layoutPathNetwork."menu.menuSmall", array("params" => $params)); ?>
 
 		<!-- start: MAIN JAVASCRIPTS -->
 		
@@ -339,7 +340,7 @@
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
 		$this->renderPartial('webroot.themes.CO2.views.layouts.initJs', 
-                                 array( "me"=>$me, "myFormContact" => @$myFormContact));
+                                 array( "me"=>@$me, "myFormContact" => @$myFormContact));
 		//<!-- end: MAIN JAVASCRIPTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		?>
@@ -545,7 +546,7 @@
 
 			
 			//manages the back button state 
-			//every url change (loadByHash) is pushed into history.pushState 
+			//every url change (urlCtrl.loadByHash) is pushed into history.pushState 
 			//onclick back btn popstate is launched
 			//
 		    $(window).bind("popstate", function(e) {
@@ -556,7 +557,7 @@
 		        if( $.isEmptyObject( history.state ) && allReadyLoad == false ){
 			        //console.warn("poped state",location.hash);
 			        //lastUrl = location.hash;
-			        loadByHash(location.hash,true);
+			        urlCtrl.loadByHash(location.hash,true);
 			    } 
 			    allReadyLoad = false;
 		      }
@@ -579,14 +580,14 @@
 			if(userConnected != null && userConnected != "" && typeof userConnected != "undefined" && !location.hash){
 				//location.search="?network="+networkParams
 				//console.warn("hash 1", location.hash);
-				//loadByHash("#network.simplydirectory");
+				//urlCtrl.loadByHash("#network.simplydirectory");
 				return;
 			} 
 			else{ //si l'utilisateur est déjà passé par le two_step_register
 		 		if(location.hash != "#network.simplydirectory" && location.hash != "#" && location.hash != ""){
 		 			//console.warn("hash 2", location.hash);
 		 			//getAjaxFiche(location.hash,0);
-					loadByHash(location.hash);
+					urlCtrl.loadByHash(location.hash);
 					return;
 				}
 				else{ 
@@ -594,12 +595,12 @@
 					//console.log("userConnected", userConnected);
 					//console.warn("hash3", location.hash);
 					if(userConnected != null && userId != null  && userId != "" && typeof userId != "undefined")
-						loadByHash("#default.live");//news.index.type.citoyens.id."+userId);
+						urlCtrl.loadByHash("#default.live");//news.index.type.citoyens.id."+userId);
 					else
-						loadByHash("#default.live");
+						urlCtrl.loadByHash("#default.live");
 					//}
 
-					//loadByHash("#default.home");
+					//urlCtrl.loadByHash("#default.home");
 				}
 			}
 			checkScroll();
