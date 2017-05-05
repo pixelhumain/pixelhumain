@@ -264,7 +264,14 @@ section h2 {
 	position: absolute;
 	pointer-events: none;
 }
-
+@media (max-width: 1199px) {
+	#paramsMenu .arrow_box:after, #paramsMenu .arrow_box:before {
+		left: 90% !important;
+	}
+	.menu-params{
+		left:-210px !important;
+	}
+}
 .arrow_box:after {
 	border-color: rgba(255, 255, 255, 0);
 	border-bottom-color: #ffffff;
