@@ -268,6 +268,8 @@ return array(
 	"Access to all common information of" => "Accèdez au information de toute la commune de",
 	"empty"=>"vide",
 	"organizer" => "organisateur",
+	"Created by" => "Créé par",
+	"Organized by" => "Organisé par",
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
