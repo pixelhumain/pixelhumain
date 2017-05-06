@@ -498,8 +498,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     padding:10px 20px;
     background-color: rgba(255,255,255,0.6);
     border-radius: 7px;
-    position: absolute;
-    top: 55px;
+    position: absolute;@
     z-index: 1;
     right: 15px;
 }
@@ -532,9 +531,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         font-size: 1.2em;
     }
 }
-
+@media (min-width: 768px) and (max-width: 991px){
+ .section-date {
+    position: relative;
+    float: left !important;
+    left: 28%;
+    }      
+}
 @media (max-width: 768px) {
-
+     .section-date {
+    position: relative;
+    float: left !important;
+    left: 20px;
+    }      
     #shortDescriptionHeader{
         font-size: 13px;
         line-height: 17px;
