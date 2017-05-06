@@ -269,7 +269,7 @@ return array(
 	"empty"=>"vide",
 	"organizer" => "organisateur",
 	"Created by" => "Créé par",
-	"Planned on" => "Programmé pendant",
+	"Planned on" => "Au programme de",
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
