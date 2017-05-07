@@ -143,7 +143,7 @@
                                     </li> -->
                                     <li class="text-admin">
                                         <a href="#params" class="lbh bg-white">
-                                            <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parametersc") ; ?>
+                                            <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                                         </a>
                                     </li>
                                     <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
@@ -164,7 +164,7 @@
                                     <li class="text-left">
                                         <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
                                             class="bg-white letter-red logout">
-                                            <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log out") ; ?>
+                                            <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log Out") ; ?>
                                         </a>
                                     </li>
 

@@ -13,7 +13,8 @@ return array(
 	"My Calendar" => "Mon calendrier",
 
 	"Log Out" => "Déconnexion",
-
+	"LOG OUT" => "DECONNEXION",
+	"My parameters" => "Mes paramètres",
 	"YES" => "OUI",
 	"NO" => "NON",
 
