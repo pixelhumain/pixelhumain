@@ -111,7 +111,7 @@
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>
-                                    <?php 
+                                      <?php 
                                     $class = "hidden" ;
                                     if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
                                         $class = ""
@@ -121,29 +121,20 @@
                                             <i class="fa fa-university"></i> <?php echo Yii::t("common", "Connect to your city");?>
                                         </a>
                                     </li>
-                                    <!-- <li class="text-left">
-                                        <a href="#search" class="lbh bg-white">
-                                            <i class="fa fa-search"></i> Rechercher
+                                    <li class="text-admin visible-xs">
+                                        <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.notifications" class="lbh bg-white">
+                                            <i class="fa fa-bell"></i> <?php echo Yii::t("common", "My notifications") ; ?>
+                                            <span class="notifications-count topbar-badge badge animated bounceIn 
+                              <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
+                              echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
+                            <?php echo @$countNotifElement ?>
+                                            </span>
                                         </a>
                                     </li>
-                                    <li class="text-left">
-                                        <a href="#annonces" class="lbh bg-white">
-                                            <i class="fa fa-bullhorn"></i> Petites annonces
-                                        </a>
-                                    </li>
-                                    <li class="text-left">
-                                        <a href="#agenda" class="lbh bg-white">
-                                            <i class="fa fa-calendar"></i> Agenda
-                                        </a>
-                                    </li>
-                                    <li class="text-power">
-                                        <a href="#power" class="bg-white disabled">
-                                            <i class="fa fa-comments"></i> Démocratie
-                                        </a>
-                                    </li> -->
+                                    
                                     <li class="text-admin">
                                         <a href="#params" class="lbh bg-white">
-                                            <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parametersc") ; ?>
+                                            <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                                         </a>
                                     </li>
                                     <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
@@ -160,11 +151,42 @@
                                         </li>
                                     <?php } ?>
                                     <li role="separator" class="divider">
+                                     <li class="text-left visible-xs">
+                                        <a href="#search" class="lbh bg-white">
+                                            <i class="fa fa-search"></i> Rechercher
+                                        </a>
+                                    </li>
+                                    <li class="text-left visible-xs">
+                                        <a href="#annonces" class="lbh bg-white">
+                                            <i class="fa fa-bullhorn"></i> Annonces
+                                        </a>
+                                    </li>
+                                    <li class="text-left visible-xs">
+                                        <a href="#agenda" class="lbh bg-white">
+                                            <i class="fa fa-calendar"></i> Agenda
+                                        </a>
+                                    </li>
+                                    <li class="text-left visible-xs">
+                                        <a href="#live" class="lbh bg-white">
+                                            <i class="fa fa-calendar"></i> Live
+                                        </a>
+                                    </li>
+                                    <li class="text-left visible-xs">
+                                        <a href="#default.view.page.links" class="lbhp bg-right">
+                                            <i class="fa fa-life-ring"></i> Aide
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider visible-xs"></li>
+                                    <!--<li class="text-power">
+                                        <a href="#power" class="bg-white disabled">
+                                            <i class="fa fa-comments"></i> Démocratie
+                                        </a>
+                                    </li> -->
                                     </li>
                                     <li class="text-left">
                                         <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
                                             class="bg-white letter-red logout">
-                                            <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log out") ; ?>
+                                            <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log Out") ; ?>
                                         </a>
                                     </li>
 
@@ -174,7 +196,7 @@
                     </div>
 
 
-                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
+                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
@@ -185,6 +207,7 @@
                     </button>
                     
                 <?php } else { ?>
+                    
                     <li class="page-scroll">
                         <button class="hidden-xs hidden-sm letter-green font-montserrat btn-menu-connect margin-left-10" 
                                 data-toggle="modal" data-target="#modalLogin">
@@ -195,9 +218,47 @@
                             <span><i class="fa fa-sign-in"></i></span>
                         </button>
                     </li>
+
                 <?php } ?>
             </ul>
         </div>
+        <?php if (!@Yii::app()->session["userId"]){ ?>
+            <button class="btn-show-mainmenu btn btn-link visible-xs pull-right" 
+                    data-toggle="tooltip" data-placement="left" title="Menu" style="padding: 4px 10px;">
+                <i class="fa fa-bars tooltips" ></i>
+            </button>
+            <div class="dropdown pull-right" id="dropdown-user">
+                <div class="dropdown-main-menu" style="right:50px !important;">
+                    <ul class="dropdown-menu arrow_box">
+                         <li class="text-left visible-xs">
+                            <a href="#search" class="lbh bg-white text-red">
+                                <i class="fa fa-search"></i> Rechercher
+                            </a>
+                        </li>
+                        <li class="text-left visible-xs">
+                            <a href="#annonces" class="lbh bg-white text-red">
+                                <i class="fa fa-bullhorn"></i> Annonces
+                            </a>
+                        </li>
+                        <li class="text-left visible-xs">
+                            <a href="#agenda" class="lbh bg-white text-red">
+                                <i class="fa fa-calendar"></i> Agenda
+                            </a>
+                        </li>
+                        <li class="text-left visible-xs">
+                            <a href="#live" class="lbh bg-white text-red">
+                                <i class="fa fa-calendar"></i> Live
+                            </a>
+                        </li>
+                        <li class="text-left visible-xs">
+                            <a href="#default.view.page.links" class="lbhp text-red bg-right">
+                                <i class="fa fa-life-ring"></i> Aide
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        <?php } ?>
         <!-- /.navbar-collapse -->
         <!-- <a type="button" class="lbh btn btn-link pull-right btn-menu-to-app hidden-top hidden-xs letter-green" data-target="#selectCreate" data-toggle="modal">
             <i class="fa fa-plus-circle"></i>           

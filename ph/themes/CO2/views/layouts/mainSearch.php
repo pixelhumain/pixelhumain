@@ -30,7 +30,7 @@
 
         <title><?php echo $CO2DomainName; ?></title>
 
-        <!-- <link rel='shortcut icon' type='image/x-icon' href="<?php //echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" /> -->
+        <link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" /> 
 
         <!-- <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
         <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' /> -->

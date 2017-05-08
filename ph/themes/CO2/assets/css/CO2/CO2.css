@@ -599,7 +599,7 @@ a, a:hover, a:focus, a:active, a.active{
 .dropdown-main-menu{
 	position: fixed;
 	top:60px;
-	right:77px;
+	right:55px;
 	max-height:400px;
 	/*width:200px;*/
 	background-color:transparent;

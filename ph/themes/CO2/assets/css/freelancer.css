@@ -158,7 +158,9 @@ header .intro-text .skills {
   color: white;
   border-color: #18BC9C;
 }
-
+.navbar-custom.affix {
+    padding: 10px 0;
+  }
 @media (min-width: 768px) {
   .navbar-custom {
     padding: 25px 0;
@@ -172,9 +174,7 @@ header .intro-text .skills {
     -moz-transition: all 0.3s;
     transition: all 0.3s;
   }
-  .navbar-custom.affix {
-    padding: 10px 0;
-  }
+  
   .navbar-custom.affix .navbar-brand {
     /*font-size: 1.5em;*/
   }
