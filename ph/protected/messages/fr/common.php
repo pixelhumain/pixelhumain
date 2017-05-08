@@ -364,6 +364,7 @@ return array(
 	"Visualize" => "Visualiser",
 	"History" => "Historique",
 	"Settings" => "Paramètres",
+	"More" => "Plus",
 	"Confidentiality params" => "Paramètres de confidentialité",
 	"I go" => "J&rsquo;y vais",
 	"Not interested" => "Pas intéressé(e)",

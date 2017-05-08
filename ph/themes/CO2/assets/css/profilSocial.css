@@ -366,7 +366,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .menu-params{
     position: absolute;
     top: 60px;
-    left: -25px;
+    right: 5px;
+    left: inherit !important;
 }
 
 #main-name-element{
@@ -530,6 +531,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     #main-name-element{
         font-size: 1.2em;
     }
+}
+@media (min-width: 991px){
+ .section-date {
+    bottom:25px;
+    }      
 }
 @media (min-width: 768px) and (max-width: 991px){
  .section-date {
