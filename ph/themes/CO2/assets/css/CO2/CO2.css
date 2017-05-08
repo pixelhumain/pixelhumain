@@ -72,6 +72,10 @@ src: url('../../vendor/fonts/Homestead/Homestead-Display.ttf');
 	padding-left: 25px;
 }
 
+body{
+	padding-right: 0px !important;
+}
+
 .scroll-top .btn:hover {
 	background-color: #407ee4;
 }
