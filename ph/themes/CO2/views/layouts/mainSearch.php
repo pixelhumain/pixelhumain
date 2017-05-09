@@ -188,7 +188,6 @@
                 '/assets/data/mainCategories.js' ,
                 
                 '/assets/vendor/bootstrap/js/bootstrap.min.js',
-                
                 '/assets/vendor/bootstrap/css/bootstrap.min.css',
                 '/assets/css/sig/sig.css',
                 '/assets/css/freelancer.css',
