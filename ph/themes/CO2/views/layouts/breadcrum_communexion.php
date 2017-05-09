@@ -20,8 +20,6 @@
     <span id='msg_live_type'><?php echo $explain ?></span>
 <?php } ?>
 
-
-
     <?php if($type != "cities"){ ?>            
         <h5 class="pull-left letter-red" style="margin-bottom: -8px;margin-top: 14px;">
             <button class="btn btn-default main-btn-scopes text-white tooltips margin-bottom-5 margin-left-10 margin-right-10" 
@@ -131,8 +129,6 @@
     <!-- <script src="https://www.data.gouv.fr/static/widgets.js" id="udata"></script> -->
 <?php } ?>
 
-    </div>
-<?php } ?>
 <script type="text/javascript">
 
 var globalCommunexion="<?php echo $communexion["state"] ?>";

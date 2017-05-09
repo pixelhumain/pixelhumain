@@ -58,7 +58,6 @@ class Rest
 	    }
 		
 		return $xml_data;
->>>>>>> pixelhumain-development
 	}
 
 	public static function xml($res, $xml_element, $format) { 
