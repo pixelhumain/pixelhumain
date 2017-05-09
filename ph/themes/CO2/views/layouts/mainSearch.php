@@ -180,6 +180,7 @@
                 '/plugins/font-awesome-custom/css/font-awesome.css',
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
+            HtmlHelper::registerCssAndScriptsFiles( array('/js/default/formInMap.js') , $this->module->assetsUrl);
             
             $cssAnsScriptFilesModule = array(
                 '/assets/js/cookie.js' ,
