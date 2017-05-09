@@ -366,7 +366,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .menu-params{
     position: absolute;
     top: 60px;
-    right: 5px;
+    right: -5px;
     left: inherit !important;
 }
 
@@ -427,7 +427,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 .contentHeaderInformation{
     text-shadow: 1 1px 3px rgba(0,0,0,1);
-    padding: 35px 0px;
+    padding: 40px 0px 25px 0;
     position: absolute;
     bottom: 0px;
 }
@@ -502,11 +502,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     position: absolute;@
     z-index: 1;
     right: 15px;
+    margin-top:10px;
 }
 .section-badges{
     font-size: 15px;
     padding: 5px;
-    top: 8px;
+    top: 0px;
 }
 .section-address{
     font-size: 16px;
@@ -636,6 +637,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
     /* LIVE NOW */
 
+
+
 @media screen and (max-width: 1024px) {
     #main-name-element{
         font-size: 1.2em;
@@ -643,8 +646,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 @media (min-width: 991px){
  .section-date {
-    bottom:25px;
-    }      
+    top:-60px;
+ }      
 }
 @media (min-width: 768px) and (max-width: 991px){
  .section-date {
@@ -655,9 +658,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 @media (max-width: 768px) {
      .section-date {
-    position: relative;
-    float: left !important;
-    left: 20px;
+        position: relative;
+        float: left !important;
+        left: 20px;
     }      
     #shortDescriptionHeader{
         font-size: 13px;
