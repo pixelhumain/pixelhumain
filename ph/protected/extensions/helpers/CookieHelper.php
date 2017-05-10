@@ -15,7 +15,7 @@ class CookieHelper  {
       {
         $cookie = new CHttpCookie($name,$value);
         $cookie->expire = time()+60*60*24*180;
-        $cookie->path = '/ph/co2';
+        $cookie->path = Yii::app()->baseUrl;
         Yii::app()->request->cookies[$name] = $cookie;
 
       }
