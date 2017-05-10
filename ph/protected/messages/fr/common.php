@@ -464,6 +464,7 @@ return array(
 	"Join this Organization" 		=> "Rejoindre cette organisation",
 	"Join this organization" 		=> "Rejoindre cette organisation",
 	"Join this project" 		=> "Rejoindre ce projet",
+	"Join this event" 		=> "Rejoindre cette événement",
 	"Go to the event" => "Participer à l'événement",
 	"Join" 							=> "Rejoindre",
 	"Manage"						=> "Administrer",
