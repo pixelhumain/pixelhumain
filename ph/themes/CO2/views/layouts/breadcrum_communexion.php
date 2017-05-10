@@ -4,12 +4,11 @@
 ?>
 
 <?php 
-if($communexion["state"] == false && @$type != "cities"){ 
+if($communexion["state"] == false && @$type != "cities" && isset(Yii::app()->session["userId"]) ) { 
     $tooltip = Yii::t("common", "Connect to your city"); 
-    var_dump($communexion["currentName"]);
-    if(!empty($communexion["currentName"])){
-        
-        $tooltip = "aCommunecter avec ".$communexion["currentName"]; 
+    //var_dump($communexion["currentName"]);
+    if(!empty($communexion["currentName"])){ 
+        $tooltip = "Communecter avec ".$communexion["currentName"]; 
     }
 ?>
 <button class="pull-left btn btn-link bg-white text-red tooltips item-globalscope-checker start-new-communexion"
