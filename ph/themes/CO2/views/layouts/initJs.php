@@ -166,6 +166,28 @@
         }
     };
 
-    
+function expireAllCookies(name, paths) {
+    var expires = new Date(0).toUTCString();
+    document.cookie = name + '=; expires=' + expires;
+    for (var i = 0, l = paths.length; i < l; i++) {
+        document.cookie = name + '=; path=' + paths[i] + '; expires=' + expires;
+    }
+};
+
+function removeCookies() {
+    expireAllCookies('cityInseeCommunexion', ['/', '/ph', '/ph/co2']);
+    expireAllCookies('regionNameCommunexion', ['/', '/ph', '/ph/co2']);
+    expireAllCookies('nbCpbyInseeCommunexion', ['/', '/ph', '/ph/co2']);
+    expireAllCookies('communexionActivated', ['/ph', '/ph/co2']);
+    expireAllCookies('inseeCommunexion', ['/ph', '/ph/co2']);
+    expireAllCookies('cpCommunexion', ['/ph', '/ph/co2']);
+    expireAllCookies('cityNameCommunexion', ['/ph', '/ph/co2']);
+    expireAllCookies('communexionType', ['/ph', '/ph/co2']);
+    expireAllCookies('communexionValue', ['/ph', '/ph/co2']);
+    expireAllCookies('communexionName', ['/ph', '/ph/co2']);
+    expireAllCookies('communexionLevel', ['/ph', '/ph/co2']);
+}
+
+removeCookies();
     
 </script>
