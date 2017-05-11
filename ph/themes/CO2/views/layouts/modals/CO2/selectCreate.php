@@ -121,10 +121,11 @@
                         <small>Créer un groupe<br>Partager vos centres d'intêrets<br>Discuter Communiquer S'amuser</small>
                     </button>
 
-                    <button data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_GOV; ?>"  data-dismiss="modal"
-                            class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-green">
-                        <h6><i class="fa fa-university fa-2x bg-green"></i><br> Service public</h6>
-                        <small>Faire connaitre votre association<br>Gérer les adhérents<br>Partager votre actualité</small>
+                    <button data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_GOV; ?>"  
+                            data-dismiss="modal"
+                            class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-red">
+                        <h6><i class="fa fa-university fa-2x bg-red"></i><br> Service public</h6>
+                        <small>Mairies, scolaires, etc...<br>Partager votre actualité<br>Partager des événements</small>
                     </button>
 
                 </div>
