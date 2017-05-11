@@ -90,7 +90,7 @@
                         <?php } ?>
                     </span>
                     <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
-                    <p>Bienvenue sur la version co2 (1.0)<br/>Le commun avance, montez à bord !!<hr></p>
+                    <p>Bienvenue sur la version CO2 (0.2)<br/>Le commun avance, montez à bord !!<hr></p>
                 </div>
                 <div class="col-lg-12">
                     <p></p>
