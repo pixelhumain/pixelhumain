@@ -141,12 +141,17 @@
         },
         dynForm : {
             onLoadPanel : function (elementObj) { 
-                $("#ajax-modal-modal-title").html("<i class='fa fa-"+elementObj.dynForm.jsonSchema.icon+"'></i> "+elementObj.dynForm.jsonSchema.title);
-                $("#ajax-modal-modal-title").removeClass("bg-green bg-turq bg-purple bg-orange bg-azure");
-                $("#ajax-modal-modal-body").append("<div class='space20'></div>");
+                $("#ajax-modal-modal-title").html(
+                        "<i class='fa fa-"+elementObj.dynForm.jsonSchema.icon+"'></i> "+
+                        elementObj.dynForm.jsonSchema.title);
                 
-                //if(typeof currentKFormType != "undefined" && typeObj[currentKFormType] && typeObj[currentKFormType].color)
-                    //$("#ajax-modal-modal-title").addClass("bg-"+typeObj[currentKFormType].color);
+                $("#ajax-modal .modal-header").removeClass("bg-green bg-turq bg-purple bg-orange bg-azure");
+                $("#ajax-modal .infocustom p").removeClass("text-green text-turq text-purple text-orange text-azure");
+                
+                if(typeof currentKFormType != "undefined" && typeObj[currentKFormType] && typeObj[currentKFormType].color){
+                    $("#ajax-modal .modal-header").addClass("bg-"+typeObj[currentKFormType].color);
+                    $("#ajax-modal .infocustom p").addClass("text-"+typeObj[currentKFormType].color);
+                }
                 
                 <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                 $(".locationBtn").on( "click", function(){
