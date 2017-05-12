@@ -44,6 +44,22 @@
 
         <?php } ?>
 
+        <?php if( $subdomain == "welcome" ){ ?>
+        
+            <div id="input-sec-search" class="hidden-xs col-sm-2 col-md-2 col-lg-2">
+                <input type="text" class="form-control" id="second-search-bar" 
+                        placeholder="<?php echo $placeholderMainSearch; ?>">
+                <?php if($subdomain == "page"){ ?>
+                    <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
+                <?php } ?>
+            </div>
+            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search btn-directory-type" 
+                    data-type="<?php echo @$type; ?>">
+                    <i class="fa fa-search"></i>
+            </button>
+
+        <?php } ?>
+
         <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Afficher la carte">
             <i class="fa fa-map"></i>
         </button>
@@ -88,109 +104,108 @@
                     <div class="dropdown pull-right" id="dropdown-user">
                         <div class="dropdown-main-menu">
                             <ul class="dropdown-menu arrow_box">
-                                    <!-- <li class="text-left">
-                                        <a href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>" 
-                                            class="lbh bg-white">
-                                            <i class="fa fa-user-circle"></i> Ma page
-                                        </a>
-                                    </li> -->
-                                    <!-- <li class="text-left">
-                                        <a href="#social" class="lbh bg-white">
-                                            <i class="fa fa-university"></i> Ma commune
-                                        </a>
-                                    </li> -->
-                                    <!-- </li> -->
-                                    <!-- <li class="text-left">
-                                        <a href="#search" class="lbh bg-white">
-                                            <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
-                                        </a>
-                                    </li> -->
-                                    <li class="text-left">
-                                        <a href="" class="bg-white letter-green openModalSelectCreate">
-                                            <i class="fa fa-plus-circle"></i> Nouveau... 
-                                        </a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                      <?php 
-                                    $class = "hidden" ;
-                                    if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
-                                        $class = ""
-                                    ?>
-                                    <li class="text-left">
-                                        <a href="" class="communecter-btn bg-white <?php echo $class ; ?>" onclick="communecterUser();">
-                                            <i class="fa fa-university"></i> <?php echo Yii::t("common", "Connect to your city");?>
-                                        </a>
-                                    </li>
-                                    <li class="text-admin visible-xs">
-                                        <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.notifications" class="lbh bg-white">
-                                            <i class="fa fa-bell"></i> <?php echo Yii::t("common", "My notifications") ; ?>
-                                            <span class="notifications-count topbar-badge badge animated bounceIn 
-                              <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
-                              echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
-                            <?php echo @$countNotifElement ?>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    
+                                <!-- <li class="text-left">
+                                    <a href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>" 
+                                        class="lbh bg-white">
+                                        <i class="fa fa-user-circle"></i> Ma page
+                                    </a>
+                                </li> -->
+                                <!-- <li class="text-left">
+                                    <a href="#social" class="lbh bg-white">
+                                        <i class="fa fa-university"></i> Ma commune
+                                    </a>
+                                </li> -->
+                                <!-- </li> -->
+                                <!-- <li class="text-left">
+                                    <a href="#search" class="lbh bg-white">
+                                        <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
+                                    </a>
+                                </li> -->
+                                <li class="text-left">
+                                    <a href="" class="bg-white letter-green openModalSelectCreate">
+                                        <i class="fa fa-plus-circle"></i> Nouveau... 
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                  <?php 
+                                $class = "hidden" ;
+                                if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
+                                    $class = ""
+                                ?>
+                                <li class="text-left">
+                                    <a href="" class="communecter-btn bg-white <?php echo $class ; ?>" onclick="communecterUser();">
+                                        <i class="fa fa-university"></i> <?php echo Yii::t("common", "Connect to your city");?>
+                                    </a>
+                                </li>
+                                <li class="text-admin visible-xs">
+                                    <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.notifications" class="lbh bg-white">
+                                        <i class="fa fa-bell"></i> <?php echo Yii::t("common", "My notifications") ; ?>
+                                        <span class="notifications-count topbar-badge badge animated bounceIn 
+                                            <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
+                                            echo 'badge-transparent hide'; else echo 'badge-success'; ?>"
+                                        >
+                                        <?php echo @$countNotifElement ?>
+                                        </span>
+                                    </a>
+                                </li>
+                                
+                                <li class="text-admin">
+                                    <a href="#params" class="lbh bg-white">
+                                        <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
+                                    </a>
+                                </li>
+                                <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
                                     <li class="text-admin">
-                                        <a href="#params" class="lbh bg-white">
-                                            <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
+                                        <a href="#admin" class="lbh bg-white">
+                                            <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin") ; ?>
                                         </a>
                                     </li>
-                                    <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
-                                        <li class="text-admin">
-                                            <a href="#admin" class="lbh bg-white">
-                                                <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin") ; ?>
-                                            </a>
-                                        </li>
-                                    <?php }else if( Yii::app()->session[ "userIsAdminPublic" ] ) { ?>
-                                        <li class="text-admin">
-                                            <a href="#adminpublic" class="lbh bg-white">
-                                                <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin public") ; ?>
-                                            </a>
-                                        </li>
-                                    <?php } ?>
-                                    <li role="separator" class="divider">
-                                     <li class="text-left visible-xs">
-                                        <a href="#search" class="lbh bg-white">
-                                            <i class="fa fa-search"></i> Rechercher
+                                <?php }else if( Yii::app()->session[ "userIsAdminPublic" ] ) { ?>
+                                    <li class="text-admin">
+                                        <a href="#adminpublic" class="lbh bg-white">
+                                            <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin public") ; ?>
                                         </a>
                                     </li>
-                                    <li class="text-left visible-xs">
-                                        <a href="#annonces" class="lbh bg-white">
-                                            <i class="fa fa-bullhorn"></i> Annonces
-                                        </a>
-                                    </li>
-                                    <li class="text-left visible-xs">
-                                        <a href="#agenda" class="lbh bg-white">
-                                            <i class="fa fa-calendar"></i> Agenda
-                                        </a>
-                                    </li>
-                                    <li class="text-left visible-xs">
-                                        <a href="#live" class="lbh bg-white">
-                                            <i class="fa fa-calendar"></i> Live
-                                        </a>
-                                    </li>
-                                    <li class="text-left visible-xs">
-                                        <a href="#default.view.page.links" class="lbhp bg-right">
-                                            <i class="fa fa-life-ring"></i> Aide
-                                        </a>
-                                    </li>
-                                    <li role="separator" class="divider visible-xs"></li>
-                                    <!--<li class="text-power">
-                                        <a href="#power" class="bg-white disabled">
-                                            <i class="fa fa-comments"></i> Démocratie
-                                        </a>
-                                    </li> -->
-                                    </li>
-                                    <li class="text-left">
-                                        <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
-                                            class="bg-white letter-red logout">
-                                            <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log Out") ; ?>
-                                        </a>
-                                    </li>
-
-
+                                <?php } ?>
+                                <li role="separator" class="divider">
+                                 <li class="text-left visible-xs">
+                                    <a href="#search" class="lbh bg-white">
+                                        <i class="fa fa-search"></i> Rechercher
+                                    </a>
+                                </li>
+                                <li class="text-left visible-xs">
+                                    <a href="#annonces" class="lbh bg-white">
+                                        <i class="fa fa-bullhorn"></i> Annonces
+                                    </a>
+                                </li>
+                                <li class="text-left visible-xs">
+                                    <a href="#agenda" class="lbh bg-white">
+                                        <i class="fa fa-calendar"></i> Agenda
+                                    </a>
+                                </li>
+                                <li class="text-left visible-xs">
+                                    <a href="#live" class="lbh bg-white">
+                                        <i class="fa fa-calendar"></i> Live
+                                    </a>
+                                </li>
+                                <li class="text-left visible-xs">
+                                    <a href="#default.view.page.links" class="lbhp bg-right">
+                                        <i class="fa fa-life-ring"></i> Aide
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider visible-xs"></li>
+                                <!--<li class="text-power">
+                                    <a href="#power" class="bg-white disabled">
+                                        <i class="fa fa-comments"></i> Démocratie
+                                    </a>
+                                </li> -->
+                                </li>
+                                <li class="text-left">
+                                    <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
+                                        class="bg-white letter-red logout">
+                                        <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log Out") ; ?>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -208,15 +223,18 @@
                     
                 <?php } else { ?>
                     
-                    <li class="page-scroll">
-                        <button class="hidden-xs hidden-sm letter-green font-montserrat btn-menu-connect margin-left-10" 
+                    <li class="pull-right">
+                        <!-- <button class="hidden-xs hidden-sm letter-green font-montserrat btn-menu-connect margin-left-10" 
                                 data-toggle="modal" data-target="#modalLogin">
                             <span><i class="fa fa-sign-in"></i> SE CONNECTER</span>
                         </button>
                         <button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
                                 data-toggle="modal" data-target="#modalLogin" style="font-size:20px;">
                             <span><i class="fa fa-sign-in"></i></span>
-                        </button>
+                        </button> -->
+                        <?php   $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+                                $this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.login'); 
+                        ?>
                     </li>
 
                 <?php } ?>

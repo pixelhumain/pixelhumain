@@ -12,13 +12,13 @@
       background-color: rgba(255, 255, 255, 0);
       position: absolute;
       z-index: 10;
-      top: 60px !important;
+      top: 65px !important;
       right: 13%;
       width: 400px;
       padding-left: 10px;
     }
     .topLogoAnim .homestead{
-      font-size:31px !important;
+      font-size:41px !important;
       font-weight: 100 !important;
     }
     .titleWhite, .subTitle {
@@ -27,7 +27,7 @@
     .subTitle {
         font-weight: 300;
         font-size: 13px;
-        margin-top: -10px !important;
+        margin-top: -15px !important;
     }
 @media (min-width: 768px) and (max-width: 991px) {
  .topLogoAnim{
@@ -69,16 +69,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <span class="name font-blackoutM" >
+                    <span class="name" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
-                            <!-- <span class="letter letter-blue font-ZILAP letter-k">K</span>
-                            <span class="letter letter-yellow">G</span>
-                            <span class="letter letter-yellow font-ZILAP">O</span>
-                            <span class="letter letter-yellow">U</span>
-                            <span class="letter letter-green">G</span>
-                            <span class="letter letter-green">L</span>
-                            <span class="letter letter-green">E</span> -->
                         <?php } else { ?>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
@@ -90,7 +83,11 @@
                         <?php } ?>
                     </span>
                     <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
-                    <p>Bienvenue sur la version CO2 (0.2)<br/>Le commun avance, montez à bord !!<hr></p>
+                    <h4 class="text-dark col-md-12 margin-top-15">
+                        Bienvenue sur la version CO.2<br/>Le commun avance, montez à bord !!
+                        <hr>
+                    </h4>
+                    
                 </div>
                 <div class="col-lg-12">
                     <p></p>
@@ -153,7 +150,7 @@
                     <br><br>
                     
                     <?php  if(Yii::app()->params["CO2DomainName"] != "kgougle"){ ?>
-                        <button class="btn bg-white" data-toggle="modal" data-target="#modalRegister">
+                        <button class="btn btn-default bg-white" data-toggle="modal" data-target="#modalRegister">
                              <!-- <i class="fa fa-sign-in"></i> --> Je veux m'inscrire
                         </button>
                     <?php } ?>
@@ -183,7 +180,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <span class="name font-blackoutM" >
+                    <span class="name" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
                        <?php } else { ?>
@@ -294,7 +291,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <span class="name font-blackoutM" >
+                    <span class="name" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
                        <?php } else { ?>
