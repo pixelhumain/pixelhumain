@@ -131,10 +131,10 @@ console.log("communexion bread",communexion);
 jQuery(document).ready(function() {
     loadMultiScopes();
     if(typeof communexion.currentName != "undefined" && communexion.currentName!=""){
-        $.cookie('communexionType', communexion.currentLevel, { expires: 365, path: location.pathname });
-        $.cookie('communexionValue', communexion.currentValue, { expires: 365, path: location.pathname });
-        $.cookie('communexionName', communexion.currentName, { expires: 365, path: location.pathname });
-        $.cookie('communexionLevel', communexion.levelMinCommunexion, { expires: 365, path: location.pathname });
+        $.cookie('communexionType', communexion.currentLevel, { expires: 365, path: "/" });
+        $.cookie('communexionValue', communexion.currentValue, { expires: 365, path: "/" });
+        $.cookie('communexionName', communexion.currentName, { expires: 365, path: "/" });
+        $.cookie('communexionLevel', communexion.levelMinCommunexion, { expires: 365, path: "/" });
     }   
     if($.cookie('communexionActivated') == "true"){
         console.log("communexionActivated ok", $.cookie('communexionValue'));
