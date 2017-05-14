@@ -129,7 +129,7 @@ var peopleTalk = [
         "name" : "Tristan Goguet",
         "project" : "Demosalithia & Communecter",
         "url" : "https://www.communecter.org/",
-        "comment" : "Le monde de nos enfants dépend de nos actions quotidiennes dès aujourd’hui.<br/>C’est à nous tous, dès maintenant, de prendre soin de ce que nous allons leur laisser en héritage. A nous tous de penser notre monde d’une façon différente, plus durable, plus respectueuse, et plus saine. Sans attendre que les décisions viennent d’en haut, nous avons le pouvoir de penser et d’agir en autonomie, pour le bien de tous. <br/>Communectons-nous ! Relions-nous les uns aux autres, pour construire le monde de demain ensemble !",
+        "comment" : "Le monde de nos enfants dépend de nos actions quotidiennes dès aujourd’hui.<br/>C’est à nous tous de prendre soin de ce que nous leur laisserons en héritage, à nous de penser notre monde d’une façon différente. Sans attendre que les décisions viennent d’en haut, nous avons le pouvoir de penser et d’agir en autonomie, pour le bien de tous.<br/>Communectons-nous !",
         "image" : "<?php echo $this->module->assetsUrl; ?>/images/testamonials/tristan.PNG"
     },
     {

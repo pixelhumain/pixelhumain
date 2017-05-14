@@ -1,7 +1,7 @@
-<form class="form-register box-register padding-top-15"  >  
+<form class="form-register box-register padding-top-15">  
     <div class="col-md-12 padding-50 text-left">
         
-        <h3>Créer un compte</h3>
+        <h3 class="text-dark"><i class="fa fa-plus"></i> Créer un compte</h3>
         <label class="letter-black"><i class="fa fa-address-book-o"></i> Nom et prénom</label>
         <input class="form-control" id="registerName" name="name" type="text" placeholder="Nom et prénom"><br/>
         
@@ -17,8 +17,6 @@
         <label class="letter-black"><i class="fa fa-key"></i> Répétez le mot de passe</label><br/>
         <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="mot de passe (confirmation)">
         
-        <hr>
-
         <div class="pull-left form-actions no-margin" style="width:100%; padding:10px;">
             <div class="errorHandler alert alert-danger no-display registerResult pull-left " style="width:100%;">
                 <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","Please verify your entries.") ?>

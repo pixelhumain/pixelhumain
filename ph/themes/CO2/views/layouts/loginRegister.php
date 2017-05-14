@@ -29,14 +29,13 @@
         font-size: 13px;
         margin-top: -15px !important;
     }
-@media (min-width: 768px) and (max-width: 991px) {
- .topLogoAnim{
+@media (min-width: 768px) and (max-width: 1200px) {
+    .topLogoAnim{
         top: 40px !important;
-          right: 6%;
-          
-     }
-     .topLogoAnim .homestead{
-      font-size:25px !important;
+        right: 6%;
+    }
+    .topLogoAnim .homestead{
+      font-size:32px !important;
     }   
     .subTitle {
         font-size: 10px;
@@ -44,16 +43,20 @@
 }
 @media (max-width: 768px){
     .topLogoAnim{
-        top: 75px !important;
-          right: 1%;
+        top: 31% !important;
+        right: 0% !important;
+        width: 100%;
           
      }
      .topLogoAnim .homestead{
-      font-size:23px !important;
+      font-size:18px !important;
     }   
     .subTitle {
         font-size: 9px;
-    margin-top: 7px !important;
+        margin-top: -3px !important;
+    }
+    .portfolio-modal.modal .name{
+        letter-spacing: 2px;
     }
 }
 </style>
@@ -73,7 +76,7 @@
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
                         <?php } else { ?>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
                                 <?php  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.forms.CO2.menuTitle'); ?>
                                      <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right" src="<?php echo $this->module->assetsUrl?>/images/logoL.jpg"/>
@@ -83,8 +86,11 @@
                         <?php } ?>
                     </span>
                     <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
-                    <h4 class="text-dark col-md-12 margin-top-15">
-                        Bienvenue sur la version CO.2<br/>Le commun avance, montez à bord !!
+                    <h4 class="text-dark col-md-12 margin-top-5 homestead">
+                        <!-- Bienvenue sur la version CO.2 -->
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="45" 
+                             class="inline margin-bottom-15 margin-left-5">
+                        <br/>Le commun avance <span class="text-red">montez à bord !</span>
                         <hr>
                     </h4>
                     

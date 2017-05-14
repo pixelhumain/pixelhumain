@@ -4,10 +4,12 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <a href="#search" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
+            <button class="btn btn-link menu-btn-back-category pull-left no-padding" 
+                <?php if( $subdomain != "welcome" ) { ?>data-target="#modalMainMenu" data-toggle="modal"<?php } ?>
+            >
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="nc_map pull-left" height=30>
-            </a>
+            </button>
             <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>
             <?php 
                 $params = CO2::getThemeParams();  
@@ -46,7 +48,7 @@
 
         <?php if( $subdomain == "welcome" ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-2 col-md-2 col-lg-2">
+            <!-- <div id="input-sec-search" class="hidden-xs col-sm-2 col-md-2 col-lg-2">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo $placeholderMainSearch; ?>">
                 <?php if($subdomain == "page"){ ?>
@@ -56,7 +58,7 @@
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search btn-directory-type" 
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
-            </button>
+            </button> -->
 
         <?php } ?>
 
@@ -122,8 +124,8 @@
                                     </a>
                                 </li> -->
                                 <li class="text-left">
-                                    <a href="" class="bg-white letter-green openModalSelectCreate">
-                                        <i class="fa fa-plus-circle"></i> Nouveau... 
+                                    <a href="#" class="lbh bg-white">
+                                        <i class="fa fa-home"></i> Accueil
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
@@ -224,17 +226,20 @@
                 <?php } else { ?>
                     
                     <li class="pull-right">
-                        <!-- <button class="hidden-xs hidden-sm letter-green font-montserrat btn-menu-connect margin-left-10" 
-                                data-toggle="modal" data-target="#modalLogin">
-                            <span><i class="fa fa-sign-in"></i> SE CONNECTER</span>
-                        </button>
-                        <button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
-                                data-toggle="modal" data-target="#modalLogin" style="font-size:20px;">
-                            <span><i class="fa fa-sign-in"></i></span>
-                        </button> -->
-                        <?php   $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-                                $this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.login'); 
-                        ?>
+                        <?php if($subdomain != "welcome"){ ?>
+                            <button class="hidden-xs hidden-sm letter-green font-montserrat btn-menu-connect margin-left-10" 
+                                    data-toggle="modal" data-target="#modalLogin">
+                                <span><i class="fa fa-sign-in"></i> SE CONNECTER</span>
+                            </button>
+                            <button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
+                                    data-toggle="modal" data-target="#modalLogin" style="font-size:20px;">
+                                <span><i class="fa fa-sign-in"></i></span>
+                            </button>
+                        <?php } else { ?>
+                            <?php   $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+                                    $this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.login'); 
+                            ?>
+                        <?php } ?>
                     </li>
 
                 <?php } ?>
@@ -289,6 +294,7 @@
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>"
                     data-toggle="tooltip" data-placement="bottom" title="<?php echo $value["subdomainName"]; ?>">
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+                    <!-- <span class=""><?php echo $value["subdomainName"]; ?></span> -->
                 </a>  
         <?php   }
             }  ?>
@@ -298,6 +304,10 @@
 
 </nav>
 
+<?php if($subdomain != "welcome"){ 
+        $this->renderPartial($layoutPath.'loginRegister', array()); 
+      } 
+?>
 
 <?php if(isset(Yii::app()->session['userId'])) {
         $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";

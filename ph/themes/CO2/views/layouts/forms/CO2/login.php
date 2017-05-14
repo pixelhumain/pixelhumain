@@ -82,7 +82,7 @@
 
     @media screen and (max-width: 992px) {
         .box-login{
-            width:540px;
+            width:400px;
         }
     } 
 
@@ -95,7 +95,8 @@
 
 </style>
 <form class="form-login box-login" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="col-md-12 col-sm-12 col-xs-12 no-padding text-left pull-right">
+    <div class="col-md-12 col-sm-12 col-xs-12 no-padding text-left pull-right" 
+         style="margin-top: -5px; margin-bottom: -5px;">
 
         <div class="hidden-xs col-md-4 col-sm-4 col-xs-12 text-left pull-right">          
             <button class="btn btn-success loginBtn bg-green-k" type="submit">
@@ -105,17 +106,17 @@
 
         <div class="col-md-4 col-sm-4 col-xs-6 no-padding text-left pull-right">
             <label><i class="fa fa-key"></i> Un mot de passe</label> 
-            <input class="form-control" name="password" id="password-login" type="password" placeholder="mot de passe"><br>
-             <button class="btn btn-link no-margin btn-sm" data-toggle="modal" data-target="#modalForgot">
+            <input class="form-control" name="password" id="password-login" type="password" placeholder="mot de passe">
+             <button class="btn btn-link no-margin btn-sm" data-toggle="modal" data-target="#modalForgot" style="font-size: 10px;">
                 <!-- <i class="fa fa-s"></i> -->J'ai perdu mon mot de passe
             </button>
         </div>
 
         <div class="col-md-4 col-sm-4 col-xs-6 text-left pull-right">
             <label><i class="fa fa-envelope"></i> Un e-mail</label> 
-            <input class="form-control" name="email" id="email-login" type="text" placeholder="e-mail"><br>
+            <input class="form-control" name="email" id="email-login" type="text" placeholder="e-mail">
             <label for="remember" class="checkbox-inline">
-                <input type="checkbox" id="remember" name="remember">
+                <input type="checkbox" id="remember" name="remember" style="margin-top: 1px;">
                 Se souvenir de moi
             </label>
         </div>

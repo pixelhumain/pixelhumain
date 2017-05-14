@@ -130,8 +130,16 @@
 	color:white !important;
 	display: inline;
 }*/
-.contact-map {	background:url(<?php echo $this->module->assetsUrl; ?>/images/people.jpg) bottom center repeat-x; background-size: 80%;background-color:#DFE7E9;  }
-.headSection {	background:url(<?php echo $this->module->assetsUrl; ?>/images/1+1=3.jpg?c=c) bottom center no-repeat; background-size: 80%;background-color:#fff;  }
+.contact-map {	
+	background:url(<?php echo $this->module->assetsUrl; ?>/images/people.jpg) bottom center repeat-x; 
+	background-size: 60%;
+	background-color:#DFE7E9;  
+}
+.headSection {	
+	background:url(<?php echo $this->module->assetsUrl; ?>/images/1+1=3.jpg?c=c) bottom center no-repeat; 
+	background-size: 80%;
+	background-color:#fff;  
+}
 .keyword,.keyword1{margin-bottom: 3px;font-size:1.3em;}
 .keywordExplain,.usageExplain{font-size:1.3em;}
 .fa-caret-down{font-size:56px;line-height: 10px;}
@@ -166,13 +174,13 @@ a.btn.btn-github:hover{	color: #4078C0;	border-color: #4078C0;}
 	max-height: 600px;
 }
 
-.videoWrapper {
+/*.videoWrapper {
 	position: relative;
-	padding-bottom: 56.25%; /* 16:9 */
+	padding-bottom: 56.25%;  16:9 
 	padding-top: 25px;
 	height: 0;
-	/*display: none;*/
-}
+	/*display: none;* /
+}*/
 .videoWrapper iframe {
 	/*position: absolute;
 	top: 0;
@@ -202,11 +210,53 @@ a.btn.btn-github:hover{	color: #4078C0;	border-color: #4078C0;}
 .header-nowList{
 	display: none;
 }
-.el-nowList:hover{
-	width:100%;
-}
 .el-nowList{
-	margin-bottom: 10px;
+
+	width:23% !important;
+	margin-right:1%;
+	margin-left:1%;
+	margin-bottom: 15px !important;
+	float:left!important;
+}
+.el-nowList:hover{
+	width:23% !important;
+	float:left!important;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.7);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.7);
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.7);
+}
+/*.col-nowList hr{
+	margin-bottom: 50px!important;
+}*/
+
+a.link-submenu-header {
+    padding: 15px;
+    font-size: 20px;
+    border: 1px solid #e4e4e4;
+    margin-right: 5px !important;
+    border-radius: 3px;
+}
+
+.previewLocalActivity{
+	float: unset;
+	position: absolute;
+	z-index: 100;
+	left: 25%;
+	width: 50%;
+	min-height:400px;
+}
+
+#before-section-result{
+	display: none;
+}
+.peopleTalkComment{
+	font-size:11px;
+}
+.peopleTalkName{
+	font-weight: bold;
+}
+#co-friends .img-thumbnail{
+	width: 100%;
 }
 </style>
 
@@ -217,41 +267,69 @@ a.btn.btn-github:hover{	color: #4078C0;	border-color: #4078C0;}
 	  			//$this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.login'); 
 	  	?>
 	</div> -->
-	<div class="col-md-9 col-lg-9 col-sm-9 imageSection" 
-		 style="margin-top: 80px; text-align:center; cursor:pointer; position:relative;" 
+	<div class="col-md-12 col-lg-12 col-sm-12 imageSection" 
+		 style="margin-top: 50px; position:relative;" 
 		 onclick="openVideo()" >
 
 		<div class="col-md-12 no-padding">
-			<div class="col-md-6">
+			
+			<?php if(!isset(Yii::app()->session['userId'])) { ?>
+			<div class="col-md-7 text-center">
 				<div id="homeImg">
-					<img id="img-header" class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/1+1=3.jpg"/>
+					<img id="img-header" class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/1+1=3empty.jpg"/>
 				</div>
 			</div>
 
-
-			<div class="col-md-6">
+			<div class="col-md-4 margin-top-25 padding-bottom-15 margin-right-50" 
+				 style="border:1px solid #DDD; background-color: #F9F9F9; border-radius:4px;">
 				<?php 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 			  			$this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.register'); 
 			  	?>
 			</div>
-			<div class="col-md-12"><hr></div>
+			<?php } else { ?>
+			<div class="col-md-12 text-center">
+				<div id="homeImg">
+					<img id="img-header" class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/1+1=3empty.jpg"/>
+				</div>
+			</div>
+			<?php } ?>
 		</div>
 
-			
-		<div class="videoWrapper">
+
+		<div class="col-md-12 no-padding margin-top-25"><hr></div>
+
+
+		<div class="col-md-12">
+			<h3 class="text-red text-center"><i class="fa fa-hand-up"></i><br>parcourir les applications</h3>
+			<hr class="angle-down">
+		</div>
+		<div class="col-md-offset-1 col-md-10 shadow2 padding-25 margin-top-25">
+			<div class="mainmenu"></div>
+		</div>
+
+
+		<div class="col-md-12 margin-top-50">
+			<h3 class="text-red text-center"><i class="fa fa-clock-o fa-3x"></i><br><br>En ce moment sur le réseau</h3>
+			<div class="text-left" id="nowList"></div>
+		</div>
+
+		<div class="col-md-12 margin-top-50">
+			<h3 class="text-red text-center">En savoir plus</h3>
+			<hr class="angle-down">
+		</div>
+
+		<div class="videoWrapper col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
 
 			<!-- <a href="javascript:;" onclick="" class="btn-show-video"><i class="fa fa-youtube-play fa-5x"></i></a> -->
-			<iframe class="col-md-12" height="480" src="https://player.vimeo.com/video/133636468?api=1&title=0&amp;byline=0&amp;portrait=0&amp;color=57c0d4" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen class="video" aria-hidden="true" tabindex="-1">
+			<iframe class="col-md-12 col-xs-12" height="480" src="https://player.vimeo.com/video/133636468?api=1&title=0&amp;byline=0&amp;portrait=0&amp;color=57c0d4" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen class="video" aria-hidden="true" tabindex="-1">
 			</iframe>
 		</div>
 
 
-		
-
-		<div class="col-md-12 text-left margin-top-25" style="background-color:#fffff;color:#293A46;padding-bottom:40px; float:left;">
+		<!-- <div class="col-md-6 text-left margin-top-25" style="background-color:#fffff;color:#293A46;padding-bottom:40px; float:left;">
 			
 			<h4 class="text-dark homestead">Un réseau sociétal, territorial, citoyen, libre, gratuit et ouvert</h4>
-			<!-- En s'appuyant sur un <a href="javascript:;" data-id="explainSocietyNetwork" class="explainLink">réseau sociétal</a> (au service de la société) regroupant les acteurs d'un territoire, -->
+			<!-- En s'appuyant sur un <a href="javascript:;" data-id="explainSocietyNetwork" class="explainLink">réseau sociétal</a> (au service de la société) regroupant les acteurs d'un territoire, - ->
 			<a href="javascript:;" data-id="explainCommunecter" class="explainLink">"Communecter"</a> propose des outils numériques innovants et accessibles à tous, afin de créer ensemble
 			un <a href="javascript:;" data-id="explainConnectedTerritory" class="explainLink">territoire connecté</a> qui nous ressemble.
 			<br/><br/>Tout cela gratuitement, dans le respect des données de chacun, car Communecter est un <a href="javascript:;" data-id="explainCommuns" class="explainLink">bien commun</a>
@@ -264,10 +342,10 @@ a.btn.btn-github:hover{	color: #4078C0;	border-color: #4078C0;}
 			<li>Un site web qui vous tend les bras</li>
 			<li>Une application mobile (en cours de développement) </li>
 			<li>Des interfaces tierces contribuant à une base de donnée commune</li>
-			<!-- <li>Des instances indépendantes mais inter-opérantes par leurs <a href="javascript:;" data-id="explainOpenSource" class="explainLink">sémantiques</a> communes </li> *termes trop techniques pour user lambda => complique -->
+			<!-- <li>Des instances indépendantes mais inter-opérantes par leurs <a href="javascript:;" data-id="explainOpenSource" class="explainLink">sémantiques</a> communes </li> *termes trop techniques pour user lambda => complique - ->
 			</ul>
 			
-		</div>
+		</div> -->
 
 
 	</div>
@@ -276,11 +354,47 @@ a.btn.btn-github:hover{	color: #4078C0;	border-color: #4078C0;}
 	<div class="col-md-3 col-lg-3 col-sm-3 pull-right" style="margin-top: 100px;padding-right: 4%;">
 
 		<!-- <img class="img-responsive inline-block" src="<?php echo $this->module->assetsUrl; ?>/images/screens.png"/ style="max-height:100px;"> -->
-		<h5><i class="fa fa-angle-down"></i> Activité récente</h5>
-		<div class="text-left" id="nowList"></div>
+		
 	</div>
 
-	<div class="col-sm-12 no-padding" style="background-color:#E33551; max-width:100%; float:left;" id="teamSection">
+	<div class="col-sm-12 no-padding" style="background-color:#fff; max-width:100%; float:left;">
+		<div class="col-md-12" style="background-color:#E33551;width:100%;padding:8px 0px 8px 0%;">
+			<h1 class="homestead center text-white">
+				<i class="fa fa-user-circle"></i><br>Les amis de communecter
+			</h1>
+		</div>
+		<center>
+			<i class="fa fa-caret-down text-red"></i><br/>
+		</center>
+
+		<div id="co-friends" class="padding-15"></div>
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 ">
+			<img class="img-responsive img-thumbnail peopleTalkImg">
+			<span class="peopleTalkName text-extra-large"></span>
+			<br/>
+			<span class="peopleTalkProject text-extra-large"></span>
+		</div>
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 ">
+			<img class="img-responsive img-thumbnail peopleTalkImg">
+			<span class="peopleTalkName text-extra-large"></span>
+			<br/>
+			<span class="peopleTalkProject text-extra-large"></span>
+		</div>
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 ">
+			<img class="img-responsive img-thumbnail peopleTalkImg">
+			<span class="peopleTalkName text-extra-large"></span>
+			<br/>
+			<span class="peopleTalkProject text-extra-large"></span>
+		</div>
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 ">
+			<img class="img-responsive img-thumbnail peopleTalkImg">
+			<span class="peopleTalkName text-extra-large"></span>
+			<br/>
+			<span class="peopleTalkProject text-extra-large"></span>
+		</div>
+	</div>
+
+	<div class="col-sm-12 no-padding margin-top-50" style="background-color:#E33551; max-width:100%; float:left;" id="teamSection">
 		<!-- <div class="col-md-12" style="background-color:#293A46;width:100%;padding:8px 0px 8px 0%;">
 			<h1 class="homestead center text-white"><a href="#default.view.page.partners" class="lbh">Partenaires & Contributeurs</a> <i class="fa fa-share-alt fa-2x"></i></h1>
 		</div>
@@ -289,28 +403,35 @@ a.btn.btn-github:hover{	color: #4078C0;	border-color: #4078C0;}
 		</center> -->
 		<center>
 			<i class="fa fa-caret-down" style="color:#fff"></i><br/>
-			<h1 class="homestead" style="color:#fff"><i class="fa fa-users headerIcon"></i><br/>Construction collaborative</h1>
+			<h1 class="homestead" style="color:#fff">
+				<!-- <i class="fa fa-line-chart headerIcon"></i>  -->
+				EN AMÉLIORATION CONTINUE
+			</h1>
+			
 			<div class="col-sm-12 text-white padding-bottom-15">
-				Nous sommes en amélioration continue, cette plateforme est open source et construite de façon collaborative.
-				<h3 class="homestead">Rejoignez nous : </h3>
+				Communecter est une plateforme open source, construite de façon collaborative.
+				<!-- <i>"EN AMÉLIORATION CONTINUE"</i> -->
+				<h3 class="">Rejoignez nous : </h3>
 
 				<a href="#showTagOnMap.tag.developpeur" data-id="explainDeveloper"  class="lbh btn btn-default text-bold">Développeurs</a>
 				<a href="javascript:showTagOnMap ('#communecteur')" data-id="explainCommunecteur" class=" btn btn-default text-bold">Communecteurs</a>
 				<a href="javascript:showTagOnMap ('#editeur')" data-id="explainEditor" class=" btn btn-default text-bold">Editeurs </a>
-				<a href="javascript:showTagOnMap ('#designeur')" data-id="explainDesigner" class=" btn btn-default text-bold">Designeur </a>
-				<a href="javascript:showTagOnMap ('#contributeur')" data-id="explainContributor" class=" btn btn-default text-bold">Contributeurs</a>
-				<div class="space20"></div>
-				<a href="#organization.detail.id.<?php echo Yii::app()->params['openatlasId'] ?>" class="lbh btn btn-default text-bold">Association Open Atlas</a>
-				<a href="#project.detail.id.<?php echo Yii::app()->params['communecterId'] ?>"  class="lbh btn btn-default text-bold">Projet Communecter</a>
+				<a href="javascript:showTagOnMap ('#designeur')" data-id="explainDesigner" class=" btn btn-default text-bold">Designeur </a><br>
+				<a href="javascript:showTagOnMap ('#contributeur')" data-id="explainContributor" class="margin-top-10  btn btn-default text-bold">Contributeurs</a>
+				<a href="#organization.detail.id.<?php echo Yii::app()->params['openatlasId'] ?>" class="margin-top-10 lbh btn btn-default text-bold">Association Open Atlas</a>
+				<a href="#project.detail.id.<?php echo Yii::app()->params['communecterId'] ?>"  class="margin-top-10 lbh btn btn-default text-bold">Projet Communecter</a>
 			</div>
 		</center>
 		<div class="space20"></div>
 	</div>
 
-	<div class="col-md-12 contact-map" style="color:#293A46;padding-bottom:75px; float:left; width:100%;" id="contactSection">
+	<div class="col-md-12 contact-map padding-bottom-50" style="color:#293A46; float:left; width:100%;" id="contactSection">
 		<center>
-			<!-- <i class="fa fa-caret-down" style="color:#E33551"></i><br/> -->
-			<h1 class="homestead"><i class="fa fa-map-marker headerIcon"></i><br/>CONTACT</h1>
+			<i class="fa fa-caret-down" style="color:#E33551"></i><br/>
+			<h1 class="homestead">
+			<i class="fa fa-envelope headerIcon"></i><br/>
+			CONTACT
+			</h1>
 			+ 262 262 34 36 86<br><a href="#">contact@pixelhumain.com</a>
 
 			<ul class="social-list">
@@ -345,6 +466,9 @@ jQuery(document).ready(function() {
 	peopleTalkCt = getRandomInt(0,peopleTalk.length);
 	showPeopleTalk();
 
+	$(".mainmenu").html($("#modalMainMenu .links-main-menu").html());
+	//$("#modalMainMenu .links-main-menu").html("");
+
 	setTimeout(function(){ $("#input-communexion").hide(300); }, 300);
 
 	setTitle("Bienvenue sur <span class='text-red'>commune</span>cter","home","Bienvenue sur Communecter");
@@ -377,22 +501,77 @@ jQuery(document).ready(function() {
     	$(".usageExplain").html( $("."+$(this).data("id")).html()+link ).slideDown();
     	 $(".showKeywords").off().on("click",function() { $(".usageExplain").slideUp(); $(".keysKeyWords").slideDown();});
     });
+
+
+    $(".btn-main-menu").mouseenter(function(){ 
+        $(".menuSection2").addClass("hidden"); 
+        if( $(this).data("type") ) 
+            $("."+$(this).data("type")+"Section2").removeClass("hidden");
+    }).click(function(e) {  
+        e.preventDefault(); 
+        $('#modalMainMenu').modal("hide"); 
+        mylog.warn("***************************************"); 
+        mylog.warn("bindLBHLinks",$(this).attr("href")); 
+        mylog.warn("***************************************"); 
+        var h = ($(this).data("hash")) ? $(this).data("hash") : $(this).attr("href"); 
+        urlCtrl.loadByHash( h ); 
+    }); 
+
+    $(".tagSearchBtn").click(function(e) {  
+        e.preventDefault(); 
+        $('#modalMainMenu').modal("hide"); 
+        mylog.warn( ".tagSearchBtn",$(this).data("type"),$(this).data("stype"),$(this).data("tags") ); 
+
+        searchObj.types = $(this).data("type").split(",");
+        
+        if( $(this).data("stype") )
+            searchObj.stype = $(this).data("stype");
+        else
+            searchObj.tags = $(this).data("tags");
+        
+        urlCtrl.loadByHash($(this).data("app"));
+        urlCtrl.afterLoad = function () {     
+            //we have to pass by a variable to set the values         
+            searchType = searchObj.types;
+        
+            if( $(this).data("stype") )
+                $('#searchSType').val(searchObj.stype);
+            else
+                $('#searchTags').val(searchObj.tags);
+            startSearch();
+            searchObj = {};
+        }
+    }); 
 });
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function showPeopleTalk(step)
 {
-	if(!step)
-		step = 1;
-	peopleTalkCt = peopleTalkCt+step;
-	if( undefined == peopleTalk[ peopleTalkCt ]  )
-		peopleTalkCt = 0;
-	person = peopleTalk[ peopleTalkCt ];
-	$(".peopleTalkName").html( person.name );
-	$(".peopleTalkImg").attr("src",person.image);
-	$(".peopleTalkComment").html("<i class='fa fa-quote-left'></i> "+person.comment+"<i class='fa fa-quote-right'></i> ");
-	$(".peopleTalkProject").html( "<a target='_blank' href='"+person.url+"'>"+person.project+"</a>" );
+	// if(!step)
+	// 	step = 1;
+	// peopleTalkCt = peopleTalkCt+step;
+	// if( undefined == peopleTalk[ peopleTalkCt ]  )
+	// 	peopleTalkCt = 0;
+	// person = peopleTalk[ peopleTalkCt ];
+
+	var html = "";
+	$.each(peopleTalk, function(key, person){
+	html += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 padding-5" style="min-height:430px;max-height:430px;">' +
+				'<div class="" style="max-height:240px; overflow:hidden; max-width:100%;">' +
+				'<img class="img-responsive img-thumbnail peopleTalkImg" src="'+person.image+'"><br>' +
+				'</div>' +
+				'<span class="peopleTalkName">'+person.name+'</span><br>' +
+				'<span class="peopleTalkProject">'+person.project+'</span><br>' +
+				'<span class="peopleTalkComment inline-block">'+person.comment+'</span>' +
+			'</div>';
+	});
+
+	$("#co-friends").html( html );
+	// $(".peopleTalkName").html( person.name );
+	// $(".peopleTalkImg").attr("src",person.image);
+	// $(".peopleTalkComment").html("<i class='fa fa-quote-left'></i> "+person.comment+"<i class='fa fa-quote-right'></i> ");
+	// $(".peopleTalkProject").html( "<a target='_blank' href='"+person.url+"'>"+person.project+"</a>" );
 
 }
 
@@ -457,7 +636,7 @@ function loadLiveNow () {
 				contextData["address"]["depName"] : "");
 	*/
     var searchParams = {
-      "tpl":"/pod/nowList",
+      "tpl":"/pod/nowList",//"json", //
       //"latest" : true,
       //"searchType" : [typeObj["event"]["col"],typeObj["project"]["col"],
       //					typeObj["organization"]["col"],"classified",
@@ -472,7 +651,9 @@ function loadLiveNow () {
     };
 
     ajaxPost( "#nowList", baseUrl+'/'+moduleId+'/element/getdatadetail/type/0/id/0/dataName/liveNow?tpl=nowList',
-					searchParams, function() { 
+					searchParams, function(data) {
+					//var html = directory.showResultsDirectoryHtml(data);
+					//$("#nowList").html(html);
 			        bindLBHLinks();
      } , "html" );
 }
