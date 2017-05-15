@@ -6,8 +6,8 @@ function initCommentsTools(thisMedias){
         media.target = "news"; 
         
         var commentCount = 0;
-        idMedia=media._id['$id']; console.log("idMedia",idMedia);
-        idMediaShare=media._id['$id']; console.log("idMedia",idMedia);
+        idMedia=media._id['$id']; //console.log("idMedia",idMedia);
+        idMediaShare=media._id['$id']; //console.log("idMedia",idMedia);
         var typeMediaShare = "news";
         if(media.type=="activityStream") {
           idMediaShare = media.object.id;
@@ -27,6 +27,7 @@ function initCommentsTools(thisMedias){
 
         lblCommentCount = '<a href="javascript:" class="newsAddComment letter-blue" data-media-id="'+idMedia+'">' + lblCommentCount + '</a>';
 
+        if(typeof media.scope.type != "undefined" && media.scope.type != "private")
         lblCommentCount =  lblCommentCount+
                            "<button class='text-dark btn btn-link no-padding margin-right-10 btn-share bold'"+
                               " style='margin-top:-3px;'" +

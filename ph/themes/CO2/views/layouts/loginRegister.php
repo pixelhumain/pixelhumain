@@ -8,6 +8,57 @@
     .help-block{
         color:red;
     }
+    .topLogoAnim{
+      background-color: rgba(255, 255, 255, 0);
+      position: absolute;
+      z-index: 10;
+      top: 65px !important;
+      right: 13%;
+      width: 400px;
+      padding-left: 10px;
+    }
+    .topLogoAnim .homestead{
+      font-size:41px !important;
+      font-weight: 100 !important;
+    }
+    .titleWhite, .subTitle {
+    color: #3C5665 !important;
+    }
+    .subTitle {
+        font-weight: 300;
+        font-size: 13px;
+        margin-top: -15px !important;
+    }
+@media (min-width: 768px) and (max-width: 1200px) {
+    .topLogoAnim{
+        top: 40px !important;
+        right: 6%;
+    }
+    .topLogoAnim .homestead{
+      font-size:32px !important;
+    }   
+    .subTitle {
+        font-size: 10px;
+    }
+}
+@media (max-width: 768px){
+    .topLogoAnim{
+        top: 31% !important;
+        right: 0% !important;
+        width: 100%;
+          
+     }
+     .topLogoAnim .homestead{
+      font-size:18px !important;
+    }   
+    .subTitle {
+        font-size: 9px;
+        margin-top: -3px !important;
+    }
+    .portfolio-modal.modal .name{
+        letter-spacing: 2px;
+    }
+}
 </style>
 
 <form class="portfolio-modal modal fade form-login box-login" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
@@ -21,22 +72,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <span class="name font-blackoutM" >
+                    <span class="name" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
-                            <!-- <span class="letter letter-blue font-ZILAP letter-k">K</span>
-                            <span class="letter letter-yellow">G</span>
-                            <span class="letter letter-yellow font-ZILAP">O</span>
-                            <span class="letter letter-yellow">U</span>
-                            <span class="letter letter-green">G</span>
-                            <span class="letter letter-green">L</span>
-                            <span class="letter letter-green">E</span> -->
                         <?php } else { ?>
-                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">
+                            <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                                <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
+                                <?php  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.forms.CO2.menuTitle'); ?>
+                                     <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right" src="<?php echo $this->module->assetsUrl?>/images/logoL.jpg"/>
+                                <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
+                                </div>
+                            </div>
                         <?php } ?>
                     </span>
-                    <h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>
-                    <p>La connexion est réservée aux administrateurs du réseau.<hr></p>
+                    <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
+                    <h4 class="text-dark col-md-12 margin-top-5 homestead">
+                        <!-- Bienvenue sur la version CO.2 -->
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="45" 
+                             class="inline margin-bottom-15 margin-left-5">
+                        <br/>Le commun avance <span class="text-red">montez à bord !</span>
+                        <hr>
+                    </h4>
+                    
                 </div>
                 <div class="col-lg-12">
                     <p></p>
@@ -93,13 +150,13 @@
 
                 <div class="col-md-12 no-padding text-center">
                     <hr>
-                    <button class="btn btn-xs bg-white" data-toggle="modal" data-target="#modalForgot">
+                    <button class="btn bg-white" data-toggle="modal" data-target="#modalForgot">
                         <!-- <i class="fa fa-s"></i> -->J'ai perdu mon mot de passe
                     </button>
                     <br><br>
                     
                     <?php  if(Yii::app()->params["CO2DomainName"] != "kgougle"){ ?>
-                        <button class="btn btn-xs bg-white" data-toggle="modal" data-target="#modalRegister">
+                        <button class="btn btn-default bg-white" data-toggle="modal" data-target="#modalRegister">
                              <!-- <i class="fa fa-sign-in"></i> --> Je veux m'inscrire
                         </button>
                     <?php } ?>
@@ -129,15 +186,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <span class="name font-blackoutM" >
+                    <span class="name" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
                        <?php } else { ?>
-                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
+                                <?php  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.forms.CO2.menuTitle'); ?>
+                                     <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right" src="<?php echo $this->module->assetsUrl?>/images/logoL.jpg"/>
+                                <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
+                                </div>
+                            </div>
                         <?php } ?>
                     </span>
-                    <h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>
-                    <p>La connexion est réservée aux administrateurs du réseau.<hr></p>
+                    <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
+                    <p>Rejoindre la version co2<br/>Le commun avance, montez à bord !!<hr></p>
                 </div>
                 <div class="col-lg-12">
                     <p></p>
@@ -182,7 +245,7 @@
                 </div>
 
                 <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
-                <button class="btn bg-red text-white pull-right createBtn"><i class="fa fa-sign-in"></i> S'inscrire</button>
+                <button class="btn btn-success text-white pull-right createBtn"><i class="fa fa-sign-in"></i> S'inscrire</button>
                 
                 
                 <div class="col-md-12 margin-top-50 margin-bottom-50"></div>
@@ -234,7 +297,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <span class="name font-blackoutM" >
+                    <span class="name" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
                        <?php } else { ?>
@@ -317,7 +380,7 @@ jQuery(document).ready(function() {
     
     //$(".box").hide();
     Login.init();
-
+    titleAnim();
 
     $('.form-register #username').keyup(function(e) { 
         validateUserName();

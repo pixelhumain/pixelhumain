@@ -3,10 +3,16 @@
     if($communexion["state"] == false){
 ?>
 
-
-<?php if($communexion["state"] == false && @$type != "cities"){ ?>
+<?php 
+if($communexion["state"] == false && @$type != "cities" && isset(Yii::app()->session["userId"]) ) { 
+    $tooltip = Yii::t("common", "Connect to your city"); 
+    //var_dump($communexion["currentName"]);
+    if(!empty($communexion["currentName"])){ 
+        $tooltip = "Communecter avec ".$communexion["currentName"]; 
+    }
+?>
 <button class="pull-left btn btn-link bg-white text-red tooltips item-globalscope-checker start-new-communexion"
-        data-toggle="tooltip" data-placement="top" title="Communecter avec <?php echo @$communexion["currentName"]; ?>" 
+        data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip ; ?>"
         data-scope-value='<?php echo @$communexion["currentValue"]; ?>'
         data-scope-name='<?php echo @$communexion["currentName"]; ?>'
         data-scope-level='<?php echo @$communexion["levelMinCommunexion"]; ?>'
@@ -19,7 +25,6 @@
     </br><i class="fa fa-info-circle"></i> 
     <span id='msg_live_type'><?php echo $explain ?></span>
 <?php } ?>
-
     <?php if($type != "cities"){ ?>            
         <h5 class="pull-left letter-red" style="margin-bottom: -8px;margin-top: 14px;">
             <button class="btn btn-default main-btn-scopes text-white tooltips margin-bottom-5 margin-left-10 margin-right-10" 
@@ -63,10 +68,13 @@
         </button> 
         <?php 
             $tips="";
-            foreach(@$communexion["values"]["cities"] as $city){
-                $tips.=$city." / ";
-            }  ?>
-        <?php if(@$communexion["levelMinCommunexion"]=="inseeCommunexion"){ ?> 
+            if(!empty($communexion["values"]["cities"])){
+                foreach(@$communexion["values"]["cities"] as $city){
+                    $tips.=$city." / ";
+                }
+            }
+
+        if(@$communexion["levelMinCommunexion"]=="inseeCommunexion"){ ?> 
         <button data-toggle='dropdown' data-target='dropdown-multi-scope'
             class='btn btn-link text-red item-globalscope-checker homestead tooltips
                   <?php if(@$communexion["currentName"]!=@$communexion["values"]["cityCp"]) echo "inactive"; ?>' 
@@ -133,13 +141,15 @@
 
 var globalCommunexion="<?php echo $communexion["state"] ?>";
 var communexion=<?php echo json_encode($communexion) ?>;
+console.log("communexion bread",communexion);
 jQuery(document).ready(function() {
     loadMultiScopes();
-    $.cookie('communexionType', communexion.currentLevel, { expires: 365, path: location.pathname });
-    $.cookie('communexionValue', communexion.currentValue, { expires: 365, path: location.pathname });
-    $.cookie('communexionName', communexion.currentName, { expires: 365, path: location.pathname });
-    $.cookie('communexionLevel', communexion.levelMinCommunexion, { expires: 365, path: location.pathname });
-        
+    if(typeof communexion.currentName != "undefined" && communexion.currentName!=""){
+        $.cookie('communexionType', communexion.currentLevel, { expires: 365, path: "/" });
+        $.cookie('communexionValue', communexion.currentValue, { expires: 365, path: "/" });
+        $.cookie('communexionName', communexion.currentName, { expires: 365, path: "/" });
+        $.cookie('communexionLevel', communexion.levelMinCommunexion, { expires: 365, path: "/" });
+    }   
     if($.cookie('communexionActivated') == "true"){
         console.log("communexionActivated ok", $.cookie('communexionValue'));
         setGlobalScope($.cookie('communexionValue'), $.cookie('communexionName'), $.cookie('communexionType'), $.cookie('communexionLevel'));
@@ -151,10 +161,10 @@ jQuery(document).ready(function() {
 });
 
 function bindCommunexionScopeEvents(){
-    $(".btn-decommunecter").off().click(function(){
+    $(".btn-decommunecter").click(function(){
         activateGlobalCommunexion(false); 
     });
-    $(".item-globalscope-checker").off().click(function(){  
+    $(".item-globalscope-checker").click(function(){  
         $(".item-globalscope-checker").addClass("inactive");
         $(this).removeClass("inactive");
         mylog.log("globalscope-checker",  $(this).data("scope-name"), $(this).data("scope-type"));
@@ -162,7 +172,7 @@ function bindCommunexionScopeEvents(){
                          $(this).data("insee-communexion"), $(this).data("name-communexion"), $(this).data("cp-communexion"), 
                          $(this).data("region-communexion"), $(this).data("country-communexion")) ;
     });
-    $(".item-scope-input").off().click(function(){ 
+    $(".item-scope-input").click(function(){ 
             scopeValue=$(this).data("scope-value");
             if($(this).hasClass("disabled")){
                 $("[data-scope-value='"+scopeValue+"'] .item-scope-checker i.fa").removeClass("fa-circle-o");
@@ -195,8 +205,12 @@ function bindCommunexionScopeEvents(){
             checkScopeMax();
         });
 
-    $(".start-new-communexion").off().click(function(){  
-        activateGlobalCommunexion(true); 
+    $(".start-new-communexion").click(function(){  
+        if (typeof $.cookie('communexionName') !== 'undefined'){
+            activateGlobalCommunexion(true);
+        }else{
+            communecterUser();
+        }
     });
 }
 function activateGlobalCommunexion(active){  mylog.log("activateGlobalCommunexion", active);

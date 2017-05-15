@@ -968,7 +968,7 @@ onSave: (optional) overloads the generic saveProcess
 				$("#ajax-modal").modal("hide");
 		        showMap(true);
 		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
-		        if(typeof showMarkerNewElement != "undefined"){ showMarkerNewElement(); }
+		        if(typeof formInMap.showMarkerNewElement != "undefined"){ formInMap.showMarkerNewElement(); }
 		    });
 		}
 
@@ -982,7 +982,7 @@ onSave: (optional) overloads the generic saveProcess
 				$("#ajax-modal").modal("hide");
 		        showMap(true);
 		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
-		        if(typeof showMarkerNewElement != "undefined"){ showMarkerNewElement(true); }
+		        if(typeof formInMap.showMarkerNewElement != "undefined"){ formInMap.showMarkerNewElement(true); }
 		    });
 		}
 		

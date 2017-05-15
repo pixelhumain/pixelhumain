@@ -30,10 +30,12 @@ $mailConfigTest = array(
 );
 
 $params = array(
+    //Theme 
+    'theme' => 'CO2',
     //Beta Test ?
     'betaTest' => false,
     //By default controller
-    'defaultController' => 'communecter',
+    'defaultController' => 'CO2',
     // Mail configuration
     'adminEmail'=>'testmail.pixelhumain@gmail.com',
     'forceMailSend' => true,
@@ -85,6 +87,7 @@ $params = array(
     'mapboxToken' => 'pk.eyJ1IjoiY29tbXVuZWN0ZXIiLCJhIjoiY2lreWRkNzNrMDA0dXc3bTA1MHkwbXdscCJ9.NbvsJ14y2bMWWdGqucR_EQ',
 
     'CO2DomainName' => 'CO2', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
+    "theme"=> "CO2",
 
     //rocketchat params
     'rocketchatEnabled' => false,
