@@ -1,5 +1,5 @@
-<form class="form-register box-register padding-top-15">  
-    <div class="col-md-12 padding-50 text-left">
+<form class="form-register box-register">  
+    <div class="col-md-12 no-padding text-left">
         
         <h3 class="text-dark"><i class="fa fa-plus"></i> Créer un compte</h3>
         <label class="letter-black"><i class="fa fa-address-book-o"></i> Nom et prénom</label>

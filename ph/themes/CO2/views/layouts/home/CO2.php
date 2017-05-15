@@ -171,7 +171,7 @@ a.btn.btn-github:hover{	color: #4078C0;	border-color: #4078C0;}
 
 #img-header{
 	display:inline;
-	max-height: 600px;
+	max-height: 540px;
 }
 
 /*.videoWrapper {
@@ -268,19 +268,18 @@ a.link-submenu-header {
 	  	?>
 	</div> -->
 	<div class="col-md-12 col-lg-12 col-sm-12 imageSection" 
-		 style="margin-top: 50px; position:relative;" 
-		 onclick="openVideo()" >
+		 style="margin-top: 30px; position:relative;">
 
 		<div class="col-md-12 no-padding">
 			
 			<?php if(!isset(Yii::app()->session['userId'])) { ?>
-			<div class="col-md-7 text-center">
+			<div class="col-md-7 col-sm-7 text-center">
 				<div id="homeImg">
 					<img id="img-header" class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/1+1=3empty.jpg"/>
 				</div>
 			</div>
 
-			<div class="col-md-4 margin-top-25 padding-bottom-15 margin-right-50" 
+			<div class="col-md-4 col-sm-5 margin-top-25 padding-bottom-15 margin-right-50" 
 				 style="border:1px solid #DDD; background-color: #F9F9F9; border-radius:4px;">
 				<?php 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 			  			$this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.register'); 
@@ -296,20 +295,51 @@ a.link-submenu-header {
 		</div>
 
 
-		<div class="col-md-12 no-padding margin-top-25"><hr></div>
+		<!-- <div class="col-md-12 no-padding margin-top-25"><hr></div> -->
 
 
-		<div class="col-md-12">
+		<!-- <div class="col-md-12">
 			<h3 class="text-red text-center"><i class="fa fa-hand-up"></i><br>parcourir les applications</h3>
 			<hr class="angle-down">
-		</div>
-		<div class="col-md-offset-1 col-md-10 shadow2 padding-25 margin-top-25">
+		</div> -->
+		<div class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12 shadow2 padding-15 margin-top-25">
 			<div class="mainmenu"></div>
 		</div>
 
 
 		<div class="col-md-12 margin-top-50">
-			<h3 class="text-red text-center"><i class="fa fa-clock-o fa-3x"></i><br><br>En ce moment sur le réseau</h3>
+			<h3 class="text-red text-center">
+				<i class="fa fa-home fa-2x"></i><br>
+				Communexion<br>
+				<small>
+					<i class="fa fa-cross"></i> Vous n'êtes pas <span class="text-dark">communecté</span><br>
+					<small class="text-dark inline-block margin-top-5" style="line-height: 15px;">
+					<i class="fa fa-signal"></i> 
+					Être communecté vous permet de capter en direct les informations pertinentes<br>
+					qui se trouvent autour de vous.</small>
+				</small>
+			</h3>
+			<hr class="angle-down">
+			<h5 class="text-center">communectez-vous !</h5>
+			<select class="col-md-6 col-md-offset-3 form-input margin-bottom-5">
+				<option>France</option>
+			</select>
+			<input type="text" class="col-md-6 col-md-offset-3 form-input"
+				   style="border-radius:50px; height:40px; border: 2px solid red; color:red; margin-bottom:15px;"
+				   placeholder="communectez-vous : Nantes, Strasbourg, Avignon ?"></div>
+			<div class="col-md-6 col-md-offset-3" style="font-family: 11px;">
+	            <i class="fa fa-signal"></i> Pour utiliser le réseau à pleine puissance, nous vous conseillons de vous 
+	            <i><b>communecter</b></i>.<br><br>
+	            <i class="fa fa-magic"></i> Indiquez de préférence votre <b>commune de résidence</b>, 
+	            pour garder un œil sur ce qui se passe près de chez vous, de façon automatique.<br>
+	        </div>
+		</div>
+
+		
+		<div class="col-md-12 no-padding margin-top-25"><hr></div>
+		
+		<div class="col-md-12">
+			<h3 class="text-red text-center"><i class="fa fa-clock-o fa-2x"></i><br><br>En ce moment sur le réseau</h3>
 			<div class="text-left" id="nowList"></div>
 		</div>
 
@@ -318,10 +348,12 @@ a.link-submenu-header {
 			<hr class="angle-down">
 		</div>
 
-		<div class="videoWrapper col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
-
+		<div class="videoWrapper col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
 			<!-- <a href="javascript:;" onclick="" class="btn-show-video"><i class="fa fa-youtube-play fa-5x"></i></a> -->
-			<iframe class="col-md-12 col-xs-12" height="480" src="https://player.vimeo.com/video/133636468?api=1&title=0&amp;byline=0&amp;portrait=0&amp;color=57c0d4" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen class="video" aria-hidden="true" tabindex="-1">
+			<iframe class="col-md-12 col-xs-12 no-padding" height="480" 
+					src="https://player.vimeo.com/video/133636468?api=1&title=0&amp;byline=0&amp;portrait=0&amp;color=57c0d4" 
+					frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen class="video" 
+					aria-hidden="true" tabindex="-1" style="border:10px solid black;">
 			</iframe>
 		</div>
 
@@ -351,15 +383,15 @@ a.link-submenu-header {
 	</div>
 	
 
-	<div class="col-md-3 col-lg-3 col-sm-3 pull-right" style="margin-top: 100px;padding-right: 4%;">
+	<!-- <div class="col-md-3 col-lg-3 col-sm-3 pull-right" style="margin-top: 100px;padding-right: 4%;"> -->
 
 		<!-- <img class="img-responsive inline-block" src="<?php echo $this->module->assetsUrl; ?>/images/screens.png"/ style="max-height:100px;"> -->
 		
-	</div>
+	<!-- </div> -->
 
-	<div class="col-sm-12 no-padding" style="background-color:#fff; max-width:100%; float:left;">
+	<div class="col-sm-12 no-padding margin-top-50" style="background-color:#fff; max-width:100%; float:left;">
 		<div class="col-md-12" style="background-color:#E33551;width:100%;padding:8px 0px 8px 0%;">
-			<h1 class="homestead center text-white">
+			<h1 class="homestead text-center text-white">
 				<i class="fa fa-user-circle"></i><br>Les amis de communecter
 			</h1>
 		</div>

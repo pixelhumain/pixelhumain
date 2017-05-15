@@ -169,3 +169,76 @@
         </div> -->
     </div>      
 </form>
+
+
+<script>
+    
+
+var email = '<?php echo @$_GET["email"]; ?>';
+var userValidated = '<?php echo @$_GET["userValidated"]; ?>';
+var pendingUserId = '<?php echo @$_GET["pendingUserId"]; ?>';
+var name = '<?php echo @$_GET["name"]; ?>';
+var error = '<?php echo @$_GET["error"]; ?>';
+var invitor = "<?php echo @$_GET["invitor"]?>";
+
+var msgError = {
+    "accountAlreadyExists" : "<?php echo Yii::t("login","Your account already exists on the plateform : please try to login.") ?>",
+    "unknwonInvitor" : "<?php echo Yii::t("login","Something went wrong ! Impossible to retrieve your invitor.") ?>",
+    "somethingWrong" : "<?php echo Yii::t("login","Something went wrong !") ?>",
+};
+
+var buttonLabel = {
+    "password" : '<?php echo Yii::t("login","Get my password") ?>',
+    "validateEmail" : "<?php echo Yii::t("login","Send me validation email") ?>"
+};
+
+var timeout;
+var emailType;
+
+
+var requestedUrl = "<?php echo (isset(Yii::app()->session["requestedUrl"])) ? Yii::app()->session["requestedUrl"] : null; ?>";
+var REGISTER_MODE_TWO_STEPS = "<?php echo Person::REGISTER_MODE_TWO_STEPS ?>";
+
+jQuery(document).ready(function() {
+
+    //$('#email3').filter_input({regex:'/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/'});
+    //$('#registerName').filter_input({regex:'[^@#&\'\"\`\\\\]'});
+    //$('#username').filter_input({regex:'[^@#&\'\"\`\\\\]'});
+
+
+    //Remove parameters from URLs in case of invitation without reloading the page
+    removeParametersWithoutReloading();
+    
+    //$(".box").hide();
+    Login.init();
+    titleAnim();
+
+    $('.form-register #username').keyup(function(e) { 
+        validateUserName();
+    });
+
+    if(email != ''){
+        $('#email-login').val(email);
+        $('#email-login').prop('disabled', true);
+        $('#email2').val(email);
+        $('#email2').prop('disabled', true);
+        $('#email3').val(email);
+        $('#email3').prop('disabled', true);
+    }
+
+    //Validation of the user (invitation or validation)
+    userValidatedActions();
+
+    if (error != "") {
+        $(".custom-msg").show();
+        $(".custom-msg").text(msgError[error]);
+    }
+
+    $("#username").change(function(){
+        $("#registerName").val($(this).val());
+    });
+
+});
+
+
+</script>
