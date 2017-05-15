@@ -63,9 +63,9 @@ var hashUrl = null
 function openAjaxPanel (url,title,icon)  { 
 	
 }
-function showAjaxPanel (url,title,icon) 
+function showResPanel (url,title,icon) 
 { 
-	mylog.log("showAjaxPanel",baseUrl+'/'+moduleId+url,title,icon);
+	mylog.log("MDR showAjaxPanel",baseUrl+'/'+moduleId+url,title,icon);
 	rand = Math.floor((Math.random() * 8) + 1);
 	
 	if(typeof showFloopDrawer != "undefined")
@@ -115,7 +115,7 @@ function gotToPrevNav()
 	if(prevNav != null)
 	{
 		if( prevNav.func == "showAjaxPanel" )
-			showAjaxPanel( prevNav.url, prevNav.title, prevNav.icon );
+			showResPanel( prevNav.url, prevNav.title, prevNav.icon );
 		else if( prevNav.func == "showPanel" )
 			showPanel( prevNav.box, prevNav.bgStyle, prevNav.title, prevNav.icon );
 	}
