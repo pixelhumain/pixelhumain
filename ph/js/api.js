@@ -44,7 +44,7 @@ function ajaxPost(id,ajaxUrl,params,callback, datatype){
 function getAjax(id,ajaxUrl,callback,datatype,blockUI)
 {
   $.ajaxSetup({ cache: true});
-  mylog.log("getAjax",id,ajaxUrl,callback,datatype,blockUI)
+  mylog.log("getAjax",id,ajaxUrl,callback,datatype,blockUI);
     if(blockUI)
         $.blockUI({
             message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.processingMsg") ) ? themeObj.blockUi.processingMsg : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+

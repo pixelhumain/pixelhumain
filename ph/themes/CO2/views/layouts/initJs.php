@@ -141,12 +141,17 @@
         },
         dynForm : {
             onLoadPanel : function (elementObj) { 
-                $("#ajax-modal-modal-title").html("<i class='fa fa-"+elementObj.dynForm.jsonSchema.icon+"'></i> "+elementObj.dynForm.jsonSchema.title);
-                $("#ajax-modal-modal-title").removeClass("bg-green bg-turq bg-purple bg-orange bg-azure");
-                $("#ajax-modal-modal-body").append("<div class='space20'></div>");
+                $("#ajax-modal-modal-title").html(
+                        "<i class='fa fa-"+elementObj.dynForm.jsonSchema.icon+"'></i> "+
+                        elementObj.dynForm.jsonSchema.title);
                 
-                //if(typeof currentKFormType != "undefined" && typeObj[currentKFormType] && typeObj[currentKFormType].color)
-                    //$("#ajax-modal-modal-title").addClass("bg-"+typeObj[currentKFormType].color);
+                $("#ajax-modal .modal-header").removeClass("bg-green bg-turq bg-purple bg-orange bg-azure");
+                $("#ajax-modal .infocustom p").removeClass("text-green text-turq text-purple text-orange text-azure");
+                
+                if(typeof currentKFormType != "undefined" && typeObj[currentKFormType] && typeObj[currentKFormType].color){
+                    $("#ajax-modal .modal-header").addClass("bg-"+typeObj[currentKFormType].color);
+                    $("#ajax-modal .infocustom p").addClass("text-"+typeObj[currentKFormType].color);
+                }
                 
                 <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                 $(".locationBtn").on( "click", function(){
@@ -166,6 +171,28 @@
         }
     };
 
-    
+function expireAllCookies(name, paths) {
+    var expires = new Date(0).toUTCString();
+    document.cookie = name + '=; expires=' + expires;
+    for (var i = 0, l = paths.length; i < l; i++) {
+        document.cookie = name + '=; path=' + paths[i] + '; expires=' + expires;
+    }
+};
+
+function removeCookies() {
+    expireAllCookies('cityInseeCommunexion', ['/', '/ph', '/ph/co2']);
+    expireAllCookies('regionNameCommunexion', ['/', '/ph', '/ph/co2']);
+    expireAllCookies('nbCpbyInseeCommunexion', ['/', '/ph', '/ph/co2']);
+    expireAllCookies('communexionActivated', ['/ph', '/ph/co2']);
+    expireAllCookies('inseeCommunexion', ['/ph', '/ph/co2']);
+    expireAllCookies('cpCommunexion', ['/ph', '/ph/co2']);
+    expireAllCookies('cityNameCommunexion', ['/ph', '/ph/co2']);
+    expireAllCookies('communexionType', ['/ph', '/ph/co2']);
+    expireAllCookies('communexionValue', ['/ph', '/ph/co2']);
+    expireAllCookies('communexionName', ['/ph', '/ph/co2']);
+    expireAllCookies('communexionLevel', ['/ph', '/ph/co2']);
+}
+
+removeCookies();
     
 </script>

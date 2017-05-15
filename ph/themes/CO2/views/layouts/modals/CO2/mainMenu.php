@@ -64,14 +64,13 @@
                 <a href="#social" class=" btn-main-menu col-xs-3"  data-type="search" >    
                     <div class="modal-body text-center">
                         <h2 class="text-red"><i class="fa fa-search fa-2x padding-bottom-10"></i><br>
-                            <span class="font-blackoutT"> RECHERCHE</span>
+                            <span class="homestead"> RECHERCHE</span>
                         </h2>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
                             <h5>Le moteur de recherche
                                 <small class="hidden-xs"><br>
-                                    pour être connecté au territoire<br>à ses voisins, ses amis, sa tribue<br>
-                                    80% (en cours)
+                                    pour retrouver facilement les acteurs de son territoire
                                 </small>
                             </h5>
                         </div>
@@ -80,15 +79,14 @@
 
                 <a href="#annonces" class=" btn-main-menu col-xs-3" data-type="classified" >
                     <div class="modal-body text-center">
-                        <h2 class="text-orange"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
-                            <span class="font-blackoutT"> ANNONCES</span>
+                        <h2 class="text-red"><i class="fa fa-bullhorn fa-2x padding-bottom-10"></i><br>
+                            <span class="homestead"> ANNONCES</span>
                         </h2>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
-                            <h5>Un espace d'information
+                            <h5>Petites annonces locales
                                 <small class="hidden-xs"><br>
-                                    Un système de petites annonces révolutionnaire<br><br>
-                                    50% (en cours)
+                                    Pour consommer et coopérer différement
                                 </small>
                             </h5>
                         </div>
@@ -97,15 +95,14 @@
                            
                 <a href="#agenda" class=" btn-main-menu col-xs-3" data-type="agenda">
                     <div class="modal-body text-center">
-                        <h2 class="text-yellow"><i class="fa fa-calendar fa-2x padding-bottom-10"></i><br>
-                            <span class="font-blackoutT"> AGENDA</span>
+                        <h2 class="text-red"><i class="fa fa-calendar fa-2x padding-bottom-10"></i><br>
+                            <span class="homestead"> AGENDA</span>
                         </h2>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
                             <h5>Un agenda commun
                                 <small class="hidden-xs"><br>
-                                    pour être informé en temps réel de toute l'activité locale<br>
-                                    50% (en cours)
+                                    pour connaître en temps réel toute l'activité locale
                                 </small>
                             </h5>
                         </div>
@@ -114,8 +111,25 @@
                 
                 <a href="#power" class="btn-main-menu col-xs-3" > 
                     <div class="modal-body text-center">
-                        <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o fa-2x padding-bottom-10"></i><br>
-                            <span class="font-blackoutT"> DEMOCRATIE</span>
+                        <h2 class="text-red"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
+                            <span class="homestead"> LIVE</span>
+                        </h2>
+                        
+                        <div class="col-md-12 no-padding text-center hidden-xs">
+                            <h5>Un fil d'actualités commun
+                                <small class="hidden-xs"><br>
+                                    pour diffuser vos messages autrement
+                                </small>
+                            </h5>
+                        </div>
+                    </div>
+                </a>
+                    
+            </div>
+                <!-- <a href="#power" class="btn-main-menu col-xs-3" > 
+                    <div class="modal-body text-center">
+                        <h2 class="text-red"><i class="fa fa-hand-rock-o fa-2x padding-bottom-10"></i><br>
+                            <span class="homestead"> DEMOCRATIE</span>
                         </h2>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
@@ -127,7 +141,7 @@
                             </h5>
                         </div>
                     </div>
-                </a>
+                </a> -->
                 
                 <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 searchSection2" 
                      id="sub-menu-filliaire-menu">
@@ -186,18 +200,16 @@
                 </div> 
 
 
-                <div class="col-xs-12 text-center">
+                <!-- <div class="col-xs-12 text-center">
                 <?php 
                         if( isset( Yii::app()->session['userId']) ){
                     ?> 
                     <a href="javascript:;" style="font-size:25px;" class="btn btn-default letter-green bold " 
-                                        data-target="#dash-create-modal" data-toggle="modal" data-dismiss="modal" id="">
-                                    <i class="fa fa-plus-circle"></i> CRÉER UNE PAGE
-                                </a>
+                                        data-target="#selectCreate" data-toggle="modal" data-dismiss="modal" id="">
+                                    <i class="fa fa-plus-circle"></i> CRÉER UNE PAGE </a>
                     <?php } ?> 
                     
-                </div>                
-            </div>
+                </div>   -->  
 
             <br/>
 

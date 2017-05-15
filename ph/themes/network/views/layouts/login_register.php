@@ -444,7 +444,7 @@ var Login = function() {
 		    		  	var url = "<?php echo (isset(Yii::app()->session["requestedUrl"])) ? Yii::app()->session["requestedUrl"] : null; ?>";
 		    		  	//console.warn(url,", has #"+url.indexOf("#"),"count / : ",url.split("/").length - 1 );
 		    		  	if(backUrl != null){
-		    		  		loadByHash(backUrl);
+		    		  		urlCtrl.loadByHash(backUrl);
 		    		  		backUrl = null;
 		    		  	} else if(url && url.indexOf("#") >= 0 ) {
 		    		  		//console.log("login 1",url);
