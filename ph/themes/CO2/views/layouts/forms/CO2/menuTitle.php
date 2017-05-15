@@ -63,9 +63,9 @@ var hashUrl = null
 function openAjaxPanel (url,title,icon)  { 
 	
 }
-function showAjaxPanel (url,title,icon) 
+function showResPanel (url,title,icon) 
 { 
-	mylog.log("showAjaxPanel",baseUrl+'/'+moduleId+url,title,icon);
+	mylog.log("MDR showAjaxPanel",baseUrl+'/'+moduleId+url,title,icon);
 	rand = Math.floor((Math.random() * 8) + 1);
 	
 	if(typeof showFloopDrawer != "undefined")
@@ -115,7 +115,7 @@ function gotToPrevNav()
 	if(prevNav != null)
 	{
 		if( prevNav.func == "showAjaxPanel" )
-			showAjaxPanel( prevNav.url, prevNav.title, prevNav.icon );
+			showResPanel( prevNav.url, prevNav.title, prevNav.icon );
 		else if( prevNav.func == "showPanel" )
 			showPanel( prevNav.box, prevNav.bgStyle, prevNav.title, prevNav.icon );
 	}
@@ -194,7 +194,7 @@ function gotToPrevNav()
 <?php if(!isset($topTitleExists)){ ?>
 <div class="">
 	<div class="text-white text-extra-large text-bold center topLogoAnim " style="cursor: pointer" onclick="showPanel('box-communecter')">
-		<span class="titleRed text-red homestead" style="font-size:40px">CO</span><span  style="font-size:40px" class="titleWhite homestead">MMU</span><span  style="font-size:40px" class="titleWhite2 text-red homestead">NECTER</span>
+		<span class="titleRed text-red homestead" style="">CO</span><span  style="" class="titleWhite homestead">MMU</span><span  style="" class="titleWhite2 text-red homestead">NECTER</span>
 		<div class="subTitle" style="margin-top:-13px;">Se connecter à sa commune.</div>
 	</div>
 </div>

@@ -180,17 +180,22 @@ function expireAllCookies(name, paths) {
 };
 
 function removeCookies() {
-    expireAllCookies('cityInseeCommunexion', ['/', '/ph', '/ph/co2']);
-    expireAllCookies('regionNameCommunexion', ['/', '/ph', '/ph/co2']);
-    expireAllCookies('nbCpbyInseeCommunexion', ['/', '/ph', '/ph/co2']);
-    expireAllCookies('communexionActivated', ['/ph', '/ph/co2']);
-    expireAllCookies('inseeCommunexion', ['/ph', '/ph/co2']);
-    expireAllCookies('cpCommunexion', ['/ph', '/ph/co2']);
-    expireAllCookies('cityNameCommunexion', ['/ph', '/ph/co2']);
-    expireAllCookies('communexionType', ['/ph', '/ph/co2']);
-    expireAllCookies('communexionValue', ['/ph', '/ph/co2']);
-    expireAllCookies('communexionName', ['/ph', '/ph/co2']);
-    expireAllCookies('communexionLevel', ['/ph', '/ph/co2']);
+    expireAllCookies('cityInseeCommunexion', ['/', '/ph', '/ph/co2', 'co2']);
+    expireAllCookies('regionNameCommunexion', ['/', '/ph', '/ph/co2', 'co2']);
+    expireAllCookies('nbCpbyInseeCommunexion', ['/', '/ph', '/ph/co2', 'co2']);
+    expireAllCookies('countryCommunexion', ['/', '/ph', '/ph/co2']);
+    expireAllCookies('cityName', ['/', '/ph', '/ph/co2', 'co2']);
+    expireAllCookies('insee', ['/', '/ph', '/ph/co2', 'co2']);
+
+    expireAllCookies('communexionActivated', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('inseeCommunexion', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('cpCommunexion', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('cityNameCommunexion', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('communexionType', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('communexionValue', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('communexionName', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('communexionLevel', ['/ph', '/ph/co2', 'co2']);
+    //expireAllCookies('multiscopes', ['/ph', '/ph/co2', 'co2']);
 }
 
 removeCookies();
