@@ -1,7 +1,7 @@
 <?php
 
 	return array(
-		"Commons" => "Bien-commun",
+		"Commons" => "Communs",
 		"Open" => "Libre",
 		"Our values" => "Nos valeurs",
 		"Choose which kind of form to complete" => "Choisir le type de formulaire que vous souhaitez remplir",
@@ -30,6 +30,11 @@
 		"Project&#146;s values well updated"=> "Valeurs du projet modifiées avec succès",
 		"Edit chart" => "Editer la charte",
 		"Add chart" => "Ajouter la charte",
+		"Define {what} as a common. It means to manage one or several resources openly and transparently whitout appropriating it"=>"Définir {what} comme un commun. Cela signifie de gèrer une ou plusieurs ressources de manière ouverte et transparente , sans se l'approprier",
+		"Indicate the values {what} openly defining its properties and describing them"=>"Remplissez les valeurs {what} de manière libre en définnissant des propriétés et en les décrivant",
+		"{what} that manages one or several resources openly and transparently whitout appropriating it"=>"{what} qui gère une ou plusieurs ressources de manière ouverte et transparente , sans se l'approprier",
+		"{what} that shows its values openly adding few properties and describing them"=>"{what} montrant ses valeurs de manière libre en ayant indiqué des propriétés et en les décrivant",
+		"These forms are here to show the values {what} in order to give an overview about organization, manage and life {what}"=> "Ces formulaires permettent de montrer les valeurs {what} de façon à donner un aperçu sur l'organisation, la gestion et la vie {what}"
 	)
 
 ?>
