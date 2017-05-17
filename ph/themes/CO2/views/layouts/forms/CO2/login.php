@@ -79,6 +79,11 @@
         margin-top:7px;
     }
 
+    .help-block{
+        font-size:10px;
+        font-size: 9px;
+        font-weight: 100;
+    }
 
     @media screen and (max-width: 992px) {
         .box-login{
@@ -94,29 +99,30 @@
     }
 
 </style>
-<form class="form-login box-login" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="col-md-12 col-sm-12 col-xs-12 no-padding text-left pull-right" 
-         style="margin-top: -5px; margin-bottom: -5px;">
 
-        <div class="hidden-xs col-md-4 col-sm-4 col-xs-12 text-left pull-right">          
-            <button class="btn btn-success loginBtn bg-green-k" type="submit">
-                <i class="fa fa-sign-in"></i> Connexion
+<form class="form-login box-login" id="modalLogin">
+    <div class="col-md-12 col-sm-12 col-xs-12 no-padding text-left pull-right" style="margin-top: -5px; margin-bottom: -5px;">
+
+        <div class="col-md-4 col-sm-4 text-left pull-right">          
+            <button class="btn btn-success loginBtn bg-green-k" type="submit" style="margin-top: 18px;">
+                <i class="fa fa-sign-in"></i> <span class="hidden-xs">Connexion</span>
             </button><br><br>
         </div>
 
         <div class="col-md-4 col-sm-4 col-xs-6 no-padding text-left pull-right">
             <label><i class="fa fa-key"></i> Un mot de passe</label> 
             <input class="form-control" name="password" id="password-login" type="password" placeholder="mot de passe">
-             <button class="btn btn-link no-margin btn-sm" data-toggle="modal" data-target="#modalForgot" style="font-size: 10px;">
+             <a href="javascript:" class="btn btn-link no-margin btn-sm" data-toggle="modal" data-target="#modalForgot" 
+                style="font-size: 10px;text-transform: none!important;">
                 <!-- <i class="fa fa-s"></i> -->J'ai perdu mon mot de passe
-            </button>
+            </a>
         </div>
 
         <div class="col-md-4 col-sm-4 col-xs-6 text-left pull-right">
             <label><i class="fa fa-envelope"></i> Un e-mail</label> 
             <input class="form-control" name="email" id="email-login" type="text" placeholder="e-mail">
-            <label for="remember" class="checkbox-inline">
-                <input type="checkbox" id="remember" name="remember" style="margin-top: 1px;">
+            <label for="remember" class="checkbox-inline" style="text-transform: none!important;">
+                <input type="checkbox" id="remember" name="remember" style="margin-top: 2px;">
                 Se souvenir de moi
             </label>
         </div>
@@ -127,7 +133,7 @@
             </button><br><br>
         </div>
 
-        <div class="form-actions col-md-12 no-padding" style="margin-top:5px;">
+        <div class="form-actions col-md-12" style="margin-top:5px;">
             <div class="errorHandler alert alert-danger no-display loginResult">
                 <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","Please verify your entries.") ?>
             </div>
@@ -159,21 +165,14 @@
                 <i class="fa fa-remove-sign"></i><?php echo Yii::t("login","Impossible to find an account for this username or password.")?>
             </div>  
         </div>
-<!-- 
-        <div class="col-md-12 no-padding text-center">
-            <hr>
-            <button class="btn bg-white" data-toggle="modal" data-target="#modalForgot">
-                <!-- <i class="fa fa-s"></i> - ->J'ai perdu mon mot de passe
-            </button>
-            <br><br>
-        </div> -->
+
     </div>      
 </form>
 
 
+
 <script>
     
-
 var email = '<?php echo @$_GET["email"]; ?>';
 var userValidated = '<?php echo @$_GET["userValidated"]; ?>';
 var pendingUserId = '<?php echo @$_GET["pendingUserId"]; ?>';

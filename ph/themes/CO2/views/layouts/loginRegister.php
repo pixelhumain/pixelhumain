@@ -88,9 +88,9 @@
                     <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
                     <h4 class="text-dark col-md-12 margin-top-5 homestead">
                         <!-- Bienvenue sur la version CO.2 -->
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="45" 
-                             class="inline margin-bottom-15 margin-left-5">
-                        <br/>Le commun avance <span class="text-red">montez à bord !</span>
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="35" 
+                             class="inline margin-left-10">
+                        <!-- <br/>Le commun avance <span class="text-red">montez à bord !</span> -->
                         <hr>
                     </h4>
                     

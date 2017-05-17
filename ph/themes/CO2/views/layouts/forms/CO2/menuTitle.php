@@ -171,9 +171,11 @@ function gotToPrevNav()
 		{titleRed:"COMMUNE",titleWhite:"CTER",subTitle:"Pour améliorer la ville 2.2.main"}
 		
 	];
+	var timeoutanim = false;
 	function titleAnim () 
 	{ 
-		setTimeout(function()
+		if(timeoutanim!=false) clearTimeout(timeoutanim);
+		timeoutanim = setTimeout(function()
 		{
 			//mylog.log("titleAnim",titleMapIndex);
 			var map = titleMap[titleMapIndex];
@@ -188,7 +190,7 @@ function gotToPrevNav()
 			$(".subTitle").html(map.subTitle);
 			titleMapIndex = ( titleMapIndex == titleMap.length-1 ) ? 0 : titleMapIndex+1;
 			titleAnim ();
-		},3000);
+		},2000);
 	}
 </script>
 <?php if(!isset($topTitleExists)){ ?>

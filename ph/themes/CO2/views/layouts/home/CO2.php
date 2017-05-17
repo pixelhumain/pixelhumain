@@ -321,22 +321,26 @@ a.link-submenu-header {
 			</h3>
 			<hr class="angle-down">
 			<h5 class="text-center">communectez-vous !</h5>
-			<select class="col-md-6 col-md-offset-3 form-input margin-bottom-5">
+			<select class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input margin-bottom-5">
 				<option>France</option>
 			</select>
-			<input type="text" class="col-md-6 col-md-offset-3 form-input"
+			<input class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input text-center" 
+				   id="main-search-bar" type="text" 
 				   style="border-radius:50px; height:40px; border: 2px solid red; color:red; margin-bottom:15px;"
 				   placeholder="communectez-vous : Nantes, Strasbourg, Avignon ?"></div>
-			<div class="col-md-6 col-md-offset-3" style="font-family: 11px;">
+
+			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12" style="font-family: 11px;" id="info_co">
 	            <i class="fa fa-signal"></i> Pour utiliser le réseau à pleine puissance, nous vous conseillons de vous 
 	            <i><b>communecter</b></i>.<br><br>
 	            <i class="fa fa-magic"></i> Indiquez de préférence votre <b>commune de résidence</b>, 
 	            pour garder un œil sur ce qui se passe près de chez vous, de façon automatique.<br>
 	        </div>
+	        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="font-family: 11px;" id="dropdown_search">
+	        </div>
 		</div>
 
 		
-		<div class="col-md-12 no-padding margin-top-25"><hr></div>
+		<div class="col-md-12 col-sm-12 col-xs-12 no-padding margin-top-25"><hr></div>
 		
 		<div class="col-md-12">
 			<h3 class="text-red text-center"><i class="fa fa-clock-o fa-2x"></i><br><br>En ce moment sur le réseau</h3>
@@ -481,6 +485,61 @@ a.link-submenu-header {
 </div>
 
 
+<div class="portfolio-modal modal fade" id="modalForgot" tabindex="-1" role="dialog" aria-hidden="true">
+    <form class="modal-content form-email box-email padding-top-15"  >
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="name" >
+                        <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
+                       <?php } else { ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">
+                        <?php } ?>
+                    </span>
+                    <h4 class="letter-red no-margin" style="margin-top:-5px!important;">Mot de passe oublié ?</h4><br>
+                    <hr>
+                    <p><small>Indiquez votre addresse e-mail, vous recevrez un e-mail contenant votre mot de passe.</small></p>
+                    <hr>
+                    
+                </div>
+            </div>
+            <div class="col-md-4 col-md-offset-4 text-left">
+                
+                <label class="letter-black"><i class="fa fa-envelope"></i> E-mail</label><br>
+                <input class="form-control" id="email2" name="email2" type="text" placeholder="E-mail"><br/>
+                
+                <hr>
+
+                <div class="pull-left form-actions no-margin" style="width:100%; padding:10px;">
+                    <div class="errorHandler alert alert-danger no-display registerResult pull-left " style="width:100%;">
+                        <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","You have some form errors. Please check below.") ?>
+                    </div>
+                </div>
+
+                <!-- <div class="form-actions">
+                     <button type="submit"  data-size="s" data-style="expand-right" style="background-color:#E33551" class="forgotBtn ladda-button center center-block">
+                        <span class="ladda-label">XXXXXXXX</span><span class="ladda-spinner"></span><span class="ladda-spinner"></span>
+                    </button>
+                </div> -->
+
+                <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
+                <button class="btn btn-success text-white pull-right forgotBtn"><i class="fa fa-sign-in"></i> Envoyer</button>
+                
+                
+                <div class="col-md-12 margin-top-50 margin-bottom-50"></div>
+            </div>      
+        </div>
+    </form>
+</div>
+
+
 <script type="text/javascript">
 
 <?php $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
@@ -501,7 +560,21 @@ jQuery(document).ready(function() {
 	$(".mainmenu").html($("#modalMainMenu .links-main-menu").html());
 	//$("#modalMainMenu .links-main-menu").html("");
 
-	setTimeout(function(){ $("#input-communexion").hide(300); }, 300);
+	//setTimeout(function(){ $("#input-communexion").hide(300); }, 300);
+
+	var timerCo = false;
+			
+	$("#main-search-bar").keyup(function(){
+		if(timerCo != false) clearTimeout(timerCo);
+		timerCo = setTimeout(function(){ 
+			$("#info_co").html("");
+			searchType = ["cities"];
+			loadingData=false;
+			scrollEnd=false;
+			startSearch(0, 20);
+		}, 500);
+	});
+	$("#res-co").html();
 
 	setTitle("Bienvenue sur <span class='text-red'>commune</span>cter","home","Bienvenue sur Communecter");
 	$('.tooltips').tooltip();
