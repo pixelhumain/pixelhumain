@@ -704,7 +704,7 @@ button.btn-infos{
 	padding-bottom: 100px;
 	min-height: 100%;
 	background-color: white !important;
-	background-image: url("/pixelhumain/ph/assets/59a36187/images/bg/footer_menu_left.png");
+	/*background-image: url("/pixelhumain/ph/assets/59a36187/images/bg/footer_menu_left.png");*/
 background-repeat: repeat-x;
 background-position: 0% 100%;
 	-moz-box-shadow: 0px 5px 5px -2px #656565 !important;
