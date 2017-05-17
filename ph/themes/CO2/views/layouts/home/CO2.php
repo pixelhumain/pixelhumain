@@ -314,18 +314,36 @@ a.link-submenu-header {
 				<i class="fa fa-home fa-2x"></i><br>
 				Communexion<br>
 				<small>
-					<i class="fa fa-cross"></i> Vous n'êtes pas <span class="text-dark">communecté</span><br>
+				<i class="fa fa-cross"></i> 
+				<span id="communexionNameHome">
+				<?php 
+				if(empty($communexion["values"]["cityName"])){ ?>
+					Vous n'êtes pas <span class="text-dark">communecté</span>
+				<?php }else{ ?>
+					Vous êtes <span class="text-dark">communecté à <?php echo $communexion["values"]["cityName"];?> </span>
+				<?php } ?>
+				</span><br>
 					<small class="text-dark inline-block margin-top-5" style="line-height: 15px;">
-					<i class="fa fa-signal"></i> 
-					Être communecté vous permet de capter en direct les informations pertinentes<br>
-					qui se trouvent autour de vous.</small>
+						<i class="fa fa-signal"></i> 
+						Être communecté vous permet de capter en direct les informations pertinentes<br>
+						qui se trouvent autour de vous.</small>
 				</small>
 			</h3>
 			<hr class="angle-down">
-			<h5 class="text-center">communectez-vous !</h5>
-			<select class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input margin-bottom-5">
+			<h5 class="text-center">
+			<?php
+				echo ( empty($communexion["values"]["cityName"]) ? "communectez-vous !" : "changer de communexion" ) ;
+			?>
+			</h5>
+			<!-- <select class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input margin-bottom-5">
 				<option>France</option>
-			</select>
+				<?php
+					// echo "<option value=''>".Yii::t("common", "Choose a country")."</option>";
+					// foreach ( OpenData::$phCountries as $key => $value) {
+					// 	echo "<option value='".$key."'>".$value."</option>";
+					// }
+				?>
+			</select> -->
 			<input class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input text-center" 
 				   id="main-search-bar" type="text" 
 				   style="border-radius:50px; height:40px; border: 2px solid red; color:red; margin-bottom:15px;"
@@ -568,15 +586,22 @@ jQuery(document).ready(function() {
 	var timerCo = false;
 			
 	$("#main-search-bar").keyup(function(){
-		if(timerCo != false) clearTimeout(timerCo);
-		timerCo = setTimeout(function(){ 
-			$("#info_co").html("");
-			searchType = ["cities"];
-			loadingData=false;
-			scrollEnd=false;
-			startSearch(0, 20);
-		}, 500);
+		if($("#main-search-bar").val().length > 2){
+			if(timerCo != false) clearTimeout(timerCo);
+			timerCo = setTimeout(function(){ 
+				//$("#info_co").html("");
+				$("#info_co").addClass("hidden");
+				searchType = ["cities"];
+				loadingData=false;
+				scrollEnd=false;
+				startSearch(0, 20);
+			}, 500);
+		}else{
+			$("#info_co").removeClass("hidden");
+			$("#dropdown_search").html("");
+		}
 	});
+
 	$("#res-co").html();
 
 	setTitle("Bienvenue sur <span class='text-red'>commune</span>cter","home","Bienvenue sur Communecter");
