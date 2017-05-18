@@ -260,6 +260,12 @@ a.link-submenu-header {
 #co-friends .img-thumbnail{
 	width: 100%;
 }
+hr.angle-down::after {
+    background-color: #e6344d;
+}
+hr.angle-down{
+    border-color: #e6344d;
+}
 </style>
 
 <div class="home_page">
@@ -308,7 +314,8 @@ a.link-submenu-header {
 			<div class="mainmenu"></div>
 		</div>
 
-
+		<?php $isEmptyCo = empty($communexion["values"]["cityName"]); ?>
+			
 		<div class="col-md-12 margin-top-50">
 			<h3 class="text-red text-center">
 				<i class="fa fa-home fa-2x"></i><br>
@@ -320,21 +327,28 @@ a.link-submenu-header {
 				if(empty($communexion["values"]["cityName"])){ ?>
 					Vous n'êtes pas <span class="text-dark">communecté</span>
 				<?php }else{ ?>
-					Vous êtes <span class="text-dark">communecté à <?php echo $communexion["values"]["cityName"];?> </span>
+					Vous êtes <span class="text-dark">communecté à 
+					<span class="text-red"><?php echo $communexion["values"]["cityName"];?></span> </span>
 				<?php } ?>
 				</span><br>
-					<small class="text-dark inline-block margin-top-5" style="line-height: 15px;">
+					<small class="text-dark inline-block margin-top-5 info_co
+						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
+						 style="line-height: 15px;">
 						<i class="fa fa-signal"></i> 
 						Être communecté vous permet de capter en direct les informations pertinentes<br>
-						qui se trouvent autour de vous.</small>
+						qui se trouvent autour de vous.
+					</small>
 				</small>
 			</h3>
 			<hr class="angle-down">
-			<h5 class="text-center">
-			<?php
-				echo ( empty($communexion["values"]["cityName"]) ? "communectez-vous !" : "changer de communexion" ) ;
-			?>
-			</h5>
+			<?php if($isEmptyCo){ ?>
+				<h5 class="text-center">communectez-vous !</h5>
+			<?php } else { ?>
+				<div class="col-md-12 text-center">
+					<button class="btn btn-default" id="change_co">Changer de communexion</button>
+				</div>
+			<?php } ?>
+
 			<!-- <select class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input margin-bottom-5">
 				<option>France</option>
 				<?php
@@ -344,12 +358,15 @@ a.link-submenu-header {
 					// }
 				?>
 			</select> -->
-			<input class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input text-center" 
+			<input class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input text-center input_co 
+						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
 				   id="main-search-bar" type="text" 
 				   style="border-radius:50px; height:40px; border: 2px solid red; color:red; margin-bottom:15px;"
 				   placeholder="communectez-vous : Nantes, Strasbourg, Avignon ?"></div>
 
-			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12" style="font-family: 11px;" id="info_co">
+			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 info_co
+						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
+						 style="font-family: 11px;" id="info_co">
 	            <i class="fa fa-signal"></i> Pour utiliser le réseau à pleine puissance, nous vous conseillons de vous 
 	            <i><b>communecter</b></i>.<br><br>
 	            <i class="fa fa-magic"></i> Indiquez de préférence votre <b>commune de résidence</b>, 
@@ -590,19 +607,27 @@ jQuery(document).ready(function() {
 			if(timerCo != false) clearTimeout(timerCo);
 			timerCo = setTimeout(function(){ 
 				//$("#info_co").html("");
-				$("#info_co").addClass("hidden");
+				$(".info_co").addClass("hidden");
+				$("#change_co").addClass("hidden");
 				searchType = ["cities"];
 				loadingData=false;
 				scrollEnd=false;
+				totalData = 0;
 				startSearch(0, 20);
 			}, 500);
 		}else{
-			$("#info_co").removeClass("hidden");
+			$(".info_co").removeClass("hidden");
 			$("#dropdown_search").html("");
 		}
 	});
 
-	$("#res-co").html();
+
+    $("#change_co").click(function(){
+    	$(".info_co, .input_co").removeClass("hidden");
+		$("#change_co").addClass("hidden");
+
+    });
+
 
 	setTitle("Bienvenue sur <span class='text-red'>commune</span>cter","home","Bienvenue sur Communecter");
 	$('.tooltips').tooltip();
@@ -675,6 +700,7 @@ jQuery(document).ready(function() {
             searchObj = {};
         }
     }); 
+
 });
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -764,7 +790,7 @@ function showTagOnMap (tag) {
 
 
 function loadLiveNow () {
-	mylog.log("loadLiveNow");
+	mylog.log("loadLiveNow", communexion);
 	/*var dep = ( ( notNull(contextData["address"])  && notNull(contextData["address"]["depName"]) ) ? 
 				contextData["address"]["depName"] : "");
 	*/
@@ -777,11 +803,22 @@ function loadLiveNow () {
       //"searchTag" : $('#searchTags').val().split(','), //is an array
       //"searchLocalityCITYKEY" : $('#searchLocalityCITYKEY').val().split(','),
       //"searchLocalityCODE_POSTAL" : $('#searchLocalityCODE_POSTAL').val().split(','), 
-      "searchLocalityDEPARTEMENT" : new Array(""), //$('#searchLocalityDEPARTEMENT').val().split(','),
+      //"searchLocalityDEPARTEMENT" : new Array(""), //$('#searchLocalityDEPARTEMENT').val().split(','),
       //"searchLocalityREGION" : $('#searchLocalityREGION').val().split(','),
       "indexMin" : 0, 
       "indexMax" : 30 
     };
+
+    if(typeof communexion.state != "undefined"){
+   		if(communexion.state == true){
+   			if(communexion.currentLevel == "city")
+   			searchParams.searchLocalityCITYKEY = new Array(communexion.currentValue);
+   		}
+   	}//else{
+   		//searchParams.searchLocalityCITYKEY = new Array("");
+   	//}
+
+    //console.log("communexion ?", communexion);
 
     ajaxPost( "#nowList", baseUrl+'/'+moduleId+'/element/getdatadetail/type/0/id/0/dataName/liveNow?tpl=nowList',
 					searchParams, function(data) {
