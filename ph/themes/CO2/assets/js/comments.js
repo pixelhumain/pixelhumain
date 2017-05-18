@@ -7,7 +7,18 @@ function initCommentsTools(thisMedias){
         
         var commentCount = 0;
         idMedia=media._id['$id']; //console.log("idMedia",idMedia);
-        idMediaShare=media._id['$id']; //console.log("idMedia",idMedia);
+        idMediaShare=media._id['$id']; 
+        authorTypeMedia="citoyens";
+        console.log(media);
+        if(typeof media.author.id != "undefined")
+          authorIdMedia=media.author.id;
+        else
+          authorIdMedia=media.author;
+        if(typeof media.targetIsAuthor != "undefined"){
+          authorIdMedia=media.target.id;
+          authorTypeMedia=media.target.type;
+        }
+        //console.log("idMedia",idMedia);
         var typeMediaShare = "news";
         if(media.type=="activityStream") {
           idMediaShare = media.object.id;
@@ -31,7 +42,7 @@ function initCommentsTools(thisMedias){
         lblCommentCount =  lblCommentCount+
                            "<button class='text-dark btn btn-link no-padding margin-right-10 btn-share bold'"+
                               " style='margin-top:-3px;'" +
-                              " data-id='"+idMediaShare+"' data-type='"+typeMediaShare+"'>"+
+                              " data-id='"+idMediaShare+"' data-type='"+typeMediaShare+"' data-author-id='"+authorIdMedia+"' data-author-type='"+authorTypeMedia+"'>"+
                               "<i class='fa fa-share'></i> Partager"+
                            "</button>";
 
