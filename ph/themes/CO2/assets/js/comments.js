@@ -20,9 +20,12 @@ function initCommentsTools(thisMedias){
         }
         //console.log("idMedia",idMedia);
         var typeMediaShare = "news";
+        //Variables to know if we are on a share about activity stream or on a share of a news already share
+        idActivityShare="";
+        typeActivityShare="";
         if(media.type=="activityStream") {
-          idMediaShare = media.object.id;
-          typeMediaShare = media.object.type;
+          idActivityShare = media.object.id;
+          typeActivityShare = media.object.type;
         }
 
         if ("undefined" != typeof media.commentCount) 
@@ -42,7 +45,7 @@ function initCommentsTools(thisMedias){
         lblCommentCount =  lblCommentCount+
                            "<button class='text-dark btn btn-link no-padding margin-right-10 btn-share bold'"+
                               " style='margin-top:-3px;'" +
-                              " data-id='"+idMediaShare+"' data-type='"+typeMediaShare+"' data-author-id='"+authorIdMedia+"' data-author-type='"+authorTypeMedia+"'>"+
+                              " data-id='"+idMediaShare+"' data-type='"+typeMediaShare+"' data-author-id='"+authorIdMedia+"' data-author-type='"+authorTypeMedia+"' data-activity-id='"+idActivityShare+"' data-activity-type='"+typeActivityShare+"'>"+
                               "<i class='fa fa-share'></i> Partager"+
                            "</button>";
 
