@@ -8,16 +8,12 @@ function initCommentsTools(thisMedias){
         var commentCount = 0;
         idMedia=media._id['$id']; //console.log("idMedia",idMedia);
         idMediaShare=media._id['$id']; 
-        authorTypeMedia="citoyens";
+        authorTypeMedia="";
+        authorIdMedia="";
         console.log(media);
-        if(typeof media.author.id != "undefined")
-          authorIdMedia=media.author.id;
-        else
-          authorIdMedia=media.author;
-        if(typeof media.targetIsAuthor != "undefined"){
-          authorIdMedia=media.target.id;
-          authorTypeMedia=media.target.type;
-        }
+        if(typeof media.authorIdShare != "undefined")
+          authorTypeMedia=media.authorTypeShare
+          authorIdMedia=media.authorIdShare;
         //console.log("idMedia",idMedia);
         var typeMediaShare = "news";
         //Variables to know if we are on a share about activity stream or on a share of a news already share

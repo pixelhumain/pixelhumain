@@ -14,7 +14,7 @@ return array(
 	"verb share" => "a partagé",
 	"verb share pluriel" => "ont partagé",
 
-	"displayShared-news" 			=> "une publication",
+	"a news" 			=> "une publication",
 	"displayShared-projects" 		=> "un projet",
 	"displayShared-organizations" 	=> "une organization",
 	"displayShared-events" 			=> "un événement",

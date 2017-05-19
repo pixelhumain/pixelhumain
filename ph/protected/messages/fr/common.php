@@ -658,6 +658,7 @@ return array(
 	"an citizen" => "une organisation",
 	"a project" => "un projet",
 	"an event" => "un événement",
+	"an organization" => "une organisation",
 	
 	"Places" => "Lieux",
 	"No more news" => "fin du fil d'actus",
