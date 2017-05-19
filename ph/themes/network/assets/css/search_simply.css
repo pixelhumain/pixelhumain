@@ -78,7 +78,7 @@ fieldset{
 	margin-top:10px;
 }
 .my-main-container{
-    background-color: rgba(40, 40, 40, 0.3) !important;
+   /* background-color: rgba(40, 40, 40, 0.3) !important;*/
 	margin-left: 0px !important;
 	padding-left: 1px;
 }
