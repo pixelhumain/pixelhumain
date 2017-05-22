@@ -138,13 +138,16 @@ jQuery(document).ready(function() {
         $.cookie('communexionValue', communexion.currentValue, { expires: 365, path: "/" });
         $.cookie('communexionName', communexion.currentName, { expires: 365, path: "/" });
         $.cookie('communexionLevel', communexion.levelMinCommunexion, { expires: 365, path: "/" });
+        //$.cookie('communexionActivated', communexion.communexionActivated, { expires: 365, path: "/" });
     }   
     if($.cookie('communexionActivated') == "true"){
         console.log("communexionActivated ok", $.cookie('communexionValue'));
-        setGlobalScope($.cookie('communexionValue'), $.cookie('communexionName'), $.cookie('communexionType'), $.cookie('communexionLevel'));
-        bindCommunexionScopeEvents();
+        activateGlobalCommunexion(true);
+        //setGlobalScope($.cookie('communexionValue'), $.cookie('communexionName'), $.cookie('communexionType'), $.cookie('communexionLevel'));
+        //bindCommunexionScopeEvents();
     }else{
-        showTagsScopesMin();
+        activateGlobalCommunexion(false);
+        //showTagsScopesMin();
     }
     $(".tooltips").tooltip();
 });
