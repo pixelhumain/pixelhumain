@@ -655,9 +655,11 @@ return array(
 	"No results match in your search" =>  "Aucun résultat ne correspond à votre recherche",
 	"Invite by mail" => "Inviter par e-mail",
 	"a citizen" => "un citoyen",
-	"an citizen" => "une organisation",
+	"an organization" => "une organisation",
 	"a project" => "un projet",
 	"an event" => "un événement",
+	"an announce"=> "une annonce",
+	"a news" => "une publication",
 	
 	"Places" => "Lieux",
 	"No more news" => "fin du fil d'actus",
