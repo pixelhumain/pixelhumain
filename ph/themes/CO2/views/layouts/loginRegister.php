@@ -78,7 +78,9 @@
                         <?php } else { ?>
                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
-                                <?php  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.forms.CO2.menuTitle'); ?>
+                                <?php  
+                                $nameTheme = ( (Yii::app()->theme->name == "network") ? "CO2" : Yii::app()->theme->name );
+                                $this->renderPartial('webroot.themes.'.$nameTheme.'.views.layouts.forms.CO2.menuTitle'); ?>
                                      <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right" src="<?php echo $this->module->assetsUrl?>/images/logoL.jpg"/>
                                 <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
                                 </div>
@@ -192,7 +194,7 @@
                        <?php } else { ?>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
-                                <?php  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.forms.CO2.menuTitle'); ?>
+                                <?php  $this->renderPartial('webroot.themes.'.$nameTheme.'.views.layouts.forms.CO2.menuTitle'); ?>
                                      <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right" src="<?php echo $this->module->assetsUrl?>/images/logoL.jpg"/>
                                 <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
                                 </div>

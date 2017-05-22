@@ -454,11 +454,11 @@
       if(window.location.hash == "#default.simplyDirectory") {
         // Fragment exists
         loadingData = false;
-        startSearch(0, 100);
+        //startSearch(0, 100);
       } else {
         // Fragment doesn't exist
         urlCtrl.loadByHash("#default.simplydirectory");
-        startSearch(0, 100);
+        //startSearch(0, 100);
       }
       //enSavoirPlus(); 
     });
