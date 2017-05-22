@@ -2,264 +2,16 @@
 $communexion = CO2::getCommunexionCookies(); 
 ?>
 <style>
-
-.main-col-search{
-	padding:0px !important;
-	background-color: white !important;
-}
-.home_page h3.subtitle{
-	font-weight: 300;
-	font-size:20px;
-}
-.home_page h3.information{
-	/*font-weight: 500;*/
-	font-size:16px;
-}
-
-.home_page #main-logo-home{
-	max-height: 290px;
-	margin-top:30px;
-}
-
-.home_page .imageSectionVideo{
-	width:80%;
-	margin-left:10%;
-}
-.home_page .section-video{
-	margin-top: 40px;
-}
-
-.home_page .btn-top{
-	border-radius: 50px;
-}
-
-.home_page .btn-discover{
-	border-radius: 60px;
-	font-size: 50px;
-	font-weight: 200;
-	border: 1px solid transparent;
-	width: 90px;
-	height: 90px;
-}
-.home_page .btn-discover:hover{
-	background-color: white !important;
-	border-color: #2BB0C6 !important;
-	color: #2BB0C6 !important;
-}
-
-.home_page .discover-subtitle{
-	font-size:13px;
-	margin-top: -6px;
-	display: block;
-}
-
-.home_page .pastille{
-	height: 100%;
-	width: 100%;
-	border-radius: 50px;
-	font-size: 45px;
-	padding: 13px 32px;
-}
-
-.list-action{
-	/*width: 100%;*/
-	/*padding: 5px 10px;*/
-	margin-bottom:40px;
-	font-size: 15px;
-	font-weight: 300;
-}
-
-#img-network-for-all{
-	/*max-width: 800px;*/
-	padding:25px;
-}
-.menu-home-btn-ins{
-	position: fixed;
-	top: 0px;
-	padding: 5px;
-	right: 2%;
-	z-index: 30;
-	border-radius: 30px 30px 30px 30px;
-}
-/*#searchBarPostalCode{
-	margin-top: 10px;
-	width: 200px;
-	margin-left: 0px;
-	font-family: "homestead";
-	font-size: 22px !important;
-	border-radius: 3px !important;
-	height: 40px;
-}*/
-/*input[type="text"].input-search:focus{
-	/*border-color: #3C5665 !important;* /
-	-moz-box-shadow: 0px 0px 5px -1px #CF3838 !important;
-	-webkit-box-shadow: 0px 0px 5px -1px #CF3838 !important;
-	-o-box-shadow: 0px 0px 5px -1px #CF3838 !important;
-	box-shadow: 0px 0px 5px -1px #CF3838 !important;
-	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=5) !important;
-}
-
-#dropdown_search{
-	margin-top:30px;
-	margin-bottom:30px;
-}*/
-
-.btn-success.communected{
-	width: 50%;
-	margin-left: 25%;
-	padding: 10px;
-	border-radius: 20px;
-	background-color:#5cb85c;
-	color:white;
-}
-/*
-.searchEntity{
-	margin-bottom:10px;
-	margin-left:5px;
-	display: inline-block;
-}
-.searchEntity .entityRight{
-	text-align: center;
-	padding: 6px 16px !important;
-	margin-left: -1%;
-	border-radius: 30px;
-}
-.searchEntity .entityRight .entityLocality{
-	color:white !important;
-	display: inline;
-}
-.searchEntity .entityRight .entityName{
-	color:white !important;
-	display: inline;
-}*/
-.contact-map {	
-	background:url(<?php echo $this->module->assetsUrl; ?>/images/people.jpg) bottom center repeat-x; 
-	background-size: 60%;
-	background-color:#DFE7E9;  
-}
-.headSection {	
-	background:url(<?php echo $this->module->assetsUrl; ?>/images/1+1=3.jpg?c=c) bottom center no-repeat; 
-	background-size: 80%;
-	background-color:#fff;  
-}
-.keyword,.keyword1{margin-bottom: 3px;font-size:1.3em;}
-.keywordExplain,.usageExplain{font-size:1.3em;}
-.fa-caret-down{font-size:56px;line-height: 10px;}
-.headerIcon{font-size: 1.6em;}
-
-.social-list{	padding: 0;}
-.social-list li{	list-style-type: none;	display:inline;margin-right:10px;}
-.social-list li a{ font-size:20px;}
-.social-list .btn{	margin-top: 15px;}
-a.btn.btn-social{	color: #FFF;	background-color: #2a3945; }
-a.btn.btn-social:hover{	background: none;}
-a.btn.btn-facebook:hover{	color: #3b5998;}
-a.btn.btn-twitter:hover{	color: #00a0d1;	border-color: #00a0d1;}
-a.btn.btn-google:hover{	color: #dd4b39;	border-color: #dd4b39;}
-a.btn.btn-github:hover{	color: #4078C0;	border-color: #4078C0;}
-.yellowph{color:#F6E201;}
-.information{
-	font-size:15px;
-	color:#8b91a0;
-}
-
-
-.btn-show-video{
-	position:absolute;
-	bottom:10px;
-	right:40%;
-}
-
-
-#img-header{
-	display:inline;
-	max-height: 540px;
-}
-
-/*.videoWrapper {
-	position: relative;
-	padding-bottom: 56.25%;  16:9 
-	padding-top: 25px;
-	height: 0;
-	/*display: none;* /
-}*/
-.videoWrapper iframe {
-	/*position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;*/
-}
-
-.flexContainer {
-	display: flex;
-	align-items: center;
-    justify-content: center;
-}
-
-.explainLink {
-	color: #e33551;
-	text-decoration-line: underline !important;;
-	text-decoration-style : dotted !important;;
-}
-
-.home_page h1{
-	margin-top:5px;
-	padding:0 25px;
-	text-align:center;
-}
-
-.header-nowList{
-	display: none;
-}
-.el-nowList{
-
-	width:23% !important;
-	margin-right:1%;
-	margin-left:1%;
-	margin-bottom: 15px !important;
-	float:left!important;
-}
-.el-nowList:hover{
-	width:23% !important;
-	float:left!important;
-	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.7);
-	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.7);
-	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.7);
-}
-/*.col-nowList hr{
-	margin-bottom: 50px!important;
-}*/
-
-a.link-submenu-header {
-    padding: 15px;
-    font-size: 20px;
-    border: 1px solid #e4e4e4;
-    margin-right: 5px !important;
-    border-radius: 3px;
-}
-
-.previewLocalActivity{
-	float: unset;
-	position: absolute;
-	z-index: 100;
-	left: 25%;
-	width: 50%;
-	min-height:400px;
-}
-
-#before-section-result{
-	display: none;
-}
-.peopleTalkComment{
-	font-size:11px;
-}
-.peopleTalkName{
-	font-weight: bold;
-}
-#co-friends .img-thumbnail{
-	width: 100%;
-}
+	.contact-map {	
+		background:url(<?php echo $this->module->assetsUrl; ?>/images/people.jpg) bottom center repeat-x; 
+		background-size: 60%;
+		background-color:#DFE7E9;  
+	}
+	.headSection {	
+		background:url(<?php echo $this->module->assetsUrl; ?>/images/1+1=3.jpg?c=c) bottom center no-repeat; 
+		background-size: 80%;
+		background-color:#fff;  
+	}
 </style>
 
 <div class="home_page">
@@ -310,31 +62,44 @@ a.link-submenu-header {
 
 
 		<div class="col-md-12 margin-top-50">
+			<?php $isEmptyCo = empty($communexion["values"]["cityName"]); 
+				//var_dump($communexion);
+			?>
+			
 			<h3 class="text-red text-center">
 				<i class="fa fa-home fa-2x"></i><br>
 				Communexion<br>
 				<small>
 				<i class="fa fa-cross"></i> 
 				<span id="communexionNameHome">
-				<?php 
-				if(empty($communexion["values"]["cityName"])){ ?>
+				<?php if($isEmptyCo){ ?>
 					Vous n'êtes pas <span class="text-dark">communecté</span>
 				<?php }else{ ?>
-					Vous êtes <span class="text-dark">communecté à <?php echo $communexion["values"]["cityName"];?> </span>
+					Vous êtes <span class="text-dark">communecté à 
+					<span class="text-red"><?php echo $communexion["values"]["cityName"];?></span> </span>
 				<?php } ?>
 				</span><br>
-					<small class="text-dark inline-block margin-top-5" style="line-height: 15px;">
+					<small class="text-dark inline-block margin-top-5 info_co
+						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
+						 style="line-height: 15px;">
 						<i class="fa fa-signal"></i> 
 						Être communecté vous permet de capter en direct les informations pertinentes<br>
-						qui se trouvent autour de vous.</small>
+						qui se trouvent autour de vous.
+					</small>
 				</small>
 			</h3>
+
 			<hr class="angle-down">
-			<h5 class="text-center">
-			<?php
-				echo ( empty($communexion["values"]["cityName"]) ? "communectez-vous !" : "changer de communexion" ) ;
-			?>
+
+			<h5 class="text-center info_co <?php if(!$isEmptyCo) echo 'hidden'; ?>">
+				communectez-vous !
 			</h5>
+			<div class="col-md-12 text-center">
+				<button class="btn btn-default <?php if($isEmptyCo) echo 'hidden'; ?>" id="change_co">
+				Changer de communexion
+				</button>
+			</div>
+			
 			<!-- <select class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input margin-bottom-5">
 				<option>France</option>
 				<?php
@@ -344,12 +109,15 @@ a.link-submenu-header {
 					// }
 				?>
 			</select> -->
-			<input class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input text-center" 
+			<input class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input text-center input_co 
+						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
 				   id="main-search-bar" type="text" 
 				   style="border-radius:50px; height:40px; border: 2px solid red; color:red; margin-bottom:15px;"
 				   placeholder="communectez-vous : Nantes, Strasbourg, Avignon ?"></div>
 
-			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12" style="font-family: 11px;" id="info_co">
+			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 info_co
+						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
+						 style="font-family: 11px;" id="info_co">
 	            <i class="fa fa-signal"></i> Pour utiliser le réseau à pleine puissance, nous vous conseillons de vous 
 	            <i><b>communecter</b></i>.<br><br>
 	            <i class="fa fa-magic"></i> Indiquez de préférence votre <b>commune de résidence</b>, 
@@ -363,7 +131,17 @@ a.link-submenu-header {
 		<div class="col-md-12 col-sm-12 col-xs-12 no-padding margin-top-25"><hr></div>
 		
 		<div class="col-md-12">
-			<h3 class="text-red text-center"><i class="fa fa-clock-o fa-2x"></i><br><br>En ce moment sur le réseau</h3>
+			<h3 class="text-red text-center">
+				<i class="fa fa-clock-o fa-2x"></i><br>
+				En ce moment<br>
+				<small id="liveNowCoName">
+					<?php if($isEmptyCo){ ?>
+					sur le réseau
+					<?php }else{ ?>
+					<span class='text-red'>à <?php echo $communexion["values"]["cityName"];?></span>
+					<?php } ?>
+				</small>
+			</h3>
 			<div class="text-left" id="nowList"></div>
 		</div>
 
@@ -590,19 +368,27 @@ jQuery(document).ready(function() {
 			if(timerCo != false) clearTimeout(timerCo);
 			timerCo = setTimeout(function(){ 
 				//$("#info_co").html("");
-				$("#info_co").addClass("hidden");
+				$(".info_co").addClass("hidden");
+				$("#change_co").addClass("hidden");
 				searchType = ["cities"];
 				loadingData=false;
 				scrollEnd=false;
+				totalData = 0;
 				startSearch(0, 20);
 			}, 500);
 		}else{
-			$("#info_co").removeClass("hidden");
+			$(".info_co").removeClass("hidden");
 			$("#dropdown_search").html("");
 		}
 	});
 
-	$("#res-co").html();
+
+    $("#change_co").click(function(){
+    	$(".info_co, .input_co").removeClass("hidden");
+		$("#change_co").addClass("hidden");
+
+    });
+
 
 	setTitle("Bienvenue sur <span class='text-red'>commune</span>cter","home","Bienvenue sur Communecter");
 	$('.tooltips').tooltip();
@@ -675,6 +461,7 @@ jQuery(document).ready(function() {
             searchObj = {};
         }
     }); 
+
 });
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -764,7 +551,7 @@ function showTagOnMap (tag) {
 
 
 function loadLiveNow () {
-	mylog.log("loadLiveNow");
+	mylog.log("loadLiveNow", communexion);
 	/*var dep = ( ( notNull(contextData["address"])  && notNull(contextData["address"]["depName"]) ) ? 
 				contextData["address"]["depName"] : "");
 	*/
@@ -775,13 +562,27 @@ function loadLiveNow () {
       //					typeObj["organization"]["col"],"classified",
       //				 /*typeObj["organization"]["col"]*//*,typeObj["action"]["col"]*/], 
       //"searchTag" : $('#searchTags').val().split(','), //is an array
-      //"searchLocalityCITYKEY" : $('#searchLocalityCITYKEY').val().split(','),
+      "searchLocalityCITYKEY" : new Array(""),
       //"searchLocalityCODE_POSTAL" : $('#searchLocalityCODE_POSTAL').val().split(','), 
-      "searchLocalityDEPARTEMENT" : new Array(""), //$('#searchLocalityDEPARTEMENT').val().split(','),
+      //"searchLocalityDEPARTEMENT" : new Array(""), //$('#searchLocalityDEPARTEMENT').val().split(','),
       //"searchLocalityREGION" : $('#searchLocalityREGION').val().split(','),
       "indexMin" : 0, 
       "indexMax" : 30 
     };
+
+    console.log("communexion : ", communexion);
+    //if(typeof communexion.values.cityKey != "undefined"){
+   	//	searchParams.searchLocalityCITYKEY = new Array(communexion.values.cityKey);
+   	//}else{
+   		if($("#searchLocalityCITYKEY").val() != ""){
+   			searchParams.searchLocalityCITYKEY = new Array($("#searchLocalityCITYKEY").val());
+   		}else if(typeof communexion.values.cityKey != "undefined"){
+   			searchParams.searchLocalityCITYKEY = new Array(communexion.values.cityKey);
+   		}
+   		//searchParams.searchLocalityCITYKEY = new Array("");
+   	
+
+    //console.log("communexion ?", communexion);
 
     ajaxPost( "#nowList", baseUrl+'/'+moduleId+'/element/getdatadetail/type/0/id/0/dataName/liveNow?tpl=nowList',
 					searchParams, function(data) {
