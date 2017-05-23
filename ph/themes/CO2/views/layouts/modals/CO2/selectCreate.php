@@ -75,12 +75,12 @@
                     <small>Faire connaitre votre événement<br>Inviter des participants<br>Informer en direct</small>
                 </button>
                 <button data-form-type="classified"  data-dismiss="modal"
-                        class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-azure">
+                        class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-azure hide-event">
                     <h6><i class="fa fa-bullhorn fa-2x bg-azure"></i><br> Annonce</h6>
                     <small>Publier une petite annonce<br>Partager Donner Vendre Louer<br>Matériel Immobilier Emploi</small>
                 </button>
                 <button data-form-type="project"  data-dismiss="modal"
-                        class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-purple">
+                        class="btn btn-link btn-open-form col-xs-6 col-sm-6 col-md-3 col-lg-3 text-purple hide-event">
                     <h6><i class="fa fa-lightbulb-o fa-2x bg-purple"></i><br> Projet</h6>
                     <small>Faire connaitre votre projet<br>Trouver du soutien<br>Construire une communauté</small>
                 </button>
