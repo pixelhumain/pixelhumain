@@ -5,7 +5,7 @@
 	var prevNav = null;
 
 	function showPanel(box,bgStyle,title,icon){
-	
+	mylog.log("showPanel", box,bgStyle,title,icon);
 	lastUrl = null;
 	$("body.login").removeClass("bgred bggreen bgblack bgblue");
 	mylog.log("showPanel",box, bgcolorClass );
@@ -18,7 +18,7 @@
 		$(".connectMarker").fadeOut();
 		$("body.login").addClass("bgCity");
 		bgcolorClass = "bgCity";
-
+		mylog.log("showPanel2");
 		if(box == "box-add"){
 			Sig.clearMap();
 			Sig.map.setView([23.32517767999296, -31.9921875], 2);
