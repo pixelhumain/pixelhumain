@@ -309,10 +309,10 @@
       } 
 ?>
 
-<?php if(isset(Yii::app()->session['userId'])) {
+<?php /*if(isset(Yii::app()->session['userId'])) {
         $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
         $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.selectCreate',  array( ) ); 
-     }
+     }*/
 ?>
 
 <?php if(isset(Yii::app()->session['userId'])) 

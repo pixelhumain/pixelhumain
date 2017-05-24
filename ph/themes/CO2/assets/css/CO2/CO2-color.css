@@ -29,6 +29,9 @@
 .letter-azure{
     color:#2BB0C6 !important;
 }
+.letter-green-poi{
+    color:#20C06B !important;
+}
 
 
 .c100.blue .bar,
@@ -104,7 +107,9 @@ a.text-red:hover{
 a.text-white:hover{
     color:#FFF !important;
 }
-
+.text-green-poi{
+    color:#20C06B !important;
+}
 
 .text-yellow-PH{
     color:#fffc00!important;
@@ -139,6 +144,12 @@ a.text-white{
     background-color: white;
 }
 
+.bg-url, a.bg-url {
+    background-color: #8287ec !important;
+}
+.text-url{
+    color: #8287ec;
+}
 
 .text-turq{
     color: #229296!important;
@@ -200,6 +211,11 @@ a.text-white{
 .bg-turq{
     background-color: #229296!important;
 }
+
+.bg-green-poi{
+    background-color:#20C06B !important;
+}
+
 
 hr.angle-down::after {
     background-color: #7bc3d1;

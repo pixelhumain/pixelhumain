@@ -225,7 +225,7 @@
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
         <?php //$this->renderPartial($layoutPath.'loginRegister', array()); ?>
         <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
-        <?php $this->renderPartial($layoutPath.'modals.CO2.selectCreate', array("me"=>$me) ); ?>
+        <?php //$this->renderPartial($layoutPath.'modals.CO2.selectCreate', array("me"=>$me) ); ?>
 
         <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
