@@ -585,7 +585,7 @@
 			} 
 			else{ //si l'utilisateur est déjà passé par le two_step_register
 		 		if(location.hash != "#network.simplydirectory" && location.hash != "#" && location.hash != ""){
-		 			//console.warn("hash 2", location.hash);
+		 			console.warn("hash 2", location.hash);
 		 			//getAjaxFiche(location.hash,0);
 					urlCtrl.loadByHash(location.hash);
 					return;
@@ -598,9 +598,6 @@
 						urlCtrl.loadByHash("#default.live");//news.index.type.citoyens.id."+userId);
 					else
 						urlCtrl.loadByHash("#default.live");
-					//}
-
-					//urlCtrl.loadByHash("#default.home");
 				}
 			}
 			checkScroll();

@@ -10,7 +10,7 @@ return array(
 	"News" => "Fil d'actualités",
 	"Activity" => "Activités",
 	"News sent to" => "Destination de la news",
-	"verb create" => "a créé",
+	/*"verb create" => "a créé",
 	"verb share" => "a partagé",
 	"verb share pluriel" => "ont partagé",
 
@@ -18,7 +18,11 @@ return array(
 	"displayShared-projects" 		=> "un projet",
 	"displayShared-organizations" 	=> "une organization",
 	"displayShared-events" 			=> "un événement",
-	"displayShared-classified" 		=> "une annonce",
+	"displayShared-classified" 		=> "une annonce",*/
+	"a news"       => "une publication", 
+	"created" => "a créé", 
+  	"shared" => "a partagé", 
+  	"have shared" => "ont partagé", 
 );
 
 ?>

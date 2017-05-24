@@ -1,6 +1,6 @@
 /*@import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);*/
-* {
+/* {
     margin: 0;
     padding: 0;
     -webkit-box-sizing: border-box;
@@ -21,10 +21,10 @@
     text-shadow: 1px 1px 2px #000000;
     
 background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, #1b1b1b 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, #1b1b1b 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #1b1b1b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a64d4d4d',GradientType=0 ); /* IE6-9 */
-} */
+/*background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, #1b1b1b 100%); /* Chrome10-25,Safari5.1-6 */
+/*background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #1b1b1b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a64d4d4d',GradientType=0 ); /* IE6-9 */
+/*} */
 .iamgurdeeposahan {
     border-radius: 4px 4px 0 0;
 }
@@ -637,6 +637,30 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
     /* LIVE NOW */
 
+    
+    #div-select-create button i.fa{
+        width:50px;
+        height:50px;
+        text-align: center;
+        border-radius: 50px;
+        color:white!important;
+        padding-top:12px;
+        margin-bottom: 6px;
+
+    }
+
+    #div-select-create button:hover{
+        border: 1px solid #e3e3e3;
+        border-radius: 0px;
+    }
+    #div-select-create small{
+        text-transform: uppercase;
+        font-size: 11px;
+    }
+    .btn-open-form:hover,
+    .btn-open-form:active{
+        text-decoration: none;
+    }
 
 
 @media screen and (max-width: 1024px) {
@@ -665,6 +689,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     #shortDescriptionHeader{
         font-size: 13px;
         line-height: 17px;
+    }
+    #div-select-create small{
+        font-size: 9px;
+        text-transform: none !important;
+        font-weight: bold;
     }
 }
 

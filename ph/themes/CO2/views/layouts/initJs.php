@@ -141,9 +141,12 @@
         },
         dynForm : {
             onLoadPanel : function (elementObj) { 
+                console.log("currentKFormType", currentKFormType);
+                var typeName = (typeof currentKFormType != "undefined") ? trad["add"+currentKFormType] : elementObj.dynForm.jsonSchema.title;
+                var typeIcon = (typeof currentKFormType != "undefined") ? typeObj[currentKFormType].icon : elementObj.dynForm.jsonSchema.icon;
+
                 $("#ajax-modal-modal-title").html(
-                        "<i class='fa fa-"+elementObj.dynForm.jsonSchema.icon+"'></i> "+
-                        elementObj.dynForm.jsonSchema.title);
+                        "<i class='fa fa-"+typeIcon+"'></i> "+typeName);
                 
                 $("#ajax-modal .modal-header").removeClass("bg-green bg-turq bg-purple bg-orange bg-azure");
                 $("#ajax-modal .infocustom p").removeClass("text-green text-turq text-purple text-orange text-azure");
@@ -180,17 +183,22 @@ function expireAllCookies(name, paths) {
 };
 
 function removeCookies() {
-    expireAllCookies('cityInseeCommunexion', ['/', '/ph', '/ph/co2']);
-    expireAllCookies('regionNameCommunexion', ['/', '/ph', '/ph/co2']);
-    expireAllCookies('nbCpbyInseeCommunexion', ['/', '/ph', '/ph/co2']);
-    expireAllCookies('communexionActivated', ['/ph', '/ph/co2']);
-    expireAllCookies('inseeCommunexion', ['/ph', '/ph/co2']);
-    expireAllCookies('cpCommunexion', ['/ph', '/ph/co2']);
-    expireAllCookies('cityNameCommunexion', ['/ph', '/ph/co2']);
-    expireAllCookies('communexionType', ['/ph', '/ph/co2']);
-    expireAllCookies('communexionValue', ['/ph', '/ph/co2']);
-    expireAllCookies('communexionName', ['/ph', '/ph/co2']);
-    expireAllCookies('communexionLevel', ['/ph', '/ph/co2']);
+    expireAllCookies('cityInseeCommunexion', ['/', '/ph', '/ph/co2', 'co2']);
+    expireAllCookies('regionNameCommunexion', ['/', '/ph', '/ph/co2', 'co2']);
+    expireAllCookies('nbCpbyInseeCommunexion', ['/', '/ph', '/ph/co2', 'co2']);
+    expireAllCookies('countryCommunexion', ['/', '/ph', '/ph/co2']);
+    expireAllCookies('cityName', ['/', '/ph', '/ph/co2', 'co2']);
+    expireAllCookies('insee', ['/', '/ph', '/ph/co2', 'co2']);
+
+    expireAllCookies('communexionActivated', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('inseeCommunexion', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('cpCommunexion', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('cityNameCommunexion', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('communexionType', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('communexionValue', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('communexionName', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('communexionLevel', ['/ph', '/ph/co2', 'co2']);
+    //expireAllCookies('multiscopes', ['/ph', '/ph/co2', 'co2']);
 }
 
 removeCookies();

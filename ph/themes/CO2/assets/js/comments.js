@@ -35,6 +35,14 @@ function initCommentsTools(thisMedias){
                               "<i class='fa fa-share'></i> Partager"+
                            "</button>";
 
+        var countShare = media.sharedBy.length-1;
+        if(countShare > 1)
+        lblCommentCount =  lblCommentCount+
+                           "<small class='pull-right tooltips' data-original-title='ce message a été partagé "+countShare+" fois'"+
+                              " style='margin-top:3px;'>" +
+                              "<i class='fa fa-share'></i> "+countShare+
+                           "</small>";
+
 
         var voteTools = voteCheckAction(media._id['$id'], media);
 

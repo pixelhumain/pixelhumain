@@ -142,7 +142,6 @@
 	    //Updates the values of the main variables
         function updateValues() {
             var syntaxMessage = getInputBoxValue(); //Get the actual value of the text area
-
             _.each(mentionsCollection, function (mention) {
                 var textSyntax = settings.templates.mentionItemSyntax(mention);
                 syntaxMessage = syntaxMessage.replace(new RegExp(utils.regexpEncode(mention.value), 'g'), textSyntax);
@@ -532,13 +531,22 @@
                 initAutocomplete();
                 initMentionsOverlay();
                 resetInput(settings.defaultValue);
+                //addMention(settings.defaultValue);
+                //updateValues();
 
                 //If the autocomplete list has prefill mentions
                 if( settings.prefillMention ) {
                     addMention( settings.prefillMention );
                 }
             },
+            addMention:function(mention){
+                addMention(mention);
+            },
+            update:function(mention){
+                mentionsCollection=mention;
 
+                updateValues();
+            },
 	        //An async method which accepts a callback function and returns a value of the input field (including markup) as a first parameter of this function. This is the value you want to send to your server.
             val : function (callback) {
                 if (!_.isFunction(callback)) {
@@ -577,8 +585,9 @@
         }
 
         return this.each(function () {
+            console.log(settings);
             var instance = $.data(this, 'mentionsInput') || $.data(this, 'mentionsInput', new MentionsInput(settings));
-
+            console.log(instance);
             if (_.isFunction(instance[method])) {
                 return instance[method].apply(this, Array.prototype.slice.call(outerArguments, 1));
             } else if (typeof method === 'object' || !method) {

@@ -54,7 +54,7 @@
     </head>
 
 
-    <body id="page-top" class="index">
+    <body id="page-top" class="index" style="display: none;">
 
         <!-- **************************************
         MAP CONTAINER
@@ -79,7 +79,7 @@
               $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); 
               ?>   
         
-        <?php $this->renderPartial($layoutPath.'loginRegister', array()); ?>
+        <?php //$this->renderPartial($layoutPath.'loginRegister', array()); ?>
 
         <?php  if( isset(Yii::app()->session["userId"]) )
                 $this->renderPartial('../news/modalShare',
@@ -223,13 +223,15 @@
         ?>
 
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
-        <?php $this->renderPartial($layoutPath.'loginRegister', array()); ?>
+        <?php //$this->renderPartial($layoutPath.'loginRegister', array()); ?>
         <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
-        <?php $this->renderPartial($layoutPath.'modals.CO2.selectCreate', array("me"=>$me) ); ?>
+        <?php //$this->renderPartial($layoutPath.'modals.CO2.selectCreate', array("me"=>$me) ); ?>
 
         <script>          
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
-            jQuery(document).ready(function() {
+            jQuery(document).ready(function() { 
+                $.blockUI();
+                
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
                     if(typeof urlCtrl.loadableUrls[k] == "undefined")
@@ -240,8 +242,12 @@
                         });
                     }
                 });
+
                 themeObj.init();
                 urlCtrl.loadByHash(location.hash,true);
+                setTimeout(function(){
+                    $("#page-top").show();
+                }, 500);
             });
             console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
         </script>
