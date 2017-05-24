@@ -201,19 +201,6 @@ function gotToPrevNav()
 	</div>
 </div>
 <?php } ?>
-<!-- <div class="box-menu box">
-	<ul class="text-white text-bold" style="list-style: none; font-size: 3.1em; margin-top:50px; ">
-		<li style="margin-left:50px"><i class="fa fa-share-alt"></i> <a href="#" style="color:white" onclick="showPanel('box-whatisit','bgyellow')">WHAT</a></li>
-		<li style="margin-left:50px"><i class="fa fa-heart"></i> <a href="#" style="color:white" onclick="showPanel('box-why','bggreen')">WHY</a></li>
-		<li style="margin-left:50px"><i class="fa fa-group"></i> <a href="#" style="color:white" onclick="showPanel('box-4who','bgblue')">WHO</a></li>
-		<li style="margin-left:50px"><i class="fa fa-laptop"></i> <a href="#" style="color:white" onclick="showPanel('box-how','bggreen')">HOW</a></li>
-		<li style="margin-left:50px"><i class="fa fa-calendar"></i> <a href="#" style="color:white" onclick="showPanel('box-when','bgyellow')">WHEN</a></li>
-		<li style="margin-left:50px">&nbsp;<i class="fa fa-map-marker"></i> <a href="#" style="color:white" onclick="showPanel('box-where','bgblue')">WHERE</a></li>
-		<li style="margin-left:50px">&nbsp;<i class="fa fa-lightbulb-o"></i> <a href="#" style="color:white" onclick="showPanel('box-help')">HELP US</a></li>
-		<li style="margin-left:50px"><i class="fa fa-<?php echo (isset($actionIcon)) ? $actionIcon : "globe" ?>"></i> <a href="#" style="color:white" onclick="showPanel('box-login')"><?php echo (isset($actionTitle)) ? $actionTitle : "CONNECT" ?></a></li>
-		<li style="margin-left:50px"><i class="fa fa-youtube-play"></i> <a href="#" onclick="showVideo('74212373')"><img style="height: 64px;" src="<?php echo $this->module->assetsUrl?>/images/byPH.png"/></a></li>
-	</ul>
-</div> -->
 <style type="text/css">
 	.nextBtns{color:#E33551; font-size:2.5em;}
 	.nextBtns:hover{color:white; }

@@ -224,7 +224,7 @@
                 
                 <label class="letter-black"><i class="fa fa-key"></i> Répétez le mot de passe</label><br/>
                 <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="mot de passe (confirmation)">
-                
+                <input class="form-control" id="isInvitation" name="isInvitation" type="hidden" value="false">
                 <hr>
 
                 <label for="agree" class="checkbox-inline letter-red">
