@@ -72,6 +72,10 @@ src: url('../../vendor/fonts/Homestead/Homestead-Display.ttf');
 	padding-left: 25px;
 }
 
+body{
+	padding-right: 0px !important;
+}
+
 .scroll-top .btn:hover {
 	background-color: #407ee4;
 }
@@ -349,10 +353,25 @@ input#second-search-bar{
 	border: 2px solid #fbbc05;*/
 }
 .navbar-custom .btn-open-floopdrawer{
+	background-color: white;
+	color: #484746 !important;
+	margin-top: 10px;
+	margin-right: 4px;
+	margin-bottom: 0px;
+	margin-left: 6px;
 	float: right;
-	margin-top: 15px;
-	border-left: 1px solid #DDD;
-	padding: 0px 7px;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	font-size: 14px;
+	float: right;
+	border: 1px solid #959595;
+	padding: 0px 0px;
+}
+
+.navbar-custom .btn-open-floopdrawer:hover{
+	background-color: transparent;
+	border: 2px solid #959595;
 }
 .navbar-custom .btn-show-communexion{
 	background-color: #ea4335;
@@ -580,7 +599,7 @@ a, a:hover, a:focus, a:active, a.active{
 .dropdown-main-menu{
 	position: fixed;
 	top:60px;
-	right:15px;
+	right:55px;
 	max-height:400px;
 	/*width:200px;*/
 	background-color:transparent;

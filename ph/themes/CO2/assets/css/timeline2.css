@@ -122,6 +122,9 @@
 .timeline-body > p + p {
   margin-top: 5px;
 }
+.newsContent {
+    white-space: pre-line;
+}
 .timeline-footer{
     padding:0px 10px;
     background-color:#f4f4f4;
@@ -260,10 +263,11 @@ h5.srcMedia{
 
   .timeline-heading h5{
     padding: 10px 10px !important;
+    min-height: 55px;
   }
 
   .srcMedia{
-    text-align:right;
+    text-align:left;
   }
   .timeline-inverted .srcMedia{
     text-align:left;

@@ -601,7 +601,7 @@ var Login = function() {
 		    		  	$("#modalRegisterSuccess").modal({ show: 'true' }); 
 
 		        		//toastr.success(data.msg);
-		        		loadByHash("#default.directory");
+		        		urlCtrl.loadByHash("#default.directory");
 		    		  }
 		    		  else {
 						$('.registerResult').html(data.msg);
