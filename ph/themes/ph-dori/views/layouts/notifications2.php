@@ -141,7 +141,7 @@
 						//for($i=0; $i<10; $i++)
 						foreach( $this->notifications as $item )
 				        {
-				        	if(isset($item["notify"]))
+				        	if(isset($item["notify"]) && !empty($item["timestamp"]))
 				        	{
 				        		$url = str_replace("/", ".", $item["notify"]["url"]);
 				        		$href = $url;
