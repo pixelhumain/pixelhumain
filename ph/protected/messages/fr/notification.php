@@ -100,5 +100,9 @@ return array(
 	"New contributor well registered" => "Nouveau contriuteur bien enregistré",
 	"New member well registered" => "Nouveau membre bien enregistré",
 	"New admin well registered" => "Nouvel administrateur bien enregistré",
+	//DELETE
+	"{who} asks the suppression of {where}"=>"{who} demande la suppression de {where}",
+	"{who} stopped the pending suppression of {where}"=>"{who} a stoppé la suppresion de {where}",
+	"{who} deleted {where}"=>"{who} a supprimé {where}",
 );
 ?>
