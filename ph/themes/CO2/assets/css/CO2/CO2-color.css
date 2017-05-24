@@ -107,10 +107,13 @@ a.text-red:hover{
 a.text-white:hover{
     color:#FFF !important;
 }
-.text-green-poi{
+
+.text-green-poi, a.text-green-poi{
     color:#20C06B !important;
 }
-
+a.text-white:hover{
+    color:#FFF !important;
+}
 .text-yellow-PH{
     color:#fffc00!important;
 }
