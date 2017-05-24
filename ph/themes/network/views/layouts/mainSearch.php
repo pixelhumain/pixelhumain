@@ -325,7 +325,11 @@
 
 		$cssAnsScriptFilesModule = array(
 			'/assets/js/cookie.js' ,
-			
+
+			/*'/assets/css/CO2/CO2-boot.css',
+			'/assets/css/CO2/CO2-color.css',
+			'/assets/css/CO2/CO2.css',*/
+
 			'/assets/css/styles.css',
 			'/assets/css/styles-responsive.css',
 			'/assets/css/plugins.css',
