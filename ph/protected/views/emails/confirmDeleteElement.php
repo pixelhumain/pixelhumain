@@ -1499,7 +1499,7 @@
 				    <tr style="padding: 0;vertical-align: top;text-align: left;">
 					    <th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
 					    	<!--http://localhost:8888/ph/images/betatest.png-->
-							<a href="#" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo2?>" alt="1+1=3" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;"></a>
+							<a href="#" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo?>" alt="1+1=3" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;"></a>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
 							    Bonjour,
 							</p>
@@ -1508,9 +1508,7 @@
 							    L'élément <?php echo $elementName ?> de type <?php echo $elementType ?> est en cours de suppression.
 							</p>
 							<br>
-							<ol>
-							    <li dir="ltr">
-							        <p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
+							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
 							        	L'utilisateur <?php echo $userName ?> a demandé la suppression de l'élement. 
 							        	<?php if (!empty($reason)) { ?>
 							        	En voici la raison qu'il a indiqué :
@@ -1527,15 +1525,14 @@
 										Si le lien ne fonctionne pas vous pouvez le copier dans l&apos;adresse de votre navigateur :
 										<br><?php echo $url?>
 							        </p>
-							    </li>
-							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							    Bonne journ&#233;e!
-							</p>
-							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							    L&#8217;&#233;quipe <?php Yii::app()->name ?>
-							</p>
-							<a href="mailto:<?php Yii::app()->params['adminEmail'];?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><?php Yii::app()->params['adminEmail']?></a>
-						</ol></th>
+						<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
+						    Bonne journ&#233;e!
+						</p>
+						<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
+						    L&#8217;&#233;quipe <?php Yii::app()->name ?>
+						</p>
+						<a href="mailto:<?php Yii::app()->params['adminEmail'];?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><?php Yii::app()->params['adminEmail']?></a>
+						</th>
 				    </tr>
 	  			</table>
     		</th>
