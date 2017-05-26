@@ -1454,7 +1454,7 @@
               <tr style="padding: 0;vertical-align: top;text-align: left;">
             <th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
               <center style="width: 100%;min-width: 532px;">
-                <a href="http://www.communecter.org" align="center" class="text-center" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">
+                <a href="<?php echo Utils::getServerName()?>" align="center" class="text-center" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">
                 <!--http://localhost:8888/ph/images/logo-communecter.png-->
                 <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo ?>" class="swu-logo" alt="Logo Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 170px;max-width: 100%;clear: both;display: block;border: none;height: auto;padding: 15px 0px 0px 0px;">
                 </a>
@@ -1504,7 +1504,7 @@
               <br><br>
               Vous pourrez ensuite changer le mot de passe dans votre espace personnel.<br>
               <br>
-              <p style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">A tr&egrave;s bient&ocirc;t sur <a href="www.communecter.org" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">www.communecter.org</a></p>
+              <p style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">A tr&egrave;s bient&ocirc;t sur <a href="<?php echo Utils::getServerName()?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><?php echo Utils::getServerName()?></a></p>
               <p style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">L&apos;&eacute;quipe de Communecter</p>
             </th>
             </tr>
@@ -1519,7 +1519,7 @@
             <table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
               <tr style="padding: 0;vertical-align: top;text-align: left;">
                   <th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
-              <p class="text-center footercopy" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 20px 0px;text-align: center;line-height: 19px;font-size: 12px;">Mail envoy&eacute; depuis communecter.org</p>
+              <p class="text-center footercopy" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 20px 0px;text-align: center;line-height: 19px;font-size: 12px;">Mail envoy&eacute; depuis <?php echo Utils::getServerName()?></p>
                     </th>
             <th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
               </tr>

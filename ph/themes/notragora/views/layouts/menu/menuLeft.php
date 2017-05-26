@@ -44,11 +44,11 @@
 
 <div class="hover-info2 col-md-7 col-md-offset-3 col-sm-6 col-sm-offset-5 hidden-xs panel-white padding-20"></div>
 
-<?php $projects = PHDB::findAndSortAndLimitAndIndex( Project::COLLECTION, array("name"=>array('$exists'=>1)), array("updated" => -1), 3, 0); ?>
-<div class="hidden-xs main-menu-left col-md-2 col-sm-2 padding-10"  data-tpl="menuLeft">
+<?php $projects = PHDB::findAndSortAndLimitAndIndex( Organization::COLLECTION, array("name"=>array('$exists'=>1),"profilMediumImageUrl"=>array('$exists'=>1)), array("updated" => -1), 3, 0); ?>
+<div class="hidden-xs main-menu-left col-md-2 col-sm-2 padding-10"  data-tpl="menuLeft" <?php if (@$emptyTop && $emptyTop==true) { ?> style="top:50px !important;" <?php } ?>>
 	
 	<div class="menu-left-container">
-
+	<?php if (@$projects && !empty($projects)){ ?>
 		<div class="col-md-12">
 			<span class="title-menu-left">
 				FOCUS
@@ -75,7 +75,7 @@
 					foreach ($projects as $data){
 						if(@$data["profilMediumImageUrl"] && !empty($data["profilMediumImageUrl"])){ ?>
 						<div class="item <?php if($inc==0) echo "active" ?>">
-							<a href="#project.detail.id.<?php echo (string)$data["_id"] ?>" class="lbh">
+							<a href="#organization.detail.id.<?php echo (string)$data["_id"] ?>" class="lbh">
 								<img src="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/document/resized/150x150'.@$data["profilMediumImageUrl"]) ?>" class="col-sm-12 img-responsive no-padding">
 							</a>
 						</div>
@@ -85,6 +85,7 @@
 			  <!-- Left and right controls -->
 			</div>
 		</div>
+	<?php } ?>
 		<div class="col-md-12" id="poiParent">
 			<!--<img src="<?php echo $this->module->assetsUrl?>/images/velo.png" class="img-responsive">-->
 		</div>
@@ -150,7 +151,7 @@ jQuery(document).ready(function() {
 		$(".collectionsList").append(collectionsHtml);
 	});*/
 
-	 $(".carousel-control").click(function(){
+	$(".carousel-control").click(function(){
     var top = $("#docCarousel").position().top-30;
     $(".my-main-container").animate({ scrollTop: top, }, 300 );
   });

@@ -62,7 +62,7 @@
 		
 		$cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
 		?>
-		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/faviconNA.ico" />
+		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" />
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple.css" type="text/css" id="skin_color">
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple-login.css" type="text/css" id="skin_color">
 
@@ -231,13 +231,14 @@
 	);
 
 	$topList = Poi::getPoiByTagsAndLimit();
+	if (empty($topList)) $emptyTop=true; 
 	$this->renderPartial($layoutPath.'.menu.menuTop', array( "me" => $me , "topList" => $topList )); 
-	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city)); ?>
+	$this->renderPartial($layoutPath.'.menu.menuLeft', array("page" => "accueil", "myCity" => $city, "emptyTop"=>@$emptyTop)); ?>
 
 	<!-- **************************************
 	CENTER SECTION
 	******************************************* -->
-	<div class="col-xs-12 no-padding no-margin my-main-container">
+	<div class="col-xs-12 no-padding no-margin my-main-container" <?php if (@$emptyTop) { ?> style="top:50px !important;" <?php } ?>>
 
 		<div class="footer-menu-left"></div>
 		
@@ -485,7 +486,7 @@
 		    $(".my-main-container").bind("scroll", function(){
 		    	//console.log("scrolling my-container");
 		    	checkScroll();
-		    	shadowOnHeader()
+		    	shadowOnHeader();
 		    });
 
 		    //alert("on ready 1");
