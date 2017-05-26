@@ -254,8 +254,8 @@
 		NOTIFICATION PANELS
 		******************************************* -->
 	<?php  
-		if(isset(Yii::app()->session['userId'])) 
-			$this->renderPartial($layoutPathNetwork.'notifications2');
+		//if(isset(Yii::app()->session['userId'])) 
+			//$this->renderPartial($layoutPathNetwork.'notifications2');
 		
 		/* *****************************************
 		Active Content from the controller
@@ -326,9 +326,9 @@
 		$cssAnsScriptFilesModule = array(
 			'/assets/js/cookie.js' ,
 
-			/*'/assets/css/CO2/CO2-boot.css',
+			'/assets/css/CO2/CO2-boot.css',
 			'/assets/css/CO2/CO2-color.css',
-			'/assets/css/CO2/CO2.css',*/
+			//'/assets/css/CO2/CO2.css',
 
 			'/assets/css/styles.css',
 			'/assets/css/styles-responsive.css',
