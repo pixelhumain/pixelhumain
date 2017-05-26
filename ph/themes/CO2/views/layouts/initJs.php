@@ -141,9 +141,12 @@
         },
         dynForm : {
             onLoadPanel : function (elementObj) { 
+                console.log("currentKFormType", currentKFormType);
+                var typeName = (typeof currentKFormType != "undefined") ? trad["add"+currentKFormType] : elementObj.dynForm.jsonSchema.title;
+                var typeIcon = (typeof currentKFormType != "undefined") ? typeObj[currentKFormType].icon : elementObj.dynForm.jsonSchema.icon;
+
                 $("#ajax-modal-modal-title").html(
-                        "<i class='fa fa-"+elementObj.dynForm.jsonSchema.icon+"'></i> "+
-                        elementObj.dynForm.jsonSchema.title);
+                        "<i class='fa fa-"+typeIcon+"'></i> "+typeName);
                 
                 $("#ajax-modal .modal-header").removeClass("bg-green bg-turq bg-purple bg-orange bg-azure");
                 $("#ajax-modal .infocustom p").removeClass("text-green text-turq text-purple text-orange text-azure");

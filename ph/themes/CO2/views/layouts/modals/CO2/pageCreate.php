@@ -143,11 +143,11 @@
                                 </h2>
                                 
                                 <div class="col-md-12 no-padding text-center hidden-xs">
-                                    <h5>Découvrez tout vos droits et ceux qui les portes
+                                    <h5>Le lien entre l'Etat et les citoyens
                                         <small class="hidden-xs" style="text-transform: none;"><br>
-                                            Les services public portent nos droits.<br>
-                                            On ne sait jamais quand on pourrait en avoir,<br> 
-                                            c'est important tout retrouver sur notre plateforme citoyenne.
+                                            Les services publics sont les piliers de notre démocratie<br>
+                                            Il est important de les cartographier, et de les rendre accessibles facilement<br>
+                                            au niveau local comme national
                                         </small>
                                     </h5>
                                     <button class="btn btn-default text-red margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer ma page</button>
