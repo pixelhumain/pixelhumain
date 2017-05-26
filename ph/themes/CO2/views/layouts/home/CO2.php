@@ -37,6 +37,7 @@ $communexion = CO2::getCommunexionCookies();
 				 style="border:1px solid #DDD; background-color: #F9F9F9; border-radius:4px;">
 				<?php 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 			  			$this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.register'); 
+			  			$this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.modalRegisterSuccess')
 			  	?>
 			</div>
 			<?php } else { ?>

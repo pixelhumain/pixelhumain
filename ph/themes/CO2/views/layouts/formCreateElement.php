@@ -81,10 +81,10 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
                     	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
                     			height="50" class="inline margin-top-25 margin-bottom-5">
                     <?php } ?>
-                    <?php if($CO2DomainName == "CO2"){ ?>
+                    <?php /*if($CO2DomainName == "CO2"){ ?>
                     	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                     			height="50" class="inline margin-top-25 margin-bottom-5">
-                    <?php } ?>
+                    <?php } */?>
                     <br>
                 </div>
                

@@ -193,6 +193,21 @@ return array(
 	"the group" => "le collectif",
 	"the Group" => "le groupe",
 	"the government organization" => "l'organisation gouvernementale",
+
+	//Types event
+	"concours" => "Concours",
+    "festival" => "Festival",
+    "market" => "Marché",
+    "others" => "Autres",
+    "concert" => "Concert",
+    "exposition" => "Exposition",
+    "getTogether" => "Rencontre",
+    "meeting" => "Réunion",
+    "competition" => "Compétition",
+    "course" => "Formation",
+    "workshop" => "Atelier",
+    "conference" => "Conférence",
+    "debate" => "Débat",
 	
 	//EMAILS
 	"New Organization created on " => "Nouvelle organisation créée sur ",
