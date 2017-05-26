@@ -30,6 +30,21 @@
 		"The event has been updated" => "L&rsquo;événement a été mis à jour",
 		"Update the organizer" => "Mettre à jour l'organisateur",
 		"Add an organizer" => "Ajouter un organisateur",
+
+		//Type
+		"concours" => "Concours",
+	    "festival" => "Festival",
+	    "market" => "Marché",
+	    "others" => "Autres",
+	    "concert" => "Concert",
+	    "exposition" => "Exposition",
+	    "getTogether" => "Rencontre",
+	    "meeting" => "Réunion",
+	    "competition" => "Compétition",
+	    "course" => "Formation",
+	    "workshop" => "Atelier",
+	    "conference" => "Conférence",
+	    "debate" => "Débat",
 	)
 
 ?>
