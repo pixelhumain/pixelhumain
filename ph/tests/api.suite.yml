@@ -2,5 +2,5 @@ class_name: ApiTester
 modules:
     enabled: 
       - REST:
-            url: http://127.0.0.1:8888/ph/communecter/
+            url: http://127.0.0.1:8888/ph/co2/
             depends: PhpBrowser
