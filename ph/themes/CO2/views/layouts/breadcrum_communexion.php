@@ -146,7 +146,7 @@ jQuery(document).ready(function() {
         //setGlobalScope($.cookie('communexionValue'), $.cookie('communexionName'), $.cookie('communexionType'), $.cookie('communexionLevel'));
         //bindCommunexionScopeEvents();
     }else{
-        activateGlobalCommunexion(false);
+        activateGlobalCommunexion(false,true);
         //showTagsScopesMin();
     }
     $(".tooltips").tooltip();
