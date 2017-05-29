@@ -309,7 +309,7 @@
         <div class="modal fade" role="dialog" id="modalRegisterSuccess">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header bg-green text-white">
+                    <div class="modal-header bg-green-k text-white">
                         <h4 class="modal-title"><i class="fa fa-check"></i> <?php echo Yii::t("login","Account Created!!") ?></h4>
                     </div>
                     <div class="modal-body center text-dark hidden" id="modalRegisterSuccessContent"></div>
