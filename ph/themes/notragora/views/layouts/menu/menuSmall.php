@@ -59,6 +59,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			        Notifications
 			    </a>
 			</div>
+			<?php /* ?>
 		    <div class="col-xs-12 center no-padding">
 			    <a class="btn bg-dark lbh padding-5" href="#news.index.type.citoyens.id.<?php echo Yii::app()->session['userId'] ?>.viewer.<?php echo Yii::app()->session['userId']?>"  >
 			        <i class="fa fa-newspaper-o" style="font-size: 1em!important;"></i> 
@@ -71,6 +72,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			        Mon répertoire
 			    </a>
 		    </div>
+		    <?php */ ?>
 		    <div class="col-xs-12 center no-padding">
 			    <a class="btn bg-red padding-5" 
 			    	href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>">
@@ -93,6 +95,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							<i class="fa fa-angle-down"></i> 
 						</h2>
 					</div>
+					<?php /* ?>
 					<div class="col-xs-6 center padding-5">
 
 						<a href="javascript:elementLib.openForm('person')" class="btn bg-yellow">
@@ -101,6 +104,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 							<span class="lbl-btn-menu-name-add">Quelqu'un</span>
 						</a>
 					</div>
+					<?php */ ?>
 					<div class="col-xs-6 center padding-5">
 
 						<a href="javascript:elementLib.openForm('organization')" class="btn bg-green">
