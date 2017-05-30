@@ -916,6 +916,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"url" => "url",
 	"description" => "description",
 	"shortDescription" => "description courte",
+	"Edit descriptions" => "Modifier votre description",
 	
 );
 ?>

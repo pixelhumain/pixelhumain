@@ -48,17 +48,15 @@
 
         <?php if( $subdomain == "welcome" ){ ?>
         
-            <!-- <div id="input-sec-search" class="hidden-xs col-sm-2 col-md-2 col-lg-2">
+            <div id="input-sec-search" class="hidden-xs col-sm-2 col-md-3 col-lg-3">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo $placeholderMainSearch; ?>">
-                <?php if($subdomain == "page"){ ?>
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
-                <?php } ?>
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search btn-directory-type" 
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
-            </button> -->
+            </button>
 
         <?php } ?>
 
