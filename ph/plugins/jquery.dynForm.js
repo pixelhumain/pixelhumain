@@ -149,7 +149,7 @@ onSave: (optional) overloads the generic saveProcess
         var style = "";
         if (formValues && formValues[field]) {
         	value = formValues[field];
-        	fieldObj.value = formValues[field];
+        	//fieldObj.value = formValues[field];
         } else if( fieldObj.value ) 
         	value = fieldObj.value;
         //if(value!="") mylog.warn("--------------- dynform form Values",field,value);
@@ -252,10 +252,10 @@ onSave: (optional) overloads the generic saveProcess
 			var selected = "";
 			//initialize values
 			if(fieldObj.options)
-				fieldHTML += buildSelectOptions(fieldObj.options, fieldObj.value);
+				fieldHTML += buildSelectOptions(fieldObj.options, value);
 			
 			if( fieldObj.groupOptions ){
-				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, fieldObj.value);
+				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, value);
 			} 
 			fieldHTML += '</select>';
         }
