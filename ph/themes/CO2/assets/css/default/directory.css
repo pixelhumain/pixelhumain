@@ -570,7 +570,12 @@
   }
 
 .contactPanelHtml{
-  max-height: 145px !important;
-  min-height: 145px !important;
+  max-height: 150px !important;
+  min-height: 150px !important;
+  margin-bottom: 15px !important;
+}
 
+
+.contactPanelHtml .panel-heading{
+  min-height: 110px
 }
