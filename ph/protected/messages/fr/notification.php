@@ -22,7 +22,7 @@ return array(
 	"{who} want to administrate {where}"=> "{who} veulent administrer {where}",
 	//ACCEPT
 	"{author} confirmed {who} to join {where}" => "{author} a confirmé {who} pour rejoindre {where}",
-	"{author} confirmed {who} to administrate {where}" => "{author} a administré {who} pour administrer {where}",
+	"{author} confirmed {who} to administrate {where}" => "{author} a confirmé {who} pour administrer {where}",
 	"{author} confirmed your request to join {where}" => "{author} a confirmé votre demande pour rejoindre {where}",
 	"{author} confirmed your request to administrate {where}" => "{author} a confirmé votre demande pour administrer {where}",
 	//INVITE
