@@ -141,15 +141,19 @@
         },
         dynForm : {
             onLoadPanel : function (elementObj) { 
-                console.log("currentKFormType", currentKFormType);
-                var typeName = (typeof currentKFormType != "undefined") ? trad["add"+currentKFormType] : elementObj.dynForm.jsonSchema.title;
-                var typeIcon = (typeof currentKFormType != "undefined") ? typeObj[currentKFormType].icon : elementObj.dynForm.jsonSchema.icon;
+                //console.log("onLoadPanel currentKFormType", currentKFormType);
+                var typeName = (typeof currentKFormType != "undefined" && currentKFormType!=null) ? 
+                    trad["add"+currentKFormType] : elementObj.dynForm.jsonSchema.title;
+                
+                var typeIcon = (typeof currentKFormType != "undefined" && currentKFormType!=null) ? 
+                    typeObj[currentKFormType].icon : elementObj.dynForm.jsonSchema.icon;
+
 
                 $("#ajax-modal-modal-title").html(
                         "<i class='fa fa-"+typeIcon+"'></i> "+typeName);
                 
-                $("#ajax-modal .modal-header").removeClass("bg-green bg-turq bg-purple bg-orange bg-azure");
-                $("#ajax-modal .infocustom p").removeClass("text-green text-turq text-purple text-orange text-azure");
+                $("#ajax-modal .modal-header").removeClass("bg-dark bg-red bg-purple bg-green bg-green-poi bg-orange bg-turq bg-yellow bg-url");
+                $("#ajax-modal .infocustom p").removeClass("text-dark text-red text-purple text-green text-green-poi text-orange text-turq text-yellow text-url");
                 
                 if(typeof currentKFormType != "undefined" && typeObj[currentKFormType] && typeObj[currentKFormType].color){
                     $("#ajax-modal .modal-header").addClass("bg-"+typeObj[currentKFormType].color);

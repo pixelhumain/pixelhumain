@@ -14,6 +14,8 @@
 		border-radius: 50px;
 		margin-top: 21px;
 		margin-left: 5px;
+		border: 1px solid #e6344d !important;
+		padding: 7px 9px;
 	}
 
 	header .btn-decommunecter{

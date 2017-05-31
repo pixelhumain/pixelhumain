@@ -75,6 +75,7 @@ svg{
 	color: black;
 	margin-left: 5px;
 	font-weight: bold;
+	float:left;
  }
 
  .popup-subtitle {
