@@ -392,7 +392,7 @@ return array(
 	"Inviting" => "Invité(e)",
 	"Invite people" => "Inviter des personnes",
 	"Invite members" => "Inviter des membres",
-	"Invite contributors" => "Inviter des contributors",
+	"Invite contributors" => "Inviter des contributeurs",
 	"Invite people {what}" => "Inviter des personnes {what}",
 	"Invite {what} {where}" => "Inviter des {what} {where}",
 	"Not interested by the invitation" => "Pas intéressé(e) par l&rsquo;invitation",
