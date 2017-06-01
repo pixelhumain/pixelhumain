@@ -31,12 +31,12 @@ HtmlHelper::registerCssAndScriptsFiles(array( '/assets/css/menus/short_info_prof
         <a class="pull-right text-dark" href="javascript:smallMenu.open();"  id="btn-menu-launch">
           <i class="fa fa-bars fa-2x"></i>
         </a>
-        <button class="btn-top btn btn-default hidden-xs" onclick="showPanel('box-register');">
+        <button class="btn-top btn btn-default hidden-xs btn-menu-register" onclick="showPanel('box-register');">
           <i class="fa fa-plus-circle"></i> 
           <span class="hidden-sm hidden-md hidden-xs">S'inscrire</span>
         </button>
 
-        <button class="btn-top btn btn-success hidden-xs" style="margin-right:10px;" onclick="showPanel('box-login');">
+        <button class="btn-top btn btn-success hidden-xs btn-menu-connect" style="margin-right:10px;" onclick="showPanel('box-login');">
           <i class="fa fa-sign-in"></i> 
           <span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
         </button> 

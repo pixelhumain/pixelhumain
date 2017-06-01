@@ -90,8 +90,7 @@
 		data-toggle="tooltip" data-placement="bottom" 
 		title="NotrAgora" 
 		alt="NotrAgora">
-		NotrAgora
-		<!-- <img class="" id="logo-main-menu" src="<?php echo $this->module->assetsUrl?>/images/Communecter-32x32.svg"/> -->
+		<img class="" id="logo-main-menu" src="<?php echo $this->module->assetsUrl?>/images/logoNotragoraMenu.png"/>
 	</a>
 	
 	<?php // BTN Doc = Doc // ?>

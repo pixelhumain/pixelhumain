@@ -93,11 +93,32 @@ label.checkbox-inline{
 .form-actions{
   padding-top:0px !important;
 }
-
-.loginBtn{
-  /*margin-top:-25px;*/
+.btn-menu-register{
+  background-color: rgb(92,75,62) !important;
+  color: white;
+  border: 1px solid white;
 }
-
+.btn-menu-register:hover{
+  background-color: white !important;
+  color: rgb(92,75,62);
+  border: 1px solid rgb(92,75,62);
+}
+.btn-menu-connect{
+  background-color: rgb(184,208,101) !important;
+  color: white;
+  border: 1px solid white;
+}
+.btn-menu-connect:hover{
+  background-color: white !important;
+  color: rgb(184,208,101);
+  border: 1px solid rgb(184,208,101);
+}
+.loginBtn, .createBtn, .forgotBtn{
+  background-color: rgb(184,208,101) !important;
+}
+.loginBtn:hover, .createBtn:hover, .forgotBtn:hover{
+  background-color: rgb(92,75,62) !important;
+}
 .btn.register, a.btn.go-back{
   width:100%;
   margin-top: -1px;
@@ -109,7 +130,7 @@ label.checkbox-inline{
   background-color: white;
 }
 .btn.register:hover, a.go-back:hover{
-  background-color: #D3DDE1;
+  background-color: rgb(198,198,198);
 }
 .new-account {
   border:0px !important;

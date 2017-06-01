@@ -107,9 +107,9 @@ a, a:focus, a:hover, a:active {
   text-decoration: none !important; }
 
 a {
-  color: #719FAB; }
+  color: rgb(198,198,198); }
   a:hover, a:focus, a:active {
-    color: #4a8fa0; }
+    color: rgb(70,70,70); }
 
 h1, h2, h3, h4 {
   font-family: "Raleway", sans-serif;

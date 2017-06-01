@@ -54,15 +54,13 @@
 		
 			<div class="box-login box box-white-round no-padding pull-right">
 				<button class="btn btn-default btn-close-box" id=""><i class="fa fa-times"></i></button>
-				<?php 
-					$this->renderPartial('../default/menuTitle');
-				?>
+			
 				<form class="form-login box-white-round" action="" method="POST">
 					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;margin-top:20px;" class="pull-right hidden-xs" src="<?php echo $this->module->assetsUrl?>/images/logoNotragora.png"/>
 					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;margin-top:20px;" class="pull-right visible-xs" src="<?php echo $this->module->assetsUrl?>/images/logoNotragora.png"/>
 					<br/>
 					<fieldset>
-						<h2 class="margin-bottom-10 text-center" style="color:#444 !important;"><i class="fa fa-angle-down"></i> Je me connecte</h2>
+						<h2 class="margin-bottom-10 text-center text-brown"><i class="fa fa-angle-down"></i> Je me connecte</h2>
 						<div class="form-group">
 							<span class="input-icon">		
 								<input type="text" class="form-control radius-10" name="email" id="email-login" placeholder="<?php echo Yii::t("login","E-mail / nom d'utilisateur") ?>" >
@@ -79,7 +77,7 @@
 								</label>
 
 								<i class="fa fa-lock"></i>
-								<a class="forgot pull-right padding-5" href="javascript:" 
+								<a class="forgot pull-right padding-5 text-brown" href="javascript:" 
 								onclick="showPanel('box-email', 
 									function() {
 										emailType = 'password';
@@ -120,7 +118,7 @@
 							</div>
 							
 							<br/>
-							<button type="submit"  data-size="s" data-style="expand-right" style="background-color:#444" class="loginBtn ladda-button center-block">
+							<button type="submit"  data-size="s" data-style="expand-right" class="loginBtn ladda-button center-block">
 								<span class="ladda-label"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Login") ?></span>
 							</button>
 						</div>
@@ -141,7 +139,7 @@
 			<div class="box-email box box-white-round">
 				<button class="btn btn-default btn-close-box" id=""><i class="fa fa-times"></i></button>
 				<form class="form-email box-white-round">
-					<img style="width:100%; border: 10px solid white;" class="pull-right box-white-round" src="<?php echo $this->module->assetsUrl?>/images/logoLTxt.jpg"/>
+					<img style="width:100%; border: 10px solid white;" class="pull-right box-white-round" src="<?php echo $this->module->assetsUrl?>/images/logoNotragora.png"/>
 					<br/>
 					<fieldset>
 						<div class="form-group">
@@ -154,7 +152,7 @@
 								<i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","You have some form errors. Please check below.") ?>
 							</div>
 							
-							<button type="submit"  data-size="s" data-style="expand-right" style="background-color:#E33551" class="forgotBtn ladda-button center center-block">
+							<button type="submit"  data-size="s" data-style="expand-right" style="background-color:rgb(184,208,101);" class="forgotBtn ladda-button center center-block">
 								<span class="ladda-label">XXXXXXXX</span><span class="ladda-spinner"></span><span class="ladda-spinner"></span>
 							</button>
 						</div>
@@ -171,10 +169,9 @@
 			<div class="box-register box box-white-round no-padding" style=" margin-top:-25px !important;">
 				<button class="btn btn-default btn-close-box" id=""><i class="fa fa-times"></i></button>
 				<form class="form-register center box-white-round" style="background-color:white !important;">
-					<img style="width:0%; border: 10px solid white;" class="" src="<?php echo $this->module->assetsUrl?>/images/logoLTxt.jpg"/>
-					
+					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;margin-top:20px;" class="pull-right" src="<?php echo $this->module->assetsUrl?>/images/logoNotragora.png"/>
 					<fieldset>
-						<h2 class="text-red margin-bottom-10 text-center"><i class="fa fa-angle-down"></i> <?php echo Yii::t("login","I create my account") ?></h2>
+						<h2 class="text-brown margin-bottom-10 text-center"><i class="fa fa-angle-down"></i> <?php echo Yii::t("login","I create my account") ?></h2>
 						<div class="col-md-12 padding-5">
 							<div class="form-group">
 								<span class="input-icon">
@@ -224,13 +221,13 @@
 							<div>
 								<label for="agree" class="checkbox-inline">
 									<input type="checkbox" class="grey agree" id="agree" name="agree">
-									<?php echo Yii::t("login","I agree to the Terms of") ?> <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp"><?php echo Yii::t("login","Service and Privacy Policy") ?></a>
+									<?php echo Yii::t("login","I agree to the Terms of") ?> <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp text-brown"><?php echo Yii::t("login","Service and Privacy Policy") ?></a>
 								</label>
 							</div>
 						</div>			
 
 						<div class="pull-left" style="width:100%;">
-							<button type="submit"  data-size="s" data-style="expand-right" style="background-color:#E33551" class="createBtn ladda-button center-block">
+							<button type="submit"  data-size="s" data-style="expand-right" class="createBtn ladda-button center-block">
 								<span class="ladda-label"><i class="fa fa-plus"></i><i class="fa fa-user"></i>  <?php echo Yii::t("login","Submit") ?></span><span class="ladda-spinner"></span><span class="ladda-spinner"></span>
 							</button>
 						</div>
@@ -436,9 +433,9 @@ var Login = function() {
 		    	  success: function(data){
 		    		  if(data.result)
 		    		  {
-		    		  	var url = "<?php echo (isset(Yii::app()->session["requestedUrl"])) ? Yii::app()->session["requestedUrl"] : null; ?>";
+		    		  	console.log("login",data);
 		    		  	//console.warn(url,", has #"+url.indexOf("#"),"count / : ",url.split("/").length - 1 );
-		    		  	if(backUrl != null){
+		    		  	/*if(backUrl != null){
 		    		  		loadByHash(backUrl);
 		    		  		backUrl = null;
 		    		  	} else if(url && url.indexOf("#") >= 0 ) {
@@ -453,15 +450,15 @@ var Login = function() {
 		        				//if(location.hash == '#default.home')
 		        					window.location.reload();
 		        				/*else
-		        					window.location.href = baseUrl+'#default.home';*/
+		        					window.location.href = baseUrl+'#default.home';
 		        			}
-		        			else {
+		        			else {*/
 		        				//console.log("login 3 reload");
 		        				//for urls like notifications/get/not/id...
-		        				window.location.href = baseUrl+'#default.live';
+		        				window.location.href = baseUrl;
 		        				//window.location.reload();
-		        			}
-		        		}
+		        			//}
+		        		//}
 		    		  } else {
 		    		  	var msg;
 		    		  	if (data.msg == "notValidatedEmail") {

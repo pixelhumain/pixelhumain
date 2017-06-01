@@ -382,7 +382,12 @@ ul.notifList{
 
 .text-red, a.text-red:hover {
   color: #E33551 !important; }
-
+.text-brown{
+  color:rgb(92,75,62) !important;
+}
+ a.text-brown:hover{
+  color:rgb(70,70,70) !important;
+ }
 .text-prune, a.text-prune:hover{
   color:#C32372 !important;
 }
@@ -395,10 +400,10 @@ a.text-white {
     color: white; }
 
 .text-dark {
-  color: #3C5665 !important; /*rgba(44, 47, 59, 0.4);*/ }
+  color: rgb(70,70,70) !important; /*rgba(44, 47, 59, 0.4);*/ }
 
 a.text-dark:hover {
-  color: #3C5665 !important; /*rgba(44, 47, 59, 0.6);*/ }
+  color: rgb(70,70,70) !important; /*rgba(44, 47, 59, 0.6);*/ }
 
 .center {
   text-align: center; 
@@ -433,6 +438,10 @@ a.text-light:hover {
   .bg-dark{
     color:white !important;
     background-color:#3C5665 !important;
+  }
+  .bg-brown{
+    color:white !important;
+    background-color:rgb(92,75,62) !important;
   }
   .bg-red{
     color:white !important;

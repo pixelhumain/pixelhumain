@@ -6,14 +6,14 @@
 }
 </style>
 <div class="col-md-12 apropos">
-	<h2 class="text-dark">Concepteurs « Hors Cadre » (40 personnes)</h2>
+	<h2 class="text-brown">Concepteurs « Hors Cadre » (40 personnes)</h2>
 	<h4 class="text-dark">Idée Originale et Conception :</h4>
 	<span>Nicolas Huguenin, Thomas Dulu</span>
 	<h4 class="text-dark">Direction Editoriale :</h4>
 	<span>Nicolas Huguenin, Directeur de l'association Hors Cadre</span>
 	<h4 class="text-dark">Developpement Informatique :</h4>
 	<span><a href="https://communecter.org" target="_blank">@Communecter</a></span>
-	<h2 class="text-dark">Production</h2>
+	<h2 class="text-brown">Production</h2>
 	<h3 class="text-dark">Apports Collaboratifs </h3>
 	<h4 class="text-dark">Equipe salariée :</h4>
 	<span>Nicolas Huguenin, Thomas Dulu, Bruno Duriez, Marc Le Piouff</span>

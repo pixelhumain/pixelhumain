@@ -50,7 +50,7 @@
 
 button.btn-menu-top{
 	font-size:16px;
-	color:#D7D7D7;
+	color:rgb(198,198,198);
 	padding:10px;
 	background: transparent !important;
 	font-size: 17px;
@@ -64,14 +64,14 @@ button.btn-menu-top{
 }
 
 button.btn-menu-top.active, button.btn-menu-top:hover{
-	color:#656565;
+	color:rgb(70,70,70);
 }
 
 
 /* Toogle map button */
 button#btn-toogle-map{
 	border-left: 2px solid #dbdbdb;
-	color:#656565;
+	color:rgb(70,70,70);
 	height: 40px;
 	margin-top: 5px;
 	width: 60px;
@@ -80,7 +80,6 @@ button#btn-toogle-map{
 
 
 #main-btn-co{
-	padding-top: 10px;
 	font-size:20px;
 	font-weight: 800;
 	color:#444;
@@ -99,7 +98,7 @@ button#btn-toogle-map{
 #logo-main-menu{
 	float:left;
 	font-size: 24px;
-	width: 45px;
+	width: 200px;
 	height: 50px;
 	padding: 5px;
 	top: 0px;

@@ -64,7 +64,7 @@
 		
 		
 		?>
-		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" />
+		<link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/LogoNotragoraMiniature.ico" />
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple.css" type="text/css" id="skin_color">
 		<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/assets/css/themes/theme-simple-login.css" type="text/css" id="skin_color">
 
@@ -398,8 +398,8 @@
 		    "entry": "azure",
 		    "action": "lightblue2",
 		    "actions": "lightblue2",
-		    "poi": "dark",
-		    "video": "dark"
+		    "poi": "brown",
+		    "video": "brown"
 		  };
 
 		 var classifiedTypes = "";
@@ -585,7 +585,7 @@
 			headerParams : {
 				organizations : { color: "green",   icon: "group",        name: "Groupes de travail" },
 				projects      : { color: "purple",  icon: "lightbulb-o",  name: "Groupes de travail" },
-				poi       	  : { color: "black",   icon: "video-camera",   name: "Productions des groupes de travail" }
+				poi       	  : { color: "brown",   icon: "video-camera",   name: "Productions des groupes de travail" }
 			},
 			init : function(){
 

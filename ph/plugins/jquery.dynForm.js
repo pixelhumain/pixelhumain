@@ -522,6 +522,12 @@ onSave: (optional) overloads the generic saveProcess
 	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
 	                			var strHtml = getMediaCommonHtml(mediaObj,"save");//buildMediaHTML(mediaObj);
 	                			$(".resultGetUrl"+optKey).html(strHtml);
+	                			 $(".removeMediaUrl").click(function(){
+			                    	//$trigger=$(this).parents().eq(1).find(".resultGetUrl"+optKey);
+							    	$(this).parent().empty().hide();
+							    	$(".addmultifield"+optKey).trigger("input");
+								});
+
 	                			$("#loading_indicator").hide();
 	                		}
 	                	});

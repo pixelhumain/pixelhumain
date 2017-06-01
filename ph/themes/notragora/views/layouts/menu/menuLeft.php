@@ -50,8 +50,10 @@
 	<div class="menu-left-container">
 	<?php if (@$projects && !empty($projects)){ ?>
 		<div class="col-md-12">
-			<span class="title-menu-left">
+			<span class="title-menu-left text-brown">
 				FOCUS
+				<i class="fa fa-angle-down pull-right"></i><br>
+				<hr>
 			</span>
 		</div>
 		<div class="col-md-12">
@@ -90,7 +92,7 @@
 			<!--<img src="<?php echo $this->module->assetsUrl?>/images/velo.png" class="img-responsive">-->
 		</div>
 		<div class="col-md-12 margin-top-15">
-			<span class="title-menu-left">
+			<span class="title-menu-left text-brown">
 				LES COLLECTIONS
 				<i class="fa fa-angle-down pull-right"></i><br>
 				<hr>
@@ -99,7 +101,7 @@
 		</div>
 
 		<div class="col-md-12 margin-top-15">
-			<span class="title-menu-left">
+			<span class="title-menu-left text-brown">
 				LES GENRES
 				<i class="fa fa-angle-down pull-right"></i><br>
 				<hr>
