@@ -30,6 +30,9 @@ $mailConfigTest = array(
 );
 
 $params = array(
+    'theme' => "notragora",
+    //Application Name 
+    'name' => 'NA',
     //Beta Test ?
     'betaTest' => false,
     //By default controller
@@ -84,7 +87,7 @@ $params = array(
     'forceMapboxActive' => false, //to force mabox localhost
     'mapboxToken' => 'pk.eyJ1IjoiY29tbXVuZWN0ZXIiLCJhIjoiY2lreWRkNzNrMDA0dXc3bTA1MHkwbXdscCJ9.NbvsJ14y2bMWWdGqucR_EQ',
 
-    'CO2DomainName' => 'CO2', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
+    //'CO2DomainName' => 'CO2', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
 
 
     /*"front" => array (
@@ -98,6 +101,9 @@ $params = array(
         "need" => false,
         "poi" => true
     )*/
+    //URL of logos used by mail
+    "logoUrl" => "/images/logoNotragora.png",
+    "logoUrl2" => "/images/logoNotragora.png",
   );
 
 
