@@ -562,7 +562,7 @@
 
 .btn-params-directory{
     font-size: 14px;
-    border: 1px solid rgba(188, 185, 185, 0.69);
+    /*border: 1px solid rgba(188, 185, 185, 0.69);*/
     margin-right: 6px;
     padding: 4px 2px;
     position: absolute;
@@ -570,7 +570,12 @@
   }
 
 .contactPanelHtml{
-  max-height: 100px !important;
-  min-height: 100px !important;
+  max-height: 150px !important;
+  min-height: 150px !important;
+  margin-bottom: 15px !important;
+}
 
+
+.contactPanelHtml .panel-heading{
+  min-height: 110px
 }

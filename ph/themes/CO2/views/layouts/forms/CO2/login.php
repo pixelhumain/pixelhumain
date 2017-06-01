@@ -60,7 +60,7 @@
 
 <style>
     .box-login{
-        width:540px;
+        width:400px;
         display: inline-block;
         border-left:1px solid #CCC !important;
     }
@@ -87,13 +87,13 @@
 
     @media screen and (max-width: 992px) {
         .box-login{
-            width:400px;
+            width:300px;
         }
     } 
 
     @media (max-width: 767px) {
         .box-login{
-            width:300px;
+            width:100%;
             border-left:0px solid #CCC !important;
         }
     }
