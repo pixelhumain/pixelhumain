@@ -12,6 +12,20 @@ $communexion = CO2::getCommunexionCookies();
 		background-size: 80%;
 		background-color:#fff;  
 	}
+
+	#mainNav .dropdown-result-global-search{
+		top:93px!important;
+	}
+
+	@media screen and (max-width: 992px) {
+        #mainNav .dropdown-result-global-search{
+			top:100px!important;
+		}
+    } 
+
+    @media (max-width: 767px) {
+       
+    }
 </style>
 
 <div class="home_page">
@@ -357,6 +371,8 @@ jQuery(document).ready(function() {
 	peopleTalkCt = getRandomInt(0,peopleTalk.length);
 	showPeopleTalk();
 
+
+    $("#map-loading-data").hide();
 	$(".mainmenu").html($("#modalMainMenu .links-main-menu").html());
 	//$("#modalMainMenu .links-main-menu").html("");
 
@@ -587,6 +603,7 @@ function loadLiveNow () {
 
     ajaxPost( "#nowList", baseUrl+'/'+moduleId+'/element/getdatadetail/type/0/id/0/dataName/liveNow?tpl=nowList',
 					searchParams, function(data) {
+						
 					//var html = directory.showResultsDirectoryHtml(data);
 					//$("#nowList").html(html);
 			        bindLBHLinks();

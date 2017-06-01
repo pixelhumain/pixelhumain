@@ -37,9 +37,9 @@
                       </button>
 
                 <?php } else { ?>
-                    <li class="page-scroll">
+                    <!-- <li class="page-scroll">
                         <button class="text-red font-montserrat" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> SE CONNECTER</button>
-                    </li>
+                    </li> -->
                 <?php } ?>
             </ul>
         </div>

@@ -22,7 +22,7 @@ return array(
 	"{who} want to administrate {where}"=> "{who} veulent administrer {where}",
 	//ACCEPT
 	"{author} confirmed {who} to join {where}" => "{author} a confirmé {who} pour rejoindre {where}",
-	"{author} confirmed {who} to administrate {where}" => "{author} a administré {who} pour administrer {where}",
+	"{author} confirmed {who} to administrate {where}" => "{author} a confirmé {who} pour administrer {where}",
 	"{author} confirmed your request to join {where}" => "{author} a confirmé votre demande pour rejoindre {where}",
 	"{author} confirmed your request to administrate {where}" => "{author} a confirmé votre demande pour administrer {where}",
 	//INVITE
@@ -52,6 +52,7 @@ return array(
 	"{who} commented on discussion {what} in {where}" => "{who} a participé à la discussion {what} dans {where}",
 	"{who} added comments on discussion {what} in {where}" => "{who} ont participé à la discussion {what} dans {where}",
 	"of creation"=> "de création",
+	"shared"=>"partagé",
 	//LIKE&uNLIKE
 	"{who} likes a news {what} from {where}" => "{who} aime un post {what} de {where}",
 	"{who} like a news {what} from {where}" => "{who} aiment un post {what} de {where}",

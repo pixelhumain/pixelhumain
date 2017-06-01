@@ -849,6 +849,7 @@ h3.title_panel_map{
 .navbar-map .menu-name-profil{
 	margin-top:4px!important;
 	background-color:rgba(10,10,10,0.6)!important;
+	padding: 0 0 0 15px;
 }
 .navbar-map .menu-name-profil:hover{
 	background-color:rgba(10,10,10,0.9)!important;
