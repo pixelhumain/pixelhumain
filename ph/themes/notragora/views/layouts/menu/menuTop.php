@@ -21,21 +21,23 @@
 		{ 
 			if(@$data["tags"]){
 				foreach($data["tags"] as $val){
-					$found = false;
-					foreach ($tagsPoiList as $ix => $value) {
-						if($value["text"] == $val)
-							$found = $ix;
+					if(!in_array($val,Poi::$collectionsList) && !in_array($val,Poi::$genresList)){
+						$found = false;
+						foreach ($tagsPoiList as $ix => $value) {
+							if($value["text"] == $val)
+								$found = $ix;
+						}
+						if ( !$found ) 
+							array_push($tagsPoiList,array("text"=>$val,
+														  "weight"=>1,
+														  "link"=>array(
+														  	"href" => 'javascript:directory.showAll(".favSection",".searchPoiContainer");directory.toggleEmptyParentSection(".favSection",".'.InflectorHelper::slugify2($val).'",".searchPoiContainer",1)', 
+															"class" => "favElBtn ".InflectorHelper::slugify2($val)."Btn", 
+															"data-tag" => InflectorHelper::slugify2($val)
+														  	)) );
+						else 
+							$tagsPoiList[$found]["weight"]++;
 					}
-					if ( !$found ) 
-						array_push($tagsPoiList,array("text"=>$val,
-													  "weight"=>1,
-													  "link"=>array(
-													  	"href" => 'javascript:directory.showAll(".favSection",".searchPoiContainer");directory.toggleEmptyParentSection(".favSection",".'.InflectorHelper::slugify2($val).'",".searchPoiContainer",1)', 
-														"class" => "favElBtn ".InflectorHelper::slugify2($val)."Btn", 
-														"data-tag" => InflectorHelper::slugify2($val)
-													  	)) );
-					else 
-						$tagsPoiList[$found]["weight"]++;
 				}
 			}
 			if(@$data["medias"] && @$data["medias"][0]["content"]["image"] && !empty($data["medias"][0]["content"]["image"])){
