@@ -31,7 +31,7 @@
 							array_push($tagsPoiList,array("text"=>$val,
 														  "weight"=>1,
 														  "link"=>array(
-														  	"href" => 'javascript:directory.showAll(".favSection",".searchPoiContainer");directory.toggleEmptyParentSection(".favSection",".'.InflectorHelper::slugify2($val).'",".searchPoiContainer",1)', 
+														  	"href" => 'javascript:directory.showAll(".favSection",".searchPoiContainer");javascript:directory.toggleEmptyParentSection(".favSection",".'.InflectorHelper::slugify2($val).'",".searchPoiContainer",1)', 
 															"class" => "favElBtn ".InflectorHelper::slugify2($val)."Btn", 
 															"data-tag" => InflectorHelper::slugify2($val)
 														  	)) );

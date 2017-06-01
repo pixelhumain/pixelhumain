@@ -323,9 +323,9 @@
           word.link = { href: word.link };
         }
 
-        if (this.options.encodeURI) {
-          word.link.href = encodeURI(word.link.href).replace(/'/g, '%27');
-        }
+        //if (this.options.encodeURI) {
+          //word.link.href = encodeURI(word.link.href).replace(/'/g, '%27');
+        //}
 
         word_span.append($('<a>').attr(word.link).text(word.text));
       }
