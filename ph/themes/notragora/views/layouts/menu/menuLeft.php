@@ -76,7 +76,7 @@
 						if(@$data["profilMediumImageUrl"] && !empty($data["profilMediumImageUrl"])){ ?>
 						<div class="item <?php if($inc==0) echo "active" ?>">
 							<a href="#organization.detail.id.<?php echo (string)$data["_id"] ?>" class="lbh">
-								<img src="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/document/resized/300x300'.@$data["profilMediumImageUrl"]) ?>" class="col-sm-12 img-responsive no-padding">
+								<img src="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/document/resized/210x210'.@$data["profilMediumImageUrl"]) ?>" class="col-sm-12 img-responsive no-padding">
 							</a>
 						</div>
 				<?php $inc++;
@@ -89,6 +89,7 @@
 		<div class="col-md-12" id="poiParent">
 			<!--<img src="<?php echo $this->module->assetsUrl?>/images/velo.png" class="img-responsive">-->
 		</div>
+    <a class="col-md-12 margin-top-15" href="javascript:directory.showAll('.favSection','.searchPoiContainer');">Voir tout</a><br>
 		<div class="col-md-12 margin-top-15">
 			<span class="title-menu-left">
 				LES COLLECTIONS
@@ -106,8 +107,8 @@
 			</span>
 			<div class="genresList"> </div>
 		</div>
-	</div>
 
+  </div>
 </div>
 
 <?php
