@@ -78,7 +78,9 @@
                         <?php } else { ?>
                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
-                                <?php  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.forms.CO2.menuTitle'); ?>
+                                <?php  
+                                $nameTheme = ( (Yii::app()->theme->name == "network") ? "CO2" : Yii::app()->theme->name );
+                                $this->renderPartial('webroot.themes.'.$nameTheme.'.views.layouts.forms.CO2.menuTitle'); ?>
                                      <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right" src="<?php echo $this->module->assetsUrl?>/images/logoL.jpg"/>
                                 <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
                                 </div>
@@ -88,9 +90,9 @@
                     <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
                     <h4 class="text-dark col-md-12 margin-top-5 homestead">
                         <!-- Bienvenue sur la version CO.2 -->
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="45" 
-                             class="inline margin-bottom-15 margin-left-5">
-                        <br/>Le commun avance <span class="text-red">montez à bord !</span>
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="35" 
+                             class="inline margin-left-10">
+                        <!-- <br/>Le commun avance <span class="text-red">montez à bord !</span> -->
                         <hr>
                     </h4>
                     
@@ -192,7 +194,7 @@
                        <?php } else { ?>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
-                                <?php  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.forms.CO2.menuTitle'); ?>
+                                <?php  $this->renderPartial('webroot.themes.'.$nameTheme.'.views.layouts.forms.CO2.menuTitle'); ?>
                                      <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right" src="<?php echo $this->module->assetsUrl?>/images/logoL.jpg"/>
                                 <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
                                 </div>
@@ -222,7 +224,7 @@
                 
                 <label class="letter-black"><i class="fa fa-key"></i> Répétez le mot de passe</label><br/>
                 <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="mot de passe (confirmation)">
-                
+                <input class="form-control" id="isInvitation" name="isInvitation" type="hidden" value="false">
                 <hr>
 
                 <label for="agree" class="checkbox-inline letter-red">

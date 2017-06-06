@@ -254,8 +254,8 @@
 		NOTIFICATION PANELS
 		******************************************* -->
 	<?php  
-		if(isset(Yii::app()->session['userId'])) 
-			$this->renderPartial($layoutPathNetwork.'notifications2');
+		//if(isset(Yii::app()->session['userId'])) 
+			//$this->renderPartial($layoutPathNetwork.'notifications2');
 		
 		/* *****************************************
 		Active Content from the controller
@@ -325,7 +325,11 @@
 
 		$cssAnsScriptFilesModule = array(
 			'/assets/js/cookie.js' ,
-			
+
+			'/assets/css/CO2/CO2-boot.css',
+			'/assets/css/CO2/CO2-color.css',
+			//'/assets/css/CO2/CO2.css',
+
 			'/assets/css/styles.css',
 			'/assets/css/styles-responsive.css',
 			'/assets/css/plugins.css',
@@ -585,7 +589,7 @@
 			} 
 			else{ //si l'utilisateur est déjà passé par le two_step_register
 		 		if(location.hash != "#network.simplydirectory" && location.hash != "#" && location.hash != ""){
-		 			//console.warn("hash 2", location.hash);
+		 			console.warn("hash 2", location.hash);
 		 			//getAjaxFiche(location.hash,0);
 					urlCtrl.loadByHash(location.hash);
 					return;
@@ -598,9 +602,6 @@
 						urlCtrl.loadByHash("#default.live");//news.index.type.citoyens.id."+userId);
 					else
 						urlCtrl.loadByHash("#default.live");
-					//}
-
-					//urlCtrl.loadByHash("#default.home");
 				}
 			}
 			checkScroll();

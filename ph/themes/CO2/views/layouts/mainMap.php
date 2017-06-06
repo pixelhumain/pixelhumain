@@ -170,9 +170,11 @@
 	}
 
 	.<?php echo $moduleName; ?> #mapLegende{
-		color:white!important;
-		left:10px!important;
-		font-size:14px!important;
+		left: 0px !important;
+		font-size: 14px !important;
+		color: white !important;
+		top: 60px;
+		border-radius: 0 0 4px 0;
 	}
 
 

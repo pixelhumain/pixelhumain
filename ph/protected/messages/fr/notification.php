@@ -22,7 +22,7 @@ return array(
 	"{who} want to administrate {where}"=> "{who} veulent administrer {where}",
 	//ACCEPT
 	"{author} confirmed {who} to join {where}" => "{author} a confirmé {who} pour rejoindre {where}",
-	"{author} confirmed {who} to administrate {where}" => "{author} a administré {who} pour administrer {where}",
+	"{author} confirmed {who} to administrate {where}" => "{author} a confirmé {who} pour administrer {where}",
 	"{author} confirmed your request to join {where}" => "{author} a confirmé votre demande pour rejoindre {where}",
 	"{author} confirmed your request to administrate {where}" => "{author} a confirmé votre demande pour administrer {where}",
 	//INVITE
@@ -40,14 +40,19 @@ return array(
 	"{who} added comments on your news {what}" => "{who} ont commenté votre post {what}",
 	"{who} commented a news {what} posted on {where}" => "{who} a commenté le post {what} publié sur {where}",
 	"{who} added comments on a news {what} posted on {where}" => "{who} ont commenté le post {what} publié sur {where}",
+	"{who} added few comments on your news {what}" => "{who} a ajouté plusieurs commentaires sur votre post {what}",
+	"{who} added few comments on a news {what} posted on {where}" => "{who} a ajouté plusieurs commentaires sur le post {what} publié sur {where}",
 	"{who} answered to your comment posted on {where}" => "{who} a répondu à votre commentaire posté sur {where}" ,
 	"{who} added comments on your comments posted on {where}" => "{who} ont répondu à vos commentaires postés sur {where}",
+	"{who} added few comments on your comments posted on {where}" => "{who} a répondu plusieurs fois à votre commentaire posté sur {where}",
 	"{who} commented on proposal {what} in {where}" => "{who} a commenté la proposition {what} dans {where}",
 	"{who} added comments on proposal {what} in {where}" => "{who} ont commenté la proposition {what} dans {where}",
 	"{who} commented on action {what} in {where}" => "{who} a commenté l'action {what} dans {where}",
 	"{who} added comments on action {what} in {where}" => "{who} ont commenté l'action {what} dans {where}",
 	"{who} commented on discussion {what} in {where}" => "{who} a participé à la discussion {what} dans {where}",
 	"{who} added comments on discussion {what} in {where}" => "{who} ont participé à la discussion {what} dans {where}",
+	"of creation"=> "de création",
+	"shared"=>"partagé",
 	//LIKE&uNLIKE
 	"{who} likes a news {what} from {where}" => "{who} aime un post {what} de {where}",
 	"{who} like a news {what} from {where}" => "{who} aiment un post {what} de {where}",
@@ -61,7 +66,7 @@ return array(
 	"{who} disapprove your news {what}" => "{who} désapprouvent vote post {what}",
 	"{who} disapproves your comment on {where}" =>"{who} désapprouve votre commentaire sur {where}",
 	"{who} disapprove your comment on {where}" => "{who} désapprouvent votre commentaire {where}",
-	"the news of" => "le post de",
+	"the news posted on the wall of " => "le post du mur de ",
 	"your news" => "votre post",
 	//POST
 	"{where} publishes a new post"=>"{where} a publié un post",
@@ -70,6 +75,8 @@ return array(
 	"{who} write posts on your wall"=>"{who} ont écrit plusieurs posts sur votre mur",
 	"{who} writes a post on the wall of {where}" => "{who} a écrit un post sur le mur de {where}",
 	"{who} write posts on the wall of {where}" => "{who} ont écrit plusieurs posts sur le mur de {where}",
+	"{who} writes posts on the wall of {where}" => "{who} a écrit plusieurs posts sur le mur de {where}",
+	"{who} writes posts on your wall"=>"{who} a écrit plusieurs posts sur votre mur",
 	//ADD
 	"{who} added a new voting room on {where}" => "{who} a ajouté une salle de décision sur {where}",
 	"{who} added a new discussion room on {where}" => "{who} a ajouté une salle de discussion sur {where}",
@@ -94,5 +101,9 @@ return array(
 	"New contributor well registered" => "Nouveau contriuteur bien enregistré",
 	"New member well registered" => "Nouveau membre bien enregistré",
 	"New admin well registered" => "Nouvel administrateur bien enregistré",
+	//DELETE
+	"{who} asks the suppression of {where}"=>"{who} demande la suppression de {where}",
+	"{who} stopped the pending suppression of {where}"=>"{who} a stoppé la suppresion de {where}",
+	"{who} deleted {where}"=>"{who} a supprimé {where}",
 );
 ?>

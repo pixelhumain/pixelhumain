@@ -31,15 +31,15 @@
                 ?> 
                       <button class="dropdown-toggle menu-name-profil text-dark lbh" 
                               data-toggle="dropdown" data-hash="#element.detail.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>">
-                                <small class="hidden-xs"><?php echo $me["username"]; ?></small> 
+                                <small class="hidden-xs"><?php echo @$me["username"]; ?></small> 
                                 <img class="img-circle" id="menu-thumb-profil" 
                                      width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
                       </button>
 
                 <?php } else { ?>
-                    <li class="page-scroll">
+                    <!-- <li class="page-scroll">
                         <button class="text-red font-montserrat" data-toggle="modal" data-target="#modalLogin"><i class="fa fa-sign-in"></i> SE CONNECTER</button>
-                    </li>
+                    </li> -->
                 <?php } ?>
             </ul>
         </div>

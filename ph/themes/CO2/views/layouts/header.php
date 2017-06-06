@@ -121,10 +121,14 @@
 
                             <?php $lblC = @$params["pages"]["#".$page]["lblBtnCreate"]; ?>
                             <?php $colorC = @$params["pages"]["#".$page]["colorBtnCreate"]; ?>
-                            <button class="btn btn-default letter-<?php echo @$colorC; ?> bold main-btn-create"
+
+                            <?php if(!empty(Yii::app()->session["userId"])){ ?>
+                                <button class="btn btn-default letter-<?php echo @$colorC; ?> bold main-btn-create"
                                         data-type="<?php echo @$type; ?>">
                                     <i class="fa fa-plus-circle"></i> <?php echo @$lblC; ?>
                                 </button>
+                           <?php } ?>
+                            
 
                             <!-- <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button> -->
 

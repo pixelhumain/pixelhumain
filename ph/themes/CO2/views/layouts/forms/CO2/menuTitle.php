@@ -5,7 +5,7 @@
 	var prevNav = null;
 
 	function showPanel(box,bgStyle,title,icon){
-	
+	mylog.log("showPanel", box,bgStyle,title,icon);
 	lastUrl = null;
 	$("body.login").removeClass("bgred bggreen bgblack bgblue");
 	mylog.log("showPanel",box, bgcolorClass );
@@ -18,7 +18,7 @@
 		$(".connectMarker").fadeOut();
 		$("body.login").addClass("bgCity");
 		bgcolorClass = "bgCity";
-
+		mylog.log("showPanel2");
 		if(box == "box-add"){
 			Sig.clearMap();
 			Sig.map.setView([23.32517767999296, -31.9921875], 2);
@@ -63,9 +63,9 @@ var hashUrl = null
 function openAjaxPanel (url,title,icon)  { 
 	
 }
-function showAjaxPanel (url,title,icon) 
+function showResPanel (url,title,icon) 
 { 
-	mylog.log("showAjaxPanel",baseUrl+'/'+moduleId+url,title,icon);
+	mylog.log("MDR showAjaxPanel",baseUrl+'/'+moduleId+url,title,icon);
 	rand = Math.floor((Math.random() * 8) + 1);
 	
 	if(typeof showFloopDrawer != "undefined")
@@ -115,7 +115,7 @@ function gotToPrevNav()
 	if(prevNav != null)
 	{
 		if( prevNav.func == "showAjaxPanel" )
-			showAjaxPanel( prevNav.url, prevNav.title, prevNav.icon );
+			showResPanel( prevNav.url, prevNav.title, prevNav.icon );
 		else if( prevNav.func == "showPanel" )
 			showPanel( prevNav.box, prevNav.bgStyle, prevNav.title, prevNav.icon );
 	}
@@ -171,9 +171,11 @@ function gotToPrevNav()
 		{titleRed:"COMMUNE",titleWhite:"CTER",subTitle:"Pour améliorer la ville 2.2.main"}
 		
 	];
+	var timeoutanim = false;
 	function titleAnim () 
 	{ 
-		setTimeout(function()
+		if(timeoutanim!=false) clearTimeout(timeoutanim);
+		timeoutanim = setTimeout(function()
 		{
 			//mylog.log("titleAnim",titleMapIndex);
 			var map = titleMap[titleMapIndex];
@@ -188,7 +190,7 @@ function gotToPrevNav()
 			$(".subTitle").html(map.subTitle);
 			titleMapIndex = ( titleMapIndex == titleMap.length-1 ) ? 0 : titleMapIndex+1;
 			titleAnim ();
-		},3000);
+		},2000);
 	}
 </script>
 <?php if(!isset($topTitleExists)){ ?>
@@ -199,19 +201,6 @@ function gotToPrevNav()
 	</div>
 </div>
 <?php } ?>
-<!-- <div class="box-menu box">
-	<ul class="text-white text-bold" style="list-style: none; font-size: 3.1em; margin-top:50px; ">
-		<li style="margin-left:50px"><i class="fa fa-share-alt"></i> <a href="#" style="color:white" onclick="showPanel('box-whatisit','bgyellow')">WHAT</a></li>
-		<li style="margin-left:50px"><i class="fa fa-heart"></i> <a href="#" style="color:white" onclick="showPanel('box-why','bggreen')">WHY</a></li>
-		<li style="margin-left:50px"><i class="fa fa-group"></i> <a href="#" style="color:white" onclick="showPanel('box-4who','bgblue')">WHO</a></li>
-		<li style="margin-left:50px"><i class="fa fa-laptop"></i> <a href="#" style="color:white" onclick="showPanel('box-how','bggreen')">HOW</a></li>
-		<li style="margin-left:50px"><i class="fa fa-calendar"></i> <a href="#" style="color:white" onclick="showPanel('box-when','bgyellow')">WHEN</a></li>
-		<li style="margin-left:50px">&nbsp;<i class="fa fa-map-marker"></i> <a href="#" style="color:white" onclick="showPanel('box-where','bgblue')">WHERE</a></li>
-		<li style="margin-left:50px">&nbsp;<i class="fa fa-lightbulb-o"></i> <a href="#" style="color:white" onclick="showPanel('box-help')">HELP US</a></li>
-		<li style="margin-left:50px"><i class="fa fa-<?php echo (isset($actionIcon)) ? $actionIcon : "globe" ?>"></i> <a href="#" style="color:white" onclick="showPanel('box-login')"><?php echo (isset($actionTitle)) ? $actionTitle : "CONNECT" ?></a></li>
-		<li style="margin-left:50px"><i class="fa fa-youtube-play"></i> <a href="#" onclick="showVideo('74212373')"><img style="height: 64px;" src="<?php echo $this->module->assetsUrl?>/images/byPH.png"/></a></li>
-	</ul>
-</div> -->
 <style type="text/css">
 	.nextBtns{color:#E33551; font-size:2.5em;}
 	.nextBtns:hover{color:white; }

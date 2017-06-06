@@ -61,11 +61,11 @@
 
             <div class="row links-main-menu">
                
-                <a href="#social" class=" btn-main-menu col-xs-3"  data-type="search" >    
+                <a href="#search" class=" btn-main-menu col-xs-3"  data-type="search" >    
                     <div class="modal-body text-center">
-                        <h2 class="text-red"><i class="fa fa-search fa-2x padding-bottom-10"></i><br>
+                        <h4 class="text-red no-margin"><i class="fa fa-search fa-2x padding-bottom-10"></i><br>
                             <span class="homestead"> RECHERCHE</span>
-                        </h2>
+                        </h4>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
                             <h5>Le moteur de recherche
@@ -79,14 +79,14 @@
 
                 <a href="#annonces" class=" btn-main-menu col-xs-3" data-type="classified" >
                     <div class="modal-body text-center">
-                        <h2 class="text-red"><i class="fa fa-bullhorn fa-2x padding-bottom-10"></i><br>
+                        <h4 class="text-red no-margin"><i class="fa fa-bullhorn fa-2x padding-bottom-10"></i><br>
                             <span class="homestead"> ANNONCES</span>
-                        </h2>
+                        </h4>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
                             <h5>Petites annonces locales
                                 <small class="hidden-xs"><br>
-                                    Pour consommer et coopérer différement
+                                    Pour simplifier les échanges de biens et de services
                                 </small>
                             </h5>
                         </div>
@@ -95,9 +95,9 @@
                            
                 <a href="#agenda" class=" btn-main-menu col-xs-3" data-type="agenda">
                     <div class="modal-body text-center">
-                        <h2 class="text-red"><i class="fa fa-calendar fa-2x padding-bottom-10"></i><br>
+                        <h4 class="text-red no-margin"><i class="fa fa-calendar fa-2x padding-bottom-10"></i><br>
                             <span class="homestead"> AGENDA</span>
-                        </h2>
+                        </h4>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
                             <h5>Un agenda commun
@@ -111,14 +111,14 @@
                 
                 <a href="#power" class="btn-main-menu col-xs-3" > 
                     <div class="modal-body text-center">
-                        <h2 class="text-red"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
+                        <h4 class="text-red no-margin"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
                             <span class="homestead"> LIVE</span>
-                        </h2>
+                        </h4>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
                             <h5>Un fil d'actualités commun
                                 <small class="hidden-xs"><br>
-                                    pour diffuser vos messages autrement
+                                    Pour diffuser vos messages autrement
                                 </small>
                             </h5>
                         </div>
@@ -128,7 +128,7 @@
             </div>
                 <!-- <a href="#power" class="btn-main-menu col-xs-3" > 
                     <div class="modal-body text-center">
-                        <h2 class="text-red"><i class="fa fa-hand-rock-o fa-2x padding-bottom-10"></i><br>
+                        <h3 class="text-red no-margin"><i class="fa fa-hand-rock-o fa-2x padding-bottom-10"></i><br>
                             <span class="homestead"> DEMOCRATIE</span>
                         </h2>
                         
