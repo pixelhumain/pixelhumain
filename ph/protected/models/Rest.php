@@ -60,6 +60,12 @@ class Rest
 		return $xml_data;
 	}
 
+	public static function xmlWellFormed($res) {
+		header("Content-type: text/xml");
+
+		echo $res;
+	}
+
 	public static function xml($res, $xml_element, $format) { 
 
 		header("Content-type: text/xml");
