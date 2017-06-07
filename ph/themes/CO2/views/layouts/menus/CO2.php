@@ -301,10 +301,10 @@
     <!-- /.container-fluid -->
 
 </nav>
-<?php if($subdomain != "welcome"){ 
+<?php //if($subdomain != "welcome"){ 
         $this->renderPartial($layoutPath.'loginRegister', array()); 
-      } else{ ?>
-        <div class="modal fade" role="dialog" id="modalRegisterSuccess">
+      //} else{ ?>
+        <!--<div class="modal fade" role="dialog" id="modalRegisterSuccess">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header bg-green-k text-white">
@@ -333,8 +333,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-      <?php }
+        </div>-->
+      <?php //}
 ?>
 
 <?php /*if(isset(Yii::app()->session['userId'])) {
