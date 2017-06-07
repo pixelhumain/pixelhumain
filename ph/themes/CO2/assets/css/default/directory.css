@@ -579,3 +579,7 @@
 .contactPanelHtml .panel-heading{
   min-height: 110px
 }
+.adminToolBar{
+  position:absolute;
+  top:0px;
+}
