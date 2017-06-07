@@ -18,6 +18,7 @@
 		<div class="pull-left frame" id="cycleitems" >
 			<ul class="slidee">
 		<?php
+		shuffle($topList);
 		foreach ($topList as $key => $data)
 		{
 			if(@$data["tags"]){
