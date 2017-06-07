@@ -163,6 +163,8 @@ return array(
 	"No more notifications for the moment" => "Vous n'avez pas de notifications pour le moment",
 	//Confirm
 	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication?",
+	"Are you sure you want to delete this contact" => "Êtes-vous sûr de vouloir supprimer ce contact?",
+	"Are you sure you want to delete this link" => "Êtes-vous sûr de vouloir supprimer ce lien?",
 	//Form
 	"Required Fields" => "Champs requis",
 	"Save" => "Enregistrer",
