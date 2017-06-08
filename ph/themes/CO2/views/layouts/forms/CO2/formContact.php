@@ -178,6 +178,9 @@ function sendEmail(){
                 	toastr.success("Votre message a bien été envoyé");
                 	$("#conf-send-mail").removeClass("hidden");
                 	$("#conf-code-fail, #conf-fail-mail, #form-group-contact").addClass("hidden");
+                	$("#subject").val("");
+					$("#message").val("");
+					$("#captcha").val("");
                 	KScrollTo("#conf-send-mail");
                 }else{
                 	if(typeof data.captcha != "undefined" && data.captcha == false){
