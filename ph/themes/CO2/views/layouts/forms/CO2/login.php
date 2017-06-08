@@ -59,21 +59,21 @@
 </style>
 
 <style>
-    .box-login{
+    .box-login-welcome{
         width:400px;
         display: inline-block;
         border-left:1px solid #CCC !important;
     }
-    .box-login label{
+    .box-login-welcome label{
         font-size:9px;
         margin-bottom: 2px;
     }
-    .box-login .form-control{
+    .box-login-welcome .form-control{
         font-weight: 300;
         padding: 3px 10px;
         height:27px;
     }
-    .loginBtn{
+    .loginBtn-welcome{
         height:27px;
         font-size:11px;
         margin-top:7px;
@@ -86,13 +86,13 @@
     }
 
     @media screen and (max-width: 992px) {
-        .box-login{
+        .box-login-welcome{
             width:300px;
         }
     } 
 
     @media (max-width: 767px) {
-        .box-login{
+        .box-login-welcome{
             width:100%;
             border-left:0px solid #CCC !important;
         }
@@ -100,27 +100,27 @@
 
 </style>
 
-<form class="form-login box-login" id="modalLogin">
+<form class="form-login box-login-welcome hidden-xs">
     <div class="col-md-12 col-sm-12 col-xs-12 no-padding text-left pull-right" style="margin-top: -5px; margin-bottom: -5px;">
 
         <div class="col-md-4 col-sm-4 text-left pull-right">          
-            <button class="btn btn-success loginBtn bg-green-k" type="submit" style="margin-top: 18px;">
+            <button class="btn btn-success loginBtn-welcome bg-green-k" type="submit" style="margin-top: 18px;">
                 <i class="fa fa-sign-in"></i> <span class="hidden-xs">Connexion</span>
             </button><br><br>
         </div>
 
         <div class="col-md-4 col-sm-4 col-xs-6 no-padding text-left pull-right">
             <label><i class="fa fa-key"></i> Un mot de passe</label> 
-            <input class="form-control" name="password" id="password-login" type="password" placeholder="mot de passe">
+            <input class="form-control" name="password" id="password-login-welcome" type="password" placeholder="mot de passe">
              <a href="javascript:" class="btn btn-link no-margin btn-sm" data-toggle="modal" data-target="#modalForgot" 
-                style="font-size: 10px;text-transform: none!important;">
+                style="font-size: 10px;text-transform: none!important;color:inherit;">
                 <!-- <i class="fa fa-s"></i> -->J'ai perdu mon mot de passe
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 col-xs-6 text-left pull-right">
             <label><i class="fa fa-envelope"></i> Un e-mail</label> 
-            <input class="form-control" name="email" id="email-login" type="text" placeholder="e-mail">
+            <input class="form-control" name="email" id="email-login-welcome" type="text" placeholder="e-mail">
             <label for="remember" class="checkbox-inline" style="text-transform: none!important;">
                 <input type="checkbox" id="remember" name="remember" style="margin-top: 2px;">
                 Se souvenir de moi
@@ -128,12 +128,12 @@
         </div>
 
         <div class="visible-xs col-xs-12 text-left pull-right">          
-            <button class="btn btn-success loginBtn bg-green-k" type="submit">
+            <button class="btn btn-success loginBtn-welcome bg-green-k" type="submit">
                 <i class="fa fa-sign-in"></i> Connexion
             </button><br><br>
         </div>
 
-        <div class="form-actions col-md-12" style="margin-top:5px;">
+        <div class="form-actions col-md-12 col-sm-12" style="margin-top:5px;">
             <div class="errorHandler alert alert-danger no-display loginResult">
                 <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","Please verify your entries.") ?>
             </div>
@@ -168,7 +168,11 @@
 
     </div>      
 </form>
-
+<button class="visible-xs letter-green font-montserrat btn-menu-connect margin-left-10" 
+                                    data-toggle="modal" data-target="#modalLogin" style="font-size: 20px;">
+    <span><i class="fa fa-sign-in"></i></span>
+</button>
+                            
 
 
 <script>
@@ -196,15 +200,25 @@ var emailType;
 
 
 var requestedUrl = "<?php echo (isset(Yii::app()->session["requestedUrl"])) ? Yii::app()->session["requestedUrl"] : null; ?>";
-var REGISTER_MODE_TWO_STEPS = "<?php echo Person::REGISTER_MODE_TWO_STEPS ?>";
 
 jQuery(document).ready(function() {
-
-    //$('#email3').filter_input({regex:'/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/'});
+    
+   /*jQuery.extend(jQuery.expr[':'], {
+  focus: "a == document.activeElement"
+}); *///$('#email3').filter_input({regex:'/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/'});
     //$('#registerName').filter_input({regex:'[^@#&\'\"\`\\\\]'});
     //$('#username').filter_input({regex:'[^@#&\'\"\`\\\\]'});
-
-
+    /*$('#email-login-welcome').focus(function() {
+       // alert();
+         $(document).keydown(function (e) {
+            if (e.keyCode == 9) {
+                alert();
+                //$("#password-login-welcome").focusin();
+            }
+        });
+   //             
+    });*/
+   
     //Remove parameters from URLs in case of invitation without reloading the page
     removeParametersWithoutReloading();
     
@@ -217,8 +231,8 @@ jQuery(document).ready(function() {
     });
 
     if(email != ''){
-        $('#email-login').val(email);
-        $('#email-login').prop('disabled', true);
+        $('#email-login-welcome').val(email);
+        $('#email-login-welcome').prop('disabled', true);
         $('#email2').val(email);
         $('#email2').prop('disabled', true);
         $('#email3').val(email);
