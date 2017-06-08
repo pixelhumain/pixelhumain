@@ -925,6 +925,32 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 	"The email is not well formated" => "L'email n'est pas bien formaté",
 	"Unknown domain : please check your email !" => "Domaine inconnu: vérifiez votre email!",
+
+
+	"link"          => "Lien",
+    "tool"          => "Outil",
+    "machine"       => "Machine",
+    "software"      => "Software",
+    "rh"            => "Ressource Humaine",
+    "RessourceMaterielle" => "Ressource Materielle",
+    "RessourceFinanciere" => "Ressource Financiere",
+    "ficheBlanche" => "Fiche Blanche",
+    "geoJson"       => "Format geojson ou une umap",
+    "compostPickup" => "Récolte de composte",
+    "video"         => "Video",
+    "sharedLibrary" => "Bibliothèque partagée",
+    "recoveryCenter"=> "Ressourcerie",
+    "trash"         => "Poubelle",
+    "history"       => "Histoire",
+    "something2See" => "Chose a voir",
+    "funPlace"      => "Lieu sympas",
+    "place"         => "Place publique",
+    "artPiece"      => "Oeuvres",
+    "streetArts"    => "Arts de rue",
+    "openScene"     => "Scène ouverte",
+    "stand"         => "Stand",
+    "parking"       => "Parking",
+    "other"          => "Autre",
 	
 );
 ?>
