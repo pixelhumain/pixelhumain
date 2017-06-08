@@ -149,14 +149,14 @@ jQuery(function($){
 		// Call Sly on frame
 		$frame.sly({
 			horizontal: 1,
-			itemNav: 'forceCentered',
+			itemNav: 'centered',
 			smart: 1,
 			activateMiddle: 1,
 			activateOn: 'click',
 			mouseDragging: 1,
 			touchDragging: 1,
 			releaseSwing: 1,
-			startAt: 0,
+			startAt: 5,
 			scrollBar: $wrap.find('.scrollbar'),
 			scrollBy: 1,
 			speed: 1000,
@@ -168,7 +168,7 @@ jQuery(function($){
 
 			// Cycling
 			cycleBy: 'items',
-			cycleInterval: 3000,
+			cycleInterval: 2500,
 			pauseOnHover: 1,
 
 			// Buttons
