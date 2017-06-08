@@ -922,6 +922,9 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"description" => "description",
 	"shortDescription" => "description courte",
 	"Edit descriptions" => "Modifier votre description",
+
+	"The email is not well formated" => "L'email n'est pas bien formaté",
+	"Unknown domain : please check your email !" => "Domaine inconnu: vérifiez votre email!",
 	
 );
 ?>
