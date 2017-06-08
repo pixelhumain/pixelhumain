@@ -1,8 +1,8 @@
-<?php 
+<?php
 
     if(isset(Yii::app()->session['userId']))
     	$me = Person::getById(Yii::app()->session['userId']);
-    
+
     $newsToModerate = count(News::getNewsToModerate());
 
     $cssAnsScriptFilesModule = array(
@@ -46,7 +46,7 @@
 
 <?php $projects = PHDB::findAndSortAndLimitAndIndex( Organization::COLLECTION, array("name"=>array('$exists'=>1),"profilMediumImageUrl"=>array('$exists'=>1)), array("updated" => -1), 3, 0); ?>
 <div class="hidden-xs main-menu-left col-md-2 col-sm-2 padding-10"  data-tpl="menuLeft" <?php if (@$emptyTop && $emptyTop==true) { ?> style="top:50px !important;" <?php } ?>>
-	
+
 	<div class="menu-left-container">
 	<?php if (@$projects && !empty($projects)){ ?>
 		<div class="col-md-12">
@@ -61,27 +61,27 @@
 	  <!-- Indicators -->
 			  <ol class="carousel-indicators">
 				<?php
-					$i=0; 
-					foreach ($projects as $data){ 
+					$i=0;
+					foreach ($projects as $data){
 						if(@$data["profilMediumImageUrl"] && !empty($data["profilMediumImageUrl"])){ ?>
 						<li data-target="#docCarousel" data-slide-to="0" class=" <?php if($i==0) echo "active" ?>"></li>
 						<?php $i++;
 						}
 					} ?>
 			  </ol>
-	
+
 	  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox">
 				<?php
-					$inc=0; 
+					$inc=0;
 					foreach ($projects as $data){
 						if(@$data["profilMediumImageUrl"] && !empty($data["profilMediumImageUrl"])){ ?>
 						<div class="item <?php if($inc==0) echo "active" ?>">
 							<a href="#organization.detail.id.<?php echo (string)$data["_id"] ?>" class="lbh">
-								<img src="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/document/resized/150x150'.@$data["profilMediumImageUrl"]) ?>" class="col-sm-12 img-responsive no-padding">
+								<img src="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/document/resized/210x210'.@$data["profilMediumImageUrl"]) ?>" class="col-sm-12 img-responsive no-padding">
 							</a>
 						</div>
-				<?php $inc++; 
+				<?php $inc++;
 					} }?>
 			  </div>
 			  <!-- Left and right controls -->
@@ -91,6 +91,7 @@
 		<div class="col-md-12" id="poiParent">
 			<!--<img src="<?php echo $this->module->assetsUrl?>/images/velo.png" class="img-responsive">-->
 		</div>
+    <a class="col-md-12 margin-top-15" href="javascript:directory.showAll('.favSection','.searchPoiContainer');">Voir tout</a><br>
 		<div class="col-md-12 margin-top-15">
 			<span class="title-menu-left text-brown">
 				LES COLLECTIONS
@@ -107,23 +108,23 @@
 				<hr>
 			</span>
 			<div class="genresList"> </div>
-		</div>		
-	</div>
-	
+		</div>
+
+  </div>
 </div>
 
-<?php 
+<?php
 	if(!isset($me)) $me = "";
-	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.'; 
- 	$this->renderPartial($layoutPath.".menu.menuSmall", 
+	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+ 	$this->renderPartial($layoutPath.".menu.menuSmall",
  					array(  "me"=>$me,
- 			 				"myCity" => $myCity)); 
-?> 
+ 			 				"myCity" => $myCity));
+?>
 
 <?php // ?>
 <div class="visible-xs" id="menu-bottom">
 	<input type="text" class="text-dark input-global-search visible-xs" id="input-global-search-xs" placeholder="rechercher ..."/>
-	<?php 
+	<?php
 	if(isset(Yii::app()->session['userId']) && false){ ?>
 		<button class="menu-button menu-button-title btn-menu btn-menu-add" onclick="">
 		<span class="lbl-btn-menu-name">Ajouter</span></span>
@@ -169,9 +170,9 @@ jQuery(document).ready(function() {
       setTimeout(function(){ $(".carousel-control.right").click(); }, 500);
     });
 	showMenuExplanation = false;
-	
+
 	bindEventMenu();
-	
+
 	$(".menu-button-left").mouseenter(function(){
 		$(this).addClass("active");
 	});
@@ -196,7 +197,7 @@ function extendMenu(open){
 	if(open){
 		$("#menu-extend").removeClass("hidden", 300);
 		$(".lbl-extends-menu i").removeClass("fa-angle-down").addClass("fa-angle-up");
-		
+
 	}else{
 		$("#menu-extend").addClass("hidden", 300);
 		$(".lbl-extends-menu i").addClass("fa-angle-down").removeClass("fa-angle-up");

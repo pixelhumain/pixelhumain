@@ -37,7 +37,7 @@
 	height: 140px;
 	width:100%;
 	max-width: 100%;
-	overflow-x: auto;
+	overflow-x: hidden;
 	overflow-y: hidden;
 }
 
@@ -100,7 +100,7 @@ button#btn-toogle-map{
 	font-size: 24px;
 	width: 200px;
 	height: 50px;
-	padding: 5px;
+	padding: 0px;
 	top: 0px;
 	z-index: 15;
 	background-color: rgb(255, 255, 255);
@@ -135,7 +135,7 @@ button#btn-toogle-map{
 	background-color: rgba(0, 0, 0, 0.8);
 	color: white;
 	top:10px;
-	left:5px; 
+	left:5px;
 }
 .description-poi h3{
 	font-size: 11px;
