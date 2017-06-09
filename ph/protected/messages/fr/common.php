@@ -152,6 +152,7 @@ return array(
 	"Comment successfully deleted" => "Le commentaire a bien été supprimé",
 	"You already invited" => "Vous avez déjà invité",
 	"Your answer has been succesfully register" => "Votre réponse a été enregistrée avec succès",
+	"News has been shared with your network"=>"Vous avez partagé ce contenu avec votre réseau",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
