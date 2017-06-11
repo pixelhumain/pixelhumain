@@ -103,7 +103,7 @@
 <form class="form-login box-login-welcome hidden-xs">
     <div class="col-md-12 col-sm-12 col-xs-12 no-padding text-left pull-right" style="margin-top: -5px; margin-bottom: -5px;">
 
-        <div class="col-md-4 col-sm-4 text-left pull-right">          
+        <!-- <div class="col-md-4 col-sm-4 text-left pull-right">          
             <button class="btn btn-success loginBtn-welcome bg-green-k" type="submit" style="margin-top: 18px;">
                 <i class="fa fa-sign-in"></i> <span class="hidden-xs">Connexion</span>
             </button><br><br>
@@ -114,7 +114,7 @@
             <input class="form-control" name="password" id="password-login-welcome" type="password" placeholder="mot de passe">
              <a href="javascript:" class="btn btn-link no-margin btn-sm" data-toggle="modal" data-target="#modalForgot" 
                 style="font-size: 10px;text-transform: none!important;color:inherit;">
-                <!-- <i class="fa fa-s"></i> -->J'ai perdu mon mot de passe
+               J'ai perdu mon mot de passe
             </a>
         </div>
 
@@ -131,7 +131,42 @@
             <button class="btn btn-success loginBtn-welcome bg-green-k" type="submit">
                 <i class="fa fa-sign-in"></i> Connexion
             </button><br><br>
+        </div> -->
+        <div class="visible-xs col-xs-12 text-left pull-left">          
+            <button class="btn btn-success loginBtn-welcome bg-green-k" type="submit">
+                <i class="fa fa-sign-in"></i> Connexion
+            </button><br><br>
         </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-6 text-left pull-left">
+            <label><i class="fa fa-envelope"></i> Un e-mail</label> 
+            <input class="form-control" name="email" id="email-login-welcome" type="text" placeholder="e-mail">
+            <label for="remember" class="checkbox-inline" style="text-transform: none!important;">
+                <input type="checkbox" id="remember" name="remember" style="margin-top: 2px;">
+                Se souvenir de moi
+            </label>
+        </div>
+
+         <div class="col-md-4 col-sm-4 col-xs-6 no-padding text-left pull-left">
+            <label><i class="fa fa-key"></i> Un mot de passe</label> 
+            <input class="form-control" name="password" id="password-login-welcome" type="password" placeholder="mot de passe">
+             <a href="javascript:" class="btn btn-link no-margin btn-sm" data-toggle="modal" data-target="#modalForgot" 
+                style="font-size: 10px;text-transform: none!important;color:inherit;">
+               J'ai perdu mon mot de passe
+            </a>
+        </div>
+
+        <div class="col-md-4 col-sm-4 text-left pull-left">          
+            <button class="btn btn-success loginBtn-welcome bg-green-k" type="submit" style="margin-top: 18px;">
+                <i class="fa fa-sign-in"></i> <span class="hidden-xs">Connexion</span>
+            </button><br><br>
+        </div>
+
+       
+
+        
+
+        
 
         <div class="form-actions col-md-12 col-sm-12" style="margin-top:5px;">
             <div class="errorHandler alert alert-danger no-display loginResult">

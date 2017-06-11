@@ -3,19 +3,19 @@
         
         <h3 class="text-dark"><i class="fa fa-plus"></i> Créer un compte </h3>
         <label class="letter-black"><i class="fa fa-address-book-o"></i> Nom et prénom</label>
-        <input class="form-control" id="registerName" name="name" type="text" placeholder="Nom et prénom"><br/>
+        <input class="form-control" id="registerName-welcome" name="name" type="text" placeholder="Nom et prénom"><br/>
         
         <label class="letter-black"><i class="fa fa-user-circle-o"></i> Nom d'utilisateur</label><br>
-        <input class="form-control" id="username" name="username" type="text" placeholder="Nom d'utilisateur"><br/>
+        <input class="form-control" id="username-welcome" name="username" type="text" placeholder="Nom d'utilisateur"><br/>
         
         <label class="letter-black"><i class="fa fa-envelope"></i> E-mail</label><br>
-        <input class="form-control" id="email3" name="email3" type="text" placeholder="e-mail"><br/>
+        <input class="form-control" id="email3-welcome" name="email3" type="text" placeholder="e-mail"><br/>
         
         <label class="letter-black"><i class="fa fa-key"></i> Mot de passe</label><br/>
-        <input class="form-control" id="password3" name="password3" type="password" placeholder="mot de passe"><br/>
+        <input class="form-control" id="password3-welcome" name="password3" type="password" placeholder="mot de passe"><br/>
         
         <label class="letter-black"><i class="fa fa-key"></i> Répétez le mot de passe</label><br/>
-        <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="mot de passe (confirmation)">
+        <input class="form-control" id="passwordAgain-welcome" name="passwordAgain" type="password" placeholder="mot de passe (confirmation)">
         
         <div class="pull-left form-actions no-margin" style="width:100%; padding:10px;">
             <div class="errorHandler alert alert-danger no-display registerResult pull-left " style="width:100%;">
@@ -27,8 +27,8 @@
         </div>
 
         <!-- <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a> -->
-        <label for="agree" class="checkbox-inline letter-red">
-            <input type="checkbox" class="grey agree" id="agree" name="agree">
+        <label for="agree-welcome" class="checkbox-inline letter-red">
+            <input type="checkbox" class="grey agree" id="agree-welcome" name="agree">
             <?php echo Yii::t("login","I agree to the Terms of") ?><br> 
             <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp text-dark">
                 <?php echo Yii::t("login","Service and Privacy Policy") ?>
