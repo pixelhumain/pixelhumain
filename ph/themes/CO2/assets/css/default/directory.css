@@ -252,10 +252,16 @@
     margin-bottom: 25px !important;
   }
   .searchEntityContainer.surveys{
-    min-height: 150px !important;
-    max-height: 150px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
     margin-bottom: 25px !important;
   }
+
+  .searchEntityContainer.surveys .entityRight{
+    max-height: 170px !important;
+    overflow: hidden;
+  }
+
   .searchEntityContainer.classified{
     min-height: 250px !important;
     max-height: 560px !important;
