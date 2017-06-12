@@ -171,6 +171,7 @@
                 
                 '/plugins/select2/select2.min.js' , 
                 '/plugins/moment/min/moment.min.js' ,
+                '/plugins/moment/min/moment-with-locales.min.js',
                 '/plugins/jquery.dynForm.js',
                 //'/js/cookie.js' ,
                 '/js/api.js',
