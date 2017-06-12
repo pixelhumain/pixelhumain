@@ -31,7 +31,7 @@ class DataValidator {
 	public static function email($toValidate, $objectId=null) {
 		$res = "";
 		if (! preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$toValidate) && !empty($toValidate)) { 
-			$res = "The email is not well formated";
+			$res = Yii::t("common", "The email is not well formated");
 		} else {
 			$domain = explode("@",$toValidate);
         	$domain = array_pop($domain); 
@@ -40,7 +40,7 @@ class DataValidator {
         	//if(! checkdnsrr(idn_to_ascii($domain),"MX")){
 
 	  		if(!empty($domain) && ! checkdnsrr($domain,"MX")){
-				$res = "Unknown domain : please check your email !";
+				$res = Yii::t("common", "Unknown domain : please check your email !");
 			}
 		}
 		return $res;
@@ -135,6 +135,7 @@ class DataValidator {
 	public static function validate( $type, $values, $import = null ) 
 	{
 		//var_dump($type); return;
+		//var_dump($type);
 		$dataBinding = $type::$dataBinding;
 		//var_dump($dataBinding); return;
 		//var_dump($values); return;

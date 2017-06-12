@@ -585,3 +585,27 @@
 .contactPanelHtml .panel-heading{
   min-height: 110px
 }
+.adminToolBar{
+    display: none;
+    position: absolute;
+    top: 0px;
+    height: 150px;
+    right: 15px;
+    background-color: rgba(0,0,0,0.6);
+    left: 15px;
+}
+.adminToolBar button{
+    width: 100%;
+    border-radius: inherit;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+}
+.adminToolBar button:hover{
+    background-color: white;
+    color: black;
+    font-size: 17px;
+}
+.adminIconDirectory{
+  z-index:10;
+}

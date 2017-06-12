@@ -52,6 +52,7 @@ return array(
 	"{who} commented on discussion {what} in {where}" => "{who} a participé à la discussion {what} dans {where}",
 	"{who} added comments on discussion {what} in {where}" => "{who} ont participé à la discussion {what} dans {where}",
 	"of creation"=> "de création",
+	"shared"=>"partagé",
 	//LIKE&uNLIKE
 	"{who} likes a news {what} from {where}" => "{who} aime un post {what} de {where}",
 	"{who} like a news {what} from {where}" => "{who} aiment un post {what} de {where}",
