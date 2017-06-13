@@ -853,6 +853,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Update general information" => "Mettre à jour les informations générales",
 	"Update description" => "Mettre à jour la description",
 	"Update network" => "Mettre à jour les réseaux sociaux",
+	"Update date" => "Mettre à jour les dates",
 
 	"General information" => "Informations générales",
 
