@@ -999,11 +999,12 @@ onSave: (optional) overloads the generic saveProcess
 
 		var FineUploader = function(){
 			mylog.log("init fineUploader");
+			
 			$(".fine-uploader-manual-trigger").fineUploader({
 	            template: 'qq-template-gallery',//'qq-template-manual-trigger',
 	            request: {
-	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile"
-	                //params : uploadObj
+	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile/contentKey/"+uploadObj.contentKey
+	                //params : {contentKey:contentKey}
 	            },
 	            validation: {
 	                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
@@ -1017,9 +1018,13 @@ onSave: (optional) overloads the generic saveProcess
 	            	//when a img is selected
 				    onSubmit: function(id, fileName) {
 				      if(initValues.showUploadBtn)
-				      	$('#trigger-upload').removeClass("hide")
+				      	$('#trigger-upload').removeClass("hide");
 				    },
-				    /*
+				    onCancel: function(id) {
+				    	if(($("ul.qq-upload-list > li").length-1)<=0)
+				    		$('#trigger-upload').addClass("hide");
+        			},
+        			/*
 				    //launches request endpoint
 				    //onUpload: function(id, fileName) {
 				      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
