@@ -124,6 +124,10 @@ button#btn-toogle-map{
 	display: table-cell;
 }
 
+.hide{
+	height: 0px;
+	width: 0px;
+}
 .img-galley-top{
 	height:120px;
 	width:120px;
