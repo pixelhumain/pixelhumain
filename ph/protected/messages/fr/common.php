@@ -641,6 +641,7 @@ return array(
 	"Add a group" => "Ajouter un nouveau groupe",
 	"Add an Event" => "Ajouter un nouvel événement",
 	"Add a Project" => "Ajouter un nouveau projet",
+	"Add a Tags in OSM" => "Ajouter un nouveau tag OSM",
 
 	"Back to" => "Revenir sur",
 	"Know more" => "En savoir +",
