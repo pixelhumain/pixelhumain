@@ -11,34 +11,6 @@
 		-cityName
  	*/
 	$user = "NOT_CONNECTED";
- 	/*if(isset(Yii::app()->session['userId'])){
- 		$user = Person::getById(Yii::app()->session['userId']);
-		
-		$user_geo_latitude = ""; $user_geo_longitude = "";
-		$insee = ""; $cityName = "";
-
-		if(isset($user["geo"]) && 
- 		   isset($user["geo"]["latitude"]) && isset($user["geo"]["longitude"]))
-		{
-			$user_geo_latitude = $user["geo"]["latitude"];
-			$user_geo_longitude = $user["geo"]["longitude"];
-		}
-
-		if(isset($user["address"]) && isset($user["address"]["codeInsee"]))
-			$insee = $user["address"]["codeInsee"];
-			
-		if(isset($user["address"]) && isset($user["address"]["addressLocality"]))
-			$cityName = $user["address"]["addressLocality"];
-			
-	}else{ //user not connected
-		if(isset($cookies['user_geo_longitude'])){
-				$sigParams["firstView"] = array(  "coordinates" => array( $cookies['user_geo_latitude']->value, 
-																		  $cookies['user_geo_longitude']->value),
-											 	  "zoom" => 13);		
-		}else{
-			//error_log("aucun cookie geopos trouvé");
-		}
-	}*/
 
 ?>	
 <html lang="en" class="no-js">
@@ -100,7 +72,7 @@
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<script>
-		//alert("theme : <?php echo Yii::app()->theme->name?>")
+		console.log("MainSearch");
 		   var initT = new Object();
 		   var showDelaunay = true;
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
@@ -322,6 +294,7 @@
 			'/js/api.js'
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
+		HtmlHelper::registerCssAndScriptsFiles( array('/js/default/formInMap.js') , $this->module->assetsUrl);
 
 		$cssAnsScriptFilesModule = array(
 			'/assets/js/cookie.js' ,
@@ -342,13 +315,13 @@
 			'/assets/css/news/index.css',	
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
-
-		$this->renderPartial('webroot.themes.CO2.views.layouts.initJs', 
+		$this->renderPartial($layoutPathNetwork.'initJs', 
                                  array( "me"=>@$me, "myFormContact" => @$myFormContact));
 		//<!-- end: MAIN JAVASCRIPTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		?>
 		<script type="text/javascript">
+		console.log("MainSearch2");
 		var networkParams = "<?php echo Yii::app()->params['networkParams'] ?>";
 		var networkJson = <?php echo json_encode($params)?>;
 		var globalTheme = "network";
@@ -465,6 +438,7 @@
 		jQuery(document).ready(function() {
 			setTitle(networkJson.name , "", networkJson.name+ " : "+networkJson.skin.title, networkJson.name,networkJson.skin.shortDescription);
 			// Initialize tags list for network in form of element
+			
 			/*if(typeof networkJson.add != "undefined"){
 				$.each(networkJson.add, function(key, v) {
 					if(typeof networkJson.request.sourceKey != "undefined"){
@@ -479,7 +453,8 @@
 						}
 					}
 				});
-			} */
+			}*/
+
 			$(".bg-main-menu.bgpixeltree_sig").remove();
 			if(myContacts != null)
 			$.each(myContacts, function(type, list) {
