@@ -939,7 +939,7 @@ onSave: (optional) overloads the generic saveProcess
 	            },
 	            validation: {
 	                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
-	                sizeLimit: 2000000
+	                sizeLimit: fileSizeMax
 	            },
 	            messages: {
 			        sizeError: '{file} est trop lourde! limite max : {sizeLimit}.'
