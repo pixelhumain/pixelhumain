@@ -199,24 +199,30 @@ a.text-white{
 
 .bg-pink{
     background-color:#d99ce0 !important;
+    color:white;
 }
 .bg-dark{
     background-color:#2C3E50 !important;
+    color:white;
 }
 
 .bg-green-k{
     background-color:#34a853 !important;
+    color:white;
 }
 .bg-blue-k{
     background-color:#4285f4 !important;
+    color:white;
 }
 
 .bg-turq{
     background-color: #229296!important;
+    color:white;
 }
 
 .bg-green-poi{
     background-color:#20C06B !important;
+    color:white;
 }
 
 

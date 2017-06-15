@@ -856,6 +856,7 @@ h3.title_panel_map{
 }
 .navbar-map .menu-name-profil small{
 	color:white;
+	padding-top:10px;
 }
 
 .menu-name-profil:hover img{

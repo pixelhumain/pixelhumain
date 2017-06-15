@@ -54,7 +54,7 @@
                                             pour faire plus et mieux, ensemble.
                                         </small>
                                     </h5>
-                                    <button class="btn btn-default text-green margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer ma page</button>
+                                    <button class="btn btn-default text-green margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer une page</button>
                                 </div>
                             </div>
                         </a>
@@ -73,7 +73,7 @@
                                             auprès de ceux qui vivent près de vous.
                                         </small>
                                     </h5>
-                                    <button class="btn btn-default text-azure margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer ma page</button>
+                                    <button class="btn btn-default text-azure margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer une page</button>
                                 </div>
                             </div>
                         </a>
@@ -92,7 +92,7 @@
                                             Les vivre c'est bien, les partager c'est encore mieux!
                                         </small>
                                     </h5>
-                                    <button class="btn btn-default text-turq margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer ma page</button>
+                                    <button class="btn btn-default text-turq margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer une page</button>
                                 </div>
                             </div>
                         </a>
@@ -111,7 +111,7 @@
                                             Communiquez-les massivement!
                                         </small>
                                     </h5>
-                                    <button class="btn btn-default text-orange margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer ma page</button>
+                                    <button class="btn btn-default text-orange margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer une page</button>
                                 </div>
                             </div>
                         </a>
@@ -130,7 +130,7 @@
                                             C'est comme ça qu'ils grandissent !
                                         </small>
                                     </h5>
-                                    <button class="btn btn-default text-purple margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer ma page</button>
+                                    <button class="btn btn-default text-purple margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer une page</button>
                                 </div>
                             </div>
                         </a>
@@ -150,7 +150,7 @@
                                             au niveau local comme national
                                         </small>
                                     </h5>
-                                    <button class="btn btn-default text-red margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer ma page</button>
+                                    <button class="btn btn-default text-red margin-bottom-15"><i class="fa fa-plus-circle"></i> Créer une page</button>
                                 </div>
                             </div>
                         </a>

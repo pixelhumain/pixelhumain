@@ -14,7 +14,7 @@
     
 ?>
 
-<html lang="en" class="no-js">
+<html lang="en" class="no-js">   
 
     <head>
 
@@ -171,6 +171,7 @@
                 
                 '/plugins/select2/select2.min.js' , 
                 '/plugins/moment/min/moment.min.js' ,
+                '/plugins/moment/min/moment-with-locales.min.js',
                 '/plugins/jquery.dynForm.js',
                 //'/js/cookie.js' ,
                 '/js/api.js',
@@ -227,7 +228,8 @@
         <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
         <?php //$this->renderPartial($layoutPath.'modals.CO2.selectCreate', array("me"=>$me) ); ?>
 
-        <script>          
+        <script>    
+            //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() { 
                 $.blockUI();

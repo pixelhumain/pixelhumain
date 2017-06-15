@@ -47,7 +47,6 @@
 	<head>
 		<?php 	
 		$layoutPathNetwork = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-		$layoutPath = 'webroot.themes.CO2.views.layouts.';
 		$this->renderPartial($layoutPathNetwork.'metas');
 
 		//Management of network configuration is in Network model
@@ -101,6 +100,7 @@
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<script>
+		//alert("theme : <?php echo Yii::app()->theme->name?>")
 		   var initT = new Object();
 		   var showDelaunay = true;
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";

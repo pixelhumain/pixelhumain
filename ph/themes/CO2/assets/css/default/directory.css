@@ -252,10 +252,16 @@
     margin-bottom: 25px !important;
   }
   .searchEntityContainer.surveys{
-    min-height: 150px !important;
-    max-height: 150px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
     margin-bottom: 25px !important;
   }
+
+  .searchEntityContainer.surveys .entityRight{
+    max-height: 170px !important;
+    overflow: hidden;
+  }
+
   .searchEntityContainer.classified{
     min-height: 250px !important;
     max-height: 560px !important;
@@ -570,7 +576,7 @@
   }
 
 .contactPanelHtml{
-  max-height: 150px !important;
+  max-height: 350px !important;
   min-height: 150px !important;
   margin-bottom: 15px !important;
 }
@@ -578,4 +584,28 @@
 
 .contactPanelHtml .panel-heading{
   min-height: 110px
+}
+.adminToolBar{
+    display: none;
+    position: absolute;
+    top: 0px;
+    height: 150px;
+    right: 15px;
+    background-color: rgba(0,0,0,0.6);
+    left: 15px;
+}
+.adminToolBar button{
+    width: 100%;
+    border-radius: inherit;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+}
+.adminToolBar button:hover{
+    background-color: white;
+    color: black;
+    font-size: 17px;
+}
+.adminIconDirectory{
+  z-index:10;
 }
