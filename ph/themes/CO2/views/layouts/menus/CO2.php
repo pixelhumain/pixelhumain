@@ -4,12 +4,12 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <button class="btn btn-link menu-btn-back-category pull-left no-padding" 
-                <?php if( $subdomain != "welcome" ) { ?>data-target="#modalMainMenu" data-toggle="modal"<?php } ?>
+            <a href="#" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" 
+                <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
             >
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="nc_map pull-left" height=30>
-            </button>
+            </a>
             <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>
             <?php 
                 $params = CO2::getThemeParams();  
