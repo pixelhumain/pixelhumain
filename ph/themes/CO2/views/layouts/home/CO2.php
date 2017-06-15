@@ -76,7 +76,7 @@ $communexion = CO2::getCommunexionCookies();
 		</div>
 
 
-		<div class="col-md-12 margin-top-50">
+		<div class="col-md-12 col-sm-12 col-xs-12  margin-top-50">
 			<?php $isEmptyCo = empty($communexion["values"]["cityName"]); 
 				//var_dump($communexion);
 			?>
@@ -145,7 +145,7 @@ $communexion = CO2::getCommunexionCookies();
 		
 		<div class="col-md-12 col-sm-12 col-xs-12 no-padding margin-top-25"><hr></div>
 		
-		<div class="col-md-12">
+		<div class="col-md-12 col-sm-12 col-xs-12">
 			<h3 class="text-red text-center">
 				<i class="fa fa-clock-o fa-2x"></i><br>
 				En ce moment<br>
@@ -160,7 +160,7 @@ $communexion = CO2::getCommunexionCookies();
 			<div class="text-left" id="nowList"></div>
 		</div>
 
-		<div class="col-md-12 margin-top-50">
+		<div class="col-md-12 col-sm-12 col-xs-12 margin-top-50">
 			<h3 class="text-red text-center">En savoir plus</h3>
 			<hr class="angle-down">
 		</div>
@@ -206,7 +206,7 @@ $communexion = CO2::getCommunexionCookies();
 		
 	<!-- </div> -->
 
-	<div class="col-sm-12 no-padding margin-top-50" style="background-color:#fff; max-width:100%; float:left;">
+	<div class="col-sm-12 col-md-12 col-xs-12 no-padding margin-top-50" style="background-color:#fff; max-width:100%; float:left;">
 		<div class="col-md-12" style="background-color:#E33551;width:100%;padding:8px 0px 8px 0%;">
 			<h1 class="homestead text-center text-white">
 				<i class="fa fa-user-circle"></i><br>Les amis de communecter
@@ -243,7 +243,7 @@ $communexion = CO2::getCommunexionCookies();
 		</div>
 	</div>
 
-	<div class="col-sm-12 no-padding margin-top-50" style="background-color:#E33551; max-width:100%; float:left;" id="teamSection">
+	<div class="col-sm-12 col-md-12 col-xs-12 no-padding margin-top-50" style="background-color:#E33551; max-width:100%; float:left;" id="teamSection">
 		<!-- <div class="col-md-12" style="background-color:#293A46;width:100%;padding:8px 0px 8px 0%;">
 			<h1 class="homestead center text-white"><a href="#default.view.page.partners" class="lbh">Partenaires & Contributeurs</a> <i class="fa fa-share-alt fa-2x"></i></h1>
 		</div>
