@@ -122,8 +122,8 @@
                                     </a>
                                 </li> -->
                                 <li class="text-left">
-                                    <a href="#" class="lbh bg-white">
-                                        <i class="fa fa-home"></i> Accueil
+                                    <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>" class="lbh bg-white">
+                                        <i class="fa fa-home"></i> Mon accueil
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
@@ -150,7 +150,7 @@
                                 </li>
                                 
                                 <li class="text-admin">
-                                    <a href="#params" class="lbh bg-white">
+                                    <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.settings" class="lbh bg-white">
                                         <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                                     </a>
                                 </li>
