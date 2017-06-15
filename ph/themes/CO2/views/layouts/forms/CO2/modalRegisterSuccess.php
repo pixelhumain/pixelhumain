@@ -16,7 +16,7 @@
                 </small>
                 <br><br>
                 <h5><i class="fa fa-angle-down"></i> Comment faire ?</h5>
-                <i class="fa fa-envelope-open" style="width:20px;"></i> <b>Vérifiez votre boîte e-mails</b><br>
+                <i class="fa fa-envelope-open" style="width:20px;"></i> <b>Vérifiez votre boîte e-mails et vos spams</b><br>
                 <i class="fa fa-hand-o-up" style="width:20px;"></i> <b>Cliquez sur le lien d'activation</b> que nous vous avons envoyé.</br>
                 <hr>
                 <i class="fa fa-unlock" style="width:20px;"></i> Vous serez <b class="letter-green">connecté automatiquement</b> et redirigé vers votre page perso.

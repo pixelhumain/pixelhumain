@@ -171,7 +171,7 @@
 
 	.<?php echo $moduleName; ?> #mapLegende{
 		left: 0px !important;
-		font-size: 14px !important;
+		font-size: 17px !important;
 		color: white !important;
 		top: 60px;
 		border-radius: 0 0 4px 0;
@@ -348,13 +348,28 @@
 		Sig.hidePopupContent(id);
 	}
 
-	function showMapLegende(faIcon, msgText){ 
+	function showMapLegende(faIcon, msgText){ console.log("showMapLegende", msgText);
+
+		if(typeof msgText == "undefined" || msgText == null){
+			hideMapLegende();
+			return;
+		}
 		$("#mapLegende").html("<i class='fa fa-"+faIcon+"'></i> " + msgText);
 		$("#mapLegende").show(300);
 	}
 	function hideMapLegende(){ 
 		showMapLegende("", "");
 		$("#mapLegende").hide();
+	}
+
+	function showIsLoading(show){
+		if(show){
+			$("#map-loading-data").removeClass("hidden");
+		}else{
+			$("#map-loading-data").addClass("hidden");
+		}
+
+		//setTimeout(function(){ $("#map-loading-data").addClass("hidden"); }, 6000);
 	}
 
 

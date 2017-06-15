@@ -4,12 +4,12 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <button class="btn btn-link menu-btn-back-category pull-left no-padding" 
-                <?php if( $subdomain != "welcome" ) { ?>data-target="#modalMainMenu" data-toggle="modal"<?php } ?>
+            <a href="#" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" 
+                <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
             >
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="nc_map pull-left" height=30>
-            </button>
+            </a>
             <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>
             <?php 
                 $params = CO2::getThemeParams();  
@@ -122,8 +122,8 @@
                                     </a>
                                 </li> -->
                                 <li class="text-left">
-                                    <a href="#" class="lbh bg-white">
-                                        <i class="fa fa-home"></i> Accueil
+                                    <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>" class="lbh bg-white">
+                                        <i class="fa fa-home"></i> Mon accueil
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
@@ -150,7 +150,7 @@
                                 </li>
                                 
                                 <li class="text-admin">
-                                    <a href="#params" class="lbh bg-white">
+                                    <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.settings" class="lbh bg-white">
                                         <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                                     </a>
                                 </li>
@@ -301,10 +301,10 @@
     <!-- /.container-fluid -->
 
 </nav>
-<?php if($subdomain != "welcome"){ 
+<?php //if($subdomain != "welcome"){ 
         $this->renderPartial($layoutPath.'loginRegister', array()); 
-      } else{ ?>
-        <div class="modal fade" role="dialog" id="modalRegisterSuccess">
+      //} else{ ?>
+        <!--<div class="modal fade" role="dialog" id="modalRegisterSuccess">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header bg-green-k text-white">
@@ -333,8 +333,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-      <?php }
+        </div>-->
+      <?php //}
 ?>
 
 <?php /*if(isset(Yii::app()->session['userId'])) {

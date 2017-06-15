@@ -1012,6 +1012,13 @@ creer des conflits : regle pas assez specfique
 	}
 /* style tooltip des chartsMarkers */
 
+#mapLegende .btn.pull-right{
+	display:none;
+}
+
+
+
+
 @media screen and (max-width: 768px) {
 
 	.panel_map{
