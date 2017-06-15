@@ -416,7 +416,7 @@ return array(
 	"Already following" => "Déjà abonné",
 	"Don't follow this page" => "Ne plus suivre cette page",
 	"Waiting"=>"En attente",
-	"Waiting an answer to administrate"=> "En attente de réponse to administrate",
+	"Waiting an answer to administrate"=> "En attente de réponse pour administrer",
 	"Waiting an answer to become {what}"=>"En attente de réponse pour devenir {what}",
 	"Leave this page" => "Quitter cette page",
 	"Favorites" => "Favoris",
