@@ -76,7 +76,7 @@ $communexion = CO2::getCommunexionCookies();
 		</div>
 
 
-		<div class="col-md-12 margin-top-50">
+		<div class="col-md-12 col-xs-12 col-sm-12 margin-top-50">
 			<?php $isEmptyCo = empty($communexion["values"]["cityName"]); 
 				//var_dump($communexion);
 			?>
@@ -145,7 +145,7 @@ $communexion = CO2::getCommunexionCookies();
 		
 		<div class="col-md-12 col-sm-12 col-xs-12 no-padding margin-top-25"><hr></div>
 		
-		<div class="col-md-12">
+		<div class="col-md-12 col-sm-12 col-xs-12">
 			<h3 class="text-red text-center">
 				<i class="fa fa-clock-o fa-2x"></i><br>
 				En ce moment<br>
@@ -160,7 +160,7 @@ $communexion = CO2::getCommunexionCookies();
 			<div class="text-left" id="nowList"></div>
 		</div>
 
-		<div class="col-md-12 margin-top-50">
+		<div class="col-md-12 col-sm-12 col-xs-12 margin-top-50">
 			<h3 class="text-red text-center">En savoir plus</h3>
 			<hr class="angle-down">
 		</div>
