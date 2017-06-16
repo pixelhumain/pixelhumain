@@ -92,7 +92,8 @@
         "video":"dark",
         "classified" : "yellow"
     };
-
+    var lastWindowUrl = null;
+    var allReadyLoadWindow=false;
     var themeObj = {
         init : function(){
             toastr.options = {
@@ -110,6 +111,36 @@
             };
             initFloopDrawer();
             resizeInterface();
+            window.onhashchange = function() {
+                  //mylog.dir(e);
+                //mylog.log("history.state",$.isEmptyObject(history.state),location.hash);
+                mylog.warn("popstate history.state",history.state);
+                //alert(location.hash)
+                if( lastWindowUrl && "onhashchange" in window){
+                    console.log("history",history);
+                    if( allReadyLoadWindow == false ){
+                        if(lastWindowUrl.indexOf("#page")>=0 && location.hash.indexOf("#page")>=0){
+                            lastSplit=lastWindowUrl.split(".");
+                            currentSplit=location.hash.split(".");
+                            if(lastSplit[2]==currentSplit[2] && lastSplit[4]==currentSplit[4]){
+                                if(location.hash.indexOf("view")>=0){
+                                    dir="";
+                                    if(typeof currentSplit[8] != "undefined")
+                                        dir=currentSplit[8];
+                                    getProfilSubview(currentSplit[6],dir);
+                                }
+                                else
+                                    getProfilSubview("");
+
+                            }else
+                                urlCtrl.loadByHash(location.hash,true);
+                        }else
+                            urlCtrl.loadByHash(location.hash,true);
+                    } 
+                    allReadyLoadWindow = false;
+                }
+                lastWindowUrl = location.hash;
+            }
         },
         imgLoad : "CO2r.png" ,
         mainContainer : ".main-container",
@@ -206,5 +237,4 @@ function removeCookies() {
 }
 
 removeCookies();
-    
 </script>
