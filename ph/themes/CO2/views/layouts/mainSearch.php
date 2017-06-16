@@ -82,8 +82,7 @@
         <?php //$this->renderPartial($layoutPath.'loginRegister', array()); ?>
 
         <?php  if( isset(Yii::app()->session["userId"]) )
-                $this->renderPartial('../news/modalShare',
-                                     array());
+                $this->renderPartial('../news/modalShare', array());
         ?>
             
         <div class="main-container">
