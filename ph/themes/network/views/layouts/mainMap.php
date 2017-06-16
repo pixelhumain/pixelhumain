@@ -225,6 +225,18 @@
 		$("#mapLegende").hide();
 	}
 
+	function showIsLoading(show){
+		/*if(show){
+			$("#map-loading-data").removeClass("hidden");
+		}else{
+			$("#map-loading-data").addClass("hidden");
+		}*/
+
+		$("#map-loading-data").addClass("hidden");
+
+		//setTimeout(function(){ $("#map-loading-data").addClass("hidden"); }, 6000);
+	}
+
 	// function showMap(show){
 		
 	// 	if(show === undefined) show = $("#right_tool_map").css("display") == "none";

@@ -417,43 +417,13 @@
 		var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
 		var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
 		var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
-
-		// GET LIST OF NETWORK'S TAGS
-		if(typeof networkJson.filter.linksTag != "undefined"){
-			var networkTags = [];
-			if(typeof networkJson.request.mainTag != "undefined")
-				networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
-			$.each(networkJson.filter.linksTag, function(category, properties) {
-				optgroupObject=new Object;
-				optgroupObject.text=category;
-				optgroupObject.children=[];
-				$.each(properties.tags, function(i, tag) {
-					val={id:tag,text:tag};
-					optgroupObject.children.push(val);
-				});
-				networkTags.push(optgroupObject);
-			});
-		}
+		
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
 			setTitle(networkJson.name , "", networkJson.name+ " : "+networkJson.skin.title, networkJson.name,networkJson.skin.shortDescription);
 			// Initialize tags list for network in form of element
 			
-			/*if(typeof networkJson.add != "undefined"){
-				$.each(networkJson.add, function(key, v) {
-					if(typeof networkJson.request.sourceKey != "undefined"){
-						sourceObject = {inputType:"hidden", value : networkJson.request.sourceKey[0]};
-						typeObj[key].dynForm.jsonSchema.properties.source = sourceObject;
-					}
-					if(v){
-						if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
-							typeObj[key].dynForm.jsonSchema.properties.tags.data=networkTags;
-							if(typeof networkJson.request.mainTag != "undefined")
-								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag[0];
-						}
-					}
-				});
-			}*/
+			
 
 			$(".bg-main-menu.bgpixeltree_sig").remove();
 			if(myContacts != null)
