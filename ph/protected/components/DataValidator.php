@@ -144,6 +144,7 @@ class DataValidator {
 		foreach ( $values as $key => $value ) 
 		{
 			try{
+				
 				if ( isset( $dataBinding[$key]) ) {
 					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value, $values, $import);
 				} else {
