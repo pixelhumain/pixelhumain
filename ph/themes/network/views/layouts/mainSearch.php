@@ -418,6 +418,55 @@
 		var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
 		var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
 		
+		// GET LIST OF NETWORK'S TAGS
+		if(networkJson != null && typeof networkJson.filter != "undefined" && typeof networkJson.filter.linksTag != "undefined"){
+			var networkTags = [];
+			//var networkTags2 = {};
+			var networkTagsCategory = {};
+			//var optgroupArray = {};
+			tagsList = [];
+			if(typeof networkJson.request.mainTag != "undefined")
+				networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
+			$.each(networkJson.filter.linksTag, function(category, properties) {
+				optgroupObject=new Object;
+				optgroupObject.text=category;
+				optgroupObject.children=[];
+				//networkTags2[category]=[];
+				networkTagsCategory[category]=[];
+				//optgroupArray[category]=[];
+				$.each(properties.tags, function(i, tag) {
+					if($.isArray(tag)){
+						$.each(tag, function(keyTag, textTag) {
+							val={id:textTag,text:textTag};
+							if(jQuery.inArray( textTag, tagsList ) == -1 ){
+								optgroupObject.children.push(val);
+								tagsList.push(textTag);
+								//optgroupArray[category].push(textTag);
+								/*optgroupObject2=new Object;
+								optgroupObject2.text=textTag;
+								networkTags2[category].push(optgroupObject2);*/
+							}
+						});
+					}else{
+						val={id:tag,text:tag};
+						if(jQuery.inArray( tag, tagsList ) == -1 ){
+							optgroupObject.children.push(val);
+							tagsList.push(tag);
+							//optgroupArray[category].push(tag);
+							/*optgroupObject2=new Object;
+							optgroupObject2.text=tag;
+							networkTags2[category].push(optgroupObject2);*/
+						}
+					}
+					
+					//tagsList.push(val);
+				});
+				networkTags.push(optgroupObject);
+				networkTagsCategory[category].push(optgroupObject);
+			});
+		}
+
+
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
 			setTitle(networkJson.name , "", networkJson.name+ " : "+networkJson.skin.title, networkJson.name,networkJson.skin.shortDescription);
