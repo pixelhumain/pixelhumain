@@ -220,7 +220,17 @@
         <?php //$this->renderPartial($layoutPath.'loginRegister', array()); ?>
         <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
         <?php //$this->renderPartial($layoutPath.'modals.CO2.selectCreate', array("me"=>$me) ); ?>
-
+        <div id="footer-help" class="text-center col-md-12 col-sm-12 col-xs-12">
+            <div class="close-footer-help">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <span>Plus que jamais, le commun coummunecter a besoin de vous !<br/></span>
+            <span>Si vous aimez et utilisez l'outil, il est temps de contribuer<br/>pour lui permettre de continuer à exister !</span><br/>
+            <a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="btnHelp btn btn-warning margin-top-10">Faire un don à l'association</a> 
+        </div>
         <script>    
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
@@ -243,6 +253,9 @@
                 setTimeout(function(){
                     $("#page-top").show();
                 }, 500);
+                $(".close-footer-help").click(function(){
+                    $("#footer-help").remove();
+                });
             });
             console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
         </script>
