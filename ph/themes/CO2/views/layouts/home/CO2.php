@@ -12,20 +12,15 @@ $communexion = CO2::getCommunexionCookies();
 		background-size: 80%;
 		background-color:#fff;  
 	}
-
-	#mainNav .dropdown-result-global-search{
-		top:93px!important;
-	}
-
-	@media screen and (max-width: 992px) {
+	/*#mainNav .dropdown-result-global-search{
+        top:56px !important;
+        left:83px !important;
+    }*/
+    @media (min-width: 767px) and (max-width: 992px) {
         #mainNav .dropdown-result-global-search{
-			top:100px!important;
-		}
+            width:40% !important;
+        }
     } 
-
-    @media (max-width: 767px) {
-       
-    }
 </style>
 
 <div class="pageContent">
