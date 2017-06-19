@@ -276,7 +276,7 @@ $communexion = CO2::getCommunexionCookies();
 			<i class="fa fa-envelope headerIcon"></i><br/>
 			CONTACT
 			</h1>
-			+ 262 262 34 36 86<br><a href="#">contact@pixelhumain.com</a>
+			+ 262 262 34 36 86<br><a href="#">contact@communecter.com</a>
 
 			<ul class="social-list">
 				<li><a target="_blank" href="https://www.facebook.com/communecter" class="btn btn-facebook btn-social"><span class="fa fa-facebook"></span></a></li>
@@ -285,9 +285,9 @@ $communexion = CO2::getCommunexionCookies();
 				<li><a target="_blank" href="https://github.com/pixelhumain/communecter" class="btn btn-github btn-social"><span class="fa fa-github"></span> </a></li>
 			</ul>
 
-			<a href="javascript:;" data-id="explainOpenAtlas" class="explainLink">L'association Open Atlas</a>
-			<br/><a href="#default.view.page.mention" class="lbh" >Mentions Légales</a>
-			<br/><a href="#default.view.page.partners" class="lbh">Partenaires</a>
+			<a href="default/view/page/openatlas/dir/docs|panels" data-id="explainOpenAtlas" class="lbhp">L'association Open Atlas</a>
+			<br/><a href="default/view/page/mention/dir/docs|panels" class="lbhp" >Mentions Légales</a>
+			<br/><a href="default/view/page/partners/dir/docs|panels?type=partner" class="lbhp">Partenaires</a>
 		<center>
 	</div>
 </div>
