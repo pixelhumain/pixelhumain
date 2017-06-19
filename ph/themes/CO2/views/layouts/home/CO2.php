@@ -28,7 +28,7 @@ $communexion = CO2::getCommunexionCookies();
     }
 </style>
 
-<div class="home_page">
+<div class="pageContent">
 
 	<!-- <div class="col-md-12 col-lg-12 col-sm-12">
 		<?php 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
