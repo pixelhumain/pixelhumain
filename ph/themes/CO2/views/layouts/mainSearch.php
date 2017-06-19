@@ -101,12 +101,11 @@
             <header>
                 <div class="col-md-12 text-center main-menu-app" style="">
                     <?php 
-                    $CO2DomainName = Yii::app()->params["CO2DomainName"];
-                    $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
-                                                                                "subdomain"  => ""));
-                        ?>
+                        $CO2DomainName = Yii::app()->params["CO2DomainName"];
+                        $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
+                                                                                    "subdomain"  => ""));
+                    ?>
                 </div>
-
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
@@ -123,15 +122,11 @@
             <div class="pageContent"></div>
         </div>
         
-
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
-
-        
-        
-        <?php 
-        if($CO2DomainName != "CO2")
-            $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); ?> 
-
+       
+        <?php if($CO2DomainName != "CO2")
+                $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
+        ?> 
         
         <?php 
             echo "<!-- start: MAIN JAVASCRIPTS -->";
@@ -204,7 +199,6 @@
                 '/assets/js/radioplayer.js',
     
                 '/assets/css/floopDrawerRight.css'
-                                                  
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
