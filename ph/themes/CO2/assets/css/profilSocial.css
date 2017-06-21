@@ -666,6 +666,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         width:100%;
     }
 
+    #btn-show-links-onmap{
+        margin-right: 10px;
+        margin-top: -15px;
+    }
+
 @media screen and (max-width: 1024px) {
     #main-name-element{
         font-size: 1.2em;
