@@ -502,24 +502,32 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="address" name="address[streetAddress]" id="address[streetAddress]" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
-			
+			mylog.log("location formValues", formValues);
 			//locations are saved in addresses attribute
 			if( formValues.address && formValues.geo && formValues.geoPosition ){
-				initField = function(){
+				var initAddress = function(){
 					mylog.warn("init Adress location",formValues.address.addressLocality,formValues.address.postalCode);
 					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
-					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
+					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition}, -1);
 				};
 			}     
 			if( formValues.addresses ){
-				initField = function(){
+				var initAddresses = function(){
 					$.each(formValues.addresses, function(i,locationObj){
-						mylog.warn("init extra addresses location",locationObj.address.addressLocality,locationObj.address.postalCode);
+						mylog.warn("init extra addresses location ",locationObj.address.addressLocality,locationObj.address.postalCode);
 						dyFInputs.locationObj.copyMapForm2Dynform(locationObj);
-						dyFInputs.locationObj.addLocationToForm(locationObj);
+						dyFInputs.locationObj.addLocationToForm(locationObj, i);
 					});
 				};
-			}       
+			} 
+			initField = function(){
+				if(initAddress)
+					initAddress();
+				if(initAddresses)
+					initAddresses();
+				dyFInputs.locationObj.init();
+			} 
+
         }else if ( fieldObj.inputType == "postalcode" ) {
         	mylog.log("build field "+field+">>>>>> postalcode");
         	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" postalCodeBtn btn btn-default'><i class='text-azure fa fa-plus fa-2x'></i> Postal Code </a>";

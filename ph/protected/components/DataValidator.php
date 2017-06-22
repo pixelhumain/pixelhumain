@@ -106,6 +106,8 @@ class DataValidator {
 	}
 
 	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue, $object = null, $import=null) {
+		// var_dump($fieldName);
+		// var_dump($dataBinding);
 		if (isset($dataBinding[$fieldName])) {
 			$data = $dataBinding[$fieldName];
 			$name = $data["name"];
