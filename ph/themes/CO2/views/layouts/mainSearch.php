@@ -220,7 +220,11 @@
         
         <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
 
-        <?php $this->renderPartial($layoutPath.'footer.donation'); ?>
+        <?php 
+            if((!@Yii::app()->session["userId"] && !@Yii::app()->session["user"]["preferences"]) || (@Yii::app()->session["user"]["preferences"] && !@Yii::app()->session["user"]["preferences"]["unseenHelpCo"]))
+                $this->renderPartial($layoutPath.'footer.donation'); 
+
+        ?>
         
         <script>    
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
@@ -246,6 +250,16 @@
                 }, 500);
                 $(".close-footer-help").click(function(){
                     $("#footer-help").remove();
+                    if(typeof userId != "undefined" && userId != ""){
+                        $.ajax({
+                            type: "POST",
+                            url: baseUrl+"/"+moduleId+"/person/removehelpblock/id/"+userId,
+                            dataType: "json",
+                            success: function(data){
+                                    toastr.success("Ce footer ne s'affichera plus lorsque vous êtes connecté(e) !");
+                                }
+                            });
+                    }
                 });
             });
             console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");

@@ -662,9 +662,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         text-decoration: none;
     }
 
-    #btn-show-activity-onmap{
-        width:100%;
-    }
 
     #btn-show-links-onmap{
         margin-right: 10px;
