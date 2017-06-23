@@ -90,7 +90,8 @@
                     
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 text-right col-footer hidden-xs">
-                    <h5><i class="fa fa-envelope"></i> Contacter <br>+ 262 262 34 36 86<br><a href="javascript:;" class="lbh text-azure">contact@communecter.com</a></h5>
+                    <h5><i class="fa fa-envelope"></i> Contacter <br>+ 262 262 34 36 86<br>
+                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/contactCO_footer.png" height="17"/></h5>
                     <ul class="list-inline">
                         <li>
                             <a href="https://github.com/pixelhumain/co2" target="_blank" class="btn-social btn-outline text-dark">

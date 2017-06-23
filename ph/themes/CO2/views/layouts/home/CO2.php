@@ -276,7 +276,7 @@ $communexion = CO2::getCommunexionCookies();
 			<i class="fa fa-envelope headerIcon"></i><br/>
 			CONTACT
 			</h1>
-			+ 262 262 34 36 86<br><a href="#">contact@communecter.org</a>
+			+ 262 262 34 36 86<br><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/contactCO_footer_welcome.png" height="15"/>
 
 			<ul class="social-list">
 				<li><a target="_blank" href="https://www.facebook.com/communecter" class="btn btn-facebook btn-social"><span class="fa fa-facebook"></span></a></li>
