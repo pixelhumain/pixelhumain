@@ -72,7 +72,7 @@ onSave: (optional) overloads the generic saveProcess
 				settings.beforeBuild();
 
 			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
-//				mylog.log("??????????????????????????",field,fieldObj);
+				//mylog.log("??????????????????????????",field,fieldObj);
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
 				
@@ -504,12 +504,19 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<input type="hidden" placeholder="address" name="address[streetAddress]" id="address[streetAddress]" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
 			
 			//locations are saved in addresses attribute
+			if( formValues.address && formValues.geo && formValues.geoPosition ){
+				initField = function(){
+					mylog.warn("init Adress location",formValues.address.addressLocality,formValues.address.postalCode);
+					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
+					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
+				};
+			}     
 			if( formValues.addresses ){
 				initField = function(){
 					$.each(formValues.addresses, function(i,locationObj){
-						mylog.warn("init location",locationObj.address.addressLocality,locationObj.address.postalCode);
-						copyMapForm2Dynform(locationObj);
-						addLocationToForm(locationObj);
+						mylog.warn("init extra addresses location",locationObj.address.addressLocality,locationObj.address.postalCode);
+						dyFInputs.locationObj.copyMapForm2Dynform(locationObj);
+						dyFInputs.locationObj.addLocationToForm(locationObj);
 					});
 				};
 			}       

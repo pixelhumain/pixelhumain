@@ -194,7 +194,7 @@ h5.srcMedia{
 
 @media (max-width: 767px) {
     ul.timeline:before {
-        left: 20px;
+        left: 0px;
     }
 
     ul.timeline > li {
@@ -211,7 +211,7 @@ h5.srcMedia{
     }
 
     ul.timeline > li > .timeline-badge {
-        left: 9px;
+        left: -11px;
         margin-left: 0;
         top: 16px;
     }
@@ -243,9 +243,9 @@ h5.srcMedia{
   margin-bottom: 30px;
 }
 
-.timeline > li.timeline-inverted > .timeline-badge{
-  left: 28px;
-}
+  .timeline > li.timeline-inverted > .timeline-badge{
+    left: -12px;
+  }
 }
 
 

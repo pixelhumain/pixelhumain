@@ -11,34 +11,6 @@
 		-cityName
  	*/
 	$user = "NOT_CONNECTED";
- 	/*if(isset(Yii::app()->session['userId'])){
- 		$user = Person::getById(Yii::app()->session['userId']);
-		
-		$user_geo_latitude = ""; $user_geo_longitude = "";
-		$insee = ""; $cityName = "";
-
-		if(isset($user["geo"]) && 
- 		   isset($user["geo"]["latitude"]) && isset($user["geo"]["longitude"]))
-		{
-			$user_geo_latitude = $user["geo"]["latitude"];
-			$user_geo_longitude = $user["geo"]["longitude"];
-		}
-
-		if(isset($user["address"]) && isset($user["address"]["codeInsee"]))
-			$insee = $user["address"]["codeInsee"];
-			
-		if(isset($user["address"]) && isset($user["address"]["addressLocality"]))
-			$cityName = $user["address"]["addressLocality"];
-			
-	}else{ //user not connected
-		if(isset($cookies['user_geo_longitude'])){
-				$sigParams["firstView"] = array(  "coordinates" => array( $cookies['user_geo_latitude']->value, 
-																		  $cookies['user_geo_longitude']->value),
-											 	  "zoom" => 13);		
-		}else{
-			//error_log("aucun cookie geopos trouvé");
-		}
-	}*/
 
 ?>	
 <html lang="en" class="no-js">
@@ -100,7 +72,7 @@
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<script>
-		//alert("theme : <?php echo Yii::app()->theme->name?>")
+		console.log("MainSearch");
 		   var initT = new Object();
 		   var showDelaunay = true;
 		   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
@@ -322,6 +294,7 @@
 			'/js/api.js'
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
+		HtmlHelper::registerCssAndScriptsFiles( array('/js/default/formInMap.js') , $this->module->assetsUrl);
 
 		$cssAnsScriptFilesModule = array(
 			'/assets/js/cookie.js' ,
@@ -342,13 +315,13 @@
 			'/assets/css/news/index.css',	
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
-
-		$this->renderPartial('webroot.themes.CO2.views.layouts.initJs', 
+		$this->renderPartial($layoutPathNetwork.'initJs', 
                                  array( "me"=>@$me, "myFormContact" => @$myFormContact));
 		//<!-- end: MAIN JAVASCRIPTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		?>
 		<script type="text/javascript">
+		console.log("MainSearch2");
 		var networkParams = "<?php echo Yii::app()->params['networkParams'] ?>";
 		var networkJson = <?php echo json_encode($params)?>;
 		var globalTheme = "network";
@@ -444,42 +417,63 @@
 		var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
 		var classifiedTypes = <?php echo json_encode( Classified::$classifiedTypes ) ?>;
 		var classifiedSubTypes = <?php echo json_encode( Classified::$classifiedSubTypes ) ?>;
-
+		
 		// GET LIST OF NETWORK'S TAGS
-		if(typeof networkJson.filter.linksTag != "undefined"){
+		if(networkJson != null && typeof networkJson.filter != "undefined" && typeof networkJson.filter.linksTag != "undefined"){
 			var networkTags = [];
+			//var networkTags2 = {};
+			var networkTagsCategory = {};
+			//var optgroupArray = {};
+			tagsList = [];
 			if(typeof networkJson.request.mainTag != "undefined")
 				networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
 			$.each(networkJson.filter.linksTag, function(category, properties) {
 				optgroupObject=new Object;
 				optgroupObject.text=category;
 				optgroupObject.children=[];
+				//networkTags2[category]=[];
+				networkTagsCategory[category]=[];
+				//optgroupArray[category]=[];
 				$.each(properties.tags, function(i, tag) {
-					val={id:tag,text:tag};
-					optgroupObject.children.push(val);
+					if($.isArray(tag)){
+						$.each(tag, function(keyTag, textTag) {
+							val={id:textTag,text:textTag};
+							if(jQuery.inArray( textTag, tagsList ) == -1 ){
+								optgroupObject.children.push(val);
+								tagsList.push(textTag);
+								//optgroupArray[category].push(textTag);
+								/*optgroupObject2=new Object;
+								optgroupObject2.text=textTag;
+								networkTags2[category].push(optgroupObject2);*/
+							}
+						});
+					}else{
+						val={id:tag,text:tag};
+						if(jQuery.inArray( tag, tagsList ) == -1 ){
+							optgroupObject.children.push(val);
+							tagsList.push(tag);
+							//optgroupArray[category].push(tag);
+							/*optgroupObject2=new Object;
+							optgroupObject2.text=tag;
+							networkTags2[category].push(optgroupObject2);*/
+						}
+					}
+					
+					//tagsList.push(val);
 				});
 				networkTags.push(optgroupObject);
+				networkTagsCategory[category].push(optgroupObject);
 			});
 		}
+
+
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
 			setTitle(networkJson.name , "", networkJson.name+ " : "+networkJson.skin.title, networkJson.name,networkJson.skin.shortDescription);
 			// Initialize tags list for network in form of element
-			/*if(typeof networkJson.add != "undefined"){
-				$.each(networkJson.add, function(key, v) {
-					if(typeof networkJson.request.sourceKey != "undefined"){
-						sourceObject = {inputType:"hidden", value : networkJson.request.sourceKey[0]};
-						typeObj[key].dynForm.jsonSchema.properties.source = sourceObject;
-					}
-					if(v){
-						if(typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
-							typeObj[key].dynForm.jsonSchema.properties.tags.data=networkTags;
-							if(typeof networkJson.request.mainTag != "undefined")
-								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag[0];
-						}
-					}
-				});
-			} */
+			
+			
+
 			$(".bg-main-menu.bgpixeltree_sig").remove();
 			if(myContacts != null)
 			$.each(myContacts, function(type, list) {

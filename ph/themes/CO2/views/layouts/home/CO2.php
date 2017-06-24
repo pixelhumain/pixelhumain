@@ -12,23 +12,18 @@ $communexion = CO2::getCommunexionCookies();
 		background-size: 80%;
 		background-color:#fff;  
 	}
-
-	#mainNav .dropdown-result-global-search{
-		top:93px!important;
-	}
-
-	@media screen and (max-width: 992px) {
+	/*#mainNav .dropdown-result-global-search{
+        top:56px !important;
+        left:83px !important;
+    }*/
+    @media (min-width: 767px) and (max-width: 992px) {
         #mainNav .dropdown-result-global-search{
-			top:100px!important;
-		}
+            width:40% !important;
+        }
     } 
-
-    @media (max-width: 767px) {
-       
-    }
 </style>
 
-<div class="home_page">
+<div class="pageContent">
 
 	<!-- <div class="col-md-12 col-lg-12 col-sm-12">
 		<?php 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
@@ -281,7 +276,7 @@ $communexion = CO2::getCommunexionCookies();
 			<i class="fa fa-envelope headerIcon"></i><br/>
 			CONTACT
 			</h1>
-			+ 262 262 34 36 86<br><a href="#">contact@pixelhumain.com</a>
+			+ 262 262 34 36 86<br><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/contactCO_footer_welcome.png" height="15"/>
 
 			<ul class="social-list">
 				<li><a target="_blank" href="https://www.facebook.com/communecter" class="btn btn-facebook btn-social"><span class="fa fa-facebook"></span></a></li>
@@ -290,9 +285,9 @@ $communexion = CO2::getCommunexionCookies();
 				<li><a target="_blank" href="https://github.com/pixelhumain/communecter" class="btn btn-github btn-social"><span class="fa fa-github"></span> </a></li>
 			</ul>
 
-			<a href="javascript:;" data-id="explainOpenAtlas" class="explainLink">L'association Open Atlas</a>
-			<br/><a href="#default.view.page.mention" class="lbh" >Mentions Légales</a>
-			<br/><a href="#default.view.page.partners" class="lbh">Partenaires</a>
+			<a href="default/view/page/openatlas/dir/docs|panels" data-id="explainOpenAtlas" class="lbhp">L'association Open Atlas</a>
+			<br/><a href="default/view/page/mention/dir/docs|panels" class="lbhp" >Mentions Légales</a>
+			<br/><a href="default/view/page/partners/dir/docs|panels?type=partner" class="lbhp">Partenaires</a>
 		<center>
 	</div>
 </div>

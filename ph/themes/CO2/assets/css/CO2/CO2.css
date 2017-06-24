@@ -330,6 +330,22 @@ input#second-search-bar{
 	border: 2px solid #0095FF;
 }
 
+.btn-show-onmap{
+	background-color: #0095FF;
+	color: white;
+	padding:0px 15px;
+	border: 2px solid transparent;
+	border-radius: 20px 0px;
+	height: 35px;
+	font-size: 13px;
+
+}
+.btn-show-onmap:hover{
+	background-color: transparent;
+	color: #0095FF;
+	border: 2px solid #0095FF;
+}
+
 .navbar-custom .btn-show-mainmenu{
 	float:right;
 	margin-top:10px;
@@ -999,7 +1015,50 @@ h3.title_panel_map{
 }
 
 
-
+#footer-help{
+	background-color: rgba(35, 49, 64, 0.9);
+    position: fixed;
+    bottom: 0px;
+    height: 210px;
+    color: white;
+    font-size: 18px;
+    padding: 25px;
+}
+#footer-help .btnHelp{
+	font-weight: 800;
+	font-size: 18px;
+}
+#footer-help .close-footer-help {
+ 	position: absolute;
+    width: 70px;
+    height: 50px;
+    background-color: transparent;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+#footer-help .close-footer-help:hover {
+  opacity: 0.6;
+}
+#footer-help .close-footer-help .lr {
+  	height: 30px;
+    width: 4px;
+    margin-left: 55px;
+    background-color: white;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    z-index: 1051;
+}
+#footer-help .close-footer-help .lr .rl {
+    height: 30px;
+    width: 4px;
+    background-color: white;
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    z-index: 1052;
+}
 /*Fix tooltips display*/
 .tooltip-inner{
 	padding:10px!important;
@@ -1025,7 +1084,7 @@ h3.title_panel_map{
   #mainNav .dropdown-result-global-search{
     position: fixed;
     top: 67px;
-    left: 100px;
+    left: 83px;
     max-height: 100%;
     overflow-y: auto;
     background-color: white;

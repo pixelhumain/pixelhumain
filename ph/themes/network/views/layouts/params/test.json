@@ -1,0 +1,89 @@
+{
+    "name" : "Carte Vrac et Bio Terre et Avenir",
+    "mode" : "server",
+    "skin" : {
+        "title" : "Carte Vrac et Bio Terre et Avenir",
+        "shortDescription" : "Carte du site Terre et Avenir (v2017/06/05-14h08)",
+        "displayScope" : false,
+        "docs":true,
+        "displayCommunexion" : true,
+        "displayNotifications" : false,
+        "profilBar" : false,
+        "breadcrum" : true,
+        "displayButtonGridList" : false,
+        "class" : {
+            "mainContainer" : false
+        },
+        "iconeAdd" : false,
+        "iconeSearchPlus" : false,
+        "loginTitle":"",
+        "front" : {
+            "organization" : true,
+            "project" : false,
+            "event" : false,
+            "community" : false,
+            "dda" : false,
+            "live" : false,
+            "search" : false,
+            "need" : false,
+            "poi" : true
+        },
+        "menu" : {
+            "aroundMe":false,
+            "connectLink":false,
+            "add":true,
+            "detail":true,
+            "news":true,
+            "directory":true,
+            "gallery":true
+        }
+    },
+   "filter" : {
+        "types" : false,
+    "paramsFiltre" : { "conditionBlock" : "or" , "conditionTagsInBlock" : "and" },
+        "linksTag" : {
+        "Je me nourris en Vrac et Bio" : {
+                "tagParent" : "Alimentation",
+                "background-color" : "#f5f5f5",
+                "image" : "Alimentation.png",
+                "tags" : {
+            "Caviste (Vrac)":["Caviste","Vrac","Produits Biologiques"],
+            "Boucherie (Vrac)":["Boucherie","Vrac","Produits Biologiques"],
+            "Épicerie (Vrac)":["Épicerie","Vrac","Produits Biologiques"]
+                }
+            },
+        
+        "Je prends soin de moi et de ma maison en Vrac et Bio" : {
+                "tagParent" : "Maison",
+                "background-color" : "#f5f5f5",
+                "image" : "Logement.png",
+                "tags" : {
+            "Cosmétique (Vrac)":["Cosmétique","Vrac","Produits Biologiques"],
+            "Droguerie (Vrac)":["Droguerie","Vrac","Produits Biologiques"]
+                }
+            }
+       }
+},
+    "add" : {
+        "organization" : true
+    },
+    "result" : {
+        "displayImage" : true,
+        "displayType" : true,
+        "fullLocality" : true,
+        "datesEvent" : false,
+    "displayShortDescription" : true
+    },
+    "request" : {
+        "sourcekey" : "zeroDechet",
+        "pagination" : 1000,
+        "searchType" : [
+            "organizations"
+        ],
+
+        "searchTag" : [
+        "Vrac",
+        "Produits Biologiques"
+    ]
+    }
+}
