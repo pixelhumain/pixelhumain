@@ -127,10 +127,10 @@
                                     dir="";
                                     if(typeof currentSplit[8] != "undefined")
                                         dir=currentSplit[8];
-                                    getProfilSubview(currentSplit[6],dir);
+                                    //getProfilSubview(currentSplit[6],dir);
                                 }
-                                else
-                                    getProfilSubview("");
+                                //else
+                                    //getProfilSubview("");
 
                             }else
                                 urlCtrl.loadByHash(location.hash,true);

@@ -44,7 +44,6 @@
         $icon                   = $params["pages"]["#".$page]["icon"];
         $mainTitle              = $params["pages"]["#".$page]["mainTitle"];
         $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
-        $layoutPath = 'webroot.themes.CO2.views.layouts.';
     ?>
 
     <!-- Header -->

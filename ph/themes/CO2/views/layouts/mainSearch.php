@@ -82,8 +82,7 @@
         <?php //$this->renderPartial($layoutPath.'loginRegister', array()); ?>
 
         <?php  if( isset(Yii::app()->session["userId"]) )
-                $this->renderPartial('../news/modalShare',
-                                     array());
+                $this->renderPartial('../news/modalShare', array());
         ?>
             
         <div class="main-container">
@@ -102,12 +101,11 @@
             <header>
                 <div class="col-md-12 text-center main-menu-app" style="">
                     <?php 
-                    $CO2DomainName = Yii::app()->params["CO2DomainName"];
-                    $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
-                                                                                "subdomain"  => ""));
-                        ?>
+                        $CO2DomainName = Yii::app()->params["CO2DomainName"];
+                        $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
+                                                                                    "subdomain"  => ""));
+                    ?>
                 </div>
-
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
@@ -124,15 +122,11 @@
             <div class="pageContent"></div>
         </div>
         
-
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
-
-        
-        
-        <?php 
-        if($CO2DomainName != "CO2")
-            $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); ?> 
-
+       
+        <?php if($CO2DomainName != "CO2")
+                $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
+        ?> 
         
         <?php 
             echo "<!-- start: MAIN JAVASCRIPTS -->";
@@ -205,7 +199,6 @@
                 '/assets/js/radioplayer.js',
     
                 '/assets/css/floopDrawerRight.css'
-                                                  
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
@@ -224,10 +217,15 @@
         ?>
 
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
-        <?php //$this->renderPartial($layoutPath.'loginRegister', array()); ?>
+        
         <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
-        <?php //$this->renderPartial($layoutPath.'modals.CO2.selectCreate', array("me"=>$me) ); ?>
 
+        <?php 
+            if((!@Yii::app()->session["userId"] && !@Yii::app()->session["user"]["preferences"]) || (@Yii::app()->session["user"]["preferences"] && !@Yii::app()->session["user"]["preferences"]["unseenHelpCo"]))
+                $this->renderPartial($layoutPath.'footer.donation'); 
+
+        ?>
+        
         <script>    
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
@@ -250,6 +248,19 @@
                 setTimeout(function(){
                     $("#page-top").show();
                 }, 500);
+                $(".close-footer-help").click(function(){
+                    $("#footer-help").remove();
+                    if(typeof userId != "undefined" && userId != ""){
+                        $.ajax({
+                            type: "POST",
+                            url: baseUrl+"/"+moduleId+"/person/removehelpblock/id/"+userId,
+                            dataType: "json",
+                            success: function(data){
+                                    toastr.success("Ce footer ne s'affichera plus lorsque vous êtes connecté(e) !");
+                                }
+                            });
+                    }
+                });
             });
             console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
         </script>

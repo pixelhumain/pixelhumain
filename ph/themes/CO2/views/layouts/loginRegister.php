@@ -152,16 +152,14 @@
 
                 <div class="col-md-12 no-padding text-center">
                     <hr>
-                    <button class="btn bg-white" data-toggle="modal" data-target="#modalForgot">
+                    <a href="javascript:;" class="btn bg-white" data-toggle="modal" data-target="#modalForgot">
                         <!-- <i class="fa fa-s"></i> -->J'ai perdu mon mot de passe
-                    </button>
+                    </a>
                     <br><br>
                     
-                    <?php  if(Yii::app()->params["CO2DomainName"] != "kgougle"){ ?>
-                        <button class="btn btn-default bg-white" data-toggle="modal" data-target="#modalRegister">
+                    <a href="javascript:;" class="btn btn-default bg-white" data-toggle="modal" data-target="#modalRegister">
                              <!-- <i class="fa fa-sign-in"></i> --> Je veux m'inscrire
-                        </button>
-                    <?php } ?>
+                    </a>
                 </div>
 
                 <br><hr>
