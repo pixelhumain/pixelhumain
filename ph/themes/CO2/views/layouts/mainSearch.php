@@ -35,8 +35,8 @@
         <!-- <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
         <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' /> -->
 
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css"> -->
 
         <!-- <script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
         <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' /> -->
@@ -124,7 +124,7 @@
         
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
        
-        <?php if($CO2DomainName != "CO2")
+        <?php if($CO2DomainName == "kgougle")
                 $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
         ?> 
         
@@ -218,10 +218,14 @@
 
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
         
-        <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
+        <?php $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
 
         <?php 
-            if((!@Yii::app()->session["userId"] && !@Yii::app()->session["user"]["preferences"]) || (@Yii::app()->session["user"]["preferences"] && !@Yii::app()->session["user"]["preferences"]["unseenHelpCo"]))
+            if(($CO2DomainName == "CO2" &&
+                !@Yii::app()->session["userId"] && 
+                !@Yii::app()->session["user"]["preferences"]) || 
+                (@Yii::app()->session["user"]["preferences"] && 
+                !@Yii::app()->session["user"]["preferences"]["unseenHelpCo"]))
                 $this->renderPartial($layoutPath.'footer.donation'); 
 
         ?>

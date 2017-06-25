@@ -7,7 +7,7 @@
             <a href="#" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" 
                 <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
             >
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/FI-logo-min.png" 
                      class="logo-menutop pull-left" height=30>
             </a>
             <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>

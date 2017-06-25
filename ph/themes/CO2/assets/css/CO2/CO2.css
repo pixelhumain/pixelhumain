@@ -301,7 +301,7 @@ input#second-search-bar{
 }
 
 
-.navbar-header .nc_map{
+.navbar-header .logo-menutop{
 	/*display: none;*/
 	float: left;
 	margin: 8px 5px 0 0;
@@ -450,7 +450,7 @@ input#second-search-bar{
 }
 
 
-.navbar-header .nc_map{
+.navbar-header .logo-menutop{
 	/*display: none;*/
 	float: left;
 	margin: 8px 5px 0 -20px;
@@ -490,10 +490,10 @@ input#second-search-bar{
 }
 
 
-.nc_map{
+.logo-menutop{
 	margin-bottom: -10px;
 }
-header .nc_map{
+header .logo-menutop{
 	height:70px;
 }
 .navbar-brand {
@@ -1237,11 +1237,11 @@ h3.title_panel_map{
 @media (max-width: 767px) {
 
 
-	.navbar-header .nc_map{
+	.navbar-header .logo-menutop{
 		margin: 8px 0px 0 0px !important;
 	}
 
-	.navbar-map .navbar-header .nc_map{
+	.navbar-map .navbar-header .logo-menutop{
 		margin: 8px 0px 0 -10px;
 	}
 
@@ -1286,7 +1286,7 @@ h3.title_panel_map{
 		font-size: 0.4em;
 	}*/
 
-	header .nc_map{
+	header .logo-menutop{
 		margin-bottom: 0px;
 		height:50px!important;
 	}
