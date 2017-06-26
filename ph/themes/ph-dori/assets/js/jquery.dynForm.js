@@ -2,28 +2,28 @@
 
 - add a form tag to your document
 - define your dynForm with a jsonSchema defintion of each field input
-- The process will then 
+- The process will then
 	- first build the specified HTML  for each different field and input according to types
-   - bind any needed events according to types 
-	- bind the save Process if needed 
+   - bind any needed events according to types
+	- bind the save Process if needed
    - apply any onLoad process
 
-parameters : 
+parameters :
 formId : is the <form> tag in the destination html
 formObj: is the form object containg the form field definition and jsonSchema
-formValues: contains the values if needed 
-onLoad : (optional) is a function that is launched once the form has been created and written into the DOM 
+formValues: contains the values if needed
+onLoad : (optional) is a function that is launched once the form has been created and written into the DOM
 onSave: (optional) overloads the generic saveProcess
 
 ***************************************** */
 (function($) {
 	"use strict";
-	var thisBody = document.body || document.documentElement, 
-	thisStyle = thisBody.style, 
+	var thisBody = document.body || document.documentElement,
+	thisStyle = thisBody.style,
 	$this,
 	initValues = {},
 	supportTransition = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined
-	
+
 	/*$(subviewBackClass).on("click", function(e) {
 		$.hideSubview();
 		e.preventDefault();
@@ -35,7 +35,7 @@ onSave: (optional) overloads the generic saveProcess
 		{
 			// extend the options from pre-defined values:
 			var defaults = {
-				formId : "", 
+				formId : "",
 				formObj: {},
 				formValues: {},
 				onLoad : null,
@@ -66,24 +66,24 @@ onSave: (optional) overloads the generic saveProcess
 						'</div>';
 			$(settings.formId).append(errorHTML);
 
-			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
+			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) {
 
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
-				
+
 				buildInputField(settings.formId,field, fieldObj, settings.formValues);
 			});
-			
+
 			/* **************************************
 			* CONTEXT ELEMENTS, used for saving purposes
 			***************************************** */
 			fieldHTML = '<input type="hidden" name="key" id="key" value="'+settings.formObj.key+'"/>';
 	        fieldHTML += '<input type="hidden" name="collection" id="collection" value="'+settings.formObj.collection+'"/>';
 	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues.id) ? settings.formValues.id : "")+'"/>';
-	       
+
         	fieldHTML += '<div class="form-actions">'+
         				'<div class="space20"></div>'+
-        				
+
 						'<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
@@ -96,27 +96,27 @@ onSave: (optional) overloads the generic saveProcess
 
 	        $( settings.formId ).append(fieldHTML);
 
-	        $("#btn-submit-form").one(function() { 
-				$( settings.formId ).submit();	        	
+	        $("#btn-submit-form").one(function() {
+				$( settings.formId ).submit();
 	        });
 
 			/* **************************************
-			* bind any events Post building 
+			* bind any events Post building
 			***************************************** */
 			bindDynFormEvents(settings,form.rules);
 
 			if(settings.onLoad && jQuery.isFunction( settings.onLoad ) )
 				settings.onLoad();
-		    
+
 			return form;
 		},
 
-		/*buildForm: function() { 
+		/*buildForm: function() {
 			mylog.dir($this.formObj);
 		},*/
 
 	});
-	
+
 	/* **************************************
 	*
 	*	each input field type has a corresponding HTMl to build
@@ -142,7 +142,7 @@ onSave: (optional) overloads the generic saveProcess
         var initField = '';
         var value = "";
         var style = "";
-        if( fieldObj.value ) 
+        if( fieldObj.value )
         	value = fieldObj.value;
         else if (formValues && formValues[field]) {
         	value = formValues[field];
@@ -151,20 +151,20 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.warn("--------------- dynform form Values",field,value);
 
         /* **************************************
-		* 
+		*
 		***************************************** */
         if( field.indexOf("separator")>=0 ) {
-        	if(fieldClass == '' ) 
+        	if(fieldClass == '' )
         		fieldClass = "panel-blue";
         	fieldHTML += '<div class="text-large text-bold '+fieldClass+' text-white center padding-10 ">'+iconOpen+iconClose+fieldObj.title+'</div>';
         }
-        
+
         /* **************************************
 		* STANDARD TEXT INPUT
 		***************************************** */
-        else if( !fieldObj.inputType || 
-        		  fieldObj.inputType == "text" || 
-        		  fieldObj.inputType == "numeric" || 
+        else if( !fieldObj.inputType ||
+        		  fieldObj.inputType == "text" ||
+        		  fieldObj.inputType == "numeric" ||
         		  fieldObj.inputType == "tags" ) {
         	if(fieldObj.inputType == "tags")
         	{
@@ -178,7 +178,7 @@ onSave: (optional) overloads the generic saveProcess
         	}
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
         }
-        
+
         /* **************************************
 		* HIDDEN
 		***************************************** */
@@ -191,13 +191,13 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* TEXTAREA
 		***************************************** */
-        else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){ 
+        else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){
         	if(fieldObj.inputType == "wysiwyg")
         		fieldClass += " wysiwygInput";
         	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
         	fieldHTML += '<textarea id="'+field+'" class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
         }
-        else if ( fieldObj.inputType == "markdown"){ 
+        else if ( fieldObj.inputType == "markdown"){
         	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
         	fieldHTML +='<textarea id="'+field+'" name="'+field+'" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" data-provide="markdown" data-savable="true" rows="10"></textarea>';
         }
@@ -221,7 +221,7 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* SELECT , we use select2
 		***************************************** */
-        else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) 
+        else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" )
         {
        		var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
        		mylog.log("build field "+field+">>>>>> select selectMultiple");
@@ -233,14 +233,14 @@ onSave: (optional) overloads the generic saveProcess
 				fieldHTML += '<option></option>';
 
 			var selected = "";
-			
+
 			//initialize values
 			if(fieldObj.options)
 				fieldHTML += buildSelectOptions(fieldObj.options, fieldObj.value);
-			
+
 			if( fieldObj.groupOptions ){
 				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, fieldObj.value);
-			} 
+			}
 			fieldHTML += '</select>';
         }
 
@@ -248,24 +248,24 @@ onSave: (optional) overloads the generic saveProcess
        		mylog.log("build field "+field+">>>>>> select selectList");
 			fieldHTML += '<ul role="menu" class="dropdown-menu scrollable-menu '+fieldClass+'" id="'+field+'" style="width: 100%;height:30px" >'+
 	            '<li class="categoryOrgaEvent col-md-12">'+
-	                '<ul class="dropOrgaEvent" id="citoyen">'+	                    
+	                '<ul class="dropOrgaEvent" id="citoyen">'+
 	                    '<li class="categoryTitle" style="margin-left:inherit;"><i class="fa fa-question"></i> I dont know</li>'+
 	                    '<li><a href="javascript:;" class="btn-drop dropOrg" id="" data-id="" data-name="">I dont know</a></li>'+
 	                '</ul>'+
 	           '</li>';
 
 			var selected = "";
-			
+
 			//initialize values
 			$.each(fieldObj.options, function(optKey, optVal) {
-				selected = ( fieldObj.value && optKey == fieldObj.value ) ? "selected" : ""; 
+				selected = ( fieldObj.value && optKey == fieldObj.value ) ? "selected" : "";
 				fieldHTML += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
 			});
 			fieldHTML += '</ul>';
         }*/
 
-        
-        
+
+
         else if ( fieldObj.inputType == "image" ) {
         	if(placeholder == "")
         		placeholder="add Image";
@@ -300,7 +300,7 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += iconOpen+'<input type="text" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
         /* **************************************
-		* DATE RANGE INPUT 
+		* DATE RANGE INPUT
 		***************************************** */
         else if ( fieldObj.inputType == "daterange" ) {
         	if(placeholder == "")
@@ -310,7 +310,7 @@ onSave: (optional) overloads the generic saveProcess
         }
 
         /* **************************************
-		* TIME INPUT , we use 
+		* TIME INPUT , we use
 		***************************************** */
         else if ( fieldObj.inputType == "time" ) {
         	if(placeholder == "")
@@ -327,7 +327,7 @@ onSave: (optional) overloads the generic saveProcess
         		fieldObj.url = "http://"+fieldObj.url;
         	mylog.log("build field "+field+">>>>>> link");
         	fieldHTML += '<a class="btn btn-primary '+fieldClass+'" href="'+fieldObj.url+'">Go There</a>';
-        } 
+        }
 
         /* **************************************
 		* LOCATION
@@ -342,7 +342,7 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="address" name="address[streetAddress]" id="address[streetAddress]" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
-			
+
 			//locations are saved in addresses attribute
 			if( formValues.addresses ){
 				initField = function(){
@@ -352,8 +352,8 @@ onSave: (optional) overloads the generic saveProcess
 						addLocationToForm(locationObj);
 					});
 				};
-			}       
-        } 
+			}
+        }
 
         /* **************************************
 		* ARRAY , is a list of sequential values
@@ -374,18 +374,18 @@ onSave: (optional) overloads the generic saveProcess
 								'<div class="space10"></div>'+
 						        '<a href="javascript:;" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" class="addPropBtn btn btn-xs btn-success w100p" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
 						        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
-						        
+
 				       		'</div></span>'+
 				       '<div class="space5"></div>';
-			
+
 			if( formValues && formValues[field] ){
 				mylog.warn("dynForm >> ",field, formValues[field]);
 				fieldObj.value = formValues[field];
 			}
-			
+
 			if( fieldObj.init && $.isFunction(fieldObj.init) )
         		initField = fieldObj.init;
-        	
+
 			initField = function(){
 				//$("#loading_indicator").hide();
 				//initialize values
@@ -393,7 +393,7 @@ onSave: (optional) overloads the generic saveProcess
 				$.each(fieldObj.value, function(optKey,optVal) {
 					if(optKey == 0)
 	                    $(".addmultifield").val(optVal);
-	                else 
+	                else
 	                	addfield("."+field+fieldObj.inputType,optVal,field);
 	                if( formValues && formValues.medias ){
 	                	$.each(formValues.medias, function(i,mediaObj) {
@@ -429,7 +429,7 @@ onSave: (optional) overloads the generic saveProcess
 						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
 				       		'</div></span>'+
 				       '<div class="space5"></div>';
-			
+
 
 			initField = function(){
 				initMultiFields('.'+field+fieldObj.inputType,field);
@@ -438,7 +438,7 @@ onSave: (optional) overloads the generic saveProcess
 				/*$.each(fieldObj.value, function(optKey,optVal) {
 					if(optKey == 0)
 	                    $(".addmultifield").val(optVal); tweak this for properties
-	                else 
+	                else
 						addfield("."+field+fieldObj.inputType,optVal );
 				});*/
 			}
@@ -450,24 +450,24 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "recaptcha" ) {
         	mylog.log("build field "+field+">>>>>> recaptcah");
         	fieldHTML += '<div class="g-recaptcha" data-sitekey="'+fieldObj.key+'"></div>';
-        } 
-        
+        }
+
 
         /* **************************************
-		* CUSTOM 
+		* CUSTOM
 		***************************************** */
         else if ( fieldObj.inputType == "custom" ) {
         	mylog.log("build field "+field+">>>>>> custom");
         	fieldHTML += fieldObj.html;
-        } 
+        }
         /* 	*************************************
-        * SCOPE USER 	
+        * SCOPE USER
         ************************************** */
         else if( fieldObj.inputType == "scope" ) {
-        	
+
         		fieldClass += " select2TagsInput select2ScopeInput";
-        		
-        		/*fieldHTML += 	'<span id="lbl-send-to">Send to <i class="fa fa-caret-right"></i>'+ 
+
+        		/*fieldHTML += 	'<span id="lbl-send-to">Send to <i class="fa fa-caret-right"></i>'+
 	        					'<div class="dropdown">' +
 								  '<a data-toggle="dropdown" class="btn btn-sm btn-default" id="btn-toogle-dropdown-scope" href="#"><i class="fa fa-group"></i> Mon mur <i class="fa fa-caret-down"></i></a>' +
 								  '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">' +
@@ -476,7 +476,7 @@ onSave: (optional) overloads the generic saveProcess
 								  '</ul>' +
 								'</div></span>' ;*/
 
-				
+
 				fieldHTML += '<div class="modal fade" id="modal-scope" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'+
 							  '<div class="modal-dialog">'+
 							    '<div class="modal-content">'+
@@ -488,7 +488,7 @@ onSave: (optional) overloads the generic saveProcess
 							      '<div class="modal-body">'+
 								      '<div class="row no-padding bg-light">'+
 								      	'<div class="col-md-4 col-sm-4 no-padding">'+
-									        '<div class="panel panel-default">  '+	
+									        '<div class="panel panel-default">  '+
 												'<div class="panel-body no-padding">'+
 													'<div class="list-group" id="menu-type">'+
 														'<ul class="col-xs-12 col-sm-12 col-md-12 no-padding">';
@@ -500,9 +500,9 @@ onSave: (optional) overloads the generic saveProcess
 																	'<span style="font-size:16px;"><i class="fa fa-'+type.icon+'"></i> ' + type.label + "</span>" +
 																'</div>'+
 															'</li>';
-														});									
+														});
 				fieldHTML += 							'</ul>';
-				fieldHTML += 							/*'<ul class="col-xs-6 col-sm-12 col-md-12 no-margin no-padding select-population">' + 
+				fieldHTML += 							/*'<ul class="col-xs-6 col-sm-12 col-md-12 no-margin no-padding select-population">' +
 															'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select population</h4>' +
 															'<li>'+
 																'<div class="btn btn-default btn-scroll-type homestead text-red">' +
@@ -528,18 +528,18 @@ onSave: (optional) overloads the generic saveProcess
 								      	'</div>'+
 								      	'<div class="no-padding pull-right col-md-8 col-sm-8 col-xs-12 bg-white" id="list-scroll-type">';
 										$.each(fieldObj.contactTypes, function(key, type){
-				fieldHTML += 			'<div class="panel panel-default" id="scroll-type-'+type.name+'">  '+	
+				fieldHTML += 			'<div class="panel panel-default" id="scroll-type-'+type.name+'">  '+
 											'<div class="panel-heading">'+
-												'<h4 class="text-'+type.color+'"><i class="fa fa-'+type.icon+'"></i> '+type.label+'</h4>'+			
+												'<h4 class="text-'+type.color+'"><i class="fa fa-'+type.icon+'"></i> '+type.label+'</h4>'+
 											'</div>'+
 											'<div class="panel-body no-padding">'+
 												'<div class="list-group padding-5">'+
 													'<ul>';
-													$.each(fieldObj.values[type.name], function(key2, value){ 
+													$.each(fieldObj.values[type.name], function(key2, value){
 														var cp = (typeof value.address != "undefined" && typeof value.address.postalCode != "undefined") ? value.address.postalCode : typeof value.cp != "undefined" ? value.cp : "";
 														var city = (typeof value.address != "undefined" && typeof value.address.addressLocality != "undefined") ? value.address.addressLocality : "";
 														var profilThumbImageUrl = (typeof value.profilThumbImageUrl != "undefined" && value.profilThumbImageUrl != "") ? baseUrl + value.profilThumbImageUrl : assetPath + "/images/news/profile_default_l.png";
-														var name =  typeof value.name != "undefined" ? value.name : 
+														var name =  typeof value.name != "undefined" ? value.name :
 																	typeof value.username != "undefined" ? value.username : "";
 														//mylog.log("data contact +++++++++++ "); mylog.dir(value);
 														var thisKey = key+''+key2;
@@ -559,12 +559,12 @@ onSave: (optional) overloads the generic saveProcess
 																'</div>' +
 															'</div>' +
 														'</li>';
-													});									
-				fieldHTML += 						'</ul>' +	
+													});
+				fieldHTML += 						'</ul>' +
 												'</div>'+
 											'</div>'+
 										'</div>';
-										});									
+										});
 				fieldHTML += 			'</div>' +
 									'</div>'+
 								  '</div>'+
@@ -577,7 +577,7 @@ onSave: (optional) overloads the generic saveProcess
 							  '</div><!-- /.modal-dialog -->'+
 							'</div><!-- /.modal -->';
         }
- 
+
         else {
         	mylog.log("build field "+field+">>>>>> input text", fieldObj.inputType);
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
@@ -595,15 +595,15 @@ onSave: (optional) overloads the generic saveProcess
         if(initField && $.isFunction(initField) )
         	initField ('.'+field+fieldObj.inputType);
 	}
-	
+
 
 	/* **************************************
 	*
-	*	any event to be initiated 
+	*	any event to be initiated
 	*
 	***************************************** */
 	var afterDynBuildSave = null;
-	function bindDynFormEvents (params, formRules) {  
+	function bindDynFormEvents (params, formRules) {
 
 		/* **************************************
 		* FORM VALIDATION and save process binding
@@ -619,15 +619,15 @@ onSave: (optional) overloads the generic saveProcess
 				$("#btn-submit-form").html('<i class="fa  fa-spinner fa-spin fa-"></i>').prop("disabled",true);
 				errorHandler.hide();
 				mylog.info("form submitted "+params.formId);
-				
+
 				if(params.beforeSave && jQuery.isFunction( params.beforeSave ) )
 					params.beforeSave();
 
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
 					params.onSave();
 					return false;
-		        } 
-		        else 
+		        }
+		        else
 		        {
 		        	mylog.info("default SaveProcess",params.savePath);
 		        	mylog.dir($(params.formId).serializeFormJSON());
@@ -637,7 +637,7 @@ onSave: (optional) overloads the generic saveProcess
 		        	  data: $(params.formId).serializeFormJSON(),
 		              dataType: "json"
 		        	}).done( function(data){
-		                
+
 		                if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
 		                    afterDynBuildSave(data.map,data.id);
 		                mylog.info('saved successfully !');
@@ -645,16 +645,16 @@ onSave: (optional) overloads the generic saveProcess
 		        	});
 					return false;
 			    }
-			    
+
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
-				$("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
-					$( settings.formId ).submit();	        	
+				$("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() {
+					$( settings.formId ).submit();
 		        });
 			}
 		});
-		
+
 		mylog.info("connecting any specific input event select2, datepicker...");
 		/* **************************************
 		* SELECTs , we use https://github.com/select2/select2
@@ -669,8 +669,8 @@ onSave: (optional) overloads the generic saveProcess
 					  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
 					}
 				);*/
-				
-				$.each($(".select2Input"),function () 
+
+				$.each($(".select2Input"),function ()
 				{
 					if( jQuery.isFunction(jQuery.fn.select2) )
 						$(this).select2({
@@ -682,14 +682,14 @@ onSave: (optional) overloads the generic saveProcess
 						mylog.error("select2 library is missing");
 				 });
 			}
-		} 
+		}
 
 		//is a type input
 		if( $(".select2TagsInput").length)
 		{
 			if( jQuery.isFunction(jQuery.fn.select2) )
 			{
-				$.each($(".select2TagsInput"),function () 
+				$.each($(".select2TagsInput"),function ()
 				{
 					mylog.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
 					if(initValues[$(this).attr("id")]){
@@ -703,14 +703,14 @@ onSave: (optional) overloads the generic saveProcess
 				 });
 			} else
 				mylog.error("select2 library is missing");
-		} 
+		}
 
 		/* **************************************
 		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
 		***************************************** */
 		function loadDateTimePicker(callback) {
 			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
-				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/jquery.datetimepicker.full.min.js', 
+				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/jquery.datetimepicker.full.min.js',
 						  baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/jquery.datetimepicker.min.css',
 
 						  callback);
@@ -720,7 +720,7 @@ onSave: (optional) overloads the generic saveProcess
 		var initDate = function(){
 			mylog.log("init dateInput");
 			jQuery.datetimepicker.setLocale('fr');
-			$(".dateInput").datetimepicker({ 
+			$(".dateInput").datetimepicker({
 		        autoclose: true,
 		        lang: "fr",
 		        format: "d/m/Y",
@@ -734,7 +734,7 @@ onSave: (optional) overloads the generic saveProcess
 		/* **************************************
 		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
 		***************************************** */
-	
+
 		var initDateTime = function(){
 			mylog.log("init dateTimeInput");
 			jQuery.datetimepicker.setLocale('fr');
@@ -749,25 +749,25 @@ onSave: (optional) overloads the generic saveProcess
 			loadDateTimePicker(initDateTime);
 		}
 		/* **************************************
-		* Location type 
+		* Location type
 		***************************************** */
 		if(  $(".locationBtn").length)
 		{
-			//todo : for generic dynForm check if map exist 
-			$(".locationBtn").off().on( "click", function(){ 
+			//todo : for generic dynForm check if map exist
+			$(".locationBtn").off().on( "click", function(){
 				$("#ajax-modal").modal("hide");
 		        showMap(true);
 		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
 		        if(typeof showMarkerNewElement != "undefined"){ showMarkerNewElement(); }
 		    });
 		}
-		
+
 		/* **************************************
-		* Image type 
+		* Image type
 		***************************************** */
 		if(  $("#image").length){
 			if( jQuery.isFunction(jQuery.fn.datepicker) )
-				$(".dateInput").datepicker({ 
+				$(".dateInput").datepicker({
 			        autoclose: true,
 			        language: "fr",
 			        format: "dd/mm/yyyy"
@@ -792,31 +792,31 @@ onSave: (optional) overloads the generic saveProcess
 			if( jQuery.isFunction(jQuery.fn.daterangepicker) )
 				initDateRange();
 			else
-				lazyLoad( baseUrl+'/plugins/bootstrap-daterangepicker/daterangepicker.js' ,  
+				lazyLoad( baseUrl+'/plugins/bootstrap-daterangepicker/daterangepicker.js' ,
 						  baseUrl+'/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css',
 						  initDateRange);
 		    /*$('.daterangeInput').val(moment().format('DD/MM/YYYY h:mm A') + ' - ' + moment().add('days', 1).format('DD/MM/YYYY h:mm A'))
-			.daterangepicker({  
+			.daterangepicker({
 				startDate: moment(),
 				endDate: moment().add('days', 1),
-				timePicker: true, 
-				timePickerIncrement: 30, 
-				format: 'DD/MM/YYYY h:mm A' 
+				timePicker: true,
+				timePickerIncrement: 30,
+				format: 'DD/MM/YYYY h:mm A'
 			});*/
 		}
 
-		
+
 		/* **************************************
-		* PROPERTIES 
+		* PROPERTIES
 		***************************************** */
 		if(  $(".addmultifield").length )
 		{
 			if(  $(".addmultifield1").length )
 				$('head').append('<style type="text/css">.inputs textarea.addmultifield1{width:90%; height:34px;}</style>');
 
-			//intialise event on the add new row button 
+			//intialise event on the add new row button
 			$('.addPropBtn').unbind("click").click(function()
-			{ 
+			{
 				var field = $(this).data('id');
 				if( $('.'+field+' .inputs .addmultifield:visible').length==0 || ( $("."+field+" .addmultifield:last").val() != "" && $( "."+field+" .addmultifield1:last" ).val() != "") )
 					addfield('.'+$(this).data('container'),'',field);
@@ -826,7 +826,7 @@ onSave: (optional) overloads the generic saveProcess
 		}
 
 		/* **************************************
-		* WYSIWYG 
+		* WYSIWYG
 		***************************************** */
 		if(  $(".wysiwygInput").length )
 		{
@@ -855,7 +855,7 @@ onSave: (optional) overloads the generic saveProcess
 				if( jQuery.isFunction(jQuery.fn.summernote) )
 					initField();
 			    else {
-			    	lazyLoad( baseUrl+'/plugins/summernote/dist/summernote.min.js', 
+			    	lazyLoad( baseUrl+'/plugins/summernote/dist/summernote.min.js',
 							  baseUrl+'/plugins/summernote/dist/summernote.css',
 							  initField);
 		    	}
@@ -870,10 +870,10 @@ onSave: (optional) overloads the generic saveProcess
 	*
 	***************************************** */
 	/* **************************************
-	* add a new line to the multi line process 
+	* add a new line to the multi line process
 	* val can be a value when type array or {"label":"","value":""} when type property
 	***************************************** */
-	function addfield( parentContainer,val,name ) 
+	function addfield( parentContainer,val,name )
 	{
 		mylog.log("addfield",parentContainer+' .inputs',val);
 		if(!$.isEmptyObject($(parentContainer+' .inputs')))
@@ -884,20 +884,20 @@ onSave: (optional) overloads the generic saveProcess
 	    		$( arrayLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
 	    	$(parentContainer+' .addmultifield:last').focus();
 	        initMultiFields(parentContainer,name);
-	    }else 
+	    }else
 	    	mylog.error("container doesn't seem to exist : "+parentContainer+' .inputs');
 	}
-	
+
 	/* **************************************
-	* initiliase events 
-	* prevent submitting empty fields 
+	* initiliase events
+	* prevent submitting empty fields
 	* remove a field
 	* enter key submition
 	***************************************** */
 	function initMultiFields(parentContainer,name){
 		mylog.log("initMultiFields",parentContainer);
 	  //manage using Enter to make easy loop editing
-	  $(parentContainer+' .addmultifield').unbind('keydown').keydown(function(event) 
+	  $(parentContainer+' .addmultifield').unbind('keydown').keydown(function(event)
 	  {
 	  	if ( event.keyCode == 13)
 	    {
@@ -905,9 +905,9 @@ onSave: (optional) overloads the generic saveProcess
 	        if( $(this).val() != ""){
 	        	if( $( this ).parent().next().children(".addmultifield1").val() != "" )
 	        		addfield(parentContainer,'',name);
-	        	else 
+	        	else
 	        		$( this ).parent().next().children(".addmultifield1").focus();
-	        } 
+	        }
 	        else
 	        	toastr.warning("La paire (clef/valeure) doit etre remplie.");
 	    }
@@ -917,7 +917,7 @@ onSave: (optional) overloads the generic saveProcess
 	  getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count);
 	  //manage using Enter to make easy loop editing
 	  //for 2nd property field
-	  $(parentContainer+' .addmultifield1').unbind('keydown').keydown(function(event) 
+	  $(parentContainer+' .addmultifield1').unbind('keydown').keydown(function(event)
 	  {
 	  	if ( event.ctrlKey &&  event.keyCode == 13)
 	    {
@@ -927,9 +927,9 @@ onSave: (optional) overloads the generic saveProcess
 	        else
 	        	toastr.warning("La paire (clef/valeure) doit etre remplie.");
 	    }
-	  }); 
+	  });
 
-	  //bind remove btn event 
+	  //bind remove btn event
 	  $(parentContainer+' .removePropLineBtn').click(function(){
 	  	$(this).parent().prev().remove();
 	  	$(this).parent().remove();
@@ -944,12 +944,12 @@ onSave: (optional) overloads the generic saveProcess
 	}
 
 	/* **************************************
-	* build HTML for each element of a property list 
+	* build HTML for each element of a property list
 	***************************************** */
 	function propertyLineHTML(propVal,name)
 	{
 		mylog.log("propertyLineHTML",propVal);
-		if( typeof propVal == "undefined" ) 
+		if( typeof propVal == "undefined" )
 	    	propVal = {"label":"","value":""};
 		var str = '<div class="space5"></div><div class="col-sm-3">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
@@ -967,7 +967,7 @@ onSave: (optional) overloads the generic saveProcess
 	function arrayLineHTML(val,name)
 	{
 		mylog.log("arrayLineHTML : ",val);
-		if( typeof val == "undefined" ) 
+		if( typeof val == "undefined" )
 	    	val = "";
 	    var count = $(".addmultifield").length;
 		var str = '<div class="space5"></div><div class="col-sm-10">'+
@@ -1013,11 +1013,11 @@ onSave: (optional) overloads the generic saveProcess
 		if( jQuery.isFunction(jQuery.fn.bootstrapSwitch) )
 			initSwitch();
 	    else {
-	    	lazyLoad( baseUrl+'/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js', 
+	    	lazyLoad( baseUrl+'/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js',
 					  baseUrl+'/plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css',
 					  initSwitch);
     	}
-		
+
 	}
 
 })(jQuery);
@@ -1076,13 +1076,13 @@ function AutoGrowTextArea(textField)
     textField.style.height = textField.scrollHeight + "px";
     if (textField.clientHeight < textField.scrollHeight)
     {
-      textField.style.height = 
+      textField.style.height =
         (textField.scrollHeight * 2 - textField.clientHeight) + "px";
     }
   }
 }
 
-function slugify (value) {    
+function slugify (value) {
 	var rExps=[
 	{re:/[\xC0-\xC6]/g, ch:'A'},
 	{re:/[\xE0-\xE6]/g, ch:'a'},
@@ -1142,28 +1142,28 @@ function showMyImage2(fileInput) {
 			$(".count_images").val(idImg);
 			$(".algoNbImg").val(nbId);
 		}
-		
+
 		htmlImg+="<div class='newImageAlbum'><i class='fa fa-spin fa-circle-o-notch fa-3x text-green spinner-add-image noGoSaveNews'></i><img src='' id='thumbail"+nbId+"' class='grayscale' style='width:75px; height:75px;'/>"+
 		       	"<input type='hidden' class='imagesNews' name='goSaveNews' value=''/></div>";
 		$("#resultsImage").append(htmlImg);
 
-	    for (var i = 0; i < files.length; i++) 
+	    for (var i = 0; i < files.length; i++)
 	    {
 	        var file = files[i];
-	        var imageType = /image.*/;     
+	        var imageType = /image.*/;
 	        if (!file.type.match(imageType)) {
 	            continue;
-	        }           
-	        var img=document.getElementById("thumbail"+nbId);            
-	        img.file = file;    
+	        }
+	        var img=document.getElementById("thumbail"+nbId);
+	        img.file = file;
 	        var reader = new FileReader();
-	        reader.onload = (function(aImg) { 
-	            return function(e) { 
-	                aImg.src = e.target.result; 
-	            }; 
+	        reader.onload = (function(aImg) {
+	            return function(e) {
+	                aImg.src = e.target.result;
+	            };
 	        })(img);
 	        reader.readAsDataURL(file);
-	    }  
+	    }
 	    validationImage = {
 		errorElement : "span", // contain the error msg in a span tag
 		errorClass : 'help-block',
@@ -1188,7 +1188,7 @@ function showMyImage2(fileInput) {
 						else{
 							return false;
 						}
-					}	
+					}
 				}
 			}*/
 		},
@@ -1203,7 +1203,7 @@ function showMyImage2(fileInput) {
 			type: "POST",
 			data: new FormData(this),
 			contentType: false,
-			cache: false, 
+			cache: false,
 			processData: false,
 			dataType: "json",
 			success: function(data){
@@ -1211,14 +1211,14 @@ function showMyImage2(fileInput) {
 		  		if(data.success){
 			  		mylog.log("success");
 		  			imageName = data.name;
-					var doc = { 
+					var doc = {
 						"id":contextParentId,
 						"type":contextParentType,
 						"folder":"room/me",
 						"moduleId":moduleId,
-						"author" : userId  , 
-						"name" : data.name , 
-						"date" : new Date() , 
+						"author" : userId  ,
+						"name" : data.name ,
+						"date" : new Date() ,
 						"size" : data.size ,
 						"doctype" : docType,
 						"contentKey" : contentKey
@@ -1240,7 +1240,7 @@ function showMyImage2(fileInput) {
 						    $(".newImageAlbum").last().find("i").remove();
 						    $(".newImageAlbum").last().append("<a href='javascript:;' onclick='deleteImage(\""+data.id.$id+"\",\""+data.name+"\")'><i class='fa fa-times fa-x padding-5 text-white removeImage' id='deleteImg"+data.id.$id+"'></i></a>");
 						    //},200);
-				
+
 						} else{
 							toastr.error(data.msg);
 							if($("#resultsImage img").length>1)
@@ -1270,6 +1270,6 @@ function showMyImage2(fileInput) {
 	   alert("done here");
 	  //  var form = $('#photoAddForm').get(0);
 //$.removeData(form, 'validator');
-		form.submit(function(e) { e.preventDefault }).validate(validationImage);;	  
+		form.submit(function(e) { e.preventDefault }).validate(validationImage);;
 	}
 }

@@ -2,7 +2,7 @@
 
 return array(
 
-	//GLOBAL INTERFACE 
+	//GLOBAL INTERFACE
 	"Collapse"=>"Replier",
 	"Refresh"=>"Rafraichir",
 	"Configurations"=>"Configurations",
@@ -91,12 +91,12 @@ return array(
 	"wrote a message on your wall" => "a écris un message dans votre journal",
 	// FOOTER
 	"Work in Progress" => "Travail en court",
-	
+
 	// Erreurs
 	"You have some form errors. Please check below." => "Des erreurs sont présentes. Vérifier ci dessous",
 	"Something went wrong!" => "Une erreur est survenue!",
 	"Something went really bad : Invalid Content" => "Une erreur s'est produite : Contenu Invalide",
-	"Something went really bad : " => "Une erreur s'est produite : ", 
+	"Something went really bad : " => "Une erreur s'est produite : ",
 	"Uncorrect request" => "Cette requête n&#146;a pas pu aboutir",
 	"Can not manage the type " => "Vous ne pouvez pas gérer le type",
 	"The form has been validated." => "Le formulaire a été validé avec succès.",
@@ -127,6 +127,7 @@ return array(
 	"New member well register" => "Le nouveau membre est bien enregistré",
 	"Your request has been sent to other admins." => "Votre demande a été envoyée aux autres admins",
 	"News has been successfully delated" => "La publication a été supprimée avec succès",
+	"You are going to delete this message : are your sure ?" => "Vous êtes sur le point de supprimer un message, êtes-vous sur ?",
 	"News well updated" => "La publication a été mise à jour",
 	"Your vote has been successfully added" => "Votre vote a été ajouté avec succès",
 	"Your vote has been successfully removed" => "Votre vote a été supprimé avec succès",
@@ -142,7 +143,7 @@ return array(
 	"News added successfully!" => "News ajoutée avec succès!",
 	"Thank you ! We are dealing it as quickly as possible. If there is more than 5 report, the news will be hidden" => "Merci ! L'équipe va examiner ceci le plus rapidement possible. S'il y a plus de 5 signalements, le contenu est automatiquement masqué",
 	"You already reported this news as abuse" => "Vous avez déjà signalé cette news comme abus",
-	"You are going to declare an abuse : please fill the reason" => "Vous êtes en train de signaler un contenu abusif. Merci d'en préciser la raison",	
+	"You are going to declare an abuse : please fill the reason" => "Vous êtes en train de signaler un contenu abusif. Merci d'en préciser la raison",
 	"Update publication" => "Modifier la publication",
 	"Report an abuse" => "Reporter au modérateur",
 	"You leave successfully this event" => "Vous avez quitté l'événement",
@@ -156,7 +157,7 @@ return array(
 	"is already contributor of" => "contribue déjà à",
 	"is already member of" => "est déjà membre de",
 	"is already admin of" => "est déjà admin de",
-	//"Remove your positive vote before" => "Enlever le vote positif avant", 
+	//"Remove your positive vote before" => "Enlever le vote positif avant",
 	"No more notifications for the moment" => "Vous n'avez pas de notifications pour le moment",
 	//Confirm
 	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication?",
@@ -166,7 +167,7 @@ return array(
 	"Back to Search" => "Retour sur la recherche",
 	"Please Login First" => "Logguez vous",
 	"Save Processing"=> "Enregistrement en cours",
-	
+
 	//DATA
 	"Your data has been saved" => "Vos données ont bien été enregistré.",
 	"Data saved" => "Donnée enregistrée.",
@@ -175,8 +176,8 @@ return array(
 	"Access denied" => "Accès refusé",
 	"Accept as admin" => "Accepter comme admin",
 	"Accept as member" => "Accepter comme membre",
-	"Accept as contributor" => "Accepter comme contributeur",	
-	"Wait for confirmation" => "En attente de confirmation", 
+	"Accept as contributor" => "Accepter comme contributeur",
+	"Wait for confirmation" => "En attente de confirmation",
 	//TYPES
 	"NGO" => "Association",
 	"LocalBusiness" => "Entreprise",
@@ -190,7 +191,7 @@ return array(
 	"the group" => "le collectif",
 	"the Group" => "le groupe",
 	"the government organization" => "l'organisation gouvernementale",
-	
+
 	//EMAILS
 	"New Organization created on " => "Nouvelle organisation créée sur ",
 	"New Event created on " => "Nouvel événement créé sur ",
@@ -275,7 +276,7 @@ return array(
 	"Purple" => "Violet",
 	"Red" => "Rouge",
 	"Yellow" => "Jaune",
-	
+
 	//Question
 	"Are you sure" => "Êtes-vous sûr",
 	"Are you sure you want to delete" => "Êtes-vous sûr de supprimer",
@@ -299,7 +300,7 @@ return array(
 	"All" => "Tous",
 	"Who" => "Qui",
 	"and" => "et",
-	
+
 	//Status
 	"waiting for validation" => "attente de validation",
 	"unregistred" => "non inscrit-e",
@@ -321,7 +322,7 @@ return array(
 	"Organizations" => "Organisations",
 	"Projects" => "Projets",
 	"Events" => "Événements",
-	
+
 	"persons" => "citoyens",
 	"people" => "citoyens",
 	"organizations" => "organisations",
@@ -363,7 +364,7 @@ return array(
 	"this organization" => "cette organisation",
 	"this project" => "ce projet",
 	"this event" => "cet événement",
-	
+
 	"PROJECT" => "PROJET",
 	"DIRECTORY " => "Répertoire",
 	"DIRECTORY of" => "Répertoire de",
@@ -393,7 +394,7 @@ return array(
 	"Follow this organization" => "Suivre cette organisation",
 	"Follow this project" => "Suivre ce projet",
 	"Unfollow" => "Ne plus suivre",
-	
+
 	"Add Something to your network" => "Ajouter quelque chose à votre réseau" ,
 	"Add"							=> "Ajouter",
 	"Leave this organization" 		=> "Quitter cette organisation",
@@ -439,16 +440,16 @@ return array(
 	"See the photo gallery" => "Voir la galerie photo",
 	"Information"=>"Informations",
 	"Contact information"=> "Coordonnées",
-	
+
 	"Read all news publicated by this person" 		=> "Toute l&#146;actualité de cette personne",
 	"Read all news publicated by this event" 		=> "Toute l&#146;actualité de cet événement",
 	"Read all news publicated by this project" 		=> "Toute l&#146;actualité du projet",
 	"Read all news publicated by this organization" => "Toute l&#146;actualité de cette organisation",
 	"Discover who contributes to this project" 		=> "Les contributeurs du projet",
-	
+
 	"Participants" 		=> "Participants",
 	"Participants list" => "Liste des participants",
-	
+
 	"Add a participant to this organization" => "Ajouter un participant",
 	"Add a member to this organization"=> "Ajouter un membre à cette organisation",
 	"Add a contributor to this project" => "Ajouter un contributeur à ce projet",
@@ -456,7 +457,7 @@ return array(
 	"Add members to this organization"=> "Ajouter des membres à cette organisation",
 	"Add contributors to this project" => "Ajouter des contributeurs à ce projet",
 	"Add attendees to this event" => "Ajouter des participants à cet évènement",
-	
+
 	"Add member" => "Ajouter un membre",
 	"Add members" => "Ajouter un membre",
 	"Add contributor" => "Ajouter un contributeur",
@@ -509,7 +510,7 @@ return array(
 	"Write a bug or an idea to improve the development of communecter" => "Écrire un bug ou une idée pour améliorer le développement de communecter",
 	"Published a message in your wall for your network" => "Publier un message sur votre mur, visible ou non par votre réseau",
 	"Search what" => "Quoi",
-	"Search where" => "Où", 
+	"Search where" => "Où",
 
 	"MY DETAIL"			=> "MON PROFIL",
 	"NEWS"				=> "FIL D'ACTUALITÉS",
@@ -528,7 +529,7 @@ return array(
 	"Communected me" 	=> "Me Communecter",
 	"LOCAL ACTORS"		=> "Les acteurs locaux",
 	"HAPHAZARD"			=> "Au hasard",
-	
+
 	"ASSOCIATIONS"				=> "ASSOCIATIONS",
 	"ENTREPRISES"				=> "ENTREPRISES",
 	"GROUPES"					=> "GROUPES",
@@ -536,7 +537,7 @@ return array(
 	"LOCAL CONNECTED CITIZENS"	=> "CITOYENS",
 	"LOCAL EVENTS"				=> "ÉVÉNEMENTS",
 	"LOCAL PROJECTS"			=> "PROJETS",
-	
+
 	"ADD SOMETHING TO MY NETWORK" => "Ajouter à mon réseau",
 
 	"Organizations types" => "Type d'organisations",
@@ -559,7 +560,7 @@ return array(
 	"Connect organizations you know, you like, you met, you want to follow" => "Communectez votre association, entreprise, groupe, que vous connaissez, que vous aimez, que vous venez de découvrir ou que vous voulez suivre",
 	"Create and Attend local events" => "Créer et partagez un événement local",
 	"Promote or contribute to local projects" => "Faites connaitre un projet local",
-	
+
 	"A person" => "Inviter</br>quelqu'un",
 	"An organization" => "Créer</br>une organisation",
 	"A project" => "Créer</br>un projet",
@@ -571,13 +572,13 @@ return array(
 
 	"Change password" => "Changer votre mot de passe",
 	"Account info" => "Infos générales",
-	
+
 	"No attendee for this event" => "Aucun participant pour cet événement",
 	"No member for this organization" => "Aucun membre inscrit dans cette organisation",
 	"No contributor for this project" => "Aucun contributeur sur ce projet",
 	"No member for this person" => "Personne dans cette communauté",
 	"Organizator detail" => "Détail de l'organisateur",
-	
+
 	"Places" => "Lieux",
 	"No more news" => "fin du fil d'actus",
 	"See all" => "Voir tout",
@@ -586,7 +587,7 @@ return array(
 	"IMPORT DATA" => "IMPORT DATA",
 	"OPENAGENDA" => "OPEN AGENDA",
 	"CHECKGEOCODAGE" => "VERIFIER GEOCODAGE",
-	
+
 	"air" => "air",
 	"seed" => "graine",
 	"germ" => "germe",
@@ -595,7 +596,7 @@ return array(
 	"forest" => "foret",
 	"country" => "pays",
 	"planet" => "planète",
-	
+
 	"Frequently Asked Questions" => "Réponses aux Questions Fréquentes",
 	"Crowdfunding : Build Together" => "Crowdfunding : Construire Ensemble",
 	"Terms of Use" => "Mentions Légales",
@@ -603,7 +604,7 @@ return array(
 
 	"updatepublication" => "Modifier",
 	"deletepublication" => "Supprimer",
-	
+
 	//Survey
 	'Add a proposal' => "Ajouter une proposition",
 	'All Surveys' => "Retour aux propositions",
