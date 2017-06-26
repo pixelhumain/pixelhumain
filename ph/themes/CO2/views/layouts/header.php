@@ -54,25 +54,7 @@
                 $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
                                                                             "subdomain"  => ""));
             ?>
-
-            <?php if(false && $subdomainName == "web") { ?>
-                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
-                        href="#info.p.apropos">
-                        <span class="">c koissa ?!?</span>
-                    </a>    
-                    <a  class="lbh text-red font-blackoutM margin-right-25" target="_blank"
-                        href="#info.p.alphatango">
-                        <i class="fa fa-envelope"></i><span class=""> Contact</span>
-                    </a>    
-            <?php } ?>
-
-
-            <!-- <button type="button" class="btn btn-default bold letter-green" data-target="#selectCreate" data-toggle="modal">
-                <i class="fa fa-plus-circle fa-2x"></i>           
-            </button> -->
-            
         </div>
-
         
         <div class="container">
             <div class="row">
@@ -130,8 +112,6 @@
                            <?php } ?>
                             
 
-                            <!-- <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button> -->
-
                         <?php }elseif($subdomain == "web"){ ?>
                             <div class="input-group col-sm-6 col-sm-offset-3" id="main-input-group"  style="margin-bottom:15px;">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
@@ -157,7 +137,6 @@
 
                             <div class="col-md-12">
                                 <button class="btn btn-default btn-scroll" id="main-btn-start-search" data-targetid="#searchResults"><i class="fa fa-search"></i> Lancer la recherche</button>
-                                <!-- <a href="#referencement" class="lbh btn btn-default hidden-xs main-btn-create" id="main-btn-referencement"><i class="fa fa-plus"></i> Référencer un site</a> -->
                             </div>
                         <?php } ?>
 

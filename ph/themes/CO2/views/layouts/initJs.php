@@ -2,6 +2,7 @@
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
     var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
     var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
+    var domainName = "<?php echo Yii::app()->params["CO2DomainName"];?>";
     var moduleId = "<?php echo $this->module->id?>";
     var userId = "<?php echo Yii::app()->session['userId']?>";
     var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
@@ -145,7 +146,7 @@
         imgLoad : "CO2r.png" ,
         mainContainer : ".main-container",
         blockUi : {
-            processingMsg : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
+            processingMsg : '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="" height=80>'+
                   '<i class="fa fa-spin fa-circle-o-notch"></i>'+
                   '<h4 style="font-weight:300" class=" text-dark padding-10">'+
                     'Chargement en cours...'+
@@ -157,7 +158,7 @@
                   '<a href="#" class="btn btn-default btn-sm lbh">'+
                     "c'est trop long !"+
                   '</a>', 
-            errorMsg : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
+            errorMsg : '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="logo-menutop" height=80>'+
               '<i class="fa fa-times"></i><br>'+
                '<span class="col-md-12 text-center font-blackoutM text-left">'+
                 '<span class="letter letter-red font-blackoutT" style="font-size:40px;">404</span>'+

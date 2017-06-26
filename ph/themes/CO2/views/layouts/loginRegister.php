@@ -75,6 +75,8 @@
                     <span class="name" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
+                        <?php } else if(Yii::app()->params["CO2DomainName"] == "FI"){ ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/FI-logo.png" height="90" class="inline margin-bottom-15">
                         <?php } else { ?>
                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
@@ -85,16 +87,17 @@
                                 <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
                                 </div>
                             </div>
+                            <h4 class="text-dark col-md-12 margin-top-5 homestead">
+                                <!-- Bienvenue sur la version CO.2 -->
+                                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="35" 
+                                     class="inline margin-left-10">
+                                <!-- <br/>Le commun avance <span class="text-red">montez à bord !</span> -->
+                                <hr>
+                            </h4>
                         <?php } ?>
                     </span>
                     <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
-                    <h4 class="text-dark col-md-12 margin-top-5 homestead">
-                        <!-- Bienvenue sur la version CO.2 -->
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="35" 
-                             class="inline margin-left-10">
-                        <!-- <br/>Le commun avance <span class="text-red">montez à bord !</span> -->
-                        <hr>
-                    </h4>
+                   
                     
                 </div>
                 <div class="col-lg-12">
@@ -189,6 +192,8 @@
                     <span class="name" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
+                       <?php } else if(Yii::app()->params["CO2DomainName"] == "FI"){ ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/FI-logo.png" height="60" class="inline margin-bottom-15">
                        <?php } else { ?>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
@@ -200,7 +205,7 @@
                         <?php } ?>
                     </span>
                     <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
-                    <p>Rejoindre la version co2<br/>Le commun avance, montez à bord !!<hr></p>
+                    <!-- <p>Rejoindre la version co2<br/>Le commun avance, montez à bord !!<hr></p> -->
                 </div>
                 <div class="col-lg-12">
                     <p></p>
@@ -300,12 +305,14 @@
                     <span class="name" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
+                       <?php } else if(Yii::app()->params["CO2DomainName"] == "FI"){ ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/FI-logo.png" height="60" class="inline margin-bottom-15">
                        <?php } else { ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">
                         <?php } ?>
                     </span>
-                    <h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>
-                    <p>La connexion est réservée aux administrateurs du réseau.<hr></p>
+                    <h3 class="letter-red no-margin" style="margin-top:-15px!important;">Mot de passe perdu ?</h3><br>
+                    <p>Indiquez l'addresse e-mail liée à votre compte afin de récupérer votre mot de passe.<hr></p>
                 </div>
                 <div class="col-lg-12">
                     <p></p>
@@ -380,7 +387,7 @@ jQuery(document).ready(function() {
     
     //$(".box").hide();
     Login.init();
-    titleAnim();
+    //titleAnim();
 
     $('.form-register #username').keyup(function(e) { 
         validateUserName();
