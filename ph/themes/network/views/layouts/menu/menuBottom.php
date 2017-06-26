@@ -19,17 +19,13 @@
 					$bgStyle="background-color: rgba(255, 163, 0, 0.6);";
 				else if($key=="person"){
 					$bgStyle="background-color: rgba(255, 200, 0, 0.6);";
-					$href="#person.invite";
+					$href="#page.invite";
 					$lbh="lbh";
 				}
 					//$bgClass="bg-yellow";
 			?>
 				<a href="<?php echo $href ?>" class="<?php echo $lbh ?> btn no-padding hoverDiv<?php echo $key ?> <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?>" style="<?php echo $bgStyle ?>"> <span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
 			<?php $i++; } ?>
-			
-			<!--<a href="javascript:;" class="btn no-padding threedivone bg-green"> <span><?php echo Yii::t("common","Organizations"); ?></span></a>
-			<a href="javascript:;" class="btn no-padding threedivtwo bg-orange"> <span><?php echo Yii::t("common","Organizations"); ?></span></a>
-		<a href="javascript:;" class="btn no-padding threedivthree bg-purple"> <span><?php echo Yii::t("common","Organizations"); ?></span></a>-->
 
 		</div>
 		<a class="pull-left text-white"  id="btn-menu-add">
