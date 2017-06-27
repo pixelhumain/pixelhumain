@@ -19,8 +19,9 @@
 	<head>
 		<?php 	
 		$layoutPathNetwork = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-		$this->renderPartial($layoutPathNetwork.'metas');
 
+		$this->renderPartial($layoutPathNetwork.'metas');
+		$CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
 		//Management of network configuration is in Network model
 		$params = Network::getNetworkJson(Yii::app()->params['networkParams']);
 		// Get source of network json
@@ -317,6 +318,8 @@
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 		$this->renderPartial($layoutPathNetwork.'initJs', 
                                  array( "me"=>@$me, "myFormContact" => @$myFormContact));
+
+        //$this->renderPartial($layoutPathNetwork.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) );
 		//<!-- end: MAIN JAVASCRIPTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		?>

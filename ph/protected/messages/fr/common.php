@@ -965,6 +965,10 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
     "stand"         => "Stand",
     "parking"       => "Parking",
     "other"          => "Autre",
+
+
+    "The start date must be before the end date" => "La date de début doit être avant la date de fin",
+    "The end date must be after the start date"  => "La date de fin doit être après la date de début",
 	
 );
 ?>
