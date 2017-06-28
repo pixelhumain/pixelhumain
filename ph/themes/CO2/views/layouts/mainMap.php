@@ -325,7 +325,12 @@
 
 		showMsgListRes = function(msg){ mylog.log("showMsgListRes", msg);
 			msg = msg != "" ? "<li class='padding-5'>" + msg + "</li>" : "";
-			$("#liste_map_element").html(msg);
+			if($("#dropdown-newElement_streetAddress-found").length){ //si on a cet id = on est dans formInMap
+				$("#dropdown-newElement_streetAddress-found").html(msg);
+			}else{
+				$("#liste_map_element").html(msg);
+			}
+			
 		};
 	 
 
