@@ -49,6 +49,10 @@ font-family: Homestead;
 src: url('../../vendor/fonts/Homestead/Homestead-Display.ttf');
 }
 
+body.modal-open{
+	overflow: visible!important;
+}
+
 .colorpicker{
 	display: none;
 }
