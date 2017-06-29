@@ -27,7 +27,7 @@
 				if($key!="person"){ ?>
 					<a href="<?php echo $href ?>" class="<?php echo $lbh ?> btn no-padding hoverDiv<?php echo $key ?> <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?>" style="<?php echo $bgStyle ?>"> <span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
 				<?php } else { ?>
-					<a href="javascript:;" class="<?php echo $lbh ?> btn no-padding hoverDiv<?php echo $key ?> <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?>" style="<?php echo $bgStyle ?>" data-toggle="modal" data-target="#modal-scope"><span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
+					<a href="javascript:;" class="<?php echo $lbh ?> btn no-padding hoverDiv<?php echo $key ?> <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?>" style="<?php echo $bgStyle ?>" data-toggle="modal" data-target="#invite-modal"><span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
 		<?php	}
 			$i++; } ?>
 		</div>
