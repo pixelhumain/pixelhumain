@@ -1,4 +1,4 @@
-<?php 
+<?php
 return array(
         'Please enter your email and password to log in.' => 'Entrez votre email et mot de passe pour se connecter.',
         'You have some form errors. Please check below.' => 'Il y a des erreurs. Vérifiez ci dessous.',
@@ -52,6 +52,7 @@ return array(
         "Impossible to find an account for this username or password." => "Erreur : impossible de trouver un compte avec ce nom d'utilisateur ou cet email.",
         "Congratulation your account is created !" => "Félicitation votre compte est maintenant créé !",
         "Last step to enter : we sent you an email, click on the link to validate your mail address." => "Dernière étape pour entrer : nous vous avons envoyé un email, cliquez sur le lien pour valider votre adresse mail.",
+        "You are now registered, Welcome!" => "Vous êtes bien enregistré, Bienvenue!",
         //Beta test
         "Our developpers are fighting to open soon ! Check your mail that will happen soon !" => "<br><span class=' text-green'>Nos développeurs sont au taquet et ne dorment plus pour que la plateforme sorte bientôt !</span> Vérifiez votre boite aux lettres, ça arrive bientôt !",
         "We'll contact you as soon as we open up! Thanks for joining." => "Noux vous contacterons dès que nous ouvrirons ! Merci de nous avoir rejoint !",
@@ -60,7 +61,7 @@ return array(
         //Invitation
         "Your account already exists on the plateform : please try to login." => "Votre compte existe déjà sur la plateforme : essayez de vous identifier.",
         "Something went wrong ! Impossible to retrieve your invitor." => "Une erreur est survenue ! Impossible de retrouver votre parrain.",
-        "Something went wrong !" => "Une erreur est survenue !", 
+        "Something went wrong !" => "Une erreur est survenue !",
         "Something went really bad : contact your administrator !" => "Une erreur s'est produite, contactez un administrateur",
         "Number of invitations left" => "Nombre d'invitations restantes",
         "I create my account" => "Je crée mon compte"
