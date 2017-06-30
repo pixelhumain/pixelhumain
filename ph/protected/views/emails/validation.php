@@ -1439,14 +1439,14 @@
             <table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
           <tr style="padding: 0;vertical-align: top;text-align: left;">
               <th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
-                      &#xA0; 
+                      &#xA0;
                   </th>
             <th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
           </tr>
         </table>
       </th>
     </tr></tbody></table>
-  </td></tr></tbody></table>       
+  </td></tr></tbody></table>
     <table class="container text-center" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: center;background: #fefefe;width: 580px;margin: 0 auto;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"><td style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;border-collapse: collapse !important;"> <!-- This container is the main email content -->
     <table class="row" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"> <!-- Logo -->
             <th class="small-12 large-12 columns first last" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 16px;">
@@ -1487,7 +1487,7 @@
         <table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
           <tr style="padding: 0;vertical-align: top;text-align: left;">
             <th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
-                        &#xA0; 
+                        &#xA0;
                     </th>
             <th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
               </tr>
@@ -1501,11 +1501,12 @@
               <th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
                 <!--http://localhost:8888/ph/images/betatest.png-->
               <h3>Bienvenue sur <?php echo $title?> !! </h3>
-             Veuillez clicker sur le lien pour confirmer votre compte<br/>
-            ou copier le directement dans votre navigateur 
-            <br/>
-           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id; ?>/person/activate/user/<?php echo $user.'/validationKey/'.Person::getValidationKeyCheck($user)?>">Validation</a></br>
-           <?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id; ?>/person/activate/user/<?php echo $user.'/validationKey/'.Person::getValidationKeyCheck($user)?>
+             <br/>
+            Voici vos identifiants de connexion :<br/>
+             - Login : <?php echo $username ?><br/>
+             - Mot de passe : <?php echo $pwd ?><br/>
+             - Email : <?php echo $email ?><br/>
+
               <br>
               <br>
               <p style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">A tr&egrave;s bient&ocirc;t sur <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><?php echo Yii::app()->getRequest()->getBaseUrl(true) ?></a></p>
@@ -1526,7 +1527,7 @@
         </th>
         </tr></tbody></table>
     </td></tr></tbody></table> <!-- End main email content -->
-    
+
   <table class="container text-center" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: center;background: #fefefe;width: 580px;margin: 0 auto;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"><td style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;border-collapse: collapse !important;"> <!-- Footer -->
     <table class="row grey" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;background: #f0f0f0;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;">
       <th class="small-12 large-12 columns first last" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 16px;">

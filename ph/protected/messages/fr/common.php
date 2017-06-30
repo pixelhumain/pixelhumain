@@ -197,6 +197,7 @@ return array(
 	"New Event created on " => "Nouvel événement créé sur ",
 	"New Project created on " => "Nouveau projet créée sur ",
 	"Confirm your account on " => "Confirmer votre compte sur ",
+	"Welcome on " => "Bienvenue sur ",
 
 	//Common label
 	"today" => "ajourd'hui",
