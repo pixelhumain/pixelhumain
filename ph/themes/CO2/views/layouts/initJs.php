@@ -147,7 +147,7 @@
         mainContainer : ".main-container",
         blockUi : {
             processingMsg : '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="" height=80>'+
-                  '<i class="fa fa-spin fa-circle-o-notch"></i>'+
+                  '<i class="fa fa-spin fa-circle-o-notch loaderBlockUI"></i>'+
                   '<h4 style="font-weight:300" class=" text-dark padding-10">'+
                     'Chargement en cours...'+
                   '</h4>'+
@@ -155,9 +155,17 @@
                     'Merci de patienter quelques instants'+
                   '</span>'+
                   '<br><br><br>'+
-                  '<a href="#" class="btn btn-default btn-sm lbh">'+
+                  /*'<a href="#" class="btn btn-default btn-sm lbh">'+
                     "c'est trop long !"+
-                  '</a>', 
+                  '</a>'+
+                  '<br/>'+*/
+                  '<h4 style="font-weight:300" class=" text-dark padding-10">Communecter a besoin de vous !</h4>'+
+                  '<a href="#info.p.finance" target="_blank" class="btnHelp btn btn-link">'+
+                    '<i class="fa fa-and-o-right"></i> En savoir plus sur notre situation financière'+
+                   '</a><br/>'+
+                    '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="btnHelp btn btn-warning margin-top-10 text-dark">'+
+                        '<i class="fa fa-gift"></i> Faire un don à l\'association'+
+                    '</a> ', 
             errorMsg : '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="logo-menutop" height=80>'+
               '<i class="fa fa-times"></i><br>'+
                '<span class="col-md-12 text-center font-blackoutM text-left">'+

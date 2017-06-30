@@ -221,11 +221,12 @@
         <?php $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
 
         <?php 
-            if(($CO2DomainName == "CO2" &&
+            if((($CO2DomainName == "CO2" &&
                 !@Yii::app()->session["userId"] && 
                 !@Yii::app()->session["user"]["preferences"]) || 
                 (@Yii::app()->session["user"]["preferences"] && 
-                !@Yii::app()->session["user"]["preferences"]["unseenHelpCo"]))
+                !@Yii::app()->session["user"]["preferences"]["unseenHelpCo"])) &&
+                !@Yii::app()->request->cookies['unseenHelpCo'])
                 $this->renderPartial($layoutPath.'footer.donation'); 
 
         ?>
@@ -260,10 +261,15 @@
                             url: baseUrl+"/"+moduleId+"/person/removehelpblock/id/"+userId,
                             dataType: "json",
                             success: function(data){
-                                    toastr.success("Ce footer ne s'affichera plus lorsque vous êtes connecté(e) !");
+                                    toastr.success("Ce bandeau ne s'affichera plus lorsque vous êtes connecté(e) !");
                                 }
                             });
                     }
+                });
+                $(".add-cookie-close-footer").click(function(){
+                    $.cookie('unseenHelpCo', true, { expires: 365, path: "/" });
+                    $("#footer-help").fadeOut();
+                    toastr.success("Ce bandeau ne s'affichera plus sur ce navigateur !");
                 });
             });
             console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
