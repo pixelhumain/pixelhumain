@@ -3,7 +3,7 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll pull-left">
-            <a href="#page-top">
+            <a href="#" class="lbh">
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo-min.png" style="padding-right:20px;" class="logo-menutop pull-left" height=30>
             </a>
         </div>
