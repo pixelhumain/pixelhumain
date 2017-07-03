@@ -1039,13 +1039,12 @@ onSave: (optional) overloads the generic saveProcess
 				    	if(($("ul.qq-upload-list > li").length-1)<=0)
 				    		$('#trigger-upload').addClass("hide");
         			},
-        			/*
+        			
 				    //launches request endpoint
-				    //onUpload: function(id, fileName) {
-				      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
-				      //alert(" > request : "+baseUrl+"/"+moduleId+"/document/upload/dir/"+moduleId+"/folder/"+contextData.type+"/ownerId/"+contextData.id+"/input/dynform");
-				      //documents.saveImages(contextData.type, contextData.id);
-				    //},
+				    onUpload: function(id, fileName) {
+				      alert(" > upload : "+id+fileName+contextData.type+contextData.id);
+				      alert(" > request : "+baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile/contentKey/"+uploadObj.contentKey);
+				    },
 				    //launched on upload
 				    /*onProgress: function(id, fileName, uploadedBytes,totalBytes) {
 				      alert("progress");
