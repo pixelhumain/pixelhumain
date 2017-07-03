@@ -103,7 +103,7 @@
 <form class="form-login box-login-welcome hidden-xs">
     <div class="col-md-12 col-sm-12 col-xs-12 no-padding text-left pull-right" style="margin-top: -5px; margin-bottom: -5px;">
 
-         <div class="col-md-4 col-sm-4 text-left pull-right">          
+         <div class="col-md-4 col-sm-4 text-left pull-right hidden-xs ">          
             <button class="btn btn-success loginBtn-welcome bg-green-k" type="submit" style="margin-top: 18px;">
                 <i class="fa fa-sign-in"></i> <span class="hidden-xs">Connexion</span>
             </button><br><br>
@@ -169,8 +169,12 @@
 
     </div>      
 </form>
+<!-- <button class="visible-xs letter-green font-montserrat btn-menu-connect margin-left-10" 
+        data-toggle="modal" data-target="#modalLogin" style="font-size: 20px;">
+    <span><i class="fa fa-sign-in"></i></span>
+</button> -->
 <button class="visible-xs letter-green font-montserrat btn-menu-connect margin-left-10" 
-                                    data-toggle="modal" data-target="#modalLogin" style="font-size: 20px;">
+        data-toggle="modal" id="open-login-xs" style="font-size: 20px;">
     <span><i class="fa fa-sign-in"></i></span>
 </button>
                             
@@ -250,6 +254,14 @@ jQuery(document).ready(function() {
 
     $("#username").change(function(){
         $("#registerName").val($(this).val());
+    });
+
+    $("#open-login-xs").click(function(){
+        if($(".box-login-welcome").hasClass("hidden-xs")){
+            $(".box-login-welcome").removeClass("hidden-xs").show();
+        }else{
+            $(".box-login-welcome").addClass("hidden-xs").hide();
+        }
     });
 
 });
