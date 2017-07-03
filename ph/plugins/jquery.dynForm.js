@@ -1041,10 +1041,10 @@ onSave: (optional) overloads the generic saveProcess
         			},
         			
 				    //launches request endpoint
-				    onUpload: function(id, fileName) {
+				    /*onUpload: function(id, fileName) {
 				      alert(" > upload : "+id+fileName+contextData.type+contextData.id);
-				      alert(" > request : "+baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile/contentKey/"+uploadObj.contentKey);
-				    },
+				      alert(" > request : dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile/contentKey/"+uploadObj.contentKey);
+				    },*/
 				    //launched on upload
 				    /*onProgress: function(id, fileName, uploadedBytes,totalBytes) {
 				      alert("progress");
@@ -1060,8 +1060,7 @@ onSave: (optional) overloads the generic saveProcess
 				    onAllComplete: function(succeeded, failed) {
 				      toastr.info( "Fichiers bien chargés !!");//+ uploadObj.id +" :: "+ uploadObj.gotoUrl );
 
-				      if( jQuery.isFunction(initValues.afterUploadComplete) )
-				      	initValues.afterUploadComplete();
+				      //if( jQuery.isFunction(initValues.afterUploadComplete) )initValues.afterUploadComplete();
 				      uploadObj.gotoUrl = null;
 				    },
 				    //on click a photo delete btn and launches delete endpoint
