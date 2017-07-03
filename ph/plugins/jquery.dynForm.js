@@ -1060,8 +1060,10 @@ onSave: (optional) overloads the generic saveProcess
 				    //when all upload is complete whatever the result
 				    onAllComplete: function(succeeded, failed) {
 				      toastr.info( "Fichiers bien chargés !!");//+ uploadObj.id +" :: "+ uploadObj.gotoUrl );
+
 				      if( jQuery.isFunction(initValues.afterUploadComplete) )
 				      	initValues.afterUploadComplete();
+				      uploadObj.gotoUrl = null;
 				    },
 				    //on click a photo delete btn and launches delete endpoint
 				    /*onDelete: function(id) {
