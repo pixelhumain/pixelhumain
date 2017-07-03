@@ -69,8 +69,8 @@ $params = array(
     //Functionnal params
     //Is the organisation bellow an othe organization can be managed by her top organization
     'isParentOrganizationAdmin' => false,
-    "openatlasId" => "54eed904a1aa1958b70041ef",
-    "communecterId" => "56c1a474f6ca47a8378b45ef",
+    "openatlasId" => "555eba56c655675cdd65bf19",
+    "communecterId" => "55dafac4e41d75571d848360",
 
     //Code d'invitation
     'validInviteCodes' => array("communs59", "communs31", "polder", "detakbaro", "kisskiss"),

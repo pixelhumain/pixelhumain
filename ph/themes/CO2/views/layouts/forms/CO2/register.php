@@ -1,4 +1,4 @@
-<form class="form-register box-register">  
+<form class="form-register box-register" id="register-welcome">  
     <div class="col-md-12 no-padding text-left">
         
         <h3 class="text-dark"><i class="fa fa-plus"></i> Créer un compte </h3>
@@ -40,5 +40,39 @@
         
     </div>      
 </form>
-
-        
+<script type="text/javascript">
+jQuery(document).ready(function() {
+   // var errorHandler3 = $('.errorHandler', $("#register-welcome"));
+    $("#register-welcome").validate();
+    $("#email3-welcome").rules('add', {
+        required : { 
+            depends:function(){
+                $(this).val($.trim($(this).val()));
+                return true;
+            }
+        },
+        email : true
+    });
+    $("#registerName-welcome").rules('add', {
+        required : true,
+        minlength : 4
+    });
+    $("#username-welcome").rules('add', { 
+        required : true,
+        validUserName : true,
+        rangelength : [4, 32]
+    });
+    $("#password3-welcome").rules('add', {
+        minlength : 8,
+        required : true
+    });
+    $("#passwordAgain-welcome").rules('add', {
+        equalTo : "#password3-welcome"
+    });
+    $("#agree-welcome").rules('add', {
+        minlength : 1,
+        required : true,
+        message:"<?php echo Yii::t("login","You must validate the CGU to sign up.") ?>",
+    });
+});
+</script>

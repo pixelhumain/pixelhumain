@@ -16,4 +16,6 @@
         class="btnHelp btn btn-warning margin-top-10 text-dark">
         <i class="fa fa-gift"></i> Faire un don à l'association
     </a> 
+    <br>
+    <a href="javascript:;" class="add-cookie-close-footer btn btn-link text-azure"><i>Ne plus afficher ce bandeau</i></a>
 </div>

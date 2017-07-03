@@ -302,7 +302,7 @@
 
 </nav>
 <?php //if($subdomain != "welcome"){ 
-        $this->renderPartial($layoutPath.'loginRegister', array()); 
+        $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
       //} else{ ?>
         <!--<div class="modal fade" role="dialog" id="modalRegisterSuccess">
             <div class="modal-dialog">
