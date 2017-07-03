@@ -726,12 +726,21 @@ a, a:hover, a:focus, a:active, a.active{
 	margin-bottom:20px;
 }
 
-.blockUI.blockMsg.blockPage i.fa{
+.blockUI.blockMsg.blockPage .loaderBlockUI{
 	position: absolute;
 	left: 49%;
 	top: 200px;
 	margin-left: 8px;
 }
+.blockUI.blockMsg.blockPage .btnHelp i{
+	font-size:14px;
+}
+/*.blockUI.blockMsg.blockPage i.fa{
+	position: absolute;
+	left: 49%;
+	top: 200px;
+	margin-left: 8px;
+}*/
 
 
 #refResult{
@@ -1023,7 +1032,7 @@ h3.title_panel_map{
 	background-color: rgba(35, 49, 64, 0.9);
     position: fixed;
     bottom: 0px;
-    height: 210px;
+    height: 230px;
     color: white;
     font-size: 18px;
     padding: 25px;

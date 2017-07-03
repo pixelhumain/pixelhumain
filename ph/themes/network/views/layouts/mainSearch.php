@@ -319,7 +319,7 @@
 		$this->renderPartial($layoutPathNetwork.'initJs', 
                                  array( "me"=>@$me, "myFormContact" => @$myFormContact));
 
-        //$this->renderPartial($layoutPathNetwork.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) );
+        $this->renderPartial($layoutPathNetwork.'modals.'.$CO2DomainName.'.invite');
 		//<!-- end: MAIN JAVASCRIPTS -->
 		//<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		?>

@@ -256,8 +256,8 @@ $communexion = CO2::getCommunexionCookies();
 				Communecter est une plateforme open source, construite de façon collaborative.
 				<!-- <i>"EN AMÉLIORATION CONTINUE"</i> -->
 				<h3 class="">Rejoignez nous : </h3>
-
-				<a href="#showTagOnMap.tag.developpeur" data-id="explainDeveloper"  class="lbh btn btn-default text-bold">Développeurs</a>
+				<!--#showTagOnMap.tag.developpeur-->
+				<a href="javascript:;" onclick="showTagOnMap ('#developpeur');" data-id="explainDeveloper"  class="btn btn-default text-bold">Développeurs</a>
 				<a href="javascript:showTagOnMap ('#communecteur')" data-id="explainCommunecteur" class=" btn btn-default text-bold">Communecteurs</a>
 				<a href="javascript:showTagOnMap ('#editeur')" data-id="explainEditor" class=" btn btn-default text-bold">Editeurs </a>
 				<a href="javascript:showTagOnMap ('#designeur')" data-id="explainDesigner" class=" btn btn-default text-bold">Designeur </a><br>
