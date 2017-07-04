@@ -225,7 +225,9 @@ jQuery(document).ready(function() {
     });*/
    
     //Remove parameters from URLs in case of invitation without reloading the page
-    removeParametersWithoutReloading();
+    <?php if(@$_GET["email"]){ ?>
+        removeParametersWithoutReloading();
+    <?php } ?>
     
     //$(".box").hide();
     Login.init();
