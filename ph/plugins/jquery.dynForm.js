@@ -1017,7 +1017,7 @@ onSave: (optional) overloads the generic saveProcess
 			var FineUploader = function(){
 				mylog.log("init fineUploader");
 				
-				$(".fine-uploader-manual-trigger").delay( 1800 ).fineUploader({
+				$(".fine-uploader-manual-trigger").fineUploader({
 		            template: 'qq-template-gallery',//'qq-template-manual-trigger',
 		            request: {
 		                endpoint: uploadObj.path
@@ -1035,6 +1035,7 @@ onSave: (optional) overloads the generic saveProcess
 		            callbacks: {
 		            	//when a img is selected
 					    onSubmit: function(id, fileName) {
+					    	$('.fine-uploader-manual-trigger').fineUploader('setEndpoint',uploadObj.path);
 					    	//alert(" > onSubmit : "+ uploadObj.id +" :: "+ uploadObj.type);
 					    	//console.log('onSubmit uplaodObj',uploadObj);
 					    	//var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
