@@ -187,7 +187,7 @@
     top: -15px;	
 }
 .contentTitleMap h1{
-	font-size: 20px;
+	font-size: 18px;
     display: inline-block;
 }
 .contentShortInformationMap{
@@ -247,6 +247,7 @@
 	<div id="titleMapTop">
 		<div class="contentTitleMap">
 			<div class="contentTitleLogo">
+        <h1>
 				<?php 
           if(@$params['skin']["logo"]){ 
             if ( stripos($params['skin']["logo"], "http") === false) {
@@ -256,7 +257,7 @@
           ?>
 				<img src="<?php echo $logoURL ?>"  class="<?php echo (!empty($params['skin']['paramsLogo']['origin']) ? 'logoMapOrigine' : 'logoMap' )?>"/>
 				<?php } ?>
-				<h1><?php echo $params['skin']["title"] ?></h1>
+				<?php echo $params['skin']["title"] ?></h1>
 			</div>
 			<div class="contentShortInformationMap">
 				<?php if(@$params['skin']["shortDescription"]){ ?>
@@ -316,7 +317,7 @@
 	        <i class="breadcum_search fa fa-search fa-2x" style="padding-top: 10px;padding-left: 20px;"></i>
 	      </label>-->
 	      <div id="breadcrum">
-		  	<a href="#network.simplydirectory" onclick="breadcrumGuide(0)" class="breadcrumAnchor text-dark" style="font-size:20px !important;">Liste</a>
+		  	<a href="javascript:;" onclick="breadcrumGuide(0)" class="breadcrumAnchor text-dark" style="font-size:20px !important;">Liste</a>
 	      </div>
 		  <?php } ?>
 	      <div class="dropdown pull-right hidden-xs">
