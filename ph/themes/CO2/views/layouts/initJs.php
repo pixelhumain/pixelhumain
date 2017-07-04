@@ -188,12 +188,10 @@
         dynForm : {
             onLoadPanel : function (elementObj) { 
                 //console.log("onLoadPanel currentKFormType", currentKFormType);
-                var typeName = (typeof currentKFormType != "undefined" && currentKFormType!=null) ? 
+                mylog.log("elementObj",elementObj);
+                var typeName = (typeof currentKFormType != "undefined" && currentKFormType!=null && currentKFormType!="") ? 
                     trad["add"+currentKFormType] : elementObj.dynForm.jsonSchema.title;
-                
-                var typeIcon = (typeof currentKFormType != "undefined" && currentKFormType!=null) ? 
-                    typeObj[currentKFormType].icon : elementObj.dynForm.jsonSchema.icon;
-
+                var typeIcon = (typeof currentKFormType != "undefined" && currentKFormType!=null && currentKFormType!="") ? dyFInputs.get(currentKFormType).icon : elementObj.dynForm.jsonSchema.icon;
 
                 $("#ajax-modal-modal-title").html(
                         "<i class='fa fa-"+typeIcon+"'></i> "+typeName);
