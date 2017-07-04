@@ -487,6 +487,13 @@
 }
 /* affichage MIN for favorites*/
 
+.typePoiDir{
+  text-transform: capitalize;
+}
+.typePoiDir hr{
+  margin-top: 5px;
+  margin-bottom: 8px;
+}
 
   @media screen and (max-width: 1024px) {
     #menu-directory-type .hidden-sm{

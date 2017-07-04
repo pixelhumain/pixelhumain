@@ -16,7 +16,17 @@
         
         <label class="letter-black"><i class="fa fa-key"></i> Répétez le mot de passe</label><br/>
         <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="mot de passe (confirmation)" tabindex="9">
-        
+        <div class="form-group pull-left no-margin padding-top-10" style="width:100%;">
+            <div>
+                <label for="agree" class="checkbox-inline letter-red">    
+                    <input class="grey agree" id="agree" type="checkbox" name="agree" tabindex="10">
+                    <?php echo Yii::t("login","I agree to the Terms of") ?>
+                    <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp text-dark">
+                        <?php echo Yii::t("login","Service and Privacy Policy") ?>
+                    </a>
+                </label>
+            </div>
+        </div>
         <div class="pull-left form-actions no-margin" style="width:100%; padding:10px;">
             <div class="errorHandler alert alert-danger no-display registerResult pull-left " style="width:100%;">
                 <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","Please verify your entries.") ?>
@@ -25,15 +35,7 @@
                 <i class="fa fa-check"></i> <?php echo Yii::t("login","You've been invited : please resume the registration process in order to log in.") ?>
             </div>
         </div>
-
         <!-- <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a> -->
-        <label for="agree" class="checkbox-inline letter-red">
-            <input type="checkbox" class="grey agree" id="agree" name="agree" tabindex="10">
-            <?php echo Yii::t("login","I agree to the Terms of") ?><br> 
-            <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp text-dark">
-                <?php echo Yii::t("login","Service and Privacy Policy") ?>
-            </a>
-        </label>
         <button class="btn btn-success text-white pull-right createBtn"><i class="fa fa-sign-in"></i> S'inscrire</button>
         
         <!-- <br>         -->
