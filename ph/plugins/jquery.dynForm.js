@@ -1017,7 +1017,7 @@ onSave: (optional) overloads the generic saveProcess
 			var FineUploader = function(){
 				mylog.log("init fineUploader");
 				
-				$(".fine-uploader-manual-trigger").delay( 800 ).fineUploader({
+				$(".fine-uploader-manual-trigger").delay( 1800 ).fineUploader({
 		            template: 'qq-template-gallery',//'qq-template-manual-trigger',
 		            request: {
 		                endpoint: uploadObj.path
