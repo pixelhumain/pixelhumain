@@ -1034,6 +1034,7 @@ onSave: (optional) overloads the generic saveProcess
 	            	//when a img is selected
 				    onSubmit: function(id, fileName) {
 				    	//alert(" > onSubmit : "+ uploadObj.id +" :: "+ uploadObj.type);
+				    	console.log('onSubmit uplaodObj',uploadObj);
 				    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
 				      console.log('onSubmit getEndpoint',ex);
 				      if(initValues.showUploadBtn)
