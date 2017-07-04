@@ -232,14 +232,17 @@
                 <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="mot de passe (confirmation)">
                 <input class="form-control" id="isInvitation" name="isInvitation" type="hidden" value="false">
                 <hr>
-
-                <label for="agree" class="checkbox-inline letter-red">
-                    <input type="checkbox" class="grey agree" id="agree" name="agree">
-                    <?php echo Yii::t("login","I agree to the Terms of") ?> 
-                    <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp text-dark">
-                        <?php echo Yii::t("login","Service and Privacy Policy") ?>
-                    </a>
-                </label>
+                <div class="form-group pull-left no-margin padding-top-10" style="width:100%;">
+                    <div>
+                        <label for="agree" class="checkbox-inline letter-red">
+                            <input type="checkbox" class="grey agree" id="agree" name="agree">
+                            <?php echo Yii::t("login","I agree to the Terms of") ?> 
+                            <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp text-dark">
+                                <?php echo Yii::t("login","Service and Privacy Policy") ?>
+                            </a>
+                        </label>
+                    </div>
+                </div>
 
                 <br><hr>
 
@@ -387,7 +390,9 @@ jQuery(document).ready(function() {
 
 
     //Remove parameters from URLs in case of invitation without reloading the page
-    removeParametersWithoutReloading();
+    <?php if(@$_GET["email"]){ ?>
+        removeParametersWithoutReloading();
+    <?php } ?>
     
     //$(".box").hide();
     Login.init();
