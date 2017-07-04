@@ -1056,7 +1056,7 @@ onSave: (optional) overloads the generic saveProcess
 				    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
 				    	console.log('onProgress getEndpoint',ex);
 				    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));
-				      alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
+				      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
 				    },
 				    //when every img finish upload process whatever the status
 				    onComplete: function(id, fileName,responseJSON,xhr) {
