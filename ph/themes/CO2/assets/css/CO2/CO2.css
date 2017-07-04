@@ -1144,7 +1144,7 @@ h3.title_panel_map{
   .searchEntity a{
   	text-transform: none !important;
   	font-family: unset;
-  	font-weight:300!important;
+  	font-weight:bold;
   }
   .searchEntity .entityRight .entityName{
   	font-size:16px !important;
