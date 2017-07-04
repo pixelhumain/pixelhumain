@@ -1018,8 +1018,9 @@ onSave: (optional) overloads the generic saveProcess
 			$(".fine-uploader-manual-trigger").fineUploader({
 	            template: 'qq-template-gallery',//'qq-template-manual-trigger',
 	            request: {
-	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile/contentKey/"+uploadObj.contentKey
-	                //params : {contentKey:contentKey}
+	                endpoint: uploadObj.path
+	                //endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile/contentKey/"+uploadObj.contentKey 
+	                //params : {id:uploadObj.id}
 	            },
 	            validation: {
 	                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
@@ -1032,6 +1033,10 @@ onSave: (optional) overloads the generic saveProcess
 	            callbacks: {
 	            	//when a img is selected
 				    onSubmit: function(id, fileName) {
+				    	//alert(" > onSubmit : "+ uploadObj.id +" :: "+ uploadObj.type);
+				    	console.log('onSubmit uplaodObj',uploadObj);
+				    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+				      console.log('onSubmit getEndpoint',ex);
 				      if(initValues.showUploadBtn)
 				      	$('#trigger-upload').removeClass("hide");
 				    },
@@ -1043,11 +1048,18 @@ onSave: (optional) overloads the generic saveProcess
 				    //launches request endpoint
 				    onUpload: function(id, fileName) {
 				      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
-				      alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
+				      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
+				      console.log('onUpload uplaodObj',uploadObj);
+				      var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+				      console.log('onUpload getEndpoint',ex);
 				    },
 				    //launched on upload
 				    onProgress: function(id, fileName, uploadedBytes,totalBytes) {
-				      alert("progress"+ uploadObj.id +" :: "+ uploadObj.type);
+				    	console.log('onProgress uplaodObj',uploadObj);
+				    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+				    	console.log('onProgress getEndpoint',ex);
+				    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));
+				      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
 				    },
 				    //when every img finish upload process whatever the status
 				    onComplete: function(id, fileName,responseJSON,xhr) {
@@ -1058,7 +1070,7 @@ onSave: (optional) overloads the generic saveProcess
 				    },
 				    //when all upload is complete whatever the result
 				    onAllComplete: function(succeeded, failed) {
-				      toastr.info( "onAllComplete Fichiers bien chargés !!"+ uploadObj.id +" :: "+ uploadObj.type );
+				      toastr.info( "Fichiers bien chargés !!");//+ uploadObj.id +" :: "+ uploadObj.type );
 
 				      if( jQuery.isFunction(initValues.afterUploadComplete) )initValues.afterUploadComplete();
 				      uploadObj.gotoUrl = null;
