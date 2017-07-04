@@ -1,4 +1,4 @@
-<form class="form-register box-register" id="register">  
+<form class="form-register box-register"> 
     <div class="col-md-12 no-padding text-left">
         
         <h3 class="text-dark"><i class="fa fa-plus"></i> Créer un compte </h3>
