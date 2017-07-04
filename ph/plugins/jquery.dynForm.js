@@ -1034,7 +1034,7 @@ onSave: (optional) overloads the generic saveProcess
 	            	//when a img is selected
 				    onSubmit: function(id, fileName) {
 				    	//alert(" > onSubmit : "+ uploadObj.id +" :: "+ uploadObj.type);
-				    	console.log('onSubmit uplaodObj',uploadObj);
+				    	//console.log('onSubmit uplaodObj',uploadObj);
 				    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
 				      console.log('onSubmit getEndpoint',ex);
 				      if(initValues.showUploadBtn)
@@ -1049,16 +1049,16 @@ onSave: (optional) overloads the generic saveProcess
 				    onUpload: function(id, fileName) {
 				      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
 				      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
-				      console.log('onUpload uplaodObj',uploadObj);
+				      //console.log('onUpload uplaodObj',uploadObj);
 				      var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
 				      console.log('onUpload getEndpoint',ex);
 				    },
 				    //launched on upload
 				    onProgress: function(id, fileName, uploadedBytes,totalBytes) {
-				    	console.log('onProgress uplaodObj',uploadObj);
+				    	/*console.log('onProgress uplaodObj',uploadObj);
 				    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
 				    	console.log('onProgress getEndpoint',ex);
-				    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));
+				    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
 				      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
 				    },
 				    //when every img finish upload process whatever the status
