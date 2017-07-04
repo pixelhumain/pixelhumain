@@ -1034,6 +1034,8 @@ onSave: (optional) overloads the generic saveProcess
 	            	//when a img is selected
 				    onSubmit: function(id, fileName) {
 				    	//alert(" > onSubmit : "+ uploadObj.id +" :: "+ uploadObj.type);
+				    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+				      console.log('onSubmit getEndpoint',ex);
 				      if(initValues.showUploadBtn)
 				      	$('#trigger-upload').removeClass("hide");
 				    },
@@ -1045,15 +1047,16 @@ onSave: (optional) overloads the generic saveProcess
 				    //launches request endpoint
 				    onUpload: function(id, fileName) {
 				      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
-				      alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
+				      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
+				      var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+				      console.log('onUpload getEndpoint',ex);
 				    },
 				    //launched on upload
 				    onProgress: function(id, fileName, uploadedBytes,totalBytes) {
 				    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-				    	console.log('getEndpoint',ex);
+				    	console.log('onProgress getEndpoint',ex);
 				    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));
 				      alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
-				      //alert("progress >> "+ " :: ");
 				    },
 				    //when every img finish upload process whatever the status
 				    onComplete: function(id, fileName,responseJSON,xhr) {
@@ -1064,7 +1067,7 @@ onSave: (optional) overloads the generic saveProcess
 				    },
 				    //when all upload is complete whatever the result
 				    onAllComplete: function(succeeded, failed) {
-				      toastr.info( "onAllComplete Fichiers bien chargés !!");//+ uploadObj.id +" :: "+ uploadObj.type );
+				      toastr.info( "Fichiers bien chargés !!");//+ uploadObj.id +" :: "+ uploadObj.type );
 
 				      if( jQuery.isFunction(initValues.afterUploadComplete) )initValues.afterUploadComplete();
 				      uploadObj.gotoUrl = null;
