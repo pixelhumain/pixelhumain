@@ -154,18 +154,24 @@
                   '<span style="font-weight:300" class=" text-dark">'+
                     'Merci de patienter quelques instants'+
                   '</span>'+
-                  '<br><br><br>'+
+                  '<br><br><hr>'+
                   /*'<a href="#" class="btn btn-default btn-sm lbh">'+
                     "c'est trop long !"+
                   '</a>'+
                   '<br/>'+*/
-                  '<h4 style="font-weight:300" class=" text-dark padding-10">Communecter a besoin de vous !</h4>'+
-                  '<a href="#info.p.finance" target="_blank" class="btnHelp btn btn-link">'+
-                    '<i class="fa fa-and-o-right"></i> En savoir plus sur notre situation financière'+
-                   '</a><br/>'+
-                    '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="btnHelp btn btn-warning margin-top-10 text-dark">'+
-                        '<i class="fa fa-gift"></i> Faire un don à l\'association'+
-                    '</a> ', 
+                  '<div class="alert col-md-6 col-md-offset-3" style="">'+
+                      '<img src="'+themeUrl+'/assets/img/piggybank.png" class="" height=100>'+
+                      '<h4 style="font-weight:300; margin:-35px 0 0 0;" class="homestead padding-10">'+
+                        '<span class="text-red">1 petite pièce pour participer ?</span><!--<br><small class="text-dark">Aidez-nous à poursuivre notre travail...</small>-->'+
+                      '</h4>'+
+                      '<a href="#info.p.finance" target="_blank" class="btnHelp btn btn-link">'+
+                        '<i class="fa fa-hand-o-right"></i> En savoir plus sur notre situation financière'+
+                      '</a>'+
+                      '<br/>'+
+                      '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="btnHelp btn btn-warning margin-top-10 text-dark">'+
+                            '<i class="fa fa-gift"></i> Faire un don à l\'association'+
+                      '</a> '+
+                  '</div>', 
             errorMsg : '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="logo-menutop" height=80>'+
               '<i class="fa fa-times"></i><br>'+
                '<span class="col-md-12 text-center font-blackoutM text-left">'+
