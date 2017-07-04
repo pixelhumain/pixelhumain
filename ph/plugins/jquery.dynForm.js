@@ -1049,11 +1049,13 @@ onSave: (optional) overloads the generic saveProcess
 				    onUpload: function(id, fileName) {
 				      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
 				      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
+				      console.log('onUpload uplaodObj',uploadObj);
 				      var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
 				      console.log('onUpload getEndpoint',ex);
 				    },
 				    //launched on upload
 				    onProgress: function(id, fileName, uploadedBytes,totalBytes) {
+				    	console.log('onProgress uplaodObj',uploadObj);
 				    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
 				    	console.log('onProgress getEndpoint',ex);
 				    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));
