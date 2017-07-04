@@ -475,9 +475,9 @@ return array(
 	"Send a message to this Project" 		=> "Envoyer un message au(x) responsable(s) de ce projet",
 	"Send a message to this Organization" 	=> "Envoyer un message au(x) responsable(s) de cette organisation",
 	"Send a message to this Event" 			=> "Envoyer un message au(x) responsable(s) de cet événement",
-	"Send invitation"						=> "Envoyer l'invitation",
+	"Send invitation"						=> "Envoyer l&#146;invitation",
 	"Send invitations"						=> "Envoyer des invitations",
-	"Send invitation again"					=> "Renvoyer l'invitation",
+	"Send invitation again"					=> "Renvoyer l&#146;invitation",
 
 	"Contact" 				=> "Contacter",
 	"Unfollow this person" 	=> "Ne plus suivre cette personne",
