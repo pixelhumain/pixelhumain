@@ -111,7 +111,7 @@
 
         <div class="col-md-4 col-sm-4 col-xs-6 no-padding text-left pull-right">
             <label><i class="fa fa-key"></i> Un mot de passe</label> 
-            <input class="form-control" name="password" id="password-login-welcome" type="password" placeholder="mot de passe" tabindex="2">
+            <input class="form-control" name="password" id="password-login" type="password" placeholder="mot de passe" tabindex="2">
              <a href="javascript:" class="btn btn-link no-margin btn-sm" data-toggle="modal" data-target="#modalForgot" 
                 style="font-size: 10px;text-transform: none!important;color:inherit;">
                J'ai perdu mon mot de passe
@@ -120,7 +120,7 @@
 
         <div class="col-md-4 col-sm-4 col-xs-6 text-left pull-right">
             <label><i class="fa fa-envelope"></i> Un e-mail</label> 
-            <input class="form-control" name="email" id="email-login-welcome" type="text" placeholder="e-mail" tabindex="1">
+            <input class="form-control" name="email" id="email-login" type="text" placeholder="e-mail" tabindex="1">
             <label for="remember" class="checkbox-inline" style="text-transform: none!important;">
                 <input type="checkbox" id="remember" name="remember" style="margin-top: 2px;" tabindex="3">
                 Se souvenir de moi
