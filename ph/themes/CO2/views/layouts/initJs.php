@@ -160,10 +160,10 @@
                   '</a>'+
                   '<br/>'+*/
                   '<div class="alert col-md-6 col-md-offset-3" style="">'+
-                      '<i class="fa fa-puzzle-piece fa-3x padding-10"></i> <i class="fa fa-plus fa-2x padding-10"></i> <img src="'+themeUrl+'/assets/img/piggybank.png" height=60> <i class="fa fa-plus fa-2x padding-10"></i> <i class="fa fa-group fa-2x padding-10"></i> <span class="bold" style="font-size:40px;">=</span> <i class="fa fa-heartbeat faa-pulse animated fa-3x padding-10"></i>'+
+                      '<i class="fa fa-puzzle-piece fa-3x padding-10"></i> <i class="fa fa-plus fa-2x padding-10"></i> <img src="'+themeUrl+'/assets/img/piggybank.png" height=60> <i class="fa fa-plus fa-2x padding-10"></i> <i class="fa fa-group fa-3x padding-10"></i> <span class="bold" style="font-size:40px;">=</span> <i class="fa fa-heartbeat faa-pulse text-red animated fa-5x padding-10"></i>'+
                       '<br/><br/><h2 style="font-weight:300; margin:-35px 0 0 0;" class="homestead padding-10">'+
                         '<span class="text-red">1 petite pièce pour un grand puzzle</span>'+
-                        '<br/><span class="text-dark">Contribuer ? </span>'+
+                        '<br/><a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="text-dark">Contribuer <i class="fa  fa-arrow-circle-right"></i></a>'+
                       '</h2>'+
                       '<h3 class="text-dark">Aidez-nous à poursuivre notre travail...</h3>'+
                       '<a href="#info.p.finance" target="_blank" class="btnHelp btn btn-link">'+
