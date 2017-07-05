@@ -154,6 +154,16 @@
                                         <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                                     </a>
                                 </li>
+                                <!--<li role="separator" class="divider"></li>
+                                <li class="text-admin dropdown-submenu dropdown-menu-left">
+                                    <a href="javascript:;" class="bg-white">
+                                        <i class="fa fa-language"></i> <?php echo Yii::t("common", "Languages") ; ?>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                      <li><a href="javascript:;" onclick="setLanguage('en')"><?php echo Yii::t("common","English") ?></a></li>
+                                      <li><a href="javascript:;" onclick="setLanguage('fr')"><?php echo Yii::t("common","French") ?></a></li>
+                                    </ul>
+                                </li>-->
                                 <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
                                     <li class="text-admin">
                                         <a href="#admin" class="lbh bg-white">

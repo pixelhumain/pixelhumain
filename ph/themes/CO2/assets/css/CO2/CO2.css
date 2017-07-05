@@ -1224,7 +1224,41 @@ h3.title_panel_map{
     background-color:#8C5AA1 !important;
     color:white!important;
 }
+.dropdown-submenu{
+	position:relative;
+}
+.dropdown-submenu>.dropdown-menu{
+	top: 0;
+	right: 100%;
+	max-width: 180px;
+	margin-top: -6px;
+	margin-right: 1px;
+	-webkit-border-radius: 3px 0px 0px 3px;
+	-moz-border-radius: 3px 0px 0px 3px;
+	border-radius: 3px 0px 0px 3px;
+	display:none;
+}
+.dropdown-submenu:hover>.dropdown-menu{
+	display: block;
+}
+.dropdown-submenu.pull-left{
+	float:none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu{
+	left:-100%;
+	margin-left:10px;
+	-webkit-border-radius:6px 6px 6px 6px;
+	-moz-border-radius:6px 6px 6px 6px;
+	border-radius:6px 6px 6px 6px;
+}
+.dropdown-menu-right {
+	margin-left:0;
+}
 
+.dropdown-menu-right {
+    right:inherit !important;
+    left: auto;
+}
 /************************************************************************************/
 /************************************************************************************/
 /************************************************************************************/
