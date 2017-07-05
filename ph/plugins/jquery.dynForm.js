@@ -1049,21 +1049,21 @@ onSave: (optional) overloads the generic saveProcess
 	        			},
 	        			
 					    //launches request endpoint
-					    onUpload: function(id, fileName) {
+					    //onUpload: function(id, fileName) {
 					      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
 					      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
 					      //console.log('onUpload uplaodObj',uploadObj);
-					      var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-					      console.log('onUpload getEndpoint',ex);
-					    },
+					      //var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+					      //console.log('onUpload getEndpoint',ex);
+					    //},
 					    //launched on upload
-					    onProgress: function(id, fileName, uploadedBytes,totalBytes) {
+					    //onProgress: function(id, fileName, uploadedBytes,totalBytes) {
 					    	/*console.log('onProgress uplaodObj',uploadObj);
 					    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
 					    	console.log('onProgress getEndpoint',ex);
 					    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
 					      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
-					    },
+					    //},
 					    //when every img finish upload process whatever the status
 					    onComplete: function(id, fileName,responseJSON,xhr) {
 					    	if(!responseJSON.result){
@@ -1075,7 +1075,8 @@ onSave: (optional) overloads the generic saveProcess
 					    onAllComplete: function(succeeded, failed) {
 					      toastr.info( "Fichiers bien chargés !!");//+ uploadObj.id +" :: "+ uploadObj.type );
 
-					      if( jQuery.isFunction(initValues.afterUploadComplete) )initValues.afterUploadComplete();
+					      if( jQuery.isFunction(initValues.afterUploadComplete) )
+					      	initValues.afterUploadComplete();
 					      uploadObj.gotoUrl = null;
 					    },
 					    //on click a photo delete btn and launches delete endpoint
