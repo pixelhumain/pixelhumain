@@ -359,6 +359,8 @@
 			hideMapLegende();
 			return;
 		}
+		if(msgText == ""){ return; }
+		
 		$("#mapLegende").html("<i class='fa fa-"+faIcon+"'></i> " + msgText);
 		$("#mapLegende").show(300);
 	}
