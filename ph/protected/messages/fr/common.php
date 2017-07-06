@@ -435,12 +435,20 @@ return array(
 	"Add a banner" => "Ajouter une bannière",
 	"Add a photo" => "Ajouter une photo",
 	"Edit photo" => "Editer la photo",
-	// Menu Button
+	// Menu Button - Top menu
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
 	"My newspaper" => "Mon journal",
 	"MY CITIZEN COUNCIL" => "Mon Conseil Citoyen",
 	"My notifications" => "Mes notifications",
+	"Search"=>"Rechercher",
+	"Ads"=>"Annonces",
+	"Agenda"=>"Agenda",
+	"Help"=>"Aide",
+	"Live"=>"Live",
+	"Show the map" =>"Afficher la carte",
+	"My network"=> "Mon réseau",
+	"My page"=>"Mon accueil",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
@@ -969,6 +977,10 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
     "The start date must be before the end date" => "La date de début doit être avant la date de fin",
     "The end date must be after the start date"  => "La date de fin doit être après la date de début",
+    // LANGUAGES
+    "English"=> "Anglais",
+    "French"=> "Français",
+    "Languages"=>"Langues",
 	
 );
 ?>

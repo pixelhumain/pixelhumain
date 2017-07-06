@@ -149,10 +149,10 @@
             processingMsg : '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="" height=80>'+
                   '<i class="fa fa-spin fa-circle-o-notch loaderBlockUI"></i>'+
                   '<h4 style="font-weight:300" class=" text-dark padding-10">'+
-                    'Chargement en cours...'+
+                    '<?php echo Yii::t("loader","Loading")?>...'+
                   '</h4>'+
                   '<span style="font-weight:300" class=" text-dark">'+
-                    'Merci de patienter quelques instants'+
+                    '<?php echo Yii::t("loader","Thanks to be patient a moment") ?>'+
                   '</span>'+
                   '<br><br><hr>'+
                   /*'<a href="#" class="btn btn-default btn-sm lbh">'+
@@ -162,16 +162,16 @@
                   '<div class="alert col-md-6 col-md-offset-3 shadow2" style="">'+
                       '<i class="fa fa-puzzle-piece fa-3x padding-10"></i> <i class="fa fa-plus fa-2x padding-10"></i> <img src="'+themeUrl+'/assets/img/piggybank.png" height=60> <i class="fa fa-plus fa-2x padding-10"></i> <i class="fa fa-group fa-3x padding-10"></i> <span class="bold" style="font-size:40px;">=</span> <i class="fa fa-heartbeat faa-pulse text-red animated fa-5x padding-10"></i>'+
                       '<br/><br/><h2 style="font-weight:300; margin:-35px 0 0 0;" class="homestead padding-10">'+
-                        '<span class="text-red">1 petite pièce pour un grand puzzle</span>'+
-                        '<br/><a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="text-dark">Contribuer <i class="fa  fa-arrow-circle-right"></i></a>'+
+                        '<span class="text-red"><?php echo Yii::t("loader","1 little coin for a great puzzle") ?></span>'+
+                        '<br/><a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="text-dark"><?php echo Yii::t("loader","Contribute") ?> <i class="fa  fa-arrow-circle-right"></i></a>'+
                       '</h2>'+
-                      '<h3 class="text-dark">Aidez-nous à poursuivre notre travail...</h3>'+
+                      '<h3 class="text-dark"><?php echo Yii::t("loader","Help us to forward our work") ?>...</h3>'+
                       '<a href="#info.p.finance" target="_blank" class="btnHelp btn btn-link">'+
-                        '<i class="fa fa-hand-o-right"></i> En savoir plus sur notre situation financière'+
+                        '<i class="fa fa-hand-o-right"></i> <?php echo Yii::t("loader","More informations about our financial situation") ?>'+
                       '</a>'+
                       '<br/>'+
                       '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="btnHelp btn btn-warning margin-top-10 text-dark">'+
-                            '<i class="fa fa-gift"></i> Faire un don à l\'association'+
+                            '<i class="fa fa-gift"></i> <?php echo Yii::t("loader","Make a donation to the NGO") ?>'+
                       '</a> '+
                   '</div>', 
             errorMsg : '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="logo-menutop" height=80>'+
