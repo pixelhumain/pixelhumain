@@ -435,12 +435,20 @@ return array(
 	"Add a banner" => "Ajouter une bannière",
 	"Add a photo" => "Ajouter une photo",
 	"Edit photo" => "Editer la photo",
-	// Menu Button
+	// Menu Button - Top menu
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
 	"My newspaper" => "Mon journal",
 	"MY CITIZEN COUNCIL" => "Mon Conseil Citoyen",
 	"My notifications" => "Mes notifications",
+	"Search"=>"Rechercher",
+	"Ads"=>"Annonces",
+	"Agenda"=>"Agenda",
+	"Help"=>"Aide",
+	"Live"=>"Live",
+	"Show the map" =>"Afficher la carte",
+	"My network"=> "Mon réseau",
+	"My page"=>"Mon accueil",
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
