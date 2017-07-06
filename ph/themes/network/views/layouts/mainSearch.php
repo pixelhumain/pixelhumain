@@ -309,10 +309,11 @@
 			'/assets/css/plugins.css',
 			'/assets/css/search.css',
 			'/assets/css/search_simply.css',
-			'/assets/css/themes/theme-simple.css',
+			//'/assets/css/themes/theme-simple.css',
 			'/assets/css/default/directory.css',
 			'/assets/css/floopDrawerRight.css',
 			'/assets/css/sig/sig.css',
+			'/assets/css/freelancer.css',
 			'/assets/css/news/index.css',	
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
