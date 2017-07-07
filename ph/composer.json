@@ -28,14 +28,14 @@
  		"phpunit/phpunit": "4.8.20",
  		"chriskite/phactory" : "*",
         "mandrill/mandrill": "1.0.*",
-        "codeception/codeception":"2.1.6",
         "flow/jsonpath": "*"
    	},
 	"require": {
 		"opauth/opauth" : "0.4.4",
 		"sammaye/mongoyii" : "3.*",
 		"yiisoft/yii":"1.1.15",
-        "google/recaptcha": "~1.1"
+        "google/recaptcha": "~1.1",
+		"codeception/codeception": "*"
 	},
 	"autoload": {
     	"psr-0": {
