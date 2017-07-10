@@ -166,6 +166,7 @@ div.timeline .date_separator span{
 	position:relative;
 	max-height: 250px;
 	overflow: hidden;
+	width:100%;
 }
 .extracted_content h4{
 	margin-top:inherit;
