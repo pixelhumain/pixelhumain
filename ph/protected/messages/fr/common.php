@@ -981,6 +981,6 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
     "English"=> "Anglais",
     "French"=> "Français",
     "Languages"=>"Langues",
-	"Photos gallery" => "Gallerie photos",
+	"Photos gallery" => "Galerie photos",
 );
 ?>
