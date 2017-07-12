@@ -147,7 +147,7 @@ function runinviteFormValidation(el) {
                     toastr.success('L\'invitation a été envoyée avec succès!');
                     $("#inviteName").val("");
                     $("#inviteEmail").val("");
-                    $("#inviteText").val('Bonjour, J\'ai découvert un réseau sociétal citoyen appelé "Communecter - être connecter à sa commune".\nTu peux agir concrétement autour de chez toi et découvrir ce qui s\'y passe. Viens rejoindre le réseau sur communecter.org."');
+                    $("#inviteText").val('Bonjour, J\'ai découvert un réseau sociétal citoyen appelé "Communecter - être connecté à sa commune".\nTu peux agir concrétement autour de chez toi et découvrir ce qui s\'y passe. Viens rejoindre le réseau sur communecter.org."');
                     $('#invite-modal').modal('hide');
                     
                 } else {
