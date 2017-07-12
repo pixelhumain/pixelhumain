@@ -114,6 +114,9 @@
   margin-top: 0;
   color: inherit;
 }
+.timeline-body > p{
+  white-space: pre-line;
+}
 .timeline-body > p,
 .timeline-body > ul {
     padding:20px;
