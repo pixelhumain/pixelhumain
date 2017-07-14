@@ -89,7 +89,7 @@
                                           $subdomain == "annonces"){ ?>
 
                             <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
-                                <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
+                                <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
                                 <span class="input-group-addon bg-white" id="main-search-bar-addon">
                                     <i class="fa fa-search"></i>
                                 </span>

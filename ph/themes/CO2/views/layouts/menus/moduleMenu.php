@@ -5,7 +5,7 @@
                             <?php if("#".$subdomain == $key) echo "active"; ?>" 
                     href="<?php echo $key; ?>">
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
-                    <span class=""> <?php echo $value["subdomainName"]; ?></span>
+                    <span class=""> <?php echo Yii::t("common",$value["subdomainName"]); ?></span>
                 </a>    
 <?php       }
         }  
@@ -13,5 +13,5 @@
 ?>
 
 <a href="#default.view.page.links" class="lbhp text-red link-submenu-header margin-right-25" >
-    <i class="fa fa-life-ring"></i> Aide
+    <i class="fa fa-life-ring"></i> <?php echo Yii::t("common","Help") ?>
 </a>

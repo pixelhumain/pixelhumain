@@ -449,6 +449,19 @@ return array(
 	"Show the map" =>"Afficher la carte",
 	"My network"=> "Mon réseau",
 	"My page"=>"Mon accueil",
+	"search something ..."=>"rechercher quelque chose ...",
+	"search a page ..."=>"rechercher une page ...",
+	"search a city ..." =>"rechercher une commune",
+	"search among ads ..."=>"rechercher parmis les annonces  ...",
+	"search an event ..."=>"rechercher un événement ...",
+	"search in live ..."=> "rechercher dans l'actualité",
+	"search ..." => "rechercher ...",
+	"search on people communected ..."=>"rechercher parmis les membres du réseau ...",
+	"<span class='text-red'>Territorial</span> search engine"=>"Moteur de recherche <span class='text-red'>territorial</span>",
+	"Classified ads"=>"Petites annonces",
+	"<span class='text-red'>C</span>Ommon agenda"=>"L'agenda <span class='text-red'>C</span>Ommun",
+	"<span class='text-red'>CO</span>mmon live"=>"Le fil d'actualité <span class='text-red'>CO</span>mmun",
+
 	/* ---- */
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
@@ -632,6 +645,7 @@ return array(
 	"MY CITY" 			=> "MA COMMUNE",
 	"MY CITIZEN COUNCIL"=> "MON CONSEIL CITOYEN",
 	"MY NEWS STREAM"	=> "MON FIL D'ACTU",
+	"Fil d'actu<span class='hidden-sm'>alité</span>s"=> "News <span class='hidden-sm'>stream</span>",
 	"ADD SOMETHING" 	=> "AJOUTER",
 	"HELP US : BUGS, IDEAS" => "AIDEZ NOUS : BUG, IDEE",
 	"BUGS, IDEAS" => "BUGs, IDÉES",

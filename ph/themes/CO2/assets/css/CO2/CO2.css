@@ -1238,6 +1238,10 @@ h3.title_panel_map{
 	border-radius: 3px 0px 0px 3px;
 	display:none;
 }
+.dropdown-submenu .dropdown-menu a img{
+width: 18px;
+margin-right: 5px;
+}
 .dropdown-submenu:hover>.dropdown-menu{
 	display: block;
 }

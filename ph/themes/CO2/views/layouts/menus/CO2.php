@@ -10,7 +10,7 @@
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                      class="logo-menutop pull-left" height=30>
             </a>
-            <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>
+            <span class="hidden-xs skills font-montserrat"><?php echo Yii::t("common",$mainTitle); ?></span>
             <?php 
                 $params = CO2::getThemeParams();  
                 $icon = "";
@@ -34,7 +34,7 @@
         
             <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
-                        placeholder="<?php echo $placeholderMainSearch; ?>">
+                        placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
                 <?php if($subdomain == "page"){ ?>
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
                 <?php } ?>
@@ -50,7 +50,7 @@
         
             <div id="input-sec-search" class="hidden-xs col-sm-2 col-md-3 col-lg-3">
                 <input type="text" class="form-control" id="second-search-bar" 
-                        placeholder="<?php echo $placeholderMainSearch; ?>">
+                        placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search btn-directory-type" 
@@ -154,16 +154,16 @@
                                         <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                                     </a>
                                 </li>
-                                <!--<li role="separator" class="divider"></li>
+                                <li role="separator" class="divider"></li>
                                 <li class="text-admin dropdown-submenu dropdown-menu-left">
                                     <a href="javascript:;" class="bg-white">
                                         <i class="fa fa-language"></i> <?php echo Yii::t("common", "Languages") ; ?>
                                     </a>
                                     <ul class="dropdown-menu">
-                                      <li><a href="javascript:;" onclick="setLanguage('en')"><?php echo Yii::t("common","English") ?></a></li>
-                                      <li><a href="javascript:;" onclick="setLanguage('fr')"><?php echo Yii::t("common","French") ?></a></li>
+                                      <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/united_kingdom.png"/><?php echo Yii::t("common","English") ?></a></li>
+                                      <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/france.png"/><?php echo Yii::t("common","French") ?></a></li>
                                     </ul>
-                                </li>-->
+                                </li>
                                 <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
                                     <li class="text-admin">
                                         <a href="#admin" class="lbh bg-white">
@@ -237,7 +237,7 @@
                         <?php if($subdomain != "welcome"){ ?>
                             <button class="hidden-xs hidden-sm letter-green font-montserrat btn-menu-connect margin-left-10" 
                                     data-toggle="modal" data-target="#modalLogin">
-                                <span><i class="fa fa-sign-in"></i> SE CONNECTER</span>
+                                <span><i class="fa fa-sign-in"></i> <?php echo Yii::t("login", "LOG IN") ?></span>
                             </button>
                             <button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
                                     data-toggle="modal" data-target="#modalLogin" style="font-size:20px;">
@@ -300,7 +300,7 @@
                 <a href="<?php echo $key; ?>" 
                     class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>"
-                    data-toggle="tooltip" data-placement="bottom" title="<?php echo $value["subdomainName"]; ?>">
+                    data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                     <!-- <span class=""><?php echo $value["subdomainName"]; ?></span> -->
                 </a>  

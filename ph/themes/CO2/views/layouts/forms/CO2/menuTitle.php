@@ -162,13 +162,13 @@ function gotToPrevNav()
 	}
 	var titleMapIndex = 1;
 	var titleMap = [
-		{titleRed:"CO",titleWhite:"MMU",titleWhite2:"NECTER",subTitle:"Se connecter à sa commune"},
-		{titleRed:"COMMUNE",titleWhite:"CTER",subTitle:"Se connecter à sa commune"},
-		{titleRed:"CO",titleWhite:"MMUNECTER",subTitle:"Coopérer et Collaborer"},
-		{titleRed:"COMM",titleWhite:"UNECTER",subTitle:"Communiquons mieux localement"},
-		{titleRed:"COMMU",titleWhite:"NECTER",subTitle:"Communautés qui travaillent ensemble"},
-		{titleRed:"COMMUN",titleWhite:"ECTER",subTitle:"Pour le bien commun"},
-		{titleRed:"COMMUNE",titleWhite:"CTER",subTitle:"Pour améliorer la ville 2.2.main"}
+		{titleRed:"CO",titleWhite:"MMU",titleWhite2:"NECTER",subTitle:"<?php echo Yii::t("login","Be linked to your city")?>"},
+		{titleRed:"COMMUNE",titleWhite:"CTER",subTitle:"<?php echo Yii::t("login","Be linked to your city") ?>"},
+		{titleRed:"CO",titleWhite:"MMUNECTER",subTitle:"<?php echo Yii::t("login","Cooperate and collaborate") ?>"},
+		{titleRed:"COMM",titleWhite:"UNECTER",subTitle:"<?php echo Yii::t("login","Speaking together locally") ?>"},
+		{titleRed:"COMMU",titleWhite:"NECTER",subTitle:"<?php echo Yii::t("login","Communities working together") ?>"},
+		{titleRed:"COMMUN",titleWhite:"ECTER",subTitle:"<?php echo Yii::t("login","For commons") ?>"},
+		{titleRed:"COMMUNE",titleWhite:"CTER",subTitle:"<?php echo Yii::t("login","To improve the city 2.2.main") ?>"}
 		
 	];
 	var timeoutanim = false;
@@ -197,7 +197,7 @@ function gotToPrevNav()
 <div class="">
 	<div class="text-white text-extra-large text-bold center topLogoAnim " style="cursor: pointer" onclick="showPanel('box-communecter')">
 		<span class="titleRed text-red homestead" style="">CO</span><span  style="" class="titleWhite homestead">MMU</span><span  style="" class="titleWhite2 text-red homestead">NECTER</span>
-		<div class="subTitle" style="margin-top:-13px;">Se connecter à sa commune.</div>
+		<div class="subTitle" style="margin-top:-13px;"><?php echo Yii::t("login","Be linked to your city")?>.</div>
 	</div>
 </div>
 <?php } ?>
