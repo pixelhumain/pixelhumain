@@ -1039,9 +1039,16 @@ onSave: (optional) overloads the generic saveProcess
 					    	//alert(" > onSubmit : "+ uploadObj.id +" :: "+ uploadObj.type);
 					    	//console.log('onSubmit uplaodObj',uploadObj);
 					    	//var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-					      //console.log('onSubmit getEndpoint',ex);
-					      if(initValues.showUploadBtn)
-					      	$('#trigger-upload').removeClass("hide");
+					        //console.log('onSubmit getEndpoint',ex);
+					        if( initValues.showUploadBtn  ){
+						      	$('#trigger-upload').removeClass("hide").click(function(e) {
+				        			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+						        	urlCtrl.loadByHash(location.hash);
+				        			$('#ajax-modal').modal("hide");
+				        			alert("initImageTrigger 2");
+						        });
+
+					        }
 					    },
 					    onCancel: function(id) {
 					    	if(($("ul.qq-upload-list > li").length-1)<=0)
