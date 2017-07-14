@@ -1045,7 +1045,6 @@ onSave: (optional) overloads the generic saveProcess
 				        			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
 						        	urlCtrl.loadByHash(location.hash);
 				        			$('#ajax-modal').modal("hide");
-				        			alert("initImageTrigger 2");
 						        });
 
 					        }
