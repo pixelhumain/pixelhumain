@@ -40,6 +40,7 @@
 		   var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
 		   var moduleId = "<?php echo $this->module->id?>";
 	</script>
+    
   </head>
   <!-- START BODY -->
   <body>
@@ -56,29 +57,7 @@
 		<div id="loader"></div>
   	</div>
     <!-- SCRIPTS -->
-    <?php 
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.js' , CClientScript::POS_END);
-    	
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/d3.js' , CClientScript::POS_END);
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/api.js' , CClientScript::POS_END);
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/d3.tip.js' , CClientScript::POS_END);
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/alert.js' , CClientScript::POS_END);
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.sequence-min.js' , CClientScript::POS_END);
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.fancybox.pack.js' , CClientScript::POS_END);
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.scrollUp.min.js' , CClientScript::POS_END);
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.smoothscroll.min.js' , CClientScript::POS_END);
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.meanmenu.min.js' , CClientScript::POS_END);
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.sticky.js' , CClientScript::POS_END);
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/pace.min.js' , CClientScript::POS_END);	
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/custom.js' , CClientScript::POS_END);
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/bootstrap/js/bootstrap.js' , CClientScript::POS_END);
-    	$cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/jquery.flexslider-min.js' , CClientScript::POS_END);
-        $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/sig/leaflet.js' , CClientScript::POS_END);
-        $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/sig/leaflet.draw-src.js' , CClientScript::POS_END);
-        $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/sig/leaflet.draw.js' , CClientScript::POS_END);
-        $cs->registerScriptFile(Yii::app()->theme->baseUrl. '/js/sig/leaflet.markercluster-src.js' , CClientScript::POS_END);
-        
-    ?>
+    
   </body>
   <!-- END BODY -->
 </html>
