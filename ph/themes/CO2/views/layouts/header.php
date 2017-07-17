@@ -98,10 +98,10 @@
                             
                             <button class="btn btn-default btn-directory-type hidden-xs" id="main-btn-start-search" 
                                     data-type="<?php echo @$type; ?>">
-                                <i class="fa fa-search"></i> Lancer la recherche
+                                <i class="fa fa-search"></i> <?php echo Yii::t("common","Launch search") ?>
                             </button> 
 
-                            <?php $lblC = @$params["pages"]["#".$page]["lblBtnCreate"]; ?>
+                            <?php $lblC = Yii::t("common",@$params["pages"]["#".$page]["lblBtnCreate"]); ?>
                             <?php $colorC = @$params["pages"]["#".$page]["colorBtnCreate"]; ?>
 
                             <?php if(!empty(Yii::app()->session["userId"])){ ?>
