@@ -452,6 +452,7 @@ return array(
 	"Agenda"=>"Agenda",
 	"Help"=>"Aide",
 	"Live"=>"Live",
+	"Contribute"=> "Contribuer",
 	"Show the map" =>"Afficher la carte",
 	"My network"=> "Mon réseau",
 	"My page"=>"Mon accueil",
