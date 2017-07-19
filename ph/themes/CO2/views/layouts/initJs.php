@@ -228,7 +228,7 @@
                 });
                 <?php } ?>
                 
-                $(".locationBtn").html("<i class='fa fa-home'></i> Addresse principale")
+                $(".locationBtn").html("<i class='fa fa-home'></i> <?php echo Yii::t("common","Main locality") ?>")
                 $(".locationBtn").addClass("letter-red bold");
                 $("#btn-submit-form").removeClass("text-azure").addClass("letter-green");
                 if(typeof currentKFormType != "undefined")
