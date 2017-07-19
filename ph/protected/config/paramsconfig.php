@@ -31,7 +31,19 @@ $mailConfigTest = array(
 
 $params = array(
     //Application Name 
-    'name' => 'communecter',
+    //'name' => 'communecter',
+
+    //Application Name 
+    'name' => 'i-viatic',
+    //Theme
+    'theme' => 'network',
+    //network configuration : this param is used when communecter is used as a dedicated network instance. 
+    //it contains the configuration file
+    'networkConfigurationFile' => 'iviatic',
+    //Moderation : if true, organizations created are set as disabled
+    "moderation" => true,
+
+
     //Beta Test ?
     'betaTest' => false,
     //By default controller
