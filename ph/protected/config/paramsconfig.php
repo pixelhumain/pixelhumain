@@ -51,6 +51,7 @@ $params = array(
     // Mail configuration
     'adminEmail'=>'testmail.pixelhumain@gmail.com',
     'forceMailSend' => true,
+    
     // mail is sent on each element creation when true
     'mailForSuperAdmin' => true,
 
