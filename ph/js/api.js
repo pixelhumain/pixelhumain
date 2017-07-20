@@ -72,7 +72,6 @@ function getAjax(id,ajaxUrl,callback,datatype,blockUI)
             toastr.success(data);
           else
               $(id).html( JSON.stringify(data, null, 4) );
-  
           if( typeof callback === "function")
             callback(data,id);
           if(blockUI)

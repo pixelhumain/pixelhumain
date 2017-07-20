@@ -60,7 +60,7 @@
 
         <?php } ?>
 
-        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Afficher la carte">
+        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="<?php Yii::t("common", "Show the map") ?>">
             <i class="fa fa-map"></i>
         </button>
 
@@ -71,7 +71,7 @@
         <?php if( isset( Yii::app()->session['userId']) ){ ?>
             
             <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
-                  data-dismiss="tooltip" data-placement="left" title="Mon réseau" alt="Mon réseau">
+                  data-dismiss="tooltip" data-placement="left" title="Mon réseau" alt="<?php echo Yii::t("common","My network") ?>">
               <i class="fa fa-link"></i>
             </button>
             <button class="btn-show-mainmenu btn btn-link" 
@@ -123,7 +123,7 @@
                                 </li> -->
                                 <li class="text-left">
                                     <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>" class="lbh bg-white">
-                                        <i class="fa fa-home"></i> Mon accueil
+                                        <i class="fa fa-home"></i> <?php echo Yii::t("common","My page") ?>
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
@@ -154,6 +154,16 @@
                                         <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                                     </a>
                                 </li>
+                                <!--<li role="separator" class="divider"></li>
+                                <li class="text-admin dropdown-submenu dropdown-menu-left">
+                                    <a href="javascript:;" class="bg-white">
+                                        <i class="fa fa-language"></i> <?php echo Yii::t("common", "Languages") ; ?>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                      <li><a href="javascript:;" onclick="setLanguage('en')"><?php echo Yii::t("common","English") ?></a></li>
+                                      <li><a href="javascript:;" onclick="setLanguage('fr')"><?php echo Yii::t("common","French") ?></a></li>
+                                    </ul>
+                                </li>-->
                                 <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
                                     <li class="text-admin">
                                         <a href="#admin" class="lbh bg-white">
@@ -170,27 +180,27 @@
                                 <li role="separator" class="divider">
                                  <li class="text-left visible-xs">
                                     <a href="#search" class="lbh bg-white">
-                                        <i class="fa fa-search"></i> Rechercher
+                                        <i class="fa fa-search"></i> <?php echo Yii::t("common", "Search") ?>
                                     </a>
                                 </li>
                                 <li class="text-left visible-xs">
                                     <a href="#annonces" class="lbh bg-white">
-                                        <i class="fa fa-bullhorn"></i> Annonces
+                                        <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Ads") ?>
                                     </a>
                                 </li>
                                 <li class="text-left visible-xs">
                                     <a href="#agenda" class="lbh bg-white">
-                                        <i class="fa fa-calendar"></i> Agenda
+                                        <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Agenda") ?>
                                     </a>
                                 </li>
                                 <li class="text-left visible-xs">
                                     <a href="#live" class="lbh bg-white">
-                                        <i class="fa fa-calendar"></i> Live
+                                        <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Live") ?>
                                     </a>
                                 </li>
                                 <li class="text-left visible-xs">
                                     <a href="#default.view.page.links" class="lbhp bg-right">
-                                        <i class="fa fa-life-ring"></i> Aide
+                                        <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
                                     </a>
                                 </li>
                                 <li role="separator" class="divider visible-xs"></li>
@@ -253,27 +263,27 @@
                     <ul class="dropdown-menu arrow_box">
                          <li class="text-left visible-xs">
                             <a href="#search" class="lbh bg-white text-red">
-                                <i class="fa fa-search"></i> Rechercher
+                                <i class="fa fa-search"></i> <?php echo Yii::t("common", "Search") ?>
                             </a>
                         </li>
                         <li class="text-left visible-xs">
                             <a href="#annonces" class="lbh bg-white text-red">
-                                <i class="fa fa-bullhorn"></i> Annonces
+                                <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Ads") ?>
                             </a>
                         </li>
                         <li class="text-left visible-xs">
                             <a href="#agenda" class="lbh bg-white text-red">
-                                <i class="fa fa-calendar"></i> Agenda
+                                <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Agenda") ?>
                             </a>
                         </li>
                         <li class="text-left visible-xs">
                             <a href="#live" class="lbh bg-white text-red">
-                                <i class="fa fa-calendar"></i> Live
+                                <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Live") ?>
                             </a>
                         </li>
                         <li class="text-left visible-xs">
                             <a href="#default.view.page.links" class="lbhp text-red bg-right">
-                                <i class="fa fa-life-ring"></i> Aide
+                                <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
                             </a>
                         </li>
                     </ul>
