@@ -13,6 +13,7 @@
 		"Invitation to participate to" => "Invitation à participer à",
 		"Invitation to contribute to" => "Invitation à contribuer à",
 		"Invitation to join" => "Invitation à rejoindre",
+		"Invitation to administrate" => "Invitation à administrer",
 		"You have been invited on" => "Vous avez &eacute;t&eacute; invit&eacute;(e) sur",
 		"Answer to the invitation" => "Répondre à l'invitation",
 		"Please connect you and go to the detail of"=>"Veuillez vous connecter et vous rendre sur la fiche d&eacute;tail de",
