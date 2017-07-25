@@ -259,6 +259,8 @@ return array(
 	"attendees" => "participants",
 	"Attendees" => "Participants",
 	"Guests" => "Invités",
+	"guests" => "invités",
+	"guest" => "Invité",
 	"follower" => "abonné",
 	"followers" => "abonnés",
 	"Followers" => "Abonnés",
