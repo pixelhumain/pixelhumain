@@ -1,6 +1,6 @@
   <?php
   $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header');
-  $url = Yii::app()->getRequest()->getBaseUrl(true)."/#".Element::getControlerByCollection($parentType).".detail.id.".(string)$parent["_id"];
+  $url = Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".$parentType.".id.".(string)$parent["_id"];
   $verbAction=$verb;
   if($verb=="contribute")
     $verbAction="contribute to";

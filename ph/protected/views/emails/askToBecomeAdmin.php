@@ -32,8 +32,14 @@
 		$subtitle .= yii::t("email","administrate");
 		$typeOfDemand = "admin";
 	}
+  if($type==Project::COLLECTION)
+    $dir="contributors";
+  else if($type==Organization::COLLECTION)
+    $dir="members";
+  else if($type==Event::COLLECTION)
+    $dir="attendees";
 	$subtitle .= " ".yii::t("email","the ".$type);
-	$url=Yii::app()->getRequest()->getBaseUrl(true)."/#".$type.".directory.id.".(String) $parent["_id"]."?tpl=directory2";
+	$url=Yii::app()->getRequest()->getBaseUrl(true)."/#page.type".$type.".id.".(String) $parent["_id"].".view.directory.dir.".$dir;
 ?>
 <table class="row" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"> <!-- Horizontal Digest Content -->
       <th class="small-12 large-12 columns first" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 8px;">

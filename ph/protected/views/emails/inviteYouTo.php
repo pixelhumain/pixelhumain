@@ -1,6 +1,6 @@
   <?php
   $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header');
-  $url = Yii::app()->getRequest()->getBaseUrl(true)."/#".Element::getControlerByCollection($parentType).".detail.id.".(string)$parent["_id"];
+  $url = Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".$parentType.".id.".(string)$parent["_id"];
   $verbAction=$verb;
   if($verb=="contribute")
     $verbAction="contribute to";
@@ -18,7 +18,7 @@
               <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/images/bdb.png"?>" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;" alt="Intelligence collective"></a>
               <b>
               <h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;"></h5></b><br>
-              <?php echo Yii::t("mail","You have been invited on") ?> <?php echo Yii::t("common", "the ".Element::getControlerByCollection($parentType)) ?> <?php echo Yii::t("common", "by") ?> <b><a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/#person.detail.id.<?php echo $invitorId ?>" target="_blank"><?php echo $invitorName ?></a>.</b><br>
+              <?php echo Yii::t("mail","You have been invited on") ?> <?php echo Yii::t("common", "the ".Element::getControlerByCollection($parentType)) ?> <?php echo Yii::t("common", "by") ?> <b><a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo $invitorId ?>" target="_blank"><?php echo $invitorName ?></a>.</b><br>
               <br><br>
               <?php echo Yii::t("mail","Please connect you and go to the detail of")." ".Yii::t("common","this ".Element::getControlerByCollection($parentType))." ".Yii::t("mail", "following link under")." ".Yii::t("mail","to answer to the invitation").". ".Yii::t("mail","If you validate, you will be added as")." ".Yii::t("common", $typeOfDemand)." ".Yii::t("mail", "to the comminity else the link between you and")." ".Yii::t("common","the ".Element::getControlerByCollection($parentType))." ".Yii::t("mail", "will be destroyed")."." ?>
               <br>
