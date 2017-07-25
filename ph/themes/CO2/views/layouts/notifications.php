@@ -83,7 +83,6 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->
 
 	.notifications .pageslide-list a .label{
 		opacity: 0.7;
-		position: absolute;
 		font-size: 20px !important;
 		border-radius: 30px !important;
 		height: 40px;
@@ -97,10 +96,10 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->
 	}
 
 	.notifications .message,.notifications .time {
-	    padding-left: 40px;
-	    display:block;
-	    position: relative;
-	    top: -20px;
+		width:100%;
+	}
+	.notifications .content-icon{
+		margin-right: 10px;
 	}
 	.notifications .time {
 	   color: #4d654d;
@@ -160,51 +159,12 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->
 			</a>	
 			
 			
-			<ul class="pageslide-list notifList">
+			<ul class="pageslide-list notifList col-md-12 col-sm-12 col-xs-12">
 				<?php
 					$maxTimestamp = 0;
-					/*if(isset($this->notifications))
-					{
-						//for($i=0; $i<10; $i++)
-						foreach( $this->notifications as $item )
-				        {
-				        	if(isset($item["notify"]))
-				        	{
-				        		if(@$item["updated"])
-				        			$timestamp=$item["updated"];
-				        		else if (@$item["timestamp"])
-				        			$timestamp=$item["timestamp"];
-				        		else
-				        			$timestamp=$item["created"];
-				        		$url = str_replace("/", ".", $item["notify"]["url"]);
-				        		$href = $url;
-					            echo "<li class='notifLi notif_".(string)$item["_id"]."'>";
-					            echo "<a class='lbh notif' data-id='".(string)$item["_id"]."' href='".$href."'><span class='label label-primary'>";
-					            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message text-dark">';
-					            echo $item["notify"]["displayName"];
-					            
-					            echo ", <span class='time pull-left'>".round(abs(time() - $timestamp->sec) / 60)."min</span></span></a>";
-					            echo "</li>";
-					            if($timestamp->sec > $maxTimestamp)
-					            	$maxTimestamp = $timestamp->sec;
-					        }
-				        } 
-				    } */
 				?>
 			</ul>
-			<!-- <div class="footer-notif">
-			 <ul class="pageslide-list header col-xs-6 col-sm-6 col-md-6 padding-10 no-margin" style="height:50px;">
-				<li class="center">
-					<a href="javascript:;" onclick='refreshNotifications()' class="btn-notification-action"><i class="fa fa-refresh"></i></a>
-				</li>
-			</ul> 
-			<ul  class="pageslide-list footer col-xs-6 col-sm-6 col-md-6 padding-10 no-margin" style="height:50px;"> 
-				<li class='markAllAsRead center'>
-					<a href="javascript:;" onclick='markAllAsRead()' class="btn-notification-action" style="font-size:11px;"><?php echo Yii::t("common","All as Read") ?> <i class="fa fa-check-square-o"></i></a>	
-				</li>
-			</ul>
-			</div> -->
-
+		
 			<?php /*
 			<div class="view-all">
 				<a href="javascript:void(0)">
