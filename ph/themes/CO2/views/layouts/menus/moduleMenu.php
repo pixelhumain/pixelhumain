@@ -17,5 +17,5 @@
 </a>
 
 <a href="default/view/page/kickerFunding/dir/docs|panels" class="lbhp text-red link-submenu-header margin-right-25" >
-    <i class="fa fa-puzzle-piece"></i> <?php echo Yii::t("common", "Contribute") ?>
+    <i class="fa fa-heart"></i> <?php echo Yii::t("common", "Contribute") ?>
 </a>
