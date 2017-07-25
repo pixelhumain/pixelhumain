@@ -161,6 +161,7 @@ return array(
 	"Collection {what} deleted with success"=> "Collection {what} suprimée avec succès",
 	"Collection {what} updated with success"=> "Collection {what} modifiée avec succès",
 	"Validation is well registered"=> "La validation a été enregistrée avec succès",
+	"Please choose an image with a minimun of size: 600x300 (widthxheight)"=>"Veuillez choisir une image avec un taille minimum de : 600x300 (largeurxhauteur)",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
@@ -915,6 +916,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 
 	"by" => "par",
 	"on" => "sur",
+	"in"=>"dans",
 
 	"About" => "A propos",
 
