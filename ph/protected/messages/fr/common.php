@@ -160,6 +160,7 @@ return array(
 	"Collection {what} created with success"=> "Collection {what} créée avec succès",
 	"Collection {what} deleted with success"=> "Collection {what} suprimée avec succès",
 	"Collection {what} updated with success"=> "Collection {what} modifiée avec succès",
+	"Validation is well registered"=> "La validation a été enregistrée avec succès",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
