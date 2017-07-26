@@ -722,6 +722,7 @@ function removeEmptyAttr (jsonObj, sourceObj) {
 }
 
 function buildSelectOptions(list,value) { 
+  mylog.log("test ", value, list);
   var html = "";
   if(list){
     $.each(list, function(optKey, optVal) {
@@ -733,7 +734,8 @@ function buildSelectOptions(list,value) {
   return html;
 }
 
-function buildSelectGroupOptions(list,value) { 
+function buildSelectGroupOptions(list,value) {
+  mylog.log("test2 ", value, list);
   var html = "";
   mylog.log("list", list)
   if(list){
