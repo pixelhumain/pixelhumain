@@ -60,7 +60,7 @@
         MAP CONTAINER
         ******************************************* -->
         <div id="mainMap">
-            <?php $this->renderPartial($layoutPath.'mainMap'); ?>
+            <?php $this->renderPartial($layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"]); ?>
         </div>
 
         <?php //get all my link to put in floopDrawer
@@ -208,8 +208,8 @@
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
             if($CO2DomainName != "CO2"){
                 $cssAnsScriptFilesModule = array(
-                    '/assets/css/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
-                    '/assets/css/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
+                    '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
+                    '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
                     '/assets/js/themes/'.$CO2DomainName.'.js',
                 );
                 HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);

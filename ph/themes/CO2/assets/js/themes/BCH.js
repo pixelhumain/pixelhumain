@@ -1,9 +1,8 @@
 
-
 themeObj.blockUi.processingMsg = 
 	 			  '<div class="col-md-12 text-center font-blackoutM text-left">'+
-            '<img src="'+themeUrl+'/assets/img/KGOUGLE-logo.png" class="" height=40>'+
-	 			    '<i class="fa fa-spin fa-3x letter-red fa-circle-o-notch"></i>'+  
+            '<img src="'+themeUrl+'/assets/img/LOGOS/BCH/logo.png" class="" height=40>'+
+	 			    '<i class="fa fa-spin fa-2x letter-red fa-circle-o-notch"></i>'+  
           '</div>'+
 
 	 			  '<h5 style="font-weight:300" class=" text-dark">'+
@@ -22,8 +21,8 @@ themeObj.blockUi.processingMsg =
 themeObj.blockUi.errorMsg = 
    // '<img src="'+themeUrl+'/assets/img/logoK.png" class="nc_map pull-" height=80>'+
     '<div class="col-md-12 text-center font-blackoutM text-left">'+
-            '<img src="'+themeUrl+'/assets/img/KGOUGLE-logo.png" class="" height=40>'+
-            '<i class="fa fa-spin fa-3x letter-red fa-circle-o-notch"></i>'+  
+            '<img src="'+themeUrl+'/assets/img/LOGOS/BCH/logo.png" class="" height=40>'+
+            '<i class="fa fa-spin fa-2x letter-red fa-circle-o-notch"></i>'+  
           '</div>'+
 
     '<h5 style="font-weight:300" class=" text-dark padding-10">'+
