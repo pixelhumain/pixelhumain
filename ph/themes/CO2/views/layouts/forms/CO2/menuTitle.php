@@ -197,6 +197,7 @@ function gotToPrevNav()
 <div class="">
 	<div class="text-white text-extra-large text-bold center topLogoAnim " style="cursor: pointer" onclick="showPanel('box-communecter')">
 		<span class="titleRed text-red homestead" style="">CO</span><span  style="" class="titleWhite homestead">MMU</span><span  style="" class="titleWhite2 text-red homestead">NECTER</span>
+
 		<div class="subTitle" style="margin-top:-13px;">Se connecter à sa commune.</div>
 	</div>
 </div>

@@ -208,18 +208,18 @@ text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 ol.carousel-indicators {list-style:none}
 .carousel-controls{	position:relative;	top:50px}
-.carousel-control{color:#000000}
+.carousel-control{color:#000000;}
 footer{padding:40px;width:100%;background-color:#fff;border-top:1px solid #2D3E4B;
 -webkit-box-shadow: inset 0 4px 2px -2px #2D3E4B;
 -moz-box-shadow: inset 0 4px 2px -2px  #2D3E4B;
-box-shadow: inset 0 4px 2px -2px #2D3E4B}#91bf2d;
-#contact{font-size:18px;width:900px;margin:0px auto}
-#contact a{font-weight:bold}
+box-shadow: inset 0 4px 2px -2px #2D3E4B;}
+#contact{font-size:18px;width:900px;margin:0px auto;}
+#contact a{font-weight:bold;}
 
-header{height:0px}
+header{height:0px;}
 .navbar{height:50px;}
 .navbar-fixed-top { margin-bottom: 0px; }
-.navbar .title a{ font-family:"Homestead";color:#f5e414}
+.navbar .title a{ font-family:"Homestead";color:#f5e414;}
 .navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {padding: 0px;}
 /* Cube version of the menu*/
 .cube{
@@ -249,7 +249,7 @@ header{height:0px}
     border-top:4px solid #fff;
 }
 .cube .badge{
-	float:right:
+	float:right;
     display:block;
 	paddiug:0px;
 	margin:0px;

@@ -428,7 +428,7 @@ class timesheet{
 			width:<?php echo $this->oneAlpha; ?>%;
 		}
 
-	<?php if( !empty($this->line) ): ?>
+	<?php if( !empty($this->line) ): ?> 
 		@media screen and (min-width: 500px) {
 			#<?php echo $this->id; ?> .line{
 				display:block;
