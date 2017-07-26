@@ -109,7 +109,7 @@
                     </div>
                 </a>
                 
-                <a href="#power" class="btn-main-menu col-xs-3" > 
+                <a href="#live" class="btn-main-menu col-xs-3" > 
                     <div class="modal-body text-center">
                         <h4 class="text-red no-margin"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
                             <span class="homestead"> <?php echo Yii::t("home","LIVE") ?></span>
