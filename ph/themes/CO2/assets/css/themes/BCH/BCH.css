@@ -65,6 +65,17 @@ header, .header {
 .btn-select-filliaire{
 }
 
+.navbar-collapse button, .navbar-nav button{
+	border: none !important;
+}
+
+
+.navbar-custom .btn-show-mainmenu {
+    float: unset !important;
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+}
+
 @media screen and (max-width: 1024px) {
 	
 }

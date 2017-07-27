@@ -30,57 +30,37 @@
                     <button class="letter-orange font-montserrat" id="btn-open-search-bar">
                         <span><i class="fa fa-2x fa-search"></i></span>
                     </button>
-                    <button class="letter-orange font-montserrat btn-menu-connect" 
+                    <?php if (!@Yii::app()->session["userId"]){ ?>
+                        <button class="letter-orange font-montserrat btn-menu-connect" 
                             data-toggle="modal" data-target="#modalLogin">
-                        <span><i class="fa fa-2x fa-user-circle"></i></span>
-                    </button>
+                            <span><i class="fa fa-2x fa-user-circle"></i></span>
+                        </button>
+                    <?php }else{ 
+                        $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl); ?>
+                        <button class="letter-orange font-montserrat btn-show-mainmenu"> 
+                                <img class="img-circle" id="menu-thumb-profil" style="margin-top:-10px;" 
+                                     width="25" height="25" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
+                        </button>
+                        <div class="dropdown pull-right" id="dropdown-user">
+                            <div class="dropdown-main-menu">
+                                <ul class="dropdown-menu arrow_box">
+                                    <li class="text-left">
+                                        <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
+                                            class="bg-white letter-red logout">
+                                            <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log Out") ; ?>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    <?php } ?>
                     <button class="letter-orange font-montserrat">
                         <span><i class="fa fa-2x fa-flag"></i> FR</span>
                     </button>
                 </li>
             </ul>
         </div>
-        <?php if (!@Yii::app()->session["userId"]){ ?>
-            <button class="btn-show-mainmenu btn btn-link visible-xs pull-right" 
-                    data-toggle="tooltip" data-placement="left" title="Menu" style="padding: 4px 10px;">
-                <i class="fa fa-bars tooltips" ></i>
-            </button>
-            <div class="dropdown pull-right" id="dropdown-user">
-                <div class="dropdown-main-menu" style="right:50px !important;">
-                    <ul class="dropdown-menu arrow_box">
-                         <li class="text-left visible-xs">
-                            <a href="#search" class="lbh bg-white text-red">
-                                <i class="fa fa-search"></i> <?php echo Yii::t("common", "Search") ?>
-                            </a>
-                        </li>
-                        <li class="text-left visible-xs">
-                            <a href="#annonces" class="lbh bg-white text-red">
-                                <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Ads") ?>
-                            </a>
-                        </li>
-                        <li class="text-left visible-xs">
-                            <a href="#agenda" class="lbh bg-white text-red">
-                                <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Agenda") ?>
-                            </a>
-                        </li>
-                        <li class="text-left visible-xs">
-                            <a href="#live" class="lbh bg-white text-red">
-                                <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Live") ?>
-                            </a>
-                        </li>
-                        <li class="text-left visible-xs">
-                            <a href="#default.view.page.links" class="lbhp text-red bg-right">
-                                <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        <?php } ?>
-        <!-- /.navbar-collapse -->
-        <!-- <a type="button" class="lbh btn btn-link pull-right btn-menu-to-app hidden-top hidden-xs letter-green" data-target="#selectCreate" data-toggle="modal">
-            <i class="fa fa-plus-circle"></i>           
-        </a> -->
+        
             
         <div class="pull-right hidden-xs col-sm-5 col-md-5 col-lg-5 hidden" id="input-search">
             <button class="btn btn-default hidden-xs pull-right menu-btn-start-search btn-directory-type" 
