@@ -60,7 +60,8 @@
 
         <?php } ?>
 
-        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="<?php Yii::t("common", "Show the map") ?>">
+        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" 
+                title="<?php Yii::t("common", "Show the map") ?>">
             <i class="fa fa-map"></i>
         </button>
 

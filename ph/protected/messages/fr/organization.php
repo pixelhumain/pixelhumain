@@ -49,5 +49,19 @@
 		"Organization disabled !" => "L'organisation n'est plus active !",
 		"The organization has been updated" => "L'organisation a été mise à jour",
 
+
+		//TYPES
+		"NGO" => "Association",
+		"LocalBusiness" => "Entreprise",
+		"Local Business" => "Entreprise",
+		"Group" => "Groupe",
+		"Government Organization" => "Service Public",
+		"the NGO" => "l'association",
+		"the localBusiness" => "l'entreprise",
+		"Local Business" => "Entreprise",
+		"the group" => "le collectif",
+		"the Group" => "le groupe",
+		"the government organization" => "l'organisation gouvernementale",
+
 	);
 ?>

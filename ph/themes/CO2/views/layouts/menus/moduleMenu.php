@@ -11,7 +11,12 @@
         }  
         
 ?>
-
+<?php if(Yii::app()->params["CO2DomainName"] != "kgougle" && Yii::app()->params["CO2DomainName"] != "BCH"){ ?>
 <a href="#default.view.page.links" class="lbhp text-red link-submenu-header margin-right-25" >
     <i class="fa fa-life-ring"></i> Aide
+</a>
+<?php } ?>
+
+<a href="default/view/page/kickerFunding/dir/docs|panels" class="lbhp text-red link-submenu-header margin-right-25" >
+    <i class="fa fa-heart"></i> Contribuer
 </a>
