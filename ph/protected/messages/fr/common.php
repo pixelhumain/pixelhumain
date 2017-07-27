@@ -160,6 +160,7 @@ return array(
 	"Collection {what} created with success"=> "Collection {what} créée avec succès",
 	"Collection {what} deleted with success"=> "Collection {what} suprimée avec succès",
 	"Collection {what} updated with success"=> "Collection {what} modifiée avec succès",
+	"Validation is well registered"=> "La validation a été enregistrée avec succès",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
@@ -325,7 +326,8 @@ return array(
 	"Are you sure to not participate to this event" => "Êtes-vous sûr de ne pas participer à cet événement",
 	"Are you sure to remove the link with this organization" => "Êtes-vous sûr d'annuler le lien avec cette organisation",
 	"Are you sure to remove the link with this project" => "Êtes-vous sûr d'annuler le lien avec ce projet",
-	"Are you sure to remove this follows"=> "Êtes-vous sûr de ne plus suivre cette personne",
+	"Are you sure to remove the link of member" => "Êtes-vous sûr d'annuler ce lien de membre",
+	"Are you sure to remove this follow"=> "Êtes-vous sûr de vous désabonner",
 	"Are you sure to join the organization" => "Êtes-vous sûr de rejoindre l'organisation",
 	"Are you sure to join the project" => "Êtes-vous sûr de rejoindre le projet",
 	"Are you sure to participate to the event" => "Êtes-vous sûr de participer à cet événement",
