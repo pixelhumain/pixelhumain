@@ -15,8 +15,8 @@
 <a href="#default.view.page.links" class="lbhp text-red link-submenu-header margin-right-25" >
     <i class="fa fa-life-ring"></i> <?php echo Yii::t("common","Help") ?>
 </a>
-<?php } ?>
 
 <a href="default/view/page/kickerFunding/dir/docs|panels" class="lbhp text-red link-submenu-header margin-right-25" >
     <i class="fa fa-heart"></i> <?php echo Yii::t("common", "Contribute") ?>
 </a>
+<?php } ?>
