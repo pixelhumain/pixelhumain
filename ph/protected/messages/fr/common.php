@@ -114,6 +114,7 @@ return array(
 	"Something went wrong : please contact your admin" => "Quelque chose a mal tourné: s'il vous plaît contacter votre administrateur",
 	"You must be logged in to add a news entry !" => "Vous devez être connecté(e) pour publier une news !",
 	"You are not the creator. Please contact the administrator" => "Vous nêtes pas le créateur de cette fiche. Veuillez contacter un administrateur",
+	"You must be connected to access to create forms"=>"Vous devez être connecté pour afficher les formulaires de création",
 	//Success
 	"Your form validation is successful" => "la validation du formulaire est réalisée avec succès",
 	"Link divorced successfully" => "Le lien a été supprimé avec succès",
@@ -553,6 +554,7 @@ return array(
 	"Follow this organization" => "Suivre cette organisation",
 	"Follow this project" => "Suivre ce projet",
 	"Unfollow" => "Ne plus suivre",
+	"Cancel this link"=>"Annuler ce lien",
 	
 	"Add Something to your network" => "Ajouter quelque chose à votre réseau" ,
 	"Add"							=> "Ajouter",
@@ -581,6 +583,8 @@ return array(
 	"Accept this person" => "Accepter ce citoyen",
 	"Accept this citoyen" => "Accepter ce citoyen",
 	"Add as admin" => "Ajouter en tant qu&#146;admin",
+	"Delete this contributor"=>"Supprimer ce contributeur",
+	"Delete this member"=>"Supprimer ce membre",
 	"Manage my parameters" => "Régler mes paramètres",
 	"My parameters" => "Mes paramètres",
 	"Manage the parameters of" => "Régler les paramètres de",
