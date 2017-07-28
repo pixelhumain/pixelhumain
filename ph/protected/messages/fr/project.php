@@ -30,6 +30,8 @@
 	"started" => "En démarrage", 
 	"development" => "Développement",
 	"testing" => "En test",
+    "concept" => "Concepte",
+    "mature" => "Mature",
 	"Enter the project's name" => "Entrer le nom du projet",
 	"Write the project's description" => "Rédigez la description du projet",
 	"Write the project's short description" => "Décrivez ce projet en quelques mots (moins de 141 caractères)",

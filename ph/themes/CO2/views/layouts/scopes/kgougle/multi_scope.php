@@ -206,6 +206,7 @@
 </style>
 
 <script type="text/javascript">
+    var actionOnSetGlobalScope="filter";
     var myMultiTags = {};
     var myMultiScopes = <?php echo isset($me) && isset($me["multiscopes"]) ? 
                                 json_encode($me["multiscopes"]) :  
@@ -293,7 +294,7 @@
         
         loadMultiScopes();
 
-        rebuildSearchScopeInput();
+        rebuildSearchScopeInput(); 
         showTagsScopesMin(".scope-min-header");
         
         mylog.log("communexionActivated cookie", $.cookie('communexionActivated'), typeof $.cookie('communexionActivated'));

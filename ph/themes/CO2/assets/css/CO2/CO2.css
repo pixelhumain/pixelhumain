@@ -1263,6 +1263,28 @@ margin-right: 5px;
     right:inherit !important;
     left: auto;
 }
+
+.btn-select-filliaire{
+	border-color: transparent;
+	text-transform: uppercase;
+	background-color: #F2F2F2;
+	margin-bottom: 5px;
+	border-radius: 10px;
+}
+.btn-select-filliaire:hover {
+    background-color: #DADADA;
+    border: 1px solid transparent;
+}
+
+#sub-menu-filliaire{
+	/*background-image: url("../../img/background-onepage/pattern/white_brick_wall.png");*/
+	margin-bottom: 25px;
+	border-bottom: 1px solid #ededed;
+	padding: 30px;
+	padding-top: 0px;
+
+}
+
 /************************************************************************************/
 /************************************************************************************/
 /************************************************************************************/

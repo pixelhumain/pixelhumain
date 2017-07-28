@@ -38,7 +38,7 @@
 </style>
 <h1 class="text-red homestead">
 	<span id="main-scope-name">
-	<a href="#" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
+	<a href="#">
 	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo-head-search.png"
 	 	 height="120" class="inline margin-bottom-15">
 	</a>
@@ -49,8 +49,6 @@
 
 <div class="text-dark moduleTitle" style="font-size:20px; margin-bottom:10px;">
 	<i class="fa fa-<?php echo @$icon; ?>"></i>
-	<?php echo Yii::t("common",@$mainTitle); ?> 
-	
-	
+	<?php echo @$mainTitle; ?> 
 </div>
 

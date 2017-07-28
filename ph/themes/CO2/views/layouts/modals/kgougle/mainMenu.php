@@ -45,8 +45,11 @@
             </div>
 
             <div class="row links-main-menu">
-                <a href="#app.web" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                    <div class="modal-body text-left">
+
+                <div class="hidden-sm hidden-xs col-lg-1 col-md-1"></div>
+
+                <a href="#web" class="lbh btn-main-menu  col-lg-2 col-md-2 col-sm-6 col-xs-12" date-target="#modalMainMenu" data-dismiss="modal">
+                    <div class="modal-body text-center">
                         
                             <h2 class="text-red"><i class="fa fa-search padding-bottom-10"></i><br>
                                 <span class="font-blackoutT">WEB</span>
@@ -55,17 +58,16 @@
                             <div class="col-md-12 no-padding text-center hidden-xs">
                                 <h5>Un moteur de recherche simplifié
                                     <small class="hidden-xs"><br>
-                                        pour un accès rapide à tous les sites web<br>dont vous avez besoin<br>
-                                        70%
+                                        pour un accès rapide à tous les sites internet de Nouvelle-Calédonie
                                     </small>
                                 </h5>
                             </div>                 
                     </div>
                 </a>
-                <a href="#app.live" class="lbh btn-main-menu  col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                    <div class="modal-body text-left">
+                <a href="#live" class="lbh btn-main-menu  col-lg-2 col-md-2 col-sm-6 col-xs-12" date-target="#modalMainMenu" data-dismiss="modal">
+                    <div class="modal-body text-center">
                         <h2 class="text-red"><i class="fa fa-newspaper-o padding-bottom-10"></i><br>
-                            <span class="font-blackoutT"> LIVE</span>
+                            <span class="font-blackoutT"> ACTUS</span>
                         </h2>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
@@ -79,9 +81,9 @@
                     </div>
                 </a>
             
-                <a href="#app.social.type.persons" class="lbh btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                    <div class="modal-body text-left">
-                        <h2 class="text-orange"><i class="fa fa-user-circle padding-bottom-10"></i><br>
+                <a href="#social.type.persons" class="lbh btn-main-menu col-lg-2 col-md-2 col-sm-6 col-xs-12" date-target="#modalMainMenu" data-dismiss="modal">
+                    <div class="modal-body text-center">
+                        <h2 class="text-red"><i class="fa fa-user-circle padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> SOCIAL</span>
                         </h2>
                         
@@ -96,9 +98,9 @@
                     </div>
                 </a>
 
-                <a href="#app.freedom" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                    <div class="modal-body text-left">
-                        <h2 class="text-yellow"><i class="fa fa-comments padding-bottom-10"></i><br>
+                <a href="#freedom" class=" btn-main-menu col-lg-2 col-md-2 col-sm-6 col-xs-12" date-target="#modalMainMenu" data-dismiss="modal">
+                    <div class="modal-body text-center">
+                        <h2 class="text-red"><i class="fa fa-comments padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> FREEDOM</span>
                         </h2>
                         
@@ -113,9 +115,9 @@
                     </div>
                 </a>
                 
-                <a href="#app.agenda" class=" btn-main-menu col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                    <div class="modal-body text-left">
-                        <h2 class="text-yellow"><i class="fa fa-calendar padding-bottom-10"></i><br>
+                <a href="#agenda" class=" btn-main-menu col-lg-2 col-md-2 col-sm-6 col-xs-12" date-target="#modalMainMenu" data-dismiss="modal">
+                    <div class="modal-body text-center">
+                        <h2 class="text-red"><i class="fa fa-calendar padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> AGENDA</span>
                         </h2>
                         
@@ -130,8 +132,8 @@
                     </div>
                 </a>
                 
-                <a href="#app.freedom" class="col-lg-6 col-sm-6 col-xs-6" date-target="#modalMainMenu" data-dismiss="modal">
-                    <div class="modal-body text-left">
+                <!-- <a href="#power" class="col-lg-2 col-md-2 col-sm-6 col-xs-12" date-target="#modalMainMenu" data-dismiss="modal">
+                    <div class="modal-body text-center">
                         <h2 class="text-transparent-yellow"><i class="fa fa-hand-rock-o padding-bottom-10"></i><br>
                             <span class="font-blackoutT"> POWER</span>
                         </h2>
@@ -145,7 +147,7 @@
                             </h5>
                         </div>
                     </div>
-                </a>
+                </a> -->
                 
                 <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                     <hr>
