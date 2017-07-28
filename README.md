@@ -1,8 +1,6 @@
 Pixel Humain
 ===========
 
-If you are on mac OSX, read this readme first :
-[Specific readme_macOS.md for Mac OSX](https://github.com/pixelhumain/pixelhumain/blob/master/README_macOs.md/)
 ## Requierement
 Php version : 5.4.X (minimum)
 MongoDB : 2.6.X (tested version - minimum)
@@ -25,11 +23,19 @@ Edit the httpd.conf file and activate the line
 LoadModule rewrite_module modules/mod_rewrite.so
 ```
 
-* On Windows OS :
- * Get the dll from here https://s3.amazonaws.com/drivers.mongodb.org/php/index.html
- * Download the 1.4.5 mongo driver version (php_mongo-1.4.5.zip)
- * Extract the zip file.
- * The right version driver depends on the version of php you're running with.
+# On Unix like OS : Linux Ubuntu, Debian  :
+[special for Debian Automated install script ](https://github.com/tech62/pixelhumain/blob/e574fa0a533d3d994960b2abc5ebfb38a7292ab4/installdebian.sh)
+
+## Otherwise 
+ * Same rules as windows but choose a .so driver instead of a dll one.
+ * [Here's a good doc](http://tech.enekochan.com/2013/10/22/install-mongodb-in-ubuntu-12-04/)
+ * [manuel d'installation officiel PHP](http://www.php.net/manual/fr/mongo.installation.php)
+
+# On Windows OS :
+* Get the dll from here https://s3.amazonaws.com/drivers.mongodb.org/php/index.html
+* Download the 1.4.5 mongo driver version (php_mongo-1.4.5.zip)
+* Extract the zip file.
+* The right version driver depends on the version of php you're running with.
 Saying 5.X is your php version, choose the file :
 ```
 if (X<5)
@@ -47,11 +53,10 @@ or
 for php 5.3
 extension=php_mongo-1.4.1-5.3-vc9.dll
 ```
-* On Unix like OS :
- * Same rules as windows but choose a .so driver instead of a dll one.
- * [Here's a good doc](http://tech.enekochan.com/2013/10/22/install-mongodb-in-ubuntu-12-04/)
- * [manuel d'installation officiel PHP](http://www.php.net/manual/fr/mongo.installation.php)
 
+# On Mac
+If you are on mac OSX, read this readme first :
+[Specific readme_macOS.md for Mac OSX](https://github.com/pixelhumain/pixelhumain/blob/master/README_macOs.md/)
 
 ####install a mongo Database instance and admin tool
 - [Mongo installation](http://docs.mongodb.org/manual/installation/)

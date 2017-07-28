@@ -46,8 +46,10 @@
     box-shadow: 0px -1px 4px -3px rgb(101, 101, 101);
     filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=4);*/
     margin-top: 10px;
-    right:0px;
-    left:0px;
+    right: 0px;
+    left: 0px;
+    padding-top: 25px;
+
 
   }
   .search-loader{
@@ -325,6 +327,12 @@
     border-radius: 0px;
   }
 
+  .searchEntity button.item-globalscope-checker{
+    width:100%;
+    border-radius: 0px;
+    font-size: 16px;
+  }
+
   
 .searchEntityContainer.cities{
   min-height: 95px !important;
@@ -332,7 +340,11 @@
 }
 
 .searchEntityContainer.cities .searchEntity{
-  border-radius:15px;
+  border-radius:0px;
+  moz-box-shadow: 0px 0px 5px -1px #242424;
+  -webkit-box-shadow: 0px 0px 5px -1px #242424;
+  -o-box-shadow: 0px 0px 5px -1px #242424;
+  box-shadow: 0px 0px 5px -1px #242424;
 }
 
 .searchEntityContainer.cities .entityName{

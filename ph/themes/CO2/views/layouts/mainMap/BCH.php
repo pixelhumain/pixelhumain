@@ -52,11 +52,12 @@
         "useBtnCloseMap"	 => false,
         "useResearchTools" 	 => true,
         "useChartsMarkers" 	 => false,
-        "useHelpCoordinates" => false,
+        "useHelpCoordinates" => true,
         
         "notClusteredTag" 	 => array(),
-        "firstView"		  	 => array(  "coordinates" => array(-21.156238366109417, 166.497802734375),//array(-1.4061088354351594, -26.015625),
-									 	"zoom"		  => 8),
+        "firstView"		  	 => array(  "coordinates" => array(-21.120373561794867, 55.776214599609375), 
+        //array(-21.156238366109417, 166.497802734375),//array(-1.4061088354351594, -26.015625),
+									 	"zoom"		  => 10),
     );
  
  	

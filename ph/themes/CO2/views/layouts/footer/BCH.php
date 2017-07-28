@@ -39,7 +39,7 @@
 <?php //} ?>
 
 <div class="scroll-top">
-    <a class="btn btn-primary" href="javascript:KScrollTo('.main-container');">
+    <a class="btn btn-primary bg-blue" href="javascript:KScrollTo('.main-container');">
         <i class="fa fa-<?php echo $iconBtnRightBottom; ?>"></i>
     </a>
 </div>
@@ -47,12 +47,12 @@
 
 <?php //if(@$subdomain == "web" || @$subdomain == "social"){ ?>
 <!-- Footer -->
-<footer class="text-center col-xs-12 pull-left no-padding">
-    <div class="footer-below">
+<footer class="col-xs-12 pull-left no-padding">
+    <div class="footer-below bg-orange-3">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-left col-footer">
-                    <h5><i class="fa fa-info-circle hidden-xs"></i> Informations générales</h5>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-left col-footer">
+                    <h5><i class="fa fa-info-circle hidden-xs"></i> Informations pratiques</h5>
                     <a href="default/view/page/openatlas/dir/docs|panels" class="lbhp text-white"><i class="fa fa-angle-right"></i> A propos</a><br>
                     <a href="default/view/page/mention/dir/docs|panels" class="text-white lbhp">
                         <i class="fa fa-angle-right"></i> Mentions légales
@@ -68,30 +68,43 @@
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/opensource.gif" height=40 
                             style="margin-top: -10px;border-radius: 3px;">
                     </a>
-                   <a href="https://github.com/pixelhumain" target="_blank" 
+                    <a href="https://github.com/pixelhumain" target="_blank" 
                         class=" hidden-xs">
                         <i class="fa fa-github fa-2x bg-white img-circle padding-5 margin-5"></i>
                     </a>
-                    
-                    
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-footer-ph">
-                    <span class="font-blackoutT text-yellow-PH" style="font-size:20px;">by</span> 
-                    <a href="javascript:;" target="_blank">
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGO_PIXEL_HUMAIN.png" height=70>
+
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-footer-ph">
+                    <h5><i class="fa fa-info-circle hidden-xs"></i> A propos</h5>
+                    <a href="default/view/page/openatlas/dir/docs|panels" class="lbhp text-white">
+                        <i class="fa fa-angle-right"></i> ...
+                    </a><br>
+                    <a href="default/view/page/mention/dir/docs|panels" class="text-white lbhp">
+                        <i class="fa fa-angle-right"></i> ...
+                    </a><br>
+                    <a href="<?php echo Yii::app()->request->baseUrl; ?>/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="text-white">
+                        <i class="fa fa-angle-right"></i> ...
                     </a><br><br>
-
-                    <a href="javascript:;" target="_blank" class=" hidden-xs">
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height=30>
-                    </a>
-
-
-                    <!-- <h5 class="homestead letter-red">COMMUNECTER</h5> -->
-                    
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 text-right col-footer hidden-xs">
-                    <h5><i class="fa fa-envelope"></i> Contacter <br>+ 262 262 34 36 86<br>
-                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/contactCO_footer.png" height="17"/></h5>
+
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-footer-ph">
+                    <h5><i class="fa fa-info-circle hidden-xs"></i> Mentions légales</h5>
+                    <a href="default/view/page/openatlas/dir/docs|panels" class="lbhp text-white">
+                        <i class="fa fa-angle-right"></i> ...
+                    </a><br>
+                    <a href="default/view/page/mention/dir/docs|panels" class="text-white lbhp">
+                        <i class="fa fa-angle-right"></i> ...
+                    </a><br>
+                    <a href="<?php echo Yii::app()->request->baseUrl; ?>/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="text-white">
+                        <i class="fa fa-angle-right"></i> ...
+                    </a><br><br>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-right col-footer hidden-xs">
+                    <h5>
+                        <i class="fa fa-envelope"></i> Social<br>
+                        <span class="letter-white">contact@bch.com</span>
+                    </h5>
                     <ul class="list-inline">
                         <li>
                             <a href="https://github.com/pixelhumain/co2" target="_blank" class="btn-social btn-outline text-dark">
@@ -123,6 +136,13 @@
                         </li> -->
                     </ul>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-below bg-orange-4">
+        <div class="container">
+            <div class="row">
+            COPYRIGHT
             </div>
         </div>
     </div>
