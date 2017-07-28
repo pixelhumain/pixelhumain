@@ -163,6 +163,10 @@ return array(
 	"Collection {what} updated with success"=> "Collection {what} modifiée avec succès",
 	"Validation is well registered"=> "La validation a été enregistrée avec succès",
 	"Please choose an image with a minimun of size: 600x300 (widthxheight)"=>"Veuillez choisir une image avec un taille minimum de : 600x300 (largeurxhauteur)",
+	"Your data are well updated"=>"Vos données ont été mises à jour",
+	"Your data are well registred"=>"Vos données ont bien été enregistrées",
+	"Contacts are well updated"=>"Les contacts ont été mis à jour",
+	"URLs are well updated"=>"Les urls ont été mises à jour",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
@@ -744,6 +748,7 @@ return array(
 	"City Home page" => "Page accueil de cette ville",
 	"Back to organization" => "Revenir sur l'organisation",
 	"Back to project" => "Revenir sur le projet",
+	"Back to home" => "Retourner vers l'accueil",
 
 	"Invite people you know, you like, you met, you want to follow" => "Invitez quelqu'un que vous connaissez en lui envoyant un e-mail d'invitation",
 	"Connect organizations you know, you like, you met, you want to follow" => "Communectez votre association, entreprise, groupe, que vous connaissez, que vous aimez, que vous venez de découvrir ou que vous voulez suivre",

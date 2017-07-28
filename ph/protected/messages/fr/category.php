@@ -83,7 +83,7 @@
         "Purchase-Comptability-Management"=>"Achats-Comptabilité-Gestion",
         "Arts-Crafts"=>"Arts-Artisanat",
         "Bank-Insurance"=>"Banque-Assurance",
-        "Building-Public works"=>"Bâtiment-Travaux_publics",
+        "Building-Public_works"=>"Bâtiment-Travaux_publics",
         "Trade-Sales"=>"Commerce-Vente",
         "Communication-Multimedia"=>"Communication-Multimédia",
         "Consultant-Market research"=>"Conseil-Etudes",
