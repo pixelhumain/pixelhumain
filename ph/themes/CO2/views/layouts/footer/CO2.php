@@ -52,13 +52,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-left col-footer">
-                    <h5><i class="fa fa-info-circle hidden-xs"></i> Informations générales</h5>
-                    <a href="default/view/page/openatlas/dir/docs|panels" class="lbhp text-white"><i class="fa fa-angle-right"></i> A propos</a><br>
+                    <h5><i class="fa fa-info-circle hidden-xs"></i> <?php echo Yii::t("home", "General information"); ?></h5>
+                    <a href="default/view/page/openatlas/dir/docs|panels" class="lbhp text-white"><i class="fa fa-angle-right"></i> <?php echo Yii::t("Common","About") ?></a><br>
                     <a href="default/view/page/mention/dir/docs|panels" class="text-white lbhp">
-                        <i class="fa fa-angle-right"></i> Mentions légales
+                        <i class="fa fa-angle-right"></i> <?php echo Yii::t("home","Legal notice") ?>
                     </a><br>
                     <a href="<?php echo Yii::app()->request->baseUrl; ?>/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="text-white">
-                        <i class="fa fa-angle-right"></i> Conditions d'utilisations
+                        <i class="fa fa-angle-right"></i> <?php echo Yii::t("home","Terms and conditions of use") ?>
                     </a><br><br>
                     <!-- <a href="#info.p.communecter" target="_blank" class="margin-right-10 hidden-xs">
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/Logo_Licence_Ouverte_noir_avec_texte.gif" height=30>
@@ -90,7 +90,7 @@
                     
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 text-right col-footer hidden-xs">
-                    <h5><i class="fa fa-envelope"></i> Contacter <br>+ 262 262 34 36 86<br>
+                    <h5><i class="fa fa-envelope"></i> <?php echo Yii::t("home","CONTACT") ?> <br>+ 262 262 34 36 86<br>
                     <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/contactCO_footer.png" height="17"/></h5>
                     <ul class="list-inline">
                         <li>

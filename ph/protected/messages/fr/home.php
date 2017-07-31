@@ -41,6 +41,8 @@
 		"A common agenda"=>"Un agenda commun",
 		"to know in live all about local events"=>"pour connaître en temps réel toute l'activité locale",
 		"A common news stream"=>"Un fil d'actualités commun",
-		"To diffuse your messages for your city"=>"Pour diffuser vos messages autrement"
+		"To diffuse your messages for your city"=>"Pour diffuser vos messages autrement",
+		"Terms and conditions of use"=>"Conditions d'utilisations",
+		"General information"=>"Informations générales",
 	);
 ?>

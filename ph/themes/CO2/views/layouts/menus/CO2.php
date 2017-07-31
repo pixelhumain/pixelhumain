@@ -59,12 +59,36 @@
             </button>
 
         <?php } ?>
-
         <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" 
                 title="<?php Yii::t("common", "Show the map") ?>">
             <i class="fa fa-map"></i>
         </button>
-
+        <?php if( !@Yii::app()->session['userId'] ){ ?>
+            <div id="navbar" class="navbar-collapse pull-right navbar-right" style="    margin-top: 5px;   margin-bottom: 5px;">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle btn btn-default padding-5" data-toggle="dropdown" role="button" style="
+    height: 35px;
+    border-radius: 0% 50%;
+    width: 50px;
+">
+                <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/<?php echo Yii::app()->language ?>.png" width="22"/> <span class="caret"></span></a>
+                    <ul class="dropdown-menu arrow_box" role="menu" style="    position: absolute !important;
+    top: 45px;
+    right: -65px;
+    left: inherit;
+    background-color: white;
+    border: 1px solid transparent;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);">
+                        <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
+                        <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div> 
+        <?php } ?>
+        
         <!-- <button class="btn-show-mainmenu" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
         </button> -->
@@ -161,8 +185,8 @@
                                         <i class="fa fa-language"></i> <?php echo Yii::t("common", "Languages") ; ?>
                                     </a>
                                     <ul class="dropdown-menu">
-                                      <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/united_kingdom.png"/><?php echo Yii::t("common","English") ?></a></li>
-                                      <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/france.png"/><?php echo Yii::t("common","French") ?></a></li>
+                                      <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><?php echo Yii::t("common","English") ?></a></li>
+                                      <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><?php echo Yii::t("common","French") ?></a></li>
                                     </ul>
                                 </li>
                                 <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
@@ -236,23 +260,28 @@
                     
                     <li class="pull-right">
                         <?php if($subdomain != "welcome"){ ?>
-                            <button class="hidden-xs hidden-sm letter-green font-montserrat btn-menu-connect margin-left-10" 
+                            <button class="letter-green font-montserrat btn-menu-connect margin-left-10" 
                                     data-toggle="modal" data-target="#modalLogin">
-                                <span><i class="fa fa-sign-in"></i> <?php echo Yii::t("login", "LOG IN") ?></span>
-                            </button>
-                            <button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
-                                    data-toggle="modal" data-target="#modalLogin" style="font-size:20px;">
-                                <span><i class="fa fa-sign-in"></i></span>
+                                <span><i class="fa fa-sign-in"></i> <span class="hidden-xs hidden-sm"><?php echo Yii::t("login", "LOG IN") ?></span>
                             </button>
                         <?php } else { ?>
+                            <div class="hidden-xs hidden-sm append-md-login">
                             <?php   $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
                                     $this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.login'); 
                             ?>
+                            </div>
                         <?php } ?>
                     </li>
 
                 <?php } ?>
             </ul>
+            <?php if (!@Yii::app()->session["userId"] && $subdomain == "welcome"){ ?>
+                <button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
+                        data-toggle="modal" id="open-login-xs" style="font-size:20px;">
+                    <span><i class="fa fa-sign-in"></i></span>
+                </button>
+                <div class="visible-xs visible-sm append-small-login hidden"></div>
+            <?php } ?>
         </div>
         <?php if (!@Yii::app()->session["userId"]){ ?>
             <button class="btn-show-mainmenu btn btn-link visible-xs pull-right" 
@@ -287,6 +316,16 @@
                                 <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
                             </a>
                         </li>
+                        <!--<li role="separator" class="divider"></li>
+                        <li class="text-admin dropdown-submenu dropdown-menu-left">
+                            <a href="javascript:;" class="bg-white">
+                                <i class="fa fa-language"></i> <?php echo Yii::t("common", "Languages") ; ?>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><?php echo Yii::t("common","English") ?></a></li>
+                              <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><?php echo Yii::t("common","French") ?></a></li>
+                            </ul>
+                        </li>-->
                     </ul>
                 </div>
             </div>

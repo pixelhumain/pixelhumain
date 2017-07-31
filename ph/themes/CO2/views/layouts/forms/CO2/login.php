@@ -73,7 +73,7 @@
         padding: 3px 10px;
         height:27px;
     }
-    .loginBtn{
+    .loginBtn, .closeLoginBtn{
         height:27px;
         font-size:11px;
         margin-top:7px;
@@ -87,7 +87,8 @@
 
     @media screen and (max-width: 992px) {
         .box-login{
-            width:300px;
+            width:100%;
+            border-left:0px solid #CCC !important;
         }
     } 
 
@@ -97,19 +98,31 @@
             border-left:0px solid #CCC !important;
         }
     }
+    .append-small-login{
+        width: 100%;
+        position: absolute;
+        top: 65px;
+        right: 0px;
+        background: white;
+        -webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.8);
+        box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.8);
+        border-radius: 0px 0px 5px 5px !important;
+    }
+    
 
 </style>
 
-<form class="form-login box-login hidden-xs">
+<form class="form-login box-login">
     <div class="col-md-12 col-sm-12 col-xs-12 no-padding text-left pull-right" style="margin-top: -5px; margin-bottom: -5px;">
 
-         <div class="col-md-4 col-sm-4 text-left pull-right hidden-xs ">          
+         <div class="col-md-4 col-sm-4 text-left pull-right hidden-xs hidden-sm">          
             <button class="btn btn-success loginBtn bg-green-k" type="submit" style="margin-top: 18px;">
                 <i class="fa fa-sign-in"></i> <span class="hidden-xs"><?php echo Yii::t("login","Log in") ?></span>
-            </button><br><br>
+            </button>
         </div>
 
-        <div class="col-md-4 col-sm-4 col-xs-6 no-padding text-left pull-right">
+        <div class="col-md-4 col-sm-6 col-xs-6 no-padding text-left pull-right">
             <label><i class="fa fa-key"></i> <?php echo Yii::t("login","A password") ?></label> 
             <input class="form-control" name="password" id="password-login" type="password" placeholder="<?php echo Yii::t("login","password") ?>" tabindex="2">
              <a href="javascript:" class="btn btn-link no-margin btn-sm" data-toggle="modal" data-target="#modalForgot" 
@@ -118,7 +131,7 @@
             </a>
         </div>
 
-        <div class="col-md-4 col-sm-4 col-xs-6 text-left pull-right">
+        <div class="col-md-4 col-sm-6 col-xs-6 text-left pull-right">
             <label><i class="fa fa-envelope"></i> <?php echo Yii::t("login","An email") ?></label> 
             <input class="form-control" name="email" id="email-login" type="text" placeholder="<?php echo Yii::t("login","email") ?>" tabindex="1">
             <label for="remember" class="checkbox-inline" style="text-transform: none!important;">
@@ -127,14 +140,17 @@
             </label>
         </div>
 
-        <div class="visible-xs col-xs-12 text-left pull-right">          
-            <button class="btn btn-success loginBtn bg-green-k" type="submit" tabindex="10">
+        <div class="visible-xs visible-sm col-xs-12 text-left pull-right">          
+            <button class="btn btn-success loginBtn bg-green-k pull-left" type="submit" tabindex="10">
                 <i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Log in") ?>
-            </button><br><br>
+            </button>
+            <button class="btn btn-danger closeLoginBtn bg-red-k visible-xs visible-sm pull-left" tabindex="10">
+                <i class="fa fa-close"></i> <?php echo Yii::t("common","Close") ?>
+            </button>
         </div>     
         
 
-        <div class="form-actions col-md-12 col-sm-12" style="margin-top:5px;">
+        <div class="form-actions col-md-12 col-sm-12" style="margin-top:5px; float:left;">
             <div class="errorHandler alert alert-danger no-display loginResult">
                 <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","Please verify your entries.") ?>
             </div>
@@ -173,10 +189,6 @@
         data-toggle="modal" data-target="#modalLogin" style="font-size: 20px;">
     <span><i class="fa fa-sign-in"></i></span>
 </button> -->
-<button class="visible-xs letter-green font-montserrat btn-menu-connect margin-left-10" 
-        data-toggle="modal" id="open-login-xs" style="font-size: 20px;">
-    <span><i class="fa fa-sign-in"></i></span>
-</button>
                             
 
 
@@ -259,11 +271,26 @@ jQuery(document).ready(function() {
     });
 
     $("#open-login-xs").click(function(){
-        if($(".box-login").hasClass("hidden-xs")){
+        if($(".box-login").hasClass("padding-10")){
+            //$(".append-small-login").html("");
+            $(".append-md-login").append($(".form-login"));
+            $(".append-small-login").removeClass("padding-10");
+        }else{
+            $(".append-small-login").html($(".form-login"));
+            $(".append-small-login").addClass("padding-10");
+        }
+        /*$(".close-small").click(function(){
+            $(".append-md-login").append($(".form-login"));  
+        })*/
+        /*if($(".box-login").hasClass("hidden-xs")){
             $(".box-login").removeClass("hidden-xs").show();
         }else{
             $(".box-login").addClass("hidden-xs").hide();
-        }
+        }*/
+    });
+    $(".closeLoginBtn").click(function(){
+        $(".append-md-login").append($(".form-login"));
+        $(".append-small-login").removeClass("padding-10");
     });
 
 });
