@@ -144,7 +144,6 @@
             $cssAnsScriptFilesModule = array(
                 '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js',
                 '/plugins/jquery-validation/dist/jquery.validate.min.js',
-                '/plugins/jquery-validation/localization/messages_fr.js',
                 '/plugins/bootbox/bootbox.min.js' , 
                 '/plugins/blockUI/jquery.blockUI.js' , 
                 '/plugins/toastr/toastr.js' , 
@@ -176,6 +175,8 @@
                 '/plugins/font-awesome/css/font-awesome.min.css',
                 '/plugins/font-awesome-custom/css/font-awesome.css',
             );
+            if(Yii::app()->language!="en")
+                array_push($cssAnsScriptFilesModule,"/plugins/jquery-validation/localization/messages_".Yii::app()->language.".js");
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
             HtmlHelper::registerCssAndScriptsFiles( array('/js/default/formInMap.js') , $this->module->assetsUrl);
             

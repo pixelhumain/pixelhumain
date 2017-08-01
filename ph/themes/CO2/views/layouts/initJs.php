@@ -5,6 +5,7 @@
     var domainName = "<?php echo Yii::app()->params["CO2DomainName"];?>";
     var moduleId = "<?php echo $this->module->id?>";
     var userId = "<?php echo Yii::app()->session['userId']?>";
+    var mainLanguage = "<?php echo Yii::app()->language ?>";
     var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
     var currentUrl = "<?php echo "#".Yii::app()->controller->id.".".Yii::app()->controller->action->id ?>";
     var debugMap = [
@@ -228,7 +229,7 @@
                 });
                 <?php } ?>
                 
-                $(".locationBtn").html("<i class='fa fa-home'></i> Addresse principale")
+                $(".locationBtn").html("<i class='fa fa-home'></i> <?php echo Yii::t("common","Main locality") ?>")
                 $(".locationBtn").addClass("letter-red bold");
                 $("#btn-submit-form").removeClass("text-azure").addClass("letter-green");
                 if(typeof currentKFormType != "undefined")

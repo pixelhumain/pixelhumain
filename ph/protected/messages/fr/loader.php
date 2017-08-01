@@ -9,7 +9,7 @@
 		"1 little coin for a great puzzle"=>"1 petite pièce pour un grand puzzle",
 		"Contribute"=>"Contribuer",
 		"Member ( 1€/month )"=>"Membre ( 1€/mois )",
-		"Sponsor ( 1€/month )"=>"Membre ( 1€/mois )",
+		"Sponsor ( 50€/month )"=>"Sponsor ( 50€/mois )",
 	);
 
 ?>
