@@ -11,7 +11,7 @@
         <div class="col-xs-12 text-center" style="margin-top:50px;margin-bottom:50px;">
             <hr>
             <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal">
-            <i class="fa fa-times"></i> Retour
+            <i class="fa fa-times"></i> <?php echo Yii::t("common","Back") ?>
             </a>
         </div>
     </div>

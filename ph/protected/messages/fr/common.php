@@ -375,6 +375,7 @@ return array(
 	"Agenda" => "Agenda",
 	"Classified" => "Annonce",
 	"Point of interest" => "Point d'intérêt",
+	"point of interest" => "point d'intérêt",
 	"Collection"=>"Collection",
 	"collection"=>"collection",
 	
@@ -459,6 +460,7 @@ return array(
 	"Add a banner" => "Ajouter une bannière",
 	"Add a photo" => "Ajouter une photo",
 	"Edit photo" => "Editer la photo",
+	"Edit this element"=>"Modifier cet élément",
 	// Menu Button - Top menu
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",

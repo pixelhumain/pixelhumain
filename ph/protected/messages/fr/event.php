@@ -30,6 +30,7 @@
 		"The event has been updated" => "L&rsquo;événement a été mis à jour",
 		"Update the organizer" => "Mettre à jour l'organisateur",
 		"Add an organizer" => "Ajouter un organisateur",
+		"From"=>"Du",
 
 		//Type
 		"concours" => "Concours",

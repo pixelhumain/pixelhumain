@@ -5,6 +5,7 @@
     var domainName = "<?php echo Yii::app()->params["CO2DomainName"];?>";
     var moduleId = "<?php echo $this->module->id?>";
     var userId = "<?php echo Yii::app()->session['userId']?>";
+    var mainLanguage = "<?php echo Yii::app()->language ?>";
     var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
     var currentUrl = "<?php echo "#".Yii::app()->controller->id.".".Yii::app()->controller->action->id ?>";
     var debugMap = [
