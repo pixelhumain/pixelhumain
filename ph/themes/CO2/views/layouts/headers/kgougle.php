@@ -1,10 +1,12 @@
 <style>
     .pastille-subdomain {
-        font-size: 20px;
-        float: left;
-        margin-left: 58.3%;
-        margin-top: -37px;
-        cursor:pointer;
+        font-size: 19px;
+        position: relative;
+        margin-left: 59.3%;
+        margin-top: -26px;
+        cursor: pointer;
+        margin-bottom: -10px;
+
     }
     #main-scope-name{
         font-size:40px;
@@ -28,6 +30,12 @@
         box-shadow: 0px 0px 3px -1px grey;
     }
 
+    .moduleTitle{
+        font-size: 15px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+
+    }
 
     @media (max-width: 768px) {
         .link-submenu-header span{
@@ -36,21 +44,21 @@
     }
 
 </style>
-<h1 class="text-red homestead">
+<h1 class="text-red homestead margin-bottom-15">
     <span id="main-scope-name">
     <a href="#web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
     <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo.png"
-         height="60" class="inline margin-bottom-15">
+         height="60" class="inline">
     </a>
     <br>
     </span>
 </h1>
 
+<span class="pastille-subdomain font-blackoutT text-red"><?php echo @$subdomainName; ?></span>
 
-<div class="text-dark moduleTitle" style="font-size:20px; margin-bottom:10px;">
+
+<div class="text-dark moduleTitle font-montserrat">
     <i class="fa fa-<?php echo @$icon; ?>"></i>
-    <?php echo @$mainTitle; ?> 
-    
-    
+    <?php echo @$mainTitle; ?>     
 </div>
 

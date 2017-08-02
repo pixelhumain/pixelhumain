@@ -90,11 +90,11 @@ onSave: (optional) overloads the generic saveProcess
         				'<hr class="col-md-12">';
         	if( !settings.formObj.jsonSchema.noSubmitBtns )
 				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
-							'Valider <i class="fa fa-arrow-circle-right"></i>'+
+							tradDynForm["submit"]+' <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
 						' <a href="javascript:dyFObj.closeForm(); " class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
-							'<i class="fa fa-times "></i> Annuler'+
+							'<i class="fa fa-times "></i> '+tradDynForm["cancel"]+
 						'</a> ';
 
 			fieldHTML += '</div>';
@@ -331,10 +331,10 @@ onSave: (optional) overloads the generic saveProcess
 							'<span class="qq-upload-drop-area-text-selector"></span>'+
 							'</div>'+
 							'<div class="qq-upload-button-selector btn btn-primary">'+
-							'<div>Ajouter une image</div>'+
+							'<div>'+tradDynForm["addimage"]+'</div>'+
 							'</div>'+
 							'<button type="button" id="trigger-upload" class="btn btn-danger hide">'+
-			                '<i class="icon-upload icon-white"></i> Enregistrer'+
+			                '<i class="icon-upload icon-white"></i> '+tradDynForm["save"]+
 			                '</button>'+
 							'<span class="qq-drop-processing-selector qq-drop-processing">'+
 							'<span>En cours de progression...</span>'+
@@ -1039,9 +1039,15 @@ onSave: (optional) overloads the generic saveProcess
 					    	//alert(" > onSubmit : "+ uploadObj.id +" :: "+ uploadObj.type);
 					    	//console.log('onSubmit uplaodObj',uploadObj);
 					    	//var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-					      //console.log('onSubmit getEndpoint',ex);
-					      if(initValues.showUploadBtn)
-					      	$('#trigger-upload').removeClass("hide");
+					        //console.log('onSubmit getEndpoint',ex);
+					        if( initValues.showUploadBtn  ){
+						      	$('#trigger-upload').removeClass("hide").click(function(e) {
+				        			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+						        	urlCtrl.loadByHash(location.hash);
+				        			$('#ajax-modal').modal("hide");
+						        });
+
+					        }
 					    },
 					    onCancel: function(id) {
 					    	if(($("ul.qq-upload-list > li").length-1)<=0)

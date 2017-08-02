@@ -1,6 +1,6 @@
   <?php
   $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header');
-  $url = Yii::app()->getRequest()->getBaseUrl(true)."/#".Element::getControlerByCollection($parentType).".directory.id.".(string)$parent["_id"];
+  $url = Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".$parentType.".id.".(string)$parent["_id"].".view.directory.dir.followers";
   $verbAction=Yii::t("mail","is following").$parent["name"];
   $explain= Yii::t("mail","is now connected to the news stream of")." <a href='".$url."'>".$parent["name"]."</a>. ".Yii::t("mail","When you post a news with the network target, he/she will received the news on his/her news");
   $links=Yii::t("mail","All followers on")." ".$parent["name"];
@@ -21,7 +21,7 @@
               <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/images/bdb.png"?>" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;" alt="Intelligence collective"></a>
               <b>
               <h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;"></h5></b><br>
-              <b><a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/#person.detail.id.<?php echo $authorId ?>" target="_blank"><?php echo ucfirst($authorName); ?></a></b> <?php echo $verbAction ?><br>
+              <b><a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo $authorId ?>" target="_blank"><?php echo ucfirst($authorName); ?></a></b> <?php echo $verbAction ?><br>
               <br><br>
               <?php echo $authorName." ".$explain."." ?>
               <br>

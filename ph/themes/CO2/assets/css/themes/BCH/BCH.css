@@ -1,0 +1,120 @@
+.logo-menutop{
+	margin:8px 0 0 -5px !important;
+}
+
+.navbar-map{
+	background: #FFF !important;
+}
+
+#input-search-map, #menu-map-btn-start-search{
+	background-color:#6AA5C2;
+}
+#input-search-map::placeholder{
+	color:white;
+}
+
+/* boutton show map on top right corner*/
+.navbar-custom .btn-show-map{
+	background-color: #4084A5;
+}
+.navbar-custom .btn-show-map:hover {
+    background-color: transparent;
+    color: #4084A5;
+    border: 2px solid #4084A5;
+}
+
+/* MODAL */
+.modal.portfolio-modal .modal-content{
+	top: 5%;
+	right: 20%;
+	/*bottom: 10%;*/
+	left: 20%;
+	border-radius: 10px;
+	position: absolute;
+	min-height: 100px;
+	padding: 20px;
+}
+.modal.portfolio-modal{
+	background-color:rgba(0,0,0,0.7);
+}
+/* MODAL */
+
+#mainNav .dropdown-result-global-search {
+    top: 67px;
+    right: 0;
+    left: unset;
+}
+
+.navbar-custom.affix-top .menu-btn-start-search,
+input#second-search-bar{
+	display: block;
+}
+
+
+header, .header {
+    background-image: url("../../../img/reunion/reunion6.jpg");
+    background-position: 0 -100px;
+    background-size: 100%;
+}
+
+#main-scope-name .menu-btn-back-category img{
+	height:120px;
+}
+
+
+.btn-select-filliaire{
+}
+
+.navbar-collapse button, .navbar-nav button{
+	border: none !important;
+}
+
+
+.navbar-custom .btn-show-mainmenu {
+    float: unset !important;
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+}
+
+@media screen and (max-width: 1024px) {
+	
+}
+
+@media screen and (max-width: 992px) {
+    
+	/* MODAL */
+	.modal.portfolio-modal .modal-content{
+		top: 5%;
+		right: 5%;
+		/*bottom: 10%;*/
+		left: 5%;
+		border-radius: 10px;
+		position: absolute;
+		min-height: 100px;
+		padding: 10px;
+	}
+	.modal.portfolio-modal{
+		background-color:rgba(0,0,0,0.7);
+	}
+	/* MODAL */
+} 
+
+@media (max-width: 767px) {
+
+	/* MODAL */
+	.modal.portfolio-modal .modal-content{
+		top: 5%;
+		right: 5%;
+		/*bottom: 10%;*/
+		left: 5%;
+		border-radius: 10px;
+		position: absolute;
+		min-height: 100px;
+		padding: 10px;
+	}
+	.modal.portfolio-modal{
+		background-color:rgba(0,0,0,0.7);
+	}
+	/* MODAL */
+
+}

@@ -5,6 +5,7 @@
     var domainName = "<?php echo Yii::app()->params["CO2DomainName"];?>";
     var moduleId = "<?php echo $this->module->id?>";
     var userId = "<?php echo Yii::app()->session['userId']?>";
+    var mainLanguage = "<?php echo Yii::app()->language ?>";
     var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
     var currentUrl = "<?php echo "#".Yii::app()->controller->id.".".Yii::app()->controller->action->id ?>";
     var debugMap = [
@@ -162,12 +163,12 @@
                   '<div class="col-md-6 col-md-offset-3">'+
                     '<div class="col-xs-6 center">'+
                         '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas/2?sessionId=dvutjo5jusdgs1cvmmkui4su&widget=False" target="_blank" class="btn btn-default text-red bold">'+
-                            '<i class="fa fa-heart fa-2x"></i> <span class="text-dark"> Membre ( 1€/mois ) </span>'+
+                            '<i class="fa fa-heart fa-2x"></i> <span class="text-dark"> <?php echo Yii::t("loader","Member ( 1€/month )") ?> </span>'+
                          '</a>'+     
                     '</div>'+
                     '<div class="col-xs-6 center">'+
                          '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas/2?sessionId=dvutjo5jusdgs1cvmmkui4su&widget=False" target="_blank" class="btn btn-default text-red bold ">'+
-                            '<i class="fa fa-heart fa-2x"></i> <span class="text-dark"> Sponsor ( 50€/mois ) </span> <i class="fa fa-heart fa-2x"></i>'+
+                            '<i class="fa fa-heart fa-2x"></i> <span class="text-dark"> <?php echo Yii::t("loader","Sponsor ( 50€/month )") ?> </span> <i class="fa fa-heart fa-2x"></i>'+
                          '</a>'+      
                     '</div>'+
                   '</div>'+
@@ -228,7 +229,7 @@
                 });
                 <?php } ?>
                 
-                $(".locationBtn").html("<i class='fa fa-home'></i> Addresse principale")
+                $(".locationBtn").html("<i class='fa fa-home'></i> <?php echo Yii::t("common","Main locality") ?>")
                 $(".locationBtn").addClass("letter-red bold");
                 $("#btn-submit-form").removeClass("text-azure").addClass("letter-green");
                 if(typeof currentKFormType != "undefined")

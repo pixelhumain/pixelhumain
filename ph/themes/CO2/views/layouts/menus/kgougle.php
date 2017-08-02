@@ -83,6 +83,7 @@ input#second-search-bar{
         <?php if( $subdomain == "web" ||
                   $subdomain == "actu" ||
                   $subdomain == "search" ||
+                  $subdomain == "social" ||
                   $subdomain == "agenda" ||
                   $subdomain == "power"  ||
                   $subdomain == "freedom"||

@@ -21,11 +21,18 @@ header, .header {
     margin-top: 35px;
 }
 
+.navbar-header .logo-menutop{
+	margin-left:-5px;
+}
 
 .form-in-map #newElement_country{
 	display: none;
 }
 
+header img, .header img {
+    display: block;
+    margin: 50px auto 0px auto;
+}
 
 
 

@@ -11,7 +11,7 @@
         <div class="col-xs-12 text-center" style="margin-top:50px;margin-bottom:50px;">
             <hr>
             <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal">
-            <i class="fa fa-times"></i> Retour
+            <i class="fa fa-times"></i> <?php echo Yii::t("common","Back") ?>
             </a>
         </div>
     </div>
@@ -109,7 +109,7 @@
                     </div>
                 </a>
                 
-                <a href="#power" class="btn-main-menu col-xs-3" > 
+                <a href="#live" class="btn-main-menu col-xs-3" > 
                     <div class="modal-body text-center">
                         <h4 class="text-red no-margin"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
                             <span class="homestead"> <?php echo Yii::t("home","LIVE") ?></span>

@@ -1,21 +1,21 @@
 <form class="form-register box-register"> 
     <div class="col-md-12 no-padding text-left">
         
-        <h3 class="text-dark"><i class="fa fa-plus"></i> Créer un compte </h3>
-        <label class="letter-black"><i class="fa fa-address-book-o"></i> Nom et prénom</label>
-        <input class="form-control" id="registerName" name="name" type="text" placeholder="Nom et prénom" tabindex="5"><br/>
+        <h3 class="text-dark"><i class="fa fa-plus"></i> <?php echo Yii::t("login","Create an account") ?></h3>
+        <label class="letter-black"><i class="fa fa-address-book-o"></i> <?php echo Yii::t("login","Name and surname") ?></label>
+        <input class="form-control" id="registerName" name="name" type="text" placeholder="<?php echo Yii::t("login","name and surname") ?>" tabindex="5"><br/>
         
-        <label class="letter-black"><i class="fa fa-user-circle-o"></i> Nom d'utilisateur</label><br>
-        <input class="form-control" id="username" name="username" type="text" placeholder="Nom d'utilisateur" tabindex="6"><br/>
+        <label class="letter-black"><i class="fa fa-user-circle-o"></i> <?php echo Yii::t("login","User name") ?></label><br>
+        <input class="form-control" id="username" name="username" type="text" placeholder="<?php echo Yii::t("login","user name") ?>" tabindex="6"><br/>
         
-        <label class="letter-black"><i class="fa fa-envelope"></i> E-mail</label><br>
-        <input class="form-control" id="email3" name="email3" type="text" placeholder="e-mail" tabindex="7"><br/>
+        <label class="letter-black"><i class="fa fa-envelope"></i> <?php echo Yii::t("login","Email") ?></label><br>
+        <input class="form-control" id="email3" name="email3" type="text" placeholder="<?php echo Yii::t("login","email") ?>" tabindex="7"><br/>
         
-        <label class="letter-black"><i class="fa fa-key"></i> Mot de passe</label><br/>
-        <input class="form-control" id="password3" name="password3" type="password" placeholder="mot de passe" tabindex="8"><br/>
+        <label class="letter-black"><i class="fa fa-key"></i> <?php echo Yii::t("login","Password") ?></label><br/>
+        <input class="form-control" id="password3" name="password3" type="password" placeholder="<?php echo Yii::t("login","password") ?>mot de passe" tabindex="8"><br/>
         
-        <label class="letter-black"><i class="fa fa-key"></i> Répétez le mot de passe</label><br/>
-        <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="mot de passe (confirmation)" tabindex="9">
+        <label class="letter-black"><i class="fa fa-key"></i> <?php echo Yii::t("login","Password again") ?></label><br/>
+        <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="<?php echo Yii::t("login","password (confirmation)") ?>" tabindex="9">
         <div class="form-group pull-left no-margin padding-top-10" style="width:100%;">
             <div>
                 <label for="agree" class="checkbox-inline letter-red">    
@@ -36,7 +36,7 @@
             </div>
         </div>
         <!-- <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a> -->
-        <button class="btn btn-success text-white pull-right createBtn"><i class="fa fa-sign-in"></i> S'inscrire</button>
+        <button class="btn btn-success text-white pull-right createBtn"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Create account") ?></button>
         
         <!-- <br>         -->
         

@@ -7,7 +7,9 @@
 		"More informations about our financial situation"=>"En savoir plus sur notre situation financière",
 		"Make a donation to the NGO"=>"Faire un don à l&#146;association",
 		"1 little coin for a great puzzle"=>"1 petite pièce pour un grand puzzle",
-		"Contribute"=>"Contribuer"
+		"Contribute"=>"Contribuer",
+		"Member ( 1€/month )"=>"Membre ( 1€/mois )",
+		"Sponsor ( 50€/month )"=>"Sponsor ( 50€/mois )",
 	);
 
 ?>
