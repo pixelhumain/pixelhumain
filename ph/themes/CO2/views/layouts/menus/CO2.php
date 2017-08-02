@@ -59,9 +59,12 @@
             </button>
 
         <?php } ?>
-        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" 
-                title="<?php Yii::t("common", "Show the map") ?>">
-            <i class="fa fa-map"></i>
+
+        <button class="btn-show-map"
+                title="<?php echo Yii::t("common", "Show the map"); ?>"
+                alt="<?php echo Yii::t("common", "Show the map"); ?>"
+                >
+            <i class="fa fa-map-marker"></i>
         </button>
         <?php if( !@Yii::app()->session['userId'] ){ ?>
             <div id="navbar" class="navbar-collapse pull-right navbar-right" style="    margin-top: 5px;   margin-bottom: 5px;">
@@ -96,11 +99,11 @@
         <?php if( isset( Yii::app()->session['userId']) ){ ?>
             
             <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
-                  data-dismiss="tooltip" data-placement="left" title="Mon réseau" alt="<?php echo Yii::t("common","My network") ?>">
+                  data-toggle="tooltip" data-placement="top" title="Mon réseau" alt="<?php echo Yii::t("common","My network") ?>">
               <i class="fa fa-link"></i>
             </button>
             <button class="btn-show-mainmenu btn btn-link" 
-                    data-toggle="tooltip" data-placement="left" title="Menu">
+                    data-toggle="tooltip" data-placement="top" title="Menu">
                 <i class="fa fa-bars tooltips" ></i>
             </button>
         <?php } ?>
@@ -400,7 +403,7 @@
 
 
 <script>
-// jQuery(document).ready(function() {    
-//     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
-// });
+ // jQuery(document).ready(function() {    
+ //     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
+ // });
 </script> 
