@@ -49,6 +49,7 @@ return array(
 	"DELETE" => "SUPPRIMER",
 	"Unlink" => "Annuler le lien",
 	"You have already made this action" => "Vous avez déjà effectué cette action",
+	"Clear"=>"Effacer",
 
 	//MONTH
 	"january"=>"janvier",
@@ -305,6 +306,7 @@ return array(
 	"the licence" => "la licence",
 	"the main locality" => "l'adresse principale",
 	"Main locality" => "Adresse principale",
+	"Second locality"=>"Adresse secondaire",
 	"a second locality" => "une adresse secondaire",
 	"open data" => "l'open data",
 	"open edition" => "l'édition libre",
