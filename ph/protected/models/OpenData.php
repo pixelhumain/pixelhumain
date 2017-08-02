@@ -8,8 +8,8 @@ class OpenData
      */
     public static $phCountries = array( 
                                         "BE"=>"Belgique",
-                                        //"BR"=>"Brésil",
-                                        //"ES"=>"Espagne",
+                                        "BR"=>"Brésil",
+                                        "ES"=>"Espagne",
                                         "FR"=>"France",
                         				"GP"=>"Guadeloupe", //971
                       					"GF"=>"Guyanne Française", //973
@@ -17,10 +17,10 @@ class OpenData
                         				"YT"=>"Mayotte", //976
                                         "MX"=>"Mexique",
                         				"NC"=>"Nouvelle-Calédonie", //988
-                                        //"PE"=>"Pérou",
+                                        "PE"=>"Pérou",
                         				"RE"=>"Réunion", //9*74
                                         "PM"=>"St Pierre et Miquelon",
-                                        //"CH"=>"Suisse",//975
+                                        "CH"=>"Suisse",//975
                                         ); 
     
     public static $elementTypes = array( "NGO" => "Association",
