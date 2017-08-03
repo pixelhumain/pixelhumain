@@ -73,6 +73,8 @@
 		"Organization type"=>"Type d\'organisation",
 		"Add an url"=>"Ajouter une url",
 		"Add a contact"=> "Ajouter un contact",
+		"Add a cooperation room" =>  "Créer un nouvel espace coopératif",
+		"Rooms are spaces of Discussion, decision and action for a community" => "Créer des espaces de Discussion, Décission, et Action pour une communauté",
 		"Title of URL"=>"Titre de l'URL",
 		"URL of the link"=>"URL du lien",
 		"URL type"=>"Type de l'URL",
