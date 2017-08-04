@@ -514,6 +514,8 @@ return array(
 	"page"=>"page",
 	"is <b>following</b>"=>"est <b>abonné</b> à",
 	"no"=>"aucun",
+	"Cover image of"=>"Image de couverture de",
+	"Profil image of"=>"Image de profil de",
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
 	"organization" => "organisation",
