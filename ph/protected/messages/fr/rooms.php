@@ -39,7 +39,6 @@ return array(
 	"Vote" => "Vote",
 	"Discussion" => "Discussion",
 	"Brainstorm / Proposals / Ideas" => "Brainstorming, propositions, idées",
-
 	"Type of Room" => "Type d'espace",
 	'Add an Action Room' => "Créer un nouvel espace",
 	"Surveys contain subject to vote on, brainstorm sessions, discussions..." => 
@@ -63,6 +62,9 @@ return array(
 	"Close" => "Fermer",
 	"Comment" => "Commenter",
 
+	"room" => "espace coopératif",
+	"actionRooms" => "espace coopératif",
+	
 	"created" => "Publié le",
 	"end" => "Fin le",
 	"ended" => "Clôturé le",

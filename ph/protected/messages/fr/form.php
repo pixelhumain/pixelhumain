@@ -63,6 +63,7 @@
 		"Create a point of interest"=>"Créer un point d'intérêt",
 		"Create a classified"=>"Publier une annonce",
 		"Add an image"=>"Ajouter une image",
+		"Which kind of room do you want to create"=>"Quel type d'espace souhaitez-vous créer",
 		"Which kind of point do you want to locate"=>"Quel type de point souhaitez-vous localiser",
 		"Which kind of classified is it"=>"De quel type d'annonce s'agit-il",
 		"In which category do you want to publish the classified"=>"Dans quelle catégorie souhaitez-vous publier votre annonce",
