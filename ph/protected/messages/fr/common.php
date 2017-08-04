@@ -710,7 +710,8 @@ return array(
 	"See all" => "Voir tout",
 
 
-	"IMPORT DATA" => "IMPORT DATA",
+	"IMPORT DATA" => "Créer un fichier conforme",
+	"ADD DATA" => "Ajouter votre données",
 	"OPENAGENDA" => "OPEN AGENDA",
 	"CHECKGEOCODAGE" => "VERIFIER GEOCODAGE",
 	
