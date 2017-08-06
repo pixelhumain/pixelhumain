@@ -416,6 +416,11 @@ onSave: (optional) overloads the generic saveProcess
         	if(placeholder == "")
         		placeholder="25/01/2014";
         	mylog.log("build field "+field+">>>>>> date");
+        	if(value && (""+value).indexOf("/") < 0){
+        		//timestamp use case 
+        		value =moment(parseInt(value)*1000).format('DD/MM/YYYY');
+        		//alert("switch:"+value);
+        	}
         	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
