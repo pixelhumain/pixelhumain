@@ -332,6 +332,7 @@ return array(
 	"Are you sure to join the project" => "Êtes-vous sûr de rejoindre le projet",
 	"Are you sure to participate to the event" => "Êtes-vous sûr de participer à cet événement",
 	"Are you admin" => "Êtes-vous admin",
+	"Would you like to be an administrator" => "Souhaitez-vous être administrateur",
 	"as contributor" => "comme contributeur",
 	"as member" => "comme membre",
 	"as admin" => "comme admin",
@@ -709,8 +710,8 @@ return array(
 	"No more news" => "fin du fil d'actus",
 	"See all" => "Voir tout",
 
-
-	"IMPORT DATA" => "Créer un fichier conforme",
+	"Converter" => "Convertisseur",
+	"IMPORT DATA" => "Importer votre données",
 	"ADD DATA" => "Ajouter votre données",
 	"OPENAGENDA" => "OPEN AGENDA",
 	"CHECKGEOCODAGE" => "VERIFIER GEOCODAGE",
