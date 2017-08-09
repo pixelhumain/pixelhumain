@@ -6,8 +6,6 @@
 
 .navbar-brand .letter{ margin-right:0px; letter-spacing: -9px; }
 
-.letter-lightblue{ color:#7bc3d1!important; }
-
 .letter-blue{ color:#4285f4!important; }
 
 .letter-red{ color:#ea4335!important; }
@@ -19,6 +17,8 @@
 .letter-green{ color:#34a853!important; }
 
 .letter-lightblue{ color:#7bc3d1 !important; }
+
+.letter-light{ color:#7d7d7d !important; }
 
 .letter-turq{
     color: #229296!important;
