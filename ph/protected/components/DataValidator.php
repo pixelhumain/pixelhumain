@@ -158,10 +158,12 @@ class DataValidator {
 				if ( isset( $dataBinding[$key]) ) {
 					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value, $values, $import);
 				} else {
+					error_log("error : ".$key);
 					$res["result"] = false;
 					$res["msg"] = "Contenu Invalide ".$key;
 				}
 			} catch( Exception $e ) {
+				error_log("error : ".$key);
 				$res["result"] = false;
 				$res["msg"] = $e->getMessage();
 			}

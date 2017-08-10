@@ -229,6 +229,11 @@ a.text-white{
     color:white;
 }
 
+
+.btn-link.bg-red{
+    color:#FFF !important;
+}
+
 .btn-link.bg-green-k:hover{
     background-color: white !important;
     color:#34a853 !important;
@@ -238,6 +243,14 @@ a.text-white{
     background-color: white !important;
     color:#ea4335 !important;
     border: 1px solid #ea4335 !important;
+}
+.btn-link.bg-orange:hover{
+    background-color: white !important;
+    color:#FFA200 !important;
+    border: 1px solid #FFA200 !important;
+}
+.btn-link.bg-white:hover{
+    border: 1px solid grey !important;
 }
 
 
