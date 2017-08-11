@@ -41,8 +41,8 @@
 		"Name of your"=>"Nom de votre",
 		"Title of your"=>"Titre de votre",
 		"Tags"=>"Mots clés",
-		"Add some tags"=>"Ajouter quelques mots clés",
-		"Your images here"=>"Vos images ici",
+		"Add some tags"=>"Ajouter des clés",
+		"Your images here"=>"Ajouter des images",
 		"Price (£)"=>"Prix (€)",
 		"Price"=>"Prix",
 		"Main email"=>"E-mail principal",
@@ -75,7 +75,7 @@
 		"Add an url"=>"Ajouter une url",
 		"Add a contact"=> "Ajouter un contact",
 		"Add a cooperation room" =>  "Créer un nouvel espace coopératif",
-		"Rooms are spaces of Discussion, decision and action for a community" => "Créer des espaces de Discussion, Décission, et Action pour une communauté",
+		"Rooms are spaces of decision and action for a community" => "Un espace coopératif sert à prendre des décisions collectives autour du thème de votre choix",
 		"Title of URL"=>"Titre de l'URL",
 		"URL of the link"=>"URL du lien",
 		"URL type"=>"Type de l'URL",
@@ -95,6 +95,7 @@
 		"Enter fax numbers separated by a comma"=>"Saisir les numéros de fax séparés par une virgule",
 		"Maturity of the project"=>"L'avancement du projet",
 		"Project maturity"=>"Avancement du projet",
+		"Your proposal" => "Votre proposition"
 	)
 
 ?>

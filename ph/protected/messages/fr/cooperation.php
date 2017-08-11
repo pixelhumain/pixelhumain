@@ -38,4 +38,7 @@ return array(
 	"Create room" => "Créer un espace",
 	
 	"Topic" => "Sujet",
+
+	"No proposal" => "Aucune proposition",
+	"No action" => "Aucune action",
 );

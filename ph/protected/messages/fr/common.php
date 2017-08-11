@@ -380,6 +380,9 @@ return array(
 	"point of interest" => "point d'intérêt",
 	"Collection"=>"Collection",
 	"collection"=>"collection",
+	"proposal"=>"proposition",
+	"Proposal"=>"Proposition",
+	"proposals"=>"propositions",
 	
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
