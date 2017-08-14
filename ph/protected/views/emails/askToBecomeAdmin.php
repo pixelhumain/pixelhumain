@@ -32,12 +32,14 @@
 		$subtitle .= yii::t("email","administrate");
 		$typeOfDemand = "admin";
 	}
+  
   if($type==Project::COLLECTION)
     $dir="contributors";
   else if($type==Organization::COLLECTION)
     $dir="members";
   else if($type==Event::COLLECTION)
     $dir="attendees";
+
 	$subtitle .= " ".yii::t("email","the ".$type);
 	$url=Yii::app()->getRequest()->getBaseUrl(true)."/#page.type".$type.".id.".(String) $parent["_id"].".view.directory.dir.".$dir;
 ?>
