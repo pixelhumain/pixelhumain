@@ -95,6 +95,9 @@
 		"Enter fax numbers separated by a comma"=>"Saisir les numéros de fax séparés par une virgule",
 		"Maturity of the project"=>"L'avancement du projet",
 		"Project maturity"=>"Avancement du projet",
+		"add informations to this document"=> "Ajouter des informations à ce document",
+		"Add informations to the document to make it pertinent for others"=>"Ajouter des informations au document pour le rendre le plus pertinent possible aux yeux des autres",
+		"Image title"=>"Titre de l'image",
 	)
 
 ?>
