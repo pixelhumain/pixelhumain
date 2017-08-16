@@ -14,7 +14,7 @@
             <?php 
                 $params = CO2::getThemeParams();  
                 $icon = "";
-                //echo "params : "; var_dump($params);// exit; 
+                // echo "params : "; var_dump($params);// exit; 
                 foreach ($params["pages"] as $key => $value) {
                     if($subdomain==@$value["subdomain"]) {
                         $icon = @$value["icon"];

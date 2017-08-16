@@ -748,6 +748,7 @@ return array(
 	"Add a group" => "Ajouter un nouveau groupe",
 	"Add an Event" => "Ajouter un nouvel événement",
 	"Add a Project" => "Ajouter un nouveau projet",
+	"Add a Tags in OSM" => "Ajouter un nouveau tag OSM",
 
 	"Back to" => "Revenir sur",
 	"Know more" => "En savoir +",
@@ -1039,8 +1040,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"url" => "url",
 	"description" => "description",
 	"shortDescription" => "description courte",
+	"Search a page ..." => "Rechercher une page ...",
 	"Edit descriptions" => "Modifier votre description",
-
 	"The email is not well formated" => "L'email n'est pas bien formaté",
 	"Unknown domain : please check your email !" => "Domaine inconnu: vérifiez votre email!",
 
