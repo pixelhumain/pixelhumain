@@ -315,14 +315,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     background-color: #5f8295;
     color:white!important;
 }
-#central-container .bg-green{
+#central-cont/*ainer .bg-green{
     background-color:#93C020;
     color:white!important;
 }
 #central-container .bg-orange{
     background-color:#FFA200;
-    color:white!important;
-}
+    color:white;
+}*/
 #central-container .bg-yellow{
     background-color:#FFC600;
     color:white!important;

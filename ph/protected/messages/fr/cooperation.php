@@ -23,12 +23,14 @@ return array(
 	"Create proposal" => "Créer une proposition",
 	"Add proposal" => "Ajouter une proposition",
 	"My proposals" => "Mes propositions",
-	"Amendable" => "Amendables",
+	"Amendables" => "Amendables",
+	"Amendable" => "Amendable",
 	"To vote" => "À voter",
 	"Closed" => "Fermées",
 
 	"mine" => "À moi",
-	"amendable" => "Amendables",
+	"amendables" => "Amendables",
+	"amendable" => "Amendable",
 	"tovote" => "À voter",
 	"todo" => "À faire",
 	"archived" => "archivée",
@@ -41,4 +43,15 @@ return array(
 
 	"No proposal" => "Aucune proposition",
 	"No action" => "Aucune action",
+
+	"end" => "fin",
+	"Search in actions" => "Recherche actions",
+	"Search in proposals" => "Recherche propositions",
+
+	"up" => "Pour",
+	"down" => "Contre",
+	"white" => "Blanc",
+	"uncomplet" => "Incomplet",
+
+	"number of voters" => "Nombre de votant(s)"
 );

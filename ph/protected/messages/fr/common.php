@@ -1079,5 +1079,6 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
     "French"=> "Français",
     "Languages"=>"Langues",
 	"Photos gallery" => "Galerie photos",
+
 );
 ?>

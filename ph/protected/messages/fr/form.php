@@ -41,7 +41,7 @@
 		"Name of your"=>"Nom de votre",
 		"Title of your"=>"Titre de votre",
 		"Tags"=>"Mots clés",
-		"Add some tags"=>"Ajouter des clés",
+		"Add some tags"=>"Ajouter des mots-clés",
 		"Your images here"=>"Ajouter des images",
 		"Price (£)"=>"Prix (€)",
 		"Price"=>"Prix",
@@ -95,7 +95,8 @@
 		"Enter fax numbers separated by a comma"=>"Saisir les numéros de fax séparés par une virgule",
 		"Maturity of the project"=>"L'avancement du projet",
 		"Project maturity"=>"Avancement du projet",
-		"Your proposal" => "Votre proposition"
+		"Your proposal" => "Votre proposition",
+		"Arguments" => "Argumentation"
 	)
 
 ?>
