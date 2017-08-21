@@ -61,6 +61,7 @@
 }
 </style>
 
+<?php if($subdomain != "welcome"){ ?>
 <form class="portfolio-modal modal fade form-login box-login" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">
         <div class="close-modal" data-dismiss="modal">
@@ -75,6 +76,8 @@
                     <span class="name" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
+                        <?php } else if(Yii::app()->params["CO2DomainName"] == "FI"){ ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/FI-logo.png" height="90" class="inline margin-bottom-15">
                         <?php } else { ?>
                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
@@ -85,16 +88,17 @@
                                 <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
                                 </div>
                             </div>
+                            <h4 class="text-dark col-md-12 margin-top-5 homestead">
+                                <!-- Bienvenue sur la version CO.2 -->
+                                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="35" 
+                                     class="inline margin-left-10">
+                                <!-- <br/>Le commun avance <span class="text-red">montez à bord !</span> -->
+                                <hr>
+                            </h4>
                         <?php } ?>
                     </span>
                     <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
-                    <h4 class="text-dark col-md-12 margin-top-5 homestead">
-                        <!-- Bienvenue sur la version CO.2 -->
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="35" 
-                             class="inline margin-left-10">
-                        <!-- <br/>Le commun avance <span class="text-red">montez à bord !</span> -->
-                        <hr>
-                    </h4>
+                   
                     
                 </div>
                 <div class="col-lg-12">
@@ -102,20 +106,20 @@
                 </div>
             </div>
             <div class="col-md-4 col-md-offset-4 text-left">
-                <label><i class="fa fa-envelope"></i> Un e-mail</label><br>
-                <input class="form-control" name="email" id="email-login" type="text" placeholder="e-mail"><br>
+                <label><i class="fa fa-envelope"></i> <?php echo Yii::t("login","An email") ?></label><br>
+                <input class="form-control" name="email" id="email-login" type="text" placeholder="<?php echo Yii::t("login","email") ?>"><br>
                 
-                <label><i class="fa fa-key"></i> Un mot de passe</label><br>
-                <input class="form-control" name="password" id="password-login" type="password" placeholder="mot de passe"><br>
+                <label><i class="fa fa-key"></i> <?php echo Yii::t("login","A password") ?></label><br>
+                <input class="form-control" name="password" id="password-login" type="password" placeholder="<?php echo Yii::t("login","password") ?>"><br>
                 
                 
 
                 <label for="remember" class="checkbox-inline">
                     <input type="checkbox" id="remember" name="remember">
-                    Se souvenir de moi
+                    <?php echo Yii::t("login","Keep me signed in") ?>
                 </label>
 
-                <button class="btn btn-success pull-right loginBtn" type="submit"><i class="fa fa-sign-in"></i> Se connecter</button><br><br>
+                <button class="btn btn-success pull-right loginBtn" type="submit"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Log in") ?></button><br><br>
   
                 <div class="form-actions col-md-12 no-padding" style="margin-top:20px;">
                     <div class="errorHandler alert alert-danger no-display loginResult">
@@ -152,31 +156,31 @@
 
                 <div class="col-md-12 no-padding text-center">
                     <hr>
-                    <button class="btn bg-white" data-toggle="modal" data-target="#modalForgot">
-                        <!-- <i class="fa fa-s"></i> -->J'ai perdu mon mot de passe
-                    </button>
+                    <a href="javascript:;" class="btn bg-white" data-toggle="modal" data-target="#modalForgot">
+                        <!-- <i class="fa fa-s"></i> --><?php echo Yii::t("login","I forgot my password") ?>
+                    </a>
                     <br><br>
                     
-                    <?php  if(Yii::app()->params["CO2DomainName"] != "kgougle"){ ?>
-                        <button class="btn btn-default bg-white" data-toggle="modal" data-target="#modalRegister">
-                             <!-- <i class="fa fa-sign-in"></i> --> Je veux m'inscrire
-                        </button>
-                    <?php } ?>
+                    <a href="javascript:;" class="btn btn-default bg-white" data-toggle="modal" data-target="#modalRegister">
+                             <!-- <i class="fa fa-sign-in"></i> --> <?php echo Yii::t("login", "I create my account") ?>
+                    </a>
                 </div>
 
                 <br><hr>
 
                 <div class="col-md-12 text-center">
                     <br><hr>
-                    <a href="javascript:" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
+                    <a href="javascript:" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo Yii::t("common","Back") ?></a>
                 </div>
 
             </div>      
         </div>
     </div>
 </form>
+<?php } ?>
 
 <?php if(Yii::app()->params["CO2DomainName"] != "kgougle"){ //bloquage des inscriptions ?>
+<?php if($subdomain != "welcome"){ ?>
 <div class="portfolio-modal modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-hidden="true">
     <form class="modal-content form-register box-register padding-top-15"  >
         <div class="close-modal" data-dismiss="modal">
@@ -191,6 +195,8 @@
                     <span class="name" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
+                       <?php } else if(Yii::app()->params["CO2DomainName"] == "FI"){ ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/FI-logo.png" height="60" class="inline margin-bottom-15">
                        <?php } else { ?>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
@@ -202,7 +208,7 @@
                         <?php } ?>
                     </span>
                     <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
-                    <p>Rejoindre la version co2<br/>Le commun avance, montez à bord !!<hr></p>
+                    <!-- <p>Rejoindre la version co2<br/>Le commun avance, montez à bord !!<hr></p> -->
                 </div>
                 <div class="col-lg-12">
                     <p></p>
@@ -210,30 +216,33 @@
             </div>
             <div class="col-md-4 col-md-offset-4 text-left">
                 
-                <label class="letter-black"><i class="fa fa-address-book-o"></i> Nom et prénom</label>
-                <input class="form-control" id="registerName" name="name" type="text" placeholder="Nom et prénom"><br/>
+                <label class="letter-black"><i class="fa fa-address-book-o"></i> <?php echo Yii::t("login","Name and surname") ?></label>
+                <input class="form-control" id="registerName" name="name" type="text" placeholder="<?php echo Yii::t("login","name and surname") ?>"><br/>
                 
-                <label class="letter-black"><i class="fa fa-user-circle-o"></i> Nom d'utilisateur</label><br>
-                <input class="form-control" id="username" name="username" type="text" placeholder="Nom d'utilisateur"><br/>
+                <label class="letter-black"><i class="fa fa-user-circle-o"></i> <?php echo Yii::t("login","User name") ?></label><br>
+                <input class="form-control" id="username" name="username" type="text" placeholder="<?php echo Yii::t("login","user name") ?>"><br/>
                 
-                <label class="letter-black"><i class="fa fa-envelope"></i> E-mail</label><br>
-                <input class="form-control" id="email3" name="email3" type="text" placeholder="e-mail"><br/>
+                <label class="letter-black"><i class="fa fa-envelope"></i> <?php echo Yii::t("login","Email") ?></label><br>
+                <input class="form-control" id="email3" name="email3" type="text" placeholder="<?php echo Yii::t("login","email") ?>"><br/>
                 
-                <label class="letter-black"><i class="fa fa-key"></i> Mot de passe</label><br/>
-                <input class="form-control" id="password3" name="password3" type="password" placeholder="mot de passe"><br/>
+                <label class="letter-black"><i class="fa fa-key"></i> <?php echo Yii::t("login","Password") ?></label><br/>
+                <input class="form-control" id="password3" name="password3" type="password" placeholder="<?php echo Yii::t("login","password") ?>"><br/>
                 
-                <label class="letter-black"><i class="fa fa-key"></i> Répétez le mot de passe</label><br/>
-                <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="mot de passe (confirmation)">
+                <label class="letter-black"><i class="fa fa-key"></i> <?php echo Yii::t("login","Password again") ?></label><br/>
+                <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="<?php echo Yii::t("login","password (confirmation)") ?>">
                 <input class="form-control" id="isInvitation" name="isInvitation" type="hidden" value="false">
                 <hr>
-
-                <label for="agree" class="checkbox-inline letter-red">
-                    <input type="checkbox" class="grey agree" id="agree" name="agree">
-                    <?php echo Yii::t("login","I agree to the Terms of") ?> 
-                    <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp text-dark">
-                        <?php echo Yii::t("login","Service and Privacy Policy") ?>
-                    </a>
-                </label>
+                <div class="form-group pull-left no-margin padding-top-10" style="width:100%;">
+                    <div>
+                        <label for="agree" class="checkbox-inline letter-red">
+                            <input type="checkbox" class="grey agree" id="agree" name="agree">
+                            <?php echo Yii::t("login","I agree to the Terms of") ?> 
+                            <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp text-dark">
+                                <?php echo Yii::t("login","Service and Privacy Policy") ?>
+                            </a>
+                        </label>
+                    </div>
+                </div>
 
                 <br><hr>
 
@@ -246,8 +255,8 @@
                     </div>
                 </div>
 
-                <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
-                <button class="btn btn-success text-white pull-right createBtn"><i class="fa fa-sign-in"></i> S'inscrire</button>
+                <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo Yii::t("common","Back") ?></a>
+                <button class="btn btn-success text-white pull-right createBtn"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Create account") ?></button>
                 
                 
                 <div class="col-md-12 margin-top-50 margin-bottom-50"></div>
@@ -255,6 +264,7 @@
         </div>
     </form>
 </div>
+<?php } ?>
 
 <div class="modal fade" role="dialog" id="modalRegisterSuccess">
     <div class="modal-dialog">
@@ -264,24 +274,23 @@
             </div>
             <div class="modal-body center text-dark hidden" id="modalRegisterSuccessContent"></div>
             <div class="modal-body center text-dark">
-                
-                <h4 class="letter-green no-margin"><i class="fa fa-check-circle"></i> Confirmez votre adresse e-mail</h4>
+                <h4 class="letter-green no-margin"><i class="fa fa-check-circle"></i> <?php echo Yii::t("login","Confirm your email address")?></h4>
                 <h4 class="no-margin">
-                    <small>afin d'accéder à votre compte</small>
+                    <small><?php echo Yii::t("login","in order to attain your account") ?></small>
                 </h4>
                 <small class="no-margin">
-                    <i class="fa fa-lock"></i> Pour des raisons de sécurité, vous devez confirmer votre adresse e-mail avant de pouvoir vous connecter.
+                    <i class="fa fa-lock"></i> <?php echo Yii::t("login","For security reasons, you have to comfirm your email address to be connected") ?>.
                 </small>
                 <br><br>
-                <h5><i class="fa fa-angle-down"></i> Comment faire ?</h5>
-                <i class="fa fa-envelope-open" style="width:20px;"></i> <b>Vérifiez votre boîte e-mails</b><br>
-                <i class="fa fa-hand-o-up" style="width:20px;"></i> <b>Cliquez sur le lien d'activation</b> que nous vous avons envoyé.</br>
+                <h5><i class="fa fa-angle-down"></i> <?php echo Yii::t("login", "How can it be done")?> ?</h5>
+                <i class="fa fa-envelope-open" style="width:20px;"></i> <b><?php echo Yii::t("login","Verify your emails and your spams") ?></b><br>
+                <i class="fa fa-hand-o-up" style="width:20px;"></i> <b><?php echo Yii::t("login","Click on the activating link") ?></b> <?php echo Yii::t("login","which we sent to you") ?>.</br>
                 <hr>
-                <i class="fa fa-unlock" style="width:20px;"></i> Vous serez <b class="letter-green">connecté automatiquement</b> et redirigé vers votre page perso.
+                <i class="fa fa-unlock" style="width:20px;"></i> <?php echo Yii::t("login","You will be <b class='letter-green'>automatically connected</b> and redirect on your page") ?>.
                     
             </div>
             <div class="modal-footer">
-                 <button type="button" class="btn btn-default letter-green" data-dismiss="modal"><i class="fa fa-check"></i> J'ai compris</button>
+                 <button type="button" class="btn btn-default letter-green" data-dismiss="modal"><i class="fa fa-check"></i> <?php Yii::t("login","I understand") ?></button>
             </div>
         </div>
     </div>
@@ -302,12 +311,14 @@
                     <span class="name" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
+                       <?php } else if(Yii::app()->params["CO2DomainName"] == "FI"){ ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/FI-logo.png" height="60" class="inline margin-bottom-15">
                        <?php } else { ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">
                         <?php } ?>
                     </span>
-                    <h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>
-                    <p>La connexion est réservée aux administrateurs du réseau.<hr></p>
+                    <h3 class="letter-red no-margin" style="margin-top:-15px!important;"><?php echo Yii::t("login", "Forget password ?") ?></h3><br>
+                    <p><?php echo Yii::t("login","Indicate your email link to your account to recover a password") ?>.<hr></p>
                 </div>
                 <div class="col-lg-12">
                     <p></p>
@@ -315,8 +326,8 @@
             </div>
             <div class="col-md-4 col-md-offset-4 text-left">
                 
-                <label class="letter-black"><i class="fa fa-envelope"></i> E-mail</label><br>
-                <input class="form-control" id="email2" name="email2" type="text" placeholder="E-mail"><br/>
+                <label class="letter-black"><i class="fa fa-envelope"></i> <?php echo Yii::t("login","Email") ?></label><br>
+                <input class="form-control" id="email2" name="email2" type="text" placeholder="<?php echo Yii::t("login","Email") ?>"><br/>
                 
                 <hr>
 
@@ -332,8 +343,8 @@
                     </button>
                 </div> -->
 
-                <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
-                <button class="btn btn-success text-white pull-right forgotBtn"><i class="fa fa-sign-in"></i> Envoyer</button>
+                <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo Yii::t("common", "Back") ?></a>
+                <button class="btn btn-success text-white pull-right forgotBtn"><i class="fa fa-sign-in"></i> <?php echo Yii::t("common","Send") ?></button>
                 
                 
                 <div class="col-md-12 margin-top-50 margin-bottom-50"></div>
@@ -378,11 +389,13 @@ jQuery(document).ready(function() {
 
 
     //Remove parameters from URLs in case of invitation without reloading the page
-    removeParametersWithoutReloading();
+    <?php if(@$_GET["email"]){ ?>
+        removeParametersWithoutReloading();
+    <?php } ?>
     
     //$(".box").hide();
     Login.init();
-    titleAnim();
+    //titleAnim();
 
     $('.form-register #username').keyup(function(e) { 
         validateUserName();

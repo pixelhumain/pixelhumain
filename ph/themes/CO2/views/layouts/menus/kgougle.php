@@ -53,7 +53,7 @@ input#second-search-bar{
                 <a href="#web" class="lbh menu-btn-back-category">
             <?php } ?>
             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
-                     class="nc_map pull-left show-top" height=20>
+                     class="logo-menutop pull-left show-top" height=20>
             </a>
 
             <span class="hidden-xs skills font-montserrat <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
@@ -83,6 +83,7 @@ input#second-search-bar{
         <?php if( $subdomain == "web" ||
                   $subdomain == "actu" ||
                   $subdomain == "search" ||
+                  $subdomain == "social" ||
                   $subdomain == "agenda" ||
                   $subdomain == "power"  ||
                   $subdomain == "freedom"||

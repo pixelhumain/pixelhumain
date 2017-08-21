@@ -11,7 +11,7 @@
         <div class="col-xs-12 text-center" style="margin-top:50px;margin-bottom:50px;">
             <hr>
             <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal">
-            <i class="fa fa-times"></i> Retour
+            <i class="fa fa-times"></i> <?php echo Yii::t("common","Back") ?>
             </a>
         </div>
     </div>
@@ -64,13 +64,13 @@
                 <a href="#search" class=" btn-main-menu col-xs-3"  data-type="search" >    
                     <div class="modal-body text-center">
                         <h4 class="text-red no-margin"><i class="fa fa-search fa-2x padding-bottom-10"></i><br>
-                            <span class="homestead"> RECHERCHE</span>
+                            <span class="homestead"> <?php echo Yii::t("home","SEARCH") ?></span>
                         </h4>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
-                            <h5>Le moteur de recherche
+                            <h5><?php echo Yii::t("home","The search engine") ?>
                                 <small class="hidden-xs"><br>
-                                    pour retrouver facilement les acteurs de son territoire
+                                    <?php echo Yii::t("home","To find easily local actors") ?>
                                 </small>
                             </h5>
                         </div>
@@ -80,13 +80,13 @@
                 <a href="#annonces" class=" btn-main-menu col-xs-3" data-type="classified" >
                     <div class="modal-body text-center">
                         <h4 class="text-red no-margin"><i class="fa fa-bullhorn fa-2x padding-bottom-10"></i><br>
-                            <span class="homestead"> ANNONCES</span>
+                            <span class="homestead"> <?php echo Yii::t("home","ADS") ?></span>
                         </h4>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
-                            <h5>Petites annonces locales
+                            <h5><?php echo Yii::t("home","Local ads") ?>
                                 <small class="hidden-xs"><br>
-                                    Pour simplifier les échanges de biens et de services
+                                    <?php echo Yii::t("home","To simplify goods and services exchanges")?>
                                 </small>
                             </h5>
                         </div>
@@ -96,29 +96,29 @@
                 <a href="#agenda" class=" btn-main-menu col-xs-3" data-type="agenda">
                     <div class="modal-body text-center">
                         <h4 class="text-red no-margin"><i class="fa fa-calendar fa-2x padding-bottom-10"></i><br>
-                            <span class="homestead"> AGENDA</span>
+                            <span class="homestead"> <?php echo Yii::t("home","AGENDA") ?></span>
                         </h4>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
-                            <h5>Un agenda commun
+                            <h5><?php echo Yii::t("home","A common agenda") ?>
                                 <small class="hidden-xs"><br>
-                                    pour connaître en temps réel toute l'activité locale
+                                    <?php echo Yii::t("home","to know in live all about local events") ?>
                                 </small>
                             </h5>
                         </div>
                     </div>
                 </a>
                 
-                <a href="#power" class="btn-main-menu col-xs-3" > 
+                <a href="#live" class="btn-main-menu col-xs-3" > 
                     <div class="modal-body text-center">
                         <h4 class="text-red no-margin"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
-                            <span class="homestead"> LIVE</span>
+                            <span class="homestead"> <?php echo Yii::t("home","LIVE") ?></span>
                         </h4>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
-                            <h5>Un fil d'actualités commun
+                            <h5><?php echo Yii::t("home","A common news stream") ?>
                                 <small class="hidden-xs"><br>
-                                    Pour diffuser vos messages autrement
+                                    <?php echo Yii::t("home","To diffuse your messages for your city")?>
                                 </small>
                             </h5>
                         </div>

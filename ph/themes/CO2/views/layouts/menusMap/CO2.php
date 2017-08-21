@@ -3,11 +3,9 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll pull-left">
-            <a href="#page-top"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" style="padding-right:20px;" class="nc_map pull-left" height=30></a>
-            
-           <!--  <a class="navbar-brand font-blackoutM hidden-xs  hidden-sm" href="#page-top">
-                <small class="letter letter-red pastille font-blackoutT">map</small>
-            </a> -->
+            <a href="#" class="lbh">
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo-min.png" style="padding-right:20px;" class="logo-menutop pull-left" height=30>
+            </a>
         </div>
        
         <div class="hidden-xs col-sm-5 col-md-4 col-lg-4 no-padding">
@@ -29,12 +27,12 @@
                     if( isset( Yii::app()->session['userId']) ){
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
                 ?> 
-                      <button class="dropdown-toggle menu-name-profil text-dark lbh" 
-                              data-toggle="dropdown" data-hash="#element.detail.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>">
-                                <small class="hidden-xs"><?php echo @$me["username"]; ?></small> 
+                      <a class="menu-name-profil text-dark lbh" 
+                              data-toggle="dropdown" href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>">
+                                <small class="hidden-xs"><?php echo @$me["name"]; ?></small> 
                                 <img class="img-circle" id="menu-thumb-profil" 
                                      width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
-                      </button>
+                      </a>
 
                 <?php } else { ?>
                     <!-- <li class="page-scroll">

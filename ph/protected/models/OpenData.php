@@ -39,9 +39,9 @@ class OpenData
     public static $categ = array(
                                 array( "name" => "Divers", 
                                     "tags" => array("divers") ),
-                                array( "name" => "Communs", 
-                                    "icon" => "fa-thumbs-o-up",
-                                    "tags" => array("commun") ),
+                                array( "name" => "Sport", 
+                                    "icon" => "fa-futbol-o",
+                                    "tags" => array("sport") ),
                                 array( "name" => "Agriculture | Alimentation", 
                                     "icon" => "fa-cutlery",
                                     "tags" => array("agriculture","alimentation") ),
@@ -74,7 +74,10 @@ class OpenData
                                     "tags" => array("biodiversité") ),
                                 array( "name" =>  "TIC | Numérique | Internet ",
                                     "icon" => "fa-laptop",
-                                    "tags" => array("numérique","tic","internet") )  
+                                    "tags" => array("numérique","tic","internet") )  ,
+                                array( "name" => "Communs", 
+                                    "icon" => "fa-thumbs-o-up",
+                                    "tags" => array("commun") ),
                                 );
     
     /**

@@ -72,7 +72,6 @@ function getAjax(id,ajaxUrl,callback,datatype,blockUI)
             toastr.success(data);
           else
               $(id).html( JSON.stringify(data, null, 4) );
-  
           if( typeof callback === "function")
             callback(data,id);
           if(blockUI)
@@ -723,18 +722,21 @@ function removeEmptyAttr (jsonObj, sourceObj) {
 }
 
 function buildSelectOptions(list,value) { 
+  mylog.log("test ", value, list);
   var html = "";
   if(list){
     $.each(list, function(optKey, optVal) {
       mylog.log("buildSelectOptions", value, optKey, optVal);
+      valueName= (typeof tradCategory[optVal] != "undefined") ? tradCategory[optVal]:optVal;
       selected = ( value == optKey ) ? "selected" : ""; 
-      html += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
+      html += '<option value="'+optKey+'" '+selected+'>'+valueName+'</option>';
     });
   }
   return html;
 }
 
-function buildSelectGroupOptions(list,value) { 
+function buildSelectGroupOptions(list,value) {
+  mylog.log("test2 ", value, list);
   var html = "";
   mylog.log("list", list)
   if(list){

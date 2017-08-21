@@ -9,7 +9,8 @@
         "title" : "Cartographie des compétences",
         "shortDescription" : "Localisez les partenaires et compétences dont vous avez besoin pour construire votre projet de mobilité.",
         "displayScope" : false,
-        "displayCommunexion" : false,
+        "displayCommunexion" : true,
+        "signup" : false,
         "displayNotifications" : false,
         "docs":false,
         "profilBar" : false,
@@ -22,25 +23,45 @@
         "iconeSearchPlus" : false,
         "loginTitle":"",
         "front" : {
-	        "organization" : false,
-	        "project" : false,
-	        "event" : false,
-	        "community" : false,
-	        "dda" : false,
-	        "live" : false,
-	        "search" : false,
-	        "need" : false,
-	        "poi" : false
-	    },
-	    "menu" : {
-		    "aroundMe":false,
-		    "connectLink":false,
-		    "add":false,
-		    "detail":true,
-		    "news":false,
-		    "directory":false,
-		    "gallery":false
-	    }
+            "organization" : false,
+            "project" : false,
+            "event" : false,
+            "community" : false,
+            "dda" : false,
+            "live" : false,
+            "search" : false,
+            "need" : false,
+            "poi" : false
+        },
+        "menu" : {
+            "aroundMe":false,
+            "connectLink":false,
+            "add":false,
+            "detail":true,
+            "news":false,
+            "directory":false,
+            "gallery":false
+        },
+        "tooltips" : {
+            ".btnConnectted" : "Se connecter",
+            ".btnSignIn" : "S'inscrire"
+        }
+    },
+    "dynForm" : {
+        "extra" : {
+                "tags1" : { 
+                    "list" : "Géographique",
+                    "placeholder" : "Ajouter une Géographique"
+                },
+                "tags2" : { 
+                    "list" : "Structures",
+                    "placeholder" : "Ajouter une Structures"
+                },
+                "tags3" : { 
+                    "list" : "Compétences",
+                    "placeholder" : "Ajouter une Compétences"
+                }
+        }
     },
    "filter" : {
         "types" : false,
@@ -51,7 +72,7 @@
             "image" : "All.png"
         },
         "linksTag" : {
-	        "Géographique" : {
+            "Géographique" : {
                 "tagParent" : "Geographique",
                 "background-color" : "#f5f5f5",
                 "image" : "Marker.png",
@@ -65,7 +86,7 @@
                     "MEL" : "MEL"
                 }
             },
-	        "Structures" : {
+            "Structures" : {
                 "tagParent" : "Structure",
                 "background-color" : "#f5f5f5",
                 "image" : "Loisir.png",
@@ -89,9 +110,9 @@
                   "Mobilités actives et partagées" : "Mobilités actives et partagées",
                   "Energie et mobilité" : "Energie et mobilité",
                   "Services à la mobilité" : "Services à la mobilité",
-                  "TIC, Numérique et Data" : "TIC, Numérique et Data",
+                  "TIC Numérique et Data" : "TIC Numérique et Data",
                   "Ingénierie et financement" : "Ingénierie et financement",
-                  "Aménagement, valorisation et développement" : "Aménagement, valorisation et développement",
+                  "Aménagement valorisation et développement" : "Aménagement valorisation et développement",
                   "Organisation et management de la mobilité" : "Organisation et management de la mobilité"
                 }
             }
@@ -108,7 +129,7 @@
         "displayShortDescription" : true
     },
     "request" : {
-	    "sourceKey" :[
+        "sourceKey" :[
             "iviatic"
         ],
         "pagination" : 2000,

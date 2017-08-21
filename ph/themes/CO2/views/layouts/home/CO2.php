@@ -12,23 +12,18 @@ $communexion = CO2::getCommunexionCookies();
 		background-size: 80%;
 		background-color:#fff;  
 	}
-
-	#mainNav .dropdown-result-global-search{
-		top:93px!important;
-	}
-
-	@media screen and (max-width: 992px) {
+	/*#mainNav .dropdown-result-global-search{
+        top:56px !important;
+        left:83px !important;
+    }*/
+    @media (min-width: 767px) and (max-width: 992px) {
         #mainNav .dropdown-result-global-search{
-			top:100px!important;
-		}
+            width:40% !important;
+        }
     } 
-
-    @media (max-width: 767px) {
-       
-    }
 </style>
 
-<div class="home_page">
+<div class="pageContent">
 
 	<!-- <div class="col-md-12 col-lg-12 col-sm-12">
 		<?php 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
@@ -43,7 +38,7 @@ $communexion = CO2::getCommunexionCookies();
 			<?php if(!isset(Yii::app()->session['userId'])) { ?>
 			<div class="col-md-7 col-sm-7 text-center">
 				<div id="homeImg">
-					<img id="img-header" class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/1+1=3empty.jpg"/>
+					<img id="img-header" class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/1+1=3empty.jpg"/>
 				</div>
 			</div>
 
@@ -57,7 +52,7 @@ $communexion = CO2::getCommunexionCookies();
 			<?php } else { ?>
 			<div class="col-md-12 text-center">
 				<div id="homeImg">
-					<img id="img-header" class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/1+1=3empty.jpg"/>
+					<img id="img-header" class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/1+1=3empty.jpg"/>
 				</div>
 			</div>
 			<?php } ?>
@@ -76,7 +71,7 @@ $communexion = CO2::getCommunexionCookies();
 		</div>
 
 
-		<div class="col-md-12 margin-top-50">
+		<div class="col-md-12 col-sm-12 col-xs-12  margin-top-50">
 			<?php $isEmptyCo = empty($communexion["values"]["cityName"]); 
 				//var_dump($communexion);
 			?>
@@ -88,9 +83,9 @@ $communexion = CO2::getCommunexionCookies();
 				<i class="fa fa-cross"></i> 
 				<span id="communexionNameHome">
 				<?php if($isEmptyCo){ ?>
-					Vous n'êtes pas <span class="text-dark">communecté</span>
+					<?php echo Yii::t("home","You're not <span class='text-dark'>communected</span>") ?>
 				<?php }else{ ?>
-					Vous êtes <span class="text-dark">communecté à 
+					<?php echo Yii::t("home","You are") ?> <span class="text-dark"><?php echo Yii::t("home","communected to") ?> 
 					<span class="text-red"><?php echo $communexion["values"]["cityName"];?></span> </span>
 				<?php } ?>
 				</span><br>
@@ -98,8 +93,7 @@ $communexion = CO2::getCommunexionCookies();
 						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
 						 style="line-height: 15px;">
 						<i class="fa fa-signal"></i> 
-						Être communecté vous permet de capter en direct les informations pertinentes<br>
-						qui se trouvent autour de vous.
+						<?php echo Yii::t("home","Be communected permits you to get smart informations<br>localy performed.") ?>
 					</small>
 				</small>
 			</h3>
@@ -107,11 +101,11 @@ $communexion = CO2::getCommunexionCookies();
 			<hr class="angle-down">
 
 			<h5 class="text-center info_co <?php if(!$isEmptyCo) echo 'hidden'; ?>">
-				communectez-vous !
+				<?php echo Yii::t("home","Be communected") ?> !
 			</h5>
 			<div class="col-md-12 text-center">
 				<button class="btn btn-default <?php if($isEmptyCo) echo 'hidden'; ?>" id="change_co">
-				Changer de communexion
+				<?php echo Yii::t("home","Change your communexion") ?>
 				</button>
 			</div>
 			
@@ -128,15 +122,13 @@ $communexion = CO2::getCommunexionCookies();
 						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
 				   id="main-search-bar" type="text" 
 				   style="border-radius:50px; height:40px; border: 2px solid red; color:red; margin-bottom:15px;"
-				   placeholder="communectez-vous : Nantes, Strasbourg, Avignon ?"></div>
+				   placeholder="<?php echo Yii::t("home", "communect you : London, Paris, Brussels ?") ?>"></div>
 
 			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 info_co
 						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
 						 style="font-family: 11px;" id="info_co">
-	            <i class="fa fa-signal"></i> Pour utiliser le réseau à pleine puissance, nous vous conseillons de vous 
-	            <i><b>communecter</b></i>.<br><br>
-	            <i class="fa fa-magic"></i> Indiquez de préférence votre <b>commune de résidence</b>, 
-	            pour garder un œil sur ce qui se passe près de chez vous, de façon automatique.<br>
+	            <i class="fa fa-signal"></i> <?php echo Yii::t("home","To use the network efficiently, we advice you to be <i><b>communected</b></i>") ?>.<br><br>
+	            <i class="fa fa-magic"></i> <?php echo Yii::t("home","Indicate your <b>living place</b>, to keep informed about what's happened around you automatically.") ?><br>
 	        </div>
 	        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="font-family: 11px;" id="dropdown_search">
 	        </div>
@@ -145,23 +137,23 @@ $communexion = CO2::getCommunexionCookies();
 		
 		<div class="col-md-12 col-sm-12 col-xs-12 no-padding margin-top-25"><hr></div>
 		
-		<div class="col-md-12">
+		<div class="col-md-12 col-sm-12 col-xs-12">
 			<h3 class="text-red text-center">
 				<i class="fa fa-clock-o fa-2x"></i><br>
-				En ce moment<br>
+				<?php echo Yii::t("home", "An the moment") ?><br>
 				<small id="liveNowCoName">
 					<?php if($isEmptyCo){ ?>
-					sur le réseau
+					<?php echo Yii::t("home","on the network") ?>
 					<?php }else{ ?>
-					<span class='text-red'>à <?php echo $communexion["values"]["cityName"];?></span>
+					<span class='text-red'><?php echo Yii::t("home","in") ?> <?php echo $communexion["values"]["cityName"];?></span>
 					<?php } ?>
 				</small>
 			</h3>
 			<div class="text-left" id="nowList"></div>
 		</div>
 
-		<div class="col-md-12 margin-top-50">
-			<h3 class="text-red text-center">En savoir plus</h3>
+		<div class="col-md-12 col-sm-12 col-xs-12 margin-top-50">
+			<h3 class="text-red text-center"><?php echo Yii::t("home","More informations") ?></h3>
 			<hr class="angle-down">
 		</div>
 
@@ -206,10 +198,10 @@ $communexion = CO2::getCommunexionCookies();
 		
 	<!-- </div> -->
 
-	<div class="col-sm-12 no-padding margin-top-50" style="background-color:#fff; max-width:100%; float:left;">
+	<div class="col-sm-12 col-md-12 col-xs-12 no-padding margin-top-50" style="background-color:#fff; max-width:100%; float:left;">
 		<div class="col-md-12" style="background-color:#E33551;width:100%;padding:8px 0px 8px 0%;">
 			<h1 class="homestead text-center text-white">
-				<i class="fa fa-user-circle"></i><br>Les amis de communecter
+				<i class="fa fa-user-circle"></i><br><?php echo Yii::t("home","Friends of communecter") ?>
 			</h1>
 		</div>
 		<center>
@@ -243,10 +235,10 @@ $communexion = CO2::getCommunexionCookies();
 		</div>
 	</div>
 
-	<div class="col-sm-12 no-padding margin-top-50" style="background-color:#E33551; max-width:100%; float:left;" id="teamSection">
+	<div class="col-sm-12 col-md-12 col-xs-12 no-padding margin-top-50" style="background-color:#E33551; max-width:100%; float:left;" id="teamSection">
 		<!-- <div class="col-md-12" style="background-color:#293A46;width:100%;padding:8px 0px 8px 0%;">
 			<h1 class="homestead center text-white"><a href="#default.view.page.partners" class="lbh">Partenaires & Contributeurs</a> <i class="fa fa-share-alt fa-2x"></i></h1>
-		</div>
+		</div> -->
 		<!-- <center>
 			<i class="fa fa-caret-down" style="color:#293A46;"></i><br/>
 		</center> -->
@@ -254,21 +246,21 @@ $communexion = CO2::getCommunexionCookies();
 			<i class="fa fa-caret-down" style="color:#fff"></i><br/>
 			<h1 class="homestead" style="color:#fff">
 				<!-- <i class="fa fa-line-chart headerIcon"></i>  -->
-				EN AMÉLIORATION CONTINUE
+				<?php echo Yii::t("home","Constantly improving") ?>
 			</h1>
 			
 			<div class="col-sm-12 text-white padding-bottom-15">
-				Communecter est une plateforme open source, construite de façon collaborative.
+				<?php echo Yii::t("home","Communecter is open source platform, built in collaborative way") ?>.
 				<!-- <i>"EN AMÉLIORATION CONTINUE"</i> -->
-				<h3 class="">Rejoignez nous : </h3>
-
-				<a href="#showTagOnMap.tag.developpeur" data-id="explainDeveloper"  class="lbh btn btn-default text-bold">Développeurs</a>
-				<a href="javascript:showTagOnMap ('#communecteur')" data-id="explainCommunecteur" class=" btn btn-default text-bold">Communecteurs</a>
-				<a href="javascript:showTagOnMap ('#editeur')" data-id="explainEditor" class=" btn btn-default text-bold">Editeurs </a>
-				<a href="javascript:showTagOnMap ('#designeur')" data-id="explainDesigner" class=" btn btn-default text-bold">Designeur </a><br>
-				<a href="javascript:showTagOnMap ('#contributeur')" data-id="explainContributor" class="margin-top-10  btn btn-default text-bold">Contributeurs</a>
-				<a href="#organization.detail.id.<?php echo Yii::app()->params['openatlasId'] ?>" class="margin-top-10 lbh btn btn-default text-bold">Association Open Atlas</a>
-				<a href="#project.detail.id.<?php echo Yii::app()->params['communecterId'] ?>"  class="margin-top-10 lbh btn btn-default text-bold">Projet Communecter</a>
+				<h3 class=""><?php echo Yii::t("home","Join us") ?> : </h3>
+				<!--#showTagOnMap.tag.developpeur-->
+				<a href="javascript:;" onclick="showTagOnMap ('#developpeur');" data-id="explainDeveloper"  class="btn btn-default text-bold"><?php echo Yii::t("home","Developpers") ?></a>
+				<a href="javascript:showTagOnMap ('#communecteur')" data-id="explainCommunecteur" class=" btn btn-default text-bold"><?php echo Yii::t("home","Communectors") ?></a>
+				<a href="javascript:showTagOnMap ('#editeur')" data-id="explainEditor" class=" btn btn-default text-bold"><?php echo Yii::t("home","Editors") ?> </a>
+				<a href="javascript:showTagOnMap ('#designeur')" data-id="explainDesigner" class=" btn btn-default text-bold"><?php echo Yii::t("home","Designers") ?> </a><br>
+				<a href="javascript:showTagOnMap ('#contributeur')" data-id="explainContributor" class="margin-top-10  btn btn-default text-bold"><?php echo Yii::t("home","Contributors") ?></a>
+				<a href="#organization.detail.id.<?php echo Yii::app()->params['openatlasId'] ?>" class="margin-top-10 lbh btn btn-default text-bold"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
+				<a href="#project.detail.id.<?php echo Yii::app()->params['communecterId'] ?>"  class="margin-top-10 lbh btn btn-default text-bold"><?php echo Yii::t("home","Project Communecter") ?></a>
 			</div>
 		</center>
 		<div class="space20"></div>
@@ -279,9 +271,9 @@ $communexion = CO2::getCommunexionCookies();
 			<i class="fa fa-caret-down" style="color:#E33551"></i><br/>
 			<h1 class="homestead">
 			<i class="fa fa-envelope headerIcon"></i><br/>
-			CONTACT
+			<?php echo Yii::t("home","CONTACT") ?>
 			</h1>
-			+ 262 262 34 36 86<br><a href="#">contact@pixelhumain.com</a>
+			+ 262 262 34 36 86<br><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/contactCO_footer_welcome.png" height="15"/>
 
 			<ul class="social-list">
 				<li><a target="_blank" href="https://www.facebook.com/communecter" class="btn btn-facebook btn-social"><span class="fa fa-facebook"></span></a></li>
@@ -290,9 +282,9 @@ $communexion = CO2::getCommunexionCookies();
 				<li><a target="_blank" href="https://github.com/pixelhumain/communecter" class="btn btn-github btn-social"><span class="fa fa-github"></span> </a></li>
 			</ul>
 
-			<a href="javascript:;" data-id="explainOpenAtlas" class="explainLink">L'association Open Atlas</a>
-			<br/><a href="#default.view.page.mention" class="lbh" >Mentions Légales</a>
-			<br/><a href="#default.view.page.partners" class="lbh">Partenaires</a>
+			<a href="default/view/page/openatlas/dir/docs|panels" data-id="explainOpenAtlas" class="lbhp"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
+			<br/><a href="default/view/page/mention/dir/docs|panels" class="lbhp" ><?php echo Yii::t("home","Legal notice") ?></a>
+			<br/><a href="default/view/page/partners/dir/docs|panels?type=partner" class="lbhp"><?php echo Yii::t("home","Partners") ?></a>
 		<center>
 	</div>
 </div>
@@ -342,7 +334,7 @@ $communexion = CO2::getCommunexionCookies();
                     </button>
                 </div> -->
 
-                <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
+                <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo Yii::t("common","Back") ?></a>
                 <button class="btn btn-success text-white pull-right forgotBtn"><i class="fa fa-sign-in"></i> Envoyer</button>
                 
                 
@@ -407,7 +399,7 @@ jQuery(document).ready(function() {
     });
 
 
-	setTitle("Bienvenue sur <span class='text-red'>commune</span>cter","home","Bienvenue sur Communecter");
+	setTitle("<?php echo Yii::t("home","Welcome on") ?> <span class='text-red'>commune</span>cter","home","<?php echo Yii::t("home","Welcome on Communecter") ?>");
 	$('.tooltips').tooltip();
 
 	$("#btn-param-postal-code").click(function(){

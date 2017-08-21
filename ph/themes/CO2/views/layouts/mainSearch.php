@@ -14,7 +14,7 @@
     
 ?>
 
-<html lang="en" class="no-js">
+<html lang="en" class="no-js">   
 
     <head>
 
@@ -32,15 +32,17 @@
 
         <link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" /> 
 
-        <!-- <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
-        <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' /> -->
+<?php if( Yii::app()->params["forceMapboxActive"]==true &&  Yii::app()->params["mapboxActive"]==true ){ ?>
+    <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
 
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css"> 
 
-        <!-- <script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
-        <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' /> -->
-        
+    <script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+    <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' />
+<?php } ?>
+
         <?php 
             $cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
         ?>
@@ -60,7 +62,7 @@
         MAP CONTAINER
         ******************************************* -->
         <div id="mainMap">
-            <?php $this->renderPartial($layoutPath.'mainMap'); ?>
+            <?php $this->renderPartial($layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"]); ?>
         </div>
 
         <?php //get all my link to put in floopDrawer
@@ -82,8 +84,7 @@
         <?php //$this->renderPartial($layoutPath.'loginRegister', array()); ?>
 
         <?php  if( isset(Yii::app()->session["userId"]) )
-                $this->renderPartial('../news/modalShare',
-                                     array());
+                $this->renderPartial('../news/modalShare', array());
         ?>
             
         <div class="main-container">
@@ -102,12 +103,11 @@
             <header>
                 <div class="col-md-12 text-center main-menu-app" style="">
                     <?php 
-                    $CO2DomainName = Yii::app()->params["CO2DomainName"];
-                    $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
-                                                                                "subdomain"  => ""));
-                        ?>
+                        $CO2DomainName = Yii::app()->params["CO2DomainName"];
+                        $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
+                                                                                    "subdomain"  => ""));
+                    ?>
                 </div>
-
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
@@ -124,15 +124,11 @@
             <div class="pageContent"></div>
         </div>
         
-
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
-
-        
-        
-        <?php 
-        if($CO2DomainName != "CO2")
-            $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); ?> 
-
+       
+        <?php if($CO2DomainName == "kgougle")
+                $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
+        ?> 
         
         <?php 
             echo "<!-- start: MAIN JAVASCRIPTS -->";
@@ -148,7 +144,6 @@
             $cssAnsScriptFilesModule = array(
                 '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js',
                 '/plugins/jquery-validation/dist/jquery.validate.min.js',
-                '/plugins/jquery-validation/localization/messages_fr.js',
                 '/plugins/bootbox/bootbox.min.js' , 
                 '/plugins/blockUI/jquery.blockUI.js' , 
                 '/plugins/toastr/toastr.js' , 
@@ -171,6 +166,7 @@
                 
                 '/plugins/select2/select2.min.js' , 
                 '/plugins/moment/min/moment.min.js' ,
+                '/plugins/moment/min/moment-with-locales.min.js',
                 '/plugins/jquery.dynForm.js',
                 //'/js/cookie.js' ,
                 '/js/api.js',
@@ -179,6 +175,8 @@
                 '/plugins/font-awesome/css/font-awesome.min.css',
                 '/plugins/font-awesome-custom/css/font-awesome.css',
             );
+            if(Yii::app()->language!="en")
+                array_push($cssAnsScriptFilesModule,"/plugins/jquery-validation/localization/messages_".Yii::app()->language.".js");
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
             HtmlHelper::registerCssAndScriptsFiles( array('/js/default/formInMap.js') , $this->module->assetsUrl);
             
@@ -204,7 +202,6 @@
                 '/assets/js/radioplayer.js',
     
                 '/assets/css/floopDrawerRight.css'
-                                                  
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
@@ -214,8 +211,8 @@
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
             if($CO2DomainName != "CO2"){
                 $cssAnsScriptFilesModule = array(
-                    '/assets/css/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
-                    '/assets/css/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
+                    '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
+                    '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
                     '/assets/js/themes/'.$CO2DomainName.'.js',
                 );
                 HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
@@ -223,11 +220,22 @@
         ?>
 
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
-        <?php //$this->renderPartial($layoutPath.'loginRegister', array()); ?>
-        <?php $this->renderPartial($layoutPath.'modals.CO2.mainMenu', array("me"=>$me) ); ?>
-        <?php //$this->renderPartial($layoutPath.'modals.CO2.selectCreate', array("me"=>$me) ); ?>
+        
+        <?php $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
 
-        <script>          
+        <?php 
+            if((($CO2DomainName == "CO2" &&
+                !@Yii::app()->session["userId"] && 
+                !@Yii::app()->session["user"]["preferences"]) || 
+                (@Yii::app()->session["user"]["preferences"] && 
+                !@Yii::app()->session["user"]["preferences"]["unseenHelpCo"])) &&
+                !@Yii::app()->request->cookies['unseenHelpCo'])
+                $this->renderPartial($layoutPath.'footer.donation'); 
+
+        ?>
+        
+        <script>    
+            //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() { 
                 $.blockUI();
@@ -248,6 +256,24 @@
                 setTimeout(function(){
                     $("#page-top").show();
                 }, 500);
+                $(".close-footer-help").click(function(){
+                    $("#footer-help").remove();
+                    if(typeof userId != "undefined" && userId != ""){
+                        $.ajax({
+                            type: "POST",
+                            url: baseUrl+"/"+moduleId+"/person/removehelpblock/id/"+userId,
+                            dataType: "json",
+                            success: function(data){
+                                    toastr.success("Ce bandeau ne s'affichera plus lorsque vous êtes connecté(e) !");
+                                }
+                            });
+                    }
+                });
+                $(".add-cookie-close-footer").click(function(){
+                    $.cookie('unseenHelpCo', true, { expires: 365, path: "/" });
+                    $("#footer-help").fadeOut();
+                    toastr.success("Ce bandeau ne s'affichera plus sur ce navigateur !");
+                });
             });
             console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
         </script>

@@ -46,8 +46,10 @@
     box-shadow: 0px -1px 4px -3px rgb(101, 101, 101);
     filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=4);*/
     margin-top: 10px;
-    right:0px;
-    left:0px;
+    right: 0px;
+    left: 0px;
+    padding-top: 25px;
+
 
   }
   .search-loader{
@@ -252,10 +254,16 @@
     margin-bottom: 25px !important;
   }
   .searchEntityContainer.surveys{
-    min-height: 150px !important;
-    max-height: 150px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
     margin-bottom: 25px !important;
   }
+
+  .searchEntityContainer.surveys .entityRight{
+    max-height: 170px !important;
+    overflow: hidden;
+  }
+
   .searchEntityContainer.classified{
     min-height: 250px !important;
     max-height: 560px !important;
@@ -319,6 +327,12 @@
     border-radius: 0px;
   }
 
+  .searchEntity button.item-globalscope-checker{
+    width:100%;
+    border-radius: 0px;
+    font-size: 16px;
+  }
+
   
 .searchEntityContainer.cities{
   min-height: 95px !important;
@@ -326,7 +340,11 @@
 }
 
 .searchEntityContainer.cities .searchEntity{
-  border-radius:15px;
+  border-radius:0px;
+  moz-box-shadow: 0px 0px 5px -1px #242424;
+  -webkit-box-shadow: 0px 0px 5px -1px #242424;
+  -o-box-shadow: 0px 0px 5px -1px #242424;
+  box-shadow: 0px 0px 5px -1px #242424;
 }
 
 .searchEntityContainer.cities .entityName{
@@ -481,6 +499,13 @@
 }
 /* affichage MIN for favorites*/
 
+.typePoiDir{
+  text-transform: capitalize;
+}
+.typePoiDir hr{
+  margin-top: 5px;
+  margin-bottom: 8px;
+}
 
   @media screen and (max-width: 1024px) {
     #menu-directory-type .hidden-sm{
@@ -570,7 +595,7 @@
   }
 
 .contactPanelHtml{
-  max-height: 150px !important;
+  max-height: 350px !important;
   min-height: 150px !important;
   margin-bottom: 15px !important;
 }
@@ -578,4 +603,28 @@
 
 .contactPanelHtml .panel-heading{
   min-height: 110px
+}
+.adminToolBar{
+    display: none;
+    position: absolute;
+    top: 0px;
+    height: 150px;
+    right: 15px;
+    background-color: rgba(0,0,0,0.6);
+    left: 15px;
+}
+.adminToolBar button{
+    width: 100%;
+    border-radius: inherit;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+}
+.adminToolBar button:hover{
+    background-color: white;
+    color: black;
+    font-size: 17px;
+}
+.adminIconDirectory{
+  z-index:10;
 }

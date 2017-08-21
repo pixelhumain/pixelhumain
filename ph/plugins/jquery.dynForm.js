@@ -72,7 +72,7 @@ onSave: (optional) overloads the generic saveProcess
 				settings.beforeBuild();
 
 			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
-//				mylog.log("??????????????????????????",field,fieldObj);
+				//mylog.log("??????????????????????????",field,fieldObj);
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
 				
@@ -90,11 +90,11 @@ onSave: (optional) overloads the generic saveProcess
         				'<hr class="col-md-12">';
         	if( !settings.formObj.jsonSchema.noSubmitBtns )
 				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
-							'Valider <i class="fa fa-arrow-circle-right"></i>'+
+							tradDynForm["submit"]+' <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
 						' <a href="javascript:dyFObj.closeForm(); " class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
-							'<i class="fa fa-times "></i> Annuler'+
+							'<i class="fa fa-times "></i> '+tradDynForm["cancel"]+
 						'</a> ';
 
 			fieldHTML += '</div>';
@@ -331,10 +331,10 @@ onSave: (optional) overloads the generic saveProcess
 							'<span class="qq-upload-drop-area-text-selector"></span>'+
 							'</div>'+
 							'<div class="qq-upload-button-selector btn btn-primary">'+
-							'<div>Ajouter une image</div>'+
+							'<div>'+tradDynForm["addimage"]+'</div>'+
 							'</div>'+
 							'<button type="button" id="trigger-upload" class="btn btn-danger hide">'+
-			                '<i class="icon-upload icon-white"></i> Enregistrer'+
+			                '<i class="icon-upload icon-white"></i> '+tradDynForm["save"]+
 			                '</button>'+
 							'<span class="qq-drop-processing-selector qq-drop-processing">'+
 							'<span>En cours de progression...</span>'+
@@ -416,6 +416,11 @@ onSave: (optional) overloads the generic saveProcess
         	if(placeholder == "")
         		placeholder="25/01/2014";
         	mylog.log("build field "+field+">>>>>> date");
+        	if(value && (""+value).indexOf("/") < 0){
+        		//timestamp use case 
+        		value =moment(parseInt(value)*1000).format('DD/MM/YYYY');
+        		//alert("switch:"+value);
+        	}
         	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -502,17 +507,32 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="address" name="address[streetAddress]" id="address[streetAddress]" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
-			
+			mylog.log("location formValues", formValues);
 			//locations are saved in addresses attribute
+			if( formValues.address && formValues.geo && formValues.geoPosition ){
+				var initAddress = function(){
+					mylog.warn("init Adress location",formValues.address.addressLocality,formValues.address.postalCode);
+					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
+					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition}, -1);
+				};
+			}     
 			if( formValues.addresses ){
-				initField = function(){
+				var initAddresses = function(){
 					$.each(formValues.addresses, function(i,locationObj){
-						mylog.warn("init location",locationObj.address.addressLocality,locationObj.address.postalCode);
-						copyMapForm2Dynform(locationObj);
-						addLocationToForm(locationObj);
+						mylog.warn("init extra addresses location ",locationObj.address.addressLocality,locationObj.address.postalCode);
+						dyFInputs.locationObj.copyMapForm2Dynform(locationObj);
+						dyFInputs.locationObj.addLocationToForm(locationObj, i);
 					});
 				};
-			}       
+			} 
+			initField = function(){
+				if(initAddress)
+					initAddress();
+				if(initAddresses)
+					initAddresses();
+				dyFInputs.locationObj.init();
+			} 
+
         }else if ( fieldObj.inputType == "postalcode" ) {
         	mylog.log("build field "+field+">>>>>> postalcode");
         	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" postalCodeBtn btn btn-default'><i class='text-azure fa fa-plus fa-2x'></i> Postal Code </a>";
@@ -989,86 +1009,114 @@ onSave: (optional) overloads the generic saveProcess
 		/* **************************************
 		* Image uploader , we use https://github.com/FineUploader/fine-uploader
 		***************************************** */
-		function loadFineUploader(callback) {
-			if( ! jQuery.isFunction(jQuery.fineUploader) ) {
-				lazyLoad( baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js', 
-						  baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
-						  callback);
-		    }
-		}
+		if(  $(".fine-uploader-manual-trigger").length)
+		{
+			function loadFineUploader(callback) {
+				if( ! jQuery.isFunction(jQuery.fineUploader) ) {
+					lazyLoad( baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js', 
+							  baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
+							  callback);
+			    }
+			}
 
-		var FineUploader = function(){
-			mylog.log("init fineUploader");
-			$(".fine-uploader-manual-trigger").fineUploader({
-	            template: 'qq-template-gallery',//'qq-template-manual-trigger',
-	            request: {
-	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile"
-	                //params : uploadObj
-	            },
-	            validation: {
-	                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
-	                sizeLimit: 2000000
-	            },
-	            messages: {
-			        sizeError : '{file} est trop lourde! limite max : {sizeLimit}.',
-			        typeError : '{file} extension invalide. Extension(s) acceptable: {extensions}.'
-			    },
-	            callbacks: {
-	            	//when a img is selected
-				    onSubmit: function(id, fileName) {
-				      if(initValues.showUploadBtn)
-				      	$('#trigger-upload').removeClass("hide")
+			var FineUploader = function(){
+				mylog.log("init fineUploader");
+				
+				$(".fine-uploader-manual-trigger").fineUploader({
+		            template: 'qq-template-gallery',//'qq-template-manual-trigger',
+		            request: {
+		                endpoint: uploadObj.path
+		                //endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile/contentKey/"+uploadObj.contentKey 
+		                //params : {id:uploadObj.id}
+		            },
+		            validation: {
+		                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
+		                sizeLimit: 2000000
+		            },
+		            messages: {
+				        sizeError : '{file} est trop lourde! limite max : {sizeLimit}.',
+				        typeError : '{file} extension invalide. Extension(s) acceptable: {extensions}.'
 				    },
-				    /*
-				    //launches request endpoint
-				    //onUpload: function(id, fileName) {
-				      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
-				      //alert(" > request : "+baseUrl+"/"+moduleId+"/document/upload/dir/"+moduleId+"/folder/"+contextData.type+"/ownerId/"+contextData.id+"/input/dynform");
-				      //documents.saveImages(contextData.type, contextData.id);
-				    //},
-				    //launched on upload
-				    /*onProgress: function(id, fileName, uploadedBytes,totalBytes) {
-				      alert("progress");
-				    },*/
-				    //when every img finish upload process whatever the status
-				    onComplete: function(id, fileName,responseJSON,xhr) {
-				    	if(!responseJSON.result){
-				    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
-				    		console.error(trad["somethingwentwrong"] , responseJSON.msg)
-				    	}
-				    },
-				    //when all upload is complete whatever the result
-				    onAllComplete: function(succeeded, failed) {
-				      toastr.info( "Fichiers bien chargés !!");//+ uploadObj.id +" :: "+ uploadObj.gotoUrl );
-				      if( jQuery.isFunction(initValues.afterUploadComplete) )
-				      	initValues.afterUploadComplete();
-				    },
-				    //on click a photo delete btn and launches delete endpoint
-				    /*onDelete: function(id) {
-				      alert("submit delete"+id);
-				    },*/
-				    //if any error during upload
-				    onError: function(id) {
-				      toastr.info(trad["somethingwentwrong"]);
-				    }
-				},
-	            thumbnails: {
-	                placeholders: {
-	                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
-	                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
-	                }
-	            },
-	            autoUpload: false
-	        });
-	        /*$('#trigger-upload').click(function() {
-	        	//'getUploads'
-	            $('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-	            $('.fine-uploader-manual-trigger').fineUploader('getUploads');
-	        });*/
-		};
+		            callbacks: {
+		            	//when a img is selected
+					    onSubmit: function(id, fileName) {
+					    	$('.fine-uploader-manual-trigger').fineUploader('setEndpoint',uploadObj.path);
+					    	//alert(" > onSubmit : "+ uploadObj.id +" :: "+ uploadObj.type);
+					    	//console.log('onSubmit uplaodObj',uploadObj);
+					    	//var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+					        //console.log('onSubmit getEndpoint',ex);
+					        if( initValues.showUploadBtn  ){
+						      	$('#trigger-upload').removeClass("hide").click(function(e) {
+				        			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+						        	urlCtrl.loadByHash(location.hash);
+				        			$('#ajax-modal').modal("hide");
+						        });
 
-		if(  $(".fine-uploader-manual-trigger").length){
-			loadFineUploader(FineUploader);
+					        }
+					    },
+					    onCancel: function(id) {
+					    	if(($("ul.qq-upload-list > li").length-1)<=0)
+					    		$('#trigger-upload').addClass("hide");
+	        			},
+	        			
+					    //launches request endpoint
+					    //onUpload: function(id, fileName) {
+					      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
+					      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
+					      //console.log('onUpload uplaodObj',uploadObj);
+					      //var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+					      //console.log('onUpload getEndpoint',ex);
+					    //},
+					    //launched on upload
+					    //onProgress: function(id, fileName, uploadedBytes,totalBytes) {
+					    	/*console.log('onProgress uplaodObj',uploadObj);
+					    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+					    	console.log('onProgress getEndpoint',ex);
+					    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
+					      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
+					    //},
+					    //when every img finish upload process whatever the status
+					    onComplete: function(id, fileName,responseJSON,xhr) {
+					    	if(!responseJSON.result){
+					    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
+					    		console.error(trad["somethingwentwrong"] , responseJSON.msg)
+					    	}
+					    },
+					    //when all upload is complete whatever the result
+					    onAllComplete: function(succeeded, failed) {
+					      toastr.info( "Fichiers bien chargés !!");//+ uploadObj.id +" :: "+ uploadObj.type );
+
+					      if( jQuery.isFunction(initValues.afterUploadComplete) )
+					      	initValues.afterUploadComplete();
+					      uploadObj.gotoUrl = null;
+					    },
+					    //on click a photo delete btn and launches delete endpoint
+					    /*onDelete: function(id) {
+					      alert("submit delete"+id);
+					    },*/
+					    //if any error during upload
+					    onError: function(id) {
+					      toastr.info(trad["somethingwentwrong"]);
+					    }
+					},
+		            thumbnails: {
+		                placeholders: {
+		                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
+		                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
+		                }
+		            },
+		            autoUpload: false
+		        });
+		        /*$('#trigger-upload').click(function() {
+		        	//'getUploads'
+		            $('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+		            $('.fine-uploader-manual-trigger').fineUploader('getUploads');
+		        });*/
+			};
+
+			if(  $(".fine-uploader-manual-trigger").length){
+				loadFineUploader(FineUploader);
+			}
 		}
 
 		/* **************************************

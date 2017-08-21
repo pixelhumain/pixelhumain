@@ -4,13 +4,13 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <button class="btn btn-link menu-btn-back-category pull-left no-padding" 
-                <?php if( $subdomain != "welcome" ) { ?>data-target="#modalMainMenu" data-toggle="modal"<?php } ?>
+            <a href="#" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" 
+                <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
             >
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
-                     class="nc_map pull-left" height=30>
-            </button>
-            <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>
+                     class="logo-menutop pull-left" height=30>
+            </a>
+            <span class="hidden-xs skills font-montserrat"><?php echo Yii::t("common",$mainTitle); ?></span>
             <?php 
                 $params = CO2::getThemeParams();  
                 $icon = "";
@@ -34,7 +34,7 @@
         
             <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
-                        placeholder="<?php echo $placeholderMainSearch; ?>">
+                        placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
                 <?php if($subdomain == "page"){ ?>
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
                 <?php } ?>
@@ -50,7 +50,7 @@
         
             <div id="input-sec-search" class="hidden-xs col-sm-2 col-md-3 col-lg-3">
                 <input type="text" class="form-control" id="second-search-bar" 
-                        placeholder="<?php echo $placeholderMainSearch; ?>">
+                        placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
             </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search btn-directory-type" 
@@ -60,10 +60,38 @@
 
         <?php } ?>
 
-        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" title="Afficher la carte">
-            <i class="fa fa-map"></i>
+        <button class="btn-show-map"
+                title="<?php echo Yii::t("common", "Show the map"); ?>"
+                alt="<?php echo Yii::t("common", "Show the map"); ?>"
+                >
+            <i class="fa fa-map-marker"></i>
         </button>
-
+        <?php if( !@Yii::app()->session['userId'] ){ ?>
+            <div id="navbar" class="navbar-collapse pull-right navbar-right" style="    margin-top: 5px;   margin-bottom: 5px;">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle btn btn-default padding-5" data-toggle="dropdown" role="button" style="
+    height: 35px;
+    border-radius: 0% 50%;
+    width: 50px;
+">
+                <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/<?php echo Yii::app()->language ?>.png" width="22"/> <span class="caret"></span></a>
+                    <ul class="dropdown-menu arrow_box" role="menu" style="    position: absolute !important;
+    top: 45px;
+    right: -65px;
+    left: inherit;
+    background-color: white;
+    border: 1px solid transparent;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);">
+                        <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
+                        <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div> 
+        <?php } ?>
+        
         <!-- <button class="btn-show-mainmenu" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
             <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
         </button> -->
@@ -71,11 +99,11 @@
         <?php if( isset( Yii::app()->session['userId']) ){ ?>
             
             <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
-                  data-dismiss="tooltip" data-placement="left" title="Mon réseau" alt="Mon réseau">
+                  data-toggle="tooltip" data-placement="top" title="Mon réseau" alt="<?php echo Yii::t("common","My network") ?>">
               <i class="fa fa-link"></i>
             </button>
             <button class="btn-show-mainmenu btn btn-link" 
-                    data-toggle="tooltip" data-placement="left" title="Menu">
+                    data-toggle="tooltip" data-placement="top" title="Menu">
                 <i class="fa fa-bars tooltips" ></i>
             </button>
         <?php } ?>
@@ -122,8 +150,8 @@
                                     </a>
                                 </li> -->
                                 <li class="text-left">
-                                    <a href="#" class="lbh bg-white">
-                                        <i class="fa fa-home"></i> Accueil
+                                    <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>" class="lbh bg-white">
+                                        <i class="fa fa-home"></i> <?php echo Yii::t("common","My page") ?>
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
@@ -150,9 +178,19 @@
                                 </li>
                                 
                                 <li class="text-admin">
-                                    <a href="#params" class="lbh bg-white">
+                                    <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.settings" class="lbh bg-white">
                                         <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                                     </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="text-admin dropdown-submenu dropdown-menu-left">
+                                    <a href="javascript:;" class="bg-white">
+                                        <i class="fa fa-language"></i> <?php echo Yii::t("common", "Languages") ; ?>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                      <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><?php echo Yii::t("common","English") ?></a></li>
+                                      <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><?php echo Yii::t("common","French") ?></a></li>
+                                    </ul>
                                 </li>
                                 <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
                                     <li class="text-admin">
@@ -170,27 +208,27 @@
                                 <li role="separator" class="divider">
                                  <li class="text-left visible-xs">
                                     <a href="#search" class="lbh bg-white">
-                                        <i class="fa fa-search"></i> Rechercher
+                                        <i class="fa fa-search"></i> <?php echo Yii::t("common", "Search") ?>
                                     </a>
                                 </li>
                                 <li class="text-left visible-xs">
                                     <a href="#annonces" class="lbh bg-white">
-                                        <i class="fa fa-bullhorn"></i> Annonces
+                                        <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Ads") ?>
                                     </a>
                                 </li>
                                 <li class="text-left visible-xs">
                                     <a href="#agenda" class="lbh bg-white">
-                                        <i class="fa fa-calendar"></i> Agenda
+                                        <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Agenda") ?>
                                     </a>
                                 </li>
                                 <li class="text-left visible-xs">
                                     <a href="#live" class="lbh bg-white">
-                                        <i class="fa fa-calendar"></i> Live
+                                        <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Live") ?>
                                     </a>
                                 </li>
                                 <li class="text-left visible-xs">
                                     <a href="#default.view.page.links" class="lbhp bg-right">
-                                        <i class="fa fa-life-ring"></i> Aide
+                                        <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
                                     </a>
                                 </li>
                                 <li role="separator" class="divider visible-xs"></li>
@@ -225,23 +263,28 @@
                     
                     <li class="pull-right">
                         <?php if($subdomain != "welcome"){ ?>
-                            <button class="hidden-xs hidden-sm letter-green font-montserrat btn-menu-connect margin-left-10" 
+                            <button class="letter-green font-montserrat btn-menu-connect margin-left-10" 
                                     data-toggle="modal" data-target="#modalLogin">
-                                <span><i class="fa fa-sign-in"></i> SE CONNECTER</span>
-                            </button>
-                            <button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
-                                    data-toggle="modal" data-target="#modalLogin" style="font-size:20px;">
-                                <span><i class="fa fa-sign-in"></i></span>
+                                <span><i class="fa fa-sign-in"></i> <span class="hidden-xs hidden-sm"><?php echo Yii::t("login", "LOG IN") ?></span>
                             </button>
                         <?php } else { ?>
+                            <div class="hidden-xs hidden-sm append-md-login">
                             <?php   $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
                                     $this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.login'); 
                             ?>
+                            </div>
                         <?php } ?>
                     </li>
 
                 <?php } ?>
             </ul>
+            <?php if (!@Yii::app()->session["userId"] && $subdomain == "welcome"){ ?>
+                <button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
+                        data-toggle="modal" id="open-login-xs" style="font-size:20px;">
+                    <span><i class="fa fa-sign-in"></i></span>
+                </button>
+                <div class="visible-xs visible-sm append-small-login hidden"></div>
+            <?php } ?>
         </div>
         <?php if (!@Yii::app()->session["userId"]){ ?>
             <button class="btn-show-mainmenu btn btn-link visible-xs pull-right" 
@@ -253,29 +296,39 @@
                     <ul class="dropdown-menu arrow_box">
                          <li class="text-left visible-xs">
                             <a href="#search" class="lbh bg-white text-red">
-                                <i class="fa fa-search"></i> Rechercher
+                                <i class="fa fa-search"></i> <?php echo Yii::t("common", "Search") ?>
                             </a>
                         </li>
                         <li class="text-left visible-xs">
                             <a href="#annonces" class="lbh bg-white text-red">
-                                <i class="fa fa-bullhorn"></i> Annonces
+                                <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Ads") ?>
                             </a>
                         </li>
                         <li class="text-left visible-xs">
                             <a href="#agenda" class="lbh bg-white text-red">
-                                <i class="fa fa-calendar"></i> Agenda
+                                <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Agenda") ?>
                             </a>
                         </li>
                         <li class="text-left visible-xs">
                             <a href="#live" class="lbh bg-white text-red">
-                                <i class="fa fa-calendar"></i> Live
+                                <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Live") ?>
                             </a>
                         </li>
                         <li class="text-left visible-xs">
                             <a href="#default.view.page.links" class="lbhp text-red bg-right">
-                                <i class="fa fa-life-ring"></i> Aide
+                                <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
                             </a>
                         </li>
+                        <!--<li role="separator" class="divider"></li>
+                        <li class="text-admin dropdown-submenu dropdown-menu-left">
+                            <a href="javascript:;" class="bg-white">
+                                <i class="fa fa-language"></i> <?php echo Yii::t("common", "Languages") ; ?>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><?php echo Yii::t("common","English") ?></a></li>
+                              <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><?php echo Yii::t("common","French") ?></a></li>
+                            </ul>
+                        </li>-->
                     </ul>
                 </div>
             </div>
@@ -290,7 +343,7 @@
                 <a href="<?php echo $key; ?>" 
                     class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>"
-                    data-toggle="tooltip" data-placement="bottom" title="<?php echo $value["subdomainName"]; ?>">
+                    data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                     <!-- <span class=""><?php echo $value["subdomainName"]; ?></span> -->
                 </a>  
@@ -301,10 +354,10 @@
     <!-- /.container-fluid -->
 
 </nav>
-<?php if($subdomain != "welcome"){ 
-        $this->renderPartial($layoutPath.'loginRegister', array()); 
-      } else{ ?>
-        <div class="modal fade" role="dialog" id="modalRegisterSuccess">
+<?php //if($subdomain != "welcome"){ 
+        $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
+      //} else{ ?>
+        <!--<div class="modal fade" role="dialog" id="modalRegisterSuccess">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header bg-green-k text-white">
@@ -333,8 +386,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-      <?php }
+        </div>-->
+      <?php //}
 ?>
 
 <?php /*if(isset(Yii::app()->session['userId'])) {
@@ -350,7 +403,7 @@
 
 
 <script>
-// jQuery(document).ready(function() {    
-//     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
-// });
+ // jQuery(document).ready(function() {    
+ //     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
+ // });
 </script> 

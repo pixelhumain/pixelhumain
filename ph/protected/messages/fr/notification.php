@@ -70,7 +70,7 @@ return array(
 	"your news" => "votre post",
 	//POST
 	"{where} publishes a new post"=>"{where} a publié un post",
-	"{where} publishes new posts"=>"{where} a pubié plusieurs posts",
+	"{where} publishes new posts"=>"{where} a publié plusieurs posts",
 	"{who} writes a post on your wall"=>"{who} a écrit un post sur votre mur",
 	"{who} write posts on your wall"=>"{who} ont écrit plusieurs posts sur votre mur",
 	"{who} writes a post on the wall of {where}" => "{who} a écrit un post sur le mur de {where}",

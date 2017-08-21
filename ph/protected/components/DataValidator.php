@@ -31,7 +31,7 @@ class DataValidator {
 	public static function email($toValidate, $objectId=null) {
 		$res = "";
 		if (! preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$toValidate) && !empty($toValidate)) { 
-			$res = "The email is not well formated";
+			$res = Yii::t("common", "The email is not well formated");
 		} else {
 			$domain = explode("@",$toValidate);
         	$domain = array_pop($domain); 
@@ -40,7 +40,7 @@ class DataValidator {
         	//if(! checkdnsrr(idn_to_ascii($domain),"MX")){
 
 	  		if(!empty($domain) && ! checkdnsrr($domain,"MX")){
-				$res = "Unknown domain : please check your email !";
+				$res = Yii::t("common", "Unknown domain : please check your email !");
 			}
 		}
 		return $res;
@@ -48,8 +48,16 @@ class DataValidator {
 	
 	public static function organizationSameName($toValidate, $objectId=null) {
 		// Is There a association with the same name && it is not the current organization ?
-	    $res = "";
-	    $organizationSameName = PHDB::findOne(Organization::COLLECTION,array( "name" => $toValidate));      
+		$res = "";
+
+	    if(!empty($objectId["address"]))
+	    	$organizationSameName = PHDB::findOne(Organization::COLLECTION,
+	    										array( 	"name" => $toValidate, 
+	    												"address.postalCode" => $objectId["address"]["postalCode"],
+	    												"address.addressLocality" => $objectId["address"]["addressLocality"]));      
+	    else
+	    	$organizationSameName = null ;
+
 	    if ($organizationSameName && isset($objectId) && $objectId !=  (String) $organizationSameName["_id"]){ 
 	    	$res = "An organization with the same name allready exists";
 	    }
@@ -106,6 +114,8 @@ class DataValidator {
 	}
 
 	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue, $object = null, $import=null) {
+		// var_dump($fieldName);
+		// var_dump($dataBinding);
 		if (isset($dataBinding[$fieldName])) {
 			$data = $dataBinding[$fieldName];
 			$name = $data["name"];
@@ -135,6 +145,7 @@ class DataValidator {
 	public static function validate( $type, $values, $import = null ) 
 	{
 		//var_dump($type); return;
+		//var_dump($type);
 		$dataBinding = $type::$dataBinding;
 		//var_dump($dataBinding); return;
 		//var_dump($values); return;
@@ -143,6 +154,7 @@ class DataValidator {
 		foreach ( $values as $key => $value ) 
 		{
 			try{
+				
 				if ( isset( $dataBinding[$key]) ) {
 					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value, $values, $import);
 				} else {

@@ -1,40 +1,64 @@
 <style>
-    header .intro-text .name, .header .intro-text .name {
-    font-size: 60px;
-    letter-spacing: 4px;
-    margin-bottom: -5px;
-}
-.name .pastille{
-    letter-spacing: 0px;
-}
+    .pastille-subdomain {
+        font-size: 19px;
+        position: relative;
+        margin-left: 59.3%;
+        margin-top: -26px;
+        cursor: pointer;
+        margin-bottom: -10px;
 
-header .intro-text .skills{
-    font-size: 14px !important;
-}
-
-
-@media (max-width: 767px) {
-    header .intro-text .name, 
-    .header .intro-text .name{
-        font-size: 40px;
     }
-    header .name img{
-        max-height: 30px;
+    #main-scope-name{
+        font-size:40px;
     }
-}
+
+    #btn-my-co{
+        border-radius: 50px;
+        margin-top: 21px;
+        margin-left: 5px;
+        border: 1px solid #e6344d !important;
+        padding: 7px 9px;
+    }
+
+    header .btn-decommunecter{
+        border-radius: 50px;
+        background-color: white;
+        padding: 0px 0px 0px 0px;
+        height: 75px;
+        width: 75px;
+        margin-bottom: 10px;
+        box-shadow: 0px 0px 3px -1px grey;
+    }
+
+    .moduleTitle{
+        font-size: 15px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+
+    }
+
+    @media (max-width: 768px) {
+        .link-submenu-header span{
+            display: none;
+        }
+    }
+
 </style>
+<h1 class="text-red homestead margin-bottom-15">
+    <span id="main-scope-name">
+    <a href="#web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
+    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo.png"
+         height="60" class="inline">
+    </a>
+    <br>
+    </span>
+</h1>
 
-<!-- <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logocagou-<?php echo @$subdomainName; ?>.png" class="nc_map"><br> -->
-<span class="name font-blackoutM">
-    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logoK.png" 
-    height="60" class="inline margin-bottom-15 margin-top-25"><br>
+<span class="pastille-subdomain font-blackoutT text-red"><?php echo @$subdomainName; ?></span>
 
-    <?php //if(false){ ?>
-        <small class="letter letter-red pastille hidden-xs font-blackoutT"><?php echo @$subdomainName; ?></small>
-    <?php //} ?>
-</span>
 
-<div class="inline-block margin-top-15" id="subtitle">
-    <span class="skills font-montserrat "><?php echo @$mainTitle; ?></span>
-</div>      
+<div class="text-dark moduleTitle font-montserrat">
+    <i class="fa fa-<?php echo @$icon; ?>"></i>
+    <?php echo @$mainTitle; ?>     
+</div>
 

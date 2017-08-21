@@ -183,7 +183,7 @@ class ArrayHelper {
 	    	else if($typeValue == "JSON")
                 $assocArray[$path[0]] = json_decode($value, true);
 	    	else
-	    		$assocArray[$path[0]] = $value ;
+	    		$assocArray[$path[0]] = trim($value) ;
 	    }
 	    else{
 	    	$newPath = array_splice($path, 1);
