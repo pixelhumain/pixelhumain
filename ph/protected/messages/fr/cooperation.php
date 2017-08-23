@@ -53,5 +53,8 @@ return array(
 	"white" => "Blanc",
 	"uncomplet" => "Incomplet",
 
-	"number of voters" => "Nombre de votant(s)"
+	"number of voters" => "Nombre de votant(s)",
+	"Your amendement has been save with success" => "Votre amendement a été enregistré avec success",
+	"Your vote has been save with success" => "Votre vote a été enregistré avec success",
+	"processing save" => "Sauvegarde en cours",
 );

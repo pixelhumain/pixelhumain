@@ -96,7 +96,8 @@
 		"Maturity of the project"=>"L'avancement du projet",
 		"Project maturity"=>"Avancement du projet",
 		"Your proposal" => "Votre proposition",
-		"Arguments" => "Argumentation"
+		"Arguments" => "Argumentation",
+		"More informations, arguments, exemples," => "Compléments d'informations, argumentations, exemples, démonstrations, etc",
 	)
 
 ?>
