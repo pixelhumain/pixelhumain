@@ -91,7 +91,9 @@ $params = array(
 
     //rocketchat params
     'rocketchatEnabled' => false,
-    'rocketchatURL' => "https://chat.lescommuns.org",
+    'rocketchatURL' => 'https://chat.communecter.org',
+    'rocketAdmin' => 'oceatoon@gmail.com',
+    'rocketAdminPwd' => '22102210',
 
     /*"front" => array (
         "organization" => true,
