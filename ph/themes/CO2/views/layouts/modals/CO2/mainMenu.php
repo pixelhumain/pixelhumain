@@ -307,7 +307,7 @@ var rcObj = {
     debugChat : false,
     loadChat : function (name,type,isOpen,hasRC){ 
         
-        var contextName = (contextData) ? contextData.name : userConnected.name;
+        var contextName = (typeof contextData != "undefined" && contextData != null ) ? contextData.name : userConnected.name;
         $(".rocketchatTitle").html('Discutons : '+contextName);
         if(rcObj.debugChat)alert( "name:"+name+", type:"+type+", isOpen : "+isOpen+", hasRC : "+hasRC );
         rcObj.loadedIframe (name) ;
