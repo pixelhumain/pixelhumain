@@ -198,6 +198,7 @@ return array(
 	"Accept as member" => "Accepter comme membre",
 	"Accept as contributor" => "Accepter comme contributeur",	
 	"Wait for confirmation" => "En attente de confirmation", 
+	"Add/Update roles"=> "Ajouter/Modifier les rôles",
 	//TYPES
 	"NGO" => "Association",
 	"NGOs" => "Associations",
