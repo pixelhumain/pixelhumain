@@ -34,7 +34,7 @@ return array(
 	"tovote" => "À voter",
 	"todo" => "À faire",
 	"archived" => "archivée",
-	"closed" => "Fermées",
+	"closed" => "Fermée",
 	"done" => "terminée",
 
 	"Create room" => "Créer un espace",
@@ -57,4 +57,9 @@ return array(
 	"Your amendement has been save with success" => "Votre amendement a été enregistré avec success",
 	"Your vote has been save with success" => "Votre vote a été enregistré avec success",
 	"processing save" => "Sauvegarde en cours",
+	"You already voted the same way" => "Vous avez déjà voté",
+	"Refresh data" => "Actualiser",
+	"processing" => "Chargement en cours",
+	"processing ok" => "Chargement terminé",
+	"all status" => "en vrac"
 );
