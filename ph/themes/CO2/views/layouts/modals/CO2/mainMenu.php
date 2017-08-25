@@ -332,18 +332,22 @@ var rcObj = {
             if(rcObj.debugChat)alert( rcObj.lastOpenChat+" | "+name );
             if( rcObj.lastOpenChat != name )
             {
-                if( contextData.type == "citoyens" ) 
-                    pathChannel = "/direct/"+contextData.username ;
-                else {
-                    pathChannel = (isOpen) ? "/channel/"+contextData.type+"_"+slugify(contextData.name) : "/group/"+contextData.type+"_"+slugify(contextData.name);
+                pathChannel = "";
+                if( name != "" ){
+                    if( contextData.type == "citoyens" ) 
+                        pathChannel = "/direct/"+contextData.username ;
+                    else {
+                        pathChannel = (isOpen) ? "/channel/"+contextData.type+"_"+slugify(contextData.name) : "/group/"+contextData.type+"_"+slugify(contextData.name);
+                    }
                 }
+
+
                 if(rcObj.debugChat)alert( "change : "+pathChannel );
-                if( userId != contextData.id ){
-                    document.querySelector('iframe').contentWindow.postMessage({
-                        externalCommand: 'go',
-                        path: pathChannel
-                    }, '*');
-                }
+                document.querySelector('iframe').contentWindow.postMessage({
+                    externalCommand: 'go',
+                    path: pathChannel
+                }, '*');
+            
             } else if(rcObj.debugChat)
                 alert( " no change" );
         }

@@ -341,11 +341,15 @@
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
-                    class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
+                    class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>"
                     data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+
                     <!-- <span class=""><?php echo $value["subdomainName"]; ?></span> -->
+                    <?php if(@$value["notif"]){ ?>
+                    <span class="<?php echo $value["notif"]; ?> topbar-badge badge animated bounceIn badge-warning"></span>
+                    <?php } ?>
                 </a>  
         <?php   }
             }  ?>
