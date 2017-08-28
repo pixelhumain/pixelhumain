@@ -1,6 +1,6 @@
 
 <?php
-    $communexion = CO2::getCommunexionCookies();  
+    $communexion = CO2::getCommunexionCookies();
     if($communexion["state"] == false)
     {
 ?>
