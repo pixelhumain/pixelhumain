@@ -311,22 +311,28 @@ var rcObj = {
         $(".rocketchatTitle").html('Discutons : '+contextName);
         if(rcObj.debugChat)alert( "name:"+name+", type:"+type+", isOpen : "+isOpen+", hasRC : "+hasRC );
         rcObj.loadedIframe (name) ;
-        if( $('.RCcontainer').html() == "" || (!hasRC && type != "citoyens" && rcObj.lastOpenChat != name) ){  
+        //if iframe deosn't exist
+        //element has an RC channel 
+        //not a citizen
+        //
+        if( $('.RCcontainer').html() == "" || (!hasRC && type != "citoyens" && rcObj.lastOpenChat != name) )
+        {  
 
             $('.RCcontainer').html("<center>Veuillez patienter le temps de créer la salle de discusion.</center>");
             rcObj.lastOpenChat = name;
             var extra = (isOpen) ? "/roomType/channel" : "/roomType/group";
             iframeUrl = (name!="") ? baseUrl+'/'+moduleId+'/rocketchat/chat/name/'+slugify(contextData.name)+'/type/'+contextData.type+'/id/'+contextData.id+extra
                                     : baseUrl+'/'+moduleId+'/rocketchat';
-        if(rcObj.debugChat)alert( iframeUrl );
+            
+            if(rcObj.debugChat)alert( iframeUrl );
 
             getAjax('.RCcontainer', iframeUrl,
                 function(data){ 
                     //$.unblockUi();
-                }
-                ,"html");
+                } ,"html");
             
         } else {
+
             //todo : pb sur les nouvelles creations en passant par ici
             rcObj.loadedIframe (name) ;
             if(rcObj.debugChat)alert( rcObj.lastOpenChat+" | "+name );
@@ -345,7 +351,7 @@ var rcObj = {
                 if(rcObj.debugChat)alert( "change : "+pathChannel );
                 document.querySelector('iframe').contentWindow.postMessage({
                     externalCommand: 'go',
-                    path: pathChannel
+                    path: pathChannel+'?layout=embedded'
                 }, '*');
             
             } else if(rcObj.debugChat)

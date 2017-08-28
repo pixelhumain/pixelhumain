@@ -174,7 +174,7 @@
                     '</div>'+
                   '</div>'+
                   '<div class="alert col-md-6 col-md-offset-3 shadow2  margin-top-10" style="">'+
-                      '<i class="fa fa-puzzle-piece faa-pulse animated fa-5x padding-10"></i> <i class="fa fa-plus fa-2x padding-10"></i> <img src="'+themeUrl+'/assets/img/piggybank.png" height=70> <i class="fa fa-plus fa-2x padding-10"></i> <i class="fa fa-group faa-pulse animated fa-5x padding-10"></i> <span class="bold" style="font-size:40px;">=</span> <i class="fa fa-heartbeat faa-pulse text-red animated fa-5x padding-10"></i>'+
+                      /*'<i class="fa fa-puzzle-piece faa-pulse animated fa-5x padding-10"></i> <i class="fa fa-plus fa-2x padding-10"></i> <img src="'+themeUrl+'/assets/img/piggybank.png" height=70> <i class="fa fa-plus fa-2x padding-10"></i> <i class="fa fa-group faa-pulse animated fa-5x padding-10"></i> <span class="bold" style="font-size:40px;">=</span> <i class="fa fa-heartbeat faa-pulse text-red animated fa-5x padding-10"></i>'+*/
                       '<br/><br/><h2 style="font-weight:300; margin:-35px 0 0 0;" class="homestead padding-10">'+
                         '<span class="text-red"><?php echo Yii::t("loader","1 little coin for a great puzzle") ?></span>'+
                         '<br/><a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="text-dark"><?php echo Yii::t("loader","Contribute") ?> <i class="fa  fa-arrow-circle-right"></i></a>'+
