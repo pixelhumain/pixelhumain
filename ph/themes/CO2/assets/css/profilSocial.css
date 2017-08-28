@@ -307,28 +307,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     color: white !important;
     background-color: #3C5665 !important;
 }
-#central-container .bg-red{
+/*#central-container .bg-red{
     background-color:#E33551 !important;
     color:white!important;
-}
+}*/
 #central-container .bg-blue{
-    background-color: #5f8295 !important;
+    background-color: #5f8295;
     color:white!important;
 }
-#central-container .bg-green{
-    background-color:#93C020 !important;
+#central-cont/*ainer .bg-green{
+    background-color:#93C020;
     color:white!important;
 }
 #central-container .bg-orange{
-    background-color:#FFA200 !important;
-    color:white!important;
-}
+    background-color:#FFA200;
+    color:white;
+}*/
 #central-container .bg-yellow{
-    background-color:#FFC600 !important;
+    background-color:#FFC600;
     color:white!important;
 }
 #central-container .bg-purple{
-    background-color:#8C5AA1 !important;
+    background-color:#8C5AA1;
     color:white!important;
 }
 #central-container #dropdown_search{

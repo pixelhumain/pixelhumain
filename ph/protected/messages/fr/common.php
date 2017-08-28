@@ -198,6 +198,7 @@ return array(
 	"Accept as member" => "Accepter comme membre",
 	"Accept as contributor" => "Accepter comme contributeur",	
 	"Wait for confirmation" => "En attente de confirmation", 
+	"Add/Update roles"=> "Ajouter/Modifier les rôles",
 	//TYPES
 	"NGO" => "Association",
 	"NGOs" => "Associations",
@@ -382,6 +383,9 @@ return array(
 	"point of interest" => "point d'intérêt",
 	"Collection"=>"Collection",
 	"collection"=>"collection",
+	"proposal"=>"proposition",
+	"Proposal"=>"Proposition",
+	"proposals"=>"propositions",
 	
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
@@ -1101,5 +1105,6 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
     "French"=> "Français",
     "Languages"=>"Langues",
 	"Photos gallery" => "Galerie photos",
+
 );
 ?>
