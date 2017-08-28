@@ -10,8 +10,7 @@
 	"authors": [
 		{
 			"name": "Tibor Katelbach",
-			"email": "oceatoon@gmail.com",
-			"homepage": "http://oceatoon.org//"
+			"email": "oceatoon@gmail.com"
 		},
 		{
 			"name": "Sylvain Barbot",
@@ -29,7 +28,9 @@
  		"chriskite/phactory" : "*",
         "mandrill/mandrill": "1.0.*",
         "codeception/codeception":"2.1.6",
-        "flow/jsonpath": "*"
+        "flow/jsonpath": "*",
+        "fab1en/rocket-chat-rest-client": "dev-master",
+        "nategood/httpful": "*"
    	},
 	"require": {
 		"opauth/opauth" : "0.4.4",

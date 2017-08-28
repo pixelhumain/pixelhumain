@@ -11,6 +11,8 @@
 		"Image deleted" => "Image bien supprimée",
 		"You have no rights upload document on this item, just write a message !" => "Vous n'avez pas les droits pour ajouter une image ici. Vous pouvez seulement écrire un message !",
 		"You are not allowed to modify the document of this item !" => "Vous n'êtes pas autorisé à modifier et/ou ajouter un document ici",
+		"Collection of bookmarks<br>To classified favorite and useful urls<br>And share it to the community"=>"Collection de marque-pages<br>Pour les trier ses urls préférées et utiles<br>Et les partager avec la communauté",
+		"Collection of files<br>To download and share documents<br>With the community"=>"Collection de fichiers<br>Pour partager et télécharger des documments<br>Avec la communauté",
 	)
 
 ?>

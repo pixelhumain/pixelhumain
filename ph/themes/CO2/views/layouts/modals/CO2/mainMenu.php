@@ -1,4 +1,6 @@
 
+
+
 <div class="portfolio-modal modal fade" id="openModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
@@ -17,10 +19,11 @@
     </div>
 </div>
 
+
+
+
 <style type="text/css">
-    .filterBtns{
-        border-radius:0px; border-color: transparent; text-transform: uppercase;
-    }
+.filterBtns{border-radius:0px; border-color: transparent; text-transform: uppercase;}
 </style>
 <div class="portfolio-modal modal fade" id="modalMainMenu" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">
@@ -228,9 +231,36 @@
     </div>
 </div>
 
+
+
+
+<style type="text/css">
+#rocketchatModal .modal {position: fixed;top:0;right: 0;bottom: 0;margin:0; padding:0; overflow: hidden;
+    width: 50%; height: 80%;background-color:rgb(0,0,0,0.5); border-left:3px solid #333;}
+#rocketchatModal .modal-content {position: absolute;right: 0;bottom: 0;top:67px;margin:0; padding:0;border-radius: 0;box-shadow: none; height: auto; width: 50%;min-height: 100%;}
+.rocketchatTitle{color:#333;font-size: 20px;}
+.RCcontainerSpinner{height:40px;}
+</style>
+<div class="rocketchat-modal modal fade" id="rocketchatModal" tabindex="-1" role="dialog" aria-hidden="true" >
+    <div class="modal-content">
+        <div class="col-sm-12 RCcontainerSpinner close-modal "  data-dismiss="modal">
+            <center>
+                <a href="javascript:rcObj.sizeChat('')"><i class="hide fa btnExpand fa-expand fa-2x"  style="float:left;color:#C5203B;margin-right:20px;"></i></a>
+                <a href="javascript:rcObj.sizeChat('')"><i class="hide fa fa-external-link fa-2x"  style="float:left;color:#C5203B;margin-right:20px;"></i></a>
+                <i class='text-red fa fa-comments fa-2x'></i> <span class='rocketchatTitle'></span>
+                <i class="fa fa-times fa-2x"  style="float:right;color:#C5203B;margin-right:20px;"></i>
+            </center>
+        </div>
+        <div class="col-sm-12 RCcontainer" style="background-color:white"></div>
+    </div>
+</div>
+
+
+
 <script type="text/javascript">
 var searchObj = {};
 jQuery(document).ready(function() { 
+
     $(".btn-main-menu").mouseenter(function(){ 
         $(".menuSection2").addClass("hidden"); 
         if( $(this).data("type") ) 
@@ -271,5 +301,85 @@ jQuery(document).ready(function() {
         }
     }); 
 });
-  
+
+var rcObj = {
+    lastOpenChat : null,
+    debugChat : false,
+    loadChat : function (name,type,isOpen,hasRC){ 
+        
+        var contextName = (typeof contextData != "undefined" && contextData != null ) ? contextData.name : userConnected.name;
+        $(".rocketchatTitle").html('Discutons : '+contextName);
+        if(rcObj.debugChat)alert( "name:"+name+", type:"+type+", isOpen : "+isOpen+", hasRC : "+hasRC );
+        rcObj.loadedIframe (name) ;
+        if( $('.RCcontainer').html() == "" || (!hasRC && type != "citoyens" && rcObj.lastOpenChat != name) ){  
+
+            $('.RCcontainer').html("<center>Veuillez patienter le temps de créer la salle de discusion.</center>");
+            rcObj.lastOpenChat = name;
+            var extra = (isOpen) ? "/roomType/channel" : "/roomType/group";
+            iframeUrl = (name!="") ? baseUrl+'/'+moduleId+'/rocketchat/chat/name/'+slugify(contextData.name)+'/type/'+contextData.type+'/id/'+contextData.id+extra
+                                    : baseUrl+'/'+moduleId+'/rocketchat';
+        if(rcObj.debugChat)alert( iframeUrl );
+
+            getAjax('.RCcontainer', iframeUrl,
+                function(data){ 
+                    //$.unblockUi();
+                }
+                ,"html");
+            
+        } else {
+            //todo : pb sur les nouvelles creations en passant par ici
+            rcObj.loadedIframe (name) ;
+            if(rcObj.debugChat)alert( rcObj.lastOpenChat+" | "+name );
+            if( rcObj.lastOpenChat != name )
+            {
+                pathChannel = "";
+                if( name != "" ){
+                    if( contextData.type == "citoyens" ) 
+                        pathChannel = "/direct/"+contextData.username ;
+                    else {
+                        pathChannel = (isOpen) ? "/channel/"+contextData.type+"_"+slugify(contextData.name) : "/group/"+contextData.type+"_"+slugify(contextData.name);
+                    }
+                }
+
+
+                if(rcObj.debugChat)alert( "change : "+pathChannel );
+                document.querySelector('iframe').contentWindow.postMessage({
+                    externalCommand: 'go',
+                    path: pathChannel
+                }, '*');
+            
+            } else if(rcObj.debugChat)
+                alert( " no change" );
+        }
+
+        rcObj.lastOpenChat = name;
+    },
+
+    loadedIframe : function  (name) { 
+        //$('.RCcontainerSpinner').addClass('hide');
+        $('.RCcontainer').css("height","100%");
+        $('#rocketchatModal').modal("show"); 
+        rcObj.sizeChat(name);
+    },
+
+    sizeChat : function (name) { 
+        if( name == "" ){
+            $('#rocketchatModal .modal-content, #rocketchatModal .modal ').css("width","100%");
+            $(".btnExpand").removeClass('fa-expand').addClass('fa-compress');
+        }
+        else {
+            $('#rocketchatModal .modal-content, #rocketchatModal .modal ').css("width","50%");
+            $(".btnExpand").removeClass('fa-compress').addClass('fa-expand');
+        }
+    }
+};
+
+
+
+jQuery(document).ready(function() { 
+    //preload in background the rocket iframe
+    if( userId )
+        getAjax('.RCcontainer', baseUrl+'/'+moduleId+'/rocketchat',null,"html");
+})
+
 </script>
