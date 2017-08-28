@@ -79,7 +79,7 @@
 		"Add a bookmark"=>"Ajouter un bookmark",
 		"Add a contact"=> "Ajouter un contact",
 		"Add a cooperation room" =>  "Créer un nouvel espace coopératif",
-		"Rooms are spaces of Discussion, decision and action for a community" => "Créer des espaces de Discussion, Décission, et Action pour une communauté",
+		"Rooms are spaces of decision and action for a community" => "Un espace coopératif sert à prendre des décisions collectives autour du thème de votre choix",
 		"Title of URL"=>"Titre de l'URL",
 		"URL of the link"=>"URL du lien",
 		"URL type"=>"Type de l'URL",
@@ -103,6 +103,9 @@
 		"Add informations to the document to make it pertinent for others"=>"Ajouter des informations au document pour le rendre le plus pertinent possible aux yeux des autres",
 		"Image title"=>"Titre de l'image",
 		"Upload files"=> "Ajouter des fichiers",
+		"Your proposal" => "Votre proposition",
+		"Arguments" => "Argumentation",
+		"More informations, arguments, exemples," => "Compléments d'informations, argumentations, exemples, démonstrations, etc",
 	)
 
 ?>

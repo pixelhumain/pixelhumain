@@ -156,12 +156,12 @@
                   '<span style="font-weight:300" class=" text-dark">'+
                     '<?php echo Yii::t("loader","Thanks to be patient a moment") ?>'+
                   '</span>'+
-                  '<br><br><hr>'+
+                  '<br><br><hr>'
                   /*'<a href="#" class="btn btn-default btn-sm lbh">'+
                     "c'est trop long !"+
                   '</a>'+
                   '<br/>'+*/
-                  '<div class="col-md-6 col-md-offset-3">'+
+                  /*'<div class="col-md-6 col-md-offset-3">'+
                     '<div class="col-xs-6 center">'+
                         '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas/2?sessionId=dvutjo5jusdgs1cvmmkui4su&widget=False" target="_blank" class="btn btn-default text-red bold">'+
                             '<i class="fa fa-heart fa-2x"></i> <span class="text-dark"> <?php echo Yii::t("loader","Member ( 1€/month )") ?> </span>'+
@@ -188,7 +188,7 @@
                       '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="btnHelp btn btn-warning margin-top-10 text-dark">'+
                             '<i class="fa fa-gift"></i> <?php echo Yii::t("loader","Make a donation to the NGO") ?>'+
                       '</a> '+
-                  '</div>', 
+                  '</div>'*/, 
             errorMsg : '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="logo-menutop" height=80>'+
               '<i class="fa fa-times"></i><br>'+
                '<span class="col-md-12 text-center font-blackoutM text-left">'+
