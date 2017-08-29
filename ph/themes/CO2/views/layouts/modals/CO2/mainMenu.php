@@ -351,8 +351,7 @@ var rcObj = {
                 if(rcObj.debugChat)alert( "change : "+pathChannel );
                 document.querySelector('iframe').contentWindow.postMessage({
                     externalCommand: 'go',
-                    path: pathChannel+'?layout=embedded'
-                }, '*');
+                    path: pathChannel+'?layout=embedded' }, '*');
             
             } else if(rcObj.debugChat)
                 alert( " no change" );
