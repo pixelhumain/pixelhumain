@@ -95,6 +95,7 @@
         "video":"dark",
         "classified" : "yellow"
     };
+    var onchangeClick=true;
     var lastWindowUrl = null;
     var allReadyLoadWindow=false;
     var themeObj = {
@@ -115,13 +116,10 @@
             initFloopDrawer();
             resizeInterface();
             window.onhashchange = function() {
-                  //mylog.dir(e);
-                //mylog.log("history.state",$.isEmptyObject(history.state),location.hash);
                 mylog.warn("popstate history.state",history.state);
-                //alert(location.hash)
                 if( lastWindowUrl && "onhashchange" in window){
                     console.log("history",history);
-                    if( allReadyLoadWindow == false ){
+                    if( allReadyLoadWindow == false && onchangeClick){
                         if(lastWindowUrl.indexOf("#page")>=0 && location.hash.indexOf("#page")>=0){
                             lastSplit=lastWindowUrl.split(".");
                             currentSplit=location.hash.split(".");
@@ -141,14 +139,22 @@
                             urlCtrl.loadByHash(location.hash,true);
                     } 
                     allReadyLoadWindow = false;
+                    onchangeClick=true;
                 }
                 lastWindowUrl = location.hash;
             }
         },
+        firstLoad:true,
         imgLoad : "CO2r.png" ,
         mainContainer : ".main-container",
         blockUi : {
-            processingMsg : '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="" height=80>'+
+            processingMsg :'<div class="lds-css ng-scope">'+
+                    '<div style="width:100%;height:100%" class="lds-dual-ring">'+
+                        '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="" height=80>'+
+                        '<div></div>'+
+                        '<div></div>'+
+                    '</div>'+
+                '</div>'/* '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="" height=80>'+
                   '<i class="fa fa-spin fa-circle-o-notch loaderBlockUI"></i>'+
                   '<h4 style="font-weight:300" class=" text-dark padding-10">'+
                     '<?php echo Yii::t("loader","Loading")?>...'+
@@ -156,7 +162,7 @@
                   '<span style="font-weight:300" class=" text-dark">'+
                     '<?php echo Yii::t("loader","Thanks to be patient a moment") ?>'+
                   '</span>'+
-                  '<br><br><hr>'
+                  '<br><br><hr>'*/
                   /*'<a href="#" class="btn btn-default btn-sm lbh">'+
                     "c'est trop long !"+
                   '</a>'+

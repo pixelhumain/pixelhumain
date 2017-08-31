@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php 
+
     $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
     $themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
     $cs = Yii::app()->getClientScript();
@@ -55,12 +56,12 @@
 
     </head>
 
-
     <body id="page-top" class="index" style="display: none;">
 
         <!-- **************************************
         MAP CONTAINER
         ******************************************* -->
+        <progress class="progressTop" max="100" value="20"></progress>   
         <div id="mainMap">
             <?php $this->renderPartial($layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"]); ?>
         </div>
@@ -86,7 +87,7 @@
         <?php  if( isset(Yii::app()->session["userId"]) )
                 $this->renderPartial('../news/modalShare', array());
         ?>
-            
+ 
         <div class="main-container">
 
             <?php 
@@ -240,7 +241,8 @@
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() { 
-                $.blockUI();
+
+                $.blockUI({ message : themeObj.blockUi.processingMsg});
                 
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
@@ -254,7 +256,10 @@
                 });
 
                 themeObj.init();
-                urlCtrl.loadByHash(location.hash,true);
+                if(themeObj.firstLoad){
+                    themeObj.firstLoad=false;
+                    urlCtrl.loadByHash(location.hash,true);
+                }
                 setTimeout(function(){
                     $("#page-top").show();
                 }, 500);
