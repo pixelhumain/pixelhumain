@@ -339,8 +339,18 @@ jQuery(document).ready(function() {
 });
 
 var rcObj = {
+
     lastOpenChat : null,
     debugChat : false,
+
+    login : function () 
+    { 
+        if(rcObj.debugChat)alert("rcObj.login");
+        document.querySelector('iframe').contentWindow.postMessage({
+              externalCommand: 'login-with-token',
+              token: '<?php echo @Yii::app()->session["loginToken"]; ?>' }, '*');
+    },
+
     loadChat : function (name,type,isOpen,hasRC){ 
         
         var contextName = (typeof contextData != "undefined" && contextData != null ) ? contextData.name : userConnected.name;
@@ -370,7 +380,6 @@ var rcObj = {
         } else {
 
             //todo : pb sur les nouvelles creations en passant par ici
-            rcObj.loadedIframe (name) ;
             if(rcObj.debugChat)alert( rcObj.lastOpenChat+" | "+name );
             if( rcObj.lastOpenChat != name )
             {
@@ -379,7 +388,8 @@ var rcObj = {
                     if( contextData.type == "citoyens" ) 
                         pathChannel = "/direct/"+contextData.username ;
                     else {
-                        pathChannel = (isOpen) ? "/channel/"+contextData.type+"_"+slugify(contextData.name) : "/group/"+contextData.type+"_"+slugify(contextData.name);
+                        pathChannel = (isOpen) ? "/channel/"+contextData.type+"_"+slugify(contextData.name) 
+                                               : "/group/"+contextData.type+"_"+slugify(contextData.name);
                     }
                 }
 
@@ -397,6 +407,7 @@ var rcObj = {
     },
 
     loadedIframe : function  (name) { 
+        rcObj.login();
         //$('.RCcontainerSpinner').addClass('hide');
         $('.RCcontainer').css("height","100%");
         $('#rocketchatModal').modal("show"); 
@@ -413,6 +424,7 @@ var rcObj = {
             $(".btnExpand").removeClass('fa-compress').addClass('fa-expand');
         }
     }
+
 };
 
 

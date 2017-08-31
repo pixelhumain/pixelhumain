@@ -143,7 +143,9 @@
             echo "<!--<![endif]-->";
 
             $cssAnsScriptFilesModule = array(
-                '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js',
+                '/plugins/jquery-ui-1.12.1/jquery-ui.min.js',
+                '/plugins/jquery-ui-1.12.1/jquery-ui.min.css',
+                
                 '/plugins/jquery-validation/dist/jquery.validate.min.js',
                 '/plugins/bootbox/bootbox.min.js' , 
                 '/plugins/blockUI/jquery.blockUI.js' , 
