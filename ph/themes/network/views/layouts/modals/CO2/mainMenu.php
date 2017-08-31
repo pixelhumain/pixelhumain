@@ -116,7 +116,7 @@
                         </h4>
                         
                         <div class="col-md-12 no-padding text-center hidden-xs">
-                            <h5>Un fil d'actualités commun
+                            <h5>Un fil d'actualité commun
                                 <small class="hidden-xs"><br>
                                     Pour diffuser vos messages autrement
                                 </small>

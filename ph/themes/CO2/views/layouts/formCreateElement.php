@@ -60,6 +60,11 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
 		margin-top: 10px;
 		color: white !important;
 	}
+	#createNews #mentionsText > textarea{
+		width: 100%;
+		min-height: 250px;
+	}
+	
 
 </style>
 

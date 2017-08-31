@@ -21,7 +21,7 @@
 		"parent's end date"=>"date de fin du parent",
 		"Organized by"=>"Organisé par",
 		"If you want to create a new event to make it visible : it is the right place !!<br>You can invite people, make a program of your event, publish news during the event"=>"Si vous voulez créer un nouvel évènement de façon à le rendre plus visible : c'est le bon endroit !!<br>Vous pouvez inviter des participants, planifier des sous évènements, publier des actus lors de l'évènement",
-		"Share every kind of informations<br>Locate items to make it visible for everyone<br>And take part to the co-building of your territory!"=>"Partagez librement toutes sortes d'informations<br>Localisez-les pour les rendres accessibles à tous<br>Et participez à la co-construction de votre territoire connecté !",
+		"Share every kind of informations<br>Locate items to make it visible for everyone<br>And take part to the co-building of your territory!"=>"Partagez librement toutes sortes d'informations<br>Localisez-les pour les rendre accessibles à tous<br>Et participez à la co-construction de votre territoire connecté !",
 		"Create your page in few seconds,<br>then add more details,<br>according to your needs"=>"Créez votre page en quelques secondes,<br>puis rajoutez des détails,<br>selon vos besoins",
 		"Make visble your project to all has never been so easy !<br>Create your project in few seconds,<br>then complete more according to your needs"=>"Faire connaître vos projets n'a jamais été aussi simple !<br>Créez votre page en quelques secondes,<br>et complétez les informations plus tard, selon vos besoins",
 		"Share links you like, to make them accessible to all"=>"Partagez des liens qui vous intéresse, pour les rendre accessibles à tous",
@@ -106,6 +106,7 @@
 		"Your proposal" => "Votre proposition",
 		"Arguments" => "Argumentation",
 		"More informations, arguments, exemples," => "Compléments d'informations, argumentations, exemples, démonstrations, etc",
+		"Drop files here"=>"Glisser vos fichiers ici",
 	)
 
 ?>
