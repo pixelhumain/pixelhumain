@@ -287,3 +287,32 @@ hr.angle-down {
 
 
 .text-red-light-moderation{ color:#cbb4b2!important; }
+
+
+.bg-green-comment{
+    background-color:#CFEDC2 !important;
+}
+.item-comment.bg-green-comment{
+    padding: 5px !important;
+    /*width: 70%;*/
+    border-radius: 5px;
+    /*float: left;*/
+}
+
+
+.bg-red-comment{
+    background-color:#ffd7d4 !important;
+}
+.item-comment.bg-red-comment{
+    background-color:#ffd7d4 !important;
+    padding: 5px !important;
+    /*width: 70%;*/
+    border-radius: 5px;
+    /*float: right;*/
+}
+
+.item-comment{
+    margin-top:5px !important;
+    margin-bottom:5px !important;
+
+}

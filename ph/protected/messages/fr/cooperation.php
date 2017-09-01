@@ -28,7 +28,7 @@ return array(
 	"To vote" => "À voter",
 	"Closed" => "Fermées",
 
-	"mine" => "À moi",
+	"mine" => "Dont je suis l'auteur",
 	"amendables" => "Amendables",
 	"amendable" => "Amendable",
 	"tovote" => "À voter",
