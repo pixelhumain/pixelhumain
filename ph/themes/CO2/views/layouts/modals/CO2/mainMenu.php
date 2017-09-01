@@ -374,7 +374,7 @@ var rcObj = {
 
             getAjax('.RCcontainer', iframeUrl,
                 function(data){ 
-                    //$.unblockUi();
+                    $('.btnChatColor').addClass("text-red");
                 } ,"html");
             
         } else {
