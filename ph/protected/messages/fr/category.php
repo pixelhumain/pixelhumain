@@ -164,5 +164,14 @@
         "the group" => "le collectif",
         "the Group" => "le groupe",
         "the government organization" => "l'organisation gouvernementale",
+        //ROLES LINK
+        "Financier"=>"Financeur",
+        "Partner"=>"Partenaire",
+        "Sponsor"=>"Sponsor",
+        "Organizor"=>"Organisateur",
+        "President"=>"Président",
+        "Director"=>"Directeur",
+        "Speaker"=>"Conférencier",
+        "Intervener"=>"Intervenant"
 	);
 ?>
