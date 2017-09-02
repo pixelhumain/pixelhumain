@@ -60,11 +60,13 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
 		margin-top: 10px;
 		color: white !important;
 	}
-	#createNews #mentionsText > textarea{
+	#createNews #mentionsText textarea{
 		width: 100%;
-		min-height: 250px;
+		min-height: 100px;
 	}
-	
+	#createNews #mentionsText .mentions, #createNews #btn-toogle-dropdown-scope, #createNews #btn-toogle-dropdown-targetIsAuthor{
+		text-align:left;
+	}
 
 </style>
 
