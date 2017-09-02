@@ -1,9 +1,9 @@
 <?php
 
 	return array(
-		"You're not <span class='text-dark'>communected</span>"=>"Vous n'êtes pas <span class='text-dark'>communecté(e)</span>",
+		"You're not <span class='text-dark'>communected</span>"=>"Vous n'êtes pas <span class='text-dark'>communecté-e</span>",
 		"You are"=>"Vous êtes",
-		"communected to" => "communecté(e) à",
+		"communected to" => "communecté-e à",
 		"Be communected permits you to get smart informations<br>localy performed."=>"Être communecté-e vous permet de capter en direct les informations pertinentes<br>qui se trouvent autour de vous.",
 		"Be communected"=> "Communectez-vous",
 		"Change your communexion" => "Changer de communexion",
