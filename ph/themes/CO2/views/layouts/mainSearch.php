@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php 
+
     $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
     $themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
     $cs = Yii::app()->getClientScript();
@@ -55,12 +56,12 @@
 
     </head>
 
-
     <body id="page-top" class="index" style="display: none;">
 
         <!-- **************************************
         MAP CONTAINER
         ******************************************* -->
+        <progress class="progressTop" max="100" value="20"></progress>   
         <div id="mainMap">
             <?php $this->renderPartial($layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"]); ?>
         </div>
@@ -86,7 +87,7 @@
         <?php  if( isset(Yii::app()->session["userId"]) )
                 $this->renderPartial('../news/modalShare', array());
         ?>
-            
+ 
         <div class="main-container">
 
             <?php 
@@ -142,9 +143,10 @@
             echo "<!--<![endif]-->";
 
             $cssAnsScriptFilesModule = array(
-                '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js',
+                '/plugins/jquery-ui-1.12.1/jquery-ui.min.js',
+                '/plugins/jquery-ui-1.12.1/jquery-ui.min.css',
+                
                 '/plugins/jquery-validation/dist/jquery.validate.min.js',
-                '/plugins/jquery-validation/localization/messages_fr.js',
                 '/plugins/bootbox/bootbox.min.js' , 
                 '/plugins/blockUI/jquery.blockUI.js' , 
                 '/plugins/toastr/toastr.js' , 
@@ -169,6 +171,11 @@
                 '/plugins/moment/min/moment.min.js' ,
                 '/plugins/moment/min/moment-with-locales.min.js',
                 '/plugins/jquery.dynForm.js',
+                
+    '/plugins/jquery.elastic/elastic.js',
+    '/plugins/underscore-master/underscore.js',
+    '/plugins/jquery-mentions-input-master/jquery.mentionsInput.js',
+    '/plugins/jquery-mentions-input-master/jquery.mentionsInput.css',
                 //'/js/cookie.js' ,
                 '/js/api.js',
                 
@@ -176,6 +183,8 @@
                 '/plugins/font-awesome/css/font-awesome.min.css',
                 '/plugins/font-awesome-custom/css/font-awesome.css',
             );
+            if(Yii::app()->language!="en")
+                array_push($cssAnsScriptFilesModule,"/plugins/jquery-validation/localization/messages_".Yii::app()->language.".js");
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
             HtmlHelper::registerCssAndScriptsFiles( array('/js/default/formInMap.js') , $this->module->assetsUrl);
             
@@ -237,7 +246,8 @@
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() { 
-                $.blockUI();
+
+                $.blockUI({ message : themeObj.blockUi.processingMsg});
                 
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
@@ -251,7 +261,10 @@
                 });
 
                 themeObj.init();
-                urlCtrl.loadByHash(location.hash,true);
+                if(themeObj.firstLoad){
+                    themeObj.firstLoad=false;
+                    urlCtrl.loadByHash(location.hash,true);
+                }
                 setTimeout(function(){
                     $("#page-top").show();
                 }, 500);

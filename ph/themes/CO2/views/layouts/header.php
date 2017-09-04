@@ -89,21 +89,21 @@
                                               $subdomain == "annonces"||
                                               $subdomain == "freedom"){ ?>
 
-                                <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
-                                    <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo $placeholderMainSearch; ?>">
-                                    <span class="input-group-addon bg-white" id="main-search-bar-addon">
-                                        <i class="fa fa-search"></i>
-                                    </span>
-                                </div>
+                            <div class="input-group col-md-6 col-md-offset-3" id="main-input-group"  style="margin-bottom:15px;">
+                                <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
+                                <span class="input-group-addon bg-white" id="main-search-bar-addon">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
 
-                                
-                                <button class="btn btn-default btn-directory-type hidden-xs" id="main-btn-start-search" 
-                                        data-type="<?php echo @$type; ?>">
-                                    <i class="fa fa-search"></i> Lancer la recherche
-                                </button> 
+                            
+                            <button class="btn btn-default btn-directory-type hidden-xs" id="main-btn-start-search" 
+                                    data-type="<?php echo @$type; ?>">
+                                <i class="fa fa-search"></i> <?php echo Yii::t("common","Launch search") ?>
+                            </button> 
 
-                                <?php $lblC = @$params["pages"]["#".$page]["lblBtnCreate"]; ?>
-                                <?php $colorC = @$params["pages"]["#".$page]["colorBtnCreate"]; ?>
+                            <?php $lblC = Yii::t("common",@$params["pages"]["#".$page]["lblBtnCreate"]); ?>
+                            <?php $colorC = @$params["pages"]["#".$page]["colorBtnCreate"]; ?>
 
                                 <?php if(!empty(Yii::app()->session["userId"])){ ?>
                                     <button class="btn btn-default letter-<?php echo @$colorC; ?> bold main-btn-create"

@@ -26,7 +26,7 @@
                        <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Partage de messages</label> 
                        <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Partage d'événements</label> 
                        <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Gestion de contacts</label>  
-                       <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Messagerie privées</label>  
+                       <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Messagerie privée</label>  
                        <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Notifications</label> 
                        <hr>
                     </div>
@@ -107,7 +107,7 @@
                                 <div class="col-md-12 no-padding text-center hidden-xs">
                                     <h5>Ce sont les petites initiatives<br>qui donnent naissance aux projets hors du commun
                                         <small class="hidden-xs" style="text-transform: none;"><br>
-                                            N'hésitez jamais à faire connaître vos évènements.<br>
+                                            N'hésitez pas à faire connaître vos évènements.<br>
                                             Communiquez-les massivement!
                                         </small>
                                     </h5>
@@ -126,7 +126,7 @@
                                 <div class="col-md-12 no-padding text-center hidden-xs">
                                     <h5>Ce sont les petites initiatives<br>qui donnent naissance aux projets hors du commun
                                         <small class="hidden-xs" style="text-transform: none;"><br>
-                                            N'hésitez jamais à faire connaître vos envies, vos projets, vos rêves.<br>
+                                            N'hésitez pas à faire connaître vos envies, vos projets, vos rêves.<br>
                                             C'est comme ça qu'ils grandissent !
                                         </small>
                                     </h5>
@@ -145,8 +145,8 @@
                                 <div class="col-md-12 no-padding text-center hidden-xs">
                                     <h5>Le lien entre l'Etat et les citoyens
                                         <small class="hidden-xs" style="text-transform: none;"><br>
-                                            Les services publics sont les piliers de notre démocratie<br>
-                                            Il est important de les cartographier, et de les rendre accessibles facilement<br>
+                                            Les services publics sont les piliers de notre démocratie.<br>
+                                            Il est important de les cartographier et de les rendre accessibles facilement<br>
                                             au niveau local comme national
                                         </small>
                                     </h5>
