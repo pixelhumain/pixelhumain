@@ -37,7 +37,7 @@ return array(
 	"closed" => "Fermée",
 	"done" => "terminée",
 
-	"Create room" => "Créer un espace",
+	"Create room" => "Créer un nouvel espace",
 	
 	"Topic" => "Sujet",
 
