@@ -351,7 +351,13 @@ jQuery(document).ready(function() {
     <?php } ?>
 });
 
-<?php if(@Yii::app()->session["userId"] && Yii::app()->params['rocketchatEnabled'] ){?>
+<?php if(@Yii::app()->session["userId"] && Yii::app()->params['rocketchatEnabled'] ){
+    if(Yii::app()->params['rocketchatEnabled']){
+        $rocket = RocketChat::getToken(Yii::app()->session["userEmail"],Yii::app()->session["pwd"]);
+        Yii::app()->session["loginToken"] = $rocket["loginToken"];
+        Yii::app()->session["rocketUserId"] = $rocket["rocketUserId"];
+      }
+?>
 var rcObj = {
 
     lastOpenChat : null,
