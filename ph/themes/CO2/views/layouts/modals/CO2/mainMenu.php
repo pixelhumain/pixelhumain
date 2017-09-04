@@ -336,12 +336,25 @@ jQuery(document).ready(function() {
             searchObj = {};
         }
     }); 
+
+    //preload in background the rocket iframe
+    if( userId ){
+        //preload the iframe 
+        getAjax('.RCcontainer', baseUrl+'/'+moduleId+'/rocketchat',null,"html");
+        //get all users Lsit of channels
+        getAjax(null, baseUrl+'/'+moduleId+'/rocketchat/list',function(data) {  
+            mylog.log("rcObj.list : ",data);
+            rcObj.list = data;  
+        },"json");
+    }
 });
 
 var rcObj = {
 
     lastOpenChat : null,
     debugChat : false,
+
+    list : null,
 
     login : function () 
     { 
@@ -355,55 +368,59 @@ var rcObj = {
         
         var contextName = (typeof contextData != "undefined" && contextData != null ) ? contextData.name : userConnected.name;
         //$(".rocketchatTitle").html('Discutons : '+contextName);
-        if(rcObj.debugChat)alert( "name:"+name+", type:"+type+", isOpen : "+isOpen+", hasRC : "+hasRC );
         rcObj.loadedIframe (name) ;
         //if iframe deosn't exist
         //element has an RC channel 
         //not a citizen
-        //
-        if( $('.RCcontainer').html() == "" || (!hasRC && type != "citoyens" && rcObj.lastOpenChat != name) )
-        {  
+        var checkGroupMember = $.inArray( contextData.type+"_"+slugify(contextData.name) , rcObj.list ); 
+        
+        if(rcObj.debugChat)alert( "name:"+name+", type:"+type+", isOpen : "+isOpen+", hasRC : "+hasRC+",checkGroupMember:"+checkGroupMember );
 
-            $('.RCcontainer').html("<center>Veuillez patienter le temps de créer la salle de discusion.</center>");
+        if( $('.RCcontainer').html() == "" || 
+            ( hasRC && type != "citoyens" && rcObj.lastOpenChat != name && checkGroupMember < 0 ) ||
+            (!hasRC && type != "citoyens" && rcObj.lastOpenChat != name) )
+        {  
             rcObj.lastOpenChat = name;
             var extra = (isOpen) ? "/roomType/channel" : "/roomType/group";
+
             iframeUrl = (name!="") ? baseUrl+'/'+moduleId+'/rocketchat/chat/name/'+slugify(contextData.name)+'/type/'+contextData.type+'/id/'+contextData.id+extra
-                                    : baseUrl+'/'+moduleId+'/rocketchat';
+                                   : baseUrl+'/'+moduleId+'/rocketchat';
             
             if(rcObj.debugChat)alert( iframeUrl );
 
-            getAjax('.RCcontainer', iframeUrl,
-                function(data){ 
-                    //$.unblockUi();
-                } ,"html");
+            getAjax(null, iframeUrl, function(data){ 
+                        $('.btnChatColor').addClass("text-red");
+                        rcObj.goto(name,isOpen);
+                    } ,"json");
             
-        } else {
+        }  else {
 
             //todo : pb sur les nouvelles creations en passant par ici
             if(rcObj.debugChat)alert( rcObj.lastOpenChat+" | "+name );
-            if( rcObj.lastOpenChat != name )
-            {
-                pathChannel = "";
-                if( name != "" ){
-                    if( contextData.type == "citoyens" ) 
-                        pathChannel = "/direct/"+contextData.username ;
-                    else {
-                        pathChannel = (isOpen) ? "/channel/"+contextData.type+"_"+slugify(contextData.name) 
-                                               : "/group/"+contextData.type+"_"+slugify(contextData.name);
-                    }
-                }
-
-
-                if(rcObj.debugChat)alert( "change : "+pathChannel );
-                document.querySelector('iframe').contentWindow.postMessage({
-                    externalCommand: 'go',
-                    path: pathChannel+'?layout=embedded' }, '*');
             
-            } else if(rcObj.debugChat)
-                alert( " no change" );
+            rcObj.goto(name,isOpen);
         }
 
         rcObj.lastOpenChat = name;
+    },
+    goto : function (name,isOpen) { 
+        pathChannel = "";
+        if( name != "" ){
+            if( contextData.type == "citoyens" ) 
+                pathChannel = "/direct/"+contextData.username ;
+            else {
+                pathChannel = (isOpen) ? "/channel/"+contextData.type+"_"+slugify(contextData.name) 
+                                       : "/group/"+contextData.type+"_"+slugify(contextData.name);
+            }
+        }
+        if(rcObj.debugChat)alert( "RC goto : "+pathChannel );
+
+        setTimeout( function () { 
+            document.querySelector('iframe').contentWindow.postMessage({
+                externalCommand: 'go',
+                path: pathChannel }, '*');
+         }, 1000);
+        
     },
 
     loadedIframe : function  (name) { 
@@ -428,11 +445,5 @@ var rcObj = {
 };
 
 
-
-jQuery(document).ready(function() { 
-    //preload in background the rocket iframe
-    if( userId )
-        getAjax('.RCcontainer', baseUrl+'/'+moduleId+'/rocketchat',null,"html");
-})
 
 </script>
