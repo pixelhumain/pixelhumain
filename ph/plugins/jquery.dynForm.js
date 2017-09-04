@@ -321,9 +321,15 @@ onSave: (optional) overloads the generic saveProcess
         	if(placeholder == "")
         		placeholder="add Image";
         	mylog.log("build field "+field+">>>>>> uploader");
-        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>'+
-							'<script type="text/template" id="qq-template-gallery">'+
-							'<div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">'+
+        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>';
+        	if(fieldObj.docType=="image")
+			fieldHTML += 	'<script type="text/template" id="qq-template-gallery">';
+			else
+			fieldHTML += 	'<script type="text/template" id="qq-template-manual-trigger">';
+			fieldHTML += 	'<div class="qq-uploader-selector qq-uploader';
+			if(fieldObj.docType=="image")
+			fieldHTML +=		' qq-gallery';
+			fieldHTML +=		'" qq-drop-area-text="'+tradDynForm.dropfileshere+'">'+
 							'<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">'+
 							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>'+
 							'</div>'+
@@ -331,16 +337,17 @@ onSave: (optional) overloads the generic saveProcess
 							'<span class="qq-upload-drop-area-text-selector"></span>'+
 							'</div>'+
 							'<div class="qq-upload-button-selector btn btn-primary">'+
-							'<div>'+tradDynForm["addimage"]+'</div>'+
+							'<div>'+tradDynForm["add"+fieldObj.docType]+'</div>'+
 							'</div>'+
 							'<button type="button" id="trigger-upload" class="btn btn-danger hide">'+
-			                '<i class="icon-upload icon-white"></i> '+tradDynForm["save"]+
+			                '<i class="icon-upload icon-white"></i> '+tradDynForm.save+
 			                '</button>'+
 							'<span class="qq-drop-processing-selector qq-drop-processing">'+
 							'<span>En cours de progression...</span>'+
 							'<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>'+
-							'</span>'+
-							'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
+							'</span>';
+			if(fieldObj.docType=="image"){
+			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
 							'<li>'+
 							'<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
 							'<div class="qq-progress-bar-container-selector qq-progress-bar-container">'+
@@ -374,8 +381,27 @@ onSave: (optional) overloads the generic saveProcess
 							'</button>'+
 							'</div>'+
 							'</li>'+
-							'</ul>'+
-							''+
+							'</ul>';
+			}else{
+			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">'+
+				                '<li>'+
+				                    '<div class="qq-progress-bar-container-selector">'+
+				                        '<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
+				                    '</div>'+
+				                    '<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
+				                    '<img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>'+
+				                    '<span class="qq-upload-file-selector qq-upload-file"></span>'+
+				                    '<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+				                    '<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
+				                    '<span class="qq-upload-size-selector qq-upload-size"></span>'+
+				                    '<button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>'+
+				                    '<button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>'+
+				                    '<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>'+
+				                    '<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
+				                '</li>'+
+				            '</ul>';
+			}
+			fieldHTML += 				''+
 							'<dialog class="qq-alert-dialog-selector">'+
 							'<div class="qq-dialog-message-selector"></div>'+
 							'<div class="qq-dialog-buttons">'+
@@ -405,6 +431,8 @@ onSave: (optional) overloads the generic saveProcess
         		initValues.showUploadBtn = fieldObj.showUploadBtn;
         	if( fieldObj.filetypes )
         		initValues.filetypes = fieldObj.filetypes;
+        	if( fieldObj.template )
+        		initValues.template = fieldObj.template;
 			if( $.isFunction( fieldObj.afterUploadComplete ) )
         		initValues.afterUploadComplete = fieldObj.afterUploadComplete;
         }
@@ -677,6 +705,103 @@ onSave: (optional) overloads the generic saveProcess
 
         	fieldHTML += (typeof fieldObj.html == "function") ? fieldObj.html() : fieldObj.html;
         } 
+        /* **************************************
+        * CREATE NEWS
+        ************************************** */
+        else if( fieldObj.inputType == "createNews"){
+        	var newsContext=fieldObj.params;
+        	if(newsContext.targetType!="citoyens"){
+        		if(newsContext.authorImg=="")
+        			var authorImg=moduleUrl+'/images/thumb/default_citoyens.png';
+        		else
+        			var authorImg=baseUrl+newsContext.authorImg;
+        		if(newsContext.targetImg=="")
+        			var targetImg=moduleUrl+'/images/thumb/default_'+newsContext.targetType+'.png';
+        		else
+        			var targetImg=baseUrl+newsContext.targetImg;
+        		//targetName=newsContext.targetName;
+        		//authorName=newsContext.authorName;
+        	}
+        	fieldHTML='<div id="createNews" class="form-group">'+
+        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.writenewshere+
+			        '</label>'+
+			        '<div id="mentionsText" class="col-md-12 col-sm-12 col-xs-12 no-padding">'+
+        				'<textarea name="newsText"></textarea>'+
+        			'</div>'+
+					'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.tags+
+			        '</label>'+
+        			'<div class="no-padding">'+
+          				'<input id="tags" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">'+
+      				'</div>'+
+        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsvisibility+
+			        '</label>'+
+        			'<div class="dropdown no-padding col-md-12 col-sm-12 col-xs-12">'+
+          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12" id="btn-toogle-dropdown-scope" href="javascript:;">'+
+          					'<i class="fa fa-connectdevelop"></i> '+tradDynForm.network+' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
+          				'</a>'+
+          				'<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">';
+          					if(newsContext.targetType != "events"){
+            fieldHTML+=		'<li>'+
+              					'<a href="javascript:;" id="scope-my-network" class="scopeShare" data-value="private">'+
+              						'<h4 class="list-group-item-heading"><i class="fa fa-lock"></i> '+tradDynForm.private+'</h4>'+
+               						'<p class="list-group-item-text small">'+tradDynForm["explainprivate"+newsContext.targetType]+'</p>'+
+              					'</a>'+
+            				'</li>';
+            				}
+            fieldHTML+=		'<li>'+
+              					'<a href="javascript:;" id="scope-my-network" class="scopeShare" data-value="restricted">'+
+              						'<h4 class="list-group-item-heading"><i class="fa fa-connectdevelop"></i> '+tradDynForm.network+'</h4>'+
+                					'<p class="list-group-item-text small"> '+tradDynForm.explainnetwork+'</p>'+
+              					'</a>'+
+				            '</li>'+
+				            '<li>'+
+				              	'<a href="javascript:;" id="scope-my-wall" class="scopeShare" data-value="public">'+
+				              		'<h4 class="list-group-item-heading"><i class="fa fa-globe"></i> '+tradDynForm.public+'</h4>'+
+				                    '<p class="list-group-item-text small">'+tradDynForm.explainpublic+'</p>'+
+				              	'</a>'+
+				            '</li>'+
+			            '</ul>'+
+			            '<input type="hidden" name="scope" id="scope" value="restricted"/>'+
+	        		'</div>';
+	        		if(newsContext.targetType!="citoyens"){
+	        fieldHTML+=		'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsauthor+
+		            '</label>'+
+        			'<div class="dropdown no-padding col-md-12">'+
+          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12 text-left" id="btn-toogle-dropdown-targetIsAuthor" href="javascript:;">'+
+           					'<img height=20 width=20 src="'+targetImg+'">'+  
+           					' '+newsContext.targetName+
+				            ' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
+				        '</a>'+
+				        '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">'+
+				            '<li>'+
+              					'<a href="javascript:;" class="targetIsAuthor" data-value="1" data-name="'+newsContext.targetName+'">'+
+					                '<h4 class="list-group-item-heading">'+
+					                  	'<img height=20 width=20 src="'+targetImg+'">'+  
+					                	' '+newsContext.targetName+
+					                '</h4>'+
+					                '<p class="list-group-item-text small">'+tradDynForm.show+' '+newsContext.targetName+' '+tradDynForm.asAuthor+'</p>'+
+					            '</a>'+
+					        '</li>'+
+					        '<li>'+
+				              	'<a href="javascript:;" class="targetIsAuthor" data-value="0" data-name="'+tradDynForm.me+'">'+
+				              		'<h4 class="list-group-item-heading">'+
+				                		'<img height=20 width=20 src="'+authorImg+'">'+  
+				                		' '+tradDynForm.me+
+				                	'</h4>'+
+				                	'<p class="list-group-item-text small"> '+tradDynForm.iamauthor+'</p>'+
+				              	'</a>'+
+				            '</li>'+
+				        '</ul>'+
+				        '<input type="hidden" id="authorIsTarget" value="1"/>'+
+        			'</div>';
+        			}
+        	fieldHTML+=	'</div>';  
+          
+        }
         /* 	*************************************
         * SCOPE USER 	
         ************************************** */
@@ -1011,23 +1136,24 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
 		if(  $(".fine-uploader-manual-trigger").length)
 		{
-			function loadFineUploader(callback) {
+			function loadFineUploader(callback,template) {
 				if( ! jQuery.isFunction(jQuery.fineUploader) ) {
+					if(template=='qq-template-manual-trigger')
+						var cssLazy=baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css';
+					else
+						var cssLazy=baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css';
 					lazyLoad( baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js', 
-							  baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
+							  cssLazy,
 							  callback);
 			    }
 			}
-
+			var docListIds=[];
 			var FineUploader = function(){
 				mylog.log("init fineUploader");
-				
 				$(".fine-uploader-manual-trigger").fineUploader({
-		            template: 'qq-template-gallery',//'qq-template-manual-trigger',
+		            template: (initValues.template) ? initValues.template : 'qq-template-manual-trigger',
 		            request: {
 		                endpoint: uploadObj.path
-		                //endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile/contentKey/"+uploadObj.contentKey 
-		                //params : {id:uploadObj.id}
 		            },
 		            validation: {
 		                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
@@ -1040,12 +1166,9 @@ onSave: (optional) overloads the generic saveProcess
 		            callbacks: {
 		            	//when a img is selected
 					    onSubmit: function(id, fileName) {
-					    	$('.fine-uploader-manual-trigger').fineUploader('setEndpoint',uploadObj.path);
-					    	//alert(" > onSubmit : "+ uploadObj.id +" :: "+ uploadObj.type);
-					    	//console.log('onSubmit uplaodObj',uploadObj);
-					    	//var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-					        //console.log('onSubmit getEndpoint',ex);
-					        if( initValues.showUploadBtn  ){
+					    	$('.fine-uploader-manual-trigger').fineUploader('setEndpoint',uploadObj.path);	
+					    	//$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+    					    if( initValues.showUploadBtn  ){
 						      	$('#trigger-upload').removeClass("hide").click(function(e) {
 				        			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
 						        	urlCtrl.loadByHash(location.hash);
@@ -1077,6 +1200,12 @@ onSave: (optional) overloads the generic saveProcess
 					    //},
 					    //when every img finish upload process whatever the status
 					    onComplete: function(id, fileName,responseJSON,xhr) {
+					    	
+					    	console.log(responseJSON);
+					    	
+					    	if($("#ajaxFormModal #newsCreation").val()=="true"){
+					    		docListIds.push(responseJSON.id.$id);
+					    	}
 					    	if(!responseJSON.result){
 					    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
 					    		console.error(trad["somethingwentwrong"] , responseJSON.msg)
@@ -1084,17 +1213,58 @@ onSave: (optional) overloads the generic saveProcess
 					    },
 					    //when all upload is complete whatever the result
 					    onAllComplete: function(succeeded, failed) {
-					      toastr.info( "Fichiers bien chargés !!");//+ uploadObj.id +" :: "+ uploadObj.type );
-
-					      if( jQuery.isFunction(initValues.afterUploadComplete) )
+					     	toastr.info( "Fichiers bien chargés !!");
+					      	if($("#ajaxFormModal #newsCreation").val()=="true"){
+					      		console.log("docslist",docListIds);
+					      		var mentionsInput=[];
+					      		$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
+      								mentionsInput=data;
+    							});
+					      		var media=new Object;
+					      		if(uploadObj.contentKey=="file"){
+					      			media.type="gallery_files";
+					      			media.countFiles=docListIds.length;
+					      			media.files=docListIds;
+					      		}else{
+					      			media.type="gallery_images";
+					      			media.countImages=docListIds.length;
+					      			media.images=docListIds;
+					      		}
+					    		var addParams = {
+	              				  type: "news",
+	              				  parentId: uploadObj.id,
+	              				  parentType: uploadObj.type,
+	              				  scope:$("#ajaxFormModal #createNews #scope").val(),
+	              				  text:$("#ajaxFormModal #createNews textarea").val(),
+	              				  media: media
+	            				};
+	            				if ($("#ajaxFormModal #createNews #tags").val() != "")
+									addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
+								if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
+									addParams.targetIsAuthor = true;
+								if (mentionsInput.length != 0){
+									addParams.mentions=mentionsInput;
+								}
+								$.ajax({
+							        type: "POST",
+							        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",
+							        //dataType: "json",
+							        data: addParams,
+									type: "POST",
+							    })
+							    .done(function (data) {
+						    		
+									return true;
+							    }).fail(function(){
+								   toastr.error("Something went wrong, contact your admin"); 
+								   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
+								   $("#btn-submit-form").prop('disabled', false);
+							    });
+							}
+					    if( jQuery.isFunction(initValues.afterUploadComplete) )
 					      	initValues.afterUploadComplete();
-					      uploadObj.gotoUrl = null;
+					     	uploadObj.gotoUrl = null;
 					    },
-					    //on click a photo delete btn and launches delete endpoint
-					    /*onDelete: function(id) {
-					      alert("submit delete"+id);
-					    },*/
-					    //if any error during upload
 					    onError: function(id) {
 					      toastr.info(trad["somethingwentwrong"]);
 					    }
@@ -1107,16 +1277,9 @@ onSave: (optional) overloads the generic saveProcess
 		            },
 		            autoUpload: false
 		        });
-		        /*$('#trigger-upload').click(function() {
-		        	//'getUploads'
-		            $('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-		            $('.fine-uploader-manual-trigger').fineUploader('getUploads');
-		        });*/
 			};
-
-			if(  $(".fine-uploader-manual-trigger").length){
-				loadFineUploader(FineUploader);
-			}
+			if(  $(".fine-uploader-manual-trigger").length)
+				loadFineUploader(FineUploader,initValues.template);
 		}
 
 		/* **************************************

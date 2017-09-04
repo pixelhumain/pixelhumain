@@ -171,6 +171,11 @@
                 '/plugins/moment/min/moment.min.js' ,
                 '/plugins/moment/min/moment-with-locales.min.js',
                 '/plugins/jquery.dynForm.js',
+                
+    '/plugins/jquery.elastic/elastic.js',
+    '/plugins/underscore-master/underscore.js',
+    '/plugins/jquery-mentions-input-master/jquery.mentionsInput.js',
+    '/plugins/jquery-mentions-input-master/jquery.mentionsInput.css',
                 //'/js/cookie.js' ,
                 '/js/api.js',
                 

@@ -37,17 +37,18 @@ return array(
 	"closed" => "Fermée",
 	"done" => "terminée",
 
-	"Create room" => "Créer un espace",
+	"Create room" => "Créer un nouvel espace",
 	
 	"Topic" => "Sujet",
 
 	"No proposal" => "Aucune proposition",
 	"No action" => "Aucune action",
+	"No resolution" => "Aucune résolution",
 
 	"end" => "fin",
 	"Search in actions" => "Recherche actions",
 	"Search in proposals" => "Recherche propositions",
-
+	"Search in resolution" => "Recherche résolutions",
 	"up" => "Pour",
 	"down" => "Contre",
 	"white" => "Blanc",

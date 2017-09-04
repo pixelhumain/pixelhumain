@@ -880,7 +880,7 @@ return array(
 	"Next chapter" => "Suivant",
 	"Previous chapter" => "Précédent",
 
-	"You are not connected to your city" => "Vous n'êtes pas communecté",
+	"You are not connected to your city" => "Vous n'êtes pas communecté-e",
 	"To get quick access to information in your city, to filter and map view local content, please fill your postal code on your profile page." => "Pour obtenir un accès rapide à votre commune, et filtrer les résultats et la carte en fonction de celle-ci,
 merci de renseigner votre code postal dans l'addresse de votre profil.",
 

@@ -30,7 +30,7 @@
     var myContacts = <?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
     var myContactsById =<?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
     var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
-
+    var mentionsContact=[];
     var classified = <?php echo json_encode( CO2::getContextList("classified") ) ?>;
     var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;
     var ressource = <?php echo json_encode( CO2::getContextList("ressource") ) ?>;
@@ -115,6 +115,36 @@
             };
             initFloopDrawer();
             resizeInterface();
+            //Init mentions contact
+            if(myContacts != null){
+                $.each(myContacts["people"], function (key,value){
+                    if(typeof(value) != "undefined" ){
+                        avatar="";
+                        console.log(value);
+                        if(value.profilThumbImageUrl!="")
+                            avatar = baseUrl+value.profilThumbImageUrl;
+                        object = new Object;
+                        object.id = value._id.$id;
+                        object.name = value.name;
+                        object.avatar = avatar;
+                        object.type = "citoyens";
+                        mentionsContact.push(object);
+                    }
+                });
+                $.each(myContacts["organizations"], function (key,value){
+                    if(typeof(value) != "undefined" ){
+                    avatar="";
+                    if(value.profilThumbImageUrl!="")
+                        avatar = baseUrl+value.profilThumbImageUrl;
+                    object = new Object;
+                    object.id = value._id.$id;
+                    object.name = value.name;
+                    object.avatar = avatar;
+                    object.type = "organizations";
+                    mentionsContact.push(object);
+                    }
+                });
+            }
             window.onhashchange = function() {
                 mylog.warn("popstate history.state",history.state);
                 if( lastWindowUrl && "onhashchange" in window){
