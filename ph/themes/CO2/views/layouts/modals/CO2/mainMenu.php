@@ -338,6 +338,7 @@ jQuery(document).ready(function() {
     }); 
 
     //preload in background the rocket iframe
+    <?php if(@Yii::app()->session["userId"] && Yii::app()->params['rocketchatEnabled'] ){?>
     if( userId ){
         //preload the iframe 
         getAjax('.RCcontainer', baseUrl+'/'+moduleId+'/rocketchat',null,"html");
@@ -347,13 +348,16 @@ jQuery(document).ready(function() {
             rcObj.list = data;  
         },"json");
     }
+    <?php } ?>
 });
 
+<?php if(@Yii::app()->session["userId"] && Yii::app()->params['rocketchatEnabled'] ){?>
 var rcObj = {
 
     lastOpenChat : null,
     debugChat : false,
-
+    loginToken : '<?php echo @Yii::app()->session["loginToken"]; ?>',
+    rocketUserId : '<?php echo @Yii::app()->session["rocketUserId"]; ?>',
     list : null,
 
     login : function () 
@@ -444,6 +448,6 @@ var rcObj = {
 
 };
 
-
+<?php } ?>
 
 </script>
