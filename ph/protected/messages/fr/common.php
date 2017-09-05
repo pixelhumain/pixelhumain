@@ -329,6 +329,7 @@ return array(
 	"False" => "Non",
 	"True" => "Oui",
 	"Enter tagsList" => "Entrer des tags",
+	"Add a role"=>"Ajouter un rôle",
 	//Color
 	"Green" => "Vert",
 	"Blue" => "bleu",
