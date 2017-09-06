@@ -372,7 +372,8 @@ function slugify (value) {
 	{re:/[\xF9-\xFC]/g, ch:'u'},
 	{re:/[\xC7-\xE7]/g, ch:'c'},
 	{re:/[\xD1]/g, ch:'N'},
-	{re:/[\xF1]/g, ch:'n'} ];
+  {re:/[\xF1]/g, ch:'n'},
+  {re:/['"]/g, ch:'-'} ];
 
 	// converti les caractères accentués en leurs équivalent alpha
 	for(var i=0, len=rExps.length; i<len; i++)
