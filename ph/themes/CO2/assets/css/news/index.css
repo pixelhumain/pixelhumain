@@ -196,6 +196,9 @@ div.timeline .date_separator span{
 .results, .resultGetUrl{
 	margin-top: 10px;
 }
+.results .searchEntityContainer{
+	width: 100% !important;
+}
 .removeMediaUrl{
 	position:absolute;
 	top:0px;

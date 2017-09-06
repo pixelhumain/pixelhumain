@@ -10,9 +10,20 @@ class ExtractProcessAction extends CAction{
 	    
 		if(isset($_POST["url"]))
 		{
-			//if(strpos($_POST["url"], Yii::app()->getRequest()->getBaseUrl(true)) > -1){
-
-			//}else{
+			if(strpos($_POST["url"], Yii::app()->getRequest()->getBaseUrl(true)) > -1 && strpos($_POST["url"], "#page") > -1){
+				$url=explode("#page.type.",$_POST["url"]);
+				$url=explode(".id.",$url[1]);
+				$type=$url[0];
+				$id=$url[1];
+				if(strpos($id, ".") > -1){
+					$id=explode($id,".");
+					$id=$id[0];	
+				}					
+				//echo $id."/".$type;
+				$element=Element::getSimpleByTypeAndId($type, $id);
+				$element["type"]=$type;
+				$output=array("type"=>"activityStream", "object"=> $element);
+			}else{
 				$get_url = $_POST["url"]; 
 				$urlVideo="";	
 				$imageMedia="";
@@ -250,7 +261,7 @@ class ExtractProcessAction extends CAction{
 					//$output = $json;
 					
 				}
-			//}
+			}
 			echo json_encode($output); //output JSON data
 		}
 	}
