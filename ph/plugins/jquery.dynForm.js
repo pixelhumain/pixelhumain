@@ -240,6 +240,42 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML +='<textarea name="target-editor" id="'+field+'" data-provide="markdown" data-savable="true" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" rows="10"></textarea>';
         }
         /* **************************************
+		* CHECKBOX SIMPLE
+		***************************************** */
+        else if ( fieldObj.inputType == "checkboxSimple" ) {
+   			if(value == "") value="25/01/2014";
+   			console.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
+	       	var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
+	       	console.log("fieldObj ??? thisValue", thisValue);
+	       	//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
+	       	//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
+	       	mylog.log("build field "+field+">>>>>> checkbox");
+	       	fieldHTML += '<input type="hidden" class="'+fieldClass+'" name="'+field+'" id="'+field+'" '+
+	       						'value="'+thisValue+'"/> ';
+	       
+	       	fieldHTML += '<div class="col-lg-6 padding-5">'+
+	       					'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-green col-lg-12"'+
+	       					' data-checkval="true"' +
+	       					'>'+
+	       						fieldObj.params.onText+
+	       					'</a>'+
+	       				 '</div>';
+	       	fieldHTML += '<div class="col-lg-6 padding-5">'+
+	       					'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-red col-lg-12"'+
+	       					' data-checkval="false"' +
+	       					'>'+
+	       						fieldObj.params.offText+
+	       					'</a>'+
+	       				 '</div>';
+	       	initField = function(){
+	       		//var checked = ( fieldObj.checked ) ? "checked" : "";
+	       		//if(checked) 
+	       		//if( fieldObj.switch )
+	       			//initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
+	       	};
+       	}
+
+       	/* **************************************
 		* CHECKBOX
 		***************************************** */
         else if ( fieldObj.inputType == "checkbox" ) {
