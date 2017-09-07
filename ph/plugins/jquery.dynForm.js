@@ -152,6 +152,8 @@ onSave: (optional) overloads the generic saveProcess
         else if (formValues && formValues[field]) {
         	value = formValues[field];
         }
+
+        mylog.log("value network", value);
         if(value!="")
         	mylog.warn("--------------- dynform form Values",field,value);
 
@@ -182,9 +184,10 @@ onSave: (optional) overloads the generic saveProcess
         		}
         		if(fieldObj.maximumSelectionLength)
         			initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
-        		
+        		mylog.log("fieldObj.data", fieldObj.data, fieldObj);
         		if(typeof fieldObj.data != "undefined"){
-	        		initSelectNetwork[field]=fieldObj.data;
+        			value = fieldObj.data;
+	        		//initSelectNetwork[field]=fieldObj.data;
 	        	}
         		if(typeof fieldObj.mainTag != "undefined")
 					mainTag=mainTag;
