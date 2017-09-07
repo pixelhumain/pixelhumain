@@ -76,7 +76,7 @@ function file_get_html($url, $use_include_path = false, $context=null, $offset =
 	$contents = file_get_contents($url, $use_include_path, $context, $offset);
 	// Paperg - use our own mechanism for getting the contents as we want to control the timeout.
 	//$contents = retrieve_url_contents($url);
-	if (empty($contents) || strlen($contents) > MAX_FILE_SIZE)
+	if (empty($contents) /*|| strlen($contents) > MAX_FILE_SIZE*/)
 	{
 		return false;
 	}

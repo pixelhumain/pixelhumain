@@ -9,9 +9,9 @@
     $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
 
     $params = CO2::getThemeParams();
-
+    $metaTitle = @$params["metaTitle"];
     $metaDesc = @$params["metaDesc"]; 
-    $metaImg = Yii::app()->theme->baseUrl.@$params["metaImg"];
+    $metaImg = Yii::app()->getRequest()->getBaseUrl(true)."/themes/CO2".@$params["metaImg"];
     
 ?>
 
@@ -22,12 +22,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="title" content="<?php echo $metaTitle; ?>">
         <meta name="description" content="<?php echo $metaDesc; ?>">
         <meta name="author" content="pixelhumain">
 
         <meta property="og:image" content="<?php echo $metaImg; ?>"/>
         <meta property="og:description" content="<?php echo $metaDesc; ?>"/>
+        <meta property="og:title" content="<?php echo $metaTitle; ?>"/>
 
         <title><?php echo $CO2DomainName; ?></title>
 

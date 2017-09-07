@@ -427,7 +427,7 @@ onSave: (optional) overloads the generic saveProcess
 				                    '<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
 				                    '<img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>'+
 				                    '<span class="qq-upload-file-selector qq-upload-file"></span>'+
-				                    '<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+				                    //'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
 				                    '<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
 				                    '<span class="qq-upload-size-selector qq-upload-size"></span>'+
 				                    '<button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>'+
