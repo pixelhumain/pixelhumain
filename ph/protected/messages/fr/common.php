@@ -801,6 +801,11 @@ return array(
 	"A project" => "Créer</br>un projet",
 	"An event" => "Créer</br>un événement",
 
+	"an action" => "une action",
+	"a proposal" => "une proposition",
+	"a cooperative space" => "un espace coopératif",
+	"a resolution" => "une résolution",
+
 	"Socials" => "Réseaux sociaux",
 	"Descriptions" => "Descriptions",
 	"Tags" => "Tags",
@@ -1112,6 +1117,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
     "French"=> "Français",
     "Languages"=>"Langues",
 	"Photos gallery" => "Galerie photos",
+
+
 
 );
 ?>
