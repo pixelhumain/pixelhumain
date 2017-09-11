@@ -386,7 +386,7 @@ var rcObj = {
         //if iframe deosn't exist
         //element has an RC channel 
         //not a citizen
-        var checkGroupMember = $.inArray( contextData.type+"_"+slugify(contextData.name) , rcObj.list ); 
+        var checkGroupMember = $.inArray( slugify(contextData.name) , rcObj.list ); 
         
         if(rcObj.debugChat)alert( "name:"+name+", type:"+type+", isOpen : "+isOpen+", hasRC : "+hasRC+",checkGroupMember:"+checkGroupMember );
 
@@ -423,8 +423,8 @@ var rcObj = {
             if( contextData.type == "citoyens" ) 
                 pathChannel = "/direct/"+contextData.username ;
             else {
-                pathChannel = (isOpen) ? "/channel/"+contextData.type+"_"+slugify(contextData.name) 
-                                       : "/group/"+contextData.type+"_"+slugify(contextData.name);
+                pathChannel = (isOpen) ? "/channel/"+slugify(contextData.name) 
+                                       : "/group/"+slugify(contextData.name);
             }
         }
         if(rcObj.debugChat)alert( "RC goto : "+pathChannel );
