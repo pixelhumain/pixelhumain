@@ -90,7 +90,7 @@ $params = array(
     "theme"=> "CO2",
 
     //rocketchat params
-    'rocketchatEnabled' => false,
+    'rocketchatEnabled' => true,
     'rocketchatURL' => 'https://chat.communecter.org',
     'rocketAdmin' => 'oceatoon@gmail.com',
     'rocketAdminPwd' => '22102210',
