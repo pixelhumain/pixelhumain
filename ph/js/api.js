@@ -388,7 +388,27 @@ function slugify (value) {
 	.replace(/[^a-z0-9-]/g, '')
 	.replace(/\-{2,}/g,'-');
 };
+function checkAndCutLongString(text,limitLength,id, className,readMore){
+  if(text.length > limitLength){
+    allText=text;
+    text=text.substring(0,limitLength)+
+        "<span class='ppp'> ...</span>"+
+        "<span class='endtext hidden'>"+text.substring(limitLength, text.length)+"</span>";
 
+    if(readMore){
+      text += //"<span class='removeReadNews'> ...
+            "<span>"+//<br>"+
+            "<button class='btn btn-xs btn-link letter-blue btn-"+className+"' data-id='"+id+"' target='_blank'>"+
+              "Lire la suite"+
+            "</button>"+
+          "</span>";
+          // "<div class='allText' style='display:none;'>"+allText+"</div>";
+    }else{
+      text += " ..."
+    }
+  }
+  return text;
+}
 var jsonHelper = {
   /*
   
