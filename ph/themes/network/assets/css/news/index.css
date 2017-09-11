@@ -22,7 +22,6 @@
 	}
 }
 .timeline{
-	float: left;
 	min-width: 100%;
 }
 .date_separator{
@@ -32,10 +31,11 @@
 .date_separator span{
 	/*font-family: "homestead";*/
 	font-size: 13px;
-	background-color: white !important;
+	background-color: #fff !important;
 	color: #315C6E !important;
 	border: none !important;
 	border-radius: 10px !important;
+	background-color: #f8f8f8 !important;
 	text-transform: capitalize;
 	height:unset !important;
 	/*-moz-box-shadow: 0px 0px 7px -2px #656565;
@@ -160,11 +160,23 @@ div.timeline .date_separator span{
 .extracted_thumb {
 	float: left;
 	position:relative;
+	margin: 0px 10px 10px 0;
 }
 .extracted_thumb_large{
 	position:relative;
 	max-height: 250px;
 	overflow: hidden;
+	width:100%;
+}
+.timeline-panel .updateLoading{
+	position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(250,250,250,0.9);
+    right: 0;
+    bottom: 0px;
+    font-size: 25px;
+    text-align: -webkit-center;
 }
 .extracted_content h4{
 	margin-top:inherit;
@@ -183,6 +195,9 @@ div.timeline .date_separator span{
 }
 .results, .resultGetUrl{
 	margin-top: 10px;
+}
+.results .searchEntityContainer{
+	width: 100% !important;
 }
 .removeMediaUrl{
 	position:absolute;
