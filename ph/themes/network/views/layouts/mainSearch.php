@@ -15,6 +15,7 @@
     $metaTitle = @$params["metaTitle"];
     $metaDesc = @$params["metaDesc"]; 
     $metaImg = Yii::app()->getRequest()->getBaseUrl(true)."/themes/CO2".@$params["metaImg"];
+    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
 
 ?>	
 <html lang="en" class="no-js">
@@ -91,8 +92,8 @@
 	<!-- **************************************
 	MENUS TOP AND LEFT CONTAINER
 	******************************************* -->
-	<?php $this->renderPartial($layoutPath.'menu.simply_short_info_profil', array("params" => $networkJson)); ?>
-	<?php $this->renderPartial($layoutPath."menu.simplyMenuLeft", array("params" => $networkJson)); ?>
+	<?php $this->renderPartial($layoutPath.'menu.simply_short_info_profil', array("params" => $networkJson, "me" => $me)); ?>
+	<?php $this->renderPartial($layoutPath."menu.simplyMenuLeft", array("params" => $networkJson, "me" => $me)); ?>
 		<div class="col-md-12 col-sm-12 col-xs-12 my-main-container no-padding" style="top: 50px">
 			<div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 col-xs-12 main-col-search no-padding" style="min-height: 490px; opacity: 1;">
 			<?php $this->renderPartial("../network/simplyDirectory",array("params" => $networkJson)); ?>

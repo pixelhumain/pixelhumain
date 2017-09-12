@@ -167,9 +167,9 @@ header .container ,
 	min-height:1000px;
 	min-width: 100%;
 }
-.sigModuleBg{
+/*.sigModuleBg{
 	z-index:-1;
-}
+}*/
 section {
     padding: 70px 0 0 0;
 }
