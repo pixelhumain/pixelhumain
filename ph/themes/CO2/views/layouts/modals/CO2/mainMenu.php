@@ -385,7 +385,7 @@ var rcObj = {
         //if iframe deosn't exist
         //element has an RC channel 
         //not a citizen
-        var checkGroupMember = $.inArray( slugify(contextData.name) , rcObj.list ); 
+        var checkGroupMember = ( contextData ) ? $.inArray( slugify(contextData.name) , rcObj.list ) : true ; 
         
         if(rcObj.debugChat)alert( "name:"+name+", type:"+type+", isOpen : "+isOpen+", hasRC : "+hasRC+",checkGroupMember:"+checkGroupMember );
 
