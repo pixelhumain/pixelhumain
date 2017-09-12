@@ -158,6 +158,8 @@
                                     dir="";
                                     if(typeof currentSplit[8] != "undefined")
                                         dir=currentSplit[8];
+
+                                    if(currentSplit[6] != "coop")
                                     getProfilSubview(currentSplit[6],dir);
                                 }
                                 else
