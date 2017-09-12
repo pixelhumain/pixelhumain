@@ -353,6 +353,7 @@ jQuery(document).ready(function() {
 
 <?php if(@Yii::app()->session["userId"] && Yii::app()->params['rocketchatEnabled'] )
 {
+    //sets all the global params for the usage of the chat
     Yii::app()->session["adminLoginToken"] = Yii::app()->params["adminLoginToken"];
     Yii::app()->session["adminRocketUserId"] = Yii::app()->params["adminRocketUserId"];
     if(!@Yii::app()->session["loginToken"] && !@Yii::app()->session["rocketUserId"])
@@ -380,8 +381,6 @@ var rcObj = {
 
     loadChat : function (name,type,isOpen,hasRC){ 
         
-        var contextName = (typeof contextData != "undefined" && contextData != null ) ? contextData.name : userConnected.name;
-        //$(".rocketchatTitle").html('Discutons : '+contextName);
         rcObj.loadedIframe (name) ;
         //if iframe deosn't exist
         //element has an RC channel 
@@ -426,6 +425,9 @@ var rcObj = {
                 pathChannel = (isOpen) ? "/channel/"+slugify(contextData.name) 
                                        : "/group/"+slugify(contextData.name);
             }
+        }else {
+            setTimeout( function () { history.pushState('', document.title, window.location.pathname);}, 1000);
+
         }
         if(rcObj.debugChat)alert( "RC goto : "+pathChannel );
 
@@ -435,6 +437,15 @@ var rcObj = {
                 path: pathChannel }, '*');
          }, 1000);
         
+    },
+    settings : function () { 
+        rcObj.loadChat("","citoyens", true, true);
+        setTimeout( function () { 
+            document.querySelector('iframe').contentWindow.postMessage({
+                externalCommand: 'go',
+                path: "/account/preferences" }, '*');
+         }, 1000);
+
     },
 
     loadedIframe : function  (name) { 
