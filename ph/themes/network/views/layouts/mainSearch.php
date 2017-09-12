@@ -435,9 +435,7 @@
 				optgroupObject=new Object;
 				optgroupObject.text=category;
 				optgroupObject.children=[];
-				//networkTags2[category]=[];
 				networkTagsCategory[category]=[];
-				//optgroupArray[category]=[];
 				$.each(properties.tags, function(i, tag) {
 					if($.isArray(tag)){
 						$.each(tag, function(keyTag, textTag) {
@@ -445,10 +443,6 @@
 							if(jQuery.inArray( textTag, tagsList ) == -1 ){
 								optgroupObject.children.push(val);
 								tagsList.push(textTag);
-								//optgroupArray[category].push(textTag);
-								/*optgroupObject2=new Object;
-								optgroupObject2.text=textTag;
-								networkTags2[category].push(optgroupObject2);*/
 							}
 						});
 					}else{
@@ -456,14 +450,8 @@
 						if(jQuery.inArray( tag, tagsList ) == -1 ){
 							optgroupObject.children.push(val);
 							tagsList.push(tag);
-							//optgroupArray[category].push(tag);
-							/*optgroupObject2=new Object;
-							optgroupObject2.text=tag;
-							networkTags2[category].push(optgroupObject2);*/
 						}
 					}
-					
-					//tagsList.push(val);
 				});
 				networkTags.push(optgroupObject);
 				networkTagsCategory[category].push(optgroupObject);

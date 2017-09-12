@@ -76,6 +76,21 @@ class DataValidator {
 	    }
 	    return $res;
 	}
+	public static function checkSlug($toValidate, $objectId=null) {
+		// Is There a user with the same username ?
+	    $res = "";
+	    if (strlen($toValidate) < 3 || strlen($toValidate) > 32) {
+		  	$res = "The slug length should be between 3 and 32 characters";
+		}
+		if(! preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/ ', $toValidate)) {
+			$res = "Not valid slug : content accent or space or not finish by letter or number";	
+		}
+	    $notExist = Slug::check($toValidate);      
+	    if (! $notExist) { 
+	    	$res = "This slug allready exists";
+	    }
+	    return $res;
+	}
 
 	/**
 	 * Check if an event has a well formated startDate and if the start date is well formated

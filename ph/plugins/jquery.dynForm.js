@@ -152,6 +152,8 @@ onSave: (optional) overloads the generic saveProcess
         else if (formValues && formValues[field]) {
         	value = formValues[field];
         }
+
+        mylog.log("value network", value);
         if(value!="")
         	mylog.warn("--------------- dynform form Values",field,value);
 
@@ -182,9 +184,10 @@ onSave: (optional) overloads the generic saveProcess
         		}
         		if(fieldObj.maximumSelectionLength)
         			initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
-        		
+        		mylog.log("fieldObj.data", fieldObj.data, fieldObj);
         		if(typeof fieldObj.data != "undefined"){
-	        		initSelectNetwork[field]=fieldObj.data;
+        			value = fieldObj.data;
+	        		//initSelectNetwork[field]=fieldObj.data;
 	        	}
         		if(typeof fieldObj.mainTag != "undefined")
 					mainTag=mainTag;
@@ -240,6 +243,42 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML +='<textarea name="target-editor" id="'+field+'" data-provide="markdown" data-savable="true" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" rows="10"></textarea>';
         }
         /* **************************************
+		* CHECKBOX SIMPLE
+		***************************************** */
+        else if ( fieldObj.inputType == "checkboxSimple" ) {
+   			if(value == "") value="25/01/2014";
+   			console.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
+	       	var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
+	       	console.log("fieldObj ??? thisValue", thisValue);
+	       	//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
+	       	//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
+	       	mylog.log("build field "+field+">>>>>> checkbox");
+	       	fieldHTML += '<input type="hidden" class="'+fieldClass+'" name="'+field+'" id="'+field+'" '+
+	       						'value="'+thisValue+'"/> ';
+	       
+	       	fieldHTML += '<div class="col-lg-6 padding-5">'+
+	       					'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-green col-lg-12"'+
+	       					' data-checkval="true"' +
+	       					'>'+
+	       						fieldObj.params.onText+
+	       					'</a>'+
+	       				 '</div>';
+	       	fieldHTML += '<div class="col-lg-6 padding-5">'+
+	       					'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-red col-lg-12"'+
+	       					' data-checkval="false"' +
+	       					'>'+
+	       						fieldObj.params.offText+
+	       					'</a>'+
+	       				 '</div>';
+	       	initField = function(){
+	       		//var checked = ( fieldObj.checked ) ? "checked" : "";
+	       		//if(checked) 
+	       		//if( fieldObj.switch )
+	       			//initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
+	       	};
+       	}
+
+       	/* **************************************
 		* CHECKBOX
 		***************************************** */
         else if ( fieldObj.inputType == "checkbox" ) {
@@ -391,7 +430,7 @@ onSave: (optional) overloads the generic saveProcess
 				                    '<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
 				                    '<img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>'+
 				                    '<span class="qq-upload-file-selector qq-upload-file"></span>'+
-				                    '<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+				                    //'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
 				                    '<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
 				                    '<span class="qq-upload-size-selector qq-upload-size"></span>'+
 				                    '<button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>'+

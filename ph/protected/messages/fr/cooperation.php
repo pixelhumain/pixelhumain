@@ -55,8 +55,8 @@ return array(
 	"uncomplet" => "Incomplet",
 
 	"number of voters" => "Nombre de votant(s)",
-	"Your amendement has been save with success" => "Votre amendement a été enregistré avec success",
-	"Your vote has been save with success" => "Votre vote a été enregistré avec success",
+	"Your amendement has been save with success" => "Votre amendement a été enregistré avec succès",
+	"Your vote has been save with success" => "Votre vote a été enregistré avec succès",
 	"processing save" => "Sauvegarde en cours",
 	"You already voted the same way" => "Vous avez déjà voté",
 	"Refresh data" => "Actualiser",
