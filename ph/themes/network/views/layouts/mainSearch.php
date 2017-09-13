@@ -122,7 +122,6 @@
 
 	?>
 	<?php $this->renderPartial($layoutPath.'menu.menuBottom', array("params" => $networkJson)); ?>
-	<?php $this->renderPartial($layoutPath."menu.menuSmall", array("params" => $networkJson)); ?>
 
 		<!-- start: MAIN JAVASCRIPTS -->
 		
@@ -190,13 +189,16 @@
 			'/assets/css/styles-responsive.css',
 			'/assets/css/plugins.css',
 			'/assets/css/search.css',
-			'/assets/css/search_simply.css',
-			//'/assets/css/themes/theme-simple.css',
+
 			'/assets/css/default/directory.css',
 			'/assets/css/floopDrawerRight.css',
 			'/assets/css/sig/sig.css',
 			'/assets/css/freelancer.css',
-			'/assets/css/news/index.css',	
+			'/assets/css/news/index.css',
+			
+			'/assets/css/search_simply.css',
+			//'/assets/css/themes/theme-simple.css',
+				
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 		$this->renderPartial($layoutPath.'initJs', 

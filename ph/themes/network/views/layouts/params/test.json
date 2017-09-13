@@ -7,15 +7,15 @@
         "displayScope" : false,
         "docs":true,
         "displayCommunexion" : true,
-        "displayNotifications" : false,
+        "displayNotifications" : true,
         "profilBar" : false,
         "breadcrum" : true,
-        "displayButtonGridList" : false,
+        "displayButtonGridList" : true,
         "class" : {
             "mainContainer" : false
         },
         "iconeAdd" : false,
-        "iconeSearchPlus" : false,
+        "iconeSearchPlus" : true,
         "loginTitle":"",
         "front" : {
             "organization" : true,
@@ -131,28 +131,11 @@
     },
     "request" : {
         "sourcekey" : "zeroDechet",
-        "pagination" : 1000,
+        "pagination" : 20,
         "searchType" : [
             "organizations"
         ],
-    "searchLocalityREGION" : ["Île-de-France"],
+        "searchLocalityREGION" : ["Île-de-France"]
 
-        "searchTag" : [
-        "Recyclage",
-        "Compost",
-        "Ressourcerie",
-        "Friperie",
-        "Occasion",
-        "Don",
-        "Fablab",
-        "RepairCafé",
-        "Réparation",
-        "Bibliothèque",
-        "Ludothèque",
-        "Médiathèque",
-        "Outillothèque",
-        "Ressourcerie",
-        "Vrac"
-    ]
     }
 }
