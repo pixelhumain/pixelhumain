@@ -476,6 +476,9 @@ li.submenucoop{
 
 .textAmdt{
 	font-size:14px;
+	background-color: #DFDAE1 !important;
+	border-radius: 5px;
+	padding: 5px 10px !important;
 }
 .textAmdt hr{
 	margin-top: 0px;
@@ -515,6 +518,7 @@ textarea#arguments{
 }
 #menu-room.col-md-4 h4.room-desc{
 	width: 100%;
+	display: none;
 }
 
 #urlCoop {
