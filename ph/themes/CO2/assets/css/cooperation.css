@@ -517,6 +517,12 @@ textarea#arguments{
 	width: 100%;
 }
 
+#urlCoop {
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
 @media screen and (max-width: 992px) {
 
 	#menu-room h4.room-desc{

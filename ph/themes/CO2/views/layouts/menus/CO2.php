@@ -342,8 +342,8 @@
                 if(@$value["inMenu"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
                     class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
-                            <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>"
-                    data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
+                            <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"
+                    data-placement="bottom" data-original-title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
 
                     <!-- <span class=""><?php echo $value["subdomainName"]; ?></span> -->

@@ -128,8 +128,8 @@ body{
 }
 header, .header {
   text-align: center;
-  /*background: #F6F6F6;*/
-  background-image: url("../../img/background-onepage/bg-city.jpg");
+  background: #F6F6F6;
+  /*background-image: url("../../img/background-onepage/bg-city.jpg");*/
   color: #365766;
 }
 

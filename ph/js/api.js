@@ -358,7 +358,7 @@ function showAsColumn(resp,id)
 
 /* --------------------------------------------------------------- */
 
-function slugify (value) {    
+function slugify (value,slug) {    
 	var rExps=[
 	{re:/[\xC0-\xC6]/g, ch:'A'},
 	{re:/[\xE0-\xE6]/g, ch:'a'},
@@ -383,10 +383,17 @@ function slugify (value) {
 	// 2) remplace les espace par des tirets
 	// 3) enleve tout les caratères non alphanumeriques
 	// 4) enlève les doubles tirets
-	return value.toLowerCase()
-	.replace(/\s+/g, '-')
-	.replace(/[^a-z0-9-]/g, '')
-	.replace(/\-{2,}/g,'-');
+  if(typeof slug != "undefined" && slug){
+    return value.toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '')
+      .replace(/\-{2,}/g,'-');
+  }
+  else{
+    return value.replace(/\s+/g, '-')
+      .replace(/\-{2,}/g,'-');
+  }
+	
 };
 function checkAndCutLongString(text,limitLength,id, className,readMore){
   if(text.length > limitLength){
