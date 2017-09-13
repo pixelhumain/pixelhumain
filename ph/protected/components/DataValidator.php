@@ -85,10 +85,10 @@ class DataValidator {
 		if(! preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/ ', $toValidate)) {
 			$res = "Not valid slug : content accent or space or not finish by letter or number";	
 		}
-	    $notExist = Slug::check($toValidate);      
+	    /*$notExist = Slug::check($toValidate);      
 	    if (! $notExist) { 
 	    	$res = "This slug allready exists";
-	    }
+	    }*/
 	    return $res;
 	}
 
