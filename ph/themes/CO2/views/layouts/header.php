@@ -12,12 +12,16 @@
         margin-top: -73px;
     }
     a.link-submenu-header{
-        padding: 5px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 6px 8px;
+        font-size: 11px;
     }
     a.link-submenu-header.active, 
     a.link-submenu-header:hover, 
     a.link-submenu-header:active{  
         border-bottom: 2px solid #ea4335;
+        background-color: rgba(255, 255, 255, 1);
         color:#ea4335 !important;
         text-decoration: none;
     }
