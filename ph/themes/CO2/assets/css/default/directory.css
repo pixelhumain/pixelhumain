@@ -619,6 +619,8 @@
     background-color: transparent;
     color: white;
     font-size: 16px;
+    position: absolute; 
+    height:30px; 
 }
 .adminToolBar button:hover{
     background-color: white;
