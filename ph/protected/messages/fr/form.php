@@ -43,7 +43,11 @@
 		"Name of your"=>"Nom de votre",
 		"Title of your"=>"Titre de votre",
 		"Tags"=>"Mots clés",
+		"Roles"=>"Rôles",
 		"Add some tags"=>"Ajouter quelques mots clés",
+		"Add some roles"=>"Sélectionner un ou plusieurs rôle(s)",
+		"Limit role access"=>"Limiter l'accès par rôle (par défaut : ouvert à tous)",
+
 		"Your pictures here"=>"Vos images ici",
 		"Your files here"=>"Vos fichiers ici",
 		"Price (£)"=>"Prix (€)",

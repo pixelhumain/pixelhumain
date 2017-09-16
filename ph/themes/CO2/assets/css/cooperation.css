@@ -462,10 +462,11 @@ li.submenucoop{
 #coop-data-container .btn-link,
 #amendement-container .btn-link{
 	background-color: #f3f3f3;
+	border-color: #b6b6b6;
 }
 #coop-data-container .btn-link:hover,
 #amendement-container .btn-link:hover{
-	border: 1px solid #D8D5D5;
+	background-color: #d8d4d4;
 	text-decoration: none;
 }
 

@@ -249,8 +249,8 @@
 
 
   .searchEntityContainer{
-    min-height: 270px !important;
-    max-height: 270px !important;
+    min-height: 320px !important;
+    max-height: 320px !important;
     margin-bottom: 25px !important;
   }
   .searchEntityContainer.surveys{
@@ -641,4 +641,8 @@
 }
 .adminIconDirectory{
   z-index:10;
+}
+
+.rolesContainer{
+  padding: 5px 0px; 
 }
