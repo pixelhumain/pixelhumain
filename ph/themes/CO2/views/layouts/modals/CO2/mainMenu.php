@@ -365,6 +365,7 @@ jQuery(document).ready(function() {
 ?>
 var rcObj = {
 
+    
     lastOpenChat : null,
     debugChat : false,
     /*loginToken : '<?php echo @Yii::app()->session["loginToken"]; ?>',
@@ -385,7 +386,10 @@ var rcObj = {
         //if iframe deosn't exist
         //element has an RC channel 
         //not a citizen
-        var checkGroupMember = ( contextData ) ? $.inArray( slugify(contextData.name) , rcObj.list ) : true ; 
+        if( typeof contextData.slug == "undefined" )
+            contextData.slug = slugify(contextData.name);
+        
+        var checkGroupMember = ( contextData ) ? $.inArray( contextData.slug , rcObj.list ) : true ; 
         
         if(rcObj.debugChat)alert( "name:"+name+", type:"+type+", isOpen : "+isOpen+", hasRC : "+hasRC+",checkGroupMember:"+checkGroupMember );
 
@@ -396,7 +400,7 @@ var rcObj = {
             rcObj.lastOpenChat = name;
             var extra = (isOpen) ? "/roomType/channel" : "/roomType/group";
 
-            iframeUrl = (name!="") ? baseUrl+'/'+moduleId+'/rocketchat/chat/name/'+slugify(contextData.name)+'/type/'+contextData.type+'/id/'+contextData.id+extra
+            iframeUrl = (name!="") ? baseUrl+'/'+moduleId+'/rocketchat/chat/name/'+contextData.slug+'/type/'+contextData.type+'/id/'+contextData.id+extra
                                    : baseUrl+'/'+moduleId+'/rocketchat';
             
             if(rcObj.debugChat)alert( iframeUrl );
@@ -422,8 +426,8 @@ var rcObj = {
             if( contextData.type == "citoyens" ) 
                 pathChannel = "/direct/"+contextData.username ;
             else {
-                pathChannel = (isOpen) ? "/channel/"+slugify(contextData.name) 
-                                       : "/group/"+slugify(contextData.name);
+                pathChannel = (isOpen) ? "/channel/"+contextData.slug 
+                                       : "/group/"+contextData.slug;
             }
         }else {
             setTimeout( function () { history.pushState('', document.title, window.location.pathname);}, 1000);

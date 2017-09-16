@@ -92,10 +92,10 @@ $params = array(
     //rocketchat params
     'rocketchatEnabled' => false,
     'rocketchatURL' => 'https://chat.communecter.org',
-    'rocketAdmin' => 'oceatoon@gmail.com',
-    'rocketAdminPwd' => '22102210',
-    "adminLoginToken" => "ePLQu_Uk7lGpzuoUnR2_IH70KdXy0m46UlRhy8HFwZc",
-    "adminRocketUserId" => "5534fd9da1aa14201b0041cb",
+    'rocketAdmin' => 'contact@communecter.org',
+    'rocketAdminPwd' => '6lexipnamuh9',
+    "adminLoginToken" => "oIDEqjsrczUHJ61LoyjMFEflbrgFLeJ9XwBO2SrDkWf",
+    "adminRocketUserId" => "59bb84f9dd0452ba1951c494",
 
     /*"front" => array (
         "organization" => true,
