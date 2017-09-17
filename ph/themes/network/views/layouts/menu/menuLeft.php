@@ -23,15 +23,6 @@
 	<div  class="col-md-12 no-padding" id="dropdown_params">
 		<div class="panel-group">
 			<div id="divFiltre" class="panel panel-default" style="height: 90%;">
-				<?php if(isset($params['skin']['iconeAdd']) && $params['skin']['iconeAdd']){ ?>
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<center><a href="https://docs.google.com/forms/d/1HzoRFzt4iK2REVAI0_wRDHkKnU0sRWZD8W5PfGj0dC0/viewform?embedded=true#start=embed" target="_blank" style="color:#719FAB;vertical-align: bottom;
-							display: inline-block"><i class="fa fa-plus fa-2x"></i>Ajouter un projet</a></center>
-						</h4>
-					</div>
-				<?php } ?>
-
 				<div id="divTagsMenu"></div>
 				<div id="divTypesMenu"></div>
 				<div id="divRolesMenu" class="hidden">
@@ -51,9 +42,34 @@
 						</ul>
 					</div>
 				</div>
-<?php 			if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){
+<?php 			
+				if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){ ?> 
+					<div class="col-lg-12 text-left subsub" id="sub-menu-left">
+					<?php
+						foreach($params['filter']['linksTag'] as $category => $listTag){ ?>
+
+						
+							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 btn-select-category-1" style="margin-left:-5px;" data-keycat="<?php echo $listTag['tagParent']; ?>">
+								<?php if(isset($listTag['image'])){
+										echo "<img src='".$this->module->assetsUrl."/images/network/".$listTag['image']."' width='20px'/>";
+									} else 
+										echo '<i class="fa fa-chevron-circle-down hidden-xs"></i>';
+									echo $category; ?> 
+							</a><br>
+							<?php foreach($listTag['tags'] as $label => $tag){ ?>
+								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 margin-left-15 hidden keycat keycat-<?php echo $listTag['tagParent']; ?>">
+									<i class="fa fa-angle-right"></i><?php echo $label; ?>
+								</a><br class="hidden">
+							<?php } ?>
+					<?php } ?>
+						</div>
+		<?php 		
+				}
+
+
+if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){
 					foreach($params['filter']['linksTag'] as $category => $listTag){ ?>
-						<!-- Title category -->
+
 						<div class="panel-heading" style="background-color: <?php echo $listTag['background-color']; ?>">
 							<h4 class="left-title-menu" onclick="manageCollapse('<?php echo $listTag['tagParent']; ?>', 'false')">
 								<a data-toggle="collapse" href="#<?php echo $listTag['tagParent']; ?>" style="color:#719FAB" data-label="<?php echo $listTag['tagParent']; ?>">
@@ -179,6 +195,21 @@ jQuery(document).ready(function() {
 		if(showAfter){
 			$(".bgpixeltree").removeClass("col-md-10 col-sm-10 col-xs-10").addClass("col-md-12 col-sm-12 col-xs-12");
 		}
+	});
+
+
+	$(".btn-select-category-1").click(function(){
+    	$(".btn-select-category-1").removeClass("active");
+	  	$(this).addClass("active");
+
+    	var keycat = $(this).data("keycat");
+    	$(".keycat").addClass("hidden");
+    	$(".keycat-"+keycat).removeClass("hidden");   	
+    });
+
+    $(".keycat").click(function(){
+    	$(".keycat").removeClass("active");
+	  	$(this).addClass("active");
 	});
 
 
