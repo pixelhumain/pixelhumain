@@ -15,7 +15,7 @@ class ExtractProcessAction extends CAction{
 			    	$str = explode(".",$str);
 			    	$str = $str[0];
 			    }
-			    if(in_array($str,["search","agenda","live","classified","home"]) || $str=="")
+			    if(in_array($str,["search","agenda","live","annonces","home"]) || $str=="")
 			    	return false;
 			    else	
 			    	return $str;
