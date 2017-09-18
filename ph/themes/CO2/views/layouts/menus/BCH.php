@@ -61,7 +61,7 @@
                 <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
             >
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo.png" 
-                     class="logo-menutop pull-left" height=30>
+                     class="pull-left" height=45>
             </a>
             <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>
             <?php 
@@ -71,10 +71,18 @@
         </div>
 
 
-        <button class="btn-show-map"  data-toggle="tooltip" data-placement="bottom" 
-                title="<?php Yii::t("common", "Show the map") ?>">
-            <i class="fa fa-map"></i>
-        </button>
+       <div class="pull-right hidden-xs col-sm-3 col-md-3 col-lg-3 padding-5" id="input-search">
+            <button class="btn btn-default hidden-xs pull-right menu-btn-start-search btn-directory-type letter-orange" 
+                    data-type="<?php echo @$type; ?>">
+                    <i class="fa fa-search"></i>
+            </button>
+            <div id="input-sec-search" class="pull-right col-sm-10 col-md-10 col-lg-10 no-padding">
+                <input type="text" class="form-control padding-5" id="second-search-bar" 
+                       placeholder="<?php echo $placeholderMainSearch; ?>">
+                <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
+            </div>
+            
+        </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="pull-right navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -107,18 +115,7 @@
         </div>
         
             
-        <div class="pull-right hidden-xs col-sm-5 col-md-5 col-lg-5 hidden" id="input-search">
-            <button class="btn btn-default hidden-xs pull-right menu-btn-start-search btn-directory-type" 
-                    data-type="<?php echo @$type; ?>">
-                    <i class="fa fa-search"></i>
-            </button>
-            <div id="input-sec-search" class="pull-right col-sm-10 col-md-10 col-lg-10 no-padding">
-                <input type="text" class="form-control" id="second-search-bar" 
-                       placeholder="<?php echo $placeholderMainSearch; ?>">
-                <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
-            </div>
-            
-        </div>
+        
             
     </div>
     <!-- /.container-fluid -->
@@ -135,7 +132,7 @@
 
 <script>
 jQuery(document).ready(function() {    
-    $("#input-search").hide();
+   // $("#input-search").hide();
     $("#btn-open-search-bar").click(function(){ 
         if($("#input-search").hasClass("hidden")){
             $("#input-search").removeClass("hidden");
