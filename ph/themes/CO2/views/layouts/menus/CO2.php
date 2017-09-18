@@ -249,7 +249,7 @@
 
 
                     <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
-                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications" style="border-left:none !important;">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
                               <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
