@@ -107,8 +107,6 @@
                 <i class="fa fa-bars tooltips" ></i>
             </button>
         <?php } ?>
-        
-
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="pull-right navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -120,7 +118,7 @@
                 ?> 
                      <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
                     <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="menu-name-profil lbh text-dark pull-right" 
+                        class="menu-name-profil lbh text-dark pull-right shadow2" 
                         data-toggle="dropdown">
                             <small class="hidden-xs hidden-sm margin-left-10" id="menu-name-profil">
                                 <?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?>
@@ -249,6 +247,7 @@
                     </div>
 
 
+
                     <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
@@ -259,6 +258,12 @@
                         </span>
                     </button>
                     
+                    <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
+                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                      <i class="fa fa-comments"></i>
+                      <span class="chatNotif topbar-badge badge animated bounceIn badge-warning">0</span>
+                    </button>
+
                 <?php } else { ?>
                     
                     <li class="pull-right">
