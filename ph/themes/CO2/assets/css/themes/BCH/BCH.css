@@ -51,11 +51,24 @@ input#second-search-bar{
 	height: 30px;
 	height:inherit !important;
 }
+.navbar-nav li > a{
+	position: inherit;
+	display: inline-block;
+    display: -webkit-inline-box;
+    padding: 5px;
+    text-transform: initial;
+}
 .menu-btn-start-search{
 	height:30px;
 	border:none !important;
 }
-
+.progressTop::-webkit-progress-value
+{
+    background-color: #EF5B34;
+}
+.progressTop::-moz-progress-bar{  
+    background-color: #EF5B34;
+}
 header, .header {
     background-image: url("../../../img/reunion/reunion6.jpg");
     background-position: 0 -100px;
@@ -80,7 +93,66 @@ header, .header {
     margin-top: 0px !important;
     margin-left: 0px !important;
 }
+.carousel-home{
+	margin-bottom: 30px;
+}
 
+.carousel-home .carousel-indicators{
+	bottom:-30px;
+}
+
+.carousel-home .carousel-indicators > li{
+	width: 50px;
+    height: 9px;
+    border-radius: 1px;
+    margin: 0;
+    background-color: lightgray;
+}
+.carousel-home .carousel-indicators > li.active{
+	background-color: #EF5B34;	
+}
+#presentation-home .content-img{
+	height: 250px;
+    overflow: hidden;
+}
+#presentation-home-slogan h3{
+	font-size: 16px;
+	}
+#presentation-home-slogan .title{
+	position: absolute;
+    top: 10px;
+    left: 30px;
+}
+#presentation-home-slogan div{
+	position: absolute;
+    bottom: 20px;
+    background-color: rgba(250,250,250,0.5);
+    left: 30px;
+    border-radius: 3px;
+}
+#ccouer-home{
+	background:no-repeat;
+	background-size: 100% auto;
+	min-height: 500px;
+}
+#ccouer-home .entity{
+	background-color: white;
+	border-radius: 2px;
+}
+#ccouer-home .entity .content-desc{
+	margin-bottom: 10px;
+	height: 150px;
+}
+#ccouer-home .entity .content-desc > h4{
+	font-size: 16px;
+}
+#ccouer-home .entity .content-desc > p{
+	font-size: 14px;
+}
+#ccouer-home img{
+	height: 160px;
+	width:  100%;
+}
 @media screen and (max-width: 1024px) {
 	
 }

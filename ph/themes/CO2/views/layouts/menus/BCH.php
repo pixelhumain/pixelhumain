@@ -96,13 +96,13 @@
                         <span>On the map</span>
                     </button>
 
-                    <button class="letter-orange font-montserrat" id="btn-open-search-bar">
+                    <a href="#agenda" class="lbh letter-orange font-montserrat">
                         <span>Agenda</span>
-                    </button>
+                    </a>
 
-                    <button class="letter-orange font-montserrat" id="btn-open-search-bar">
+                    <a href="#annonces" class="lbh letter-orange font-montserrat">
                         <span>Store</span>
-                    </button>
+                    </a>
                     <button class="letter-orange font-montserrat" id="btn-open-search-bar">
                         <span>Community</span>
                     </button>
