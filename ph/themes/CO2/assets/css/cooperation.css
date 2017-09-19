@@ -429,10 +429,20 @@ li.submenucoop{
 #ajax-modal .form-group.amendementActivatedcheckboxSimple,
 #ajax-modal .form-group.amendementDateEnddatetime,
 #ajax-modal .form-group.voteActivatedcheckbox,
-#ajax-modal .form-group.voteDateEnddatetime
-{
+#ajax-modal .form-group.voteDateEnddatetime,
+#ajax-modal .form-group.voteAnonymouscheckboxSimple,
+#ajax-modal .form-group.voteCanChangecheckboxSimple{
 	padding: 0 10px 10px 10px;
 	background-color: #EDEDED;
+}
+
+#ajax-modal .form-group.voteAnonymouscheckboxSimple,
+#ajax-modal .form-group.voteCanChangecheckboxSimple{
+	margin-top:20px;
+	display: flow-root;
+}
+#ajax-modal .form-group.voteAnonymouscheckboxSimple{
+	margin-top:50px;
 }
 
 #ajax-modal .form-group.amendementActivatedcheckboxSimple,
@@ -527,6 +537,22 @@ textarea#arguments{
     border-radius: 5px;
     font-size: 12px;
 }
+
+.link-assignee{
+	padding:0 5px;
+}
+.link-assignee a{
+	
+	border-radius: 40px;
+	padding:5px 10px 5px 5px;
+}
+.link-assignee:hover{
+}
+.link-assignee a:hover{
+	background-color: #e6e6e6;
+	text-decoration: none!important;
+}
+
 
 @media screen and (max-width: 992px) {
 

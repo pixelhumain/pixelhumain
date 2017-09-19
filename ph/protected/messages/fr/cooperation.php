@@ -36,10 +36,11 @@ return array(
 	"archived" => "archivée",
 	"closed" => "Fermée",
 	"done" => "terminée",
+
 	"late" => "En retard",
 	"progress" => "En cours",
 	"nodate" => "Date indéfinie",
-	"startingsoon" => "Débute bientot",
+	"startingsoon" => "Commence bientôt",
 
 	"Create room" => "Créer un nouvel espace",
 	
