@@ -98,6 +98,7 @@
     var onchangeClick=true;
     var lastWindowUrl = null;
     var allReadyLoadWindow=false;
+    var navInSlug=false;
     var themeObj = {
         init : function(){
             toastr.options = {
@@ -150,23 +151,40 @@
                 if( lastWindowUrl && "onhashchange" in window){
                     console.log("history",history);
                     if( allReadyLoadWindow == false && onchangeClick){
-                        if(lastWindowUrl.indexOf("#page")>=0 && location.hash.indexOf("#page")>=0){
+                        if(navInSlug || lastWindowUrl.indexOf("#page")>=0 && location.hash.indexOf("#page")>=0){
                             lastSplit=lastWindowUrl.split(".");
                             currentSplit=location.hash.split(".");
-                            if(lastSplit[2]==currentSplit[2] && lastSplit[4]==currentSplit[4]){
-                                if(location.hash.indexOf("view")>=0){
-                                    dir="";
-                                    if(typeof currentSplit[8] != "undefined")
-                                        dir=currentSplit[8];
+                            if(navInSlug){
+                                if(lastSplit[0]==currentSplit[0]){
+                                    if(location.hash.indexOf("view")>=0){
+                                        dir="";
+                                        if(typeof currentSplit[4] != "undefined")
+                                            dir=currentSplit[4];
 
-                                    if(currentSplit[6] != "coop")
-                                    getProfilSubview(currentSplit[6],dir);
-                                }
-                                else
-                                    getProfilSubview("");
+                                        if(currentSplit[2] != "coop")
+                                        getProfilSubview(currentSplit[2],dir);
+                                    }
+                                    else
+                                        getProfilSubview("");
 
-                            }else
-                                urlCtrl.loadByHash(location.hash,true);
+                                }else
+                                    urlCtrl.loadByHash(location.hash,true);
+                            }else{
+                                if(lastSplit[2]==currentSplit[2] && lastSplit[4]==currentSplit[4]){
+                                    if(location.hash.indexOf("view")>=0){
+                                        dir="";
+                                        if(typeof currentSplit[8] != "undefined")
+                                            dir=currentSplit[8];
+
+                                        if(currentSplit[6] != "coop")
+                                        getProfilSubview(currentSplit[6],dir);
+                                    }
+                                    else
+                                        getProfilSubview("");
+
+                                }else
+                                    urlCtrl.loadByHash(location.hash,true);
+                            }
                         }else
                             urlCtrl.loadByHash(location.hash,true);
                     } 

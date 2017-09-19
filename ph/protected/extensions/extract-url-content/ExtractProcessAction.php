@@ -7,17 +7,39 @@ class ExtractProcessAction extends CAction{
 	    function getDomain($url){
 			return preg_replace("/^[\w]{2,6}:\/\/([\w\d\.\-]+).*$/","$1",$url);
 		}	
-	    
+	    function get_string_between($string){
+		    $str = explode("#",$string);
+		    if(@$str[1]){
+			    $str=$str[1];
+			    if (strpos($str, ".") > -1){
+			    	$str = explode(".",$str);
+			    	$str = $str[0];
+			    }
+			    if(in_array($str,["search","agenda","live","annonces","home"]) || $str=="")
+			    	return false;
+			    else	
+			    	return $str;
+			}else 
+				return false;
+		}
 		if(isset($_POST["url"]))
 		{
-			if(strpos($_POST["url"], Yii::app()->getRequest()->getBaseUrl(true)) > -1 && strpos($_POST["url"], "#page") > -1){
-				$url=explode("#page.type.",$_POST["url"]);
-				$url=explode(".id.",$url[1]);
-				$type=$url[0];
-				$id=$url[1];
-				if(strpos($id, ".") > -1){
-					$id=explode($id,".");
-					$id=$id[0];	
+			if(strpos($_POST["url"], Yii::app()->getRequest()->getBaseUrl(true)) > -1 
+				&& (strpos($_POST["url"], "#page") > -1 
+				|| (get_string_between($_POST["url"]) != false && !Slug::check(get_string_between($_POST["url"]))))){
+				if(strpos($_POST["url"], "#page") > -1){
+					$url=explode("#page.type.",$_POST["url"]);
+					$url=explode(".id.",$url[1]);
+					$type=$url[0];
+					$id=$url[1];
+					if(strpos($id, ".") > -1){
+						$id=explode($id,".");
+						$id=$id[0];	
+					}
+				}else{
+					$res=Slug::getBySlug(get_string_between($_POST["url"]));
+					$type=$res["type"];
+					$id=$res["id"];
 				}					
 				//echo $id."/".$type;
 				$element=Element::getSimpleByTypeAndId($type, $id);

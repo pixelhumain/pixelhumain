@@ -47,9 +47,14 @@
 
 .navbar-custom.affix-top .menu-btn-start-search,
 input#second-search-bar{
-	display: block;
+	display: block !important;
+	height: 30px;
+	height:inherit !important;
 }
-
+.menu-btn-start-search{
+	height:30px;
+	border:none !important;
+}
 
 header, .header {
     background-image: url("../../../img/reunion/reunion6.jpg");
