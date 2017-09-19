@@ -30,13 +30,15 @@
         "codeception/codeception":"2.1.6",
         "flow/jsonpath": "*",
         "fab1en/rocket-chat-rest-client": "dev-master",
-        "nategood/httpful": "*"
+        "nategood/httpful": "*",
+        "spipu/html2pdf": "*"
    	},
 	"require": {
 		"opauth/opauth" : "0.4.4",
 		"sammaye/mongoyii" : "3.*",
 		"yiisoft/yii":"1.1.15",
-        "google/recaptcha": "~1.1"
+        "google/recaptcha": "~1.1",
+		"mpdf/mpdf": "^6.1"
 	},
 	"autoload": {
     	"psr-0": {
