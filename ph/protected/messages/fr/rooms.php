@@ -147,7 +147,7 @@ return array(
 	'ReOpen' => "Réouvrir",
 	"Links and Info Bullet points" => "Des liens d'informations ou actions à faire",
 	"Add your point of view in the comments" => "Faites des propositions dans les commentaires",
-	"I'll Do it" => "Je le fais!",
+	"I'll Do it" => "Je participe à cette action",
 	"Doers" => "Faiseurs",
 	"Made by " => "Proposition à l'assemblée par ",
 	"Copied from a discussion :" => "Copié d'une discussion : ",
