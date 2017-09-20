@@ -8,13 +8,3 @@
 <meta content="<?php echo ($this->keywords) ? CHtml::encode($this->keywords):""; ?>" name="keywords" />
 <meta content="<?php echo ($this->description) ? CHtml::encode($this->description):""; ?>" name="description" />
 <meta content="Human Pixel Community" name="author" />
-
-<!-- Global Site Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-25531131-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)};
-  gtag('js', new Date());
-
-  gtag('config', 'UA-25531131-1');
-</script>
