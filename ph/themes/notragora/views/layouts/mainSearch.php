@@ -220,7 +220,7 @@
 	$collectionsType=array(
 		"Où sont les femmes",
 		"Passeur d'images",
-		"MHQM",
+		"MHMQ",
 		"MIAA",
 		"Portrait citoyens",
 		"Parcours d'engagement"
