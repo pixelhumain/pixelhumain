@@ -30,7 +30,8 @@
         "codeception/codeception":"2.1.6",
         "flow/jsonpath": "*",
         "fab1en/rocket-chat-rest-client": "dev-master",
-        "nategood/httpful": "*"
+        "nategood/httpful": "*",
+        "mangopay/php-sdk-v2":"^2.3"
    	},
 	"require": {
 		"opauth/opauth" : "0.4.4",

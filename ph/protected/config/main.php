@@ -28,6 +28,7 @@ return array(
     	'mongoYii' => realpath(__DIR__ . '/../../vendor/sammaye/mongoyii'),
     	'recaptcha' => realpath(__DIR__ . '/../../vendor/google/recaptcha/src/ReCaptcha'),
         'citizenToolKit' => realpath(__DIR__ . $modulesDir.'/citizenToolKit'), 
+        'mangopay' => realpath(__DIR__ . '/../../vendor/mangopay/php-sdk-v2/MangoPay'),
     ),
     'controllerMap'=>array(
          //'YiiFeedWidget' => 'ext.yii-feed-widget.YiiFeedWidgetController'
