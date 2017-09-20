@@ -42,8 +42,32 @@
 						</ul>
 					</div>
 				</div>
+
 <?php 			
 				if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){ ?> 
+					<div class="col-lg-12 text-left subsub btn-group" data-toggle="buttons" id="sub-menu-left">
+					<?php
+						foreach($params['filter']['linksTag'] as $category => $listTag){ ?>
+							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 btn-select-category-1 titleTag" style="margin-left:-5px;" data-keycat="<?php echo $listTag['tagParent']; ?>">
+								<?php if(isset($listTag['image'])){
+										echo "<img src='".$this->module->assetsUrl."/images/network/".$listTag['image']."' width='20px'/>";
+									} else 
+										echo '<i class="fa fa-chevron-circle-down hidden-xs"></i>';
+									echo $category; ?> 
+							</a><br>
+						    
+
+							<?php foreach($listTag['tags'] as $label => $tag){ ?>
+								<label class="btn btn-primary tagFilter" id="<?php echo InflectorHelper::slugify( $label ); ?>" data-val="<?php echo InflectorHelper::slugify( $label ); ?>">
+									<input  class="childrenTag" type="checkbox" value="<?php echo $label; ?>" data-parent="<?php echo $listTag['tagParent']; ?>">
+									<i class="fa fa-angle-right"></i><?php echo $label; ?>
+								</label>
+							<?php } ?>
+					<?php } ?>
+						</div>
+		<?php 		
+				}
+		if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){ ?> 
 					<div class="col-lg-12 text-left subsub" id="sub-menu-left">
 					<?php
 						foreach($params['filter']['linksTag'] as $category => $listTag){ ?>
@@ -56,8 +80,9 @@
 										echo '<i class="fa fa-chevron-circle-down hidden-xs"></i>';
 									echo $category; ?> 
 							</a><br>
+							
 							<?php foreach($listTag['tags'] as $label => $tag){ ?>
-								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 margin-left-15 hidden keycat keycat-<?php echo $listTag['tagParent']; ?>">
+								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 margin-left-15 hidden tagFilter keycat keycat-<?php echo $listTag['tagParent']; ?>">
 									<i class="fa fa-angle-right"></i><?php echo $label; ?>
 								</a><br class="hidden">
 							<?php } ?>
@@ -208,6 +233,7 @@ jQuery(document).ready(function() {
     });
 
     $(".keycat").click(function(){
+    	mylog.log("keycat");
     	$(".keycat").removeClass("active");
 	  	$(this).addClass("active");
 	});

@@ -109,15 +109,15 @@ button#btn-toogle-map:hover, #btn-menu-launch:hover, #btn-menu-add:hover{
 }
 
 
-.keycat:hover,
-.keycat.active{
+.tagFilter:hover,
+.tagFilter.active{
     background-color: #2BB0C6!important;
     color: #fff!important;
     border-color:transparent!important;
     text-align: right;
 }
 
-.keycat {
+.tagFilter {
     text-align: right;
 }
 
