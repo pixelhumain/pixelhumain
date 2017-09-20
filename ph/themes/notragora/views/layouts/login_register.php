@@ -1,4 +1,6 @@
-<?php //echo "hello !"; ?>
+<?php //echo "hello !";
+$siteKey = '6LfGyykUAAAAAPOOpiTp6FIJ6lrVDmu6EHOItyBr'; // votre clé publique
+?>
 <style>
 	.main-login{
 		position:absolute;
@@ -32,7 +34,7 @@
 		background-color: transparent;
 	}
 </style>
-	
+
 	<div class="main-login col-md-9 col-md-offset-2 col-sm-9 col-sm-offset-2 col-xs-10 col-xs-offset-1">
 
 
@@ -51,10 +53,10 @@
 	</div>
 
 		<!-- <a class="byPHRight" href="#"><img style="" class="pull-right" src="<?php echo $this->module->assetsUrl?>/images/byPH.png"/></a> -->
-		
+
 			<div class="box-login box box-white-round no-padding pull-right">
 				<button class="btn btn-default btn-close-box" id=""><i class="fa fa-times"></i></button>
-			
+
 				<form class="form-login box-white-round" action="" method="POST">
 					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;margin-top:20px;" class="pull-right hidden-xs" src="<?php echo $this->module->assetsUrl?>/images/logoNotragora.png"/>
 					<img style="width:100%; border: 10px solid white; border-bottom-width:0px;margin-top:20px;" class="pull-right visible-xs" src="<?php echo $this->module->assetsUrl?>/images/logoNotragora.png"/>
@@ -62,28 +64,28 @@
 					<fieldset>
 						<h2 class="margin-bottom-10 text-center text-brown"><i class="fa fa-angle-down"></i> Je me connecte</h2>
 						<div class="form-group">
-							<span class="input-icon">		
+							<span class="input-icon">
 								<input type="text" class="form-control radius-10" name="email" id="email-login" placeholder="<?php echo Yii::t("login","E-mail / nom d'utilisateur") ?>" >
 								<i class="fa fa-user"></i> </span>
 						</div>
 						<div class="form-group form-actions">
-							
+
 							<span class="input-icon">
 								<input type="password" class="form-control password"  name="password" id="password-login" placeholder="<?php echo Yii::t("login","Password") ?>">
-								
+
 								<label for="remember" class="checkbox-inline">
 									<input type="checkbox" class="grey remember" id="remember" name="remember">
 									<?php echo Yii::t("login","Keep me signed in") ?>
 								</label>
 
 								<i class="fa fa-lock"></i>
-								<a class="forgot pull-right padding-5 text-brown" href="javascript:" 
-								onclick="showPanel('box-email', 
+								<a class="forgot pull-right padding-5 text-brown" href="javascript:"
+								onclick="showPanel('box-email',
 									function() {
 										emailType = 'password';
 										$('#email2').val($('#email-login').val());
 										$('.forgotBtn .ladda-label').text(buttonLabel[emailType])});">
-								<?php echo Yii::t("login","I forgot my password") ?></a> 
+								<?php echo Yii::t("login","I forgot my password") ?></a>
 							</span>
 						</div>
 						<div class="form-actions" style="margin-top:-20px;">
@@ -93,13 +95,13 @@
 							<div class="alert alert-danger no-display notValidatedEmailResult">
 								<i class="fa fa-remove-sign"></i><?php echo Yii::t("login","Your account is not validated : please check your mailbox to validate your email address.") ?>
 								      <?php echo Yii::t("login","If you didn't receive it or lost it, click") ?>
-								      <a class="validate" href="#" 
-								      onclick="showPanel('box-email', 
+								      <a class="validate" href="#"
+								      onclick="showPanel('box-email',
 								      	function() {
 								      		emailType = 'validateEmail';
 								      		$('#email2').val($('#email-login').val());
 								      		$('.forgotBtn .ladda-label').text(buttonLabel[emailType])});">
-								      <?php echo Yii::t("login","here") ?></a> <?php echo Yii::t("login","to receive it again.") ?> 
+								      <?php echo Yii::t("login","here") ?></a> <?php echo Yii::t("login","to receive it again.") ?>
 							</div>
 							<div class="alert alert-info no-display betaTestNotOpenResult">
 								<i class="fa fa-remove-sign"></i><?php echo Yii::t("login","Our developpers are fighting to open soon ! Check your mail that will happen soon !")?>
@@ -116,13 +118,13 @@
 							<div class="alert alert-danger no-display emailNotFoundResult">
 								<i class="fa fa-remove-sign"></i><?php echo Yii::t("login","Impossible to find an account for this username or password.")?>
 							</div>
-							
+
 							<br/>
 							<button type="submit"  data-size="s" data-style="expand-right" class="loginBtn ladda-button center-block">
 								<span class="ladda-label"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Login") ?></span>
 							</button>
 						</div>
-						
+
 					</fieldset>
 					<div class="new-account">
 						<!-- <h2 class="text-red  no-margin padding-bottom-5 text-center bg-white"><i class="fa fa-angle-down"></i> Je m'inscris</h2> -->
@@ -130,7 +132,7 @@
 						<a href="javascript:" onclick="showPanel('box-register');" class="btn btn-default btn-sm register btn-round text-dark">
 							<i class="fa fa-plus"></i> <i class="fa fa-user"></i> <?php echo Yii::t("login", "Create an account") ?>
 						</a>
-						
+
 					</div>
 				</form>
 			</div>
@@ -151,7 +153,7 @@
 							<div class="errorHandler alert alert-danger no-display">
 								<i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","You have some form errors. Please check below.") ?>
 							</div>
-							
+
 							<button type="submit"  data-size="s" data-style="expand-right" style="background-color:rgb(184,208,101);" class="forgotBtn ladda-button center center-block">
 								<span class="ladda-label">XXXXXXXX</span><span class="ladda-spinner"></span><span class="ladda-spinner"></span>
 							</button>
@@ -160,7 +162,7 @@
 					<div class="new-account">
 						<a href="javascript:" onclick="showPanel('box-login');" class="text-dark btn go-back btn-round">
 							<i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Login") ?>
-						</a>	
+						</a>
 					</div>
 				</form>
 			</div>
@@ -216,7 +218,6 @@
 						<div class="col-md-12 no-padding no-margin">
 							<hr style="margin-top: 0px; margin-bottom: 15px;">
 						</div>
-						
 						<div class="form-group pull-left no-margin" style="width:100%;">
 							<div>
 								<label for="agree" class="checkbox-inline">
@@ -224,7 +225,10 @@
 									<?php echo Yii::t("login","I agree to the Terms of") ?> <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp text-brown"><?php echo Yii::t("login","Service and Privacy Policy") ?></a>
 								</label>
 							</div>
-						</div>			
+						</div>
+
+						<div class="g-recaptcha pull-left" data-sitekey="<?php echo $siteKey; ?>"></div>
+
 
 						<div class="pull-left" style="width:100%;">
 							<button type="submit"  data-size="s" data-style="expand-right" class="createBtn ladda-button center-block">
@@ -244,8 +248,8 @@
 					<div class="new-account">
 						<a href="javascript:" onclick="showPanel('box-login');" class="text-dark btn go-back btn-round">
 							<i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Login") ?>
-						</a>	
-					</div>	
+						</a>
+					</div>
 				</form>
 				<!-- end: COPYRIGHT -->
 			</div>
@@ -278,7 +282,7 @@ var emailType;
 jQuery(document).ready(function() {
 	//Remove parameters from URLs in case of invitation without reloading the page
 	removeParametersWithoutReloading();
-	
+
 	$(".box").hide();
 	Login.init();
 
@@ -309,7 +313,7 @@ jQuery(document).ready(function() {
 
 });
 
-function userValidatedActions() { 
+function userValidatedActions() {
 	if (userValidated) {
 		$(".errorHandler").hide();
 		$(".emailValidated").show();
@@ -327,8 +331,8 @@ function userValidatedActions() {
 }
 
 function removeParametersWithoutReloading() {
-	window.history.pushState("Invitation", 
-		"Invitation", 
+	window.history.pushState("Invitation",
+		"Invitation",
 		location.href.replace(location.search,""));
 }
 
@@ -355,7 +359,7 @@ var Login = function() {
 			}
 		}
 	};
-		
+
 	//function to return the querystring parameter with a given name.
 	var getParameterByName = function(name) {
 		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -404,7 +408,7 @@ var Login = function() {
 	    });*/
 		form.submit(function(e){e.preventDefault() });
 		var errorHandler = $('.errorHandler', form);
-		
+
 		form.validate({
 			rules : {
 				email : {
@@ -421,11 +425,11 @@ var Login = function() {
 				$(".alert").hide();
 				//loginBtn.start();
 				$(".loginBtn").append(" <i class='fa fa-spinner fa-spin'></i>");
-				var params = { 
-				   "email" : $("#email-login").val(), 
+				var params = {
+				   "email" : $("#email-login").val(),
                    "pwd" : $("#password-login").val()
                 };
-			      
+
 		    	$.ajax({
 		    	  type: "POST",
 		    	  url: baseUrl+"/<?php echo $this->module->id?>/person/authenticate",
@@ -521,7 +525,7 @@ var Login = function() {
 			submitHandler : function(form) {
 				errorHandler2.hide();
 				forgotBtn.start();
-				var params = { 
+				var params = {
 					"email" : $("#email2").val(),
 					"type"	: emailType
 				};
@@ -565,7 +569,7 @@ var Login = function() {
 		var form3 = $('.form-register');
 		var errorHandler3 = $('.errorHandler', form3);
 		var createBtn = null;
-		
+
 		Ladda.bind('.createBtn', {
 	        callback: function (instance) {
 	            createBtn = instance;
@@ -583,7 +587,7 @@ var Login = function() {
 					rangelength : [4, 32]
 				},
 				email3 : {
-					required : { 
+					required : {
 						depends:function(){
 							$(this).val($.trim($(this).val()));
 							return true;
@@ -609,16 +613,18 @@ var Login = function() {
 			submitHandler : function(form) {
 				errorHandler3.hide();
 				createBtn.start();
-				var params = { 
+				var params = {
 				   "name" : $('.form-register #registerName').val(),
 				   "username" : $(".form-register #username").val(),
+					 "g-recaptcha-response" : $('#g-recaptcha-response').val(),
 				   "email" : $(".form-register #email3").val(),
                    "pwd" : $(".form-register #password3").val(),
                    "app" : "<?php echo $this->module->id?>",
                    "pendingUserId" : pendingUserId,
                    "mode" : "<?php echo Person::REGISTER_MODE_TWO_STEPS ?>"
                 };
-                
+
+
                 if( $("#inviteCode").val() )
 			      params.inviteCode = $("#inviteCode").val();
 
@@ -631,12 +637,12 @@ var Login = function() {
 		    		  	createBtn.stop();
 
 		    		  	$("#modalRegisterSuccessContent").html("<h3><i class='fa fa-smile-o fa-4x text-green'></i><br><br> "+data.msg+"</h3>");
-		    		  	$("#modalRegisterSuccess").modal({ show: 'true' }); 
+		    		  	$("#modalRegisterSuccess").modal({ show: 'true' });
 		    		  	// Hide modal if "Okay" is pressed
 					    $('#modalRegisterSuccess .btn-default').click(function() {
 					        console.log("hide modale and reload");
 					        $('modalRegisterSuccess').modal('hide');
-					    	window.location.href = baseUrl+'/#default.live';
+					    	window.location.href = baseUrl+'/#default.home';
 					    	window.location.reload();
 					    });
 		        		//loadByHash("#default.directory");
@@ -648,7 +654,7 @@ var Login = function() {
 		    		  }
 		    	  },
 		    	  error: function(data) {
-		    	  	toastr.error("Something went really bad : contact your administrator !");
+		    	  	toastr.error("Error in form");
 		    	  	createBtn.stop();
 		    	  },
 		    	  dataType: "json"
@@ -726,7 +732,7 @@ function callbackFindByInseeSuccessRegister(obj){
 		}
 
 		hideLoadingMsg();
-				
+
 		//showGeoposFound(coords, projectId, "projects", projectData);
 	}
 	else {
