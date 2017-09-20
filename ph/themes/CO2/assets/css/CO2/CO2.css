@@ -1272,7 +1272,8 @@ h3.title_panel_map{
     cursor: pointer;
 }
 
-.btn-menu-notif .notifications-count{
+.btn-menu-notif .notifications-count,
+.btn-menu-chat .chatNotif{
 	margin-top: -15px;
 	margin-left: -7px;
 	background-color: #34a853;

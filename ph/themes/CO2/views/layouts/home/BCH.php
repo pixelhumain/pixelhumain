@@ -21,10 +21,10 @@
     } 
 </style>
 
-<div class="pageContent col-md-12 padding-top-25">
+<div class="pageContent col-md-12 no-padding padding-top-25">
 
 	<div class="row">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<div id="myCarousel" class="carousel carousel-home slide" data-ride="carousel">
 		  <!-- Indicators -->
 		  <ol class="carousel-indicators">
 		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -66,47 +66,103 @@
 		  </a>
 		</div>
 	</div>
+	<div class="row col-md-10 col-md-offset-1 margin-bottom-20">
+		<div class="row col-md-10 col-md-offset-1 bg-lightgray">
+			<h2 class="col-md-12 letter-blue-2">Some of our top trip</h2>
+			<div class="row col-md-10">	
+				<p>
+					Lipsr rakeklaef zejfiaoiz ijezfjezajifo jiofeza quesako ezokdozdoiezi dezijdjiezdjiezijdijez ijezdjezid ezdiezjd ezdiezjdo
+				</p>
+			</div>
+			<div class="row col-md-2">
+				<a href="javascript:;" class="btn bg-orange">View more</a>
+			</div>
+		</div>
+	</div>
 
-
-	<div class="row col-md-10 col-md-offset-1">
-		<h1 class="col-md-6 col-md-offset-3 bg-orange text-center text-white padding-25">Nos coups de coeurs</h1><br>
+	<div id="presentation-home" class="row col-md-10 col-md-offset-1 margin-bottom-20">
+		<div class="videoWrapper col-xs-12 col-sm-6 col-md-6">
+			<iframe width="100%" height="500" src="https://www.youtube.com/embed/4MeoJPnxZeg?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen hidepanel all></iframe>
+		</div>
+		<div class="row col-md-6 col-xs-12">
+			<div class="row col-md-12 content-img">
+				<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/reunion/reunion5.jpg" 
+		         	alt="Generic placeholder thumbnail" height=240>
+		    </div>
+		    <div id="presentation-home-slogan" class="row col-md-12  content-img">
+				<img 	src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/reunion/reunion4.jpg" 
+		         		alt="Generic placeholder thumbnail" height=250>
+		        <h3 class="text-white title">What's client say</h3>
+		        <div class="col-md-6">
+		        	<i> Slauru akldz djzajkd zakjd kzjdka kzajd<br/>heuaiueuea euiueza<br/>kezdkzdez.</i>
+		        	<h3 class="text-white">John Doe</h3>
+		        </div>
+		    </div>	
+		</div>
+	</div>
+	<div id="ccouer-home" class="col-md-12 no-padding" style="background-image:url('<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/reunion/reunion3.jpg');">
+		<h3 class="col-md-6 col-md-offset-3 letter-orange-2 text-center text-white padding-25">Nos coups de coeurs</h3><br>
 		<div class="col-md-12">
-		   <div class="col-sm-6 col-md-3">
-		      <a href="#" class="thumbnail">
+		   <div class="col-sm-6 col-md-3 text-center">
+		   	<div class="col-md-12 no-padding entity">
+		      <a href="#" class="col-md-12 no-padding margin-bottom-10">
 		         <img 	src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/reunion/reunion5.jpg" 
-		         		alt="Generic placeholder thumbnail">
+		         		alt="Generic placeholder thumbnail" class="img-responsive">
 		      </a>
+		      <div class="col-md-12 content-desc">
 		      <h4>Title</h4>
-		      <p>Lorem oiruz oriuze rouzirye zeruyzeir uyzire yuizeyriuzye ruizey riuzeriu zerui zieruyzui eyruizey iuzfhkjsdnfjkdfngb udfghuiryehgi uergv jdkfgnvdf gyuierhgui hergj ejkfgddu fgiherug eirgh</p>
+		      <p>Lorem oiruz oriuze rouzirye zeruyzeir uyzire </p>
+		      <a href="#" class="btn bg-orange text-white">Voir plus</a>
+		      </div>
+		   	</div>
 		   </div>
 		   
-		   <div class="col-sm-6 col-md-3">
-		      <a href="#" class="thumbnail">
-		         <img 	src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/reunion/reunion5.jpg" 
-		         		alt="Generic placeholder thumbnail">
+		   <div class="col-sm-6 col-md-3 text-center">
+		   <div class="col-md-12 no-padding entity">
+		      <a href="#" class="col-md-12 no-padding margin-bottom-10">
+		         <img 	src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/reunion/reunion1.jpg" 
+		         		alt="Generic placeholder thumbnail" class="img-responsive">
 		      </a>
+		      <div class="col-md-12 content-desc">
 		      <h4>Title</h4>
-		      <p>Lorem oiruz oriuze rouzirye zeruyzeir uyzire yuizeyriuzye ruizey riuzeriu zerui zieruyzui eyruizey iuzfhkjsdnfjkdfngb udfghuiryehgi uergv jdkfgnvdf gyuierhgui hergj ejkfgddu fgiherug eirgh</p>
+		      <p>Lorem oiruz oriuze rouzirye zeruyzeir uyzire yuizeyriuzye </p>
+		      <a href="#" class="btn bg-orange text-white">Voir plus</a>
+		      </div>
+		   	</div>
+			</div>
+		   
+		   <div class="col-sm-6 col-md-3 text-center">
+		   <div class="col-md-12 no-padding entity">
+		      <a href="#" class="col-md-12 no-padding margin-bottom-10">
+		         <img 	src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/reunion/reunion4.jpg" 
+		         		alt="Generic placeholder thumbnail" class="img-responsive">
+		      </a>
+		      <div class="col-md-12 content-desc">
+		      <h4>Title</h4>
+		      <p>Lorem oiruz oriuze rouzirye zeruyzeir uyzire yuizeyriuzye </p>
+		      <a href="#" class="btn bg-orange text-white">Voir plus</a>
+		      </div>
+		     </div>
 		   </div>
 		   
-		   <div class="col-sm-6 col-md-3">
-		      <a href="#" class="thumbnail">
+		   <div class="col-sm-6 col-md-3 text-center">
+		   <div class="col-md-12 no-padding entity">
+		      <a href="#" class="col-md-12 no-padding margin-bottom-10">
 		         <img 	src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/reunion/reunion5.jpg" 
-		         		alt="Generic placeholder thumbnail">
+		         		alt="Generic placeholder thumbnail" class="img-responsive">
 		      </a>
-		      <h4>Title</h4>
-		      <p>Lorem oiruz oriuze rouzirye zeruyzeir uyzire yuizeyriuzye ruizey riuzeriu zerui zieruyzui eyruizey iuzfhkjsdnfjkdfngb udfghuiryehgi uergv jdkfgnvdf gyuierhgui hergj ejkfgddu fgiherug eirgh</p>
+		      <div class="col-md-12 content-desc">
+		      	<h4>Title</h4>
+		      	<p>Lorem oiruz oriuze rouzirye zeruyzeir uyzire yuizeyriuzye</p>
+		      	<a href="#" class="btn bg-orange text-white">Voir plus</a>
+		      </div>
 		   </div>
-		   
-		   <div class="col-sm-6 col-md-3">
-		      <a href="#" class="thumbnail">
-		         <img 	src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/reunion/reunion5.jpg" 
-		         		alt="Generic placeholder thumbnail">
-		      </a>
-		      <h4>Title</h4>
-		      <p>Lorem oiruz oriuze rouzirye zeruyzeir uyzire yuizeyriuzye ruizey riuzeriu zerui zieruyzui eyruizey iuzfhkjsdnfjkdfngb udfghuiryehgi uergv jdkfgnvdf gyuierhgui hergj ejkfgddu fgiherug eirgh</p>
 		   </div>
 		</div>
+	</div>
+	<div class="col-md-12 padding-20 bg-orange text-center">
+		<span class="text-white">Envie d'encore plus? Aller sur notre carte</span>
+		<button class="btn btn-orange bg-orange text-white btn-show-map">Découvrir</button>
 	</div>
 	
 
