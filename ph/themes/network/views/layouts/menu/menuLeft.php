@@ -49,7 +49,7 @@
 						foreach($params['filter']['linksTag'] as $category => $listTag){ ?>
 
 						
-							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 btn-select-category-1" style="margin-left:-5px;" data-keycat="<?php echo $listTag['tagParent']; ?>">
+							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 btn-select-category-1 titleTag" style="margin-left:-5px;" data-keycat="<?php echo $listTag['tagParent']; ?>">
 								<?php if(isset($listTag['image'])){
 										echo "<img src='".$this->module->assetsUrl."/images/network/".$listTag['image']."' width='20px'/>";
 									} else 

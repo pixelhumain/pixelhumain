@@ -87,17 +87,7 @@ button#btn-toogle-map:hover, #btn-menu-launch:hover, #btn-menu-add:hover{
 
 /* filtre */
 
-.keycat:hover,
-.keycat.active{
-    background-color: #2BB0C6!important;
-    color: #fff!important;
-    border-color:transparent!important;
-    text-align: right;
-}
 
-.keycat{
-    text-align: right;
-}
 
 .btn-select-category-1:hover,
 .btn-select-category-1.active{
@@ -108,7 +98,7 @@ button#btn-toogle-map:hover, #btn-menu-launch:hover, #btn-menu-add:hover{
 
 #sub-menu-left.subsub .btn{
 	width:100%;
-	text-align: left;
+	/*text-align: left;*/
 	background-color: white;
     border-color: white;
 	color:#4285f4;
@@ -116,5 +106,22 @@ button#btn-toogle-map:hover, #btn-menu-launch:hover, #btn-menu-add:hover{
 }
 #sub-menu-left.subsub{
 	min-width: 180px;
+}
+
+
+.keycat:hover,
+.keycat.active{
+    background-color: #2BB0C6!important;
+    color: #fff!important;
+    border-color:transparent!important;
+    text-align: right;
+}
+
+.keycat {
+    text-align: right;
+}
+
+.titleTag {
+    text-align: left;
 }
 
