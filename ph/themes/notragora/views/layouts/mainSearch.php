@@ -219,7 +219,7 @@
 		$me="";
 	$collectionsType=array(
 		"Où sont les femmes",
-		"Passeur d'images",
+		"Passeurs d'images",
 		"MHMQ",
 		"MIAA",
 		"Portrait citoyens",
