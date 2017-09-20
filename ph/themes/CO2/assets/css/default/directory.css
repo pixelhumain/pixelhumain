@@ -631,8 +631,13 @@
     background-color: transparent;
     color: white;
     font-size: 16px;
+<<<<<<< HEAD
     position: absolute;
     height:30px;
+=======
+    position: absolute; 
+    height:30px; 
+>>>>>>> master
 }
 .adminToolBar button:hover{
     background-color: white;

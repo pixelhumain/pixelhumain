@@ -620,8 +620,9 @@ return array(
 	"Accept this person" => "Accepter ce citoyen",
 	"Accept this citoyen" => "Accepter ce citoyen",
 	"Add as admin" => "Ajouter en tant qu&#146;admin",
-	"Delete this contributor"=>"Supprimer ce contributeur",
-	"Delete this member"=>"Supprimer ce membre",
+	"Add a role"=>"Ajouter un rôle", 
+	"Add/Update roles"=>"Ajouter/Modifier les rôles",
+
 	"Manage my parameters" => "Régler mes paramètres",
 	"My parameters" => "Mes paramètres",
 	"Manage the parameters of" => "Régler les paramètres de",
