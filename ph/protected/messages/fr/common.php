@@ -344,6 +344,7 @@ return array(
 	"from your community" => "de votre communauté",
 	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
 	"Are you sure to not participate to this event" => "Êtes-vous sûr de ne pas participer à cet événement",
+	"Are you sure to leave this event"=>"Êtes-vous sûr de quitter cet événement",
 	"Are you sure to remove the link with this organization" => "Êtes-vous sûr d'annuler le lien avec cette organisation",
 	"Are you sure to remove the link with this project" => "Êtes-vous sûr d'annuler le lien avec ce projet",
 	"Are you sure to remove the link of member" => "Êtes-vous sûr d'annuler ce lien de membre",
