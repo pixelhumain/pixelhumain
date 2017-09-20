@@ -58,18 +58,11 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesTheme,Yii::app()->reque
 			<h4 clss="title-menu-left" style="color:rgb(70,70,70);">La plateforme en chiffres</h4>
 			<span>
 				<bold>Participations</bold><br/>
-				335 comptes Premium (premiers usagers) dont 52 sont des Beta-testeurs (contributeurs actifs)<br/>
-				38 groupes de travail (165 participations)<br/>
+				71 inscrits<br/>
+				33 groupes de travail<br/>
+				130 productions vidéos
 				<bold>Contributions</bold><br/>
-				42 commentaires<br/>
-				1 albums publics, 5 photos publiées<br/>
-				1 albums privés, 0 photos privées<br/>
-				<bold>Productions</bold><br/>
-				0 cartes interactives (0 contenus géolocalisés)<br/>
-				0 rapports publics, 72 messages publics<br/>
-				0 rapports privés, 0 messages privés<br/>
-				68 productions publiées<br/>
-				12 productions en cours de publication<br/>
+				73 commentaires<br/>
 			</span>
 		</div>
 	</div>
