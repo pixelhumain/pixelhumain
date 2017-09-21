@@ -181,8 +181,10 @@ header, .header {
     animation: lds-dual-ring_reverse 2s linear infinite;
 }
 header .container, .header .container {
-    padding-top: 88px;
-    padding-bottom: 70px;
+        padding: 88px 0px 0px 0px;
+    /* padding-bottom: 70px; */
+    margin: 0px;
+    width: 100%;
 }
 .headerTitle{ 
 	position: absolute;
@@ -223,6 +225,49 @@ header .container, .header .container {
     border-bottom-color: lightgray;
     border-width: 10px;
     margin-left: -10px;
+}
+#sub-menu-left label{
+	width: 100%;
+    margin: 5px;
+    color: grey;
+}
+#sub-menu-left #filterNumber{
+    border: inherit;
+    border-bottom: 1px solid lightgray;
+    width: 100%;
+    font-size: 16px;
+    padding: 5px;
+}
+#sub-menu-left #filterNumber:focus{
+	-webkit-box-shadow: 0px 0px 3px 1px rgba(21,146,182,0.5);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(21,146,182,0.5);
+    box-shadow: 0px 0px 3px 1px rgba(21,146,182,0.5);
+}
+#title-sub-menu-category{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-top: 1px solid #eee;
+    height: 40px;
+    border-bottom: 1px solid #eee;
+}
+#title-sub-menu-category > h4{
+	text-transform: initial;
+}
+
+#title-sub-menu-category > span{
+    height: 38px;
+    line-height: 38px;
+    text-align: right;
+}
+#title-sub-menu-category > span > i{
+	vertical-align: middle;
+    text-align: right;
+    font-size: 30px;
+}
+
+#sub-menu-left.subsub .btn {
+    width: 100% !important;
+    text-align: left !important;
 }
 .searchEntityContainer{
     margin-bottom: 25px !important;

@@ -55,21 +55,7 @@
         <?php if(@$useHeader != false){ ?>
             <div class="container">
                 <div class="headerTitle"> Store</div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="intro-text">  
-
-                            <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"], 
-                                                        array("mainTitle"=>$mainTitle,
-                                                              "icon"=>$icon,
-                                                              "subdomainName"=>$subdomainName,
-                                                              "subdomain"=>$subdomain,
-                                                              "type"=>@$type,
-                                                              "explain"=>@$explain)); ?>
-
-                        </div>
-                    </div>
-                </div>
+                <div class="headerImg"></div>
             </div>
         <?php } ?>
     </header>
