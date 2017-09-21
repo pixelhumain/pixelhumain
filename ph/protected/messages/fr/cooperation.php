@@ -36,10 +36,11 @@ return array(
 	"archived" => "archivée",
 	"closed" => "Fermée",
 	"done" => "terminée",
+
 	"late" => "En retard",
 	"progress" => "En cours",
 	"nodate" => "Date indéfinie",
-	"startingsoon" => "Débute bientot",
+	"startingsoon" => "Commence bientôt",
 
 	"Create room" => "Créer un nouvel espace",
 	
@@ -62,6 +63,9 @@ return array(
 	"Your amendement has been save with success" => "Votre amendement a été enregistré avec succès",
 	"Your vote has been save with success" => "Votre vote a été enregistré avec succès",
 	"processing save" => "Sauvegarde en cours",
+	"processing delete" => "Suppression en cours",
+	"processing delete ok" => "Suppression effectuée",
+	"processing delete KO" => "Erreur lors de la suppression",
 	"You already voted the same way" => "Vous avez déjà voté",
 	"Refresh data" => "Actualiser",
 	"processing" => "Chargement en cours",
