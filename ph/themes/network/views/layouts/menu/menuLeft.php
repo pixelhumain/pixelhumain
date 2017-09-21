@@ -43,85 +43,36 @@
 					</div>
 				</div>
 
-<?php 			
-				if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){ ?> 
-					<div class="col-lg-12 text-left subsub btn-group" data-toggle="buttons" id="sub-menu-left">
-					<?php
-						foreach($params['filter']['linksTag'] as $category => $listTag){ ?>
-							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 btn-select-category-1 titleTag" style="margin-left:-5px;" data-keycat="<?php echo $listTag['tagParent']; ?>">
-								<?php if(isset($listTag['image'])){
-										echo "<img src='".$this->module->assetsUrl."/images/network/".$listTag['image']."' width='20px'/>";
-									} else 
-										echo '<i class="fa fa-chevron-circle-down hidden-xs"></i>';
-									echo $category; ?> 
-							</a><br>
-						    
 
-							<?php foreach($listTag['tags'] as $label => $tag){ ?>
-								<label class="btn btn-primary tagFilter" id="<?php echo InflectorHelper::slugify( $label ); ?>" data-val="<?php echo InflectorHelper::slugify( $label ); ?>">
-									<input  class="childrenTag" type="checkbox" value="<?php echo $label; ?>" data-parent="<?php echo $listTag['tagParent']; ?>">
-									<i class="fa fa-angle-right"></i><?php echo $label; ?>
-								</label>
-							<?php } ?>
-					<?php } ?>
-						</div>
 		<?php 		
-				}
+				
 		if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){ ?> 
 					<div class="col-lg-12 text-left subsub" id="sub-menu-left">
 					<?php
 						foreach($params['filter']['linksTag'] as $category => $listTag){ ?>
 
 						
-							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 btn-select-category-1 titleTag" style="margin-left:-5px;" data-keycat="<?php echo $listTag['tagParent']; ?>">
+							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 tagParent titleTag" style="margin-left:-5px;" data-keycat="<?php echo $listTag['tagParent']; ?>">
 								<?php if(isset($listTag['image'])){
-										echo "<img src='".$this->module->assetsUrl."/images/network/".$listTag['image']."' width='20px'/>";
+										echo "<img src='".$this->module->assetsUrl."/images/network/".$listTag['image']."' width='20px'/> ";
 									} else 
-										echo '<i class="fa fa-chevron-circle-down hidden-xs"></i>';
+										echo '<i class="fa fa-chevron-circle-down hidden-xs"></i> ';
 									echo $category; ?> 
 							</a><br>
 							
 							<?php foreach($listTag['tags'] as $label => $tag){ ?>
-								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 margin-left-15 hidden tagFilter keycat keycat-<?php echo $listTag['tagParent']; ?>">
-									<i class="fa fa-angle-right"></i><?php echo $label; ?>
+								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 margin-left-15 hidden tagFilter keycat-<?php echo $listTag['tagParent']; ?>" data-filtre="<?php echo $label ; ?>" data-parent="<?php echo $listTag['tagParent']; ?>">
+									<i class="fa fa-angle-right"></i> <?php echo $label; ?>
 								</a><br class="hidden">
 							<?php } ?>
 					<?php } ?>
 						</div>
 		<?php 		
 				}
-
-
-if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){
-					foreach($params['filter']['linksTag'] as $category => $listTag){ ?>
-
-						<div class="panel-heading" style="background-color: <?php echo $listTag['background-color']; ?>">
-							<h4 class="left-title-menu" onclick="manageCollapse('<?php echo $listTag['tagParent']; ?>', 'false')">
-								<a data-toggle="collapse" href="#<?php echo $listTag['tagParent']; ?>" style="color:#719FAB" data-label="<?php echo $listTag['tagParent']; ?>">
-								<?php if(isset($listTag['image'])){
-									echo "<img src='".$this->module->assetsUrl."/images/network/".$listTag['image']."' width='20px'/>";
-								} 
-
-									echo $category; ?>
-									<i class="fa fa-chevron-right right" aria-hidden="true" id="fa_<?php echo $listTag['tagParent']; ?>"></i>
-								</a>
-							</h4>
-						</div>
-						<div id="list_<?php echo $listTag['tagParent']; ?>" class="panel-collapse collapse">
-							<ul class="list-group">
-							<!-- Tags -->
-							<?php foreach($listTag['tags'] as $label => $tag){?>
-								<li class="list-group-item"><input type="checkbox" class="checkbox tagFilter" value="<?php echo $label; ?>" data-parent="<?php echo $listTag['tagParent']; ?>" data-label="<?php echo $label; ?>"/><?php echo $label; ?></li>
-							  <?php } ?>
-							</ul>
-						</div>
-		<?php 		}
-				}
 			
-				if(isset($params['filter']['tags']) && isset($params['filter']['tags']['activate']) && $params['filter']['tags']['activate']){ ?>
+				/*if(isset($params['filter']['tags']) && isset($params['filter']['tags']['activate']) && $params['filter']['tags']['activate']){ ?>
 					<div class="panel-heading">
 						<h4 class="panel-title" onclick="manageCollapse('tags', 'false')">
-						<!-- <input type="checkbox" class="checkbox categoryFilter" value="tags" style="vertical-align: bottom; display: inline-block"/>-->
 							<a data-toggle="collapse" href="#tags" style="color:#719FAB" data-label="tags">
 							<?php if(isset($params['filter']['tags'])){
 								echo "<img src='".$this->module->assetsUrl."/images/network/".$params['filter']['tags']['image']."' width='20px'/>";
@@ -139,7 +90,7 @@ if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'
 						<?php } ?>
 						</ul>
 					</div>
-		  <?php }
+		  <?php }*/
 
 				if(isset($params['request']['searchLocalityNAME'])){ ?>
 					<div class="panel-heading">
@@ -223,19 +174,14 @@ jQuery(document).ready(function() {
 	});
 
 
-	$(".btn-select-category-1").click(function(){
-    	$(".btn-select-category-1").removeClass("active");
-	  	$(this).addClass("active");
-
-    	var keycat = $(this).data("keycat");
-    	$(".keycat").addClass("hidden");
-    	$(".keycat-"+keycat).removeClass("hidden");   	
-    });
-
-    $(".keycat").click(function(){
-    	mylog.log("keycat");
-    	$(".keycat").removeClass("active");
-	  	$(this).addClass("active");
+	$(".tagParent").click(function(){
+		if($(this).hasClass( "active" ) == false){
+			$(this).addClass("active");
+			$(".keycat-"+$(this).data("keycat")).removeClass("hidden");	
+		}else{
+			$(this).removeClass("active");
+			$(".keycat-"+$(this).data("keycat")).addClass("hidden");
+		}
 	});
 
 

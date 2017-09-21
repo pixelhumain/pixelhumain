@@ -89,8 +89,8 @@ button#btn-toogle-map:hover, #btn-menu-launch:hover, #btn-menu-add:hover{
 
 
 
-.btn-select-category-1:hover,
-.btn-select-category-1.active{
+.tagParent:hover,
+.tagParent.active{
 	background-color: #2C3E50!important;
     color: #fff!important;
     border-color:transparent!important;
@@ -107,7 +107,6 @@ button#btn-toogle-map:hover, #btn-menu-launch:hover, #btn-menu-add:hover{
 #sub-menu-left.subsub{
 	min-width: 180px;
 }
-
 
 .tagFilter:hover,
 .tagFilter.active{

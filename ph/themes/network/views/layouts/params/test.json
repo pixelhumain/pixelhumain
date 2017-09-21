@@ -1,24 +1,23 @@
 {
-    "name" : "Carte ZéroDéchet",
+    "name" : "BretagneTelecom",
     "mode" : "server",
     "skin" : {
-        "title" : "Carte Zéro Déchet Ile de France",
-        "shortDescription" : "Carte du Groupe Local Zero Waste Paris (v2017/06/28-10h36)",
+        "logo" : false,
+        "title" : "Pratiques collaboratives bretonnes",
+    "shortDescription" : "Rajoutez un projet en cliquant sur le + en bas à gauche une fois connecté",
         "displayScope" : false,
-        "docs":true,
         "displayCommunexion" : true,
-        "displayNotifications" : true,
-        "profilBar" : false,
-        "breadcrum" : true,
-        "displayButtonGridList" : true,
+        "profilBar" : true,
+        "breadcrum":true,
+        "displayButtonGridList" : false,
         "class" : {
             "mainContainer" : false
         },
         "iconeAdd" : false,
-        "iconeSearchPlus" : true,
+        "iconeSearchPlus" : false,
         "loginTitle":"",
         "front" : {
-            "organization" : true,
+            "organization" : false,
             "project" : false,
             "event" : false,
             "community" : false,
@@ -26,116 +25,185 @@
             "live" : false,
             "search" : false,
             "need" : false,
-            "poi" : true
+            "poi" : false
         },
         "menu" : {
             "aroundMe":false,
             "connectLink":false,
             "add":true,
             "detail":true,
-            "news":true,
-            "directory":true,
+            "news":false,
+            "directory":false,
             "gallery":true
         }
     },
-   "filter" : {
+    "filter" : {
         "types" : false,
-    "paramsFiltre" : { "conditionBlock" : "or" , "conditionTagsInBlock" : "and" },
+        "tags" : {
+            "activate" : true,
+            "title" : "Autre",
+            "background-color" : "#f5f5f5",
+            "image" : "All.png",
+            "tagsAdditional" : {
+                "Autre" : "Autre"
+            }
+        },
         "linksTag" : {
-        "Je me nourris" : {
+            "Se nourrir" : {
                 "tagParent" : "Alimentation",
                 "background-color" : "#f5f5f5",
                 "image" : "Alimentation.png",
                 "tags" : {
-            "Caviste (Vrac)":["Caviste","Vrac"],
-            "Épicerie (Vrac)":["Épicerie","Vrac"],
-            "Épicerie (100% Vrac)":["Vrac","Épicerie","100% Vrac"],
-            "Chocolaterie (Vrac)":["Vrac","Chocolaterie"],
-            "Miel (Vrac)":["Vrac","Miel"],
-            "Thé café (Vrac)":["Vrac","thé café"],
-            "Traiteur (Vrac)":["Vrac","Traiteur"]
+                    "Amap" : "Amap",
+                    "magasin de producteurs" : "MagasinDeProducteurs",
+                    "Groupement d'achat" : "GroupementDAchat",
+                    "Jardin Partagé" : "JardinPartagé",
+                    "Grainothèque" : "Grainothèque",
+                    "Groupe Facebook" : "GroupeFacebook",
+                    "Incroyables Comestibles" : "IncroyablesComestibles",
+                    "La Ruche qui dit Oui! " : "LaRucheQuiDitOui",
+                    "Livraison de paniers" : "LivraisonDePaniers",
+                    "Groupement de producteur" : "GroupementDeProducteur",
+                    "CoLunch" : "CoLunch"
                 }
             },
-        "Je prends soin de moi et de ma maison" : {
-                "tagParent" : "Maison",
+            "Se financer" : {
+                "tagParent" : "Financement",
                 "background-color" : "#f5f5f5",
-                "image" : "Logement.png",
+                "image" : "Financement.png",
                 "tags" : {
-            "Cosmétique (Vrac)":["Cosmétique","Vrac"],
-            "Droguerie (Vrac)":["Droguerie","Vrac"]
+                    "CIGALES" : "CIGALES",
+                    "Monnaie locale" : "MonnaieLocale",
+                    "financement participatif" : "FinancementParticipatif",
+                    "budget participatif" : "BudgetParticipatif"
                 }
             },
-        "Je donne j'echange et j'achète d'occasion" : {
-                "tagParent" : "Equipement",
+            "Se rendre service" : {
+                "tagParent" : "Service",
                 "background-color" : "#f5f5f5",
-                "image" : "Equipement.png",
+                "image" : "Service.png",
                 "tags" : {
-            "Don":"Don",
-            "Ressourcerie":"Ressourcerie",
-            "Meubles (Occasion)":["Meubles","Occasion"],
-            "Électroménager (Occasion)":["Électroménager","Occasion"],
-            "Informatique (Occasion)":["Informatique","Occasion"],
-            "Jouets (Occasion)":["Jouets","Occasion"],
-            "Outils (Occasion)":["Outils","Occasion"],
-            "Puériculture (Occasion)":["Puériculture","Occasion"],
-            "Friperie":"Friperie",
-            "Vêtements (Occasion)":["Vêtements","Occasion"]
+                    "Troc" : "Troc",
+                    "RERS" : "RERS",
+                    "SEL" : "SEL",
+                    "Givebox" : "Givebox",
+                    "Fournisseur d'accès à internet" : "FournisseurDAccèsàInternet",
+                    "Réseau social de proximité" : "RéseauSocialDeProximité",
+                    "café associatif" : "CaféAssociatif"
                 }
             },
-                
-            "Je fais moi même ou je répare" : {
+            "Se divertir" : {
+                "tagParent" : "Loisir",
+                "background-color" : "#f5f5f5",
+                "image" : "Loisir.png",
+                "tags" : {
+                    "Cinéma associatif" : "CinémaAssociatif",
+                    "Bibliothèque de rue" : "BibliothèqueDeRue",
+                    "Concert à domicile" : "ConcertàDomicile",
+                    "AMAP culturelle" : "AMAPCulturelle"
+                }
+            },
+            "Bricoler/Réparer" : {
                 "tagParent" : "Réparation",
                 "background-color" : "#f5f5f5",
                 "image" : "Reparation.png",
                 "tags" : {
-                    "Réparation":"Réparation",
-                    "Fablab":"Fablab",
-                    "Repair Café":"RepairCafé",
-                    "Couturier":"Couturier"
+                    "Atelier de réparation de vélo" : "AtelierDeRéparationDeVélo",
+                    "FabLab" : "FabLab",
+                    "Repair Café" : "RepairCafé",
+                    "compostage collectif" : "CompostageCollectif",
+                    "Up Cycling" : "UpCycling"
                 }
             },
-
-            "J'emprunte" : {
-                "tagParent" : "Surface",
+            "Co-créer" : {
+                "tagParent" : "Création",
                 "background-color" : "#f5f5f5",
-                "image" : "Loisir.png",
+                "image" : "Creation.png",
                 "tags" : {
-            "Bibliothèque":"Bibliothèque",
-            "Ludothèque":"Ludothèque",
-            "Médiathèque":"Médiathèque",
-            "Outillothèque":"Outillothèque"
+                    "MuséoMix" : "MuséoMix",
+                    "MaisonMix" : "MaisonMix"
                 }
             },
-          "Je composte et je recycle" : {
-                "tagParent" : "Conteneur",
+            "S'équiper" : {
+                "tagParent" : "équipement",
                 "background-color" : "#f5f5f5",
-                "image" : "Service.png",
+                "image" : "Equipement.png",
                 "tags" : {
-            "Compost":"Compost",
-            "Emballage (recyclage)":["Emballage","Recyclage"],
-            "Textile (recyclage)":["Textile","Recyclage"],
-            "Verre (recyclage)":["Verre","Recyclage"]
+                    "Recyclerie" : "Recyclerie",
+                    "mutualisation de matériels" : "MutualisationDeMatériels",
+                    "Troc/don" : "TrocDon",
+                    "Freecycle" : "Freecycle",
+                    "Zone de gratuité" : "ZoneDeGratuité",
+                    "ludothèque" : "Ludothèque",
+                    "Outillothèque" : "Outillothèque",
+                    "CUMA" : "CUMA",
+                    "Instrumenthèque" : "Instrumenthèque"
                 }
-            }       
-       }
-},
-    "add" : {
-        "organization" : true
+            },
+            "S'informer" : {
+                "tagParent" : "Information",
+                "background-color" : "#f5f5f5",
+                "image" : "Information.png",
+                "tags" : {
+                    "Wiki territorial" : "WikiTerritorial",
+                    "Greeters" : "Greeters",
+                    "carte ouverte" : "CarteOuverte"
+                }
+            },
+            "Se déplacer" : {
+                "tagParent" : "Mobilité",
+                "background-color" : "#f5f5f5",
+                "image" : "Mobilite.png",
+                "tags" : {
+                    "Covoiturage" : "Covoiturage",
+                    "Pédibus" : "Pédibus",
+                    "autopartage" : "Autopartage",
+                    "bus cycliste" : "BusCycliste",
+                    "VéloPartage" : "VéloPartage",
+                    "AutoStop organisé" : "AutoStopOrganisé",
+                    "CoBaturage" : "CoBaturage"
+                 }
+            },
+            "Se loger" : {
+                "tagParent" : "Logement",
+                "background-color" : "#f5f5f5",
+                "image" : "Logement.png",
+                "tags" : {
+                    "habitat partagé" : "HabitatPartagé",
+                    "Location de logement" : "LocationDeLogement",
+                    "Maison Mix" : "MaisonMix",
+                    "CoLocation" : "CoLocation"
+                }
+            },
+            "Travailler" : {
+                "tagParent" : "Travail",
+                "background-color" : "#f5f5f5",
+                "image" : "Travail.png",
+                "tags" : {
+                    "Groupement d'employeur" : "GroupementDEmployeur",
+                    "Coworking" : "Coworking",
+                    "Tiers Lieu" : "TiersLieu"
+                }
+            }
+        }
     },
     "result" : {
         "displayImage" : true,
-        "displayType" : true,
+        "displayType" : false,
         "fullLocality" : true,
         "datesEvent" : false,
-    "displayShortDescription" : true
+        "displayShortDescription" : true
+    },
+     "add" : {
+        "organization" : true
     },
     "request" : {
-        "sourcekey" : "zeroDechet",
-        "pagination" : 20,
+        "sourceKey" :[
+            "BretagneTelecom"
+        ],
+        "pagination" : 10,
         "searchType" : [
             "organizations"
-        ],
-        "searchLocalityREGION" : ["Île-de-France"]
-
+        ]
     }
 }
