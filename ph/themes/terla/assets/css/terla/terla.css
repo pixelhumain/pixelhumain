@@ -186,7 +186,7 @@ header .container, .header .container {
     margin: 0px;
     width: 100%;
 }
-.headerTitle{ 
+.headerTitle, .headerTitleStanalone{ 
 	position: absolute;
     right: 0px;
     left: 0px;
@@ -199,7 +199,7 @@ header .container, .header .container {
     font-size: 17px;
 }
 
-.headerTitle:after, .headerTitle:before {
+.headerTitle:after, .headerTitle:before, .headerTitleStanalone:after, .headerTitleStanalone:before {
     top: 100%;
     left: 10%;
     border: solid transparent;
@@ -214,13 +214,13 @@ header .container, .header .container {
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
 }
-.headerTitle:before {
+.headerTitle:before, .headerTitleStanalone:before {
     /* border-color: rgba(179, 179, 179, 0); */
     border-bottom-color: #b3b3b3;
     border-width: 11px;
     margin-left: -11px;
 }
-.headerTitle:after {
+.headerTitle:after, .headerTitleStanalone:after {
     border-color: rgba(255, 255, 255, 0);
     border-bottom-color: lightgray;
     border-width: 10px;
@@ -268,6 +268,16 @@ header .container, .header .container {
 #sub-menu-left.subsub .btn {
     width: 100% !important;
     text-align: left !important;
+}
+#openModal .close-modal{
+	width: 50px;
+    height: 45px;
+    top: 5px;
+    right: 15px;
+}
+#openModal .close-modal .lr, #openModal .close-modal .rl{
+	    height: 35px;
+    width: 2px;
 }
 .searchEntityContainer{
     margin-bottom: 25px !important;
@@ -357,6 +367,18 @@ header .container, .header .container {
 .searchEntity .bg-orange {
     background-color: #EF5B34 !important;
     color: white!important;
+}
+#openModal{
+	background-color: transparent;
+	z-index: 10;
+}
+#openModal .modal-content{
+	top: 88px;
+    /* overflow: scroll; */
+    left: inherit;
+    right: inherit;
+    border-radius: 0px;
+    padding: 0px 10px !important;
 }
 @media screen and (max-width: 1024px) {
 	

@@ -39,5 +39,3 @@
 <h1 class="text-red homestead">
 	
 </h1>
-
-

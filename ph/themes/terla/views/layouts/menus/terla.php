@@ -63,7 +63,6 @@
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo.png" 
                      class="pull-left" height=45>
             </a>
-            <span class="hidden-xs skills font-montserrat"><?php echo $mainTitle; ?></span>
             <?php 
                 $params = CO2::getThemeParams(); 
             ?>
