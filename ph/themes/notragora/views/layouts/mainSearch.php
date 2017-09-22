@@ -218,7 +218,7 @@
 	if(!isset($me))
 		$me="";
 	$collectionsType=array(
-		"Où sont les femmes",
+		"Où sont les femmes ?",
 		"Passeurs d'images",
 		"MHMQ",
 		"MIAA",
