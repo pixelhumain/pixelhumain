@@ -623,7 +623,9 @@ return array(
 	"Add as admin" => "Ajouter en tant qu&#146;admin",
 	"Add a role"=>"Ajouter un rôle", 
 	"Add/Update roles"=>"Ajouter/Modifier les rôles",
-
+	"Delete this member"=>"Supprimer ce membre",
+	"Delete this contributor"=>"Supprimer ce contributeur",
+	"Delete this attendee"=>"Supprimer ce participant",
 	"Manage my parameters" => "Régler mes paramètres",
 	"My parameters" => "Mes paramètres",
 	"Manage the parameters of" => "Régler les paramètres de",
