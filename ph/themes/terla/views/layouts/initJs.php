@@ -14,7 +14,6 @@
            { "userEmail":"<?php echo Yii::app()->session['userEmail']?>"}
         <?php } ?>
         ];
-
     var currentScrollTop = 0;
     var isMapEnd = false;
 	//used in communecter.js dynforms
@@ -38,7 +37,7 @@
     var ressource = <?php echo json_encode( CO2::getContextList("ressource") ) ?>;
     var poi = <?php echo json_encode( CO2::getContextList("poi") ) ?>;
     var roomList = <?php echo json_encode( CO2::getContextList("room") ) ?>;
-
+    var shoppingCart = {};
     //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     

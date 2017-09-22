@@ -4,8 +4,12 @@
                 
         <ul class="nav navbar-nav navbar-right">
                     <li>
-                    <a class="font-montserrat text-white padding-10" id="btn-open-search-bar">
-                        <span><i class="fa fa-shopping-cart"></i></span>
+                    <a a href='#person.shoppingcart'  data-modalshow="" class="font-montserrat text-white padding-10 btn-shoppingCart lbhp">
+                        <span>
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="shoppingCart-count topbar-badge badge animated bounceIn badge-transparent hide">
+                            </span>
+                        </span>
                     </a>
                     </li>
                     <?php if (!@Yii::app()->session["userId"]){ ?>
@@ -18,7 +22,7 @@
                     <?php }else{ 
                         $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl); ?>
                         <li>
-                        <a class="letter-orange font-montserrat padding-10"> 
+                        <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"]?>" class="letter-orange font-montserrat padding-10 lbh"> 
                                 <img class="img-circle" id="menu-thumb-profil" style="margin-top:-5px;" 
                                      width="25" height="25" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
                         </a>
