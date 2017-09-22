@@ -386,7 +386,7 @@ var rcObj = {
         //if iframe deosn't exist
         //element has an RC channel 
         //not a citizen
-        if( typeof contextData.slug == "undefined" )
+        if( contextData && typeof contextData.slug == "undefined" )
             contextData.slug = slugify(contextData.name);
         
         var checkGroupMember = ( contextData ) ? $.inArray( contextData.slug , rcObj.list ) : true ; 
