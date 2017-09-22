@@ -367,7 +367,7 @@ var rcObj = {
 
     
     lastOpenChat : null,
-    debugChat : false,
+    debugChat : true,
     loginToken : '<?php echo @Yii::app()->session["loginToken"]; ?>',
     rocketUserId : '<?php echo @Yii::app()->session["rocketUserId"]; ?>',
     list : null,
