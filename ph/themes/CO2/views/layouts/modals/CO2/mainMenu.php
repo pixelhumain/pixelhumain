@@ -367,7 +367,7 @@ var rcObj = {
 
     
     lastOpenChat : null,
-    debugChat : true,
+    debugChat : false,
     loginToken : '<?php echo @Yii::app()->session["loginToken"]; ?>',
     rocketUserId : '<?php echo @Yii::app()->session["rocketUserId"]; ?>',
     list : null,
@@ -421,7 +421,7 @@ var rcObj = {
         rcObj.lastOpenChat = name;
     },
     goto : function (name,isOpen) { 
-        pathChannel = "";
+        pathChannel = "/";
         if( name != "" ){
             if( contextData.type == "citoyens" ) 
                 pathChannel = "/direct/"+contextData.username ;
