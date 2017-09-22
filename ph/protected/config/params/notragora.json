@@ -31,7 +31,7 @@
 	            "type" : "redirect",
 	            "href" : "#default.directory?type=poi",
                 "tags" : {
-                    "Où sont les femmes" : "OuSontLesFemmes",
+                    "Où sont les femmes ?" : "OuSontLesFemmes",
                     "Passeurs d'images" : "PasseurDImages",
                     "MHMQ" : "MHQM",
                     "MIAA" : "MIAA",
