@@ -69,7 +69,7 @@ return array(
 	"processing delete ok" => "Suppression effectuée",
 	"processing delete KO" => "Erreur lors de la suppression",
 	"You already voted the same way" => "Vous avez déjà voté",
-	"Refresh data" => "Actualiser",
+	"Refresh data" => "Actualiser l'espace CO",
 	"processing" => "Chargement en cours",
 	"processing ok" => "Chargement terminé",
 	"all status" => "en vrac"
