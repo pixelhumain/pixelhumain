@@ -19,6 +19,7 @@ return array(
 	"To do" => "À faire",
 	"Done" => "Terminées",
 	"Archived" => "Archivées",
+	"Disabled" => "Désactivées",
 
 	"Create proposal" => "Créer une proposition",
 	"Add proposal" => "Ajouter une proposition",
@@ -33,9 +34,10 @@ return array(
 	"amendable" => "Amendable",
 	"tovote" => "À voter",
 	"todo" => "À faire",
-	"archived" => "archivée",
+	"archived" => "Archivée",
+	"disabled" => "Désactivée",
 	"closed" => "Fermée",
-	"done" => "terminée",
+	"done" => "Terminée",
 
 	"late" => "En retard",
 	"progress" => "En cours",

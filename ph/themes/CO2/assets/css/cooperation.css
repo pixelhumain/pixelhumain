@@ -29,7 +29,7 @@
 
 #modalCoop.modal .modal-body{
 	position: fixed;
-    top: 51px;
+    top: 52px;
     bottom: 0px;
     left: 0px;
     right: 0px;
@@ -79,6 +79,7 @@ ul#menuCoop{
 	margin: 0px;
 	padding: 10px 20px 10px 10px;
 	left: unset;
+	overflow-x: hidden;
 }
 
 
@@ -558,6 +559,31 @@ textarea#arguments{
 #container-text-action a,
 #container-text-proposal a{
 	text-decoration: underline;
+}
+
+#container-text-resolution a:hover,
+#container-text-action a:hover,
+#container-text-proposal a:hover{
+	font-weight: bold;
+}
+
+.status-breadcrum span.letter-green.underline{
+	border-bottom: solid 2px #34a853;
+}
+
+.status-breadcrum span.letter-red.underline{
+	border-bottom: solid 2px #ea4335;
+}
+
+.status-breadcrum span.letter-purple.underline{
+	border-bottom: solid 2px #976BB6;
+}
+.status-breadcrum span.letter-orange.underline{
+	border-bottom: solid 2px #FFA200;
+}
+.status-breadcrum span{
+	text-decoration: none !important;
+	padding: 5px 15px;
 }
 
 @media screen and (max-width: 992px) {
