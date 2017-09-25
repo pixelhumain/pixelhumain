@@ -158,20 +158,20 @@ function manageCollapse(div, forcer){
 
 
 jQuery(document).ready(function() {
-	$('#btn-menu-launch').click(function(){
+	// $('#btn-menu-launch').click(function(){
 
-		if(!$('.menu-col-search').is(":visible")){
-			$(".bgpixeltree").removeClass("col-md-12 col-sm-12 col-xs-12").addClass("col-md-10 col-sm-10 col-xs-10");
-			showAfter=false;
-		}else{
-			showAfter=true;
-		}
+	// 	if(!$('.menu-col-search').is(":visible")){
+	// 		$(".bgpixeltree").removeClass("col-md-12 col-sm-12 col-xs-12").addClass("col-md-10 col-sm-10 col-xs-10");
+	// 		showAfter=false;
+	// 	}else{
+	// 		showAfter=true;
+	// 	}
 
-		$('.menu-col-search').toggle("slow");
-		if(showAfter){
-			$(".bgpixeltree").removeClass("col-md-10 col-sm-10 col-xs-10").addClass("col-md-12 col-sm-12 col-xs-12");
-		}
-	});
+	// 	$('.menu-col-search').toggle("slow");
+	// 	if(showAfter){
+	// 		$(".bgpixeltree").removeClass("col-md-10 col-sm-10 col-xs-10").addClass("col-md-12 col-sm-12 col-xs-12");
+	// 	}
+	// });
 
 
 	$(".tagParent").click(function(){
