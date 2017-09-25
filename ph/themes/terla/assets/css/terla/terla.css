@@ -12,7 +12,9 @@
 #input-search-map::placeholder{
 	color:white;
 }
-
+.social-main-container{
+        background-color: #f8f8f8;
+}
 /* boutton show map on top right corner*/
 /*.navbar-custom .btn-show-map{
 	background-color: #4084A5;
