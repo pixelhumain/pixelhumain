@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php 
+
     $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
     $themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
     $cs = Yii::app()->getClientScript();
@@ -8,9 +9,9 @@
     $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
 
     $params = CO2::getThemeParams();
-
+    $metaTitle = @$params["metaTitle"];
     $metaDesc = @$params["metaDesc"]; 
-    $metaImg = Yii::app()->theme->baseUrl.@$params["metaImg"];
+    $metaImg = Yii::app()->getRequest()->getBaseUrl(true)."/themes/CO2".@$params["metaImg"];
     
 ?>
 
@@ -21,18 +22,19 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="title" content="<?php echo $metaTitle; ?>">
         <meta name="description" content="<?php echo $metaDesc; ?>">
         <meta name="author" content="pixelhumain">
 
         <meta property="og:image" content="<?php echo $metaImg; ?>"/>
         <meta property="og:description" content="<?php echo $metaDesc; ?>"/>
+        <meta property="og:title" content="<?php echo $metaTitle; ?>"/>
 
         <title><?php echo $CO2DomainName; ?></title>
 
         <link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" /> 
 
-<?php if( Yii::app()->params["forceMapboxActive"]==true &&  Yii::app()->params["mapboxActive"]==true ){ ?>
+<?php //if( Yii::app()->params["forceMapboxActive"]==true &&  Yii::app()->params["mapboxActive"]==true ){ ?>
     <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
 
@@ -41,7 +43,7 @@
 
     <script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
     <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' />
-<?php } ?>
+<?php //} ?>
 
         <?php 
             $cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
@@ -55,12 +57,12 @@
 
     </head>
 
-
     <body id="page-top" class="index" style="display: none;">
 
         <!-- **************************************
         MAP CONTAINER
         ******************************************* -->
+        <progress class="progressTop" max="100" value="20"></progress>   
         <div id="mainMap">
             <?php $this->renderPartial($layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"]); ?>
         </div>
@@ -86,7 +88,7 @@
         <?php  if( isset(Yii::app()->session["userId"]) )
                 $this->renderPartial('../news/modalShare', array());
         ?>
-            
+ 
         <div class="main-container">
 
             <?php 
@@ -142,7 +144,9 @@
             echo "<!--<![endif]-->";
 
             $cssAnsScriptFilesModule = array(
-                '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js',
+                '/plugins/jquery-ui-1.12.1/jquery-ui.min.js',
+                '/plugins/jquery-ui-1.12.1/jquery-ui.min.css',
+                
                 '/plugins/jquery-validation/dist/jquery.validate.min.js',
                 '/plugins/bootbox/bootbox.min.js' , 
                 '/plugins/blockUI/jquery.blockUI.js' , 
@@ -168,6 +172,11 @@
                 '/plugins/moment/min/moment.min.js' ,
                 '/plugins/moment/min/moment-with-locales.min.js',
                 '/plugins/jquery.dynForm.js',
+                
+    '/plugins/jquery.elastic/elastic.js',
+    '/plugins/underscore-master/underscore.js',
+    '/plugins/jquery-mentions-input-master/jquery.mentionsInput.js',
+    '/plugins/jquery-mentions-input-master/jquery.mentionsInput.css',
                 //'/js/cookie.js' ,
                 '/js/api.js',
                 
@@ -238,7 +247,8 @@
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() { 
-                $.blockUI();
+
+                $.blockUI({ message : themeObj.blockUi.processingMsg});
                 
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
@@ -252,7 +262,10 @@
                 });
 
                 themeObj.init();
-                urlCtrl.loadByHash(location.hash,true);
+                if(themeObj.firstLoad){
+                    themeObj.firstLoad=false;
+                    urlCtrl.loadByHash(location.hash,true);
+                }
                 setTimeout(function(){
                     $("#page-top").show();
                 }, 500);

@@ -1,10 +1,10 @@
 <?php
 
 	return array(
-		"You're not <span class='text-dark'>communected</span>"=>"Vous n'êtes pas <span class='text-dark'>communecté(e)</span>",
+		"You're not <span class='text-dark'>communected</span>"=>"Vous n'êtes pas <span class='text-dark'>communecté-e</span>",
 		"You are"=>"Vous êtes",
-		"communected to" => "communecté(e) à",
-		"Be communected permits you to get smart informations<br>localy performed."=>"Être communecté vous permet de capter en direct les informations pertinentes<br>qui se trouvent autour de vous.",
+		"communected to" => "communecté-e à",
+		"Be communected permits you to get smart informations<br>localy performed."=>"Être communecté-e vous permet de capter en direct les informations pertinentes<br>qui se trouvent autour de vous.",
 		"Be communected"=> "Communectez-vous",
 		"Change your communexion" => "Changer de communexion",
 		"communect you : London, Paris, Brussels ?"=>"communectez-vous : Nantes, Strasbourg, Avignon ?",
@@ -40,7 +40,7 @@
 		"To simplify goods and services exchanges"=>"Pour simplifier les échanges de biens et de services",
 		"A common agenda"=>"Un agenda commun",
 		"to know in live all about local events"=>"pour connaître en temps réel toute l'activité locale",
-		"A common news stream"=>"Un fil d'actualités commun",
+		"A common news stream"=>"Un fil d'actualité commun",
 		"To diffuse your messages for your city"=>"Pour diffuser vos messages autrement",
 		"Terms and conditions of use"=>"Conditions d'utilisations",
 		"General information"=>"Informations générales",

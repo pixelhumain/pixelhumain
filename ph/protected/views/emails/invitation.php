@@ -1510,7 +1510,7 @@
               Voici son message : <br>
               <?php echo nl2br(htmlentities($message)); ?>
               <br><br>
-              Veuillez clicker sur ce lien pour rejoindre <?php echo $title ?> et ainsi participer a cette initiative locale pour am&eacute;liorer votre commune.<br>
+              Veuillez cliquer sur ce lien pour rejoindre <?php echo $title ?> et ainsi participer a cette initiative locale pour am&eacute;liorer votre commune.<br>
               <br>
               <a href="<?php echo $url?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">Confirmer l&apos;invitation</a>
               <br>

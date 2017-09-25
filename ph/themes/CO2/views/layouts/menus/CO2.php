@@ -107,8 +107,6 @@
                 <i class="fa fa-bars tooltips" ></i>
             </button>
         <?php } ?>
-        
-
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="pull-right navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -120,7 +118,7 @@
                 ?> 
                      <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
                     <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="menu-name-profil lbh text-dark pull-right" 
+                        class="menu-name-profil lbh text-dark pull-right shadow2" 
                         data-toggle="dropdown">
                             <small class="hidden-xs hidden-sm margin-left-10" id="menu-name-profil">
                                 <?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?>
@@ -249,8 +247,9 @@
                     </div>
 
 
+
                     <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
-                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications" style="border-left:none !important;">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
                               <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
@@ -259,6 +258,12 @@
                         </span>
                     </button>
                     
+                    <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
+                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                      <i class="fa fa-comments"></i>
+                      <span class="chatNotif topbar-badge badge animated bounceIn badge-warning">0</span>
+                    </button>
+
                 <?php } else { ?>
                     
                     <li class="pull-right">
@@ -334,18 +339,22 @@
             </div>
         <?php } ?>
         <!-- /.navbar-collapse -->
-        <!-- <a type="button" class="lbh btn btn-link pull-right btn-menu-to-app hidden-top hidden-xs letter-green" data-target="#selectCreate" data-toggle="modal">
-            <i class="fa fa-plus-circle"></i>           
-        </a> -->
+        <a type="button" class="lbh btn btn-link pull-right btn-menu-to-app hidden-top hidden-xs letter-green" data-target="#chat" data-toggle="modal">
+            <i class="fa fa-plus-comments"></i>           
+        </a>
         <?php 
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
-                    class="lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
-                            <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>"
-                    data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
+                    class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
+                            <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"
+                    data-placement="bottom" data-original-title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+
                     <!-- <span class=""><?php echo $value["subdomainName"]; ?></span> -->
+                    <?php if(@$value["notif"]){ ?>
+                    <span class="<?php echo $value["notif"]; ?> topbar-badge badge animated bounceIn badge-warning"></span>
+                    <?php } ?>
                 </a>  
         <?php   }
             }  ?>

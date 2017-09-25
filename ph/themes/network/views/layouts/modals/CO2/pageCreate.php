@@ -26,7 +26,7 @@
                        <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Partage de messages</label> 
                        <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Partage d'événements</label> 
                        <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Gestion de contacts</label>  
-                       <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Messagerie privées</label>  
+                       <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Messagerie privée</label>  
                        <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Notifications</label> 
                        <hr>
                     </div>

@@ -19,6 +19,7 @@
     var isMapEnd = false;
 	//used in communecter.js dynforms
     var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
+    var countryList = <?php echo json_encode(Zone::getCountryList()) ?>;
     var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
     var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
     var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
@@ -30,7 +31,7 @@
     var myContacts = <?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
     var myContactsById =<?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
     var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
-
+    var mentionsContact=[];
     var classified = <?php echo json_encode( CO2::getContextList("classified") ) ?>;
     var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;
     var ressource = <?php echo json_encode( CO2::getContextList("ressource") ) ?>;
@@ -95,8 +96,10 @@
         "video":"dark",
         "classified" : "yellow"
     };
+    var onchangeClick=true;
     var lastWindowUrl = null;
     var allReadyLoadWindow=false;
+    var navInSlug=false;
     var themeObj = {
         init : function(){
             toastr.options = {
@@ -114,41 +117,95 @@
             };
             initFloopDrawer();
             resizeInterface();
+            //Init mentions contact
+            if(myContacts != null){
+                $.each(myContacts["people"], function (key,value){
+                    if(typeof(value) != "undefined" ){
+                        avatar="";
+                        console.log(value);
+                        if(value.profilThumbImageUrl!="")
+                            avatar = baseUrl+value.profilThumbImageUrl;
+                        object = new Object;
+                        object.id = value._id.$id;
+                        object.name = value.name;
+                        object.avatar = avatar;
+                        object.type = "citoyens";
+                        mentionsContact.push(object);
+                    }
+                });
+                $.each(myContacts["organizations"], function (key,value){
+                    if(typeof(value) != "undefined" ){
+                    avatar="";
+                    if(value.profilThumbImageUrl!="")
+                        avatar = baseUrl+value.profilThumbImageUrl;
+                    object = new Object;
+                    object.id = value._id.$id;
+                    object.name = value.name;
+                    object.avatar = avatar;
+                    object.type = "organizations";
+                    mentionsContact.push(object);
+                    }
+                });
+            }
             window.onhashchange = function() {
-                  //mylog.dir(e);
-                //mylog.log("history.state",$.isEmptyObject(history.state),location.hash);
                 mylog.warn("popstate history.state",history.state);
-                //alert(location.hash)
                 if( lastWindowUrl && "onhashchange" in window){
                     console.log("history",history);
-                    if( allReadyLoadWindow == false ){
-                        if(lastWindowUrl.indexOf("#page")>=0 && location.hash.indexOf("#page")>=0){
+                    if( allReadyLoadWindow == false && onchangeClick){
+                        if(navInSlug || lastWindowUrl.indexOf("#page")>=0 && location.hash.indexOf("#page")>=0){
                             lastSplit=lastWindowUrl.split(".");
                             currentSplit=location.hash.split(".");
-                            if(lastSplit[2]==currentSplit[2] && lastSplit[4]==currentSplit[4]){
-                                if(location.hash.indexOf("view")>=0){
-                                    dir="";
-                                    if(typeof currentSplit[8] != "undefined")
-                                        dir=currentSplit[8];
-                                    getProfilSubview(currentSplit[6],dir);
-                                }
-                                else
-                                    getProfilSubview("");
+                            if(navInSlug){
+                                if(lastSplit[0]==currentSplit[0]){
+                                    if(location.hash.indexOf("view")>=0){
+                                        dir="";
+                                        if(typeof currentSplit[4] != "undefined")
+                                            dir=currentSplit[4];
 
-                            }else
-                                urlCtrl.loadByHash(location.hash,true);
+                                        if(currentSplit[2] != "coop")
+                                        getProfilSubview(currentSplit[2],dir);
+                                    }
+                                    else
+                                        getProfilSubview("");
+
+                                }else
+                                    urlCtrl.loadByHash(location.hash,true);
+                            }else{
+                                if(lastSplit[2]==currentSplit[2] && lastSplit[4]==currentSplit[4]){
+                                    if(location.hash.indexOf("view")>=0){
+                                        dir="";
+                                        if(typeof currentSplit[8] != "undefined")
+                                            dir=currentSplit[8];
+
+                                        if(currentSplit[6] != "coop")
+                                        getProfilSubview(currentSplit[6],dir);
+                                    }
+                                    else
+                                        getProfilSubview("");
+
+                                }else
+                                    urlCtrl.loadByHash(location.hash,true);
+                            }
                         }else
                             urlCtrl.loadByHash(location.hash,true);
                     } 
                     allReadyLoadWindow = false;
+                    onchangeClick=true;
                 }
                 lastWindowUrl = location.hash;
             }
         },
+        firstLoad:true,
         imgLoad : "CO2r.png" ,
         mainContainer : ".main-container",
         blockUi : {
-            processingMsg : '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="" height=80>'+
+            processingMsg :'<div class="lds-css ng-scope">'+
+                    '<div style="width:100%;height:100%" class="lds-dual-ring">'+
+                        '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="" height=80>'+
+                        '<div></div>'+
+                        '<div></div>'+
+                    '</div>'+
+                '</div>'/* '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="" height=80>'+
                   '<i class="fa fa-spin fa-circle-o-notch loaderBlockUI"></i>'+
                   '<h4 style="font-weight:300" class=" text-dark padding-10">'+
                     '<?php echo Yii::t("loader","Loading")?>...'+
@@ -156,12 +213,12 @@
                   '<span style="font-weight:300" class=" text-dark">'+
                     '<?php echo Yii::t("loader","Thanks to be patient a moment") ?>'+
                   '</span>'+
-                  '<br><br><hr>'+
+                  '<br><br><hr>'*/
                   /*'<a href="#" class="btn btn-default btn-sm lbh">'+
                     "c'est trop long !"+
                   '</a>'+
                   '<br/>'+*/
-                  '<div class="col-md-6 col-md-offset-3">'+
+                  /*'<div class="col-md-6 col-md-offset-3">'+
                     '<div class="col-xs-6 center">'+
                         '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas/2?sessionId=dvutjo5jusdgs1cvmmkui4su&widget=False" target="_blank" class="btn btn-default text-red bold">'+
                             '<i class="fa fa-heart fa-2x"></i> <span class="text-dark"> <?php echo Yii::t("loader","Member ( 1€/month )") ?> </span>'+
@@ -174,7 +231,7 @@
                     '</div>'+
                   '</div>'+
                   '<div class="alert col-md-6 col-md-offset-3 shadow2  margin-top-10" style="">'+
-                      '<i class="fa fa-puzzle-piece faa-pulse animated fa-5x padding-10"></i> <i class="fa fa-plus fa-2x padding-10"></i> <img src="'+themeUrl+'/assets/img/piggybank.png" height=70> <i class="fa fa-plus fa-2x padding-10"></i> <i class="fa fa-group faa-pulse animated fa-5x padding-10"></i> <span class="bold" style="font-size:40px;">=</span> <i class="fa fa-heartbeat faa-pulse text-red animated fa-5x padding-10"></i>'+
+                      /*'<i class="fa fa-puzzle-piece faa-pulse animated fa-5x padding-10"></i> <i class="fa fa-plus fa-2x padding-10"></i> <img src="'+themeUrl+'/assets/img/piggybank.png" height=70> <i class="fa fa-plus fa-2x padding-10"></i> <i class="fa fa-group faa-pulse animated fa-5x padding-10"></i> <span class="bold" style="font-size:40px;">=</span> <i class="fa fa-heartbeat faa-pulse text-red animated fa-5x padding-10"></i>'+* /
                       '<br/><br/><h2 style="font-weight:300; margin:-35px 0 0 0;" class="homestead padding-10">'+
                         '<span class="text-red"><?php echo Yii::t("loader","1 little coin for a great puzzle") ?></span>'+
                         '<br/><a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="text-dark"><?php echo Yii::t("loader","Contribute") ?> <i class="fa  fa-arrow-circle-right"></i></a>'+
@@ -188,7 +245,7 @@
                       '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="btnHelp btn btn-warning margin-top-10 text-dark">'+
                             '<i class="fa fa-gift"></i> <?php echo Yii::t("loader","Make a donation to the NGO") ?>'+
                       '</a> '+
-                  '</div>', 
+                  '</div>'*/, 
             errorMsg : '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="logo-menutop" height=80>'+
               '<i class="fa fa-times"></i><br>'+
                '<span class="col-md-12 text-center font-blackoutM text-left">'+
