@@ -90,12 +90,12 @@ $params = array(
     "theme"=> "CO2",
 
     //rocketchat params
-    'rocketchatEnabled' => true,
+    'rocketchatEnabled' => false,
     'rocketchatURL' => 'https://chat.communecter.org',
     'rocketAdmin' => 'contact@communecter.org',
-    'rocketAdminPwd' => '6lexipnamuh9',
-    "adminLoginToken" => "oIDEqjsrczUHJ61LoyjMFEflbrgFLeJ9XwBO2SrDkWf",
-    "adminRocketUserId" => "59bb84f9dd0452ba1951c494",
+    'rocketAdminPwd' => '',
+    "adminLoginToken" => "",
+    "adminRocketUserId" => "",
 
     /*"front" => array (
         "organization" => true,
