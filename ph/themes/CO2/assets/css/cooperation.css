@@ -306,7 +306,8 @@ li.submenucoop{
 }
 
 #coop-container .ctnr-txtarea{
-	left:50px !important;
+	left:40px !important;
+	right:0px !important;
 }
 
 #amendement-container{
