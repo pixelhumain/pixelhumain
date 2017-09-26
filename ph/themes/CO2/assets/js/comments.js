@@ -55,7 +55,7 @@ function initCommentsTools(thisMedias){
 
   initBtnShare();
 
-  $(".newsAddComment").click(function(){
+  $(".newsAddComment").off().click(function(){
     var id = $(this).data("media-id");
     showCommentsTools(id);
   });
@@ -63,18 +63,17 @@ function initCommentsTools(thisMedias){
 
 
 //lance le chargement des commentaires pour une publication
-function showCommentsTools(id){
+function showCommentsTools(id){ console.log("showCommentsTools", id);
     if(!$("#commentContent"+id).hasClass("hidden")){
       $(".commentContent").html("");
       $(".commentContent").removeClass("hidden");   
-      
+      $(".footer-comments").html("");
       $('#commentContent'+id).html('<div class="text-dark margin-bottom-10"><i class="fa fa-spin fa-refresh"></i> Chargement des commentaires ...</div>');
       getAjax('#commentContent'+id ,baseUrl+'/'+moduleId+"/comment/index/type/news/id/"+id,function(){ 
         
       },"html");
     }else{
       $("#commentContent"+id).removeClass("hidden");    
-      mylog.log("scroll TO : ", $('#newsFeed'+id).position().top);
       
     }
 }
