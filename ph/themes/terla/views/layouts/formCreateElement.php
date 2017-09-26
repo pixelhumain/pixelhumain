@@ -80,7 +80,7 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
             </div>
         </div>
 
-        <div class="container">
+        <div class="container col-md-12 col-sm-12">
 
             <div class="row">
                 <div class="col-lg-12">
