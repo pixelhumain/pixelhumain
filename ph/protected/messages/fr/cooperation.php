@@ -20,6 +20,7 @@ return array(
 	"Done" => "Terminées",
 	"Archived" => "Archivées",
 	"Disabled" => "Désactivées",
+	"Resolved" => "Résolues",
 
 	"Create proposal" => "Créer une proposition",
 	"Add proposal" => "Ajouter une proposition",
@@ -36,6 +37,7 @@ return array(
 	"todo" => "À faire",
 	"archived" => "Archivée",
 	"disabled" => "Désactivée",
+	"resolved" => "Résolue",
 	"closed" => "Fermée",
 	"done" => "Terminée",
 
