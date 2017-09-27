@@ -1,7 +1,7 @@
 <?php
 
 return array(
-	"Add need to find energies to help you" => "Ajouter un besoin pour trouver de l'aide"
+	"Add need to find energies to help you" => "Formulieren Sie einen Bedarf, um Hilfe zu holen"
 );
 
 ?>
