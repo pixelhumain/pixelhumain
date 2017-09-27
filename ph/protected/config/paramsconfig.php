@@ -88,6 +88,7 @@ $params = array(
 
     'CO2DomainName' => 'CO2', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
     "theme"=> "CO2",
+    "version"=> "2.1.0",
 
     //rocketchat params
     'rocketchatEnabled' => true,
