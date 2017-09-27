@@ -365,7 +365,6 @@ jQuery(document).ready(function() {
 ?>
 var rcObj = {
 
-    
     lastOpenChat : null,
     debugChat : false,
     loginToken : '<?php echo @Yii::app()->session["loginToken"]; ?>',
