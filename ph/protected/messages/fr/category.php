@@ -118,17 +118,17 @@
         "Financial ressource"=>"Ressource financière",
         "Documentation"=>"Fiche blanche",
         "Geojson / UMap"=>"Geojson / UMap",
-        "Compost pickup"=>"Récolte de composte",
+        "Compost pickup"=>"Récolte de compost",
         "Video"=>"Vidéo",
         "Shared library"=>"Bibliothèque partagée",
-        "Recory center"=>"Ressourcerie",
+        "Recovery center"=>"Ressourcerie",
         "Trash"=>"Poubelle",
         "History"=>"Histoire",
-        "Something to see"=>"Chose à voir",
+        "To see"=>"À voir",
         "Fun place"=>"Lieu sympa",
         "Public place"=>"Place publique",
-        "Arts pieces"=>"Oeuvres",
-        "Street arts"=>"Arts de rue",
+        "Art pieces"=>"Oeuvres",
+        "Street art"=>"Art de rue",
         "Open mic"=>"Scène ouverte",
         "Stand"=>"Stand",
         "Other"=> "Autre",
@@ -164,5 +164,15 @@
         "the group" => "le collectif",
         "the Group" => "le groupe",
         "the government organization" => "l'organisation gouvernementale",
+        //ROLES LINK
+        "Financier"=>"Financeur",
+        "Partner"=>"Partenaire",
+        "Sponsor"=>"Sponsor",
+        "Organizor"=>"Organisateur",
+        "President"=>"Président",
+        "Director"=>"Directeur",
+        "Speaker"=>"Conférencier",
+        "Intervener"=>"Intervenant"
 	);
 ?>
+

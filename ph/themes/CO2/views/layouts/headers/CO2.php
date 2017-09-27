@@ -28,6 +28,12 @@
 		box-shadow: 0px 0px 3px -1px grey;
 	}
 
+	.moduleTitle #bgTitle{
+		border-radius:40px;
+		background-color: rgba(255, 255, 255, 0.5);
+		padding: 5px 15px;
+	}
+
 
 	@media (max-width: 768px) {
 		.link-submenu-header span{
@@ -38,9 +44,9 @@
 </style>
 <h1 class="text-red homestead">
 	<span id="main-scope-name">
-	<a href="#" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
+	<a href="#" class="menu-btn-back-category shadow2" data-target="#modalMainMenu-block" data-toggle="modal">
 	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo-head-search.png"
-	 	 height="120" class="inline margin-bottom-15">
+	 	 height="60" class="inline margin-bottom-15">
 	</a>
 	<br>
 	</span>
@@ -48,9 +54,10 @@
 
 
 <div class="text-dark moduleTitle" style="font-size:20px; margin-bottom:10px;">
+<span id="bgTitle">
 	<i class="fa fa-<?php echo @$icon; ?>"></i>
 	<?php echo Yii::t("common",@$mainTitle); ?> 
-	
+</span>
 	
 </div>
 

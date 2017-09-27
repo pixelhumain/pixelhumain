@@ -36,7 +36,7 @@
               <th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
                 <!--http://localhost:8888/ph/images/betatest.png-->
               <h3>Bienvenue sur <?php echo $title?> !! </h3>
-             Veuillez clicker sur le lien pour confirmer votre compte<br/>
+             Veuillez cliquer sur le lien pour confirmer votre compte<br/>
             ou copier le directement dans votre navigateur 
             <br/>
            <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id; ?>/person/activate/user/<?php echo $user.'/validationKey/'.Person::getValidationKeyCheck($user)?>">Validation</a></br>

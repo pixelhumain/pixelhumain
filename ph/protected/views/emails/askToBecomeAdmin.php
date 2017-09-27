@@ -32,15 +32,16 @@
 		$subtitle .= yii::t("email","administrate");
 		$typeOfDemand = "admin";
 	}
-  if($type==Project::COLLECTION)
+  
+  if($parentType==Project::COLLECTION)
     $dir="contributors";
-  else if($type==Event::COLLECTION)
+  else if($parentType==Event::COLLECTION)
     $dir="attendees";
   else /*if($type==Organization::COLLECTION)*/
     $dir="members";
 
 	$subtitle .= " ".yii::t("email","the ".$type);
-	$url=Yii::app()->getRequest()->getBaseUrl(true)."/#page.type".$type.".id.".(String) $parent["_id"].".view.directory.dir.".$dir;
+	$url=Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".$parentType.".id.".(String) $parent["_id"].".view.directory.dir.".$dir;
 ?>
 <table class="row" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"> <!-- Horizontal Digest Content -->
       <th class="small-12 large-12 columns first" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 8px;">
@@ -59,7 +60,7 @@
                <?php echo yii::t("email", "For more details on the user")." ".@$newPendingAdmin["username"]?>, <?php echo yii::t("email","you can visit") ?> <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."#person.detail.id.".(String) @$newPendingAdmin["_id"]."?tpl=directory2"?>"><?php echo yii::t("email","sa fiche profil")?></a>.
               <br>
               <br>
-                <?php echo yii::t("email","In order to validate this user as")." ".yii::t("common",$typeOfDemand).", ".yii::t("email","go to the members' list of your")." "; ?>
+                <?php echo yii::t("email","In order to validate this user as")." ".yii::t("common",$typeOfDemand).", ".yii::t("email","go to the {what}' list of your",array("{what}"=>Yii::t("common",$dir)))." "; ?>
            		<a href="<?php echo $url ?>"><?php echo yii::t("common",$type) ?></a>.
               <br>
               <br>
