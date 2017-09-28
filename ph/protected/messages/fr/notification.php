@@ -51,6 +51,8 @@ return array(
 	"{who} added comments on action {what} in {where}" => "{who} ont commenté l'action {what} dans {where}",
 	"{who} commented on discussion {what} in {where}" => "{who} a participé à la discussion {what} dans {where}",
 	"{who} added comments on discussion {what} in {where}" => "{who} ont participé à la discussion {what} dans {where}",
+	"{who} added few comments on proposal {what} in {where}"=>"{who} a commenté plusieurs fois la proposition {what} sur {where}",
+	"{who} added few comments on action {what} in {where}"=>"{who} a commenté plusieurs fois l'action {what} sur {where}",
 	"of creation"=> "de création",
 	"shared"=>"partagé",
 	//LIKE&uNLIKE
@@ -66,7 +68,7 @@ return array(
 	"{who} disapprove your news {what}" => "{who} désapprouvent vote post {what}",
 	"{who} disapproves your comment on {where}" =>"{who} désapprouve votre commentaire sur {where}",
 	"{who} disapprove your comment on {where}" => "{who} désapprouvent votre commentaire {where}",
-	"the news posted on the wall of " => "le post du mur de ",
+	"the wall of" => "le mur de",
 	"your news" => "votre post",
 	//POST
 	"{where} publishes a new post"=>"{where} a publié un post",
@@ -79,6 +81,7 @@ return array(
 	"{who} writes posts on your wall"=>"{who} a écrit plusieurs posts sur votre mur",
 	//ADD
 	"{who} added a new voting room on {where}" => "{who} a ajouté une salle de décision sur {where}",
+	"{who} added a new room in the co-space on {where}" => "{who} a ajouté une nouvelle salle dans l'espace co sur {where}",
 	"{who} added a new discussion room on {where}" => "{who} a ajouté une salle de discussion sur {where}",
 	"{who} added a new actions list on {where}" => "{who} a ajouté une salle d'action sur {where}",
 	"{who} added a new proposal {what} in {where}" => "{who} a ajouté une proposition {what} dans {where}",
@@ -89,10 +92,14 @@ return array(
 	"{who} added a new post in {where}" => "{who} a ajouté un post dans {where}",
 	"{who} added a new profil image on {where}" => "{who} a ajouté une nouvelle image de profil dans {where}",
 	"{who} added new images to the album of {where}" => "{who} a ajouté des images à l'album de {where}",
-	"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
+	//"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
 	//VOTE
 	"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
 	"{who} have voted on {what} in {where}" => "{who} ont voté sur {what} dans {where}",
+	//VOTE
+	"{who} amended the proposal {what} in {where}" => "{who} a amendé la proposition {what} dans {where}",
+	"{who} have amended the proposal {what} in {where}" => "{who} ont amendé la proposition {what} dans {where}",
+	
 	//FRONT NOTIFICATION
 	"asks to become admin of" => "veut devenir administrateur de",
 	"asks to become contributor of" => "veut devenir contributeur de",

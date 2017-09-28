@@ -317,4 +317,14 @@ class PHDB
         return $res;
     }
 
+
+    public static function aggregate( $collection, $aggregate=array())
+    {           
+       /* $res = !self::checkMongoDbPhpDriverInstalled() ? 
+                null : iterator_to_array( Yii::app()->mongodb->selectCollection($collection)->aggregate($aggregate) );*/
+
+        $res = Yii::app()->mongodb->selectCollection($collection)->aggregate($aggregate) ;
+        return $res;
+    }
+
 }

@@ -32,6 +32,7 @@ return array(
         'html2pdf' => realpath(__DIR__ . '/../../vendor/spipu/html2pdf/src'),
         'tcpdf' => realpath(__DIR__ . '/../../vendor/tecnickcom/tcpdf'),
         //'html2pdf' => realpath(__DIR__ .$modulesDir.'/citizenToolKit/components/spipu/html2pdf/src'),
+        'mangopay' => realpath(__DIR__ . '/../../vendor/mangopay/php-sdk-v2/MangoPay'),
     ),
     'controllerMap'=>array(
          //'YiiFeedWidget' => 'ext.yii-feed-widget.YiiFeedWidgetController'

@@ -27,6 +27,9 @@
 .letter-turq{
     color: #229296!important;
 }
+.letter-turq-light{
+    color: #8eb4b6!important;
+}
 .letter-k{
     font-size: 1.2em;
 }
@@ -309,6 +312,21 @@ hr.angle-down {
     /*width: 70%;*/
     border-radius: 5px;
     /*float: right;*/
+}
+
+.bg-white-comment{
+    background-color:#fff !important;
+}
+.item-comment.bg-white-comment{
+    background-color:#fff !important;
+    padding: 5px !important;
+    /*width: 70%;*/
+    border-radius: 5px;
+    /*float: right;*/
+}
+
+.timeline-panel .bg-white-comment{
+    background-color:rgba(255, 255, 255, 0.3) !important;
 }
 
 .item-comment{

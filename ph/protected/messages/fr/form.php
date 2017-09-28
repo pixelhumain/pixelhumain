@@ -43,7 +43,11 @@
 		"Name of your"=>"Nom de votre",
 		"Title of your"=>"Titre de votre",
 		"Tags"=>"Mots clés",
+		"Roles"=>"Rôles",
 		"Add some tags"=>"Ajouter quelques mots clés",
+		"Add some roles"=>"Sélectionner un ou plusieurs rôle(s)",
+		"Limit role access"=>"Limiter l'accès par rôle (par défaut : ouvert à tous)",
+
 		"Your pictures here"=>"Vos images ici",
 		"Your files here"=>"Vos fichiers ici",
 		"Price (£)"=>"Prix (€)",
@@ -127,6 +131,7 @@
 		"I am the author"=>"Je suis l'auteur",
 		"Visibility of the news"=>"Visibilité du post",
 		"Write your news here"=> "Écrire votre post ici",
+		"Invalid username : Only characters A-Z, a-z, 0-9 and '-' are acceptable."=> "Le nom d'utilisateur est incorrect : Seul les caractères A-Z, a-z, 0-9 et '-' sont acceptés.",
 	)
 
 ?>

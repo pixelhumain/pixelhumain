@@ -31,7 +31,8 @@
         "flow/jsonpath": "*",
         "fab1en/rocket-chat-rest-client": "dev-master",
         "nategood/httpful": "*",
-        "spipu/html2pdf": "*"
+        "spipu/html2pdf": "*",
+        "mangopay/php-sdk-v2":"^2.3"
    	},
 	"require": {
 		"opauth/opauth" : "0.4.4",

@@ -74,18 +74,20 @@
         </div>
         <div class="">
             <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <div class="modal-body text-center">
-                        <h3 class="text-red"><!-- <i class="fa fa-bullseye fa-2x"></i> -->
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=70><br>
-                        <span class="text-dark">Recherche </span>ciblée</h3>
-                        <h5 class="text-dark">Sélectionnez des zones de recherche</h5>
-                       
-                        
-                        <div class="col-md-6 col-md-offset-3 no-padding">
-                            <div class="">
-                                <hr>
-                                <div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">
+				<div class="col-lg-10 col-lg-offset-1">
+					<div class="modal-body text-center">
+						<h3 class="text-red"><!-- <i class="fa fa-bullseye fa-2x"></i> -->
+						<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=70><br>
+						<span class="text-dark">Recherche </span>ciblée</h3>
+						<h5 class="text-dark">Sélectionnez des zones de recherche</h5>
+						
+						<div class="col-md-6 col-md-offset-3 no-padding">
+							<div class="">
+								<hr>
+								<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">
+									<select id="select-country"></select>
+								</div>
+								<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">
                                     <div class="btn-group btn-group-justified">
                                       <button type="button" class="btn btn-default tooltips active" data-scope-type="city"
                                               data-toggle="tooltip" data-placement="top" 
@@ -101,6 +103,13 @@
                                       </button>
                                     </div>
                                     <div class="btn-group btn-group-justified">
+                                      <button type="button" class="btn btn-default tooltips" data-scope-type="zone"
+                                              data-toggle="tooltip" data-placement="top" 
+                                              title="Ajouter une zone">
+                                        <strong><i class="fa fa-bullseye"></i></strong> Zone
+                                      </button>
+                                    </div>
+                                    <!--<div class="btn-group btn-group-justified">
                                       <button type="button" class="btn btn-default tooltips" data-scope-type="dep"
                                               data-toggle="tooltip" data-placement="top" 
                                               title="Ajouter un département">
@@ -113,7 +122,7 @@
                                               title="Ajouter une région">
                                         <strong><i class="fa fa-bullseye"></i></strong> Région
                                       </button>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="btn-group  btn-group-justified margin-bottom-10 visible-xs btn-group-scope-type" role="group">
                                     <div class="btn-group btn-group-justified">
@@ -131,7 +140,7 @@
                                       </button>
                                     </div>
                                 </div>
-                                <div class="btn-group  btn-group-justified margin-bottom-10 visible-xs btn-group-scope-type" role="group">
+                               <!-- <div class="btn-group  btn-group-justified margin-bottom-10 visible-xs btn-group-scope-type" role="group">
                                     <div class="btn-group btn-group-justified">
                                       <button type="button" class="btn btn-default tooltips" data-scope-type="dep"
                                               data-toggle="tooltip" data-placement="top" 
@@ -144,6 +153,15 @@
                                               data-toggle="tooltip" data-placement="top" 
                                               title="Ajouter une région">
                                         <strong><i class="fa fa-bullseye"></i></strong> Région
+                                      </button>
+                                    </div>
+                                </div>-->
+                                <div class="btn-group  btn-group-justified margin-bottom-10 visible-xs btn-group-scope-type" role="group">
+                                    <div class="btn-group btn-group-justified">
+                                      <button type="button" class="btn btn-default tooltips" data-scope-type="zone"
+                                              data-toggle="tooltip" data-placement="top" 
+                                              title="Ajouter une zone">
+                                        <strong><i class="fa fa-bullseye"></i></strong> Zone
                                       </button>
                                     </div>
                                 </div>
@@ -166,19 +184,27 @@
                             </div>
                             <div class="text-left">                    
                                 <div id="multi-scope-list-city" class="col-md-12 margin-top-15">
-                                    <h4><i class="fa fa-angle-down"></i> Communes</h4>
+                                    <h4><i class="fa fa-angle-down"></i> Communes </h4>
                                     <hr style="margin-top: 10px; margin-bottom: 10px;">
                                 </div>
                                 <div id="multi-scope-list-cp" class="col-md-12 margin-top-15">
                                     <h4><i class="fa fa-angle-down"></i> Codes postaux</h4>
                                     <hr style="margin-top: 10px; margin-bottom: 10px;">
                                 </div>
-                                <div id="multi-scope-list-dep" class="col-md-12 margin-top-15">
-                                    <h4><i class="fa fa-angle-down"></i> Départements</h4>
+                                <div id="multi-scope-list-level4" class="col-md-12 margin-top-15">
+                                    <h4><i class="fa fa-angle-down"></i> Zones administratif N°4</h4>
                                     <hr style="margin-top: 10px; margin-bottom: 10px;">
                                 </div>
-                                <div id="multi-scope-list-region" class="col-md-12 margin-top-15">
-                                    <h4><i class="fa fa-angle-down"></i> Régions</h4>
+                                <div id="multi-scope-list-level3" class="col-md-12 margin-top-15">
+                                    <h4><i class="fa fa-angle-down"></i> Zones administratif N°3</h4>
+                                    <hr style="margin-top: 10px; margin-bottom: 10px;">
+                                </div>
+                                <div id="multi-scope-list-level2" class="col-md-12 margin-top-15">
+                                    <h4><i class="fa fa-angle-down"></i> Zones administratif N°2</h4>
+                                    <hr style="margin-top: 10px; margin-bottom: 10px;">
+                                </div>
+                                <div id="multi-scope-list-level1" class="col-md-12 margin-top-15">
+                                    <h4><i class="fa fa-angle-down"></i> Country</h4>
                                     <hr style="margin-top: 10px; margin-bottom: 10px;">
                                 </div>
                                 <div class="col-md-12">
@@ -259,6 +285,7 @@
 <input id="searchLocalityDEPARTEMENT" type="hidden"/>
 <input id="searchLocalityREGION" type="hidden" />
 <input id="searchLocalityLEVEL" type="hidden" />
+<input id="searchLocalityZONE" type="hidden" />
 <input id="searchTags" type="hidden" />
 <!-- <div class="item-scope-region hidden" id="scope-max-dep" data-scope-value="Nouvelle-Calédonie"></div> -->
 
@@ -273,11 +300,11 @@
 </style>
 
 <script type="text/javascript">
-    var myMultiTags = {};
-    var myMultiScopes = <?php echo isset($me) && isset($me["multiscopes"]) ? 
-                                json_encode($me["multiscopes"]) :  
-                                $multiscopesStr; 
-                    ?>;
+	var myMultiTags = {};
+	var myMultiScopes = <?php echo isset($me) && isset($me["multiscopes"]) ? 
+							json_encode($me["multiscopes"]) :
+							$multiscopesStr;
+						?>;
 
 
     var currentScopeType = "city";
@@ -286,6 +313,15 @@
     var loadingScope = true;
     var actionOnSetGlobalScope="filter";
     jQuery(document).ready(function() {
+		var options = "";
+		$.each(countryList, function(key, val){
+			if(notEmpty(userConnected) && notEmpty(userConnected.address) && userConnected.address.addressCountry != "" && userConnected.address.addressCountry == val.countryCode)
+				options += '<option value="'+val.countryCode+'" checked>'+val.name+'</option>';
+			else
+				options += '<option value="'+val.countryCode+'">'+val.name+'</option>';
+		});
+		$("#select-country").html(options);
+
 
         $("#dropdown-multi-scope-found").hide();
 
@@ -330,14 +366,15 @@
         });
 
         $(".btn-group-scope-type .btn-default").click(function(){
-            currentScopeType = $(this).data("scope-type");
-            $(".btn-group-scope-type .btn-default").removeClass("active");
-            $(this).addClass("active");
-            //mylog.log("change scope type :", currentScopeType);
-            if(currentScopeType == "city") $('#input-add-multi-scope').attr("placeholder", "Ajouter une commune ...");
-            if(currentScopeType == "cp") $('#input-add-multi-scope').attr("placeholder", "Ajouter un code postal ...");
-            if(currentScopeType == "dep") $('#input-add-multi-scope').attr("placeholder", "Ajouter un département ...");
-            if(currentScopeType == "region") $('#input-add-multi-scope').attr("placeholder", "Ajouter une région ...");
+			currentScopeType = $(this).data("scope-type");
+			$(".btn-group-scope-type .btn-default").removeClass("active");
+			$(this).addClass("active");
+			//mylog.log("change scope type :", currentScopeType);
+			if(currentScopeType == "city") $('#input-add-multi-scope').attr("placeholder", "Ajouter une commune ...");
+			if(currentScopeType == "cp") $('#input-add-multi-scope').attr("placeholder", "Ajouter un code postal ...");
+			/*if(currentScopeType == "dep") $('#input-add-multi-scope').attr("placeholder", "Ajouter un département ...");
+			if(currentScopeType == "region") $('#input-add-multi-scope').attr("placeholder", "Ajouter une région ...");*/
+			if(currentScopeType == "zone") $('#input-add-multi-scope').attr("placeholder", "Ajouter une zone ...");
         });
 
         $("#btn-validate-scope").click(function(){
