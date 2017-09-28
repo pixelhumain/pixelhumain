@@ -314,6 +314,21 @@ hr.angle-down {
     /*float: right;*/
 }
 
+.bg-white-comment{
+    background-color:#fff !important;
+}
+.item-comment.bg-white-comment{
+    background-color:#fff !important;
+    padding: 5px !important;
+    /*width: 70%;*/
+    border-radius: 5px;
+    /*float: right;*/
+}
+
+.timeline-panel .bg-white-comment{
+    background-color:rgba(255, 255, 255, 0.3) !important;
+}
+
 .item-comment{
     margin-top:5px !important;
     margin-bottom:5px !important;

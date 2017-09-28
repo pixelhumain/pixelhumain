@@ -34,6 +34,7 @@ class HtmlHelper {
         foreach ($files as $file) {
             $extention = pathinfo($file,PATHINFO_EXTENSION);
             if ($extention == "js" || $extention == "JS") {
+                $file = $file."?v=".Yii::app()->params["version"] ;
                 if($ajaxRequest){
                     echo CHtml::scriptFile($path.$file);
                 } else {

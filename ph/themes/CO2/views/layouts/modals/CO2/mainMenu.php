@@ -365,7 +365,6 @@ jQuery(document).ready(function() {
 ?>
 var rcObj = {
 
-    
     lastOpenChat : null,
     debugChat : false,
     loginToken : '<?php echo @Yii::app()->session["loginToken"]; ?>',
@@ -386,7 +385,7 @@ var rcObj = {
         //if iframe deosn't exist
         //element has an RC channel 
         //not a citizen
-        if( typeof contextData.slug == "undefined" )
+        if( contextData && typeof contextData.slug == "undefined" )
             contextData.slug = slugify(contextData.name);
         
         var checkGroupMember = ( contextData ) ? $.inArray( contextData.slug , rcObj.list ) : true ; 
@@ -421,7 +420,7 @@ var rcObj = {
         rcObj.lastOpenChat = name;
     },
     goto : function (name,isOpen) { 
-        pathChannel = "";
+        pathChannel = "/";
         if( name != "" ){
             if( contextData.type == "citoyens" ) 
                 pathChannel = "/direct/"+contextData.username ;

@@ -73,27 +73,12 @@
     "displayShortDescription" : true
     },
     "request" : {
-        "sourcekey" : "greenerfamily",
         "pagination" : 1000,
         "searchType" : [
             "organizations"
         ],
-    "searchLocalityDEPARTEMENT" : [
-        "ESSONNE"
-    ],
-        "searchTag" : [
-            "Alimentation",
-            "Consommation",
-            "Energie",
-            "Entretien",
-            "Famille",
-            "Finance",
-            "Habitat",
-            "Loisirs",
-            "Santé",
-            "Technologie",
-            "Transport",
-            "Travail"
-    ]       
+        "searchLocalityREGION": [
+            "Corse"
+        ] 
     }
 }
