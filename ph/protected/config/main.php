@@ -28,10 +28,8 @@ return array(
     	'mongoYii' => realpath(__DIR__ . '/../../vendor/sammaye/mongoyii'),
     	'recaptcha' => realpath(__DIR__ . '/../../vendor/google/recaptcha/src/ReCaptcha'),
         'citizenToolKit' => realpath(__DIR__ . $modulesDir.'/citizenToolKit'),
-        //'mpdf' => realpath(__DIR__ . '/../../vendor/mpdf/mpdf/src'),
         'html2pdf' => realpath(__DIR__ . '/../../vendor/spipu/html2pdf/src'),
         'tcpdf' => realpath(__DIR__ . '/../../vendor/tecnickcom/tcpdf'),
-        //'html2pdf' => realpath(__DIR__ .$modulesDir.'/citizenToolKit/components/spipu/html2pdf/src'),
         'mangopay' => realpath(__DIR__ . '/../../vendor/mangopay/php-sdk-v2/MangoPay'),
     ),
     'controllerMap'=>array(
