@@ -660,6 +660,7 @@ onSave: (optional) overloads the generic saveProcess
 	                    $(".addmultifield").val(optVal);
 	                else 
 	                	addfield("."+field+fieldObj.inputType,optVal,field);
+
 	                if( formValues && formValues.medias ){
 	                	$.each(formValues.medias, function(i,mediaObj) {
 	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
@@ -1571,7 +1572,7 @@ onSave: (optional) overloads the generic saveProcess
 		var str = 	'<div class="col-sm-12 no-padding margin-top-10">'+
 					'<div class="col-sm-10 no-padding">'+
 							'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
-							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md value="" placeholder="..."/>'+
+							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'" placeholder="..."/>'+
 							'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
 						'</div>'+
 						'<div class="col-sm-2 sectionRemovePropLineBtn">'+
@@ -1579,7 +1580,7 @@ onSave: (optional) overloads the generic saveProcess
 						'</div>'+
 					'</div>';
 
-
+		mylog.log("-------------------------");
 		/*'<div class="space5"></div><div class="col-sm-10">'+
 					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'"/>'+

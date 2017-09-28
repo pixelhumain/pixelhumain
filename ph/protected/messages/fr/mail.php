@@ -3,7 +3,7 @@
 		"administrate"=>"administrer",
 		"join"=>"rejoindre",
 		"contribute to"=>"contribuer à",
-		"participate to" =>"particper à",
+		"participate to" =>"participer à",
 		"of admin"=>"d&apos;administrateur",
 		"of contributor"=> " de contributeur",
 		"of member" => "de membre",
