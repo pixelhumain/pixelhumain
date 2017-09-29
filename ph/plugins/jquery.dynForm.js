@@ -625,19 +625,27 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "array" ) {
         	mylog.log("build field "+field+">>>>>> array list");
+        	var addLabel="";
+        	var typeExtract="";
+        	if(typeof fieldObj.initOptions != "undefined"){
+        		if(typeof fieldObj.initOptions.labelAdd != "undefined")
+        	 		addLabel=fieldObj.initOptions.labelAdd;
+        	 	if(typeof fieldObj.initOptions.type != "undefined")
+        	 		typeExtract=fieldObj.initOptions.type;
+        	}
         	fieldHTML +=   '<div class="inputs array">'+
 								'<div class="col-sm-10 no-padding">'+
-									'<img id="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif" style="position: absolute;right: 5px;top: 10px;display:none;">'+
 									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
-									'<div class="resultGetUrl resultGetUrl0 col-sm-12"></div>'+
 								'</div>'+
 								'<div class="col-sm-2 sectionRemovePropLineBtn">'+
 									'<a href="javascript:" data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
 								'</div>'+
+								'<div class="resultGetUrl resultGetUrl0 col-sm-12 col-md-12 col-xs-12 no-padding"></div>'+
 							'</div>'+
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
 								'<div class="col-sm-12 no-padding margin-top-5 margin-bottom-15">'+
-									'<a href="javascript:" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" class="addPropBtn btn btn-link w100p letter-green" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
+									'<a href="javascript:" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" data-type="'+typeExtract+'" class="addPropBtn btn btn-default w100p letter-green" alt="Add a line"><i class=" fa fa-plus-circle" ></i> '+addLabel+'</a> '+
 							        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
 							        
 					       		'</div>'+
@@ -655,22 +663,28 @@ onSave: (optional) overloads the generic saveProcess
 				$("#loading_indicator").hide();
 				//initialize values
 				//value is an array of strings
+				var initOptions = new Object;
+				if(typeof fieldObj.initOptions != "undefined")
+					initOptions=fieldObj.initOptions;
 				$.each(fieldObj.value, function(optKey,optVal) {
 					if(optKey == 0)
 	                    $(".addmultifield").val(optVal);
 	                else 
-	                	addfield("."+field+fieldObj.inputType,optVal,field);
+	                	addfield("."+field+fieldObj.inputType,optVal,field, initOptions);
 	                if( formValues && formValues.medias ){
 	                	$.each(formValues.medias, function(i,mediaObj) {
 	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
-	                			var strHtml = getMediaCommonHtml(mediaObj,"save");//buildMediaHTML(mediaObj);
+	                			if(typeof initOptions.type != "undefined" && initOptions.type == "video")
+	                				var strHtml = processUrl.getMediaVideo(mediaObj,"save");
+	                			else
+	                				var strHtml = processUrl.getMediaCommonHtml(mediaObj,"save");//buildMediaHTML(mediaObj);
 	                			$(".resultGetUrl"+optKey).html(strHtml);
 	                			$("#loading_indicator").hide();
 	                		}
 	                	});
 	                }
 				});
-				initMultiFields('.'+field+fieldObj.inputType,field);
+				initMultiFields('.'+field+fieldObj.inputType,field,typeExtract);
 			}
 
         }
@@ -1363,8 +1377,9 @@ onSave: (optional) overloads the generic saveProcess
 			$('.addPropBtn').unbind("click").click(function()
 			{ 
 				var field = $(this).data('id');
+				var typeExtract = $(this).data('type');
 				if( $('.'+field+' .inputs .addmultifield:visible').length==0 || ( $("."+field+" .addmultifield:last").val() != "" && $( "."+field+" .addmultifield1:last" ).val() != "") )
-					addfield('.'+$(this).data('container'),'',field);
+					addfield('.'+$(this).data('container'),'',field, typeExtract);
 				else
 					toastr.info("please fill properties first");
 			} );
@@ -1467,7 +1482,7 @@ onSave: (optional) overloads the generic saveProcess
 	* add a new line to the multi line process 
 	* val can be a value when type array or {"label":"","value":""} when type property
 	***************************************** */
-	function addfield( parentContainer,val,name ) 
+	function addfield( parentContainer,val,name, type ) 
 	{
 		mylog.log("addfield",parentContainer+' .inputs',val);
 		if(!$.isEmptyObject($(parentContainer+' .inputs')))
@@ -1480,7 +1495,7 @@ onSave: (optional) overloads the generic saveProcess
 	    	$(".loading_indicator").hide();
 
 	    	$(parentContainer+' .addmultifield:last').focus();
-	        initMultiFields(parentContainer,name);
+	        initMultiFields(parentContainer,name, type);
 	    }else 
 	    	mylog.error("container doesn't seem to exist : "+parentContainer+' .inputs');
 	}
@@ -1491,7 +1506,7 @@ onSave: (optional) overloads the generic saveProcess
 	* remove a field
 	* enter key submition
 	***************************************** */
-	function initMultiFields(parentContainer,name){
+	function initMultiFields(parentContainer,name, typeExtract){
 		mylog.log("initMultiFields",parentContainer);
 	  //manage using Enter to make easy loop editing
 	  $(parentContainer+' .addmultifield').unbind('keydown').keydown(function(event) 
@@ -1509,9 +1524,11 @@ onSave: (optional) overloads the generic saveProcess
 	        	toastr.warning("La paire (clef/valeure) doit etre remplie.");
 	    }
 	  });
-
+	 // var typeExtract=null;
+	  //if(typeof initOptions != "undefined" && initOptions.type=="video")
+	  	//typeExtract=initOptions.type;
 	  var count = $(".addmultifield").length-1;
-	  getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count,0);
+	  getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count,1, typeExtract);
 	  //manage using Enter to make easy loop editing
 	  //for 2nd property field
 	  $(parentContainer+' .addmultifield1').unbind('keydown').keydown(function(event) 
@@ -1528,8 +1545,8 @@ onSave: (optional) overloads the generic saveProcess
 
 	  //bind remove btn event 
 	  $(parentContainer+' .removePropLineBtn').click(function(){
-	  	$(this).parent().prev().remove();
-	  	$(this).parent().remove();
+	  	//$(this).parents().eq(1).prev().remove();
+	  	$(this).parents().eq(1).remove();
 	  });
 
 	}
@@ -1572,11 +1589,11 @@ onSave: (optional) overloads the generic saveProcess
 					'<div class="col-sm-10 no-padding">'+
 							'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md value="" placeholder="..."/>'+
-							'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
 						'</div>'+
 						'<div class="col-sm-2 sectionRemovePropLineBtn">'+
 							'<a href="javascript:" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
 						'</div>'+
+						'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
 					'</div>';
 
 
