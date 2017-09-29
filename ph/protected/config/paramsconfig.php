@@ -86,16 +86,18 @@ $params = array(
     'forceMapboxActive' => false, //to force mabox localhost
     'mapboxToken' => 'pk.eyJ1IjoiY29tbXVuZWN0ZXIiLCJhIjoiY2lreWRkNzNrMDA0dXc3bTA1MHkwbXdscCJ9.NbvsJ14y2bMWWdGqucR_EQ',
 
+
     'CO2DomainName' => 'terla', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
     "theme"=> "terla",
+    "version"=> "2.1.0",
 
     //rocketchat params
-    'rocketchatEnabled' => false,
+    'rocketchatEnabled' => true,
     'rocketchatURL' => 'https://chat.communecter.org',
     'rocketAdmin' => 'contact@communecter.org',
-    'rocketAdminPwd' => '6lexipnamuh9',
-    "adminLoginToken" => "oIDEqjsrczUHJ61LoyjMFEflbrgFLeJ9XwBO2SrDkWf",
-    "adminRocketUserId" => "59bb84f9dd0452ba1951c494",
+    'rocketAdminPwd' => '',
+    "adminLoginToken" => "",
+    "adminRocketUserId" => "",
 
     /*"front" => array (
         "organization" => true,

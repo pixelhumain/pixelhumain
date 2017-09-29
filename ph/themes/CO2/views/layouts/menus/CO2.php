@@ -259,9 +259,9 @@
                     </button>
                     
                     <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
-                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                          onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" title="Messagerie" alt="Messagerie">
                       <i class="fa fa-comments"></i>
-                      <span class="chatNotif topbar-badge badge animated bounceIn badge-warning">0</span>
+                      <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
 
                 <?php } else { ?>

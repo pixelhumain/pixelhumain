@@ -1596,7 +1596,7 @@ onSave: (optional) overloads the generic saveProcess
 						'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
 					'</div>';
 
-
+		mylog.log("-------------------------");
 		/*'<div class="space5"></div><div class="col-sm-10">'+
 					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'"/>'+
