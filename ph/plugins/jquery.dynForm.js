@@ -90,18 +90,18 @@ onSave: (optional) overloads the generic saveProcess
         				'<hr class="col-md-12">';
         	if( !settings.formObj.jsonSchema.noSubmitBtns )
 				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
-							tradDynForm["submit"]+' <i class="fa fa-arrow-circle-right"></i>'+
+							tradDynForm.submit+' <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
 						' <a href="javascript:dyFObj.closeForm(); " class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
-							'<i class="fa fa-times "></i> '+tradDynForm["cancel"]+
+							'<i class="fa fa-times "></i> '+tradDynForm.cancel+
 						'</a> ';
 
 			fieldHTML += '</div>';
 
 	        $( settings.formId ).append(fieldHTML);
 
-	        $("#btn-submit-form").one(function() { 
+	        $(dyFObj.activeModal+" #btn-submit-form").one(function() { 
 				$( settings.formId ).submit();	        	
 	        });
 
@@ -997,12 +997,14 @@ onSave: (optional) overloads the generic saveProcess
 		mylog.info("connecting submit btn to $.validate pluggin");
 		mylog.dir(formRules);
 		var errorHandler = $('.errorHandler', $(params.formId));
+alert(params.formId);
 		$(params.formId).validate({
 
 			rules : formRules,
 
 			submitHandler : function(form) {
-				$("#btn-submit-form").html('<i class="fa  fa-spinner fa-spin fa-"></i>').prop("disabled",true);
+				alert(dyFObj.activeModal+" #btn-submit-form");
+				$(dyFObj.activeModal+" #btn-submit-form").html( '<i class="fa  fa-spinner fa-spin fa-"></i>' ).prop("disabled",true);
 				errorHandler.hide();
 				mylog.info("form submitted "+params.formId);
 				
@@ -1010,6 +1012,7 @@ onSave: (optional) overloads the generic saveProcess
 					params.beforeSave();
 
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
+					alert("onSave")
 					params.onSave();
 					return false;
 		        } 
