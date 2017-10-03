@@ -997,13 +997,13 @@ onSave: (optional) overloads the generic saveProcess
 		mylog.info("connecting submit btn to $.validate pluggin");
 		mylog.dir(formRules);
 		var errorHandler = $('.errorHandler', $(params.formId));
-alert(params.formId);
+//alert(params.formId);
 		$(params.formId).validate({
 
 			rules : formRules,
 
 			submitHandler : function(form) {
-				alert(dyFObj.activeModal+" #btn-submit-form");
+				//alert(dyFObj.activeModal+" #btn-submit-form");
 				$(dyFObj.activeModal+" #btn-submit-form").html( '<i class="fa  fa-spinner fa-spin fa-"></i>' ).prop("disabled",true);
 				errorHandler.hide();
 				mylog.info("form submitted "+params.formId);
@@ -1012,7 +1012,7 @@ alert(params.formId);
 					params.beforeSave();
 
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
-					alert("onSave")
+					//alert("onSave")
 					params.onSave();
 					return false;
 		        } 
