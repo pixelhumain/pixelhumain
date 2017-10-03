@@ -146,13 +146,13 @@ return array(
 	"You already invited" => "Sie haben bereits eingeladen",
 	"Your answer has been succesfully register" => "Ihre Antwort wurde erfolgreich gespeichert",
 	"News has been shared with your network"=>"Sie haben diesen Inhalt mit Ihrem Netzwerk geteilt",
-	"{what} added {where} with success" => "{was} erfolgreich {wo} hinzugefügt",
+	"{what} added {where} with success" => "{what} erfolgreich {where} hinzugefügt",
 	"{what} removed {where} with success" => "{what} erfolgreich {where} entfernt",
 	"to favorites" => "zu Favoriten",
 	"from favorites"=> "von Favoriten",
-	"Collection {what} created with success"=> "Sammlung {was} erfolgreich erstellt",
-	"Collection {what} deleted with success"=> "Sammlung {was} erfolgreich gelöscht",
-	"Collection {what} updated with success"=> "Sammlung {was} erfolgreich aktualisiert",
+	"Collection {what} created with success"=> "Sammlung {what} erfolgreich erstellt",
+	"Collection {what} deleted with success"=> "Sammlung {what} erfolgreich gelöscht",
+	"Collection {what} updated with success"=> "Sammlung {what} erfolgreich aktualisiert",
 	"Validation is well registered"=> "Die Validierung erfolgreich registriert",
 	"Please choose an image with a minimun of size: 600x300 (widthxheight)"=>"Bitte wählen Sie ein Bild mit einer Mindestgröße von: 600x300 px (Breite x Höhe)",
 	"Your data are well updated"=>"Ihre Daten wurden aktualisiert",
@@ -1048,7 +1048,7 @@ return array(
     "The end date must be after the start date"  => "La date de fin doit être après la date de début",
     // LANGUAGES
     "English"=> "Englisch",
-    "French"=> "Französisch", // you have to add "German"=> "Deutsch" in this array,
+    "French"=> "Französisch", // you have to add "German"=> "Deutsch" in this array
     "Languages"=>"Sprachen",
 	"Photos gallery" => "Fotogalerie",
 );
