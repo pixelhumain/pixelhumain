@@ -12,7 +12,7 @@
 			"The project has been updated" => "Das Projekt wurde aktualisiert",
 			"Project licence" => "Lizenz des Projekts",
 			//Title
-	"test" => "TEST FR",
+	"test" => "TEST DE",
 	"MY PROJECTS" => "MEINE PROJEKTE",
 	"PROJECTS" => "PROJEKTE",
 	"Projects" => "Projekte",
