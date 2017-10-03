@@ -9,7 +9,21 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 container"></div>
+        <div class="col-sm-12 container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="modal-header text-dark">
+                        <h3 class="modal-title text-center" id="ajax-modal-modal-title">
+                            <i class="fa fa-angle-down"></i> <i class="fa " id="ajax-modal-icon"></i> 
+                        </h3>
+                    </div>
+                    
+                    <div id="ajax-modal-modal-body" class="modal-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-xs-12 text-center" style="margin-top:50px;margin-bottom:50px;">
             <hr>
             <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal">
