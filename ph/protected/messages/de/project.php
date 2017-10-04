@@ -6,7 +6,7 @@
  * ( that are stored in <framework_dir>/i18n/data/ )
  */
 	return array(
-		"Evaluate your projet as commons"=> "Evaluer votre projet comme un commun", // could you express it in different words? what do yoe mean?
+		"Evaluate your projet as commons"=> "Beurteilen Sie Ihr Projekt als Gemeinschaft",
 			"Contact information" => "Allgemeine Informationen",
 			"Edit your informations" => "Bearbeiten Sie Ihre Informationen",
 			"The project has been updated" => "Das Projekt wurde aktualisiert",
