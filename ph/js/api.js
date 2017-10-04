@@ -629,6 +629,9 @@ var jsonHelper = {
   //jsonHelper.notNull("themeObj.blockUi","function") > false or true accordingly
   notNull : function (pathJson,type) 
   {
+    if(pathJson.indexOf("[")>=0)
+      pathJson = pathJson.replace(/\[/g, '.').replace(/]/g, '');
+        
     var pathT = pathJson.split(".");
     res = false;
     var dynPath = "";
@@ -636,6 +639,7 @@ var jsonHelper = {
       dynPath = (i == 0) ? k : dynPath+"."+k ;
       //mylog.log(dynPath);
       //typeof eval("typeObj.poi") != "undefined"
+      
       if( typeof eval( dynPath ) != "undefined" ){
         //mylog.log(dynPath);
         if(i == pathT.length - 1){
