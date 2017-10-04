@@ -78,8 +78,10 @@ onSave: (optional) overloads the generic saveProcess
 				
 				var fieldTooltip = null;
 				//alert("dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.tooltips."+field );
-				if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.tooltips."+field ) )
+				if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.tooltips" ) && 
+						dyFObj[dyFObj.activeElem].dynForm.jsonSchema.tooltips[field] ){
 					fieldTooltip = dyFObj[dyFObj.activeElem].dynForm.jsonSchema.tooltips[field];
+				}
 				buildInputField(settings.formId,field, fieldObj, settings.formValues, fieldTooltip);
 			});
 			
