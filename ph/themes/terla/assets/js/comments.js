@@ -374,7 +374,7 @@ function saveCommentRating(textComment, parentCommentId,contextId,contextType,ra
     });
     if(action=="show"){
       $("#ratingComments"+orderId).barrating('set', order.comment.rating);
-      $("#ratingComments"+orderId).barrating('readonly', false);
+      $("#ratingComments"+orderId).barrating('readonly', true);
 
     }
     $(".saveRating").click(function(){

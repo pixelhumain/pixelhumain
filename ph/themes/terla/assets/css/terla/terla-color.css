@@ -51,3 +51,32 @@
 .bg-orange-4{ background-color:#A32402!important; }
 .bg-blue-4{ background-color:#074867!important; }
 .bg-green-4{ background-color:#519402!important; }
+
+.item-comment.bg-red-comment{
+    background-color:#ffd7d4 !important;
+    padding: 5px !important;
+    /*width: 70%;*/
+    border-radius: 5px;
+    /*float: right;*/
+}
+
+.bg-white-comment{
+    background-color:#fff !important;
+}
+.item-comment.bg-white-comment{
+    background-color:rgba(255, 255, 255, 0.3) !important;
+    padding: 5px !important;
+    /*width: 70%;*/
+    border-radius: 5px;
+    /*float: right;*/
+}
+
+.timeline-panel .bg-white-comment{
+    background-color:rgba(255, 255, 255, 0.3) !important;
+}
+
+.item-comment{
+    margin-top:5px !important;
+    margin-bottom:5px !important;
+
+}
