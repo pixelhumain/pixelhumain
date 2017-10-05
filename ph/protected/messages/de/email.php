@@ -2,21 +2,21 @@
 
 return array(
 	// AskToBecomeAdmin
-	"Demand to" => "Demande pour",
-	"administrate" => "administrer",
-	"join as contributor" => "rejoindre en tant que contributeur",
-	"join as member" => "rejoindre en tant que membre",
-	"the organization" => "l'organisation",
-	"the project" => "le projet",
-	"The user" => "L'utilisateur",
-	"asks to become" => "demande à devenir",
-	"of" => "de",
-	"For more details on the user" => "Pour plus de détails sur l'utilisateur",
-	"you can visit" => "vous pouvez visiter",
-	"his profile" => "sa fiche profil",
-	"In order to validate this user as" => "Afin de valider cet utilisateur comme",
-	"go to the members' list of your" => "rendez vous sur la liste des membres de votre",
-	"New message from" => "Nouveau message de"
+	"Demand to" => "Bewerbung für",
+	"administrate" => "administrieren",
+	"join as contributor" => "als Mitwirkender beitreten",
+	"join as member" => "als Mitglied beitreten",
+	"the organization" => "die Organisation",
+	"the project" => "das Projekt",
+	"The user" => "Der Benutzer",
+	"asks to become" => "möchte ... werden",
+	"of" => "von",
+	"For more details on the user" => "Für weitere Details über den Benutzer",
+	"you can visit" => "können Sie sich ... ansehen",
+	"his profile" => "sein Profil",
+	"In order to validate this user as" => "Um diesen Benutzer als ... zu bestätigen",
+	"go to the members' list of your" => "gehen Sie zur Liste der Mitglieder Ihres",
+	"New message from" => "Neue Nachricht von"
 );
 
 ?>
