@@ -1128,8 +1128,10 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
     // LANGUAGES
     "English"=> "Anglais",
     "French"=> "Français",
+    "German"=> "Allemand",
     "Languages"=>"Langues",
 	"Photos gallery" => "Galerie photos",
+	"Themes"=>"Thématiques",
 
 
 
