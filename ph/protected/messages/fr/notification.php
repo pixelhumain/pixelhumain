@@ -70,6 +70,9 @@ return array(
 	"{who} disapprove your comment on {where}" => "{who} désapprouvent votre commentaire {where}",
 	"the wall of" => "le mur de",
 	"your news" => "votre post",
+	"with the link shared"=>"avec le lien partagé",
+	"with the documents shared"=>"avec les documents partagés",
+	"with the album's images"=>"avec les images d'album",
 	//POST
 	"{where} publishes a new post"=>"{where} a publié un post",
 	"{where} publishes new posts"=>"{where} a publié plusieurs posts",
@@ -112,5 +115,6 @@ return array(
 	"{who} asks the suppression of {where}"=>"{who} demande la suppression de {where}",
 	"{who} stopped the pending suppression of {where}"=>"{who} a stoppé la suppresion de {where}",
 	"{who} deleted {where}"=>"{who} a supprimé {where}",
+	
 );
 ?>
