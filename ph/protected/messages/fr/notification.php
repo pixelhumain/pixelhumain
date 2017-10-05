@@ -70,7 +70,7 @@ return array(
 	"{who} disapprove your comment on {where}" => "{who} désapprouvent votre commentaire {where}",
 	"the wall of" => "le mur de",
 	"your news" => "votre post",
-	"with the link shared"=>"avec le lien partagé",
+	"with the link"=>"avec le lien",
 	"with the documents shared"=>"avec les documents partagés",
 	"with the album's images"=>"avec les images d'album",
 	//POST
