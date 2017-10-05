@@ -1048,8 +1048,10 @@ return array(
     "The end date must be after the start date"  => "La date de fin doit être après la date de début",
     // LANGUAGES
     "English"=> "Englisch",
-    "French"=> "Französisch", // you have to add "German"=> "Deutsch" in this array
+    "French"=> "Französisch",
+    "German"=> "Deutsch", 
     "Languages"=>"Sprachen",
 	"Photos gallery" => "Fotogalerie",
+	"Themes"=>"Themen",
 );
 ?>
