@@ -76,7 +76,11 @@ onSave: (optional) overloads the generic saveProcess
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
 				
-				buildInputField(settings.formId,field, fieldObj, settings.formValues);
+				var fieldTooltip = null;
+				//alert("dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.tooltips."+field );
+				if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.tooltips."+field ) )
+					fieldTooltip = dyFObj[dyFObj.activeElem].dynForm.jsonSchema.tooltips[field];
+				buildInputField(settings.formId,field, fieldObj, settings.formValues, fieldTooltip);
 			});
 			
 			/* **************************************
@@ -127,16 +131,17 @@ onSave: (optional) overloads the generic saveProcess
 	*	each input field type has a corresponding HTMl to build
 	*
 	***************************************** */
-	function buildInputField(id, field, fieldObj,formValues)
+	function buildInputField(id, field, fieldObj,formValues, tooltip)
 	{
 		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
 		var required = "";
 		if(fieldObj.rules && fieldObj.rules.required)
 			required = "*";
 
+		tooltip = (tooltip) ? '<i class=" fa fa-question-circle pull-right tooltips text-red" data-toggle="tooltip" data-placement="top" title="'+tooltip+'"></i>' : '';
 		if(fieldObj.label)
 			fieldHTML += '<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="'+field+'">'+
-			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+
+			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+tooltip+
 			            '</label>';
 
         var iconOpen = (fieldObj.icon) ? '<span class="input-icon">'   : '';
@@ -1012,7 +1017,7 @@ onSave: (optional) overloads the generic saveProcess
 					params.beforeSave();
 
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
-					//alert("onSave")
+					//	alert("onSave")
 					params.onSave();
 					return false;
 		        } 
