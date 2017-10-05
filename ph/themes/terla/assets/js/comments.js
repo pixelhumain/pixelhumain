@@ -255,3 +255,134 @@ function bindEventTextArea(idTextArea, idComment, isAnswer, parentCommentId){
 
     bindEventTextArea('#textarea-new-comment'+parentCommentId, idComment, true, parentCommentId);
   }
+
+function saveCommentRating(textComment, parentCommentId,contextId,contextType,rating,orderId){
+    textComment = $.trim(textComment);
+    if(!notEmpty(parentCommentId)) parentCommentId = "";
+    if(textComment == "") {
+      toastr.error("Votre commentaire est vide");
+      return;
+    }
+    var argval = $("#argval").val();
+    var params={
+        parentCommentId: parentCommentId,
+        content : textComment,
+        contextId : contextId,
+        contextType : contextType,
+        argval : argval
+    }
+    if(typeof rating != "undefined" && notNull(rating)){
+      params.orderId=orderId;
+      params.rating=parseInt(rating);
+    }
+    $.ajax({
+      url: baseUrl+'/'+moduleId+"/comment/save/",
+      data: params,
+      type: 'post',
+      global: false,
+      dataType: 'json',
+      success: 
+        function(data) {
+          if(!data.result){
+            toastr.error(data.msg);
+          }
+          else { 
+            toastr.success(data.msg);
+            var count = $("#newsFeed"+context["_id"]["$id"]+" .nbNewsComment").html();
+            if(!notEmpty(count)) count = 0;
+            //mylog.log(count, context["_id"]["$id"]);
+            if(data.newComment.contextType=="news"){
+              count = parseInt(count);
+              var newCount = count +1;
+              var labelCom = (newCount>1) ? "commentaires" : "commentaire";
+              $("#newsFeed"+context["_id"]["$id"]+" .lblComment").html("<i class='fa fa-comment'></i> <span class='nbNewsComment'>"+newCount+"</span> "+labelCom);
+              $("#newsFeed"+context["_id"]["$id"]+" .newsAddComment").data('count', newCount);
+            // }else{
+            //  $("#newsFeed"+context["_id"]["$id"]+" .lblComment").html("<i class='fa fa-comment'></i> <span class='nbNewsComment'>1</span> commentaire");
+            //  $("#newsFeed"+context["_id"]["$id"]+" .newsAddComment").data('count', 1);
+            }
+            
+            // $('.nbComments').html((parseInt($('.nbComments').html()) || 0) + 1);
+            // if (data.newComment.contextType=="news"){
+            //  $(".newsAddComment[data-id='"+data.newComment.contextId+"']").children().children(".nbNewsComment").text(parseInt($('.nbComments').html()) || 0);
+            // }
+            //switchComment(commentId, data.newComment, parentCommentId);
+            latestComments = data.time;
+
+            var isAnswer = parentCommentId!="";
+            showOneComment(textComment, parentCommentId, isAnswer, data.id.$id, argval);   
+            bindEventActions();    
+          }
+        },
+      error: 
+        function(data) {
+          toastr.error('<?php echo Yii::t("comment","Error calling the serveur : contact your administrator.") ?>');
+        }
+    });
+    
+  }
+  function commentRating(order, action){
+    orderId=order._id.$id;
+    orderedItemId=order.orderedItemId;
+    orderedItemType=order.orderedItemType;
+    if(action=="show"){
+      var html = '<div class="col-xs-12 no-padding margin-top-5 item-comment bg-white-comment">'+
+              '<span class="pull-left content-comment">'+           
+              ' <span class="text-black">'+
+                '<div class="br-wrapper br-theme-fontawesome-stars">'+
+                 '<select id="ratingComments'+orderId+'" class="ratingComments">'+
+                    '<option value="1">1</option>'+
+                    '<option value="2">2</option>'+
+                    '<option value="3">3</option>'+
+                    '<option value="4">4</option>'+
+                    '<option value="5">5</option>'+
+                  '</select>'+
+                '</div>'+
+              '   <span class="text-comment">'  + linkify(order.comment.text) + "</span>" +
+              ' </span><br>'+
+        '</div>';
+    }else{
+      var html = '<div class="col-xs-12 no-padding margin-top-5 item-comment bg-white-comment">'+
+                   '<div style="" class="ctnr-txtarea">'+
+                      '<textarea id="textarea-new-comment'+orderId+'" rows="1" style="height:1em;" class="form-control textarea-new-comment margin-bottom-10" '+ 
+                        ' placeholder="Your comment..."></textarea>'+
+                      '<input type="hidden" id="argval" value=""/>'+
+                      '<input type="hidden" id="rate'+orderId+'" value=""/>'+
+                      '<div class="br-wrapper br-theme-fontawesome-stars">'+
+                        '<select id="ratingComments'+orderId+'" class="">'+
+                          '<option value="1">1</option>'+
+                          '<option value="2">2</option>'+
+                          '<option value="3">3</option>'+
+                          '<option value="4">4</option>'+
+                          '<option value="5">5</option>'+
+                        '</select>'+
+                      '</div>'+
+                    '</div><br>'+
+                    '<a href="javascript:;" class="btn btn-success saveRating" data-id="'+orderId+'" data-item-id="'+orderedItemId+'" data-item-type="'+orderedItemType+'">'
+                      +tradDynForm.submit+
+                    '</a>'+
+                  '</div>';
+    }
+    $("#content-comment-"+orderId).html(html).show();
+    $("#ratingComments"+orderId).barrating({
+      theme: 'fontawesome-stars',
+      initialRating:null,
+      onSelect: function(value, text, event) {
+        alert(value);
+        $('#rate'+orderId).val(value);
+      }
+    });
+    if(action=="show"){
+      $("#ratingComments"+orderId).barrating('set', order.comment.rating);
+      $("#ratingComments"+orderId).barrating('readonly', false);
+
+    }
+    $(".saveRating").click(function(){
+      contextId=$(this).data("item-id");
+      contextType=$(this).data("item-type");
+      orderId=$(this).data("id");
+      textComment=$.trim($("#textarea-new-comment"+orderId).val());
+      rating=$("#ratingComments"+orderId).val();
+      saveCommentRating(textComment, "",contextId,contextType,rating,orderId)
+    });
+  }
