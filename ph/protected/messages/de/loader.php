@@ -1,15 +1,14 @@
 <?php
 	return array(
-		"Loading"=>"Chargement en cours",
-		"Thanks to be patient a moment"=>"Merci de patienter quelques instants",
-		"1 little coin to contribute"=>"1 petite pièce pour participer",
-		"Help us to forward our work" =>"Aidez-nous à poursuivre notre travail",
-		"More informations about our financial situation"=>"En savoir plus sur notre situation financière",
-		"Make a donation to the NGO"=>"Faire un don à l&#146;association",
-		"1 little coin for a great puzzle"=>"1 petite pièce pour un grand puzzle",
-		"Contribute"=>"Contribuer",
-		"Member ( 1€/month )"=>"Membre ( 1€/mois )",
-		"Sponsor ( 50€/month )"=>"Sponsor ( 50€/mois )",
+		"Loading"=>"Wird gerade geladen ...",
+		"Thanks to be patient a moment"=>"Bitte warten Sie einen Moment",
+		"1 little coin to contribute"=>"Eine kleine Münze für Ihre Teilnahme",
+		"Help us to forward our work" =>"Helfen Sie uns, unsere Arbeit fortzusetzen",
+		"More informations about our financial situation"=>"Erfahren Sie mehr über unsere finanzielle Situation",
+		"Make a donation to the NGO"=>"Spenden Sie für die Vereinigung",
+		"1 little coin for a great puzzle"=>"Eine kleine Münze für ein großes Puzzle",
+		"Contribute"=>"Beitrag spenden",
+		"Member ( 1€/month )"=>"Mitglied ( 1€/ Monat )",
+		"Sponsor ( 50€/month )"=>"Sponsor ( 50€/ Monat )",
 	);
-
 ?>
