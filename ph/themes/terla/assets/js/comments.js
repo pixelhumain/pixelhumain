@@ -368,7 +368,6 @@ function saveCommentRating(textComment, parentCommentId,contextId,contextType,ra
       theme: 'fontawesome-stars',
       initialRating:null,
       onSelect: function(value, text, event) {
-        alert(value);
         $('#rate'+orderId).val(value);
       }
     });
