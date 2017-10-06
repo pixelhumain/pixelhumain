@@ -64,7 +64,7 @@
 		"Musical instrument"=>"Musikinstrumente", 
 		"Sound system"=>"Soundsysteme", 
 		"CD / DVD"=>"CD / DVD",
-		"Toy"=>"Spiezeug", 
+		"Toy"=>"Spielzeug", 
 		"Games"=>"Gesellschafts- und Computer-Spiele", 
 		"Books / Comics"=>"Bücher / Comics", 
 		"Collections"=>"Sammlungen", 
