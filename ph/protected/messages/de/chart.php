@@ -14,8 +14,8 @@
 		"Degree of project's openness (0% = very closed, 100% = very opened)" => "Grad der Projektoffenheit (0% = sehr geschlossen, 100% = sehr offen)",
 		"Add<br/>A new<br/>Property" => "Füge<br/>eine neue<br/>Eigenschaft hinzu",
 		"Values and Cultures" => "Werte und Kulturen", 
-		"Chart of commons" => "Chart der Gemeinsamkeiten",
-		"Open chart" => "Charte libre", // what is that?
+		"Chart of commons" => "Charta des Gemeinsamen",
+		"Open charta" => "Offene Charta", // what is that?
 		"Don't want" => "Das möchte ich nicht",
 		"Not applicable" => "unzutreffend",
 		"Want but not started" => "Möchte ich, habe aber damit noch nicht begonnen",
@@ -27,8 +27,8 @@
 		"Edit values" => "Bearbeiten Sie die Werte",
 		"Organization&#146;s values well updated"=> "Werte der Organisation erfolgreich aktualisiert",
 		"Project&#146;s values well updated"=> "Werte des Projekts erfolgreich aktualisiert",
-		"Edit chart" => "Bearbeiten Sie ein Chart",
-		"Add chart" => "Fügen Sie ein Chart hinzu",
+		"Edit charta" => "Bearbeiten Sie eine Charta",
+		"Add charta" => "Fügen Sie eine Charta hinzu",
 		"Define {what} as a common. It means to manage one or several resources openly and transparently whitout appropriating it"=>"Beschreiben Sie {what} als ein Gemeinschaftsgut. Dieses bedeutet, dass man eine oder mehrere Ressourcen auf eine offene und transparente Weise verwaltet, ohne sich ihrer zu bemächtigen",
 		"Indicate the values {what} openly defining its properties and describing them"=>"Geben Sie die Werte {what} der Offenheit an, indem sie Eigenschaften definieren und sie beschreiben.",
 		"{what} that manages one or several resources openly and transparently whitout appropriating it"=>"{what} die eine oder mehrere Ressourcen auf eine offene und transparente Weise verwaltet, ohne sie sich anzueignen",
