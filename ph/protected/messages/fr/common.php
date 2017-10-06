@@ -168,6 +168,13 @@ return array(
 	"Your data are well registred"=>"Vos données ont bien été enregistrées",
 	"Contacts are well updated"=>"Les contacts ont été mis à jour",
 	"URLs are well updated"=>"Les urls ont été mises à jour",
+	"{who} is well invited to administrate {what}"=>"{who} a été invité-e à administrer {what}",
+	"{who} is well invited to join {what}"=>"{who} a été invité-e à rejoindre {what}",
+	"{who} is well added to {what}"=>"{who} a été ajouté-e à {what}",
+	"You are now {what} of {where}"=>"Vous êtes désormais {what} de {where}",
+	"Your answer has been succesfully registered"=>"Votre réponse a été enregistrée avec succès",
+	"{who} has been validated as member of {what}"=>"{who} est à présent membre de {what}",
+	"{who} has been validated as admin of {what}"=>"{who} est à présent admin de {what}",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
@@ -609,7 +616,9 @@ return array(
 	"Manage"						=> "Administrer",
 	"added" => "ajouté",
 	"already" => "déjà présent",
-
+	"{who} invited you"=>"{who} vous invite",
+	"{who} invited you to administrate"=>"{who} vous invite à administrer",
+	"Waiting for validation"=>"En attente de validation",
 	"Declare me as admin of this organization" 	=> "Devenir administrateur de cette organisation",
 	"Declare me as member of this organization" 	=> "Devenir membre de cette organisation",
 	"Declare me as admin of this project" 	=> "Devenir administrateur de ce projet",
@@ -623,7 +632,9 @@ return array(
 	"Add as admin" => "Ajouter en tant qu&#146;admin",
 	"Add a role"=>"Ajouter un rôle", 
 	"Add/Update roles"=>"Ajouter/Modifier les rôles",
-
+	"Delete this member"=>"Supprimer ce membre",
+	"Delete this contributor"=>"Supprimer ce contributeur",
+	"Delete this attendee"=>"Supprimer ce participant",
 	"Manage my parameters" => "Régler mes paramètres",
 	"My parameters" => "Mes paramètres",
 	"Manage the parameters of" => "Régler les paramètres de",
@@ -1118,8 +1129,10 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
     // LANGUAGES
     "English"=> "Anglais",
     "French"=> "Français",
+    "German"=> "Allemand",
     "Languages"=>"Langues",
 	"Photos gallery" => "Galerie photos",
+	"Themes"=>"Thématiques",
 
 
 
