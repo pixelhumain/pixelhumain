@@ -42,7 +42,7 @@
 		"If the link doesn&apos;t work, you can copy it in your browser&apos;s address"=> "Wenn der Weblink nicht funktioniert, dann kopieren Sie diesen bitte in die Adressleiste Ihres Browsers",
 		"See you soon on" => "Bis bald auf",
 		"The team of communecter"=> "Das Team von Communecter",
-		"You can unsubscribe on mail received on turn off mail notication on your settings or you can choose parameters of mail notifications in the same space"=>"Sie können sich von den empfangenen Mails, durch Deaktivieren von E-Mail-Benachrichtigungen in Ihren Einstellungen abmelden oder Sie können die Einstellungen der E-Mail-Benachrichtigungen auf die selbe Verbind ändern",
+		"You can unsubscribe on mail received on turn off mail notication on your settings or you can choose parameters of mail notifications in the same space"=>"Sie können sich von den empfangenen Mails, durch Deaktivieren von E-Mail-Benachrichtigungen in Ihren Einstellungen abmelden oder Sie können die Einstellungen der E-Mail-Benachrichtigungen auf die selbe Verbindung ändern",
 		"here" => "hier",
 		"Mail send from"=>"E-Mail wurde geschickt von",
 );
