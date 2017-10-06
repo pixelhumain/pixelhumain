@@ -118,7 +118,6 @@
                 <i class='fa fa-angle-right'></i>  <?php echo @$communexion["values"]["cityName"]; ?>
             </button> 
             <?php } ?>
-
            </div>
            <!--  <span class="pull-right">
                 <span class="font-blackoutM text-red"> <?php //echo $subdomainName; ?></span>
@@ -126,6 +125,7 @@
             </span> -->
         </div>
 <?php } ?>
+
 <script type="text/javascript">
 
 var globalCommunexion="<?php echo $communexion["state"] ?>";
@@ -153,5 +153,6 @@ jQuery(document).ready(function() {
     }
     $(".tooltips").tooltip();
 });
+
 
 </script>
