@@ -86,6 +86,7 @@
     box-shadow: 0 6px 12px rgba(0,0,0,.175);">
                         <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
                         <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
+                        <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png" width="25"/> <?php echo Yii::t("common","German") ?></a></li>
                     </ul>
                 </li>
             </ul>
@@ -188,6 +189,7 @@
                                     <ul class="dropdown-menu">
                                       <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><?php echo Yii::t("common","English") ?></a></li>
                                       <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><?php echo Yii::t("common","French") ?></a></li>
+                                      <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png"/><?php echo Yii::t("common","German") ?></a></li>
                                     </ul>
                                 </li>
                                 <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
@@ -259,9 +261,9 @@
                     </button>
                     
                     <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
-                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                          onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" title="Messagerie" alt="Messagerie">
                       <i class="fa fa-comments"></i>
-                      <span class="chatNotif topbar-badge badge animated bounceIn badge-warning">0</span>
+                      <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
 
                 <?php } else { ?>

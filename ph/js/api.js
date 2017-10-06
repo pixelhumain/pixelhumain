@@ -629,6 +629,9 @@ var jsonHelper = {
   //jsonHelper.notNull("themeObj.blockUi","function") > false or true accordingly
   notNull : function (pathJson,type) 
   {
+    if(pathJson.indexOf("[")>=0)
+      pathJson = pathJson.replace(/\[/g, '.').replace(/]/g, '');
+        
     var pathT = pathJson.split(".");
     res = false;
     var dynPath = "";
@@ -636,6 +639,7 @@ var jsonHelper = {
       dynPath = (i == 0) ? k : dynPath+"."+k ;
       //mylog.log(dynPath);
       //typeof eval("typeObj.poi") != "undefined"
+      
       if( typeof eval( dynPath ) != "undefined" ){
         //mylog.log(dynPath);
         if(i == pathT.length - 1){
@@ -785,19 +789,17 @@ function buildRadioOptions(list,value, nameOption) {
     var html = "";
     if(list){
         $.each(list, function(optKey, optVal) {
-            mylog.log("buildSelectOptions", value, optKey, optVal);
-            selected = ( value == optKey ) ? "selected" : ""; 
-            if(selected != ""){
-                html += '<label class="btn btn-default">'+
-                            '<input type="radio" name="'+nameOption+'" id="'+nameOption+'" autocomplete="off">'+
-                            '<span class="glyphicon glyphicon-ok"></span>'+
-                        '</label>';
-            }else{
-                html += '<label class="btn btn-success active">'+
-                            '<input type="radio" name="'+nameOption+'" id="'+nameOption+'" autocomplete="off" checked>'+
-                            '<span class="glyphicon glyphicon-ok"></span>'+
-                        '</label>';
-            }
+            
+            rchecked = ( value == optKey ) ? "checked" : ""; 
+            ricon = (optVal.icon) ? '<span class="fa fa-'+optVal.icon+'"></span> ' : '';
+            rlbl = (optVal.lbl) ? optVal.lbl : '';
+            rclass = (optVal.class) ? optVal.class : '';
+            mylog.log("builing RadioOption",optKey , rchecked, ricon, rlbl,rclass);
+            html += '<label class="btn btn-default '+rclass+'">'+
+                      '<input type="radio" name="'+nameOption+'" value="'+optKey+'" '+rchecked+'>'+
+                      ricon+rlbl+
+                  '</label>';
+            
 
         });
     }

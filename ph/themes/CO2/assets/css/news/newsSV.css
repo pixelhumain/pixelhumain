@@ -58,7 +58,7 @@
 	border-top-color:#DADADA;
 	/*background-color:rgba(249, 249, 249, 0.8) !important;*/
 }
-.tagstags ul.select2-choices{
+#form-news .tagstags ul.select2-choices{
 	border-radius: 0px;
 	border-width: 1px 0px 1px 0px;
 	border-style:solid;

@@ -211,6 +211,12 @@ a.text-white{
     background-color:#d99ce0 !important;
     color:white;
 }
+
+.bg-phink{
+    background-color:#E33551 !important;
+    color:white;
+}
+
 .bg-dark{
     background-color:#2C3E50 !important;
     color:white;
@@ -312,6 +318,21 @@ hr.angle-down {
     /*width: 70%;*/
     border-radius: 5px;
     /*float: right;*/
+}
+
+.bg-white-comment{
+    background-color:#fff !important;
+}
+.item-comment.bg-white-comment{
+    background-color:#fff !important;
+    padding: 5px !important;
+    /*width: 70%;*/
+    border-radius: 5px;
+    /*float: right;*/
+}
+
+.timeline-panel .bg-white-comment{
+    background-color:rgba(255, 255, 255, 0.3) !important;
 }
 
 .item-comment{
