@@ -28,9 +28,9 @@
 /* MODAL */
 .modal.portfolio-modal .modal-content{
 	top: 5%;
-	right: 20%;
+	right: 10%;
 	/*bottom: 10%;*/
-	left: 20%;
+	left: 10%;
 	border-radius: 10px;
 	position: absolute;
 	min-height: 100px;

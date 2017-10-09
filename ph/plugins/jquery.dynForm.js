@@ -293,9 +293,14 @@ onSave: (optional) overloads the generic saveProcess
 	       	var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.switch.onText+"' data-off-text='"+fieldObj.switch.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
 	       	mylog.log("build field "+field+">>>>>> checkbox");
 	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+' '+switchData+'/> '+placeholder;
+	       	if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
+	       		fieldHTML+=buildOpeningHours();
+	       	}
 	       	initField = function(){
 	       		if( fieldObj.switch )
-	       			initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
+	       			initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null, (fieldObj.switch.css) ? fieldObj.switch.css : null );
+	       		//if( fieldObj.subSwitch )
+	       		//	initbootstrapSwitch(fieldObj.subSwitch.domHtml, (fieldObj.subSwitch.onChange) ? fieldObj.subSwitch.onChange : null );
 	       	};
        	}
 
@@ -1133,6 +1138,14 @@ onSave: (optional) overloads the generic saveProcess
 						  callback);
 		    }
 		}
+		function loadTimePicker(callback) {
+			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
+				lazyLoad( baseUrl+'/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
+						baseUrl+'/plugins/moment/moment.js', 
+						  baseUrl+'/plugins/bootstrap-datetimepicker/css/datetimepicker.css',
+						  callback);
+		    }
+		}
 
 		var initDate = function(){
 			mylog.log("init dateInput");
@@ -1147,6 +1160,16 @@ onSave: (optional) overloads the generic saveProcess
 
 		if(  $(".dateInput").length){
 			loadDateTimePicker(initDate);
+		}
+		var initTime = function(){
+			mylog.log("init dateInput");
+		
+			$(".timeInput").datetimepicker({ 
+		        format: 'LT'
+		    });
+		};
+		if(  $(".timeInput").length){
+			loadTimePicker(initTime);
 		}
 		/* **************************************
 		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
@@ -1631,21 +1654,77 @@ onSave: (optional) overloads the generic saveProcess
 			'</div>';
 		return str;
 	}
-
+	/***************************************
+	* Build OpeningHour on week HTML system 
+	***************************************/
+	function buildOpeningHours(){
+		var arrayDayKeys=["Mo","Tu","We","Th","Fr","Sa","Su"];
+		var arrayKeyTrad={
+			"Mo":{"key":"Mo","label":"Monday"},
+			"Tu":{"key":"Tu","label":"Tuesday"},
+			"We":{"key":"We","label":"Wednesday"},
+			"Th":{"key":"Th","label":"Thursday"},
+			"Fr":{"key":"Fr","label":"Friday"},
+			"Sa":{"key":"Sa","label":"Saturday"},
+			"Su":{"key":"Su","label":"Sunday"}
+		};
+		var str = "<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+			"<div id='selectedDays' class='col-md-12 col-sm-12 col-xs-12 text-center margin-bottom-10' style='display:none;'>";
+				$.each(arrayDayKeys,function(e,v){
+					str+="<div class='inline'>"+
+							'<a class="btn btn-default btn-select-day active" data-key="'+v+'" href="javascript:;">'+arrayKeyTrad[v].key+'</a>'+
+						"</div>";
+				});
+		str+="</div>"+
+			"<div id='daysList' class='col-md-12 col-sm-12 col-xs-12 no-padding'>";
+				$.each(arrayDayKeys,function(e,v){
+			str+=	"<div class='col-md-12 col-sm-12 col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray;'>"+
+						"<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+							'<label class="col-md-4 col-sm-5 col-xs-6 text-left control-label no-padding no-margin" for="allDaysMo">'+
+					            '<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
+					        '</label>'+
+			       			'<input type="checkbox" class="allDaysWeek" name="allDays'+v+'" id="allDays'+v+'" value="true" data-key="'+v+'" checked/> '+tradDynForm.allday+
+		       			"</div>"+
+		       			'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" style="display:none;">'+
+		       				'<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
+		       					'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
+				            		'<i class="fa fa-hourglass-start"></i> Start hour'+
+				        		'</label>'+
+				        		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
+				            		'<i class="fa fa-hourglass-end"></i> End hour'+
+				        		'</label>'+
+				        		'<div class="col-md-6 col-sm-6 col-xs-6 no-padding">'+
+		       						'<input type="text" class="form-control timeInput changeTime" data-value="0" data-days="'+v+'" data-type="opens" name="startTime'+v+'0" id="startTime'+v+'0" value="06:00:00" placeholder="06:00"/>'+
+		       					'</div>'+
+		       					'<div class="col-md-6 col-sm-6 col-xs-6 no-padding">'+
+		       						'<input type="text" class="form-control timeInput changeTime" data-value="0" data-days="'+v+'" data-type="closes" name="endTime'+v+'0" id="endTime'+v+'0" value="19:00:00" placeholder="19:00"/>'+
+		       					'</div>'+
+		       				'</div>'+
+		       				'<button class="btn btn-default text-green addHoursRange margin-top-10 col-md-12 col-sm-12" data-value="'+v+'"><i class="fa fa-plus"></i> Add an hours range</button>'+
+		       			'</div>'+
+					"</div>";
+				});
+			str+="</div>"+
+		"</div>";
+		return str;
+	}
 	/* **************************************
 	* init Boostrap Switch
 	***************************************** */
-	function initbootstrapSwitch(el,change)
+	function initbootstrapSwitch(el,change, css)
 	{
 		var initSwitch = function(){
 							mylog.log("init bootstrap switch");
 							$(el).bootstrapSwitch();
 							if(typeof change == "function"){
 								$(el).on('switchChange.bootstrapSwitch', function(event, state) {
-									change();
+									change($(this));
 								});
 							}
-							$(el).parent().parent().addClass("form-group");
+							if(notNull(css))
+								$(el).parent().parent().css(css);
+							else
+								$(el).parent().parent().addClass("form-group");
 						};
 		if( jQuery.isFunction(jQuery.fn.bootstrapSwitch) )
 			initSwitch();
