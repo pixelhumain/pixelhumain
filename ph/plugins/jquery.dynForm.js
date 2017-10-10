@@ -299,6 +299,11 @@ onSave: (optional) overloads the generic saveProcess
 	       	initField = function(){
 	       		if( fieldObj.switch )
 	       			initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null, (fieldObj.switch.css) ? fieldObj.switch.css : null );
+	       		if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
+	       			//loadTimePicker(null);
+	       			bindTimePicker();
+	       			initRangeHours();
+	       		}
 	       		//if( fieldObj.subSwitch )
 	       		//	initbootstrapSwitch(fieldObj.subSwitch.domHtml, (fieldObj.subSwitch.onChange) ? fieldObj.subSwitch.onChange : null );
 	       	};
@@ -1140,9 +1145,9 @@ onSave: (optional) overloads the generic saveProcess
 		}
 		function loadTimePicker(callback) {
 			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
-				lazyLoad( baseUrl+'/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
+				lazyLoad( baseUrl+'/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js',
 						baseUrl+'/plugins/moment/moment.js', 
-						  baseUrl+'/plugins/bootstrap-datetimepicker/css/datetimepicker.css',
+						  baseUrl+'/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css',
 						  callback);
 		    }
 		}
@@ -1163,14 +1168,33 @@ onSave: (optional) overloads the generic saveProcess
 		}
 		var initTime = function(){
 			mylog.log("init dateInput");
-		
-			$(".timeInput").datetimepicker({ 
+			//alert();
+			//$('.timeInput').timepicker(
+               // minuteStep: 1,
+              //  appendWidgetTo: 'body',
+              
+                //showSeconds: true,
+                //showMeridian: false,
+                //defaultTime: false
+            //);
+			/*$(".timeInput").datetimepicker({ 
 		        format: 'LT'
-		    });
+		    });*/
 		};
-		if(  $(".timeInput").length){
-			loadTimePicker(initTime);
-		}
+		/*if(  $(".timeInput").length){
+
+			$('.timeInput').timepicker({
+               // minuteStep: 1,
+              //  appendWidgetTo: 'body',
+              
+                showSeconds: false,
+                showMeridian: false,
+                defaultTime: false
+            });
+            $('.startTime').timepicker('setTime', '06:00');
+            $('.endTime').timepicker('setTime', '19:00');
+			//loadTimePicker(initTime);
+		}*/
 		/* **************************************
 		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
 		***************************************** */
@@ -1654,6 +1678,89 @@ onSave: (optional) overloads the generic saveProcess
 			'</div>';
 		return str;
 	}
+	function initRangeHours(){
+		$(".addHoursRange").click(function(){
+	    	var addToDay=$(this).data("value");
+	    	addHoursRange(addToDay);
+	    });
+	}
+	function bindTimePicker(addToDay,countRange){
+		if(typeof addToDay != "undefined" && notNull(addToDay)){
+			//Init time
+			$('#startTime'+addToDay+countRange+', #endTime'+addToDay+countRange).timepicker({
+	               // minuteStep: 1,
+	              //  appendWidgetTo: 'body',
+	              
+	            showSeconds: false,
+	            showMeridian: false,
+	            defaultTime: false
+	        });
+	        $('#startTime'+addToDay+countRange).timepicker('setTime', '06:00');
+	        $('#endTime'+addToDay+countRange).timepicker('setTime', '19:00');
+	        $.each(openingHoursResult, function(e,v){
+	        	if(v.dayOfWeek==addToDay){
+	        		openingHoursResult[e]["hours"].push({"opens":"06:00","closes":"19:00"})
+	        	}
+	        });
+	        $(".removeHoursRange").off().on("click",function(){
+	        	alert("bienLas");
+	        	var dayInc=$(this).data("days");
+	        	var inc=$(this).data("value");
+	        	$("#hoursRange"+dayInc+" .hoursRange"+inc).remove();
+	        	$.each(openingHoursResult, function(e,v){
+	        		if(v.dayOfWeek==dayInc){
+	        			openingHoursResult[e]["hours"].splice(inc,1);
+	        		}
+	        	});
+	        });
+
+		}else{
+			$('.timeInput').timepicker({
+               // minuteStep: 1,
+              //  appendWidgetTo: 'body',
+              
+                showSeconds: false,
+                showMeridian: false,
+                defaultTime: false
+            });
+            $('.startTime').timepicker('setTime', '06:00');
+            $('.endTime').timepicker('setTime', '19:00');
+			//loadTimePicker(initTime);
+		}
+		$('.timeInput').off().on('changeTime.timepicker', function(e) {
+			var typeInc=$(this).data("type");
+			var daysInc=$(this).data("days");
+			var hoursInc=$(this).data("value");
+			$.each(openingHoursResult, function(i,v){
+        		if(v.dayOfWeek==daysInc)
+        			openingHoursResult[i]["hours"][hoursInc][typeInc]=e.time.value;
+	        });
+		  });
+	}
+	function addHoursRange(addToDay){
+		var countRange=$("#hoursRange"+addToDay+" .hoursRange").length;
+		//alert(countRange);
+		str='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+countRange+'" data-value="'+countRange+'">'+
+				'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
+        		'<i class="fa fa-hourglass-start"></i> Start hour'+
+    			'</label>'+
+    		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
+        		'<i class="fa fa-hourglass-end"></i> End hour'+
+    		'</label>'+
+    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+					'<input type="text" class="form-control input-small timeInput startTime" data-value="'+countRange+'" data-days="'+addToDay+'" data-type="opens" id="startTime'+addToDay+countRange+'">'+
+				'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+			'</div>'+
+//        		
+    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+					'<input type="text" class="form-control input-small timeInput endTime" data-value="'+countRange+'" data-days="'+addToDay+'" data-type="closes" id="endTime'+addToDay+countRange+'">'+
+				'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+			'</div>'+
+			'<a href="javascript:;" class="btn btn-default text-red removeHoursRange margin-top-10 col-md-12 col-sm-12" data-days="'+addToDay+'" data-value="'+countRange+'"><i class="fa fa-trash"></i> Remove hours range</a>'+
+		'</div>';
+		$("#hoursRange"+addToDay).find('.hoursRange:last').after(str);
+		bindTimePicker(addToDay,countRange);
+	}
 	/***************************************
 	* Build OpeningHour on week HTML system 
 	***************************************/
@@ -1683,7 +1790,7 @@ onSave: (optional) overloads the generic saveProcess
 							'<label class="col-md-4 col-sm-5 col-xs-6 text-left control-label no-padding no-margin" for="allDaysMo">'+
 					            '<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
 					        '</label>'+
-			       			'<input type="checkbox" class="allDaysWeek" name="allDays'+v+'" id="allDays'+v+'" value="true" data-key="'+v+'" checked/> '+tradDynForm.allday+
+			       			'<input type="checkbox" class="allDaysWeek" id="allDays'+v+'" value="true" data-key="'+v+'" checked/> '+tradDynForm.allday+
 		       			"</div>"+
 		       			'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" style="display:none;">'+
 		       				'<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
@@ -1693,18 +1800,31 @@ onSave: (optional) overloads the generic saveProcess
 				        		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
 				            		'<i class="fa fa-hourglass-end"></i> End hour'+
 				        		'</label>'+
-				        		'<div class="col-md-6 col-sm-6 col-xs-6 no-padding">'+
-		       						'<input type="text" class="form-control timeInput changeTime" data-value="0" data-days="'+v+'" data-type="opens" name="startTime'+v+'0" id="startTime'+v+'0" value="06:00:00" placeholder="06:00"/>'+
-		       					'</div>'+
-		       					'<div class="col-md-6 col-sm-6 col-xs-6 no-padding">'+
-		       						'<input type="text" class="form-control timeInput changeTime" data-value="0" data-days="'+v+'" data-type="closes" name="endTime'+v+'0" id="endTime'+v+'0" value="19:00:00" placeholder="19:00"/>'+
-		       					'</div>'+
+				        		'<div class="bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+           							'<input type="text" class="input-small timeInput startTime" data-value="0" data-days="'+v+'" data-type="opens" id="startTime'+v+'0">'+
+            						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+        						'</div>'+
+				//        		
+				        		'<div class="bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+           							'<input type="text" class="input-small timeInput endTime" data-value="0" data-days="'+v+'" data-type="closes" id="endTime'+v+'0">'+
+            						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+        						'</div>'+
+				//        		'<div class="input-group bootstrap-timepicker timepicker">'+
+				  //      		'	<input id="timepicker" class="form-control timeInput" data-provide="timepicker" data-template="modal" data-minute-step="1" data-modal-backdrop="true" type="text"/>'+
+				    //    		'</div>'+
+				        		//'<div class="col-md-6 col-sm-6 col-xs-6 no-padding">'+
+		       					//	'<input type="text" class="form-control timeInput changeTime" data-value="0" data-days="'+v+'" data-type="opens" name="startTime'+v+'0" id="startTime'+v+'0" value="06:00:00" placeholder="06:00"/>'+
+		       					//'</div>'+
+		       					//'<div class="col-md-6 col-sm-6 col-xs-6 no-padding">'+
+		       					//	'<input type="text" class="form-control timeInput changeTime" data-value="0" data-days="'+v+'" data-type="closes" name="endTime'+v+'0" id="endTime'+v+'0" value="19:00:00" placeholder="19:00"/>'+
+		       					//'</div>'+
 		       				'</div>'+
-		       				'<button class="btn btn-default text-green addHoursRange margin-top-10 col-md-12 col-sm-12" data-value="'+v+'"><i class="fa fa-plus"></i> Add an hours range</button>'+
+		       				'<a href="javascript:;" class="btn btn-default text-green addHoursRange margin-top-10 col-md-12 col-sm-12" data-value="'+v+'"><i class="fa fa-plus"></i> Add an hours range</a>'+
 		       			'</div>'+
 					"</div>";
 				});
 			str+="</div>"+
+			'<input type="hidden" name="openingHours" value="true"/>'+
 		"</div>";
 		return str;
 	}

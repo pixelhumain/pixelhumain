@@ -6,11 +6,14 @@ $cssAnsScriptFilesModule = array(
   '/plugins/select2/select2.css',
   //X-editable...
 // 	'/plugins/x-editable/js/bootstrap-editable.js' , 
-  //	'/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' , 
+  '/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' , 
   //'/plugins/wysihtml5/wysihtml5.js',
   '/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js',
   '/plugins/jquery.appear/jquery.appear.js',
   //'/plugins/jquery.elastic/elastic.js',
+  '/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js',
+	'/plugins/moment/moment.js', 
+	'/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css',
   
 );
 //error_log("BasURL : ".Yii::app()->request->baseUrl);
@@ -67,7 +70,18 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
 	#createNews #mentionsText .mentions, #createNews #btn-toogle-dropdown-scope, #createNews #btn-toogle-dropdown-targetIsAuthor{
 		text-align:left;
 	}
-
+	#ajax-modal #selectedDays .btn-select-day{
+		margin-right: 2px;
+	}
+	#ajax-modal #selectedDays .btn-select-day.active{
+		background-color: #18BC9C;
+	    color: white;
+	    margin-right: 2px;
+	    font-size: 16px;
+	    border-radius: 7px;
+	    font-weight: 600;
+	    border-color: white;
+	}
 </style>
 
 
