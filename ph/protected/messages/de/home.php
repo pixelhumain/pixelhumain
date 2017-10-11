@@ -5,8 +5,8 @@
 		"communected to" => "communectiert mit",
 		"Be communected permits you to get smart informations<br>localy performed."=>"Mit Communecter verbunden zu sein heißt, direkt relevante Informationen aus Ihrem Umfeld zu erfahren.",
 		"Be communected"=> "Communectieren Sie sich mit uns",
-		"Change your communexion" => "Ändern Sie Ihre ommunexion",
-		"communect you : London, Paris, Brussels ?"=>"Communectieren Sie : Nantes, Strasbourg, Avignon ?", // obviously this should be something like Linz, Basel, Düsseldorf for German speakers
+		"Change your communexion" => "Ändern Sie Ihre Communexion",
+		"communect you : London, Paris, Brussels ?"=>"Communectieren Sie : Linz, Basel, Hamburg ?",
 		"To use the network efficiently, we advice you to be <i><b>communected</b></i>"=>"Um das Netzwerk mit ganzer Kraft zu nutzen, empfehlen wir Ihnen <i><b>communectiert</b></i> zu sein",
 		"Indicate your <b>living place</b>, to keep informed about what's happened around you automatically."=>"Geben Sie die Gemeinde Ihres <b>Lebensmittelpunkts</b> an, um automatisch im Auge zu behalten, was in Ihrer Nähe geschieht.",
 		"An the moment"=> "In diesem Moment",
