@@ -1703,7 +1703,6 @@ onSave: (optional) overloads the generic saveProcess
 	        	}
 	        });
 	        $(".removeHoursRange").off().on("click",function(){
-	        	alert("bienLas");
 	        	var dayInc=$(this).data("days");
 	        	var inc=$(this).data("value");
 	        	$("#hoursRange"+dayInc+" .hoursRange"+inc).remove();
@@ -1800,13 +1799,13 @@ onSave: (optional) overloads the generic saveProcess
 				        		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
 				            		'<i class="fa fa-hourglass-end"></i> End hour'+
 				        		'</label>'+
-				        		'<div class="bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
-           							'<input type="text" class="input-small timeInput startTime" data-value="0" data-days="'+v+'" data-type="opens" id="startTime'+v+'0">'+
+				        		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+           							'<input type="text" class="form-control input-small timeInput startTime" data-value="0" data-days="'+v+'" data-type="opens" id="startTime'+v+'0">'+
             						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
         						'</div>'+
 				//        		
-				        		'<div class="bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
-           							'<input type="text" class="input-small timeInput endTime" data-value="0" data-days="'+v+'" data-type="closes" id="endTime'+v+'0">'+
+				        		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+           							'<input type="text" class="form-control input-small timeInput endTime" data-value="0" data-days="'+v+'" data-type="closes" id="endTime'+v+'0">'+
             						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
         						'</div>'+
 				//        		'<div class="input-group bootstrap-timepicker timepicker">'+
