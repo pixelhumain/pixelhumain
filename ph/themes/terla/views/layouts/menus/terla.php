@@ -91,7 +91,7 @@
         <div class="pull-right navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="pull-right">
-                     <a href="#prestations" class="lbh letter-orange font-montserrat">
+                     <a href="#activities" class="lbh letter-orange font-montserrat">
                         <span>Our circuits</span>
                     </a>
 
