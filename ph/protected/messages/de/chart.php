@@ -15,17 +15,17 @@
 		"Add<br/>A new<br/>Property" => "Füge<br/>eine neue<br/>Eigenschaft hinzu",
 		"Values and Cultures" => "Werte und Kulturen", 
 		"Chart of commons" => "Charta des Gemeinsamen",
-		"Open charta" => "Offene Charta", // what is that?
+		"Open charta" => "Offene Charta",
 		"Don't want" => "Das möchte ich nicht",
 		"Not applicable" => "unzutreffend",
 		"Want but not started" => "Möchte ich, habe aber damit noch nicht begonnen",
-		"Started"=> "Begonnen",
+		"Started"=> "angefangen",
 		"In progress" => "läuft",
 		"Finished" => "realisiert",
-		"Describe this property"=> "Beschreibe diese Eigenschaft",
+		"Describe this property"=> "Beschreiben Sie diese Eigenschaft",
 		"Values {what}" => "Werte {what}",
 		"Edit values" => "Bearbeiten Sie die Werte",
-		"Organization&#146;s values well updated"=> "Werte der Organisation erfolgreich aktualisiert",
+		"Organization&#146;s values well updated"=> "Die Werte der Organisation sind erfolgreich aktualisiert worden",
 		"Project&#146;s values well updated"=> "Werte des Projekts erfolgreich aktualisiert",
 		"Edit charta" => "Bearbeiten Sie eine Charta",
 		"Add charta" => "Fügen Sie eine Charta hinzu",
@@ -33,6 +33,6 @@
 		"Indicate the values {what} openly defining its properties and describing them"=>"Geben Sie die Werte {what} der Offenheit an, indem sie Eigenschaften definieren und sie beschreiben.",
 		"{what} that manages one or several resources openly and transparently whitout appropriating it"=>"{what} die eine oder mehrere Ressourcen auf eine offene und transparente Weise verwaltet, ohne sie sich anzueignen",
 		"{what} that shows its values openly adding few properties and describing them"=>"{what} zeigt seine Werte in einer freien Weise, indem Eigenschaften angegeben und beschrieben werden",
-		"These forms are here to show the values {what} in order to give an overview about organization, manage and life {what}"=> "Diese Formulare können die Werte {what} zeigen, um einen Überblick über die Organisation, deren Managerment und Zustand {what} zu bekommen"
+		"These forms are here to show the values {what} in order to give an overview about organization, manage and life {what}"=> "Diese Formulare können die Werte {what} zeigen, um einen Überblick über die Organisation, deren Management und Zustand {what} zu bekommen"
 	)
 ?>
