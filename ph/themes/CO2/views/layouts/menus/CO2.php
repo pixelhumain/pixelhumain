@@ -341,9 +341,7 @@
             </div>
         <?php } ?>
         <!-- /.navbar-collapse -->
-        <a type="button" class="lbh btn btn-link pull-right btn-menu-to-app hidden-top hidden-xs letter-green" data-target="#chat" data-toggle="modal">
-            <i class="fa fa-plus-comments"></i>           
-        </a>
+        
         <?php 
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true){ ?>
