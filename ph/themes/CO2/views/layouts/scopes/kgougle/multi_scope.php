@@ -225,7 +225,7 @@
             myMultiScopes[key]["active"] = false;
         });
 
-        $(".item-scope-select").off().click(function(){
+    /*    $(".item-scope-select").off().click(function(){
             currentScopeType = "city";
 
             if($(this).hasClass("selected")){
@@ -245,7 +245,7 @@
             
             mylog.log("toogle");//, $(this).data("scope-value"));
             showTagsScopesMin(".scope-min-header");
-        });
+        });*/
 
         $('#input-add-multi-scope').filter_input({regex:'[^@#\'\"\`\\\\]'}); //[a-zA-Z0-9_] 
         $('#input-add-multi-scope').keyup(function(){ 
@@ -276,7 +276,7 @@
         });
 
         
-        $(".item-globalscope-checker").click(function(){  
+        /*$(".item-globalscope-checker").click(function(){  
             $(".item-globalscope-checker").addClass("inactive");
             $(this).removeClass("inactive");
 
@@ -285,20 +285,20 @@
                              $(this).data("insee-communexion"), $(this).data("name-communexion"), $(this).data("cp-communexion"), 
                              $(this).data("region-communexion"), $(this).data("country-communexion") ) ;
         });
-
+*/
         $(".start-new-communexion").click(function(){  
             activateGlobalCommunexion(true);
         });
 
 
         
-        loadMultiScopes();
+       // loadMultiScopes();
 
-        rebuildSearchScopeInput(); 
-        showTagsScopesMin(".scope-min-header");
+       // rebuildSearchScopeInput(); 
+       // showTagsScopesMin(".scope-min-header");
         
         mylog.log("communexionActivated cookie", $.cookie('communexionActivated'), typeof $.cookie('communexionActivated'));
-        if($.cookie('communexionActivated') == "true"){
+       /* if($.cookie('communexionActivated') == "true"){
             console.log("communexionActivated ok", $.cookie('communexionValue'));
             var communexionValue = $.cookie('communexionValue');
             var communexionName = $.cookie('communexionName');
@@ -309,15 +309,15 @@
             var cpCommunexion = $.cookie('cpCommunexion');
             var regionNameCommunexion = $.cookie('regionNameCommunexion');
             var countryCommunexion = $.cookie('countryCommunexion');
-            */
+            * /
             setGlobalScope(communexionValue, communexionName, communexionType);//,
                           // inseeCommunexion, cityNameCommunexion, cpCommunexion, regionNameCommunexion, countryCommunexion);
         }
-        
+        */
         loadingScope = false;
     });
 
-
+/*
 function toogleScopeMultiscope(scopeValue, selected){ mylog.log("toogleScopeMultiscope(scopeValue)", scopeValue);
     if(scopeExists(scopeValue)){
         myMultiScopes[scopeValue].active = !myMultiScopes[scopeValue].active;
@@ -341,7 +341,7 @@ function toogleScopeMultiscope(scopeValue, selected){ mylog.log("toogleScopeMult
     }else{
         //showMsgInfoMultiScope("Ce scope n'existe pas", "danger");
     }
-}
+}*/
 
   /*  function showTagsScopesMin(htmlId){
         htmlId=".scope-min-header";

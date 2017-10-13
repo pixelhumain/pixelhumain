@@ -301,9 +301,7 @@
 
 <script type="text/javascript">
 	var myMultiTags = {};
-	var myMultiScopes = <?php echo isset($me) && isset($me["multiscopes"]) ? 
-							json_encode($me["multiscopes"]) :
-							$multiscopesStr;
+	var myMultiScopes = <?php echo isset($me) && !empty($me["multiscopes"]) ? json_encode($me["multiscopes"]) : $multiscopesStr;
 						?>;
 
 
@@ -313,6 +311,7 @@
     var loadingScope = true;
     var actionOnSetGlobalScope="filter";
     jQuery(document).ready(function() {
+      mylog.log("myMultiScopes 1 ", myMultiScopes);
 		var options = "";
 		$.each(countryList, function(key, val){
 			if(notEmpty(userConnected) && notEmpty(userConnected.address) && userConnected.address.addressCountry != "" && userConnected.address.addressCountry == val.countryCode)
