@@ -13,7 +13,7 @@
 		"minutes"=>"Minuten",
 		"second"=>"Sekunde",
 		"seconds"=>"Sekunden",
-		"Right now"=>"Jetzt gerade",
+		"Right now"=>"jetzt gerade",
 		"Sunday"=>"Sonntag", 
 		"Monday"=>"Montag",
 		"Tuesday"=>"Dienstag",
