@@ -1,6 +1,6 @@
 <?php 
 	return array(
-		"{time} ago" => "Es ist {time}",
+		"{time} ago" => "Es sind {time} vergangen",
 		"year"=>"Jahr",
 		"years"=>"Jahre",
 		"day"=>"Tag",
