@@ -19,7 +19,7 @@
 		"Join us"=>"Kommen Sie zu uns",
 		"Open Atlas NGO"=>"Die Vereinigung Open Atlas in La Reunion, Frankreich",
 		"Partners"=> "Partner",
-		"Legal notice"=>"Nutzungsbedingungen",
+		"Legal notice"=>"Impressum",
 		"Developpers"=>"Entwickler",
 		"Communectors"=>"Communecteure",
 		"Project Communecter"=>"Projekt Communecter",
