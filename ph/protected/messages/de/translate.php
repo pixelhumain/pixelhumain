@@ -34,6 +34,6 @@
 		"November"=>"November",
 		"December"=>"Dezember",
 		"From"=>"Von",
-		"To"=>"Zu",
+		"To"=>"Bis",
 	);
 ?>
