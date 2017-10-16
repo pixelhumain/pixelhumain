@@ -47,7 +47,13 @@
           </h4>
         </div>
       <?php } ?>
-
+      <div class="panel-heading">
+        <a id="reset" class="reset" href="javascript:;">
+          <h4 class="panel-title">
+            <center><i class="fa fa-refresh"></i>Réinitialiser</center>
+          </h4>
+        </a>
+      </div>
       <!--<input id="searchClientBarText" type="text" placeholder="Que recherchez-vous ?" class="form-control">-->
       <div id="divTagsMenu"></div>
       <div id="divTypesMenu"></div>
@@ -149,13 +155,6 @@
         <?php
         }
       ?>
-      <div class="panel-heading">
-        <a id="reset" class="reset" href="javascript:;">
-          <h4 class="panel-title">
-            <center><i class="fa fa-refresh"></i>Réinitialiser</center>
-          </h4>
-        </a>
-      </div>
       <div class="panel-heading">
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       </div>

@@ -332,6 +332,7 @@
 	        <?php } ?>
 	      </div>
 	    </div>
+      
 	    <div class="menu-info-profil">
 			<div class="topMenuButtons pull-right">
 			<?php if(isset($params["skin"]['displayCommunexion']) && $params["skin"]['displayCommunexion']){ ?>
@@ -360,6 +361,13 @@
 			<?php } ?>
     		</div>
   		</div>
+      <?php if( isset(Yii::app()->session['userId']) && isset($me) && Role::isSuperAdmin($me['roles']) ) { ?>
+      <div class="menu-info-profil">
+         <a href="javascript:;" id="exportcsv" class="btn btn-success" onclick="exportCSV();" data-toggle="tooltip" data-placement="bottom" title="Télécharger la liste des organisations en format CSV">
+               <i class="fa fa-download"></i>
+          </a>
+      </div>
+        <?php } ?>
     </div>
     <div class="pull-left">
       <div class="dropdown pull-right hidden-xs">
