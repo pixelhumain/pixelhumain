@@ -1,3 +1,25 @@
+<style>
+    a.link-submenu-header{
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+    a.link-submenu-header.active, 
+    a.link-submenu-header:hover, 
+    a.link-submenu-header:active{  
+        border-bottom: 2px solid #ea4335;
+        background-color: rgba(255, 255, 255, 1);
+        color:#ea4335 !important;
+        text-decoration: none;
+    }
+
+    @media (max-width: 767px) {
+        #main-input-group{
+            margin-top:10px;
+        }
+    }
+</style>
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
     <div class="container">
@@ -344,7 +366,7 @@
         
         <?php 
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
-                if(@$value["inMenu"]==true){ ?>
+                if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
                     class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"

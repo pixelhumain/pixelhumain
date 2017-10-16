@@ -39,6 +39,23 @@ input#second-search-bar{
 .menu-btn-back-category{
     cursor:pointer;
 }
+
+a.text-dark.link-submenu-header {
+    color : #ea4335 !important;
+    padding-bottom: 5px;
+}
+
+a.link-submenu-header.active, 
+a.link-submenu-header:hover, 
+a.link-submenu-header:active, 
+a.link-submenu-header:focus{  
+    border-bottom: 2px solid #ea4335;
+    text-decoration: none;
+    /*background-color: rgba(255, 255, 255, 1);
+    color:#ea4335 !important;
+    text-decoration: none;*/
+}
+
 </style>
 
 <!-- Navigation -->
@@ -109,6 +126,10 @@ input#second-search-bar{
         </button>
 
        <?php if( isset( Yii::app()->session['userId']) ){ ?>
+            <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
+                  data-toggle="tooltip" data-placement="top" title="Mon réseau" alt="<?php echo Yii::t("common","My network") ?>">
+              <i class="fa fa-link"></i>
+            </button>
             <button class="btn-show-mainmenu btn btn-link" title="Menu">
                 <i class="fa fa-bars tooltips" data-toggle="tooltip" data-placement="bottom" title=""></i>
             </button>
@@ -148,12 +169,6 @@ input#second-search-bar{
                                 </li>
                                 <li role="separator" class="divider"></li> -->
                                 <li class="text-left">
-                                    <a href="#search.type.cities" target="_blank" class="lbh text-red bg-white">
-                                        <i class="fa fa-university"></i> Communexion
-                                    </a>
-                                </li>
-                                <li role="separator" class="divider"></li>
-                                <li class="text-left">
                                     <a href="#web" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-search"></i> Rechercher sur le web
                                     </a>
@@ -170,6 +185,26 @@ input#second-search-bar{
                                         <i class="fa fa-newspaper-o"></i> Actualités
                                     </a>
                                 </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#agenda" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-calendar"></i> Agenda
+                                    </a>
+                                </li>
+                                
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#info.p.apropos" target="_blank" class="lbh bg-white">
+                                        <small><i class="fa fa-info-circle"></i> A propos</small>
+                                    </a>
+                                </li>
+
+                                <li class="text-left">
+                                    <a href="#info.p.sethome" target="_blank" class="lbh bg-white">
+                                        <small><i class="fa fa-home"></i> Garder en page d'accueil</small>
+                                    </a>
+                                </li>
+
                                 <li role="separator" class="divider"></li>
                                 <!-- <li role="separator" class="divider">
                                 </li>
@@ -191,18 +226,22 @@ input#second-search-bar{
 
 
 
-                    <button class="menu-button btn-menu btn-menu-notif tooltips text-dark pull-right" 
+                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
                         <?php count($this->notifications); ?>
                       </span>
                     </button>
+
+                    
                    
                 <?php } else { ?>
-                    <li class="page-scroll hidden">
+                    <li class="page-scroll">
                         <button class="letter-green font-montserrat btn-menu-connect" data-toggle="modal" data-target="#modalLogin">
-                        <i class="fa fa-sign-in"></i> SE CONNECTER</button>
+                        <span class="hidden-xs"><i class="fa fa-sign-in"></i> SE CONNECTER</span>
+                        <span class="visible-xs"><i class="fa fa-sign-in fa-2x"></i></span>
+                        </button>
                     </li>
                 <?php } ?>                
             </ul>
@@ -212,8 +251,7 @@ input#second-search-bar{
             <button class="btn btn-link letter-yellow tooltips btn-star-fav pull-right font-montserrat"  
                     data-placement="bottom" title="Gérer vos favoris"
                     data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i>
-            </button>     
-        <?php } ?>
+            </button>   
 
         <a href="#info.p.sethome" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-sm hidden-xs" 
             id="btn-sethome" style=" margin-top:6px;"  
@@ -227,6 +265,25 @@ input#second-search-bar{
             data-placement="bottom" title="A propos de KGOUGLE">
             <i class="fa fa-question-circle fa-2x"></i>
         </a>
+
+        <?php }else{ ?>
+            <?php 
+                $params = CO2::getThemeParams();
+                foreach (array_reverse($params["pages"]) as $key => $value) {
+                if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
+                <a href="<?php echo $key; ?>" 
+                    class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
+                            <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"
+                    data-placement="bottom" data-original-title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
+                    <i class="fa fa-<?php echo $value["icon"]; ?>" style="font-size:19px;"></i>
+
+                    <!-- <span class=""><?php echo $value["subdomainName"]; ?></span> -->
+                    <?php if(@$value["notif"]){ ?>
+                    <span class="<?php echo $value["notif"]; ?> topbar-badge badge animated bounceIn badge-warning"></span>
+                    <?php } ?>
+                </a>  
+            <?php   }} ?>
+        <?php } ?>
 
         <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
             id="btn-radio" style=" margin-top:6px;"  
@@ -250,6 +307,8 @@ input#second-search-bar{
 
  <?php $this->renderPartial($layoutPath.'modals.kgougle.mainMenu', array("me"=>$me) ); ?>
 
+<?php   $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
+?>
 
 <?php //$this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
 

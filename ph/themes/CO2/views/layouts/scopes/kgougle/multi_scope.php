@@ -117,7 +117,7 @@
                                     }
                                 ?>
                                 <button class="btn btn-scope item-scope-select item-scope-city disabled margin-bottom-5 <?php echo $selected; ?>" 
-                                        data-scope-value="<?php echo City::getUnikey($city); ?>"
+                                        data-scope-value="<?php echo $city["_id"]; ?>"
                                         data-scope-name="<?php echo $city["name"]; ?>"
                                         >
                                     <h5 class="margin-5"><i class="fa fa-bullseye"></i> <?php echo $city["name"]; ?></h5>
@@ -225,7 +225,7 @@
             myMultiScopes[key]["active"] = false;
         });
 
-    /*    $(".item-scope-select").off().click(function(){
+        $(".item-scope-select").off().click(function(){
             currentScopeType = "city";
 
             if($(this).hasClass("selected")){
@@ -245,7 +245,7 @@
             
             mylog.log("toogle");//, $(this).data("scope-value"));
             showTagsScopesMin(".scope-min-header");
-        });*/
+        });
 
         $('#input-add-multi-scope').filter_input({regex:'[^@#\'\"\`\\\\]'}); //[a-zA-Z0-9_] 
         $('#input-add-multi-scope').keyup(function(){ 
@@ -292,7 +292,7 @@
 
 
         
-       // loadMultiScopes();
+        loadMultiScopes();
 
        // rebuildSearchScopeInput(); 
        // showTagsScopesMin(".scope-min-header");
@@ -317,7 +317,7 @@
         loadingScope = false;
     });
 
-/*
+
 function toogleScopeMultiscope(scopeValue, selected){ mylog.log("toogleScopeMultiscope(scopeValue)", scopeValue);
     if(scopeExists(scopeValue)){
         myMultiScopes[scopeValue].active = !myMultiScopes[scopeValue].active;
@@ -341,7 +341,7 @@ function toogleScopeMultiscope(scopeValue, selected){ mylog.log("toogleScopeMult
     }else{
         //showMsgInfoMultiScope("Ce scope n'existe pas", "danger");
     }
-}*/
+}
 
   /*  function showTagsScopesMin(htmlId){
         htmlId=".scope-min-header";

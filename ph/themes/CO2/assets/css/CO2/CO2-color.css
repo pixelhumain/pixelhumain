@@ -340,3 +340,7 @@ hr.angle-down {
     margin-bottom:5px !important;
 
 }
+
+.bg-dark #ajax-modal-modal-title small .text-dark{
+    color:#B9B9B9 !important;
+}
