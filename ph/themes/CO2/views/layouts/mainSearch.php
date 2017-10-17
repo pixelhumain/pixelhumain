@@ -218,14 +218,14 @@
                                  array( "me"=>$me, "myFormContact" => @$myFormContact));
 
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
-            if($CO2DomainName != "CO2"){
+            //if($CO2DomainName != "CO2"){
                 $cssAnsScriptFilesModule = array(
                     '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
                     '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
                     '/assets/js/themes/'.$CO2DomainName.'.js',
                 );
                 HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
-            }
+            //}
         ?>
 
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>

@@ -8,29 +8,29 @@
     HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFiles, Yii::app()->theme->baseUrl); 
 ?>
 <div id="form-group-contact">
-	<div class="col-md-10 text-left padding-top-60 form-group">
+	<div class="col-md-10 col-sm-12 col-xs-12 text-left padding-top-60 form-group">
 		<h3>
 			<i class="fa fa-send"></i> 
 			Contacter <span class="letter-azure font-blackoutM">Alpha Tango</span> par e-mail<br>
 			<!-- <small>(ce formulaire de contact n'est pas encore opérationnel, merci de patienter encore quelques jours)</small> -->
 		</h3>
 		<br><br>
-		<div class="col-md-6">
+		<div class="col-md-6 col-sm-12 col-xs-12">
 			<label for="email"><i class="fa fa-angle-down"></i> Votre addresse e-mail*</label>
 				<input class="form-control" placeholder="votre addresse e-mail : exemple@mail.com" id="emailSender">
 			<br>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 col-sm-12 col-xs-12">
 			<label for="name"><i class="fa fa-angle-down"></i> Nom / Prénom</label>
 				<input class="form-control" placeholder="comment vous appelez-vous ?" id="name">
 			<br>
 		</div>
-		<div class="col-md-12">
+		<div class="col-md-12 col-sm-12 col-xs-12">
 			<label for="objet"><i class="fa fa-angle-down"></i> Objet de votre message</label>
 				<input class="form-control" placeholder="c'est à quel sujet ?" id="subject">
 		</div>
 	</div>
-	<div class="col-md-11 text-left form-group">
+	<div class="col-md-11 col-sm-12 col-xs-12 text-left form-group">
 		<div class="col-md-12">
 			<label for="message"><i class="fa fa-angle-down"></i> Votre message</label>
 			<textarea placeholder="Votre message..." class="form-control txt-mail" id="message"></textarea>
@@ -42,7 +42,7 @@
 				<input placeholder="taper le code ici" class="col-md-6 txt-captcha text-right pull-right" id="captcha">
 			</div>
 
-			<div class="col-md-12 margin-top-15 pull-left">
+			<div class="col-md-12 col-sm-12 col-xs-12 margin-top-15 pull-left">
 			<hr>
 			<h4 class="text-right letter-red hidden" id="conf-code-fail">
 				<i class="fa fa-lock"></i> Code de sécurité incorrecte <i class="fa fa-thumbs-down"></i>
@@ -59,7 +59,7 @@
 </div>
 
 
-<div class="col-md-12 text-center hidden" id="conf-send-mail">
+<div class="col-md-12 col-sm-12 col-xs-12 text-center hidden" id="conf-send-mail">
 	<h2 class="letter-green">
 		<i class="fa fa-thumbs-up"></i> Votre message a bien été envoyé.
 	</h2>
@@ -76,7 +76,7 @@
 	<hr style="margin-bottom: 350px;">
 </div>
 
-<div class="col-md-12 hidden" id="conf-fail-mail">
+<div class="col-md-12 col-sm-12 col-xs-12 hidden" id="conf-fail-mail">
 	<h4 class="text-center letter-red">
 		<i class="fa fa-thumbs-down"></i><br>Suite à une erreur technique<br>votre message n'a pas pu être envoyé.
 	</h4>

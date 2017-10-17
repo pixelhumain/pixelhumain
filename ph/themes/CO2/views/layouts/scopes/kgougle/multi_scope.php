@@ -117,7 +117,7 @@
                                     }
                                 ?>
                                 <button class="btn btn-scope item-scope-select item-scope-city disabled margin-bottom-5 <?php echo $selected; ?>" 
-                                        data-scope-value="<?php echo City::getUnikey($city); ?>"
+                                        data-scope-value="<?php echo $city["_id"]; ?>"
                                         data-scope-name="<?php echo $city["name"]; ?>"
                                         >
                                     <h5 class="margin-5"><i class="fa fa-bullseye"></i> <?php echo $city["name"]; ?></h5>
@@ -276,7 +276,7 @@
         });
 
         
-        $(".item-globalscope-checker").click(function(){  
+        /*$(".item-globalscope-checker").click(function(){  
             $(".item-globalscope-checker").addClass("inactive");
             $(this).removeClass("inactive");
 
@@ -285,7 +285,7 @@
                              $(this).data("insee-communexion"), $(this).data("name-communexion"), $(this).data("cp-communexion"), 
                              $(this).data("region-communexion"), $(this).data("country-communexion") ) ;
         });
-
+*/
         $(".start-new-communexion").click(function(){  
             activateGlobalCommunexion(true);
         });
@@ -294,11 +294,11 @@
         
         loadMultiScopes();
 
-        rebuildSearchScopeInput(); 
-        showTagsScopesMin(".scope-min-header");
+       // rebuildSearchScopeInput(); 
+       // showTagsScopesMin(".scope-min-header");
         
         mylog.log("communexionActivated cookie", $.cookie('communexionActivated'), typeof $.cookie('communexionActivated'));
-        if($.cookie('communexionActivated') == "true"){
+       /* if($.cookie('communexionActivated') == "true"){
             console.log("communexionActivated ok", $.cookie('communexionValue'));
             var communexionValue = $.cookie('communexionValue');
             var communexionName = $.cookie('communexionName');
@@ -309,11 +309,11 @@
             var cpCommunexion = $.cookie('cpCommunexion');
             var regionNameCommunexion = $.cookie('regionNameCommunexion');
             var countryCommunexion = $.cookie('countryCommunexion');
-            */
+            * /
             setGlobalScope(communexionValue, communexionName, communexionType);//,
                           // inseeCommunexion, cityNameCommunexion, cpCommunexion, regionNameCommunexion, countryCommunexion);
         }
-        
+        */
         loadingScope = false;
     });
 

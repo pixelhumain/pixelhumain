@@ -31,9 +31,9 @@
     }
 
     .moduleTitle{
-        font-size: 15px;
+        /*font-size: 15px;*/
         margin-bottom: 10px;
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
 
     }
 
@@ -50,7 +50,6 @@
     <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo.png"
          height="60" class="inline">
     </a>
-    <br>
     </span>
 </h1>
 

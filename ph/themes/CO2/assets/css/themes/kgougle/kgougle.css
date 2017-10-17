@@ -8,7 +8,7 @@
 
 
 header, .header {
-  background-image: url("../../img/background-onepage/pattern/witewall_3.png");
+  background-image: url("../../../img/background-onepage/pattern/witewall_3.png") !important;
 }
 
 .link-submenu-header{
@@ -34,12 +34,63 @@ header img, .header img {
     margin: 50px auto 0px auto;
 }
 
+.menu-name-profil{
+	padding: 8px 0 0 14px;
+}
 
+.dropdown-main-menu{
+	right: 53px !important;
+}
+
+.btn-menu-notif{
+	margin-top:13px !important;
+}
+
+
+#notificationPanelSearch.arrow_box::before{
+	margin-bottom: 1px;	
+	border-bottom-color: #e1dbdb;
+}
+
+#ajax-modal .modal-header.bg-dark{
+	background-color: #2C3E50 !important;
+}
+
+@media (max-width: 992px) {
+
+    header .container{
+    	padding-top:0px;
+    }
+}
 
 @media (max-width: 768px) {
 
     .navbar-header{
         padding: 2px 10px;
     }
+
+    .btn-menu-connect{
+    	margin-top:10px !important;
+    }
+
+    header .container{
+    	padding-top:0px;
+    }
+
+    .main-menu-app {
+	    margin-bottom: 0px !important;
+	}
+
+	.pastille-subdomain {
+	    margin-left: 72% !important;
+	}
+
+	header img{
+		height: 45px;
+	}
+
+	.affix .navbar-header .nc_map{
+		margin-left:0px !important;
+	}
 
 }
