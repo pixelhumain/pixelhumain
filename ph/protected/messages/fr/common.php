@@ -796,7 +796,9 @@ return array(
 	"Add an Event" => "Ajouter un nouvel événement",
 	"Add a Project" => "Ajouter un nouveau projet",
 	"Add a Tags in OSM" => "Ajouter un nouveau tag OSM",
-
+	"Add a proposal" => "Faire une proposition",
+	"Add an action" => "Ajouter une action",
+	
 	"Back to" => "Revenir sur",
 	"Know more" => "En savoir +",
 	"Show Directory" => "Afficher le répertoire",
