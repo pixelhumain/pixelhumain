@@ -20,6 +20,7 @@ return array(
 
 	"Yes" => "Oui",
 	"No" => "Non",
+	"No one" => "Aucun",
 	"Cancel" => "Annuler",
 	"I don't know" => "Je ne sais pas",
 	"Hide info panels" => "Panneaux cachés",
@@ -1136,7 +1137,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Photos gallery" => "Galerie photos",
 	"Themes"=>"Thématiques",
 
-
+	"Money" => "Monnaie"
 
 );
 ?>

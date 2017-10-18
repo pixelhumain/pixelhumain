@@ -670,21 +670,33 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 #listRoles{
     margin-top: 10px;
-    border: 1px solid #d8d8d8;
-    padding-top: 5px;
+    /*border: 1px solid #d8d8d8;*/
+    /*padding-top: 5px;*/
     padding-left: 10px;
     background-color: #eaeaea;
     border-radius: 4px;
+    font-size: 15px;
 }
 
 #listRoles .btn{
-    background: white;
-    margin-right: 10px;
+    /*background: white;*/
+    margin-left: 10px;
     border-radius: 3px;
+    padding-top: 10px;
 }
 #listRoles .btn:hover{
     text-decoration: none !important;
-    background-color:  #f5f5f5;
+    color:  #2563cb !important;
+}
+
+#listRoles .btn:hover .badge{
+    background-color:  #2563cb !important;
+}
+
+#listRoles .btn.active{
+    padding-top: 5px;
+    margin-top: 5px;
+    background-color: #d8e1ef !important;
 }
 
 #listRoles .badge{
