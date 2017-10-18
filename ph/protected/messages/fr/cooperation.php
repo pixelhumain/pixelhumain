@@ -123,13 +123,13 @@ return array(
 
 	"Date end vote session" => "Fin de la période de vote",
 	"Date end amendement session (start of vote session)" => "Fin de la période d'amendement (ouverture des votes)",
-	"Date end amendement session" => "Fin de la période d'amendement"
+	"Date end amendement session" => "Fin de la période d'amendement",
 
 	"Edit my proposal" => "Modifier ma proposition",
 	"Back to amendements" => "Retour aux amendements",
 	"Open votes" => "Ouvrir les votes",
 	"Disabled my proposal" => "Désactiver ma proposition",
-	"Close my proposal" => "Fermer ma proposition"
+	"Close my proposal" => "Fermer ma proposition",
 
 	"Edition disabled" => "Modifications désactivées",
 	"amendement session has begun" => "les amendements ont commencé",
@@ -160,7 +160,7 @@ return array(
 	"refused" => "refusée",
 	"voter" => "votant",
 
-	"Be the first to vote" => "Soyez le premier à voter"
+	"Be the first to vote" => "Soyez le premier à voter",
 	"Vote open until undefined date" => "Vote ouvert jusqu'à une date non-définie",
 
 	"End of vote session" => "fin du vote",
@@ -168,7 +168,7 @@ return array(
 	"You did not vote" => "Vous n'avez pas voté",
 	"The <b>resolution</b> has been approved : " => "La <b>résolution</b> suivante a été prise : ",
 	"The proposal is" => "la proposition est",
-	"Show the résolution" => "Afficher la résolution",
+	"Show the resolution" => "Afficher la résolution",
 
 	"Submit an amendement" => "Proposer un amendement",
 	"Amendement session is closed" => "La période d'amendement est terminée",
@@ -220,25 +220,26 @@ return array(
 	"Allowed" => "Autorisé",
 	"Not allowed" => "Non-autorisé",
 
-	"VOTE NOW" => "VOTER MAINTENANT",*
-	"RESULTS" => "RÉSULTATS"
+	"VOTE NOW" => "VOTER MAINTENANT",
+	"RESULTS" => "RÉSULTATS",
 
 	"List of actions linked with this resolution" => "Liste des actions liées à cette résolution",
 
-	"No action for this resolution" => "Aucune action liée à cette résolution"
+	"No action for this resolution" => "Aucune action liée à cette résolution",
 
-	"Access restricted only for" => "Accès réservé"
+	"Access restricted only for" => "Accès réservé",
 
-	"Your amendement is too short ! Minimum : 10 caracters" => "Votre amendement est trop court ! Minimum : 10 caractères"
+	"Your amendement is too short ! Minimum : 10 caracters" => "Votre amendement est trop court ! Minimum : 10 caractères",
 
-	"Thanks for your participation !" => "Merci pour votre participation !"
+	"Thanks for your participation !" => "Merci pour votre participation !",
 
 	"Loading comments" => "Chargement des commentaires",
 
 
 	"Amendements" => "Amendements",
 	"Write your amendement" => "Rédiger votre amendement",
-	"If your amendement is adopted, it will be added to the principale proposal, <br>and will incorporated the final proposal, submited to vote." => "Si votre amendement est accepté, il sera ajouté à la suite de la proposition principale,<br>et fera parti de la proposition finale, soumise au vote.",
+	"If your amendement is adopted, it will be added to the principale proposal, <br>and will incorporated the final proposal, submited to vote." => 
+	"Si votre amendement est accepté, il sera ajouté à la suite de la proposition principale,<br>et fera parti de la proposition finale, soumise au vote.",
 
 	"your amendement" => "votre amendement",
 	"Size max : 1000 caracters" => "Les amendements ne peuvent dépasser la taille de 1000 caractères",
@@ -249,6 +250,8 @@ return array(
 	"You can change your vote anytime" => "Vous pouvez changer votre choix à tout moment",
 
 	"Vote open until" => "Le vote est ouvert jusqu'au",
+
+	"voters" => "votants",
 
 	"click to vote" => "cliquer pour voter",
 	"number of voters" => "nombre de votants",
