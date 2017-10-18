@@ -148,5 +148,6 @@ jQuery(document).ready(function() {
             }, 600);
         }
     });
+    countShoppingCart("init");
 });
 </script> 

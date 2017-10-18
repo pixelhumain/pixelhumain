@@ -207,6 +207,11 @@
 
             $this->renderPartial($layoutPath.'initJs', 
                                  array( "me"=>$me, "myFormContact" => @$myFormContact));
+            $cssAnsScriptFilesModule = array(
+                '/js/default/shoppingCart.js'
+                //'/js/news/autosize.js',
+            );
+            HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->assetsUrl);
 
         ?>
 
