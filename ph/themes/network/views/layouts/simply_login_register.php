@@ -303,10 +303,13 @@ jQuery(document).ready(function() {
 	
 });
 function userValidatedActions() { 
-	if (userValidated) {
+	if (userValidated == "1") {
+		
 		$(".errorHandler").hide();
 		$(".emailValidated").show();
 		$(".form-login #password-login").focus();
+		showPanel('box-login');
+		userValidated = false;
 	}
 
 	//We are in a process of invitation. The user already exists in the db.
