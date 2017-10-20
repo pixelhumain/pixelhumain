@@ -429,16 +429,18 @@ var Login = function() {
 		        				//classic use case wherever you login from if not notifications/get/not/id...
 		        				//you stay on the current page
 		        				//if(location.hash == '#default.home')
-		        					window.location.reload();
+		        				//	window.location.reload();
 		        				/*else
 		        					window.location.href = baseUrl+'#default.home';*/
+		        				window.location.href = baseUrl ;
 		        			}
 		        			else {
 		        				//console.log("login 3 reload");
 		        				//for urls like notifications/get/not/id...
-		        				window.location.reload();
+		        				//window.location.reload();
 		        				//window.location.href = url;
 		        				//window.location.reload();
+		        				window.location.href = baseUrl ;
 		        			}
 		        		}
 		    		  } else {
