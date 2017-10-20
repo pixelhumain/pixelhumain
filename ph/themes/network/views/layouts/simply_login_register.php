@@ -40,7 +40,7 @@
 				</div>
 				<div class="modal-body center text-dark" id="modalRegisterSuccessContent"></div>
 				<div class="modal-footer">
-					 <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+					 <button id="validInscription" type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
 				</div>
 			</div>
 		</div>
@@ -295,6 +295,12 @@ jQuery(document).ready(function() {
 		$(".box").hide(400);
 		$(".main-col-search").animate({ top: 0, opacity:1 }, 800 );
 	});
+
+	$("#validInscription").click(function(){
+		window.location.href = baseUrl ;
+	});
+
+	
 });
 function userValidatedActions() { 
 	if (userValidated) {
@@ -604,7 +610,7 @@ var Login = function() {
 
 		        		//toastr.success(data.msg);
 		        		//loadByHash("#default.directory");
-		        		window.location.href = baseUrl ;
+		        		//window.location.href = baseUrl ;
 		    		  }
 		    		  else {
 						$('.registerResult').html(data.msg);
