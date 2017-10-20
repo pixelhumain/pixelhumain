@@ -33,6 +33,15 @@
 		"Indicate the values {what} openly defining its properties and describing them"=>"Geben Sie die Werte {what} der Offenheit an, indem sie Eigenschaften definieren und sie beschreiben.",
 		"{what} that manages one or several resources openly and transparently whitout appropriating it"=>"{what} die eine oder mehrere Ressourcen auf eine offene und transparente Weise verwaltet, ohne sie sich anzueignen",
 		"{what} that shows its values openly adding few properties and describing them"=>"{what} zeigt seine Werte in einer freien Weise, indem Eigenschaften angegeben und beschrieben werden",
-		"These forms are here to show the values {what} in order to give an overview about organization, manage and life {what}"=> "Diese Formulare können die Werte {what} zeigen, um einen Überblick über die Organisation, deren Managerment und Zustand {what} zu bekommen"
+		"These forms are here to show the values {what} in order to give an overview about organization, manage and life {what}"=> "Diese Formulare können die Werte {what} zeigen, um einen Überblick über die Organisation, deren Managerment und Zustand {what} zu bekommen",
+		"New property"=>"Nouvelle propriété",
+		"Name of property"=>"Nom de la propriété",
+		"Add a new property"=>"Ajouter une nouvelle propriété",
+		"Go back to the results"=> "Revenir aux résultats",
+		"Status"=>"Indicatif",
+		"Empty"=>"Non rempli",
+		"To modified"=>"A modifier",
+		"Current"=>"Actif",
+		"Degree of your evaluation (0% = very closed, 100% = very opened)"=>"Degré d'évaluation (0% = très fermé, 100% = très ouvert)",
 	)
 ?>
