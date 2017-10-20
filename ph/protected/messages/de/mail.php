@@ -26,7 +26,7 @@
 		"Confirmation to" => "Bestätigung für",
 		"has confirmed your request to" => "hat Ihre Anfrage für ... bestätigt", // wish to have a dynamic variable here
 		"Now, you can connect you and used all functions" => "Sie können sich jetzt verbinden und alle Funktionen nutzen",
-		"editing details, add element, editing news, manage comunity, etc."=> "Informationen bearbeiten, Elemente hinzufügen, Beiträge bearbeiten, die Community verwalten, usw.",
+		"editing details, add element, editing news, manage comunity, etc."=> "Informationen bearbeiten, Elemente hinzufügen, Beiträge bearbeiten, die Gemeinschaft verwalten, usw.",
 		//FOLLOW
 		"You have a new follower" => "Sie haben einen neuen Anhänger",
 		"has a new follower" => "hat einen neuen Anhänger",
@@ -35,15 +35,15 @@
 		"is following you" => "folgt Ihnen",
 		"is now connected to the news stream of" => "ist jetzt mit Nachrichten von ... verbunden", // wish to have a dynamic variable here, something like {who}
 		"is now connected to your news stream" => "ist jetzt mit Ihrem Nachrichtenstrom verbunden",
-		"When you post a news with the network target, he/she will received the news on his/her news" => "Wenn Sie jetzt an Ihre Gemeinschaft posten möchten, wird er/sie die Nachricht auf dem Nachrichtenstrom erhalten",
+		"When you post a news with the network target, he/she will received the news on his/her news" => "Wenn Sie jetzt an Ihre Gemeinschaft senden möchten, wird er/sie die Nachricht auf dem Nachrichtenstrom erhalten",
 		"All followers on" => "Alle Anhänger von",
 		"All my followers" => "Alle meine Anhänger",
 		//COMMON [FOOTER]
 		"If the link doesn&apos;t work, you can copy it in your browser&apos;s address"=> "Wenn der Weblink nicht funktioniert, dann kopieren Sie diesen bitte in die Adressleiste Ihres Browsers",
 		"See you soon on" => "Bis bald auf",
 		"The team of communecter"=> "Das Team von Communecter",
-		"You can unsubscribe on mail received on turn off mail notication on your settings or you can choose parameters of mail notifications in the same space"=>"Sie können sich von den empfangenen Mails, durch Deaktivieren von E-Mail-Benachrichtigungen in Ihren Einstellungen abmelden oder Sie können die Einstellungen der E-Mail-Benachrichtigungen auf die selbe Verbind ändern",
+		"You can unsubscribe on mail received on turn off mail notication on your settings or you can choose parameters of mail notifications in the same space"=>"Sie können sich von den empfangenen Mails, durch Deaktivieren von E-Mail-Benachrichtigungen in Ihren Einstellungen abmelden oder Sie können die Einstellungen der E-Mail-Benachrichtigungen auf die selbe Verbindung ändern",
 		"here" => "hier",
 		"Mail send from"=>"E-Mail wurde geschickt von",
 );
-?> 
+?>
