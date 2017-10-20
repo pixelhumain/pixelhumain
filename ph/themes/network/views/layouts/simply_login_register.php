@@ -603,7 +603,8 @@ var Login = function() {
 		    		  	$("#modalRegisterSuccess").modal({ show: 'true' }); 
 
 		        		//toastr.success(data.msg);
-		        		loadByHash("#default.directory");
+		        		//loadByHash("#default.directory");
+		        		window.location.href = baseUrl ;
 		    		  }
 		    		  else {
 						$('.registerResult').html(data.msg);
