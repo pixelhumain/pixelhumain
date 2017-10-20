@@ -20,6 +20,7 @@ return array(
 
 	"Yes" => "Oui",
 	"No" => "Non",
+	"No one" => "Aucun",
 	"Cancel" => "Annuler",
 	"I don't know" => "Je ne sais pas",
 	"Hide info panels" => "Panneaux cachés",
@@ -796,7 +797,9 @@ return array(
 	"Add an Event" => "Ajouter un nouvel événement",
 	"Add a Project" => "Ajouter un nouveau projet",
 	"Add a Tags in OSM" => "Ajouter un nouveau tag OSM",
-
+	"Add a proposal" => "Faire une proposition",
+	"Add an action" => "Ajouter une action",
+	
 	"Back to" => "Revenir sur",
 	"Know more" => "En savoir +",
 	"Show Directory" => "Afficher le répertoire",
@@ -1134,7 +1137,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Photos gallery" => "Galerie photos",
 	"Themes"=>"Thématiques",
 
-
+	"Money" => "Monnaie"
 
 );
 ?>

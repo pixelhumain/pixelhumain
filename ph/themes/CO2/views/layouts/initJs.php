@@ -1,3 +1,5 @@
+<?php $params = CO2::getThemeParams(); ?>
+
 <script>
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
     var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
@@ -42,6 +44,9 @@
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     
     var globalTheme = "<?php echo Yii::app()->theme->name;?>";
+
+    var deviseTheme = <?php echo json_encode(@$params["devises"]) ?>;
+    var deviseDefault = <?php echo json_encode(@$params["deviseDefault"]) ?>;
 
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",
