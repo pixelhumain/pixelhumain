@@ -34,7 +34,16 @@
 		"Indicate the values {what} openly defining its properties and describing them"=>"Remplissez les valeurs {what} de manière libre en définnissant des propriétés et en les décrivant",
 		"{what} that manages one or several resources openly and transparently whitout appropriating it"=>"{what} qui gère une ou plusieurs ressources de manière ouverte et transparente , sans se l'approprier",
 		"{what} that shows its values openly adding few properties and describing them"=>"{what} montrant ses valeurs de manière libre en ayant indiqué des propriétés et en les décrivant",
-		"These forms are here to show the values {what} in order to give an overview about organization, manage and life {what}"=> "Ces formulaires permettent de montrer les valeurs {what} de façon à donner un aperçu sur l'organisation, la gestion et la vie {what}"
+		"These forms are here to show the values {what} in order to give an overview about organization, manage and life {what}"=> "Ces formulaires permettent de montrer les valeurs {what} de façon à donner un aperçu sur l'organisation, la gestion et la vie {what}",
+		"New property"=>"Nouvelle propriété",
+		"Name of property"=>"Nom de la propriété",
+		"Add a new property"=>"Ajouter une nouvelle propriété",
+		"Go back to the results"=> "Revenir aux résultats",
+		"Status"=>"Indicatif",
+		"Empty"=>"Non rempli",
+		"To modified"=>"A modifier",
+		"Current"=>"Actif",
+		"Degree of your evaluation (0% = very closed, 100% = very opened)"=>"Degré d'évaluation (0% = très fermé, 100% = très ouvert)",
 	)
 
 ?>
