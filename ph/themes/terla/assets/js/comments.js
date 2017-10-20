@@ -288,30 +288,35 @@ function saveCommentRating(textComment, parentCommentId,contextId,contextType,ra
           }
           else { 
             toastr.success(data.msg);
-            var count = $("#newsFeed"+context["_id"]["$id"]+" .nbNewsComment").html();
-            if(!notEmpty(count)) count = 0;
-            //mylog.log(count, context["_id"]["$id"]);
-            if(data.newComment.contextType=="news"){
-              count = parseInt(count);
-              var newCount = count +1;
-              var labelCom = (newCount>1) ? "commentaires" : "commentaire";
-              $("#newsFeed"+context["_id"]["$id"]+" .lblComment").html("<i class='fa fa-comment'></i> <span class='nbNewsComment'>"+newCount+"</span> "+labelCom);
-              $("#newsFeed"+context["_id"]["$id"]+" .newsAddComment").data('count', newCount);
-            // }else{
-            //  $("#newsFeed"+context["_id"]["$id"]+" .lblComment").html("<i class='fa fa-comment'></i> <span class='nbNewsComment'>1</span> commentaire");
-            //  $("#newsFeed"+context["_id"]["$id"]+" .newsAddComment").data('count', 1);
+            if(typeof data.order != "undefined"){
+              commentRating(data.order, "show");
             }
-            
-            // $('.nbComments').html((parseInt($('.nbComments').html()) || 0) + 1);
-            // if (data.newComment.contextType=="news"){
-            //  $(".newsAddComment[data-id='"+data.newComment.contextId+"']").children().children(".nbNewsComment").text(parseInt($('.nbComments').html()) || 0);
-            // }
-            //switchComment(commentId, data.newComment, parentCommentId);
-            latestComments = data.time;
+            else{
+              var count = $("#newsFeed"+context["_id"]["$id"]+" .nbNewsComment").html();
+              if(!notEmpty(count)) count = 0;
+              //mylog.log(count, context["_id"]["$id"]);
+              if(data.newComment.contextType=="news"){
+                count = parseInt(count);
+                var newCount = count +1;
+                var labelCom = (newCount>1) ? "commentaires" : "commentaire";
+                $("#newsFeed"+context["_id"]["$id"]+" .lblComment").html("<i class='fa fa-comment'></i> <span class='nbNewsComment'>"+newCount+"</span> "+labelCom);
+                $("#newsFeed"+context["_id"]["$id"]+" .newsAddComment").data('count', newCount);
+              // }else{
+              //  $("#newsFeed"+context["_id"]["$id"]+" .lblComment").html("<i class='fa fa-comment'></i> <span class='nbNewsComment'>1</span> commentaire");
+              //  $("#newsFeed"+context["_id"]["$id"]+" .newsAddComment").data('count', 1);
+              }
+              
+              // $('.nbComments').html((parseInt($('.nbComments').html()) || 0) + 1);
+              // if (data.newComment.contextType=="news"){
+              //  $(".newsAddComment[data-id='"+data.newComment.contextId+"']").children().children(".nbNewsComment").text(parseInt($('.nbComments').html()) || 0);
+              // }
+              //switchComment(commentId, data.newComment, parentCommentId);
+              latestComments = data.time;
 
-            var isAnswer = parentCommentId!="";
-            showOneComment(textComment, parentCommentId, isAnswer, data.id.$id, argval);   
-            bindEventActions();    
+              var isAnswer = parentCommentId!="";
+              showOneComment(textComment, parentCommentId, isAnswer, data.id.$id, argval);   
+              bindEventActions();
+            }    
           }
         },
       error: 
