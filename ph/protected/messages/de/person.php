@@ -39,7 +39,7 @@ return array(
 	"Enter your phones" => "Geben Sie Ihre Festnetznummern ein und trennen Sie die Nummern durch Kommata.",
 	"Enter your mobiles" => "Geben Sie Ihre Mobilfunknummern ein und trennen Sie die Nummern durch Kommata.",
 	"Enter your fax" => "Geben Sie Ihre Faxnummern ein und trennen Sie die Nummern durch Kommata.",
-	"Hello, \\nCome and meet me on that website!\\nAn email, your town and you are connected to your city!\\nYou can see everything that happens in your city and act for the commons." => "Guten Tag und hallo, \\nKommen Sie mit mir auf dieser Seite ! \\nEine E-Mail-Adresse, eine Postleitzahl und schon sind Sie verbunden. Sie können alles sehen was passiert in Ihrer Stadt oder Gemeinde passiert und für das Gemeinwohl beitragen.\\n"
+	"Hello, \\nCome and meet me on that website!\\nAn email, your town and you are connected to your city!\\nYou can see everything that happens in your city and act for the commons." => "Guten Tag und hallo, \\nKommen Sie mit mir auf dieser Seite ! \\nEine E-Mail-Adresse, eine Postleitzahl und schon sind Sie verbunden. Sie können alles sehen was in Ihrer Stadt oder Gemeinde passiert und zur Allmende beitragen.\\n"
 	
 );
 ?>
