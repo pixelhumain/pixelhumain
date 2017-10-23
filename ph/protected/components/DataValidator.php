@@ -220,6 +220,8 @@ class DataValidator {
 	}
 
 	public static function getDateTimeFromString($myDate, $label) {
+
+
 		$result = DateTime::createFromFormat('Y-m-d H:i', $myDate);
 	    if (empty($result)) {
 			$result = DateTime::createFromFormat('Y-m-d', $myDate);

@@ -56,6 +56,10 @@ header img, .header img {
 	background-color: #2C3E50 !important;
 }
 
+#btn-my-co{
+	display: none;
+}
+
 @media (max-width: 992px) {
 
     header .container{
