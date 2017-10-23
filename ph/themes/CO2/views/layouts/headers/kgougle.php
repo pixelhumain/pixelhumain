@@ -31,10 +31,14 @@
     }
 
     .moduleTitle{
-        font-size: 15px;
+        /*font-size: 15px;*/
         margin-bottom: 10px;
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
 
+    }
+
+    .menu-btn-back-category{
+        cursor: default!important;
     }
 
     @media (max-width: 768px) {
@@ -45,12 +49,11 @@
 
 </style>
 <h1 class="text-red homestead margin-bottom-15">
-    <span id="main-scope-name">
-    <a href="#web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
+    <span id="main-scope-namea">
+    <span class="menu-btn-back-category">
     <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo.png"
          height="60" class="inline">
-    </a>
-    <br>
+    </span>
     </span>
 </h1>
 

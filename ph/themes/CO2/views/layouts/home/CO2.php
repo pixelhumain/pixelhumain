@@ -560,7 +560,7 @@ function showTagOnMap (tag) {
 
 
 function loadLiveNow () {
-	mylog.log("loadLiveNow", communexion);
+	//mylog.log("loadLiveNow", communexion);
 	/*var dep = ( ( notNull(contextData["address"])  && notNull(contextData["address"]["depName"]) ) ? 
 				contextData["address"]["depName"] : "");
 	*/
@@ -579,26 +579,20 @@ function loadLiveNow () {
       "indexMax" : 30 
     };
 
-    console.log("communexion : ", communexion);
-    //if(typeof communexion.values.cityKey != "undefined"){
-   	//	searchParams.searchLocalityCITYKEY = new Array(communexion.values.cityKey);
-   	//}else{
-   		if($("#searchLocalityCITYKEY").val() != ""){
-   			searchParams.searchLocalityCITYKEY = new Array($("#searchLocalityCITYKEY").val());
-   		}else if(typeof communexion.values.cityKey != "undefined"){
-   			searchParams.searchLocalityCITYKEY = new Array(communexion.values.cityKey);
-   		}
-   		//searchParams.searchLocalityCITYKEY = new Array("");
+    //console.log("communexion : ", communexion);
+	if($("#searchLocalityCITYKEY").val() != ""){
+		searchParams.searchLocalityCITYKEY = new Array($("#searchLocalityCITYKEY").val());
+	}else if(communexion.values != null){
+		if(typeof communexion.values.cityKey != "undefined"){
+			searchParams.searchLocalityCITYKEY = new Array(communexion.values.cityKey);
+		}
+	}
    	
-
     //console.log("communexion ?", communexion);
 
     ajaxPost( "#nowList", baseUrl+'/'+moduleId+'/element/getdatadetail/type/0/id/0/dataName/liveNow?tpl=nowList',
 					searchParams, function(data) {
-						
-					//var html = directory.showResultsDirectoryHtml(data);
-					//$("#nowList").html(html);
-			        bindLBHLinks();
+					bindLBHLinks();
      } , "html" );
 }
 

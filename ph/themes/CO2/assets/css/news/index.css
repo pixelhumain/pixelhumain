@@ -160,7 +160,6 @@ div.timeline .date_separator span{
 .extracted_thumb {
 	float: left;
 	position:relative;
-	margin: 0px 10px 10px 0;
 }
 .extracted_thumb_large{
 	position:relative;
@@ -180,6 +179,7 @@ div.timeline .date_separator span{
 }
 .extracted_content h4{
 	margin-top:inherit;
+	margin-bottom: 5px;
 }
 
 .loading_indicator{
@@ -230,6 +230,10 @@ div.timeline .date_separator span{
 }
 .editable-input, .editable-container,.editableform .form-control{
 	/*width:100% !important;*/
+}
+.results .extracted_content{
+	padding:0px 0px 0px 5px;
+
 }
 .videoSignal{
 	position: absolute;

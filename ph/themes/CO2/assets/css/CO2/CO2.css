@@ -1394,6 +1394,15 @@ margin-right: 5px;
 .searchEntityContainer.media{
 	margin-top:0px;
 }
+
+#ajax-modal .form-group.newsCreationcheckboxSimple{
+	display: inline-block;
+	padding: 0 10px 10px 10px;
+	background-color: #EDEDED;
+	margin-left: 0px;
+}
+
+
 /************************************************************************************/
 /************************************************************************************/
 /************************************************************************************/
