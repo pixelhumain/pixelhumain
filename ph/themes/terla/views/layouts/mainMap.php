@@ -22,8 +22,8 @@
         /* MAP */
         "mapHeight" => 235,
         "mapTop" => 20,
-        "mapColor" => 'rgb(69, 96, 116)',  //ex : '#456074', //'#5F8295', //'#955F5F', rgba(69, 116, 88, 0.49)
-        "mapOpacity" => 0.4, //ex : 0.4
+        "mapColor" => 'rgb(255, 255, 255)',  //ex : '#456074', //'#5F8295', //'#955F5F', rgba(69, 116, 88, 0.49)
+        "mapOpacity" => 0.7, //ex : 0.4
 
         /* MAP LAYERS (FOND DE CARTE) */
         "mapTileLayer" 	  => '//stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', //'', //'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'

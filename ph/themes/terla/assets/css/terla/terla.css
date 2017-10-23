@@ -6,11 +6,27 @@
 	background: #FFF !important;
 }
 
-#input-search-map, #menu-map-btn-start-search{
-	background-color:#6AA5C2;
+#input-search-map{
+	background-color:#FFF;
 }
+
+#menu-map-btn-start-search {
+    margin-top: 6px;
+    border-color: transparent;
+    background-color: #F3F3F3;
+    padding: 5px 10px 5px 15px;
+    margin-left: -5px;
+    height: 34px;
+}
+
+#input-search-map{
+    padding: 5px;
+    height: 33px;
+    font-weight: 300;
+}
+
 #input-search-map::placeholder{
-	color:white;
+	/*color:white;*/
 }
 .social-main-container{
         background-color: #f8f8f8;
@@ -89,7 +105,7 @@ header, .header {
 	border: none !important;
 }
 
-.navbar-custom .btn-show-map{
+.navbar-custom#mainNav .btn-show-map{
 	background-color: inherit;
     float: initial;
     width: inherit;

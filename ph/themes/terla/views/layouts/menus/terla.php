@@ -91,10 +91,15 @@
         <div class="pull-right navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="pull-right">
-                     <a href="#activities" class="lbh letter-orange font-montserrat">
-                        <span>Our circuits</span>
+                    
+                    <a href="javascript:dyFObj.openForm('service')" class="letter-green font-montserrat">
+                        <span><i class="fa fa-plus-circle"></i></span>
                     </a>
 
+                    <a href="#activities" class="lbh letter-orange font-montserrat">
+                        <span>Our circuits</span>
+                    </a>
+                 
                     <button class="letter-orange font-montserrat btn-show-map" id="btn-open-search-bar">
                         <span>On the map</span>
                     </button>
