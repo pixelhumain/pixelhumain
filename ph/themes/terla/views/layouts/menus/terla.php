@@ -92,10 +92,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="pull-right">
                     
-                    <a href="javascript:dyFObj.openForm('service')" class="letter-green font-montserrat">
-                        <span><i class="fa fa-plus-circle"></i></span>
-                    </a>
-
                     <a href="#activities" class="lbh letter-orange font-montserrat">
                         <span>Our circuits</span>
                     </a>
