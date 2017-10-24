@@ -885,7 +885,7 @@ return array(
 	"Add Locality" => "Füge Adresse hinzu",
 	"Show map" => "Karte anzeigen",
 	"Unknown Locality" => "unbekannte Adresse",
-	"Parenthood" => "Elternschaft",
+	"Parenthood" => "übergeordnete Veranstaltung",
 	"Show map" => "Auf der Karte zeigen",
 	"Locality" => "Adresse",
 	"Localities" => "Adressen",
