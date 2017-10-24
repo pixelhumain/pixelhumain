@@ -24,7 +24,8 @@ LoadModule rewrite_module modules/mod_rewrite.so
 ```
 
 # On Unix like OS : Linux Ubuntu, Debian  :
-[special for Debian Automated install script ](https://github.com/tech62/pixelhumain/blob/e574fa0a533d3d994960b2abc5ebfb38a7292ab4/installdebian.sh)
+[Step by step install CO2 on Ubuntu 16.04](https://wiki.communecter.org/en/installing-communect-on-ubuntu-16.04.html)
+[special for Debian Automated install script (not updated for CO2)](https://github.com/tech62/pixelhumain/blob/e574fa0a533d3d994960b2abc5ebfb38a7292ab4/installdebian.sh)
 
 ## Otherwise 
  * Same rules as windows but choose a .so driver instead of a dll one.
