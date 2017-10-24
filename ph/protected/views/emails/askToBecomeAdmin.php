@@ -56,7 +56,7 @@
               <b><?php echo yii::t("email","The user")." ".@$newPendingAdmin["username"]." ".Yii::t("email","asks to become")." ".yii::t("common",$typeOfDemand)." ".yii::t("email", "of")." ".@$parent["name"]?>.
               <br>
               <br><br>
-               <?php echo yii::t("email", "For more details on the user")." ".@$newPendingAdmin["username"]?>, <?php echo yii::t("email","you can visit") ?> <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."#person.detail.id.".(String) @$newPendingAdmin["_id"]."?tpl=directory2"?>"><?php echo yii::t("email","sa fiche profil")?></a>.
+               <?php echo yii::t("email", "For more details on the user")." ".@$newPendingAdmin["username"]?>, <?php echo yii::t("email","you can visit") ?> <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."#page.type.".Person::COLLECTION.".id.".(String) @$newPendingAdmin["_id"] ?>"><?php echo yii::t("email","sa fiche profil")?></a>.
               <br>
               <br>
                 <?php echo yii::t("email","In order to validate this user as")." ".yii::t("common",$typeOfDemand).", ".yii::t("email","go to the {what}' list of your",array("{what}"=>Yii::t("common",$dir)))." "; ?>
