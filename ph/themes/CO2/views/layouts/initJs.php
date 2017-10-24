@@ -21,7 +21,7 @@
     var isMapEnd = false;
 	//used in communecter.js dynforms
     var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
-    var countryList = <?php echo json_encode(Zone::getCountryList()) ?>;
+    var countryList = <?php echo json_encode(Zone::getListCountry()) ?>;
     var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
     var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
     var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;

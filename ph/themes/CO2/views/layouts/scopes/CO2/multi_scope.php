@@ -317,10 +317,13 @@
 
 		var options = "";
 		$.each(countryList, function(key, val){
-			if(notEmpty(userConnected) && notEmpty(userConnected.address) && userConnected.address.addressCountry != "" && userConnected.address.addressCountry == val.countryCode)
-				options += '<option value="'+val.countryCode+'" checked>'+val.name+'</option>';
-			else
-				options += '<option value="'+val.countryCode+'">'+val.name+'</option>';
+      if(val.inDB == true){
+        if(notEmpty(userConnected) && notEmpty(userConnected.address) && userConnected.address.addressCountry != "" && userConnected.address.addressCountry == val.countryCode)
+          options += '<option value="'+val.countryCode+'" checked>'+val.name+'</option>';
+        else
+          options += '<option value="'+val.countryCode+'">'+val.name+'</option>';
+      }
+			
 		});
 
 		$("#select-country").html(options);
