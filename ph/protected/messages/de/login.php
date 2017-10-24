@@ -33,7 +33,7 @@ return array(
         'Get my password' => 'Mein Passwort wiederherstellen',
         'Sign Up' => 'Konto erstellen',
         'Enter your personal details below:' => 'Geben Sie bitte Ihre persönlichen Daten unten ein :',
-        'I agree to the Terms of' => 'Ich stimme (den Bedingungen) zu',
+        'I agree to the Terms of' => 'Ich stimme den folgenden Bedingungen zu:',
         'Service and Privacy Policy' => 'Datenschutzerklärung',
         'Already have an account?' => 'Haben Sie bereits ein Konto ?',
         'You must validate the SPP to sign up.' => 'Sie müssen die Datenschutzbestimmungen akzeptieren.',
