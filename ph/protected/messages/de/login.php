@@ -95,7 +95,7 @@ return array(
         "Cooperate and collaborate"=>"Kooperieren und Zusammenarbeiten",
         "Speaking together locally"=>"Auf lokaler Ebene einfacher miteinander reden",
         "Communities working together"=>"Gemeinschaften die zusammen arbeiten",
-        "For commons"=>"Für das Gemeinwohl",
+        "For commons"=>"Für die Allmende",
         "To improve the city 2.2.main"=>"Um die Stadt lebenswerter zu machen (2.2.main)"
     );
 ?>
