@@ -259,8 +259,8 @@ $communexion = CO2::getCommunexionCookies();
 				<a href="javascript:showTagOnMap ('#editeur')" data-id="explainEditor" class=" btn btn-default text-bold"><?php echo Yii::t("home","Editors") ?> </a>
 				<a href="javascript:showTagOnMap ('#designeur')" data-id="explainDesigner" class=" btn btn-default text-bold"><?php echo Yii::t("home","Designers") ?> </a><br>
 				<a href="javascript:showTagOnMap ('#contributeur')" data-id="explainContributor" class="margin-top-10  btn btn-default text-bold"><?php echo Yii::t("home","Contributors") ?></a>
-				<a href="#organization.detail.id.<?php echo Yii::app()->params['openatlasId'] ?>" class="margin-top-10 lbh btn btn-default text-bold"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
-				<a href="#project.detail.id.<?php echo Yii::app()->params['communecterId'] ?>"  class="margin-top-10 lbh btn btn-default text-bold"><?php echo Yii::t("home","Project Communecter") ?></a>
+				<a href="#page.type.<?php echo Organization::COLLECTION ?>.id.<?php echo Yii::app()->params['openatlasId'] ?>" class="margin-top-10 lbh btn btn-default text-bold"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
+				<a href="#page.<?php echo Project::COLLECTION ?>.id.<?php echo Yii::app()->params['communecterId'] ?>"  class="margin-top-10 lbh btn btn-default text-bold"><?php echo Yii::t("home","Project Communecter") ?></a>
 			</div>
 		</center>
 		<div class="space20"></div>
