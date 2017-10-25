@@ -759,7 +759,7 @@ return array(
 	"Add an association" => "Füge einen neuen Verein hinzu",
 	"Add a group" => "Füge eine neue Gruppe hinzu",
 	"Add an Event" => "Füge eine neue Veranstaltung hinzu",
-	"Add a Project" => "Füge ein neues Projekt hinzu",
+	"Add a Project" => "Fügen Sie ein neues Projekt hinzu",
 	"Back to" => "Zurück zu",
 	"Know more" => "Erfahren Sie mehr",
 	"Show Directory" => "Verzeichnis anzeigen",
