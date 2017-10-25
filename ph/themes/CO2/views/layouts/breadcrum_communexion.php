@@ -12,7 +12,7 @@
                 $tooltip = "Communecter avec ".$communexion["currentName"]; 
             }
         ?>
-            <button class="pull-left btn btn-link bg-white text-red tooltips item-globalscope-checker start-new-communexion"
+            <button class="pull-left btn btn-link bg-white text-red tooltips start-new-communexion"
                     data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip ; ?>"
                     data-scope-value='<?php echo @$communexion["currentValue"]; ?>'
                     data-scope-name='<?php echo @$communexion["currentName"]; ?>'
@@ -128,7 +128,7 @@
 
 <script type="text/javascript">
 
-var globalCommunexion="<?php echo $communexion["state"] ?>";
+//globalCommunexion="<?php echo $communexion["state"] ?>";
 communexion=<?php echo json_encode($communexion) ?>;
 //var communexion=$.cookie('communexion');
 console.log("communexion bread",communexion);
