@@ -129,7 +129,7 @@
 <script type="text/javascript">
 
 var globalCommunexion="<?php echo $communexion["state"] ?>";
-var communexion=<?php echo json_encode($communexion) ?>;
+communexion=<?php echo json_encode($communexion) ?>;
 //var communexion=$.cookie('communexion');
 console.log("communexion bread",communexion);
 jQuery(document).ready(function() {
