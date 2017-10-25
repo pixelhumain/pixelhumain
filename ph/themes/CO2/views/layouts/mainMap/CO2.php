@@ -312,7 +312,8 @@
 					$('[name="newElement_lng"]').val($(this).data("lng"));
 					formInMap.NE_lat = $(this).data("lat");
 					formInMap.NE_lng = $(this).data("lng");
-					formInMap.initHtml();	
+					formInMap.showWarningGeo(false);
+					formInMap.initHtml();
 				});
 			}else{
 				if(html=="") html = "<span class='padding-15'><i class='fa fa-ban'></i> Aucun résultat</span>";
