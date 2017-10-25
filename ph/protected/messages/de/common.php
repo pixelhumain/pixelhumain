@@ -717,7 +717,7 @@ return array(
 	"Write a bug or an idea to improve the development of communecter" => "Melden Sie einen Fehler oder eine Idee, um Communecter zu verbessern",
 	"Published a message in your wall for your network" => "Posten Sie eine Nachricht auf Ihrer Nachrichtenseite Ihres Netzwerks",
 	"Express yourself ..." => "Erklären Sie ...",
-	"Share content <small class='text-dark'>with your network<br><small>This content will be shared to your followers</small></small>"=>"Inhalte mit <small class='text-dark'>Ihrem Netzwerk teilen<br><small>Dieser Inhalt wird mit allen Ihren Anhängern geteilt</small></small>",
+	"Share content <small class='text-dark'>with your network<br><small>This content will be shared to your followers</small></small>"=>"Inhalte mit <small class='text-dark'>Ihrem Netzwerk teilen<br><small>Dieser Inhalt wird mit allen Ihren Beobachtern geteilt</small></small>",
 	"Share"=>"Teilen",
 	"Search what" => "Suche etwas",
 	"Search where" => "Suche nach Ort", 
