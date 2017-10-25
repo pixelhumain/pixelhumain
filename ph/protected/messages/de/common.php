@@ -264,7 +264,7 @@ return array(
 	"guests" => "Gäste",
 	"guest" => "Gast",
 	"follower" => "Verfolger",
-	"followers" => "Vefolger",
+	"followers" => "Verfolger",
 	"Followers" => "Verfolger",
 	"Follow" => "Folge",
 	"follow" => "folge",
