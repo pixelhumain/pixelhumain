@@ -951,7 +951,7 @@ return array(
 	"Update network" => "Soziales Netzwerk aktualisieren",
 	"Update date" => "Daten aktualisieren",
 	"General information" => "Allgemeine Informationen",
-	"character(s)" => "Buchstabe",
+	"character(s)" => "Buchstaben",
 	//Mardown
 	'Bold' => "Fett",
 	'Italic' => "Kursiv",
