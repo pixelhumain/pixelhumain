@@ -77,7 +77,7 @@
 		"phone number, email address"=>"Telefonnummer, E-Mail-Adresse",
 		"Your role"=>"Ihre Rolle",
 		"Which is your role"=>"Welche ist Ihre Rolle",
-		"Organization type"=>"Type der Organisation",
+		"Organization type"=>"Art der Organisation",
 		"Add an url"=>"Füge eine URL hinzu",
 		"Add a bookmark"=>"Füge ein Lesezeichen hinzu",
 		"Add a contact"=> "Füge einen Kontakt hinzu",
