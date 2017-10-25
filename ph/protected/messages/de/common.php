@@ -73,7 +73,7 @@ return array(
 	"has invited" => "hat eingeladen",
 	"to join" => "beitreten",
 	"participates to the event" => "nimmt an der Veranstaltung teil",
-	"is following" => "beobachtett",
+	"is following" => "beobachtet",
 	"is following you" => "beobachtet Sie",
 	"{who} commented your post" => "{who} hat Ihren Beitrag kommentiert ",
 	"{who} commented on {what}" => "{who} hat kommentiert {what}",
