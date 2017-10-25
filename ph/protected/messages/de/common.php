@@ -353,7 +353,7 @@ return array(
 	"from" => "von",
 	"FromDate" => "Vom",
 	"To" => "bei",
-	"to" => "bis",
+	"to" => "von",
 	"All day" => "den ganzen Tag",
 	"All" => "alle",
 	"Who" => "Wer",
