@@ -115,6 +115,11 @@ return array(
 	"{who} asks the suppression of {where}"=>"{who} demande la suppression de {where}",
 	"{who} stopped the pending suppression of {where}"=>"{who} a stoppé la suppresion de {where}",
 	"{who} deleted {where}"=>"{who} a supprimé {where}",
-	
+	//MENTION
+	"{who} mentionned you {mentions} {where}"=>"{who} vous a mentionné {mentions} {where}", 
+	"{who} mentionned {mentions} {where}"=>"{who} a mentionné {mentions} {where}",
+	"with {who}"=>"avec {who}",
+	"in a news"=> "dans un post",
+	"in a comment"=> "dans un commentaire",	
 );
 ?>
