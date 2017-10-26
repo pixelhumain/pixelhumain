@@ -124,7 +124,7 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
     autosize($(idTextArea));
 
     $(idTextArea).on('keyup ', function(e){
-      if(e.which == 13 && !e.shiftKey && $(idTextArea).val() != "" && $(idTextArea).val() != " ") {
+      if(e.which == 13 && !e.shiftKey && $(idTextArea).val() != "" && $(idTextArea).val() != " " && !isUpdatedComment) {
         if(!mentionsInit.isSearching){
           //submit form via ajax, this is not JS but server side scripting so not showing here
           saveComment($(idTextArea).val(), parentCommentId, idTextArea);
@@ -220,10 +220,10 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
     newComment=new Object;
     newComment.text=newText;
     newComment=mentionsInit.beforeSave(newComment, dom);
-    updateField("Comment",id,"text",newComment.text,false);
+    updateField("Comment",id,"text",newComment.text,false, true);
     comments[id].text=newComment.text;
     if(typeof newComment.mentions != "undefined"){
-      updateField("Comment",id,"mentions",newComment.mentions,false);
+      updateField("Comment",id,"mentions",newComment.mentions,false, true);
       newComment.text = mentionsInit.addMentionInText(newComment.text,newComment.mentions);
       comments[id].mentions=newComment.mentions;
     }
