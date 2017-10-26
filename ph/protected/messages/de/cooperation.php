@@ -34,7 +34,7 @@ return array(
 	"progress" => "läuft noch",
 	"nodate" => "ohne Termin",
 	"startingsoon" => "Start in Kürze",
-	"Create room" => "Erstelle Sie einen neuen Raum/Forum",
+	"Create room" => "Erstellen Sie einen neuen Raum",
 	
 	"Topic" => "Thema",
 	"No proposal" => "Kein Vorschlag",
