@@ -801,7 +801,7 @@ return array(
 	"a news" => "eine Veröffentlichung",
 	"results"=>"Ergebnisse",
 	"online"=>"online",
-	"Add scope filters"=>"Geographische Filter hinzufügen",
+	"Add scope filters"=>"Geografische Filter hinzufügen",
 	"searching on"=>"Suche nach",
 	"Select scopes of research"=>"Beschränken Sie Ihre Suche auf bestimmte Orte",
 	
