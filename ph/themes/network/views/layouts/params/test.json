@@ -1,9 +1,9 @@
 {
-    "name" : "Ecofrugal",
+    "name" : "Emmaüs",
     "mode" : "server",
     "skin" : {
-        "title" : "L'Essonne Ecofrugale",
-        "shortDescription" : "Retrouvez toutes les adresses écofrugales en Essonne",
+        "title" : "Emmaüs",
+        "shortDescription" : "Emmaüs",
         "displayScope" : false,
         "docs":false,
         "displayCommunexion" : true,
@@ -74,11 +74,9 @@
     },
     "request" : {
         "pagination" : 1000,
+        "sourceKey" : "Inter1",
         "searchType" : [
             "organizations"
-        ],
-        "searchLocalityREGION": [
-            "Corse"
-        ] 
+        ]
     }
 }
