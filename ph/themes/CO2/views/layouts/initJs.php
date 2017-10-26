@@ -133,6 +133,7 @@
                         object = new Object;
                         object.id = value._id.$id;
                         object.name = value.name;
+                        object.slug = value.slug;
                         object.avatar = avatar;
                         object.type = "citoyens";
                         mentionsContact.push(object);
@@ -146,6 +147,7 @@
                     object = new Object;
                     object.id = value._id.$id;
                     object.name = value.name;
+                    object.slug = value.slug;
                     object.avatar = avatar;
                     object.type = "organizations";
                     mentionsContact.push(object);
