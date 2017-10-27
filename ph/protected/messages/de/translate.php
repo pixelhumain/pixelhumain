@@ -1,6 +1,6 @@
 <?php 
 	return array(
-		"{time} ago" => "Es ist {time}",
+		"{time} ago" => "Es sind {time} vergangen",
 		"year"=>"Jahr",
 		"years"=>"Jahre",
 		"day"=>"Tag",
@@ -13,7 +13,7 @@
 		"minutes"=>"Minuten",
 		"second"=>"Sekunde",
 		"seconds"=>"Sekunden",
-		"Right now"=>"Jetzt gerade",
+		"Right now"=>"jetzt gerade",
 		"Sunday"=>"Sonntag", 
 		"Monday"=>"Montag",
 		"Tuesday"=>"Dienstag",
@@ -34,6 +34,6 @@
 		"November"=>"November",
 		"December"=>"Dezember",
 		"From"=>"Von",
-		"To"=>"Zu",
+		"To"=>"Bis",
 	);
 ?>

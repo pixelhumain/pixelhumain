@@ -231,7 +231,7 @@ jQuery(document).ready(function() {
     
     //$(".box").hide();
     Login.init();
-    titleAnim();
+    //titleAnim();
 
     $('.form-register #username').keyup(function(e) { 
         validateUserName();

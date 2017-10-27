@@ -259,8 +259,8 @@ $communexion = CO2::getCommunexionCookies();
 				<a href="javascript:showTagOnMap ('#editeur')" data-id="explainEditor" class=" btn btn-default text-bold"><?php echo Yii::t("home","Editors") ?> </a>
 				<a href="javascript:showTagOnMap ('#designeur')" data-id="explainDesigner" class=" btn btn-default text-bold"><?php echo Yii::t("home","Designers") ?> </a><br>
 				<a href="javascript:showTagOnMap ('#contributeur')" data-id="explainContributor" class="margin-top-10  btn btn-default text-bold"><?php echo Yii::t("home","Contributors") ?></a>
-				<a href="#organization.detail.id.<?php echo Yii::app()->params['openatlasId'] ?>" class="margin-top-10 lbh btn btn-default text-bold"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
-				<a href="#project.detail.id.<?php echo Yii::app()->params['communecterId'] ?>"  class="margin-top-10 lbh btn btn-default text-bold"><?php echo Yii::t("home","Project Communecter") ?></a>
+				<a href="#page.type.<?php echo Organization::COLLECTION ?>.id.<?php echo Yii::app()->params['openatlasId'] ?>" class="margin-top-10 lbh btn btn-default text-bold"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
+				<a href="#page.<?php echo Project::COLLECTION ?>.id.<?php echo Yii::app()->params['communecterId'] ?>"  class="margin-top-10 lbh btn btn-default text-bold"><?php echo Yii::t("home","Project Communecter") ?></a>
 			</div>
 		</center>
 		<div class="space20"></div>
@@ -560,7 +560,7 @@ function showTagOnMap (tag) {
 
 
 function loadLiveNow () {
-	mylog.log("loadLiveNow", communexion);
+	//mylog.log("loadLiveNow", communexion);
 	/*var dep = ( ( notNull(contextData["address"])  && notNull(contextData["address"]["depName"]) ) ? 
 				contextData["address"]["depName"] : "");
 	*/
@@ -579,26 +579,20 @@ function loadLiveNow () {
       "indexMax" : 30 
     };
 
-    console.log("communexion : ", communexion);
-    //if(typeof communexion.values.cityKey != "undefined"){
-   	//	searchParams.searchLocalityCITYKEY = new Array(communexion.values.cityKey);
-   	//}else{
-   		if($("#searchLocalityCITYKEY").val() != ""){
-   			searchParams.searchLocalityCITYKEY = new Array($("#searchLocalityCITYKEY").val());
-   		}else if(typeof communexion.values.cityKey != "undefined"){
-   			searchParams.searchLocalityCITYKEY = new Array(communexion.values.cityKey);
-   		}
-   		//searchParams.searchLocalityCITYKEY = new Array("");
+    //console.log("communexion : ", communexion);
+	if($("#searchLocalityCITYKEY").val() != ""){
+		searchParams.searchLocalityCITYKEY = new Array($("#searchLocalityCITYKEY").val());
+	}else if(communexion.values != null){
+		if(typeof communexion.values.cityKey != "undefined"){
+			searchParams.searchLocalityCITYKEY = new Array(communexion.values.cityKey);
+		}
+	}
    	
-
     //console.log("communexion ?", communexion);
 
     ajaxPost( "#nowList", baseUrl+'/'+moduleId+'/element/getdatadetail/type/0/id/0/dataName/liveNow?tpl=nowList',
 					searchParams, function(data) {
-						
-					//var html = directory.showResultsDirectoryHtml(data);
-					//$("#nowList").html(html);
-			        bindLBHLinks();
+					bindLBHLinks();
      } , "html" );
 }
 

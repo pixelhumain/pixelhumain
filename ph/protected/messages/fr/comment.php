@@ -18,6 +18,7 @@
 		"Report an abuse" => "Reporter au modérateur",
 		"This comment has been deleted because of his content." => "Commentaire effacé - identifié comme abusif",
 		"You are going to delete this comment : are your sure ?" => "Vous êtes sur le point de supprimer un commentaire",
+		"No comment" => "Aucun commentaire"
 	)
 
 ?>

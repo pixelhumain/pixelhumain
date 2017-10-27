@@ -20,6 +20,7 @@ return array(
 
 	"Yes" => "Oui",
 	"No" => "Non",
+	"No one" => "Aucun",
 	"Cancel" => "Annuler",
 	"I don't know" => "Je ne sais pas",
 	"Hide info panels" => "Panneaux cachés",
@@ -676,6 +677,7 @@ return array(
 	"Territorial activity"=>"Activité territoriale",
 	"Show on the map"=> "Afficher sur la carte",
 	"You're not communected"=> "Vous n'êtes pas communecté-e",
+	"Connected to your city" => "Connecté à votre commune",
 	"I communnect me"=>"Je me communecte",
 	"Communexion gives you live informations on what's happened around you"=>"La communexion vous permet de capter en direct les informations pertinentes qui se trouvent autour de vous",
 	"You will be able to use also the communexion during your research on the others apps"=>"Vous pourrez aussi utiliser la communexion lors de vos recherches sur les autres applications",
@@ -795,7 +797,10 @@ return array(
 	"Add a group" => "Ajouter un nouveau groupe",
 	"Add an Event" => "Ajouter un nouvel événement",
 	"Add a Project" => "Ajouter un nouveau projet",
-
+	"Add a Tags in OSM" => "Ajouter un nouveau tag OSM",
+	"Add a proposal" => "Faire une proposition",
+	"Add an action" => "Ajouter une action",
+	
 	"Back to" => "Revenir sur",
 	"Know more" => "En savoir +",
 	"Show Directory" => "Afficher le répertoire",
@@ -1091,8 +1096,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"url" => "url",
 	"description" => "description",
 	"shortDescription" => "description courte",
+	"Search a page ..." => "Rechercher une page ...",
 	"Edit descriptions" => "Modifier votre description",
-
 	"The email is not well formated" => "L'email n'est pas bien formaté",
 	"Unknown domain : please check your email !" => "Domaine inconnu: vérifiez votre email!",
 
@@ -1128,10 +1133,23 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
     // LANGUAGES
     "English"=> "Anglais",
     "French"=> "Français",
+    "German"=> "Allemand",
     "Languages"=>"Langues",
 	"Photos gallery" => "Galerie photos",
+	"Themes"=>"Thématiques",
 
+	"Money" => "Monnaie",
 
+	"Show / Hide filters" => "Afficher/Masquer les filtres",
+	"How it works ?" => "Comment ça marche ?",
+	'search a city, a postal code ...' => "rechercher une ville, un code postal ...",
+	"search by #tag or keywords..."=> "rechercher par #tag ou mots clés...",
+	"Refresh results"=> "Actualiser les résultats",
+	"English"=> "Anglais",
+	"English"=> "Anglais",
+	"English"=> "Anglais",
+	"English"=> "Anglais",
+	"English"=> "Anglais",
 
 );
 ?>

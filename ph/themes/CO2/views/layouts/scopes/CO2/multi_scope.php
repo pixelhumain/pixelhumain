@@ -301,10 +301,10 @@
 
 <script type="text/javascript">
 	var myMultiTags = {};
-	var myMultiScopes = <?php echo isset($me) && isset($me["multiscopes"]) ? 
-							json_encode($me["multiscopes"]) :
-							$multiscopesStr;
-						?>;
+	var myMultiScopes = <?php echo isset($me) && !empty($me["multiscopes"]) ? 
+                            json_encode($me["multiscopes"]) : 
+                            $multiscopesStr;
+						          ?>;
 
 
     var currentScopeType = "city";
@@ -313,59 +313,64 @@
     var loadingScope = true;
     var actionOnSetGlobalScope="filter";
     jQuery(document).ready(function() {
+      mylog.log("myMultiScopes 1 ", myMultiScopes);
+
 		var options = "";
 		$.each(countryList, function(key, val){
-			if(notEmpty(userConnected) && notEmpty(userConnected.address) && userConnected.address.addressCountry != "" && userConnected.address.addressCountry == val.countryCode)
-				options += '<option value="'+val.countryCode+'" checked>'+val.name+'</option>';
-			else
-				options += '<option value="'+val.countryCode+'">'+val.name+'</option>';
+      if(val.inDB == true){
+        if(notEmpty(userConnected) && notEmpty(userConnected.address) && userConnected.address.addressCountry != "" && userConnected.address.addressCountry == val.countryCode)
+          options += '<option value="'+val.countryCode+'" checked>'+val.name+'</option>';
+        else
+          options += '<option value="'+val.countryCode+'">'+val.name+'</option>';
+      }
+			
 		});
+
 		$("#select-country").html(options);
 
 
-        $("#dropdown-multi-scope-found").hide();
+    $("#dropdown-multi-scope-found").hide();
 
-        $('ul.dropdown-menu').click(function(){ return false });
+    $('ul.dropdown-menu').click(function(){ return false });
 
 
-       // $.each(myMultiScopes, function(key, val){
-         //   myMultiScopes[key]["active"] = false;
-        //});
+   // $.each(myMultiScopes, function(key, val){
+     //   myMultiScopes[key]["active"] = false;
+    //});
 
-        $(".item-scope-select").off().click(function(){
-            currentScopeType = "city";
-            alert("scopeselect");
-            if($(this).hasClass("selected")){
-                var scopeValue = $(this).data("scope-value");
-                if(scopeExists(scopeValue)){
-                    delete myMultiScopes[scopeValue];
-                    $(this).removeClass("selected");
-                }
-            }else{
-                addScopeToMultiscope( $(this).data("scope-value"), $(this).data("scope-name"));
-                $(this).addClass("selected");
-                toastr.success('Ajout de "' + $(this).data("scope-name")+'"');
+    $(".item-scope-select").off().click(function(){
+        currentScopeType = "city";
+        if($(this).hasClass("selected")){
+            var scopeValue = $(this).data("scope-value");
+            if(scopeExists(scopeValue)){
+                delete myMultiScopes[scopeValue];
+                $(this).removeClass("selected");
             }
-            checkScopeMax();            
-            
-            mylog.log("toogle");//, $(this).data("scope-value"));
-            showTagsScopesMin(".scope-min-header");
-        });
+        }else{
+            addScopeToMultiscope( $(this).data("scope-value"), $(this).data("scope-name"));
+            $(this).addClass("selected");
+            toastr.success('Ajout de "' + $(this).data("scope-name")+'"');
+        }
+        checkScopeMax();            
+        
+        mylog.log("toogle");//, $(this).data("scope-value"));
+        showTagsScopesMin(".scope-min-header");
+    });
 
-        $('#input-add-multi-scope').filter_input({regex:'[^@#\'\"\`\\\\]'}); //[a-zA-Z0-9_] 
-        $('#input-add-multi-scope').keyup(function(){ 
-            $("#dropdown-multi-scope-found").show();
-            if($('#input-add-multi-scope').val()!=""){
-                if(typeof timeoutAddScope != "undefined") clearTimeout(timeoutAddScope);
-                timeoutAddScope = setTimeout(function(){ autocompleteMultiScope(); }, 500);
-            }
-        });
-        $('#input-add-multi-scope').click(function(){ //mylog.log("$('#input-add-multi-scope').click");
-            if($('#input-add-multi-scope').val()!="")
-                setTimeout(function(){$("#dropdown-multi-scope-found").show();}, 500);
-        });
+    $('#input-add-multi-scope').filter_input({regex:'[^@#\'\"\`\\\\]'}); //[a-zA-Z0-9_] 
+    $('#input-add-multi-scope').keyup(function(){ 
+        $("#dropdown-multi-scope-found").show();
+        if($('#input-add-multi-scope').val()!=""){
+            if(typeof timeoutAddScope != "undefined") clearTimeout(timeoutAddScope);
+            timeoutAddScope = setTimeout(function(){ autocompleteMultiScope(); }, 500);
+        }
+    });
+    $('#input-add-multi-scope').click(function(){ //mylog.log("$('#input-add-multi-scope').click");
+        if($('#input-add-multi-scope').val()!="")
+            setTimeout(function(){$("#dropdown-multi-scope-found").show();}, 500);
+    });
 
-        $(".btn-group-scope-type .btn-default").click(function(){
+    $(".btn-group-scope-type .btn-default").click(function(){
 			currentScopeType = $(this).data("scope-type");
 			$(".btn-group-scope-type .btn-default").removeClass("active");
 			$(this).addClass("active");

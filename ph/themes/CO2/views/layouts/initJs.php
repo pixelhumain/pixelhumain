@@ -1,3 +1,5 @@
+<?php $params = CO2::getThemeParams(); ?>
+
 <script>
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
     var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
@@ -19,7 +21,7 @@
     var isMapEnd = false;
 	//used in communecter.js dynforms
     var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
-    var countryList = <?php echo json_encode(Zone::getCountryList()) ?>;
+    var countryList = <?php echo json_encode(Zone::getListCountry()) ?>;
     var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
     var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
     var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
@@ -42,6 +44,11 @@
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     
     var globalTheme = "<?php echo Yii::app()->theme->name;?>";
+
+    var deviseTheme = <?php echo json_encode(@$params["devises"]) ?>;
+    var deviseDefault = <?php echo json_encode(@$params["deviseDefault"]) ?>;
+
+    var communexion=<?php echo json_encode(CO2::getCommunexionCookies()) ?>;
 
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",

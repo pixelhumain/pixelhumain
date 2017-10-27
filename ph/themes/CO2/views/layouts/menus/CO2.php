@@ -1,3 +1,25 @@
+<style>
+    a.link-submenu-header{
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+    a.link-submenu-header.active, 
+    a.link-submenu-header:hover, 
+    a.link-submenu-header:active{  
+        border-bottom: 2px solid #ea4335;
+        background-color: rgba(255, 255, 255, 1);
+        color:#ea4335 !important;
+        text-decoration: none;
+    }
+
+    @media (max-width: 767px) {
+        #main-input-group{
+            margin-top:10px;
+        }
+    }
+</style>
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
     <div class="container">
@@ -14,7 +36,7 @@
             <?php 
                 $params = CO2::getThemeParams();  
                 $icon = "";
-                //echo "params : "; var_dump($params);// exit; 
+                // echo "params : "; var_dump($params);// exit; 
                 foreach ($params["pages"] as $key => $value) {
                     if($subdomain==@$value["subdomain"]) {
                         $icon = @$value["icon"];
@@ -86,6 +108,7 @@
     box-shadow: 0 6px 12px rgba(0,0,0,.175);">
                         <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
                         <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
+                        <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png" width="25"/> <?php echo Yii::t("common","German") ?></a></li>
                     </ul>
                 </li>
             </ul>
@@ -188,6 +211,7 @@
                                     <ul class="dropdown-menu">
                                       <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><?php echo Yii::t("common","English") ?></a></li>
                                       <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><?php echo Yii::t("common","French") ?></a></li>
+                                      <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png"/><?php echo Yii::t("common","German") ?></a></li>
                                     </ul>
                                 </li>
                                 <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
@@ -339,12 +363,10 @@
             </div>
         <?php } ?>
         <!-- /.navbar-collapse -->
-        <a type="button" class="lbh btn btn-link pull-right btn-menu-to-app hidden-top hidden-xs letter-green" data-target="#chat" data-toggle="modal">
-            <i class="fa fa-plus-comments"></i>           
-        </a>
+        
         <?php 
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
-                if(@$value["inMenu"]==true){ ?>
+                if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
                     class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"
