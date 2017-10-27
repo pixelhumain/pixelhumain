@@ -875,7 +875,8 @@ return array(
 	"forest" => "foret",
 	"country" => "pays",
 	"planet" => "planète",
-	
+	"ago"=>"il y a",
+	"Right now"=>"En ce moment",
 	"Frequently Asked Questions" => "Réponses aux Questions Fréquentes",
 	"Crowdfunding : Build Together" => "Crowdfunding : Construire Ensemble",
 	"Terms of Use" => "Mentions Légales",
