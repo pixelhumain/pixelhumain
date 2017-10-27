@@ -1267,10 +1267,10 @@ onSave: (optional) overloads the generic saveProcess
 					     	toastr.info( "Fichiers bien chargés !!");
 					      	if($("#ajaxFormModal #newsCreation").val()=="true"){
 					      		console.log("docslist",docListIds);
-					      		var mentionsInput=[];
-					      		$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
+					      		//var mentionsInput=[];
+					      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
       								mentionsInput=data;
-    							});
+    							});*/
 					      		var media=new Object;
 					      		if(uploadObj.contentKey=="file"){
 					      			media.type="gallery_files";
@@ -1293,9 +1293,11 @@ onSave: (optional) overloads the generic saveProcess
 									addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
 								if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
 									addParams.targetIsAuthor = true;
-								if (mentionsInput.length != 0){
-									addParams.mentions=mentionsInput;
-								}
+								/*if (mentionsResult.mentionsInput.length != 0){
+									addParams.mentions=mentionsResult.mentionsInput;
+									addParams.text=mentionsResult.text;
+								}*/
+								addParams=mentionsInit.beforeSave(addParams,'#ajaxFormModal #createNews textarea');
 								$.ajax({
 							        type: "POST",
 							        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",
