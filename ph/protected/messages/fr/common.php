@@ -422,6 +422,10 @@ return array(
 	"search" => "recherche",
 	"Classifieds" => "Annonces",
 	"classifieds" => "annonces",
+	"municipality" => "commune",
+	"municipalities" => "communes",
+	"Municipality" => "Commune",
+	"Municipalities" => "Communes",
 	"Cooperative space" => "Espace coopératif",
 
 	"a news" => "un post",
@@ -847,6 +851,7 @@ return array(
 	"an announce"=> "une annonce",
 	"a news" => "une publication",
 	"results"=>"résultats",
+	"result"=>"résultat",
 	"online"=>"actif",
 	"Add scope filters"=>"Ajouter des filtres géographiques",
 	"searching on"=>"recherche ciblée",
