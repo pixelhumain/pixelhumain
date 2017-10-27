@@ -1138,7 +1138,18 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Photos gallery" => "Galerie photos",
 	"Themes"=>"Thématiques",
 
-	"Money" => "Monnaie"
+	"Money" => "Monnaie",
+
+	"Show / Hide filters" => "Afficher/Masquer les filtres",
+	"How it works ?" => "Comment ça marche ?",
+	'search a city, a postal code ...' => "rechercher une ville, un code postal ...",
+	"search by #tag or keywords..."=> "rechercher par #tag ou mots clés...",
+	"Refresh results"=> "Actualiser les résultats",
+	"English"=> "Anglais",
+	"English"=> "Anglais",
+	"English"=> "Anglais",
+	"English"=> "Anglais",
+	"English"=> "Anglais",
 
 );
 ?>

@@ -76,6 +76,7 @@
               $myFormContact = null;
 
             }
+            $communexion = CO2::getCommunexionCookies();
            // error_log("load IndexDefault");
         ?>
         
@@ -215,7 +216,7 @@
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
             $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "myFormContact" => @$myFormContact));
+                                 array( "me"=>$me, "myFormContact" => @$myFormContact, "communexion" => $communexion));
 
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
             //if($CO2DomainName != "CO2"){
