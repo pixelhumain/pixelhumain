@@ -44,7 +44,7 @@
 		"Title of your"=>"Titre de votre",
 		"Tags"=>"Mots clés",
 		"Roles"=>"Rôles",
-		"Add some tags"=>"Ajouter quelques mots clés",
+		"Add some tags"=>"Ajouter quelques mots clés (tags)",
 		"Add some roles"=>"Sélectionner un ou plusieurs rôle(s)",
 		"Limit role access"=>"Limiter l'accès par rôle (par défaut : ouvert à tous)",
 

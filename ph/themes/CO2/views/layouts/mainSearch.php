@@ -236,7 +236,8 @@
             if((($CO2DomainName == "CO2" &&
                 !@Yii::app()->session["userId"] && 
                 !@Yii::app()->session["user"]["preferences"]) || 
-                (@Yii::app()->session["user"]["preferences"] && 
+                ($CO2DomainName == "CO2" &&
+                @Yii::app()->session["user"]["preferences"] && 
                 !@Yii::app()->session["user"]["preferences"]["unseenHelpCo"])) &&
                 !@Yii::app()->request->cookies['unseenHelpCo'])
                 $this->renderPartial($layoutPath.'footer.donation'); 

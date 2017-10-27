@@ -61,7 +61,7 @@
 }
 </style>
 
-<?php if($subdomain != "welcome"){ ?>
+<?php //if($subdomain != "welcome"){ ?>
 <form class="portfolio-modal modal fade form-login box-login" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">
         <div class="close-modal" data-dismiss="modal">
@@ -177,10 +177,10 @@
         </div>
     </div>
 </form>
-<?php } ?>
+<?php //} ?>
 
-<?php if(Yii::app()->params["CO2DomainName"] != "kgougle"){ //bloquage des inscriptions ?>
-<?php if($subdomain != "welcome"){ ?>
+<?php //if(Yii::app()->params["CO2DomainName"] != "kgougle"){ //bloquage des inscriptions ?>
+<?php //if($subdomain != "welcome"){ ?>
 <div class="portfolio-modal modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-hidden="true">
     <form class="modal-content form-register box-register padding-top-15"  >
         <div class="close-modal" data-dismiss="modal">
@@ -264,7 +264,7 @@
         </div>
     </form>
 </div>
-<?php } ?>
+<?php //} ?>
 
 <div class="modal fade" role="dialog" id="modalRegisterSuccess">
     <div class="modal-dialog">
@@ -296,7 +296,7 @@
         </div>
     </div>
 </div>
-<?php } ?>
+<?php //} ?>
 
 <div class="portfolio-modal modal fade" id="modalForgot" tabindex="-1" role="dialog" aria-hidden="true">
     <form class="modal-content form-email box-email padding-top-15"  >

@@ -187,6 +187,12 @@ a.link-submenu-header:focus{
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="text-left">
+                                    <a href="#annonces" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-bullhorn"></i> Annonces
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
                                     <a href="#agenda" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-calendar"></i> Agenda
                                     </a>
@@ -307,7 +313,7 @@ a.link-submenu-header:focus{
 
  <?php $this->renderPartial($layoutPath.'modals.kgougle.mainMenu', array("me"=>$me) ); ?>
 
-<?php   $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
+<?php   $this->renderPartial($layoutPath.'modals.kgougle.loginRegister', array("subdomain" => $subdomain)); 
 ?>
 
 <?php //$this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>

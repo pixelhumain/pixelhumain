@@ -105,24 +105,6 @@
                             
                         </div>
                         
-                        <!-- <div class="col-md-12 ">
-                            <hr>
-                            <button class="btn btn-scope item-scope-select item-scope-dep disabled" data-dismiss="modal"
-                                    data-scope-value="Province Sud"
-                                    data-scope-name="Province Sud">
-                                <h4><i class="fa fa-bullseye"></i> Province Sud</h4>
-                            </button> 
-                            <button class="btn btn-scope item-scope-select item-scope-dep disabled" data-dismiss="modal"
-                                    data-scope-value="Province Nord"
-                                    data-scope-name="Province Nord">
-                                <h4><i class="fa fa-bullseye"></i> Province Nord</h4>
-                            </button> 
-                            <button class="btn btn-scope item-scope-select item-scope-dep disabled" data-dismiss="modal"
-                                    data-scope-value="Province Des Iles"
-                                    data-scope-name="Province Des Iles">
-                                <h4><i class="fa fa-bullseye"></i> Province des Îles</h4>
-                            </button>
-                        </div>  -->
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <h4 class="title-scope"><i class="fa fa-angle-down"></i> Grand Nouméa</h4>
                             <?php foreach($cities["GN"] as $city){ ?>

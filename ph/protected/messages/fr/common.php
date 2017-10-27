@@ -677,6 +677,7 @@ return array(
 	"Territorial activity"=>"Activité territoriale",
 	"Show on the map"=> "Afficher sur la carte",
 	"You're not communected"=> "Vous n'êtes pas communecté-e",
+	"Connected to your city" => "Connecté à votre commune",
 	"I communnect me"=>"Je me communecte",
 	"Communexion gives you live informations on what's happened around you"=>"La communexion vous permet de capter en direct les informations pertinentes qui se trouvent autour de vous",
 	"You will be able to use also the communexion during your research on the others apps"=>"Vous pourrez aussi utiliser la communexion lors de vos recherches sur les autres applications",

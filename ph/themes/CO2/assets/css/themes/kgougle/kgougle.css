@@ -60,6 +60,22 @@ header img, .header img {
 	display: none;
 }
 
+.btn-localize{
+	border-radius: 50px;
+    border: 0px !important;
+    height: 40px;
+    border: 2px solid transparent;
+    font-weight: bold;
+}
+
+#showWarningGeo{
+	display: none !important;
+}
+
+.bootbox-confirm.fade.in{
+	background-color: rgba(0,0,0,0.7);
+}
+
 @media (max-width: 992px) {
 
     header .container{
