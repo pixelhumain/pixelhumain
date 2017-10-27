@@ -1460,7 +1460,7 @@
               <center style="width: 100%;min-width: 532px;">
                 <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>" align="center" class="text-center" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">
                 <!--http://localhost:8888/ph/images/logo-communecter.png-->
-                <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo ?>" class="swu-logo" alt="Logo Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 170px;max-width: 100%;clear: both;display: block;border: none;height: auto;padding: 15px 0px 0px 0px;">
+                <img src="<?php echo (@$invitorLogo) ? $invitorLogo : Yii::app()->getRequest()->getBaseUrl(true).$logo ?>" class="swu-logo" alt="Logo Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 170px;max-width: 100%;clear: both;display: block;border: none;height: auto;padding: 15px 0px 0px 0px;">
                 </a>
                 <?php echo Utils::getServerName()?>
               </center>
