@@ -443,6 +443,7 @@
                     var elmIcon;
 
                     //If the item has an avatar
+                    console.log(item.type+"//"+item.avatar);
                     if (item.avatar) {
 	                    if(item.avatar != "")
 	                        elmIcon = $(settings.templates.autocompleteListItemAvatar({ avatar : item.avatar }));
@@ -452,6 +453,8 @@
                         //elmIcon = $(settings.templates.autocompleteListItemIcon({ icon : item.icon }));
                         if(item.type=="organizations")
                         	iconType="group";
+                        else if(item.type=="projects")
+                            iconType="lightbulb-o";
                         else
                         	iconType="user";
                         elmIcon = $(settings.templates.autocompleteListItemFa({ icon : iconType }));

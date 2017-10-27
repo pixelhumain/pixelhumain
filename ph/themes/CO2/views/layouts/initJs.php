@@ -155,6 +155,20 @@
                     mentionsContact.push(object);
                     }
                 });
+                $.each(myContacts["projects"], function (key,value){
+                    if(typeof(value) != "undefined" ){
+                    avatar="";
+                    if(value.profilThumbImageUrl!="")
+                        avatar = baseUrl+value.profilThumbImageUrl;
+                    object = new Object;
+                    object.id = value._id.$id;
+                    object.name = value.name;
+                    object.slug = value.slug;
+                    object.avatar = avatar;
+                    object.type = "projects";
+                    mentionsContact.push(object);
+                    }
+                });
             }
             window.onhashchange = function() {
                 mylog.warn("popstate history.state",history.state);
