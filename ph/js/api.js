@@ -44,54 +44,52 @@ function ajaxPost(id,ajaxUrl,params,callback, datatype){
 function getAjax(id,ajaxUrl,callback,datatype,blockUI)
 {
   $.ajaxSetup({ cache: true});
-  mylog.log("getAjax",id,ajaxUrl,callback,datatype,blockUI)
-    if(blockUI)
-        $.blockUI({
-            message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.processingMsg") ) ? themeObj.blockUi.processingMsg : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
-                '<blockquote>'+
-                  '<p>Art is the heart of our culture.</p>'+
-                '</blockquote> ' )
-        });
-  
-    if(datatype != "html" )
-        $(id).html( "<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>" );
-  
-    $.ajax({
-        url:ajaxUrl,
-        type:"GET",
-        cache: true,
-        success:function(data) {
-          if (data.error) {
-            mylog.warn(data.error);
-            toastr.error(data.error.msg);
-          } else if(datatype === "html" )
-            $(id).html(data);
-          else if(datatype === "norender" )
-            mylog.log("no render",ajaxUrl)
-          else if( typeof data === "string" && datatype != null )
-            toastr.success(data);
-          else
-              $(id).html( JSON.stringify(data, null, 4) );
-  
-          if( typeof callback === "function")
-            callback(data,id);
-          if(blockUI)
-            $.unblockUI();
-        },
-        error:function (xhr, ajaxOptions, thrownError){
-          //mylog.error(thrownError);
-          $.blockUI({
-              message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.errorMsg") ) ? themeObj.blockUi.errorMsg : '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> Oups !! 404 ERROR<br> La page que vous demandez ne peut être trouvée ... </div>'
-              +'<a class="thumb-info" href="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" data-title="Il n\'existe pas d\'évolution sans erreur."  data-lightbox="all">'
-              + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>'),
-              timeout: 3000 
-          });
-          //mylog.log("URL : ", url);
-          setTimeout(function(){url.loadByHash('#')},3000);
-          if(blockUI)
-            $.unblockUI();
-        } 
+  mylog.log("getAjax",id,ajaxUrl,callback,datatype,blockUI);
+  if(blockUI)
+    $.blockUI({
+        message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.processingMsg") ) ? themeObj.blockUi.processingMsg : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
+            '<blockquote>'+
+              '<p>Art is the heart of our culture.</p>'+
+            '</blockquote> ' )
     });
+
+  if(datatype != "html" )
+      $(id).html( "<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>" );
+  $.ajax({
+      url:ajaxUrl,
+      type:"GET",
+      cache: true,
+      success:function(data) {
+        if (data.error) {
+          mylog.warn(data.error);
+          toastr.error(data.error.msg);
+        } else if(datatype === "html" )
+          $(id).html(data);
+        else if(datatype === "norender" )
+          mylog.log("no render",ajaxUrl)
+        else if( typeof data === "string" && datatype != null )
+          toastr.success(data);
+        else
+            $(id).html( JSON.stringify(data, null, 4) );
+        if( typeof callback === "function")
+          callback(data,id);
+        //if(blockUI)
+          //$.unblockUI();
+      },
+      error:function (xhr, ajaxOptions, thrownError){
+        //mylog.error(thrownError);
+        $.blockUI({
+            message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.errorMsg") ) ? themeObj.blockUi.errorMsg : '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> Oups !! 404 ERROR<br> La page que vous demandez ne peut être trouvée ... </div>'
+            +'<a class="thumb-info" href="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" data-title="Il n\'existe pas d\'évolution sans erreur."  data-lightbox="all">'
+            + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>'),
+            timeout: 3000 
+        });
+        //mylog.log("URL : ", url);
+        setTimeout(function(){ urlCtrl.loadByHash('#')},3000);
+        if(blockUI)
+          $.unblockUI();
+      } 
+  });
 }
 /*
 what can be a simple string which will go into the title bar 
@@ -143,9 +141,11 @@ function getModal(what, ajaxUrl,id)
 
 //js ex : "/themes/ph-dori/assets/plugins/summernote/dist/summernote.min.js"
 //css ex : "/themes/ph-dori/assets/plugins/summernote/dist/summernote.css"
-function lazyLoad (js,css, callback) { 
-    mylog.warn("lazyLoad",js);
-    if( !$('script[src="'+baseUrl+js+'"]').length )
+function lazyLoad (js,css, callback, notBase) { 
+    mylog.warn("lazyLoad",js, css, callback, notBase);
+    var url = (notBase==true ? js : baseUrl+js);
+    mylog.warn("url",url);
+    if( !$('script[src="'+url+'"]').length )
     {
         if(css)
             $("<link/>", {
@@ -154,14 +154,15 @@ function lazyLoad (js,css, callback) {
                href: css 
             }).appendTo("head");
         $.getScript( js, function( data, textStatus, jqxhr ) {
+          mylog.log("lazyLoad getScript");
           if( typeof callback === "function")
             callback();
         });
     } else {
+        mylog.log("lazyLoad notScript");
         if( typeof callback === "function")
             callback();
     }
-
 }
 
 
@@ -357,7 +358,7 @@ function showAsColumn(resp,id)
 
 /* --------------------------------------------------------------- */
 
-function slugify (value) {    
+function slugify (value,slug) {    
 	var rExps=[
 	{re:/[\xC0-\xC6]/g, ch:'A'},
 	{re:/[\xE0-\xE6]/g, ch:'a'},
@@ -371,7 +372,8 @@ function slugify (value) {
 	{re:/[\xF9-\xFC]/g, ch:'u'},
 	{re:/[\xC7-\xE7]/g, ch:'c'},
 	{re:/[\xD1]/g, ch:'N'},
-	{re:/[\xF1]/g, ch:'n'} ];
+  {re:/[\xF1]/g, ch:'n'},
+  {re:/['"]/g, ch:'-'} ];
 
 	// converti les caractères accentués en leurs équivalent alpha
 	for(var i=0, len=rExps.length; i<len; i++)
@@ -381,12 +383,39 @@ function slugify (value) {
 	// 2) remplace les espace par des tirets
 	// 3) enleve tout les caratères non alphanumeriques
 	// 4) enlève les doubles tirets
-	return value.toLowerCase()
-	.replace(/\s+/g, '-')
-	.replace(/[^a-z0-9-]/g, '')
-	.replace(/\-{2,}/g,'-');
+  if(typeof slug != "undefined" && slug){
+    return value.toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '')
+      .replace(/\-{2,}/g,'-');
+  }
+  else{
+    return value.replace(/\s+/g, '-')
+      .replace(/\-{2,}/g,'-');
+  }
+	
 };
+function checkAndCutLongString(text,limitLength,id, className,readMore){
+  if(text.length > limitLength){
+    allText=text;
+    text=text.substring(0,limitLength)+
+        "<span class='ppp'> ...</span>"+
+        "<span class='endtext hidden'>"+text.substring(limitLength, text.length)+"</span>";
 
+    if(readMore){
+      text += //"<span class='removeReadNews'> ...
+            "<span>"+//<br>"+
+            "<button class='btn btn-xs btn-link letter-blue btn-"+className+"' data-id='"+id+"' target='_blank'>"+
+              "Lire la suite"+
+            "</button>"+
+          "</span>";
+          // "<div class='allText' style='display:none;'>"+allText+"</div>";
+    }else{
+      text += " ..."
+    }
+  }
+  return text;
+}
 var jsonHelper = {
   /*
   
@@ -600,13 +629,18 @@ var jsonHelper = {
   //jsonHelper.notNull("themeObj.blockUi","function") > false or true accordingly
   notNull : function (pathJson,type) 
   {
+    if(pathJson.indexOf("[")>=0)
+      pathJson = pathJson.replace(/\[/g, '.').replace(/]/g, '');
+        
     var pathT = pathJson.split(".");
     res = false;
     var dynPath = "";
     $.each( pathT , function (i,k) {
       dynPath = (i == 0) ? k : dynPath+"."+k ;
+      //mylog.log(dynPath);
       //typeof eval("typeObj.poi") != "undefined"
-      if(typeof eval(dynPath) != "undefined"){
+      
+      if( typeof eval( dynPath ) != "undefined" ){
         //mylog.log(dynPath);
         if(i == pathT.length - 1){
           res = true;
@@ -684,8 +718,8 @@ function showDebugMap()
   if(debugMap && debugMap.length > 0)
   {
     $.each(debugMap, function (i,val) {
-          mylog.dir(val);
-      });
+      mylog.dir(val);
+    });
     toastr.info("check Console for "+debugMap.length+" maps");
   }else
     toastr.error("no maps to show, please do debugMap.push(something)");
@@ -697,7 +731,7 @@ function exists(val){
   return typeof val != "undefined";
 }
 function notNull(val){
-  return (typeof val != "undefined"
+  return ( typeof val != "undefined" 
       && val != null);
 }
 function notEmpty(val){
@@ -719,18 +753,21 @@ function removeEmptyAttr (jsonObj, sourceObj) {
 }
 
 function buildSelectOptions(list,value) { 
+  mylog.log("test ", value, list);
   var html = "";
   if(list){
     $.each(list, function(optKey, optVal) {
       mylog.log("buildSelectOptions", value, optKey, optVal);
+      valueName= (typeof tradCategory[optVal] != "undefined") ? tradCategory[optVal]:optVal;
       selected = ( value == optKey ) ? "selected" : ""; 
-      html += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
+      html += '<option value="'+optKey+'" '+selected+'>'+valueName+'</option>';
     });
   }
   return html;
 }
 
-function buildSelectGroupOptions(list,value) { 
+function buildSelectGroupOptions(list,value) {
+  mylog.log("test2 ", value, list);
   var html = "";
   mylog.log("list", list)
   if(list){
@@ -752,19 +789,17 @@ function buildRadioOptions(list,value, nameOption) {
     var html = "";
     if(list){
         $.each(list, function(optKey, optVal) {
-            mylog.log("buildSelectOptions", value, optKey, optVal);
-            selected = ( value == optKey ) ? "selected" : ""; 
-            if(selected != ""){
-                html += '<label class="btn btn-default">'+
-                            '<input type="radio" name="'+nameOption+'" id="'+nameOption+'" autocomplete="off">'+
-                            '<span class="glyphicon glyphicon-ok"></span>'+
-                        '</label>';
-            }else{
-                html += '<label class="btn btn-success active">'+
-                            '<input type="radio" name="'+nameOption+'" id="'+nameOption+'" autocomplete="off" checked>'+
-                            '<span class="glyphicon glyphicon-ok"></span>'+
-                        '</label>';
-            }
+            
+            rchecked = ( value == optKey ) ? "checked" : ""; 
+            ricon = (optVal.icon) ? '<span class="fa fa-'+optVal.icon+'"></span> ' : '';
+            rlbl = (optVal.lbl) ? optVal.lbl : '';
+            rclass = (optVal.class) ? optVal.class : '';
+            mylog.log("builing RadioOption",optKey , rchecked, ricon, rlbl,rclass);
+            html += '<label class="btn btn-default '+rclass+'">'+
+                      '<input type="radio" name="'+nameOption+'" value="'+optKey+'" '+rchecked+'>'+
+                      ricon+rlbl+
+                  '</label>';
+            
 
         });
     }

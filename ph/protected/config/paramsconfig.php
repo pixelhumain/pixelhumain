@@ -30,10 +30,12 @@ $mailConfigTest = array(
 );
 
 $params = array(
+    //Theme 
+    'theme' => 'CO2',
     //Beta Test ?
     'betaTest' => false,
     //By default controller
-    'defaultController' => 'communecter',
+    'defaultController' => 'CO2',
     // Mail configuration
     'adminEmail'=>'tango@communecter.org',
     'forceMailSend' => true,
@@ -67,8 +69,8 @@ $params = array(
     //Functionnal params
     //Is the organisation bellow an othe organization can be managed by her top organization
     'isParentOrganizationAdmin' => false,
-    "openatlasId" => "54eed904a1aa1958b70041ef",
-    "communecterId" => "56c1a474f6ca47a8378b45ef",
+    "openatlasId" => "555eba56c655675cdd65bf19",
+    "communecterId" => "55dafac4e41d75571d848360",
 
     //Code d'invitation
     'validInviteCodes' => array("communs59", "communs31", "polder", "detakbaro", "kisskiss"),
@@ -84,11 +86,17 @@ $params = array(
     'forceMapboxActive' => false, //to force mabox localhost
     'mapboxToken' => 'pk.eyJ1IjoiY29tbXVuZWN0ZXIiLCJhIjoiY2lreWRkNzNrMDA0dXc3bTA1MHkwbXdscCJ9.NbvsJ14y2bMWWdGqucR_EQ',
 
-    'CO2DomainName' => 'kgougle', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
+    'CO2DomainName' => 'CO2', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
+    "theme"=> "CO2",
+    "version"=> "2.1.0",
 
     //rocketchat params
     'rocketchatEnabled' => false,
-    'rocketchatURL' => "https://chat.lescommuns.org",
+    'rocketchatURL' => 'https://chat.communecter.org',
+    'rocketAdmin' => 'contact@communecter.org',
+    'rocketAdminPwd' => '',
+    "adminLoginToken" => "",
+    "adminRocketUserId" => "",
 
     /*"front" => array (
         "organization" => true,

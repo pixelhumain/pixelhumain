@@ -72,9 +72,17 @@ onSave: (optional) overloads the generic saveProcess
 				settings.beforeBuild();
 
 			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
+				//mylog.log("??????????????????????????",field,fieldObj);
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
-				buildInputField(settings.formId,field, fieldObj, settings.formValues);
+				
+				var fieldTooltip = null;
+				//alert("dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.tooltips."+field );
+				if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.tooltips" ) && 
+						dyFObj[dyFObj.activeElem].dynForm.jsonSchema.tooltips[field] ){
+					fieldTooltip = dyFObj[dyFObj.activeElem].dynForm.jsonSchema.tooltips[field];
+				}
+				buildInputField(settings.formId,field, fieldObj, settings.formValues, fieldTooltip);
 			});
 			
 			/* **************************************
@@ -88,18 +96,18 @@ onSave: (optional) overloads the generic saveProcess
         				'<hr class="col-md-12">';
         	if( !settings.formObj.jsonSchema.noSubmitBtns )
 				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
-							'Valider <i class="fa fa-arrow-circle-right"></i>'+
+							tradDynForm.submit+' <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
-						' <button onclick="elementLib.closeForm()" class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
-							'<i class="fa fa-times "></i> Annuler'+
-						'</button> ';
+						' <a href="javascript:dyFObj.closeForm(); " class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
+							'<i class="fa fa-times "></i> '+tradDynForm.cancel+
+						'</a> ';
 
 			fieldHTML += '</div>';
 
 	        $( settings.formId ).append(fieldHTML);
 
-	        $("#btn-submit-form").one(function() { 
+	        $(dyFObj.activeModal+" #btn-submit-form").one(function() { 
 				$( settings.formId ).submit();	        	
 	        });
 
@@ -125,16 +133,17 @@ onSave: (optional) overloads the generic saveProcess
 	*	each input field type has a corresponding HTMl to build
 	*
 	***************************************** */
-	function buildInputField(id, field, fieldObj,formValues)
+	function buildInputField(id, field, fieldObj,formValues, tooltip)
 	{
 		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
 		var required = "";
 		if(fieldObj.rules && fieldObj.rules.required)
 			required = "*";
 
+		tooltip = (tooltip) ? '<i class=" fa fa-question-circle pull-right tooltips text-red" data-toggle="tooltip" data-placement="top" title="'+tooltip+'"></i>' : '';
 		if(fieldObj.label)
 			fieldHTML += '<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="'+field+'">'+
-			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+
+			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+tooltip+
 			            '</label>';
 
         var iconOpen = (fieldObj.icon) ? '<span class="input-icon">'   : '';
@@ -150,6 +159,8 @@ onSave: (optional) overloads the generic saveProcess
         else if (formValues && formValues[field]) {
         	value = formValues[field];
         }
+
+        mylog.log("value network", value);
         if(value!="")
         	mylog.warn("--------------- dynform form Values",field,value);
 
@@ -180,9 +191,10 @@ onSave: (optional) overloads the generic saveProcess
         		}
         		if(fieldObj.maximumSelectionLength)
         			initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
-        		
+        		mylog.log("fieldObj.data", fieldObj.data, fieldObj);
         		if(typeof fieldObj.data != "undefined"){
-	        		initSelectNetwork[field]=fieldObj.data;
+        			value = fieldObj.data;
+	        		//initSelectNetwork[field]=fieldObj.data;
 	        	}
         		if(typeof fieldObj.mainTag != "undefined")
 					mainTag=mainTag;
@@ -238,6 +250,42 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML +='<textarea name="target-editor" id="'+field+'" data-provide="markdown" data-savable="true" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" rows="10"></textarea>';
         }
         /* **************************************
+		* CHECKBOX SIMPLE
+		***************************************** */
+        else if ( fieldObj.inputType == "checkboxSimple" ) {
+   			if(value == "") value="25/01/2014";
+   			console.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
+	       	var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
+	       	console.log("fieldObj ??? thisValue", thisValue);
+	       	//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
+	       	//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
+	       	mylog.log("build field "+field+">>>>>> checkbox");
+	       	fieldHTML += '<input type="hidden" class="'+fieldClass+'" name="'+field+'" id="'+field+'" '+
+	       						'value="'+thisValue+'"/> ';
+	       
+	       	fieldHTML += '<div class="col-lg-6 padding-5">'+
+	       					'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-green col-lg-12"'+
+	       					' data-checkval="true"' +
+	       					'>'+
+	       						fieldObj.params.onText+
+	       					'</a>'+
+	       				 '</div>';
+	       	fieldHTML += '<div class="col-lg-6 padding-5">'+
+	       					'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-red col-lg-12"'+
+	       					' data-checkval="false"' +
+	       					'>'+
+	       						fieldObj.params.offText+
+	       					'</a>'+
+	       				 '</div>';
+	       	initField = function(){
+	       		//var checked = ( fieldObj.checked ) ? "checked" : "";
+	       		//if(checked) 
+	       		//if( fieldObj.switch )
+	       			//initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
+	       	};
+       	}
+
+       	/* **************************************
 		* CHECKBOX
 		***************************************** */
         else if ( fieldObj.inputType == "checkbox" ) {
@@ -259,6 +307,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "radio" ) {
    			
 	       	mylog.log("build field "+field+">>>>>> radio");
+	       	
 	       	fieldHTML += '<div class="btn-group" data-toggle="buttons">';
 	       	value = ( (typeof fieldObj.value != "undefined") ? fieldObj.value : value ) ;
 	       	if(fieldObj.options)
@@ -319,9 +368,15 @@ onSave: (optional) overloads the generic saveProcess
         	if(placeholder == "")
         		placeholder="add Image";
         	mylog.log("build field "+field+">>>>>> uploader");
-        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>'+
-							'<script type="text/template" id="qq-template-gallery">'+
-							'<div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">'+
+        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>';
+        	if(fieldObj.docType=="image")
+			fieldHTML += 	'<script type="text/template" id="qq-template-gallery">';
+			else
+			fieldHTML += 	'<script type="text/template" id="qq-template-manual-trigger">';
+			fieldHTML += 	'<div class="qq-uploader-selector qq-uploader';
+			if(fieldObj.docType=="image")
+			fieldHTML +=		' qq-gallery';
+			fieldHTML +=		'" qq-drop-area-text="'+tradDynForm.dropfileshere+'">'+
 							'<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">'+
 							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>'+
 							'</div>'+
@@ -329,16 +384,17 @@ onSave: (optional) overloads the generic saveProcess
 							'<span class="qq-upload-drop-area-text-selector"></span>'+
 							'</div>'+
 							'<div class="qq-upload-button-selector btn btn-primary">'+
-							'<div>Ajouter une image</div>'+
+							'<div>'+tradDynForm["add"+fieldObj.docType]+'</div>'+
 							'</div>'+
 							'<button type="button" id="trigger-upload" class="btn btn-danger hide">'+
-			                '<i class="icon-upload icon-white"></i> Enregistrer'+
+			                '<i class="icon-upload icon-white"></i> '+tradDynForm.save+
 			                '</button>'+
 							'<span class="qq-drop-processing-selector qq-drop-processing">'+
 							'<span>En cours de progression...</span>'+
 							'<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>'+
-							'</span>'+
-							'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
+							'</span>';
+			if(fieldObj.docType=="image"){
+			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
 							'<li>'+
 							'<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
 							'<div class="qq-progress-bar-container-selector qq-progress-bar-container">'+
@@ -372,8 +428,27 @@ onSave: (optional) overloads the generic saveProcess
 							'</button>'+
 							'</div>'+
 							'</li>'+
-							'</ul>'+
-							''+
+							'</ul>';
+			}else{
+			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">'+
+				                '<li>'+
+				                    '<div class="qq-progress-bar-container-selector">'+
+				                        '<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
+				                    '</div>'+
+				                    '<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
+				                    '<img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>'+
+				                    '<span class="qq-upload-file-selector qq-upload-file"></span>'+
+				                    //'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+				                    '<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
+				                    '<span class="qq-upload-size-selector qq-upload-size"></span>'+
+				                    '<button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>'+
+				                    '<button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>'+
+				                    '<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>'+
+				                    '<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
+				                '</li>'+
+				            '</ul>';
+			}
+			fieldHTML += 				''+
 							'<dialog class="qq-alert-dialog-selector">'+
 							'<div class="qq-dialog-message-selector"></div>'+
 							'<div class="qq-dialog-buttons">'+
@@ -403,6 +478,8 @@ onSave: (optional) overloads the generic saveProcess
         		initValues.showUploadBtn = fieldObj.showUploadBtn;
         	if( fieldObj.filetypes )
         		initValues.filetypes = fieldObj.filetypes;
+        	if( fieldObj.template )
+        		initValues.template = fieldObj.template;
 			if( $.isFunction( fieldObj.afterUploadComplete ) )
         		initValues.afterUploadComplete = fieldObj.afterUploadComplete;
         }
@@ -414,6 +491,11 @@ onSave: (optional) overloads the generic saveProcess
         	if(placeholder == "")
         		placeholder="25/01/2014";
         	mylog.log("build field "+field+">>>>>> date");
+        	if(value && (""+value).indexOf("/") < 0){
+        		//timestamp use case 
+        		value =moment(parseInt(value)*1000).format('DD/MM/YYYY');
+        		//alert("switch:"+value);
+        	}
         	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -456,6 +538,21 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<a class="btn btn-primary '+fieldClass+'" href="'+fieldObj.url+'">Go There</a>';
         } 
 
+         /* **************************************
+		* CAPCHAT
+		***************************************** */
+        else if ( fieldObj.inputType == "captcha" ) {
+        	mylog.log("build field "+field+">>>>>> captcha");
+        	fieldHTML += '<div class="col-md-8 pull-right text-right">';
+				fieldHTML += '<h5 for="message" class="letter-green margin-bottom-25">';
+					fieldHTML += '<span class="letter-red"><i class="fa fa-lock fa-2x"></i> sécurité</span><br>'; 
+					fieldHTML += 'merci de recopier le code ci-dessous<br>afin de valider votre message <i class="fa fa-chevron-down"></i>';
+				fieldHTML += '</h5>';
+				fieldHTML += '<input placeholder="taper le code ici" class="col-md-6 txt-captcha text-right pull-right" id="captcha">';
+			fieldHTML += '</div>';
+        }
+
+
         /* **************************************
 		* TAG List
 		***************************************** */
@@ -464,7 +561,7 @@ onSave: (optional) overloads the generic saveProcess
         	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
         	$.each(fieldObj.list,function(k,v) { 
         		//mylog.log("build field ",k,v);
-        		var lbl = ( fieldObj.trad && fieldObj.trad[k] ) ? fieldObj.trad[k] : k;
+        		var lbl = ( fieldObj.trad && fieldObj.trad[v.labelFront] ) ? fieldObj.trad[v.labelFront] : fieldObj.trad[k] ? fieldObj.trad[k] : k;
         		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
         						'<a class="btn tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'"'+
         						' data-tag="'+lbl+'" data-key="'+k+'" href="'+action+'"><i class="fa fa-'+v.icon+'"></i> <br>'+lbl+'</a>'+
@@ -485,17 +582,32 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="address" name="address[streetAddress]" id="address[streetAddress]" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
-			
+			mylog.log("location formValues", formValues);
 			//locations are saved in addresses attribute
+			if( formValues.address && formValues.geo && formValues.geoPosition ){
+				var initAddress = function(){
+					mylog.warn("init Adress location",formValues.address.addressLocality,formValues.address.postalCode);
+					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
+					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition}, -1);
+				};
+			}     
 			if( formValues.addresses ){
-				initField = function(){
+				var initAddresses = function(){
 					$.each(formValues.addresses, function(i,locationObj){
-						mylog.warn("init location",locationObj.address.addressLocality,locationObj.address.postalCode);
-						copyMapForm2Dynform(locationObj);
-						addLocationToForm(locationObj);
+						mylog.warn("init extra addresses location ",locationObj.address.addressLocality,locationObj.address.postalCode);
+						dyFInputs.locationObj.copyMapForm2Dynform(locationObj);
+						dyFInputs.locationObj.addLocationToForm(locationObj, i);
 					});
 				};
-			}       
+			} 
+			initField = function(){
+				if(initAddress)
+					initAddress();
+				if(initAddresses)
+					initAddresses();
+				dyFInputs.locationObj.init();
+			} 
+
         }else if ( fieldObj.inputType == "postalcode" ) {
         	mylog.log("build field "+field+">>>>>> postalcode");
         	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" postalCodeBtn btn btn-default'><i class='text-azure fa fa-plus fa-2x'></i> Postal Code </a>";
@@ -556,6 +668,7 @@ onSave: (optional) overloads the generic saveProcess
 	                    $(".addmultifield").val(optVal);
 	                else 
 	                	addfield("."+field+fieldObj.inputType,optVal,field);
+
 	                if( formValues && formValues.medias ){
 	                	$.each(formValues.medias, function(i,mediaObj) {
 	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
@@ -640,6 +753,103 @@ onSave: (optional) overloads the generic saveProcess
 
         	fieldHTML += (typeof fieldObj.html == "function") ? fieldObj.html() : fieldObj.html;
         } 
+        /* **************************************
+        * CREATE NEWS
+        ************************************** */
+        else if( fieldObj.inputType == "createNews"){
+        	var newsContext=fieldObj.params;
+        	if(newsContext.targetType!="citoyens"){
+        		if(newsContext.authorImg=="")
+        			var authorImg=moduleUrl+'/images/thumb/default_citoyens.png';
+        		else
+        			var authorImg=baseUrl+newsContext.authorImg;
+        		if(newsContext.targetImg=="")
+        			var targetImg=moduleUrl+'/images/thumb/default_'+newsContext.targetType+'.png';
+        		else
+        			var targetImg=baseUrl+newsContext.targetImg;
+        		//targetName=newsContext.targetName;
+        		//authorName=newsContext.authorName;
+        	}
+        	fieldHTML='<div id="createNews" class="form-group">'+
+        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.writenewshere+
+			        '</label>'+
+			        '<div id="mentionsText" class="col-md-12 col-sm-12 col-xs-12 no-padding">'+
+        				'<textarea name="newsText"></textarea>'+
+        			'</div>'+
+					'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.tags+
+			        '</label>'+
+        			'<div class="no-padding">'+
+          				'<input id="tags" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">'+
+      				'</div>'+
+        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsvisibility+
+			        '</label>'+
+        			'<div class="dropdown no-padding col-md-12 col-sm-12 col-xs-12">'+
+          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12" id="btn-toogle-dropdown-scope" href="javascript:;">'+
+          					'<i class="fa fa-connectdevelop"></i> '+tradDynForm.network+' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
+          				'</a>'+
+          				'<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">';
+          					if(newsContext.targetType != "events"){
+            fieldHTML+=		'<li>'+
+              					'<a href="javascript:;" id="scope-my-network" class="scopeShare" data-value="private">'+
+              						'<h4 class="list-group-item-heading"><i class="fa fa-lock"></i> '+tradDynForm.private+'</h4>'+
+               						'<p class="list-group-item-text small">'+tradDynForm["explainprivate"+newsContext.targetType]+'</p>'+
+              					'</a>'+
+            				'</li>';
+            				}
+            fieldHTML+=		'<li>'+
+              					'<a href="javascript:;" id="scope-my-network" class="scopeShare" data-value="restricted">'+
+              						'<h4 class="list-group-item-heading"><i class="fa fa-connectdevelop"></i> '+tradDynForm.network+'</h4>'+
+                					'<p class="list-group-item-text small"> '+tradDynForm.explainnetwork+'</p>'+
+              					'</a>'+
+				            '</li>'+
+				            '<li>'+
+				              	'<a href="javascript:;" id="scope-my-wall" class="scopeShare" data-value="public">'+
+				              		'<h4 class="list-group-item-heading"><i class="fa fa-globe"></i> '+tradDynForm.public+'</h4>'+
+				                    '<p class="list-group-item-text small">'+tradDynForm.explainpublic+'</p>'+
+				              	'</a>'+
+				            '</li>'+
+			            '</ul>'+
+			            '<input type="hidden" name="scope" id="scope" value="restricted"/>'+
+	        		'</div>';
+	        		if(newsContext.targetType!="citoyens"){
+	        fieldHTML+=		'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsauthor+
+		            '</label>'+
+        			'<div class="dropdown no-padding col-md-12">'+
+          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12 text-left" id="btn-toogle-dropdown-targetIsAuthor" href="javascript:;">'+
+           					'<img height=20 width=20 src="'+targetImg+'">'+  
+           					' '+newsContext.targetName+
+				            ' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
+				        '</a>'+
+				        '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">'+
+				            '<li>'+
+              					'<a href="javascript:;" class="targetIsAuthor" data-value="1" data-name="'+newsContext.targetName+'">'+
+					                '<h4 class="list-group-item-heading">'+
+					                  	'<img height=20 width=20 src="'+targetImg+'">'+  
+					                	' '+newsContext.targetName+
+					                '</h4>'+
+					                '<p class="list-group-item-text small">'+tradDynForm.show+' '+newsContext.targetName+' '+tradDynForm.asAuthor+'</p>'+
+					            '</a>'+
+					        '</li>'+
+					        '<li>'+
+				              	'<a href="javascript:;" class="targetIsAuthor" data-value="0" data-name="'+tradDynForm.me+'">'+
+				              		'<h4 class="list-group-item-heading">'+
+				                		'<img height=20 width=20 src="'+authorImg+'">'+  
+				                		' '+tradDynForm.me+
+				                	'</h4>'+
+				                	'<p class="list-group-item-text small"> '+tradDynForm.iamauthor+'</p>'+
+				              	'</a>'+
+				            '</li>'+
+				        '</ul>'+
+				        '<input type="hidden" id="authorIsTarget" value="1"/>'+
+        			'</div>';
+        			}
+        	fieldHTML+=	'</div>';  
+          
+        }
         /* 	*************************************
         * SCOPE USER 	
         ************************************** */
@@ -794,12 +1004,14 @@ onSave: (optional) overloads the generic saveProcess
 		mylog.info("connecting submit btn to $.validate pluggin");
 		mylog.dir(formRules);
 		var errorHandler = $('.errorHandler', $(params.formId));
+//alert(params.formId);
 		$(params.formId).validate({
 
 			rules : formRules,
 
 			submitHandler : function(form) {
-				$("#btn-submit-form").html('<i class="fa  fa-spinner fa-spin fa-"></i>').prop("disabled",true);
+				//alert(dyFObj.activeModal+" #btn-submit-form");
+				$(dyFObj.activeModal+" #btn-submit-form").html( '<i class="fa  fa-spinner fa-spin fa-"></i>' ).prop("disabled",true);
 				errorHandler.hide();
 				mylog.info("form submitted "+params.formId);
 				
@@ -807,6 +1019,7 @@ onSave: (optional) overloads the generic saveProcess
 					params.beforeSave();
 
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
+					//	alert("onSave")
 					params.onSave();
 					return false;
 		        } 
@@ -951,7 +1164,7 @@ onSave: (optional) overloads the generic saveProcess
 				$("#ajax-modal").modal("hide");
 		        showMap(true);
 		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
-		        if(typeof showMarkerNewElement != "undefined"){ showMarkerNewElement(); }
+		        if(typeof formInMap.showMarkerNewElement != "undefined"){ formInMap.showMarkerNewElement(); }
 		    });
 		}
 
@@ -965,93 +1178,161 @@ onSave: (optional) overloads the generic saveProcess
 				$("#ajax-modal").modal("hide");
 		        showMap(true);
 		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
-		        if(typeof showMarkerNewElement != "undefined"){ showMarkerNewElement(true); }
+		        if(typeof formInMap.showMarkerNewElement != "undefined"){ formInMap.showMarkerNewElement(true); }
 		    });
 		}
 		
 		/* **************************************
 		* Image uploader , we use https://github.com/FineUploader/fine-uploader
 		***************************************** */
-		function loadFineUploader(callback) {
-			if( ! jQuery.isFunction(jQuery.fineUploader) ) {
-				lazyLoad( baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js', 
-						  baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
-						  callback);
-		    }
-		}
+		if(  $(".fine-uploader-manual-trigger").length)
+		{
+			function loadFineUploader(callback,template) {
+				if( ! jQuery.isFunction(jQuery.fineUploader) ) {
+					if(template=='qq-template-manual-trigger')
+						var cssLazy=baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css';
+					else
+						var cssLazy=baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css';
+					lazyLoad( baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js', 
+							  cssLazy,
+							  callback);
+			    }
+			}
+			var docListIds=[];
+			var FineUploader = function(){
+				mylog.log("init fineUploader");
+				$(".fine-uploader-manual-trigger").fineUploader({
+		            template: (initValues.template) ? initValues.template : 'qq-template-manual-trigger',
+		            request: {
+		                endpoint: uploadObj.path
+		            },
+		            validation: {
+		                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
+		                sizeLimit: 2000000
+		            },
+		            messages: {
+				        sizeError : '{file} est trop lourde! limite max : {sizeLimit}.',
+				        typeError : '{file} extension invalide. Extension(s) acceptable: {extensions}.'
+				    },
+		            callbacks: {
+		            	//when a img is selected
+					    onSubmit: function(id, fileName) {
+					    	$('.fine-uploader-manual-trigger').fineUploader('setEndpoint',uploadObj.path);	
+					    	//$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+    					    if( initValues.showUploadBtn  ){
+						      	$('#trigger-upload').removeClass("hide").click(function(e) {
+				        			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+						        	urlCtrl.loadByHash(location.hash);
+				        			$('#ajax-modal').modal("hide");
+						        });
 
-		var FineUploader = function(){
-			mylog.log("init fineUploader");
-			$(".fine-uploader-manual-trigger").fineUploader({
-	            template: 'qq-template-gallery',//'qq-template-manual-trigger',
-	            request: {
-	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile"
-	                //params : uploadObj
-	            },
-	            validation: {
-	                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
-	                sizeLimit: 2000000
-	            },
-	            messages: {
-			        sizeError : '{file} est trop lourde! limite max : {sizeLimit}.',
-			        typeError : '{file} extension invalide. Extension(s) acceptable: {extensions}.'
-			    },
-	            callbacks: {
-	            	//when a img is selected
-				    onSubmit: function(id, fileName) {
-				      if(initValues.showUploadBtn)
-				      	$('#trigger-upload').removeClass("hide")
-				    },
-				    /*
-				    //launches request endpoint
-				    //onUpload: function(id, fileName) {
-				      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
-				      //alert(" > request : "+baseUrl+"/"+moduleId+"/document/upload/dir/"+moduleId+"/folder/"+contextData.type+"/ownerId/"+contextData.id+"/input/dynform");
-				      //documents.saveImages(contextData.type, contextData.id);
-				    //},
-				    //launched on upload
-				    /*onProgress: function(id, fileName, uploadedBytes,totalBytes) {
-				      alert("progress");
-				    },*/
-				    //when every img finish upload process whatever the status
-				    onComplete: function(id, fileName,responseJSON,xhr) {
-				    	if(!responseJSON.result){
-				    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
-				    		console.error(trad["somethingwentwrong"] , responseJSON.msg)
-				    	}
-				    },
-				    //when all upload is complete whatever the result
-				    onAllComplete: function(succeeded, failed) {
-				      toastr.info("Fichiers bien chargés !!");
-				      if( jQuery.isFunction(initValues.afterUploadComplete) )
-				      	initValues.afterUploadComplete();
-				    },
-				    //on click a photo delete btn and launches delete endpoint
-				    /*onDelete: function(id) {
-				      alert("submit delete"+id);
-				    },*/
-				    //if any error during upload
-				    onError: function(id) {
-				      toastr.info(trad["somethingwentwrong"]);
-				    }
-				},
-	            thumbnails: {
-	                placeholders: {
-	                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
-	                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
-	                }
-	            },
-	            autoUpload: false
-	        });
-	        /*$('#trigger-upload').click(function() {
-	        	//'getUploads'
-	            $('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-	            $('.fine-uploader-manual-trigger').fineUploader('getUploads');
-	        });*/
-		};
-
-		if(  $(".fine-uploader-manual-trigger").length){
-			loadFineUploader(FineUploader);
+					        }
+					    },
+					    onCancel: function(id) {
+					    	if(($("ul.qq-upload-list > li").length-1)<=0)
+					    		$('#trigger-upload').addClass("hide");
+	        			},
+	        			
+					    //launches request endpoint
+					    //onUpload: function(id, fileName) {
+					      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
+					      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
+					      //console.log('onUpload uplaodObj',uploadObj);
+					      //var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+					      //console.log('onUpload getEndpoint',ex);
+					    //},
+					    //launched on upload
+					    //onProgress: function(id, fileName, uploadedBytes,totalBytes) {
+					    	/*console.log('onProgress uplaodObj',uploadObj);
+					    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+					    	console.log('onProgress getEndpoint',ex);
+					    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
+					      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
+					    //},
+					    //when every img finish upload process whatever the status
+					    onComplete: function(id, fileName,responseJSON,xhr) {
+					    	
+					    	console.log(responseJSON);
+					    	
+					    	if($("#ajaxFormModal #newsCreation").val()=="true"){
+					    		docListIds.push(responseJSON.id.$id);
+					    	}
+					    	if(!responseJSON.result){
+					    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
+					    		console.error(trad["somethingwentwrong"] , responseJSON.msg)
+					    	}
+					    },
+					    //when all upload is complete whatever the result
+					    onAllComplete: function(succeeded, failed) {
+					     	toastr.info( "Fichiers bien chargés !!");
+					      	if($("#ajaxFormModal #newsCreation").val()=="true"){
+					      		console.log("docslist",docListIds);
+					      		//var mentionsInput=[];
+					      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
+      								mentionsInput=data;
+    							});*/
+					      		var media=new Object;
+					      		if(uploadObj.contentKey=="file"){
+					      			media.type="gallery_files";
+					      			media.countFiles=docListIds.length;
+					      			media.files=docListIds;
+					      		}else{
+					      			media.type="gallery_images";
+					      			media.countImages=docListIds.length;
+					      			media.images=docListIds;
+					      		}
+					    		var addParams = {
+	              				  type: "news",
+	              				  parentId: uploadObj.id,
+	              				  parentType: uploadObj.type,
+	              				  scope:$("#ajaxFormModal #createNews #scope").val(),
+	              				  text:$("#ajaxFormModal #createNews textarea").val(),
+	              				  media: media
+	            				};
+	            				if ($("#ajaxFormModal #createNews #tags").val() != "")
+									addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
+								if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
+									addParams.targetIsAuthor = true;
+								/*if (mentionsResult.mentionsInput.length != 0){
+									addParams.mentions=mentionsResult.mentionsInput;
+									addParams.text=mentionsResult.text;
+								}*/
+								addParams=mentionsInit.beforeSave(addParams,'#ajaxFormModal #createNews textarea');
+								$.ajax({
+							        type: "POST",
+							        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",
+							        //dataType: "json",
+							        data: addParams,
+									type: "POST",
+							    })
+							    .done(function (data) {
+						    		
+									return true;
+							    }).fail(function(){
+								   toastr.error("Something went wrong, contact your admin"); 
+								   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
+								   $("#btn-submit-form").prop('disabled', false);
+							    });
+							}
+					    if( jQuery.isFunction(initValues.afterUploadComplete) )
+					      	initValues.afterUploadComplete();
+					     	uploadObj.gotoUrl = null;
+					    },
+					    onError: function(id) {
+					      toastr.info(trad["somethingwentwrong"]);
+					    }
+					},
+		            thumbnails: {
+		                placeholders: {
+		                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
+		                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
+		                }
+		            },
+		            autoUpload: false
+		        });
+			};
+			if(  $(".fine-uploader-manual-trigger").length)
+				loadFineUploader(FineUploader,initValues.template);
 		}
 
 		/* **************************************
@@ -1304,7 +1585,7 @@ onSave: (optional) overloads the generic saveProcess
 		var str = 	'<div class="col-sm-12 no-padding margin-top-10">'+
 					'<div class="col-sm-10 no-padding">'+
 							'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
-							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md value="" placeholder="..."/>'+
+							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'" placeholder="..."/>'+
 							'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
 						'</div>'+
 						'<div class="col-sm-2 sectionRemovePropLineBtn">'+
@@ -1312,7 +1593,7 @@ onSave: (optional) overloads the generic saveProcess
 						'</div>'+
 					'</div>';
 
-
+		mylog.log("-------------------------");
 		/*'<div class="space5"></div><div class="col-sm-10">'+
 					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'"/>'+

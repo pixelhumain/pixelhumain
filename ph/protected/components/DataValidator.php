@@ -31,7 +31,7 @@ class DataValidator {
 	public static function email($toValidate, $objectId=null) {
 		$res = "";
 		if (! preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$toValidate) && !empty($toValidate)) { 
-			$res = "The email is not well formated";
+			$res = Yii::t("common", "The email is not well formated");
 		} else {
 			$domain = explode("@",$toValidate);
         	$domain = array_pop($domain); 
@@ -40,7 +40,7 @@ class DataValidator {
         	//if(! checkdnsrr(idn_to_ascii($domain),"MX")){
 
 	  		if(!empty($domain) && ! checkdnsrr($domain,"MX")){
-				$res = "Unknown domain : please check your email !";
+				$res = Yii::t("common", "Unknown domain : please check your email !");
 			}
 		}
 		return $res;
@@ -48,8 +48,16 @@ class DataValidator {
 	
 	public static function organizationSameName($toValidate, $objectId=null) {
 		// Is There a association with the same name && it is not the current organization ?
-	    $res = "";
-	    $organizationSameName = PHDB::findOne(Organization::COLLECTION,array( "name" => $toValidate));      
+		$res = "";
+
+	    if(!empty($objectId["address"]))
+	    	$organizationSameName = PHDB::findOne(Organization::COLLECTION,
+	    										array( 	"name" => $toValidate, 
+	    												"address.postalCode" => $objectId["address"]["postalCode"],
+	    												"address.addressLocality" => $objectId["address"]["addressLocality"]));      
+	    else
+	    	$organizationSameName = null ;
+
 	    if ($organizationSameName && isset($objectId) && $objectId !=  (String) $organizationSameName["_id"]){ 
 	    	$res = "An organization with the same name allready exists";
 	    }
@@ -66,6 +74,21 @@ class DataValidator {
 	    if ($uniqueUsername) { 
 	    	$res = "A user with the same username allready exists";
 	    }
+	    return $res;
+	}
+	public static function checkSlug($toValidate, $objectId=null) {
+		// Is There a user with the same username ?
+	    $res = "";
+	    if (strlen($toValidate) < 3 || strlen($toValidate) > 32) {
+		  	$res = "The slug length should be between 3 and 32 characters";
+		}
+		if(! preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/ ', $toValidate)) {
+			$res = "Not valid slug : content accent or space or not finish by letter or number";	
+		}
+	    /*$notExist = Slug::check($toValidate);      
+	    if (! $notExist) { 
+	    	$res = "This slug allready exists";
+	    }*/
 	    return $res;
 	}
 
@@ -106,6 +129,8 @@ class DataValidator {
 	}
 
 	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue, $object = null, $import=null) {
+		// var_dump($fieldName);
+		// var_dump($dataBinding);
 		if (isset($dataBinding[$fieldName])) {
 			$data = $dataBinding[$fieldName];
 			$name = $data["name"];
@@ -135,6 +160,7 @@ class DataValidator {
 	public static function validate( $type, $values, $import = null ) 
 	{
 		//var_dump($type); return;
+		//var_dump($type);
 		$dataBinding = $type::$dataBinding;
 		//var_dump($dataBinding); return;
 		//var_dump($values); return;
@@ -143,13 +169,16 @@ class DataValidator {
 		foreach ( $values as $key => $value ) 
 		{
 			try{
+				
 				if ( isset( $dataBinding[$key]) ) {
 					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value, $values, $import);
 				} else {
+					error_log("error : ".$key);
 					$res["result"] = false;
 					$res["msg"] = "Contenu Invalide ".$key;
 				}
 			} catch( Exception $e ) {
+				error_log("error : ".$key);
 				$res["result"] = false;
 				$res["msg"] = $e->getMessage();
 			}
@@ -191,6 +220,8 @@ class DataValidator {
 	}
 
 	public static function getDateTimeFromString($myDate, $label) {
+
+
 		$result = DateTime::createFromFormat('Y-m-d H:i', $myDate);
 	    if (empty($result)) {
 			$result = DateTime::createFromFormat('Y-m-d', $myDate);
@@ -270,22 +301,30 @@ class DataValidator {
 		error_log("AddressValid = ".json_encode($toValidate));
 		//Check country => Mandatory
 		if (empty($toValidate["addressCountry"])) return "Country missing in the address !";
+		//Check country => Mandatory
+		if (empty($toValidate["addressLocality"])) return "City name missing in the address !";
 		//Check insee => Mandatory
-		if (empty($toValidate["codeInsee"])) return "CityId missing in the address !";
+		if (empty($toValidate["osmID"]) && empty($toValidate["localityId"])) return "CityId missing in the address !";
+		//Check insee => Mandatory
+		//if (empty($toValidate["codeInsee"])) return "CityId missing in the address !";
 		//Check cp => Mandotory
-		if (empty($toValidate["postalCode"])) return "Postal Code missing in the address !";
+		//if (empty($toValidate["postalCode"])) return "Postal Code missing in the address !";
 		
 		//Check country, cp and insee are coherent in bd
-		$city = SIG::getCityByCodeInsee($toValidate["codeInsee"]);
-		if ($city["country"] != $toValidate["addressCountry"]) return "Invalid insee code with that country !";
-		$postalCodeOk = false;
-		foreach ($city["postalCodes"] as $postalCode) {
-			if ($postalCode["postalCode"] == $toValidate["postalCode"]) {
-				$postalCodeOk = true;
-				break;
-			}
+		
+		if(!empty($toValidate["localityId"])){
+			$city = City::getById($toValidate["localityId"]);
+			if ($city["country"] != $toValidate["addressCountry"]) return "Invalid CityId with that country !";
+			// $postalCodeOk = false;
+			// foreach ($city["postalCodes"] as $postalCode) {
+			// 	if ($postalCode["postalCode"] == $toValidate["postalCode"]) {
+			// 		$postalCodeOk = true;
+			// 		break;
+			// 	}
+			// }
+			// if (! $postalCodeOk) return "Invalid postal code and insee code";
 		}
-		if (! $postalCodeOk) return "Invalid postal code and insee code";
+		
 
 		return $res;
 	}

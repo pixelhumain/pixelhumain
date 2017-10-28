@@ -5,12 +5,12 @@ $cssAnsScriptFilesModule = array(
   '/plugins/bootstrap-datetimepicker/css/datetimepicker.css',
   '/plugins/select2/select2.css',
   //X-editable...
-  '/plugins/x-editable/js/bootstrap-editable.js' , 
-  '/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' , 
-  '/plugins/wysihtml5/wysihtml5.js',
+// 	'/plugins/x-editable/js/bootstrap-editable.js' , 
+  //	'/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' , 
+  //'/plugins/wysihtml5/wysihtml5.js',
   '/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js',
   '/plugins/jquery.appear/jquery.appear.js',
-  '/plugins/jquery.elastic/elastic.js',
+  //'/plugins/jquery.elastic/elastic.js',
   
 );
 //error_log("BasURL : ".Yii::app()->request->baseUrl);
@@ -60,6 +60,13 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
 		margin-top: 10px;
 		color: white !important;
 	}
+	#createNews #mentionsText textarea{
+		width: 100%;
+		min-height: 100px;
+	}
+	#createNews #mentionsText .mentions, #createNews #btn-toogle-dropdown-scope, #createNews #btn-toogle-dropdown-targetIsAuthor{
+		text-align:left;
+	}
 
 </style>
 
@@ -81,10 +88,10 @@ $CO2DomainName = Yii::app()->params["CO2DomainName"];
                     	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
                     			height="50" class="inline margin-top-25 margin-bottom-5">
                     <?php } ?>
-                    <?php if($CO2DomainName == "CO2"){ ?>
+                    <?php /*if($CO2DomainName == "CO2"){ ?>
                     	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
                     			height="50" class="inline margin-top-25 margin-bottom-5">
-                    <?php } ?>
+                    <?php } */?>
                     <br>
                 </div>
                

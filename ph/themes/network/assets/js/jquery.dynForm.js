@@ -22,6 +22,7 @@ onSave: (optional) overloads the generic saveProcess
 	thisStyle = thisBody.style, 
 	$this,
 	initValues = {},
+	initSelectNetwork = [],
 	supportTransition = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined
 	
 	/*$(subviewBackClass).on("click", function(e) {
@@ -38,6 +39,7 @@ onSave: (optional) overloads the generic saveProcess
 				formId : "", 
 				formObj: {},
 				formValues: {},
+				beforeBuild : null,
 				onLoad : null,
 				onSave: null,
 				beforeSave: null,
@@ -47,8 +49,8 @@ onSave: (optional) overloads the generic saveProcess
 			var settings = $.extend({}, defaults, options);
 			$this = this;
 
-			console.info("build Form dynamically into form tag : ",settings.formId);
-			console.dir(settings.formObj);
+			mylog.info("build Form dynamically into form tag : ",settings.formId);
+			mylog.dir(settings.formObj);
 
 			/* **************************************
 			* BUILD FORM based on formObj
@@ -66,8 +68,11 @@ onSave: (optional) overloads the generic saveProcess
 						'</div>';
 			$(settings.formId).append(errorHTML);
 
-			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
+			if(settings.beforeBuild && jQuery.isFunction( settings.beforeBuild ) )
+				settings.beforeBuild();
 
+			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
+				//mylog.log("??????????????????????????",field,fieldObj);
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
 				
@@ -82,17 +87,17 @@ onSave: (optional) overloads the generic saveProcess
 	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues.id) ? settings.formValues.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
-        				'<div class="space20"></div>'+
-        				
-						'<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
+        				'<hr class="col-md-12">';
+        	if( !settings.formObj.jsonSchema.noSubmitBtns )
+				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
 							'Valider <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
-						' <a href="javascript:;"" onclick="$(\'#ajax-modal\').modal(\'hide\');" class="btn btn-default pull-right text-red" style="margin-right:10px;">'+
+						' <a href="javascript:dyFObj.closeForm(); " class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
 							'<i class="fa fa-times "></i> Annuler'+
-						'</a> '+
+						'</a> ';
 
-					'</div>';
+			fieldHTML += '</div>';
 
 	        $( settings.formId ).append(fieldHTML);
 
@@ -112,7 +117,7 @@ onSave: (optional) overloads the generic saveProcess
 		},
 
 		/*buildForm: function() { 
-			console.dir($this.formObj);
+			mylog.dir($this.formObj);
 		},*/
 
 	});
@@ -130,9 +135,9 @@ onSave: (optional) overloads the generic saveProcess
 			required = "*";
 
 		if(fieldObj.label)
-			fieldHTML += '<label class=" control-label" for="'+field+'">'+
-                fieldObj.label+required+
-            '</label>';
+			fieldHTML += '<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="'+field+'">'+
+			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+
+			            '</label>';
 
         var iconOpen = (fieldObj.icon) ? '<span class="input-icon">'   : '';
         var iconClose = (fieldObj.icon) ? '<i class="'+fieldObj.icon+'"></i> </span>' : '';
@@ -148,7 +153,7 @@ onSave: (optional) overloads the generic saveProcess
         	value = formValues[field];
         }
         if(value!="")
-        	console.warn("--------------- dynform form Values",field,value);
+        	mylog.warn("--------------- dynform form Values",field,value);
 
         /* **************************************
 		* 
@@ -165,7 +170,8 @@ onSave: (optional) overloads the generic saveProcess
         else if( !fieldObj.inputType || 
         		  fieldObj.inputType == "text" || 
         		  fieldObj.inputType == "numeric" || 
-        		  fieldObj.inputType == "tags" ) {
+        		  fieldObj.inputType == "tags" || 
+        		  fieldObj.inputType == "price" ) {
         	if(fieldObj.inputType == "tags")
         	{
         		fieldClass += " select2TagsInput";
@@ -174,9 +180,26 @@ onSave: (optional) overloads the generic saveProcess
         				initValues[field] = {};
         			initValues[field]["tags"] = fieldObj.values;
         		}
+        		if(fieldObj.maximumSelectionLength)
+        			initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
+        		
+        		if(typeof fieldObj.data != "undefined"){
+	        		initSelectNetwork[field]=fieldObj.data;
+	        	}
+        		if(typeof fieldObj.mainTag != "undefined")
+					mainTag=mainTag;
         		style = "style='width:100%;margin-bottom: 10px;border: 1px solid #ccc;'";
         	}
-        	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
+        	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
+        	fieldHTML += iconOpen+' <input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
+        
+        	if(fieldObj.inputType == "price"){       		
+        		fieldHTML += '<select class="'+fieldClass+'" name="devise" id="devise" style="">';
+				fieldHTML += 	'<option class="bold" value="€">euro €</option>';
+				fieldHTML += 	'<option class="bold" value="$">dollars $</option>';
+				fieldHTML += 	'<option class="bold" value="CFP">CFP</option>';
+				fieldHTML += '</select>';
+        	}
         }
         
         /* **************************************
@@ -185,17 +208,36 @@ onSave: (optional) overloads the generic saveProcess
         else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
         	if ( fieldObj.inputType == "timestamp" )
         		value = Date.now();
-        	console.log("build field "+field+">>>>>> hidden, timestamp");
+        	mylog.log("build field "+field+">>>>>> hidden, timestamp");
         	fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
         }
         /* **************************************
 		* TEXTAREA
 		***************************************** */
-        else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){ 
+        else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){
+        	mylog.log("build field "+field+">>>>>> textarea, wysiwyg", fieldObj);
         	if(fieldObj.inputType == "wysiwyg")
         		fieldClass += " wysiwygInput";
-        	console.log("build field "+field+">>>>>> textarea, wysiwyg");
-        	fieldHTML += '<textarea id="'+field+'" class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
+        	var maxlength = "";
+        	var minlength = 0;
+        	if(notNull(fieldObj.rules) && notNull(fieldObj.rules.maxlength) ){
+        		fieldClass += " maxlengthTextarea";
+        		maxlength = fieldObj.rules.maxlength;
+        		minlength = value.length ;
+        	}
+
+        	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
+        	fieldHTML += '<textarea id="'+field+'" maxlength="'+maxlength+'"  class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
+        	
+        	if(maxlength > 0)
+        		fieldHTML += '<span><span id="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
+
+
+        }else if ( fieldObj.inputType == "markdown"){ 
+        	mylog.log("build field "+field+">>>>>> textarea, markdown");
+        	fieldClass += " markdownInput";
+        	//fieldHTML +='<textarea id="'+field+'" name="'+field+'" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" data-provide="markdown" data-savable="true" rows="10"></textarea>';
+        	fieldHTML +='<textarea name="target-editor" id="'+field+'" data-provide="markdown" data-savable="true" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" rows="10"></textarea>';
         }
         /* **************************************
 		* CHECKBOX
@@ -205,12 +247,25 @@ onSave: (optional) overloads the generic saveProcess
 	       	var checked = ( fieldObj.checked ) ? "checked" : "";
 	       	var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
 	       	var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.switch.onText+"' data-off-text='"+fieldObj.switch.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
-	       	console.log("build field "+field+">>>>>> checkbox");
+	       	mylog.log("build field "+field+">>>>>> checkbox");
 	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+' '+switchData+'/> '+placeholder;
 	       	initField = function(){
 	       		if( fieldObj.switch )
 	       			initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
 	       	};
+       	}
+
+       	/* **************************************
+		* RADIO
+		***************************************** */
+        else if ( fieldObj.inputType == "radio" ) {
+   			
+	       	mylog.log("build field "+field+">>>>>> radio");
+	       	fieldHTML += '<div class="btn-group" data-toggle="buttons">';
+	       	value = ( (typeof fieldObj.value != "undefined") ? fieldObj.value : value ) ;
+	       	if(fieldObj.options)
+	       		fieldHTML += buildRadioOptions(fieldObj.options,value, field) ;
+	       	fieldHTML += '</div>';
        	}
 
 
@@ -220,7 +275,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) 
         {
        		var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
-       		console.log("build field "+field+">>>>>> select selectMultiple");
+       		mylog.log("build field "+field+">>>>>> select selectMultiple");
        		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
        		fieldHTML += '<select class="'+isSelect2+' '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px;" data-placeholder="'+placeholder+'">';
 			if(placeholder)
@@ -229,19 +284,19 @@ onSave: (optional) overloads the generic saveProcess
 				fieldHTML += '<option></option>';
 
 			var selected = "";
-			
+			mylog.log("fieldObj select", fieldObj)
 			//initialize values
 			if(fieldObj.options)
-				fieldHTML += buildSelectOptions(fieldObj.options, fieldObj.value);
+				fieldHTML += buildSelectOptions(fieldObj.options, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
 			
 			if( fieldObj.groupOptions ){
-				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, fieldObj.value);
+				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
 			} 
 			fieldHTML += '</select>';
         }
 
         /*else if ( fieldObj.inputType == "selectList"  ) {
-       		console.log("build field "+field+">>>>>> select selectList");
+       		mylog.log("build field "+field+">>>>>> select selectList");
 			fieldHTML += '<ul role="menu" class="dropdown-menu scrollable-menu '+fieldClass+'" id="'+field+'" style="width: 100%;height:30px" >'+
 	            '<li class="categoryOrgaEvent col-md-12">'+
 	                '<ul class="dropOrgaEvent" id="citoyen">'+	                    
@@ -262,18 +317,96 @@ onSave: (optional) overloads the generic saveProcess
 
         
         
-        else if ( fieldObj.inputType == "image" ) {
+        else if ( fieldObj.inputType == "uploader" ) {
         	if(placeholder == "")
         		placeholder="add Image";
-        	console.log("build field "+field+">>>>>> image");
-        	fieldHTML += '<form method="post" id="photoAddForm" enctype="multipart/form-data">'+
-							iconOpen+
-							'<input type="file" class="form-control newImage '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" accept=".gif, .jpg, .png" onchange="showMyImage2(this)"/>'+
-							iconClose+
-					'</form>'+
-					'<div id="resultsImage" class="bg-white results"></div>';
-				alert(fieldObj.contextType+"//"+fieldObj.contextId);
-        	//initFormImages(fieldObj.contextType, fieldObj.contextId);
+        	mylog.log("build field "+field+">>>>>> uploader");
+        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>'+
+							'<script type="text/template" id="qq-template-gallery">'+
+							'<div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">'+
+							'<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">'+
+							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>'+
+							'</div>'+
+							'<div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>'+
+							'<span class="qq-upload-drop-area-text-selector"></span>'+
+							'</div>'+
+							'<div class="qq-upload-button-selector btn btn-primary">'+
+							'<div>Ajouter une image</div>'+
+							'</div>'+
+							'<button type="button" id="trigger-upload" class="btn btn-danger hide">'+
+			                '<i class="icon-upload icon-white"></i> Enregistrer'+
+			                '</button>'+
+							'<span class="qq-drop-processing-selector qq-drop-processing">'+
+							'<span>En cours de progression...</span>'+
+							'<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>'+
+							'</span>'+
+							'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
+							'<li>'+
+							'<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
+							'<div class="qq-progress-bar-container-selector qq-progress-bar-container">'+
+							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
+							'</div>'+
+							'<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
+							'<div class="qq-thumbnail-wrapper">'+
+							'<img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>'+
+							'</div>'+
+							'<button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>'+
+							'<button type="button" class="qq-upload-retry-selector qq-upload-retry">'+
+							'<span class="qq-btn qq-retry-icon" aria-label="Retry"></span>'+
+							'Retry'+
+							'</button>'+
+							''+
+							'<div class="qq-file-info">'+
+							'<div class="qq-file-name">'+
+							'<span class="qq-upload-file-selector qq-upload-file"></span>'+
+							//'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+							'</div>'+
+							'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
+							'<span class="qq-upload-size-selector qq-upload-size"></span>'+
+							'<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">'+
+							'<span class="qq-btn qq-delete-icon" aria-label="Delete"></span>'+
+							'</button>'+
+							'<button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">'+
+							'<span class="qq-btn qq-pause-icon" aria-label="Pause"></span>'+
+							'</button>'+
+							'<button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">'+
+							'<span class="qq-btn qq-continue-icon" aria-label="Continue"></span>'+
+							'</button>'+
+							'</div>'+
+							'</li>'+
+							'</ul>'+
+							''+
+							'<dialog class="qq-alert-dialog-selector">'+
+							'<div class="qq-dialog-message-selector"></div>'+
+							'<div class="qq-dialog-buttons">'+
+							'<button type="button" class="qq-cancel-button-selector">Close</button>'+
+							'</div>'+
+							'</dialog>'+
+							''+
+							'<dialog class="qq-confirm-dialog-selector">'+
+							'<div class="qq-dialog-message-selector"></div>'+
+							'<div class="qq-dialog-buttons">'+
+							'<button type="button" class="qq-cancel-button-selector">No</button>'+
+							'<button type="button" class="qq-ok-button-selector">Yes</button>'+
+							'</div>'+
+							'</dialog>'+
+							''+
+							'<dialog class="qq-prompt-dialog-selector">'+
+							'<div class="qq-dialog-message-selector"></div>'+
+							'<input type="text">'+
+							'<div class="qq-dialog-buttons">'+
+							'<button type="button" class="qq-cancel-button-selector">Cancel</button>'+
+							'<button type="button" class="qq-ok-button-selector">Ok</button>'+
+							'</div>'+
+							'</dialog>'+
+							'</div>'+
+							'</script>';
+			if( fieldObj.showUploadBtn )
+        		initValues.showUploadBtn = fieldObj.showUploadBtn;
+        	if( fieldObj.filetypes )
+        		initValues.filetypes = fieldObj.filetypes;
+			if( $.isFunction( fieldObj.afterUploadComplete ) )
+        		initValues.afterUploadComplete = fieldObj.afterUploadComplete;
         }
 
         /* **************************************
@@ -282,7 +415,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "date" ) {
         	if(placeholder == "")
         		placeholder="25/01/2014";
-        	console.log("build field "+field+">>>>>> date");
+        	mylog.log("build field "+field+">>>>>> date");
         	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -292,7 +425,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "datetime" ) {
         	if(placeholder == "")
         		placeholder="25/01/2014 08:30";
-        	console.log("build field "+field+">>>>>> datetime");
+        	mylog.log("build field "+field+">>>>>> datetime");
         	fieldHTML += iconOpen+'<input type="text" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
         /* **************************************
@@ -301,7 +434,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "daterange" ) {
         	if(placeholder == "")
         		placeholder="25/01/2014";
-			console.log("build field "+field+">>>>>> daterange");
+			mylog.log("build field "+field+">>>>>> daterange");
         	fieldHTML += iconOpen+'<input type="text" class="form-control daterangeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -311,7 +444,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "time" ) {
         	if(placeholder == "")
         		placeholder="20:30";
-        	console.log("build field "+field+">>>>>> time");
+        	mylog.log("build field "+field+">>>>>> time");
         	fieldHTML += iconOpen+'<input type="text" class="form-control timeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
@@ -321,15 +454,46 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "link" ) {
         	if(fieldObj.url.indexOf("http://") < 0 )
         		fieldObj.url = "http://"+fieldObj.url;
-        	console.log("build field "+field+">>>>>> link");
+        	mylog.log("build field "+field+">>>>>> link");
         	fieldHTML += '<a class="btn btn-primary '+fieldClass+'" href="'+fieldObj.url+'">Go There</a>';
+        } 
+
+         /* **************************************
+		* CAPCHAT
+		***************************************** */
+        else if ( fieldObj.inputType == "captcha" ) {
+        	mylog.log("build field "+field+">>>>>> captcha");
+        	fieldHTML += '<div class="col-md-8 pull-right text-right">';
+				fieldHTML += '<h5 for="message" class="letter-green margin-bottom-25">';
+					fieldHTML += '<span class="letter-red"><i class="fa fa-lock fa-2x"></i> sécurité</span><br>'; 
+					fieldHTML += 'merci de recopier le code ci-dessous<br>afin de valider votre message <i class="fa fa-chevron-down"></i>';
+				fieldHTML += '</h5>';
+				fieldHTML += '<input placeholder="taper le code ici" class="col-md-6 txt-captcha text-right pull-right" id="captcha">';
+			fieldHTML += '</div>';
+        }
+
+
+        /* **************************************
+		* TAG List
+		***************************************** */
+        else if ( fieldObj.inputType == "tagList" ) {
+        	mylog.log("build field "+field+">>>>>> tagList");
+        	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
+        	$.each(fieldObj.list,function(k,v) { 
+        		//mylog.log("build field ",k,v);
+        		var lbl = ( fieldObj.trad && fieldObj.trad[k] ) ? fieldObj.trad[k] : k;
+        		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
+        						'<a class="btn tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'"'+
+        						' data-tag="'+lbl+'" data-key="'+k+'" href="'+action+'"><i class="fa fa-'+v.icon+'"></i> <br>'+lbl+'</a>'+
+        					 '</div>';
+        	});
         } 
 
         /* **************************************
 		* LOCATION
 		***************************************** */
         else if ( fieldObj.inputType == "location" ) {
-        	console.log("build field "+field+">>>>>> location");
+        	mylog.log("build field "+field+">>>>>> location");
         	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" locationBtn btn btn-default'><i class='text-azure fa fa-map-marker fa-2x'></i> Localiser </a>";
         	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
@@ -338,14 +502,47 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="address" name="address[streetAddress]" id="address[streetAddress]" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
-			
+			mylog.log("location formValues", formValues);
 			//locations are saved in addresses attribute
+			if( formValues.address && formValues.geo && formValues.geoPosition ){
+				var initAddress = function(){
+					mylog.warn("init Adress location",formValues.address.addressLocality,formValues.address.postalCode);
+					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
+					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition}, -1);
+				};
+			}     
 			if( formValues.addresses ){
-				initField = function(){
+				var initAddresses = function(){
 					$.each(formValues.addresses, function(i,locationObj){
-						console.warn("init location",locationObj.address.addressLocality,locationObj.address.postalCode);
-						copyMapForm2Dynform(locationObj);
-						addLocationToForm(locationObj);
+						mylog.warn("init extra addresses location ",locationObj.address.addressLocality,locationObj.address.postalCode);
+						dyFInputs.locationObj.copyMapForm2Dynform(locationObj);
+						dyFInputs.locationObj.addLocationToForm(locationObj, i);
+					});
+				};
+			} 
+			initField = function(){
+				if(initAddress)
+					initAddress();
+				if(initAddresses)
+					initAddresses();
+				dyFInputs.locationObj.init();
+			} 
+
+        }else if ( fieldObj.inputType == "postalcode" ) {
+        	mylog.log("build field "+field+">>>>>> postalcode");
+        	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" postalCodeBtn btn btn-default'><i class='text-azure fa fa-plus fa-2x'></i> Postal Code </a>";
+        	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
+        	
+			//locations are saved in addresses attribute
+			if( formValues.postalCodes ){
+				initField = function(){
+					$.each(formValues.postalCodes, function(i,postalCodeObj){
+						mylog.warn("init location",postalCodeObj.name,postalCodeObj.postalCode);
+						copyPCForm2Dynform(postalCodeObj);
+						addPostalCodeToForm(postalCodeObj);
 					});
 				};
 			}       
@@ -355,27 +552,27 @@ onSave: (optional) overloads the generic saveProcess
 		* ARRAY , is a list of sequential values
 		***************************************** */
         else if ( fieldObj.inputType == "array" ) {
-        	console.log("build field "+field+">>>>>> array list");
-        	fieldHTML += '<div class="space5"></div><div class="inputs array">'+
-								'<div class="col-sm-10">'+
+        	mylog.log("build field "+field+">>>>>> array list");
+        	fieldHTML +=   '<div class="inputs array">'+
+								'<div class="col-sm-10 no-padding">'+
+									'<img id="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
 									'<div class="resultGetUrl resultGetUrl0 col-sm-12"></div>'+
 								'</div>'+
-								'<div class="col-sm-2">'+
-									'<button data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+								'<div class="col-sm-2 sectionRemovePropLineBtn">'+
+									'<a href="javascript:" data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
 								'</div>'+
 							'</div>'+
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
-							'<div class="col-sm-12">'+
-								'<div class="space10"></div>'+
-						        '<a href="javascript:;" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" class="addPropBtn btn btn-xs btn-success w100p" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
-						        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
-						        
-				       		'</div></span>'+
-				       '<div class="space5"></div>';
+								'<div class="col-sm-12 no-padding margin-top-5 margin-bottom-15">'+
+									'<a href="javascript:" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" class="addPropBtn btn btn-link w100p letter-green" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
+							        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
+							        
+					       		'</div>'+
+				       		'</span>';
 			
 			if( formValues && formValues[field] ){
-				console.warn("dynForm >> ",field, formValues[field]);
+				mylog.warn("dynForm >> ",field, formValues[field]);
 				fieldObj.value = formValues[field];
 			}
 			
@@ -383,7 +580,7 @@ onSave: (optional) overloads the generic saveProcess
         		initField = fieldObj.init;
         	
 			initField = function(){
-				//$("#loading_indicator").hide();
+				$("#loading_indicator").hide();
 				//initialize values
 				//value is an array of strings
 				$.each(fieldObj.value, function(optKey,optVal) {
@@ -394,8 +591,9 @@ onSave: (optional) overloads the generic saveProcess
 	                if( formValues && formValues.medias ){
 	                	$.each(formValues.medias, function(i,mediaObj) {
 	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
-	                			var strHtml = buildMediaHTML(mediaObj);
+	                			var strHtml = getMediaCommonHtml(mediaObj,"save");//buildMediaHTML(mediaObj);
 	                			$(".resultGetUrl"+optKey).html(strHtml);
+	                			$("#loading_indicator").hide();
 	                		}
 	                	});
 	                }
@@ -409,9 +607,10 @@ onSave: (optional) overloads the generic saveProcess
 		* PROPERTIES , is a list of pairs key/values
 		***************************************** */
         else if ( fieldObj.inputType == "properties" ) {
-        	console.log("build field "+field+">>>>>> properties list");
+        	mylog.log("build field "+field+">>>>>> properties list");
         	fieldHTML += '<div class="inputs properties">'+
 								'<div class="col-sm-3">'+
+									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 									'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
 								'</div>'+
 								'<div class="col-sm-7">'+
@@ -440,11 +639,27 @@ onSave: (optional) overloads the generic saveProcess
 			}
         }
 
+         /* **************************************
+		* DropDown , searchInvite
+		***************************************** */
+        else if ( fieldObj.inputType == "searchInvite" ) {
+        	mylog.log("build field "+field+">>>>>> searchInvite");
+
+			fieldHTML += '<input class="invite-search '+fieldClass+' form-control text-left" placeholder="Un nom, un e-mail ..." autocomplete = "off" id="inviteSearch" name="inviteSearch" value="">'+
+				        		'<ul class="dropdown-menu" id="dropdown_searchInvite" style="">'+
+									'<li class="li-dropdown-scope">-</li>'+
+								'</ul>'+
+							'</input>';
+			
+
+			
+        }
+
         /* **************************************
 		* CAPTCHA
 		***************************************** */
         else if ( fieldObj.inputType == "recaptcha" ) {
-        	console.log("build field "+field+">>>>>> recaptcah");
+        	mylog.log("build field "+field+">>>>>> recaptcah");
         	fieldHTML += '<div class="g-recaptcha" data-sitekey="'+fieldObj.key+'"></div>';
         } 
         
@@ -453,8 +668,9 @@ onSave: (optional) overloads the generic saveProcess
 		* CUSTOM 
 		***************************************** */
         else if ( fieldObj.inputType == "custom" ) {
-        	console.log("build field "+field+">>>>>> custom");
-        	fieldHTML += fieldObj.html;
+        	mylog.log("build field "+field+">>>>>> custom");
+
+        	fieldHTML += (typeof fieldObj.html == "function") ? fieldObj.html() : fieldObj.html;
         } 
         /* 	*************************************
         * SCOPE USER 	
@@ -488,7 +704,7 @@ onSave: (optional) overloads the generic saveProcess
 												'<div class="panel-body no-padding">'+
 													'<div class="list-group" id="menu-type">'+
 														'<ul class="col-xs-12 col-sm-12 col-md-12 no-padding">';
-				fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> '+fieldObj.title2+'</h4>';
+				fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> ! '+fieldObj.title2+'</h4>';
 														$.each(fieldObj.contactTypes, function(key, type){
 				fieldHTML += 								'<li>'+
 																'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type text-'+type.color+'">' +
@@ -537,7 +753,7 @@ onSave: (optional) overloads the generic saveProcess
 														var profilThumbImageUrl = (typeof value.profilThumbImageUrl != "undefined" && value.profilThumbImageUrl != "") ? baseUrl + value.profilThumbImageUrl : assetPath + "/images/news/profile_default_l.png";
 														var name =  typeof value.name != "undefined" ? value.name : 
 																	typeof value.username != "undefined" ? value.username : "";
-														//console.log("data contact +++++++++++ "); console.dir(value);
+														//mylog.log("data contact +++++++++++ "); mylog.dir(value);
 														var thisKey = key+''+key2;
 														var thisValue = notEmpty(value["_id"]['$id']) ? value["_id"]['$id'] : "";
 														if(name != "")
@@ -572,10 +788,13 @@ onSave: (optional) overloads the generic saveProcess
 							    '</div><!-- /.modal-content -->'+
 							  '</div><!-- /.modal-dialog -->'+
 							'</div><!-- /.modal -->';
-        }
- 
+        } 
+        else if ( fieldObj.inputType == "password" ) {
+        	mylog.log("build field "+field+">>>>>> password");
+        	fieldHTML += '<input id="'+field+'" name="'+field+'" class="form-control" type="password"/>';
+       	}
         else {
-        	console.log("build field "+field+">>>>>> input text");
+        	mylog.log("build field "+field+">>>>>> input text");
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
         if( fieldObj.custom )
@@ -604,8 +823,8 @@ onSave: (optional) overloads the generic saveProcess
 		/* **************************************
 		* FORM VALIDATION and save process binding
 		***************************************** */
-		console.info("connecting submit btn to $.validate pluggin");
-		console.dir(formRules);
+		mylog.info("connecting submit btn to $.validate pluggin");
+		mylog.dir(formRules);
 		var errorHandler = $('.errorHandler', $(params.formId));
 		$(params.formId).validate({
 
@@ -614,7 +833,7 @@ onSave: (optional) overloads the generic saveProcess
 			submitHandler : function(form) {
 				$("#btn-submit-form").html('<i class="fa  fa-spinner fa-spin fa-"></i>').prop("disabled",true);
 				errorHandler.hide();
-				console.info("form submitted "+params.formId);
+				mylog.info("form submitted "+params.formId);
 				
 				if(params.beforeSave && jQuery.isFunction( params.beforeSave ) )
 					params.beforeSave();
@@ -623,20 +842,22 @@ onSave: (optional) overloads the generic saveProcess
 					params.onSave();
 					return false;
 		        } 
-		        else 
-		        {
-		        	console.info("default SaveProcess",params.savePath);
-		        	console.dir($(params.formId).serializeFormJSON());
+		        else {
+		        	//TODO SBAR - Remove notPost form element
+		        	/*$.each($(params.formId).serializeArray()).function() {
+		        		if ($this.)
+		        	}*/
+		        	mylog.info("default SaveProcess",params.savePath);
+		        	mylog.dir($(params.formId).serializeFormJSON());
 		        	$.ajax({
 		        	  type: "POST",
 		        	  url: params.savePath,
 		        	  data: $(params.formId).serializeFormJSON(),
 		              dataType: "json"
 		        	}).done( function(data){
-		                
 		                if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
 		                    afterDynBuildSave(data.map,data.id);
-		                console.info('saved successfully !');
+		                mylog.info('saved successfully !');
 
 		        	});
 					return false;
@@ -651,7 +872,7 @@ onSave: (optional) overloads the generic saveProcess
 			}
 		});
 		
-		console.info("connecting any specific input event select2, datepicker...");
+		mylog.info("connecting any specific input event select2, datepicker...");
 		/* **************************************
 		* SELECTs , we use https://github.com/select2/select2
 		***************************************** */
@@ -675,7 +896,7 @@ onSave: (optional) overloads the generic saveProcess
 							}
 						);
 					else
-						console.error("select2 library is missing");
+						mylog.error("select2 library is missing");
 				 });
 			}
 		} 
@@ -687,18 +908,27 @@ onSave: (optional) overloads the generic saveProcess
 			{
 				$.each($(".select2TagsInput"),function () 
 				{
-					console.log("id xxxxxxxxxxxxxxxxx ",$(this).attr("id"),initValues[$(this).attr("id")]);
-					if(initValues[$(this).attr("id")]){
-						var selectOptions = {
-						  "tags": initValues[ $(this).attr("id") ]["tags"],
-						  "tokenSeparators": [',', ' '],
-						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
+					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ] );
+					if( initValues[ $(this).attr("id") ] )
+					{
+						var selectOptions = 
+						{
+						  "tags": initValues[ $(this).attr("id") ].tags ,
+						  "tokenSeparators": [','],
+						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
+						if(initValues[ $(this).attr("id") ].maximumSelectionLength)
+							selectOptions.maximumSelectionLength = initValues[$(this).attr("id")]["maximumSelectionLength"];
+						if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[$(this).attr("id")] != "undefined" && initSelectNetwork[$(this).attr("id")].length > 0)
+							selectOptions.data=initSelectNetwork[$(this).attr("id")];
+						
 						$(this).removeClass("form-control").select2(selectOptions);
+						if(typeof mainTag != "undefined")
+							$(this).val([mainTag]).trigger('change');
 					}
 				 });
 			} else
-				console.error("select2 library is missing");
+				mylog.error("select2 library is missing");
 		} 
 
 		/* **************************************
@@ -706,16 +936,14 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
 		function loadDateTimePicker(callback) {
 			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
-
-				lazyLoad( baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/jquery.datetimepicker.full.min.js', 
-						  baseUrl+'/themes/ph-dori/assets/plugins/xdan.datetimepicker/jquery.datetimepicker.min.css',
-
+				lazyLoad( baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.full.min.js', 
+						  baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.min.css',
 						  callback);
 		    }
 		}
 
 		var initDate = function(){
-			console.log("init dateInput");
+			mylog.log("init dateInput");
 			jQuery.datetimepicker.setLocale('fr');
 			$(".dateInput").datetimepicker({ 
 		        autoclose: true,
@@ -733,13 +961,13 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
 	
 		var initDateTime = function(){
-			console.log("init dateTimeInput");
+			mylog.log("init dateTimeInput");
 			jQuery.datetimepicker.setLocale('fr');
 			$(".dateTimeInput").datetimepicker({
 				weekStart: 1,
 				step: 15,
 				lang: 'fr',
-				format: 'Y/m/d H:i'
+				format: 'd/m/Y H:i'
 			   });
 		};
 		if(  $(".dateTimeInput").length){
@@ -755,22 +983,112 @@ onSave: (optional) overloads the generic saveProcess
 				$("#ajax-modal").modal("hide");
 		        showMap(true);
 		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
-		        if(typeof showMarkerNewElement != "undefined"){ showMarkerNewElement(); }
+		        if(typeof formInMap.showMarkerNewElement != "undefined"){ formInMap.showMarkerNewElement(); }
+		    });
+		}
+
+		/* **************************************
+		* Postal Code type 
+		***************************************** */
+		if(  $(".postalCodeBtn").length)
+		{
+			//todo : for generic dynForm check if map exist 
+			$(".postalCodeBtn").off().on( "click", function(){ 
+				$("#ajax-modal").modal("hide");
+		        showMap(true);
+		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
+		        if(typeof formInMap.showMarkerNewElement != "undefined"){ formInMap.showMarkerNewElement(true); }
 		    });
 		}
 		
 		/* **************************************
-		* Image type 
+		* Image uploader , we use https://github.com/FineUploader/fine-uploader
 		***************************************** */
-		if(  $("#image").length){
-			if( jQuery.isFunction(jQuery.fn.datepicker) )
-				$(".dateInput").datepicker({ 
-			        autoclose: true,
-			        language: "fr",
-			        format: "dd/mm/yyyy"
-			    });
-		    else
-				console.error("datepicker library is missing");
+		function loadFineUploader(callback) {
+			if( ! jQuery.isFunction(jQuery.fineUploader) ) {
+				lazyLoad( baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js', 
+						  baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
+						  callback);
+		    }
+		}
+
+		var FineUploader = function(){
+			mylog.log("init fineUploader");
+			
+			$(".fine-uploader-manual-trigger").fineUploader({
+	            template: 'qq-template-gallery',//'qq-template-manual-trigger',
+	            request: {
+	                endpoint: baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+uploadObj.type+"/ownerId/"+uploadObj.id+"/input/qqfile/contentKey/"+uploadObj.contentKey
+	                //params : {contentKey:contentKey}
+	            },
+	            validation: {
+	                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
+	                sizeLimit: 2000000
+	            },
+	            messages: {
+			        sizeError : '{file} est trop lourde! limite max : {sizeLimit}.',
+			        typeError : '{file} extension invalide. Extension(s) acceptable: {extensions}.'
+			    },
+	            callbacks: {
+	            	//when a img is selected
+				    onSubmit: function(id, fileName) {
+				      if(initValues.showUploadBtn)
+				      	$('#trigger-upload').removeClass("hide");
+				    },
+				    onCancel: function(id) {
+				    	if(($("ul.qq-upload-list > li").length-1)<=0)
+				    		$('#trigger-upload').addClass("hide");
+        			},
+        			/*
+				    //launches request endpoint
+				    //onUpload: function(id, fileName) {
+				      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
+				      //alert(" > request : "+baseUrl+"/"+moduleId+"/document/upload/dir/"+moduleId+"/folder/"+contextData.type+"/ownerId/"+contextData.id+"/input/dynform");
+				      //documents.saveImages(contextData.type, contextData.id);
+				    //},
+				    //launched on upload
+				    /*onProgress: function(id, fileName, uploadedBytes,totalBytes) {
+				      alert("progress");
+				    },*/
+				    //when every img finish upload process whatever the status
+				    onComplete: function(id, fileName,responseJSON,xhr) {
+				    	if(!responseJSON.result){
+				    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
+				    		console.error(trad["somethingwentwrong"] , responseJSON.msg)
+				    	}
+				    },
+				    //when all upload is complete whatever the result
+				    onAllComplete: function(succeeded, failed) {
+				      toastr.info( "Fichiers bien chargés !!");//+ uploadObj.id +" :: "+ uploadObj.gotoUrl );
+				      if( jQuery.isFunction(initValues.afterUploadComplete) )
+				      	initValues.afterUploadComplete();
+				    },
+				    //on click a photo delete btn and launches delete endpoint
+				    /*onDelete: function(id) {
+				      alert("submit delete"+id);
+				    },*/
+				    //if any error during upload
+				    onError: function(id) {
+				      toastr.info(trad["somethingwentwrong"]);
+				    }
+				},
+	            thumbnails: {
+	                placeholders: {
+	                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
+	                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
+	                }
+	            },
+	            autoUpload: false
+	        });
+	        /*$('#trigger-upload').click(function() {
+	        	//'getUploads'
+	            $('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+	            $('.fine-uploader-manual-trigger').fineUploader('getUploads');
+	        });*/
+		};
+
+		if(  $(".fine-uploader-manual-trigger").length){
+			loadFineUploader(FineUploader);
 		}
 
 		/* **************************************
@@ -783,7 +1101,7 @@ onSave: (optional) overloads the generic saveProcess
 						            timePickerIncrement: 30,
 						            format: 'DD/MM/YYYY h:mm A'
 						        }, function(start, end, label) {
-						            console.log(start.toISOString(), end.toISOString(), label);
+						            mylog.log(start.toISOString(), end.toISOString(), label);
 						        });
 							};
 			if( jQuery.isFunction(jQuery.fn.daterangepicker) )
@@ -808,8 +1126,8 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
 		if(  $(".addmultifield").length )
 		{
-			if(  $(".addmultifield1").length )
-				$('head').append('<style type="text/css">.inputs textarea.addmultifield1{width:90%; height:34px;}</style>');
+			//if(  $(".addmultifield1").length )
+			//	$('head').append('<style type="text/css">.inputs textarea.addmultifield1{width:90%; height:34px;}</style>');
 
 			//intialise event on the add new row button 
 			$('.addPropBtn').unbind("click").click(function()
@@ -827,6 +1145,7 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
 		if(  $(".wysiwygInput").length )
 		{
+			console.log("wysiwygInput wysiwygInput");
 				var initField = function(){
 					$(".wysiwygInput").summernote({
 
@@ -862,6 +1181,54 @@ onSave: (optional) overloads the generic saveProcess
 	}
 
 	/* **************************************
+	* MARKDOWN 
+	***************************************** */
+	if(  $(".markdownInput").length )
+	{
+		console.log("markdownInput");
+		var initField = function(){
+			$(".markdownInput").markdown({
+					savable:true,
+					onPreview: function(e) {
+						var previewContent = "";
+					    mylog.log(e);
+					    mylog.log(e.isDirty());
+					    if (e.isDirty()) {
+					    	var converter = new showdown.Converter(),
+					    		text      = e.getContent(),
+					    		previewContent      = converter.makeHtml(text);
+					    } else {
+					    	previewContent = "Default content";
+					    }
+					    return previewContent;
+				  	},
+				  	onSave: function(e) {
+				  		mylog.log(e);
+				  	},
+				});
+
+			
+			lazyLoad( 	baseUrl+'/plugins/showdown/showdown.min.js',
+							baseUrl+'/plugins/bootstrap-markdown/js/bootstrap-markdown.js',
+							baseUrl+'/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css',
+							initField);
+	    	
+		}
+	}
+
+
+	//if(  $(".maxlengthTextarea").length ){
+	//	mylog.log("here .maxlengthTextarea"); 
+
+		/*$(".maxlengthTextarea").off().keyup(function(){
+			mylog.log(".maxlengthTextarea", $(this).attr("id"), $(this).html().length)
+			$(".maxlength"+$(this).attr("id")).html($(this).html().length );
+		});*/
+	//}
+
+	
+
+	/* **************************************
 	*
 	*	specific methods for each type of input
 	*
@@ -872,17 +1239,20 @@ onSave: (optional) overloads the generic saveProcess
 	***************************************** */
 	function addfield( parentContainer,val,name ) 
 	{
-		console.log("addfield",parentContainer+' .inputs',val);
+		mylog.log("addfield",parentContainer+' .inputs',val);
 		if(!$.isEmptyObject($(parentContainer+' .inputs')))
 	    {
 	    	if($(parentContainer+' .properties').length > 0)
 	    		$( propertyLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
 	    	else
 	    		$( arrayLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	    	
+	    	$(".loading_indicator").hide();
+
 	    	$(parentContainer+' .addmultifield:last').focus();
 	        initMultiFields(parentContainer,name);
 	    }else 
-	    	console.error("container doesn't seem to exist : "+parentContainer+' .inputs');
+	    	mylog.error("container doesn't seem to exist : "+parentContainer+' .inputs');
 	}
 	
 	/* **************************************
@@ -892,7 +1262,7 @@ onSave: (optional) overloads the generic saveProcess
 	* enter key submition
 	***************************************** */
 	function initMultiFields(parentContainer,name){
-		console.log("initMultiFields",parentContainer);
+		mylog.log("initMultiFields",parentContainer);
 	  //manage using Enter to make easy loop editing
 	  $(parentContainer+' .addmultifield').unbind('keydown').keydown(function(event) 
 	  {
@@ -911,7 +1281,7 @@ onSave: (optional) overloads the generic saveProcess
 	  });
 
 	  var count = $(".addmultifield").length-1;
-	  getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count);
+	  getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count,0);
 	  //manage using Enter to make easy loop editing
 	  //for 2nd property field
 	  $(parentContainer+' .addmultifield1').unbind('keydown').keydown(function(event) 
@@ -945,10 +1315,11 @@ onSave: (optional) overloads the generic saveProcess
 	***************************************** */
 	function propertyLineHTML(propVal,name)
 	{
-		console.log("propertyLineHTML",propVal);
+		mylog.log("propertyLineHTML",propVal);
 		if( typeof propVal == "undefined" ) 
 	    	propVal = {"label":"","value":""};
 		var str = '<div class="space5"></div><div class="col-sm-3">'+
+					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
 				'</div>'+
 				'<div class="col-sm-7">'+
@@ -963,21 +1334,34 @@ onSave: (optional) overloads the generic saveProcess
 	***************************************** */
 	function arrayLineHTML(val,name)
 	{
-		console.log("arrayLineHTML : ",val);
+		mylog.log("arrayLineHTML : ",val);
 		if( typeof val == "undefined" ) 
 	    	val = "";
 	    var count = $(".addmultifield").length;
-		var str = '<div class="space5"></div><div class="col-sm-10">'+
+		var str = 	'<div class="col-sm-12 no-padding margin-top-10">'+
+					'<div class="col-sm-10 no-padding">'+
+							'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md value="" placeholder="..."/>'+
+							'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
+						'</div>'+
+						'<div class="col-sm-2 sectionRemovePropLineBtn">'+
+							'<a href="javascript:" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
+						'</div>'+
+					'</div>';
+
+
+		/*'<div class="space5"></div><div class="col-sm-10">'+
+					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'"/>'+
-					'<div class="resultGetUrl resultGetUrl'+count+'"></div>'+
+					'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
 					'</div>'+
 					'<div class="col-sm-2">'+
 					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-left" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
-				'</div>';
+				'</div>';*/
 		return str;
 	}
 	function buildMediaHTML(mediaObj){
-		console.log("buildMediaHTML : ",mediaObj.name);
+		mylog.log("buildMediaHTML : ",mediaObj.name);
 		var str = '<div class="extracted_url padding-10">'+
 				'<div class="extracted_thumb  col-xs-4" id="extracted_thumb">'+
 					'<a href="#" class="videoSignal text-white center"><i class="fa fa-3x fa-play-circle-o"></i>'+
@@ -998,7 +1382,7 @@ onSave: (optional) overloads the generic saveProcess
 	function initbootstrapSwitch(el,change)
 	{
 		var initSwitch = function(){
-							console.log("init bootstrap switch");
+							mylog.log("init bootstrap switch");
 							$(el).bootstrapSwitch();
 							if(typeof change == "function"){
 								$(el).on('switchChange.bootstrapSwitch', function(event, state) {
@@ -1041,7 +1425,7 @@ $.fn.serializeFormJSON = function () {
 // here's our click function for when the forms submitted
 function getPairs(parentContainer)
 {
-	//console.log("getPairs",parentContainer);
+	//mylog.log("getPairs",parentContainer);
     var properties = {};
     $.each($(parentContainer+' .addmultifield'), function(i,el) {
     	if( $(this).val() != "" && $( this ).parent().next().children(".addmultifield1") != "" ){
@@ -1049,20 +1433,20 @@ function getPairs(parentContainer)
 	        										  "value" : $( this ).parent().next().children(".addmultifield1").val()};
 	    }
     });
-    //console.dir("getPairs",properties);
+    //mylog.dir("getPairs",properties);
     return properties;
 }
 
 function getArray(parentContainer)
 {
-	//console.log("getArray",parentContainer);
+	//mylog.log("getArray",parentContainer);
     var list = [];
     $.each($(parentContainer+' .addmultifield'), function(i,el) {
     	if( $(this).val() != ""  ){
 	        list.push( $(this).val() );
 	    }
     });
-    //console.dir("getArray",list);
+    //mylog.dir("getArray",list);
     return list;
 }
 
@@ -1109,164 +1493,3 @@ function slugify (value) {
 	.replace(/\-{2,}/g,'-');
 };
 
-function initFormImages(contextType, contextId){
-	alert("init good");
-}
-
-function showMyImage2(fileInput) {
-	if($(".noGoSaveNews").length){
-		toastr.info("Wait the end of image loading");
-	}
-	else if (fileInput.files[0].size > 2097152){
-		toastr.info("Please reduce your image before to 2Mo");
-	}
-	else {
-		alert();
-		countImg=$("#resultsImage img").length;
-		idImg=countImg+1;
-		htmlImg="";
-		var files = fileInput.files;
-		if(countImg==0){
-			htmlImg = "<input type='hidden' class='type' value='gallery_images'/>";
-			htmlImg += "<input type='hidden' class='count_images' value='"+idImg+"'/>";
-			htmlImg += "<input type='hidden' class='algoNbImg' value='"+idImg+"'/>";
-			nbId=idImg;
-			$("#resultsImage").show();
-		}
-		else{
-			nbId=$(".algoNbImg").val();
-			nbId++;
-			$(".count_images").val(idImg);
-			$(".algoNbImg").val(nbId);
-		}
-		
-		htmlImg+="<div class='newImageAlbum'><i class='fa fa-spin fa-circle-o-notch fa-3x text-green spinner-add-image noGoSaveNews'></i><img src='' id='thumbail"+nbId+"' class='grayscale' style='width:75px; height:75px;'/>"+
-		       	"<input type='hidden' class='imagesNews' name='goSaveNews' value=''/></div>";
-		$("#resultsImage").append(htmlImg);
-
-	    for (var i = 0; i < files.length; i++) 
-	    {
-	        var file = files[i];
-	        var imageType = /image.*/;     
-	        if (!file.type.match(imageType)) {
-	            continue;
-	        }           
-	        var img=document.getElementById("thumbail"+nbId);            
-	        img.file = file;    
-	        var reader = new FileReader();
-	        reader.onload = (function(aImg) { 
-	            return function(e) { 
-	                aImg.src = e.target.result; 
-	            }; 
-	        })(img);
-	        reader.readAsDataURL(file);
-	    }  
-	    validationImage = {
-		errorElement : "span", // contain the error msg in a span tag
-		errorClass : 'help-block',
-		errorPlacement : function(error, element) {// render error placement for each input type
-			if (element.attr("type") == "radio" || element.attr("type") == "checkbox") {// for chosen elements, need to insert the error after the chosen container
-				error.insertAfter($(element).closest('.form-group').children('div').children().last());
-			} else if (element.parent().hasClass("input-icon")) {
-				error.insertAfter($(element).parent());
-			} else {
-				error.insertAfter(element);
-				// for other inputs, just perform default behavior
-			}
-		},
-		ignore : "",
-		rules : {
-			goSaveNews : true /*{
-				required:{
-					depends: function() {
-						if($(".noGoSaveNews").length){
-							return true;
-						}
-						else{
-							return false;
-						}
-					}	
-				}
-			}*/
-		},
-		messages : {
-			goSaveNews: "* Image is still loading"
-
-		},
-//		e.preventDefault();
-		submitHandler : function(form) {
-			$.ajax({
-			url : baseUrl+"/"+moduleId+"/document/"+uploadUrl+"dir/"+moduleId+"/folder/room/ownerId/me/input/roomsImage",
-			type: "POST",
-			data: new FormData(this),
-			contentType: false,
-			cache: false, 
-			processData: false,
-			dataType: "json",
-			success: function(data){
-				if(debug)console.log(data);
-		  		if(data.success){
-			  		console.log("success");
-		  			imageName = data.name;
-					var doc = { 
-						"id":contextParentId,
-						"type":contextParentType,
-						"folder":"room/me",
-						"moduleId":moduleId,
-						"author" : userId  , 
-						"name" : data.name , 
-						"date" : new Date() , 
-						"size" : data.size ,
-						"doctype" : docType,
-						"contentKey" : contentKey
-					};
-					console.log(doc);
-					path = "/"+data.dir+data.name;
-					$.ajax({
-					  	type: "POST",
-					  	url: baseUrl+"/"+moduleId+"/document/save",
-					  	data: doc,
-				      	dataType: "json"
-					}).done( function(data){
-				        if(data.result){
-						    toastr.success(data.msg);
-						    //setTimeout(function(){
-						    $(".imagesNews").last().val(data.id.$id);
-						    $(".imagesNews").last().attr("name","");
-						    $(".newImageAlbum").last().find("img").removeClass("grayscale");
-						    $(".newImageAlbum").last().find("i").remove();
-						    $(".newImageAlbum").last().append("<a href='javascript:;' onclick='deleteImage(\""+data.id.$id+"\",\""+data.name+"\")'><i class='fa fa-times fa-x padding-5 text-white removeImage' id='deleteImg"+data.id.$id+"'></i></a>");
-						    //},200);
-				
-						} else{
-							toastr.error(data.msg);
-							if($("#resultsImage img").length>1)
-						  		$(".newImageAlbum").last().remove();
-						  	else{
-						  		$("#resultsImage").empty();
-						  		$("#resultsImage").hide();
-						  	}
-						}
-						$("#addImage").off();
-					});
-		  		}
-		  		else{
-			  		if($("#resultsImage img").length>1)
-				  		$(".newImageAlbum").last().remove();
-				  	else{
-				  		$("#resultsImage").empty();
-				  		$("#resultsImage").hide();
-				  	}
-				  	$("#addImage").off();
-		  			toastr.error(data.msg);
-		  		}
-			},
-		});
-		}
-	};
-	   alert("done here");
-	  //  var form = $('#photoAddForm').get(0);
-//$.removeData(form, 'validator');
-		form.submit(function(e) { e.preventDefault }).validate(validationImage);;	  
-	}
-}

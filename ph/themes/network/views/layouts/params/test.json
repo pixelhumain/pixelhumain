@@ -1,0 +1,82 @@
+{
+    "name" : "Emmaüs",
+    "mode" : "server",
+    "skin" : {
+        "title" : "Emmaüs",
+        "shortDescription" : "Emmaüs",
+        "displayScope" : false,
+        "docs":false,
+        "displayCommunexion" : true,
+        "displayNotifications" : false,
+        "profilBar" : false,
+        "breadcrum" : true,
+        "displayButtonGridList" : false,
+        "class" : {
+            "mainContainer" : false
+        },
+        "iconeAdd" : false,
+        "iconeSearchPlus" : false,
+        "loginTitle":"",
+        "front" : {
+            "organization" : true,
+            "project" : false,
+            "event" : false,
+            "community" : false,
+            "dda" : false,
+            "live" : false,
+            "search" : false,
+            "need" : false,
+            "poi" : true
+        },
+        "menu" : {
+            "aroundMe":false,
+            "connectLink":false,
+            "add":true,
+            "detail":true,
+            "news":true,
+            "directory":true,
+            "gallery":true
+        }
+    },
+   "filter" : {
+        "types" : false,
+        "linksTag" : {
+        "Catégories" : {
+                "tagParent" : "Ecofrugal",
+                "background-color" : "#f5f5f5",
+                "tags" : {
+                "Alimentation":"Alimentation",
+                "Consommation":"Consommation",
+                "Energie":"Energie",
+                "Entretien":"Entretien",
+                "Famille":"Famille",
+                "Finance":"Finance",
+                "Habitat":"Habitat",
+                "Loisirs":"Loisirs",
+                "Santé":"Santé",
+                "Technologie":"Technologie",
+                "Transport":"Transport",
+                "Travail":"Travail"
+                }
+            }       
+       }
+},
+    "add" : {
+        "organization" : true
+        
+    },
+    "result" : {
+        "displayImage" : true,
+        "displayType" : false,
+        "fullLocality" : true,
+        "datesEvent" : false,
+    "displayShortDescription" : true
+    },
+    "request" : {
+        "pagination" : 1000,
+        "sourceKey" : "Inter1",
+        "searchType" : [
+            "organizations"
+        ]
+    }
+}

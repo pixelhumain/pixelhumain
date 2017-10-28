@@ -5,149 +5,13 @@ $cssAnsScriptFilesModule = array(
 	//'/js/news/autosize.js',
 );
 HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->assetsUrl);
+
+HtmlHelper::registerCssAndScriptsFiles( array('/css/notifications.css') , Yii::app()->theme->baseUrl. '/assets');
 ?>
 <style type="text/css">
-	.notifications li {
-		min-height:50px;
-		padding: 10px;
-		background-color: rgba(197, 225, 197, 0.3);
-		border-bottom: 1px dashed #bed1be;
-	}
-	.notifications li.read{
-		background-color:white !important;
-	}
-	.notifications{
-		/*background-color: white;*/
-		color: #528195;
-		padding: 2px 0px !important;
-	}
-	.notifications .pageslide-title{
-		padding-left: 10px;
-		text-align: inherit; 
-		color:#67B04C;
-		font-size: 14px !important;
-		text-transform: none !important;
-	}
-	#notificationPanelSearch{
-	position: fixed;
-	top: 62px !important;
-	/*border-top:1px solid rgba(128, 128, 128, 0.54);*/
-	right: 0%;
-	width: 430px;
-	bottom: 0px;
-	overflow-y: auto;
-	background-color: white;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-radius: 0px;
-    box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
-    -webkit-box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
-    -o-box-shadow: 2px 0px 5px -1px rgba(66, 66, 66, 0.79) !important;
-    box-shadow: 0px 9px 12px 3px rgba(66, 66, 66, 0.37) !important;
-    overflow-x: hidden;
-    z-index: 13000;
-    
-		display:none;
-		/*background-color: white;
-		/*box-shadow: 0px 0px !important;
-		left:unset !important;
-		right:25px;
-		width: 300px !important;
-		-moz-box-shadow: 0px 0px 3px 0px #656565;
-		-webkit-box-shadow: 0px 0px 3px 0px #656565;
-		-o-box-shadow: 0px 0px 3px 0px #656565;
-		box-shadow: 0px 0px 3px 0px #656565;
-		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);*/
-	}
-	.notifications a.notif{
-		padding-top: 0px !important;
-		background-color: transparent;
-		color: #354535;
-		font-size: 13px;
-	}
-	ul.notifList{
-		position: absolute;
-		bottom: 0px !important;
-		overflow-y: auto;
-		padding-right: 10px;
-		top: 45px;
-		padding: 0px;
-		-moz-box-shadow: 0px 0px 3px -1px #656565;
-		-webkit-box-shadow: 0px 0px 3px -1px #656565;
-		-o-box-shadow: 0px 0px 3px -1px #656565;
-		box-shadow: 0px 0px 3px -1px #656565;
-		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);
-	}
-
 	
-
-	.notifications .pageslide-list a .label{
-		opacity: 0.7;
-		position: absolute;
-		font-size: 20px !important;
-		border-radius: 30px !important;
-		height: 40px;
-		padding-top: 7px !important;
-		padding-left: 7px !important;
-		margin-top: 5px;
-		height: 35px;
-		width: 35px;
-		margin-left: -1px;
-		background-color: #56c557 !important;
-	}
-
-	.notifications .message,.notifications .time {
-	    padding-left: 40px;
-	    display:block;
-	    position: relative;
-	    top: -20px;
-	}
-	.notifications .time {
-	   color: #4d654d;
-	}
-	.btn-notification-action{
-		background-color: #71CE4E !important;
-		color: white;
-		margin: 0px !important;
-		margin-top: -4px !important;
-		padding: 4px 8px !important;
-		margin-right: 10px !important;
-	}
-	.footer-notif{
-		position: absolute;
-		bottom:10px;
-		width:100%;
-	}
-	.btn-reload-notif{
-		border-radius: 50%!important;
-	    margin-left: 14px !important;
-	    margin-right: 5px !important;
-	}
-	#notificationPanelSearch{
-		width:415px !important;
-		max-width: 100%;
-	}
-
-	.badge-tranparent{
-		background-color: transparent;
-	}
-	.removeBtn{
-		position: absolute !important;
-		right: 3px;
-		bottom: 4px;
-		border-radius:25px !important;
-		border:1px solid grey;
-		color: grey;
-	}
-	.removeBtn:hover{
-		background-color: grey;
-		color: white;
-	};
-	.removeBtn i{
-		font-size:12px;
-	}
-</style>
-<div id="notificationPanelSearch" class="">
+</style> 
+<div id="notificationPanelSearch" class="arrow_box">
 		<div class="notifications">
 			<a href="javascript:;" onclick='refreshNotifications("<?php echo Yii::app()->session["userId"]?>","<?php echo Person::COLLECTION ?>","")' class="btn-notification-action pull-left btn-reload-notif">
 				<i class="fa fa-refresh"></i>
@@ -160,51 +24,12 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->
 			</a>	
 			
 			
-			<ul class="pageslide-list notifList">
+			<ul class="pageslide-list notifList col-md-12 col-sm-12 col-xs-12">
 				<?php
 					$maxTimestamp = 0;
-					/*if(isset($this->notifications))
-					{
-						//for($i=0; $i<10; $i++)
-						foreach( $this->notifications as $item )
-				        {
-				        	if(isset($item["notify"]))
-				        	{
-				        		if(@$item["updated"])
-				        			$timestamp=$item["updated"];
-				        		else if (@$item["timestamp"])
-				        			$timestamp=$item["timestamp"];
-				        		else
-				        			$timestamp=$item["created"];
-				        		$url = str_replace("/", ".", $item["notify"]["url"]);
-				        		$href = $url;
-					            echo "<li class='notifLi notif_".(string)$item["_id"]."'>";
-					            echo "<a class='lbh notif' data-id='".(string)$item["_id"]."' href='".$href."'><span class='label label-primary'>";
-					            echo '<i class="fa '.$item["notify"]["icon"].'"></i></span> <span class="message text-dark">';
-					            echo $item["notify"]["displayName"];
-					            
-					            echo ", <span class='time pull-left'>".round(abs(time() - $timestamp->sec) / 60)."min</span></span></a>";
-					            echo "</li>";
-					            if($timestamp->sec > $maxTimestamp)
-					            	$maxTimestamp = $timestamp->sec;
-					        }
-				        } 
-				    } */
 				?>
 			</ul>
-			<!-- <div class="footer-notif">
-			 <ul class="pageslide-list header col-xs-6 col-sm-6 col-md-6 padding-10 no-margin" style="height:50px;">
-				<li class="center">
-					<a href="javascript:;" onclick='refreshNotifications()' class="btn-notification-action"><i class="fa fa-refresh"></i></a>
-				</li>
-			</ul> 
-			<ul  class="pageslide-list footer col-xs-6 col-sm-6 col-md-6 padding-10 no-margin" style="height:50px;"> 
-				<li class='markAllAsRead center'>
-					<a href="javascript:;" onclick='markAllAsRead()' class="btn-notification-action" style="font-size:11px;"><?php echo Yii::t("common","All as Read") ?> <i class="fa fa-check-square-o"></i></a>	
-				</li>
-			</ul>
-			</div> -->
-
+		
 			<?php /*
 			<div class="view-all">
 				<a href="javascript:void(0)">
@@ -216,7 +41,6 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->
 </div>
 <!-- end: PAGESLIDE RIGHT -->
 <script type="text/javascript">
-
 var notifications = null;
 var maxNotifTimstamp = <?php echo $maxTimestamp ?>;
 
@@ -242,7 +66,7 @@ jQuery(document).ready(function()
 		setTimeout(function(){
           //  elem.addClass("read");
             //elem.removeClass('animated bounceOutRight');
-            loadByHash(hash);
+            urlCtrl.loadByHash(hash);
             //notifCount();
         }, 200);
 	});
@@ -397,7 +221,7 @@ function buildNotifications(list)
 		{
 			var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url : "#";
 			//convert url to hash for loadByHash
-			url = "#"+url.replace(/\//g, ".");
+			url = "#"+urlCtrl.replace(/\//g, ".");
 			//var moment = require('moment');
 			moment.lang('fr');
 			if(typeof notifObj.updated != "undefined")

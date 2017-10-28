@@ -183,7 +183,7 @@ class ArrayHelper {
 	    	else if($typeValue == "JSON")
                 $assocArray[$path[0]] = json_decode($value, true);
 	    	else
-	    		$assocArray[$path[0]] = $value ;
+	    		$assocArray[$path[0]] = trim($value) ;
 	    }
 	    else{
 	    	$newPath = array_splice($path, 1);
@@ -218,7 +218,6 @@ class ArrayHelper {
 	public static function getAllPath($json, $chaine=null, $pere=null){
         if($chaine==null)
         	$chaine = "" ;
-        //var_dump($json);
         foreach ($json as $key => $value){
         	if(is_array($value)==true){
 
@@ -253,6 +252,14 @@ class ArrayHelper {
         }
         return $attributesElt ;
     }
+
+    public static function arrayToString($array, $separator = ", ") {
+		$str = "";
+		foreach ($array as $key => $val) {
+			$str .= ($str != "") ? $separator.trim($val) : trim($val);
+		}
+		return $str ;
+	}
 }
 
 

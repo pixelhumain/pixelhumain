@@ -14,7 +14,7 @@
 		    <ul class="dropdown-menu dropdown-menu-right">
 		      <?php if(isset($params['add']['organization']) && $params['add']['organization']) { ?>
 		     <li>
-		      <a onclick="loadByHash('#organization.addorganizationform');">
+		      <a onclick="urlCtrl.loadByHash('#organization.addorganizationform');">
 		        <i class="fa fa-group fa-2x text-green"></i>
 		        <span class="add-title">une organisation</span>
 		      </a>
@@ -22,7 +22,7 @@
 		    <?php } ?>
 		    <?php if(isset($params['add']['project']) && $params['add']['project']) { ?>
 		    <li>
-		      <a onclick="loadByHash('#project.projectsv');">
+		      <a onclick="urlCtrl.loadByHash('#project.projectsv');">
 		        <i class="fa fa-lightbulb-o fa-2x text-purple"></i>
 		        <span class="add-title">un projet</span>
 		      </a>
@@ -30,7 +30,7 @@
 		    <?php } ?>
 		    <?php if(isset($params['add']['event']) && $params['add']['event']) { ?>
 		    <li>
-		      <a onclick="loadByHash('#event.eventsv');">
+		      <a onclick="urlCtrl.loadByHash('#event.eventsv');">
 		        <i class="fa fa-calendar fa-2x text-orange"></i>
 		        <span class="add-title">un événement</span>
 		      </a>
@@ -97,7 +97,7 @@ width: 100%;
 			</br>Communectez
 		</div> 
 		<?php } else {?>
-			<div class="item"><a class="btn bg-white" href="javascript:;" onclick="loadByHash('#city.detail.insee.<?php echo $me["address"]["codeInsee"]?>');" id="btn-menu-dropdown-my-city"><i class="fa fa-university text-red"></i> </a><br/>Ma commune</div>
+			<div class="item"><a class="btn bg-white" href="javascript:;" onclick="urlCtrl.loadByHash('#city.detail.insee.<?php echo $me["address"]["codeInsee"]?>');" id="btn-menu-dropdown-my-city"><i class="fa fa-university text-red"></i> </a><br/>Ma commune</div>
 		<?php } ?>
 
 	  	<div class="item"><a class="btn bg-azure" href="javascript:;" onclick="$('.btn-menu2').trigger('click');$.unblockUI();" ><i class="fa fa-connectdevelop"></i> </a><br/>L'Annuaire</div>
@@ -108,7 +108,7 @@ width: 100%;
 	  	
 	  	<?php if(isset(Yii::app()->session['userId'])){ ?>
 			<?php if( isset($me) && Role::isDeveloper($me['roles']) ){?>
-			<div class="item"><a class="btn bg-red" href="javascript:;" onclick="loadByHash('#admin.index')" ><i class="fa fa-cog"></i> </a><br/><?php echo Yii::t("common", "Admin"); ?></div>
+			<div class="item"><a class="btn bg-red" href="javascript:;" onclick="urlCtrl.loadByHash('#admin.index')" ><i class="fa fa-cog"></i> </a><br/><?php echo Yii::t("common", "Admin"); ?></div>
 			<?php } ?>
 			<div class="item"><a class="btn bg-red" href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" 
 				   id="btn-menu-dropdown-logout" class="text-red">

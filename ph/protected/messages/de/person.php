@@ -1,0 +1,45 @@
+<?php
+return array(
+	'Problem inserting the new person : ' => "Problem beim Einfügen eines neuen Benutzers : ",
+	'is missing' => 'fehlt',
+	'Problem inserting the new person : email is not well formated' => "Problem beim Einfügen eines neuen Benutzers : Die E-Mail-Adresse ist nicht richtig formatiert",
+	"Problem inserting the new person : a person with this email already exists in the plateform" => "Problem beim Einfügen eines neuen Benutzers : eine Person mit dieser E-Mail-Adresse existiert bereits auf der Plattform",
+	"Problem inserting the new person : a person with this username already exists in the plateform" => "Problem beim Einfügen eines neuen Benutzers : eine Person mit diesem Benutzernamen existiert bereits auf der Plattform",
+	"Problem inserting the new person : unknown city" => "Problem beim Einfügen eines neuen Benutzers : die Stadt ist unbekannt",
+	'Find people you know by name or email' => 'Finden Sie jemanden über seinem Namen oder E-Mail-Adresse den Sie kennen',
+	'Add a Person' => 'Laden Sie jemanden ein',
+	//Change Password
+	"Your current password is incorrect" => "Das alte Passwort ist falsch eingegeben worden.",
+	"The new password should be 8 caracters long" => "Das neue Passwort muss mindestens 8 Zeichen lang sein.",
+	"Your password has been changed with success !" => "Ihr Passwort wurde erfolgreich geändert.",
+	//Invitation process
+	"Sorry, you can't invite more people to join the platform. You do not have enough invitations left." => "Es tut uns leid, aber du kannst nicht mehr Leute einladen sich der Plattform anzuschließen. Sie haben nicht genug Einladungen",
+	"The person has been updated" => "Die Person wurde erfolgreich aktualisiert",
+	"Birth date" => "Geburtsdatum",
+	"Phone" => "Festnetztelefon",
+	"Mobile" => "Mobiltelefon",
+	"Country" => "Land",
+	"Postal Code" => "Postleitzahl",
+	"Address" => "Adresse",
+	"Fax" => "Fax",
+	"Username" => "Benutzername",
+	"Short Description" => "Kurzbeschreibung",
+	"Contact information" => "Allgemeine Informationen",
+	"My space" => "Mein persönlicher Bereich",
+	"My city" => "Meine Gemeinde/ Stadt",
+	"My Votes / Discussions" => "Meine Abstimmungen / Diskussionen",
+	"Invite someone" => "Laden Sie jemanden ein",
+	"Create an event" => "Erstellen Sie eine Veranstaltung",
+	"Create a project" => "Erstellen Sie ein Projekt",
+	"Create an organization" => "Verweise auf eine Organisation",
+	"Sign out" => "Logout",
+	"Edit your informations" => "Bearbeiten Sie Ihre Informationen",
+	"Enter your name" => "Geben Sie Ihren Vor- und Nachnamen ein",
+	"Enter your user name" => "Geben Sie Ihren Benutzernamen ein",
+	"Enter your phones" => "Geben Sie Ihre Festnetznummern ein und trennen Sie die Nummern durch Kommata.",
+	"Enter your mobiles" => "Geben Sie Ihre Mobilfunknummern ein und trennen Sie die Nummern durch Kommata.",
+	"Enter your fax" => "Geben Sie Ihre Faxnummern ein und trennen Sie die Nummern durch Kommata.",
+	"Hello, \\nCome and meet me on that website!\\nAn email, your town and you are connected to your city!\\nYou can see everything that happens in your city and act for the commons." => "Guten Tag und hallo, \\nKommen Sie mit mir auf dieser Seite ! \\nEine E-Mail-Adresse, eine Postleitzahl und schon sind Sie verbunden. Sie können alles sehen was in Ihrer Stadt oder Gemeinde passiert und zur Allmende beitragen.\\n"
+	
+);
+?>

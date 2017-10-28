@@ -1,3 +1,85 @@
+
+function ajaxPost(id,ajaxUrl,params,callback, datatype){
+    mylog.log("ajaxPost", id,ajaxUrl,params);
+    /*if(dataType == null)
+    dataType = "json";*/
+    if(datatype != "html" )
+        $(id).html("");
+    $.ajax({
+        url:ajaxUrl,
+        data:params,
+        type:"POST",
+        //  dataType: "json",
+        success:function(data) {
+            if(datatype == "none" )
+                console.log();
+            else if(datatype === "html" )
+                $(id).html(data);
+            else if(typeof data.msg === "string" )
+                toastr.success(data.msg);
+            else if( id != null )
+                $("#"+id).html(JSON.stringify(data, null, 4));
+
+            if( typeof callback === "function")
+                callback(data,id);
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+            mylog.error(thrownError);
+        } 
+    });
+}
+
+function getAjax(id,ajaxUrl,callback,datatype,blockUI)
+{
+  $.ajaxSetup({ cache: true});
+  mylog.log("getAjax",id,ajaxUrl,callback,datatype,blockUI);
+    if(blockUI)
+        $.blockUI({
+            message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.processingMsg") ) ? themeObj.blockUi.processingMsg : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
+                '<blockquote>'+
+                  '<p>Art is the heart of our culture.</p>'+
+                '</blockquote> ' )
+        });
+  
+    if(datatype != "html" )
+        $(id).html( "<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>" );
+  
+    $.ajax({
+        url:ajaxUrl,
+        type:"GET",
+        cache: true,
+        success:function(data) {
+          if (data.error) {
+            mylog.warn(data.error);
+            toastr.error(data.error.msg);
+          } else if(datatype === "html" )
+            $(id).html(data);
+          else if(datatype === "norender" )
+            mylog.log("no render",ajaxUrl)
+          else if( typeof data === "string" && datatype != null )
+            toastr.success(data);
+          else
+              $(id).html( JSON.stringify(data, null, 4) );
+          if( typeof callback === "function")
+            callback(data,id);
+          if(blockUI)
+            $.unblockUI();
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+          //mylog.error(thrownError);
+          $.blockUI({
+              message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.errorMsg") ) ? themeObj.blockUi.errorMsg : '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> Oups !! 404 ERROR<br> La page que vous demandez ne peut être trouvée ... </div>'
+              +'<a class="thumb-info" href="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" data-title="Il n\'existe pas d\'évolution sans erreur."  data-lightbox="all">'
+              + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>'),
+              timeout: 3000 
+          });
+          //mylog.log("URL : ", url);
+          setTimeout(function(){ urlCtrl.loadByHash('#')},3000);
+          if(blockUI)
+            $.unblockUI();
+        } 
+    });
+}
 function testitpost(id,url,params,callback){
 	console.log(id,url,params);
 	$("#"+id).html("");

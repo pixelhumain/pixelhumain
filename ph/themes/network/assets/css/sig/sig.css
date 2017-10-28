@@ -87,6 +87,7 @@ svg{
     width:100%;
 	font-size: 14px;
  	color:black;
+ 	padding-left:10px;
  }
  .popup-section {
  	padding-bottom: 5px;
@@ -163,19 +164,20 @@ creer des conflits : regle pas assez specfique
 /*
 	LISTE ELEMENT MAP (RIGHT)
 */
- #right_tool_map{
+#right_tool_map{
 	top: 100px !important;
-    right: 51px !important;
-    left: initial !important;
-	width:275px;
-	max-height:90%;
+    right: 0px !important;
+    left: unset !important;
+    margin-top: 40px;
+	width:30%;
+	min-height:400px;
 	height: initial !important;
 	position:absolute !important;
 	background-color:white;
 	-moz-box-shadow: -5px -5px 1px 0px rgba(189, 189, 189, 0.40);
 	-webkit-box-shadow: -5px -5px 1px 0px rgba(189, 189, 189, 0.40);
 	-o-box-shadow: -5px -5px 1px 0px rgba(189, 189, 189, 0.40);
-	box-shadow: -5px -5px 1px 0px rgba(189, 189, 189, 0.40);
+	box-shadow: -5px -5px 10px -3px rgba(0, 0, 0, 0.40);
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#cfcfcf, Direction=315, Strength=3);
 }
 .right_tool_map_header{

@@ -25,7 +25,7 @@ input#second-search-bar{
     margin: 10px 5px 0 -10px;
 }
 .affix .navbar-header .nc_map {
-    margin: 10px 10px 0 -15px;
+    margin: 15px 10px 0 -15px;
 }
 #btn-sethome, #btn-apropos, #btn-radio{
     background-color: transparent !important;
@@ -39,6 +39,23 @@ input#second-search-bar{
 .menu-btn-back-category{
     cursor:pointer;
 }
+
+a.text-dark.link-submenu-header {
+    color : #ea4335 !important;
+    padding-bottom: 5px;
+}
+
+a.link-submenu-header.active, 
+a.link-submenu-header:hover, 
+a.link-submenu-header:active, 
+a.link-submenu-header:focus{  
+    border-bottom: 2px solid #ea4335;
+    text-decoration: none;
+    /*background-color: rgba(255, 255, 255, 1);
+    color:#ea4335 !important;
+    text-decoration: none;*/
+}
+
 </style>
 
 <!-- Navigation -->
@@ -53,7 +70,7 @@ input#second-search-bar{
                 <a href="#web" class="lbh menu-btn-back-category">
             <?php } ?>
             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
-                     class="nc_map pull-left show-top" height=20>
+                     class="logo-menutop pull-left show-top" height=20>
             </a>
 
             <span class="hidden-xs skills font-montserrat <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
@@ -69,7 +86,10 @@ input#second-search-bar{
                     <a href="#web" class="lbh navbar-brand font-blackoutM menu-btn-back-category">
                 <?php } ?>
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
-                     class="nc_map pull-left" height=30>
+                     class="nc_map pull-left hidden-sm" height=20>
+                
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/kgougle/logo-min-k.png" 
+                     class="nc_map pull-left visible-sm" height=20>
                 
                 <!-- <small class="letter letter-red pastille font-blackoutT <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
                     <?php //echo $subdomainName; ?>
@@ -83,13 +103,14 @@ input#second-search-bar{
         <?php if( $subdomain == "web" ||
                   $subdomain == "actu" ||
                   $subdomain == "search" ||
+                  $subdomain == "social" ||
                   $subdomain == "agenda" ||
                   $subdomain == "power"  ||
                   $subdomain == "freedom"||
                   $subdomain == "admin"||
                   $subdomain == "page" ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-4 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-3 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo $placeholderMainSearch; ?>">
                 <?php if($subdomain == "page"){ ?>
@@ -108,6 +129,10 @@ input#second-search-bar{
         </button>
 
        <?php if( isset( Yii::app()->session['userId']) ){ ?>
+            <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
+                  data-toggle="tooltip" data-placement="top" title="Mon réseau" alt="<?php echo Yii::t("common","My network") ?>">
+              <i class="fa fa-link"></i>
+            </button>
             <button class="btn-show-mainmenu btn btn-link" title="Menu">
                 <i class="fa fa-bars tooltips" data-toggle="tooltip" data-placement="bottom" title=""></i>
             </button>
@@ -147,12 +172,6 @@ input#second-search-bar{
                                 </li>
                                 <li role="separator" class="divider"></li> -->
                                 <li class="text-left">
-                                    <a href="#search.type.cities" target="_blank" class="lbh text-red bg-white">
-                                        <i class="fa fa-university"></i> Communexion
-                                    </a>
-                                </li>
-                                <li role="separator" class="divider"></li>
-                                <li class="text-left">
                                     <a href="#web" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-search"></i> Rechercher sur le web
                                     </a>
@@ -169,6 +188,33 @@ input#second-search-bar{
                                         <i class="fa fa-newspaper-o"></i> Actualités
                                     </a>
                                 </li>
+                                <!-- <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#annonces" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-bullhorn"></i> Annonces
+                                    </a>
+                                </li> -->
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#agenda" target="_blank" class="lbh bg-white">
+                                        <i class="fa fa-calendar"></i> Agenda
+                                    </a>
+                                </li>
+                                
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#info.p.apropos" target="_blank" class="lbh bg-white">
+                                        <small><i class="fa fa-info-circle"></i> A propos</small>
+                                    </a>
+                                </li>
+
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#info.p.sethome" target="_blank" class="lbh bg-white">
+                                        <small><i class="fa fa-home"></i> Garder en page d'accueil</small>
+                                    </a>
+                                </li>
+
                                 <li role="separator" class="divider"></li>
                                 <!-- <li role="separator" class="divider">
                                 </li>
@@ -190,18 +236,22 @@ input#second-search-bar{
 
 
 
-                    <button class="menu-button btn-menu btn-menu-notif tooltips text-dark pull-right" 
+                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
                         <?php count($this->notifications); ?>
                       </span>
                     </button>
+
+                    
                    
                 <?php } else { ?>
-                    <li class="page-scroll hidden">
+                    <li class="page-scroll">
                         <button class="letter-green font-montserrat btn-menu-connect" data-toggle="modal" data-target="#modalLogin">
-                        <i class="fa fa-sign-in"></i> SE CONNECTER</button>
+                        <span class="hidden-xs"><i class="fa fa-sign-in"></i> SE CONNECTER</span>
+                        <span class="visible-xs"><i class="fa fa-sign-in fa-2x"></i></span>
+                        </button>
                     </li>
                 <?php } ?>                
             </ul>
@@ -211,10 +261,10 @@ input#second-search-bar{
             <button class="btn btn-link letter-yellow tooltips btn-star-fav pull-right font-montserrat"  
                     data-placement="bottom" title="Gérer vos favoris"
                     data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i>
-            </button>     
-        <?php } ?>
-
-        <a href="#info.p.sethome" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-sm hidden-xs" 
+            </button>   
+        <?php }//else{ ?>
+            
+        <!-- <a href="#info.p.sethome" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-sm hidden-xs" 
             id="btn-sethome" style=" margin-top:6px;"  
             data-placement="bottom" title="Utiliser KGOUGLE en page d'accueil sur votre navigateur">
             <i class="fa fa-plus"></i> <i class="fa fa-home fa-2x"></i>
@@ -225,7 +275,25 @@ input#second-search-bar{
             id="btn-apropos" style=" margin-top:6px;"  
             data-placement="bottom" title="A propos de KGOUGLE">
             <i class="fa fa-question-circle fa-2x"></i>
-        </a>
+        </a> -->
+
+            <?php 
+                $params = CO2::getThemeParams();
+                foreach (array_reverse($params["pages"]) as $key => $value) {
+                if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
+                <a href="<?php echo $key; ?>" 
+                    class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
+                            <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"
+                    data-placement="bottom" title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
+                    <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+
+                    <!-- <span class=""><?php echo $value["subdomainName"]; ?></span> -->
+                    <?php if(@$value["notif"]){ ?>
+                    <span class="<?php echo $value["notif"]; ?> topbar-badge badge animated bounceIn badge-warning"></span>
+                    <?php } ?>
+                </a>  
+            <?php   }} ?>
+        <?php //} ?>
 
         <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
             id="btn-radio" style=" margin-top:6px;"  
@@ -249,7 +317,9 @@ input#second-search-bar{
 
  <?php $this->renderPartial($layoutPath.'modals.kgougle.mainMenu', array("me"=>$me) ); ?>
 
+<?php   $this->renderPartial($layoutPath.'modals.kgougle.loginRegister', array("subdomain" => $subdomain)); 
+?>
 
-<?php $this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
+<?php //$this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
 
 

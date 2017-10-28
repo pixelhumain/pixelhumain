@@ -1,6 +1,6 @@
   <?php
   $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header');
-  $url = Yii::app()->getRequest()->getBaseUrl(true)."/#".Element::getControlerByCollection($parentType).".detail.id.".(string)$parent["_id"];
+  $url = Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".$parentType.".id.".(string)$parent["_id"];
   $verbAction=$verb;
   if($verb=="contribute")
     $verbAction="contribute to";
@@ -18,7 +18,7 @@
               <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/images/bdb.png"?>" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;" alt="Intelligence collective"></a>
               <b>
               <h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;"></h5></b><br>
-              <b><a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/#person.detail.id.<?php echo $authorId ?>" target="_blank"><?php echo $authorName ?></a></b> <?php echo Yii::t("mail","has confirmed your request to")." ".Yii::t("mail",$verbAction)." ".Yii::t("common", "the ".Element::getControlerByCollection($parentType)) ?> <a href="<?php echo $url ?>" target="_blank"><?php echo $parent["name"] ?></a><br>
+              <b><a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo $authorId ?>" target="_blank"><?php echo $authorName ?></a></b> <?php echo Yii::t("mail","has confirmed your request to")." ".Yii::t("mail",$verbAction)." ".Yii::t("common", "the ".Element::getControlerByCollection($parentType)) ?> <a href="<?php echo $url ?>" target="_blank"><?php echo $parent["name"] ?></a><br>
               <br><br>
               <?php echo Yii::t("mail","Now, you can connect you and used all functions")." ".Yii::t("mail", "of ".$typeOfDemand)." ".Yii::t("common", "on")." ".Yii::t("common","this ".Element::getControlerByCollection($parentType)).": ".Yii::t("mail", "editing details, add element, editing news, manage comunity, etc.")."." ?>
               <br>

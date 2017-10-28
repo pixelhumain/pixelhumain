@@ -14,6 +14,8 @@
 		border-radius: 50px;
 		margin-top: 21px;
 		margin-left: 5px;
+		border: 1px solid #e6344d !important;
+		padding: 7px 9px;
 	}
 
 	header .btn-decommunecter{
@@ -26,6 +28,12 @@
 		box-shadow: 0px 0px 3px -1px grey;
 	}
 
+	.moduleTitle #bgTitle{
+		border-radius:40px;
+		background-color: rgba(255, 255, 255, 0.5);
+		padding: 5px 15px;
+	}
+
 
 	@media (max-width: 768px) {
 		.link-submenu-header span{
@@ -34,39 +42,22 @@
 	}
 
 </style>
-
-<?php
-    $communexion = CO2::getCommunexionCookies();  
-    if($communexion["state"] == false){
-?>
-	<!-- <i class="fa fa-<?php echo @$icon; ?> fa-3x"></i><br> -->
-	<a href="#web" class="menu-btn-back-category" data-target="#modalMainMenu" data-toggle="modal">
-	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="60" class="inline margin-bottom-15">
+<h1 class="text-red homestead">
+	<span id="main-scope-name">
+	<a href="#" class="menu-btn-back-category shadow2" data-target="#modalMainMenu-block" data-toggle="modal">
+	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo-head-search.png"
+	 	 height="60" class="inline margin-bottom-15">
 	</a>
 	<br>
-<?php }else{ ?>
-	<h1 class="text-red homestead">
-		<!-- <button class="btn btn-link tooltips btn-decommunecter"
-				data-toggle="tooltip" data-placement="right" title="Quitter la communexion" >
-			<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO.png" height="40" 
-			 class="inline no-margin">
-		</button>
-		<br> -->
-		<!-- <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO-link.png" height="30" class="inline no-margin">
-		<br> -->
-		<span id="main-scope-name"><?php echo @$communexion["values"]["cityName"]; ?></span> 
-	</h1>
-<?php } ?>
+	</span>
+</h1>
 
-<!-- 
-<small class="text-dark homestead pastille-subdomain hidden"><?php echo @$subdomainName; ?> 
-</small>
-<br>-->
 
-<div class="text-dark" style="font-size:20px; margin-bottom:10px;">
+<div class="text-dark moduleTitle" style="font-size:20px; margin-bottom:10px;">
+<span id="bgTitle">
 	<i class="fa fa-<?php echo @$icon; ?>"></i>
-	<?php echo $mainTitle; ?> 
-	
+	<?php echo Yii::t("common",@$mainTitle); ?> 
+</span>
 	
 </div>
 

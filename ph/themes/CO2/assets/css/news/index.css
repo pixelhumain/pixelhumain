@@ -165,9 +165,21 @@ div.timeline .date_separator span{
 	position:relative;
 	max-height: 250px;
 	overflow: hidden;
+	width:100%;
+}
+.timeline-panel .updateLoading{
+	position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(250,250,250,0.9);
+    right: 0;
+    bottom: 0px;
+    font-size: 25px;
+    text-align: -webkit-center;
 }
 .extracted_content h4{
 	margin-top:inherit;
+	margin-bottom: 5px;
 }
 
 .loading_indicator{
@@ -183,6 +195,9 @@ div.timeline .date_separator span{
 }
 .results, .resultGetUrl{
 	margin-top: 10px;
+}
+.results .searchEntityContainer{
+	width: 100% !important;
 }
 .removeMediaUrl{
 	position:absolute;
@@ -215,6 +230,10 @@ div.timeline .date_separator span{
 }
 .editable-input, .editable-container,.editableform .form-control{
 	/*width:100% !important;*/
+}
+.results .extracted_content{
+	padding:0px 0px 0px 5px;
+
 }
 .videoSignal{
 	position: absolute;
