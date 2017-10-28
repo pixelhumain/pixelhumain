@@ -493,7 +493,7 @@ return array(
 	"search on people communected ..."=>"suche unter den Mitgliedern des gesamten Netzwerks ...",
 	"<span class='text-red'>Territorial</span> search engine"=>"<span class='text-red'>Territoriale</span> Suchmaschine",
 	"Classified ads"=>"Kleinanzeigen",
-	"<span class='text-red'>C</span>Ommon agenda"=>"Der <span class='text-red'>G</span>meinsame Terminkalender",
+	"<span class='text-red'>C</span>Ommon agenda"=>"Der <span class='text-red'>Gemein</span>same Terminkalender",
 	"<span class='text-red'>CO</span>mmon live"=>"Der <span class='text-red'>Gemein</span>same Nachrichtenstrom",
 	"Create a page"=>"Eine Seite erstellen",
 	"Create a classified ad"=>"Eine Anzeige veröffentlichen",
