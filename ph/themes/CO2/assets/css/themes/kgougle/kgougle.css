@@ -76,6 +76,10 @@ header img, .header img {
 	background-color: rgba(0,0,0,0.7);
 }
 
+button#open-rocketChat{
+	display: none!important;
+}
+
 @media (max-width: 992px) {
 
     header .container{

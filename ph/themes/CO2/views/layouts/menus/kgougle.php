@@ -272,15 +272,15 @@ a.link-submenu-header:focus{
             <i class="fa fa-question-circle fa-2x"></i>
         </a>
 
-        <?php }else{ ?>
+        <?php }//else{ ?>
             <?php 
                 $params = CO2::getThemeParams();
                 foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
-                    class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
+                    class="<?php echo $key; ?>ModBtn btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"
-                    data-placement="bottom" data-original-title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
+                    data-placement="bottom" title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
                     <i class="fa fa-<?php echo $value["icon"]; ?>" style="font-size:19px;"></i>
 
                     <!-- <span class=""><?php echo $value["subdomainName"]; ?></span> -->
@@ -289,7 +289,7 @@ a.link-submenu-header:focus{
                     <?php } ?>
                 </a>  
             <?php   }} ?>
-        <?php } ?>
+        <?php //} ?>
 
         <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
             id="btn-radio" style=" margin-top:6px;"  
