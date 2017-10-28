@@ -34,7 +34,7 @@
 		"AGENDA"=>"TERMINKALENDER",
 		"LIVE"=>"LIVE",
 		"The search engine"=>"Die Suchmaschine",
-		"To find easily local actors"=>"Um Akteure in geringer Entfernung zu Ihnen, leicht zu finden",
+		"To find easily local actors"=>"Um ganz einfach Akteure in Ihrer Nähe zu finden",
 		"Local ads"=>"Lokale Kleinanzeigen",
 		"To simplify goods and services exchanges"=>"Vereinfachung des Handels mit Waren und Dienstleistungen",
 		"A common agenda"=>"Ein gemeinschaftlicher Terminkalender",
