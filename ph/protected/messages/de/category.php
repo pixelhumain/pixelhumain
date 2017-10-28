@@ -129,7 +129,7 @@
         "Art pieces"=>"Kunst",
         "Street art"=>"Straßenkunst",
         "Open mic"=>"Offene Bühne",
-        "Stand"=>"Ausstellungsstand",
+        "Stand"=>"Markt-/ Informationsstand",
         "Other"=> "Anderes",
         //Types event
 		"Contest" => "Wettkampf",
