@@ -131,7 +131,7 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
           $(idTextArea).val("");
           $(idTextArea).css('height', "34px");
           var heightTxtArea = $(idTextArea).css("height");
-          $("#container-txtarea-"+idUx).css('height', heightTxtArea);
+          //$("#container-txtarea-"+idUx).css('height', heightTxtArea);
         }else
           mentionsInit.isSearching=false;
       }

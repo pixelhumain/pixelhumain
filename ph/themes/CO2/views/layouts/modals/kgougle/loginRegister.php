@@ -161,8 +161,8 @@
                     </a>
                     <br><br>
                     
-                    <a href="javascript:;" class="btn btn-default bg-white" data-toggle="modal" data-target="#modalRegister">
-                             <!-- <i class="fa fa-sign-in"></i> --> Je veux m'inscrire
+                    <a href="javascript:;" class="btn btn-default bg-white letter-blue" data-toggle="modal" data-target="#modalRegister">
+                             <i class="fa fa-plus-circle"></i> <b>Créer mon compte</b>
                     </a>
                 </div>
 
