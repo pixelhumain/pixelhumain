@@ -995,7 +995,7 @@ return array(
 	'Address Summary' => "Adressübersicht",
 	'ValideFormInMap' => "<span class='hidden-xs'>Adresse und Position</span> bestätigen",
 	'City Informations' => "Informationen über die Stadt",
-	'Insee' => "Insee, Französisches Nationalinstitut für Statistik und Wirtschaftswissenschaften",
+	'Insee' => "INSEE",
 	'level3' => "Region",
 	'level4' => "Departement",
 	'latlng' => "Längegrad / Breitengrad",
