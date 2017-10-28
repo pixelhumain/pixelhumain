@@ -122,11 +122,11 @@
         <?php if( isset( Yii::app()->session['userId']) ){ ?>
             
             <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
-                  data-toggle="tooltip" data-placement="top" title="Mon réseau" alt="<?php echo Yii::t("common","My network") ?>">
+                  data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","My network") ?>" alt="<?php echo Yii::t("common","My network") ?>">
               <i class="fa fa-link"></i>
             </button>
             <button class="btn-show-mainmenu btn btn-link" 
-                    data-toggle="tooltip" data-placement="top" title="Menu">
+                    data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","Menu") ?>">
                 <i class="fa fa-bars tooltips" ></i>
             </button>
         <?php } ?>
@@ -273,7 +273,7 @@
 
 
                     <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
-                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications" style="border-left:none !important;">
+                          data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Notifications") ?>" alt="<?php echo Yii::t("common","Notifications") ?>" style="border-left:none !important;">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
                               <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
@@ -283,7 +283,7 @@
                     </button>
                     
                     <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
-                          onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" title="Messagerie" alt="Messagerie">
+                          onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Messaging") ?>" alt="<?php echo Yii::t("common","Messaging") ?>">
                       <i class="fa fa-comments"></i>
                       <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>

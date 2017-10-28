@@ -152,6 +152,7 @@
     	"Conference" => "Conférence",
     	"Debate" => "Débat",
 		"Film"=>"Projection",
+        "Crowdfunding" => "Crowdfunding",
         //TYPES
         "NGO" => "Association",
         "LocalBusiness" => "Entreprise",
