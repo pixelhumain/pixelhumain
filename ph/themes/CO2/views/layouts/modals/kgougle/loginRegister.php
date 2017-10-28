@@ -193,20 +193,18 @@
             <div class="row">
                 <div class="col-lg-12">
                     <span class="name" >
-                        <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
-                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
-                       <?php } else if(Yii::app()->params["CO2DomainName"] == "FI"){ ?>
-                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/FI-logo.png" height="60" class="inline margin-bottom-15">
-                       <?php } else { ?>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
-                                <?php  $this->renderPartial('webroot.themes.'.$nameTheme.'.views.layouts.forms.CO2.menuTitle'); ?>
-                                     <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right" src="<?php echo $this->module->assetsUrl?>/images/logoL.jpg"/>
-                                <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
-                                </div>
-                            </div>
-                        <?php } ?>
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
                     </span>
+                    <div class="col-md-12 text-dark">
+                       <hr>
+                        <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Partage de messages</label> 
+                       <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Partage d'événements</label> 
+                       <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Gestion de contacts</label>  
+                       <!-- <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Messagerie privées</label>   -->
+                       <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Notifications</label> 
+                       <hr>
+                    </div>
+                    <h3 class="letter-red">Créer votre compte<br><i class="fa fa-angle-down"></i></h3>
                     <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
                     <!-- <p>Rejoindre la version co2<br/>Le commun avance, montez à bord !!<hr></p> -->
                 </div>

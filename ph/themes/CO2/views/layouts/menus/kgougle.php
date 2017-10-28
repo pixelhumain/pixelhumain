@@ -25,7 +25,7 @@ input#second-search-bar{
     margin: 10px 5px 0 -10px;
 }
 .affix .navbar-header .nc_map {
-    margin: 10px 10px 0 -15px;
+    margin: 15px 10px 0 -15px;
 }
 #btn-sethome, #btn-apropos, #btn-radio{
     background-color: transparent !important;
@@ -86,7 +86,10 @@ a.link-submenu-header:focus{
                     <a href="#web" class="lbh navbar-brand font-blackoutM menu-btn-back-category">
                 <?php } ?>
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
-                     class="nc_map pull-left" height=30>
+                     class="nc_map pull-left hidden-sm" height=20>
+                
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/kgougle/logo-min-k.png" 
+                     class="nc_map pull-left visible-sm" height=20>
                 
                 <!-- <small class="letter letter-red pastille font-blackoutT <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
                     <?php //echo $subdomainName; ?>
@@ -107,7 +110,7 @@ a.link-submenu-header:focus{
                   $subdomain == "admin"||
                   $subdomain == "page" ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-4 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-3 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo $placeholderMainSearch; ?>">
                 <?php if($subdomain == "page"){ ?>
@@ -185,12 +188,12 @@ a.link-submenu-header:focus{
                                         <i class="fa fa-newspaper-o"></i> Actualités
                                     </a>
                                 </li>
-                                <li role="separator" class="divider"></li>
+                                <!-- <li role="separator" class="divider"></li>
                                 <li class="text-left">
                                     <a href="#annonces" target="_blank" class="lbh bg-white">
                                         <i class="fa fa-bullhorn"></i> Annonces
                                     </a>
-                                </li>
+                                </li> -->
                                 <li role="separator" class="divider"></li>
                                 <li class="text-left">
                                     <a href="#agenda" target="_blank" class="lbh bg-white">
@@ -205,6 +208,7 @@ a.link-submenu-header:focus{
                                     </a>
                                 </li>
 
+                                <li role="separator" class="divider"></li>
                                 <li class="text-left">
                                     <a href="#info.p.sethome" target="_blank" class="lbh bg-white">
                                         <small><i class="fa fa-home"></i> Garder en page d'accueil</small>
@@ -258,8 +262,9 @@ a.link-submenu-header:focus{
                     data-placement="bottom" title="Gérer vos favoris"
                     data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i>
             </button>   
-
-        <a href="#info.p.sethome" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-sm hidden-xs" 
+        <?php }//else{ ?>
+            
+        <!-- <a href="#info.p.sethome" class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat hidden-sm hidden-xs" 
             id="btn-sethome" style=" margin-top:6px;"  
             data-placement="bottom" title="Utiliser KGOUGLE en page d'accueil sur votre navigateur">
             <i class="fa fa-plus"></i> <i class="fa fa-home fa-2x"></i>
@@ -270,18 +275,17 @@ a.link-submenu-header:focus{
             id="btn-apropos" style=" margin-top:6px;"  
             data-placement="bottom" title="A propos de KGOUGLE">
             <i class="fa fa-question-circle fa-2x"></i>
-        </a>
+        </a> -->
 
-        <?php }//else{ ?>
             <?php 
                 $params = CO2::getThemeParams();
                 foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
-                    class="<?php echo $key; ?>ModBtn btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
+                    class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"
                     data-placement="bottom" title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
-                    <i class="fa fa-<?php echo $value["icon"]; ?>" style="font-size:19px;"></i>
+                    <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
 
                     <!-- <span class=""><?php echo $value["subdomainName"]; ?></span> -->
                     <?php if(@$value["notif"]){ ?>

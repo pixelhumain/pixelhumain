@@ -80,6 +80,13 @@ button#open-rocketChat{
 	display: none!important;
 }
 
+.btn-menu-to-app{
+	font-size: 17px;
+	padding: 3px;
+	padding-top: 11px;
+	margin: 0 4px;
+}
+
 @media (max-width: 992px) {
 
     header .container{
@@ -115,6 +122,15 @@ button#open-rocketChat{
 
 	.affix .navbar-header .nc_map{
 		margin-left:0px !important;
+	}
+
+	.link-submenu-header span{
+		display: inline!important;
+	}
+	.link-submenu-header{
+		margin-bottom: 20px;
+		display: inline-block;
+		font-size: 15px;
 	}
 
 }
