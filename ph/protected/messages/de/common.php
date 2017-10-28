@@ -221,7 +221,7 @@ return array(
     "course" => "Bildung",
     "workshop" => "Workshop",
     "conference" => "Konferenz",
-    "debate" => "Debatte",
+    "debate" => "Diskussion",
 	
 	//EMAILS
 	"New Organization created on " => "Neue Organisation erstellt auf ",
@@ -443,7 +443,7 @@ return array(
 	"Your are inviting to join {what}"=> "Sie sind dazu eingeladen, sich {what} anzuschließen",
 	"Already admin" => "Bereits Administrator",
 	"Already following" => "Bereits Abonnent",
-	"Don't follow this page" => "Beobachte diese Seite nicht mehr",
+	"Don't follow this page" => "Ich möchte diese Seite nicht mehr beobachten",
 	"Waiting"=>"Warten",
 	"Waiting an answer to administrate"=> "Erwarte eine Antwort um administrieren zu können",
 	"Waiting an answer to become {what}"=>"Erwarte eine Antwort um {what} zu werden",
@@ -1040,7 +1040,7 @@ return array(
     "artPiece"      => "Kunstwerk",
     "streetArts"    => "Straßenkunst",
     "openScene"     => "Offene Bühne",
-    "stand"         => "Markt-/ Ausstellungsstand",
+    "stand"         => "Markt-/ Informationsstand",
     "parking"       => "Parkplatz",
     "other"          => "Anderes",
     "The start date must be before the end date" => "Das Anfangsdatum muss vor dem Enddatum liegen",
