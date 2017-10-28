@@ -10,7 +10,7 @@ return array(
 	"My Calendar" => "Mein Kalender",
 	"Log Out" => "Logout",
 	"LOG OUT" => "LOGOUT",
-	"My parameters" => "Meine Einstellungen", 
+	"My parameters" => "Datenschutzeinstellungen", 
 	"YES" => "JA",
 	"NO" => "NEIN",
 	"Yes" => "Ja",
