@@ -383,6 +383,7 @@ jQuery(document).ready(function() {
 				loadingData=false;
 				scrollEnd=false;
 				totalData = 0;
+				communexion.state = false ; 
 				startSearch(0, 20);
 			}, 500);
 		}else{
