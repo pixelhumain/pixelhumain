@@ -32,3 +32,7 @@ themeObj.blockUi.errorMsg =
     '<span style="font-weight:300" class=" text-dark">'+
     'Vous allez être redirigé vers la page d\'accueil'+
     '</span>';
+
+
+formInMap.NE_country = "NC";
+console.log("formInMap.NE_country", formInMap.NE_country);
