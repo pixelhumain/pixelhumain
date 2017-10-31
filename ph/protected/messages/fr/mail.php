@@ -45,5 +45,17 @@
 		"You can unsubscribe on mail received on turn off mail notication on your settings or you can choose parameters of mail notifications in the same space"=>"Vous pouvez vous d&eacute;sinscrire des mails reçu en d&eacute;sactivant les notifications par mail dans vos r&eacute;glages personnels ou vous pouvez r&eacute;gler les paramètres de notifications par mail au même lien",
 		"here" => "ici",
 		"Mail send from"=>"Mail envoy&eacute; depuis",
+		"See you soon on {what}"=>"A tr&egrave;s bient&ocirc;t sur {what}",
+		//REFACTOR MAIL
+		//INTITEYOUTO
+		"You have been invited on {what} by {who}"=>"Vous avez &eacute;t&eacute; invit&eacute;-e sur {what} par {who}",
+		"Please connect you and go to the detail of {what} following link under to answer to the invitation"=>"Veuillez vous connecter et vous rendre sur la fiche d&eacute;tail de {what} en suivant le lien ci-dessous pour répondre à l&apos;invitation",
+		"If you validate, you will be added as {what} else the link between you and {where} will be destroyed"=>"En cas de validation, vous serez ajout&eacute; en tant que {what} sinon le lien entre vous et {where} sera supprim&eacute;",
+		//RETREIVE PASSWORD
+		"Reset of the password"=>"R&eacute;initialisation du mot de passe",
+		"Reset of your password"=>"R&eacute;initialisation de votre mot de passe",
+		"Your password has been reset in response to your request"=>"Votre mot de passe a été réinitialisé suite à votre demande",
+		"To connect you, you can use this password now"=>"Pour vous connecter, utiliser maintenant le mot de passe",
+		"Then, you will be able to change your password in your personal page"=>"Vous pourrez ensuite changer le mot de passe dans votre espace personnel",
 );
 ?> 
