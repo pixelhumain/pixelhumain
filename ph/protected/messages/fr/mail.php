@@ -11,11 +11,6 @@
 		"contribute to"=>"contribuer à",
 		"participate to" =>"participer à",
 		"Answer to the invitation" => "Répondre à l'invitation",
-		//CONFIRMYOUTO
-		"Confirmation to" => "Confirmation pour",
-		"has confirmed your request to" => "a confirm&eacute; votre demande pour",
-		"Now, you can connect you and used all functions" => "Vous pouvez d&eacute;sormais vous connecter et utiliser toutes les fonctionalit&eacute;s",
-		"editing details, add element, editing news, manage comunity, etc."=> "&eacute;diter les informations, ajouter des &eacute;l&eacute;ments, &eacute;diter des posts, g&eacute;rer la communaut&eacute;, etc",
 		//FOLLOW
 		"You have a new follower" => "Vous avez un(e) nouvel(le) abonné(e)",
 		"New follower" => "Nouvel(le) abonn&eacute;(e)",
@@ -72,5 +67,13 @@
 		"For more details on the user {who}, you can visit {what}"=>"Pour plus de détails sur l&apos;utilisateur {who}, vous pouvez visiter {what}",
 		"his profile" => "son profil",
 		"In order to validate this user as {what}, go to the community of {where}"=>"Pour valider cet-te utilisateur-trice en tant que {what}, rendez-vous sur la communaut&eacute; de {where}",
+		//ConfirmYOUTO
+		"Confirmation to {what} {where}"=>"Confirmation pour {what} {where}",
+		"{who} has confirmed your request to {action} {what}"=>"{who} a confirm&eacute; votre demande pour {action} {what}",
+		"Now, you can connect you and used all functions {ofwhat} on {where} : editing details, add element, publish news, manage comunity, etc."=>"Vous pouvez d&eacute;sormais vous connecter et utiliser toutes les fonctionalit&eacute;s {ofwhat} sur {where} : &eacute;diter les informations, ajouter des &eacute;l&eacute;ments, publier des posts, g&eacute;rer la communaut&eacute;, etc",
+		"Go to {what}"=>"Aller sur {what}",
+		//"Now, you can connect you and used all functions" => "Vous pouvez d&eacute;sormais vous connecter et utiliser toutes les fonctionalit&eacute;s",
+		//"editing details, add element, editing news, manage comunity, etc."=> "&eacute;diter les informations, ajouter des &eacute;l&eacute;ments, &eacute;diter des posts, g&eacute;rer la communaut&eacute;, etc",
+		
 );
 ?> 
