@@ -55,7 +55,29 @@
 		"Reset of the password"=>"R&eacute;initialisation du mot de passe",
 		"Reset of your password"=>"R&eacute;initialisation de votre mot de passe",
 		"Your password has been reset in response to your request"=>"Votre mot de passe a été réinitialisé suite à votre demande",
-		"To connect you, you can use this password now"=>"Pour vous connecter, utiliser maintenant le mot de passe",
+		"To connect you, you can use this password now"=>"Pour vous connecter, vous pouvez désormais utiliser ce mot de passe",
 		"Then, you will be able to change your password in your personal page"=>"Vous pourrez ensuite changer le mot de passe dans votre espace personnel",
+		//FOLLOW
+		"{who} is following {what}" => "{who} suit {what}",
+		"{who} is following you" => "{who} vous suit",
+		"{who} is now connected to the news stream of {what}" => "{who} est maintenant connect&eacute;(e) aux actualit&eacute;s de {what}",
+		"{who} is now connected to your news stream" => "{who} est maintenant connect&eacute;(e) à votre actualit&eacute;",
+		"When you post a news, he/she will received the news on his/her news" => "Lorsque vous posterez, il/elle recevra l&apos;actualit&eacute; dans son fil d&apos;actualit&eacute;",
+		"When you post a news on {what}, he/she will received the news on his/her news"=>"Lorsque vous posterez sur {what}, il/elle recevra l&apos;actualit&eacute; dans son fil d&apos;actualit&eacute;",
+		"All followers on {what}" => "Tous les abonnés sur {what}",
+		//Invitation
+		"Invitation on {what}"=>"Invitation sur {what}",
+		"Invitation to join {what}"=>"Invitation à rejoindre {what}",
+		"You have been inviting on {what} by {who}"=>"Vous avez &eacute;t&eacute; invit&eacute; sur {what} par {who}",
+		"His message for you"=>"Son message pour vous",
+		"Please click on the following link to join {what} and to take part in locals initiatives and improve your city"=>"
+              Veuillez cliquer sur ce lien pour rejoindre {what} et ainsi participer aux initiatives locales et am&eacute;liorer la vie de votre commune",
+        "Confirm the invitation"=>"Confirmer l&apos;invitation",
+        //Validation
+        "Welcome on {what}"=>"Bienvenu-e sur {what}",
+        "Finalization of your registration"=>"Finalisation de votre inscription",
+        "Please click on the following link to confirm your account"=>"Veuillez cliquer sur le lien pour confirmer votre compte",
+        "Validation of my account"=>"Validation de mon email",
+		
 );
 ?> 
