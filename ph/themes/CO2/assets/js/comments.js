@@ -20,9 +20,9 @@ function initCommentsTools(thisMedias){
         idSession = typeof idSession != "undefined" ? idSession : false;
 
         var lblCommentCount = '';
-        if(commentCount == 0 && idSession) lblCommentCount = "<i class='fa fa-comment'></i>  Commenter";
-        if(commentCount == 1) lblCommentCount = "<i class='fa fa-comment'></i> <span class='nbNewsComment'>" + commentCount + "</span> commentaire";
-        if(commentCount > 1) lblCommentCount = "<i class='fa fa-comment'></i> <span class='nbNewsComment'>" + commentCount + "</span> commentaires";
+        if(commentCount == 0 && idSession) lblCommentCount = "<i class='fa fa-comment'></i>  "+trad.commenton;
+        if(commentCount == 1) lblCommentCount = "<i class='fa fa-comment'></i> <span class='nbNewsComment'>" + commentCount + "</span> "+trad.comment;
+        if(commentCount > 1) lblCommentCount = "<i class='fa fa-comment'></i> <span class='nbNewsComment'>" + commentCount + "</span> "+trad.comments;
         if(commentCount == 0 && !idSession) lblCommentCount = "0 <i class='fa fa-comment'></i> ";
 
         lblCommentCount = '<a href="javascript:" class="newsAddComment letter-blue" data-media-id="'+idMedia+'">' + lblCommentCount + '</a>';
@@ -32,7 +32,7 @@ function initCommentsTools(thisMedias){
                            "<button class='text-dark btn btn-link no-padding margin-right-10 btn-share bold'"+
                               " style='margin-top:-3px;'" +
                               " data-id='"+idMediaShare+"' data-type='"+typeMediaShare+"'>"+
-                              "<i class='fa fa-share'></i> Partager"+
+                              "<i class='fa fa-share'></i> "+trad.share+
                            "</button>";
 
         var countShare = media.sharedBy.length-1;
@@ -68,7 +68,7 @@ function showCommentsTools(id){ console.log("showCommentsTools", id);
       $(".commentContent").html("");
       $(".commentContent").removeClass("hidden");   
       $(".footer-comments").html("");
-      $('#commentContent'+id).html('<div class="text-dark margin-bottom-10"><i class="fa fa-spin fa-refresh"></i> Chargement des commentaires ...</div>');
+      $('#commentContent'+id).html('<div class="text-dark margin-bottom-10"><i class="fa fa-spin fa-refresh"></i> '+trad.chargingcomments+' ...</div>');
       getAjax('#commentContent'+id ,baseUrl+'/'+moduleId+"/comment/index/type/news/id/"+id,function(){ 
         
       },"html");
@@ -228,7 +228,7 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
       comments[id].mentions=newComment.mentions;
     }
     $('#item-comment-'+id+' .text-comment').html(newComment.text);
-    toastr.success("Votre commentaire a bien été modifié");
+    toastr.success(trad.yourcommentwellupdated);
   }
 
   function linkify(inputText) {
@@ -276,7 +276,7 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
             '<div class="ctnr-txtarea">';
 
     html +=   '<textarea rows="1" style="height:1em;" class="form-control textarea-new-comment" ' +
-                      'id="textarea-new-comment'+parentCommentId+'" placeholder="Votre réponse..."></textarea>' +
+                      'id="textarea-new-comment'+parentCommentId+'" placeholder="'+trad.youranswer+'..."></textarea>' +
             
             '</div>' +
           '</div>';

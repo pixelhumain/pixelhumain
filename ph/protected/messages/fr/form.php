@@ -136,6 +136,11 @@
 		"Visibility of the news"=>"Visibilité du post",
 		"Write your news here"=> "Écrire votre post ici",
 		"Invalid username : Only characters A-Z, a-z, 0-9 and '-' are acceptable."=> "Le nom d'utilisateur est incorrect : Seul les caractères A-Z, a-z, 0-9 et '-' sont acceptés.",
+		"is too heavy"=>"est trop lourde",
+		"Size limit"=>"Taille limite",
+		"invalid format"=>"format invalide",
+		"Available extension(s)"=>"Extension(s) acceptable",
+		"Name of the collection"=>"Nom de la collection",
 	)
 
 ?>
