@@ -22,7 +22,7 @@
 	}
 }
 .timeline{
-	float: left;
+	/*float: left;*/
 	min-width: 100%;
 }
 .date_separator{
