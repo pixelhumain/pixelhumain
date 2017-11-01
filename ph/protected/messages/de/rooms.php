@@ -38,8 +38,8 @@ return array(
 	"Vote" => "Abstimmung",
 	"Discussion" => "Diskussion",
 	"Brainstorm / Proposals / Ideas" => "Brainstorming, Vorschläge, Ideen",
-	"Type of Room" => "Art des Raums/ Forums",
-	'Add an Action Room' => "Erstellen Sie einen neuen Raum/ Forum",
+	"Type of Room" => "Art des Raums",
+	'Add an Action Room' => "Erstellen Sie einen neuen Raum",
 	"Surveys contain subject to vote on, brainstorm sessions, discussions..." => 
 	"Ein Bürgerraum ermöglicht die Einreichung von Vorschlägen, Ideenaustausch, Diskussionen anzuregen und auch Debatten zu führen.",
 	"Create Room" => "Einen Raum für Bürger schaffen",
