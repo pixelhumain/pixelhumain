@@ -1211,8 +1211,8 @@ onSave: (optional) overloads the generic saveProcess
 		                sizeLimit: 2000000
 		            },
 		            messages: {
-				        sizeError : '{file} est trop lourde! limite max : {sizeLimit}.',
-				        typeError : '{file} extension invalide. Extension(s) acceptable: {extensions}.'
+				        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
+				        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
 				    },
 		            callbacks: {
 		            	//when a img is selected

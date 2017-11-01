@@ -87,6 +87,17 @@
                                 <i class="fa fa-search"></i> <?php echo Yii::t("common","Launch search") ?>
                             </button> 
 
+
+                            <?php if($subdomain == "social" && 
+                                     Yii::app()->params["CO2DomainName"] == "kgougle" &&
+                                     empty(Yii::app()->session["userId"])){ ?>
+                                    <button class="btn btn-default letter-blue bold" 
+                                            data-toggle="modal" data-target="#modalRegister"
+                                            data-type="<?php echo @$type; ?>">
+                                        <i class="fa fa-plus-circle"></i> Créer mon compte
+                                    </button>
+                            <?php } ?>
+
                             <?php $lblC = Yii::t("common",@$params["pages"]["#".$page]["lblBtnCreate"]); ?>
                             <?php $colorC = @$params["pages"]["#".$page]["colorBtnCreate"]; ?>
 

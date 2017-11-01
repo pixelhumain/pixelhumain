@@ -110,10 +110,10 @@
                             </a>
                         </li>
                     </ul>
-                    <button class="btn btn-link text-white no-padding"  
+                    <!-- <button class="btn btn-link text-white no-padding"  
                         data-toggle="modal" data-target="#modalLogin">
                         <i class="fa fa-lock"></i> Admin
-                    </button><br>
+                    </button><br>-->
                 </div>
             </div>
         </div>

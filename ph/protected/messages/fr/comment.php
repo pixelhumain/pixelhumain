@@ -2,6 +2,10 @@
 
 	return array(
 		"Comments" => "Commentaires",
+		"comments" => "commentaires",
+		"comment" => "commentaire",
+		"answers" => "réponses",
+		"answer" => "réponse",
 		"Popular" => "Populaires",
 		"Abuse" => "Signalés",
 		"Say Something" => "Exprimez-vous",
@@ -20,6 +24,10 @@
 		"You are going to delete this comment : are your sure ?" => "Vous êtes sur le point de supprimer un commentaire",
 		"No comment" => "Aucun commentaire",
 		"Update your comment"=>"Modifier votre commentaire",
+		"Show more comments"=>"Voir plus de commentaires",
+		"Your comment is empty"=>"Votre commentaire est vide",
+		"Do you want to delete this comment"=>"Souhaitez-vous vraiment supprimer ce commentaire",
+		"Loading comments"=>"Chargement des commentaires",
 	)
 
 ?>
