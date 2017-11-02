@@ -550,6 +550,7 @@ return array(
 	"Create a new collection"=>"Créer une nouvelle collection",
 	"Create a new page"=>"Créer une nouvelle page",
 	"Edit slug"=>"Modifier le slug",
+	"Search among your contacts"=>"Rechercher parmi vos contacts",
 	/* ---- */
 	//TITLE DIRECTORY ELEMENT
 	"Keep data open and usable by all"=>"Maintenir les données ouvertes et universellement utilisables",
