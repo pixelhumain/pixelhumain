@@ -191,4 +191,7 @@ a.link-submenu-header:focus{
 	.menu-name-profil{
 		padding: 8px 0 0 0px;
 	}
+	.navbar-custom{
+		padding: 3px 0;
+	}
 }
