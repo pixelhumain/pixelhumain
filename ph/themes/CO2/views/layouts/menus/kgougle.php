@@ -34,7 +34,7 @@ input#second-search-bar{
             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
                      class="logo-menutop pull-left show-top hidden-xs" height=20>
             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/kgougle/logo-min-k.png" 
-                     class="logo-menutop pull-left show-top visible-xs" height=20>
+                     class="logo-menutop pull-left show-top visible-xs" height=30>
             </a>
 
             <span class="hidden-xs skills font-montserrat <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">

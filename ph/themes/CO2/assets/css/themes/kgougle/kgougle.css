@@ -182,4 +182,8 @@ a.link-submenu-header:focus{
 		margin-top: 7px;
 		margin-left: -5px !important;
 	}
+
+	.logo-menutop.visible-xs{
+		margin-left: -5px !important;
+	}
 }
