@@ -157,3 +157,23 @@
 	right: 27px !important;
 	top: 58px !important;
 }
+
+
+@media (max-width: 768px) {
+
+	#notificationPanelSearch{
+		bottom: 0% !important;
+		right: 0px !important;
+		top: 53px !important;
+	}
+
+	#notificationPanelSearch.arrow_box::after{
+		right: 163px !important;
+		left: unset !important;
+	}
+	#notificationPanelSearch.arrow_box::before{
+		right: 162px !important;
+		left: unset !important;
+	}
+
+}
