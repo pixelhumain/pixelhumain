@@ -56,8 +56,8 @@ $params = array(
     "bucket.thumb"=>"pixelphotos.thumb",
     
     //Captcha 
-    'captcha' => '6LdiygUTAAAAAEsbbK7LvMjJRt9PLP9lO-6QSM8K',
-    'captcha-key' => '6LdiygUTAAAAAKZxZ0c9-G43Xqp9ZiedhWswto1s',
+    'captcha' => '6LfGyykUAAAAAPOOpiTp6FIJ6lrVDmu6EHOItyBr', //public
+    'captcha-key' => '6LfGyykUAAAAANQNoEmwpyzE4t6K0hyw3lLAf_mC', //private
 
     'idOpenAgenda' => '57220015dd0452ed27d58c84',
 
