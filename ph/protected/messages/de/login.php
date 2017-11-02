@@ -33,7 +33,7 @@ return array(
         'Get my password' => 'Mein Passwort wiederherstellen',
         'Sign Up' => 'Konto erstellen',
         'Enter your personal details below:' => 'Geben Sie bitte Ihre persönlichen Daten unten ein :',
-        'I agree to the Terms of' => 'Ich stimme (den Bedingungen) zu',
+        'I agree to the Terms of' => 'Ich stimme den folgenden Bedingungen zu:',
         'Service and Privacy Policy' => 'Datenschutzerklärung',
         'Already have an account?' => 'Haben Sie bereits ein Konto ?',
         'You must validate the SPP to sign up.' => 'Sie müssen die Datenschutzbestimmungen akzeptieren.',
@@ -91,7 +91,7 @@ return array(
         "You will be <b class='letter-green'>automatically connected</b> and redirect on your page"=>"Sie werden <b class='letter-green'>automatisch verbunden</b> und auf Ihre persönliche Seite weitergeleitet",
         "I understand"=>"Ich habe das verstanden",
         //MENU TITLE
-        "Be linked to your city"=>"Seien Sie Ihrer Gemeinde verbunden",
+        "Be linked to your city"=>"Sich mit seiner Gemeinde verbinden",
         "Cooperate and collaborate"=>"Kooperieren und Zusammenarbeiten",
         "Speaking together locally"=>"Auf lokaler Ebene einfacher miteinander reden",
         "Communities working together"=>"Gemeinschaften die zusammen arbeiten",

@@ -315,7 +315,7 @@
 					formInMap.NE_lat = $(this).data("lat");
 					formInMap.NE_lng = $(this).data("lng");
 					formInMap.showWarningGeo(false);
-					formInMap.initHtml();	
+					formInMap.initHtml();
 				});
 			}else{
 				if(html=="") html = "<span class='padding-15'><i class='fa fa-ban'></i> Aucun résultat</span>";
