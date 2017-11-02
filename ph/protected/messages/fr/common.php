@@ -334,6 +334,9 @@ return array(
 	"organizer" => "organisateur",
 	"Organized by" => "Organisé par",
 	"Planned on" => "Au programme de",
+	"Sort by role"=>"Trier par rôle",
+	"Roles"=> "Rôles",
+	"Role(s)"=>"Rôle(s)",
 	//Input title - Placeholder
 	"Search by name or email" => "Recherche par nom, email",
 	"Not find ? Click here."=> "Non trouvé ? Cliquez ici.",
