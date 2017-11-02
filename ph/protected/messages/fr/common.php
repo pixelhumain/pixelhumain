@@ -178,6 +178,8 @@ return array(
 	"{who} has been validated as member of {what}"=>"{who} est à présent membre de {what}",
 	"{who} has been validated as admin of {what}"=>"{who} est à présent admin de {what}",
 	"Your comment is well updated"=>"Votre commentaire a bien été modifié",
+	"New member(s) have been succesfully added"=>"Le(s) nouveau(x) membre(s) ont été ajoutés correctement",
+	"New member(s) have been succesfully added except those already in the community"=>"Le(s) nouveaux membres ont été ajoutés correctement exceptés ceux déjà présents",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions on this comment after reporting abuse !"=> "Vous ne pouvez plus agir sur ce commentaire après un signalement d'abus",
