@@ -473,10 +473,10 @@ input#second-search-bar{
 #input_name_filter{
 	background-color: transparent;
 	margin-bottom:5px;
-	-moz-box-shadow: 2px -2px 5px 0px rgba(0, 0, 0, 0.68);
+	/*-moz-box-shadow: 2px -2px 5px 0px rgba(0, 0, 0, 0.68);
 	-webkit-box-shadow: 2px -2px 5px 0px rgba(0, 0, 0, 0.68);
 	-o-box-shadow: 2px -2px 5px 0px rgba(0, 0, 0, 0.68);
-	box-shadow: 2px -2px 5px 0px rgba(0, 0, 0, 0.68);
+	box-shadow: 2px -2px 5px 0px rgba(0, 0, 0, 0.68);*/
 }
 #lbl-chk-scope{
 	-moz-box-shadow: -5px 2px 10px -3px rgba(0, 0, 0, 0.4);
