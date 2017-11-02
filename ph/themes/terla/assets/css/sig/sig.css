@@ -270,6 +270,7 @@ creer des conflits : regle pas assez specfique
 }
 
 .item_map_list .left-col .ico-type-account{
+	display: none !important;
 	/*background-color:#2A3945;*/
 	background-image:url("flag.png");
 	position:relative;

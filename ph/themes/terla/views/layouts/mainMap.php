@@ -35,9 +35,9 @@
         //"mapAttributions" => '<a href="http://www.opencyclemap.org">OpenCycleMap</a>',	 	//'Map tiles by <a href="http://stamen.com">Stamen Design</a>'
 
         /* MAP BUTTONS */
-        "mapBtnBgColor" => '#2B3136', //'rgba(76, 114, 126, 0.65)', //'#E6D414',
+        "mapBtnBgColor" => '#EF5B34', //'rgba(76, 114, 126, 0.65)', //'#E6D414',
         //"mapBtnColor" => 'rgba(76, 114, 126, 0.65)', //'#213042',
-        "mapBtnBgColor_hover" => '#0095FF', //'#5896AB',
+        "mapBtnBgColor_hover" => '#D54F2C', //'#5896AB',
 
         /* USE */
         "titlePanel" 		 => '',
@@ -53,6 +53,8 @@
         "useResearchTools" 	 => true,
         "useChartsMarkers" 	 => false,
         "useHelpCoordinates" => true,
+
+        "useHorizontalAroundMe" => true,
         
         "notClusteredTag" 	 => array(),
         "firstView"		  	 => array(  "coordinates" => array(-21.120373561794867, 55.776214599609375), 

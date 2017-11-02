@@ -407,6 +407,67 @@ header .container, .header .container {
 .btn-shoppingCart{
 	margin-right: 7px;
 }
+
+
+#right_tool_map.min{
+    width: 86px !important;
+    min-width: 86px;
+}
+
+#right_tool_map.min .right_tool_map_header_title,
+#right_tool_map.min .right_tool_map_header_info{
+    margin-left: 10px;
+}
+
+#right_tool_map.min #input_name_filter{
+    padding-left: 8px;
+}
+
+#right_tool_map.min #btn-tags,
+#right_tool_map.min #btn-filter,
+#right_tool_map.min .right-col .city_item_map_list,
+#right_tool_map.min .right-col .country_item_map_list{
+    display: none;
+}
+#right_tool_map.min .item_map_list{
+    padding:0px;
+}
+#right_tool_map.min .item_map_list .left-col{
+    width: 77px;
+    margin-top: 10px;
+}
+
+#right_tool_map.min .item_map_list .left-col .thumbnail-profil{
+    height: 70px;
+    width: 70px;
+}
+
+#right_tool_map.min .item_map_list .left-col .thumbnail-profil img{
+    height: 70px;
+    width: 70px;
+}
+
+#right_tool_map.min .right-col{
+    min-height: 0px;
+}
+
+#right_tool_map.min .right-col .pseudo_item_map_list{
+    display: inline;
+    padding-top:5px;
+    font-size:12px !important;
+    text-overflow: ellipsis;
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    max-width: 100%;
+    display: inline-block;
+}
+
+.btn-open-right-list{
+    position: absolute;
+    left: -31px;
+    top: 93px;
+}
+
 @media screen and (max-width: 1024px) {
 	
 }
