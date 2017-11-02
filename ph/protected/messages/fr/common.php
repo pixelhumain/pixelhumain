@@ -260,6 +260,10 @@ return array(
 	"Country" => "Pays",
 	"City" => "Ville",
 	"Phone Number" => "Téléphone",
+	"Fax" => "Fax",
+	"Phone" => "Fixe",
+	"Mobile" => "Portable",
+	
 	"Website URL" => "URL du site web",
 	"Description" => "Description",
 	"Short description" => "Description courte",
