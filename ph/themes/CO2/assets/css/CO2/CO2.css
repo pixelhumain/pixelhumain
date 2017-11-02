@@ -272,7 +272,7 @@ input#second-search-bar{
 	display: none!important;
 }
 .navbar-custom.affix-top .show-top{
-	display: inline!important;
+	display: inline;
 }
 
 .navbar-custom .scopes{

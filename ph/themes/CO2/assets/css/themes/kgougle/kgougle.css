@@ -87,6 +87,49 @@ button#open-rocketChat{
 	margin: 0 4px;
 }
 
+
+
+.btn-star-fav {
+    font-size: 20px;
+    margin-top: 2px;
+}
+.navbar-header .nc_map {
+    margin: 10px 5px 0 -10px;
+}
+.affix .navbar-header .nc_map {
+    margin: 15px 10px 0 -15px;
+}
+#btn-sethome, #btn-apropos, #btn-radio{
+    background-color: transparent !important;
+    border:transparent;
+}
+#btn-sethome:hover, #btn-apropos:hover{
+    color:white!important;
+    background-color: #ea4335 !important;
+    border:transparent;
+}
+.menu-btn-back-category{
+    cursor:pointer;
+}
+
+a.text-dark.link-submenu-header {
+    color : #ea4335 !important;
+    padding-bottom: 5px;
+}
+
+a.link-submenu-header.active, 
+a.link-submenu-header:hover, 
+a.link-submenu-header:active, 
+a.link-submenu-header:focus{  
+    border-bottom: 2px solid #ea4335;
+    text-decoration: none;
+    /*background-color: rgba(255, 255, 255, 1);
+    color:#ea4335 !important;
+    text-decoration: none;*/
+}
+
+
+
 @media (max-width: 992px) {
 
     header .container{
@@ -118,6 +161,7 @@ button#open-rocketChat{
 
 	header img{
 		height: 45px;
+		margin-top:0px;
 	}
 
 	.affix .navbar-header .nc_map{
@@ -130,7 +174,12 @@ button#open-rocketChat{
 	.link-submenu-header{
 		margin-bottom: 20px;
 		display: inline-block;
-		font-size: 15px;
+		font-size: 12px;
 	}
 
+
+	.affix .navbar-header img.nc_map{
+		margin-top: 7px;
+		margin-left: -5px !important;
+	}
 }

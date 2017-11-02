@@ -1,5 +1,5 @@
 <style>
-<?php if($subdomain == "page.type" || $subdomain == "freedom-"){ ?>    
+<?php if($subdomain == "page.type" || $subdomain == "freedom"){ ?>    
 .navbar-custom.affix #main-title-top{
     display: inline;
 }
@@ -17,44 +17,6 @@ input#second-search-bar{
 }
 <?php } ?>
 
-.btn-star-fav {
-    font-size: 20px;
-    margin-top: 2px;
-}
-.navbar-header .nc_map {
-    margin: 10px 5px 0 -10px;
-}
-.affix .navbar-header .nc_map {
-    margin: 15px 10px 0 -15px;
-}
-#btn-sethome, #btn-apropos, #btn-radio{
-    background-color: transparent !important;
-    border:transparent;
-}
-#btn-sethome:hover, #btn-apropos:hover{
-    color:white!important;
-    background-color: #ea4335 !important;
-    border:transparent;
-}
-.menu-btn-back-category{
-    cursor:pointer;
-}
-
-a.text-dark.link-submenu-header {
-    color : #ea4335 !important;
-    padding-bottom: 5px;
-}
-
-a.link-submenu-header.active, 
-a.link-submenu-header:hover, 
-a.link-submenu-header:active, 
-a.link-submenu-header:focus{  
-    border-bottom: 2px solid #ea4335;
-    text-decoration: none;
-    /*background-color: rgba(255, 255, 255, 1);
-    color:#ea4335 !important;
-    text-decoration: none;*/
-}
 
 </style>
 
@@ -70,7 +32,9 @@ a.link-submenu-header:focus{
                 <a href="#web" class="lbh menu-btn-back-category">
             <?php } ?>
             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
-                     class="logo-menutop pull-left show-top" height=20>
+                     class="logo-menutop pull-left show-top hidden-xs" height=20>
+            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/kgougle/logo-min-k.png" 
+                     class="logo-menutop pull-left show-top visible-xs" height=20>
             </a>
 
             <span class="hidden-xs skills font-montserrat <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
@@ -85,11 +49,11 @@ a.link-submenu-header:focus{
                 <?php } else { ?>
                     <a href="#web" class="lbh navbar-brand font-blackoutM menu-btn-back-category">
                 <?php } ?>
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
-                     class="nc_map pull-left hidden-sm" height=20>
+                <!-- <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
+                     class="nc_map pull-left hidden-sm" height=20> -->
                 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/kgougle/logo-min-k.png" 
-                     class="nc_map pull-left visible-sm" height=20>
+                     class="nc_map pull-left" height=20>
                 
                 <!-- <small class="letter letter-red pastille font-blackoutT <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
                     <?php //echo $subdomainName; ?>
@@ -110,7 +74,7 @@ a.link-submenu-header:focus{
                   $subdomain == "admin"||
                   $subdomain == "page" ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-3 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-2 col-md-3 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo $placeholderMainSearch; ?>">
                 <?php if($subdomain == "page"){ ?>

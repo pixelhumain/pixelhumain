@@ -135,7 +135,7 @@ function buildListCategories(){
 
         $.each(params.items, function(keyC, val){
             //console.log(keyC, val);
-            html +=             '<div class="col-sm-3 col-xs-4 portfolio-item">'+
+            html +=             '<div class="col-md-3 col-sm-4 col-xs-6 portfolio-item">'+
                                     '<button class="portfolio-link category-search-link" data-category="'+val.name+'">'+
                                         '<div class="caption">'+
                                             '<div class="caption-content">'+
