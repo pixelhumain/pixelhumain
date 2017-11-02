@@ -40,7 +40,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			</div>
 
       <div class="col-xs-12 center no-padding">
-        <a class="btn bg-green padding-5" href="#person.detail.id.<?php echo Yii::app()->session['userId']?>?view=directory">
+        <a class="btn bg-green padding-5 lbh" href="#person.detail.id.<?php echo Yii::app()->session['userId']?>?view=directory">
             <i class="fa fa-group"></i>
             <br>Mes groupes
         </a>
