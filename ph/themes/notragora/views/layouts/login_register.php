@@ -1,6 +1,3 @@
-<?php //echo "hello !";
-$siteKey = '6LfGyykUAAAAAPOOpiTp6FIJ6lrVDmu6EHOItyBr'; // votre clé publique
-?>
 <style>
 	.main-login{
 		position:absolute;
@@ -227,7 +224,7 @@ $siteKey = '6LfGyykUAAAAAPOOpiTp6FIJ6lrVDmu6EHOItyBr'; // votre clé publique
 							</div>
 						</div>
 
-						<div class="g-recaptcha pull-left" data-sitekey="<?php echo $siteKey; ?>"></div>
+						<div class="g-recaptcha pull-left" data-sitekey="<?php echo Yii::app()->params["captcha"] ?>"></div>
 
 
 						<div class="pull-left" style="width:100%;">

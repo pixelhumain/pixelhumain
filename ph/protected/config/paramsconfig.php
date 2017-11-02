@@ -32,7 +32,7 @@ $mailConfigTest = array(
 $params = array(
     'theme' => "notragora",
     //Application Name 
-    'name' => 'NA',
+    'name' => 'Notragora',
     //Beta Test ?
     'betaTest' => false,
     //By default controller
