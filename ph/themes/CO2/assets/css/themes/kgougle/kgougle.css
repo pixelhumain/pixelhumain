@@ -195,5 +195,40 @@ a.link-submenu-header:focus{
 		padding: 3px 0;
 	}
 
-	
+	#ajax-modal .form-group, 
+	#ajax-modal .form-actions{
+		margin-left: 0% !important;
+		width: 100% !important;
+		min-width: unset !important;
+	}
+
+	h3#ajax-modal-modal-title{
+		font-size:12px;
+	}
+
+	#ajax-modal .modal-header{
+		width: 100% !important;
+		margin-left: 0% !important;
+	}
+
+	.sigModuleBg #right_tool_map{
+		display: block !important;
+		position: absolute !important;
+		top: 65% !important;
+		bottom: 0px;
+		width: unset !important;
+		left: 0px !important;
+		right: 0px !important;
+		height: unset !important;
+		min-width: unset;
+	}
+
+	#right_tool_map_locality .right_tool_map_header,
+	#sumery h4, 
+	#sumery #cp_sumery,
+	#sumery #country_sumery,
+	#sumery #city_sumery,
+	.form-in-map hr{
+		display: none !important;
+	}
 }

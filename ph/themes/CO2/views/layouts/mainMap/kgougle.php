@@ -145,7 +145,7 @@
 	}
 
 	.<?php echo $moduleName; ?> #right_tool_map{
-		top:60px!important;
+		top:60px;
 		z-index: 0;
 		display:none;
 	}
