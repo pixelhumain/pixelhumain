@@ -306,6 +306,7 @@ return array(
 	"the name" => "le nom",
 	"the description" => "la description",
 	"the type" => "le type",
+	"the slug" => "le slug",
 	"the street" => "la rue",
 	"the city" => "la ville",
 	"the country" => "le pays",
@@ -1067,7 +1068,15 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"General information" => "Informations générales",
 
 	"character(s)" => "caractère(s)",
-
+	"Being suppressed"=> "En cours de suppresion",
+	"No news in this timeline"=>"Aucun post sur ce fil d'actualité",
+	//ActivityHistory
+	"deleted"=>"suprimé(e)",
+	"{who} has created {what} {where}"=>"{who} a créé {what} {where}",
+	"{who} has updated {what} {where}"=>"{who} a modifié {what} {where}",
+	"{who} has deleted {what} {where}"=>"{who} a supprimé {what} {where}",
+	"{who} has added {what} {where}"=>"{who} a ajouté {what} {where}",
+	"change description in markdown format"=>"transformer la description en format Markdown",
 	//Mardown
 	'Bold' => "Gras",
 	'Italic' => "Italique",
