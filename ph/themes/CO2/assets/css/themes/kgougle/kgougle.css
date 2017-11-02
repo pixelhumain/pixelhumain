@@ -186,4 +186,9 @@ a.link-submenu-header:focus{
 	.logo-menutop.visible-xs{
 		margin-left: -5px !important;
 	}
+
+
+	.menu-name-profil{
+		padding: 8px 0 0 0px;
+	}
 }
