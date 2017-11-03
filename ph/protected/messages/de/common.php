@@ -768,7 +768,7 @@ return array(
 	"Back to project" => "Zurück zum Projekt",
 	"Back to home" => "Zurück zur Homepage",
 	"Invite people you know, you like, you met, you want to follow" => "Laden Sie jemanden ein, den Sie kennen, indem Sie ihm eine E-Mail zur Einladung schicken",
-	"Connect organizations you know, you like, you met, you want to follow" => "Verknüpfen Sie Organisationen die Ihnen wichtig sind, gerade entdeckt haben und teilen Sie Ihre Beobachtungen"
+	"Connect organizations you know, you like, you met, you want to follow" => "Verknüpfen Sie Organisationen die Ihnen wichtig sind, gerade entdeckt haben und teilen Sie Ihre Beobachtungen",
 	"Promote or contribute to local projects" => "Machen Sie ein lokales Projekt bekannt",
 	
 	"A person" => "Inviter</br>jemand",
