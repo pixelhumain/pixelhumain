@@ -17,5 +17,23 @@
 		"The actual team of developpers are very motivated to follow the work.<br>She needs also to grow up with new developpers and to work with other team to build interoperable applications"=>"L'équipe actuelle de développeurs est sur-motivée et souhaite plus que tout continuer son travail.<br>Elle souhaite également s'agrandir si possible, en intégrant de nouveau développeurs, ou en collaborant avec d'autres équipes afin de développer des applications interropérables",
 		"Finally, we want to keep improving Communecter, adding new functions"=>"Nous souhaitons également continuer à améliorer l'application Communecter, en rajoutant de nouvelles fonctionnalités",
 		"We are currently running on an annuel budget of 80K€ and only the developpers are payed 1000€ / monthly"=>"On tourne aujourd'hui avec un budget de 80k€ et seulement 1000€ / mois / développeurs (statut indépendant)",
+		"A <span class='letter-red'>citizen</span> social network, serving <span class=letter-red'>commons</span>"=>"Un réseau social <span class='letter-red'>citoyen</span>, au service du <span class='letter-red'>bien commun</span>",
+		"Communicate the news"=>"Communiquer l'actualité",
+		"Share events"=>"Partage d'événements",
+		"Collective space"=>"Espace collaboratif",
+		"Private messaging"=>"Messagerie privée",
+		"Choose which kind of page you want to create"=>"Choisissez le type de page qui vous correspond le mieux",
+		"Strengthen links of associations network"=>"Resserrer les liens du tissu associatif",
+		"Civil society organizations is based on cooperation and solidarity.<br>More than ever, NGOs should be linked,<br>in order to work better and smarter."=>"Le monde associatif est basé sur l'entraide et la solidarité.<br>Plus que jamais, les associations ont besoin de se relier entre elles,<br>pour faire plus et mieux, ensemble."
+		"Boost the world of business"=>"Dynamiser le monde de l'entreprise",
+		"Keep connection with your contacts, your customers, your employees, your providers...<br>The network will give you a visibility<br>fo the community living around you"=>"Restez connecté à vos contacts, vos clients, vos employés, vos fournisseurs...<br>Le réseau vous apportera une visibilité incomparable<br>auprès de ceux qui vivent près de vous.",
+		"Highlight human relations"=>"Mettre en valeur les liens humains",
+		"Life is full of meetings, frienships, and links that bind us together<br>through our activities, our interests, our hobbies.<br>Live them is great, share them is greater!"=>"La vie c'est des rencontres, des amitiés, des liens qui nous unissent<br>à travers nos activités, nos centres d'intérêts, nos plaisirs.<br>Les vivre c'est bien, les partager c'est encore mieux!",
+		"It's the little things<br>that one day change the world"=>"Ce sont les petites initiatives<br>qui donnent naissance aux projets hors du commun",
+		"A day, a moment, a share, a discovery"=>"Un jour, un moment, un partage, une découverte",
+		"Share your events<br>And communicate them massively!"=>"N'hésitez pas à faire connaître vos évènements.<br>Communiquez-les massivement!",
+		"Share your wishes, your ideas, your dreams<br>This is the way to make them grow !"=>"N'hésitez pas à faire connaître vos envies, vos projets, vos rêves.<br>C'est comme ça qu'ils grandissent !",
+		"The link between the government and people"=>"Le lien entre l'Etat et les citoyens",
+		"Public services are the pillars of our democracy.<br>It is important to map them and make them readily available<br>at the local level as well as national"=>"Les services publics sont les piliers de notre démocratie.<br>Il est important de les cartographier et de les rendre accessibles facilement<br>au niveau local comme national",
 	);
 ?>
