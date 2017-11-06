@@ -143,6 +143,8 @@
 		"Available extension(s)"=>"Extension(s) acceptable",
 		"Name of the collection"=>"Nom de la collection",
 		"Add or edit the roles of"=>"Ajouter ou modifier les rôles de",
+		"Add photos to the gallery"=>"Ajouter des photos à la galerie",
+		"Stock your photos and share them"=>"Partagez vos photos et vos publications",
 	)
 
 ?>
