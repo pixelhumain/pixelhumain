@@ -60,7 +60,7 @@
 		  </a>
 		</div>
 	</div>
-	<div class="row col-md-10 col-md-offset-1 margin-bottom-20 blockHome1">
+	<div class="row col-md-10 col-md-offset-1 margin-bottom-50 margin-top-25 blockHome1">
 		<div class="row col-md-10 col-md-offset-1 bg-lightgray">
 			<h2 class="block letter-lightgray">Some of our top trip</h2>
 			<div class="row col-md-10">	
