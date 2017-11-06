@@ -133,10 +133,39 @@ header, .header {
 .blockHome1 span{
     font-size:13px;
 }
-/**/
 
+.input-newsletter{
+    height: 40px;
+    border-radius: 2px;
+    border: 1px solid #c9c9c9;
+    border-right: 0;
+}
+.btn-newsletter{
+    font-size:18px;
+}
+/* footer */
 
-/**/
+.col-footer h5{
+    font-size:16px;
+}
+.col-footer .btn-social{
+    border: none;
+    border-radius: 0;
+    background: none;
+    font-size: 30px !important;
+}
+.col-footer a.lbhp{
+    font-size:12px;
+    color:white !important;
+}
+.hr-newsletter{
+    height: 3px !important;
+    background-color: white;
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+/* carousel */
 .carousel-home{
 	margin-bottom: 30px;
 }

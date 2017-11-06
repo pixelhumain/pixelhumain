@@ -52,7 +52,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-left col-footer">
-                    <h5><i class="fa fa-info-circle hidden-xs"></i> Informations pratiques</h5>
+                    <h5>Informations pratiques</h5>
                     <a href="default/view/page/openatlas/dir/docs|panels" class="lbhp text-white"><i class="fa fa-angle-right"></i> A propos</a><br>
                     <a href="default/view/page/mention/dir/docs|panels" class="text-white lbhp">
                         <i class="fa fa-angle-right"></i> Mentions légales
@@ -75,9 +75,9 @@
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-footer-ph">
-                    <h5><i class="fa fa-info-circle hidden-xs"></i> A propos</h5>
+                    <h5>A propos</h5>
                     <a href="default/view/page/openatlas/dir/docs|panels" class="lbhp text-white">
-                        <i class="fa fa-angle-right"></i> ...
+                        <i class="fa fa-angle-right"></i> A propos de cyberun
                     </a><br>
                     <a href="default/view/page/mention/dir/docs|panels" class="text-white lbhp">
                         <i class="fa fa-angle-right"></i> ...
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-footer-ph">
-                    <h5><i class="fa fa-info-circle hidden-xs"></i> Mentions légales</h5>
+                    <h5>Mentions légales</h5>
                     <a href="default/view/page/openatlas/dir/docs|panels" class="lbhp text-white">
                         <i class="fa fa-angle-right"></i> ...
                     </a><br>

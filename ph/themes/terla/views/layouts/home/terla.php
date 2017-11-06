@@ -166,57 +166,37 @@
 	</div>
 	
 
-	<div class="row col-md-10 col-md-offset-1">
-		<hr>
-		<h1 class="col-md-6 col-md-offset-3 letter-blue-3 text-center text-white padding-25">
-			<i class="fa fa-chevron-down"></i>
-		</h1>
+	<div class="col-xs-12" style="background-image:url('<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/reunion/reunion10.jpg');">
+		<?php for($i=0;$i<2;$i++){ ?>		
+			<div class="col-xs-12 col-sm-6 col-md-6 margin-top-50">
+				<?php for($j=0;$j<5;$j++){ ?>
+				   <div class="col-xs-12 margin-15 <?php echo $i==0 ? "text-right" : "text-left no-padding"; ?>">
+				      <a href="#" class="<?php echo $i==0 ? "pull-right" : "pull-left"; ?>">
+				         <img 	src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/gnome-128.png" 
+				         		class="img-circle" height=50
+				         		alt="Generic placeholder thumbnail">
+				      </a> 
+				      <label class="margin-10 text-lightweight">Type de prestation</label>
+				   </div>
+				<?php } ?>   
+			</div>
+		<?php } ?>   
+
+
+		<h3 class="col-xs-12 text-center margin-top-50"> 
+			<i class="fa fa-envelope fa-3x letter-red"></i><br>
+			<small class="text-black">INSCRIVEZ VOUS À NOTRE<br>NEWSLETTER</small>
+		</h3>
+
 		<br>
-		<div class="col-md-12 letter-blue-3">
-		   <div class="col-sm-6 col-md-4">
-		      <a href="#" class="pull-left col-md-4">
-		         <img 	src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/gnome-128.png" 
-		         		class="img-circle" height=40
-		         		alt="Generic placeholder thumbnail">
-		      </a>
-		      <div class="col-md-8">
-			      <h3>Prestation</h3>
-		   	  </div>
-		   </div>
-		   
-		   <div class="col-sm-6 col-md-4">
-		      <a href="#" class="pull-left col-md-4">
-		         <img 	src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGO_PIXEL_HUMAIN.png" 
-		         		class="img-circle" height=40
-		         		alt="Generic placeholder thumbnail">
-		      </a>
-		      <div class="col-md-8">
-			      <h3>Prestation</h3>
-		   	  </div>
-		   </div>
-		   
-		   <div class="col-sm-6 col-md-4">
-		      <a href="#" class="pull-left col-md-4">
-		         <img 	src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/gnome-128.png" 
-		         		class="img-circle" height=40
-		         		alt="Generic placeholder thumbnail">
-		      </a>
-		      <div class="col-md-8">
-			      <h3>Prestation</h3>
-		   	  </div>
-		   </div>
-		   
-		   <div class="col-sm-6 col-md-4">
-		      <a href="#" class="pull-left col-md-4">
-		         <img 	src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/gnome-128.png" 
-		         		class="img-circle" height=40
-		         		alt="Generic placeholder thumbnail">
-		      </a>
-		      <div class="col-md-8">
-			      <h3>Prestation</h3>
-		   	  </div>
-		   </div>
+		<hr class="col-md-offset-3 col-md-6 hr-newsletter">
+		<br>
+
+		<div class="col-sm-6 col-sm-offset-3 margin-bottom-50">
+			<input class="col-xs-9 input-newsletter" type="text">
+			<button class="btn btn-link col-xs-3 bg-orange letter-white btn-newsletter">Inscription</button>
 		</div>
+
 	</div>
 	
 
