@@ -24,7 +24,7 @@
 		"Private messaging"=>"Messagerie privée",
 		"Choose which kind of page you want to create"=>"Choisissez le type de page qui vous correspond le mieux",
 		"Strengthen links of associations network"=>"Resserrer les liens du tissu associatif",
-		"Civil society organizations is based on cooperation and solidarity.<br>More than ever, NGOs should be linked,<br>in order to work better and smarter."=>"Le monde associatif est basé sur l'entraide et la solidarité.<br>Plus que jamais, les associations ont besoin de se relier entre elles,<br>pour faire plus et mieux, ensemble."
+		"Civil society organizations is based on cooperation and solidarity.<br>More than ever, NGOs should be linked,<br>in order to work better and smarter."=>"Le monde associatif est basé sur l'entraide et la solidarité.<br>Plus que jamais, les associations ont besoin de se relier entre elles,<br>pour faire plus et mieux, ensemble.",
 		"Boost the world of business"=>"Dynamiser le monde de l'entreprise",
 		"Keep connection with your contacts, your customers, your employees, your providers...<br>The network will give you a visibility<br>fo the community living around you"=>"Restez connecté à vos contacts, vos clients, vos employés, vos fournisseurs...<br>Le réseau vous apportera une visibilité incomparable<br>auprès de ceux qui vivent près de vous.",
 		"Highlight human relations"=>"Mettre en valeur les liens humains",
