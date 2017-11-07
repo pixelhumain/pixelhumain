@@ -35,5 +35,14 @@
 		"Share your wishes, your ideas, your dreams<br>This is the way to make them grow !"=>"N'hésitez pas à faire connaître vos envies, vos projets, vos rêves.<br>C'est comme ça qu'ils grandissent !",
 		"The link between the government and people"=>"Le lien entre l'Etat et les citoyens",
 		"Public services are the pillars of our democracy.<br>It is important to map them and make them readily available<br>at the local level as well as national"=>"Les services publics sont les piliers de notre démocratie.<br>Il est important de les cartographier et de les rendre accessibles facilement<br>au niveau local comme national",
+		"Technology won't change society but a well-equipped population will." => "Ce n'est pas la technologie qui changera la société mais une population bien outillée.",
+		"Being connected to one's city means being a citizen, a local actor." => "Se communecter c'est être un citoyen, un acteur local.",
+		"Being connected give me opportunity :" => "Me communecter me permet :",
+		"to act localy and not only being informed" => "d'agir localement et pas juste m'informer",
+		"to see all the actors around me" => "de voir les acteurs autour de moi",
+		"to list and add value to the things in which I believe" => "de référencer et valoriser les choses auxquelles je crois",
+		"I get involve into local citizen activity" => "je participe à l'activité citoyenne locale",
+		"I share in order to inhance my territory" => "je partage pour améliorer mon territoire",
+		"I can suggest ideas to my neighborhood ( Discuss, Decide, Act)" => "je fais des propositions aux autres habitants (Discuter, Décider, Agir)",
 	);
 ?>

@@ -17,5 +17,14 @@
 		"The actual team of developpers are very motivated to follow the work.<br>It needs also to grow up with new developpers and to work with other team to build interoperable applications"=>"Das aktuelle Entwicklerteam ist super motiviert und hofft sehr seine Arbeit fortzusetzen zu können.<br>Es möchte möglichst mit der Integration neuer Entwickler wachsen oder die Zusammenarbeit mit anderen Teams intensivieren, um interoperable Anwendungen zu entwickeln",
 		"Finally, we want to keep improving Communecter, adding new functions"=>"Wir wollen auch weiterhin die Communecter-Anwendung verbessern, indem wir neue Features hinzufügen",
 		"We are currently running on an annuel budget of 80K€ and only the developpers are payed 1000€ / monthly"=>"Wir halten uns heute mit einem jährlichen Budget von 80k € und geben nur 1000 € / Monat und Entwickler (nicht fest angestellt) aus",
+		"Technology won't change society but a well-equipped population will." => "Ce n'est pas la technologie qui changera la société mais une population bien outillée.",
+		"Being connected to one's city means being a citizen, a local actor." => "Se communecter c'est être un citoyen, un acteur local.",
+		"Being connected give me opportunity :" => "Me communecter me permet :",
+		"to act localy and not only being informed" => "d'agir localement et pas juste m'informer",
+		"to see all the actors around me" => "de voir les acteurs autour de moi",
+		"to list and add value to the things in which I believe" => "de référencer et valoriser les choses auxquelles je crois",
+		"I get involve into local citizen activity" => "je participe à l'activité citoyenne locale",
+		"I share in order to inhance my territory" => "je partage pour améliorer mon territoire",
+		"I can suggest ideas to my neighborhood ( Discuss, Decide, Act)" => "je fais des propositions aux autres habitants (Discuter, Décider, Agir)",
 	);
 ?>
