@@ -247,7 +247,7 @@
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() { 
-
+                
                 $.blockUI({ message : themeObj.blockUi.processingMsg});
                 
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
