@@ -54,7 +54,7 @@
 	<div id="form-group-contact">
 		<div class="col-md-10 text-left padding-top-60 form-group">
 			<h3 class="titleContact" style="margin-top: 70px;">
-				Contact us
+				<?php echo Yii::t("terla", "Contact us"); ?>
 			</h3>
 			<br><br>
 
@@ -63,34 +63,33 @@
 				<br>
 			</div>
 			<div class="col-xs-4 no-padding">
-				<label for="name">Name</label>
+				<label for="name"><?php echo Yii::t("terla", "Name"); ?></label>
 			</div>
 
-
 			<div class="col-xs-8">
-				<input class="form-control" placeholder="your mail address : exemple@mail.com" id="emailSender">
+				<input class="form-control" placeholder="<?php echo Yii::t("terla", "your mail address : exemple@mail.com"); ?>"
+						id="emailSender">
 				<br>
 			</div>
 			<div class="col-xs-4 no-padding">
-				<label for="email"> E-mail *</label>
+				<label for="email"><?php echo Yii::t("terla", "E-mail *"); ?></label>
 			</div>
 
-
 			<div class="col-xs-8">
-				<input class="form-control" placeholder="tourist or professional ?" id="situation">
+				<input class="form-control" placeholder="<?php echo Yii::t("terla", "tourist or professional ?"); ?>" id="situation">
 				<br>
 			</div>
 			<div class="col-xs-4 no-padding">
-				<label for="email"> Your situation</label>
+				<label for="email"><?php echo Yii::t("terla", "Your situation"); ?></label>
 			</div>
 
-			
 			<div class="col-xs-8">
-				<input class="form-control" placeholder="what's about ?" id="subject">
+				<input class="form-control" placeholder="<?php echo Yii::t("terla", "what's about ?"); ?>" id="subject">
 				<br>
 			</div>
+
 			<div class="col-xs-4 no-padding">
-				<label for="objet"> Object</label>
+				<label for="objet"><?php echo Yii::t("terla", "Object"); ?></label>
 			</div>
 
 		</div>
@@ -98,15 +97,22 @@
 
 		<div class="col-xs-12 text-left form-group">
 			<div class="col-md-12">
-				<label for="message"><i class="fa fa-angle-down"></i> Your message</label>
+				<label for="message">
+					<i class="fa fa-angle-down"></i> <?php echo Yii::t("terla", "Your message"); ?>
+				</label>
+
 				<textarea placeholder="Your message..." class="form-control txt-mail" id="message"></textarea>
+				
 				<div class="col-md-12">
 					<small for="message" class="margin-bottom-25">
-						<span class="letter-red"><i class="fa fa-lock fa-2x"></i> security</span> 
-						thanks to copy the code below to be able to send your message 
+						<span class="letter-red"><i class="fa fa-lock fa-2x"></i> 
+							<?php echo Yii::t("terla", "security"); ?>
+						</span> 
+						<?php echo Yii::t("terla", "thanks to copy the code below to be able to send your message"); ?> 
 						<!-- merci de recopier le code suivant afin de valider votre message -->
 					</small>
 				</div>
+
 				<div class="col-md-6 pull-right">
 					<input placeholder="taper le code ici" class="col-md-8 txt-captcha text-right pull-right" id="captcha">
 				</div>
@@ -114,13 +120,14 @@
 				<div class="col-md-12 margin-top-15 pull-left">
 					<hr>
 					<h4 class="letter-red hidden" id="conf-code-fail">
-						<i class="fa fa-lock"></i> Security code is not correct <i class="fa fa-thumbs-down"></i>
+						<i class="fa fa-lock"></i> <?php echo Yii::t("terla", "Security code is not correct"); ?> 
+						<i class="fa fa-thumbs-down"></i>
 					</h4>
 					<h4 class="letter-red hidden" id="form-fail">
 						<i class="fa fa-thumbs-down"></i>
 					</h4>
 					<button type="submit" class="btn btn-link bg-orange pull-right" id="btn-send-mail">
-						<b>SEND</b>
+						<b><?php echo Yii::t("terla", "SEND"); ?></b>
 					</button>
 				</div>
 			</div>
@@ -130,27 +137,28 @@
 
 <div class="col-xs-9 pull-right text-center hidden margin-top-50" id="conf-send-mail">
 	<h2 class="letter-green">
-		<i class="fa fa-thumbs-up"></i> Your message has been sent.
+		<i class="fa fa-thumbs-up"></i> <?php echo Yii::t("terla", "Your message has been sent."); ?>
 	</h2>
 	<h4 class="text-center">
-		<span class="">We answer as soon as possible
+		<span class=""><?php echo Yii::t("terla", "We answer as soon as possible"); ?>
 	</h4>
 	<h5 class="text-center">
-		Thanks for your message
+		<?php echo Yii::t("terla", "Thanks for your message"); ?>
 	</h5><br>
 	<a href="#activities" class="lbh btn btn-link bg-red tooltips"
 		data-toggle="tooltip" data-placement="top" title='Retourner vers le moteur de recherche'>
-		<b><i class="fa fa-arrow-left"></i> Back</b>
+		<b><i class="fa fa-arrow-left"></i> <?php echo Yii::t("terla", "Back"); ?></b>
 	</a>
 	<hr style="margin-bottom: 350px;">
 </div>
 
 <div class="col-xs-12 margin-top-50 hidden" id="conf-fail-mail">
 	<h4 class="text-center letter-red">
-		<i class="fa fa-thumbs-down"></i><br>Suite à une erreur technique<br>votre message n'a pas pu être envoyé.
+		<i class="fa fa-thumbs-down"></i><br>
+		<?php echo Yii::t("terla", "Suite à une erreur technique<br>votre message n'a pas pu être envoyé."); ?>
 	</h4>
 	<h5 class="text-center">
-		Veuillez nous en excuser
+		<?php echo Yii::t("terla", "Veuillez nous en excuser"); ?>
 	</h5>
 	<hr style="margin-bottom: 350px;">
 </div>

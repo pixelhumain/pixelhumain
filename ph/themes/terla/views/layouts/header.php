@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="col-sm-12 col-md-12 container"></div>
-        <div class="col-xs-12 text-center" style="margin-top:50px;margin-bottom:50px;">
+        <div class="col-xs-12 text-center modal-open-footer" style="margin-top:50px;margin-bottom:50px;">
             <hr>
             <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal">
             <i class="fa fa-times"></i> Retour

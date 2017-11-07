@@ -96,6 +96,8 @@ return array(
         "Speaking together locally"=>"Communiquons mieux localement",
         "Communities working together"=>"Communautés qui travaillent ensemble",
         "For commons"=>"Pour le bien commun",
-        "To improve the city 2.2.main"=>"Pour améliorer la ville 2.2.main"
+        "To improve the city 2.2.main"=>"Pour améliorer la ville 2.2.main",
+
+        "our chart" => "la charte"
     );
 ?>
