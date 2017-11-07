@@ -154,6 +154,6 @@ jQuery(document).ready(function() {
             }, 600);
         }
     });
-    countShoppingCart("init");
+    shopping.countShoppingCart("init");
 });
 </script> 
