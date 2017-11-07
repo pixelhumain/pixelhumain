@@ -144,6 +144,15 @@ header, .header {
     font-size:18px;
 }
 /* footer */
+#modalRegister .form-control{
+    border:0px;
+    border-bottom: 2px solid #e7e7e7;
+    border-radius: 0px;
+    box-shadow: none;
+}
+/* login */
+
+
 
 .col-footer h5{
     font-size:16px;
@@ -381,7 +390,7 @@ header .container, .header .container {
 #openModal .close-modal{
 	width: 50px;
     height: 45px;
-    top: 5px;
+    top: 15px;
     right: 15px;
 }
 #openModal .close-modal .lr, #openModal .close-modal .rl{
@@ -478,16 +487,17 @@ header .container, .header .container {
     color: white!important;
 }
 #openModal{
+    top: 100px;
 	background-color: transparent;
 	z-index: 10;
 }
 #openModal .modal-content{
-	top: 88px;
     /* overflow: scroll; */
     left: inherit;
     right: inherit;
     border-radius: 0px;
     padding: 0px 10px !important;
+    top: 0px;
 }
 .btn-shoppingCart .shoppingCart-count{
 	margin-top: -15px;

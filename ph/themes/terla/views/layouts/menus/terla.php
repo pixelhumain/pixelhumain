@@ -15,7 +15,7 @@
                     <?php if (!@Yii::app()->session["userId"]){ ?>
                         <li>
                         <a class="letter-orange font-montserrat btn-menu-connect padding-10" 
-                            data-toggle="modal" data-target="#modalLogin">
+                            data-toggle="modal" data-target="#modalRegister">
                             <span><i class="fa fa-2x fa-user-circle"></i></span>
                         </a>
                         </li>

@@ -162,72 +162,109 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-lg-12">
-                    <span class="name" >
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/BCH/logo.png" height="100" class="inline margin-bottom-15">
-                    </span>
-                    <hr>
-                    <h2 class="letter-orange">S'inscrire</h2>
-                    <h5>Créer votre compte pour accéder à toutes les fonctionnalités</h5>                    
-                    <hr>
-                    <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
-                    <!-- <p>Rejoindre la version co2<br/>Le commun avance, montez à bord !!<hr></p> -->
+        <div class="col-md-12 padding-top-50">
+
+            <div class="col-sm-7 padding-50">
+                
+                <h4 class="letter-lightgray">Pas encore membre ?</h4>
+                <h2 class="letter-lightgray text-lightweight">Inscrivez-vous gratuitement</h2><br><br><br>
+
+                <div class="col-xs-6" style="border-right: 2px solid lightgrey;">
+                    <input type="radio" value="homme" class="pull-right margin-10">
+                    <h4 class="pull-right text-lightweight letter-lightgray">Homme</h4>
                 </div>
-                <div class="col-lg-12">
-                    <p></p>
+                <div class="col-xs-6">
+                    <h4 class="pull-left text-lightweight letter-lightgray">Femme</h4>
+                    <input type="radio" value="femme" class="pull-left margin-10">
                 </div>
-            </div>
-            <div class="col-md-8 col-md-offset-2 text-left">
-                
-                <label class="letter-black"><i class="fa fa-address-book-o"></i> Nom et prénom</label>
-                <input class="form-control" id="registerName" name="name" type="text" placeholder="Nom et prénom"><br/>
-                
-                <label class="letter-black"><i class="fa fa-user-circle-o"></i> Nom d'utilisateur</label><br>
-                <input class="form-control" id="username" name="username" type="text" placeholder="Nom d'utilisateur"><br/>
-                
-                <label class="letter-black"><i class="fa fa-envelope"></i> E-mail</label><br>
-                <input class="form-control" id="email3" name="email3" type="text" placeholder="e-mail"><br/>
-                
-                <label class="letter-black"><i class="fa fa-key"></i> Mot de passe</label><br/>
-                <input class="form-control" id="password3" name="password3" type="password" placeholder="mot de passe"><br/>
-                
-                <label class="letter-black"><i class="fa fa-key"></i> Répétez le mot de passe</label><br/>
-                <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="mot de passe (confirmation)">
-                <input class="form-control" id="isInvitation" name="isInvitation" type="hidden" value="false">
-                <hr>
-                <div class="form-group pull-left no-margin padding-top-10" style="width:100%;">
-                    <div>
+
+                <br><br><br>
+                <div class="col-sm-10 col-sm-offset-1">
+                    <!-- <label class="letter-black"><i class="fa fa-address-book-o"></i> Nom et prénom</label> -->
+                    <input class="form-control" id="registerName" name="name" type="text" placeholder="Nom et prénom"><br/>
+                    
+                    <!-- <label class="letter-black"><i class="fa fa-user-circle-o"></i> Nom d'utilisateur</label><br> -->
+                    <input class="form-control" id="username" name="username" type="text" placeholder="Nom d'utilisateur"><br/>
+                    
+                    <!-- <label class="letter-black"><i class="fa fa-envelope"></i> E-mail</label><br> -->
+                    <input class="form-control" id="email3" name="email3" type="text" placeholder="e-mail"><br/>
+                    
+                    <!-- <label class="letter-black"><i class="fa fa-key"></i> Mot de passe</label><br/> -->
+                    <input class="form-control" id="password3" name="password3" type="password" placeholder="mot de passe"><br/>
+                    
+                    <!-- <label class="letter-black"><i class="fa fa-key"></i> Répétez le mot de passe</label><br/> -->
+                    <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="mot de passe (confirmation)">
+                    <input class="form-control" id="isInvitation" name="isInvitation" type="hidden" value="false">
+                    
+                    <div class="form-group text-left pull-left margin-top-15 padding-top-10" style="width:100%;">
                         <label for="agree" class="checkbox-inline letter-red">
                             <input type="checkbox" class="grey agree" id="agree" name="agree">
                             <?php echo Yii::t("login","I agree to the Terms of") ?> 
-                            <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp text-dark">
-                                <?php echo Yii::t("login","Service and Privacy Policy") ?>
+                            <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" 
+                                target="_blank" class="bootbox-spp text-dark">
+                                <?php echo Yii::t("login","our chart") ?> (! url)
                             </a>
                         </label>
                     </div>
-                </div>
 
-                <br><hr>
 
-                <div class="pull-left form-actions no-margin" style="width:100%; padding:10px;">
-                    <div class="errorHandler alert alert-danger no-display registerResult pull-left " style="width:100%;">
-                        <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","Please verify your entries.") ?>
+                    <div class="col-xs-12 no-padding">
+                        <a href="#" class="btn btn-link letter-lightgray pull-left "><small>Conditions générales</small></a>
                     </div>
-                    <div class="alert alert-success no-display pendingProcess" style="width:100%;">
-                        <i class="fa fa-check"></i> <?php echo Yii::t("login","You've been invited : please resume the registration process in order to log in.") ?>
-                    </div>
-                </div>
 
-                <button class="btn btn-success text-white pull-right createBtn"><i class="fa fa-sign-in"></i> S'inscrire</button>
-                <a href="javascript:" class="btn btn-danger pull-right margin-right-10" data-dismiss="modal">
-                    <i class="fa fa-times"></i> Retour
-                </a>
-                
-                
-                <div class="col-md-12 margin-top-50"></div>
+                    <br>
+
+                    <div class="pull-left form-actions no-margin" style="width:100%; padding:10px;">
+                        <div class="errorHandler alert alert-danger no-display registerResult pull-left " style="width:100%;">
+                            <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","Please verify your entries.") ?>
+                        </div>
+                        <div class="alert alert-success no-display pendingProcess" style="width:100%;">
+                            <i class="fa fa-check"></i> <?php echo Yii::t("login","You've been invited : please resume the registration process in order to log in.") ?>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-link bg-orange text-white pull-right createBtn" style="font-size:20px;">
+                        <i class="fa fa-sign-in"></i> Valider
+                    </button>
+
+                    <a href="javascript:" class="btn btn-link letter-lightgray pull-right padding-top-10 margin-right-10" data-dismiss="modal">
+                        <i class="fa fa-times"></i> annuler
+                    </a>  
+
+                </div>              
             </div>      
+
+            <div class="col-sm-5 margin-bottom-50" style="border-left: 2px solid lightgray;">
+                Déjà membre ?<br>
+                <button class="btn btn-link bg-orange margin-top-15">Connectez-vous</button>
+
+                <br><br><br>
+
+                <h4 class="letter-lightgray text-center">Comment ça marche ?</h4>
+
+               <!--  <iframe width="280" height="155" src="https://www.youtube.com/embed/pIxoM8tkms8?rel=0&amp;showinfo=0" 
+                        frameborder="0" allowfullscreen>
+                </iframe> -->
+                <div class="bg-dark" style="width:280px; height:155px;margin:auto">
+                    <i class="fa fa-play bg-white text-dark" 
+                        style="margin-top: 60px;padding: 10px 15px;border-radius: 4px;"></i>
+                </div>
+                <br>
+                <div class="col-xs-6">
+                    <hr>
+                    <div class="padding-25 margin-top-50 bg-blue text-white">
+                        SHARE ON FACEBOOK
+                        <br><br><i class="fa fa-facebook fa-2x"></i>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <hr>
+                    <div class="padding-25 margin-top-50 bg-red text-white">
+                        SHARE ON COMMUNECTER
+                        <br><br><i class="fa fa-connectdevelop fa-2x"></i>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div>
