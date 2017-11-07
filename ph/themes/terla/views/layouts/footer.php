@@ -38,97 +38,122 @@
     </div> -->
 <?php //} ?>
 
-<div class="scroll-top">
+<!-- <div class="scroll-top">
     <a class="btn btn-primary bg-blue" href="javascript:KScrollTo('.main-container');">
         <i class="fa fa-<?php echo $iconBtnRightBottom; ?>"></i>
     </a>
-</div>
+</div> -->
 
 
-<?php //if(@$subdomain == "web" || @$subdomain == "social"){ ?>
+<?php
+
+    $footer = array(array("title"=>"Info Pratiques",
+                          "links"=>array(array( "label"=>"Comment ça marche ?",
+                                                "link" => "#info.p.commentcamarche",
+                                              ),
+                                         array( "label"=>"Tuto bonne pratique",
+                                                "link" => "#info.p.tuto",
+                                              ),
+                                         array( "label"=>"Nos brochures",
+                                                "link" => "#info.p.brochures",
+                                              ),
+                                         array( "label"=>"FAQ",
+                                                "link" => "#info.p.faq",
+                                              ),
+                                         array( "label"=>"Plan du site",
+                                                "link" => "#info.p.plan",
+                                              ),
+                                        ),
+                          ),
+                    array("title"=>"A propos",
+                          "links"=>array(array( "label"=>"A propos de cyberun",
+                                                "link" => "#info.p.apropocyberun",
+                                              ),
+                                         array( "label"=>"A propos de BCH",
+                                                "link" => "#info.p.apropobch",
+                                              ),
+                                         array( "label"=>"A propos de la réunion",
+                                                "link" => "#info.p.aproporeu",
+                                              ),
+                                         array( "label"=>"Notre charte",
+                                                "link" => "#info.p.charte",
+                                              ),
+                                         array( "label"=>"Nos partenaires",
+                                                "link" => "#info.p.partenaires",
+                                              ),
+                                         array( "label"=>"Dossier de presse",
+                                                "link" => "#info.p.presse",
+                                              ),
+                                         array( "label"=>"Nous contacter",
+                                                "link" => "#info.p.contact",
+                                              ),
+                                        ),
+                          ),
+                    array("title"=>"Mentions Légales",
+                          "links"=>array(array( "label"=>"Droit d'auteur",
+                                                "link" => "#info.p.droitauteur",
+                                              ),
+                                         array( "label"=>"Mentions légales propre au tourisme",
+                                                "link" => "#info.p.legaltourism",
+                                              ),
+                                         array( "label"=>"Conditions générales de ventes",
+                                                "link" => "#info.p.cgv",
+                                              ),
+                                         array( "label"=>"FAQ",
+                                                "link" => "#info.p.faq",
+                                              ),
+                                         array( "label"=>"Plan du site",
+                                                "link" => "#info.p.plan",
+                                              ),
+                                        ),
+                          ),
+                   );
+
+?>
 <!-- Footer -->
 <footer class="col-xs-12 pull-left no-padding">
     <div class="footer-below bg-orange-3">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-left col-footer">
-                    <h5><i class="fa fa-info-circle hidden-xs"></i> Informations pratiques</h5>
-                    <a href="default/view/page/openatlas/dir/docs|panels" class="lbhp text-white"><i class="fa fa-angle-right"></i> A propos</a><br>
-                    <a href="default/view/page/mention/dir/docs|panels" class="text-white lbhp">
-                        <i class="fa fa-angle-right"></i> Mentions légales
-                    </a><br>
-                    <a href="<?php echo Yii::app()->request->baseUrl; ?>/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="text-white">
-                        <i class="fa fa-angle-right"></i> Conditions d'utilisations
-                    </a><br><br>
-                    <!-- <a href="#info.p.communecter" target="_blank" class="margin-right-10 hidden-xs">
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/Logo_Licence_Ouverte_noir_avec_texte.gif" height=30>
-                    </a> -->
-                    
-                    <a href="https://fr.wikipedia.org/wiki/Open_source" target="_blank" class=" hidden-xs">
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/opensource.gif" height=40 
-                            style="margin-top: -10px;border-radius: 3px;">
-                    </a>
-                    <a href="https://github.com/pixelhumain" target="_blank" 
-                        class=" hidden-xs">
-                        <i class="fa fa-github fa-2x bg-white img-circle padding-5 margin-5"></i>
-                    </a>
-                </div>
+                <?php foreach($footer as $k => $foot){ ?>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-left col-footer">
+                        <h5><?php echo $foot["title"]; ?></h5>
+                        <?php foreach($foot["links"] as $j => $link){ ?>
+                            <a href="<?php echo $link["link"]; ?>" class="lbhp text-white">
+                                <i class="fa fa-angle-right"></i> <?php echo $link["label"]; ?>
+                            </a><br>
+                        <?php } ?> 
+                    </div>
+                <?php } ?> 
 
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-footer-ph">
-                    <h5><i class="fa fa-info-circle hidden-xs"></i> A propos</h5>
-                    <a href="default/view/page/openatlas/dir/docs|panels" class="lbhp text-white">
-                        <i class="fa fa-angle-right"></i> ...
-                    </a><br>
-                    <a href="default/view/page/mention/dir/docs|panels" class="text-white lbhp">
-                        <i class="fa fa-angle-right"></i> ...
-                    </a><br>
-                    <a href="<?php echo Yii::app()->request->baseUrl; ?>/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="text-white">
-                        <i class="fa fa-angle-right"></i> ...
-                    </a><br><br>
-                </div>
-
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-footer-ph">
-                    <h5><i class="fa fa-info-circle hidden-xs"></i> Mentions légales</h5>
-                    <a href="default/view/page/openatlas/dir/docs|panels" class="lbhp text-white">
-                        <i class="fa fa-angle-right"></i> ...
-                    </a><br>
-                    <a href="default/view/page/mention/dir/docs|panels" class="text-white lbhp">
-                        <i class="fa fa-angle-right"></i> ...
-                    </a><br>
-                    <a href="<?php echo Yii::app()->request->baseUrl; ?>/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="text-white">
-                        <i class="fa fa-angle-right"></i> ...
-                    </a><br><br>
-                </div>
-
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-right col-footer hidden-xs">
-                    <h5>
-                        <i class="fa fa-envelope"></i> Social<br>
-                        <span class="letter-white">contact@bch.com</span>
-                    </h5>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-footer hidden-xs">
+                    <h5>Nous suivre</h5>
+                    <small><small>Nous sommes présents sur ces réseaux sociaux :</small></small>
                     <ul class="list-inline">
                         <li>
-                            <a href="https://github.com/pixelhumain/co2" target="_blank" class="btn-social btn-outline text-dark">
-                                <i class="fa fa-fw fa-github"></i>
-                            </a>
-                        </li>
-                        <li>
                             <a href="https://www.facebook.com/communecter" target="_blank" 
-                               class="btn-social btn-outline text-dark">
+                               class="btn-social btn-outline">
                                 <i class="fa fa-fw fa-facebook"></i>
                             </a>
                         </li>
                         <li>
+                            <a href="https://plus.google.com/communities/111483652487023091469" target="_blank" 
+                               class="btn-social btn-outline">
+                                <i class="fa fa-fw fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
                             <a href="https://www.twitter.com/communecter" target="_blank" 
-                               class="btn-social btn-outline text-dark">
+                               class="btn-social btn-outline">
                                 <i class="fa fa-fw fa-twitter"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="https://plus.google.com/communities/111483652487023091469" target="_blank" 
-                               class="btn-social btn-outline text-dark">
-                                <i class="fa fa-fw fa-google-plus"></i>
+                            <a href="https://github.com/pixelhumain/co2" target="_blank" class="btn-social btn-outline">
+                                <i class="fa fa-fw fa-rss"></i>
                             </a>
                         </li>
+                        
                         <!-- <li>
                             <a href="#" class="btn-social btn-outline text-dark">
                                 <i class="fa fa-fw fa-facebook"></i>
@@ -142,7 +167,7 @@
     <div class="footer-below bg-orange-4">
         <div class="container">
             <div class="row">
-            COPYRIGHT
+            <small>2017 Cyberun</small>
             </div>
         </div>
     </div>

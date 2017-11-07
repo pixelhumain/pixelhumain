@@ -1,3 +1,7 @@
+p{
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .logo-menutop{
 	margin:8px 0 0 -5px !important;
 }
@@ -117,10 +121,57 @@ header, .header {
     margin-top: 0px !important;
     margin-left: 0px !important;
 }
+
+/* HOME */
+.blockHome1 .bg-lightgray{
+    padding: 15px 40px;
+}
+
+.blockHome1 h2{
+    font-weight: 300;
+}
+.blockHome1 span{
+    font-size:13px;
+}
+
+.input-newsletter{
+    height: 40px;
+    border-radius: 2px;
+    border: 1px solid #c9c9c9;
+    border-right: 0;
+}
+.btn-newsletter{
+    font-size:18px;
+}
+/* footer */
+
+.col-footer h5{
+    font-size:16px;
+}
+.col-footer .btn-social{
+    border: none;
+    border-radius: 0;
+    background: none;
+    font-size: 30px !important;
+}
+.col-footer a.lbhp{
+    font-size:12px;
+    color:white !important;
+}
+.hr-newsletter{
+    height: 3px !important;
+    background-color: white;
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+/* carousel */
 .carousel-home{
 	margin-bottom: 30px;
 }
-
+.carousel-inner{
+    max-height: 400px;
+}
 .carousel-home .carousel-indicators{
 	z-index: 1;
 	bottom:-30px;
@@ -136,6 +187,29 @@ header, .header {
 .carousel-home .carousel-indicators > li.active{
 	background-color: #EF5B34;	
 }
+.carousel-caption {
+    text-align: center;
+    right: 35%;
+left: 35%;
+    top:80px;
+    padding-bottom: 30px;
+    text-align: left;
+}
+.carousel-caption h3{
+    text-align: center;
+    font-size:30px;
+}
+.carousel-caption p{
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 8px;
+    padding:10px;
+    font-size:14px;
+}
+/**/
+
+
+
 #presentation-home .content-img{
 	height: 250px;
     overflow: hidden;
@@ -151,7 +225,7 @@ header, .header {
 #presentation-home-slogan div{
 	position: absolute;
     bottom: 20px;
-    background-color: rgba(250,250,250,0.5);
+    background-color: rgba(250,250,250,0.6);
     left: 30px;
     border-radius: 3px;
 }
@@ -163,17 +237,32 @@ header, .header {
 #ccouer-home .entity{
 	background-color: white;
 	border-radius: 2px;
+    margin-bottom:100px;
+    border-radius: 0 0 7px 7px;
 }
-#ccouer-home .entity .content-desc{
+.entity .content-desc{
 	margin-bottom: 10px;
-	height: 150px;
+    min-height: 140px;
+    max-height: 180px;
 }
-#ccouer-home .entity .content-desc > h4{
+.entity .content-desc > h4{
 	font-size: 16px;
 }
-#ccouer-home .entity .content-desc > p{
-	font-size: 14px;
+.entity .content-desc > p{
+    font-size: 12px;
+    color:#969696;
 }
+.entity .content-desc > .btn{
+    width:70%;
+}
+
+.btn-orange-border-white{
+    background-color: #EF5B34 !important;
+    border: white 2px solid;
+    font-size: 20px;
+    padding: 10px 45px;
+}
+
 #ccouer-home img{
 	height: 160px;
 	width:  100%;
@@ -200,7 +289,7 @@ header, .header {
     animation: lds-dual-ring_reverse 2s linear infinite;
 }
 header .container, .header .container {
-        padding: 88px 0px 0px 0px;
+    padding: 88px 0px 0px 0px;
     /* padding-bottom: 70px; */
     margin: 0px;
     width: 100%;
@@ -210,17 +299,18 @@ header .container, .header .container {
     right: 0px;
     left: 0px;
     /* width: 100%; */
-    height: 45px;
-    background-color: lightgray; 
+    height: 70px;
+    background-color: #e6e6e6;
+    color: #989696; 
     text-align: left;
-    padding-left: 50px;
-    padding-top: 10px;
-    font-size: 17px;
+    padding-left: 9%;
+    padding-top: 20px;
+    font-size: 19px;
 }
 
 .headerTitle:after, .headerTitle:before, .headerTitleStanalone:after, .headerTitleStanalone:before {
     top: 100%;
-    left: 10%;
+    left: 9%;
     border: solid transparent;
     content: " ";
     height: 0;
@@ -235,13 +325,13 @@ header .container, .header .container {
 }
 .headerTitle:before, .headerTitleStanalone:before {
     /* border-color: rgba(179, 179, 179, 0); */
-    border-bottom-color: #b3b3b3;
+    border-bottom-color: #e6e6e6;
     border-width: 11px;
     margin-left: -11px;
 }
 .headerTitle:after, .headerTitleStanalone:after {
     border-color: rgba(255, 255, 255, 0);
-    border-bottom-color: lightgray;
+    border-bottom-color: #e6e6e6;
     border-width: 10px;
     margin-left: -10px;
 }

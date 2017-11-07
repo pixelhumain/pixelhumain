@@ -107,6 +107,7 @@
                     <a href="#store" class="lbh letter-orange font-montserrat">
                         <span>Store</span>
                     </a>
+                    
                     <button class="letter-orange font-montserrat" id="btn-open-search-bar">
                         <span>Community</span>
                     </button>
@@ -114,6 +115,10 @@
                     <button class="letter-orange font-montserrat" id="btn-open-search-bar">
                         <span>Contribute</span>
                     </button>
+
+                    <a href="#info.p.contact" class="letter-orange font-montserrat lbh">
+                        <span>Contact</span>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -149,6 +154,6 @@ jQuery(document).ready(function() {
             }, 600);
         }
     });
-    countShoppingCart("init");
+    shopping.countShoppingCart("init");
 });
 </script> 
