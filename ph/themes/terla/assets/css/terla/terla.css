@@ -83,6 +83,7 @@ input#second-search-bar{
 .menu-btn-start-search{
 	height:30px;
 	border:none !important;
+    padding-top: 4px;
 }
 .progressTop::-webkit-progress-value
 {
@@ -502,7 +503,7 @@ header .container, .header .container {
 .btn-shoppingCart .shoppingCart-count{
 	margin-top: -15px;
 	margin-left: -7px;
-	background-color: #34a853;
+	background-color: #e77200;
 }
 .btn-shoppingCart{
 	margin-right: 7px;
