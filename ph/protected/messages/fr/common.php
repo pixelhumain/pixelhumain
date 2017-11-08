@@ -1238,5 +1238,6 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Filter by names" => "Filtrer par nom",
 	"Unblock" => "Débloquer",
 	"Back to page" => "Retourner sur la page",
+	"Filter by names" => "Filtrer par nom"
 );
 ?>
