@@ -1075,5 +1075,8 @@ return array(
 	"Zoom" => "Zoom",
 	"Around me" => "Autour de moi",
 	"Filter by names" = "Filtrer par nom",
+	"Administrative zone N°2"=>"Zones administratif N°2",
+	"Administrative zone N°3"=>"Zones administratif N°3",
+	"Administrative zone N°4"=>"Zones administratif N°4",
 );
 ?>
