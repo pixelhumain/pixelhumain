@@ -1235,6 +1235,6 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Close the map" => "Fermer la carte",
 	"Zoom" => "Zoom",
 	"Around me" => "Autour de moi",
-	"Filter by names" = "Filtrer par nom",
+	"Filter by names" => "Filtrer par nom"
 );
 ?>
