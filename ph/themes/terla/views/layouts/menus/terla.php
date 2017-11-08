@@ -1,12 +1,31 @@
 <!-- Navigation -->
+<style>
+    #mainNav a.text-white{
+        color:#ddd !important;
+    }
+    #mainNav a.text-white:hover{
+        color:#ff7e00 !important;
+    }
+
+    #mainNav.navbar-default .navbar-nav > .open > a, 
+    #mainNav.navbar-default .navbar-nav > .open > a:focus, 
+    #mainNav.navbar-default .navbar-nav > .open > a:hover{
+        background-color: transparent;
+    }
+
+    #mainNav .dropdown-menu > li > a:focus, 
+    #mainNav .dropdown-menu > li > a:hover{
+        background-color: #ff7e00;
+    }
+</style>
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom no-padding">
     <div class="container bg-black">
                 
         <ul class="nav navbar-nav navbar-right">
                     <li>
-                    <a a href='#person.shoppingcart'  data-modalshow="" class="font-montserrat text-white padding-10 btn-shoppingCart lbhp">
+                    <a href='#person.shoppingcart'  data-modalshow="" class="text-white padding-10 btn-shoppingCart lbhp">
                         <span>
-                            <i class="fa fa-shopping-cart"></i>
+                            <i class="fa fa-shopping-cart fa-2x letter-lightgrey"></i>
                             <span class="shoppingCart-count topbar-badge badge animated bounceIn badge-transparent hide">
                             </span>
                         </span>
@@ -14,8 +33,8 @@
                     </li>
                     <?php if (!@Yii::app()->session["userId"]){ ?>
                         <li>
-                        <a class="letter-orange font-montserrat btn-menu-connect padding-10" 
-                            data-toggle="modal" data-target="#modalLogin">
+                        <a href="#register" class="text-white btn-menu-connect padding-10" style="margin-top: 1px;" 
+                            data-toggle="modal" data-target="#modalRegister">
                             <span><i class="fa fa-2x fa-user-circle"></i></span>
                         </a>
                         </li>
@@ -41,20 +60,22 @@
                         <li>
                     <?php } ?>
                       <li class="dropdown">
-                            <a href="#" class="dropdown-toggle padding-10 text-white" data-toggle="dropdown" role="button" style="height: 35px;">
-                        <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/<?php echo Yii::app()->language ?>.png" width="22"/> <span class="caret"></span></a>
-                            <ul class="dropdown-menu arrow_box" role="menu" style="position: absolute !important;
-                                top: 45px;
-                                right: -65px;
-                                left: inherit;
-                                background-color: white;
-                                border: 1px solid transparent;
-                                -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-                                box-shadow: 0 6px 12px rgba(0,0,0,.175);">
-                                <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
-                                <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
-                            </ul>
-                        </li>
+                        <a href="#" class="dropdown-toggle padding-10 text-white margin-top-5 margin-left-5" 
+                            data-toggle="dropdown" role="button" style="height: 35px;">
+                            <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/<?php echo Yii::app()->language ?>.png" width="22"/> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu arrow_box" role="menu" style="position: absolute !important;
+                            top: 45px;
+                            right: -65px;
+                            left: inherit;
+                            background-color: white;
+                            border: 1px solid transparent;
+                            -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+                            box-shadow: 0 6px 12px rgba(0,0,0,.175);">
+                            <li><a href="javascript:;" class="col-xs-12" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
+                            <li><a href="javascript:;" class="col-xs-12" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
+                        </ul>
+                    </li>
             </ul>
     </div>
     <div class="container">
@@ -104,9 +125,9 @@
                         <span>Agenda</span>
                     </a>
 
-                    <a href="#store" class="lbh letter-orange font-montserrat">
+                    <!-- <a href="#store" class="lbh letter-orange font-montserrat">
                         <span>Store</span>
-                    </a>
+                    </a> -->
                     
                     <button class="letter-orange font-montserrat" id="btn-open-search-bar">
                         <span>Community</span>
@@ -117,7 +138,7 @@
                     </button>
 
                     <a href="#info.p.contact" class="letter-orange font-montserrat lbh">
-                        <span>Contact</span>
+                        <span><i class="fa fa-envelope" style="font-size: 16px;"></i></span>
                     </a>
                 </li>
             </ul>
