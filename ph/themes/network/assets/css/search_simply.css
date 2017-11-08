@@ -128,6 +128,7 @@ fieldset{
 }
 .main-bottom-menu{
 	height: 75px;
+	width: 75px;
     opacity: 1 !important;
     background-color: transparent;
     position: fixed !important;
@@ -759,7 +760,9 @@ background-position: 0% 100%;
 	background-color: transparent !important;
 	color:inherit !important;
 }
-
+#divFiltre .endFilterPanel{
+	height:100px;
+}
 .li-dropdown-scope.li-center{
 	width:30%;
 	margin-left:auto;
