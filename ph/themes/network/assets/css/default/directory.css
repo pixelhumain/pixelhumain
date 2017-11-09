@@ -60,11 +60,19 @@
     padding-top: 7px !important;
     padding-bottom: 30px !important;
   }
-
+  #dropdown_search_result{
+    background-color: rgba(255,255,255,0.9);
+    text-align: -webkit-center;    
+  }
+  #dropdown_search_result h4{
+    font-weight: 800;
+    font-size: 25px;
+  }
   #dropdown_search{
     max-height: inherit !important;
     height:initial;
-    background-color: rgba(255,255,255,0.8);
+    padding-top:30px;
+    background-color: rgba(255,255,255,0.9);
     border-radius: 0px;
     min-height: 1000px;
     /*margin-left:-15px !important;*/

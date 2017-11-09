@@ -94,7 +94,7 @@
 	******************************************* -->
 	<?php $this->renderPartial($layoutPath.'menu.menuTop', array("params" => $networkJson, "me" => $me)); ?>
 	<?php $this->renderPartial($layoutPath."menu.menuLeft", array("params" => $networkJson, "me" => $me)); ?>
-		<div class="col-md-12 col-sm-12 col-xs-12 my-main-container no-padding" style="top: 50px">
+		<div class="col-md-12 col-sm-12 col-xs-12 my-main-container no-padding" style="top: 50px; display: none;">
 			<div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 col-xs-12 main-col-search no-padding" style="min-height: 490px; opacity: 1;">
 			<?php $this->renderPartial("../network/simplyDirectory",array("params" => $networkJson)); ?>
 			</div>

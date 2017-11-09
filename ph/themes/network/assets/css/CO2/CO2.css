@@ -817,6 +817,7 @@ a, a:hover, a:focus, a:active, a.active{
 }
 .blockUI.blockOverlay{
 	top:50px !important;
+	background-color: transparent !important;
 }
 .blockUI.blockOverlay.filering{
 	left:20%;
