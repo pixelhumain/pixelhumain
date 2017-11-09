@@ -9,6 +9,19 @@
 #page p {
     font-size: 13px;
 }
+
+#dropdown_search .row.headerDirectory{
+    margin-top: 20px;
+    display: none;
+}
+
+#dropdown_search p {
+    font-size: 13px;
+}
+
+#dropdown_search .entityDescription {
+    font-size: 13px;
+}
 .container-result-search {
     border-top:1px solid #eee;
     margin-top:15px;

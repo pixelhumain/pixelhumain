@@ -313,3 +313,14 @@ color:white;
 #divFiltre .endFilterPanel{
 	height:100px;
 }
+
+#dropdown_params .panel-group,
+#dropdown_params .panel-default{
+	height:100%;
+}
+
+#dropdown_params .panel-default{
+	background-color: #f5f5f5;
+	overflow-y: scroll;
+	border-radius:inherit;
+}
