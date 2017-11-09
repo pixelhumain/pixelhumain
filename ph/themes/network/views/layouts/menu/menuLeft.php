@@ -20,7 +20,7 @@
 	}
 </style>
 <div class="hidden-xs main-menu-left col-md-2 col-sm-3 menu-col-search no-padding"  data-tpl="menuLeft">
-	<div  class="col-md-12 no-padding" id="dropdown_params">
+	<div  class="col-md-12 no-padding" id="dropdown_params" style="height: 100%;">
 		<div class="panel-group">
 			<div id="divFiltre" class="panel panel-default">
 				<div id="divTagsMenu"></div>
@@ -148,9 +148,7 @@
 						</h4>
 					</a>
 				</div>
-				<div class="panel-heading">
-					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-				</div>
+				<div class="panel-heading endFilterPanel"></div>
 			</div>
 		</div>
 	</div>

@@ -189,15 +189,11 @@
 			'/assets/css/CO2/CO2-color.css',
 			'/assets/css/CO2/CO2.css',
 			'/assets/css/plugins.css',
-			
-			// '/assets/css/styles-responsive.css',
-			
 			'/assets/css/search.css',
-
+			// '/assets/css/styles-responsive.css',
 			'/assets/css/default/directory.css',
 			'/assets/css/floopDrawerRight.css',
 			'/assets/css/news/index.css',
-			
 			'/assets/css/search_simply.css',
 					
 		);
