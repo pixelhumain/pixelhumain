@@ -1,0 +1,167 @@
+.notifications li {
+		min-height:50px;
+		padding: 10px;
+		background-color: rgba(197, 225, 197, 0.3);
+		border-bottom: 1px dashed #bed1be;
+	}
+	.notifications li.read{
+		background-color:white !important;
+	}
+	.notifications{
+		/*background-color: white;*/
+		color: #528195;
+		padding: 2px 0px !important;
+	}
+	.notifications .pageslide-title{
+		padding-left: 10px;
+		text-align: inherit; 
+		color:#67B04C;
+		font-size: 14px !important;
+		text-transform: none !important;
+	}
+	#notificationPanelSearch{
+	position: fixed;
+	top: 68px !important;
+	/*border-top:1px solid rgba(128, 128, 128, 0.54);*/
+	right: 0%;
+	width: 430px;
+	bottom: 0px;
+	overflow-y: auto;
+	background-color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 0px;
+    box-shadow: 0px 2px 5px 2px rgba(66, 66, 66, 0.79) !important;
+    -webkit-box-shadow: 0px 2px 5px 2px rgba(66, 66, 66, 0.79) !important;
+    -o-box-shadow: 0px 2px 5px 2px rgba(66, 66, 66, 0.79) !important;
+    box-shadow: 0px 2px 5px 2px rgba(66, 66, 66, 0.37) !important;
+    overflow-x: hidden;
+    z-index: 13000;
+    
+		display:none;
+		/*background-color: white;
+		/*box-shadow: 0px 0px !important;
+		left:unset !important;
+		right:25px;
+		width: 300px !important;
+		-moz-box-shadow: 0px 0px 3px 0px #656565;
+		-webkit-box-shadow: 0px 0px 3px 0px #656565;
+		-o-box-shadow: 0px 0px 3px 0px #656565;
+		box-shadow: 0px 0px 3px 0px #656565;
+		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);*/
+	}
+	.notifications a.notif{
+		padding-top: 0px !important;
+		background-color: transparent;
+		color: #354535;
+		font-size: 13px;
+	}
+	ul.notifList{
+		position: absolute;
+		bottom: 0px !important;
+		overflow-y: auto;
+		padding-right: 10px;
+		top: 45px;
+		padding: 0px;
+		-moz-box-shadow: 0px 0px 3px -1px #656565;
+		-webkit-box-shadow: 0px 0px 3px -1px #656565;
+		-o-box-shadow: 0px 0px 3px -1px #656565;
+		box-shadow: 0px 0px 3px -1px #656565;
+		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);
+	}
+
+	
+
+	.notifications .pageslide-list a .label{
+		opacity: 0.7;
+		font-size: 20px !important;
+		border-radius: 30px !important;
+		height: 40px;
+		padding-top: 7px !important;
+		padding-left: 7px !important;
+		margin-top: 5px;
+		height: 35px;
+		width: 35px;
+		margin-left: -1px;
+		background-color: #56c557 !important;
+	}
+
+	.notifications .message,.notifications .time {
+		width:100%;
+	}
+	.notifications .content-icon{
+		margin-right: 10px;
+	}
+	.notifications .time {
+	   color: #4d654d;
+	}
+	.btn-notification-action{
+		background-color: #71CE4E !important;
+		color: white;
+		margin: 0px !important;
+		margin-top: -4px !important;
+		padding: 4px 8px !important;
+		margin-right: 10px !important;
+	}
+	.footer-notif{
+		position: absolute;
+		bottom:10px;
+		width:100%;
+	}
+	.btn-reload-notif{
+		border-radius: 50%!important;
+	    margin-left: 14px !important;
+	    margin-right: 5px !important;
+	}
+	#notificationPanelSearch{
+		width:415px !important;
+		max-width: 100%;
+	}
+
+	.badge-tranparent{
+		background-color: transparent;
+	}
+	.removeBtn{
+		position: absolute !important;
+		right: 3px;
+		bottom: 4px;
+		border-radius:25px !important;
+		border:1px solid grey;
+		color: grey;
+	}
+	.removeBtn:hover{
+		background-color: grey;
+		color: white;
+	};
+	.removeBtn i{
+		font-size:12px;
+	}
+
+
+
+#notificationPanelSearch{
+	overflow: visible !important;
+}
+
+#notificationPanelSearch.arrow_box::before{
+	margin-bottom: 1px;	
+	border-bottom-color: #e1dbdb;
+	left: 25% !important;
+}
+#notificationPanelSearch.arrow_box::after{
+	left: 25% !important;
+}
+
+#notificationPanelSearch{
+	bottom: 30% !important;
+	right: 27px !important;
+	top: 68px !important;
+}
+ @media (min-width: 767px) and (max-width: 992px) {
+ 	#notificationPanelSearch.arrow_box::before{
+		left: 51% !important;
+	}
+	#notificationPanelSearch.arrow_box::after{
+		left: 51% !important;
+	}
+ }

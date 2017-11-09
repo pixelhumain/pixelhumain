@@ -303,6 +303,8 @@
 				$("#dropdown-newElement_streetAddress-found").show();			
 
 				$(".item-street-found").click(function(){
+					mylog.log(".item-street-found");
+
 					Sig.markerFindPlace.setLatLng([$(this).data("lat"), $(this).data("lng")]);
 					Sig.map.panTo([$(this).data("lat"), $(this).data("lng")]);
 					Sig.map.setZoom(16);
@@ -312,7 +314,8 @@
 					$('[name="newElement_lng"]').val($(this).data("lng"));
 					formInMap.NE_lat = $(this).data("lat");
 					formInMap.NE_lng = $(this).data("lng");
-					formInMap.initHtml();	
+					formInMap.showWarningGeo(false);
+					formInMap.initHtml();
 				});
 			}else{
 				if(html=="") html = "<span class='padding-15'><i class='fa fa-ban'></i> Aucun résultat</span>";

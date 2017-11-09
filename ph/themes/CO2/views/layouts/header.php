@@ -11,26 +11,7 @@
         margin-right: 57%;
         margin-top: -73px;
     }
-    a.link-submenu-header{
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: 10px;
-        padding: 6px 8px;
-        font-size: 11px;
-    }
-    a.link-submenu-header.active, 
-    a.link-submenu-header:hover, 
-    a.link-submenu-header:active{  
-        border-bottom: 2px solid #ea4335;
-        background-color: rgba(255, 255, 255, 1);
-        color:#ea4335 !important;
-        text-decoration: none;
-    }
-
-    @media (max-width: 767px) {
-        #main-input-group{
-            margin-top:10px;
-        }
-    }
+    
 </style>
 
     <?php 
@@ -105,6 +86,17 @@
                                     data-type="<?php echo @$type; ?>">
                                 <i class="fa fa-search"></i> <?php echo Yii::t("common","Launch search") ?>
                             </button> 
+
+
+                            <?php if($subdomain == "social" && 
+                                     Yii::app()->params["CO2DomainName"] == "kgougle" &&
+                                     empty(Yii::app()->session["userId"])){ ?>
+                                    <button class="btn btn-default letter-blue bold" 
+                                            data-toggle="modal" data-target="#modalRegister"
+                                            data-type="<?php echo @$type; ?>">
+                                        <i class="fa fa-plus-circle"></i> Créer mon compte
+                                    </button>
+                            <?php } ?>
 
                             <?php $lblC = Yii::t("common",@$params["pages"]["#".$page]["lblBtnCreate"]); ?>
                             <?php $colorC = @$params["pages"]["#".$page]["colorBtnCreate"]; ?>

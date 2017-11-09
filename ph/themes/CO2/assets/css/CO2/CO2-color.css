@@ -27,6 +27,9 @@
 .letter-turq{
     color: #229296!important;
 }
+.letter-turq-light{
+    color: #8eb4b6!important;
+}
 .letter-k{
     font-size: 1.2em;
 }
@@ -208,6 +211,12 @@ a.text-white{
     background-color:#d99ce0 !important;
     color:white;
 }
+
+.bg-phink{
+    background-color:#E33551 !important;
+    color:white;
+}
+
 .bg-dark{
     background-color:#2C3E50 !important;
     color:white;
@@ -311,8 +320,27 @@ hr.angle-down {
     /*float: right;*/
 }
 
+.bg-white-comment{
+    background-color:#fff !important;
+}
+.item-comment.bg-white-comment{
+    background-color:#fff !important;
+    padding: 5px !important;
+    /*width: 70%;*/
+    border-radius: 5px;
+    /*float: right;*/
+}
+
+.timeline-panel .bg-white-comment{
+    background-color:rgba(255, 255, 255, 0.3) !important;
+}
+
 .item-comment{
     margin-top:5px !important;
     margin-bottom:5px !important;
 
+}
+
+.bg-dark #ajax-modal-modal-title small .text-dark{
+    color:#B9B9B9 !important;
 }

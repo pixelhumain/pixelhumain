@@ -79,34 +79,35 @@
         "Accessories"=>"Accessoires", 
         "Watches"=>"Montres", 
         "Jewels"=>"Bijoux",
+
         //Job filter
-        "Purchase-Comptability-Management"=>"Achats-Comptabilité-Gestion",
-        "Arts-Crafts"=>"Arts-Artisanat",
-        "Bank-Insurance"=>"Banque-Assurance",
-        "Building-Public_works"=>"Bâtiment-Travaux_publics",
-        "Trade-Sales"=>"Commerce-Vente",
-        "Communication-Multimedia"=>"Communication-Multimédia",
-        "Consultant-Market research"=>"Conseil-Etudes",
-        "Natural_spaces"=>"Espaces_naturels",
+        "Purchase-Comptability-Management"=>"Achats / Comptabilité / Gestion",
+        "Arts-Crafts"=>"Arts / Artisanat",
+        "Bank-Insurance"=>"Banque / Assurance",
+        "Building-Public_works"=>"Bâtiment / Travaux publics",
+        "Trade-Sales"=>"Commerce / Vente",
+        "Communication-Multimedia"=>"Communication / Multimédia",
+        "Consultant-Market research"=>"Conseil / Etudes",
+        "Natural_spaces"=>"Espaces naturels",
         "Agriculture"=>"Agriculture",
         "Fishing"=>"Pêche",
-        "Animals_care"=>"Soins_aux_animaux",
+        "Animals_care"=>"Soins aux animaux",
         "Hotel_business"=>"Hôtellerie",
         "Catering"=>"Restauration",
         "Tourism"=>"Tourisme",
         "Animation"=>"Animation",
         "Property"=>"Immobilier",
         "Industry"=>"Industrie",
-        "IT-Telecommunication"=>"Informatique-Télécommunication",
-        "Installation-Maintenance"=>"Installation-Maintenance",
-        "Marketing-Strategy"=>"Marketing-Stratégie",
-        "Human_Ressources"=>"Ressources_Humaines",
-        "Secretariat-Assistantship"=>"Secrétariat-Assistanat",
-        "Home_services"=>"Services_à_la_personne",
-        "Public_services"=>"Services_à_la_collectivité",
+        "IT-Telecommunication"=>"Informatique / Télécommunication",
+        "Installation-Maintenance"=>"Installation / Maintenance",
+        "Marketing-Strategy"=>"Marketing / Stratégie",
+        "Human_Ressources"=>"Ressources Humaines",
+        "Secretariat-Assistantship"=>"Secrétariat / Assistanat",
+        "Home_services"=>"Services à la personne",
+        "Public_services"=>"Services à la collectivité",
         "Spectacle"=>"Spectacle",
         "Sport"=>"Sport",
-        "Transport-Logistic"=>"Transport-Logistique",
+        "Transport-Logistic"=>"Transport / Logistique",
 
         //POI
         "Link, Url"=>"Lien, Url",
@@ -152,6 +153,8 @@
     	"Conference" => "Conférence",
     	"Debate" => "Débat",
 		"Film"=>"Projection",
+        "Crowdfunding" => "Financement Participatif",
+        
         //TYPES
         "NGO" => "Association",
         "LocalBusiness" => "Entreprise",
@@ -175,3 +178,4 @@
         "Intervener"=>"Intervenant"
 	);
 ?>
+

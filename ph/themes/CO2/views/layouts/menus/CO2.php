@@ -1,3 +1,25 @@
+<style>
+    a.link-submenu-header{
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+    a.link-submenu-header.active, 
+    a.link-submenu-header:hover, 
+    a.link-submenu-header:active{  
+        border-bottom: 2px solid #ea4335;
+        background-color: rgba(255, 255, 255, 1);
+        color:#ea4335 !important;
+        text-decoration: none;
+    }
+
+    @media (max-width: 767px) {
+        #main-input-group{
+            margin-top:10px;
+        }
+    }
+</style>
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
     <div class="container">
@@ -14,7 +36,7 @@
             <?php 
                 $params = CO2::getThemeParams();  
                 $icon = "";
-                //echo "params : "; var_dump($params);// exit; 
+                // echo "params : "; var_dump($params);// exit; 
                 foreach ($params["pages"] as $key => $value) {
                     if($subdomain==@$value["subdomain"]) {
                         $icon = @$value["icon"];
@@ -86,6 +108,7 @@
     box-shadow: 0 6px 12px rgba(0,0,0,.175);">
                         <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
                         <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
+                        <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png" width="25"/> <?php echo Yii::t("common","German") ?></a></li>
                     </ul>
                 </li>
             </ul>
@@ -99,16 +122,14 @@
         <?php if( isset( Yii::app()->session['userId']) ){ ?>
             
             <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
-                  data-toggle="tooltip" data-placement="top" title="Mon réseau" alt="<?php echo Yii::t("common","My network") ?>">
+                  data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","My network") ?>" alt="<?php echo Yii::t("common","My network") ?>">
               <i class="fa fa-link"></i>
             </button>
             <button class="btn-show-mainmenu btn btn-link" 
-                    data-toggle="tooltip" data-placement="top" title="Menu">
+                    data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","Menu") ?>">
                 <i class="fa fa-bars tooltips" ></i>
             </button>
         <?php } ?>
-        
-
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="pull-right navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -120,7 +141,7 @@
                 ?> 
                      <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
                     <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="menu-name-profil lbh text-dark pull-right" 
+                        class="menu-name-profil lbh text-dark pull-right shadow2" 
                         data-toggle="dropdown">
                             <small class="hidden-xs hidden-sm margin-left-10" id="menu-name-profil">
                                 <?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?>
@@ -190,6 +211,7 @@
                                     <ul class="dropdown-menu">
                                       <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><?php echo Yii::t("common","English") ?></a></li>
                                       <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><?php echo Yii::t("common","French") ?></a></li>
+                                      <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png"/><?php echo Yii::t("common","German") ?></a></li>
                                     </ul>
                                 </li>
                                 <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
@@ -249,8 +271,9 @@
                     </div>
 
 
+
                     <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
-                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                          data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Notifications") ?>" alt="<?php echo Yii::t("common","Notifications") ?>" style="border-left:none !important;width:60px;">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
                               <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
@@ -259,6 +282,12 @@
                         </span>
                     </button>
                     
+                    <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
+                          onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Messaging") ?>" alt="<?php echo Yii::t("common","Messaging") ?>">
+                      <i class="fa fa-comments"></i>
+                      <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
+                    </button>
+
                 <?php } else { ?>
                     
                     <li class="pull-right">
@@ -334,12 +363,10 @@
             </div>
         <?php } ?>
         <!-- /.navbar-collapse -->
-        <a type="button" class="lbh btn btn-link pull-right btn-menu-to-app hidden-top hidden-xs letter-green" data-target="#chat" data-toggle="modal">
-            <i class="fa fa-plus-comments"></i>           
-        </a>
+        
         <?php 
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
-                if(@$value["inMenu"]==true){ ?>
+                if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
                     class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"

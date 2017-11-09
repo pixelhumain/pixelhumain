@@ -180,6 +180,7 @@
 
 		$cssAnsScriptFilesModule = array(
 			'/assets/js/cookie.js' ,
+
             '/assets/css/sig/sig.css',
 			'/assets/css/freelancer.css',
 			'/assets/css/default/dynForm.css',

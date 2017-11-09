@@ -38,7 +38,7 @@
   <div class="panel-group">
 
 
-    <div id="divFiltre" class="panel panel-default" style="height: 90%;">
+    <div id="divFiltre" class="panel panel-default" style="height: 100%;">
       <?php if(isset($params['skin']['iconeAdd']) && $params['skin']['iconeAdd']){ ?>
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -156,8 +156,8 @@
           </h4>
         </a>
       </div>
-      <div class="panel-heading">
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <div class="panel-heading endFilterPanel">
+        <!--<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>-->
       </div>
     </div>
   </div>

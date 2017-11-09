@@ -76,7 +76,13 @@ onSave: (optional) overloads the generic saveProcess
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
 				
-				buildInputField(settings.formId,field, fieldObj, settings.formValues);
+				var fieldTooltip = null;
+				//alert("dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.tooltips."+field );
+				if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.tooltips" ) && 
+						dyFObj[dyFObj.activeElem].dynForm.jsonSchema.tooltips[field] ){
+					fieldTooltip = dyFObj[dyFObj.activeElem].dynForm.jsonSchema.tooltips[field];
+				}
+				buildInputField(settings.formId,field, fieldObj, settings.formValues, fieldTooltip);
 			});
 			
 			/* **************************************
@@ -90,18 +96,18 @@ onSave: (optional) overloads the generic saveProcess
         				'<hr class="col-md-12">';
         	if( !settings.formObj.jsonSchema.noSubmitBtns )
 				fieldHTML += '<button id="btn-submit-form" class="btn btn-default text-azure text-bold pull-right">'+
-							tradDynForm["submit"]+' <i class="fa fa-arrow-circle-right"></i>'+
+							tradDynForm.submit+' <i class="fa fa-arrow-circle-right"></i>'+
 						'</button> '+
 
 						' <a href="javascript:dyFObj.closeForm(); " class="mainDynFormCloseBtn btn btn-default pull-right text-red" style="margin-right:10px;">'+
-							'<i class="fa fa-times "></i> '+tradDynForm["cancel"]+
+							'<i class="fa fa-times "></i> '+tradDynForm.cancel+
 						'</a> ';
 
 			fieldHTML += '</div>';
 
 	        $( settings.formId ).append(fieldHTML);
 
-	        $("#btn-submit-form").one(function() { 
+	        $(dyFObj.activeModal+" #btn-submit-form").one(function() { 
 				$( settings.formId ).submit();	        	
 	        });
 
@@ -127,16 +133,17 @@ onSave: (optional) overloads the generic saveProcess
 	*	each input field type has a corresponding HTMl to build
 	*
 	***************************************** */
-	function buildInputField(id, field, fieldObj,formValues)
+	function buildInputField(id, field, fieldObj,formValues, tooltip)
 	{
 		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
 		var required = "";
 		if(fieldObj.rules && fieldObj.rules.required)
 			required = "*";
 
+		tooltip = (tooltip) ? '<i class=" fa fa-question-circle pull-right tooltips text-red" data-toggle="tooltip" data-placement="top" title="'+tooltip+'"></i>' : '';
 		if(fieldObj.label)
 			fieldHTML += '<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="'+field+'">'+
-			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+
+			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+tooltip+
 			            '</label>';
 
         var iconOpen = (fieldObj.icon) ? '<span class="input-icon">'   : '';
@@ -300,6 +307,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "radio" ) {
    			
 	       	mylog.log("build field "+field+">>>>>> radio");
+	       	
 	       	fieldHTML += '<div class="btn-group" data-toggle="buttons">';
 	       	value = ( (typeof fieldObj.value != "undefined") ? fieldObj.value : value ) ;
 	       	if(fieldObj.options)
@@ -553,7 +561,7 @@ onSave: (optional) overloads the generic saveProcess
         	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
         	$.each(fieldObj.list,function(k,v) { 
         		//mylog.log("build field ",k,v);
-        		var lbl = ( fieldObj.trad && fieldObj.trad[k] ) ? fieldObj.trad[k] : k;
+        		var lbl = ( fieldObj.trad && fieldObj.trad[v.labelFront] ) ? fieldObj.trad[v.labelFront] : fieldObj.trad[k] ? fieldObj.trad[k] : k;
         		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
         						'<a class="btn tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'"'+
         						' data-tag="'+lbl+'" data-key="'+k+'" href="'+action+'"><i class="fa fa-'+v.icon+'"></i> <br>'+lbl+'</a>'+
@@ -660,6 +668,7 @@ onSave: (optional) overloads the generic saveProcess
 	                    $(".addmultifield").val(optVal);
 	                else 
 	                	addfield("."+field+fieldObj.inputType,optVal,field);
+
 	                if( formValues && formValues.medias ){
 	                	$.each(formValues.medias, function(i,mediaObj) {
 	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
@@ -995,12 +1004,14 @@ onSave: (optional) overloads the generic saveProcess
 		mylog.info("connecting submit btn to $.validate pluggin");
 		mylog.dir(formRules);
 		var errorHandler = $('.errorHandler', $(params.formId));
+//alert(params.formId);
 		$(params.formId).validate({
 
 			rules : formRules,
 
 			submitHandler : function(form) {
-				$("#btn-submit-form").html('<i class="fa  fa-spinner fa-spin fa-"></i>').prop("disabled",true);
+				//alert(dyFObj.activeModal+" #btn-submit-form");
+				$(dyFObj.activeModal+" #btn-submit-form").html( '<i class="fa  fa-spinner fa-spin fa-"></i>' ).prop("disabled",true);
 				errorHandler.hide();
 				mylog.info("form submitted "+params.formId);
 				
@@ -1008,6 +1019,7 @@ onSave: (optional) overloads the generic saveProcess
 					params.beforeSave();
 
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
+					//	alert("onSave")
 					params.onSave();
 					return false;
 		        } 
@@ -1199,8 +1211,8 @@ onSave: (optional) overloads the generic saveProcess
 		                sizeLimit: 2000000
 		            },
 		            messages: {
-				        sizeError : '{file} est trop lourde! limite max : {sizeLimit}.',
-				        typeError : '{file} extension invalide. Extension(s) acceptable: {extensions}.'
+				        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
+				        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
 				    },
 		            callbacks: {
 		            	//when a img is selected
@@ -1255,10 +1267,10 @@ onSave: (optional) overloads the generic saveProcess
 					     	toastr.info( "Fichiers bien chargés !!");
 					      	if($("#ajaxFormModal #newsCreation").val()=="true"){
 					      		console.log("docslist",docListIds);
-					      		var mentionsInput=[];
-					      		$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
+					      		//var mentionsInput=[];
+					      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
       								mentionsInput=data;
-    							});
+    							});*/
 					      		var media=new Object;
 					      		if(uploadObj.contentKey=="file"){
 					      			media.type="gallery_files";
@@ -1281,9 +1293,11 @@ onSave: (optional) overloads the generic saveProcess
 									addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
 								if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
 									addParams.targetIsAuthor = true;
-								if (mentionsInput.length != 0){
-									addParams.mentions=mentionsInput;
-								}
+								/*if (mentionsResult.mentionsInput.length != 0){
+									addParams.mentions=mentionsResult.mentionsInput;
+									addParams.text=mentionsResult.text;
+								}*/
+								addParams=mentionsInit.beforeSave(addParams,'#ajaxFormModal #createNews textarea');
 								$.ajax({
 							        type: "POST",
 							        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",
@@ -1571,7 +1585,7 @@ onSave: (optional) overloads the generic saveProcess
 		var str = 	'<div class="col-sm-12 no-padding margin-top-10">'+
 					'<div class="col-sm-10 no-padding">'+
 							'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
-							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md value="" placeholder="..."/>'+
+							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'" placeholder="..."/>'+
 							'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
 						'</div>'+
 						'<div class="col-sm-2 sectionRemovePropLineBtn">'+
@@ -1579,7 +1593,7 @@ onSave: (optional) overloads the generic saveProcess
 						'</div>'+
 					'</div>';
 
-
+		mylog.log("-------------------------");
 		/*'<div class="space5"></div><div class="col-sm-10">'+
 					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'"/>'+

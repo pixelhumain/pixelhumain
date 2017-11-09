@@ -9,7 +9,21 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 container"></div>
+        <div class="col-sm-12 container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="modal-header text-dark">
+                        <h3 class="modal-title text-center" id="ajax-modal-modal-title">
+                            <i class="fa fa-angle-down"></i> <i class="fa " id="ajax-modal-icon"></i> 
+                        </h3>
+                    </div>
+                    
+                    <div id="ajax-modal-modal-body" class="modal-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-xs-12 text-center" style="margin-top:50px;margin-bottom:50px;">
             <hr>
             <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal">
@@ -367,8 +381,8 @@ var rcObj = {
 
     lastOpenChat : null,
     debugChat : false,
-    /*loginToken : '<?php echo @Yii::app()->session["loginToken"]; ?>',
-    rocketUserId : '<?php echo @Yii::app()->session["rocketUserId"]; ?>',*/
+    loginToken : '<?php echo @Yii::app()->session["loginToken"]; ?>',
+    rocketUserId : '<?php echo @Yii::app()->session["rocketUserId"]; ?>',
     list : null,
 
     login : function () 
@@ -385,7 +399,10 @@ var rcObj = {
         //if iframe deosn't exist
         //element has an RC channel 
         //not a citizen
-        var checkGroupMember = ( contextData ) ? $.inArray( slugify(contextData.name) , rcObj.list ) : true ; 
+        if( contextData && typeof contextData.slug == "undefined" )
+            contextData.slug = slugify(contextData.name);
+        
+        var checkGroupMember = ( contextData ) ? $.inArray( contextData.slug , rcObj.list ) : true ; 
         
         if(rcObj.debugChat)alert( "name:"+name+", type:"+type+", isOpen : "+isOpen+", hasRC : "+hasRC+",checkGroupMember:"+checkGroupMember );
 
@@ -396,7 +413,7 @@ var rcObj = {
             rcObj.lastOpenChat = name;
             var extra = (isOpen) ? "/roomType/channel" : "/roomType/group";
 
-            iframeUrl = (name!="") ? baseUrl+'/'+moduleId+'/rocketchat/chat/name/'+slugify(contextData.name)+'/type/'+contextData.type+'/id/'+contextData.id+extra
+            iframeUrl = (name!="") ? baseUrl+'/'+moduleId+'/rocketchat/chat/name/'+contextData.slug+'/type/'+contextData.type+'/id/'+contextData.id+extra
                                    : baseUrl+'/'+moduleId+'/rocketchat';
             
             if(rcObj.debugChat)alert( iframeUrl );
@@ -417,13 +434,13 @@ var rcObj = {
         rcObj.lastOpenChat = name;
     },
     goto : function (name,isOpen) { 
-        pathChannel = "";
+        pathChannel = "/";
         if( name != "" ){
             if( contextData.type == "citoyens" ) 
                 pathChannel = "/direct/"+contextData.username ;
             else {
-                pathChannel = (isOpen) ? "/channel/"+slugify(contextData.name) 
-                                       : "/group/"+slugify(contextData.name);
+                pathChannel = (isOpen) ? "/channel/"+contextData.slug 
+                                       : "/group/"+contextData.slug;
             }
         }else {
             setTimeout( function () { history.pushState('', document.title, window.location.pathname);}, 1000);

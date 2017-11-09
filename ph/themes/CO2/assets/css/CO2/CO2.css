@@ -1272,13 +1272,18 @@ h3.title_panel_map{
     cursor: pointer;
 }
 
-.btn-menu-notif .notifications-count{
+.btn-menu-notif .notifications-count,
+.btn-menu-chat .chatNotifs{
 	margin-top: -15px;
 	margin-left: -7px;
 	background-color: #34a853;
 }
 .btn-menu-notif{
 	margin-right: 7px;
+}
+
+.navbar-nav button.btn-menu-chat{
+	border-right: 1px solid #e3e3e3 !important;
 }
   
 .form-group.priceprice input#price{
@@ -1389,6 +1394,15 @@ margin-right: 5px;
 .searchEntityContainer.media{
 	margin-top:0px;
 }
+
+#ajax-modal .form-group.newsCreationcheckboxSimple{
+	display: inline-block;
+	padding: 0 10px 10px 10px;
+	background-color: #EDEDED;
+	margin-left: 0px;
+}
+
+
 /************************************************************************************/
 /************************************************************************************/
 /************************************************************************************/
