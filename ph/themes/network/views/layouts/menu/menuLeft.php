@@ -19,7 +19,7 @@
 		font-size: medium;
 	}
 </style>
-<div class="hidden-xs main-menu-left col-md-2 col-sm-3 menu-col-search no-padding"  data-tpl="menuLeft">
+<div class="hidden-xs main-menu-left col-md-2 col-sm-3 menu-col-search no-padding"  data-tpl="menuLeft" style="display:none;">
 	<div  class="col-md-12 no-padding" id="dropdown_params" style="height: 100%;">
 		<div class="panel-group">
 			<div id="divFiltre" class="panel panel-default">

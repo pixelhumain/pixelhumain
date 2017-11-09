@@ -821,6 +821,7 @@ a, a:hover, a:focus, a:active, a.active{
 	top:0px!important;
 	min-height: 1000px!important;
 	padding-top: 105px!important;
+	background-color: transparent !important;
 }
 
 .blockUI.blockMsg.blockPage img{
