@@ -92,7 +92,26 @@
 					</div>
 		  <?php }*/
 
-				if(isset($params['request']['searchLocalityNAME'])){ ?>
+
+		  	if(isset($params['request']['searchLocalityNAME'])){ ?> 
+					<div class="col-lg-12 text-left subsub" id="sub-menu-left">
+							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 tagParent titleTag" style="margin-left:-5px;" data-keycat="Localities">
+								<?php if(isset($params['request']['searchLocalityNAME'])){
+							echo "<img src='".$this->module->assetsUrl."/images/network/Logement.png' width='20px'/>";
+							} ?>
+								Villes
+								<i class="fa fa-chevron-right right" aria-hidden="true" id="fa_villes"></i>
+							</a><br>
+							
+							<?php foreach($params['request']['searchLocalityNAME'] as $key => $label){ ?>
+								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 margin-left-15 hidden villeFilter keycat-Localities active" data-value="<?php echo $label ; ?>" >
+									<i class="fa fa-angle-right"></i> <?php echo $label; ?>
+								</a><br class="hidden">
+							<?php } ?>
+					</div>
+		<?php   }
+
+				/*if(isset($params['request']['searchLocalityNAME'])){ ?>
 					<div class="panel-heading">
 						<h4 class="panel-title" onclick="manageCollapse('villes', 'false')">
 							<a data-toggle="collapse" href="#villes" style="color:#719FAB" data-label="villes">
@@ -111,7 +130,7 @@
 							<?php } ?>
 						</ul>
 					</div>
-				<?php } 
+				<?php } */
 				$roles = Role::getRolesUserId(Yii::app()->session["userId"]);
 				if(@$roles["superAdmin"] == true){?>
 					<div class="panel-heading">
