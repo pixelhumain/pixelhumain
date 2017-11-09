@@ -52,9 +52,11 @@
 #onepage .header img{
 	max-height:250px;
 }
-
+#onepage{
+	padding-top: inherit !important;
+}
 #onepage section{
-	padding: 20px 0 0px 0;
+	padding: 0px 0 0px 0 !important;
 }
 #onepage section.shadow{
 	-webkit-box-shadow: 0px -10px 15px -6px rgba(0, 0, 0, 0.2);

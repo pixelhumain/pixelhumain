@@ -61,6 +61,10 @@
     position: relative;
     float: right;
 }
+#btn-toogle-map.resizer{
+	height:50px;
+	padding:15px;
+}
 
 
 button#btn-toogle-map{

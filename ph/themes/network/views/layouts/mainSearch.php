@@ -268,7 +268,7 @@
 			// Initialize tags list for network in form of element
 			
 			
-
+			urlCtrl.loadByHash(location.hash,true);
 			//$(".bg-main-menu.bgpixeltree_sig").remove();
 
 

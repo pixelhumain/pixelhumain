@@ -17,7 +17,7 @@ $cssAnsScriptFilesTheme = array(
 	top: -20px;
 	right: 0px;
 	left: 0px;
-	height: 50px;
+	height: 0px;
 	text-align: center;
 	text-align: -webkit-center;
 	text-align: -moz-center;
