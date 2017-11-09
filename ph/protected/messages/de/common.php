@@ -1084,5 +1084,9 @@ return array(
 	"List" => "Liste",
 	"Map" => "Carte",
 	"All functions" => "Tous les rôles",
+	"Search by name" => "Recherche par nom",
+	"Cartography" => "Cartographie",
+	"All tags" => "Tous les tags",
+	"All types" => "Tous les types",
 );
 ?>
