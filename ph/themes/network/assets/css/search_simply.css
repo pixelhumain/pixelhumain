@@ -13,7 +13,24 @@
 	max-width: 50%;
 	margin-left:0px !important;
 }
-
+.bg-main-menu.bgpixeltree_sig{
+	background-color: transparent !important;
+	box-shadow: transparent !important;
+	border-color: transparent !important;
+	width: 0px !important;
+}
+#menuTopList{
+	display:none;
+}
+.main-top-menu .notifications-count{
+    left: inherit !important;
+    top: inherit !important;
+    margin-left: 0px !important;
+    margin-top: -30px !important;
+}
+#my-main-container{
+	display:none;
+}
 /*.main-top-menu  button.btn-menu-notif{
 	z-index: 20;
 }*/

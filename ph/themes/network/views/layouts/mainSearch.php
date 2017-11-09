@@ -69,7 +69,7 @@
 		 <!-- **************************************
         MAP CONTAINER
         ******************************************* -->
-        <progress class="progressTop" max="100" value="20"></progress>
+        <!--<progress class="progressTop" max="100" value="20"></progress>-->
 		<div id="mainMap">
 			<?php $this->renderPartial($layoutPath.'mainMap'); ?>
 		</div>
@@ -269,7 +269,7 @@
 			
 			
 
-			$(".bg-main-menu.bgpixeltree_sig").remove();
+			//$(".bg-main-menu.bgpixeltree_sig").remove();
 
 
 		    $("#mapCanvasBg").show();

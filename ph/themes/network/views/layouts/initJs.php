@@ -115,19 +115,19 @@
         imgLoad : "CO2r.png" ,
         mainContainer : ".main-container",
         blockUi : {
-            processingMsg : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
+            processingMsg : //'<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
                   '<i class="fa fa-spin fa-circle-o-notch"></i>'+
                   '<h4 style="font-weight:300" class=" text-dark padding-10">'+
                     'Chargement en cours...'+
                   '</h4>'+
                   '<span style="font-weight:300" class=" text-dark">'+
                     'Merci de patienter quelques instants'+
-                  '</span>'+
-                  '<br><br><br>'+
-                  '<a href="#" class="btn btn-default btn-sm lbh">'+
-                    "c'est trop long !"+
-                  '</a>', 
-            errorMsg : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
+                  '</span>',
+                  //'<br><br><br>'+
+                  //'<a href="#" class="btn btn-default btn-sm lbh">'+
+                  //  "c'est trop long !"+
+                  //'</a>', 
+            errorMsg : //'<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
               '<i class="fa fa-times"></i><br>'+
                '<span class="col-md-12 text-center font-blackoutM text-left">'+
                 '<span class="letter letter-red font-blackoutT" style="font-size:40px;">404</span>'+
@@ -135,10 +135,10 @@
 
               '<h4 style="font-weight:300" class=" text-dark padding-10">'+
                 'Oups ! Une erreur s\'est produite'+
-              '</h4>'+
-              '<span style="font-weight:300" class=" text-dark">'+
-                'Vous allez être redirigé vers la page d\'accueil'+
-              '</span>'
+              '</h4>'
+              //'<span style="font-weight:300" class=" text-dark">'+
+                //'Vous allez être redirigé vers la page d\'accueil'+
+              //'</span>'
         },
         dynForm : {
             onLoadPanel : function (elementObj) { 
