@@ -1080,5 +1080,9 @@ return array(
 	"Administrative zone N°2"=>"Zones administratif N°2",
 	"Administrative zone N°3"=>"Zones administratif N°3",
 	"Administrative zone N°4"=>"Zones administratif N°4",
+	"Filters" => "Filtres",
+	"List" => "Liste",
+	"Map" => "Carte",
+	"All functions" => "Tous les rôles",
 );
 ?>

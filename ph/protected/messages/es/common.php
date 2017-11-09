@@ -1143,8 +1143,9 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Filter by names" => "Filtrer par nom",
 	"Unblock" => "Débloquer",
 	"Back to page" => "Retourner sur la page",
-
-
-
+	"Filters" => "Filtres",
+	"List" => "Liste",
+	"Map" => "Carte",
+	"All functions" => "Tous les rôles",
 );
 ?>
