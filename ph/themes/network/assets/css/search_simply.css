@@ -32,7 +32,12 @@
 	background-color: white;
 	color:#2BB0C6 !important;
 }*/
-
+#dropdown_params #divFiltre{
+	border-radius:inherit;
+}
+#dropdown_params, #dropdown_params .panel-group, #dropdown_params #divFiltre{
+	height: 100%;
+}
 .main-top-menu .menu-info-profil{
 	margin-top: 8px;
     padding-right: 0px;
