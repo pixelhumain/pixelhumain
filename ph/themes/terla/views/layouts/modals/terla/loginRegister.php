@@ -61,8 +61,8 @@
 }
 </style>
 
-<?php //if($subdomain != "welcome"){ ?>
-<form class="portfolio-modal modal fade form-login box-login" id="modalLogin" 
+<?php if(false){ ?>
+<form class="portfolio-modal modal fade form-login" id="modalLogin" 
         tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content shadow2 padding-top-15">
         <div class="close-modal" data-dismiss="modal">
@@ -152,10 +152,10 @@
         </div>
     </div>
 </form>
-<?php //} ?>
+<?php } ?>
 
 <div class="portfolio-modal modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-content shadow2 form-register box-register padding-top-15"  >
+    <div class="modal-content shadow2 padding-top-15"  >
         <div class="close-modal" data-dismiss="modal">
             <div class="lr">
                 <div class="rl">
@@ -164,7 +164,7 @@
         </div>
         <div class="col-md-12 padding-top-50">
 
-            <form class="col-sm-7 padding-50">
+            <form class="col-sm-7 padding-50 form-register box-register">
                 
                 <h4 class="letter-lightgray">Pas encore membre ?</h4>
                 <h2 class="letter-lightgray text-lightweight">Inscrivez-vous gratuitement</h2><br><br><br>
@@ -244,11 +244,11 @@
 
                 <br>
                 
-                <a href="javascript:;" class="btn bg-white" data-toggle="modal" data-target="#modalForgot">
+                <a href="javascript:;" class="btn bg-white box-login" data-toggle="modal" data-target="#modalForgot">
                     <!-- <i class="fa fa-s"></i> --><small>J'ai perdu mon mot de passe</small>
                 </a>            
 
-                <form class="hidden col-md-12 margin-top-25 margin-bottom-25" id="formLogin">
+                <form class="hidden col-md-12 margin-top-25 margin-bottom-25 form-login" id="formLogin">
                     <!-- <label><i class="fa fa-envelope"></i> Un e-mail</label><br> -->
                     <input class="form-control" name="email" id="email-login" type="text" placeholder="e-mail"><br>
                     
