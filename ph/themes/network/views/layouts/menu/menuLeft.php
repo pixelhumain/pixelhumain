@@ -47,7 +47,7 @@
 		<?php 		
 				
 		if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){ ?> 
-					<div class="col-lg-12 text-left subsub" id="sub-menu-left">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding text-left subsub" id="sub-menu-left">
 					<?php
 						foreach($params['filter']['linksTag'] as $category => $listTag){ ?>
 
@@ -61,7 +61,7 @@
 							</a><br>
 							
 							<?php foreach($listTag['tags'] as $label => $tag){ ?>
-								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 margin-left-15 hidden tagFilter keycat-<?php echo $listTag['tagParent']; ?>" data-filtre="<?php echo $label ; ?>" data-parent="<?php echo $listTag['tagParent']; ?>">
+								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden tagFilter keycat-<?php echo $listTag['tagParent']; ?>" data-filtre="<?php echo $label ; ?>" data-parent="<?php echo $listTag['tagParent']; ?>">
 									<i class="fa fa-angle-right"></i> <?php echo $label; ?>
 								</a><br class="hidden">
 							<?php } ?>
@@ -104,7 +104,7 @@
 							</a><br>
 							
 							<?php foreach($params['request']['searchLocalityNAME'] as $key => $label){ ?>
-								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 margin-left-15 hidden villeFilter keycat-Localities active" data-value="<?php echo $label ; ?>" >
+								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden villeFilter keycat-Localities active" data-value="<?php echo $label ; ?>" >
 									<i class="fa fa-angle-right"></i> <?php echo $label; ?>
 								</a><br class="hidden">
 							<?php } ?>
@@ -133,22 +133,21 @@
 				<?php } */
 				$roles = Role::getRolesUserId(Yii::app()->session["userId"]);
 				if(@$roles["superAdmin"] == true){?>
-					<div class="panel-heading">
-						<label class="btn-disable text-blue" >
-							<?php echo Yii::t("common","Disable")." "; ?> 
-							<input type="checkbox" class="checkbox disableCheckbox" value="disable" data-label="<?php echo Yii::t("common","Disable"); ?>" style="float: right; " />
+					<div>
+						<label class="col-md-12 col-sm-12 btn-disable text-blue" >
+							<input type="checkbox" class="checkbox disableCheckbox pull-left" value="disable" data-label="<?php echo Yii::t("common","Disable"); ?>"/><?php echo Yii::t("common","Disable")." "; ?> 
 						</label>
 					</div>
 	<?php 		} ?>
 				
-				<div class="panel-heading">
-					<a id="reset" class="reset" href="javascript:;">
+				<div>
+					<a id="reset" class="reset" href="javascript:;" style="cursor:pointer;">
 						<h4 class="panel-title">
-							<center><i class="fa fa-refresh"></i>Réinitialiser</center>
+							<center><i class="fa fa-refresh"></i> Réinitialiser</center>
 						</h4>
 					</a>
 				</div>
-				<div class="panel-heading endFilterPanel"></div>
+				<div class="endFilterPanel"></div>
 			</div>
 		</div>
 	</div>

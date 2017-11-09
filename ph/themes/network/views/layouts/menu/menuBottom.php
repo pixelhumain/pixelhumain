@@ -29,7 +29,7 @@
 			<?php	}
 				$i++; } ?>
 			</div>
-			<a class="pull-left text-white" id="btn-menu-add">
+			<a class="pull-left text-azure" id="btn-menu-add">
 				<i class="fa fa-plus firstIcon"></i>
 			</a>
 		</div>

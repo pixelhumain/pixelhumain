@@ -65,6 +65,7 @@ button#btn-toogle-map i{
 button#btn-toogle-map:hover, #btn-menu-launch:hover, #btn-menu-add:hover{
 	box-shadow: 2px -2px 12px 2px white !important;
 	background-color: rgba(40,40,40,1)!important;
+	color:white !important;
 }
 
 
@@ -80,6 +81,7 @@ button#btn-toogle-map:hover, #btn-menu-launch:hover, #btn-menu-add:hover{
     background-color: rgba(40,40,40,0.9)!important;
     padding: 12px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 #btn-menu-launch.active{
@@ -107,6 +109,8 @@ button#btn-toogle-map:hover, #btn-menu-launch:hover, #btn-menu-add:hover{
     border-color: white;
 	color:#4285f4;
 	white-space: normal;
+	border-radius: inherit;
+	text-align: left;
 }
 #sub-menu-left.subsub{
 	min-width: 180px;
@@ -117,10 +121,6 @@ button#btn-toogle-map:hover, #btn-menu-launch:hover, #btn-menu-add:hover{
     background-color: #2BB0C6!important;
     color: #fff!important;
     border-color:transparent!important;
-    text-align: right;
-}
-
-.tagFilter,.villeFilter {
     text-align: right;
 }
 
@@ -158,6 +158,7 @@ button#btn-toogle-map:hover, #btn-menu-launch:hover, #btn-menu-add:hover{
     color:white;
     position:absolute;
     z-index: 10;
+    cursor: pointer;
 }
 
 #btn-menu-add-sub{
@@ -325,7 +326,7 @@ color:white;
 }
 
 #dropdown_params .panel-default{
-	background-color: #f5f5f5;
+	background-color: white;
 	overflow-y: scroll;
 	border-radius:inherit;
 }

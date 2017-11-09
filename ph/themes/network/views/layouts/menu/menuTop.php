@@ -55,6 +55,7 @@ $cssAnsScriptFilesTheme = array(
 	font-size: 35px;
 	border-radius: 0px 0px 70px 70px;
 	background-color: rgba(40,40,40,0.9) !important;
+	cursor: pointer;
 }
 #titleMapTop .showHideMoreTitleMap i{
 	position: relative;
@@ -114,7 +115,7 @@ $cssAnsScriptFilesTheme = array(
 
 <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
 
-	<a class="pull-left text-white"  id="btn-menu-launch">
+	<a class="pull-left text-azure"  id="btn-menu-launch">
 		<i class="fa fa-filter firstIcon"></i>
 		<span style="display:none;float:right;"> <i class="fa fa-filter"></i> Filtres</span>
 	</a>
