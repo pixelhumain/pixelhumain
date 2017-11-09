@@ -179,8 +179,9 @@
 		HtmlHelper::registerCssAndScriptsFiles( array('/js/default/formInMap.js') , $this->module->assetsUrl);
 
 		$cssAnsScriptFilesModule = array(
+			'/assets/css/themes/theme-simple-login.css',
+			'/assets/css/styles.css',
 			'/assets/js/cookie.js' ,
-
             '/assets/css/sig/sig.css',
 			'/assets/css/freelancer.css',
 			'/assets/css/default/dynForm.css',
@@ -188,20 +189,17 @@
 			'/assets/css/CO2/CO2-color.css',
 			'/assets/css/CO2/CO2.css',
 			'/assets/css/plugins.css',
-			// '/assets/css/styles.css',
+			
 			// '/assets/css/styles-responsive.css',
 			
 			'/assets/css/search.css',
 
 			'/assets/css/default/directory.css',
 			'/assets/css/floopDrawerRight.css',
-			
-			
 			'/assets/css/news/index.css',
 			
 			'/assets/css/search_simply.css',
-			//'/assets/css/themes/theme-simple.css',
-				
+					
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 		$this->renderPartial($layoutPath.'initJs', 
