@@ -125,6 +125,7 @@ button#btn-toogle-map:hover, #btn-menu-launch:hover, #btn-menu-add:hover{
 
 .main-bottom-menu{
 	height: 75px;
+	width: 75px;
     opacity: 1 !important;
     background-color: transparent;
     position: fixed !important;
@@ -307,4 +308,8 @@ color:white;
     position: relative;
     top: 20px;
     right: -7px;
+}
+
+#divFiltre .endFilterPanel{
+	height:100px;
 }

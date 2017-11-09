@@ -22,7 +22,7 @@
 <div class="hidden-xs main-menu-left col-md-2 col-sm-3 menu-col-search no-padding"  data-tpl="menuLeft">
 	<div  class="col-md-12 no-padding" id="dropdown_params">
 		<div class="panel-group">
-			<div id="divFiltre" class="panel panel-default" style="height: 90%;">
+			<div id="divFiltre" class="panel panel-default" style="height: 100%;">
 				<div id="divTagsMenu"></div>
 				<div id="divTypesMenu"></div>
 				<div id="divRolesMenu" class="hidden">
@@ -148,9 +148,7 @@
 						</h4>
 					</a>
 				</div>
-				<div class="panel-heading">
-					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-				</div>
+				<div class="panel-heading endFilterPanel"></div>
 			</div>
 		</div>
 	</div>
