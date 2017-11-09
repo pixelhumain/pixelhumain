@@ -29,7 +29,7 @@
 					<div class="panel-heading" style="background-color: #f5f5f5;">
 						<h4 class="left-title-menu" onclick="manageCollapse('roles', 'false')">
 							<a data-toggle="collapse" href="#roles" style="color:#719FAB" data-label="roles">
-								Tous les rôles
+								<?php echo Yii::t("common","All functions") ?>
 								<i class="fa fa-chevron-right right" aria-hidden="true" id="fa_roles"></i>
 							</a>
 						</h4>
@@ -143,7 +143,7 @@
 				<div>
 					<a id="reset" class="reset" href="javascript:;" style="cursor:pointer;">
 						<h4 class="panel-title">
-							<center><i class="fa fa-refresh"></i> Réinitialiser</center>
+							<center><i class="fa fa-refresh"></i> <?php echo Yii::t("common","Reset"); ?></center>
 						</h4>
 					</a>
 				</div>
@@ -174,21 +174,6 @@ function manageCollapse(div, forcer){
 
 
 jQuery(document).ready(function() {
-	// $('#btn-menu-launch').click(function(){
-
-	// 	if(!$('.menu-col-search').is(":visible")){
-	// 		$(".bgpixeltree").removeClass("col-md-12 col-sm-12 col-xs-12").addClass("col-md-10 col-sm-10 col-xs-10");
-	// 		showAfter=false;
-	// 	}else{
-	// 		showAfter=true;
-	// 	}
-
-	// 	$('.menu-col-search').toggle("slow");
-	// 	if(showAfter){
-	// 		$(".bgpixeltree").removeClass("col-md-10 col-sm-10 col-xs-10").addClass("col-md-12 col-sm-12 col-xs-12");
-	// 	}
-	// });
-
 
 	$(".tagParent").click(function(){
 		if($(this).hasClass( "active" ) == false){
@@ -199,18 +184,6 @@ jQuery(document).ready(function() {
 			$(".keycat-"+$(this).data("keycat")).addClass("hidden");
 		}
 	});
-
-
-	// $('#searchClientBarText').keyup(function(e){
-	// 	// console.log($('#searchClientBarText').val());
-	// 	$('#input_name_filter').val($('#searchClientBarText').val());
-	// 	Sig.checkListElementMap(Sig.map);
-	// });
-
-	// $('#input_name_filter').keyup(function(e){
-	// 	// console.log($('#searchClientBarText').val());
-	// 	$('#searchClientBarText').val($('#input_name_filter').val());
-	// });
 });
 
 </script>

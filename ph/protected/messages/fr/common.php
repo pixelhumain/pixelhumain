@@ -1238,6 +1238,17 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Filter by names" => "Filtrer par nom",
 	"Unblock" => "Débloquer",
 	"Back to page" => "Retourner sur la page",
-	"Filter by names" => "Filtrer par nom"
+	"Filter by names" => "Filtrer par nom",
+	"Filters" => "Filtres",
+	"List" => "Liste",
+	"Map" => "Carte",
+	"All functions" => "Tous les rôles",
+	"Reset" => "Réinitialiser",
+	"Search by name" => "Recherche par nom",
+	"Cartography" => "Cartographie",
+	"All tags" => "Tous les tags",
+	"All types" => "Tous les types",
+	
+
 );
 ?>

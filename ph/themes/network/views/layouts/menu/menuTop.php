@@ -117,7 +117,7 @@ $cssAnsScriptFilesTheme = array(
 
 	<a class="pull-left text-azure"  id="btn-menu-launch">
 		<i class="fa fa-filter firstIcon"></i>
-		<span style="display:none;float:right;"> <i class="fa fa-filter"></i> Filtres</span>
+		<span style="display:none;float:right;"> <i class="fa fa-filter"></i> <?php echo Yii::t("common","Filters"); ?></span>
 	</a>
 	<?php if(@$params['skin']["title"]){ ?>
 	<div id="titleMapTop">
@@ -143,8 +143,8 @@ $cssAnsScriptFilesTheme = array(
 					</span>
 				<?php } ?>
 				<?php if (@$params['skin']["docs"] && $params['skin']["docs"]){ ?><br/>
-					<a href="javascript:;" class="tooltips" id="btn-documentation" data-toggle="tooltip" data-placement="bottom" title="Lire la documentation" alt="Lire la documentation" style="color:lightblue;">
-						<i class="fa fa-info-circle"></i> En savoir plus
+					<a href="javascript:;" class="tooltips" id="btn-documentation" data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("home","More informations"); ?>" alt="<?php echo Yii::t("home","More informations"); ?>" style="color:lightblue;">
+						<i class="fa fa-info-circle"></i> <?php echo Yii::t("home","More informations"); ?>
 					</a>
 				<?php } 
 
@@ -154,18 +154,18 @@ $cssAnsScriptFilesTheme = array(
 						<?php if (!@Yii::app()->session["userId"]){ ?>
 						<button class="btn-top btn btn-default hidden-xs" onclick="showPanel('box-register');">
 							<i class="fa fa-plus-circle"></i> 
-							<span class="hidden-sm hidden-md hidden-xs">S'inscrire</span>
+							<span class="hidden-sm hidden-md hidden-xs"><?php echo Yii::t("login","Sign Up"); ?></span>
 						</button>
 						<button class="btn-top btn btn-success hidden-xs" style="margin-right:10px;" onclick="showPanel('box-login');">
 							<i class="fa fa-sign-in"></i> 
-							<span class="hidden-sm hidden-md hidden-xs">Se connecter</span>
+							<span class="hidden-sm hidden-md hidden-xs"><?php echo Yii::t("login","Login"); ?></span>
 						</button>
 						<?php } else { ?>
 							<?php //echo Yii::app()->createUrl('/co2/person/logout?network='.$params["name"]); ?>
 							<?php //"/pixelhumain/ph/co2/person/logout?network=<?php echo $params["name"] ?>
 							<a class="btn-top btn bg-red hidden-xs" href="<?php echo Yii::app()->createUrl('/co2/person/logout?network='.$params["name"]); ?>" style="margin-right:10px;" onclick="">
 								<i class="fa fa-sign-out"></i> 
-								<span class="hidden-sm hidden-md hidden-xs">Déconnexion</span>
+								<span class="hidden-sm hidden-md hidden-xs"><?php echo Yii::t("common","Log Out"); ?></span>
 							</a>
 						<?php } ?>
 					</div>
@@ -180,7 +180,7 @@ $cssAnsScriptFilesTheme = array(
 	<?php } ?>
 
 	<button class="btn-menu btn-menu-top bg-white text-azure tooltips pull-right" id="btn-toogle-map"
-	data-toggle="tooltip" data-placement="bottom" title="Carte" alt="Carte">
+	data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Map"); ?>" alt="<?php echo Yii::t("common","Map"); ?>">
 		<i class="fa fa-map-marker"></i>
 	</button>
 
@@ -188,7 +188,7 @@ $cssAnsScriptFilesTheme = array(
 		<div class="pull-left" style="display:inline-block;">
 			<?php if(isset($params['skin']['breadcrum']) && $params['skin']['breadcrum']) { ?>
 				<div id="breadcrum">
-					<a href="javascript:;" onclick="breadcrumGuide(0)" class="breadcrumAnchor text-dark" style="font-size:20px !important;">Liste</a>
+					<a href="javascript:;" onclick="breadcrumGuide(0)" class="breadcrumAnchor text-dark" style="font-size:20px !important;"><?php echo Yii::t("common","List"); ?></a>
 				</div>
 		  <?php } ?>
 		</div>
@@ -205,18 +205,18 @@ $cssAnsScriptFilesTheme = array(
 					</div>          
 				<?php 
 				}else{ ?>
-					<button class="btn-top btn btn-success  hidden-xs" onclick="showPanel('box-register');"><i class="fa fa-plus-circle"></i> <span class="hidden-sm hidden-md hidden-xs">S'inscrire</span></button>
-					<button class="btn-top btn bg-red  hidden-xs" style="margin-right:15px;" onclick="showPanel('box-login');"><i class="fa fa-sign-in"></i> <span class="hidden-sm hidden-md hidden-xs">Se connecter</span></button> 
+					<button class="btn-top btn btn-success  hidden-xs" onclick="showPanel('box-register');"><i class="fa fa-plus-circle"></i> <span class="hidden-sm hidden-md hidden-xs"><?php echo Yii::t("login","Sign Up"); ?></span></button>
+					<button class="btn-top btn bg-red  hidden-xs" style="margin-right:15px;" onclick="showPanel('box-login');"><i class="fa fa-sign-in"></i> <span class="hidden-sm hidden-md hidden-xs"><?php echo Yii::t("login","Login"); ?></span></button> <?php echo Yii::t("common","Notifications"); ?>
 			<?php } 
-			}
+			} 
 
-			if(isset($params["skin"]['displayNotifications']) && $params["skin"]['displayNotifications'] && @Yii::app()->session['userId']){ ?>
+			/*if(isset($params["skin"]['displayNotifications']) && $params["skin"]['displayNotifications'] && @Yii::app()->session['userId']){ ?>
 				<button class="menu-button btn-menu btn-menu-notif tooltips text-dark hidden-xs" 
-				data-toggle="tooltip" data-placement="left" title="Notifications" alt="Notifications">
+				data-toggle="tooltip" data-placement="left" title="<?php echo Yii::t("common","Notifications"); ?>" alt="<?php echo Yii::t("common","Notifications"); ?>">
 					<i class="fa fa-bell"></i>
 					<span class="notifications-count topbar-badge badge badge-danger animated bounceIn"><?php count($this->notifications); ?></span>
 				</button>
-			<?php } ?>
+			<?php }*/ ?>
 			</div>
 		</div>
 
