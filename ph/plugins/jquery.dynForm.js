@@ -44,8 +44,7 @@ onSave: (optional) overloads the generic saveProcess
 				onSave: null,
 				beforeSave: null,
 				savePath : '/ph/common/save'
-			};
-
+			}; 
 			var settings = $.extend({}, defaults, options);
 			$this = this;
 
@@ -154,6 +153,7 @@ onSave: (optional) overloads the generic saveProcess
         var initField = '';
         var value = "";
         var style = "";
+        var mainTag = null;
         if( fieldObj.value ) 
         	value = fieldObj.value;
         else if (formValues && formValues[field]) {
@@ -197,7 +197,7 @@ onSave: (optional) overloads the generic saveProcess
 	        		//initSelectNetwork[field]=fieldObj.data;
 	        	}
         		if(typeof fieldObj.mainTag != "undefined")
-					mainTag=mainTag;
+					mainTag=fieldObj.mainTag;
         		style = "style='width:100%;margin-bottom: 10px;border: 1px solid #ccc;'";
         	}
         	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
