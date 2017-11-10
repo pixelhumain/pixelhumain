@@ -103,6 +103,9 @@
 		padding: 4px 8px !important;
 		margin-right: 10px !important;
 	}
+	.btn-notification-action.btn-danger{
+		background-color: #d9534f !important;
+	}
 	.footer-notif{
 		position: absolute;
 		bottom:10px;
