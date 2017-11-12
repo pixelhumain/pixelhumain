@@ -112,7 +112,7 @@ var_dump($this::$a);
             	if(class_exists('DOMDocument',false))            
                 	echo '<span style="color:green"> extension DOM is installed.Used by CHtmlPurifier and CWsdlGenerator</span>';
             	else
-					echo '<span style="color:red"> extension DOM is not installed. Please install it on your PHP server. it is required by CHtmlPurifier and CWsdlGenerator</span>';            
+					echo '<span style="color:red"> extension DOM is not installed. Please install it on your PHP server. it is required by CHtmlPurifier and CWsdlGenerator</span><br/>sudo apt-get install php5.6-dom';            
             	?>
             </li> 
             
@@ -128,7 +128,7 @@ var_dump($this::$a);
             	if(extension_loaded("mcrypt"))            
                 	echo '<span style="color:green"> extension Mcrypt is installed. Used by CSecurityManager. (encryption and decryptions methods)</span>';
             	else
-					echo '<span style="color:red"> extension Mcrypt is not installed. Please install it on your PHP server. It is required by CSecurityManager (encryption and decryptions methods)</span>';            
+					echo '<span style="color:red"> extension Mcrypt is not installed. Please install it on your PHP server. It is required by CSecurityManager (encryption and decryptions methods)</span><br/>sudo apt-get install php5.6-mcrypt';            
             	?>
             </li> 
                                     
@@ -174,7 +174,7 @@ var_dump($this::$a);
             	if(extension_loaded("mongo"))            
                 	echo '<span style="color:green"> extension Mongo v'.phpversion("mongo").' is installed. Used as database by PH</span>';
             	else
-					echo '<span style="color:red"> extension Mongo is not installed. Please install it on your PHP server. It is requiredfor all database stuff</span>';            
+					echo '<span style="color:red"> extension Mongo is not installed. Please install it on your PHP server. It is requiredfor all database stuff</span><br/>sudo apt-get install php5.6-mongo';            
             	?>
             </li>     
             
