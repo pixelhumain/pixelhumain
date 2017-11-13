@@ -34,6 +34,7 @@
 		"The survey has been updated" => "Der Vorschlag wurden aktualisiert",
 		"The end date can only be delayed after votes have been done." => "Das Enddatum kann nur verschoben werden, wenn Abstimmungen über den Vorschlag vorliegen.",
 		"Can not update the survey after votes have been done." => "Kann den Vorschlag nicht aktualisieren, nicht bevor eine Abstimmung erfolgt ist",
+		"You are Following this vote." => "Sie verfolgen diese Abstimmung",
 		
 	)
 ?>
