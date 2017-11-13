@@ -17,5 +17,15 @@
 		"Report an abuse" => "Melde an Moderator",
 		"This comment has been deleted because of his content." => "Kommentar wurde wegen eines Verstoßes gegen die Regeln gelöscht",
 		"You are going to delete this comment : are your sure ?" => "Sie sind dabei diesen Kommentar zu löschen: Sind Sie sicher?", 
+		"comments" => "Kommentare",
+		"comment" => "Kommentar",
+		"answers" => "Antworten",
+		"answer" => "Antwort",
+		"No comment" => "Kein Kommentar",
+		"Update your comment" => "Aktualisieren Sie Ihren Kommentar",
+		"Show more comments" => "Zeige mehr Kommentare",
+		"Your comment is empty" => "Ihr Kommentar ist leer",
+		"Do you want to delete this comment" => "Wollen Sie diesen Kommentar löschen",
+		"Loading comments" => "Kommentare laden",
 	)
 ?>

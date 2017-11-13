@@ -7,9 +7,8 @@
         "displayScope" : false,
         "docs":false,
         "displayCommunexion" : true,
-        "displayNotifications" : false,
-        "profilBar" : false,
-        "breadcrum" : true,
+        "profilBar" : true,
+        "breadcrum":true,
         "displayButtonGridList" : false,
         "class" : {
             "mainContainer" : false
@@ -18,7 +17,7 @@
         "iconeSearchPlus" : false,
         "loginTitle":"",
         "front" : {
-            "organization" : true,
+            "organization" : false,
             "project" : false,
             "event" : false,
             "community" : false,
@@ -26,20 +25,21 @@
             "live" : false,
             "search" : false,
             "need" : false,
-            "poi" : true
+            "poi" : false
         },
         "menu" : {
             "aroundMe":false,
             "connectLink":false,
             "add":true,
             "detail":true,
-            "news":true,
-            "directory":true,
+            "news":false,
+            "directory":false,
             "gallery":true
         }
     },
-   "filter" : {
+    "filter" : {
         "types" : false,
+        "tagParent" : "Alimentation",
         "linksTag" : {
         "Catégories" : {
                 "tagParent" : "Ecofrugal",
@@ -63,14 +63,16 @@
 },
     "add" : {
         "organization" : true
-        
     },
     "result" : {
         "displayImage" : true,
         "displayType" : false,
         "fullLocality" : true,
         "datesEvent" : false,
-    "displayShortDescription" : true
+        "displayShortDescription" : true
+    },
+     "add" : {
+        "organization" : true
     },
     "request" : {
         "pagination" : 1000,

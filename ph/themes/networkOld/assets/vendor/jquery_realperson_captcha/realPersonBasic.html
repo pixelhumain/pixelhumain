@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>jQuery Real Person</title>
+<link rel="stylesheet" href="jquery.realperson.css">
+<style>
+label { display: inline-block; width: 20%; }
+.realperson-challenge { display: inline-block }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="jquery.plugin.js"></script>
+<script src="jquery.realperson.js"></script>
+<script>
+$(function() {
+	$('#defaultReal').realperson();
+});
+</script>
+</head>
+<body>
+<h1>jQuery Real Person</h1>
+<p>This page demonstrates the very basics of the
+	<a href="http://keith-wood.name/realPerson.php">jQuery Real Person plugin</a>.
+	It contains the minimum requirements for using the plugin and
+	can be used as the basis for your own experimentation.</p>
+<p>For more detail see the <a href="http://keith-wood.name/realPersonRef.html">
+	documentation reference</a> page.</p>
+<form action="jquery.realperson.php" method="post">
+	<p><label>Other fields:</label><input type="text" id="field"></p>
+	<p><label>Please enter the letters displayed:</label>
+		<input type="text" id="defaultReal" name="defaultReal"></p>
+	<p style="clear: both;"><label>&nbsp;</label><input type="submit" value="Submit"></p>
+</form>
+</body>
+</html>

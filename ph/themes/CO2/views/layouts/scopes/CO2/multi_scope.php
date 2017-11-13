@@ -382,7 +382,10 @@
         });
 
         $("#btn-validate-scope").click(function(){
-            startSearch(0, indexStepInit);
+			if(location.hash.indexOf("#live") >=0)
+				startNewsSearch(true);
+			else
+				startSearch(0, indexStepInit);
         });
 
         

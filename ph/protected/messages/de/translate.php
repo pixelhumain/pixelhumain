@@ -35,5 +35,12 @@
 		"December"=>"Dezember",
 		"From"=>"Von",
 		"To"=>"Bis",
+		"Mon" => "Mo",
+		"Tue" => "Di",
+		"Wed" => "Mi",
+		"Thu" => "Do",
+		"Fri" => "Fr",
+		"Sat" => "Sa",
+		"Sun" => "So", 
 	);
 ?>
