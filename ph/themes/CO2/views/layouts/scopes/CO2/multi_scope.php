@@ -82,7 +82,8 @@
 						<h5 class="text-dark"><?php echo Yii::t("common","Select scopes of research") ?></h5>
 						
 						<div class="col-md-6 col-md-offset-3 no-padding">
-							<div class="">
+              <span class="col-md-12 col-sm-12 col-xs-12 letter-blue padding-10"><i class="fa fa-info-circle"></i> <?php echo Yii::t("docs","You will find only countries, cities, postal codes and zones <b>which match data</b>.<br/> If you <b>don't find</b> a country, a city or a zone, feel free <b>to create an organization, a project, an event, on this geographical zone...</b><br/><br/><b>Then you will find this result here</b>") ?> !</span>
+							<div class="col-md-12 col-sm-12 col-xs-12">
 								<hr>
 								<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">
 									<select id="select-country"></select>
