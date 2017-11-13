@@ -43,5 +43,8 @@
 		"To modified"=>"Zu verändern",
 		"Current"=>"Aktiv",
 		"Degree of your evaluation (0% = very closed, 100% = very opened)"=>"Ihre Einschätzung (0% = sehr geschlossen, 100% = sehr offen)",
+		"Open chart" => "Öffnen Sie das Polar-Diagramm",
+		"Edit chart" => "Bearbeiten Sie das Polar-Diagramm",
+		"Add chart" => "Fügen Sie das Polar-Diagramm hinzu",
 	)
 ?>

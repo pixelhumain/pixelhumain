@@ -170,6 +170,7 @@
         "President"=>"Geschäftsführer",
         "Director"=>"Vorstand",
         "Speaker"=>"Sprecher",
-        "Intervener"=>"Streithelfer"
+        "Intervener"=>"Streithelfer",
+	"Crowdfunding" => "Crowdfunding"
 	);
 ?>
