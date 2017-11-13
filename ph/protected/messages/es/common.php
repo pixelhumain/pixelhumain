@@ -1151,5 +1151,6 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Cartography" => "Cartographie",
 	"All tags" => "Tous les tags",
 	"All types" => "Tous les types",
+	"Handle by" => "Porter par",
 );
 ?>
