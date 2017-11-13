@@ -419,9 +419,9 @@ jQuery(document).ready(function() {
         $(".custom-msg").text(msgError[error]);
     }
 
-    $("#username").change(function(){
+    /*$("#username").change(function(){
         $("#registerName").val($(this).val());
-    });
+    });*/
 
 });
 
