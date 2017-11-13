@@ -1088,5 +1088,6 @@ return array(
 	"Cartography" => "Cartographie",
 	"All tags" => "Tous les tags",
 	"All types" => "Tous les types",
+	"Handle by" => "Porter par",
 );
 ?>
