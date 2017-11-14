@@ -54,7 +54,7 @@
     <header>
         <?php if(@$useHeader != false){ ?>
             <div class="container">
-                <div class="headerTitle"> Store</div>
+                <div class="headerTitle"> <?php echo $mainTitle; ?></div>
                 <div class="headerImg"></div>
             </div>
         <?php } ?>
@@ -73,12 +73,6 @@
                                                             "me" => $me) ); ?>   
 
     
-    <?php   if($subdomain != "referencement"){
-                        $cities = CO2::getCitiesNewCaledonia();
-                        $this->renderPartial($layoutPath.'scopes/'.$CO2DomainName.'/multi_scope', 
-                                array(  "cities"=>$cities, "me"=>$me)); 
-            }
-    ?>
     <div class="portfolio-modal modal fade" id="openModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
