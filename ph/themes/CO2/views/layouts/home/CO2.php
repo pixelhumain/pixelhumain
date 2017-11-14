@@ -588,6 +588,13 @@ function loadLiveNow () {
 			searchParams.searchLocalityCITYKEY = new Array(communexion.values.cityKey);
 		}
 	}
+
+	var searchParams = {
+	      "tpl":"/pod/nowList",
+	      "searchLocality" : getLocalityForSearch(true),
+	      "indexMin" : 0, 
+	      "indexMax" : 30 
+	    };
    	
     //console.log("communexion ?", communexion);
 
