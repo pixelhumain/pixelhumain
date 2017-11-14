@@ -35,6 +35,7 @@
 		"December"=>"Décembre",
 		"From"=>"Du",
 		"To"=>"Au",
+		"to"=>"au",
 		"Mon"=>"Lun",
 		"Tue"=>"Mar",
 		"Wed"=>"Mer",
