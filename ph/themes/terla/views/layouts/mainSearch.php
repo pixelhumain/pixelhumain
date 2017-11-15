@@ -221,6 +221,7 @@
         <script>    
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
+            var memorySearch = "";
             jQuery(document).ready(function() { 
                 if(typeof localStorage != "undefined" && typeof localStorage.shoppingCart != "undefined")
                     shopping.cart = JSON.parse(localStorage.getItem("shoppingCart"));

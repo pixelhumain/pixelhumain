@@ -48,6 +48,12 @@
         $icon                   = $params["pages"]["#".$page]["icon"];
         $mainTitle              = $params["pages"]["#".$page]["mainTitle"];
         $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
+
+
+        $cssAnsScriptFilesModule = array(
+        '/js/default/search.js',
+        );
+        HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->assetsUrl);
     ?>
 
     <!-- Header -->
@@ -90,3 +96,22 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript" >
+
+    var type = "<?php echo @$type ? $type : 'services'; ?>";
+    var typeInit = "<?php echo @$type ? $type : 'services'; ?>";
+    var myMultiTags = new Array();
+    var indexStepInit = 5;
+
+jQuery(document).ready(function() {
+    $(".menu-btn-start-search").click(function(){
+        
+        loadingData = false;
+        startSearchTerla(0, indexStepInit);
+
+    });
+});
+
+</script>
