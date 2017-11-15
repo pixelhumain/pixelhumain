@@ -174,10 +174,10 @@
                 '/plugins/moment/min/moment-with-locales.min.js',
                 '/plugins/jquery.dynForm.js',
                 
-    '/plugins/jquery.elastic/elastic.js',
-    '/plugins/underscore-master/underscore.js',
-    '/plugins/jquery-mentions-input-master/jquery.mentionsInput.js',
-    '/plugins/jquery-mentions-input-master/jquery.mentionsInput.css',
+                '/plugins/jquery.elastic/elastic.js',
+                '/plugins/underscore-master/underscore.js',
+                '/plugins/jquery-mentions-input-master/jquery.mentionsInput.js',
+                '/plugins/jquery-mentions-input-master/jquery.mentionsInput.css',
                 //'/js/cookie.js' ,
                 '/js/api.js',
                 
@@ -222,8 +222,8 @@
             //if($CO2DomainName != "CO2"){
                 $cssAnsScriptFilesModule = array(
                     '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
-                    '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
-                    '/assets/js/themes/'.$CO2DomainName.'.js',
+                    //'/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
+                    //'/assets/js/themes/'.$CO2DomainName.'.js',
                 );
                 HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
             //}
