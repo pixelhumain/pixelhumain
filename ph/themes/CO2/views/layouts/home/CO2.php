@@ -105,19 +105,9 @@ $communexion = CO2::getCommunexionCookies();
 			</h5>
 			<div class="col-md-12 text-center">
 				<button class="btn btn-default <?php if($isEmptyCo) echo 'hidden'; ?>" id="change_co">
-				<?php echo Yii::t("home","Change your communexion") ?>
+					<?php echo Yii::t("home","Test a other communexion") ?>
 				</button>
 			</div>
-			
-			<!-- <select class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input margin-bottom-5">
-				<option>France</option>
-				<?php
-					// echo "<option value=''>".Yii::t("common", "Choose a country")."</option>";
-					// foreach ( OpenData::$phCountries as $key => $value) {
-					// 	echo "<option value='".$key."'>".$value."</option>";
-					// }
-				?>
-			</select> -->
 			<input class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input text-center input_co 
 						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
 				   id="main-search-bar" type="text" 
@@ -588,6 +578,13 @@ function loadLiveNow () {
 			searchParams.searchLocalityCITYKEY = new Array(communexion.values.cityKey);
 		}
 	}
+
+	var searchParams = {
+	      "tpl":"/pod/nowList",
+	      "searchLocality" : getLocalityForSearch(true),
+	      "indexMin" : 0, 
+	      "indexMax" : 30 
+	    };
    	
     //console.log("communexion ?", communexion);
 

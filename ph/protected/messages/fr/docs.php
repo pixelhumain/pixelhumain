@@ -44,5 +44,10 @@
 		"I get involve into local citizen activity" => "je participe à l'activité citoyenne locale",
 		"I share in order to inhance my territory" => "je partage pour améliorer mon territoire",
 		"I can suggest ideas to my neighborhood ( Discuss, Decide, Act)" => "je fais des propositions aux autres habitants (Discuter, Décider, Agir)",
+		"You will find only countries, cities, postal codes and zones <b>which match data</b>.<br/> If you <b>don't find</b> a country, a city or a zone, feel free <b>to create an organization, a project, an event, on this geographical zone...</b><br/><br/><b>Then you will find this result here</b>"=>"Vous trouverez seulement les pays, les villes, les codes postaux, les zones sur lesquels de <b>la donnée existe déjà</b>.<br/> Si vous <b>ne trouverez pas</b> un pays, une ville ou encore une zone, n'hésitez pas à <b>créer une organisation, un projet, un événement sur ces zones géographiques manquantes...</b><br/><br/><b>Ainsi ces zones apparaitront dans les filtres géographiques</b>",
+		"If a city doesn't exist on communecter, you have to write the full name to find the city"=>"Si une ville n'est pas encore réferencée sur communecter, vous devrez écrire son nom en entier pour la trouver",
+
+		"You will find only cities <b>which match data</b>.<br/> If you <b>don't find</b> a city, feel free <b>to create an organization, a project, an event, on this geographical zone...</b><br/><br/><b>Then you will find this result here</b>"=>"Vous trouverez seulement les villes sur lesquels de <b>la donnée existe déjà</b>.<br/> Si vous <b>ne trouverez pas</b> une ville, n'hésitez pas à <b>créer une organisation, un projet, un événement sur ces villes manquantes...</b><br/><br/><b>Ainsi ces villes apparaitront</b>",
+		
 	);
 ?>
