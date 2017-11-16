@@ -9,26 +9,22 @@
 
     $cities = CO2::getCitiesNewCaledonia();
 
-    $multiscopes = "{}";
+    $multiscopesStr = "{}";
     if(@$me["multiscopes"]){
-        $multiscopes = @$me["multiscopes"] ? @$me["multiscopes"] : "{}";
+        $multiscopesStr = @$me["multiscopes"] ? json_encode(@$me["multiscopes"]) : "{}";
     }else{
-        $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
-                        json_decode(Yii::app()->request->cookies['multiscopes']->value) : "{}";
-
         $multiscopesStr = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
-                        Yii::app()->request->cookies['multiscopes']->value : "{}"; 
+                        Yii::app()->request->cookies['multiscopes']->value : "{}";      
+    }
 
-        if(!empty($multiscopesStr)){
-        	$newMultiS = array();
-        	$multiscopesStr = json_decode($multiscopesStr);
-        	foreach ($multiscopesStr as $key => $value) {
-        		if( MongoId::isValid($key))
-        			$newMultiS[$key] = $value;
-        	}
-        	$multiscopesStr = (empty($newMultiS) ? '{}' : json_encode($newMultiS));
-        }
-         
+    if(!empty($multiscopesStr)){
+    	$newMultiS = array();
+    	$multiscopesStr = json_decode($multiscopesStr);
+    	foreach ($multiscopesStr as $key => $value) {
+    		if( MongoId::isValid($key))
+    			$newMultiS[$key] = $value;
+    	}
+    	$multiscopesStr = (empty($newMultiS) ? '{}' : json_encode($newMultiS));
     }
 ?>
 <style>
@@ -313,10 +309,9 @@
 
 <script type="text/javascript">
 	var myMultiTags = {};
-	var myMultiScopes = <?php echo isset($me) && !empty($me["multiscopes"]) ? 
-                            json_encode($me["multiscopes"]) : 
-                            $multiscopesStr;
-						          ?>;
+	var myMultiScopes = <?php echo $multiscopesStr; ?>;
+
+	console.log("myMultiScopes init", myMultiScopes);
 
 
     var currentScopeType = "city";
