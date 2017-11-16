@@ -867,7 +867,7 @@ return array(
 	"Visible for everyone." => "Für alle sichtbar.",
 	"Visible for my contacts." => "Nur für meine Kontakte sichtbar.",
 	"Not visible." => "Nicht sichtbar.",
-	"You propose your data in free access, to contribut for commons." => "Sie bieten Ihre Daten kostenfrei an, um zur Allmende beizutragen.",
+	"You propose your data in free access, to contribut for commons." => "Sie bieten Ihre Daten kostenfrei an, um zu den Commons beizutragen.",
 	"All users can participed / modified the informations." => "Alle Benutzer haben die Möglichkeit sich an den Informationen zu beteiligen und sie zu verändern.",
 	"Max price"=>"Höchstpreis",
 	"Min price"=>"Mindestpreis",
@@ -1187,5 +1187,10 @@ return array(
 	"Search a page ..." => "Suche eine Seite ...",
 	"Reset" => "Zurücksetzen",
 	"Handle by" => "Porter par",
+	
+	"Marked all as read" => "Alle als gelesen markieren",
+	"Program" => "Programm",
+	"Show calendar" => "Kalender zeigen",
+	"Hide calendar" => "Kalender verbergen",
 );
 ?>
