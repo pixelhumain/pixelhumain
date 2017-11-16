@@ -43,5 +43,6 @@
 		"To diffuse your messages for your city"=>"Um Ihre Nachrichten anders zu verbreiten",
 		"Terms and conditions of use"=>"Nutzungsbedingungen",
 		"General information"=>"Allgemeine Informationen",
+		"Test a other communexion" => "Probieren Sie eine neue Möglichkeit der Kommunikation und Verbindung aus",
 	);
 ?>
