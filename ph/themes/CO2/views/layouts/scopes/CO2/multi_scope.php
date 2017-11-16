@@ -17,7 +17,18 @@
                         json_decode(Yii::app()->request->cookies['multiscopes']->value) : "{}";
 
         $multiscopesStr = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
-                        Yii::app()->request->cookies['multiscopes']->value : "{}";  
+                        Yii::app()->request->cookies['multiscopes']->value : "{}"; 
+
+        if(!empty($multiscopesStr)){
+        	$newMultiS = array();
+        	$multiscopesStr = json_decode($multiscopesStr);
+        	foreach ($multiscopesStr as $key => $value) {
+        		if( MongoId::isValid($key))
+        			$newMultiS[$key] = $value;
+        	}
+        	$multiscopesStr = (empty($newMultiS) ? '{}' : json_encode($newMultiS));
+        }
+         
     }
 ?>
 <style>
