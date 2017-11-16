@@ -344,8 +344,9 @@
     //});
 
     $(".item-scope-select").off().click(function(){
+
         currentScopeType = "city";
-        if($(this).hasClass("selected")){
+       	if($(this).hasClass("selected")){
             var scopeValue = $(this).data("scope-value");
             if(scopeExists(scopeValue)){
                 delete myMultiScopes[scopeValue];
