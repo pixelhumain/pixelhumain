@@ -1136,7 +1136,7 @@ return array(
 	"Waiting for validation" => "Warten auf Bestätigung",
 	"Delete this attendee" => "Teilnehmer löschen",
 	"Connected to your city" => "Verbinden Sie sich mit Ihrer Stadt",
-	"Comment on" => "Kommentar zu",
+	"Comment on" => "Kommentiere",
 	"Answer" => "Antwort",
 	"I like" => "Gefällt mir",
 	"I don't like" => "Gefällt mir nicht",
