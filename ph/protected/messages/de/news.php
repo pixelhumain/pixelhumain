@@ -26,6 +26,7 @@ return array(
   	"This link points to a dead news"=> "Dieser Link führt auf eine nicht mehr existierende Seite",
   	"The author has probably deleted the news"=> "Der Autor hat diesen Eintrag vermutlich gelöscht",
 	
+	"published {what} {where}" => "{what} wurde {where} veröffentlicht",
 	"a message" => "eine Nachricht",
 	"in the newspaper of {who}" => "in der Zeitung von {who}",
 	"in your newspaper" => "in Ihrer Zeitung",
