@@ -1186,7 +1186,7 @@ return array(
 	"Currently loading" => "Lädt gerade ...",
 	"Search a page ..." => "Suche eine Seite ...",
 	"Reset" => "Zurücksetzen",
-	"Handle by" => "Porter par",
+	"Handle by" => "Getragen von",
 	
 	"Marked all as read" => "Alle als gelesen markieren",
 	"Program" => "Programm",
