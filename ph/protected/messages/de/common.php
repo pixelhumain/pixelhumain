@@ -1192,5 +1192,7 @@ return array(
 	"Program" => "Programm",
 	"Show calendar" => "Kalender zeigen",
 	"Hide calendar" => "Kalender verbergen",
+	"Carried by" => "Getragen von",
+	"the holder" => "der Inhaber",
 );
 ?>
