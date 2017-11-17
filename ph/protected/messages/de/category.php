@@ -1,7 +1,7 @@
 <?php
 	return array(
 		//Filliaire
-		"Commons"=>"Allmende",
+		"Commons"=>"Commons",
 		"Agriculture | Food"=>"Landwirtschaft | Lebensmittel",
 		"Health"=>"Gesundheit",
 		"Waste"=>"Abfall",
