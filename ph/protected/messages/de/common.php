@@ -970,7 +970,7 @@ return array(
 	'enter image title here' => "Fügen Sie den Bildtitel hier hinzu",
 	'list text here' => "Textliste hier",
 	"Old password" => "Altes Passwort",
-	"New password" => "Nees Passwort",
+	"New password" => "Neues Passwort",
 	"Repeat your new password" => "Wiederholen Sie Ihr neues Passwort",
 	"Add members ..." => "Füge Mitglieder hinzu ...",
 	"Among my contacts ..." => "Unter meinen Kontakten ...",
