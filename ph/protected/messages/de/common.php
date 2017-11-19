@@ -495,7 +495,7 @@ return array(
 	"Classified ads"=>"Kleinanzeigen",
 	"<span class='text-red'>C</span>Ommon agenda"=>"Der <span class='text-red'>Gemein</span>same Terminkalender",
 	"<span class='text-red'>CO</span>mmon live"=>"Der <span class='text-red'>Gemein</span>same Nachrichtenstrom",
-	"Create a page"=>"Eine Seite erstellen für:",
+	"Create a page"=>"Eine Seite erstellen",
 	"Create a classified ad"=>"Eine Anzeige veröffentlichen",
 	"Create an event"=>"Eine Veranstaltung ankündigen",
 	"Create something"=>"Irgendetwas machen",
