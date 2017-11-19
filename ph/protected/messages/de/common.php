@@ -1175,7 +1175,7 @@ return array(
 	"Postal codes" => "Postleitzahl",
 	"ago" => "her",
 	"Right now" => "In diesem Moment",
-	"Being suppressed" => "wird ausgeblendet",
+	"Being suppressed" => "wird gelöscht",
 	"No news in this timeline" => "Keine Neuigkeiten in dieser Zeitachse",
 	"deleted" => "gelöscht",
 	"{who} has created {what} {where}" => "{who} hat {what} für {where} geschaffen",
