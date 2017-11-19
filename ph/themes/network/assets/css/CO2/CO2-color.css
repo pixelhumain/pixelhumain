@@ -6,8 +6,6 @@
 
 .navbar-brand .letter{ margin-right:0px; letter-spacing: -9px; }
 
-.letter-lightblue{ color:#7bc3d1!important; }
-
 .letter-blue{ color:#4285f4!important; }
 
 .letter-red{ color:#ea4335!important; }
@@ -17,8 +15,14 @@
 .letter-yellow{ color:#fbbc05!important; }
 
 .letter-green{ color:#34a853!important; }
+.letter-green-k{ color:#34a853!important; }
+.text-green-k{ color:#34a853!important; }
+
+.letter-purple{ color:#976BB6 !important;}
 
 .letter-lightblue{ color:#7bc3d1 !important; }
+
+.letter-light{ color:#7d7d7d !important; }
 
 .letter-turq{
     color: #229296!important;
@@ -107,10 +111,13 @@ a.text-red:hover{
 a.text-white:hover{
     color:#FFF !important;
 }
-.text-green-poi{
+
+.text-green-poi, a.text-green-poi{
     color:#20C06B !important;
 }
-
+a.text-white:hover{
+    color:#FFF !important;
+}
 .text-yellow-PH{
     color:#fffc00!important;
 }
@@ -167,6 +174,9 @@ a.text-white{
 .bg-lightblue{
     background-color:#C8EBF5 !important;
 }
+.bg-lightpurple{
+    background-color:#DBD6E9 !important;
+}
 .bg-darkblue{
     background-color:#4285f4 !important;
 }
@@ -196,24 +206,58 @@ a.text-white{
 
 .bg-pink{
     background-color:#d99ce0 !important;
+    color:white;
 }
 .bg-dark{
     background-color:#2C3E50 !important;
+    color:white;
 }
 
 .bg-green-k{
     background-color:#34a853 !important;
+    color:white;
+}
+.bg-red-k{
+    background-color:#d9534f !important;
+    color:white;
 }
 .bg-blue-k{
     background-color:#4285f4 !important;
+    color:white;
 }
 
 .bg-turq{
     background-color: #229296!important;
+    color:white;
 }
 
 .bg-green-poi{
     background-color:#20C06B !important;
+    color:white;
+}
+
+
+.btn-link.bg-red{
+    color:#FFF !important;
+}
+
+.btn-link.bg-green-k:hover{
+    background-color: white !important;
+    color:#34a853 !important;
+    border: 1px solid #34a853 !important;
+}
+.btn-link.bg-red:hover{
+    background-color: white !important;
+    color:#ea4335 !important;
+    border: 1px solid #ea4335 !important;
+}
+.btn-link.bg-orange:hover{
+    background-color: white !important;
+    color:#FFA200 !important;
+    border: 1px solid #FFA200 !important;
+}
+.btn-link.bg-white:hover{
+    border: 1px solid grey !important;
 }
 
 
@@ -243,3 +287,32 @@ hr.angle-down {
 
 
 .text-red-light-moderation{ color:#cbb4b2!important; }
+
+
+.bg-green-comment{
+    background-color:#CFEDC2 !important;
+}
+.item-comment.bg-green-comment{
+    padding: 5px !important;
+    /*width: 70%;*/
+    border-radius: 5px;
+    /*float: left;*/
+}
+
+
+.bg-red-comment{
+    background-color:#ffd7d4 !important;
+}
+.item-comment.bg-red-comment{
+    background-color:#ffd7d4 !important;
+    padding: 5px !important;
+    /*width: 70%;*/
+    border-radius: 5px;
+    /*float: right;*/
+}
+
+.item-comment{
+    margin-top:5px !important;
+    margin-bottom:5px !important;
+
+}

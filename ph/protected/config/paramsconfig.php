@@ -92,7 +92,7 @@ $params = array(
     
 
     //rocketchat params
-    //'rocketchatEnabled' => true,
+    'rocketchatEnabled' => false,
     'rocketchatURL' => 'https://chat.communecter.org',
     'rocketAdmin' => 'contact@communecter.org',
     'rocketAdminPwd' => '',

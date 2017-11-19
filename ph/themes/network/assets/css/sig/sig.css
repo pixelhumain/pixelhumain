@@ -18,6 +18,8 @@ svg{
 
  .leaflet-popup-tip{
  	background-color:#FFF;
+ 	margin: 0px auto 0!important;
+	box-shadow: none !important;
  }
 
  .leaflet-popup-tip-container {
@@ -28,15 +30,8 @@ svg{
  .leaflet-popup-content{
  	margin:5px 0px 0px -1px !important;
  	min-width:280px;
- 	padding:0px !important;
- 	font-size:11px !important;
- 	line-height: 1.4 !important;
+ 	padding-bottom:0px;
  }
-
- .leaflet-popup-content p {
- 	font-size:11px !important;
- }
-
  .pod-local-actors{
  	padding: 10px;
  }
@@ -72,12 +67,15 @@ svg{
 	border-color: #82b440;
 }
 
+
  .popup-info-profil {
- 	width:100%;
- 	text-align:left;
- 	font-size:11px;
- 	color:grey;
- 	margin-left: 5px;
+ 	width: 100%;
+	text-align: left;
+	font-size: 13px;
+	color: black;
+	margin-left: 5px;
+	font-weight: bold;
+	float:left;
  }
 
  .popup-subtitle {
@@ -87,7 +85,7 @@ svg{
     width:100%;
 	font-size: 14px;
  	color:black;
- 	padding-left:10px;
+ 	float: left;
  }
  .popup-section {
  	padding-bottom: 5px;
@@ -164,30 +162,27 @@ creer des conflits : regle pas assez specfique
 /*
 	LISTE ELEMENT MAP (RIGHT)
 */
-#right_tool_map{
-	top: 100px !important;
-    right: 0px !important;
-    left: unset !important;
-    margin-top: 40px;
-	width:30%;
-	min-height:400px;
-	height: initial !important;
+ #right_tool_map{
+	width:300px;
+	height:90%;
 	position:absolute !important;
+	right:5%;
+	top:5%;
 	background-color:white;
 	-moz-box-shadow: -5px -5px 1px 0px rgba(189, 189, 189, 0.40);
 	-webkit-box-shadow: -5px -5px 1px 0px rgba(189, 189, 189, 0.40);
 	-o-box-shadow: -5px -5px 1px 0px rgba(189, 189, 189, 0.40);
-	box-shadow: -5px -5px 10px -3px rgba(0, 0, 0, 0.40);
+	box-shadow: -5px -5px 1px 0px rgba(189, 189, 189, 0.40);
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#cfcfcf, Direction=315, Strength=3);
 }
 .right_tool_map_header{
-	height:45px;
+	height:50px;
 	width:100%;
 	background-color:#5F8295;
 	color:white;
 }
 .right_tool_map_header_title{
-	margin-top: 5px;
+	margin-top: 7px;
 	margin-left: 20px;
 	float: left;
 	font-size: 14px;
@@ -196,6 +191,7 @@ creer des conflits : regle pas assez specfique
 }
 
 .right_tool_map_header_info{
+	margin-top:3px;
 	margin-left:20px;
 	font-weight: 300;
 	font-size: 13px;
@@ -250,8 +246,8 @@ creer des conflits : regle pas assez specfique
 	float:left;
 	width:100%;
 	padding-top:5px;
-	height:initial !important;
-	max-height:90%;
+	height:100%;
+	max-height:100%;
 /* 	margin-top:10px; */
 	overflow-y:auto;
 }
@@ -397,6 +393,7 @@ creer des conflits : regle pas assez specfique
 	margin-left: 0px;
 }
 
+
 .item_map_list.popup-marker{
 	width:100%;
 	text-decoration:none;
@@ -406,7 +403,6 @@ creer des conflits : regle pas assez specfique
 	display: inline-block;
 	padding: 5px;
 }
-
 .item_map_list.popup-marker:hover{
 	/*background-color:#FFF !important;*/
 	background-color:transparent !important;
@@ -471,6 +467,7 @@ creer des conflits : regle pas assez specfique
 .btn-group-map{
 	float:right;
  	top:10px;
+ 	margin-right:10px;
 }
 .btn-map{
 	background-color:#2A3945;
@@ -482,10 +479,10 @@ creer des conflits : regle pas assez specfique
 .btn-map:hover{
 	background-color:#5896AB !important;
 }
-.btn-map#btn-back, .btn-map#btn-search{
+.btn-map#btn-back {
     background-color: #2BB0C6 !important;
 }
-.btn-map#btn-back:hover, .btn-map#btn-search:hover {
+.btn-map#btn-back:hover {
     background-color: #489EAD !important;
 }
 .btn-full-screen{
@@ -659,7 +656,7 @@ creer des conflits : regle pas assez specfique
  	left:270px;
 }
 .btn-group-map .btn-group{
-	margin-right:0px;
+	margin-right:20px;
 }
 .btn-map{
 	background-color:#E6D414;
@@ -670,8 +667,7 @@ creer des conflits : regle pas assez specfique
 	background-color:#5896AB;
 }
 .btn-group-map .btn{
-	border-radius:0px !important;
-	margin-bottom: 2px;
+	border-radius:3px !important;
 }
 .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
     border-top-left-radius: 0px !important;
@@ -708,6 +704,8 @@ creer des conflits : regle pas assez specfique
  .fa-purple{ color:#B081FF !important; } /*B081FF*/
  .fa-pink{ color:#DB31D3 !important; }
  .fa-white{ color:#FFF !important; }
+ .fa-azure{ color:#2BB0C6 !important; }
+ .fa-lightblue2{ color:#2973C0 !important; }
 
   .awesome-marker{
   	background:url("");
@@ -736,9 +734,10 @@ creer des conflits : regle pas assez specfique
 
 
   #lbl-chk-scope{
-	height: 45px;
+	height: 46px;
     padding-left: 20px !important;
 	padding-top: 5px;
+    margin-top: 10px;
     width: 100%;
 	font-size:0.9em;
 	background-color: #FFF; /*#5F8295;*/
@@ -900,12 +899,13 @@ creer des conflits : regle pas assez specfique
 		text-decoration: none !important;
 	}
 
-	.leaflet-popup-content h1, h2{
+	.leaflet-popup-content h1{
 		font-size: 17px;
 		text-align: center;
 	}
 	.leaflet-popup-content h2{
 		font-size: 15px;
+		text-align: center;
 	}
 
 	.leaflet-popup-content #btn-validate-geopos{
@@ -919,18 +919,16 @@ creer des conflits : regle pas assez specfique
 
 	}
 	#btn-tags .btn-map, #btn-filter .btn-map{
-		padding:11px 8px !important;
+		padding:14px 17px !important;
 		border-radius:0px;
 		background-color: rgba(42, 57, 69, 0.29) !important;
 	}
-	.sigModuleBg	.panel_map {
-		width: 275px !important;
-	}
+
 	#btn-filter{
 		right:0px;
 	}
 	#btn-tags{
-		right:50px;
+		right:49px;
 	}
 
 	#panel_map{
@@ -1006,8 +1004,20 @@ creer des conflits : regle pas assez specfique
 		background-color: #2BB0C6 !important;
 	}
 
-
+	#map-loading-data{
+		font-size: 13px !important;
+		font-weight: 300 !important;
+		text-transform: none !important;
+		padding: 15px;
+	}
 /* style tooltip des chartsMarkers */
+
+#mapLegende .btn.pull-right{
+	display:none;
+}
+
+
+
 
 @media screen and (max-width: 768px) {
 

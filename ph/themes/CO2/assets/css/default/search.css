@@ -89,7 +89,8 @@ header .container,
 
 .btn-select-type-anc.active,
 .btn-select-type-anc:active,
-.btn-select-type-anc:focus{
+.btn-select-type-anc:active:focus,
+.btn-select-type-anc.active:focus{
     color: white !important;
-    background-color: #2C3E50;
+    background-color: #2C3E50 !important;
 }

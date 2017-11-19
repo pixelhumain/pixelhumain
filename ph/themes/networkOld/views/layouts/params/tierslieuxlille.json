@@ -1,0 +1,223 @@
+{
+    "name" : "tierslieuxlille",
+    "mode" : "server",
+    "skin" : {
+        "logo" : "mel.png",
+        "title" : "Cartographie des Tiers-Lieux de la Métropole lilloise",
+        "shortDescription" : "Référencement des espaces de travail partagés sur la métropole européenne de Lille",
+        "displayScope" : false,
+        "docs":true,
+        "displayCommunexion" : true,
+        "displayNotifications" : true,
+        "profilBar" : false,
+        "breadcrum" : true,
+        "displayButtonGridList" : false,
+        "class" : {
+            "mainContainer" : false
+        },
+        "iconeAdd" : false,
+        "iconeSearchPlus" : false,
+        "loginTitle":"",
+        "front" : {
+	        "organization" : false,
+	        "project" : true,
+	        "event" : true,
+	        "community" : true,
+	        "dda" : false,
+	        "live" : false,
+	        "search" : false,
+	        "need" : true,
+	        "poi" : true
+	    },
+	    "menu" : {
+		    "aroundMe":false,
+		    "connectLink":false,
+		    "add":true,
+		    "detail":true,
+		    "news":true,
+		    "directory":true,
+		    "gallery":true
+	    }
+    },
+   "filter" : {
+        "types" : false,
+        "linksTag" : {
+            "Type de tiers-lieu" : {
+                "tagParent" : "Type",
+                "background-color" : "#f5f5f5",
+                "image" : "Travail.png",
+                "tags" : {
+                  "Télétravail" : "Télétravail",
+                  "Coworking" : "Coworking",
+                  "Médiation Numérique" : "Médiation numérique",
+                  "FabLab" : "Fablab",
+                  "Accompagnement de projets" : "Accompagnement de projets",
+                  "Atelier" : "Atelier",
+                  "Salle de réunion" : "Salle de réunion",
+                  "Communauté Catalyst" : "Catalyst",
+                  "Espace à louer" : "Espace à louer"
+                }
+            },
+            "Services complémentaires" : {
+                "tagParent" : "Service",
+                "background-color" : "#f5f5f5",
+                "image" : "Service.png",
+                "tags" : {
+                    "Espace détente" : "Espace détente",
+                    "Cuisine" : "Cuisine",
+                    "Achat groupé" : "Achat groupé",
+                    "Bar participatif" : "Bar participatif",
+                    "Cuisine participative" : "Cuisine participative",
+                    "Epicerie participative" : "Epicerie participative",
+                    "Jardiné" : "Jardin",
+                    "Domiciliation" : "Domiciliation",
+                    "Atelier participatif" : "Atelier participatif",
+                    "Restaurant" : "Restaurant",
+                    "Bar":"Bar"
+                }
+            },
+            "Modèle de gestion" : {
+                "tagParent" : "Modele",
+                "background-color" : "#f5f5f5",
+                "image" : "Loisir.png",
+                "tags" : {
+                  "Commun" : "Commun",
+                  "Association" : "Association",
+                  "Business" : "Business",
+                  "Public" : "Public"
+                }
+            },
+            "État du projet" : {
+                "tagParent" : "Etat",
+                "background-color" : "#f5f5f5",
+                "image" : "Reparation.png",
+                "tags" : {
+                  "En projet" : "En projet",
+                  "En démarrage" : "En démarrage",
+                  "En fonctionnement" : "En fonctionnement"
+                }
+            },
+            "Taille de l'espace" : {
+                "tagParent" : "Surface",
+                "background-color" : "#f5f5f5",
+                "image" : "Information.png",
+                "tags" : {
+                  "Moins de 60m2" : "Moins de 60m2",
+                  "Entre 60 et 200m2" : "Entre 60 et 200m2",
+                  "Plus de 200m2" : "Plus de 200m2"
+                }
+            }
+          }
+    },
+    "add" : {
+        "organization" : true,
+        "person" : true
+    },
+    "result" : {
+        "displayImage" : true,
+        "displayType" : false,
+        "fullLocality" : true,
+        "datesEvent" : false,
+        "displayShortDescription" : true
+    },
+    "request" : {
+        "pagination" : 1000,
+        "searchType" : [
+            "organizations"
+        ],
+        "searchLocalityNAME" : [
+     	"Lille",
+	"Anstaing",
+	"Armentieres",
+	"Aubers",
+	"Baisieux",
+	"La Bassee",
+	"Beaucamps Ligny",
+	"Bois Grenier",
+	"Bondues",
+	"Bousbecque",
+	"Bouvines",
+	"Capinghem",
+	"La Chapelle d Armentières",
+	"Chereng",
+	"Comines",
+	"Croix",
+	"Deulemont",
+	"Don",
+	"Emmerin",
+	"Englos",
+	"Ennetieres en Weppes",
+	"Erquinghem le Sec",
+	"Erquinghem Lys",
+	"Escobecques",
+	"Faches Thumesnil",
+	"Forest sur Marque",
+	"Fournes en Weppes",
+	"Frelinghien",
+	"Fretin",
+	"Fromelles",
+	"Gruson",
+	"Hallennes lez Haubourdin",
+	"Halluin",
+	"Hantay",
+	"Haubourdin",
+	"Hem",
+	"Herlies",
+	"Houplin Ancoisne",
+	"Houplines",
+	"Illies",
+	"Lambersart",
+	"Lannoy",
+	"Leers",
+	"Lesquin",
+	"Lezennes",
+	"Linselles",
+	"Lompret",
+	"Loos",
+	"Lys lez Lannoy",
+	"La Madeleine",
+	"Le Maisnil",
+	"Marcq en Baroeul",
+	"Marquette lez Lille",
+	"Marquillies",
+	"Mons en Barœul",
+	"Mouvaux",
+	"Neuville en Ferrain",
+	"Noyelles les Seclin",
+	"Perenchies",
+	"Péronne en Melantois",
+	"Premesques",
+	"Quesnoy sur Deule",
+	"Radinghem en Weppes",
+	"Ronchin",
+	"Roncq",
+	"Roubaix",
+	"Sailly lez Lannoy",
+	"Sainghin en Melantois",
+	"Sainghin en Weppes",
+	"Saint Andre lez Lille",
+	"Salome",
+	"Santes",
+	"Seclin",
+	"Sequedin",
+	"Templemars",
+	"Toufflers",
+	"Tourcoing",
+	"Tressin",
+	"Vendeville",
+	"Verlinghem",
+	"Villeneuve d Ascq",
+	"Wambrechies",
+	"Warneton",
+	"Wasquehal",
+	"Wattignies",
+	"Wattrelos",
+	"Wavrin",
+	"Wervicq Sud",
+	"Wicres",
+	"Willems"
+        ],
+        "mainTag" : ["TiersLieux"]
+    }
+
+}

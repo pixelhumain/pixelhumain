@@ -1,3 +1,25 @@
+<style>
+    a.link-submenu-header{
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+    a.link-submenu-header.active, 
+    a.link-submenu-header:hover, 
+    a.link-submenu-header:active{  
+        border-bottom: 2px solid #ea4335;
+        background-color: rgba(255, 255, 255, 1);
+        color:#ea4335 !important;
+        text-decoration: none;
+    }
+
+    @media (max-width: 767px) {
+        #main-input-group{
+            margin-top:10px;
+        }
+    }
+</style>
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
     <div class="container">
@@ -100,11 +122,11 @@
         <?php if( isset( Yii::app()->session['userId']) ){ ?>
             
             <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
-                  data-toggle="tooltip" data-placement="top" title="Mon réseau" alt="<?php echo Yii::t("common","My network") ?>">
+                  data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","My network") ?>" alt="<?php echo Yii::t("common","My network") ?>">
               <i class="fa fa-link"></i>
             </button>
             <button class="btn-show-mainmenu btn btn-link" 
-                    data-toggle="tooltip" data-placement="top" title="Menu">
+                    data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","Menu") ?>">
                 <i class="fa fa-bars tooltips" ></i>
             </button>
         <?php } ?>
@@ -251,7 +273,7 @@
 
 
                     <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
-                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications" style="border-left:none !important;">
+                          data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Notifications") ?>" alt="<?php echo Yii::t("common","Notifications") ?>" style="border-left:none !important;width:60px;">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
                               <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
@@ -261,7 +283,7 @@
                     </button>
                     
                     <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
-                          onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" title="Messagerie" alt="Messagerie">
+                          onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Messaging") ?>" alt="<?php echo Yii::t("common","Messaging") ?>">
                       <i class="fa fa-comments"></i>
                       <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
@@ -344,7 +366,7 @@
         
         <?php 
             if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
-                if(@$value["inMenu"]==true){ ?>
+                if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
                     class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
                             <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"

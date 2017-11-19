@@ -1,0 +1,32 @@
+<?php
+	return array(
+		//Job filter
+        "Purchase-Comptability-Management"=>"Purchase / Comptability / Management",
+        "Arts-Crafts"=>"Arts / Crafts",
+        "Bank-Insurance"=>"Bank / Insurance",
+        "Building-Public_works"=>"Building / Public works",
+        "Trade-Sales"=>"Trade / Sales",
+        "Communication-Multimedia"=>"Communication / Multimedia",
+        "Consultant-Market research"=>"Consultant / Market research",
+        "Natural_spaces"=>"Natural spaces",
+        "Agriculture"=>"Agriculture",
+        "Fishing"=>"Fishing",
+        "Animals_care"=>"Animals care",
+        "Hotel_business"=>"Hotel business",
+        "Catering"=>"Catering",
+        "Tourism"=>"Tourism",
+        "Animation"=>"Animation",
+        "Property"=>"Property",
+        "Industry"=>"Industry",
+        "IT-Telecommunication"=>"IT / Telecommunication",
+        "Installation-Maintenance"=>"Installation / Maintenance",
+        "Marketing-Strategy"=>"Marketing / Strategy",
+        "Human_Ressources"=>"Human_Ressources",
+        "Secretariat-Assistantship"=>"Secretariat / Assistantship",
+        "Home_services"=>"Home_services",
+        "Public_services"=>"Public services",
+        "Spectacle"=>"Spectacle",
+        "Sport"=>"Sport",
+        "Transport-Logistic"=>"Transport / Logistic",
+		);
+?>

@@ -79,10 +79,10 @@ class DataValidator {
 	public static function checkSlug($toValidate, $objectId=null) {
 		// Is There a user with the same username ?
 	    $res = "";
-	    if (strlen($toValidate) < 3 || strlen($toValidate) > 32) {
-		  	$res = "The slug length should be between 3 and 32 characters";
+	    if (strlen($toValidate) < 3 || strlen($toValidate) > 50) {
+		  	$res = "The slug length should be between 3 and 50 characters";
 		}
-		if(! preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/ ', $toValidate)) {
+		if(! preg_match('/^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/ ', $toValidate)) {
 			$res = "Not valid slug : content accent or space or not finish by letter or number";	
 		}
 	    /*$notExist = Slug::check($toValidate);      
@@ -220,6 +220,8 @@ class DataValidator {
 	}
 
 	public static function getDateTimeFromString($myDate, $label) {
+
+
 		$result = DateTime::createFromFormat('Y-m-d H:i', $myDate);
 	    if (empty($result)) {
 			$result = DateTime::createFromFormat('Y-m-d', $myDate);

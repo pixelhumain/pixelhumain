@@ -10,9 +10,7 @@
     background-color: white;
     border-radius:15px;
   }
-#mapCanvasBg{
-  visibility: hidden;
-}
+
 .topLogoAnim{
   background-color: rgba(255, 255, 255, 0);
   position: absolute;

@@ -44,8 +44,7 @@ onSave: (optional) overloads the generic saveProcess
 				onSave: null,
 				beforeSave: null,
 				savePath : '/ph/common/save'
-			};
-
+			}; 
 			var settings = $.extend({}, defaults, options);
 			$this = this;
 
@@ -78,8 +77,10 @@ onSave: (optional) overloads the generic saveProcess
 				
 				var fieldTooltip = null;
 				//alert("dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.tooltips."+field );
-				if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.tooltips."+field ) )
+				if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.tooltips" ) && 
+						dyFObj[dyFObj.activeElem].dynForm.jsonSchema.tooltips[field] ){
 					fieldTooltip = dyFObj[dyFObj.activeElem].dynForm.jsonSchema.tooltips[field];
+				}
 				buildInputField(settings.formId,field, fieldObj, settings.formValues, fieldTooltip);
 			});
 			
@@ -152,6 +153,7 @@ onSave: (optional) overloads the generic saveProcess
         var initField = '';
         var value = "";
         var style = "";
+        var mainTag = null;
         if( fieldObj.value ) 
         	value = fieldObj.value;
         else if (formValues && formValues[field]) {
@@ -195,7 +197,7 @@ onSave: (optional) overloads the generic saveProcess
 	        		//initSelectNetwork[field]=fieldObj.data;
 	        	}
         		if(typeof fieldObj.mainTag != "undefined")
-					mainTag=mainTag;
+					mainTag=fieldObj.mainTag;
         		style = "style='width:100%;margin-bottom: 10px;border: 1px solid #ccc;'";
         	}
         	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
@@ -569,7 +571,7 @@ onSave: (optional) overloads the generic saveProcess
         	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
         	$.each(fieldObj.list,function(k,v) { 
         		//mylog.log("build field ",k,v);
-        		var lbl = ( fieldObj.trad && fieldObj.trad[k] ) ? fieldObj.trad[k] : k;
+        		var lbl = ( fieldObj.trad && fieldObj.trad[v.labelFront] ) ? fieldObj.trad[v.labelFront] : fieldObj.trad[k] ? fieldObj.trad[k] : k;
         		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
         						'<a class="btn tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'"'+
         						' data-tag="'+lbl+'" data-key="'+k+'" href="'+action+'"><i class="fa fa-'+v.icon+'"></i> <br>'+lbl+'</a>'+
@@ -1269,8 +1271,8 @@ onSave: (optional) overloads the generic saveProcess
 		                sizeLimit: 2000000
 		            },
 		            messages: {
-				        sizeError : '{file} est trop lourde! limite max : {sizeLimit}.',
-				        typeError : '{file} extension invalide. Extension(s) acceptable: {extensions}.'
+				        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
+				        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
 				    },
 		            callbacks: {
 		            	//when a img is selected
@@ -1325,10 +1327,10 @@ onSave: (optional) overloads the generic saveProcess
 					     	toastr.info( "Fichiers bien chargés !!");
 					      	if($("#ajaxFormModal #newsCreation").val()=="true"){
 					      		console.log("docslist",docListIds);
-					      		var mentionsInput=[];
-					      		$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
+					      		//var mentionsInput=[];
+					      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
       								mentionsInput=data;
-    							});
+    							});*/
 					      		var media=new Object;
 					      		if(uploadObj.contentKey=="file"){
 					      			media.type="gallery_files";
@@ -1351,9 +1353,11 @@ onSave: (optional) overloads the generic saveProcess
 									addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
 								if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
 									addParams.targetIsAuthor = true;
-								if (mentionsInput.length != 0){
-									addParams.mentions=mentionsInput;
-								}
+								/*if (mentionsResult.mentionsInput.length != 0){
+									addParams.mentions=mentionsResult.mentionsInput;
+									addParams.text=mentionsResult.text;
+								}*/
+								addParams=mentionsInit.beforeSave(addParams,'#ajaxFormModal #createNews textarea');
 								$.ajax({
 							        type: "POST",
 							        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",

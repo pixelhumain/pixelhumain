@@ -1,3 +1,5 @@
+<?php $params = CO2::getThemeParams(); ?>
+
 <script>
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
     var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
@@ -19,7 +21,7 @@
     var isMapEnd = false;
 	//used in communecter.js dynforms
     var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
-    var countryList = <?php echo json_encode(Zone::getCountryList()) ?>;
+    //var countryList = <?php echo json_encode(Zone::getListCountry()) ?>;
     var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
     var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
     var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
@@ -44,6 +46,11 @@
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     
     var globalTheme = "<?php echo Yii::app()->theme->name;?>";
+
+    var deviseTheme = <?php echo json_encode(@$params["devises"]) ?>;
+    var deviseDefault = <?php echo json_encode(@$params["deviseDefault"]) ?>;
+
+    var communexion=<?php echo json_encode(CO2::getCommunexionCookies()) ?>;
 
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",
@@ -130,6 +137,7 @@
                         object = new Object;
                         object.id = value._id.$id;
                         object.name = value.name;
+                        object.slug = value.slug;
                         object.avatar = avatar;
                         object.type = "citoyens";
                         mentionsContact.push(object);
@@ -143,8 +151,23 @@
                     object = new Object;
                     object.id = value._id.$id;
                     object.name = value.name;
+                    object.slug = value.slug;
                     object.avatar = avatar;
                     object.type = "organizations";
+                    mentionsContact.push(object);
+                    }
+                });
+                $.each(myContacts["projects"], function (key,value){
+                    if(typeof(value) != "undefined" ){
+                    avatar="";
+                    if(value.profilThumbImageUrl!="")
+                        avatar = baseUrl+value.profilThumbImageUrl;
+                    object = new Object;
+                    object.id = value._id.$id;
+                    object.name = value.name;
+                    object.slug = value.slug;
+                    object.avatar = avatar;
+                    object.type = "projects";
                     mentionsContact.push(object);
                     }
                 });
@@ -315,14 +338,14 @@ function removeCookies() {
     expireAllCookies('insee', ['/', '/ph', '/ph/co2', 'co2']);
 
     expireAllCookies('communexionActivated', ['/ph', '/ph/co2', 'co2']);
-    expireAllCookies('inseeCommunexion', ['/ph', '/ph/co2', 'co2']);
-    expireAllCookies('cpCommunexion', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('inseeCommunexion', ['/','/ph', '/ph/co2', 'co2']);
+    expireAllCookies('cpCommunexion', ['/','/ph', '/ph/co2', 'co2']);
     expireAllCookies('cityNameCommunexion', ['/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexionType', ['/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexionValue', ['/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexionName', ['/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexionLevel', ['/ph', '/ph/co2', 'co2']);
-    //expireAllCookies('multiscopes', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('multiscopes', ['/ph', '/ph/co2', 'co2']);
 }
 
 removeCookies();
