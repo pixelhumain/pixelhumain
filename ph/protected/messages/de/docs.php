@@ -29,8 +29,8 @@
 		
 		"The actual team of developpers are very motivated to follow the work.<br>She needs also to grow up with new developpers and to work with other team to build interoperable applications" => "Das derzeitige Team der Entwickler ist hochmotiviert die Arbeit voran zu treiben. Es muss mit neuen Entwicklern und anderen Teams weiter wachsen um interoperable Anwendungen zu bauen",
 		"A <span class='letter-red'>citizen</span> social network, serving <span class=letter-red'>commons</span>" => "Ein soziales<span class='letter-red'>Bürger</span> Netzwerk, welches den <span class=letter-red'>Commons</span> dient",
-		"Communicate the news" => "Verbreiten Sie die Nachricht",
-		"Share events" => "Teile Veranstaltungen",
+		"Communicate the news" => "Schreiben SIE die Nachrichten",
+		"Share events" => "Teilen Sie Veranstaltungen mit",
 		"Collective space" => "Gemeinsamer Raum",
 		"Private messaging" => "Private Nachrichten",
 		"Choose which kind of page you want to create" => "Wählen Sie den Typ der Seite aus, den Sie erstellen möchten",
