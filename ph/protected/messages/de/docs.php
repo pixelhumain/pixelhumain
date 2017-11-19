@@ -39,7 +39,7 @@
 		"Boost the world of business" => "Verbessere die Welt der Wirtschaft",
 		"Keep connection with your contacts, your customers, your employees, your providers...<br>The network will give you a visibility<br>fo the community living around you" => "Bleiben Sie in Verbindung mit Ihren Kontakten, Kunden, Angestellten, Lieferanten ...<br>Das Netzwerk gibt Ihnen eine exponierte Stellung<br>für die Sie umgebende Gemeinschaft",
 		"Highlight human relations" => "Legen Sie den Schwerpunkt auf ein menschliches Miteinander",
-		"Life is full of meetings, frienships, and links that bind us together<br>through our activities, our interests, our hobbies.<br>Live them is great, share them is greater!" => "Das Leben ist voller Zusammenkünfte, Freundschaften und Verbindungen, die uns näher<br> durch unsere Aktivitäten, Interessen, Hobbieszusammen bringen",
+		"Life is full of meetings, frienships, and links that bind us together<br>through our activities, our interests, our hobbies.<br>Live them is great, share them is greater!" => "Das Leben ist voller Zusammenkünfte, Freundschaften und Verbindungen, die uns näher<br> durch unsere Aktivitäten, Interessen und Hobbies zusammen bringen",
 		"It's the little things<br>that one day change the world" => "Es sind die kleinen Dinge<br>die eines Tages die Welt verbessern",
 		"A day, a moment, a share, a discovery" => "Ein Tag, ein Augenblick, eine Mitteilung, eine Entdeckung",
 		"Share your events<br>And communicate them massively!" => "Teilen Sie Ihre Veranstaltung<br>Und machen Sie diese publik!",
