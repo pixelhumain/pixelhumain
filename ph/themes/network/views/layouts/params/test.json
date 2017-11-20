@@ -1,6 +1,7 @@
 {
     "name" : "Communs",
     "mode" : "server",
+    "dataSrc" : "https://gist.githubusercontent.com/oceatoon/ef54f75f7a159922ae35c215195eed7c/raw/99c4d6a06ce21da8ef9a407262477788650dede5/gistfile1.json",
     "skin" : {
         "logo" : false,
         "title" : "ESS à La Réunion",
@@ -122,17 +123,6 @@
     },
     "request" : {
         "pagination" : 1000,
-        "searchType" : [
-            "organizations",
-            "NGO"
-        ],
-           "searchTag" : [ ""
-        ],
-
-    "searchLocalityREGION": [
-        "Réunion"
-    ],
-
-    "mainTag" : [""]
+        "mainTag" : [""]
     }
 }
