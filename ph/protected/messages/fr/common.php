@@ -1253,6 +1253,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"All types" => "Tous les types",
 	"Carried by" => "Porté par",
 	"the holder"=>"le porteur",
+	"All cities with this postal code" => "Toutes les villes avec ce code postal",
 	
 
 );
