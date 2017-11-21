@@ -100,6 +100,7 @@
 		"Link to Google Plus"=>"Lien vers Google Plus",
 		"Link to Twitter"=>"Lien vers Twitter",
 		"Link to GitHub"=>"Lien vers GitHub",
+		"Link to Instagram"=>"Lien vers Instagram",
 		"Fix"=>"Fixe",
 		"Fax"=> "Fax",
 		"Mobile"=>"Mobile",
