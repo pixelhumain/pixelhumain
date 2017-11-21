@@ -1,42 +1,44 @@
 
 <?php
-    HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/multi_tags_scopes.css'), Yii::app()->theme->baseUrl); 
-    HtmlHelper::registerCssAndScriptsFiles(array('/js/menus/multi_tags_scopes.js'), $this->module->assetsUrl); 
-    
-    HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/multiscopes.css'), Yii::app()->theme->baseUrl );
-    HtmlHelper::registerCssAndScriptsFiles(array( '/js/menus/multitags.js'), $this->module->assetsUrl);
-    HtmlHelper::registerCssAndScriptsFiles(array( '/js/menus/multiscopes.js'), $this->module->assetsUrl);
+	HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/multi_tags_scopes.css'), Yii::app()->theme->baseUrl); 
+	HtmlHelper::registerCssAndScriptsFiles(array('/js/menus/multi_tags_scopes.js'), $this->module->assetsUrl); 
+	
+	HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/multiscopes.css'), Yii::app()->theme->baseUrl );
+	HtmlHelper::registerCssAndScriptsFiles(array( '/js/menus/multitags.js'), $this->module->assetsUrl);
+	HtmlHelper::registerCssAndScriptsFiles(array( '/js/menus/multiscopes.js'), $this->module->assetsUrl);
 
-    $cities = CO2::getCitiesNewCaledonia();
+	$cities = CO2::getCitiesNewCaledonia();
 
-    $multiscopesStr = "{}";
-    if(@$me["multiscopes"]){
-        $multiscopesStr = @$me["multiscopes"] ? json_encode(@$me["multiscopes"]) : "{}";
-    }else{
-        $multiscopesStr = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
-                        Yii::app()->request->cookies['multiscopes']->value : "{}";      
-    }
+	$multiscopesStr = "{}";
+	if(@$me["multiscopes"]){
+		$multiscopesStr = @$me["multiscopes"] ? json_encode(@$me["multiscopes"]) : "{}";
+	}else{
+		$multiscopesStr = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
+							Yii::app()->request->cookies['multiscopes']->value : "{}";
+	}
 
-    if(!empty($multiscopesStr)){
-    	$newMultiS = array();
-    	$multiscopesStr = json_decode($multiscopesStr);
-    	foreach ($multiscopesStr as $key => $value) {
-    		if( MongoId::isValid($key))
-    			$newMultiS[$key] = $value;
-    	}
-    	$multiscopesStr = (empty($newMultiS) ? '{}' : json_encode($newMultiS));
-    }
+	if(!empty($multiscopesStr)){
+		$newMultiS = array();
+		$multiscopesStr = json_decode($multiscopesStr, true);
+		foreach ($multiscopesStr as $key => $value) {
+			if( MongoId::isValid($key))
+				$newMultiS[$key] = $value;
+			else if( !empty($value["type"]) && $value["type"] == "cp" && !empty($value["countryCode"]) )
+				$newMultiS[$key] = $value;
+		}
+		$multiscopesStr = ( empty($newMultiS) ? '{}' : json_encode($newMultiS));
+	}
 ?>
 <style>
-    .modal-content{
-        padding-top:15px!important;
-    }
+	.modal-content{
+		padding-top:15px!important;
+	}
 
 
     h4.title-scope{
-        background-color: #EAE7E7;
-        padding: 8px;
-        border-radius: 50px;
+		background-color: #EAE7E7;
+		padding: 8px;
+		border-radius: 50px;
     }
 
     .item-scope-name{

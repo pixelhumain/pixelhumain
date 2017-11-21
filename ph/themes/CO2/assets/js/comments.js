@@ -220,15 +220,27 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
     newComment=new Object;
     newComment.text=newText;
     newComment=mentionsInit.beforeSave(newComment, dom);
-    updateField("Comment",id,"text",newComment.text,false, true);
-    comments[id].text=newComment.text;
-    if(typeof newComment.mentions != "undefined"){
-      updateField("Comment",id,"mentions",newComment.mentions,false, true);
-      newComment.text = mentionsInit.addMentionInText(newComment.text,newComment.mentions);
-      comments[id].mentions=newComment.mentions;
-    }
-    $('#item-comment-'+id+' .text-comment').html(newComment.text);
-    toastr.success(trad.yourcommentwellupdated);
+   // updateField("Comment",id,"text",newComment.text,false, true);
+    $.ajax({
+      type: "POST",
+      url: baseUrl+"/"+moduleId+"/comment/update", 
+      data: { "id" : id ,"params" : newComment },
+      success: function(data){
+        if(data.result) {
+          comments[id].text=newComment.text;
+          if(typeof newComment.mentions != "undefined"){
+          // updateField("Comment",id,"mentions",newComment.mentions,false, true);
+            newComment.text = mentionsInit.addMentionInText(newComment.text,newComment.mentions);
+            comments[id].mentions=newComment.mentions;
+          }
+          $('#item-comment-'+id+' .text-comment').html(newComment.text);
+          toastr.success(data.msg);        
+          }
+        else
+          toastr.error(data.msg);  
+      },
+      dataType: "json"
+    });
   }
 
   function linkify(inputText) {

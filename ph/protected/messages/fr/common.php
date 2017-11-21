@@ -1252,7 +1252,9 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Cartography" => "Cartographie",
 	"All tags" => "Tous les tags",
 	"All types" => "Tous les types",
-	"Handle by" => "Porter par",
+	"Carried by" => "Porté par",
+	"the holder"=>"le porteur",
+	"All cities with this postal code" => "Toutes les villes avec ce code postal",
 	
 
 );

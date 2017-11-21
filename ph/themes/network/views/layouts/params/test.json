@@ -1,14 +1,17 @@
 {
-    "name" : "Emmaüs",
+    "name" : "Communs",
     "mode" : "server",
+    "dataSrc" : "https://gist.githubusercontent.com/oceatoon/ef54f75f7a159922ae35c215195eed7c/raw/99c4d6a06ce21da8ef9a407262477788650dede5/gistfile1.json",
     "skin" : {
-        "title" : "Emmaüs",
-        "shortDescription" : "Emmaüs",
+        "logo" : false,
+        "title" : "ESS à La Réunion",
+        "shortDescription" : "false",
         "displayScope" : false,
-        "docs":false,
+        "docs":true,
         "displayCommunexion" : true,
-        "profilBar" : true,
-        "breadcrum":true,
+        "displayNotifications" : true,
+        "profilBar" : false,
+        "breadcrum" : true,
         "displayButtonGridList" : false,
         "class" : {
             "mainContainer" : false
@@ -18,51 +21,98 @@
         "loginTitle":"",
         "front" : {
             "organization" : false,
-            "project" : false,
-            "event" : false,
-            "community" : false,
+            "project" : true,
+            "event" : true,
+            "community" : true,
             "dda" : false,
             "live" : false,
             "search" : false,
-            "need" : false,
-            "poi" : false
+            "need" : true,
+            "poi" : true
         },
         "menu" : {
             "aroundMe":false,
             "connectLink":false,
             "add":true,
             "detail":true,
-            "news":false,
-            "directory":false,
+            "news":true,
+            "directory":true,
             "gallery":true
         }
     },
-    "filter" : {
+ "filter" : {
         "types" : false,
-        "tagParent" : "Alimentation",
         "linksTag" : {
-        "Catégories" : {
-                "tagParent" : "Ecofrugal",
+            "Type de tiers-lieu" : {
+                "tagParent" : "Type",
                 "background-color" : "#f5f5f5",
+                "image" : "Travail.png",
                 "tags" : {
-                "Alimentation":"Alimentation",
-                "Consommation":"Consommation",
-                "Energie":"Energie",
-                "Entretien":"Entretien",
-                "Famille":"Famille",
-                "Finance":"Finance",
-                "Habitat":"Habitat",
-                "Loisirs":"Loisirs",
-                "Santé":"Santé",
-                "Technologie":"Technologie",
-                "Transport":"Transport",
-                "Travail":"Travail"
+                  "Télétravail" : "Télétravail",
+                  "Coworking" : "Coworking",
+                  "Médiation Numérique" : "Médiation numérique",
+                  "FabLab" : "Fablab",
+                  "Accompagnement de projets" : "Accompagnement de projets",
+                  "Atelier" : "Atelier",
+                  "Salle de réunion" : "Salle de réunion",
+                  "Communauté Catalyst" : "Catalyst",
+                  "Espace à louer" : "Espace à louer"
                 }
-            }       
-       }
-},
+            },
+            "Services complémentaires" : {
+                "tagParent" : "Service",
+                "background-color" : "#f5f5f5",
+                "image" : "Service.png",
+                "tags" : {
+                    "Espace détente" : "Espace détente",
+                    "Cuisine" : "Cuisine",
+                    "Achat groupé" : "Achat groupé",
+                    "Bar participatif" : "Bar participatif",
+                    "Cuisine participative" : "Cuisine participative",
+                    "Epicerie participative" : "Epicerie participative",
+                    "Jardiné" : "Jardin",
+                    "Domiciliation" : "Domiciliation",
+                    "Atelier participatif" : "Atelier participatif",
+                    "Restaurant" : "Restaurant",
+                    "Bar":"Bar"
+                }
+            },
+            "Modèle de gestion" : {
+                "tagParent" : "Modele",
+                "background-color" : "#f5f5f5",
+                "image" : "Loisir.png",
+                "tags" : {
+                  "Commun" : "Commun",
+                  "Association" : "Association",
+                  "Business" : "Business",
+                  "Public" : "Public"
+                }
+            },
+            "État du projet" : {
+                "tagParent" : "Etat",
+                "background-color" : "#f5f5f5",
+                "image" : "Reparation.png",
+                "tags" : {
+                  "En projet" : "En projet",
+                  "En démarrage" : "En démarrage",
+                  "En fonctionnement" : "En fonctionnement"
+                }
+            },
+            "Taille de l'espace" : {
+                "tagParent" : "Surface",
+                "background-color" : "#f5f5f5",
+                "image" : "Information.png",
+                "tags" : {
+                  "Moins de 60m2" : "Moins de 60m2",
+                  "Entre 60 et 200m2" : "Entre 60 et 200m2",
+                  "Plus de 200m2" : "Plus de 200m2"
+                }
+            }
+          }
+    },
     "add" : {
-        "organization" : true
+        "organization" : true,
+        "person" : true
     },
     "result" : {
         "displayImage" : true,
@@ -71,14 +121,8 @@
         "datesEvent" : false,
         "displayShortDescription" : true
     },
-     "add" : {
-        "organization" : true
-    },
     "request" : {
         "pagination" : 1000,
-        "sourceKey" : "emmaus2",
-        "searchType" : [
-            "organizations"
-        ]
+        "mainTag" : [""]
     }
 }
