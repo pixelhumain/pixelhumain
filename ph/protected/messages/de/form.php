@@ -144,5 +144,7 @@
 		"Add or edit the roles of" => "Füge Rollen hinzu oder ändere diese von",
 		"Add photos to the gallery" => "Füge Bilder zur Galerie hinzu",
 		"Stock your photos and share them" => "Archivieren Sie Ihre Bilder und teilen Sie diese",
+		
+		"Link to Instagram" => "Link zu Instagram",
 	)
 ?>
