@@ -536,10 +536,7 @@ function showTagOnMap (tag) {
 	            else{
 	            	mylog.dir(data);
 	            	Sig.showMapElements(Sig.map, data);
-	            	//$(".moduleLabel").html("<i class='fa fa-connect-develop'></i> Les acteurs locaux : <span class='text-red'>" + cityNameCommunexion + ", " + cpCommunexion + "</span>");
-					//$(".search-loader").html("<i class='fa fa-check'></i> Vous êtes communecté : " + cityNameCommunexion + ', ' + cpCommunexion);
-					//toastr.success('Vous êtes communecté !<br/>' + cityNameCommunexion + ', ' + cpCommunexion);
-					$.unblockUI();
+	            	$.unblockUI();
 	            }
 	          }
 	 	});
@@ -551,24 +548,13 @@ function showTagOnMap (tag) {
 
 
 function loadLiveNow () {
-	//mylog.log("loadLiveNow", communexion);
-	/*var dep = ( ( notNull(contextData["address"])  && notNull(contextData["address"]["depName"]) ) ? 
-				contextData["address"]["depName"] : "");
-	*/
-    var searchParams = {
-      "tpl":"/pod/nowList",//"json", //
-      //"latest" : true,
-      //"searchType" : [typeObj["event"]["col"],typeObj["project"]["col"],
-      //					typeObj["organization"]["col"],"classified",
-      //				 /*typeObj["organization"]["col"]*//*,typeObj["action"]["col"]*/], 
-      //"searchTag" : $('#searchTags').val().split(','), //is an array
-      "searchLocalityCITYKEY" : new Array(""),
-      //"searchLocalityCODE_POSTAL" : $('#searchLocalityCODE_POSTAL').val().split(','), 
-      //"searchLocalityDEPARTEMENT" : new Array(""), //$('#searchLocalityDEPARTEMENT').val().split(','),
-      //"searchLocalityREGION" : $('#searchLocalityREGION').val().split(','),
-      "indexMin" : 0, 
-      "indexMax" : 30 
-    };
+	mylog.log("loadLiveNow CO2.php");
+	var searchParams = {
+		"tpl":"/pod/nowList",
+		"searchLocalityCITYKEY" : new Array(""),
+		"indexMin" : 0, 
+		"indexMax" : 30 
+	};
 
     //console.log("communexion : ", communexion);
 	if($("#searchLocalityCITYKEY").val() != ""){
@@ -580,18 +566,18 @@ function loadLiveNow () {
 	}
 
 	var searchParams = {
-	      "tpl":"/pod/nowList",
-	      "searchLocality" : getLocalityForSearch(true),
-	      "indexMin" : 0, 
-	      "indexMax" : 30 
-	    };
+		"tpl":"/pod/nowList",
+		"searchLocality" : getLocalityForSearch(true),
+		"indexMin" : 0, 
+		"indexMax" : 30 
+	};
    	
     //console.log("communexion ?", communexion);
 
     ajaxPost( "#nowList", baseUrl+'/'+moduleId+'/element/getdatadetail/type/0/id/0/dataName/liveNow?tpl=nowList',
 					searchParams, function(data) {
 					bindLBHLinks();
-     } , "html" );
+	} , "html" );
 }
 
 
