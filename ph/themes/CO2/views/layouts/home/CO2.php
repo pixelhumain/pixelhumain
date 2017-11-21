@@ -340,7 +340,7 @@
 <?php $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 	  $this->renderPartial($layoutPath.'home.peopleTalk'); ?>
 var peopleTalkCt = 0;
-//var communexion=<?php echo json_encode($communexion) ?>;
+
 jQuery(document).ready(function() {
 
 	topMenuActivated = false;
