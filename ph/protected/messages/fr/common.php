@@ -199,7 +199,8 @@ return array(
 	"Back to Search" => "Retour sur la recherche",
 	"Please Login First" => "Logguez vous",
 	"Save Processing"=> "Enregistrement en cours",
-	"Resize and crop your image to render a beautiful banner" => "Ajuster la taille et recadrer votre image pour avoir une jolie bannière", 
+	"Resize and crop your image to render a beautiful banner" => "Ajuster la taille et recadrer votre image pour avoir une jolie bannière",
+	"Submit" => "Publier", 
 	//DATA
 	"Your data has been saved" => "Vos données ont bien été enregistré.",
 	"Data saved" => "Donnée enregistrée.",

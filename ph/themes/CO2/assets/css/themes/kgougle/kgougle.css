@@ -87,6 +87,48 @@ button#open-rocketChat{
 	margin: 0 4px;
 }
 
+
+#btn-submit-form.btn-success{
+    background-color:#34a853;
+    border:2px solid transparent !important;
+}
+#btn-submit-form.btn-success:hover{
+    text-decoration: none!important;
+    color:#34a853;
+    background-color:#fff;
+    border:2px solid #34a853 !important;
+}
+
+
+#smartBar{
+	width: 200px;
+	height: 50px;
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	background-color: transparent;
+	/*background-color: rgba(26, 33, 38, 0.6);*/
+	border-radius: 50px;
+}
+
+#smartBar .btn-smart{
+	width:50px;
+	height:50px;
+	border-radius:100%;
+	border: 2px solid rgba(26, 33, 38, 0.93);
+	background-color: rgba(26, 33, 38, 0.93);
+	color:#4285f4 !important;
+	margin-right:20px;
+	font-size: 20px;
+}
+
+#smartBar .btn-smart:hover{
+	background-color: #4285f4;
+	color: #fff !important;
+	border: 2px solid #fff;
+	font-size: 20px;
+}
+
 @media (max-width: 992px) {
 
     header .container{
