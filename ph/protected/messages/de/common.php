@@ -1125,7 +1125,7 @@ return array(
 	"Menu" => "Menu",
 	"Create a new page" => "Legen Sie eine neue Seite an",
 	"Edit slug" => "Ändern Sie den Aliasnamen",
-	"Search among your contacts" => "Suchen Sie unter Ihren Kontakten",
+	"Search among your contacts" => "Suchen Sie von Ihren Kontakten",
 	"Keep data open and usable by all" => "Öffnen Sie Daten für alle in benutzbareren Formaten",
 	"All users can participate and modify informations" => "Alle Benutzer können an Informationen teilhaben und diese verändern",
 	"has got" => "hat",
