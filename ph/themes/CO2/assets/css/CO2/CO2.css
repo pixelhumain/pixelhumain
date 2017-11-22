@@ -649,7 +649,7 @@ a, a:hover, a:focus, a:active, a.active{
 }
 
 #main-btn-start-search, 
-.main-btn-create, 
+.main-btn-create, .btn-refresh,
 #btn-new-search{
 	font-size: 14px;
 	height: 37px;
@@ -660,6 +660,7 @@ a, a:hover, a:focus, a:active, a.active{
 	margin-bottom:5px;
 }
 #main-btn-start-search:hover, 
+.btn-refresh:hover
 .main-btn-create:hover{
 	background-color: #fff;
 	color:#4b4b4b;

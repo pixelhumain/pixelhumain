@@ -99,6 +99,13 @@
                                     </button>
                             <?php } ?>
 
+                            <?php if($subdomain == "freedom" || $subdomain == "live"){ ?>
+                                    <button class="btn btn-default letter-blue bold btn-directory-type btn-refresh" 
+                                            data-type="<?php echo @$type; ?>">
+                                        <i class="fa fa-refresh"></i> Actualiser
+                                    </button>
+                            <?php } ?>
+
                             <?php $lblC = Yii::t("common",@$params["pages"]["#".$page]["lblBtnCreate"]); ?>
                             <?php $colorC = @$params["pages"]["#".$page]["colorBtnCreate"]; ?>
 
