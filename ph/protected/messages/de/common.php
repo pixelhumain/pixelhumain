@@ -1196,5 +1196,6 @@ return array(
 	"the holder" => "der Inhaber",
 	"All cities with this postal code" => "Alle Orte mit dieser Postleitzahl",
 	"The communexion has changed" => "Die Verbindung wurde geändert",
+	"All the city" => "Die ganze Stadt",
 );
 ?>
