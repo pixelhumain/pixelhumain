@@ -25,7 +25,7 @@
         "Need"=>"Bedarf", 
         "Looking for"=>"Suche nach",   
         "Jobs"=>"Arbeit", 
-        "Offers"=>"Stellenangebote", 
+        "Offers"=>"Jobangebote", 
         //Classifieds filter
         "Technology"=>"Technik", 
         "TV / Video"=>"TV / Video", 
