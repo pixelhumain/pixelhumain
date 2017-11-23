@@ -17,7 +17,7 @@
         "Share"=>"Teilen", 
         "To share"=>"Zu teilen",
         "Give"=>"Geben",   
-        "To give"=>"Zu geben",        
+        "To give"=>"Zu verschenken",        
         "Sale"=>"Verkaufen",  
         "For sale"=>"Zu verkaufen",            
         "Rent"=>"Mieten",   
