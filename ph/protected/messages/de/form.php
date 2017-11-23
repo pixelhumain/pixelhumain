@@ -8,7 +8,7 @@
 		"Share a link<br>Your favorites websites<br>Important news..."=>"Teilen Sie einen Weblink mit<br>Ihre bevorzugten Websites<br>Wichtige Informationen...",
 		"Make visible a project<br>Find support<br>Build a community"=>"Werben Sie für ein Projekt<br>Finden Sie Unterstützung<br>Gründen Sie eine Gemeinschaft",
 		"Define roles of everyone<br>Communicate easily<br>Internal and external"=>"Teilen Sie jedem Rollen zu<br>Einfach miteinander Kommunizieren<br>Nach Innen und Außen",
-		"Create a group<br>Share your interest<br>Speak Diffuse Have fun"=>"Bilden Sie eine Gruppe<br>Teilen Sie Ihre Interessen mit<br>Diskutieren Kommunizieren Spaß haben",
+		"Create a group<br>Share your interest<br>Speak Diffuse Have fun"=>"Bilden Sie eine Gruppe<br>Teilen Sie Ihre Interessen mit<br>Diskutieren, Kommunizieren, Spaß haben",
 		"Make visible your NGO<br>Manage the community<br>Share your news"=>"Machen Sie Ihre Organisation bekannt<br>Verwaltung von Mitgliedern<br>Verbreiten Sie Ihre Neuigkeiten",
 		"Make visible your company<br>Find new customer<br>Manage your contacts"=>"Stellen Sie Ihr Unternehmen vor<br>Finden Sie neue Kundschaft<br>Verwalten Sie Ihre Kontakte",
 		"Town hall, schools, etc...<br>Share your news<br>Share events"=>"Gemeindeverwaltungen, Schulen, usw...<br>Teilen Sie neueste Mitteilungen mit<br>Kündigen Sie Veranstaltungen an",
