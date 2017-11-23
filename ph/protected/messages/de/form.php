@@ -4,7 +4,7 @@
 		"What kind of content will you create ?"=>"Was möchten Sie veröffentlichen ?",
 		"Diffuse an event<br>Invite attendees<br>Communicate to your network"=>"Machen Sie eine Veranstaltung bekannt<br>Laden Sie Teilnehmer ein<br>Informieren Sie Ihr Netzwerk",
 		"Create a classified ad<br>To share To give To sell To rent<br>Material Property Job"=>"Veröffentlichen Sie eine Kleinanzeige<br>Teilen Geben Verkaufen Leihen<br>Gegenstände Immobilien Arbeit",
-		"Make visible an interesting place<br>Contribute to the collaborative map<br>Highlight your territory"=>"Stellen Sie einen interessanten Ort vor<br>Tragen Sie zur Kollaborations-Karte bei<br>Einschätzung Ihres territorialen Umfelds",
+		"Make visible an interesting place<br>Contribute to the collaborative map<br>Highlight your territory"=>"Stellen Sie einen interessanten Ort vor<br>Tragen Sie zur Landkarte der Zusammenarbeit bei<br>Einschätzung Ihres territorialen Umfelds",
 		"Share a link<br>Your favorites websites<br>Important news..."=>"Teilen Sie einen Weblink mit<br>Ihre bevorzugten Websites<br>Wichtige Informationen...",
 		"Make visible a project<br>Find support<br>Build a community"=>"Werben Sie für ein Projekt<br>Finden Sie Unterstützung<br>Gründen Sie eine Gemeinschaft",
 		"Define roles of everyone<br>Communicate easily<br>Internal and external"=>"Teilen Sie jedem Rollen zu<br>Einfach miteinander Kommunizieren<br>Nach Innen und Außen",
