@@ -184,6 +184,7 @@ a.text-white{
     background-color:#4285f4 !important;
 }
 .bg-green{
+    color:white !important;
     background-color:#93C020 !important;
 }
 .bg-orange{

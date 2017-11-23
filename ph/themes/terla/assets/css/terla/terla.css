@@ -316,6 +316,7 @@ header .container, .header .container {
     padding-left: 9%;
     padding-top: 20px;
     font-size: 19px;
+    z-index:10;
 }
 
 .headerTitle:after, .headerTitle:before, .headerTitleStanalone:after, .headerTitleStanalone:before {
@@ -391,8 +392,10 @@ header .container, .header .container {
 #openModal .close-modal{
 	width: 50px;
     height: 45px;
-    top: 15px;
-    right: 15px;
+    top: 115px;
+    right: 40px;
+    position: fixed;
+    z-index: 100;
 }
 #openModal .close-modal .lr, #openModal .close-modal .rl{
 	    height: 35px;
@@ -490,7 +493,7 @@ header .container, .header .container {
 #openModal{
     top: 100px;
 	background-color: transparent;
-	z-index: 10;
+	z-index: 100;
 }
 #openModal .modal-content{
     /* overflow: scroll; */
