@@ -227,6 +227,15 @@
                 );
                 HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
             //}
+
+            if($CO2DomainName != "CO2"){
+                $cssAnsScriptFilesModule = array(
+                    //'/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
+                    '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
+                    '/assets/js/themes/'.$CO2DomainName.'.js',
+                );
+                HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
+            }
         ?>
 
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
