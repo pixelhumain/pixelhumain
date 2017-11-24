@@ -6,7 +6,7 @@
 		"Diffuse an event<br>Invite attendees<br>Communicate to your network"=>"Faire connaitre un événement<br>Inviter des participants<br>Informer votre réseau",
 		"Create a classified ad<br>To share To give To sell To rent<br>Material Property Job"=>"Publier une petite annonce<br>Partager Donner Vendre Louer<br>Matériel Immobilier Emploi",
 		"Make visible an interesting place<br>Contribute to the collaborative map<br>Highlight your territory"=>"Faire connaître un lieu intéressant<br>Contribuer à la carte collaborative<br>Valoriser son territoire",
-		"Share a link<br>Your favorites websites<br>Important news..."=>"Partager une addresse web<br>Vos sites favoris<br>Des info importantes...",
+		"Share a link<br>Your favorites websites<br>Important news..."=>"Partager une adresse web<br>Vos sites favoris<br>Des info importantes...",
 		"Make visible a project<br>Find support<br>Build a community"=>"Faire connaitre un projet<br>Trouver du soutien<br>Construire une communauté",
 		"Define roles of everyone<br>Communicate easily<br>Internal and external"=>"Définir les rôles de chacun<br>Faciliter la communication<br>Interne et externe",
 		"Create a group<br>Share your interest<br>Speak Diffuse Have fun"=>"Créer un groupe<br>Partager vos centres d'intêrets<br>Discuter Communiquer S'amuser",
