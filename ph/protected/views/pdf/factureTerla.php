@@ -43,7 +43,7 @@
 	<table style="width :100%;">
 		<tr>
 			<td style="width :20%;">
-				<img src="<?php echo $img1 ;?>" alt="Logo" width=150 />
+				<img src='<?php echo "http://127.0.0.1".Yii::app()->theme->baseUrl."/assets/img/LOGOS/terla/logo-min.png"; ?>' alt="Logo" width=150 />
 			</td>
 			<td style="width :30%;">
 				<span style="font-weight: bold;">Association Cyberun</span> <br><br>
@@ -56,17 +56,17 @@
 			<td style="width :50%; border: solid 1mm orange; border-radius: 10px 10px 10px 10px; padding:2px; padding-left:5px">
 				<div style="font-weight: bold; text-align: center;"> Destinataire </div> <br>
 				<div style="font-size: 10px;"><?php
-						echo $person["name"]."<br>";
-						echo $person["address"]["streetAddress"]."<br>";
-						echo $person["address"]["postalCode"]." ".$person["address"]["addressLocality"]."<br>";
-						echo $person["address"]["addressCountry"]."<br>";
+						echo $params["customerName"]."<br>";
+						echo $params["customerAddress"]["streetAddress"]."<br>";
+						echo $params["customerAddress"]["postalCode"]." ".$params["customerAddress"]["addressLocality"]."<br>";
+						echo $params["customerAddress"]["addressCountry"]."<br>";
 					?></div>
 			</td>
 		</tr>
 	</table>
 	<br/><br/><br/><br/><br/>
-	<div style="text-align: right; margin: auto">A <?php echo $person["address"]["addressLocality"]; ?> le <?php echo date("d/m/Y", strtotime($order["orderDate"])); ?></div><br/>
-	<div style="text-align: left; margin: auto; font-weight: bold; font-size: 16px">Facture n° <?php echo (String) $order["_id"]; ?></div><br/>
+	<div style="text-align: right; margin: auto">A <?php echo $params["customerAddress"]["addressLocality"]; ?> le <?php echo date("d/m/Y", strtotime($params["orderDate"])); ?></div><br/>
+	<div style="text-align: left; margin: auto; font-weight: bold; font-size: 16px">Facture n° <?php echo (String) $params["_id"]; ?></div><br/>
 	<table style="width :100%;">
 		<tr>
 			<th class="trHeaderTable">Description</th>
@@ -75,12 +75,12 @@
 			<th class="trHeaderTable">Coût</th>
 		</tr>
 		<tr>
-			<?php if(!empty($orderItem)){
-				foreach ($orderItem as $key => $value) {
+			<?php if(!empty($params["orderItems"])){
+				foreach ($params["orderItems"] as $key => $value) {
 					echo '<td class="tdTableWhite backgroudRed">'.$value["description"].'</td>';
 					echo '<td class="tdTableWhite backgroudRed">'.$value["quantity"].'</td>';
-					echo '<td class="tdTableWhite backgroudRed">'.$value["price"].' '.$order["currency"].'</td>';
-					echo '<td class="tdTableWhite backgroudRed">'.$value["totalPrice"].' '.$order["currency"].'</td>';
+					echo '<td class="tdTableWhite backgroudRed">'.$value["price"].' '.$params["currency"].'</td>';
+					echo '<td class="tdTableWhite backgroudRed">'.$value["totalPrice"].' '.$params["currency"].'</td>';
 				}
 			} ?>
 		</tr>
@@ -109,7 +109,7 @@
 		</tr>
 		<tr>
 			<th class="trHeaderTable" style="text-align: left;">Total TTC</th>
-			<td class="trHeaderTable" style="text-align: left;"><?php echo $value["totalPrice"].' '.$order["currency"] ?></td>
+			<td class="trHeaderTable" style="text-align: left;"><?php echo $params["totalPrice"].' '.$params["currency"] ?></td>
 		</tr>
 	</table> 
 </page>
