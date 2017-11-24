@@ -19,6 +19,7 @@
 		font-size: medium;
 	}
 </style>
+<?php if(!empty($params['filter'])) { ?>
 <div class="hidden-xs main-menu-left col-md-2 col-sm-3 menu-col-search no-padding"  data-tpl="menuLeft" style="display:none;">
 	<div  class="col-md-12 no-padding" id="dropdown_params" style="height: 100%;">
 		<div class="panel-group">
@@ -69,29 +70,6 @@
 						</div>
 		<?php 		
 				}
-			
-				/*if(isset($params['filter']['tags']) && isset($params['filter']['tags']['activate']) && $params['filter']['tags']['activate']){ ?>
-					<div class="panel-heading">
-						<h4 class="panel-title" onclick="manageCollapse('tags', 'false')">
-							<a data-toggle="collapse" href="#tags" style="color:#719FAB" data-label="tags">
-							<?php if(isset($params['filter']['tags'])){
-								echo "<img src='".$this->module->assetsUrl."/images/network/".$params['filter']['tags']['image']."' width='20px'/>";
-								}
-								echo $params['filter']['tags']['title']; ?>
-								<i class="fa fa-chevron-right right" aria-hidden="true" id="fa_tags"></i>
-							</a>
-						</h4>
-					</div>
-					<div id="list_tags" class="panel-collapse collapse">
-						<ul class="list-group no-margin">
-						<!-- Tags -->
-						<?php if(isset($params['filter']['tags']['tagsAdditional']) && is_array($params['filter']['tags']['tagsAdditional']))foreach($params['filter']['tags']['tagsAdditional'] as $label => $tag) { ?>
-							<li class="list-group-item"><input type="checkbox" class="checkbox tagFilter" value="<?php echo $tag; ?>" data-parent="tags" data-label="<?php echo $label; ?>"/><?php echo $label; ?></li>
-						<?php } ?>
-						</ul>
-					</div>
-		  <?php }*/
-
 
 		  	if(isset($params['request']['searchLocalityNAME'])){ ?> 
 					<div class="col-lg-12 text-left subsub" id="sub-menu-left">
@@ -111,26 +89,6 @@
 					</div>
 		<?php   }
 
-				/*if(isset($params['request']['searchLocalityNAME'])){ ?>
-					<div class="panel-heading">
-						<h4 class="panel-title" onclick="manageCollapse('villes', 'false')">
-							<a data-toggle="collapse" href="#villes" style="color:#719FAB" data-label="villes">
-							<?php if(isset($params['request']['searchLocalityNAME'])){
-							echo "<img src='".$this->module->assetsUrl."/images/network/Logement.png' width='20px'/>";
-							} ?>
-								Villes
-								<i class="fa fa-chevron-right right" aria-hidden="true" id="fa_villes"></i>
-							</a>
-						</h4>
-					</div>
-					<div id="list_villes" class="panel-collapse collapse">
-						<ul class="list-group no-margin">
-							<?php foreach($params['request']['searchLocalityNAME'] as $label){?>
-								<li class="list-group-item"><input type="checkbox" class="checkbox villeFilter" value="<?php echo $label; ?>" data-parent="villes" data-label="<?php echo $label; ?>"/><?php echo $label; ?></li>
-							<?php } ?>
-						</ul>
-					</div>
-				<?php } */
 				$roles = Role::getRolesUserId(Yii::app()->session["userId"]);
 				if(@$roles["superAdmin"] == true){?>
 					<div>
@@ -152,6 +110,7 @@
 		</div>
 	</div>
 </div>
+<?php } ?>
 <script type="text/javascript">
 
 

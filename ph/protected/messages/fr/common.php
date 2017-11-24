@@ -1257,6 +1257,8 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"The communexion has changed" => "La communexion a changé",
 
 	"All the city" => "Toute la villes",
+
+	"Initialization of map" => "Initialisation de la carte",
 	
 
 );
