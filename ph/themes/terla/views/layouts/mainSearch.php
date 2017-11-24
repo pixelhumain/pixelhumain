@@ -208,7 +208,8 @@
             $this->renderPartial($layoutPath.'initJs', 
                                  array( "me"=>$me, "myFormContact" => @$myFormContact));
             $cssAnsScriptFilesModule = array(
-                '/js/default/shoppingCart.js'
+                '/js/default/shoppingCart.js',
+                '/js/default/circuit.js'
                 //'/js/news/autosize.js',
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->assetsUrl);
@@ -225,6 +226,8 @@
             jQuery(document).ready(function() { 
                 if(typeof localStorage != "undefined" && typeof localStorage.shoppingCart != "undefined")
                     shopping.cart = JSON.parse(localStorage.getItem("shoppingCart"));
+                if(typeof localStorage != "undefined" && typeof localStorage.circuit != "undefined")
+                    circuit.obj = JSON.parse(localStorage.getItem("circuit"));
     
                 $.blockUI({ message : themeObj.blockUi.processingMsg});
                 
