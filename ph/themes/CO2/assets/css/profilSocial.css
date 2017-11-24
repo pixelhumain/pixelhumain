@@ -526,6 +526,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     position: relative;
     padding: 0px 40px;
     bottom:0px;
+    border-radius: 50px;
+    margin-left: 10px;
 }
 
 
@@ -702,6 +704,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 #listRoles .badge{
     background-color: #4285f4;
     color: #fff;
+}
+
+#descProfilsocial p{
+    font-size:15px;
 }
 
 
