@@ -307,15 +307,15 @@ if(  	@$params['enSavoirPlus'] &&
                     </div>
 
                     <?php if(isset($params["skin"]['displayNotifications']) && $params["skin"]['displayNotifications'] && @Yii::app()->session['userId']){ ?>
-                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
+                    <!-- <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
                               <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
-                              echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
+                              //echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
                             <?php echo @$countNotifElement ?>
                         </span>
-                    </button>
+                    </button> -->
                     <?php } ?>
                 <?php } else { ?>
                     
