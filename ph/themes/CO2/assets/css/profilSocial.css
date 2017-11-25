@@ -524,7 +524,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 #noMoreNews{
     position: relative;
-    padding: 0px 40px;
+    padding: 15px;
     bottom:0px;
     border-radius: 50px;
     margin-left: 10px;
