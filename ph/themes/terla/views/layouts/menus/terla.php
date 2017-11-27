@@ -22,6 +22,17 @@
     <div class="container bg-black">
                 
         <ul class="nav navbar-nav navbar-right">
+                    <?php if (@Yii::app()->session["userIsAdmin"]){ ?>
+                        <li>
+                            <a href='#pod.circuit'  data-modalshow="" class="text-white padding-10 btn-circuit lbhp hide">
+                                <span>
+                                    <i class="fa fa-ravelry fa-2x letter-lightgrey"></i>
+                                    <span class="circuit-count topbar-badge badge animated bounceIn badge-transparent hide">
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                    <?php } ?>
                     <li>
                     <a href='#person.shoppingcart'  data-modalshow="" class="text-white padding-10 btn-shoppingCart lbhp">
                         <span>
@@ -31,6 +42,7 @@
                         </span>
                     </a>
                     </li>
+
                     <?php if (!@Yii::app()->session["userId"]){ ?>
                         <li>
                         <a href="#register" class="text-white btn-menu-connect padding-10" style="margin-top: 1px;" 
@@ -176,5 +188,6 @@ jQuery(document).ready(function() {
         }
     });
     shopping.countShoppingCart("init");
+    circuit.countCircuit("init");
 });
 </script> 
