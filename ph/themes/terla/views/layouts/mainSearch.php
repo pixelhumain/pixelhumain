@@ -217,9 +217,11 @@
         ?>
 
         <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
+        <?php $this->renderPartial($layoutPath.'tradTerla', array()); ?>
         
          
-        <script>    
+        <script>
+
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             var memorySearch = "";

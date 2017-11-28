@@ -103,9 +103,7 @@
             <?php 
                 $params = CO2::getThemeParams(); 
             ?>
-            
         </div>
-
 
        <div class="pull-right hidden-xs col-sm-3 col-md-3 col-lg-3 padding-5" id="input-search">
             <button class="btn btn-default hidden-xs pull-right menu-btn-start-search btn-directory-type letter-orange" 
@@ -126,15 +124,15 @@
                 <li class="pull-right">
                     
                     <a href="#activities" class="lbh letter-orange font-montserrat">
-                        <span>Our circuits</span>
+                        <span><?php echo Yii::t("terla","Our circuits"); ?></span>
                     </a>
                  
                     <button class="letter-orange font-montserrat btn-show-map" id="btn-open-search-bar">
-                        <span>On the map</span>
+                        <span><?php echo Yii::t("common","On the map"); ?></span>
                     </button>
 
                     <a href="#agenda" class="lbh letter-orange font-montserrat">
-                        <span>Agenda</span>
+                        <span><?php echo Yii::t("common","Agenda"); ?></span>
                     </a>
 
                     <!-- <a href="#store" class="lbh letter-orange font-montserrat">
@@ -142,11 +140,11 @@
                     </a> -->
                     
                     <button class="letter-orange font-montserrat" id="btn-open-search-bar">
-                        <span>Community</span>
+                        <span><?php echo Yii::t("common","Community"); ?></span>
                     </button>
                     
                     <button class="letter-orange font-montserrat" id="btn-open-search-bar">
-                        <span>Contribute</span>
+                        <span><?php echo Yii::t("common","Contribute"); ?></span>
                     </button>
 
                     <a href="#info.p.contact" class="letter-orange font-montserrat lbh">
