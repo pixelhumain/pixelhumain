@@ -349,11 +349,11 @@ return array(
 	//Indication
 	"When" => "Wann",
 	"Where" => "Wo",
-	"From" => "Von",
+	"From" => "von",
 	"from" => "von",
 	"FromDate" => "Vom",
-	"To" => "bei",
-	"to" => "von",
+	"To" => "bis",
+	"to" => "bis",
 	"All day" => "den ganzen Tag",
 	"All" => "alle",
 	"Who" => "Wer",
@@ -1196,7 +1196,7 @@ return array(
 	"the holder" => "der Inhaber",
 	"All cities with this postal code" => "Alle Orte mit dieser Postleitzahl",
 	"The communexion has changed" => "Die Verbindung wurde geändert",
-	"All the city" => "Toute la villes",
+	"All the city" => "Die ganze Stadt",
 	"Initialization of map" => "Initialisation de la carte",
 );
 ?>
