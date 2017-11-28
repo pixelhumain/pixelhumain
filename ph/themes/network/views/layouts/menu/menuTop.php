@@ -9,6 +9,13 @@ $cssAnsScriptFilesTheme = array(
 		'/plugins/to-markdown/to-markdown.js',
 	);
 	HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesTheme, Yii::app()->request->baseUrl);
+
+$enSavoirPlus = "";
+if(  	@$params['enSavoirPlus'] && 
+		( 	stripos($params['enSavoirPlus'], "http") !== false || 
+			stripos($params['enSavoirPlus'], "https") !== false ) ) 
+	$enSavoirPlus = file_get_contents($params["enSavoirPlus"]);
+
 ?>
   <style>
 
@@ -114,11 +121,12 @@ $cssAnsScriptFilesTheme = array(
 </style>
 
 <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop">
-
-	<a class="pull-left text-azure"  id="btn-menu-launch">
-		<i class="fa fa-filter firstIcon"></i>
-		<span style="display:none;float:right;"> <i class="fa fa-filter"></i> <?php echo Yii::t("common","Filters"); ?></span>
-	</a>
+	<?php if(!empty($params['filter'])) { ?>
+		<a class="pull-left text-azure"  id="btn-menu-launch">
+			<i class="fa fa-filter firstIcon"></i>
+			<span style="display:none;float:right;"> <i class="fa fa-filter"></i> <?php echo Yii::t("common","Filters"); ?></span>
+		</a>
+	<?php } ?>
 	<?php if(@$params['skin']["title"]){ ?>
 	<div id="titleMapTop">
 		<div class="contentTitleMap">
@@ -137,12 +145,12 @@ $cssAnsScriptFilesTheme = array(
 				</h1>
 			</div>
 			<div class="contentShortInformationMap">
-				<?php if(@$params['skin']["shortDescription"]){ ?>
+				<?php if(!empty($params['skin']["shortDescription"]) && $params['skin']["shortDescription"] != "false"){ ?>
 					<span class="shortDescriptionMap padding-10"> 
 						<?php echo $params['skin']["shortDescription"]; ?>
 					</span>
 				<?php } ?>
-				<?php if (@$params['skin']["docs"] && $params['skin']["docs"]){ ?><br/>
+				<?php if (!empty($params['skin']["docs"]) && !empty($enSavoirPlus) ) { ?><br/>
 					<a href="javascript:;" class="tooltips" id="btn-documentation" data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("home","More informations"); ?>" alt="<?php echo Yii::t("home","More informations"); ?>" style="color:lightblue;">
 						<i class="fa fa-info-circle"></i> <?php echo Yii::t("home","More informations"); ?>
 					</a>
@@ -299,15 +307,15 @@ $cssAnsScriptFilesTheme = array(
                     </div>
 
                     <?php if(isset($params["skin"]['displayNotifications']) && $params["skin"]['displayNotifications'] && @Yii::app()->session['userId']){ ?>
-                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
+                    <!-- <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
                               <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
-                              echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
+                              //echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
                             <?php echo @$countNotifElement ?>
                         </span>
-                    </button>
+                    </button> -->
                     <?php } ?>
                 <?php } else { ?>
                     
@@ -325,21 +333,14 @@ $cssAnsScriptFilesTheme = array(
 	</div>
 	<div class="dropdown pull-left hidden-xs"></div>
 </div>
-<?php 
-$enSavoirPlus = "";
-if(  	@$params['enSavoirPlus'] && 
-		( 	stripos($params['enSavoirPlus'], "http") !== false || 
-			stripos($params['enSavoirPlus'], "https") !== false ) ) 
-	$enSavoirPlus = file_get_contents($params["enSavoirPlus"]);
 
-?>
 
 <div class="modal fade" role="dialog" id="modal-confidentiality">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title"><i class="fa fa-cog"></i> En savoir plus</h4>
+				<h4 class="modal-title"><i class="fa fa-cog"></i> <?php echo Yii::t("home","More informations"); ?></h4>
 			</div>
 			<div class="modal-body" id="savoirBody"><?php echo $enSavoirPlus ; ?></div>
 			<div class="modal-footer">

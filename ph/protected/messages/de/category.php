@@ -17,7 +17,7 @@
         "Share"=>"Teilen", 
         "To share"=>"Zu teilen",
         "Give"=>"Geben",   
-        "To give"=>"Zu geben",        
+        "To give"=>"Zu verschenken",        
         "Sale"=>"Verkaufen",  
         "For sale"=>"Zu verkaufen",            
         "Rent"=>"Mieten",   
@@ -25,7 +25,7 @@
         "Need"=>"Bedarf", 
         "Looking for"=>"Suche nach",   
         "Jobs"=>"Arbeit", 
-        "Offers"=>"Stellenangebote", 
+        "Offers"=>"Jobangebote", 
         //Classifieds filter
         "Technology"=>"Technik", 
         "TV / Video"=>"TV / Video", 
