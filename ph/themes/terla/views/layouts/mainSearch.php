@@ -201,7 +201,8 @@
                 '/assets/css/terla/terla-color.css',
                 '/assets/css/plugins.css',
                  
-                '/assets/css/floopDrawerRight.css'
+                '/assets/css/floopDrawerRight.css',
+                '/assets/js/editInPlace.js',
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
