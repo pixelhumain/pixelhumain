@@ -88,11 +88,15 @@ function bindDynFormEditableTerla(){
 			form.dynForm.jsonSchema.properties.fax= dyFInputs.inputText(tradDynForm["fax"],tradDynForm["enterfaxnumber"]);
 		}
 
+		if(contextData.type == typeObj.service.col){
+			form.dynForm.jsonSchema.properties.openingHours =  dyFInputs.openingHours(true);
+		}
+
 		var dataUpdate = {
 			block : "info",
-	        id : contextData.id,
-	        typeElement : contextData.type,
-	        name : contextData.name,	
+			id : contextData.id,
+			typeElement : contextData.type,
+			name : contextData.name,	
 		};
 
 		if(contextData.type == typeObj.person.col || contextData.type == typeObj.organization.col ){
@@ -104,6 +108,10 @@ function bindDynFormEditableTerla(){
 				dataUpdate.mobile = contextData.mobile;
 			if(notEmpty(contextData.fax))
 				dataUpdate.fax = contextData.fax;
+		}
+
+		if(contextData.type == typeObj.service.col){
+			dataUpdate.openingHours =  contextData.openingHours;
 		}
 		
 		mylog.log("dataUpdate", dataUpdate);
@@ -151,12 +159,52 @@ function bindDynFormEditableTerla(){
 
 		var dataUpdate = {
 			block : "descriptions",
-	        id : contextData.id,
-	        typeElement : contextData.type,
-	        name : contextData.name,
+			id : contextData.id,
+			typeElement : contextData.type,
+			name : contextData.name,
 			description : $("#descriptionMarkdown").html()
 		};
 		dyFObj.openForm(form, "markdown", dataUpdate);
 	});
 
+	$(".btn-update-medias").off().on( "click", function(){
+
+		var form = {
+			saveUrl : baseUrl+"/"+moduleId+"/element/updateblock/",
+			dynForm : {
+				jsonSchema : {
+					title : trad["Update medias"],
+					icon : "fa-key",
+					onLoads : {},
+					afterSave : function(data){
+						mylog.dir(data);
+						if(data.result&& data.resultGoods && data.resultGoods.result){
+							if(data.resultGoods.values.description=="")
+								$(".contentInformation #descriptionAbout").html(dataHelper.markdownToHtml('<i>'+trad["notSpecified"]+'</i>'));
+							else
+								$(".contentInformation #descriptionAbout").html(dataHelper.markdownToHtml(data.resultGoods.values.description));
+							$("#descriptionMarkdown").html(data.resultGoods.values.description);
+						}
+						dyFObj.closeForm();
+						changeHiddenFields();
+					},
+					properties : {
+						block : dyFInputs.inputHidden(),
+						typeElement : dyFInputs.inputHidden(),
+						medias : dyFInputs.videos
+					}
+				}
+			}
+		};
+
+		var dataUpdate = {
+			block : "medias",
+			id : contextData.id,
+			typeElement : contextData.type,
+			description : contextData.medias,
+		};
+		dyFObj.openForm(form, "markdown", dataUpdate);
+	});
+
 }
+
