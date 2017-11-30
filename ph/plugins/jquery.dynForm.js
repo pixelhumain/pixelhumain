@@ -215,106 +215,115 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* HIDDEN
 		***************************************** */
-        else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
-        	if ( fieldObj.inputType == "timestamp" )
-        		value = Date.now();
-        	mylog.log("build field "+field+">>>>>> hidden, timestamp");
-        	fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
-        }
-        /* **************************************
+		else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
+			if ( fieldObj.inputType == "timestamp" )
+				value = Date.now();
+			mylog.log("build field "+field+">>>>>> hidden, timestamp");
+			fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
+		}
+		/* **************************************
 		* TEXTAREA
 		***************************************** */
-        else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){
-        	mylog.log("build field "+field+">>>>>> textarea, wysiwyg", fieldObj);
-        	if(fieldObj.inputType == "wysiwyg")
-        		fieldClass += " wysiwygInput";
-        	var maxlength = "";
-        	var minlength = 0;
-        	if(notNull(fieldObj.rules) && notNull(fieldObj.rules.maxlength) ){
-        		fieldClass += " maxlengthTextarea";
-        		maxlength = fieldObj.rules.maxlength;
-        		minlength = value.length ;
-        	}
+		else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){
+			mylog.log("build field "+field+">>>>>> textarea, wysiwyg", fieldObj);
+			if(fieldObj.inputType == "wysiwyg")
+				fieldClass += " wysiwygInput";
+			var maxlength = "";
+			var minlength = 0;
+			if(notNull(fieldObj.rules) && notNull(fieldObj.rules.maxlength) ){
+				fieldClass += " maxlengthTextarea";
+				maxlength = fieldObj.rules.maxlength;
+				minlength = value.length ;
+			}
 
-        	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
-        	fieldHTML += '<textarea id="'+field+'" maxlength="'+maxlength+'"  class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
-        	
-        	if(maxlength > 0)
-        		fieldHTML += '<span><span id="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
+			mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
+			fieldHTML += '<textarea id="'+field+'" maxlength="'+maxlength+'"  class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
+			
+			if(maxlength > 0)
+				fieldHTML += '<span><span id="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
 
 
-        }else if ( fieldObj.inputType == "markdown"){ 
-        	mylog.log("build field "+field+">>>>>> textarea, markdown");
-        	fieldClass += " markdownInput";
-        	//fieldHTML +='<textarea id="'+field+'" name="'+field+'" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" data-provide="markdown" data-savable="true" rows="10"></textarea>';
-        	fieldHTML +='<textarea name="target-editor" id="'+field+'" data-provide="markdown" data-savable="true" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" rows="10"></textarea>';
-        }
-        /* **************************************
+		}else if ( fieldObj.inputType == "markdown"){ 
+			mylog.log("build field "+field+">>>>>> textarea, markdown");
+			fieldClass += " markdownInput";
+			//fieldHTML +='<textarea id="'+field+'" name="'+field+'" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" data-provide="markdown" data-savable="true" rows="10"></textarea>';
+			fieldHTML +='<textarea name="target-editor" id="'+field+'" data-provide="markdown" data-savable="true" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" rows="10"></textarea>';
+		}
+		/* **************************************
 		* CHECKBOX SIMPLE
 		***************************************** */
-        else if ( fieldObj.inputType == "checkboxSimple" ) {
+		else if ( fieldObj.inputType == "checkboxSimple" ) {
    			if(value == "") value="25/01/2014";
    			console.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
-	       	var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
-	       	console.log("fieldObj ??? thisValue", thisValue);
-	       	//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
-	       	//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
-	       	mylog.log("build field "+field+">>>>>> checkbox");
-	       	fieldHTML += '<input type="hidden" class="'+fieldClass+'" name="'+field+'" id="'+field+'" '+
-	       						'value="'+thisValue+'"/> ';
-	       
-	       	fieldHTML += '<div class="col-lg-6 padding-5">'+
-	       					'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-green col-lg-12"'+
-	       					' data-checkval="true"' +
-	       					'>'+
-	       						fieldObj.params.onText+
-	       					'</a>'+
-	       				 '</div>';
-	       	fieldHTML += '<div class="col-lg-6 padding-5">'+
-	       					'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-red col-lg-12"'+
-	       					' data-checkval="false"' +
-	       					'>'+
-	       						fieldObj.params.offText+
-	       					'</a>'+
-	       				 '</div>';
-	       	initField = function(){
-	       		//var checked = ( fieldObj.checked ) ? "checked" : "";
-	       		//if(checked) 
-	       		//if( fieldObj.switch )
-	       			//initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
-	       	};
-       	}
+			var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
+			console.log("fieldObj ??? thisValue", thisValue);
+			//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
+			//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
+			mylog.log("build field "+field+">>>>>> checkbox");
+			fieldHTML += '<input type="hidden" class="'+fieldClass+'" name="'+field+'" id="'+field+'" '+
+								'value="'+thisValue+'"/> ';
+			fieldHTML += '<div class="col-lg-6 padding-5">'+
+							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-green col-lg-12"'+
+							' data-checkval="true"' +
+							'>'+
+								fieldObj.params.onText+
+							'</a>'+
+						 '</div>';
+			fieldHTML += '<div class="col-lg-6 padding-5">'+
+							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-red col-lg-12"'+
+							' data-checkval="false"' +
+							'>'+
+								fieldObj.params.offText+
+							'</a>'+
+						 '</div>';
+			initField = function(){
+				//var checked = ( fieldObj.checked ) ? "checked" : "";
+				//if(checked) 
+				//if( fieldObj.switch )
+					//initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
+			};
+		}
 
-       	/* **************************************
+		/* **************************************
 		* CHECKBOX
 		***************************************** */
         else if ( fieldObj.inputType == "checkbox" ) {
    			if(value == "") value="25/01/2014";
-	       	var checked = ( fieldObj.checked ) ? "checked" : "";
-	       	var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
-	       	var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.switch.onText+"' data-off-text='"+fieldObj.switch.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
-	       	mylog.log("build field "+field+">>>>>> checkbox");
-	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+' '+switchData+'/> '+placeholder;
-	       	if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
-	       		fieldHTML+=buildOpeningHours(value);
-	       	}
-	       	initField = function(){
-	       		if( fieldObj.switch )
-	       			initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null, (fieldObj.switch.css) ? fieldObj.switch.css : null );
-	       		if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
-	       			//loadTimePicker(null);
-	       			bindTimePicker();
-	       			initRangeHours();
-	       		}
-	       		//if( fieldObj.subSwitch )
-	       		//	initbootstrapSwitch(fieldObj.subSwitch.domHtml, (fieldObj.subSwitch.onChange) ? fieldObj.subSwitch.onChange : null );
-	       	};
-       	}
+			var checked = ( fieldObj.checked ) ? "checked" : "";
+			var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
+			var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.switch.onText+"' data-off-text='"+fieldObj.switch.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
+			mylog.log("build field "+field+">>>>>> checkbox");
+			fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+' '+switchData+'/> '+placeholder;
+			if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
+				fieldHTML+=buildOpeningHours(value);
+			}
+			initField = function(){
+				if( fieldObj.switch )
+					initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null, (fieldObj.switch.css) ? fieldObj.switch.css : null );
+				if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
+					//loadTimePicker(null);
+					bindTimePicker();
+					if(notNull(value) && typeof value == "object"){
+						$.each(value, function(e,v){
+							if(typeof v == "object" && notNull(v.hours) ){
+								$.each(v.hours, function(ehour,vhour){
+									bindTimePicker(v.dayOfWeek, ehour, vhour);
+								});
+							}
+						});
+					}
+					initRangeHours();
+					
+				}
+				//if( fieldObj.subSwitch )
+				//	initbootstrapSwitch(fieldObj.subSwitch.domHtml, (fieldObj.subSwitch.onChange) ? fieldObj.subSwitch.onChange : null );
+			};
+		}
 
-       	/* **************************************
+		/* **************************************
 		* RADIO
 		***************************************** */
-        else if ( fieldObj.inputType == "radio" ) {
+		else if ( fieldObj.inputType == "radio" ) {
    			
 	       	mylog.log("build field "+field+">>>>>> radio");
 	       	
@@ -1689,8 +1698,15 @@ onSave: (optional) overloads the generic saveProcess
 	    	addHoursRange(addToDay);
 	    });
 	}
-	function bindTimePicker(addToDay,countRange){
-		mylog.log("bindTimePicker", addToDay,countRange);
+	function bindTimePicker(addToDay,countRange, hours){
+		mylog.log("bindTimePicker", addToDay,countRange, hours);
+		var startTime = '06:00';
+		var endTime = '19:00';
+		if(notNull(hours)){
+			startTime = hours.opens;
+			endTime = hours.closes;
+		}
+
 		if(typeof addToDay != "undefined" && notNull(addToDay)){
 			//Init time
 			$('#startTime'+addToDay+countRange+', #endTime'+addToDay+countRange).timepicker({
@@ -1701,11 +1717,11 @@ onSave: (optional) overloads the generic saveProcess
 	            showMeridian: false,
 	            defaultTime: false
 	        });
-	        $('#startTime'+addToDay+countRange).timepicker('setTime', '06:00');
-	        $('#endTime'+addToDay+countRange).timepicker('setTime', '19:00');
+	        $('#startTime'+addToDay+countRange).timepicker('setTime', startTime);
+	        $('#endTime'+addToDay+countRange).timepicker('setTime', endTime);
 	        $.each(openingHoursResult, function(e,v){
 	        	if(v.dayOfWeek==addToDay){
-	        		openingHoursResult[e]["hours"].push({"opens":"06:00","closes":"19:00"})
+	        		openingHoursResult[e]["hours"].push({"opens":startTime,"closes":endTime})
 	        	}
 	        });
 	        $(".removeHoursRange").off().on("click",function(){
@@ -1728,8 +1744,8 @@ onSave: (optional) overloads the generic saveProcess
                 showMeridian: false,
                 defaultTime: false
             });
-            $('.startTime').timepicker('setTime', '06:00');
-            $('.endTime').timepicker('setTime', '19:00');
+            $('.startTime').timepicker('setTime', startTime);
+            $('.endTime').timepicker('setTime', endTime);
 			//loadTimePicker(initTime);
 		}
 		$('.timeInput').off().on('changeTime.timepicker', function(e) {
@@ -1743,8 +1759,10 @@ onSave: (optional) overloads the generic saveProcess
 		  });
 	}
 
-	function addHoursRange(addToDay){
+	function addHoursRange(addToDay, ){
+		mylog.log("addHoursRange", addToDay);
 		var countRange=$("#hoursRange"+addToDay+" .hoursRange").length;
+		mylog.log("countRange", countRange);
 		//alert(countRange);
 		str='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+countRange+'" data-value="'+countRange+'">'+
 				'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
@@ -1771,7 +1789,7 @@ onSave: (optional) overloads the generic saveProcess
 	* Build OpeningHour on week HTML system 
 	***************************************/
 	function buildOpeningHours(data){
-		console.log("buildOpeningHours", data);
+		mylog.log("buildOpeningHours", data);
 		var arrayDayKeys=["Su","Mo","Tu","We","Th","Fr","Sa"];
 		var arrayKeyTrad={
 			"Su":{"key":"Su","label":"Sunday"},
@@ -1784,16 +1802,18 @@ onSave: (optional) overloads the generic saveProcess
 		};
 
 		var allWeek = true ;
-		$.each(data,function(e,v){
-			if(typeof v != "object")
-				allWeek = false;
-		});
+		if(notNull(data) && typeof data == "object"){
+			$.each(data,function(e,v){
+				if(typeof v != "object")
+					allWeek = false;
+			});
+		}
 		mylog.log("allWeek", allWeek);
 		//((allWeek == true) ? "style='display:none;'" : "")
 		var str = "<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
 			"<div id='selectedDays' class='col-md-12 col-sm-12 col-xs-12 text-center margin-bottom-10' "+((allWeek == true) ? "style='display:none;'" : "")+">";
 				$.each(arrayDayKeys,function(e,v){
-					var active = ((typeof data[e] == "object" ) ? "active"  : "");
+					var active = ((typeof data != "object" || typeof data[e] == "object" ) ? "active"  : "");
 					str+="<div class='inline'>"+
 							'<a class="btn btn-default btn-select-day '+active+'" data-key="'+v+'" href="javascript:;">'+arrayKeyTrad[v].key+'</a>'+
 						"</div>";
@@ -1802,36 +1822,64 @@ onSave: (optional) overloads the generic saveProcess
 			"<div id='daysList' class='col-md-12 col-sm-12 col-xs-12 no-padding'>";
 				$.each(arrayDayKeys,function(e,v){
 
-					var noneDay = ((typeof data[e] == "object") ? ""  : "display:none;");
-					var checked = (( ( typeof data[e] == "object" && data[e].allDay == "true" ) || noneDay == "" ) ? "checked"  : "");
-					var noneHours = ((checked == "" && noneDay == "" ) ? ""  : "style='display:none;'");
-					console.log("noneDay", typeof data[e], noneDay);
+					var noneDay = ( (typeof data != "object" || typeof data[e] == "object")  ? ""  : "display:none;");
+					var checked = (( typeof data != "object" || (typeof data[e] == "object" && data[e].allDay == "true") ) ? "checked"  : "");
+					var noneHours = ((typeof data[e] == "object" && notNull(data[e].hours) ) ? ""  : "style='display:none;'");
+					// mylog.log("typeof data[e]", typeof data[e], data[e]);
+					// mylog.log("noneDay", noneDay);
+					// mylog.log("checked", checked);
+					// mylog.log("noneHours", noneHours);
 			str+=	"<div class='col-md-12 col-sm-12 col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray; "+noneDay+"'>"+
 						"<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
 							'<label class="col-md-4 col-sm-5 col-xs-6 text-left control-label no-padding no-margin" for="allDaysMo">'+
-					            '<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
-					        '</label>'+
-			       			'<input type="checkbox" class="allDaysWeek" id="allDays'+v+'" value="true" data-key="'+v+'" '+checked+'/> '+tradDynForm.allday+
-		       			"</div>"+
-		       			'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" '+noneHours+'>'+
-		       				'<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
-		       					'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
-				            		'<i class="fa fa-hourglass-start"></i> Start hour'+
-				        		'</label>'+
-				        		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
-				            		'<i class="fa fa-hourglass-end"></i> End hour'+
-				        		'</label>'+
-				        		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
-           							'<input type="text" class="form-control input-small timeInput startTime" data-value="0" data-days="'+v+'" data-type="opens" id="startTime'+v+'0">'+
-            						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
-        						'</div>'+
-				        		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
-           							'<input type="text" class="form-control input-small timeInput endTime" data-value="0" data-days="'+v+'" data-type="closes" id="endTime'+v+'0">'+
-            						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
-        						'</div>'+
-		       				'</div>'+
-		       				'<a href="javascript:;" class="btn btn-default text-green addHoursRange margin-top-10 col-md-12 col-sm-12" data-value="'+v+'"><i class="fa fa-plus"></i> Add an hours range</a>'+
-		       			'</div>'+
+								'<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
+							'</label>'+
+							'<input type="checkbox" class="allDaysWeek" id="allDays'+v+'" value="true" data-key="'+v+'" '+checked+'/> '+tradDynForm.allday+
+						"</div>"+
+						'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" '+noneHours+'>';
+							if( typeof data[e] == "object" && notNull(data[e].hours) ){
+								$.each(data[e].hours,function(kHour,vHour){
+									mylog.log("hours", kHour, vHour);
+									str +='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+kHour+'" data-value="'+kHour+'">'+
+											'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
+							        		'<i class="fa fa-hourglass-start"></i> Start hour'+
+							    			'</label>'+
+							    		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
+							        		'<i class="fa fa-hourglass-end"></i> End hour'+
+							    		'</label>'+
+							    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+												'<input type="text" class="form-control input-small timeInput startTime" data-value="'+kHour+'" data-days="'+v+'" data-type="opens" id="startTime'+v+kHour+'">'+
+											'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+										'</div>'+
+							    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+												'<input type="text" class="form-control input-small timeInput endTime" data-value="'+kHour+'" data-days="'+v+'" data-type="closes" id="endTime'+v+kHour+'">'+
+											'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+										'</div>';
+									if(kHour != 0)
+										str += '<a href="javascript:;" class="btn btn-default text-red removeHoursRange margin-top-10 col-md-12 col-sm-12" data-days="'+v+'" data-value="'+kHour+'"><i class="fa fa-trash"></i> Remove hours range</a>';
+									str += '</div>';
+
+								});
+							}else{
+								str+= '<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
+									'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
+										'<i class="fa fa-hourglass-start"></i> Start hour'+
+									'</label>'+
+									'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
+										'<i class="fa fa-hourglass-end"></i> End hour'+
+									'</label>'+
+									'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+										'<input type="text" class="form-control input-small timeInput startTime" data-value="0" data-days="'+v+'" data-type="opens" id="startTime'+v+'0">'+
+										'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+									'</div>'+
+									'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+										'<input type="text" class="form-control input-small timeInput endTime" data-value="0" data-days="'+v+'" data-type="closes" id="endTime'+v+'0">'+
+										'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+									'</div>'+
+								'</div>';
+							}
+							str+= '<a href="javascript:;" class="btn btn-default text-green addHoursRange margin-top-10 col-md-12 col-sm-12" data-value="'+v+'"><i class="fa fa-plus"></i> Add an hours range</a>'+
+						'</div>'+
 					"</div>";
 				});
 			str+="</div>"+
@@ -1881,7 +1929,6 @@ onSave: (optional) overloads the generic saveProcess
            							'<input type="text" class="form-control input-small timeInput startTime" data-value="0" data-days="'+v+'" data-type="opens" id="startTime'+v+'0">'+
             						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
         						'</div>'+
-				//        		
 				        		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
            							'<input type="text" class="form-control input-small timeInput endTime" data-value="0" data-days="'+v+'" data-type="closes" id="endTime'+v+'0">'+
             						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
