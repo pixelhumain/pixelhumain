@@ -266,7 +266,7 @@ function saveCommentRating(textComment, parentCommentId,contextId,contextType,ra
     var argval = $("#argval").val();
     var params={
         parentCommentId: parentCommentId,
-        content : textComment,
+        text : textComment,
         contextId : contextId,
         contextType : contextType,
         argval : argval
