@@ -296,7 +296,7 @@ onSave: (optional) overloads the generic saveProcess
 	       	mylog.log("build field "+field+">>>>>> checkbox");
 	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+' '+switchData+'/> '+placeholder;
 	       	if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
-	       		fieldHTML+=buildOpeningHours();
+	       		fieldHTML+=buildOpeningHours(value);
 	       	}
 	       	initField = function(){
 	       		if( fieldObj.switch )
@@ -1683,12 +1683,14 @@ onSave: (optional) overloads the generic saveProcess
 		return str;
 	}
 	function initRangeHours(){
+		mylog.log("initRangeHours : ");
 		$(".addHoursRange").click(function(){
 	    	var addToDay=$(this).data("value");
 	    	addHoursRange(addToDay);
 	    });
 	}
 	function bindTimePicker(addToDay,countRange){
+		mylog.log("bindTimePicker", addToDay,countRange);
 		if(typeof addToDay != "undefined" && notNull(addToDay)){
 			//Init time
 			$('#startTime'+addToDay+countRange+', #endTime'+addToDay+countRange).timepicker({
@@ -1740,6 +1742,7 @@ onSave: (optional) overloads the generic saveProcess
 	        });
 		  });
 	}
+
 	function addHoursRange(addToDay){
 		var countRange=$("#hoursRange"+addToDay+" .hoursRange").length;
 		//alert(countRange);
@@ -1767,7 +1770,77 @@ onSave: (optional) overloads the generic saveProcess
 	/***************************************
 	* Build OpeningHour on week HTML system 
 	***************************************/
-	function buildOpeningHours(){
+	function buildOpeningHours(data){
+		console.log("buildOpeningHours", data);
+		var arrayDayKeys=["Su","Mo","Tu","We","Th","Fr","Sa"];
+		var arrayKeyTrad={
+			"Su":{"key":"Su","label":"Sunday"},
+			"Mo":{"key":"Mo","label":"Monday"},
+			"Tu":{"key":"Tu","label":"Tuesday"},
+			"We":{"key":"We","label":"Wednesday"},
+			"Th":{"key":"Th","label":"Thursday"},
+			"Fr":{"key":"Fr","label":"Friday"},
+			"Sa":{"key":"Sa","label":"Saturday"}
+		};
+
+		var allWeek = true ;
+		$.each(data,function(e,v){
+			if(typeof v != "object")
+				allWeek = false;
+		});
+		mylog.log("allWeek", allWeek);
+		//((allWeek == true) ? "style='display:none;'" : "")
+		var str = "<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+			"<div id='selectedDays' class='col-md-12 col-sm-12 col-xs-12 text-center margin-bottom-10' "+((allWeek == true) ? "style='display:none;'" : "")+">";
+				$.each(arrayDayKeys,function(e,v){
+					var active = ((typeof data[e] == "object" ) ? "active"  : "");
+					str+="<div class='inline'>"+
+							'<a class="btn btn-default btn-select-day '+active+'" data-key="'+v+'" href="javascript:;">'+arrayKeyTrad[v].key+'</a>'+
+						"</div>";
+				});
+		str+="</div>"+
+			"<div id='daysList' class='col-md-12 col-sm-12 col-xs-12 no-padding'>";
+				$.each(arrayDayKeys,function(e,v){
+
+					var noneDay = ((typeof data[e] == "object") ? ""  : "display:none;");
+					var checked = (( ( typeof data[e] == "object" && data[e].allDay == "true" ) || noneDay == "" ) ? "checked"  : "");
+					var noneHours = ((checked == "" && noneDay == "" ) ? ""  : "style='display:none;'");
+					console.log("noneDay", typeof data[e], noneDay);
+			str+=	"<div class='col-md-12 col-sm-12 col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray; "+noneDay+"'>"+
+						"<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+							'<label class="col-md-4 col-sm-5 col-xs-6 text-left control-label no-padding no-margin" for="allDaysMo">'+
+					            '<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
+					        '</label>'+
+			       			'<input type="checkbox" class="allDaysWeek" id="allDays'+v+'" value="true" data-key="'+v+'" '+checked+'/> '+tradDynForm.allday+
+		       			"</div>"+
+		       			'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" '+noneHours+'>'+
+		       				'<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
+		       					'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
+				            		'<i class="fa fa-hourglass-start"></i> Start hour'+
+				        		'</label>'+
+				        		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
+				            		'<i class="fa fa-hourglass-end"></i> End hour'+
+				        		'</label>'+
+				        		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+           							'<input type="text" class="form-control input-small timeInput startTime" data-value="0" data-days="'+v+'" data-type="opens" id="startTime'+v+'0">'+
+            						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+        						'</div>'+
+				        		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+           							'<input type="text" class="form-control input-small timeInput endTime" data-value="0" data-days="'+v+'" data-type="closes" id="endTime'+v+'0">'+
+            						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+        						'</div>'+
+		       				'</div>'+
+		       				'<a href="javascript:;" class="btn btn-default text-green addHoursRange margin-top-10 col-md-12 col-sm-12" data-value="'+v+'"><i class="fa fa-plus"></i> Add an hours range</a>'+
+		       			'</div>'+
+					"</div>";
+				});
+			str+="</div>"+
+			'<input type="hidden" name="openingHours" value="true"/>'+
+		"</div>";
+		return str;
+	}
+
+	function buildOpeningHoursold(){
 		var arrayDayKeys=["Mo","Tu","We","Th","Fr","Sa","Su"];
 		var arrayKeyTrad={
 			"Mo":{"key":"Mo","label":"Monday"},
@@ -1778,6 +1851,7 @@ onSave: (optional) overloads the generic saveProcess
 			"Sa":{"key":"Sa","label":"Saturday"},
 			"Su":{"key":"Su","label":"Sunday"}
 		};
+
 		var str = "<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
 			"<div id='selectedDays' class='col-md-12 col-sm-12 col-xs-12 text-center margin-bottom-10' style='display:none;'>";
 				$.each(arrayDayKeys,function(e,v){
@@ -1831,24 +1905,26 @@ onSave: (optional) overloads the generic saveProcess
 		"</div>";
 		return str;
 	}
+
 	/* **************************************
 	* init Boostrap Switch
 	***************************************** */
-	function initbootstrapSwitch(el,change, css)
-	{
+	function initbootstrapSwitch(el,change, css){
+		mylog.log("initbootstrapSwitch", el,change, css);
 		var initSwitch = function(){
-							mylog.log("init bootstrap switch");
-							$(el).bootstrapSwitch();
-							if(typeof change == "function"){
-								$(el).on('switchChange.bootstrapSwitch', function(event, state) {
-									change($(this));
-								});
-							}
-							if(notNull(css))
-								$(el).parent().parent().css(css);
-							else
-								$(el).parent().parent().addClass("form-group");
-						};
+			mylog.log("init bootstrap switch");
+			$(el).bootstrapSwitch();
+			if(typeof change == "function"){
+				$(el).on('switchChange.bootstrapSwitch', function(event, state) {
+					change($(this));
+				});
+			}
+			if(notNull(css))
+				$(el).parent().parent().css(css);
+			else
+				$(el).parent().parent().addClass("form-group");
+		};
+
 		if( jQuery.isFunction(jQuery.fn.bootstrapSwitch) )
 			initSwitch();
 	    else {

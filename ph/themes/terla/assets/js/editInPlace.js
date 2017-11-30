@@ -75,7 +75,8 @@ function bindDynFormEditableTerla(){
 						similarLink : dyFInputs.similarLink,
 						typeElement : dyFInputs.inputHidden(),
 						isUpdate : dyFInputs.inputHidden(true),
-						url : dyFInputs.inputUrl()
+						url : dyFInputs.inputUrl(),
+						url : dyFInputs.allDay()
 					}
 				}
 			}
