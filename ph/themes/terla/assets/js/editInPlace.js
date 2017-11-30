@@ -20,7 +20,25 @@ function bindDynFormEditableTerla(){
 					},
 					beforeSave : function(){
 						mylog.log("beforeSave");
-						removeFieldUpdateDynForm(contextData.type);
+						if(	$("#ajaxFormModal #name").length && $("#ajaxFormModal #name").val() == contextData.name ){
+							$("#ajaxFormModal #name").remove();
+						}
+
+						if(	$("#ajaxFormModal #url").length && $("#ajaxFormModal #url").val() == contextData.url ){
+							$("#ajaxFormModal #url").remove();
+						}
+						if(	$("#ajaxFormModal #email").length && $("#ajaxFormModal #email").val() == contextData.email ){
+							$("#ajaxFormModal #email").remove();
+						}
+						if(	$("#ajaxFormModal #fixe").length && $("#ajaxFormModal #fixe").val() == contextData.fixe ){
+							$("#ajaxFormModal #fixe").remove();
+						}
+						if(	$("#ajaxFormModal #mobile").length && $("#ajaxFormModal #mobile").val() == contextData.mobile ){
+							$("#ajaxFormModal #mobile").remove();
+						}
+						if(	$("#ajaxFormModal #fax").length && $("#ajaxFormModal #fax").val() == contextData.fax ){
+							$("#ajaxFormModal #fax").remove();
+						}
 				    },
 					afterSave : function(data){
 						mylog.dir(data);
@@ -65,6 +83,12 @@ function bindDynFormEditableTerla(){
 								contextData.fax = parsePhone(data.resultGoods.values.fax);
 								$("#faxAbout").html(contextData.fax);
 							}
+
+							if(typeof data.resultGoods.values.openingHours != "undefined"){
+								mylog.log("update fax");
+								contextData.openingHours = parsePhone(data.resultGoods.values.openingHours);
+								initOpeningHours();
+							}
 						}
 						dyFObj.closeForm();
 						changeHiddenFields();
@@ -75,8 +99,7 @@ function bindDynFormEditableTerla(){
 						similarLink : dyFInputs.similarLink,
 						typeElement : dyFInputs.inputHidden(),
 						isUpdate : dyFInputs.inputHidden(true),
-						url : dyFInputs.inputUrl(),
-						url : dyFInputs.allDay()
+						url : dyFInputs.inputUrl()
 					}
 				}
 			}
@@ -207,5 +230,19 @@ function bindDynFormEditableTerla(){
 		dyFObj.openForm(form, "markdown", dataUpdate);
 	});
 
+}
+
+function changeHiddenFields() { 
+	mylog.log("-----------------changeHiddenFields----------------------");
+	//
+	listFields = [	"username", "birthDate", "email", "avancement", "url", "fixe",
+					"mobile","fax", "facebook", "twitter", "gpplus", "github", "skype", "telegram"];
+	
+	$.each(listFields, function(i,value) {
+		mylog.log("listFields", value, typeof contextData[value]);
+		if(typeof contextData[value] != "undefined" && contextData[value].length == 0)
+			$("."+value).val("<i>"+trad.notSpecified+"<i>");
+	});
+	mylog.log("-----------------changeHiddenFields END----------------------");
 }
 
