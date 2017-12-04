@@ -1,10 +1,10 @@
 {
     "name" : "Communs",
     "mode" : "server",
-    "dataSrc" : "https://gist.githubusercontent.com/oceatoon/ef54f75f7a159922ae35c215195eed7c/raw/99c4d6a06ce21da8ef9a407262477788650dede5/gistfile1.json",
+    "dataSrc" : "http://www.notragora.com/api/organization/get/format/db",
     "skin" : {
         "logo" : false,
-        "title" : "ESS à La Réunion",
+        "title" : "NotrAgora",
         "shortDescription" : "false",
         "displayScope" : false,
         "docs":true,
