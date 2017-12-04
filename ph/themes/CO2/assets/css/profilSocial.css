@@ -726,7 +726,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     position: relative;
     float: left !important;
     left: 28%;
-    }      
+    }     
+
+    .panel-btn-confidentiality strong{
+        font-size: 0.8em;
+    } 
 }
 @media (max-width: 768px) {
      .section-date {
