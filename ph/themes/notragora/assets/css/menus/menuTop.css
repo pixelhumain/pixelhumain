@@ -131,6 +131,23 @@ button#btn-toogle-map{
 	height:120px;
 	width:120px;
 }
+span.item-galley-top a {
+    display:inline-block;
+    width:120px;
+    height:120px;
+    overflow:hidden;
+    position: relative;
+}
+
+img.img-galley-top {
+    max-width:none;
+    height:100%;
+    width:auto;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
 .description-poi{
 	height:120px;
 	width:120px;
