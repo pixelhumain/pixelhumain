@@ -415,6 +415,7 @@ return array(
 	"proposal"=>"proposition",
 	"Proposal"=>"Proposition",
 	"proposals"=>"propositions",
+	"My web page" => "Ma page web",
 	
 	"Persons" => "Citoyens",
 	"People" => "Citoyens",
