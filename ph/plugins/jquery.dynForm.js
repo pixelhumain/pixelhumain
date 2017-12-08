@@ -688,7 +688,25 @@ onSave: (optional) overloads the generic saveProcess
 		* PROPERTIES , is a list of pairs key/values
 		***************************************** */
         else if ( fieldObj.inputType == "properties" ) {
-        	mylog.log("build field "+field+">>>>>> properties list");
+        	mylog.log("build field "+field+">>>>>> properties list", fieldObj.values);
+
+        	if(fieldObj.values){
+    			if(!initValues[field])
+    				initValues[field] = {};
+    			initValues[field]["tags"] = fieldObj.values;
+    		}
+    		
+    		mylog.log("build field "+field+">>>>>> properties initValues", initValues);
+    		if(fieldObj.maximumSelectionLength)
+    			initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
+    		mylog.log("fieldObj.data", fieldObj.data, fieldObj);
+    		if(typeof fieldObj.data != "undefined"){
+    			value = fieldObj.data;
+        		//initSelectNetwork[field]=fieldObj.data;
+        	}
+    		if(typeof fieldObj.mainTag != "undefined")
+				mainTag=fieldObj.mainTag;
+
         	fieldHTML += '<div class="inputs properties">'+
 								'<div class="col-sm-3">'+
 									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
@@ -697,12 +715,13 @@ onSave: (optional) overloads the generic saveProcess
 								'<div class="col-sm-7">'+
 									'<textarea type="text" name="values[]" class="addmultifield1 form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);"  placeholder="'+placeholder2+'"></textarea>'+
 									'<button data-id="'+field+fieldObj.inputType+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+									'<input type="text" class="form-control select2TagsInput" name="tags'+field+'" id="tags'+field+'" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
 								'</div>'+
 							'</div>'+
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
 							'<div class="col-sm-12">'+
 								'<div class="space10"></div>'+
-						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
+						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" data-container="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
 				       		'</div></span>'+
 				       '<div class="space5"></div>';
 			
@@ -718,6 +737,11 @@ onSave: (optional) overloads the generic saveProcess
 						addfield("."+field+fieldObj.inputType,optVal );
 				});*/
 			}
+        }
+        else if( fieldObj.inputType == "tagsNetwork") {
+        	mylog.log("build field "+field+">>>>>> tagsNetwork");
+        	fieldHTML += iconOpen+'<input type="text" class="form-control " name="name'+field+'" id="name'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        	fieldHTML += iconOpen+'<input type="text" class="form-control select2TagsInput" name="tags'+field+'" id="tags'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
         }
 
          /* **************************************
@@ -1374,11 +1398,13 @@ onSave: (optional) overloads the generic saveProcess
 			//	$('head').append('<style type="text/css">.inputs textarea.addmultifield1{width:90%; height:34px;}</style>');
 
 			//intialise event on the add new row button 
-			$('.addPropBtn').unbind("click").click(function()
-			{ 
+			$('.addPropBtn').unbind("click").click(function(){
+				mylog.log("addPropBtn", $(this).data('id'));
 				var field = $(this).data('id');
-				if( $('.'+field+' .inputs .addmultifield:visible').length==0 || ( $("."+field+" .addmultifield:last").val() != "" && $( "."+field+" .addmultifield1:last" ).val() != "") )
+				if( $('.'+field+' .inputs .addmultifield:visible').length==0 || ( $("."+field+" .addmultifield:last").val() != "" && $( "."+field+" .addmultifield1:last" ).val() != "") ){
+					mylog.log("field", field);
 					addfield('.'+$(this).data('container'),'',field);
+				}
 				else
 					toastr.info("please fill properties first");
 			} );
@@ -1483,11 +1509,11 @@ onSave: (optional) overloads the generic saveProcess
 	***************************************** */
 	function addfield( parentContainer,val,name ) 
 	{
-		mylog.log("addfield",parentContainer+' .inputs',val);
+		mylog.log("addfield",parentContainer+' .inputs',val,name);
 		if(!$.isEmptyObject($(parentContainer+' .inputs')))
 	    {
 	    	if($(parentContainer+' .properties').length > 0)
-	    		$( propertyLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	    		$( propertyLineHTML( val, name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
 	    	else
 	    		$( arrayLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
 	    	
@@ -1559,15 +1585,16 @@ onSave: (optional) overloads the generic saveProcess
 	***************************************** */
 	function propertyLineHTML(propVal,name)
 	{
-		mylog.log("propertyLineHTML",propVal);
-		if( typeof propVal == "undefined" ) 
+		var count = $(".addmultifield").length-1;
+		mylog.log("propertyLineHTML",propVal, typeof propVal);
+		if( !notEmpty(propVal) ) 
 	    	propVal = {"label":"","value":""};
 		var str = '<div class="space5"></div><div class="col-sm-3">'+
 					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
 				'</div>'+
 				'<div class="col-sm-7">'+
-					'<textarea type="text" name="values[]" class="addmultifield1 form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);" placeholder="valeur"   >'+propVal.value+'</textarea>'+
+					'<textarea type="text" name="values[]" class="addmultifield'+count+' form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);" placeholder="valeur"   >'+propVal.value+'</textarea>'+
 					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-right" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
 				'</div>';
 		return str;

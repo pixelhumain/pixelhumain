@@ -4,7 +4,7 @@
     "skin" : {
         "logo" : false,
         "title" : "Pratiques collaboratives bretonnes",
-	"shortDescription" : "Rajoutez un projet en cliquant sur le + en bas à gauche une fois connecté",
+	    "shortDescription" : "Rajoutez un projet en cliquant sur le + en bas à gauche une fois connecté",
         "displayScope" : false,
         "displayCommunexion" : true,
         "profilBar" : true,
