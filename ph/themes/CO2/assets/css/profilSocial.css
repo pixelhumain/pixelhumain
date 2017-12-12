@@ -243,6 +243,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 #social-header{
     min-height: 280px;
     background-color: rgba(230,230,230,0.6);
+    padding: 0px;
     padding-top: 53px !important;
 }
 

@@ -1,4 +1,80 @@
 
+<style type="text/css">
+    #rocketchatModal.modal {   
+        margin:0; 
+        padding:0; 
+        overflow: hidden;
+        width: 100%; 
+        height: 100%;
+        background-color:rgb(0,0,0,0.5); 
+        border-left:3px solid #333;
+    }
+    #rocketchatModal .modal-content {
+        position: fixed;
+        top: 10%;
+        right: 5%;
+        left: 5%;
+        bottom: 10%;
+        border-radius: 0;
+        box-shadow: none;
+        height: auto;
+        padding-top:10px !important;
+        width: auto !important;
+        -webkit-box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.5) !important;
+        -moz-box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.5) !important;
+        box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.5) !important;
+    }
+    .rocketchatTitle{
+        color:#333;
+        font-size: 20px;
+    }
+    .RCcontainerSpinner{
+        height:40px;
+    }
+    .RCcontainer{
+        border-top: 1px solid #c9c8c8;
+    }
+
+
+#rc.iframe-rocketchat .RCcontainerSpinner h5.letter-red{
+    color: #4285f4 !important;
+}
+
+#rocket-chat .side-nav .rooms-list{
+    background-color: #044b76 !important;
+}
+
+#rocket-chat .side-nav.primary-background-color{
+    background-color: #044b76 !important;
+}
+
+#rocket-chat .loading-animation{
+    background-color: #044b76 !important;
+}
+
+</style>
+
+<div class="rocketchat-modal modal fade" id="rocketchatModal" tabindex="-1" role="dialog" aria-hidden="true" >
+    <div class="modal-content shadow2">
+        <div class="col-sm-12 RCcontainerSpinner">
+                <a href="javascript:rcObj.sizeChat('')">
+                    <i class="hide fa btnExpand fa-expand fa-2x"  style="float:left;color:#C5203B;margin-right:20px;"></i>
+                </a>
+                <a href="javascript:rcObj.sizeChat('')">
+                    <i class="hide fa fa-external-link fa-2x"  style="float:left;color:#C5203B;margin-right:20px;"></i>
+                </a>
+                <h5 class="letter-red pull-left">
+                    <i class='fa fa-comments'></i> Messagerie instantanée
+                </h5><!-- <span class='rocketchatTitle'></span> -->
+                <button class="btn btn-default btn-sm text-dark pull-right close-modal" data-dismiss="modal">
+                    <i class="fa fa-times"></i>
+                </button>
+                
+        </div>
+        <div class="col-sm-12 RCcontainer" style="background-color:white"></div>
+    </div>
+</div>
+
 <?php if(@Yii::app()->session["userId"] && Yii::app()->params['rocketchatEnabled'] )
 {
     //sets all the global params for the usage of the chat
@@ -12,6 +88,23 @@
     }
 ?>
 <script>
+
+
+jQuery(document).ready(function() { 
+    //preload in background the rocket iframe
+    <?php if(@Yii::app()->session["userId"] && Yii::app()->params['rocketchatEnabled'] ){?>
+    if( userId ){
+        //preload the iframe 
+        getAjax('.RCcontainer', baseUrl+'/'+moduleId+'/rocketchat',null,"html");
+        //get all users Lsit of channels
+        getAjax(null, baseUrl+'/'+moduleId+'/rocketchat/list',function(data) {  
+            mylog.log("rcObj.list : ",data);
+            rcObj.list = data;  
+        },"json");
+    }
+    <?php } ?>
+});
+
 var rcObj = {
 
     lastOpenChat : null,
