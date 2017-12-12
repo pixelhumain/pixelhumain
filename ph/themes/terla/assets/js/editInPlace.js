@@ -232,6 +232,50 @@ function bindDynFormEditableTerla(){
 
 }
 
+$(".btn-update-descriptions").off().on( "click", function(){
+
+		var form = {
+			saveUrl : baseUrl+"/"+moduleId+"/element/updateblock/",
+			dynForm : {
+				jsonSchema : {
+					title : trad["Update description"],
+					icon : "fa-key",
+					onLoads : {
+					},
+					afterSave : function(data){
+						mylog.dir(data);
+						if(data.result&& data.resultGoods && data.resultGoods.result){
+							if(data.resultGoods.values.description=="")
+								$(".contentInformation #descriptionAbout").html(dataHelper.markdownToHtml('<i>'+trad["notSpecified"]+'</i>'));
+							else
+								$(".contentInformation #descriptionAbout").html(dataHelper.markdownToHtml(data.resultGoods.values.description));
+							$("#descriptionMarkdown").html(data.resultGoods.values.description);
+						}
+						dyFObj.closeForm();
+						changeHiddenFields();
+					},
+					properties : {
+						block : dyFInputs.inputHidden(),
+						typeElement : dyFInputs.inputHidden(),
+						isUpdate : dyFInputs.inputHidden(true),
+						description : dyFInputs.textarea(tradDynForm["longDescription"], "...")
+					}
+				}
+			}
+		};
+
+		var dataUpdate = {
+			block : "descriptions",
+			id : contextData.id,
+			typeElement : contextData.type,
+			name : contextData.name,
+			description : $("#descriptionMarkdown").html()
+		};
+		dyFObj.openForm(form, "markdown", dataUpdate);
+	});
+
+
+
 function changeHiddenFields() { 
 	mylog.log("-----------------changeHiddenFields----------------------");
 	//
