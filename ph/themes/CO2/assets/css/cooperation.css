@@ -608,6 +608,14 @@ h4.load-coop-data.title-room:hover{
 	font-size: 15px;
 }
 
+.md-editor > .md-preview{
+	text-align: left;
+	padding: 20px;
+}
+.md-editor > textarea{
+	padding: 15px;
+}
+
 @media screen and (max-width: 992px) {
 
 	#menu-room h4.room-desc{
