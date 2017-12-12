@@ -119,7 +119,7 @@
 	.<?php echo $moduleName; ?> .btn-group-map.tools-btn{
 		left: unset; /*90px !important;*/
 		top:100px !important;
-		right:0px !important;
+		right:35px !important;
 		width:50px;
 		/*background-color: rgba(76, 114, 126, 0.65) !important;*/
 	}
@@ -141,6 +141,8 @@
 		top:70px;
 		z-index: 0;
 		display:none;
+		margin-right: 45px;
+		margin-top: 70px;
 	}
 	.<?php echo $moduleName; ?> #liste_map_element{}
 

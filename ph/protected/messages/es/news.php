@@ -26,7 +26,12 @@ return array(
   	"Back to my page"=> "Retour à ma page",
   	"Back to home"=> "Retour à l'accueil",
   	"This link points to a dead news"=> "Ce lien pointe sur un post mort",
-  	"The author has probably deleted the news"=> "L'auteur a probablement supprimé le post"
+  	"The author has probably deleted the news"=> "L'auteur a probablement supprimé le post",
+  	"published {what} {where}"=>"a publié {what} {where}",
+  	"a message"=>"un message",
+  	"in the newspaper of {who}"=>"dans le journal de {who}",
+  	"in your newspaper"=>"dans votre journal",
+  	"in ce newspaper"=>"dans this journal",
 );
 
 ?>

@@ -69,6 +69,7 @@ return array(
 	"{who} disapproves your comment on {where}" =>"{who} désapprouve votre commentaire sur {where}",
 	"{who} disapprove your comment on {where}" => "{who} désapprouvent votre commentaire {where}",
 	"the wall of" => "le mur de",
+	"the wall of {who}" => "le mur de {who}",
 	"your news" => "votre post",
 	"with the link"=>"avec le lien",
 	"with the documents shared"=>"avec les documents partagés",
@@ -95,6 +96,7 @@ return array(
 	"{who} added a new post in {where}" => "{who} a ajouté un post dans {where}",
 	"{who} added a new profil image on {where}" => "{who} a ajouté une nouvelle image de profil dans {where}",
 	"{who} added new images to the album of {where}" => "{who} a ajouté des images à l'album de {where}",
+	"A new resolution {what} is added in {where}" => "Une nouvelle résolution {what} est ajoutée à {where}", 
 	//"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
 	//VOTE
 	"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",

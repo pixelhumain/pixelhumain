@@ -19,10 +19,12 @@ HtmlHelper::registerCssAndScriptsFiles( array('/css/notifications.css') , Yii::a
 			<div class="pageslide-title pull-left">
 				<i class="fa fa-angle-down"></i> <i class="fa fa-bell"></i> <span class="hidden-xs">Notifications</span> 
 			</div> 
-			<a href="javascript:;" onclick='markAllAsRead()' class="btn-notification-action pull-right" style="font-size:12px;">
-				<?php echo Yii::t("common","All marked all as read") ?> <i class="fa fa-check-square-o"></i>
+			<a href="javascript:;" onclick='removeAllNotifications()' class="btn-notification-action btn-danger pull-right" style="font-size:12px;">
+				<?php echo Yii::t("common","All") ?> <i class="fa fa-trash"></i>
 			</a>	
-			
+			<a href="javascript:;" onclick='markAllAsRead()' class="btn-notification-action pull-right" style="font-size:12px;">
+				<?php echo Yii::t("common","Marked all as read") ?> <i class="fa fa-check-square-o"></i>
+			</a>	
 			
 			<ul class="pageslide-list notifList col-md-12 col-sm-12 col-xs-12">
 				<?php

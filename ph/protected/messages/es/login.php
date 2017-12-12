@@ -96,6 +96,7 @@ return array(
         "Speaking together locally"=>"Communiquons mieux localement",
         "Communities working together"=>"Communautés qui travaillent ensemble",
         "For commons"=>"Pour le bien commun",
-        "To improve the city 2.2.main"=>"Pour améliorer la ville 2.2.main"
+        "To improve the city 2.2.main"=>"Pour améliorer la ville 2.2.main",
+        "An email with a new password has been sent to your email account. Thanks."=>"Un mail avec un nouveau mot de passe vous a été envoyé à votre adresse email. Merci.",
     );
 ?>

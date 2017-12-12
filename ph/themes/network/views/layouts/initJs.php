@@ -4,6 +4,7 @@
     var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
     var moduleId = "<?php echo $this->module->id?>";
     var userId = "<?php echo Yii::app()->session['userId']?>";
+    var mainLanguage = "<?php echo Yii::app()->language ?>";
     var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
     var currentUrl = "<?php echo "#".Yii::app()->controller->id.".".Yii::app()->controller->action->id ?>";
     var debugMap = [
@@ -114,19 +115,19 @@
         imgLoad : "CO2r.png" ,
         mainContainer : ".main-container",
         blockUi : {
-            processingMsg : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
+            processingMsg : //'<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
                   '<i class="fa fa-spin fa-circle-o-notch"></i>'+
                   '<h4 style="font-weight:300" class=" text-dark padding-10">'+
                     'Chargement en cours...'+
                   '</h4>'+
                   '<span style="font-weight:300" class=" text-dark">'+
                     'Merci de patienter quelques instants'+
-                  '</span>'+
-                  '<br><br><br>'+
-                  '<a href="#" class="btn btn-default btn-sm lbh">'+
-                    "c'est trop long !"+
-                  '</a>', 
-            errorMsg : '<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
+                  '</span>',
+                  //'<br><br><br>'+
+                  //'<a href="#" class="btn btn-default btn-sm lbh">'+
+                  //  "c'est trop long !"+
+                  //'</a>', 
+            errorMsg : //'<img src="'+themeUrl+'/assets/img/CO2r.png" class="nc_map" height=80>'+
               '<i class="fa fa-times"></i><br>'+
                '<span class="col-md-12 text-center font-blackoutM text-left">'+
                 '<span class="letter letter-red font-blackoutT" style="font-size:40px;">404</span>'+
@@ -134,10 +135,10 @@
 
               '<h4 style="font-weight:300" class=" text-dark padding-10">'+
                 'Oups ! Une erreur s\'est produite'+
-              '</h4>'+
-              '<span style="font-weight:300" class=" text-dark">'+
-                'Vous allez être redirigé vers la page d\'accueil'+
-              '</span>'
+              '</h4>'
+              //'<span style="font-weight:300" class=" text-dark">'+
+                //'Vous allez être redirigé vers la page d\'accueil'+
+              //'</span>'
         },
         dynForm : {
             onLoadPanel : function (elementObj) { 
@@ -192,17 +193,17 @@ function removeCookies() {
     expireAllCookies('nbCpbyInseeCommunexion', ['/', '/ph', '/ph/co2', 'co2']);
     expireAllCookies('countryCommunexion', ['/', '/ph', '/ph/co2']);
     expireAllCookies('cityName', ['/', '/ph', '/ph/co2', 'co2']);
-    expireAllCookies('insee', ['/', '/ph', '/ph/co2', 'co2']);
-
-    expireAllCookies('communexionActivated', ['/ph', '/ph/co2', 'co2']);
-    expireAllCookies('inseeCommunexion', ['/ph', '/ph/co2', 'co2']);
-    expireAllCookies('cpCommunexion', ['/ph', '/ph/co2', 'co2']);
-    expireAllCookies('cityNameCommunexion', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('insee', ['/', '/ph', '/ph/co2', 'co2']);    
+    expireAllCookies('inseeCommunexion', ['/','/ph', '/ph/co2', 'co2']);
+    expireAllCookies('cpCommunexion', ['/','/ph', '/ph/co2', 'co2']);
+    expireAllCookies('cityNameCommunexion', ['/','/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexionType', ['/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexionValue', ['/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexionName', ['/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexionLevel', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('communexionActivated', ['/ph', '/ph/co2', 'co2']);
     //expireAllCookies('multiscopes', ['/ph', '/ph/co2', 'co2']);
+
 }
 
 removeCookies();

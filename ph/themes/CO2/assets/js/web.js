@@ -290,3 +290,101 @@ function showInFavory(myFavorites, id){
         deleteFavorites(id);
     });
 }
+
+
+function searchLilo(search){
+        
+    $("#resLilo").html("<i class='fa fa-spin fa-circle-o-notch'></i> recherche complémentaire en cours");
+
+    var url = "https://search.lilo.org/searchweb.php?q=";
+    $.ajax({ 
+            url: "//cors-anywhere.herokuapp.com/"+url+search+"+nc+caledonie", // 'http://google.fr', 
+            crossOrigin: true,
+            timeout:10000,
+            success:
+                function(data) {
+                    var tempDom = $('<output1>').append($.parseHTML(data));
+                    var res = $('.gsc-wrapper#results', tempDom).html();
+                    
+                    $("#resLilo").html(res);
+                    $("#resLilo").append("<a class='btn btn-link bg-blue-k' target='_blank' href='https://search.lilo.org/searchweb.php?q="+search+"'>"+
+                                            "<i class='fa fa-chevron-circle-right'></i> Continuer la recherche sur Lilo"+
+                                         "</a>");
+                    $('<output1>').html("");
+
+                    $("#resLilo .result a").attr('target','_blank');
+
+                    $("#resLilo .result a").click(function(){
+                        var url = $(this).attr("href");
+                        addUrlSuggestion(url);
+                    });
+            }
+    });
+}
+
+
+function searchEcosia(search){
+        
+    $("#resEcosia").html("<i class='fa fa-spin fa-circle-o-notch'></i> recherche complémentaire en cours");
+
+    var url = "https://www.ecosia.org/search?q=";
+    $.ajax({ 
+            url: "//cors-anywhere.herokuapp.com/"+url+search+"+nc+caledonie", // 'http://google.fr', 
+            crossOrigin: true,
+            timeout:10000,
+            success:
+                function(data) {
+                    var tempDom = $('<output2>').append($.parseHTML(data));
+                    var res = $('.container.results .mainline', tempDom).html();
+                    var adds = $('.container.results .sidebar.card-desktop', tempDom).html();
+                   
+                    $("#resEcosia").html(res);
+                    $("#resEcosia").append("<a class='btn btn-link bg-blue-k' target='_blank' href='https://www.ecosia.org/search?q="+search+"'>"+
+                                            "<i class='fa fa-chevron-circle-right'></i> Continuer la recherche sur Ecosia"+
+                                           "</a>");
+                    $("#resEcosia").append("<div class='col-md-12'>"+adds+"</div>");
+                    $('<output2>').html("");
+
+
+                    $("#resEcosia .result a").attr('target','_blank');
+
+                    $("#resEcosia .result a").click(function(){
+                        var url = $(this).attr("href");
+                        addUrlSuggestion(url);
+                    });
+                    
+            }
+    });
+}
+
+
+function addUrlSuggestion(urlValidated){
+
+    var hostname = (new URL(urlValidated)).hostname;
+    var urlObj = {
+                collection: "url",
+                key: "url",
+                url: urlValidated, 
+                hostname: hostname, 
+                status: "uncomplet"
+        };
+
+
+        $.ajax({
+            type: "POST",
+            url: baseUrl+"/"+moduleId+"/element/save",
+            data: urlObj,
+            dataType: "json",
+            success: function(data){
+                if(typeof data.result != "undefined" && data.result == false) 
+                    console.log("Une erreur est survenue, ou cette URL existe déjà dans notre base de données", data);
+                else{
+                    console.log("save referencement success", data);
+                }
+            },
+            error: function(data){
+                    console.log("save referencement error", data);
+            }
+        });
+}
+

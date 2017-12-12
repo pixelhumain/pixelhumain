@@ -133,9 +133,18 @@
 		"Show"=>"Afficher",
 		"Me"=>"Moi",
 		"I am the author"=>"Je suis l'auteur",
+		"Show {who} as author"=>"Afficher {who} as author",
 		"Visibility of the news"=>"Visibilité du post",
 		"Write your news here"=> "Écrire votre post ici",
 		"Invalid username : Only characters A-Z, a-z, 0-9 and '-' are acceptable."=> "Le nom d'utilisateur est incorrect : Seul les caractères A-Z, a-z, 0-9 et '-' sont acceptés.",
+		"is too heavy"=>"est trop lourde",
+		"Size limit"=>"Taille limite",
+		"invalid format"=>"format invalide",
+		"Available extension(s)"=>"Extension(s) acceptable",
+		"Name of the collection"=>"Nom de la collection",
+		"Add or edit the roles of"=>"Ajouter ou modifier les rôles de",
+		"Add photos to the gallery"=>"Ajouter des photos à la galerie",
+		"Stock your photos and share them"=>"Partagez vos photos et vos publications",
 	)
 
 ?>

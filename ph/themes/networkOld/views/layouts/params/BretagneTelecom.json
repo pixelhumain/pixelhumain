@@ -1,0 +1,209 @@
+{
+    "name" : "BretagneTelecom",
+    "mode" : "server",
+    "skin" : {
+        "logo" : false,
+        "title" : "Pratiques collaboratives bretonnes",
+	"shortDescription" : "Rajoutez un projet en cliquant sur le + en bas à gauche une fois connecté",
+        "displayScope" : false,
+        "displayCommunexion" : true,
+        "profilBar" : true,
+        "breadcrum":true,
+        "displayButtonGridList" : false,
+        "class" : {
+            "mainContainer" : false
+        },
+        "iconeAdd" : false,
+        "iconeSearchPlus" : false,
+        "loginTitle":"",
+        "front" : {
+	        "organization" : false,
+	        "project" : false,
+	        "event" : false,
+	        "community" : false,
+	        "dda" : false,
+	        "live" : false,
+	        "search" : false,
+	        "need" : false,
+	        "poi" : false
+	    },
+	    "menu" : {
+		    "aroundMe":false,
+		    "connectLink":false,
+		    "add":true,
+		    "detail":true,
+		    "news":false,
+		    "directory":false,
+		    "gallery":true
+	    }
+    },
+    "filter" : {
+        "types" : false,
+        "tags" : {
+            "activate" : true,
+            "title" : "Autre",
+            "background-color" : "#f5f5f5",
+            "image" : "All.png",
+            "tagsAdditional" : {
+                "Autre" : "Autre"
+            }
+        },
+        "linksTag" : {
+            "Se nourrir" : {
+                "tagParent" : "Alimentation",
+                "background-color" : "#f5f5f5",
+                "image" : "Alimentation.png",
+                "tags" : {
+                    "Amap" : "Amap",
+                    "magasin de producteurs" : "MagasinDeProducteurs",
+                    "Groupement d'achat" : "GroupementDAchat",
+                    "Jardin Partagé" : "JardinPartagé",
+                    "Grainothèque" : "Grainothèque",
+                    "Groupe Facebook" : "GroupeFacebook",
+                    "Incroyables Comestibles" : "IncroyablesComestibles",
+                    "La Ruche qui dit Oui! " : "LaRucheQuiDitOui",
+                    "Livraison de paniers" : "LivraisonDePaniers",
+                    "Groupement de producteur" : "GroupementDeProducteur",
+                    "CoLunch" : "CoLunch"
+                }
+            },
+            "Se financer" : {
+                "tagParent" : "Financement",
+                "background-color" : "#f5f5f5",
+                "image" : "Financement.png",
+                "tags" : {
+                    "CIGALES" : "CIGALES",
+                    "Monnaie locale" : "MonnaieLocale",
+                    "financement participatif" : "FinancementParticipatif",
+                    "budget participatif" : "BudgetParticipatif"
+                }
+            },
+            "Se rendre service" : {
+                "tagParent" : "Service",
+                "background-color" : "#f5f5f5",
+                "image" : "Service.png",
+                "tags" : {
+                    "Troc" : "Troc",
+                    "RERS" : "RERS",
+                    "SEL" : "SEL",
+                    "Givebox" : "Givebox",
+                    "Fournisseur d'accès à internet" : "FournisseurDAccèsàInternet",
+                    "Réseau social de proximité" : "RéseauSocialDeProximité",
+                    "café associatif" : "CaféAssociatif"
+                }
+            },
+            "Se divertir" : {
+                "tagParent" : "Loisir",
+                "background-color" : "#f5f5f5",
+                "image" : "Loisir.png",
+                "tags" : {
+                    "Cinéma associatif" : "CinémaAssociatif",
+                    "Bibliothèque de rue" : "BibliothèqueDeRue",
+                    "Concert à domicile" : "ConcertàDomicile",
+                    "AMAP culturelle" : "AMAPCulturelle"
+                }
+            },
+            "Bricoler/Réparer" : {
+                "tagParent" : "Réparation",
+                "background-color" : "#f5f5f5",
+                "image" : "Reparation.png",
+                "tags" : {
+                    "Atelier de réparation de vélo" : "AtelierDeRéparationDeVélo",
+                    "FabLab" : "FabLab",
+                    "Repair Café" : "RepairCafé",
+                    "compostage collectif" : "CompostageCollectif",
+                    "Up Cycling" : "UpCycling"
+                }
+            },
+            "Co-créer" : {
+                "tagParent" : "Création",
+                "background-color" : "#f5f5f5",
+                "image" : "Creation.png",
+                "tags" : {
+                    "MuséoMix" : "MuséoMix",
+                    "MaisonMix" : "MaisonMix"
+                }
+            },
+            "S'équiper" : {
+                "tagParent" : "équipement",
+                "background-color" : "#f5f5f5",
+                "image" : "Equipement.png",
+                "tags" : {
+                    "Recyclerie" : "Recyclerie",
+                    "mutualisation de matériels" : "MutualisationDeMatériels",
+                    "Troc/don" : "TrocDon",
+                    "Freecycle" : "Freecycle",
+                    "Zone de gratuité" : "ZoneDeGratuité",
+                    "ludothèque" : "Ludothèque",
+                    "Outillothèque" : "Outillothèque",
+                    "CUMA" : "CUMA",
+                    "Instrumenthèque" : "Instrumenthèque"
+                }
+            },
+            "S'informer" : {
+                "tagParent" : "Information",
+                "background-color" : "#f5f5f5",
+                "image" : "Information.png",
+                "tags" : {
+                    "Wiki territorial" : "WikiTerritorial",
+                    "Greeters" : "Greeters",
+                    "carte ouverte" : "CarteOuverte"
+                }
+            },
+            "Se déplacer" : {
+                "tagParent" : "Mobilité",
+                "background-color" : "#f5f5f5",
+                "image" : "Mobilite.png",
+                "tags" : {
+                    "Covoiturage" : "Covoiturage",
+                    "Pédibus" : "Pédibus",
+                    "autopartage" : "Autopartage",
+                    "bus cycliste" : "BusCycliste",
+                    "VéloPartage" : "VéloPartage",
+                    "AutoStop organisé" : "AutoStopOrganisé",
+                    "CoBaturage" : "CoBaturage"
+                 }
+            },
+            "Se loger" : {
+                "tagParent" : "Logement",
+                "background-color" : "#f5f5f5",
+                "image" : "Logement.png",
+                "tags" : {
+                    "habitat partagé" : "HabitatPartagé",
+                    "Location de logement" : "LocationDeLogement",
+                    "Maison Mix" : "MaisonMix",
+                    "CoLocation" : "CoLocation"
+                }
+            },
+            "Travailler" : {
+                "tagParent" : "Travail",
+                "background-color" : "#f5f5f5",
+                "image" : "Travail.png",
+                "tags" : {
+                    "Groupement d'employeur" : "GroupementDEmployeur",
+                    "Coworking" : "Coworking",
+                    "Tiers Lieu" : "TiersLieu"
+                }
+            }
+        }
+    },
+    "result" : {
+        "displayImage" : true,
+        "displayType" : false,
+        "fullLocality" : true,
+        "datesEvent" : false,
+        "displayShortDescription" : true
+    },
+     "add" : {
+        "organization" : true
+    },
+    "request" : {
+        "sourceKey" :[
+            "BretagneTelecom"
+        ],
+        "pagination" : 2000,
+        "searchType" : [
+            "organizations"
+        ]
+    }
+}

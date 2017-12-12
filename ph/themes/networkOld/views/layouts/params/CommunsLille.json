@@ -1,0 +1,72 @@
+{
+    "name" : "CommunsLille",
+    "mode" : "server",
+    "skin" : {
+        "logo" : false,
+	"title" : "Cartographie des Communs autour de Lille",
+        "shortDescription" : "Rajoutez des communs en n'oubliant pas le tag communs",
+        "title" : false,
+        "displayScope" : false,
+        "displayCommunexion" : true,
+        "profilBar" : false,
+        "displayButtonGridList" : false,
+        "class" : {
+            "mainContainer" : false
+        },
+        "iconeAdd" : false,
+        "iconeSearchPlus" : false,
+        "loginTitle":"",
+        "front" : {
+	        "organization" : false,
+	        "project" : true,
+	        "event" : true,
+	        "community" : true,
+	        "dda" : false,
+	        "live" : false,
+	        "search" : false,
+	        "need" : true,
+	        "poi" : true
+	    },
+	    "menu" : {
+		    "aroundMe":false,
+		    "connectLink":false,
+		    "add":true,
+		    "detail":true,
+		    "news":true,
+		    "directory":true,
+		    "gallery":true
+	    }
+    },
+    "filter" : {
+        "types" : false,
+        "tags" : true
+    },
+    "add" : {
+        "organization" : true
+    },
+    "result" : {
+        "displayImage" : false,
+        "displayType" : false,
+        "fullLocality" : true,
+        "datesEvent" : false
+    },
+    "request" : {
+        "pagination" : 1000,
+        "searchType" : [
+            "organizations"
+        ],
+        "searchLocalityNAME" : [
+	    "Lille",
+            "Roncq",
+            "Villeneuve d ascq",
+            "Hellemmes",
+            "Mons En Baroeul",
+            "Roubaix",
+            "Tourcoing"
+        ],
+        "searchTag" : [
+            "commun",
+            "communs"
+        ]
+    }
+}

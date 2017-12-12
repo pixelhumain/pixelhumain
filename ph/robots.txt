@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://www.communecter.org/co2/default/sitemap

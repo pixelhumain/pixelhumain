@@ -12,7 +12,7 @@
         <input class="form-control" id="email3" name="email3" type="text" placeholder="<?php echo Yii::t("login","email") ?>" tabindex="7"><br/>
         
         <label class="letter-black"><i class="fa fa-key"></i> <?php echo Yii::t("login","Password") ?></label><br/>
-        <input class="form-control" id="password3" name="password3" type="password" placeholder="<?php echo Yii::t("login","password") ?>mot de passe" tabindex="8"><br/>
+        <input class="form-control" id="password3" name="password3" type="password" placeholder="<?php echo Yii::t("login","password") ?>" tabindex="8"><br/>
         
         <label class="letter-black"><i class="fa fa-key"></i> <?php echo Yii::t("login","Password again") ?></label><br/>
         <input class="form-control" id="passwordAgain" name="passwordAgain" type="password" placeholder="<?php echo Yii::t("login","password (confirmation)") ?>" tabindex="9">

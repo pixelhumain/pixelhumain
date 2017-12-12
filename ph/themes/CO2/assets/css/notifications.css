@@ -103,6 +103,9 @@
 		padding: 4px 8px !important;
 		margin-right: 10px !important;
 	}
+	.btn-notification-action.btn-danger{
+		background-color: #d9534f !important;
+	}
 	.footer-notif{
 		position: absolute;
 		bottom:10px;
@@ -146,17 +149,26 @@
 #notificationPanelSearch.arrow_box::before{
 	margin-bottom: 1px;	
 	border-bottom-color: #e1dbdb;
-	left: 65% !important;
+	left: 25% !important;
 }
 #notificationPanelSearch.arrow_box::after{
-	left: 65% !important;
+	left: 25% !important;
 }
 
 #notificationPanelSearch{
 	bottom: 30% !important;
 	right: 27px !important;
-	top: 58px !important;
+	top: 68px !important;
 }
+ @media (min-width: 767px) and (max-width: 992px) {
+ 	#notificationPanelSearch.arrow_box::before{
+		left: 51% !important;
+	}
+	#notificationPanelSearch.arrow_box::after{
+		left: 51% !important;
+	}
+ }
+
 
 
 @media (max-width: 768px) {

@@ -21,7 +21,7 @@
     var isMapEnd = false;
 	//used in communecter.js dynforms
     var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
-    var countryList = <?php echo json_encode(Zone::getListCountry()) ?>;
+    //var countryList = <?php echo json_encode(Zone::getListCountry()) ?>;
     var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
     var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
     var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
@@ -336,14 +336,14 @@ function removeCookies() {
     expireAllCookies('insee', ['/', '/ph', '/ph/co2', 'co2']);
 
     expireAllCookies('communexionActivated', ['/ph', '/ph/co2', 'co2']);
-    expireAllCookies('inseeCommunexion', ['/ph', '/ph/co2', 'co2']);
-    expireAllCookies('cpCommunexion', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('inseeCommunexion', ['/','/ph', '/ph/co2', 'co2']);
+    expireAllCookies('cpCommunexion', ['/','/ph', '/ph/co2', 'co2']);
     expireAllCookies('cityNameCommunexion', ['/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexionType', ['/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexionValue', ['/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexionName', ['/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexionLevel', ['/ph', '/ph/co2', 'co2']);
-    //expireAllCookies('multiscopes', ['/ph', '/ph/co2', 'co2']);
+    expireAllCookies('multiscopes', ['/ph', '/ph/co2', 'co2']);
 }
 
 removeCookies();

@@ -82,8 +82,8 @@
 	$this->renderPartial($relativePath.'generic/mapView', array("sigParams" => $sigParams));
 	//$this->renderPartial('addOrganizationMap'); var_dump($sigParams); die();
 
-	
 ?>
+
 <style>
 
 	.<?php echo $moduleName; ?>{
@@ -237,6 +237,7 @@
 		//showMap(false);
 		Sig.userData = <?php echo json_encode($myUser); ?>;
 
+		$('.sigModuleBg').append($("#smartBarContent").html());
 
 		var timeoutFindPlace;
 		$(Sig.cssModuleName + ' .txt-find-place').off().keyup(function(event) { //alert("start custom recherche");
@@ -332,7 +333,8 @@
 			}
 			
 		};
-	 
+
+		smartSig.initSmartInterface();
 
 	});
 
@@ -378,6 +380,8 @@
 
 		//setTimeout(function(){ $("#map-loading-data").addClass("hidden"); }, 6000);
 	}
+
+	
 
 
 	/* affiche les résultat de la recherche dans la div #result (à placer dans l'interface au préalable) */

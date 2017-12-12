@@ -243,6 +243,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 #social-header{
     min-height: 280px;
     background-color: rgba(230,230,230,0.6);
+    padding: 0px;
     padding-top: 53px !important;
 }
 
@@ -524,8 +525,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 #noMoreNews{
     position: relative;
-    padding: 0px 40px;
+    padding: 15px;
     bottom:0px;
+    border-radius: 50px;
+    margin-left: 10px;
 }
 
 
@@ -704,6 +707,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     color: #fff;
 }
 
+#descProfilsocial p{
+    font-size:15px;
+}
+
 
 @media screen and (max-width: 1024px) {
     #main-name-element{
@@ -720,7 +727,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     position: relative;
     float: left !important;
     left: 28%;
-    }      
+    }     
+
+    .panel-btn-confidentiality strong{
+        font-size: 0.8em;
+    } 
 }
 @media (max-width: 768px) {
      .section-date {

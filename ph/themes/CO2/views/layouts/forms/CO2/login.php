@@ -266,9 +266,9 @@ jQuery(document).ready(function() {
         $(".custom-msg").text(msgError[error]);
     }
 
-    $("#username").change(function(){
+  /*  $("#username").change(function(){
         $("#registerName").val($(this).val());
-    });
+    });*/
 
     $("#open-login-xs").click(function(){
         if($(".box-login").hasClass("padding-10")){
