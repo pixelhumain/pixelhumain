@@ -1,5 +1,5 @@
 <style>
-<?php if($subdomain == "page.type" || $subdomain == "freedom"){ ?>    
+<?php if($subdomain == "page.type"){ ?>    
 .navbar-custom.affix #main-title-top{
     display: inline;
 }
