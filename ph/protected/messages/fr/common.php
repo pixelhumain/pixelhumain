@@ -146,7 +146,7 @@ return array(
 	"Task added successfully" => "La tâche a été ajoutée avec succès",
 	"TASK REMOVED SUCCESFULLY!!" => "La tâche a été supprimée avec succès",
 	"News added successfully!" => "News ajoutée avec succès!",
-	"Thank you ! We are dealing it as quickly as possible. If there is more than 5 report, the news will be hidden" => "Merci ! L'équipe va examiner ceci le plus rapidement possible. S'il y a plus de 5 signalements, le contenu est automatiquement masqué",
+	"Thank you ! We are dealing it as quickly as possible. If there is more than 5 report, the news will be hidden" => "Merci !  S'il y a plus de 3 signalements, le contenu est automatiquement soumis à la modération collective",
 	"You already reported this news as abuse" => "Vous avez déjà signalé cette news comme abus",
 	"You are going to declare an abuse : please fill the reason" => "Vous êtes en train de signaler un contenu abusif. Merci d'en préciser la raison",	
 	"Update publication" => "Modifier la publication",
