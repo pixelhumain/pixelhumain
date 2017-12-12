@@ -385,3 +385,4 @@ function addUrlSuggestion(urlValidated){
             }
         });
 }
+

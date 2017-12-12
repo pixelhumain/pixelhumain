@@ -11,14 +11,15 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body text-left">
-                        <h2 class="text-red"><i class="fa fa-university fa-2x"></i><br>Sélectionner une commune</h2>
+                        <h2 class="text-red text-center"><i class="fa fa-university fa-2x"></i><br>Sélectionner une commune</h2>
                         <hr>
                         <?php foreach(array("GN", "Sud", "Nord", "Iles") as $province){ ?>
                             <?php foreach($cities[$province] as $city){ ?>
                             	<div class="col-md-3">
                             		<button class="btn btn-scope" data-dismiss="modal"
-                            				data-city-name="<?php echo $city["name"]; ?>"
-                            				data-city-insee="<?php echo $city["insee"]; ?>"
+                            				data-city-id="<?php echo $city["_id"]; ?>"
+                                            data-city-name="<?php echo $city["name"]; ?>"
+                                            data-city-insee="<?php echo $city["insee"]; ?>"
                             				data-city-cp="<?php echo $city["postalCodes"][0]["postalCode"]; ?>"
                             				data-city-lat="<?php echo $city["geo"]["latitude"]; ?>"
                             				data-city-lng="<?php echo $city["geo"]["longitude"]; ?>">

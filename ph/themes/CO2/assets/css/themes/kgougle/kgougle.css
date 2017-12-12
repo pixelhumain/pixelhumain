@@ -128,6 +128,9 @@ button#open-rocketChat{
 	border: 2px solid #fff;
 	font-size: 20px;
 }
+#divCity .alert-warning{
+	display: none;
+}
 
 @media (max-width: 992px) {
 
