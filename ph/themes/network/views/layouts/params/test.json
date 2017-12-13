@@ -1,6 +1,6 @@
 {
     "name" : "Communs",
-    "dataSrc" : "http://www.notragora.com/api/organization/get/format/network",
+    "dataSrc" : "http://www.notragora.com/api/poi/get/format/network",
     "skin" : {
         "logo" : false,
         "title" : "NotrAgora",
