@@ -274,10 +274,7 @@ function refreshNotifications()
 }
 
 function buildNotifications(list)
-{	console.log(list);
-	console.info("buildNotifications()");
-	console.log(typeof list);
-	$(".notifList").html("");
+{		$(".notifList").html("");
 	if(typeof list != "undefined" && typeof list == "object"){
 		$.each( list , function( notifKey , notifObj )
 		{
