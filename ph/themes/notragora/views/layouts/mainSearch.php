@@ -488,7 +488,6 @@
 
 		    $("#mapCanvasBg").show();
 
-		    console.log("INIT scroll shadows!");
 		    $(".my-main-container").bind("scroll", function(){
 		    	//console.log("scrolling my-container");
 		    	checkScroll();
@@ -532,8 +531,6 @@
 			//
 		    $(window).bind("popstate", function(e) {
 		      //console.dir(e);
-		      console.log("history.state",$.isEmptyObject(history.state),location.hash);
-		      console.warn("popstate history.state",history.state);
 		      if( lastUrl && "onhashchange" in window && location.hash  ){
 		        if( $.isEmptyObject( history.state ) && allReadyLoad == false ){
 			        //console.warn("poped state",location.hash);

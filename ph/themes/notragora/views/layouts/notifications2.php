@@ -210,7 +210,6 @@ function bindNotifEvents(){
 
 function markAsRead(id)
 {
-	console.log("markAsRead",id);
 	//ajax remove Notifications by AS Id
 	$.ajax({
         type: "POST",
@@ -219,10 +218,8 @@ function markAsRead(id)
         dataType : 'json'
     })
     .done( function (data) {
-    	console.dir(data);
         if ( data && data.result ) {               
         	$(".notifList li.notif_"+id).remove();
-        	console.log("notification cleared ",data);
         } else {
             toastr.error("no notifications found ");
         }
@@ -238,10 +235,8 @@ function markAllAsRead()
         dataType : 'json'
     })
     .done( function (data) {
-    	console.dir(data);
         if ( data && data.result ) {               
         	$(".notifList li.notifLi").remove();
-        	console.log("notifications cleared ",data);
         	$(".sb-toggle-right").trigger("click");
         } else {
             toastr.error("no notifications found ");
@@ -255,12 +250,11 @@ function refreshNotifications()
 {
 	//ajax get Notifications
 	$(".pageslide-list.header .btn-primary i.fa-refresh").addClass("fa-spin");
-	console.log("refreshNotifications", maxNotifTimstamp);
 	$.ajax({
         type: "GET",
         url: baseUrl+"/"+moduleId+"/notification/getnotifications?ts="+maxNotifTimstamp
     })
-    .done(function (data) { //console.log("REFRESH NOTIF : "); console.dir(data);
+    .done(function (data) { 
         if (data) {       
         	buildNotifications(data);
         } else {
@@ -315,7 +309,6 @@ function buildNotifications(list)
 
 function notifCount()
 { 	var countNotif = $(".notifList li.enable").length;
-	console.log(" !!!! notifCount", countNotif);
 	$(".notifCount").html( countNotif );
 	if( countNotif > 0 )
 	{

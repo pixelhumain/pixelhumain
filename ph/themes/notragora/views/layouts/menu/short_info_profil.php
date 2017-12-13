@@ -109,7 +109,6 @@ ul.notifList {
           timeoutGS = setTimeout(function(){startSearch(false); }, 800);
         }
         else {*/
-          console.log("startGlobalSearch");
           timeoutGS = setTimeout(function(){ startGlobalSearch(0, indexStepGS); }, 800);
         //}
     });

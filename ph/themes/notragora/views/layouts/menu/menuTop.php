@@ -160,7 +160,6 @@
 			$(this).find(".description-poi").hide();
 		});
 
-		console.log("topList", topList);
 		//Sig.showMapElements(Sig.map, topList);
 	});
 </script>
