@@ -17,23 +17,26 @@
     #mainNav .dropdown-menu > li > a:hover{
         background-color: #ff7e00;
     }
+
+    .navbar-right li{
+        display: inline-block;
+    }
 </style>
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom no-padding">
-    <div class="container bg-black">
-                
+    <div class="container bg-black">            
         <ul class="nav navbar-nav navbar-right">
-                    <?php if (@Yii::app()->session["userIsAdmin"]){ ?>
-                        <li>
-                            <a href='#pod.circuit'  data-modalshow="" class="text-white padding-10 btn-circuit lbhp hide">
-                                <span>
-                                    <i class="fa fa-ravelry fa-2x letter-lightgrey"></i>
-                                    <span class="circuit-count topbar-badge badge animated bounceIn badge-transparent hide">
-                                    </span>
-                                </span>
-                            </a>
-                        </li>
-                    <?php } ?>
-                    <li>
+            <?php if (@Yii::app()->session["userIsAdmin"]){ ?>
+                <li>
+                    <a href='#pod.circuit'  data-modalshow="" class="text-white padding-10 btn-circuit lbhp hide">
+                        <span>
+                            <i class="fa fa-ravelry fa-2x letter-lightgrey"></i>
+                            <span class="circuit-count topbar-badge badge animated bounceIn badge-transparent hide">
+                            </span>
+                        </span>
+                    </a>
+                </li>
+            <?php } ?>
+                <li>
                     <a href='#person.shoppingcart'  data-modalshow="" class="text-white padding-10 btn-shoppingCart lbhp">
                         <span>
                             <i class="fa fa-shopping-cart fa-2x letter-lightgrey"></i>
@@ -41,54 +44,54 @@
                             </span>
                         </span>
                     </a>
-                    </li>
-
-                    <?php if (!@Yii::app()->session["userId"]){ ?>
-                        <li>
-                        <a href="#register" class="text-white btn-menu-connect padding-10" style="margin-top: 1px;" 
-                            data-toggle="modal" data-target="#modalRegister">
-                            <span><i class="fa fa-2x fa-user-circle"></i></span>
-                        </a>
-                        </li>
-                    <?php }else{ 
-                        $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl); ?>
-                        <li>
-                        <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"]?>" class="letter-orange font-montserrat padding-10 lbh"> 
-                                <img class="img-circle" id="menu-thumb-profil" style="margin-top:-5px;" 
-                                     width="25" height="25" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
-                        </a>
-                        <div class="dropdown pull-right" id="dropdown-user">
-                            <div class="dropdown-main-menu">
-                                <ul class="dropdown-menu arrow_box">
-                                    <li class="text-left">
-                                        <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
-                                            class="bg-white letter-red logout">
-                                            <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log Out") ; ?>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                </li>
+            <?php if (!@Yii::app()->session["userId"]){ ?>
+                <li>
+                    <a href="#register" class="text-white btn-menu-connect padding-10" style="margin-top: 1px;" 
+                        data-toggle="modal" data-target="#modalRegister">
+                        <span><i class="fa fa-2x fa-user-circle"></i></span>
+                    </a>
+                </li>
+            <?php }else{ 
+                $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl); ?>
+                <li>
+                    <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"]?>" 
+                        class="letter-orange font-montserrat padding-10 lbh"> 
+                            <img class="img-circle" id="menu-thumb-profil" 
+                                 width="30" height="30" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
+                    </a>
+                    <div class="dropdown pull-right" id="dropdown-user">
+                        <div class="dropdown-main-menu">
+                            <ul class="dropdown-menu arrow_box">
+                                <li class="text-left">
+                                    <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
+                                        class="bg-white letter-red logout">
+                                        <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log Out") ; ?>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        <li>
-                    <?php } ?>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle padding-10 text-white margin-top-5 margin-left-5" 
-                            data-toggle="dropdown" role="button" style="height: 35px;">
-                            <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/<?php echo Yii::app()->language ?>.png" width="22"/> <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu arrow_box" role="menu" style="position: absolute !important;
-                            top: 45px;
-                            right: -65px;
-                            left: inherit;
-                            background-color: white;
-                            border: 1px solid transparent;
-                            -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-                            box-shadow: 0 6px 12px rgba(0,0,0,.175);">
-                            <li><a href="javascript:;" class="col-xs-12" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
-                            <li><a href="javascript:;" class="col-xs-12" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
-                        </ul>
-                    </li>
-            </ul>
+                    </div>
+                <li>
+            <?php } ?>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle padding-10 text-white margin-top-5 margin-left-5" 
+                    data-toggle="dropdown" role="button" style="height: 35px;">
+                    <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/<?php echo Yii::app()->language ?>.png" width="22"/> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu arrow_box" role="menu" style="position: absolute !important;
+                    top: 45px;
+                    right: -65px;
+                    left: inherit;
+                    background-color: white;
+                    border: 1px solid transparent;
+                    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+                    box-shadow: 0 6px 12px rgba(0,0,0,.175);">
+                    <li><a href="javascript:;" class="col-xs-12" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
+                    <li><a href="javascript:;" class="col-xs-12" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->

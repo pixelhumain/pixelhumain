@@ -1256,6 +1256,29 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"All cities with this postal code" => "Toutes les villes avec ce code postal",
 	"On the map"=> "Sur la carte",
 	
+	"services" => "services",
+	"circuits" => "circuits",
+	"products" => "products",
+
+	"Shopping cart" => "Panier",
+	
+	"Checkout" => "Payer",
+	"Continue" => "Continuer",
+	"Total of your order" => "Total de votre panier",
+
+	"My infos" => "Mes infos",
+	"My messages" => "Messages",
+	"My circuits" => "Circuits",
+	"Invoice" => "Factures",
+
+	"Leave your comment" => "Laissez votre commentaire",
+	"Your comment" => "Votre commentaire",
+	"Show programmation" => "Voir le programme",
+	"Price of this command" => "Prix de cette commande",
+	"purchase" => "achat",
+
+	"Continue this cart" => "Continuer mes achats",
+	"Delete" => "Effacer"
 
 );
 ?>

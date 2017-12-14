@@ -299,7 +299,7 @@ left: 35%;
     animation: lds-dual-ring_reverse 2s linear infinite;
 }
 header .container, .header .container {
-    padding: 88px 0px 0px 0px;
+    padding: 99px 0px 0px 0px;
     /* padding-bottom: 70px; */
     margin: 0px;
     width: 100%;
@@ -430,7 +430,7 @@ header .container, .header .container {
   } 
 
   .searchEntity{
-  	height:300px;
+  	height:370px;
     padding: 0px !important;
     margin: 0px !important;
     /*border-top: solid rgba(128, 128, 128, 0.2) 1px;*/
@@ -492,7 +492,7 @@ header .container, .header .container {
 }
 #openModal{
     top: 100px;
-	background-color: transparent;
+	background-color: #FFF;
 	z-index: 100;
 }
 #openModal .modal-content{
@@ -570,6 +570,12 @@ header .container, .header .container {
     position: absolute;
     left: -31px;
     top: 93px;
+}
+
+
+.circuits .entityDescription{
+    max-height: 100px;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 1024px) {

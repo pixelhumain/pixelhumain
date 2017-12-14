@@ -349,11 +349,12 @@ function saveCommentRating(textComment, parentCommentId,contextId,contextType,ra
     }else{
       var html = '<div class="col-xs-12 no-padding margin-top-5 item-comment bg-white-comment">'+
                    '<div style="" class="ctnr-txtarea">'+
-                      '<textarea id="textarea-new-comment'+orderId+'" rows="1" style="height:1em;" class="form-control textarea-new-comment margin-bottom-10" '+ 
-                        ' placeholder="Your comment..."></textarea>'+
+                      '<textarea id="textarea-new-comment'+orderId+'" rows="1" style="height:1em;" '+
+                        'class="form-control textarea-new-comment margin-bottom-10" '+ 
+                        ' placeholder="'+trad["Your comment"]+'..."></textarea>'+
                       '<input type="hidden" id="argval" value=""/>'+
                       '<input type="hidden" id="rate'+orderId+'" value=""/>'+
-                      '<div class="br-wrapper br-theme-fontawesome-stars">'+
+                      '<div class="br-wrapper br-theme-fontawesome-stars pull-left">'+
                         '<select id="ratingComments'+orderId+'" class="">'+
                           '<option value="1">1</option>'+
                           '<option value="2">2</option>'+
@@ -362,10 +363,10 @@ function saveCommentRating(textComment, parentCommentId,contextId,contextType,ra
                           '<option value="5">5</option>'+
                         '</select>'+
                       '</div>'+
-                    '</div><br>'+
-                    '<a href="javascript:;" class="btn btn-success saveRating" data-id="'+orderId+'" data-item-id="'+orderedItemId+'" data-item-type="'+orderedItemType+'">'
+                    '</div>'+
+                    '<button class="btn btn-success saveRating pull-right" data-id="'+orderId+'" data-item-id="'+orderedItemId+'" data-item-type="'+orderedItemType+'">'
                       +tradDynForm.submit+
-                    '</a>'+
+                    '</button>'+
                   '</div>';
     }
     $("#content-comment-"+orderId).html(html).show();

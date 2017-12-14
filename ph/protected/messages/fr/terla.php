@@ -8,5 +8,7 @@
 		"Date of travel" => "Date du voyage",
 		"Adapted time" => "Temps adapté",
 		"Show" => "Voir",
+		"Portal administor" => "Portail administrateur",
+		"My Dashboard" => "Mon tableau de bord"
 	); 
 ?>
