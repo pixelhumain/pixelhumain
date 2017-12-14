@@ -50,7 +50,7 @@ src: url('../../vendor/fonts/Homestead/Homestead-Display.ttf');
 }
 
 body.modal-open{
-	overflow: visible!important;
+	/*overflow: visible!important;*/
 }
 
 .colorpicker{
