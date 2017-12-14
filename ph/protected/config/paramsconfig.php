@@ -98,6 +98,7 @@ $params = array(
     'rocketAdminPwd' => '',
     "adminLoginToken" => "",
     "adminRocketUserId" => "",
+    "chemin" => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."modules".DIRECTORY_SEPARATOR,
 
     /*"front" => array (
         "organization" => true,
@@ -112,5 +113,13 @@ $params = array(
     )*/
   );
 
+if( !empty($overwriteList) && in_array($params["theme"], $overwriteList["modules"])){
+    $pathOverwrite = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."modules".DIRECTORY_SEPARATOR.$params["theme"]. '/config/overwrite.php';
+    require_once($pathOverwrite);
+    $params["overWrite"] = $overWrite;
+}
+    
 
 $modulesDir = '/../../../../modules/';
+
+

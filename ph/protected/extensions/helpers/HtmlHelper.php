@@ -34,11 +34,11 @@ class HtmlHelper {
         foreach ($files as $file) {
             $extention = pathinfo($file,PATHINFO_EXTENSION);
             if ($extention == "js" || $extention == "JS") {
-                $file = $file."?v=".Yii::app()->params["version"] ;
+                $fileVersion = $file."?v=".Yii::app()->params["version"] ;
                 if($ajaxRequest){
-                    echo CHtml::scriptFile($path.$file);
+                    echo CHtml::scriptFile($path.$fileVersion);
                 } else {
-                    $cs->registerScriptFile($path. $file , CClientScript::POS_END, array(), 2);
+                    $cs->registerScriptFile($path. $fileVersion , CClientScript::POS_END, array(), 2);
                 }
             } else if ($extention == "css" || $extention == "CSS") {
                 if($ajaxRequest){
@@ -50,6 +50,38 @@ class HtmlHelper {
                 //unknown extension
                 throw new InvalidArgumentException("unkonw file extension : ".$extention);
             }
+        }
+        return true;
+    }
+
+    public static function registerCssAndScriptsFilesOverwrite() {
+        if(!empty(Yii::app()->params["overWrite"])){
+            $cs = Yii::app()->getClientScript();
+            $path = Yii::app()->getModule('terla')->getAssetsUrl()."/";
+            $ajaxRequest = Yii::app()->request->isAjaxRequest;
+            foreach (Yii::app()->params["overWrite"]["assets"] as $key => $file) {
+                $extention = pathinfo($file,PATHINFO_EXTENSION);
+                if ($extention == "js" || $extention == "JS") {
+                    $file = $file."?v=".Yii::app()->params["version"] ;
+                    if($ajaxRequest){
+                        echo CHtml::scriptFile($path.$file);
+                    } else {
+                        $cs->registerScriptFile($path. $file , CClientScript::POS_END, array(), 2);
+                    }
+                }
+                else if ($extention == "css" || $extention == "CSS") {
+                    if(file_exists ( $path.$file ) ) {
+                        if($ajaxRequest){
+                            echo CHtml::cssFile($path.$file);
+                        } else {
+                            $cs->registerCssFile($path.$file);
+                        }
+                    }
+                } else {
+                    //unknown extension
+                    throw new InvalidArgumentException("unkonw file extension : ".$extention);
+                }
+            } 
         }
         return true;
     }

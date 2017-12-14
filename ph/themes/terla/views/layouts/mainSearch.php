@@ -274,7 +274,6 @@
             });
             console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
         </script>
-
     </body>
 
 </html>

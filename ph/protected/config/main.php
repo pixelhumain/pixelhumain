@@ -1,7 +1,9 @@
 <?php
 require_once(dirname(__FILE__) . '/dbconfig.php');
+require_once(dirname(__FILE__) . '/overwrite.php');
 require_once(dirname(__FILE__) . '/paramsconfig.php');
 require_once(dirname(__FILE__) . '/moduleconfig.php');
+
 
 // uncomment the following to define a path alias
 Yii::setPathOfAlias('Json',dirname(__FILE__) . '/../extensions/Json');
