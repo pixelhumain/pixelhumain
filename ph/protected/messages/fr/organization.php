@@ -44,7 +44,7 @@
 		"A citizen ask to become contributor of" => "Un citoyen demande à devenir contributeur de",
 		//Delete organization
 		"This action is permanent and will close this Organization (Removed from search engines, and lists) !" => "Cette action est permanente et va supprimer cette organisation (elle ne sera plus présente dans la recherche, ni dans aucune liste) !",
-		"Are you sure you want to delete the organization : " => "Etes vous sur(e) de vouloir supprimer l'organisation : ",
+		"Are you sure you want to delete the organization : " => "Êtes vous sur·e de vouloir supprimer l'organisation : ",
 		"DISABLED" => "DESACTIVEE",
 		"Organization disabled !" => "L'organisation n'est plus active !",
 		"The organization has been updated" => "L'organisation a été mise à jour",
