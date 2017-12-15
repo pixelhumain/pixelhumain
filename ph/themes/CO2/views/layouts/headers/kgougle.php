@@ -37,9 +37,6 @@
 
     }
 
-    .menu-btn-back-category{
-        cursor: default!important;
-    }
 
     @media (max-width: 768px) {
         .link-submenu-header span{
