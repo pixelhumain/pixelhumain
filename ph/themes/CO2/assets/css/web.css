@@ -142,9 +142,10 @@
         display: inline;
     }
 
-    .el-dirMin .tags{
-        margin: -14px 0 0px 0;
+    .el-dirMin .el-tags{
+        margin: -10px 0 -1px 6px;
         max-width: 70%;
+        min-width: 70%;
     }
     .el-dirMin small.letter-red{
         margin: 0px 5px 5px 2px;
