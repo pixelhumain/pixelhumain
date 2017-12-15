@@ -1,0 +1,146 @@
+    #sectionSearchResults{
+        min-height:700px;
+        /*margin-left:80px;*/
+        padding-bottom:50px;
+    }
+    #sub-menu-left {
+        margin-top: 207px;
+        text-align: right;
+    }
+
+    #mainCategories .portfolio .portfolio-item{
+        height:100px;
+    }
+
+    #btn-onepage-main-menu{
+        position: fixed;
+        top:110px;
+        left:20px;
+        border-radius: 1px;
+        letter-spacing: 2px;
+        border:2px solid white;
+        border-radius:100px;
+        height:40px;
+        /*width:60px;*/
+    }
+
+    .siteurl_title{
+        font-size:17px!important;
+    }
+    .siteurl_hostname{
+        font-size:14px!important;
+    }
+    .siteurl_desc{
+        font-size:13px!important;
+        color:#606060;
+    }
+    .portfolio.p1{
+        padding-top:20px;
+    }
+
+    .btn-fast-access{
+        font-size: 24px;
+    }
+
+    #section-fav{
+        max-height: 50px;
+        overflow: hidden;
+    }
+
+    #sub-menu-left{
+        margin-top: 207px;
+        text-align: right;
+    }
+
+    #main-btn-referencement{
+        padding-top: 8px;
+    }
+
+
+    #sub-menu-right{
+        margin-top: 130px;
+        /*text-align: right;*/
+    }
+
+    #resLilo, #resEcosia{
+        padding-top:20px;
+    }
+    #resLilo .result a,
+    #resEcosia a.result-title.js-result-title{
+        color: #4285f4;
+        font-size: 16px;
+    }
+    #resLilo .result .resulturl,
+    a.result-url.js-result-url{
+        color: #34a853;
+        font-size: 14px;
+        display: block;
+    }
+
+    #resEcosia p.result-snippet,
+    #resLilo .resultthumbnail {
+        font-size: 13px !important;
+        color: #606060;
+    }
+    
+    #resLilo .result,
+    #resEcosia .result.js-result.card-mobile{
+        margin-bottom:25px;
+    }
+
+    #resLilo .addivwhite.top,
+    #resLilo h2,
+    #resLilo .news,
+    #resLilo .searchmore,
+    #resLilo .related-searches,
+    #resLilo .images,
+    #resLilo .image,
+    #resLilo nav,
+    #resLilo .wordcorrection,
+
+    #resEcosia .card-title-result-count,
+    #resEcosia .card-query-context,
+    #resEcosia .disclaimer,
+    #resEcosia .pagination,
+    #resEcosia .card-top-ad,
+    #resEcosia .col-md-12,
+    #resEcosia .videos {
+        display: none;
+    }
+
+    .btn-link.bg-blue-k:focus, .btn-link.bg-blue-k:hover{
+        color:white;
+    }
+
+    .searchEntityContainer{
+        width:100%!important;
+    }
+
+    .mysearch{
+        text-transform: none!important;
+    }
+
+    
+    @media screen and (max-width: 1024px) {
+        #mainCategories .portfolio .portfolio-item{
+            height: 110px;
+        }
+        #mainCategories .portfolio .portfolio-item button.portfolio-link{
+            margin-top: 15px;
+        }
+    }
+
+    @media (max-width: 767px) {
+
+        .category-search-link h4{
+            font-size: 0.8em;
+        }
+        #mainCategories h3{
+            font-size: 1.3em;
+        }
+        #sub-menu-left {
+            margin-top: 5px;
+            padding:15px;
+            text-align: left;
+        }
+    }

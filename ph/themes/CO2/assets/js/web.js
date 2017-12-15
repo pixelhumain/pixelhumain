@@ -303,6 +303,8 @@ function searchLilo(search){
             timeout:10000,
             success:
                 function(data) {
+                    $("#resLilo").html("<i class='fa fa-ban'></i> Aucun résultat<br><br>");
+                    
                     var tempDom = $('<output1>').append($.parseHTML(data));
                     var res = $('.gsc-wrapper#results', tempDom).html();
                     
@@ -318,7 +320,14 @@ function searchLilo(search){
                         var url = $(this).attr("href");
                         addUrlSuggestion(url);
                     });
-            }
+            },
+            error:
+                function(data){
+                    $("#resLilo").html("<i class='fa fa-ban'></i> Une erreur est survenue<br><br>");
+                    $("#resLilo").append("<a class='btn btn-link bg-blue-k' target='_blank' href='https://search.lilo.org/searchweb.php?q="+search+"'>"+
+                                            "<i class='fa fa-chevron-circle-right'></i> Continuer la recherche sur Lilo"+
+                                         "</a>");
+                }
     });
 }
 
@@ -334,6 +343,8 @@ function searchEcosia(search){
             timeout:10000,
             success:
                 function(data) {
+                    $("#resEcosia").html("<i class='fa fa-ban'></i> Aucun résultat<br><br>");
+                    
                     var tempDom = $('<output2>').append($.parseHTML(data));
                     var res = $('.container.results .mainline', tempDom).html();
                     var adds = $('.container.results .sidebar.card-desktop', tempDom).html();
@@ -353,7 +364,14 @@ function searchEcosia(search){
                         addUrlSuggestion(url);
                     });
                     
-            }
+            },
+            error:
+                function(data){
+                    $("#resEcosia").html("<i class='fa fa-ban'></i> Une erreur est survenue<br><br>");
+                    $("#resEcosia").append("<a class='btn btn-link bg-blue-k' target='_blank' href='https://www.ecosia.org/search?q="+search+"'>"+
+                                            "<i class='fa fa-chevron-circle-right'></i> Continuer la recherche sur Ecosia"+
+                                           "</a>");
+                }
     });
 }
 
