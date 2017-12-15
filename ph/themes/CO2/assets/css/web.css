@@ -120,6 +120,10 @@
         text-transform: none!important;
     }
 
+
+    .menu-btn-back-category:hover{
+        color:#0095FF !important;
+    }
     
     @media screen and (max-width: 1024px) {
         #mainCategories .portfolio .portfolio-item{

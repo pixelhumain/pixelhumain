@@ -581,7 +581,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 }
 .elemt_img img{
-    min-height: 50px;
+    min-height: 60px;
 }
 
 .elemt_img .img-responsive{
