@@ -10,6 +10,7 @@
 		"Contribute"=>"Contribuer",
 		"Member ( 1€/month )"=>"Membre ( 1€/mois )",
 		"Sponsor ( 50€/month )"=>"Sponsor ( 50€/mois )",
+		"Make a donation"=>"Faire un don",
 	);
 
 ?>
