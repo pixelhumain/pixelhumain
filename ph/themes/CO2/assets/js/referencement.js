@@ -2,6 +2,8 @@
 
 function preLoadAddress(hide, localityId, country, insee, city, postalCode, lat, lng, street){
 
+    console.log("preLoadAddress", hide, localityId, country, insee, city, postalCode, lat, lng, street);
+    
     if(country != "")   { formInMap.NE_country = country; }
     if(insee != "")     { formInMap.NE_insee = insee; }
     if(city != "")      { formInMap.NE_city = city; }
