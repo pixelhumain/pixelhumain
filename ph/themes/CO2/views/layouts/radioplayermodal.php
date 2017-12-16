@@ -126,7 +126,8 @@
 
                                     <h3 class="text-white">Local</h3>
 
-                                    <button class="btn-radioplay" data-src="http://radiodjiido.nc:8002/;stream.mp3?_=1" data-src-title="Djiido">
+                                    <button class="btn-radioplay" data-src=" http://djiido.knc.nc:8000/;stream.mp3?_=1"
+                                            data-src-title="Djiido">
                                         <img class="img-circle" src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/djiido.png">
                                     </button>
                                     <button class="btn-radioplay" data-src="http://radio.oceanefm.nc:8000/oceanenc" data-src-title="OceaneFM">
