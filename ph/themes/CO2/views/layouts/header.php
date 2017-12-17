@@ -151,6 +151,13 @@
                 </div>
             </div>
         <?php } ?>
+
+        <?php 
+            if($subdomain == "freedom"){ 
+                $this->renderPartial($layoutPath.'headers/dayQuestion', array());
+            } 
+        ?>
+
     </header>
 
     <?php

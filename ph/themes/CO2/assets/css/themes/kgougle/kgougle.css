@@ -8,7 +8,11 @@
 
 
 header, .header {
-  background-image: url("../../../img/background-onepage/pattern/witewall_3.png");
+  	background-image: url("../../../img/background-onepage/pattern/witewall_3.png");
+}
+.label-qdj{
+    background-image: url("../../../img/background-onepage/pattern/wave.jpg");
+    background-repeat: repeat;
 }
 
 .link-submenu-header{
@@ -133,6 +137,48 @@ button#open-rocketChat{
 }
 
 
+
+
+.btn-star-fav {
+    font-size: 20px;
+    margin-top: 2px;
+}
+.navbar-header .nc_map {
+    margin: 10px 5px 0 -10px;
+}
+.affix .navbar-header .nc_map {
+    margin: 15px 10px 0 -15px;
+}
+#btn-sethome, #btn-apropos, #btn-radio{
+    background-color: transparent !important;
+    border:transparent;
+}
+#btn-sethome:hover, #btn-apropos:hover{
+    color:white!important;
+    background-color: #ea4335 !important;
+    border:transparent;
+}
+.menu-btn-back-category{
+    cursor:pointer;
+}
+
+a.text-dark.link-submenu-header {
+    color : #ea4335 !important;
+    padding-bottom: 5px;
+}
+
+a.link-submenu-header.active, 
+a.link-submenu-header:hover, 
+a.link-submenu-header:active, 
+a.link-submenu-header:focus{  
+    border-bottom: 2px solid #ea4335;
+    text-decoration: none;
+    /*background-color: rgba(255, 255, 255, 1);
+    color:#ea4335 !important;
+    text-decoration: none;*/
+}
+
+
 @media (max-width: 992px) {
 
     header .container{
@@ -164,6 +210,7 @@ button#open-rocketChat{
 
 	header img{
 		height: 45px;
+		margin-top:0px;
 	}
 
 	.affix .navbar-header .nc_map{
@@ -176,7 +223,61 @@ button#open-rocketChat{
 	.link-submenu-header{
 		margin-bottom: 20px;
 		display: inline-block;
-		font-size: 15px;
+		font-size: 12px;
 	}
 
+
+	.affix .navbar-header img.nc_map{
+		margin-top: 7px;
+		margin-left: -5px !important;
+	}
+
+	.logo-menutop.visible-xs{
+		margin-left: -5px !important;
+	}
+
+
+	.menu-name-profil{
+		padding: 8px 0 0 0px;
+	}
+	.navbar-custom{
+		padding: 3px 0;
+	}
+
+	#ajax-modal .form-group, 
+	#ajax-modal .form-actions{
+		margin-left: 0% !important;
+		width: 100% !important;
+		min-width: unset !important;
+	}
+
+	h3#ajax-modal-modal-title{
+		font-size:12px;
+	}
+
+	#ajax-modal .modal-header{
+		width: 100% !important;
+		margin-left: 0% !important;
+	}
+
+	.sigModuleBg #right_tool_map{
+		display: block !important;
+		position: absolute !important;
+		top: 65% !important;
+		bottom: 0px;
+		width: unset !important;
+		left: 0px !important;
+		right: 0px !important;
+		height: unset !important;
+		min-width: unset;
+	}
+
+	#right_tool_map_locality .right_tool_map_header,
+	#sumery h4, 
+	#sumery #cp_sumery,
+	#sumery #country_sumery,
+	#sumery #city_sumery,
+	.form-in-map hr{
+		display: none !important;
+	}
 }
