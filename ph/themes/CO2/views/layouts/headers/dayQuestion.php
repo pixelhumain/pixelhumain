@@ -114,6 +114,11 @@
                 style="text-transform: none!important;">
                 <i class="fa fa-hashtag"></i>moiKgou2018
         </button>
+        <button class="btn btn-link bg-white letter-red font-montserrat tooltips" id="btn-clear-search-tag" 
+                data-original-title="Désactiver le filtre par tag"
+                >
+            <i class="fa fa-times"></i>
+        </button>
     </span>
     <br><hr>
 </h2>
@@ -199,6 +204,15 @@
                         </b>
                     </p>
 
+                    <h2 class="letter-yellow no-margin text-left font-blackoutT" style="">
+                        COMMENT PARTICIPER ?
+                    </h2>
+                    <br>
+                    <p>
+                        La seule condition pour participer à <b class="letter-blue"><i>La Kestion du jour</i></b> 
+                        est d'être inscrit sur KGOUGLE.nc
+                    </p>
+
                 </div>
             </div>
             <div class="row">
@@ -209,15 +223,39 @@
 </div>
 
 <script>
-    
+
+var tagQDJ = null;
+
 jQuery(document).ready(function() {
     $(".btn-introQ").click(function(){
+        showFormBlock(false);
         KScrollTo("#container-scope-filter");
+        showFormBlock(true);
+        $("#form-news #tags").select2("val",new Array($("#btn-start-filter-qdj").data("tag")));
     });
 
+    $("#btn-clear-search-tag").addClass("hidden");
+
     $("#btn-start-filter-qdj").click(function(){
+        //$(".tooltips").tooltip();  
+        $(".tooltip.fade.in").remove();
+        $("#btn-clear-search-tag").removeClass("hidden");
         var tag = $(this).data("tag");
-        $("#second-search-bar").val(tag);
+        $("#second-search-bar, #main-search-bar").val(tag);
+        tagQDJ = $("#btn-start-filter-qdj").data("tag");
+        startNewsSearch(true);
+        KScrollTo("#container-scope-filter");
+
+        // setTimeout(function(){
+        //     $("#form-news #tags").select2("val",new Array(tag));
+        // } , 4000);
+    });
+
+    $("#btn-clear-search-tag").show().click(function(){
+        $("#second-search-bar, #main-search-bar").val("");
+        $("#btn-clear-search-tag").addClass("hidden");
+        $("#tags").val("");
+        tagQDJ = null;
         startNewsSearch(true);
         KScrollTo("#container-scope-filter");
     });
