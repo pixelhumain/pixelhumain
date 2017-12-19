@@ -115,11 +115,14 @@
                 
 
                 <label for="remember" class="checkbox-inline">
-                    <input type="checkbox" id="remember" name="remember">
+                    <input type="checkbox" id="remember" name="remember" checked="checked">
                     Se souvenir de moi
                 </label>
 
-                <button class="btn btn-success pull-right loginBtn" type="submit"><i class="fa fa-sign-in"></i> Se connecter</button><br><br>
+                <button class="btn btn-success pull-right loginBtn" type="submit">
+                    <i class="fa fa-sign-in"></i> Se connecter
+                </button>
+                <br><br>
   
                 <div class="form-actions col-md-12 no-padding" style="margin-top:20px;">
                     <div class="errorHandler alert alert-danger no-display loginResult">
