@@ -106,12 +106,11 @@
     var indexStepInit = 5;
 
 jQuery(document).ready(function() {
-    $(".menu-btn-start-search").click(function(){
-        
-        loadingData = false;
-        startSearchTerla(0, indexStepInit);
-
-    });
+    // $(".menu-btn-start-search").click(function(){
+    //     loadingData = false;
+    //     startSearchTerla(0, indexStepInit);
+    // });
+    initSearchInterface();
 });
 
 </script>
