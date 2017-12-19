@@ -217,7 +217,7 @@
 
 jQuery(document).ready(function() {
 
-
+	initSearchInterface();
 });
 
 </script>

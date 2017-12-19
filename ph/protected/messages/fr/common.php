@@ -1278,7 +1278,15 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"purchase" => "achat",
 
 	"Continue this cart" => "Continuer mes achats",
-	"Delete" => "Effacer"
+	"Delete" => "Effacer",
+
+	"Sleeping" 			=> "Pour dormir",
+	"Restaurant" 		=> "Restaurant",
+	"Funny activity" 	=> "Activité",
+	"Transport" 		=> "Transport",
+	"Uncredible site" 	=> "Site incroyable",
+	"Artisants" 		=> "Artisant",
+	"Guide and helper" 	=> "Guide et accompagnateur",
 
 );
 ?>
