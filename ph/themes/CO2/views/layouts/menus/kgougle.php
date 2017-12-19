@@ -190,7 +190,7 @@ input#second-search-bar{
                                 <li role="separator" class="divider">
                                 </li>-->
                                 <li class="text-left">
-                                    <a href="<?php echo Yii::app()->createUrl('/'.$this->module->id.'/person/logout'); ?>" class="bg-white letter-red logout">
+                                    <a href="#" class="bg-white letter-red logout">
                                         <i class="fa fa-sign-out"></i> Déconnecter
                                     </a>
                                 </li>

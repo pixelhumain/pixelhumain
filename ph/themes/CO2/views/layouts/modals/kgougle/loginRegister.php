@@ -115,11 +115,14 @@
                 
 
                 <label for="remember" class="checkbox-inline">
-                    <input type="checkbox" id="remember" name="remember">
+                    <input type="checkbox" id="remember" name="remember" checked="checked">
                     Se souvenir de moi
                 </label>
 
-                <button class="btn btn-success pull-right loginBtn" type="submit"><i class="fa fa-sign-in"></i> Se connecter</button><br><br>
+                <button class="btn btn-success pull-right loginBtn" type="submit">
+                    <i class="fa fa-sign-in"></i> Se connecter
+                </button>
+                <br><br>
   
                 <div class="form-actions col-md-12 no-padding" style="margin-top:20px;">
                     <div class="errorHandler alert alert-danger no-display loginResult">
@@ -195,6 +198,7 @@
                     <span class="name" >
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
                     </span>
+                    <h4 class="letter-blue">Réseau social citoyen, gratuit, associatif et Open Source</h4>
                     <div class="col-md-12 text-dark">
                        <hr>
                         <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Partage de messages</label> 
@@ -204,7 +208,10 @@
                        <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Notifications</label> 
                        <hr>
                     </div>
-                    <h3 class="letter-red">Créer votre compte<br><i class="fa fa-angle-down"></i></h3>
+                    <h3 class="letter-blue">
+                        <i class="fa fa-plus-circle"></i>
+                        Créer votre compte<br><i class="fa fa-angle-down"></i>
+                    </h3>
                     <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
                     <!-- <p>Rejoindre la version co2<br/>Le commun avance, montez à bord !!<hr></p> -->
                 </div>
@@ -253,8 +260,12 @@
                     </div>
                 </div>
 
-                <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
-                <button class="btn btn-success text-white pull-right createBtn"><i class="fa fa-sign-in"></i> S'inscrire</button>
+                <button class="btn btn-success text-white pull-right createBtn">
+                    <i class="fa fa-sign-in"></i> S'inscrire
+                </button>
+                <button class="btn btn-danger pull-right" data-dismiss="modal">
+                    <i class="fa fa-times"></i> Retour
+                </button>
                 
                 
                 <div class="col-md-12 margin-top-50 margin-bottom-50"></div>

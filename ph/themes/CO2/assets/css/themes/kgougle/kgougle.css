@@ -8,7 +8,11 @@
 
 
 header, .header {
-  background-image: url("../../../img/background-onepage/pattern/witewall_3.png");
+  	background-image: url("../../../img/background-onepage/pattern/witewall_3.png");
+}
+.label-qdj{
+    background-image: url("../../../img/background-onepage/pattern/wave.jpg");
+    background-repeat: repeat;
 }
 
 .link-submenu-header{
@@ -173,7 +177,6 @@ a.link-submenu-header:focus{
     color:#ea4335 !important;
     text-decoration: none;*/
 }
-
 
 
 @media (max-width: 992px) {
