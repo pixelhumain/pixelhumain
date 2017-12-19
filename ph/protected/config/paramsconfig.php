@@ -92,12 +92,6 @@ $params = array(
     
 
     //rocketchat params
-    'rocketchatEnabled' => false,
-    'rocketchatURL' => 'https://chat.communecter.org',
-    'rocketAdmin' => 'contact@communecter.org',
-    'rocketAdminPwd' => '',
-    "adminLoginToken" => "",
-    "adminRocketUserId" => "",
     "chemin" => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."modules".DIRECTORY_SEPARATOR,
 
     /*"front" => array (

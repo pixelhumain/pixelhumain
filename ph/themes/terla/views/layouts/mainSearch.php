@@ -113,14 +113,13 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="intro-text">  
-
                                 <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"]); ?>
-                                    
                             </div>
                         </div>
                     </div>
                 </div>
             </header>
+            
             <div class="pageContent"></div>
         </div>
         
@@ -274,6 +273,15 @@
             });
             console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
         </script>
+
+        <?php 
+            if( @Yii::app()->params["rocketchatEnabled"] )
+                $this->widget( 'ext.widgets.chat.Chat' ,
+                    array(
+                        "host"=>"kiki"
+                    ) );  
+        ?>
+
     </body>
 
 </html>
