@@ -99,12 +99,6 @@
                                          array( "label"=>"Conditions générales de ventes",
                                                 "link" => "#info.p.cgv",
                                               ),
-                                         array( "label"=>"FAQ",
-                                                "link" => "#info.p.faq",
-                                              ),
-                                         array( "label"=>"Plan du site",
-                                                "link" => "#info.p.plan",
-                                              ),
                                         ),
                           ),
                    );
@@ -119,7 +113,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-left col-footer">
                         <h5><?php echo $foot["title"]; ?></h5>
                         <?php foreach($foot["links"] as $j => $link){ ?>
-                            <a href="<?php echo $link["link"]; ?>" class="lbhp text-white">
+                            <a href="<?php echo $link["link"]; ?>" class="lbh text-white">
                                 <i class="fa fa-angle-right"></i> <?php echo $link["label"]; ?>
                             </a><br>
                         <?php } ?> 
@@ -128,7 +122,7 @@
 
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-footer hidden-xs">
                     <h5>Nous suivre</h5>
-                    <small><small>Nous sommes présents sur ces réseaux sociaux :</small></small>
+                    <small>Nous sommes présents sur ces réseaux sociaux :</small>
                     <ul class="list-inline">
                         <li>
                             <a href="https://www.facebook.com/communecter" target="_blank" 
