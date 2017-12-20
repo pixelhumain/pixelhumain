@@ -118,6 +118,7 @@
                     <input type="checkbox" id="remember" name="remember" checked="checked">
                     Se souvenir de moi
                 </label>
+                <small>Mot de passe crypté dans les cookies</small>
 
                 <button class="btn btn-success pull-right loginBtn" type="submit">
                     <i class="fa fa-sign-in"></i> Se connecter

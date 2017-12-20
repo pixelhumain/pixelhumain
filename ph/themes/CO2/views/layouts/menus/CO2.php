@@ -291,18 +291,19 @@
                 <?php } else { ?>
                     
                     <li class="pull-right">
-                        <?php if($subdomain != "welcome"){ ?>
+                        <?php //if($subdomain != "welcome"){ ?>
                             <button class="letter-green font-montserrat btn-menu-connect margin-left-10" 
                                     data-toggle="modal" data-target="#modalLogin">
-                                <span><i class="fa fa-sign-in"></i> <span class="hidden-xs hidden-sm"><?php echo Yii::t("login", "LOG IN") ?></span>
+                                    <i class="fa fa-sign-in"></i> 
+                                    <span class="hidden-xs hidden-sm"><?php echo Yii::t("login", "LOG IN") ?></span>
                             </button>
-                        <?php } else { ?>
-                            <div class="hidden-xs hidden-sm append-md-login">
-                            <?php   $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-                                    $this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.login'); 
+                        <?php //} else { ?>
+                            <!-- <div class="hidden-xs hidden-sm append-md-login"> -->
+                            <?php   //$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+                                    //$this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.login'); 
                             ?>
-                            </div>
-                        <?php } ?>
+                            <!-- </div> -->
+                        <?php //} ?>
                     </li>
 
                 <?php } ?>
