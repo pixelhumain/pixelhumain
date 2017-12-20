@@ -343,7 +343,6 @@
 
 			'/assets/js/sly/jquery.easing.1.3.js',
 			'/assets/js/sly/sly.min.js',
-			'/assets/js/sly/sly.js',
 			'/assets/css/styles.css',
 			'/assets/css/styles-responsive.css',
 			'/assets/css/plugins.css',
@@ -595,7 +594,7 @@
 				$.each(genresType, function(i, tag) {
 					val={id:tag,text:tag};
 					genresTypeData.push(val);
-					genresHtml+='<a href="javascript:directory.showAll(\'.favSection\',\'.searchPoiContainer\');directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag)+'Btn" data-tag="'+slugify(tag)+'">'+tag+'</a><br>';
+					genresHtml+='<a href="javascript:addItemsToSly(\''+slugify(tag)+'\')" class="favElBtn '+slugify(tag)+'Btn" data-tag="'+slugify(tag)+'">'+tag+'</a><br>';
 				});
 				$(".genresList").append(genresHtml);
 
@@ -604,7 +603,7 @@
 				$.each(collectionsType, function(i, tag2) {
 					val2={id:tag2,text:tag2};
 					collectionsTypeData.push(val2);
-					collectionsHtml+='<a href="javascript:directory.showAll(\'.favSection\',\'.searchPoiContainer\');directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag2)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag2)+'Btn" data-tag="'+slugify(tag2)+'">'+tag2+'</a><br>';
+					collectionsHtml+='<a href="javascript:addItemsToSly(\''+slugify(tag2)+'\')" class="favElBtn '+slugify(tag2)+'Btn" data-tag="'+slugify(tag2)+'">'+tag2+'</a><br>';
 				});
 				$(".collectionsList").append(collectionsHtml);
 

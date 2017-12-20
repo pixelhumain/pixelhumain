@@ -9,83 +9,59 @@
 <?php  HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuTop.css'), Yii::app()->theme->baseUrl);
 	$topList = Poi::getPoiByTagsAndLimit();
 	$tagsPoiList = array();
+
+	shuffle($topList);
+	foreach ($topList as $key => $elem)
+	{
+		if(@$elem["tags"]){
+			foreach($elem["tags"] as $tagKey => $val){
+				$topList[$key]["tags"][$tagKey] = strtolower( InflectorHelper::slugify2( $val ));
+				if(!in_array($val,Poi::$collectionsList) && !in_array($val,Poi::$genresList)){
+					$found = false;
+					foreach ($tagsPoiList as $ix => $value) {
+						if($value["text"] == $val)
+							$found = $ix;
+					}
+					if ( !$found )
+						array_push($tagsPoiList,array(
+								"text"=>$val,
+								"weight"=>1,
+								"link"=>array(
+									"href" => 'javascript:addItemsToSly("'.InflectorHelper::slugify2($val).'")',
+									"class" => "favElBtn ".InflectorHelper::slugify2($val)."Btn",
+									"data-tag" => InflectorHelper::slugify2($val)
+								)
+							)
+						);
+					else
+						$tagsPoiList[$found]["weight"]++;
+				}
+			}
+		}
+		if(@$elem["medias"] && @$elem["medias"][0]["content"]["image"] && !empty($elem["medias"][0]["content"]["image"])){
+			$topList[$key]["profilExternImageUrl"] = str_replace("1280x720","720x720",$elem["medias"][0]["content"]["image"]);
+		}	else {
+			$topList[$key]["profilExternImageUrl"] = $this->module->assetsUrl."/images/thumbnail-default.jpg";
+		}
+
+		$topList[$key]["typeSig"] = "poi";
+		$topList[$key]["href"] = "#element.detail.type.".Poi::COLLECTION.".id.".(string)$elem["_id"];
+		if (@$elem["description"]){
+			$topList[$key]["description"]=strip_tags($elem["description"]);
+			if(strlen ( $topList[$key]["description"]) > 80)
+				$topList[$key]["description"] = mb_substr( $topList[$key]["description"], 0, 80)."...";
+		} else
+			$topList[$key]["description"]= "<i>Pas de description sur cette production</i>";
+	}
 ?>
 
 <div class="col-xs-12 main-top-menu no-padding"  data-tpl="default.menu.menuTop" <?php if (empty($topList)) { ?> style="height:50px !important;" <?php } ?>>
-
 	<?php if (!empty($topList)) { ?>
 	<div class="col-xs-12 no-padding main-gallery-top" >
 		<div class="pull-left frame" id="cycleitems" >
 			<ul class="slidee">
-		<?php
-		shuffle($topList);
-		foreach ($topList as $key => $data)
-		{
-			if(@$data["tags"]){
-				foreach($data["tags"] as $val){
-					if(!in_array($val,Poi::$collectionsList) && !in_array($val,Poi::$genresList)){
-						$found = false;
-						foreach ($tagsPoiList as $ix => $value) {
-							if($value["text"] == $val)
-								$found = $ix;
-						}
-						if ( !$found )
-							array_push($tagsPoiList,array("text"=>$val,
-														  "weight"=>1,
-														  "link"=>array(
-														  	"href" => 'javascript:directory.showAll(".favSection",".searchPoiContainer");javascript:directory.toggleEmptyParentSection(".favSection",".'.InflectorHelper::slugify2($val).'",".searchPoiContainer",1)',
-															"class" => "favElBtn ".InflectorHelper::slugify2($val)."Btn",
-															"data-tag" => InflectorHelper::slugify2($val)
-														  	)) );
-						else
-							$tagsPoiList[$found]["weight"]++;
-					}
-				}
-			}
-			if(@$data["medias"] && @$data["medias"][0]["content"]["image"] && !empty($data["medias"][0]["content"]["image"])){
-				$src = str_replace("1280x720","720x720",$data["medias"][0]["content"]["image"]);
-				$topList[$key]["profilExternImageUrl"] = $src;
-			}
-			else {
-				$src = $this->module->assetsUrl."/images/thumbnail-default.jpg";
 
-			}
-
-			$topList[$key]["typeSig"] = "poi";
-
-			$name = $data["name"];
-			$tags = "";
-			if (@$data["tags"]){
-				foreach ($data["tags"] as $t ) {
-					$tags .= " ".strtolower( InflectorHelper::slugify2( $t ) );
-				}
-			}
-			$href = "#element.detail.type.".Poi::COLLECTION.".id.".(string)$data["_id"];
-		?>
-			<li class="searchPoiContainer <?php echo $tags ?>">
-				<span class="item-galley-top">
-					<a href="<?php echo $href ?>" class="lbh">
-						<img src="<?php echo $src ?>" class="img-galley-top">
-					</a>
-				</span>
-				<span class="description-poi" style="display:none;">
-					<h3><?php echo $data["name"]; ?></h3>
-					<?php if (@$data["description"]){
-						$description=strip_tags($data["description"]);
-						if(strlen ( $description) > 80)
-							$description=substr($description, 0, 80)."[...]";
-						} else
-							$description= "<i>Pas de description sur cette production</i>";
-					?>
-					<span class="poiTopDescription"><?php echo $description ?></span>
-					<a href="<?php echo $href ?>" class="btn btn-dark-grey lbh">
-						Voir la réalisation
-					</a>
-				</span>
-			</li>
-	<?php
-		} ?>
-	</ul>
+			</ul>
 		</div>
 	</div>
 	<?php } ?>
@@ -153,13 +129,70 @@
 		$(".btn-menu-top").removeClass("active");
 		thisJQ.addClass("active");
 	}
-	jQuery(document).ready(function() {
+	var slyOptions = {
+		slidee : '.slidee',
+		horizontal: 1,
+		itemNav: 'centered',
+		smart: 1,
+		activateOn: 'click',
+		mouseDragging: 1,
+		touchDragging: 1,
+		releaseSwing: 1,
+		startAt: 0,
+		//scrollBar: $wrap.find('.scrollbar'),
+		scrollBy: 1,
+		speed: 300,
+		elasticBounds: 1,
+		//easing: 'easeOutExpo',
+		dragHandle: 1,
+		dynamicHandle: 1,
+		clickBar: 1,
+
+		// Cycling
+		cycleBy: 'items',
+		cycleInterval: 1000,
+		pauseOnHover: 1,
+	}
+	
+	function addItemsToSly(tagFilter){
+		//removeAll
+		$(".slidee .searchPoiContainer").remove();
+		//filter topList
+		if(tagFilter){
+			var filteredTopList = topList.filter(item => item.tags.includes(tagFilter));
+		}
+		else {
+			var filteredTopList = topList;
+		}
+		//
+		for (var topElem of filteredTopList) {
+			var elem = '<li class="searchPoiContainer">' +
+				'<span class="item-galley-top">' +
+					'<a href="'+ topElem.href +'" class="lbh">' +
+						'<img src="'+ topElem.profilExternImageUrl +'" class="img-galley-top">' +
+					'</a>' +
+				'</span>' +
+				'<span class="description-poi" style="display: none;">' +
+					'<h3>'+ topElem.name + '</h3>' +
+					'<span class="poiTopDescription">' + topElem.description +'</span>' +
+					'<a href="' + topElem.href +' " class="btn btn-dark-grey lbh"> Voir la réalisation </a>' +
+				'</span>' +
+			'</li>';
+			
+			sly.add(elem);
+		}
+		sly.activate(0);
 		$(".searchPoiContainer").mouseenter(function(){
 			$(this).find(".description-poi").show();
 		}).mouseleave(function(){
 			$(this).find(".description-poi").hide();
 		});
+	}
 
+	jQuery(document).ready(function() {
+		sly = new Sly('#cycleitems', slyOptions).init(); 
+		addItemsToSly();
+		
 		//Sig.showMapElements(Sig.map, topList);
 	});
 </script>
