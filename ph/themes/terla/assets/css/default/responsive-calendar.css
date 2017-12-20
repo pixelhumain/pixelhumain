@@ -1,0 +1,156 @@
+.responsive-calendar{
+  background-color: rgb(42, 59, 68);
+  /*margin-top: 15px;*/
+}
+.responsive-calendar .controls {
+  text-align: center;
+  padding-left:15px;
+}
+.responsive-calendar .controls a {
+  cursor: pointer;
+}
+.responsive-calendar .controls a .btn{
+  height:40px;
+  width:40px;
+  border-radius:30px;
+}
+.responsive-calendar .controls h4 {
+  min-width: 145px;
+  text-align: center;
+  display: inline-block;
+}
+.responsive-calendar .day-headers,
+.responsive-calendar .days {
+  font-size: 0;
+}
+
+.responsive-calendar .day.header{
+  border-radius:0px;
+  height:35px;
+}
+.responsive-calendar .day {
+  display: inline-block;
+  position: relative;
+  font-size: 14px;
+  width: 14.285714285714286%;
+  height: 43px;
+  text-align: left;
+  border: 1px solid rgba(45, 45, 45, 0.83);
+  border-radius: 0px;
+  padding: 10px;
+  border-top: 0px;
+  border-right: 0px;
+}
+.responsive-calendar .day .dayNum {
+  color: #EAEAEA;
+  display: block;
+  cursor: pointer;
+  font-size: 17px;
+}
+.responsive-calendar .day a:hover {
+  background-color: #eee;
+  text-decoration: none;
+}
+.responsive-calendar .day.header {
+  border-bottom: 1px #4a4a4a solid;
+  background-color: rgba(0, 0, 0, 0.29);
+  color: white;
+  font-weight: 600;
+}
+.responsive-calendar .day.active {
+  background-color: #6c4b34;
+  bottom:0px;
+  z-index:1;
+  /*color: #ffffff;*/
+}
+.responsive-calendar .day.active .dropdown-menu {
+    top: 97%;
+}
+.responsive-calendar .day.active .btn{
+  position: absolute;
+  right: 4px;
+  border-radius: 30px;
+  top: 4px;
+}
+.responsive-calendar .day.active .not-current {
+  background-color: #8fcaef;
+  color: #ffffff;
+}
+.responsive-calendar .day.active .not-current:hover {
+  background-color: #bcdff5;
+}
+.responsive-calendar .day.not-current a {
+  color: #ddd;
+}
+.responsive-calendar .day .badge {
+  position: relative;
+  z-index: 1;
+  height: 14px;
+  width: 14px;
+  padding: 1px;
+  border-radius: 30px;
+  float: left;
+  margin: 2px;
+  margin-left: -6px;
+}
+.responsive-calendar .badge:empty{
+  display: inline !important;
+}
+.responsive-calendar .day i.badge{
+  padding-top:4px;
+}
+
+.dropdown-menu .info-event{
+  /*margin-top:5px;*/
+  padding-left:15px;
+}
+
+#btn-month-before.btn:hover, 
+#btn-month-next.btn:hover{
+  color:white !important;
+}
+
+@media screen and (max-width: 767px) {
+  .responsive-calendar .day.active .btn {
+      position: absolute;
+      right: 0px;
+      border-radius: 0px;
+      top: 1px;
+      padding: 9px 4px;
+      width: 100%;
+      background-color: transparent !important;
+      text-align: right;
+  }
+}
+
+
+.responsive-calendar.light{
+  background-color: rgb(246, 246, 246);
+  box-shadow: 0px 2px 7px -3px grey;
+}
+
+.responsive-calendar.light .day{
+  border: 1px solid rgba(207, 207, 207, 0.8);
+  border-top: 0px;
+  border-right: 0px;
+}
+
+.responsive-calendar.light .day .dayNum{
+  color: #606060;
+}
+
+.responsive-calendar.light .day.header{
+  border-bottom: 1px #b1b1b1 solid;
+  background-color: rgba(230, 230, 230, 0.8);
+  color: black;
+}
+
+.responsive-calendar.light .day.active{
+  background-color: #f0ceb5;
+}
+
+.responsive-calendar.light #btn-month-before,
+.responsive-calendar.light #btn-month-next,
+.responsive-calendar.light .controls h4{
+  color:rgba(0, 0, 0, 0.7) !important;
+}

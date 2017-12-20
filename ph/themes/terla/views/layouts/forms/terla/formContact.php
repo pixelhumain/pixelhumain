@@ -59,7 +59,7 @@
 			<br><br>
 
 			<div class="col-xs-8">
-				<input class="form-control" placeholder="what's your name ?" id="name">
+				<input class="form-control" placeholder="<?php echo Yii::t("terla", "what's your name ?"); ?>" id="name">
 				<br>
 			</div>
 			<div class="col-xs-4 no-padding">
@@ -101,7 +101,9 @@
 					<i class="fa fa-angle-down"></i> <?php echo Yii::t("terla", "Your message"); ?>
 				</label>
 
-				<textarea placeholder="Your message..." class="form-control txt-mail" id="message"></textarea>
+				<textarea placeholder="<?php echo Yii::t("terla", "Your message"); ?>..." 
+						  class="form-control txt-mail" id="message">
+				</textarea>
 				
 				<div class="col-md-12">
 					<small for="message" class="margin-bottom-25">
@@ -114,7 +116,7 @@
 				</div>
 
 				<div class="col-md-6 pull-right">
-					<input placeholder="taper le code ici" class="col-md-8 txt-captcha text-right pull-right" id="captcha">
+					<input placeholder="<?php echo Yii::t("terla", "copy the code here"); ?>" class="col-md-8 txt-captcha text-right pull-right" id="captcha">
 				</div>
 
 				<div class="col-md-12 margin-top-15 pull-left">
@@ -146,7 +148,8 @@
 		<?php echo Yii::t("terla", "Thanks for your message"); ?>
 	</h5><br>
 	<a href="#activities" class="lbh btn btn-link bg-red tooltips"
-		data-toggle="tooltip" data-placement="top" title='Retourner vers le moteur de recherche'>
+		data-toggle="tooltip" data-placement="top" 
+		title='<?php echo Yii::t("terla", "Back to home page"); ?>'>
 		<b><i class="fa fa-arrow-left"></i> <?php echo Yii::t("terla", "Back"); ?></b>
 	</a>
 	<hr style="margin-bottom: 350px;">
@@ -155,10 +158,10 @@
 <div class="col-xs-12 margin-top-50 hidden" id="conf-fail-mail">
 	<h4 class="text-center letter-red">
 		<i class="fa fa-thumbs-down"></i><br>
-		<?php echo Yii::t("terla", "Suite à une erreur technique<br>votre message n'a pas pu être envoyé."); ?>
+		<?php echo Yii::t("terla", "Error, your message has not been sent"); ?>
 	</h4>
 	<h5 class="text-center">
-		<?php echo Yii::t("terla", "Veuillez nous en excuser"); ?>
+		<?php echo Yii::t("terla", "We are sorry"); ?>
 	</h5>
 	<hr style="margin-bottom: 350px;">
 </div>
