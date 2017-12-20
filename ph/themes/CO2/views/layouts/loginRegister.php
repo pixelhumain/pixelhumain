@@ -117,7 +117,9 @@
                 <label for="remember" class="checkbox-inline">
                     <input type="checkbox" id="remember" name="remember" checked="checked">
                     <?php echo Yii::t("login","Keep me signed in") ?>
-                </label>
+                </label><br>
+                <small><i class="fa fa-lock"></i> mot de passe enregistré de façon sécurisée dans vos cookies</small>
+                <br><br>
 
                 <button class="btn btn-success pull-right loginBtn" type="submit"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Log in") ?></button><br><br>
   

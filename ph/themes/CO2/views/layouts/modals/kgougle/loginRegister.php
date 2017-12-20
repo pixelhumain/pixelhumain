@@ -117,8 +117,9 @@
                 <label for="remember" class="checkbox-inline">
                     <input type="checkbox" id="remember" name="remember" checked="checked">
                     Se souvenir de moi
-                </label>
-                <small>Mot de passe crypté dans les cookies</small>
+                </label><br>
+                <small><i class="fa fa-lock"></i> mot de passe enregistré de façon sécurisée dans vos cookies</small>
+                <br><br>
 
                 <button class="btn btn-success pull-right loginBtn" type="submit">
                     <i class="fa fa-sign-in"></i> Se connecter
