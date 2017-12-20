@@ -1263,6 +1263,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Shopping cart" => "Panier",
 	
 	"Checkout" => "Payer",
+	"Validate" => "Valider",
 	"Continue" => "Continuer",
 	"Total of your order" => "Total de votre panier",
 
@@ -1288,5 +1289,6 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Artisants" 		=> "Artisant",
 	"Guide and helper" 	=> "Guide et accompagnateur",
 
+	"folder fee included and delivery tax not included" => "folder fee included and delivery tax not included"
 );
 ?>
