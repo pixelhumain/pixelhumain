@@ -141,16 +141,16 @@
 		startAt: 0,
 		//scrollBar: $wrap.find('.scrollbar'),
 		scrollBy: 1,
-		speed: 300,
+		speed: 1000,
 		elasticBounds: 1,
-		//easing: 'easeOutExpo',
+		easing: 'linear',
 		dragHandle: 1,
 		dynamicHandle: 1,
 		clickBar: 1,
 
 		// Cycling
 		cycleBy: 'items',
-		cycleInterval: 1000,
+		cycleInterval: 2500,
 		pauseOnHover: 1,
 	}
 	
@@ -181,7 +181,7 @@
 			
 			sly.add(elem);
 		}
-		sly.activate(0);
+		sly.activate(5);
 		$(".searchPoiContainer").mouseenter(function(){
 			$(this).find(".description-poi").show();
 		}).mouseleave(function(){
@@ -193,6 +193,6 @@
 		sly = new Sly('#cycleitems', slyOptions).init(); 
 		addItemsToSly();
 		
-		//Sig.showMapElements(Sig.map, topList);
+		Sig.showMapElements(Sig.map, topList);
 	});
 </script>
