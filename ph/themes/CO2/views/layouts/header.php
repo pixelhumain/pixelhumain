@@ -275,18 +275,18 @@
 
         loadMultiScopes();
         mylog.log("communexionActivated ok", communexion, communexion.state);
+        initScopeMenu(myScopes);
+        //if(communexion.value == null){
+          //  communexion.state = false;
+            //$.cookie("communexionActivated", false, { expires: 365, path : "/" });
+        //}
 
-        if(communexion.value == null){
-            communexion.state = false;
-            $.cookie("communexionActivated", false, { expires: 365, path : "/" });
-        }
-
-        if(communexion.state){
+        //if(communexion.state){
             //mylog.log("communexionActivated ok", communexion);
-            activateGlobalCommunexion(true);
-        }else{
-            activateGlobalCommunexion(false,true);
-        }
+          //  activateGlobalCommunexion(true);
+        //}else{
+          //  activateGlobalCommunexion(false,true);
+        //}
         $(".tooltips").tooltip();
     });
 </script>

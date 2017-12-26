@@ -1,5 +1,8 @@
-<?php $params = CO2::getThemeParams(); ?>
-
+<?php 
+    $params = CO2::getThemeParams();
+    $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
+                            Yii::app()->request->cookies['multiscopes']->value : "{}";
+?>
 <script>
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
     var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
@@ -48,8 +51,7 @@
     var deviseTheme = <?php echo json_encode(@$params["devises"]) ?>;
     var deviseDefault = <?php echo json_encode(@$params["deviseDefault"]) ?>;
 
-    var communexion=<?php echo json_encode(CO2::getCommunexionCookies()) ?>;
-
+    var myScope={};
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",
         "citoyen":"<?php echo Person::ICON ?>", 
@@ -124,6 +126,20 @@
             };
             initFloopDrawer();
             resizeInterface();
+            if(typeof localStorage != "undefined" && typeof localStorage.myScope != "undefined")                    
+               myScopes = JSON.parse(localStorage.getItem("myScopes"));
+            else{
+                myScope={
+                    state:"open",
+                    open : {},
+                    communexion : <?php echo json_encode(CO2::getCommunexionCookies()) ?>,
+                    multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 
+                                json_encode($me["multiscopes"]) :  
+                                $multiscopes; ?>
+                };
+            }
+            //if(typeof localStorage != "undefined" && typeof localStorage.circuit != "undefined")
+              //  circuit.obj = JSON.parse(localStorage.getItem("circuit"));
             //Init mentions contact
             if(myContacts != null){
                 $.each(myContacts["people"], function (key,value){
