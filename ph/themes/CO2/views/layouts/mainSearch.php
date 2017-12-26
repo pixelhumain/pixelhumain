@@ -206,7 +206,7 @@
                 '/assets/css/CO2/CO2-color.css',
                 '/assets/css/CO2/CO2.css',
                 '/assets/css/plugins.css',
-                 
+                 // TODO BOUBOULE - Radio à ne pas appeler pour CO2
                 '/assets/vendor/jPlayer-2.9.2/dist/skin/blue.monday/css/jplayer.blue.monday.min.css',
                 '/assets/vendor/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js',
                 '/assets/js/radioplayer.js',

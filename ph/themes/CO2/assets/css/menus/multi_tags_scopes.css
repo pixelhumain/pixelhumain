@@ -128,14 +128,38 @@
 		background-color: #E16277 !important;
 		cursor:pointer;
 	}
-
+	.scope-min-header {
+    	float: left;
+    	margin-left: 20px;
+    	line-height: 41px;
+	}
+	.multi-scopes-target{
+		margin:0px;
+	}
 	.item-scope-checker,
 	.item-tag-checker{
 		cursor:pointer;
 		font-weight: 600 !important;
 	}
+	.main-btn-scopes {
+	    margin-top: 0px;
+	    z-index: 10;
+	    border-radius: 25px;
+	    padding: 3px;
+	    border: 3px solid transparent!important;
+	    -webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
+	    -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
+	    box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5);
+	}
+	.main-btn-scopes:hover{
+	    background-color: white!important;
+	    color:#ea4335!important;
+	    border: 3px solid #ea4335!important;
 
-	
+	}
+	.main-btn-scopes img {
+		margin:0px !important;
+	}
 
 	.list_tags_scopes span.text-red.disabled,
 	#list_tags_scopes span.text-red.disabled,

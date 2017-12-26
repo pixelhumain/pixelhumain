@@ -49,14 +49,15 @@
 
         <?php if( $subdomain == "search" ||
                   $subdomain == "agenda" ||
+                  $subdomain == "live" ||
                   $subdomain == "power"  ||
                   $subdomain == "annonces"||
                   $subdomain == "admin"||
                   $subdomain == "page" ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-6 col-md-6 col-lg-8">
                 <input type="text" class="form-control" id="second-search-bar" 
-                        placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
+                        placeholder="search by name or by #tag, ex: 'commun' or '#commun'<?php //echo Yii::t("common", $placeholderMainSearch); ?>">
                 <?php if($subdomain == "page"){ ?>
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
                 <?php } ?>
@@ -365,7 +366,7 @@
         <!-- /.navbar-collapse -->
         
         <?php 
-            if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
+           /* if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
                     class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
@@ -379,7 +380,7 @@
                     <?php } ?>
                 </a>  
         <?php   }
-            }  ?>
+            } */ ?>
             
     </div>
     <!-- /.container-fluid -->

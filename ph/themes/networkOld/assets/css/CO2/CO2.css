@@ -537,7 +537,7 @@ a, a:hover, a:focus, a:active, a.active{
 	color: #34a853 !important;
 }
 
-#main-search-bar{
+#main-search-bar, #input-search-table{
 	font-size:17px;
 	height:45px;
     border:none;
@@ -549,7 +549,7 @@ a, a:hover, a:focus, a:active, a.active{
     -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5) ;
     box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5) ;
 }
-#main-search-bar-addon{
+#main-search-bar-addon, .menu-btn-start-search-admin{
 	border: none;
 	background-color: white !important;
 }
