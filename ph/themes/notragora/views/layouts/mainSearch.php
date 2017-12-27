@@ -343,7 +343,6 @@
 
 			'/assets/js/sly/jquery.easing.1.3.js',
 			'/assets/js/sly/sly.min.js',
-			'/assets/js/sly/sly.js',
 			'/assets/css/styles.css',
 			'/assets/css/styles-responsive.css',
 			'/assets/css/plugins.css',
@@ -488,7 +487,6 @@
 
 		    $("#mapCanvasBg").show();
 
-		    console.log("INIT scroll shadows!");
 		    $(".my-main-container").bind("scroll", function(){
 		    	//console.log("scrolling my-container");
 		    	checkScroll();
@@ -532,8 +530,6 @@
 			//
 		    $(window).bind("popstate", function(e) {
 		      //console.dir(e);
-		      console.log("history.state",$.isEmptyObject(history.state),location.hash);
-		      console.warn("popstate history.state",history.state);
 		      if( lastUrl && "onhashchange" in window && location.hash  ){
 		        if( $.isEmptyObject( history.state ) && allReadyLoad == false ){
 			        //console.warn("poped state",location.hash);
@@ -598,7 +594,7 @@
 				$.each(genresType, function(i, tag) {
 					val={id:tag,text:tag};
 					genresTypeData.push(val);
-					genresHtml+='<a href="javascript:directory.showAll(\'.favSection\',\'.searchPoiContainer\');directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag)+'Btn" data-tag="'+slugify(tag)+'">'+tag+'</a><br>';
+					genresHtml+='<a href="javascript:addItemsToSly(\''+slugify(tag)+'\')" class="favElBtn '+slugify(tag)+'Btn" data-tag="'+slugify(tag)+'">'+tag+'</a><br>';
 				});
 				$(".genresList").append(genresHtml);
 
@@ -607,7 +603,7 @@
 				$.each(collectionsType, function(i, tag2) {
 					val2={id:tag2,text:tag2};
 					collectionsTypeData.push(val2);
-					collectionsHtml+='<a href="javascript:directory.showAll(\'.favSection\',\'.searchPoiContainer\');directory.toggleEmptyParentSection(\'.favSection\',\'.'+slugify(tag2)+'\',\'.searchPoiContainer\',1)" class="favElBtn '+slugify(tag2)+'Btn" data-tag="'+slugify(tag2)+'">'+tag2+'</a><br>';
+					collectionsHtml+='<a href="javascript:addItemsToSly(\''+slugify(tag2)+'\')" class="favElBtn '+slugify(tag2)+'Btn" data-tag="'+slugify(tag2)+'">'+tag2+'</a><br>';
 				});
 				$(".collectionsList").append(collectionsHtml);
 

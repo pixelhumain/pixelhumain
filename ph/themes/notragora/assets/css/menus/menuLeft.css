@@ -19,7 +19,12 @@
 .main-menu-left.inSig hr{
 	max-width:5px!important;
 }
-
+.menu-left-container {
+	overflow-y: auto;
+}
+.menu-left-container > div:last-child {
+	margin-bottom: 30px !important;
+}
 .menu-left-container i.fa{
 	padding: 0px;
 	border-radius: 30px;

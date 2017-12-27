@@ -1,9 +1,0 @@
-{
-  "_id" : ObjectId("51b97270e4b075a9690bbc5a"),
-  "list" : {
-    "association" : "Association",
-    "citoyen" : "Citoyen",
-    "entreprise" : "Entreprise",
-    "collectivité" : "Collectivité"
-  }
-}
