@@ -48,8 +48,6 @@
 		$topList[$key]["href"] = "#element.detail.type.".Poi::COLLECTION.".id.".(string)$elem["_id"];
 		if (@$elem["description"]){
 			$topList[$key]["description"]=strip_tags($elem["description"]);
-			if(strlen ( $topList[$key]["description"]) > 80)
-				$topList[$key]["description"] = mb_substr( $topList[$key]["description"], 0, 80)."...";
 		} else
 			$topList[$key]["description"]= "<i>Pas de description sur cette production</i>";
 	}
