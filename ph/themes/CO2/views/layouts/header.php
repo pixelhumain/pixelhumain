@@ -11,23 +11,38 @@
         margin-right: 57%;
         margin-top: -73px;
     }
+    #filters-container{
+        float: left;
+        width: 11%;
+    }
     #filters-container ul{
         list-style: none;
-        margin-bottom: 0px
+        margin-bottom: 0px;
+        float:left;
+        padding: 0px;
     }
 
     #filters-container ul li{
         display: inline-block;
-        float: left;
-        padding: 5px 15px;
+    float: left;
+    height: 45px;
+    width: 45px;
+    background: white;
+    /* padding: 5px 15px; */
+    font-size: 15px;
+    line-height: 45px;
+    -webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5);
     }
     #filters-container ul li.active{
+          color:white;
+        background-color: #ea4335;
+    }
+    .filters-type-container{
         background-color: white;
     }
-    #filters-container .filters-type-container{
-        background-color: white;
-    }
-    #filters-container #sub-menu-filliaire, #filters-container #container-scope-filter{
+    .filters-type-container #sub-menu-filliaire, .filters-type-container #container-scope-filter{
         display:none;
     }
     #container-scope-filter .dropdown-result-global-search{
@@ -38,7 +53,6 @@
         width: 100%;
         float: left;
         overflow-y: auto;
-        box-shadow: azure;
         -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
         box-shadow: 0 6px 12px rgba(0,0,0,.175);
     }
@@ -48,6 +62,25 @@
      border-bottom: none;
      padding: 0px; 
     /* padding-top: 0px; */
+    }
+    #communexion-container, #multiscope-container, #opensearch-scope-container{
+        display:none;
+    }
+    .btn-scope-menu{
+        height: 40px;
+        font-size: 15px;
+        border: 1px solid rgba(0,0,0,.1);
+        -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        box-shadow: 0 0px 1px rgba(0,0,0,.1);
+        line-height: 40px;
+    }
+    .btn-scope-menu.active{
+        color:white;
+        background-color: #ea4335;
+    }
+    #open-scope-container #searchOnCity{
+        height: 40px;
+        border-radius:0px !important;
     }
 </style>
 
@@ -105,52 +138,64 @@
                                                               "type"=>@$type,
                                                               "explain"=>@$explain)); ?>
 
-                        <div class="subModuleTitle">  
+                            <div class="subModuleTitle">  
                             <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-        <div class="input-group col-md-10 col-md-10 col-md-offset-1 col-md-offset-1 col-xs-10" id="main-input-group"  style="width:80%;">
-                        
-            <input type="text" class="form-control" id="main-search-bar" 
-                            placeholder="search by name or by #tag, ex: 'commun' or '#commun'">
-        <span class="bg-white input-group-addon" id="main-search-bar-addon">
-            <i class="fa fa-search"></i>
-        </span>
-        </div>
-    </div>
-    <div id="filters-container" class="col-md-12 col-sm-12 col-xs-12 no-padding margin-top-10">
-        <ul class="filters-menu col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 col-xs-12">
-            <li class="scope-header-filter">
+                            <div class="input-group" id="main-input-group"  style="width:80%;float: left;margin-left: 5%;">
+                                <input type="text" class="form-control" id="main-search-bar" 
+                                    placeholder="search by name or by #tag, ex: 'commun' or '#commun'">
+                                <span class="bg-white input-group-addon" id="main-search-bar-addon">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
+        <div id="filters-container" class="no-padding">
+        <ul class="filters-menu">
+            <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="Geographic filter">
              <i class="fa fa-globe"></i> 
-                <span class="hidden-xs"><?php echo Yii::t("common","Geographical") ?></span>
+                <!--<span class="hidden-xs"><?php echo Yii::t("common","Geographical") ?></span>-->
             </li>
-            <li class="btn-open-filliaire">
+            <li class="btn-open-filliaire tooltips" data-placement="bottom" data-original-title="Themes filter">
              <i class="fa fa-th"></i> 
-                <span class="hidden-xs"><?php echo Yii::t("common","Themes") ?></span>
+                <!--<span class="hidden-xs"><?php echo Yii::t("common","Themes") ?></span>-->
             </li>
             
         </ul> 
-        <div class="filters-type-container col-md-12 col-sm-12 col-xs-12 padding-10">
-            <div id="container-scope-filter"  class="col-md-12 col-sm-12 col-xs-12">
-                <div id="input-sec-search" class="hidden-xs col-sm-4 col-md-4 col-lg-6">
-                    <a href="javascript:;" class="activateOpenScope btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-4"
-                        data-toggle="tooltip" data-placement="bottom" title="Searching on all cities">
-                        <i class="fa fa-search"></i>
-                    </a>
-                    <div id="opensearch-scope-container" class="col-md-10 col-sm-10 col-xs-10">
+        </div>
+    </div>
+    
+        <div class="filters-type-container col-md-12 col-sm-12 col-xs-12 no-padding margin-top-5">
+            <?php if(@Yii::app()->session["userId"]) $containerClass="col-md-9 col-sm-9 col-xs-12";  else $containerClass="col-md-10 col-sm-10 col-xs-12"; ?>
+            <div id="container-scope-filter"  class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                <a href="javascript:;" class="activate-open-scope btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-1"
+                    data-toggle="tooltip" data-placement="bottom" title="Searching on all cities" onclick="activateScopeMenu('open-scope');">
+                    <i class="fa fa-search"></i>
+                </a>
+                 <div id="open-scope-container" class="container-scope-menu  <?php echo $containerClass ?> no-padding">
+                    <div id="input-sec-search" class="hidden-xs col-xs-12 col-md-4 col-lg-4">
                         <input type="text" class="form-control input-global-search" id="searchOnCity" placeholder="Go to city ?">
-                        <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding" style="max-height: 70%; display: none;"><div class="text-center" id="footerDropdownGS"><label class="text-dark"><i class="fa fa-ban"></i> Aucun résultat</label><br></div></div>
+                        <div class="dropdown-result-global-search col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding" style="max-height: 70%; display: none;"><div class="text-center" id="footerDropdownGS"><label class="text-dark"><i class="fa fa-ban"></i> Aucun résultat</label><br></div></div>
                         </div>
+                    <div id="open-breacrum-container" class="col-md-8 col-sm-8 col-xs-12">
+                    <?php //$this->renderPartial($layoutPath.'breadcrum_communexion', array("type"=>@$type)); ?>
                     </div>
-                    <a href="javascript:;" class="activateCommunexion btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-4"
-                        data-toggle="tooltip" data-placement="top" title="">
-                        <i class="fa fa-university"></i>
-                    </a>
-                    <div id="breacrum-container" class="col-md-10 col-sm-10 col-xs-10">
-                        <?php //$this->renderPartial($layoutPath.'breadcrum_communexion', array("type"=>@$type)); ?>
-                    </div>
-                    <a href="javascript:;" class="actiavteMultiscope btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-4">
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=25>
-                    </a>
-                    <div id="multiscope-container" class="col-md-10 col-sm-10 col-xs-10"></div>
+                </div>
+               
+                <?php if(@Yii::app()->session["userId"]){ ?>
+                <a href="javascript:;" class="activate-communexion btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-1"
+                    data-toggle="tooltip" data-placement="top" title="" onclick="activateScopeMenu('communexion');">
+                    <i class="fa fa-university"></i>
+                </a>
+                <div id="communexion-container" class="container-scope-menu col-md-9 col-sm-9 col-xs-9">
+                    <?php //$this->renderPartial($layoutPath.'breadcrum_communexion', array("type"=>@$type)); ?>
+                </div>
+                
+                <?php } ?>
+                <a href="javascript:;" class="activate-multiscope btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-1"
+                    data-toggle="tooltip" data-placement="top" title="My multiscope" onclick="activateScopeMenu('multiscope');">
+                    <i class="fa fa-map-signs"></i>
+                    <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=25>-->
+                </a>
+                
+                <div id="multiscope-container" class="container-scope-menu <?php echo $containerClass ?>"></div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center subsub" id="sub-menu-filliaire">
                 <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
@@ -168,17 +213,16 @@
           //          <!--</button>-->
                 } ?>
             </div>
-        </div>
     </div>
-    <div id="affix-territorial-menu" class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 col-xs-12 margin-bottom-10">
-        <a href="#search" class="#liveModBtn lbh btn btn-link letter-red btn-menu-to-app hidden-top pull-left hidden-xs
-                             tooltips" data-placement="bottom" data-original-title="Live">
+    <div id="affix-territorial-menu" class="col-md-10 col-sm-10 col-xs-12 margin-bottom-10 no-padding" style="margin-left:5%;">
+        <a href="#territorial" class="#liveModBtn lbh btn btn-link letter-red btn-menu-to-app hidden-top pull-left hidden-xs
+                             tooltips" data-placement="bottom" data-original-title="Territorial engine">
             <i class="fa fa-search"></i>
             <span class="">All</span> 
         </a>
 
-        <a href="#live" class="#liveModBtn lbh btn btn-link letter-red btn-menu-to-app pull-left  hidden-top hidden-xs
-                             tooltips" data-placement="bottom" data-original-title="Live">
+        <a href="#search" class="#liveModBtn lbh btn btn-link letter-red btn-menu-to-app pull-left  hidden-top hidden-xs
+                             tooltips" data-placement="bottom" data-original-title="Social connect">
                     <i class="fa fa-connectdevelop"></i>
 
                      <span class="">Acteurs et initiaves</span> 
@@ -210,17 +254,6 @@
     </div>
     
     
-    <div class="panel-heading border-light text-center col-md-12 col-sm-12 col-xs-12 margin-top-10">
-        <a href="javascript:;" onclick="applyStateFilter('<?php echo Person::COLLECTION ?>')" class="filter<?php echo Person::COLLECTION ?> btn btn-xs btn-default active btncountsearch"> People <span class="badge badge-warning countPeople" id="countcitoyens"></span></a>
-        <a href="javascript:;" onclick="applyStateFilter('<?php echo Organization::COLLECTION ?>')" class="filter<?php echo Organization::COLLECTION ?> btn btn-xs btn-default btncountsearch"> Organizations <span class="badge badge-warning countOrganizations" id="countorganizations"></span></a> 
-        <a href="javascript:;" onclick="applyStateFilter('<?php echo Event::COLLECTION ?>')" class="filter<?php echo Event::COLLECTION ?> btn btn-xs btn-default btncountsearch"> Events <span class="badge badge-warning countEvents" id="countevents"></span></a> 
-        <a href="javascript:;" onclick="applyStateFilter('<?php echo Project::COLLECTION ?>')" class="filter<?php echo Project::COLLECTION ?> btn btn-xs btn-default btncountsearch"> Projects <span class="badge badge-warning countProjects" id="countprojects"></span></a>
-        <a href="javascript:;" onclick="applyStateFilter('<?php echo Place::COLLECTION ?>')" class="filter<?php echo Place::COLLECTION ?> btn btn-xs btn-default btncountsearch"> Place <span class="badge badge-warning countPlaces" id="countplace"></span></a>
-        <a href="javascript:;" onclick="applyStateFilter('<?php echo Poi::COLLECTION ?>')" class="filter<?php echo Poi::COLLECTION ?> btn btn-xs btn-default btncountsearch"> Pois <span class="badge badge-warning countPoi" id="countpoi"></span></a>
-        <a href="javascript:;" onclick="applyStateFilter('<?php echo Classified::COLLECTION ?>')" class="filter<?php echo Classified::COLLECTION ?> btn btn-xs btn-default btncountsearch"> Classifieds <span class="badge badge-warning countClassified" id="countclassified"></span></a>
-        <a href="javascript:;" onclick="applyStateFilter('<?php echo News::COLLECTION ?>')" class="filter<?php echo News::COLLECTION ?> btn btn-xs btn-default btncountsearch"> News <span class="badge badge-warning countNews" id="countnews"></span></a>
-        <!--<a href="javascript:;" onclick="clearAllFilters('')" class="btn btn-xs btn-default"> All</a></h4>-->
-    </div>
     
                       
         <?php } ?>
@@ -232,12 +265,13 @@
         ?>
 
     </header>
-
+     
+   
     <?php
             
              ?>   
 <script type="text/javascript">
-    var filliaireCategories = <?php echo json_encode($filliaireCategories); ?>;
+    var filliaireCategories = <?php echo json_encode(@$filliaireCategories); ?>;
     jQuery(document).ready(function() {
         $(".btn-open-filliaire").click(function(){
             $("#filters-container ul li").removeClass("active");
@@ -274,8 +308,8 @@
             });
 
         loadMultiScopes();
-        mylog.log("communexionActivated ok", communexion, communexion.state);
-        initScopeMenu(myScopes);
+        mylog.log("communexionActivated ok", myScopes.communexion, myScopes.communexion.state);
+        initScopeMenu();
         //if(communexion.value == null){
           //  communexion.state = false;
             //$.cookie("communexionActivated", false, { expires: 365, path : "/" });
@@ -289,6 +323,31 @@
         //}
         $(".tooltips").tooltip();
     });
+    function initScopeMenu(type){
+        if(typeof myScopes.type != "undefined")
+            activateScope=myScopes.type;
+        else
+            activateScope="open-scope";
+        activateScopeMenu(activateScope);
+        bindSearchCity();
+        bindCommunexionScopeEvents();
+        if(userId!="")
+            $("#communexion-container").html(getBreadcrumCommunexion(myScopes.communexion));
+        if(typeof myScopes.open.currentValues != "undefined")
+            $("#open-scope-container").html(getBreadcrumCommunexion(myScopes.open));
+        showTagsScopesMin();
+        //bindScopeMenu();
+    }
+    function activateScopeMenu(type){
+        $(".container-scope-menu").hide(700);
+        $(".btn-scope-menu").removeClass("active");
+        $("#"+type+"-container").show(700);
+        $(".activate-"+type).addClass("active");
+        myScopes.type=type;
+    }
+   // function activeOpen(){
+     //   $("")
+    //}
 </script>
     
     <?php   //if($subdomain != "referencement"){

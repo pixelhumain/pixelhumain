@@ -129,7 +129,7 @@
             if(typeof localStorage != "undefined" && typeof localStorage.myScope != "undefined")                    
                myScopes = JSON.parse(localStorage.getItem("myScopes"));
             else{
-                myScope={
+                myScopes={
                     state:"open",
                     open : {},
                     communexion : <?php echo json_encode(CO2::getCommunexionCookies()) ?>,

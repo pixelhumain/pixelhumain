@@ -44,10 +44,10 @@
 </style>
 <h1 class="text-red homestead">
 	<span id="main-scope-name">
-	<a href="#" class="menu-btn-back-category shadow2" data-target="#modalMainMenu-block" data-toggle="modal">
-	<!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo-head-search.png"
-	 	 height="60" class="inline margin-bottom-15">-->
-	</a>
+	<!--<a href="#" class="menu-btn-back-category shadow2" data-target="#modalMainMenu-block" data-toggle="modal">
+	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo-head-search.png"
+	 	 height="60" class="inline margin-bottom-15">
+	</a>-->
 	</span>
 </h1>
 
