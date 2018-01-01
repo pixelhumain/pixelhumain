@@ -31,7 +31,9 @@ $mailConfigTest = array(
 
 $params = array(
     //Theme 
-    'theme' => 'CO2',
+    'theme' => 'terla',
+    'CO2DomainName' => 'terla', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
+    "version"=> "2.1.0",
     //Beta Test ?
     'betaTest' => false,
     //By default controller
@@ -86,17 +88,11 @@ $params = array(
     'forceMapboxActive' => false, //to force mabox localhost
     'mapboxToken' => 'pk.eyJ1IjoiY29tbXVuZWN0ZXIiLCJhIjoiY2lreWRkNzNrMDA0dXc3bTA1MHkwbXdscCJ9.NbvsJ14y2bMWWdGqucR_EQ',
 
-    'CO2DomainName' => 'CO2', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
-    "theme"=> "CO2",
-    "version"=> "2.1.0",
+
+    
 
     //rocketchat params
-    'rocketchatEnabled' => false,
-    'rocketchatURL' => 'https://chat.communecter.org',
-    'rocketAdmin' => 'contact@communecter.org',
-    'rocketAdminPwd' => '',
-    "adminLoginToken" => "",
-    "adminRocketUserId" => "",
+    "chemin" => dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."modules".DIRECTORY_SEPARATOR,
 
     /*"front" => array (
         "organization" => true,
@@ -111,5 +107,13 @@ $params = array(
     )*/
   );
 
+if( !empty($overwriteList) && in_array($params["theme"], $overwriteList["modules"])){
+    $pathOverwrite = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."modules".DIRECTORY_SEPARATOR.$params["theme"]. '/config/overwrite.php';
+    require_once($pathOverwrite);
+    $params["overWrite"] = $overWrite;
+}
+    
 
 $modulesDir = '/../../../../modules/';
+
+

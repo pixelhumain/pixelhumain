@@ -88,11 +88,11 @@
         <div class="pull-right navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="pull-right">
-                    <button class="letter-orange font-montserrat" id="btn-open-search-bar">
+                     <a href="#prestations" class="lbh letter-orange font-montserrat">
                         <span>Our circuits</span>
-                    </button>
+                    </a>
 
-                    <button class="letter-orange font-montserrat" id="btn-open-search-bar">
+                    <button class="letter-orange font-montserrat btn-show-map" id="btn-open-search-bar">
                         <span>On the map</span>
                     </button>
 
@@ -100,7 +100,7 @@
                         <span>Agenda</span>
                     </a>
 
-                    <a href="#annonces" class="lbh letter-orange font-montserrat">
+                    <a href="#store" class="lbh letter-orange font-montserrat">
                         <span>Store</span>
                     </a>
                     <button class="letter-orange font-montserrat" id="btn-open-search-bar">

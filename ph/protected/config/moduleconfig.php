@@ -8,5 +8,5 @@ $activeModules = array(
 	'opendata',
 	'api',
 	'datatools',
-	'vitrine'
+	'terla'
 	);

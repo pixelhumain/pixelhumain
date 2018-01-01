@@ -1,0 +1,90 @@
+
+.letter-orange{ color:#EF5B34!important; }
+.letter-blue{ color:#277297!important; }
+.letter-green{ color:#8AD92F!important; }
+
+
+.letter-orange-1{ color:#FF9E85!important; }
+.letter-blue-1{ color:#6AA5C2!important; }
+.letter-green-1{ color:#BAF07D!important; }
+
+
+
+.letter-orange-2{ color:#FF7E5B!important; }
+.letter-blue-2{ color:#4084A5!important; }
+.letter-green-2{ color:#A3E853!important; }
+
+
+
+.letter-orange-3{ color:#CF3810!important; }
+.letter-blue-3{ color:#105D83!important; }
+.letter-green-3{ color:#6BBC0F!important; }
+
+
+.letter-orange-4{ color:#A32402!important; }
+.letter-blue-4{ color:#074867!important; }
+.letter-green-4{ color:#519402!important; }
+
+
+
+.letter-lightgray{ color:#838383!important; }
+
+.bg-black{ background-color:rgb(0,0,0) !important; }
+.bg-orange{ background-color:#EF5B34!important; }
+.bg-blue{ background-color:#277297!important; }
+.bg-green{ background-color:#8AD92F!important; }
+.bg-lightgray{ background-color:#eaeaea!important; }
+
+.bg-orange-1{ background-color:#FF9E85!important; }
+.bg-blue-1{ background-color:#6AA5C2!important; }
+.bg-green-1{ background-color:#BAF07D!important; }
+
+
+
+.bg-orange-2{ background-color:#FF7E5B!important; }
+.bg-blue-2{ background-color:#4084A5!important; }
+.bg-green-2{ background-color:#A3E853!important; }
+
+
+
+.bg-orange-3{ background-color:#CF3810!important; }
+.bg-blue-3{ background-color:#105D83!important; }
+.bg-green-3{ background-color:#6BBC0F!important; }
+
+
+.bg-orange-4{ background-color:#A32402!important; }
+.bg-blue-4{ background-color:#074867!important; }
+.bg-green-4{ background-color:#519402!important; }
+
+.item-comment.bg-red-comment{
+    background-color:#ffd7d4 !important;
+    padding: 5px !important;
+    /*width: 70%;*/
+    border-radius: 5px;
+    /*float: right;*/
+}
+
+.bg-white-comment{
+    background-color:#fff !important;
+}
+.item-comment.bg-white-comment{
+    background-color:rgba(255, 255, 255, 0.3) !important;
+    padding: 5px !important;
+    /*width: 70%;*/
+    border-radius: 5px;
+    /*float: right;*/
+}
+
+.timeline-panel .bg-white-comment{
+    background-color:rgba(255, 255, 255, 0.3) !important;
+}
+
+.item-comment{
+    margin-top:5px !important;
+    margin-bottom:5px !important;
+
+}
+
+.text-lightweight{
+    font-weight: 200 !important;
+}

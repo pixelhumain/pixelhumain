@@ -14,14 +14,14 @@
 }
 
 /* boutton show map on top right corner*/
-.navbar-custom .btn-show-map{
+/*.navbar-custom .btn-show-map{
 	background-color: #4084A5;
-}
-.navbar-custom .btn-show-map:hover {
+}*/
+/*.navbar-custom .btn-show-map:hover {
     background-color: transparent;
     color: #4084A5;
     border: 2px solid #4084A5;
-}
+}*/
 
 /* MODAL */
 .modal.portfolio-modal .modal-content{
@@ -87,7 +87,13 @@ header, .header {
 	border: none !important;
 }
 
-
+.navbar-custom .btn-show-map{
+	background-color: inherit;
+    float: initial;
+    width: inherit;
+    height: inherit;
+    font-size: inherit;
+}
 .navbar-custom .btn-show-mainmenu {
     float: unset !important;
     margin-top: 0px !important;

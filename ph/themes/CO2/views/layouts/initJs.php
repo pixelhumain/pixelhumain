@@ -38,6 +38,8 @@
     var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
     var mentionsContact=[];
     var classified = <?php echo json_encode( CO2::getContextList("classified") ) ?>;
+    var prestation = <?php echo json_encode( CO2::getContextList("prestation") ) ?>;
+    var prestationList = prestation.categories;
     var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;
     var ressource = <?php echo json_encode( CO2::getContextList("ressource") ) ?>;
     var poi = <?php echo json_encode( CO2::getContextList("poi") ) ?>;

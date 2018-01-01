@@ -1257,7 +1257,41 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Carried by" => "Porté par",
 	"the holder"=>"le porteur",
 	"All cities with this postal code" => "Toutes les villes avec ce code postal",
+	"On the map"=> "Sur la carte",
 	
+	"services" => "services",
+	"circuits" => "circuits",
+	"products" => "products",
 
+	"Shopping cart" => "Panier",
+	
+	"Checkout" => "Payer",
+	"Validate" => "Valider",
+	"Continue" => "Continuer",
+	"Total of your order" => "Total de votre panier",
+
+	"My infos" => "Mes infos",
+	"My messages" => "Messages",
+	"My circuits" => "Circuits",
+	"Invoice" => "Factures",
+
+	"Leave your comment" => "Laissez votre commentaire",
+	"Your comment" => "Votre commentaire",
+	"Show programmation" => "Voir le programme",
+	"Price of this command" => "Prix de cette commande",
+	"purchase" => "achat",
+
+	"Continue this cart" => "Continuer mes achats",
+	"Delete" => "Effacer",
+
+	"Sleeping" 			=> "Pour dormir",
+	"Restaurant" 		=> "Restaurant",
+	"Funny activity" 	=> "Activité",
+	"Transport" 		=> "Transport",
+	"Uncredible site" 	=> "Site incroyable",
+	"Artisants" 		=> "Artisant",
+	"Guide and helper" 	=> "Guide et accompagnateur",
+
+	"folder fee included and delivery tax not included" => "folder fee included and delivery tax not included"
 );
 ?>
