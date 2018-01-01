@@ -2128,6 +2128,15 @@ var uploadObj = {
 		}
 	}
 };
+var openingHoursResult=[
+	{"dayOfWeek":"Su","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+	{"dayOfWeek":"Mo","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+	{"dayOfWeek":"Tu","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+	{"dayOfWeek":"We","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+	{"dayOfWeek":"Th","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+	{"dayOfWeek":"Fr","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+	{"dayOfWeek":"Sa","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+];
 
 var dyFObj = {
 	elementObj : null,
@@ -2216,7 +2225,19 @@ var dyFObj = {
 		if( typeof formData.tags != "undefined" && formData.tags != "" )
 			formData.tags = formData.tags.split(",");
 		
-		
+		if( typeof formData.openingHours != "undefined"){
+			if(typeof formData.hour != "undefined")
+				delete formData.hour;
+			if(typeof formData.minute != "undefined")
+				delete formData.minute;
+			$.each(openingHoursResult, function(e,v){
+				if(v.allDay && typeof v.hours != "undefined")
+        			delete openingHoursResult[e]["hours"];
+				if(typeof v.disabled != "undefined")
+					delete openingHoursResult[e];
+			});		
+			formData.openingHours=openingHoursResult;
+		}
 		// Add collections and genres of notragora in tags
 		if( typeof formData.collections != "undefined" && formData.collections != "" ){
 			collectionsTagsSave=formData.collections.split(",");
@@ -2929,7 +2950,13 @@ var dyFInputs = {
       	};
     	return inputObj;
     },
-
+    quantity :function(label, placeholder, rules, custom) { 
+		var inputObj = dyFInputs.inputText(tradDynForm.quantity, tradDynForm.quantity+" ...") ;
+	    inputObj.init = function(){
+    		$('input#quantity').filter_input({regex:'[0-9]'});
+      	};
+    	return inputObj;
+    },
     text :function (label,placeholder,rules) {  
     	var inputObj = {
     		inputType : "text",
@@ -3318,7 +3345,17 @@ var dyFInputs = {
         inputType : "array",
         value : [],
         init:function(){
-            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",0);	
+            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);	
+        }
+    },
+    videos : {
+    	label : "Your media videos here",
+    	placeholder : tradDynForm["sharevideourl"]+" ...",
+        inputType : "array",
+        value : [],
+        initOptions : {type:"video",labelAdd:"Add video link"},
+        init:function(){
+            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1, "video");	
         }
     },
     urlsOptionnel : {
@@ -3326,7 +3363,7 @@ var dyFInputs = {
         placeholder : tradDynForm["urlandaddinfoandaction"],
         value : [],
         init:function(){
-            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",0);
+            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);
         	$(".urlsarray").css("display","none");	
         }
     },
@@ -3535,6 +3572,82 @@ var dyFInputs = {
 					if (endDate != "Invalid date") $('#ajaxFormModal #endDate').val(endDate);
 	    		}
 		    }
+    	};
+    	return inputObj;
+    },
+    
+    openingHours : function(checked){
+    	var inputObj = {
+    		inputType : "checkbox",
+    		label : "Availabity of your service",
+	    	checked : ( notEmpty(checked) ? checked : "" ),
+	    	init : function(){
+	    		//openingHoursResult=openingHours.init;
+	    		openingHoursResult=[
+					{"dayOfWeek":"Su","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+					{"dayOfWeek":"Mo","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+					{"dayOfWeek":"Tu","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+					{"dayOfWeek":"We","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+					{"dayOfWeek":"Th","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+					{"dayOfWeek":"Fr","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+					{"dayOfWeek":"Sa","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+				];
+	    		//jQuery.datetimepicker.setLocale('fr');
+	    		//$('.changeTime').datetimepicker({format:"HH:MM"});
+	    		$(".btn-select-day").click(function(){
+	    			key=$(this).data("key");
+	    			if($(this).hasClass("active")){
+	    				$(this).removeClass("active");
+	    				$.each(openingHoursResult, function(e,v){
+	    					if(v.dayOfWeek==key)
+	    						openingHoursResult[e].disabled=true;
+	    				});
+	    				$("#contentDays"+key).fadeOut();
+	    			}else{
+	    				$(this).addClass("active");
+	    				$.each(openingHoursResult, function(e,v){
+	    					if(v.dayOfWeek==key)
+	    						delete openingHoursResult[e].disabled;
+	    				});
+	    				$("#contentDays"+key).fadeIn();
+	    			}
+	    		});
+	    		$(".allDaysWeek").click(function(){
+	    			keyRange=$(this).data("key");
+	    			//alert(keyRange);
+	        		if($(this).is(':checked')){
+	        			$("#hoursRange"+keyRange).fadeOut("slow");
+	        			$.each(openingHoursResult, function(e,v){
+	    					if(v.dayOfWeek==keyRange)
+	        					openingHoursResult[e].allDay=true;
+	        			});
+	        		}else{
+	        			$("#hoursRange"+keyRange).fadeIn("slow");
+	        			$.each(openingHoursResult, function(e,v){
+	    					if(v.dayOfWeek==keyRange)
+	        					openingHoursResult[e].allDay=false;
+	        			});
+	        		}
+	    		});
+	        },
+	        options: {"allWeek" : true},
+	    	"switch" : {
+	    		"onText" : tradDynForm["yes"],
+	    		"offText" : tradDynForm["no"],
+	    		"labelText":tradDynForm["allweek"],
+	    		"css":{"min-width": "300px","margin": "10px"},
+	    		"onChange" : function(){
+	    			var allWeek = $("#ajaxFormModal #openingHours").is(':checked');
+	    			$("#ajaxFormModal #openingHours").val($("#ajaxFormModal #openingHours").is(':checked'));
+	    			if (allWeek) {
+	    				$("#ajaxFormModal #selectedDays").fadeOut("slow");
+	    			} else {
+	    				$("#ajaxFormModal #selectedDays").fadeIn("slow");
+	    			}
+				    //if (startDate != "Invalid date") $('#ajaxFormModal #startDate').val(startDate);
+					//if (endDate != "Invalid date") $('#ajaxFormModal #endDate').val(endDate);
+	    		}
+		    },
     	};
     	return inputObj;
     },
