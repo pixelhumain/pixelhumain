@@ -184,6 +184,8 @@
                 //'/plugins/animate.css/animate.min.css',
                 '/plugins/font-awesome/css/font-awesome.min.css',
                 '/plugins/font-awesome-custom/css/font-awesome.css',
+
+                '/plugins/cryptoJS-v3.1.2/rollups/aes.js'
             );
             if(Yii::app()->language!="en")
                 array_push($cssAnsScriptFilesModule,"/plugins/jquery-validation/localization/messages_".Yii::app()->language.".js");

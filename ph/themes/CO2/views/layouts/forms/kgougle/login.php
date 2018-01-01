@@ -122,7 +122,7 @@
             <label><i class="fa fa-envelope"></i> Un e-mail</label> 
             <input class="form-control" name="email" id="email-login" type="text" placeholder="e-mail" tabindex="1">
             <label for="remember" class="checkbox-inline" style="text-transform: none!important;">
-                <input type="checkbox" id="remember" name="remember" style="margin-top: 2px;" tabindex="3">
+                <input type="checkbox" id="remember" name="remember" style="margin-top: 2px;" tabindex="3"  checked="checked">
                 Se souvenir de moi
             </label>
         </div>

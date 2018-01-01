@@ -115,7 +115,7 @@
                 
 
                 <label for="remember" class="checkbox-inline">
-                    <input type="checkbox" id="remember" name="remember">
+                    <input type="checkbox" id="remember" name="remember" checked="checked">
                     Se souvenir de moi
                 </label>
 

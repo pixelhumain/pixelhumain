@@ -259,8 +259,9 @@
         <?php } ?>
 
         <?php 
+            $CO2DomainName = Yii::app()->params["CO2DomainName"];
             if($subdomain == "freedom"){ 
-                $this->renderPartial($layoutPath.'headers/dayQuestion', array());
+                $this->renderPartial($layoutPath.'headers/pod/'.$CO2DomainName.'/dayQuestion', array());
             } 
         ?>
 
