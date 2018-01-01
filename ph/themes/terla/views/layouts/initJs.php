@@ -68,7 +68,7 @@
         "video": "fa-video-camera",
         "classified" : "fa-bullhorn"
     };
-    
+    //var myScopes = {};
     var mapColorIconTop = {
         "default" : "dark",
         "citoyen":"yellow", 

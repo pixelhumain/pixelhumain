@@ -1786,7 +1786,7 @@ onSave: (optional) overloads the generic saveProcess
 		  });
 	}
 
-	function addHoursRange(addToDay, ){
+	function addHoursRange(addToDay){
 		mylog.log("addHoursRange", addToDay);
 		var countRange=$("#hoursRange"+addToDay+" .hoursRange").length;
 		mylog.log("countRange", countRange);
