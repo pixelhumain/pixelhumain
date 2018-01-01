@@ -90,7 +90,7 @@
                 $this->renderPartial('../news/modalShare', array());
         ?>
  
-        <div class="main-container">
+        <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
 
             <?php 
                     $CO2DomainName = Yii::app()->params["CO2DomainName"];

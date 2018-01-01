@@ -215,17 +215,83 @@ section {
   transition: all 0.3s;
   font-size: 1.5em !important;
 }
-#affix-territorial-menu.affix {
-    top: 68px;
-    z-index: 1000;
+#territorial-menu{
+	margin-left:5%;
+}
+#affix-sub-menu.affix{
+	top: 68px;
     background-color: white;
-    width: 100%;
-    margin: inherit;
-    -webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
     box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
+    width: 100%;
+    z-index: 1000;
+}
+#affix-sub-menu.affix #territorial-menu {
+    background-color: white;
+    margin: inherit;
+    
+}
+#filters-menu{
+	display:none;
+}
+#affix-sub-menu.affix #filters-menu{
+	display: none;
+	z-index:100;
+	width: 100%;
+	margin-top: 0px !important;
+    margin: inherit;
+}
+#filters-container-menu{
+	display:none;
+}
+#mainNav.affix #filters-container-menu{
+	display:block;
+}
+#filters-container, #filters-container-menu{
+    float: left;
+    width: 11%;
+}
+#filters-container ul, #filters-container-menu ul{
+    list-style: none;
+    margin-bottom: 0px;
+    float:left;
+    padding: 0px;
 }
 
+#filters-container ul li{
+    display: inline-block;
+float: left;
+height: 45px;
+width: 45px;
+background: white;
+/* padding: 5px 15px; */
+font-size: 15px;
+line-height: 45px;
+-webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
+-moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
+box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5);
+}
+#filters-container-menu ul li{
+	display: inline-block;
+    /* float: left; */
+    height: 40px;
+    text-align: -webkit-center;
+    margin-top: 5px;
+    border-radius: 40px;
+    width: 40px;
+    /* background: white; */
+    /* padding: 5px 15px; */
+    font-size: 15px;
+    line-height: 40px;
+    /* -webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5); */
+    -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
+    /* box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5); */
+}
+#filters-container ul li.active, #filters-container-menu ul li.active{
+          color:white;
+        background-color: #ea4335;
+}
 .navbar-custom.affix-top .navbar-brand{
 	display: none;
 }

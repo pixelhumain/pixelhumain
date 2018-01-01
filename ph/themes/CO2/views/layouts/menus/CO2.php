@@ -48,6 +48,8 @@
         </div>
 
         <?php if( $subdomain == "search" ||
+                $subdomain == "ressource" ||
+                $subdomain == "territorial" ||
                   $subdomain == "agenda" ||
                   $subdomain == "live" ||
                   $subdomain == "power"  ||
@@ -55,7 +57,7 @@
                   $subdomain == "admin"||
                   $subdomain == "page" ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-6 col-md-6 col-lg-8">
+            <div id="input-sec-search" class="hidden-xs col-sm-4 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="search by name or by #tag, ex: 'commun' or '#commun'<?php //echo Yii::t("common", $placeholderMainSearch); ?>">
                 <?php if($subdomain == "page"){ ?>
@@ -66,6 +68,21 @@
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
             </button>
+            <?php if($subdomain != "page"){ ?>
+                <div id="filters-container-menu" class="no-padding">
+                    <ul class="filters-menu">
+                        <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="Geographic filter">
+                         <i class="fa fa-globe"></i> 
+                            <!--<span class="hidden-xs"><?php echo Yii::t("common","Geographical") ?></span>-->
+                        </li>
+                        <li class="btn-open-filliaire tooltips" data-placement="bottom" data-original-title="Themes filter">
+                         <i class="fa fa-th"></i> 
+                            <!--<span class="hidden-xs"><?php echo Yii::t("common","Themes") ?></span>-->
+                        </li>
+                        
+                    </ul> 
+                </div>
+            <?php } ?>
 
         <?php } ?>
 

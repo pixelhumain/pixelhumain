@@ -31,8 +31,8 @@ $mailConfigTest = array(
 
 $params = array(
     //Theme 
-    'theme' => 'terla',
-    'CO2DomainName' => 'terla', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
+    'theme' => 'CO2',
+    'CO2DomainName' => 'CO2', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
     "version"=> "2.1.0",
     //Beta Test ?
     'betaTest' => false,
@@ -107,11 +107,11 @@ $params = array(
     )*/
   );
 
-/*if( !empty($overwriteList) && in_array($params["theme"], $overwriteList["modules"])){
+if( !empty($overwriteList) && in_array($params["theme"], $overwriteList["modules"])){
     $pathOverwrite = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."modules".DIRECTORY_SEPARATOR.$params["theme"]. '/config/overwrite.php';
     require_once($pathOverwrite);
     $params["overWrite"] = $overWrite;
-}*/
+}
     
 
 $modulesDir = '/../../../../modules/';
