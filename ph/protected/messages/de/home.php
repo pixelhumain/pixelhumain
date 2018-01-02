@@ -8,7 +8,7 @@
 		"Change your communexion" => "Ändern Sie Ihre Communection",
 		"communect you : London, Paris, Brussels ?"=>"Communectieren Sie : Linz, Basel, Hamburg ?",
 		"To use the network efficiently, we advice you to be <i><b>communected</b></i>"=>"Um die volle Kraft des Netzwerks zu nutzen, empfehlen wir Ihnen <i><b>communectiert</b></i> zu sein",
-		"Indicate your <b>living place</b>, to keep informed about what's happened around you automatically."=>"Geben Sie die Gemeinde Ihres <b>Lebensmittelpunkts</b> an, um automatisch im Auge zu behalten, was in Ihrer Nähe geschieht.",
+		"Indicate your <b>living place</b>, to keep informed about what's happened around you automatically."=>"Geben Sie die Gemeinde Ihres hauptsächlichen<b>Aufenthalts</b> an, um automatisch im Auge zu behalten, was in Ihrer Nähe geschieht.",
 		"An the moment"=> "In diesem Moment",
 		"on the network"=> "auf dem Netzwerk",
 		"in" => "in",
@@ -43,5 +43,6 @@
 		"To diffuse your messages for your city"=>"Um Ihre Nachrichten anders zu verbreiten",
 		"Terms and conditions of use"=>"Nutzungsbedingungen",
 		"General information"=>"Allgemeine Informationen",
+		"Test a other communexion" => "Probieren Sie eine neue Möglichkeit der Kommunikation und Verbindung aus",
 	);
 ?>

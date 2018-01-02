@@ -979,7 +979,7 @@ return array(
 
 	"You are not connected to your city" => "Vous n'êtes pas communecté-e",
 	"To get quick access to information in your city, to filter and map view local content, please fill your postal code on your profile page." => "Pour obtenir un accès rapide à votre commune, et filtrer les résultats et la carte en fonction de celle-ci,
-merci de renseigner votre code postal dans l'addresse de votre profil.",
+merci de renseigner votre code postal dans l'adresse de votre profil.",
 
 
 	"QR Code" => "QR Code",
@@ -1009,7 +1009,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Unknown Postal Code" => "Code Postal introuvable",
 	"Update Locality" => "Modifier vos coordonnées",
 	"Remove Locality" => "Effacer vos coordonnées",
-	"Remove This Locality" => "Effacer cette addresse",
+	"Remove This Locality" => "Effacer cette adresse",
 	"Add Locality" => "Ajouter une adresse",
 	"Show map" => "Voir la carte",
 	"Unknown Locality" => "Adresse non renseignée",
@@ -1135,7 +1135,7 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"Cancel all" => "Tout annuler",
 	"Invite your contacts" => "Inviter vos contacts",
 	"Select among my contacts" => "Sélectionner parmis mes contacts",
-	"Research a name or e-mail address..." => "Recherchez un nom ou une addresse e-mail...",
+	"Research a name or e-mail address..." => "Recherchez un nom ou une adresse e-mail...",
 
 	"Invitation  accept" => "Invitation acceptée",
 	
@@ -1258,6 +1258,11 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"the holder"=>"le porteur",
 	"All cities with this postal code" => "Toutes les villes avec ce code postal",
 	"On the map"=> "Sur la carte",
+	"The communexion has changed" => "La communexion a changé",
+
+	"All the city" => "Toute la villes",
+
+	"Initialization of map" => "Initialisation de la carte",
 	
 	"services" => "services",
 	"circuits" => "circuits",

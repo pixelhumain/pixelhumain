@@ -16,7 +16,7 @@
 		"Problem inserting the new job offer" => "Problême avec l'insertion de la nouvelle offre d'emploi",
 		"Your job offer has been added with succes" => "Votre Offre d'emploi a été ajoutée avec succès.", 
 		"Can not update the job : you are not authorized to update that job offer !" => "Mise à jour de l'offre impossible : vous n'êtes pas autorisé à modifier l'offre d'emploi !",
-		"Error updating the Organization : address is not well formated !" => "Erreur en mettant à jour l'organisation : addresse incorrect !",
+		"Error updating the Organization : address is not well formated !" => "Erreur en mettant à jour l'organisation : adresse incorrect !",
 		"Can not remove the job : you are not authorized to update that job offer !" => "Suppression de l'offre impossible : vous n'êtes pas autorisé à modifier l'offre d'emploi !",
 		"Your job offer has been deleted with success" =>"Votre Offre d'emploi a été supprimé avec succès.",
 	);
