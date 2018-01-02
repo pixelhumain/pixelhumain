@@ -559,9 +559,9 @@ function loadLiveNow () {
     //console.log("communexion : ", communexion);
 	if($("#searchLocalityCITYKEY").val() != ""){
 		searchParams.searchLocalityCITYKEY = new Array($("#searchLocalityCITYKEY").val());
-	}else if(communexion.values != null){
-		if(typeof communexion.values.cityKey != "undefined"){
-			searchParams.searchLocalityCITYKEY = new Array(communexion.values.cityKey);
+	}else if(myScopes.communexion.values != null){
+		if(typeof myScopes.communexion.values.cityKey != "undefined"){
+			searchParams.searchLocalityCITYKEY = new Array(myScopes.communexion.values.cityKey);
 		}
 	}
 

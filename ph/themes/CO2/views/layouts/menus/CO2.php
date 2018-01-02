@@ -54,8 +54,9 @@
                   $subdomain == "live" ||
                   $subdomain == "power"  ||
                   $subdomain == "annonces"||
-                  $subdomain == "admin"||
-                  $subdomain == "page" ){ ?>
+                  $subdomain == "admin"
+                  //$subdomain == "page"
+                 ){ ?>
         
             <div id="input-sec-search" class="hidden-xs col-sm-4 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
@@ -68,27 +69,24 @@
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
             </button>
-            <?php if($subdomain != "page"){ ?>
-                <div id="filters-container-menu" class="no-padding">
+            <div id="filters-container-menu" class="no-padding">
                     <ul class="filters-menu">
-                        <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="Geographic filter">
+                        <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="Geographical filter">
                          <i class="fa fa-globe"></i> 
                             <!--<span class="hidden-xs"><?php echo Yii::t("common","Geographical") ?></span>-->
                         </li>
-                        <li class="btn-open-filliaire tooltips" data-placement="bottom" data-original-title="Themes filter">
+                        <li class="btn-open-filliaire tooltips" data-placement="bottom" data-original-title="Theme filter">
                          <i class="fa fa-th"></i> 
                             <!--<span class="hidden-xs"><?php echo Yii::t("common","Themes") ?></span>-->
                         </li>
                         
                     </ul> 
-                </div>
-            <?php } ?>
-
+            </div>
         <?php } ?>
 
-        <?php if( $subdomain == "welcome" ){ ?>
+        <?php if( $subdomain == "welcome" || $subdomain=="page" ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-2 col-md-3 col-lg-3">
+            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-3 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
@@ -99,7 +97,6 @@
             </button>
 
         <?php } ?>
-
         <button class="btn-show-map"
                 title="<?php echo Yii::t("common", "Show the map"); ?>"
                 alt="<?php echo Yii::t("common", "Show the map"); ?>"
@@ -334,6 +331,9 @@
                 <div class="visible-xs visible-sm append-small-login hidden"></div>
             <?php } ?>
         </div>
+        <a href="#territorial" class="lbh text-red bg-white padding-5 pull-right" id="btn-territorial-modules">
+         <i class="fa fa-globe"></i> <?php echo Yii::t("common", "Co.<span class='text-dark'>search</span> Engine") ?>
+         </a>
         <?php if (!@Yii::app()->session["userId"]){ ?>
             <button class="btn-show-mainmenu btn btn-link visible-xs pull-right" 
                     data-toggle="tooltip" data-placement="left" title="Menu" style="padding: 4px 10px;">

@@ -215,6 +215,17 @@ section {
   transition: all 0.3s;
   font-size: 1.5em !important;
 }
+#btn-territorial-modules{
+	line-height: 45px;
+	padding: 5px;
+	text-transform: capitalize;
+	font-family: homestead;
+	font-weight: 100;
+}
+#btn-territorial-modules:hover{
+	text-decoration: none;
+    color: #e6344d !important;
+}
 #territorial-menu{
 	margin-left:5%;
 }
