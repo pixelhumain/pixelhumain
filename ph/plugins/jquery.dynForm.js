@@ -180,7 +180,8 @@ onSave: (optional) overloads the generic saveProcess
         		  fieldObj.inputType == "text" || 
         		  fieldObj.inputType == "numeric" || 
         		  fieldObj.inputType == "tags" || 
-        		  fieldObj.inputType == "price" ) {
+        		  fieldObj.inputType == "tags" ) {
+        	mylog.log("build field "+field+">>>>>> text, numeric, tags, tags");
         	if(fieldObj.inputType == "tags")
         	{
         		fieldClass += " select2TagsInput";
@@ -340,30 +341,7 @@ onSave: (optional) overloads the generic saveProcess
 				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
 			} 
 			fieldHTML += '</select>';
-        }
-
-        /*else if ( fieldObj.inputType == "selectList"  ) {
-       		mylog.log("build field "+field+">>>>>> select selectList");
-			fieldHTML += '<ul role="menu" class="dropdown-menu scrollable-menu '+fieldClass+'" id="'+field+'" style="width: 100%;height:30px" >'+
-	            '<li class="categoryOrgaEvent col-md-12">'+
-	                '<ul class="dropOrgaEvent" id="citoyen">'+	                    
-	                    '<li class="categoryTitle" style="margin-left:inherit;"><i class="fa fa-question"></i> I dont know</li>'+
-	                    '<li><a href="javascript:;" class="btn-drop dropOrg" id="" data-id="" data-name="">I dont know</a></li>'+
-	                '</ul>'+
-	           '</li>';
-
-			var selected = "";
-			
-			//initialize values
-			$.each(fieldObj.options, function(optKey, optVal) {
-				selected = ( fieldObj.value && optKey == fieldObj.value ) ? "selected" : ""; 
-				fieldHTML += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
-			});
-			fieldHTML += '</ul>';
-        }*/
-
-        
-        
+        }    
         else if ( fieldObj.inputType == "uploader" ) {
         	if(placeholder == "")
         		placeholder="add Image";
@@ -691,9 +669,9 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> properties list", fieldObj.values);
 
         	if(fieldObj.values){
-    			if(!initValues[field])
-    				initValues[field] = {};
-    			initValues[field]["tags"] = fieldObj.values;
+    			if(!initValues["tags"+field])
+    				initValues["tags"+field] = {};
+    			initValues["tags"+field]["tags"] = fieldObj.values;
     		}
     		
     		mylog.log("build field "+field+">>>>>> properties initValues", initValues);
@@ -709,13 +687,14 @@ onSave: (optional) overloads the generic saveProcess
 
         	fieldHTML += '<div class="inputs properties">'+
 								'<div class="col-sm-3">'+
-									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 									'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
+									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 								'</div>'+
 								'<div class="col-sm-7">'+
-									'<textarea type="text" name="values[]" class="addmultifield1 form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);"  placeholder="'+placeholder2+'"></textarea>'+
-									'<button data-id="'+field+fieldObj.inputType+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+									//'<textarea type="text" name="values[]" class="addmultifield1 form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);"  placeholder="'+placeholder2+'"></textarea>'+
 									'<input type="text" class="form-control select2TagsInput" name="tags'+field+'" id="tags'+field+'" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
+									'<button data-id="'+field+fieldObj.inputType+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+									
 								'</div>'+
 							'</div>'+
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
@@ -754,10 +733,7 @@ onSave: (optional) overloads the generic saveProcess
 				        		'<ul class="dropdown-menu" id="dropdown_searchInvite" style="">'+
 									'<li class="li-dropdown-scope">-</li>'+
 								'</ul>'+
-							'</input>';
-			
-
-			
+							'</input>';			
         }
 
         /* **************************************
@@ -781,6 +757,7 @@ onSave: (optional) overloads the generic saveProcess
         * CREATE NEWS
         ************************************** */
         else if( fieldObj.inputType == "createNews"){
+        	mylog.log("build field "+field+">>>>>> createNews");
         	var newsContext=fieldObj.params;
         	if(newsContext.targetType!="citoyens"){
         		if(newsContext.authorImg=="")
@@ -999,6 +976,7 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> input text");
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
+
         if( fieldObj.custom )
         	fieldHTML += fieldObj.custom ;
 
@@ -1113,7 +1091,7 @@ onSave: (optional) overloads the generic saveProcess
 			{
 				$.each($(".select2TagsInput"),function () 
 				{
-					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ] );
+					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ], initValues );
 					if( initValues[ $(this).attr("id") ] )
 					{
 						var selectOptions = 
@@ -2998,6 +2976,7 @@ var dyFInputs = {
     keyVal : {
     	label : "Key Value Pairs",
     	inputType : "properties",
+    	values : tagsList,
     },
     bookmarkUrl: function(label, placeholder,rules, custom){
     	var inputObj = dyFInputs.inputUrl(label, placeholder, rules, custom);
