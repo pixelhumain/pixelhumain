@@ -101,6 +101,8 @@
 		"Link to Twitter"=>"Lien vers Twitter",
 		"Link to GitHub"=>"Lien vers GitHub",
 		"Link to Instagram"=>"Lien vers Instagram",
+		"Link to Mastodon"=>"Lien vers Mastodon",
+		"Link to Diaspora"=>"Lien vers Diaspora",
 		"Fix"=>"Fixe",
 		"Fax"=> "Fax",
 		"Mobile"=>"Mobile",
