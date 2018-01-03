@@ -151,10 +151,17 @@
                 </div>
             </div>
         <?php } ?>
+
+        <?php 
+            $CO2DomainName = Yii::app()->params["CO2DomainName"];
+            if($subdomain == "freedom"){ 
+                $this->renderPartial($layoutPath.'headers/pod/'.$CO2DomainName.'/dayQuestion', array());
+            } 
+        ?>
+
     </header>
 
     <?php
-            $CO2DomainName = Yii::app()->params["CO2DomainName"];
             $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
             $this->renderPartial($layoutPath.'menus/'.$CO2DomainName, 
                                                     array( "layoutPath"=>$layoutPath , 

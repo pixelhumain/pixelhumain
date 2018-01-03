@@ -75,7 +75,9 @@ function startWebSearch(search, category){
     $("#second-search-bar").val(search);
     $("#mainCategories").hide();
     $("#sectionSearchResults").removeClass("hidden");
-    $("#searchResults").html("<i class='fa fa-spin fa-refresh'></i> recherche en cours. Merci de patienter quelques instants...");
+    $("#searchResults").html("<div class='col-md-12 margin-top-25'>"+
+                                "<i class='fa fa-spin fa-refresh'></i> recherche en cours. Merci de patienter quelques instants..."+
+                             "</div>");
 
     KScrollTo("#sectionSearchResults");
     
@@ -133,7 +135,7 @@ function buildListCategories(){
 
         $.each(params.items, function(keyC, val){
             //console.log(keyC, val);
-            html +=             '<div class="col-sm-3 col-xs-6 portfolio-item">'+
+            html +=             '<div class="col-md-3 col-sm-4 col-xs-6 portfolio-item">'+
                                     '<button class="portfolio-link category-search-link" data-category="'+val.name+'">'+
                                         '<div class="caption">'+
                                             '<div class="caption-content">'+
@@ -301,6 +303,8 @@ function searchLilo(search){
             timeout:10000,
             success:
                 function(data) {
+                    $("#resLilo").html("<i class='fa fa-ban'></i> Aucun résultat<br><br>");
+                    
                     var tempDom = $('<output1>').append($.parseHTML(data));
                     var res = $('.gsc-wrapper#results', tempDom).html();
                     
@@ -316,7 +320,14 @@ function searchLilo(search){
                         var url = $(this).attr("href");
                         addUrlSuggestion(url);
                     });
-            }
+            },
+            error:
+                function(data){
+                    $("#resLilo").html("<i class='fa fa-ban'></i> Une erreur est survenue<br><br>");
+                    $("#resLilo").append("<a class='btn btn-link bg-blue-k' target='_blank' href='https://search.lilo.org/searchweb.php?q="+search+"'>"+
+                                            "<i class='fa fa-chevron-circle-right'></i> Continuer la recherche sur Lilo"+
+                                         "</a>");
+                }
     });
 }
 
@@ -332,6 +343,8 @@ function searchEcosia(search){
             timeout:10000,
             success:
                 function(data) {
+                    $("#resEcosia").html("<i class='fa fa-ban'></i> Aucun résultat<br><br>");
+                    
                     var tempDom = $('<output2>').append($.parseHTML(data));
                     var res = $('.container.results .mainline', tempDom).html();
                     var adds = $('.container.results .sidebar.card-desktop', tempDom).html();
@@ -351,7 +364,14 @@ function searchEcosia(search){
                         addUrlSuggestion(url);
                     });
                     
-            }
+            },
+            error:
+                function(data){
+                    $("#resEcosia").html("<i class='fa fa-ban'></i> Une erreur est survenue<br><br>");
+                    $("#resEcosia").append("<a class='btn btn-link bg-blue-k' target='_blank' href='https://www.ecosia.org/search?q="+search+"'>"+
+                                            "<i class='fa fa-chevron-circle-right'></i> Continuer la recherche sur Ecosia"+
+                                           "</a>");
+                }
     });
 }
 

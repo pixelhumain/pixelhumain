@@ -61,7 +61,7 @@
 }
 </style>
 
-<?php if($subdomain != "welcome"){ ?>
+<?php //if($subdomain != "welcome"){ ?>
 <form class="portfolio-modal modal fade form-login box-login" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">
         <div class="close-modal" data-dismiss="modal">
@@ -115,9 +115,11 @@
                 
 
                 <label for="remember" class="checkbox-inline">
-                    <input type="checkbox" id="remember" name="remember">
+                    <input type="checkbox" id="remember" name="remember" checked="checked">
                     <?php echo Yii::t("login","Keep me signed in") ?>
-                </label>
+                </label><br>
+                <small><i class="fa fa-lock"></i> mot de passe enregistré de façon sécurisée dans vos cookies</small>
+                <br><br>
 
                 <button class="btn btn-success pull-right loginBtn" type="submit"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Log in") ?></button><br><br>
   
@@ -160,10 +162,18 @@
                         <!-- <i class="fa fa-s"></i> --><?php echo Yii::t("login","I forgot my password") ?>
                     </a>
                     <br><br>
-                    
-                    <a href="javascript:;" class="btn btn-default bg-white" data-toggle="modal" data-target="#modalRegister">
-                             <!-- <i class="fa fa-sign-in"></i> --> <?php echo Yii::t("login", "I create my account") ?>
-                    </a>
+                    <?php if($subdomain != "welcome"){ ?>
+                        <a href="javascript:;" class="btn btn-default bg-white letter-red bold" 
+                            data-toggle="modal" data-target="#modalRegister">
+                                 <i class="fa fa-plus-circle bold"></i> 
+                                 <?php echo Yii::t("login", "I create my account") ?>
+                        </a>
+                    <?php }else{ ?>
+                        <a href="javascript:;" class="btn btn-default bg-white letter-red bold" data-dismiss="modal">
+                                <i class="fa fa-plus-circle"></i> 
+                                <?php echo Yii::t("login", "I create my account") ?>
+                        </a>
+                    <?php } ?>
                 </div>
 
                 <br><hr>
@@ -177,7 +187,7 @@
         </div>
     </div>
 </form>
-<?php } ?>
+<?php //} ?>
 
 <?php if(Yii::app()->params["CO2DomainName"] != "kgougle"){ //bloquage des inscriptions ?>
 <?php if($subdomain != "welcome"){ ?>
