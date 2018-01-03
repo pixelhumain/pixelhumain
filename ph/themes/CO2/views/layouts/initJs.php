@@ -48,7 +48,9 @@
     var deviseTheme = <?php echo json_encode(@$params["devises"]) ?>;
     var deviseDefault = <?php echo json_encode(@$params["deviseDefault"]) ?>;
 
-    var communexion=<?php echo json_encode(CO2::getCommunexionCookies()) ?>;
+    //var communexion=<?php echo json_encode(CO2::getCommunexionCookies()) ?>;
+    var communexion=<?php echo json_encode($communexion) ?>;
+    console.log("first communexion", communexion);
 
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",

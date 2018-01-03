@@ -4,6 +4,7 @@
     "skin" : {
         "logo" : false,
         "title" : "NotrAgora",
+        "title" : "Communs dans la région Hauts de France",
         "shortDescription" : "false",
         "displayScope" : false,
         "docs":true,
@@ -39,79 +40,9 @@
             "gallery":true
         }
     },
- "filter" : {
-        "types" : false,
-        "linksTag" : {
-            "Type de tiers-lieu" : {
-                "tagParent" : "Type",
-                "background-color" : "#f5f5f5",
-                "image" : "Travail.png",
-                "tags" : {
-                  "Télétravail" : "Télétravail",
-                  "Coworking" : "Coworking",
-                  "Médiation Numérique" : "Médiation numérique",
-                  "FabLab" : "Fablab",
-                  "Accompagnement de projets" : "Accompagnement de projets",
-                  "Atelier" : "Atelier",
-                  "Salle de réunion" : "Salle de réunion",
-                  "Communauté Catalyst" : "Catalyst",
-                  "Espace à louer" : "Espace à louer"
-                }
-            },
-            "Services complémentaires" : {
-                "tagParent" : "Service",
-                "background-color" : "#f5f5f5",
-                "image" : "Service.png",
-                "tags" : {
-                    "Espace détente" : "Espace détente",
-                    "Cuisine" : "Cuisine",
-                    "Achat groupé" : "Achat groupé",
-                    "Bar participatif" : "Bar participatif",
-                    "Cuisine participative" : "Cuisine participative",
-                    "Epicerie participative" : "Epicerie participative",
-                    "Jardiné" : "Jardin",
-                    "Domiciliation" : "Domiciliation",
-                    "Atelier participatif" : "Atelier participatif",
-                    "Restaurant" : "Restaurant",
-                    "Bar":"Bar"
-                }
-            },
-            "Modèle de gestion" : {
-                "tagParent" : "Modele",
-                "background-color" : "#f5f5f5",
-                "image" : "Loisir.png",
-                "tags" : {
-                  "Commun" : "Commun",
-                  "Association" : "Association",
-                  "Business" : "Business",
-                  "Public" : "Public"
-                }
-            },
-            "État du projet" : {
-                "tagParent" : "Etat",
-                "background-color" : "#f5f5f5",
-                "image" : "Reparation.png",
-                "tags" : {
-                  "En projet" : "En projet",
-                  "En démarrage" : "En démarrage",
-                  "En fonctionnement" : "En fonctionnement"
-                }
-            },
-            "Taille de l'espace" : {
-                "tagParent" : "Surface",
-                "background-color" : "#f5f5f5",
-                "image" : "Information.png",
-                "tags" : {
-                  "Moins de 60m2" : "Moins de 60m2",
-                  "Entre 60 et 200m2" : "Entre 60 et 200m2",
-                  "Plus de 200m2" : "Plus de 200m2"
-                }
-            }
-          }
-    },
-    "add" : {
+ "add" : {
         "organization" : true,
-        "person" : true
+        "person" : false
     },
     "result" : {
         "displayImage" : true,
@@ -122,6 +53,26 @@
     },
     "request" : {
         "pagination" : 1000,
+<<<<<<< HEAD
         "mainTag" : [""]
+=======
+        "searchType" : [
+            "organizations",
+        "person",
+        "poi"
+        ],
+           "searchTag" : [
+            "communs",
+            "commun",
+            "Commun",
+            "Communs"
+        ],
+
+ "searchLocalityREGION": [
+      "Hauts-de-France"
+    ],
+ "mainTag" : ["commun"]
+>>>>>>> master
     }
+
 }
