@@ -12,8 +12,8 @@
 		"participate to" =>"participer à",
 		"Answer to the invitation" => "Répondre à l'invitation",
 		//FOLLOW
-		"You have a new follower" => "Vous avez un(e) nouvel(le) abonné(e)",
-		"New follower" => "Nouvel(le) abonn&eacute;(e)",
+		"You have a new follower" => "Vous avez un·e nouvel·le abonné·e",
+		"New follower" => "Nouvel·le abonn&eacute;·e",
 		"All my followers" => "Tous mes abonnés",
 		//COMMON [FOOTER]
 		"If the link doesn&apos;t work, you can copy it in your browser&apos;s address"=> "Si le lien ne fonctionne pas vous pouvez le copier dans l&apos;adresse de votre navigateur",
@@ -38,8 +38,8 @@
 		//FOLLOW
 		"{who} is following {what}" => "{who} suit {what}",
 		"{who} is following you" => "{who} vous suit",
-		"{who} is now connected to the news stream of {what}" => "{who} est maintenant connect&eacute;(e) aux actualit&eacute;s de {what}",
-		"{who} is now connected to your news stream" => "{who} est maintenant connect&eacute;(e) à votre actualit&eacute;",
+		"{who} is now connected to the news stream of {what}" => "{who} est maintenant connect&eacute;·e aux actualit&eacute;s de {what}",
+		"{who} is now connected to your news stream" => "{who} est maintenant connect&eacute;·e à votre actualit&eacute;",
 		"When you post a news, he/she will received the news on his/her news" => "Lorsque vous posterez, il/elle recevra l&apos;actualit&eacute; dans son fil d&apos;actualit&eacute;",
 		"When you post a news on {what}, he/she will received the news on his/her news"=>"Lorsque vous posterez sur {what}, il/elle recevra l&apos;actualit&eacute; dans son fil d&apos;actualit&eacute;",
 		"All followers on {what}" => "Tous les abonnés sur {what}",
