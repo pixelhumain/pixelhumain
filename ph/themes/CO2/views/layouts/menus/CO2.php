@@ -138,7 +138,7 @@
             
             <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
                   data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","My network") ?>" alt="<?php echo Yii::t("common","My network") ?>">
-              <i class="fa fa-link"></i>
+              <i class="fa fa-connectdevelop"></i>
             </button>
             <button class="btn-show-mainmenu btn btn-link" 
                     data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","Menu") ?>">
@@ -194,7 +194,7 @@
                                   <?php 
                                 $class = "hidden" ;
                                 if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
-                                    $class = ""
+                                    $class = "";
                                 ?>
                                 <li class="text-left">
                                     <a href="" class="communecter-btn bg-white <?php echo $class ; ?>" onclick="communecterUser();">
@@ -331,9 +331,11 @@
                 <div class="visible-xs visible-sm append-small-login hidden"></div>
             <?php } ?>
         </div>
+        <?php if( $subdomain == "welcome" || $subdomain=="page" ){ ?>
         <a href="#territorial" class="lbh text-red bg-white padding-5 pull-right" id="btn-territorial-modules">
          <i class="fa fa-globe"></i> <?php echo Yii::t("common", "Co.<span class='text-dark'>search</span> Engine") ?>
          </a>
+        <?php } ?>
         <?php if (!@Yii::app()->session["userId"]){ ?>
             <button class="btn-show-mainmenu btn btn-link visible-xs pull-right" 
                     data-toggle="tooltip" data-placement="left" title="Menu" style="padding: 4px 10px;">

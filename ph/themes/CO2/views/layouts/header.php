@@ -91,13 +91,12 @@
 
     <header>
         <?php if(@$useHeader != false){ ?>
-            <!--<div class="col-md-12 text-center main-menu-app" style="">
+            <!--<div class="col-md-12 text-center main-menu-app" style="">-->
                 <?php 
-                    $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
-                                                                                "subdomain"  => $subdomain));
+                    /*$this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
+                                                                                "subdomain"  => $subdomain));*/
                 ?>
-            </div>-->
-            
+            <!--</div>-->
             <div class="">
                 <div class="row">
                     <div class="col-lg-12">
