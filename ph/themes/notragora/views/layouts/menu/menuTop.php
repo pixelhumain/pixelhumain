@@ -171,8 +171,10 @@
 					'</a>' +
 				'</span>' +
 				'<span class="description-poi" style="display: none;">' +
-					'<h3>'+ topElem.name + '</h3>' +
-					'<span class="poiTopDescription">' + topElem.description +'</span>' +
+					'<div>' +
+						'<h3>'+ topElem.name + '</h3>' +
+						'<span class="poiTopDescription">' + topElem.description +'</span>' +
+					'</div>' +
 					'<a href="' + topElem.href +' " class="btn btn-dark-grey lbh"> Voir la réalisation </a>' +
 				'</span>' +
 			'</li>';

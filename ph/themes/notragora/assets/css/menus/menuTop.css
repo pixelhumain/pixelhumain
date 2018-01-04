@@ -161,11 +161,18 @@ img.img-galley-top {
 	top:10px;
 	left:5px;
 }
+
+.description-poi div {
+	height: 88px;;
+	overflow: hidden;
+}
+
 .description-poi h3{
 	font-size: 11px;
     padding: 2px 3px;
     margin: inherit;
     text-align: -webkit-left;
+		font-weight: bold;
 }
 .description-poi span{
 	padding: 0px 3px;
