@@ -65,7 +65,31 @@
         ],
 
  "searchLocalityREGION": [
-      "Hauts-de-France"
+        "GERS",
+        "Hauts-de-France",
+        "Centre-Val de Loire",
+        "Nouvelle-Aquitaine",
+        "Auvergne-Rhône-Alpes",
+        "HERAULT",
+        "LOT",
+        "GARD",
+        "AUDE",
+        "Bourgogne-Franche-Comté",
+        "HAUTES-PYRENEES",
+        "Grand Est",
+        "HAUTE-GARONNE",
+        "TARN",
+        "AVEYRON",
+        "Normandie",
+        "TARN-ET-GARONNE",
+        "LOZERE",
+        "Provence-Alpes-Côte d'Azur",
+        "Pays de la Loire",
+        "Corse",
+        "Île-de-France",
+        "PYRENEES-ORIENTALES",
+        "ARIEGE",
+        "Bretagne"
     ],
  "mainTag" : ["commun"]
     }
