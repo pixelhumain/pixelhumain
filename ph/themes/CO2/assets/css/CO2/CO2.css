@@ -129,7 +129,7 @@ body{
 header, .header {
 	margin-top: 60px;
   text-align: center;
-  background: #F6F6F6;
+  background: rgba(251, 251, 251, 0.98);
   /*background-image: url("../../img/background-onepage/bg-city.jpg");*/
   color: #365766;
 }
@@ -282,6 +282,7 @@ line-height: 45px;
 -webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
 -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
 box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5);
+position: relative;
 }
 #filters-container-menu ul li{
 	display: inline-block;
@@ -1340,6 +1341,15 @@ h3.title_panel_map{
 	margin-top: -15px;
 	margin-left: -7px;
 	background-color: #34a853;
+}
+.scope-filters-badge{
+	position: absolute;
+    background-color: #34a853;
+    right: 8px;
+    height: 12px;
+    width: 12px;
+    border-radius: 6px;
+    top: 9px;
 }
 .btn-menu-notif{
 	margin-right: 7px;

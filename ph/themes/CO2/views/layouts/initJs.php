@@ -128,9 +128,12 @@
             };
             initFloopDrawer();
             resizeInterface();
-            if(typeof localStorage != "undefined" && typeof localStorage.myScope != "undefined")                    
-               myScopes = JSON.parse(localStorage.getItem("myScopes"));
-            else{
+            if(typeof localStorage != "undefined" && typeof localStorage.myScopes != "undefined"){                  
+                myScopes = JSON.parse(localStorage.getItem("myScopes"));
+                if(myScopes.type=="open-scope")
+                    myScopes.state=false;
+                myScopes.open={};
+            }else{
                 myScopes={
                     state:"open",
                     open : {},

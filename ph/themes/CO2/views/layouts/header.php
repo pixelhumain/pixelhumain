@@ -82,7 +82,7 @@
                                                             "placeholderMainSearch"=>$placeholderMainSearch,
                                                             "type"=>@$type,
                                                             "me" => $me) );
-        $cities = CO2::getCitiesNewCaledonia();
+        $cities = [];//CO2::getCitiesNewCaledonia();
                         $this->renderPartial($layoutPath.'scopes/'.$CO2DomainName.'/multi_scope', 
                                 array(  "cities"=>$cities, "me"=>$me));
     ?>
@@ -123,6 +123,7 @@
         <ul class="filters-menu">
             <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="Geographic filter">
              <i class="fa fa-globe"></i> 
+             <span class="scope-filters-badge topbar-badge animated bounceIn hide badge-tranparent"></span>
                 <!--<span class="hidden-xs"><?php echo Yii::t("common","Geographical") ?></span>-->
             </li>
             <li class="btn-open-filliaire tooltips" data-placement="bottom" data-original-title="Themes filter">
@@ -339,9 +340,13 @@
             activateScope=myScopes.type;
         else
             activateScope="open-scope";
-        activateScopeMenu(activateScope);
+        activateScopeMenu(activateScope,true);
         bindSearchCity();
-        bindCommunexionScopeEvents();
+        headerActive=true;
+        if(myScopes.type=="multiscope")
+            headerActive=false;
+        activateGlobalCommunexion(headerActive, true);
+        //bindCommunexionScopeEvents();
         if(userId!="")
             $("#communexion-container").html(getBreadcrumCommunexion(myScopes.communexion));
         if(typeof myScopes.open.currentValues != "undefined")
@@ -349,12 +354,26 @@
         showTagsScopesMin();
         //bindScopeMenu();
     }
-    function activateScopeMenu(type){
+    function activateScopeMenu(type,init){
         $(".container-scope-menu").hide(700);
         $(".btn-scope-menu").removeClass("active");
         $("#"+type+"-container").show(700);
         $(".activate-"+type).addClass("active");
         myScopes.type=type;
+        if(init==null){
+            myScopes.state=true;
+            //if(type!="open-scope"){
+            localStorage.setItem("myScopes",JSON.stringify(myScopes));
+            //}
+        }else if(type=="open-scope")
+            myScopes.state=false;
+        if(myScopes.state){
+            $('.scope-filters-badge').removeClass('hide');
+            $('.scope-filters-badge').addClass('animated bounceIn');
+            $('.scope-filters-badge').addClass('badge-success');
+            $('.scope-filters-badge').removeClass('badge-tranparent');
+        }
+
     }
    // function activeOpen(){
      //   $("")
