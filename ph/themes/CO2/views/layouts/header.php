@@ -254,7 +254,9 @@
              ?>   
 <script type="text/javascript">
     var filliaireCategories = <?php echo json_encode(@$filliaireCategories); ?>;
+    var page="<?php echo $page ?>";
     jQuery(document).ready(function() {
+        searchInitApp(search);
         $(".btn-open-filliaire").click(function(){
             if($(".scope-header-filter").hasClass("active")){
                 $("#container-scope-filter").hide(700);
@@ -335,6 +337,10 @@
         //}
         $(".tooltips").tooltip();
     });
+    function searchInitApp(src){
+        search.app=page;
+        console.log("iciiiiii src",src);
+    }
     function initScopeMenu(type){
         if(typeof myScopes.type != "undefined")
             activateScope=myScopes.type;
