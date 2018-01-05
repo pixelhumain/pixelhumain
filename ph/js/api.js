@@ -45,14 +45,6 @@ function getAjax(id,ajaxUrl,callback,datatype,blockUI)
 {
   $.ajaxSetup({ cache: true});
   mylog.log("getAjax",id,ajaxUrl,callback,datatype,blockUI);
-  if(blockUI)
-    $.blockUI({
-        message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.processingMsg") ) ? themeObj.blockUi.processingMsg : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
-            '<blockquote>'+
-              '<p>Art is the heart of our culture.</p>'+
-            '</blockquote> ' )
-    });
-
   if(datatype != "html" )
       $(id).html( "<div class='cblock'><div class='centered'><i class='fa fa-cog fa-spin fa-2x icon-big text-center'></i> Loading</div></div>" );
   $.ajax({
@@ -77,13 +69,8 @@ function getAjax(id,ajaxUrl,callback,datatype,blockUI)
           //$.unblockUI();
       },
       error:function (xhr, ajaxOptions, thrownError){
+        toastr.error("unavailable ressource. try contacting an admin.");
         //mylog.error(thrownError);
-        $.blockUI({
-            message : ( ( typeof jsonHelper.notNull("themeObj.blockUi.errorMsg") ) ? themeObj.blockUi.errorMsg : '<div class="title-processing homestead text-red"><i class="fa fa-warning text-red"></i> Oups !! 404 ERROR<br> La page que vous demandez ne peut être trouvée ... </div>'
-            +'<a class="thumb-info" href="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" data-title="Il n\'existe pas d\'évolution sans erreur."  data-lightbox="all">'
-            + '<img src="'+moduleUrl+'/images/proverb/from-human-to-number.jpg" style="border:0px solid #666; border-radius:3px;"/></a><br/><br/>'),
-            timeout: 3000 
-        });
         //mylog.log("URL : ", url);
         setTimeout(function(){ urlCtrl.loadByHash('#')},3000);
         if(blockUI)

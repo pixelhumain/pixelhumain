@@ -3,9 +3,7 @@
 <head>
   <?php 
   $cs = Yii::app()->getClientScript();
-
   $themeAssetsUrl = Yii::app()->theme->baseUrl.'../../co2/assets';
-
   $cs->registerCssFile(Yii::app()->theme->baseUrl."/css/style.css");
 
   
@@ -19,7 +17,7 @@
     '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' ,
     '/plugins/bootstrap/js/bootstrap.min.js' ,
     '/plugins/blockUI/jquery.blockUI.js' ,
-
+    '/js/api.js'
   );
   HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->assetsUrl);
   ?>
