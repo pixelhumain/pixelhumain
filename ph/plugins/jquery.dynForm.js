@@ -669,9 +669,9 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> properties list", fieldObj.values);
 
         	if(fieldObj.values){
-    			if(!initValues["tags"+field])
-    				initValues["tags"+field] = {};
-    			initValues["tags"+field]["tags"] = fieldObj.values;
+    			if(!initValues["tags"+field+"0"])
+    				initValues["tags"+field+"0"] = {};
+    			initValues["tags"+field+"0"]["tags"] = fieldObj.values;
     		}
     		
     		mylog.log("build field "+field+">>>>>> properties initValues", initValues);
@@ -687,20 +687,20 @@ onSave: (optional) overloads the generic saveProcess
 
         	fieldHTML += '<div class="inputs properties">'+
 								'<div class="col-sm-3">'+
-									'<input type="text" name="properties" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
+									'<input type="text" name="'+field+'0" id="'+field+'0" class="addmultifield addmultifield0 form-control input-md" value="" placeholder="'+placeholder+'"/>'+
 									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 								'</div>'+
 								'<div class="col-sm-7">'+
 									//'<textarea type="text" name="values[]" class="addmultifield1 form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);"  placeholder="'+placeholder2+'"></textarea>'+
-									'<input type="text" class="form-control select2TagsInput" name="tags'+field+'" id="tags'+field+'" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
-									'<button data-id="'+field+fieldObj.inputType+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+									'<input type="text" class="form-control select2TagsInput" name="tags'+field+'0" id="tags'+field+'0" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
+									'<button data-id="'+field+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
 									
 								'</div>'+
 							'</div>'+
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
 							'<div class="col-sm-12">'+
 								'<div class="space10"></div>'+
-						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" data-container="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
+						        '<a href="javascript:;" data-id="'+field+'" data-container="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
 				       		'</div></span>'+
 				       '<div class="space5"></div>';
 			
@@ -1499,6 +1499,30 @@ onSave: (optional) overloads the generic saveProcess
 
 	    	$(parentContainer+' .addmultifield:last').focus();
 	        initMultiFields(parentContainer,name);
+
+
+
+	        $.each($(".select2TagsInput"),function (){
+				mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ], initValues );
+				if( initValues[ $(this).attr("id") ] ){
+					var selectOptions = 
+					{
+					  "tags": initValues[ $(this).attr("id") ].tags ,
+					  "tokenSeparators": [','],
+					  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
+					};
+					if(initValues[ $(this).attr("id") ].maximumSelectionLength)
+						selectOptions.maximumSelectionLength = initValues[$(this).attr("id")]["maximumSelectionLength"];
+					if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[$(this).attr("id")] != "undefined" && initSelectNetwork[$(this).attr("id")].length > 0)
+						selectOptions.data=initSelectNetwork[$(this).attr("id")];
+					
+					$(this).removeClass("form-control").select2(selectOptions);
+					if(typeof mainTag != "undefined")
+						$(this).val([mainTag]).trigger('change');
+				}
+			 });
+
+
 	    }else 
 	    	mylog.error("container doesn't seem to exist : "+parentContainer+' .inputs');
 	}
@@ -1563,18 +1587,22 @@ onSave: (optional) overloads the generic saveProcess
 	***************************************** */
 	function propertyLineHTML(propVal,name)
 	{
-		var count = $(".addmultifield").length-1;
-		mylog.log("propertyLineHTML",propVal, typeof propVal, name, count);
+		var count = $(".addmultifield").length;
+		mylog.log("propertyLineHTML", propVal, typeof propVal, name, count);
 		if( !notEmpty(propVal) ) 
 	    	propVal = {"label":"","value":""};
+	    
+	    if(!initValues["tags"+name+count])
+    				initValues["tags"+name+count] = {};
+	    initValues["tags"+name+count]["tags"] = tagsList;
 
 		var str = '<div class="space5"></div><div class="col-sm-3">'+
-					'<input type="text" name="'+name+'" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
+					'<input type="text" id="'+name+count+'" name="'+name+count+'" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
 					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 				'</div>'+
 				'<div class="col-sm-7">'+
-					'<textarea type="text" name="tags'+name+'[]" class="addmultifield'+count+' form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);" placeholder="valeur"   >'+propVal.value+'</textarea>'+
-					'<input type="text" class="form-control select2TagsInput" name="tags'+name+'" id="tags'+name+'" value="" placeholder="" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
+					//'<textarea type="text" name="tags'+name+'[]" class="addmultifield'+count+' form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);" placeholder="valeur"   >'+propVal.value+'</textarea>'+
+					'<input type="text" class="form-control select2TagsInput" name="tags'+name+count+'" id="tags'+name+count+'" value="" placeholder="" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
 					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-right" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
 				'</div>';
 
