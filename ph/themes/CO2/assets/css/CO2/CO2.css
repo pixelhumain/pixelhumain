@@ -227,10 +227,11 @@ section {
     color: #e6344d !important;
 }
 #territorial-menu{
-	margin-left:5%;
+	margin-left:6%;
+	margin-bottom: 0px !important;
 }
 #affix-sub-menu.affix{
-	top: 68px;
+	top: 67px;
     background-color: white;
 	-webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
@@ -240,8 +241,6 @@ section {
 }
 #affix-sub-menu.affix #territorial-menu {
     background-color: white;
-    margin: inherit;
-    
 }
 #filters-menu{
 	display:none;

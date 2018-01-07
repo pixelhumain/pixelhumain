@@ -34,17 +34,18 @@
             </a>
             <span class="hidden-xs skills font-montserrat"><?php echo Yii::t("common",$mainTitle); ?></span>
             <?php 
-                $params = CO2::getThemeParams();  
-                $icon = "";
+                //$params = CO2::getThemeParams();  
+                /*$icon = "";
                 // echo "params : "; var_dump($params);// exit; 
                 foreach ($params["pages"] as $key => $value) {
                     if($subdomain==@$value["subdomain"]) {
                         $icon = @$value["icon"];
                     } 
                 }
+            <!--<i class="fa fa-<?php echo $icon; ?> hidden-top margin-top-15 margin-right-5 margin-left-10 pull-left text-red" 
+                style="font-size:20px;"></i>-->
+                */
             ?>
-            <i class="fa fa-<?php echo $icon; ?> hidden-top margin-top-15 margin-right-5 margin-left-10 pull-left text-red" 
-                style="font-size:20px;"></i>
         </div>
 
         <?php if( $subdomain == "search" ||

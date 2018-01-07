@@ -55,6 +55,16 @@
         height: 40px;
         border-radius:0px !important;
     }
+    .btn-menu-to-app{
+        color: #2C3E50 !important;
+        font-size: 16px;
+        padding: 6px 5px 5px 5px;
+        border-radius: 0px;
+    }
+    .btn-menu-to-app.active, .btn-menu-to-app:hover{
+        border-bottom: 2px solid #e43636;
+        color: #ea4335!important;
+    }
 </style>
 
     <?php 
@@ -188,49 +198,45 @@
                 </div>
         </div>
         <div id="territorial-menu" class="col-md-10 col-sm-10 col-xs-12 margin-bottom-10 no-padding">
-            <a href="#territorial" class="#liveModBtn lbh btn btn-link letter-red btn-menu-to-app hidden-top pull-left hidden-xs
+            <a href="#territorial" class="territorial-menu-btn lbh btn-menu-to-app hidden-top pull-left
                                  tooltips" data-placement="bottom" data-original-title="Territorial engine">
                 <i class="fa fa-search"></i>
-                <span class="">All</span> 
+                <span class="hidden-xs">All</span> 
             </a>
-
-            <a href="#search" class="#liveModBtn lbh btn btn-link letter-red btn-menu-to-app pull-left  hidden-top hidden-xs
+            <a href="#search" class="search-menu-btn lbh btn-menu-to-app pull-left hidden-top 
                                  tooltips" data-placement="bottom" data-original-title="Social connect">
                         <i class="fa fa-connectdevelop"></i>
 
-                         <span class="">Acteurs et initiaves</span> 
-                                        </a>
-            <a href="#live" class="#liveModBtn lbh btn btn-link letter-red btn-menu-to-app pull-left hidden-top hidden-xs
+                         <span class="hidden-xs">Social</span> 
+            </a>
+            <a href="#live" class="live-menu-btn lbh btn-menu-to-app pull-left hidden-top 
                                  tooltips" data-placement="bottom" data-original-title="Live">
                         <i class="fa fa-newspaper-o"></i>
 
-                         <span class="">Live</span> 
+                         <span class="hidden-xs">Live</span> 
                                         </a>
-            <a href="#agenda" class="#agendaModBtn lbh btn btn-link letter-red btn-menu-to-app pull-left hidden-top hidden-xs
+            <a href="#agenda" class="agenda-menu-btn lbh btn-menu-to-app pull-left hidden-top
                                  tooltips" data-placement="bottom" data-original-title="Agenda">
                         <i class="fa fa-calendar"></i>
-
-                        <span class="">Agenda</span> 
+                        <span class="hidden-xs">Agenda</span> 
                                         </a>
-            <a href="#place" class="#agendaModBtn lbh btn btn-link letter-red btn-menu-to-app  pull-left hidden-top hidden-xs
+            <!--<a href="#place" class="#agendaModBtn lbh btn btn-link letter-red btn-menu-to-app  pull-left hidden-top hidden-xs
                                  tooltips" data-placement="bottom" data-original-title="Agenda">
                         <i class="fa fa-bullhorn"></i>
 
                         <span class="">Lieux et intérêts</span>
-                                        </a>
-            
-            <a href="#ressource" class="#agendaModBtn lbh btn btn-link letter-red btn-menu-to-app  pull-left hidden-top hidden-xs
+                                        </a>-->
+            <a href="#ressource" class="ressource-menu-btn lbh btn-top-menu btn-menu-to-app pull-left hidden-top
                                  tooltips" data-placement="bottom" data-original-title="Agenda">
-                        <i class="fa fa-cubes"></i>
+                <i class="fa fa-cubes"></i>
 
-                        <span class="">Entraide</span>
-                                        </a>
-            <a href="#annonces" class="#agendaModBtn lbh btn btn-link letter-red btn-menu-to-app pull-left  hidden-top hidden-xs
-                                 tooltips" data-placement="bottom" data-original-title="Agenda">
-                        <i class="fa fa-money"></i>
-
-                        <span class="">Market</span>
-                                        </a>
+                <span class="hidden-xs">Entraide</span>
+            </a>
+            <a href="#annonces" class="annonces-menu-btn lbh btn-top-menu btn-menu-to-app pull-left hidden-top
+                         tooltips" data-placement="bottom" data-original-title="Agenda">
+                <i class="fa fa-money"></i>
+                <span class="hidden-xs">Market</span>
+            </a>
         </div>
     </div>
     
@@ -257,6 +263,7 @@
     var page="<?php echo $page ?>";
     jQuery(document).ready(function() {
         searchInitApp(search);
+        $("."+page+"-menu-btn").addClass("active");
         $(".btn-open-filliaire").click(function(){
             if($(".scope-header-filter").hasClass("active")){
                 $("#container-scope-filter").hide(700);
