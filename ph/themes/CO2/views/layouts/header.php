@@ -206,19 +206,20 @@
             <a href="#search" class="search-menu-btn lbh btn-menu-to-app pull-left hidden-top 
                                  tooltips" data-placement="bottom" data-original-title="Social connect">
                         <i class="fa fa-connectdevelop"></i>
-
-                         <span class="hidden-xs">Social</span> 
+                         <span class="hidden-xs">Social</span>
+                         <span class="badge badge-warning count-badge-menu count-badge-social"></span> 
             </a>
             <a href="#live" class="live-menu-btn lbh btn-menu-to-app pull-left hidden-top 
                                  tooltips" data-placement="bottom" data-original-title="Live">
                         <i class="fa fa-newspaper-o"></i>
-
-                         <span class="hidden-xs">Live</span> 
+                         <span class="hidden-xs">Live</span>
+                         <span class="badge badge-warning count-badge-menu count-badge-live"></span> 
                                         </a>
             <a href="#agenda" class="agenda-menu-btn lbh btn-menu-to-app pull-left hidden-top
                                  tooltips" data-placement="bottom" data-original-title="Agenda">
                         <i class="fa fa-calendar"></i>
                         <span class="hidden-xs">Agenda</span> 
+                        <span class="badge badge-warning count-badge-menu count-badge-agenda"></span>
                                         </a>
             <!--<a href="#place" class="#agendaModBtn lbh btn btn-link letter-red btn-menu-to-app  pull-left hidden-top hidden-xs
                                  tooltips" data-placement="bottom" data-original-title="Agenda">
@@ -231,11 +232,13 @@
                 <i class="fa fa-cubes"></i>
 
                 <span class="hidden-xs">Entraide</span>
+                <span class="badge badge-warning count-badge-menu count-badge-ressources"></span>
             </a>
             <a href="#annonces" class="annonces-menu-btn lbh btn-top-menu btn-menu-to-app pull-left hidden-top
                          tooltips" data-placement="bottom" data-original-title="Agenda">
                 <i class="fa fa-money"></i>
                 <span class="hidden-xs">Market</span>
+                <span class="badge badge-warning count-badge-menu count-badge-classifieds"></span>
             </a>
         </div>
     </div>
@@ -263,6 +266,7 @@
     var page="<?php echo $page ?>";
     jQuery(document).ready(function() {
         searchInitApp(search);
+        alert(page);
         $("."+page+"-menu-btn").addClass("active");
         $(".btn-open-filliaire").click(function(){
             if($(".scope-header-filter").hasClass("active")){
