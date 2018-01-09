@@ -266,7 +266,6 @@
     var page="<?php echo $page ?>";
     jQuery(document).ready(function() {
         searchInitApp(search);
-        alert(page);
         $("."+page+"-menu-btn").addClass("active");
         $(".btn-open-filliaire").click(function(){
             if($(".scope-header-filter").hasClass("active")){
@@ -350,7 +349,9 @@
     });
     function searchInitApp(src){
         search.app=page;
-        console.log("iciiiiii src",src);
+        if(search.value != "")
+            $("#main-search-bar, #second-search-bar").val(search.value);
+       //console.log("iciiiiii src",src);
     }
     function initScopeMenu(type){
         if(typeof myScopes.type != "undefined")
