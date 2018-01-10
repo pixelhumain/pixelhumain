@@ -1,18 +1,13 @@
 <style>
     .label-qdj{
-        font-size:35px;
+        font-size:30px;
         margin-top:-45px;
         margin-bottom:5px;
         padding:25px 0 0 0;
         border:5px solid black;
     }
     .label-qdj h1{
-        font-size:55px;
-        margin-bottom:25px;
-        background-color: rgba(53, 168, 222, 0.8);
-    }
-    .label-qdj h1{
-        font-size:55px;
+        font-size:40px;
         margin-bottom:25px;
         background-color: rgba(53, 168, 222, 0.8);
     }
@@ -29,13 +24,14 @@
         border-radius:5px;
     }
     .label-qdj .btn-learn-dayQuestion{
-        background: rgba(50, 69, 75, 0.5);
+        background-color: rgba(255, 255, 255, 0.9);
+        color:black!important;
         font-size:16px;
     }
 
     .label-qdj .btn-learn-dayQuestion:hover{
-        background-color: rgba(255, 255, 255, 0.9);
-        color:black!important;
+        /*background: rgba(50, 69, 75, 0.5);*/
+        color:#4285f4!important;
         text-decoration: none;
     }
 
@@ -76,7 +72,7 @@
 }
 
 </style>
-<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 shadow2 label-qdj">
+<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 shadow2 label-qdj">
     <h1 class="label text-white no-padding font-blackoutT">
         La kestion du jour
     </h1>
@@ -135,7 +131,7 @@
             </div>
         </div>
 
-        <div class="col-lg-6 col-lg-offset-3">
+        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
             <div class="row">
                 <div class="col-xs-12 font-montserrat">
                     
@@ -150,14 +146,27 @@
                     <br>
                     <p>
                         <span class="letter-red">Freedom</span> 
-                        est un fil de discussion citoyen, partagé par l'ensemble des membres du réseau Kgougle.<br>
+                        est un fil de discussion public, partagé par l'ensemble des membres du réseau Kgougle.<br>
                         Chacun est libre d'y contribuer à sa manière en publiant des messages.
                         <br><br>
+                        C'est l'endroit approprié pour s'exprimer publiquement (dans le respect des autres utilisateurs), et aborder tout sujet de société digne d'intérêt.
+                        <br><br>
+                        Vous pouvez y parler de l'actualité, passer un coup de coeur ou un coup de gueule, poser une question,
+                        lancer un débat, souhaiter un aniversaire, ou simplement partager une émotion, etc, etc...
+                        <br><br>
+                        Les possibilités sont infinies !
+                        <br><br>
                         <i class="fa fa-flag letter-red"></i> La modération des publications se fait par les utilisateurs eux-mêmes, 
-                        via un système de <a href="" class="btn btn-link letter-azure no-padding">modération collective</a>.
+                        via un système de 
+                        <button class="btn btn-link letter-blue no-padding btn-howitworkmoderation">
+                            modération collective
+                        </button>.
                     </p>
 
-                    <hr>
+                    <?php $this->renderPartial('../cooperation/pod/explain_moderation'); ?>
+
+                     <br>
+                     <hr>
 
                     <h2 class="letter-blue no-margin text-left font-blackoutT" style="">
                         La kestion du jour
@@ -165,16 +174,17 @@
                     <br>
                     <p>
                         <b class="letter-blue"><i>La Kestion du jour</i></b> 
-                        est un jeu destiné à animer cet espace de discussion en ce début d'année 2018.
+                        est un jeu destiné à animer cet espace de discussion en ce début d'année 2018 !
                         <br><br>
-                        La toute première question vous est proposé par 
+                        La toute première question est posé par 
                         <a href="#info.p.alphatango" class="btn btn-link letter-azure no-padding">Alpha Tango</a>, 
-                        une question simple et ouverte pour vous donner envie de vous exprimer.
+                        une question simple et ouverte pour vous donner envie de vous exprimer, et facilité votre découverte de l'application <span class="letter-red">Freedom</span>.
                         <br><br>
-                        Mais <b>dès le 15 janvier</b>, <i><b>VOUS</b></i> pourrez poser vos propres questions !
+                        Mais <b>dès le 1er février</b>, <i><b>VOUS</b></i> pourrez poser vos propres questions !
                     </p>
-
-                    <hr>
+                    
+                     <br>
+                     <hr>
 
                     <h2 class="letter-green no-margin text-left font-blackoutT" style="">
                         Regle du jeu
@@ -183,7 +193,7 @@
                     <p>
                         <b class="letter-green">
                             <i class="fa fa-angle-right"></i> <i class="fa fa-calendar"></i>
-                            Du 1er au 15 Janvier
+                            Du 15 au 31 Janvier
                         </b>
                              , pour le lancement du jeu <b class="letter-blue"><i>La Kestion du jour</i></b>, 
                              vous êtes invité à répondre à la question suivante : <br>
@@ -191,18 +201,23 @@
                         <br><br>
                         <b class="letter-green">
                             <i class="fa fa-angle-right"></i> <i class="fa fa-calendar"></i>
-                            A partir du 10 janvier
+                            A partir du 29 janvier
                         </b>
-                        , vous pourrez proposer vos propres questions, et participer au tirage au sort qui aura lieu le 15 Janvier à 7h du matin. 
+                        , vous pourrez proposer vos propres questions, et voter pour votre question préférée jusqu'au 31 janvier, minuit. 
                         <br><br>
                         <b class="letter-green">
                             <i class="fa fa-angle-right"></i> <i class="fa fa-calendar"></i>
-                            A partir du 16 janvier</b><br>
+                            A partir du 1er février
+                        </b>
+                        <br>
                         <b class="letter-blue"><i>La Kestion du jour</i></b> <b>changera tous les jours</b>.
                         <br> 
-                        Une question sera tirée au sort chaque jour parmis vos propositions quotidiennes.
-                        </b>
+                        Vous pourrez quotidiennement proposer vos propres questions et voter pour la prochaine 
+                        <b class="letter-blue"><i>Kestion du jour</i></b> !
                     </p>
+
+                     <br>
+                     <hr>
 
                     <h2 class="letter-yellow no-margin text-left font-blackoutT" style="">
                         COMMENT PARTICIPER ?
@@ -211,12 +226,42 @@
                     <p>
                         La seule condition pour participer à <b class="letter-blue"><i>La Kestion du jour</i></b> 
                         est d'être inscrit sur KGOUGLE.nc
+
+                    <?php if(isset(Yii::app()->session['userId'])){ ?><p class="font-montserrat">
+                        <hr>
+                        <h5 class="text-left letter-green">
+                          <i class="fa fa-check"></i> Vous êtes déjà connecté<br>
+                          <small>Vous pouvez participer dès maintenant</small>
+                        </h5>
+                    <?php }else{ ?>
+                      <p class="font-montserrat">
+                        <hr>
+                        <h5 class="text-left letter-red">
+                          <i class="fa fa-ban"></i> Vous n'êtes pas connecté<br>
+                          <small>Connectez-vous pour participer !</small>
+                          <br><br>
+
+                          <button class="btn btn-link bg-green-k margin-top-5 margin-right-10" data-toggle="modal" data-target="#modalLogin">
+                            <i class="fa fa-sign-in"></i> Je me connecte
+                          </button>
+                          <button class="btn btn-link bg-blue-k margin-top-5" data-toggle="modal" data-target="#modalRegister">
+                            <i class="fa fa-plus-circle"></i> Je créé mon compte
+                          </button> 
+                          <br><br>
+                          <small class="letter-blue"><i class="fa fa-check"></i> inscription gratuite</small>
+                        </h5>
+                        <hr>
+                      </p>
+                    <?php } ?>
                     </p>
+
+                    <br>
+                    <br>
+                    <br>
 
                 </div>
             </div>
             <div class="row">
-                
             </div>
         </div>
     </div>
@@ -258,6 +303,13 @@ jQuery(document).ready(function() {
         tagQDJ = null;
         startNewsSearch(true);
         KScrollTo("#container-scope-filter");
+    });
+
+    $(".btn-howitworkmoderation").click(function(){
+        if($("#howitworkmoderation").hasClass("hidden"))
+            $("#howitworkmoderation").removeClass("hidden");
+        else
+            $("#howitworkmoderation").addClass("hidden");
     });
 
 

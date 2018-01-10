@@ -25,12 +25,13 @@
 .floopDrawer .floopHeader{
 	width: 100%;
 	border-radius: 0px;
-	height: 47px;
-	padding-top: 17px;
+	height: 53px;
+	padding-top: 18px;
 	padding-left: 10px;
 	font-size: 14px;
 	font-weight: 300;
 	border-bottom: 1px solid rgba(197, 197, 197,1);
+	border-top: 2px solid rgba(197, 197, 197,1);
 	-webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
 	-moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
 	box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
@@ -39,7 +40,7 @@
 	background-color: transparent;
 	border-radius: 50%;
 	color: black;
-	margin-right: 7px;
+	margin-right: 15px;
 	width: 25px;
 	height: 24px;
 	float: right;
@@ -84,10 +85,14 @@
 	padding-right: 10px;
 	background-color: rgba(255, 255, 255, 0.54);
 	border: 0px;
-	padding-top: 15px;
+	padding-top: 10px;
 	font-size: 13px;
 	text-align: left;
 }
+.floopDrawer .fa-search{
+	padding: 13px 0px 15px 11px !important;
+}
+
 .floopDrawer  .floopScroll .panel-default,
 .floopDrawer  .floopScroll .panel-heading,
 .floopDrawer  .floopScroll .panel-body{
@@ -252,9 +257,23 @@
 
 
 @media screen and (max-width: 767px){
-.floopDrawer{
-	width: 273px;
-	max-width: 273px;
+	
+	.floopDrawer{
+		top: 60px;
+		width:100% !important;
+		max-width: 100%;
+		bottom: 0px;
+	}
+	.floopDrawer input#search-contact {
+	    width: 90%;
+	    height: 62px;
+		padding-top: 15px;
+		padding-bottom: 20px;
+	}
+	.floopDrawer .fa-search{
+		padding: 22px 0px 15px 11px !important;
+	}
+
 }
 
 

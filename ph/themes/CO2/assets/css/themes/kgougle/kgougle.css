@@ -178,6 +178,21 @@ a.link-submenu-header:focus{
     text-decoration: none;*/
 }
 
+.menu-name-profil small{
+    max-width: 150px;
+}	
+
+
+.menu-name-profil{
+    background-color:rgb(242, 238, 238) !important;
+}
+
+
+@media screen and (max-width: 1024px) {
+	.menu-name-profil small{
+	    max-width: 125px;
+	}	
+}
 
 @media (max-width: 992px) {
 
@@ -218,12 +233,17 @@ a.link-submenu-header:focus{
 	}
 
 	.link-submenu-header span{
-		display: inline!important;
+		display: none!important;
 	}
+	
 	.link-submenu-header{
 		margin-bottom: 20px;
 		display: inline-block;
-		font-size: 12px;
+		font-size: 23px;
+	}
+
+	.main-menu-app{
+		padding-top: 40px;
 	}
 
 
@@ -279,5 +299,19 @@ a.link-submenu-header:focus{
 	#sumery #city_sumery,
 	.form-in-map hr{
 		display: none !important;
+	}
+
+
+	.dropdown-main-menu{
+		right: 15px !important;
+		top:56px;
+	}
+	.dropdown-main-menu .arrow_box::after, .dropdown-main-menu .arrow_box::before {
+	    right: 55px;
+	    left: unset;
+	}
+
+	.floopDrawer{
+		top: 62px;
 	}
 }
