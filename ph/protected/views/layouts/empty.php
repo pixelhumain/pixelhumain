@@ -4,15 +4,15 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="<?php echo Yii::app()->language; ?>" />
-	<meta name="keywords" lang="<?php echo Yii::app()->language; ?>" content="<?php echo CHtml::encode($this->keywords); ?>">
-	<meta name="description" content="<?php echo CHtml::encode($this->description); ?>">
+	<meta name="keywords" lang="<?php echo Yii::app()->language; ?>" content="<?php echo (isset($this->module->keywords)) ? CHtml::encode($this->module->keywords) : ""; ?>">
+	<meta name="description" content="<?php echo CHtml::encode ( (@isset($this->module->description))?$this->module->description:""); ?>">
 	<meta name="publisher" content="Pixel Humain on Github">
 	<meta name="author" lang="<?php echo Yii::app()->language; ?>" content="Pixel Humain" />
 	<meta name="robots" content="Index,Follow" />
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="<?php echo $this->module->assetsUrl?>/images/logo.png"/>
-    <title><?php echo CHtml::encode($this->pageTitle); ?></title>
+    <title><?php echo CHtml::encode( (isset($this->module->pageTitle))?$this->module->pageTitle:""); ?></title>
    
  <?php  
   $cssAnsScriptFilesModule = array(
@@ -33,6 +33,7 @@
   <script type="text/javascript">
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
+   var moduleId = "<?php echo $this->module->id?>";
    debug = false;
    </script>
 </head>
