@@ -372,6 +372,32 @@ input#second-search-bar{
 	color: #fbbc05;
 	border: 2px solid #fbbc05;*/
 }
+
+
+
+.navbar-custom .btn-show-appmenu{
+	float:right;
+	margin-top:10px;
+	margin-left:-5px;
+	background-color: #fbbc05;
+	/*background-color: #354c57;*/
+	color: white;
+	border: 2px solid transparent;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	float: right;
+	border-radius: 0px 50%;
+	width: 50px;
+	height: 35px;
+	font-size: 17px;
+	margin-left: 25px;
+}
+.navbar-custom .btn-show-appmenu:hover{
+	background-color: transparent;
+	color: #fbbc05;
+	border: 2px solid #fbbc05;
+}
+
 .navbar-custom .btn-open-floopdrawer{
 	background-color: white;
 	color: #484746 !important;
@@ -1422,6 +1448,16 @@ margin-right: 5px;
 		padding:0px;
 	}
 
+	.navbar-custom.affix {
+	  max-height: 55px;
+	  padding: 3px 0;
+	}
+	.navbar-custom.affix-top {
+	  max-height: 58px;
+	  padding: 3px 0 5px 0;
+	}
+
+
     
 	header .intro-text .name, 
 	.header .intro-text .name, 
@@ -1500,11 +1536,16 @@ margin-right: 5px;
 	}
 
 	.menu-name-profil{
-		margin-right: 10px;
+		margin-right: 0px;
 	}
 	.main-menu-app {
 	    margin-bottom: 35px !important;
 		/*margin-top: 15px !important;*/
+	}
+
+	#btn-radio img{
+		height:20px;
+		margin-top:2px;
 	}
 
 	.dropdown-main-menu{

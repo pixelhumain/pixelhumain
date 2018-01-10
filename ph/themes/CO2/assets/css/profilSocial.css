@@ -712,6 +712,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 
+.header-address{
+    margin-bottom: 5px;
+}
+
 @media screen and (max-width: 1024px) {
     #main-name-element{
         font-size: 1.2em;
@@ -742,12 +746,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     #shortDescriptionHeader{
         font-size: 13px;
         line-height: 17px;
+        max-height: 34px;
+        margin-bottom: 15px;
+        overflow: hidden;
     }
     #div-select-create small{
         font-size: 9px;
         text-transform: none !important;
         font-weight: bold;
     }
+
+    .sub-menu-social {
+        margin-top: -27px !important;
+    }
+
+    #social-header{
+        padding-top: 40px !important;
+    }
+
 }
 
 
