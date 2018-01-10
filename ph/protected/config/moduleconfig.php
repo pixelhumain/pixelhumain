@@ -6,5 +6,6 @@ $activeModules = array(
 	'network',
 	'api',
 	'datatools',
-	"graph"
+	"graph",
+	"places",
 	);

@@ -241,7 +241,7 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<textarea id="'+field+'" maxlength="'+maxlength+'"  class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
         	
         	if(maxlength > 0)
-        		fieldHTML += '<span><span id="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
+        		fieldHTML += '<span><span id="maxlength'+field+' name="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
 
 
         }else if ( fieldObj.inputType == "markdown"){ 
@@ -1948,7 +1948,7 @@ var dyFObj = {
 
 		if( jsonHelper.notNull( "dyFObj.elementObj.dynForm.jsonSchema.mapping","function") )
 			formData = dyFObj.elementObj.dynForm.jsonSchema.mapping(formData);
-		
+
 		formData.medias = [];
 		$(".resultGetUrl").each(function(){
 			if($(this).html() != ""){
@@ -2594,9 +2594,11 @@ var dyFInputs = {
 	    		if($(".maxlengthTextarea").length){
 	    			mylog.log("textarea init2");
 	    			$(".maxlengthTextarea").off().keyup(function(){
-						var name = "#" + $(this).attr("id") ;
-						mylog.log(".maxlengthTextarea", "#ajaxFormModal "+name, $(this).attr("id"), $("#ajaxFormModal "+name).val().length, $(this).val().length);
-						$("#ajaxFormModal #maxlength"+$(this).attr("id")).html($("#ajaxFormModal "+name).val().length);
+						//var name = "#" + $(this).attr("id") ;
+						var name = $(this).attr("id") ;
+						mylog.log(".maxlengthTextarea", "#ajaxFormModal [name='"+name+"']", $(this).attr("id"));
+						mylog.log(".maxlengthTextarea", $("#ajaxFormModal [name='"+name+"']").val().length, $(this).val().length);
+						$("#ajaxFormModal [name='maxlength"+name+"']").html($("#ajaxFormModal [name='"+name+"']").val().length);
 					});
 	    		}
 	    		dataHelper.activateMarkdown("#ajaxFormModal #message");
