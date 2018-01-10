@@ -7,5 +7,10 @@ $activeModules = array(
 	'api',
 	'datatools',
 	"graph",
+	"cotools",
+	"learn",
+	"copi",
+	"sso",
 	"places",
+	"ressources"
 	);
