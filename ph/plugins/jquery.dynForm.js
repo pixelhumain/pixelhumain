@@ -687,14 +687,14 @@ onSave: (optional) overloads the generic saveProcess
 
         	fieldHTML += '<div class="inputs properties">'+
 								'<div class="col-sm-3">'+
+									'<span>Nom du filtre</span>'+
 									'<input type="text" name="'+field+'0" id="'+field+'0" class="addmultifield addmultifield0 form-control input-md" value="" placeholder="'+placeholder+'"/>'+
-									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+									//'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 								'</div>'+
 								'<div class="col-sm-7">'+
-									//'<textarea type="text" name="values[]" class="addmultifield1 form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);"  placeholder="'+placeholder2+'"></textarea>'+
+									'<span>Tags associer au filtre</span>'+
 									'<input type="text" class="form-control select2TagsInput" name="tags'+field+'0" id="tags'+field+'0" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
 									'<button data-id="'+field+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
-									
 								'</div>'+
 							'</div>'+
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
@@ -1092,8 +1092,9 @@ onSave: (optional) overloads the generic saveProcess
 				$.each($(".select2TagsInput"),function () 
 				{
 					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ], initValues );
-					if( initValues[ $(this).attr("id") ] )
+					if( initValues[ $(this).attr("id") ] && !$(this).hasClass( "select2-container" ))
 					{
+						mylog.log( "here2");
 						var selectOptions = 
 						{
 						  "tags": initValues[ $(this).attr("id") ].tags ,
@@ -1490,8 +1491,9 @@ onSave: (optional) overloads the generic saveProcess
 		mylog.log("addfield",parentContainer+' .inputs',val,name);
 		if(!$.isEmptyObject($(parentContainer+' .inputs')))
 	    {
-	    	if($(parentContainer+' .properties').length > 0)
-	    		$( propertyLineHTML( val, name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	    	if($(parentContainer+' .properties').length > 0){
+	    		//$( propertyLineHTML( val, name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	    	}
 	    	else
 	    		$( arrayLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
 	    	
@@ -1504,7 +1506,8 @@ onSave: (optional) overloads the generic saveProcess
 
 	        $.each($(".select2TagsInput"),function (){
 				mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ], initValues );
-				if( initValues[ $(this).attr("id") ] ){
+				if( initValues[ $(this).attr("id") ] && !$(this).hasClass( "select2-container" )){
+					mylog.log( "here");
 					var selectOptions = 
 					{
 					  "tags": initValues[ $(this).attr("id") ].tags ,
@@ -1938,8 +1941,14 @@ var dyFObj = {
 		if( jsonHelper.notNull( "dyFObj.elementObj.dynForm.jsonSchema.formatData","function") )
 			formData = dyFObj.elementObj.dynForm.jsonSchema.formatData(formData);
 
+
+
 		formData = dyFObj.formatData(formData,collection,ctrl);
 		mylog.log("saveElement", formData);
+
+		if( jsonHelper.notNull( "dyFObj.elementObj.dynForm.jsonSchema.mapping","function") )
+			formData = dyFObj.elementObj.dynForm.jsonSchema.mapping(formData);
+		
 		formData.medias = [];
 		$(".resultGetUrl").each(function(){
 			if($(this).html() != ""){
@@ -2186,6 +2195,8 @@ var dyFObj = {
 
 			      	if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.beforeBuild","function") )
 				        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.beforeBuild();
+
+			    	
 			      },
 			      onLoad : function  () {
 
@@ -2524,7 +2535,7 @@ var dyFInputs = {
         	},1500);
     	}
     },
-    image :function() { 
+    image :function(label) { 
     	
     	if( !jsonHelper.notNull("uploadObj.gotoUrl") ) 
     		uploadObj.gotoUrl = location.hash ;
@@ -2533,7 +2544,7 @@ var dyFInputs = {
     	return {
 	    	inputType : "uploader",
 	    	docType : "image",
-	    	label : tradDynForm["imageshere"]+" :", 
+	    	label : (label != null) ? label : tradDynForm["imageshere"]+" :", 
 	    	showUploadBtn : false,
 	    	template:'qq-template-gallery',
 	    	filetypes:['jpeg', 'jpg', 'gif', 'png'],
