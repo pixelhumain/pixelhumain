@@ -175,7 +175,7 @@
 
                 <div class="col-md-12 text-center">
                     <br><hr>
-                    <a href="javascript:" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
+                    <a href="javascript:" class="btn btn-link" data-dismiss="modal"><i class="fa fa-times"></i> Retour</a>
                 </div>
 
             </div>      
@@ -198,17 +198,30 @@
             <div class="row">
                 <div class="col-lg-12">
                     <span class="name" >
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
+                             height="60" class="inline">
                     </span>
-                    <h4 class="letter-blue">Réseau social citoyen, gratuit, associatif et Open Source</h4>
+                    <h5>
+                        <span class="letter-blue">gratuit</span> 
+                        <span class="letter-yellow">associatif</span>  
+                        <span class="letter-green">Open-Source</span><br>
+                        <span class="letter-red">pour le bien commun</span>
+                    </h5>
                     <div class="col-md-12 text-dark">
                        <hr>
-                        <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Partage de messages</label> 
-                       <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Partage d'événements</label> 
-                       <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Gestion de contacts</label>  
-                       <!-- <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Messagerie privées</label>   -->
-                       <label class="label label-lg bg-green-k padding-5"><i class="fa fa-check"></i> Notifications</label> 
-                       <hr>
+                        <label class="label label-lg bg-green-k padding-5 margin-bottom-5">
+                            <i class="fa fa-check"></i> Partage de messages
+                        </label> 
+                        <label class="label label-lg bg-green-k padding-5 margin-bottom-5">
+                            <i class="fa fa-check"></i> Partage d'événements
+                        </label> 
+                        <label class="label label-lg bg-green-k padding-5 margin-bottom-5">
+                            <i class="fa fa-check"></i> Gestion de contacts
+                        </label>  
+                        <label class="label label-lg bg-green-k padding-5 margin-bottom-5">
+                            <i class="fa fa-check"></i> Notifications</label> 
+                            
+                        <hr>
                     </div>
                     <h3 class="letter-blue">
                         <i class="fa fa-plus-circle"></i>
@@ -221,13 +234,13 @@
                     <p></p>
                 </div>
             </div>
-            <div class="col-md-4 col-md-offset-4 text-left">
+            <div class="col-md-6 col-md-offset-3 text-left">
                 
                 <label class="letter-black"><i class="fa fa-address-book-o"></i> Nom et prénom</label>
                 <input class="form-control" id="registerName" name="name" type="text" placeholder="Nom et prénom"><br/>
                 
-                <label class="letter-black"><i class="fa fa-user-circle-o"></i> Nom d'utilisateur</label><br>
-                <input class="form-control" id="username" name="username" type="text" placeholder="Nom d'utilisateur"><br/>
+                <label class="letter-black"><i class="fa fa-hashtag"></i>Pseudo</label><br>
+                <input class="form-control" id="username" name="username" type="text" placeholder="MonPseudoPerso"><br/>
                 
                 <label class="letter-black"><i class="fa fa-envelope"></i> E-mail</label><br>
                 <input class="form-control" id="email3" name="email3" type="text" placeholder="e-mail"><br/>
@@ -244,7 +257,7 @@
                         <label for="agree" class="checkbox-inline letter-red">
                             <input type="checkbox" class="grey agree" id="agree" name="agree">
                             <?php echo Yii::t("login","I agree to the Terms of") ?> 
-                            <a href="https://www.communecter.org/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp text-dark">
+                            <a href="/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="bootbox-spp text-dark">
                                 <?php echo Yii::t("login","Service and Privacy Policy") ?>
                             </a>
                         </label>
@@ -262,7 +275,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn-success text-white pull-right createBtn">
+                <button class="btn btn-success text-white pull-right margin-left-10 createBtn">
                     <i class="fa fa-sign-in"></i> S'inscrire
                 </button>
                 <button class="btn btn-danger pull-right" data-dismiss="modal">

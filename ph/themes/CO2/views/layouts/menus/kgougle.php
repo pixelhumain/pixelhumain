@@ -56,6 +56,21 @@ a.link-submenu-header:focus{
     text-decoration: none;*/
 }
 
+
+.navbar-collapse li .font-blackoutM, 
+.navbar-map li .font-blackoutM{
+    font-size:16px;
+    letter-spacing: 0px;
+}
+
+.navbar-custom .btn-show-mainmenu{
+    margin-top:7px;
+    font-size: 25px;
+    color: #595959;
+    padding: 0 10px;
+}
+
+
 </style>
 
 <!-- Navigation -->
@@ -70,7 +85,9 @@ a.link-submenu-header:focus{
                 <a href="#web" class="lbh menu-btn-back-category">
             <?php } ?>
             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
-                     class="logo-menutop pull-left show-top" height=20>
+                     class="logo-menutop pull-left show-top hidden-xs hidden-sm" height=20>
+            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/kgougle/logo-min-k.png" 
+                     class="logo-menutop pull-left show-top visible-xs visible-sm" height=25>
             </a>
 
             <span class="hidden-xs skills font-montserrat <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
@@ -86,10 +103,10 @@ a.link-submenu-header:focus{
                     <a href="#web" class="lbh navbar-brand font-blackoutM menu-btn-back-category">
                 <?php } ?>
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
-                     class="nc_map pull-left hidden-sm" height=20>
+                     class="nc_map pull-left hidden-xs hidden-sm" height=20>
                 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/kgougle/logo-min-k.png" 
-                     class="nc_map pull-left visible-sm" height=20>
+                     class="nc_map pull-left visible-xs visible-sm" height=25>
                 
                 <!-- <small class="letter letter-red pastille font-blackoutT <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
                     <?php //echo $subdomainName; ?>
@@ -110,7 +127,7 @@ a.link-submenu-header:focus{
                   $subdomain == "admin"||
                   $subdomain == "page" ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-3 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-4 col-md-3 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo $placeholderMainSearch; ?>">
                 <?php if($subdomain == "page"){ ?>
@@ -127,6 +144,9 @@ a.link-submenu-header:focus{
         <button class="btn-show-map hidden-xs"  data-toggle="tooltip" data-placement="bottom" title="Afficher la carte">
             <i class="fa fa-map"></i>
         </button>
+        <!-- <button class="btn-show-appmenu hidden-xs"  data-toggle="tooltip" data-placement="bottom" title="Afficher la carte">
+            <i class="fa fa-th"></i>
+        </button> -->
 
        <?php if( isset( Yii::app()->session['userId']) ){ ?>
             <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
@@ -145,6 +165,7 @@ a.link-submenu-header:focus{
                 <?php 
                     if( isset( Yii::app()->session['userId']) ){
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
+                      $countNotifElement = ActivityStream::countUnseenNotifications(Yii::app()->session["userId"], Person::COLLECTION, Yii::app()->session["userId"]);
                 ?> 
                      
                     <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
@@ -172,20 +193,26 @@ a.link-submenu-header:focus{
                                 </li>
                                 <li role="separator" class="divider"></li> -->
                                 <li class="text-left">
-                                    <a href="#web" target="_blank" class="lbh bg-white">
-                                        <i class="fa fa-search"></i> Rechercher sur le web
+                                    <a href="#web" target="_blank" class="lbh bg-white letter-red font-blackoutM">
+                                        <i class="fa fa-search"></i> Web
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="text-left">
-                                    <a href="#social" target="_blank" class="lbh bg-white">
-                                        <i class="fa fa-user-circle"></i> Rechercher des contacts
+                                    <a href="#actu" target="_blank" class="lbh bg-white letter-red font-blackoutM">
+                                        <i class="fa fa-newspaper-o"></i> Actu
                                     </a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="text-left">
-                                    <a href="#actu" target="_blank" class="lbh bg-white">
-                                        <i class="fa fa-newspaper-o"></i> Actualités
+                                    <a href="#freedom" target="_blank" class="lbh bg-white letter-red font-blackoutM">
+                                        <i class="fa fa-stack-exchange"></i> Freedom
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="text-left">
+                                    <a href="#social" target="_blank" class="lbh bg-white letter-red font-blackoutM">
+                                        <i class="fa fa-user-circle"></i> Social
                                     </a>
                                 </li>
                                 <!-- <li role="separator" class="divider"></li>
@@ -196,7 +223,7 @@ a.link-submenu-header:focus{
                                 </li> -->
                                 <li role="separator" class="divider"></li>
                                 <li class="text-left">
-                                    <a href="#agenda" target="_blank" class="lbh bg-white">
+                                    <a href="#agenda" target="_blank" class="lbh bg-white letter-red font-blackoutM">
                                         <i class="fa fa-calendar"></i> Agenda
                                     </a>
                                 </li>
@@ -226,8 +253,8 @@ a.link-submenu-header:focus{
                                 <li role="separator" class="divider">
                                 </li>-->
                                 <li class="text-left">
-                                    <a href="#" class="bg-white letter-red logout">
-                                        <i class="fa fa-sign-out"></i> Déconnecter
+                                    <a href="#" class="bg-white logout">
+                                        <small class="bold"><i class="fa fa-sign-out"></i> Déconnecter</small>
                                     </a>
                                 </li>
                             </ul>
@@ -239,9 +266,11 @@ a.link-submenu-header:focus{
                     <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
                       <i class="fa fa-bell"></i>
-                      <span class="notifications-count topbar-badge badge badge-success animated bounceIn">
-                        <?php count($this->notifications); ?>
-                      </span>
+                      <span class="notifications-count topbar-badge badge animated bounceIn 
+                              <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
+                              echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
+                            <?php echo @$countNotifElement ?>
+                        </span>
                     </button>
 
                     <?php if(@Yii::app()->session["userId"] && Yii::app()->params['rocketchatEnabled'] ) { ?>
@@ -284,7 +313,7 @@ a.link-submenu-header:focus{
             <i class="fa fa-question-circle fa-2x"></i>
         </a> -->
 
-            <?php 
+        <?php if(false){
                 $params = CO2::getThemeParams();
                 foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
@@ -300,7 +329,7 @@ a.link-submenu-header:focus{
                     <?php } ?>
                 </a>  
             <?php   }} ?>
-        <?php //} ?>
+        <?php } ?>
 
         <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
             id="btn-radio" style=" margin-top:6px;"  
@@ -313,7 +342,6 @@ a.link-submenu-header:focus{
     <!-- /.container-fluid -->
 
 </nav>
-
 
 <?php if(isset(Yii::app()->session['userId'])) 
                 $this->renderPartial($layoutPath.'notifications'); ?>

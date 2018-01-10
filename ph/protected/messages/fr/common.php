@@ -1263,6 +1263,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 
 	"Initialization of map" => "Initialisation de la carte",
 	
-
+	"Freedom" => "Freedom",
+	
 );
 ?>
