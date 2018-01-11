@@ -854,95 +854,11 @@ onSave: (optional) overloads the generic saveProcess
         /* 	*************************************
         * SCOPE USER 	
         ************************************** */
-    //     else if( fieldObj.inputType == "scope" ) {
-        	
-    //     		fieldClass += " select2TagsInput select2ScopeInput";				
-				// fieldHTML += '<div class="modal fade" id="modal-scope" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'+
-				// 			  '<div class="modal-dialog">'+
-				// 			    '<div class="modal-content">'+
-				// 			      '<div class="modal-header">'+
-				// 			        //'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-				// 			        '<input type="text" id="search-contact" class="form-control pull-right" placeholder="rechercher ...">' +
-				// 					'<h4 class="modal-title" id="myModalLabel"><i class="fa fa-search"></i> '+fieldObj.title1+'</h4>'+
-				// 			      '</div>'+
-				// 			      '<div class="modal-body">'+
-				// 				      '<div class="row no-padding bg-light">'+
-				// 				      	'<div class="col-md-4 col-sm-4 no-padding">'+
-				// 					        '<div class="panel panel-default">  '+	
-				// 								'<div class="panel-body no-padding">'+
-				// 									'<div class="list-group" id="menu-type">'+
-				// 										'<ul class="col-xs-12 col-sm-12 col-md-12 no-padding">';
-				// fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> ! '+fieldObj.title2+'</h4>';
-				// 										$.each(fieldObj.contactTypes, function(key, type){
-				// fieldHTML += 								'<li>'+
-				// 												'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type text-'+type.color+'">' +
-				// 													'<input type="checkbox" name="chk-all-type'+type.name+'" id="chk-all-type'+type.name+'" value="'+type.name+'"> '+
-				// 													'<span style="font-size:16px;"><i class="fa fa-'+type.icon+'"></i> ' + type.label + "</span>" +
-				// 												'</div>'+
-				// 											'</li>';
-				// 										});									
-				// fieldHTML += 							'</ul>'+
-				// 									'</div>'+
-				// 								'</div>'+
-				// 							'</div>' +
-				// 				      	'</div>'+
-				// 				      	'<div class="no-padding pull-right col-md-8 col-sm-8 col-xs-12 bg-white" id="list-scroll-type">';
-				// 						$.each(fieldObj.contactTypes, function(key, type){
-				// fieldHTML += 			'<div class="panel panel-default" id="scroll-type-'+type.name+'">  '+	
-				// 							'<div class="panel-heading">'+
-				// 								'<h4 class="text-'+type.color+'"><i class="fa fa-'+type.icon+'"></i> '+type.label+'</h4>'+			
-				// 							'</div>'+
-				// 							'<div class="panel-body no-padding">'+
-				// 								'<div class="list-group padding-5">'+
-				// 									'<ul>';
-				// 									$.each(fieldObj.values[type.name], function(key2, value){ 
-				// 										var cp = (typeof value.address != "undefined" && typeof value.address.postalCode != "undefined") ? value.address.postalCode : typeof value.cp != "undefined" ? value.cp : "";
-				// 										var city = (typeof value.address != "undefined" && typeof value.address.addressLocality != "undefined") ? value.address.addressLocality : "";
-				// 										var profilThumbImageUrl = (typeof value.profilThumbImageUrl != "undefined" && value.profilThumbImageUrl != "") ? baseUrl + value.profilThumbImageUrl : assetPath + "/images/news/profile_default_l.png";
-				// 										var name =  typeof value.name != "undefined" ? value.name : 
-				// 													typeof value.username != "undefined" ? value.username : "";
-				// 										//mylog.log("data contact +++++++++++ "); mylog.dir(value);
-				// 										var thisKey = key+''+key2;
-				// 										var thisValue = notEmpty(value["_id"]['$id']) ? value["_id"]['$id'] : "";
-				// 										if(name != "")
-				// fieldHTML += 							'<li>' +
-				// 											'<div class="btn btn-default btn-scroll-type btn-select-contact"  id="contact'+thisKey+'">' +
-				// 												'<div class="col-md-1 no-padding"><input type="checkbox" name="scope-'+type.name+'" class="chk-scope-'+type.name+'" id="chk-scope-'+thisKey+'" value="'+thisValue+'" data-type="'+type.name+'"></div> '+
-				// 												'<div class="btn-chk-contact col-md-11 no-padding" idcontact="'+thisKey+'">' +
-				// 													'<img src="'+ profilThumbImageUrl+'" class="thumb-send-to" height="35" width="35">'+
-				// 													'<span class="info-contact">' +
-				// 														'<span class="scope-name-contact text-dark text-bold" idcontact="'+thisKey+'">' + value.name + '</span>'+
-				// 														'<br/>'+
-				// 														'<span class="scope-cp-contact text-light" idcontact="'+thisKey+'">' + cp + ' </span>'+
-				// 														'<span class="scope-city-contact text-light" idcontact="'+thisKey+'">' + city + '</span>'+
-				// 													'</span>' +
-				// 												'</div>' +
-				// 											'</div>' +
-				// 										'</li>';
-				// 									});									
-				// fieldHTML += 						'</ul>' +	
-				// 								'</div>'+
-				// 							'</div>'+
-				// 						'</div>';
-				// 						});									
-				// fieldHTML += 			'</div>' +
-				// 					'</div>'+
-				// 				  '</div>'+
-				// 			      '<div class="modal-footer">'+
-				// 			      	'<button id="btn-reset-scope" type="button" class="btn btn-default btn-sm pull-left"><i class="fa fa-repeat"></i> '+fieldObj.btnResetTitle+'</button>'+
-				// 			      	'<button id="btn-cancel" type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> '+fieldObj.btnCancelTitle+'</button>'+
-				// 			      	'<button id="btn-save" type="button" class="btn btn-success btn-sm" data-dismiss="modal"><i class="fa fa-check"></i> '+fieldObj.btnSaveTitle+'</button>'+
-				// 			      '</div>'+
-				// 			    '</div><!-- /.modal-content -->'+
-				// 			  '</div><!-- /.modal-dialog -->'+
-				// 			'</div><!-- /.modal -->';
-    //     }
         else if( fieldObj.inputType == "scope" ) {
         	mylog.log("build field "+field+">>>>>> scope");
-        		fieldClass += " select2TagsInput select2ScopeInput";				
+        		//fieldClass += " select2TagsInput select2ScopeInput";				
 				fieldHTML += '<div class="col-md-12 no-padding">'+
 								'<div class="col-md-12 col-sm-12 col-xs-12">'+
-									'<hr>'+
 									'<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">'+
 										'<select id="select-country"></select>'+
 									'</div>'+
@@ -995,20 +911,16 @@ onSave: (optional) overloads the generic saveProcess
 										'</div>'+
 									'</div>'+
 									'<div class="col-md-12 no-padding">'+
-										'<div class="input-group margin-bottom-10">'+
-											'<span class="input-group-btn">'+
-												'<div class="input-group-addon" type="button">'+
-													'<i class="fa fa-plus"></i> <i class="fa fa-bullseye"></i>'+
-												'</div>'+
-											'</span>'+
-											'<input id="input-add-multi-scope" type="text" class="form-control" placeholder="'+tradDynForm["Add a city"]+' ...">'+
+										'<div class="input-group margin-bottom-10 col-md-12">'+
+											'<input id="input-add-multi-scope" type="text" class="form-control col-md-12" placeholder="'+tradDynForm["Add a city"]+' ...">'+
 											'<div class="dropdown">'+
 												'<ul class="dropdown-menu" id="dropdown-multi-scope-found"></ul>'+
 											'</div>'+
 										'</div>'+
 									'</div>'+
 								'</div>'+
-								'<div class="text-left">                    '+
+								'<div class="text-left">'+
+									'<div class="label label-info label-sm block text-left" id="lbl-info-select-multi-scope"></div>'+
 									'<div id="multi-scope-list-city" class="col-md-12 margin-top-15">'+
 										'<h5><i class="fa fa-angle-down"></i> Cities </h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
@@ -1033,11 +945,9 @@ onSave: (optional) overloads the generic saveProcess
 										'<h5><i class="fa fa-angle-down"></i> Country</h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
-									'<div class="col-md-12">'+
-										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
-									'<div class="label label-info label-sm block text-left" id="lbl-info-select-multi-scope"></div>'+
 								'</div>'+
 							'</div>';
+
 					
         } 
         else if ( fieldObj.inputType == "password" ) {
@@ -1932,6 +1842,7 @@ var dyFObj = {
 				formData.addresses = dyFInputs.locationObj.elementLocations;
 			}
 		}
+
 		if(notNull(dyFInputs.scopeObj.scope)){
 			formData.scope = dyFInputs.scopeObj.scope;
 		}
@@ -2775,8 +2686,8 @@ var dyFInputs = {
 		return inputObj;  
 	},
 	location : {
-		label : "SCOPE",
-       	inputType : "scope"
+		label : "location",
+       	inputType : "location"
     },
     locationObj : {
     	/* *********************************
@@ -3088,6 +2999,7 @@ var dyFInputs = {
 		label : tradDynForm["localization"],
        	inputType : "scope",
        	init : function () {
+       		dyFInputs.scopeObj.scope = {};
        		getAjax( null , baseUrl+"/"+moduleId+"/opendata/getcountries/hasCity/true" , function(data){
 				mylog.log("getcountries", data);
 				var options = "";
@@ -3118,6 +3030,7 @@ var dyFInputs = {
 				if(currentScopeType == "cp") $('#ajaxFormModal #input-add-multi-scope').attr("placeholder", tradDynForm["Add a postal code"]+" ...");
 				if(currentScopeType == "zone") $('#ajaxFormModal #input-add-multi-scope').attr("placeholder", tradDynForm["Add a zone"]+" ...");
 			});
+			dyFInputs.scopeObj.showCountScope();
        	}
     },
     scopeObj : {
@@ -3152,14 +3065,15 @@ var dyFInputs = {
 				mylog.log("dyFInputs.scopeObj.scope")
 				//alert();
 				dyFInputs.scopeObj.showScope(scopeValue);
-				$("#input-add-multi-scope").val("");
+				$("#ajaxFormModal #input-add-multi-scope").val("");
+				dyFInputs.scopeObj.showCountScope();
 				//saveMultiScope();
 				//showTagsScopesMin();
 				//bindCommunexionScopeEvents();
 			}else{
 				showMsgInfoMultiScope("Ce lieu est déjà dans votre liste", "info");
 			}
-			$("#dropdown-multi-scope-found").hide();
+			$("#ajaxFormModal #dropdown-multi-scope-found").hide();
        	},
        	showScope : function (scopeValue){ 
 			mylog.log("showScope()", scopeValue);
@@ -3186,13 +3100,13 @@ var dyFInputs = {
 
 				var levelType = ( (scope.type == "zone") ? "level"+scope.level : scope.type ) ;
 				mylog.log("levelType", levelType, "#multi-scope-list-"+levelType);
-				$("#multi-scope-list-"+levelType).append(html);
-				$("#multi-scope-list-"+levelType).show();
+				$("#ajaxFormModal #multi-scope-list-"+levelType).append(html);
+				$("#ajaxFormModal #multi-scope-list-"+levelType).show();
 
 				if(actionOnSetGlobalScope=="save")
 					$("#scopeListContainerForm").html(html);
-				$(".item-scope-checker").off().click(function(){ toogleScopeMultiscope( $(this).data("scope-value")) });
-				$(".item-scope-deleter").off().click(function(){ dyFInputs.scopeObj.deleteScope( $(this).data("scope-value")); });
+				$("#ajaxFormModal .item-scope-checker").off().click(function(){ toogleScopeMultiscope( $(this).data("scope-value")) });
+				$("#ajaxFormModal .item-scope-deleter").off().click(function(){ dyFInputs.scopeObj.deleteScope( $(this).data("scope-value")); });
 				//showMsgInfoMultiScope("Le scope a bien été ajouté", "success");
 			}else{
 				html = "";
@@ -3208,6 +3122,23 @@ var dyFInputs = {
 				$("[data-scope-value=\""+scopeValue+"\"]").remove();
 				//saveMultiScope();
 			}
+		},
+		showCountScope : function (){
+			mylog.log("showCountScope");
+			var count = 0; 
+			var types = new Array("city", "cp", "level1", "level2", "level3", "level4");
+			$.each(dyFInputs.scopeObj.scope, function(key, value){
+				if(value.active==true) count++;
+				var levelType = ( (value.type == "zone") ? "level"+value.level : value.type ) ;
+				if(types.indexOf(levelType)>-1)
+					types.splice(types.indexOf(levelType), 1);
+			});
+			$.each(types, function(key, value){
+				$("#ajaxFormModal #multi-scope-list-"+value).hide();
+			});
+			$(".scope-count").html(count);
+			//showTagsScopesMin(".list_tags_scopes");
+			showEmptyMsg();
 		}
     },
     //produces 
