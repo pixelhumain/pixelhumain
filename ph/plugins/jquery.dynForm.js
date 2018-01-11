@@ -2333,14 +2333,34 @@ var dyFInputs = {
 	        rules : ( notEmpty(rules) ? rules : "")
 	    };
     	inputObj.init = function(){
-        	$("#ajaxFormModal #slug").bind("input keyup",function(e) {
+    		$("#ajaxFormModal #btn-submit-form").attr('disabled','disabled');
+			
+			$("#ajaxFormModal #slug").data("checking", false);
+
+        	$("#ajaxFormModal #slug").bind("keyup",function(e) {
+
+				$("#ajaxFormModal #btn-submit-form").attr('disabled','disabled');
         		$(this).val(slugify($(this).val(), true));
-        		if($("#ajaxFormModal #slug").val().length >= 3 )
-            		slugUnique($(this).val());
-            	else
-            		$("#ajaxFormModal #slug").parent().removeClass("has-success").addClass("has-error").find("span").text("Please enter at least 3 characters.");
+        		if($("#ajaxFormModal #slug").val().length >= 3 ){
+            		if($("#ajaxFormModal #slug").data("checking") == false){
+            			var value = $(this).val();
+            			if(formInMap.formType.timer != false) clearTimeout(formInMap.formType.timer);
+            			formInMap.formType.timer = setTimeout(function(){ 
+        					console.log("checking slug", true);
+            				$("#ajaxFormModal #slug").data("checking", true);
+            				slugUnique(value); 
+            			}, 1000);
+            			
+            		}else{ console.log("already checking slug"); }
+        		} else{
+            		$("#ajaxFormModal #slug").parent().removeClass("has-success").addClass("has-error");//.find("span").text("Please enter at least 3 characters.");
+            	}
             	//dyFObj.canSubmitIf();
         	});
+
+        	$("#ajaxFormModal .form-group.slugtext").append(
+        				"<span class='help-blockk col-xs-12 padding-5 text-left letter-green bold'></span>");
+        	slugUnique($("#ajaxFormModal #slug").val());
 	    }
 	    mylog.log("dyFInputs ", inputObj);
     	return inputObj;

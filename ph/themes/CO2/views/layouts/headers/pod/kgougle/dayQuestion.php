@@ -58,7 +58,7 @@
 
 @media (max-width: 768px) {
     .label-qdj{
-        font-size:16px;
+        font-size:20px;
         margin-top:-25px;
         margin-bottom:5px;
     }
@@ -68,6 +68,16 @@
 
     .label-introQ{
         font-size:20px;
+    }
+
+    .btn-introQ{
+        font-size: 20px;
+        border: 3px solid #fbbc05;
+        border-radius: 40px;
+        margin-top: -15px;
+        height: 60px;
+        width: 60px;
+        padding: 7px 0 15px 1px;
     }
 }
 
@@ -87,7 +97,7 @@
         <i class="fa fa-cog"></i> regle du jeu
     </button>
     <span class="margin-top-10 text-dark pull-right dayAuthor">
-        question posée par <b>AlphaTango</b>
+        question posée par <a class="bold lbh" href="#alphatango">AlphaTango</a>
     </span>
 </div>
 

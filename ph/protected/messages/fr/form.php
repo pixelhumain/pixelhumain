@@ -26,7 +26,7 @@
 		"Make visble your project to all has never been so easy !<br>Create your project in few seconds,<br>then complete more according to your needs"=>"Faire connaître vos projets n'a jamais été aussi simple !<br>Créez votre page en quelques secondes,<br>et complétez les informations plus tard, selon vos besoins",
 		"Share links you like, to make them accessible to all"=>"Partagez des liens qui vous intéresse, pour les rendre accessibles à tous",
 		"Indicate contacts linked to this page to give more opportunities for people to find you"=>"Facilitez les rencontres en indiquant les coordonnées des personnes en lien avec cette page",
-		"Slug is very important.<br> It will permit to give a unique name to chat in a room,<br>A beautiful url like www.communecter.org/#communecter"=>"Le slug est très important.<br/> Il fournit un identifiant unique pour vos chats par exemple,<br/>Une magnifique url comme www.communecter.org/#communecter",
+		"Slug is very important.<br> It will permit to give a unique name to chat in a room,<br>A beautiful url like www.communecter.org/#communecter"=>"Chaque page est accessible via une addresse (URL) unique sur le réseau.<br>Choisissez cet identifiant avec soin, pour simplifier l'accès à votre page.<br>ex : #sans-espace-ni-accens",
 		"Who is organizing this event"=>"Qui organise cet événement",
 		"Who organizes"=>"Qui organise",
 		"Is part of an event"=> "Fait parti d'un événement",
@@ -60,7 +60,7 @@
 		"the start date"=>"la date de début",
 		"the end date"=>"la date de fin",
 		"Birth date"=>"Date de naissance",
-		"Slug"=>"Slug",
+		"Slug"=>"Adresse URL de votre page",
 		"url, more informations, to do list, etc"=>"url, informations supplémentaires, actions à faire, etc",
 		"In details"=>"En détails",
 		"options (desc, urls)"=>"options (desc, urls)",
@@ -72,7 +72,7 @@
 		"Free informations / urls"=>"Informations libres / urls",
 		"Create a point of interest"=>"Créer un point d'intérêt",
 		"Create a classified"=>"Publier une annonce",
-		"Update slug"=>"Modifier le slug",
+		"Update slug"=>"Modifier l'adresse URL de votre page",
 		"Add an image"=>"Ajouter une image",
 		"Add a file"=>"Ajouter un fichier",
 		"Which kind of room do you want to create"=>"Quel type d'espace souhaitez-vous créer",
@@ -148,6 +148,8 @@
 		"Add or edit the roles of"=>"Ajouter ou modifier les rôles de",
 		"Add photos to the gallery"=>"Ajouter des photos à la galerie",
 		"Stock your photos and share them"=>"Partagez vos photos et vos publications",
+		"This URL is already used" => "Cette URL est déjà utilisée",
+		"This URL is not used" => "Cette URL est disponible",
 	)
 
 ?>
