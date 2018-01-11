@@ -159,6 +159,10 @@
   font-size: 20px;
   padding: 12px 0px;
 }
+.searchEntity .entityCenter i.fa.fa-map-marker{
+  font-size: 20px;
+  padding: 12px 16px;
+}
 .searchEntity .entityCenter i.fa.fa-video-camera {
     font-size: 21px;
     padding: 12px 14px;
