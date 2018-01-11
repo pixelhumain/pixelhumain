@@ -554,7 +554,7 @@ return array(
 	"Create a point of interest"=>"Créer un point d'intérêt",	
 	"Create a new collection"=>"Créer une nouvelle collection",
 	"Create a new page"=>"Créer une nouvelle page",
-	"Edit slug"=>"Modifier le slug",
+	"Edit slug"=>"Modifier votre adresse URL",
 	"Search among your contacts"=>"Rechercher parmi vos contacts",
 	/* ---- */
 	//TITLE DIRECTORY ELEMENT
