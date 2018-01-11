@@ -4,6 +4,9 @@
 
     $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
     $themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
+    $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
+    $modulePath = ( @Yii::app()->params["module"]["parent"] ) ?  "../../../".$parentModuleId."/views"  : "..";
+
     $cs = Yii::app()->getClientScript();
 
     $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
@@ -46,7 +49,7 @@
 <?php } ?>
 
         <?php 
-            $cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
+            $cs->registerScriptFile(Yii::app() -> createUrl($parentModuleId."/default/view/page/trad/dir/..|translation/layout/empty"));
         ?>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -64,7 +67,8 @@
         ******************************************* -->
         <progress class="progressTop" max="100" value="20"></progress>   
         <div id="mainMap">
-            <?php $this->renderPartial($layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"]); ?>
+            <?php 
+            $this->renderPartial( $layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"], array("modulePath"=>$modulePath )); ?>
         </div>
 
         <?php //get all my link to put in floopDrawer
@@ -87,7 +91,7 @@
         <?php //$this->renderPartial($layoutPath.'loginRegister', array()); ?>
 
         <?php  if( isset(Yii::app()->session["userId"]) )
-                $this->renderPartial('../news/modalShare', array());
+                $this->renderPartial($modulePath.'/news/modalShare', array());
         ?>
  
         <div class="main-container">
@@ -134,6 +138,10 @@
         ?> 
         
         <?php 
+
+            /* ***********************
+            add to HEAD
+            ************************ */
             echo "<!-- start: MAIN JAVASCRIPTS -->";
             echo "<!--[if lt IE 9]>";
             $cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/respond.min.js' , CClientScript::POS_HEAD);
@@ -143,7 +151,13 @@
             echo "<!--[if gte IE 9]><!-->";
             $cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
             echo "<!--<![endif]-->";
+            /* ***********************
+            add to HEAD
+            ************************ */
 
+            /* ***********************
+            ph core stuff
+            ************************ */
             $cssAnsScriptFilesModule = array(
                 '/plugins/jquery-ui-1.12.1/jquery-ui.min.js',
                 '/plugins/jquery-ui-1.12.1/jquery-ui.min.css',
@@ -190,8 +204,22 @@
             if(Yii::app()->language!="en")
                 array_push($cssAnsScriptFilesModule,"/plugins/jquery-validation/localization/messages_".Yii::app()->language.".js");
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
-            HtmlHelper::registerCssAndScriptsFiles( array('/js/default/formInMap.js') , $this->module->assetsUrl);
-            
+            /* ***********************
+            END ph core stuff
+            ************************ */
+
+            /* ***********************
+            module stuff
+            ************************ */
+            $moduleAssets = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->getModule( Yii::app()->params["module"]["parent"] )->getAssetsUrl()  : $this->module->assetsUrl;
+            HtmlHelper::registerCssAndScriptsFiles( array('/js/default/formInMap.js') , $moduleAssets);
+            /* ***********************
+            END module stuff
+            ************************ */
+
+            /* ***********************
+            theme stuff
+            ************************ */
             $cssAnsScriptFilesModule = array(
                 '/assets/js/cookie.js' ,
                 '/assets/js/jqBootstrapValidation.js' ,
@@ -217,8 +245,12 @@
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
+            /* ***********************
+            END theme stuff
+            ************************ */
+
             $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "myFormContact" => @$myFormContact, "communexion" => $communexion));
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
 
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
             //if($CO2DomainName != "CO2"){

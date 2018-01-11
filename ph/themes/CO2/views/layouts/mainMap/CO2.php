@@ -1,7 +1,7 @@
 
 <?php 
 	//modifier l'url relative si besoin pour trouver communecter/view/sig/
-	$relativePath = "../sig/";
+	$relativePath = $modulePath."/sig/";
 
 	$mapProvider = "OSM";
 	if(PH::notlocalServer()){
