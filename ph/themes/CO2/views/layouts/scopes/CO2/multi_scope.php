@@ -388,7 +388,7 @@
 			/*if(currentScopeType == "dep") $('#input-add-multi-scope').attr("placeholder", "Ajouter un département ...");
 			if(currentScopeType == "region") $('#input-add-multi-scope').attr("placeholder", "Ajouter une région ...");*/
 			if(currentScopeType == "zone") $('#input-add-multi-scope').attr("placeholder", "<?php echo Yii::t("common","Add a zone") ?> ...");
-        });
+    });
 
         $("#btn-validate-scope").click(function(){
     			if(location.hash.indexOf("#live") >=0 || location.hash.indexOf("#freedom") >=0)

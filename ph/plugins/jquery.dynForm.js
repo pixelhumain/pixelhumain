@@ -1010,27 +1010,27 @@ onSave: (optional) overloads the generic saveProcess
 								'</div>'+
 								'<div class="text-left">                    '+
 									'<div id="multi-scope-list-city" class="col-md-12 margin-top-15">'+
-										'<h4><i class="fa fa-angle-down"></i> Cities </h4>'+
+										'<h5><i class="fa fa-angle-down"></i> Cities </h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
 									'<div id="multi-scope-list-cp" class="col-md-12 margin-top-15">'+
-										'<h4><i class="fa fa-angle-down"></i> '+tradDynForm["Postal code"]+'</h4>'+
+										'<h5><i class="fa fa-angle-down"></i> '+tradDynForm["Postal code"]+'</h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
 									'<div id="multi-scope-list-level4" class="col-md-12 margin-top-15">'+
-										'<h4><i class="fa fa-angle-down"></i>Administrative zone N°4</h4>'+
+										'<h5><i class="fa fa-angle-down"></i>Administrative zone N°4</h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
 									'<div id="multi-scope-list-level3" class="col-md-12 margin-top-15">'+
-										'<h4><i class="fa fa-angle-down"></i> Administrative zone N°3</h4>'+
+										'<h5><i class="fa fa-angle-down"></i> Administrative zone N°3</h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
 									'<div id="multi-scope-list-level2" class="col-md-12 margin-top-15">'+
-										'<h4><i class="fa fa-angle-down"></i> Administrative zone N°2</h4>'+
+										'<h5><i class="fa fa-angle-down"></i> Administrative zone N°2</h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
 									'<div id="multi-scope-list-level1" class="col-md-12 margin-top-15">'+
-										'<h4><i class="fa fa-angle-down"></i> Country</h4>'+
+										'<h5><i class="fa fa-angle-down"></i> Country</h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
 									'<div class="col-md-12">'+
@@ -1931,6 +1931,9 @@ var dyFObj = {
 				});
 				formData.addresses = dyFInputs.locationObj.elementLocations;
 			}
+		}
+		if(notNull(dyFInputs.scopeObj.scope)){
+			formData.scope = dyFInputs.scopeObj.scope;
 		}
 		
 		formData.medias = [];
@@ -3094,8 +3097,8 @@ var dyFInputs = {
 			        else
 			          options += '<option value="'+val.countryCode+'">'+val.name+'</option>';
 				});
-				$("#select-country").html(options);
-	    		$("#dropdown-multi-scope-found").hide();
+				$("#ajaxFormModal #select-country").html(options);
+	    		$("#ajaxFormModal #dropdown-multi-scope-found").hide();
 			});
 
 			$('#ajaxFormModal #input-add-multi-scope').filter_input({regex:'[^@#\'\"\`\\\\]'}); //[a-zA-Z0-9_] 
@@ -3106,12 +3109,21 @@ var dyFInputs = {
 		            timeoutAddScope = setTimeout(function(){ autocompleteMultiScope(); }, 500);
 		        }
 		    });
+
+			$("#ajaxFormModal .btn-group-scope-type .btn-default").click(function(){
+				currentScopeType = $(this).data("scope-type");
+				$("#ajaxFormModal .btn-group-scope-type .btn-default").removeClass("active");
+				$(this).addClass("active");
+				if(currentScopeType == "city") $('#ajaxFormModal #input-add-multi-scope').attr("placeholder", tradDynForm["Add a city"]+" ...");
+				if(currentScopeType == "cp") $('#ajaxFormModal #input-add-multi-scope').attr("placeholder", tradDynForm["Add a postal code"]+" ...");
+				if(currentScopeType == "zone") $('#ajaxFormModal #input-add-multi-scope').attr("placeholder", tradDynForm["Add a zone"]+" ...");
+			});
        	}
     },
     scopeObj : {
-		scope : null,
+		scope : {},
 		scopeExists : function (scopeValue){
-			return typeof myMultiScopes[scopeValue] != "undefined";
+			return typeof dyFInputs.scopeObj.scope[scopeValue] != "undefined";
 		},
        	addScope : function (scopeValue, scopeName, scopeLevel, scopeCountry){
 			mylog.log("addScope", scopeValue, scopeName);
@@ -3139,7 +3151,7 @@ var dyFInputs = {
 				//dyFInputs.scopeObj.scope[scopeValue].type = scopeType ;
 				mylog.log("dyFInputs.scopeObj.scope")
 				//alert();
-				dyFInputs.scopeObj.showScopeInMultiscope(scopeValue);
+				dyFInputs.scopeObj.showScope(scopeValue);
 				$("#input-add-multi-scope").val("");
 				//saveMultiScope();
 				//showTagsScopesMin();
@@ -3149,8 +3161,8 @@ var dyFInputs = {
 			}
 			$("#dropdown-multi-scope-found").hide();
        	},
-       	showScopeInMultiscope : function (scopeValue){ 
-			mylog.log("showScopeInMultiscope()", scopeValue);
+       	showScope : function (scopeValue){ 
+			mylog.log("showScope()", scopeValue);
 			var html = "";
 			if(dyFInputs.scopeObj.scopeExists(scopeValue)){
 				var scope = dyFInputs.scopeObj.scope[scopeValue];
@@ -3158,20 +3170,19 @@ var dyFInputs = {
 				if(typeof scope.name == "undefined") scope.name = scopeValue;
 				var faActive = (dyFInputs.scopeObj.scope[scopeValue].active == true) ? "check-circle" : "circle-o";
 				var classDisable = (dyFInputs.scopeObj.scope[scopeValue].active == false) ? "disabled" : "";
-				html = 
-				'<span class="item-scope-input bg-red item-scope-'+scope.type+' '+classDisable+'" data-scope-value="'+scopeValue+'">' +
-						'<a href="javascript:" class="item-scope-checker tooltips"' +
-							'data-toggle="tooltip" data-placement="bottom" ' +
-							'title="Activer/Désactiver" data-scope-value="'+scopeValue+'">' +
-							'<i class="fa fa-'+faActive+'"></i>' +
-						'</a>' +
-						'<span class="item-scope-name" >'+scope.name+'</span>' +
-						'<a href="javascript:" class="item-scope-deleter tooltips"' +
-							'data-toggle="tooltip" data-placement="bottom" ' +
-							'title="Supprimer" data-scope-value="'+scopeValue+'">' +
-							'<i class="fa fa-times"></i>' +
-					'</a>' +
-				'</span>';
+				html = '<span class="item-scope-input bg-red item-scope-'+scope.type+' '+classDisable+'" data-scope-value="'+scopeValue+'">' +
+							// '<a href="javascript:" class="item-scope-checker tooltips"' +
+							// 	'data-toggle="tooltip" data-placement="bottom" ' +
+							// 	'title="Activer/Désactiver" data-scope-value="'+scopeValue+'">' +
+							// 	'<i class="fa fa-'+faActive+'"></i>' +
+							// '</a>' +
+							'<span class="item-scope-name" >'+scope.name+'</span>' +
+							'<a href="javascript:" class="item-scope-deleter tooltips"' +
+								'data-toggle="tooltip" data-placement="bottom" ' +
+								'title="Supprimer" data-scope-value="'+scopeValue+'">' +
+								'<i class="fa fa-times"></i>' +
+							'</a>' +
+						'</span>';
 
 				var levelType = ( (scope.type == "zone") ? "level"+scope.level : scope.type ) ;
 				mylog.log("levelType", levelType, "#multi-scope-list-"+levelType);
@@ -3181,14 +3192,22 @@ var dyFInputs = {
 				if(actionOnSetGlobalScope=="save")
 					$("#scopeListContainerForm").html(html);
 				$(".item-scope-checker").off().click(function(){ toogleScopeMultiscope( $(this).data("scope-value")) });
-				$(".item-scope-deleter").off().click(function(){ deleteScopeInMultiscope( $(this).data("scope-value")); });
+				$(".item-scope-deleter").off().click(function(){ dyFInputs.scopeObj.deleteScope( $(this).data("scope-value")); });
 				//showMsgInfoMultiScope("Le scope a bien été ajouté", "success");
 			}else{
 				html = "";
-				//showMsgInfoMultiScope("showScopeInMultiscope error : ce lieu n'existe pas - " + scopeValue, "error");
+				//showMsgInfoMultiScope("showScope error : ce lieu n'existe pas - " + scopeValue, "error");
 			}
 			
 			$(".tooltips").tooltip();
+		},
+		deleteScope : function (scopeValue){ 
+			mylog.log("deleteScope(scopeValue)", scopeValue);
+			if(dyFInputs.scopeObj.scopeExists(scopeValue)){
+				delete dyFInputs.scopeObj.scope[scopeValue];
+				$("[data-scope-value=\""+scopeValue+"\"]").remove();
+				//saveMultiScope();
+			}
 		}
     },
     //produces 
