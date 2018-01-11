@@ -313,7 +313,8 @@ a.link-submenu-header:focus{
             <i class="fa fa-question-circle fa-2x"></i>
         </a> -->
 
-        <?php if(false){
+        <div class="visible-lg visible-md">
+        <?php //if(false){
                 $params = CO2::getThemeParams();
                 foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
@@ -329,7 +330,8 @@ a.link-submenu-header:focus{
                     <?php } ?>
                 </a>  
             <?php   }} ?>
-        <?php } ?>
+        <?php //} ?>
+        </div>
 
         <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
             id="btn-radio" style=" margin-top:6px;"  
