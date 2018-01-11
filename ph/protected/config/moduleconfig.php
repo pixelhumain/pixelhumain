@@ -6,5 +6,11 @@ $activeModules = array(
 	'network',
 	'api',
 	'datatools',
-	"graph"
+	"graph",
+	"cotools",
+	"learn",
+	"copi",
+	"sso",
+	"places",
+	"ressources"
 	);
