@@ -169,9 +169,7 @@ if(  	@$params['enSavoirPlus'] &&
 							<span class="hidden-sm hidden-md hidden-xs"><?php echo Yii::t("login","Login"); ?></span>
 						</button>
 						<?php } else { ?>
-							<?php //echo Yii::app()->createUrl('/co2/person/logout?network='.$params["name"]); ?>
-							<?php //"/pixelhumain/ph/co2/person/logout?network=<?php echo $params["name"] ?>
-							<a class="btn-top btn bg-red hidden-xs" href="<?php echo Yii::app()->createUrl('/co2/person/logout?network='.$params["name"]); ?>" style="margin-right:10px;" onclick="">
+							<a class="btn-top btn bg-red hidden-xs" href="<?php echo Yii::app()->createUrl('/co2/person/logout?network='.Yii::app()->params['networkParams']); ?>" style="margin-right:10px;" onclick="">
 								<i class="fa fa-sign-out"></i> 
 								<span class="hidden-sm hidden-md hidden-xs"><?php echo Yii::t("common","Log Out"); ?></span>
 							</a>

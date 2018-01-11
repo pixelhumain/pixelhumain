@@ -241,7 +241,7 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<textarea id="'+field+'" maxlength="'+maxlength+'"  class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
         	
         	if(maxlength > 0)
-        		fieldHTML += '<span><span id="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
+        		fieldHTML += '<span><span id="maxlength'+field+' name="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
 
 
         }else if ( fieldObj.inputType == "markdown"){ 
@@ -669,9 +669,9 @@ onSave: (optional) overloads the generic saveProcess
         	mylog.log("build field "+field+">>>>>> properties list", fieldObj.values);
 
         	if(fieldObj.values){
-    			if(!initValues["tags"+field])
-    				initValues["tags"+field] = {};
-    			initValues["tags"+field]["tags"] = fieldObj.values;
+    			if(!initValues["tags"+field+"0"])
+    				initValues["tags"+field+"0"] = {};
+    			initValues["tags"+field+"0"]["tags"] = fieldObj.values;
     		}
     		
     		mylog.log("build field "+field+">>>>>> properties initValues", initValues);
@@ -687,20 +687,20 @@ onSave: (optional) overloads the generic saveProcess
 
         	fieldHTML += '<div class="inputs properties">'+
 								'<div class="col-sm-3">'+
-									'<input type="text" name="properties[]" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
-									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+									'<span>Nom du filtre</span>'+
+									'<input type="text" name="'+field+'0" id="'+field+'0" class="addmultifield addmultifield0 form-control input-md" value="" placeholder="'+placeholder+'"/>'+
+									//'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 								'</div>'+
 								'<div class="col-sm-7">'+
-									//'<textarea type="text" name="values[]" class="addmultifield1 form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);"  placeholder="'+placeholder2+'"></textarea>'+
-									'<input type="text" class="form-control select2TagsInput" name="tags'+field+'" id="tags'+field+'" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
-									'<button data-id="'+field+fieldObj.inputType+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
-									
+									'<span>Tags associer au filtre</span>'+
+									'<input type="text" class="form-control select2TagsInput" name="tags'+field+'0" id="tags'+field+'0" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
+									'<button data-id="'+field+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
 								'</div>'+
 							'</div>'+
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
 							'<div class="col-sm-12">'+
 								'<div class="space10"></div>'+
-						        '<a href="javascript:;" data-id="'+field+fieldObj.inputType+'" data-container="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
+						        '<a href="javascript:;" data-id="'+field+'" data-container="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
 				       		'</div></span>'+
 				       '<div class="space5"></div>';
 			
@@ -854,119 +854,191 @@ onSave: (optional) overloads the generic saveProcess
         /* 	*************************************
         * SCOPE USER 	
         ************************************** */
-        else if( fieldObj.inputType == "scope" ) {
+    //     else if( fieldObj.inputType == "scope" ) {
         	
-        		fieldClass += " select2TagsInput select2ScopeInput";
-        		
-        		/*fieldHTML += 	'<span id="lbl-send-to">Send to <i class="fa fa-caret-right"></i>'+ 
-	        					'<div class="dropdown">' +
-								  '<a data-toggle="dropdown" class="btn btn-sm btn-default" id="btn-toogle-dropdown-scope" href="#"><i class="fa fa-group"></i> Mon mur <i class="fa fa-caret-down"></i></a>' +
-								  '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">' +
-								   '<li><a href="#" id="scope-my-wall"><i class="fa fa-group"></i> My wall</a></li>' +
-								   '<li><a href="#" id="scope-select" data-toggle="modal" data-target="#modal-scope"><i class="fa fa-plus"></i> Selectionner</a></li>' +
-								  '</ul>' +
-								'</div></span>' ;*/
-
-				
-				fieldHTML += '<div class="modal fade" id="modal-scope" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'+
-							  '<div class="modal-dialog">'+
-							    '<div class="modal-content">'+
-							      '<div class="modal-header">'+
-							        //'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-							        '<input type="text" id="search-contact" class="form-control pull-right" placeholder="rechercher ...">' +
-									'<h4 class="modal-title" id="myModalLabel"><i class="fa fa-search"></i> '+fieldObj.title1+'</h4>'+
-							      '</div>'+
-							      '<div class="modal-body">'+
-								      '<div class="row no-padding bg-light">'+
-								      	'<div class="col-md-4 col-sm-4 no-padding">'+
-									        '<div class="panel panel-default">  '+	
-												'<div class="panel-body no-padding">'+
-													'<div class="list-group" id="menu-type">'+
-														'<ul class="col-xs-12 col-sm-12 col-md-12 no-padding">';
-				fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> ! '+fieldObj.title2+'</h4>';
-														$.each(fieldObj.contactTypes, function(key, type){
-				fieldHTML += 								'<li>'+
-																'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type text-'+type.color+'">' +
-																	'<input type="checkbox" name="chk-all-type'+type.name+'" id="chk-all-type'+type.name+'" value="'+type.name+'"> '+
-																	'<span style="font-size:16px;"><i class="fa fa-'+type.icon+'"></i> ' + type.label + "</span>" +
-																'</div>'+
-															'</li>';
-														});									
-				fieldHTML += 							'</ul>';
-				fieldHTML += 							/*'<ul class="col-xs-6 col-sm-12 col-md-12 no-margin no-padding select-population">' + 
-															'<h4 class="text-dark"><i class="fa fa-angle-down"></i> Select population</h4>' +
-															'<li>'+
-																'<div class="btn btn-default btn-scroll-type homestead text-red">' +
-																	'<input type="checkbox" name="chk-my-city" id="chk-my-city" value="mycity">' +
-																	'<div id="btn-scroll-type-my-city" class="inline" >' +
-																		 ' <span style="font-size:16px;"><i class="fa fa-university"></i> My City</span>' +
-																	'</div>'+
-																'</div>'+
-															'</li>' +
-															'<li>'+
-																'<div id="btn-show-other-cities"  class="btn btn-default btn-scroll-type homestead text-red">' +
-																	'<input type="checkbox" name="chk-cities" id="chk-cities" value="cities">'+
-																	'<div id="btn-scroll-type-other-cities" class="inline" >' +
-																		' <span style="font-size:16px;"><i class="fa fa-university"></i> Other cities</span></br>' +
-																	'<input type="text" name="scope-postal-code" id="scope-postal-code" style="width:100%;" class="form-control helvetica margin-top-5" placeholder="code insee">' +
-																	'</div>'+
-																'</div>'+
-															'</li>' +
-														'</ul>' +*/
-													'</div>'+
-												'</div>'+
-											'</div>' +
-								      	'</div>'+
-								      	'<div class="no-padding pull-right col-md-8 col-sm-8 col-xs-12 bg-white" id="list-scroll-type">';
-										$.each(fieldObj.contactTypes, function(key, type){
-				fieldHTML += 			'<div class="panel panel-default" id="scroll-type-'+type.name+'">  '+	
-											'<div class="panel-heading">'+
-												'<h4 class="text-'+type.color+'"><i class="fa fa-'+type.icon+'"></i> '+type.label+'</h4>'+			
-											'</div>'+
-											'<div class="panel-body no-padding">'+
-												'<div class="list-group padding-5">'+
-													'<ul>';
-													$.each(fieldObj.values[type.name], function(key2, value){ 
-														var cp = (typeof value.address != "undefined" && typeof value.address.postalCode != "undefined") ? value.address.postalCode : typeof value.cp != "undefined" ? value.cp : "";
-														var city = (typeof value.address != "undefined" && typeof value.address.addressLocality != "undefined") ? value.address.addressLocality : "";
-														var profilThumbImageUrl = (typeof value.profilThumbImageUrl != "undefined" && value.profilThumbImageUrl != "") ? baseUrl + value.profilThumbImageUrl : assetPath + "/images/news/profile_default_l.png";
-														var name =  typeof value.name != "undefined" ? value.name : 
-																	typeof value.username != "undefined" ? value.username : "";
-														//mylog.log("data contact +++++++++++ "); mylog.dir(value);
-														var thisKey = key+''+key2;
-														var thisValue = notEmpty(value["_id"]['$id']) ? value["_id"]['$id'] : "";
-														if(name != "")
-				fieldHTML += 							'<li>' +
-															'<div class="btn btn-default btn-scroll-type btn-select-contact"  id="contact'+thisKey+'">' +
-																'<div class="col-md-1 no-padding"><input type="checkbox" name="scope-'+type.name+'" class="chk-scope-'+type.name+'" id="chk-scope-'+thisKey+'" value="'+thisValue+'" data-type="'+type.name+'"></div> '+
-																'<div class="btn-chk-contact col-md-11 no-padding" idcontact="'+thisKey+'">' +
-																	'<img src="'+ profilThumbImageUrl+'" class="thumb-send-to" height="35" width="35">'+
-																	'<span class="info-contact">' +
-																		'<span class="scope-name-contact text-dark text-bold" idcontact="'+thisKey+'">' + value.name + '</span>'+
-																		'<br/>'+
-																		'<span class="scope-cp-contact text-light" idcontact="'+thisKey+'">' + cp + ' </span>'+
-																		'<span class="scope-city-contact text-light" idcontact="'+thisKey+'">' + city + '</span>'+
-																	'</span>' +
-																'</div>' +
-															'</div>' +
-														'</li>';
-													});									
-				fieldHTML += 						'</ul>' +	
-												'</div>'+
-											'</div>'+
-										'</div>';
-										});									
-				fieldHTML += 			'</div>' +
+    //     		fieldClass += " select2TagsInput select2ScopeInput";				
+				// fieldHTML += '<div class="modal fade" id="modal-scope" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'+
+				// 			  '<div class="modal-dialog">'+
+				// 			    '<div class="modal-content">'+
+				// 			      '<div class="modal-header">'+
+				// 			        //'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+				// 			        '<input type="text" id="search-contact" class="form-control pull-right" placeholder="rechercher ...">' +
+				// 					'<h4 class="modal-title" id="myModalLabel"><i class="fa fa-search"></i> '+fieldObj.title1+'</h4>'+
+				// 			      '</div>'+
+				// 			      '<div class="modal-body">'+
+				// 				      '<div class="row no-padding bg-light">'+
+				// 				      	'<div class="col-md-4 col-sm-4 no-padding">'+
+				// 					        '<div class="panel panel-default">  '+	
+				// 								'<div class="panel-body no-padding">'+
+				// 									'<div class="list-group" id="menu-type">'+
+				// 										'<ul class="col-xs-12 col-sm-12 col-md-12 no-padding">';
+				// fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> ! '+fieldObj.title2+'</h4>';
+				// 										$.each(fieldObj.contactTypes, function(key, type){
+				// fieldHTML += 								'<li>'+
+				// 												'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type text-'+type.color+'">' +
+				// 													'<input type="checkbox" name="chk-all-type'+type.name+'" id="chk-all-type'+type.name+'" value="'+type.name+'"> '+
+				// 													'<span style="font-size:16px;"><i class="fa fa-'+type.icon+'"></i> ' + type.label + "</span>" +
+				// 												'</div>'+
+				// 											'</li>';
+				// 										});									
+				// fieldHTML += 							'</ul>'+
+				// 									'</div>'+
+				// 								'</div>'+
+				// 							'</div>' +
+				// 				      	'</div>'+
+				// 				      	'<div class="no-padding pull-right col-md-8 col-sm-8 col-xs-12 bg-white" id="list-scroll-type">';
+				// 						$.each(fieldObj.contactTypes, function(key, type){
+				// fieldHTML += 			'<div class="panel panel-default" id="scroll-type-'+type.name+'">  '+	
+				// 							'<div class="panel-heading">'+
+				// 								'<h4 class="text-'+type.color+'"><i class="fa fa-'+type.icon+'"></i> '+type.label+'</h4>'+			
+				// 							'</div>'+
+				// 							'<div class="panel-body no-padding">'+
+				// 								'<div class="list-group padding-5">'+
+				// 									'<ul>';
+				// 									$.each(fieldObj.values[type.name], function(key2, value){ 
+				// 										var cp = (typeof value.address != "undefined" && typeof value.address.postalCode != "undefined") ? value.address.postalCode : typeof value.cp != "undefined" ? value.cp : "";
+				// 										var city = (typeof value.address != "undefined" && typeof value.address.addressLocality != "undefined") ? value.address.addressLocality : "";
+				// 										var profilThumbImageUrl = (typeof value.profilThumbImageUrl != "undefined" && value.profilThumbImageUrl != "") ? baseUrl + value.profilThumbImageUrl : assetPath + "/images/news/profile_default_l.png";
+				// 										var name =  typeof value.name != "undefined" ? value.name : 
+				// 													typeof value.username != "undefined" ? value.username : "";
+				// 										//mylog.log("data contact +++++++++++ "); mylog.dir(value);
+				// 										var thisKey = key+''+key2;
+				// 										var thisValue = notEmpty(value["_id"]['$id']) ? value["_id"]['$id'] : "";
+				// 										if(name != "")
+				// fieldHTML += 							'<li>' +
+				// 											'<div class="btn btn-default btn-scroll-type btn-select-contact"  id="contact'+thisKey+'">' +
+				// 												'<div class="col-md-1 no-padding"><input type="checkbox" name="scope-'+type.name+'" class="chk-scope-'+type.name+'" id="chk-scope-'+thisKey+'" value="'+thisValue+'" data-type="'+type.name+'"></div> '+
+				// 												'<div class="btn-chk-contact col-md-11 no-padding" idcontact="'+thisKey+'">' +
+				// 													'<img src="'+ profilThumbImageUrl+'" class="thumb-send-to" height="35" width="35">'+
+				// 													'<span class="info-contact">' +
+				// 														'<span class="scope-name-contact text-dark text-bold" idcontact="'+thisKey+'">' + value.name + '</span>'+
+				// 														'<br/>'+
+				// 														'<span class="scope-cp-contact text-light" idcontact="'+thisKey+'">' + cp + ' </span>'+
+				// 														'<span class="scope-city-contact text-light" idcontact="'+thisKey+'">' + city + '</span>'+
+				// 													'</span>' +
+				// 												'</div>' +
+				// 											'</div>' +
+				// 										'</li>';
+				// 									});									
+				// fieldHTML += 						'</ul>' +	
+				// 								'</div>'+
+				// 							'</div>'+
+				// 						'</div>';
+				// 						});									
+				// fieldHTML += 			'</div>' +
+				// 					'</div>'+
+				// 				  '</div>'+
+				// 			      '<div class="modal-footer">'+
+				// 			      	'<button id="btn-reset-scope" type="button" class="btn btn-default btn-sm pull-left"><i class="fa fa-repeat"></i> '+fieldObj.btnResetTitle+'</button>'+
+				// 			      	'<button id="btn-cancel" type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> '+fieldObj.btnCancelTitle+'</button>'+
+				// 			      	'<button id="btn-save" type="button" class="btn btn-success btn-sm" data-dismiss="modal"><i class="fa fa-check"></i> '+fieldObj.btnSaveTitle+'</button>'+
+				// 			      '</div>'+
+				// 			    '</div><!-- /.modal-content -->'+
+				// 			  '</div><!-- /.modal-dialog -->'+
+				// 			'</div><!-- /.modal -->';
+    //     }
+        else if( fieldObj.inputType == "scope" ) {
+        	mylog.log("build field "+field+">>>>>> scope");
+        		fieldClass += " select2TagsInput select2ScopeInput";				
+				fieldHTML += '<div class="col-md-12 no-padding">'+
+								'<div class="col-md-12 col-sm-12 col-xs-12">'+
+									'<hr>'+
+									'<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">'+
+										'<select id="select-country"></select>'+
 									'</div>'+
-								  '</div>'+
-							      '<div class="modal-footer">'+
-							      	'<button id="btn-reset-scope" type="button" class="btn btn-default btn-sm pull-left"><i class="fa fa-repeat"></i> '+fieldObj.btnResetTitle+'</button>'+
-							      	'<button id="btn-cancel" type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> '+fieldObj.btnCancelTitle+'</button>'+
-							      	'<button id="btn-save" type="button" class="btn btn-success btn-sm" data-dismiss="modal"><i class="fa fa-check"></i> '+fieldObj.btnSaveTitle+'</button>'+
-							      '</div>'+
-							    '</div><!-- /.modal-content -->'+
-							  '</div><!-- /.modal-dialog -->'+
-							'</div><!-- /.modal -->';
+									'<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">'+
+										'<div class="btn-group btn-group-justified">'+
+											'<button type="button" class="btn btn-default tooltips active" data-scope-type="city"'+
+												'data-toggle="tooltip" data-placement="top" '+
+												'title="'+tradDynForm["Add a city"]+'">'+
+												'<strong><i class="fa fa-bullseye"></i></strong> '+trad.city+
+											'</button>'+
+										'</div>'+
+										'<div class="btn-group btn-group-justified">'+
+											'<button type="button" class="btn btn-default tooltips" data-scope-type="cp"'+
+												'data-toggle="tooltip" data-placement="top" '+
+												'title="'+tradDynForm["Add a postal code"]+'">'+
+												'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Postal code"]+
+											'</button>'+
+										'</div>'+
+										'<div class="btn-group btn-group-justified">'+
+											'<button type="button" class="btn btn-default tooltips" data-scope-type="zone"'+
+												'data-toggle="tooltip" data-placement="top" '+
+												'title="'+tradDynForm["Add a zone"]+'">'+
+												'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Zone"]+
+											'</button>'+
+										'</div>'+
+									'</div>'+
+									'<div class="btn-group  btn-group-justified margin-bottom-10 visible-xs btn-group-scope-type" role="group">'+
+										'<div class="btn-group btn-group-justified">'+
+											'<button type="button" class="btn btn-default tooltips active" data-scope-type="city"'+
+											'data-toggle="tooltip" data-placement="top" '+
+											'title="'+tradDynForm["Add a city"]+'">'+
+											'<strong><i class="fa fa-bullseye"></i></strong> '+trad.city+
+											'</button>'+
+										'</div>'+
+										'<div class="btn-group btn-group-justified">'+
+											'<button type="button" class="btn btn-default tooltips" data-scope-type="cp"'+
+											'data-toggle="tooltip" data-placement="top" '+
+											'title="'+tradDynForm["Add a postal code"]+'">'+
+											'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Postal code"]+
+											'</button>'+
+										'</div>'+
+									'</div>'+
+									'<div class="btn-group  btn-group-justified margin-bottom-10 visible-xs btn-group-scope-type" role="group">'+
+										'<div class="btn-group btn-group-justified">'+
+											'<button type="button" class="btn btn-default tooltips" data-scope-type="zone"'+
+											'data-toggle="tooltip" data-placement="top" '+
+											'title="'+tradDynForm["Add a zone"]+'">'+
+											'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Zone"]+
+											'</button>'+
+										'</div>'+
+									'</div>'+
+									'<div class="col-md-12 no-padding">'+
+										'<div class="input-group margin-bottom-10">'+
+											'<span class="input-group-btn">'+
+												'<div class="input-group-addon" type="button">'+
+													'<i class="fa fa-plus"></i> <i class="fa fa-bullseye"></i>'+
+												'</div>'+
+											'</span>'+
+											'<input id="input-add-multi-scope" type="text" class="form-control" placeholder="'+tradDynForm["Add a city"]+' ...">'+
+											'<div class="dropdown">'+
+												'<ul class="dropdown-menu" id="dropdown-multi-scope-found"></ul>'+
+											'</div>'+
+										'</div>'+
+									'</div>'+
+								'</div>'+
+								'<div class="text-left">                    '+
+									'<div id="multi-scope-list-city" class="col-md-12 margin-top-15">'+
+										'<h4><i class="fa fa-angle-down"></i> Cities </h4>'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'</div>'+
+									'<div id="multi-scope-list-cp" class="col-md-12 margin-top-15">'+
+										'<h4><i class="fa fa-angle-down"></i> '+tradDynForm["Postal code"]+'</h4>'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'</div>'+
+									'<div id="multi-scope-list-level4" class="col-md-12 margin-top-15">'+
+										'<h4><i class="fa fa-angle-down"></i>Administrative zone N°4</h4>'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'</div>'+
+									'<div id="multi-scope-list-level3" class="col-md-12 margin-top-15">'+
+										'<h4><i class="fa fa-angle-down"></i> Administrative zone N°3</h4>'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'</div>'+
+									'<div id="multi-scope-list-level2" class="col-md-12 margin-top-15">'+
+										'<h4><i class="fa fa-angle-down"></i> Administrative zone N°2</h4>'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'</div>'+
+									'<div id="multi-scope-list-level1" class="col-md-12 margin-top-15">'+
+										'<h4><i class="fa fa-angle-down"></i> Country</h4>'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'</div>'+
+									'<div class="col-md-12">'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'<div class="label label-info label-sm block text-left" id="lbl-info-select-multi-scope"></div>'+
+								'</div>'+
+							'</div>';
+					
         } 
         else if ( fieldObj.inputType == "password" ) {
         	mylog.log("build field "+field+">>>>>> password");
@@ -1092,8 +1164,9 @@ onSave: (optional) overloads the generic saveProcess
 				$.each($(".select2TagsInput"),function () 
 				{
 					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ], initValues );
-					if( initValues[ $(this).attr("id") ] )
+					if( initValues[ $(this).attr("id") ] && !$(this).hasClass( "select2-container" ))
 					{
+						mylog.log( "here2");
 						var selectOptions = 
 						{
 						  "tags": initValues[ $(this).attr("id") ].tags ,
@@ -1490,8 +1563,9 @@ onSave: (optional) overloads the generic saveProcess
 		mylog.log("addfield",parentContainer+' .inputs',val,name);
 		if(!$.isEmptyObject($(parentContainer+' .inputs')))
 	    {
-	    	if($(parentContainer+' .properties').length > 0)
-	    		$( propertyLineHTML( val, name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	    	if($(parentContainer+' .properties').length > 0){
+	    		//$( propertyLineHTML( val, name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	    	}
 	    	else
 	    		$( arrayLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
 	    	
@@ -1499,6 +1573,31 @@ onSave: (optional) overloads the generic saveProcess
 
 	    	$(parentContainer+' .addmultifield:last').focus();
 	        initMultiFields(parentContainer,name);
+
+
+
+	        $.each($(".select2TagsInput"),function (){
+				mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ], initValues );
+				if( initValues[ $(this).attr("id") ] && !$(this).hasClass( "select2-container" )){
+					mylog.log( "here");
+					var selectOptions = 
+					{
+					  "tags": initValues[ $(this).attr("id") ].tags ,
+					  "tokenSeparators": [','],
+					  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
+					};
+					if(initValues[ $(this).attr("id") ].maximumSelectionLength)
+						selectOptions.maximumSelectionLength = initValues[$(this).attr("id")]["maximumSelectionLength"];
+					if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[$(this).attr("id")] != "undefined" && initSelectNetwork[$(this).attr("id")].length > 0)
+						selectOptions.data=initSelectNetwork[$(this).attr("id")];
+					
+					$(this).removeClass("form-control").select2(selectOptions);
+					if(typeof mainTag != "undefined")
+						$(this).val([mainTag]).trigger('change');
+				}
+			 });
+
+
 	    }else 
 	    	mylog.error("container doesn't seem to exist : "+parentContainer+' .inputs');
 	}
@@ -1563,18 +1662,35 @@ onSave: (optional) overloads the generic saveProcess
 	***************************************** */
 	function propertyLineHTML(propVal,name)
 	{
-		var count = $(".addmultifield").length-1;
-		mylog.log("propertyLineHTML",propVal, typeof propVal);
+		var count = $(".addmultifield").length;
+		mylog.log("propertyLineHTML", propVal, typeof propVal, name, count);
 		if( !notEmpty(propVal) ) 
 	    	propVal = {"label":"","value":""};
+	    
+	    if(!initValues["tags"+name+count])
+    				initValues["tags"+name+count] = {};
+	    initValues["tags"+name+count]["tags"] = tagsList;
+
 		var str = '<div class="space5"></div><div class="col-sm-3">'+
+					'<input type="text" id="'+name+count+'" name="'+name+count+'" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
 					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
-					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
 				'</div>'+
 				'<div class="col-sm-7">'+
-					'<textarea type="text" name="values[]" class="addmultifield'+count+' form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);" placeholder="valeur"   >'+propVal.value+'</textarea>'+
+					//'<textarea type="text" name="tags'+name+'[]" class="addmultifield'+count+' form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);" placeholder="valeur"   >'+propVal.value+'</textarea>'+
+					'<input type="text" class="form-control select2TagsInput" name="tags'+name+count+'" id="tags'+name+count+'" value="" placeholder="" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
 					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-right" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
 				'</div>';
+
+				// TODO Rapha
+				// '<div class="col-sm-3">'+
+				// 	'<input type="text" name="properties" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
+				// 	'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+				// '</div>'+
+				// '<div class="col-sm-7">'+
+				// 	'<input type="text" class="form-control select2TagsInput" name="tags'+field+'" id="tags'+field+'" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
+				// 	'<button data-id="'+field+fieldObj.inputType+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+				// '</div>';
+
 		return str;
 	}
 
@@ -1897,8 +2013,14 @@ var dyFObj = {
 		if( jsonHelper.notNull( "dyFObj.elementObj.dynForm.jsonSchema.formatData","function") )
 			formData = dyFObj.elementObj.dynForm.jsonSchema.formatData(formData);
 
+
+
 		formData = dyFObj.formatData(formData,collection,ctrl);
 		mylog.log("saveElement", formData);
+
+		if( jsonHelper.notNull( "dyFObj.elementObj.dynForm.jsonSchema.mapping","function") )
+			formData = dyFObj.elementObj.dynForm.jsonSchema.mapping(formData);
+
 		formData.medias = [];
 		$(".resultGetUrl").each(function(){
 			if($(this).html() != ""){
@@ -2145,6 +2267,8 @@ var dyFObj = {
 
 			      	if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.beforeBuild","function") )
 				        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.beforeBuild();
+
+			    	
 			      },
 			      onLoad : function  () {
 
@@ -2364,7 +2488,7 @@ var dyFInputs = {
 	    }
 	    mylog.log("dyFInputs ", inputObj);
     	return inputObj;
-    },
+	},
 	name :function(type, rules, addElement, extraOnBlur) { 
 		var inputObj = {
 	    	placeholder : "... ",
@@ -2503,7 +2627,7 @@ var dyFInputs = {
         	},1500);
     	}
     },
-    image :function() { 
+    image :function(label) { 
     	
     	if( !jsonHelper.notNull("uploadObj.gotoUrl") ) 
     		uploadObj.gotoUrl = location.hash ;
@@ -2512,7 +2636,7 @@ var dyFInputs = {
     	return {
 	    	inputType : "uploader",
 	    	docType : "image",
-	    	label : tradDynForm["imageshere"]+" :", 
+	    	label : (label != null) ? label : tradDynForm["imageshere"]+" :", 
 	    	showUploadBtn : false,
 	    	template:'qq-template-gallery',
 	    	filetypes:['jpeg', 'jpg', 'gif', 'png'],
@@ -2562,9 +2686,11 @@ var dyFInputs = {
 	    		if($(".maxlengthTextarea").length){
 	    			mylog.log("textarea init2");
 	    			$(".maxlengthTextarea").off().keyup(function(){
-						var name = "#" + $(this).attr("id") ;
-						mylog.log(".maxlengthTextarea", "#ajaxFormModal "+name, $(this).attr("id"), $("#ajaxFormModal "+name).val().length, $(this).val().length);
-						$("#ajaxFormModal #maxlength"+$(this).attr("id")).html($("#ajaxFormModal "+name).val().length);
+						//var name = "#" + $(this).attr("id") ;
+						var name = $(this).attr("id") ;
+						mylog.log(".maxlengthTextarea", "#ajaxFormModal [name='"+name+"']", $(this).attr("id"));
+						mylog.log(".maxlengthTextarea", $("#ajaxFormModal [name='"+name+"']").val().length, $(this).val().length);
+						$("#ajaxFormModal [name='maxlength"+name+"']").html($("#ajaxFormModal [name='"+name+"']").val().length);
 					});
 	    		}
 	    		dataHelper.activateMarkdown("#ajaxFormModal #message");
@@ -2646,8 +2772,8 @@ var dyFInputs = {
 		return inputObj;  
 	},
 	location : {
-		label : tradDynForm["localization"],
-       inputType : "location"
+		label : "SCOPE",
+       	inputType : "scope"
     },
     locationObj : {
     	/* *********************************
@@ -2953,6 +3079,116 @@ var dyFInputs = {
 			$(".center"+ix).parent().find(".removeLocalityBtn").attr("href","javascript:dyFInputs.locationObj.removeLocation("+ix+",true)");
 			dyFInputs.locationObj.centerLocation = dyFInputs.locationObj.elementLocations[ix];
 			dyFInputs.locationObj.elementLocations[ix].center = true;
+		}
+    },
+    scope : {
+		label : tradDynForm["localization"],
+       	inputType : "scope",
+       	init : function () {
+       		getAjax( null , baseUrl+"/"+moduleId+"/opendata/getcountries/hasCity/true" , function(data){
+				mylog.log("getcountries", data);
+				var options = "";
+				$.each(data, function(key, val){
+			        if(notEmpty(userConnected) && notEmpty(userConnected.address) && userConnected.address.addressCountry != "" && userConnected.address.addressCountry == val.countryCode)
+			          options += '<option value="'+val.countryCode+'" checked>'+val.name+'</option>';
+			        else
+			          options += '<option value="'+val.countryCode+'">'+val.name+'</option>';
+				});
+				$("#select-country").html(options);
+	    		$("#dropdown-multi-scope-found").hide();
+			});
+
+			$('#ajaxFormModal #input-add-multi-scope').filter_input({regex:'[^@#\'\"\`\\\\]'}); //[a-zA-Z0-9_] 
+		    $('#ajaxFormModal #input-add-multi-scope').keyup(function(){ 
+		        $("#ajaxFormModal #dropdown-multi-scope-found").show();
+		        if($('#ajaxFormModal #input-add-multi-scope').val()!=""){
+		            if(typeof timeoutAddScope != "undefined") clearTimeout(timeoutAddScope);
+		            timeoutAddScope = setTimeout(function(){ autocompleteMultiScope(); }, 500);
+		        }
+		    });
+       	}
+    },
+    scopeObj : {
+		scope : null,
+		scopeExists : function (scopeValue){
+			return typeof myMultiScopes[scopeValue] != "undefined";
+		},
+       	addScope : function (scopeValue, scopeName, scopeLevel, scopeCountry){
+			mylog.log("addScope", scopeValue, scopeName);
+			if(scopeValue == "") return;
+
+			if(!dyFInputs.scopeObj.scopeExists(scopeValue)){ 
+				mylog.log("adding", scopeValue);
+				var scopeType = currentScopeType;
+				dyFInputs.scopeObj.scope[scopeValue] = { name: scopeName, active: true, type: scopeType };
+				if(notEmpty(scopeLevel)){
+					if(scopeLevel == "1")
+						scopeType = "level1";
+					else if(scopeLevel == "2")
+						scopeType = "level2";
+					else if(scopeLevel == "3")
+						scopeType = "level3";
+					else if(scopeLevel == "4")
+						scopeType = "level4";
+					dyFInputs.scopeObj.scope[scopeValue].type = scopeType ;
+					dyFInputs.scopeObj.scope[scopeValue].level = scopeLevel ;
+				}
+
+				if(notNull(scopeCountry))
+					dyFInputs.scopeObj.scope[scopeValue].countryCode = scopeCountry ;
+				//dyFInputs.scopeObj.scope[scopeValue].type = scopeType ;
+				mylog.log("dyFInputs.scopeObj.scope")
+				//alert();
+				dyFInputs.scopeObj.showScopeInMultiscope(scopeValue);
+				$("#input-add-multi-scope").val("");
+				//saveMultiScope();
+				//showTagsScopesMin();
+				//bindCommunexionScopeEvents();
+			}else{
+				showMsgInfoMultiScope("Ce lieu est déjà dans votre liste", "info");
+			}
+			$("#dropdown-multi-scope-found").hide();
+       	},
+       	showScopeInMultiscope : function (scopeValue){ 
+			mylog.log("showScopeInMultiscope()", scopeValue);
+			var html = "";
+			if(dyFInputs.scopeObj.scopeExists(scopeValue)){
+				var scope = dyFInputs.scopeObj.scope[scopeValue];
+				mylog.log("scope", scope);
+				if(typeof scope.name == "undefined") scope.name = scopeValue;
+				var faActive = (dyFInputs.scopeObj.scope[scopeValue].active == true) ? "check-circle" : "circle-o";
+				var classDisable = (dyFInputs.scopeObj.scope[scopeValue].active == false) ? "disabled" : "";
+				html = 
+				'<span class="item-scope-input bg-red item-scope-'+scope.type+' '+classDisable+'" data-scope-value="'+scopeValue+'">' +
+						'<a href="javascript:" class="item-scope-checker tooltips"' +
+							'data-toggle="tooltip" data-placement="bottom" ' +
+							'title="Activer/Désactiver" data-scope-value="'+scopeValue+'">' +
+							'<i class="fa fa-'+faActive+'"></i>' +
+						'</a>' +
+						'<span class="item-scope-name" >'+scope.name+'</span>' +
+						'<a href="javascript:" class="item-scope-deleter tooltips"' +
+							'data-toggle="tooltip" data-placement="bottom" ' +
+							'title="Supprimer" data-scope-value="'+scopeValue+'">' +
+							'<i class="fa fa-times"></i>' +
+					'</a>' +
+				'</span>';
+
+				var levelType = ( (scope.type == "zone") ? "level"+scope.level : scope.type ) ;
+				mylog.log("levelType", levelType, "#multi-scope-list-"+levelType);
+				$("#multi-scope-list-"+levelType).append(html);
+				$("#multi-scope-list-"+levelType).show();
+
+				if(actionOnSetGlobalScope=="save")
+					$("#scopeListContainerForm").html(html);
+				$(".item-scope-checker").off().click(function(){ toogleScopeMultiscope( $(this).data("scope-value")) });
+				$(".item-scope-deleter").off().click(function(){ deleteScopeInMultiscope( $(this).data("scope-value")); });
+				//showMsgInfoMultiScope("Le scope a bien été ajouté", "success");
+			}else{
+				html = "";
+				//showMsgInfoMultiScope("showScopeInMultiscope error : ce lieu n'existe pas - " + scopeValue, "error");
+			}
+			
+			$(".tooltips").tooltip();
 		}
     },
     //produces 
@@ -3323,4 +3559,3 @@ var dyFInputs = {
     	return obj;
     }
 };
-
