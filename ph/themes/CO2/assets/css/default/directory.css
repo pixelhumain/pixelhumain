@@ -385,7 +385,7 @@
     padding: 3px 8px;
   }
 
-  .container-img-profil{
+  .container-img-profil, .container-text-profil{
     display: block;
     width: 100%;
     max-width: 100%;
@@ -394,6 +394,11 @@
     overflow: hidden;
     background-color: #f3f3f3;
     text-align: center;
+  }
+  .container-text-profil{
+    background-color: white;
+    text-align: left;
+    padding: 20px 10px;
   }
 
 

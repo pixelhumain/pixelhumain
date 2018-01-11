@@ -904,6 +904,7 @@ return array(
 	"result"=>"résultat",
 	"Extended search"=>"Recherche étendue",
 	"online"=>"actif",
+	"posted"=> "publié",
 	"Add scope filters"=>"Ajouter des filtres géographiques",
 	"<span class='text-dark'>Searching </span>on"=>"<span class='text-dark'>Recherche </span>ciblée",
 	"searching on"=>"recherche ciblée",
