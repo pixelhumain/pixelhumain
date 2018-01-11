@@ -716,6 +716,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     margin-bottom: 5px;
 }
 
+#ajaxFormModal .slugtext .help-block{
+    display: none!important;
+}
+
 @media screen and (max-width: 1024px) {
     #main-name-element{
         font-size: 1.2em;

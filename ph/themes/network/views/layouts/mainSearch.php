@@ -266,15 +266,12 @@
 
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
-			setTitle(networkJson.name , "", networkJson.name+ " : "+networkJson.skin.title, networkJson.name,networkJson.skin.shortDescription);
+			setTitle(networkJson.skin.title , "", networkJson.skin.title, networkJson.skin.title, networkJson.skin.shortDescription);
+
 			// Initialize tags list for network in form of element
-			
-			
 			urlCtrl.loadByHash(location.hash,true);
 			//$(".bg-main-menu.bgpixeltree_sig").remove();
-
-
-		    $("#mapCanvasBg").show();
+			$("#mapCanvasBg").show();
 
 		    console.log("INIT scroll shadows!");
 		    $(".my-main-container").bind("scroll", function(){
