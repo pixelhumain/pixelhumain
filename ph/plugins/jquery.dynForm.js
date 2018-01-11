@@ -2488,7 +2488,7 @@ var dyFInputs = {
 	    }
 	    mylog.log("dyFInputs ", inputObj);
     	return inputObj;
-    },
+	},
 	name :function(type, rules, addElement, extraOnBlur) { 
 		var inputObj = {
 	    	placeholder : "... ",
@@ -3559,4 +3559,3 @@ var dyFInputs = {
     	return obj;
     }
 };
-
