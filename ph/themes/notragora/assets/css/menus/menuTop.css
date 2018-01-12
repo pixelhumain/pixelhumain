@@ -71,18 +71,6 @@ button.btn-menu-top.active, button.btn-menu-top:hover{
 	color:rgb(70,70,70);
 }
 
-
-/* Toogle map button */
-button#btn-toogle-map{
-	border-left: 2px solid #dbdbdb;
-	color:rgb(70,70,70);
-	height: 40px;
-	margin-top: 5px;
-	width: 60px;
-	margin-left: 10px;
-}
-
-
 #main-btn-co{
 	font-size:20px;
 	font-weight: 800;

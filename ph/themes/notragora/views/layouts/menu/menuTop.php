@@ -92,6 +92,12 @@
 			data-toggle="tooltip" data-placement="bottom" title="Productions" alt="Productions">
 			<i class="fa fa-video-camera"></i>
 	</button>
+	
+	<button class="btn-menu-top tooltips pull-left" 
+	        id="btn-toogle-map"
+	        data-toggle="tooltip" data-placement="bottom" title="Carte" alt="Carte">
+	      <i class="fa fa-map"></i>
+	</button>
 
 	<?php // BTN Doc = Doc // ?>
 	<button class="btn-menu-top tooltips pull-left lbh"  onclick="activeMenuTop($(this))"

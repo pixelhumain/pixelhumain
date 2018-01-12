@@ -1,17 +1,5 @@
-
 <?php 
 HtmlHelper::registerCssAndScriptsFiles(array( '/assets/css/menus/short_info_profil.css'), Yii::app()->theme->baseUrl ); ?>
-
-<style type="text/css">
- 
-</style>
-
-<button class="btn-menu-top tooltips pull-right" 
-        id="btn-toogle-map"
-        data-toggle="tooltip" data-placement="bottom" title="Carte" alt="Carte">
-      <i class="fa fa-map"></i>
-</button>
-
 
   <?php // BTN PROFIL || BTN SUBSCRIBE-LOGIN // ?>
   <div class="topMenuButtons pull-right" style="margin-top: 7px;"> 
@@ -28,9 +16,7 @@ HtmlHelper::registerCssAndScriptsFiles(array( '/assets/css/menus/short_info_prof
     <?php }
     else { ?>
         <?php // BTN MENU LAUNCH // ?>
-        <a class="pull-right text-dark" href="javascript:smallMenu.open();"  id="btn-menu-launch">
-          <i class="fa fa-bars fa-2x"></i>
-        </a>
+
         <button class="btn-top btn btn-default hidden-xs btn-menu-register" onclick="showPanel('box-register');">
           <i class="fa fa-plus-circle"></i> 
           <span class="hidden-sm hidden-md hidden-xs">S'inscrire</span>
