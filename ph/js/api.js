@@ -69,7 +69,7 @@ function getAjax(id,ajaxUrl,callback,datatype,blockUI)
           //$.unblockUI();
       },
       error:function (xhr, ajaxOptions, thrownError){
-        toastr.error("unavailable ressource. try contacting an admin.");
+        console.error("unavailable ressource. try contacting an admin." + ajaxUrl);
         //mylog.error(thrownError);
         //mylog.log("URL : ", url);
         setTimeout(function(){ urlCtrl.loadByHash('#')},3000);

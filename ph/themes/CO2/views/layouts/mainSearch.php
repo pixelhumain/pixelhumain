@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+<!-- ****************************** THEME CO2 ******************************-->
 <?php 
 
     $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
