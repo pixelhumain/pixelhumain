@@ -400,6 +400,25 @@ div.timeline .newsTL > .newsFeed:nth-child(2n+1) .timeline_element:before {
 	    max-width: 200px;
 	    min-width: 100%;
 	}
+
+	.form-group.tagstags{
+		margin-bottom: 0;
+	}
+
+	.item-scope-input{
+		font-size:12px;
+	}
+
+	#scopeListContainerForm h5{
+		font-size:11px;
+	}
+	.form-create-news-container .form-actions{
+		padding: 0px 10px 0 0 !important;
+	}
+
+	#modal-share .timeline-body{
+		margin-top:15px !important;
+	}
 } 
 
 

@@ -4,7 +4,8 @@ $cssAnsScriptFilesModule = array(
 	'/js/default/notifications.js'
 	//'/js/news/autosize.js',
 );
-HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->assetsUrl);
+
+HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->getParentAssetsUrl());
 
 HtmlHelper::registerCssAndScriptsFiles( array('/css/notifications.css') , Yii::app()->theme->baseUrl. '/assets');
 ?>

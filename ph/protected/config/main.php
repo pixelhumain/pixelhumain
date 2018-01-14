@@ -238,7 +238,9 @@ return array(
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
-	'params'=>$params
+	'params' => array_merge ( $params, array("moduleList" => $activeModules) )
 
 	//'jsonParams' => getParams("notragora")
 );
+
+

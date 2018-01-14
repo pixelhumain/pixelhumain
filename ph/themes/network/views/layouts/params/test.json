@@ -1,9 +1,10 @@
 {
     "name" : "Communs",
-    "dataSrc" : "http://www.notragora.com/api/organization/get/format/network",
+    "dataSrc" : "http://www.notragora.com/api/poi/get/format/network",
     "skin" : {
         "logo" : false,
         "title" : "NotrAgora",
+        "title" : "Communs dans la région Hauts de France",
         "shortDescription" : "false",
         "displayScope" : false,
         "docs":true,
@@ -53,6 +54,23 @@
     "request" : {
         "pagination" : 1000,
         "mainTag" : [""]
+        "searchType" : [
+            "organizations",
+        "person",
+        "poi"
+        ],
+           "searchTag" : [
+            "communs",
+            "commun",
+            "Commun",
+            "Communs"
+        ],
+
+ "searchLocalityREGION": [
+      "Hauts-de-France"
+    ],
+ "mainTag" : ["commun"]
+>>>>>>> master
     }
 
 }
