@@ -34,7 +34,7 @@
         <meta property="og:description" content="<?php echo $metaDesc; ?>"/>
         <meta property="og:title" content="<?php echo $metaTitle; ?>"/>
 
-        <title><?php echo $CO2DomainName; ?></title>
+        <title><?php echo ( @Yii::app()->params["module"]["name"] ) ? Yii::app()->params["module"]["name"] :  $CO2DomainName; ?></title>
 
         <link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" /> 
 
@@ -89,14 +89,12 @@
               $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); 
               ?>   
         
-        <?php //$this->renderPartial($layoutPath.'loginRegister', array()); ?>
-
         <?php  if( isset(Yii::app()->session["userId"]) )
                 $this->renderPartial($modulePath.'/news/modalShare', array());
         ?>
  
         <div class="main-container">
-
+            
             <?php 
                     $CO2DomainName = Yii::app()->params["CO2DomainName"];
                     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
