@@ -1,7 +1,7 @@
 <?php
 	return array(
 		"Commons" => "Commons",
-		"Open" => "Frei",
+		"Open" => "Freiheit",
 		"Our values" => "Unsere Werte",
 		"Choose which kind of form to complete" => "Wählen Sie aus, welches Formular Sie ausfüllen möchten",
 		"Add properties which defined your organization" => "Fügen Sie Eigenschaften hinzu, welche Ihre Organisation beschreiben",

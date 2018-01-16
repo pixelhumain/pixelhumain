@@ -1263,10 +1263,8 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"the holder"=>"le porteur",
 	"All cities with this postal code" => "Toutes les villes avec ce code postal",
 	"On the map"=> "Sur la carte",
-	"The communexion has changed" => "La communexion a changé",
-
+	"The communexion has changed" => "La communexion a changée",
 	"All the city" => "Toute la villes",
-
 	"Initialization of map" => "Initialisation de la carte",
 	
 	"services" => "services",
