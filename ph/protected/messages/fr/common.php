@@ -1254,10 +1254,8 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Carried by" => "Porté par",
 	"the holder"=>"le porteur",
 	"All cities with this postal code" => "Toutes les villes avec ce code postal",
-	"The communexion has changed" => "La communexion a changé",
-
+	"The communexion has changed" => "La communexion a changée",
 	"All the city" => "Toute la villes",
-
 	"Initialization of map" => "Initialisation de la carte",
 	
 
