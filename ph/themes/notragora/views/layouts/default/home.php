@@ -50,20 +50,35 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesTheme,Yii::app()->reque
 			<span class="pointCircle"></span>
 			<h4 clss="title-menu-left" style="color:rgb(70,70,70);">Bienvenue sur la plateforme Notragora</h4>
 			<span>
+				NotrAgora est une plateforme internet contributive qui se construit pas à pas, 
+				en relation avec ses usagers, ses partenaires et les habitants des Hauts-de-France.<br><br>
 
-				NotrAgora est une plateforme internet contributive qui se construit pas à pas, en relation avec ses usagers, ses partenaires et les habitants du Nord-Pas de Calais.<br/>Elle est un espace de production et de diffusion des productions mise en œuvre dans le cadre de projets participatifs menés par l'association Hors Cadre et ses partenaires.<br/>C'est une plateforme Web qui éclaire la production, c'est-à-dire le résultat d'un projet, par des éléments sur la fabrication de cette production, tels que le parcours du projet et de ses acteurs.<br/>NotrAgora offre plusieurs cheminements pour découvrir les contenus et favoriser la convergence ou les confrontations d'expériences.<br/><br/>NotrAgora favorise la médiation par l'internaute et ses amis, le média pouvant être signalé, commenté, partagé et diffusé par le porteur de média qui dispose d'espace permettant d'expliquer sa démarche et de valoriser son travail. Plus de 120 contributeurs ont participé à l'élaboration de cette plateforme qui a été ouverte au public en Décembre 2013. Certaines fonctionnalités ne sont pas encore disponibles du fait du processus de construction privilégiant le pas à pas.<br/><br/>
+				Elle est un espace de production et de diffusion des productions mises en œuvre dans 
+				le cadre de projets participatifs menés par l'association Hors Cadre et ses partenaires.<br><br>
+
+				C'est une plateforme Web qui éclaire la production, c'est-à-dire le résultat d'un projet, 
+				par des éléments sur la fabrication de cette production, tels que le parcours du projet et de ses acteurs.<br><br>
+
+				NotrAgora offre plusieurs cheminements pour découvrir les contenus et favoriser la convergence 
+				ou les confrontations d'expériences.<br><br>
+
+				NotrAgora favorise la médiation par l'internaute et ses amis, le média pouvant être signalé, 
+				commenté, partagé et diffusé par le porteur de média qui dispose d'espace permettant d'expliquer
+				sa démarche et de valoriser son travail.<br><br>
+				Initiée en 2011, l’élaboration de NotrAgora a mobilisé plus de 120 contributeurs.
+				Une première version Béta a été lancée en décembre 2013. La présente version date de septembre 2016
+				et sera régulièrement augmentée d’outils et d’information facilitant l’interactivité et le partage des contenus. 
 			</span>
 		</div>
 		<div class="col-md-12 no-padding">
 			<span class="pointCircle"></span>
 			<h4 clss="title-menu-left" style="color:rgb(70,70,70);">La plateforme en chiffres</h4>
 			<span>
-				<bold>Participations</bold><br/>
-				71 inscrits<br/>
-				33 groupes de travail<br/>
-				130 productions vidéos
-				<bold>Contributions</bold><br/>
-				73 commentaires<br/>
+				<strong>Participations</strong><br/>
+				Outre les 120 contributeurs à la version Béta, NotrAgora compte : <br>
+				240 utilisateurs<br/>
+				87 groupes de travail porteurs de projets<br/>
+				124 productions vidéo
 			</span>
 		</div>
 	</div>
