@@ -150,6 +150,9 @@
 		"Stock your photos and share them"=>"Partagez vos photos et vos publications",
 		"This URL is already used" => "Cette URL est déjà utilisée",
 		"This URL is not used" => "Cette URL est disponible",
+		"Title of your map" => "Titre de votre carte",
+		"Allow users to identify themselves" => "Autoriser les utilisateurs à s'identifier",
+		"Allow to add elements" => "Permettre d'ajouter des éléments",
 	)
 
 ?>
