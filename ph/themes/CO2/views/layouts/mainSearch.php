@@ -306,6 +306,12 @@
                 });
 
                 themeObj.init();
+                $.each(modules,function(k,v) { 
+                    if(v.init){
+                        mylog.log("init.js for module : ",k);
+                        lazyLoad( v.init , null,null);
+                    }
+                });
                 if(themeObj.firstLoad){
                     themeObj.firstLoad=false;
                     urlCtrl.loadByHash(location.hash,true);
