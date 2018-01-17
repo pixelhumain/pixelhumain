@@ -75,7 +75,7 @@ return array(
 	"in this space" => "in diesem Raum",
 	"The final vote will be on the content of your proposal" => "Die Abstimmung findet zum Inhalt Ihres Vorschlags statt.",
 	"For clarity, please provide additional information about your proposal in the next section." => "Zum besseren Verständnis geben Sie bitte im nächsten Abschnitt zusätzliche Informationen zu Ihrem Vorschlag an.",
-	"A proposal is used to discuss and seek community input on a given idea or question" => "Ein Vorschlag wird gebraucht, um eine bestimmte Idee oder Frage zu diskutieren und einen Beitrag der Gemeinschaft einzuholen.",
+	"A proposal is used to discuss and seek community input on a given idea or question" => "Ein Vorschlag wird gebraucht, um eine bestimmte Idee oder Frage zu diskutieren und dazu Beiträge aus der Gemeinschaft einzuholen.",
 	"Votes are disabled during the amendment period" => "Die Stimmabgabe wird während der Änderungsperiode deaktiviert",
 	"Enable amendments" => "Akzeptieren von Änderungen",
 	"anonymous" => "anonym",
