@@ -71,18 +71,6 @@ button.btn-menu-top.active, button.btn-menu-top:hover{
 	color:rgb(70,70,70);
 }
 
-
-/* Toogle map button */
-button#btn-toogle-map{
-	border-left: 2px solid #dbdbdb;
-	color:rgb(70,70,70);
-	height: 40px;
-	margin-top: 5px;
-	width: 60px;
-	margin-left: 10px;
-}
-
-
 #main-btn-co{
 	font-size:20px;
 	font-weight: 800;
@@ -161,11 +149,18 @@ img.img-galley-top {
 	top:10px;
 	left:5px;
 }
+
+.description-poi div {
+	height: 88px;;
+	overflow: hidden;
+}
+
 .description-poi h3{
 	font-size: 11px;
     padding: 2px 3px;
     margin: inherit;
     text-align: -webkit-left;
+		font-weight: bold;
 }
 .description-poi span{
 	padding: 0px 3px;
