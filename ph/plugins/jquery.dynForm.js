@@ -2470,12 +2470,19 @@ var dyFObj = {
 		}else {
 			//TODO : pouvoir surchargé le dossier dynform dans le theme
 			//via themeObj.dynForm.folder overload
-			var dfPath = (jsonHelper.notNull( "themeObj.dynForm.folder") ) ? themeObj.dynForm.folder : moduleUrl+'/js/dynForm/';
-			lazyLoad( dfPath+type+'.js', 
+			var dfPath = moduleUrl+'/js/dynForm/'+type+'.js';
+			if(jsonHelper.notNull( "themeObj.dynForm.folder") ) 
+				dfPath = themeObj.dynForm.folder+type+'.js';
+			if(jsonHelper.notNull( "modules."+type+".form") ) {
+				dfPath = modules[type].form;
+				mylog.log("properties from MODULE",type,dfPath);
+			}
+			
+			lazyLoad( dfPath, 
 				null,
 				function() { 
 					//alert(dfPath+type+'.js');
-					mylog.log("lazyLoaded",moduleUrl+'/js/dynForm/'+type+'.js');
+					mylog.log("lazyLoaded",dfPath);
 					mylog.dir(dynForm);
 					//typeObj[type].dynForm = dynForm;
 				  	dyFInputs.get(type).dynForm = dynForm;

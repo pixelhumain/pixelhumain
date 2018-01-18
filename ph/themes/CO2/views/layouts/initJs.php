@@ -6,10 +6,16 @@
 <script>
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
     var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
-    var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
-    var domainName = "<?php echo Yii::app()->params["CO2DomainName"];?>";
     var moduleId = "<?php echo $parentModuleId?>";
     var activeModuleId = "<?php echo $this->module->id?>";
+
+
+    var modules = {
+        "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
+    };
+    
+    var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
+    var domainName = "<?php echo Yii::app()->params["CO2DomainName"];?>";
     var userId = "<?php echo Yii::app()->session['userId']?>";
     var uploadUrl = "<?php echo Yii::app()->params['uploadUrl'] ?>";
     var mainLanguage = "<?php echo Yii::app()->language ?>";
@@ -42,8 +48,7 @@
     var classified = <?php echo json_encode( CO2::getContextList("classified") ) ?>;
     var prestation = <?php echo json_encode( CO2::getContextList("prestation") ) ?>;
     var prestationList = prestation.categories;
-    var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;
-    var ressource = <?php echo json_encode( CO2::getContextList("ressource") ) ?>;
+    var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;    
     var poi = <?php echo json_encode( CO2::getContextList("poi") ) ?>;
     var roomList = <?php echo json_encode( CO2::getContextList("room") ) ?>;
     var search={
