@@ -153,6 +153,12 @@
 		"Title of your map" => "Titre de votre carte",
 		"Allow users to identify themselves" => "Autoriser les utilisateurs à s'identifier",
 		"Allow to add elements" => "Permettre d'ajouter des éléments",
+		"Skin" => "Apparence",
+		"Request Section" => "Elements demandés",
+		"Filter Section" => "Section des filtres",
+		"Elements types will be displayed" => "Types d'éléments qui seront affichés ?",
+		"Show items that will have the following tags" => "Afficher les éléments qui auront les tags suivant",
+		"Key used for data import" => "Clé utilisée pour l'import de données"
 	)
 
 ?>
