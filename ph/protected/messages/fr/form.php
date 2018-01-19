@@ -158,7 +158,11 @@
 		"Filter Section" => "Section des filtres",
 		"Elements types will be displayed" => "Types d'éléments qui seront affichés ?",
 		"Show items that will have the following tags" => "Afficher les éléments qui auront les tags suivant",
-		"Key used for data import" => "Clé utilisée pour l'import de données"
+		"Key used for data import" => "Clé utilisée pour l'import de données",
+		"Filters category" => "Catégorie de filtres",
+		"Name of filter" => "Nom du filtre",
+		"Tags link a filter" => "Tags associer au filtre",
+		"Filters" => "Filtres",
 	)
 
 ?>
