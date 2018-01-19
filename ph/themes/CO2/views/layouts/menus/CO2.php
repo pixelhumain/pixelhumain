@@ -14,10 +14,27 @@
         text-decoration: none;
     }
 
+    .dropdown-menu.arrow_box{
+        position: absolute !important;
+        top: 45px;
+        right: -65px;
+        left: inherit;
+        background-color: white;
+        border: 1px solid transparent;
+        -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    }
+
+    .btn-language{
+        height: 35px;
+        border-radius: 0% 50%;
+        width: 50px;
+    }
+
     @media (max-width: 767px) {
-        #main-input-group{
+        /*#main-input-group{
             margin-top:10px;
-        }
+        }*/
     }
 </style>
 <!-- Navigation -->
@@ -29,7 +46,7 @@
             <a href="#" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" 
                 <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
             >
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" 
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
                      class="logo-menutop pull-left" height=30>
             </a>
             <span class="hidden-xs skills font-montserrat"><?php echo Yii::t("common",$mainTitle); ?></span>
@@ -108,20 +125,9 @@
             <div id="navbar" class="navbar-collapse pull-right navbar-right" style="    margin-top: 5px;   margin-bottom: 5px;">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle btn btn-default padding-5" data-toggle="dropdown" role="button" style="
-    height: 35px;
-    border-radius: 0% 50%;
-    width: 50px;
-">
-                <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/<?php echo Yii::app()->language ?>.png" width="22"/> <span class="caret"></span></a>
-                    <ul class="dropdown-menu arrow_box" role="menu" style="    position: absolute !important;
-    top: 45px;
-    right: -65px;
-    left: inherit;
-    background-color: white;
-    border: 1px solid transparent;
-    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);">
+                    <a href="#" class="dropdown-toggle btn btn-default btn-language padding-5" data-toggle="dropdown" role="button">
+                    <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/<?php echo Yii::app()->language ?>.png" width="22"/> <span class="caret"></span></a>
+                    <ul class="dropdown-menu arrow_box" role="menu" style="">
                         <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
                         <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
                         <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png" width="25"/> <?php echo Yii::t("common","German") ?></a></li>

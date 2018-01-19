@@ -42,7 +42,7 @@
 	}
 
 </style>
-<h1 class="text-red homestead">
+<h1 class="text-red homestead text-left">
 	<span id="main-scope-name">
 	<!--<a href="#" class="menu-btn-back-category shadow2" data-target="#modalMainMenu-block" data-toggle="modal">
 	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo-head-search.png"
