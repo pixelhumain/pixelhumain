@@ -34,29 +34,34 @@
             </a>
             <span class="hidden-xs skills font-montserrat"><?php echo Yii::t("common",$mainTitle); ?></span>
             <?php 
-                $params = CO2::getThemeParams();  
-                $icon = "";
+                //$params = CO2::getThemeParams();  
+                /*$icon = "";
                 // echo "params : "; var_dump($params);// exit; 
                 foreach ($params["pages"] as $key => $value) {
                     if($subdomain==@$value["subdomain"]) {
                         $icon = @$value["icon"];
                     } 
                 }
+            <!--<i class="fa fa-<?php echo $icon; ?> hidden-top margin-top-15 margin-right-5 margin-left-10 pull-left text-red" 
+                style="font-size:20px;"></i>-->
+                */
             ?>
-            <i class="fa fa-<?php echo $icon; ?> hidden-top margin-top-15 margin-right-5 margin-left-10 pull-left text-red" 
-                style="font-size:20px;"></i>
         </div>
 
         <?php if( $subdomain == "search" ||
+                $subdomain == "ressource" ||
+                $subdomain == "territorial" ||
                   $subdomain == "agenda" ||
+                  $subdomain == "live" ||
                   $subdomain == "power"  ||
                   $subdomain == "annonces"||
-                  $subdomain == "admin"||
-                  $subdomain == "page" ){ ?>
+                  $subdomain == "admin"
+                  //$subdomain == "page"
+                 ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-4 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
-                        placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
+                        placeholder="search by name or by #tag, ex: 'commun' or '#commun'<?php //echo Yii::t("common", $placeholderMainSearch); ?>">
                 <?php if($subdomain == "page"){ ?>
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
                 <?php } ?>
@@ -65,12 +70,24 @@
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
             </button>
-
+            <div id="filters-container-menu" class="no-padding">
+                    <ul class="filters-menu">
+                        <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="Geographical filter">
+                         <i class="fa fa-globe"></i> 
+                            <!--<span class="hidden-xs"><?php echo Yii::t("common","Geographical") ?></span>-->
+                        </li>
+                        <li class="btn-open-filliaire tooltips" data-placement="bottom" data-original-title="Theme filter">
+                         <i class="fa fa-th"></i> 
+                            <!--<span class="hidden-xs"><?php echo Yii::t("common","Themes") ?></span>-->
+                        </li>
+                        
+                    </ul> 
+            </div>
         <?php } ?>
 
-        <?php if( $subdomain == "welcome" ){ ?>
+        <?php if( $subdomain == "welcome" || $subdomain=="page" ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-2 col-md-3 col-lg-3">
+            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-3 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
@@ -81,7 +98,6 @@
             </button>
 
         <?php } ?>
-
         <button class="btn-show-map"
                 title="<?php echo Yii::t("common", "Show the map"); ?>"
                 alt="<?php echo Yii::t("common", "Show the map"); ?>"
@@ -123,7 +139,7 @@
             
             <button class="menu-button btn btn-link btn-open-floopdrawer text-dark" 
                   data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","My network") ?>" alt="<?php echo Yii::t("common","My network") ?>">
-              <i class="fa fa-link"></i>
+              <i class="fa fa-connectdevelop"></i>
             </button>
             <button class="btn-show-mainmenu btn btn-link" 
                     data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","Menu") ?>">
@@ -179,7 +195,7 @@
                                   <?php 
                                 $class = "hidden" ;
                                 if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
-                                    $class = ""
+                                    $class = "";
                                 ?>
                                 <li class="text-left">
                                     <a href="" class="communecter-btn bg-white <?php echo $class ; ?>" onclick="communecterUser();">
@@ -316,6 +332,11 @@
                 <div class="visible-xs visible-sm append-small-login hidden"></div>
             <?php } ?>
         </div>
+        <?php if( $subdomain == "welcome" || $subdomain=="page" ){ ?>
+        <a href="#territorial" class="lbh text-red bg-white padding-5 pull-right" id="btn-territorial-modules">
+         <i class="fa fa-globe"></i> <?php echo Yii::t("common", "Co.<span class='text-dark'>search</span> Engine") ?>
+         </a>
+        <?php } ?>
         <?php if (!@Yii::app()->session["userId"]){ ?>
             <button class="btn-show-mainmenu btn btn-link visible-xs pull-right" 
                     data-toggle="tooltip" data-placement="left" title="Menu" style="padding: 4px 10px;">
@@ -366,7 +387,7 @@
         <!-- /.navbar-collapse -->
         
         <?php 
-            if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
+           /* if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
                 if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                 <a href="<?php echo $key; ?>" 
                     class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
@@ -380,7 +401,7 @@
                     <?php } ?>
                 </a>  
         <?php   }
-            }  ?>
+            } */ ?>
             
     </div>
     <!-- /.container-fluid -->

@@ -244,7 +244,68 @@ a.text-white{
     background-color:#20C06B !important;
     color:white;
 }
+.border-black{
+    border-color:black !important;
+}
+.border-blue{
+    border-color: :#7bc3d1 !important;
+}
 
+.border-lightblue{
+    border-color:#C8EBF5 !important;
+}
+.border-lightpurple{
+    border-color:#DBD6E9 !important;
+}
+.border-darkblue{
+    border-color:#4285f4 !important;
+}
+.border-green{
+    border-color:#93C020 !important;
+}
+.border-orange{
+    border-color:#FFA200 !important;
+}
+.border-red{
+    border-color:#ea4335 !important;
+}
+.border-yellow{
+    border-color:#FFC600 !important;
+}
+.border-yellow-k{
+    border-color:#fbbc05 !important;
+}
+.border-purple{
+    border-color:#8C5AA1 !important;
+}
+.border-azure{
+    border-color:#2BB0C6 !important;
+}
+
+.border-pink{
+    border-color:#d99ce0 !important;
+}
+.border-dark{
+    border-color:#2C3E50 !important;
+}
+
+.border-green-k{
+    border-color:#34a853 !important;
+}
+.border-red-k{
+    border-color:#d9534f !important;
+}
+.border-blue-k{
+    border-color:#4285f4 !important;
+}
+
+.border-turq{
+    border-color: #229296!important;
+}
+
+.border-green-poi{
+    border-color:#20C06B !important;
+}
 
 .btn-link.bg-red{
     color:#FFF !important;

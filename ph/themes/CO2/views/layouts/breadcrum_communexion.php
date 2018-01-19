@@ -5,6 +5,7 @@
 
 <script type="text/javascript">
 
+/*console.log("communexion bread",communexion);
 jQuery(document).ready(function() {
     loadMultiScopes();
     mylog.log("communexion breadcrum", communexion, communexion.state);
@@ -19,7 +20,7 @@ jQuery(document).ready(function() {
         activateGlobalCommunexion(false,true);
     }
     $(".tooltips").tooltip();
-});
+});*/
 
 
 </script>

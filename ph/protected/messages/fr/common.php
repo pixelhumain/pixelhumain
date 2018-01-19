@@ -695,6 +695,7 @@ return array(
 	"Library" => "Librairie",
 	"Bookmarks"=>"Bookmarks",
 	"Files"=>"Fichiers",
+	"File"=>"Fichier",
 	"Information"=>"Informations",
 	"Contact information"=> "Coordonnées",
 	"Contact us"=>"Nous contacter",
@@ -904,6 +905,10 @@ return array(
 	"result"=>"résultat",
 	"Extended search"=>"Recherche étendue",
 	"online"=>"actif",
+	"posted"=> "publié",
+	"Writen by"=>"Écrit par",
+	"shared by"=>"partagé-e(s) par",
+	"Link shared by"=>"Lien partagé par",
 	"Add scope filters"=>"Ajouter des filtres géographiques",
 	"<span class='text-dark'>Searching </span>on"=>"<span class='text-dark'>Recherche </span>ciblée",
 	"searching on"=>"recherche ciblée",
@@ -1257,15 +1262,48 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Carried by" => "Porté par",
 	"the holder"=>"le porteur",
 	"All cities with this postal code" => "Toutes les villes avec ce code postal",
-	"The communexion has changed" => "La communexion a changé",
-
+	"On the map"=> "Sur la carte",
+	"The communexion has changed" => "La communexion a changée",
 	"All the city" => "Toute la villes",
-
 	"Initialization of map" => "Initialisation de la carte",
 	
+	"services" => "services",
+	"circuits" => "circuits",
+	"products" => "products",
+
+	"Shopping cart" => "Panier",
+	
+	"Checkout" => "Payer",
+	"Validate" => "Valider",
+	"Continue" => "Continuer",
+	"Total of your order" => "Total de votre panier",
+
+	"My infos" => "Mes infos",
+	"My messages" => "Messages",
+	"My circuits" => "Circuits",
+	"Invoice" => "Factures",
+
+	"Leave your comment" => "Laissez votre commentaire",
+	"Your comment" => "Votre commentaire",
+	"Show programmation" => "Voir le programme",
+	"Price of this command" => "Prix de cette commande",
+	"purchase" => "achat",
+
+	"Continue this cart" => "Continuer mes achats",
+	"Delete" => "Effacer",
+
+	"Sleeping" 			=> "Pour dormir",
+	"Restaurant" 		=> "Restaurant",
+	"Funny activity" 	=> "Activité",
+	"Transport" 		=> "Transport",
+	"Uncredible site" 	=> "Site incroyable",
+	"Artisants" 		=> "Artisant",
+	"Guide and helper" 	=> "Guide et accompagnateur",
+
 	"Freedom" => "Freedom",
 
 	"This request is too short !" => "Cette recherche est trop courte !"
 	
+	"folder fee included and delivery tax not included" => "folder fee included and delivery tax not included"
 );
 ?>

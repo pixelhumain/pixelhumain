@@ -1,12 +1,23 @@
-<?php $params = CO2::getThemeParams(); ?>
-
+<?php 
+    $params = CO2::getThemeParams();
+    $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
+                            Yii::app()->request->cookies['multiscopes']->value : "{}";
+?>
 <script>
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
     var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
+    var moduleId = "<?php echo $parentModuleId?>";
+    var activeModuleId = "<?php echo $this->module->id?>";
+
+
+    var modules = {
+        "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
+    };
+    
     var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
     var domainName = "<?php echo Yii::app()->params["CO2DomainName"];?>";
-    var moduleId = "<?php echo $this->module->id?>";
     var userId = "<?php echo Yii::app()->session['userId']?>";
+    var uploadUrl = "<?php echo Yii::app()->params['uploadUrl'] ?>";
     var mainLanguage = "<?php echo Yii::app()->language ?>";
     var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
     var currentUrl = "<?php echo "#".Yii::app()->controller->id.".".Yii::app()->controller->action->id ?>";
@@ -35,11 +46,18 @@
     var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
     var mentionsContact=[];
     var classified = <?php echo json_encode( CO2::getContextList("classified") ) ?>;
-    var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;
-    var ressource = <?php echo json_encode( CO2::getContextList("ressource") ) ?>;
+    var prestation = <?php echo json_encode( CO2::getContextList("prestation") ) ?>;
+    var prestationList = prestation.categories;
+    var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;    
     var poi = <?php echo json_encode( CO2::getContextList("poi") ) ?>;
     var roomList = <?php echo json_encode( CO2::getContextList("room") ) ?>;
-
+    var search={
+        value:"",
+        page:0,
+        count:true,
+        app:"search",
+        type:"<?php echo Organization::COLLECTION ?>"
+    };
     //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     
@@ -48,10 +66,7 @@
     var deviseTheme = <?php echo json_encode(@$params["devises"]) ?>;
     var deviseDefault = <?php echo json_encode(@$params["deviseDefault"]) ?>;
 
-    //var communexion=<?php echo json_encode(CO2::getCommunexionCookies()) ?>;
-    var communexion=<?php echo json_encode($communexion) ?>;
-    console.log("first communexion", communexion);
-
+    var myScope={};
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",
         "citoyen":"<?php echo Person::ICON ?>", 
@@ -126,6 +141,23 @@
             };
             initFloopDrawer();
             resizeInterface();
+            if(typeof localStorage != "undefined" && typeof localStorage.myScopes != "undefined"){                  
+                myScopes = JSON.parse(localStorage.getItem("myScopes"));
+                if(myScopes.type=="open-scope")
+                    myScopes.state=false;
+                myScopes.open={};
+            }else{
+                myScopes={
+                    state:"open",
+                    open : {},
+                    communexion : <?php echo json_encode(CO2::getCommunexionCookies()) ?>,
+                    multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 
+                                json_encode($me["multiscopes"]) :  
+                                $multiscopes; ?>
+                };
+            }
+            //if(typeof localStorage != "undefined" && typeof localStorage.circuit != "undefined")
+              //  circuit.obj = JSON.parse(localStorage.getItem("circuit"));
             //Init mentions contact
             if(myContacts != null){
                 $.each(myContacts["people"], function (key,value){
@@ -230,47 +262,7 @@
                         '<div></div>'+
                         '<div></div>'+
                     '</div>'+
-                '</div>'/* '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="" height=80>'+
-                  '<i class="fa fa-spin fa-circle-o-notch loaderBlockUI"></i>'+
-                  '<h4 style="font-weight:300" class=" text-dark padding-10">'+
-                    '<?php echo Yii::t("loader","Loading")?>...'+
-                  '</h4>'+
-                  '<span style="font-weight:300" class=" text-dark">'+
-                    '<?php echo Yii::t("loader","Thanks to be patient a moment") ?>'+
-                  '</span>'+
-                  '<br><br><hr>'*/
-                  /*'<a href="#" class="btn btn-default btn-sm lbh">'+
-                    "c'est trop long !"+
-                  '</a>'+
-                  '<br/>'+*/
-                  /*'<div class="col-md-6 col-md-offset-3">'+
-                    '<div class="col-xs-6 center">'+
-                        '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas/2?sessionId=dvutjo5jusdgs1cvmmkui4su&widget=False" target="_blank" class="btn btn-default text-red bold">'+
-                            '<i class="fa fa-heart fa-2x"></i> <span class="text-dark"> <?php echo Yii::t("loader","Member ( 1€/month )") ?> </span>'+
-                         '</a>'+     
-                    '</div>'+
-                    '<div class="col-xs-6 center">'+
-                         '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas/2?sessionId=dvutjo5jusdgs1cvmmkui4su&widget=False" target="_blank" class="btn btn-default text-red bold ">'+
-                            '<i class="fa fa-heart fa-2x"></i> <span class="text-dark"> <?php echo Yii::t("loader","Sponsor ( 50€/month )") ?> </span> <i class="fa fa-heart fa-2x"></i>'+
-                         '</a>'+      
-                    '</div>'+
-                  '</div>'+
-                  '<div class="alert col-md-6 col-md-offset-3 shadow2  margin-top-10" style="">'+
-                      /*'<i class="fa fa-puzzle-piece faa-pulse animated fa-5x padding-10"></i> <i class="fa fa-plus fa-2x padding-10"></i> <img src="'+themeUrl+'/assets/img/piggybank.png" height=70> <i class="fa fa-plus fa-2x padding-10"></i> <i class="fa fa-group faa-pulse animated fa-5x padding-10"></i> <span class="bold" style="font-size:40px;">=</span> <i class="fa fa-heartbeat faa-pulse text-red animated fa-5x padding-10"></i>'+* /
-                      '<br/><br/><h2 style="font-weight:300; margin:-35px 0 0 0;" class="homestead padding-10">'+
-                        '<span class="text-red"><?php echo Yii::t("loader","1 little coin for a great puzzle") ?></span>'+
-                        '<br/><a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="text-dark"><?php echo Yii::t("loader","Contribute") ?> <i class="fa  fa-arrow-circle-right"></i></a>'+
-                      '</h2>'+
-                      
-                      '<h3 class="text-dark"><?php echo Yii::t("loader","Help us to forward our work") ?>...</h3>'+
-                      '<a href="#info.p.finance" target="_blank" class="btnHelp btn btn-link">'+
-                        '<i class="fa fa-hand-o-right"></i> <?php echo Yii::t("loader","More informations about our financial situation") ?>'+
-                      '</a>'+
-                      '<br/>'+
-                      '<a href="https://www.helloasso.com/associations/open-atlas/adhesions/soutenez-et-adherez-a-open-atlas" target="_blank" class="btnHelp btn btn-warning margin-top-10 text-dark">'+
-                            '<i class="fa fa-gift"></i> <?php echo Yii::t("loader","Make a donation to the NGO") ?>'+
-                      '</a> '+
-                  '</div>'*/, 
+                '</div>', 
             errorMsg : '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="logo-menutop" height=80>'+
               '<i class="fa fa-times"></i><br>'+
                '<span class="col-md-12 text-center font-blackoutM text-left">'+

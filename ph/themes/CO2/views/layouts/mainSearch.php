@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 
+<!-- ****************************** THEME CO2 ******************************-->
 <?php 
 
     $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
     $themeAssetsUrl = Yii::app()->theme->baseUrl. '/assets';
+    $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
+    $modulePath = ( @Yii::app()->params["module"]["parent"] ) ?  "../../../".$parentModuleId."/views"  : "..";
+
     $cs = Yii::app()->getClientScript();
 
     $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
@@ -30,7 +34,7 @@
         <meta property="og:description" content="<?php echo $metaDesc; ?>"/>
         <meta property="og:title" content="<?php echo $metaTitle; ?>"/>
 
-        <title><?php echo $CO2DomainName; ?></title>
+        <title><?php echo ( @Yii::app()->params["module"]["name"] ) ? Yii::app()->params["module"]["name"] :  $CO2DomainName; ?></title>
 
         <link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" /> 
 
@@ -46,7 +50,7 @@
 <?php } ?>
 
         <?php 
-            $cs->registerScriptFile(Yii::app() -> createUrl($this->module->id."/default/view/page/trad/dir/..|translation/layout/empty"));
+            $cs->registerScriptFile(Yii::app() -> createUrl($parentModuleId."/default/view/page/trad/dir/..|translation/layout/empty"));
         ?>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -64,7 +68,8 @@
         ******************************************* -->
         <progress class="progressTop" max="100" value="20"></progress>   
         <div id="mainMap">
-            <?php $this->renderPartial($layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"]); ?>
+            <?php 
+            $this->renderPartial( $layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"], array("modulePath"=>$modulePath )); ?>
         </div>
 
         <?php //get all my link to put in floopDrawer
@@ -84,13 +89,11 @@
               $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); 
               ?>   
         
-        <?php //$this->renderPartial($layoutPath.'loginRegister', array()); ?>
-
         <?php  if( isset(Yii::app()->session["userId"]) )
-                $this->renderPartial('../news/modalShare', array());
+                $this->renderPartial($modulePath.'/news/modalShare', array());
         ?>
  
-        <div class="main-container">
+        <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
 
             <?php 
                     $CO2DomainName = Yii::app()->params["CO2DomainName"];
@@ -134,6 +137,10 @@
         ?> 
         
         <?php 
+
+            /* ***********************
+            add to HEAD
+            ************************ */
             echo "<!-- start: MAIN JAVASCRIPTS -->";
             echo "<!--[if lt IE 9]>";
             $cs->registerScriptFile(Yii::app()->request->baseUrl.'/plugins/respond.min.js' , CClientScript::POS_HEAD);
@@ -143,7 +150,13 @@
             echo "<!--[if gte IE 9]><!-->";
             $cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' , CClientScript::POS_HEAD);
             echo "<!--<![endif]-->";
+            /* ***********************
+            add to HEAD
+            ************************ */
 
+            /* ***********************
+            ph core stuff
+            ************************ */
             $cssAnsScriptFilesModule = array(
                 '/plugins/jquery-ui-1.12.1/jquery-ui.min.js',
                 '/plugins/jquery-ui-1.12.1/jquery-ui.min.css',
@@ -190,8 +203,22 @@
             if(Yii::app()->language!="en")
                 array_push($cssAnsScriptFilesModule,"/plugins/jquery-validation/localization/messages_".Yii::app()->language.".js");
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getRequest()->getBaseUrl(true));
-            HtmlHelper::registerCssAndScriptsFiles( array('/js/default/formInMap.js') , $this->module->assetsUrl);
-            
+            /* ***********************
+            END ph core stuff
+            ************************ */
+
+            /* ***********************
+            module stuff
+            ************************ */
+            $moduleAssets = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->getModule( Yii::app()->params["module"]["parent"] )->getAssetsUrl()  : $this->module->assetsUrl;
+            HtmlHelper::registerCssAndScriptsFiles( array('/js/default/formInMap.js') , $moduleAssets);
+            /* ***********************
+            END module stuff
+            ************************ */
+
+            /* ***********************
+            theme stuff
+            ************************ */
             $cssAnsScriptFilesModule = array(
                 '/assets/js/cookie.js' ,
                 '/assets/js/jqBootstrapValidation.js' ,
@@ -208,7 +235,7 @@
                 '/assets/css/CO2/CO2-color.css',
                 '/assets/css/CO2/CO2.css',
                 '/assets/css/plugins.css',
-                 
+                 // TODO BOUBOULE - Radio à ne pas appeler pour CO2
                 '/assets/vendor/jPlayer-2.9.2/dist/skin/blue.monday/css/jplayer.blue.monday.min.css',
                 '/assets/vendor/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js',
                 '/assets/js/radioplayer.js',
@@ -217,8 +244,12 @@
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
+            /* ***********************
+            END theme stuff
+            ************************ */
+
             $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "myFormContact" => @$myFormContact, "communexion" => $communexion));
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
 
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
             //if($CO2DomainName != "CO2"){
@@ -260,7 +291,7 @@
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             jQuery(document).ready(function() { 
-
+                
                 $.blockUI({ message : themeObj.blockUi.processingMsg});
                 
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
@@ -275,6 +306,12 @@
                 });
 
                 themeObj.init();
+                $.each(modules,function(k,v) { 
+                    if(v.init){
+                        mylog.log("init.js for module : ",k);
+                        lazyLoad( v.init , null,null);
+                    }
+                });
                 if(themeObj.firstLoad){
                     themeObj.firstLoad=false;
                     urlCtrl.loadByHash(location.hash,true);

@@ -1,7 +1,9 @@
 <?php
 require_once(dirname(__FILE__) . '/dbconfig.php');
+require_once(dirname(__FILE__) . '/overwrite.php');
 require_once(dirname(__FILE__) . '/paramsconfig.php');
 require_once(dirname(__FILE__) . '/moduleconfig.php');
+
 
 // uncomment the following to define a path alias
 Yii::setPathOfAlias('Json',dirname(__FILE__) . '/../extensions/Json');
@@ -236,7 +238,9 @@ return array(
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
-	'params'=>$params
+	'params' => array_merge ( $params, array("moduleList" => $activeModules) )
 
 	//'jsonParams' => getParams("notragora")
 );
+
+

@@ -216,26 +216,26 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* HIDDEN
 		***************************************** */
-        else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
-        	if ( fieldObj.inputType == "timestamp" )
-        		value = Date.now();
-        	mylog.log("build field "+field+">>>>>> hidden, timestamp");
-        	fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
-        }
-        /* **************************************
+		else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
+			if ( fieldObj.inputType == "timestamp" )
+				value = Date.now();
+			mylog.log("build field "+field+">>>>>> hidden, timestamp");
+			fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
+		}
+		/* **************************************
 		* TEXTAREA
 		***************************************** */
-        else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){
-        	mylog.log("build field "+field+">>>>>> textarea, wysiwyg", fieldObj);
-        	if(fieldObj.inputType == "wysiwyg")
-        		fieldClass += " wysiwygInput";
-        	var maxlength = "";
-        	var minlength = 0;
-        	if(notNull(fieldObj.rules) && notNull(fieldObj.rules.maxlength) ){
-        		fieldClass += " maxlengthTextarea";
-        		maxlength = fieldObj.rules.maxlength;
-        		minlength = value.length ;
-        	}
+		else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){
+			mylog.log("build field "+field+">>>>>> textarea, wysiwyg", fieldObj);
+			if(fieldObj.inputType == "wysiwyg")
+				fieldClass += " wysiwygInput";
+			var maxlength = "";
+			var minlength = 0;
+			if(notNull(fieldObj.rules) && notNull(fieldObj.rules.maxlength) ){
+				fieldClass += " maxlengthTextarea";
+				maxlength = fieldObj.rules.maxlength;
+				minlength = value.length ;
+			}
 
         	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
         	fieldHTML += '<textarea id="'+field+'" maxlength="'+maxlength+'"  class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
@@ -244,68 +244,87 @@ onSave: (optional) overloads the generic saveProcess
         		fieldHTML += '<span><span id="maxlength'+field+' name="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
 
 
-        }else if ( fieldObj.inputType == "markdown"){ 
-        	mylog.log("build field "+field+">>>>>> textarea, markdown");
-        	fieldClass += " markdownInput";
-        	//fieldHTML +='<textarea id="'+field+'" name="'+field+'" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" data-provide="markdown" data-savable="true" rows="10"></textarea>';
-        	fieldHTML +='<textarea name="target-editor" id="'+field+'" data-provide="markdown" data-savable="true" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" rows="10"></textarea>';
-        }
-        /* **************************************
+		}else if ( fieldObj.inputType == "markdown"){ 
+			mylog.log("build field "+field+">>>>>> textarea, markdown");
+			fieldClass += " markdownInput";
+			//fieldHTML +='<textarea id="'+field+'" name="'+field+'" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" data-provide="markdown" data-savable="true" rows="10"></textarea>';
+			fieldHTML +='<textarea name="target-editor" id="'+field+'" data-provide="markdown" data-savable="true" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" rows="10"></textarea>';
+		}
+		/* **************************************
 		* CHECKBOX SIMPLE
 		***************************************** */
-        else if ( fieldObj.inputType == "checkboxSimple" ) {
+		else if ( fieldObj.inputType == "checkboxSimple" ) {
    			if(value == "") value="25/01/2014";
    			console.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
-	       	var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
-	       	console.log("fieldObj ??? thisValue", thisValue);
-	       	//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
-	       	//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
-	       	mylog.log("build field "+field+">>>>>> checkbox");
-	       	fieldHTML += '<input type="hidden" class="'+fieldClass+'" name="'+field+'" id="'+field+'" '+
-	       						'value="'+thisValue+'"/> ';
-	       
-	       	fieldHTML += '<div class="col-lg-6 padding-5">'+
-	       					'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-green col-lg-12"'+
-	       					' data-checkval="true"' +
-	       					'>'+
-	       						fieldObj.params.onText+
-	       					'</a>'+
-	       				 '</div>';
-	       	fieldHTML += '<div class="col-lg-6 padding-5">'+
-	       					'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-red col-lg-12"'+
-	       					' data-checkval="false"' +
-	       					'>'+
-	       						fieldObj.params.offText+
-	       					'</a>'+
-	       				 '</div>';
-	       	initField = function(){
-	       		//var checked = ( fieldObj.checked ) ? "checked" : "";
-	       		//if(checked) 
-	       		//if( fieldObj.switch )
-	       			//initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
-	       	};
-       	}
+			var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
+			console.log("fieldObj ??? thisValue", thisValue);
+			//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
+			//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
+			mylog.log("build field "+field+">>>>>> checkbox");
+			fieldHTML += '<input type="hidden" class="'+fieldClass+'" name="'+field+'" id="'+field+'" '+
+								'value="'+thisValue+'"/> ';
+			fieldHTML += '<div class="col-lg-6 padding-5">'+
+							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-green col-lg-12"'+
+							' data-checkval="true"' +
+							'>'+
+								fieldObj.params.onText+
+							'</a>'+
+						 '</div>';
+			fieldHTML += '<div class="col-lg-6 padding-5">'+
+							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-red col-lg-12"'+
+							' data-checkval="false"' +
+							'>'+
+								fieldObj.params.offText+
+							'</a>'+
+						 '</div>';
+			initField = function(){
+				//var checked = ( fieldObj.checked ) ? "checked" : "";
+				//if(checked) 
+				//if( fieldObj.switch )
+					//initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
+			};
+		}
 
-       	/* **************************************
+		/* **************************************
 		* CHECKBOX
 		***************************************** */
         else if ( fieldObj.inputType == "checkbox" ) {
    			if(value == "") value="25/01/2014";
-	       	var checked = ( fieldObj.checked ) ? "checked" : "";
-	       	var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
-	       	var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.switch.onText+"' data-off-text='"+fieldObj.switch.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
-	       	mylog.log("build field "+field+">>>>>> checkbox");
-	       	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+' '+switchData+'/> '+placeholder;
-	       	initField = function(){
-	       		if( fieldObj.switch )
-	       			initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
-	       	};
-       	}
+			var checked = ( fieldObj.checked ) ? "checked" : "";
+			var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
+			var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.switch.onText+"' data-off-text='"+fieldObj.switch.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
+			mylog.log("build field "+field+">>>>>> checkbox");
+			fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+' '+switchData+'/> '+placeholder;
+			if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
+				fieldHTML+=buildOpeningHours(value);
+			}
+			initField = function(){
+				if( fieldObj.switch )
+					initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null, (fieldObj.switch.css) ? fieldObj.switch.css : null );
+				if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
+					//loadTimePicker(null);
+					bindTimePicker();
+					if(notNull(value) && typeof value == "object"){
+						$.each(value, function(e,v){
+							if(typeof v == "object" && notNull(v.hours) ){
+								$.each(v.hours, function(ehour,vhour){
+									bindTimePicker(v.dayOfWeek, ehour, vhour);
+								});
+							}
+						});
+					}
+					initRangeHours();
+					
+				}
+				//if( fieldObj.subSwitch )
+				//	initbootstrapSwitch(fieldObj.subSwitch.domHtml, (fieldObj.subSwitch.onChange) ? fieldObj.subSwitch.onChange : null );
+			};
+		}
 
-       	/* **************************************
+		/* **************************************
 		* RADIO
 		***************************************** */
-        else if ( fieldObj.inputType == "radio" ) {
+		else if ( fieldObj.inputType == "radio" ) {
    			
 	       	mylog.log("build field "+field+">>>>>> radio");
 	       	
@@ -539,11 +558,13 @@ onSave: (optional) overloads the generic saveProcess
         	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
         	$.each(fieldObj.list,function(k,v) { 
         		//mylog.log("build field ",k,v);
-        		var lbl = ( fieldObj.trad && fieldObj.trad[v.labelFront] ) ? fieldObj.trad[v.labelFront] : fieldObj.trad[k] ? fieldObj.trad[k] : k;
-        		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
-        						'<a class="btn tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'"'+
-        						' data-tag="'+lbl+'" data-key="'+k+'" href="'+action+'"><i class="fa fa-'+v.icon+'"></i> <br>'+lbl+'</a>'+
-        					 '</div>';
+        		if(!v.excludeFromForm){
+	        		var lbl = ( fieldObj.trad && fieldObj.trad[v.labelFront] ) ? fieldObj.trad[v.labelFront] : trad[k] ? trad[k] : k;
+	        		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
+	        						'<a class="btn tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'"'+
+	        						' data-tag="'+lbl+'" data-key="'+k+'" href="'+action+'"><i class="fa fa-'+v.icon+'"></i> <br>'+lbl+'</a>'+
+	        					 '</div>';
+        		}
         	});
         } 
 
@@ -611,19 +632,27 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "array" ) {
         	mylog.log("build field "+field+">>>>>> array list");
+        	var addLabel="";
+        	var typeExtract="";
+        	if(typeof fieldObj.initOptions != "undefined"){
+        		if(typeof fieldObj.initOptions.labelAdd != "undefined")
+        	 		addLabel=fieldObj.initOptions.labelAdd;
+        	 	if(typeof fieldObj.initOptions.type != "undefined")
+        	 		typeExtract=fieldObj.initOptions.type;
+        	}
         	fieldHTML +=   '<div class="inputs array">'+
 								'<div class="col-sm-10 no-padding">'+
-									'<img id="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif" style="position: absolute;right: 5px;top: 10px;display:none;">'+
 									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
-									'<div class="resultGetUrl resultGetUrl0 col-sm-12"></div>'+
 								'</div>'+
 								'<div class="col-sm-2 sectionRemovePropLineBtn">'+
 									'<a href="javascript:" data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
 								'</div>'+
+								'<div class="resultGetUrl resultGetUrl0 col-sm-12 col-md-12 col-xs-12 no-padding"></div>'+
 							'</div>'+
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
 								'<div class="col-sm-12 no-padding margin-top-5 margin-bottom-15">'+
-									'<a href="javascript:" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" class="addPropBtn btn btn-link w100p letter-green" alt="Add a line"><i class=" fa fa-plus-circle" ></i></a> '+
+									'<a href="javascript:" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" data-type="'+typeExtract+'" class="addPropBtn btn btn-default w100p letter-green" alt="Add a line"><i class=" fa fa-plus-circle" ></i> '+addLabel+'</a> '+
 							        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
 							        
 					       		'</div>'+
@@ -641,23 +670,28 @@ onSave: (optional) overloads the generic saveProcess
 				$("#loading_indicator").hide();
 				//initialize values
 				//value is an array of strings
+				var initOptions = new Object;
+				if(typeof fieldObj.initOptions != "undefined")
+					initOptions=fieldObj.initOptions;
 				$.each(fieldObj.value, function(optKey,optVal) {
 					if(optKey == 0)
 	                    $(".addmultifield").val(optVal);
 	                else 
-	                	addfield("."+field+fieldObj.inputType,optVal,field);
-
+	                	addfield("."+field+fieldObj.inputType,optVal,field, initOptions);
 	                if( formValues && formValues.medias ){
 	                	$.each(formValues.medias, function(i,mediaObj) {
 	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
-	                			var strHtml = getMediaCommonHtml(mediaObj,"save");//buildMediaHTML(mediaObj);
+	                			if(typeof initOptions.type != "undefined" && initOptions.type == "video")
+	                				var strHtml = processUrl.getMediaVideo(mediaObj,"save");
+	                			else
+	                				var strHtml = processUrl.getMediaCommonHtml(mediaObj,"save");//buildMediaHTML(mediaObj);
 	                			$(".resultGetUrl"+optKey).html(strHtml);
 	                			$("#loading_indicator").hide();
 	                		}
 	                	});
 	                }
 				});
-				initMultiFields('.'+field+fieldObj.inputType,field);
+				initMultiFields('.'+field+fieldObj.inputType,field,typeExtract);
 			}
 
         }
@@ -854,95 +888,11 @@ onSave: (optional) overloads the generic saveProcess
         /* 	*************************************
         * SCOPE USER 	
         ************************************** */
-    //     else if( fieldObj.inputType == "scope" ) {
-        	
-    //     		fieldClass += " select2TagsInput select2ScopeInput";				
-				// fieldHTML += '<div class="modal fade" id="modal-scope" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'+
-				// 			  '<div class="modal-dialog">'+
-				// 			    '<div class="modal-content">'+
-				// 			      '<div class="modal-header">'+
-				// 			        //'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-				// 			        '<input type="text" id="search-contact" class="form-control pull-right" placeholder="rechercher ...">' +
-				// 					'<h4 class="modal-title" id="myModalLabel"><i class="fa fa-search"></i> '+fieldObj.title1+'</h4>'+
-				// 			      '</div>'+
-				// 			      '<div class="modal-body">'+
-				// 				      '<div class="row no-padding bg-light">'+
-				// 				      	'<div class="col-md-4 col-sm-4 no-padding">'+
-				// 					        '<div class="panel panel-default">  '+	
-				// 								'<div class="panel-body no-padding">'+
-				// 									'<div class="list-group" id="menu-type">'+
-				// 										'<ul class="col-xs-12 col-sm-12 col-md-12 no-padding">';
-				// fieldHTML += 							'<h4 class="text-dark"><i class="fa fa-angle-down"></i> ! '+fieldObj.title2+'</h4>';
-				// 										$.each(fieldObj.contactTypes, function(key, type){
-				// fieldHTML += 								'<li>'+
-				// 												'<div id="btn-scroll-type-'+type.name+'" class="btn btn-default btn-scroll-type text-'+type.color+'">' +
-				// 													'<input type="checkbox" name="chk-all-type'+type.name+'" id="chk-all-type'+type.name+'" value="'+type.name+'"> '+
-				// 													'<span style="font-size:16px;"><i class="fa fa-'+type.icon+'"></i> ' + type.label + "</span>" +
-				// 												'</div>'+
-				// 											'</li>';
-				// 										});									
-				// fieldHTML += 							'</ul>'+
-				// 									'</div>'+
-				// 								'</div>'+
-				// 							'</div>' +
-				// 				      	'</div>'+
-				// 				      	'<div class="no-padding pull-right col-md-8 col-sm-8 col-xs-12 bg-white" id="list-scroll-type">';
-				// 						$.each(fieldObj.contactTypes, function(key, type){
-				// fieldHTML += 			'<div class="panel panel-default" id="scroll-type-'+type.name+'">  '+	
-				// 							'<div class="panel-heading">'+
-				// 								'<h4 class="text-'+type.color+'"><i class="fa fa-'+type.icon+'"></i> '+type.label+'</h4>'+			
-				// 							'</div>'+
-				// 							'<div class="panel-body no-padding">'+
-				// 								'<div class="list-group padding-5">'+
-				// 									'<ul>';
-				// 									$.each(fieldObj.values[type.name], function(key2, value){ 
-				// 										var cp = (typeof value.address != "undefined" && typeof value.address.postalCode != "undefined") ? value.address.postalCode : typeof value.cp != "undefined" ? value.cp : "";
-				// 										var city = (typeof value.address != "undefined" && typeof value.address.addressLocality != "undefined") ? value.address.addressLocality : "";
-				// 										var profilThumbImageUrl = (typeof value.profilThumbImageUrl != "undefined" && value.profilThumbImageUrl != "") ? baseUrl + value.profilThumbImageUrl : assetPath + "/images/news/profile_default_l.png";
-				// 										var name =  typeof value.name != "undefined" ? value.name : 
-				// 													typeof value.username != "undefined" ? value.username : "";
-				// 										//mylog.log("data contact +++++++++++ "); mylog.dir(value);
-				// 										var thisKey = key+''+key2;
-				// 										var thisValue = notEmpty(value["_id"]['$id']) ? value["_id"]['$id'] : "";
-				// 										if(name != "")
-				// fieldHTML += 							'<li>' +
-				// 											'<div class="btn btn-default btn-scroll-type btn-select-contact"  id="contact'+thisKey+'">' +
-				// 												'<div class="col-md-1 no-padding"><input type="checkbox" name="scope-'+type.name+'" class="chk-scope-'+type.name+'" id="chk-scope-'+thisKey+'" value="'+thisValue+'" data-type="'+type.name+'"></div> '+
-				// 												'<div class="btn-chk-contact col-md-11 no-padding" idcontact="'+thisKey+'">' +
-				// 													'<img src="'+ profilThumbImageUrl+'" class="thumb-send-to" height="35" width="35">'+
-				// 													'<span class="info-contact">' +
-				// 														'<span class="scope-name-contact text-dark text-bold" idcontact="'+thisKey+'">' + value.name + '</span>'+
-				// 														'<br/>'+
-				// 														'<span class="scope-cp-contact text-light" idcontact="'+thisKey+'">' + cp + ' </span>'+
-				// 														'<span class="scope-city-contact text-light" idcontact="'+thisKey+'">' + city + '</span>'+
-				// 													'</span>' +
-				// 												'</div>' +
-				// 											'</div>' +
-				// 										'</li>';
-				// 									});									
-				// fieldHTML += 						'</ul>' +	
-				// 								'</div>'+
-				// 							'</div>'+
-				// 						'</div>';
-				// 						});									
-				// fieldHTML += 			'</div>' +
-				// 					'</div>'+
-				// 				  '</div>'+
-				// 			      '<div class="modal-footer">'+
-				// 			      	'<button id="btn-reset-scope" type="button" class="btn btn-default btn-sm pull-left"><i class="fa fa-repeat"></i> '+fieldObj.btnResetTitle+'</button>'+
-				// 			      	'<button id="btn-cancel" type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> '+fieldObj.btnCancelTitle+'</button>'+
-				// 			      	'<button id="btn-save" type="button" class="btn btn-success btn-sm" data-dismiss="modal"><i class="fa fa-check"></i> '+fieldObj.btnSaveTitle+'</button>'+
-				// 			      '</div>'+
-				// 			    '</div><!-- /.modal-content -->'+
-				// 			  '</div><!-- /.modal-dialog -->'+
-				// 			'</div><!-- /.modal -->';
-    //     }
         else if( fieldObj.inputType == "scope" ) {
         	mylog.log("build field "+field+">>>>>> scope");
-        		fieldClass += " select2TagsInput select2ScopeInput";				
+        		//fieldClass += " select2TagsInput select2ScopeInput";				
 				fieldHTML += '<div class="col-md-12 no-padding">'+
 								'<div class="col-md-12 col-sm-12 col-xs-12">'+
-									'<hr>'+
 									'<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">'+
 										'<select id="select-country"></select>'+
 									'</div>'+
@@ -995,49 +945,43 @@ onSave: (optional) overloads the generic saveProcess
 										'</div>'+
 									'</div>'+
 									'<div class="col-md-12 no-padding">'+
-										'<div class="input-group margin-bottom-10">'+
-											'<span class="input-group-btn">'+
-												'<div class="input-group-addon" type="button">'+
-													'<i class="fa fa-plus"></i> <i class="fa fa-bullseye"></i>'+
-												'</div>'+
-											'</span>'+
-											'<input id="input-add-multi-scope" type="text" class="form-control" placeholder="'+tradDynForm["Add a city"]+' ...">'+
+										'<div class="input-group margin-bottom-10 col-md-12">'+
+											'<input id="input-add-multi-scope" type="text" class="form-control col-md-12" placeholder="'+tradDynForm["Add a city"]+' ...">'+
 											'<div class="dropdown">'+
 												'<ul class="dropdown-menu" id="dropdown-multi-scope-found"></ul>'+
 											'</div>'+
 										'</div>'+
 									'</div>'+
 								'</div>'+
-								'<div class="text-left">                    '+
+								'<div class="text-left">'+
+									'<div class="label label-info label-sm block text-left" id="lbl-info-select-multi-scope"></div>'+
 									'<div id="multi-scope-list-city" class="col-md-12 margin-top-15">'+
-										'<h4><i class="fa fa-angle-down"></i> Cities </h4>'+
+										'<h5><i class="fa fa-angle-down"></i> Cities </h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
 									'<div id="multi-scope-list-cp" class="col-md-12 margin-top-15">'+
-										'<h4><i class="fa fa-angle-down"></i> '+tradDynForm["Postal code"]+'</h4>'+
+										'<h5><i class="fa fa-angle-down"></i> '+tradDynForm["Postal code"]+'</h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
 									'<div id="multi-scope-list-level4" class="col-md-12 margin-top-15">'+
-										'<h4><i class="fa fa-angle-down"></i>Administrative zone N°4</h4>'+
+										'<h5><i class="fa fa-angle-down"></i>Administrative zone N°4</h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
 									'<div id="multi-scope-list-level3" class="col-md-12 margin-top-15">'+
-										'<h4><i class="fa fa-angle-down"></i> Administrative zone N°3</h4>'+
+										'<h5><i class="fa fa-angle-down"></i> Administrative zone N°3</h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
 									'<div id="multi-scope-list-level2" class="col-md-12 margin-top-15">'+
-										'<h4><i class="fa fa-angle-down"></i> Administrative zone N°2</h4>'+
+										'<h5><i class="fa fa-angle-down"></i> Administrative zone N°2</h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
 									'<div id="multi-scope-list-level1" class="col-md-12 margin-top-15">'+
-										'<h4><i class="fa fa-angle-down"></i> Country</h4>'+
+										'<h5><i class="fa fa-angle-down"></i> Country</h5>'+
 										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
 									'</div>'+
-									'<div class="col-md-12">'+
-										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
-									'<div class="label label-info label-sm block text-left" id="lbl-info-select-multi-scope"></div>'+
 								'</div>'+
 							'</div>';
+
 					
         } 
         else if ( fieldObj.inputType == "password" ) {
@@ -1197,6 +1141,14 @@ onSave: (optional) overloads the generic saveProcess
 						  callback);
 		    }
 		}
+		function loadTimePicker(callback) {
+			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
+				lazyLoad( baseUrl+'/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js',
+						baseUrl+'/plugins/moment/moment.js', 
+						  baseUrl+'/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css',
+						  callback);
+		    }
+		}
 
 		var initDate = function(){
 			mylog.log("init dateInput");
@@ -1212,6 +1164,35 @@ onSave: (optional) overloads the generic saveProcess
 		if(  $(".dateInput").length){
 			loadDateTimePicker(initDate);
 		}
+		var initTime = function(){
+			mylog.log("init dateInput");
+			//alert();
+			//$('.timeInput').timepicker(
+               // minuteStep: 1,
+              //  appendWidgetTo: 'body',
+              
+                //showSeconds: true,
+                //showMeridian: false,
+                //defaultTime: false
+            //);
+			/*$(".timeInput").datetimepicker({ 
+		        format: 'LT'
+		    });*/
+		};
+		/*if(  $(".timeInput").length){
+
+			$('.timeInput').timepicker({
+               // minuteStep: 1,
+              //  appendWidgetTo: 'body',
+              
+                showSeconds: false,
+                showMeridian: false,
+                defaultTime: false
+            });
+            $('.startTime').timepicker('setTime', '06:00');
+            $('.endTime').timepicker('setTime', '19:00');
+			//loadTimePicker(initTime);
+		}*/
 		/* **************************************
 		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
 		***************************************** */
@@ -1452,10 +1433,9 @@ onSave: (optional) overloads the generic saveProcess
 			$('.addPropBtn').unbind("click").click(function(){
 				mylog.log("addPropBtn", $(this).data('id'));
 				var field = $(this).data('id');
-				if( $('.'+field+' .inputs .addmultifield:visible').length==0 || ( $("."+field+" .addmultifield:last").val() != "" && $( "."+field+" .addmultifield1:last" ).val() != "") ){
-					mylog.log("field", field);
-					addfield('.'+$(this).data('container'),'',field);
-				}
+				var typeExtract = $(this).data('type');
+				if( $('.'+field+' .inputs .addmultifield:visible').length==0 || ( $("."+field+" .addmultifield:last").val() != "" && $( "."+field+" .addmultifield1:last" ).val() != "") )
+					addfield('.'+$(this).data('container'),'',field, typeExtract);
 				else
 					toastr.info("please fill properties first");
 			} );
@@ -1558,7 +1538,7 @@ onSave: (optional) overloads the generic saveProcess
 	* add a new line to the multi line process 
 	* val can be a value when type array or {"label":"","value":""} when type property
 	***************************************** */
-	function addfield( parentContainer,val,name ) 
+	function addfield( parentContainer,val,name, type ) 
 	{
 		mylog.log("addfield",parentContainer+' .inputs',val,name);
 		if(!$.isEmptyObject($(parentContainer+' .inputs')))
@@ -1572,7 +1552,7 @@ onSave: (optional) overloads the generic saveProcess
 	    	$(".loading_indicator").hide();
 
 	    	$(parentContainer+' .addmultifield:last').focus();
-	        initMultiFields(parentContainer,name);
+	        initMultiFields(parentContainer,name, type);
 
 
 
@@ -1608,7 +1588,7 @@ onSave: (optional) overloads the generic saveProcess
 	* remove a field
 	* enter key submition
 	***************************************** */
-	function initMultiFields(parentContainer,name){
+	function initMultiFields(parentContainer,name, typeExtract){
 		mylog.log("initMultiFields",parentContainer);
 	  //manage using Enter to make easy loop editing
 	  $(parentContainer+' .addmultifield').unbind('keydown').keydown(function(event) 
@@ -1626,9 +1606,11 @@ onSave: (optional) overloads the generic saveProcess
 	        	toastr.warning("La paire (clef/valeure) doit etre remplie.");
 	    }
 	  });
-
+	 // var typeExtract=null;
+	  //if(typeof initOptions != "undefined" && initOptions.type=="video")
+	  	//typeExtract=initOptions.type;
 	  var count = $(".addmultifield").length-1;
-	  getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count,0);
+	  getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count,1, typeExtract);
 	  //manage using Enter to make easy loop editing
 	  //for 2nd property field
 	  $(parentContainer+' .addmultifield1').unbind('keydown').keydown(function(event) 
@@ -1645,8 +1627,8 @@ onSave: (optional) overloads the generic saveProcess
 
 	  //bind remove btn event 
 	  $(parentContainer+' .removePropLineBtn').click(function(){
-	  	$(this).parent().prev().remove();
-	  	$(this).parent().remove();
+	  	//$(this).parents().eq(1).prev().remove();
+	  	$(this).parents().eq(1).remove();
 	  });
 
 	}
@@ -1706,12 +1688,12 @@ onSave: (optional) overloads the generic saveProcess
 		var str = 	'<div class="col-sm-12 no-padding margin-top-10">'+
 					'<div class="col-sm-10 no-padding">'+
 							'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
-							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'" placeholder="..."/>'+
-							'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
+							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md value="" placeholder="..."/>'+
 						'</div>'+
 						'<div class="col-sm-2 sectionRemovePropLineBtn">'+
 							'<a href="javascript:" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
 						'</div>'+
+						'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
 					'</div>';
 
 		mylog.log("-------------------------");
@@ -1740,22 +1722,287 @@ onSave: (optional) overloads the generic saveProcess
 			'</div>';
 		return str;
 	}
+	function initRangeHours(){
+		mylog.log("initRangeHours : ");
+		$(".addHoursRange").click(function(){
+	    	var addToDay=$(this).data("value");
+	    	addHoursRange(addToDay);
+	    });
+	}
+	function bindTimePicker(addToDay,countRange, hours){
+		mylog.log("bindTimePicker", addToDay,countRange, hours);
+		var startTime = '06:00';
+		var endTime = '19:00';
+		if(notNull(hours)){
+			startTime = hours.opens;
+			endTime = hours.closes;
+		}
+
+		if(typeof addToDay != "undefined" && notNull(addToDay)){
+			//Init time
+			$('#startTime'+addToDay+countRange+', #endTime'+addToDay+countRange).timepicker({
+	               // minuteStep: 1,
+	              //  appendWidgetTo: 'body',
+	              
+	            showSeconds: false,
+	            showMeridian: false,
+	            defaultTime: false
+	        });
+	        $('#startTime'+addToDay+countRange).timepicker('setTime', startTime);
+	        $('#endTime'+addToDay+countRange).timepicker('setTime', endTime);
+	        $.each(openingHoursResult, function(e,v){
+	        	if(v.dayOfWeek==addToDay){
+	        		openingHoursResult[e]["hours"].push({"opens":startTime,"closes":endTime})
+	        	}
+	        });
+	        $(".removeHoursRange").off().on("click",function(){
+	        	var dayInc=$(this).data("days");
+	        	var inc=$(this).data("value");
+	        	$("#hoursRange"+dayInc+" .hoursRange"+inc).remove();
+	        	$.each(openingHoursResult, function(e,v){
+	        		if(v.dayOfWeek==dayInc){
+	        			openingHoursResult[e]["hours"].splice(inc,1);
+	        		}
+	        	});
+	        });
+
+		}else{
+			$('.timeInput').timepicker({
+               // minuteStep: 1,
+              //  appendWidgetTo: 'body',
+              
+                showSeconds: false,
+                showMeridian: false,
+                defaultTime: false
+            });
+            $('.startTime').timepicker('setTime', startTime);
+            $('.endTime').timepicker('setTime', endTime);
+			//loadTimePicker(initTime);
+		}
+		$('.timeInput').off().on('changeTime.timepicker', function(e) {
+			var typeInc=$(this).data("type");
+			var daysInc=$(this).data("days");
+			var hoursInc=$(this).data("value");
+			$.each(openingHoursResult, function(i,v){
+        		if(v.dayOfWeek==daysInc)
+        			openingHoursResult[i]["hours"][hoursInc][typeInc]=e.time.value;
+	        });
+		  });
+	}
+
+	function addHoursRange(addToDay){
+		mylog.log("addHoursRange", addToDay);
+		var countRange=$("#hoursRange"+addToDay+" .hoursRange").length;
+		mylog.log("countRange", countRange);
+		//alert(countRange);
+		str='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+countRange+'" data-value="'+countRange+'">'+
+				'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
+        		'<i class="fa fa-hourglass-start"></i> Start hour'+
+    			'</label>'+
+    		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
+        		'<i class="fa fa-hourglass-end"></i> End hour'+
+    		'</label>'+
+    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+					'<input type="text" class="form-control input-small timeInput startTime" data-value="'+countRange+'" data-days="'+addToDay+'" data-type="opens" id="startTime'+addToDay+countRange+'">'+
+				'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+			'</div>'+
+//        		
+    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+					'<input type="text" class="form-control input-small timeInput endTime" data-value="'+countRange+'" data-days="'+addToDay+'" data-type="closes" id="endTime'+addToDay+countRange+'">'+
+				'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+			'</div>'+
+			'<a href="javascript:;" class="btn btn-default text-red removeHoursRange margin-top-10 col-md-12 col-sm-12" data-days="'+addToDay+'" data-value="'+countRange+'"><i class="fa fa-trash"></i> Remove hours range</a>'+
+		'</div>';
+		$("#hoursRange"+addToDay).find('.hoursRange:last').after(str);
+		bindTimePicker(addToDay,countRange);
+	}
+	/***************************************
+	* Build OpeningHour on week HTML system 
+	***************************************/
+	function buildOpeningHours(data){
+		mylog.log("buildOpeningHours", data);
+		var arrayDayKeys=["Su","Mo","Tu","We","Th","Fr","Sa"];
+		var arrayKeyTrad={
+			"Su":{"key":"Su","label":"Sunday"},
+			"Mo":{"key":"Mo","label":"Monday"},
+			"Tu":{"key":"Tu","label":"Tuesday"},
+			"We":{"key":"We","label":"Wednesday"},
+			"Th":{"key":"Th","label":"Thursday"},
+			"Fr":{"key":"Fr","label":"Friday"},
+			"Sa":{"key":"Sa","label":"Saturday"}
+		};
+
+		var allWeek = true ;
+		if(notNull(data) && typeof data == "object"){
+			$.each(data,function(e,v){
+				if(typeof v != "object")
+					allWeek = false;
+			});
+		}
+		mylog.log("allWeek", allWeek);
+		//((allWeek == true) ? "style='display:none;'" : "")
+		var str = "<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+			"<div id='selectedDays' class='col-md-12 col-sm-12 col-xs-12 text-center margin-bottom-10' "+((allWeek == true) ? "style='display:none;'" : "")+">";
+				$.each(arrayDayKeys,function(e,v){
+					var active = ((typeof data != "object" || typeof data[e] == "object" ) ? "active"  : "");
+					str+="<div class='inline'>"+
+							'<a class="btn btn-default btn-select-day '+active+'" data-key="'+v+'" href="javascript:;">'+arrayKeyTrad[v].key+'</a>'+
+						"</div>";
+				});
+		str+="</div>"+
+			"<div id='daysList' class='col-md-12 col-sm-12 col-xs-12 no-padding'>";
+				$.each(arrayDayKeys,function(e,v){
+
+					var noneDay = ( (typeof data != "object" || typeof data[e] == "object")  ? ""  : "display:none;");
+					var checked = (( typeof data != "object" || (typeof data[e] == "object" && data[e].allDay == "true") ) ? "checked"  : "");
+					var noneHours = ((typeof data[e] == "object" && notNull(data[e].hours) ) ? ""  : "style='display:none;'");
+					// mylog.log("typeof data[e]", typeof data[e], data[e]);
+					// mylog.log("noneDay", noneDay);
+					// mylog.log("checked", checked);
+					// mylog.log("noneHours", noneHours);
+			str+=	"<div class='col-md-12 col-sm-12 col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray; "+noneDay+"'>"+
+						"<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+							'<label class="col-md-4 col-sm-5 col-xs-6 text-left control-label no-padding no-margin" for="allDaysMo">'+
+								'<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
+							'</label>'+
+							'<input type="checkbox" class="allDaysWeek" id="allDays'+v+'" value="true" data-key="'+v+'" '+checked+'/> '+tradDynForm.allday+
+						"</div>"+
+						'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" '+noneHours+'>';
+							if( typeof data[e] == "object" && notNull(data[e].hours) ){
+								$.each(data[e].hours,function(kHour,vHour){
+									mylog.log("hours", kHour, vHour);
+									str +='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+kHour+'" data-value="'+kHour+'">'+
+											'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
+							        		'<i class="fa fa-hourglass-start"></i> Start hour'+
+							    			'</label>'+
+							    		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
+							        		'<i class="fa fa-hourglass-end"></i> End hour'+
+							    		'</label>'+
+							    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+												'<input type="text" class="form-control input-small timeInput startTime" data-value="'+kHour+'" data-days="'+v+'" data-type="opens" id="startTime'+v+kHour+'">'+
+											'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+										'</div>'+
+							    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+												'<input type="text" class="form-control input-small timeInput endTime" data-value="'+kHour+'" data-days="'+v+'" data-type="closes" id="endTime'+v+kHour+'">'+
+											'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+										'</div>';
+									if(kHour != 0)
+										str += '<a href="javascript:;" class="btn btn-default text-red removeHoursRange margin-top-10 col-md-12 col-sm-12" data-days="'+v+'" data-value="'+kHour+'"><i class="fa fa-trash"></i> Remove hours range</a>';
+									str += '</div>';
+
+								});
+							}else{
+								str+= '<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
+									'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
+										'<i class="fa fa-hourglass-start"></i> Start hour'+
+									'</label>'+
+									'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
+										'<i class="fa fa-hourglass-end"></i> End hour'+
+									'</label>'+
+									'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+										'<input type="text" class="form-control input-small timeInput startTime" data-value="0" data-days="'+v+'" data-type="opens" id="startTime'+v+'0">'+
+										'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+									'</div>'+
+									'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+										'<input type="text" class="form-control input-small timeInput endTime" data-value="0" data-days="'+v+'" data-type="closes" id="endTime'+v+'0">'+
+										'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+									'</div>'+
+								'</div>';
+							}
+							str+= '<a href="javascript:;" class="btn btn-default text-green addHoursRange margin-top-10 col-md-12 col-sm-12" data-value="'+v+'"><i class="fa fa-plus"></i> Add an hours range</a>'+
+						'</div>'+
+					"</div>";
+				});
+			str+="</div>"+
+			'<input type="hidden" name="openingHours" value="true"/>'+
+		"</div>";
+		return str;
+	}
+
+	function buildOpeningHoursold(){
+		var arrayDayKeys=["Mo","Tu","We","Th","Fr","Sa","Su"];
+		var arrayKeyTrad={
+			"Mo":{"key":"Mo","label":"Monday"},
+			"Tu":{"key":"Tu","label":"Tuesday"},
+			"We":{"key":"We","label":"Wednesday"},
+			"Th":{"key":"Th","label":"Thursday"},
+			"Fr":{"key":"Fr","label":"Friday"},
+			"Sa":{"key":"Sa","label":"Saturday"},
+			"Su":{"key":"Su","label":"Sunday"}
+		};
+
+		var str = "<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+			"<div id='selectedDays' class='col-md-12 col-sm-12 col-xs-12 text-center margin-bottom-10' style='display:none;'>";
+				$.each(arrayDayKeys,function(e,v){
+					str+="<div class='inline'>"+
+							'<a class="btn btn-default btn-select-day active" data-key="'+v+'" href="javascript:;">'+arrayKeyTrad[v].key+'</a>'+
+						"</div>";
+				});
+		str+="</div>"+
+			"<div id='daysList' class='col-md-12 col-sm-12 col-xs-12 no-padding'>";
+				$.each(arrayDayKeys,function(e,v){
+			str+=	"<div class='col-md-12 col-sm-12 col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray;'>"+
+						"<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+							'<label class="col-md-4 col-sm-5 col-xs-6 text-left control-label no-padding no-margin" for="allDaysMo">'+
+					            '<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
+					        '</label>'+
+			       			'<input type="checkbox" class="allDaysWeek" id="allDays'+v+'" value="true" data-key="'+v+'" checked/> '+tradDynForm.allday+
+		       			"</div>"+
+		       			'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" style="display:none;">'+
+		       				'<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
+		       					'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
+				            		'<i class="fa fa-hourglass-start"></i> Start hour'+
+				        		'</label>'+
+				        		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
+				            		'<i class="fa fa-hourglass-end"></i> End hour'+
+				        		'</label>'+
+				        		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+           							'<input type="text" class="form-control input-small timeInput startTime" data-value="0" data-days="'+v+'" data-type="opens" id="startTime'+v+'0">'+
+            						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+        						'</div>'+
+				        		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+           							'<input type="text" class="form-control input-small timeInput endTime" data-value="0" data-days="'+v+'" data-type="closes" id="endTime'+v+'0">'+
+            						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+        						'</div>'+
+				//        		'<div class="input-group bootstrap-timepicker timepicker">'+
+				  //      		'	<input id="timepicker" class="form-control timeInput" data-provide="timepicker" data-template="modal" data-minute-step="1" data-modal-backdrop="true" type="text"/>'+
+				    //    		'</div>'+
+				        		//'<div class="col-md-6 col-sm-6 col-xs-6 no-padding">'+
+		       					//	'<input type="text" class="form-control timeInput changeTime" data-value="0" data-days="'+v+'" data-type="opens" name="startTime'+v+'0" id="startTime'+v+'0" value="06:00:00" placeholder="06:00"/>'+
+		       					//'</div>'+
+		       					//'<div class="col-md-6 col-sm-6 col-xs-6 no-padding">'+
+		       					//	'<input type="text" class="form-control timeInput changeTime" data-value="0" data-days="'+v+'" data-type="closes" name="endTime'+v+'0" id="endTime'+v+'0" value="19:00:00" placeholder="19:00"/>'+
+		       					//'</div>'+
+		       				'</div>'+
+		       				'<a href="javascript:;" class="btn btn-default text-green addHoursRange margin-top-10 col-md-12 col-sm-12" data-value="'+v+'"><i class="fa fa-plus"></i> Add an hours range</a>'+
+		       			'</div>'+
+					"</div>";
+				});
+			str+="</div>"+
+			'<input type="hidden" name="openingHours" value="true"/>'+
+		"</div>";
+		return str;
+	}
 
 	/* **************************************
 	* init Boostrap Switch
 	***************************************** */
-	function initbootstrapSwitch(el,change)
-	{
+	function initbootstrapSwitch(el,change, css){
+		mylog.log("initbootstrapSwitch", el,change, css);
 		var initSwitch = function(){
-							mylog.log("init bootstrap switch");
-							$(el).bootstrapSwitch();
-							if(typeof change == "function"){
-								$(el).on('switchChange.bootstrapSwitch', function(event, state) {
-									change();
-								});
-							}
-							$(el).parent().parent().addClass("form-group");
-						};
+			mylog.log("init bootstrap switch");
+			$(el).bootstrapSwitch();
+			if(typeof change == "function"){
+				$(el).on('switchChange.bootstrapSwitch', function(event, state) {
+					change($(this));
+				});
+			}
+			if(notNull(css))
+				$(el).parent().parent().css(css);
+			else
+				$(el).parent().parent().addClass("form-group");
+		};
+
 		if( jQuery.isFunction(jQuery.fn.bootstrapSwitch) )
 			initSwitch();
 	    else {
@@ -1887,6 +2134,15 @@ var uploadObj = {
 		}
 	}
 };
+var openingHoursResult=[
+	{"dayOfWeek":"Su","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+	{"dayOfWeek":"Mo","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+	{"dayOfWeek":"Tu","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+	{"dayOfWeek":"We","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+	{"dayOfWeek":"Th","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+	{"dayOfWeek":"Fr","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+	{"dayOfWeek":"Sa","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+];
 
 var dyFObj = {
 	elementObj : null,
@@ -1932,6 +2188,10 @@ var dyFObj = {
 				formData.addresses = dyFInputs.locationObj.elementLocations;
 			}
 		}
+
+		if(notNull(dyFInputs.scopeObj.scope)){
+			formData.scope = dyFInputs.scopeObj.scope;
+		}
 		
 		formData.medias = [];
 		$(".resultGetUrl").each(function(){
@@ -1975,7 +2235,19 @@ var dyFObj = {
 		if( typeof formData.tags != "undefined" && formData.tags != "" )
 			formData.tags = formData.tags.split(",");
 		
-		
+		if( typeof formData.openingHours != "undefined"){
+			if(typeof formData.hour != "undefined")
+				delete formData.hour;
+			if(typeof formData.minute != "undefined")
+				delete formData.minute;
+			$.each(openingHoursResult, function(e,v){
+				if(v.allDay && typeof v.hours != "undefined")
+        			delete openingHoursResult[e]["hours"];
+				if(typeof v.disabled != "undefined")
+					delete openingHoursResult[e];
+			});		
+			formData.openingHours=openingHoursResult;
+		}
 		// Add collections and genres of notragora in tags
 		if( typeof formData.collections != "undefined" && formData.collections != "" ){
 			collectionsTagsSave=formData.collections.split(",");
@@ -2198,12 +2470,19 @@ var dyFObj = {
 		}else {
 			//TODO : pouvoir surchargé le dossier dynform dans le theme
 			//via themeObj.dynForm.folder overload
-			var dfPath = (jsonHelper.notNull( "themeObj.dynForm.folder") ) ? themeObj.dynForm.folder : moduleUrl+'/js/dynForm/';
-			lazyLoad( dfPath+type+'.js', 
+			var dfPath = moduleUrl+'/js/dynForm/'+type+'.js';
+			if(jsonHelper.notNull( "themeObj.dynForm.folder") ) 
+				dfPath = themeObj.dynForm.folder+type+'.js';
+			if(jsonHelper.notNull( "modules."+type+".form") ) {
+				dfPath = modules[type].form;
+				mylog.log("properties from MODULE",type,dfPath);
+			}
+			
+			lazyLoad( dfPath, 
 				null,
 				function() { 
 					//alert(dfPath+type+'.js');
-					mylog.log("lazyLoaded",moduleUrl+'/js/dynForm/'+type+'.js');
+					mylog.log("lazyLoaded",dfPath);
 					mylog.dir(dynForm);
 					//typeObj[type].dynForm = dynForm;
 				  	dyFInputs.get(type).dynForm = dynForm;
@@ -2358,11 +2637,17 @@ var dyFObj = {
 	canUserEdit : function ( ) {
 		var res = false;
 		if( userId && userConnected && userConnected.links && contextData ){
-			if(contextData.type == "organizations" && userConnected.links.memberOf[contextData.id].isAdmin )
+			if(contextData.type == "organizations" 
+				&& typeof userConnected.links.memberOf[contextData.id] != "undefined" 
+				&& userConnected.links.memberOf[contextData.id].isAdmin )
 				res = true;
-			if(contextData.type == "events" && userConnected.links.events[contextData.id].isAdmin )
+			if(contextData.type == "events" 
+				&& typeof userConnected.links.events[contextData.id] != "undefined"
+				&& userConnected.links.events[contextData.id].isAdmin )
 				res = true;
-			if(contextData.type == "projects" && userConnected.links.projects[contextData.id].isAdmin )
+			if(contextData.type == "projects" 
+				&& typeof userConnected.links.projects[contextData.id] != "undefined"
+				&& userConnected.links.projects[contextData.id].isAdmin )
 				res = true;
 		}
 		return res;
@@ -2718,7 +3003,13 @@ var dyFInputs = {
       	};
     	return inputObj;
     },
-
+    quantity :function(label, placeholder, rules, custom) { 
+		var inputObj = dyFInputs.inputText(tradDynForm.quantity, tradDynForm.quantity+" ...") ;
+	    inputObj.init = function(){
+    		$('input#quantity').filter_input({regex:'[0-9]'});
+      	};
+    	return inputObj;
+    },
     text :function (label,placeholder,rules) {  
     	var inputObj = {
     		inputType : "text",
@@ -2772,8 +3063,8 @@ var dyFInputs = {
 		return inputObj;  
 	},
 	location : {
-		label : "SCOPE",
-       	inputType : "scope"
+		label : "location",
+       	inputType : "location"
     },
     locationObj : {
     	/* *********************************
@@ -3085,6 +3376,7 @@ var dyFInputs = {
 		label : tradDynForm["localization"],
        	inputType : "scope",
        	init : function () {
+       		dyFInputs.scopeObj.scope = {};
        		getAjax( null , baseUrl+"/"+moduleId+"/opendata/getcountries/hasCity/true" , function(data){
 				mylog.log("getcountries", data);
 				var options = "";
@@ -3094,8 +3386,8 @@ var dyFInputs = {
 			        else
 			          options += '<option value="'+val.countryCode+'">'+val.name+'</option>';
 				});
-				$("#select-country").html(options);
-	    		$("#dropdown-multi-scope-found").hide();
+				$("#ajaxFormModal #select-country").html(options);
+	    		$("#ajaxFormModal #dropdown-multi-scope-found").hide();
 			});
 
 			$('#ajaxFormModal #input-add-multi-scope').filter_input({regex:'[^@#\'\"\`\\\\]'}); //[a-zA-Z0-9_] 
@@ -3106,12 +3398,22 @@ var dyFInputs = {
 		            timeoutAddScope = setTimeout(function(){ autocompleteMultiScope(); }, 500);
 		        }
 		    });
+
+			$("#ajaxFormModal .btn-group-scope-type .btn-default").click(function(){
+				currentScopeType = $(this).data("scope-type");
+				$("#ajaxFormModal .btn-group-scope-type .btn-default").removeClass("active");
+				$(this).addClass("active");
+				if(currentScopeType == "city") $('#ajaxFormModal #input-add-multi-scope').attr("placeholder", tradDynForm["Add a city"]+" ...");
+				if(currentScopeType == "cp") $('#ajaxFormModal #input-add-multi-scope').attr("placeholder", tradDynForm["Add a postal code"]+" ...");
+				if(currentScopeType == "zone") $('#ajaxFormModal #input-add-multi-scope').attr("placeholder", tradDynForm["Add a zone"]+" ...");
+			});
+			dyFInputs.scopeObj.showCountScope();
        	}
     },
     scopeObj : {
-		scope : null,
+		scope : {},
 		scopeExists : function (scopeValue){
-			return typeof myMultiScopes[scopeValue] != "undefined";
+			return typeof dyFInputs.scopeObj.scope[scopeValue] != "undefined";
 		},
        	addScope : function (scopeValue, scopeName, scopeLevel, scopeCountry){
 			mylog.log("addScope", scopeValue, scopeName);
@@ -3139,18 +3441,19 @@ var dyFInputs = {
 				//dyFInputs.scopeObj.scope[scopeValue].type = scopeType ;
 				mylog.log("dyFInputs.scopeObj.scope")
 				//alert();
-				dyFInputs.scopeObj.showScopeInMultiscope(scopeValue);
-				$("#input-add-multi-scope").val("");
+				dyFInputs.scopeObj.showScope(scopeValue);
+				$("#ajaxFormModal #input-add-multi-scope").val("");
+				dyFInputs.scopeObj.showCountScope();
 				//saveMultiScope();
 				//showTagsScopesMin();
 				//bindCommunexionScopeEvents();
 			}else{
 				showMsgInfoMultiScope("Ce lieu est déjà dans votre liste", "info");
 			}
-			$("#dropdown-multi-scope-found").hide();
+			$("#ajaxFormModal #dropdown-multi-scope-found").hide();
        	},
-       	showScopeInMultiscope : function (scopeValue){ 
-			mylog.log("showScopeInMultiscope()", scopeValue);
+       	showScope : function (scopeValue){ 
+			mylog.log("showScope()", scopeValue);
 			var html = "";
 			if(dyFInputs.scopeObj.scopeExists(scopeValue)){
 				var scope = dyFInputs.scopeObj.scope[scopeValue];
@@ -3158,37 +3461,61 @@ var dyFInputs = {
 				if(typeof scope.name == "undefined") scope.name = scopeValue;
 				var faActive = (dyFInputs.scopeObj.scope[scopeValue].active == true) ? "check-circle" : "circle-o";
 				var classDisable = (dyFInputs.scopeObj.scope[scopeValue].active == false) ? "disabled" : "";
-				html = 
-				'<span class="item-scope-input bg-red item-scope-'+scope.type+' '+classDisable+'" data-scope-value="'+scopeValue+'">' +
-						'<a href="javascript:" class="item-scope-checker tooltips"' +
-							'data-toggle="tooltip" data-placement="bottom" ' +
-							'title="Activer/Désactiver" data-scope-value="'+scopeValue+'">' +
-							'<i class="fa fa-'+faActive+'"></i>' +
-						'</a>' +
-						'<span class="item-scope-name" >'+scope.name+'</span>' +
-						'<a href="javascript:" class="item-scope-deleter tooltips"' +
-							'data-toggle="tooltip" data-placement="bottom" ' +
-							'title="Supprimer" data-scope-value="'+scopeValue+'">' +
-							'<i class="fa fa-times"></i>' +
-					'</a>' +
-				'</span>';
+				html = '<span class="item-scope-input bg-red item-scope-'+scope.type+' '+classDisable+'" data-scope-value="'+scopeValue+'">' +
+							// '<a href="javascript:" class="item-scope-checker tooltips"' +
+							// 	'data-toggle="tooltip" data-placement="bottom" ' +
+							// 	'title="Activer/Désactiver" data-scope-value="'+scopeValue+'">' +
+							// 	'<i class="fa fa-'+faActive+'"></i>' +
+							// '</a>' +
+							'<span class="item-scope-name" >'+scope.name+'</span>' +
+							'<a href="javascript:" class="item-scope-deleter tooltips"' +
+								'data-toggle="tooltip" data-placement="bottom" ' +
+								'title="Supprimer" data-scope-value="'+scopeValue+'">' +
+								'<i class="fa fa-times"></i>' +
+							'</a>' +
+						'</span>';
 
 				var levelType = ( (scope.type == "zone") ? "level"+scope.level : scope.type ) ;
 				mylog.log("levelType", levelType, "#multi-scope-list-"+levelType);
-				$("#multi-scope-list-"+levelType).append(html);
-				$("#multi-scope-list-"+levelType).show();
+				$("#ajaxFormModal #multi-scope-list-"+levelType).append(html);
+				$("#ajaxFormModal #multi-scope-list-"+levelType).show();
 
 				if(actionOnSetGlobalScope=="save")
 					$("#scopeListContainerForm").html(html);
-				$(".item-scope-checker").off().click(function(){ toogleScopeMultiscope( $(this).data("scope-value")) });
-				$(".item-scope-deleter").off().click(function(){ deleteScopeInMultiscope( $(this).data("scope-value")); });
+				$("#ajaxFormModal .item-scope-checker").off().click(function(){ toogleScopeMultiscope( $(this).data("scope-value")) });
+				$("#ajaxFormModal .item-scope-deleter").off().click(function(){ dyFInputs.scopeObj.deleteScope( $(this).data("scope-value")); });
 				//showMsgInfoMultiScope("Le scope a bien été ajouté", "success");
 			}else{
 				html = "";
-				//showMsgInfoMultiScope("showScopeInMultiscope error : ce lieu n'existe pas - " + scopeValue, "error");
+				//showMsgInfoMultiScope("showScope error : ce lieu n'existe pas - " + scopeValue, "error");
 			}
 			
 			$(".tooltips").tooltip();
+		},
+		deleteScope : function (scopeValue){ 
+			mylog.log("deleteScope(scopeValue)", scopeValue);
+			if(dyFInputs.scopeObj.scopeExists(scopeValue)){
+				delete dyFInputs.scopeObj.scope[scopeValue];
+				$("[data-scope-value=\""+scopeValue+"\"]").remove();
+				//saveMultiScope();
+			}
+		},
+		showCountScope : function (){
+			mylog.log("showCountScope");
+			var count = 0; 
+			var types = new Array("city", "cp", "level1", "level2", "level3", "level4");
+			$.each(dyFInputs.scopeObj.scope, function(key, value){
+				if(value.active==true) count++;
+				var levelType = ( (value.type == "zone") ? "level"+value.level : value.type ) ;
+				if(types.indexOf(levelType)>-1)
+					types.splice(types.indexOf(levelType), 1);
+			});
+			$.each(types, function(key, value){
+				$("#ajaxFormModal #multi-scope-list-"+value).hide();
+			});
+			$(".scope-count").html(count);
+			//showTagsScopesMin(".list_tags_scopes");
+			showEmptyMsg();
 		}
     },
     //produces 
@@ -3217,7 +3544,17 @@ var dyFInputs = {
         inputType : "array",
         value : [],
         init:function(){
-            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",0);	
+            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);	
+        }
+    },
+    videos : {
+    	label : "Your media videos here",
+    	placeholder : tradDynForm["sharevideourl"]+" ...",
+        inputType : "array",
+        value : [],
+        initOptions : {type:"video",labelAdd:"Add video link"},
+        init:function(){
+            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1, "video");	
         }
     },
     urlsOptionnel : {
@@ -3225,7 +3562,7 @@ var dyFInputs = {
         placeholder : tradDynForm["urlandaddinfoandaction"],
         value : [],
         init:function(){
-            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",0);
+            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);
         	$(".urlsarray").css("display","none");	
         }
     },
@@ -3435,6 +3772,82 @@ var dyFInputs = {
 					if (endDate != "Invalid date") $('#ajaxFormModal #endDate').val(endDate);
 	    		}
 		    }
+    	};
+    	return inputObj;
+    },
+    
+    openingHours : function(checked){
+    	var inputObj = {
+    		inputType : "checkbox",
+    		label : "Availabity of your service",
+	    	checked : ( notEmpty(checked) ? checked : "" ),
+	    	init : function(){
+	    		//openingHoursResult=openingHours.init;
+	    		openingHoursResult=[
+					{"dayOfWeek":"Su","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+					{"dayOfWeek":"Mo","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+					{"dayOfWeek":"Tu","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+					{"dayOfWeek":"We","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+					{"dayOfWeek":"Th","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+					{"dayOfWeek":"Fr","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+					{"dayOfWeek":"Sa","allDay":true, "hours":[{"opens":"06:00","closes":"19:00"}]},
+				];
+	    		//jQuery.datetimepicker.setLocale('fr');
+	    		//$('.changeTime').datetimepicker({format:"HH:MM"});
+	    		$(".btn-select-day").click(function(){
+	    			key=$(this).data("key");
+	    			if($(this).hasClass("active")){
+	    				$(this).removeClass("active");
+	    				$.each(openingHoursResult, function(e,v){
+	    					if(v.dayOfWeek==key)
+	    						openingHoursResult[e].disabled=true;
+	    				});
+	    				$("#contentDays"+key).fadeOut();
+	    			}else{
+	    				$(this).addClass("active");
+	    				$.each(openingHoursResult, function(e,v){
+	    					if(v.dayOfWeek==key)
+	    						delete openingHoursResult[e].disabled;
+	    				});
+	    				$("#contentDays"+key).fadeIn();
+	    			}
+	    		});
+	    		$(".allDaysWeek").click(function(){
+	    			keyRange=$(this).data("key");
+	    			//alert(keyRange);
+	        		if($(this).is(':checked')){
+	        			$("#hoursRange"+keyRange).fadeOut("slow");
+	        			$.each(openingHoursResult, function(e,v){
+	    					if(v.dayOfWeek==keyRange)
+	        					openingHoursResult[e].allDay=true;
+	        			});
+	        		}else{
+	        			$("#hoursRange"+keyRange).fadeIn("slow");
+	        			$.each(openingHoursResult, function(e,v){
+	    					if(v.dayOfWeek==keyRange)
+	        					openingHoursResult[e].allDay=false;
+	        			});
+	        		}
+	    		});
+	        },
+	        options: {"allWeek" : true},
+	    	"switch" : {
+	    		"onText" : tradDynForm["yes"],
+	    		"offText" : tradDynForm["no"],
+	    		"labelText":tradDynForm["allweek"],
+	    		"css":{"min-width": "300px","margin": "10px"},
+	    		"onChange" : function(){
+	    			var allWeek = $("#ajaxFormModal #openingHours").is(':checked');
+	    			$("#ajaxFormModal #openingHours").val($("#ajaxFormModal #openingHours").is(':checked'));
+	    			if (allWeek) {
+	    				$("#ajaxFormModal #selectedDays").fadeOut("slow");
+	    			} else {
+	    				$("#ajaxFormModal #selectedDays").fadeIn("slow");
+	    			}
+				    //if (startDate != "Invalid date") $('#ajaxFormModal #startDate').val(startDate);
+					//if (endDate != "Invalid date") $('#ajaxFormModal #endDate').val(endDate);
+	    		}
+		    },
     	};
     	return inputObj;
     },

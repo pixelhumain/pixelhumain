@@ -12,5 +12,6 @@ $activeModules = array(
 	"copi",
 	"sso",
 	"places",
-	"ressources"
+	"ressources",
+	'terla'
 	);

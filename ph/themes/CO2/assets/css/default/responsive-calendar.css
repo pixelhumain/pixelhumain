@@ -143,6 +143,7 @@
   border-bottom: 1px #b1b1b1 solid;
   background-color: rgba(230, 230, 230, 0.8);
   color: black;
+  margin-top: 1px;
 }
 
 .responsive-calendar.light .day.active{

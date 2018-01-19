@@ -13,8 +13,8 @@ return array(
 	"{who} join {where}" => "{who} ont rejoint {where}",
 	"{who} contributes {where}" => "{who} contribue à {where}",
 	"{who} contribute {where}" => "{who} contribuent à {where}",
-	"{who} becomes administrator of {where}" => "{who} est devenu(e) administeur(trice) de {where}",
-	"{who} become administrator of {where}" => "{who} sont devenu(e)s administeur(trice)s de {where}",
+	"{who} becomes administrator of {where}" => "{who} est devenu·e administeur·trice de {where}",
+	"{who} become administrator of {where}" => "{who} sont devenu·e·s administeur·trice·s de {where}",
 	//ASK
 	"{who} wants to join {where}"=> "{who} veut rejoindre {where}",
 	"{who} want to join {where}"=> "{who} veulent rejoindre {where}",

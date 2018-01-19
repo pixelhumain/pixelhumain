@@ -159,12 +159,11 @@ class DataValidator {
 	*/
 	public static function validate( $type, $values, $import = null ) 
 	{
-		//var_dump($type); return;
-		//var_dump($type);
+		
 		$dataBinding = $type::$dataBinding;
 		//var_dump($dataBinding); return;
 		//var_dump($values); return;
-		
+
 		$res = array("result"=>true);
 		foreach ( $values as $key => $value ) 
 		{

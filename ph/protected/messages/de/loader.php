@@ -10,5 +10,6 @@
 		"Contribute"=>"Beitrag spenden",
 		"Member ( 1€/month )"=>"Mitglied ( 1€/ Monat )",
 		"Sponsor ( 50€/month )"=>"Sponsor ( 50€/ Monat )",
+		"Make a donation" => "Schenken Sie uns Geld",
 	);
 ?>
