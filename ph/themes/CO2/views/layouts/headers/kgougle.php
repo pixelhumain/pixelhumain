@@ -37,6 +37,10 @@
 
     }
 
+    .subModuleTitle{
+        padding-top:30px;
+    }
+
 
     @media (max-width: 768px) {
         .link-submenu-header span{
@@ -45,7 +49,7 @@
     }
 
 </style>
-<h1 class="text-red homestead margin-bottom-15">
+<h1 class="text-red homestead margin-bottom-15 hidden">
     <span id="main-scope-namea">
     <span class="menu-btn-back-category">
     <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo.png"
@@ -54,10 +58,10 @@
     </span>
 </h1>
 
-<span class="pastille-subdomain font-blackoutT text-red"><?php echo @$subdomainName; ?></span>
+<span class="pastille-subdomain font-blackoutT text-red hidden"><?php echo @$subdomainName; ?></span>
 
 
-<div class="text-dark moduleTitle font-montserrat">
+<div class="text-dark moduleTitle font-montserrat hidden">
     <i class="fa fa-<?php echo @$icon; ?>"></i>
     <?php echo @$mainTitle; ?>     
 </div>

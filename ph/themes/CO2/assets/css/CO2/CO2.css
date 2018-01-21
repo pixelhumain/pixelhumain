@@ -231,11 +231,12 @@ section {
     color: #e6344d !important;
 }
 #territorial-menu{
-	margin-left:6%;
+	margin-left:5%;
 	margin-bottom: 0px !important;
 }
 #affix-sub-menu.affix{
-	top: 60px;
+	top: 65px;
+  	/*background-image: url("../../img/background-onepage/pattern/witewall_3.png");*/
     background-color: white;
 	-webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
@@ -244,7 +245,7 @@ section {
     z-index: 1000;
 }
 #affix-sub-menu.affix #territorial-menu {
-    background-color: white;
+    /*background-color: white;*/
 }
 #filters-menu{
 	display:none;
@@ -261,6 +262,7 @@ section {
 }
 #mainNav.affix #filters-container-menu{
 	display:block;
+	margin-left:5px;
 }
 #filters-container, #filters-container-menu{
     float: left;
@@ -291,7 +293,7 @@ section {
 	display: inline-block;
     /* float: left; */
     height: 40px;
-    text-align: -webkit-center;
+    text-align: center;
     margin-top: 5px;
     border-radius: 40px;
     width: 40px;
@@ -568,12 +570,16 @@ input#second-search-bar{
 .navbar-header .logo-menutop{
 	/*display: none;*/
 	float: left;
-	margin: 3px 5px 0 -10px;
+	margin: 10px 5px 0 -10px;
 }
 
 .navbar-custom.affix .navbar-header .logo-menutop{
-	margin: 6px 5px 0 0;
+	margin: 13px 10px 0 -10px;
 }
+
+
+
+
 
 #right_tool_map{
 	top: 60px!important;
@@ -648,6 +654,7 @@ a, a:hover, a:focus, a:active, a.active{
 	margin:0 0 15px;
 	padding:10px;
 	border-radius: 5px;
+	color: #2C3E50;
 }
 #mainCategories .portfolio .portfolio-item:hover {
 	background-color: #C8EBF5;
@@ -1343,7 +1350,7 @@ h3.title_panel_map{
   	font-size: 12px !important;
 	opacity: 0.7;
   }
-
+/*
   .btn-menu-to-app{
   	font-size: 18px;
 	padding: 3px;
@@ -1357,8 +1364,23 @@ h3.title_panel_map{
   .btn-menu-to-app.active{
 	border-bottom: 2px solid #e43636;
 	color: #ea4335!important;
-  }
+  }*/
 
+
+.btn-menu-to-app{
+        color: #666F78 !important;
+        font-size: 13px;
+        padding: 10px 15px 10px 15px;
+        border-radius: 0px;
+        font-weight: 100;
+        font-family: montserrat;
+        margin: 10px 0 0 -1px;
+        border-bottom: 1px solid transparent;
+    }
+    .btn-menu-to-app.active, .btn-menu-to-app:hover, .btn-menu-to-app:focus{
+        border-bottom: 1px solid #e43636;
+        color: #ea4335!important;
+    }
 
 #main-search-bar-addon{
     cursor: pointer;
@@ -1473,10 +1495,12 @@ margin-right: 5px;
 
 .btn-select-filliaire{
 	border-color: transparent;
-	text-transform: uppercase;
+	text-transform: none !important;
 	background-color: #F2F2F2;
 	margin-bottom: 5px;
 	border-radius: 10px;
+	font-family: "montserrat";
+	font-weight: 200 !important;
 }
 .btn-select-filliaire:hover {
     background-color: #DADADA;
@@ -1685,5 +1709,9 @@ margin-right: 5px;
 
 	#affix-sub-menu.affix{
 		top: 45px;
+	}
+
+	.btn-menu-to-app{
+		font-size:18px;
 	}
 }

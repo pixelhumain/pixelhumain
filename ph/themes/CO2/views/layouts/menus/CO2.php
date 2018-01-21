@@ -1,15 +1,15 @@
 <style>
     a.link-submenu-header{
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: 10px;
-        padding: 6px 8px;
+        /*background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;*/
+        padding: 11px 10px;
         font-size: 11px;
     }
     a.link-submenu-header.active, 
     a.link-submenu-header:hover, 
     a.link-submenu-header:active{  
         border-bottom: 2px solid #ea4335;
-        background-color: rgba(255, 255, 255, 1);
+        /*background-color: rgba(255, 255, 255, 1);*/
         color:#ea4335 !important;
         text-decoration: none;
     }
@@ -31,6 +31,12 @@
         width: 50px;
     }
 
+
+    .btn-star-fav {
+        font-size: 18px;
+        margin-top: 5px;
+    }
+
     @media (max-width: 767px) {
         /*#main-input-group{
             margin-top:10px;
@@ -46,8 +52,11 @@
             <a href="#" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" 
                 <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
             >
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-head-search.png" 
+                     class="logo-menutop pull-left hidden-xs hidden-sm" height=17>
+
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
-                     class="logo-menutop pull-left" height=30>
+                     class="logo-menutop pull-left visible-xs visible-sm" height=25>
             </a>
             <span class="hidden-xs skills font-montserrat"><?php echo Yii::t("common",$mainTitle); ?></span>
             <?php 
@@ -67,6 +76,7 @@
 
         <?php if( $subdomain == "search" ||
                 $subdomain == "ressource" ||
+                $subdomain == "web" ||
                 $subdomain == "territorial" ||
                   $subdomain == "agenda" ||
                   $subdomain == "live" ||
@@ -338,6 +348,16 @@
                 <div class="visible-xs visible-sm append-small-login hidden"></div>
             <?php } ?>
         </div>
+
+        <?php if($subdomain == "web"){ ?>
+            <button class="btn btn-link letter-yellow tooltips btn-star-fav pull-right font-montserrat"  
+                    data-placement="bottom" title="Gérer vos favoris"
+                    data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i>
+            </button>   
+        <?php }//else{ ?>
+
+
+
         <?php if( $subdomain == "welcome" || $subdomain=="page" ){ ?>
         <a href="#territorial" class="lbh text-red bg-white padding-5 pull-right" id="btn-territorial-modules">
          <i class="fa fa-globe"></i> <?php echo Yii::t("common", "Co.<span class='text-dark'>search</span> Engine") ?>

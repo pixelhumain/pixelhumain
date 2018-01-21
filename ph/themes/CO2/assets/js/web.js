@@ -75,7 +75,7 @@ function startWebSearch(search, category){
     $("#second-search-bar").val(search);
     $("#mainCategories").hide();
     $("#sectionSearchResults").removeClass("hidden");
-    $("#searchResults").html("<div class='col-md-12 margin-top-25'>"+
+    $("#searchResults").html("<div class='col-md-12 margin-top-50'>"+
                                 "<i class='fa fa-spin fa-refresh'></i> recherche en cours. Merci de patienter quelques instants..."+
                              "</div>");
 
@@ -124,10 +124,10 @@ function buildListCategories(){
 
                         '<div class="container">'+
                             '<div class="row">'+
-                                '<div class="col-lg-12 text-center">'+
-                                    '<h3 class="letter-'+params.color+'">'+
-                                        'Recherche '+name+
-                                    '</h3>'+
+                                '<div class="col-lg-12 text-left">'+
+                                    '<h4 class="letter-'+params.color+' margin-left-25">'+
+                                        '<i class="fa fa-chevron-down"></i> Recherche '+name+
+                                    '</h4>'+
                                     '<hr class="angle-down">'+
                                 '</div>'+
                             '</div>'+
@@ -135,16 +135,15 @@ function buildListCategories(){
 
         $.each(params.items, function(keyC, val){
             //console.log(keyC, val);
-            html +=             '<div class="col-md-3 col-sm-4 col-xs-6 portfolio-item">'+
-                                    '<button class="portfolio-link category-search-link" data-category="'+val.name+'">'+
+            html +=             '<button class="col-md-3 col-sm-4 col-xs-6 portfolio-item portfolio-link category-search-link"'+
+                                        ' data-category="'+val.name+'">'+
                                         '<div class="caption">'+
                                             '<div class="caption-content">'+
                                             '</div>'+
                                         '</div>'+
                                         '<i class="fa fa-'+val.faIcon+' fa-2x"></i>'+
                                         '<h4>'+val.name+'</h4>'+
-                                    '</button>'+
-                                '</div>'
+                                '</button>'
         });
 
         html +=             '</div>' + 

@@ -1,7 +1,7 @@
 <style>
     .label-qdj{
         font-size:30px;
-        margin-top:-45px;
+        margin-top:65px;
         margin-bottom:5px;
         padding:25px 0 0 0;
         border:5px solid black;
@@ -59,7 +59,7 @@
 @media (max-width: 768px) {
     .label-qdj{
         font-size:20px;
-        margin-top:-25px;
+        margin-top:15px;
         margin-bottom:5px;
     }
     .label-qdj h1{

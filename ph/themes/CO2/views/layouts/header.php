@@ -14,9 +14,17 @@
     
     .filters-type-container{
         background-color: white;
+        margin-left:5%;
+        margin-top:17px!important;
     }
-    .filters-type-container #sub-menu-filliaire, .filters-type-container #container-scope-filter{
+    .filters-type-container #sub-menu-filliaire{
         display:none;
+        padding: 5px 0 0 5px;
+    }
+    .filters-type-container #container-scope-filter{
+        display:none;
+        max-height: 50px !important;
+        overflow: hidden;
     }
     #container-scope-filter .dropdown-result-global-search{
         position: absolute;
@@ -38,14 +46,17 @@
     }
     #communexion-container, #multiscope-container, #opensearch-scope-container{
         display:none;
+        margin-top:9px;
+        text-align: left;
     }
     .btn-scope-menu{
-        height: 40px;
-        font-size: 15px;
+        height: 50px;
+        font-size: 17px;
         border: 1px solid rgba(0,0,0,.1);
         -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
         box-shadow: 0 0px 1px rgba(0,0,0,.1);
         line-height: 40px;
+        padding-top: 4px;
     }
     .btn-scope-menu.active{
         color:white;
@@ -308,6 +319,25 @@
                     </div>
                 </div>
             </div>
+                            <div id="territorial-menu" class="col-md-10 col-sm-10 col-xs-12 margin-bottom-10 no-padding">
+                                <?php //if(false){
+                                        $params = CO2::getThemeParams();
+                                        foreach (/*array_reverse*/($params["pages"]) as $key => $value) {
+                                        if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
+                                            class="<?php echo $key; ?>ModBtn lbh btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header
+                                        <a href="<?php echo $key; ?>" 
+                                            data-placement="bottom" title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
+                                                    <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"
+                                            <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+                                            <span class=""><?php echo Yii::t("common", $value["subdomainName"]); ?></span>
+
+                                            <span class="<?php echo $value["notif"]; ?> topbar-badge badge animated bounceIn badge-warning"></span>
+                                            <?php if(@$value["notif"]){ ?>
+                                            <?php } ?>
+                                        </a>  
+                                    <?php   }} ?>
+                                <?php //} ?>
+                            </div>
         </div>
     </div>    
     <?php } ?>
@@ -326,7 +356,8 @@
     var page="<?php echo $page ?>";
     jQuery(document).ready(function() {
         searchInitApp(search);
-        $("."+page+"-menu-btn").addClass("active");
+        //$("."+page+"-menu-btn").addClass("active");
+
         $(".btn-open-filliaire").click(function(){
             if($(".scope-header-filter").hasClass("active")){
                 $("#container-scope-filter").hide(700);
