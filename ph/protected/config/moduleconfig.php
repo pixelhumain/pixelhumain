@@ -10,8 +10,9 @@ $activeModules = array(
 	"cotools",
 	"learn",
 	"copi",
-	"sso",
+	"connect",
 	"places",
 	"ressources",
+	"classifieds",
 	'terla'
 	);
