@@ -52,8 +52,15 @@
         background-color: #ea4335;
     }
     #open-scope-container #searchOnCity{
-        height: 40px;
-        border-radius:0px !important;
+        height: 30px;
+        border-radius: 0px !important;
+        border: none;
+    }
+    #open-scope-container .shadow-input-header{
+         -webkit-box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5);
+        box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5);
+       
     }
     .btn-menu-to-app{
         color: #2C3E50 !important;
@@ -65,6 +72,34 @@
         border-bottom: 2px solid #e43636;
         color: #ea4335!important;
     }
+    #filters-menu-new{
+        margin-left: 5%;
+    }
+    #filters-menu-new #input-sec-search{
+        display:inline-block;
+        display:-webkit-inline-box;
+    }
+    #filters-menu-new #input-sec-search .input-group-addon{
+        background-color: #eee !important;
+        border: none;
+    }
+    #filters-menu-new .dropdown-result-global-search{
+        position: absolute;
+        max-height: 250px !important;
+        top: 35px;
+        z-index: 100;
+        background-color: white;
+        width: 100%;
+        float: left;
+        overflow-y: auto;
+        -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        left: 0px;
+    }
+   #open-breacrum-container{
+    text-align: left;
+    line-height: 30px;
+   }
 </style>
 
     <?php 
@@ -124,7 +159,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                             <div class="input-group" id="main-input-group"  style="width:80%;float: left;margin-left: 5%;">
                                 <input type="text" class="form-control" id="main-search-bar" 
-                                    placeholder="search by name or by #tag, ex: 'commun' or '#commun'">
+                                    placeholder="Search by name or by #tag, ex: 'commun' or '#commun'">
                                 <span class="bg-white input-group-addon" id="main-search-bar-addon">
                                     <i class="fa fa-search"></i>
                                 </span>
@@ -145,9 +180,24 @@
         </div>
     </div>
         <div id="affix-sub-menu">
-        <div id="filters-menu" class="filters-type-container col-md-12 col-sm-12 col-xs-12 no-padding margin-top-5">
+            <div id="filters-menu-new" class="col-md-12 col-sm-12 col-xs-12 margin-top-5">
+                <div id="open-scope-container" class="container-scope-menu no-padding">
+                    <div id="input-sec-search" class="hidden-xs col-xs-12 col-md-4 col-sm-4 col-lg-4">
+                        <div class="input-group shadow-input-header">
+                              <span class="input-group-addon"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i></span>
+                              <input type="text" class="form-control input-global-search" id="searchOnCity" placeholder="<?php echo Yii::t("common","Search a city") ?> ...">
+                        </div>
+                        <div class="dropdown-result-global-search col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding" style="max-height: 70%; display: none;"><div class="text-center" id="footerDropdownGS"><label class="text-dark"><i class="fa fa-ban"></i> Aucun résultat</label><br></div></div>
+                        </div>
+                    <div id="open-breacrum-container" class="col-md-8 col-sm-8 col-xs-12">
+                        <?php echo Yii::t("common", "Search a city to find all zones corresponding and add to favorites") ?>
+                    <?php //$this->renderPartial($layoutPath.'breadcrum_communexion', array("type"=>@$type)); ?>
+                    </div>
+                </div>
+            </div>
+            <div id="filters-menu" class="filters-type-container col-md-12 col-sm-12 col-xs-12 no-padding margin-top-5">
                 <?php if(@Yii::app()->session["userId"]) $containerClass="col-md-9 col-sm-9 col-xs-12";  else $containerClass="col-md-10 col-sm-10 col-xs-12"; ?>
-                <div id="container-scope-filter"  class="col-md-12 col-sm-12 col-xs-12 no-padding">
+               <!-- <div id="container-scope-filter"  class="col-md-12 col-sm-12 col-xs-12 no-padding">
                     <a href="javascript:;" class="activate-open-scope btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-1"
                         data-toggle="tooltip" data-placement="bottom" title="Searching on all cities" onclick="activateScopeMenu('open-scope');">
                         <i class="fa fa-search"></i>
@@ -175,11 +225,11 @@
                     <a href="javascript:;" class="activate-multiscope btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-1"
                         data-toggle="tooltip" data-placement="top" title="My multiscope" onclick="activateScopeMenu('multiscope');">
                         <i class="fa fa-map-signs"></i>
-                        <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=25>-->
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=25>
                     </a>
                     
                     <div id="multiscope-container" class="container-scope-menu <?php echo $containerClass ?>"></div>
-                </div>
+                </div>-->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center subsub" id="sub-menu-filliaire">
                     <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
                     foreach ($filliaireCategories as $key => $cat) { 
@@ -327,11 +377,11 @@
               
             startSearch(0, indexStepInit, searchCallback);
             //KScrollTo("#content-social");
-            bindCommunexionScopeEvents();
+            //bindCommunexionScopeEvents();
             //KScrollTo("#before-section-result");
             });
 
-        loadMultiScopes();
+        //loadMultiScopes();
         mylog.log("communexionActivated ok", myScopes.communexion, myScopes.communexion.state);
         initScopeMenu();
         //if(communexion.value == null){
@@ -357,19 +407,21 @@
         if(typeof myScopes.type != "undefined")
             activateScope=myScopes.type;
         else
-            activateScope="open-scope";
+            activateScope="open";
+        myScopes.type="open";
         activateScopeMenu(activateScope,true);
         bindSearchCity();
         headerActive=true;
-        if(myScopes.type=="multiscope")
-            headerActive=false;
-        activateGlobalCommunexion(headerActive, true);
+        /*if(myScopes.type=="multiscope")
+            headerActive=false;*/
+            bindScopesInputEvent();
+        //activateGlobalCommunexion(headerActive, true);
         //bindCommunexionScopeEvents();
-        if(userId!="")
+        /*if(userId!="")
             $("#communexion-container").html(getBreadcrumCommunexion(myScopes.communexion));
         if(typeof myScopes.open.currentValues != "undefined")
-            $("#open-scope-container").html(getBreadcrumCommunexion(myScopes.open));
-        showTagsScopesMin();
+            $("#open-scope-container").html(getBreadcrumCommunexion(myScopes.open));*/
+        //showTagsScopesMin();
         //bindScopeMenu();
     }
     function activateScopeMenu(type,init){

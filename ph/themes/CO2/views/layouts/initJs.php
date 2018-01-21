@@ -146,6 +146,9 @@
                 if(myScopes.type=="open-scope")
                     myScopes.state=false;
                 myScopes.open={};
+                if(myScopes.multiscopes==null)
+                    myScopes.multiscopes={};
+                myScopes.type="open-scope";
             }else{
                 myScopes={
                     state:"open",
