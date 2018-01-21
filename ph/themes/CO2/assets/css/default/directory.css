@@ -103,7 +103,7 @@
 .searchEntity .entityCenter{
   text-align: left;
   max-width: 100%;
-  width: 100%;
+  /*width: 100%;*/
   margin-top:-60px;
 }
 .searchEntity .entityCenter i.fa, 
@@ -176,6 +176,100 @@
 .searchEntity .entityRight{
   text-align: left;
 }
+
+.searchEntity.entityLight,
+.searchEntity.entityLight:hover{
+  box-shadow:none!important;
+  background-color: transparent!important;
+  /*padding-left:40px!important;*/
+  margin-bottom:20px!important;
+}
+
+
+.searchEntity.entityLight .iconType{
+  text-align: center!important;
+}
+
+.searchEntity.entityLight a.title{
+  font-size:17px !important;
+  font-weight: 200 !important;
+}
+.searchEntity.entityLight .tagsContainer span.text-red{
+  color:grey !important;
+}
+
+.searchEntity.entityLight .textNews{
+  max-width: 70%;
+  max-height: 150px;
+  padding: 0 0 5px 15px;
+  overflow: hidden;
+  display: inline-table;
+  font-weight: 200;
+  display: inline-block;
+  border-left: 2px solid lightgray;
+}
+
+.searchEntity.entityLight .entityLeft{
+  min-height: 100px;
+}
+
+.searchEntity.entityLight .entityCenter{
+  margin-top: 10px;
+  /*width:unset;*/
+}
+.searchEntity.entityLight .entityCenter .iconType i.fa,
+.searchEntity.entityLight .entityCenter .container-img-profil{
+  margin-right: 10px;
+}
+
+.searchEntity.entityLight .entityCenter a.url{
+  font-size:12px;
+  font-weight:200;
+}
+.searchEntity.entityLight .entityCenter i.fa{
+  font-size:1.2em;
+  height:unset;
+  width:unset;
+  padding:unset;
+}
+.searchEntity.entityLight .entityCenter .description{
+  font-size:13px;
+  color: #606060;
+  max-height: 150px;
+  overflow:hidden;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+
+.searchEntity.entityLight .container-img-profil .imgEmpty,
+.searchEntity.entityLight .container-img-profil img.thumbnailProfil,
+.searchEntity.entityLight .container-img-profil .fa-image{
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 0px !important;
+  border: 3px solid white;
+  margin-bottom: 0px;
+  padding:0px;
+  background-color: #dedede;
+  font-size: 15px !important;
+  display: inline-block;
+}
+.searchEntity.entityLight .container-img-profil .fa-image{
+  padding-top:11px;
+}
+
+.searchEntity.entityLight .container-img-profil .imgEmpty{
+  background-color: transparent;
+}
+
+.searchEntity.entityLight .btn-tag{
+  background-color: white;
+  padding:0px;
+  margin:0 10px 0 0;
+}
+
+
 
 .event .searchEntity .entityName{
   font-size:20px;
@@ -432,7 +526,7 @@
     border: 3px solid white;
     margin-bottom: 8px;
     padding:0px;
-    background-color: #393737;
+    background-color: #dedede;
     font-size: 28px !important;
   }
   
@@ -583,6 +677,17 @@
       right: 0px;
       z-index:9px !important;
   }*/
+
+
+  .searchEntity.entityLight,
+  .searchEntity.entityLight:hover{
+    padding-left:10px!important;
+  }
+
+
+  .searchEntity.entityLight .textNews{
+    max-width: 65%;
+    font-size: 12px;
 }
 
 .favSectionBtn{
