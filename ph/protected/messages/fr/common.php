@@ -1301,7 +1301,12 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Guide and helper" 	=> "Guide et accompagnateur",
 
 	"Freedom" => "Freedom",
+
+	"This request is too short !" => "Cette recherche est trop courte !",
 	
-	"folder fee included and delivery tax not included" => "folder fee included and delivery tax not included"
+	"folder fee included and delivery tax not included" => "folder fee included and delivery tax not included",
+
+	"previous" => "précédent",
+	"next" => "suivant"
 );
 ?>

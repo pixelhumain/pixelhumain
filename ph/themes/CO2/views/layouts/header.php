@@ -63,13 +63,17 @@
        
     }
     .btn-menu-to-app{
-        color: #2C3E50 !important;
-        font-size: 16px;
-        padding: 6px 5px 5px 5px;
+        color: #666F78 !important;
+        font-size: 13px;
+        padding: 10px 15px 10px 15px;
         border-radius: 0px;
+        font-weight: 100;
+        font-family: montserrat;
+        margin: 10px 0 0 -1px;
+        border-bottom: 1px solid transparent;
     }
-    .btn-menu-to-app.active, .btn-menu-to-app:hover{
-        border-bottom: 2px solid #e43636;
+    .btn-menu-to-app.active, .btn-menu-to-app:hover, .btn-menu-to-app:focus{
+        border-bottom: 1px solid #e43636;
         color: #ea4335!important;
     }
     #filters-menu-new{
@@ -100,64 +104,77 @@
     text-align: left;
     line-height: 30px;
    }
+
+    #main-input-group{
+        float: left;
+        margin-left: 5%;
+    }
+
+    header{
+        padding-bottom: 15px;
+    }
+
+    #filters-container ul li{
+        cursor: pointer;
+    }
 </style>
 
-    <?php 
-        $params = CO2::getThemeParams();
-        
-        if(@$type=="cities")    { 
-            $lblCreate = "";
-            $params["pages"]["#".$page]["mainTitle"] = "Rechercher une commune"; 
-            $params["pages"]["#".$page]["placeholderMainSearch"] = "Rechercher une commune"; 
-        }
+<?php 
+    $params = CO2::getThemeParams();
+    
+    if(@$type=="cities")    { 
+        $lblCreate = "";
+        $params["pages"]["#".$page]["mainTitle"] = "Rechercher une commune"; 
+        $params["pages"]["#".$page]["placeholderMainSearch"] = "Rechercher une commune"; 
+    }
 
-        $useHeader              = $params["pages"]["#".$page]["useHeader"];
-        $subdomain              = $params["pages"]["#".$page]["subdomain"];
-        $subdomainName          = $params["pages"]["#".$page]["subdomainName"];
-        $icon                   = $params["pages"]["#".$page]["icon"];
-        $mainTitle              = $params["pages"]["#".$page]["mainTitle"];
-        $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
-        $CO2DomainName = Yii::app()->params["CO2DomainName"];
-        $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
-            $this->renderPartial($layoutPath.'menus/'.$CO2DomainName, 
-                                                    array( "layoutPath"=>$layoutPath , 
-                                                            "subdomain"=>$subdomain,
-                                                            "subdomainName"=>$subdomainName,
-                                                            "mainTitle"=>$mainTitle,
-                                                            "placeholderMainSearch"=>$placeholderMainSearch,
-                                                            "type"=>@$type,
-                                                            "me" => $me) );
-        $cities = [];//CO2::getCitiesNewCaledonia();
-                        $this->renderPartial($layoutPath.'scopes/'.$CO2DomainName.'/multi_scope', 
-                                array(  "cities"=>$cities, "me"=>$me));
-    ?>
+    $useHeader              = $params["pages"]["#".$page]["useHeader"];
+    $subdomain              = $params["pages"]["#".$page]["subdomain"];
+    $subdomainName          = $params["pages"]["#".$page]["subdomainName"];
+    $icon                   = $params["pages"]["#".$page]["icon"];
+    $mainTitle              = $params["pages"]["#".$page]["mainTitle"];
+    $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
+    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+        $this->renderPartial($layoutPath.'menus/'.$CO2DomainName, 
+                                                array( "layoutPath"=>$layoutPath , 
+                                                        "subdomain"=>$subdomain,
+                                                        "subdomainName"=>$subdomainName,
+                                                        "mainTitle"=>$mainTitle,
+                                                        "placeholderMainSearch"=>$placeholderMainSearch,
+                                                        "type"=>@$type,
+                                                        "me" => $me) );
+    $cities = [];//CO2::getCitiesNewCaledonia();
+    $this->renderPartial($layoutPath.'scopes/'.$CO2DomainName.'/multi_scope', 
+            array(  "cities"=>$cities, "me"=>$me));
+?>
 
-    <!-- Header -->
+<!-- Header -->
 
-    <header>
-        <?php if(@$useHeader != false){ ?>
-            <!--<div class="col-md-12 text-center main-menu-app" style="">-->
-                <?php 
-                    /*$this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
-                                                                                "subdomain"  => $subdomain));*/
-                ?>
-            <!--</div>-->
-            <div class="">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="intro-text">  
+<header>
+    <?php if(@$useHeader != false){ ?>
+    <!--<div class="col-md-12 text-center main-menu-app" style="">-->
+        <?php 
+            /*$this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
+                                                                        "subdomain"  => $subdomain));*/
+        ?>
+    <!--</div>-->
+    <div class="">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="intro-text">  
 
-                            <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"], 
-                                                        array("mainTitle"=>$mainTitle,
-                                                              "icon"=>$icon,
-                                                              "subdomainName"=>$subdomainName,
-                                                              "subdomain"=>$subdomain,
-                                                              "type"=>@$type,
-                                                              "explain"=>@$explain)); ?>
+                    <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"], 
+                                                array("mainTitle"=>$mainTitle,
+                                                      "icon"=>$icon,
+                                                      "subdomainName"=>$subdomainName,
+                                                      "subdomain"=>$subdomain,
+                                                      "type"=>@$type,
+                                                      "explain"=>@$explain)); ?>
 
-                            <div class="subModuleTitle">  
-                            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                            <div class="input-group" id="main-input-group"  style="width:80%;float: left;margin-left: 5%;">
+                    <div class="subModuleTitle">  
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <div class="input-group col-xs-7 col-sm-8 col-md-8" id="main-input-group"  style="">
                                 <input type="text" class="form-control" id="main-search-bar" 
                                     placeholder="Search by name or by #tag, ex: 'commun' or '#commun'">
                                 <span class="bg-white input-group-addon" id="main-search-bar-addon">
@@ -188,7 +205,6 @@
                               <input type="text" class="form-control input-global-search" id="searchOnCity" placeholder="<?php echo Yii::t("common","Search a city") ?> ...">
                         </div>
                         <div class="dropdown-result-global-search col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding" style="max-height: 70%; display: none;"><div class="text-center" id="footerDropdownGS"><label class="text-dark"><i class="fa fa-ban"></i> Aucun résultat</label><br></div></div>
-                        </div>
                     <div id="open-breacrum-container" class="col-md-8 col-sm-8 col-xs-12">
                         <?php echo Yii::t("common", "Search a city to find all zones corresponding and add to favorites") ?>
                     <?php //$this->renderPartial($layoutPath.'breadcrum_communexion', array("type"=>@$type)); ?>
@@ -206,9 +222,8 @@
                         <div id="input-sec-search" class="hidden-xs col-xs-12 col-md-4 col-lg-4">
                             <input type="text" class="form-control input-global-search" id="searchOnCity" placeholder="Go to city ?">
                             <div class="dropdown-result-global-search col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding" style="max-height: 70%; display: none;"><div class="text-center" id="footerDropdownGS"><label class="text-dark"><i class="fa fa-ban"></i> Aucun résultat</label><br></div></div>
+                        </div>
                             </div>
-                        <div id="open-breacrum-container" class="col-md-8 col-sm-8 col-xs-12">
-                        <?php //$this->renderPartial($layoutPath.'breadcrum_communexion', array("type"=>@$type)); ?>
                         </div>
                     </div>
                    
@@ -247,70 +262,65 @@
                     } ?>
                 </div>
         </div>
-        <div id="territorial-menu" class="col-md-10 col-sm-10 col-xs-12 margin-bottom-10 no-padding">
-            <a href="#territorial" class="territorial-menu-btn lbh btn-menu-to-app hidden-top pull-left
-                                 tooltips" data-placement="bottom" data-original-title="Territorial engine">
-                <i class="fa fa-search"></i>
-                <span class="hidden-xs">All</span> 
-            </a>
-            <a href="#search" class="search-menu-btn lbh btn-menu-to-app pull-left hidden-top 
-                                 tooltips" data-placement="bottom" data-original-title="Social connect">
-                        <i class="fa fa-connectdevelop"></i>
-                         <span class="hidden-xs">Social</span>
-                         <span class="badge badge-warning count-badge-menu count-badge-social"></span> 
-            </a>
-            <a href="#live" class="live-menu-btn lbh btn-menu-to-app pull-left hidden-top 
-                                 tooltips" data-placement="bottom" data-original-title="Live">
-                        <i class="fa fa-newspaper-o"></i>
-                         <span class="hidden-xs">Live</span>
-                         <span class="badge badge-warning count-badge-menu count-badge-live"></span> 
-                                        </a>
-            <a href="#agenda" class="agenda-menu-btn lbh btn-menu-to-app pull-left hidden-top
-                                 tooltips" data-placement="bottom" data-original-title="Agenda">
-                        <i class="fa fa-calendar"></i>
-                        <span class="hidden-xs">Agenda</span> 
-                        <span class="badge badge-warning count-badge-menu count-badge-agenda"></span>
-                                        </a>
-            <!--<a href="#place" class="#agendaModBtn lbh btn btn-link letter-red btn-menu-to-app  pull-left hidden-top hidden-xs
-                                 tooltips" data-placement="bottom" data-original-title="Agenda">
-                        <i class="fa fa-bullhorn"></i>
+        
+                            <div id="territorial-menu" class="col-md-10 col-sm-10 col-xs-12 margin-bottom-10 no-padding">
+                                <a href="#territorial" class="territorial-menu-btn lbh btn-menu-to-app hidden-top pull-left
+                                                     tooltips" data-placement="bottom" data-original-title="Territorial engine">
+                                    <i class="fa fa-search"></i>
+                                    <span class="hidden-xs"><?php echo Yii::t("common","All") ?></span> 
+                                </a>
+                                <a href="#search" class="search-menu-btn lbh btn-menu-to-app pull-left hidden-top 
+                                                     tooltips" data-placement="bottom" data-original-title="Social connect">
+                                            <i class="fa fa-connectdevelop"></i>
+                                             <span class="hidden-xs"><?php echo Yii::t("common","Pages CO") ?></span>
+                                             <span class="badge badge-warning count-badge-menu count-badge-social"></span> 
+                                </a>
+                                <a href="#live" class="live-menu-btn lbh btn-menu-to-app pull-left hidden-top 
+                                                     tooltips" data-placement="bottom" data-original-title="Live">
+                                            <i class="fa fa-newspaper-o"></i>
+                                             <span class="hidden-xs"><?php echo Yii::t("common","Live") ?></span>
+                                             <span class="badge badge-warning count-badge-menu count-badge-live"></span> 
+                                </a>
+                                <a href="#agenda" class="agenda-menu-btn lbh btn-menu-to-app pull-left hidden-top
+                                                     tooltips" data-placement="bottom" data-original-title="Agenda">
+                                            <i class="fa fa-calendar"></i>
+                                            <span class="hidden-xs"><?php echo Yii::t("common","Agenda") ?></span> 
+                                            <span class="badge badge-warning count-badge-menu count-badge-agenda"></span>
+                                </a>
+                                
+                                <a href="#ressource" class="ressource-menu-btn lbh btn-top-menu btn-menu-to-app pull-left hidden-top
+                                                     tooltips" data-placement="bottom" data-original-title="Agenda">
+                                    <i class="fa fa-cubes"></i>
 
-                        <span class="">Lieux et intérêts</span>
-                                        </a>-->
-            <a href="#ressource" class="ressource-menu-btn lbh btn-top-menu btn-menu-to-app pull-left hidden-top
-                                 tooltips" data-placement="bottom" data-original-title="Agenda">
-                <i class="fa fa-cubes"></i>
+                                    <span class="hidden-xs"><?php echo Yii::t("common","Entraide") ?></span>
+                                    <span class="badge badge-warning count-badge-menu count-badge-ressources"></span>
+                                </a>
+                                <a href="#annonces" class="annonces-menu-btn lbh btn-top-menu btn-menu-to-app pull-left hidden-top
+                                             tooltips" data-placement="bottom" data-original-title="Agenda">
+                                    <i class="fa fa-bullhorn"></i>
+                                    <span class="hidden-xs"><?php echo Yii::t("common","Classified") ?></span>
+                                    <span class="badge badge-warning count-badge-menu count-badge-classifieds"></span>
+                                </a>
+                            </div>
 
-                <span class="hidden-xs">Entraide</span>
-                <span class="badge badge-warning count-badge-menu count-badge-ressources"></span>
-            </a>
-            <a href="#annonces" class="annonces-menu-btn lbh btn-top-menu btn-menu-to-app pull-left hidden-top
-                         tooltips" data-placement="bottom" data-original-title="Agenda">
-                <i class="fa fa-money"></i>
-                <span class="hidden-xs">Market</span>
-                <span class="badge badge-warning count-badge-menu count-badge-classifieds"></span>
-            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    
-    
-    
-                      
-        <?php } ?>
+    </div>    
+    <?php } ?>
 
-        <?php 
-            $CO2DomainName = Yii::app()->params["CO2DomainName"];
-            if($subdomain == "freedom"){ 
-                $this->renderPartial($layoutPath.'headers/pod/'.$CO2DomainName.'/dayQuestion', array());
-            } 
-        ?>
+    <?php 
+        $CO2DomainName = Yii::app()->params["CO2DomainName"];
+        if($subdomain == "freedom"){ 
+            $this->renderPartial($layoutPath.'headers/pod/'.$CO2DomainName.'/dayQuestion', array());
+        } 
+    ?>
 
-    </header>
+</header>
      
-   
-    <?php
-            
-             ?>   
 <script type="text/javascript">
     var filliaireCategories = <?php echo json_encode(@$filliaireCategories); ?>;
     var page="<?php echo $page ?>";

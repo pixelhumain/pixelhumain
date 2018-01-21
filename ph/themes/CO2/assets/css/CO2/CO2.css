@@ -134,6 +134,10 @@ header, .header {
   color: #365766;
 }
 
+header, .header {
+  	background-image: url("../../img/background-onepage/pattern/witewall_3.png");
+}
+
 header .intro-text .name , 
 .header .intro-text .name {
     font-size: 40px;
@@ -231,7 +235,7 @@ section {
 	margin-bottom: 0px !important;
 }
 #affix-sub-menu.affix{
-	top: 67px;
+	top: 60px;
     background-color: white;
 	-webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
@@ -260,7 +264,7 @@ section {
 }
 #filters-container, #filters-container-menu{
     float: left;
-    width: 11%;
+    /*width: 11%;*/
 }
 #filters-container ul, #filters-container-menu ul{
     list-style: none;
@@ -391,12 +395,6 @@ input#second-search-bar{
 
 }
 
-
-.navbar-header .logo-menutop{
-	/*display: none;*/
-	float: left;
-	margin: 8px 5px 0 0;
-}
 .navbar-custom.affix .navbar-header .nc_map_min{
 	display: inline;
 }
@@ -570,8 +568,13 @@ input#second-search-bar{
 .navbar-header .logo-menutop{
 	/*display: none;*/
 	float: left;
-	margin: 8px 5px 0 -20px;
+	margin: 3px 5px 0 -10px;
 }
+
+.navbar-custom.affix .navbar-header .logo-menutop{
+	margin: 6px 5px 0 0;
+}
+
 #right_tool_map{
 	top: 60px!important;
 	left:unset!important;
@@ -1679,4 +1682,8 @@ margin-right: 5px;
     .col-footer a{
     	padding:10px;
     }
+
+	#affix-sub-menu.affix{
+		top: 45px;
+	}
 }
