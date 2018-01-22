@@ -181,7 +181,7 @@
 
                 <div class="margin-top-20 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center menuSection2 classifiedSection2 hidden">
                     <!-- <h5>Recherche thématique<br><i class='fa fa-chevron-down'></i></h5> -->
-                    <?php $classified = CO2::getContextList("classified"); 
+                    <?php $classified = CO2::getModuleContextList("classifieds","categories"); 
                         foreach ($classified['sections'] as $key => $cat) {   
                             if(is_array($cat)) { 
                     ?>

@@ -14,11 +14,11 @@ header, .header {
     background-image: url("../../../img/background-onepage/pattern/wave.jpg");
     background-repeat: repeat;
 }
-
+/*
 .link-submenu-header{
 	font-size: 18px;
 	font-family: BlackoutM;
-}
+}*/
 
 .main-menu-app {
     margin-bottom: 0px;
@@ -83,13 +83,13 @@ header img, .header img {
 button#open-rocketChat{
 	display: none!important;
 }
-
+/*
 .btn-menu-to-app{
 	font-size: 17px;
 	padding: 3px;
 	padding-top: 11px;
 	margin: 0 4px;
-}
+}*/
 
 
 #btn-submit-form.btn-success{
@@ -161,7 +161,7 @@ button#open-rocketChat{
 .menu-btn-back-category{
     cursor:pointer;
 }
-
+/*
 a.text-dark.link-submenu-header {
     color : #ea4335 !important;
     padding-bottom: 5px;
@@ -176,7 +176,7 @@ a.link-submenu-header:focus{
     /*background-color: rgba(255, 255, 255, 1);
     color:#ea4335 !important;
     text-decoration: none;*/
-}
+}*/
 
 .menu-name-profil small{
     max-width: 150px;
@@ -231,7 +231,7 @@ a.link-submenu-header:focus{
 	.affix .navbar-header .nc_map{
 		margin-left:0px !important;
 	}
-
+/*
 	.link-submenu-header span{
 		display: none!important;
 	}
@@ -240,7 +240,7 @@ a.link-submenu-header:focus{
 		margin-bottom: 20px;
 		display: inline-block;
 		font-size: 23px;
-	}
+	}*/
 
 	.main-menu-app{
 		padding-top: 40px;

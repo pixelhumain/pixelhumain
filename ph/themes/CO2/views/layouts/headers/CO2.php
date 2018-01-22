@@ -8,6 +8,7 @@
 	}
 	#main-scope-name{
 		font-size:30px;
+		margin-left:6%;
 	}
 
 	#btn-my-co{

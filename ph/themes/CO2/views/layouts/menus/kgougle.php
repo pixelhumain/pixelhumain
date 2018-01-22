@@ -313,7 +313,7 @@ a.link-submenu-header:focus{
             <i class="fa fa-question-circle fa-2x"></i>
         </a> -->
 
-        <div class="visible-lg visible-md">
+        <div class="hidden">
         <?php //if(false){
                 $params = CO2::getThemeParams();
                 foreach (array_reverse($params["pages"]) as $key => $value) {

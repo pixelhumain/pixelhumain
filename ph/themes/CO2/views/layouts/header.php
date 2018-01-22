@@ -14,9 +14,17 @@
     
     .filters-type-container{
         background-color: white;
+        margin-left:5%;
+        margin-top:17px!important;
     }
-    .filters-type-container #sub-menu-filliaire, .filters-type-container #container-scope-filter{
+    .filters-type-container #sub-menu-filliaire{
         display:none;
+        padding: 5px 0 0 5px;
+    }
+    .filters-type-container #container-scope-filter{
+        display:none;
+        max-height: 50px !important;
+        overflow: hidden;
     }
     #container-scope-filter .dropdown-result-global-search{
         position: absolute;
@@ -38,42 +46,33 @@
     }
     #communexion-container, #multiscope-container, #opensearch-scope-container{
         display:none;
+        margin-top:9px;
+        text-align: left;
     }
     .btn-scope-menu{
-        height: 40px;
-        font-size: 15px;
+        height: 50px;
+        font-size: 17px;
         border: 1px solid rgba(0,0,0,.1);
         -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
         box-shadow: 0 0px 1px rgba(0,0,0,.1);
         line-height: 40px;
+        padding-top: 4px;
     }
     .btn-scope-menu.active{
         color:white;
         background-color: #ea4335;
     }
     #open-scope-container #searchOnCity{
-        height: 40px;
+        height: 50px;
         border-radius:0px !important;
+        border: 0;
+        border-right: 1px solid lightgray;
     }
    
-    .btn-menu-to-app{
-        color: #666F78 !important;
-        font-size: 13px;
-        padding: 10px 15px 10px 15px;
-        border-radius: 0px;
-        font-weight: 100;
-        font-family: montserrat;
-        margin: 10px 0 0 -1px;
-        border-bottom: 1px solid transparent;
-    }
-    .btn-menu-to-app.active, .btn-menu-to-app:hover, .btn-menu-to-app:focus{
-        border-bottom: 1px solid #e43636;
-        color: #ea4335!important;
-    }
+    
 
     #main-input-group{
         float: left;
-        margin-left: 5%;
     }
 
     header{
@@ -83,6 +82,14 @@
     #filters-container ul li{
         cursor: pointer;
     }
+
+
+@media (max-width: 767px) {
+    .filters-type-container #container-scope-filter{
+        max-height: 250px !important;
+        overflow: hidden;
+    }
+}
 </style>
 
 <?php 
@@ -139,10 +146,10 @@
                                                       "explain"=>@$explain)); ?>
 
                     <div class="subModuleTitle">  
-                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <div class="col-md-10 col-sm-10 col-xs-11 text-center no-padding" style="margin-left: 5%;">
                             <div class="input-group col-xs-7 col-sm-8 col-md-8" id="main-input-group"  style="">
                                 <input type="text" class="form-control" id="main-search-bar" 
-                                    placeholder="search by name or by #tag, ex: 'commun' or '#commun'">
+                                    placeholder="<?php echo $params["pages"]["#".$page]["placeholderMainSearch"]; ?>">
                                 <span class="bg-white input-group-addon" id="main-search-bar-addon">
                                     <i class="fa fa-search"></i>
                                 </span>
@@ -150,12 +157,14 @@
 
                             <div id="filters-container" class="no-padding col-xs-4 col-sm-3 col-md-3">
                                 <ul class="filters-menu">
-                                    <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="Geographic filter">
+                                    <li class="scope-header-filter tooltips" data-placement="bottom" 
+                                        title="<?php echo Yii::t("common","Geographic filter"); ?>">
                                      <i class="fa fa-globe"></i> 
-                                     <span class="scope-filters-badge topbar-badge animated bounceIn hide badge-tranparent"></span>
+                                     <!-- <span class="scope-filters-badge topbar-badge animated bounceIn hide badge-tranparent"></span> -->
                                         <!--<span class="hidden-xs"><?php echo Yii::t("common","Geographical") ?></span>-->
                                     </li>
-                                    <li class="btn-open-filliaire tooltips" data-placement="bottom" data-original-title="Themes filter">
+                                    <li class="btn-open-filliaire tooltips" data-placement="bottom" 
+                                        title=<?php echo Yii::t("common","Themes filter"); ?>>
                                      <i class="fa fa-th"></i> 
                                         <!--<span class="hidden-xs"><?php echo Yii::t("common","Themes") ?></span>-->
                                     </li>
@@ -165,41 +174,54 @@
                         </div>
 
                         <div id="affix-sub-menu">
-
-
-                            <div id="filters-menu" class="filters-type-container shadow2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12 no-padding margin-top-5">
+                            <div id="filters-menu" class="filters-type-container shadow2 col-md-10 col-sm-10 col-xs-10 no-padding margin-top-5">
                                     <?php if(@Yii::app()->session["userId"]) $containerClass="col-md-9 col-sm-9 col-xs-12";  else $containerClass="col-md-10 col-sm-10 col-xs-12"; ?>
                                     <div id="container-scope-filter"  class="col-md-12 col-sm-12 col-xs-12 no-padding">
-                                        <a href="javascript:;" class="activate-open-scope btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-1"
-                                            data-toggle="tooltip" data-placement="bottom" title="Searching on all cities" onclick="activateScopeMenu('open-scope');">
+                                        <a href="javascript:;" 
+                                            class="activate-open-scope btn-scope-menu col-md-1 col-sm-1 col-xs-4"
+                                            data-toggle="tooltip" data-placement="bottom" 
+                                            title="<?php echo Yii::t("common","Searching on all cities"); ?>" 
+                                            onclick="activateScopeMenu('open-scope');">
                                             <i class="fa fa-search"></i>
                                         </a>
-                                        <div id="open-scope-container" class="container-scope-menu  <?php echo $containerClass ?> no-padding">
-                                            <div id="input-sec-search" class="hidden-xs col-xs-12 col-md-4 col-lg-4">
-                                                <input type="text" class="form-control input-global-search" id="searchOnCity" placeholder="Go to city ?">
-                                                <div class="dropdown-result-global-search col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding" style="max-height: 70%; display: none;"><div class="text-center" id="footerDropdownGS"><label class="text-dark"><i class="fa fa-ban"></i> Aucun résultat</label><br></div></div>
+                                       
+                                        <?php if(@Yii::app()->session["userId"]){ ?>
+                                        <a href="javascript:;" 
+                                            class="activate-communexion btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-4"
+                                            data-toggle="tooltip" data-placement="top" title="" onclick="activateScopeMenu('communexion');">
+                                            <i class="fa fa-university"></i>
+                                        </a>
+
+
+                                        
+                                        <?php } ?>
+                                        <a href="javascript:;" 
+                                            class="activate-multiscope btn-scope-menu col-md-1 col-sm-1 col-xs-4"
+                                            data-toggle="tooltip" data-placement="top" 
+                                            title="My multiscope" onclick="activateScopeMenu('multiscope');">
+                                            <i class="fa fa-map-signs"></i>
+                                            <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=25>-->
+                                        </a>
+                                        
+                                        <div id="open-scope-container" 
+                                             class="container-scope-menu  <?php echo $containerClass ?> no-padding">
+                                            <div id="input-sec-search" class="col-xs-12 col-md-4 col-lg-4">
+                                                <input type="text" class="form-control input-global-search" id="searchOnCity" placeholder="<?php echo Yii::t("common","Search city") ?>">
+                                                <div class="dropdown-result-global-search col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding" style="max-height: 70%; display: none;">
+                                                    <div class="text-center" id="footerDropdownGS">
+                                                        <label class="text-dark">
+                                                        <i class="fa fa-ban"></i> Aucun résultat</label>
+                                                        <br>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div id="open-breacrum-container" class="col-md-8 col-sm-8 col-xs-12">
                                             <?php //$this->renderPartial($layoutPath.'breadcrum_communexion', array("type"=>@$type)); ?>
                                             </div>
                                         </div>
-                                       
-                                        <?php if(@Yii::app()->session["userId"]){ ?>
-                                        <a href="javascript:;" class="activate-communexion btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-1"
-                                            data-toggle="tooltip" data-placement="top" title="" onclick="activateScopeMenu('communexion');">
-                                            <i class="fa fa-university"></i>
-                                        </a>
                                         <div id="communexion-container" class="container-scope-menu col-md-9 col-sm-9 col-xs-9">
                                             <?php //$this->renderPartial($layoutPath.'breadcrum_communexion', array("type"=>@$type)); ?>
                                         </div>
-                                        
-                                        <?php } ?>
-                                        <a href="javascript:;" class="activate-multiscope btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-1"
-                                            data-toggle="tooltip" data-placement="top" title="My multiscope" onclick="activateScopeMenu('multiscope');">
-                                            <i class="fa fa-map-signs"></i>
-                                            <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=25>-->
-                                        </a>
-                                        
                                         <div id="multiscope-container" class="container-scope-menu <?php echo $containerClass ?>"></div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center subsub" id="sub-menu-filliaire">
@@ -211,7 +233,8 @@
                                                         data-fkey="<?php echo $key; ?>"
                                                         style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
                                                         data-keycat="<?php echo $cat["name"]; ?>">
-                                                  <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo $cat["name"]; ?>
+                                                  <i class="fa <?php echo $cat["icon"]; ?> fa-2x hidden-xs"></i><br>
+                                                  <?php echo Yii::t("category", $cat["name"]); ?>
                                                 </button>
                                               </div>
                                       <?php } 
@@ -222,7 +245,24 @@
 
 
                             <div id="territorial-menu" class="col-md-10 col-sm-10 col-xs-12 margin-bottom-10 no-padding">
-                                <a href="#territorial" class="territorial-menu-btn lbh btn-menu-to-app hidden-top pull-left
+                                <?php //if(false){
+                                        $params = CO2::getThemeParams();
+                                        foreach (/*array_reverse*/($params["pages"]) as $key => $value) {
+                                        if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
+                                        <a href="<?php echo $key; ?>" 
+                                            class="<?php echo $key; ?>ModBtn lbh btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header
+                                                    <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"
+                                            data-placement="bottom" title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
+                                            <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+
+                                            <span class=""><?php echo Yii::t("common", $value["subdomainName"]); ?></span>
+                                            <?php if(@$value["notif"]){ ?>
+                                            <span class="<?php echo $value["notif"]; ?> topbar-badge badge animated bounceIn badge-warning"></span>
+                                            <?php } ?>
+                                        </a>  
+                                    <?php   }} ?>
+                                <?php //} ?>
+                                <!-- <a href="#territorial" class="territorial-menu-btn lbh btn-menu-to-app hidden-top pull-left
                                                      tooltips" data-placement="bottom" data-original-title="Territorial engine">
                                     <i class="fa fa-search"></i>
                                     <span class="hidden-xs"><?php echo Yii::t("common","All") ?></span> 
@@ -258,7 +298,7 @@
                                     <i class="fa fa-bullhorn"></i>
                                     <span class="hidden-xs"><?php echo Yii::t("common","Classified") ?></span>
                                     <span class="badge badge-warning count-badge-menu count-badge-classifieds"></span>
-                                </a>
+                                </a> -->
                             </div>
 
 
@@ -284,7 +324,8 @@
     var page="<?php echo $page ?>";
     jQuery(document).ready(function() {
         searchInitApp(search);
-        $("."+page+"-menu-btn").addClass("active");
+        //$("."+page+"-menu-btn").addClass("active");
+
         $(".btn-open-filliaire").click(function(){
             if($(".scope-header-filter").hasClass("active")){
                 $("#container-scope-filter").hide(700);
@@ -346,6 +387,8 @@
             startSearch(0, indexStepInit, searchCallback);
             //KScrollTo("#content-social");
             bindCommunexionScopeEvents();
+
+            $("#sub-menu-filliaire").hide(700);
             //KScrollTo("#before-section-result");
             });
 

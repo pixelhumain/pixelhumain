@@ -680,6 +680,7 @@ return array(
 
 	"Activity" 	=> "Activités",
 	"News Stream" 	=> "Fil d'actualité",
+	"News" => "Actualité",
 	"Details" 	=> "Détails",
 	"Contact" 	=> "Contacter",
 	"Contributors" => "Contributeurs",
