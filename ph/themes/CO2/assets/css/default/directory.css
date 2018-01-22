@@ -210,7 +210,7 @@
 }
 
 .searchEntity.entityLight .entityLeft{
-  min-height: 100px;
+  /*min-height: 100px;*/
 }
 
 .searchEntity.entityLight .entityCenter{
@@ -681,7 +681,7 @@
 
   .searchEntity.entityLight,
   .searchEntity.entityLight:hover{
-    padding-left:10px!important;
+    /*padding-left:10px!important;*/
   }
 
 
