@@ -210,7 +210,7 @@
 }
 
 .searchEntity.entityLight .entityLeft{
-  min-height: 100px;
+  /*min-height: 100px;*/
 }
 
 .searchEntity.entityLight .entityCenter{
