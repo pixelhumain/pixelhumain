@@ -49,7 +49,6 @@
     var mentionsContact=[];
     var prestation = <?php echo json_encode( CO2::getContextList("prestation") ) ?>;
     var prestationList = prestation.categories;
-    var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;    
     var poi = <?php echo json_encode( CO2::getContextList("poi") ) ?>;
     var roomList = <?php echo json_encode( CO2::getContextList("room") ) ?>;
     var search={
