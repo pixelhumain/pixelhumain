@@ -13,6 +13,8 @@
     $metaDesc = @$params["metaDesc"]; 
     $metaImg = Yii::app()->getRequest()->getBaseUrl(true)."/themes/CO2".@$params["metaImg"];
     
+    $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
+    $modulePath = ( @Yii::app()->params["module"]["parent"] ) ?  "../../../".$parentModuleId."/views"  : "..";
 ?>
 
 <html lang="en" class="no-js">   
@@ -206,7 +208,7 @@
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
             $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "myFormContact" => @$myFormContact));
+                                 array( "me"=>$me,"parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact));
             $cssAnsScriptFilesModule = array(
                 '/js/default/shoppingCart.js',
                 '/js/default/circuit.js'

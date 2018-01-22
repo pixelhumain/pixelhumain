@@ -1308,6 +1308,8 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"folder fee included and delivery tax not included" => "folder fee included and delivery tax not included",
 
 	"previous" => "précédent",
-	"next" => "suivant"
+	"next" => "suivant",
+	"My maps" => "Mes cartes",
+
 );
 ?>

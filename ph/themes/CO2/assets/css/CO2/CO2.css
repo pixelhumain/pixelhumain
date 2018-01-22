@@ -277,17 +277,17 @@ section {
 
 #filters-container ul li{
     display: inline-block;
-float: left;
-height: 45px;
-width: 45px;
-background: white;
-/* padding: 5px 15px; */
-font-size: 15px;
-line-height: 45px;
--webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
--moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
-box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5);
-position: relative;
+    float: left;
+    height: 35px;
+    width: 35px;
+    background: white;
+    font-size: 14px;
+    line-height: 35px;
+    -webkit-box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5);
+    color: #555;
+    position: relative;
 }
 #filters-container-menu ul li{
 	display: inline-block;
@@ -681,16 +681,16 @@ a, a:hover, a:focus, a:active, a.active{
 }
 
 #main-search-bar{
-	font-size:17px;
-	height:45px;
+	font-size:15px;
+	height:35px;
     border:none;
 	font-weight: 200;
 }
 #main-input-group{
 	margin-top:0px;
-	-webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5) ;
-    -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5) ;
-    box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5) ;
+	-webkit-box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5) ;
+    -moz-box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5) ;
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5) ;
 }
 #main-search-bar-addon{
 	border: none;

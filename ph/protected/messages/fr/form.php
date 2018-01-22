@@ -150,6 +150,20 @@
 		"Stock your photos and share them"=>"Partagez vos photos et vos publications",
 		"This URL is already used" => "Cette URL est déjà utilisée",
 		"This URL is not used" => "Cette URL est disponible",
+		"Title of your map" => "Titre de votre carte",
+		"Allow users to identify themselves" => "Autoriser les utilisateurs à s'identifier",
+		"Allow to add elements" => "Permettre d'ajouter des éléments",
+		"Skin" => "Apparence",
+		"Request Section" => "Elements demandés",
+		"Filter Section" => "Section des filtres",
+		"Elements types will be displayed" => "Types d'éléments qui seront affichés ?",
+		"Show items that will have the following tags" => "Afficher les éléments qui auront les tags suivant",
+		"Key used for data import" => "Clé utilisée pour l'import de données",
+		"Filters category" => "Catégorie de filtres",
+		"Name of filter" => "Nom du filtre",
+		"Tags link a filter" => "Tags associer au filtre",
+		"Filters" => "Filtres",
+		"Add map" => "Ajouter une carte",
 	)
 
 ?>

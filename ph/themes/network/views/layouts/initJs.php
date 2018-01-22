@@ -1,8 +1,17 @@
 <script>
+
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
     var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
+    var moduleId = "<?php echo $parentModuleId?>";
+    var activeModuleId = "<?php echo $this->module->id?>";
+
+
+    var modules = {
+        "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
+        "classifieds": <?php echo json_encode( Classified::getConfig() ) ?>,
+    };
+
     var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
-    var moduleId = "<?php echo $this->module->id?>";
     var userId = "<?php echo Yii::app()->session['userId']?>";
     var mainLanguage = "<?php echo Yii::app()->language ?>";
     var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
@@ -30,15 +39,21 @@
     var myContactsById =<?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
     var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
 
-    var classified = <?php echo json_encode( CO2::getContextList("classified") ) ?>;
     var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;
-    var ressource = <?php echo json_encode( CO2::getContextList("ressource") ) ?>;
     var poi = <?php echo json_encode( CO2::getContextList("poi") ) ?>;
 
     //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     
     var globalTheme = "<?php echo Yii::app()->theme->name;?>";
+
+    var search={
+        value:"",
+        page:0,
+        count:true,
+        app:"search",
+        type:"<?php echo Organization::COLLECTION ?>"
+    };
 
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",

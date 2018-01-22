@@ -1,9 +1,25 @@
 <script>
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
     var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
+    var moduleId = "<?php echo $parentModuleId?>";
+    var activeModuleId = "<?php echo $this->module->id?>";
+
+
+    var modules = {
+        "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
+        "classifieds": <?php echo json_encode( Classified::getConfig() ) ?>,
+    };
+
+    var search={
+        value:"",
+        page:0,
+        count:true,
+        app:"search",
+        type:"<?php echo Organization::COLLECTION ?>"
+    };
+
     var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
     var domainName = "<?php echo Yii::app()->params["CO2DomainName"];?>";
-    var moduleId = "<?php echo $this->module->id?>";
     var userId = "<?php echo Yii::app()->session['userId']?>";
     var mainLanguage = "<?php echo Yii::app()->language ?>";
     var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;

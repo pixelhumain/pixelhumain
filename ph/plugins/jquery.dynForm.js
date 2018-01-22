@@ -22,6 +22,7 @@ onSave: (optional) overloads the generic saveProcess
 	thisStyle = thisBody.style, 
 	$this,
 	initValues = {},
+	initSelect = {},
 	initSelectNetwork = [],
 	supportTransition = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined
 	
@@ -721,20 +722,20 @@ onSave: (optional) overloads the generic saveProcess
 
         	fieldHTML += '<div class="inputs properties">'+
 								'<div class="col-sm-3">'+
-									'<span>Nom du filtre</span>'+
+									'<span>'+tradDynForm["Name of filter"]+'</span>'+
 									'<input type="text" name="'+field+'0" id="'+field+'0" class="addmultifield addmultifield0 form-control input-md" value="" placeholder="'+placeholder+'"/>'+
 									//'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
 								'</div>'+
 								'<div class="col-sm-7">'+
-									'<span>Tags associer au filtre</span>'+
+									'<span>'+tradDynForm["Tags link a filter"]+'</span>'+
 									'<input type="text" class="form-control select2TagsInput" name="tags'+field+'0" id="tags'+field+'0" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
-									'<button data-id="'+field+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+									'<button data-id="'+field+'" class="pull-right removePropLineBtn btn btn-xs letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
 								'</div>'+
 							'</div>'+
 							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
 							'<div class="col-sm-12">'+
 								'<div class="space10"></div>'+
-						        '<a href="javascript:;" data-id="'+field+'" data-container="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-xs btn-blue" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
+						        '<a href="javascript:;" data-id="'+field+'" data-container="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-default text-bold letter-green" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
 				       		'</div></span>'+
 				       '<div class="space5"></div>';
 			
@@ -1544,7 +1545,7 @@ onSave: (optional) overloads the generic saveProcess
 		if(!$.isEmptyObject($(parentContainer+' .inputs')))
 	    {
 	    	if($(parentContainer+' .properties').length > 0){
-	    		//$( propertyLineHTML( val, name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+	    		$( propertyLineHTML( val, name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
 	    	}
 	    	else
 	    		$( arrayLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
@@ -1555,25 +1556,29 @@ onSave: (optional) overloads the generic saveProcess
 	        initMultiFields(parentContainer,name, type);
 
 
-
-	        $.each($(".select2TagsInput"),function (){
-				mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ], initValues );
-				if( initValues[ $(this).attr("id") ] && !$(this).hasClass( "select2-container" )){
-					mylog.log( "here");
+	        mylog.log("initSelect", initSelect);
+	        $.each(initSelect , function(e,v){
+				mylog.log( "id " , e, v, initValues[ e ].tags);
+				if( v == true){
+					
 					var selectOptions = 
 					{
-					  "tags": initValues[ $(this).attr("id") ].tags ,
+					  "tags": initValues[ e ].tags ,
 					  "tokenSeparators": [','],
-					  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
+					  "placeholder" : ( $("#"+e).attr("placeholder") ) ? $("#"+e).attr("placeholder") : "",
 					};
-					if(initValues[ $(this).attr("id") ].maximumSelectionLength)
-						selectOptions.maximumSelectionLength = initValues[$(this).attr("id")]["maximumSelectionLength"];
-					if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[$(this).attr("id")] != "undefined" && initSelectNetwork[$(this).attr("id")].length > 0)
-						selectOptions.data=initSelectNetwork[$(this).attr("id")];
-					
-					$(this).removeClass("form-control").select2(selectOptions);
+					mylog.log( "here3");
+					if(initValues[ e ].maximumSelectionLength)
+						selectOptions.maximumSelectionLength = initValues[e]["maximumSelectionLength"];
+					mylog.log( "here3");
+					if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[e] != "undefined" && initSelectNetwork[e].length > 0)
+						selectOptions.data=initSelectNetwork[e];
+					mylog.log( "here3");
+					$("#"+e).removeClass("form-control").select2(selectOptions);
 					if(typeof mainTag != "undefined")
-						$(this).val([mainTag]).trigger('change');
+						$("#"+e).val([mainTag]).trigger('change');
+
+					initSelect[e]=false;
 				}
 			 });
 
@@ -1653,6 +1658,8 @@ onSave: (optional) overloads the generic saveProcess
     				initValues["tags"+name+count] = {};
 	    initValues["tags"+name+count]["tags"] = tagsList;
 
+	    initSelect["tags"+name+count] = true;
+
 		var str = '<div class="space5"></div><div class="col-sm-3">'+
 					'<input type="text" id="'+name+count+'" name="'+name+count+'" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
 					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
@@ -1660,7 +1667,7 @@ onSave: (optional) overloads the generic saveProcess
 				'<div class="col-sm-7">'+
 					//'<textarea type="text" name="tags'+name+'[]" class="addmultifield'+count+' form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);" placeholder="valeur"   >'+propVal.value+'</textarea>'+
 					'<input type="text" class="form-control select2TagsInput" name="tags'+name+count+'" id="tags'+name+count+'" value="" placeholder="" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
-					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-right" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
+					'<button class="pull-right removePropLineBtn btn btn-xs letter-red tooltips pull-right" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
 				'</div>';
 
 				// TODO Rapha
@@ -2286,7 +2293,6 @@ var dyFObj = {
 			formData = dyFObj.elementObj.dynForm.jsonSchema.formatData(formData);
 
 
-
 		formData = dyFObj.formatData(formData,collection,ctrl);
 		mylog.log("saveElement", formData);
 
@@ -2567,6 +2573,8 @@ var dyFObj = {
 			        bindLBHLinks();
 			      },
 			      onSave : function(){
+
+			      	mylog.log("onSave")
 
 			      	if( typeof dyFObj[dyFObj.activeElem].dynForm.jsonSchema.beforeSave == "function")
 			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.beforeSave();
@@ -3376,6 +3384,7 @@ var dyFInputs = {
 		label : tradDynForm["localization"],
        	inputType : "scope",
        	init : function () {
+       		mylog.log("scopeObj", dyFInputs.scopeObj.scopeObj);
        		dyFInputs.scopeObj.scope = {};
        		getAjax( null , baseUrl+"/"+moduleId+"/opendata/getcountries/hasCity/true" , function(data){
 				mylog.log("getcountries", data);
@@ -3482,7 +3491,7 @@ var dyFInputs = {
 
 				if(actionOnSetGlobalScope=="save")
 					$("#scopeListContainerForm").html(html);
-				$("#ajaxFormModal .item-scope-checker").off().click(function(){ toogleScopeMultiscope( $(this).data("scope-value")) });
+				//$("#ajaxFormModal .item-scope-checker").off().click(function(){ toogleScopeMultiscope( $(this).data("scope-value")) });
 				$("#ajaxFormModal .item-scope-deleter").off().click(function(){ dyFInputs.scopeObj.deleteScope( $(this).data("scope-value")); });
 				//showMsgInfoMultiScope("Le scope a bien été ajouté", "success");
 			}else{
@@ -3515,7 +3524,7 @@ var dyFInputs = {
 			});
 			$(".scope-count").html(count);
 			//showTagsScopesMin(".list_tags_scopes");
-			showEmptyMsg();
+			//showEmptyMsg();
 		}
     },
     //produces 
@@ -3566,10 +3575,10 @@ var dyFInputs = {
         	$(".urlsarray").css("display","none");	
         }
     },
-    keyVal : {
-    	label : "Key Value Pairs",
-    	inputType : "properties",
-    	values : tagsList,
+    keyVal : function(label){
+    	return { 	label : ( notEmpty(label) ? label : "" ),
+    				inputType : "properties",
+    				values : tagsList }
     },
     bookmarkUrl: function(label, placeholder,rules, custom){
     	var inputObj = dyFInputs.inputUrl(label, placeholder, rules, custom);
