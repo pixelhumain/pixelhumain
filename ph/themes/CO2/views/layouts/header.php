@@ -96,8 +96,7 @@
         display:-webkit-inline-box;
     }
     #filters-menu-new #input-sec-search .input-group-addon{
-        background-color: #eee !important;
-        border: none;
+        background-color: rgba(255,255,255,0.9) !important;
     }
     #filters-menu-new .dropdown-result-global-search{
         position: absolute;
@@ -116,6 +115,11 @@
     text-align: left;
     line-height: 30px;
    }
+   #multisopes-btn{
+        float: left;
+        margin-left: 10px;
+        line-height: 30px;
+    }
 
     #main-input-group{
         float: left;
@@ -207,7 +211,7 @@
                     </div>
                     <div id="affix-sub-menu">
                         <div id="filters-menu-new" class="col-md-12 col-sm-12 col-xs-12 margin-top-5">
-                            <div id="open-scope-container" class="container-scope-menu no-padding">
+                            <div id="scope-container" class="scope-menu no-padding">
                                 <div id="input-sec-search" class="hidden-xs col-xs-12 col-md-4 col-sm-4 col-lg-4">
                                     <div class="input-group shadow-input-header">
                                           <span class="input-group-addon"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i></span>
@@ -216,7 +220,7 @@
                                     <div class="dropdown-result-global-search col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding" style="max-height: 70%; display: none;"><div class="text-center" id="footerDropdownGS"><label class="text-dark"><i class="fa fa-ban"></i> Aucun résultat</label><br></div>
                                     </div>
                                 </div>
-                                <span id="multisopes-btn"><i class="fa fa-caret-down"></i> My favorites places (<span class="count-favorite"></span>)</span>
+                                <span id="multisopes-btn"><i class="fa fa-chevron-down"></i> My favorites places (<span class="count-favorite"></span>)</span>
                                 <div id="open-breacrum-container" class="col-md-12 col-sm-12 col-xs-12">
                                     <?php //echo Yii::t("common", "Search a city to find all zones corresponding and add to favorites") ?>
                                 <?php //$this->renderPartial($layoutPath.'breadcrum_communexion', array("type"=>@$type)); ?>
@@ -379,7 +383,7 @@
             });
 
         //loadMultiScopes();
-        mylog.log("communexionActivated ok", myScopes.communexion, myScopes.communexion.state);
+        //mylog.log("communexionActivated ok", myScopes.communexion, myScopes.communexion.state);
         initScopeMenu();
         //if(communexion.value == null){
           //  communexion.state = false;
@@ -405,7 +409,6 @@
             activateScope=myScopes.type;
         else
             activateScope="open";
-        myScopes.type="open";
         activateScopeMenu(activateScope,true);
         bindSearchCity();
         headerActive=true;
@@ -433,7 +436,7 @@
             //if(type!="open-scope"){
             localStorage.setItem("myScopes",JSON.stringify(myScopes));
             //}
-        }else if(type=="open-scope")
+        }else if(type=="open")
             myScopes.state=false;
         if(myScopes.state){
             $('.scope-filters-badge').removeClass('hide');

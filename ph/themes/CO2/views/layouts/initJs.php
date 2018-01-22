@@ -143,15 +143,16 @@
             resizeInterface();
             if(typeof localStorage != "undefined" && typeof localStorage.myScopes != "undefined"){                  
                 myScopes = JSON.parse(localStorage.getItem("myScopes"));
-                if(myScopes.type=="open-scope")
+                if(myScopes.type=="open")
                     myScopes.state=false;
                 myScopes.open={};
                 if(myScopes.multiscopes==null)
                     myScopes.multiscopes={};
-                myScopes.type="open-scope";
+                //myScopes.type="open";
             }else{
                 myScopes={
-                    state:"open",
+                    type:"open",
+                    state: false,
                     open : {},
                     communexion : <?php echo json_encode(CO2::getCommunexionCookies()) ?>,
                     multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 
