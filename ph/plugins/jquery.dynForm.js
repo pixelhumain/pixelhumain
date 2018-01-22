@@ -3384,6 +3384,7 @@ var dyFInputs = {
 		label : tradDynForm["localization"],
        	inputType : "scope",
        	init : function () {
+       		mylog.log("scopeObj", dyFInputs.scopeObj.scopeObj);
        		dyFInputs.scopeObj.scope = {};
        		getAjax( null , baseUrl+"/"+moduleId+"/opendata/getcountries/hasCity/true" , function(data){
 				mylog.log("getcountries", data);
@@ -3490,7 +3491,7 @@ var dyFInputs = {
 
 				if(actionOnSetGlobalScope=="save")
 					$("#scopeListContainerForm").html(html);
-				$("#ajaxFormModal .item-scope-checker").off().click(function(){ toogleScopeMultiscope( $(this).data("scope-value")) });
+				//$("#ajaxFormModal .item-scope-checker").off().click(function(){ toogleScopeMultiscope( $(this).data("scope-value")) });
 				$("#ajaxFormModal .item-scope-deleter").off().click(function(){ dyFInputs.scopeObj.deleteScope( $(this).data("scope-value")); });
 				//showMsgInfoMultiScope("Le scope a bien été ajouté", "success");
 			}else{
@@ -3523,7 +3524,7 @@ var dyFInputs = {
 			});
 			$(".scope-count").html(count);
 			//showTagsScopesMin(".list_tags_scopes");
-			showEmptyMsg();
+			//showEmptyMsg();
 		}
     },
     //produces 

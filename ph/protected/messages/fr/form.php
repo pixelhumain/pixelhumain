@@ -163,6 +163,7 @@
 		"Name of filter" => "Nom du filtre",
 		"Tags link a filter" => "Tags associer au filtre",
 		"Filters" => "Filtres",
+		"Add map" => "Ajouter une carte",
 	)
 
 ?>
