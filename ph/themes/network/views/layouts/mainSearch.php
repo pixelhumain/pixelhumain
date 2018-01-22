@@ -5,6 +5,9 @@
 
 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 
+	$parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
+    $modulePath = ( @Yii::app()->params["module"]["parent"] ) ?  "../../../".$parentModuleId."/views"  : "..";
+
 	$cs = Yii::app()->getClientScript();
 
 	$CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
@@ -203,7 +206,7 @@
 		);
 		HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 		$this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>@$me, "myFormContact" => @$myFormContact));
+                                 array( "me"=>@$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact));
 
 		$this->renderPartial($layoutPath.'initCommunexion', array());
 
