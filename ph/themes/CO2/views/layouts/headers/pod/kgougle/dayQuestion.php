@@ -1,10 +1,9 @@
 <style>
     .label-qdj{
-        font-size:30px;
-        margin-top:65px;
-        margin-bottom:5px;
-        padding:25px 0 0 0;
-        border:5px solid black;
+        font-size: 25px;
+        padding: 25px 0 0 0;
+        border: 5px solid black;
+        text-align: center;
     }
     .label-qdj h1{
         font-size:40px;
@@ -36,7 +35,8 @@
     }
 
     .label-introQ{
-        font-size:30px;
+        font-size:24px;
+        margin-top:0px;
     }
 
     .btn-introQ{
@@ -84,7 +84,7 @@
 </style>
 <div class="col-xs-12">
 
-<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 col-sm-offset-1 shadow2 label-qdj padding-15">
+<div class="col-lg-8 col-lg-offset-2 col-md-6 col-sm-8 col-sm-offset-2 col-xs-12 shadow2 label-qdj padding-15">
     <h1 class="label text-white no-padding font-blackoutT">
         La kestion du jour
     </h1>
@@ -94,17 +94,17 @@
         Kel est ton souhait, ton rêve, ta promesse pour l'année 2018 ? 
         <i class="fa fa-quote-right"></i> 
     </div>
-    <!-- <button class="btn btn-sm btn-link btn-learn-dayQuestion font-blackoutM text-white bold pull-left margin-left-10 margin-top-10"
+    <button class="btn btn-sm btn-link btn-learn-dayQuestion font-blackoutM text-white bold pull-left margin-left-10 margin-top-10"
             data-toggle="modal" data-target="#modalDayQuestion">
         <i class="fa fa-cog"></i> regle du jeu
     </button>
     <span class="margin-top-10 text-dark pull-right dayAuthor">
         question posée par <a class="bold lbh" href="#alphatango">AlphaTango</a>
-    </span> -->
+    </span>
 </div>
 
 
-<h2 class=" hidden col-xs-12 col-md-6 col-sm-4  bg-white no-padding letter-yellow no-margin font-blackoutM label-introQ">
+<h2 class="col-lg-8 col-lg-offset-2 col-md-6 col-sm-8 col-sm-offset-2 col-xs-12 text-center bg-white no-padding letter-yellow font-blackoutM label-introQ">
     <button class="btn btn-default letter-yellow btn-introQ">
         <i class="fa fa-pencil padding-10"></i>
     </button>

@@ -32,7 +32,7 @@
 
     .moduleTitle{
         /*font-size: 15px;*/
-        margin-bottom: 10px;
+        /*margin-bottom: 10px;*/
         /*text-transform: uppercase;*/
 
     }
@@ -61,13 +61,33 @@
     #territorial-menu{
         margin-left:1%;
     }
+    header{
+        padding-bottom: 15px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
     header img, .header img{
         margin:0px;
     }
 
+    #main-search-bar{
+        font-size: 16px;
+        height: 45px;
+    }
+
+    #filters-container ul li{
+        height:45px;
+        padding-top:5px;
+    }
+
+
+    .filters-type-container{
+        margin-left:15px;
+    }
+
     @media (max-width: 768px) {
-        .link-submenu-header span{
-            display: none;
+        .btn-menu-to-app{
+            font-size:18px !important;
         }
         .subModuleTitle{
             width: 90%;
