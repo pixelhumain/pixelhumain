@@ -124,10 +124,11 @@ function buildListCategories(){
 
                         '<div class="container">'+
                             '<div class="row">'+
-                                '<div class="col-lg-12 text-left">'+
-                                    '<h4 class="letter-'+params.color+' margin-left-25">'+
-                                        '<i class="fa fa-chevron-down"></i> Recherche '+name+
-                                    '</h4>'+
+                                '<div class="col-lg-12 text-center">'+
+                                    '<h3 class="letter-'+params.color+' margin-left-25">'+
+                                        //'<i class="fa fa-chevron-down"></i> '+
+                                        'Recherche '+name+
+                                    '</h3>'+
                                     '<hr class="angle-down">'+
                                 '</div>'+
                             '</div>'+

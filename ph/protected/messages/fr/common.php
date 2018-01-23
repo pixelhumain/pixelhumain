@@ -1311,5 +1311,9 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"next" => "suivant",
 	"My maps" => "Mes cartes",
 
+	"Search by place" => "Recherche géographique",
+	"where ?" => "Où ?",
+	"My favorites places" => "Mes lieux favoris"
+
 );
 ?>

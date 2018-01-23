@@ -158,19 +158,19 @@
     }
 
     .category-search-link h4{
-        font-size: 12px !important;
+        font-size: 16px !important;
     }
     .category-search-link i.fa{
         font-size: 20px !important;
     }
 
-    hr.angle-down::after {
+    /*hr.angle-down::after {
         content: none;
     }
     hr.angle-down{
         max-width: unset;
         border-top: 3px solid #7bc3d1;
-    }/*
+    }*//*
     #mainCategories .portfolio .row h4,
     #mainCategories .portfolio .row hr{
         color:#666F78;

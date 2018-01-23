@@ -13,6 +13,7 @@
     var modules = {
         "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
         "classifieds": <?php echo json_encode( Classified::getConfig() ) ?>,
+        "places": <?php echo json_encode( Place::getConfig() ) ?>,
     };
     
     var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
@@ -48,7 +49,6 @@
     var mentionsContact=[];
     var prestation = <?php echo json_encode( CO2::getContextList("prestation") ) ?>;
     var prestationList = prestation.categories;
-    var place = <?php echo json_encode( CO2::getContextList("place") ) ?>;    
     var poi = <?php echo json_encode( CO2::getContextList("poi") ) ?>;
     var roomList = <?php echo json_encode( CO2::getContextList("room") ) ?>;
     var search={
