@@ -38,19 +38,46 @@
     }
 
     .subModuleTitle{
-        padding-top:30px;
+        padding-top:20px;
     }
 
+
+    .subModuleTitle{
+        width: 82%;
+        margin-left: 18%;
+    }
+    #filters-menu-new{
+        margin: 0px;
+    }
+    #main-input-group{
+        margin: 0px;
+        width:73%;
+    }
+
+    #affix-sub-menu.affix{
+        left:0px;
+    }
+
+    #territorial-menu{
+        margin-left:1%;
+    }
+    header img, .header img{
+        margin:0px;
+    }
 
     @media (max-width: 768px) {
         .link-submenu-header span{
             display: none;
         }
+        .subModuleTitle{
+            width: 90%;
+            margin-left: 3%;
+        }
     }
 
 </style>
-<h1 class="text-red homestead margin-bottom-15 hidden">
-    <span id="main-scope-namea">
+<h1 class="text-red homestead margin-bottom-15">
+    <span id="main-scope-name">
     <span class="menu-btn-back-category">
     <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo.png"
          height="60" class="inline">
@@ -61,7 +88,7 @@
 <span class="pastille-subdomain font-blackoutT text-red hidden"><?php echo @$subdomainName; ?></span>
 
 
-<div class="text-dark moduleTitle font-montserrat hidden">
+<div class="text-dark moduleTitle font-montserrat ">
     <i class="fa fa-<?php echo @$icon; ?>"></i>
     <?php echo @$mainTitle; ?>     
 </div>

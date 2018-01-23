@@ -82,7 +82,9 @@
 }
 
 </style>
-<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 shadow2 label-qdj">
+<div class="col-xs-12">
+
+<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 col-sm-offset-1 shadow2 label-qdj padding-15">
     <h1 class="label text-white no-padding font-blackoutT">
         La kestion du jour
     </h1>
@@ -92,17 +94,17 @@
         Kel est ton souhait, ton rêve, ta promesse pour l'année 2018 ? 
         <i class="fa fa-quote-right"></i> 
     </div>
-    <button class="btn btn-sm btn-link btn-learn-dayQuestion font-blackoutM text-white bold pull-left margin-left-10 margin-top-10"
+    <!-- <button class="btn btn-sm btn-link btn-learn-dayQuestion font-blackoutM text-white bold pull-left margin-left-10 margin-top-10"
             data-toggle="modal" data-target="#modalDayQuestion">
         <i class="fa fa-cog"></i> regle du jeu
     </button>
     <span class="margin-top-10 text-dark pull-right dayAuthor">
         question posée par <a class="bold lbh" href="#alphatango">AlphaTango</a>
-    </span>
+    </span> -->
 </div>
 
 
-<h2 class="col-xs-12  bg-white no-padding letter-yellow no-margin font-blackoutM label-introQ">
+<h2 class=" hidden col-xs-12 col-md-6 col-sm-4  bg-white no-padding letter-yellow no-margin font-blackoutM label-introQ">
     <button class="btn btn-default letter-yellow btn-introQ">
         <i class="fa fa-pencil padding-10"></i>
     </button>
@@ -129,7 +131,7 @@
     <br><hr>
 </h2>
 
-
+</div>
 
 
 <div class="portfolio-modal modal fade" id="modalDayQuestion" tabindex="-1" role="dialog" aria-hidden="true">
