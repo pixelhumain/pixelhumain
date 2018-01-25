@@ -177,8 +177,13 @@
 	{
 		color:#E33551 !important;
 	}
+	.scopes-container .scope-order.disabled .manageMultiscopes.active{
+    	color: #ffe28d !important;
+    	text-shadow: 1px 0 0 #DBBCC1, -1px 0 0 #DBBCC1, 0 1px 0 #DBBCC1, 0 0px 0 #DBBCC1, 0px 0px #DBBCC1, 0px 0px 0 #DBBCC1, 0px -1px 0 #DBBCC1, -1px 1px 0 #DBBCC1;
+	}
 	.scopes-container .scope-order .manageMultiscopes.active{
 		color:#FFC600 !important;
+		text-shadow: 1px 0 0 #e6344d, -1px 0 0 #e6344d, 0 1px 0 #e6344d, 0 0px 0 #e6344d, 0px 0px #e6344d, 0px 0px 0 #e6344d, 0px -1px 0 #e6344d, -1px 1px 0 #e6344d;
 	}
 	.scopes-container .scope-order, #content-added-scopes-container .scope-order{
 		float: left;
@@ -220,7 +225,7 @@
 	#multiscopes-news-btn.active, #communexion-news-btn.active{
 		border-bottom: 2px solid #ea4335;
     	color: #ea4335 !important;
-    	padding: 3px 5px;
+    	padding: 7px 5px;
 	}
 	#scopes-news-form .addon-form-news{
 		border: none;
