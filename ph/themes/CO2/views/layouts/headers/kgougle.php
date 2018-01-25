@@ -46,7 +46,7 @@
         width: 82%;
         margin-left: 18%;
     }
-    #filters-menu-new{
+    #filter-scopes-menu{
         margin: 0px;
     }
     #main-input-group{
