@@ -984,7 +984,7 @@ onSave: (optional) overloads the generic saveProcess
 							'</div>';
 
 					
-        } 
+        }
         else if ( fieldObj.inputType == "password" ) {
         	mylog.log("build field "+field+">>>>>> password");
         	fieldHTML += '<input id="'+field+'" name="'+field+'" class="form-control" type="password"/>';
@@ -3489,8 +3489,8 @@ var dyFInputs = {
 				$("#ajaxFormModal #multi-scope-list-"+levelType).append(html);
 				$("#ajaxFormModal #multi-scope-list-"+levelType).show();
 
-				if(actionOnSetGlobalScope=="save")
-					$("#scopeListContainerForm").html(html);
+				// if(actionOnSetGlobalScope=="save")
+				// 	$("#scopeListContainerForm").html(html);
 				//$("#ajaxFormModal .item-scope-checker").off().click(function(){ toogleScopeMultiscope( $(this).data("scope-value")) });
 				$("#ajaxFormModal .item-scope-deleter").off().click(function(){ dyFInputs.scopeObj.deleteScope( $(this).data("scope-value")); });
 				//showMsgInfoMultiScope("Le scope a bien été ajouté", "success");
