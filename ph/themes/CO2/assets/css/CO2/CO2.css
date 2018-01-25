@@ -731,7 +731,19 @@ a, a:hover, a:focus, a:active, a.active{
 	border-radius: 1px;
 	letter-spacing: 2px;
 }*/
-
+ #filter-scopes-menu .dropdown-result-global-search, #news-scope-search .dropdown-result-global-search{
+        position: absolute;
+        max-height: 250px !important;
+        top: 35px;
+        z-index: 100;
+        background-color: white;
+        width: 100%;
+        float: left;
+        overflow-y: auto;
+        -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        left: 0px;
+}
 .dropdown .dropdown-main-menu{
 	display:none;
 }
