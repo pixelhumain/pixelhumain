@@ -35,6 +35,10 @@
 		padding: 5px 15px;
 	}
 
+	#main-scope-name a{
+	    
+	}
+
 
 	@media (max-width: 768px) {
 		.link-submenu-header span{
@@ -43,12 +47,12 @@
 	}
 
 </style>
-<h1 class="text-red homestead text-left">
+<h1 class="text-red homestead text-left hidden">
 	<span id="main-scope-name">
-	<!--<a href="#" class="menu-btn-back-category shadow2" data-target="#modalMainMenu-block" data-toggle="modal">
-	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo-head-search.png"
-	 	 height="60" class="inline margin-bottom-15">
-	</a>-->
+	<a href="#" class="menu-btn-back-category" data-target="#modalMainMenu-block" data-toggle="modal">
+	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/<?php echo Yii::app()->params["CO2DomainName"]; ?>/logo-min.png"
+	 	 height="30" class="inline no-margin">
+	</a>
 	</span>
 </h1>
 
