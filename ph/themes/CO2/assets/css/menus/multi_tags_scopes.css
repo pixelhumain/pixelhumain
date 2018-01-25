@@ -226,6 +226,7 @@
 		border-bottom: 2px solid #ea4335;
     	color: #ea4335 !important;
     	padding: 7px 5px;
+    	text-decoration: none;
 	}
 	#scopes-news-form .addon-form-news{
 		border: none;
