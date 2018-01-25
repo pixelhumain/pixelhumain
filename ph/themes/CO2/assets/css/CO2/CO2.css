@@ -1566,7 +1566,11 @@ margin-right: 5px;
     text-transform: none !important;
     padding: 0px 20px 0 10px;
 }
+#dropdown-dda .dropdown-main-menu .dropdown-menu li.sub-proposals a{
+    padding: 7px 20px 10px 10px;
+}
 
+    
 #dropdown-dda .dropdown-main-menu .dropdown-menu li.sub-actions{
 	/*padding: 0px 10px !important;*/
 }
