@@ -107,7 +107,7 @@
         float: left;
         margin-left: 10px;
         line-height: 32px;
-        padding-bottom: 32px;
+        padding: 0px 5px;
     }
 
     #main-input-group{
@@ -123,7 +123,9 @@
         text-decoration: none;
         font-weight:200;
     }
-
+    .manageMultiscopes{
+        cursor: pointer;
+    }
     header{
         padding-bottom: 15px;
         padding-top: 30px;
@@ -246,16 +248,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button id="multisopes-btn" class="btn btn-link letter-red" style="padding-top:0px;">
+                                <button id="multisopes-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="multiscopes">
                                     <i class="fa fa-angle-down"></i> 
                                     <i class="fa fa-map-marker"></i> 
                                     <?php echo Yii::t("common","My favorites places"); ?> 
                                     (<span class="count-favorite"></span>)
                                 </button>
-                                <button id="communexion-btn" class="btn btn-link letter-red" style="padding-top:0px;">
+                                <button id="communexion-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="communexion">
                                     <i class="fa fa-angle-down"></i> 
-                                    <i class="fa fa-map-home"></i> 
-                                    <?php echo Yii::t("common","Liiiiilllleeeee"); ?> 
+                                    <i class="fa fa-home"></i> 
+                                    <span class="communexion-btn-label">
+                                    </span> 
                                 </button>
                                 <div class="scopes-container col-md-12 col-sm-12 col-xs-12 no-padding margin-top-5">
                                 </div>
@@ -426,6 +429,7 @@
         headerActive=true;
         bindScopesInputEvent();
         countFavoriteScope();
+        getCommunexionLabel();
     }
     function activateScopeMenu(type,init){
         $(".container-scope-menu").hide(700);
