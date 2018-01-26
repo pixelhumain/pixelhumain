@@ -130,6 +130,8 @@
             <div class="pageContent"></div>
         </div>
         
+
+        <div id="modal-preview-coop" class="shadow2 hidden"></div>
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
        
         <?php if($CO2DomainName == "kgougle")

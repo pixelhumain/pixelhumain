@@ -1531,6 +1531,12 @@ margin-right: 5px;
 	margin-top:0px;
 }
 
+.searchEntity.coopPanelHtml{
+	cursor:pointer;
+	border-left:2px solid #229296;
+	box-shadow: none !important;
+}
+
 #ajax-modal .form-group.newsCreationcheckboxSimple{
 	display: inline-block;
 	padding: 0 10px 10px 10px;
@@ -1607,6 +1613,21 @@ margin-right: 5px;
 
 /* ------------------ DROPDOWN DASHBOARD ------------------ */
 
+#modal-preview-coop{
+	position: fixed;
+	top:0px;
+	bottom:0px;
+	left:40%;
+	right:0px;
+	background-color: white;
+	z-index: 10000;
+}
+
+#modal-preview-coop #amendement-container{
+	bottom:0px;
+	top:0px;
+}
+
 
 /************************************************************************************/
 /************************************************************************************/
@@ -1628,6 +1649,11 @@ margin-right: 5px;
         max-width: 73%;
         font-size: 0.4em;
     }
+
+	#modal-preview-coop{
+		left:15%;
+		right:0%;
+	}
 } 
 
 @media (max-width: 767px) {
@@ -1788,5 +1814,10 @@ margin-right: 5px;
 
 	.btn-menu-to-app{
 		font-size:18px;
+	}
+
+	#modal-preview-coop{
+		left:0%;
+		right:0%;
 	}
 }
