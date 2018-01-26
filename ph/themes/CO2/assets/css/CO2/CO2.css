@@ -1398,11 +1398,24 @@ h3.title_panel_map{
 }
 
 .btn-menu-notif .notifications-count,
-.btn-menu-chat .chatNotifs{
-	margin-top: -15px;
-	margin-left: -7px;
+.btn-menu-chat .chatNotifs,
+.btn-dashboard-dda .coopNotifs{
+	/*margin-top: -15px;
+	margin-left: -15px;*/
+	margin-right: -5px;
+	margin-top:-32px;
+	float: right;
 	background-color: #34a853;
+	font-size: 10px;
 }
+
+.btn-menu-chat .chatNotifs{
+	background-color: #c82020;
+}
+.btn-dashboard-dda .coopNotifs{
+	background-color: #229296;
+}
+
 .scope-filters-badge{
 	position: absolute;
     background-color: #34a853;
