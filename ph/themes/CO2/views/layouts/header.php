@@ -405,7 +405,7 @@
             myMultiTags = {};
             search.value="";
             $.each(filliaireCategories[fKey]["tags"], function(key, tag){
-                search.value+="#"+tag;
+                search.value+="#"+tag+" ";
             });
             $("#main-search-bar, #second-search-bar").val(search.value);
             mylog.log("myMultiTags", myMultiTags);
