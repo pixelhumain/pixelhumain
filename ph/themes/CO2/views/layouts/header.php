@@ -88,37 +88,26 @@
         border-bottom: 1px solid #e43636;
         color: #ea4335!important;
     }
-    #filters-menu-new{
+    #filter-scopes-menu{
         margin-left: 5%;
     }
-    #filters-menu-new #input-sec-search{
+    #filter-scopes-menu #input-sec-search{
         display:inline-block;
         display:-webkit-inline-box;
     }
-    #filters-menu-new #input-sec-search .input-group-addon{
+    #filter-scopes-menu #input-sec-search .input-group-addon{
         background-color: rgba(255,255,255,0.9) !important;
     }
-    #filters-menu-new .dropdown-result-global-search{
-        position: absolute;
-        max-height: 250px !important;
-        top: 35px;
-        z-index: 100;
-        background-color: white;
-        width: 100%;
-        float: left;
-        overflow-y: auto;
-        -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-        box-shadow: 0 6px 12px rgba(0,0,0,.175);
-        left: 0px;
-    }
-   #open-breacrum-container{
+   
+   .scopes-container{
     text-align: left;
     line-height: 30px;
    }
-   #multisopes-btn{
+   #multisopes-btn, #communexion-btn{
         float: left;
         margin-left: 10px;
-        line-height: 30px;
+        line-height: 32px;
+        padding: 0px 5px;
     }
 
     #main-input-group{
@@ -126,15 +115,17 @@
         margin-left: 5%;
     }
 
-    #multisopes-btn:hover{
+    #multisopes-btn:hover, #communexion-btn:hover{
         text-decoration: none;
         font-weight:bold;
     }
-    #multisopes-btn:focus{
+    #multisopes-btn:focus, #communexion-btn:focus{
         text-decoration: none;
         font-weight:200;
     }
-
+    .manageMultiscopes{
+        cursor: pointer;
+    }
     header{
         padding-bottom: 15px;
         padding-top: 30px;
@@ -239,14 +230,14 @@
                             </ul> 
                         </div>
                     </div>
-                        <div id="filters-menu-new" class="col-md-12 col-sm-12 col-xs-12 margin-top-10">
+                        <div id="filter-scopes-menu" class="col-md-12 col-sm-12 col-xs-12 margin-top-10">
                             <div id="scope-container" class="scope-menu no-padding">
                                 <div id="input-sec-search" class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
                                     <div class="input-group shadow-input-header">
                                           <span class="input-group-addon">
                                             <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
                                           </span>
-                                          <input type="text" class="form-control input-global-search" 
+                                          <input type="text" class="form-control input-global-search" autocomplete="off"
                                                  id="searchOnCity" placeholder="<?php echo Yii::t("common","where ?") ?> ...">
                                     </div>
                                     <div class="dropdown-result-global-search col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding" 
@@ -257,15 +248,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button id="multisopes-btn" class="btn btn-link letter-red" style="padding-top:0px;">
-                                    <i class="fa fa-chevron-down"></i> 
+                                <button id="multisopes-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="multiscopes">
+                                    <i class="fa fa-angle-down"></i> 
                                     <i class="fa fa-map-marker"></i> 
                                     <?php echo Yii::t("common","My favorites places"); ?> 
                                     (<span class="count-favorite"></span>)
                                 </button>
-                                <div id="open-breacrum-container" class="col-md-12 col-sm-12 col-xs-12 no-padding margin-top-5">
-                                    <?php //echo Yii::t("common", "Search a city to find all zones corresponding and add to favorites") ?>
-                                <?php //$this->renderPartial($layoutPath.'breadcrum_communexion', array("type"=>@$type)); ?>
+                                <button id="communexion-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="communexion">
+                                    <i class="fa fa-angle-down"></i> 
+                                    <i class="fa fa-home"></i> 
+                                    <span class="communexion-btn-label">
+                                    </span> 
+                                </button>
+                                <div class="scopes-container col-md-12 col-sm-12 col-xs-12 no-padding margin-top-5">
                                 </div>
                             </div>
                         </div>
@@ -403,9 +398,6 @@
             }else if($("#filters-menu").is(":visible") && !$(this).hasClass("active")){
                 $(this).addClass("active");
             }
-            //$("#filters-container ul li").removeClass("active");
-            
-
         });
         $(".btn-select-filliaire").click(function(){
             mylog.log(".btn-select-filliaire");
@@ -417,32 +409,15 @@
             mylog.log("myMultiTags", myMultiTags);
               
             startSearch(0, indexStepInit, searchCallback);
-            //KScrollTo("#content-social");
-            //bindCommunexionScopeEvents();
-            //KScrollTo("#before-section-result");
-            });
+        });
 
-        //loadMultiScopes();
-        //mylog.log("communexionActivated ok", myScopes.communexion, myScopes.communexion.state);
         initScopeMenu();
-        //if(communexion.value == null){
-          //  communexion.state = false;
-            //$.cookie("communexionActivated", false, { expires: 365, path : "/" });
-        //}
-
-        //if(communexion.state){
-            //mylog.log("communexionActivated ok", communexion);
-          //  activateGlobalCommunexion(true);
-        //}else{
-          //  activateGlobalCommunexion(false,true);
-        //}
         $(".tooltips").tooltip();
     });
     function searchInitApp(src){
         search.app=page;
         if(search.value != "")
             $("#main-search-bar, #second-search-bar").val(search.value);
-       //console.log("iciiiiii src",src);
     }
     function initScopeMenu(type){
         if(typeof myScopes.type != "undefined")
@@ -452,18 +427,9 @@
         activateScopeMenu(activateScope,true);
         bindSearchCity();
         headerActive=true;
-        /*if(myScopes.type=="multiscope")
-            headerActive=false;*/
         bindScopesInputEvent();
         countFavoriteScope();
-        //activateGlobalCommunexion(headerActive, true);
-        //bindCommunexionScopeEvents();
-        /*if(userId!="")
-            $("#communexion-container").html(getBreadcrumCommunexion(myScopes.communexion));
-        if(typeof myScopes.open.currentValues != "undefined")
-            $("#open-scope-container").html(getBreadcrumCommunexion(myScopes.open));*/
-        //showTagsScopesMin();
-        //bindScopeMenu();
+        getCommunexionLabel();
     }
     function activateScopeMenu(type,init){
         $(".container-scope-menu").hide(700);
@@ -486,12 +452,4 @@
         }
 
     }
-   // function activeOpen(){
-     //   $("")
-    //}
 </script>
-    
-    <?php   //if($subdomain != "referencement"){
-                         
-            //}
-    ?>

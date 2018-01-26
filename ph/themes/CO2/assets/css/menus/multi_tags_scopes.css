@@ -165,7 +165,7 @@
 	.list_tags_scopes span.text-red.disabled,
 	#list_tags_scopes span.text-red.disabled,
 	#scopeListContainer span.text-red.disabled,
-	#open-breacrum-container .scope-order.disabled span{
+	.scopes-container .scope-order.disabled span{
 	    color:#DBBCC1 !important;
 	    font-weight:300 !important;
 	}
@@ -173,20 +173,65 @@
 	.list_tags_scopes span.text-red.disabled:hover,
 	#list_tags_scopes span.text-red.disabled:hover,
 	#scopeListContainer span.text-red.disabled:hover,
-	#open-breacrum-container .scope-order.disabled:hover span,
+	.scopes-container .scope-order.disabled:hover span,
 	{
 		color:#E33551 !important;
 	}
-	#open-breacrum-container .scope-order .manageMultiscopes.active{
-		color:#FFC600 !important;
+	.scopes-container .scope-order.disabled .manageMultiscopes.active{
+    	color: #ffe28d !important;
+    	text-shadow: 1px 0 0 #DBBCC1, -1px 0 0 #DBBCC1, 0 1px 0 #DBBCC1, 0 0px 0 #DBBCC1, 0px 0px #DBBCC1, 0px 0px 0 #DBBCC1, 0px -1px 0 #DBBCC1, -1px 1px 0 #DBBCC1;
 	}
-	#open-breacrum-container .scope-order{
+	.scopes-container .scope-order .manageMultiscopes.active{
+		color:#FFC600 !important;
+		text-shadow: 1px 0 0 #e6344d, -1px 0 0 #e6344d, 0 1px 0 #e6344d, 0 0px 0 #e6344d, 0px 0px #e6344d, 0px 0px 0 #e6344d, 0px -1px 0 #e6344d, -1px 1px 0 #e6344d;
+	}
+	.scopes-container .scope-order, #content-added-scopes-container .scope-order{
 		float: left;
 		display: inline-block;
+	}
+	#news-scopes-container, #content-added-scopes-container{
+		background-color: white;
+	    border-bottom: 1px solid #E6E8E8;
+	    min-height: 30px;
+	    padding: 5px 10px;
 	}
 	#dropdown-multi-scope-found{
 		max-height:250px;
 		overflow: auto;
+	}
+	#scopes-news-form label{
+		color: rgba(22, 53, 66, 0.7) !important;
+    	font-weight: inherit;
+	}
+	#searchOnCityNews{
+		height: 25px;
+	    border-radius: 0px;
+	    border: none;
+	    padding: 5px;
+	    line-height: 25px;
+	    box-shadow: inherit; 
+	}
+	#searchOnCityNews:focus{
+		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+    	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+	}
+	#searchOnCityNews:focus #scopes-news-form .addon-form-news{
+		color: #ea4335 !important;
+	}
+	#multiscopes-news-btn:hover, #communexion-news-btn:hover{
+		color:#E33551 !important;
+		text-decoration: none;
+	}
+	#multiscopes-news-btn.active, #communexion-news-btn.active{
+		border-bottom: 2px solid #ea4335;
+    	color: #ea4335 !important;
+    	padding: 7px 5px;
+    	text-decoration: none;
+	}
+	#scopes-news-form .addon-form-news{
+		border: none;
+    	background-color: transparent !important;
+   	 	padding: 5px;
 	}
 	#toogle-tags-selected, #toogle-scopes-selected {
 	    background-color: #dadada !important;
