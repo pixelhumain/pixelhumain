@@ -349,7 +349,7 @@
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Cooperation") ?>" 
                           alt="<?php echo Yii::t("common","Cooperation") ?>">
                       <i class="fa fa-inbox"></i>
-                      <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
+                      <span class="coopNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
 
 

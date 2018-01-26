@@ -1398,11 +1398,24 @@ h3.title_panel_map{
 }
 
 .btn-menu-notif .notifications-count,
-.btn-menu-chat .chatNotifs{
-	margin-top: -15px;
-	margin-left: -7px;
+.btn-menu-chat .chatNotifs,
+.btn-dashboard-dda .coopNotifs{
+	/*margin-top: -15px;
+	margin-left: -15px;*/
+	margin-right: -5px;
+	margin-top:-32px;
+	float: right;
 	background-color: #34a853;
+	font-size: 10px;
 }
+
+.btn-menu-chat .chatNotifs{
+	background-color: #c82020;
+}
+.btn-dashboard-dda .coopNotifs{
+	background-color: #229296;
+}
+
 .scope-filters-badge{
 	position: absolute;
     background-color: #34a853;
@@ -1531,6 +1544,12 @@ margin-right: 5px;
 	margin-top:0px;
 }
 
+.searchEntity.coopPanelHtml{
+	cursor:pointer;
+	border-left:2px solid #229296;
+	box-shadow: none !important;
+}
+
 #ajax-modal .form-group.newsCreationcheckboxSimple{
 	display: inline-block;
 	padding: 0 10px 10px 10px;
@@ -1607,6 +1626,21 @@ margin-right: 5px;
 
 /* ------------------ DROPDOWN DASHBOARD ------------------ */
 
+#modal-preview-coop{
+	position: fixed;
+	top:0px;
+	bottom:0px;
+	left:40%;
+	right:0px;
+	background-color: white;
+	z-index: 10000;
+}
+
+#modal-preview-coop #amendement-container{
+	bottom:0px;
+	top:0px;
+}
+
 
 /************************************************************************************/
 /************************************************************************************/
@@ -1628,6 +1662,11 @@ margin-right: 5px;
         max-width: 73%;
         font-size: 0.4em;
     }
+
+	#modal-preview-coop{
+		left:15%;
+		right:0%;
+	}
 } 
 
 @media (max-width: 767px) {
@@ -1788,5 +1827,10 @@ margin-right: 5px;
 
 	.btn-menu-to-app{
 		font-size:18px;
+	}
+
+	#modal-preview-coop{
+		left:0%;
+		right:0%;
 	}
 }
