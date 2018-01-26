@@ -13,10 +13,30 @@
 			"email": "oceatoon@gmail.com"
 		},
 		{
+			"name": "Raphael Riviere",
+			"email": "raphaelriviere06@gmail.com"
+		},
+		{
+			"name": "Clément Damiens",
+			"email": "clement.damiens@gmail.com"
+		},
+		{
+			"name": "Tristan Goguet",
+			"email": "clement.damiens@gmail.com"
+		},
+		{
+			"name": "Thomas Craipeau",
+			"email": "thomas.craipeau@gmail.com"
+		},
+		{
 			"name": "Sylvain Barbot",
 			"email": "sylvain.barbot@gmail.com"
 		}
 	],
+	"support": {
+        "issues": "https://github.com/pixelhumain/co2/issues",
+        "source": "https://github.com/orgs/pixelhumain"
+    },
 	"repositories": [
 		{
 		    "type": "composer",
