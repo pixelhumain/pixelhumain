@@ -403,11 +403,17 @@
             mylog.log(".btn-select-filliaire");
             var fKey = $(this).data("fkey");
             myMultiTags = {};
+            search.value="";
             $.each(filliaireCategories[fKey]["tags"], function(key, tag){
-                addTagToMultitag(tag);
+                search.value+="#"+tag+" ";
             });
+            $("#main-search-bar, #second-search-bar").val(search.value);
             mylog.log("myMultiTags", myMultiTags);
-              
+            
+            searchPage=0;
+            pageCount=true;
+            search.count=true;
+            if(search.app=="territorial") searchEngine.initTerritorialSearch();
             startSearch(0, indexStepInit, searchCallback);
         });
 
