@@ -232,7 +232,7 @@
                     </div>
                         <div id="filter-scopes-menu" class="col-md-12 col-sm-12 col-xs-12 margin-top-10">
                             <div id="scope-container" class="scope-menu no-padding">
-                                <div id="input-sec-search" class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
+                                <div id="input-sec-search" class="col-xs-10 col-md-6 col-sm-6 col-lg-6">
                                     <div class="input-group shadow-input-header">
                                           <span class="input-group-addon">
                                             <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>

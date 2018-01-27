@@ -168,3 +168,21 @@
 		left: 51% !important;
 	}
  }
+
+
+
+@media (max-width: 767px) {
+	#notificationPanelSearch{
+		left:0px !important;
+		right:0px !important;
+		bottom:0px !important;
+		max-width: unset !important;
+		width: unset !important;
+		top: 60px !important;
+	}
+	#notificationPanelSearch.arrow_box::after,
+	#notificationPanelSearch.arrow_box::before{
+		left:unset!important;
+		right:207px!important;
+	}
+}

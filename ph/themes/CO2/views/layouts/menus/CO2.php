@@ -66,7 +66,7 @@
         }
         #dropdown-dda .dropdown-main-menu .arrow_box::after, 
         #dropdown-dda .dropdown-main-menu .arrow_box::before {
-            right: 280px;
+            right: 265px;
             left: unset;
         }
     }
@@ -81,7 +81,10 @@
                 <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
             >
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-head-search.png" 
-                     class="logo-menutop pull-left hidden-xs hidden-sm" height=17>
+                     class="logo-menutop main pull-left hidden-xs hidden-sm" height=17>
+
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
+                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" height=20>
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
                      class="logo-menutop pull-left visible-xs visible-sm" height=25>
@@ -114,7 +117,7 @@
                   //$subdomain == "page"
                  ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-4 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="search by name or by #tag, ex: 'commun' or '#commun'<?php //echo Yii::t("common", $placeholderMainSearch); ?>">
                 <?php if($subdomain == "page"){ ?>
@@ -125,7 +128,7 @@
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
             </button>
-            <div id="filters-container-menu" class="no-padding">
+            <div id="filters-container-menu" class="no-padding hidden-xs">
                     <ul class="filters-menu">
                         <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="Geographical filter">
                          <i class="fa fa-globe"></i> 
