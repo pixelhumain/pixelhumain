@@ -414,6 +414,7 @@
             pageCount=true;
             search.count=true;
             if(search.app=="territorial") searchEngine.initTerritorialSearch();
+            
             startSearch(0, indexStepInit, searchCallback);
         });
 

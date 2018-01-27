@@ -44,6 +44,7 @@ header img, .header img {
 
 .dropdown-main-menu{
 	right: 53px !important;
+	top: 60px !important;
 }
 
 .btn-menu-notif{
@@ -185,6 +186,12 @@ a.link-submenu-header:focus{
 
 .menu-name-profil{
     background-color:rgb(242, 238, 238) !important;
+}
+
+.btn-dashboard-dda{
+	font-size: 18px;
+	margin-top:12px!important;
+	width: 50px;
 }
 
 
