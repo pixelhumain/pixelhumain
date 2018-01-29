@@ -80,7 +80,7 @@
         padding: 10px 15px 10px 15px;
         border-radius: 0px;
         font-weight: 100;
-        font-family: montserrat;
+        font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
         margin: 10px 0 0 -1px;
         border-bottom: 1px solid transparent;
     }
