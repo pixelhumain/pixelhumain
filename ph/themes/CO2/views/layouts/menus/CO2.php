@@ -272,6 +272,12 @@
                             </li>
                         <?php } ?>
                         <li role="separator" class="divider">
+                         <li class="text-left">
+                            <a href="#default.view.page.links" class="lbhp bg-right">
+                                <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
+                            </a>
+                        </li>
+                       
                          <li class="text-left visible-xs">
                             <a href="#search" class="lbh bg-white">
                                 <i class="fa fa-search"></i> <?php echo Yii::t("common", "Search") ?>

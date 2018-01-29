@@ -167,12 +167,9 @@
             resizeInterface();
             if(typeof localStorage != "undefined" && typeof localStorage.myScopes != "undefined"){                  
                 myScopes = JSON.parse(localStorage.getItem("myScopes"));
-                if(myScopes.type=="open")
-                    myScopes.state=false;
                 myScopes.open={};
                 if(myScopes.multiscopes==null)
                     myScopes.multiscopes={};
-                //myScopes.type="open";
             }else{
                 myScopes={
                     type:"open",

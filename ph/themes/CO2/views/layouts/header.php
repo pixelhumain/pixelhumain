@@ -103,23 +103,25 @@
     text-align: left;
     line-height: 30px;
    }
-   #multisopes-btn, #communexion-btn{
+   #multiscopes-btn, #communexion-btn{
         float: left;
         margin-left: 10px;
         line-height: 32px;
         padding: 0px 5px;
     }
-
+    #multiscopes-btn.active, #communexion-btn.active{
+        font-weight:bold !important;
+    }
     #main-input-group{
         float: left;
         margin-left: 5%;
     }
 
-    #multisopes-btn:hover, #communexion-btn:hover{
+    #multiscopes-btn:hover, #communexion-btn:hover{
         text-decoration: none;
         font-weight:bold;
     }
-    #multisopes-btn:focus, #communexion-btn:focus{
+    #multiscopes-btn:focus, #communexion-btn:focus{
         text-decoration: none;
         font-weight:200;
     }
@@ -248,7 +250,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button id="multisopes-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="multiscopes">
+                                <button id="multiscopes-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="multiscopes">
                                     <i class="fa fa-angle-down"></i> 
                                     <i class="fa fa-map-marker"></i> 
                                     <?php echo Yii::t("common","My favorites places"); ?> 
@@ -427,24 +429,32 @@
             $("#main-search-bar, #second-search-bar").val(search.value);
     }
     function initScopeMenu(type){
-        if(typeof myScopes.type != "undefined")
+        /*if(typeof myScopes.type != "undefined")
             activateScope=myScopes.type;
         else
-            activateScope="open";
-        activateScopeMenu(activateScope,true);
+            activateScope="open";*/
+        activateScopeMenu();
         bindSearchCity();
-        headerActive=true;
+        //headerActive=true;
         bindScopesInputEvent();
         countFavoriteScope();
         getCommunexionLabel();
     }
     function activateScopeMenu(type,init){
-        $(".container-scope-menu").hide(700);
-        $(".btn-scope-menu").removeClass("active");
-        $("#"+type+"-container").show(700);
-        $(".activate-"+type).addClass("active");
-        myScopes.type=type;
-        if(init==null){
+        if(myScopes.type!="open" || Object.keys(myScopes.open).length>0){
+            $(".scopes-container").html(constructScopesHtml());
+            if(myScopes.type!="multiscopes")
+                $("#filter-scopes-menu .scopes-container .scope-order").sort(sortSpan) // sort elements
+                    .appendTo("#filter-scopes-menu .scopes-container");
+        }
+        if(myScopes.type != "open")
+            $("#"+myScopes.type+"-btn").addClass("active").find("i.fa-angle-down").removeClass("fa-angle-down").addClass("fa-angle-up");
+        //$(".container-scope-menu").hide(700);
+        //$(".btn-scope-menu").removeClass("active");
+        //$("#"+type+"-container").show(700);
+        //$(".activate-"+type).addClass("active");
+       // myScopes.type=type;
+        /*if(init==null){
             myScopes.state=true;
             //if(type!="open-scope"){
             localStorage.setItem("myScopes",JSON.stringify(myScopes));
@@ -456,7 +466,7 @@
             $('.scope-filters-badge').addClass('animated bounceIn');
             $('.scope-filters-badge').addClass('badge-success');
             $('.scope-filters-badge').removeClass('badge-tranparent');
-        }
+        }*/
 
     }
 </script>
