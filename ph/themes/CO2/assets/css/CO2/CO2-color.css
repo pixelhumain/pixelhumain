@@ -89,6 +89,9 @@
 .text-dark, a.text-dark{
     color:#2C3E50 !important;
 }
+.text-brown, a.text-brown{
+    color:#b2774b !important;
+}
 .text-green, a.text-green{
     color:#93C020 !important;
 }
@@ -173,7 +176,9 @@ a.text-white{
 .bg-blue{
     background-color:#7bc3d1 !important;
 }
-
+.bg-brown{
+    background-color:#93C020 !important;
+}
 .bg-lightblue{
     background-color:#C8EBF5 !important;
 }

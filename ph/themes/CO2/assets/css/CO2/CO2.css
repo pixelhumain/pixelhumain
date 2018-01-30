@@ -231,11 +231,11 @@ section {
     color: #e6344d !important;
 }
 #territorial-menu{
-	margin-left:5%;
 	margin-bottom: 0px !important;
 }
 #affix-sub-menu.affix{
 	top: 65px;
+	left: 0px;
   	/*background-image: url("../../img/background-onepage/pattern/witewall_3.png");*/
     background-color: white;
 	-webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
@@ -245,7 +245,7 @@ section {
     z-index: 1000;
 }
 #affix-sub-menu.affix #territorial-menu {
-    /*background-color: white;*/
+	padding-left: 5%;
 }
 #filters-menu{
 	display:none;
