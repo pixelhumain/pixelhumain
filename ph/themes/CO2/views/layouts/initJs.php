@@ -110,7 +110,7 @@
         "datagouv"    : { color: "lightblue2",   icon: "bullhorn",   name: "DataGouv" },
         "osm"    : { color: "lightblue2",   icon: "bullhorn",   name: "Open Street Map" },
         "ods"    : { color: "lightblue2",   icon: "bullhorn",   name: "OpenDatasoft" },
-        "places"         : { color: "green",   icon: "map-marker",   name: trad.places },
+        "places"         : { color: "brown",   icon: "map-marker",   name: trad.places },
         "classified"    : { color: "lightblue2",   icon: "bullhorn",   name: trad.classifieds },
         "GovernmentOrganization" : { color: "red",   icon: "university",        name: "services publics" },
         "ressources"         : { color: "vine",   icon: "cubes",   name: "Ressource" },

@@ -52,7 +52,6 @@
     .navbar-nav .menu-button:hover{
         color:grey !important;;
     }
-
 </style>
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
@@ -112,17 +111,15 @@
                     <i class="fa fa-search"></i>
             </button>
             <div id="filters-container-menu" class="no-padding hidden-xs">
-                    <ul class="filters-menu">
-                        <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="Geographical filter">
-                         <i class="fa fa-globe"></i> 
-                            <!--<span class="hidden-xs"><?php echo Yii::t("common","Geographical") ?></span>-->
-                        </li>
-                        <li class="btn-open-filliaire tooltips" data-placement="bottom" data-original-title="Theme filter">
-                         <i class="fa fa-th"></i> 
-                            <!--<span class="hidden-xs"><?php echo Yii::t("common","Themes") ?></span>-->
-                        </li>
-                        
-                    </ul> 
+                <ul class="filters-menu">
+                    <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="<?php echo Yii::t("common", "Geographical filter") ?>">
+                     <i class="fa fa-map-marker"></i> 
+                    </li>
+                    <li class="theme-header-filter tooltips" data-placement="bottom" data-original-title="<?php echo Yii::t("common", "Theme filter") ?>">
+                     <i class="fa fa-th"></i> 
+                    </li>
+                    
+                </ul> 
             </div>
         <?php } ?>
 

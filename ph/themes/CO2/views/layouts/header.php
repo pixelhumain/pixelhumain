@@ -269,7 +269,7 @@
                                 </div>
                                 <button id="multiscopes-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="multiscopes">
                                     <i class="fa fa-angle-down"></i> 
-                                    <i class="fa fa-map-marker"></i> 
+                                    <i class="fa fa-star"></i> 
                                     <?php echo Yii::t("common","My favorites places"); ?> 
                                     (<span class="count-favorite"></span>)
                                 </button>
@@ -286,58 +286,6 @@
 
                         
                     </div>
-                        <div id="filters-menu" class="filters-type-container col-md-9 col-sm-9 col-xs-12 margin-top-5">
-                            <?php if(@Yii::app()->session["userId"]) $containerClass="col-md-9 col-sm-9 col-xs-12";  else $containerClass="col-md-10 col-sm-10 col-xs-12"; ?>
-                           <!-- <div id="container-scope-filter"  class="col-md-12 col-sm-12 col-xs-12 no-padding">
-                                <a href="javascript:;" class="activate-open-scope btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-1"
-                                    data-toggle="tooltip" data-placement="bottom" title="Searching on all cities" onclick="activateScopeMenu('open-scope');">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                                 <div id="open-scope-container" class="container-scope-menu  <?php echo $containerClass ?> no-padding">
-                                    <div id="input-sec-search" class="hidden-xs col-xs-12 col-md-4 col-lg-4">
-                                        <input type="text" class="form-control input-global-search" id="searchOnCity" placeholder="Go to city ?">
-                                        <div class="dropdown-result-global-search col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding" style="max-height: 70%; display: none;"><div class="text-center" id="footerDropdownGS"><label class="text-dark"><i class="fa fa-ban"></i> Aucun résultat</label><br></div></div>
-                                    </div>
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                                <?php if(@Yii::app()->session["userId"]){ ?>
-                                <a href="javascript:;" class="activate-communexion btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-1"
-                                    data-toggle="tooltip" data-placement="top" title="" onclick="activateScopeMenu('communexion');">
-                                    <i class="fa fa-university"></i>
-                                </a>
-                                <div id="communexion-container" class="container-scope-menu col-md-9 col-sm-9 col-xs-9">
-                                    <?php //$this->renderPartial($layoutPath.'breadcrum_communexion', array("type"=>@$type)); ?>
-                                </div>
-                                
-                                <?php } ?>
-                                <a href="javascript:;" class="activate-multiscope btn-scope-menu tooltips col-md-1 col-sm-1 col-xs-1"
-                                    data-toggle="tooltip" data-placement="top" title="My multiscope" onclick="activateScopeMenu('multiscope');">
-                                    <i class="fa fa-map-signs"></i>
-                                    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/cible3.png" height=25>
-                                </a>
-                                
-                                <div id="multiscope-container" class="container-scope-menu <?php echo $containerClass ?>"></div>
-                            </div>-->
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center subsub" id="sub-menu-filliaire">
-                                <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
-                                foreach ($filliaireCategories as $key => $cat) { 
-                                    if(is_array($cat)) { ?>
-                                      <div class="col-md-2 col-sm-2 col-xs-3 no-padding">
-                                        <button class="btn btn-default col-md-12 col-sm-12 col-xs-12 padding-10 bold text-dark elipsis margin-bottom-5 btn-select-filliaire" 
-                                                data-fkey="<?php echo $key; ?>"
-                                                style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
-                                                data-keycat="<?php echo $cat["name"]; ?>">
-                                          <i class="fa <?php echo $cat["icon"]; ?> fa-2x"></i><br>
-                                          <?php echo Yii::t("category", $cat["name"]); ?>
-                                        </button>
-                                      </div>
-                              <?php } 
-                          //          <!--</button>-->
-                                } ?>
-                            </div>
-                        </div>
                     <div id="affix-sub-menu">
                         <div id="territorial-menu" class="col-md-10 col-sm-10 col-xs-12 margin-bottom-10">
                             <?php //if(false){
@@ -377,50 +325,12 @@
 
         $(".theme-header-filter").click(function(){
             $("#filter-thematic-menu").toggle();
-            /*if($(".scope-header-filter").hasClass("active")){
-                $("#container-scope-filter").hide(700);
-                $(".scope-header-filter").removeClass("active");
-                $("#sub-menu-filliaire").show(700);
-            }
-            if($("#filters-menu").is(":visible") && $(this).hasClass("active")){
-                $("#filters-menu").hide(700);
-                $(this).removeClass("active");
-                $("#sub-menu-filliaire").hide(700);
-            }else if(!$("#filters-menu").is(":visible") && !$(this).hasClass("active")){
-                $("#filters-menu").show(700);
-                $("#sub-menu-filliaire").show(700);
-                $(this).addClass("active");
-            }else if($("#filters-menu").is(":visible") && !$(this).hasClass("active")){
-                $(this).addClass("active");
-            }*/
-            /*$("#filters-container ul li").removeClass("active");
-            $(this).addClass("active");
-            $("#container-scope-filter").hide(700);
-            $("#sub-menu-filliaire").show(700);*/
-            /*if($("#sub-menu-filliaire").hasClass("hidden"))
-                $("#sub-menu-filliaire").removeClass("hidden");
-            else{
-                $("#sub-menu-filliaire").addClass("hidden");
-                resetMyTags();
-            }*/
+        });
+        $("#filters-container-menu .theme-header-filter, #filters-container-menu .scope-header-filter").click(function(){
+            simpleScroll(0, 500);
         });
         $(".scope-header-filter").click(function(){
-            if($(".btn-open-filliaire").hasClass("active")){
-                $("#sub-menu-filliaire").hide();
-                $(".btn-open-filliaire").removeClass("active");
-                $("#container-scope-filter").show(700);
-            }
-            if($("#filters-menu").is(":visible") && $(this).hasClass("active")){
-                $("#filters-menu").hide(700);
-                $(this).removeClass("active");
-                $("#container-scope-filter").hide(700);
-            }else if(!$("#filters-menu").is(":visible") && !$(this).hasClass("active")){
-                $("#filters-menu").show(700);
-                $(this).addClass("active");
-                $("#container-scope-filter").show(700);
-            }else if($("#filters-menu").is(":visible") && !$(this).hasClass("active")){
-                $(this).addClass("active");
-            }
+            $("#searchOnCity").trigger("click");
         });
         $(".btn-select-filliaire").click(function(){
             mylog.log(".btn-select-filliaire");
