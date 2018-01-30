@@ -175,7 +175,6 @@
                 myScopes.open={};
                 if(myScopes.multiscopes==null)
                     myScopes.multiscopes={};
-
             }else{
                 myScopes={
 					type:"open",
@@ -186,6 +185,7 @@
 									json_encode($me["multiscopes"]) :
 									$multiscopes; ?>
                 };
+                myScopes.communexion=scopeObject(myScopes.communexion);
             }
             //if(typeof localStorage != "undefined" && typeof localStorage.circuit != "undefined")
               //  circuit.obj = JSON.parse(localStorage.getItem("circuit"));

@@ -153,6 +153,10 @@
     }
     #filter-thematic-menu{
         display: none;
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 5px 5px 0px 5px;
+        border-radius: 1px;
     }
 </style>
 
@@ -245,7 +249,7 @@
                       
                             } ?>
                         </div>
-                        <div id="filter-scopes-menu" class="margin-top-10">
+                        <div id="filter-scopes-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12 no-padding margin-top-10">
                             <div id="scope-container" class="scope-menu no-padding">
                                 <div id="input-sec-search" class="col-xs-10 col-md-6 col-sm-6 col-lg-6">
                                     <div class="input-group shadow-input-header">
