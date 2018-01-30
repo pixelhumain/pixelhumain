@@ -127,7 +127,7 @@ body{
 	background-color: #233140;
 }
 header, .header {
-  margin-top: 60px;
+  margin-top: 55px;
   text-align: center;
   /*background: rgba(0, 0, 0, 0.03);*/
   background: url("../../img/background-header/contact-map.jpg") center top;
