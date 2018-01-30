@@ -92,6 +92,9 @@
 .text-green, a.text-green{
     color:#93C020 !important;
 }
+.text-brown, a.text-brown{
+    color:#b2774b !important;
+}
 .text-yellow, a.text-yellow{
     color:#FFC600 !important;
 }
@@ -169,6 +172,9 @@ a.text-white{
 }
 .bg-black{
     background-color:black !important;
+}
+.bg-brown{
+    background-color:#93C020 !important;
 }
 .bg-blue{
     background-color:#7bc3d1 !important;
