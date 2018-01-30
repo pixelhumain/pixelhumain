@@ -299,7 +299,7 @@ return array(
 	"Followers" => "Abonnés",
 	"Follow" => "Abonnement",
 	"follow" => "abonnement",
-	"follows" => "Abonnements",
+	"follows" => "abonnements",
 	"Follows" => "Abonnements",
 	"Collections" => "Collections",
 	"Community" => "Communauté",

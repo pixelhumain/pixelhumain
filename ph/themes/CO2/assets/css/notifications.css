@@ -149,10 +149,10 @@
 #notificationPanelSearch.arrow_box::before{
 	margin-bottom: 1px;	
 	border-bottom-color: #e1dbdb;
-	left: 25% !important;
+	left: 25%;
 }
 #notificationPanelSearch.arrow_box::after{
-	left: 25% !important;
+	left: 25%;
 }
 
 #notificationPanelSearch{
@@ -161,11 +161,9 @@
 	top: 68px !important;
 }
  @media (min-width: 767px) and (max-width: 992px) {
- 	#notificationPanelSearch.arrow_box::before{
-		left: 51% !important;
-	}
+ 	#notificationPanelSearch.arrow_box::before,
 	#notificationPanelSearch.arrow_box::after{
-		left: 51% !important;
+		left:210px auto;
 	}
  }
 
@@ -182,7 +180,7 @@
 	}
 	#notificationPanelSearch.arrow_box::after,
 	#notificationPanelSearch.arrow_box::before{
-		left:unset!important;
-		right:207px!important;
+		left:unset;
+		right:207px;
 	}
 }

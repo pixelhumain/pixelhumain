@@ -53,23 +53,6 @@
         color:grey !important;;
     }
 
-    @media (max-width: 767px) {
-        
-        #dropdown-dda .dropdown-menu.arrow_box{
-            width: 100%;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background: white;
-            position: fixed !important;
-            top: 52px;
-        }
-        #dropdown-dda .dropdown-main-menu .arrow_box::after, 
-        #dropdown-dda .dropdown-main-menu .arrow_box::before {
-            right: 265px;
-            left: unset;
-        }
-    }
 </style>
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
