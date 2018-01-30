@@ -165,7 +165,11 @@
             };
             initFloopDrawer();
             resizeInterface();
-            if(typeof localStorage != "undefined" && typeof localStorage.myScopes != "undefined"){                  
+            //if(typeof localStorage != "undefined" && typeof localStorage.myScopes != "undefined" && typeof localStorage.userId != "undefined"){     
+            if( notNull(localStorage) && 
+                notNull(localStorage.myScopes) && 
+                notNull(localStorage.myScopes.userId) &&
+                localStorage.myScopes.userId == userId )  {            
                 myScopes = JSON.parse(localStorage.getItem("myScopes"));
                 if(myScopes.type=="open")
                     myScopes.state=false;
@@ -173,12 +177,14 @@
                 if(myScopes.multiscopes==null)
                     myScopes.multiscopes={};
                 //myScopes.type="open";
-            }else{
+            }  else {
+
                 myScopes={
                     type:"open",
-                    state: false,
+                    userId: userId,
+                    //state: false,
                     open : {},
-                    communexion : <?php echo json_encode(CO2::getCommunexionCookies()) ?>,
+                    communexion : <?php echo json_encode(CO2::getCommunexionUser()) ?>,
                     multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 
                                 json_encode($me["multiscopes"]) :  
                                 $multiscopes; ?>
