@@ -221,6 +221,7 @@
 		var networkJson = <?php echo json_encode($networkJson)?>;
 		var globalTheme = "network";
 		var CO2DomainName = "<?php echo $CO2DomainName; ?>";
+		var CO2params = <?php echo json_encode($params); ?>;
 
 
 		var lastUrl = null;

@@ -53,23 +53,6 @@
         color:grey !important;;
     }
 
-    @media (max-width: 767px) {
-        
-        #dropdown-dda .dropdown-menu.arrow_box{
-            width: 100%;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background: white;
-            position: fixed !important;
-            top: 52px;
-        }
-        #dropdown-dda .dropdown-main-menu .arrow_box::after, 
-        #dropdown-dda .dropdown-main-menu .arrow_box::before {
-            right: 265px;
-            left: unset;
-        }
-    }
 </style>
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
@@ -272,6 +255,12 @@
                             </li>
                         <?php } ?>
                         <li role="separator" class="divider">
+                         <li class="text-left">
+                            <a href="#default.view.page.links" class="lbhp bg-right">
+                                <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
+                            </a>
+                        </li>
+                       
                          <li class="text-left visible-xs">
                             <a href="#search" class="lbh bg-white">
                                 <i class="fa fa-search"></i> <?php echo Yii::t("common", "Search") ?>
