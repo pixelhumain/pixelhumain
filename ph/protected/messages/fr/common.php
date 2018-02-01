@@ -1317,6 +1317,8 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"what are you looking for ?" => "Que recherchez-vous ?",
 	"Geographical filter"=>"Filtre géographique",
 	"Theme filter"=>"Filtre thématique",
+	"Sharing"=>"Entraide",
+	"Market place"=> "Place de marché",
 
 );
 ?>

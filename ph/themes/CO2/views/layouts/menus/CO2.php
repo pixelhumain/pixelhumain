@@ -3,7 +3,8 @@
         /*background-color: rgba(255, 255, 255, 0.8);
         border-radius: 10px;*/
         padding: 11px 10px;
-        font-size: 11px;
+        font-size: 12px;
+        font-weight: bold;
     }
     a.link-submenu-header.active, 
     a.link-submenu-header:hover, 
