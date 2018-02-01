@@ -51,7 +51,7 @@
         font-size: 18px !important;
     }
     .navbar-nav .menu-button:hover{
-        color:grey !important;;
+        color:grey !important;
     }
 </style>
 <!-- Navigation -->
@@ -254,7 +254,8 @@
                         <?php } ?>
                         <li role="separator" class="divider">
                          <li class="text-left">
-                            <a href="#default.view.page.links" class="lbhp bg-right">
+                            <!--#default.view.page.links-->
+                            <a href="#default.view.page.index.dir.docs" class="lbhp bg-right">
                                 <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
                             </a>
                         </li>
