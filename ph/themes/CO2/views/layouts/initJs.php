@@ -9,7 +9,6 @@
     var moduleId = "<?php echo $parentModuleId?>";
     var activeModuleId = "<?php echo $this->module->id?>";
 
-
     var modules = {
         "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
         "classifieds": <?php echo json_encode( Classified::getConfig() ) ?>,
