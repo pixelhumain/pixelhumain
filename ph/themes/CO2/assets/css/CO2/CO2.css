@@ -127,7 +127,7 @@ body{
 	background-color: #233140;
 }
 header, .header {
-  margin-top: 55px;
+  /*margin-top: 55px;*/
   text-align: center;
   /*background: rgba(0, 0, 0, 0.03);*/
   background: url("../../img/background-header/contact-map.jpg") center top;
@@ -1242,12 +1242,12 @@ h3.title_panel_map{
 
 #footer-help{
 	background-color: rgba(35, 49, 64, 0.9);
-    position: fixed;
-    bottom: 0px;
-    height: 230px;
-    color: white;
-    font-size: 18px;
-    padding: 25px;
+	position: fixed;
+	bottom: 0px;
+	height: 65px;
+	color: white;
+	font-size: 18px;
+	padding: 10px 60px 10px 10px;
 }
 #footer-help .btnHelp{
 	font-weight: 800;

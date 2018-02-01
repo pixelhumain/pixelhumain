@@ -285,12 +285,11 @@
                             </a>
                         </li>
                         <li role="separator" class="divider visible-xs"></li>
-                        <!--<li class="text-power">
-                            <a href="#power" class="bg-white disabled">
-                                <i class="fa fa-comments"></i> Démocratie
+                        <li class="">
+                            <a href="#info.p.stats" class="bg-white disabled lbh">
+                                <i class="fa fa-bar-chart"></i> <?php echo Yii::t("common","Statistics"); ?>
                             </a>
-                        </li> -->
-                        </li>
+                        </li> 
                         <li class="text-left">
                             <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
                                 class="bg-white letter-red logout">
@@ -360,7 +359,6 @@
 
 
                 <?php } else { ?>
-                    
                     <li class="pull-right">
                         <?php //if($subdomain != "welcome"){ ?>
                             <button class="letter-green font-montserrat btn-menu-connect margin-left-10" 
@@ -377,6 +375,11 @@
                         <?php //} ?>
                     </li>
 
+                    <li class="pull-right">
+                        <a href="#info.p.stats" class="lbh padding-5" style="margin-top:8px;">
+                            <i class="fa fa-bar-chart"></i> stat
+                        </a>
+                    </li> 
                 <?php } ?>
             </ul>
             <?php if (!@Yii::app()->session["userId"] && $subdomain == "welcome"){ ?>
