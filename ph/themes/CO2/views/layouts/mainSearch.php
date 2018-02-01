@@ -130,6 +130,8 @@
             <div class="pageContent"></div>
         </div>
         
+
+        <div id="modal-preview-coop" class="shadow2 hidden"></div>
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
        
         <?php if($CO2DomainName == "kgougle")
@@ -290,6 +292,8 @@
         <script>    
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
+            var CO2params = <?php echo json_encode($params); ?>;
+
             jQuery(document).ready(function() { 
                 
                 $.blockUI({ message : themeObj.blockUi.processingMsg});

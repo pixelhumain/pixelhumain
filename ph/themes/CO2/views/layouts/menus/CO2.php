@@ -3,7 +3,8 @@
         /*background-color: rgba(255, 255, 255, 0.8);
         border-radius: 10px;*/
         padding: 11px 10px;
-        font-size: 11px;
+        font-size: 12px;
+        font-weight: bold;
     }
     a.link-submenu-header.active, 
     a.link-submenu-header:hover, 
@@ -52,24 +53,6 @@
     .navbar-nav .menu-button:hover{
         color:grey !important;;
     }
-
-    @media (max-width: 767px) {
-        
-        #dropdown-dda .dropdown-menu.arrow_box{
-            width: 100%;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background: white;
-            position: fixed !important;
-            top: 52px;
-        }
-        #dropdown-dda .dropdown-main-menu .arrow_box::after, 
-        #dropdown-dda .dropdown-main-menu .arrow_box::before {
-            right: 280px;
-            left: unset;
-        }
-    }
 </style>
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
@@ -81,7 +64,10 @@
                 <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
             >
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-head-search.png" 
-                     class="logo-menutop pull-left hidden-xs hidden-sm" height=17>
+                     class="logo-menutop main pull-left hidden-xs hidden-sm" height=17>
+
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
+                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" height=20>
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
                      class="logo-menutop pull-left visible-xs visible-sm" height=25>
@@ -114,7 +100,7 @@
                   //$subdomain == "page"
                  ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-4 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="search by name or by #tag, ex: 'commun' or '#commun'<?php //echo Yii::t("common", $placeholderMainSearch); ?>">
                 <?php if($subdomain == "page"){ ?>
@@ -125,18 +111,16 @@
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
             </button>
-            <div id="filters-container-menu" class="no-padding">
-                    <ul class="filters-menu">
-                        <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="Geographical filter">
-                         <i class="fa fa-globe"></i> 
-                            <!--<span class="hidden-xs"><?php echo Yii::t("common","Geographical") ?></span>-->
-                        </li>
-                        <li class="btn-open-filliaire tooltips" data-placement="bottom" data-original-title="Theme filter">
-                         <i class="fa fa-th"></i> 
-                            <!--<span class="hidden-xs"><?php echo Yii::t("common","Themes") ?></span>-->
-                        </li>
-                        
-                    </ul> 
+            <div id="filters-container-menu" class="no-padding hidden-xs">
+                <ul class="filters-menu">
+                    <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="<?php echo Yii::t("common", "Geographical filter") ?>">
+                     <i class="fa fa-map-marker"></i> 
+                    </li>
+                    <li class="theme-header-filter tooltips" data-placement="bottom" data-original-title="<?php echo Yii::t("common", "Theme filter") ?>">
+                     <i class="fa fa-th"></i> 
+                    </li>
+                    
+                </ul> 
             </div>
         <?php } ?>
 
@@ -269,6 +253,12 @@
                             </li>
                         <?php } ?>
                         <li role="separator" class="divider">
+                         <li class="text-left">
+                            <a href="#default.view.page.links" class="lbhp bg-right">
+                                <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
+                            </a>
+                        </li>
+                       
                          <li class="text-left visible-xs">
                             <a href="#search" class="lbh bg-white">
                                 <i class="fa fa-search"></i> <?php echo Yii::t("common", "Search") ?>
@@ -349,7 +339,7 @@
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Cooperation") ?>" 
                           alt="<?php echo Yii::t("common","Cooperation") ?>">
                       <i class="fa fa-inbox"></i>
-                      <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
+                      <span class="coopNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
 
 

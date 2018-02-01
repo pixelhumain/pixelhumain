@@ -107,6 +107,9 @@ onSave: (optional) overloads the generic saveProcess
 
 	        $( settings.formId ).append(fieldHTML);
 
+	        if(settings.afterBuild && jQuery.isFunction( settings.afterBuild ) )
+				settings.afterBuild();
+
 	        $(dyFObj.activeModal+" #btn-submit-form").one(function() { 
 				$( settings.formId ).submit();	        	
 	        });
@@ -2552,8 +2555,10 @@ var dyFObj = {
 
 			      	if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.beforeBuild","function") )
 				        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.beforeBuild();
-
-			    	
+				},
+			      afterBuild : function  () {
+			      	if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.afterBuild","function") )
+				        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.afterBuild(data);
 			      },
 			      onLoad : function  () {
 
@@ -2613,34 +2618,6 @@ var dyFObj = {
                 	callback();
 			});
 		}
-	},
-	editDynForm : function(title, icon, properties, fct, data, saveUrl, onLoads, beforeSave, afterSave) {
-		mylog.warn("---------------------- editDynForm ------------------");
-		var form = {
-			dynForm:{
-				jsonSchema : {
-					title : title,
-					icon : icon,
-					properties : properties
-				}
-			}
-		};
-
-		if(typeof saveUrl != "undefined" )
-			form.saveUrl = saveUrl;
-
-		if(typeof onLoads != "undefined" )
-			form.dynForm.jsonSchema.onLoads = onLoads;
-
-		if(typeof beforeSave != "undefined" )
-			form.dynForm.jsonSchema.beforeSave = beforeSave;
-
-		if(typeof afterSave != "undefined" )
-			form.dynForm.jsonSchema.afterSave = afterSave;
-
-		mylog.dir(form);
-
-		dyFObj.openForm(form, fct, data);
 	},
 	canUserEdit : function ( ) {
 		var res = false;

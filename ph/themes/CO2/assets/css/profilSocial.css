@@ -249,7 +249,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 /*********************************************/
-.header{
+    .header{
         position: absolute;
         width:100%;
         height:300px;
@@ -441,7 +441,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 .sub-menu-social.affix {
-    top: 90px !important;
+    top: 80px !important;
     position: fixed;
     right: 0;
     z-index: 100;
@@ -719,6 +719,122 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 #ajaxFormModal .slugtext .help-block{
     display: none!important;
+}
+
+/* menuLeftElement*/
+
+.img-thumb{
+    height: 50px;
+    width: 50px;
+}
+
+.podInside .panel-heading,
+.podInside .panel-tools{
+    display:none;
+}
+.podInside .panel,
+.podInside .table{
+    margin-bottom: 0px;
+    border: 0px;
+}
+
+.podInside.collections a{
+    font-size: 15px;
+    font-weight: 700;
+    padding:10px;
+    display: inline-block;
+}
+
+.podchart .panel-heading{
+    background-color: white !important;
+}
+
+.favElBtn{
+    /*color: #FC4D4D !important;*/
+    /*padding: 6px;
+    margin-bottom: 4px;*/
+}
+
+.editBtn{
+    float: right;
+}
+
+
+.btn-update-info, 
+.btn-update-network, 
+.btn-update-desc{
+
+}
+
+a.letter-grey{
+    color:#425B5F;
+}
+
+
+
+#subsubMenuLeft hr{
+    margin-top: 7px;
+    margin-bottom: 7px; 
+    border-top: 2px solid #ededed;
+}
+
+#subsubMenuLeft a{
+    color:#5B5B5C;
+    font-size: 16px;
+    padding: 6px;
+    padding-left: 10px;
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    border-left: 3px solid transparent;
+}
+
+#subsubMenuLeft a:hover{
+    color:#0095FF;
+    background-color: #edecec;
+    border-left: 3px solid #0095FF;
+}
+
+#subsubMenuLeft a:active,
+#subsubMenuLeft a.active{
+    background-color: #edecec;
+    border-left: 3px solid #0095FF;
+    color:#0095FF;
+}
+
+#subsubMenuLeft i.fa{
+    width: 25px;
+    text-align: center;
+}
+.containInvitation .btn-accept{
+    border-radius:3px !important;
+    color: white;
+    background-color: #71CE4E;
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+.containInvitation .btn-accept:hover{
+    color: #71CE4E !important;
+    background-color: white;
+    border: 1px solid #71CE4E;
+}
+.containInvitation .btn-accept i{
+    font-size:12px;
+}
+.containInvitation .btn-refuse{
+    border-radius:3px !important;
+    color: white;
+    background-color: #E33551;
+    padding: 5px 10px;
+margin-top: 5px;
+}
+.containInvitation .btn-refuse:hover{
+    color: #E33551 !important;
+    background-color: white;
+    border: 1px solid #E33551;
+}
+.containInvitation .btn-refuse i{
+    font-size:12px;
 }
 
 @media screen and (max-width: 1024px) {

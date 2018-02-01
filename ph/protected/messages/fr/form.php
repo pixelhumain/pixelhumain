@@ -164,6 +164,11 @@
 		"Tags link a filter" => "Tags associer au filtre",
 		"Filters" => "Filtres",
 		"Add map" => "Ajouter une carte",
+		"Please, wait the end of the current loading" => "Veuillez attendre la fin du chargement en cours",
+		"Please, write something or add a content to your post" => "Veuillez écrire quelque chose ou ajouter du contenu",
+		"Please, add a place to your post"=>"Veuillez selectionner au moins un lieu de publication",
+		"Add places where you want to publish"=>"Ajouter des lieux de publication",
+		"Selected zones"=>"Zones sélectionnées",
 	)
 
 ?>

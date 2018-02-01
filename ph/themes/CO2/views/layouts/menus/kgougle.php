@@ -273,6 +273,23 @@ a.link-submenu-header:focus{
                         </span>
                     </button>
 
+
+                    <button class="menu-button btn-menu btn-dashboard-dda text-dark pull-right" 
+                          data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Cooperation") ?>" 
+                          alt="<?php echo Yii::t("common","Cooperation") ?>">
+                      <i class="fa fa-inbox"></i>
+                      <span class="coopNotifs topbar-badge badge animated bounceIn badge-warning"></span>
+                    </button>
+
+                     <div class="dropdown pull-right" id="dropdown-dda">
+                        <div class="dropdown-main-menu">
+                            <ul class="dropdown-menu arrow_box menuCoop" id="list-dashboard-dda">
+                                
+                            </ul>
+                        </div>
+                    </div>
+
+
                     <?php if(@Yii::app()->session["userId"] && Yii::app()->params['rocketchatEnabled'] ) { ?>
                     <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
                           onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Messaging") ?>" alt="<?php echo Yii::t("common","Messaging") ?>">

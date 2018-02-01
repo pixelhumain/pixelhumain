@@ -44,6 +44,13 @@ header img, .header img {
 
 .dropdown-main-menu{
 	right: 53px !important;
+	top: 60px !important;
+}
+
+#dropdown-dda .dropdown-main-menu{
+	position: absolute !important;
+	right: 4px !important;
+    top: 0px !important;
 }
 
 .btn-menu-notif{
@@ -187,11 +194,26 @@ a.link-submenu-header:focus{
     background-color:rgb(242, 238, 238) !important;
 }
 
+.btn-dashboard-dda{
+	font-size: 18px;
+	margin-top:12px!important;
+	width: 50px;
+}
+
+.btn-directory-type[data-type="place"],
+.btn-directory-type[data-type="poi"],
+.btn-directory-type[data-type="ressources"],
+hr[data-type="place"],
+hr[data-type="poi"],
+hr[data-type="ressources"]{
+	display: none;
+}
+
 
 @media screen and (max-width: 1024px) {
-	.menu-name-profil small{
+	/*.menu-name-profil small{
 	    max-width: 125px;
-	}	
+	}	*/
 }
 
 @media (max-width: 992px) {
@@ -231,6 +253,16 @@ a.link-submenu-header:focus{
 	.affix .navbar-header .nc_map{
 		margin-left:0px !important;
 	}
+
+
+
+    #dropdown-user .dropdown-menu.arrow_box {
+	    position: absolute !important;
+	    top: 32px;
+	    right: -17px !important;
+	    width: 210px !important;
+    }
+
 /*
 	.link-submenu-header span{
 		display: none!important;
@@ -302,16 +334,38 @@ a.link-submenu-header:focus{
 	}
 
 
+
 	.dropdown-main-menu{
-		right: 15px !important;
-		top:56px;
-	}
-	.dropdown-main-menu .arrow_box::after, .dropdown-main-menu .arrow_box::before {
-	    right: 55px;
-	    left: unset;
+		right: 220px !important;
+		top: 26px !important;
 	}
 
+	.dropdown-main-menu .arrow_box::after, 
+	.dropdown-main-menu .arrow_box::before {
+	    right: 62px;
+	}
+	
+    #dropdown-dda .dropdown-main-menu .arrow_box::after, 
+    #dropdown-dda .dropdown-main-menu .arrow_box::before {
+        right: 195px;
+        left: unset;
+    }
+    #dropdown-dda .dropdown-menu.arrow_box{
+    	top:56px!important;
+    }
 	.floopDrawer{
 		top: 62px;
+	}
+
+	#onepage section#social-header {
+	    margin-top: 55px !important;
+	}
+
+	#notificationPanelSearch.arrow_box{
+		top:56px !important;
+	}
+	#notificationPanelSearch.arrow_box::after, 
+	#notificationPanelSearch.arrow_box::before {
+		right: 153px !important;
 	}
 }

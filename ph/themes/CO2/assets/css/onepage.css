@@ -74,19 +74,23 @@
 	font-size: 2em;
 }
 
-#onepage .header .btn-tools button{
+#onepage .header .btn-tools button,
+#onepage .header .btn-tools a{
 	margin-bottom:4px;
 	border:none;
 	border-radius:40px;
 	background-color: rgba(255, 255,255, 0.5);
 }
-#onepage .header .btn-tools button:hover{
+#onepage .header .btn-tools button:hover,
+#onepage .header .btn-tools a:hover{
 	background-color: rgba(255, 255,255, 0.8);
 }
+#onepage .header .text-left.btn-tools a i,
 #onepage .header .text-left.btn-tools button i{
 	padding-right:4px;
 
 }
+#onepage .header .text-right.btn-tools a i,
 #onepage .header .text-right.btn-tools button i{
 	padding-left:4px;
 
