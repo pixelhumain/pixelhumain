@@ -97,11 +97,12 @@
   margin-top:8px;
 }
 
+
 .searchEntity .entityCenter{
-  text-align: left;
+  text-align: right;
   max-width: 100%;
   /*width: 100%;*/
-  margin-top:-60px;
+  margin-top:-40px;
 }
 .searchEntity .entityCenter i.fa, 
 .searchEntity .entityCenter img{
@@ -212,6 +213,7 @@
 
 .searchEntity.entityLight .entityCenter{
   margin-top: 10px;
+  text-align: left;
   /*width:unset;*/
 }
 .searchEntity.entityLight .entityCenter .iconType i.fa,
@@ -388,6 +390,14 @@
     overflow: hidden;
   } 
 
+
+
+  .searchEntityContainer.events{
+    max-height: 500px!important;
+    min-height: unset!important;
+    margin-bottom: 45px !important;
+  }
+
   .events .searchEntity{
     background-color: rgba(211, 211, 211, 0.2) !important;
   }
@@ -523,36 +533,40 @@
 
   .container-img-profil img.thumbnailProfil,
   .container-img-profil .fa-image{
-    width: 60px !important;
-    height: 60px !important;
+    width: auto !important;
+    height: auto !important;
     border-radius: 0px !important;
     border: 3px solid white;
-    margin-bottom: 8px;
-    padding:0px;
+    margin-bottom: 0px;
+    padding: 0px;
     background-color: #dedede;
     font-size: 28px !important;
+    max-width: 100%;
   }
   
-
-
   .classified .container-img-profil{
     max-height: 350px;
+    min-height: 80px;
+    width: 100%;
+    text-align: center;
+    display: block;
+    background: #e7e7e7;
   }
 
-    .events .container-img-profil{
-      min-height:110px;
-      max-height: unset;
-      margin:7%;
-      width: 86%;
-      max-width: 86%;
-      border-radius:20px;
-    }
-    .events .container-img-profil img.img-responsive{
-      border-radius:20px;
-    }
+
+  .events .container-img-profil{
+    min-height: 110px;
+    max-height: unset;
+    margin: 4%;
+    width: 92%;
+    max-width: 92%;
+    border-radius: 0;
+  }
+  .events .container-img-profil img.img-responsive{
+    border-radius:20px;
+  }
 
   .container-img-profil i.fa {
-      /*margin-top: 45px;*/
       font-size: 50px;
       color:rgba(255, 255,255, 0.8);
   }
@@ -560,6 +574,13 @@
 
     .events .container-img-profil i.fa {
       margin-top: 30px;
+    }
+    
+    .classified .container-img-profil i.fa-image{
+      margin-top: 33px;
+      font-size: 23px !important;
+      color: rgba(255, 255,255, 0.8);
+      border: 0;
     }
 
   .container-img-profil img.img-responsive{

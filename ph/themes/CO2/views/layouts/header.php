@@ -233,21 +233,37 @@
                     </div>
                     <div id="menu-filter" class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                      <div id="filter-thematic-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12 text-center margin-top-10">
-                            <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
-                            foreach ($filliaireCategories as $key => $cat) { 
-                                if(is_array($cat)) { ?>
-                                  <div class="col-md-2 col-sm-2 col-xs-3 no-padding">
-                                    <button class="btn btn-default col-md-12 col-sm-12 col-xs-12 padding-10 bold text-dark elipsis margin-bottom-5 btn-select-filliaire" 
-                                            data-fkey="<?php echo $key; ?>"
-                                            style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
-                                            data-keycat="<?php echo $cat["name"]; ?>">
-                                      <i class="fa <?php echo $cat["icon"]; ?> fa-2x"></i><br>
-                                      <?php echo Yii::t("category", $cat["name"]); ?>
-                                    </button>
-                                  </div>
-                          <?php } 
-                      
-                            } ?>
+                            <?php if($page == "annonces"){ ?>
+                                <?php 
+                                    $classified = CO2::getModuleContextList("classifieds","categories");
+                                    $currentSection = 1;
+                                    foreach ($classified["sections"] as $key => $section) { ?>
+                                      <div class="col-md-2 col-sm-4 col-xs-6 no-padding">
+                                        <button class="btn btn-default col-md-12 col-sm-12 padding-10 bold text-dark elipsis btn-select-type-anc btn-select-filliaire" 
+                                                data-type-anc="<?php echo @$section["label"]; ?>" data-key="<?php echo @$section["key"]; ?>" 
+                                                data-type="classified"
+                                                style="border-radius:0px; border-color: transparent; text-transform: uppercase;">
+                                          <i class="fa fa-<?php echo $section["icon"]; ?> fa-2x hidden-xs"></i><br><?php echo Yii::t("category",$section["labelFront"]); ?>
+                                        </button>
+                                      </div>
+                                <?php } ?>
+                            <?php }else{ ?>
+                                <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
+                                foreach ($filliaireCategories as $key => $cat) { 
+                                    if(is_array($cat)) { ?>
+                                      <div class="col-md-2 col-sm-2 col-xs-3 no-padding">
+                                        <button class="btn btn-default col-md-12 col-sm-12 col-xs-12 padding-10 bold text-dark elipsis margin-bottom-5 btn-select-filliaire" 
+                                                data-fkey="<?php echo $key; ?>"
+                                                style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
+                                                data-keycat="<?php echo $cat["name"]; ?>">
+                                          <i class="fa <?php echo $cat["icon"]; ?> fa-2x"></i><br>
+                                          <?php echo Yii::t("category", $cat["name"]); ?>
+                                        </button>
+                                      </div>
+                              <?php } 
+                          
+                                } ?>
+                          <?php } ?>
                         </div>
                         <div id="filter-scopes-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12 no-padding margin-top-10">
                             <div id="scope-container" class="scope-menu no-padding">
