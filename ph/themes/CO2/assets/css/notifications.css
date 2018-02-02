@@ -163,7 +163,7 @@
  @media (min-width: 767px) and (max-width: 992px) {
  	#notificationPanelSearch.arrow_box::before,
 	#notificationPanelSearch.arrow_box::after{
-		left:210px auto;
+		left:216px;
 	}
  }
 
