@@ -65,7 +65,7 @@
     var deviseTheme = <?php echo json_encode(@$params["devises"]) ?>;
     var deviseDefault = <?php echo json_encode(@$params["deviseDefault"]) ?>;
 
-    var myScope={};
+    var myScopes={};
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",
         "citoyen":"<?php echo Person::ICON ?>", 
