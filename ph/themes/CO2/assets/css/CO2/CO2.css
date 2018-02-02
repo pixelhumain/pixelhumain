@@ -1087,7 +1087,6 @@ h3.title_panel_map{
 	background-color: transparent;
 	padding: 0 10px;
 	border: none !important;
-	border-left: 1px solid #e3e3e3 !important;
 }
 
 .menu-name-profil{
@@ -1405,13 +1404,11 @@ h3.title_panel_map{
 .btn-menu-notif .notifications-count,
 .btn-menu-chat .chatNotifs,
 .btn-dashboard-dda .coopNotifs{
-	/*margin-top: -15px;
-	margin-left: -15px;*/
-	margin-right: -5px;
-	margin-top:-32px;
-	float: right;
-	background-color: #34a853;
-	font-size: 10px;
+    background-color: #34a853;
+    font-size: 10px;
+    position: absolute;
+    top: -4px;
+    right: 2px;
 }
 
 .btn-menu-chat .chatNotifs{
@@ -1487,13 +1484,15 @@ h3.title_panel_map{
 }
 .dropdown-submenu>.dropdown-menu{
 	top: 0;
-	right: 100%;
-	max-width: 180px;
-	margin-top: -6px;
-	margin-right: 1px;
-	-webkit-border-radius: 3px 0px 0px 3px;
-	-moz-border-radius: 3px 0px 0px 3px;
-	border-radius: 3px 0px 0px 3px;
+    right: 100%;
+    max-width: 180px;
+    margin-top: -9px;
+    margin-right: 2px;
+    -webkit-border-radius: 3px 0px 0px 3px;
+    -moz-border-radius: 3px 0px 0px 3px;
+    border-radius: 2px 0px 0px 2px;
+    box-shadow: -1px 0px 7px -3px rgba(0,0,0, 1) !important;
+    left: initial;
 	display:none;
 }
 .dropdown-submenu .dropdown-menu a img{

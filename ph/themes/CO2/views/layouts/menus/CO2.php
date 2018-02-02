@@ -43,12 +43,13 @@
     }
 
     .navbar-nav .menu-button{
-        border-left: 1px solid #e4e4e4 !important;
-        width: 55px !important;
+        width: 45px !important;
         margin-right: 0px;
         height: 30px;
         margin-top: 10px;
         font-size: 18px !important;
+        padding:5px;
+        position: relative;
     }
     .navbar-nav .menu-button:hover{
         color:grey !important;
