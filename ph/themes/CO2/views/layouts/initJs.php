@@ -11,7 +11,6 @@
     var moduleId = "<?php echo $parentModuleId?>";
     var activeModuleId = "<?php echo $this->module->id?>";
 
-
     var modules = {
         "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
         "classifieds": <?php echo json_encode( Classified::getConfig() ) ?>,
@@ -168,12 +167,12 @@
             };
             initFloopDrawer();
             resizeInterface();
-            //if(typeof localStorage != "undefined" && typeof localStorage.myScopes != "undefined" && typeof localStorage.userId != "undefined"){     
-            if( notNull(localStorage) && 
-                notNull(localStorage.myScopes) && 
-                notNull(localStorage.myScopes.userId) &&
-                localStorage.myScopes.userId == userId )  {
+            //if(typeof localStorage != "undefined" && typeof localStorage.myScopes != "undefined" && typeof localStorage.userId != "undefined"){ 
+            if( notNull(localStorage) && notNull(localStorage.myScopes) )
                 myScopes = JSON.parse(localStorage.getItem("myScopes"));
+
+            if( myScopes.userId == userId )  {
+                //myScopes = JSON.parse(localStorage.getItem("myScopes"));
                 myScopes.open={};
                 if(myScopes.multiscopes==null)
                     myScopes.multiscopes={};
