@@ -65,7 +65,7 @@
     var deviseTheme = <?php echo json_encode(@$params["devises"]) ?>;
     var deviseDefault = <?php echo json_encode(@$params["deviseDefault"]) ?>;
 
-    var myScope={};
+    var myScopes={};
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",
         "citoyen":"<?php echo Person::ICON ?>", 
@@ -169,7 +169,7 @@
             if( notNull(localStorage) && notNull(localStorage.myScopes) )
                 myScopes = JSON.parse(localStorage.getItem("myScopes"));
 
-            if( myScopes.userId == userId )  {
+            if( notNull(myScopes) && myScopes.userId == userId )  {
                 //myScopes = JSON.parse(localStorage.getItem("myScopes"));
                 myScopes.open={};
                 if(myScopes.multiscopes==null)
