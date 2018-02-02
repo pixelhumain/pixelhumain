@@ -169,7 +169,7 @@
             if( notNull(localStorage) && notNull(localStorage.myScopes) )
                 myScopes = JSON.parse(localStorage.getItem("myScopes"));
 
-            if( myScopes.userId == userId )  {
+            if( notNull(myScopes) && myScopes.userId == userId )  {
                 //myScopes = JSON.parse(localStorage.getItem("myScopes"));
                 myScopes.open={};
                 if(myScopes.multiscopes==null)
