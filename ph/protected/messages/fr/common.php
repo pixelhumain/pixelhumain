@@ -535,6 +535,8 @@ return array(
 	"search something ..."=>"rechercher quelque chose ...",
 	"search a page ..."=>"rechercher une page ...",
 	"search a city ..." =>"rechercher une commune",
+	"Search a city" =>"Rechercher une ville",
+	"Favorites places"=>"Lieux favoris",
 	"search among classifieds ..."=>"rechercher parmi les annonces  ...",
 	"search an event ..."=>"rechercher un événement ...",
 	"search in live ..."=> "rechercher dans l'actualité",
