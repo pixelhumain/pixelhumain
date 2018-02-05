@@ -48,6 +48,14 @@
 		"If a city doesn't exist on communecter, you have to write the full name to find the city"=>"Si une ville n'est pas encore réferencée sur communecter, vous devrez écrire son nom en entier pour la trouver",
 
 		"You will find only cities <b>which match data</b>.<br/> If you <b>don't find</b> a city, feel free <b>to create an organization, a project, an event, on this geographical zone...</b><br/><br/><b>Then you will find this result here</b>"=>"Vous trouverez seulement les villes sur lesquels de <b>la donnée existe déjà</b>.<br/> Si vous <b>ne trouverez pas</b> une ville, n'hésitez pas à <b>créer une organisation, un projet, un événement sur ces villes manquantes...</b><br/><br/><b>Ainsi ces villes apparaitront</b>",
+		"Call ressources you need or purpose it.<br/> Sharing our knowledge to built it better"=>"Appeller une ressource manquante ou la mettre à disposition.<br/> Partarger notre connaissance et nos compétences pour construire ensemble",
+		"Material, Conpetences, Services<br/>Together we are stronger"=>"Matériel, Compétences, Services<br/>Ensemble on est plus fort",
+		"Every place hides creativity and life"=>"Chaque lieu cache de la créativité et de la vie",
+		"Places are centers of meeting, collective creation and are full of energy"=>"Les lieux sont des centres de rencontres, de création collectives et regorgent d'énergie",
+		"There is none sens to keep it for you<br/> Economy is capital"=>"Le garder pour soi n'a aucun sens.<br/> L'économie est capital",
+		"The market of classifieds is the creation of value.<br/> Exchange, hire, buy and sell localy faster and faster to produce value and develop a real economy."=>"Le marché des annonces crée de la valeur.<br/>Echanger, employer, acheter et vendre localement encore et encore pour produire de la valeur et développer une réelle économie",
+		"Create your community and make it bigger" => "Créer sa communauté et la rendre plus forte",
+		"Invite people you know to invite them in this local world<br/>Numeric informations to real meeting"=>"Inviter des personnes pour qu'ils partagent leur connaissance et faire grandir le commun<br/>L'information numérique en faveur de la rencontre réelle",
 		
 	);
 ?>

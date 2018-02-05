@@ -41,14 +41,14 @@
                         <a href="#element.invite" class="btn-create-elem col-lg-6 col-md-6 col-sm-6 col-xs-6 lbhp"
                             date-target="#modalMainMenu" data-dismiss="modal">
                             <div class="modal-body text-center">
-                                <h2 class="text-yellow"><i class="fa fa-group padding-bottom-10"></i><br>
-                                    <span class="font-light"> <?php echo Yii::t("category","Pixel") ?></span>
+                                <h2 class="text-yellow"><i class="fa fa-user padding-bottom-10"></i><br>
+                                    <span class="font-light"> <?php echo Yii::t("common","People") ?></span>
                                 </h2>
                                 
                                 <div class="col-md-12 no-padding text-center hidden-xs">
-                                    <h5><?php echo Yii::t("docs","Create your community, make it bigger") ?>
+                                    <h5><?php echo Yii::t("docs","Create your community and make it bigger") ?>
                                         <small class="hidden-xs" style="text-transform: none;"><br>
-                                            <?php echo Yii::t("docs","Civil society organizations is based on cooperation and solidarity.<br>More than ever, NGOs should be linked,<br>in order to work better and smarter.") ?>
+                                            <?php echo Yii::t("docs","Invite people you know to invite them in this local world<br/>Numeric informations to real meeting") ?>
                                         </small>
                                     </h5>
                                     <button class="btn btn-default text-yellow margin-bottom-15"><i class="fa fa-plus-circle"></i> <?php echo Yii::t("common","Invite someone") ?></button>
@@ -85,7 +85,7 @@
                                             <?php echo Yii::t("docs","Keep connection with your contacts, your customers, your employees, your providers...<br>The network will give you a visibility<br>fo the community living around you") ?>
                                         </small>
                                     </h5>
-                                    <button class="btn btn-default text-azure margin-bottom-15"><i class="fa fa-plus-circle"></i> <?php echo Yii::t("common","Create a conpagny") ?></button>
+                                    <button class="btn btn-default text-azure margin-bottom-15"><i class="fa fa-plus-circle"></i> <?php echo Yii::t("common","Create an enterprise") ?></button>
                                 </div>
                             </div>
                         </a>
@@ -156,7 +156,7 @@
                                             <?php echo Yii::t("docs","Public services are the pillars of our democracy.<br>It is important to map them and make them readily available<br>at the local level as well as national") ?>
                                         </small>
                                     </h5>
-                                    <button class="btn btn-default text-red margin-bottom-15"><i class="fa fa-plus-circle"></i> <?php echo Yii::t("common","Create a public service") ?></button>
+                                    <button class="btn btn-default text-red margin-bottom-15"><i class="fa fa-plus-circle"></i> <?php echo Yii::t("common","Add a governemental organization") ?></button>
                                 </div>
                             </div>
                         </a>
@@ -168,12 +168,12 @@
                                 </h2>
                                 
                                 <div class="col-md-12 no-padding text-center hidden-xs">
-                                    <h5><?php echo Yii::t("docs","Call ressources you need and help other") ?>
+                                    <h5><?php echo Yii::t("docs","Material, Conpetences, Services<br/>Together we are stronger") ?>
                                         <small class="hidden-xs" style="text-transform: none;"><br>
-                                            <?php echo Yii::t("docs","Help exchange built better and stronger") ?>
+                                            <?php echo Yii::t("docs","Call ressources you need or purpose it.<br/> Sharing our knowledge to built it better") ?>
                                         </small>
                                     </h5>
-                                    <button class="btn btn-default text-red margin-bottom-15"><i class="fa fa-plus-circle"></i> <?php echo Yii::t("common","Create a ressource") ?></button>
+                                    <button class="btn btn-default text-vine margin-bottom-15"><i class="fa fa-plus-circle"></i> <?php echo Yii::t("common","Create a ressource") ?></button>
                                 </div>
                             </div>
                         </a>
@@ -182,13 +182,13 @@
                             date-target="#modalMainMenu" data-dismiss="modal">
                             <div class="modal-body text-center">
                                 <h2 class="text-brown"><i class="fa fa-home padding-bottom-10"></i><br>
-                                    <span class="font-light"> <?php echo Yii::t("category","Place") ?></span>
+                                    <span class="font-light"> <?php echo Yii::t("common","Place") ?></span>
                                 </h2>
                                 
                                 <div class="col-md-12 no-padding text-center hidden-xs">
-                                    <h5><?php echo Yii::t("docs","New places") ?>
+                                    <h5><?php echo Yii::t("docs","Every place hides creativity and life") ?>
                                         <small class="hidden-xs" style="text-transform: none;"><br>
-                                            <?php echo Yii::t("docs","Where I go everytime") ?>
+                                            <?php echo Yii::t("docs","Places are centers of meeting, collective creation and are full of energy") ?>
                                         </small>
                                     </h5>
                                     <button class="btn btn-default text-brown margin-bottom-15"><i class="fa fa-plus-circle"></i> <?php echo Yii::t("common","Create a place") ?></button>
@@ -199,17 +199,17 @@
                         <a href="javascript:" class="btn-create-elem col-lg-6 col-md-6 col-sm-6 col-xs-6" data-type="classifieds"
                             date-target="#modalMainMenu" data-dismiss="modal">
                             <div class="modal-body text-center">
-                                <h2 class="text-azure"><i class="fa fa-money padding-bottom-10"></i><br>
-                                    <span class="font-light"> <?php echo Yii::t("category","Classified") ?></span>
+                                <h2 class="text-azure"><i class="fa fa-bullhorn padding-bottom-10"></i><br>
+                                    <span class="font-light"> <?php echo Yii::t("common","Classified") ?></span>
                                 </h2>
                                 
                                 <div class="col-md-12 no-padding text-center hidden-xs">
-                                    <h5><?php echo Yii::t("docs","Call ressources you need and help other") ?>
+                                    <h5><?php echo Yii::t("docs","There is none sens to keep it for you<br/> Economy is capital") ?>
                                         <small class="hidden-xs" style="text-transform: none;"><br>
-                                            <?php echo Yii::t("docs","Help exchange built better and stronger") ?>
+                                            <?php echo Yii::t("docs","The market of classifieds is the creation of value.<br/> Exchange, hire, buy and sell localy faster and faster to produce value and develop a real economy.") ?>
                                         </small>
                                     </h5>
-                                    <button class="btn btn-default text-azure margin-bottom-15"><i class="fa fa-plus-circle"></i> <?php echo Yii::t("common","Create a ressource") ?></button>
+                                    <button class="btn btn-default text-azure margin-bottom-15"><i class="fa fa-plus-circle"></i> <?php echo Yii::t("common","Create a classified ad") ?></button>
                                 </div>
                             </div>
                         </a>
