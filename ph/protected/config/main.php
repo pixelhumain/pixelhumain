@@ -24,15 +24,16 @@ return array(
 	'preload'=>array('log'),
 	'modulePath' => realpath(__DIR__ . $modulesDir),
 	'aliases' => array(
-    	'vendor' => realpath(__DIR__ . '/../../vendor/'),
-        'rocketchat' => realpath(__DIR__ .$modulesDir.'/citizenToolKit/components/rocket-chat-rest-client/src'),
-        'httpful' => realpath(__DIR__ . '/../../vendor/nategood/httpful/src/Httpful'),
-    	'mongoYii' => realpath(__DIR__ . '/../../vendor/sammaye/mongoyii'),
-    	'recaptcha' => realpath(__DIR__ . '/../../vendor/google/recaptcha/src/ReCaptcha'),
+    	'vendor'       => realpath(__DIR__ . '/../../vendor/'),
+        'rocketchat'   => realpath(__DIR__ .$modulesDir.'/citizenToolKit/components/rocket-chat-rest-client/src'),
+        'httpful'      => realpath(__DIR__ . '/../../vendor/nategood/httpful/src/Httpful'),
+    	'mongoYii'     => realpath(__DIR__ . '/../../vendor/sammaye/mongoyii'),
+    	'recaptcha'    => realpath(__DIR__ . '/../../vendor/google/recaptcha/src/ReCaptcha'),
         'citizenToolKit' => realpath(__DIR__ . $modulesDir.'/citizenToolKit'),
-        'html2pdf' => realpath(__DIR__ . '/../../vendor/spipu/html2pdf/src'),
-        'tcpdf' => realpath(__DIR__ . '/../../vendor/tecnickcom/tcpdf'),
-        'mangopay' => realpath(__DIR__ . '/../../vendor/mangopay/php-sdk-v2/MangoPay'),
+        'html2pdf'     => realpath(__DIR__ . '/../../vendor/spipu/html2pdf/src'),
+        'tcpdf'        => realpath(__DIR__ . '/../../vendor/tecnickcom/tcpdf'),
+        'mangopay'     => realpath(__DIR__ . '/../../vendor/mangopay/php-sdk-v2/MangoPay'),
+        'crypt'        => realpath(__DIR__ . '/../../vendor/phpseclib/Crypt'),
     ),
     'controllerMap'=>array(
          //'YiiFeedWidget' => 'ext.yii-feed-widget.YiiFeedWidgetController'
@@ -72,7 +73,7 @@ return array(
         ),*/
 		'opauth' => array(
             'opauthParams' => array(
-                'security_salt' => '322e94bf816b18a9d85b0d70274af5614efd3748a10170c9be6c2b3c16bb1500',
+                'security_salt' => '14185260605a69dde7421038.7567589517702445395a69de17b8f6b3.52478134',
                 'Strategy' => array(
                     'Facebook' => array(
             			//https://developers.facebook.com/x/apps/534906546570011/settings/basic/

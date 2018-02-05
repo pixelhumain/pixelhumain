@@ -14,5 +14,8 @@ $activeModules = array(
 	"places",
 	"ressources",
 	"classifieds",
-	'terla'
+	'terla',
+
+	'opauth',
+	'saml'
 	);
