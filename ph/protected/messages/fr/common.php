@@ -1346,6 +1346,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Theme filter"=>"Filtre thématique",
 	"Sharing"=>"Entraide",
 	"Market place"=> "Place de marché",
+	"Documentation"=>"Documentation",
 
 );
 ?>
