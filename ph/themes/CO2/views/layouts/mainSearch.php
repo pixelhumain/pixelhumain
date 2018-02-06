@@ -348,7 +348,13 @@
 
         <?php //$this->renderPartial($layoutPath.'.rocketchat', array() ); ?>
 
-
+        <?php 
+            /*if( @Yii::app()->params["rocketchatEnabled"] )
+                $this->widget( 'ext.widgets.chat.Chat' ,
+                    array(
+                        "host"=>"kiki"
+                    ) );  */
+        ?>
     </body>
 
 </html>
