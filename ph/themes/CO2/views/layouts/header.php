@@ -236,7 +236,6 @@
                             <?php 
                             if($page == "annonces"){ 
                                 $this->renderPartial("classifieds.views.co.header", array( "typeSelected" => $type ));
-                                
                             } else { ?>
                                 <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
                                 foreach ($filliaireCategories as $key => $cat) { 
@@ -264,6 +263,7 @@
                                           </span>
                                           <input type="text" class="form-control input-global-search" autocomplete="off"
                                                  id="searchOnCity" placeholder="<?php echo Yii::t("common","where ?") ?> ...">
+                                            <input id="searchTags" type="hidden" />
                                     </div>
                                     <div class="dropdown-result-global-search col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding" 
                                         style="max-height: 70%; display: none;">
