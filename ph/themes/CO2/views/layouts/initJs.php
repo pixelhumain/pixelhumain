@@ -172,11 +172,10 @@
                 myScopes = JSON.parse(localStorage.getItem("myScopes"));
 
             if( notNull(myScopes) && myScopes.userId == userId )  {
-                //myScopes = JSON.parse(localStorage.getItem("myScopes"));
                 myScopes.open={};
                 if(myScopes.multiscopes==null)
                     myScopes.multiscopes={};
-            }else{
+            } else {
                 myScopes={
 					type:"open",
 					userId: userId,
@@ -186,8 +185,13 @@
 									json_encode($me["multiscopes"]) :
 									$multiscopes; ?>
                 };
-                myScopes.communexion=scopeObject(myScopes.communexion);
+                if( myScopes.communexion != false)
+                    myScopes.communexion=scopeObject(myScopes.communexion);
+                else
+                    myScopes.communexion={};
+                localStorage.setItem("myScopes",JSON.stringify(myScopes));
             }
+            
             //if(typeof localStorage != "undefined" && typeof localStorage.circuit != "undefined")
               //  circuit.obj = JSON.parse(localStorage.getItem("circuit"));
             //Init mentions contact
