@@ -153,12 +153,12 @@ class ExtractProcessAction extends CAction{
 			                if ($element->property == "og:type" ){
 				               $type = $element -> content;   
 			                }
-			                if(@$type && $type == "video"){
+			                //if(!@$type || $type == "video"){
 				                if ($urlVideoLink != true && $element -> property == "og:video:url"){
 							        $urlVideo = $element -> content; 
 							        $urlVideoLink = true;
 						        }
-					        }
+					        //}
 			            }
 			        }
 			        if($description != true){ //Get Body Text
