@@ -535,6 +535,8 @@ return array(
 	"search something ..."=>"rechercher quelque chose ...",
 	"search a page ..."=>"rechercher une page ...",
 	"search a city ..." =>"rechercher une commune",
+	"Search a city" =>"Rechercher une ville",
+	"Favorites places"=>"Lieux favoris",
 	"search among classifieds ..."=>"rechercher parmi les annonces  ...",
 	"search an event ..."=>"rechercher un événement ...",
 	"search in live ..."=> "rechercher dans l'actualité",
@@ -551,6 +553,14 @@ return array(
 	"Launch search"=> "Lancer la recherche",
 	"Create an organization"=>"Créer une organisation",
 	"Create a project"=>"Créer un projet",
+	"Create a ressource"=>"Créer une ressource",
+	"Create a group"=>"Créer un groupe",
+	"Create an enterprise"=>"Créer une entreprise",
+	"Create a governemental organization"=>"Créer un service public",
+	"Create a place"=>"Créer un lieu",
+	"Create a NGO"=>"Créer une association",
+	
+	
 	"Create a point of interest"=>"Créer un point d'intérêt",	
 	"Create a new collection"=>"Créer une nouvelle collection",
 	"Create a new page"=>"Créer une nouvelle page",
@@ -590,6 +600,8 @@ return array(
 	"person" => "citoyen",
 	"organization" => "organisation",
 	"project" => "projet",
+	"Place" => "Lieu",
+	"Places" => "Lieux",
 	"event" => "événement",
 	"the event" => "l'évènement",
 	"the organization" => "l'organisation",
@@ -848,6 +860,7 @@ return array(
 	"Add an Organization" => "Ajouter une nouvelle organisation",
 	"Add a company" => "Ajouter une nouvelle entreprise",
 	"Add a Governemental Organization" => "Ajouter un nouveau service public",
+	"Add a governemental organization" => "Ajouter un nouveau service public",
 	"Add an association" => "Ajouter une nouvelle association",
 	"Add a group" => "Ajouter un nouveau groupe",
 	"Add an Event" => "Ajouter un nouvel événement",
@@ -1333,6 +1346,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Theme filter"=>"Filtre thématique",
 	"Sharing"=>"Entraide",
 	"Market place"=> "Place de marché",
+	"Documentation"=>"Documentation",
 
 );
 ?>

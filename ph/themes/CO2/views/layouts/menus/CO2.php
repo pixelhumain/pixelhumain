@@ -257,7 +257,7 @@
                          <li class="text-left">
                             <!--#default.view.page.links-->
                             <a href="#default.view.page.index.dir.docs" class="lbhp bg-right">
-                                <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
+                                <i class="fa fa-book"></i> <?php echo Yii::t("common", "Documentation") ?>
                             </a>
                         </li>
                        
