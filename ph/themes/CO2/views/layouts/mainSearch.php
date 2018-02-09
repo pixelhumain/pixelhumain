@@ -134,6 +134,9 @@
         <div id="modal-preview-coop" class="shadow2 hidden"></div>
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
        
+        <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"]); ?>
+        
+
         <?php if($CO2DomainName == "kgougle")
                 $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
         ?> 

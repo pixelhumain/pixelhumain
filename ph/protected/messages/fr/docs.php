@@ -48,7 +48,7 @@
 		"If a city doesn't exist on communecter, you have to write the full name to find the city"=>"Si une ville n'est pas encore réferencée sur communecter, vous devrez écrire son nom en entier pour la trouver",
 
 		"You will find only cities <b>which match data</b>.<br/> If you <b>don't find</b> a city, feel free <b>to create an organization, a project, an event, on this geographical zone...</b><br/><br/><b>Then you will find this result here</b>"=>"Vous trouverez seulement les villes sur lesquels de <b>la donnée existe déjà</b>.<br/> Si vous <b>ne trouverez pas</b> une ville, n'hésitez pas à <b>créer une organisation, un projet, un événement sur ces villes manquantes...</b><br/><br/><b>Ainsi ces villes apparaitront</b>",
-		"Call ressources you need or purpose it.<br/> Sharing our knowledge to built it better"=>"Appeller une ressource manquante ou la mettre à disposition.<br/> Partarger notre connaissance et nos compétences pour construire ensemble",
+		"Call ressources you need or purpose it.<br/> Sharing our knowledge to built it better"=>"Chercher une ressource manquante ou la mettre à disposition.<br/> Partarger notre connaissance et nos compétences<br/>pour construire ensemble",
 		"Material, Conpetences, Services<br/>Together we are stronger"=>"Matériel, Compétences, Services<br/>Ensemble on est plus fort",
 		"Every place hides creativity and life"=>"Chaque lieu cache de la créativité et de la vie",
 		"Places are centers of meeting, collective creation and are full of energy"=>"Les lieux sont des centres de rencontres, de création collectives et regorgent d'énergie",
