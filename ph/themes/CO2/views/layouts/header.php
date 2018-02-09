@@ -137,6 +137,10 @@
         cursor: pointer;
     }
 
+    #section-price{
+        margin-left:-15px;
+    }
+
 
     @media (max-width: 768px) {
         .filters-type-container{
@@ -232,10 +236,12 @@
                         </div>
                     </div>
                     <div id="menu-filter" class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                     <div id="filter-thematic-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12 text-center margin-top-10">
+                        <div id="filter-thematic-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12 text-center margin-top-10">
                             <?php 
                             if($page == "annonces"){ 
                                 $this->renderPartial("classifieds.views.co.header", array( "typeSelected" => $type ));
+                            } else if($page == "ressources"){ 
+                                $this->renderPartial("ressources.views.co.header", array( "typeSelected" => $type ));
                             } else { ?>
                                 <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
                                 foreach ($filliaireCategories as $key => $cat) { 
@@ -254,6 +260,46 @@
                                 } ?>
                           <?php } ?>
                         </div>
+                        <?php if($page == "annonces"){ ?>
+                        <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12 no-padding margin-top-10" id="section-price">
+                            <div class="form-group col-md-4 col-sm-4 col-xs-6">
+                              <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
+                                <i class="fa fa-chevron-down"></i> <?php echo Yii::t("common","Min price") ?>
+                              </label>
+                              <input type="text" id="priceMin" name="priceMin" class="form-control" 
+                                     placeholder="<?php echo Yii::t("common","Max Min") ?>"/>
+                            </div>
+
+                            <div class="form-group col-md-4 col-sm-4 col-xs-6">
+                              <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
+                                <i class="fa fa-chevron-down"></i> <?php echo Yii::t("common","Max price") ?>
+                              </label>
+                              <input type="text" id="priceMax" name="priceMax" class="form-control col-md-5" 
+                                     placeholder="<?php echo Yii::t("common","Max price") ?>"/>
+                            </div>
+                            
+                            <div class="form-group col-md-2 col-sm-2 col-xs-12">
+                              <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
+                                <i class="fa fa-money"></i> <?php echo Yii::t("common","Money") ?>
+                              </label>
+                              <select class="form-control" name="devise" id="devise" style="">
+                                <?php if(@$devises){ 
+                                  foreach($devises as $key => $devise){ ?>
+                                  <option class="bold" value="<?php echo $key; ?>"><?php echo $devise; ?></option>
+                                <?php } } ?>
+                              </select>
+                            </div>
+
+                            <div class="form-group col-md-2 col-sm-2 col-xs-12 margin-top-10">
+                              <button class="btn btn-default btn-directory-type" data-type="classified">
+                                <i class="fa fa-search"></i> <span class="hidden-xs hidden-ms"><?php echo Yii::t("common","Search") ?></span>
+                              </button>
+                            </div>
+
+                            <!-- <hr class="col-md-12 col-sm-12 col-xs-12 margin-top-10 no-padding" id="before-section-result">  -->
+                        </div>
+                        <?php } ?>
+
                         <div id="filter-scopes-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12 no-padding margin-top-10">
                             <div id="scope-container" class="scope-menu no-padding">
                                 <div id="input-sec-search" class="col-xs-10 col-md-6 col-sm-6 col-lg-6">
