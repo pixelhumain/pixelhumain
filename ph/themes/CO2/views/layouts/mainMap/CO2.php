@@ -256,7 +256,7 @@
 
 		addResultsInForm = function(commonGeoObj, countryCode){ //surcharge pour la recherche d'addresse
 			//success
-			mylog.log("success callGeoWebService KGOU");
+			mylog.log("success callGeoWebService CO2");
 			//mylog.dir(objs);
 			var res = commonGeoObj; //getCommonGeoObject(objs, providerName);
 			mylog.dir(res);
@@ -278,7 +278,9 @@
 
 			
 			$.each(res, function(key, value){ mylog.log("resultat : ",value);
-				if(notEmpty(value.countryCode)){
+				if(	notEmpty(value.countryCode) && 
+					(	( !notEmpty(value.typeNom) && !notEmpty(value.classNom) ) ||  
+						( value.typeNom == "house" && value.classNom == "place") ) ){
 					//mylog.log("Country Code",value.country.toLowerCase(), countryCode.toLowerCase());
 					//if(value.country == "Nouvelle-Calédonie" || value.state == "Nouvelle-Calédonie"){ 
 						html += 
