@@ -666,6 +666,19 @@
   margin-bottom: 8px;
 }
 
+.entityLight .btn-share,
+.entityLight .followBtn{
+  visibility: hidden;    
+  margin-right: 10px;
+}/*
+.searchEntity.entityLight:hover{
+  background-color: #f2f2f2 !important;
+}*/
+.entityLight:hover .btn-share,
+.entityLight:hover .followBtn{
+  visibility: visible;
+}
+
 
   @media screen and (max-width: 1024px) {
     #menu-directory-type .hidden-sm{

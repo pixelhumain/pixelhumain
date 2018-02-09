@@ -175,7 +175,16 @@
         "President"=>"Président",
         "Director"=>"Directeur",
         "Speaker"=>"Conférencier",
-        "Intervener"=>"Intervenant"
+        "Intervener"=>"Intervenant",
+
+
+        //RESSOURCES
+        "Need something"=>"Ils ont besoin d'aide",
+        "Offer something"=>"Ils proposent leur aide",
+
+        "service"=>"service",
+        "competence"=>"compétence",
+        "material"=>"matériel",
 	);
 ?>
 
