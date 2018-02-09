@@ -22,8 +22,7 @@
         text-align: right!important
     }
 }
-
-    
+ 
 </style>
 
 <?php
@@ -38,7 +37,7 @@
     </div> -->
 <?php //} ?>
 
-<div class="scroll-top">
+<div class="scroll-top hidden">
     <a class="btn btn-primary" href="javascript:KScrollTo('.main-container');">
         <i class="fa fa-<?php echo $iconBtnRightBottom; ?>"></i>
     </a>

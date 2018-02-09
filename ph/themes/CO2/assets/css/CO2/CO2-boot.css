@@ -292,7 +292,7 @@ section h2 {
 
 
 .uppercase{
-	text-transform: uppercase;
+	text-transform: uppercase !important;
 }
 
 .elipsis{

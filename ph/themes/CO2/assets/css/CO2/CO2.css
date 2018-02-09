@@ -775,7 +775,8 @@ a, a:hover, a:focus, a:active, a.active{
 }
 
 .dropdown-main-menu .dropdown-menu li a {
-	text-transform: uppercase;
+	text-transform: none;
+	font-size: 13px;
 }
 
 .dropdown-main-menu .arrow_box:after, .dropdown-main-menu .arrow_box:before {
@@ -807,6 +808,56 @@ a, a:hover, a:focus, a:active, a.active{
 }
 
 
+.toolbar-bottom{
+    position: fixed;
+    bottom: 0px;
+    right: -1px;
+    height: 38px;
+    border-top: 1px solid #bcbcbc;
+    border-left: 1px solid #bcbcbc;
+    background-color: #FFF;
+    border-radius: 0px 0 0 0;
+    text-align: right;
+    padding: 0px;
+    -webkit-box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+}
+
+.toolbar-bottom .btn,
+.toolbar-bottom-apps .btn{
+    border:none;
+    border-right: 1px solid #bcbcbc;
+    background-color: white;
+    border-radius: 0px;
+    float: left;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.toolbar-bottom-apps .btn{
+    padding: 15px;
+}
+
+.toolbar-bottom .btn:hover,
+.toolbar-bottom-apps .btn:hover{    
+    background-color: #ddd !important;
+}
+
+
+.toolbar-bottom-apps{
+    position: fixed;
+    bottom: 37px;
+	right: -1px;
+	height: 49px;
+    border-top: 1px solid #bcbcbc;
+    border-bottom: 1px solid #bcbcbc;
+    border-left: 1px solid #bcbcbc;
+    background-color: #FFF;
+    border-radius: 0px 0 0 0;
+    text-align: right;
+    padding: 0px;
+}
 
 .skills{
 	font-size:11px !important;
@@ -1529,6 +1580,7 @@ margin-right: 5px;
 	border-radius: 10px;
 	font-family: "montserrat";
 	font-weight: 200 !important;
+	font-size:12px;
 }
 .btn-select-filliaire:hover {
     background-color: #DADADA;
@@ -1734,7 +1786,7 @@ margin-right: 5px;
 		margin-right: -20px!important;
 	}
 	.portfolio-modal .modal-content h2{
-		font-size:4em;
+		/*font-size:4em;*/
 	}
 	#sectionSearchResults{
 		/*margin-left: 15px!important;*/
