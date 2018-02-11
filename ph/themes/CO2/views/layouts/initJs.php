@@ -15,6 +15,7 @@
         "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
         "classifieds": <?php echo json_encode( Classified::getConfig() ) ?>,
         "places": <?php echo json_encode( Place::getConfig() ) ?>,
+        "poi": <?php echo json_encode( Poi::getConfig() ) ?>,
     };
     
     var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
