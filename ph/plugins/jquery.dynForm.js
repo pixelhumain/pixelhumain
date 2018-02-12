@@ -2484,7 +2484,7 @@ var dyFObj = {
 				dfPath = themeObj.dynForm.folder+type+'.js';
 			if(jsonHelper.notNull( "modules."+type+".form") ) {
 				dfPath = modules[type].form;
-				mylog.log("properties from MODULE","modules"+type+"/assets/js/dynform.js");
+				mylog.log("properties from MODULE","modules/"+type+"/assets/js/dynform.js");
 			}
 			
 			lazyLoad( dfPath, 
