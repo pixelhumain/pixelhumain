@@ -291,7 +291,7 @@
                             </div>
 
                             <div class="form-group col-md-2 col-sm-2 col-xs-12 margin-top-10">
-                              <button class="btn btn-default btn-directory-type" data-type="classified">
+                              <button class="btn btn-link bg-azure margin-top-15 btn-directory-type" data-type="classified">
                                 <i class="fa fa-search"></i> <span class="hidden-xs hidden-ms"><?php echo Yii::t("common","Search") ?></span>
                               </button>
                             </div>

@@ -13,6 +13,17 @@
 		"Culture | Animation"=>"Culture | Animation",
 		"Biodiversity"=>"Biodiversité",
 		"ICT | Numeric | Internet"=>"TIC | Numérique | Internet",
+
+        "Food" => "Alimentation",
+        "Transport" => "Transport",
+        "Education" => "Éducation",
+        "Economy" => "Économie",
+        "Energy" => "Énergie",
+        "Environnement" => "Environnement",
+        "Numeric" => "Numérique",
+        
+
+
 		//Classifieds
         "Share"=>"Partager", 
         "To share"=>"À partager",
