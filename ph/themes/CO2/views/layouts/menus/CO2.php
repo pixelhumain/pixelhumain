@@ -395,11 +395,11 @@
                           <i class="fa fa-th"></i>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownApps" style="width: 231px;">
-                            <a class="dropdown-item padding-5" href="#" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-search fa-2x"></i></a>
-                            <a class="dropdown-item padding-5" href="#" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-newspaper-o fa-2x"></i></a>
-                            <a class="dropdown-item padding-5" href="#" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-calendar fa-2x"></i></a>
-                            <a class="dropdown-item padding-5" href="#" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-bullhorn fa-2x"></i></a>
-                            <a class="dropdown-item padding-5" href="#" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-cubes fa-2x"></i></a>
+                            <a class="text-red dropdown-item padding-5 lbh" href="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-search fa-2x"></i></a>
+                            <a class="text-red dropdown-item padding-5 lbh" href="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-newspaper-o fa-2x"></i></a>
+                            <a class="text-red dropdown-item padding-5 lbh" href="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-calendar fa-2x"></i></a>
+                            <a class="text-red dropdown-item padding-5 lbh" href="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-bullhorn fa-2x"></i></a>
+                            <a class="text-red dropdown-item padding-5 lbh" href="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-cubes fa-2x"></i></a>
                         </div>
                     </span>
 
