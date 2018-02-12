@@ -2766,7 +2766,7 @@ var dyFInputs = {
 	        rules : ( notEmpty(rules) ? rules : { required : true } )
 	    };
 	    if(type){
-	    	console.log("NAMEOFYOUR", dyFInputs.get(type).ctrl, trad[dyFInputs.get(type).ctrl]);
+	    	mylog.log("NAMEOFYOUR", dyFInputs.get(type).ctrl, trad[dyFInputs.get(type).ctrl]);
 	    	inputObj.label = tradDynForm["nameofyour"]+" " + trad[dyFInputs.get(type).ctrl]+" ";
 	    	if(type=="classified") 
 	    		inputObj.label = tradDynForm["titleofyour"]+" "+ trad[type]+" ";
@@ -2776,7 +2776,7 @@ var dyFInputs = {
 	    	inputObj.init = function(){
 	        	$("#ajaxFormModal #name ").off().on("blur",function(){
 	        		if($("#ajaxFormModal #name ").val().length > 3 )
-	            		globalSearch($(this).val(),[ dyFInputs.get(type).col, "organizations" ], addElement );
+	            		globalSearch($(this).val(),[ dyFInputs.get(type).col/*, "organizations"*/ ], addElement );
 	            	
 	            	dyFObj.canSubmitIf();
 	        	});
@@ -2811,7 +2811,7 @@ var dyFInputs = {
     },
     similarLink : {
         inputType : "custom",
-        html:"<div id='similarLink'><div id='listSameName'></div></div>",
+        html:"<div id='similarLink'><div id='listSameName' style='overflow-y: scroll; height:150px;border: 1px solid black; display:none'></div></div>",
     },
     inputSelect :function(label, placeholder, list, rules) {
     	mylog.log("inputSelect", label, placeholder, list, rules);
