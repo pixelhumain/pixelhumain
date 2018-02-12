@@ -118,7 +118,7 @@
                      <i class="fa fa-map-marker"></i> 
                     </li>
                     <li class="theme-header-filter tooltips" data-placement="bottom" data-original-title="<?php echo Yii::t("common", "Theme filter") ?>">
-                     <i class="fa fa-th"></i> 
+                     <i class="fa fa-tags"></i> 
                     </li>
                     
                 </ul> 

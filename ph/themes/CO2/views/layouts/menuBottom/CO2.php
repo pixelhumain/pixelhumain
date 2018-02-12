@@ -6,10 +6,10 @@
         <i class="fa fa-home" style="font-size: 19px;"></i>
     </button>
     <button class="btn btn-default letter-green" data-target="#dash-create-modal" data-toggle="modal">
-        <i class="fa fa-plus-circle"></i> <span class="hidden-xs"><?php echo Yii::t("common", "add") ?></span>
+        <i class="fa fa-plus-circle"  style="font-size: 19px;"></i> <!-- <span class="hidden-xs"><?php echo Yii::t("common", "add") ?> --></span>
     </button>
     <button class="btn btn-default letter-blue btn-show-map">
-        <i class="fa fa-map-marker"></i> <span class="hidden-xs"><?php echo Yii::t("common", "map") ?></span>
+        <i class="fa fa-map-marker" style="font-size: 19px;"></i> <!-- <span class="hidden-xs"><?php echo Yii::t("common", "map") ?></span> -->
     </button>
     <!-- <button class="btn btn-default">
         <i class="fa fa-comments"></i> messagerie
@@ -24,24 +24,24 @@
             data-placement="top" data-original-title="Participer au financement du réseau"
             class="btn btn-default letter-pink tooltips">
             <!-- <i class="fa fa-chain" data-alt="eye-dropper"></i>  -->
-            <i class="fa fa-gift"></i> <span class="hidden-xs"><?php echo Yii::t("common", "co-tribuer") ?></span>
+            <i class="fa fa-gift" style="font-size: 19px;"></i> <span class="hidden-xs"><?php echo Yii::t("common", "co-tribuer") ?></span>
     </a>
 
     <a class="btn btn-default tooltips lbh" href="#info.p.stats"
              data-placement="top" data-original-title="Statistiques : visualiser la fréquentation quotidienne du réseau">
-        <i class="fa fa-bar-chart"></i>
+        <i class="fa fa-bar-chart" style="font-size: 19px;"></i>
     </a>
     <a class="btn btn-default tooltips lbh" href="#coBugs"
              data-placement="top" data-original-title="Déclarer un bug">
-        <i class="fa fa-bug"></i>
+        <i class="fa fa-bug" style="font-size: 19px;"></i>
     </a>
     <a class="btn btn-default lbh tooltips" href="#default.view.page.index.dir.docs" 
              data-placement="top" data-original-title="Documentation : en savoir + sur Communecter !">
-        <i class="fa fa-book"></i>
+        <i class="fa fa-book" style="font-size: 19px;"></i>
     </a>
 
     <button class="btn btn-default tooltips letter-red" id="show-bottom-app">
-        <i class="fa fa-bars"></i>
+        <i class="fa fa-bars" style="font-size: 19px;"></i>
     </button>
 
     <button class="btn btn-default bg-blue-k" style="width:50px;" onclick="KScrollTo('.main-container')">
