@@ -2484,7 +2484,7 @@ var dyFObj = {
 				dfPath = themeObj.dynForm.folder+type+'.js';
 			if(jsonHelper.notNull( "modules."+type+".form") ) {
 				dfPath = modules[type].form;
-				mylog.log("properties from MODULE",type,dfPath);
+				mylog.log("properties from MODULE","modules"+type+"/assets/js/dynform.js");
 			}
 			
 			lazyLoad( dfPath, 
@@ -2498,7 +2498,7 @@ var dyFObj = {
 					dyFObj[dyFObj.activeElem] = dyFInputs.get(type);
 					if( notNull(dyFInputs.get(type).col) ) uploadObj.type = dyFInputs.get(type).col;
     				callback( afterLoad, data );
-			});
+				});
 		}
 	},
 	//prepare information for the modal panel 
