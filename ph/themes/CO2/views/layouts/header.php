@@ -196,8 +196,8 @@
 
 <!-- Header -->
 
+<?php if(@$useHeader != false){ ?>
 <header>
-    <?php if(@$useHeader != false){ ?>
     <!--<div class="col-md-12 text-center main-menu-app" style="">-->
         <?php 
             /*$this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
@@ -361,12 +361,11 @@
                 </div>
             </div>
         </div>
-    </div>    
-    <?php } ?>
-
-    
+    </div>      
 
 </header>
+  
+<?php } ?>
      
 <script type="text/javascript">
     var filliaireCategories = <?php echo json_encode(@$filliaireCategories); ?>;

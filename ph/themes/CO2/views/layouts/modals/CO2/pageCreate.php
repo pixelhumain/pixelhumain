@@ -200,7 +200,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="javascript:" class="btn-create-elem col-lg-4 col-md-6 col-sm-6 col-xs-6" data-type="classifieds"
+                        <a href="javascript:" class="btn-create-elem col-lg-4 col-md-6 col-sm-6 col-xs-6" data-type="classified"
                             date-target="#modalMainMenu" data-dismiss="modal">
                             <div class="modal-body text-center">
                                 <h4 class="text-azure"><i class="fa fa-bullhorn padding-bottom-10"></i><br>
