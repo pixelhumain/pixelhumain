@@ -118,7 +118,7 @@
                      <i class="fa fa-map-marker"></i> 
                     </li>
                     <li class="theme-header-filter tooltips" data-placement="bottom" data-original-title="<?php echo Yii::t("common", "Theme filter") ?>">
-                     <i class="fa fa-th"></i> 
+                     <i class="fa fa-tags"></i> 
                     </li>
                     
                 </ul> 
@@ -377,6 +377,8 @@
                             </ul>
                         </div>
                     </div>
+                    
+                    
 
                     <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
                           onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" 
@@ -384,6 +386,22 @@
                       <i class="fa fa-comments"></i>
                       <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
+
+                    
+
+                    <span class="dropdown">
+                        <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
+                              title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>">
+                          <i class="fa fa-th"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownApps" style="width: 231px;">
+                            <a class="text-red dropdown-item padding-5 lbh" href="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-search fa-2x"></i></a>
+                            <a class="text-red dropdown-item padding-5 lbh" href="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-newspaper-o fa-2x"></i></a>
+                            <a class="text-red dropdown-item padding-5 lbh" href="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-calendar fa-2x"></i></a>
+                            <a class="text-red dropdown-item padding-5 lbh" href="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-bullhorn fa-2x"></i></a>
+                            <a class="text-red dropdown-item padding-5 lbh" href="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-cubes fa-2x"></i></a>
+                        </div>
+                    </span>
 
 
                 <?php } else { ?>

@@ -56,6 +56,40 @@
                         </label> 
                        <hr>
                     </div>
+
+                    <div class="col-md-12 margin-top-15 text-dark">
+                        <button class="btn btn-default text-yellow inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                            <span class="hidden-xs"><?php echo Yii::t("common","Invite someone") ?></span>
+                        </button>
+                            <button class="btn btn-default text-green inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                                <span class="hidden-xs"><?php echo Yii::t("common","Create a NGO") ?></span>
+                            </button>
+                            <button class="btn btn-default text-azure inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                                <span class="hidden-xs"><?php echo Yii::t("common","Create an enterprise") ?></span>
+                            </button>
+                            <button class="btn btn-default text-turq inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                                <span class="hidden-xs"><?php echo Yii::t("common","Create a group") ?></span>
+                            </button>
+                            <button class="btn btn-default text-orange inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                                <span class="hidden-xs"><?php echo Yii::t("common","Create an event") ?></span>
+                            </button>
+                            <button class="btn btn-default text-purple inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                                <span class="hidden-xs"><?php echo Yii::t("common","Create a project") ?></span>
+                            </button>
+                            <button class="btn btn-default text-red inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                                <span class="hidden-xs"><?php echo Yii::t("common","Add a governemental organization") ?></span>
+                            </button>
+                            <button class="btn btn-default text-azure inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                                <span class="hidden-xs"><?php echo Yii::t("common","Create a classified ad") ?></span>
+                            </button>
+                            <button class="btn btn-default text-vine inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                                <span class="hidden-xs"><?php echo Yii::t("common","Create a ressource") ?></span>
+                            </button>
+                            <button class="btn btn-default text-brown inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                                <span class="hidden-xs"><?php echo Yii::t("common","Create a place") ?></span>
+                            </button>
+                       <hr>
+                    </div>
                     
                     <div id="" class="modal-body hidden-xs">
                         

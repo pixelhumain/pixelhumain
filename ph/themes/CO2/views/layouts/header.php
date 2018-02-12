@@ -229,7 +229,7 @@
                                  <i class="fa fa-globe"></i> 
                                  <span class="scope-filters-badge topbar-badge animated bounceIn hide badge-tranparent"></span>                                </li> 
                                 <li class="theme-header-filter tooltips" data-placement="bottom" data-original-title="Themes filter">
-                                 <i class="fa fa-th"></i> 
+                                 <i class="fa fa-tags"></i> 
                                 </li>
                                 
                             </ul> 
