@@ -8,6 +8,7 @@
 	display:none;
 	/*height: 780px;*/
 	top: 70px;
+	bottom: 0px;
 	right: 0px;
 	position: fixed;
 	background-color: white;
@@ -159,10 +160,12 @@
 	border:none!important;
     padding: 0px 3px;
 	text-align: left;
-	margin-top: -4px;
+	margin-top: 0px;
+	background-color: transparent;
 }
 .floopDrawer .btn-select-contact{
-	min-width:102% !important;
+	min-width:80% !important;
+	width:80% !important;
 	border-radius:0px;
 }
 
@@ -254,6 +257,13 @@
 	color: rgb(177, 177, 177);
 }
 
+.floopDrawer .btn-open-chat{
+	margin-top: 13px;
+	margin-right: 10px;
+	border-radius: 15px;
+	padding: 3px 6px;
+	color: #575b75;
+}
 
 
 @media screen and (max-width: 767px){

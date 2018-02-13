@@ -679,6 +679,11 @@
   visibility: visible;
 }
 
+.entityLight .gallery{
+  max-height: 80px;
+  overflow: hidden;
+}
+
 
   @media screen and (max-width: 1024px) {
     #menu-directory-type .hidden-sm{

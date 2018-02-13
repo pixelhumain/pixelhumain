@@ -38,6 +38,7 @@ $params = array(
     "version"=> "2.1.0",
     //Beta Test ?
     'betaTest' => false,
+    'rocketchatEnabled' => true,
     //By default controller
     'defaultController' => 'CO2',
     // Mail configuration
