@@ -211,6 +211,7 @@ onSave: (optional) overloads the generic saveProcess
         	if(fieldObj.inputType == "price"){       		
         		fieldHTML += '<select class="'+fieldClass+'" name="devise" id="devise" style="">';
 				fieldHTML += 	'<option class="bold" value="€">euro €</option>';
+				fieldHTML += 	'<option class="bold" value="G1">G1</option>';
 				fieldHTML += 	'<option class="bold" value="$">dollars $</option>';
 				fieldHTML += 	'<option class="bold" value="CFP">CFP</option>';
 				fieldHTML += '</select>';
