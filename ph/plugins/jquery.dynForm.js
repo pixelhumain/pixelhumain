@@ -3956,5 +3956,29 @@ var dyFInputs = {
     		}
     	});
     	return obj;
+    },
+    setSub : function(subClass) { 
+    	$("#ajax-modal .modal-header").removeClass("bg-dark bg-purple bg-red bg-azure bg-green bg-green-poi bg-orange bg-yellow bg-blue bg-turq bg-url")
+						  					  .addClass(subClass);
+		
+    	if( (contextData != null && contextData.type && contextData.id) || userId )
+		{
+			cId = userId;
+			cType = "citoyens";
+			cName = userConnected.name;
+			if(contextData != null && contextData.type && contextData.id){
+				cId = contextData.id;
+				cType = contextData.type;
+				cName = contextData.name;
+			}
+
+			$('#ajaxFormModal #parentId').val( cId );
+			$("#ajaxFormModal #parentType").val( cType ); 
+			
+		} 
+		$("#ajax-modal-modal-title").html(
+		 		$("#ajax-modal-modal-title").html()+
+		 		" <br><small class='text-white'>"+tradDynForm.speakingas+" : <span class='text-dark'>"+cName+"</span></small>" );
+		
     }
 };
