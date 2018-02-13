@@ -1619,6 +1619,16 @@ margin-right: 5px;
 	overflow: hidden;
 }
 
+#ajax-modal.portfolio-modal.modal{
+	background-color: rgba(0,0,0,0.5);
+	min-height:unset !important;
+}
+
+#ajax-modal .modal-content{
+	top: 80px;
+	left: 5%;
+	width: 90%;
+}
 
 
 /* ------------------ DROPDOWN DASHBOARD ------------------ */
