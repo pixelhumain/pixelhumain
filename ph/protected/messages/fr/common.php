@@ -455,6 +455,8 @@ return array(
 	"Participate" => "Participer",
 	"Participate to this event" => "Participer à l&#146;événement",
 	"Not participate anymore"=>"Ne plus participer",
+	"Not follow anymore"=> "Ne plus suivre",
+	"You don't participate anymore to"=>"Vous ne participez plus à",
 	"attendee(s)"=>"participant-e(s)",
 	"guest(s)"=>"invité-e(s)",
 	"concerned"=>"intéressé-e(s)",
