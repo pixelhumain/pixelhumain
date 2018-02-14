@@ -831,8 +831,17 @@ a, a:hover, a:focus, a:active, a.active{
     background-color: white;
     border-radius: 0px;
     float: left;
-    font-size: 12px;
+    font-size: 15px;
     padding: 10px;
+}
+
+.toolbar-bottom-adds .btn{
+	border: none;
+	background-color: white;
+	border-radius: 0px;
+	font-size: 15px;
+	margin-left: 10px;
+	font-weight: bold;
 }
 
 .toolbar-bottom-apps .btn{
@@ -840,7 +849,9 @@ a, a:hover, a:focus, a:active, a.active{
 }
 
 .toolbar-bottom .btn:hover,
-.toolbar-bottom-apps .btn:hover{    
+.toolbar-bottom-apps .btn:hover,
+.toolbar-bottom-adds .btn:hover,
+{    
     background-color: #ddd !important;
 }
 
@@ -857,6 +868,20 @@ a, a:hover, a:focus, a:active, a.active{
     border-radius: 0px 0 0 0;
     text-align: right;
     padding: 0px;
+}
+.toolbar-bottom-adds{
+    position: fixed;
+	bottom: 38px;
+	right: 0px;
+	height: 440px;
+	border-top: 1px solid #bcbcbc;
+	border-bottom: 1px solid #bcbcbc;
+	border-left: 1px solid #bcbcbc;
+	background-color: #FFF;
+	border-radius: 0px 0 0 0;
+	text-align: left;
+	padding-top: 10px;
+	width: 425px;
 }
 
 .skills{
