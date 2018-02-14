@@ -86,7 +86,7 @@
                                 <span class="hidden-xs"><?php echo Yii::t("common","Create a ressource") ?></span>
                             </button>
                             <button class="btn btn-default text-brown inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
-                                <span class="hidden-xs"><?php echo Yii::t("common","Create a place") ?></span>
+                                <span class="hidden-xs"><?php echo Yii::t("common","Create a point of interest") ?></span>
                             </button>
                        <hr>
                     </div>
