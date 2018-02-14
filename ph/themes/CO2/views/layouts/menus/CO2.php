@@ -389,17 +389,17 @@
 
                     
 
-                    <span class="dropdown">
+                    <span class="dropdown" id="dropdown-apps">
                         <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                               title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>">
                           <i class="fa fa-th"></i>
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownApps" style="width: 231px;">
-                            <a class="text-red dropdown-item padding-5 lbh" href="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-search fa-2x"></i></a>
-                            <a class="text-red dropdown-item padding-5 lbh" href="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-newspaper-o fa-2x"></i></a>
-                            <a class="text-red dropdown-item padding-5 lbh" href="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-calendar fa-2x"></i></a>
-                            <a class="text-red dropdown-item padding-5 lbh" href="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-bullhorn fa-2x"></i></a>
-                            <a class="text-red dropdown-item padding-5 lbh" href="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-cubes fa-2x"></i></a>
+                        <div class="dropdown-menu arrow_box" aria-labelledby="dropdownApps" style="width: 231px;">
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-search fa-2x"></i><br/><?php echo Yii::t("common","Search") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-newspaper-o fa-2x"></i><br/><?php echo Yii::t("common","In live") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-calendar fa-2x"></i><br/><?php echo Yii::t("common","Agenda") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-bullhorn fa-2x"></i><br/><?php echo Yii::t("common","Market place") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-cubes fa-2x"></i><br/><?php echo Yii::t("common","Sharing") ?></a>
                         </div>
                     </span>
 
