@@ -78,7 +78,7 @@
 
 <div class="toolbar-bottom-adds shadow2 font-montserrat hidden">
     
-    <a href="javascript:;" data-toggle="modal" data-target="#invite-modal-element" class="btn-open-form btn btn-default text-yellow inline-block margin-bottom-10"> 
+    <a href="#element.invite" class="btn-open-form btn btn-default text-yellow lbhp inline-block margin-bottom-10"> 
         <i class="fa fa-user"></i> 
         <span class="hidden-xs"><?php echo Yii::t("common","Invite someone") ?></span>
     </a><br/>
