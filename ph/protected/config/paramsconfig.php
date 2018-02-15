@@ -84,7 +84,7 @@ $params = array(
     
     //URL of logos used by mail
     "logoUrl" => "/images/logo-communecter.png",
-    "logoUrl2" => "/images/logoLTxt.jpg",
+    "logoUrl2" => "/images/headerPlaquette.jpg",
     
     //map box params
     'mapboxActive' => false, //to activate mabox Prod

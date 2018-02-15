@@ -276,7 +276,7 @@
             }
         ?>
 
-        <?php $this->renderPartial($layoutPath.'initCommunexion', array()); ?>
+        <?php //$this->renderPartial($layoutPath.'initCommunexion', array()); ?>
         
         <?php $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
 
