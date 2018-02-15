@@ -849,7 +849,9 @@ a, a:hover, a:focus, a:active, a.active{
     padding: 10px;
 }
 
-.toolbar-bottom-adds .btn{
+.toolbar-bottom-adds .btn, 
+.toolbar-bottom-quickaccess .btn 
+{
 	border: none;
 	background-color: white;
 	border-radius: 0px;
@@ -865,6 +867,7 @@ a, a:hover, a:focus, a:active, a.active{
 .toolbar-bottom .btn:hover,
 .toolbar-bottom-apps .btn:hover,
 .toolbar-bottom-adds .btn:hover,
+.toolbar-bottom-quickaccess .btn:hover
 {    
     background-color: #ddd !important;
 }
@@ -883,7 +886,7 @@ a, a:hover, a:focus, a:active, a.active{
     text-align: right;
     padding: 0px;
 }
-.toolbar-bottom-adds{
+.toolbar-bottom-fullwidth{
     position: fixed;
 	bottom: 38px;
 	right: 0px;
