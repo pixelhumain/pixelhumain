@@ -849,7 +849,9 @@ a, a:hover, a:focus, a:active, a.active{
     padding: 10px;
 }
 
-.toolbar-bottom-adds .btn{
+.toolbar-bottom-adds .btn, 
+.toolbar-bottom-quickaccess .btn 
+{
 	border: none;
 	background-color: white;
 	border-radius: 0px;
@@ -865,6 +867,7 @@ a, a:hover, a:focus, a:active, a.active{
 .toolbar-bottom .btn:hover,
 .toolbar-bottom-apps .btn:hover,
 .toolbar-bottom-adds .btn:hover,
+.toolbar-bottom-quickaccess .btn:hover
 {    
     background-color: #ddd !important;
 }
@@ -883,7 +886,7 @@ a, a:hover, a:focus, a:active, a.active{
     text-align: right;
     padding: 0px;
 }
-.toolbar-bottom-adds{
+.toolbar-bottom-fullwidth{
     position: fixed;
 	bottom: 38px;
 	right: 0px;
@@ -1664,11 +1667,15 @@ margin-right: 5px;
 }
 
 #ajax-modal .modal-content{
-	top: 80px;
-	left: 5%;
-	width: 90%;
+	top: 15px;
+	left: 10%;
+	width: 80%;
+	border-radius: 5px 5px 0 0;
 }
-
+#ajax-modal .container{
+	width: unset;
+	max-width: 1170px;
+}
 
 /* ------------------ DROPDOWN DASHBOARD ------------------ */
 
@@ -1812,6 +1819,16 @@ margin-right: 5px;
 	  padding: 3px 0 5px 0;
 	}
 
+	#ajax-modal .form-group, #ajax-modal .form-actions{
+		min-width:unset !important;
+		width:unset !important;
+		margin-left:unset !important;
+	}
+
+	#ajax-modal .modal-content{
+		left: 3%;
+		width: 94%;
+	}
 
     
 	header .intro-text .name, 

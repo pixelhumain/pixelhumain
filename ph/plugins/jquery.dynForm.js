@@ -269,14 +269,14 @@ onSave: (optional) overloads the generic saveProcess
 			fieldHTML += '<input type="hidden" class="'+fieldClass+'" name="'+field+'" id="'+field+'" '+
 								'value="'+thisValue+'"/> ';
 			fieldHTML += '<div class="col-lg-6 padding-5">'+
-							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-green col-lg-12"'+
+							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-green col-xs-12"'+
 							' data-checkval="true"' +
 							'>'+
 								fieldObj.params.onText+
 							'</a>'+
 						 '</div>';
 			fieldHTML += '<div class="col-lg-6 padding-5">'+
-							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-red col-lg-12"'+
+							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-red col-xs-12"'+
 							' data-checkval="false"' +
 							'>'+
 								fieldObj.params.offText+

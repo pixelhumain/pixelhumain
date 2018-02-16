@@ -144,7 +144,7 @@ return array(
 	"You are not allowed to access this content" => "Vous n'êtes pas autorisé à accéder à ce contenu",
 
 	"You must be member or contributor" => "Devenez membre ou contributeur",
-
+	"Login to enter in this space" => "Connectez-vous pour entrer dans cet espace",
 	"Proposal submited to amendements" => "Proposition soumise aux amendements",
 
 	"until" => "jusqu'au",
@@ -201,6 +201,12 @@ return array(
 
 	"Edit this space" => "modifier l'espace",
 	"You are not logged" => "Vous n'êtes pas connecté",
+	"My roles" => "Mes rôles",
+	"You have no role in" => "Vous n'avez aucun rôle dans",
+	"this projects" => "ce projet",
+	"this organizations" => "cette organisation",
+	"Ask an admin to get the appropriated role to access this space" => 
+		"Demandez à un administrateur de vous donner le rôle approprié pour accéder à cet espace",
 	"This space is open only for this roles" => "Cet espace est réservé au(x) rôle(s) suivant(s)",
 	"You must be member or contributor to contribuate" => "Devenez membre pour contribuer",
 	"Drag / drop to an other space" => "cliquer / déplacer dans un autre espace",
