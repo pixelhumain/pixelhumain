@@ -111,7 +111,7 @@ var rcObj = {
     debugChat : false,
     loginToken : '<?php echo @Yii::app()->session["loginToken"]; ?>',
     rocketUserId : '<?php echo @Yii::app()->session["rocketUserId"]; ?>',
-    list : null,
+    list : null, //contains the list of all accessible RC channels
 
     login : function () 
     { 
@@ -120,20 +120,36 @@ var rcObj = {
               externalCommand: 'login-with-token',
               token: '<?php echo @Yii::app()->session["loginToken"]; ?>' }, '*');
     },
-
-    loadChat : function (name,type,isOpen,hasRC){ 
+    //anme : slug
+    //type : citoyens, organization, project, event
+    //isOpen : boolean isOpenEdition ??
+    //hasRC : boolean if an RC has allready been opened 
+    //when loading from anywhere we don't use tmpContextData juste the name 
+    //tmpCtxtData : notice we use tmpContextData so when there is no contextData we can fill it with a given context
+    loadChat : function (name,type,isOpen,hasRC,tmpContextData){ 
         
         rcObj.loadedIframe (name) ;
+        if(typeof tmpContextData != "undefined")
+            rcObj.data = tmpContextData;
+        else if( !tmpContextData && contextData )
+            rcObj.data = contextData;
+
         //if iframe deosn't exist
         //element has an RC channel 
         //not a citizen
-        if( contextData && typeof contextData.slug == "undefined" )
-            contextData.slug = slugify(contextData.name);
+        //todo:check if the slug is save to DB otherwise if name changes than the channel becomes orhan
+        if( rcObj.data && typeof rcObj.data.slug == "undefined" )
+            rcObj.data.slug = slugify(rcObj.data.name); 
         
-        var checkGroupMember = ( contextData ) ? $.inArray( contextData.slug , rcObj.list ) : true ; 
+        //defauilts to true because correspond in the use case of opening a glabal chat 
+        var checkGroupMember = ( rcObj.data ) ? $.inArray( rcObj.data.slug , rcObj.list ) : true ; 
         
         if(rcObj.debugChat)alert( "name:"+name+", type:"+type+", isOpen : "+isOpen+", hasRC : "+hasRC+",checkGroupMember:"+checkGroupMember );
 
+        //when still not loaded
+        //or the element hasRC but member hasn't joined yet 
+        //or the channel doesn't exist and needs to be created 
+        // direct conversations
         if( $('.RCcontainer').html() == "" || 
             ( hasRC && type != "citoyens" && rcObj.lastOpenChat != name && checkGroupMember < 0 ) ||
             (!hasRC && type != "citoyens" && rcObj.lastOpenChat != name) )
@@ -141,7 +157,7 @@ var rcObj = {
             rcObj.lastOpenChat = name;
             var extra = (isOpen) ? "/roomType/channel" : "/roomType/group";
 
-            iframeUrl = (name!="") ? baseUrl+'/'+moduleId+'/rocketchat/chat/name/'+contextData.slug+'/type/'+contextData.type+'/id/'+contextData.id+extra
+            iframeUrl = (name!="") ? baseUrl+'/'+moduleId+'/rocketchat/chat/name/'+rcObj.data.slug+'/type/'+rcObj.data.type+'/id/'+rcObj.data.id+extra
                                    : baseUrl+'/'+moduleId+'/rocketchat';
             
             if(rcObj.debugChat)alert( iframeUrl );
@@ -151,29 +167,28 @@ var rcObj = {
                         rcObj.goto(name,isOpen);
                     } ,"json");
             
-        }  else {
-
+        } else {
             //todo : pb sur les nouvelles creations en passant par ici
             if(rcObj.debugChat)alert( rcObj.lastOpenChat+" | "+name );
-            
             rcObj.goto(name,isOpen);
         }
 
         rcObj.lastOpenChat = name;
     },
+
     goto : function (name,isOpen) { 
         pathChannel = "/";
         if( name != "" ){
-            if( contextData.type == "citoyens" ) 
-                pathChannel = "/direct/"+contextData.username ;
+            if( rcObj.data.type == "citoyens" ) 
+                pathChannel = "/direct/"+rcObj.data.username ;
             else {
-                pathChannel = (isOpen) ? "/channel/"+contextData.slug 
-                                       : "/group/"+contextData.slug;
+                pathChannel = (isOpen) ? "/channel/"+rcObj.data.slug 
+                                       : "/group/"+rcObj.data.slug;
             }
-        }else {
+        }else 
             setTimeout( function () { history.pushState('', document.title, window.location.pathname);}, 1000);
+        
 
-        }
         if(rcObj.debugChat)alert( "RC goto : "+pathChannel );
 
         setTimeout( function () { 
@@ -181,8 +196,8 @@ var rcObj = {
                 externalCommand: 'go',
                 path: pathChannel }, '*');
          }, 1000);
-        
     },
+
     settings : function () { 
         rcObj.loadChat("","citoyens", true, true);
         setTimeout( function () { 

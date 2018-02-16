@@ -44,6 +44,10 @@
              data-placement="top" data-original-title="Documentation : en savoir + sur Communecter !">
         <i class="fa fa-book" style="font-size: 19px;"></i>
     </a>
+    
+    <!-- <button class="btn btn-default"  id="show-bottom-quickaxe" style="width:50px;">
+        <img src="<?php echo $this->module->assetsUrl."/images/thumb/run.png"?>" width=20/>
+    </button> -->
 
     <button class="btn btn-default bg-blue-k" style="width:50px;" onclick="KScrollTo('.main-container')">
         <i class="fa fa-chevron-up"></i>
@@ -76,9 +80,11 @@
 
 </div>
 
-<div class="toolbar-bottom-adds shadow2 font-montserrat hidden">
+<!-- <div class="toolbar-bottom-quickaccess toolbar-bottom-fullwidth shadow2 font-montserrat hidden"></div> -->
+
+<div class="toolbar-bottom-adds toolbar-bottom-fullwidth shadow2 font-montserrat hidden">
     
-    <a href="javascript:;" data-toggle="modal" data-target="#invite-modal-element" class="btn-open-form btn btn-default text-yellow inline-block margin-bottom-10"> 
+    <a href="#element.invite" class="btn-open-form btn btn-default text-yellow lbhp inline-block margin-bottom-10"> 
         <i class="fa fa-user"></i> 
         <span class="hidden-xs"><?php echo Yii::t("common","Invite someone") ?></span>
     </a><br/>
@@ -123,7 +129,6 @@
 <script type="text/javascript">
 jQuery(document).ready(function() {
 
-
     $(".toolbar-bottom-apps").hide().removeClass("hidden");
     $('#show-bottom-app').off().click(function(){
         $(".toolbar-bottom-apps").toggle(100);
@@ -151,6 +156,19 @@ jQuery(document).ready(function() {
         console.log(".toolbar-bottom-adds mouseleave");
         $(".toolbar-bottom-adds").hide(200);
     });
+/*
+    $(".toolbar-bottom-quickaccess").hide().removeClass("hidden");
+    $('#show-bottom-quickaxe').off().click(function(){
+        $(".toolbar-bottom-apps,.toolbar-bottom-adds").hide(200);
+        $(".toolbar-bottom-quickaccess").toggle(100);
+        $('.toolbar-bottom-quickaccess .btn').click(function(){
+            $(".toolbar-bottom-adds").hide(200);
+        });
+    });
+    $('.toolbar-bottom-quickaccess').unbind("mouseleave").mouseleave(function(){
+        console.log(".toolbar-bottom-quickaccess mouseleave");
+        $(".toolbar-bottom-quickaccess").hide(200);
+    }); */
 })
 
 </script>
