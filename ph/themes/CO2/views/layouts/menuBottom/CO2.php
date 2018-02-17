@@ -36,7 +36,7 @@
              data-placement="top" data-original-title="Déclarer un bug">
         <i class="fa fa-bug"></i>
     </a>
-    <a class="btn btn-default lbh tooltips" href="#default.view.page.index.dir.docs" 
+    <a class="btn btn-default lbhp tooltips" href="#default.view.page.index.dir.docs" 
              data-placement="top" data-original-title="Documentation : en savoir + sur Communecter !">
         <i class="fa fa-book"></i>
     </a>
