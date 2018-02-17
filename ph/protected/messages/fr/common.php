@@ -467,6 +467,7 @@ return array(
 	"my network"=>"mon réseau",
 	"network"=>"réseau",
 	"Show All" => "Voir tout",
+	"Show all" => "Voir tout",
 	"Visualize" => "Visualiser",
 	"History" => "Historique",
 	"Settings" => "Paramètres",
@@ -857,6 +858,7 @@ return array(
 	"ADD SOMETHING TO MY NETWORK" => "Ajouter à mon réseau",
 
 	"Organizations types" => "Type d'organisations",
+	"Governemental organization" => "Service public",
 
 	"Administrator" => "Administrateur",
 	"Just a citizen wanting to give visibility to it :)" => "Juste un citoyen qui veut faire connaître cette organisation",

@@ -845,7 +845,7 @@ a, a:hover, a:focus, a:active, a.active{
     background-color: white;
     border-radius: 0px;
     float: left;
-    font-size: 15px;
+    font-size: 12px;
     padding: 10px;
 }
 
@@ -855,10 +855,13 @@ a, a:hover, a:focus, a:active, a.active{
 	border: none;
 	background-color: white;
 	border-radius: 0px;
-	font-size: 15px;
-	margin-left: 10px;
-	font-weight: bold;
+	font-size: 13px;
+	padding-left: 15px;
+	width:100%;
+	text-align: left;
+	/*font-weight: bold;*/
 }
+
 
 .toolbar-bottom-apps .btn{
     padding: 15px;
@@ -886,11 +889,12 @@ a, a:hover, a:focus, a:active, a.active{
     text-align: right;
     padding: 0px;
 }
+
 .toolbar-bottom-fullwidth{
     position: fixed;
-	bottom: 38px;
+	bottom: 37px;
 	right: 0px;
-	height: 440px;
+	/*height: 440px;*/
 	border-top: 1px solid #bcbcbc;
 	border-bottom: 1px solid #bcbcbc;
 	border-left: 1px solid #bcbcbc;

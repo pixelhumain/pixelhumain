@@ -193,9 +193,19 @@
         "Need something"=>"Ils ont besoin d'aide",
         "Offer something"=>"Ils proposent leur aide",
 
+        "They need something"=>"Ils ont besoin d'aide",
+        "They offer something"=>"Ils proposent leur aide",
+
         "service"=>"service",
         "competence"=>"compétence",
         "material"=>"matériel",
+
+        "To share" => "À partager",
+        "To give" => "À donner",
+        "For sale" => "À vendre",
+        "For rent" => "À louer",
+        "Job offer" => "Offre d'emplois",
+
 	);
 ?>
 
