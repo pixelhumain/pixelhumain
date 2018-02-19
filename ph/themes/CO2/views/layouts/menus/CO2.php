@@ -108,7 +108,7 @@
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
                 <?php } ?>
             </div>
-            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search btn-directory-type" 
+            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search" 
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
             </button>
@@ -196,8 +196,19 @@
                                 <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
                             </a>
                         </li> -->
-
-
+                         <li class="text-admin visible-xs">
+                            <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.notifications" class="lbh bg-white">
+                                <i class="fa fa-bell"></i> <?php echo Yii::t("common", "My notifications") ; ?>
+                                <span class="notifications-count topbar-badge badge animated bounceIn 
+                                    <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
+                                    echo 'badge-transparent hide'; else echo 'badge-success'; ?>"
+                                >
+                                <?php echo @$countNotifElement ?>
+                                </span>
+                            </a>
+                        </li>
+                       
+                        <li role="separator" class="divider visible-xs"></li>
                         <li class="text-admin dropdown-submenu dropdown-menu-left">
                             <a href="javascript:;" class="bg-white">
                                 <i class="fa fa-language"></i> <?php echo Yii::t("common", "Languages") ; ?>
@@ -227,49 +238,38 @@
                                 <i class="fa fa-university"></i> <?php echo Yii::t("common", "Connect to your city");?>
                             </a>
                         </li>
-                        <li class="text-admin visible-xs">
-                            <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.notifications" class="lbh bg-white">
-                                <i class="fa fa-bell"></i> <?php echo Yii::t("common", "My notifications") ; ?>
-                                <span class="notifications-count topbar-badge badge animated bounceIn 
-                                    <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
-                                    echo 'badge-transparent hide'; else echo 'badge-success'; ?>"
-                                >
-                                <?php echo @$countNotifElement ?>
-                                </span>
-                            </a>
-                        </li>
                         
 
-                        <!--<li role="separator" class="divider"></li>
+                        <li role="separator" class="divider visible-xs"></li>
                         
-                         <li class="text-left">
-                            <a href="#search" class="lbh bg-white letter-red uppercase">
+                         <li class="text-left visible-xs">
+                            <a href="#search" class="lbh bg-white letter-red">
                                 <i class="fa fa-search"></i> <?php echo Yii::t("common", "Search") ?>
                             </a>
                         </li>
-                        <li class="text-left">
-                            <a href="#live" class="lbh bg-white letter-red uppercase">
+                        <li class="text-left visible-xs">
+                            <a href="#live" class="lbh bg-white letter-red">
                                 <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "In live") ?>
                             </a>
                         </li>
-                        <li class="text-left">
-                            <a href="#agenda" class="lbh bg-white letter-red uppercase">
+                        <li class="text-left visible-xs">
+                            <a href="#agenda" class="lbh bg-white letter-red">
                                 <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Agenda") ?>
                             </a>
                         </li>
-                        <li class="text-left">
-                            <a href="#annonces" class="lbh bg-white letter-red uppercase">
+                        <li class="text-left visible-xs">
+                            <a href="#annonces" class="lbh bg-white letter-red">
                                 <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Market place") ?>
                             </a>
                         </li>
                         
-                        <li class="text-left">
-                            <a href="#ressources" class="lbh bg-white letter-red uppercase">
+                        <li class="text-left visible-xs">
+                            <a href="#ressources" class="lbh bg-white letter-red">
                                 <i class="fa fa-cubes"></i> <?php echo Yii::t("common", "Sharing") ?>
                             </a>
                         </li>
 
-                        <li role="separator" class="divider"></li>
+                        <!--<li role="separator" class="divider"></li>
                         <li class="text-left">
                             <a href="#default.view.page.links" class="lbhp bg-right">
                                 <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
@@ -352,7 +352,7 @@
                     </a>
 
                    
-                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
+                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Notifications") ?>" alt="<?php echo Yii::t("common","Notifications") ?>">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 

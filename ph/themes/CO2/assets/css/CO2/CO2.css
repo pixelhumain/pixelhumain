@@ -706,6 +706,7 @@ a, a:hover, a:focus, a:active, a.active{
 	font-size:14px;
 	height:44px;
 	font-weight: 200;
+	border-radius: 4px 0px 0px 4px;
 	margin-top:3px;
 	-webkit-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
     -moz-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
@@ -1162,17 +1163,18 @@ h3.title_panel_map{
 }
 .menu-btn-start-search{
 	border-radius: 0px 4px 4px 0px;
-	height: 42px;
-	border: none;
-	margin-right: 4px;
-	background: #F3F3F3;
-	margin-top: 4px;
-	margin-left: -5px;
-	width: 40px;
-	padding-left: 15px;
-	-webkit-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5);
-	box-shadow: 0px 0px 2px -1px rgba(0, 0, 0, 0.5);
+    height: 44px;
+    border: none;
+    margin-right: 4px;
+    background: #F3F3F3;
+    margin-top: 3px;
+    margin-left: -5px;
+    width: 40px;
+    padding-left: 15px;
+    border: 1px solid #dadada !important;
+    -webkit-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 2px -1px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -1803,7 +1805,6 @@ margin-right: 5px;
 		display: block;
 		font-size: 0.9em;
 	}
-
 	.navbar-header .logo-menutop{
 		margin: 8px 0px 0 0px !important;
 	}

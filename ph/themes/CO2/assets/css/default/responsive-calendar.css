@@ -141,6 +141,7 @@
 
 .responsive-calendar.light .day.header{
   border-bottom: 1px #b1b1b1 solid;
+  background: inherit;
   background-color: rgba(230, 230, 230, 0.8);
   color: black;
   margin-top: 1px;

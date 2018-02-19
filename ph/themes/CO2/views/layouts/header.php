@@ -228,7 +228,7 @@
                                 <li class="scope-header-filter tooltips visible-xs" data-placement="bottom" data-original-title="Geographic filter">
                                  <i class="fa fa-globe"></i> 
                                  <span class="scope-filters-badge topbar-badge animated bounceIn hide badge-tranparent"></span>                                </li> 
-                                <li class="theme-header-filter tooltips" data-placement="bottom" data-original-title="Themes filter">
+                                <li class="theme-header-filter toogle-filter tooltips" data-placement="bottom" data-original-title="Themes filter">
                                  <i class="fa fa-tags"></i> 
                                 </li>
                                 
@@ -300,7 +300,7 @@
 
                         <div id="filter-scopes-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12 no-padding margin-top-10">
                             <div id="scope-container" class="scope-menu no-padding">
-                                <div id="input-sec-search" class="col-xs-10 col-md-6 col-sm-6 col-lg-6">
+                                <div id="input-sec-search" class="col-xs-8 col-md-6 col-sm-6 col-lg-6">
                                     <div class="input-group shadow-input-header">
                                           <span class="input-group-addon">
                                             <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
@@ -320,13 +320,15 @@
                                 <button id="multiscopes-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="multiscopes">
                                     <i class="fa fa-angle-down"></i> 
                                     <i class="fa fa-star"></i> 
-                                    <?php echo Yii::t("common","My favorites places"); ?> 
-                                    (<span class="count-favorite"></span>)
+                                    <span class="hidden-xs">
+                                        <?php echo Yii::t("common","My favorites places"); ?> 
+                                        (<span class="count-favorite"></span>)
+                                    </span>
                                 </button>
                                 <button id="communexion-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="communexion">
                                     <i class="fa fa-angle-down"></i> 
                                     <i class="fa fa-home"></i> 
-                                    <span class="communexion-btn-label">
+                                    <span class="communexion-btn-label hidden-xs">
                                     </span> 
                                 </button>
                                 <div class="scopes-container col-md-12 col-sm-12 col-xs-12 no-padding margin-top-5">
@@ -373,7 +375,8 @@
         //$("."+page+"-menu-btn").addClass("active");
 
         $(".theme-header-filter").click(function(){
-            $("#filter-thematic-menu").toggle();
+            if(!$("#filter-thematic-menu").is(":visible") || $(this).hasClass("toogle-filter"))
+                $("#filter-thematic-menu").toggle();
         });
         $("#filters-container-menu .theme-header-filter, #filters-container-menu .scope-header-filter").click(function(){
             simpleScroll(0, 500);

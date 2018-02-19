@@ -1364,6 +1364,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Market place"=> "Place de marché",
 	"Documentation"=>"Documentation",
 	"An account is already registered with this email"=>"Un compte utilisateur est déjà enregistré avec cet email",
+	"Open filtering by type"=>"Ouvrir le filtre par type",
 
 );
 ?>
