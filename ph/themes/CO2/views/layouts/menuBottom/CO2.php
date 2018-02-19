@@ -1,7 +1,7 @@
 
 <div class="toolbar-bottom shadow2 font-montserrat">
 
-    <button class="btn btn-default lbh tooltips" data-hash="#home"
+    <button class="btn btn-default lbh tooltips" data-hash="#welcome"
             data-placement="top" data-original-title="Page d'accueil">
         <i class="fa fa-home" style="font-size: 19px;"></i>
     </button>
