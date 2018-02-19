@@ -87,7 +87,7 @@
 
 <div class="toolbar-bottom-adds toolbar-bottom-fullwidth shadow2 font-montserrat hidden">
     <h5 class="col-xs-12"><small class="letter-green" id="addFootTitle">
-        <i class="fa fa-plus-circle"></i> Ajouter quelque chose : </small>
+        <i class="fa fa-plus-circle"></i> <?php echo Yii::t("common", "Add something") ?> : </small>
     </h5>
     <hr class="col-xs-12 margin-bottom-5 margin-top-5">
     <a href="#element.invite" class="addBtnFoot btn-open-form btn btn-default text-yellow lbhp inline-block margin-bottom-10"> 
@@ -182,8 +182,8 @@ function addBtnSwitch(){
     $(".addBtnFoot").addClass("hidden");
     $(".addBtnAll").removeClass("hidden");
     
-    var name = ( inArray( contextData.type,[ "organizations","citoyens","events","projects" ] ) ) ?"en tant que "+contextData.name :  "";
-    $("#addFootTitle").html('<i class="fa fa-plus-circle"></i> Ajouter quelque chose '+name);
+    var name = ( inArray( contextData.type,[ "organizations","citoyens","events","projects" ] ) ) ? "<?php echo Yii::t("common", "as") ?> "+contextData.name :  "";
+    $("#addFootTitle").html('<i class="fa fa-plus-circle"></i> <?php echo Yii::t("common", "Add something") ?> '+name);
 
     if(contextData.type == "citoyens"){
         $(".addBtnFoot").removeClass("hidden");

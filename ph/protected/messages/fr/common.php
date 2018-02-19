@@ -658,6 +658,8 @@ return array(
 	"Add Something to your network" => "Ajouter quelque chose à votre réseau" ,
 	"Add"							=> "Ajouter",
 	"add"							=> "ajouter",
+	"Add something"					=> "Ajouter quelque chose",
+	"as"							=> "en tant que",
 	"Leave this organization" 		=> "Quitter cette organisation",
 	"Leave this project" 			=> "Quitter ce projet",
 	"Leave this event" 				=> "Quitter cet évènement",
