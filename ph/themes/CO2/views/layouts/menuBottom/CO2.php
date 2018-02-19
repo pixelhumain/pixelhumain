@@ -86,47 +86,47 @@
 <!-- <div class="toolbar-bottom-quickaccess toolbar-bottom-fullwidth shadow2 font-montserrat hidden"></div> -->
 
 <div class="toolbar-bottom-adds toolbar-bottom-fullwidth shadow2 font-montserrat hidden">
-    <h5 class="col-xs-12"><small class="letter-green">
-        <i class="fa fa-plus-circle"></i> Créer une page, publier quelque chose...</small>
+    <h5 class="col-xs-12"><small class="letter-green" id="addFootTitle">
+        <i class="fa fa-plus-circle"></i> Ajouter quelque chose : </small>
     </h5>
     <hr class="col-xs-12 margin-bottom-5 margin-top-5">
-    <a href="#element.invite" class="btn-open-form btn btn-default text-yellow lbhp inline-block margin-bottom-10"> 
+    <a href="#element.invite" class="addBtnFoot btn-open-form btn btn-default text-yellow lbhp inline-block margin-bottom-10"> 
         <i class="fa fa-user"></i> 
         <span><?php echo Yii::t("common","Invite someone") ?></span>
-    </a><br/>
-    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_NGO; ?>" class="btn-open-form btn btn-default text-green inline-block margin-bottom-10"> 
+    </a>
+    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_NGO; ?>" class="addBtnFoot btn-open-form btn btn-default text-green inline-block margin-bottom-10"> 
         <i class="fa fa-group"></i> 
         <span><?php echo Yii::t("common","NGO") ?></span>
-    </a><br/>
-    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_BUSINESS; ?>" class="btn-open-form btn btn-default text-azure inline-block margin-bottom-10"> 
+    </a>
+    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_BUSINESS; ?>" class="addBtnFoot btn-open-form btn btn-default text-azure inline-block margin-bottom-10"> 
         <i class="fa fa-building"></i> 
         <span><?php echo Yii::t("common","Enterprise") ?></span>
-    </a><br/>
-    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_GROUP; ?>" class="btn-open-form btn btn-default text-turq inline-block margin-bottom-10"> 
+    </a>
+    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_GROUP; ?>" class="addBtnFoot btn-open-form btn btn-default text-turq inline-block margin-bottom-10"> 
         <i class="fa fa-circle"></i> 
         <span><?php echo Yii::t("common","Group") ?></span>
-    </a><br/>
-    <a href="javascript:;" data-form-type="event" class="btn-open-form btn btn-default text-orange inline-block margin-bottom-10"> 
-        <i class="fa fa-calendar"></i> 
-        <span><?php echo Yii::t("common","Event") ?></span>
-    </a><br/>
-    <a href="javascript:;" data-form-type="project" class="btn-open-form btn btn-default text-purple inline-block margin-bottom-10"> 
-        <i class="fa fa-lightbulb-o"></i> 
-        <span><?php echo Yii::t("common","Project") ?></span>
-    </a><br/>
-    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_GOV; ?>" class="btn-open-form btn btn-default text-red inline-block margin-bottom-10"> 
+    </a>
+    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_GOV; ?>" class="addBtnFoot btn-open-form btn btn-default text-red inline-block margin-bottom-10"> 
         <i class="fa fa-university"></i> 
         <span><?php echo Yii::t("common","Governemental organization") ?></span>
-    </a><br/>
-    <a href="javascript:;" data-form-type="classifieds" class="btn-open-form btn btn-default text-azure inline-block margin-bottom-10"> 
+    </a>
+    <a href="javascript:;" data-form-type="project" class="addBtnFoot addBtnFoot_orga btn-open-form btn btn-default text-purple inline-block margin-bottom-10"> 
+        <i class="fa fa-lightbulb-o"></i> 
+        <span><?php echo Yii::t("common","Project") ?></span>
+    </a>
+    <a href="javascript:;" data-form-type="event" class="addBtnFoot addBtnAll btn-open-form btn btn-default text-orange inline-block margin-bottom-10"> 
+        <i class="fa fa-calendar"></i> 
+        <span><?php echo Yii::t("common","Event") ?></span>
+    </a>
+    <a href="javascript:;" data-form-type="classifieds" class="addBtnFoot  addBtnFoot_orga  addBtnFoot_project btn-open-form btn btn-default text-azure inline-block margin-bottom-10"> 
         <i class="fa fa-bullhorn"></i> 
         <span><?php echo Yii::t("common","Classified") ?></span>
-    </a><br/>
-    <a href="javascript:;" data-form-type="ressources" class="btn-open-form btn btn-default text-vine inline-block margin-bottom-10"> 
+    </a>
+    <a href="javascript:;" data-form-type="ressources" class="addBtnFoot addBtnAll btn-open-form btn btn-default text-vine inline-block margin-bottom-10"> 
         <i class="fa fa-cubes"></i> 
         <span><?php echo Yii::t("common","Ressource") ?></span>
-    </a><br/>
-    <a href="javascript:;" data-form-type="poi" class="btn-open-form btn btn-default text-green-k inline-block margin-bottom-10"> 
+    </a>
+    <a href="javascript:;" data-form-type="poi" class="addBtnFoot addBtnAll btn-open-form btn btn-default text-green-k inline-block margin-bottom-10"> 
         <i class="fa fa-map-marker"></i> 
         <span><?php echo Yii::t("common","Point of interest") ?></span>
     </a>
@@ -177,4 +177,25 @@ jQuery(document).ready(function() {
     }); */
 })
 
-</script>
+function addBtnSwitch(){ 
+
+    $(".addBtnFoot").addClass("hidden");
+    $(".addBtnAll").removeClass("hidden");
+    
+    var name = ( inArray( contextData.type,[ "organizations","citoyens","events","projects" ] ) ) ?"en tant que "+contextData.name :  "";
+    $("#addFootTitle").html('<i class="fa fa-plus-circle"></i> Ajouter quelque chose '+name);
+
+    if(contextData.type == "citoyens"){
+        $(".addBtnFoot").removeClass("hidden");
+    }
+    else if(contextData.type == "organizations")
+        $(".addBtnFoot_orga").removeClass("hidden");
+    else if(contextData.type == "projects")
+        $(".addBtnFoot_project").removeClass("hidden");
+    else if(contextData.type == "events")
+        $(".addBtnFoot_event").removeClass("hidden");
+
+    
+}
+
+</script>addBtnFoot_orga addBtnFoot_project addBtnFoot_event
