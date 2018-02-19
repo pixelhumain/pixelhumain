@@ -71,24 +71,22 @@
 		</div>
 
 
-		<div class="col-md-12 col-sm-12 col-xs-12  margin-top-50">
-			<?php $isEmptyCo = empty($communexion["values"]["cityName"]); 
-				//var_dump($communexion);
-			?>
+		<div class="col-md-12 col-sm-12 col-xs-12  margin-top-50 hidden">
+			<?php $isEmptyCo = empty($communexion["values"]["cityName"]); ?>
 			
 			<h3 class="text-red text-center">
 				<i class="fa fa-home fa-2x"></i><br>
 				Communexion<br>
 				<small>
-				<i class="fa fa-cross"></i> 
-				<span id="communexionNameHome">
-				<?php if($isEmptyCo){ ?>
-					<?php echo Yii::t("home","You're not <span class='text-dark'>communected</span>") ?>
-				<?php }else{ ?>
-					<?php echo Yii::t("home","You are") ?> <span class="text-dark"><?php echo Yii::t("home","communected to") ?> 
-					<span class="text-red"><?php echo $communexion["values"]["cityName"];?></span> </span>
-				<?php } ?>
-				</span><br>
+					<i class="fa fa-cross"></i> 
+					<span id="communexionNameHome">
+					<?php if($isEmptyCo){ ?>
+						<?php echo Yii::t("home","You're not <span class='text-dark'>communected</span>") ?>
+					<?php }else{ ?>
+						<?php echo Yii::t("home","You are") ?> <span class="text-dark"><?php echo Yii::t("home","communected to") ?> 
+						<span class="text-red"><?php echo $communexion["values"]["cityName"];?></span>
+					<?php } ?>
+					</span><br>
 					<small class="text-dark inline-block margin-top-5 info_co
 						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
 						 style="line-height: 15px;">
@@ -112,7 +110,7 @@
 						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
 				   id="main-search-bar" type="text" 
 				   style="border-radius:50px; height:40px; border: 2px solid red; color:red; margin-bottom:15px;"
-				   placeholder="<?php echo Yii::t("home", "communect you : London, Paris, Brussels ?") ?>"></div>
+				   placeholder="<?php echo Yii::t("home", "communect you : London, Paris, Brussels ?") ?>">
 
 			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 info_co
 						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
@@ -120,14 +118,15 @@
 	            <i class="fa fa-signal"></i> <?php echo Yii::t("home","To use the network efficiently, we advice you to be <i><b>communected</b></i>") ?>.<br><br>
 	            <i class="fa fa-magic"></i> <?php echo Yii::t("home","Indicate your <b>living place</b>, to keep informed about what's happened around you automatically.") ?><br>
 	        </div>
-	        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="font-family: 11px;" id="dropdown_search">
+	        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="font-family: 11px;" 
+	        	 id="dropdown_search">
 	        </div>
 		</div>
 
 		
-		<div class="col-md-12 col-sm-12 col-xs-12 no-padding margin-top-25"><hr></div>
+		<div class="col-md-12 col-sm-12 col-xs-12 no-padding margin-top-25 hidden"><hr></div>
 		
-		<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="col-md-12 col-sm-12 col-xs-12 hidden">
 			<h3 class="text-red text-center">
 				<i class="fa fa-clock-o fa-2x"></i><br>
 				<?php echo Yii::t("home", "An the moment") ?><br>

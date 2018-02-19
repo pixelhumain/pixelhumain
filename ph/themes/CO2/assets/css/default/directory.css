@@ -684,6 +684,12 @@
   overflow: hidden;
 }
 
+.searchEntity.entityLight .container-img-profil.event img.thumbnailProfil{
+  width:130px!important;
+  height:unset!important;
+  max-width: 130px;
+  max-height: 200px;
+}
 
   @media screen and (max-width: 1024px) {
     #menu-directory-type .hidden-sm{

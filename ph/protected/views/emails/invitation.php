@@ -40,9 +40,17 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 							</b><br/>
 							<?php echo Yii::t("mail","You have been inviting on {what} by {who}",array("{what}"=>$title,"{who}"=>"<b>".$invitorName."</b>")) ?>.
 							<br/><br/>
-							<?php echo Yii::t("mail","His message for you") ?> : <br/>
+							<?php if(!empty($message)){
+								echo Yii::t("mail","His message for you") ?> : <br/>
 							<p style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 10px;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><i><?php echo nl2br(htmlentities($message)); ?></i></p>
 							<br/>
+							<?php } else { ?>
+								En quelques clics découvrez votre dynamique locale sur <a href="http://www.communecter.org" style="color: #728289;font-family: Helvetica, Arial, sans-serif;font-weight: bold;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">Communecter</a> : fil d’actualité, agenda, petites annonces, annuaires des initiatives allant vers un monde plus durable !
+								<br/><br/>
+								<?php if(!empty($invitorName)){
+									echo $invitorName." a commencé sans vous, mais vous pouvez le rejoindre à tout moment en cliquant ici :";
+								}
+							} ?>
 						</th>
 					</tr>
 					<tr style="padding: 0;vertical-align: top;text-align: center;">
