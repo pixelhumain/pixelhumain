@@ -273,7 +273,7 @@
                             </div>
                         </a>
                         
-                        <a href="javascript:" class="btn-create-elem col-lg-4 col-md-6 col-sm-6 col-xs-6" data-type="places"
+                        <!--<a href="javascript:" class="btn-create-elem col-lg-4 col-md-6 col-sm-6 col-xs-6" data-type="places"
                             date-target="#modalMainMenu" data-dismiss="modal">
                             <div class="modal-body text-center">
                                 <h4 class="text-brown"><i class="fa fa-home padding-bottom-10"></i><br>
@@ -291,7 +291,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </a>
+                        </a>-->
 
                         <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                             <hr>
