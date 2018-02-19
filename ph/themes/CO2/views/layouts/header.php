@@ -243,7 +243,7 @@
                             } else if($page == "ressources"){ 
                                 $this->renderPartial("ressources.views.co.header", array( "typeSelected" => $type ));
                             } else { ?>
-                                <?php $filliaireCategories = CO2::getCategories(); 
+                                <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
                                 foreach ($filliaireCategories as $key => $cat) { 
                                     if(is_array($cat)) { ?>
                                       <div class="col-md-2 col-sm-2 col-xs-3 no-padding">
@@ -368,7 +368,7 @@
 <?php } ?>
      
 <script type="text/javascript">
-    var filliaireCategories = <?php echo json_encode(@CO2::getCategories()); ?>;
+    var filliaireCategories = <?php echo json_encode(@$filliaireCategories); ?>;
     var page="<?php echo $page ?>";
     jQuery(document).ready(function() {
         searchInitApp(search);
