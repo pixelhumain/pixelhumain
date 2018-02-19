@@ -84,7 +84,7 @@
 		"Share"=>"Partager",
 		"Drawings"=>"Affiches",
 		"Videos"=>"Vidéos",
-		"All you need to know about"=>"Tout ce qu'il faut savoir sur",
+		"All <span class='hidden-xs'>you need to know</span> about"=>"Tout <span class='hidden-xs'>ce qu'il faut savoir</span> sur",
 
 
 	);
