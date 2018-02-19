@@ -240,7 +240,7 @@
                         </li>
                         
 
-                        <li role="separator" class="divider"></li>
+                        <!--<li role="separator" class="divider"></li>
                         
                          <li class="text-left">
                             <a href="#search" class="lbh bg-white letter-red uppercase">
@@ -274,7 +274,7 @@
                             <a href="#default.view.page.links" class="lbhp bg-right">
                                 <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
                             </a>
-                        </li>
+                        </li>-->
 
                         <li role="separator" class="divider"></li>
                         <li class="">
@@ -319,7 +319,7 @@
                         <li class="text-left">
                             <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
                                 class="bg-white letter-red logout">
-                                <small><i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log Out") ; ?></small>
+                                <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log Out") ; ?>
                             </a>
                         </li>
 
@@ -388,13 +388,14 @@
                     </button>
 
                     
-
+                    <?php if($subdomain == "welcome" || $subdomain=="page" ){ ?>
                     <span class="dropdown" id="dropdown-apps">
                         <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                               title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>">
-                          <i class="fa fa-th"></i>
+                          <i class="fa fa-th letter-red"></i>
                         </button>
-                        <div class="dropdown-menu arrow_box" aria-labelledby="dropdownApps" style="width: 231px;">
+                        <div class="dropdown-menu arrow_box" aria-labelledby="dropdownApps">
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#welcome" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-home fa-2x"></i><br/><?php echo Yii::t("common","Home") ?></a>
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-search fa-2x"></i><br/><?php echo Yii::t("common","Search") ?></a>
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-newspaper-o fa-2x"></i><br/><?php echo Yii::t("common","In live") ?></a>
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-calendar fa-2x"></i><br/><?php echo Yii::t("common","Agenda") ?></a>
@@ -404,7 +405,8 @@
                     </span>
 
 
-                <?php } else { ?>
+                <?php } 
+                } else { ?>
                     <li class="pull-right">
                         <?php //if($subdomain != "welcome"){ ?>
                             <button class="letter-green font-montserrat btn-menu-connect margin-left-10" 

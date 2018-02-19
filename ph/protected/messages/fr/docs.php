@@ -56,6 +56,36 @@
 		"The market of classifieds is the creation of value.<br/> Exchange, hire, buy and sell localy faster and faster to produce value and develop a real economy."=>"Le marché des annonces crée de la valeur.<br/>Echanger, employer, acheter et vendre localement encore et encore pour produire de la valeur et développer une réelle économie",
 		"Create your community and make it bigger" => "Créer sa communauté et la rendre plus forte",
 		"Invite people you know to invite them in this local world<br/>Numeric informations to real meeting"=>"Inviter des personnes pour qu'ils partagent leur connaissance et faire grandir le commun<br/>L'information numérique en faveur de la rencontre réelle",
-		
+		//Menu docs
+		"WEL<span class='text-red'>CO</span>ME"=>"BIENVE<span class='text-red'>NU</span>E",
+		"A<span class='text-red'>BO</span>UT"=>"<span class='text-red'>CO</span>NNAITRE",
+		"Philosophy"=>"Philosophie",
+		"Projects"=>"Les projets",
+		"Keywords"=> "En mots-clés",
+		"Community"=>"La communauté",
+		"History"=>"l'Histoire",
+		"10 Commands"=>"Les 10 commandements",
+		"Social code"=> "Code social",
+		"Funding"=>"Financement",
+		"HOW <span class='text-red'>TO</span> USE"=>"<span class='text-red'>CO</span>MPRENDRE",
+		"The elements"=>"Les éléments",
+		"Applications"=>"Applications",
+		"Game of data"=>"Jeu de données",
+		"FAQ"=>"FAQ",
+		"<span class='text-red'>CO</span>NTRIBUTE"=>"<span class='text-red'>CO</span>NSTRUIRE",
+		"<span class='text-red'>CO</span>DING"=>"<span class='text-red'>CO</span>GEEK",
+		"Play with API"=>"Jouer avec l'API",
+		"Open Source We use"=> "Open source à jamais",
+		"OCDB"=>"OCDB",
+		"Research&Dev"=>"Recherche&Dév",
+		"RoadMap"=>"Feuille de route",
+		"<span class='text-red'>CO</span>MMUNICATE"=>"<span class='text-red'>CO</span>MMUNIQUER",
+		"Contact"=>"Contact",
+		"Share"=>"Partager",
+		"Drawings"=>"Affiches",
+		"Videos"=>"Vidéos",
+		"All you need to know about"=>"Tout ce qu'il faut savoir sur",
+
+
 	);
 ?>

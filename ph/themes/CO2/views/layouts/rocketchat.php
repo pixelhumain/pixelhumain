@@ -8,6 +8,7 @@
         height: 100%;
         background-color:rgb(0,0,0,0.5); 
         border-left:3px solid #333;
+        z-index: 10000;
     }
     #rocketchatModal .modal-content {
         position: fixed;

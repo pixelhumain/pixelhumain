@@ -240,8 +240,6 @@
                             <?php 
                             if($page == "annonces"){ 
                                 $this->renderPartial("classifieds.views.co.header", array( "typeSelected" => $type ));
-                            } else if($page == "ressources"){ 
-                                $this->renderPartial("ressources.views.co.header", array( "typeSelected" => $type ));
                             } else { ?>
                                 <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
                                 foreach ($filliaireCategories as $key => $cat) { 
@@ -345,7 +343,7 @@
                                 foreach ($params["pages"] as $key => $value) {
                                     if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                                         <a href="<?php echo $key; ?>" 
-                                        class="<?php echo $key; ?>ModBtn lbh btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header tooltips <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>" data-placement="bottom" title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
+                                        class="<?php echo $key; ?>ModBtn lbh btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>">
                                                 
                                         <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                                         <span class=""><?php echo Yii::t("common", $value["subdomainName"]); ?></span>
