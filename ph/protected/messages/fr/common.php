@@ -885,6 +885,7 @@ return array(
 	"Add an action" => "Ajouter une action",
 	"Invite someone" => "Inviter quelqu&#146;un",
 	
+	"Home" => "Accueil",
 	"Back to" => "Revenir sur",
 	"Know more" => "En savoir +",
 	"Show Directory" => "Afficher le répertoire",

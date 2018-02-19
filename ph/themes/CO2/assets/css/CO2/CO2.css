@@ -775,11 +775,12 @@ a, a:hover, a:focus, a:active, a.active{
 }
 #dropdown-apps .dropdown-menu{
 	top: 70px;
-	right: -137px;
+	right: -147px;
 	position: absolute;
-	width: 230px;
+	width: 250px;
 	border: 1px solid #0003;
 	border-radius: 0px;
+	height: 250px;
 }
 #dropdown-apps .dropdown-menu a{
 	height:70px;

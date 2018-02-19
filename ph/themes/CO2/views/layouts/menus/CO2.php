@@ -395,6 +395,7 @@
                           <i class="fa fa-th letter-red"></i>
                         </button>
                         <div class="dropdown-menu arrow_box" aria-labelledby="dropdownApps">
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#welcome" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-home fa-2x"></i><br/><?php echo Yii::t("common","Home") ?></a>
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-search fa-2x"></i><br/><?php echo Yii::t("common","Search") ?></a>
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-newspaper-o fa-2x"></i><br/><?php echo Yii::t("common","In live") ?></a>
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-calendar fa-2x"></i><br/><?php echo Yii::t("common","Agenda") ?></a>
