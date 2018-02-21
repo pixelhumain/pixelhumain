@@ -390,6 +390,7 @@
             myMultiTags = {};
             search.value="";
             $.each(filliaireCategories[fKey]["tags"], function(key, tag){
+                tag=(typeof tradTags[tag] != "undefined") ? tradTags[tag] : tag;
                 search.value+="#"+tag+" ";
             });
             $("#filter-thematic-menu").hide();
