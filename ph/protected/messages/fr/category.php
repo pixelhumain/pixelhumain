@@ -33,7 +33,7 @@
         "For sale"=>"À vendre",            
         "Rent"=>"Louer",   
         "For rent"=>"À louer",
-        "Need"=>"Besoin", 
+        
         "Looking for"=>"À la recherche",   
         "Jobs"=>"Emplois", 
         "Offers"=>"Offres d'emplois", 
@@ -190,15 +190,47 @@
 
 
         //RESSOURCES
-        "Need something"=>"Ils ont besoin d'aide",
-        "Offer something"=>"Ils proposent leur aide",
+        "Need"=>"Besoin", 
+        "Offre"=>"Offre", 
+        "Need something"=>"Besoins",
+        "Offer something"=>"Propositions",
 
         "They need something"=>"Ils ont besoin d'aide",
         "They offer something"=>"Ils proposent leur aide",
 
+        //filters lel 1
         "service"=>"service",
+            //filters lvl 2
+            "charity" => "Charité",
+            "education" => "Éducation",
+            "househelp" => "Aide à domicile",
+            "washing" => "Entretien, Ménage",
+            "gardening" => "Jardinage",
+            "farming" => "Agriculture",
+            "generalmaintenance" => "Maintenance",
+            "animalcare" => "Aide Animaux",
+            "childrencare" => "Aide aux enfants",
+            "ederlycare" => "Aide aux personnes agées",
+            "disabledcare" => "Aide aux personnes handicapés",
+            "hostinghelp" => "Aide à l'hébergement",
         "competence"=>"compétence",
+            //filters lvl 2
+            "artistic" => "Artistique",
+            "laws" => "Légal",
+            "itdevlopment" => "Informatique",
+            "HandCraft" => "Artisanat",
+            "animalcare" => "Soins des animaux",
+            "agriculture" => "Agriculture",
+            "restauration" => "Restauration",
+            "building" => "Construction",
         "material"=>"matériel",
+            //filters lvl 2
+            "electronic"=> "Électronique",
+            "furniture"=> "Mobilier",
+            "primaryressources"=> "Ressource Primaire",
+            "buildingtools"=> "Outil de construction",
+            "gardeningtools"=> "Outil de jardin",
+            "medicalstuff"=> "Médical",
 
         "To share" => "À partager",
         "To give" => "À donner",
