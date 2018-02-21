@@ -491,7 +491,7 @@ input#second-search-bar{
 }
 
 .navbar-custom .btn-open-floopdrawer{
-	background-color: white;
+	/*background-color: white;
 	color: #484746 !important;
 	margin-top: 10px;
 	margin-right: 4px;
@@ -504,7 +504,7 @@ input#second-search-bar{
 	font-size: 14px;
 	float: right;
 	border: 1px solid #959595;
-	padding: 0px 0px;
+	padding: 0px 0px;*/
 }
 
 .navbar-custom .btn-open-floopdrawer:hover{
