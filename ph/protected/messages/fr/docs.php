@@ -85,6 +85,15 @@
 		"Drawings"=>"Affiches",
 		"Videos"=>"Vidéos",
 		"All <span class='hidden-xs'>you need to know</span> about"=>"Tout <span class='hidden-xs'>ce qu'il faut savoir</span> sur",
+		"A NETWORK OF NETWORKS"=>"UN RÉSEAU DE RÉSEAUX",
+		"People & Organizations get together to build a common"=>"Personnes et organisations qui se rassemblent pour construire un commun",
+		"NURDS"=>"GEEKS",
+		"BUILDERS"=>"PILIERS",
+		"PARTNERS"=>"PARTENAIRES",
+		"FINANCERS"=>"FINANCEURS",
+		"THINKERS"=>"PENSEURS",
+		"CROWDFUNDERS"=>"CROWDFUNDERS",
+		"INTEROPERATORS"=>"INTEROPÉR'ACTEURS",
 
 
 	);
