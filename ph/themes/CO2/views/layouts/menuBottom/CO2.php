@@ -206,4 +206,4 @@ function addBtnSwitch(){
     
 }
 
-</script>addBtnFoot_orga addBtnFoot_project addBtnFoot_event
+</script>

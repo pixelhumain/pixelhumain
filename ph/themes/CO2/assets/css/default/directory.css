@@ -812,7 +812,7 @@
 
 
 .adminToolBar{
-    display: none;
+    /*display: none;*/
     position: absolute;
     top: 0px;
     height: 150px;
