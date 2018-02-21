@@ -248,7 +248,10 @@
 
 
 <?php   $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-        $this->renderPartial($layoutPath.'.rocketchat'); 
+
+if(@Yii::app()->session["userId"])
+    $this->renderPartial($layoutPath.'.rocketchat'); 
+
 ?>
 
 <script type="text/javascript">
