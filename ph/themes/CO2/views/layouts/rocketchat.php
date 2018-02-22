@@ -118,8 +118,8 @@ var rcObj = {
     { 
         if(rcObj.debugChat)alert("rcObj.login");
         document.querySelector('iframe').contentWindow.postMessage({
-              externalCommand: 'login-with-token',
-              token: '<?php echo @Yii::app()->session["loginToken"]; ?>' }, '*');
+            externalCommand: 'login-with-token',
+            token: '<?php echo @Yii::app()->session["loginToken"]; ?>' }, '*');
     },
     //anme : slug
     //type : citoyens, organization, project, event
@@ -143,6 +143,7 @@ var rcObj = {
             rcObj.data.slug = slugify(rcObj.data.name); 
         
         //defauilts to true because correspond in the use case of opening a glabal chat 
+        //list comes from /rocketchat/list
         var checkGroupMember = ( rcObj.data ) ? $.inArray( rcObj.data.slug , rcObj.list ) : true ; 
         
         if(rcObj.debugChat)alert( "name:"+name+", type:"+type+", isOpen : "+isOpen+", hasRC : "+hasRC+",checkGroupMember:"+checkGroupMember );
@@ -196,7 +197,7 @@ var rcObj = {
             document.querySelector('iframe').contentWindow.postMessage({
                 externalCommand: 'go',
                 path: pathChannel }, '*');
-         }, 1000);
+        }, 1000);
     },
 
     settings : function () { 

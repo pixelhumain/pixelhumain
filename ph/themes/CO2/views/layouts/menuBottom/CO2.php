@@ -9,11 +9,13 @@
     <button class="btn btn-default tooltips letter-red" id="show-bottom-app">
         <i class="fa fa-th" style="font-size: 17px;"></i>
     </button>
-
+    
+    <?php if(@Yii::app()->session["userId"]) { ?>
     <button class="btn btn-default letter-green" id="show-bottom-add" >
         <i class="fa fa-plus-circle"  style="font-size: 16px;"></i> 
         <!-- <span class="hidden-xs"><?php echo Yii::t("common", "add") ?> </span>-->
     </button>
+    <?php } ?>
     <button class="btn btn-default letter-blue btn-show-map">
         <i class="fa fa-map-marker" style="font-size: 15px;"></i> 
         <!-- <span class="hidden-xs"><?php echo Yii::t("common", "map") ?></span> -->
@@ -61,23 +63,23 @@
 <div class="toolbar-bottom-apps shadow2 font-montserrat hidden">
 
     <a class="btn btn-default lbh letter-red" href="#search">
-        <i class="fa fa-search"></i> 
+        <i class="fa <?php echo Search::ICON; ?>"></i> 
         <span class="hidden-xs"><?php echo Yii::t("common", "Search") ?></span> 
     </a>
     <a class="btn btn-default lbh letter-red" href="#live">
-        <i class="fa fa-newspaper-o"></i> 
+        <i class="fa <?php echo News::ICON2; ?>"></i> 
         <span class="hidden-xs"><?php echo Yii::t("common", "In live") ?></span> 
     </a>
     <a class="btn btn-default lbh letter-red" href="#agenda">
-        <i class="fa fa-calendar"></i> 
+        <i class="fa <?php echo Event::ICON; ?>"></i> 
         <span class="hidden-xs"><?php echo Yii::t("common", "Agenda") ?></span> 
     </a>
     <a class="btn btn-default lbh letter-red" href="#annonces">
-        <i class="fa fa-bullhorn"></i> 
+        <i class="fa <?php echo Classified::ICON; ?>"></i> 
         <span class="hidden-xs"><?php echo Yii::t("common", "Market place") ?></span> 
     </a>
     <a class="btn btn-default lbh letter-red" href="#ressources">
-        <i class="fa fa-cubes"></i> 
+        <i class="fa <?php echo Ressource::ICON; ?>"></i> 
         <span class="hidden-xs"><?php echo Yii::t("common", "Sharing") ?></span> 
     </a>
 
@@ -95,23 +97,23 @@
         <span><?php echo Yii::t("common","Invite someone") ?></span>
     </a>
     <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_NGO; ?>" class="addBtnFoot btn-open-form btn btn-default text-green inline-block margin-bottom-10"> 
-        <i class="fa fa-group"></i> 
+        <i class="fa <?php echo Organization::ICON; ?>"></i> 
         <span><?php echo Yii::t("common","NGO") ?></span>
     </a>
     <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_BUSINESS; ?>" class="addBtnFoot btn-open-form btn btn-default text-azure inline-block margin-bottom-10"> 
-        <i class="fa fa-building"></i> 
+        <i class="fa <?php echo Organization::ICON_BIZ; ?>"></i> 
         <span><?php echo Yii::t("common","Enterprise") ?></span>
     </a>
     <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_GROUP; ?>" class="addBtnFoot btn-open-form btn btn-default text-turq inline-block margin-bottom-10"> 
-        <i class="fa fa-circle"></i> 
+        <i class="fa <?php echo Organization::ICON_GROUP; ?>"></i> 
         <span><?php echo Yii::t("common","Group") ?></span>
     </a>
     <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_GOV; ?>" class="addBtnFoot btn-open-form btn btn-default text-red inline-block margin-bottom-10"> 
-        <i class="fa fa-university"></i> 
+        <i class="fa <?php echo Organization::ICON_GOV; ?>"></i> 
         <span><?php echo Yii::t("common","Governemental organization") ?></span>
     </a>
     <a href="javascript:;" data-form-type="project" class="addBtnFoot addBtnFoot_orga btn-open-form btn btn-default text-purple inline-block margin-bottom-10"> 
-        <i class="fa fa-lightbulb-o"></i> 
+        <i class="fa <?php echo  Project::ICON;?>"></i> 
         <span><?php echo Yii::t("common","Project") ?></span>
     </a>
     <a href="javascript:;" data-form-type="event" class="addBtnFoot addBtnAll btn-open-form btn btn-default text-orange inline-block margin-bottom-10"> 
@@ -182,10 +184,16 @@ function addBtnSwitch(){
     $(".addBtnFoot").addClass("hidden");
     $(".addBtnAll").removeClass("hidden");
     
-    var name = ( inArray( contextData.type,[ "organizations","citoyens","events","projects" ] ) ) ? "<?php echo Yii::t("common", "as") ?> "+contextData.name :  "";
-    $("#addFootTitle").html('<i class="fa fa-plus-circle"></i> <?php echo Yii::t("common", "Add something") ?> '+name);
 
-    if(contextData.type == "citoyens"){
+    var fname = "<?php echo Yii::t("common", "as") ?> ";
+    if ( contextData != null && contextData.type && inArray( contextData.type,[ "organizations","citoyens","events","projects" ] ) )
+        fname += contextData.name;
+    else 
+        fname += userConnected.name;
+
+    $("#addFootTitle").html('<i class="fa fa-plus-circle"></i> <?php echo Yii::t("common", "Add something") ?> '+fname);
+
+    if(contextData.type == "citoyens" || contextData == null){
         $(".addBtnFoot").removeClass("hidden");
     }
     else if(contextData.type == "organizations")
@@ -198,4 +206,4 @@ function addBtnSwitch(){
     
 }
 
-</script>addBtnFoot_orga addBtnFoot_project addBtnFoot_event
+</script>
