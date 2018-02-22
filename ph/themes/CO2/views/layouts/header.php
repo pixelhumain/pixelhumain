@@ -166,6 +166,7 @@
 
 <?php 
     $params = CO2::getThemeParams();
+    $devises = $params["devises"];
     
     if(@$type=="cities")    { 
         $lblCreate = "";
@@ -278,7 +279,7 @@
                             
                             <div class="form-group col-md-2 col-sm-2 col-xs-12">
                               <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
-                                <i class="fa fa-money"></i> <?php echo Yii::t("common","Money") ?>
+                                <i class="fa fa-money"></i> <?php echo Yii::t("common","Money"); ?>
                               </label>
                               <select class="form-control" name="devise" id="devise" style="">
                                 <?php if(@$devises){ 
