@@ -98,5 +98,7 @@ return array(
         "For commons"=>"Für die Commons",
         "To improve the city 2.2.main"=>"Um die Stadt lebenswerter zu machen (2.2.main)",
         "An email with a new password has been sent to your email account. Thanks." => "Eine E-Mail mit einem neuen Passwort ist an Ihre E-Mail-Adresse gesandt worden. Dankeschön.",
+       
+        "our chart" => "unser Diagramm",
     );
 ?>
