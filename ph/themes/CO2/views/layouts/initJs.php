@@ -249,9 +249,9 @@
                 if( lastWindowUrl && "onhashchange" in window){
                     console.log("history",history);
                     if( allReadyLoadWindow == false && onchangeClick){
+                        lastSplit=lastWindowUrl.split(".");
+                        currentSplit=location.hash.split(".");    
                         if(navInSlug || lastWindowUrl.indexOf("#page")>=0 && location.hash.indexOf("#page")>=0){
-                            lastSplit=lastWindowUrl.split(".");
-                            currentSplit=location.hash.split(".");
                             if(navInSlug){
                                 if(lastSplit[0]==currentSplit[0]){
                                     if(location.hash.indexOf("view")>=0){
@@ -283,6 +283,16 @@
                                 }else
                                     urlCtrl.loadByHash(location.hash,true);
                             }
+                        }else if(lastWindowUrl.indexOf("#admin")>=0 && location.hash.indexOf("#admin")>=0){
+                           if(lastSplit[0]==currentSplit[0]){
+                                if(location.hash.indexOf("view")>=0){
+                                    getAdminSubview(currentSplit[2]);
+                                }
+                                else
+                                    getAdminSubview("");
+
+                            }else
+                                urlCtrl.loadByHash(location.hash,true);
                         }else
                             urlCtrl.loadByHash(location.hash,true);
                     } 
