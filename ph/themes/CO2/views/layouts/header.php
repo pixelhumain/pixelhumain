@@ -394,7 +394,7 @@
                 tag=(typeof tradTags[tag] != "undefined") ? tradTags[tag] : tag;
                 search.value+="#"+tag+" ";
             });
-            $("#filter-thematic-menu").hide();
+            //$("#filter-thematic-menu").hide();
             $("#main-search-bar, #second-search-bar").val(search.value);
             mylog.log("myMultiTags", myMultiTags);
             

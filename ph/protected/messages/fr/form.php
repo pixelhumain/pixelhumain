@@ -79,7 +79,7 @@
 		"Which kind of point do you want to locate"=>"Quel type de point souhaitez-vous localiser",
 		"Which kind of classified is it"=>"De quel type d'annonce s'agit-il",
 		"In which category do you want to publish the classified"=>"Dans quelle catégorie souhaitez-vous publier votre annonce",
-		"Which kind of Ressource" => "De quel type de ressource s'agit-il ?",
+		"Which kind of Ressource" => "Quel type de ressource souhaitez-vous ajouter ?",
 		"Subcategory"=>"Sous-catégorie",
 		"phone number, email address"=>"n° tel, adresse e-mail",
 		"Your role"=>"Votre rôle",
