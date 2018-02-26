@@ -129,7 +129,7 @@
 		"I am the author"=>"Ich bin der Autor",
 		"Visibility of the news"=>"Sichtbarkeit der Mitteilung",
 		"Write your news here"=> "Schreiben Sie Ihre Mitteilungen hier",
-		"Slug is very important.<br> It will permit to give a unique name to chat in a room,<br>A beautiful url like www.communecter.org/#communecter" => "Ein Aliasname ist sehr wichtig, denn es erlaubt Ihnen einen einzigartigen Namen in einem Chatraum zu gebrauchen und eine einprägsame url, wie www.communecter.org/#communecter zu benutzen",
+		"Slug is very important.<br> It will permit to give a unique name to chat in a room,<br>A beautiful url like www.communecter.org/#communecter" => "Ein Aliasname ist sehr wichtig, denn dieser erlaubt Ihnen einen einzigartigen Namen in einem Chatraum zu gebrauchen und eine einprägsame URL, wie www.communecter.org/#communecter zu benutzen",
 		"Indicate the currency used" => "Wählen Sie die verwendete Währung aus",
 		"Currency" => "Währung",
 		"Slug" => "Aliasname",
