@@ -158,6 +158,7 @@ return array(
 	"Refused" => "Refusée",
 	"validated" => "validée",
 	"refused" => "refusée",
+	"adopted" => "validée",
 	"voter" => "votant",
 
 	"Be the first to vote" => "Soyez le premier à voter",

@@ -191,12 +191,18 @@
 
         //RESSOURCES
         "Need"=>"Besoin", 
-        "Offre"=>"Offre", 
+        "need"=>"Besoin", 
+        "Offer"=>"Offre", 
+        "offer"=>"Offre", 
         "Need something"=>"Besoins",
         "Offer something"=>"Propositions",
 
         "They need something"=>"Ils ont besoin d'aide",
         "They offer something"=>"Ils proposent leur aide",
+
+        "Type of ressource" => "Choisir une catégorie",
+        "Choose a category" => "Choisissez une catégorie",
+        "Sub category" => "Sous-catégorie",
 
         //filters lel 1
         "service"=>"service",
@@ -218,7 +224,7 @@
             "artistic" => "Artistique",
             "laws" => "Légal",
             "itdevlopment" => "Informatique",
-            "HandCraft" => "Artisanat",
+            "handcraft" => "Artisanat",
             "animalcare" => "Soins des animaux",
             "agriculture" => "Agriculture",
             "restauration" => "Restauration",

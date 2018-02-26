@@ -96,8 +96,8 @@
                   $subdomain == "agenda" ||
                   $subdomain == "live" ||
                   $subdomain == "power"  ||
-                  $subdomain == "annonces"||
-                  $subdomain == "admin"
+                  $subdomain == "annonces"//||
+                  //$subdomain == "admin"
                   //$subdomain == "page"
                  ){ ?>
         
