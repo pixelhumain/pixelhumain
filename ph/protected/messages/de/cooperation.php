@@ -191,4 +191,15 @@ return array(
 	"voters" => "Wähler",
 	"click to vote" => "Klicken Sie, um abzustimmen",
 	"Delete my amendement" => "Lösche meine Änderungsantrag",
+	
+	"Login to enter in this space" => "Login für die Nutzung dieses Raums",
+	"The <b>resolution</b> is done : " => "Die <b>Bestimmung</b> wird durchgeführt.",
+	"My roles" => "Meine Berechtigungen",
+	"You have no role in" => "Sie haben keine Berechtigung für",
+	"this projects" => "diesen Projekten",
+	"this organizations" => "diesen Organisationen",
+	"Ask an admin to get the appropriated role to access this space" => "Bitten Sie einen Admin, die entsprechende Berechtigung für den Zugriff auf diesen Bereich zu erhalten.",
+	"Size min : 10 caractÃ¨res" => "Mindestgröße: 10 Zeichen",
+	"Collective moderation" => "Gruppenmoderation",
+	"open in CO space" => "offen in CO Raum",
 );
