@@ -576,7 +576,7 @@ return array(
 	"Follow this organization" => "Beobachten Sie diese Organisation",
 	"Follow this project" => "Beobachten Sie dieses Projekt",
 	"Unfollow" => "Beobachten Sie nicht mehr",
-	"Cancel this link"=>"Entfernen Sie diesen Link",
+	"Cancel this link"=>"Beenden Sie die Mitgliedschaft",
 	
 	"Add something to your network" => "Fügen Sie etwas zu deinem Netzwerk hinzu" ,
 	"Add"							=> "Fügen Sie hinzu",
