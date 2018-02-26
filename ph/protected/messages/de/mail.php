@@ -87,6 +87,13 @@
 		"{who} has confirmed your request to {action} {what}" => "{who} hat Ihre Anfrage zur/zum {action} von {what} bestätigt",
 		"Now, you can connect you and used all functions {ofwhat} on {where} : editing details, add element, publish news, manage comunity, etc." => "Jetzt können Sie sich verbinden und alle Funktionen von {ofwhat} auf {where} anwenden: Details bearbeiten, Elemente hinzufügen, Nachrichten veröffentlichen, Gemeinschaften organisieren, usw.",
 		"Go to {what}" => "Gehe zur/zum {what}",
-
+		
+		"In just a few clicks discover local activity on CO and use tools for your own organization : news feeds, agendas, classified ads, directories of initiatives towards a more sustainable world !" => "",
+		"Connected like Facebook and open like Wikipedia join the movement!" => "Mit nur wenigen Klicks entdecken Sie lokale Aktivitäten auf CO und nutzen Werkzeuge für Ihre eigene Organisation: Newsfeeds, Agenden, Kleinanzeigen, Verzeichnisse von Initiativen für eine nachhaltigere Welt!",
+		"{who} started without you, but you can join him at any time by clicking here" => "{who} begann ohne Sie, aber Sie können jederzeit dazukommen, indem Sie hier klicken.",
+		"The Human Pixels" => "Die menschlichen Pixel",
+		"{who} is waiting for you on {what}" => "{who} wartet auf Sie bei {what}",
+		"{what} is waiting for you" => "{what} wartet auf Sie",
+		
 );
 ?>
