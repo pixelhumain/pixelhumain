@@ -85,7 +85,9 @@
 		"{who} started without you, but you can join him at any time by clicking here" => "{who} a commenc&eacute; sans vous, mais vous pouvez le rejoindre à tout moment en cliquant ici" ,
 		"The Human Pixels" => "Les Pixels Humains" ,
 		"{who} is waiting for you on {what}" => "{who} vous attend sur {what}" ,
-		"{what} is waiting for you" => "{what} vous attend" ,
+		"{what} is waiting for you" => "{what} vous attend",
+		"PS: If the link does not work you can copy the address in your browser" => "PS : Si le lien ne fonctionne pas vous pouvez copier l&apos;adresse dans votre navigateur",
+		"Mail sent from" => "Mail envoyé depuis",
 		//"" => "" ,
 
 		
