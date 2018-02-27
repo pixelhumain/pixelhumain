@@ -45,5 +45,7 @@
 		"Terms and conditions of use"=>"Conditions d'utilisations",
 		"General information"=>"Informations générales",
 		"Test a other communexion" => "Testez une autre communexion",
+
+		"Print out" => "Imprimer"
 	);
 ?>

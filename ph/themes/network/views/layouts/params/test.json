@@ -1,17 +1,14 @@
 {
-    "name" : "Communs",
-    "dataSrc" : "http://www.notragora.com/api/poi/get/format/network",
+    "name" : "BretagneTelecom",
+    "mode" : "server",
     "skin" : {
         "logo" : false,
-        "title" : "NotrAgora",
-        "title" : "Communs dans la région Hauts de France",
-        "shortDescription" : "false",
+        "title" : "Annonces ",
+        "shortDescription" : "Rajoutez un projet en cliquant sur le + en bas à gauche une fois connecté",
         "displayScope" : false,
-        "docs":true,
         "displayCommunexion" : true,
-        "displayNotifications" : true,
-        "profilBar" : false,
-        "breadcrum" : true,
+        "profilBar" : true,
+        "breadcrum":true,
         "displayButtonGridList" : false,
         "class" : {
             "mainContainer" : false
@@ -21,28 +18,51 @@
         "loginTitle":"",
         "front" : {
             "organization" : false,
-            "project" : true,
-            "event" : true,
-            "community" : true,
+            "project" : false,
+            "event" : false,
+            "community" : false,
             "dda" : false,
             "live" : false,
             "search" : false,
-            "need" : true,
-            "poi" : true
+            "need" : false,
+            "poi" : false
         },
         "menu" : {
             "aroundMe":false,
             "connectLink":false,
             "add":true,
             "detail":true,
-            "news":true,
-            "directory":true,
+            "news":false,
+            "directory":false,
             "gallery":true
         }
     },
- "add" : {
-        "organization" : true,
-        "person" : false
+    "filter" : {
+        "types" : false,
+        "tags" : {
+            "activate" : true,
+            "title" : "Autre",
+            "background-color" : "#f5f5f5",
+            "image" : "All.png",
+            "tagsAdditional" : {
+                "Autre" : "Autre"
+            }
+        },
+        "linksTag" : {
+            "Filtres" : {
+                "tagParent" : "Alimentation",
+                "background-color" : "#f5f5f5",
+                "image" : "Alimentation.png",
+                "tags" : {
+                    "Dons" : "Agriculture",
+                    "Emploi" : "Agriculture",
+                    "Recherche de bénévoles" : "Agriculture",
+                    "Soutien de projets" : "Agriculture",
+                    "Trocs & échanges" : "Agriculture",
+                    "Woofing" : "Agriculture"
+                }
+            }
+        }
     },
     "result" : {
         "displayImage" : true,
@@ -51,54 +71,13 @@
         "datesEvent" : false,
         "displayShortDescription" : true
     },
+     "add" : {
+        "organization" : true
+    },
     "request" : {
-        "pagination" : 1000,
-        "mainTag" : [""]
+        "pagination" : 2000,
         "searchType" : [
-            "organizations",
-        "person",
-        "poi"
-        ],
-           "searchTag" : [
-            "communs",
-            "commun",
-            "Commun",
-            "Communs"
-        ],
-
- "searchLocalityREGION": [
-<<<<<<< HEAD
-      "Hauts-de-France"
-    ]
-=======
-        "GERS",
-        "Hauts-de-France",
-        "Centre-Val de Loire",
-        "Nouvelle-Aquitaine",
-        "Auvergne-Rhône-Alpes",
-        "HERAULT",
-        "LOT",
-        "GARD",
-        "AUDE",
-        "Bourgogne-Franche-Comté",
-        "HAUTES-PYRENEES",
-        "Grand Est",
-        "HAUTE-GARONNE",
-        "TARN",
-        "AVEYRON",
-        "Normandie",
-        "TARN-ET-GARONNE",
-        "LOZERE",
-        "Provence-Alpes-Côte d'Azur",
-        "Pays de la Loire",
-        "Corse",
-        "Île-de-France",
-        "PYRENEES-ORIENTALES",
-        "ARIEGE",
-        "Bretagne"
-    ],
- "mainTag" : ["commun"]
->>>>>>> master
+            "event"
+        ]
     }
-
 }

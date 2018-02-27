@@ -58,6 +58,9 @@
                     </a><br>
                     <a href="<?php echo Yii::app()->request->baseUrl; ?>/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="text-white">
                         <i class="fa fa-angle-right"></i> <?php echo Yii::t("home","Terms and conditions of use") ?>
+                    </a><br>
+                    <a href="javascript:;"  OnClick="javascript:window.print()" class="text-white">
+                        <i class="fa fa-angle-right"></i> <?php echo Yii::t("home","Print out") ?>
                     </a><br><br>
                     <!-- <a href="#info.p.communecter" target="_blank" class="margin-right-10 hidden-xs">
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/Logo_Licence_Ouverte_noir_avec_texte.gif" height=30>
@@ -67,7 +70,7 @@
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/opensource.gif" height=40 
                             style="margin-top: -10px;border-radius: 3px;">
                     </a>
-                   <a href="https://github.com/pixelhumain" target="_blank" 
+                    <a href="https://github.com/pixelhumain" target="_blank" 
                         class=" hidden-xs">
                         <i class="fa fa-github fa-2x bg-white img-circle padding-5 margin-5"></i>
                     </a>

@@ -106,11 +106,11 @@
                 </div>
             </div>
             <div class="col-md-4 col-md-offset-4 text-left">
-                <label><i class="fa fa-envelope"></i> <?php echo Yii::t("login","An email") ?></label><br>
-                <input class="form-control" name="email" id="email-login" type="text" placeholder="<?php echo Yii::t("login","email") ?>"><br>
+                <label><i class="fa fa-envelope"></i> <?php echo Yii::t("login","Email") ?></label><br>
+                <input class="form-control" name="email" id="email-login" type="text" placeholder="<?php echo Yii::t("login","An email") ?>"><br>
                 
-                <label><i class="fa fa-key"></i> <?php echo Yii::t("login","A password") ?></label><br>
-                <input class="form-control" name="password" id="password-login" type="password" placeholder="<?php echo Yii::t("login","password") ?>"><br>
+                <label><i class="fa fa-key"></i> <?php echo Yii::t("login","Password") ?></label><br>
+                <input class="form-control" name="password" id="password-login" type="password" placeholder="<?php echo Yii::t("login","A password") ?>"><br>
                 
                 
 
@@ -118,10 +118,10 @@
                     <input type="checkbox" id="remember" name="remember" checked="checked">
                     <?php echo Yii::t("login","Keep me signed in") ?>
                 </label><br>
-                <small><i class="fa fa-lock"></i> mot de passe enregistré de façon sécurisée dans vos cookies</small>
+                <small><i class="fa fa-lock"></i> <?php echo Yii::t("login","password saved securely in your cookies") ?>.</small>
                 <br><br>
 
-                <button class="btn btn-success pull-right loginBtn" type="submit"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Log in") ?></button><br><br>
+                <button class="btn btn-success pull-right loginBtn" type="submit"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Log in") ?></button>
   
                 <div class="form-actions col-md-12 no-padding" style="margin-top:20px;">
                     <div class="errorHandler alert alert-danger no-display loginResult">
@@ -161,15 +161,14 @@
                     <a href="javascript:;" class="btn bg-white" data-toggle="modal" data-target="#modalForgot">
                         <!-- <i class="fa fa-s"></i> --><?php echo Yii::t("login","I forgot my password") ?>
                     </a>
-                    <br><br>
                     <?php if($subdomain != "welcome"){ ?>
-                        <a href="javascript:;" class="btn btn-default bg-white letter-red bold" 
+                        <a href="javascript:;" class="btn btn-default bg-white letter-blue bold" 
                             data-toggle="modal" data-target="#modalRegister">
                                  <i class="fa fa-plus-circle bold"></i> 
                                  <?php echo Yii::t("login", "I create my account") ?>
                         </a>
                     <?php }else{ ?>
-                        <a href="javascript:;" class="btn btn-default bg-white letter-red bold" data-dismiss="modal">
+                        <a href="javascript:;" class="btn btn-default bg-white letter-blue bold" data-dismiss="modal">
                                 <i class="fa fa-plus-circle"></i> 
                                 <?php echo Yii::t("login", "I create my account") ?>
                         </a>
