@@ -266,6 +266,10 @@ return array(
 
 	"Collective moderation" => "Modération collective",
 
-	"open in CO space" => "ouvrir dans l'espace CO"
+	"open in CO space" => "ouvrir dans l'espace CO",
 
+	"Please login to post a message" => "Merci de vous connecter pour publier un message",
+	"I'm logging in" => "Je me connecte",
+	"I create my account" => "Je créé mon compte",
+	"free registration" => "inscription gratuite"
 );

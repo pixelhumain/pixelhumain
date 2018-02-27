@@ -1372,7 +1372,9 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"LOGIN is incremented each time a user logs in to their account."=>"#LOGIN est incrémenté à chaque fois qu'un utilisateur se connecte à son compte.",
 
 	"Number of visits - Week" => "Nombre de visites - Semaine",
-	"Week" => "Semaine"
+	"Week" => "Semaine",
+	"Ressources" => "Ressources",
+	"Ressource" => "Ressource",
 
 );
 ?>
