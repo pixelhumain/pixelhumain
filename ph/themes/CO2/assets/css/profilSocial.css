@@ -836,7 +836,10 @@ margin-top: 5px;
 .containInvitation .btn-refuse i{
     font-size:12px;
 }
-
+.dropdown-menu.menu-params{
+    right:10px !important;
+    top:55px !important;
+}
 @media screen and (max-width: 1024px) {
     #main-name-element{
         font-size: 1.2em;
