@@ -1,3 +1,13 @@
+.headerSearchContainer h4{
+  font-size: 16px;
+}
+.switchDirectoryView.active{
+  background-color: #2C3E50;
+  color: white !important;
+}
+.switchDirectoryView{
+  color: #2C3E50;
+}
 .btn-add-to-directory{
     font-size: 14px;
     border-radius: 50%;
@@ -98,11 +108,17 @@
 }
 
 
-.searchEntity .entityCenter{
+.searchEntity .banner .entityCenter{
   text-align: right;
   max-width: 100%;
   /*width: 100%;*/
   margin-top:-40px;
+}
+.searchEntity .profil .entityCenter {
+    text-align: center;
+    max-width: 115px;
+    float: right;
+    margin-top: -40px;
 }
 .searchEntity .entityCenter i.fa, 
 .searchEntity .entityCenter img{
@@ -240,21 +256,27 @@
   margin-top: 4px;
 }
 
-
-.searchEntity.entityLight .container-img-profil .imgEmpty,
-.searchEntity.entityLight .container-img-profil img.thumbnailProfil,
-.searchEntity.entityLight .container-img-profil .fa-image{
-  width: 46px !important;
-  height: 46px !important;
-  border-radius: 0px !important;
-  border: 3px solid white;
-  margin-bottom: 0px;
-  padding:0px;
-  background-color: #dedede;
-  font-size: 15px !important;
-  display: inline-block;
+.searchEntity.entityLight .container-img-profil{
+    border-radius: 100% !important; 
+    background-color: inherit !important;
+    min-height: inherit !important;
+    max-height: inherit !important;
 }
+.searchEntity.entityLight .container-img-profil .imgEmpty,
+.searchEntity.entityLight .container-img-profil .thumbnailProfil > img,
 .searchEntity.entityLight .container-img-profil .fa-image{
+  width: 50px !important;
+  height: 50px !important;
+  /* border: 3px solid white; */
+  margin-bottom: 0px;
+  padding: 0px;
+  line-height: 50px;
+  background-color: #e7e7e7;
+  font-size: 20px !important;
+  display: inline-block;
+  margin-top: inherit;
+}
+.searchEntity.entityLight .container-small-profil .fa-image{
   padding-top:11px;
 }
 
@@ -348,12 +370,16 @@
   font-weight: bold;
 }
 
-
-  .searchEntityContainer{
+  .searchEntityContainer {
+    min-height: 320px;
+    max-height: 320px;
+    margin-bottom: 25px;
+}
+  /*.searchEntityContainer{
     min-height: 230px !important;
     max-height: 230px !important;
     margin-bottom: 25px !important;
-  }
+  }*/
   .searchEntityContainer.surveys{
     min-height: 200px !important;
     max-height: 200px !important;
@@ -523,16 +549,25 @@
     margin-top:40px;
     color: white;
   }
-  .container-img-profil{
+  .container-thumbnail-profil{
     /*display: block;*/
     width: 100%;
     max-width: 100%;
     overflow: hidden;
     text-align: center;
   }
-
-  .container-img-profil img.thumbnailProfil,
-  .container-img-profil .fa-image{
+.container-img-profil {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+    background-color: #e7e7e7;
+    text-align: center;
+    overflow: hidden;
+}
+  .container-thumbnail-profil > img,
+  .container-thumbnail-profil .fa-image{
     width: auto !important;
     height: auto !important;
     border-radius: 0px !important;
@@ -542,15 +577,6 @@
     background-color: #dedede;
     font-size: 28px !important;
     max-width: 100%;
-  }
-  
-  .classified .container-img-profil{
-    max-height: 350px;
-    min-height: 80px;
-    width: 100%;
-    text-align: center;
-    display: block;
-    background: #e7e7e7;
   }
 
 
@@ -566,13 +592,17 @@
     border-radius:20px;
   }
 
-  .container-img-profil i.fa {
+  .container-thumbnail-profil i.fa {
       font-size: 50px;
       color:rgba(255, 255,255, 0.8);
   }
+  .container-img-profil i.fa{
+      font-size: 45px;
+      color:rgba(255, 255,255, 0.8);
+      margin-top: 50px;
+  }
 
-
-    .events .container-img-profil i.fa {
+  /*  .events .container-img-profil i.fa {
       margin-top: 30px;
     }
     
@@ -581,7 +611,7 @@
       font-size: 23px !important;
       color: rgba(255, 255,255, 0.8);
       border: 0;
-    }
+    }*/
 
   .container-img-profil img.img-responsive{
     min-height:150px;
@@ -684,7 +714,7 @@
   overflow: hidden;
 }
 
-.searchEntity.entityLight .container-img-profil.event img.thumbnailProfil{
+.searchEntity.entityLight .container-img-profil.event .thumbnailProfil > img{
   width:130px!important;
   height:unset!important;
   max-width: 130px;
@@ -841,4 +871,10 @@
 
 .rolesContainer{
   padding: 5px 0px; 
+}
+#btnShowMoreResult{
+  padding: 20px;
+  font-size: 20px;
+  width: 100%;
+  float: left;
 }

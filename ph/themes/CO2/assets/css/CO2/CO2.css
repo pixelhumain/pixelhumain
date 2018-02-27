@@ -263,7 +263,7 @@ section {
 }
 #mainNav.affix #filters-container-menu{
 	display:block;
-	margin-left:5px;
+	/*margin-left:5px;*/
 }
 #mainNav.affix .logo-menutop.main{
 	display: none;
@@ -300,10 +300,10 @@ section {
     text-align: center;
     margin-top: 5px;
     border-radius: 40px;
-    width: 40px;
+    width: 15px;
     /* background: white; */
     /* padding: 5px 15px; */
-    font-size: 15px;
+    font-size: 20px;
     line-height: 40px;
     cursor: pointer;
     /* -webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.5); */
@@ -783,6 +783,7 @@ a, a:hover, a:focus, a:active, a.active{
 	border-radius: 0px;
 	height: 250px;
 }
+
 #dropdown-apps .dropdown-menu a{
 	height:70px;
 	padding-top:15px !important;
@@ -832,20 +833,41 @@ a, a:hover, a:focus, a:active, a.active{
 .toolbar-bottom{
     position: fixed;
     bottom: 0px;
-    right: -1px;
-    height: 38px;
-    border-top: 1px solid #bcbcbc;
-    border-left: 1px solid #bcbcbc;
-    background-color: #FFF;
+    right: 5px;
+    height: 45px;
+    /*border-top: 1px solid #bcbcbc;
+    border-left: 1px solid #bcbcbc;*/
+    background-color: transparent;
     border-radius: 0px 0 0 0;
     text-align: right;
     padding: 0px;
-    -webkit-box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+    /*-webkit-box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.5);
     -moz-box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);*/
 }
-
-.toolbar-bottom .btn,
+.toolbar-bottom-adds{
+    background-color: transparent !important;
+}
+.toolbar-bottom-adds .addBtnFoot{
+    border-radius: 5px;
+    width: 100%;
+    color: white !important;
+    border: none;
+    text-align: left;
+}
+#show-bottom-add{
+    border-radius: 100%;
+    width: 40px;
+    height:40px;
+}
+#show-bottom-add.opened{
+    transform: rotate(45deg);
+}
+#show-bottom-add i{
+	font-size: 45px;
+    margin-top: -4px;
+}
+/*.toolbar-bottom .btn,
 .toolbar-bottom-apps .btn{
     border:none;
     border-right: 1px solid #bcbcbc;
@@ -854,20 +876,20 @@ a, a:hover, a:focus, a:active, a.active{
     float: left;
     font-size: 12px;
     padding: 10px;
-}
+}*/
 
-.toolbar-bottom-adds .btn, 
+/*.toolbar-bottom-adds .btn, 
 .toolbar-bottom-quickaccess .btn 
 {
 	border: none;
-	background-color: white;
+	background-color: transparent;
 	border-radius: 0px;
 	font-size: 13px;
 	padding-left: 15px;
 	width:100%;
 	text-align: left;
-	/*font-weight: bold;*/
-}
+	font-weight: bold;
+}*/
 
 
 .toolbar-bottom-apps .btn{
@@ -879,7 +901,10 @@ a, a:hover, a:focus, a:active, a.active{
 .toolbar-bottom-adds .btn:hover,
 .toolbar-bottom-quickaccess .btn:hover
 {    
-    background-color: #ddd !important;
+    /*background-color: #ddd !important;*/
+    -webkit-box-shadow:0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow:0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -898,10 +923,23 @@ a, a:hover, a:focus, a:active, a.active{
 }
 
 .toolbar-bottom-fullwidth{
-    position: fixed;
+       position: fixed;
+    bottom: 50px;
+    right: 5px;
+    /* height: 440px; */
+    /* border-top: 1px solid #bcbcbc; */
+    /* border-bottom: 1px solid #bcbcbc; */
+    /* border-left: 1px solid #bcbcbc; */
+    /* background-color: #FFF; */
+    border-radius: 0px 0 0 0;
+    text-align: right;
+    padding-top: 10px;
+    width: 160px;
+    /* width: 425px; */
+   /* position: fixed;
 	bottom: 37px;
 	right: 0px;
-	/*height: 440px;*/
+	height: 440px;
 	border-top: 1px solid #bcbcbc;
 	border-bottom: 1px solid #bcbcbc;
 	border-left: 1px solid #bcbcbc;
@@ -909,7 +947,7 @@ a, a:hover, a:focus, a:active, a.active{
 	border-radius: 0px 0 0 0;
 	text-align: left;
 	padding-top: 10px;
-	width: 425px;
+	width: 425px;*/
 }
 
 .skills{
@@ -1193,7 +1231,9 @@ h3.title_panel_map{
 	padding: 0 10px;
 	border: none !important;
 }
-
+.btn-menu-apps{
+	border-right: 1px solid #e3e3e3 !important;
+}
 .menu-name-profil{
 	font-weight: 300;
     letter-spacing: 0px;
@@ -1584,6 +1624,9 @@ h3.title_panel_map{
     background-color:#8C5AA1 !important;
     color:white!important;
 }
+.searchEntity .bg-vine{
+    color:white!important;
+}
 .dropdown-submenu{
 	position:relative;
 }
@@ -1971,7 +2014,6 @@ margin-right: 5px;
     .col-footer a{
     	padding:10px;
     }
-
 	#affix-sub-menu.affix{
 		top: 45px;
 	}

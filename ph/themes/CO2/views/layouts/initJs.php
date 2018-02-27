@@ -58,6 +58,10 @@
         page:0,
         count:true,
         app:"search",
+        resultsView:"<?php echo (@Yii::app()->session["user"] && 
+                                @Yii::app()->session["user"]["preferences"] && 
+                                @Yii::app()->session["user"]["preferences"]["directoryView"]) ?
+                                    Yii::app()->session["user"]["preferences"]["directoryView"] : "list" ?>",
         type:"<?php echo Organization::COLLECTION ?>"
     };
     //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
