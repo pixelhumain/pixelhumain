@@ -94,6 +94,8 @@
 		"The Human Pixels" => "Die menschlichen Pixel",
 		"{who} is waiting for you on {what}" => "{who} wartet auf Sie bei {what}",
 		"{what} is waiting for you" => "{what} wartet auf Sie",
+		"PS: If the link does not work you can copy the address in your browser" => "PS : Si le lien ne fonctionne pas vous pouvez copier l&apos;adresse dans votre navigateur",
+		"Mail sent from" => "Mail envoyé depuis",
 		
 );
 ?>

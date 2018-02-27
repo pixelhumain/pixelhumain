@@ -1366,5 +1366,13 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"An account is already registered with this email"=>"Un compte utilisateur est déjà enregistré avec cet email",
 	"Open filtering by type"=>"Ouvrir le filtre par type",
 
+	"The statistics shown correspond to the number of loadings of each url." => "Les statistiques indiquées correspondent au nombre de chargement de chaque url",
+	"Each time a person accesses for example the page #agenda, #live, or #search, the number increases."=>"A chaque fois qu'une personne accède par exemple à la page #agenda, #live, ou #search, le nombre augmente.",
+	"The curves provide an overview of page traffic by page, day and week."=>"Les courbes donnent un aperçu de la fréquentation de chaque page, par jour, et par semaine.",
+	"LOGIN is incremented each time a user logs in to their account."=>"#LOGIN est incrémenté à chaque fois qu'un utilisateur se connecte à son compte.",
+
+	"Number of visits - Week" => "Nombre de visites - Semaine",
+	"Week" => "Semaine"
+
 );
 ?>
