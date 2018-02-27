@@ -10,7 +10,7 @@
     </button>-->
     
     <?php if(@Yii::app()->session["userId"]) { ?>
-    <button class="btn btn-default letter-green no-padding" id="show-bottom-add">
+    <button class="btn btn-default bg-green-k text-white no-padding" id="show-bottom-add">
         <i class="fa fa-plus-circle"></i> 
         <!-- <span class="hidden-xs"><?php echo Yii::t("common", "add") ?> </span>-->
     </button>
