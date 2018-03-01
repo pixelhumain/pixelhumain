@@ -193,7 +193,7 @@ function addBtnSwitch(){
 
     $("#addFootTitle").html('<i class="fa fa-plus-circle"></i> <?php echo Yii::t("common", "Add something") ?> '+fname);
 
-    if(contextData.type == "citoyens" || contextData == null){
+    if(contextData != null && contextData.type == "citoyens" || contextData == null){
         $(".addBtnFoot").removeClass("hidden");
     }
     else if(contextData.type == "organizations")
