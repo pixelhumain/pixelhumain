@@ -257,8 +257,10 @@
 
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
             //if($CO2DomainName != "CO2"){
+
                 $cssAnsScriptFilesModule = array(
                     '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
+                    '/assets/js/comments.js'
                     //'/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
                     //'/assets/js/themes/'.$CO2DomainName.'.js',
                 );
@@ -278,7 +280,7 @@
         <?php //$this->renderPartial($layoutPath.'initCommunexion', array()); ?>
         
         <?php $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
-
+        <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"]); ?>
         <?php 
             if((($CO2DomainName == "CO2" &&
                 !@Yii::app()->session["userId"] && 

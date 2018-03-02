@@ -833,8 +833,8 @@ a, a:hover, a:focus, a:active, a.active{
 .toolbar-bottom{
     position: fixed;
     bottom: 0px;
-    right: 5px;
-    height: 55px;
+    right: 10px;
+    height: 60px;
     /*border-top: 1px solid #bcbcbc;
     border-left: 1px solid #bcbcbc;*/
     background-color: transparent;
@@ -925,8 +925,8 @@ a, a:hover, a:focus, a:active, a.active{
 
 .toolbar-bottom-fullwidth{
        position: fixed;
-    bottom: 50px;
-    right: 5px;
+    bottom: 60px;
+    right: 10px;
     /* height: 440px; */
     /* border-top: 1px solid #bcbcbc; */
     /* border-bottom: 1px solid #bcbcbc; */
@@ -936,6 +936,7 @@ a, a:hover, a:focus, a:active, a.active{
     text-align: right;
     padding-top: 10px;
     width: 160px;
+    z-index: 10000000;
     /* width: 425px; */
    /* position: fixed;
 	bottom: 37px;
