@@ -2127,6 +2127,7 @@ var uploadObj = {
 	path : null,
 	extra : null,
 	set : function(type,id, file){
+		//alert("uploadObj set"+type);
 		if(notNull(file) && file){
 			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
 			uploadObj.type = type;
@@ -2607,6 +2608,7 @@ var dyFObj = {
 
 	//generate Id for upload feature of this element 
 	setMongoId : function(type,callback) { 
+		//alert("setMongoId"+type);
 		uploadObj.type = type;
 		mylog.warn("uploadObj ",uploadObj);
 		if( !$("#ajaxFormModal #id").val() && !uploadObj.update )
