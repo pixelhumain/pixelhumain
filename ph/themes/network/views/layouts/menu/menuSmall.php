@@ -40,12 +40,12 @@ if (isset(Yii::app()->session['userId']) ) {
 				</div>
 			</div>			
 		    <?php if(isset($me)) if(Role::isSuperAdmin($me['roles'])){?>
-			<!-- <div class="col-xs-12 center no-padding">
+			<div class="col-xs-12 center no-padding">
 			    <a class="btn bg-dark-red lbh padding-5" href="#admin.index">
 			        <i class="fa fa-user-secret" style="font-size: 1em!important;"></i> 
 			        Admin
 			    </a>
-		    </div> -->
+		    </div>
 			<?php } ?>
 			<?php if(@$params["skin"]["displayCommunexion"] && $params["skin"]["displayCommunexion"]){ ?>
 		    <div class="col-xs-12 hidden-xs center no-padding">
