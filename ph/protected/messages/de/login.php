@@ -100,6 +100,6 @@ return array(
         "An email with a new password has been sent to your email account. Thanks." => "Eine E-Mail mit einem neuen Passwort ist an Ihre E-Mail-Adresse gesandt worden. Dankeschön.",
        
         "our chart" => "unser Diagramm",
-        "password saved securely in your cookies" => "mot de passe enregistré de façon sécurisée dans vos cookies"
+        "password saved securely in your cookies" => "Das Passwort ist sicher in Ihren Cookies gespeichert worden"
     );
 ?>
