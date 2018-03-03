@@ -203,8 +203,8 @@ return array(
 	"Collective moderation" => "Gruppenmoderation",
 	"open in CO space" => "offen in CO Raum",
 
-	"Please login to post a message" => "Merci de vous connecter pour publier un message",
-	"I'm logging in" => "Je me connecte",
-	"I create my account" => "Je créé mon compte",
-	"free registration" => "inscription gratuite"
+	"Please login to post a message" => "Bitte loggen Sie sich ein, um eine Nachricht zu schreiben.",
+	"I'm logging in" => "Ich logge mich ein",
+	"I create my account" => "Ich erstelle mein Konto",
+	"free registration" => "kostenlose Registrierung"
 );
