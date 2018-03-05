@@ -356,7 +356,7 @@ onSave: (optional) overloads the generic saveProcess
 				fieldHTML += '<option></option>';
 
 			var selected = "";
-			mylog.log("fieldObj select", fieldObj)
+			mylog.log("fieldObj select", fieldObj);
 			//initialize values
 			if(fieldObj.options)
 				fieldHTML += buildSelectOptions(fieldObj.options, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
