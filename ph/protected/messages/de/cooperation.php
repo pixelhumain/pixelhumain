@@ -199,7 +199,6 @@ return array(
 	"this projects" => "diesen Projekten",
 	"this organizations" => "diesen Organisationen",
 	"Ask an admin to get the appropriated role to access this space" => "Bitten Sie einen Admin, die entsprechende Berechtigung für den Zugriff auf diesen Bereich zu erhalten.",
-	"Size min : 10 caractÃ¨res" => "Mindestgröße: 10 Zeichen",
 	"Collective moderation" => "Gruppenmoderation",
 	"open in CO space" => "offen in CO Raum",
 
@@ -207,4 +206,7 @@ return array(
 	"I'm logging in" => "Ich logge mich ein",
 	"I create my account" => "Ich erstelle mein Konto",
 	"free registration" => "kostenlose Registrierung"
+	
+	"adopted" => "übernommen",
+
 );
