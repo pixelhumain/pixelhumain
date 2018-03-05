@@ -742,16 +742,17 @@ function removeEmptyAttr (jsonObj, sourceObj) {
 }
 
 function buildSelectOptions(list,value) { 
-  mylog.log("test ", value, list);
+  mylog.log("buildSelectOptions ", value, list);
   var html = "";
   if(list){
     $.each(list, function(optKey, optVal) {
-      mylog.log("buildSelectOptions", value, optKey, optVal);
       valueName= (typeof tradCategory[optVal] != "undefined") ? tradCategory[optVal]:optVal;
       selected = ( value == optKey ) ? "selected" : ""; 
+      mylog.log("buildSelectOptions", value, optKey, optVal,selected);
       html += '<option value="'+optKey+'" '+selected+'>'+valueName+'</option>';
     });
   }
+
   return html;
 }
 

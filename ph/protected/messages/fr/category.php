@@ -191,8 +191,10 @@
 
         //RESSOURCES
         "Need"=>"Besoin", 
+        "Needs"=>"Besoins", 
         "need"=>"Besoin", 
         "Offer"=>"Offre", 
+        "Offers"=>"Offres", 
         "offer"=>"Offre", 
         "Need something"=>"Besoins",
         "Offer something"=>"Propositions",

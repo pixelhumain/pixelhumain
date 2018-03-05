@@ -1234,7 +1234,7 @@ return array(
 	"Invite someone" => "Laden Sie jemanden ein",
 	"Home" => "Startseite",
 	"Share something" => "Teilen Sie etwas",
-	"Communecter is building and growing thnaks to every pixels" => "Communecter wird weiter entwickelt und wächst dank aller Pixel",
+	"Communecter is build and grows thanks to many pixels" => "Communecter wird weiter entwickelt und wächst dank aller Pixel",
 	"No result match in your search" => "Kein Treffer in Ihrer Suche",
 	"No more results" => "Keine Ergebnisse mehr",
 	"No more results match in your search" => "Keine Treffer mehr bei Ihrer Suche",
