@@ -2,6 +2,7 @@
     $params = CO2::getThemeParams();
     $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
                             Yii::app()->request->cookies['multiscopes']->value : "{}";
+    $preferences = Preference::getPreferencesByTypeId(@Yii::app()->session["userId"], Person::COLLECTION);
 ?>
 <script>
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
@@ -60,6 +61,8 @@
         app:"search",
         type:"<?php echo Organization::COLLECTION ?>"
     };
+
+    var directoryViewMode="<?php echo (@$preferences["directoryView"]) ? $preferences["directoryView"] : "list" ?>";
     //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     

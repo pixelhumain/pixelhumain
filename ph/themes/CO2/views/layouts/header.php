@@ -226,9 +226,9 @@
                         </div>
                         <div id="filters-container" class="no-padding">
                             <ul class="filters-menu">
-                                <li class="scope-header-filter tooltips visible-xs" data-placement="bottom" data-original-title="Geographic filter">
+                                <!--<li class="scope-header-filter tooltips visible-xs" data-placement="bottom" data-original-title="Geographic filter">
                                  <i class="fa fa-globe"></i> 
-                                 <span class="scope-filters-badge topbar-badge animated bounceIn hide badge-tranparent"></span>                                </li> 
+                                 <span class="scope-filters-badge topbar-badge animated bounceIn hide badge-tranparent"></span>                                </li>--> 
                                 <li class="theme-header-filter toogle-filter tooltips" data-placement="bottom" data-original-title="Themes filter">
                                  <i class="fa fa-tags"></i> 
                                 </li>
@@ -239,9 +239,9 @@
                     <div id="menu-filter" class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                         <div id="filter-thematic-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12 text-center margin-top-10">
                             <?php 
-                            if($page == "annonces"){ 
-                                $this->renderPartial("classifieds.views.co.header", array( "typeSelected" => $type ));
-                            } else { ?>
+                           // if($page == "annonces"){ 
+                             //   $this->renderPartial("classifieds.views.co.header", array( "typeSelected" => $type ));
+                            //} else { ?>
                                 <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
                                 foreach ($filliaireCategories as $key => $cat) { 
                                     if(is_array($cat)) { ?>
@@ -256,11 +256,11 @@
                                       </div>
                               <?php } 
                           
-                                } ?>
+                              //  } ?>
                           <?php } ?>
                         </div>
                         <?php if($page == "annonces"){ ?>
-                        <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12 no-padding margin-top-10" id="section-price">
+                        <!--<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12 no-padding margin-top-10" id="section-price">
                             <div class="form-group col-md-4 col-sm-4 col-xs-6">
                               <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
                                 <i class="fa fa-chevron-down"></i> <?php echo Yii::t("common","Min price") ?>
@@ -295,8 +295,8 @@
                               </button>
                             </div>
 
-                            <!-- <hr class="col-md-12 col-sm-12 col-xs-12 margin-top-10 no-padding" id="before-section-result">  -->
-                        </div>
+                            <!-- <hr class="col-md-12 col-sm-12 col-xs-12 margin-top-10 no-padding" id="before-section-result">  
+                        </div>-->
                         <?php } ?>
 
                         <div id="filter-scopes-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12 no-padding margin-top-10">
@@ -394,7 +394,7 @@
                 tag=(typeof tradTags[tag] != "undefined") ? tradTags[tag] : tag;
                 search.value+="#"+tag+" ";
             });
-            //$("#filter-thematic-menu").hide();
+            $("#filter-thematic-menu").hide();
             $("#main-search-bar, #second-search-bar").val(search.value);
             mylog.log("myMultiTags", myMultiTags);
             
