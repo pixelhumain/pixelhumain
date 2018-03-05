@@ -213,5 +213,13 @@
 	"gardeningtools" => "Gartenwerkzeuge",
 	"medicalstuff" => "Sanitätsartikel",
 	"Job offer" => "Stellenangebot",
+		
+	"need" => "Suche",
+	"Offer" => "Angebot",
+	"offer" => "Angebot",
+	"Type of ressource" => "Art der Ressource",
+	"Choose a category" => "Wählen Sie eine Kategorie",
+	"Sub category" => "Unterkategorie",
+	"handcraft" => "Handarbeit",
 	);
 ?>
