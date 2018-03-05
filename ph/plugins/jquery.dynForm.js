@@ -2403,7 +2403,6 @@ var dyFObj = {
 		//get ajax of the elemetn content
 		uploadObj.set(type,id);
 		uploadObj.update = true;
-
 		$.ajax({
 	        type: "GET",
 	        url: baseUrl+"/"+moduleId+"/element/get/type/"+type+"/id/"+id,
@@ -2418,12 +2417,13 @@ var dyFObj = {
 				data.map.id = data.map["_id"]["$id"];
 				if(typeof typeObj[type].formatData == "function")
 					data = typeObj[type].formatData();
-
-				delete data.map["_id"];
+				if(data.map["_id"])
+					delete data.map["_id"];
 				mylog.dir(data);
 				console.log("editElement", data);
 				dyFObj.elementData = data;
-				dyFObj.openForm( dyFInputs.get(type).ctrl ,null, data.map);
+				typeForm = (jsonHelper.notNull( "modules."+type+".form") ) ? type : dyFInputs.get(type).ctrl;
+				dyFObj.openForm( typeForm ,null, data.map);
 	        } else {
 	           toastr.error("something went wrong!! please try again.");
 	        }
