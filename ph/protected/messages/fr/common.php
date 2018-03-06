@@ -923,7 +923,7 @@ return array(
 	"No member for this organization" => "Aucun membre inscrit dans cette organisation",
 	"No contributor for this project" => "Aucun contributeur sur ce projet",
 	"Share something"=> "Partagez quelque chose",
-	"Communecter is building and growing thnaks to every pixels"=>"Communecter est construit et grandit grâce à chaque pixel",
+	"Communecter is build and grows thanks to many pixels"=>"Communecter est construit et grandit grâce à chaque pixel",
 	"No member for this person" => "Personne dans cette communauté",
 	"Organizator detail" => "Détail de l'organisateur",
 	"No result match in your search" =>  "Aucun résultat ne correspond à votre recherche",

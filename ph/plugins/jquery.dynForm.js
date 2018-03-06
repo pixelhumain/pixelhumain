@@ -360,12 +360,12 @@ onSave: (optional) overloads the generic saveProcess
 			//initialize values
 			if(fieldObj.options)
 				fieldHTML += buildSelectOptions(fieldObj.options, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
-			
-			if( fieldObj.groupOptions ){
+
+			if( fieldObj.groupOptions )
 				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
-			} 
+			
 			fieldHTML += '</select>';
-        }    
+        } 
         else if ( fieldObj.inputType == "uploader" ) {
         	if(placeholder == "")
         		placeholder="add Image";
@@ -2410,8 +2410,7 @@ var dyFObj = {
 	    })
 	    .done(function (data) {
 	        if ( data && data.result ) {
-	        	//toastr.info(type+" found");
-	        	
+	        	//toastr.info(type+" found")
 				//onLoad fill inputs
 				//will be sued in the dynform  as update 
 				data.map.id = data.map["_id"]["$id"];

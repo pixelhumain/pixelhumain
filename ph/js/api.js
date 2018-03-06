@@ -746,13 +746,13 @@ function buildSelectOptions(list,value) {
   var html = "";
   if(list){
     $.each(list, function(optKey, optVal) {
-      mylog.log("buildSelectOptions2 ", value, optKey, optVal);
       valueName= (typeof tradCategory[optVal] != "undefined") ? tradCategory[optVal]:optVal;
-      selected = ( value == optKey ) ? "selected" : "";
-      mylog.log("buildSelectOptions2 selected", selected);
+      selected = ( value == optKey ) ? "selected" : ""; 
+      mylog.log("buildSelectOptions", value, optKey, optVal,selected);
       html += '<option value="'+optKey+'" '+selected+'>'+valueName+'</option>';
     });
   }
+
   return html;
 }
 
