@@ -246,7 +246,7 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<textarea id="'+field+'" maxlength="'+maxlength+'"  class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
         	
         	if(maxlength > 0)
-        		fieldHTML += '<span><span id="maxlength'+field+' name="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
+        		fieldHTML += '<span><span id="maxlength'+field+'" name="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
 
 
 		}else if ( fieldObj.inputType == "markdown"){ 
@@ -2960,9 +2960,9 @@ var dyFInputs = {
 	    			$(".maxlengthTextarea").off().keyup(function(){
 						//var name = "#" + $(this).attr("id") ;
 						var name = $(this).attr("id") ;
-						mylog.log(".maxlengthTextarea", "#ajaxFormModal [name='"+name+"']", $(this).attr("id"));
-						mylog.log(".maxlengthTextarea", $("#ajaxFormModal [name='"+name+"']").val().length, $(this).val().length);
-						$("#ajaxFormModal [name='maxlength"+name+"']").html($("#ajaxFormModal [name='"+name+"']").val().length);
+						mylog.log(".maxlengthTextarea", "#ajaxFormModal #"+name, $(this).attr("id"));
+						mylog.log(".maxlengthTextarea", $("#ajaxFormModal #"+name).val().length, $(this).val().length);
+						$("#ajaxFormModal #maxlength"+name).html($("#ajaxFormModal  #"+name).val().length);
 					});
 	    		}
 	    		dataHelper.activateMarkdown("#ajaxFormModal #message");
