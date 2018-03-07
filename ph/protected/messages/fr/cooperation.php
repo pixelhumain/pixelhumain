@@ -159,6 +159,7 @@ return array(
 	"validated" => "validée",
 	"refused" => "refusée",
 	"adopted" => "validée",
+	"adopteds" => "adoptées",
 	"voter" => "votant",
 
 	"Be the first to vote" => "Soyez le premier à voter",
@@ -266,6 +267,15 @@ return array(
 
 	"Collective moderation" => "Modération collective",
 
-	"open in CO space" => "ouvrir dans l'espace CO"
+	"open in CO space" => "ouvrir dans l'espace CO",
+
+	"Survey in process" => "Sondage en cours",
+
+	"The <b>vote</b> is ended : " => "Le <b>vote</b> est terminé",
+
+	"Answer" => "Réponse",
+	"the answer" => "la réponse",
+
+	"click to vote" => "cliquer pour voter"
 
 );

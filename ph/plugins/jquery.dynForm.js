@@ -3534,6 +3534,15 @@ var dyFInputs = {
             getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);	
         }
     },
+    multiChoice : {
+    	label : tradDynForm["Add answers"],
+    	placeholder : tradDynForm["answer"]+" ...",
+        inputType : "array",
+        value : [],
+        init:function(){
+            //getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);	
+        }
+    },
     videos : {
     	label : "Your media videos here",
     	placeholder : tradDynForm["sharevideourl"]+" ...",

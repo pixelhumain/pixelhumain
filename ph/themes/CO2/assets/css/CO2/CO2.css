@@ -1655,7 +1655,7 @@ margin-right: 5px;
 }
 
 .searchEntity.coopPanelHtml{
-	cursor:pointer;
+	/*cursor:pointer;*/
 	border-left:2px solid #229296;
 	box-shadow: none !important;
 }

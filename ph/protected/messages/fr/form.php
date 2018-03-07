@@ -116,9 +116,9 @@
 		"Add informations to the document to make it pertinent for others"=>"Ajouter des informations au document pour le rendre le plus pertinent possible aux yeux des autres",
 		"Image title"=>"Titre de l'image",
 		"Upload files"=> "Ajouter des fichiers",
-		"Your proposal" => "Votre proposition",
+		"Your proposal" => "Votre proposition / question",
 		"Arguments" => "Argumentation",
-		"More informations, arguments, exemples," => "Compléments d'informations, argumentations, exemples, démonstrations, etc",
+		"More informations, arguments, exemples" => "Compléments d'informations, argumentations, exemples, démonstrations, etc",
 		"Drop files here"=>"Glisser vos fichiers ici",
 		"Do you want to share these files on this news stream"=>"Voulez-vous partager ces fichiers dans ce journal",
 		"Do you want to share these pictures on this news stream"=>"Voulez-vous partager ces images dans ce journal",
@@ -170,6 +170,8 @@
 		"Please, add a place to your post"=>"Veuillez selectionner au moins un lieu de publication",
 		"Add places where you want to publish"=>"Ajouter des lieux de publication",
 		"Selected zones"=>"Zones sélectionnées",
+		"Add answers" => "Ajouter des réponses",
+		"answer" => "réponse",
 	)
 
 ?>
