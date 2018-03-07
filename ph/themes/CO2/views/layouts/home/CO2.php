@@ -566,7 +566,7 @@ function loadLiveNow () {
 
 	var searchParams = {
 		"tpl":"/pod/nowList",
-		"searchLocality" : getLocalityForSearch(true),
+		"searchLocality" : getSearchLocalityObject(true),
 		"indexMin" : 0, 
 		"indexMax" : 30 
 	};
