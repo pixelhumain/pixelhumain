@@ -45,7 +45,21 @@
 		"Terms and conditions of use"=>"Conditions d'utilisations",
 		"General information"=>"Informations générales",
 		"Test a other communexion" => "Testez une autre communexion",
-
-		"Print out" => "Imprimer"
+		"To find resource you need or help others"=>"Trouver les ressources dont j'ai besoin ou aider",
+		"SHARING"=>"ENTRAIDE",
+		"Sharing ressources"=>"Partager des ressources",
+		"Print out" => "Imprimer",
+		"Commons"=>"Biens Communs",
+		"Society 2.2.main"=>"Société 2.2.main",
+		"Open"=>"Libre",
+		"Collective intelligence"=>"Intelligence Collective",
+		"Connected territory"=>"Territoire Connecté",
+		"Linked Data"=>"Données liées",
+		"Shared Informations"=>"Informations Partagées",
+		"Protected data"=>"Données Protégées",
+		"No advertisement"=>"Pas de PUB",
+		"Open Source"=>"Logiciel libre",
+		"The values"=> "Les valeurs",
+		"All documentation"=>"Toute la documentation",
 	);
 ?>

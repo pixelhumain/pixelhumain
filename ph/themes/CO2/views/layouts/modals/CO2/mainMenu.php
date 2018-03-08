@@ -75,17 +75,17 @@
                 </div>              
             </div>
 
-            <div class="row links-main-menu">
+            <div class="row links-main-menu text-center">
                
-                <a href="#search" class=" btn-main-menu col-xs-3"  data-type="search" >    
+                <a href="#search" class=" btn-main-menu col-md-2 col-sm-4 col-xs-12" data-type="search" >    
                     <div class="modal-body text-center">
                         <h4 class="text-red no-margin"><i class="fa fa-search fa-2x padding-bottom-10"></i><br>
                             <span class="homestead"> <?php echo Yii::t("home","SEARCH") ?></span>
                         </h4>
                         
-                        <div class="col-md-12 no-padding text-center hidden-xs">
+                        <div class="col-md-12 no-padding text-center">
                             <h5><?php echo Yii::t("home","The search engine") ?>
-                                <small class="hidden-xs"><br>
+                                <small class=""><br>
                                     <?php echo Yii::t("home","To find easily local actors") ?>
                                 </small>
                             </h5>
@@ -93,15 +93,15 @@
                     </div>
                 </a>
 
-                <a href="#annonces" class=" btn-main-menu col-xs-3" data-type="classified" >
+                <a href="#annonces" class=" btn-main-menu col-md-3 col-sm-4 col-xs-12" data-type="classified" >
                     <div class="modal-body text-center">
                         <h4 class="text-red no-margin"><i class="fa fa-bullhorn fa-2x padding-bottom-10"></i><br>
                             <span class="homestead"> <?php echo Yii::t("home","ADS") ?></span>
                         </h4>
                         
-                        <div class="col-md-12 no-padding text-center hidden-xs">
+                        <div class="col-md-12 no-padding text-center">
                             <h5><?php echo Yii::t("home","Local ads") ?>
-                                <small class="hidden-xs"><br>
+                                <small class=""><br>
                                     <?php echo Yii::t("home","To simplify goods and services exchanges")?>
                                 </small>
                             </h5>
@@ -109,15 +109,15 @@
                     </div>
                 </a>
                            
-                <a href="#agenda" class=" btn-main-menu col-xs-3" data-type="agenda">
+                <a href="#agenda" class=" btn-main-menu col-md-2 col-sm-4 col-xs-12" data-type="agenda">
                     <div class="modal-body text-center">
                         <h4 class="text-red no-margin"><i class="fa fa-calendar fa-2x padding-bottom-10"></i><br>
                             <span class="homestead"> <?php echo Yii::t("home","AGENDA") ?></span>
                         </h4>
                         
-                        <div class="col-md-12 no-padding text-center hidden-xs">
+                        <div class="col-md-12 no-padding text-center">
                             <h5><?php echo Yii::t("home","A common agenda") ?>
-                                <small class="hidden-xs"><br>
+                                <small class=""><br>
                                     <?php echo Yii::t("home","to know in live all about local events") ?>
                                 </small>
                             </h5>
@@ -125,16 +125,31 @@
                     </div>
                 </a>
                 
-                <a href="#live" class="btn-main-menu col-xs-3" > 
+                <a href="#live" class="btn-main-menu col-md-3 col-sm-6 col-xs-12" > 
                     <div class="modal-body text-center">
                         <h4 class="text-red no-margin"><i class="fa fa-newspaper-o fa-2x padding-bottom-10"></i><br>
                             <span class="homestead"> <?php echo Yii::t("home","LIVE") ?></span>
                         </h4>
                         
-                        <div class="col-md-12 no-padding text-center hidden-xs">
+                        <div class="col-md-12 no-padding text-center">
                             <h5><?php echo Yii::t("home","A common news stream") ?>
-                                <small class="hidden-xs"><br>
+                                <small class=""><br>
                                     <?php echo Yii::t("home","To diffuse your messages for your city")?>
+                                </small>
+                            </h5>
+                        </div>
+                    </div>
+                </a>
+                <a href="#live" class="btn-main-menu col-md-2 col-sm-6 col-xs-12" > 
+                    <div class="modal-body text-center">
+                        <h4 class="text-red no-margin"><i class="fa fa-cubes fa-2x padding-bottom-10"></i><br>
+                            <span class="homestead"> <?php echo Yii::t("home","SHARING") ?></span>
+                        </h4>
+                        
+                        <div class="col-md-12 no-padding text-center">
+                            <h5><?php echo Yii::t("home","Sharing ressources") ?>
+                                <small class=""><br>
+                                    <?php echo Yii::t("home","To find resource you need or help others")?>
                                 </small>
                             </h5>
                         </div>
