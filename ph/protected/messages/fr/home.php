@@ -81,5 +81,11 @@
 		"No advertisement, no premium, but Open and Passion"=> "Pas de publicité, pas d'abonnement, mais du libre et de la passion !",
 		"Make it stronger"=>"Rendez le plus fort",
 		"1 + 1 = 3 | The collective intelligence in the service of the citizen"=>"1 + 1 = 3 | L'intelligence collective au service du citoyen",
+		"I learn about my territory"=>"Je connais mon territoire",
+		"I know what's happened about me"=>"Je sais ce qu’il se passe autour de moi",
+		"I am connected to my community"=>"Je suis connecté à ma communauté",
+		"I can promote ideas and activities and enjoy tools of management and organization"=>"Je valorise ce que je fait tout en profitant des outils de gestions de projets",
+		"A smart collective intelligence"=>"Une intelligence collective en action",
+		"I take part to the building of a territorial knowledge"=>"Je participe à la construction d’une base de connaissance territoriale",
 	);
 ?>

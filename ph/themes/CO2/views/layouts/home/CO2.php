@@ -301,12 +301,12 @@ background-color: #09adef;
 							<i class="fa fa-street-view fa-2x"></i>
 							<br/>
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For me") ?></span><br/>
-							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "I learn about my territoryJe connais mon territoire") ?> <br/></span>
+							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "I learn about my territory") ?> <br/></span>
 						</span>
 					</div>
 					<hr style="width: 60%; margin:20px auto;"/>
 					<div class="panel-body">
-					<?php echo Yii::t("home", "I know what's happened about meJe sais ce qu’il se passe autour de moi.") ?>
+					<?php echo Yii::t("home", "I know what's happened about me") ?>
 					</div>
 				</div>
 			</div>
@@ -317,12 +317,12 @@ background-color: #09adef;
 							<i class="fa fa-users fa-2x"></i>
 							<br/>
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For my community") ?></span><br/>
-							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "I manage my organizationsJe gère mon organisation") ?> <br/></span>
+							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "I am connected to my community") ?> <br/></span>
 						</span>
 					</div>
 					<hr style="width: 60%; margin:20px auto;"/>
 					<div class="panel-body">
-					<?php echo Yii::t("home", "I can promote ideas and activities and enjoy of tools of management and organizations Je valorise ce que je fait tout en profitant des outils de gestions de projets.") ?>
+					<?php echo Yii::t("home", "I can promote ideas and activities and enjoy tools of management and organization") ?>
 					</div>
 				</div>
 			</div>
@@ -334,12 +334,12 @@ background-color: #09adef;
 							<i class="fa fa-globe fa-2x"></i>
 							<br/>
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For commons") ?></span><br/>
-							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "A smart collective intelligenceUne intelligence collective en action") ?><br/></span>
+							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "A smart collective intelligence") ?><br/></span>
 						</span>
 					</div>
 					<hr style="width: 60%; margin:20px auto;"/>
 					<div class="panel-body">
-					<?php echo Yii::t("home", "I take part to the building of a territorial knowledgeJe participe à la construction d’une base de connaissance territoriale.") ?>
+					<?php echo Yii::t("home", "I take part to the building of a territorial knowledge") ?>
 					</div>
 				</div>
 			</div>
@@ -455,8 +455,8 @@ background-color: #09adef;
 	                    <div class="col-md-12 col-xs-12 text-center padding-20">
 	                        <h5 class=""><?php echo Yii::t("home","The cooperative space is a collaborative project management tool offering new possibilities in decisions and organizatons based on transparency and horizontality") ?>
 	                            <small class="margin-top-20">
-	                                <br/><i class="fa fa-bulle"></i><?php echo Yii::t("home","Voting system with or whitout amendment") ?><br/>
-	                                <i class="fa fa-bulle"></i><?php echo Yii::t("home","Task assignment") ?><br/>
+	                                <br/><br/><i class="fa fa-check"></i><?php echo Yii::t("home","Voting system with or whitout amendment") ?>
+	                                <br/><br/><i class="fa fa-check"></i><?php echo Yii::t("home","Task assignment") ?><br/>
 	                            </small>
 	                        </h5>
 	                    </div>
@@ -474,7 +474,7 @@ background-color: #09adef;
 					<hr style="width:40%; margin:30px auto;">    
 	                    <div class="col-md-12 text-center">
 	                        <h5 class=""><?php echo Yii::t("home","Wherever you are on Communecter, you can consult informations on map") ?>
-	                            <small class="margin-top-20">
+	                            <br/><br/><small class="margin-top-20">
 	                                <?php echo Yii::t("home", "Searching results, upcoming events, local initiaves, member of a community...") ?>.
 	                            </small>
 	                        </h5>
