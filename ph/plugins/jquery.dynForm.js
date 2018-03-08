@@ -3959,9 +3959,12 @@ var dyFInputs = {
     	});
     	return obj;
     },
-    setSub : function(subClass) { 
+    setHeader : function(subClass) { 
     	$("#ajax-modal .modal-header").removeClass("bg-dark bg-purple bg-red bg-azure bg-green bg-green-poi bg-orange bg-yellow bg-blue bg-turq bg-url")
-						  					  .addClass(subClass);
+						  			  .addClass(subClass);
+	},
+    setSub : function(subClass) { 
+    	dyFInputs.setHeader(subClass);
 		
     	if( (contextData != null && contextData.type && contextData.id) || userId )
 		{
