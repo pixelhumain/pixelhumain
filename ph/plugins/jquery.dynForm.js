@@ -2965,7 +2965,7 @@ var dyFInputs = {
 						$("#ajaxFormModal #maxlength"+name).html($("#ajaxFormModal  #"+name).val().length);
 					});
 	    		}
-	    		dataHelper.activateMarkdown("#ajaxFormModal #message");
+	    		
 	        }
 	    };
 	    return inputObj;
