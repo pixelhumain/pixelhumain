@@ -284,16 +284,26 @@
                                 <i class="fa fa-book"></i> <?php echo Yii::t("common", "Documentation") ?>
                             </a>
                         </li>
-                       
 
                         <li role="separator" class="divider"></li>
+                        <li class="text-left">
+                            <!--#default.view.page.links-->
+                            <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" class="bg-right">
+                                <i class="fa fa-heart"></i> <?php echo Yii::t("common", "Don récurant") ?>
+                            </a>
+                        </li>
+                       
+
+                        
                         <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
+                            <li role="separator" class="divider"></li>
                             <li class="text-admin">
                                 <a href="#admin" class="lbh bg-white">
                                     <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin") ; ?>
                                 </a>
                             </li>
                         <?php }else if( Yii::app()->session[ "userIsAdminPublic" ] ) { ?>
+                            <li role="separator" class="divider"></li>
                             <li class="text-admin">
                                 <a href="#adminpublic" class="lbh bg-white">
                                     <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin public") ; ?>
@@ -343,6 +353,11 @@
                             </small> 
                             <img class="img-circle" id="menu-thumb-profil" 
                                  width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
+                    </a>
+                    <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" class="menu-button btn-menu btn-link pull-right hidden-xs" style="color : #E5344D;"
+                          data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Don récurant") ?>" 
+                          alt="<?php echo Yii::t("common","Don récurant") ?>">
+                      <i class="fa fa-heart "></i>
                     </a>
                    <button class="menu-button btn-menu btn-link btn-open-floopdrawer text-dark pull-right hidden-xs" 
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","My network") ?>" 

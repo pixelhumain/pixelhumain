@@ -1376,5 +1376,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Ressources" => "Ressources",
 	"Ressource" => "Ressource",
 
+	"Don récurant" => "Don récurant",
+
 );
 ?>
