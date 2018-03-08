@@ -104,7 +104,7 @@ background-color: #09adef;
 			    	<img class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/1+1=3empty.jpg"/>
 			    	<a href="javascript:;" class="videoSignal text-white center"><span><i class="fa fa-3x fa-play"></i></span></a>
 				</div>
-				<div class="videoWrapper margin-top-25 col-md-7 col-sm-7 col-xs-12 no-padding">
+				<div class="videoWrapper margin-top-25 col-md-6 col-md-offset-1 col-sm-7 col-xs-12 no-padding">
 			    	<div class="h_iframe">
 			        <!-- a transparent image is preferable -->
 			        <img class="ratio" src="http://placehold.it/16x9"/>
@@ -234,59 +234,66 @@ background-color: #09adef;
 			</h3>
 		</a> -->
 		
-		<div class="col-md-12" style="background-color:#E33551;width:100%;padding:8px 0px 8px 0%;margin-top: 15px">
+		<!--<div class="col-md-12" style="background-color:#E33551;width:100%;padding:8px 0px 8px 0%;margin-top: 15px">
 			<h1 class="homestead text-center text-white">
 				<?php echo Yii::t("home","Campagne de Don !") ?>
 			</h1>
 		</div>
 		<center class="col-xs-12" style="z-index:1;">
 			<i class="fa fa-caret-down text-red" style="z-index:1000;"></i><br/>
-		</center>
+		</center>-->
 		<!-- <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" class="col-xs-12 text-red margin-top-20 no-padding" style="width:100%;text-decoration: none;">
 			<h3 class="text-center">
 				<?php //echo Yii::t("home","Devenez l'un des piliers de COmmunecter en faisant un don régulier !") ?>
 			</h3>
 		</a> -->
-		<div class="col-xs-12 no-padding" style="text-align:center;margin-bottom:24px;">
-			<div class="col-xs-12 no-padding">
-				<div class="col-md-6 col-sm-6 col-xs-12 padding-20 text-left" style="background-color: #f6f6f6; min-height:400px;">
-					<h4 class="text-center"><?php echo Yii::t("home", "Devenez l'un des piliers de Communecter en faisant un don régulier !") ?></h4>
+		<div class="col-xs-12 no-padding" style="text-align:center;">
+				<div class="col-md-12 col-sm-12 col-xs-12 padding-20 margin-top-10 center" style="background-color: #f6f6f6;">
+					<h4 class="text-center text-red"><?php echo Yii::t("home", "Become one of the pilliers of Communecter making a donation !") ?></h4>
 					<hr style="width:40%; margin:20px auto;">
-					<h5 class="text-red no-margin">
-                        <span class="homestead"> <?php echo Yii::t("home", "Pas de publicité, pas d'abonnement, du libre et de la passion !") ?></span>
-                    </h5><br/>
-                   
-					<?php echo Yii::t("home", "Communecter est soutenu par une association non profit et est développé sous licence libre et données ouvertes. Nous croyons dans des plateformes libres, accessibles gratuitement pour tous. 
+					<h5 class="no-margin">
+                        <span class=""> <?php echo Yii::t("home", "No advertisement, no premium, but Open and Passion") ?></span>
+                    </h5>
+                   	<span>
+					<?php /*echo Yii::t("home", "Communecter est soutenu par une association non profit et est développé sous licence libre et données ouvertes. Nous croyons dans des plateformes libres, accessibles gratuitement pour tous. 
 
 						Nous avons besoin de personnes comme vous, soutiens, utilisateurs ou futures utilisateurs de la plateforme pour rendre cela possible.
 
-						Nous sommes une petite équipe avec peu de moyens, votre soutien fera une grande différence !") ?><br/>
-
-					
-
-					
+						Nous sommes une petite équipe avec peu de moyens, votre soutien fera une grande différence !")*/ ?><br/>
+					</span>
+					<a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" class="btn col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 uppercase" style="background-color:#E33551; color:white;">
+						<img src="<?php echo $this->module->assetsUrl; ?>/images/home/helloasso-icon.png"" height="20" width="20"/> <?php echo Yii::t("home", "Make it stronger") ?>
+					</a>
 				</div>
-				<div class="col-md-6 col-sm-6 col-xs-12 padding-20" style="background-color: white; text-align:center;min-height:400px;">
+				<!--<div class="col-md-6 col-sm-6 col-xs-12 padding-20" style="background-color: white; text-align:center;min-height:400px;">
 					Image , Design avec boutton pour aller sur le don <br/><br/>
 					<a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" class="margin-top-20 no-padding" style="width:100%;text-decoration: none;">
 						<h3 class="text-center">
 							<?php echo Yii::t("home","Don récurant") ?>
 						</h3>
 					</a>
-				</div>
-			
-			</div>
+				</div>-->
 		</div>
-		<div class="col-sm-12 col-md-12 col-xs-12 no-padding margin-top-50" style="background-color:#fff; max-width:100%; float:left;">
-		<div class="col-md-12" style="background-color:#E33551;width:100%;padding:8px 0px 8px 0%;">
-			<h1 class="homestead text-center text-white">
-				<?php echo Yii::t("home","What's Communecter ?") ?>
+		<div class="col-sm-12 col-md-12 col-xs-12 no-padding" style="background-color:#fff; max-width:100%; float:left;">
+		<!--<div class="col-md-12" style="width:100%;padding:8px 0px 8px 0%;">
+			<h1 class="text-center text">
+				<?php echo Yii::t("home","A connected territorial search engine") ?>
 			</h1>
+		</div>-->
+		<div class="col-md-12 col-sm-12 col-xs-12 margin-top-50" >
+			<h2 class="text-red text-center"><?php echo Yii::t("home","A connected territorial search engine") ?></h2>
+			<h5 class=" col-xs-12 text-center" style="font-style:italic;"><?php echo Yii::t("home","1 + 1 = 3 | The collective intelligence in the service of the citizen") ?></span>
 		</div>
-		<center class="col-xs-12" style="z-index:1;">
+
+		<!--<center class="col-xs-12" style="z-index:1;">
 			<i class="fa fa-caret-down text-red" style="z-index:1000;"></i><br/>
-		</center>
-		<div class="col-xs-12" style="text-align:center;margin-bottom:24px;padding:40px;">
+		</center>-->
+		<div class="col-md-12 col-sm-12 col-xs-12 margin-top-20" >
+			<h3 class="text-red text-center"><?php echo Yii::t("home","For Who ?") ?></h3>
+			<hr class="angle-down">
+		</div>
+		
+		<div class="col-xs-12" style="text-align:center;padding:40px;">
 			<div class="col-md-4 col-sm-4 col-xs-12">
 				<div class="keylist panel panel-white" style="box-shadow: inherit;">
 					<div class="panel-heading border-light ">
@@ -294,12 +301,12 @@ background-color: #09adef;
 							<i class="fa fa-street-view fa-2x"></i>
 							<br/>
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For me") ?></span><br/>
-							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Je connais mon territoire") ?> <br/></span>
+							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "I learn about my territoryJe connais mon territoire") ?> <br/></span>
 						</span>
 					</div>
 					<hr style="width: 60%; margin:20px auto;"/>
 					<div class="panel-body">
-					<?php echo Yii::t("home", "Je sais ce qu’il se passe autour de moi.") ?>
+					<?php echo Yii::t("home", "I know what's happened about meJe sais ce qu’il se passe autour de moi.") ?>
 					</div>
 				</div>
 			</div>
@@ -310,12 +317,12 @@ background-color: #09adef;
 							<i class="fa fa-users fa-2x"></i>
 							<br/>
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For my community") ?></span><br/>
-							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Je gère mon organisation") ?> <br/></span>
+							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "I manage my organizationsJe gère mon organisation") ?> <br/></span>
 						</span>
 					</div>
 					<hr style="width: 60%; margin:20px auto;"/>
 					<div class="panel-body">
-					<?php echo Yii::t("home", "Je valorise ce que je fait tout en profitant des outils de gestions de projets.") ?>
+					<?php echo Yii::t("home", "I can promote ideas and activities and enjoy of tools of management and organizations Je valorise ce que je fait tout en profitant des outils de gestions de projets.") ?>
 					</div>
 				</div>
 			</div>
@@ -327,15 +334,19 @@ background-color: #09adef;
 							<i class="fa fa-globe fa-2x"></i>
 							<br/>
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For commons") ?></span><br/>
-							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Une intelligence collective en action") ?><br/></span>
+							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "A smart collective intelligenceUne intelligence collective en action") ?><br/></span>
 						</span>
 					</div>
 					<hr style="width: 60%; margin:20px auto;"/>
 					<div class="panel-body">
-					<?php echo Yii::t("home", "Je participe à la construction d’une base de connaissance territoriale.") ?>
+					<?php echo Yii::t("home", "I take part to the building of a territorial knowledgeJe participe à la construction d’une base de connaissance territoriale.") ?>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<h3 class="text-red text-center"><?php echo Yii::t("home","What ?") ?></h3>
+			<hr class="angle-down">
 		</div>
 		<div class="col-xs-12 no-padding" style="text-align:center;margin-bottom:24px;">
 			<div class="col-xs-12 no-padding">
@@ -368,7 +379,7 @@ background-color: #09adef;
 	                        <div class="col-md-12 no-padding text-left">
 	                            <h4 class="no-margin text-red">
 	                            	<i class="fa fa-bullhorn"></i>
-	                            	<?php echo Yii::t("home","Local ads") ?>
+	                            	<?php echo Yii::t("home","A market place") ?>
 	                                <small class="text-dark">
 	                                    <?php echo Yii::t("home","To simplify goods and services exchanges")?>
 	                                </small>
@@ -421,9 +432,9 @@ background-color: #09adef;
 	                        <div class="col-md-12 no-padding text-left">
 	                            <h4 class="no-margin text-red">
 	                            	<i class="fa fa-cubes"></i>
-	                            	<?php echo Yii::t("home","Sharing ressources") ?>
+	                            	<?php echo Yii::t("home","Exchanges of ressources") ?>
 	                                <small class="text-dark">
-	                                    <?php echo Yii::t("home","To find resource you need or help others")?>
+	                                    <?php echo Yii::t("home","To share needs, offers, services, competences for more efficiency")?>
 	                                </small>
 	                            </h4>
 	                        </div>
@@ -439,18 +450,18 @@ background-color: #09adef;
 					<img class="img-responsive" style="margin:0 auto;margin-top: 20px; max-height:360px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/espaceco-1.png"/>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12 padding-20" style="background-color: #f6f6f6; text-align:center;min-height:400px;">
-					<h4 class="margin-top-50">Espace coopératif</h4>
+					<h4 class="margin-top-50"><?php echo Yii::t("home","Cooperative space") ?></h4>
 					<hr style="width:40%; margin:30px auto;">    
 	                    <div class="col-md-12 col-xs-12 text-center padding-20">
-	                        <h5 class=""><?php echo Yii::t("home","L’espace coopératif est un outil de gestion de projet collaboratif permettant de mettre en place une forme de gouvernance transparente et horizontale.") ?>
+	                        <h5 class=""><?php echo Yii::t("home","The cooperative space is a collaborative project management tool offering new possibilities in decisions and organizatons based on transparency and horizontality") ?>
 	                            <small class="margin-top-20">
-	                                <br/><i class="fa fa-bulle"></i><?php echo Yii::t("home","Système de vote en concertation avec ou sans amendement") ?><br/>
-	                                <i class="fa fa-bulle"></i><?php echo Yii::t("home","Attribution de tâches") ?><br/>
+	                                <br/><i class="fa fa-bulle"></i><?php echo Yii::t("home","Voting system with or whitout amendment") ?><br/>
+	                                <i class="fa fa-bulle"></i><?php echo Yii::t("home","Task assignment") ?><br/>
 	                            </small>
 	                        </h5>
 	                    </div>
 	                    <a href="https://wiki.communecter.org/fr/espace-coop%C3%A9ratif.html" target="_blank" class="text-red col-md-12 col-sm-12 col-xs-12 uppercase margin-top-50">
-	                    	<?php echo Yii::t("home","More infos") ?>    
+	                    	<?php echo Yii::t("home","+ More infos") ?>    
 	                	</a>
 	             </div>
 	            <div class="visible-xs col-xs-12 padding-20" style="text-align:center;min-height:400px;">
@@ -459,17 +470,17 @@ background-color: #09adef;
 			</div>
 			<div class="col-xs-12 no-padding">
 	            <div class="col-md-6 col-sm-6 col-xs-12" style="background-color: #f6f6f6; text-align:center;min-height:400px;">
-					<h4 class="margin-top-50">Géolocalisation</h4>
+					<h4 class="margin-top-50"><?php echo Yii::t("home","Geolocation") ?></h4>
 					<hr style="width:40%; margin:30px auto;">    
 	                    <div class="col-md-12 text-center">
-	                        <h5 class=""><?php echo Yii::t("home","Où que vous soyez dans Communecter vous pouvez afficher les informations sur une carte") ?>
+	                        <h5 class=""><?php echo Yii::t("home","Wherever you are on Communecter, you can consult informations on map") ?>
 	                            <small class="margin-top-20">
-	                                <?php echo Yii::t("home", "(membres de mon association, résultats de ma recherche, prochains évènements…)") ?>.
+	                                <?php echo Yii::t("home", "Searching results, upcoming events, local initiaves, member of a community...") ?>.
 	                            </small>
 	                        </h5>
 	                    </div>
 	                    <a href="https://wiki.communecter.org/fr/espace-coop%C3%A9ratif.html" target="_blank" class="text-red col-md-12 col-sm-12 col-xs-12 uppercase margin-top-50">
-	                    	<?php echo Yii::t("home","More infos") ?>    
+	                    	<?php echo Yii::t("home","+ More infos") ?>    
 	                	</a>
 	            </div>
 	            <div class="col-md-6 col-sm-6 col-xs-12" style="text-align:center; min-height:400px;">
@@ -477,8 +488,8 @@ background-color: #09adef;
 				</div>
 			</div>
 		</div>
-		<div class="col-md-12 col-sm-12 col-xs-12 margin-top-50" >
-			<h3 class="text-red text-center"><?php echo Yii::t("home","The values") ?></h3>
+		<div class="col-md-12 col-sm-12 col-xs-12" >
+			<h3 class="text-red text-center"><?php echo Yii::t("home","Why ?") ?></h3>
 			<hr class="angle-down">
 		</div>
 		 <div class="col-md-12 col-sm-12 col-xs-12 homestead" style="text-align:center; margin-bottom:24px;">
@@ -498,11 +509,12 @@ background-color: #09adef;
                 <div class=" col-md-2 col-sm-2 col-xs-4"><img class="img-responsive" style="margin:0 auto;" src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur09.png"/><?php echo Yii::t("home","Society 2.2.main") ?></div>
                 <div class=" col-md-2 col-sm-2 col-xs-4"><img class="img-responsive" style="margin:0 auto;" src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur10.png"/><?php echo Yii::t("home","Commons") ?></div>
             </div>
-        <!--<div class="col-md-12 col-sm-12 col-xs-12 margin-top-50">
-			<h3 class="text-red text-center"><?php echo Yii::t("home","More informations") ?></h3>
-			<hr class="angle-down">
+        <div class="col-md-12 col-sm-12 col-xs-12 margin-top-20">
+			<a href="#default.view.page.index.dir.docs" class="lbhp" style="text-decoration: none;"><h3 class="text-red text-center"><i class="fa fa-book"></i> <?php echo Yii::t("home","All documentation") ?></h3>
+				<hr class="plus">
+			</a>
 		</div>
-		<div class="videoWrapper col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+		<!--<div class="videoWrapper col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
 			<<a href="javascript:;" onclick="" class="btn-show-video"><i class="fa fa-youtube-play fa-5x"></i></a> 
 			<iframe class="col-md-12 col-xs-12 no-padding" height="480" 
 					src="https://player.vimeo.com/video/133636468?api=1&title=0&amp;byline=0&amp;portrait=0&amp;color=57c0d4" 
@@ -626,7 +638,6 @@ background-color: #09adef;
 				<li><a target="_blank" href="https://plus.google.com/communities/111483652487023091469" class="btn btn-google btn-social"><span class="fa fa-google-plus"></span> </a></li>
 				<li><a target="_blank" href="https://github.com/pixelhumain/communecter" class="btn btn-github btn-social"><span class="fa fa-github"></span> </a></li>
 			</ul>
-			<br/><a href="#default.view.page.index.dir.docs" class="lbhp"><?php echo Yii::t("home","All documentation") ?></a>
 			<br/><a href="default/view/page/openatlas/dir/docs|panels" data-id="explainOpenAtlas" class="lbhp"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
 			<br/><a href="default/view/page/mention/dir/docs|panels" class="lbhp" ><?php echo Yii::t("home","Legal notice") ?></a>
 			<br/><a href="default/view/page/partners/dir/docs|panels?type=partner" class="lbhp"><?php echo Yii::t("home","Partners") ?></a>

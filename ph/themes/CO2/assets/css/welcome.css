@@ -214,9 +214,9 @@ a.link-submenu-header {
 #co-friends .img-thumbnail{
 	width: 100%;
 }
-hr.angle-down::after {
+hr.angle-down::after, hr.plus::after {
     background-color: #e6344d;
 }
-hr.angle-down{
+hr.angle-down, hr.plus{
     border-color: #e6344d;
 }
