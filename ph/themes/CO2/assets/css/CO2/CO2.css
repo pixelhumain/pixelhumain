@@ -966,7 +966,12 @@ a, a:hover, a:focus, a:active, a.active{
 	padding-top: 10px;
 	width: 425px;*/
 }
-
+#btnShowMoreResult{
+  padding: 20px;
+  font-size: 20px;
+  width: 100%;
+  float: left;
+}
 .skills{
 	font-size:11px !important;
 }
