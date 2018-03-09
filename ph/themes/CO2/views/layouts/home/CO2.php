@@ -313,11 +313,9 @@ background-color: #09adef;
 							<br/>
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For me") ?></span><br/>
 							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "I learn about my territory") ?> <br/></span>
+							<br>
+							<?php echo Yii::t("home", "I know what's happened around me") ?>
 						</span>
-					</div>
-					<hr style="width: 60%; margin:20px auto;"/>
-					<div class="panel-body">
-					<?php echo Yii::t("home", "I know what's happened around me") ?>
 					</div>
 				</div>
 			</div>
@@ -329,11 +327,9 @@ background-color: #09adef;
 							<br/>
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For my community") ?></span><br/>
 							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "I am connected to my community") ?> <br/></span>
+							<br>
+							<?php echo Yii::t("home", "I can promote ideas and activities and enjoy organization helping tools") ?>
 						</span>
-					</div>
-					<hr style="width: 60%; margin:20px auto;"/>
-					<div class="panel-body">
-					<?php echo Yii::t("home", "I can promote ideas and activities and enjoy organization helping tools") ?>
 					</div>
 				</div>
 			</div>
@@ -347,10 +343,8 @@ background-color: #09adef;
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For commons") ?></span><br/>
 							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "A smart collective intelligence") ?><br/></span>
 						</span>
-					</div>
-					<hr style="width: 60%; margin:20px auto;"/>
-					<div class="panel-body">
-					<?php echo Yii::t("home", "I take part to the building of territorial knowledge base") ?>
+						<br>
+						<?php echo Yii::t("home", "I take part to the building of territorial knowledge base") ?>
 					</div>
 				</div>
 			</div>
@@ -524,11 +518,7 @@ background-color: #09adef;
                 <div class=" col-md-2 col-sm-2 col-xs-4"><img class="img-responsive" style="margin:0 auto;" src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur09.png"/><?php echo Yii::t("home","Society 2.2.main") ?></div>
                 <div class=" col-md-2 col-sm-2 col-xs-4"><img class="img-responsive" style="margin:0 auto;" src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur10.png"/><?php echo Yii::t("home","Commons") ?></div>
             </div>
-        <div class="col-xs-12 margin-top-20">
-			<a href="#default.view.page.index.dir.docs" class="lbhp" style="text-decoration: none;"><h3 class="text-red text-center"><i class="fa fa-book"></i> <?php echo Yii::t("home","All documentation") ?></h3>
-				<hr class="plus">
-			</a>
-		</div>
+        
 		<!--<div class="videoWrapper col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
 			<<a href="javascript:;" onclick="" class="btn-show-video"><i class="fa fa-youtube-play fa-5x"></i></a> 
 			<iframe class="col-md-12 col-xs-12 no-padding" height="480" 
@@ -590,7 +580,7 @@ background-color: #09adef;
 				<?php echo Yii::t("home","Everything we do is open source and built in collaborative way") ?>.
 				<?php echo Yii::t("home","We are experimenting new ways of gouvernance, managing territory, implicating local actor into everything and everywhere") ?>.
 				<!-- <i>"EN AMÉLIORATION CONTINUE"</i> -->
-				<h3 class=""><?php echo Yii::t("home","Join us") ?> : </h3>
+				<h3 class=""><?php echo Yii::t("home","Join us") ?> </h3>
 				
 			</div>
 		</center>
@@ -599,7 +589,14 @@ background-color: #09adef;
 
 	<div class="col-md-12 contact-map padding-bottom-50" style="color:#293A46; float:left; width:100%;" id="contactSection">
 		<center>
-			<i class="fa fa-caret-down" style="color:#E33551"></i><br/>
+			<i class="fa fa-caret-down" style="color:#E33551"></i>
+			<br/>
+			<div class="col-xs-12 margin-top-20">
+				<a href="#default.view.page.index.dir.docs" class="lbhp" style="text-decoration: none;"><h3 class="text-red text-center"><i class="fa fa-book"></i> <?php echo Yii::t("home","All documentation") ?></h3>
+					<hr class="plus">
+				</a>
+			</div>
+			<br>
 			<h1 class="homestead">
 			<i class="fa fa-envelope headerIcon"></i><br/>
 			<?php echo Yii::t("home","CONTACT") ?>
