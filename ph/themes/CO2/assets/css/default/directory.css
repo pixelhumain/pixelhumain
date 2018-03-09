@@ -392,7 +392,7 @@
   }
 
   .searchEntityContainer.classified{
-    min-height: 250px !important;
+    /*min-height: 250px !important;*/
     max-height: 560px !important;
     margin-bottom: 25px !important;
   }
@@ -844,10 +844,4 @@
 
 .rolesContainer{
   padding: 5px 0px; 
-}
-#btnShowMoreResult{
-  padding: 20px;
-  font-size: 20px;
-  width: 100%;
-  float: left;
 }
