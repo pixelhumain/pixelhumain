@@ -1,4 +1,9 @@
-<div class="toolbar-bottom font-montserrat">
+<div class="toolbar-bottom bottom-left font-montserrat">
+    <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" id="donation-btn" class="btn btn-default">
+        <i class="fa fa-heart"></i> <?php //echo Yii::t("common", "Don récurant") ?>
+    </a>
+</div>
+<div class="toolbar-bottom bottom-right font-montserrat">
 
     <!--<button class="btn btn-default lbh tooltips" data-hash="#welcome"
             data-placement="top" data-original-title="Page d'accueil">
