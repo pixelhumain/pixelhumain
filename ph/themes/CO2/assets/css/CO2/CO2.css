@@ -829,7 +829,9 @@ a, a:hover, a:focus, a:active, a.active{
 	font-weight: 700;
 }
 
-
+.bootbox{
+	z-index: 100000;
+}
 .toolbar-bottom{
     position: fixed;
     bottom: 10px;
