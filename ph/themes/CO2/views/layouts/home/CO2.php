@@ -844,7 +844,8 @@ function openVideo(){
 		 var symbol = $("#autoPlayVideo")[0].src.indexOf("?") > -1 ? "&" : "?";
   		//modify source to autoplay and start video
   		$("#autoPlayVideo")[0].src += symbol + "autoplay=1";
-  		$(".videoWrapper .h_iframe").css({"margin-top": ((heightCont-$(".videoWrapper .h_iframe").height())/2)+"px"});
+  		if($("#form-home-subscribe").length)
+  			$(".videoWrapper .h_iframe").css({"margin-top": ((heightCont-$(".videoWrapper .h_iframe").height())/2)+"px"});
 	});
 }
 
