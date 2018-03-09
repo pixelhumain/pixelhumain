@@ -138,7 +138,7 @@
             </button>
 
         <?php } ?>
-        <button class="btn-show-map"
+        <button class="btn-show-map" style="border-radius: 100%;width: 40px;border: none;height: 40px;"
                 title="<?php echo Yii::t("common", "Show the map"); ?>"
                 alt="<?php echo Yii::t("common", "Show the map"); ?>"
                 >
