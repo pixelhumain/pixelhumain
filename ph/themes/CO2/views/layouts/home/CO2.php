@@ -313,11 +313,9 @@ background-color: #09adef;
 							<br/>
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For me") ?></span><br/>
 							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "I learn about my territory") ?> <br/></span>
+							<br>
+							<?php echo Yii::t("home", "I know what's happened around me") ?>
 						</span>
-					</div>
-					<hr style="width: 60%; margin:20px auto;"/>
-					<div class="panel-body">
-					<?php echo Yii::t("home", "I know what's happened around me") ?>
 					</div>
 				</div>
 			</div>
@@ -329,11 +327,9 @@ background-color: #09adef;
 							<br/>
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For my community") ?></span><br/>
 							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "I am connected to my community") ?> <br/></span>
+							<br>
+							<?php echo Yii::t("home", "I can promote ideas and activities and enjoy organization helping tools") ?>
 						</span>
-					</div>
-					<hr style="width: 60%; margin:20px auto;"/>
-					<div class="panel-body">
-					<?php echo Yii::t("home", "I can promote ideas and activities and enjoy organization helping tools") ?>
 					</div>
 				</div>
 			</div>
@@ -347,10 +343,8 @@ background-color: #09adef;
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For commons") ?></span><br/>
 							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "A smart collective intelligence") ?><br/></span>
 						</span>
-					</div>
-					<hr style="width: 60%; margin:20px auto;"/>
-					<div class="panel-body">
-					<?php echo Yii::t("home", "I take part to the building of territorial knowledge base") ?>
+						<br>
+						<?php echo Yii::t("home", "I take part to the building of territorial knowledge base") ?>
 					</div>
 				</div>
 			</div>
