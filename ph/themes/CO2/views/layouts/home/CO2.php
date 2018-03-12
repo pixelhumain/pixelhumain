@@ -576,9 +576,9 @@ background-color: #09adef;
 			<i class="fa fa-caret-down" style="color:#000"></i>
 			<div class="col-xs-12 margin-top-10">
 				<?php 
-$list = PHDB::findAndSort(Person::COLLECTION, array(
-							"profilThumbImageUrl" => array( '$exists' => 1,'$ne' => "")
-							),array("updated"),"100",array("profilThumbImageUrl","name") );
+					$list = PHDB::findAndSort(Person::COLLECTION, array(
+						"profilThumbImageUrl" => array( '$exists' => 1,'$ne' => "")
+						),array("updated"),"100",array("profilThumbImageUrl","name") );
 				foreach ($list as $key => $value) {
 					echo '<img title="'.@$value["name"].'" src="'.@$value["profilThumbImageUrl"].'" height="50"/>';
 				} ?>
