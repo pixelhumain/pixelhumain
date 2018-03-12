@@ -565,7 +565,7 @@ background-color: #09adef;
 			</h1>
 			
 			<div class="col-sm-12 text-white padding-bottom-15">
-				<?php echo Yii::t("home","We all beleive in something better and building it together") ?>.
+				<?php echo Yii::t("home","We all believe in something better and building it together") ?>.
 			</div>
 		</center>
 		<div class="space20"></div>
