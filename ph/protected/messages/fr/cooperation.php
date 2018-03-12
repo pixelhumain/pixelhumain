@@ -34,6 +34,7 @@ return array(
 	"Closed" => "Fermées",
 
 	"mine" => "Dont je suis l'auteur",
+	"Author" => "Auteur",
 	"amendables" => "Amendables",
 	"amendable" => "Amendable",
 	"tovote" => "À voter",
