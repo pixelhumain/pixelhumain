@@ -692,7 +692,9 @@ background-color: #09adef;
 var peopleTalkCt = 0;
 
 jQuery(document).ready(function() {
-	$("#videoDocsImg img").css({"max-height":$("#form-home-subscribe").outerHeight()});
+	setTimeout(function(){
+		$("#videoDocsImg img").css({"max-height":$("#form-home-subscribe").outerHeight()});
+	},300);
 	topMenuActivated = false;
 	hideScrollTop = true;
 	checkScroll();
