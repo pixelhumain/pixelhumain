@@ -393,6 +393,7 @@
 
   .searchEntityContainer.classified{
     /*min-height: 250px !important;*/
+    min-height: 320px;
     max-height: 560px !important;
     margin-bottom: 25px !important;
   }

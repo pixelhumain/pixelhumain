@@ -554,26 +554,45 @@ background-color: #09adef;
 	</div>
 	
 
-	<!-- <div class="col-md-3 col-lg-3 col-sm-3 pull-right" style="margin-top: 100px;padding-right: 4%;"> -->
-
-		<!-- <img class="img-responsive inline-block" src="<?php echo $this->module->assetsUrl; ?>/images/screens.png"/ style="max-height:100px;"> -->
-		
-	<!-- </div> -->
-
 	
-
-	<div class="col-sm-12 col-md-12 col-xs-12 no-padding margin-top-50" style="background-color:#E33551; max-width:100%; float:left;" id="teamSection">
-		<!-- <div class="col-md-12" style="background-color:#293A46;width:100%;padding:8px 0px 8px 0%;">
-			<h1 class="homestead center text-white"><a href="#default.view.page.partners" class="lbh">Partenaires & Contributeurs</a> <i class="fa fa-share-alt fa-2x"></i></h1>
-		</div> -->
-		<!-- <center>
-			<i class="fa fa-caret-down" style="color:#293A46;"></i><br/>
-		</center> -->
+	<div class="col-sm-12 col-md-12 col-xs-12 no-padding margin-top-50 bg-black" style=" max-width:100%; float:left;" id="teamSection">
+		
 		<center>
 			<i class="fa fa-caret-down" style="color:#fff"></i><br/>
 			<h1 class="homestead" style="color:#fff">
 				<!-- <i class="fa fa-line-chart headerIcon"></i>  -->
-				<?php echo Yii::t("home","We are All Open Source") ?>
+				<?php echo Yii::t("home","Cooperative") ?>.<small>soon</small>
+			</h1>
+			
+			<div class="col-sm-12 text-white padding-bottom-15">
+				<?php echo Yii::t("home","We all believe in something better and building it together") ?>.
+			</div>
+		</center>
+		<div class="space20"></div>
+	</div>
+
+	<div class="col-md-12" style="color:#293A46; float:left; width:100%;">
+		<center>
+			<i class="fa fa-caret-down" style="color:#000"></i>
+			<div class="col-xs-12 margin-top-10">
+				<?php 
+					$list = PHDB::findAndSort(Person::COLLECTION, array(
+						"profilThumbImageUrl" => array( '$exists' => 1,'$ne' => "")
+						),array("updated"),"100",array("profilThumbImageUrl","name") );
+				foreach ($list as $key => $value) {
+					echo '<img title="'.@$value["name"].'" src="'.@$value["profilThumbImageUrl"].'" height="50"/>';
+				} ?>
+			</div>
+		</center>
+	</div>
+
+	<div class="col-sm-12 col-md-12 col-xs-12 no-padding margin-top-10" style="background-color:#E33551; max-width:100%; float:left;" id="teamSection">
+		
+		<center>
+			<i class="fa fa-caret-down" style="color:#fff"></i><br/>
+			<h1 class="homestead" style="color:#fff">
+				<!-- <i class="fa fa-line-chart headerIcon"></i>  -->
+				<?php echo Yii::t("home","We are All Open") ?>
 			</h1>
 			
 			<div class="col-sm-12 text-white padding-bottom-15">
@@ -591,12 +610,7 @@ background-color: #09adef;
 		<center>
 			<i class="fa fa-caret-down" style="color:#E33551"></i>
 			<br/>
-			<div class="col-xs-12 margin-top-20">
-				<a href="#default.view.page.index.dir.docs" class="lbhp" style="text-decoration: none;"><h3 class="text-red text-center"><i class="fa fa-book"></i> <?php echo Yii::t("home","All documentation") ?></h3>
-					<hr class="plus">
-				</a>
-			</div>
-			<br>
+			
 			<h1 class="homestead">
 			<i class="fa fa-envelope headerIcon"></i><br/>
 			<?php echo Yii::t("home","CONTACT") ?>
