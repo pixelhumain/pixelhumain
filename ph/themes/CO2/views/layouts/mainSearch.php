@@ -16,5 +16,5 @@
     $metaTitle = @$params["metaTitle"];
     $metaDesc = @$params["metaDesc"]; 
     $metaImg = Yii::app()->getRequest()->getBaseUrl(true)."/themes/CO2".@$params["metaImg"];
-    phpinfo();
+    
 ?>
