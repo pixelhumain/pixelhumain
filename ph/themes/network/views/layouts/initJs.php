@@ -109,6 +109,8 @@
         "classified" : "yellow"
     };
 
+    var directoryViewMode="<?php echo (@$preferences["directoryView"]) ? $preferences["directoryView"] : "list" ?>";
+
     var themeObj = {
         init : function(){
             toastr.options = {
