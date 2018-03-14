@@ -192,6 +192,7 @@
 									json_encode($me["multiscopes"]) :
 									$multiscopes; ?>
                 };
+
                 if( myScopes.communexion != false)
                     myScopes.communexion=scopeObject(myScopes.communexion);
                 else
@@ -391,6 +392,16 @@ function removeCookies() {
     expireAllCookies('communexionLevel', ['/','/ph', '/ph/co2', 'co2']);
     expireAllCookies('multiscopes', ['/','/ph', '/ph/co2', 'co2']);
     expireAllCookies('communexion', ['/','/ph', '/ph/co2', 'co2']);
+}
+
+
+
+function initCommunexionUser(){
+    mylog.log("initCommunexionUser");
+    var co = <?php echo json_encode(CO2::getCommunexionUser()) ?>;
+    mylog.log("initCommunexionUser co", co);
+    var coco = scopeObject(co);
+    mylog.log("initCommunexionUser coco", coco);
 }
 
 removeCookies();
