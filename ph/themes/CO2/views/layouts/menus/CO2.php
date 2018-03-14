@@ -341,7 +341,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php 
                     if( isset( Yii::app()->session['userId']) ){
-                      $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
+                      $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->getParentAssetsUrl());
                       $countNotifElement = ActivityStream::countUnseenNotifications(Yii::app()->session["userId"], Person::COLLECTION, Yii::app()->session["userId"]);
                 ?> 
                      <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
