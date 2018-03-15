@@ -32,7 +32,7 @@ return array(
   	"in the newspaper of {who}"=>"dans le journal de {who}",
   	"in your newspaper"=>"dans votre journal",
   	"in ce newspaper"=>"dans this journal",
-  	"Write a public message visible in live on selected places"=>"Écrire un message public dans le live sur les zones sélectionnées",
+  	"Write a public message visible in live on selected places"=>"Écrire un message public dans le live sur les lieux sélectionnées",
   	"Visible only to me" => "Seulement pour moi",
   	"Posted on followers wall and visible to all on this wall"=>"Publié sur le mur des abonnés et visible de tous sur ce mur",
   	"Posted on administrators wall and visible only for them"=>"Publié sur le mur des administrateurs et visible uniquement pour eux",
