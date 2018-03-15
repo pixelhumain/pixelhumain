@@ -1,6 +1,6 @@
 {
     "name" : "PDCN",
-    "dataSrc" : "http://127.0.0.1/ph/api/convert/gogocarto/?url=https://gist.githubusercontent.com/RaphaelRIVIERE/6f35ff572c079a4ff3cb604c4b11cf47/raw/aabd9d586db69deaa370e4549c6ac0d0c394edd8/pdcn",
+    "dataSrc" : "http://dev.communecter.org/ph/api/convert/gogocarto/?url=https://gist.githubusercontent.com/RaphaelRIVIERE/6f35ff572c079a4ff3cb604c4b11cf47/raw/aabd9d586db69deaa370e4549c6ac0d0c394edd8/pdcn",
     "skin" : {
         "logo" : false,
         "title" : "PDCN",
