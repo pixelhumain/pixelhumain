@@ -746,9 +746,10 @@ function buildSelectOptions(list,value) {
   var html = "";
   if(list){
     $.each(list, function(optKey, optVal) {
-      valueName= (typeof tradCategory[optVal] != "undefined") ? tradCategory[optVal]:optVal;
+      mylog.log("buildSelectOptions optVal", optVal, tradCategory.optVal);
+      valueName= (typeof tradCategory.optVal != "undefined") ? tradCategory.optVal:optVal;
       selected = ( value == optKey ) ? "selected" : ""; 
-      mylog.log("buildSelectOptions", value, optKey, optVal,selected);
+      mylog.log("buildSelectOptions last", value, optKey, optVal,selected);
       html += '<option value="'+optKey+'" '+selected+'>'+valueName+'</option>';
     });
   }
@@ -759,7 +760,7 @@ function buildSelectOptions(list,value) {
 function buildSelectGroupOptions(list,value) {
   mylog.log("test2 ", value, list);
   var html = "";
-  mylog.log("list", list)
+  mylog.log("list", list);
   if(list){
     $.each(list, function(groupKey, groupVal) {
       var data = ( groupKey ) ? 'data-type="'+groupKey+'"' : "";
