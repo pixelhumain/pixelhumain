@@ -201,6 +201,7 @@
 			'/assets/css/default/directory.css',
 			'/assets/css/floopDrawerRight.css',
 			'/assets/css/news/index.css',
+			'/assets/js/comments.js'
 			'/assets/css/search_simply.css',
 					
 		);
