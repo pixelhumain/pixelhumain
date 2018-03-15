@@ -214,6 +214,7 @@
 	"medicalstuff" => "Sanitätsartikel",
 	"Job offer" => "Stellenangebot",
 		
+	"Needs" => "Bedürfnisse",	
 	"need" => "Suche",
 	"Offer" => "Angebot",
 	"offer" => "Angebot",
