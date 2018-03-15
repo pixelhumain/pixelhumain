@@ -89,6 +89,11 @@
 		"I take part to the building of territorial knowledge base"=>"Je participe à la construction d’une base de connaissance territoriale",
 
 		"Cooperative" => "Coopérative",
-		"We all believe in something better and building it together" => "On doit pouvoir tout améliorer ensemble"
+		"We all believe in something better and building it together" => "On doit pouvoir tout améliorer ensemble",
+		"5 main applications" => "Applications principales",
+		"Search engine" => "Moteur de recherche",
+		"We are all Open" => "Open Nous Sommes",
+		"Everything we do is open source and built in collaborative way" => "Tout ce qu'on fait est Open Source et co-construit",
+		"We are experimenting new ways of gouvernance, managing territory, implicating local actor into everything and everywhere" => "On experimente de facon continu des nouvelles approches de gouvernance, les approches territoriales et l'implication massive d'acteurs locaux"
 	);
 ?>
