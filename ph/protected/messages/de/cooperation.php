@@ -208,5 +208,7 @@ return array(
 	"free registration" => "kostenlose Registrierung"
 	
 	"adopted" => "übernommen",
+	"Author" => "Autor",
+	"Size min : 10 caractÃ¨res" => "Länge min: 10 Zeichen",
 
 );
