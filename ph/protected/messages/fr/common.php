@@ -1376,7 +1376,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Ressources" => "Ressources",
 	"Ressource" => "Ressource",
 
-	"Don récurant" => "Don récurant",
+	"Recurring donation" => "Don récurant",
 	"pts , based on Links and Posts popularity" => "pts, basés sur les liens et les publications"
 
 );
