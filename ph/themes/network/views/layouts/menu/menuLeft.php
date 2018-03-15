@@ -72,7 +72,7 @@
 				}
 
 		  	if(isset($params['request']['searchLocalityNAME'])){ ?> 
-					<div class="col-lg-12 text-left subsub" id="sub-menu-left">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left subsub" id="sub-menu-left">
 							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 tagParent titleTag" style="margin-left:-5px;" data-keycat="Localities">
 								<?php if(isset($params['request']['searchLocalityNAME'])){
 							echo "<img src='".$this->module->assetsUrl."/images/network/Logement.png' width='20px'/>";
