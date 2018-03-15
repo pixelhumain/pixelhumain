@@ -356,7 +356,7 @@ background-color: #09adef;
 		<div class="col-xs-12 no-padding" style="text-align:center;margin-bottom:24px;">
 			<div class="col-xs-12 no-padding">
 				<div class="col-md-6 col-sm-6 col-xs-12 padding-20" style="background-color: #f6f6f6; text-align:center;min-height:400px;">
-					<h4><?php echo Yii::t("home", "5 main applications") ?></h4>
+					<h4> <i class="fa fa-th"></i> <?php echo Yii::t("home", "5 main applications") ?></h4>
 					<hr style="width:40%; margin:10px auto;">
 					<a href="#search" class=" btn-main-menu col-xs-12" data-type="search" >    
 	                    <div class="modal-body text-left">
@@ -459,7 +459,7 @@ background-color: #09adef;
 					<img class="img-responsive" style="margin:0 auto;margin-top: 20px; max-height:360px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/espaceco-1.png"/>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12 padding-20" style="background-color: #f6f6f6; text-align:center;min-height:400px;">
-					<h4 class="margin-top-50"><?php echo Yii::t("home","Cooperative space") ?></h4>
+					<h4 class="margin-top-50"><i class="fa fa-group"></i> <?php echo Yii::t("home","Cooperative space") ?></h4>
 					<hr style="width:40%; margin:30px auto;">    
 	                    <div class="col-md-12 col-xs-12 text-center padding-20">
 	                        <h5 class=""><?php echo Yii::t("home","Use Cooperative spaces for decision making, tasking, and experiment transparency and horizontality") ?>
@@ -479,7 +479,7 @@ background-color: #09adef;
 			</div>
 			<div class="col-xs-12 no-padding">
 	            <div class="col-md-6 col-sm-6 col-xs-12" style="background-color: #f6f6f6; text-align:center;min-height:400px;">
-					<h4 class="margin-top-50"><?php echo Yii::t("home","Geolocation") ?></h4>
+					<h4 class="margin-top-50"><i class="fa fa-map-marker"></i> <?php echo Yii::t("home","Geolocation") ?></h4>
 					<hr style="width:40%; margin:30px auto;">    
 	                    <div class="col-md-12 text-center">
 	                        <h5 class=""><?php echo Yii::t("home","Wherever you are on Communecter, you can consult informations on the map") ?>
@@ -559,6 +559,8 @@ background-color: #09adef;
 		
 		<center>
 			<i class="fa fa-caret-down" style="color:#fff"></i><br/>
+			<!-- <img style="height:80px" src="<?php echo $this->module->assetsUrl; ?>/images/home/coop.png?t=111"/> -->
+			
 			<h1 class="homestead" style="color:#fff">
 				<!-- <i class="fa fa-line-chart headerIcon"></i>  -->
 				<?php echo Yii::t("home","Cooperative") ?>.<small>soon</small>
@@ -590,14 +592,17 @@ background-color: #09adef;
 		
 		<center>
 			<i class="fa fa-caret-down" style="color:#fff"></i><br/>
+			<!-- <img style="height:80px" src="<?php echo $this->module->assetsUrl; ?>/images/home/yoda.png?t=111"/> -->
+		
 			<h1 class="homestead" style="color:#fff">
 				<!-- <i class="fa fa-line-chart headerIcon"></i>  -->
-				<?php echo Yii::t("home","We are All Open") ?>
+				<?php echo Yii::t("home","We are all Open") ?>
 			</h1>
 			
 			<div class="col-sm-12 text-white padding-bottom-15">
-				<?php echo Yii::t("home","Everything we do is open source and built in collaborative way") ?>.
+				<?php echo Yii::t("home","Everything we do is open source and built in collaborative way") ?>.<br/>
 				<?php echo Yii::t("home","We are experimenting new ways of gouvernance, managing territory, implicating local actor into everything and everywhere") ?>.
+
 				<!-- <i>"EN AMÉLIORATION CONTINUE"</i> -->
 				<h3 class=""><?php echo Yii::t("home","Join us") ?> </h3>
 				
@@ -618,8 +623,8 @@ background-color: #09adef;
 			+ 262 262 34 36 86<br><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/contactCO_footer_welcome.png" height="15"/>
 
 			<ul class="social-list">
-				<li><a target="_blank" href="https://www.facebook.com/communecter" class="btn btn-facebook btn-social"><span class="fa fa-facebook"></span></a></li>
-				<li><a target="_blank" href="https://twitter.com/communecter" class="btn btn-twitter btn-social"><span class="fa fa-twitter"></span></a></li>
+				<!-- <li><a target="_blank" href="https://www.facebook.com/communecter" class="btn btn-facebook btn-social"><span class="fa fa-facebook"></span></a></li>
+				<li><a target="_blank" href="https://twitter.com/communecter" class="btn btn-twitter btn-social"><span class="fa fa-twitter"></span></a></li> -->
 				<li><a target="_blank" href="https://github.com/pixelhumain/communecter" class="btn btn-github btn-social"><span class="fa fa-github"></span> </a></li>
 			</ul>
 			<br/><a href="default/view/page/openatlas/dir/docs|panels" data-id="explainOpenAtlas" class="lbhp"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
