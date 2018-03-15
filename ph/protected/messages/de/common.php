@@ -1300,5 +1300,9 @@ return array(
 	"Ressources" => "Ressource",
 	"Ressource" => "Ressource",
 	
+	"Don rÃ©curant" => "Wiederkehrende Spende",
+	"pts , based on Links and Posts popularity" => "pts, basierend auf Links und der Popularität von Posts",
+	
+	
 );
 ?>
