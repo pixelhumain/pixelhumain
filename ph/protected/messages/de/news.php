@@ -31,5 +31,15 @@ return array(
 	"in the newspaper of {who}" => "in der Zeitung von {who}",
 	"in your newspaper" => "in Ihrer Zeitung",
 	"in ce newspaper" => "in der Zeitung",
+	
+	"Write a public message visible in live on selected places" => "Schreiben Sie eine öffentliche Nachricht, die live an ausgewählten Plätzen sichtbar ist",
+	"Visible only to me" => "Nur für mich sichtbar",
+	"Posted on followers wall and visible to all on this wall" => "In der Zeitung der Anhänger geposted und für alle sichtbar in dieser Zeitung.",
+	"Posted on administrators wall and visible only for them" => "Veröffentlicht in der Zeitung der Administratoren und nur für diese sichtbar",
+	"Posted on attendees wall and visible to all on this wall" => "Veröffentlichtin in der Zeitung der Teilnehmer und für alle sichtbar in dieser Zeitung.",
+	"Posted on contributors wall and visible only for them" => "Veröffentlicht in der Zeitung der Mitwirkenden und nur für diese sichtbar.",
+	"Posted on members wall and visible only for them" => "In der Zeitung der Mitglieder gepostet und nur für diese sichtbar.",
+	"Posted on followers and members wall and visible to all on this wall" => "In der Zeitung der Anhänger und Mitglieder geposted und sichtbar für alle in dieser Zeitung",
+	"Posted on followers and contributors wall and visible to all on this wall" => "In der Zeitung der Anhänger und Mitwirkenden geposted und sichtbar für alle in dieser Zeitung",
 );
 ?>
