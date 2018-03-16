@@ -1377,7 +1377,11 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Ressource" => "Ressource",
 
 	"Recurring donation" => "Don récurant",
-	"pts , based on Links and Posts popularity" => "pts, basés sur les liens et les publications"
+	"pts , based on Links and Posts popularity" => "pts, basés sur les liens et les publications",
+
+	"Add to my favorites places" => "Ajouter à mes lieux favoris",
+	"Remove from my favorites places" => "Supprimer de mes lieux favoris",
+	"Add zone to new" => "Ajouter une zone à la new",
 
 );
 ?>
