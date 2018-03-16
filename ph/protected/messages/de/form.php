@@ -148,7 +148,7 @@
 		"Link to Instagram" => "Link zu Instagram",
 		"Which kind of Ressource" => "Welche Art von Ressource",
 		"Link to Mastodon" => "Link zu Mastodon",
-		"Link to Diaspora" => "Link zur Diaspora",
+		"Link to Diaspora" => "Link zu Diaspora",
 		"This URL is already used" => "Diese URL wird bereits verwendet",
 		"This URL is not used" => "Diese URL wird nicht verwendet",
 		"Title of your map" => "Titel Ihrer Karte",
