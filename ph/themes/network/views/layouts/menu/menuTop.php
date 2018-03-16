@@ -144,6 +144,7 @@ if(  	@$params['enSavoirPlus'] &&
 					echo $params['skin']["title"] ?>
 				</h1>
 			</div>
+			<br/>
 			<div class="contentShortInformationMap">
 				<?php if(!empty($params['skin']["shortDescription"]) && $params['skin']["shortDescription"] != "false"){ ?>
 					<span class="shortDescriptionMap padding-10"> 
