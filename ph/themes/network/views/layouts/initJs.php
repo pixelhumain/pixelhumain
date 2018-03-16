@@ -1,3 +1,6 @@
+<?php 
+$preferences = Preference::getPreferencesByTypeId(@Yii::app()->session["userId"], Person::COLLECTION);
+?>
 <script>
 
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
@@ -108,9 +111,13 @@
         "video":"dark",
         "classified" : "yellow"
     };
+<<<<<<< HEAD
 
     var directoryViewMode="<?php echo (@$preferences["directoryView"]) ? $preferences["directoryView"] : "list" ?>";
 
+=======
+    var directoryViewMode="<?php echo (@$preferences["directoryView"]) ? $preferences["directoryView"] : "list" ?>";
+>>>>>>> 4d7522b3c1999d07c64e9e875f573cf82f1b8a08
     var themeObj = {
         init : function(){
             toastr.options = {

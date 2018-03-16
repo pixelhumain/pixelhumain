@@ -32,15 +32,15 @@ return array(
   	"in the newspaper of {who}"=>"dans le journal de {who}",
   	"in your newspaper"=>"dans votre journal",
   	"in ce newspaper"=>"dans this journal",
-  	"Write a public message visible in live on selected places"=>"Écrire un message public dans le live sur les zones sélectionnées",
+  	"Write a public message visible in live on selected places"=>"Écrire un message public dans le live sur les lieux sélectionnées",
   	"Visible only to me" => "Seulement pour moi",
-  	"Posted on followers wall and visible to all on this wall"=>"Posté sur le mur des abonnés et visible de tous sur ce mur",
-  	"Posted on administrators wall and visible only for them"=>"Posté sur le mur des administrateurs et visible seulement pour eux",
-  	"Posted on attendees wall and visible to all on this wall"=>"Posté sur le mur des participants et visible de tous sur ce mur",
-  	"Posted on contributors wall and visible only for them"=>"Posté sur le mur des contributeurs et visible seulement pour eux",
-  	"Posted on members wall and visible only for them"=>"Posté sur le mur des membres et visible seulement pour eux",
-  	"Posted on followers and members wall and visible to all on this wall"=>"Posté sur le mur des abonnés et des membres et visible de tous sur ce mur",
-  	"Posted on followers and contributors wall and visible to all on this wall"=>"Posté sur le mur des abonnés et des contributeurs et visible de tous sur ce mur",
+  	"Posted on followers wall and visible to all on this wall"=>"Publié sur le mur des abonnés et visible de tous sur ce mur",
+  	"Posted on administrators wall and visible only for them"=>"Publié sur le mur des administrateurs et visible uniquement pour eux",
+  	"Posted on attendees wall and visible to all on this wall"=>"Publié sur le mur des participants et visible de tous sur ce mur",
+  	"Posted on contributors wall and visible only for them"=>"Publié sur le mur des contributeurs et visible uniquement pour eux",
+  	"Posted on members wall and visible only for them"=>"Publié sur le mur des membres et visible uniquement pour eux",
+  	"Posted on followers and members wall and visible to all on this wall"=>"Publié sur le mur des abonnés et des membres et visible de tous sur ce mur",
+  	"Posted on followers and contributors wall and visible to all on this wall"=>"Publié sur le mur des abonnés et des contributeurs et visible de tous sur ce mur",
 );
 
 ?>
