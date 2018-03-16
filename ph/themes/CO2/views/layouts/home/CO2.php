@@ -617,16 +617,11 @@ background-color: #09adef;
 			<br/>
 			
 			<h1 class="homestead">
-			<i class="fa fa-envelope headerIcon"></i><br/>
+			<a target="_blank" href="https://github.com/pixelhumain/communecter" class="btn btn-github btn-social"><span class="fa fa-github"></span> </a><br/>
 			<?php echo Yii::t("home","CONTACT") ?>
 			</h1>
 			+ 262 262 34 36 86<br><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/contactCO_footer_welcome.png" height="15"/>
 
-			<ul class="social-list">
-				<!-- <li><a target="_blank" href="https://www.facebook.com/communecter" class="btn btn-facebook btn-social"><span class="fa fa-facebook"></span></a></li>
-				<li><a target="_blank" href="https://twitter.com/communecter" class="btn btn-twitter btn-social"><span class="fa fa-twitter"></span></a></li> -->
-				<li><a target="_blank" href="https://github.com/pixelhumain/communecter" class="btn btn-github btn-social"><span class="fa fa-github"></span> </a></li>
-			</ul>
 			<br/><a href="default/view/page/openatlas/dir/docs|panels" data-id="explainOpenAtlas" class="lbhp"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
 			<br/><a href="default/view/page/mention/dir/docs|panels" class="lbhp" ><?php echo Yii::t("home","Legal notice") ?></a>
 			<br/><a href="default/view/page/partners/dir/docs|panels?type=partner" class="lbhp"><?php echo Yii::t("home","Partners") ?></a>
