@@ -1290,18 +1290,22 @@ return array(
 	"An account is already registered with this email" => "Ein Konto mit dieser E-Mail ist bereits registriert",
 	"Open filtering by type" => "Öffnen Sie die Filterung nach Typ",
 
-	"The statistics shown correspond to the number of loadings of each url." => "Les statistiques indiquées correspondent au nombre de chargement de chaque url",
-	"Each time a person accesses for example the page #agenda, #live, or #search, the number increases."=>"A chaque fois qu'une personne accède par exemple à la page #agenda, #live, ou #search, le nombre augmente.",
-	"The curves provide an overview of page traffic by page, day and week."=>"Les courbes donnent un aperçu de la fréquentation de chaque page, par jour, et par semaine.",
-	"LOGIN is incremented each time a user logs in to their account."=>"#LOGIN est incrémenté à chaque fois qu'un utilisateur se connecte à son compte.",
+	"The statistics shown correspond to the number of loadings of each url." => "Die angezeigten Statistiken entsprechen der Anzahl der Aufrufe der einzelnen URLs.",
+	"Each time a person accesses for example the page #agenda, #live, or #search, the number increases."=>"Jedes Mal, wenn eine Person z.B. auf die Seite #agenda, #live oder #search zugreift, erhöht sich die Zahl.",
+	"The curves provide an overview of page traffic by page, day and week."=>"Die Darstellungskurven geben einen Überblick über die Aufrufe pro Seite, Tag und Woche.",
+	"LOGIN is incremented each time a user logs in to their account."=>"#LOGIN wird jedes Mal erhöht, wenn sich ein Benutzer bei seinem Konto anmeldet.",
 
-	"Number of visits - Week" => "Nombre de visites - Semaine",
-	"Week" => "Semaine",
-	"Ressources" => "Ressources",
+	"Number of visits - Week" => "Anzahl der Besuche - Woche",
+	"Week" => "Woche",
+	"Ressources" => "Ressource",
 	"Ressource" => "Ressource",
 
 	"Recurring donation" => "Don récurant",
 	"pts , based on Links and Posts popularity" => "pts, basés sur les liens et les publications"
+	
+	"Don rÃ©curant" => "Wiederkehrende Spende",
+	"pts , based on Links and Posts popularity" => "Punkte, basierend auf Links und der Popularität von Posts",
+	
 	
 );
 ?>
