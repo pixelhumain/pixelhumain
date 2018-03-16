@@ -1,3 +1,6 @@
+<?php 
+$preferences = Preference::getPreferencesByTypeId(@Yii::app()->session["userId"], Person::COLLECTION);
+?>
 <script>
 
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
@@ -109,6 +112,7 @@
         "classified" : "yellow"
     };
 
+    var directoryViewMode="block";
     var themeObj = {
         init : function(){
             toastr.options = {

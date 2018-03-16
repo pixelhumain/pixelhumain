@@ -394,15 +394,5 @@ function removeCookies() {
     expireAllCookies('communexion', ['/','/ph', '/ph/co2', 'co2']);
 }
 
-
-
-function initCommunexionUser(){
-    mylog.log("initCommunexionUser");
-    var co = <?php echo json_encode(CO2::getCommunexionUser()) ?>;
-    mylog.log("initCommunexionUser co", co);
-    var coco = scopeObject(co);
-    mylog.log("initCommunexionUser coco", coco);
-}
-
 removeCookies();
 </script>

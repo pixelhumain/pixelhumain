@@ -286,12 +286,12 @@
                         </li>
 
                         <li role="separator" class="divider"></li>
-                        <!--<li class="text-left">
-                            <!--#default.view.page.links
+                        <li class="text-left">
+                            
                             <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" class="bg-right">
-                                <i class="fa fa-heart"></i> <?php echo Yii::t("common", "Don récurant") ?>
+                                <i class="fa fa-heart"></i> <?php echo Yii::t("common", "Recurring donation") ?>
                             </a>
-                        </li>-->
+                        </li>
                        
 
                         
@@ -355,8 +355,8 @@
                                  width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
                     </a>
                     <!--<a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" class="menu-button btn-menu btn-link pull-right hidden-xs" style="color : #E5344D;"
-                          data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Don récurant") ?>" 
-                          alt="<?php echo Yii::t("common","Don récurant") ?>">
+                          data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Recurring donation") ?>" 
+                          alt="<?php echo Yii::t("common","Recurring donation") ?>">
                       <i class="fa fa-heart "></i>
                     </a>-->
                    <button class="menu-button btn-menu btn-link btn-open-floopdrawer text-dark pull-right hidden-xs" 

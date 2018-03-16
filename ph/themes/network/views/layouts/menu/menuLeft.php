@@ -43,13 +43,12 @@
 						</ul>
 					</div>
 				</div>
-
-
-		<?php 		
+	
 				
-		if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){ ?> 
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding text-left subsub" id="sub-menu-left">
+		
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding text-left subsub" id="sub-menu-left">
 					<?php
+						if(isset($params['filter']['linksTag']) && is_array($params['filter']['linksTag'])){ 
 						foreach($params['filter']['linksTag'] as $category => $listTag){ ?>
 
 						
@@ -66,28 +65,26 @@
 									<i class="fa fa-angle-right"></i> <?php echo $label; ?>
 								</a><br class="hidden">
 							<?php } ?>
-					<?php } ?>
+					<?php } 
+						}
+					if(isset($params['request']['searchLocalityNAME'])){ ?> 
+								<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 tagParent titleTag" style="margin-left:-5px;" data-keycat="Localities">
+									<?php if(isset($params['request']['searchLocalityNAME'])){
+								echo "<img src='".$this->module->assetsUrl."/images/network/Logement.png' width='20px'/>";
+								} ?>
+									Villes
+									<i class="fa fa-chevron-right right" aria-hidden="true" id="fa_villes"></i>
+								</a><br>
+								
+								<?php foreach($params['request']['searchLocalityNAME'] as $key => $label){ ?>
+									<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden villeFilter keycat-Localities active" data-value="<?php echo $label ; ?>" >
+										<i class="fa fa-angle-right"></i> <?php echo $label; ?>
+									</a><br class="hidden">
+								<?php } ?>
+		<?php   } ?>
 						</div>
 		<?php 		
-				}
-
-		  	if(isset($params['request']['searchLocalityNAME'])){ ?> 
-					<div class="col-lg-12 text-left subsub" id="sub-menu-left">
-							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 tagParent titleTag" style="margin-left:-5px;" data-keycat="Localities">
-								<?php if(isset($params['request']['searchLocalityNAME'])){
-							echo "<img src='".$this->module->assetsUrl."/images/network/Logement.png' width='20px'/>";
-							} ?>
-								Villes
-								<i class="fa fa-chevron-right right" aria-hidden="true" id="fa_villes"></i>
-							</a><br>
-							
-							<?php foreach($params['request']['searchLocalityNAME'] as $key => $label){ ?>
-								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden villeFilter keycat-Localities active" data-value="<?php echo $label ; ?>" >
-									<i class="fa fa-angle-right"></i> <?php echo $label; ?>
-								</a><br class="hidden">
-							<?php } ?>
-					</div>
-		<?php   }
+				
 
 				$roles = Role::getRolesUserId(Yii::app()->session["userId"]);
 				if(@$roles["superAdmin"] == true){?>

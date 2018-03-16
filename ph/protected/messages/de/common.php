@@ -1299,6 +1299,9 @@ return array(
 	"Week" => "Semaine",
 	"Ressources" => "Ressources",
 	"Ressource" => "Ressource",
+
+	"Recurring donation" => "Don récurant",
+	"pts , based on Links and Posts popularity" => "pts, basés sur les liens et les publications"
 	
 );
 ?>
