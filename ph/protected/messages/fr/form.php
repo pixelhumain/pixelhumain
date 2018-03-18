@@ -116,7 +116,7 @@
 		"Add informations to the document to make it pertinent for others"=>"Ajouter des informations au document pour le rendre le plus pertinent possible aux yeux des autres",
 		"Image title"=>"Titre de l'image",
 		"Upload files"=> "Ajouter des fichiers",
-		"Your proposal" => "Votre proposition / question",
+		"Your proposal / question" => "Votre proposition / question",
 		"Arguments" => "Argumentation",
 		"More informations, arguments, exemples" => "Compléments d'informations, argumentations, exemples, démonstrations, etc",
 		"Drop files here"=>"Glisser vos fichiers ici",

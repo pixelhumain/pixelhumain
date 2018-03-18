@@ -624,7 +624,7 @@ h4.load-coop-data.title-room:hover{
 }
 
 .bg-vote{	background-color: #c6c6c6!important; color: #1a1a1a; border-color: transparent !important; }
-.btn.bg-vote:hover{	background-color: transparent!important; color: #1a1a1a; border-color: #c6c6c6 !important; }
+.btn.bg-vote:hover{	background-color: transparent!important; color: #1a1a1a; border-color: #c6c6c6; }
 
 .bg-vote-0{	background-color: #68db87!important; color: #1a1a1a; border-color: transparent !important; }
 .bg-vote-1{	background-color: #68cbdb!important; color: #1a1a1a; border-color: transparent !important; }

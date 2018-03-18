@@ -168,6 +168,7 @@ return array(
 	"End of vote session" => "fin du vote",
 	"You did vote" => "Vous avez voté",
 	"You did not vote" => "Vous n'avez pas voté",
+	"You voted for this answer" => "Vous avez choisi cette réponse",
 	"The <b>resolution</b> is done : " => "La <b>résolution</b> suivante a été prise : ",
 	"The proposal is" => "la proposition est",
 	"Show the resolution" => "Afficher la résolution",

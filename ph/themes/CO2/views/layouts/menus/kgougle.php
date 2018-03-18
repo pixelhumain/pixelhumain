@@ -262,9 +262,8 @@ a.link-submenu-header:focus{
                     </div>
 
 
-
-                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
-                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
+                          data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Notifications") ?>" alt="<?php echo Yii::t("common","Notifications") ?>">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
                               <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
@@ -272,14 +271,14 @@ a.link-submenu-header:focus{
                             <?php echo @$countNotifElement ?>
                         </span>
                     </button>
-
-
+                    
                     <button class="menu-button btn-menu btn-dashboard-dda text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Cooperation") ?>" 
                           alt="<?php echo Yii::t("common","Cooperation") ?>">
                       <i class="fa fa-inbox"></i>
                       <span class="coopNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
+
 
                      <div class="dropdown pull-right" id="dropdown-dda">
                         <div class="dropdown-main-menu">
@@ -288,15 +287,16 @@ a.link-submenu-header:focus{
                             </ul>
                         </div>
                     </div>
+                    
+                    
 
-
-                    <?php if(@Yii::app()->session["userId"] && Yii::app()->params['rocketchatEnabled'] ) { ?>
                     <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
-                          onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Messaging") ?>" alt="<?php echo Yii::t("common","Messaging") ?>">
+                          onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" 
+                          title="<?php echo Yii::t("common","Messaging") ?>" alt="<?php echo Yii::t("common","Messaging") ?>">
                       <i class="fa fa-comments"></i>
                       <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
-                    <?php } ?> 
+
                     
                    
                 <?php } else { ?>

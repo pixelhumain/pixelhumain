@@ -793,6 +793,8 @@ a, a:hover, a:focus, a:active, a.active{
 }
 #dropdown-apps .dropdown-menu a:hover{
 	color: #ea4335 !important;
+	font-weight: bold;
+	text-decoration: none!important;
 
 }
 .dropdown-main-menu .dropdown-menu li a {
