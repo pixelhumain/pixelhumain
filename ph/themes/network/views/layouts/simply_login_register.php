@@ -87,22 +87,22 @@
 							</span>
 						</div>
 						<div class="form-actions" style="margin-top:-20px;">
-							<div class="errorHandler alert alert-danger no-display">
-								<i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","You have some form errors. Please check below.") ?>
-							</div>
+							<!-- <div class="errorHandler alert alert-danger no-display">
+								<i class="fa fa-remove-sign"></i> <?php //echo Yii::t("login","You have some form errors. Please check below.") ?>
+							</div> -->
 							<div class="errorHandler alert alert-danger no-display loginResult">
 								<i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","Please verify your entries.") ?>
 							</div>
 							<div class="errorHandler alert alert-danger no-display notValidatedEmailResult">
 								<i class="fa fa-remove-sign"></i><?php echo Yii::t("login","Your account is not validated : please check your mailbox to validate your email address.") ?>
-								      <?php echo Yii::t("login","If you didn't receive it or lost it, click") ?>
-								      <a class="validate" href="#" 
-								      onclick="showPanel('box-email', 
-								      	function() {
-								      		emailType = 'validateEmail';
-								      		$('#email2').val($('#email-login').val());
-								      		$('.forgotBtn .ladda-label').text(buttonLabel[emailType])});">
-								      <?php echo Yii::t("login","here") ?></a> <?php echo Yii::t("login","to receive it again.") ?> 
+									  <?php echo Yii::t("login","If you didn't receive it or lost it, click") ?>
+									  <a class="validate" href="#" 
+									  onclick="showPanel('box-email', 
+										function() {
+											emailType = 'validateEmail';
+											$('#email2').val($('#email-login').val());
+											$('.forgotBtn .ladda-label').text(buttonLabel[emailType])});">
+									  <?php echo Yii::t("login","here") ?></a> <?php echo Yii::t("login","to receive it again.") ?> 
 							</div>
 							<div class="errorHandler alert alert-info no-display betaTestNotOpenResult">
 								<i class="fa fa-remove-sign"></i><?php echo Yii::t("login","Our developpers are fighting to open soon ! Check your mail that will happen soon !")?>
@@ -393,13 +393,13 @@ var Login = function() {
 		var form = $('.form-login');
 		var loginBtn = null;
 		Ladda.bind('.loginBtn', {
-	        callback: function (instance) {
-	            loginBtn = instance;
-	        }
-	    });
+			callback: function (instance) {
+				loginBtn = instance;
+			}
+		});
 		form.submit(function(e){e.preventDefault() });
 		var errorHandler = $('.errorHandler', form);
-		
+		console.log("errorHandler", errorHandler);
 		form.validate({
 			rules : {
 				email : {
@@ -416,72 +416,72 @@ var Login = function() {
 				loginBtn.start();
 				var params = { 
 				   "email" : $("#email-login").val(), 
-                   "pwd" : $("#password-login").val()
-                };
-			      
-		    	$.ajax({
-		    	  type: "POST",
-		    	  url: baseUrl+"/<?php echo $this->module->id?>/person/authenticate",
-		    	  data: params,
-		    	  success: function(data){
-		    		  if(data.result)
-		    		  {
-		    		  	var url = "<?php echo (isset(Yii::app()->session["requestedUrl"])) ? Yii::app()->session["requestedUrl"] : null; ?>";
-		    		  	//console.warn(url,", has #"+url.indexOf("#"),"count / : ",url.split("/").length - 1 );
-		    		  	if(url && url.indexOf("#") >= 0 ) {
-		    		  		//console.log("login 1",url);
-		    		  		//reload to the url initialy requested
-		    		  		window.location.href = url;
-		        		} else {
-		        			if( url.split("/").length - 1 <= 3 ) {
-		        				//console.log("login 2",baseUrl+'#default.home');
-		        				//classic use case wherever you login from if not notifications/get/not/id...
-		        				//you stay on the current page
-		        				//if(location.hash == '#default.home')
-		        				//	window.location.reload();
-		        				/*else
-		        					window.location.href = baseUrl+'#default.home';*/
-		        				window.location.href = baseUrl ;
-		        			}
-		        			else {
-		        				//console.log("login 3 reload");
-		        				//for urls like notifications/get/not/id...
-		        				//window.location.reload();
-		        				//window.location.href = url;
-		        				//window.location.reload();
-		        				window.location.href = baseUrl ;
-		        			}
-		        		}
-		    		  } else {
-		    		  	var msg;
-		    		  	if (data.msg == "notValidatedEmail") {
-							$('.notValidatedEmailResult').show();
-		    		  	} else if (data.msg == "betaTestNotOpen") {
-		    		  		$('.betaTestNotOpenResult').show();
-		    		  	} else if (data.msg == "accountPending") {
-		    		  		pendingUserId = data.pendingUserId;
-		    		  		$(".errorHandler").hide();
-							$('.register').click();
-							$('.pendingProcess').show();
-							$('#email3').val($("#email-login").val());
-							$('#email3').prop('disabled', true);
-		    		  	} else{
-		    		  		msg = data.msg;
-		    		  		$('.loginResult').html(msg);
-							$('.loginResult').show();
-		    		  	}
+				   "pwd" : $("#password-login").val()
+				};
+				  
+				$.ajax({
+				  type: "POST",
+				  url: baseUrl+"/<?php echo $this->module->id?>/person/authenticate",
+				  data: params,
+				  success: function(data){
+						if(data.result){
+							var url = "<?php echo (isset(Yii::app()->session["requestedUrl"])) ? Yii::app()->session["requestedUrl"] : null; ?>";
+							//console.warn(url,", has #"+url.indexOf("#"),"count / : ",url.split("/").length - 1 );
+							if(url && url.indexOf("#") >= 0 ) {
+							//console.log("login 1",url);
+							//reload to the url initialy requested
+							window.location.href = url;
+							} else {
+							if( url.split("/").length - 1 <= 3 ) {
+							//console.log("login 2",baseUrl+'#default.home');
+							//classic use case wherever you login from if not notifications/get/not/id...
+							//you stay on the current page
+							//if(location.hash == '#default.home')
+							//	window.location.reload();
+							/*else
+							window.location.href = baseUrl+'#default.home';*/
+							window.location.href = baseUrl ;
+							}
+							else {
+							//console.log("login 3 reload");
+							//for urls like notifications/get/not/id...
+							//window.location.reload();
+							//window.location.href = url;
+							//window.location.reload();
+							window.location.href = baseUrl ;
+							}
+							}
+						} else {
+						var msg;
+						if (data.msg == "notValidatedEmail") {
+						$('.notValidatedEmailResult').show();
+						} else if (data.msg == "betaTestNotOpen") {
+						$('.betaTestNotOpenResult').show();
+						} else if (data.msg == "accountPending") {
+						pendingUserId = data.pendingUserId;
+						$(".errorHandler").hide();
+						$('.register').click();
+						$('.pendingProcess').show();
+						$('#email3').val($("#email-login").val());
+						$('#email3').prop('disabled', true);
+						} else{
+						msg = data.msg;
+						$('.loginResult').html(msg);
+						$('.loginResult').show();
+						}
 						loginBtn.stop();
-		    		  }
-		    	  },
-		    	  error: function(data) {
-		    	  	toastr.error("Something went really bad : contact your administrator !");
-		    	  	loginBtn.stop();
-		    	  },
-		    	  dataType: "json"
-		    	});
-			    return false; // required to block normal submit since you used ajax
+						}
+				  },
+				  error: function(data) {
+					toastr.error("Something went really bad : contact your administrator !");
+					loginBtn.stop();
+				  },
+				  dataType: "json"
+				});
+				return false; // required to block normal submit since you used ajax
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
+				console.log("invalidHandler", event, validator);
 				errorHandler.show();
 				loginBtn.stop();
 			}
@@ -493,10 +493,10 @@ var Login = function() {
 		var errorHandler2 = $('.errorHandler', form2);
 		var forgotBtn = null;
 		Ladda.bind('.forgotBtn', {
-	        callback: function (instance) {
-	            forgotBtn = instance;
-	        }
-	    });
+			callback: function (instance) {
+				forgotBtn = instance;
+			}
+		});
 		form2.validate({
 			rules : {
 				email2 : {
@@ -510,13 +510,13 @@ var Login = function() {
 					"email" : $("#email2").val(),
 					"type"	: emailType
 				};
-		        $.ajax({
-		          type: "POST",
-		          url: baseUrl+"/<?php echo $this->module->id?>/person/sendemail",
-		          data: params,
-		          success: function(data){
+				$.ajax({
+				  type: "POST",
+				  url: baseUrl+"/<?php echo $this->module->id?>/person/sendemail",
+				  data: params,
+				  success: function(data){
 					if (data.result) {
-			            window.location.reload();
+						window.location.reload();
 					} else if (data.errId == "UNKNOWN_ACCOUNT_ID") {
 						if (confirm(data.msg)) {
 							$('.box-email').removeClass("animated flipInX").addClass("animated bounceOutRight").on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
@@ -530,15 +530,16 @@ var Login = function() {
 							window.location.reload();
 						}
 					}
-		          },
-		          error: function(data) {
-		    	  	toastr.error("Something went really bad : contact your administrator !");
-		    	  },
-		          dataType: "json"
-		        });
-		        return false;
+				  },
+				  error: function(data) {
+					toastr.error("Something went really bad : contact your administrator !");
+				  },
+				  dataType: "json"
+				});
+				return false;
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
+				console.log("invalidHandler2", event, validator);
 				errorHandler2.show();
 				forgotBtn.stop();
 			}
@@ -551,10 +552,10 @@ var Login = function() {
 		var createBtn = null;
 		
 		Ladda.bind('.createBtn', {
-	        callback: function (instance) {
-	            createBtn = instance;
-	        }
-	    });
+			callback: function (instance) {
+				createBtn = instance;
+			}
+		});
 		form3.validate({
 			rules : {
 				name : {
@@ -570,8 +571,8 @@ var Login = function() {
 						depends:function(){
 							$(this).val($.trim($(this).val()));
 							return true;
-        				}
-        			},
+						}
+					},
 					email : true
 				},
 				password3 : {
@@ -596,40 +597,42 @@ var Login = function() {
 				   "name" : $("#name").val(),
 				   "username" : $("#username").val(),
 				   "email" : $("#email3").val(),
-                   "pwd" : $("#password3").val(),
-                   "app" : "<?php echo $this->module->id?>",
-                   "pendingUserId" : pendingUserId,
-                   "mode" : "<?php echo Person::REGISTER_MODE_TWO_STEPS ?>"
-                };
-			      
-		    	$.ajax({
-		    	  type: "POST",
-		    	  url: baseUrl+"/<?php echo $this->module->id?>/person/register",
-		    	  data: params,
-		    	  success: function(data){
-		    		  if(data.result) {
-		    		  	$("#modalRegisterSuccessContent").html("<h3><i class='fa fa-smile-o fa-4x text-green'></i><br><br> "+data.msg+"</h3>");
-		    		  	$("#modalRegisterSuccess").modal({ show: 'true' }); 
+				   "pwd" : $("#password3").val(),
+				   "app" : "<?php echo $this->module->id?>",
+				   "pendingUserId" : pendingUserId,
+				   "mode" : "<?php echo Person::REGISTER_MODE_TWO_STEPS ?>"
+				};
+				  
+				$.ajax({
+				  type: "POST",
+				  url: baseUrl+"/<?php echo $this->module->id?>/person/register",
+				  data: params,
+				  success: function(data){
+						console.log("person/register success", data);
+					  if(data.result) {
+						$("#modalRegisterSuccessContent").html("<h3><i class='fa fa-smile-o fa-4x text-green'></i><br><br> "+data.msg+"</h3>");
+						$("#modalRegisterSuccess").modal({ show: 'true' }); 
 
-		        		//toastr.success(data.msg);
-		        		//loadByHash("#default.directory");
-		        		//window.location.href = baseUrl ;
-		    		  }
-		    		  else {
+						//toastr.success(data.msg);
+						//loadByHash("#default.directory");
+						//window.location.href = baseUrl ;
+					  }
+					  else {
 						$('.registerResult').html(data.msg);
 						$('.registerResult').show();
 						createBtn.stop();
-		    		  }
-		    	  },
-		    	  error: function(data) {
-		    	  	toastr.error("Something went really bad : contact your administrator !");
-		    	  	createBtn.stop();
-		    	  },
-		    	  dataType: "json"
-		    	});
-			    return false;
+					  }
+				  },
+				  error: function(data) {
+					toastr.error("Something went really bad : contact your administrator !");
+					createBtn.stop();
+				  },
+				  dataType: "json"
+				});
+				return false;
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
+				console.log("invalidHandler3", event, validator);
 				errorHandler3.show();
 				createBtn.stop();
 			}
@@ -659,7 +662,7 @@ function validateUserName() {
 				if (! isUniqueUsername(username)) {
 					var validator = $( '.form-register' ).validate();
 					validator.showErrors({
-  						"username": '<?php echo Yii::t("login","The user name is not unique : please change it.")?>'
+						"username": '<?php echo Yii::t("login","The user name is not unique : please change it.")?>'
 					});
 				}
 			}, 200);
