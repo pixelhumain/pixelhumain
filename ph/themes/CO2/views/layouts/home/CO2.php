@@ -623,7 +623,7 @@ background-color: #09adef;
 			<i class="fa fa-caret-down" style="color:#E33551"></i>
 			<br/>
 			
-			<a  href="#co-communication">
+			<a class="lbh"  href="#co-communication">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-bullhorn fa-2x"></i>
 					<br/>
@@ -632,7 +632,7 @@ background-color: #09adef;
 				</div>	
 			</a>
 
-			<a  href="#codesign">
+			<a class="lbh"  href="#codesign">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-coffee fa-2x"></i>
 					<br/>
@@ -641,7 +641,7 @@ background-color: #09adef;
 				</div>	
 			</a>
 			
-			<a  href="#codev">
+			<a class="lbh"  href="#codev">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-code fa-2x"></i>
 					<br/>
@@ -650,7 +650,7 @@ background-color: #09adef;
 				</div>
 			</a>
 
-			<a  href="#communecter">
+			<a class="lbh"  href="#communecter">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-lightbulb-o fa-2x"></i>
 					<br/>
@@ -660,7 +660,7 @@ background-color: #09adef;
 			</a>
 
 
-			<a  href="#openatlas">
+			<a class="lbh"  href="#openatlas">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-group fa-2x"></i>
 					<br/>
@@ -670,7 +670,7 @@ background-color: #09adef;
 			</a>
 
 
-			<a  href="#pixelhumain">
+			<a class="lbh"  href="#pixelhumain">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-circle-thin fa-2x"></i>
 					<br/>
@@ -679,7 +679,7 @@ background-color: #09adef;
 				</div>	
 			</a>
 
-			<a  href="#connections">
+			<a class="lbh"  href="#connections">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-connectdevelop fa-2x"></i>
 					<br/>
@@ -688,7 +688,7 @@ background-color: #09adef;
 				</div>	
 			</a>
 			
-			<a  href="#cofinanceur">
+			<a class="lbh"  href="#cofinanceur">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-heart fa-2x"></i>
 					<br/>
@@ -697,7 +697,7 @@ background-color: #09adef;
 				</div>
 			</a>
 
-			<a  href="#cotest">
+			<a class="lbh"  href="#cotest">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-child fa-2x"></i>
 					<br/>
@@ -706,7 +706,7 @@ background-color: #09adef;
 				</div>
 			</a>
 
-			<a  href="#cobugs">
+			<a class="lbh"  href="#cobugs">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-bug fa-2x"></i>
 					<br/>
@@ -715,7 +715,7 @@ background-color: #09adef;
 				</div>	
 			</a>
 
-			<a  href="#cointerop">
+			<a class="lbh"  href="#cointerop">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-usb fa-2x"></i>
 					<br/>
@@ -724,7 +724,7 @@ background-color: #09adef;
 				</div>
 			</a>
 			
-			<a  href="#cotools">
+			<a class="lbh"  href="#cotools">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-cubes fa-2x"></i>
 					<br/>
