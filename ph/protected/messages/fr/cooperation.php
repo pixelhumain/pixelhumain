@@ -272,5 +272,7 @@ return array(
 	"Please login to post a message" => "Merci de vous connecter pour publier un message",
 	"I'm logging in" => "Je me connecte",
 	"I create my account" => "Je créé mon compte",
-	"free registration" => "inscription gratuite"
+	"free registration" => "inscription gratuite",
+
+	"Chat"=>"Messagerie"
 );

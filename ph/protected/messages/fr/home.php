@@ -74,6 +74,9 @@
 		"A market place"=> "Une place de marché",
 		"Communecter, a connected territorial search engine"=>"Communecter, un moteur de recherche territorial connecté",
 		"For Who ?"=>"Pour qui ?",
+		"For me" => "Pour Moi",
+		"For my community" => "Pour ma communauté",
+		"For commons" => "Pour le commun",
 		"What ?"=> "Quoi ?",
 		"Why ?"=>"Pourquoi ?",
 		"A connected territorial search engine"=>"Un moteur de recherche territorial connecté",
@@ -84,7 +87,7 @@
 		"I learn about my territory"=>"Je connais mon territoire",
 		"I know what's happened around me"=>"Je sais ce qu’il se passe autour de moi",
 		"I am connected to my community"=>"Je suis connecté à ma communauté",
-		"I can promote ideas and activities and enjoy organization helping tools"=>"Je valorise ce que je fait tout en profitant des outils de gestions de projets",
+		"I can promote ideas and activities and enjoy organization helping tools"=>"Je valorise ce que je fait tout en profitant des outils de gestions d'organisations",
 		"A smart collective intelligence"=>"Une intelligence collective en action",
 		"I take part to the building of territorial knowledge base"=>"Je participe à la construction d’une base de connaissance territoriale",
 

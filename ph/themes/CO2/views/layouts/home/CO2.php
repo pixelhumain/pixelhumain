@@ -342,9 +342,10 @@ background-color: #09adef;
 							<br/>
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For commons") ?></span><br/>
 							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "A smart collective intelligence") ?><br/></span>
+							<br>
+							<?php echo Yii::t("home", "I take part to the building of territorial knowledge base") ?>
 						</span>
-						<br>
-						<?php echo Yii::t("home", "I take part to the building of territorial knowledge base") ?>
+						
 					</div>
 				</div>
 			</div>
@@ -623,7 +624,7 @@ background-color: #09adef;
 			+ 262 262 34 36 86<br><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/contactCO_footer_welcome.png" height="15"/>
 
 			<br/><a href="default/view/page/openatlas/dir/docs|panels" data-id="explainOpenAtlas" class="lbhp"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
-			<br/><a href="default/view/page/mention/dir/docs|panels" class="lbhp" ><?php echo Yii::t("home","Legal notice") ?></a>
+			<br/><a href="default/view/page/mention/dir/docs|<?php echo Yii::app()->language ?>" class="lbhp" ><?php echo Yii::t("home","Legal notice") ?></a>
 			<br/><a href="default/view/page/partners/dir/docs|panels?type=partner" class="lbhp"><?php echo Yii::t("home","Partners") ?></a>
 		<center>
 	</div>
