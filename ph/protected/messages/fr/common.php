@@ -753,6 +753,9 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	'enter image title here' => "entrez le titre de l'image ici",
 	'list text here' => "texte à puce ici",
 
+	"emailNotFound" => "Nous n'avons pas trouvé d'email correspondant",
+	"emailAndPassNotMatch" =>"L'email ou le mot de passe est erroné"
+
 );
 
 ?>

@@ -452,24 +452,24 @@ var Login = function() {
 							}
 							}
 						} else {
-						var msg;
-						if (data.msg == "notValidatedEmail") {
-						$('.notValidatedEmailResult').show();
-						} else if (data.msg == "betaTestNotOpen") {
-						$('.betaTestNotOpenResult').show();
-						} else if (data.msg == "accountPending") {
-						pendingUserId = data.pendingUserId;
-						$(".errorHandler").hide();
-						$('.register').click();
-						$('.pendingProcess').show();
-						$('#email3').val($("#email-login").val());
-						$('#email3').prop('disabled', true);
-						} else{
-						msg = data.msg;
-						$('.loginResult').html(msg);
-						$('.loginResult').show();
-						}
-						loginBtn.stop();
+							var msg;
+							if (data.msg == "notValidatedEmail") {
+								$('.notValidatedEmailResult').show();
+							} else if (data.msg == "betaTestNotOpen") {
+								$('.betaTestNotOpenResult').show();
+							} else if (data.msg == "accountPending") {
+								pendingUserId = data.pendingUserId;
+								$(".errorHandler").hide();
+								$('.register').click();
+								$('.pendingProcess').show();
+								$('#email3').val($("#email-login").val());
+								$('#email3').prop('disabled', true);
+							} else{
+								msg = data.msg;
+								$('.loginResult').html(msg);
+								$('.loginResult').show();
+							}
+							loginBtn.stop();
 						}
 				  },
 				  error: function(data) {
@@ -482,7 +482,8 @@ var Login = function() {
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				console.log("invalidHandler", event, validator);
-				errorHandler.show();
+				errorHandler.hide();
+				$('.registerResult').show();
 				loginBtn.stop();
 			}
 		});
