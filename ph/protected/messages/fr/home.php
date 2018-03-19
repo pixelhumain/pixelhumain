@@ -97,6 +97,19 @@
 		"Search engine" => "Moteur de recherche",
 		"We are all Open" => "Open Nous Sommes",
 		"Everything we do is open source and built in collaborative way" => "Tout ce qu'on fait est Open Source et co-construit",
-		"We are experimenting new ways of gouvernance, managing territory, implicating local actor into everything and everywhere" => "On experimente de facon continu des nouvelles approches de gouvernance, les approches territoriales et l'implication massive d'acteurs locaux"
+		"We are experimenting new ways of gouvernance, managing territory, implicating local actor into everything and everywhere" => "On experimente de facon continu des nouvelles approches de gouvernance, les approches territoriales et l'implication massive d'acteurs locaux",
+		
+		"Share and imagine great ideas" => "Partagez vos idées et imaginez la suite",
+		"Ideas Design Graphics Video" => "Idées Design Graphisme Vidéos",
+		"Core Development team" => "La team de dev",
+		"Project Management" => "Gestion de projet",
+		"Non Governmental Organization" => "Association Loi 19001",
+		"Active contributors and soon a cooperative" => "Contributeurs actifs et bientot une SCIC",
+		"All people we meet." => "Pleins de rencontre",
+		"Money for bills & Love to live." => "Le nerf de la guerre",
+		"Good tools have great testers" => "Pas de grands outils sans de bons testeurs",
+		"Help share & destroy bugs" => "Zone de destruction massive de bugs",
+		"Connecting Systems together" => "Connecter les systèmes ensembles",
+		"Open Source Tools For Communities" => "Liste d'outils open source au service des communautés",
 	);
 ?>

@@ -692,7 +692,7 @@ background-color: #09adef;
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-heart fa-2x"></i>
 					<br/>
-					<span class="uppercase text-red" style="font-size: 18px;"> #CoFinancing Contributors</span><br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #Contributors</span><br/>
 					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Money for bills & Love to live.") ?> <br/></span>
 				</div>
 			</a>
