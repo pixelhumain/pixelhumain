@@ -292,7 +292,7 @@ background-color: #09adef;
 			<br/>
 			<h2 class="text-red text-center homestead">1 + 1 = 3</h2>
 			<h5 class=" col-xs-12 text-center" style="font-style:italic;">
-			Wikipedia <i class="fa fa-plus text-red"></i> Open Street Maps <i class="fa fa-plus  text-red"></i> Connected Open Citizens & Society
+			Wikipedia <i class="fa fa-plus text-red"></i> Open Street Maps <i class="fa fa-plus  text-red"></i> Open source Society
 			</h5>
 			<br/>
 			<div class="center"  >
@@ -732,6 +732,32 @@ background-color: #09adef;
 					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Open Source Tools For Communities") ?> <br/></span>
 				</div>
 			</a>
+
+			<a class="lbh"  href="#codocwiki">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-cubes fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #Documentation Team</span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Top Level Sharing process") ?> <br/></span>
+				</div>
+			</a>
+
+			<a class="lbh"  href="#codocwiki">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-cubes fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #Online Doc</span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "5 year Thinking Process") ?> <br/></span>
+				</div>
+			</a>
+
+			
+			<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+				<i class="fa fa-cubes fa-2x"></i>
+				<br/>
+				<span class="uppercase text-red" style="font-size: 18px;"> #Printable</span><br/>
+				<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Goodies we can pass around") ?> <br/></span>
+			</div>
 
 	</center>
 	</div>
