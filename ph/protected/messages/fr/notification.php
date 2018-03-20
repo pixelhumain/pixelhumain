@@ -53,6 +53,9 @@ return array(
 	"{who} added comments on discussion {what} in {where}" => "{who} ont participé à la discussion {what} dans {where}",
 	"{who} added few comments on proposal {what} in {where}"=>"{who} a commenté plusieurs fois la proposition {what} sur {where}",
 	"{who} added few comments on action {what} in {where}"=>"{who} a commenté plusieurs fois l'action {what} sur {where}",
+	"{who} commented on resolution {what} in {where}"=> "{who} a commenté la résolution {what} dans {where}",
+	"{who} added comments on resolution {what} in {where}"=>"{who} ont commenté la résolution {what} dans {where}",
+	"{who} added few comments on resolution {what} in {where}"=>"{who} a commenté plusieurs fois la résolution {what} dans {where}",
 	"of creation"=> "de création",
 	"shared"=>"partagé",
 	//LIKE&uNLIKE
