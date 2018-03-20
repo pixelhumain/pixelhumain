@@ -733,31 +733,44 @@ background-color: #09adef;
 				</div>
 			</a>
 
+	</center>
+	</div>
+
+
+	<div class="col-xs-12" >
+		<h3 class="text-red text-center"><?php echo Yii::t("home","Read Us") ?></h3>
+		<hr class="angle-down">
+	</div>
+
+	<div class="col-md-12  padding-bottom-50" style="color:#293A46; float:left; width:100%;">
+		<center>
+			
 			<a class="lbh"  href="#codocwiki">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
-					<i class="fa fa-cubes fa-2x"></i>
+					<i class="fa fa-group fa-2x"></i>
 					<br/>
-					<span class="uppercase text-red" style="font-size: 18px;"> #Documentation Team</span><br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #Team</span><br/>
 					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Top Level Sharing process") ?> <br/></span>
 				</div>
 			</a>
 
-			<a class="lbh"  href="#codocwiki">
+			<a class="lbhp"  href="#default.view.page.index.dir.docs">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
-					<i class="fa fa-cubes fa-2x"></i>
+					<i class="fa fa-book fa-2x"></i>
 					<br/>
 					<span class="uppercase text-red" style="font-size: 18px;"> #Online Doc</span><br/>
 					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "5 year Thinking Process") ?> <br/></span>
 				</div>
 			</a>
 
-			
+		<a href="http://wiki.communecter.org" >
 			<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
-				<i class="fa fa-cubes fa-2x"></i>
+				<i class="fa fa-briefcase fa-2x"></i>
 				<br/>
 				<span class="uppercase text-red" style="font-size: 18px;"> #Printable</span><br/>
 				<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Goodies we can pass around") ?> <br/></span>
 			</div>
+		</a>
 
 	</center>
 	</div>

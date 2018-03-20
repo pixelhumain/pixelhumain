@@ -113,6 +113,7 @@
 		"Open Source Tools For Communities" => "Liste d'outils open source au service des communautés",
 		"Top Level Sharing process" => "Le premier niveau de partage",
 		"5 year Thinking Process" => "5 années de reflexion",
-		"Goodies we can pass around" => "Goodies à partager"
+		"Goodies we can pass around" => "Goodies à partager",
+		"Read Us" => "Documentez Vous"
 	);
 ?>
