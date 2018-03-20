@@ -767,7 +767,7 @@ background-color: #09adef;
 			<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 				<i class="fa fa-briefcase fa-2x"></i>
 				<br/>
-				<span class="uppercase text-red" style="font-size: 18px;"> #Printable</span><br/>
+				<span class="uppercase text-red" style="font-size: 18px;"> #Doc Kit</span><br/>
 				<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Goodies we can pass around") ?> <br/></span>
 			</div>
 		</a>
