@@ -151,7 +151,7 @@
         "classified" : "azure"
     };
     var onchangeClick=true;
-    var lastWindowUrl = null;
+    var lastWindowUrl = location.hash;
     var allReadyLoadWindow=false;
     var navInSlug=false;
     var themeObj = {
