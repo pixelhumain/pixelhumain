@@ -1090,7 +1090,7 @@ return array(
 	"All types" => "Alle Typen",
 	
 	"No one" => "Keiner",
-	"Changing language processing" => "Die Sprache wird geändert",
+	"Changing language processing" => "Sprache wird gewechselt",
 	"News has been successfully delated" => "Nachricht wurde gelöscht",
 	"{who} is well invited to administrate {what}" => "{who} ist dazu eingeladen worden {what} zu administrieren",
 	"{who} is well invited to join {what}" => "{who} ist dazu eingeladen worden {what} beizutreten",
