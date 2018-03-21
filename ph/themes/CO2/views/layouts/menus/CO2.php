@@ -17,7 +17,7 @@
 
     .dropdown-menu.arrow_box{
         position: absolute !important;
-        top: 45px;
+        top: 51px;
         right: -65px;
         left: inherit;
         background-color: white;
