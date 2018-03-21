@@ -1222,10 +1222,16 @@ onSave: (optional) overloads the generic saveProcess
 		{
 			//todo : for generic dynForm check if map exist 
 			$(".locationBtn").off().on( "click", function(){ 
-				$("#ajax-modal").modal("hide");
-		        showMap(true);
+				
 		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
-		        if(typeof formInMap.showMarkerNewElement != "undefined"){ formInMap.showMarkerNewElement(); }
+		        if(typeof formInMap.showMarkerNewElement != "undefined"){
+		        	$("#ajax-modal").modal("hide");
+		        	console.log(".locationBtn");
+					formInMap.actived = true ;
+			        showMap(true);
+		        	console.log(".locationBtn showMarkerNewElement");
+		        	formInMap.showMarkerNewElement(); 
+		        }
 		    });
 		}
 
