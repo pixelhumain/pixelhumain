@@ -415,7 +415,7 @@ return array(
 	"guest(s)"=>"Gäste",
 	"concerned"=>"Interessenten",
 	"subevent(s)"=>"Neben-Veranstaltung",
-	"I am interested"=>"Ich interessiere mich",
+	"I am interested"=>"Das interessiert mich",
 	"restricted"=>"eingeschränkt",
 	"private"=>"privat",
 	"my network"=>"mein Netzwerk",
