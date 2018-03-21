@@ -84,7 +84,7 @@
 		"<span class='text-red'>CO</span>MMUNICATE" => "<span class='text-red'>CO</span>MMUNIZIEREN",
 		"Contact" => "Kontakt",
 		"Share" => "Teilen",
-		"Drawings" => "Zeichnungen",
+		"Drawings" => "Werbe-Illustrationen",
 		"Videos" => "Videos",
 		"All <span class='hidden-xs'>you need to know</span> about" => "Alles <span class='hidden-xs'>was Sie darüber wissen</span> müssen",
 		"A NETWORK OF NETWORKS" => "EIN NETZWERK VON NETZWERKEN",
