@@ -1070,7 +1070,7 @@ return array(
 	"Filter results by types" => "Ergebnisse nach Typ filtern",
 	"This data is not geolocated" => "Diese Daten sind nicht geolokalisiert",
 	"Show the details" =>"Details anzeigen",
-	"Change the map" => "Karte ändern",
+	"Change the map" => "Karte wechseln",
 	"Close the map" => "Karte schließen",
 	"Zoom" => "Zoom",
 	"Around me" => "Um mich herum",
