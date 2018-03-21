@@ -205,10 +205,10 @@ return array(
 	"Please login to post a message" => "Bitte loggen Sie sich ein, um eine Nachricht zu schreiben.",
 	"I'm logging in" => "Ich logge mich ein",
 	"I create my account" => "Ich erstelle mein Konto",
-	"free registration" => "kostenlose Registrierung"
+	"free registration" => "kostenlose Registrierung",
 	
 	"adopted" => "übernommen",
 	"Author" => "Autor",
-	"Size min : 10 caractÃ¨res" => "Länge min: 10 Zeichen",
+	"Size min : 10 caractères" => "Länge min: 10 Zeichen",
 
 );

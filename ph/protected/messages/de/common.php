@@ -1300,11 +1300,9 @@ return array(
 	"Ressources" => "Ressource",
 	"Ressource" => "Ressource",
 
-	"Recurring donation" => "Don récurant",
-	"pts , based on Links and Posts popularity" => "pts, basés sur les liens et les publications"
-	
-	"Don rÃ©curant" => "Wiederkehrende Spende",
+	"Recurring donation" => "Wiederkehrende Spende",
 	"pts , based on Links and Posts popularity" => "Punkte, basierend auf Links und der Popularität von Posts",
+	
 	
 	
 );
