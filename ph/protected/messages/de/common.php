@@ -1300,7 +1300,7 @@ return array(
 	"Ressources" => "Ressource",
 	"Ressource" => "Ressource",
 
-	"Recurring donation" => "Wiederkehrende Spende",
+	"Recurring donation" => "Regelmäßige Spende",
 	"pts , based on Links and Posts popularity" => "Punkte, basierend auf Links und der Popularität von Posts",
 	
 	
