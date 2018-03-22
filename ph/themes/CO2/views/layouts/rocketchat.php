@@ -61,19 +61,19 @@
                 <a href="javascript:rcObj.sizeChat('')">
                     <i class="hide fa btnExpand fa-expand fa-2x"  style="float:left;color:#C5203B;margin-right:20px;"></i>
                 </a>
-                <a href="javascript:rcObj.sizeChat('')">
-                    <i class="hide fa fa-external-link fa-2x"  style="float:left;color:#C5203B;margin-right:20px;"></i>
-                </a>
+                
                 <h5 class="letter-red pull-left">
                     <i class='fa fa-comments'></i> Messagerie instantanée
                 </h5><!-- <span class='rocketchatTitle'></span> -->
                 <button class="btn btn-default btn-sm text-dark pull-right close-modal" data-dismiss="modal">
                     <i class="fa fa-times"></i>
                 </button>
-                <a href="https://chat.communecter.org" class="btn btn-default btn-sm text-dark pull-right close-modal" target='_blank'>
-                    <i class="fa fa-external-link"></i>
+                <a href="https://chat.communecter.org" target="_blank" class="btn btn-default btn-sm  pull-right ">
+                    <i class=" fa fa-external-link" ></i>
                 </a>
-                
+               <a href="javascript:dyFObj.openForm('chat'); $('#rocketchatModal').modal('hide')" class=" pull-right text-red btn btn-default btn-sm "  >
+                    <i class=" fa fa-plus"  ></i>
+                </a>
         </div>
         <div class="col-sm-12 RCcontainer" style="background-color:white"></div>
     </div>

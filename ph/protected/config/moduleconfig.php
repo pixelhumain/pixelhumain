@@ -15,7 +15,5 @@ $activeModules = array(
 	"ressources",
 	"classifieds",
 	'terla',
-
-	'opauth',
-	'saml'
+	'chat'
 	);

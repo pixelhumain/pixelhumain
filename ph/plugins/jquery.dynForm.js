@@ -2501,6 +2501,7 @@ var dyFObj = {
 					mylog.log("lazyLoaded",dfPath);
 					mylog.dir(dynForm);
 					//typeObj[type].dynForm = dynForm;
+					
 				  	dyFInputs.get(type).dynForm = dynForm;
 					dyFObj[dyFObj.activeElem] = dyFInputs.get(type);
 					if( notNull(dyFInputs.get(type).col) ) uploadObj.type = dyFInputs.get(type).col;
