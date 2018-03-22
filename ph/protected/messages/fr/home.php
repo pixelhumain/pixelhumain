@@ -74,6 +74,9 @@
 		"A market place"=> "Une place de marché",
 		"Communecter, a connected territorial search engine"=>"Communecter, un moteur de recherche territorial connecté",
 		"For Who ?"=>"Pour qui ?",
+		"For me" => "Pour Moi",
+		"For my community" => "Pour ma communauté",
+		"For commons" => "Pour le commun",
 		"What ?"=> "Quoi ?",
 		"Why ?"=>"Pourquoi ?",
 		"A connected territorial search engine"=>"Un moteur de recherche territorial connecté",
@@ -84,7 +87,7 @@
 		"I learn about my territory"=>"Je connais mon territoire",
 		"I know what's happened around me"=>"Je sais ce qu’il se passe autour de moi",
 		"I am connected to my community"=>"Je suis connecté à ma communauté",
-		"I can promote ideas and activities and enjoy organization helping tools"=>"Je valorise ce que je fait tout en profitant des outils de gestions de projets",
+		"I can promote ideas and activities and enjoy organization helping tools"=>"Je valorise ce que je fait tout en profitant des outils de gestions d'organisations",
 		"A smart collective intelligence"=>"Une intelligence collective en action",
 		"I take part to the building of territorial knowledge base"=>"Je participe à la construction d’une base de connaissance territoriale",
 
@@ -94,6 +97,23 @@
 		"Search engine" => "Moteur de recherche",
 		"We are all Open" => "Open Nous Sommes",
 		"Everything we do is open source and built in collaborative way" => "Tout ce qu'on fait est Open Source et co-construit",
-		"We are experimenting new ways of gouvernance, managing territory, implicating local actor into everything and everywhere" => "On experimente de facon continu des nouvelles approches de gouvernance, les approches territoriales et l'implication massive d'acteurs locaux"
+		"We are experimenting new ways of gouvernance, managing territory, implicating local actor into everything and everywhere" => "On experimente de facon continu des nouvelles approches de gouvernance, les approches territoriales et l'implication massive d'acteurs locaux",
+		
+		"Share and imagine great ideas" => "Partagez vos idées et imaginez la suite",
+		"Ideas Design Graphics Video" => "Idées Design Graphisme Vidéos",
+		"Core Development team" => "La team de dev",
+		"Project Management" => "Gestion de projet",
+		"Non Governmental Organization" => "Association Loi 19001",
+		"Active contributors and soon a cooperative" => "Contributeurs actifs et bientot une SCIC",
+		"All people we meet." => "Pleins de rencontre",
+		"Money for bills & Love to live." => "Le nerf de la guerre",
+		"Good tools have great testers" => "Pas de grands outils sans de bons testeurs",
+		"Help share & destroy bugs" => "Zone de destruction massive de bugs",
+		"Connecting Systems together" => "Connecter les systèmes ensembles",
+		"Open Source Tools For Communities" => "Liste d'outils open source au service des communautés",
+		"Top Level Sharing process" => "Le premier niveau de partage",
+		"5 year Thinking Process" => "5 années de reflexion",
+		"Goodies we can pass around" => "Goodies à partager",
+		"Read Us" => "Documentez Vous"
 	);
 ?>

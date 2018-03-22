@@ -85,6 +85,12 @@ background-color: #09adef;
     top: 0px;
 }
 
+.ahover {
+	border: 1px solid #fff;
+}
+.ahover:hover{
+	border: 1px solid #666;
+}
 </style>
 
 <div class="pageContent">
@@ -286,7 +292,7 @@ background-color: #09adef;
 			<br/>
 			<h2 class="text-red text-center homestead">1 + 1 = 3</h2>
 			<h5 class=" col-xs-12 text-center" style="font-style:italic;">
-			Wikipedia + OSM + Open Society
+			Wikipedia <i class="fa fa-plus text-red"></i> Open Street Maps <i class="fa fa-plus  text-red"></i> Open source Society
 			</h5>
 			<br/>
 			<div class="center"  >
@@ -342,9 +348,10 @@ background-color: #09adef;
 							<br/>
 							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For commons") ?></span><br/>
 							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "A smart collective intelligence") ?><br/></span>
+							<br>
+							<?php echo Yii::t("home", "I take part to the building of territorial knowledge base") ?>
 						</span>
-						<br>
-						<?php echo Yii::t("home", "I take part to the building of territorial knowledge base") ?>
+						
 					</div>
 				</div>
 			</div>
@@ -611,24 +618,178 @@ background-color: #09adef;
 		<div class="space20"></div>
 	</div>
 
-	<div class="col-md-12 contact-map padding-bottom-50" style="color:#293A46; float:left; width:100%;" id="contactSection">
+	<div class="col-md-12  padding-bottom-50" style="color:#293A46; float:left; width:100%;">
 		<center>
 			<i class="fa fa-caret-down" style="color:#E33551"></i>
 			<br/>
 			
+			<a class="lbh"  href="#co-communication">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-bullhorn fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #Communication </span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Share and imagine great ideas") ?> <br/></span>
+				</div>	
+			</a>
+
+			<a class="lbh"  href="#codesign">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-coffee fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #CoDesign </span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Ideas Design Graphics Video") ?> <br/></span>
+				</div>	
+			</a>
+			
+			<a class="lbh"  href="#codev">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-code fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #COdev </span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Core Development team") ?> <br/></span>
+				</div>
+			</a>
+
+			<a class="lbh"  href="#communecter">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-lightbulb-o fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #communecter </span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Project Management") ?> <br/></span>
+				</div>	
+			</a>
+
+
+			<a class="lbh"  href="#openatlas">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-group fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #Open Atlas </span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Non Governmental Organization") ?> <br/></span>
+				</div>	
+			</a>
+
+
+			<a class="lbh"  href="#pixelhumain">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-circle-thin fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #COOP Pixel Humain</span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Active contributors and soon a cooperative") ?> <br/></span>
+				</div>	
+			</a>
+
+			<a class="lbh"  href="#connections">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-connectdevelop fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #Connections </span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "All people we meet.") ?> <br/></span>
+				</div>	
+			</a>
+			
+			<a class="lbh"  href="#cofinanceur">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-heart fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #Contributors</span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Money for bills & Love to live.") ?> <br/></span>
+				</div>
+			</a>
+
+			<a class="lbh"  href="#cotest">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-child fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #CoTesting</span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Good tools have great testers") ?> <br/></span>
+				</div>
+			</a>
+
+			<a class="lbh"  href="#cobugs">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-bug fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #CoBugs </span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Help share & destroy bugs") ?> <br/></span>
+				</div>	
+			</a>
+
+			<a class="lbh"  href="#cointerop">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-usb fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #Interoperabilty</span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Connecting Systems together") ?> <br/></span>
+				</div>
+			</a>
+			
+			<a class="lbh"  href="#cotools">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-cubes fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #CO Tools</span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Open Source Tools For Communities") ?> <br/></span>
+				</div>
+			</a>
+
+	</center>
+	</div>
+
+
+	<div class="col-xs-12" >
+		<h3 class="text-red text-center"><?php echo Yii::t("home","Read Us") ?></h3>
+		<hr class="angle-down">
+	</div>
+
+	<div class="col-md-12  padding-bottom-50" style="color:#293A46; float:left; width:100%;">
+		<center>
+			
+			<a class="lbh"  href="#codocwiki">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-group fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #Team</span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Top Level Sharing process") ?> <br/></span>
+				</div>
+			</a>
+
+			<a class="lbhp"  href="#default.view.page.index.dir.docs">
+				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+					<i class="fa fa-book fa-2x"></i>
+					<br/>
+					<span class="uppercase text-red" style="font-size: 18px;"> #Online Doc</span><br/>
+					<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "5 year Thinking Process") ?> <br/></span>
+				</div>
+			</a>
+
+		<a href="http://wiki.communecter.org" >
+			<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
+				<i class="fa fa-briefcase fa-2x"></i>
+				<br/>
+				<span class="uppercase text-red" style="font-size: 18px;"> #Doc Kit</span><br/>
+				<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "Goodies we can pass around") ?> <br/></span>
+			</div>
+		</a>
+
+	</center>
+	</div>
+
+
+	<div class="col-md-12 contact-map padding-bottom-50" style="color:#293A46; float:left; width:100%;" id="contactSection">
+		<center>
+			<i class="fa fa-caret-down" style="color:#FFF"></i>
+			<br/>
+
+			<br/>
 			<h1 class="homestead">
-			<i class="fa fa-envelope headerIcon"></i><br/>
+			<a target="_blank" href="https://github.com/pixelhumain/communecter" class="btn btn-github btn-social"><span class="fa fa-github"></span> </a><br/>
 			<?php echo Yii::t("home","CONTACT") ?>
 			</h1>
 			+ 262 262 34 36 86<br><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/contactCO_footer_welcome.png" height="15"/>
 
-			<ul class="social-list">
-				<!-- <li><a target="_blank" href="https://www.facebook.com/communecter" class="btn btn-facebook btn-social"><span class="fa fa-facebook"></span></a></li>
-				<li><a target="_blank" href="https://twitter.com/communecter" class="btn btn-twitter btn-social"><span class="fa fa-twitter"></span></a></li> -->
-				<li><a target="_blank" href="https://github.com/pixelhumain/communecter" class="btn btn-github btn-social"><span class="fa fa-github"></span> </a></li>
-			</ul>
 			<br/><a href="default/view/page/openatlas/dir/docs|panels" data-id="explainOpenAtlas" class="lbhp"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
-			<br/><a href="default/view/page/mention/dir/docs|panels" class="lbhp" ><?php echo Yii::t("home","Legal notice") ?></a>
+			<br/><a href="default/view/page/mention/dir/docs|<?php echo Yii::app()->language ?>" class="lbhp" ><?php echo Yii::t("home","Legal notice") ?></a>
 			<br/><a href="default/view/page/partners/dir/docs|panels?type=partner" class="lbhp"><?php echo Yii::t("home","Partners") ?></a>
 		<center>
 	</div>
