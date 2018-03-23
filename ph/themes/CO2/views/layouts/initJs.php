@@ -177,6 +177,7 @@
 
             if( notNull(myScopes) && myScopes.userId == userId )  {
                 myScopes.open={};
+                myScopes.search = {};
                 myScopes.openNews={};
                 if(myScopes.multiscopes==null)
                     myScopes.multiscopes={};
@@ -187,6 +188,7 @@
 					userId: userId,
 					open : {},
                     openNews : {},
+                    search : {},
 					communexion : <?php echo json_encode(CO2::getCommunexionUser()) ?>,
 					multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 
 									json_encode($me["multiscopes"]) :
