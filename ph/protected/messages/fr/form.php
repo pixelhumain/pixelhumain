@@ -36,7 +36,7 @@
 		"Event parent's end date"=>"Date de fin de l'événement parent",
 		"Short description"=>"Description courte",
 		"Long description"=>"Description longue",
-		"Markdown syntax is used for description. If you want to <a href='https://michelf.ca/projets/php-markdown/syntaxe/'' target='_blank'>know more about</a>"=>"La syntaxe Markdown est utilisée pour la description. Si vous souhaitez <a href='https://michelf.ca/projets/php-markdown/syntaxe/'' target='_blank'>en savoir plus</a>",
+		"Markdown syntax is used for description. If you want to <a href='https://michelf.ca/projets/php-markdown/syntaxe/'' target='_blank'>know more about</a>"=>"La syntaxe Markdown est utilisée pour la description. <a href='https://michelf.ca/projets/php-markdown/syntaxe/'' target='_blank'>en savoir plus</a>",
 		"Description"=>"Description",
 		"Me"=>"Moi",
 		"I don't know"=>"Je ne sais pas",
