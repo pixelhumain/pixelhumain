@@ -306,7 +306,7 @@ background-color: #09adef;
 			<i class="fa fa-caret-down text-red" style="z-index:1000;"></i><br/>
 		</center>-->
 		<div class="col-xs-12 margin-top-50" >
-			<h3 class="text-red text-center"><?php echo Yii::t("home","For Who ?") ?></h3>
+			<h3 class="text-red text-center"><?php echo Yii::t("home","For Whom ?") ?></h3>
 			<hr class="angle-down">
 		</div>
 		
