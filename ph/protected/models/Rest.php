@@ -183,4 +183,10 @@ class Rest
 	        self::_sendResponse(401, 'Error: User Password is invalid');
 	    }
 	}
+
+
+	public static function csv($res){
+		header("Content-type: text/csv");
+		Export::toCSV($res, ";", '"');
+	}
 }
