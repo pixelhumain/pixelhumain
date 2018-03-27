@@ -754,7 +754,7 @@ background-color: #09adef;
 				</div>
 			</a>
 
-			<a class="lbhp"  href="#default.view.page.index.dir.docs">
+			<a class="lbh"  href="#docs">
 				<div class="ahover bg-white padding-10 col-sm-12 col-md-4">
 					<i class="fa fa-book fa-2x"></i>
 					<br/>
@@ -788,9 +788,9 @@ background-color: #09adef;
 			</h1>
 			+ 262 262 34 36 86<br><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/contactCO_footer_welcome.png" height="15"/>
 
-			<br/><a href="default/view/page/openatlas/dir/docs|panels" data-id="explainOpenAtlas" class="lbhp"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
-			<br/><a href="default/view/page/mention/dir/docs|<?php echo Yii::app()->language ?>" class="lbhp" ><?php echo Yii::t("home","Legal notice") ?></a>
-			<br/><a href="default/view/page/partners/dir/docs|panels?type=partner" class="lbhp"><?php echo Yii::t("home","Partners") ?></a>
+			<br/><a href="#docs.page.openatlas.dir.<?php echo Yii::app()->language ?>" data-id="explainOpenAtlas" class="lbh"><?php echo Yii::t("home","Open Atlas NGO") ?></a>
+			<br/><a href="#docs.page.mention.dir.<?php echo Yii::app()->language ?>" class="lbh" ><?php echo Yii::t("home","Legal notice") ?></a>
+			<br/><a href="#docs.page.partners.dir.panels" class="lbh"><?php echo Yii::t("home","Partners") ?></a>
 		<center>
 	</div>
 </div>
