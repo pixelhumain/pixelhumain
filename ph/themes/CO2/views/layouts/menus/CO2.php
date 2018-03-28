@@ -280,7 +280,7 @@
                         <li role="separator" class="divider"></li>
                         <li class="text-left">
                             <!--#default.view.page.links-->
-                            <a href="#default.view.page.index.dir.docs" class="lbhp bg-right">
+                            <a href="#docs.page.welcome.dir.<?php echo Yii::app()->language ?>" class="lbh bg-right">
                                 <i class="fa fa-book"></i> <?php echo Yii::t("common", "Documentation") ?>
                             </a>
                         </li>

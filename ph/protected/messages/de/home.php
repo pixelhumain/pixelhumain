@@ -77,7 +77,7 @@
 		"To share needs, offers, services, competences for more efficiency" => "Bedürfnisse, Angebote, Dienstleistungen, Kompetenzen für mehr Effizienz teilen",
 		"A market place" => "Ein Marktplatz",
 		"Communecter, a connected territorial search engine" => "Communecter, eine angeschlossene territoriale Suchmaschine",
-		"For Who ?" => "Für wen?",
+		"For Whom ?" => "Für wen?",
 		"What ?" => "Was?",
 		"Why ?" => "Warum?",
 		"A connected territorial search engine" => "Eine angeschlossene territoriale Suchmaschine",
