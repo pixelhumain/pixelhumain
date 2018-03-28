@@ -1486,7 +1486,24 @@
 					    	<!--http://localhost:8888/ph/images/betatest.png-->
 							<a href="#" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo?>" alt="1+1=3" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;"></a>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							    <?php echo $msg ; ?> <a href="<?php echo $url ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"> <?php echo $elementName ?> </a>
+							    <!-- <?php //echo $msg ; ?> <a href="<?php //echo $url ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"> <?php //e//cho $elementName ?> </a> -->
+
+							    <?php 
+							    foreach ($data as $type => $elementBytype) {
+							    	foreach ($elementBytype as $idElement => $element) {
+										echo "<br/>";
+										echo '<a href="'.$element["url"].'" >'.$element["name"].'</a>';
+
+										if(!empty($element[ActStr::VERB_POST])){
+											foreach ($element[ActStr::VERB_POST] as $key => $value) {
+												
+												echo '<p dir="ltr" style="color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;text-align: left;line-height: 19px;font-size: 15px;">';
+												echo  $value["text"];
+												echo  '</p>';
+											}
+										}
+									}
+								} ?>
 							</p>
 							<br>
 						<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
