@@ -128,7 +128,7 @@
                         <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","Please verify your entries.") ?>
                     </div>
                     <div class="alert alert-danger no-display notValidatedEmailResult text-center">
-                        <i class="fa fa-remove-sign"></i><?php echo Yii::t("login","Your account <b>is not validated</b>: please check your mailbox to validate your email address.") ?>
+                        <i class="fa fa-remove-sign"></i><?php echo Yii::t("login","Your account <b>is not validated</b>: please check your mailbox to validate your email address.") ?><br/>
                               <?php echo Yii::t("login","If you <b>didn't receive it or lost it</b>, click on the <b>following button</b> to receive it <b>again</b>") ?><br/>
                             <a class="btn btn-default bg-white letter-blue bold margin-top-10" href="javascript:;" data-toggle="modal" data-target="#modalSendActivation" 
                               onclick="$('#modalSendActivation #email2').val($('#email-login').val());">
@@ -316,7 +316,7 @@
                     <small><?php echo Yii::t("login","in order to connect you") ?></small>
                 </h4>
                 <small class="no-margin">
-                    <i class="fa fa-lock"></i> <?php echo Yii::t("login","Then, you will be free to change your password on your profil section") ?>.
+                    <i class="fa fa-lock"></i> <?php echo Yii::t("login","Then, you will be free to change your password on your profil page") ?>.
                 </small>
                 <br><br>
                 <h5><i class="fa fa-angle-down"></i> <?php echo Yii::t("login", "How can it be done")?> ?</h5>
@@ -381,7 +381,7 @@
                 </div> -->
 
                 <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo Yii::t("common", "Back") ?></a>
-                <button class="btn btn-success text-white pull-right forgotBtn"><i class="fa fa-sign-in"></i> <?php echo Yii::t("common","Send") ?></button>
+                <button class="btn btn-success text-white pull-right forgotBtn"><i class="fa fa-sign-in"></i> <?php echo Yii::t("common","Validate") ?></button>
                 
                 
                 <div class="col-md-12 margin-top-50 margin-bottom-50"></div>
@@ -465,7 +465,7 @@
                 </div> -->
 
                 <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo Yii::t("common", "Back") ?></a>
-                <button class="btn btn-success text-white pull-right sendValidateEmailBtn"><i class="fa fa-sign-in"></i> <?php echo Yii::t("common","Send") ?></button>
+                <button class="btn btn-success text-white pull-right sendValidateEmailBtn"><i class="fa fa-sign-in"></i> <?php echo Yii::t("common","Validate") ?></button>
                 
                 
                 <div class="col-md-12 margin-top-50 margin-bottom-50"></div>
