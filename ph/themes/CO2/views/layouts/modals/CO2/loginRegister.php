@@ -128,7 +128,7 @@
                     <div class="alert alert-danger no-display notValidatedEmailResult">
                         <i class="fa fa-remove-sign"></i><?php echo Yii::t("login","Your account is not validated : please check your mailbox to validate your email address.") ?>
                               <?php echo Yii::t("login","If you didn't receive it or lost it, click") ?>
-                              <a class="validate" href="#" 
+                              <a class="validate" href="javascript:;" 
                               onclick="showPanel('box-email', 
                                 function() {
                                     emailType = 'validateEmail';

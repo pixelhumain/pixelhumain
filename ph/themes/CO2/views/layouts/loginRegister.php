@@ -123,21 +123,17 @@
 
                 <button class="btn btn-success pull-right loginBtn" type="submit"><i class="fa fa-sign-in"></i> <?php echo Yii::t("login","Log in") ?></button>
   
-                <div class="form-actions col-md-12 no-padding" style="margin-top:20px;">
+                <div class="form-actions col-xs-12 no-padding" style="margin-top:20px;">
                     <div class="errorHandler alert alert-danger no-display loginResult">
                         <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","Please verify your entries.") ?>
                     </div>
-                    <div class="alert alert-danger no-display notValidatedEmailResult">
-                        <i class="fa fa-remove-sign"></i><?php echo Yii::t("login","Your account is not validated : please check your mailbox to validate your email address.") ?>
-                              <?php echo Yii::t("login","If you didn't receive it or lost it, click") ?>
-                              <a class="validate" href="#" 
-                              onclick="showPanel('box-email', 
-                                function() {
-                                    emailType = 'validateEmail';
-                                    $('#email2').val($('#email-login').val());
-                                    $('#email3').val($('#email-login').val());
-                                    $('.forgotBtn .ladda-label').text(buttonLabel[emailType])});">
-                              <?php echo Yii::t("login","here") ?></a> <?php echo Yii::t("login","to receive it again.") ?> 
+                    <div class="alert alert-danger no-display notValidatedEmailResult text-center">
+                        <i class="fa fa-remove-sign"></i><?php echo Yii::t("login","Your account <b>is not validated</b>: please check your mailbox to validate your email address.") ?>
+                              <?php echo Yii::t("login","If you <b>didn't receive it or lost it</b>, click on the <b>following button</b> to receive it <b>again</b>") ?><br/>
+                            <a class="btn btn-default bg-white letter-blue bold margin-top-10" href="javascript:;" data-toggle="modal" data-target="#modalSendActivation" 
+                              onclick="$('#modalSendActivation #email2').val($('#email-login').val());">
+                                <i class="fa fa-envelope"></i> <?php echo Yii::t("login","Receive another validation email") ?>
+                            </a> 
                     </div>
                     <div class="alert alert-info no-display betaTestNotOpenResult">
                         <i class="fa fa-remove-sign"></i><?php echo Yii::t("login","Our developpers are fighting to open soon ! Check your mail that will happen soon !")?>
@@ -156,7 +152,7 @@
                     </div>  
                 </div>
 
-                <div class="col-md-12 no-padding text-center">
+                <div class="col-xs-12 no-padding text-center">
                     <hr>
                     <a href="javascript:;" class="btn bg-white" data-toggle="modal" data-target="#modalForgot">
                         <!-- <i class="fa fa-s"></i> --><?php echo Yii::t("login","I forgot my password") ?>
@@ -177,7 +173,7 @@
 
                 <br><hr>
 
-                <div class="col-md-12 text-center">
+                <div class="col-xs-12 text-center">
                     <br><hr>
                     <a href="javascript:" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo Yii::t("common","Back") ?></a>
                 </div>
@@ -304,8 +300,40 @@
         </div>
     </div>
 </div>
-<?php } ?>
 
+
+<?php } ?>
+<div class="modal fade" role="dialog" id="modalNewPasswordSuccess" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-green text-white">
+                <h4 class="modal-title"><i class="fa fa-check"></i> <?php echo Yii::t("login","A new password has been sent to your email box !!") ?></h4>
+            </div>
+            <div class="modal-body center text-dark hidden" id="modalNewPasswordSuccessContent"></div>
+            <div class="modal-body center text-dark">
+                <h4 class="letter-green no-margin"><i class="fa fa-check-circle"></i> <?php echo Yii::t("login","Please you will find a temporaly password")?></h4>
+                <h4 class="no-margin">
+                    <small><?php echo Yii::t("login","in order to connect you") ?></small>
+                </h4>
+                <small class="no-margin">
+                    <i class="fa fa-lock"></i> <?php echo Yii::t("login","Then, you will be free to change your password on your profil section") ?>.
+                </small>
+                <br><br>
+                <h5><i class="fa fa-angle-down"></i> <?php echo Yii::t("login", "How can it be done")?> ?</h5>
+                <i class="fa fa-link" style="width:20px;"></i> <b><?php echo Yii::t("login","Go to your profil page") ?></b><br>
+                <i class="fa fa-hand-o-up" style="width:20px;"></i> <?php echo Yii::t("login","Click on params buttom under your header section") ?>.</br>
+                <hr>
+                <i class="fa fa-list" style="width:20px;"></i> <b><?php echo Yii::t("login","Click on the proposition - Change your password") ?></b>.</br>
+                <hr>
+                <i class="fa fa-unlock" style="width:20px;"></i> <?php echo Yii::t("login","In few seconds, you will be <b class='letter-green'>enjoying your new login password</b>") ?>.
+                    
+            </div>
+            <div class="modal-footer">
+                 <button type="button" class="btn btn-default letter-green" data-dismiss="modal"><i class="fa fa-check"></i> <?php Yii::t("login","I understand") ?></button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="portfolio-modal modal fade" id="modalForgot" tabindex="-1" role="dialog" aria-hidden="true">
     <form class="modal-content form-email box-email padding-top-15"  >
         <div class="close-modal" data-dismiss="modal">
@@ -354,6 +382,90 @@
 
                 <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo Yii::t("common", "Back") ?></a>
                 <button class="btn btn-success text-white pull-right forgotBtn"><i class="fa fa-sign-in"></i> <?php echo Yii::t("common","Send") ?></button>
+                
+                
+                <div class="col-md-12 margin-top-50 margin-bottom-50"></div>
+            </div>      
+        </div>
+    </form>
+</div>
+<div class="modal fade" role="dialog" id="modalSendAgainSuccess" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-green text-white">
+                <h4 class="modal-title"><i class="fa fa-check"></i> <?php echo Yii::t("login","New email validation succesfully sent !!") ?></h4>
+            </div>
+            <div class="modal-body center text-dark hidden" id="modalSendAgainSuccessContent"></div>
+            <div class="modal-body center text-dark">
+                <h4 class="letter-green no-margin"><i class="fa fa-check-circle"></i> <?php echo Yii::t("login","Confirm your email address")?></h4>
+                <h4 class="no-margin">
+                    <small><?php echo Yii::t("login","in order to attain your account") ?></small>
+                </h4>
+                <small class="no-margin">
+                    <i class="fa fa-lock"></i> <?php echo Yii::t("login","For security reasons, you have to comfirm your email address to be connected") ?>.
+                </small>
+                <br><br>
+                <h5><i class="fa fa-angle-down"></i> <?php echo Yii::t("login", "How can it be done")?> ?</h5>
+                <i class="fa fa-envelope-open" style="width:20px;"></i> <b><?php echo Yii::t("login","Verify your emails and your spams") ?></b><br>
+                <i class="fa fa-hand-o-up" style="width:20px;"></i> <b><?php echo Yii::t("login","Click on the activating link") ?></b> <?php echo Yii::t("login","which we sent to you") ?>.</br>
+                <hr>
+                <i class="fa fa-unlock" style="width:20px;"></i> <?php echo Yii::t("login","You will be <b class='letter-green'>automatically connected</b> and redirect on your page") ?>.
+                    
+            </div>
+            <div class="modal-footer">
+                 <button type="button" class="btn btn-default letter-green" data-dismiss="modal"><i class="fa fa-check"></i> <?php Yii::t("login","I understand") ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="portfolio-modal modal fade" id="modalSendActivation" tabindex="-1" role="dialog" aria-hidden="true">
+    <form class="modal-content form-email-activation box-email padding-top-15"  >
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="name" >
+                        <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
+                       <?php } else if(Yii::app()->params["CO2DomainName"] == "FI"){ ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/FI-logo.png" height="60" class="inline margin-bottom-15">
+                       <?php } else { ?>
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">
+                        <?php } ?>
+                    </span>
+                    <h3 class="letter-red no-margin" style="margin-top:-15px!important;"><?php echo Yii::t("login", "You didn't receive the validation email ?") ?></h3><br>
+                    <p><?php echo Yii::t("login","Indicate your email link to your account to receive a new validation") ?>.<hr></p>
+                </div>
+                <div class="col-lg-12">
+                    <p></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-md-offset-4 text-left">
+                
+                <label class="letter-black"><i class="fa fa-envelope"></i> <?php echo Yii::t("login","Email") ?></label><br>
+                <input class="form-control" id="email2" name="email2" type="text" placeholder="<?php echo Yii::t("login","Email") ?>"><br/>
+                
+                <hr>
+
+                <div class="pull-left form-actions no-margin" style="width:100%; padding:10px;">
+                    <div class="errorHandler alert alert-danger no-display registerResult pull-left " style="width:100%;">
+                        <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","You have some form errors. Please check below.") ?>
+                    </div>
+                </div>
+
+                <!-- <div class="form-actions">
+                     <button type="submit"  data-size="s" data-style="expand-right" style="background-color:#E33551" class="forgotBtn ladda-button center center-block">
+                        <span class="ladda-label">XXXXXXXX</span><span class="ladda-spinner"></span><span class="ladda-spinner"></span>
+                    </button>
+                </div> -->
+
+                <a href="javascript:" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo Yii::t("common", "Back") ?></a>
+                <button class="btn btn-success text-white pull-right sendValidateEmailBtn"><i class="fa fa-sign-in"></i> <?php echo Yii::t("common","Send") ?></button>
                 
                 
                 <div class="col-md-12 margin-top-50 margin-bottom-50"></div>
