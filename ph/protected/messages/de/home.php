@@ -83,7 +83,7 @@
 		"A connected territorial search engine" => "Eine angeschlossene territoriale Suchmaschine",
 		"Be a pillar of Communecter, make a donation !" => "Sei eine Säule von Communecter, gib uns eine Spende!",
 		"No advertisement, no premium, only Openness and Passion" => "Keine Werbung, keine Prämie, nur Offenheit und Leidenschaft",
-		"Make it last longer" => "Machen Sie es langlebig",
+		"Make it last longer" => "Sorgen Sie für eine langfristige Entwicklung",
 		"Collective intelligence at service for citizens" => "Kollektive Intelligenz im Dienste der Bürger",
 		"I learn about my territory" => "Ich lerne etwas über mein Territorium",
 		"I know what's happened around me" => "Ich weiß, was um mich herum passiert ist",
