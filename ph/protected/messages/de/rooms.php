@@ -31,7 +31,7 @@ return array(
 	"Closed" => "Geschlossen",
 	"You did not vote" => "Sie haben nicht abgestimmt",
 	"Proposed by" => "Vorgeschlagen von",
-	"Add a proposal" => "Machen Sie einen Vorschlag",
+	"Add a proposal" => "Unterbreiten Sie einen Vorschlag",
 	"Show all" => "Alle anzeigen",
 	
 	"Survey" => "Umfrage",
