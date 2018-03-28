@@ -311,7 +311,7 @@
             </div>
             <div class="modal-body center text-dark hidden" id="modalNewPasswordSuccessContent"></div>
             <div class="modal-body center text-dark">
-                <h4 class="letter-green no-margin"><i class="fa fa-check-circle"></i> <?php echo Yii::t("login","Please you will find a temporaly password")?></h4>
+                <h4 class="letter-green no-margin"><i class="fa fa-check-circle"></i> <?php echo Yii::t("login","Please, you will find a temporaly password")?></h4>
                 <h4 class="no-margin">
                     <small><?php echo Yii::t("login","in order to connect you") ?></small>
                 </h4>
@@ -321,9 +321,9 @@
                 <br><br>
                 <h5><i class="fa fa-angle-down"></i> <?php echo Yii::t("login", "How can it be done")?> ?</h5>
                 <i class="fa fa-link" style="width:20px;"></i> <b><?php echo Yii::t("login","Go to your profil page") ?></b><br>
-                <i class="fa fa-hand-o-up" style="width:20px;"></i> <?php echo Yii::t("login","Click on params buttom under your header section") ?>.</br>
+                <i class="fa fa-hand-o-up" style="width:20px;"></i> <?php echo Yii::t("login","Click on parameters button in the menu under your header section") ?>.</br>
                 <hr>
-                <i class="fa fa-list" style="width:20px;"></i> <b><?php echo Yii::t("login","Click on the proposition - Change your password") ?></b>.</br>
+                <i class="fa fa-list" style="width:20px;"></i> <b><?php echo Yii::t("login","Then click on the tab 'Change your password'") ?></b>.</br>
                 <hr>
                 <i class="fa fa-unlock" style="width:20px;"></i> <?php echo Yii::t("login","In few seconds, you will be <b class='letter-green'>enjoying your new login password</b>") ?>.
                     

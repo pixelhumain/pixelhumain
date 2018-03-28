@@ -101,6 +101,18 @@ return array(
         "our chart" => "la charte",
 
 
-        "password saved securely in your cookies" => "mot de passe enregistré de façon sécurisée dans vos cookies"
+        "password saved securely in your cookies" => "mot de passe enregistré de façon sécurisée dans vos cookies",
+        
+        "A new password has been sent to your email box !!"=>"Un nouveau mot de passe vous a été envoyé sur votre boite mail",
+        "Please, you will find a temporaly password"=>"Vous y trouverez voutre mot de passe temporaire",
+        "in order to connect you"=>"afin de vous connecter",
+        "Then, you will be free to change your password on your profil page"=>"Ensuite, vous serez libre de changer votre mot de passe sur votre page de profil",
+        "Go to your profil page"=>"Allez sur votre page de profil",
+        "Click on parameters button in the menu under your header section"=>"Cliquez sur le bouton de paramêtres dans le menu sous votre bannière",
+        "Then click on the tab 'Change your password'"=>"Ensuite cliquez sur l'onglet 'Changer mon mot de passe'",
+        "In few seconds, you will be <b class='letter-green'>enjoying your new login password</b>"=>"In few seconds, vous aurez <b>votre nouveau mot de passe de connexion</b>",
+        "New email validation succesfully sent !!" => "Un nouveau mail de validation vous a été envoyé sur votre boite mail !!",
+        "You didn't receive the validation email ?"=>"Vous n'avez pas reçu votre mail afin de valider votre compte ?",
+        "Indicate your email link to your account to receive a new validation"=>"Indiquez votre email lié à votre compte pour le recevoir de nouveau",
     );
 ?>
