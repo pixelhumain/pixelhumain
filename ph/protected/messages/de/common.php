@@ -948,7 +948,7 @@ return array(
 	"Not specified" => "Nicht angegeben",
 	"Update general information" => "Allgemeine Informationen aktualisieren",
 	"Update description" => "Beschreibung aktualisieren",
-	"Update network" => "Soziales Netzwerk aktualisieren",
+	"Update network" => "Soziale Netzwerke aktualisieren",
 	"Update date" => "Daten aktualisieren",
 	"General information" => "Allgemeine Informationen",
 	"character(s)" => "Buchstaben",
