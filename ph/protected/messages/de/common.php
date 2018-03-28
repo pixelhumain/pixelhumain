@@ -1293,15 +1293,18 @@ return array(
 	"The statistics shown correspond to the number of loadings of each url." => "Die angezeigten Statistiken entsprechen der Anzahl der Aufrufe der einzelnen URLs.",
 	"Each time a person accesses for example the page #agenda, #live, or #search, the number increases."=>"Jedes Mal, wenn eine Person z.B. auf die Seite #agenda, #live oder #search zugreift, erhöht sich die Zahl.",
 	"The curves provide an overview of page traffic by page, day and week."=>"Die Darstellungskurven geben einen Überblick über die Aufrufe pro Seite, Tag und Woche.",
-	"LOGIN is incremented each time a user logs in to their account."=>"#LOGIN wird jedes Mal erhöht, wenn sich ein Benutzer bei seinem Konto anmeldet.",
+	"LOGIN is incremented each time a user logs in to their account."=>"LOGIN wird jedes Mal erhöht, wenn sich ein Benutzer bei seinem Konto anmeldet.",
 
 	"Number of visits - Week" => "Anzahl der Besuche - Woche",
 	"Week" => "Woche",
-	"Ressources" => "Ressource",
+	"Ressources" => "Ressourcen",
 	"Ressource" => "Ressource",
 
 	"Recurring donation" => "Regelmäßige Spende",
-	"pts , based on Links and Posts popularity" => "Punkte, basierend auf Links und der Popularität von Posts",
+	"pts , based on Links and Posts popularity" => "Punkte, die auf Links und der Popularität von Posts beruhen",
+	"Zu meinen Favoriten hinzufügen" => "",
+	"Aus meinen Lieblingsplätzen entfernen" => "",
+	"Zone zu neu hinzufügen" => "",
 	
 	
 	
