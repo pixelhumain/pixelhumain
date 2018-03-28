@@ -122,5 +122,9 @@ return array(
 	"with {who}" => "mit {who}",
 	"in a news" => "in einer Nachricht",
 	"in a comment" => "in einem Kommentar",
+	
+	"{who} commented on resolution {what} in {where}" => "{who} kommentierte den Beschluss {what} in {where}",
+	"{who} added comments on resolution {what} in {where}" => "{who} fügte Kommentare zum Beschluss {what} in {where} zu",
+	"{who} added few comments on resolution {what} in {where}" => "{who} fügte einige Kommentare zum Beschluss {what} in {where} zu",
 );
 ?>
