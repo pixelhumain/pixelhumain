@@ -103,10 +103,10 @@ a.link-submenu-header:focus{
                     <a href="#web" class="lbh navbar-brand font-blackoutM menu-btn-back-category">
                 <?php } ?>
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
-                     class="nc_map pull-left hidden-xs hidden-sm" height=20>
+                     class="nc_map pull-left hidden-xs hidden-sm" height=20 style="display: none;">
                 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/kgougle/logo-min-k.png" 
-                     class="nc_map pull-left visible-xs visible-sm" height=25>
+                     class="nc_map pull-left visible-xs visible-sm" height=25 style="display: none;">
                 
                 <!-- <small class="letter letter-red pastille font-blackoutT <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
                     <?php //echo $subdomainName; ?>
@@ -377,3 +377,10 @@ a.link-submenu-header:focus{
 <?php //$this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
 
 
+<script type="text/javascript">
+ 
+    jQuery(document).ready(function() {   
+        $(".nc_map").show();
+    });
+
+</script>

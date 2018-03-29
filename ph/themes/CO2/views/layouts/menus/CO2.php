@@ -68,7 +68,7 @@
                      class="logo-menutop main pull-left hidden-xs hidden-sm" height=17>
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
-                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" height=20>
+                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" style="display: none;" height=20>
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
                      class="logo-menutop pull-left visible-xs visible-sm" height=25>
@@ -569,8 +569,10 @@
 <?php $this->renderPartial($layoutPath.'formCreateElement'); ?>
 
 
-<script>
- // jQuery(document).ready(function() {    
- //     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
- // });
-</script> 
+<script type="text/javascript">
+ 
+    jQuery(document).ready(function() {   
+        $(".logo-menutop.hidden-top").show();
+    });
+
+</script>

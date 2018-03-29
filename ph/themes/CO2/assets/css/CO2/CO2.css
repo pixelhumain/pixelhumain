@@ -348,7 +348,7 @@ input#second-search-bar{
 	display: none;
 }
 
-.navbar-custom.affix-top .skills{
+.navbar-custom .skills{
 	display: inline;
 	padding-top:15px;
 	float:left;
