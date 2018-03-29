@@ -14,6 +14,7 @@
 
     var modules = {
         "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
+        "news": <?php echo json_encode( News::getConfig() ) ?>,
         "classifieds": <?php echo json_encode( Classified::getConfig() ) ?>,
         "places": <?php echo json_encode( Place::getConfig() ) ?>,
         "poi": <?php echo json_encode( Poi::getConfig() ) ?>,

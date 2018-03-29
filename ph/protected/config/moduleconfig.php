@@ -13,6 +13,7 @@ $activeModules = array(
 	"connect",
 	"places",
 	"ressources",
+	"news",
 	"classifieds",
 	'terla',
 
