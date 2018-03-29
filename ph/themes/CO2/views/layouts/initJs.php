@@ -152,6 +152,7 @@
     };
     var onchangeClick=true;
     var lastWindowUrl = location.hash;
+    var urlBackDocs = location.hash;
     var allReadyLoadWindow=false;
     var navInSlug=false;
     var themeObj = {
@@ -177,6 +178,7 @@
 
             if( notNull(myScopes) && myScopes.userId == userId )  {
                 myScopes.open={};
+                myScopes.search = {};
                 myScopes.openNews={};
                 if(myScopes.multiscopes==null)
                     myScopes.multiscopes={};
@@ -187,6 +189,7 @@
 					userId: userId,
 					open : {},
                     openNews : {},
+                    search : {},
 					communexion : <?php echo json_encode(CO2::getCommunexionUser()) ?>,
 					multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 
 									json_encode($me["multiscopes"]) :
@@ -297,12 +300,21 @@
 
                             }else
                                 urlCtrl.loadByHash(location.hash,true);
-                        }else
+                        }else if(lastWindowUrl.indexOf("#docs")>=0 && location.hash.indexOf("#docs")>=0){
+                           if(lastSplit[0]==currentSplit[0]){
+                                page = (location.hash.indexOf("page")>=0) ? currentSplit[2] : "welcome";
+                                dir = (location.hash.indexOf("dir")>=0) ? currentSplit[4] : mainLanguage;
+                                navInDocs(page, dir);
+                            }else
+                                urlCtrl.loadByHash(location.hash,true);
+                        }else{
                             urlCtrl.loadByHash(location.hash,true);
+                        }
                     } 
                     allReadyLoadWindow = false;
                     onchangeClick=true;
                 }
+                urlBackDocs=lastWindowUrl;
                 lastWindowUrl = location.hash;
             }
         },

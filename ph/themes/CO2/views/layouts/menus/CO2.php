@@ -280,7 +280,7 @@
                         <li role="separator" class="divider"></li>
                         <li class="text-left">
                             <!--#default.view.page.links-->
-                            <a href="#default.view.page.index.dir.docs" class="lbhp bg-right">
+                            <a href="#docs.page.welcome.dir.<?php echo Yii::app()->language ?>" class="lbh bg-right">
                                 <i class="fa fa-book"></i> <?php echo Yii::t("common", "Documentation") ?>
                             </a>
                         </li>
@@ -295,18 +295,13 @@
                        
 
                         
-                        <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
+                        <?php if( Yii::app()->session["userIsAdmin"] || Yii::app()->session[ "userIsAdminPublic" ]) { 
+                            $label=(Yii::app()->session["userIsAdmin"]) ? Yii::t("common", "Admin") : Yii::t("common", "Admin public");  
+                            ?>
                             <li role="separator" class="divider"></li>
                             <li class="text-admin">
                                 <a href="#admin" class="lbh bg-white">
-                                    <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin") ; ?>
-                                </a>
-                            </li>
-                        <?php }else if( Yii::app()->session[ "userIsAdminPublic" ] ) { ?>
-                            <li role="separator" class="divider"></li>
-                            <li class="text-admin">
-                                <a href="#adminpublic" class="lbh bg-white">
-                                    <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin public") ; ?>
+                                    <i class="fa fa-user-secret"></i> <?php echo $label ; ?>
                                 </a>
                             </li>
                         <?php } ?>
