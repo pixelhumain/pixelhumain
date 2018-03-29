@@ -255,10 +255,11 @@
 /* LIGHT DARK */
 
 /*light*/
-#onepage section.light{
-	color:white;
-}
-#onepage section.light h2{
+#onepage section.light,
+#onepage section.light h2,
+#onepage section.light h3,
+#onepage section.light li,
+#onepage section.light p{
 	color:white;
 }
 
@@ -299,7 +300,11 @@
 #onepage .header.dark{
 	color:#2C3E50;
 }
-#onepage section.dark h2{
+#onepage section.dark,
+#onepage section.dark h2,
+#onepage section.dark h3,
+#onepage section.dark li,
+#onepage section.dark p{
 	color:#2C3E50;
 }
 
