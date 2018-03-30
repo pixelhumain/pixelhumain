@@ -278,7 +278,7 @@ return array(
 	"Answer" => "Réponse",
 	"the answer" => "la réponse",
 
-	"click to vote" => "cliquer pour voter"
+	"click to vote" => "cliquer pour voter",
 
 	"Please login to post a message" => "Merci de vous connecter pour publier un message",
 	"I'm logging in" => "Je me connecte",
