@@ -211,5 +211,12 @@ return array(
 	"Author" => "Autor",
 	"Size min : 10 caractères" => "Länge min: 10 Zeichen",
 	"Chat" => "Chat",
+	
+	"adopteds" => "übernommen",
+	"You voted for this answer" => "Sie haben für diese Antwort gestimmt",
+	"Survey in process" => "Umfrage läuft",
+	"The <b>vote</b> is ended : " => "Die <b>Abstimmung</b> wird beendet:",
+	"Answer" => "Antwort",
+	"the answer" => "die Antwort",
 
 );
