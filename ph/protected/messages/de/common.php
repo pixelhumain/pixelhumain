@@ -1302,9 +1302,12 @@ return array(
 
 	"Recurring donation" => "Regelmäßige Spende",
 	"pts , based on Links and Posts popularity" => "Punkte, die auf Links und der Popularität von Posts beruhen",
-	"Zu meinen Favoriten hinzufügen" => "",
-	"Aus meinen Lieblingsplätzen entfernen" => "",
-	"Zone zu neu hinzufügen" => "",
+	
+	"This email doesn't exist in our database. Do you want to create an account ?" => "Diese E-Mail existiert nicht in unserer Datenbank. Möchten Sie ein Benutzerkonto einrichten?",
+	"Open" => "Öffnen",
+	"Add to my favorites places" => "Zu meinen Lieblingsorten hinzufügen",
+	"Remove from my favorites places" => "Aus meinen Lieblingsorten entfernen",
+	"Add zone to new" => "Zone zu neu hinzufügen",
 	
 	
 	
