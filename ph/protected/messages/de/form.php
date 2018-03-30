@@ -170,5 +170,10 @@
 		"Please, add a place to your post" => "Bitte fügen Sie Ihrem Beitrag einen Ort hinzu",
 		"Add places where you want to publish" => "Fügen Sie Orte hinzu, an denen Sie veröffentlichen möchten",
 		"Selected zones" => "Ausgewählte Zonen",
+		
+		"Your proposal / question" => "Ihr Vorschlag / Ihre Frage",
+		"More informations, arguments, exemples" => "Mehr Informationen, Argumente, Beispiele",
+		"Add answers" => "Antworten hinzufügen",
+		"answer" => "Antwort",
 	)
 ?>
