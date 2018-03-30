@@ -210,5 +210,6 @@ return array(
 	"adopted" => "übernommen",
 	"Author" => "Autor",
 	"Size min : 10 caractères" => "Länge min: 10 Zeichen",
+	"Chat" => "Chat",
 
 );

@@ -117,6 +117,7 @@ return array(
 	"You must be logged in to add a news entry !" => "Vous devez être connecté(e) pour publier une news !",
 	"You are not the creator. Please contact the administrator" => "Vous nêtes pas le créateur de cette fiche. Veuillez contacter un administrateur",
 	"You must be connected to access to create forms"=>"Vous devez être connecté pour afficher les formulaires de création",
+	"This email doesn't exist in our database. Do you want to create an account ?"=>"Cet email n'existe pas dans notre base. Voulez vous créer un compte ?",
 	//Success
 	"Changing language processing"=>"Changement de langue en cours",
 	"Your form validation is successful" => "la validation du formulaire est réalisée avec succès",
