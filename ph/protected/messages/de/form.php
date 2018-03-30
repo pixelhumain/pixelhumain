@@ -13,7 +13,7 @@
 		"Make visible your company<br>Find new customer<br>Manage your contacts"=>"Stellen Sie Ihr Unternehmen vor<br>Finden Sie neue Kundschaft<br>Verwalten Sie Ihre Kontakte",
 		"Town hall, schools, etc...<br>Share your news<br>Share events"=>"Gemeindeverwaltungen, Schulen, usw...<br>Teilen Sie neueste Mitteilungen mit<br>Kündigen Sie Veranstaltungen an",
 		"Create a list of bookmark to find fastly your favorite url<br>And share it to other people"=>"Fügen Sie Lesezeichen hinzu, um schnell Ihre wichtigsten Webseiten aufzurufen<br>und mit anderen Personen zu teilen",
-		"Upload files here to share it with others<br>And organized them !"=> "Fügen Sie Dateien hinzu, um Sie mit anderen zu teilen<br>und sortiert aufzubewahren !",
+		"Upload files here to share it with others<br>And organized them !"=> "Fügen Sie Dateien hinzu, um Sie mit anderen zu teilen<br>und übersichtlich aufzubewahren !",
 		"speaking as"=> "für",
 		"Is part of"=>"Ist ein Teil von",
 		"parent's start date"=>"Startdatum des übergeordneten Ereignisses",
