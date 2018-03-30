@@ -456,7 +456,7 @@ fieldset[disabled] .btn-success.active {
   box-shadow: none;
   border: none;
   min-height: 100%;
-  padding: 100px 0;
+  padding: 20px 0;
   text-align: center;
 }
 .portfolio-modal .modal-content h2 {

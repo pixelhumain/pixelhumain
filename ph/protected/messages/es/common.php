@@ -1255,6 +1255,75 @@ merci de renseigner votre code postal dans l'addresse de votre profil.",
 	"All the city" => "Toute la villes",
 	"Initialization of map" => "Initialisation de la carte",
 	
+	"co-finance" => "co-financer",
 
+	"services" => "services",
+	"circuits" => "circuits",
+	"products" => "products",
+
+	"Shopping cart" => "Panier",
+	
+	"Checkout" => "Payer",
+	"Validate" => "Valider",
+	"Continue" => "Continuer",
+	"Total of your order" => "Total de votre panier",
+
+	"My infos" => "Mes infos",
+	"My messages" => "Messages",
+	"My circuits" => "Circuits",
+	"Invoice" => "Factures",
+
+	"Leave your comment" => "Laissez votre commentaire",
+	"Your comment" => "Votre commentaire",
+	"Show programmation" => "Voir le programme",
+	"Price of this command" => "Prix de cette commande",
+	"purchase" => "achat",
+
+	"Continue this cart" => "Continuer mes achats",
+	"Delete" => "Effacer",
+
+	"Sleeping" 			=> "Pour dormir",
+	"Restaurant" 		=> "Restaurant",
+	"Funny activity" 	=> "Activité",
+	"Transport" 		=> "Transport",
+	"Uncredible site" 	=> "Site incroyable",
+	"Artisants" 		=> "Artisant",
+	"Guide and helper" 	=> "Guide et accompagnateur",
+
+	"Freedom" => "Freedom",
+
+	"This request is too short !" => "Cette recherche est trop courte !",
+	
+	"folder fee included and delivery tax not included" => "folder fee included and delivery tax not included",
+
+	"previous" => "précédent",
+	"next" => "suivant",
+	"My maps" => "Mes cartes",
+
+	"Search by place" => "Recherche géographique",
+	"where ?" => "Où ?",
+	"My favorites places" => "Mes lieux favoris",
+	"what are you looking for ?" => "Que recherchez-vous ?",
+	"Geographical filter"=>"Filtre géographique",
+	"Theme filter"=>"Filtre thématique",
+	"Sharing"=>"Entraide",
+	"In live"=> "En live",
+	"Market place"=> "Place de marché",
+	"Documentation"=>"Documentation",
+	"An account is already registered with this email"=>"Un compte utilisateur est déjà enregistré avec cet email",
+	"Open filtering by type"=>"Ouvrir le filtre par type",
+
+	"The statistics shown correspond to the number of loadings of each url." => "Les statistiques indiquées correspondent au nombre de chargement de chaque url",
+	"Each time a person accesses for example the page #agenda, #live, or #search, the number increases."=>"A chaque fois qu'une personne accède par exemple à la page #agenda, #live, ou #search, le nombre augmente.",
+	"The curves provide an overview of page traffic by page, day and week."=>"Les courbes donnent un aperçu de la fréquentation de chaque page, par jour, et par semaine.",
+	"LOGIN is incremented each time a user logs in to their account."=>"#LOGIN est incrémenté à chaque fois qu'un utilisateur se connecte à son compte.",
+
+	"Number of visits - Week" => "Nombre de visites - Semaine",
+	"Week" => "Semaine",
+	"Ressources" => "Ressources",
+	"Ressource" => "Ressource",
+
+	"Recurring donation" => "Don récurant",
+	"pts , based on Links and Posts popularity" => "pts, basés sur les liens et les publications"
 );
 ?>

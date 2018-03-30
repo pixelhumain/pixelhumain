@@ -117,6 +117,7 @@ return array(
 	"You must be logged in to add a news entry !" => "Vous devez être connecté(e) pour publier une news !",
 	"You are not the creator. Please contact the administrator" => "Vous nêtes pas le créateur de cette fiche. Veuillez contacter un administrateur",
 	"You must be connected to access to create forms"=>"Vous devez être connecté pour afficher les formulaires de création",
+	"This email doesn't exist in our database. Do you want to create an account ?"=>"Cet email n'existe pas dans notre base. Voulez vous créer un compte ?",
 	//Success
 	"Changing language processing"=>"Changement de langue en cours",
 	"Your form validation is successful" => "la validation du formulaire est réalisée avec succès",
@@ -923,7 +924,7 @@ return array(
 	"No member for this organization" => "Aucun membre inscrit dans cette organisation",
 	"No contributor for this project" => "Aucun contributeur sur ce projet",
 	"Share something"=> "Partagez quelque chose",
-	"Communecter is building and growing thnaks to every pixels"=>"Communecter est construit et grandit grâce à chaque pixel",
+	"Communecter is build and grows thanks to many pixels"=>"Communecter est construit et grandit grâce à chaque pixel",
 	"No member for this person" => "Personne dans cette communauté",
 	"Organizator detail" => "Détail de l'organisateur",
 	"No result match in your search" =>  "Aucun résultat ne correspond à votre recherche",
@@ -1367,6 +1368,23 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Open filtering by type"=>"Ouvrir le filtre par type",
 	"Open" => "Ouvrir",
     
+
+	"The statistics shown correspond to the number of loadings of each url." => "Les statistiques indiquées correspondent au nombre de chargement de chaque url",
+	"Each time a person accesses for example the page #agenda, #live, or #search, the number increases."=>"A chaque fois qu'une personne accède par exemple à la page #agenda, #live, ou #search, le nombre augmente.",
+	"The curves provide an overview of page traffic by page, day and week."=>"Les courbes donnent un aperçu de la fréquentation de chaque page, par jour, et par semaine.",
+	"LOGIN is incremented each time a user logs in to their account."=>"#LOGIN est incrémenté à chaque fois qu'un utilisateur se connecte à son compte.",
+
+	"Number of visits - Week" => "Nombre de visites - Semaine",
+	"Week" => "Semaine",
+	"Ressources" => "Ressources",
+	"Ressource" => "Ressource",
+
+	"Recurring donation" => "Don récurrent",
+	"pts , based on Links and Posts popularity" => "pts, basés sur les liens et les publications",
+
+	"Add to my favorites places" => "Ajouter à mes lieux favoris",
+	"Remove from my favorites places" => "Supprimer de mes lieux favoris",
+	"Add zone to new" => "Ajouter une zone à la new",
 
 );
 ?>

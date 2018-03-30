@@ -70,6 +70,9 @@
                 <button class="btn btn-default btn-sm text-dark pull-right close-modal" data-dismiss="modal">
                     <i class="fa fa-times"></i>
                 </button>
+                <a href="https://chat.communecter.org" class="btn btn-default btn-sm text-dark pull-right close-modal" target='_blank'>
+                    <i class="fa fa-external-link"></i>
+                </a>
                 
         </div>
         <div class="col-sm-12 RCcontainer" style="background-color:white"></div>

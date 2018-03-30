@@ -34,6 +34,7 @@ return array(
 	"Closed" => "Fermées",
 
 	"mine" => "Dont je suis l'auteur",
+	"Author" => "Auteur",
 	"amendables" => "Amendables",
 	"amendable" => "Amendable",
 	"tovote" => "À voter",
@@ -279,4 +280,10 @@ return array(
 
 	"click to vote" => "cliquer pour voter"
 
+	"Please login to post a message" => "Merci de vous connecter pour publier un message",
+	"I'm logging in" => "Je me connecte",
+	"I create my account" => "Je créé mon compte",
+	"free registration" => "inscription gratuite",
+
+	"Chat"=>"Messagerie"
 );

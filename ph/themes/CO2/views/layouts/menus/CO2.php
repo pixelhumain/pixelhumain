@@ -17,7 +17,7 @@
 
     .dropdown-menu.arrow_box{
         position: absolute !important;
-        top: 45px;
+        top: 51px;
         right: -65px;
         left: inherit;
         background-color: white;
@@ -61,7 +61,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <a href="#" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" 
+            <a href="#welcome" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" 
                 <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
             >
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-head-search.png" 
@@ -114,12 +114,12 @@
             </button>
             <div id="filters-container-menu" class="no-padding hidden-xs">
                 <ul class="filters-menu">
-                    <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="<?php echo Yii::t("common", "Geographical filter") ?>">
-                     <i class="fa fa-map-marker"></i> 
+                    <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="<?php echo Yii::t("common", "Up for filters") ?>">
+                     <i class="fa fa-angle-double-up"></i> 
                     </li>
-                    <li class="theme-header-filter tooltips" data-placement="bottom" data-original-title="<?php echo Yii::t("common", "Theme filter") ?>">
+                    <!--<li class="theme-header-filter tooltips" data-placement="bottom" data-original-title="<?php echo Yii::t("common", "Theme filter") ?>">
                      <i class="fa fa-tags"></i> 
-                    </li>
+                    </li>-->
                     
                 </ul> 
             </div>
@@ -138,7 +138,7 @@
             </button>
 
         <?php } ?>
-        <button class="btn-show-map"
+        <button class="btn-show-map" style="border-radius: 100%;width: 40px;border: none;height: 40px;"
                 title="<?php echo Yii::t("common", "Show the map"); ?>"
                 alt="<?php echo Yii::t("common", "Show the map"); ?>"
                 >
@@ -280,23 +280,28 @@
                         <li role="separator" class="divider"></li>
                         <li class="text-left">
                             <!--#default.view.page.links-->
-                            <a href="#default.view.page.index.dir.docs" class="lbhp bg-right">
+                            <a href="#docs.page.welcome.dir.<?php echo Yii::app()->language ?>" class="lbh bg-right">
                                 <i class="fa fa-book"></i> <?php echo Yii::t("common", "Documentation") ?>
+                            </a>
+                        </li>
+
+                        <li role="separator" class="divider"></li>
+                        <li class="text-left">
+                            
+                            <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" class="bg-right">
+                                <i class="fa fa-heart"></i> <?php echo Yii::t("common", "Recurring donation") ?>
                             </a>
                         </li>
                        
 
-                        <li role="separator" class="divider"></li>
-                        <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
+                        
+                        <?php if( Yii::app()->session["userIsAdmin"] || Yii::app()->session[ "userIsAdminPublic" ]) { 
+                            $label=(Yii::app()->session["userIsAdmin"]) ? Yii::t("common", "Admin") : Yii::t("common", "Admin public");  
+                            ?>
+                            <li role="separator" class="divider"></li>
                             <li class="text-admin">
                                 <a href="#admin" class="lbh bg-white">
-                                    <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin") ; ?>
-                                </a>
-                            </li>
-                        <?php }else if( Yii::app()->session[ "userIsAdminPublic" ] ) { ?>
-                            <li class="text-admin">
-                                <a href="#adminpublic" class="lbh bg-white">
-                                    <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin public") ; ?>
+                                    <i class="fa fa-user-secret"></i> <?php echo $label ; ?>
                                 </a>
                             </li>
                         <?php } ?>
@@ -331,7 +336,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php 
                     if( isset( Yii::app()->session['userId']) ){
-                      $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->assetsUrl);
+                      $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->getParentAssetsUrl());
                       $countNotifElement = ActivityStream::countUnseenNotifications(Yii::app()->session["userId"], Person::COLLECTION, Yii::app()->session["userId"]);
                 ?> 
                      <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
@@ -344,7 +349,11 @@
                             <img class="img-circle" id="menu-thumb-profil" 
                                  width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
                     </a>
-
+                    <!--<a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" class="menu-button btn-menu btn-link pull-right hidden-xs" style="color : #E5344D;"
+                          data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Recurring donation") ?>" 
+                          alt="<?php echo Yii::t("common","Recurring donation") ?>">
+                      <i class="fa fa-heart "></i>
+                    </a>-->
                    <button class="menu-button btn-menu btn-link btn-open-floopdrawer text-dark pull-right hidden-xs" 
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","My network") ?>" 
                           alt="<?php echo Yii::t("common","My network") ?>">
@@ -359,14 +368,14 @@
                             <?php echo @$countNotifElement ?>
                         </span>
                     </button>
-                    
+                    <?php if(@$me && @$me["links"] && (@$me["links"]["memberOf"] || @$me["links"]["contributors"])){ ?>
                     <button class="menu-button btn-menu btn-dashboard-dda text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Cooperation") ?>" 
                           alt="<?php echo Yii::t("common","Cooperation") ?>">
                       <i class="fa fa-inbox"></i>
                       <span class="coopNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
-
+                    <?php } ?>
 
                      <div class="dropdown pull-right" id="dropdown-dda">
                         <div class="dropdown-main-menu">
@@ -386,14 +395,12 @@
                     </button>
 
                     
-                    <?php if($subdomain == "welcome" || $subdomain=="page" ){ ?>
                     <span class="dropdown" id="dropdown-apps">
                         <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                               title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>">
                           <i class="fa <?php echo Application::ICON ?> letter-red"></i>
                         </button>
                         <div class="dropdown-menu arrow_box" aria-labelledby="dropdownApps">
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#welcome" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-home fa-2x"></i><br/><?php echo Yii::t("common","Home") ?></a>
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo Search::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Search") ?></a>
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo News::ICON2 ?> fa-2x"></i><br/><?php echo Yii::t("common","In live") ?></a>
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Event::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Agenda") ?></a>
@@ -403,14 +410,27 @@
                     </span>
 
 
-                <?php } 
-                } else { ?>
+                <?php } else { ?>
+                 <span class="dropdown pull-left" id="dropdown-apps">
+                        <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
+                              title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>" style="margin-top: 8px;">
+                          <i class="fa <?php echo Application::ICON ?> letter-red"></i>
+                        </button>
+                        <div class="dropdown-menu arrow_box" aria-labelledby="dropdownApps" style="top: 55px;right: -101px;">
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo Search::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Search") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo News::ICON2 ?> fa-2x"></i><br/><?php echo Yii::t("common","In live") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Event::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Agenda") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Classified::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Market place") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Ressource::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Sharing") ?></a>
+                        </div>
+                    </span>
+
                     <li class="pull-right">
                         <?php //if($subdomain != "welcome"){ ?>
-                            <button class="letter-green font-montserrat btn-menu-connect margin-left-10" 
-                                    data-toggle="modal" data-target="#modalLogin">
+                            <button class="letter-green font-montserrat btn-menu-connect margin-left-10 margin-right-10" 
+                                    data-toggle="modal" data-target="#modalLogin" style="font-size: 20px; margin-top:9px;">
                                     <i class="fa fa-sign-in"></i> 
-                                    <span class="hidden-xs hidden-sm"><?php echo Yii::t("login", "LOG IN") ?></span>
+                                    <span class="hidden-xs"><small style="width:70%;"><?php echo Yii::t("login", "LOG IN") ?></small></span>
                             </button>
                         <?php //} else { ?>
                             <!-- <div class="hidden-xs hidden-sm append-md-login"> -->
@@ -421,19 +441,19 @@
                         <?php //} ?>
                     </li>
 
-                    <li class="pull-right">
+                    <!--<li class="pull-right">
                         <a href="#info.p.stats" class="lbh padding-5" style="margin-top:8px;">
                             <i class="fa fa-bar-chart"></i> stat
                         </a>
-                    </li> 
+                    </li>--> 
                 <?php } ?>
             </ul>
             <?php if (!@Yii::app()->session["userId"] && $subdomain == "welcome"){ ?>
-                <button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
+                <!--<button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
                         data-toggle="modal" id="open-login-xs" style="font-size:20px;">
                     <span><i class="fa fa-sign-in"></i></span>
                 </button>
-                <div class="visible-xs visible-sm append-small-login hidden"></div>
+                <div class="visible-xs visible-sm append-small-login hidden"></div>-->
             <?php } ?>
         </div>
 

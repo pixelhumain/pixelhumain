@@ -1,25 +1,29 @@
+<div class="toolbar-bottom bottom-left font-montserrat">
+    <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" id="donation-btn" class="btn btn-default">
+        <i class="fa fa-heart"></i> <?php //echo Yii::t("common", "Don récurant") ?>
+    </a>
+</div>
+<div class="toolbar-bottom bottom-right font-montserrat">
 
-<div class="toolbar-bottom shadow2 font-montserrat">
-
-    <button class="btn btn-default lbh tooltips" data-hash="#welcome"
+    <!--<button class="btn btn-default lbh tooltips" data-hash="#welcome"
             data-placement="top" data-original-title="Page d'accueil">
         <i class="fa fa-home" style="font-size: 19px;"></i>
     </button>
     
     <button class="btn btn-default tooltips letter-red" id="show-bottom-app">
         <i class="fa fa-th" style="font-size: 17px;"></i>
-    </button>
+    </button>-->
     
     <?php if(@Yii::app()->session["userId"]) { ?>
-    <button class="btn btn-default letter-green" id="show-bottom-add" >
-        <i class="fa fa-plus-circle"  style="font-size: 16px;"></i> 
+    <button class="btn btn-default bg-green-k text-white no-padding" id="show-bottom-add">
+        <i class="fa fa-plus-circle"></i> 
         <!-- <span class="hidden-xs"><?php echo Yii::t("common", "add") ?> </span>-->
     </button>
     <?php } ?>
-    <button class="btn btn-default letter-blue btn-show-map">
+    <!--<button class="btn btn-default letter-blue btn-show-map">
         <i class="fa fa-map-marker" style="font-size: 15px;"></i> 
-        <!-- <span class="hidden-xs"><?php echo Yii::t("common", "map") ?></span> -->
-    </button>
+         <span class="hidden-xs"><?php echo Yii::t("common", "map") ?></span> 
+    </button>-->
     <!-- <button class="btn btn-default">
         <i class="fa fa-comments"></i> messagerie
     </button>
@@ -30,7 +34,7 @@
         <i class="fa fa-cogs"></i> 
     </button> -->
 
-    <a class="btn btn-default tooltips lbh" href="#info.p.stats"
+    <!--<a class="btn btn-default tooltips lbh" href="#info.p.stats"
              data-placement="top" data-original-title="Statistiques : visualiser la fréquentation quotidienne du réseau">
         <i class="fa fa-bar-chart"></i>
     </a>
@@ -46,21 +50,21 @@
     <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank"
             data-placement="top" data-original-title="Participer au financement du réseau"
             class="btn btn-default letter-pink tooltips">
-            <!-- <i class="fa fa-chain" data-alt="eye-dropper"></i>  -->
+            <i class="fa fa-chain" data-alt="eye-dropper"></i>
             <i class="fa fa-gift" style="font-size: 15px;"></i> <span class="hidden-xs"><?php echo Yii::t("common", "co-tribuer") ?></span>
-    </a>
+    </a>-->
     
     <!-- <button class="btn btn-default"  id="show-bottom-quickaxe" style="width:50px;">
         <img src="<?php echo $this->module->assetsUrl."/images/thumb/run.png"?>" width=20/>
     </button> -->
 
-    <button class="btn btn-default bg-blue-k" style="width:50px;" onclick="KScrollTo('.main-container')">
+    <!--<button class="btn btn-default bg-blue-k" style="width:50px;" onclick="KScrollTo('.main-container')">
         <i class="fa fa-chevron-up"></i>
-    </button>
+    </button>-->
 
 </div>
 
-<div class="toolbar-bottom-apps shadow2 font-montserrat hidden">
+<!--<div class="toolbar-bottom-apps shadow2 font-montserrat hidden">
 
     <a class="btn btn-default lbh letter-red" href="#search">
         <i class="fa <?php echo Search::ICON; ?>"></i> 
@@ -83,52 +87,57 @@
         <span class="hidden-xs"><?php echo Yii::t("common", "Sharing") ?></span> 
     </a>
 
-</div>
+</div>-->
 
 <!-- <div class="toolbar-bottom-quickaccess toolbar-bottom-fullwidth shadow2 font-montserrat hidden"></div> -->
 
-<div class="toolbar-bottom-adds toolbar-bottom-fullwidth shadow2 font-montserrat hidden">
-    <h5 class="col-xs-12"><small class="letter-green" id="addFootTitle">
+<div class="toolbar-bottom-adds toolbar-bottom-fullwidth font-montserrat hidden">
+    <!--<h5 class="col-xs-12"><small class="letter-green" id="addFootTitle">
         <i class="fa fa-plus-circle"></i> <?php echo Yii::t("common", "Add something") ?> : </small>
     </h5>
-    <hr class="col-xs-12 margin-bottom-5 margin-top-5">
-    <a href="#element.invite" class="addBtnFoot btn-open-form btn btn-default text-yellow lbhp inline-block margin-bottom-10"> 
+    <hr class="col-xs-12 margin-bottom-5 margin-top-5">-->
+    <a href="#element.invite" class="addBtnFoot btn-open-form btn btn-default bg-yellow lbhp margin-bottom-10"> 
         <i class="fa fa-user"></i> 
         <span><?php echo Yii::t("common","Invite someone") ?></span>
-    </a>
-    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_NGO; ?>" class="addBtnFoot btn-open-form btn btn-default text-green inline-block margin-bottom-10"> 
+    </a><br/>
+    <a href="javascript:;" data-form-type="organization" class="addBtnFoot btn-open-form btn btn-default bg-green inline-block margin-bottom-10"> 
+        <i class="fa <?php echo Organization::ICON; ?>"></i> 
+        <span><?php echo Yii::t("common","Organizations") ?></span>
+    </a><br/>
+    
+    <!--<a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_NGO; ?>" class="addBtnFoot btn-open-form btn btn-default bg-green inline-block margin-bottom-10"> 
         <i class="fa <?php echo Organization::ICON; ?>"></i> 
         <span><?php echo Yii::t("common","NGO") ?></span>
     </a>
-    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_BUSINESS; ?>" class="addBtnFoot btn-open-form btn btn-default text-azure inline-block margin-bottom-10"> 
+    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_BUSINESS; ?>" class="addBtnFoot btn-open-form btn btn-default bg-azure inline-block margin-bottom-10"> 
         <i class="fa <?php echo Organization::ICON_BIZ; ?>"></i> 
         <span><?php echo Yii::t("common","Enterprise") ?></span>
     </a>
-    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_GROUP; ?>" class="addBtnFoot btn-open-form btn btn-default text-turq inline-block margin-bottom-10"> 
+    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_GROUP; ?>" class="addBtnFoot btn-open-form btn btn-default bg-turq inline-block margin-bottom-10"> 
         <i class="fa <?php echo Organization::ICON_GROUP; ?>"></i> 
         <span><?php echo Yii::t("common","Group") ?></span>
     </a>
-    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_GOV; ?>" class="addBtnFoot btn-open-form btn btn-default text-red inline-block margin-bottom-10"> 
+    <a href="javascript:;" data-form-type="organization" data-form-subtype="<?php echo Organization::TYPE_GOV; ?>" class="addBtnFoot btn-open-form btn btn-default bg-red inline-block margin-bottom-10"> 
         <i class="fa <?php echo Organization::ICON_GOV; ?>"></i> 
         <span><?php echo Yii::t("common","Governemental organization") ?></span>
-    </a>
-    <a href="javascript:;" data-form-type="project" class="addBtnFoot addBtnFoot_orga btn-open-form btn btn-default text-purple inline-block margin-bottom-10"> 
+    </a>-->
+    <a href="javascript:;" data-form-type="project" class="addBtnFoot addBtnFoot_orga btn-open-form btn btn-default bg-purple inline-block margin-bottom-10"> 
         <i class="fa <?php echo  Project::ICON;?>"></i> 
         <span><?php echo Yii::t("common","Project") ?></span>
-    </a>
-    <a href="javascript:;" data-form-type="event" class="addBtnFoot addBtnAll btn-open-form btn btn-default text-orange inline-block margin-bottom-10"> 
+    </a><br/>
+    <a href="javascript:;" data-form-type="event" class="addBtnFoot addBtnAll btn-open-form btn btn-default bg-orange margin-bottom-10"> 
         <i class="fa fa-calendar"></i> 
         <span><?php echo Yii::t("common","Event") ?></span>
-    </a>
-    <a href="javascript:;" data-form-type="classifieds" class="addBtnFoot  addBtnFoot_orga  addBtnFoot_project btn-open-form btn btn-default text-azure inline-block margin-bottom-10"> 
+    </a><br/>
+    <a href="javascript:;" data-form-type="classifieds" class="addBtnFoot  addBtnFoot_orga  addBtnFoot_project btn-open-form btn btn-default bg-azure margin-bottom-10"> 
         <i class="fa fa-bullhorn"></i> 
         <span><?php echo Yii::t("common","Classified") ?></span>
-    </a>
-    <a href="javascript:;" data-form-type="ressources" class="addBtnFoot addBtnAll btn-open-form btn btn-default text-vine inline-block margin-bottom-10"> 
+    </a><br/>
+    <a href="javascript:;" data-form-type="ressources" class="addBtnFoot addBtnAll btn-open-form btn btn-default bg-vine margin-bottom-10"> 
         <i class="fa fa-cubes"></i> 
         <span><?php echo Yii::t("common","Ressource") ?></span>
-    </a>
-    <a href="javascript:;" data-form-type="poi" class="addBtnFoot addBtnAll btn-open-form btn btn-default text-green-k inline-block margin-bottom-10"> 
+    </a><br/>
+    <a href="javascript:;" data-form-type="poi" class="addBtnFoot addBtnAll btn-open-form btn btn-default bg-green-k margin-bottom-10"> 
         <i class="fa fa-map-marker"></i> 
         <span><?php echo Yii::t("common","Point of interest") ?></span>
     </a>
@@ -137,7 +146,7 @@
 <script type="text/javascript">
 jQuery(document).ready(function() {
 
-    $(".toolbar-bottom-apps").hide().removeClass("hidden");
+   /* $(".toolbar-bottom-apps").hide().removeClass("hidden");
     $('#show-bottom-app').off().click(function(){
         $(".toolbar-bottom-apps").toggle(100);
         $(".toolbar-bottom-adds").hide(200);
@@ -149,20 +158,29 @@ jQuery(document).ready(function() {
     $('.toolbar-bottom-apps').unbind("mouseleave").mouseleave(function(){
         console.log(".toolbar-bottom-apps mouseleave");
         $(".toolbar-bottom-apps").hide(200);
-    });
+    });*/
 
 
     $(".toolbar-bottom-adds").hide().removeClass("hidden");
     $('#show-bottom-add').off().click(function(){
-        $(".toolbar-bottom-apps").hide(200);
-        $(".toolbar-bottom-adds").toggle(100);
-        $('.toolbar-bottom-adds .btn').click(function(){
+        if(!$(this).hasClass("opened")){
+            $(this).addClass("opened");
+            $(".toolbar-bottom-apps").hide(200);
+            $(".toolbar-bottom-adds").toggle(100);
+            $('.toolbar-bottom-adds .btn').click(function(){
+                $(".toolbar-bottom-adds").hide(200);
+                $(this).removeClass("opened");
+            });
+        }else{
             $(".toolbar-bottom-adds").hide(200);
-        });
+            $(this).removeClass("opened");
+        }
     });
     $('.toolbar-bottom-adds').unbind("mouseleave").mouseleave(function(){
         console.log(".toolbar-bottom-adds mouseleave");
+        $('#show-bottom-add').removeClass("opened");
         $(".toolbar-bottom-adds").hide(200);
+
     });
 /*
     $(".toolbar-bottom-quickaccess").hide().removeClass("hidden");
@@ -193,7 +211,7 @@ function addBtnSwitch(){
 
     $("#addFootTitle").html('<i class="fa fa-plus-circle"></i> <?php echo Yii::t("common", "Add something") ?> '+fname);
 
-    if(contextData.type == "citoyens" || contextData == null){
+    if(contextData != null && contextData.type == "citoyens" || contextData == null){
         $(".addBtnFoot").removeClass("hidden");
     }
     else if(contextData.type == "organizations")

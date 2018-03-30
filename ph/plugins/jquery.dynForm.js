@@ -246,7 +246,7 @@ onSave: (optional) overloads the generic saveProcess
         	fieldHTML += '<textarea id="'+field+'" maxlength="'+maxlength+'"  class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
         	
         	if(maxlength > 0)
-        		fieldHTML += '<span><span id="maxlength'+field+' name="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
+        		fieldHTML += '<span><span id="maxlength'+field+'" name="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
 
 
 		}else if ( fieldObj.inputType == "markdown"){ 
@@ -356,16 +356,16 @@ onSave: (optional) overloads the generic saveProcess
 				fieldHTML += '<option></option>';
 
 			var selected = "";
-			mylog.log("fieldObj select", fieldObj)
+			mylog.log("fieldObj select", fieldObj);
 			//initialize values
 			if(fieldObj.options)
 				fieldHTML += buildSelectOptions(fieldObj.options, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
-			
-			if( fieldObj.groupOptions ){
+
+			if( fieldObj.groupOptions )
 				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
-			} 
+			
 			fieldHTML += '</select>';
-        }    
+        } 
         else if ( fieldObj.inputType == "uploader" ) {
         	if(placeholder == "")
         		placeholder="add Image";
@@ -1222,10 +1222,16 @@ onSave: (optional) overloads the generic saveProcess
 		{
 			//todo : for generic dynForm check if map exist 
 			$(".locationBtn").off().on( "click", function(){ 
-				$("#ajax-modal").modal("hide");
-		        showMap(true);
+				
 		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
-		        if(typeof formInMap.showMarkerNewElement != "undefined"){ formInMap.showMarkerNewElement(); }
+		        if(typeof formInMap.showMarkerNewElement != "undefined"){
+		        	$("#ajax-modal").modal("hide");
+		        	console.log(".locationBtn");
+					formInMap.actived = true ;
+			        showMap(true);
+		        	console.log(".locationBtn showMarkerNewElement");
+		        	formInMap.showMarkerNewElement(); 
+		        }
 		    });
 		}
 
@@ -2127,6 +2133,7 @@ var uploadObj = {
 	path : null,
 	extra : null,
 	set : function(type,id, file){
+		//alert("uploadObj set"+type);
 		if(notNull(file) && file){
 			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
 			uploadObj.type = type;
@@ -2402,7 +2409,6 @@ var dyFObj = {
 		//get ajax of the elemetn content
 		uploadObj.set(type,id);
 		uploadObj.update = true;
-
 		$.ajax({
 	        type: "GET",
 	        url: baseUrl+"/"+moduleId+"/element/get/type/"+type+"/id/"+id,
@@ -2410,19 +2416,19 @@ var dyFObj = {
 	    })
 	    .done(function (data) {
 	        if ( data && data.result ) {
-	        	//toastr.info(type+" found");
-	        	
+	        	//toastr.info(type+" found")
 				//onLoad fill inputs
 				//will be sued in the dynform  as update 
 				data.map.id = data.map["_id"]["$id"];
 				if(typeof typeObj[type].formatData == "function")
 					data = typeObj[type].formatData();
-
-				delete data.map["_id"];
+				if(data.map["_id"])
+					delete data.map["_id"];
 				mylog.dir(data);
 				console.log("editElement", data);
 				dyFObj.elementData = data;
-				dyFObj.openForm( dyFInputs.get(type).ctrl ,null, data.map);
+				typeForm = (jsonHelper.notNull( "modules."+type+".form") ) ? type : dyFInputs.get(type).ctrl;
+				dyFObj.openForm( typeForm ,null, data.map);
 	        } else {
 	           toastr.error("something went wrong!! please try again.");
 	        }
@@ -2607,6 +2613,7 @@ var dyFObj = {
 
 	//generate Id for upload feature of this element 
 	setMongoId : function(type,callback) { 
+		//alert("setMongoId"+type);
 		uploadObj.type = type;
 		mylog.warn("uploadObj ",uploadObj);
 		if( !$("#ajaxFormModal #id").val() && !uploadObj.update )
@@ -2959,12 +2966,12 @@ var dyFInputs = {
 	    			$(".maxlengthTextarea").off().keyup(function(){
 						//var name = "#" + $(this).attr("id") ;
 						var name = $(this).attr("id") ;
-						mylog.log(".maxlengthTextarea", "#ajaxFormModal [name='"+name+"']", $(this).attr("id"));
-						mylog.log(".maxlengthTextarea", $("#ajaxFormModal [name='"+name+"']").val().length, $(this).val().length);
-						$("#ajaxFormModal [name='maxlength"+name+"']").html($("#ajaxFormModal [name='"+name+"']").val().length);
+						mylog.log(".maxlengthTextarea", "#ajaxFormModal #"+name, $(this).attr("id"));
+						mylog.log(".maxlengthTextarea", $("#ajaxFormModal #"+name).val().length, $(this).val().length);
+						$("#ajaxFormModal #maxlength"+name).html($("#ajaxFormModal  #"+name).val().length);
 					});
 	    		}
-	    		dataHelper.activateMarkdown("#ajaxFormModal #message");
+	    		
 	        }
 	    };
 	    return inputObj;
@@ -3967,9 +3974,12 @@ var dyFInputs = {
     	});
     	return obj;
     },
-    setSub : function(subClass) { 
+    setHeader : function(subClass) { 
     	$("#ajax-modal .modal-header").removeClass("bg-dark bg-purple bg-red bg-azure bg-green bg-green-poi bg-orange bg-yellow bg-blue bg-turq bg-url")
-						  					  .addClass(subClass);
+						  			  .addClass(subClass);
+	},
+    setSub : function(subClass) { 
+    	dyFInputs.setHeader(subClass);
 		
     	if( (contextData != null && contextData.type && contextData.id) || userId )
 		{

@@ -2,6 +2,7 @@
     $params = CO2::getThemeParams();
     $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
                             Yii::app()->request->cookies['multiscopes']->value : "{}";
+    $preferences = Preference::getPreferencesByTypeId(@Yii::app()->session["userId"], Person::COLLECTION);
 ?>
 <script>
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
@@ -36,7 +37,7 @@
     var isMapEnd = false;
 	//used in communecter.js dynforms
     var tagsList = <?php echo json_encode(Tags::getActiveTags()) ?>;
-    //var countryList = <?php echo json_encode(Zone::getListCountry()) ?>;
+    //var countryList = <?php //echo json_encode(Zone::getListCountry()) ?>;
     var eventTypes = <?php asort(Event::$types); echo json_encode(Event::$types) ?>;
     var organizationTypes = <?php echo json_encode( Organization::$types ) ?>;
     var avancementProject = <?php echo json_encode( Project::$avancement ) ?>;
@@ -60,6 +61,8 @@
         app:"search",
         type:"<?php echo Organization::COLLECTION ?>"
     };
+
+    var directoryViewMode="<?php echo (@$preferences["directoryView"]) ? $preferences["directoryView"] : "list" ?>";
     //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     
@@ -148,7 +151,8 @@
         "classified" : "azure"
     };
     var onchangeClick=true;
-    var lastWindowUrl = null;
+    var lastWindowUrl = location.hash;
+    var urlBackDocs = location.hash;
     var allReadyLoadWindow=false;
     var navInSlug=false;
     var themeObj = {
@@ -174,6 +178,7 @@
 
             if( notNull(myScopes) && myScopes.userId == userId )  {
                 myScopes.open={};
+                myScopes.search = {};
                 myScopes.openNews={};
                 if(myScopes.multiscopes==null)
                     myScopes.multiscopes={};
@@ -184,11 +189,13 @@
 					userId: userId,
 					open : {},
                     openNews : {},
+                    search : {},
 					communexion : <?php echo json_encode(CO2::getCommunexionUser()) ?>,
 					multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 
 									json_encode($me["multiscopes"]) :
 									$multiscopes; ?>
                 };
+
                 if( myScopes.communexion != false)
                     myScopes.communexion=scopeObject(myScopes.communexion);
                 else
@@ -293,12 +300,21 @@
 
                             }else
                                 urlCtrl.loadByHash(location.hash,true);
-                        }else
+                        }else if(lastWindowUrl.indexOf("#docs")>=0 && location.hash.indexOf("#docs")>=0){
+                           if(lastSplit[0]==currentSplit[0]){
+                                page = (location.hash.indexOf("page")>=0) ? currentSplit[2] : "welcome";
+                                dir = (location.hash.indexOf("dir")>=0) ? currentSplit[4] : mainLanguage;
+                                navInDocs(page, dir);
+                            }else
+                                urlCtrl.loadByHash(location.hash,true);
+                        }else{
                             urlCtrl.loadByHash(location.hash,true);
+                        }
                     } 
                     allReadyLoadWindow = false;
                     onchangeClick=true;
                 }
+                urlBackDocs=lastWindowUrl;
                 lastWindowUrl = location.hash;
             }
         },

@@ -165,7 +165,14 @@
     	"Debate" => "Débat",
 		"Film"=>"Projection",
         "Crowdfunding" => "Financement Participatif",
-        
+
+        //Property
+        "House" => "Maison", 
+        "Flat" => "Appartement", 
+        "Ground" => "Terrain", 
+        "Parking" => "Parking", 
+        "Office" => "Bureau",
+
         //TYPES
         "NGO" => "Association",
         "LocalBusiness" => "Entreprise",
@@ -178,6 +185,7 @@
         "the group" => "le collectif",
         "the Group" => "le groupe",
         "the government organization" => "l'organisation gouvernementale",
+        
         //ROLES LINK
         "Financier"=>"Financeur",
         "Partner"=>"Partenaire",
@@ -191,8 +199,10 @@
 
         //RESSOURCES
         "Need"=>"Besoin", 
+        "Needs"=>"Besoins", 
         "need"=>"Besoin", 
         "Offer"=>"Offre", 
+        "Offers"=>"Offres", 
         "offer"=>"Offre", 
         "Need something"=>"Besoins",
         "Offer something"=>"Propositions",
