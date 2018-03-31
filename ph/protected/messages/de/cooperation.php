@@ -196,8 +196,8 @@ return array(
 	"The <b>resolution</b> is done : " => "Die <b>Bestimmung</b> wird durchgeführt.",
 	"My roles" => "Meine Berechtigungen",
 	"You have no role in" => "Sie haben keine Berechtigung für",
-	"this projects" => "diesen Projekten",
-	"this organizations" => "diesen Organisationen",
+	"this projects" => "dieses Projekt",
+	"this organizations" => "diese Organisation",
 	"Ask an admin to get the appropriated role to access this space" => "Bitten Sie einen Admin, die entsprechende Berechtigung für den Zugriff auf diesen Bereich zu erhalten.",
 	"Collective moderation" => "Gruppenmoderation",
 	"open in CO space" => "offen in CO Raum",
@@ -211,5 +211,12 @@ return array(
 	"Author" => "Autor",
 	"Size min : 10 caractères" => "Länge min: 10 Zeichen",
 	"Chat" => "Chat",
+	
+	"adopteds" => "übernommen",
+	"You voted for this answer" => "Sie haben für diese Antwort gestimmt",
+	"Survey in process" => "Umfrage läuft",
+	"The <b>vote</b> is ended : " => "Die <b>Abstimmung</b> wird beendet:",
+	"Answer" => "Antwort",
+	"the answer" => "die Antwort",
 
 );
