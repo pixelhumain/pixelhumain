@@ -707,6 +707,37 @@ h4.load-coop-data.title-room:hover{
 	box-shadow:none!important;
 }
 
+
+
+
+#menu-room .room-desc ul{ padding:5px 15px; }
+#menu-room .room-desc p{ font-size:1em; }
+#menu-room .room-desc h1{ font-size:1.5em; 	color:#404545;}
+#menu-room .room-desc h2{ font-size:1.3em; 	color:#404545;}
+#menu-room .room-desc h3{ font-size:1.2em;  color:#404545;}
+#menu-room .room-desc h4{ font-size:1.1em; 	color:#404545;}
+#menu-room .room-desc h5{ font-size:1em; 	color:#404545;}
+#menu-room .room-desc h6{ font-size:0.8em; 	color:#404545;}
+
+#coop-data-container #container-text-proposal ul{ font-size:1em; padding:5px 15px;}
+#coop-data-container #container-text-proposal p { font-size:1em;				  }
+#coop-data-container #container-text-proposal h1{ font-size:1.5em; 	color:#404545;}
+#coop-data-container #container-text-proposal h2{ font-size:1.3em; 	color:#404545;}
+#coop-data-container #container-text-proposal h3{ font-size:1.2em; 	color:#404545;}
+#coop-data-container #container-text-proposal h4{ font-size:1.1em; 	color:#404545;}
+#coop-data-container #container-text-proposal h5{ font-size:1em; 	color:#404545;}
+#coop-data-container #container-text-proposal h6{ font-size:0.8em; 	color:#404545;}
+
+#coop-data-container #container-text-complem { padding:15px 0px 0px 40px; }
+#coop-data-container #container-text-complem ul{ font-size:1em; padding:5px 15px;}
+#coop-data-container #container-text-complem p { font-size:1em;				  }
+#coop-data-container #container-text-complem h1{ font-size:1.5em; 	color:#404545;}
+#coop-data-container #container-text-complem h2{ font-size:1.3em; 	color:#404545;}
+#coop-data-container #container-text-complem h3{ font-size:1.2em; 	color:#404545;}
+#coop-data-container #container-text-complem h4{ font-size:1.1em; 	color:#404545;}
+#coop-data-container #container-text-complem h5{ font-size:1em; 	color:#404545;}
+#coop-data-container #container-text-complem h6{ font-size:0.8em; 	color:#404545;}
+
 @media screen and (max-width: 992px) {
 
 	#menu-room h4.room-desc{

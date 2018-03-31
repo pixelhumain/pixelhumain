@@ -722,6 +722,17 @@
   max-height: 200px;
 }
 
+.searchEntity .descMD ul{
+  padding:5px 15px;
+}
+
+.searchEntity .descMD h1{ font-size:1.4em; text-transform: none; font-weight: 200; }
+.searchEntity .descMD h2{ font-size:1.2em; text-transform: none; font-weight: 200; }
+.searchEntity .descMD h3{ font-size:1em;   text-transform: none; font-weight: 200; }
+.searchEntity .descMD h4{ font-size:0.8em; text-transform: none; font-weight: 200; }
+.searchEntity .descMD h5{ font-size:0.7em; text-transform: none; font-weight: 200; }
+.searchEntity .descMD h6{ font-size:0.6em; text-transform: none; font-weight: 200; }
+
   @media screen and (max-width: 1024px) {
     #menu-directory-type .hidden-sm{
      display:none;
