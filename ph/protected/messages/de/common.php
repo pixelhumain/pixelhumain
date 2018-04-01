@@ -421,7 +421,7 @@ return array(
 	"my network"=>"mein Netzwerk",
 	"Show All" => "Zeige alles",
 	"Visualize" => "Visualisiere",
-	"History" => "Geschichte",
+	"History" => "Bearbeitungsgeschichte",
 	"Settings" => "Einstellungen",
 	"More" => "Mehr",
 	"Confidentiality params" => "Datenschutzeinstellungen",
