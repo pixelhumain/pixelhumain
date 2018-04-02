@@ -566,6 +566,11 @@ textarea#arguments{
 	font-weight: bold;
 }
 
+.lbl-author-coop{
+	max-width: 100px !important;
+	margin-bottom: -5px;
+}
+
 #container-text-resolution a:hover,
 #container-text-action a:hover,
 #container-text-proposal a:hover{

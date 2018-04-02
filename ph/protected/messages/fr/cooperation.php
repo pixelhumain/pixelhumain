@@ -285,5 +285,11 @@ return array(
 	"I create my account" => "Je créé mon compte",
 	"free registration" => "inscription gratuite",
 
-	"Chat"=>"Messagerie"
+	"Chat"=>"Messagerie",
+
+	"create a survey" => "créer un sondage",
+	"Survey name" => "Titre du sondage",
+	"Survey text" => "Votre texte",
+
+	"Surveys are published for all your followers" => "Les sondages sont automatiquement partagés avec tous vos abonnés",
 );

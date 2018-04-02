@@ -412,6 +412,7 @@ return array(
 	"Agenda" => "Agenda",
 	"Program" => "Programme",
 	"Classified" => "Annonce",
+	"Surveys" => "Sondages",
 	"Point of interest" => "Point d'intérêt",
 	"point of interest" => "point d'intérêt",
 	"Collection"=>"Collection",
@@ -909,6 +910,7 @@ return array(
 
 	"an action" => "une action",
 	"a proposal" => "une proposition",
+	"a survey" => "un sondage",
 	"a cooperative space" => "un espace coopératif",
 	"a resolution" => "une résolution",
 
