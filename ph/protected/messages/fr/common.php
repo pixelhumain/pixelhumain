@@ -194,9 +194,9 @@ return array(
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
 	"No more notifications for the moment" => "Vous n&#146;avez pas de notifications pour le moment",
 	//Confirm
-	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication?",
-	"Are you sure you want to delete this contact" => "Êtes-vous sûr de vouloir supprimer ce contact?",
-	"Are you sure you want to delete this link" => "Êtes-vous sûr de vouloir supprimer ce lien?",
+	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication ?",
+	"Are you sure you want to delete this contact" => "Êtes-vous sûr de vouloir supprimer ce contact ?",
+	"Are you sure you want to delete this link" => "Êtes-vous sûr de vouloir supprimer ce lien ?",
 	//Form
 	"Required Fields" => "Champs requis",
 	"Save" => "Enregistrer",
@@ -366,8 +366,8 @@ return array(
 	
 	//Question
 	"Are you sure" => "Êtes-vous sûr",
-	"Are you sure you want to delete" => "Êtes-vous sûr de supprimer",
-	"Are you sure you want to delete this selection" => "Êtes-vous sûr de supprimer cette sélection",
+	"Are you sure you want to delete" => "Êtes-vous sûr de vouloir supprimer cet élément ?",
+	"Are you sure you want to delete this selection" => "Êtes-vous sûr de supprimer cette sélection ?",
 	"from your community" => "de votre communauté",
 	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
 	"Are you sure to not participate to this event" => "Êtes-vous sûr de ne pas participer à cet événement",

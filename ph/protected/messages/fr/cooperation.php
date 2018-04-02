@@ -277,6 +277,7 @@ return array(
 
 	"Answer" => "Réponse",
 	"the answer" => "la réponse",
+	"No answer" => "Aucune réponse",
 
 	"click to vote" => "cliquer pour voter",
 
