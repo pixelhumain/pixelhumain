@@ -114,7 +114,7 @@
 		"Help share & destroy bugs" => "Helft mit, Fehler zu entdecken und sie zu beheben",
 		"Connecting Systems together" => "Verbinde Systeme miteinander",
 		"Open Source Tools For Communities" => "Open Source Tools für Gemeinschaften",
-		"Top Level Sharing process" => "Hochwertiger Austausch von Informationen und Rssourcen",
+		"Top Level Sharing process" => "Hochwertiger Austausch von Informationen und Ressourcen",
 		"5 year Thinking Process" => "5 Jahre Reflexion",
 		"Goodies we can pass around" => "Die Goodies, die wir weitergeben können",
 		"Read Us" => "Verstehen Sie uns voll und ganz",
