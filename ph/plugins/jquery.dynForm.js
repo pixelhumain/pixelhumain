@@ -3056,7 +3056,7 @@ var dyFInputs = {
 		return inputObj;  
 	},
 	location : {
-		label : "location",
+		label : tradDynForm["location"],
        	inputType : "location"
     },
     locationObj : {

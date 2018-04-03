@@ -52,6 +52,8 @@
 		"Limit role access"=>"Limiter l'accès par rôle (par défaut : ouvert à tous)",
 		"Indicate the currency used"=>"Indiquez la monnaie utilisée",
 		"Currency"=>"Devise",
+		"Location"=>"Localisation",
+		"Scoping"=>"Zone de publication",
 		"Your pictures here"=>"Vos images ici",
 		"Your files here"=>"Vos fichiers ici",
 		"Price (£)"=>"Prix (€)",
@@ -174,6 +176,10 @@
 		"Selected zones"=>"Zones sélectionnées",
 		"Add answers" => "Ajouter des réponses",
 		"answer" => "réponse",
+
+		"Select a city to share your survey with everybody in town !" => 
+			"Sélectionnez une ville si vous souhaitez partager votre sondage publiquement",
+
 	)
 
 ?>
