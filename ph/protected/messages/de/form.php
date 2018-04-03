@@ -179,5 +179,9 @@
 		"More informations, arguments, exemples" => "Mehr Informationen, Argumente, Beispiele",
 		"Add answers" => "Antworten hinzufügen",
 		"answer" => "Antwort",
+		
+		"Location" => "Standort",
+		"Scoping" => "Bereich",
+		"Select a city to share your survey with everybody in town !" => "Wählen Sie eine Stadt aus, um Ihre Befragungsergebnisse allen in dieser Stadt zu zeigen!",
 	)
 ?>
