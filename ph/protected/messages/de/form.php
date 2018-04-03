@@ -34,10 +34,10 @@
 		"Event parent's end date"=>"Enddatum des übergeordneten Ereignisses",
 		"Short description"=>"Kurzbeschreibung",
 		"Long description"=>"Ausführliche Beschreibung",
-		"Markdown syntax is used for description. If you want to <a href='https://daringfireball.net/projects/markdown/syntax' target='_blank'>know more about</a>"=>"Die Beschreibung verwendet die Markdown-Syntax. <a href='http://markdown.de/syntax/' target='_blank'>Infos zur Markdown-Syntax</a>",
+		"Markdown syntax is used for description. If you want to <a href='https://daringfireball.net/projects/markdown/syntax' target='_blank'>know more about</a>"=>"Die Beschreibung verwendet die <a href='http://markdown.de/syntax/' target='_blank'>Markdown-Syntax</a>.",
 
 		"Discover <a href='https://daringfireball.net/projects/markdown/syntax' target='_blank'>markdown syntaxe </a>" =>
-		"Découvrir la syntaxe <a href='https://markdown.es/sintaxis-markdown/' target='_blank'>markdown</a>",
+		"Beschreibung der <a href='http://markdown.de/syntax/' target='_blank'>Markdown Syntax</a>",
 
 		"Description"=>"Beschreibung",
 		"Me"=>"Ich selbst",
