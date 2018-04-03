@@ -732,6 +732,7 @@
 .searchEntity .descMD h4{ font-size:0.8em; text-transform: none; font-weight: 200; }
 .searchEntity .descMD h5{ font-size:0.7em; text-transform: none; font-weight: 200; }
 .searchEntity .descMD h6{ font-size:0.6em; text-transform: none; font-weight: 200; }
+.searchEntity .descMD p { font-size:14px;  }
 
   @media screen and (max-width: 1024px) {
     #menu-directory-type .hidden-sm{
