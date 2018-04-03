@@ -168,13 +168,15 @@ return array(
 	"Create an Action for your community" => "Erstellen Sie für Ihre Gemeinschaft eine neue Aktion in diesem Raum",
 	"Understanding action list" => "Aktionslisten verstehen",
 	"Moved Succesfully to " => "Erfolgreich verschoben nach ",
-    "Moved Succesfully to Decision room : " => "Erfolgreich zum Raum für Entscheidungen verschoben : ",
-    "Moved Succesfully to action room : " => "Erfolgreich zum Raum für Aktionen verschoben : ",
-    "Destination Room doen't exist" => "Der Zielraum existiert nicht",
-    "Edit this proposal" => "Bearbeiten Sie diesen Vorschlag",
-    "Move this proposal" => "Diesen Vorschlag in einen anderen Raum verschieben",
-    "Close this proposal" => "Diesen Vorschlag löschen",
-    'Participation open to city residents only' => "Nur Bürger dieser Stadt können teilnehmen"
+    	"Moved Succesfully to Decision room : " => "Erfolgreich zum Raum für Entscheidungen verschoben : ",
+    	"Moved Succesfully to action room : " => "Erfolgreich zum Raum für Aktionen verschoben : ",
+    	"Destination Room doen't exist" => "Der Zielraum existiert nicht",
+    	"Edit this proposal" => "Bearbeiten Sie diesen Vorschlag",
+    	"Move this proposal" => "Diesen Vorschlag in einen anderen Raum verschieben",
+    	"Close this proposal" => "Diesen Vorschlag löschen",
+    	'Participation open to city residents only' => "Nur Bürger dieser Stadt können teilnehmen",
+	"survey" => "Umfrage",
+	"surveys" => "Umfragen",
 );
 
 
