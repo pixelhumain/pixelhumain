@@ -1309,6 +1309,9 @@ return array(
 	"Remove from my favorites places" => "Aus meinen Lieblingsorten entfernen",
 	"Add zone to new" => "Zone zu neu hinzufügen",
 	
+	"Surveys" => "Umfragen",
+	"a survey" => "eine Umfrage",
+	
 	
 	
 );
