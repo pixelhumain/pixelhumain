@@ -65,6 +65,9 @@ return array(
 	"room" => "espace coopératif",
 	"actionRooms" => "espace coopératif",
 	
+	"survey" => "sondage",
+	"surveys" => "sondages",
+	
 	"created" => "Publié le",
 	"end" => "Fin le",
 	"ended" => "Clôturé le",

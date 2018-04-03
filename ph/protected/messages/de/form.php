@@ -13,7 +13,7 @@
 		"Make visible your company<br>Find new customer<br>Manage your contacts"=>"Stellen Sie Ihr Unternehmen vor<br>Finden Sie neue Kundschaft<br>Verwalten Sie Ihre Kontakte",
 		"Town hall, schools, etc...<br>Share your news<br>Share events"=>"Gemeindeverwaltungen, Schulen, usw...<br>Teilen Sie neueste Mitteilungen mit<br>Kündigen Sie Veranstaltungen an",
 		"Create a list of bookmark to find fastly your favorite url<br>And share it to other people"=>"Fügen Sie Lesezeichen hinzu, um schnell Ihre wichtigsten Webseiten aufzurufen<br>und mit anderen Personen zu teilen",
-		"Upload files here to share it with others<br>And organized them !"=> "Fügen Sie Dateien hinzu, um Sie mit anderen zu teilen<br>und sortiert aufzubewahren !",
+		"Upload files here to share it with others<br>And organized them !"=> "Fügen Sie Dateien hinzu, um Sie mit anderen zu teilen<br>und übersichtlich aufzubewahren !",
 		"speaking as"=> "für",
 		"Is part of"=>"Ist ein Teil von",
 		"parent's start date"=>"Startdatum des übergeordneten Ereignisses",
@@ -34,7 +34,11 @@
 		"Event parent's end date"=>"Enddatum des übergeordneten Ereignisses",
 		"Short description"=>"Kurzbeschreibung",
 		"Long description"=>"Ausführliche Beschreibung",
-		"Markdown syntax is used for description. If you want to <a href='https://michelf.ca/projets/php-markdown/syntaxe/'' target='_blank'>know more about</a>"=>"Die Beschreibung verwendet die Markdown-Syntax. <a href='https://michelf.ca/projets/php-markdown/syntaxe/'' target='_blank'>Infos zur Markdown-Syntax</a>",
+		"Markdown syntax is used for description. If you want to <a href='https://daringfireball.net/projects/markdown/syntax' target='_blank'>know more about</a>"=>"Die Beschreibung verwendet die Markdown-Syntax. <a href='http://markdown.de/syntax/' target='_blank'>Infos zur Markdown-Syntax</a>",
+
+		"Discover <a href='https://daringfireball.net/projects/markdown/syntax' target='_blank'>markdown syntaxe </a>" =>
+		"Découvrir la syntaxe <a href='https://markdown.es/sintaxis-markdown/' target='_blank'>markdown</a>",
+
 		"Description"=>"Beschreibung",
 		"Me"=>"Ich selbst",
 		"I don't know"=>"Ich weiß es nicht",
@@ -170,5 +174,10 @@
 		"Please, add a place to your post" => "Bitte fügen Sie Ihrem Beitrag einen Ort hinzu",
 		"Add places where you want to publish" => "Fügen Sie Orte hinzu, an denen Sie veröffentlichen möchten",
 		"Selected zones" => "Ausgewählte Zonen",
+		
+		"Your proposal / question" => "Ihr Vorschlag / Ihre Frage",
+		"More informations, arguments, exemples" => "Mehr Informationen, Argumente, Beispiele",
+		"Add answers" => "Antworten hinzufügen",
+		"answer" => "Antwort",
 	)
 ?>

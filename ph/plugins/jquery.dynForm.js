@@ -3056,7 +3056,7 @@ var dyFInputs = {
 		return inputObj;  
 	},
 	location : {
-		label : "location",
+		label : tradDynForm["location"],
        	inputType : "location"
     },
     locationObj : {
@@ -3539,6 +3539,15 @@ var dyFInputs = {
         value : [],
         init:function(){
             getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);	
+        }
+    },
+    multiChoice : {
+    	label : tradDynForm["Add answers"],
+    	placeholder : tradDynForm["answer"]+" ...",
+        inputType : "array",
+        value : [],
+        init:function(){
+            //getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);	
         }
     },
     videos : {

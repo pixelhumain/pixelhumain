@@ -101,5 +101,20 @@ return array(
        
         "our chart" => "unser Diagramm",
         "password saved securely in your cookies" => "Das Passwort ist sicher in Ihren Cookies gespeichert worden",
+        
+        "A new password has been sent to your email box !!" => "Ein neues Passwort wurde an Ihr E-Mail-Postfach gesandt!!",
+        "Please, you will find a temporaly password" => "Bitte, Sie werden ein temporäres Passwort erhalten",
+        "in order to connect you" => "um Sie zu vernetzen",
+        "Then, you will be free to change your password on your profil page" => "Anschließend können Sie Ihr Passwort auf Ihrer Profilseite ändern",
+        "Go to your profil page" => "Gehen Sie zu Ihrer Profilseite",
+        "Click on parameters button in the menu under your header section" => "Klicken Sie auf die Schaltfläche 'Einstellungen' im Menü unter Ihrem Hauptmenü",
+        "Then click on the tab 'Change your password'" => "Klicken Sie dann auf den Reiter'Passwort ändern'",
+        "In few seconds, you will be <b class='letter-green'>enjoying your new login password</b>" => "In wenigen Sekunden werden Sie <b class='letter-green'>Ihr neues Login-Passwort</b> beutzen können",
+        "New email validation succesfully sent !!" => "Neue E-Mail-Bestätigung erfolgreich versandt!!",
+        "You didn't receive the validation email ?" => "Sie haben die Bestätigungs-E-Mail nicht erhalten?",
+        "Indicate your email link to your account to receive a new validation" => "Geben Sie Ihren E-Mail-Link zu Ihrem Konto an, um eine neue Bestätigung zu erhalten",
+        "Your account <b>is not validated</b>: please check your mailbox to validate your email address." => "Ihr Benutzerkonto <b>ist nicht aktiviert</b>: Bitte überprüfen Sie Ihr Postfach, um Ihre E-Mail-Adresse zu kontrollieren.",
+        "If you <b>didn't receive it or lost it</b>, click on the <b>following button</b> to receive it <b>again</b>" => "Wenn Sie es nicht erhalten haben oder es verloren haben, klicken Sie auf den <b>folgenden Button </b> um diese <b>nochmals</b> zugesandt zu bekommen",
+        "Receive another validation email" => "Empfange eine weitere Bestätigungs-E-Mail",
     );
 ?>
