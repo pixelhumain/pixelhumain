@@ -1,42 +1,6 @@
 
 <?php HtmlHelper::registerCssAndScriptsFiles( array('/css/radioplayer.css', ) , Yii::app()->theme->baseUrl. '/assets'); ?>
 
-<style>
-
-    .btn-radioplay img{
-        height: 100px;
-    }
-
-.btn-radio-cntr{
-        margin-top:70px;
-    }
-
-    .radio-name{
-        padding-top: 10px;
-    }
-@media screen and (max-width: 1024px) {
-    .btn-radio-cntr{
-        margin-top:70px;
-    }
-}
-
-@media (max-width: 768px) {
-    .btn-radio-cntr{
-        margin-top:0px;
-    }
-    .btn-radioplay img{
-        height: 65px;
-    }
-    .portfolio-modal .modal-content h2.poste {
-        font-size: 1.7em;
-        margin-top:0px;
-    }
-    .radio-name{
-        padding-top: 0px;
-    }
-}
-
-</style> 
 
 <div class="portfolio-modal modal fade" id="modalRadioTool" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content padding-top-15">

@@ -117,6 +117,7 @@ return array(
 	"You must be logged in to add a news entry !" => "Vous devez être connecté(e) pour publier une news !",
 	"You are not the creator. Please contact the administrator" => "Vous nêtes pas le créateur de cette fiche. Veuillez contacter un administrateur",
 	"You must be connected to access to create forms"=>"Vous devez être connecté pour afficher les formulaires de création",
+	"This email doesn't exist in our database. Do you want to create an account ?"=>"Cet email n'existe pas dans notre base. Voulez vous créer un compte ?",
 	//Success
 	"Changing language processing"=>"Changement de langue en cours",
 	"Your form validation is successful" => "la validation du formulaire est réalisée avec succès",
@@ -193,9 +194,9 @@ return array(
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
 	"No more notifications for the moment" => "Vous n&#146;avez pas de notifications pour le moment",
 	//Confirm
-	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication?",
-	"Are you sure you want to delete this contact" => "Êtes-vous sûr de vouloir supprimer ce contact?",
-	"Are you sure you want to delete this link" => "Êtes-vous sûr de vouloir supprimer ce lien?",
+	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication ?",
+	"Are you sure you want to delete this contact" => "Êtes-vous sûr de vouloir supprimer ce contact ?",
+	"Are you sure you want to delete this link" => "Êtes-vous sûr de vouloir supprimer ce lien ?",
 	//Form
 	"Required Fields" => "Champs requis",
 	"Save" => "Enregistrer",
@@ -365,8 +366,8 @@ return array(
 	
 	//Question
 	"Are you sure" => "Êtes-vous sûr",
-	"Are you sure you want to delete" => "Êtes-vous sûr de supprimer",
-	"Are you sure you want to delete this selection" => "Êtes-vous sûr de supprimer cette sélection",
+	"Are you sure you want to delete" => "Êtes-vous sûr de vouloir supprimer cet élément ?",
+	"Are you sure you want to delete this selection" => "Êtes-vous sûr de supprimer cette sélection ?",
 	"from your community" => "de votre communauté",
 	"Are you sure you want to remove this connection" => "Êtes-vous sûr d'annuler cette connexion",
 	"Are you sure to not participate to this event" => "Êtes-vous sûr de ne pas participer à cet événement",
@@ -411,6 +412,7 @@ return array(
 	"Agenda" => "Agenda",
 	"Program" => "Programme",
 	"Classified" => "Annonce",
+	"Surveys" => "Sondages",
 	"Point of interest" => "Point d'intérêt",
 	"point of interest" => "point d'intérêt",
 	"Collection"=>"Collection",
@@ -908,6 +910,7 @@ return array(
 
 	"an action" => "une action",
 	"a proposal" => "une proposition",
+	"a survey" => "un sondage",
 	"a cooperative space" => "un espace coopératif",
 	"a resolution" => "une résolution",
 
@@ -1365,6 +1368,8 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Documentation"=>"Documentation",
 	"An account is already registered with this email"=>"Un compte utilisateur est déjà enregistré avec cet email",
 	"Open filtering by type"=>"Ouvrir le filtre par type",
+	"Open" => "Ouvrir",
+    
 
 	"The statistics shown correspond to the number of loadings of each url." => "Les statistiques indiquées correspondent au nombre de chargement de chaque url",
 	"Each time a person accesses for example the page #agenda, #live, or #search, the number increases."=>"A chaque fois qu'une personne accède par exemple à la page #agenda, #live, ou #search, le nombre augmente.",

@@ -73,7 +73,7 @@
 		"To share needs, offers, services, competences for more efficiency"=>"Pour partager des besoins, des propositions, des services et des compétences pour plus d'efficacité",
 		"A market place"=> "Une place de marché",
 		"Communecter, a connected territorial search engine"=>"Communecter, un moteur de recherche territorial connecté",
-		"For Who ?"=>"Pour qui ?",
+		"For Whom ?"=>"Pour qui ?",
 		"For me" => "Pour Moi",
 		"For my community" => "Pour ma communauté",
 		"For commons" => "Pour le commun",

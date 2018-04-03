@@ -36,7 +36,9 @@
 		"Event parent's end date"=>"Date de fin de l'événement parent",
 		"Short description"=>"Description courte",
 		"Long description"=>"Description longue",
-		"Markdown syntax is used for description. If you want to <a href='https://michelf.ca/projets/php-markdown/syntaxe/'' target='_blank'>know more about</a>"=>"La syntaxe Markdown est utilisée pour la description. Si vous souhaitez <a href='https://michelf.ca/projets/php-markdown/syntaxe/'' target='_blank'>en savoir plus</a>",
+		"Markdown syntax is used for description. If you want to <a href='https://daringfireball.net/projects/markdown/syntax' target='_blank'>know more about</a>"=>"La syntaxe Markdown est utilisée pour la description. <a href='https://michelf.ca/projets/php-markdown/syntaxe/' target='_blank'>en savoir plus</a>",
+		"Discover <a href='https://daringfireball.net/projects/markdown/syntax' target='_blank'>markdown syntaxe </a>" => 
+		"Découvrir la syntaxe <a href='https://michelf.ca/projets/php-markdown/syntaxe/' target='_blank'>markdown</a>",
 		"Description"=>"Description",
 		"Me"=>"Moi",
 		"I don't know"=>"Je ne sais pas",
@@ -50,6 +52,8 @@
 		"Limit role access"=>"Limiter l'accès par rôle (par défaut : ouvert à tous)",
 		"Indicate the currency used"=>"Indiquez la monnaie utilisée",
 		"Currency"=>"Devise",
+		"Location"=>"Localisation",
+		"Scoping"=>"Zone de publication",
 		"Your pictures here"=>"Vos images ici",
 		"Your files here"=>"Vos fichiers ici",
 		"Price (£)"=>"Prix (€)",
@@ -116,9 +120,9 @@
 		"Add informations to the document to make it pertinent for others"=>"Ajouter des informations au document pour le rendre le plus pertinent possible aux yeux des autres",
 		"Image title"=>"Titre de l'image",
 		"Upload files"=> "Ajouter des fichiers",
-		"Your proposal" => "Votre proposition",
+		"Your proposal / question" => "Votre proposition / question",
 		"Arguments" => "Argumentation",
-		"More informations, arguments, exemples," => "Compléments d'informations, argumentations, exemples, démonstrations, etc",
+		"More informations, arguments, exemples" => "Compléments d'informations, argumentations, exemples, démonstrations, etc",
 		"Drop files here"=>"Glisser vos fichiers ici",
 		"Do you want to share these files on this news stream"=>"Voulez-vous partager ces fichiers dans ce journal",
 		"Do you want to share these pictures on this news stream"=>"Voulez-vous partager ces images dans ce journal",
@@ -170,6 +174,12 @@
 		"Please, add a place to your post"=>"Veuillez selectionner au moins un lieu de publication",
 		"Add places where you want to publish"=>"Ajouter des lieux de publication",
 		"Selected zones"=>"Zones sélectionnées",
+		"Add answers" => "Ajouter des réponses",
+		"answer" => "réponse",
+
+		"Select a city to share your survey with everybody in town !" => 
+			"Sélectionnez une ville si vous souhaitez partager votre sondage publiquement",
+
 	)
 
 ?>

@@ -110,17 +110,21 @@ return array(
 	"{who} stopped the pending suppression of {where}"=>"{who} hat die Löschung von {where} aufgehalten",
 	"{who} deleted {where}"=>"{who} hat {where} gelöscht",
 	
-	"{who} added few comments on proposal {what} in {where}" => "{who} hat einige Kommentare zum Vorschlag {what} in/im {where} geschrieben",
-	"{who} added few comments on action {what} in {where}" => "{who} hat sich zu {what} in/im {where}",
+	"{who} added few comments on proposal {what} in {where}" => "{who} hat einige Kommentare zum Vorschlag {what} {where} geschrieben",
+	"{who} added few comments on action {what} in {where}" => "{who} hat sich zu {what} {where}",
 	"the wall of {who}" => "die Nachrichtenseite von {who}",
 	"with the link" => "mit dem Link",
 	"with the documents shared" => "mit den geteilten Dolumenten",
 	"with the album's images" => "mit den Bildern des Albums",
 	"A new resolution {what} is added in {where}" => "Ein neuer Beschluss {what} ist {where} hinzugefügt worden",
-	"{who} mentionned you {mentions} {where}" => "{who} erwähnte Sie {mentions} in/im {where}",
-	"{who} mentionned {mentions} {where}" => "{who} erwähnte {mentions} in/im {where}",
+	"{who} mentionned you {mentions} {where}" => "{who} erwähnte Sie {mentions} {where}",
+	"{who} mentionned {mentions} {where}" => "{who} erwähnte {mentions} {where}",
 	"with {who}" => "mit {who}",
 	"in a news" => "in einer Nachricht",
 	"in a comment" => "in einem Kommentar",
+	
+	"{who} commented on resolution {what} in {where}" => "{who} kommentierte den Beschluss {what} in {where}",
+	"{who} added comments on resolution {what} in {where}" => "{who} fügte Kommentare zum Beschluss {what} in {where} zu",
+	"{who} added few comments on resolution {what} in {where}" => "{who} fügte einige Kommentare zum Beschluss {what} in {where} zu",
 );
 ?>

@@ -65,7 +65,7 @@
                 <h5 class="letter-red pull-left">
                     <i class='fa fa-comments'></i> Messagerie instantanée
                 </h5><!-- <span class='rocketchatTitle'></span> -->
-                <button class="btn btn-default btn-sm text-dark pull-right close-modal" data-dismiss="modal">
+                <button class="btn btn-default btn-sm text-dark pull-right close-modal margin-left-10" data-dismiss="modal">
                     <i class="fa fa-times"></i>
                 </button>
                 <a href="https://chat.communecter.org" target="_blank" class="btn btn-default btn-sm  pull-right ">

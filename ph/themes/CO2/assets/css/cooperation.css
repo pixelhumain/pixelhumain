@@ -434,13 +434,15 @@ li.submenucoop{
 #ajax-modal .form-group.voteActivatedcheckbox,
 #ajax-modal .form-group.voteDateEnddatetime,
 #ajax-modal .form-group.voteAnonymouscheckboxSimple,
-#ajax-modal .form-group.voteCanChangecheckboxSimple{
+#ajax-modal .form-group.voteCanChangecheckboxSimple,
+#ajax-modal .form-group.multiChoicecheckboxSimple{
 	padding: 0 10px 10px 10px;
 	background-color: #EDEDED;
 }
 
 #ajax-modal .form-group.voteAnonymouscheckboxSimple,
-#ajax-modal .form-group.voteCanChangecheckboxSimple{
+#ajax-modal .form-group.voteCanChangecheckboxSimple,
+#ajax-modal .form-group.multiChoicecheckboxSimple{
 	margin-top:20px;
 	display: flow-root;
 }
@@ -564,6 +566,11 @@ textarea#arguments{
 	font-weight: bold;
 }
 
+.lbl-author-coop{
+	max-width: 100px !important;
+	margin-bottom: -5px;
+}
+
 #container-text-resolution a:hover,
 #container-text-action a:hover,
 #container-text-proposal a:hover{
@@ -617,6 +624,124 @@ h4.load-coop-data.title-room:hover{
 	padding: 15px;
 }
 
+#modalCoop .progress-bar{
+	font-weight:bold!important;
+}
+
+.bg-vote{	background-color: #c6c6c6!important; color: #1a1a1a; border-color: transparent !important; }
+.btn.bg-vote:hover{	background-color: transparent!important; color: #1a1a1a; border-color: #c6c6c6; }
+
+.bg-vote-0{	background-color: #68db87!important; color: #1a1a1a; border-color: transparent !important; }
+.bg-vote-1{	background-color: #68cbdb!important; color: #1a1a1a; border-color: transparent !important; }
+.bg-vote-2{	background-color: #e4cf58!important; color: #1a1a1a; border-color: transparent !important; }
+.bg-vote-3{	background-color: #e47158!important; color: #1a1a1a; border-color: transparent !important; }
+.bg-vote-4{	background-color: #b793d4!important; color: #1a1a1a; border-color: transparent !important; }
+.bg-vote-5{	background-color: #f59580!important; color: #1a1a1a; border-color: transparent !important; }
+.bg-vote-6{	background-color: #f5c680!important; color: #1a1a1a; border-color: transparent !important; }
+.bg-vote-7{	background-color: #80f586!important; color: #1a1a1a; border-color: transparent !important; }
+.bg-vote-8{	background-color: #8f80f5!important; color: #1a1a1a; border-color: transparent !important; }
+.bg-vote-9{	background-color: #f580ba!important; color: #1a1a1a; border-color: transparent !important; }
+
+.btn.bg-vote-0:hover{	border-color: #68db87!important; color: #68db87; }
+.btn.bg-vote-1:hover{	border-color: #68cbdb!important; color: #68cbdb; }
+.btn.bg-vote-2:hover{	border-color: #e4cf58!important; color: #e4cf58; }
+.btn.bg-vote-3:hover{	border-color: #e47158!important; color: #e47158; }
+.btn.bg-vote-4:hover{	border-color: #b793d4!important; color: #b793d4; }
+.btn.bg-vote-5:hover{	border-color: #f59580!important; color: #f59580; }
+.btn.bg-vote-6:hover{	border-color: #f5c680!important; color: #f5c680; }
+.btn.bg-vote-7:hover{	border-color: #80f586!important; color: #80f586; }
+.btn.bg-vote-8:hover{	border-color: #8f80f5!important; color: #8f80f5; }
+.btn.bg-vote-9:hover{	border-color: #f580ba!important; color: #f580ba; }
+
+.bg-vote.bg-green-k	{	background-color: #34a853!important; color:white; 			 }
+.bg-vote.bg-red		{	background-color: #ea4335!important; 			  			 }
+.bg-vote.bg-white	{	background-color: #ddd   !important; border: 1px solid #ddd; }
+.bg-vote.bg-orange	{	background-color: #FFA200!important; 			  			 }
+
+.border-vote{	border: solid #c6c6c6;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+
+.border-vote-0{	border: solid #68db87;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+.border-vote-1{	border: solid #68cbdb;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+.border-vote-2{	border: solid #e4cf58;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+.border-vote-3{	border: solid #e47158;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+.border-vote-4{	border: solid #b793d4;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+.border-vote-5{	border: solid #f59580;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+.border-vote-6{	border: solid #f5c680;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+.border-vote-7{	border: solid #80f586;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+.border-vote-8{	border: solid #8f80f5;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+.border-vote-9{	border: solid #f580ba;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+
+.border-vote-up			{	border: solid #34a853;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+.border-vote-down		{	border: solid #ea4335;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+.border-vote-uncomplet	{	border: solid #FFA200;  border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+.border-vote-white		{	border: solid #ddd;  	border-width: 0 0 2px 2px; background: transparent; color: #5a5a5a; }
+
+.letter-vote-0{	color: #68db87!important; }
+.letter-vote-1{	color: #68cbdb!important; }
+.letter-vote-2{	color: #e4cf58!important; }
+.letter-vote-3{	color: #e47158!important; }
+.letter-vote-4{	color: #b793d4!important; }
+.letter-vote-5{	color: #f59580!important; }
+.letter-vote-6{	color: #f5c680!important; }
+.letter-vote-7{	color: #80f586!important; }
+.letter-vote-8{	color: #8f80f5!important; }
+.letter-vote-9{	color: #f580ba!important; }
+
+#podVote{
+	/*border: 1px dashed grey;*/
+	border-radius: 20px;
+	margin-top:35px;
+	margin-bottom:30px;
+	background: #f3f3f3;
+	/*color: white;*/
+}
+.progress-res-vote{
+	margin-top:0px;
+	border-radius: 0px;
+	border:none;
+	box-shadow: none !important;
+	background-color: transparent!important;
+}
+.progress-res-vote .progress-bar.bg-transparent{
+	background-color: transparent!important;
+	color:#666;
+	text-align: left;
+	padding-left:10px;
+}
+.progress-res-vote .progress-bar{
+	box-shadow:none!important;
+}
+
+
+
+
+#menu-room .room-desc ul{ padding:5px 15px; }
+#menu-room .room-desc p{ font-size:1em; }
+#menu-room .room-desc h1{ font-size:1.5em; 	color:#404545;}
+#menu-room .room-desc h2{ font-size:1.3em; 	color:#404545;}
+#menu-room .room-desc h3{ font-size:1.2em;  color:#404545;}
+#menu-room .room-desc h4{ font-size:1.1em; 	color:#404545;}
+#menu-room .room-desc h5{ font-size:1em; 	color:#404545;}
+#menu-room .room-desc h6{ font-size:0.8em; 	color:#404545;}
+
+#coop-data-container #container-text-proposal ul{ font-size:1em; padding:5px 15px;}
+#coop-data-container #container-text-proposal p { font-size:1em;				  }
+#coop-data-container #container-text-proposal h1{ font-size:1.5em; 	color:#404545;}
+#coop-data-container #container-text-proposal h2{ font-size:1.3em; 	color:#404545;}
+#coop-data-container #container-text-proposal h3{ font-size:1.2em; 	color:#404545;}
+#coop-data-container #container-text-proposal h4{ font-size:1.1em; 	color:#404545;}
+#coop-data-container #container-text-proposal h5{ font-size:1em; 	color:#404545;}
+#coop-data-container #container-text-proposal h6{ font-size:0.8em; 	color:#404545;}
+
+#coop-data-container #container-text-complem { padding:15px 0px 0px 40px; }
+#coop-data-container #container-text-complem ul{ font-size:1em; padding:5px 15px;}
+#coop-data-container #container-text-complem p { font-size:1em;				  }
+#coop-data-container #container-text-complem h1{ font-size:1.5em; 	color:#404545;}
+#coop-data-container #container-text-complem h2{ font-size:1.3em; 	color:#404545;}
+#coop-data-container #container-text-complem h3{ font-size:1.2em; 	color:#404545;}
+#coop-data-container #container-text-complem h4{ font-size:1.1em; 	color:#404545;}
+#coop-data-container #container-text-complem h5{ font-size:1em; 	color:#404545;}
+#coop-data-container #container-text-complem h6{ font-size:0.8em; 	color:#404545;}
 
 @media screen and (max-width: 992px) {
 

@@ -68,7 +68,7 @@
                      class="logo-menutop main pull-left hidden-xs hidden-sm" height=17>
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
-                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" height=20>
+                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" style="display: none;" height=20>
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
                      class="logo-menutop pull-left visible-xs visible-sm" height=25>
@@ -280,7 +280,7 @@
                         <li role="separator" class="divider"></li>
                         <li class="text-left">
                             <!--#default.view.page.links-->
-                            <a href="#default.view.page.index.dir.docs" class="lbhp bg-right">
+                            <a href="#docs.page.welcome.dir.<?php echo Yii::app()->language ?>" class="lbh bg-right">
                                 <i class="fa fa-book"></i> <?php echo Yii::t("common", "Documentation") ?>
                             </a>
                         </li>
@@ -295,18 +295,13 @@
                        
 
                         
-                        <?php if( Yii::app()->session["userIsAdmin"] ) { ?>
+                        <?php if( Yii::app()->session["userIsAdmin"] || Yii::app()->session[ "userIsAdminPublic" ]) { 
+                            $label=(Yii::app()->session["userIsAdmin"]) ? Yii::t("common", "Admin") : Yii::t("common", "Admin public");  
+                            ?>
                             <li role="separator" class="divider"></li>
                             <li class="text-admin">
                                 <a href="#admin" class="lbh bg-white">
-                                    <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin") ; ?>
-                                </a>
-                            </li>
-                        <?php }else if( Yii::app()->session[ "userIsAdminPublic" ] ) { ?>
-                            <li role="separator" class="divider"></li>
-                            <li class="text-admin">
-                                <a href="#adminpublic" class="lbh bg-white">
-                                    <i class="fa fa-user-secret"></i> <?php echo Yii::t("common", "Admin public") ; ?>
+                                    <i class="fa fa-user-secret"></i> <?php echo $label ; ?>
                                 </a>
                             </li>
                         <?php } ?>
@@ -594,8 +589,10 @@
 <?php $this->renderPartial($layoutPath.'formCreateElement'); ?>
 
 
-<script>
- // jQuery(document).ready(function() {    
- //     setTimeout(function(){ $(".tooltips").tooltip(); }, 3500);
- // });
-</script> 
+<script type="text/javascript">
+ 
+    jQuery(document).ready(function() {   
+        $(".logo-menutop.hidden-top").show();
+    });
+
+</script>

@@ -3,8 +3,7 @@ function initCommentsTools(thisMedias){
   //ajoute la barre de commentaire & vote up down signalement sur tous les medias
   $.each(thisMedias, function(key, media){
     if(typeof media._id != "undefined"){
-        media.target = "news"; 
-        
+        //media.target = "news"; 
         var commentCount = 0;
         idMedia=media._id['$id']; //console.log("idMedia",idMedia);
         idMediaShare=media._id['$id']; //console.log("idMedia",idMedia);
@@ -44,7 +43,7 @@ function initCommentsTools(thisMedias){
                            "</small>";
 
 
-        var voteTools = voteCheckAction(media._id['$id'], media);
+        var voteTools = voteCheckAction(media._id['$id'], media, "news");
 
         voteTools = lblCommentCount + voteTools;
 
@@ -78,12 +77,12 @@ function showCommentsTools(id){ console.log("showCommentsTools", id);
     }
 }
 
-function voteCheckAction(idVote, newsObj) {
+function voteCheckAction(idVote, newsObj, mediaTarget) {
   var voteUpCount = reportAbuseCount = voteDownCount = 0;
   textUp="text-dark";
   textDown="text-dark";
   textReportAbuse="text-dark";
-
+  mediaTarget = (notNull(mediaTarget)) ? mediaTarget : newsObj.target.type;
   if ("undefined" != typeof newsObj.voteUp && "undefined" != typeof newsObj.voteUpCount && newsObj.voteUpCount > 0){ 
     voteUpCount = newsObj.voteUpCount;
     if ("undefined" != typeof newsObj.voteUp[idSession]){
@@ -107,9 +106,9 @@ function voteCheckAction(idVote, newsObj) {
       $(".newsReportAbuse[data-id="+idVote+"]").off();
     }
   }
-  voteHtml = "<a href='javascript:;' class='newsVoteUp' onclick='newsVoteUp(this, \""+idVote+"\")' data-count='"+voteUpCount+"' data-id='"+idVote+"' data-type='"+newsObj.target.type+"'><span class='label "+textUp+"'>"+voteUpCount+" <i class='fa fa-thumbs-up'></i></span></a> "+
-      "<a href='javascript:;' class='newsVoteDown' onclick='newsVoteDown(this, \""+idVote+"\")' data-count='"+voteDownCount+"' data-id='"+idVote+"' data-type='"+newsObj.target.type+"'><span class='label "+textDown+"'>"+voteDownCount+" <i class='fa fa-thumbs-down'></i></span></a>"+
-      "<a href='javascript:;' class='newsReportAbuse' onclick='newsReportAbuse(this, \""+idVote+"\")' data-count='"+reportAbuseCount+"' data-id='"+idVote+"' data-type='"+newsObj.target.type+"'><span class='label "+textReportAbuse+"'>"+reportAbuseCount+" <i class='fa fa-flag'></i></span></a>";
+  voteHtml = "<a href='javascript:;' class='newsVoteUp' onclick='newsVoteUp(this, \""+idVote+"\")' data-count='"+voteUpCount+"' data-id='"+idVote+"' data-type='"+mediaTarget+"'><span class='label "+textUp+"'>"+voteUpCount+" <i class='fa fa-thumbs-up'></i></span></a> "+
+      "<a href='javascript:;' class='newsVoteDown' onclick='newsVoteDown(this, \""+idVote+"\")' data-count='"+voteDownCount+"' data-id='"+idVote+"' data-type='"+mediaTarget+"'><span class='label "+textDown+"'>"+voteDownCount+" <i class='fa fa-thumbs-down'></i></span></a>"+
+      "<a href='javascript:;' class='newsReportAbuse' onclick='newsReportAbuse(this, \""+idVote+"\")' data-count='"+reportAbuseCount+"' data-id='"+idVote+"' data-type='"+mediaTarget+"'><span class='label "+textReportAbuse+"'>"+reportAbuseCount+" <i class='fa fa-flag'></i></span></a>";
   return voteHtml;
 }
 
