@@ -1280,7 +1280,7 @@ return array(
 	"My maps" => "Meine Karten",
 	"where ?" => "Wo?",
 	"My favorites places" => "Meine Lieblingsorte",
-	"what are you looking for ?" => "Wonach suchst du?",
+	"what are you looking for ?" => "Wonach suchen Sie?",
 	"Geographical filter" => "Geographischer Filter",
 	"Theme filter" => "Themenfilter",
 	"Sharing" => "Teilen",
