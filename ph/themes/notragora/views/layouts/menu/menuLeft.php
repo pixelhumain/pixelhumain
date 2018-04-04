@@ -203,4 +203,11 @@ function extendMenu(open){
 		$(".lbl-extends-menu i").addClass("fa-angle-down").removeClass("fa-angle-up");
 	}
 }
+
+function openParams(){
+	$("#modalParams").modal("show");
+}
+
+
+
 </script>

@@ -4,7 +4,7 @@
 HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuSmall.css'), Yii::app()->theme->baseUrl);
 
 if (isset(Yii::app()->session['userId']) && !empty($me)) {
-          $profilMediumImageUrl = Element::getImgProfil($me, "profilMediumImageUrl", $this->module->assetsUrl);
+		  $profilMediumImageUrl = Element::getImgProfil($me, "profilMediumImageUrl", $this->module->assetsUrl);
       }
 ?>
 
@@ -55,6 +55,12 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 			    </a>
 		    </div>
 			<?php } ?>
+			<div class="col-xs-12 center no-padding">
+			    <a class="btn " href="javascript:openParams();" id="btnParams">
+			        <i class="fa fa-cog" style="font-size: 1em!important;"></i>
+			        Paramètres
+			    </a>
+		    </div>
 			<div class="col-xs-12 center no-padding">
 				<a class="btn bg-dark visible-xs padding-5" href="javascript:$('.btn-menu-notif').trigger('click');$.unblockUI();">
 			        <i class="fa fa-bell" style="font-size: 1em!important;"></i>

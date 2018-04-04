@@ -1557,6 +1557,10 @@
 						<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
 						    L&#8217;&#233;quipe <?php Yii::app()->name ?>
 						</p>
+
+						<a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/#element.params' ; ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">
+							Vous pouvez arreter de recevoir ce mail dans vos parametrès
+						</a>
 						<a href="mailto:<?php Yii::app()->params['adminEmail'];?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><?php Yii::app()->params['adminEmail']?></a>
 						</th>
 				    </tr>
