@@ -388,6 +388,7 @@
 
 	.dropdown-onepage-main-menu .dropdown-menu li a {
 		text-transform: uppercase;
+		max-width: 250px;
 	}
 
 	.arrow_box:after, .arrow_box:before {
