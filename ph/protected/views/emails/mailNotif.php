@@ -1140,6 +1140,20 @@
 	    .column-border {
 	        border: 1px solid #eee; }
 
+	    .list a {
+	        color: #5d4d40;
+	        text-decoration: none;
+	        font-weight: bold; }
+	    .list a:hover {
+	        color: #5d4d40;
+	    	font-weight: bold; }
+	    .list a:active {
+	        color: #5d4d40;
+	        font-weight: bold; }
+	    .list a:visited {
+	        color: #5d4d40;
+	        font-weight: bold; }
+
 	    .footercopy {
 	        padding: 20px 0px;
 	        font-size: 12px;
@@ -1487,23 +1501,54 @@
 							<a href="#" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo?>" alt="1+1=3" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;"></a>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
 							    <!-- <?php //echo $msg ; ?> <a href="<?php //echo $url ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"> <?php //e//cho $elementName ?> </a> -->
-
+							<table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
+							    
+								    
 							    <?php 
 							    foreach ($data as $type => $elementBytype) {
 							    	foreach ($elementBytype as $idElement => $element) {
-										echo "<br/>";
+										echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">';
 										echo '<a href="'.$element["url"].'" >'.$element["name"].'</a>';
-
+										echo  '</td></tr>';
 										if(!empty($element[ActStr::VERB_POST])){
 											foreach ($element[ActStr::VERB_POST] as $key => $value) {
 												
-												echo '<p dir="ltr" style="color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;text-align: left;line-height: 19px;font-size: 15px;">';
+												echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 15px;" class="list">';
 												echo  $value["text"];
-												echo  '</p>';
+													
+												echo  '</td></tr>';
+											}
+											echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 15px;"></td></tr>';
+										}
+
+
+
+
+										if(!empty($element[ActStr::VERB_COMMENT])){
+
+											foreach ($element[ActStr::VERB_COMMENT] as $key => $value) {
+												
+												echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 15px;" class="list">';
+												echo  $value["text"];
+													echo '<p dir="ltr" style="color: black !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;text-align: left;line-height: 19px;font-size: 12px; background-color : #e2e5f8; margin-left: 20px; margin-top: 20px">';
+														echo  $value["value"];
+													echo  '</p>';
+												echo  '</td></tr>';
+											}
+											echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 15px;"></td></tr>';
+										}
+
+										if(!empty($element[ActStr::VERB_ADD])){
+											foreach ($element[ActStr::VERB_ADD] as $key => $value) {
+												
+												echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 15px;" class="list">';
+												echo  $value["text"];
+												echo  '</td></tr>';
 											}
 										}
 									}
 								} ?>
+							</table>
 							</p>
 							<br>
 						<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
