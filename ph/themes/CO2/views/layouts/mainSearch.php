@@ -132,6 +132,7 @@
         
 
         <div id="modal-preview-coop" class="shadow2 hidden"></div>
+        <div id="modal-settings" class="shadow2"></div>
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
     
         

@@ -152,7 +152,7 @@
     };
     var onchangeClick=true;
     var lastWindowUrl = location.hash;
-    var urlBackDocs = location.hash;
+    var urlBackHistory = location.hash;
     var allReadyLoadWindow=false;
     var navInSlug=false;
     var themeObj = {
@@ -314,7 +314,7 @@
                     allReadyLoadWindow = false;
                     onchangeClick=true;
                 }
-                urlBackDocs=lastWindowUrl;
+                urlBackHistory=lastWindowUrl;
                 lastWindowUrl = location.hash;
             }
         },
