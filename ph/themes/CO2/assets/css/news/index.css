@@ -378,6 +378,16 @@ div.timeline .newsTL > .newsFeed:nth-child(2n+1) .timeline_element:before {
     
 }
 
+#news-list .loader, #noMoreNews{
+	border-radius: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	display: table;
+	padding: 15px;
+	margin-top: 15px;
+	background-color: white;
+}
+
 @media screen and (max-width: 1024px) {  
   
 	.timeline_element {

@@ -348,7 +348,7 @@ input#second-search-bar{
 	display: none;
 }
 
-.navbar-custom.affix-top .skills{
+.navbar-custom .skills{
 	display: inline;
 	padding-top:15px;
 	float:left;
@@ -794,6 +794,8 @@ a, a:hover, a:focus, a:active, a.active{
 }
 #dropdown-apps .dropdown-menu a:hover{
 	color: #ea4335 !important;
+	font-weight: bold;
+	text-decoration: none!important;
 
 }
 .dropdown-main-menu .dropdown-menu li a {
@@ -883,7 +885,7 @@ a, a:hover, a:focus, a:active, a.active{
     transform: rotate(45deg);
 }
 #show-bottom-add i{
-	font-size: 25px;
+	font-size: 26px;
 }
 /*.toolbar-bottom .btn,
 .toolbar-bottom-apps .btn{
@@ -1724,7 +1726,7 @@ margin-right: 5px;
 }
 
 .searchEntity.coopPanelHtml{
-	cursor:pointer;
+	/*cursor:pointer;*/
 	border-left:2px solid #229296;
 	box-shadow: none !important;
 }

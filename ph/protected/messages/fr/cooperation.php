@@ -160,6 +160,7 @@ return array(
 	"validated" => "validée",
 	"refused" => "refusée",
 	"adopted" => "validée",
+	"adopteds" => "adoptées",
 	"voter" => "votant",
 
 	"Be the first to vote" => "Soyez le premier à voter",
@@ -168,6 +169,7 @@ return array(
 	"End of vote session" => "fin du vote",
 	"You did vote" => "Vous avez voté",
 	"You did not vote" => "Vous n'avez pas voté",
+	"You voted for this answer" => "Vous avez choisi cette réponse",
 	"The <b>resolution</b> is done : " => "La <b>résolution</b> suivante a été prise : ",
 	"The proposal is" => "la proposition est",
 	"Show the resolution" => "Afficher la résolution",
@@ -269,10 +271,26 @@ return array(
 
 	"open in CO space" => "ouvrir dans l'espace CO",
 
+	"Survey in process" => "Sondage en cours",
+
+	"The <b>vote</b> is ended : " => "Le <b>vote</b> est terminé",
+
+	"Answer" => "Réponse",
+	"the answer" => "la réponse",
+	"No answer" => "Aucune réponse",
+
+	"click to vote" => "cliquer pour voter",
+
 	"Please login to post a message" => "Merci de vous connecter pour publier un message",
 	"I'm logging in" => "Je me connecte",
 	"I create my account" => "Je créé mon compte",
 	"free registration" => "inscription gratuite",
 
-	"Chat"=>"Messagerie"
+	"Chat"=>"Messagerie",
+
+	"create a survey" => "créer un sondage",
+	"Survey name" => "Titre du sondage",
+	"Survey text" => "Votre texte",
+
+	"Surveys are published for all your followers" => "Les sondages sont automatiquement partagés avec tous vos abonnés",
 );

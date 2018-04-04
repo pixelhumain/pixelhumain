@@ -103,10 +103,10 @@ a.link-submenu-header:focus{
                     <a href="#web" class="lbh navbar-brand font-blackoutM menu-btn-back-category">
                 <?php } ?>
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" 
-                     class="nc_map pull-left hidden-xs hidden-sm" height=20>
+                     class="nc_map pull-left hidden-xs hidden-sm" height=20 style="display: none;">
                 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/kgougle/logo-min-k.png" 
-                     class="nc_map pull-left visible-xs visible-sm" height=25>
+                     class="nc_map pull-left visible-xs visible-sm" height=25 style="display: none;">
                 
                 <!-- <small class="letter letter-red pastille font-blackoutT <?php if($subdomain == "page.type") echo 'hidden-sm'; ?>">
                     <?php //echo $subdomainName; ?>
@@ -262,9 +262,8 @@ a.link-submenu-header:focus{
                     </div>
 
 
-
-                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
-                          data-toggle="tooltip" data-placement="bottom" title="Notifications" alt="Notifications">
+                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
+                          data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Notifications") ?>" alt="<?php echo Yii::t("common","Notifications") ?>">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
                               <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
@@ -272,14 +271,14 @@ a.link-submenu-header:focus{
                             <?php echo @$countNotifElement ?>
                         </span>
                     </button>
-
-
+                    
                     <button class="menu-button btn-menu btn-dashboard-dda text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Cooperation") ?>" 
                           alt="<?php echo Yii::t("common","Cooperation") ?>">
                       <i class="fa fa-inbox"></i>
                       <span class="coopNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
+
 
                      <div class="dropdown pull-right" id="dropdown-dda">
                         <div class="dropdown-main-menu">
@@ -288,15 +287,16 @@ a.link-submenu-header:focus{
                             </ul>
                         </div>
                     </div>
+                    
+                    
 
-
-                    <?php if(@Yii::app()->session["userId"] && Yii::app()->params['rocketchatEnabled'] ) { ?>
                     <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
-                          onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Messaging") ?>" alt="<?php echo Yii::t("common","Messaging") ?>">
+                          onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" 
+                          title="<?php echo Yii::t("common","Messaging") ?>" alt="<?php echo Yii::t("common","Messaging") ?>">
                       <i class="fa fa-comments"></i>
                       <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
-                    <?php } ?> 
+
                     
                    
                 <?php } else { ?>
@@ -377,3 +377,10 @@ a.link-submenu-header:focus{
 <?php //$this->renderPartial($layoutPath.'loginRegister', array( ) ); ?>
 
 
+<script type="text/javascript">
+ 
+    jQuery(document).ready(function() {   
+        $(".nc_map").show();
+    });
+
+</script>
