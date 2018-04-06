@@ -68,7 +68,7 @@
                      class="logo-menutop main pull-left hidden-xs hidden-sm" height=17>
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
-                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" style="display: none;" height=20>
+                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" style="display: none!important;" height=20>
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
                      class="logo-menutop pull-left visible-xs visible-sm" height=25>
@@ -101,14 +101,15 @@
                   //$subdomain == "page"
                  ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4" style="display:none;">
                 <input type="text" class="form-control" id="second-search-bar" 
-                        placeholder="search by name or by #tag, ex: 'commun' or '#commun'<?php //echo Yii::t("common", $placeholderMainSearch); ?>">
+                        placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
+                <?php //echo Yii::t("common", "search by name or by #tag, ex: 'commun' or '#commun"); ?>
                 <?php if($subdomain == "page"){ ?>
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
                 <?php } ?>
             </div>
-            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search" 
+            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search" style="display:none;" 
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
             </button>
@@ -592,7 +593,6 @@
 <script type="text/javascript">
  
     jQuery(document).ready(function() {   
-        $(".logo-menutop.hidden-top").show();
     });
 
 </script>
