@@ -954,13 +954,13 @@
 	        border: 0px solid #4a8fa0; }
 
 	    table.button.secondary table td {
-	        background: #777777;
+	        background: #3c5665;
 	        color: #fefefe;
-	        border: 2px solid #777777; }
+	        border: 2px solid #3c5665; }
 
 	    table.button.secondary table a {
 	        color: #fefefe;
-	        border: 0px solid #777777; }
+	        border: 0px solid #3c5665; }
 
 	    table.button.secondary:hover table td {
 	        background: #919191;
@@ -1157,10 +1157,10 @@
 	    .footercopy {
 	        padding: 20px 0px;
 	        font-size: 12px;
-	        color: #777777; }
+	        color: #3c5665; }
 
 	    p {
-	        color: #777777 !important; }
+	        color: #3c5665 !important; }
 	</style>
 
 	<style type="text/css" media="only screen and (max-width: 596px)">
@@ -1499,26 +1499,36 @@
 					    <th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
 					    	<!--http://localhost:8888/ph/images/betatest.png-->
 							<a href="#" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo?>" alt="1+1=3" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;"></a>
-							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
+
+							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">Bonjour, il y a eu du nouveaux sur NotrAgora :
+							</p>
+							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #3c5665; !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
 							    <!-- <?php //echo $msg ; ?> <a href="<?php //echo $url ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"> <?php //e//cho $elementName ?> </a> -->
 							<table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
 							    
-								    
 							    <?php 
 							    foreach ($data as $type => $elementBytype) {
 							    	foreach ($elementBytype as $idElement => $element) {
 										echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">';
+
+										if($type == Organization::COLLECTION) {
+											echo "Dans le groupe ";
+										} else if($type == Poi::COLLECTION) {
+											echo "Dans la production ";
+										}
+
+
 										echo '<a href="'.$element["url"].'" >'.$element["name"].'</a>';
 										echo  '</td></tr>';
 										if(!empty($element[ActStr::VERB_POST])){
 											foreach ($element[ActStr::VERB_POST] as $key => $value) {
 												
-												echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 15px;" class="list">';
+												echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 25px;" class="list">';
 												echo  $value["text"];
 													
 												echo  '</td></tr>';
 											}
-											echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 15px;"></td></tr>';
+											echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 25px;"></td></tr>';
 										}
 
 
@@ -1528,9 +1538,9 @@
 
 											foreach ($element[ActStr::VERB_COMMENT] as $key => $value) {
 												
-												echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 15px;" class="list">';
+												echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 25px;" class="list">';
 												echo  $value["text"];
-													echo '<p dir="ltr" style="color: black !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;text-align: left;line-height: 19px;font-size: 12px; background-color : #e2e5f8; margin-left: 20px; margin-top: 20px">';
+													echo '<p dir="ltr" style="color: black !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;text-align: left;line-height: 19px;font-size: 12px; background-color : #e2e5f8; margin-left: 20px; margin-top: 10px">';
 														echo  $value["value"];
 													echo  '</p>';
 												echo  '</td></tr>';
@@ -1551,10 +1561,10 @@
 							</table>
 							</p>
 							<br>
-						<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
+						<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
 						    Bonne journ&#233;e!
 						</p>
-						<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
+						<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
 						    L&#8217;&#233;quipe <?php Yii::app()->name ?>
 						</p>
 
@@ -1576,7 +1586,7 @@
       			<table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
         			<tr style="padding: 0;vertical-align: top;text-align: left;">
           				<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							<p class="text-center footercopy" style="margin: 0;margin-bottom: 10px;color: #777777 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 20px 0px;text-align: center;line-height: 19px;font-size: 12px;">Propulsé par communecter.org</p>
+							<p class="text-center footercopy" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 20px 0px;text-align: center;line-height: 19px;font-size: 12px;">Propulsé par communecter.org</p>
 		                </th>
 						<th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
         			</tr>
