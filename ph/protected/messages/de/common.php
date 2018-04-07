@@ -782,7 +782,7 @@ return array(
 	"Socials" => "Soziales Netzwerk",
 	"Descriptions" => "Beschreibungen",
 	"Tags" => "Schlagworte",
-	"Change password" => "Wechseln Sie Ihr Passwort",
+	"Change password" => "Ändern Sie Ihr Passwort",
 	"Download your profil" => "Laden Sie Ihr Profil herunter",
 	"Account info" => "Allgemeine Informationen",
 	
