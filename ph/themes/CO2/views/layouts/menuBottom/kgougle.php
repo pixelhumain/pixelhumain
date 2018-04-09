@@ -3,11 +3,11 @@
 
     <button class="btn btn-default lbh tooltips" data-hash="#welcome"
             data-placement="top" data-original-title="Page d'accueil">
-        <i class="fa fa-home" style="font-size: 19px;"></i>
+        <i class="fa fa-home" style="font-size: 18px;"></i>
     </button>
     
     <button class="btn btn-default tooltips letter-red" id="show-bottom-app">
-        <i class="fa fa-th" style="font-size: 17px;"></i>
+        <i class="fa fa-th" style="font-size: 16px;"></i>
     </button>
     
     <?php if(@Yii::app()->session["userId"]) { ?>
@@ -34,13 +34,13 @@
              data-placement="top" data-original-title="Statistiques : visualiser la fréquentation quotidienne du réseau">
         <i class="fa fa-bar-chart"></i>
     </a>
-    <a class="btn btn-default tooltips lbh" href="#coBugs"
+    <a class="btn btn-default tooltips lbh" href="#@kgouBugs"
              data-placement="top" data-original-title="Déclarer un bug">
         <i class="fa fa-bug"></i>
     </a>
-    <a class="btn btn-default lbhp tooltips" href="#default.view.page.index.dir.docs" 
-             data-placement="top" data-original-title="Documentation : en savoir + sur Communecter !">
-        <i class="fa fa-book"></i>
+    <a class="btn btn-default lbhp tooltips" href="#info.p.apropos" 
+             data-placement="top" data-original-title="En savoir + sur Kgougle !">
+        <i class="fa fa-info-circle"></i>
     </a>
 
     <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank"
