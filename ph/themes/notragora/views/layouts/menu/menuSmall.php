@@ -56,7 +56,7 @@ if (isset(Yii::app()->session['userId']) && !empty($me)) {
 		    </div>
 			<?php } ?>
 			<div class="col-xs-12 center no-padding">
-			    <a class="btn " href="javascript:openParams();" id="btnParams">
+			    <a class="btn  bg-blue lbh" href="#element.params" id="btnParams">
 			        <i class="fa fa-cog" style="font-size: 1em!important;"></i>
 			        Paramètres
 			    </a>
