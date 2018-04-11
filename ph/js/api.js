@@ -777,6 +777,25 @@ function buildSelectGroupOptions(list,value) {
 }
 
 
+function buildSelectFromList(list,value) {
+  mylog.log("buildSelectFromList ", value, list);
+  var html = "";
+  mylog.log("list", list);
+  if(list){
+    $.each(list, function(groupKey, groupVal) {
+      var data = ( groupKey ) ? 'data-type="'+groupKey+'"' : "";
+      html += '<optgroup label="'+trad[groupKey]+'" >';
+        $.each(groupVal, function(optKey, optVal) {
+          selected = ( optKey == value ) ? "selected" : ""; 
+          html += '<option value="'+optVal["_id"]["$id"]+'" '+selected+' '+data+'>'+optVal.name+'</option>';
+        });
+      html += '</optgroup>';
+    });
+  }
+  return html;
+}
+
+
 function buildRadioOptions(list,value, nameOption) { 
     var html = "";
     if(list){

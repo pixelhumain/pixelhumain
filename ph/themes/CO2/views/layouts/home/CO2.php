@@ -783,7 +783,9 @@ background-color: #09adef;
 
 			<br/>
 			<h1 class="homestead">
-			<a target="_blank" href="https://github.com/pixelhumain/communecter" class="btn btn-github btn-social"><span class="fa fa-github"></span> </a><br/>
+			<a target="_blank" href="https://github.com/pixelhumain/communecter" class="btn btn-github btn-social"><span class="fa fa-github"></span> </a>
+			<br/>
+			<br/>
 			<?php echo Yii::t("home","CONTACT") ?>
 			</h1>
 			+ 262 262 34 36 86<br><img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/contactCO_footer_welcome.png" height="15"/>

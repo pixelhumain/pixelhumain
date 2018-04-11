@@ -39,6 +39,7 @@
 </head>
 
 <body>
+
 <?php echo $content; ?> 
 
 </body>

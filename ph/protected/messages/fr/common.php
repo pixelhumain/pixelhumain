@@ -1387,6 +1387,9 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Add to my favorites places" => "Ajouter à mes lieux favoris",
 	"Remove from my favorites places" => "Supprimer de mes lieux favoris",
 	"Add zone to new" => "Ajouter une zone à la new",
-
+	"Chat" => "Chat",
+	"New Channel" => "Nouveau canal",
+	"Add a new channel" => "Ajouter un nouveau canal",
+	"Convert to Organization" => "Convertir en organisation"
 );
 ?>
