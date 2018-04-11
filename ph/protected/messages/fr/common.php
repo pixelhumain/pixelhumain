@@ -118,6 +118,7 @@ return array(
 	"You are not the creator. Please contact the administrator" => "Vous nêtes pas le créateur de cette fiche. Veuillez contacter un administrateur",
 	"You must be connected to access to create forms"=>"Vous devez être connecté pour afficher les formulaires de création",
 	"This email doesn't exist in our database. Do you want to create an account ?"=>"Cet email n'existe pas dans notre base. Voulez vous créer un compte ?",
+	"The id of {what} is unkown : please contact us to fix this problem"=> "La clé de {what} est inconnue : veuillez-nous contacter afin de régler ce problème",
 	//Success
 	"Changing language processing"=>"Changement de langue en cours",
 	"Your form validation is successful" => "la validation du formulaire est réalisée avec succès",
