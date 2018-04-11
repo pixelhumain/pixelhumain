@@ -16,16 +16,22 @@
    
  <?php  
   $cssAnsScriptFilesModule = array(
-    '/plugins/bootstrap/css/bootstrap.min.css',
-    '/plugins/font-awesome/css/font-awesome.min.css',
-    '/plugins/font-awesome-custom/css/font-awesome.css',
+
+    // est-ce que ça pose problème si je commente ces 2 lignes ?
+    // le layout empty est-il utilisé par d'autres modules ? ou ailleurs dans CO ?
+
+    //'/plugins/bootstrap/css/bootstrap.min.css',
+    //'/plugins/bootstrap/js/bootstrap.min.js' ,
+    //'/plugins/font-awesome/css/font-awesome.min.css',
+    //'/plugins/font-awesome-custom/css/font-awesome.css',
     '/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.css',
     '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' ,
-    '/plugins/bootstrap/js/bootstrap.min.js' ,
     '/plugins/blockUI/jquery.blockUI.js' ,
     '/js/api.js'
   );
   HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->request->baseUrl);
+
+  
   $cs = Yii::app()->getClientScript();
   $cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' );
   ?>
@@ -38,7 +44,7 @@
    </script>
 </head>
 
-<body>
+<body class="body">
 <?php echo $content; ?> 
 
 </body>
