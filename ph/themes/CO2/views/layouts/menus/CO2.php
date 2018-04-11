@@ -68,7 +68,7 @@
                      class="logo-menutop main pull-left hidden-xs hidden-sm" height=17>
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
-                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" style="display: none;" height=20>
+                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" style="display: none!important;" height=20>
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
                      class="logo-menutop pull-left visible-xs visible-sm" height=25>
@@ -101,14 +101,15 @@
                   //$subdomain == "page"
                  ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4" style="display:none;">
                 <input type="text" class="form-control" id="second-search-bar" 
-                        placeholder="search by name or by #tag, ex: 'commun' or '#commun'<?php //echo Yii::t("common", $placeholderMainSearch); ?>">
+                        placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
+                <?php //echo Yii::t("common", "search by name or by #tag, ex: 'commun' or '#commun"); ?>
                 <?php if($subdomain == "page"){ ?>
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
                 <?php } ?>
             </div>
-            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search" 
+            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search" style="display:none;" 
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
             </button>
@@ -541,47 +542,8 @@
     <!-- /.container-fluid -->
 
 </nav>
-<?php //if($subdomain != "welcome"){ 
-        $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
-      //} else{ ?>
-        <!--<div class="modal fade" role="dialog" id="modalRegisterSuccess">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-green-k text-white">
-                        <h4 class="modal-title"><i class="fa fa-check"></i> <?php echo Yii::t("login","Account Created!!") ?></h4>
-                    </div>
-                    <div class="modal-body center text-dark hidden" id="modalRegisterSuccessContent"></div>
-                    <div class="modal-body center text-dark">
-                        
-                        <h4 class="letter-green no-margin"><i class="fa fa-check-circle"></i> Confirmez votre adresse e-mail</h4>
-                        <h4 class="no-margin">
-                            <small>afin d'accéder à votre compte</small>
-                        </h4>
-                        <small class="no-margin">
-                            <i class="fa fa-lock"></i> Pour des raisons de sécurité, vous devez confirmer votre adresse e-mail avant de pouvoir vous connecter.
-                        </small>
-                        <br><br>
-                        <h5><i class="fa fa-angle-down"></i> Comment faire ?</h5>
-                        <i class="fa fa-envelope-open" style="width:20px;"></i> <b>Vérifiez votre boîte e-mails</b><br>
-                        <i class="fa fa-hand-o-up" style="width:20px;"></i> <b>Cliquez sur le lien d'activation</b> que nous vous avons envoyé.</br>
-                        <hr>
-                        <i class="fa fa-unlock" style="width:20px;"></i> Vous serez <b class="letter-green">connecté automatiquement</b> et redirigé vers votre page perso.
-                            
-                    </div>
-                    <div class="modal-footer">
-                         <button type="button" class="btn btn-default letter-green" data-dismiss="modal"><i class="fa fa-check"></i> J'ai compris</button>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-      <?php //}
-?>
-
-<?php /*if(isset(Yii::app()->session['userId'])) {
-        $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
-        $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.selectCreate',  array( ) ); 
-     }*/
-?>
+<?php   $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
+       ?>
 
 <?php if(isset(Yii::app()->session['userId'])) 
         $this->renderPartial($layoutPath.'notifications'); ?>
@@ -592,7 +554,6 @@
 <script type="text/javascript">
  
     jQuery(document).ready(function() {   
-        $(".logo-menutop.hidden-top").show();
     });
 
 </script>
