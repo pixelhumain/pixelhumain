@@ -778,6 +778,7 @@ return array(
 	"Select places to change result" => "Sélectionnez des lieux pour filtrer les résultats",
 	"Where are you looking ?" => "Rechercher par lieux",
 	"What are you looking for ?" => "Rechercher par tags (mots clés)",
+	"What are you looking for" => "Que recherchez-vous",
 	"Send invitations" => "Envoyer des invitations",
 	"You are going to ask to become an admin of the project" => "Vous allez demander à devenir admin du projet",
 	"You are going to ask to become an admin of the organization" => "Vous allez demander à devenir admin de l'organisation",
@@ -1387,6 +1388,9 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Add to my favorites places" => "Ajouter à mes lieux favoris",
 	"Remove from my favorites places" => "Supprimer de mes lieux favoris",
 	"Add zone to new" => "Ajouter une zone à la new",
+
+	"search by name or by #tag, ex: 'commun' or '#commun" => "rechercher ou #rechercher"
+
 	"Chat" => "Chat",
 	"New Channel" => "Nouveau canal",
 	"Add a new channel" => "Ajouter un nouveau canal",
