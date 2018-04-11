@@ -17,7 +17,9 @@
         app:"search",
         type:"<?php echo Organization::COLLECTION ?>"
     };
-
+    var directoryViewMode="<?php echo (@$preferences["directoryView"]) ? $preferences["directoryView"] : "list" ?>";
+    var myScopes={};
+    
     var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
     var domainName = "<?php echo Yii::app()->params["CO2DomainName"];?>";
     var userId = "<?php echo Yii::app()->session['userId']?>";
@@ -57,7 +59,32 @@
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
     
     var globalTheme = "<?php echo Yii::app()->theme->name;?>";
-
+    var headerParams = {
+        "persons"       : { color: "yellow",  icon: "user",         name: trad.people },
+        "organizations" : { color: "green",   icon: "group",        name: trad.organizations },
+        "NGO"           : { color: "green-k",   icon: "group",      name: trad.NGOs },
+        "LocalBusiness" : { color: "azure",   icon: "industry",     name: trad.LocalBusiness },
+        "Group"         : { color: "turq",   icon: "circle-o",      name: trad.groups },
+        "projects"      : { color: "purple",  icon: "lightbulb-o",  name: trad.projects },
+        "events"        : { color: "orange",  icon: "calendar",     name: trad.events },
+        "vote"          : { color: "azure",   icon: "gavel",        name: "Propositions, Questions, Votes" },
+        "actions"       : { color: "lightblue2", icon: "cogs",      name: "actions" },
+        "cities"        : { color: "red",        icon: "university",name: trad.municipalities },
+        "poi"           : { color: "green-poi",  icon: "map-marker",name: trad.pointsinterests },
+        "place"           : { color: "brown",    icon: "map-marker", name: trad.pointsinterests },
+        "wikidata"    : { color: "lightblue2",   icon: "group",      name: "Wikidata" },
+        "datagouv"    : { color: "lightblue2",   icon: "bullhorn",   name: "DataGouv" },
+        "osm"         : { color: "lightblue2",   icon: "bullhorn",   name: "Open Street Map" },
+        "ods"         : { color: "lightblue2",   icon: "bullhorn",   name: "OpenDatasoft" },
+        "places"      : { color: "brown",        icon: "map-marker", name: trad.places },
+        "classified"  : { color: "azure",        icon: "bullhorn",   name: trad.classifieds },
+        "GovernmentOrganization" : { color: "red",   icon: "university", name: "services publics" },
+        "ressources"  : { color: "vine",   icon: "cubes",   name: "Ressource" },
+        "news"        : { color: "blue-k",   icon: "newspaper-o",   name: "news" },
+        "products"    : { color: "orange",   icon: "shopping-basket",   name: trad.products },
+        "services"    : { color: "orange",   icon: "sun-o",   name: trad.services },
+        "circuits"    : { color: "orange",   icon: "ravelry",   name: trad.circuits },
+    }
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",
         "citoyen":"<?php echo Person::ICON ?>", 
