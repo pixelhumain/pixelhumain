@@ -139,6 +139,7 @@
 }
 #onepage .portfolio-item .item-desc{
 	color:#2C3E50;
+	text-align: left;
 }
 
 #onepage .portfolio-item .item-date{
@@ -387,6 +388,7 @@
 
 	.dropdown-onepage-main-menu .dropdown-menu li a {
 		text-transform: uppercase;
+		max-width: 250px;
 	}
 
 	.arrow_box:after, .arrow_box:before {

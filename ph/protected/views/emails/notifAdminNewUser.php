@@ -11,18 +11,22 @@
         <td align="left" valign="top">
           <img src='<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo ?>' alt="<?php echo $title?>" title="<?php echo $title?>"/>
         </td>
-        <td align="left">
-           <h3>
-
-           <?php echo Yii::t("common", "LOCAL CONNECTED CITIZENS"); ?>
-           Un nouvel utilisateur s'est inscrit sur le site : <?php echo $person["name"]?> !! </h3>
-           <?php if (@$person["inviteCode"]) {
-           echo "Code d'invitation utilisé : ".$person["inviteCode"]."</br>";
-           }?>
-           N'oubliez pas de le modérer sur le <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/'.Yii::app()->getController()->moduleId.'/#admin.directory'  ?>">back office</a>.
-           <br/>
-        </td>
       </tr>
+
+                 <?php echo Yii::t("common", "LOCAL CONNECTED CITIZENS");
+
+             foreach ( $data as $key => $person) {
+
+              echo "<tr>
+         <td align='left'> <h3>Un nouvel utilisateur s'est inscrit sur le site : ".$person["name"]."</h3>";
+
+                echo  'N\'oubliez pas de le modérer sur le <a href="'.Yii::app()->getRequest()->getBaseUrl(true).'/'.Yii::app()->getController()->moduleId.'/#admin.directory"> back office</a><br/></td>
+      </tr>';
+               
+             }
+
+
+           ?>
       </table>
   </body>
 </html>

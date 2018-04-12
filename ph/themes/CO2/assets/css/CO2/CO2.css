@@ -836,140 +836,8 @@ a, a:hover, a:focus, a:active, a.active{
 .bootbox{
 	z-index: 100000;
 }
-.toolbar-bottom{
-    position: fixed;
-    bottom: 10px;
-    height: 50px;
-    /*border-top: 1px solid #bcbcbc;
-    border-left: 1px solid #bcbcbc;*/
-    background-color: transparent;
-    /*border-radius: 0px 0 0 0;*/
-    text-align: right;
-    padding: 0px;
-    /*-webkit-box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);*/
-}
-.toolbar-bottom.bottom-left{
-	left: 10px;
-}
-.toolbar-bottom.bottom-right{
-	right:10px;
-}
-.toolbar-bottom-adds{
-    background-color: transparent !important;
-}
-.toolbar-bottom-adds .addBtnFoot{
-    border-radius: 5px;
-    width: 100%;
-    color: white !important;
-    border: none;
-    text-align: left;
-}
-#show-bottom-add, #donation-btn{
-	border-radius: 100%;
-    width: 50px;
-    border: none;
-    height: 50px;
-}
-#donation-btn{
-	color: white;
-	background-color:#E5344D;
-	line-height: 55px;
-	padding: 0px;
-}
-#donation-btn i{
-	font-size: 20px;
-}
-#show-bottom-add.opened{
-    transform: rotate(45deg);
-}
-#show-bottom-add i{
-	font-size: 26px;
-}
-/*.toolbar-bottom .btn,
-.toolbar-bottom-apps .btn{
-    border:none;
-    border-right: 1px solid #bcbcbc;
-    background-color: white;
-    border-radius: 0px;
-    float: left;
-    font-size: 12px;
-    padding: 10px;
-}*/
-
-/*.toolbar-bottom-adds .btn, 
-.toolbar-bottom-quickaccess .btn 
-{
-	border: none;
-	background-color: transparent;
-	border-radius: 0px;
-	font-size: 13px;
-	padding-left: 15px;
-	width:100%;
-	text-align: left;
-	font-weight: bold;
-}*/
 
 
-.toolbar-bottom-apps .btn{
-    padding: 15px;
-}
-
-.toolbar-bottom .btn:hover,
-.toolbar-bottom-apps .btn:hover,
-.toolbar-bottom-adds .btn:hover,
-.toolbar-bottom-quickaccess .btn:hover
-{    
-    /*background-color: #ddd !important;*/
-    -webkit-box-shadow:0px 0px 10px 0px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow:0px 0px 10px 0px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
-}
-
-
-.toolbar-bottom-apps{
-    position: fixed;
-    bottom: 37px;
-	right: -1px;
-	height: 49px;
-    border-top: 1px solid #bcbcbc;
-    border-bottom: 1px solid #bcbcbc;
-    border-left: 1px solid #bcbcbc;
-    background-color: #FFF;
-    border-radius: 0px 0 0 0;
-    text-align: right;
-    padding: 0px;
-}
-
-.toolbar-bottom-fullwidth{
-       position: fixed;
-    bottom: 60px;
-    right: 10px;
-    /* height: 440px; */
-    /* border-top: 1px solid #bcbcbc; */
-    /* border-bottom: 1px solid #bcbcbc; */
-    /* border-left: 1px solid #bcbcbc; */
-    /* background-color: #FFF; */
-    border-radius: 0px 0 0 0;
-    text-align: right;
-    padding-top: 10px;
-    width: 160px;
-    z-index: 10000000;
-    /* width: 425px; */
-   /* position: fixed;
-	bottom: 37px;
-	right: 0px;
-	height: 440px;
-	border-top: 1px solid #bcbcbc;
-	border-bottom: 1px solid #bcbcbc;
-	border-left: 1px solid #bcbcbc;
-	background-color: #FFF;
-	border-radius: 0px 0 0 0;
-	text-align: left;
-	padding-top: 10px;
-	width: 425px;*/
-}
 #btnShowMoreResult{
   padding: 20px;
   font-size: 20px;
@@ -1836,6 +1704,9 @@ margin-right: 5px;
 	background-color: white;
 	z-index: 10000;
 }
+#modalDeleteAm, #modalAssignMe{
+	z-index: 10002;
+}
 
 #modal-preview-coop #amendement-container{
 	bottom:0px;
@@ -1852,6 +1723,11 @@ margin-right: 5px;
 	background-color: white;
 	z-index: 10000;
 }
+
+.xdsoft_datetimepicker{
+	z-index: 20000 !important;
+}
+
 /************************************************************************************/
 /************************************************************************************/
 /************************************************************************************/

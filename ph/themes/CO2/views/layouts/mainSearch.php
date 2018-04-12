@@ -280,6 +280,8 @@
 
         <?php //$this->renderPartial($layoutPath.'initCommunexion', array()); ?>
         
+        <?php $this->renderPartial('../cooperation/pod/modalCommon', array()); ?>
+
         <?php $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
         <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"]); ?>
         <?php 
