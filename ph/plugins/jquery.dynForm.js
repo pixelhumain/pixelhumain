@@ -563,6 +563,7 @@ onSave: (optional) overloads the generic saveProcess
         	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
         	$.each(fieldObj.list,function(k,v) { 
         		//mylog.log("build field ",k,v);
+        		fieldClass = (v.class) ? v.class : "";
         		if(!v.excludeFromForm){
 	        		var lbl = ( fieldObj.trad && fieldObj.trad[v.labelFront] ) ? fieldObj.trad[v.labelFront] : tradCategory[k] ? tradCategory[k] : k;
 	        		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
@@ -1070,9 +1071,10 @@ onSave: (optional) overloads the generic saveProcess
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
-				$("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
-					$( settings.formId ).submit();	        	
-		        });
+				// $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
+				// 	$( settings.formId ).submit();	        	
+		  //       });
+		        $("#btn-submit-form").hide(); 
 			}
 		});
 		
@@ -2501,6 +2503,7 @@ var dyFObj = {
 					mylog.log("lazyLoaded",dfPath);
 					mylog.dir(dynForm);
 					//typeObj[type].dynForm = dynForm;
+					
 				  	dyFInputs.get(type).dynForm = dynForm;
 					dyFObj[dyFObj.activeElem] = dyFInputs.get(type);
 					if( notNull(dyFInputs.get(type).col) ) uploadObj.type = dyFInputs.get(type).col;
@@ -2576,11 +2579,14 @@ var dyFObj = {
 				        //alert(afterLoad+"|"+typeof dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads[afterLoad]);
 			    	}
 			        
-			        if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.onLoads."+afterLoad, "function") )
-			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads[afterLoad](data);
+
 			        //incase we need a second global post process
 			        if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.onLoads.onload", "function") )
 			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads.onload(data);
+
+			        
+			        if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.onLoads."+afterLoad, "function") )
+			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads[afterLoad](data);
 				    
 			        bindLBHLinks();
 			      },
