@@ -1500,7 +1500,7 @@
 					    	<!--http://localhost:8888/ph/images/betatest.png-->
 							<a href="#" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo?>" alt="1+1=3" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;"></a>
 
-							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">Bonjour, il y a eu du nouveaux sur NotrAgora :
+							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">Bonjour, il y a du nouveau sur NotrAgora :
 							</p>
 							<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #3c5665; !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
 							    <!-- <?php //echo $msg ; ?> <a href="<?php //echo $url ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"> <?php //e//cho $elementName ?> </a> -->
@@ -1509,6 +1509,7 @@
 							    <?php 
 							    foreach ($data as $type => $elementBytype) {
 							    	foreach ($elementBytype as $idElement => $element) {
+							    		echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;"><p></p></td></tr>';
 										echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">';
 
 										if($type == Organization::COLLECTION) {
@@ -1525,7 +1526,9 @@
 												
 												echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 25px;" class="list">';
 												echo  $value["text"];
-													
+													echo '<p dir="ltr" style="color: black !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;text-align: left;line-height: 19px;font-size: 12px; background-color : #e2e5f8; margin-left: 20px; margin-top: 10px">';
+														echo  @$value["value"];
+													echo  '</p>';
 												echo  '</td></tr>';
 											}
 											echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 25px;"></td></tr>';
@@ -1541,7 +1544,7 @@
 												echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 25px;" class="list">';
 												echo  $value["text"];
 													echo '<p dir="ltr" style="color: black !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;text-align: left;line-height: 19px;font-size: 12px; background-color : #e2e5f8; margin-left: 20px; margin-top: 10px">';
-														echo  $value["value"];
+														echo  @$value["value"];
 													echo  '</p>';
 												echo  '</td></tr>';
 											}
@@ -1551,7 +1554,7 @@
 										if(!empty($element[ActStr::VERB_ADD])){
 											foreach ($element[ActStr::VERB_ADD] as $key => $value) {
 												
-												echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 15px;" class="list">';
+												echo '<tr style="padding: 0;vertical-align: top;text-align: left;"><td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 5px;margin: 0px;text-align: left;line-height: 19px;font-size: 15px;padding-left: 25px;" class="list">';
 												echo  $value["text"];
 												echo  '</td></tr>';
 											}
@@ -1562,14 +1565,14 @@
 							</p>
 							<br>
 						<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
-						    Bonne journ&#233;e!
+						    Bonne journ&#233;e! N'h&#233;sitez pas &agrave; vous connecter pour réagir
 						</p>
 						<p dir="ltr" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 15px;">
 						    L&#8217;&#233;quipe <?php Yii::app()->name ?>
 						</p>
 
 						<a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/#element.params' ; ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">
-							Vous pouvez arreter de recevoir ce mail dans vos parametrès
+							Vous pouvez changer les param&egrave;tres de notification d&#8217;activit&#233; par mail en cliquant ici
 						</a>
 						<a href="mailto:<?php Yii::app()->params['adminEmail'];?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><?php Yii::app()->params['adminEmail']?></a>
 						</th>
@@ -1586,7 +1589,7 @@
       			<table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
         			<tr style="padding: 0;vertical-align: top;text-align: left;">
           				<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
-							<p class="text-center footercopy" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 20px 0px;text-align: center;line-height: 19px;font-size: 12px;">Propulsé par communecter.org</p>
+							<p class="text-center footercopy" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 20px 0px;text-align: center;line-height: 19px;font-size: 12px;">Propuls&eacute; par communecter.org</p>
 		                </th>
 						<th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
         			</tr>

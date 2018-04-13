@@ -41,8 +41,8 @@
 		"You can unsubscribe on mail received on turn off mail notication on your settings or you can choose parameters of mail notifications in the same space"=>"Vous pouvez vous d&eacute;sinscrire des mails reçu en d&eacute;sactivant les notifications par mail dans vos r&eacute;glages personnels ou vous pouvez r&eacute;gler les paramètres de notifications par mail au même lien",
 		"here" => "ici",
 		"Mail send from"=>"Mail envoy&eacute; depuis",
-		"{who} wrote a message on the wall :" => "{who} a écrit sur le mur :",
+		"{who} wrote a message :" => "{who} a écrit :",
 		"{who} added a new production : {what}" => "{who} a ajouté une nouvelle production : {what}",
-		"{who} commented the production :" => "{who} a commenté la production :",
+		"{who} commented :" => "{who} a commenté :",
 );
 ?> 
