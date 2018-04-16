@@ -538,7 +538,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     font-size: 13px;
     height: 25px;
     padding: 5px 10px;
-    width: 67%;
+    width: 60%;
     float: left;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -871,6 +871,10 @@ margin-top: 5px;
     #main-name-element{
         font-size: 1.2em;
     }
+    /* LIVE NOW */
+    .elemt_name, .elemt_date {
+        width: 60% !important;
+    }
 }
 @media (min-width: 991px){
  .section-date {
@@ -887,6 +891,8 @@ margin-top: 5px;
     .panel-btn-confidentiality strong{
         font-size: 0.8em;
     } 
+
+
 }
 @media (max-width: 768px) {
      .section-date {
