@@ -256,13 +256,14 @@
 
 		addResultsInForm = function(commonGeoObj, countryCode){ //surcharge pour la recherche d'addresse
 			//success
-			mylog.log("success callGeoWebService CO2");
+			mylog.log("addResultsInForm success callGeoWebService CO2");
 			//mylog.dir(objs);
 			var res = commonGeoObj; //getCommonGeoObject(objs, providerName);
 			mylog.dir(res);
 			var html = "";
 			var id = 0;
-			$.each(res, function(key, value){ mylog.log("resultat : ",value);
+			$.each(res, function(key, value){ 
+				mylog.log("resultat1 : ",value);
 				id++;
 				res[key]["id"] = id;
 				res[key]["typeSig"] = "address";
@@ -277,10 +278,13 @@
 			});
 
 			
-			$.each(res, function(key, value){ mylog.log("resultat : ",value);
+			$.each(res, function(key, value){ 
+				mylog.log("resultat2 : ",value);
 				if(	notEmpty(value.countryCode) && 
-					(	( !notEmpty(value.typeNom) && !notEmpty(value.classNom) ) ||  
-						( value.typeNom == "house" && value.classNom == "place") ) ){
+					(	( !notEmpty(value.typeNom) && !notEmpty(value.classNom) ) ||
+						( value.typeNom == "house" && value.classNom == "place" ) ||
+						( value.typeNom == "residential" && value.classNom == "highway" ) ||
+						( value.typeNom == "suburb" && value.classNom == "place" ) ) ){
 					//mylog.log("Country Code",value.country.toLowerCase(), countryCode.toLowerCase());
 					//if(value.country == "Nouvelle-Calédonie" || value.state == "Nouvelle-Calédonie"){ 
 						html += 
@@ -296,7 +300,7 @@
 
 			
 			//else html = "";
-			console.log("NORES", html, res.length);
+			mylog.log("NORES", html, res.length);
 			if($("#dropdown-newElement_streetAddress-found").length){ //si on a cet id = on est dans formInMap
 				if(html=="") 
 					html = "<span class='padding-15'><i class='fa fa-ban'></i> Aucun résultat</span>";
