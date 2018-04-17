@@ -16,7 +16,7 @@
   color:white;
   /*text-transform: uppercase;*/
   border: 2px dashed transparent!important;
-  font-family: "montserrat";
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .btn-select-type-anc:hover, 
@@ -36,7 +36,7 @@
   background-color:white !important;
   color:#2BB0C6;
   border: 2px dashed #2BB0C6!important;
-  font-family: "montserrat";
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 #ajaxFormModal .btn-select-type-anc:hover, 
@@ -53,7 +53,7 @@
 #ajaxFormModal .subtypeBtn{
   background-color:white !important;
   color:#2BB0C6;
-  font-family: "montserrat";
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   border: 2px solid #D9EEF2!important;
 }
