@@ -13,6 +13,17 @@
 		"Culture | Animation"=>"Culture | Animation",
 		"Biodiversity"=>"Biodiversité",
 		"ICT | Numeric | Internet"=>"TIC | Numérique | Internet",
+
+        "Food" => "Alimentation",
+        "Transport" => "Transport",
+        "Education" => "Éducation",
+        "Economy" => "Économie",
+        "Energy" => "Énergie",
+        "Environnement" => "Environnement",
+        "Numeric" => "Numérique",
+        
+
+
 		//Classifieds
         "Share"=>"Partager", 
         "To share"=>"À partager",
@@ -22,7 +33,7 @@
         "For sale"=>"À vendre",            
         "Rent"=>"Louer",   
         "For rent"=>"À louer",
-        "Need"=>"Besoin", 
+        
         "Looking for"=>"À la recherche",   
         "Jobs"=>"Emplois", 
         "Offers"=>"Offres d'emplois", 
@@ -154,7 +165,14 @@
     	"Debate" => "Débat",
 		"Film"=>"Projection",
         "Crowdfunding" => "Financement Participatif",
-        
+
+        //Property
+        "House" => "Maison", 
+        "Flat" => "Appartement", 
+        "Ground" => "Terrain", 
+        "Parking" => "Parking", 
+        "Office" => "Bureau",
+
         //TYPES
         "NGO" => "Association",
         "LocalBusiness" => "Entreprise",
@@ -167,6 +185,7 @@
         "the group" => "le collectif",
         "the Group" => "le groupe",
         "the government organization" => "l'organisation gouvernementale",
+        
         //ROLES LINK
         "Financier"=>"Financeur",
         "Partner"=>"Partenaire",
@@ -175,7 +194,66 @@
         "President"=>"Président",
         "Director"=>"Directeur",
         "Speaker"=>"Conférencier",
-        "Intervener"=>"Intervenant"
+        "Intervener"=>"Intervenant",
+
+
+        //RESSOURCES
+        "Need"=>"Besoin", 
+        "Needs"=>"Besoins", 
+        "need"=>"Besoin", 
+        "Offer"=>"Offre", 
+        "Offers"=>"Offres", 
+        "offer"=>"Offre", 
+        "Need something"=>"Besoins",
+        "Offer something"=>"Propositions",
+
+        "They need something"=>"Ils ont besoin d'aide",
+        "They offer something"=>"Ils proposent leur aide",
+
+        "Type of ressource" => "Choisir une catégorie",
+        "Choose a category" => "Choisissez une catégorie",
+        "Sub category" => "Sous-catégorie",
+
+        //filters lel 1
+        "service"=>"service",
+            //filters lvl 2
+            "charity" => "Charité",
+            "education" => "Éducation",
+            "househelp" => "Aide à domicile",
+            "washing" => "Entretien, Ménage",
+            "gardening" => "Jardinage",
+            "farming" => "Agriculture",
+            "generalmaintenance" => "Maintenance",
+            "animalcare" => "Aide Animaux",
+            "childrencare" => "Aide aux enfants",
+            "ederlycare" => "Aide aux personnes agées",
+            "disabledcare" => "Aide aux personnes handicapés",
+            "hostinghelp" => "Aide à l'hébergement",
+        "competence"=>"compétence",
+            //filters lvl 2
+            "artistic" => "Artistique",
+            "laws" => "Légal",
+            "itdevlopment" => "Informatique",
+            "handcraft" => "Artisanat",
+            "animalcare" => "Soins des animaux",
+            "agriculture" => "Agriculture",
+            "restauration" => "Restauration",
+            "building" => "Construction",
+        "material"=>"matériel",
+            //filters lvl 2
+            "electronic"=> "Électronique",
+            "furniture"=> "Mobilier",
+            "primaryressources"=> "Ressource Primaire",
+            "buildingtools"=> "Outil de construction",
+            "gardeningtools"=> "Outil de jardin",
+            "medicalstuff"=> "Médical",
+
+        "To share" => "À partager",
+        "To give" => "À donner",
+        "For sale" => "À vendre",
+        "For rent" => "À louer",
+        "Job offer" => "Offre d'emplois",
+
 	);
 ?>
 
