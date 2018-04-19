@@ -5,7 +5,7 @@
 		"You are"=>"Usted es",
 		"communected to" => "communecté-e à",
 		"Be communected permits you to get smart informations<br>localy performed."=>"Être communecté-e vous permet de capter en direct les informations pertinentes<br>qui se trouvent autour de vous.",
-		"Be communected"=> "Communectez-vous",
+		"Be communected"=> "Communectez-usted",
 		"Change your communexion" => "Cambiar de communection",
 		"communect you : London, Paris, Brussels ?"=>"communectez-vous : Nantes, Strasbourg, Avignon ?",
 		"To use the network efficiently, we advice you to be <i><b>communected</b></i>"=>"Pour utiliser le réseau à pleine puissance, nous vous conseillons de vous <i><b>communecter</b></i>",
