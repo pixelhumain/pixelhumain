@@ -114,6 +114,7 @@
 		"Top Level Sharing process" => "Le premier niveau de partage",
 		"5 year Thinking Process" => "5 années de reflexion",
 		"Goodies we can pass around" => "Goodies à partager",
-		"Read Us" => "Documentez Vous"
+		"Read Us" => "Documentez Vous",
+		"helps us to host our tools" => "nous aide pour l'hébergement de nos outils"
 	);
 ?>
