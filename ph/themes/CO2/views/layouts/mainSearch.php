@@ -136,8 +136,8 @@
     
         
 
-        <?php if($CO2DomainName == "kgougle")
-                $this->renderPartial($layoutPath.'radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
+        <?php if($CO2DomainName == "kgougle" || $CO2DomainName == "CO2")
+                $this->renderPartial($layoutPath."modals/".$CO2DomainName.'/radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
         ?> 
         
         <?php 

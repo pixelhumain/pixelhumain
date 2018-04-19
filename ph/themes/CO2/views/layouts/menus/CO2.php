@@ -395,6 +395,13 @@
                       <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
 
+
+                    <!-- <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
+                        id="btn-radio" style=" margin-top:6px;"  
+                        data-target="#modalRadioTool" data-toggle="modal"
+                        data-placement="bottom" title="Écouter la radio">
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/radio-ico.png" height="25">
+                    </button> -->
                     
                     <span class="dropdown" id="dropdown-apps">
                         <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
@@ -412,6 +419,7 @@
 
 
                 <?php } else { ?>
+
                  <span class="dropdown pull-left" id="dropdown-apps">
                         <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                               title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>" style="margin-top: 8px;">
@@ -442,6 +450,14 @@
                         <?php //} ?>
                     </li>
 
+
+                    <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
+                        id="btn-radio" style=" margin-top:10px;"  
+                        data-target="#modalRadioTool" data-toggle="modal"
+                        data-placement="bottom" title="Radio Pixel-Humain">
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/radio-ico.png" height="25">
+                    </button>
+                    
                     <!--<li class="pull-right">
                         <a href="#info.p.stats" class="lbh padding-5" style="margin-top:8px;">
                             <i class="fa fa-bar-chart"></i> stat
