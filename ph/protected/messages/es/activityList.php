@@ -1,8 +1,8 @@
 <?php
 
 	return array(
-		"There is no activity for the moment.<br/>Edit...<br/>To improve the commons informations<br/>To give a better overview of territories' actors and activities<br/>And to liberate your knowledge" => "Il n'y a pas d'activités pour le moment.<br/>Editer...<br/>Pour améliorer l'information collective,<br/>Pour donner un meilleur aperçu des acteurs et de l'activités du territoire<br/>Et pour libérer votre savoir !",
-		"See modifications" => "Voir les modifications"
+		"There is no activity for the moment.<br/>Edit...<br/>To improve the commons informations<br/>To give a better overview of territories' actors and activities<br/>And to liberate your knowledge" => "No hay actividades por el momento.<br/>Editer...<br/>Para mejorar la información colectiva,<br/>Para dar una mejor vista de los actores y actividades del territorio<br/>Y para liberar su saber !",
+		"See modifications" => "Ver las modificaciones"
 	)
 
 ?>
