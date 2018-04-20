@@ -1312,6 +1312,9 @@ return array(
 	"Surveys" => "Umfragen",
 	"a survey" => "eine Umfrage",
 	
+	"What are you looking for" => "Wonach suchen Sie",
+	"search by name or by #tag, ex: 'commun' or '#commun" => "Suche nach Name oder #Tag, z.B.: 'commun' oder '#commun'",
+	
 	
 	
 );
