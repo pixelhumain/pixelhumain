@@ -217,7 +217,7 @@
                                                   "explain"=>@$explain)); ?>
                 <div class="subModuleTitle">  
                     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                        <div class="input-group col-xs-7 col-sm-8 col-md-8" id="main-input-group"  style="">
+                        <div class="input-group col-xs-10 col-sm-8 col-md-8" id="main-input-group"  style="">
                             <input type="text" class="form-control" id="main-search-bar" 
                                 placeholder="<?php echo Yii::t("common", $params["pages"]["#".$page]["placeholderMainSearch"]); ?>">
                             <span class="bg-white input-group-addon" id="main-search-bar-addon">
