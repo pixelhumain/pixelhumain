@@ -91,3 +91,7 @@ td{padding:5px;}
 		height: 25px;
     	vertical-align: super;
 	}
+	.settings-header{
+		padding: 5px 20px;
+    	border-bottom: 1px solid #e5e5e5;
+	}
