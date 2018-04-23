@@ -41,5 +41,9 @@ return array(
 	"Posted on members wall and visible only for them" => "Auf der Nachrichtenseite der Mitglieder gepostet und nur für diese sichtbar.",
 	"Posted on followers and members wall and visible to all on this wall" => "Auf der Nachrichtenseite der Anhänger und Mitglieder geposted und sichtbar für alle auf dieser Nachrichtenseite",
 	"Posted on followers and contributors wall and visible to all on this wall" => "Auf der Nachrichtenseite der Anhänger und Mitwirkenden geposted und sichtbar für alle auf dieser Nachrichtenseite",
+	
+	"published" => "veröffentlicht",
+	"in the newspaper of" => "in der Zeitung",
+	"in this newspaper" => "in dieser Zeitung",
 );
 ?>
