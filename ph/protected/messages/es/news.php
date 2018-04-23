@@ -21,6 +21,7 @@ return array(
 	"displayShared-classified" 		=> "une annonce",*/
 	"a news"       => "une publication", 
 	"created" => "a créé", 
+  "published" => "a publié", 
   	"shared" => "a partagé", 
   	"have shared" => "ont partagé", 
   	"Back to my page"=> "Retour à ma page",
@@ -30,8 +31,18 @@ return array(
   	"published {what} {where}"=>"a publié {what} {where}",
   	"a message"=>"un message",
   	"in the newspaper of {who}"=>"dans le journal de {who}",
-  	"in your newspaper"=>"dans votre journal",
-  	"in ce newspaper"=>"dans this journal",
+    "in the newspaper of"=>"dans le journal de",
+    "in your newspaper"=>"dans votre journal",
+  	"in this newspaper"=>"dans ce journal",
+  	"Write a public message visible in live on selected places"=>"Écrire un message public dans le live sur les lieux sélectionnées",
+  	"Visible only to me" => "Seulement pour moi",
+  	"Posted on followers wall and visible to all on this wall"=>"Publié sur le mur des abonnés et visible de tous sur ce mur",
+  	"Posted on administrators wall and visible only for them"=>"Publié sur le mur des administrateurs et visible uniquement pour eux",
+  	"Posted on attendees wall and visible to all on this wall"=>"Publié sur le mur des participants et visible de tous sur ce mur",
+  	"Posted on contributors wall and visible only for them"=>"Publié sur le mur des contributeurs et visible uniquement pour eux",
+  	"Posted on members wall and visible only for them"=>"Publié sur le mur des membres et visible uniquement pour eux",
+  	"Posted on followers and members wall and visible to all on this wall"=>"Publié sur le mur des abonnés et des membres et visible de tous sur ce mur",
+  	"Posted on followers and contributors wall and visible to all on this wall"=>"Publié sur le mur des abonnés et des contributeurs et visible de tous sur ce mur",
 );
 
 ?>

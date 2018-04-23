@@ -68,9 +68,12 @@
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/opensource.gif" height=40 
                             style="margin-top: -10px;border-radius: 3px;">
                     </a>
-                   <a href="https://github.com/pixelhumain" target="_blank" 
+                    <a href="https://github.com/pixelhumain" target="_blank" 
                         class=" hidden-xs">
                         <i class="fa fa-github fa-2x bg-white img-circle padding-5 margin-5"></i>
+                    </a>
+                    <a href="https://www.infomaniak.com/fr" target="_blank" class="">
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logo-infomaniak.png" height=20 style="margin-top: -10px;border-radius: 3px;">
                     </a>
                     
                     

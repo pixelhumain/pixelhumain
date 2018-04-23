@@ -1,0 +1,92 @@
+
+	
+.container-result-search {
+  padding-top: 10px;
+}
+#sectionMenu{
+  /*background-color: #F4F4F6;*/
+  padding: 10px;
+  /*border: 1px solid #bbb;*/
+}
+.btn-add, .btn-select-type-anc{
+  border-radius: 5px;
+}
+.btn-select-type-anc{
+  background-color:#2BB0C6 !important;
+  color:white;
+  /*text-transform: uppercase;*/
+  border: 2px dashed transparent!important;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.btn-select-type-anc:hover, 
+.btn-select-type-anc.active, 
+.btn-select-type-anc:focus, 
+.btn-select-type-anc:active, 
+.btn-select-type-anc:active:focus, 
+.btn-select-type-anc.active:focus{
+  color:#2BB0C6 !important;
+  border: 2px dashed #2BB0C6!important;
+  background-color: white !important;
+}
+
+
+
+#ajaxFormModal .btn-select-type-anc{
+  background-color:white !important;
+  color:#2BB0C6;
+  border: 2px dashed #2BB0C6!important;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#ajaxFormModal .btn-select-type-anc:hover, 
+#ajaxFormModal .btn-select-type-anc.active, 
+#ajaxFormModal .btn-select-type-anc:focus, 
+#ajaxFormModal .btn-select-type-anc:active, 
+#ajaxFormModal .btn-select-type-anc:active:focus, 
+#ajaxFormModal .btn-select-type-anc.active:focus{
+  color:white !important;
+  border: 2px dashed white!important;
+  background-color: #2BB0C6 !important;
+}
+
+#ajaxFormModal .subtypeBtn{
+  background-color:white !important;
+  color:#2BB0C6;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  border: 2px solid #D9EEF2!important;
+}
+
+#ajaxFormModal .subtypeBtn:hover, 
+#ajaxFormModal .subtypeBtn.active, 
+#ajaxFormModal .subtypeBtn:focus, 
+#ajaxFormModal .subtypeBtn:active, 
+#ajaxFormModal .subtypeBtn:active:focus, 
+#ajaxFormModal .subtypeBtn.active:focus{
+  color:white !important;
+  border: 2px dashed white!important;
+  background-color: #2BB0C6 !important;
+}
+
+
+
+
+#sub-menu-left.subsub .btn{
+  /*text-transform: uppercase;*/
+  font-size:12px;
+}
+
+.btn-add-classified{
+  border: 2px dashed transparent!important;
+}
+.btn-add-classified:hover, 
+.btn-add-classified.active, 
+.btn-add-classified:focus, 
+.btn-add-classified:active, 
+.btn-add-classified:active:focus, 
+.btn-add-classified.active:focus{
+  color:#34a853 !important;
+  border: 2px dashed #34a853!important;
+  background-color: white !important;
+}

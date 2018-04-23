@@ -44,8 +44,10 @@ function initRadioplayer(){
 }
 
 function initRadio(stream){
+    console.log("initRadio", stream);
     $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
+            console.log("initRadio", "ready");
             ready = true;
             $(this).jPlayer("setMedia", stream);
             $("#jquery_jplayer_1").jPlayer("play");
@@ -56,6 +58,7 @@ function initRadio(stream){
             $(this).jPlayer("clearMedia");
         },
         error: function(event) {
+            console.log("initRadio", "error");
             if(ready && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
                 // Setup the media stream again and play it.
                 $(this).jPlayer("setMedia", stream).jPlayer("play");

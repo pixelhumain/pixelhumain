@@ -65,7 +65,7 @@
 		"Projects" => "Projekte",
 		"Keywords" => "Schlüsselwörter",
 		"Community" => "Gemeinschaft",
-		"History" => "Geschichte",
+		"History" => "Projektgeschichte",
 		"10 Commands" => "10 Regeln",
 		"Social code" => "Sozialkodex",
 		"Funding" => "Finanzierung",
