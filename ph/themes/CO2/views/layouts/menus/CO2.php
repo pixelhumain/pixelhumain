@@ -139,7 +139,7 @@
             </button>
 
         <?php } ?>
-        <button class="btn-show-map" style="border-radius: 100%;width: 40px;border: none;height: 40px;"
+        <button class="btn-show-map" style=""
                 title="<?php echo Yii::t("common", "Show the map"); ?>"
                 alt="<?php echo Yii::t("common", "Show the map"); ?>"
                 >
@@ -191,7 +191,7 @@
                                 <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
                             </a>
                         </li> -->
-                         <li class="text-admin visible-xs">
+                         <!-- <li class="text-admin visible-xs">
                             <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.notifications" class="lbh bg-white">
                                 <i class="fa fa-bell"></i> <?php echo Yii::t("common", "My notifications") ; ?>
                                 <span class="notifications-count topbar-badge badge animated bounceIn 
@@ -203,15 +203,15 @@
                             </a>
                         </li>
                        
-                        <li role="separator" class="divider visible-xs"></li>
-                        <li class="text-admin dropdown-submenu dropdown-menu-left">
+                        <li role="separator" class="divider visible-xs"></li> -->
+                        <li class="text-admin menu-lang dropdown-submenu dropdown-menu-left">
                             <a href="javascript:;" class="bg-white">
                                 <i class="fa fa-language"></i> <?php echo Yii::t("common", "Languages") ; ?>
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><?php echo Yii::t("common","English") ?></a></li>
-                              <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><?php echo Yii::t("common","French") ?></a></li>
-                              <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png"/><?php echo Yii::t("common","German") ?></a></li>
+                              <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><span class="hidden-xs"><?php echo Yii::t("common","English") ?></span></a></li>
+                              <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><span class="hidden-xs"><?php echo Yii::t("common","French") ?></span></a></li>
+                              <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png"/><span class="hidden-xs"><?php echo Yii::t("common","German") ?></span></a></li>
                             </ul>
                         </li>
 
@@ -360,7 +360,7 @@
                           alt="<?php echo Yii::t("common","My network") ?>">
                       <i class="fa fa-users"></i>
                     </button>
-                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right hidden-xs" 
+                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Notifications") ?>" alt="<?php echo Yii::t("common","Notifications") ?>">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
@@ -370,7 +370,7 @@
                         </span>
                     </button>
                     <?php if(@$me && @$me["links"] && (@$me["links"]["memberOf"] || @$me["links"]["contributors"])){ ?>
-                    <button class="menu-button btn-menu btn-dashboard-dda text-dark pull-right" 
+                    <button class="menu-button btn-menu btn-dashboard-dda text-dark pull-right hidden-xs" 
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Cooperation") ?>" 
                           alt="<?php echo Yii::t("common","Cooperation") ?>">
                       <i class="fa fa-inbox"></i>
@@ -395,6 +395,7 @@
                       <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
 
+
                     
                     <span class="dropdown" id="dropdown-apps">
                         <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
@@ -412,6 +413,7 @@
 
 
                 <?php } else { ?>
+
                  <span class="dropdown pull-left" id="dropdown-apps">
                         <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                               title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>" style="margin-top: 8px;">
@@ -442,6 +444,14 @@
                         <?php //} ?>
                     </li>
 
+
+                    <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
+                        id="btn-radio" style=" margin-top:10px;"  
+                        data-target="#modalRadioTool" data-toggle="modal"
+                        data-placement="bottom" title="Radio Pixel-Humain">
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/radio-ico.png" height="25">
+                    </button>
+                    
                     <!--<li class="pull-right">
                         <a href="#info.p.stats" class="lbh padding-5" style="margin-top:8px;">
                             <i class="fa fa-bar-chart"></i> stat

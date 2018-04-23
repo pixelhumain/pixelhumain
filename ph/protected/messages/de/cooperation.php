@@ -218,5 +218,11 @@ return array(
 	"The <b>vote</b> is ended : " => "Die <b>Abstimmung</b> wird beendet:",
 	"Answer" => "Antwort",
 	"the answer" => "die Antwort",
+	
+	"No answer" => "Keine Antwort",
+	"create a survey" => "Erstellen Sie eine Umfrage",
+	"Survey name" => "Name der Umfrage",
+	"Survey text" => "Gegenstand der Umfrage",
+	"Surveys are published for all your followers" => "Umfragen werden für alle Ihre Beobachter veröffentlicht",
 
 );

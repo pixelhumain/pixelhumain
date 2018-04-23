@@ -57,6 +57,7 @@
 	"Degree of project's openness (0% = very closed, 100% = very opened)" => "Degré d'ouverture du projet (0% = très fermé, 100% = très ouvert)",
 	"Add<br/>A new<br/>Property" => "Ajouter<br/>Une nouvelle<br/>Propriété",
 	"No contributor for this project" => "Pas de contributeur sur le projet",
+	"The project has been updated" => "Le projet a été mise à jour.",
 	"Your project is updated" => "Projet mis à jour avec succés",
 	"Create or Contribute <br>Build Things<br>Find Help<br>Organize<br>Local or distant<br>Projects" => "Créer ou Contribuer<br>Construire<br>Trouver de l'Aide<br>Organiser des Projets<br>Localement ou à distance",
 	"Old projects" => "Anciens projects",

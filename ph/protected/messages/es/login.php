@@ -45,9 +45,9 @@ return array(
         "Invitation Code" => "Code d'invitation",
         "Add invitation code" => "Ajouter un code d'invitation",
         'Fields with * are required.'=>"Les champs marqués d'une * sont obligatoires.",
-        "Indicate your email link to your account to recover a password"=>"Indiquez l'addresse e-mail liée à votre compte afin de récupérer votre mot de passe",
+        "Indicate your email link to your account to recover a password"=>"Indiquez l'adresse e-mail liée à votre compte afin de récupérer votre mot de passe",
         "Please fill out the following form with your login credentials"=>"S'il vous plaît remplir le formulaire ci-dessous avec vos informations de connexion :",
-        "Full Street" => "Addresse",
+        "Full Street" => "Adresse",
         "We already have your email on our database : you've been invited by someone or imported from another application. You just have to finish the registration process in order to log in." => "Nous avons déjà votre adresse mail dans notre base de données : vous avez été invité(e) ou automatiquement importé(e) depuis une autre application. Vous n'avez maintenant qu'à terminer le processus d'inscription pour vous connecter.",
         "You've been invited : please resume the registration process in order to log in." => "Vous avez été invité(e) : vous n'avez plus qu'à finir l'inscription pour vous connecter.",
         "You must validate the CGU to sign up." => "Merci de valider les conditions générales d'utilisation.",
@@ -98,5 +98,24 @@ return array(
         "For commons"=>"Pour le bien commun",
         "To improve the city 2.2.main"=>"Pour améliorer la ville 2.2.main",
         "An email with a new password has been sent to your email account. Thanks."=>"Un mail avec un nouveau mot de passe vous a été envoyé à votre adresse email. Merci.",
+        "our chart" => "la charte",
+
+
+        "password saved securely in your cookies" => "mot de passe enregistré de façon sécurisée dans vos cookies",
+
+        "A new password has been sent to your email box !!"=>"Un nouveau mot de passe vous a été envoyé sur votre boite mail",
+        "Please, you will find a temporaly password"=>"Vous y trouverez votre mot de passe temporaire",
+        "in order to connect you"=>"afin de vous connecter",
+        "Then, you will be free to change your password on your profil page"=>"Ensuite, vous serez libre de changer votre mot de passe sur votre page de profil",
+        "Go to your profil page"=>"Allez sur votre page de profil",
+        "Click on parameters button in the menu under your header section"=>"Cliquez sur le bouton de paramêtres dans le menu sous votre bannière",
+        "Then click on the tab 'Change your password'"=>"Ensuite cliquez sur l'onglet 'Changer mon mot de passe'",
+        "In few seconds, you will be <b class='letter-green'>enjoying your new login password</b>"=>"En quelques secondes, vous aurez enregistré <b>votre nouveau mot de passe de connexion</b>",
+        "New email validation succesfully sent !!" => "Un nouveau mail de validation vous a été envoyé sur votre boite mail !!",
+        "You didn't receive the validation email ?" => "Vous n'avez pas reçu votre mail afin de valider votre compte ?",
+        "Indicate your email link to your account to receive a new validation" => "Indiquez votre email lié à votre compte pour le recevoir de nouveau",
+        "Your account <b>is not validated</b>: please check your mailbox to validate your email address."=>"Votre compte <b>n'est pas validé</b>: merci de regarder dans votre boite mail pour valider votre adresse mail.",
+        "If you <b>didn't receive it or lost it</b>, click on the <b>following button</b> to receive it <b>again</b>"=>"Si vous <b>ne le retrouvez pas ou s'il s'est perdu</b>, cliquez sur le <b>bouton ci-dessous</b> pour recevoir <b>à nouveau</b> ce mail",
+        "Receive another validation email"=>"Recevoir un autre mail de validation",
     );
 ?>
