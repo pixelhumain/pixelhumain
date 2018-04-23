@@ -171,9 +171,6 @@ jQuery(document).ready(function() {
         $(".toolbar-bottom-apps").hide(200);
     });*/
 
-    $("#btn-open-radio").click(function(){
-        $("#radio-ph-tools").toggle();
-    });
 
 
     $(".toolbar-bottom-adds").hide().removeClass("hidden");
