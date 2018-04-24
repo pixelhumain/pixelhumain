@@ -100,6 +100,8 @@ return array(
 	"{who} added a new profil image on {where}" => "{who} a ajouté une nouvelle image de profil dans {where}",
 	"{who} added new images to the album of {where}" => "{who} a ajouté des images à l'album de {where}",
 	"A new resolution {what} is added in {where}" => "Une nouvelle résolution {what} est ajoutée à {where}", 
+	"{author} added {who} in the community of {where}" => "{author} a ajouté {who} dans la communauté de {where}",
+	"{author} have added {who} in the community of {where}" => "{author} ont ajouté {who} dans la communauté de {where}",
 	//"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
 	//VOTE
 	"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
