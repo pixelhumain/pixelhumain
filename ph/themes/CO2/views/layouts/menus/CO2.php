@@ -445,12 +445,12 @@
                     </li>
 
 
-                    <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
+                   <!--  <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
                         id="btn-radio" style=" margin-top:10px;"  
                         data-target="#modalRadioTool" data-toggle="modal"
                         data-placement="bottom" title="Radio Pixel-Humain">
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/radio-ico.png" height="25">
-                    </button>
+                    </button> -->
                     
                     <!--<li class="pull-right">
                         <a href="#info.p.stats" class="lbh padding-5" style="margin-top:8px;">

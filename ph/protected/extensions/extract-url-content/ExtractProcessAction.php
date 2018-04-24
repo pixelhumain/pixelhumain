@@ -52,6 +52,7 @@ class ExtractProcessAction extends CAction{
 				$size=array("0");
 				$page_title="";
 				$page_body="";
+				$keywords=[];
 				$description=false;
 				$title=false;
 				$urlVideoLink=false;
@@ -114,6 +115,10 @@ class ExtractProcessAction extends CAction{
 			                        $page_body = $element->content;
 			                    }
 			                    $description = true;
+			                }
+			                if($element->name=="keywords"){
+			                	$page_tags=$element->content;
+			                	$keywords=explode(",", $page_tags);
 			                }
 			                if ($element->property == 'og:description'){
 				                $strlength = strlen($element->content);
@@ -268,7 +273,8 @@ class ExtractProcessAction extends CAction{
 								'description' => $page_body,
 								'images'=>$image_urls,
 								'url'=> $get_url,
-								"sourceName" => $sourceName
+								"sourceName" => $sourceName,
+								"keywords"=>$keywords
 					);
 					if(@$size){
 						if($size[0]>350)
