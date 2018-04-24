@@ -5,9 +5,9 @@
 </div>
 
 
-<button class="btn btn-link btn-sm letter-red tooltips font-montserrat no-padding hidden" 
+<button class="btn btn-link btn-sm letter-red tooltips font-montserrat no-padding" 
     id="btn-open-radio" 
-    data-placement="top" title="Écouter la radio">
+    data-placement="top" title="Radio-Pixel-Humain is on air, listen now !">
     <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/radio-ico-close.png" height="60">
 </button>
 
