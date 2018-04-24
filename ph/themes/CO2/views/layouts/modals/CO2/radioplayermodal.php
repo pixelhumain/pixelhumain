@@ -51,7 +51,7 @@ jQuery(document).ready(function() {
     // initRadioplayer();
     $("#radio-ph-tools").hide();
     $("#btn-open-radio").hide();
-    $("#radio-ph").attr("src", "");
+   /* $("#radio-ph").attr("src", "");
     $("#btn-open-radio, #btn-reload-radio").click(function(){
        startRadio();
     });
@@ -61,7 +61,7 @@ jQuery(document).ready(function() {
     });
 
     loadRadio();
-    setInterval(function(){ loadRadio() }, 15000);
+    setInterval(function(){ loadRadio() }, 15000);*/
 });
 
 function loadRadio(){
