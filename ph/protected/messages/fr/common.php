@@ -401,6 +401,7 @@ return array(
 	
 	//Status
 	"waiting for validation" => "attente de validation",
+	"Please wait while we fetch the information." => "Veuillez patienter, on récupère les informations",
 	"unregistred" => "non inscrit-e",
 	"not activated" => "non activé-e",
 	//Attributes
