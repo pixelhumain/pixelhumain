@@ -776,6 +776,16 @@ background-color: #09adef;
 	</div>
 
 
+	<div class="col-md-12 padding-bottom-50" style="color:#293A46; float:left; width:100%;" id="partenerSection">
+		<center>
+			<hr class="angle-down">
+			<a href="https://www.infomaniak.com/fr" target="_blank" class="">
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logo-infomaniak.png" height=20 style="margin-top: -10px;border-radius: 3px;">
+            </a>
+            <?php echo Yii::t("home", "helps us to host our tools") ?>
+		<center>
+	</div>
+
 	<div class="col-md-12 contact-map padding-bottom-50" style="color:#293A46; float:left; width:100%;" id="contactSection">
 		<center>
 			<i class="fa fa-caret-down" style="color:#FFF"></i>

@@ -3,6 +3,14 @@
         <i class="fa fa-heart"></i> <?php //echo Yii::t("common", "Don récurant") ?>
     </a>
 </div>
+
+
+<!-- <button class="btn btn-link btn-sm letter-red tooltips font-montserrat no-padding" 
+    id="btn-open-radio" 
+    data-placement="top" title="Radio-Pixel-Humain is on air, listen now !">
+    <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/radio-ico-close.png" height="60">
+</button> -->
+
 <div class="toolbar-bottom bottom-right font-montserrat">
 
     <!--<button class="btn btn-default lbh tooltips" data-hash="#welcome"
@@ -14,12 +22,15 @@
         <i class="fa fa-th" style="font-size: 17px;"></i>
     </button>-->
     
+
     <?php if(@Yii::app()->session["userId"]) { ?>
     <button class="btn btn-default bg-green-k text-white no-padding" id="show-bottom-add">
         <i class="fa fa-plus-circle"></i> 
         <!-- <span class="hidden-xs"><?php echo Yii::t("common", "add") ?> </span>-->
     </button>
     <?php } ?>
+
+
     <!--<button class="btn btn-default letter-blue btn-show-map">
         <i class="fa fa-map-marker" style="font-size: 15px;"></i> 
          <span class="hidden-xs"><?php echo Yii::t("common", "map") ?></span> 
@@ -104,7 +115,7 @@
         <i class="fa <?php echo Organization::ICON; ?>"></i> 
         <span><?php echo Yii::t("common","Organizations") ?></span>
     </a><br/>
-    <a href="javascript:;" data-form-type="project" class="addBtnFoot addBtnFoot_orga btn-open-form btn btn-default bg-purple inline-block margin-bottom-10"> 
+    <a href="javascript:;" data-form-type="project" class="addBtnFoot addBtnFoot_orga addBtnFoot_project btn-open-form btn btn-default bg-purple inline-block margin-bottom-10"> 
         <i class="fa <?php echo  Project::ICON;?>"></i> 
         <span><?php echo Yii::t("common","Project") ?></span>
     </a><br/>
@@ -146,6 +157,7 @@ jQuery(document).ready(function() {
         console.log(".toolbar-bottom-apps mouseleave");
         $(".toolbar-bottom-apps").hide(200);
     });*/
+
 
 
     $(".toolbar-bottom-adds").hide().removeClass("hidden");

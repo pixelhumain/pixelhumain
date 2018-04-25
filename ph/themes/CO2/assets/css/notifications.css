@@ -183,4 +183,11 @@
 		left:unset;
 		right:207px;
 	}
+
+	.notifications .pageslide-list a .label{
+		height: 26px;
+		width: 26px;
+		padding: 7px;
+		font-size: 13px !important;
+	}
 }

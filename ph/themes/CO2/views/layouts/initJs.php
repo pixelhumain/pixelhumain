@@ -46,14 +46,15 @@
     var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
     var organizerList = {}; 
     var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
-
+    var poi = <?php echo json_encode( CO2::getContextList("poi") ) ?>;
+    
     var myContacts = <?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
     var myContactsById =<?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
     var userConnected = <?php echo isset($me) ? json_encode($me) : "null"; ?>;
     var mentionsContact=[];
     var prestation = <?php echo json_encode( CO2::getContextList("prestation") ) ?>;
     var prestationList = prestation.categories;
-    var poi = <?php echo json_encode( CO2::getContextList("poi") ) ?>;
+    
     var roomList = <?php echo json_encode( CO2::getContextList("room") ) ?>;
     var search={
         value:"",

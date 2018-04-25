@@ -2789,8 +2789,31 @@ var dyFInputs = {
 
 	    	inputObj.init = function(){
 	        	$("#ajaxFormModal #name ").off().on("blur",function(){
-	        		if($("#ajaxFormModal #name ").val().length > 3 )
-	            		globalSearch($(this).val(),[ dyFInputs.get(type).col/*, "organizations"*/ ], addElement );
+	        		
+	        		//use urls in the name field to fill the form dynamically
+	        		if( $("#ajaxFormModal #url ") && ( $("#ajaxFormModal #name ").val().indexOf("http://")>=0 ||
+	        			$("#ajaxFormModal #name ").val().indexOf("https://")>=0 ) )
+	        		{
+	        			urlContent = processUrl.extractUrl( ".nametext ",$("#ajaxFormModal #name ").val(), 
+	        				function (data) {  
+	        					if( $("#ajaxFormModal #url") )
+			        				$("#ajaxFormModal #url").val($("#ajaxFormModal #name ").val());
+			        			if( data.name ){
+			        				$("#ajaxFormModal #name ").val(data.name);
+			        				globalSearch(data.name,[ dyFInputs.get(type).col ], addElement );
+			        			}
+			        			if( data.description ){
+			        				if($("#ajaxFormModal #shortDescription"))$("#ajaxFormModal #shortDescription").val( data.description );
+			        				if($("#ajaxFormModal #description"))$("#ajaxFormModal #description").val( data.description );
+			        			}
+			        			if( data.keywords.length > 0 ){
+			        				taglist = [];
+			        				$.each(data.keywords, function(i,k) { taglist.push( {id:i,text:k} ); });
+			        				$("#ajaxFormModal #tags").select2( "data", taglist );
+			        			}
+	        			});
+	        		} else if( $("#ajaxFormModal #name ").val().length > 3 )
+	            		globalSearch($(this).val(),[ dyFInputs.get(type).col ], addElement );
 	            	
 	            	dyFObj.canSubmitIf();
 	        	});
