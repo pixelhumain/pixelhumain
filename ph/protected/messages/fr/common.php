@@ -855,6 +855,7 @@ return array(
 	"My events"		 	=> "Mes événements",
 	"My directory" 		=> "Mon répertoire",
 	"Search name, postal code, city ..." => "nom, code postal, ville ...",
+	"Search name, slug, postal code, city ..."=> "nom, slug, code postal, ville ...",
 	"Show/Hide old events"=>"Afficher/Cacher les vieux événements",
 	"Show/Hide old projects"=>"Afficher/Cacher les vieux projets",
 	"ASSOCIATIONS"				=> "ASSOCIATIONS",
