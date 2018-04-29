@@ -120,7 +120,7 @@ return array(
 	"is now member of" => "ist jetzt Mitglied von",
 	"New admin well register" => "Der neue Administrator ist registriert",
 	"New member well register" => "Das neue Mitglied ist registriert",
-	"Your request has been sent to other admins." => "Ihre Anfrage ist an andere Aministratoren gesandt worden",
+	"Your request has been sent to other admins." => "Ihre Anfrage ist an andere Administratoren gesandt worden",
 	"News has been successfully deleted" => "Die Nachricht wurde gelöscht",
 	"News well updated" => "Die Nachricht wurde aktualisiert",
 	"Your vote has been successfully added" => "Ihre Stimme wurde mitgezählt",
