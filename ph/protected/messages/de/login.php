@@ -108,7 +108,7 @@ return array(
         "Then, you will be free to change your password on your profil page" => "Anschließend können Sie Ihr Passwort auf Ihrer Profilseite ändern",
         "Go to your profil page" => "Gehen Sie zu Ihrer Profilseite",
         "Click on parameters button in the menu under your header section" => "Klicken Sie auf die Schaltfläche 'Einstellungen' im Menü unter Ihrem Hauptmenü",
-        "Then click on the tab 'Change your password'" => "Klicken Sie dann auf den Reiter'Passwort ändern'",
+        "Then click on the tab 'Change your password'" => "Klicken Sie dann auf den Reiter 'Passwort ändern'",
         "In few seconds, you will be <b class='letter-green'>enjoying your new login password</b>" => "In wenigen Sekunden werden Sie <b class='letter-green'>Ihr neues Login-Passwort</b> beutzen können",
         "New email validation succesfully sent !!" => "Neue E-Mail-Bestätigung erfolgreich versandt!!",
         "You didn't receive the validation email ?" => "Sie haben die Bestätigungs-E-Mail nicht erhalten?",
