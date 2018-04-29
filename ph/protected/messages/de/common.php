@@ -117,7 +117,7 @@ return array(
 	"You are now contributor of" => "Sie sind jetzt Mitwirkender von",
 	"is now admin of" => "ist jetzt Administrator von",
 	"is now attendee of" => "ist jetzt Teilnehmer von",
-	"is now member of" => "ist jett Mitglied von",
+	"is now member of" => "ist jetzt Mitglied von",
 	"New admin well register" => "Der neue Administrator ist registriert",
 	"New member well register" => "Das neue Mitglied ist registriert",
 	"Your request has been sent to other admins." => "Ihre Anfrage ist an andere Aministratoren gesandt worden",
