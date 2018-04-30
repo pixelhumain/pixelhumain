@@ -102,6 +102,7 @@ return array(
 	"A new resolution {what} is added in {where}" => "Une nouvelle résolution {what} est ajoutée à {where}", 
 	"{author} added {who} in the community of {where}" => "{author} a ajouté {who} dans la communauté de {where}",
 	"{author} have added {who} in the community of {where}" => "{author} ont ajouté {who} dans la communauté de {where}",
+	"{who} added a chat on {where}"=>"{who} a ajouté une conversation sur {where}",
 	//"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
 	//VOTE
 	"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
