@@ -159,11 +159,13 @@
 	}
 	
 	function addItemsToSly(tagFilter){
+
+		console.log("addItemsToSly", tagFilter, topList);
 		//removeAll
 		$(".slidee .searchPoiContainer").remove();
 		//filter topList
 		if(tagFilter){
-			var filteredTopList = topList.filter(item => item.tags.includes(tagFilter));
+			var filteredTopList = topList.filter(item => ( typeof item.tags != "undefined" ? item.tags.includes(tagFilter) : null ) );
 		}
 		else {
 			var filteredTopList = topList;
@@ -193,6 +195,8 @@
 		}).mouseleave(function(){
 			$(this).find(".description-poi").hide();
 		});
+
+		bindLBHLinks();
 	}
 
 	jQuery(document).ready(function() {
