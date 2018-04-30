@@ -99,6 +99,17 @@
 		"And all of this into an <b>ethical</b> and <b>responsible</b> environment"=>"Et tout cela dans un environnement <b>éthique</b> et <b>responsable</b>",
 		"Don't wait anymore and join us !!"=>"N'attendez plus une seconde et rejoignez nous !!",
 
+
+
+
+
+
+		
+		"{who} writes a post" => "{who} a écrit un post",
+		"{who} writes posts"=>"{who} a écrit plusieurs posts",
+		"{who} write posts" => "{who} ont écrit plusieurs posts",
+		
+
 		
 );
 ?> 
