@@ -25,7 +25,16 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 
 									if(!empty($value["post"])){
 										echo '<a href="'.$value["url"].'" style="color: #728289;font-family: Helvetica, Arial, sans-serif;font-weight: bold;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">';
-										echo "<p>".Mail::translateLabel($value["post"])." :</p></a><br/>";
+										echo "<p>".Mail::translateLabel($value["post"])." </p></a><br/>";
+									}
+
+									if(!empty($value["add"])){
+
+										foreach ($value["add"] as $keyAdd => $valueAdd) {
+											echo '<a href="'.$valueAdd["url"].'" style="color: #728289;font-family: Helvetica, Arial, sans-serif;font-weight: bold;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">';
+											echo "<p>".Mail::translateLabel($valueAdd)." </p></a><br/>";
+										}
+										
 									}
 
 								}
