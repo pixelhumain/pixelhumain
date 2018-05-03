@@ -58,7 +58,7 @@
 	}
 	ul.notifList{
 		position: absolute;
-		bottom: 0px !important;
+		bottom: 20px !important;
 		overflow-y: auto;
 		padding-right: 10px;
 		top: 45px;
@@ -70,7 +70,11 @@
 		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);
 	}
 
-	
+	.notifications .bottomNotifs{
+		position: absolute;
+    	bottom: 5px;
+   		font-style: italic;
+	}
 
 	.notifications .pageslide-list a .label{
 		opacity: 0.7;

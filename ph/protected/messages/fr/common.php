@@ -193,7 +193,8 @@ return array(
 	"is already member of" => "est déjà membre de",
 	"is already admin of" => "est déjà admin de",
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
-	"No more notifications for the moment" => "Vous n&#146;avez pas de notifications pour le moment",
+	"No more notifications for the moment" => "Vous n&#146;avez plus de notifications pour le moment",
+	"You have no notifications for the moment" => "Vous n&#146;avez pas de notifications pour le moment",
 	//Confirm
 	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication ?",
 	"Are you sure you want to delete this contact" => "Êtes-vous sûr de vouloir supprimer ce contact ?",
@@ -576,6 +577,7 @@ return array(
 	"Create a new page"=>"Créer une nouvelle page",
 	"Edit slug"=>"Modifier votre adresse URL",
 	"Search among your contacts"=>"Rechercher parmi vos contacts",
+	"Set your notifications"=>"Paramétrer vos notifications",
 	/* ---- */
 	//TITLE DIRECTORY ELEMENT
 	"Keep data open and usable by all"=>"Maintenir les données ouvertes et universellement utilisables",
