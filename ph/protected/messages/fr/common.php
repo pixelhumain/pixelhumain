@@ -166,7 +166,7 @@ return array(
 	"Collection {what} deleted with success"=> "Collection {what} suprimée avec succès",
 	"Collection {what} updated with success"=> "Collection {what} modifiée avec succès",
 	"Validation is well registered"=> "La validation a été enregistrée avec succès",
-	"Please choose an image with a minimun of size: 600x300 (widthxheight)"=>"Veuillez choisir une image avec un taille minimum de : 600x300 (largeurxhauteur)",
+	"Please choose an image with a minimun of size: 600x300 (widthxheight)"=>"Veuillez choisir une image avec une taille minimum de : 600x300 (largeurxhauteur)",
 	"Your data are well updated"=>"Vos données ont été mises à jour",
 	"Your data are well registred"=>"Vos données ont bien été enregistrées",
 	"Contacts are well updated"=>"Les contacts ont été mis à jour",
