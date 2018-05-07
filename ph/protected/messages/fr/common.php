@@ -194,9 +194,11 @@ return array(
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
 	"No more notifications for the moment" => "Vous n&#146;avez pas de notifications pour le moment",
 	//Confirm
-	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication ?",
-	"Are you sure you want to delete this contact" => "Êtes-vous sûr de vouloir supprimer ce contact ?",
-	"Are you sure you want to delete this link" => "Êtes-vous sûr de vouloir supprimer ce lien ?",
+	"Are you sure you want to delete this news" => "Êtes-vous sûr-e de vouloir supprimer cette publication ?",
+	"Are you sure you want to delete this contact" => "Êtes-vous sûr-e de vouloir supprimer ce contact ?",
+	"Are you sure you want to delete this link" => "Êtes-vous sûr-e de vouloir supprimer ce lien ?",
+	"Are you sure to refuse this invitation" => "Êtes-vous sûr-e de refuser cette invitation",
+	"Are you sure to refuse to administrate {what}"=> "Êtes-vous sûr-e de refuser d&#146;administrer {what}",
 	//Form
 	"Required Fields" => "Champs requis",
 	"Save" => "Enregistrer",
@@ -379,6 +381,8 @@ return array(
 	"Are you sure to join the organization" => "Êtes-vous sûr de rejoindre l'organisation",
 	"Are you sure to join the project" => "Êtes-vous sûr de rejoindre le projet",
 	"Are you sure to participate to the event" => "Êtes-vous sûr de participer à cet événement",
+	"Are you sure to refuse this invitation" => "Êtes-vous sûr-e de refuser cette invitation",
+	"Are you sure to refuse to administrate {what}"=> "Êtes-vous sûr-e de refuser d&#146;administrer {what}",
 	"Are you admin" => "Êtes-vous admin",
 	"Would you like to be an administrator" => "Souhaitez-vous être administrateur",
 	"as contributor" => "comme contributeur",
