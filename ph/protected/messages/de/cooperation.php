@@ -130,7 +130,7 @@ return array(
 	"Vote open until undefined date" => "Wahlperiode bleibt offen bis zu einem unbestimmten Datum",
 	"End of vote session" => "Ende der Wahlperiode",
 	"You did vote" => "Sie haben abgestimmt",
-	"You did not vote" => "Sie haben nicht abgestimmt",
+	"You did not vote" => "Sie haben nicht mit abgestimmt",
 	"The <b>resolution</b> has been approved : " => "Der <b>Beschluss</b> wurde genehmigt : ",
 	"The proposal is" => "Der Vorschlag lautet",
 	"Show the resolution" => "Zeige den Beschluss an",
