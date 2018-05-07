@@ -132,7 +132,7 @@
         <i class="fa <?php echo Organization::ICON_GOV; ?>"></i> 
         <span><?php echo Yii::t("common","Governemental organization") ?></span>
     </a>-->
-    <a href="javascript:;" data-form-type="project" class="addBtnFoot addBtnFoot_orga btn-open-form btn btn-default bg-purple inline-block margin-bottom-10"> 
+    <a href="javascript:;" data-form-type="project" class="addBtnFoot addBtnFoot_orga addBtnFoot_project btn-open-form btn btn-default bg-purple inline-block margin-bottom-10"> 
         <i class="fa <?php echo  Project::ICON;?>"></i> 
         <span><?php echo Yii::t("common","Project") ?></span>
     </a><br/>
