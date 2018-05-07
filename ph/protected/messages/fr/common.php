@@ -809,7 +809,7 @@ return array(
 	"Post a message in the wall of" => "Publier un message sur le journal de",
 	"publicly shared or to this community" => "partagé publiquement ou avec la communauté",
 	"Write a private message to" => "Écrire un message privé à",
-	"Write a public message visible on the wall of selected places" => "Écrire un message public pour les zones sélectionnées",
+	"Write a public message visible on the wall of selected places" => "Écrire un message public pour les lieux sélectionnés",
 	"Write a idea, a message in the city wall of" => "Écrire une idée, un message sur le journal de la ville",
 	"Write a bug or an idea to improve the development of communecter" => "Écrire un bug ou une idée pour améliorer le développement de communecter",
 	"Published a message in your wall for your network" => "Publier un message sur votre mur",
@@ -1387,9 +1387,10 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 
 	"Add to my favorites places" => "Ajouter à mes lieux favoris",
 	"Remove from my favorites places" => "Supprimer de mes lieux favoris",
-	"Add zone to new" => "Ajouter une zone à la new",
+	"Add zone to news" => "Sélectionner ce lieu",
 
-	"search by name or by #tag, ex: 'commun' or '#commun" => "rechercher ou #rechercher"
+	"search by name or by #tag, ex: 'commun' or '#commun" => "rechercher ou #rechercher",
+	"Search on map" => "Rechercher sur la carte"
 
 );
 ?>

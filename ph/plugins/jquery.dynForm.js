@@ -678,11 +678,18 @@ onSave: (optional) overloads the generic saveProcess
 				var initOptions = new Object;
 				if(typeof fieldObj.initOptions != "undefined")
 					initOptions=fieldObj.initOptions;
-				$.each(fieldObj.value, function(optKey,optVal) {
+
+				console.log("initField", fieldObj, fieldObj.value);
+					
+				$.each(fieldObj.value, function(optKey,optVal) { 
+					console.log("initField", optKey, "fieldObj.value", fieldObj.value, "class ."+field+fieldObj.inputType, "optVal", optVal, "field", field, initOptions);
 					if(optKey == 0)
 	                    $(".addmultifield").val(optVal);
-	                else 
-	                	addfield("."+field+fieldObj.inputType,optVal,field, initOptions);
+	                else {
+	                	addfield("."+field+fieldObj.inputType, optVal, field, initOptions);
+	                	$(".addmultifield"+optKey).val(optVal);
+	                }
+
 	                if( formValues && formValues.medias ){
 	                	$.each(formValues.medias, function(i,mediaObj) {
 	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
@@ -2430,7 +2437,7 @@ var dyFObj = {
 				typeForm = (jsonHelper.notNull( "modules."+type+".form") ) ? type : dyFInputs.get(type).ctrl;
 				dyFObj.openForm( typeForm ,null, data.map);
 	        } else {
-	           toastr.error("something went wrong!! please try again.");
+	           	toastr.error("something went wrong!! please try again.");
 	        }
 	    });
 	},
@@ -2445,6 +2452,7 @@ var dyFObj = {
 	    uploadObj.contentKey="profil"; 
 	    dyFObj.activeElem = (isSub) ? "subElementObj" : "elementObj";
 	    dyFObj.activeModal = (isSub) ? "#openModal" : "#ajax-modal";
+	    
       	/*if(type=="addPhoto") 
         	uploadObj.contentKey="slider";*/ 
 	    //BOUBOULE ICI ACTIVER LEVENEMENT
