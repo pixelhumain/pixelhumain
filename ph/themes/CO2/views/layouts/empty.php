@@ -15,6 +15,9 @@
   <title><?php echo CHtml::encode( (isset($this->module->pageTitle))?$this->module->pageTitle:""); ?></title>
    
  <?php  
+ $cs = Yii::app()->getClientScript();
+$cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["parent"]."/default/view/page/trad/dir/..|translation/layout/empty"));
+       
   $cssAnsScriptFilesModule = array(
 
     // est-ce que ça pose problème si je commente ces 2 lignes ?
@@ -39,6 +42,7 @@
     '/assets/css/plugins.css',
   );
   HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
+
 
   
   $cs = Yii::app()->getClientScript();
