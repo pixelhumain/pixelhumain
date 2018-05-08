@@ -215,7 +215,12 @@
             module stuff
             ************************ */
             $moduleAssets = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->getModule( Yii::app()->params["module"]["parent"] )->getAssetsUrl()  : $this->module->assetsUrl;
-            HtmlHelper::registerCssAndScriptsFiles( array('/js/default/formInMap.js') , $moduleAssets);
+            HtmlHelper::registerCssAndScriptsFiles( 
+                array('/js/default/formInMap.js', 
+                    '/js/cooperation/uiCoop.js'
+                ), 
+                $moduleAssets
+            );
             /* ***********************
             END module stuff
             ************************ */
@@ -244,7 +249,8 @@
                 '/assets/vendor/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js',
                 '/assets/js/radioplayer.js',
     
-                '/assets/css/floopDrawerRight.css'
+                '/assets/css/floopDrawerRight.css',
+                '/assets/css/cooperation.css'
             );
             HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
