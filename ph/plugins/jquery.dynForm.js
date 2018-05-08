@@ -2594,7 +2594,8 @@ var dyFObj = {
 			        if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.onLoads."+afterLoad, "function") )
 			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads[afterLoad](data);
 				    
-			        bindLBHLinks();
+				    if( typeof bindLBHLinks != "undefined")
+			        	bindLBHLinks();
 			      },
 			      onSave : function(){
 
