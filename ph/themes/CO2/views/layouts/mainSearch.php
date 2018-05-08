@@ -200,7 +200,7 @@
                 
                 //'/plugins/animate.css/animate.min.css',
                 '/plugins/font-awesome/css/font-awesome.min.css',
-                '/plugins/font-awesome-custom/css/font-awesome.css',
+                //'/plugins/font-awesome-custom/css/font-awesome.css',
 
                 '/plugins/cryptoJS-v3.1.2/rollups/aes.js'
             );
@@ -251,7 +251,9 @@
             /* ***********************
             END theme stuff
             ************************ */
-
+             
+            $this->renderPartial("paramsInitJs",array( "parentModuleId" => $parentModuleId)); 
+    
             $this->renderPartial($layoutPath.'initJs', 
                                  array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
 

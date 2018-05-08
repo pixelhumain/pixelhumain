@@ -5,12 +5,6 @@
     $preferences = Preference::getPreferencesByTypeId(@Yii::app()->session["userId"], Person::COLLECTION);
 ?>
 <script>
-    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
-    var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
-    var ctrlId = "<?php echo Yii::app()->controller->id;?>";
-    var actionId = "<?php echo Yii::app()->controller->action->id ;?>";
-    var moduleId = "<?php echo $parentModuleId?>";
-    var activeModuleId = "<?php echo $this->module->id?>";
 
     var modules = {
         "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
@@ -18,21 +12,14 @@
         "places": <?php echo json_encode( Place::getConfig() ) ?>,
         "poi": <?php echo json_encode( Poi::getConfig() ) ?>,
         "chat": <?php echo json_encode( Chat::getConfig() ) ?>,
+        "cotools" : <?php echo json_encode( array(
+            "module"        => "cotools",
+            "init"          => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
+            "form"          => Yii::app()->getModule( "cotools" )->assetsUrl."/js/dynForm.js" ,
+        )); ?>
     };
     
-    var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
-    var domainName = "<?php echo Yii::app()->params["CO2DomainName"];?>";
-    var userId = "<?php echo Yii::app()->session['userId']?>";
-    var uploadUrl = "<?php echo Yii::app()->params['uploadUrl'] ?>";
-    var mainLanguage = "<?php echo Yii::app()->language ?>";
-    var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
-    var currentUrl = "<?php echo "#".Yii::app()->controller->id.".".Yii::app()->controller->action->id ?>";
-    var debugMap = [
-        <?php if(YII_DEBUG) { ?>
-           { "userId":"<?php echo Yii::app()->session['userId']?>"},
-           { "userEmail":"<?php echo Yii::app()->session['userEmail']?>"}
-        <?php } ?>
-        ];
+    
 
     var currentScrollTop = 0;
     var isMapEnd = false;

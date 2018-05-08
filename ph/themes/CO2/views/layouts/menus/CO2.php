@@ -560,10 +560,3 @@
 
 <?php $this->renderPartial($layoutPath.'formCreateElement'); ?>
 
-
-<script type="text/javascript">
- 
-    jQuery(document).ready(function() {   
-    });
-
-</script>
