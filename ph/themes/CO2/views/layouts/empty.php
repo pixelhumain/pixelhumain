@@ -32,6 +32,8 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     '/plugins/blockUI/jquery.blockUI.js' ,
     '/js/api.js',
     '/plugins/font-awesome/css/font-awesome.min.css',
+    '/plugins/toastr/toastr.js' , 
+    '/plugins/toastr/toastr.min.css',
   );
   HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->request->baseUrl);
   
@@ -79,7 +81,9 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
 
 <?php 
   $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
-  $this->renderPartial($layoutPath."paramsInitJs",array("parentModuleId"=>$parentModuleId)); 
+
+  $this->renderPartial($layoutPath.'initJs', 
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
 ?>
 <script type="text/javascript">
 

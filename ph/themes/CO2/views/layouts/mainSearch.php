@@ -257,10 +257,7 @@
             /* ***********************
             END theme stuff
             ************************ */
-             
-            $this->renderPartial("paramsInitJs",array( "parentModuleId" => $parentModuleId)); 
-    
-            $this->renderPartial($layoutPath.'initJs', 
+             $this->renderPartial($layoutPath.'initJs', 
                                  array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
 
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
