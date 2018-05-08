@@ -73,17 +73,19 @@
     echo $content; ?> 
 </div>
 
-<script type="text/javascript">
 <?php 
   $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
   $this->renderPartial($layoutPath."paramsInitJs",array("parentModuleId"=>$parentModuleId)); 
-?> 
+?>
+<script type="text/javascript">
+
   function initNotifications(){
   
     $('.btn-menu-notif').off().click(function(){
       mylog.log("click notification main-top-menu");
         showNotif();
       });
+
   } 
 </script>
 
