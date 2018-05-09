@@ -117,10 +117,10 @@ return array(
 	"You are now contributor of" => "Sie sind jetzt Mitwirkender von",
 	"is now admin of" => "ist jetzt Administrator von",
 	"is now attendee of" => "ist jetzt Teilnehmer von",
-	"is now member of" => "ist jett Mitglied von",
+	"is now member of" => "ist jetzt Mitglied von",
 	"New admin well register" => "Der neue Administrator ist registriert",
 	"New member well register" => "Das neue Mitglied ist registriert",
-	"Your request has been sent to other admins." => "Ihre Anfrage ist an andere Aministratoren gesandt worden",
+	"Your request has been sent to other admins." => "Ihre Anfrage ist an andere Administratoren gesandt worden",
 	"News has been successfully deleted" => "Die Nachricht wurde gelöscht",
 	"News well updated" => "Die Nachricht wurde aktualisiert",
 	"Your vote has been successfully added" => "Ihre Stimme wurde mitgezählt",
@@ -687,7 +687,7 @@ return array(
 	"You are going to ask to become an admin of the project" => "Sie werden dazu aufgefordert Administrator des Projekts zu werden",
 	"You are going to ask to become an admin of the organization" => "Sie werden dazu aufgefordert Administrator dieser Organisation zu werden",
 	"Please confirm" => "Bitte bestätigen Sie",
-	"Are you sure you want to confirm" => "Sind Sie wirklich bestätigen",
+	"Are you sure you want to confirm" => "Möchten Sie wirklich bestätigen",
 	"as admin" => "als Administrator",
 	"organization detail" => "Details der Organisation",
 	"project detail" => "Details des Projekts",
@@ -1311,6 +1311,9 @@ return array(
 	
 	"Surveys" => "Umfragen",
 	"a survey" => "eine Umfrage",
+	
+	"What are you looking for" => "Wonach suchen Sie",
+	"search by name or by #tag, ex: 'commun' or '#commun" => "Suche nach Name oder #Tag, z.B.: 'commun' oder '#commun'",
 	
 	
 	
