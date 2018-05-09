@@ -106,10 +106,8 @@ onSave: (optional) overloads the generic saveProcess
 			fieldHTML += '</div>';
 
 	        $( settings.formId ).append(fieldHTML);
-
 	        if(settings.afterBuild && jQuery.isFunction( settings.afterBuild ) )
 				settings.afterBuild();
-
 	        $(dyFObj.activeModal+" #btn-submit-form").one(function() { 
 				$( settings.formId ).submit();	        	
 	        });
@@ -118,10 +116,8 @@ onSave: (optional) overloads the generic saveProcess
 			* bind any events Post building 
 			***************************************** */
 			bindDynFormEvents(settings,form.rules);
-
 			if(settings.onLoad && jQuery.isFunction( settings.onLoad ) )
 				settings.onLoad();
-		    
 			return form;
 		},
 
@@ -1276,6 +1272,8 @@ onSave: (optional) overloads the generic saveProcess
 			var FineUploader = function(){
 				mylog.log("init fineUploader");
 				$(".fine-uploader-manual-trigger").fineUploader({
+				//var uploader = new qq.s3.FineUploader({
+				//	element: document.querySelector('.fine-uploader-manual-trigger'),
 		            template: (initValues.template) ? initValues.template : 'qq-template-manual-trigger',
 		            request: {
 		                endpoint: uploadObj.path
@@ -1404,6 +1402,19 @@ onSave: (optional) overloads the generic saveProcess
 		            },
 		            autoUpload: false
 		        });
+				/*console.log(params);
+				if(typeof params.formValues.images != "undefined" && params.formValues.images.length > 0){
+					var imagesArray=[];
+					$.each(params.formValues.images,function(e,v){
+						var image={
+							"name":"ressource"+e,
+							"uuid":v.id,
+							"thumbnailUrl":v.imageThumbPath
+						};
+						imagesArray.push(image);
+					});
+					uploader.addInitialFiles(imagesArray);
+				}*/
 			};
 			if(  $(".fine-uploader-manual-trigger").length)
 				loadFineUploader(FineUploader,initValues.template);
@@ -2900,7 +2911,6 @@ var dyFInputs = {
     		{
     			
         		$('#trigger-upload').click(function(e) {
-        			alert("initImageTrigger");
         			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
 		        	urlCtrl.loadByHash(location.hash);
         			$('#ajax-modal').modal("hide");
