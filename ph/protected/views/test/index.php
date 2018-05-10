@@ -131,6 +131,7 @@ var_dump($this::$a);
 					echo '<span style="color:red"> extension Mcrypt is not installed. Please install it on your PHP server. It is required by CSecurityManager (encryption and decryptions methods)</span><br/>sudo apt-get install php5.6-mcrypt';            
             	?>
             </li> 
+
                                     
             <li><?php  // check extension GD
             	$res = checkCaptchaSupport();     	

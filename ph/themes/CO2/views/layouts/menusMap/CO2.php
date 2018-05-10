@@ -9,7 +9,7 @@
         </div>
        
         <div class="hidden-xs col-sm-5 col-md-4 col-lg-4 no-padding">
-            <input type="text" class="form-control" id="input-search-map" placeholder="<?php echo Yii::t('common', 'Search on a map'); ?>">
+            <input type="text" class="form-control" id="input-search-map" placeholder="<?php echo Yii::t('common', 'Search on map'); ?>">
         </div>
 
         <button class="btn btn-default hidden-xs" id="menu-map-btn-start-search">

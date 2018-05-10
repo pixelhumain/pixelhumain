@@ -118,5 +118,6 @@
 		"5 year Thinking Process" => "5 Jahre Reflexion",
 		"Goodies we can pass around" => "Die Goodies, die wir weitergeben können",
 		"Read Us" => "Verstehen Sie uns voll und ganz",
+		"helps us to host our tools" => "hilft uns, unsere Werkzeuge zu hosten",
 	);
 ?>

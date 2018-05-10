@@ -388,6 +388,14 @@ div.timeline .newsTL > .newsFeed:nth-child(2n+1) .timeline_element:before {
 	background-color: white;
 }
 
+#searchOnCityNews{
+	height: 30px;
+	border-radius: 4px;
+	border: 1px solid #dbd7d7;
+}
+
+
+
 @media screen and (max-width: 1024px) {  
   
 	.timeline_element {
