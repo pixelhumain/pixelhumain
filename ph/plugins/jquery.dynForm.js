@@ -106,10 +106,8 @@ onSave: (optional) overloads the generic saveProcess
 			fieldHTML += '</div>';
 
 	        $( settings.formId ).append(fieldHTML);
-
 	        if(settings.afterBuild && jQuery.isFunction( settings.afterBuild ) )
 				settings.afterBuild();
-
 	        $(dyFObj.activeModal+" #btn-submit-form").one(function() { 
 				$( settings.formId ).submit();	        	
 	        });
@@ -118,10 +116,8 @@ onSave: (optional) overloads the generic saveProcess
 			* bind any events Post building 
 			***************************************** */
 			bindDynFormEvents(settings,form.rules);
-
 			if(settings.onLoad && jQuery.isFunction( settings.onLoad ) )
 				settings.onLoad();
-		    
 			return form;
 		},
 
@@ -679,11 +675,18 @@ onSave: (optional) overloads the generic saveProcess
 				var initOptions = new Object;
 				if(typeof fieldObj.initOptions != "undefined")
 					initOptions=fieldObj.initOptions;
-				$.each(fieldObj.value, function(optKey,optVal) {
+
+				console.log("initField", fieldObj, fieldObj.value);
+					
+				$.each(fieldObj.value, function(optKey,optVal) { 
+					console.log("initField", optKey, "fieldObj.value", fieldObj.value, "class ."+field+fieldObj.inputType, "optVal", optVal, "field", field, initOptions);
 					if(optKey == 0)
 	                    $(".addmultifield").val(optVal);
-	                else 
-	                	addfield("."+field+fieldObj.inputType,optVal,field, initOptions);
+	                else {
+	                	addfield("."+field+fieldObj.inputType, optVal, field, initOptions);
+	                	$(".addmultifield"+optKey).val(optVal);
+	                }
+
 	                if( formValues && formValues.medias ){
 	                	$.each(formValues.medias, function(i,mediaObj) {
 	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
@@ -1271,6 +1274,8 @@ onSave: (optional) overloads the generic saveProcess
 			var FineUploader = function(){
 				mylog.log("init fineUploader");
 				$(".fine-uploader-manual-trigger").fineUploader({
+				//var uploader = new qq.s3.FineUploader({
+				//	element: document.querySelector('.fine-uploader-manual-trigger'),
 		            template: (initValues.template) ? initValues.template : 'qq-template-manual-trigger',
 		            request: {
 		                endpoint: uploadObj.path
@@ -1399,6 +1404,19 @@ onSave: (optional) overloads the generic saveProcess
 		            },
 		            autoUpload: false
 		        });
+				/*console.log(params);
+				if(typeof params.formValues.images != "undefined" && params.formValues.images.length > 0){
+					var imagesArray=[];
+					$.each(params.formValues.images,function(e,v){
+						var image={
+							"name":"ressource"+e,
+							"uuid":v.id,
+							"thumbnailUrl":v.imageThumbPath
+						};
+						imagesArray.push(image);
+					});
+					uploader.addInitialFiles(imagesArray);
+				}*/
 			};
 			if(  $(".fine-uploader-manual-trigger").length)
 				loadFineUploader(FineUploader,initValues.template);
@@ -2432,7 +2450,7 @@ var dyFObj = {
 				typeForm = (jsonHelper.notNull( "modules."+type+".form") ) ? type : dyFInputs.get(type).ctrl;
 				dyFObj.openForm( typeForm ,null, data.map);
 	        } else {
-	           toastr.error("something went wrong!! please try again.");
+	           	toastr.error("something went wrong!! please try again.");
 	        }
 	    });
 	},
@@ -2447,6 +2465,7 @@ var dyFObj = {
 	    uploadObj.contentKey="profil"; 
 	    dyFObj.activeElem = (isSub) ? "subElementObj" : "elementObj";
 	    dyFObj.activeModal = (isSub) ? "#openModal" : "#ajax-modal";
+	    
       	/*if(type=="addPhoto") 
         	uploadObj.contentKey="slider";*/ 
 	    //BOUBOULE ICI ACTIVER LEVENEMENT
@@ -2927,7 +2946,6 @@ var dyFInputs = {
     		{
     			
         		$('#trigger-upload').click(function(e) {
-        			alert("initImageTrigger");
         			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
 		        	urlCtrl.loadByHash(location.hash);
         			$('#ajax-modal').modal("hide");

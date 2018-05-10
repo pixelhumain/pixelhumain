@@ -1,5 +1,5 @@
 
-<?php HtmlHelper::registerCssAndScriptsFiles( array('/css/radioplayer.css', ) , Yii::app()->theme->baseUrl. '/assets'); ?>
+<?php return; HtmlHelper::registerCssAndScriptsFiles( array('/css/radioplayer.css', ) , Yii::app()->theme->baseUrl. '/assets'); ?>
 
 <div id="radio-ph-tools">
     <iframe id="radio-ph" src=""></iframe>
@@ -51,7 +51,7 @@ jQuery(document).ready(function() {
     // initRadioplayer();
     $("#radio-ph-tools").hide();
     $("#btn-open-radio").hide();
-   /* $("#radio-ph").attr("src", "");
+    $("#radio-ph").attr("src", "");
     $("#btn-open-radio, #btn-reload-radio").click(function(){
        startRadio();
     });
@@ -61,7 +61,7 @@ jQuery(document).ready(function() {
     });
 
     loadRadio();
-    setInterval(function(){ loadRadio() }, 15000);*/
+    setInterval(function(){ loadRadio() }, 15000);
 });
 
 function loadRadio(){
@@ -108,7 +108,10 @@ function startRadio(){
     console.log("TEST RADIO : success 1");
     //toastr.success("radio signal found !");
     $("#radio-ph-tools").show(200);                
-    $("#radio-ph").attr("src", "http://34.253.15.201:8000/radio-pixel-humain.ogg?_=1");                
+    $("#radio-ph").attr("src", "");
+    setTimeout(function(){
+        $("#radio-ph").attr("src", "http://34.253.15.201:8000/radio-pixel-humain.ogg?_=1");        
+    }, 1000);        
 }
 
 </script>

@@ -29,7 +29,7 @@
                     <br class="visible-xs">
                     <i class="letter-red fa fa-microphone-slash fa-3x hidden-x padding-15 fa-micro"></i>
                     <button class="btn btn-success btn-lg margin-bottom-5 btn-radio-play hidden"><i class="fa fa-play"></i></button>
-                     <button class="btn btn-success btn-lg margin-bottom-5 btn-radio-pause hidden"><i class="fa fa-pause"></i></button>
+                    <button class="btn btn-success btn-lg margin-bottom-5 btn-radio-pause hidden"><i class="fa fa-pause"></i></button>
                         
                     <br>
                 
