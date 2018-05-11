@@ -45,7 +45,7 @@
 			<?php if(!isset(Yii::app()->session['userId'])) { ?>
 				<div id="videoDocsImg" class="col-md-12 col-sm-12 col-xs-12 text-center">
 			    	<img class="img-responsive" style="max-height: 450px;"
-			    		 src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/network-for-all-w.png"/>
+			    		 src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/network-for-all.png"/>
 		    		 <button class="btn btn-link bg-red margin-left-10" data-toggle="modal" data-target="#modalRegister">
     					<i class="fa fa-plus-circle"></i> <?php echo Yii::t("login","Create my <b>citizen</b> account") ?>
     				 </button>
@@ -54,7 +54,7 @@
 			
 			<?php } else { ?>
 			<div id="videoDocsImg" class="col-xs-12 no-padding">
-			    	<img class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/network-for-all-w.png"/>
+			    	<img class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/network-for-all.png"/>
 				</div>
 			<?php } ?>
 		</div>
