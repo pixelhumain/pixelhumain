@@ -1140,7 +1140,7 @@ return array(
 	"Answer" => "Antwort",
 	"I like" => "Gefällt mir",
 	"I don't like" => "Gefällt mir nicht",
-	"I don&#146;t like" => "Gefällt mitr nicht",
+	"I don&#146;t like" => "Gefällt mir nicht",
 	"Declare an abuse" => "Einen Missbrauch melden",
 	"Your answer" => "Ihre Antwort",
 	"Your comment" => "Ihr Kommentar",
