@@ -281,7 +281,42 @@
 				</div>
 
 				<div class="col-xs-12 no-padding">
-					<div class="col-md-12 col-sm-12 col-xs-12 padding-20" style="background-color: #fff; text-align:center;min-height:400px;">
+		            <div class="col-md-12 col-sm-12 col-xs-12" style="background-color: #fff; text-align:center;min-height:400px;">
+						<h4 class="margin-top-50"><i class="fa fa-map-marker"></i> <?php echo Yii::t("home","Map") ?></h4>
+							<div class="col-md-12 text-center">
+		                        <h3 class="no-margin">
+		                        	<small>
+		                            	<?php echo Yii::t("home","Wherever you are on Communecter<br>you can consult informations on the map") ?>.
+										<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">    
+		                                <?php echo Yii::t("home", "Searching results, upcoming events,<br>local initiaves, community members") ?>, etc...
+		                            </small>
+		                        </h3>
+		                    </div>
+		                    <button class="btn btn-link letter-blue bold margin-top-25 btn-show-map-home">
+		                    	<i class="fa fa-map-marker"></i> <?php echo Yii::t("home","Show map") ?> 
+		                	</button>
+
+		                	<img class="img-responsive shadow2" style="margin:auto; margin-top: 10px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/map2.png"/>
+
+		                	<h3>
+	                        	<small>
+	                        		<?php echo Yii::t("home","Our territories are rich with thousands of citizen initiatives, associations, projects, events! <br>It is by weaving close links between these initiatives that we will transform our society sustainably.") ?>
+	                        		<br>
+	                            	<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">  
+					                <?php echo Yii::t("home","That's why <b>Communecter</b> invites you to geo-locate your data as much as possible, <br>to give <b>local visibility</b> to your actions") ?>.
+	                            	<hr style="width:40%; margin:10px auto;">    
+	                            	<?php echo Yii::t("home","This is also <i>geo-communication !</i>") ?><br><br>
+	                            </small>
+	                        </h3>
+		            </div>
+		            <div class="col-md-6 col-sm-6 col-xs-12 hidden" style="text-align:center; min-height:400px;">
+						<img class="img-responsive" style="margin:auto; margin-top: 10px; max-height:380px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/carto_home.png"/>
+					</div>
+				</div>
+
+
+				<div class="col-xs-12 no-padding">
+					<div class="col-md-12 col-sm-12 col-xs-12 padding-20" style="background-color: #f6f6f6; text-align:center;min-height:400px;">
 						<h4 class="margin-top-50"><i class="fa fa-map-marker"></i> <i class="fa fa-newspaper-o"></i> 
 							<?php echo Yii::t("home","Are you ready for geo-communication") ?> ?
 							<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">
@@ -314,39 +349,6 @@
 		             </div>
 				</div>
 
-				<div class="col-xs-12 no-padding">
-		            <div class="col-md-12 col-sm-12 col-xs-12" style="background-color: #f6f6f6; text-align:center;min-height:400px;">
-						<h4 class="margin-top-50"><i class="fa fa-map-marker"></i> <?php echo Yii::t("home","Map") ?></h4>
-							<div class="col-md-12 text-center">
-		                        <h3 class="no-margin">
-		                        	<small>
-		                            	<?php echo Yii::t("home","Wherever you are on Communecter<br>you can consult informations on the map") ?>.
-										<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">    
-		                                <?php echo Yii::t("home", "Searching results, upcoming events,<br>local initiaves, community members") ?>, etc...
-		                            </small>
-		                        </h3>
-		                    </div>
-		                    <button class="btn btn-link letter-blue bold margin-top-25 btn-show-map-home">
-		                    	<i class="fa fa-map-marker"></i> <?php echo Yii::t("home","Show map") ?> 
-		                	</button>
-
-		                	<img class="img-responsive shadow2" style="margin:auto; margin-top: 10px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/map2.png"/>
-
-		                	<h3>
-	                        	<small>
-	                        		<?php echo Yii::t("home","Our territories are rich with thousands of citizen initiatives, associations, projects, events! <br>It is by weaving close links between these initiatives that we will transform our society sustainably.") ?>
-	                        		<br>
-	                            	<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">  
-					                <?php echo Yii::t("home","That's why <b>Communecter</b> invites you to geo-locate your data as much as possible, <br>to give <b>local visibility</b> to your actions") ?>.
-	                            	<hr style="width:40%; margin:10px auto;">    
-	                            	<?php echo Yii::t("home","This is also <i>geo-communication !</i>") ?><br><br>
-	                            </small>
-	                        </h3>
-		            </div>
-		            <div class="col-md-6 col-sm-6 col-xs-12 hidden" style="text-align:center; min-height:400px;">
-						<img class="img-responsive" style="margin:auto; margin-top: 10px; max-height:380px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/carto_home.png"/>
-					</div>
-				</div>
 
 
 				<div class="col-xs-12 no-padding">
