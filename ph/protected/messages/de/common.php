@@ -1242,7 +1242,7 @@ return array(
 	"Perhaps, this city has no data at this time" => "Vielleicht hat diese Stadt zur Zeit keine Daten",
 	"Connect you" => "Verbinden Sie sich",
 	"posted" => "gepostet",
-	"Writen by" => "Writen by",
+	"Writen by" => "Geschrieben von",
 	"shared by" => "geteilt von",
 	"Link shared by" => "Link geteilt von",
 	"map" => "Karte",
