@@ -156,7 +156,7 @@ return array(
 	"I agree" => "Ich stimme zu",
 	"I disagree" => "Ich stimme nicht zu",
 	"You must be member or contributor to participate" => "Sie müssen Mitglied oder Mitwirkender sein, um teilzunehmen",
-	"Edit this space" => "Ändere diesen Raum",
+	"Edit this space" => "Bearbeite diesen Raum",
 	"You are not logged" => "Sie sind nicht angemeldet",
 	"This space is open only for this roles" => "Dieser Bereich ist nur für folgende Rollen offen",
 	"You must be member or contributor to contribuate" => "Sie müssen Mitglied oder Mitwirkender sein, um einen Beitrag zu leisten",
