@@ -193,7 +193,7 @@ return array(
 	"Delete my amendement" => "Lösche meine Änderungsantrag",
 	
 	"Login to enter in this space" => "Login für die Nutzung dieses Raums",
-	"The <b>resolution</b> is done : " => "Die <b>Bestimmung</b> wird durchgeführt.",
+	"The <b>resolution</b> is done : " => "Der <b>Beschluss</b> ist gefasst.",
 	"My roles" => "Meine Berechtigungen",
 	"You have no role in" => "Sie haben keine Berechtigung für",
 	"this projects" => "dieses Projekt",
