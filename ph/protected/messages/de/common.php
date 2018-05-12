@@ -1274,7 +1274,7 @@ return array(
 	"Guide and helper" => "Führer und Helfer",
 	"Freedom" => "Freiheit",
 	"This request is too short !" => "Diese Anfrage ist zu kurz!",
-	"folder fee included and delivery tax not included" => "Prospektgebühr inbegriffen und Lieferungssteuer nicht inbegriffen",
+	"folder fee included and delivery tax not included" => "Prospekt- und Versandkosten nicht inbegriffen",
 	"previous" => "vorige",
 	"next" => "next",
 	"My maps" => "Meine Karten",
