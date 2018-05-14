@@ -141,5 +141,23 @@
 		"Collective decisions" =>"Kollektive Entscheidungen",
 		"Horizontal governance" =>"Horizontale Regierungsführung",
 		"+ more details in video" =>"+ mehr Details im Video",
+		
+		"Show map" => "Karte anzeigen",
+		"Our values" => "Unsere Werte",
+		"Free price" => "Freier Preis",
+		"Searching results, upcoming events,<br>local initiaves, community members" => "Suchergebnisse, bevorstehende Veranstaltungen, <br>lokale Initiativen, Community-Mitglieder",
+		"LA CONNAISSANCE DU TERRITOIRE ACCESSIBLE A TOU.T.E.S" => "Das Wissen über die Region, das allen zugänglich ist",
+		"Wherever you are on Communecter<br>you can consult informations on the map" => "Wo immer Sie sich auf Communecter<br> befinden, können Sie Informationen auf der Karte einsehen",
+		"Map" => "Karte",
+		"Be a pillar of Communecter<br>make a donation to our association" => "Seien Sie ein Unterstützer von Communecter<br>spenden Sie an unseren Verein",
+		"No advertisement, no business with your privacy, only Openness and Passion" => "Keine Werbung, keine Deals mit Ihrer Privatsphäre, nur Offenheit und Leidenschaft",
+		"But to make it possible, we need you !" => "Aber um dieses zu ermöglichen, brauchen wir Sie!",
+		"From each according to his means, to each according to his needs" => "Von jedem nach seinen Mitteln, jedem nach seinen Bedürfnissen",
+		"Stronger together" => "Gemeinsam stärker",
+		"Donate" => "Spenden",
+		"Everything we do is <a href='https://github.com/pixelhumain'>OpenSource</a> and built in collaborative way" => "Alles, was wir tun, ist <a href='https://github.com/pixelhumain'>OpenSource</a> und kollaborativ aufgebaut",
+		"We are experimenting new ways of gouvernance,<br>managing territory, implicating local actor into everything and everywhere" => "Wir experimentieren mit neuen Wegen der Verwaltung des Territoriums, indem wir lokale Akteure in alles und überall einbinden",
+		"Online Doc" => "Online Dokumentation",
+		"Team" => "Team",
 	);
 ?>
