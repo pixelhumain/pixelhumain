@@ -1314,7 +1314,10 @@ return array(
 	
 	"What are you looking for" => "Wonach suchen Sie",
 	"search by name or by #tag, ex: 'commun' or '#commun" => "Suche nach Name oder #Tag, z.B.: 'commun' oder '#commun'",
-	
+	"Are you sure to refuse this invitation" => "Sind Sie sicher, dass Sie diese Einladung ablehnen",
+	"Are you sure to refuse to administrate {what}" => "Sind Sie sicher die Administration von {what} abzulehnen",
+	"Add zone to news" => "Zone zu Nachrichten hinzufügen",
+	"Search on map" => "Suche auf der Karte",
 	
 	
 );
