@@ -211,48 +211,9 @@
     var filliaireCategories = <?php echo json_encode(@$filliaireCategories); ?>;
     var page="<?php echo $page ?>";
     jQuery(document).ready(function() {
-        searchInitApp(search);
-        //$("."+page+"-menu-btn").addClass("active");
-
-        $(".theme-header-filter").click(function(){
-            if(!$("#filter-thematic-menu").is(":visible") || $(this).hasClass("toogle-filter"))
-                $("#filter-thematic-menu").toggle();
-        });
-        $("#filters-container-menu .theme-header-filter, #filters-container-menu .scope-header-filter").click(function(){
-            simpleScroll(0, 500);
-        });
-        $(".scope-header-filter").click(function(){
-            $("#searchOnCity").trigger("click");
-        });
-        $(".btn-select-filliaire").click(function(){
-            mylog.log(".btn-select-filliaire");
-            var fKey = $(this).data("fkey");
-            myMultiTags = {};
-            search.value="";
-            $.each(filliaireCategories[fKey]["tags"], function(key, tag){
-                tag=(typeof tradTags[tag] != "undefined") ? tradTags[tag] : tag;
-                search.value+="#"+tag+" ";
-            });
-            $("#filter-thematic-menu").hide();
-            $("#main-search-bar, #second-search-bar").val(search.value);
-            mylog.log("myMultiTags", myMultiTags);
-            
-            searchPage=0;
-            pageCount=true;
-            search.count=true;
-            if(search.app=="territorial") searchEngine.initTerritorialSearch();
-            
-            startSearch(0, indexStepInit, searchCallback);
-        });
-
         initScopeMenu();
         $(".tooltips").tooltip();
     });
-    function searchInitApp(src){
-        search.app=page;
-        if(search.value != "")
-            $("#main-search-bar, #second-search-bar").val(search.value);
-    }
     function initScopeMenu(type){
         /*if(typeof myScopes.type != "undefined")
             activateScope=myScopes.type;

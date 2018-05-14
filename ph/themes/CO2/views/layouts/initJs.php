@@ -152,12 +152,17 @@ var typeObj = {
     var prestationList = prestation.categories;
     
     var roomList = <?php echo json_encode( CO2::getContextList("room") ) ?>;
-    var search={
-        value:"",
+    var searchObject={
+        text:"",
         page:0,
+        indexMin:0,
+        indexStep:30,
         count:true,
-        app:"search",
-        type:"<?php echo Organization::COLLECTION ?>"
+        tags:[],
+        initType : "",
+        types:[],
+        countType:[],
+        locality:{}
     };
 
     var directoryViewMode="<?php echo "block" ?>";
