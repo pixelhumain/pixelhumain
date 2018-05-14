@@ -9,7 +9,7 @@
         <input class="form-control" id="username" name="username" type="text" placeholder="<?php echo Yii::t("login","user name") ?>" tabindex="6"><br/>
         
         <label class="letter-black"><i class="fa fa-envelope"></i> <?php echo Yii::t("login","Email") ?></label><br>
-        <input class="form-control" id="email3" name="email3" type="text" placeholder="<?php echo Yii::t("login","email") ?>" tabindex="7"><br/>
+        <input class="form-control" id="email3" name="email3" type="email" placeholder="<?php echo Yii::t("login","email") ?>" tabindex="7"><br/>
         
         <label class="letter-black"><i class="fa fa-key"></i> <?php echo Yii::t("login","Password") ?></label><br/>
         <input class="form-control" id="password3" name="password3" type="password" placeholder="<?php echo Yii::t("login","password") ?>" tabindex="8"><br/>
