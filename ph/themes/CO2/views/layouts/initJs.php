@@ -169,6 +169,8 @@ var typeObj = {
     var deviseTheme = <?php echo json_encode(@$params["devises"]) ?>;
     var deviseDefault = <?php echo json_encode(@$params["deviseDefault"]) ?>;
 
+    var rolesList=[ tradCategory.financier, tradCategory.partner, tradCategory.sponsor, tradCategory.organizor, tradCategory.president, tradCategory.director, tradCategory.speaker, tradCategory.intervener];
+
     var myScopes={};
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",

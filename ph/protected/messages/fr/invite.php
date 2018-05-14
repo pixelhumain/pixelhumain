@@ -11,6 +11,7 @@
 		"You must use a CSV format" => "Vous devez utiliser un format CSV",
 		"We were unable to read your file." => "Nous n'avons pas pu lire votre fichier.",
 		"Already in the list" => "Déjà dans la liste",
+		"My contacts" => "Mes contacts",
 	);
 
 ?>
