@@ -1,46 +1,40 @@
 <?php
-
 return array(
 	// 
-	"001" => "L'entité n'a pas de nom",
+	"001" => "L'entità non ha nome",
 	// Partie concernant l'adresse
-	"100" => "L'entité n'a aucune informations l'adresse.",
-	"101" => "L'entité n'a pas de code postal.",
-	"102" => "L'entité n'a pas de code INSEE.",
-	"103" => "L'entité n'a pas de commune.",
-	"104" => "L'entité n'a pas de pays.",
-	"105" => "L'entité n'a pas de nom rue.",
-	"106" => "Ce code postal n'existe pas dans notre base de données.",
-	"110" => "Nous n'avons pas trouver la commune : Vérifier si le code postal et le nom de la commune soient bonnes",
-	"111" => "Nous n'avons pas réussi a récupérer le nom de la commune car l'INSEE et le code postal ne sont pas compatibles. Vérifier l'adresse.",
-	"112" => "Nous n'avons pas réussi récupérer le code INSEE. Vérifier l'adresse.",
-
+	"100" => "L'ente non dispone di informazioni sull'indirizzo.",
+	"101" => "L'entità non ha un codice postale.",
+	"102" => "L'entità non ha un codice INSEE.",
+	"103" => "L'entità non ha alcun comune.",
+	"104" => "L'entità non ha un Paese.",
+	"105" => "L'entità non ha un nome di via.",
+	"106" => "Questo codice postale non esiste nella nostra banca dati.",
+	"110" => "Non abbiamo trovato il comune: controllare se il codice postale e il nome del comune sono buoni",
+	"111" => "Non siamo riusciti a recuperare il nome del comune perché l'INSEE e il codice postale non sono compatibili. Controllare l'indirizzo.",
+	"112" => "Non siamo stati in grado di recuperare il codice INSEE. Controllare l'indirizzo.",
 	// Partie concernant la géolocalisation
-	"150" => "L'entité n'a pas de géolocalisation.",
-	"151" => "L'entité n'a pas de latitude.",
-	"152" => "L'entité n'a pas de longitude.",
-	"153" => "L'entité n'a pu être géolocalisé précisément : Repositionner le.",
-	"154" => "Nous n'avons pas réussi à géolocaliser l'entité: Vérifier l'adresse et Repositionner le.",
-
+	"150" => "L'entità non ha geolocalizzazione.",
+	"151" => "L'entità non ha latitudine.",
+	"152" => "L'entità non ha longitudine.",
+	"153" => "Non è stato possibile geolocalizzare con precisione l'entità: riposizionarla.",
+	"154" => "Non siamo stati in grado di geolocalizzare l'entità: controllare l'indirizzo e riposizionarlo.",
 	// Partie concernant la géolocalisation et l'adresse.
-	"170" => "Incohérence entre la géolocalisation et le code postal. Vérifier l'adresse et la géolocalisation",
-	"171" => "L'INSEE du fichier et celui retourné par la géolocalisation n'est pas le même.",
-	"172" => "Le code postal du fichier et celui retourné par la géolocalisation n'est pas le même.",
-
-
-	"201" => "Le nom est obligatoire.",
-	"202" => "Le surnom est obligatoire.",
-	"203" => "L'email est obligatoire.",
-	"204" => "Le mot de passe est obligatoire.",
-	"205" => "L'email n'est pas bien formaté.",
-	"206" => "Une personne avec ce mail existe déjà sur la plateforme.",
-	"207" => "Une personne avec ce username existe déjà sur la plateforme.",
-	"208" => "Cette organisme n'a pas de type.",
-	"209" => "Vous devez remplir un email valide pour le contactPoint.",
-	"210" => "Cette personne n'a pas de username.",
-	"211" => "Cette username a été généré automatique à partir du nom de l'utilisateur.",
-	"212" => "Le Type \"Groupe\"  a été attribué a cette organisation. Veuilliez changer le type de l'organisation s'il ne correspond pas à ce type.",
-	"250" => "L'entité a été mis a jour.",
+	"170" => "Incompetenza tra geolocalizzazione e codice postale. Controllare indirizzo e geolocalizzazione",
+	"171" => "L'INSEE del file e quello restituito dalla geolocalizzazione non sono uguali.",
+	"172" => "Il codice postale del file e quello restituito tramite geolocalizzazione non sono gli stessi.",
+	"201" => "Il nome è obbligatorio.",
+	"202" => "Il cognome è obbligatorio.",
+	"203" => "L'e-mail è obbligatoria.",
+	"204" => "È richiesta una password.",
+	"205" => "L'e-mail non è formattata correttamente.",
+	"206" => "Una persona con questa e-mail esiste già sulla piattaforma.",
+	"207" => "Una persona con questo nome utente esiste già sulla piattaforma.",
+	"208" => "Questo organismo non ha nessun tipo.",
+	"209" => "È necessario inserire un'e-mail valida per il ContactPoint.",
+	"210" => "Questa persona non ha nome utente.",
+	"211" => "Questo nome utente è stato generato automaticamente dal nome utente.",
+	"212" => "A questa organizzazione è stato assegnato tipo \"Gruppo\". Si prega di cambiare il tipo di organizzazione se non corrisponde a questo tipo.",
+	"250" => "L'entità è stata aggiornata.",
 );
-
 ?>
