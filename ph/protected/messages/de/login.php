@@ -116,5 +116,7 @@ return array(
         "Your account <b>is not validated</b>: please check your mailbox to validate your email address." => "Ihr Benutzerkonto <b>ist nicht aktiviert</b>: Bitte überprüfen Sie Ihr Postfach, um Ihre E-Mail-Adresse zu kontrollieren.",
         "If you <b>didn't receive it or lost it</b>, click on the <b>following button</b> to receive it <b>again</b>" => "Wenn Sie es nicht erhalten haben oder es verloren haben, klicken Sie auf den <b>folgenden Button </b> um diese <b>nochmals</b> zugesandt zu bekommen",
         "Receive another validation email" => "Empfange eine weitere Bestätigungs-E-Mail",
+        "Create my <b>citizen</b> account" => "Erstelle mein <b>Bürger</b>Konto",
+        "Verify your emails and your spams" => "Überprüfen Sie Ihre E-Mails und Ihren Spam-Ordner",
     );
 ?>
