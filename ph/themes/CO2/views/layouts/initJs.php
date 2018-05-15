@@ -171,6 +171,8 @@ var typeObj = {
 
     var rolesList=[ tradCategory.financier, tradCategory.partner, tradCategory.sponsor, tradCategory.organizor, tradCategory.president, tradCategory.director, tradCategory.speaker, tradCategory.intervener];
 
+    // var rolesList=[ { id : tradCategory.financier, text : tradCategory.financier}, 
+    //                 { id : tradCategory.partner , text : tradCategory.partner } ];
     var myScopes={};
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",

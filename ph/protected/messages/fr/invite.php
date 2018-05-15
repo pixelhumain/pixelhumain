@@ -12,6 +12,7 @@
 		"We were unable to read your file." => "Nous n'avons pas pu lire votre fichier.",
 		"Already in the list" => "Déjà dans la liste",
 		"My contacts" => "Mes contacts",
+		"This user is already in your contacts" => "Cet utilisateur est déjà dans vos contacts",
 	);
 
 ?>
