@@ -5,21 +5,18 @@
  * merged with the ones provided by the framework
  * ( that are stored in <framework_dir>/i18n/data/ )
  */
-
 	return array(
-		"The job posting id is mandatory to retrieve the job posting !" =>  "L'id de l'offre d'emploi est obligatoire pour récupérer l'offre d'emploi!",
-		"New Job Offer" => "Nouvel offre d'emploi",
-		"Fill the form"	=> "Remplissez le formulaire",
-		"Job Posting" => "Offres d'emploi",
-		"Your job offer has been updated with success" => "Votre Offre d'emploi a été modifiée avec succès.",
-		"Can not insert the job : unknown field " => "Impossible d'ajouter l'offre: champs inconnu ",
-		"Problem inserting the new job offer" => "Problême avec l'insertion de la nouvelle offre d'emploi",
-		"Your job offer has been added with succes" => "Votre Offre d'emploi a été ajoutée avec succès.", 
-		"Can not update the job : you are not authorized to update that job offer !" => "Mise à jour de l'offre impossible : vous n'êtes pas autorisé à modifier l'offre d'emploi !",
-		"Error updating the Organization : address is not well formated !" => "Erreur en mettant à jour l'organisation : adresse incorrect !",
-		"Can not remove the job : you are not authorized to update that job offer !" => "Suppression de l'offre impossible : vous n'êtes pas autorisé à modifier l'offre d'emploi !",
-		"Your job offer has been deleted with success" =>"Votre Offre d'emploi a été supprimé avec succès.",
+		"The job posting id is mandatory to retrieve the job posting !" =>  "Il codice ID dell'offerta di lavoro è obbligatorio per recuperare l'offerta di lavoro!",
+		"New Job Offer" => "Nuova offerta di lavoro",
+		"Fill the form"	=> "Compila il modulo",
+		"Job Posting" => "Offerte di lavoro",
+		"Your job offer has been updated with success" => "L'offerta di lavoro è stata modificata con successo.",
+		"Can not insert the job : unknown field " => "Impossibile aggiungere un'offerta: campi sconosciuti ",
+		"Problem inserting the new job offer" => "Problema con l'inserimento di una nuova offerta di lavoro",
+		"Your job offer has been added with succes" => "L'offerta di lavoro è stata aggiunta con successo.", 
+		"Can not update the job : you are not authorized to update that job offer !" => "L'offerta non può essere aggiornata: non è consentito modificare l'offerta di lavoro!",
+		"Error updating the Organization : address is not well formated !" => "Errore nell'aggiornamento dell'organizzazione: indirizzo errato!",
+		"Can not remove the job : you are not authorized to update that job offer !" => "Non puoi rimuovere il lavoro: non sei autorizzato ad aggiornare l'offerta di lavoro! ",
+		"Your job offer has been deleted with success" =>"L'offerta di lavoro è stata eliminata.",
 	);
-
-
 ?>
