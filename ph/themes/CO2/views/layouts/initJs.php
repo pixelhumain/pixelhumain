@@ -258,6 +258,8 @@ var typeObj = {
         countType:[],
         locality:{}
     };
+    var myScopes = {};
+    
     var themeObj = {
         init : function(){
             toastr.options = {
@@ -275,7 +277,7 @@ var typeObj = {
             };
             initFloopDrawer();
             resizeInterface();
-            var myScopes = initMyScopes();
+            initMyScopes();
             //if(typeof localStorage != "undefined" && typeof localStorage.circuit != "undefined")
               //  circuit.obj = JSON.parse(localStorage.getItem("circuit"));
             //Init mentions contact
@@ -456,7 +458,7 @@ var typeObj = {
 
 function initMyScopes(){
     //if(typeof localStorage != "undefined" && typeof localStorage.myScopes != "undefined" && typeof localStorage.userId != "undefined"){ 
-    var myScope={};
+    //var myScopes={};
     if( notNull(localStorage) && notNull(localStorage.myScopes) )
         myScopes = JSON.parse(localStorage.getItem("myScopes"));
 
@@ -486,7 +488,7 @@ function initMyScopes(){
             myScopes.communexion={};
         localStorage.setItem("myScopes",JSON.stringify(myScopes));
     }
-    return myScopes;
+    //return myScopes;
 }
 
 function expireAllCookies(name, paths) {
