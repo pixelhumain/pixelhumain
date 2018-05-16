@@ -126,5 +126,9 @@ return array(
 	"{who} commented on resolution {what} in {where}" => "{who} kommentierte den Beschluss {what} in {where}",
 	"{who} added comments on resolution {what} in {where}" => "{who} fügte Kommentare zum Beschluss {what} in {where} zu",
 	"{who} added few comments on resolution {what} in {where}" => "{who} fügte einige Kommentare zum Beschluss {what} in {where} zu",
+	
+	"{author} added {who} in the community of {where}" => "{author} hat {who} in die Gemeinschaft von {where} hinzugefügt",
+	"{author} have added {who} in the community of {where}" => "{author} hat {who} in die Gemeinschaft von {where} hinzugefügt",
+	"{who} added a chat on {where}" => "{who} hat einen Chat auf {where} hinzugefügt",
 );
 ?>
