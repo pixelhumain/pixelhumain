@@ -158,7 +158,7 @@
                                     </div>
                                 </div>
                                 <button id="multiscopes-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="multiscopes">
-                                    <i class="fa fa-angle-down"></i> 
+                                    <!-- <i class="fa fa-angle-down"></i>  -->
                                     <i class="fa fa-star"></i> 
                                     <span class="hidden-xs">
                                         <?php echo Yii::t("common","My favorites places"); ?> 
@@ -166,7 +166,7 @@
                                     </span>
                                 </button>
                                 <button id="communexion-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="communexion">
-                                    <i class="fa fa-angle-down"></i> 
+                                    <!-- <i class="fa fa-angle-down"></i>  -->
                                     <i class="fa fa-home"></i> 
                                     <span class="communexion-btn-label hidden-xs">
                                     </span> 

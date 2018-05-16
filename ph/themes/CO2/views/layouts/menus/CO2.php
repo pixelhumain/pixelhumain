@@ -432,7 +432,7 @@
                     <li class="pull-right">
                         <?php //if($subdomain != "welcome"){ ?>
                             <button class="letter-green font-montserrat btn-menu-connect margin-left-10 margin-right-10" 
-                                    data-toggle="modal" data-target="#modalLogin" style="font-size: 19px; margin-top:11px;">
+                                    data-toggle="modal" data-target="#modalLogin" style="font-size: 17px; margin-top:12px;">
                                     <i class="fa fa-sign-in"></i> 
                                     <span class="hidden-xs"><small style="width:70%;"><?php echo Yii::t("login", "LOG IN") ?></small></span>
                             </button>
