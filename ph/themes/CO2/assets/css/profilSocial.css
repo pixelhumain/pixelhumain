@@ -304,6 +304,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         margin-top:4px;
     }
 
+#btnHeaderEditInfos{
+    padding: 0px 8px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
 
 #central-container .bg-dark {
     color: white !important;
@@ -953,4 +958,6 @@ margin-top: 5px;
 .adminIconDirectory{
   z-index:10;
 }
+
+
 
