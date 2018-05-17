@@ -69,7 +69,7 @@ return array(
         "Our developpers are fighting to open soon ! Check your mail that will happen soon !" => "<br><span class=' text-green'>Nos développeurs sont au taquet et ne dorment plus pour que la plateforme sorte bientôt !</span> Vérifiez votre boite mail, ça arrive bientôt !",
         "We'll contact you as soon as we open up! Thanks for joining." => "Nous vous contacterons dès que nous ouvrirons ! Merci de nous avoir rejoint !",
         "You are now communnected !" => "Vous êtes maintenant communecté !",
-        "If you really want to start testing the platform before, send us an email and we'll consider your demand :)" => "Si vous voulez vraiment tester la plateforme avant, envoyez nous un email, et hous verrons ce que nous pourrons faire :)",
+        "If you really want to start testing the platform before, send us an email and we'll consider your demand :)" => "Si vous voulez vraiment tester la plateforme avant, envoyez nous un email, et nous verrons ce que nous pourrons faire :)",
         //Invitation
         "Your account already exists on the plateform : please try to login." => "Votre compte existe déjà sur la plateforme : essayez de vous identifier.",
         "Something went wrong ! Impossible to retrieve your invitor." => "Une erreur est survenue ! Impossible de retrouver votre parrain.",
