@@ -139,7 +139,7 @@
 			"Parce que le besoin de <b>communiquer</b> localement n'a jamais été aussi grand",
 
 		"we've made <b>communexion</b> the <b><i>keystone</i></b> of all our applications" =>
-			"nous avons fait de la <b>communexion</b> la <b><i>clé de voute</i></b> de toutes nos applications",
+			"nous avons fait de la <b>communexion</b> la <b><i>clé de voûte</i></b> de toutes nos applications",
 
 		"The specialty of <b>Communecter</b> is to give you access to the data you are interested in" =>
 			"La spécialité de <b>Communecter</b> c'est de vous donner accès aux données qui vous intéressent",
