@@ -184,8 +184,8 @@
                                 $params = CO2::getThemeParams();
                                 foreach ($params["pages"] as $key => $value) {
                                     if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
-                                        <a href="<?php echo $key; ?>" 
-                                        class="<?php echo $key; ?>ModBtn lbh btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>">
+                                        <a href="javascript:;" data-hash="<?php echo $key; ?>" 
+                                        class="<?php echo $key; ?>ModBtn lbh-menu-app btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>">
                                                 
                                         <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                                         <span class=""><?php echo Yii::t("common", $value["subdomainName"]); ?></span>
