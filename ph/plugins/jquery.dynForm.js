@@ -1297,14 +1297,10 @@ var dyFObj = {
 					if(optKey == 0)
 	                    $(".addmultifield").val(optVal);
 	                else {
-	                	addfield("."+field+fieldObj.inputType, optVal, field, initOptions);
+	                	dyFObj.init.addfield("."+field+fieldObj.inputType, optVal, field, initOptions);
 	                	$(".addmultifield"+optKey).val(optVal);
 	                }
-
-	                else 
-	                	dyFObj.init.addfield("."+field+fieldObj.inputType,optVal,field, initOptions);
-	                else 
-	                	addfield("."+field+fieldObj.inputType,optVal,field, initOptions);
+	                
 	                if( formValues && formValues.medias ){
 	                	$.each(formValues.medias, function(i,mediaObj) {
 	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
