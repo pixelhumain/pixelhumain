@@ -219,7 +219,10 @@
             activateScope=myScopes.type;
         else
             activateScope="open";*/
-        activateScopeMenu();
+        //activateScopeMenu();
+        //if(myScopes.type != "open")
+         //   $("#"+myScopes.type+"-btn").addClass("active").find("i.fa-angle-down").removeClass("fa-angle-down").addClass("fa-angle-up");
+        
         bindSearchCity();
         //headerActive=true;
         bindScopesInputEvent();
@@ -227,14 +230,14 @@
         getCommunexionLabel();
     }
     function activateScopeMenu(type,init){
-        if(myScopes.type!="open" || Object.keys(myScopes.open).length>0){
-            $(".scopes-container").html(constructScopesHtml());
-            if(myScopes.type!="multiscopes")
-                $("#filter-scopes-menu .scopes-container .scope-order").sort(sortSpan) // sort elements
-                    .appendTo("#filter-scopes-menu .scopes-container");
-        }
-        if(myScopes.type != "open")
-            $("#"+myScopes.type+"-btn").addClass("active").find("i.fa-angle-down").removeClass("fa-angle-down").addClass("fa-angle-up");
+        //if(myScopes.type!="open" || Object.keys(myScopes.open).length>0){
+           // $(".scopes-container").html(constructScopesHtml());
+            //if(myScopes.type!="multiscopes")
+              //  $("#filter-scopes-menu .scopes-container .scope-order").sort(sortSpan) // sort elements
+                //    .appendTo("#filter-scopes-menu .scopes-container");
+        //}
+        //if(myScopes.type != "open")
+         //   $("#"+myScopes.type+"-btn").addClass("active").find("i.fa-angle-down").removeClass("fa-angle-down").addClass("fa-angle-up");
         //$(".container-scope-menu").hide(700);
         //$(".btn-scope-menu").removeClass("active");
         //$("#"+type+"-container").show(700);

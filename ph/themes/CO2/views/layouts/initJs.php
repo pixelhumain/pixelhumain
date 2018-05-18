@@ -468,6 +468,7 @@ function initMyScopes(){
         myScopes.openNews={};
         if(myScopes.multiscopes==null)
             myScopes.multiscopes={};
+        console.log("init scope", myScopes);
     } else {
         myScopes={
             type:"open",
@@ -486,6 +487,7 @@ function initMyScopes(){
             myScopes.communexion=scopeObject(myScopes.communexion);
         else
             myScopes.communexion={};
+        console.log("init scope", myScopes);
         localStorage.setItem("myScopes",JSON.stringify(myScopes));
     }
     //return myScopes;
