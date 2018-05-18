@@ -98,46 +98,6 @@
                               //  } ?>
                           <?php } ?>
                         </div>
-                        <?php if($page == "annonces"){ ?>
-                        <!--<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12 no-padding margin-top-10" id="section-price">
-                            <div class="form-group col-md-4 col-sm-4 col-xs-6">
-                              <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
-                                <i class="fa fa-chevron-down"></i> <?php echo Yii::t("common","Min price") ?>
-                              </label>
-                              <input type="text" id="priceMin" name="priceMin" class="form-control" 
-                                     placeholder="<?php echo Yii::t("common","Max Min") ?>"/>
-                            </div>
-
-                            <div class="form-group col-md-4 col-sm-4 col-xs-6">
-                              <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
-                                <i class="fa fa-chevron-down"></i> <?php echo Yii::t("common","Max price") ?>
-                              </label>
-                              <input type="text" id="priceMax" name="priceMax" class="form-control col-md-5" 
-                                     placeholder="<?php echo Yii::t("common","Max price") ?>"/>
-                            </div>
-                            
-                            <div class="form-group col-md-2 col-sm-2 col-xs-12">
-                              <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
-                                <i class="fa fa-money"></i> <?php echo Yii::t("common","Money"); ?>
-                              </label>
-                              <select class="form-control" name="devise" id="devise" style="">
-                                <?php if(@$devises){ 
-                                  foreach($devises as $key => $devise){ ?>
-                                  <option class="bold" value="<?php echo $key; ?>"><?php echo $devise; ?></option>
-                                <?php } } ?>
-                              </select>
-                            </div>
-
-                            <div class="form-group col-md-2 col-sm-2 col-xs-12 margin-top-10">
-                              <button class="btn btn-link bg-azure margin-top-15 btn-directory-type" data-type="classified">
-                                <i class="fa fa-search"></i> <span class="hidden-xs hidden-ms"><?php echo Yii::t("common","Search") ?></span>
-                              </button>
-                            </div>
-
-                            <!-- <hr class="col-md-12 col-sm-12 col-xs-12 margin-top-10 no-padding" id="before-section-result">  
-                        </div>-->
-                        <?php } ?>
-
                         <div id="filter-scopes-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12 no-padding margin-top-10">
                             <div id="scope-container" class="scope-menu no-padding">
                                 <div id="input-sec-search" class="col-xs-8 col-md-6 col-sm-6 col-lg-6">
@@ -214,48 +174,10 @@
         initScopeMenu();
         $(".tooltips").tooltip();
     });
-    function initScopeMenu(type){
-        /*if(typeof myScopes.type != "undefined")
-            activateScope=myScopes.type;
-        else
-            activateScope="open";*/
-        //activateScopeMenu();
-        //if(myScopes.type != "open")
-         //   $("#"+myScopes.type+"-btn").addClass("active").find("i.fa-angle-down").removeClass("fa-angle-down").addClass("fa-angle-up");
-        
+    function initScopeMenu(type){   
         bindSearchCity();
-        //headerActive=true;
         bindScopesInputEvent();
         countFavoriteScope();
         getCommunexionLabel();
-    }
-    function activateScopeMenu(type,init){
-        //if(myScopes.type!="open" || Object.keys(myScopes.open).length>0){
-           // $(".scopes-container").html(constructScopesHtml());
-            //if(myScopes.type!="multiscopes")
-              //  $("#filter-scopes-menu .scopes-container .scope-order").sort(sortSpan) // sort elements
-                //    .appendTo("#filter-scopes-menu .scopes-container");
-        //}
-        //if(myScopes.type != "open")
-         //   $("#"+myScopes.type+"-btn").addClass("active").find("i.fa-angle-down").removeClass("fa-angle-down").addClass("fa-angle-up");
-        //$(".container-scope-menu").hide(700);
-        //$(".btn-scope-menu").removeClass("active");
-        //$("#"+type+"-container").show(700);
-        //$(".activate-"+type).addClass("active");
-       // myScopes.type=type;
-        /*if(init==null){
-            myScopes.state=true;
-            //if(type!="open-scope"){
-            localStorage.setItem("myScopes",JSON.stringify(myScopes));
-            //}
-        }else if(type=="open")
-            myScopes.state=false;
-        if(myScopes.state){
-            $('.scope-filters-badge').removeClass('hide');
-            $('.scope-filters-badge').addClass('animated bounceIn');
-            $('.scope-filters-badge').addClass('badge-success');
-            $('.scope-filters-badge').removeClass('badge-tranparent');
-        }*/
-
     }
 </script>
