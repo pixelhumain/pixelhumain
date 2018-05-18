@@ -28,7 +28,8 @@
 
     .btn-language{
         height: 35px;
-        border-radius: 0% 50%;
+        /*border-radius: 0% 50%;*/
+        border:none;
         width: 50px;
     }
 
@@ -146,7 +147,7 @@
             <i class="fa fa-map-marker"></i>
         </button>
         <?php if( !@Yii::app()->session['userId'] ){ ?>
-            <div id="navbar" class="navbar-collapse pull-right navbar-right" style="    margin-top: 5px;   margin-bottom: 5px;">
+            <div id="navbar" class="navbar-collapse pull-right navbar-right" style="margin-top: 8px;   margin-bottom: 5px;">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle btn btn-default btn-language padding-5" data-toggle="dropdown" role="button">
@@ -403,18 +404,18 @@
                           <i class="fa <?php echo Application::ICON ?> letter-red"></i>
                         </button>
                         <div class="dropdown-menu arrow_box" aria-labelledby="dropdownApps">
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo Search::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Search") ?></a>
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo News::ICON2 ?> fa-2x"></i><br/><?php echo Yii::t("common","In live") ?></a>
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Event::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Agenda") ?></a>
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Classified::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Market place") ?></a>
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Ressource::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Sharing") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo Search::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Search") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo News::ICON2 ?> fa-2x"></i><br/><?php echo Yii::t("common","In live") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Event::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Agenda") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Classified::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Market place") ?></a>
+                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Ressource::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Sharing") ?></a>
                         </div>
                     </span>
 
 
                 <?php } else { ?>
 
-                 <span class="dropdown pull-left" id="dropdown-apps">
+                 <!-- <span class="dropdown pull-left" id="dropdown-apps">
                         <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                               title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>" style="margin-top: 8px;">
                           <i class="fa <?php echo Application::ICON ?> letter-red"></i>
@@ -426,12 +427,12 @@
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Classified::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Market place") ?></a>
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Ressource::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Sharing") ?></a>
                         </div>
-                    </span>
+                    </span> -->
 
                     <li class="pull-right">
                         <?php //if($subdomain != "welcome"){ ?>
                             <button class="letter-green font-montserrat btn-menu-connect margin-left-10 margin-right-10" 
-                                    data-toggle="modal" data-target="#modalLogin" style="font-size: 20px; margin-top:9px;">
+                                    data-toggle="modal" data-target="#modalLogin" style="font-size: 17px; margin-top:12px;">
                                     <i class="fa fa-sign-in"></i> 
                                     <span class="hidden-xs"><small style="width:70%;"><?php echo Yii::t("login", "LOG IN") ?></small></span>
                             </button>
@@ -491,25 +492,31 @@
                 <div class="dropdown-main-menu" style="right:50px !important;">
                     <ul class="dropdown-menu arrow_box">
                          <li class="text-left visible-xs">
-                            <a href="#search" class="lbh bg-white text-red">
+                            <a href="javascript:;" data-hash="#search" class="lbh-menu-app bg-white text-red">
                                 <i class="fa fa-search"></i> <?php echo Yii::t("common", "Search") ?>
                             </a>
                         </li>
                         <li class="text-left visible-xs">
-                            <a href="#annonces" class="lbh bg-white text-red">
+                            <a href="javascript:;" data-hash="#live" class="lbh-menu-app bg-white text-red">
+                                <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Live") ?>
+                            </a>
+                        </li>
+                        <li class="text-left visible-xs">
+                            <a href="javascript:;" data-hash="#agenda" class="lbh-menu-app bg-white text-red">
+                                <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Agenda") ?>
+                            </a>
+                        </li>
+                         <li class="text-left visible-xs">
+                            <a href="javascript:;" data-hash="#annonces" class="lbh-menu-app bg-white text-red">
                                 <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Ads") ?>
                             </a>
                         </li>
                         <li class="text-left visible-xs">
-                            <a href="#agenda" class="lbh bg-white text-red">
-                                <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Agenda") ?>
+                            <a href="javascript:;" data-hash="#ressources" class="lbh-menu-app bg-white text-red">
+                                <i class="fa fa-cubes"></i> <?php echo Yii::t("common", "Sharing") ?>
                             </a>
                         </li>
-                        <li class="text-left visible-xs">
-                            <a href="#live" class="lbh bg-white text-red">
-                                <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Live") ?>
-                            </a>
-                        </li>
+                       
                         <li class="text-left visible-xs">
                             <a href="#default.view.page.links" class="lbhp text-red bg-right">
                                 <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>

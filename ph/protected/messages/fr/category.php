@@ -213,7 +213,7 @@
         "Type of ressource" => "Choisir une catégorie",
         "Choose a category" => "Choisissez une catégorie",
         "Sub category" => "Sous-catégorie",
-
+        // TODO QUESTION OCEATOON : WHHYYYYYYYYY ?
         //filters lel 1
         "service"=>"service",
             //filters lvl 2
@@ -243,10 +243,43 @@
             //filters lvl 2
             "electronic"=> "Électronique",
             "furniture"=> "Mobilier",
-            "primaryressources"=> "Ressource Primaire",
+            "primaryressources"=> "Ressource primaire",
             "buildingtools"=> "Outil de construction",
             "gardeningtools"=> "Outil de jardin",
             "medicalstuff"=> "Médical",
+        // Bonnnnnnnnnnne version
+        "Service"=>"Service",
+            //filters lvl 2
+            "Charity" => "Charité",
+            "Education" => "Éducation",
+            "Househelp" => "Aide à domicile",
+            "Washing" => "Entretien, Ménage",
+            "Gardening" => "Jardinage",
+            "Farming" => "Agriculture",
+            "General maintenance" => "Maintenance",
+            "Animalcare" => "Aide Animaux",
+            "Children care" => "Aide aux enfants",
+            "Ederly care" => "Aide aux personnes agées",
+            "Disabled care" => "Aide aux personnes handicapés",
+            "Hosting help" => "Aide à l'hébergement",
+        "Competence"=>"Compétence",
+            //filters lvl 2
+            "Artistic" => "Artistique",
+            "Laws" => "Légal",
+            "IT devlopment" => "Informatique",
+            "Handcraft" => "Artisanat",
+            "Animalcare" => "Soins des animaux",
+            "Agriculture" => "Agriculture",
+            "Restauration" => "Restauration",
+            "Building" => "Construction",
+        "Material"=>"Matériel",
+            //filters lvl 2
+            "Electronic"=> "Électronique",
+            "Furniture"=> "Mobilier",
+            "Primary ressources"=> "Ressource Primaire",
+            "Building tools"=> "Outil de construction",
+            "Gardening tools"=> "Outil de jardin",
+            "Medical stuff"=> "Médical",
 
         "To share" => "À partager",
         "To give" => "À donner",

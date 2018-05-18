@@ -103,10 +103,8 @@ onSave: (optional) overloads the generic saveProcess
 			fieldHTML += '</div>';
 
 	        $( settings.formId ).append(fieldHTML);
-
 	        if(settings.afterBuild && jQuery.isFunction( settings.afterBuild ) )
 				settings.afterBuild();
-
 	        $(dyFObj.activeModal+" #btn-submit-form").one(function() { 
 				$( settings.formId ).submit();	        	
 	        });
@@ -118,7 +116,6 @@ onSave: (optional) overloads the generic saveProcess
 
 			if(settings.onLoad && jQuery.isFunction( settings.onLoad ) )
 				settings.onLoad();
-		    
 			return form;
 		}
 	});
@@ -1293,7 +1290,11 @@ var dyFObj = {
 				var initOptions = new Object;
 				if(typeof fieldObj.initOptions != "undefined")
 					initOptions=fieldObj.initOptions;
-				$.each(fieldObj.value, function(optKey,optVal) {
+
+				console.log("initField", fieldObj, fieldObj.value);
+					
+				$.each(fieldObj.value, function(optKey,optVal) { 
+					console.log("initField", optKey, "fieldObj.value", fieldObj.value, "class ."+field+fieldObj.inputType, "optVal", optVal, "field", field, initOptions);
 					if(optKey == 0)
 	                    $(".addmultifield").val(optVal);
 	                else {
@@ -2021,6 +2022,19 @@ var dyFObj = {
 		            },
 		            autoUpload: false
 		        });
+				/*console.log(params);
+				if(typeof params.formValues.images != "undefined" && params.formValues.images.length > 0){
+					var imagesArray=[];
+					$.each(params.formValues.images,function(e,v){
+						var image={
+							"name":"ressource"+e,
+							"uuid":v.id,
+							"thumbnailUrl":v.imageThumbPath
+						};
+						imagesArray.push(image);
+					});
+					uploader.addInitialFiles(imagesArray);
+				}*/
 			};
 			if(  $(".fine-uploader-manual-trigger").length)
 				loadFineUploader(FineUploader,dyFObj.init.initValues.template);
@@ -2934,7 +2948,6 @@ var dyFInputs = {
     		{
     			
         		$('#trigger-upload').click(function(e) {
-        			alert("initImageTrigger");
         			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
 		        	urlCtrl.loadByHash(location.hash);
         			$('#ajax-modal').modal("hide");

@@ -88,13 +88,13 @@
                                 <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
                                 </div>
                             </div>
-                            <h4 class="text-dark col-md-12 margin-top-5 homestead">
-                                <!-- Bienvenue sur la version CO.2 -->
+                            <!-- <h4 class="text-dark col-md-12 margin-top-5 homestead">
+                                <!-- Bienvenue sur la version CO.2 - ->
                                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="35" 
                                      class="inline margin-left-10">
-                                <!-- <br/>Le commun avance <span class="text-red">montez à bord !</span> -->
+                                <!-- <br/>Le commun avance <span class="text-red">montez à bord !</span>  - ->
                                 <hr>
-                            </h4>
+                            </h4> -->
                         <?php } ?>
                     </span>
                     <!--<h3 class="letter-red no-margin" style="margin-top:-15px!important;">se connecter</h3><br>-->
@@ -157,18 +157,18 @@
                     <a href="javascript:;" class="btn bg-white" data-toggle="modal" data-target="#modalForgot">
                         <!-- <i class="fa fa-s"></i> --><?php echo Yii::t("login","I forgot my password") ?>
                     </a>
-                    <?php if($subdomain != "welcome"){ ?>
+                    <?php //if($subdomain != "welcome"){ ?>
                         <a href="javascript:;" class="btn btn-default bg-white letter-blue bold" 
                             data-toggle="modal" data-target="#modalRegister">
                                  <i class="fa fa-plus-circle bold"></i> 
                                  <?php echo Yii::t("login", "I create my account") ?>
                         </a>
-                    <?php }else{ ?>
-                        <a href="javascript:;" class="btn btn-default bg-white letter-blue bold" data-dismiss="modal">
+                    <?php //}else{ ?>
+                        <!-- <a href="javascript:;" class="btn btn-default bg-white letter-blue bold" data-dismiss="modal">
                                 <i class="fa fa-plus-circle"></i> 
                                 <?php echo Yii::t("login", "I create my account") ?>
-                        </a>
-                    <?php } ?>
+                        </a> -->
+                    <?php //} ?>
                 </div>
 
                 <br><hr>
@@ -185,7 +185,7 @@
 <?php //} ?>
 
 <?php if(Yii::app()->params["CO2DomainName"] != "kgougle"){ //bloquage des inscriptions ?>
-<?php if($subdomain != "welcome"){ ?>
+<?php //if($subdomain != "welcome"){ ?>
 <div class="portfolio-modal modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-hidden="true">
     <form class="modal-content form-register box-register padding-top-15"  >
         <div class="close-modal" data-dismiss="modal">
@@ -269,7 +269,7 @@
         </div>
     </form>
 </div>
-<?php } ?>
+<?php //} ?>
 
 <div class="modal fade" role="dialog" id="modalRegisterSuccess">
     <div class="modal-dialog">

@@ -139,7 +139,12 @@
 	.item-scope-checker,
 	.item-tag-checker{
 		cursor:pointer;
-		font-weight: 600 !important;
+		/*font-weight: 600 !important;*/
+	}
+	.item-scope-checker:hover,
+	.item-tag-checker:hover{
+		cursor:pointer;
+		border-bottom: 2px solid #e6344d;
 	}
 	.main-btn-scopes {
 	    margin-top: 3px;
@@ -173,8 +178,7 @@
 	.list_tags_scopes span.text-red.disabled:hover,
 	#list_tags_scopes span.text-red.disabled:hover,
 	#scopeListContainer span.text-red.disabled:hover,
-	.scopes-container .scope-order.disabled:hover span,
-	{
+	.scopes-container .scope-order.disabled:hover span{
 		color:#E33551 !important;
 	}
 	.scopes-container .scope-order.disabled .manageMultiscopes.active{
@@ -194,7 +198,26 @@
 	    border-bottom: 1px solid #E6E8E8;
 	    min-height: 30px;
 	    padding: 5px 10px;
+		padding-left:32px;
 	}
+
+
+	#news-scopes-container .scope-order,
+	#content-added-scopes-container .scope-order{
+		padding: 2px 8px 2px 0px;
+		-webkit-box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.5);
+		-moz-box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.5);
+		box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.5);
+		margin: 5px;
+		border-radius: 5px;
+		line-height: 30px;
+	}
+
+
+
+
+
+
 	#dropdown-multi-scope-found{
 		max-height:250px;
 		overflow: auto;
@@ -204,12 +227,12 @@
     	font-weight: inherit;
 	}
 	#searchOnCityNews{
-		height: 25px;
-	    border-radius: 0px;
-	    border: none;
-	    padding: 5px;
+		padding: 5px;
 	    line-height: 25px;
 	    box-shadow: inherit; 
+	    height: 30px;
+		border-radius: 4px;
+		border: 1px solid #dbd7d7;
 	}
 	#searchOnCityNews:focus{
 		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);

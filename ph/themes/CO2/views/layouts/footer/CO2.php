@@ -53,8 +53,8 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-left col-footer">
                     <h5><i class="fa fa-info-circle hidden-xs"></i> <?php echo Yii::t("home", "General information"); ?></h5>
-                    <a href="default/view/page/openatlas/dir/docs|panels" class="lbhp text-white"><i class="fa fa-angle-right"></i> <?php echo Yii::t("Common","About") ?></a><br>
-                    <a href="default/view/page/mention/dir/docs|panels" class="text-white lbhp">
+                    <a href="#docs.page.openatlas.dir.<?php echo Yii::app()->language ?>" class="lbh text-white"><i class="fa fa-angle-right"></i> <?php echo Yii::t("common","About") ?></a><br>
+                    <a href="#docs.page.mention.dir.<?php echo Yii::app()->language ?>" class="text-white lbh">
                         <i class="fa fa-angle-right"></i> <?php echo Yii::t("home","Legal notice") ?>
                     </a><br>
                     <a href="<?php echo Yii::app()->request->baseUrl; ?>/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="text-white">
@@ -80,11 +80,11 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-footer-ph">
                     <span class="font-blackoutT text-yellow-PH" style="font-size:20px;">by</span> 
-                    <a href="javascript:;" target="_blank">
+                    <a href="https://www.communecter.org/#@pixelhumain" target="_blank">
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGO_PIXEL_HUMAIN.png" height=70>
                     </a><br><br>
 
-                    <a href="javascript:;" target="_blank" class=" hidden-xs">
+                    <a href="https://github.com/pixelhumain/co2" target="_blank" class=" hidden-xs">
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height=30>
                     </a>
 

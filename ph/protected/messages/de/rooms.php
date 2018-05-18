@@ -29,7 +29,7 @@ return array(
 	"Voted" => "Sie haben abgestimmt",
 	"Not Voted" => "Sie haben nicht abgestimmt",
 	"Closed" => "Geschlossen",
-	"You did not vote" => "Sie haben nicht abgestimmt",
+	"You did not vote" => "Sie haben nicht mit abgestimmt",
 	"Proposed by" => "Vorgeschlagen von",
 	"Add a proposal" => "Unterbreiten Sie einen Vorschlag",
 	"Show all" => "Alle anzeigen",

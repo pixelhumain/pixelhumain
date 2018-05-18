@@ -289,7 +289,7 @@
         <?php $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
         <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"]); ?>
         <?php 
-            if((($CO2DomainName == "CO2" &&
+            if(false && (($CO2DomainName == "CO2" &&
                 !@Yii::app()->session["userId"] && 
                 !@Yii::app()->session["user"]["preferences"]) || 
                 ($CO2DomainName == "CO2" &&
