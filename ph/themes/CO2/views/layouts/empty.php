@@ -18,11 +18,9 @@
  $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["parent"]."/default/view/page/trad/dir/..|translation/layout/empty"));
        
-  $cssAnsScriptFilesModule = array(
-
-    // est-ce que ça pose problème si je commente ces 2 lignes ?
-    // le layout empty est-il utilisé par d'autres modules ? ou ailleurs dans CO ?
-
+  $cssJs = array(
+    '/js/api.js',
+    
     '/plugins/bootstrap/css/bootstrap.min.css',
     '/plugins/bootstrap/js/bootstrap.min.js' ,
     //'/plugins/font-awesome/css/font-awesome.min.css',
@@ -30,20 +28,22 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     '/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.css',
     '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' ,
     '/plugins/blockUI/jquery.blockUI.js' ,
-    '/js/api.js',
+    
     '/plugins/font-awesome/css/font-awesome.min.css',
     '/plugins/toastr/toastr.js' , 
     '/plugins/toastr/toastr.min.css',
+
+    '/plugins/cryptoJS-v3.1.2/rollups/aes.js'
   );
-  HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->request->baseUrl);
+  HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->request->baseUrl);
   
-  $cssAnsScriptFilesModule = array(
+  $cssJs = array(
     '/assets/css/CO2/CO2-boot.css',
     '/assets/css/CO2/CO2-color.css',
     '/assets/css/CO2/CO2.css',
     '/assets/css/plugins.css',
   );
-  HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
+  HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->theme->baseUrl);
 
 
   

@@ -21,9 +21,6 @@ onSave: (optional) overloads the generic saveProcess
 	var thisBody = document.body || document.documentElement, 
 	thisStyle = thisBody.style, 
 	$this,
-	initValues = {},
-	initSelect = {},
-	initSelectNetwork = [],
 	supportTransition = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined
 	
 	/*$(subviewBackClass).on("click", function(e) {
@@ -82,7 +79,7 @@ onSave: (optional) overloads the generic saveProcess
 						dyFObj[dyFObj.activeElem].dynForm.jsonSchema.tooltips[field] ){
 					fieldTooltip = dyFObj[dyFObj.activeElem].dynForm.jsonSchema.tooltips[field];
 				}
-				buildInputField(settings.formId,field, fieldObj, settings.formValues, fieldTooltip);
+				dyFObj.buildInputField(settings.formId,field, fieldObj, settings.formValues, fieldTooltip);
 			});
 			
 			/* **************************************
@@ -117,1920 +114,15 @@ onSave: (optional) overloads the generic saveProcess
 			/* **************************************
 			* bind any events Post building 
 			***************************************** */
-			bindDynFormEvents(settings,form.rules);
+			dyFObj.bindDynFormEvents(settings,form.rules);
 
 			if(settings.onLoad && jQuery.isFunction( settings.onLoad ) )
 				settings.onLoad();
 		    
 			return form;
-		},
-
-		/*buildForm: function() { 
-			mylog.dir($this.formObj);
-		},*/
-
+		}
 	});
 	
-	/* **************************************
-	*
-	*	each input field type has a corresponding HTMl to build
-	*
-	***************************************** */
-	function buildInputField(id, field, fieldObj,formValues, tooltip)
-	{
-		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
-		var required = "";
-		if(fieldObj.rules && fieldObj.rules.required)
-			required = "*";
-
-		tooltip = (tooltip) ? '<i class=" fa fa-question-circle pull-right tooltips text-red" data-toggle="tooltip" data-placement="top" title="'+tooltip+'"></i>' : '';
-		if(fieldObj.label)
-			fieldHTML += '<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="'+field+'">'+
-			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+tooltip+
-			            '</label>';
-
-        var iconOpen = (fieldObj.icon) ? '<span class="input-icon">'   : '';
-        var iconClose = (fieldObj.icon) ? '<i class="'+fieldObj.icon+'"></i> </span>' : '';
-        var placeholder = (fieldObj.placeholder) ? fieldObj.placeholder+required : '';
-        var placeholder2 = (fieldObj.placeholder2) ? fieldObj.placeholder2 : '';
-        var fieldClass = (fieldObj.class) ? fieldObj.class : '';
-        var initField = '';
-        var value = "";
-        var style = "";
-        var mainTag = null;
-        if( fieldObj.value ) 
-        	value = fieldObj.value;
-        else if (formValues && formValues[field]) {
-        	value = formValues[field];
-        }
-
-        mylog.log("value network", value);
-        if(value!="")
-        	mylog.warn("--------------- dynform form Values",field,value);
-
-        /* **************************************
-		* 
-		***************************************** */
-        if( field.indexOf("separator")>=0 ) {
-        	if(fieldClass == '' ) 
-        		fieldClass = "panel-blue";
-        	fieldHTML += '<div class="text-large text-bold '+fieldClass+' text-white center padding-10 ">'+iconOpen+iconClose+fieldObj.title+'</div>';
-        }
-        
-        /* **************************************
-		* STANDARD TEXT INPUT
-		***************************************** */
-        else if( !fieldObj.inputType || 
-        		  fieldObj.inputType == "text" || 
-        		  fieldObj.inputType == "numeric" || 
-        		  fieldObj.inputType == "tags" || 
-        		  fieldObj.inputType == "tags" ) {
-        	mylog.log("build field "+field+">>>>>> text, numeric, tags, tags");
-        	if(fieldObj.inputType == "tags")
-        	{
-        		fieldClass += " select2TagsInput";
-        		if(fieldObj.values){
-        			if(!initValues[field])
-        				initValues[field] = {};
-        			initValues[field]["tags"] = fieldObj.values;
-        		}
-        		if(fieldObj.maximumSelectionLength)
-        			initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
-        		mylog.log("fieldObj.data", fieldObj.data, fieldObj);
-        		if(typeof fieldObj.data != "undefined"){
-        			value = fieldObj.data;
-	        		//initSelectNetwork[field]=fieldObj.data;
-	        	}
-        		if(typeof fieldObj.mainTag != "undefined")
-					mainTag=fieldObj.mainTag;
-        		style = "style='width:100%;margin-bottom: 10px;border: 1px solid #ccc;'";
-        	}
-        	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
-        	fieldHTML += iconOpen+' <input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
-        
-        	if(fieldObj.inputType == "price"){       		
-        		fieldHTML += '<select class="'+fieldClass+'" name="devise" id="devise" style="">';
-				fieldHTML += 	'<option class="bold" value="€">euro €</option>';
-				fieldHTML += 	'<option class="bold" value="G1">G1</option>';
-				fieldHTML += 	'<option class="bold" value="$">dollars $</option>';
-				fieldHTML += 	'<option class="bold" value="CFP">CFP</option>';
-				fieldHTML += '</select>';
-        	}
-        }
-        
-        /* **************************************
-		* HIDDEN
-		***************************************** */
-		else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
-			if ( fieldObj.inputType == "timestamp" )
-				value = Date.now();
-			mylog.log("build field "+field+">>>>>> hidden, timestamp");
-			fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
-		}
-		/* **************************************
-		* TEXTAREA
-		***************************************** */
-		else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){
-			mylog.log("build field "+field+">>>>>> textarea, wysiwyg", fieldObj);
-			if(fieldObj.inputType == "wysiwyg")
-				fieldClass += " wysiwygInput";
-			var maxlength = "";
-			var minlength = 0;
-			if(notNull(fieldObj.rules) && notNull(fieldObj.rules.maxlength) ){
-				fieldClass += " maxlengthTextarea";
-				maxlength = fieldObj.rules.maxlength;
-				minlength = value.length ;
-			}
-
-        	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
-        	fieldHTML += '<textarea id="'+field+'" maxlength="'+maxlength+'"  class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
-        	
-        	if(maxlength > 0)
-        		fieldHTML += '<span><span id="maxlength'+field+'" name="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
-
-
-		}else if ( fieldObj.inputType == "markdown"){ 
-			mylog.log("build field "+field+">>>>>> textarea, markdown");
-			fieldClass += " markdownInput";
-			//fieldHTML +='<textarea id="'+field+'" name="'+field+'" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" data-provide="markdown" data-savable="true" rows="10"></textarea>';
-			fieldHTML +='<textarea name="target-editor" id="'+field+'" data-provide="markdown" data-savable="true" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" rows="10"></textarea>';
-		}
-		/* **************************************
-		* CHECKBOX SIMPLE
-		***************************************** */
-		else if ( fieldObj.inputType == "checkboxSimple" ) {
-   			if(value == "") value="25/01/2014";
-   			console.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
-			var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
-			console.log("fieldObj ??? thisValue", thisValue);
-			//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
-			//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
-			mylog.log("build field "+field+">>>>>> checkbox");
-			fieldHTML += '<input type="hidden" class="'+fieldClass+'" name="'+field+'" id="'+field+'" '+
-								'value="'+thisValue+'"/> ';
-			fieldHTML += '<div class="col-lg-6 padding-5">'+
-							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-green col-xs-12"'+
-							' data-checkval="true"' +
-							'>'+
-								fieldObj.params.onText+
-							'</a>'+
-						 '</div>';
-			fieldHTML += '<div class="col-lg-6 padding-5">'+
-							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-red col-xs-12"'+
-							' data-checkval="false"' +
-							'>'+
-								fieldObj.params.offText+
-							'</a>'+
-						 '</div>';
-			initField = function(){
-				//var checked = ( fieldObj.checked ) ? "checked" : "";
-				//if(checked) 
-				//if( fieldObj.switch )
-					//initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
-			};
-		}
-
-		/* **************************************
-		* CHECKBOX
-		***************************************** */
-        else if ( fieldObj.inputType == "checkbox" ) {
-   			if(value == "") value="25/01/2014";
-			var checked = ( fieldObj.checked ) ? "checked" : "";
-			var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
-			var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.switch.onText+"' data-off-text='"+fieldObj.switch.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
-			mylog.log("build field "+field+">>>>>> checkbox");
-			fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+' '+switchData+'/> '+placeholder;
-			if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
-				fieldHTML+=buildOpeningHours(value);
-			}
-			initField = function(){
-				if( fieldObj.switch )
-					initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null, (fieldObj.switch.css) ? fieldObj.switch.css : null );
-				if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
-					//loadTimePicker(null);
-					bindTimePicker();
-					if(notNull(value) && typeof value == "object"){
-						$.each(value, function(e,v){
-							if(typeof v == "object" && notNull(v.hours) ){
-								$.each(v.hours, function(ehour,vhour){
-									bindTimePicker(v.dayOfWeek, ehour, vhour);
-								});
-							}
-						});
-					}
-					initRangeHours();
-					
-				}
-				//if( fieldObj.subSwitch )
-				//	initbootstrapSwitch(fieldObj.subSwitch.domHtml, (fieldObj.subSwitch.onChange) ? fieldObj.subSwitch.onChange : null );
-			};
-		}
-
-		/* **************************************
-		* RADIO
-		***************************************** */
-		else if ( fieldObj.inputType == "radio" ) {
-   			
-	       	mylog.log("build field "+field+">>>>>> radio");
-	       	
-	       	fieldHTML += '<div class="btn-group" data-toggle="buttons">';
-	       	value = ( (typeof fieldObj.value != "undefined") ? fieldObj.value : value ) ;
-	       	if(fieldObj.options)
-	       		fieldHTML += buildRadioOptions(fieldObj.options,value, field) ;
-	       	fieldHTML += '</div>';
-       	}
-
-
-        /* **************************************
-		* SELECT , we use select2
-		***************************************** */
-        else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) 
-        {
-       		var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
-       		mylog.log("build field "+field+">>>>>> select selectMultiple");
-       		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
-       		fieldHTML += '<select class="'+isSelect2+' '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px;" data-placeholder="'+placeholder+'">';
-			if(placeholder)
-				fieldHTML += '<option class="text-red" style="font-weight:bold" disabled selected>'+placeholder+'</option>';
-			else
-				fieldHTML += '<option></option>';
-
-			var selected = "";
-			mylog.log("fieldObj select", fieldObj);
-			//initialize values
-			if(fieldObj.options)
-				fieldHTML += buildSelectOptions(fieldObj.options, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
-
-			if( fieldObj.groupOptions )
-				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
-			
-			fieldHTML += '</select>';
-        } 
-        else if ( fieldObj.inputType == "uploader" ) {
-        	if(placeholder == "")
-        		placeholder="add Image";
-        	mylog.log("build field "+field+">>>>>> uploader");
-        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>';
-        	if(fieldObj.docType=="image")
-			fieldHTML += 	'<script type="text/template" id="qq-template-gallery">';
-			else
-			fieldHTML += 	'<script type="text/template" id="qq-template-manual-trigger">';
-			fieldHTML += 	'<div class="qq-uploader-selector qq-uploader';
-			if(fieldObj.docType=="image")
-			fieldHTML +=		' qq-gallery';
-			fieldHTML +=		'" qq-drop-area-text="'+tradDynForm.dropfileshere+'">'+
-							'<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">'+
-							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>'+
-							'</div>'+
-							'<div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>'+
-							'<span class="qq-upload-drop-area-text-selector"></span>'+
-							'</div>'+
-							'<div class="qq-upload-button-selector btn btn-primary">'+
-							'<div>'+tradDynForm["add"+fieldObj.docType]+'</div>'+
-							'</div>'+
-							'<button type="button" id="trigger-upload" class="btn btn-danger hide">'+
-			                '<i class="icon-upload icon-white"></i> '+tradDynForm.save+
-			                '</button>'+
-							'<span class="qq-drop-processing-selector qq-drop-processing">'+
-							'<span>En cours de progression...</span>'+
-							'<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>'+
-							'</span>';
-			if(fieldObj.docType=="image"){
-			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
-							'<li>'+
-							'<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
-							'<div class="qq-progress-bar-container-selector qq-progress-bar-container">'+
-							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
-							'</div>'+
-							'<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
-							'<div class="qq-thumbnail-wrapper">'+
-							'<img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>'+
-							'</div>'+
-							'<button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>'+
-							'<button type="button" class="qq-upload-retry-selector qq-upload-retry">'+
-							'<span class="qq-btn qq-retry-icon" aria-label="Retry"></span>'+
-							'Retry'+
-							'</button>'+
-							''+
-							'<div class="qq-file-info">'+
-							'<div class="qq-file-name">'+
-							'<span class="qq-upload-file-selector qq-upload-file"></span>'+
-							//'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
-							'</div>'+
-							'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
-							'<span class="qq-upload-size-selector qq-upload-size"></span>'+
-							'<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">'+
-							'<span class="qq-btn qq-delete-icon" aria-label="Delete"></span>'+
-							'</button>'+
-							'<button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">'+
-							'<span class="qq-btn qq-pause-icon" aria-label="Pause"></span>'+
-							'</button>'+
-							'<button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">'+
-							'<span class="qq-btn qq-continue-icon" aria-label="Continue"></span>'+
-							'</button>'+
-							'</div>'+
-							'</li>'+
-							'</ul>';
-			}else{
-			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">'+
-				                '<li>'+
-				                    '<div class="qq-progress-bar-container-selector">'+
-				                        '<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
-				                    '</div>'+
-				                    '<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
-				                    '<img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>'+
-				                    '<span class="qq-upload-file-selector qq-upload-file"></span>'+
-				                    //'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
-				                    '<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
-				                    '<span class="qq-upload-size-selector qq-upload-size"></span>'+
-				                    '<button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>'+
-				                    '<button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>'+
-				                    '<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>'+
-				                    '<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
-				                '</li>'+
-				            '</ul>';
-			}
-			fieldHTML += 				''+
-							'<dialog class="qq-alert-dialog-selector">'+
-							'<div class="qq-dialog-message-selector"></div>'+
-							'<div class="qq-dialog-buttons">'+
-							'<button type="button" class="qq-cancel-button-selector">Close</button>'+
-							'</div>'+
-							'</dialog>'+
-							''+
-							'<dialog class="qq-confirm-dialog-selector">'+
-							'<div class="qq-dialog-message-selector"></div>'+
-							'<div class="qq-dialog-buttons">'+
-							'<button type="button" class="qq-cancel-button-selector">No</button>'+
-							'<button type="button" class="qq-ok-button-selector">Yes</button>'+
-							'</div>'+
-							'</dialog>'+
-							''+
-							'<dialog class="qq-prompt-dialog-selector">'+
-							'<div class="qq-dialog-message-selector"></div>'+
-							'<input type="text">'+
-							'<div class="qq-dialog-buttons">'+
-							'<button type="button" class="qq-cancel-button-selector">Cancel</button>'+
-							'<button type="button" class="qq-ok-button-selector">Ok</button>'+
-							'</div>'+
-							'</dialog>'+
-							'</div>'+
-							'</script>';
-			if( fieldObj.showUploadBtn )
-        		initValues.showUploadBtn = fieldObj.showUploadBtn;
-        	if( fieldObj.filetypes )
-        		initValues.filetypes = fieldObj.filetypes;
-        	if( fieldObj.template )
-        		initValues.template = fieldObj.template;
-			if( $.isFunction( fieldObj.afterUploadComplete ) )
-        		initValues.afterUploadComplete = fieldObj.afterUploadComplete;
-        }
-
-        /* **************************************
-		* DATE INPUT , we use bootstrap-datepicker
-		***************************************** */
-        else if ( fieldObj.inputType == "date" ) {
-        	if(placeholder == "")
-        		placeholder="25/01/2014";
-        	mylog.log("build field "+field+">>>>>> date");
-        	if(value && (""+value).indexOf("/") < 0){
-        		//timestamp use case 
-        		value =moment(parseInt(value)*1000).format('DD/MM/YYYY');
-        		//alert("switch:"+value);
-        	}
-        	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
-        }
-
-        /* **************************************
-		* DATE TIME INPUT , we use bootstrap-datetimepicker
-		***************************************** */
-        else if ( fieldObj.inputType == "datetime" ) {
-        	if(placeholder == "")
-        		placeholder="25/01/2014 08:30";
-        	mylog.log("build field "+field+">>>>>> datetime");
-        	fieldHTML += iconOpen+'<input type="text" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
-        }
-        /* **************************************
-		* DATE RANGE INPUT 
-		***************************************** */
-        else if ( fieldObj.inputType == "daterange" ) {
-        	if(placeholder == "")
-        		placeholder="25/01/2014";
-			mylog.log("build field "+field+">>>>>> daterange");
-        	fieldHTML += iconOpen+'<input type="text" class="form-control daterangeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
-        }
-
-        /* **************************************
-		* TIME INPUT , we use 
-		***************************************** */
-        else if ( fieldObj.inputType == "time" ) {
-        	if(placeholder == "")
-        		placeholder="20:30";
-        	mylog.log("build field "+field+">>>>>> time");
-        	fieldHTML += iconOpen+'<input type="text" class="form-control timeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
-        }
-
-        /* **************************************
-		* LINK
-		***************************************** */
-        else if ( fieldObj.inputType == "link" ) {
-        	if(fieldObj.url.indexOf("http://") < 0 )
-        		fieldObj.url = "http://"+fieldObj.url;
-        	mylog.log("build field "+field+">>>>>> link");
-        	fieldHTML += '<a class="btn btn-primary '+fieldClass+'" href="'+fieldObj.url+'">Go There</a>';
-        } 
-
-         /* **************************************
-		* CAPCHAT
-		***************************************** */
-        else if ( fieldObj.inputType == "captcha" ) {
-        	mylog.log("build field "+field+">>>>>> captcha");
-        	fieldHTML += '<div class="col-md-8 pull-right text-right">';
-				fieldHTML += '<h5 for="message" class="letter-green margin-bottom-25">';
-					fieldHTML += '<span class="letter-red"><i class="fa fa-lock fa-2x"></i> sécurité</span><br>'; 
-					fieldHTML += 'merci de recopier le code ci-dessous<br>afin de valider votre message <i class="fa fa-chevron-down"></i>';
-				fieldHTML += '</h5>';
-				fieldHTML += '<input placeholder="taper le code ici" class="col-md-6 txt-captcha text-right pull-right" id="captcha">';
-			fieldHTML += '</div>';
-        }
-
-
-        /* **************************************
-		* TAG List
-		***************************************** */
-        else if ( fieldObj.inputType == "tagList" ) {
-        	mylog.log("build field "+field+">>>>>> tagList");
-        	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
-        	$.each(fieldObj.list,function(k,v) { 
-        		//mylog.log("build field ",k,v);
-        		fieldClass = (v.class) ? v.class : "";
-        		if(!v.excludeFromForm){
-	        		var lbl = ( fieldObj.trad && fieldObj.trad[v.labelFront] ) ? fieldObj.trad[v.labelFront] : tradCategory[k] ? tradCategory[k] : k;
-	        		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
-	        						'<a class="btn tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'"'+
-	        						' data-tag="'+lbl+'" data-key="'+k+'" href="'+action+'"><i class="fa fa-'+v.icon+'"></i> <br>'+lbl+'</a>'+
-	        					 '</div>';
-        		}
-        	});
-        } 
-
-        /* **************************************
-		* LOCATION
-		***************************************** */
-        else if ( fieldObj.inputType == "location" ) {
-        	mylog.log("build field "+field+">>>>>> location");
-        	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" locationBtn btn btn-default'><i class='text-azure fa fa-map-marker fa-2x'></i> Localiser </a>";
-        	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="Insee" name="address[codeInsee]" id="address[codeInsee]" value="'+( (fieldObj.address) ? fieldObj.address.codeInsee : "" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="country" name="address[addressCountry]" id="address[addressCountry]" value="'+( (fieldObj.address) ? fieldObj.address.addressCountry : "" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="address" name="address[streetAddress]" id="address[streetAddress]" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
-			mylog.log("location formValues", formValues);
-			//locations are saved in addresses attribute
-			if( formValues.address && formValues.geo && formValues.geoPosition ){
-				var initAddress = function(){
-					mylog.warn("init Adress location",formValues.address.addressLocality,formValues.address.postalCode);
-					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
-					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition}, -1);
-				};
-			}     
-			if( formValues.addresses ){
-				var initAddresses = function(){
-					$.each(formValues.addresses, function(i,locationObj){
-						mylog.warn("init extra addresses location ",locationObj.address.addressLocality,locationObj.address.postalCode);
-						dyFInputs.locationObj.copyMapForm2Dynform(locationObj);
-						dyFInputs.locationObj.addLocationToForm(locationObj, i);
-					});
-				};
-			} 
-			initField = function(){
-				if(initAddress)
-					initAddress();
-				if(initAddresses)
-					initAddresses();
-				dyFInputs.locationObj.init();
-			} 
-
-        }else if ( fieldObj.inputType == "postalcode" ) {
-        	mylog.log("build field "+field+">>>>>> postalcode");
-        	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" postalCodeBtn btn btn-default'><i class='text-azure fa fa-plus fa-2x'></i> Postal Code </a>";
-        	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
-        	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
-        	
-			//locations are saved in addresses attribute
-			if( formValues.postalCodes ){
-				initField = function(){
-					$.each(formValues.postalCodes, function(i,postalCodeObj){
-						mylog.warn("init location",postalCodeObj.name,postalCodeObj.postalCode);
-						copyPCForm2Dynform(postalCodeObj);
-						addPostalCodeToForm(postalCodeObj);
-					});
-				};
-			}       
-        } 
-
-        /* **************************************
-		* ARRAY , is a list of sequential values
-		***************************************** */
-        else if ( fieldObj.inputType == "array" ) {
-        	mylog.log("build field "+field+">>>>>> array list");
-        	var addLabel="";
-        	var typeExtract="";
-        	if(typeof fieldObj.initOptions != "undefined"){
-        		if(typeof fieldObj.initOptions.labelAdd != "undefined")
-        	 		addLabel=fieldObj.initOptions.labelAdd;
-        	 	if(typeof fieldObj.initOptions.type != "undefined")
-        	 		typeExtract=fieldObj.initOptions.type;
-        	}
-        	fieldHTML +=   '<div class="inputs array">'+
-								'<div class="col-sm-10 no-padding">'+
-									'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif" style="position: absolute;right: 5px;top: 10px;display:none;">'+
-									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
-								'</div>'+
-								'<div class="col-sm-2 sectionRemovePropLineBtn">'+
-									'<a href="javascript:" data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
-								'</div>'+
-								'<div class="resultGetUrl resultGetUrl0 col-sm-12 col-md-12 col-xs-12 no-padding"></div>'+
-							'</div>'+
-							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
-								'<div class="col-sm-12 no-padding margin-top-5 margin-bottom-15">'+
-									'<a href="javascript:" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" data-type="'+typeExtract+'" class="addPropBtn btn btn-default w100p letter-green" alt="Add a line"><i class=" fa fa-plus-circle" ></i> '+addLabel+'</a> '+
-							        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
-							        
-					       		'</div>'+
-				       		'</span>';
-			
-			if( formValues && formValues[field] ){
-				mylog.warn("dynForm >> ",field, formValues[field]);
-				fieldObj.value = formValues[field];
-			}
-			
-			if( fieldObj.init && $.isFunction(fieldObj.init) )
-        		initField = fieldObj.init;
-        	
-			initField = function(){
-				$("#loading_indicator").hide();
-				//initialize values
-				//value is an array of strings
-				var initOptions = new Object;
-				if(typeof fieldObj.initOptions != "undefined")
-					initOptions=fieldObj.initOptions;
-				$.each(fieldObj.value, function(optKey,optVal) {
-					if(optKey == 0)
-	                    $(".addmultifield").val(optVal);
-	                else 
-	                	addfield("."+field+fieldObj.inputType,optVal,field, initOptions);
-	                if( formValues && formValues.medias ){
-	                	$.each(formValues.medias, function(i,mediaObj) {
-	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
-	                			if(typeof initOptions.type != "undefined" && initOptions.type == "video")
-	                				var strHtml = processUrl.getMediaVideo(mediaObj,"save");
-	                			else
-	                				var strHtml = processUrl.getMediaCommonHtml(mediaObj,"save");//buildMediaHTML(mediaObj);
-	                			$(".resultGetUrl"+optKey).html(strHtml);
-	                			$("#loading_indicator").hide();
-	                		}
-	                	});
-	                }
-				});
-				initMultiFields('.'+field+fieldObj.inputType,field,typeExtract);
-			}
-
-        }
-
-        /* **************************************
-		* PROPERTIES , is a list of pairs key/values
-		***************************************** */
-        else if ( fieldObj.inputType == "properties" ) {
-        	mylog.log("build field "+field+">>>>>> properties list", fieldObj.values);
-
-        	if(fieldObj.values){
-    			if(!initValues["tags"+field+"0"])
-    				initValues["tags"+field+"0"] = {};
-    			initValues["tags"+field+"0"]["tags"] = fieldObj.values;
-    		}
-    		
-    		mylog.log("build field "+field+">>>>>> properties initValues", initValues);
-    		if(fieldObj.maximumSelectionLength)
-    			initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
-    		mylog.log("fieldObj.data", fieldObj.data, fieldObj);
-    		if(typeof fieldObj.data != "undefined"){
-    			value = fieldObj.data;
-        		//initSelectNetwork[field]=fieldObj.data;
-        	}
-    		if(typeof fieldObj.mainTag != "undefined")
-				mainTag=fieldObj.mainTag;
-
-        	fieldHTML += '<div class="inputs properties">'+
-								'<div class="col-sm-3">'+
-									'<span>'+tradDynForm["Name of filter"]+'</span>'+
-									'<input type="text" name="'+field+'0" id="'+field+'0" class="addmultifield addmultifield0 form-control input-md" value="" placeholder="'+placeholder+'"/>'+
-									//'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
-								'</div>'+
-								'<div class="col-sm-7">'+
-									'<span>'+tradDynForm["Tags link a filter"]+'</span>'+
-									'<input type="text" class="form-control select2TagsInput" name="tags'+field+'0" id="tags'+field+'0" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
-									'<button data-id="'+field+'" class="pull-right removePropLineBtn btn btn-xs letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
-								'</div>'+
-							'</div>'+
-							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
-							'<div class="col-sm-12">'+
-								'<div class="space10"></div>'+
-						        '<a href="javascript:;" data-id="'+field+'" data-container="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-default text-bold letter-green" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
-				       		'</div></span>'+
-				       '<div class="space5"></div>';
-			
-
-			initField = function(){
-				initMultiFields('.'+field+fieldObj.inputType,field);
-				//initialize values
-				//value is an array of objects structured like {"label":"","value":""}
-				/*$.each(fieldObj.value, function(optKey,optVal) {
-					if(optKey == 0)
-	                    $(".addmultifield").val(optVal); tweak this for properties
-	                else 
-						addfield("."+field+fieldObj.inputType,optVal );
-				});*/
-			}
-        }
-        else if( fieldObj.inputType == "tagsNetwork") {
-        	mylog.log("build field "+field+">>>>>> tagsNetwork");
-        	fieldHTML += iconOpen+'<input type="text" class="form-control " name="name'+field+'" id="name'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
-        	fieldHTML += iconOpen+'<input type="text" class="form-control select2TagsInput" name="tags'+field+'" id="tags'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
-        }
-
-         /* **************************************
-		* DropDown , searchInvite
-		***************************************** */
-        else if ( fieldObj.inputType == "searchInvite" ) {
-        	mylog.log("build field "+field+">>>>>> searchInvite");
-
-			fieldHTML += '<input class="invite-search '+fieldClass+' form-control text-left" placeholder="Un nom, un e-mail ..." autocomplete = "off" id="inviteSearch" name="inviteSearch" value="">'+
-				        		'<ul class="dropdown-menu" id="dropdown_searchInvite" style="">'+
-									'<li class="li-dropdown-scope">-</li>'+
-								'</ul>'+
-							'</input>';			
-        }
-
-        /* **************************************
-		* CAPTCHA
-		***************************************** */
-        else if ( fieldObj.inputType == "recaptcha" ) {
-        	mylog.log("build field "+field+">>>>>> recaptcah");
-        	fieldHTML += '<div class="g-recaptcha" data-sitekey="'+fieldObj.key+'"></div>';
-        } 
-        
-
-        /* **************************************
-		* CUSTOM 
-		***************************************** */
-        else if ( fieldObj.inputType == "custom" ) {
-        	mylog.log("build field "+field+">>>>>> custom");
-
-        	fieldHTML += (typeof fieldObj.html == "function") ? fieldObj.html() : fieldObj.html;
-        } 
-        /* **************************************
-        * CREATE NEWS
-        ************************************** */
-        else if( fieldObj.inputType == "createNews"){
-        	mylog.log("build field "+field+">>>>>> createNews");
-        	var newsContext=fieldObj.params;
-        	if(newsContext.targetType!="citoyens"){
-        		if(newsContext.authorImg=="")
-        			var authorImg=moduleUrl+'/images/thumb/default_citoyens.png';
-        		else
-        			var authorImg=baseUrl+newsContext.authorImg;
-        		if(newsContext.targetImg=="")
-        			var targetImg=moduleUrl+'/images/thumb/default_'+newsContext.targetType+'.png';
-        		else
-        			var targetImg=baseUrl+newsContext.targetImg;
-        		//targetName=newsContext.targetName;
-        		//authorName=newsContext.authorName;
-        	}
-        	fieldHTML='<div id="createNews" class="form-group">'+
-        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
-			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.writenewshere+
-			        '</label>'+
-			        '<div id="mentionsText" class="col-md-12 col-sm-12 col-xs-12 no-padding">'+
-        				'<textarea name="newsText"></textarea>'+
-        			'</div>'+
-					'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
-			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.tags+
-			        '</label>'+
-        			'<div class="no-padding">'+
-          				'<input id="tags" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">'+
-      				'</div>'+
-        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
-			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsvisibility+
-			        '</label>'+
-        			'<div class="dropdown no-padding col-md-12 col-sm-12 col-xs-12">'+
-          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12" id="btn-toogle-dropdown-scope" href="javascript:;">'+
-          					'<i class="fa fa-connectdevelop"></i> '+tradDynForm.network+' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
-          				'</a>'+
-          				'<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">';
-          					if(newsContext.targetType != "events"){
-            fieldHTML+=		'<li>'+
-              					'<a href="javascript:;" id="scope-my-network" class="scopeShare" data-value="private">'+
-              						'<h4 class="list-group-item-heading"><i class="fa fa-lock"></i> '+tradDynForm.private+'</h4>'+
-               						'<p class="list-group-item-text small">'+tradDynForm["explainprivate"+newsContext.targetType]+'</p>'+
-              					'</a>'+
-            				'</li>';
-            				}
-            fieldHTML+=		'<li>'+
-              					'<a href="javascript:;" id="scope-my-network" class="scopeShare" data-value="restricted">'+
-              						'<h4 class="list-group-item-heading"><i class="fa fa-connectdevelop"></i> '+tradDynForm.network+'</h4>'+
-                					'<p class="list-group-item-text small"> '+tradDynForm.explainnetwork+'</p>'+
-              					'</a>'+
-				            '</li>'+
-				            '<li>'+
-				              	'<a href="javascript:;" id="scope-my-wall" class="scopeShare" data-value="public">'+
-				              		'<h4 class="list-group-item-heading"><i class="fa fa-globe"></i> '+tradDynForm.public+'</h4>'+
-				                    '<p class="list-group-item-text small">'+tradDynForm.explainpublic+'</p>'+
-				              	'</a>'+
-				            '</li>'+
-			            '</ul>'+
-			            '<input type="hidden" name="scope" id="scope" value="restricted"/>'+
-	        		'</div>';
-	        		if(newsContext.targetType!="citoyens"){
-	        fieldHTML+=		'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
-			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsauthor+
-		            '</label>'+
-        			'<div class="dropdown no-padding col-md-12">'+
-          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12 text-left" id="btn-toogle-dropdown-targetIsAuthor" href="javascript:;">'+
-           					'<img height=20 width=20 src="'+targetImg+'">'+  
-           					' '+newsContext.targetName+
-				            ' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
-				        '</a>'+
-				        '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">'+
-				            '<li>'+
-              					'<a href="javascript:;" class="targetIsAuthor" data-value="1" data-name="'+newsContext.targetName+'">'+
-					                '<h4 class="list-group-item-heading">'+
-					                  	'<img height=20 width=20 src="'+targetImg+'">'+  
-					                	' '+newsContext.targetName+
-					                '</h4>'+
-					                '<p class="list-group-item-text small">'+tradDynForm.show+' '+newsContext.targetName+' '+tradDynForm.asAuthor+'</p>'+
-					            '</a>'+
-					        '</li>'+
-					        '<li>'+
-				              	'<a href="javascript:;" class="targetIsAuthor" data-value="0" data-name="'+tradDynForm.me+'">'+
-				              		'<h4 class="list-group-item-heading">'+
-				                		'<img height=20 width=20 src="'+authorImg+'">'+  
-				                		' '+tradDynForm.me+
-				                	'</h4>'+
-				                	'<p class="list-group-item-text small"> '+tradDynForm.iamauthor+'</p>'+
-				              	'</a>'+
-				            '</li>'+
-				        '</ul>'+
-				        '<input type="hidden" id="authorIsTarget" value="1"/>'+
-        			'</div>';
-        			}
-        	fieldHTML+=	'</div>';  
-          
-        }
-        /* 	*************************************
-        * SCOPE USER 	
-        ************************************** */
-        else if( fieldObj.inputType == "scope" ) {
-        	mylog.log("build field "+field+">>>>>> scope");
-        		//fieldClass += " select2TagsInput select2ScopeInput";				
-				fieldHTML += '<div class="col-md-12 no-padding">'+
-								'<div class="col-md-12 col-sm-12 col-xs-12">'+
-									'<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">'+
-										'<select id="select-country"></select>'+
-									'</div>'+
-									'<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">'+
-										'<div class="btn-group btn-group-justified">'+
-											'<button type="button" class="btn btn-default tooltips active" data-scope-type="city"'+
-												'data-toggle="tooltip" data-placement="top" '+
-												'title="'+tradDynForm["Add a city"]+'">'+
-												'<strong><i class="fa fa-bullseye"></i></strong> '+trad.city+
-											'</button>'+
-										'</div>'+
-										'<div class="btn-group btn-group-justified">'+
-											'<button type="button" class="btn btn-default tooltips" data-scope-type="cp"'+
-												'data-toggle="tooltip" data-placement="top" '+
-												'title="'+tradDynForm["Add a postal code"]+'">'+
-												'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Postal code"]+
-											'</button>'+
-										'</div>'+
-										'<div class="btn-group btn-group-justified">'+
-											'<button type="button" class="btn btn-default tooltips" data-scope-type="zone"'+
-												'data-toggle="tooltip" data-placement="top" '+
-												'title="'+tradDynForm["Add a zone"]+'">'+
-												'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Zone"]+
-											'</button>'+
-										'</div>'+
-									'</div>'+
-									'<div class="btn-group  btn-group-justified margin-bottom-10 visible-xs btn-group-scope-type" role="group">'+
-										'<div class="btn-group btn-group-justified">'+
-											'<button type="button" class="btn btn-default tooltips active" data-scope-type="city"'+
-											'data-toggle="tooltip" data-placement="top" '+
-											'title="'+tradDynForm["Add a city"]+'">'+
-											'<strong><i class="fa fa-bullseye"></i></strong> '+trad.city+
-											'</button>'+
-										'</div>'+
-										'<div class="btn-group btn-group-justified">'+
-											'<button type="button" class="btn btn-default tooltips" data-scope-type="cp"'+
-											'data-toggle="tooltip" data-placement="top" '+
-											'title="'+tradDynForm["Add a postal code"]+'">'+
-											'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Postal code"]+
-											'</button>'+
-										'</div>'+
-									'</div>'+
-									'<div class="btn-group  btn-group-justified margin-bottom-10 visible-xs btn-group-scope-type" role="group">'+
-										'<div class="btn-group btn-group-justified">'+
-											'<button type="button" class="btn btn-default tooltips" data-scope-type="zone"'+
-											'data-toggle="tooltip" data-placement="top" '+
-											'title="'+tradDynForm["Add a zone"]+'">'+
-											'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Zone"]+
-											'</button>'+
-										'</div>'+
-									'</div>'+
-									'<div class="col-md-12 no-padding">'+
-										'<div class="input-group margin-bottom-10 col-md-12">'+
-											'<input id="input-add-multi-scope" type="text" class="form-control col-md-12" placeholder="'+tradDynForm["Add a city"]+' ...">'+
-											'<div class="dropdown">'+
-												'<ul class="dropdown-menu" id="dropdown-multi-scope-found"></ul>'+
-											'</div>'+
-										'</div>'+
-									'</div>'+
-								'</div>'+
-								'<div class="text-left">'+
-									'<div class="label label-info label-sm block text-left" id="lbl-info-select-multi-scope"></div>'+
-									'<div id="multi-scope-list-city" class="col-md-12 margin-top-15">'+
-										'<h5><i class="fa fa-angle-down"></i> Cities </h5>'+
-										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
-									'</div>'+
-									'<div id="multi-scope-list-cp" class="col-md-12 margin-top-15">'+
-										'<h5><i class="fa fa-angle-down"></i> '+tradDynForm["Postal code"]+'</h5>'+
-										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
-									'</div>'+
-									'<div id="multi-scope-list-level4" class="col-md-12 margin-top-15">'+
-										'<h5><i class="fa fa-angle-down"></i>Administrative zone N°4</h5>'+
-										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
-									'</div>'+
-									'<div id="multi-scope-list-level3" class="col-md-12 margin-top-15">'+
-										'<h5><i class="fa fa-angle-down"></i> Administrative zone N°3</h5>'+
-										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
-									'</div>'+
-									'<div id="multi-scope-list-level2" class="col-md-12 margin-top-15">'+
-										'<h5><i class="fa fa-angle-down"></i> Administrative zone N°2</h5>'+
-										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
-									'</div>'+
-									'<div id="multi-scope-list-level1" class="col-md-12 margin-top-15">'+
-										'<h5><i class="fa fa-angle-down"></i> Country</h5>'+
-										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
-									'</div>'+
-								'</div>'+
-							'</div>';
-
-					
-        }
-        else if ( fieldObj.inputType == "password" ) {
-        	mylog.log("build field "+field+">>>>>> password");
-        	fieldHTML += '<input id="'+field+'" name="'+field+'" class="form-control" type="password"/>';
-       	}
-        else {
-        	mylog.log("build field "+field+">>>>>> input text");
-        	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
-        }
-
-        if( fieldObj.custom )
-        	fieldHTML += fieldObj.custom ;
-
-		fieldHTML += '</div>';
-
-		$(id).append(fieldHTML);
-
-		//Post creation initialisation
-		if( fieldObj.init && $.isFunction(fieldObj.init) )
-        	fieldObj.init(field+fieldObj.inputType);
-        if(initField && $.isFunction(initField) )
-        	initField ('.'+field+fieldObj.inputType);
-	}
-	
-
-	/* **************************************
-	*
-	*	any event to be initiated 
-	*
-	***************************************** */
-	var afterDynBuildSave = null;
-	function bindDynFormEvents (params, formRules) {  
-
-		/* **************************************
-		* FORM VALIDATION and save process binding
-		***************************************** */
-		mylog.info("connecting submit btn to $.validate pluggin");
-		mylog.dir(formRules);
-		var errorHandler = $('.errorHandler', $(params.formId));
-//alert(params.formId);
-		$(params.formId).validate({
-
-			rules : formRules,
-
-			submitHandler : function(form) {
-				//alert(dyFObj.activeModal+" #btn-submit-form");
-				$(dyFObj.activeModal+" #btn-submit-form").html( '<i class="fa  fa-spinner fa-spin fa-"></i>' ).prop("disabled",true);
-				errorHandler.hide();
-				mylog.info("form submitted "+params.formId);
-				
-				if(params.beforeSave && jQuery.isFunction( params.beforeSave ) )
-					params.beforeSave();
-
-				if(params.onSave && jQuery.isFunction( params.onSave ) ){
-					//	alert("onSave")
-					params.onSave();
-					return false;
-		        } 
-		        else {
-		        	//TODO SBAR - Remove notPost form element
-		        	/*$.each($(params.formId).serializeArray()).function() {
-		        		if ($this.)
-		        	}*/
-		        	mylog.info("default SaveProcess",params.savePath);
-		        	mylog.dir($(params.formId).serializeFormJSON());
-		        	$.ajax({
-		        	  type: "POST",
-		        	  url: params.savePath,
-		        	  data: $(params.formId).serializeFormJSON(),
-		              dataType: "json"
-		        	}).done( function(data){
-		                if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
-		                    afterDynBuildSave(data.map,data.id);
-		                mylog.info('saved successfully !');
-
-		        	});
-					return false;
-			    }
-			    
-			},
-			invalidHandler : function(event, validator) {//display error alert on form submit
-				errorHandler.show();
-				// $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
-				// 	$( settings.formId ).submit();	        	
-		  //       });
-		        $("#btn-submit-form").hide(); 
-			}
-		});
-		
-		mylog.info("connecting any specific input event select2, datepicker...");
-		/* **************************************
-		* SELECTs , we use https://github.com/select2/select2
-		***************************************** */
-		//is a type select with options
-		if( $(".select2Input").length)
-		{
-			if( jQuery.isFunction(jQuery.fn.select2) )
-			{
-				/*$(".select2Input").select2(
-					{
-					  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
-					}
-				);*/
-				
-				$.each($(".select2Input"),function () 
-				{
-					if( jQuery.isFunction(jQuery.fn.select2) )
-						$(this).select2({
-							  "placeholder" : ( $(this).data("placeholder") ) ? $(this).data("placeholder") : "",
-							  allowClear: true
-							}
-						);
-					else
-						mylog.error("select2 library is missing");
-				 });
-			}
-		} 
-
-		//is a type input
-		if( $(".select2TagsInput").length)
-		{
-			if( jQuery.isFunction(jQuery.fn.select2) )
-			{
-				$.each($(".select2TagsInput"),function () 
-				{
-					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , initValues[ $(this).attr("id") ], initValues );
-					if( initValues[ $(this).attr("id") ] && !$(this).hasClass( "select2-container" ))
-					{
-						mylog.log( "here2");
-						var selectOptions = 
-						{
-						  "tags": initValues[ $(this).attr("id") ].tags ,
-						  "tokenSeparators": [','],
-						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
-						};
-						if(initValues[ $(this).attr("id") ].maximumSelectionLength)
-							selectOptions.maximumSelectionLength = initValues[$(this).attr("id")]["maximumSelectionLength"];
-						if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[$(this).attr("id")] != "undefined" && initSelectNetwork[$(this).attr("id")].length > 0)
-							selectOptions.data=initSelectNetwork[$(this).attr("id")];
-						
-						$(this).removeClass("form-control").select2(selectOptions);
-						if(typeof mainTag != "undefined")
-							$(this).val([mainTag]).trigger('change');
-					}
-				 });
-			} else
-				mylog.error("select2 library is missing");
-		} 
-
-		/* **************************************
-		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
-		***************************************** */
-		function loadDateTimePicker(callback) {
-			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
-				lazyLoad( baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.full.min.js', 
-						  baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.min.css',
-						  callback);
-		    }
-		}
-		function loadTimePicker(callback) {
-			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
-				lazyLoad( baseUrl+'/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js',
-						baseUrl+'/plugins/moment/moment.js', 
-						  baseUrl+'/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css',
-						  callback);
-		    }
-		}
-
-		var initDate = function(){
-			mylog.log("init dateInput");
-			jQuery.datetimepicker.setLocale('fr');
-			$(".dateInput").datetimepicker({ 
-		        autoclose: true,
-		        lang: "fr",
-		        format: "d/m/Y",
-		        timepicker:false
-		    });
-		};
-
-		if(  $(".dateInput").length){
-			loadDateTimePicker(initDate);
-		}
-		var initTime = function(){
-			mylog.log("init dateInput");
-			//alert();
-			//$('.timeInput').timepicker(
-               // minuteStep: 1,
-              //  appendWidgetTo: 'body',
-              
-                //showSeconds: true,
-                //showMeridian: false,
-                //defaultTime: false
-            //);
-			/*$(".timeInput").datetimepicker({ 
-		        format: 'LT'
-		    });*/
-		};
-		/*if(  $(".timeInput").length){
-
-			$('.timeInput').timepicker({
-               // minuteStep: 1,
-              //  appendWidgetTo: 'body',
-              
-                showSeconds: false,
-                showMeridian: false,
-                defaultTime: false
-            });
-            $('.startTime').timepicker('setTime', '06:00');
-            $('.endTime').timepicker('setTime', '19:00');
-			//loadTimePicker(initTime);
-		}*/
-		/* **************************************
-		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
-		***************************************** */
-	
-		var initDateTime = function(){
-			mylog.log("init dateTimeInput");
-			jQuery.datetimepicker.setLocale('fr');
-			$(".dateTimeInput").datetimepicker({
-				weekStart: 1,
-				step: 15,
-				lang: 'fr',
-				format: 'd/m/Y H:i'
-			   });
-		};
-		if(  $(".dateTimeInput").length){
-			loadDateTimePicker(initDateTime);
-		}
-		/* **************************************
-		* Location type 
-		***************************************** */
-		if(  $(".locationBtn").length)
-		{
-			//todo : for generic dynForm check if map exist 
-			$(".locationBtn").off().on( "click", function(){ 
-				
-		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
-		        if(typeof formInMap.showMarkerNewElement != "undefined"){
-		        	$("#ajax-modal").modal("hide");
-		        	console.log(".locationBtn");
-					formInMap.actived = true ;
-			        showMap(true);
-		        	console.log(".locationBtn showMarkerNewElement");
-		        	formInMap.showMarkerNewElement(); 
-		        }
-		    });
-		}
-
-		/* **************************************
-		* Postal Code type 
-		***************************************** */
-		if(  $(".postalCodeBtn").length)
-		{
-			//todo : for generic dynForm check if map exist 
-			$(".postalCodeBtn").off().on( "click", function(){ 
-				$("#ajax-modal").modal("hide");
-		        showMap(true);
-		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
-		        if(typeof formInMap.showMarkerNewElement != "undefined"){ formInMap.showMarkerNewElement(true); }
-		    });
-		}
-		
-		/* **************************************
-		* Image uploader , we use https://github.com/FineUploader/fine-uploader
-		***************************************** */
-		if(  $(".fine-uploader-manual-trigger").length)
-		{
-			function loadFineUploader(callback,template) {
-				if( ! jQuery.isFunction(jQuery.fineUploader) ) {
-					if(template=='qq-template-manual-trigger')
-						var cssLazy=baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css';
-					else
-						var cssLazy=baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css';
-					lazyLoad( baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js', 
-							  cssLazy,
-							  callback);
-			    }
-			}
-			var docListIds=[];
-			var FineUploader = function(){
-				mylog.log("init fineUploader");
-				$(".fine-uploader-manual-trigger").fineUploader({
-		            template: (initValues.template) ? initValues.template : 'qq-template-manual-trigger',
-		            request: {
-		                endpoint: uploadObj.path
-		            },
-		            validation: {
-		                allowedExtensions: (initValues.filetypes) ? initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
-		                sizeLimit: 2000000
-		            },
-		            messages: {
-				        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
-				        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
-				    },
-		            callbacks: {
-		            	//when a img is selected
-					    onSubmit: function(id, fileName) {
-					    	$('.fine-uploader-manual-trigger').fineUploader('setEndpoint',uploadObj.path);	
-					    	//$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-    					    if( initValues.showUploadBtn  ){
-						      	$('#trigger-upload').removeClass("hide").click(function(e) {
-				        			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-						        	urlCtrl.loadByHash(location.hash);
-				        			$('#ajax-modal').modal("hide");
-						        });
-
-					        }
-					    },
-					    onCancel: function(id) {
-					    	if(($("ul.qq-upload-list > li").length-1)<=0)
-					    		$('#trigger-upload').addClass("hide");
-	        			},
-	        			
-					    //launches request endpoint
-					    //onUpload: function(id, fileName) {
-					      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
-					      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
-					      //console.log('onUpload uplaodObj',uploadObj);
-					      //var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-					      //console.log('onUpload getEndpoint',ex);
-					    //},
-					    //launched on upload
-					    //onProgress: function(id, fileName, uploadedBytes,totalBytes) {
-					    	/*console.log('onProgress uplaodObj',uploadObj);
-					    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-					    	console.log('onProgress getEndpoint',ex);
-					    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
-					      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
-					    //},
-					    //when every img finish upload process whatever the status
-					    onComplete: function(id, fileName,responseJSON,xhr) {
-					    	
-					    	console.log(responseJSON);
-					    	
-					    	if($("#ajaxFormModal #newsCreation").val()=="true"){
-					    		docListIds.push(responseJSON.id.$id);
-					    	}
-					    	if(!responseJSON.result){
-					    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
-					    		console.error(trad["somethingwentwrong"] , responseJSON.msg)
-					    	}
-					    },
-					    //when all upload is complete whatever the result
-					    onAllComplete: function(succeeded, failed) {
-					     	toastr.info( "Fichiers bien chargés !!");
-					      	if($("#ajaxFormModal #newsCreation").val()=="true"){
-					      		console.log("docslist",docListIds);
-					      		//var mentionsInput=[];
-					      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
-      								mentionsInput=data;
-    							});*/
-					      		var media=new Object;
-					      		if(uploadObj.contentKey=="file"){
-					      			media.type="gallery_files";
-					      			media.countFiles=docListIds.length;
-					      			media.files=docListIds;
-					      		}else{
-					      			media.type="gallery_images";
-					      			media.countImages=docListIds.length;
-					      			media.images=docListIds;
-					      		}
-					    		var addParams = {
-	              				  type: "news",
-	              				  parentId: uploadObj.id,
-	              				  parentType: uploadObj.type,
-	              				  scope:$("#ajaxFormModal #createNews #scope").val(),
-	              				  text:$("#ajaxFormModal #createNews textarea").val(),
-	              				  media: media
-	            				};
-	            				if ($("#ajaxFormModal #createNews #tags").val() != "")
-									addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
-								if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
-									addParams.targetIsAuthor = true;
-								/*if (mentionsResult.mentionsInput.length != 0){
-									addParams.mentions=mentionsResult.mentionsInput;
-									addParams.text=mentionsResult.text;
-								}*/
-								addParams=mentionsInit.beforeSave(addParams,'#ajaxFormModal #createNews textarea');
-								$.ajax({
-							        type: "POST",
-							        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",
-							        //dataType: "json",
-							        data: addParams,
-									type: "POST",
-							    })
-							    .done(function (data) {
-						    		
-									return true;
-							    }).fail(function(){
-								   toastr.error("Something went wrong, contact your admin"); 
-								   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
-								   $("#btn-submit-form").prop('disabled', false);
-							    });
-							}
-					    if( jQuery.isFunction(initValues.afterUploadComplete) )
-					      	initValues.afterUploadComplete();
-					     	uploadObj.gotoUrl = null;
-					    },
-					    onError: function(id) {
-					      toastr.info(trad["somethingwentwrong"]);
-					    }
-					},
-		            thumbnails: {
-		                placeholders: {
-		                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
-		                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
-		                }
-		            },
-		            autoUpload: false
-		        });
-			};
-			if(  $(".fine-uploader-manual-trigger").length)
-				loadFineUploader(FineUploader,initValues.template);
-		}
-
-		/* **************************************
-		* DATE RANGE INPUT , we use https://github.com/dangrossman/bootstrap-daterangepicker
-		***************************************** */
-		if( $(".daterangeInput").length){
-			var initDateRange = function(){
-								$('.daterangeInput').daterangepicker({
-						            timePicker: true,
-						            timePickerIncrement: 30,
-						            format: 'DD/MM/YYYY h:mm A'
-						        }, function(start, end, label) {
-						            mylog.log(start.toISOString(), end.toISOString(), label);
-						        });
-							};
-			if( jQuery.isFunction(jQuery.fn.daterangepicker) )
-				initDateRange();
-			else
-				lazyLoad( baseUrl+'/plugins/bootstrap-daterangepicker/daterangepicker.js' ,  
-						  baseUrl+'/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css',
-						  initDateRange);
-		    /*$('.daterangeInput').val(moment().format('DD/MM/YYYY h:mm A') + ' - ' + moment().add('days', 1).format('DD/MM/YYYY h:mm A'))
-			.daterangepicker({  
-				startDate: moment(),
-				endDate: moment().add('days', 1),
-				timePicker: true, 
-				timePickerIncrement: 30, 
-				format: 'DD/MM/YYYY h:mm A' 
-			});*/
-		}
-
-		
-		/* **************************************
-		* PROPERTIES 
-		***************************************** */
-		if(  $(".addmultifield").length )
-		{
-			//if(  $(".addmultifield1").length )
-			//	$('head').append('<style type="text/css">.inputs textarea.addmultifield1{width:90%; height:34px;}</style>');
-
-			//intialise event on the add new row button 
-			$('.addPropBtn').unbind("click").click(function(){
-				mylog.log("addPropBtn", $(this).data('id'));
-				var field = $(this).data('id');
-				var typeExtract = $(this).data('type');
-				if( $('.'+field+' .inputs .addmultifield:visible').length==0 || ( $("."+field+" .addmultifield:last").val() != "" && $( "."+field+" .addmultifield1:last" ).val() != "") )
-					addfield('.'+$(this).data('container'),'',field, typeExtract);
-				else
-					toastr.info("please fill properties first");
-			} );
-		}
-
-		/* **************************************
-		* WYSIWYG 
-		***************************************** */
-		if(  $(".wysiwygInput").length )
-		{
-			console.log("wysiwygInput wysiwygInput");
-				var initField = function(){
-					$(".wysiwygInput").summernote({
-
-						oninit: function() {
-							/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
-								$(this).code($(this).attr("placeholder"));
-							}*/
-						}, onfocus: function(e) {
-							/*if ($(this).code() == $(this).attr("placeholder")) {
-								$(this).code("");
-							}*/
-						}, onblur: function(e) {
-							/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
-								$(this).code($(this).attr("placeholder"));
-							}*/
-						}, onkeyup: function(e) {},
-						toolbar: [
-						['style', ['bold', 'italic', 'underline', 'clear']],
-						['color', ['color']],
-						['para', ['ul', 'ol', 'paragraph']],
-						]
-					});
-				if( jQuery.isFunction(jQuery.fn.summernote) )
-					initField();
-			    else {
-			    	lazyLoad( baseUrl+'/plugins/summernote/dist/summernote.min.js', 
-							  baseUrl+'/plugins/summernote/dist/summernote.css',
-							  initField);
-		    	}
-			}
-		}
-
-	}
-
-	/* **************************************
-	* MARKDOWN 
-	***************************************** */
-	if(  $(".markdownInput").length )
-	{
-		console.log("markdownInput");
-		var initField = function(){
-			$(".markdownInput").markdown({
-					savable:true,
-					onPreview: function(e) {
-						var previewContent = "";
-					    mylog.log(e);
-					    mylog.log(e.isDirty());
-					    if (e.isDirty()) {
-					    	var converter = new showdown.Converter(),
-					    		text      = e.getContent(),
-					    		previewContent      = converter.makeHtml(text);
-					    } else {
-					    	previewContent = "Default content";
-					    }
-					    return previewContent;
-				  	},
-				  	onSave: function(e) {
-				  		mylog.log(e);
-				  	},
-				});
-
-			
-			lazyLoad( 	baseUrl+'/plugins/showdown/showdown.min.js',
-							baseUrl+'/plugins/bootstrap-markdown/js/bootstrap-markdown.js',
-							baseUrl+'/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css',
-							initField);
-	    	
-		}
-	}
-
-
-	//if(  $(".maxlengthTextarea").length ){
-	//	mylog.log("here .maxlengthTextarea"); 
-
-		/*$(".maxlengthTextarea").off().keyup(function(){
-			mylog.log(".maxlengthTextarea", $(this).attr("id"), $(this).html().length)
-			$(".maxlength"+$(this).attr("id")).html($(this).html().length );
-		});*/
-	//}
-
-	
-
-	/* **************************************
-	*
-	*	specific methods for each type of input
-	*
-	***************************************** */
-	/* **************************************
-	* add a new line to the multi line process 
-	* val can be a value when type array or {"label":"","value":""} when type property
-	***************************************** */
-	function addfield( parentContainer,val,name, type ) 
-	{
-		mylog.log("addfield",parentContainer+' .inputs',val,name);
-		if(!$.isEmptyObject($(parentContainer+' .inputs')))
-	    {
-	    	if($(parentContainer+' .properties').length > 0){
-	    		$( propertyLineHTML( val, name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
-	    	}
-	    	else
-	    		$( arrayLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
-	    	
-	    	$(".loading_indicator").hide();
-
-	    	$(parentContainer+' .addmultifield:last').focus();
-	        initMultiFields(parentContainer,name, type);
-
-
-	        mylog.log("initSelect", initSelect);
-	        $.each(initSelect , function(e,v){
-				mylog.log( "id " , e, v, initValues[ e ].tags);
-				if( v == true){
-					
-					var selectOptions = 
-					{
-					  "tags": initValues[ e ].tags ,
-					  "tokenSeparators": [','],
-					  "placeholder" : ( $("#"+e).attr("placeholder") ) ? $("#"+e).attr("placeholder") : "",
-					};
-					mylog.log( "here3");
-					if(initValues[ e ].maximumSelectionLength)
-						selectOptions.maximumSelectionLength = initValues[e]["maximumSelectionLength"];
-					mylog.log( "here3");
-					if(typeof initSelectNetwork != "undefined" && typeof initSelectNetwork[e] != "undefined" && initSelectNetwork[e].length > 0)
-						selectOptions.data=initSelectNetwork[e];
-					mylog.log( "here3");
-					$("#"+e).removeClass("form-control").select2(selectOptions);
-					if(typeof mainTag != "undefined")
-						$("#"+e).val([mainTag]).trigger('change');
-
-					initSelect[e]=false;
-				}
-			 });
-
-
-	    }else 
-	    	mylog.error("container doesn't seem to exist : "+parentContainer+' .inputs');
-	}
-	
-	/* **************************************
-	* initiliase events 
-	* prevent submitting empty fields 
-	* remove a field
-	* enter key submition
-	***************************************** */
-	function initMultiFields(parentContainer,name, typeExtract){
-		mylog.log("initMultiFields",parentContainer);
-	  //manage using Enter to make easy loop editing
-	  $(parentContainer+' .addmultifield').unbind('keydown').keydown(function(event) 
-	  {
-	  	if ( event.keyCode == 13)
-	    {
-			event.preventDefault();
-	        if( $(this).val() != ""){
-	        	if( $( this ).parent().next().children(".addmultifield1").val() != "" )
-	        		addfield(parentContainer,'',name);
-	        	else 
-	        		$( this ).parent().next().children(".addmultifield1").focus();
-	        } 
-	        else
-	        	toastr.warning("La paire (clef/valeure) doit etre remplie.");
-	    }
-	  });
-	 // var typeExtract=null;
-	  //if(typeof initOptions != "undefined" && initOptions.type=="video")
-	  	//typeExtract=initOptions.type;
-	  var count = $(".addmultifield").length-1;
-	  processUrl.getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count,1, typeExtract);
-	  //manage using Enter to make easy loop editing
-	  //for 2nd property field
-	  $(parentContainer+' .addmultifield1').unbind('keydown').keydown(function(event) 
-	  {
-	  	if ( event.ctrlKey &&  event.keyCode == 13)
-	    {
-			event.preventDefault();
-	        if( $(this).val() != "" && $( this ).parent().prev().children(".addmultifield").val() != "" )
-	        	addfield(parentContainer,'',name);
-	        else
-	        	toastr.warning("La paire (clef/valeure) doit etre remplie.");
-	    }
-	  }); 
-
-	  //bind remove btn event 
-	  $(parentContainer+' .removePropLineBtn').click(function(){
-	  	//$(this).parents().eq(1).prev().remove();
-	  	$(this).parents().eq(1).remove();
-	  });
-
-	}
-
-	function clearProperties(where)
-	{
-		$("#ajaxSV "+where+" .inputs").html("");
-		propertyLineHTML( {"label":"","value":""} );
-	}
-
-	/* **************************************
-	* build HTML for each element of a property list 
-	***************************************** */
-	function propertyLineHTML(propVal,name)
-	{
-		var count = $(".addmultifield").length;
-		mylog.log("propertyLineHTML", propVal, typeof propVal, name, count);
-		if( !notEmpty(propVal) ) 
-	    	propVal = {"label":"","value":""};
-	    
-	    if(!initValues["tags"+name+count])
-    				initValues["tags"+name+count] = {};
-	    initValues["tags"+name+count]["tags"] = tagsList;
-
-	    initSelect["tags"+name+count] = true;
-
-		var str = '<div class="space5"></div><div class="col-sm-3">'+
-					'<input type="text" id="'+name+count+'" name="'+name+count+'" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
-					'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
-				'</div>'+
-				'<div class="col-sm-7">'+
-					//'<textarea type="text" name="tags'+name+'[]" class="addmultifield'+count+' form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);" placeholder="valeur"   >'+propVal.value+'</textarea>'+
-					'<input type="text" class="form-control select2TagsInput" name="tags'+name+count+'" id="tags'+name+count+'" value="" placeholder="" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
-					'<button class="pull-right removePropLineBtn btn btn-xs letter-red tooltips pull-right" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
-				'</div>';
-
-				// TODO Rapha
-				// '<div class="col-sm-3">'+
-				// 	'<input type="text" name="properties" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
-				// 	'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
-				// '</div>'+
-				// '<div class="col-sm-7">'+
-				// 	'<input type="text" class="form-control select2TagsInput" name="tags'+field+'" id="tags'+field+'" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
-				// 	'<button data-id="'+field+fieldObj.inputType+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
-				// '</div>';
-
-		return str;
-	}
-
-	/* **************************************
-	* build HTML for each element of array
-	***************************************** */
-	function arrayLineHTML(val,name)
-	{
-		mylog.log("arrayLineHTML : ",val);
-		if( typeof val == "undefined" ) 
-	    	val = "";
-	    var count = $(".addmultifield").length;
-		var str = 	'<div class="col-sm-12 no-padding margin-top-10">'+
-					'<div class="col-sm-10 no-padding">'+
-							'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
-							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md value="" placeholder="..."/>'+
-						'</div>'+
-						'<div class="col-sm-2 sectionRemovePropLineBtn">'+
-							'<a href="javascript:" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
-						'</div>'+
-						'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
-					'</div>';
-
-		mylog.log("-------------------------");
-		/*'<div class="space5"></div><div class="col-sm-10">'+
-					'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
-					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'"/>'+
-					'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
-					'</div>'+
-					'<div class="col-sm-2">'+
-					'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-left" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
-				'</div>';*/
-		return str;
-	}
-	function buildMediaHTML(mediaObj){
-		mylog.log("buildMediaHTML : ",mediaObj.name);
-		var str = '<div class="extracted_url padding-10">'+
-				'<div class="extracted_thumb  col-xs-4" id="extracted_thumb">'+
-					'<a href="#" class="videoSignal text-white center"><i class="fa fa-3x fa-play-circle-o"></i>'+
-					'<input class="videoLink" value="'+mediaObj.content.url+'" type="hidden"></a>'+
-					'<img src="'+mediaObj.content.image+'" width="100" height="100">'+
-				'</div>'+
-				'<div class="extracted_content col-xs-8 padding-5">'+
-					'<h4><a href="'+mediaObj.content.url+'" target="_blank" class="lastUrl text-dark">'+mediaObj.name+'</a></h4>'+
-					'<p>'+mediaObj.description+'</p>'+
-				'</div>'+
-			'</div>';
-		return str;
-	}
-	function initRangeHours(){
-		mylog.log("initRangeHours : ");
-		$(".addHoursRange").click(function(){
-	    	var addToDay=$(this).data("value");
-	    	addHoursRange(addToDay);
-	    });
-	}
-	function bindTimePicker(addToDay,countRange, hours){
-		mylog.log("bindTimePicker", addToDay,countRange, hours);
-		var startTime = '06:00';
-		var endTime = '19:00';
-		if(notNull(hours)){
-			startTime = hours.opens;
-			endTime = hours.closes;
-		}
-
-		if(typeof addToDay != "undefined" && notNull(addToDay)){
-			//Init time
-			$('#startTime'+addToDay+countRange+', #endTime'+addToDay+countRange).timepicker({
-	               // minuteStep: 1,
-	              //  appendWidgetTo: 'body',
-	              
-	            showSeconds: false,
-	            showMeridian: false,
-	            defaultTime: false
-	        });
-	        $('#startTime'+addToDay+countRange).timepicker('setTime', startTime);
-	        $('#endTime'+addToDay+countRange).timepicker('setTime', endTime);
-	        $.each(openingHoursResult, function(e,v){
-	        	if(v.dayOfWeek==addToDay){
-	        		openingHoursResult[e]["hours"].push({"opens":startTime,"closes":endTime})
-	        	}
-	        });
-	        $(".removeHoursRange").off().on("click",function(){
-	        	var dayInc=$(this).data("days");
-	        	var inc=$(this).data("value");
-	        	$("#hoursRange"+dayInc+" .hoursRange"+inc).remove();
-	        	$.each(openingHoursResult, function(e,v){
-	        		if(v.dayOfWeek==dayInc){
-	        			openingHoursResult[e]["hours"].splice(inc,1);
-	        		}
-	        	});
-	        });
-
-		}else{
-			$('.timeInput').timepicker({
-               // minuteStep: 1,
-              //  appendWidgetTo: 'body',
-              
-                showSeconds: false,
-                showMeridian: false,
-                defaultTime: false
-            });
-            $('.startTime').timepicker('setTime', startTime);
-            $('.endTime').timepicker('setTime', endTime);
-			//loadTimePicker(initTime);
-		}
-		$('.timeInput').off().on('changeTime.timepicker', function(e) {
-			var typeInc=$(this).data("type");
-			var daysInc=$(this).data("days");
-			var hoursInc=$(this).data("value");
-			$.each(openingHoursResult, function(i,v){
-        		if(v.dayOfWeek==daysInc)
-        			openingHoursResult[i]["hours"][hoursInc][typeInc]=e.time.value;
-	        });
-		  });
-	}
-
-	function addHoursRange(addToDay){
-		mylog.log("addHoursRange", addToDay);
-		var countRange=$("#hoursRange"+addToDay+" .hoursRange").length;
-		mylog.log("countRange", countRange);
-		//alert(countRange);
-		str='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+countRange+'" data-value="'+countRange+'">'+
-				'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
-        		'<i class="fa fa-hourglass-start"></i> Start hour'+
-    			'</label>'+
-    		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
-        		'<i class="fa fa-hourglass-end"></i> End hour'+
-    		'</label>'+
-    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
-					'<input type="text" class="form-control input-small timeInput startTime" data-value="'+countRange+'" data-days="'+addToDay+'" data-type="opens" id="startTime'+addToDay+countRange+'">'+
-				'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
-			'</div>'+
-//        		
-    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
-					'<input type="text" class="form-control input-small timeInput endTime" data-value="'+countRange+'" data-days="'+addToDay+'" data-type="closes" id="endTime'+addToDay+countRange+'">'+
-				'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
-			'</div>'+
-			'<a href="javascript:;" class="btn btn-default text-red removeHoursRange margin-top-10 col-md-12 col-sm-12" data-days="'+addToDay+'" data-value="'+countRange+'"><i class="fa fa-trash"></i> Remove hours range</a>'+
-		'</div>';
-		$("#hoursRange"+addToDay).find('.hoursRange:last').after(str);
-		bindTimePicker(addToDay,countRange);
-	}
-	/***************************************
-	* Build OpeningHour on week HTML system 
-	***************************************/
-	function buildOpeningHours(data){
-		mylog.log("buildOpeningHours", data);
-		var arrayDayKeys=["Su","Mo","Tu","We","Th","Fr","Sa"];
-		var arrayKeyTrad={
-			"Su":{"key":"Su","label":"Sunday"},
-			"Mo":{"key":"Mo","label":"Monday"},
-			"Tu":{"key":"Tu","label":"Tuesday"},
-			"We":{"key":"We","label":"Wednesday"},
-			"Th":{"key":"Th","label":"Thursday"},
-			"Fr":{"key":"Fr","label":"Friday"},
-			"Sa":{"key":"Sa","label":"Saturday"}
-		};
-
-		var allWeek = true ;
-		if(notNull(data) && typeof data == "object"){
-			$.each(data,function(e,v){
-				if(typeof v != "object")
-					allWeek = false;
-			});
-		}
-		mylog.log("allWeek", allWeek);
-		//((allWeek == true) ? "style='display:none;'" : "")
-		var str = "<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
-			"<div id='selectedDays' class='col-md-12 col-sm-12 col-xs-12 text-center margin-bottom-10' "+((allWeek == true) ? "style='display:none;'" : "")+">";
-				$.each(arrayDayKeys,function(e,v){
-					var active = ((typeof data != "object" || typeof data[e] == "object" ) ? "active"  : "");
-					str+="<div class='inline'>"+
-							'<a class="btn btn-default btn-select-day '+active+'" data-key="'+v+'" href="javascript:;">'+arrayKeyTrad[v].key+'</a>'+
-						"</div>";
-				});
-		str+="</div>"+
-			"<div id='daysList' class='col-md-12 col-sm-12 col-xs-12 no-padding'>";
-				$.each(arrayDayKeys,function(e,v){
-
-					var noneDay = ( (typeof data != "object" || typeof data[e] == "object")  ? ""  : "display:none;");
-					var checked = (( typeof data != "object" || (typeof data[e] == "object" && data[e].allDay == "true") ) ? "checked"  : "");
-					var noneHours = ((typeof data[e] == "object" && notNull(data[e].hours) ) ? ""  : "style='display:none;'");
-					// mylog.log("typeof data[e]", typeof data[e], data[e]);
-					// mylog.log("noneDay", noneDay);
-					// mylog.log("checked", checked);
-					// mylog.log("noneHours", noneHours);
-			str+=	"<div class='col-md-12 col-sm-12 col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray; "+noneDay+"'>"+
-						"<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
-							'<label class="col-md-4 col-sm-5 col-xs-6 text-left control-label no-padding no-margin" for="allDaysMo">'+
-								'<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
-							'</label>'+
-							'<input type="checkbox" class="allDaysWeek" id="allDays'+v+'" value="true" data-key="'+v+'" '+checked+'/> '+tradDynForm.allday+
-						"</div>"+
-						'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" '+noneHours+'>';
-							if( typeof data[e] == "object" && notNull(data[e].hours) ){
-								$.each(data[e].hours,function(kHour,vHour){
-									mylog.log("hours", kHour, vHour);
-									str +='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+kHour+'" data-value="'+kHour+'">'+
-											'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
-							        		'<i class="fa fa-hourglass-start"></i> Start hour'+
-							    			'</label>'+
-							    		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
-							        		'<i class="fa fa-hourglass-end"></i> End hour'+
-							    		'</label>'+
-							    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
-												'<input type="text" class="form-control input-small timeInput startTime" data-value="'+kHour+'" data-days="'+v+'" data-type="opens" id="startTime'+v+kHour+'">'+
-											'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
-										'</div>'+
-							    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
-												'<input type="text" class="form-control input-small timeInput endTime" data-value="'+kHour+'" data-days="'+v+'" data-type="closes" id="endTime'+v+kHour+'">'+
-											'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
-										'</div>';
-									if(kHour != 0)
-										str += '<a href="javascript:;" class="btn btn-default text-red removeHoursRange margin-top-10 col-md-12 col-sm-12" data-days="'+v+'" data-value="'+kHour+'"><i class="fa fa-trash"></i> Remove hours range</a>';
-									str += '</div>';
-
-								});
-							}else{
-								str+= '<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
-									'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
-										'<i class="fa fa-hourglass-start"></i> Start hour'+
-									'</label>'+
-									'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
-										'<i class="fa fa-hourglass-end"></i> End hour'+
-									'</label>'+
-									'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
-										'<input type="text" class="form-control input-small timeInput startTime" data-value="0" data-days="'+v+'" data-type="opens" id="startTime'+v+'0">'+
-										'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
-									'</div>'+
-									'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
-										'<input type="text" class="form-control input-small timeInput endTime" data-value="0" data-days="'+v+'" data-type="closes" id="endTime'+v+'0">'+
-										'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
-									'</div>'+
-								'</div>';
-							}
-							str+= '<a href="javascript:;" class="btn btn-default text-green addHoursRange margin-top-10 col-md-12 col-sm-12" data-value="'+v+'"><i class="fa fa-plus"></i> Add an hours range</a>'+
-						'</div>'+
-					"</div>";
-				});
-			str+="</div>"+
-			'<input type="hidden" name="openingHours" value="true"/>'+
-		"</div>";
-		return str;
-	}
-
-	function buildOpeningHoursold(){
-		var arrayDayKeys=["Mo","Tu","We","Th","Fr","Sa","Su"];
-		var arrayKeyTrad={
-			"Mo":{"key":"Mo","label":"Monday"},
-			"Tu":{"key":"Tu","label":"Tuesday"},
-			"We":{"key":"We","label":"Wednesday"},
-			"Th":{"key":"Th","label":"Thursday"},
-			"Fr":{"key":"Fr","label":"Friday"},
-			"Sa":{"key":"Sa","label":"Saturday"},
-			"Su":{"key":"Su","label":"Sunday"}
-		};
-
-		var str = "<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
-			"<div id='selectedDays' class='col-md-12 col-sm-12 col-xs-12 text-center margin-bottom-10' style='display:none;'>";
-				$.each(arrayDayKeys,function(e,v){
-					str+="<div class='inline'>"+
-							'<a class="btn btn-default btn-select-day active" data-key="'+v+'" href="javascript:;">'+arrayKeyTrad[v].key+'</a>'+
-						"</div>";
-				});
-		str+="</div>"+
-			"<div id='daysList' class='col-md-12 col-sm-12 col-xs-12 no-padding'>";
-				$.each(arrayDayKeys,function(e,v){
-			str+=	"<div class='col-md-12 col-sm-12 col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray;'>"+
-						"<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
-							'<label class="col-md-4 col-sm-5 col-xs-6 text-left control-label no-padding no-margin" for="allDaysMo">'+
-					            '<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
-					        '</label>'+
-			       			'<input type="checkbox" class="allDaysWeek" id="allDays'+v+'" value="true" data-key="'+v+'" checked/> '+tradDynForm.allday+
-		       			"</div>"+
-		       			'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" style="display:none;">'+
-		       				'<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
-		       					'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
-				            		'<i class="fa fa-hourglass-start"></i> Start hour'+
-				        		'</label>'+
-				        		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
-				            		'<i class="fa fa-hourglass-end"></i> End hour'+
-				        		'</label>'+
-				        		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
-           							'<input type="text" class="form-control input-small timeInput startTime" data-value="0" data-days="'+v+'" data-type="opens" id="startTime'+v+'0">'+
-            						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
-        						'</div>'+
-				        		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
-           							'<input type="text" class="form-control input-small timeInput endTime" data-value="0" data-days="'+v+'" data-type="closes" id="endTime'+v+'0">'+
-            						'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
-        						'</div>'+
-				//        		'<div class="input-group bootstrap-timepicker timepicker">'+
-				  //      		'	<input id="timepicker" class="form-control timeInput" data-provide="timepicker" data-template="modal" data-minute-step="1" data-modal-backdrop="true" type="text"/>'+
-				    //    		'</div>'+
-				        		//'<div class="col-md-6 col-sm-6 col-xs-6 no-padding">'+
-		       					//	'<input type="text" class="form-control timeInput changeTime" data-value="0" data-days="'+v+'" data-type="opens" name="startTime'+v+'0" id="startTime'+v+'0" value="06:00:00" placeholder="06:00"/>'+
-		       					//'</div>'+
-		       					//'<div class="col-md-6 col-sm-6 col-xs-6 no-padding">'+
-		       					//	'<input type="text" class="form-control timeInput changeTime" data-value="0" data-days="'+v+'" data-type="closes" name="endTime'+v+'0" id="endTime'+v+'0" value="19:00:00" placeholder="19:00"/>'+
-		       					//'</div>'+
-		       				'</div>'+
-		       				'<a href="javascript:;" class="btn btn-default text-green addHoursRange margin-top-10 col-md-12 col-sm-12" data-value="'+v+'"><i class="fa fa-plus"></i> Add an hours range</a>'+
-		       			'</div>'+
-					"</div>";
-				});
-			str+="</div>"+
-			'<input type="hidden" name="openingHours" value="true"/>'+
-		"</div>";
-		return str;
-	}
-
-	/* **************************************
-	* init Boostrap Switch
-	***************************************** */
-	function initbootstrapSwitch(el,change, css){
-		mylog.log("initbootstrapSwitch", el,change, css);
-		var initSwitch = function(){
-			mylog.log("init bootstrap switch");
-			$(el).bootstrapSwitch();
-			if(typeof change == "function"){
-				$(el).on('switchChange.bootstrapSwitch', function(event, state) {
-					change($(this));
-				});
-			}
-			if(notNull(css))
-				$(el).parent().parent().css(css);
-			else
-				$(el).parent().parent().addClass("form-group");
-		};
-
-		if( jQuery.isFunction(jQuery.fn.bootstrapSwitch) )
-			initSwitch();
-	    else {
-	    	lazyLoad( baseUrl+'/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js', 
-					  baseUrl+'/plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css',
-					  initSwitch);
-    	}
-		
-	}
 
 })(jQuery);
 
@@ -2176,6 +268,7 @@ var dyFObj = {
 	//ex : dyFObj.elementObj.dynForm.jsonSchema.canSubmitIf
 	canSubmitIf : function () { 
     	var valid = true;
+    	console.log("canSubmitIf");
     	//on peut ajouter des regles dans la map definition 
     	if(	jsonHelper.notNull("dyFObj.elementObj.dynForm.jsonSchema.canSubmitIf", "function") )
     		valid = dyFObj.elementObj.dynForm.jsonSchema.canSubmitIf();
@@ -2440,6 +533,7 @@ var dyFObj = {
 	//entry point function for opening dynForms
 	openForm : function  (type, afterLoad,data,isSub) { 
 	    //mylog.clear();
+	    //alert("openForm");
 	    $.unblockUI();
 	    $("#openModal").modal("hide");
 	    mylog.warn("--------------- Open Form ",type, afterLoad,data);
@@ -2447,16 +541,13 @@ var dyFObj = {
 	    uploadObj.contentKey="profil"; 
 	    dyFObj.activeElem = (isSub) ? "subElementObj" : "elementObj";
 	    dyFObj.activeModal = (isSub) ? "#openModal" : "#ajax-modal";
-      	/*if(type=="addPhoto") 
-        	uploadObj.contentKey="slider";*/ 
-	    //BOUBOULE ICI ACTIVER LEVENEMENT
-	    //initKSpec();
+      	
 	    if(userId)
 		{
 			if(typeof formInMap != 'undefined')
 				formInMap.formType = type;
 			dyFObj.getDynFormObj(type, function() { 
-				dyFObj.starBuild(afterLoad,data);
+				dyFObj.startBuild(afterLoad,data);
 			},afterLoad, data);
 		} else {
 			dyFObj.openFormAfterLogin = {
@@ -2476,32 +567,44 @@ var dyFObj = {
 	getDynFormObj : function(type, callback,afterLoad, data ){
 		//alert(type+'.js');
 		mylog.warn("------------ getDynFormObj",type, callback,afterLoad, data );
-		if(typeof type == "object"){
+		if (typeof type == "object"){
 			mylog.log(" object directly Loaded : ", type);
-			dyFObj[dyFObj.activeElem] = type;
+			if(type.dynForm)
+				dyFObj[dyFObj.activeElem] = type;
+			else 
+				dyFObj[dyFObj.activeElem] = {dynForm:type};
 			if( notNull(type.col) ) uploadObj.type = type.col;
     		callback(type, afterLoad, data);
-		}else if( jsonHelper.notNull( "typeObj."+type+".dynForm" , "object") ){
+		} else if( jsonHelper.notNull( "typeObj."+type+".dynForm" , "object") ){
 			mylog.log(" typeObj Loaded : ", type);
 			dyFObj[dyFObj.activeElem] = dyFInputs.get(type);
 			if( notNull(dyFInputs.get(type).col) ) uploadObj.type = dyFInputs.get(type).col;
     		callback( dyFObj[dyFObj.activeElem], afterLoad, data );
-		}else {
+		} else {
 			//TODO : pouvoir surchargé le dossier dynform dans le theme
 			//via themeObj.dynForm.folder overload
 			var dfPath = moduleUrl+'/js/dynForm/'+type+'.js';
-			if( jsonHelper.notNull( "themeObj.dynForm.folder") ) 
+			
+			//sometimes special forms sit in the theme obj
+			if ( jsonHelper.notNull( "themeObj.dynForm.folder") ) 
 				dfPath = themeObj.dynForm.folder+type+'.js';
-			if( moduleId != activeModuleId ){
+			
+			//a dynform can be called from a module , but comes from parent Co2 module
+			if ( moduleId != activeModuleId ){
 				dfPath = parentModuleUrl+'/js/dynForm/'+type+'.js';
 				mylog.log("properties from MODULE","modules/"+type+"/assets/js/dynform.js");
 			}
-
-			if( jsonHelper.notNull( "modules."+type+".form") ) {
+			
+			//path is defined in the initJS modules obj
+			if ( jsonHelper.notNull( "modules."+type+".form") ) {
 				dfPath = modules[type].form;
 				mylog.log("properties from MODULE","modules/"+type+"/assets/js/dynform.js");
 			}
-			
+
+			//a full path is given to a form definition
+			if ( type.indexOf(".js")>-1)  
+				dfPath = type;
+
 			lazyLoad( dfPath, 
 				null,
 				function() { 
@@ -2512,15 +615,16 @@ var dyFObj = {
 					
 				  	dyFInputs.get(type).dynForm = dynForm;
 					dyFObj[dyFObj.activeElem] = dyFInputs.get(type);
-					if( notNull(dyFInputs.get(type).col) ) uploadObj.type = dyFInputs.get(type).col;
+					if( notNull(dyFInputs.get(type).col) ) 
+						uploadObj.type = dyFInputs.get(type).col;
     				callback( afterLoad, data );
 				});
 		}
 	},
 	//prepare information for the modal panel 
 	//and launches the build process
-	starBuild : function  (afterLoad, data) { 
-		mylog.warn("------------ starBuild",dyFObj[dyFObj.activeElem], afterLoad, data,dyFObj.activeModal );
+	startBuild : function  (afterLoad, data) { 
+		mylog.warn("------------ startBuild",dyFObj[dyFObj.activeElem], afterLoad, data,dyFObj.activeModal );
 		mylog.dir(dyFObj[dyFObj.activeElem]);
 		$(dyFObj.activeModal+" .modal-header").removeClass("bgEvent bgOrga bgProject bgPerson bgDDA");//.addClass(dyFObj[elem].bgClass);
 		$(dyFObj.activeModal+" #ajax-modal-modal-title").html("<i class='fa fa-refresh fa-spin'></i> Chargement en cours. Merci de patienter.");
@@ -2540,43 +644,24 @@ var dyFObj = {
 	  	afterLoad = ( notNull(afterLoad) ) ? afterLoad : null;
 	  	data = ( notNull(data) ) ? data : {}; 
 	  	dyFObj.buildDynForm(afterLoad, data,dyFObj[dyFObj.activeElem],dyFObj.activeModal+" #ajaxFormModal");
-	  	//if(typeof dyFObj[dyFObj.currentKFormType].color != "undefined")
-	  		//$("#ajax-modal .modal-header").removeClass("bg-dark bg-purple bg-red bg-azure bg-green bg-green-poi bg-orange bg-yellow bg-blue bg-turq bg-url")
-									  	  //.addClass(dyFObj[dyFObj.currentKFormType].color);
-		//alert("CO "+typeObj[currentKFormType].color);
-                    
-	  	//$(dyFObj.activeModal+" #ajax-modal-modal-title").html((typeof dyFObj[dyFObj.activeElem].title != "undefined") ? dyFObj[dyFObj.activeElem].title : "");
 	},
-	/*subDynForm : function(type, afterLoad,data) {
-		smallMenu.open();
-		$("#openModal div.modal-content div.container")..html( "<div class='row bg-white'>"+
-	  										"<div class='col-sm-10 col-sm-offset-1'>"+
-							              	"<div class='space20'></div>"+
-							              	//"<h1 id='proposerloiFormLabel' >Faire une proposition</h1>"+
-							              	"<form id='subFormModal' enctype='multipart/form-data'></form>"+
-							              	"</div>"+
-							              "</div>");
-		dyFObj.buildDynForm(afterLoad, data,dyFObj.subElementObj,"#openModal #subFormModal");
-
-	},*/
 	buildDynForm : function (afterLoad,data,obj,formId) { 
 		mylog.warn("--------------- buildDynForm", dyFObj[dyFObj.activeElem], afterLoad,data);
 		if(userId)
 		{ 
 			var form = $.dynForm({
-			      formId : formId,
-			      formObj : dyFObj[dyFObj.activeElem].dynForm,
-			      formValues : data,
-			      beforeBuild : function  () {
-
+			    formId : formId,
+			    formObj : dyFObj[dyFObj.activeElem].dynForm,
+			    formValues : data,
+			    beforeBuild : function  () {
 			      	if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.beforeBuild","function") )
 				        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.beforeBuild();
 				},
-			      afterBuild : function  () {
+			    afterBuild : function  () {
 			      	if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.afterBuild","function") )
 				        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.afterBuild(data);
-			      },
-			      onLoad : function  () {
+			    },
+			    onLoad : function  () {
 
 			      	if( jsonHelper.notNull("themeObj.dynForm.onLoadPanel","function") ){
 			      		themeObj.dynForm.onLoadPanel(dyFObj[dyFObj.activeElem]);
@@ -2585,7 +670,6 @@ var dyFObj = {
 				        //alert(afterLoad+"|"+typeof dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads[afterLoad]);
 			    	}
 			        
-
 			        //incase we need a second global post process
 			        if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.onLoads.onload", "function") )
 			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads.onload(data);
@@ -2596,8 +680,8 @@ var dyFObj = {
 				    
 				    if( typeof bindLBHLinks != "undefined")
 			        	bindLBHLinks();
-			      },
-			      onSave : function(){
+			    },
+			    onSave : function(){
 
 			      	mylog.log("onSave")
 
@@ -2623,6 +707,10 @@ var dyFObj = {
 			$('#modalLogin').modal("show");
 		}
 	},
+
+
+
+	
 
 	//generate Id for upload feature of this element 
 	setMongoId : function(type,callback) { 
@@ -2657,6 +745,1929 @@ var dyFObj = {
 				res = true;
 		}
 		return res;
+	},
+	/* **************************************
+	*	each input field type has a corresponding HTMl to build
+	***************************************** */
+	
+	buildInputField : function (id, field, fieldObj,formValues, tooltip)
+	{
+		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
+		var required = "";
+		if(fieldObj.rules && fieldObj.rules.required)
+			required = "*";
+
+		tooltip = (tooltip) ? '<i class=" fa fa-question-circle pull-right tooltips text-red" data-toggle="tooltip" data-placement="top" title="'+tooltip+'"></i>' : '';
+		if(fieldObj.label)
+			fieldHTML += '<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="'+field+'">'+
+			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+tooltip+
+			            '</label>';
+
+        var iconOpen = (fieldObj.icon) ? '<span class="input-icon">'   : '';
+        var iconClose = (fieldObj.icon) ? '<i class="'+fieldObj.icon+'"></i> </span>' : '';
+        var placeholder = (fieldObj.placeholder) ? fieldObj.placeholder+required : '';
+        var placeholder2 = (fieldObj.placeholder2) ? fieldObj.placeholder2 : '';
+        var fieldClass = (fieldObj.class) ? fieldObj.class : '';
+        var initField = '';
+        var value = "";
+        var style = "";
+        var mainTag = null;
+        if( fieldObj.value ) 
+        	value = fieldObj.value;
+        else if (formValues && formValues[field]) {
+        	value = formValues[field];
+        }
+
+        mylog.log("value network", value);
+        if(value!="")
+        	mylog.warn("--------------- dynform form Values",field,value);
+
+        /* **************************************
+		* 
+		***************************************** */
+        if( field.indexOf("separator")>=0 ) {
+        	if(fieldClass == '' ) 
+        		fieldClass = "panel-blue";
+        	fieldHTML += '<div class="text-large text-bold '+fieldClass+' text-white center padding-10 ">'+iconOpen+iconClose+fieldObj.title+'</div>';
+        }
+        
+        /* **************************************
+		* STANDARD TEXT INPUT
+		***************************************** */
+        else if( !fieldObj.inputType || 
+        		  fieldObj.inputType == "text" || 
+        		  fieldObj.inputType == "numeric" || 
+        		  fieldObj.inputType == "tags" || 
+        		  fieldObj.inputType == "tags" ) {
+        	mylog.log("build field "+field+">>>>>> text, numeric, tags, tags");
+        	if(fieldObj.inputType == "tags")
+        	{
+        		fieldClass += " select2TagsInput";
+        		if(fieldObj.values){
+        			if(!dyFObj.init.initValues[field])
+        				dyFObj.init.initValues[field] = {};
+        			dyFObj.init.initValues[field]["tags"] = fieldObj.values;
+        		}
+        		if(fieldObj.maximumSelectionLength)
+        			dyFObj.init.initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
+        		mylog.log("fieldObj.data", fieldObj.data, fieldObj);
+        		if(typeof fieldObj.data != "undefined"){
+        			value = fieldObj.data;
+	        		//dyFObj.init.initSelectNetwork[field]=fieldObj.data;
+	        	}
+        		if(typeof fieldObj.mainTag != "undefined")
+					mainTag=fieldObj.mainTag;
+        		style = "style='width:100%;margin-bottom: 10px;border: 1px solid #ccc;'";
+        	}
+        	//var label = '<label class="pull-left"><i class="fa fa-circle"></i> '+placeholder+'</label><br>';
+        	fieldHTML += iconOpen+' <input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
+        
+        	if(fieldObj.inputType == "price"){       		
+        		fieldHTML += '<select class="'+fieldClass+'" name="devise" id="devise" style="">';
+				fieldHTML += 	'<option class="bold" value="€">euro €</option>';
+				fieldHTML += 	'<option class="bold" value="G1">G1</option>';
+				fieldHTML += 	'<option class="bold" value="$">dollars $</option>';
+				fieldHTML += 	'<option class="bold" value="CFP">CFP</option>';
+				fieldHTML += '</select>';
+        	}
+        }
+        
+        /* **************************************
+		* HIDDEN
+		***************************************** */
+		else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
+			if ( fieldObj.inputType == "timestamp" )
+				value = Date.now();
+			mylog.log("build field "+field+">>>>>> hidden, timestamp");
+			fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
+		}
+		/* **************************************
+		* TEXTAREA
+		***************************************** */
+		else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){
+			mylog.log("build field "+field+">>>>>> textarea, wysiwyg", fieldObj);
+			if(fieldObj.inputType == "wysiwyg")
+				fieldClass += " wysiwygInput";
+			var maxlength = "";
+			var minlength = 0;
+			if(notNull(fieldObj.rules) && notNull(fieldObj.rules.maxlength) ){
+				fieldClass += " maxlengthTextarea";
+				maxlength = fieldObj.rules.maxlength;
+				minlength = value.length ;
+			}
+
+        	mylog.log("build field "+field+">>>>>> textarea, wysiwyg");
+        	fieldHTML += '<textarea id="'+field+'" maxlength="'+maxlength+'"  class="form-control textarea '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
+        	
+        	if(maxlength > 0)
+        		fieldHTML += '<span><span id="maxlength'+field+'" name="maxlength'+field+'">'+minlength+'</span> / '+maxlength+' '+trad["character(s)"]+' </span> '
+
+
+		}else if ( fieldObj.inputType == "markdown"){ 
+			mylog.log("build field "+field+">>>>>> textarea, markdown");
+			fieldClass += " markdownInput";
+			//fieldHTML +='<textarea id="'+field+'" name="'+field+'" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" data-provide="markdown" data-savable="true" rows="10"></textarea>';
+			fieldHTML +='<textarea name="target-editor" id="'+field+'" data-provide="markdown" data-savable="true" class="form-control textarea '+fieldClass+'" placeholder="'+placeholder+'" rows="10"></textarea>';
+		}
+		/* **************************************
+		* CHECKBOX SIMPLE
+		***************************************** */
+		else if ( fieldObj.inputType == "checkboxSimple" ) {
+   			if(value == "") value="25/01/2014";
+   			console.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
+			var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
+			console.log("fieldObj ??? thisValue", thisValue);
+			//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
+			//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
+			mylog.log("build field "+field+">>>>>> checkbox");
+			fieldHTML += '<input type="hidden" class="'+fieldClass+'" name="'+field+'" id="'+field+'" '+
+								'value="'+thisValue+'"/> ';
+			fieldHTML += '<div class="col-lg-6 padding-5">'+
+							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-green col-xs-12"'+
+							' data-checkval="true"' +
+							'>'+
+								fieldObj.params.onText+
+							'</a>'+
+						 '</div>';
+			fieldHTML += '<div class="col-lg-6 padding-5">'+
+							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-red col-xs-12"'+
+							' data-checkval="false"' +
+							'>'+
+								fieldObj.params.offText+
+							'</a>'+
+						 '</div>';
+			initField = function(){
+				//var checked = ( fieldObj.checked ) ? "checked" : "";
+				//if(checked) 
+				//if( fieldObj.switch )
+					//dyFObj.init.initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null );
+			};
+		}
+
+		/* **************************************
+		* CHECKBOX
+		***************************************** */
+        else if ( fieldObj.inputType == "checkbox" ) {
+   			if(value == "") value="25/01/2014";
+			var checked = ( fieldObj.checked ) ? "checked" : "";
+			var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
+			var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.switch.onText+"' data-off-text='"+fieldObj.switch.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
+			mylog.log("build field "+field+">>>>>> checkbox");
+			fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+' '+onclick+' '+switchData+'/> '+placeholder;
+			if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
+				fieldHTML+=dyFObj.init.buildOpeningHours(value);
+			}
+			initField = function(){
+				if( fieldObj.switch )
+					dyFObj.init.initbootstrapSwitch('#'+field, (fieldObj.switch.onChange) ? fieldObj.switch.onChange : null, (fieldObj.switch.css) ? fieldObj.switch.css : null );
+				if(typeof fieldObj.options != "undefined" && typeof fieldObj.options.allWeek != "undefined"){
+					//loadTimePicker(null);
+					dyFObj.init.bindTimePicker();
+					if(notNull(value) && typeof value == "object"){
+						$.each(value, function(e,v){
+							if(typeof v == "object" && notNull(v.hours) ){
+								$.each(v.hours, function(ehour,vhour){
+									dyFObj.init.bindTimePicker(v.dayOfWeek, ehour, vhour);
+								});
+							}
+						});
+					}
+					dyFObj.init.initRangeHours();
+					
+				}
+				//if( fieldObj.subSwitch )
+				//	dyFObj.init.initbootstrapSwitch(fieldObj.subSwitch.domHtml, (fieldObj.subSwitch.onChange) ? fieldObj.subSwitch.onChange : null );
+			};
+		}
+
+		/* **************************************
+		* RADIO
+		***************************************** */
+		else if ( fieldObj.inputType == "radio" ) {
+   			
+	       	mylog.log("build field "+field+">>>>>> radio");
+	       	
+	       	fieldHTML += '<div class="btn-group" data-toggle="buttons">';
+	       	value = ( (typeof fieldObj.value != "undefined") ? fieldObj.value : value ) ;
+	       	if(fieldObj.options)
+	       		fieldHTML += buildRadioOptions(fieldObj.options,value, field) ;
+	       	fieldHTML += '</div>';
+       	}
+
+
+        /* **************************************
+		* SELECT , we use select2
+		***************************************** */
+        else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) 
+        {
+       		var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
+       		mylog.log("build field "+field+">>>>>> select selectMultiple");
+       		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
+       		fieldHTML += '<select class="'+isSelect2+' '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px;" data-placeholder="'+placeholder+'">';
+			if(placeholder)
+				fieldHTML += '<option class="text-red" style="font-weight:bold" disabled selected>'+placeholder+'</option>';
+			else
+				fieldHTML += '<option></option>';
+
+			var selected = "";
+			mylog.log("fieldObj select", fieldObj);
+			//initialize values
+			if(fieldObj.options)
+				fieldHTML += buildSelectOptions(fieldObj.options, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
+
+			if( fieldObj.groupOptions )
+				fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
+			
+			fieldHTML += '</select>';
+        } 
+        else if ( fieldObj.inputType == "uploader" ) {
+        	if(placeholder == "")
+        		placeholder="add Image";
+        	mylog.log("build field "+field+">>>>>> uploader");
+        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>';
+        	if(fieldObj.docType=="image")
+			fieldHTML += 	'<script type="text/template" id="qq-template-gallery">';
+			else
+			fieldHTML += 	'<script type="text/template" id="qq-template-manual-trigger">';
+			fieldHTML += 	'<div class="qq-uploader-selector qq-uploader';
+			if(fieldObj.docType=="image")
+			fieldHTML +=		' qq-gallery';
+			fieldHTML +=		'" qq-drop-area-text="'+tradDynForm.dropfileshere+'">'+
+							'<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">'+
+							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>'+
+							'</div>'+
+							'<div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>'+
+							'<span class="qq-upload-drop-area-text-selector"></span>'+
+							'</div>'+
+							'<div class="qq-upload-button-selector btn btn-primary">'+
+							'<div>'+tradDynForm["add"+fieldObj.docType]+'</div>'+
+							'</div>'+
+							'<button type="button" id="trigger-upload" class="btn btn-danger hide">'+
+			                '<i class="icon-upload icon-white"></i> '+tradDynForm.save+
+			                '</button>'+
+							'<span class="qq-drop-processing-selector qq-drop-processing">'+
+							'<span>En cours de progression...</span>'+
+							'<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>'+
+							'</span>';
+			if(fieldObj.docType=="image"){
+			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
+							'<li>'+
+							'<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
+							'<div class="qq-progress-bar-container-selector qq-progress-bar-container">'+
+							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
+							'</div>'+
+							'<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
+							'<div class="qq-thumbnail-wrapper">'+
+							'<img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>'+
+							'</div>'+
+							'<button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>'+
+							'<button type="button" class="qq-upload-retry-selector qq-upload-retry">'+
+							'<span class="qq-btn qq-retry-icon" aria-label="Retry"></span>'+
+							'Retry'+
+							'</button>'+
+							''+
+							'<div class="qq-file-info">'+
+							'<div class="qq-file-name">'+
+							'<span class="qq-upload-file-selector qq-upload-file"></span>'+
+							//'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+							'</div>'+
+							'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
+							'<span class="qq-upload-size-selector qq-upload-size"></span>'+
+							'<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">'+
+							'<span class="qq-btn qq-delete-icon" aria-label="Delete"></span>'+
+							'</button>'+
+							'<button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">'+
+							'<span class="qq-btn qq-pause-icon" aria-label="Pause"></span>'+
+							'</button>'+
+							'<button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">'+
+							'<span class="qq-btn qq-continue-icon" aria-label="Continue"></span>'+
+							'</button>'+
+							'</div>'+
+							'</li>'+
+							'</ul>';
+			}else{
+			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">'+
+				                '<li>'+
+				                    '<div class="qq-progress-bar-container-selector">'+
+				                        '<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
+				                    '</div>'+
+				                    '<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
+				                    '<img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>'+
+				                    '<span class="qq-upload-file-selector qq-upload-file"></span>'+
+				                    //'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+				                    '<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
+				                    '<span class="qq-upload-size-selector qq-upload-size"></span>'+
+				                    '<button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>'+
+				                    '<button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>'+
+				                    '<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>'+
+				                    '<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
+				                '</li>'+
+				            '</ul>';
+			}
+			fieldHTML += 				''+
+							'<dialog class="qq-alert-dialog-selector">'+
+							'<div class="qq-dialog-message-selector"></div>'+
+							'<div class="qq-dialog-buttons">'+
+							'<button type="button" class="qq-cancel-button-selector">Close</button>'+
+							'</div>'+
+							'</dialog>'+
+							''+
+							'<dialog class="qq-confirm-dialog-selector">'+
+							'<div class="qq-dialog-message-selector"></div>'+
+							'<div class="qq-dialog-buttons">'+
+							'<button type="button" class="qq-cancel-button-selector">No</button>'+
+							'<button type="button" class="qq-ok-button-selector">Yes</button>'+
+							'</div>'+
+							'</dialog>'+
+							''+
+							'<dialog class="qq-prompt-dialog-selector">'+
+							'<div class="qq-dialog-message-selector"></div>'+
+							'<input type="text">'+
+							'<div class="qq-dialog-buttons">'+
+							'<button type="button" class="qq-cancel-button-selector">Cancel</button>'+
+							'<button type="button" class="qq-ok-button-selector">Ok</button>'+
+							'</div>'+
+							'</dialog>'+
+							'</div>'+
+							'</script>';
+			if( fieldObj.showUploadBtn )
+        		dyFObj.init.initValues.showUploadBtn = fieldObj.showUploadBtn;
+        	if( fieldObj.filetypes )
+        		dyFObj.init.initValues.filetypes = fieldObj.filetypes;
+        	if( fieldObj.template )
+        		dyFObj.init.initValues.template = fieldObj.template;
+			if( $.isFunction( fieldObj.afterUploadComplete ) )
+        		dyFObj.init.initValues.afterUploadComplete = fieldObj.afterUploadComplete;
+        }
+
+        /* **************************************
+		* DATE INPUT , we use bootstrap-datepicker
+		***************************************** */
+        else if ( fieldObj.inputType == "date" ) {
+        	if(placeholder == "")
+        		placeholder="25/01/2014";
+        	mylog.log("build field "+field+">>>>>> date");
+        	if(value && (""+value).indexOf("/") < 0){
+        		//timestamp use case 
+        		value =moment(parseInt(value)*1000).format('DD/MM/YYYY');
+        		//alert("switch:"+value);
+        	}
+        	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        }
+
+        /* **************************************
+		* DATE TIME INPUT , we use bootstrap-datetimepicker
+		***************************************** */
+        else if ( fieldObj.inputType == "datetime" ) {
+        	if(placeholder == "")
+        		placeholder="25/01/2014 08:30";
+        	mylog.log("build field "+field+">>>>>> datetime");
+        	fieldHTML += iconOpen+'<input type="text" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        }
+        /* **************************************
+		* DATE RANGE INPUT 
+		***************************************** */
+        else if ( fieldObj.inputType == "daterange" ) {
+        	if(placeholder == "")
+        		placeholder="25/01/2014";
+			mylog.log("build field "+field+">>>>>> daterange");
+        	fieldHTML += iconOpen+'<input type="text" class="form-control daterangeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        }
+
+        /* **************************************
+		* TIME INPUT , we use 
+		***************************************** */
+        else if ( fieldObj.inputType == "time" ) {
+        	if(placeholder == "")
+        		placeholder="20:30";
+        	mylog.log("build field "+field+">>>>>> time");
+        	fieldHTML += iconOpen+'<input type="text" class="form-control timeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        }
+
+        /* **************************************
+		* LINK
+		***************************************** */
+        else if ( fieldObj.inputType == "link" ) {
+        	if(fieldObj.url.indexOf("http://") < 0 )
+        		fieldObj.url = "http://"+fieldObj.url;
+        	mylog.log("build field "+field+">>>>>> link");
+        	fieldHTML += '<a class="btn btn-primary '+fieldClass+'" href="'+fieldObj.url+'">Go There</a>';
+        } 
+
+         /* **************************************
+		* CAPCHAT
+		***************************************** */
+        else if ( fieldObj.inputType == "captcha" ) {
+        	mylog.log("build field "+field+">>>>>> captcha");
+        	fieldHTML += '<div class="col-md-8 pull-right text-right">';
+				fieldHTML += '<h5 for="message" class="letter-green margin-bottom-25">';
+					fieldHTML += '<span class="letter-red"><i class="fa fa-lock fa-2x"></i> sécurité</span><br>'; 
+					fieldHTML += 'merci de recopier le code ci-dessous<br>afin de valider votre message <i class="fa fa-chevron-down"></i>';
+				fieldHTML += '</h5>';
+				fieldHTML += '<input placeholder="taper le code ici" class="col-md-6 txt-captcha text-right pull-right" id="captcha">';
+			fieldHTML += '</div>';
+        }
+
+
+        /* **************************************
+		* TAG List
+		***************************************** */
+        else if ( fieldObj.inputType == "tagList" ) {
+        	mylog.log("build field "+field+">>>>>> tagList");
+        	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
+        	$.each(fieldObj.list,function(k,v) { 
+        		//mylog.log("build field ",k,v);
+        		fieldClass = (v.class) ? v.class : "";
+        		if(!v.excludeFromForm){
+	        		var lbl = ( fieldObj.trad && fieldObj.trad[v.labelFront] ) ? fieldObj.trad[v.labelFront] : tradCategory[k] ? tradCategory[k] : k;
+	        		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
+	        						'<a class="btn tagListEl btn-select-type-anc '+field+' '+k+'Btn '+fieldClass+'"'+
+	        						' data-tag="'+lbl+'" data-key="'+k+'" href="'+action+'"><i class="fa fa-'+v.icon+'"></i> <br>'+lbl+'</a>'+
+	        					 '</div>';
+        		}
+        	});
+        } 
+
+        /* **************************************
+		* LOCATION
+		***************************************** */
+        else if ( fieldObj.inputType == "location" ) {
+        	mylog.log("build field "+field+">>>>>> location");
+        	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" locationBtn btn btn-default'><i class='text-azure fa fa-map-marker fa-2x'></i> Localiser </a>";
+        	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Insee" name="address[codeInsee]" id="address[codeInsee]" value="'+( (fieldObj.address) ? fieldObj.address.codeInsee : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="country" name="address[addressCountry]" id="address[addressCountry]" value="'+( (fieldObj.address) ? fieldObj.address.addressCountry : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="address" name="address[streetAddress]" id="address[streetAddress]" value="'+( (fieldObj.address) ? fieldObj.address.streetAddress : "" )+'"/>';
+			mylog.log("location formValues", formValues);
+			//locations are saved in addresses attribute
+			if( formValues.address && formValues.geo && formValues.geoPosition ){
+				var initAddress = function(){
+					mylog.warn("init Adress location",formValues.address.addressLocality,formValues.address.postalCode);
+					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
+					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition}, -1);
+				};
+			}     
+			if( formValues.addresses ){
+				var initAddresses = function(){
+					$.each(formValues.addresses, function(i,locationObj){
+						mylog.warn("init extra addresses location ",locationObj.address.addressLocality,locationObj.address.postalCode);
+						dyFInputs.locationObj.copyMapForm2Dynform(locationObj);
+						dyFInputs.locationObj.addLocationToForm(locationObj, i);
+					});
+				};
+			} 
+			initField = function(){
+				if(initAddress)
+					initAddress();
+				if(initAddresses)
+					initAddresses();
+				dyFInputs.locationObj.init();
+			} 
+
+        }else if ( fieldObj.inputType == "postalcode" ) {
+        	mylog.log("build field "+field+">>>>>> postalcode");
+        	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" postalCodeBtn btn btn-default'><i class='text-azure fa fa-plus fa-2x'></i> Postal Code </a>";
+        	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="postal Code" name="address[postalCode]" id="address[postalCode]" value="'+( (fieldObj.address) ? fieldObj.address.postalCode : "" )+'"/>';
+        	fieldHTML += '<input type="hidden" placeholder="Locality" name="address[addressLocality]" id="address[addressLocality]" value="'+( (fieldObj.address) ? fieldObj.address.addressLocality : "" )+'"/>';
+        	
+			//locations are saved in addresses attribute
+			if( formValues.postalCodes ){
+				initField = function(){
+					$.each(formValues.postalCodes, function(i,postalCodeObj){
+						mylog.warn("init location",postalCodeObj.name,postalCodeObj.postalCode);
+						copyPCForm2Dynform(postalCodeObj);
+						addPostalCodeToForm(postalCodeObj);
+					});
+				};
+			}       
+        } 
+
+        /* **************************************
+		* ARRAY , is a list of sequential values
+		***************************************** */
+        else if ( fieldObj.inputType == "array" ) {
+        	mylog.log("build field "+field+">>>>>> array list");
+        	var addLabel="";
+        	var typeExtract="";
+        	if(typeof fieldObj.initOptions != "undefined"){
+        		if(typeof fieldObj.initOptions.labelAdd != "undefined")
+        	 		addLabel=fieldObj.initOptions.labelAdd;
+        	 	if(typeof fieldObj.initOptions.type != "undefined")
+        	 		typeExtract=fieldObj.initOptions.type;
+        	}
+        	fieldHTML +=   '<div class="inputs array">'+
+								'<div class="col-sm-10 no-padding">'+
+									'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif" style="position: absolute;right: 5px;top: 10px;display:none;">'+
+									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
+								'</div>'+
+								'<div class="col-sm-2 sectionRemovePropLineBtn">'+
+									'<a href="javascript:" data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
+								'</div>'+
+								'<div class="resultGetUrl resultGetUrl0 col-sm-12 col-md-12 col-xs-12 no-padding"></div>'+
+							'</div>'+
+							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
+								'<div class="col-sm-12 no-padding margin-top-5 margin-bottom-15">'+
+									'<a href="javascript:" data-container="'+field+fieldObj.inputType+'" data-id="'+field+'" data-type="'+typeExtract+'" class="addPropBtn btn btn-default w100p letter-green" alt="Add a line"><i class=" fa fa-plus-circle" ></i> '+addLabel+'</a> '+
+							        //'<i class=" fa fa-spinner fa-spin fa-2x loading_indicator" ></i>'+
+							        
+					       		'</div>'+
+				       		'</span>';
+			
+			if( formValues && formValues[field] ){
+				mylog.warn("dynForm >> ",field, formValues[field]);
+				fieldObj.value = formValues[field];
+			}
+			
+			if( fieldObj.init && $.isFunction(fieldObj.init) )
+        		initField = fieldObj.init;
+        	
+			initField = function(){
+				$("#loading_indicator").hide();
+				//initialize values
+				//value is an array of strings
+				var initOptions = new Object;
+				if(typeof fieldObj.initOptions != "undefined")
+					initOptions=fieldObj.initOptions;
+				$.each(fieldObj.value, function(optKey,optVal) {
+					if(optKey == 0)
+	                    $(".addmultifield").val(optVal);
+	                else {
+	                	addfield("."+field+fieldObj.inputType, optVal, field, initOptions);
+	                	$(".addmultifield"+optKey).val(optVal);
+	                }
+
+	                else 
+	                	dyFObj.init.addfield("."+field+fieldObj.inputType,optVal,field, initOptions);
+	                else 
+	                	addfield("."+field+fieldObj.inputType,optVal,field, initOptions);
+	                if( formValues && formValues.medias ){
+	                	$.each(formValues.medias, function(i,mediaObj) {
+	                		if( mediaObj.content && optVal == mediaObj.content.url ) {
+	                			if(typeof initOptions.type != "undefined" && initOptions.type == "video")
+	                				var strHtml = processUrl.getMediaVideo(mediaObj,"save");
+	                			else
+	                				var strHtml = processUrl.getMediaCommonHtml(mediaObj,"save");//dyFObj.init.buildMediaHTML(mediaObj);
+	                			$(".resultGetUrl"+optKey).html(strHtml);
+	                			$("#loading_indicator").hide();
+	                		}
+	                	});
+	                }
+				});
+				dyFObj.init.initMultiFields('.'+field+fieldObj.inputType,field,typeExtract);
+			}
+
+        }
+
+        /* **************************************
+		* PROPERTIES , is a list of pairs key/values
+		***************************************** */
+        else if ( fieldObj.inputType == "properties" ) {
+        	mylog.log("build field "+field+">>>>>> properties list", fieldObj.values);
+
+        	if(fieldObj.values){
+    			if(!dyFObj.init.initValues["tags"+field+"0"])
+    				dyFObj.init.initValues["tags"+field+"0"] = {};
+    			dyFObj.init.initValues["tags"+field+"0"]["tags"] = fieldObj.values;
+    		}
+    		
+    		mylog.log("build field "+field+">>>>>> properties dyFObj.init.initValues", dyFObj.init.initValues);
+    		if(fieldObj.maximumSelectionLength)
+    			dyFObj.init.initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
+    		mylog.log("fieldObj.data", fieldObj.data, fieldObj);
+    		if(typeof fieldObj.data != "undefined"){
+    			value = fieldObj.data;
+        		//dyFObj.init.initSelectNetwork[field]=fieldObj.data;
+        	}
+    		if(typeof fieldObj.mainTag != "undefined")
+				mainTag=fieldObj.mainTag;
+
+        	fieldHTML += '<div class="inputs properties">'+
+								'<div class="col-sm-3">'+
+									'<span>'+tradDynForm["Name of filter"]+'</span>'+
+									'<input type="text" name="'+field+'0" id="'+field+'0" class="addmultifield addmultifield0 form-control input-md" value="" placeholder="'+placeholder+'"/>'+
+									//'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
+								'</div>'+
+								'<div class="col-sm-7">'+
+									'<span>'+tradDynForm["Tags link a filter"]+'</span>'+
+									'<input type="text" class="form-control select2TagsInput" name="tags'+field+'0" id="tags'+field+'0" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
+									'<button data-id="'+field+'" class="pull-right removePropLineBtn btn btn-xs letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+								'</div>'+
+							'</div>'+
+							'<span class="form-group '+field+fieldObj.inputType+'Btn">'+
+							'<div class="col-sm-12">'+
+								'<div class="space10"></div>'+
+						        '<a href="javascript:;" data-id="'+field+'" data-container="'+field+fieldObj.inputType+'" class="addPropBtn btn btn-default text-bold letter-green" alt="Add a line"><i class=" fa fa-plus-circle" ></i></button> '+
+				       		'</div></span>'+
+				       '<div class="space5"></div>';
+			
+
+			initField = function(){
+				dyFObj.init.initMultiFields('.'+field+fieldObj.inputType,field);
+				//initialize values
+				//value is an array of objects structured like {"label":"","value":""}
+				/*$.each(fieldObj.value, function(optKey,optVal) {
+					if(optKey == 0)
+	                    $(".addmultifield").val(optVal); tweak this for properties
+	                else 
+						dyFObj.init.addfield("."+field+fieldObj.inputType,optVal );
+				});*/
+			}
+        }
+        else if( fieldObj.inputType == "tagsNetwork") {
+        	mylog.log("build field "+field+">>>>>> tagsNetwork");
+        	fieldHTML += iconOpen+'<input type="text" class="form-control " name="name'+field+'" id="name'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        	fieldHTML += iconOpen+'<input type="text" class="form-control select2TagsInput" name="tags'+field+'" id="tags'+field+'" value="'+value+'" placeholder="'+placeholder+'" '+style+'/>'+iconClose;
+        }
+
+         /* **************************************
+		* DropDown , searchInvite
+		***************************************** */
+        else if ( fieldObj.inputType == "searchInvite" ) {
+        	mylog.log("build field "+field+">>>>>> searchInvite");
+
+			fieldHTML += '<input class="invite-search '+fieldClass+' form-control text-left" placeholder="Un nom, un e-mail ..." autocomplete = "off" id="inviteSearch" name="inviteSearch" value="">'+
+				        		'<ul class="dropdown-menu" id="dropdown_searchInvite" style="">'+
+									'<li class="li-dropdown-scope">-</li>'+
+								'</ul>'+
+							'</input>';			
+        }
+
+        /* **************************************
+		* CAPTCHA
+		***************************************** */
+        else if ( fieldObj.inputType == "recaptcha" ) {
+        	mylog.log("build field "+field+">>>>>> recaptcah");
+        	fieldHTML += '<div class="g-recaptcha" data-sitekey="'+fieldObj.key+'"></div>';
+        } 
+        
+
+        /* **************************************
+		* CUSTOM 
+		***************************************** */
+        else if ( fieldObj.inputType == "custom" ) {
+        	mylog.log("build field "+field+">>>>>> custom");
+
+        	fieldHTML += (typeof fieldObj.html == "function") ? fieldObj.html() : fieldObj.html;
+        } 
+        /* **************************************
+        * CREATE NEWS
+        ************************************** */
+        else if( fieldObj.inputType == "createNews"){
+        	mylog.log("build field "+field+">>>>>> createNews");
+        	var newsContext=fieldObj.params;
+        	if(newsContext.targetType!="citoyens"){
+        		if(newsContext.authorImg=="")
+        			var authorImg=moduleUrl+'/images/thumb/default_citoyens.png';
+        		else
+        			var authorImg=baseUrl+newsContext.authorImg;
+        		if(newsContext.targetImg=="")
+        			var targetImg=moduleUrl+'/images/thumb/default_'+newsContext.targetType+'.png';
+        		else
+        			var targetImg=baseUrl+newsContext.targetImg;
+        		//targetName=newsContext.targetName;
+        		//authorName=newsContext.authorName;
+        	}
+        	fieldHTML='<div id="createNews" class="form-group">'+
+        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.writenewshere+
+			        '</label>'+
+			        '<div id="mentionsText" class="col-md-12 col-sm-12 col-xs-12 no-padding">'+
+        				'<textarea name="newsText"></textarea>'+
+        			'</div>'+
+					'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.tags+
+			        '</label>'+
+        			'<div class="no-padding">'+
+          				'<input id="tags" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">'+
+      				'</div>'+
+        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsvisibility+
+			        '</label>'+
+        			'<div class="dropdown no-padding col-md-12 col-sm-12 col-xs-12">'+
+          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12" id="btn-toogle-dropdown-scope" href="javascript:;">'+
+          					'<i class="fa fa-connectdevelop"></i> '+tradDynForm.network+' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
+          				'</a>'+
+          				'<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">';
+          					if(newsContext.targetType != "events"){
+            fieldHTML+=		'<li>'+
+              					'<a href="javascript:;" id="scope-my-network" class="scopeShare" data-value="private">'+
+              						'<h4 class="list-group-item-heading"><i class="fa fa-lock"></i> '+tradDynForm.private+'</h4>'+
+               						'<p class="list-group-item-text small">'+tradDynForm["explainprivate"+newsContext.targetType]+'</p>'+
+              					'</a>'+
+            				'</li>';
+            				}
+            fieldHTML+=		'<li>'+
+              					'<a href="javascript:;" id="scope-my-network" class="scopeShare" data-value="restricted">'+
+              						'<h4 class="list-group-item-heading"><i class="fa fa-connectdevelop"></i> '+tradDynForm.network+'</h4>'+
+                					'<p class="list-group-item-text small"> '+tradDynForm.explainnetwork+'</p>'+
+              					'</a>'+
+				            '</li>'+
+				            '<li>'+
+				              	'<a href="javascript:;" id="scope-my-wall" class="scopeShare" data-value="public">'+
+				              		'<h4 class="list-group-item-heading"><i class="fa fa-globe"></i> '+tradDynForm.public+'</h4>'+
+				                    '<p class="list-group-item-text small">'+tradDynForm.explainpublic+'</p>'+
+				              	'</a>'+
+				            '</li>'+
+			            '</ul>'+
+			            '<input type="hidden" name="scope" id="scope" value="restricted"/>'+
+	        		'</div>';
+	        		if(newsContext.targetType!="citoyens"){
+	        fieldHTML+=		'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsauthor+
+		            '</label>'+
+        			'<div class="dropdown no-padding col-md-12">'+
+          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12 text-left" id="btn-toogle-dropdown-targetIsAuthor" href="javascript:;">'+
+           					'<img height=20 width=20 src="'+targetImg+'">'+  
+           					' '+newsContext.targetName+
+				            ' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
+				        '</a>'+
+				        '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">'+
+				            '<li>'+
+              					'<a href="javascript:;" class="targetIsAuthor" data-value="1" data-name="'+newsContext.targetName+'">'+
+					                '<h4 class="list-group-item-heading">'+
+					                  	'<img height=20 width=20 src="'+targetImg+'">'+  
+					                	' '+newsContext.targetName+
+					                '</h4>'+
+					                '<p class="list-group-item-text small">'+tradDynForm.show+' '+newsContext.targetName+' '+tradDynForm.asAuthor+'</p>'+
+					            '</a>'+
+					        '</li>'+
+					        '<li>'+
+				              	'<a href="javascript:;" class="targetIsAuthor" data-value="0" data-name="'+tradDynForm.me+'">'+
+				              		'<h4 class="list-group-item-heading">'+
+				                		'<img height=20 width=20 src="'+authorImg+'">'+  
+				                		' '+tradDynForm.me+
+				                	'</h4>'+
+				                	'<p class="list-group-item-text small"> '+tradDynForm.iamauthor+'</p>'+
+				              	'</a>'+
+				            '</li>'+
+				        '</ul>'+
+				        '<input type="hidden" id="authorIsTarget" value="1"/>'+
+        			'</div>';
+        			}
+        	fieldHTML+=	'</div>';  
+          
+        }
+        /* 	*************************************
+        * SCOPE USER 	
+        ************************************** */
+        else if( fieldObj.inputType == "scope" ) {
+        	mylog.log("build field "+field+">>>>>> scope");
+        		//fieldClass += " select2TagsInput select2ScopeInput";				
+				fieldHTML += '<div class="col-md-12 no-padding">'+
+								'<div class="col-md-12 col-sm-12 col-xs-12">'+
+									'<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">'+
+										'<select id="select-country"></select>'+
+									'</div>'+
+									'<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">'+
+										'<div class="btn-group btn-group-justified">'+
+											'<button type="button" class="btn btn-default tooltips active" data-scope-type="city"'+
+												'data-toggle="tooltip" data-placement="top" '+
+												'title="'+tradDynForm["Add a city"]+'">'+
+												'<strong><i class="fa fa-bullseye"></i></strong> '+trad.city+
+											'</button>'+
+										'</div>'+
+										'<div class="btn-group btn-group-justified">'+
+											'<button type="button" class="btn btn-default tooltips" data-scope-type="cp"'+
+												'data-toggle="tooltip" data-placement="top" '+
+												'title="'+tradDynForm["Add a postal code"]+'">'+
+												'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Postal code"]+
+											'</button>'+
+										'</div>'+
+										'<div class="btn-group btn-group-justified">'+
+											'<button type="button" class="btn btn-default tooltips" data-scope-type="zone"'+
+												'data-toggle="tooltip" data-placement="top" '+
+												'title="'+tradDynForm["Add a zone"]+'">'+
+												'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Zone"]+
+											'</button>'+
+										'</div>'+
+									'</div>'+
+									'<div class="btn-group  btn-group-justified margin-bottom-10 visible-xs btn-group-scope-type" role="group">'+
+										'<div class="btn-group btn-group-justified">'+
+											'<button type="button" class="btn btn-default tooltips active" data-scope-type="city"'+
+											'data-toggle="tooltip" data-placement="top" '+
+											'title="'+tradDynForm["Add a city"]+'">'+
+											'<strong><i class="fa fa-bullseye"></i></strong> '+trad.city+
+											'</button>'+
+										'</div>'+
+										'<div class="btn-group btn-group-justified">'+
+											'<button type="button" class="btn btn-default tooltips" data-scope-type="cp"'+
+											'data-toggle="tooltip" data-placement="top" '+
+											'title="'+tradDynForm["Add a postal code"]+'">'+
+											'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Postal code"]+
+											'</button>'+
+										'</div>'+
+									'</div>'+
+									'<div class="btn-group  btn-group-justified margin-bottom-10 visible-xs btn-group-scope-type" role="group">'+
+										'<div class="btn-group btn-group-justified">'+
+											'<button type="button" class="btn btn-default tooltips" data-scope-type="zone"'+
+											'data-toggle="tooltip" data-placement="top" '+
+											'title="'+tradDynForm["Add a zone"]+'">'+
+											'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Zone"]+
+											'</button>'+
+										'</div>'+
+									'</div>'+
+									'<div class="col-md-12 no-padding">'+
+										'<div class="input-group margin-bottom-10 col-md-12">'+
+											'<input id="input-add-multi-scope" type="text" class="form-control col-md-12" placeholder="'+tradDynForm["Add a city"]+' ...">'+
+											'<div class="dropdown">'+
+												'<ul class="dropdown-menu" id="dropdown-multi-scope-found"></ul>'+
+											'</div>'+
+										'</div>'+
+									'</div>'+
+								'</div>'+
+								'<div class="text-left">'+
+									'<div class="label label-info label-sm block text-left" id="lbl-info-select-multi-scope"></div>'+
+									'<div id="multi-scope-list-city" class="col-md-12 margin-top-15">'+
+										'<h5><i class="fa fa-angle-down"></i> Cities </h5>'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'</div>'+
+									'<div id="multi-scope-list-cp" class="col-md-12 margin-top-15">'+
+										'<h5><i class="fa fa-angle-down"></i> '+tradDynForm["Postal code"]+'</h5>'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'</div>'+
+									'<div id="multi-scope-list-level4" class="col-md-12 margin-top-15">'+
+										'<h5><i class="fa fa-angle-down"></i>Administrative zone N°4</h5>'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'</div>'+
+									'<div id="multi-scope-list-level3" class="col-md-12 margin-top-15">'+
+										'<h5><i class="fa fa-angle-down"></i> Administrative zone N°3</h5>'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'</div>'+
+									'<div id="multi-scope-list-level2" class="col-md-12 margin-top-15">'+
+										'<h5><i class="fa fa-angle-down"></i> Administrative zone N°2</h5>'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'</div>'+
+									'<div id="multi-scope-list-level1" class="col-md-12 margin-top-15">'+
+										'<h5><i class="fa fa-angle-down"></i> Country</h5>'+
+										'<hr style="margin-top: 10px; margin-bottom: 10px;">'+
+									'</div>'+
+								'</div>'+
+							'</div>';
+
+					
+        }
+        else if ( fieldObj.inputType == "password" ) {
+        	mylog.log("build field "+field+">>>>>> password");
+        	fieldHTML += '<input id="'+field+'" name="'+field+'" class="form-control" type="password"/>';
+       	}
+        else {
+        	mylog.log("build field "+field+">>>>>> input text");
+        	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        }
+
+        if( fieldObj.custom )
+        	fieldHTML += fieldObj.custom ;
+
+		fieldHTML += '</div>';
+
+		$(id).append(fieldHTML);
+
+		//Post creation initialisation
+		if( fieldObj.init && $.isFunction(fieldObj.init) )
+        	fieldObj.init(field+fieldObj.inputType);
+        if(initField && $.isFunction(initField) )
+        	initField ('.'+field+fieldObj.inputType);
+	},
+
+	/* **************************************
+	*	any event to be initiated 
+	***************************************** */
+	bindForm : function (params, formRules) { 
+
+		/* **************************************
+		* FORM VALIDATION and save process binding
+		***************************************** */
+		mylog.info("bindForm :: connecting submit btn to $.validate pluggin");
+		mylog.dir(formRules);
+		var errorHandler = $('.errorHandler', $(params.formId));
+
+		$(params.formId).validate({
+
+			rules : formRules,
+
+			submitHandler : function(form) {
+				//alert(dyFObj.activeModal+" #btn-submit-form");
+				$(dyFObj.activeModal+" #btn-submit-form").html( '<i class="fa  fa-spinner fa-spin fa-"></i>' ).prop("disabled",true);
+				errorHandler.hide();
+				mylog.info("form submitted "+params.formId);
+				
+				if(params.beforeSave && jQuery.isFunction( params.beforeSave ) )
+					params.beforeSave();
+
+				if(params.onSave && jQuery.isFunction( params.onSave ) ){
+					//	alert("onSave")
+					params.onSave();
+					return false;
+		        } 
+		        else {
+		        	//TODO SBAR - Remove notPost form element
+		        	/*$.each($(params.formId).serializeArray()).function() {
+		        		if ($this.)
+		        	}*/
+		        	mylog.info("default SaveProcess",params.savePath);
+		        	mylog.dir($(params.formId).serializeFormJSON());
+		        	$.ajax({
+		        	  type: "POST",
+		        	  url: params.savePath,
+		        	  data: $(params.formId).serializeFormJSON(),
+		              dataType: "json"
+		        	}).done( function(data){
+		                if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
+		                    afterDynBuildSave(data.map,data.id);
+		                mylog.info('saved successfully !');
+
+		        	});
+					return false;
+			    }
+			    
+			},
+			invalidHandler : function(event, validator) {//display error alert on form submit
+				errorHandler.show();
+				// $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
+				// 	$( settings.formId ).submit();	        	
+		  //       });
+		        $("#btn-submit-form").hide(); 
+			}
+		});	
+
+	},
+	
+	bindDynFormEvents : function (params, formRules) {  
+
+		if(params.surveyId)
+			dySObj.bindSurvey(params, formRules);
+		else 
+			dyFObj.bindForm(params, formRules);
+		
+		mylog.info("connecting any specific input event select2, datepicker...");
+		/* **************************************
+		* SELECTs , we use https://github.com/select2/select2
+		***************************************** */
+		//is a type select with options
+		if( $(".select2Input").length)
+		{
+			if( jQuery.isFunction(jQuery.fn.select2) )
+			{
+				/*$(".select2Input").select2(
+					{
+					  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : ""
+					}
+				);*/
+				
+				$.each($(".select2Input"),function () 
+				{
+					if( jQuery.isFunction(jQuery.fn.select2) )
+						$(this).select2({
+							  "placeholder" : ( $(this).data("placeholder") ) ? $(this).data("placeholder") : "",
+							  allowClear: true
+							}
+						);
+					else
+						mylog.error("select2 library is missing");
+				 });
+			}
+		} 
+
+		//is a type input
+		if( $(".select2TagsInput").length)
+		{
+			if( jQuery.isFunction(jQuery.fn.select2) )
+			{
+				$.each($(".select2TagsInput"),function () 
+				{
+					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , dyFObj.init.initValues[ $(this).attr("id") ], dyFObj.init.initValues );
+					if( dyFObj.init.initValues[ $(this).attr("id") ] && !$(this).hasClass( "select2-container" ))
+					{
+						mylog.log( "here2");
+						var selectOptions = 
+						{
+						  "tags": dyFObj.init.initValues[ $(this).attr("id") ].tags ,
+						  "tokenSeparators": [','],
+						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
+						};
+						if(dyFObj.init.initValues[ $(this).attr("id") ].maximumSelectionLength)
+							selectOptions.maximumSelectionLength = dyFObj.init.initValues[$(this).attr("id")]["maximumSelectionLength"];
+						if(typeof dyFObj.init.initSelectNetwork != "undefined" && typeof dyFObj.init.initSelectNetwork[$(this).attr("id")] != "undefined" && dyFObj.init.initSelectNetwork[$(this).attr("id")].length > 0)
+							selectOptions.data=dyFObj.init.initSelectNetwork[$(this).attr("id")];
+						
+						$(this).removeClass("form-control").select2(selectOptions);
+						if(typeof mainTag != "undefined")
+							$(this).val([mainTag]).trigger('change');
+					}
+				 });
+			} else
+				mylog.error("select2 library is missing");
+		} 
+
+		/* **************************************
+		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
+		***************************************** */
+		function loadDateTimePicker(callback) {
+			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
+				lazyLoad( baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.full.min.js', 
+						  baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.min.css',
+						  callback);
+		    }
+		}
+		function loadTimePicker(callback) {
+			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
+				lazyLoad( baseUrl+'/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js',
+						baseUrl+'/plugins/moment/moment.js', 
+						  baseUrl+'/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css',
+						  callback);
+		    }
+		}
+
+		var initDate = function(){
+			mylog.log("init dateInput");
+			jQuery.datetimepicker.setLocale('fr');
+			$(".dateInput").datetimepicker({ 
+		        autoclose: true,
+		        lang: "fr",
+		        format: "d/m/Y",
+		        timepicker:false
+		    });
+		};
+
+		if(  $(".dateInput").length){
+			loadDateTimePicker(initDate);
+		}
+		var initTime = function(){
+			mylog.log("init dateInput");
+			//alert();
+			//$('.timeInput').timepicker(
+               // minuteStep: 1,
+              //  appendWidgetTo: 'body',
+              
+                //showSeconds: true,
+                //showMeridian: false,
+                //defaultTime: false
+            //);
+			/*$(".timeInput").datetimepicker({ 
+		        format: 'LT'
+		    });*/
+		};
+		/*if(  $(".timeInput").length){
+
+			$('.timeInput').timepicker({
+               // minuteStep: 1,
+              //  appendWidgetTo: 'body',
+              
+                showSeconds: false,
+                showMeridian: false,
+                defaultTime: false
+            });
+            $('.startTime').timepicker('setTime', '06:00');
+            $('.endTime').timepicker('setTime', '19:00');
+			//loadTimePicker(initTime);
+		}*/
+		/* **************************************
+		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
+		***************************************** */
+	
+		var initDateTime = function(){
+			mylog.log("init dateTimeInput");
+			jQuery.datetimepicker.setLocale('fr');
+			$(".dateTimeInput").datetimepicker({
+				weekStart: 1,
+				step: 15,
+				lang: 'fr',
+				format: 'd/m/Y H:i'
+			   });
+		};
+		if(  $(".dateTimeInput").length){
+			loadDateTimePicker(initDateTime);
+		}
+		/* **************************************
+		* Location type 
+		***************************************** */
+		if(  $(".locationBtn").length)
+		{
+			//todo : for generic dynForm check if map exist 
+			$(".locationBtn").off().on( "click", function(){ 
+				
+		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
+		        if(typeof formInMap.showMarkerNewElement != "undefined"){
+		        	$("#ajax-modal").modal("hide");
+		        	console.log(".locationBtn");
+					formInMap.actived = true ;
+			        showMap(true);
+		        	console.log(".locationBtn showMarkerNewElement");
+		        	formInMap.showMarkerNewElement(); 
+		        }
+		    });
+		}
+
+		/* **************************************
+		* Postal Code type 
+		***************************************** */
+		if(  $(".postalCodeBtn").length)
+		{
+			//todo : for generic dynForm check if map exist 
+			$(".postalCodeBtn").off().on( "click", function(){ 
+				$("#ajax-modal").modal("hide");
+		        showMap(true);
+		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
+		        if(typeof formInMap.showMarkerNewElement != "undefined"){ formInMap.showMarkerNewElement(true); }
+		    });
+		}
+		
+		/* **************************************
+		* Image uploader , we use https://github.com/FineUploader/fine-uploader
+		***************************************** */
+		if(  $(".fine-uploader-manual-trigger").length)
+		{
+			function loadFineUploader(callback,template) {
+				if( ! jQuery.isFunction(jQuery.fineUploader) ) {
+					if(template=='qq-template-manual-trigger')
+						var cssLazy=baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css';
+					else
+						var cssLazy=baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css';
+					lazyLoad( baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js', 
+							  cssLazy,
+							  callback);
+			    }
+			}
+			var docListIds=[];
+			var FineUploader = function(){
+				mylog.log("init fineUploader");
+				$(".fine-uploader-manual-trigger").fineUploader({
+		            template: (dyFObj.init.initValues.template) ? dyFObj.init.initValues.template : 'qq-template-manual-trigger',
+		            request: {
+		                endpoint: uploadObj.path
+		            },
+		            validation: {
+		                allowedExtensions: (dyFObj.init.initValues.filetypes) ? dyFObj.init.initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
+		                sizeLimit: 2000000
+		            },
+		            messages: {
+				        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
+				        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
+				    },
+		            callbacks: {
+		            	//when a img is selected
+					    onSubmit: function(id, fileName) {
+					    	$('.fine-uploader-manual-trigger').fineUploader('setEndpoint',uploadObj.path);	
+					    	//$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+    					    if( dyFObj.init.initValues.showUploadBtn  ){
+						      	$('#trigger-upload').removeClass("hide").click(function(e) {
+				        			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
+						        	urlCtrl.loadByHash(location.hash);
+				        			$('#ajax-modal').modal("hide");
+						        });
+
+					        }
+					    },
+					    onCancel: function(id) {
+					    	if(($("ul.qq-upload-list > li").length-1)<=0)
+					    		$('#trigger-upload').addClass("hide");
+	        			},
+	        			
+					    //launches request endpoint
+					    //onUpload: function(id, fileName) {
+					      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
+					      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
+					      //console.log('onUpload uplaodObj',uploadObj);
+					      //var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+					      //console.log('onUpload getEndpoint',ex);
+					    //},
+					    //launched on upload
+					    //onProgress: function(id, fileName, uploadedBytes,totalBytes) {
+					    	/*console.log('onProgress uplaodObj',uploadObj);
+					    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+					    	console.log('onProgress getEndpoint',ex);
+					    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
+					      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
+					    //},
+					    //when every img finish upload process whatever the status
+					    onComplete: function(id, fileName,responseJSON,xhr) {
+					    	
+					    	console.log(responseJSON);
+					    	
+					    	if($("#ajaxFormModal #newsCreation").val()=="true"){
+					    		docListIds.push(responseJSON.id.$id);
+					    	}
+					    	if(!responseJSON.result){
+					    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
+					    		console.error(trad["somethingwentwrong"] , responseJSON.msg)
+					    	}
+					    },
+					    //when all upload is complete whatever the result
+					    onAllComplete: function(succeeded, failed) {
+					     	toastr.info( "Fichiers bien chargés !!");
+					      	if($("#ajaxFormModal #newsCreation").val()=="true"){
+					      		console.log("docslist",docListIds);
+					      		//var mentionsInput=[];
+					      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
+      								mentionsInput=data;
+    							});*/
+					      		var media=new Object;
+					      		if(uploadObj.contentKey=="file"){
+					      			media.type="gallery_files";
+					      			media.countFiles=docListIds.length;
+					      			media.files=docListIds;
+					      		}else{
+					      			media.type="gallery_images";
+					      			media.countImages=docListIds.length;
+					      			media.images=docListIds;
+					      		}
+					    		var addParams = {
+	              				  type: "news",
+	              				  parentId: uploadObj.id,
+	              				  parentType: uploadObj.type,
+	              				  scope:$("#ajaxFormModal #createNews #scope").val(),
+	              				  text:$("#ajaxFormModal #createNews textarea").val(),
+	              				  media: media
+	            				};
+	            				if ($("#ajaxFormModal #createNews #tags").val() != "")
+									addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
+								if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
+									addParams.targetIsAuthor = true;
+								/*if (mentionsResult.mentionsInput.length != 0){
+									addParams.mentions=mentionsResult.mentionsInput;
+									addParams.text=mentionsResult.text;
+								}*/
+								addParams=mentionsInit.beforeSave(addParams,'#ajaxFormModal #createNews textarea');
+								$.ajax({
+							        type: "POST",
+							        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",
+							        //dataType: "json",
+							        data: addParams,
+									type: "POST",
+							    })
+							    .done(function (data) {
+						    		
+									return true;
+							    }).fail(function(){
+								   toastr.error("Something went wrong, contact your admin"); 
+								   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
+								   $("#btn-submit-form").prop('disabled', false);
+							    });
+							}
+					    if( jQuery.isFunction(dyFObj.init.initValues.afterUploadComplete) )
+					      	dyFObj.init.initValues.afterUploadComplete();
+					     	uploadObj.gotoUrl = null;
+					    },
+					    onError: function(id) {
+					      toastr.info(trad["somethingwentwrong"]);
+					    }
+					},
+		            thumbnails: {
+		                placeholders: {
+		                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
+		                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
+		                }
+		            },
+		            autoUpload: false
+		        });
+			};
+			if(  $(".fine-uploader-manual-trigger").length)
+				loadFineUploader(FineUploader,dyFObj.init.initValues.template);
+		}
+
+		/* **************************************
+		* DATE RANGE INPUT , we use https://github.com/dangrossman/bootstrap-daterangepicker
+		***************************************** */
+		if( $(".daterangeInput").length){
+			var initDateRange = function(){
+								$('.daterangeInput').daterangepicker({
+						            timePicker: true,
+						            timePickerIncrement: 30,
+						            format: 'DD/MM/YYYY h:mm A'
+						        }, function(start, end, label) {
+						            mylog.log(start.toISOString(), end.toISOString(), label);
+						        });
+							};
+			if( jQuery.isFunction(jQuery.fn.daterangepicker) )
+				initDateRange();
+			else
+				lazyLoad( baseUrl+'/plugins/bootstrap-daterangepicker/daterangepicker.js' ,  
+						  baseUrl+'/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css',
+						  initDateRange);
+		    /*$('.daterangeInput').val(moment().format('DD/MM/YYYY h:mm A') + ' - ' + moment().add('days', 1).format('DD/MM/YYYY h:mm A'))
+			.daterangepicker({  
+				startDate: moment(),
+				endDate: moment().add('days', 1),
+				timePicker: true, 
+				timePickerIncrement: 30, 
+				format: 'DD/MM/YYYY h:mm A' 
+			});*/
+		}
+
+		
+		/* **************************************
+		* PROPERTIES 
+		***************************************** */
+		if(  $(".addmultifield").length )
+		{
+			//if(  $(".addmultifield1").length )
+			//	$('head').append('<style type="text/css">.inputs textarea.addmultifield1{width:90%; height:34px;}</style>');
+
+			//intialise event on the add new row button 
+			$('.addPropBtn').unbind("click").click(function(){
+				mylog.log("addPropBtn", $(this).data('id'));
+				var field = $(this).data('id');
+				var typeExtract = $(this).data('type');
+				if( $('.'+field+' .inputs .addmultifield:visible').length==0 || ( $("."+field+" .addmultifield:last").val() != "" && $( "."+field+" .addmultifield1:last" ).val() != "") )
+					dyFObj.init.addfield('.'+$(this).data('container'),'',field, typeExtract);
+				else
+					toastr.info("please fill properties first");
+			} );
+		}
+
+		/* **************************************
+		* WYSIWYG 
+		***************************************** */
+		if(  $(".wysiwygInput").length )
+		{
+			console.log("wysiwygInput wysiwygInput");
+				var initField = function(){
+					$(".wysiwygInput").summernote({
+
+						oninit: function() {
+							/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
+								$(this).code($(this).attr("placeholder"));
+							}*/
+						}, onfocus: function(e) {
+							/*if ($(this).code() == $(this).attr("placeholder")) {
+								$(this).code("");
+							}*/
+						}, onblur: function(e) {
+							/*if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
+								$(this).code($(this).attr("placeholder"));
+							}*/
+						}, onkeyup: function(e) {},
+						toolbar: [
+						['style', ['bold', 'italic', 'underline', 'clear']],
+						['color', ['color']],
+						['para', ['ul', 'ol', 'paragraph']],
+						]
+					});
+				if( jQuery.isFunction(jQuery.fn.summernote) )
+					initField();
+			    else {
+			    	lazyLoad( baseUrl+'/plugins/summernote/dist/summernote.min.js', 
+							  baseUrl+'/plugins/summernote/dist/summernote.css',
+							  initField);
+		    	}
+			}
+		}
+
+		/* **************************************
+		* MARKDOWN 
+		***************************************** */
+		if(  $(".markdownInput").length )
+		{
+			console.log("markdownInput");
+			var initField = function(){
+				$(".markdownInput").markdown({
+						savable:true,
+						onPreview: function(e) {
+							var previewContent = "";
+						    mylog.log(e);
+						    mylog.log(e.isDirty());
+						    if (e.isDirty()) {
+						    	var converter = new showdown.Converter(),
+						    		text      = e.getContent(),
+						    		previewContent      = converter.makeHtml(text);
+						    } else {
+						    	previewContent = "Default content";
+						    }
+						    return previewContent;
+					  	},
+					  	onSave: function(e) {
+					  		mylog.log(e);
+					  	},
+					});
+
+				
+				lazyLoad( 	baseUrl+'/plugins/showdown/showdown.min.js',
+								baseUrl+'/plugins/bootstrap-markdown/js/bootstrap-markdown.js',
+								baseUrl+'/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css',
+								initField);
+		    	
+			}
+		}
+
+	},
+	/* **************************************
+	*	specific methods for each type of input
+	***************************************** */
+	init : { 
+		/* **************************************
+		* add a new line to the multi line process 
+		* val can be a value when type array or {"label":"","value":""} when type property
+		***************************************** */
+		initValues : {},
+		initSelect : {},
+		initSelectNetwork : [],
+		addfield : function ( parentContainer,val,name, type ) 
+		{
+			mylog.log("dyFObj.init.addfield",parentContainer+' .inputs',val,name);
+			if(!$.isEmptyObject($(parentContainer+' .inputs')))
+		    {
+		    	if($(parentContainer+' .properties').length > 0){
+		    		$( dyFObj.init.propertyLineHTML( val, name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+		    	}
+		    	else
+		    		$( dyFObj.init.arrayLineHTML( val,name ) ).fadeIn('slow').appendTo(parentContainer+' .inputs');
+		    	
+		    	$(".loading_indicator").hide();
+
+		    	$(parentContainer+' .addmultifield:last').focus();
+		        dyFObj.init.initMultiFields(parentContainer,name, type);
+
+
+		        mylog.log("dyFObj.init.initSelect", dyFObj.init.initSelect);
+		        $.each(dyFObj.init.initSelect , function(e,v){
+					mylog.log( "id " , e, v, dyFObj.init.initValues[ e ].tags);
+					if( v == true){
+						
+						var selectOptions = 
+						{
+						  "tags": dyFObj.init.initValues[ e ].tags ,
+						  "tokenSeparators": [','],
+						  "placeholder" : ( $("#"+e).attr("placeholder") ) ? $("#"+e).attr("placeholder") : "",
+						};
+						mylog.log( "here3");
+						if(dyFObj.init.initValues[ e ].maximumSelectionLength)
+							selectOptions.maximumSelectionLength = dyFObj.init.initValues[e]["maximumSelectionLength"];
+						mylog.log( "here3");
+						if(typeof dyFObj.init.initSelectNetwork != "undefined" && typeof dyFObj.init.initSelectNetwork[e] != "undefined" && dyFObj.init.initSelectNetwork[e].length > 0)
+							selectOptions.data=dyFObj.init.initSelectNetwork[e];
+						mylog.log( "here3");
+						$("#"+e).removeClass("form-control").select2(selectOptions);
+						if(typeof mainTag != "undefined")
+							$("#"+e).val([mainTag]).trigger('change');
+
+						dyFObj.init.initSelect[e]=false;
+					}
+				 });
+
+
+		    }else 
+		    	mylog.error("container doesn't seem to exist : "+parentContainer+' .inputs');
+		},
+		
+		/* **************************************
+		* initiliase events 
+		* prevent submitting empty fields 
+		* remove a field
+		* enter key submition
+		***************************************** */
+		initMultiFields : function (parentContainer,name, typeExtract){
+			mylog.log("dyFObj.init.initMultiFields",parentContainer);
+		  //manage using Enter to make easy loop editing
+		  $(parentContainer+' .addmultifield').unbind('keydown').keydown(function(event) 
+		  {
+		  	if ( event.keyCode == 13)
+		    {
+				event.preventDefault();
+		        if( $(this).val() != ""){
+		        	if( $( this ).parent().next().children(".addmultifield1").val() != "" )
+		        		dyFObj.init.addfield(parentContainer,'',name);
+		        	else 
+		        		$( this ).parent().next().children(".addmultifield1").focus();
+		        } 
+		        else
+		        	toastr.warning("La paire (clef/valeure) doit etre remplie.");
+		    }
+		  });
+		 // var typeExtract=null;
+		  //if(typeof initOptions != "undefined" && initOptions.type=="video")
+		  	//typeExtract=initOptions.type;
+		  var count = $(".addmultifield").length-1;
+		  processUrl.getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count,1, typeExtract);
+		  //manage using Enter to make easy loop editing
+		  //for 2nd property field
+		  $(parentContainer+' .addmultifield1').unbind('keydown').keydown(function(event) 
+		  {
+		  	if ( event.ctrlKey &&  event.keyCode == 13)
+		    {
+				event.preventDefault();
+		        if( $(this).val() != "" && $( this ).parent().prev().children(".addmultifield").val() != "" )
+		        	dyFObj.init.addfield(parentContainer,'',name);
+		        else
+		        	toastr.warning("La paire (clef/valeure) doit etre remplie.");
+		    }
+		  }); 
+
+		  //bind remove btn event 
+		  $(parentContainer+' .removePropLineBtn').click(function(){
+		  	//$(this).parents().eq(1).prev().remove();
+		  	$(this).parents().eq(1).remove();
+		  });
+
+		},
+
+		//seems depreceated tka , refactor 15/05
+		// clearProperties : function (where)
+		// {
+		// 	$("#ajaxSV "+where+" .inputs").html("");
+		// 	dyFObj.init.propertyLineHTML( {"label":"","value":""} );
+		// }
+
+		/* **************************************
+		* build HTML for each element of a property list 
+		***************************************** */
+		propertyLineHTML : function (propVal,name)
+		{
+			var count = $(".addmultifield").length;
+			mylog.log("dyFObj.init.propertyLineHTML", propVal, typeof propVal, name, count);
+			if( !notEmpty(propVal) ) 
+		    	propVal = {"label":"","value":""};
+		    
+		    if(!dyFObj.init.initValues["tags"+name+count])
+	    				dyFObj.init.initValues["tags"+name+count] = {};
+		    dyFObj.init.initValues["tags"+name+count]["tags"] = tagsList;
+
+		    dyFObj.init.initSelect["tags"+name+count] = true;
+
+			var str = '<div class="space5"></div><div class="col-sm-3">'+
+						'<input type="text" id="'+name+count+'" name="'+name+count+'" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
+						'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
+					'</div>'+
+					'<div class="col-sm-7">'+
+						//'<textarea type="text" name="tags'+name+'[]" class="addmultifield'+count+' form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);" placeholder="valeur"   >'+propVal.value+'</textarea>'+
+						'<input type="text" class="form-control select2TagsInput" name="tags'+name+count+'" id="tags'+name+count+'" value="" placeholder="" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
+						'<button class="pull-right removePropLineBtn btn btn-xs letter-red tooltips pull-right" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
+					'</div>';
+
+					// TODO Rapha
+					// '<div class="col-sm-3">'+
+					// 	'<input type="text" name="properties" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
+					// 	'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
+					// '</div>'+
+					// '<div class="col-sm-7">'+
+					// 	'<input type="text" class="form-control select2TagsInput" name="tags'+field+'" id="tags'+field+'" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
+					// 	'<button data-id="'+field+fieldObj.inputType+'" class="pull-right removePropLineBtn btn btn-xs btn-blue" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></button>'+
+					// '</div>';
+
+			return str;
+		},
+
+		/* **************************************
+		* build HTML for each element of array
+		***************************************** */
+		arrayLineHTML : function (val,name)
+		{
+			mylog.log("dyFObj.init.arrayLineHTML : ",val);
+			if( typeof val == "undefined" ) 
+		    	val = "";
+		    var count = $(".addmultifield").length;
+			var str = 	'<div class="col-sm-12 no-padding margin-top-10">'+
+						'<div class="col-sm-10 no-padding">'+
+								'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
+								'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md value="" placeholder="..."/>'+
+							'</div>'+
+							'<div class="col-sm-2 sectionRemovePropLineBtn">'+
+								'<a href="javascript:" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
+							'</div>'+
+							'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
+						'</div>';
+
+			mylog.log("-------------------------");
+			/*'<div class="space5"></div><div class="col-sm-10">'+
+						'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
+						'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'"/>'+
+						'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
+						'</div>'+
+						'<div class="col-sm-2">'+
+						'<button class="pull-right removePropLineBtn btn btn-xs btn-blue tooltips pull-left" data- data-original-title="Retirer cette ligne" data-placement="bottom"><i class=" fa fa-minus-circle" ></i></button>'+
+					'</div>';*/
+			return str;
+		},
+		//seems depreceated tka , refactor 15/05
+		// buildMediaHTML : function (mediaObj){
+		// 	mylog.log("dyFObj.init.buildMediaHTML : ",mediaObj.name);
+		// 	var str = '<div class="extracted_url padding-10">'+
+		// 			'<div class="extracted_thumb  col-xs-4" id="extracted_thumb">'+
+		// 				'<a href="#" class="videoSignal text-white center"><i class="fa fa-3x fa-play-circle-o"></i>'+
+		// 				'<input class="videoLink" value="'+mediaObj.content.url+'" type="hidden"></a>'+
+		// 				'<img src="'+mediaObj.content.image+'" width="100" height="100">'+
+		// 			'</div>'+
+		// 			'<div class="extracted_content col-xs-8 padding-5">'+
+		// 				'<h4><a href="'+mediaObj.content.url+'" target="_blank" class="lastUrl text-dark">'+mediaObj.name+'</a></h4>'+
+		// 				'<p>'+mediaObj.description+'</p>'+
+		// 			'</div>'+
+		// 		'</div>';
+		// 	return str;
+		// },
+		initRangeHours : function (){
+			mylog.log("dyFObj.init.initRangeHours : ");
+			$(".addHoursRange").click(function(){
+		    	var addToDay=$(this).data("value");
+		    	dyFObj.init.addHoursRange(addToDay);
+		    });
+		},
+		bindTimePicker : function (addToDay,countRange, hours){
+			mylog.log("dyFObj.init.bindTimePicker", addToDay,countRange, hours);
+			var startTime = '06:00';
+			var endTime = '19:00';
+			if(notNull(hours)){
+				startTime = hours.opens;
+				endTime = hours.closes;
+			}
+
+			if(typeof addToDay != "undefined" && notNull(addToDay)){
+				//Init time
+				$('#startTime'+addToDay+countRange+', #endTime'+addToDay+countRange).timepicker({
+		               // minuteStep: 1,
+		              //  appendWidgetTo: 'body',
+		              
+		            showSeconds: false,
+		            showMeridian: false,
+		            defaultTime: false
+		        });
+		        $('#startTime'+addToDay+countRange).timepicker('setTime', startTime);
+		        $('#endTime'+addToDay+countRange).timepicker('setTime', endTime);
+		        $.each(openingHoursResult, function(e,v){
+		        	if(v.dayOfWeek==addToDay){
+		        		openingHoursResult[e]["hours"].push({"opens":startTime,"closes":endTime})
+		        	}
+		        });
+		        $(".removeHoursRange").off().on("click",function(){
+		        	var dayInc=$(this).data("days");
+		        	var inc=$(this).data("value");
+		        	$("#hoursRange"+dayInc+" .hoursRange"+inc).remove();
+		        	$.each(openingHoursResult, function(e,v){
+		        		if(v.dayOfWeek==dayInc){
+		        			openingHoursResult[e]["hours"].splice(inc,1);
+		        		}
+		        	});
+		        });
+
+			}else{
+				$('.timeInput').timepicker({
+	               // minuteStep: 1,
+	              //  appendWidgetTo: 'body',
+	              
+	                showSeconds: false,
+	                showMeridian: false,
+	                defaultTime: false
+	            });
+	            $('.startTime').timepicker('setTime', startTime);
+	            $('.endTime').timepicker('setTime', endTime);
+				//loadTimePicker(initTime);
+			}
+			$('.timeInput').off().on('changeTime.timepicker', function(e) {
+				var typeInc=$(this).data("type");
+				var daysInc=$(this).data("days");
+				var hoursInc=$(this).data("value");
+				$.each(openingHoursResult, function(i,v){
+	        		if(v.dayOfWeek==daysInc)
+	        			openingHoursResult[i]["hours"][hoursInc][typeInc]=e.time.value;
+		        });
+			  });
+		},
+
+		addHoursRange : function (addToDay){
+			mylog.log("dyFObj.init.addHoursRange", addToDay);
+			var countRange=$("#hoursRange"+addToDay+" .hoursRange").length;
+			mylog.log("countRange", countRange);
+			//alert(countRange);
+			str='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+countRange+'" data-value="'+countRange+'">'+
+					'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
+	        		'<i class="fa fa-hourglass-start"></i> Start hour'+
+	    			'</label>'+
+	    		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
+	        		'<i class="fa fa-hourglass-end"></i> End hour'+
+	    		'</label>'+
+	    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+						'<input type="text" class="form-control input-small timeInput startTime" data-value="'+countRange+'" data-days="'+addToDay+'" data-type="opens" id="startTime'+addToDay+countRange+'">'+
+					'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+				'</div>'+
+	//        		
+	    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+						'<input type="text" class="form-control input-small timeInput endTime" data-value="'+countRange+'" data-days="'+addToDay+'" data-type="closes" id="endTime'+addToDay+countRange+'">'+
+					'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+				'</div>'+
+				'<a href="javascript:;" class="btn btn-default text-red removeHoursRange margin-top-10 col-md-12 col-sm-12" data-days="'+addToDay+'" data-value="'+countRange+'"><i class="fa fa-trash"></i> Remove hours range</a>'+
+			'</div>';
+			$("#hoursRange"+addToDay).find('.hoursRange:last').after(str);
+			dyFObj.init.bindTimePicker(addToDay,countRange);
+		},
+		/***************************************
+		* Build OpeningHour on week HTML system 
+		***************************************/
+		buildOpeningHours : function (data){
+			mylog.log("dyFObj.init.buildOpeningHours", data);
+			var arrayDayKeys=["Su","Mo","Tu","We","Th","Fr","Sa"];
+			var arrayKeyTrad={
+				"Su":{"key":"Su","label":"Sunday"},
+				"Mo":{"key":"Mo","label":"Monday"},
+				"Tu":{"key":"Tu","label":"Tuesday"},
+				"We":{"key":"We","label":"Wednesday"},
+				"Th":{"key":"Th","label":"Thursday"},
+				"Fr":{"key":"Fr","label":"Friday"},
+				"Sa":{"key":"Sa","label":"Saturday"}
+			};
+
+			var allWeek = true ;
+			if(notNull(data) && typeof data == "object"){
+				$.each(data,function(e,v){
+					if(typeof v != "object")
+						allWeek = false;
+				});
+			}
+			mylog.log("allWeek", allWeek);
+			//((allWeek == true) ? "style='display:none;'" : "")
+			var str = "<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+				"<div id='selectedDays' class='col-md-12 col-sm-12 col-xs-12 text-center margin-bottom-10' "+((allWeek == true) ? "style='display:none;'" : "")+">";
+					$.each(arrayDayKeys,function(e,v){
+						var active = ((typeof data != "object" || typeof data[e] == "object" ) ? "active"  : "");
+						str+="<div class='inline'>"+
+								'<a class="btn btn-default btn-select-day '+active+'" data-key="'+v+'" href="javascript:;">'+arrayKeyTrad[v].key+'</a>'+
+							"</div>";
+					});
+			str+="</div>"+
+				"<div id='daysList' class='col-md-12 col-sm-12 col-xs-12 no-padding'>";
+					$.each(arrayDayKeys,function(e,v){
+
+						var noneDay = ( (typeof data != "object" || typeof data[e] == "object")  ? ""  : "display:none;");
+						var checked = (( typeof data != "object" || (typeof data[e] == "object" && data[e].allDay == "true") ) ? "checked"  : "");
+						var noneHours = ((typeof data[e] == "object" && notNull(data[e].hours) ) ? ""  : "style='display:none;'");
+						// mylog.log("typeof data[e]", typeof data[e], data[e]);
+						// mylog.log("noneDay", noneDay);
+						// mylog.log("checked", checked);
+						// mylog.log("noneHours", noneHours);
+				str+=	"<div class='col-md-12 col-sm-12 col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray; "+noneDay+"'>"+
+							"<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+								'<label class="col-md-4 col-sm-5 col-xs-6 text-left control-label no-padding no-margin" for="allDaysMo">'+
+									'<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
+								'</label>'+
+								'<input type="checkbox" class="allDaysWeek" id="allDays'+v+'" value="true" data-key="'+v+'" '+checked+'/> '+tradDynForm.allday+
+							"</div>"+
+							'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" '+noneHours+'>';
+								if( typeof data[e] == "object" && notNull(data[e].hours) ){
+									$.each(data[e].hours,function(kHour,vHour){
+										mylog.log("hours", kHour, vHour);
+										str +='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+kHour+'" data-value="'+kHour+'">'+
+												'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
+								        		'<i class="fa fa-hourglass-start"></i> Start hour'+
+								    			'</label>'+
+								    		'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
+								        		'<i class="fa fa-hourglass-end"></i> End hour'+
+								    		'</label>'+
+								    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+													'<input type="text" class="form-control input-small timeInput startTime" data-value="'+kHour+'" data-days="'+v+'" data-type="opens" id="startTime'+v+kHour+'">'+
+												'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+											'</div>'+
+								    		'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+													'<input type="text" class="form-control input-small timeInput endTime" data-value="'+kHour+'" data-days="'+v+'" data-type="closes" id="endTime'+v+kHour+'">'+
+												'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+											'</div>';
+										if(kHour != 0)
+											str += '<a href="javascript:;" class="btn btn-default text-red removeHoursRange margin-top-10 col-md-12 col-sm-12" data-days="'+v+'" data-value="'+kHour+'"><i class="fa fa-trash"></i> Remove hours range</a>';
+										str += '</div>';
+
+									});
+								}else{
+									str+= '<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
+										'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
+											'<i class="fa fa-hourglass-start"></i> Start hour'+
+										'</label>'+
+										'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
+											'<i class="fa fa-hourglass-end"></i> End hour'+
+										'</label>'+
+										'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+											'<input type="text" class="form-control input-small timeInput startTime" data-value="0" data-days="'+v+'" data-type="opens" id="startTime'+v+'0">'+
+											'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+										'</div>'+
+										'<div class="input-group bootstrap-timepicker timepicker col-md-6 col-sm-6 col-xs-6 no-padding pull-left">'+
+											'<input type="text" class="form-control input-small timeInput endTime" data-value="0" data-days="'+v+'" data-type="closes" id="endTime'+v+'0">'+
+											'<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
+										'</div>'+
+									'</div>';
+								}
+								str+= '<a href="javascript:;" class="btn btn-default text-green addHoursRange margin-top-10 col-md-12 col-sm-12" data-value="'+v+'"><i class="fa fa-plus"></i> Add an hours range</a>'+
+							'</div>'+
+						"</div>";
+					});
+				str+="</div>"+
+				'<input type="hidden" name="openingHours" value="true"/>'+
+			"</div>";
+			return str;
+		},
+
+		/* **************************************
+		* init Boostrap Switch
+		***************************************** */
+		initbootstrapSwitch : function (el,change, css)
+		{
+			mylog.log("dyFObj.init.initbootstrapSwitch", el,change, css);
+			var initSwitch = function(){
+				mylog.log("init bootstrap switch");
+				$(el).bootstrapSwitch();
+				if(typeof change == "function"){
+					$(el).on('switchChange.bootstrapSwitch', function(event, state) {
+						change($(this));
+					});
+				}
+				if(notNull(css))
+					$(el).parent().parent().css(css);
+				else
+					$(el).parent().parent().addClass("form-group");
+			};
+
+			if( jQuery.isFunction(jQuery.fn.bootstrapSwitch) )
+				initSwitch();
+		    else {
+		    	lazyLoad( baseUrl+'/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js', 
+						  baseUrl+'/plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css',
+						  initSwitch);
+	    	}
+			
+		}
+	},
+	searchExist : function (searchValue,types,contact){
+		
+		searchType = (types) ? types : ["organizations", "projects", "events"/*, "needs"*/, "citoyens"];
+
+		var data = { 	 
+			"name" : searchValue,
+			// "locality" : "", a otpimiser en utilisant la localité 
+			"searchType" : searchType,
+			"indexMin" : 0,
+			"indexMax" : 50
+		};
+		$("#listSameName").html("<i class='fa fa-spin fa-circle-o-notch'></i> Vérification d'existence");
+		$("#similarLink").show();
+		$("#btn-submit-form").html('<i class="fa  fa-spinner fa-spin"></i>').prop("disabled",true);
+		$.ajax({
+	      type: "POST",
+	          url: baseUrl+"/" + moduleId + "/search/globalautocomplete",
+	          data: data,
+	          dataType: "json",
+	          error: function (data){
+	             mylog.log("error"); mylog.dir(data);
+	             $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false);
+	          },
+	          success: function(data){
+	          	mylog.log("searchExist", data);
+	            var str = "";
+	 			var compt = 0;
+	 			var msg = "Verifiez si cet élément n'existe pas déjà";
+	 			$("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false);
+	 			cotmp = {};
+	 			$.each(data.results, function(id, elem) {
+	  				mylog.log("similarlink globalautocomplete", elem);
+	  				city = "";
+					postalCode = "";
+					var htmlIco ="<i class='fa fa-users'></i>";
+					if(elem.type){
+						typeIco = elem.type;
+						htmlIco ="<i class='fa fa-"+dyFInputs.get(elem.type).icon +"'></i>";
+					}
+					where = "";
+					if (elem.address != null) {
+						city = (elem.address.addressLocality) ? elem.address.addressLocality : "";
+						postalCode = (elem.address.postalCode) ? elem.address.postalCode : "";
+						if( notEmpty( city ) && notEmpty( postalCode ) )
+						where = ' ('+postalCode+" "+city+")";
+					}
+					//var htmlIco="<i class='fa fa-calendar fa-2x'></i>";
+					if("undefined" != typeof elem.profilImageUrl && elem.profilImageUrl != ""){
+						htmlIco= "<img width='25' height='25' alt='image' class='img-circle' src='"+baseUrl+elem.profilThumbImageUrl+"'/>";
+					}
+					
+					if(contact == true){
+						cotmp[id] = {id:id, name : elem.name};
+						str += 	"<div class='col-xs-12 padding-10'>"+
+									"<a href='javascript:;' onclick='fillContactFields( \""+id+"\" );' class='btn btn-xs btn-default w50p' >"+
+										htmlIco + " " + elem.name + "</br>" + where +
+									"</a>" +
+								"</div>";
+						msg = "Verifiez si le contact est dans Communecter";
+					}else{
+						str += 	"<a target='_blank' href='#page.type."+ elem.type +".id."+ id +"' class='btn btn-xs btn-danger col-xs-12 w50p text-left padding-5 margin-5' style='height:42px' >"+
+								"<span>"+ htmlIco +"</span> <span> " + elem.name+"</br>"+where+ "</span>"
+							"</a>";
+					}
+					//str += directory.lightPanelHtml(elem);  
+					
+					compt++;
+
+
+	  			});
+				
+				if (compt > 0) {
+					$("#listSameName").html("<div class='col-sm-12 light-border text-red'> <i class='fa fa-eye'></i> "+msg+" : </div>"+str);
+					$("#listSameName").show();
+				} else {
+					$("#listSameName").html("<span class='txt-green'><i class='fa fa-thumbs-up text-green'></i> Aucun élément avec ce nom.</span>");
+
+				}
+
+
+				
+	          }
+	 	});
 	}
 }
 //TODO : refactor into dyfObj.inputs
@@ -2806,7 +2817,7 @@ var dyFInputs = {
 			        				$("#ajaxFormModal #url").val($("#ajaxFormModal #name ").val());
 			        			if( data.name ){
 			        				$("#ajaxFormModal #name ").val(data.name);
-			        				globalSearch(data.name,[ dyFInputs.get(type).col ], addElement );
+			        				dyFObj.searchExist(data.name,[ dyFInputs.get(type).col ], addElement );
 			        			}
 			        			if( data.description ){
 			        				if($("#ajaxFormModal #shortDescription"))$("#ajaxFormModal #shortDescription").val( data.description );
@@ -2819,7 +2830,7 @@ var dyFInputs = {
 			        			}
 	        			});
 	        		} else if( $("#ajaxFormModal #name ").val().length > 3 )
-	            		globalSearch($(this).val(),[ dyFInputs.get(type).col ], addElement );
+	            		dyFObj.searchExist($(this).val(),[ dyFInputs.get(type).col ], addElement );
 	            	
 	            	dyFObj.canSubmitIf();
 	        	});

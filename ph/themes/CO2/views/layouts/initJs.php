@@ -20,12 +20,12 @@
         ];
 
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
-    var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
     var ctrlId = "<?php echo Yii::app()->controller->id;?>";
     var actionId = "<?php echo Yii::app()->controller->action->id ;?>";
     var moduleId = "<?php echo $parentModuleId?>";
-    var activeModuleId = "<?php echo $this->module->id?>";
     var parentModuleUrl = "<?php echo ( @Yii::app()->params["module"]["parent"] )  ? Yii::app()->getModule( Yii::app()->params["module"]["parent"] )->getAssetsUrl() : Yii::app()->controller->module->assetsUrl ?>";
+    var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
+    var activeModuleId = "<?php echo $this->module->id?>";
 
     var modules = {
         "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
