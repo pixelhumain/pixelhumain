@@ -4,10 +4,10 @@ return array(
 
 	//GLOBAL INTERFACE 
 
-	"up"=>"Oui",
-	"down"=>"Non",
-	"Currently, this message will be" => "En l'état actuel du vote, ce message sera",
-	"deleted" => "effacé",
-	"rehabilitated" => "réhabilité",
-	"This message has been" => "Ce message a été"
+	"up"=>"Sì",
+	"down"=>"No",
+	"Currently, this message will be" => "Allo stato attuale della votazione, questo messaggio sarà",
+	"deleted" => "cancellato",
+	"rehabilitated" => "riabilitato",
+	"This message has been" => "Questo messaggio è stato"
 );
