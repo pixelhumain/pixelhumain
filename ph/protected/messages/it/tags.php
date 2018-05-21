@@ -14,7 +14,7 @@ return array(
 	"childhood" => "infanzia",
 	"citizenship" => "cittadinanza",
 	"citizen" => "cittadino",
-	"ess" => "ess",
+	"ess" => "Economia sociale e solidale",
 	"social solidarity economy" => "economia della solidarietà sociale",
 	"energy" => "energia",
 	"climat" => "clima",
