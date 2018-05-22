@@ -33,6 +33,7 @@
         "places": <?php echo json_encode( Place::getConfig() ) ?>,
         "poi": <?php echo json_encode( Poi::getConfig() ) ?>,
         "chat": <?php echo json_encode( Chat::getConfig() ) ?>,
+        "interop": <?php echo json_encode( Interop::getConfig() ) ?>,
         "cotools" : <?php echo json_encode( array(
             "module"        => "cotools",
             "init"          => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
