@@ -2700,8 +2700,12 @@ var dyFInputs = {
 							mylog.log("tags", typeof typeObj[key].dynForm.jsonSchema.properties.tags, typeObj[key].dynForm.jsonSchema.properties.tags);
 							mylog.log("networkTags", networkTags);
 							typeObj[key].dynForm.jsonSchema.properties.tags.values=networkTags;
-							if(typeof networkJson.request.mainTag != "undefined")
+							if(typeof networkJson.request.mainTag != "undefined"){
 								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag[0];
+								if(typeof typeObj[key].dynForm.jsonSchema.properties.tags.data == "undefined")
+									typeObj[key].dynForm.jsonSchema.properties.tags.data = [] ;
+								typeObj[key].dynForm.jsonSchema.properties.tags.data = $.merge(networkJson.request.mainTag[0], typeObj[key].dynForm.jsonSchema.properties.tags.data);
+							}
 						}
 
 						if(notNull(networkJson.dynForm)){
