@@ -91,6 +91,8 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });
+
+      
   });
  
   function initNotifications(){

@@ -46,6 +46,7 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 
 
 //tka todo : should be loaded on demand
+'/plugins/jquery.dynForm.js',
 '/plugins/jquery-validation/dist/jquery.validate.min.js',
 '/plugins/jQuery-Knob/js/jquery.knob.js',
 '/plugins/jQuery-Smart-Wizard/js/jquery.smartWizard.js',
@@ -81,7 +82,8 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
     '/js/scopes/scopes.js',
     '/js/co.js',
     '/js/default/index.js',
-    '/js/default/directory.js'
+    '/js/default/directory.js',
+    '/js/jquery.filter_input.js'
   );
 
   HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( Yii::app()->params["module"]["parent"] )->getAssetsUrl() );
@@ -91,6 +93,7 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
     '/assets/css/CO2/CO2-color.css',
     '/assets/css/CO2/CO2.css',
     '/assets/css/plugins.css',
+    '/assets/css/default/dynForm.css',
   );
   HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->theme->baseUrl);
 
@@ -109,10 +112,18 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 </head>
 
 <body class="body">
+  <progress class="progressTop" max="100" value="20"></progress>   
+  <div id="mainMap">
+      <?php 
+      $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+      $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
+      $modulePath = ( @Yii::app()->params["module"]["parent"] ) ?  "../../".$parentModuleId."/views"  : "..";
+      $this->renderPartial( $layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"], array("modulePath"=>$modulePath )); ?>
+  </div>
   <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
 
 <?php 
-    $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+    
     $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
     $CO2DomainName = Yii::app()->params["CO2DomainName"];
     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
@@ -140,6 +151,7 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });
+      themeObj.init();
   });
  
   function initNotifications(){
