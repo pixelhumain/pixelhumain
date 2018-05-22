@@ -13,6 +13,7 @@
 		"Already in the list" => "Déjà dans la liste",
 		"My contacts" => "Mes contacts",
 		"This user is already in your contacts" => "Cet utilisateur est déjà dans vos contacts",
+		"A name, an e-mail..." => "Un nom, un e-mail ...",
 	);
 
 ?>
