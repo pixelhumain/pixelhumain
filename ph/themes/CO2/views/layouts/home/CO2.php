@@ -24,8 +24,8 @@
             $params = CO2::getThemeParams();
             foreach ($params["pages"] as $key => $value) {
                 if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
-                    <a href="<?php echo $key; ?>" 
-                    class="<?php echo $key; ?>ModBtn lbh btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header">
+                    <a href="javascript:;" data-hash="<?php echo $key; ?>" 
+                    class="<?php echo $key; ?>ModBtn btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
                             
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                     <span class=""><?php echo Yii::t("common", $value["subdomainName"]); ?></span>
@@ -166,7 +166,7 @@
 							<hr style="width:40%; margin:20px auto; border: 4px solid #cecece;">
 						</h3>
 
-						<a href="#search" class="btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="search" >    
+						<a href="javascript:;" data-hash="#search" class="btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="search" >    
 		                    <div class="text-center">
 		                        <!-- <h4 class="text-red no-margin "><i class="fa fa-search"></i>
 		                            <span class="homestead"> <?php //echo Yii::t("home","SEARCH") ?></span>
@@ -186,7 +186,7 @@
 
 		                
 		                
-		                <a href="#live" class="btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" > 
+		                <a href="javascript:;" data-hash="#live" class="btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" > 
 		                    <div class="text-center">
 		                        <div class="col-md-12 no-padding text-center">
 		                            <h4 class="no-margin text-red">
@@ -200,7 +200,7 @@
 		                    </div>
 		                </a>
 		                           
-		                <a href="#agenda" class="btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="agenda">
+		                <a href="javascript:;" data-hash="#agenda" class="btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="agenda">
 		                    <div class="text-center">
 		                        <div class="col-md-12 no-padding text-center">
 		                            <h4 class="no-margin text-red">
@@ -214,7 +214,7 @@
 		                    </div>
 		                </a>
 
-		                <a href="#annonces" class=" btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="classified" >
+		                <a href="javascript:;" data-hash="#annonces" class=" btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="classified" >
 		                    <div class="text-center">
 		                        <div class="col-md-12 no-padding text-center">
 		                            <h4 class="no-margin text-red">
@@ -232,7 +232,7 @@
 							<img class="img-responsive" style="margin:0 auto;margin-top: 0px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/modules_screen.png"/>
 						</div>
 
-		                <a href="#live" class="btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" > 
+		                <a href="javascript:;" data-hash="#ressources" class="btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" > 
 		                    <div class="text-center">
 		                        <div class="col-md-12 no-padding text-center">
 		                            <h4 class="no-margin text-red">
