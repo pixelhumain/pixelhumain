@@ -463,9 +463,10 @@ function initMyScopes(){
         myScopes = JSON.parse(localStorage.getItem("myScopes"));
 
     if( notNull(myScopes) && myScopes.userId == userId )  {
-        myScopes.open={};
         myScopes.search = {};
         myScopes.openNews={};
+        if(myScopes.open==null)
+            myScopes.open={};
         if(myScopes.multiscopes==null)
             myScopes.multiscopes={};
         console.log("init scope", myScopes);
