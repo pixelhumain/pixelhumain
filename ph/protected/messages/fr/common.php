@@ -940,6 +940,7 @@ return array(
 	"No more results"=>"Il n&#146;y a plus de résultats",
 	"No more results match in your search" =>  "Il n'y a plus de résultats correspondant à votre recherche",
 	"No city found for"=>"Aucune ville trouvée pour",
+	"You don't find the city you want for"=>"Vous ne trouvez pas la ville souhaitée pour",
 	"Perhaps, this city has no data at this time"=>"Il est possible qu'aucune donnée ne soit enregistrée dans cette zone",
 	"Connect you"=>"Connectez-vous",
 	"Invite by mail" => "Inviter par e-mail",
