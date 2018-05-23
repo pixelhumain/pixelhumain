@@ -528,7 +528,7 @@ var dyFObj = {
 	},
 	
 	//entry point function for opening dynForms
-	openForm : function  (type, afterLoad,data,isSub) { 
+	openForm : function  (type, afterLoad,data, isSub) { 
 	    //mylog.clear();
 	    //alert("openForm");
 	    $.unblockUI();
@@ -561,7 +561,7 @@ var dyFObj = {
 	//(string) :: will get the definition if exist in typeObj[key].dybnForm
 	//if doesn't exist tries to lazyload it from assets/js/dynForm
 	//(object) :: is dynformp definition
-	getDynFormObj : function(type, callback,afterLoad, data ){
+	getDynFormObj : function(type, callback,afterLoad, data){
 		//alert(type+'.js');
 		mylog.warn("------------ getDynFormObj",type, callback,afterLoad, data );
 		if (typeof type == "object"){

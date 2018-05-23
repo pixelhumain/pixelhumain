@@ -29,7 +29,12 @@
 
     var modules = {
         "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
-        "classifieds": <?php echo json_encode( Classified::getConfig() ) ?>,
+        //Configure here eco
+        "classifieds": {
+            "goods":<?php echo json_encode( Classified::getConfig("goods") ) ?>,
+            "jobs":<?php echo json_encode( Classified::getConfig("jobs") ) ?>,
+            "ressources":<?php echo json_encode( Classified::getConfig("ressources") ) ?>
+        },
         "places": <?php echo json_encode( Place::getConfig() ) ?>,
         "poi": <?php echo json_encode( Poi::getConfig() ) ?>,
         "chat": <?php echo json_encode( Chat::getConfig() ) ?>,
@@ -207,7 +212,7 @@ var typeObj = {
         "osm"         : { color: "lightblue2",   icon: "bullhorn",   name: "Open Street Map" },
         "ods"         : { color: "lightblue2",   icon: "bullhorn",   name: "OpenDatasoft" },
         "places"      : { color: "brown",        icon: "map-marker", name: trad.places },
-        "classified"  : { color: "azure",        icon: "bullhorn",   name: trad.classifieds },
+        "classifieds"  : { color: "azure",        icon: "bullhorn",   name: trad.classifieds },
         "GovernmentOrganization" : { color: "red",   icon: "university", name: "services publics" },
         "ressources"  : { color: "vine",   icon: "cubes",   name: "Ressource" },
         "news"        : { color: "blue-k",   icon: "newspaper-o",   name: "news" },

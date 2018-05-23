@@ -80,6 +80,7 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
     '/js/dataHelpers.js',
 //tka refactor : should be loaded on demand
     '/js/scopes/scopes.js',
+    '/js/default/globalsearch.js',
     '/js/co.js',
     '/js/default/index.js',
     '/js/default/directory.js',
