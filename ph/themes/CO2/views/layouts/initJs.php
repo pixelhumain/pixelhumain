@@ -153,14 +153,7 @@ var typeObj = {
     var prestationList = prestation.categories;
     
     var roomList = <?php echo json_encode( CO2::getContextList("room") ) ?>;
-    var search={
-        value:"",
-        page:0,
-        count:true,
-        app:"search",
-        type:"<?php echo Organization::COLLECTION ?>"
-    };
-
+    
     var directoryViewMode="<?php echo "block" ?>";
     //var classifiedSubTypes = <?php //echo json_encode( Classified::$classifiedSubTypes ) ?>;
     var urlTypes = <?php asort(Element::$urlTypes); echo json_encode(Element::$urlTypes) ?>;
@@ -171,8 +164,6 @@ var typeObj = {
     var deviseDefault = <?php echo json_encode(@$params["deviseDefault"]) ?>;
 
     var rolesList=[ tradCategory.financier, tradCategory.partner, tradCategory.sponsor, tradCategory.organizor, tradCategory.president, tradCategory.director, tradCategory.speaker, tradCategory.intervener];
-
-    var myScopes={};
     var mapIconTop = {
         "default" : "fa-arrow-circle-right",
         "citoyen":"<?php echo Person::ICON ?>", 
@@ -256,6 +247,20 @@ var typeObj = {
     var urlBackDocs = location.hash;
     var allReadyLoadWindow=false;
     var navInSlug=false;
+    var searchObject={
+        text:"",
+        page:0,
+        indexMin:0,
+        indexStep:30,
+        count:true,
+        tags:[],
+        initType : "",
+        types:[],
+        countType:[],
+        locality:{}
+    };
+    var myScopes = {};
+    
     var themeObj = {
         init : function(){
             toastr.options = {
@@ -273,37 +278,7 @@ var typeObj = {
             };
             initFloopDrawer();
             resizeInterface();
-            //if(typeof localStorage != "undefined" && typeof localStorage.myScopes != "undefined" && typeof localStorage.userId != "undefined"){ 
-            if( notNull(localStorage) && notNull(localStorage.myScopes) )
-                myScopes = JSON.parse(localStorage.getItem("myScopes"));
-
-            if( notNull(myScopes) && myScopes.userId == userId )  {
-                myScopes.open={};
-                myScopes.search = {};
-                myScopes.openNews={};
-                if(myScopes.multiscopes==null)
-                    myScopes.multiscopes={};
-            } else {
-                myScopes={
-					type:"open",
-                    typeNews:"open",
-					userId: userId,
-					open : {},
-                    openNews : {},
-                    search : {},
-					communexion : <?php echo json_encode(CO2::getCommunexionUser()) ?>,
-					multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 
-									json_encode($me["multiscopes"]) :
-									$multiscopes; ?>
-                };
-
-                if( myScopes.communexion != false)
-                    myScopes.communexion=scopeObject(myScopes.communexion);
-                else
-                    myScopes.communexion={};
-                localStorage.setItem("myScopes",JSON.stringify(myScopes));
-            }
-            
+            initMyScopes();
             //if(typeof localStorage != "undefined" && typeof localStorage.circuit != "undefined")
               //  circuit.obj = JSON.parse(localStorage.getItem("circuit"));
             //Init mentions contact
@@ -481,6 +456,44 @@ var typeObj = {
             }
         }
     };
+
+function initMyScopes(){
+    //if(typeof localStorage != "undefined" && typeof localStorage.myScopes != "undefined" && typeof localStorage.userId != "undefined"){ 
+    //var myScopes={};
+    if( notNull(localStorage) && notNull(localStorage.myScopes) )
+        myScopes = JSON.parse(localStorage.getItem("myScopes"));
+
+    if( notNull(myScopes) && myScopes.userId == userId )  {
+        myScopes.search = {};
+        myScopes.openNews={};
+        if(myScopes.open==null)
+            myScopes.open={};
+        if(myScopes.multiscopes==null)
+            myScopes.multiscopes={};
+        console.log("init scope", myScopes);
+    } else {
+        myScopes={
+            type:"open",
+            typeNews:"open",
+            userId: userId,
+            open : {},
+            openNews : {},
+            search : {},
+            communexion : <?php echo json_encode(CO2::getCommunexionUser()) ?>,
+            multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 
+                            json_encode($me["multiscopes"]) :
+                            $multiscopes; ?>
+        };
+
+        if( myScopes.communexion != false)
+            myScopes.communexion=scopeObject(myScopes.communexion);
+        else
+            myScopes.communexion={};
+        console.log("init scope", myScopes);
+        localStorage.setItem("myScopes",JSON.stringify(myScopes));
+    }
+    //return myScopes;
+}
 
 function expireAllCookies(name, paths) {
     var expires = new Date(0).toUTCString();

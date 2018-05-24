@@ -24,8 +24,8 @@
             $params = CO2::getThemeParams();
             foreach ($params["pages"] as $key => $value) {
                 if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
-                    <a href="<?php echo $key; ?>" 
-                    class="<?php echo $key; ?>ModBtn lbh btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header">
+                    <a href="javascript:;" data-hash="<?php echo $key; ?>" 
+                    class="<?php echo $key; ?>ModBtn btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
                             
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                     <span class=""><?php echo Yii::t("common", $value["subdomainName"]); ?></span>
@@ -166,7 +166,7 @@
 							<hr style="width:40%; margin:20px auto; border: 4px solid #cecece;">
 						</h3>
 
-						<a href="#search" class="btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="search" >    
+						<a href="javascript:;" data-hash="#search" class="btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="search" >    
 		                    <div class="text-center">
 		                        <!-- <h4 class="text-red no-margin "><i class="fa fa-search"></i>
 		                            <span class="homestead"> <?php //echo Yii::t("home","SEARCH") ?></span>
@@ -186,7 +186,7 @@
 
 		                
 		                
-		                <a href="#live" class="btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" > 
+		                <a href="javascript:;" data-hash="#live" class="btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" > 
 		                    <div class="text-center">
 		                        <div class="col-md-12 no-padding text-center">
 		                            <h4 class="no-margin text-red">
@@ -200,7 +200,7 @@
 		                    </div>
 		                </a>
 		                           
-		                <a href="#agenda" class="btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="agenda">
+		                <a href="javascript:;" data-hash="#agenda" class="btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="agenda">
 		                    <div class="text-center">
 		                        <div class="col-md-12 no-padding text-center">
 		                            <h4 class="no-margin text-red">
@@ -214,7 +214,7 @@
 		                    </div>
 		                </a>
 
-		                <a href="#annonces" class=" btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="classified" >
+		                <a href="javascript:;" data-hash="#annonces" class=" btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="classified" >
 		                    <div class="text-center">
 		                        <div class="col-md-12 no-padding text-center">
 		                            <h4 class="no-margin text-red">
@@ -232,7 +232,7 @@
 							<img class="img-responsive" style="margin:0 auto;margin-top: 0px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/modules_screen.png"/>
 						</div>
 
-		                <a href="#live" class="btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" > 
+		                <a href="javascript:;" data-hash="#ressources" class="btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" > 
 		                    <div class="text-center">
 		                        <div class="col-md-12 no-padding text-center">
 		                            <h4 class="no-margin text-red">
@@ -339,7 +339,6 @@
 							<small> 
 								<?php echo Yii::t("home","Create debates, share information, ask for help,<br> share an idea, propose a project, ask a question") ?>
 								<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">
-								<?php echo Yii::t("home","Create debates, share information, ask for help,<br> share an idea, propose a project, ask a question") ?> ...<br>
 								<?php echo Yii::t("home","You will find a thousand reasons to use") ?>
 								 
 								<a href="#live" class="letter-red" target="_blank"><?php echo Yii::t("home","IN LIVE") ?> !</a>
@@ -564,7 +563,7 @@
 		<center>
 			<i class="fa fa-caret-down" style="color:#fff"></i>
 			<div class="col-xs-12 margin-top-10 margin-bottom-25">
-				<h4>Ils font parti de l'aventure !</h4>
+				<h4><?php echo Yii::t("home","They form a key part of the adventure") ?> !</h4>
 				<?php 
 					$list = PHDB::findAndSort(Person::COLLECTION, array(
 						"profilThumbImageUrl" => array( '$exists' => 1,'$ne' => "")

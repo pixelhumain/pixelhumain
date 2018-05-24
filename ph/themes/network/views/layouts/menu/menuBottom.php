@@ -8,7 +8,8 @@
 				$countAdd = count($params['add'])-1;
 				$i=0;
 				foreach($params['add'] as $key => $data){
-					$href="javascript:dyFObj.openForm('".$key."', 'sub')";
+					//$href="javascript:dyFObj.openForm('".$key."', 'sub')";
+					$href="javascript:;";
 					$lbh="";
 					if($key=="organization")
 						$bgStyle="	background-color: rgba(146, 191, 32, 0.6);";
@@ -23,9 +24,9 @@
 					}
 
 					if($key!="person"){ ?>
-						<a href="<?php echo $href ?>" class="<?php echo $lbh ?> btn no-padding hoverDiv<?php echo $key ?> <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?>" style="<?php echo $bgStyle ?>"> <span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
+						<a href="<?php echo $href ?>" class="btn-open-form btn no-padding hoverDiv<?php echo $key ?> <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?>" data-form-type="<?php echo $key ?>" style="<?php echo $bgStyle ?>"> <span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
 					<?php } else { ?>
-						<a href="javascript:;" class="<?php echo $lbh ?> btn no-padding hoverDiv<?php echo $key ?> <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?>" style="<?php echo $bgStyle ?>" data-toggle="modal" data-target="#invite-modal"><span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
+						<a href="javascript:;" class="btn no-padding hoverDiv<?php echo $key ?> <?php echo $convertArray[$countAdd]; ?>div<?php echo $convertArray[$i] ?>" style="<?php echo $bgStyle ?>" data-toggle="modal" data-target="#invite-modal"><span style="font-variant: small-caps;font-size: 17px;"><?php echo Yii::t("common",$key); ?></span></a>
 			<?php	}
 				$i++; } ?>
 			</div>
