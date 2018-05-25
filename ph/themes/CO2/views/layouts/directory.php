@@ -125,7 +125,7 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 
 <?php 
     
-    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+    /*$me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
     $CO2DomainName = Yii::app()->params["CO2DomainName"];
     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
                             array( "layoutPath"=>$layoutPath , 
@@ -134,7 +134,7 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
                                     "mainTitle"=>"", //$mainTitle,
                                     "placeholderMainSearch"=>"", //$placeholderMainSearch,
                                     "type"=>@$type,
-                                    "me" => $me) );
+                                    "me" => $me) );*/
 
 
     echo $content; ?> 

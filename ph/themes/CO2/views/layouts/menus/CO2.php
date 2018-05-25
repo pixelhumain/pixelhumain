@@ -65,16 +65,16 @@
             <a href="#welcome" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" 
                 <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
             >
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-head-search.png" 
+                <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-head-search.png" 
                      class="logo-menutop main pull-left hidden-xs hidden-sm" height=17>
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
-                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" style="display: none!important;" height=20>
+                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" style="display: none!important;" height=20>-->
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
-                     class="logo-menutop pull-left visible-xs visible-sm" height=25>
+                     class="logo-menutop pull-left" height=25>
             </a>
-            <span class="hidden-xs skills font-montserrat"><?php echo Yii::t("common",$mainTitle); ?></span>
+           <!-- <span class="hidden-xs skills font-montserrat"><?php echo Yii::t("common",$mainTitle); ?></span>-->
             <?php 
                 //$params = CO2::getThemeParams();  
                 /*$icon = "";
@@ -511,12 +511,6 @@
                                 <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Ads") ?>
                             </a>
                         </li>
-                        <li class="text-left visible-xs">
-                            <a href="javascript:;" data-hash="#ressources" class="lbh-menu-app bg-white text-red">
-                                <i class="fa fa-cubes"></i> <?php echo Yii::t("common", "Sharing") ?>
-                            </a>
-                        </li>
-                       
                         <li class="text-left visible-xs">
                             <a href="#default.view.page.links" class="lbhp text-red bg-right">
                                 <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
