@@ -27,6 +27,8 @@ $preferences = Preference::getPreferencesByTypeId(@Yii::app()->session["userId"]
         <?php } ?>
         ];
 
+    var myScopes={};
+
     var currentScrollTop = 0;
     var isMapEnd = false;
 	//used in communecter.js dynforms
@@ -132,6 +134,37 @@ $preferences = Preference::getPreferencesByTypeId(@Yii::app()->session["userId"]
               "showMethod": "fadeIn",
               "hideMethod": "fadeOut"
             };
+
+            if( notNull(localStorage) && notNull(localStorage.myScopes) )
+                myScopes = JSON.parse(localStorage.getItem("myScopes"));
+
+            if( notNull(myScopes) && myScopes.userId == userId )  {
+                myScopes.open={};
+                myScopes.search = {};
+                myScopes.openNews={};
+                if(myScopes.multiscopes==null)
+                    myScopes.multiscopes={};
+            } else {
+                myScopes={
+                    type:"open",
+                    typeNews:"open",
+                    userId: userId,
+                    open : {},
+                    openNews : {},
+                    search : {},
+                    communexion : <?php echo json_encode(CO2::getCommunexionUser()) ?>,
+                    multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 
+                                    json_encode($me["multiscopes"]) :
+                                    $multiscopes; ?>
+                };
+
+                if( myScopes.communexion != false)
+                    myScopes.communexion=scopeObject(myScopes.communexion);
+                else
+                    myScopes.communexion={};
+                localStorage.setItem("myScopes",JSON.stringify(myScopes));
+            }
+
             initFloopDrawer();
             resizeInterface();
         },
