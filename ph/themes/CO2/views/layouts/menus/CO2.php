@@ -511,14 +511,6 @@
                          <li class="text-left visible-xs">
                             <a href="javascript:;" data-hash="#annonces" class="lbh-menu-app bg-white text-red">
                                 <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Ads") ?>
-<<<<<<< HEAD
-=======
-                            </a>
-                        </li>
-                        <li class="text-left visible-xs">
-                            <a href="javascript:;" data-hash="#ressources" class="lbh-menu-app bg-white text-red">
-                                <i class="fa fa-cubes"></i> <?php echo Yii::t("common", "Sharing") ?>
->>>>>>> development
                             </a>
                         </li>
                        

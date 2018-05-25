@@ -2843,14 +2843,11 @@ var dyFInputs = {
 			        				$("#ajaxFormModal #tags").select2( "data", taglist );
 			        			}
 	        			});
-	        		} else if( $("#ajaxFormModal #name ").val().length > 3 )
-	            		dyFObj.searchExist($(this).val(),[ dyFInputs.get(type).col ], addElement );
-	            	
-	        		} else if($("#ajaxFormModal #name ").val().length > 3 ){
+	        		} else if( $("#ajaxFormModal #name ").val().length > 3 ){
 	        			if( typeof dyFInputs.get(type).search != "undefined" )
-	        				globalSearch($(this).val(), dyFInputs.get(type).search, addElement );
+	        				dyFObj.searchExist($(this).val(), dyFInputs.get(type).search, addElement );
 	        			else
-	        				globalSearch($(this).val(),[ dyFInputs.get(type).col/*, "organizations"*/ ], addElement );
+	            			dyFObj.searchExist($(this).val(),[ dyFInputs.get(type).col ], addElement );
 	        		}
 	            	dyFObj.canSubmitIf();
 	        	});
