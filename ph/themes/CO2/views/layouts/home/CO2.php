@@ -339,7 +339,6 @@
 							<small> 
 								<?php echo Yii::t("home","Create debates, share information, ask for help,<br> share an idea, propose a project, ask a question") ?>
 								<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">
-								<?php echo Yii::t("home","Create debates, share information, ask for help,<br> share an idea, propose a project, ask a question") ?> ...<br>
 								<?php echo Yii::t("home","You will find a thousand reasons to use") ?>
 								 
 								<a href="#live" class="letter-red" target="_blank"><?php echo Yii::t("home","IN LIVE") ?> !</a>
@@ -564,7 +563,7 @@
 		<center>
 			<i class="fa fa-caret-down" style="color:#fff"></i>
 			<div class="col-xs-12 margin-top-10 margin-bottom-25">
-				<h4>Ils font parti de l'aventure !</h4>
+				<h4><?php echo Yii::t("home","They form a key part of the adventure") ?> !</h4>
 				<?php 
 					$list = PHDB::findAndSort(Person::COLLECTION, array(
 						"profilThumbImageUrl" => array( '$exists' => 1,'$ne' => "")

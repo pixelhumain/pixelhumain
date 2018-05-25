@@ -156,6 +156,7 @@
                         <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
                         <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
                         <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png" width="25"/> <?php echo Yii::t("common","German") ?></a></li>
+                        <li><a href="javascript:;" onclick="setLanguage('it')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/it.png" width="25"/> <?php echo Yii::t("common","Italian") ?></a></li>
                     </ul>
                 </li>
             </ul>
@@ -213,6 +214,7 @@
                               <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><span class="hidden-xs"><?php echo Yii::t("common","English") ?></span></a></li>
                               <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><span class="hidden-xs"><?php echo Yii::t("common","French") ?></span></a></li>
                               <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png"/><span class="hidden-xs"><?php echo Yii::t("common","German") ?></span></a></li>
+                              <li><a href="javascript:;" onclick="setLanguage('it')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/it.png"/><span class="hidden-xs"><?php echo Yii::t("common","Italian") ?></span></a></li>
                             </ul>
                         </li>
 
@@ -509,8 +511,17 @@
                          <li class="text-left visible-xs">
                             <a href="javascript:;" data-hash="#annonces" class="lbh-menu-app bg-white text-red">
                                 <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Ads") ?>
+<<<<<<< HEAD
+=======
                             </a>
                         </li>
+                        <li class="text-left visible-xs">
+                            <a href="javascript:;" data-hash="#ressources" class="lbh-menu-app bg-white text-red">
+                                <i class="fa fa-cubes"></i> <?php echo Yii::t("common", "Sharing") ?>
+>>>>>>> development
+                            </a>
+                        </li>
+                       
                         <li class="text-left visible-xs">
                             <a href="#default.view.page.links" class="lbhp text-red bg-right">
                                 <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>

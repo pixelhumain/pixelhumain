@@ -304,6 +304,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         margin-top:4px;
     }
 
+#btnHeaderEditInfos{
+    padding: 0px 8px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
 
 #central-container .bg-dark {
     color: white !important;
@@ -494,7 +499,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     padding: 5px;
     background-color: blanchedalmond;
 }
-
+.select2-drop-multi{
+    z-index:1000000;
+}
 .section-date, .section-address,.section-badges{
     font-size: 20px;
     font-weight: bold;
@@ -953,4 +960,6 @@ margin-top: 5px;
 .adminIconDirectory{
   z-index:10;
 }
+
+
 

@@ -2715,8 +2715,12 @@ var dyFInputs = {
 							mylog.log("tags", typeof typeObj[key].dynForm.jsonSchema.properties.tags, typeObj[key].dynForm.jsonSchema.properties.tags);
 							mylog.log("networkTags", networkTags);
 							typeObj[key].dynForm.jsonSchema.properties.tags.values=networkTags;
-							if(typeof networkJson.request.mainTag != "undefined")
+							if(typeof networkJson.request.mainTag != "undefined"){
 								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag[0];
+								if(typeof typeObj[key].dynForm.jsonSchema.properties.tags.data == "undefined")
+									typeObj[key].dynForm.jsonSchema.properties.tags.data = [] ;
+								typeObj[key].dynForm.jsonSchema.properties.tags.data = $.merge(networkJson.request.mainTag[0], typeObj[key].dynForm.jsonSchema.properties.tags.data);
+							}
 						}
 
 						if(notNull(networkJson.dynForm)){
@@ -2842,6 +2846,12 @@ var dyFInputs = {
 	        		} else if( $("#ajaxFormModal #name ").val().length > 3 )
 	            		dyFObj.searchExist($(this).val(),[ dyFInputs.get(type).col ], addElement );
 	            	
+	        		} else if($("#ajaxFormModal #name ").val().length > 3 ){
+	        			if( typeof dyFInputs.get(type).search != "undefined" )
+	        				globalSearch($(this).val(), dyFInputs.get(type).search, addElement );
+	        			else
+	        				globalSearch($(this).val(),[ dyFInputs.get(type).col/*, "organizations"*/ ], addElement );
+	        		}
 	            	dyFObj.canSubmitIf();
 	        	});
 	        }

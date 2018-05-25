@@ -110,12 +110,12 @@
 
 		"Online Doc" => "Documentation en ligne",
 		"Team" => "Notre équipe",
-		
+		"They form a key part of the adventure"=>"Ils font partie de l'aventure",
 		"Share and imagine great ideas" => "Partagez vos idées et imaginez la suite",
 		"Ideas Design Graphics Video" => "Idées Design Graphisme Vidéos",
 		"Core Development team" => "La team de dev",
 		"Project Management" => "Gestion de projet",
-		"Non Governmental Organization" => "Association Loi 19001",
+		"Non Governmental Organization" => "Association Loi 1901",
 		"Active contributors and soon a cooperative" => "Contributeurs actifs et bientot une SCIC",
 		"All people we meet." => "Pleins de rencontre",
 		"Money for bills & Love to live." => "Le nerf de la guerre",
@@ -139,7 +139,7 @@
 			"Parce que le besoin de <b>communiquer</b> localement n'a jamais été aussi grand",
 
 		"we've made <b>communexion</b> the <b><i>keystone</i></b> of all our applications" =>
-			"nous avons fait de la <b>communexion</b> la <b><i>clé de voute</i></b> de toutes nos applications",
+			"nous avons fait de la <b>communexion</b> la <b><i>clé de voûte</i></b> de toutes nos applications",
 
 		"The specialty of <b>Communecter</b> is to give you access to the data you are interested in" =>
 			"La spécialité de <b>Communecter</b> c'est de vous donner accès aux données qui vous intéressent",
