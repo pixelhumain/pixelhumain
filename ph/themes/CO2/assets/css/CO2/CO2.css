@@ -173,7 +173,7 @@ header .container ,
 	background-color: white;
 	min-height:1000px;
 	min-width: 100%;
-	padding-top:195px !important;
+	padding-top: 60px !important;
 }
 .sigModuleBg{
 	z-index:-1;

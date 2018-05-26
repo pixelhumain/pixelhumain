@@ -115,8 +115,6 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
                                     "me" => $me) );
 
 
-    $this->renderPartial( 'eco.views.custom.leport' );
-
     echo $content; ?> 
 </div>
 

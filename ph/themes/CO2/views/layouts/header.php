@@ -47,6 +47,7 @@
     $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
     $CO2DomainName = Yii::app()->params["CO2DomainName"];
     $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+    if( $dontShowMenu ) 
         $this->renderPartial($layoutPath.'menus/'.$CO2DomainName, 
                                                 array( "layoutPath"=>$layoutPath , 
                                                         "subdomain"=>$subdomain,
