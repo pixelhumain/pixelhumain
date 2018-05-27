@@ -115,7 +115,8 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
                                     "me" => $me) );
 
 
-    $this->renderPartial( 'eco.views.custom.leport' );
+    if(true)
+      $this->renderPartial( 'eco.views.custom.leport' );
 
     echo $content; ?> 
 </div>
@@ -129,6 +130,7 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 <script type="text/javascript">
 
   jQuery(document).ready(function() {
+      $(".logo-menutop").attr({'src':moduleUrl+"/images/custom/leport/LOGO.jpg"})
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });
