@@ -30,11 +30,9 @@
     var modules = {
         "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
         //Configure here eco
-        "classifieds": {
-            "goods":<?php echo json_encode( Classified::getConfig("goods") ) ?>,
-            "jobs":<?php echo json_encode( Classified::getConfig("jobs") ) ?>,
-            "ressources":<?php echo json_encode( Classified::getConfig("ressources") ) ?>
-        },
+        "classifieds":<?php echo json_encode( Classified::getConfig("classifieds") ) ?>,
+        "jobs":<?php echo json_encode( Classified::getConfig("jobs") ) ?>,
+        "ressources":<?php echo json_encode( Classified::getConfig("ressources") ) ?>,
         "places": <?php echo json_encode( Place::getConfig() ) ?>,
         "poi": <?php echo json_encode( Poi::getConfig() ) ?>,
         "chat": <?php echo json_encode( Chat::getConfig() ) ?>,
