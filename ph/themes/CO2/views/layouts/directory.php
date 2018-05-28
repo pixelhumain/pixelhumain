@@ -121,7 +121,8 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 
     if(@$_GET["city"]){
       $city = City::getById( $_GET["city"] );
-      $this->renderPartial( 'eco.views.custom.leport' );
+      if(@$city["custom"] && $city["custom"]["bannerTpl"])
+        $this->renderPartial( 'eco.views.custom.'.$city["custom"]["bannerTpl"] );
     }
 
     echo $content; ?> 
@@ -136,7 +137,12 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 <script type="text/javascript">
 
   jQuery(document).ready(function() {
-      $(".logo-menutop").attr({'src':moduleUrl+"/images/custom/leport/LOGO.jpg"})
+    
+    <?php  if(@$_GET["city"]){ 
+      if(@$city["custom"] && $city["custom"]["logo"]) { ?>
+      $(".logo-menutop").attr({'src':moduleUrl+"<?php echo $city["custom"]["logo"] ?>"})
+    <?php }} ?>
+
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });
