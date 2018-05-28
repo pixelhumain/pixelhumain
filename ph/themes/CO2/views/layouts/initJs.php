@@ -28,7 +28,6 @@
     var activeModuleId = "<?php echo $this->module->id?>";
 
     var modules = {
-        "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
         //Configure here eco
         "classifieds":<?php echo json_encode( Classified::getConfig("classifieds") ) ?>,
         "jobs":<?php echo json_encode( Classified::getConfig("jobs") ) ?>,

@@ -115,8 +115,11 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
                                     "me" => $me) );
 
 
-    if(true)
+
+    if(@$_GET["city"]){
+      $city = City::getById( $_GET["city"] );
       $this->renderPartial( 'eco.views.custom.leport' );
+    }
 
     echo $content; ?> 
 </div>
