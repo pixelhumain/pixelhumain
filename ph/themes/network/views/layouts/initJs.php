@@ -1,5 +1,7 @@
 <?php 
 $preferences = Preference::getPreferencesByTypeId(@Yii::app()->session["userId"], Person::COLLECTION);
+$multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
+                            Yii::app()->request->cookies['multiscopes']->value : "{}";
 ?>
 <script>
 
