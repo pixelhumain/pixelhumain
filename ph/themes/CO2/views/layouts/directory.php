@@ -62,6 +62,7 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 '/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js' , 
 '/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css',
 '/plugins/jquery-cookieDirective/jquery.cookiesdirective.js' , 
+ '/plugins/jquery-cookie/jquery.cookie.js' , 
 '/plugins/ladda-bootstrap/dist/spin.min.js' , 
 '/plugins/ladda-bootstrap/dist/ladda.min.js' , 
 '/plugins/ladda-bootstrap/dist/ladda.min.css',
@@ -83,6 +84,8 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
     '/js/default/globalsearch.js',
     '/js/co.js',
     '/js/default/index.js',
+    '/js/default/live.js',
+    '/js/floopDrawerRight.js',
     '/js/default/directory.js',
     '/js/jquery.filter_input.js'
   );
@@ -92,6 +95,7 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
   $cssJs = array(
     '/assets/css/CO2/CO2-boot.css',
     '/assets/css/CO2/CO2-color.css',
+    '/assets/css/themes/CO2/CO2.css',
     '/assets/css/CO2/CO2.css',
     '/assets/css/plugins.css',
     '/assets/css/default/dynForm.css',
@@ -122,7 +126,7 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
       $this->renderPartial( $layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"], array("modulePath"=>$modulePath )); ?>
   </div>
   <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
-
+  <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"]); ?>
 <?php 
     
     /*$me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
@@ -143,8 +147,8 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 <?php 
   $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
 
-  $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
+  /*$this->renderPartial($layoutPath.'initJs', 
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));*/
 ?>
 <script type="text/javascript">
 

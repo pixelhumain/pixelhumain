@@ -240,7 +240,7 @@
                                               <i class="fa fa-angle-down"></i> <?php echo Yii::t("common","Min price") ?>
                                             </label>
                                             <input type="text" id="priceMin" name="priceMin" class="form-control" 
-                                                   placeholder="<?php echo Yii::t("common","Max Min") ?>"/>
+                                                   placeholder="<?php echo Yii::t("common","Min price") ?>"/>
                                         </div>
 
                                           <div class="form-group col-md-4 col-sm-4 col-xs-6">
@@ -266,7 +266,10 @@
                                             </select>
                                           </div>
                                         <div class="form-group col-md-2 col-sm-2 col-xs-12 margin-top-10">
-                                          <button class="btn btn-link bg-azure margin-top-15 btn-directory-type font-montserrat" data-type="classified">
+                                        <button class="btn btn-link bg-white text-azure margin-top-15 btn-price-filter font-montserrat" data-key="reset" data-type="classifieds">
+                                            <i class="fa fa-refresh"></i>
+                                          </button>
+                                          <button class="btn btn-link bg-azure margin-top-15 btn-price-filter font-montserrat" data-type="classifieds">
                                             <i class="fa fa-search"></i> <span class="hidden-xs hidden-sm"><?php echo Yii::t("common","Search") ?></span>
                                           </button>
                                         </div>
@@ -300,6 +303,7 @@
         $(".tooltips").tooltip();
         $("#filters-nav-list .dropdown .dropdown-toggle").click(function(){
             offset=$(this).offset();
+            $(this).parent().find(".dropdown-menu").css({"top":(offset.top-20)+"px"});
             addRule("#filters-nav-list .dropdown .dropdown-menu:after, #filters-nav-list .dropdown .dropdown-menu:before", "left:"+(offset.left-20)+"px !important");//.css({"left":offset.left+"px"});
 
         });
