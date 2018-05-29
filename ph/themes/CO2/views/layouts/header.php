@@ -47,7 +47,7 @@
     $placeholderMainSearch  = $params["pages"]["#".$page]["placeholderMainSearch"];
     $CO2DomainName = Yii::app()->params["CO2DomainName"];
     $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
-    if( $dontShowMenu ) 
+    if( @$dontShowMenu && $dontShowMenu ) 
         $this->renderPartial($layoutPath.'menus/'.$CO2DomainName, 
                                                 array( "layoutPath"=>$layoutPath , 
                                                         "subdomain"=>$subdomain,
@@ -130,7 +130,10 @@
                         
                     </div>-->
                     <div id="affix-sub-menu" class="affix">
-                        <div id="filter-scopes-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12 no-padding margin-top-10">
+                        <div id="text-search-menu" class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                                <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
+                        </div>
+                        <div id="filter-scopes-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12" style="display: none;">
                             <div id="scope-container" class="scope-menu no-padding">
                                 <div id="input-sec-search" class="col-xs-8 col-md-6 col-sm-6 col-lg-6">
                                     <div class="input-group shadow-input-header">
@@ -149,7 +152,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button id="multiscopes-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="multiscopes">
+                                <button id="multiscopes-btn" class="btn btn-link letter-red btn-menu-scopes pull-left" data-type="multiscopes">
                                     <!-- <i class="fa fa-angle-down"></i>  -->
                                     <i class="fa fa-star"></i> 
                                     <span class="hidden-xs">
@@ -157,7 +160,7 @@
                                         (<span class="count-favorite"></span>)
                                     </span>
                                 </button>
-                                <button id="communexion-btn" class="btn btn-link letter-red btn-menu-scopes" data-type="communexion">
+                                <button id="communexion-btn" class="btn btn-link letter-red btn-menu-scopes pull-left" data-type="communexion">
                                     <!-- <i class="fa fa-angle-down"></i>  -->
                                     <i class="fa fa-home"></i> 
                                     <span class="communexion-btn-label hidden-xs">
@@ -181,7 +184,7 @@
                                     </a>  
                                 <?php   }
                                 } ?>
-                                <button class="btn btn-show-filters"><?php echo Yii::t("common", "Filters") ?> <i class="fa fa-angle-down"></i></button>
+                                <button class="btn btn-show-filters"><?php echo Yii::t("common", "Filters") ?> <span class="topbar-badge badge animated bounceIn badge-warning bg-green"></span> <i class="fa fa-angle-down"></i></button>
                         </div>
                         <div id="filters-nav" class="col-xs-12">
                             <ul id="filters-nav-list" class="no-padding no-margin">
@@ -189,9 +192,10 @@
                                     <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownTags" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                                   title="<?php echo Yii::t("common","Tags") ?>" alt="<?php echo Yii::t("common","Tags") ?>"><?php echo Yii::t("common","Tags") ?> <i class="fa fa-angle-down"></i></a>
                                     <div class="dropdown-menu arrow_box" aria-labelledby="dropdownTags">
-                                        <div class="form-group filterstags col-md-12 col-sm-12 col-xs-12 margin-top-20 no-padding">
-                                            <input id="tags" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
+                                        <div class="form-group filterstags col-md-12 col-sm-12 col-xs-12 no-margin no-padding">
+                                            <input id="tagsFilterInput" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
                                         </div>
+                                        <button class="btn btn-success col-xs-12 margin-top-5 margin-bottom-5 btn-tags-start-search"><i class="fa fa-search"></i> <?php echo Yii::t("common", "Start search by tags") ?></button>
                                          <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
                                         foreach ($filliaireCategories as $key => $cat) { 
                                             if(is_array($cat)) { ?>
@@ -299,16 +303,43 @@
 <script type="text/javascript">
     var filliaireCategories = <?php echo json_encode(@$filliaireCategories); ?>;
     var page="<?php echo $page ?>";
+    var headerScaling=false;
     jQuery(document).ready(function() {
         initScopeMenu();
+        $("#tagsFilterInput").select2({tags:[]});
         $(".tooltips").tooltip();
         $("#filters-nav-list .dropdown .dropdown-toggle").click(function(){
-            offset=$(this).offset();
-            $(this).parent().find(".dropdown-menu").css({"top":(offset.top-20)+"px"});
+           // offset=$(this).offset();
+            $(this).parent().find(".dropdown-menu").css({"top":($("#affix-sub-menu").height()+$("#mainNav").height())+"px"});
             addRule("#filters-nav-list .dropdown .dropdown-menu:after, #filters-nav-list .dropdown .dropdown-menu:before", "left:"+(offset.left-20)+"px !important");//.css({"left":offset.left+"px"});
 
         });
+        $(".btn-show-filters").click(function(){
+            $("#filters-nav").show(200);
+            headerHeightPos(true);
+        });
+        $(".menu-btn-start-search").click(function(){
+            $(this).addClass("active");
+            $("#filter-scopes-menu").hide();
+            $("#text-search-menu").show(400);
+            headerHeightPos(true);
+        });
+        $(".menu-btn-scope-filter").click(function(){
+            $(this).addClass("active");
+            $("#text-search-menu").hide();
+            $("#filter-scopes-menu").show(400);
+            headerHeightPos(true);
+        });
+        headerHeightPos(true);
+
     });
+    function headerHeightPos(bool){
+        setTimeout(function(){     
+            headerScaling=bool; 
+            $("header").height($("#affix-sub-menu").height());
+            setTimeout(function(){headerScaling=false;},300);
+        }, 400);
+    }
     function initScopeMenu(type){   
         bindSearchCity();
         bindScopesInputEvent();
