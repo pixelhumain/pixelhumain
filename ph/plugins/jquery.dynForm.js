@@ -1077,7 +1077,7 @@ onSave: (optional) overloads the generic saveProcess
 				// $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
 				// 	$( settings.formId ).submit();	        	
 		  //       });
-		        $("#btn-submit-form").hide(); 
+		        //$("#btn-submit-form").hide(); 
 			}
 		});
 		
@@ -2847,7 +2847,7 @@ var dyFInputs = {
 	        			else
 	        				globalSearch($(this).val(),[ dyFInputs.get(type).col/*, "organizations"*/ ], addElement );
 	        		}
-	            	dyFObj.canSubmitIf();
+	            	//dyFObj.canSubmitIf();
 	        	});
 	        }
 	    }else{
@@ -4057,7 +4057,7 @@ var dyFInputs = {
 			
 		} 
 		$("#ajax-modal-modal-title").html(
-		 		$("#ajax-modal-modal-title").html()+
+		 	$("#ajax-modal-modal-title").html()+
 		 		" <br><small class='text-white'>"+tradDynForm.speakingas+" : <span class='text-dark'>"+cName+"</span></small>" );
 		
     }
