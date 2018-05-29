@@ -2,8 +2,8 @@
 <?php
 
 	return array(
-		"Send a private message to the author" => "Envoyer un message privé à l'auteur",
-		"ressources published by" => "Ressource publiée par",
+		"Send a private message to the author" => "Invia un messaggio privato all'autore",
+		"ressources published by" => "Risorsa pubblicata da",
 	)
 
 ?>
