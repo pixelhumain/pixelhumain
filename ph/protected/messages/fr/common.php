@@ -405,6 +405,7 @@ return array(
 	
 	//Status
 	"waiting for validation" => "attente de validation",
+	"Please wait while we fetch the information." => "Veuillez patienter, on récupère les informations",
 	"unregistred" => "non inscrit-e",
 	"not activated" => "non activé-e",
 	//Attributes
@@ -939,6 +940,7 @@ return array(
 	"No more results"=>"Il n&#146;y a plus de résultats",
 	"No more results match in your search" =>  "Il n'y a plus de résultats correspondant à votre recherche",
 	"No city found for"=>"Aucune ville trouvée pour",
+	"You don't find the city you want for"=>"Vous ne trouvez pas la ville souhaitée pour",
 	"Perhaps, this city has no data at this time"=>"Il est possible qu'aucune donnée ne soit enregistrée dans cette zone",
 	"Connect you"=>"Connectez-vous",
 	"Invite by mail" => "Inviter par e-mail",
@@ -1024,7 +1026,7 @@ return array(
 	"Back" => "retour",
 	"Modify" => "Modifier",
 	"Modify Position"=>"Modifier la position",
-	"Edit Information"=>"Éditer les informations",
+	"Edit informations"=>"Éditer les informations",
 
 	"go to documentation Index" => "Retour vers accueil documentation",
 	"Next chapter" => "Suivant",
@@ -1269,6 +1271,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
     "English"=> "Anglais",
     "French"=> "Français",
     "German"=> "Allemand",
+    "Italian"=> "Italien",
     "Languages"=>"Langues",
 	"Photos gallery" => "Galerie photos",
 	"Themes"=>"Thématiques",
@@ -1394,7 +1397,10 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Add zone to news" => "Sélectionner ce lieu",
 
 	"search by name or by #tag, ex: 'commun' or '#commun" => "rechercher ou #rechercher",
-	"Search on map" => "Rechercher sur la carte"
 
+	"Chat" => "Chat",
+	"New Channel" => "Nouveau canal",
+	"Add a new channel" => "Ajouter un nouveau canal",
+	"Convert to Organization" => "Convertir en organisation"
 );
 ?>

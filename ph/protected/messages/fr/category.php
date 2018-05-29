@@ -287,6 +287,17 @@
         "For rent" => "À louer",
         "Job offer" => "Offre d'emplois",
 
+        //Chat
+        "Chat inside CO" => "Chat interne <br/><small>Rocket Chat</small> ",
+        "Chat outside CO" => "Chat url externe",
+        "Channel Name" => "Nom du Canal de discussion",
+        "Type of Chat ?" => "Type de chat ?",
+        "Public channels can be searched and random people can join" => "Un channel public sortira dans les recherche et pourra etre rejoint par des participants lambdas.",
+        "Private channels can only be viewed by it's members" => "Un channel privé est disponible que pour ces membres",
+        "public or private ?" => "public ou privé",
+        "Public" => "Public",
+        "Private" => "Privé"
+
 	);
 ?>
 

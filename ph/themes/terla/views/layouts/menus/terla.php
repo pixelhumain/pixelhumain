@@ -191,4 +191,32 @@ jQuery(document).ready(function() {
     shopping.countShoppingCart("init");
     circuit.countCircuit("init");
 });
+
+
+function addBtnSwitch(){ 
+
+    $(".addBtnFoot").addClass("hidden");
+    $(".addBtnAll").removeClass("hidden");
+    
+
+    var fname = "<?php echo Yii::t("common", "as") ?> ";
+    if ( contextData != null && contextData.type && inArray( contextData.type,[ "organizations","citoyens","events","projects" ] ) )
+        fname += contextData.name;
+    else 
+        fname += userConnected.name;
+
+    $("#addFootTitle").html('<i class="fa fa-plus-circle"></i> <?php echo Yii::t("common", "Add something") ?> '+fname);
+
+    if(contextData != null && contextData.type == "citoyens" || contextData == null){
+        $(".addBtnFoot").removeClass("hidden");
+    }
+    else if(contextData.type == "organizations")
+        $(".addBtnFoot_orga").removeClass("hidden");
+    else if(contextData.type == "projects")
+        $(".addBtnFoot_project").removeClass("hidden");
+    else if(contextData.type == "events")
+        $(".addBtnFoot_event").removeClass("hidden");
+
+    
+}
 </script> 

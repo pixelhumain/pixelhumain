@@ -7,7 +7,7 @@
  */
 
 	return array(
-		"Unknown Postal Code" =>  "Code postal inconnu",
+		"Unknown Postal Code" =>  "Codice postale sconosciuto",
 	);
 
 
