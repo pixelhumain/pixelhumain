@@ -14,8 +14,10 @@ $activeModules = array(
 	"places",
 	"ressources",
 	"classifieds",
+	"onepage",
+	"cooperation",
 	'terla',
-
-	'opauth',
-	'saml'
+	'chat',
+	'cococarto', 
+	"survey"
 	);

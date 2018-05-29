@@ -174,6 +174,8 @@
 		"Please, add a place to your post"=>"Veuillez selectionner au moins un lieu de publication",
 		"Add places where you want to publish"=>"Ajouter des lieux de publication",
 		"Selected zones"=>"Lieux sélectionnés",
+		"Transform" => "Transformer",
+		"into an Organization" => "en organisation",
 		"Add answers" => "Ajouter des réponses",
 		"answer" => "réponse",
 

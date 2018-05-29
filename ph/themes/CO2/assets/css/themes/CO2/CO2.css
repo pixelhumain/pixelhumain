@@ -133,3 +133,63 @@
 	padding-top: 10px;
 	width: 425px;*/
 }
+
+
+
+
+
+
+@media screen and (max-width: 1024px) {
+    /*.menu-name-profil small{
+        max-width: 45px;
+    }
+*/
+
+    
+}
+
+@media screen and (max-width: 992px) {
+    .name .pastille{
+        margin-top: -25px;
+        max-width: 73%;
+        font-size: 0.4em;
+    }
+
+    #modal-preview-coop{
+        left:15%;
+        right:0%;
+    }
+} 
+
+@media (max-width: 767px) {
+
+    .toolbar-bottom.bottom-right{
+        right: 0px;
+    }
+    #show-bottom-add, #donation-btn{
+        border-radius: 100%;
+        width: 30px;
+        border: none;
+        height: 30px;
+        border-radius: 10px 0 0 0;
+    }
+    #show-bottom-add.opened{
+        transform: rotate(0deg);
+    }
+    #show-bottom-add.opened i{
+        transform: rotate(45deg);
+    }
+    #donation-btn{
+        display: none;
+    }
+    #show-bottom-add i{
+        font-size: 19px;
+        padding-top: 2px;
+    }
+    .toolbar-bottom {
+        position: fixed;
+        bottom: 0px;
+        height: 30px;
+    }
+
+}
