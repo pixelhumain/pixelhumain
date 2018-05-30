@@ -23,6 +23,7 @@ return array(
 	"english" => "inglese", 
 	"spanish" => "spagnolo",
 	"italian" => "italiano",
+	"german" => "tedesco",
 	// ACTIONS
 	"Close" => "Chiudi",
 	"BACK" => "INDIETRO",
@@ -1315,5 +1316,13 @@ return array(
 	"Add zone to news" => "Aggiungi zona alle notizie",
 	"Search on map" => "Cerca sulla mappa",	
 	
+	"Please wait while we fetch the information." => "Attendi mentre riprendiamo le informazioni",
+	"You don't find the city you want for" => "Non si trova la città desiderata",
+	"Edit informations" => "Modifica informazioni",
+	"Chat" => "Chat",
+	"New Channel" => "Nuovo chat room",
+	"Add a new channel" => "Aggiungere un nuovo chat room",
+	"Convert to Organization" => "Converti in organizzazione",
+		
 );
 ?>

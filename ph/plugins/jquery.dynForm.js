@@ -2474,7 +2474,8 @@ var dyFObj = {
 		{
 			if(typeof formInMap != 'undefined')
 				formInMap.formType = type;
-			dyFObj.getDynFormObj(type, function() { 
+			dyFObj.getDynFormObj(type, function() {
+				mylog.log("HERE MA GUEUL");
 				dyFObj.starBuild(afterLoad,data);
 			},afterLoad, data);
 		} else {
@@ -2494,7 +2495,7 @@ var dyFObj = {
 	//(object) :: is dynformp definition
 	getDynFormObj : function(type, callback,afterLoad, data ){
 		//alert(type+'.js');
-		mylog.warn("------------ getDynFormObj",type, callback,afterLoad, data );
+		mylog.warn("------------ getDynFormObj",type, callback, afterLoad, data );
 		if(typeof type == "object"){
 			mylog.log(" object directly Loaded : ", type);
 			dyFObj[dyFObj.activeElem] = type;
@@ -2520,7 +2521,7 @@ var dyFObj = {
 				dfPath = modules[type].form;
 				mylog.log("properties from MODULE","modules/"+type+"/assets/js/dynform.js");
 			}
-			
+			mylog.log("ICI",dfPath);
 			lazyLoad( dfPath, 
 				null,
 				function() { 
@@ -2531,7 +2532,10 @@ var dyFObj = {
 					
 				  	dyFInputs.get(type).dynForm = dynForm;
 					dyFObj[dyFObj.activeElem] = dyFInputs.get(type);
+					mylog.log("dyFObj", dyFObj);
 					if( notNull(dyFInputs.get(type).col) ) uploadObj.type = dyFInputs.get(type).col;
+
+					mylog.log("callback", afterLoad, data );
     				callback( afterLoad, data );
 				});
 		}
@@ -2705,6 +2709,7 @@ var dyFInputs = {
 
 						if(typeof networkJson.request.searchTag != "undefined"){
 							typeObj[key].dynForm.jsonSchema.properties.tags.data = networkJson.request.searchTag;
+							mylog.log("DATA NETWORK1", typeObj[key].dynForm.jsonSchema.properties.tags.data);
 						}
 
 						if(	typeof typeObj[key] != "undefined" &&
@@ -2714,10 +2719,15 @@ var dyFInputs = {
 							mylog.log("networkTags", networkTags);
 							typeObj[key].dynForm.jsonSchema.properties.tags.values=networkTags;
 							if(typeof networkJson.request.mainTag != "undefined"){
-								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag[0];
+								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag;
 								if(typeof typeObj[key].dynForm.jsonSchema.properties.tags.data == "undefined")
 									typeObj[key].dynForm.jsonSchema.properties.tags.data = [] ;
-								typeObj[key].dynForm.jsonSchema.properties.tags.data = $.merge(networkJson.request.mainTag[0], typeObj[key].dynForm.jsonSchema.properties.tags.data);
+
+								mylog.log("DATA NETWORK2", typeObj[key].dynForm.jsonSchema.properties.tags.data, networkJson.request.mainTag[0]);
+								
+								typeObj[key].dynForm.jsonSchema.properties.tags.data = $.merge(networkJson.request.mainTag, typeObj[key].dynForm.jsonSchema.properties.tags.data);
+								mylog.log("DATA NETWORK3", typeObj[key].dynForm.jsonSchema.properties.tags.data);
+
 							}
 						}
 
@@ -4003,7 +4013,7 @@ var dyFInputs = {
     	return inputObj;
     },
     get:function(type){
-    	//mylog.log("dyFInputs.get", type);
+    	mylog.log("dyFInputs.get", type);
     	if( type == "undefined" ){
     		toastr.error("type can't be undefined");
     		return null;
@@ -4021,6 +4031,7 @@ var dyFInputs = {
     		if( obj )
     			obj = dyFInputs.get( obj.col )
     	}
+    	mylog.log("dyFInputs.get return", obj);
     	return obj;
     },
     deepGet:function(type){
