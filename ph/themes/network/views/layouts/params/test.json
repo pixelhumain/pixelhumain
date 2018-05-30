@@ -1,40 +1,63 @@
 {
-    "name" : "PDCN",
-    "dataSrc" : "http://dev.communecter.org/ph/api/convert/gogocarto/?url=https://gist.githubusercontent.com/RaphaelRIVIERE/6f35ff572c079a4ff3cb604c4b11cf47/raw/aabd9d586db69deaa370e4549c6ac0d0c394edd8/pdcn",
+    "name" : "",
+    "mode" : "server",
     "skin" : {
-        "logo" : false,
-        "title" : "PDCN",
+        "logo" : "http://animateurmultimedia.fr/partage/vege.jpg",
+        "title" : "Restaurants végé de La Réunion",
+        "shortDescription" : "Liste des restaurants végétariens et végétaliens de l'Île de la Réunion",
         "displayScope" : false,
+        "docs": true,
         "displayCommunexion" : true,
+        "displayNotifications" : true,
         "profilBar" : false,
+        "breadcrum" : true,
         "displayButtonGridList" : false,
         "class" : {
             "mainContainer" : false
         },
         "iconeAdd" : false,
         "iconeSearchPlus" : false,
-        "loginTitle":""
-    },
-    "filter" : {
-        "types" : false,
-        "tags" : true
+        "loginTitle": "",
+        "front" : {
+            "organization" : false,
+            "project" : true,
+            "event" : true,
+            "community" : true,
+            "dda" : false,
+            "live" : false,
+            "search" : false,
+            "need" : true,
+            "poi" : true
+        },
+        "menu" : {
+            "aroundMe":false,
+            "connectLink":false,
+            "add":true,
+            "detail":true,
+            "news":true,
+            "directory":true,
+            "gallery":true
+        }
     },
     "add" : {
-        "organization" : true,
-        "project" : false,
-        "event" : true
+        "organization" : true
     },
     "result" : {
-        "displayImage" : false,
+        "displayImage" : true,
         "displayType" : false,
         "fullLocality" : true,
-        "datesEvent" : false
+        "datesEvent" : false,
+        "displayShortDescription" : true
     },
     "request" : {
         "pagination" : 1000,
         "searchType" : [
-            "organizations",
-            "poi"
-        ]
+            "organizations"
+        ],
+        
+      
+    "searchTag" : ["végétarien", "vegetarien", "Végétarien", "Vegetarien", "vegan", "Vegan", "végétalien", "Végétalien"],
+    "searchLocalityREGION": ["La Réunion"],
+    "mainTag" : [""]
     }
 }
