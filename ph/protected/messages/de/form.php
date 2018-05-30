@@ -183,5 +183,7 @@
 		"Location" => "Standort",
 		"Scoping" => "Bereich",
 		"Select a city to share your survey with everybody in town !" => "Wählen Sie eine Stadt aus, um Ihre Befragungsergebnisse allen in dieser Stadt zu zeigen!",
+		"Transform" => "Verändern Sie",
+		"into an Organization" => "in eine Organisation",
 	)
 ?>
