@@ -251,6 +251,16 @@
 	"buildingtools" => "strumenti per la costruzione",
 	"gardeningtools" => "Utensili da giardinaggio",
 	"medicalstuff" => "materiale medico",
+		
+	"Chat inside CO" => "Conversazione all'interno di CO",
+	"Chat outside CO" => "Conversazione fuori CO",
+	"Channel Name" => "Nome della chat",
+	"Type of Chat ?" => "Tipo di chat",
+	"Public channels can be searched and random people can join" => "È possibile cercare canali pubblici e iscriversi in modo casuale",
+	"Private channels can only be viewed by it's members" => "I canali privati possono essere visualizzati solo dai membri",
+	"public or private ?" => "pubblico o privato ?",
+	"Public" => "Pubblico",
+	"Private" => "Privato",
 
 	);
 ?>
