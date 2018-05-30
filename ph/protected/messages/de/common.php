@@ -22,6 +22,7 @@ return array(
 	"french" => "Französisch",
 	"english" => "Englisch", 
 	"spanish" => "Spanisch",
+	"Italian" => "Italienisch",
 	// ACTIONS
 	"Close" => "Schließen",
 	"BACK" => "ZURÜCK",
@@ -1319,6 +1320,13 @@ return array(
 	"Add zone to news" => "Zone zu Nachrichten hinzufügen",
 	"Search on map" => "Suche auf der Karte",
 	
+	"Please wait while we fetch the information." => "Bitte warten Sie, während wir die Informationen holen.",
+	"You don't find the city you want for" => "Sie finden nicht die Stadt, für die Sie sich interessieren",
+	"Edit informations" => "Informationen bearbeiten",
+	"Chat" => "Chat",
+	"New Channel" => "Neuer Chatraum",
+	"Add a new channel" => "Neuen Chatraum hinzufügen",
+	"Convert to Organization" => "In Organisation umwandeln",
 	
 );
 ?>
