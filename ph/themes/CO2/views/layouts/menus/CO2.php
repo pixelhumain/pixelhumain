@@ -65,16 +65,16 @@
             <a href="#welcome" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" 
                 <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
             >
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-head-search.png" 
+                <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-head-search.png" 
                      class="logo-menutop main pull-left hidden-xs hidden-sm" height=17>
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
-                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" style="display: none!important;" height=20>
+                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" style="display: none!important;" height=20>-->
 
                 <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
-                     class="logo-menutop pull-left visible-xs visible-sm" height=25>
+                     class="logo-menutop pull-left" height=25>
             </a>
-            <span class="hidden-xs skills font-montserrat"><?php echo Yii::t("common",$mainTitle); ?></span>
+           <!-- <span class="hidden-xs skills font-montserrat"><?php echo Yii::t("common",$mainTitle); ?></span>-->
             <?php 
                 //$params = CO2::getThemeParams();  
                 /*$icon = "";
@@ -101,18 +101,13 @@
                   //$subdomain == "admin"
                   //$subdomain == "page"
                  ){ ?>
-        
-            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-4 col-lg-4" style="display:none;">
-                <input type="text" class="form-control" id="second-search-bar" 
-                        placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
-                <?php //echo Yii::t("common", "search by name or by #tag, ex: 'commun' or '#commun"); ?>
-                <?php if($subdomain == "page"){ ?>
-                    <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
-                <?php } ?>
-            </div>
             <button class="btn btn-default hidden-xs pull-left menu-btn-start-search" style="display:none;" 
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
+            </button>
+            <button class="btn hidden-xs pull-left menu-btn-scope-filter text-red"
+                    data-type="<?php echo @$type; ?>">
+                    <i class="fa fa-map-marker"></i> <span class="header-label-scope"><?php echo Yii::t("common","where ?") ?></span>
             </button>
             <div id="filters-container-menu" class="no-padding hidden-xs">
                 <ul class="filters-menu">
@@ -134,10 +129,10 @@
                         placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
             </div>
-            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search btn-directory-type" 
+            <!--<button class="btn btn-default hidden-xs pull-left menu-btn-start-search btn-directory-type" 
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
-            </button>
+            </button>-->
 
         <?php } ?>
         <button class="btn-show-map" style=""
@@ -172,166 +167,6 @@
                     data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","Menu") ?>">
                 <i class="fa fa-bars tooltips" ></i>
             </button>
-
-             <div class="dropdown pull-right" id="dropdown-user">
-                <div class="dropdown-main-menu">
-                    <ul class="dropdown-menu arrow_box">
-                        <!-- <li class="text-left">
-                            <a href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>" 
-                                class="lbh bg-white">
-                                <i class="fa fa-user-circle"></i> Ma page
-                            </a>
-                        </li> -->
-                        <!-- <li class="text-left">
-                            <a href="#social" class="lbh bg-white">
-                                <i class="fa fa-university"></i> Ma commune
-                            </a>
-                        </li> -->
-                        <!-- </li> -->
-                        <!-- <li class="text-left">
-                            <a href="#search" class="lbh bg-white">
-                                <i class="fa fa-connectdevelop"></i> Mon conseil citoyen
-                            </a>
-                        </li> -->
-                         <!-- <li class="text-admin visible-xs">
-                            <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.notifications" class="lbh bg-white">
-                                <i class="fa fa-bell"></i> <?php echo Yii::t("common", "My notifications") ; ?>
-                                <span class="notifications-count topbar-badge badge animated bounceIn 
-                                    <?php if(!@$countNotifElement || (@$countNotifElement && $countNotifElement=="0")) 
-                                    echo 'badge-transparent hide'; else echo 'badge-success'; ?>"
-                                >
-                                <?php echo @$countNotifElement ?>
-                                </span>
-                            </a>
-                        </li>
-                       
-                        <li role="separator" class="divider visible-xs"></li> -->
-                        <li class="text-admin menu-lang dropdown-submenu dropdown-menu-left">
-                            <a href="javascript:;" class="bg-white">
-                                <i class="fa fa-language"></i> <?php echo Yii::t("common", "Languages") ; ?>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><span class="hidden-xs"><?php echo Yii::t("common","English") ?></span></a></li>
-                              <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><span class="hidden-xs"><?php echo Yii::t("common","French") ?></span></a></li>
-                              <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png"/><span class="hidden-xs"><?php echo Yii::t("common","German") ?></span></a></li>
-                              <li><a href="javascript:;" onclick="setLanguage('it')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/it.png"/><span class="hidden-xs"><?php echo Yii::t("common","Italian") ?></span></a></li>
-                            </ul>
-                        </li>
-
-                        <!-- <li role="separator" class="divider"></li>
-                        <li class="text-left">
-                            <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>" class="lbh bg-white">
-                                <i class="fa fa-user-circle"></i> <?php echo Yii::t("common","My page") ?>
-                            </a>
-                        </li> -->
-
-                          <?php 
-                            $class = "hidden" ;
-                            if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
-                                $class = "";
-                        ?>
-                        <li role="separator" class="divider <?php echo $class ; ?>"></li>
-                        <li class="text-left">
-                            <a href="" class="communecter-btn bg-white <?php echo $class ; ?>" onclick="communecterUser();">
-                                <i class="fa fa-university"></i> <?php echo Yii::t("common", "Connect to your city");?>
-                            </a>
-                        </li>
-                        
-
-                        <li role="separator" class="divider visible-xs"></li>
-                        
-                         <li class="text-left visible-xs">
-                            <a href="#search" class="lbh bg-white letter-red">
-                                <i class="fa fa-search"></i> <?php echo Yii::t("common", "Search") ?>
-                            </a>
-                        </li>
-                        <li class="text-left visible-xs">
-                            <a href="#live" class="lbh bg-white letter-red">
-                                <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "In live") ?>
-                            </a>
-                        </li>
-                        <li class="text-left visible-xs">
-                            <a href="#agenda" class="lbh bg-white letter-red">
-                                <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Agenda") ?>
-                            </a>
-                        </li>
-                        <li class="text-left visible-xs">
-                            <a href="#annonces" class="lbh bg-white letter-red">
-                                <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Market place") ?>
-                            </a>
-                        </li>
-                        
-                        <li class="text-left visible-xs">
-                            <a href="#ressources" class="lbh bg-white letter-red">
-                                <i class="fa fa-cubes"></i> <?php echo Yii::t("common", "Sharing") ?>
-                            </a>
-                        </li>
-
-                        <!--<li role="separator" class="divider"></li>
-                        <li class="text-left">
-                            <a href="#default.view.page.links" class="lbhp bg-right">
-                                <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
-                            </a>
-                        </li>-->
-
-                        <li role="separator" class="divider"></li>
-                        <li class="">
-                            <a href="#info.p.stats" class="bg-white disabled lbh">
-                                <i class="fa fa-bar-chart"></i> <?php echo Yii::t("common","Statistics"); ?>
-                            </a>
-                        </li> 
-
-                        <li role="separator" class="divider"></li>
-                        <li class="text-left">
-                            <!--#default.view.page.links-->
-                            <a href="#docs.page.welcome.dir.<?php echo Yii::app()->language ?>" class="lbh bg-right">
-                                <i class="fa fa-book"></i> <?php echo Yii::t("common", "Documentation") ?>
-                            </a>
-                        </li>
-
-                        <li role="separator" class="divider"></li>
-                        <li class="text-left">
-                            
-                            <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" class="bg-right">
-                                <i class="fa fa-heart"></i> <?php echo Yii::t("common", "Recurring donation") ?>
-                            </a>
-                        </li>
-                       
-
-                        
-                        <?php if( Yii::app()->session["userIsAdmin"] || Yii::app()->session[ "userIsAdminPublic" ]) { 
-                            $label=(Yii::app()->session["userIsAdmin"]) ? Yii::t("common", "Admin") : Yii::t("common", "Admin public");  
-                            ?>
-                            <li role="separator" class="divider"></li>
-                            <li class="text-admin">
-                                <a href="#admin" class="lbh bg-white">
-                                    <i class="fa fa-user-secret"></i> <?php echo $label ; ?>
-                                </a>
-                            </li>
-                        <?php } ?>
-
-
-                        <li role="separator" class="divider"></li>
-                        <li class="text-admin">
-                            <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.settings" class="lbh bg-white">
-                                <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
-                            </a>
-                        </li>
-
-                        <li role="separator" class="divider"></li>
-                        <li class="text-left">
-                            <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
-                                class="bg-white letter-red logout">
-                                <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log Out") ; ?>
-                            </a>
-                        </li>
-
-
-                    </ul>
-                </div>
-            </div>
-
-
 
         <?php } ?>
 
@@ -379,17 +214,7 @@
                       <i class="fa fa-inbox"></i>
                       <span class="coopNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
-                    <?php } ?>
-
-                     <div class="dropdown pull-right" id="dropdown-dda">
-                        <div class="dropdown-main-menu">
-                            <ul class="dropdown-menu arrow_box menuCoop" id="list-dashboard-dda">
-                                
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    
+                    <?php } ?>                    
 
                     <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
                           onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" 
@@ -405,13 +230,6 @@
                               title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>">
                           <i class="fa <?php echo Application::ICON ?> letter-red"></i>
                         </button>
-                        <div class="dropdown-menu arrow_box" aria-labelledby="dropdownApps">
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo Search::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Search") ?></a>
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo News::ICON2 ?> fa-2x"></i><br/><?php echo Yii::t("common","In live") ?></a>
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Event::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Agenda") ?></a>
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Classified::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Market place") ?></a>
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Ressource::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Sharing") ?></a>
-                        </div>
                     </span>
 
 
@@ -513,11 +331,6 @@
                                 <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Ads") ?>
                             </a>
                         </li>
-                        <li class="text-left visible-xs">
-                            <a href="javascript:;" data-hash="#ressources" class="lbh-menu-app bg-white text-red">
-                                <i class="fa fa-cubes"></i> <?php echo Yii::t("common", "Sharing") ?>
-                            </a>
-                        </li>
                        
                         <li class="text-left visible-xs">
                             <a href="#default.view.page.links" class="lbhp text-red bg-right">
@@ -561,6 +374,133 @@
     <!-- /.container-fluid -->
 
 </nav>
+<div class="dropdown dropdownApps-menuTop" aria-labelledby="dropdownApps">
+    <div class="dropdown-main-menu">
+        <div class="dropdown-menu arrow_box">
+            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo Search::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","All") ?></a>
+            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo News::ICON2 ?> fa-2x"></i><br/><?php echo Yii::t("common","News feed") ?></a>
+            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Event::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Events") ?></a>
+            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Classified::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Classifieds") ?></a>
+            <!--<a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Ressource::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Sharing") ?></a>-->
+        </div>
+    </div>
+</div>
+ <div class="dropdown pull-right" id="dropdown-dda">
+    <div class="dropdown-main-menu">
+        <ul class="dropdown-menu arrow_box menuCoop" id="list-dashboard-dda">
+            
+        </ul>
+    </div>
+</div>
+<?php if(@Yii::app()->session["userId"]){ ?>
+ <div class="dropdown pull-right" id="dropdown-user">
+    <div class="dropdown-main-menu">
+        <ul class="dropdown-menu arrow_box">
+            <li class="text-admin menu-lang dropdown-submenu dropdown-menu-left">
+                <a href="javascript:;" class="bg-white">
+                    <i class="fa fa-language"></i> <?php echo Yii::t("common", "Languages") ; ?>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><span class="hidden-xs"><?php echo Yii::t("common","English") ?></span></a></li>
+                  <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><span class="hidden-xs"><?php echo Yii::t("common","French") ?></span></a></li>
+                  <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png"/><span class="hidden-xs"><?php echo Yii::t("common","German") ?></span></a></li>
+                  <li><a href="javascript:;" onclick="setLanguage('it')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/it.png"/><span class="hidden-xs"><?php echo Yii::t("common","Italian") ?></span></a></li>
+                </ul>
+            </li>
+
+              <?php 
+                $class = "hidden" ;
+                if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
+                    $class = "";
+            ?>
+            <li role="separator" class="divider <?php echo $class ; ?>"></li>
+            <li class="text-left">
+                <a href="" class="communecter-btn bg-white <?php echo $class ; ?>" onclick="communecterUser();">
+                    <i class="fa fa-university"></i> <?php echo Yii::t("common", "Connect to your city");?>
+                </a>
+            </li>
+            
+
+            <li role="separator" class="divider visible-xs"></li>
+            
+             <li class="text-left visible-xs">
+                <a href="#search" class="lbh bg-white letter-red">
+                    <i class="fa fa-search"></i> <?php echo Yii::t("common", "All") ?>
+                </a>
+            </li>
+            <li class="text-left visible-xs">
+                <a href="#live" class="lbh bg-white letter-red">
+                    <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "News feed") ?>
+                </a>
+            </li>
+            <li class="text-left visible-xs">
+                <a href="#agenda" class="lbh bg-white letter-red">
+                    <i class="fa fa-calendar"></i> <?php echo Yii::t("common", "Events") ?>
+                </a>
+            </li>
+            <li class="text-left visible-xs">
+                <a href="#annonces" class="lbh bg-white letter-red">
+                    <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Classifieds") ?>
+                </a>
+            </li>
+
+            <li role="separator" class="divider"></li>
+            <li class="">
+                <a href="#info.p.stats" class="bg-white disabled lbh">
+                    <i class="fa fa-bar-chart"></i> <?php echo Yii::t("common","Statistics"); ?>
+                </a>
+            </li> 
+
+            <li role="separator" class="divider"></li>
+            <li class="text-left">
+                <!--#default.view.page.links-->
+                <a href="#docs.page.welcome.dir.<?php echo Yii::app()->language ?>" class="lbh bg-right">
+                    <i class="fa fa-book"></i> <?php echo Yii::t("common", "Documentation") ?>
+                </a>
+            </li>
+
+            <li role="separator" class="divider"></li>
+            <li class="text-left">
+                
+                <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" class="bg-right">
+                    <i class="fa fa-heart"></i> <?php echo Yii::t("common", "Recurring donation") ?>
+                </a>
+            </li>
+           
+
+            
+            <?php if( Yii::app()->session["userIsAdmin"] || Yii::app()->session[ "userIsAdminPublic" ]) { 
+                $label=(Yii::app()->session["userIsAdmin"]) ? Yii::t("common", "Admin") : Yii::t("common", "Admin public");  
+                ?>
+                <li role="separator" class="divider"></li>
+                <li class="text-admin">
+                    <a href="#admin" class="lbh bg-white">
+                        <i class="fa fa-user-secret"></i> <?php echo $label ; ?>
+                    </a>
+                </li>
+            <?php } ?>
+
+
+            <li role="separator" class="divider"></li>
+            <li class="text-admin">
+                <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.settings" class="lbh bg-white">
+                    <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
+                </a>
+            </li>
+
+            <li role="separator" class="divider"></li>
+            <li class="text-left">
+                <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
+                    class="bg-white letter-red logout">
+                    <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log Out") ; ?>
+                </a>
+            </li>
+
+
+        </ul>
+    </div>
+</div>
+<?php } ?>
 <?php   $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
        ?>
 

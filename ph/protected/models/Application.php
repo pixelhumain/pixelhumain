@@ -5,6 +5,7 @@
 class Application
 { 
 	const DEFAULT_NAME = "Pixel Humain";
+	const ICON = "fa-th";
 	public $name;
 	public $logoUrl;
 

@@ -524,6 +524,7 @@ return array(
 	"Edit this element"=>"Modifier cet élément",
 	"Uploaod files"=>"Ajouter des fichiers",
 	"Add bookmark"=>"Ajouter un bookmark",
+	"Start search by tags"=>"Commencer la recherche par mots-clés",
 	// Menu Button - Top menu
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
@@ -534,6 +535,7 @@ return array(
 	"My notif<span class='hidden-md'>ication</span>s"=>"Mes notif<span class='hidden-md'>ication</span>s",
 	"Notif<span class='hidden-md'>ication</span>s"=>"Notif<span class='hidden-md'>ication</span>s",
 	"Search"=>"Rechercher",
+	"News feed"=>"Actualité",
 	"Classifieds"=>"Annonces",
 	"Agenda"=>"Agenda",
 	"Help"=>"Aide",

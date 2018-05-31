@@ -20,16 +20,18 @@
         ];
 
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
-    var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
     var ctrlId = "<?php echo Yii::app()->controller->id;?>";
     var actionId = "<?php echo Yii::app()->controller->action->id ;?>";
     var moduleId = "<?php echo $parentModuleId?>";
-    var activeModuleId = "<?php echo $this->module->id?>";
     var parentModuleUrl = "<?php echo ( @Yii::app()->params["module"]["parent"] )  ? Yii::app()->getModule( Yii::app()->params["module"]["parent"] )->getAssetsUrl() : Yii::app()->controller->module->assetsUrl ?>";
+    var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
+    var activeModuleId = "<?php echo $this->module->id?>";
 
     var modules = {
-        "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
-        "classifieds": <?php echo json_encode( Classified::getConfig() ) ?>,
+        //Configure here eco
+        "classifieds":<?php echo json_encode( Classified::getConfig("classifieds") ) ?>,
+        "jobs":<?php echo json_encode( Classified::getConfig("jobs") ) ?>,
+        "ressources":<?php echo json_encode( Classified::getConfig("ressources") ) ?>,
         "places": <?php echo json_encode( Place::getConfig() ) ?>,
         "poi": <?php echo json_encode( Poi::getConfig() ) ?>,
         "chat": <?php echo json_encode( Chat::getConfig() ) ?>,
@@ -207,7 +209,7 @@ var typeObj = {
         "osm"         : { color: "lightblue2",   icon: "bullhorn",   name: "Open Street Map" },
         "ods"         : { color: "lightblue2",   icon: "bullhorn",   name: "OpenDatasoft" },
         "places"      : { color: "brown",        icon: "map-marker", name: trad.places },
-        "classified"  : { color: "azure",        icon: "bullhorn",   name: trad.classifieds },
+        "classifieds"  : { color: "azure",        icon: "bullhorn",   name: trad.classifieds },
         "GovernmentOrganization" : { color: "red",   icon: "university", name: "services publics" },
         "ressources"  : { color: "vine",   icon: "cubes",   name: "Ressource" },
         "news"        : { color: "blue-k",   icon: "newspaper-o",   name: "news" },
@@ -463,10 +465,9 @@ function initMyScopes(){
         myScopes = JSON.parse(localStorage.getItem("myScopes"));
 
     if( notNull(myScopes) && myScopes.userId == userId )  {
+        myScopes.open={};
         myScopes.search = {};
         myScopes.openNews={};
-        if(myScopes.open==null)
-            myScopes.open={};
         if(myScopes.multiscopes==null)
             myScopes.multiscopes={};
         console.log("init scope", myScopes);
