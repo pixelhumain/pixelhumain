@@ -496,7 +496,7 @@ return array(
 	"<span class='text-red'>Territorial</span> search engine"=>"<span class='text-red'>Motoricerca</span> territoriale",
 	"Classified ads"=>"Annunci economici",
 	"<span class='text-red'>C</span>Ommon agenda"=>"Calendario <span class='text-red'>co</span>munale",
-	"<span class='text-red'>CO</span>mmon live"=>"Il <span class='text-red'>Gemein</span>same fil d'attualità",
+	"<span class='text-red'>CO</span>mmon live"=>"Vivere <span class='text-red'>CO</span>mune",
 	"Create a page"=>"Creare una pagina",
 	"Create a classified ad"=>"Inserisci un annuncio",
 	"Create an event"=>"Annunciare un evento",
