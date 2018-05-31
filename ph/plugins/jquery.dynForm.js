@@ -1688,7 +1688,7 @@ var dyFObj = {
 				// $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
 				// 	$( settings.formId ).submit();	        	
 		  //       });
-		        $("#btn-submit-form").hide(); 
+		        //$("#btn-submit-form").hide(); 
 			}
 		});	
 
@@ -2707,6 +2707,7 @@ var dyFInputs = {
 
 						if(typeof networkJson.request.searchTag != "undefined"){
 							typeObj[key].dynForm.jsonSchema.properties.tags.data = networkJson.request.searchTag;
+							mylog.log("DATA NETWORK1", typeObj[key].dynForm.jsonSchema.properties.tags.data);
 						}
 
 						if(	typeof typeObj[key] != "undefined" &&
@@ -2716,10 +2717,15 @@ var dyFInputs = {
 							mylog.log("networkTags", networkTags);
 							typeObj[key].dynForm.jsonSchema.properties.tags.values=networkTags;
 							if(typeof networkJson.request.mainTag != "undefined"){
-								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag[0];
+								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag;
 								if(typeof typeObj[key].dynForm.jsonSchema.properties.tags.data == "undefined")
 									typeObj[key].dynForm.jsonSchema.properties.tags.data = [] ;
-								typeObj[key].dynForm.jsonSchema.properties.tags.data = $.merge(networkJson.request.mainTag[0], typeObj[key].dynForm.jsonSchema.properties.tags.data);
+
+								mylog.log("DATA NETWORK2", typeObj[key].dynForm.jsonSchema.properties.tags.data, networkJson.request.mainTag[0]);
+								
+								typeObj[key].dynForm.jsonSchema.properties.tags.data = $.merge(networkJson.request.mainTag, typeObj[key].dynForm.jsonSchema.properties.tags.data);
+								mylog.log("DATA NETWORK3", typeObj[key].dynForm.jsonSchema.properties.tags.data);
+
 							}
 						}
 
@@ -2849,7 +2855,7 @@ var dyFInputs = {
 	        			else
 	            			dyFObj.searchExist($(this).val(),[ dyFInputs.get(type).col ], addElement );
 	        		}
-	            	dyFObj.canSubmitIf();
+	            	//dyFObj.canSubmitIf();
 	        	});
 	        }
 	    }else{
@@ -4005,7 +4011,7 @@ var dyFInputs = {
     	return inputObj;
     },
     get:function(type){
-    	//mylog.log("dyFInputs.get", type);
+    	mylog.log("dyFInputs.get", type);
     	if( type == "undefined" ){
     		toastr.error("type can't be undefined");
     		return null;
@@ -4023,6 +4029,7 @@ var dyFInputs = {
     		if( obj )
     			obj = dyFInputs.get( obj.col )
     	}
+    	mylog.log("dyFInputs.get return", obj);
     	return obj;
     },
     deepGet:function(type){
@@ -4059,7 +4066,7 @@ var dyFInputs = {
 			
 		} 
 		$("#ajax-modal-modal-title").html(
-		 		$("#ajax-modal-modal-title").html()+
+		 	$("#ajax-modal-modal-title").html()+
 		 		" <br><small class='text-white'>"+tradDynForm.speakingas+" : <span class='text-dark'>"+cName+"</span></small>" );
 		
     }

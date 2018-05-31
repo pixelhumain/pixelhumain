@@ -1,5 +1,5 @@
 <div class="col-xs-12 main-bottom-menu no-padding"  data-tpl="default.menu.menuBottom">
-	<?php if(@Yii::app()->session["userId"] && @$params['add']){ ?>
+	<?php if(@Yii::app()->session["userId"] && @$params['add'] && empty($params['dataSrc'])){ ?>
 		<div class="showElementAdd">
 			<div id="btn-menu-add-sub">
 			

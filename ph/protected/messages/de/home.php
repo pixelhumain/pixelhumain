@@ -159,5 +159,6 @@
 		"We are experimenting new ways of gouvernance,<br>managing territory, implicating local actor into everything and everywhere" => "Wir experimentieren mit neuen Wegen der Verwaltung des Territoriums, indem wir lokale Akteure in alles und überall einbinden",
 		"Online Doc" => "Online Dokumentation",
 		"Team" => "Team",
+		"They form a key part of the adventure" => "Sie sind ein wichtiger Teil des Abenteuers",
 	);
 ?>

@@ -493,6 +493,10 @@ return array(
 	"Invite people" => "Inviter des personnes",
 	"Invite members" => "Inviter des membres",
 	"Invite contributors" => "Inviter des contributeurs",
+	"Invite people on" => "Inviter des personnes sur",
+	"Invite members on" => "Inviter des membres sur",
+	"Invite contributors on" => "Inviter des contributeurs sur",
+	
 	"Invite people {what}" => "Inviter des personnes {what}",
 	"Invite {what} {where}" => "Inviter des {what} {where}",
 	"Not interested by the invitation" => "Pas intéressé(e) par l&rsquo;invitation",
@@ -525,6 +529,7 @@ return array(
 	"Uploaod files"=>"Ajouter des fichiers",
 	"Add bookmark"=>"Ajouter un bookmark",
 	"Start search by tags"=>"Commencer la recherche par mots-clés",
+	"Launch invitations"=> "Lancer les invitations",
 	// Menu Button - Top menu
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
