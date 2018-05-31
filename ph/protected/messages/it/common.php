@@ -1323,6 +1323,14 @@ return array(
 	"New Channel" => "Nuovo chat room",
 	"Add a new channel" => "Aggiungere un nuovo chat room",
 	"Convert to Organization" => "Converti in organizzazione",
+	
+	"Invite people on" => "Invita le persone su",
+	"Invite members on" => "Invita i membri su",
+	"Invite contributors on" => "Invita i contributori su",
+	"Launch invitations" => "Invia inviti",
+	"What are you looking for" => "Cosa cerca",
+	"I don't like" => "Non mi piace",
+	"search by name or by #tag, ex: 'commun' or '#commun" => "ricerca per nome o per #tag, es: 'comune' o '#comunità'",
 		
 );
 ?>
