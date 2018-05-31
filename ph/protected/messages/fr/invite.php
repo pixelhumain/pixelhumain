@@ -16,6 +16,9 @@
 		"A name, an e-mail..." => "Un nom, un e-mail ...",
 		"Please validate the current invites" => "Veuillez valider les invites en cours",
 		"This person is already on your contacts" => "Cette personne est déjà dans vos contacts",
+		"Write" => "Ecrire",
+		"Others" => "Autres",
+		"Check" => "Vérifier",
 	);
 
 ?>
