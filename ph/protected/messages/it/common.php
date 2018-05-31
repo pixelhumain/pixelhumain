@@ -390,7 +390,7 @@ return array(
 	"Organizations" => "Organizzazioni",
 	"Projects" => "Progetti",
 	"Events" => "Eventi",
-	"Points of interest" => "luogi di interesse",
+	"Points of interest" => "Luogi di interesse",
 	"points of interest" => "luogi di interesse",
 	"cities"=>"città",
 	"Contact"=>"Contatto",
