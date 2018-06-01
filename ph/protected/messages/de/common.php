@@ -1328,5 +1328,10 @@ return array(
 	"Add a new channel" => "Neuen Chatraum hinzufügen",
 	"Convert to Organization" => "In Organisation umwandeln",
 	
+	"Invite people on" => "Lade Personen ein zu",
+	"Invite members on" => "Lade Mitglieder ein zu",
+	"Invite contributors on" => "Lade Mitwirkende ein zu",
+	"Launch invitations" => "Einladungen verschicken",
+	
 );
 ?>

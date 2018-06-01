@@ -19,9 +19,13 @@
 		"A name, an e-mail..." => "Un nom, un e-mail ...",
 		"Please validate the current invites" => "Veuillez valider les invites en cours",
 		"This person is already on your contacts" => "Cette personne est déjà dans vos contacts",
+		"Email successfully sent to join communecter.org"=>"E-mail envoyé avec succès pour rejoindre communecter.org",
 		"Write" => "Ecrire",
 		"Others" => "Autres",
 		"Check" => "Vérifier",
+		"See the community"=>"Voir la communauté",
+		"Result of invitations sent"=>"Résultat des invitations envoyées",
+		"Not found ? Launch an invitation to join your network"=>"Pas trouvé ? Lancer une invitation à rejoindre votre réseau",
 	);
 
 ?>
