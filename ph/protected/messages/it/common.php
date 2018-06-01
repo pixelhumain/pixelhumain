@@ -1300,7 +1300,7 @@ return array(
 	"Ressources" => "Risorse",
 	"Ressource" => "Risorsa",
 	"Recurring donation" => "Donazione regolare",
-	"pts , based on Links and Posts popularity" => "Punti basati sui link e la popolarità dei post",
+	"pts , based on Links and Posts popularity" => " Punti basati sui link e la popolarità dei post",
 	
 	"This email doesn't exist in our database. Do you want to create an account ?" => "Questa e-mail non esiste nel nostro database. Vuoi creare un account?",
 	"Open" => "Aprire",
