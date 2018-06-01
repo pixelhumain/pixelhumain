@@ -1286,7 +1286,7 @@ return array(
 	"Geographical filter" => "Filtro geografico",
 	"Theme filter" => "Filtro Tema",
 	"Sharing" => "Condivisione",
-	"In live" => "In tempo",
+	"In live" => "In tempo reale",
 	"Market place" => "Piazza del mercato",
 	"Documentation" => "Documentazione",
 	"An account is already registered with this email" => "Un account con questa e-mail è già registrato",
