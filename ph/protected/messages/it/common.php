@@ -510,7 +510,7 @@ return array(
 	//TITLE DIRECTORY ELEMENT
 	"is composed of"=>"è composto da",
 	"subevent"=>"sottoevento",
-	"takes part in"=>"partecipa",
+	"takes part in"=>"partecipa a",
 	"is member of"=> "è membro di",
 	"contributes to"=> "contribuisce a", 
 	"have been created by"=>"è stato creato da",
