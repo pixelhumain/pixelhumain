@@ -223,3 +223,5 @@ pip-log.txt
 .mr.developer.cfg
 /ehxwwa4q.nyx.txt
 dbconfig.php
+
+ph/protected/config/dbconfig\.exemple\.php
