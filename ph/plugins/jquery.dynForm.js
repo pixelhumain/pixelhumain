@@ -1125,6 +1125,7 @@ onSave: (optional) overloads the generic saveProcess
 						{
 						  "tags": initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
+						  "minimumInputLength" : 3,
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
 						if(initValues[ $(this).attr("id") ].maximumSelectionLength)
