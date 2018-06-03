@@ -1298,7 +1298,7 @@ return array(
 	"Number of visits - Week" => "Numero di visite - settimana",
 	"Week" => "Settimana",
 	"Ressources" => "Risorse",
-	"Ressource" => "risorsa",
+	"Ressource" => "Risorsa",
 	"Recurring donation" => "Donazione regolare",
 	"pts , based on Links and Posts popularity" => " Punti basati sui link e la popolarità dei post",
 	
