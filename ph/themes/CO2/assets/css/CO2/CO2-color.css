@@ -13,7 +13,7 @@
 .letter-orange{ color:#FFA200!important; }
 
 .letter-yellow{ color:#fbbc05!important; }
-
+.letter-yellow-k{ color:#fbbc05!important; }
 .letter-green{ color:#34a853!important; }
 .letter-green-k{ color:#34a853!important; }
 .text-green-k{ color:#34a853!important; }
@@ -209,6 +209,7 @@ a.text-white{
 }
 .bg-yellow-k{
     background-color:#fbbc05 !important;
+    color:white;
 }
 .bg-purple{
     background-color:#8C5AA1 !important;

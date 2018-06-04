@@ -1714,6 +1714,7 @@ margin-right: 5px;
 #ajax-modal.portfolio-modal.modal{
 	background-color: rgba(0,0,0,0.5);
 	min-height:unset !important;
+	z-index: 100000;
 }
 
 #ajax-modal .modal-content{

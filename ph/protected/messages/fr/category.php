@@ -296,7 +296,12 @@
         "Private channels can only be viewed by it's members" => "Un channel privé est disponible que pour ces membres",
         "public or private ?" => "public ou privé",
         "Public" => "Public",
-        "Private" => "Privé"
+        "Private" => "Privé",
+
+        //News
+        "Only posts" => "Seulement les publications",
+        "Activity of communecters"=>"Activités des communecteurs",
+        "Surveys"=>"Sondages",
 
 	);
 ?>
