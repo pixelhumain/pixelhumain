@@ -725,15 +725,19 @@ a, a:hover, a:focus, a:active, a.active{
 	color: #34a853 !important;
 }
 
+#input-sec-search {
+    display: none;
+}
+
 #main-search-bar{
 	padding: 10px;
     font-size: 14px;
     height: 44px;
     font-weight: 200;
-    width: 101%;
+    /*width: 21%;*/
     border-radius: 0px;
-    margin-top: -2px;
-    margin-bottom: 0px;
+    /*margin-top: -2px;
+    margin-bottom: 0px;*/
     text-align: -webkit-center;
     border: 1px solid #dadada !important;
     /* -webkit-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5); */

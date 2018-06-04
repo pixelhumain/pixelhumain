@@ -318,12 +318,12 @@
             $("#filters-nav").show(200);
             headerHeightPos(true);
         });
-        $(".menu-btn-start-search").click(function(){
-            $(this).addClass("active");
-            $("#filter-scopes-menu").hide();
-            $("#text-search-menu").show(400);
-            headerHeightPos(true);
-        });
+        // $(".menu-btn-start-search").click(function(){
+        //     $(this).addClass("active");
+        //     $("#filter-scopes-menu").hide();
+        //     $("#text-search-menu").show(400);
+        //     headerHeightPos(true);
+        // });
         $(".menu-btn-scope-filter").click(function(){
             $(this).addClass("active");
             $("#text-search-menu").hide();
