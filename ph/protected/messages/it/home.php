@@ -45,7 +45,7 @@
 		"You're not <span class='text-dark'>communected</span>" => "Non sei <span class='text-dark'>comunicanesso</span>",
 		"You are" => "Sei",
 		"communected to" => "comunicanesso a",
-		"Be communected permits you to get smart informations<br>localy performed." => "",
+		"Be communected permits you to get smart informations<br>localy performed." => "Essere in comunicazione consente di ottenere informazioni intelligenti<br>localy eseguito.",
 		"Be communected" => "comunicanesso",
 		"Change your communexion" => "Cambia la tua comunectione",
 		"communect you : London, Paris, Brussels ?" => "comuniconetta: Torino, Nizza, Parma ?",
