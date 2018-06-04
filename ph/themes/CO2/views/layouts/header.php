@@ -325,10 +325,18 @@
         //     headerHeightPos(true);
         // });
         $(".menu-btn-scope-filter").click(function(){
-            $(this).addClass("active");
-            $("#text-search-menu").hide();
-            $("#filter-scopes-menu").show(400);
-            headerHeightPos(true);
+            if(!$(this).hasClass("active")){
+                $(this).addClass("active");
+                //$("#text-search-menu").hide();
+                $("#filter-scopes-menu").hide(400);
+                //headerHeightPos(true);
+            }else{
+                $(this).removeClass("active");
+                $("#text-search-menu").hide();
+                $("#filter-scopes-menu").show(400);
+                headerHeightPos(true);
+            }
+            
         });
         headerHeightPos(true);
 

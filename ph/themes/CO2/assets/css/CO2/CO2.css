@@ -725,10 +725,6 @@ a, a:hover, a:focus, a:active, a.active{
 	color: #34a853 !important;
 }
 
-#input-sec-search {
-    display: none;
-}
-
 #main-search-bar{
 	padding: 10px;
     font-size: 14px;
