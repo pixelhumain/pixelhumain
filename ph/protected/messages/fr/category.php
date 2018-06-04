@@ -25,6 +25,7 @@
 
 
 		//Classifieds
+        "Sales & rents"=>"Ventes & locations",
         "Share"=>"Partager", 
         "To share"=>"À partager",
         "Give"=>"Donner",   
@@ -36,6 +37,7 @@
         
         "Looking for"=>"À la recherche",   
         "Jobs"=>"Emplois", 
+        "Job offers"=>"Emplois",
         "Offers"=>"Offres d'emplois", 
         //Classifieds filter
         "Technology"=>"Technologie", 
