@@ -145,7 +145,7 @@ function lazyLoad (js,css, callback, notBase) {
           //mylog.log("lazyLoad getScript");
           //if (typeof dynform !== undefined) alert("script has been loaded!");
           if( typeof callback === "function")
-            callback();
+            callback(data);
         });
     } else {
         mylog.log("lazyLoad notScript");

@@ -233,39 +233,52 @@
 
 		
 		// GET LIST OF NETWORK'S TAGS
-		if(networkJson != null && typeof networkJson.filter != "undefined" && typeof networkJson.filter.linksTag != "undefined"){
+		// if(networkJson != null && typeof networkJson.filter != "undefined" && typeof networkJson.filter.linksTag != "undefined" && typeof networkJson.request.searchTag != "undefined"){
+		if(networkJson != null){
 			var networkTags = [];
 			//var networkTags2 = {};
 			var networkTagsCategory = {};
 			//var optgroupArray = {};
 			tagsList = [];
-			if(typeof networkJson.request.mainTag != "undefined")
-				networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
-			$.each(networkJson.filter.linksTag, function(category, properties) {
-				optgroupObject=new Object;
-				optgroupObject.text=category;
-				optgroupObject.children=[];
-				networkTagsCategory[category]=[];
-				$.each(properties.tags, function(i, tag) {
-					if($.isArray(tag)){
-						$.each(tag, function(keyTag, textTag) {
-							val={id:textTag,text:textTag};
-							if(jQuery.inArray( textTag, tagsList ) == -1 ){
+			if(typeof networkJson.request != "undefined"){
+				if(typeof networkJson.request.mainTag != "undefined")
+					networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
+
+				if(typeof networkJson.request.searchTag != "undefined"){
+					console.log("NETWORK searchTag", networkTags);
+					networkTags = $.merge(networkTags, networkJson.request.searchTag);
+					console.log("NETWORK searchTag", networkTags);
+				}
+			}
+			
+
+			if(typeof networkJson.filter != "undefined" && typeof networkJson.filter.linksTag != "undefined"){
+				$.each(networkJson.filter.linksTag, function(category, properties) {
+					optgroupObject=new Object;
+					optgroupObject.text=category;
+					optgroupObject.children=[];
+					networkTagsCategory[category]=[];
+					$.each(properties.tags, function(i, tag) {
+						if($.isArray(tag)){
+							$.each(tag, function(keyTag, textTag) {
+								val={id:textTag,text:textTag};
+								if(jQuery.inArray( textTag, tagsList ) == -1 ){
+									optgroupObject.children.push(val);
+									tagsList.push(textTag);
+								}
+							});
+						}else{
+							val={id:tag,text:tag};
+							if(jQuery.inArray( tag, tagsList ) == -1 ){
 								optgroupObject.children.push(val);
-								tagsList.push(textTag);
+								tagsList.push(tag);
 							}
-						});
-					}else{
-						val={id:tag,text:tag};
-						if(jQuery.inArray( tag, tagsList ) == -1 ){
-							optgroupObject.children.push(val);
-							tagsList.push(tag);
 						}
-					}
+					});
+					networkTags.push(optgroupObject);
+					networkTagsCategory[category].push(optgroupObject);
 				});
-				networkTags.push(optgroupObject);
-				networkTagsCategory[category].push(optgroupObject);
-			});
+			}
 		}
 
 

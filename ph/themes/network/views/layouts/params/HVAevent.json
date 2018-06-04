@@ -1,12 +1,12 @@
 {
-    "name" : "",
+    "name" : "Evènement d'Haute Vallée de l'Aude",
     "mode" : "server",
     "skin" : {
-        "logo" : "http://animateurmultimedia.fr/partage/vege.jpg",
-        "title" : "Restaurants végé de La Réunion",
-        "shortDescription" : "Liste des restaurants végétariens et végétaliens de l'Île de la Réunion",
+        "logo" : false,
+        "title" : "Evènement d'Haute Vallée de l'Aude",
+        "shortDescription" : "Toutes les évènement d'Haute Vallée de l'Aude",
         "displayScope" : false,
-        "docs": true,
+        "docs":true,
         "displayCommunexion" : true,
         "displayNotifications" : true,
         "profilBar" : false,
@@ -17,7 +17,7 @@
         },
         "iconeAdd" : false,
         "iconeSearchPlus" : false,
-        "loginTitle": "",
+        "loginTitle":"",
         "front" : {
             "organization" : false,
             "project" : true,
@@ -40,7 +40,7 @@
         }
     },
     "add" : {
-        "organization" : true
+        "event" : true
     },
     "result" : {
         "displayImage" : true,
@@ -51,13 +51,14 @@
     },
     "request" : {
         "pagination" : 1000,
-        "searchType" : [
-            "organizations"
+        "sourceKey" :[
+            "HVAevent"
         ],
-        
-      
-    "searchTag" : ["végétarien", "vegetarien", "Végétarien", "Vegetarien", "vegan", "Vegan", "végétalien", "Végétalien"],
-    "searchLocalityREGION": ["La Réunion"],
-    "mainTag" : [""]
+        "searchType" : [
+            "events"
+        ],
+        "searchLocalityDEPARTEMENT": [
+            "AUDE"
+        ]
     }
 }
