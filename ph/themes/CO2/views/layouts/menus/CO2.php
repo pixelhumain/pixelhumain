@@ -101,10 +101,13 @@
                   //$subdomain == "admin"
                   //$subdomain == "page"
                  ){ ?>
-            <button class="btn btn-default hidden-xs pull-left menu-btn-start-search" style="display:none;" 
+            <!-- <button class="btn btn-default hidden-xs pull-left menu-btn-start-search" style="display:none;" 
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
-            </button>
+            </button> -->
+            <div class="col-sm-3 col-md-4 col-lg-4" style="">
+                <input type="text" class="form-control pull-left" id="main-search-bar" placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
+            </div>
             <button class="btn hidden-xs pull-left menu-btn-scope-filter text-red"
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-map-marker"></i> <span class="header-label-scope"><?php echo Yii::t("common","where ?") ?></span>
