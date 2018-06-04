@@ -20,6 +20,6 @@ $activeModules = array(
 	'chat',
 	'cococarto', 
 	"survey",
-	"interop"
+	"interop",
 	"eco"
 	);
