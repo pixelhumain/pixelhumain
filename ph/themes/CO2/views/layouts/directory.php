@@ -44,11 +44,11 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 
     '/plugins/cryptoJS-v3.1.2/rollups/aes.js',
 
+    '/plugins/select2/select2.min.js' , 
 
-
-'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
-'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
-'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
+    '/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
+    '/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
+    '/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
 
 
   );
@@ -125,6 +125,8 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
         $this->renderPartial( 'eco.views.custom.'.$city["custom"]["bannerTpl"] );
     }
 
+
+
     echo $content; ?> 
 </div>
 
@@ -135,18 +137,22 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
                                  array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));*/
 ?>
 <script type="text/javascript">
-
+var custom = {};
   jQuery(document).ready(function() {
     
     <?php  if(@$_GET["city"]){ 
-      if(@$city["custom"] && $city["custom"]["logo"]) { ?>
-      $(".logo-menutop").attr({'src':moduleUrl+"<?php echo $city["custom"]["logo"] ?>"})
+    if(@$city["custom"] && $city["custom"]["logo"]) {
+      Yii::app()->session['customLogo'] = $city["custom"]["logo"];
+    ?>
+      custom.logo = moduleUrl+"<?php echo $city["custom"]["logo"] ?>";
+      $(".logo-menutop").attr({'src':moduleUrl+"<?php echo $city["custom"]["logo"] ?>"});
     <?php }} ?>
 
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });
       themeObj.init();
+      Login.init();
   });
  
   function initNotifications(){
