@@ -160,7 +160,7 @@ function lazyLoadMany (list, callback, notBase) {
   countLazyLoad = 0;
   $.each(list,function(i,v) { 
     var url = (notBase==true ? v : baseUrl+v);
-    mylog.warn("--> url",url);
+    mylog.log("LLM --> url",url);
     if( url.indexOf("js")>0 && !$('script[src="'+url+'"]').length )
     {
       //!mylog.log("lazyLoad  before getScript",js);
@@ -168,7 +168,7 @@ function lazyLoadMany (list, callback, notBase) {
         //mylog.log("lazyLoad getScript");
         //if (typeof dynform !== undefined) alert("script has been loaded!");
         countLazyLoad++; 
-        if( callback === "function")
+        if(typeof callback === "function")
           callback(data);
       });
     } else if(url.indexOf("css")>0 ){
@@ -178,7 +178,7 @@ function lazyLoadMany (list, callback, notBase) {
          href: url 
       }).appendTo("head");
       countLazyLoad++;
-      if( callback === "function")
+      if(typeof callback === "function")
           callback();
     } else {
       mylog.error("lazyLoadMany notScript");

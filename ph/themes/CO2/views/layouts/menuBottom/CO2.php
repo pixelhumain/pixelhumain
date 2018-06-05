@@ -209,7 +209,7 @@ function addBtnSwitch(){
     var fname = "<?php echo Yii::t("common", "as") ?> ";
     if ( contextData != null && contextData.type && inArray( contextData.type,[ "organizations","citoyens","events","projects" ] ) )
         fname += contextData.name;
-    else {
+    else if(userConnected) {
         fname += userConnected.name;
     }
 
