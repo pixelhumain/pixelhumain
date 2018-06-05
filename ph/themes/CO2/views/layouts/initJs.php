@@ -35,10 +35,14 @@
         "places": <?php echo json_encode( Place::getConfig() ) ?>,
         "poi": <?php echo json_encode( Poi::getConfig() ) ?>,
         "chat": <?php echo json_encode( Chat::getConfig() ) ?>,
+        "eco" : <?php echo json_encode( array(
+            "module" => "eco",
+            "url"    => Yii::app()->getModule( "eco" )->assetsUrl
+        )); ?>,
         "cotools" : <?php echo json_encode( array(
-            "module"        => "cotools",
-            "init"          => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
-            "form"          => Yii::app()->getModule( "cotools" )->assetsUrl."/js/dynForm.js" ,
+            "module" => "cotools",
+            "init"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
+            "form"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/dynForm.js" ,
         )); ?>
     };
     
