@@ -25,6 +25,7 @@
 
 
 		//Classifieds
+        "Sales & rents"=>"Ventes & locations",
         "Share"=>"Partager", 
         "To share"=>"À partager",
         "Give"=>"Donner",   
@@ -36,6 +37,7 @@
         
         "Looking for"=>"À la recherche",   
         "Jobs"=>"Emplois", 
+        "Job offers"=>"Emplois",
         "Offers"=>"Offres d'emplois", 
         //Classifieds filter
         "Technology"=>"Technologie", 
@@ -296,7 +298,12 @@
         "Private channels can only be viewed by it's members" => "Un channel privé est disponible que pour ces membres",
         "public or private ?" => "public ou privé",
         "Public" => "Public",
-        "Private" => "Privé"
+        "Private" => "Privé",
+
+        //News
+        "Only posts" => "Seulement les publications",
+        "Activity of communecters"=>"Activités des communecteurs",
+        "Surveys"=>"Sondages",
 
 	);
 ?>

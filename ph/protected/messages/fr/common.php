@@ -930,6 +930,12 @@ return array(
 	"Socials" => "Réseaux sociaux",
 	"Descriptions" => "Descriptions",
 	"Tags" => "Tags",
+	"Section" => "Section",
+	"Category" => "Catégorie",
+	"Subcategory" => "Sous-catégorie",
+	"Price" => "Prix",
+	"Type"=>"Type",
+	"Source data"=>"Source de donnée",
 
 	"Change password" => "Changer votre mot de passe",
 	"Download your profil" => "Télécharger votre profil",

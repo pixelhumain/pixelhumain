@@ -27,6 +27,13 @@
     #filters-nav-list .dropdown .dropdown-menu:after, #filters-nav-list .dropdown .dropdown-menu:before{
         left: 5%;
     }
+    #filters-nav-list .dropdown .btn-news-type-filters {
+        border:inherit;
+    }
+    #filters-nav-list .dropdown .dropdown-menu:after{
+        width: inherit;
+        right: inherit;
+    }
 </style>
 
 <?php 
@@ -220,7 +227,7 @@
                                 </li>
                                 <li class="dropdown dropdown-section">
                                     <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownSection" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
-                                  title="<?php echo Yii::t("common","Choose a section") ?>" alt="<?php echo Yii::t("common","Choose a section") ?>"><?php echo Yii::t("common","Sections") ?> <i class="fa fa-angle-down"></i></a>
+                                  title="<?php echo Yii::t("common","Choose a section") ?>" alt="<?php echo Yii::t("common","Choose a section") ?>"><?php echo Yii::t("common","Section") ?> <i class="fa fa-angle-down"></i></a>
                                     <div class="dropdown-menu arrow_box" aria-labelledby="dropdownSections">
                                     </div>
                                 </li>
@@ -309,9 +316,9 @@
         $("#tagsFilterInput").select2({tags:[]});
         $(".tooltips").tooltip();
         $("#filters-nav-list .dropdown .dropdown-toggle").click(function(){
-           // offset=$(this).offset();
-            $(this).parent().find(".dropdown-menu").css({"top":($("#affix-sub-menu").height()+$("#mainNav").height())+"px"});
-            addRule("#filters-nav-list .dropdown .dropdown-menu:after, #filters-nav-list .dropdown .dropdown-menu:before", "left:"+(offset.left-20)+"px !important");//.css({"left":offset.left+"px"});
+            offset=$(this).offset();
+            $(this).parent().find(".dropdown-menu").css({"top":($("#affix-sub-menu").height()+$("#mainNav").height()+15)+"px"});
+            addRule("#filters-nav-list .dropdown .dropdown-menu:after, #filters-nav-list .dropdown .dropdown-menu:before", "left:"+(offset.left-20)+"px !important");
 
         });
         $(".btn-show-filters").click(function(){

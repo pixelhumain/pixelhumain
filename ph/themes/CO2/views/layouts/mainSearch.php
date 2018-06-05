@@ -321,6 +321,7 @@
                 });
 
                 themeObj.init();
+                Login.init();
                 $.each(modules,function(k,v) { 
                     if(v.init){
                         mylog.log("init.js for module : ",k);
