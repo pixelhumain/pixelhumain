@@ -515,7 +515,7 @@ jQuery(document).ready(function() {
     <?php } ?>
     
 
-    //Login.init(); 
+    Login.init(); 
 
     $('.form-register #username').keyup(function(e) { 
         validateUserName();

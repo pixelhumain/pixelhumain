@@ -503,12 +503,12 @@
         </ul>
     </div>
 </div>
-<?php } ?>
-<?php   $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
-       ?>
+<?php } 
 
-<?php if(isset(Yii::app()->session['userId'])) 
-        $this->renderPartial($layoutPath.'notifications'); ?>
+$this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
 
-<?php $this->renderPartial($layoutPath.'formCreateElement'); ?>
+if(isset(Yii::app()->session['userId'])) 
+    $this->renderPartial($layoutPath.'notifications'); 
+
+$this->renderPartial($layoutPath.'formCreateElement'); ?>
 
