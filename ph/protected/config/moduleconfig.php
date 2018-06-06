@@ -17,5 +17,7 @@ $activeModules = array(
 	"onepage",
 	"cooperation",
 	'terla',
-	'chat'
+	'chat',
+	'cococarto', 
+	"survey"
 	);

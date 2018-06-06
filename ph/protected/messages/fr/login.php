@@ -117,5 +117,6 @@ return array(
         "Your account <b>is not validated</b>: please check your mailbox to validate your email address."=>"Votre compte <b>n'est pas validé</b>: merci de regarder dans votre boite mail pour valider votre adresse mail.",
         "If you <b>didn't receive it or lost it</b>, click on the <b>following button</b> to receive it <b>again</b>"=>"Si vous <b>ne le retrouvez pas ou s'il s'est perdu</b>, cliquez sur le <b>bouton ci-dessous</b> pour recevoir <b>à nouveau</b> ce mail",
         "Receive another validation email"=>"Recevoir un autre mail de validation",
+        "Verify your emails and your spams"=>"Vérifiez vos emails et vos spams (courriers indésirables)",
     );
 ?>

@@ -201,7 +201,7 @@
                 
                 //'/plugins/animate.css/animate.min.css',
                 '/plugins/font-awesome/css/font-awesome.min.css',
-                '/plugins/font-awesome-custom/css/font-awesome.css',
+                //'/plugins/font-awesome-custom/css/font-awesome.css',
 
                 '/plugins/cryptoJS-v3.1.2/rollups/aes.js'
             );
@@ -258,8 +258,7 @@
             /* ***********************
             END theme stuff
             ************************ */
-
-            $this->renderPartial($layoutPath.'initJs', 
+             $this->renderPartial($layoutPath.'initJs', 
                                  array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
 
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
@@ -291,7 +290,7 @@
         <?php $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
         <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"]); ?>
         <?php 
-            if((($CO2DomainName == "CO2" &&
+            if(false && (($CO2DomainName == "CO2" &&
                 !@Yii::app()->session["userId"] && 
                 !@Yii::app()->session["user"]["preferences"]) || 
                 ($CO2DomainName == "CO2" &&

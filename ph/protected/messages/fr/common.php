@@ -167,7 +167,7 @@ return array(
 	"Collection {what} deleted with success"=> "Collection {what} suprimée avec succès",
 	"Collection {what} updated with success"=> "Collection {what} modifiée avec succès",
 	"Validation is well registered"=> "La validation a été enregistrée avec succès",
-	"Please choose an image with a minimun of size: 600x300 (widthxheight)"=>"Veuillez choisir une image avec un taille minimum de : 600x300 (largeurxhauteur)",
+	"Please choose an image with a minimun of size: 600x300 (widthxheight)"=>"Veuillez choisir une image avec une taille minimum de : 600x300 (largeurxhauteur)",
 	"Your data are well updated"=>"Vos données ont été mises à jour",
 	"Your data are well registred"=>"Vos données ont bien été enregistrées",
 	"Contacts are well updated"=>"Les contacts ont été mis à jour",
@@ -193,11 +193,14 @@ return array(
 	"is already member of" => "est déjà membre de",
 	"is already admin of" => "est déjà admin de",
 	//"Remove your positive vote before" => "Enlever le vote positif avant", 
-	"No more notifications for the moment" => "Vous n&#146;avez pas de notifications pour le moment",
+	"No more notifications for the moment" => "Vous n&#146;avez plus de notifications pour le moment",
+	"You have no notifications for the moment" => "Vous n&#146;avez pas de notifications pour le moment",
 	//Confirm
-	"Are you sure you want to delete this news" => "Êtes-vous sûr de vouloir supprimer cette publication ?",
-	"Are you sure you want to delete this contact" => "Êtes-vous sûr de vouloir supprimer ce contact ?",
-	"Are you sure you want to delete this link" => "Êtes-vous sûr de vouloir supprimer ce lien ?",
+	"Are you sure you want to delete this news" => "Êtes-vous sûr-e de vouloir supprimer cette publication ?",
+	"Are you sure you want to delete this contact" => "Êtes-vous sûr-e de vouloir supprimer ce contact ?",
+	"Are you sure you want to delete this link" => "Êtes-vous sûr-e de vouloir supprimer ce lien ?",
+	"Are you sure to refuse this invitation" => "Êtes-vous sûr-e de refuser cette invitation",
+	"Are you sure to refuse to administrate {what}"=> "Êtes-vous sûr-e de refuser d&#146;administrer {what}",
 	//Form
 	"Required Fields" => "Champs requis",
 	"Save" => "Enregistrer",
@@ -380,6 +383,8 @@ return array(
 	"Are you sure to join the organization" => "Êtes-vous sûr de rejoindre l'organisation",
 	"Are you sure to join the project" => "Êtes-vous sûr de rejoindre le projet",
 	"Are you sure to participate to the event" => "Êtes-vous sûr de participer à cet événement",
+	"Are you sure to refuse this invitation" => "Êtes-vous sûr-e de refuser cette invitation",
+	"Are you sure to refuse to administrate {what}"=> "Êtes-vous sûr-e de refuser d&#146;administrer {what}",
 	"Are you admin" => "Êtes-vous admin",
 	"Would you like to be an administrator" => "Souhaitez-vous être administrateur",
 	"as contributor" => "comme contributeur",
@@ -576,6 +581,7 @@ return array(
 	"Create a new page"=>"Créer une nouvelle page",
 	"Edit slug"=>"Modifier votre adresse URL",
 	"Search among your contacts"=>"Rechercher parmi vos contacts",
+	"Set your notifications"=>"Paramétrer vos notifications",
 	/* ---- */
 	//TITLE DIRECTORY ELEMENT
 	"Keep data open and usable by all"=>"Maintenir les données ouvertes et universellement utilisables",
@@ -811,7 +817,7 @@ return array(
 	"Post a message in the wall of" => "Publier un message sur le journal de",
 	"publicly shared or to this community" => "partagé publiquement ou avec la communauté",
 	"Write a private message to" => "Écrire un message privé à",
-	"Write a public message visible on the wall of selected places" => "Écrire un message public pour les zones sélectionnées",
+	"Write a public message visible on the wall of selected places" => "Écrire un message public pour les lieux sélectionnés",
 	"Write a idea, a message in the city wall of" => "Écrire une idée, un message sur le journal de la ville",
 	"Write a bug or an idea to improve the development of communecter" => "Écrire un bug ou une idée pour améliorer le développement de communecter",
 	"Published a message in your wall for your network" => "Publier un message sur votre mur",
@@ -1390,7 +1396,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 
 	"Add to my favorites places" => "Ajouter à mes lieux favoris",
 	"Remove from my favorites places" => "Supprimer de mes lieux favoris",
-	"Add zone to new" => "Ajouter une zone à la new",
+	"Add zone to news" => "Sélectionner ce lieu",
 
 	"search by name or by #tag, ex: 'commun' or '#commun" => "rechercher ou #rechercher",
 

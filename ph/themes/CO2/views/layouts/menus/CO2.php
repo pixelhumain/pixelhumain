@@ -28,7 +28,8 @@
 
     .btn-language{
         height: 35px;
-        border-radius: 0% 50%;
+        /*border-radius: 0% 50%;*/
+        border:none;
         width: 50px;
     }
 
@@ -146,7 +147,7 @@
             <i class="fa fa-map-marker"></i>
         </button>
         <?php if( !@Yii::app()->session['userId'] ){ ?>
-            <div id="navbar" class="navbar-collapse pull-right navbar-right" style="    margin-top: 5px;   margin-bottom: 5px;">
+            <div id="navbar" class="navbar-collapse pull-right navbar-right" style="margin-top: 8px;   margin-bottom: 5px;">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle btn btn-default btn-language padding-5" data-toggle="dropdown" role="button">
@@ -414,7 +415,7 @@
 
                 <?php } else { ?>
 
-                 <span class="dropdown pull-left" id="dropdown-apps">
+                 <!-- <span class="dropdown pull-left" id="dropdown-apps">
                         <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                               title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>" style="margin-top: 8px;">
                           <i class="fa <?php echo Application::ICON ?> letter-red"></i>
@@ -426,12 +427,12 @@
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Classified::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Market place") ?></a>
                             <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Ressource::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Sharing") ?></a>
                         </div>
-                    </span>
+                    </span> -->
 
                     <li class="pull-right">
                         <?php //if($subdomain != "welcome"){ ?>
                             <button class="letter-green font-montserrat btn-menu-connect margin-left-10 margin-right-10" 
-                                    data-toggle="modal" data-target="#modalLogin" style="font-size: 20px; margin-top:9px;">
+                                    data-toggle="modal" data-target="#modalLogin" style="font-size: 19px; margin-top:11px;">
                                     <i class="fa fa-sign-in"></i> 
                                     <span class="hidden-xs"><small style="width:70%;"><?php echo Yii::t("login", "LOG IN") ?></small></span>
                             </button>
@@ -560,10 +561,3 @@
 
 <?php $this->renderPartial($layoutPath.'formCreateElement'); ?>
 
-
-<script type="text/javascript">
- 
-    jQuery(document).ready(function() {   
-    });
-
-</script>

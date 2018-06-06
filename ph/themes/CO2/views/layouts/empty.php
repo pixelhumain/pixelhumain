@@ -15,21 +15,36 @@
   <title><?php echo CHtml::encode( (isset($this->module->pageTitle))?$this->module->pageTitle:""); ?></title>
    
  <?php  
+ $cs = Yii::app()->getClientScript();
+$cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["parent"]."/default/view/page/trad/dir/..|translation/layout/empty"));
+       
   $cssAnsScriptFilesModule = array(
 
     // est-ce que ça pose problème si je commente ces 2 lignes ?
     // le layout empty est-il utilisé par d'autres modules ? ou ailleurs dans CO ?
 
-    //'/plugins/bootstrap/css/bootstrap.min.css',
-    //'/plugins/bootstrap/js/bootstrap.min.js' ,
+    '/plugins/bootstrap/css/bootstrap.min.css',
+    '/plugins/bootstrap/js/bootstrap.min.js' ,
     //'/plugins/font-awesome/css/font-awesome.min.css',
     //'/plugins/font-awesome-custom/css/font-awesome.css',
     '/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.css',
     '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' ,
     '/plugins/blockUI/jquery.blockUI.js' ,
-    '/js/api.js'
+    '/js/api.js',
+    '/plugins/font-awesome/css/font-awesome.min.css',
+    '/plugins/toastr/toastr.js' , 
+    '/plugins/toastr/toastr.min.css',
   );
   HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->request->baseUrl);
+  
+  $cssAnsScriptFilesModule = array(
+    '/assets/css/CO2/CO2-boot.css',
+    '/assets/css/CO2/CO2-color.css',
+    '/assets/css/CO2/CO2.css',
+    '/assets/css/plugins.css',
+  );
+  HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
+
 
   
   $cs = Yii::app()->getClientScript();
@@ -45,7 +60,48 @@
 </head>
 
 <body class="body">
-<?php echo $content; ?> 
+  <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
+
+<?php 
+    $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+    $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
+                            array( "layoutPath"=>$layoutPath , 
+                                    "subdomain"=>"", //$subdomain,
+                                    "subdomainName"=>"", //$subdomainName,
+                                    "mainTitle"=>"", //$mainTitle,
+                                    "placeholderMainSearch"=>"", //$placeholderMainSearch,
+                                    "type"=>@$type,
+                                    "me" => $me) );
+
+
+    echo $content; ?> 
+</div>
+
+<?php 
+  $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
+
+  $this->renderPartial($layoutPath.'initJs', 
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
+?>
+<script type="text/javascript">
+
+  jQuery(document).ready(function() {
+      $(".btn-show-mainmenu").click(function(){
+          $("#dropdown-user").addClass("open");
+      });
+  });
+ 
+  function initNotifications(){
+  
+    $('.btn-menu-notif').off().click(function(){
+      mylog.log("click notification main-top-menu");
+        showNotif();
+      });
+
+  } 
+</script>
 
 </body>
 </html>
