@@ -118,6 +118,15 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
                                     "me" => $me) );
 
 
+
+    if( @Yii::app()->session['custom'] ){
+      $city = City::getById( Yii::app()->session['custom']["id"] );
+      if(@$city["custom"] && $city["custom"]["bannerTpl"])
+        $this->renderPartial( 'eco.views.custom.'.$city["custom"]["bannerTpl"] );
+    }
+
+
+
     echo $content; ?> 
 </div>
 
@@ -129,27 +138,27 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 ?>
 <script type="text/javascript">
 var custom = {};
-  jQuery(document).ready(function() {
-    
-    <?php $this->renderPartial( 'co2.views.custom.init' ); ?>
-
-    
-
-      $(".btn-show-mainmenu").click(function(){
-          $("#dropdown-user").addClass("open");
-      });
-      themeObj.init();
-      //Login.init();
-  });
- 
-  function initNotifications(){
+jQuery(document).ready(function() {
   
-    $('.btn-menu-notif').off().click(function(){
-      mylog.log("click notification main-top-menu");
-        showNotif();
-      });
+  <?php $this->renderPartial( 'co2.views.custom.init' ); ?>
 
-  } 
+  
+
+    $(".btn-show-mainmenu").click(function(){
+        $("#dropdown-user").addClass("open");
+    });
+    themeObj.init();
+    //Login.init();
+});
+
+function initNotifications(){
+
+  $('.btn-menu-notif').off().click(function(){
+    mylog.log("click notification main-top-menu");
+      showNotif();
+    });
+
+} 
 </script>
 
 </body>
