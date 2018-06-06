@@ -471,6 +471,7 @@ function initMyScopes(){
 
     if( notNull(myScopes) && myScopes.userId == userId )  {
         myScopes.open={};
+        myScopes.countActive = 0;
         myScopes.search = {};
         myScopes.openNews={};
         if(myScopes.multiscopes==null)
@@ -483,6 +484,7 @@ function initMyScopes(){
             userId: userId,
             open : {},
             openNews : {},
+            countActive : 0,
             search : {},
             communexion : <?php echo json_encode(CO2::getCommunexionUser()) ?>,
             multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 
