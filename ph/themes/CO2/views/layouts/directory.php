@@ -118,15 +118,6 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
                                     "me" => $me) );
 
 
-
-    if(@$_GET["city"]){
-      $city = City::getById( $_GET["city"] );
-      if(@$city["custom"] && $city["custom"]["bannerTpl"])
-        $this->renderPartial( 'eco.views.custom.'.$city["custom"]["bannerTpl"] );
-    }
-
-
-
     echo $content; ?> 
 </div>
 
@@ -140,19 +131,15 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 var custom = {};
   jQuery(document).ready(function() {
     
-    <?php  if(@$_GET["city"]){ 
-    if(@$city["custom"] && $city["custom"]["logo"]) {
-      Yii::app()->session['customLogo'] = $city["custom"]["logo"];
-    ?>
-      custom.logo = moduleUrl+"<?php echo $city["custom"]["logo"] ?>";
-      $(".logo-menutop").attr({'src':moduleUrl+"<?php echo $city["custom"]["logo"] ?>"});
-    <?php }} ?>
+    <?php $this->renderPartial( 'co2.views.custom.init' ); ?>
+
+    
 
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });
       themeObj.init();
-      Login.init();
+      //Login.init();
   });
  
   function initNotifications(){

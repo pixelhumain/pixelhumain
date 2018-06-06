@@ -105,6 +105,12 @@
                                                     "placeholderMainSearch"=>"", //$placeholderMainSearch,
                                                     "type"=>@$type,
                                                     "me" => $me) );
+                if(@$_GET["city"]){
+                  $city = City::getById( $_GET["city"] );
+                  if(@$city["custom"] && $city["custom"]["bannerTpl"])
+                    $this->renderPartial( 'eco.views.custom.'.$city["custom"]["bannerTpl"] );
+                }
+
             ?>
             <header>
                 <div class="col-md-12 text-center main-menu-app" style="">
@@ -304,9 +310,12 @@
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             var CO2params = <?php echo json_encode($params); ?>;
-
-            jQuery(document).ready(function() { 
+            var custom = {};
                 
+            jQuery(document).ready(function() { 
+                    
+                <?php $this->renderPartial( 'co2.views.custom.init' ); ?>
+
                 $.blockUI({ message : themeObj.blockUi.processingMsg});
                 
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
@@ -321,7 +330,7 @@
                 });
 
                 themeObj.init();
-                Login.init();
+                //Login.init();
                 $.each(modules,function(k,v) { 
                     if(v.init){
                         mylog.log("init.js for module : ",k);
