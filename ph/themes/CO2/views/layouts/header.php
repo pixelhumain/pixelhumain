@@ -331,18 +331,17 @@
         //     headerHeightPos(true);
         // });
         $(".menu-btn-scope-filter").click(function(){
-            if(!$(this).hasClass("active")){
-                $(this).addClass("active");
+            if($(".menu-btn-scope-filter").hasClass("visible")){
+                $(this).removeClass("visible");
                 //$("#text-search-menu").hide();
                 $("#filter-scopes-menu").hide(400);
                 //headerHeightPos(true);
             }else{
-                $(this).removeClass("active");
+                $(this).addClass("visible");
                 $("#text-search-menu").hide();
                 $("#filter-scopes-menu").show(400);
                 headerHeightPos(true);
             }
-            
         });
         headerHeightPos(true);
 
