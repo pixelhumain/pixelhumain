@@ -40,7 +40,6 @@
             "module" => "eco",
             "url"    => Yii::app()->getModule( "eco" )->assetsUrl
         )); ?>,
->>>>>>> development
         "cotools" : <?php echo json_encode( array(
             "module" => "cotools",
             "init"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
