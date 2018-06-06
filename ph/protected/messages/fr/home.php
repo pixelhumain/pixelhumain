@@ -42,7 +42,7 @@
 		"For local and community exchanges"=>"Pour simplifier les échanges locaux<br>de biens et de services en tout genre<br>(petites annonces)",
 		"A common agenda"=>"Un agenda commun",
 		"All local events in a click away"=>"Pour connaître en temps réel toute l'activité événementielle locale",
-		"A common news stream"=>"Un fil d'actualité communecté",
+		"A common news stream"=>"Un fil d'actualité commun",
 		"Local Message sharing and group communication"=>"Pour diffuser vos messages autrement :<br>publiquement et géographiquement",
 		"Terms and conditions of use"=>"Conditions d'utilisations",
 		"General information"=>"Informations générales",
@@ -110,12 +110,12 @@
 
 		"Online Doc" => "Documentation en ligne",
 		"Team" => "Notre équipe",
-		
+		"They form a key part of the adventure"=>"Ils font partie de l'aventure",
 		"Share and imagine great ideas" => "Partagez vos idées et imaginez la suite",
 		"Ideas Design Graphics Video" => "Idées Design Graphisme Vidéos",
 		"Core Development team" => "La team de dev",
 		"Project Management" => "Gestion de projet",
-		"Non Governmental Organization" => "Association Loi 19001",
+		"Non Governmental Organization" => "Association Loi 1901",
 		"Active contributors and soon a cooperative" => "Contributeurs actifs et bientot une SCIC",
 		"All people we meet." => "Pleins de rencontre",
 		"Money for bills & Love to live." => "Le nerf de la guerre",
@@ -127,6 +127,73 @@
 		"5 year Thinking Process" => "5 années de reflexion",
 		"Goodies we can pass around" => "Goodies à partager",
 		"Read Us" => "En savoir +",
-		"helps us to host our tools" => "nous aide pour l'hébergement de nos outils"
+		"helps us to host our tools" => "nous aide pour l'hébergement de nos outils",
+
+		"an innovative societal network" => 
+			"un réseau sociétal innovant",
+
+		"created for citizens actors of change" => 
+			"au service des citoyens acteurs du changement",
+
+		"Because the need to <b>communicate</b> locally has never been so important" => 
+			"Parce que le besoin de <b>communiquer</b> localement n'a jamais été aussi grand",
+
+		"we've made <b>communexion</b> the <b><i>keystone</i></b> of all our applications" =>
+			"nous avons fait de la <b>communexion</b> la <b><i>clé de voûte</i></b> de toutes nos applications",
+
+		"The specialty of <b>Communecter</b> is to give you access to the data you are interested in" =>
+			"La spécialité de <b>Communecter</b> c'est de vous donner accès aux données qui vous intéressent",
+
+		"according to the <b>geographical area(s)</b> you selected" =>
+			"en fonction des <b>zone(s) géographique(s)</b> que vous selectionnez",
+
+		"Are you ready for geo-communication" =>
+			"Êtes-vous prêt pour la géo-communication",
+
+		"Imagine a world where your messages can be broadcast" => 
+			"Imaginez un monde où vos messages peuvent être diffusés",
+
+		"in a public and geographical way" =>
+			"publiquement et géographiquement",
+
+		"Create debates, share information, ask for help,<br> share an idea, propose a project, ask a question" =>
+			"Créer des débats, partager des informations, demander de l'aide, <br> partager une idée, proposer un projet, poser une question",
+
+		"You will find a thousand reasons to use" =>
+			"Vous trouverez mille raisons d'utiliser",
+
+		"IN LIVE" =>
+			"LE LIVE",
+
+		"Our territories are rich with thousands of citizen initiatives, associations, projects, events! <br>It is by weaving close links between these initiatives that we will transform our society sustainably." =>
+			"Nos territoires sont riches de milliers d'initiatives citoyennes, d'associations, de projets, d'événements !<br>
+             C'est en tissant des liens étroits entre ces initiatives que nous transformerons durablement notre société.",
+
+		"That's why <b>Communecter</b> invites you to geo-locate your data as much as possible, <br>to give <b>local visibility</b> to your actions" =>
+			"C'est pourquoi <b>Communecter</b> vous invite à géo-localiser vos données autant que possible,<br>
+			afin de donner de la <b>visibilité locale</b> à vos actions",
+			
+		"This is also <i>geo-communication !</i>" =>
+			"C'est aussi ça <i>la géo-communication !</i>",
+			
+		"Because the desire to organize together leads to the need to decide together...<br><b>Communecter</b> offers to all referenced groups" =>
+			"Parce que l'envie de s'organiser ensemble, mène au besoin de décider ensemble...<br>
+		     <b>Communecter</b> offre à tous les groupes référencés",
+			
+		"voting tools, and task management" =>
+			"des outils de vote, et de gestion des tâches",
+			
+		"To accompany you in the process of decisions and actions,<br>it's also part of our goals" =>
+			"Vous accompagner dans les processus de décisions et d'actions,<br>ça fait aussi parti de nos objectifs",
+			
+		"Collective decisions" =>
+			"Décisions collectives",
+			
+		"Horizontal governance" =>
+			"Gouvernance horizontale",
+			
+		"+ more details in video" =>
+			"+ de détails en vidéo",
+
 	);
 ?>

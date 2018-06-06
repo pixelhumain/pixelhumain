@@ -13,7 +13,7 @@
 		"You are not allowed to modify the document of this item !" => "Sie habe keine Rechte dazu ein Dokument hier zu verändern oder hochzuladen",
 		"Collection of bookmarks<br>To classified favorite urls<br>And share it to the community"=>"Sammlung von Lesezeichen<br>Um Ihre URL Favoriten zu sortieren<br>Und um diese gemeinschaftlich zu teilen",
 		"Collection of files<br>To download and share documents<br>With the community"=>"Dateisammlung<br>Zum Mitteilen und Herunterladen von Dokumenten<br>Mit allen",
-		"You have no rights upload document on this item, just write a message !" => "Sie haben nicht die Rechte dazu, Dokumente dieses Typs hochzuladen. Sie dürfen nur Nachrichten schreiben !",
+		"You have no rights upload document on this item, just write a message !" => "Sie haben nicht die Rechte dazu, Dokumente dieses Typs hochzuladen. Wenn Sie das möchten dann schreiben Sie uns eine Nachricht!",
 	)
 
 ?>

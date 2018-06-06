@@ -191,10 +191,11 @@ var rcObj = {
             if(rcObj.debugChat)alert( createChatUrl );
 
             if(isOpen == "external"){
-                alert("external");
+                if(rcObj.debugChat)alert("external");
                 ajaxPost(null,createChatUrl,paramsExt,function(data){ 
                         $('.btnChatColor').addClass("text-red");
-                        alert("success external");
+                        if(rcObj.debugChat)alert("success external");
+                        urlCtrl.loadByHash(location.hash);
                     },"json");
             }
             else 

@@ -5,23 +5,23 @@
 }
 .floopDrawer {
 	width: 250px;
-	display:none;
-	/*height: 780px;*/
-	top: 70px;
-	bottom: 0px;
-	right: 0px;
-	position: fixed;
-	background-color: white;
-	margin-top: -10px;
-	text-align: left;
-	/*padding: 3px;*/
-	-moz-box-shadow: 0px 0px 6px 0px rgba(28, 41, 50, 0.6);
-	-webkit-box-shadow: 0px 0px 6px 0px rgba(28, 41, 50, 0.6);
-	-o-box-shadow: 0px 0px 6px 0px rgba(28, 41, 50, 0.6);
-	box-shadow: 0px 0px 6px 0px rgba(28, 41, 50, 0.6);
-	filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=90, Strength=4);
-	z-index: 1000;
-	border-radius: 0px;
+    display: none;
+    /* height: 780px; */
+    top: 67px;
+    bottom: 0px;
+    right: 0px;
+    position: fixed;
+    background-color: white;
+    /* margin-top: -10px; */
+    text-align: left;
+    /* padding: 3px; */
+    -moz-box-shadow: 0px 0px 6px 0px rgba(28, 41, 50, 0.6);
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(28, 41, 50, 0.6);
+    -o-box-shadow: 0px 0px 6px 0px rgba(28, 41, 50, 0.6);
+    box-shadow: 0px 2px 6px 0px rgba(28, 41, 50, 0.6);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=90, Strength=4);
+    z-index: 100000;
+    border-radius: 0px;
 }
 .floopDrawer .floopHeader{
 	width: 100%;
@@ -32,7 +32,7 @@
 	font-size: 14px;
 	font-weight: 300;
 	border-bottom: 1px solid rgba(197, 197, 197,1);
-	border-top: 2px solid rgba(197, 197, 197,1);
+	/*border-top: 2px solid rgba(197, 197, 197,1);*/
 	-webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
 	-moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
 	box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);

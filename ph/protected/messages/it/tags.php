@@ -1,0 +1,33 @@
+<?php 
+return array(
+		"agriculture" => "agricoltura",
+	"food" => "alimentari",
+	"nutrition" => "nutrizione",
+	"AMAP" => "AMAP (Ass. per il mantenim. dell'agric. contadina)",
+	"health" => "salute",
+	"waste" => "rifiuti",
+	"urbanism" => "urbanesimo",
+	"development" => "sviluppo",
+	"transport" => "trasporto",
+	"construction" => "costruzione",
+	"education" => "istruzione",
+	"childhood" => "infanzia",
+	"citizenship" => "cittadinanza",
+	"citizen" => "cittadino",
+	"ess" => "Economia sociale e solidale",
+	"social solidarity economy" => "economia della solidarietà sociale",
+	"energy" => "energia",
+	"climat" => "clima",
+	"culture" => "cultura",
+	"animation" => "animazione",
+	"environment" => "ambiente",
+	"biodiversity" => "biodiversità",
+	"ecology" => "ecologia",
+	"numeric" => "digitale",
+	"ict" => "ict",
+	"computer" => "informatico",
+	"internet" => "internet",
+	"web" => "web",
+	"sport" => "sport"
+);
+?>

@@ -1,7 +1,7 @@
 
 <?php 
 	//modifier l'url relative si besoin pour trouver communecter/view/sig/
-	$relativePath = $modulePath."/sig/";
+	$relativePath = "co2.views.sig.";
 
 	$mapProvider = "OSM";
 	if(PH::notlocalServer()){
@@ -74,13 +74,13 @@
 	
 	/* ***********************************************************************************/
 	//chargement de toutes les librairies css et js indispensable pour la carto
-	$this->renderPartial($relativePath.'generic/mapLibs', array("sigParams" => $sigParams)); 
+	$this->renderPartial($relativePath.'generic.mapLibs', array("sigParams" => $sigParams)); 
 	$moduleName = "sigModule".$sigParams['sigKey'];
 
 	/* ***************** modifier l'url si besoin pour trouver ce fichier *******************/
    	//chargement de toutes les librairies css et js indispensable pour la carto
-  	$this->renderPartial($relativePath.'generic/mapCss', array("sigParams" => $sigParams));
-	$this->renderPartial($relativePath.'generic/mapView', array("sigParams" => $sigParams));
+  	$this->renderPartial($relativePath.'generic.mapCss', array("sigParams" => $sigParams));
+	$this->renderPartial($relativePath.'generic.mapView', array("sigParams" => $sigParams));
 	//$this->renderPartial('addOrganizationMap'); var_dump($sigParams); die();
 
 	

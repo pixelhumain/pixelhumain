@@ -39,6 +39,7 @@ $params = array(
     //Beta Test ?
     'betaTest' => false,
     'rocketchatEnabled' => true,
+    "rocketchatMultiEnabled" => false,
     //By default controller
     'defaultController' => 'CO2',
     // Mail configuration

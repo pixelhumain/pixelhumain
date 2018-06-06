@@ -22,6 +22,7 @@ return array(
 	"french" => "Französisch",
 	"english" => "Englisch", 
 	"spanish" => "Spanisch",
+	"Italian" => "Italienisch",
 	// ACTIONS
 	"Close" => "Schließen",
 	"BACK" => "ZURÜCK",
@@ -1140,7 +1141,7 @@ return array(
 	"Answer" => "Antwort",
 	"I like" => "Gefällt mir",
 	"I don't like" => "Gefällt mir nicht",
-	"I don&#146;t like" => "Gefällt mitr nicht",
+	"I don&#146;t like" => "Gefällt mir nicht",
 	"Declare an abuse" => "Einen Missbrauch melden",
 	"Your answer" => "Ihre Antwort",
 	"Your comment" => "Ihr Kommentar",
@@ -1242,7 +1243,7 @@ return array(
 	"Perhaps, this city has no data at this time" => "Vielleicht hat diese Stadt zur Zeit keine Daten",
 	"Connect you" => "Verbinden Sie sich",
 	"posted" => "gepostet",
-	"Writen by" => "Writen by",
+	"Writen by" => "Geschrieben von",
 	"shared by" => "geteilt von",
 	"Link shared by" => "Link geteilt von",
 	"map" => "Karte",
@@ -1274,7 +1275,7 @@ return array(
 	"Guide and helper" => "Führer und Helfer",
 	"Freedom" => "Freiheit",
 	"This request is too short !" => "Diese Anfrage ist zu kurz!",
-	"folder fee included and delivery tax not included" => "Prospektgebühr inbegriffen und Lieferungssteuer nicht inbegriffen",
+	"folder fee included and delivery tax not included" => "Prospekt- und Versandkosten nicht inbegriffen",
 	"previous" => "vorige",
 	"next" => "next",
 	"My maps" => "Meine Karten",
@@ -1314,8 +1315,23 @@ return array(
 	
 	"What are you looking for" => "Wonach suchen Sie",
 	"search by name or by #tag, ex: 'commun' or '#commun" => "Suche nach Name oder #Tag, z.B.: 'commun' oder '#commun'",
+	"Are you sure to refuse this invitation" => "Sind Sie sicher, dass Sie diese Einladung ablehnen",
+	"Are you sure to refuse to administrate {what}" => "Sind Sie sicher die Administration von {what} abzulehnen",
+	"Add zone to news" => "Zone zu Nachrichten hinzufügen",
+	"Search on map" => "Suche auf der Karte",
 	
+	"Please wait while we fetch the information." => "Bitte warten Sie, während wir die Informationen holen.",
+	"You don't find the city you want for" => "Sie finden nicht die Stadt, für die Sie sich interessieren",
+	"Edit informations" => "Informationen bearbeiten",
+	"Chat" => "Chat",
+	"New Channel" => "Neuer Chatraum",
+	"Add a new channel" => "Neuen Chatraum hinzufügen",
+	"Convert to Organization" => "In Organisation umwandeln",
 	
+	"Invite people on" => "Lade Personen ein zu",
+	"Invite members on" => "Lade Mitglieder ein zu",
+	"Invite contributors on" => "Lade Mitwirkende ein zu",
+	"Launch invitations" => "Einladungen verschicken",
 	
 );
 ?>

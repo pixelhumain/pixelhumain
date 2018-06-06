@@ -24,8 +24,8 @@
             $params = CO2::getThemeParams();
             foreach ($params["pages"] as $key => $value) {
                 if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
-                    <a href="<?php echo $key; ?>" 
-                    class="<?php echo $key; ?>ModBtn lbh btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header">
+                    <a href="javascript:;" data-hash="<?php echo $key; ?>" 
+                    class="<?php echo $key; ?>ModBtn btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
                             
                     <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                     <span class=""><?php echo Yii::t("common", $value["subdomainName"]); ?></span>
@@ -38,466 +38,335 @@
     </div>
 </div>
 
-	<!-- <div class="col-md-12 col-lg-12 col-sm-12">
-		<?php 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-	  			//$this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.login'); 
-	  	?>
-	</div> -->
 	<div class="col-md-12 col-lg-12 col-sm-12 imageSection no-padding" 
 		 style="margin-top: 80px; position:relative;">
 
 		<div class="col-md-12">
-			
 			<?php if(!isset(Yii::app()->session['userId'])) { ?>
-				<div id="videoDocsImg" class="col-md-7 col-sm-7 col-xs-12 margin-top-25">
+				<div id="videoDocsImg" class="col-md-12 col-sm-12 col-xs-12 text-center">
 			    	<img class="img-responsive" style="max-height: 450px;"
-			    		 src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/1+1=3Welcome.jpg"/>
-			    	<!-- <a href="javascript:;" class="videoSignal text-white center"><span><i class="fa fa-3x fa-play"></i></span></a> -->
+			    		 src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/network-for-all.png"/>
+		    		 <button class="btn btn-link bg-red margin-left-10" data-toggle="modal" data-target="#modalRegister">
+    					<i class="fa fa-plus-circle"></i> <?php echo Yii::t("login","Create my <b>citizen</b> account") ?>
+    				 </button>
 				</div>
-				<!-- <div class="videoWrapper margin-top-25 col-md-6 col-md-offset-1 col-sm-7 col-xs-12 no-padding">
-			    	<div class="h_iframe">
-			        <!-- a transparent image is preferable - ->
-			        <img class="ratio" src="http://placehold.it/16x9"/>
-			        <iframe id="autoPlayVideo" src="https://player.vimeo.com/video/133636468?api=1&title=0&amp;byline=0&amp;portrait=0&amp;color=57c0d4" frameborder="0" allowfullscreen></iframe>
-			    	</div>
-				</div> -->
-			<!--<div class="col-md-7 col-sm-7 text-center">
-				<div id="homeImg">
-					<img id="img-header" class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/1+1=3empty.jpg"/>
-				</div>
-			</div>-->
-
-			<div id="form-home-subscribe" class="col-md-4 col-sm-5 col-xs-12 no-padding margin-right-50 margin-top-10" 
-				 style="/*border:1px solid #DDD; background-color: #F9F9F9; border-radius:4px;*/">
-				<?php 	$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-			  			$this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.register'); 
-			  			$this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.modalRegisterSuccess')
-			  	?>
-			</div>
+			
+			
 			<?php } else { ?>
 			<div id="videoDocsImg" class="col-xs-12 no-padding">
-			    	<img class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/1+1=3empty.jpg"/>
-			    	<!-- <a href="javascript:;" class="videoSignal text-white center"><span><i class="fa fa-3x fa-play"></i></span></a> -->
+			    	<img class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/network-for-all.png"/>
 				</div>
-				<!-- <div class="videoWrapper col-xs-12 no-padding">
-			    	<div class="h_iframe">
-			        <!-- a transparent image is preferable - ->
-			        <img class="ratio" src="http://placehold.it/16x9"/>
-			        <iframe id="autoPlayVideo" src="https://player.vimeo.com/video/133636468?api=1&title=0&amp;byline=0&amp;portrait=0&amp;color=57c0d4" frameborder="0" allowfullscreen></iframe>
-			    	</div>
-			    	
-				</div> -->
-			<!--<div class="col-md-12 text-center">
-				<div id="homeImg">
-					<img id="img-header" class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/<?php echo Yii::app()->language ?>/1+1=3empty.jpg"/>
-				</div>
-			</div>-->
 			<?php } ?>
 		</div>
 
-
-		<!-- <div class="col-md-12 no-padding margin-top-25"><hr></div> -->
-
-
-		<!-- <div class="col-md-12">
-			<h3 class="text-red text-center"><i class="fa fa-hand-up"></i><br>parcourir les applications</h3>
-			<hr class="angle-down">
-		</div> -->
-		<!--<div class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12 shadow2 padding-15 margin-top-25">
-			<div class="mainmenu"></div>
-		</div>-->
-
-
-		<div class="col-xs-12  margin-top-50 hidden">
-			<?php $isEmptyCo = empty($communexion["values"]["cityName"]); ?>
-			
-			<h3 class="text-red text-center">
-				<i class="fa fa-home fa-2x"></i><br>
-				Communexion<br>
-				<small>
-					<i class="fa fa-cross"></i> 
-					<span id="communexionNameHome">
-					<?php if($isEmptyCo){ ?>
-						<?php echo Yii::t("home","You're not <span class='text-dark'>communected</span>") ?>
-					<?php }else{ ?>
-						<?php echo Yii::t("home","You are") ?> <span class="text-dark"><?php echo Yii::t("home","communected to") ?> 
-						<span class="text-red"><?php echo $communexion["values"]["cityName"];?></span>
-					<?php } ?>
-					</span><br>
-					<small class="text-dark inline-block margin-top-5 info_co
-						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
-						 style="line-height: 15px;">
-						<i class="fa fa-signal"></i> 
-						<?php echo Yii::t("home","Be communected permits you to get smart informations<br>localy performed.") ?>
-					</small>
-				</small>
-			</h3>
-
-			<hr class="angle-down">
-
-			<h5 class="text-center info_co <?php if(!$isEmptyCo) echo 'hidden'; ?>">
-				<?php echo Yii::t("home","Be communected") ?> !
-			</h5>
-			<div class="col-md-12 text-center">
-				<button class="btn btn-default <?php if($isEmptyCo) echo 'hidden'; ?>" id="change_co">
-					<?php echo Yii::t("home","Test a other communexion") ?>
-				</button>
-			</div>
-			<input class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 form-input text-center input_co 
-						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
-				   id="main-search-bar" type="text" 
-				   style="border-radius:50px; height:40px; border: 2px solid red; color:red; margin-bottom:15px;"
-				   placeholder="<?php echo Yii::t("home", "communect you : London, Paris, Brussels ?") ?>">
-
-			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 info_co
-						 <?php if(!$isEmptyCo) echo "hidden"; ?>" 
-						 style="font-family: 11px;" id="info_co">
-	            <i class="fa fa-signal"></i> <?php echo Yii::t("home","To use the network efficiently, we advice you to be <i><b>communected</b></i>") ?>.<br><br>
-	            <i class="fa fa-magic"></i> <?php echo Yii::t("home","Indicate your <b>living place</b>, to keep informed about what's happened around you automatically.") ?><br>
-	        </div>
-	        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="font-family: 11px;" 
-	        	 id="dropdown_search">
-	        </div>
-		</div>
-
-		
-		<div class="col-xs-12 no-padding margin-top-25 hidden"><hr></div>
-		
-		<div class="col-xs-12 hidden">
-			<h3 class="text-red text-center">
-				<i class="fa fa-clock-o fa-2x"></i><br>
-				<?php echo Yii::t("home", "An the moment") ?><br>
-				<small id="liveNowCoName">
-					<?php if($isEmptyCo){ ?>
-					<?php echo Yii::t("home","on the network") ?>
-					<?php }else{ ?>
-					<span class='text-red'><?php echo Yii::t("home","in") ?> <?php echo $communexion["values"]["cityName"];?></span>
-					<?php } ?>
-				</small>
-			</h3>
-			<div class="text-left" id="nowList"></div>
-		</div>
 		
 		<div class="col-sm-12 col-md-12 col-xs-12 no-padding" style="background-color:#fff; max-width:100%; float:left;">
-		<!--<div class="col-md-12" style="width:100%;padding:8px 0px 8px 0%;">
-			<h1 class="text-center text">
-				<?php echo Yii::t("home","A connected territorial search engine") ?>
-			</h1>
-		</div>-->
-		<div class="col-xs-12 margin-top-50 margin-bottom-25 text-center hidden" >
-			<h2 class="text-red text-center"><?php echo Yii::t("home","A connected territorial search engine") ?></h2>
-			<h5 class=" col-xs-12 text-center" style="font-style:italic;">
-				<?php echo Yii::t("home","Collective intelligence at service for citizens") ?>
-			</h5>
-			<br/>
-			<h2 class="text-red text-center homestead">1 + 1 = 3</h2>
-			<h5 class=" col-xs-12 text-center" style="font-style:italic;">
-				Wikipedia <i class="fa fa-plus text-red"></i> Open Street Maps 
-				<i class="fa fa-plus  text-red"></i> Open source Society
-			</h5>
-			<br/>
-			<div class="center"  >
-				<div  style="position:absolute; transform: rotate(60deg);margin:0 47%;" >
-					<img class="img-responsive" width=50 src="<?php echo $this->module->assetsUrl; ?>/images/home/triangle.png" />
+			<div class="col-xs-12 margin-top-50 margin-bottom-25 text-center hidden" >
+				<h2 class="text-red text-center"><?php echo Yii::t("home","A connected territorial search engine") ?></h2>
+				<h5 class=" col-xs-12 text-center" style="font-style:italic;">
+					<?php echo Yii::t("home","Collective intelligence at service for citizens") ?>
+				</h5>
+				<br/>
+				<h2 class="text-red text-center homestead">1 + 1 = 3</h2>
+				<h5 class=" col-xs-12 text-center" style="font-style:italic;">
+					Wikipedia <i class="fa fa-plus text-red"></i> Open Street Maps 
+					<i class="fa fa-plus  text-red"></i> Open source Society
+				</h5>
+				<br/>
+				<div class="center"  >
+					<div  style="position:absolute; transform: rotate(60deg);margin:0 47%;" >
+						<img class="img-responsive" width=50 src="<?php echo $this->module->assetsUrl; ?>/images/home/triangle.png" />
+					</div>
 				</div>
 			</div>
-		</div>
 
-		
+			<style>
+				.btn-main-menu{
+					border:2px solid transparent;
+					min-height:100px;
+				}
+				.btn-main-menu:hover{
+					border:2px solid #ccc;
+				}
+				.ourvalues img{
+					height:70px;
+				}
 
-		<div class="col-xs-12 hidden">
-			<h3 class="text-red text-center"><?php echo Yii::t("home","What ?") ?></h3>
-			<hr class="angle-down">
-		</div>
+				.box-register label.letter-black{
+					margin-bottom:3px;
+					font-size: 13px;
+				}
+			</style>
 
-		<style>
-			.btn-main-menu{
-				border:2px solid transparent;
-				min-height:100px;
-			}
-			.btn-main-menu:hover{
-				border:2px solid #ccc;
-			}
-			.ourvalues img{
-				height:70px;
-			}
-
-			.box-register label.letter-black{
-				margin-bottom:3px;
-				font-size: 13px;
-			}
-		</style>
-		<div class="col-xs-12 no-padding" style="text-align:center;margin-bottom:24px;margin-top:100px;">
-
-			
-			<div class="col-xs-12 no-padding">
-				<div class="col-md-12 col-sm-12 col-xs-12 padding-20" style="padding-left:100px;background-color: #f6f6f6; min-height:400px;">
-					<div class="col-xs-12 col-sm-10 col-sm-offset-1 pull-left padding-20 shadow2" style="margin-top:-100px;margin-bottom:50px;background-color: #fff;font-size: 14px;">
-						<div class="col-xs-12 font-montserrat ourvalues" style="text-align:center;">
-			                <!-- <div class="col-md-1 col-sm-1 hidden-xs"></div> -->
-			                <div class="col-lg-3 col-md-2 col-sm-4 col-xs-6" style="text-align:center;">
-			                	<img class="img-responsive" style="margin:0 auto;" 
-			                		 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur01.png"/>
-			                		 <?php echo Yii::t("home","Open Source") ?>
-			                </div>
-			                <div class="col-lg-3 col-md-2 col-sm-4 col-xs-6">
-			                	<img class="img-responsive" style="margin:0 auto;" 
-			                		 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur02.png"/>
-			                		 <?php echo Yii::t("home","No advertisement") ?>
-			                </div>
-			                <div class="col-lg-3 col-md-2 col-sm-4 col-xs-6">
-			                	<img class="img-responsive" style="margin:0 auto;" 
-			                		 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur03.png"/>
-			                		 <?php echo Yii::t("home","Protected data") ?>
-			                </div>
-			                <div class="col-lg-3 col-md-2 col-sm-4 col-xs-6">
-			                	<img class="img-responsive" style="margin:0 auto;" 
-			                	 	 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur08.png"/>
-			                	 	 <?php echo Yii::t("home","Free price") ?>
-			                	</div>
-			            	<div class="col-lg-3 col-md-2 col-sm-4 col-xs-6">
-			                	<img class="img-responsive" style="margin:0 auto;" 
-			                	 	 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur06.png"/>
-			                	 	 <?php echo Yii::t("home","Connected territory") ?>
-			                	</div>
-			                <div class="col-lg-3 col-md-2 col-sm-4 col-xs-6">
-			                	<img class="img-responsive" style="margin:0 auto;" 
-			                	 	 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur07.png"/>
-			                	 	 <?php echo Yii::t("home","Collective intelligence") ?>
-			                	</div>
-			                <!-- <div class="visible-lg col-lg-3">
-			                	<img class="img-responsive" style="margin:0 auto;" 
-			                		 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur04.png"/>
-			                		 <?php echo Yii::t("home","Shared Informations") ?>
-			                </div>
-			                <div class="visible-lg col-lg-3">
-			                	<img class="img-responsive" style="margin:0 auto;" 
-			                		 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur05.png"/>
-			                		 <?php echo Yii::t("home","Linked Data") ?>
-			                </div> -->
-			                <div class="visible-lg col-lg-3">
-			                	<img class="img-responsive" style="margin:0 auto;" 
-			                	 	 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur09.png"/>
-			                	 	 <?php echo Yii::t("home","Society 2.2.main") ?>
-			                	</div>
-			                <div class="visible-lg col-lg-3">
-			                	<img class="img-responsive" style="margin:0 auto;" 
-			                	 	 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur10.png"/>
-			                	 	 <?php echo Yii::t("home","Commons") ?>
-			                	</div>
+			<div class="col-xs-12 no-padding" style="text-align:center;margin-bottom:24px;margin-top:100px;">	
+				<div class="col-xs-12 no-padding">
+					<div class="col-md-12 col-sm-12 col-xs-12 padding-20" style="padding-left:100px;background-color: #f6f6f6; min-height:400px;">
+						<div class="col-xs-12 col-sm-10 col-sm-offset-1 pull-left padding-20 shadow2" style="margin-top:-100px;margin-bottom:50px;background-color: #fff;font-size: 14px;">
+							<div class="col-xs-12 font-montserrat ourvalues" style="text-align:center;">
+				                <!-- <div class="col-md-1 col-sm-1 hidden-xs"></div> -->
+				                <div class="col-lg-3 col-md-2 col-sm-4 col-xs-6" style="text-align:center;">
+				                	<img class="img-responsive" style="margin:0 auto;" 
+				                		 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur01.png"/>
+				                		 <?php echo Yii::t("home","Open Source") ?>
+				                </div>
+				                <div class="col-lg-3 col-md-2 col-sm-4 col-xs-6">
+				                	<img class="img-responsive" style="margin:0 auto;" 
+				                		 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur02.png"/>
+				                		 <?php echo Yii::t("home","No advertisement") ?>
+				                </div>
+				                <div class="col-lg-3 col-md-2 col-sm-4 col-xs-6">
+				                	<img class="img-responsive" style="margin:0 auto;" 
+				                		 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur03.png"/>
+				                		 <?php echo Yii::t("home","Protected data") ?>
+				                </div>
+				                <div class="col-lg-3 col-md-2 col-sm-4 col-xs-6">
+				                	<img class="img-responsive" style="margin:0 auto;" 
+				                	 	 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur08.png"/>
+				                	 	 <?php echo Yii::t("home","Free price") ?>
+				                	</div>
+				            	<div class="col-lg-3 col-md-2 col-sm-4 col-xs-6">
+				                	<img class="img-responsive" style="margin:0 auto;" 
+				                	 	 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur06.png"/>
+				                	 	 <?php echo Yii::t("home","Connected territory") ?>
+				                	</div>
+				                <div class="col-lg-3 col-md-2 col-sm-4 col-xs-6">
+				                	<img class="img-responsive" style="margin:0 auto;" 
+				                	 	 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur07.png"/>
+				                	 	 <?php echo Yii::t("home","Collective intelligence") ?>
+				                	</div>
+				                <!-- <div class="visible-lg col-lg-3">
+				                	<img class="img-responsive" style="margin:0 auto;" 
+				                		 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur04.png"/>
+				                		 <?php echo Yii::t("home","Shared Informations") ?>
+				                </div>
+				                <div class="visible-lg col-lg-3">
+				                	<img class="img-responsive" style="margin:0 auto;" 
+				                		 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur05.png"/>
+				                		 <?php echo Yii::t("home","Linked Data") ?>
+				                </div> -->
+				                <div class="visible-lg col-lg-3">
+				                	<img class="img-responsive" style="margin:0 auto;" 
+				                	 	 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur09.png"/>
+				                	 	 <?php echo Yii::t("home","Society 2.2.main") ?>
+				                	</div>
+				                <div class="visible-lg col-lg-3">
+				                	<img class="img-responsive" style="margin:0 auto;" 
+				                	 	 src="<?php echo $this->module->assetsUrl; ?>/images/home/valeurs/valeur10.png"/>
+				                	 	 <?php echo Yii::t("home","Commons") ?>
+				                	</div>
+				            </div>
 			            </div>
-		            </div>
-					
-					<h3 class="col-xs-12 text-center">
-						<i class="fa fa-th"></i> <?php echo Yii::t("home", "5 main applications") ?><br>
-						<small>
-							<b>Communecter :</b> un réseau social innovant, des outils nouveaux,<br>
-							au service des citoyens acteurs du changement
-						</small>
-						<hr style="width:40%; margin:20px auto; border: 4px solid #cecece;">
-					</h3>
-
-					<a href="#search" class="btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="search" >    
-	                    <div class="text-center">
-	                        <!-- <h4 class="text-red no-margin "><i class="fa fa-search"></i>
-	                            <span class="homestead"> <?php //echo Yii::t("home","SEARCH") ?></span>
-	                        </h4><br/> -->
-	                        <div class="col-md-12 no-padding text-center">
-	                            <h4 class="no-margin text-red">
-	                            	<i class="fa fa-search"></i>
-	                            	<?php echo Yii::t("home","Search engine") ?>
-	                                <br>
-	                                <small class="text-dark">
-	                                    <?php echo Yii::t("home","Find & connect with local actors") ?>
-	                                </small>
-	                            </h4>
-	                        </div>
-	                    </div>
-	                </a>
-
-	                
-	                
-	                <a href="#live" class="btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" > 
-	                    <div class="text-center">
-	                        <div class="col-md-12 no-padding text-center">
-	                            <h4 class="no-margin text-red">
-	                            	<i class="fa fa-newspaper-o"></i>
-	                            	<?php echo Yii::t("home","A common news stream") ?>
-	                                <br><small class="text-dark">
-	                                    <?php echo Yii::t("home","Local Message sharing and group communication")?>
-	                                </small>
-	                            </h4>
-	                        </div>
-	                    </div>
-	                </a>
-	                           
-	                <a href="#agenda" class="btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="agenda">
-	                    <div class="text-center">
-	                        <div class="col-md-12 no-padding text-center">
-	                            <h4 class="no-margin text-red">
-	                            	<i class="fa fa-calendar"></i>
-	                            	<?php echo Yii::t("home","A common agenda") ?>
-	                                <br><small class="text-dark">
-	                                    <?php echo Yii::t("home","All local events in a click away") ?>
-	                                </small>
-	                            </h4>
-	                        </div>
-	                    </div>
-	                </a>
-
-	                <a href="#annonces" class=" btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="classified" >
-	                    <div class="text-center">
-	                        <div class="col-md-12 no-padding text-center">
-	                            <h4 class="no-margin text-red">
-	                            	<i class="fa fa-bullhorn"></i>
-	                            	<?php echo Yii::t("home","A market place") ?>
-	                                <br><small class="text-dark">
-	                                    <?php echo Yii::t("home","For local and community exchanges")?>
-	                                </small>
-	                            </h4>
-	                        </div>
-	                    </div>
-	                </a>
-
-	                <div class=" col-xs-12 col-sm-6 col-md-4 padding-20 hidden-xs" style="">
-						<img class="img-responsive" style="margin:0 auto;margin-top: 0px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/modules_screen.png"/>
-					</div>
-
-	                <a href="#live" class="btn-main-menu col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" > 
-	                    <div class="text-center">
-	                        <div class="col-md-12 no-padding text-center">
-	                            <h4 class="no-margin text-red">
-	                            	<i class="fa fa-cubes"></i>
-	                            	<?php echo Yii::t("home","Exchanges of ressources") ?>
-	                                <br><small class="text-dark">
-	                                    <?php echo Yii::t("home","To share needs, offers, services, competences for more efficiency")?>
-	                                </small>
-	                            </h4>
-	                        </div>
-	                    </div>
-	                </a>
-
-
-	                <div class=" col-xs-12 col-sm-6 col-md-4 padding-20 visible-xs" style="">
-						<img class="img-responsive" style="margin:0 auto;margin-top: 0px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/modules_screen.png"/>
-					</div>
-
-
-
-					<h3 class="text-center col-xs-12">
-						<hr style="width:40%; margin:20px auto; border: 4px solid #cecece;">
-						<small>
-							Parce que le besoin de <b>communiquer</b> localement n'a jamais été aussi grand,<br> 
-							nous avons fait de la <b>communexion</b> la <b><i>clé de voute</i></b> de toutes nos applications.
-							<br><br>
-							<a href="#search" target="_blank">
-								<img class="img-responsive shadow2" style="margin:0 auto;margin-top: 0px;border-radius: 5px;" 
-								src="<?php echo $this->module->assetsUrl; ?>/images/home/searchengine.png"/>
-							</a>
-							<br>
-							La spécialité de <b>Communecter</b> c'est de vous donner accès aux données qui vous intéressent,<br>
-							en fonction des <b>zone(s) géographique(s)</b> que vous selectionnez.
-							<br>
-						</small>
-
-					</h3>
-
-
-
-
-				</div>
-				<!-- <div class="col-md-6 col-sm-6 col-xs-12 padding-20" style="background-color: #f6f6f6;text-align:center;min-height:400px;">
-					<img class="img-responsive" style="margin:0 auto;margin-top: 50px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/modules_screen.png"/>
-				</div> -->
-			</div>
-
-			<div class="col-xs-12 no-padding">
-				<div class="col-md-12 col-sm-12 col-xs-12 padding-20" style="background-color: #fff; text-align:center;min-height:400px;">
-					<h4 class="margin-top-50"><i class="fa fa-bullseye"></i> <i class="fa fa-newspaper-o"></i> 
-						<?php echo Yii::t("home","Êtes-vous prêt pour la géo-communication ?") ?>
-						<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">
-					</h4>
-
-					<h3 class="text-center col-xs-12 no-margin">
-						<!-- <hr style="width:40%; margin:10px auto; border: 4px solid #cecece;"> -->
-						<small>
-							Imaginez un monde où vos messages peuvent être diffusés<br>
-							<b>publiquement et géographiquement</b>
-							<br>...
-						</small>
-
-					</h3>
-
-					<img class="img-responsive" style="margin:0 auto;margin-top: 20px;" 
-						src="<?php echo $this->module->assetsUrl; ?>/images/home/scopingnews.png"/>
-
-					<h3 class="text-center col-xs-12">
-						<small>
-							Créer des débats, partager des informations, demander de l'aide, <br>
-							partager une idée, proposer un projet, poser une question...
-							<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">
 						
-							Vous trouverez mille raisons d'utiliser 
-							<a href="#live" class="letter-red" target="_blank">LE LIVE !</a>
-						</small>
+						<h3 class="col-xs-12 text-center">
+							<i class="fa fa-th"></i> <?php echo Yii::t("home", "5 main applications") ?><br>
+							<small>
+								<b>Communecter :</b> <?php echo Yii::t("home", "an innovative societal network") ?>,<br>
+								<?php echo Yii::t("home", "created for citizens actors of change") ?>
+							</small>
+							<hr style="width:40%; margin:20px auto; border: 4px solid #cecece;">
+						</h3>
 
-					</h3>
-	             </div>
-			</div>
+						<a href="javascript:;" data-hash="#search" class="btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="search" >    
+		                    <div class="text-center">
+		                        <!-- <h4 class="text-red no-margin "><i class="fa fa-search"></i>
+		                            <span class="homestead"> <?php //echo Yii::t("home","SEARCH") ?></span>
+		                        </h4><br/> -->
+		                        <div class="col-md-12 no-padding text-center">
+		                            <h4 class="no-margin text-red">
+		                            	<i class="fa fa-search"></i>
+		                            	<?php echo Yii::t("home","Search engine") ?>
+		                                <br>
+		                                <small class="text-dark">
+		                                    <?php echo Yii::t("home","Find & connect with local actors") ?>
+		                                </small>
+		                            </h4>
+		                        </div>
+		                    </div>
+		                </a>
 
-			<div class="col-xs-12 no-padding">
-	            <div class="col-md-12 col-sm-12 col-xs-12" style="background-color: #f6f6f6; text-align:center;min-height:400px;">
-					<h4 class="margin-top-50"><i class="fa fa-map-marker"></i> <?php echo Yii::t("home","Map") ?></h4>
-						<div class="col-md-12 text-center">
-	                        <h3 class="no-margin">
+		                
+		                
+		                <a href="javascript:;" data-hash="#live" class="btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" > 
+		                    <div class="text-center">
+		                        <div class="col-md-12 no-padding text-center">
+		                            <h4 class="no-margin text-red">
+		                            	<i class="fa fa-newspaper-o"></i>
+		                            	<?php echo Yii::t("home","A common news stream") ?>
+		                                <br><small class="text-dark">
+		                                    <?php echo Yii::t("home","Local Message sharing and group communication")?>
+		                                </small>
+		                            </h4>
+		                        </div>
+		                    </div>
+		                </a>
+		                           
+		                <a href="javascript:;" data-hash="#agenda" class="btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="agenda">
+		                    <div class="text-center">
+		                        <div class="col-md-12 no-padding text-center">
+		                            <h4 class="no-margin text-red">
+		                            	<i class="fa fa-calendar"></i>
+		                            	<?php echo Yii::t("home","A common agenda") ?>
+		                                <br><small class="text-dark">
+		                                    <?php echo Yii::t("home","All local events in a click away") ?>
+		                                </small>
+		                            </h4>
+		                        </div>
+		                    </div>
+		                </a>
+
+		                <a href="javascript:;" data-hash="#annonces" class=" btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" data-type="classified" >
+		                    <div class="text-center">
+		                        <div class="col-md-12 no-padding text-center">
+		                            <h4 class="no-margin text-red">
+		                            	<i class="fa fa-bullhorn"></i>
+		                            	<?php echo Yii::t("home","A market place") ?>
+		                                <br><small class="text-dark">
+		                                    <?php echo Yii::t("home","For local and community exchanges")?>
+		                                </small>
+		                            </h4>
+		                        </div>
+		                    </div>
+		                </a>
+
+		                <div class=" col-xs-12 col-sm-6 col-md-4 padding-20 hidden-xs" style="">
+							<img class="img-responsive" style="margin:0 auto;margin-top: 0px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/modules_screen.png"/>
+						</div>
+
+		                <a href="javascript:;" data-hash="#ressources" class="btn-main-menu lbh-menu-app col-xs-12 col-sm-6 col-md-4 padding-10 margin-top-5" > 
+		                    <div class="text-center">
+		                        <div class="col-md-12 no-padding text-center">
+		                            <h4 class="no-margin text-red">
+		                            	<i class="fa fa-cubes"></i>
+		                            	<?php echo Yii::t("home","Exchanges of ressources") ?>
+		                                <br><small class="text-dark">
+		                                    <?php echo Yii::t("home","To share needs, offers, services, competences for more efficiency")?>
+		                                </small>
+		                            </h4>
+		                        </div>
+		                    </div>
+		                </a>
+
+
+		                <div class=" col-xs-12 col-sm-6 col-md-4 padding-20 visible-xs" style="">
+							<img class="img-responsive" style="margin:0 auto;margin-top: 0px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/modules_screen.png"/>
+						</div>
+
+
+
+						<h3 class="text-center col-xs-12">
+							<hr style="width:40%; margin:20px auto; border: 4px solid #cecece;">
+							<small>
+								<?php echo Yii::t("home","Because the need to <b>communicate</b> locally has never been so important"); ?>,<br> 
+								<?php echo Yii::t("home","we've made <b>communexion</b> the <b><i>keystone</i></b> of all our applications"); ?>.
+								<br><br>
+								<a href="#search" target="_blank">
+									<img class="img-responsive shadow2" style="margin:0 auto;margin-top: 0px;border-radius: 5px;" 
+									src="<?php echo $this->module->assetsUrl; ?>/images/home/searchengine.png"/>
+								</a>
+								<br>
+								<?php echo Yii::t("home","The specialty of <b>Communecter</b> is to give you access to the data you are interested in"); ?>,<br>
+								<?php echo Yii::t("home","according to the <b>geographical area(s)</b> you selected"); ?>.
+								<br>
+							</small>
+
+						</h3>
+
+
+
+
+					</div>
+					<!-- <div class="col-md-6 col-sm-6 col-xs-12 padding-20" style="background-color: #f6f6f6;text-align:center;min-height:400px;">
+						<img class="img-responsive" style="margin:0 auto;margin-top: 50px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/modules_screen.png"/>
+					</div> -->
+				</div>
+
+				<div class="col-xs-12 no-padding">
+		            <div class="col-md-12 col-sm-12 col-xs-12" style="background-color: #fff; text-align:center;min-height:400px;">
+						<h4 class="margin-top-50"><i class="fa fa-map-marker"></i> <?php echo Yii::t("home","Map") ?></h4>
+							<div class="col-md-12 text-center">
+		                        <h3 class="no-margin">
+		                        	<small>
+		                            	<?php echo Yii::t("home","Wherever you are on Communecter<br>you can consult informations on the map") ?>.
+										<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">    
+		                                <?php echo Yii::t("home", "Searching results, upcoming events,<br>local initiaves, community members") ?>, etc...
+		                            </small>
+		                        </h3>
+		                    </div>
+		                    <button class="btn btn-link letter-blue bold margin-top-25 btn-show-map-home">
+		                    	<i class="fa fa-map-marker"></i> <?php echo Yii::t("home","Show map") ?> 
+		                	</button>
+
+		                	<img class="img-responsive shadow2" style="margin:auto; margin-top: 10px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/map2.png"/>
+
+		                	<h3>
 	                        	<small>
-	                            	<?php echo Yii::t("home","Wherever you are on Communecter<br>you can consult informations on the map") ?>.
-									<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">    
-	                                <?php echo Yii::t("home", "Searching results, upcoming events,<br>local initiaves, community members") ?>
+	                        		<?php echo Yii::t("home","Our territories are rich with thousands of citizen initiatives, associations, projects, events! <br>It is by weaving close links between these initiatives that we will transform our society sustainably.") ?>
+	                        		<br>
+	                            	<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">  
+					                <?php echo Yii::t("home","That's why <b>Communecter</b> invites you to geo-locate your data as much as possible, <br>to give <b>local visibility</b> to your actions") ?>.
+	                            	<hr style="width:40%; margin:10px auto;">    
+	                            	<?php echo Yii::t("home","This is also <i>geo-communication !</i>") ?><br><br>
 	                            </small>
 	                        </h3>
-	                    </div>
-	                    <button class="btn btn-link letter-blue bold margin-top-25 btn-show-map-home">
-	                    	<i class="fa fa-map-marker"></i> <?php echo Yii::t("home","Show map") ?> 
-	                	</button>
-
-	                	<img class="img-responsive shadow2" style="margin:auto; margin-top: 10px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/map2.png"/>
-
-	                	<h3>
-                        	<small>
-                            	Nos territoires sont riches de milliers d'initiatives citoyennes, d'associations, de projets, d'événements !<br>
-                            	C'est en tissant des liens étroits entre ces initiatives que nous transformerons durablement notre société.<br>
-                            	<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">  
-				                C'est pourquoi <b>Communecter</b> vous invite à géo-localiser vos données autant que possible,<br>
-                            	afin de donner de la <b>visibilité locale</b> à vos actions.
-                            	<hr style="width:40%; margin:10px auto;">    
-                            	C'est aussi ça <i>la géo-communication !</i><br><br>
-                            </small>
-                        </h3>
-	            </div>
-	            <div class="col-md-6 col-sm-6 col-xs-12 hidden" style="text-align:center; min-height:400px;">
-					<img class="img-responsive" style="margin:auto; margin-top: 10px; max-height:380px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/carto_home.png"/>
+		            </div>
+		            <div class="col-md-6 col-sm-6 col-xs-12 hidden" style="text-align:center; min-height:400px;">
+						<img class="img-responsive" style="margin:auto; margin-top: 10px; max-height:380px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/carto_home.png"/>
+					</div>
 				</div>
-			</div>
 
 
-			<div class="col-xs-12 no-padding">
-				<div class="col-md-6 col-sm-6 hidden-xs padding-20 hidden" style="text-align:center;min-height:400px;">
-					<img class="img-responsive" style="margin:0 auto;margin-top: 20px; max-height:360px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/espaceco-1.png"/>
+				<div class="col-xs-12 no-padding">
+					<div class="col-md-12 col-sm-12 col-xs-12 padding-20" style="background-color: #f6f6f6; text-align:center;min-height:400px;">
+						<h4 class="margin-top-50"><i class="fa fa-map-marker"></i> <i class="fa fa-newspaper-o"></i> 
+							<?php echo Yii::t("home","Are you ready for geo-communication") ?> ?
+							<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">
+						</h4>
+
+						<h3 class="text-center col-xs-12 no-margin">
+							<!-- <hr style="width:40%; margin:10px auto; border: 4px solid #cecece;"> -->
+							<small>
+								<?php echo Yii::t("home","Imagine a world where your messages can be broadcast") ?><br>
+								<b><?php echo Yii::t("home","in a public and geographical way") ?></b>
+								<br>...
+							</small>
+
+						</h3>
+
+						<img class="img-responsive" style="margin:0 auto;margin-top: 20px;" 
+							src="<?php echo $this->module->assetsUrl; ?>/images/home/scopingnews_<?php echo Yii::app()->language; ?>.png"/>
+
+						<h3 class="text-center col-xs-12">
+							<small> 
+								<?php echo Yii::t("home","Create debates, share information, ask for help,<br> share an idea, propose a project, ask a question") ?>
+								<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">
+								<?php echo Yii::t("home","You will find a thousand reasons to use") ?>
+								 
+								<a href="#live" class="letter-red" target="_blank"><?php echo Yii::t("home","IN LIVE") ?> !</a>
+							</small>
+
+						</h3>
+		             </div>
 				</div>
-				<div class="col-md-12 col-sm-12 col-xs-12 padding-20" style="background-color: #fff; text-align:center;min-height:400px;">
-					<h4 class="margin-top-50"><i class="fa fa-group"></i> <?php echo Yii::t("home","Cooperative space") ?></h4>
+
+
+
+				<div class="col-xs-12 no-padding">
+					<div class="col-md-6 col-sm-6 hidden-xs padding-20 hidden" style="text-align:center;min-height:400px;">
+						<img class="img-responsive" style="margin:0 auto;margin-top: 20px; max-height:360px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/espaceco-1.png"/>
+					</div>
+					<div class="col-md-12 col-sm-12 col-xs-12 padding-20" style="background-color: #fff; text-align:center;min-height:400px;">
+						<h4 class="margin-top-50"><i class="fa fa-group"></i> <?php echo Yii::t("home","Cooperative space") ?></h4>
 					    <div class="col-md-12 col-xs-12 text-center no-padding">
 	                        <h3 class="no-margin">
 	                        	<small class="">
-	                        	Parce que l'envie de s'organiser ensemble, mène au besoin de décider ensemble...<br>
-	                        	<b>Communecter</b> offre à tous les groupes référencés, 
-	                        	<span class="text-green"><i class="fa fa-group"></i> organisations</span> et 
-	                        	<span class="text-purple"><i class="fa fa-lightbulb-o"></i> projets</span>,<br>
-	                        	des outils de vote, et de gestion des tâches.<br>
+	                        	<?php echo Yii::t("home","Because the desire to organize together leads to the need to decide together...<br><b>Communecter</b> offers to all referenced groups") ?>, 
+	                        	<span class="text-green"><i class="fa fa-group"></i> <?php echo Yii::t("common","organisations") ?></span> 
+	                        	<?php echo Yii::t("common","and") ?> 
+	                        	<span class="text-purple"><i class="fa fa-lightbulb-o"></i> <?php echo Yii::t("common","projects") ?></span>,<br>
+	                        	<?php echo Yii::t("home","voting tools, and task management") ?>.<br>
 	                        	<hr style="width:40%; margin:20px auto; border: 4px solid #cecece;">    
-	                			Vous accompagner dans les processus de décisions et d'actions,<br>
-	                        	ça fait aussi parti de nos objectifs ! <br><br>
+	                			<?php echo Yii::t("home","To accompany you in the process of decisions and actions,<br>it's also part of our goals") ?> !
+	                			<br><br>
 	                        	</small>
 	                        </h3>
 	                    </div>
@@ -507,9 +376,8 @@
 	                    <div class="col-md-12 col-xs-12 text-center no-padding">
 	                        <h3 class="">
 	                        	<small class="letter-green">
-	                        	<i class="fa fa-check "></i> Décisions collectives<br>
-	                        	<i class="fa fa-check "></i> Gouvernance horizontale
-
+	                        	<i class="fa fa-check "></i> <?php echo Yii::t("home","Collective decisions") ?><br>
+	                        	<i class="fa fa-check "></i> <?php echo Yii::t("home","Horizontal governance") ?>
 	                        	</small>
 	                        </h3>
 	                    </div>
@@ -518,119 +386,37 @@
 	                    <a href="https://wiki.communecter.org/fr/espace-coop%C3%A9ratif.html" target="_blank" class="text-red bold margin-top-25">
 	                    	<?php echo Yii::t("home","+ More infos") ?>    
 	                	</a>
-	             </div>
-	            <div class="visible-xs col-xs-12 padding-20" style="text-align:center;min-height:400px;">
-					<img class="img-responsive" style="margin:0 auto;margin-top: 10px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/espaceco-1.png"/>
+		             </div>
+		            <div class="visible-xs col-xs-12 padding-20" style="text-align:center;min-height:400px;">
+						<img class="img-responsive" style="margin:0 auto;margin-top: 10px;" src="<?php echo $this->module->assetsUrl; ?>/images/home/espaceco-1.png"/>
+					</div>
 				</div>
 			</div>
 			
 		</div>
 
-		<!--<center class="col-xs-12" style="z-index:1;">
-			<i class="fa fa-caret-down text-red" style="z-index:1000;"></i><br/>
-		</center>-->
-		<div class="col-xs-12 margin-top-50 hidden" >
-			<h3 class="text-red text-center"><?php echo Yii::t("home","For Whom ?") ?></h3>
-			<hr class="angle-down">
-		</div>
-		
-		<div class="col-xs-12 hidden" style="text-align:center;padding:40px;">
-			<div class="col-md-4 col-sm-4 col-xs-12">
-				<div class="keylist panel panel-white" style="box-shadow: inherit;">
-					<div class="panel-heading border-light ">
-						<span class="panel-title"> 
-							<i class="fa fa-street-view fa-2x"></i>
-							<br/>
-							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For me") ?></span><br/>
-							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "I learn about my territory") ?> <br/></span>
-							<br>
-							<?php echo Yii::t("home", "I know what's happened around me") ?>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-4 col-xs-12">
-				<div class="keylist panel panel-white" style="box-shadow: inherit;">
-					<div class="panel-heading border-light ">
-						<span class="panel-title"> 
-							<i class="fa fa-users fa-2x"></i>
-							<br/>
-							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For my community") ?></span><br/>
-							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "I am connected to my community") ?> <br/></span>
-							<br>
-							<?php echo Yii::t("home", "I can promote ideas and activities and enjoy organization helping tools") ?>
-						</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 col-sm-4 col-xs-12">
-				<div class="keylist panel panel-white" style="box-shadow: inherit;">
-					<div class="panel-heading border-light">
-						<span class="panel-title"> 
-							<i class="fa fa-globe fa-2x"></i>
-							<br/>
-							<span class="uppercase text-red" style="font-size: 18px;"><?php echo Yii::t("home", "For commons") ?></span><br/>
-							<span style="font-size: 16px;font-style:italic"> <?php echo Yii::t("home", "A smart collective intelligence") ?><br/></span>
-							<br>
-							<?php echo Yii::t("home", "I take part to the building of territorial knowledge base") ?>
-						</span>
-						
-					</div>
+		<div class="col-xs-12 no-padding">
+		    <div class="col-md-12 col-sm-12 col-xs-12" style="background-color: #f6f6f6; text-align:center;min-height:400px;">
+		    	<h4 class="margin-top-50"><?php echo Yii::t("home","+ more details in video") ?> !</h4>
+				<hr style="width:40%; margin:10px auto; border: 4px solid #cecece;">    
+		        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 padding-25">
+			    	<div class="h_iframe">
+			        <!-- a transparent image is preferable -->
+			        <img class="ratio" src="http://placehold.it/16x9"/>
+			        <iframe id="autoPlayVideo" src="https://player.vimeo.com/video/133636468?api=1&title=0&amp;byline=0&amp;portrait=0&amp;color=57c0d4" frameborder="0" allowfullscreen></iframe>
+			    	</div>
+			    	
 				</div>
 			</div>
 		</div>
-
-		<div class="col-xs-12 hidden" >
-			<h3 class="text-red text-center"><?php echo Yii::t("home","Our values") ?></h3>
-			<hr class="angle-down">
-		</div>
-		
-        
-		<!--<div class="videoWrapper col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
-			<<a href="javascript:;" onclick="" class="btn-show-video"><i class="fa fa-youtube-play fa-5x"></i></a> 
-			<iframe class="col-md-12 col-xs-12 no-padding" height="480" 
-					src="https://player.vimeo.com/video/133636468?api=1&title=0&amp;byline=0&amp;portrait=0&amp;color=57c0d4" 
-					frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen class="video" 
-					aria-hidden="true" tabindex="-1" style="border:10px solid black;">
-			</iframe>
-		</div>-->
-
-
-		<!-- <div class="col-md-6 text-left margin-top-25" style="background-color:#fffff;color:#293A46;padding-bottom:40px; float:left;">
-			
-			<h4 class="text-dark homestead">Un réseau sociétal, territorial, citoyen, libre, gratuit et ouvert</h4>
-			<!-- En s'appuyant sur un <a href="javascript:;" data-id="explainSocietyNetwork" class="explainLink">réseau sociétal</a> (au service de la société) regroupant les acteurs d'un territoire, - ->
-			<a href="javascript:;" data-id="explainCommunecter" class="explainLink">"Communecter"</a> propose des outils numériques innovants et accessibles à tous, afin de créer ensemble
-			un <a href="javascript:;" data-id="explainConnectedTerritory" class="explainLink">territoire connecté</a> qui nous ressemble.
-			<br/><br/>Tout cela gratuitement, dans le respect des données de chacun, car Communecter est un <a href="javascript:;" data-id="explainCommuns" class="explainLink">bien commun</a>
-			fait pour et par chacun d’entre nous, porté par une association à but non lucratif.
-			<br/><br/>
-			Plus qu'une simple application, <span class="text-red">Communecter</span> c'est aussi :
-			<ul class="information" style="font-weight: normal;">
-			<li>Une projet <a href="javascript:;" data-id="explainOpenSource" class="explainLink">open source</a></li>
-			<li>Une communauté riche et diversifiée</li>
-			<li>Un site web qui vous tend les bras</li>
-			<li>Une application mobile (en cours de développement) </li>
-			<li>Des interfaces tierces contribuant à une base de donnée commune</li>
-			<!-- <li>Des instances indépendantes mais inter-opérantes par leurs <a href="javascript:;" data-id="explainOpenSource" class="explainLink">sémantiques</a> communes </li> *termes trop techniques pour user lambda => complique - ->
-			</ul>
-			
-		</div> -->
-
-
-	</div>
-	
 
 
 	<div class="col-sm-12 col-md-12 col-xs-12 no-padding" style="background-color:#E33551; max-width:100%; float:left;" id="teamSection">
 		
 		<center>
-			<i class="fa fa-caret-down" style="color:#fff"></i><br/>
-			<!-- <img style="height:80px" src="<?php echo $this->module->assetsUrl; ?>/images/home/yoda.png?t=111"/> -->
+			<i class="fa fa-caret-down" style="color:#f6f6f6"></i><br/>
 		
 			<h1 class="homestead" style="color:#fff">
-				<!-- <i class="fa fa-line-chart headerIcon"></i>  -->
 				<?php echo Yii::t("home","We are all Open") ?>
 			</h1>
 			<img src="<?php echo $this->module->assetsUrl; ?>/images/home/yoda.png" height="40"/> 
@@ -777,7 +563,7 @@
 		<center>
 			<i class="fa fa-caret-down" style="color:#fff"></i>
 			<div class="col-xs-12 margin-top-10 margin-bottom-25">
-				<h4>Ils font parti de l'aventure !</h4>
+				<h4><?php echo Yii::t("home","They form a key part of the adventure") ?> !</h4>
 				<?php 
 					$list = PHDB::findAndSort(Person::COLLECTION, array(
 						"profilThumbImageUrl" => array( '$exists' => 1,'$ne' => "")
@@ -916,7 +702,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <span class="name" >
+                    <span class="name hidden" >
                         <?php if(Yii::app()->params["CO2DomainName"] == "kgougle"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
                        <?php } else { ?>
