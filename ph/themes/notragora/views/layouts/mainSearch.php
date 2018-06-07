@@ -225,6 +225,7 @@
 		"Portrait citoyens",
 		"Parcours d'engagement"
 	);
+
 	$genresType=array(
 		"Documentaire",
 		"Fiction",
@@ -605,6 +606,7 @@
 					collectionsTypeData.push(val2);
 					collectionsHtml+='<a href="javascript:addItemsToSly(\''+slugify(tag2)+'\')" class="favElBtn '+slugify(tag2)+'Btn" data-tag="'+slugify(tag2)+'">'+tag2+'</a><br>';
 				});
+				
 				$(".collectionsList").append(collectionsHtml);
 
 				typeObjPoi = typeObj["poi"].dynForm.jsonSchema;

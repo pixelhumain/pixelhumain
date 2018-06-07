@@ -5,6 +5,13 @@
 		display: -webkit-inline-box;
 		display: -moz-inline-box;
 	}
+
+	#poiSelectedHead {
+		font-size: 18px;
+		height: 50px;
+		padding: 12px;
+		display : none;
+	}
 </style>
 <?php  HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/menuTop.css'), Yii::app()->theme->baseUrl);
 	$topList = Poi::getPoiByTagsAndLimit();
@@ -106,6 +113,9 @@
 			<i class="fa fa-star"></i>
 	</button>
 
+
+	
+
 	<?php // MAIN TITLE // ?>
 	<!-- <h1 class="homestead text-dark no-padding moduleLabel hidden-xs
 			    <?php if(!isset(Yii::app()->session['userId'])) echo 'offline'; ?>" id="main-title"
@@ -123,7 +133,14 @@
 
 	<?php $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.'; ?>
 	<?php $this->renderPartial($layoutPath.'.menu.short_info_profil', array("me"=>$me)); ?>
-
+	<span class="btn-menu-top tooltips pull-right"  id="poiSelectedHead">
+		<span id="tagSelectedHead" class="text-red"></span> 
+		Vous avez selectionnés <span id="countPoiHead" class="text-green"></span>
+		<button class="btn-menu-top tooltips text-red"  onclick="addItemsToSly()"
+				data-toggle="tooltip" data-placement="bottom" title="Supprimer le tag sélectionné" alt="Supprimer le tag sélectionné">
+				<i class="fa fa-trash"></i>
+		</button>
+	</span>
 </div>
 <script>
 	var poiListTags = <?php echo json_encode($tagsPoiList) ?>;
@@ -170,7 +187,7 @@
 		else {
 			var filteredTopList = topList;
 		}
-		//
+		var count = 0;
 		for (var topElem of filteredTopList) {
 			var elem = '<li class="searchPoiContainer">' +
 				'<span class="item-galley-top">' +
@@ -186,10 +203,20 @@
 					'<a href="' + topElem.href +' " class="btn btn-dark-grey lbh"> Voir la réalisation </a>' +
 				'</span>' +
 			'</li>';
-			
+			count++;
 			sly.add(elem);
 		}
+
 		sly.activate(5);
+
+		if(typeof tagFilter != "undefined"){
+			$("#tagSelectedHead").html("#" + tagFilter);
+			$("#countPoiHead").html(count + " productions");
+			$("#poiSelectedHead").show();
+		}else{
+			$("#poiSelectedHead").hide();
+		}
+		
 		$(".searchPoiContainer").mouseenter(function(){
 			$(this).find(".description-poi").show();
 		}).mouseleave(function(){

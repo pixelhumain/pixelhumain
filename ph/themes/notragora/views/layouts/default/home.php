@@ -75,10 +75,10 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesTheme,Yii::app()->reque
 			<h4 clss="title-menu-left" style="color:rgb(70,70,70);">La plateforme en chiffres</h4>
 			<span>
 				<strong>Participations</strong><br/>
-				Outre les 120 contributeurs à la version Béta, NotrAgora compte : <br>
-				240 utilisateurs<br/>
-				87 groupes de travail porteurs de projets<br/>
-				124 productions vidéo
+				Outre les <?php echo $countCitoyen ; ?> contributeurs à la version Béta, NotrAgora compte : <br>
+				<?php echo $countCitoyen ; ?> utilisateurs<br/>
+				<?php echo $countOrga ; ?> groupes de travail porteurs de projets<br/>
+				<?php echo $countPoi ; ?> productions vidéo
 			</span>
 		</div>
 	</div>
