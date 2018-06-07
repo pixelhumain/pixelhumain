@@ -1745,6 +1745,7 @@ var dyFObj = {
 						{
 						  "tags": dyFObj.init.initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
+						  "minimumInputLength" : 3,
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
 						if(dyFObj.init.initValues[ $(this).attr("id") ].maximumSelectionLength)
@@ -1756,7 +1757,7 @@ var dyFObj = {
 						if(typeof mainTag != "undefined")
 							$(this).val([mainTag]).trigger('change');
 					}
-				 });
+				});
 			} else
 				mylog.error("select2 library is missing");
 		} 
