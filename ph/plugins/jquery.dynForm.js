@@ -2938,11 +2938,11 @@ var dyFInputs = {
 											});
 	},
 	tags : function(list, placeholder, label) { 
-    	tagsL = (list) ? list : tagsList;
+    	//var tagsL = (list) ? list : tagsList;
     	return {
 			inputType : "tags",
 			placeholder : placeholder != null ? placeholder : tradDynForm["tags"],
-			values : tagsL,
+			values : (list) ? list : tagsList,
 			label : (label != null) ? label : tradDynForm["addtags"]
 		}
 	},
