@@ -121,7 +121,7 @@
 				<i class="fa fa-refresh"></i>
 			</a>
 			<div class="pageslide-title pull-left">
-				<i class="fa fa-angle-down"></i> <i class="fa fa-bell"></i> Notifications 
+				<i class="fa fa-angle-down"></i> <i class="fa fa-bell"></i> Notifications 5464654
 			</div> 
 			<a href="javascript:;" onclick='markAllAsRead()' class="btn-notification-action pull-right" style="font-size:12px;">
 				<?php echo Yii::t("common","All marked all as read") ?> <i class="fa fa-check-square-o"></i>
@@ -139,6 +139,11 @@
 				        	if(isset($item["notify"]))
 				        	{
 				        		$url = str_replace("/", ".", $item["notify"]["url"]);
+				        		var_dump($url);
+				        		if(strrpos($url, "organization.directory") != false){
+				        			$url = "#element.detail.type.organizations.id.".$item["target"]["id"];
+				        		}
+
 				        		$href = $url;
 					            echo "<li class='notifLi notif_".(string)$item["_id"]."'>";
 					            echo "<a class='lbh notif' data-id='".(string)$item["_id"]."' href='".$href."'><span class='label label-primary'>";
@@ -194,15 +199,15 @@ jQuery(document).ready(function()
 function bindNotifEvents(){
 	$(".notifList a.notif").off().on("click",function () 
 	{
-		markAsRead( $(this).data("id") );
-		elem = $(this).parent();
-		elem.removeClass('animated bounceInRight').addClass("animated bounceOutRight");
-		elem.removeClass("enable");
-		setTimeout(function(){
-            elem.addClass('hide');
-            elem.removeClass('animated bounceOutRight');
-            notifCount();
-        }, 200);
+		//markAsRead( $(this).data("id") );
+		// elem = $(this).parent();
+		// elem.removeClass('animated bounceInRight').addClass("animated bounceOutRight");
+		// elem.removeClass("enable");
+		// setTimeout(function(){
+  //           elem.addClass('hide');
+  //           elem.removeClass('animated bounceOutRight');
+  //           notifCount();
+  //       }, 200);
 
 	    bindLBHLinks();
 	});
@@ -275,6 +280,10 @@ function buildNotifications(list)
 			var url = (typeof notifObj.notify != "undefined") ? notifObj.notify.url.substring( "<?php echo substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1) ?>communecter/".length,notifObj.notify.url.length ) : "#";
 			//convert url to hash for loadByHash
 			url = "#"+url.replace(/\//g, ".");
+			if(url.indexOf("organization.directory")>-1){
+				url = "#element.detail.type.organizations.id."+notifObj.target.id;
+			}
+
 			//var moment = require('moment');
 			moment.lang('fr');
 			momentNotif=moment(new Date( parseInt(notifObj.timestamp.sec)*1000 )).fromNow();
