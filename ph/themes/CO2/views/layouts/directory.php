@@ -148,7 +148,7 @@ var custom = {};
           $("#dropdown-user").addClass("open");
       });
       themeObj.init();
-      Login.init();
+      //Login.init();
   });
  
   function initNotifications(){
