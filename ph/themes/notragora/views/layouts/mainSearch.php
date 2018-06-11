@@ -217,14 +217,14 @@
 	<?php
 	if(!isset($me))
 		$me="";
-	$collectionsType=array(
-		"Où sont les femmes ?",
-		"Passeurs d'images",
-		"MHMQ",
-		"MIAA",
-		"Portrait citoyens",
-		"Parcours d'engagement"
-	);
+	// $collectionsType=array(
+	// 	"Où sont les femmes ?",
+	// 	"Passeurs d'images",
+	// 	"MHMQ",
+	// 	"MIAA",
+	// 	"Portrait citoyens",
+	// 	"Parcours d'engagement"
+	// );
 
 	$genresType=array(
 		"Documentaire",
@@ -233,7 +233,7 @@
 		"Films outils",
 		"Films de commande"
 	);
-
+	$collectionsType = Lists::getListByName("collections");
 	$topList = Poi::getPoiByTagsAndLimit();
 	if (empty($topList)) $emptyTop=true;
 	$this->renderPartial($layoutPath.'.menu.menuTop', array( "me" => $me , "topList" => $topList ));
@@ -618,7 +618,8 @@
 			                "values" : tagsList,
 			                "data" : collectionsTypeData
 			    };
-
+			    var tagPoiDyn = typeObjPoi.properties.tags;
+			    delete typeObjPoi.properties.tags;
 			    //specific types as collections added to the atgs field
 			    typeObjPoi.properties.collections={};
 			    typeObjPoi.properties.collections=collectionForm;
@@ -632,7 +633,7 @@
 			    //specific types as genres added to the atgs field
 			    typeObjPoi.properties.genres={};
 			    typeObjPoi.properties.genres=genreForm;
-
+			    typeObjPoi.properties.tags = tagPoiDyn;
 				//types can only be videos and will be hidden
 				typeObjPoi.properties.type={
 					"value" : "video",
@@ -643,6 +644,7 @@
 				delete typeObjPoi.properties.image;
 				delete typeObjPoi.afterSave;
 				delete typeObjPoi.beforeBuild;
+				delete typeObjPoi.urls;
 
 				//urls are always shown
 				poiFormUrls = {
@@ -653,6 +655,7 @@
 			            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",0);
 		            }
 		        };
+
 		        typeObjPoi.properties.urls=poiFormUrls;
 				typeObjPoi.properties.info.html="<p><i class='fa fa-info-circle'></i> Rajouter une video en la chargeant l'url présente sur le compte vimeo de passeur d'image. Cette réalisation sera liée à votre groupe de travail</p>";
 			},
