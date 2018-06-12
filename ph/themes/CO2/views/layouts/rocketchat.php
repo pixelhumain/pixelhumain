@@ -61,19 +61,21 @@
                 <a href="javascript:rcObj.sizeChat('')">
                     <i class="hide fa btnExpand fa-expand fa-2x"  style="float:left;color:#C5203B;margin-right:20px;"></i>
                 </a>
-                <a href="javascript:rcObj.sizeChat('')">
-                    <i class="hide fa fa-external-link fa-2x"  style="float:left;color:#C5203B;margin-right:20px;"></i>
-                </a>
+                
                 <h5 class="letter-red pull-left">
                     <i class='fa fa-comments'></i> Messagerie instantanée
                 </h5><!-- <span class='rocketchatTitle'></span> -->
                 <button class="btn btn-default btn-sm text-dark pull-right close-modal margin-left-10" data-dismiss="modal">
                     <i class="fa fa-times"></i>
                 </button>
-                <a href="https://chat.communecter.org" class="btn btn-default btn-sm text-dark pull-right close-modal" target='_blank'>
-                    <i class="fa fa-external-link"></i>
-                </a>
                 
+                <a href="https://chat.communecter.org" target="_blank" class="btn btn-default btn-sm  pull-right ">
+                    <i class=" fa fa-external-link" ></i>
+                </a>
+
+               <a href="javascript:rcObj.newChannel()" class=" pull-right text-red btn btn-default btn-sm "  > 
+                    <i class=" fa fa-plus"  ></i>
+                </a>
         </div>
         <div class="col-sm-12 RCcontainer" style="background-color:white"></div>
     </div>
@@ -117,6 +119,11 @@ var rcObj = {
     rocketUserId : '<?php echo @Yii::app()->session["rocketUserId"]; ?>',
     list : null, //contains the list of all accessible RC channels
 
+    newChannel : function()
+    {
+        dyFObj.openForm('chat'); 
+        $('#rocketchatModal').modal('hide'); 
+    },
     login : function () 
     { 
         if(rcObj.debugChat)alert("rcObj.login");
@@ -130,9 +137,16 @@ var rcObj = {
     //hasRC : boolean if an RC has allready been opened 
     //when loading from anywhere we don't use tmpContextData juste the name 
     //tmpCtxtData : notice we use tmpContextData so when there is no contextData we can fill it with a given context
-    loadChat : function (name,type,isOpen,hasRC,tmpContextData){ 
-        
-        rcObj.loadedIframe (name) ;
+    loadChat : function (name,type,isOpen,hasRC,tmpContextData,url){ 
+        //alert("loadchat");
+        /*if(baseUrl.indeOf("127.0.0") == 0){
+            alert("rocket chat create only works on server")
+            return;
+        }*/
+
+        if(isOpen != "external")
+            rcObj.loadedIframe (name) ;
+
         if(typeof tmpContextData != "undefined")
             rcObj.data = tmpContextData;
         else if( !tmpContextData && contextData )
@@ -159,18 +173,38 @@ var rcObj = {
             ( hasRC && type != "citoyens" && rcObj.lastOpenChat != name && checkGroupMember < 0 ) ||
             (!hasRC && type != "citoyens" && rcObj.lastOpenChat != name) )
         {  
-            rcObj.lastOpenChat = name;
-            var extra = (isOpen) ? "/roomType/channel" : "/roomType/group";
+            if(rcObj.debugChat)alert( "create Chat" );
 
-            iframeUrl = (name!="") ? baseUrl+'/'+moduleId+'/rocketchat/chat/name/'+rcObj.data.slug+'/type/'+rcObj.data.type+'/id/'+rcObj.data.id+extra
+            rcObj.lastOpenChat = name;
+            var paramsExt = null;
+            var extra = "/roomType/group";
+            if(isOpen == "external"){
+                extra = "/roomType/external";
+                paramsExt = { title : name, url : encodeURIComponent(url)};
+            }
+            else if(isOpen) 
+                extra = "/roomType/channel"; 
+
+            createChatUrl = (name!="") ? baseUrl+'/'+moduleId+'/rocketchat/chat/name/'+rcObj.data.slug+'/type/'+rcObj.data.type+'/id/'+rcObj.data.id+extra
                                    : baseUrl+'/'+moduleId+'/rocketchat';
             
-            if(rcObj.debugChat)alert( iframeUrl );
+            if(rcObj.debugChat)alert( createChatUrl );
 
-            getAjax(null, iframeUrl, function(data){ 
+            if(isOpen == "external"){
+                if(rcObj.debugChat)alert("external");
+                ajaxPost(null,createChatUrl,paramsExt,function(data){ 
+                        $('.btnChatColor').addClass("text-red");
+                        if(rcObj.debugChat)alert("success external");
+                        urlCtrl.loadByHash(location.hash);
+                    },"json");
+            }
+            else 
+                getAjax(null, createChatUrl, function(data){ 
                         $('.btnChatColor').addClass("text-red");
                         rcObj.goto(name,isOpen);
                     } ,"json");
+
+            
             
         } else {
             //todo : pb sur les nouvelles creations en passant par ici

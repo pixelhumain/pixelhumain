@@ -56,7 +56,7 @@
                                                   "explain"=>@$explain)); ?>
                 <div class="subModuleTitle">  
                     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                        <div class="input-group col-xs-7 col-sm-8 col-md-8" id="main-input-group"  style="">
+                        <div class="input-group col-xs-10 col-sm-8 col-md-8" id="main-input-group"  style="">
                             <input type="text" class="form-control" id="main-search-bar" 
                                 placeholder="<?php echo Yii::t("common", $params["pages"]["#".$page]["placeholderMainSearch"]); ?>">
                             <span class="bg-white input-group-addon" id="main-search-bar-addon">
@@ -98,46 +98,6 @@
                               //  } ?>
                           <?php } ?>
                         </div>
-                        <?php if($page == "annonces"){ ?>
-                        <!--<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12 no-padding margin-top-10" id="section-price">
-                            <div class="form-group col-md-4 col-sm-4 col-xs-6">
-                              <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
-                                <i class="fa fa-chevron-down"></i> <?php echo Yii::t("common","Min price") ?>
-                              </label>
-                              <input type="text" id="priceMin" name="priceMin" class="form-control" 
-                                     placeholder="<?php echo Yii::t("common","Max Min") ?>"/>
-                            </div>
-
-                            <div class="form-group col-md-4 col-sm-4 col-xs-6">
-                              <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
-                                <i class="fa fa-chevron-down"></i> <?php echo Yii::t("common","Max price") ?>
-                              </label>
-                              <input type="text" id="priceMax" name="priceMax" class="form-control col-md-5" 
-                                     placeholder="<?php echo Yii::t("common","Max price") ?>"/>
-                            </div>
-                            
-                            <div class="form-group col-md-2 col-sm-2 col-xs-12">
-                              <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
-                                <i class="fa fa-money"></i> <?php echo Yii::t("common","Money"); ?>
-                              </label>
-                              <select class="form-control" name="devise" id="devise" style="">
-                                <?php if(@$devises){ 
-                                  foreach($devises as $key => $devise){ ?>
-                                  <option class="bold" value="<?php echo $key; ?>"><?php echo $devise; ?></option>
-                                <?php } } ?>
-                              </select>
-                            </div>
-
-                            <div class="form-group col-md-2 col-sm-2 col-xs-12 margin-top-10">
-                              <button class="btn btn-link bg-azure margin-top-15 btn-directory-type" data-type="classified">
-                                <i class="fa fa-search"></i> <span class="hidden-xs hidden-ms"><?php echo Yii::t("common","Search") ?></span>
-                              </button>
-                            </div>
-
-                            <!-- <hr class="col-md-12 col-sm-12 col-xs-12 margin-top-10 no-padding" id="before-section-result">  
-                        </div>-->
-                        <?php } ?>
-
                         <div id="filter-scopes-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12 no-padding margin-top-10">
                             <div id="scope-container" class="scope-menu no-padding">
                                 <div id="input-sec-search" class="col-xs-8 col-md-6 col-sm-6 col-lg-6">
@@ -184,8 +144,8 @@
                                 $params = CO2::getThemeParams();
                                 foreach ($params["pages"] as $key => $value) {
                                     if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
-                                        <a href="<?php echo $key; ?>" 
-                                        class="<?php echo $key; ?>ModBtn lbh btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>">
+                                        <a href="javascript:;" data-hash="<?php echo $key; ?>" 
+                                        class="<?php echo $key; ?>ModBtn lbh-menu-app btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>">
                                                 
                                         <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
                                         <span class=""><?php echo Yii::t("common", $value["subdomainName"]); ?></span>
@@ -211,87 +171,13 @@
     var filliaireCategories = <?php echo json_encode(@$filliaireCategories); ?>;
     var page="<?php echo $page ?>";
     jQuery(document).ready(function() {
-        searchInitApp(search);
-        //$("."+page+"-menu-btn").addClass("active");
-
-        $(".theme-header-filter").click(function(){
-            if(!$("#filter-thematic-menu").is(":visible") || $(this).hasClass("toogle-filter"))
-                $("#filter-thematic-menu").toggle();
-        });
-        $("#filters-container-menu .theme-header-filter, #filters-container-menu .scope-header-filter").click(function(){
-            simpleScroll(0, 500);
-        });
-        $(".scope-header-filter").click(function(){
-            $("#searchOnCity").trigger("click");
-        });
-        $(".btn-select-filliaire").click(function(){
-            mylog.log(".btn-select-filliaire");
-            var fKey = $(this).data("fkey");
-            myMultiTags = {};
-            search.value="";
-            $.each(filliaireCategories[fKey]["tags"], function(key, tag){
-                tag=(typeof tradTags[tag] != "undefined") ? tradTags[tag] : tag;
-                search.value+="#"+tag+" ";
-            });
-            //$("#filter-thematic-menu").hide();
-            $("#main-search-bar, #second-search-bar").val(search.value);
-            mylog.log("myMultiTags", myMultiTags);
-            
-            searchPage=0;
-            pageCount=true;
-            search.count=true;
-            if(search.app=="territorial") searchEngine.initTerritorialSearch();
-            
-            startSearch(0, indexStepInit, searchCallback);
-        });
-
         initScopeMenu();
         $(".tooltips").tooltip();
     });
-    function searchInitApp(src){
-        search.app=page;
-        if(search.value != "")
-            $("#main-search-bar, #second-search-bar").val(search.value);
-    }
-    function initScopeMenu(type){
-        /*if(typeof myScopes.type != "undefined")
-            activateScope=myScopes.type;
-        else
-            activateScope="open";*/
-        activateScopeMenu();
+    function initScopeMenu(type){   
         bindSearchCity();
-        //headerActive=true;
         bindScopesInputEvent();
         countFavoriteScope();
         getCommunexionLabel();
-    }
-    function activateScopeMenu(type,init){
-        if(myScopes.type!="open" || Object.keys(myScopes.open).length>0){
-            $(".scopes-container").html(constructScopesHtml());
-            if(myScopes.type!="multiscopes")
-                $("#filter-scopes-menu .scopes-container .scope-order").sort(sortSpan) // sort elements
-                    .appendTo("#filter-scopes-menu .scopes-container");
-        }
-        if(myScopes.type != "open")
-            $("#"+myScopes.type+"-btn").addClass("active").find("i.fa-angle-down").removeClass("fa-angle-down").addClass("fa-angle-up");
-        //$(".container-scope-menu").hide(700);
-        //$(".btn-scope-menu").removeClass("active");
-        //$("#"+type+"-container").show(700);
-        //$(".activate-"+type).addClass("active");
-       // myScopes.type=type;
-        /*if(init==null){
-            myScopes.state=true;
-            //if(type!="open-scope"){
-            localStorage.setItem("myScopes",JSON.stringify(myScopes));
-            //}
-        }else if(type=="open")
-            myScopes.state=false;
-        if(myScopes.state){
-            $('.scope-filters-badge').removeClass('hide');
-            $('.scope-filters-badge').addClass('animated bounceIn');
-            $('.scope-filters-badge').addClass('badge-success');
-            $('.scope-filters-badge').removeClass('badge-tranparent');
-        }*/
-
     }
 </script>

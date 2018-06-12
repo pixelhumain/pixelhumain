@@ -1,83 +1,40 @@
 {
-    "name" : "BretagneTelecom",
-    "mode" : "server",
+    "name" : "PDCN",
+    "dataSrc" : "http://dev.communecter.org/ph/api/convert/gogocarto/?url=https://gist.githubusercontent.com/RaphaelRIVIERE/6f35ff572c079a4ff3cb604c4b11cf47/raw/aabd9d586db69deaa370e4549c6ac0d0c394edd8/pdcn",
     "skin" : {
         "logo" : false,
-        "title" : "Annonces ",
-        "shortDescription" : "Rajoutez un projet en cliquant sur le + en bas à gauche une fois connecté",
+        "title" : "PDCN",
         "displayScope" : false,
         "displayCommunexion" : true,
-        "profilBar" : true,
-        "breadcrum":true,
+        "profilBar" : false,
         "displayButtonGridList" : false,
         "class" : {
             "mainContainer" : false
         },
         "iconeAdd" : false,
         "iconeSearchPlus" : false,
-        "loginTitle":"",
-        "front" : {
-            "organization" : false,
-            "project" : false,
-            "event" : false,
-            "community" : false,
-            "dda" : false,
-            "live" : false,
-            "search" : false,
-            "need" : false,
-            "poi" : false
-        },
-        "menu" : {
-            "aroundMe":false,
-            "connectLink":false,
-            "add":true,
-            "detail":true,
-            "news":false,
-            "directory":false,
-            "gallery":true
-        }
+        "loginTitle":""
     },
     "filter" : {
         "types" : false,
-        "tags" : {
-            "activate" : true,
-            "title" : "Autre",
-            "background-color" : "#f5f5f5",
-            "image" : "All.png",
-            "tagsAdditional" : {
-                "Autre" : "Autre"
-            }
-        },
-        "linksTag" : {
-            "Filtres" : {
-                "tagParent" : "Alimentation",
-                "background-color" : "#f5f5f5",
-                "image" : "Alimentation.png",
-                "tags" : {
-                    "Dons" : "Agriculture",
-                    "Emploi" : "Agriculture",
-                    "Recherche de bénévoles" : "Agriculture",
-                    "Soutien de projets" : "Agriculture",
-                    "Trocs & échanges" : "Agriculture",
-                    "Woofing" : "Agriculture"
-                }
-            }
-        }
+        "tags" : true
+    },
+    "add" : {
+        "organization" : true,
+        "project" : false,
+        "event" : true
     },
     "result" : {
-        "displayImage" : true,
+        "displayImage" : false,
         "displayType" : false,
         "fullLocality" : true,
-        "datesEvent" : false,
-        "displayShortDescription" : true
-    },
-     "add" : {
-        "organization" : true
+        "datesEvent" : false
     },
     "request" : {
-        "pagination" : 2000,
+        "pagination" : 1000,
         "searchType" : [
-            "event"
+            "organizations",
+            "poi"
         ]
     }
 }

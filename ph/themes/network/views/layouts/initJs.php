@@ -42,6 +42,10 @@ $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes']
     var rawOrganizerList = <?php echo json_encode(Authorisation::listUserOrganizationAdmin(Yii::app() ->session["userId"])) ?>;
     var organizerList = {}; 
     var poiTypes = <?php echo json_encode( Poi::$types ) ?>;
+    //var rolesList=[ tradCategory.financier, tradCategory.partner, tradCategory.sponsor, tradCategory.organizor, tradCategory.president, tradCategory.director, tradCategory.speaker, tradCategory.intervener];
+
+    var rolesList=[ { id : tradCategory.financier, text : tradCategory.financier}, 
+                    { id : tradCategory.partner , text : tradCategory.partner } ];
 
     var myContacts = <?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;
     var myContactsById =<?php echo (@$myFormContact != null) ? json_encode($myFormContact) : "null"; ?>;

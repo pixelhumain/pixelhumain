@@ -140,7 +140,7 @@ function lazyLoad (js,css, callback, notBase) {
                type: "text/css",
                href: css 
             }).appendTo("head");
-          //mylog.log("lazyLoad  before getScript",js);
+          //!mylog.log("lazyLoad  before getScript",js);
         $.getScript( js, function( data, textStatus, jqxhr ) {
           //mylog.log("lazyLoad getScript");
           //if (typeof dynform !== undefined) alert("script has been loaded!");
@@ -769,6 +769,25 @@ function buildSelectGroupOptions(list,value) {
         $.each(groupVal.options, function(optKey, optVal) {
           selected = ( optKey == value ) ? "selected" : ""; 
           html += '<option value="'+optKey+'" '+selected+' '+data+'>'+optVal+'</option>';
+        });
+      html += '</optgroup>';
+    });
+  }
+  return html;
+}
+
+
+function buildSelectFromList(list,value) {
+  mylog.log("buildSelectFromList ", value, list);
+  var html = "";
+  mylog.log("list", list);
+  if(list){
+    $.each(list, function(groupKey, groupVal) {
+      var data = ( groupKey ) ? 'data-type="'+groupKey+'"' : "";
+      html += '<optgroup label="'+trad[groupKey]+'" >';
+        $.each(groupVal, function(optKey, optVal) {
+          selected = ( optKey == value ) ? "selected" : ""; 
+          html += '<option value="'+optVal["_id"]["$id"]+'" '+selected+' '+data+'>'+optVal.name+'</option>';
         });
       html += '</optgroup>';
     });

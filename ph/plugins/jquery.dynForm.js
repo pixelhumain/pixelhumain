@@ -559,6 +559,7 @@ onSave: (optional) overloads the generic saveProcess
         	var action = ( fieldObj.action ) ? fieldObj.action : "javascript:;";
         	$.each(fieldObj.list,function(k,v) { 
         		//mylog.log("build field ",k,v);
+        		fieldClass = (v.class) ? v.class : "";
         		if(!v.excludeFromForm){
 	        		var lbl = ( fieldObj.trad && fieldObj.trad[v.labelFront] ) ? fieldObj.trad[v.labelFront] : tradCategory[k] ? tradCategory[k] : k;
 	        		fieldHTML += '<div class="col-md-4 padding-5 '+field+'C '+k+'">'+
@@ -643,7 +644,7 @@ onSave: (optional) overloads the generic saveProcess
         	}
         	fieldHTML +=   '<div class="inputs array">'+
 								'<div class="col-sm-10 no-padding">'+
-									'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif" style="position: absolute;right: 5px;top: 10px;display:none;">'+
+									'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif" style="position: absolute;right: 5px;top: 10px;display:none;">'+
 									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
 								'</div>'+
 								'<div class="col-sm-2 sectionRemovePropLineBtn">'+
@@ -731,7 +732,7 @@ onSave: (optional) overloads the generic saveProcess
 								'<div class="col-sm-3">'+
 									'<span>'+tradDynForm["Name of filter"]+'</span>'+
 									'<input type="text" name="'+field+'0" id="'+field+'0" class="addmultifield addmultifield0 form-control input-md" value="" placeholder="'+placeholder+'"/>'+
-									//'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+									//'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
 								'</div>'+
 								'<div class="col-sm-7">'+
 									'<span>'+tradDynForm["Tags link a filter"]+'</span>'+
@@ -1073,9 +1074,10 @@ onSave: (optional) overloads the generic saveProcess
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
-				$("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
-					$( settings.formId ).submit();	        	
-		        });
+				// $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
+				// 	$( settings.formId ).submit();	        	
+		  //       });
+		        $("#btn-submit-form").hide(); 
 			}
 		});
 		
@@ -1643,7 +1645,7 @@ onSave: (optional) overloads the generic saveProcess
 	  //if(typeof initOptions != "undefined" && initOptions.type=="video")
 	  	//typeExtract=initOptions.type;
 	  var count = $(".addmultifield").length-1;
-	  getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count,1, typeExtract);
+	  processUrl.getMediaFromUrlContent(parentContainer+" .addmultifield"+count, ".resultGetUrl"+count,1, typeExtract);
 	  //manage using Enter to make easy loop editing
 	  //for 2nd property field
 	  $(parentContainer+' .addmultifield1').unbind('keydown').keydown(function(event) 
@@ -1690,7 +1692,7 @@ onSave: (optional) overloads the generic saveProcess
 
 		var str = '<div class="space5"></div><div class="col-sm-3">'+
 					'<input type="text" id="'+name+count+'" name="'+name+count+'" class="addmultifield addmultifield'+count+' form-control input-md" value="'+propVal.label+'" />'+
-					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+					'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
 				'</div>'+
 				'<div class="col-sm-7">'+
 					//'<textarea type="text" name="tags'+name+'[]" class="addmultifield'+count+' form-control input-md pull-left" onkeyup="AutoGrowTextArea(this);" placeholder="valeur"   >'+propVal.value+'</textarea>'+
@@ -1701,7 +1703,7 @@ onSave: (optional) overloads the generic saveProcess
 				// TODO Rapha
 				// '<div class="col-sm-3">'+
 				// 	'<input type="text" name="properties" class="addmultifield form-control input-md" value="" placeholder="'+placeholder+'"/>'+
-				// 	'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+				// 	'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
 				// '</div>'+
 				// '<div class="col-sm-7">'+
 				// 	'<input type="text" class="form-control select2TagsInput" name="tags'+field+'" id="tags'+field+'" value="'+value+'" placeholder="'+placeholder+'" style="width:100%;margin-bottom: 10px;border: 1px solid #ccc;"/>'+
@@ -1722,7 +1724,7 @@ onSave: (optional) overloads the generic saveProcess
 	    var count = $(".addmultifield").length;
 		var str = 	'<div class="col-sm-12 no-padding margin-top-10">'+
 					'<div class="col-sm-10 no-padding">'+
-							'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+							'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
 							'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md value="" placeholder="..."/>'+
 						'</div>'+
 						'<div class="col-sm-2 sectionRemovePropLineBtn">'+
@@ -1733,7 +1735,7 @@ onSave: (optional) overloads the generic saveProcess
 
 		mylog.log("-------------------------");
 		/*'<div class="space5"></div><div class="col-sm-10">'+
-					'<img class="loading_indicator" src="'+assetPath+'/images/news/ajax-loader.gif">'+
+					'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif">'+
 					'<input type="text" name="'+name+'[]" class="addmultifield addmultifield'+count+' form-control input-md" value="'+val+'"/>'+
 					'<div class="resultGetUrl resultGetUrl'+count+' col-sm-12"></div>'+
 					'</div>'+
@@ -2470,7 +2472,8 @@ var dyFObj = {
 	    //initKSpec();
 	    if(userId)
 		{
-			formInMap.formType = type;
+			if(typeof formInMap != 'undefined')
+				formInMap.formType = type;
 			dyFObj.getDynFormObj(type, function() { 
 				dyFObj.starBuild(afterLoad,data);
 			},afterLoad, data);
@@ -2506,9 +2509,14 @@ var dyFObj = {
 			//TODO : pouvoir surchargé le dossier dynform dans le theme
 			//via themeObj.dynForm.folder overload
 			var dfPath = moduleUrl+'/js/dynForm/'+type+'.js';
-			if(jsonHelper.notNull( "themeObj.dynForm.folder") ) 
+			if( jsonHelper.notNull( "themeObj.dynForm.folder") ) 
 				dfPath = themeObj.dynForm.folder+type+'.js';
-			if(jsonHelper.notNull( "modules."+type+".form") ) {
+			if( moduleId != activeModuleId ){
+				dfPath = parentModuleUrl+'/js/dynForm/'+type+'.js';
+				mylog.log("properties from MODULE","modules/"+type+"/assets/js/dynform.js");
+			}
+
+			if( jsonHelper.notNull( "modules."+type+".form") ) {
 				dfPath = modules[type].form;
 				mylog.log("properties from MODULE","modules/"+type+"/assets/js/dynform.js");
 			}
@@ -2520,6 +2528,7 @@ var dyFObj = {
 					mylog.log("lazyLoaded",dfPath);
 					mylog.dir(dynForm);
 					//typeObj[type].dynForm = dynForm;
+					
 				  	dyFInputs.get(type).dynForm = dynForm;
 					dyFObj[dyFObj.activeElem] = dyFInputs.get(type);
 					if( notNull(dyFInputs.get(type).col) ) uploadObj.type = dyFInputs.get(type).col;
@@ -2595,13 +2604,17 @@ var dyFObj = {
 				        //alert(afterLoad+"|"+typeof dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads[afterLoad]);
 			    	}
 			        
-			        if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.onLoads."+afterLoad, "function") )
-			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads[afterLoad](data);
+
 			        //incase we need a second global post process
 			        if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.onLoads.onload", "function") )
 			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads.onload(data);
+
+			        
+			        if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.onLoads."+afterLoad, "function") )
+			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads[afterLoad](data);
 				    
-			        bindLBHLinks();
+				    if( typeof bindLBHLinks != "undefined")
+			        	bindLBHLinks();
 			      },
 			      onSave : function(){
 
@@ -2777,15 +2790,14 @@ var dyFInputs = {
             			}, 1000);
             			
             		}else{ console.log("already checking slug"); }
-        		} else{
+        		} else {
             		$("#ajaxFormModal #slug").parent().removeClass("has-success").addClass("has-error");//.find("span").text("Please enter at least 3 characters.");
             	}
             	//dyFObj.canSubmitIf();
         	});
 
-        	$("#ajaxFormModal .form-group.slugtext").append(
-        				"<span class='help-blockk col-xs-12 padding-5 text-left letter-green bold'></span>");
-        	slugUnique($("#ajaxFormModal #slug").val());
+        	$("#ajaxFormModal .form-group.slugtext").append("<span class='help-blockk col-xs-12 padding-5 text-left letter-green bold'></span>");
+        	slugUnique( $("#ajaxFormModal #slug").val() );
 	    }
 	    mylog.log("dyFInputs ", inputObj);
     	return inputObj;
@@ -2806,7 +2818,30 @@ var dyFInputs = {
 
 	    	inputObj.init = function(){
 	        	$("#ajaxFormModal #name ").off().on("blur",function(){
-	        		if($("#ajaxFormModal #name ").val().length > 3 ){
+	        		
+	        		//use urls in the name field to fill the form dynamically
+	        		if( $("#ajaxFormModal #url ") && ( $("#ajaxFormModal #name ").val().indexOf("http://")>=0 ||
+	        			$("#ajaxFormModal #name ").val().indexOf("https://")>=0 ) )
+	        		{
+	        			urlContent = processUrl.extractUrl( ".nametext ",$("#ajaxFormModal #name ").val(), 
+	        				function (data) {  
+	        					if( $("#ajaxFormModal #url") )
+			        				$("#ajaxFormModal #url").val($("#ajaxFormModal #name ").val());
+			        			if( data.name ){
+			        				$("#ajaxFormModal #name ").val(data.name);
+			        				globalSearch(data.name,[ dyFInputs.get(type).col ], addElement );
+			        			}
+			        			if( data.description ){
+			        				if($("#ajaxFormModal #shortDescription"))$("#ajaxFormModal #shortDescription").val( data.description );
+			        				if($("#ajaxFormModal #description"))$("#ajaxFormModal #description").val( data.description );
+			        			}
+			        			if( data.keywords.length > 0 ){
+			        				taglist = [];
+			        				$.each(data.keywords, function(i,k) { taglist.push( {id:i,text:k} ); });
+			        				$("#ajaxFormModal #tags").select2( "data", taglist );
+			        			}
+	        			});
+	        		} else if($("#ajaxFormModal #name ").val().length > 3 ){
 	        			if( typeof dyFInputs.get(type).search != "undefined" )
 	        				globalSearch($(this).val(), dyFInputs.get(type).search, addElement );
 	        			else
@@ -3552,7 +3587,7 @@ var dyFInputs = {
 	inputUrlOptionnel :function (label, placeholder,rules, custom) {  
     	var inputObj = dyFInputs.inputUrl(label, placeholder, rules, custom);
     	inputObj.init = function(){
-            getMediaFromUrlContent("#url", ".resultGetUrl0",0);
+            processUrl.getMediaFromUrlContent("#url", ".resultGetUrl0",0);
             $(".urltext").css("display","none");
         };
 	    return inputObj;
@@ -3563,7 +3598,7 @@ var dyFInputs = {
         inputType : "array",
         value : [],
         init:function(){
-            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);	
+            processUrl.getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);	
         }
     },
     multiChoice : {
@@ -3582,7 +3617,7 @@ var dyFInputs = {
         value : [],
         initOptions : {type:"video",labelAdd:"Add video link"},
         init:function(){
-            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1, "video");	
+            processUrl.getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1, "video");	
         }
     },
     urlsOptionnel : {
@@ -3590,7 +3625,7 @@ var dyFInputs = {
         placeholder : tradDynForm["urlandaddinfoandaction"],
         value : [],
         init:function(){
-            getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);
+            processUrl.getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);
         	$(".urlsarray").css("display","none");	
         }
     },
@@ -4027,3 +4062,520 @@ var dyFInputs = {
 		
     }
 };
+
+/* ***********************************
+			EXTRACTPROCCESS
+********************************** */
+var processUrl = {
+	isLoading:false,
+	checkUrlExists: function(url){
+	    url = url.trim();
+	    if(url.lastIndexOf("/") == url.lenght){
+	        url = url.substr(0, url.lenght-1);
+	        $("#form-url").val(url); 
+	    }
+
+	    $.ajax({
+	        type: "POST",
+	        url: baseUrl+"/"+moduleId+"/app/checkurlexists",
+	        data: { url: url },
+	        dataType: "json",
+	        success: function(data){ console.log("checkUrlExists", data);
+	            if(data.status == "URL_EXISTS")
+	            urlExists = true;
+	            else
+	            urlExists = false;
+	            console.log("checkUrlExists", data);
+	            refUrl(url);
+	        },
+	        error: function(data){
+	            console.log("check url exists error");
+	        }
+	    });
+	},
+	getMediaFromUrlContent : function(className, appendClassName,nbParent, typeExtract){
+	    //user clicks previous thumbail
+	    lastUrl = "";
+	    if(typeof typeExtract != "undefined")
+	    	var typeExtract=typeExtract;
+	    $("body").on("click","#thumb_prev", function(e){        
+	        if(img_arr_pos>0) 
+	        {
+	            img_arr_pos--; //thmubnail array position decrement
+	            
+	            //replace with new thumbnail
+	            $("#extracted_thumb").html('<img src="'+extracted_images[img_arr_pos]+'" width="100" height="100">'+selectThumb);
+	            
+	            //replace thmubnail position text
+	            $("#total_imgs").html((img_arr_pos) +' of '+ total_images);
+	        }
+	    });
+	    
+	    //user clicks next thumbail
+	    $("body").on("click","#thumb_next", function(e){        
+	        if(img_arr_pos<total_images)
+	        {
+	            img_arr_pos++; //thmubnail array position increment
+	            
+	            //replace with new thumbnail
+	            $("#extracted_thumb").html('<img src="'+extracted_images[img_arr_pos]+'" width="100" height="100">'+selectThumb);
+	            
+	            //replace thmubnail position text
+	            $("#total_imgs").html((img_arr_pos) +' of '+ total_images);
+	        }
+	    }); 
+	    var getUrl  = $(className); //url to extract from text field
+	    var appendClassName = appendClassName;
+	    getUrl.bind("input keyup",function(e) { //user types url in text field        
+	        //url to match in the text field
+	        var $this = $(this);
+	        if($(appendClassName).html()==""){
+	        if($this.parents().eq(nbParent).find(appendClassName).html()=="" || (e.which==32 || e.which==13)){
+	        	//var match_url=new RegExp("(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?")
+	        	//var match_url=new RegExp("(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})");
+	        	//var match_url=/\b(https?):\/\/([\-A-Z0-9. \-]+)(\/[\-A-Z0-9+&@#\/%=~_|!:,.;\-]*)?(\?[A-Z0-9+&@#\/%=~_|!:,.;\-]*)?/i
+		       // var match_url = /\b(https?|ftp):\/\/([\-A-Z0-9. \-]+?|www\\.)(\/[\-A-Z0-9+&@#\/%=~_|!:,.;\-]*)?(\?[A-Z0-9+&@#\/%=~_|!:,.;\-]*)?/i;
+		       // var match_url=new RegExp("(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
+		        //var match_url=/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+		        var match_url=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+
+		        if (match_url.test(getUrl.val())) 
+		        {
+		        	extract_url=getUrl.val().match(match_url)[0];
+		        	extract_url=extract_url.replace(/[\n]/gi," ");
+		        	extract_url=extract_url.split(" ");
+		        	extract_url=extract_url[0];
+			        if(lastUrl != extract_url && processUrl.isLoading==false){
+			        	processUrl.isLoading=true;
+			        	var extracted_url = extract_url;
+		                $this.parents().eq(nbParent).find(".loading_indicator").show(); //show loading indicator image
+		                //ajax request to be sent to extract-process.php
+		                lastUrl=extracted_url;
+		                extracted_url_send=extracted_url;
+		                if(extracted_url_send.indexOf("http")<0)
+		                	extracted_url_send = "http://"+extracted_url;
+		                $.ajax({
+							url: baseUrl+'/'+moduleId+"/news/extractprocess",
+							data: {'url': extracted_url_send},
+							type: 'post',
+							dataType: 'json',
+							success: function(data){        
+				                mylog.log(data); 
+				                processUrl.isLoading=false;
+				                if(data.type=="activityStream"){
+				                  	content = '<a href="javascript:;" class="removeMediaUrl"><i class="fa fa-times"></i></a>'+
+				                			 directory.showResultsDirectoryHtml(new Array(data.object), data.object.type)+
+				                			"<input type='hidden' class='type' value='activityStream'>"+
+											"<input type='hidden' class='objectId' value='"+data.object.id+"'>"+
+											"<input type='hidden' class='objectType' value='"+data.object.type+"'>";
+				                }else{
+				                	if(typeof typeExtract != "undefined" && typeExtract=="video"){
+				                		if(typeof data.content !="undefined" && typeof data.content.videoLink != "undefined")
+				                			content= processUrl.getMediaVideo(data,"save");
+				                		else 
+				                			content="<span class='text-red'><i>This url is not associate to a video</i></span>";
+				                	}else
+			                    		content = processUrl.getMediaCommonHtml(data,"save");
+				                }
+			                    //load results in the element
+			                    //return content;
+			                   //$("#results").html(content); 
+			                    $this.parents().eq(nbParent).find(appendClassName).html(content).slideDown();
+			                    //$this.parents().eq(nbParent).slideDown();
+			                    if($this.parent().find(".dynFormUrlsWarning").length > 0)
+				                   $this.parent().find(".dynFormUrlsWarning").remove(); 
+			                    
+			                    $(".removeMediaUrl").click(function(){
+				                    $trigger=$(this).parents().eq(1).find(className);
+								    $this.parents().eq(nbParent).find(appendClassName).empty().hide();
+								    $trigger.trigger("input");
+								});
+								//append received data into the element
+			                    //$("#results").slideDown(); //show results with slide down effect
+			                    $this.parents().eq(nbParent).find(".loading_indicator").hide(); //hide loading indicator image
+		                	},
+							error : function(){
+								$.unblockUI();
+								//toastr.error(trad["wrongwithurl"] + " !");
+								 processUrl.isLoading=false;
+								//content to be loaded in #results element
+								var content = '<a href="javascript:;" class="removeMediaUrl"><i class="fa fa-refresh"></i></a><h4><a href="'+extracted_url+'" target="_blank" class="lastUrl wrongUrl">'+extracted_url+'</a></h4>';
+			                    //load results in the element
+			                    $this.parents().eq(nbParent).find(appendClassName).hide();
+			                    $this.parents().eq(nbParent).find(appendClassName).html(content);
+			                    $this.parents().eq(nbParent).find(appendClassName).slideDown();
+			                    toastr.warning("L'url "+extracted_url+" ne pointe vers aucun site ou un problème est survenu à son extraction");
+			                    if ($("#ajaxFormModal").is(":visible") && $this.parent().find(".dynFormUrlsWarning").length <= 0)
+									$this.parent().append( "<span class='text-red dynFormUrlsWarning'>* Ceci n'est pas un url valide.</span>" );         	
+			                    $(".removeMediaUrl").click(function(){
+				                    $trigger=$(this).parents().eq(1).find(className);
+								    $this.parents().eq(nbParent).find(appendClassName).empty().hide();
+								    $trigger.trigger("input");
+								});
+
+			                    //$("#results").html(content); //append received data into the element
+			                    //$("#results").slideDown(); //show results with slide down effect
+			                    $this.parents().eq(nbParent).find(".loading_indicator").hide(); //hide loading indicator image
+							}	
+		                });
+					}
+	        	} else if ($("#ajaxFormModal").is(":visible") && $this.parent().find(".dynFormUrlsWarning").length <= 0){
+					//$this.parent().append( "<span class='text-red dynFormUrlsWarning'>* Ceci n'est pas un url valide.</span>" );         	
+	        	}
+	        }
+	    }
+	    }); 
+	},
+	extractUrl : function(inputClass, url,callback) { 
+
+		$(inputClass+" span.help-block").html(trad.waitWeFetch+" <i class='fa fa-spin fa-refresh'></i>");
+	
+		$.ajax({
+			url: baseUrl+'/'+moduleId+"/news/extractprocess",
+			data: { 'url' : url },
+			type: 'post',
+			dataType: 'json',
+			success: function(data){  
+				$(inputClass+" span.help-block").html('');
+				if (typeof callback == "function") 
+					callback(data);
+				return data;
+			},
+			error:function(xhr, status, error){
+				toastr.info("<span class='letter-red'><i class='fa fa-ban'></i> URL INNACCESSIBLE</span>");
+				$(inputClass+" span.help-block").html('');
+			},
+			statusCode:{
+				404: function(){
+					toastr.info("<span class='letter-red'><i class='fa fa-ban'></i> 404 : URL INTROUVABLE OU INACCESSIBLE</span>");
+					$(inputClass+" span.help-block").html('');
+				}
+			}
+		})
+	},
+	refUrl: function(url){
+	    if(!processUrl.isValidURL(url)){
+	        $("#status-ref").html("<span class='letter-red'><i class='fa fa-times'></i> cette url n'est pas valide.</span>");
+	        return;
+	    }
+		$("#status-ref").html("<span class='letter-blue'><i class='fa fa-spin fa-refresh'></i> "+trad.currentlyresearching+"</span>");
+		$("#refResult").addClass("hidden");
+		$("#send-ref").addClass("hidden");
+
+		urlValidated = "";
+
+	    $.ajax({ 
+	    	url: "//cors-anywhere.herokuapp.com/" + url, // 'http://google.fr', 
+	    	//crossOrigin: true,
+	    	timeout:10000,
+	        success:
+				function(data) {
+					
+				    var jq = $.parseHTML(data);
+				    
+				    var tempDom = $('<output>').append($.parseHTML(data));
+				    var title = $('title', tempDom).html();
+				    var stitle = "";
+
+				    if(stitle=="" || stitle=="undefined")
+				   		stitle = $('blockquote', tempDom).html();
+
+				   	//console.log("STITLE", stitle);
+
+					if(stitle=="" || stitle=="undefined")
+				   		stitle = $('h2', tempDom).html();
+
+					if(stitle=="" || stitle=="undefined")
+				   		stitle = $('h3', tempDom).html();
+
+					if(stitle=="" || stitle=="undefined")
+				   		stitle = $('blockquote', tempDom).html();
+
+					if(title=="" || title=="undefined")
+				   		title = stitle;
+
+	                var favicon = $("link[rel*='icon']", tempDom).attr("href");
+	                var hostname = (new URL(url)).origin;
+	                var faviconSrc = "";
+	                if(typeof favicon != "undefined"){
+	                    var faviconSrc = hostname+favicon;
+	                    if(favicon.indexOf("http")>=0) faviconSrc = favicon;
+	                }
+
+					var description = $(tempDom).find('meta[name=description]').attr("content");
+
+					var keywords = $(tempDom).find('meta[name=keywords]').attr("content");
+					//console.log("keywords", keywords);
+
+					var arrayKeywords = new Array();
+					if(typeof keywords != "undefined")
+						arrayKeywords = keywords.split(",");
+
+					//console.log("arrayKeywords", arrayKeywords);
+
+					//if(typeof arrayKeywords[0] != "undefined") $("#form-keywords1").val(arrayKeywords[0]); else $("#form-keywords1").val("");
+					//if(typeof arrayKeywords[1] != "undefined") $("#form-keywords2").val(arrayKeywords[1]); else $("#form-keywords2").val("");
+					//if(typeof arrayKeywords[2] != "undefined") $("#form-keywords3").val(arrayKeywords[2]); else $("#form-keywords3").val("");
+					//if(typeof arrayKeywords[3] != "undefined") $("#form-keywords4").val(arrayKeywords[3]); else $("#form-keywords4").val("");
+
+					if(description=="" || description=="undefined")
+				   		if(stitle=="" || stitle=="undefined")
+				   			description = stitle;
+				   	params = new Object;
+				   	params.title=title,
+				   	params.favicon=faviconSrc,
+				   	params.hostname=hostname,
+				   	params.description=description,
+				   	params.tags=arrayKeywords;
+					console.log(params);
+					/*$("#form-title").val(title);
+	                $("#form-favicon").val(faviconSrc);
+	                $("#form-description").val(description);*/
+					
+
+					//color
+					$("#ajaxFormModal #name").val(title);   	
+				   	//color	
+					$("#ajaxFormModal #description").val(description); 
+				   	//color
+				   	if(notEmpty(arrayKeywords))		
+						$("#ajaxFormModal #tags").select2("val",arrayKeywords);
+					/*if($("#form-keywords1").val() != "")   $("#lbl-keywords").removeClass("text-orange").addClass("letter-green");
+					else 								   $("#lbl-keywords").removeClass("letter-green").addClass("text-orange");
+				   		
+				   	$("#form-title").off().keyup(function(){
+				   		if($(this).val()!="")$("#lbl-title").removeClass("letter-red").addClass("letter-green");
+						else 				 $("#lbl-title").removeClass("letter-green").addClass("letter-red");
+						checkAllInfo();
+				   	});
+				   	$("#form-description").off().keyup(function(){
+				   		if($(this).val()!="")$("#lbl-description").removeClass("text-orange").addClass("letter-green");
+						else 				 $("#lbl-description").removeClass("letter-green").addClass("text-orange");
+						checkAllInfo();
+				   	});
+				   	$("#form-keywords1").off().keyup(function(){
+				   		if($(this).val()!="")$("#lbl-keywords").removeClass("text-orange").addClass("letter-green");
+						else 				 $("#lbl-keywords").removeClass("letter-green").addClass("text-orange");
+						checkAllInfo();
+				   	});
+
+				   	$("#status-ref").html("<span class='letter-green'><img src='"+faviconSrc+"' height=30 alt='x'> <i class='fa fa-check'></i> Nous avons trouvé votre page</span>");
+	    			$("#refResult").removeClass("hidden");
+				   
+				   	$("#lbl-url").removeClass("letter-red").addClass("letter-green");
+				   	urlValidated = url;
+
+				    $('<output>').remove();
+				    tempDom = "";
+
+				    checkAllInfo();*/	
+				    return params;		   
+				},
+			error:function(xhr, status, error){
+				$("#lbl-url").removeClass("letter-green").addClass("letter-red");
+				$("#status-ref").html("<span class='letter-red'><i class='fa fa-ban'></i> URL INNACCESSIBLE</span>");
+			},
+			statusCode:{
+				404: function(){
+					$("#lbl-url").removeClass("letter-green").addClass("letter-red");
+					$("#status-ref").html("<span class='letter-red'><i class='fa fa-ban'></i> 404 : URL INTROUVABLE OU INACCESSIBLE</span>");
+				}
+			}
+		});
+	},
+	isValidURL:function(url) {
+  		var match_url = new RegExp("(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
+  		return match_url.test(url);
+	},
+	getMediaCommonHtml: function(data,action,id){
+		if(typeof(data.images)!="undefined"){
+			extracted_images = data.images;
+			total_images = parseInt(data.images.length);
+			img_arr_pos=1;
+	    }
+	    inputToSave="";
+	    if(typeof(data.content) !="undefined" && typeof(data.content.imageSize) != "undefined"){
+	        if (data.content.videoLink){
+	            extractClass="extracted_thumb";
+	            width="100%";
+	            height="100%";
+
+	            aVideo='<a href="javascript:;" class="videoSignal text-white center"><i class="fa fa-3x fa-play-circle-o"></i><input type="hidden" class="videoLink" value="'+data.content.videoLink+'"/></a>';
+	            inputToSave+="<input type='hidden' class='video_link_value' value='"+data.content.videoLink+"'/>"+
+	            "<input type='hidden' class='media_type' value='video_link' />";   
+			}
+	        else{
+	            aVideo="";
+	            endAVideo="";
+	            if(data.content.imageSize =="large"){
+	                extractClass="extracted_thumb_large";
+	                width="100%";
+	                height="";
+	            }
+	            else{
+	                extractClass="extracted_thumb";
+	                width="100";
+	                height="100";
+	            }
+	            inputToSave+="<input type='hidden' class='media_type' value='img_link' />";
+			}
+			inputToSave+="<input type='hidden' class='size_img' value='"+data.content.imageSize+"'/>"
+	    }
+	    if (typeof(data.content) !="undefined" && typeof(data.content.image)!="undefined"){
+	        inc_image = '<div class="'+extractClass+'  col-xs-4 no-padding" id="extracted_thumb">'+aVideo;
+	        if(data.content.type=="img_link"){
+		        if(typeof(data.content.imageId) != "undefined"){
+			       inc_image += "<input type='hidden' id='deleteImageCommunevent"+id+"' value='"+data.content.imageId+"'/>";
+			       titleImg = "De l&apos;application communevent"; 
+			    }else
+			    	titleImg = "Image partagée"; 
+		        inc_image += "<a class='thumb-info' href='"+data.content.image+"' data-title='"+titleImg+"'  data-lightbox='allimgcontent'>";
+		    }
+	        inc_image +='<img src="'+data.content.image+'" width="'+width+'" height="'+height+'">';
+	        if(data.content.type=="img_link")
+	        	inc_image += '</a>';
+	        inc_image += '</div>';
+	        countThumbail="";
+	        inputToSave+="<input type='hidden' class='img_link' value='"+data.content.image+"'/>";
+	    }
+	    else {
+	        if(typeof(total_images)!="undefined" && total_images > 0){
+	            if(total_images > 1){
+	                selectThumb='<div class="thumb_sel"><span class="prev_thumb" id="thumb_prev">&nbsp;</span><span class="next_thumb" id="thumb_next">&nbsp;</span> </div>';
+	                countThumbail='<span class="small_text" id="total_imgs">'+img_arr_pos+' of '+total_images+'</span><span class="small_text">&nbsp;&nbsp;Choose a Thumbnail</span>';
+	            }
+	            else{
+	                selectThumb="";
+	                countThumbail="";
+	            }
+	            inc_image = '<div class="'+extractClass+'  col-xs-4" id="extracted_thumb">'+aVideo+'<img src="'+data.images[0]+'" width="'+width+'" height="'+height+'">'+selectThumb+'</div>';
+	      		inputToSave+="<input type='hidden' class='img_link' value='"+data.images[0]+"'/>";      
+	        }else{
+	            inc_image ='';
+	            countThumbail='';
+	        }
+	    }
+	    
+	    //content to be loaded in #results element
+		if(data.content==null)
+			data.content="";
+		if(typeof(data.url)!="undefined")
+			mediaUrl=data.url;
+		else if (typeof(data.content.url) !="undefined")
+			mediaUrl=data.content.url;
+		else
+			mediaUrl="";
+		if((typeof(data.description) !="undefined" || typeof(data.name) != "undefined") && (data.description !="" || data.name != "")){
+			contentMedia='<div class="extracted_content col-xs-8 padding-20">'+
+				'<a href="'+mediaUrl+'" target="_blank" class="lastUrl text-dark">';
+				if(typeof(data.name) != "undefined" && data.name!=""){
+					contentMedia+='<h4>'+data.name+'</h4></a>';
+					inputToSave+="<input type='hidden' class='name' value='"+data.name+"'/>";
+				}
+				if(typeof(data.description) != "undefined" && data.description!=""){
+					contentMedia+='<p>'+data.description+'</p>'+countThumbail+'>';
+					if(typeof(data.name) == "undefined" || data.name=="")
+						contentMedia+='</a>';
+					inputToSave+="<input type='hidden' class='description' value='"+data.description+"'/>"; 
+				}
+			contentMedia+='</div>';
+		}
+		else{
+			contentMedia="";
+		}
+		inputToSave+="<input type='hidden' class='url' value='"+mediaUrl+"'/>";
+		inputToSave+="<input type='hidden' class='type' value='url_content'/>"; 
+		content="";
+		if(action == "save")
+			content += '<a href="javascript:;" class="removeMediaUrl"><i class="fa fa-times"></i></a>';
+	    content += '<div class="extracted_url padding-10">'+ inc_image +contentMedia+'</div>'+inputToSave;
+	    return content;
+	},
+	getMediaVideo:function(data,action){
+		if(typeof(data.images)!="undefined"){
+			extracted_images = data.images;
+			total_images = parseInt(data.images.length);
+			img_arr_pos=1;
+	    }
+	    inputToSave="";
+	    if(typeof(data.content) !="undefined" && typeof(data.content.imageSize) != "undefined"){
+	        if (data.content.videoLink){
+	            extractClass="extracted_thumb";
+	            width="100%";
+	            height="100%";
+
+	            aVideo='<a href="javascript:;" class="videoSignal text-white center" style="position:absolute;top:20%;left:40%;"><i class="fa fa-4x fa-play-circle-o"></i><input type="hidden" class="videoLink" value="'+data.content.videoLink+'"/></a>';
+	            inputToSave+="<input type='hidden' class='video_link_value' value='"+data.content.videoLink+"'/>"+
+	            "<input type='hidden' class='media_type' value='video_link' />";   
+			}
+	       	inputToSave+="<input type='hidden' class='size_img' value='"+data.content.imageSize+"'/>";
+	    }
+	    if (typeof(data.content) !="undefined" && typeof(data.content.image)!="undefined"){
+	        inc_image = '<div class="'+extractClass+'  col-xs-12 col-md-12 col-sm-12 no-padding" id="extracted_thumb">'+aVideo;
+	        /*if(data.content.type=="img_link"){
+		        if(typeof(data.content.imageId) != "undefined"){
+			       inc_image += "<input type='hidden' id='deleteImageCommunevent"+id+"' value='"+data.content.imageId+"'/>";
+			       titleImg = "De l&apos;application communevent"; 
+			    }else
+			    	titleImg = "Image partagée"; 
+		        inc_image += "<a class='thumb-info' href='"+data.content.image+"' data-title='"+titleImg+"'  data-lightbox='allimgcontent'>";
+		    }*/
+	        inc_image +='<img src="'+data.content.image+'" width="'+width+'" height="'+height+'">';
+	        if(data.content.type=="img_link")
+	        	inc_image += '</a>';
+	        inc_image += '</div>';
+	        countThumbail="";
+	        inputToSave+="<input type='hidden' class='img_link' value='"+data.content.image+"'/>";
+	    }
+	    else {
+	        if(typeof(total_images)!="undefined" && total_images > 0){
+	            if(total_images > 1){
+	                selectThumb='<div class="thumb_sel"><span class="prev_thumb" id="thumb_prev">&nbsp;</span><span class="next_thumb" id="thumb_next">&nbsp;</span> </div>';
+	                countThumbail='<span class="small_text" id="total_imgs">'+img_arr_pos+' of '+total_images+'</span><span class="small_text">&nbsp;&nbsp;Choose a Thumbnail</span>';
+	            }
+	            else{
+	                selectThumb="";
+	                countThumbail="";
+	            }
+	            inc_image = '<div class="'+extractClass+'  col-xs-12 col-sm-12 col-md-12" id="extracted_thumb">'+aVideo+'<img src="'+data.images[0]+'" width="'+width+'" height="'+height+'">'+selectThumb+'</div>';
+	      		inputToSave+="<input type='hidden' class='img_link' value='"+data.images[0]+"'/>";      
+	        }else{
+	            inc_image ='';
+	            countThumbail='';
+	        }
+	    }
+	    
+	    //content to be loaded in #results element
+		if(data.content==null)
+			data.content="";
+		if(typeof(data.url)!="undefined")
+			mediaUrl=data.url;
+		else if (typeof(data.content.url) !="undefined")
+			mediaUrl=data.content.url;
+		else
+			mediaUrl="";
+		/*if((typeof(data.description) !="undefined" || typeof(data.name) != "undefined") && (data.description !="" || data.name != "")){
+			contentMedia='<div class="extracted_content col-xs-8 padding-20">'+
+				'<a href="'+mediaUrl+'" target="_blank" class="lastUrl text-dark">';
+				if(typeof(data.name) != "undefined" && data.name!=""){
+					contentMedia+='<h4>'+data.name+'</h4></a>';
+					inputToSave+="<input type='hidden' class='name' value='"+data.name+"'/>";
+				}
+				if(typeof(data.description) != "undefined" && data.description!=""){
+					contentMedia+='<p>'+data.description+'</p>'+countThumbail+'>';
+					if(typeof(data.name) == "undefined" || data.name=="")
+						contentMedia+='</a>';
+					inputToSave+="<input type='hidden' class='description' value='"+data.description+"'/>"; 
+				}
+			contentMedia+='</div>';
+		}
+		else{
+			contentMedia="";
+		}*/
+		inputToSave+="<input type='hidden' class='url' value='"+mediaUrl+"'/>";
+		inputToSave+="<input type='hidden' class='type' value='url_content'/>"; 
+		content="";
+		content += '<div class="extracted_url padding-10">'+ inc_image +'</div>'+inputToSave;
+	    return content;
+	}
+}
