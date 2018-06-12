@@ -1745,6 +1745,7 @@ var dyFObj = {
 						{
 						  "tags": dyFObj.init.initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
+						  "minimumInputLength" : 3,
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
 						if(dyFObj.init.initValues[ $(this).attr("id") ].maximumSelectionLength)
@@ -1756,7 +1757,7 @@ var dyFObj = {
 						if(typeof mainTag != "undefined")
 							$(this).val([mainTag]).trigger('change');
 					}
-				 });
+				});
 			} else
 				mylog.error("select2 library is missing");
 		} 
@@ -2938,11 +2939,11 @@ var dyFInputs = {
 											});
 	},
 	tags : function(list, placeholder, label) { 
-    	tagsL = (list) ? list : tagsList;
+    	//var tagsL = (list) ? list : tagsList;
     	return {
 			inputType : "tags",
 			placeholder : placeholder != null ? placeholder : tradDynForm["tags"],
-			values : tagsL,
+			values : (list) ? list : tagsList,
 			label : (label != null) ? label : tradDynForm["addtags"]
 		}
 	},
