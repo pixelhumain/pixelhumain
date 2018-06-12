@@ -42,7 +42,7 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 									$i = 1 ;
 									echo Yii::t("mail","Voici quelques annonces")."</br></br>" ;
 									foreach ($params as $key => $value) {
-										echo "<span style='color: #2bb0c6; font-weight:bold;'>".$value["name"]."</span> : ";
+										echo "<span style='color: #2bb0c6; font-weight:bold;'><a href='".$baseUrl."#page.type.classifieds.id.".$key."' style='color: #2bb0c6; font-weight:bold;' target='_blank' >".$value["name"]."</a></span> : ";
 										echo "<span style='font-style: italic;'>".$value["description"]."</span></br></br>";
 										$i++;
 										if($i >= 1)
