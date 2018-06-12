@@ -97,5 +97,14 @@
 		"PS: If the link does not work you can copy the address in your browser" => "PS: Wenn der Link nicht funktioniert, können Sie die Adresse in Ihren Browser kopieren.",
 		"Mail sent from" => "Mail versendet von"
 		
+		"{who} added your contact in {where} on {website}" => "{who} hat Ihren Kontakt in {where} auf {website} hinzugefügt",
+		"Your email has been referenced on {website}" => "Ihre E-Mail wurde auf {website} verlinkt",
+		"{who} indicated your email as contact on {what}" => "{who} hat Ihre E-Mail als Kontakt auf {what} angegeben",
+		"If you don't know Communecter, it is this territorial search engine and social network respectful of your data. In this open source website, every body can contribute and enrich common knowledge" => "Wenn Sie Communecter noch nicht kennen. Es ist die territoriale Suchmaschine und das soziale Netzwerk, das Ihre Daten respektiert. In dieser Open-Source-Website kann jeder seinen Beitrag leisten und das gemeinsame Wissen bereichern",
+		"If you do not have an account yet, come to discover this tools made for you and your community" => "Wenn Sie noch keinen Benutzerkonto haben, entdecken Sie diese Tools für sich und Ihre Community",
+		"You will enjoy to communicate about the projects, the events of {what} in your territory. You will have the chance to express your needs and search actors around you. You will also be able to discuss and organize your community..." => "Sie werden es schätzen, sich über Projekte und Veranstaltungen von {what} in Ihrer Region auszutauschen. Sie haben die Möglichkeit, Ihre Bedürfnisse zu formulieren und Akteure um sich herum zu suchen. Sie können auch in Ihrer Community diskutieren und diese organisieren...",
+		"And all of this into an <b>ethical</b> and <b>responsible</b> environment" => "Und das alles in einem <b>ethisch</b> orientierten und <b>verantwortungsewußten</b> Umfeld",
+		"Don't wait anymore and join us !!" => "Warten Sie nicht mehr und schließen Sie sich uns an!",
+		
 );
 ?>
