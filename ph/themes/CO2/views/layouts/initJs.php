@@ -131,7 +131,8 @@ var typeObj = {
                     dda : { label: "DISCUSS DECIDE ACT" ,key:"#dda",icon:"gavel fa-2x text-red"},
                     chat : { label: "CHAT" ,key:"#chat",icon:"comments fa-2x text-red"},
                 }},
-    filter : { color:"azure",icon:"list",titleClass : "bg-turq",title : "Nouveau Filtre"}
+    filter : { color:"azure",icon:"list",titleClass : "bg-turq",title : "Nouveau Filtre"},
+    curiculum : { color:"dark",icon:"clipboard",titleClass : "bg-dark",title : "My CV"}
 };
 
     
