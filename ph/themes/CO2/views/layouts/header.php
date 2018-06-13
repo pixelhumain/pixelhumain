@@ -370,6 +370,7 @@
         countFavoriteScope();
         getCommunexionLabel();
     }
+    
     (function ($) {
         window.addRule = function (selector, styles, sheet) {
           if (typeof styles !== "string") {

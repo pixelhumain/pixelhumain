@@ -209,7 +209,7 @@ var typeObj = {
         "cities"        : { color: "red",        icon: "university",name: trad.municipalities },
         "poi"           : { color: "green-poi",  icon: "map-marker",name: trad.pointsinterests },
         "place"           : { color: "brown",    icon: "map-marker", name: trad.pointsinterests },
-        "interop"    : { color: "lightblue2",   icon: "group",      name: "interop" },
+        //"interop"    : { color: "lightblue2",   icon: "group",      name: "interop" },
         // "datagouv"    : { color: "lightblue2",   icon: "bullhorn",   name: "DataGouv" },
         // "osm"         : { color: "lightblue2",   icon: "bullhorn",   name: "Open Street Map" },
         // "ods"         : { color: "lightblue2",   icon: "bullhorn",   name: "OpenDatasoft" },
