@@ -35,6 +35,7 @@
         "places": <?php echo json_encode( Place::getConfig() ) ?>,
         "poi": <?php echo json_encode( Poi::getConfig() ) ?>,
         "chat": <?php echo json_encode( Chat::getConfig() ) ?>,
+        "interop": <?php echo json_encode( Interop::getConfig() ) ?>,
         "eco" : <?php echo json_encode( array(
             "module" => "eco",
             "url"    => Yii::app()->getModule( "eco" )->assetsUrl
@@ -131,7 +132,8 @@ var typeObj = {
                     dda : { label: "DISCUSS DECIDE ACT" ,key:"#dda",icon:"gavel fa-2x text-red"},
                     chat : { label: "CHAT" ,key:"#chat",icon:"comments fa-2x text-red"},
                 }},
-    filter : { color:"azure",icon:"list",titleClass : "bg-turq",title : "Nouveau Filtre"}
+    filter : { color:"azure",icon:"list",titleClass : "bg-turq",title : "Nouveau Filtre"},
+    curiculum : { color:"dark",icon:"clipboard",titleClass : "bg-dark",title : "My CV"}
 };
 
     
@@ -208,10 +210,10 @@ var typeObj = {
         "cities"        : { color: "red",        icon: "university",name: trad.municipalities },
         "poi"           : { color: "green-poi",  icon: "map-marker",name: trad.pointsinterests },
         "place"           : { color: "brown",    icon: "map-marker", name: trad.pointsinterests },
-        "wikidata"    : { color: "lightblue2",   icon: "group",      name: "Wikidata" },
-        "datagouv"    : { color: "lightblue2",   icon: "bullhorn",   name: "DataGouv" },
-        "osm"         : { color: "lightblue2",   icon: "bullhorn",   name: "Open Street Map" },
-        "ods"         : { color: "lightblue2",   icon: "bullhorn",   name: "OpenDatasoft" },
+        //"interop"    : { color: "lightblue2",   icon: "group",      name: "interop" },
+        // "datagouv"    : { color: "lightblue2",   icon: "bullhorn",   name: "DataGouv" },
+        // "osm"         : { color: "lightblue2",   icon: "bullhorn",   name: "Open Street Map" },
+        // "ods"         : { color: "lightblue2",   icon: "bullhorn",   name: "OpenDatasoft" },
         "places"      : { color: "brown",        icon: "map-marker", name: trad.places },
         "classifieds"  : { color: "azure",        icon: "bullhorn",   name: trad.classifieds },
         "GovernmentOrganization" : { color: "red",   icon: "university", name: "services publics" },
@@ -470,6 +472,7 @@ function initMyScopes(){
 
     if( notNull(myScopes) && myScopes.userId == userId )  {
         myScopes.open={};
+        myScopes.countActive = 0;
         myScopes.search = {};
         myScopes.openNews={};
         if(myScopes.multiscopes==null)
@@ -482,6 +485,7 @@ function initMyScopes(){
             userId: userId,
             open : {},
             openNews : {},
+            countActive : 0,
             search : {},
             communexion : <?php echo json_encode(CO2::getCommunexionUser()) ?>,
             multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 

@@ -332,20 +332,31 @@
         // });
         $(".menu-btn-scope-filter").click(function(){
             if($(".menu-btn-scope-filter").hasClass("visible")){
-                $(this).removeClass("visible");
-                //$("#text-search-menu").hide();
-                $("#filter-scopes-menu").hide(400);
-                //headerHeightPos(true);
+                showWhere(false);
             }else{
-                $(this).addClass("visible");
-                $("#text-search-menu").hide();
-                $("#filter-scopes-menu").show(400);
-                headerHeightPos(true);
+                showWhere(true);
             }
         });
         headerHeightPos(true);
 
     });
+
+
+    function showWhere(show){
+        if(show == false){
+            $(this).removeClass("visible");
+            //$("#text-search-menu").hide();
+            $("#filter-scopes-menu").hide(400);
+            //headerHeightPos(true);
+        }else{
+            $(this).addClass("visible");
+            $("#text-search-menu").hide();
+            $("#filter-scopes-menu").show(400);
+            headerHeightPos(true);
+        }
+    }
+
+
     function headerHeightPos(bool){
         setTimeout(function(){     
             headerScaling=bool; 
@@ -359,6 +370,7 @@
         countFavoriteScope();
         getCommunexionLabel();
     }
+    
     (function ($) {
         window.addRule = function (selector, styles, sheet) {
           if (typeof styles !== "string") {
