@@ -393,7 +393,7 @@ var dySObj = {
 	        surveyValues : {},
 	        collection : "answers",
 	        key : "answers",
-	        savePath : baseUrl+"/survey/co/edit",
+	        savePath : baseUrl+"/survey/co/save",
 	        onLoad : function(){
 	            //$(".description1, .description2, .description3, .description4, .description5, .description6").focus().autogrow({vertical: true, horizontal: false});
 	        },
@@ -423,6 +423,8 @@ var dySObj = {
 		                    }
 		                });
 		            } else {
+		            	result["answers"][sectionObj.key]["parentType"] = dySObj.surveys.json[sectionObj.key].type;
+		            	result["answers"][sectionObj.key]["parentId"] = dySObj.surveys.json[sectionObj.key].id;
 		            	result["answers"][sectionObj.key]["type"] = dySObj.surveys.json[sectionObj.key].type;
 		            	result["answers"][sectionObj.key]["id"] = dySObj.surveys.json[sectionObj.key].id;
 		            	result["answers"][sectionObj.key]["name"] = dySObj.surveys.json[ sectionObj.key ].name;
