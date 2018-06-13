@@ -98,5 +98,7 @@
 		"THINKERS" => "PENSATORI",
 		"CROWDFUNDERS" => "CROWDFUNDERS",
 		"INTEROPERATORS" => "INTEROPERATORI",
+		
+		"<span class='text-red'>CO</span>MMUNICATE" => "<span class='text-red'>CO</span>MUNICARE",
 	);
 ?>

@@ -52,6 +52,9 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
   ?>
   
   <script type="text/javascript">
+  // **************************************
+  //THEME TEMPLATE : CO2 / EMPTY
+  // **************************************
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
    var moduleId = "<?php echo $this->module->id?>";

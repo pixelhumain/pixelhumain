@@ -389,7 +389,10 @@ var dyFObj = {
 	saveElement : function  ( formId,collection,ctrl,saveUrl,afterSave ) { 
 		//alert("saveElement");
 		mylog.warn("---------------- saveElement",formId,collection,ctrl,saveUrl,afterSave );
-		formData = $(formId).serializeFormJSON();
+		if( typeof formId == "object" )
+			formData = formId;
+		else	
+			formData = $(formId).serializeFormJSON();
 		mylog.log("before",formData);
 
 		if( jsonHelper.notNull( "dyFObj.elementObj.dynForm.jsonSchema.formatData","function") )
@@ -450,14 +453,16 @@ var dyFObj = {
 		    	success: function(data){
 		    		mylog.warn("saveElement ajax result");
 		    		mylog.dir(data);
-					if(data.result == false){
+					if(data.result == false)
+					{
 		                toastr.error(data.msg);
 		                //reset save btn 
 		                $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
 							$( settings.formId ).submit();	        	
 				        });
 		           	}
-		            else {
+		            else 
+		            {
 		            	if(typeof data.msg != "undefined") 
 		            		toastr.success(data.msg);
 		            	else{
@@ -678,7 +683,8 @@ var dyFObj = {
 				    if( typeof bindLBHLinks != "undefined")
 			        	bindLBHLinks();
 			    },
-			    onSave : function(){
+			    onSave : function()
+			    {
 
 			      	mylog.log("onSave")
 
@@ -1745,6 +1751,7 @@ var dyFObj = {
 						{
 						  "tags": dyFObj.init.initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
+						  "minimumInputLength" : 3,
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
 						if(dyFObj.init.initValues[ $(this).attr("id") ].maximumSelectionLength)
@@ -1756,7 +1763,7 @@ var dyFObj = {
 						if(typeof mainTag != "undefined")
 							$(this).val([mainTag]).trigger('change');
 					}
-				 });
+				});
 			} else
 				mylog.error("select2 library is missing");
 		} 
@@ -2938,11 +2945,11 @@ var dyFInputs = {
 											});
 	},
 	tags : function(list, placeholder, label) { 
-    	tagsL = (list) ? list : tagsList;
+    	//var tagsL = (list) ? list : tagsList;
     	return {
 			inputType : "tags",
 			placeholder : placeholder != null ? placeholder : tradDynForm["tags"],
-			values : tagsL,
+			values : (list) ? list : tagsList,
 			label : (label != null) ? label : tradDynForm["addtags"]
 		}
 	},

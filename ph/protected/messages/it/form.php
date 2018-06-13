@@ -1,7 +1,7 @@
 <?php
 	return array(
 		"Create content link to this page"=>"Pubblica contenuti in questa pagina",
-		"What kind of content will you create ?"=>"Cosa vuoi pubblicare?",
+		"What kind of content will you create ?"=>"Cosa vorresti pubblicare?",
 		"Diffuse an event<br>Invite attendees<br>Communicate to your network"=>"Promuovere un evento <br>Invitare i partecipanti <br>Informate la vostra rete",
 		"Create a classified ad<br>To share To give To sell To rent<br>Material Property Job"=>"Crea un annuncio classificato<br>Per condividere, da dare, in vendita In affitto<br>materiale, proprietà, lavoro",
 		"Make visible an interesting place<br>Contribute to the collaborative map<br>Highlight your territory"=>"Rendi visibile un luogo interessante<br>Contribuire alla mappa collaborativa<br>Porta in evidenza il tuo territorio",
@@ -181,5 +181,7 @@
 		"Location" => "Posizione",
 		"Scoping" => "Area",
 		"Select a city to share your survey with everybody in town !" => "Seleziona una città per mostrare i risultati del sondaggio a tutti coloro che si trovano in quella città!",
+		"Transform" => "Converti",
+		"into an Organization" => "in un'organizzazione",
 	)
 ?>

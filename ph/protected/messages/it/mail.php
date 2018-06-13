@@ -91,5 +91,7 @@
 		"And all of this into an <b>ethical</b> and <b>responsible</b> environment" => "E tutto questo in un ambiente <b>etico</b> e <b>responsabile</b>",
 		"Don't wait anymore and join us !!" => "Non aspetti più e unisciti a noi!!",
 		
+		"If the link doesn&apos;t work, you can copy it in your browser&apos;s address" => "Se il link non funziona, potete copiarlo nel vostro browser",
+		
 );
 ?> 
