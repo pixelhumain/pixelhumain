@@ -35,7 +35,7 @@
         "chat": <?php echo json_encode( Chat::getConfig() ) ?>,
         "cotools" : <?php echo json_encode( array(
             "module"        => "cotools",
-            "init"          => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
+            //"init"          => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
             "form"          => Yii::app()->getModule( "cotools" )->assetsUrl."/js/dynForm.js" ,
         )); ?>
     };
