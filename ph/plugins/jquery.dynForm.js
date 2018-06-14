@@ -710,11 +710,6 @@ var dyFObj = {
 			$('#modalLogin').modal("show");
 		}
 	},
-
-
-
-	
-
 	//generate Id for upload feature of this element 
 	setMongoId : function(type,callback) { 
 		//alert("setMongoId"+type);
@@ -753,8 +748,7 @@ var dyFObj = {
 	*	each input field type has a corresponding HTMl to build
 	***************************************** */
 	
-	buildInputField : function (id, field, fieldObj,formValues, tooltip)
-	{
+	buildInputField : function (id, field, fieldObj,formValues, tooltip){
 		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
 		var required = "";
 		if(fieldObj.rules && fieldObj.rules.required)
@@ -1196,7 +1190,7 @@ var dyFObj = {
 		***************************************** */
         else if ( fieldObj.inputType == "location" ) {
         	mylog.log("build field "+field+">>>>>> location");
-        	fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" locationBtn btn btn-default'><i class='text-azure fa fa-map-marker fa-2x'></i> Localiser </a>";
+        	//fieldHTML += "<a href='javascript:;' class='w100p "+fieldClass+" locationBtn btn btn-default'><i class='text-azure fa fa-map-marker fa-2x'></i> Localiser </a>";
         	fieldHTML += '<input type="hidden" placeholder="Latitude" name="geo[latitude]" id="geo.latitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.latitude :"" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Longitude" name="geo[longitude]" id="geo[longitude]" value="'+( (fieldObj.geo) ? fieldObj.geo.longitude : "" )+'"/>';
         	fieldHTML += '<input type="hidden" placeholder="Insee" name="address[codeInsee]" id="address[codeInsee]" value="'+( (fieldObj.address) ? fieldObj.address.codeInsee : "" )+'"/>';
@@ -1613,12 +1607,95 @@ var dyFObj = {
 							'</div>';
 
 					
-        }
-        else if ( fieldObj.inputType == "password" ) {
+        } else if ( fieldObj.inputType == "formLocality") {
+        	mylog.log("build field "+field+">>>>>> formLocality");
+       		
+        	fieldHTML += "<div class='form-group inline-block padding-15 form-in-map formLocality'>"+
+        					'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+								'<i class="fa fa-chevron-down"></i> Pays' +
+				            '</label>'+
+							"<select class='form-group col-xs-12' name='newElement_country' id='newElement_country'>"+
+							"<option value=''>Choose a country</option>";
+							$.each(dyFObj.formInMap.countryList, function(key, v){
+								fieldHTML += "<option value='"+v.countryCode+"'>"+v.name+"</option>";
+							});
+				fieldHTML += "</select>"+
+							"<div id='divCity' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
+								'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+									'<i class="fa fa-chevron-down"></i> Ville' +
+									"<div class='alert alert-warning' role='alert'><i class='fa fa-exclamation-triangle'></i> If a city doesn't exist on communecter, you have to write the full name to find the city </div>"+
+					            '</label>'+
+						  		"<input class='form-group col-md-12 col-xs-12' type='text' name='newElement_city' placeholder='Search a city, a town or a postal code'>"+
+								"<ul class='dropdown-menu col-md-12 col-xs-12' id='dropdown-newElement_locality-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
+									"<li><a href='javascript:' class='disabled'>Search a city, a town or a postal code</a></li>"+
+								"</ul>"+
+					  		"</div>"+
+					  		"<div id='divCP' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
+						  		"<input class='form-group col-md-12 col-xs-12' type='text' name='newElement_cp' placeholder='Add a postal code'>"+
+					  		"</div>"+
+							"<div id='divStreetAddress' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
+								'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+									'<i class="fa fa-chevron-down"></i> Pays' +
+					            '</label>'+
+								"<input class='form-group col-md-9 col-xs-9' type='text' style='margin-right:-3px;' name='newElement_street' placeholder='streetFormInMap'>"+
+								"<button class='col-md-3 col-xs-3 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></button>"+
+							"</div>"+
+							"<div class='dropdown pull-left col-xs-12 no-padding'> "+
+						  		"<ul class='dropdown-menu' id='dropdown-newElement_streetAddress-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
+						  			"<li><a href='javascript:' class='disabled'>Currently researching</a></li>"+
+						  		"</ul>"+
+							"</div>"+
+							"<div id='alertGeo' class='alert alert-warning col-xs-12 hidden' style='margin-bottom: 0px;'>"+
+							  "<strong>Warning!</strong> Do not forget to geolocate your address."+
+							"</div>"+
+							"<div id='sumery' class='text-dark col-xs-12 no-padding'>"+
+								"<h4>Address Summary : </h4>"+
+								"<div id='street_sumery' class='col-xs-12'>"+
+									"<span>streetFormInMap :</span>"+
+									"<span id='street_sumery_value'></span>"+
+								"</div>"+
+								"<div id='cp_sumery' class='col-xs-12'>"+
+									"<span>Postal code :</span>"+
+									"<span id='cp_sumery_value'></span>"+
+								"</div>"+
+								"<div id='city_sumery' class='col-xs-12'>"+
+									"<span>City :</span>"+
+									"<span id='city_sumery_value'></span>"+
+								"</div>"+
+								"<div id='country_sumery' class='col-xs-12'>"+
+									"<span>Country :</span>"+
+									"<span id='country_sumery_value'></span>"+
+								"</div>"+
+								"<input type='hidden' name='newElement_insee'>"+
+								"<input type='hidden' name='newElement_lat'>"+
+								"<input type='hidden' name='newElement_lng'>"+
+								"<input type='hidden' name='newElement_dep'>"+
+								"<input type='hidden' name='newElement_region'>"+
+								"<hr class='col-md-12'>"+
+							"</div>"+
+						"</div>";
+
+   //     		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
+   //     		fieldHTML += '<select class="'+isSelect2+' '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px;" data-placeholder="'+placeholder+'">';
+			// if(placeholder)
+			// 	fieldHTML += '<option class="text-red" style="font-weight:bold" disabled selected>'+placeholder+'</option>';
+			// else
+			// 	fieldHTML += '<option></option>';
+
+			// var selected = "";
+			// mylog.log("fieldObj select", fieldObj);
+			// //initialize values
+			// if(fieldObj.options)
+			// 	fieldHTML += buildSelectOptions(fieldObj.options, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
+
+			// if( fieldObj.groupOptions )
+			// 	fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
+			
+			// fieldHTML += '</select>';
+        } else if ( fieldObj.inputType == "password" ) {
         	mylog.log("build field "+field+">>>>>> password");
         	fieldHTML += '<input id="'+field+'" name="'+field+'" class="form-control" type="password"/>';
-       	}
-        else {
+       	} else {
         	mylog.log("build field "+field+">>>>>> input text");
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
@@ -2075,7 +2152,14 @@ var dyFObj = {
 				format: 'DD/MM/YYYY h:mm A' 
 			});*/
 		}
-
+		/* **************************************
+		* formLocality 
+		***************************************** */
+		if(  $(".formLocality").length ){
+			alert("formLocality");
+			dyFObj.formInMap.init();
+		}
+		
 		
 		/* **************************************
 		* PROPERTIES 
@@ -2183,8 +2267,7 @@ var dyFObj = {
 		initValues : {},
 		initSelect : {},
 		initSelectNetwork : [],
-		addfield : function ( parentContainer,val,name, type ) 
-		{
+		addfield : function ( parentContainer,val,name, type ) {
 			mylog.log("dyFObj.init.addfield",parentContainer+' .inputs',val,name);
 			if(!$.isEmptyObject($(parentContainer+' .inputs')))
 		    {
@@ -2292,8 +2375,7 @@ var dyFObj = {
 		/* **************************************
 		* build HTML for each element of a property list 
 		***************************************** */
-		propertyLineHTML : function (propVal,name)
-		{
+		propertyLineHTML : function (propVal,name){
 			var count = $(".addmultifield").length;
 			mylog.log("dyFObj.init.propertyLineHTML", propVal, typeof propVal, name, count);
 			if( !notEmpty(propVal) ) 
@@ -2331,8 +2413,7 @@ var dyFObj = {
 		/* **************************************
 		* build HTML for each element of array
 		***************************************** */
-		arrayLineHTML : function (val,name)
-		{
+		arrayLineHTML : function (val,name){
 			mylog.log("dyFObj.init.arrayLineHTML : ",val);
 			if( typeof val == "undefined" ) 
 		    	val = "";
@@ -2575,8 +2656,7 @@ var dyFObj = {
 		/* **************************************
 		* init Boostrap Switch
 		***************************************** */
-		initbootstrapSwitch : function (el,change, css)
-		{
+		initbootstrapSwitch : function (el,change, css){
 			mylog.log("dyFObj.init.initbootstrapSwitch", el,change, css);
 			var initSwitch = function(){
 				mylog.log("init bootstrap switch");
@@ -2685,7 +2765,495 @@ var dyFObj = {
 				
 	          }
 	 	});
-	}
+	},
+	formInMap : {
+		actived : false,
+		timeoutAddCity : null,
+		countryList : null,
+		NE_insee : "",
+		NE_lat : "",
+		NE_lng : "",
+		NE_city : "",
+		NE_cp : "",
+		NE_street : "",
+		NE_country : "",
+		NE_level4 : "",
+		NE_level4Name : "",
+		NE_level3 : "",
+		NE_level3Name : "",
+		NE_level2 : "",
+		NE_level2Name : "",
+		NE_level1 : "",
+		NE_level1Name : "",
+		NE_localityId : "",
+		NE_betweenCP : false,
+		geoShape : "",
+		typeSearchInternational : "",
+		formType : "",
+		updateLocality : false,
+		addressesIndex : false,
+		saveCities : {},
+		bindActived : false,
+		init : function(){
+			mylog.log("forminmap showMarkerNewElement");
+		
+
+			mylog.log("formType", dyFObj.formInMap.formType);
+
+			if( notNull(currentUser) && notNull(currentUser.addressCountry) && dyFObj.formInMap.NE_country== "" ){
+				dyFObj.formInMap.NE_country = currentUser.addressCountry;
+				mylog.log("NE_country", dyFObj.formInMap.NE_country);
+			}
+
+			$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
+
+			if(dyFObj.formInMap.NE_country != ""){
+				$("#divPostalCode").removeClass("hidden");
+				$("#divCity").removeClass("hidden");
+			}
+
+			if(dyFObj.formInMap.bindActived == false)
+				dyFObj.formInMap.bindFormInMap();
+
+			if(userId == "" || dyFObj.formInMap.NE_insee == "")
+				$("#divStreetAddress").addClass("hidden");
+			else
+				$("#divStreetAddress").removeClass("hidden");
+
+			$("#right_tool_map").removeClass("hidden-xs hidden-sm");
+			$("#right_tool_map_locality").removeClass("hidden");
+			$("#right_tool_map_search, #sub-menu-left").addClass("hidden");
+			$("#right_tool_map").removeClass("min");
+			if(typeof networkJson == "undefined" || networkJson == null)
+				$("#mapLegende").addClass("hidden");
+			mylog.log("forminmap showMarkerNewElement END");
+		},
+		bindFormInMap : function(){
+			mylog.log("bindFormInMap");
+
+			$('[name="newElement_country"]').change(function(){
+				mylog.log("change country");
+				alert($(this).val());
+				dyFObj.formInMap.initVarNE()
+				dyFObj.formInMap.NE_country = $('[name="newElement_country"]').val() ;
+				//dyFObj.formInMap.initHtml();
+				$("#country_sumery_value").html($('[name="newElement_country"]').val());
+				$("#newElement_btnValidateAddress").prop('disabled', true);
+				$("#divStreetAddress").addClass("hidden");
+
+				dyFObj.formInMap.initDropdown();
+				mylog.log("formInMap.NE_country", dyFObj.formInMap.NE_country, typeof dyFObj.formInMap.NE_country, dyFObj.formInMap.NE_country.length);
+				if(dyFObj.formInMap.NE_country != ""){
+					$("#divCP").addClass("hidden");
+					$("#divCity").removeClass("hidden");
+				}else{
+					$("#divCity").addClass("hidden");
+				}
+					
+			});
+
+				// ---------------- newElement_city
+			$('[name="newElement_city"]').keyup(function(){ 
+				$("#dropdown-city-found").show();
+				mylog.log("newElement_city", $('[name="newElement_city"]').val().trim().length);
+				if($('[name="newElement_city"]').val().trim().length > 1){
+					dyFObj.formInMap.NE_city = $('[name="newElement_city"]').val();
+					dyFObj.formInMap.changeSelectCountrytim();
+
+					if(notNull(dyFObj.formInMap.timeoutAddCity)) 
+						clearTimeout(dyFObj.formInMap.timeoutAddCity);
+
+					dyFObj.formInMap.timeoutAddCity = setTimeout(function(){ 
+						dyFObj.formInMap.autocompleteFormAddress("locality", $('[name="newElement_city"]').val()); 
+					}, 500);
+
+				}
+			});
+			// ---------------- newElement_cp
+			$('[name="newElement_cp"]').keyup(function(){ 
+				mylog.log("newElement_cp", $('[name="newElement_cp"]').val().trim());
+				dyFObj.formInMap.NE_cp = $('[name="newElement_cp"]').val().trim();
+				dyFObj.formInMap.btnValideDisable( ($('[name="newElement_cp"]').val().trim().length == 0 ? true : false) );
+
+			});
+
+			// ---------------- newElement_streetAddress
+			$("#newElement_btnSearchAddress").click(function(){
+				$(".dropdown-menu").hide();
+				dyFObj.formInMap.searchAdressNewElement();
+			});
+
+			$('[name="newElement_street"]').keyup(function(){ 
+				dyFObj.formInMap.showWarningGeo( ( ( $('[name="newElement_street"]').val().length > 0 ) ? true : false ) );
+				dyFObj.formInMap.NE_street = $('[name="newElement_street"]').val().trim();
+			});
+
+		},
+		showWarningGeo : function(bool){
+			mylog.log("showWarningGeo");
+			if(bool == true){
+				$("#alertGeo").removeClass("hidden");
+				$("#newElement_btnSearchAddress").removeClass("btn-default");
+				$("#newElement_btnSearchAddress").addClass("btn-warning");
+			}else{
+				$("#alertGeo").addClass("hidden");
+				$("#newElement_btnSearchAddress").removeClass("btn-warning");
+				$("#newElement_btnSearchAddress").addClass("btn-default");
+			}
+		},
+		createLocalityObj : function(withUnikey){
+			mylog.log("createLocalityObj", dyFObj.formInMap);
+			
+			var locality = {
+				address : {
+					"@type" : "PostalAddress",
+					codeInsee : dyFObj.formInMap.NE_insee,
+					streetAddress : dyFObj.formInMap.NE_street.trim(),
+					postalCode : dyFObj.formInMap.NE_cp,
+					addressLocality : dyFObj.formInMap.NE_city,
+					level1 : dyFObj.formInMap.NE_level1,
+					level1Name : dyFObj.formInMap.NE_level1Name,
+					addressCountry : dyFObj.formInMap.NE_country,
+					localityId : dyFObj.formInMap.NE_localityId
+					
+				},
+				geo : {
+					"@type" : "GeoCoordinates",
+					latitude : dyFObj.formInMap.NE_lat,
+					longitude : dyFObj.formInMap.NE_lng
+				},
+				geoPosition : {
+					"type" : "Point",
+					"coordinates" : [ parseFloat(dyFObj.formInMap.NE_lng), parseFloat(dyFObj.formInMap.NE_lat) ]
+				}
+			};
+
+			if( notEmpty(dyFObj.formInMap.NE_level2) && dyFObj.formInMap.NE_level2 != "undefined" ){
+				locality.address.level2 = dyFObj.formInMap.NE_level2;
+				locality.address.level2Name = dyFObj.formInMap.NE_level2Name;
+			}
+			if(notEmpty(dyFObj.formInMap.NE_level3 != "" && dyFObj.formInMap.NE_level3 != "undefined")){
+				locality.address.level3 = dyFObj.formInMap.NE_level3;
+				locality.address.level3Name = dyFObj.formInMap.NE_level3Name;
+			}
+			if(notEmpty(dyFObj.formInMap.NE_level4 != "" && dyFObj.formInMap.NE_level4 != "undefined")){
+				locality.address.level4 = dyFObj.formInMap.NE_level4;
+				locality.address.level4Name = dyFObj.formInMap.NE_level4Name;
+			}
+
+			if(typeof withUnikey != "undefined" && withUnikey == true){
+				var unikey = dyFObj.formInMap.NE_country + "_" + dyFObj.formInMap.NE_insee + "-" + dyFObj.formInMap.NE_cp;
+				locality.unikey = unikey;
+			}
+
+			return locality;
+		},
+		valideLocality : function(country){
+			mylog.log("valideLocality ", notEmpty(dyFObj.formInMap.NE_lat));
+			if(notEmpty(dyFObj.formInMap.NE_lat)){
+				locObj = dyFObj.formInMap.createLocalityObj();
+				mylog.log("forminmap copyMapForm2Dynform", locObj);
+				dyFInputs.locationObj.copyMapForm2Dynform(locObj);
+				dyFInputs.locationObj.addLocationToForm(locObj);
+			}
+			dyFObj.formInMap.initVarNE();
+			dyFObj.formInMap.initHtml();
+
+		},	
+		// Pour effectuer une recherche a la Réunion avec Nominatim, il faut choisir le code de la France, pas celui de la Réunion
+		changeCountryForNominatim : function(country){
+			var codeCountry = {
+				"FR" : ["RE", "GP", "GF", "MQ", "YT", "NC", "PM"]
+			};
+			$.each(codeCountry, function(key, countries){
+				if(countries.indexOf(country) != -1)
+			 		country = key;
+			});
+			return country ;
+		},
+		searchAdressNewElement : function(){ 
+			mylog.log("searchAdressNewElement");
+			var providerName = "";
+			var requestPart = "";
+
+			var street 	= ($('[name="newElement_street"]').val()  != "") ? $('[name="newElement_street"]').val() : "";
+			var city 	= dyFObj.formInMap.NE_city;
+			var cp 		= dyFObj.formInMap.NE_cp;
+			var countryCode = dyFObj.formInMap.NE_country;
+
+
+			if($('[name="newElement_street"]').val() != ""){
+				providerName = "nominatim";
+				dyFObj.formInMap.typeSearchInternational = "address";
+				//construction de la requete
+				requestPart = addToRequest(requestPart, street);
+				requestPart = addToRequest(requestPart, city);
+				requestPart = addToRequest(requestPart, cp);
+			}else{
+				providerName = "communecter"
+				dyFObj.formInMap.typeSearchInternational = "city";
+				//construction de la requete
+				if(cp != ""){
+					requestPart = addToRequest(requestPart, cp);
+				}
+			}
+
+			dyFObj.formInMap.NE_street = $('[name="newElement_street"]').val();
+
+			$("#dropdown-newElement_streetAddress-found").html("<li><a href='javascript:'><i class='fa fa-spin fa-refresh'></i> "+trad.currentlyresearching+"</a></li>");
+			$("#dropdown-newElement_streetAddress-found").show();
+			mylog.log("countryCode", countryCode);
+			
+			var countryDataGouv = ["FR","GP","MQ","GF","RE","PM","YT"];
+			if(countryDataGouv.indexOf(countryCode) != -1){
+				countryCode = dyFObj.formInMap.changeCountryForNominatim(countryCode);
+				mylog.log("countryCodeHere", countryCode);
+				callDataGouv(requestPart, countryCode);
+				
+			}else{
+				countryCode = dyFObj.formInMap.changeCountryForNominatim(countryCode);
+				mylog.log("countryCode", countryCode);
+				callNominatim(requestPart, countryCode);
+			}
+			
+			dyFObj.formInMap.btnValideDisable(false);
+		},
+		autocompleteFormAddress : function(currentScopeType, scopeValue){
+			mylog.log("autocompleteFormAddress", currentScopeType, scopeValue);
+			$("#dropdown-newElement_"+currentScopeType+"-found").html("<li><a href='javascript:'><i class='fa fa-refresh fa-spin'></i></a></li>");
+			$("#dropdown-newElement_"+currentScopeType+"-found").show();
+			$.ajax({
+				type: "POST",
+				url: baseUrl+"/"+moduleId+"/city/autocompletemultiscope",
+				data: {
+						type: currentScopeType, 
+						scopeValue: scopeValue,
+						geoShape: true,
+						formInMap: true,
+						countryCode : $('[name="newElement_country"]').val()
+				},
+				dataType: "json",
+				success: function(data){
+					mylog.log("autocompleteFormAddress success", data);
+					html="";
+					var inseeGeoSHapes = {};
+					dyFObj.formInMap.saveCities = {};
+					$.each(data.cities, function(key, value){
+						mylog.log("autocompleteFormAddress value", value);
+						var insee = value.insee;
+						var country = value.country;
+						if(notEmpty(value.save) &&  value.save == true){
+							dyFObj.formInMap.saveCities[insee] = value;
+						}
+						if(notEmpty(value.geoShape))
+							inseeGeoSHapes[insee] = value.geoShape.coordinates[0];
+
+						if(currentScopeType == "city" || currentScopeType == "locality") { 
+							if(value.postalCodes.length > 0){
+								$.each(value.postalCodes, function(keyCP, valueCP){
+									var val = valueCP.name; 
+									var lbl = valueCP.postalCode ;
+									var lat = valueCP.geo.latitude;
+									var lng = valueCP.geo.longitude;
+
+									var lblList = value.name ;
+
+									if(valueCP.name != value.name)
+										lblList +=  ", " + valueCP.name ;
+
+									if(notEmpty(valueCP.postalCode))
+										lblList += ", " + valueCP.postalCode ;
+									
+									if(notEmpty(value.level4Name))
+										lblList += " ( " + value.level4Name + " ) ";
+									else if(notEmpty(value.level3Name))
+										lblList += " ( " + value.level3Name + " ) ";
+									else if(notEmpty(value.level2Name))
+										lblList += " ( " + value.level2Name + " ) ";
+
+									html += '<li><a href="javascript:;" data-type="'+currentScopeType+'" '+
+													'data-locId="'+key+'" '+
+													'data-level4="'+value.level4+'" data-level4name="'+value.level4Name+'"'+
+													'data-level3="'+value.level3+'" data-level3name="'+value.level3Name+'"'+
+													'data-level2="'+value.level2+'" data-level2name="'+value.level2Name+'"'+ 
+													'data-level1="'+value.level1+'" data-level1name="'+value.level1Name+'"'+ 
+													'data-country="'+country+'" '+
+													'data-city="'+val+'" data-cp="'+lbl+'" '+
+													'data-lat="'+lat+'" data-lng="'+lng+'" '+
+													'data-insee="'+insee+'" class="item-city-found">'+lblList+'</a></li>';
+								});
+							}else{
+								var val = value.name; 
+								var lat = value.geo.latitude;
+								var lng = value.geo.longitude;
+								var lblList = value.name ;
+								if(notEmpty(value.level4Name))
+									lblList += " ( " + value.level4Name + " ) ";
+								else if(notEmpty(value.level3Name))
+									lblList += " ( " + value.level3Name + " ) ";
+								else if(notEmpty(value.level2Name))
+									lblList += " ( " + value.level2Name + " ) ";
+
+								html += '<li><a href="javascript:;" data-type="'+currentScopeType+'" '+
+													'data-locid="'+key+'" ';
+								html +=	'data-level4="'+value.level4+'" data-level4name="'+value.level4Name+'"'+
+										'data-level3="'+value.level3+'" data-level3name="'+value.level3Name+'"'+
+										'data-level2="'+value.level2+'" data-level2name="'+value.level2Name+'"'+ 
+										'data-level1="'+value.level1+'" data-level1name="'+value.level1Name+'"';
+								html += 'data-country="'+country+'" '+
+										'data-city="'+val+'" data-lat="'+lat+'" '+
+										'data-lng="'+lng+'" data-insee="'+insee+'" '+
+										'class="item-city-found-uncomplete">'+lblList+'</a></li>';
+							}
+						};
+					});
+
+					if(html == "") html = "<i class='fa fa-ban'></i> "+trad.noresult;
+					$("#dropdown-newElement_"+currentScopeType+"-found").html(html);
+					$("#dropdown-newElement_"+currentScopeType+"-found").show();
+
+					$(".item-city-found, .item-cp-found").click(function(){
+						dyFObj.formInMap.add(true, $(this), inseeGeoSHapes);
+					});
+
+					$(".item-city-found-uncomplete").click(function(){
+						dyFObj.formInMap.add(false, $(this), inseeGeoSHapes);
+					});
+				},
+				error: function(error){
+					$("#dropdown-newElement_"+currentScopeType+"-found").html("error");
+					mylog.log("Une erreur est survenue pendant autocompleteMultiScope", error);
+				}
+			});
+		},
+		add : function(complete, data, inseeGeoSHapes){
+			console.log("add", complete, data, inseeGeoSHapes);
+			
+			dyFObj.formInMap.NE_insee = data.data("insee");
+			dyFObj.formInMap.NE_lat = data.data("lat");
+			dyFObj.formInMap.NE_lng = data.data("lng");
+			dyFObj.formInMap.NE_city = data.data("city");
+			dyFObj.formInMap.NE_country = data.data("country");
+			dyFObj.formInMap.NE_level4 = (notEmpty(data.data("level4")) ? data.data("level4") : null) ;
+			dyFObj.formInMap.NE_level4Name = (notEmpty(data.data("level4name")) ? data.data("level4name") : null) ;
+			dyFObj.formInMap.NE_level3 = (notEmpty(data.data("level3")) ? data.data("level3") : null) ;
+			dyFObj.formInMap.NE_level3Name = (notEmpty(data.data("level3name")) ? data.data("level3name") : null) ;
+			dyFObj.formInMap.NE_level2 = (notEmpty(data.data("level2")) ? data.data("level2") : null) ;
+			dyFObj.formInMap.NE_level2Name = (notEmpty(data.data("level2name")) ? data.data("level2name") : null);
+			dyFObj.formInMap.NE_level1 = (notEmpty(data.data("level1")) ? data.data("level1") : null) ;
+			dyFObj.formInMap.NE_level1Name = (notEmpty(data.data("level1name")) ? data.data("level1name") : null) ;
+			dyFObj.formInMap.NE_localityId = data.data("locid");
+
+			if(complete == true){
+				dyFObj.formInMap.NE_cp = data.data("cp");
+			}else if ( 	notEmpty(dyFObj.formInMap.saveCities) && 
+						notEmpty(dyFObj.formInMap.saveCities[dyFObj.formInMap.NE_insee]) &&
+						notEmpty(dyFObj.formInMap.saveCities[dyFObj.formInMap.NE_insee].betweenCP)
+						)
+				dyFObj.formInMap.NE_betweenCP = dyFObj.formInMap.saveCities[dyFObj.formInMap.NE_insee].betweenCP ;
+
+			//dyFObj.formInMap.initHtml();
+			
+			// Sig.markerFindPlace.setLatLng([data.data("lat"), data.data("lng")]);
+			// mylog.log("geoShape", inseeGeoSHapes);
+			// if(notEmpty(inseeGeoSHapes[dyFObj.formInMap.NE_insee])){
+			// 	var shape = inseeGeoSHapes[dyFObj.formInMap.NE_insee];
+			// 	shape = Sig.inversePolygon(shape);
+			// 	Sig.showPolygon(shape);
+			// 	setTimeout(function(){
+			// 		Sig.map.fitBounds(shape);
+			// 		Sig.map.invalidateSize();
+			// 	}, 1500);
+			// }else{
+			// 	setTimeout(function(){
+			// 		Sig.centerPopupMarker([dyFObj.formInMap.NE_lat, dyFObj.formInMap.NE_lng], 12);
+			// 	}, 2500);
+			// }
+			$("#dropdown-newElement_cp-found, #dropdown-newElement_city-found, #dropdown-newElement_streetAddress-found, #dropdown-newElement_locality-found").hide();
+			//dyFObj.formInMap.updateSummeryLocality(data);
+			mylog.log("dyFObj.formInMap.NE_betweenCP ", dyFObj.formInMap.NE_betweenCP );
+			dyFObj.formInMap.btnValideDisable( (dyFObj.formInMap.NE_betweenCP == false ? false : true) );
+			
+			if(userId == "")
+				$("#divStreetAddress").addClass("hidden");
+			else
+				$("#divStreetAddress").removeClass("hidden");
+		},
+		changeSelectCountrytim : function(){
+			mylog.log("changeSelectCountrytim", dyFObj.formInMap.NE_country);
+			mylog.log("dyFObj.formInMap.NE_cp.substring(0, 3)");
+			var countryFR = ["FR","GP","MQ","GF","RE","PM","YT"];
+			var regexNumber = new RegExp("[1-9]+") ;
+			if(countryFR.indexOf(dyFObj.formInMap.NE_country) != -1 && regexNumber.test(dyFObj.formInMap.NE_country) ) {
+				var name = $('[name="newElement_city"]').val();
+				if(name.substring(0, 3) == "971")
+					$('[name="newElement_country"]').val("GP");
+				else if(name.substring(0, 3) == "972")
+					$('[name="newElement_country"]').val("MQ");
+				else if(name.substring(0, 3) == "973")
+					$('[name="newElement_country"]').val("GF");
+				else if(name.substring(0, 3) == "974")
+					$('[name="newElement_country"]').val("RE");
+				else if(name.substring(0, 3) == "975")
+					$('[name="newElement_country"]').val("PM");
+				else if(name.substring(0, 3) == "976")
+					$('[name="newElement_country"]').val("YT");
+				else
+					$('[name="newElement_country"]').val("FR");
+			}
+		},
+		btnValideDisable : function(bool){
+			mylog.log("btnValideDisable");
+			$("#newElement_btnValidateAddress").prop('disabled', bool);
+		},
+		initVarNE : function(){
+			mylog.log("initVarNE");
+			dyFObj.formInMap.NE_insee = "";
+			dyFObj.formInMap.NE_lat = "";
+			dyFObj.formInMap.NE_lng = "";
+			dyFObj.formInMap.NE_city = "";
+			dyFObj.formInMap.NE_cp = "";
+			dyFObj.formInMap.NE_street = "";
+			dyFObj.formInMap.NE_country = "";
+			dyFObj.formInMap.NE_level4 = "";
+			dyFObj.formInMap.NE_level4Name = "";
+			dyFObj.formInMap.NE_level3 = "";
+			dyFObj.formInMap.NE_level3Name = "";
+			dyFObj.formInMap.NE_level2 = "";
+			dyFObj.formInMap.NE_level2Name = "";
+			dyFObj.formInMap.NE_level1 = "";
+			dyFObj.formInMap.NE_level1Name = "";
+			dyFObj.formInMap.NE_localityId = "";
+			dyFObj.formInMap.NE_betweenCP = false;
+		},
+		initDropdown : function(){
+			mylog.log("initDropdown");
+			$("#dropdown-newElement_cp-found").html("<li><a href='javascript:' class='disabled'>"+trad['Currently researching']+"</a></li>");
+			$("#dropdown-newElement_city-found").html("<li><a href='javascript:' class='disabled'>"+trad['Search a city, a town or a postal code'] +"</a></li>");
+		},
+		initHtml : function(){
+			mylog.log("initHtml");
+			var fieldsLocality = [	"insee", "lat", "lng", "city", "country", "cp", "street",
+									"level4", "level4Name", "level3", "level3Name", 
+									"level2", "level2Name", "level1", "level1Name" ] ;
+			$.each(fieldsLocality, function(key, value){
+				$('[name="newElement_'+value+'"]').val(formInMap["NE_"+value]);
+				if(value == "country")
+					$('#'+value+'_sumery_value').html(tradCountry[ formInMap["NE_"+value] ]);
+				else
+					$('#'+value+'_sumery_value').html(formInMap["NE_"+value]);
+
+				if(formInMap["NE_"+value] != "")
+					$('#'+value+'_sumery').removeClass("hidden");
+				else
+					$('#'+value+'_sumery').addClass("hidden");
+			});
+			if(formInMap.NE_betweenCP != false)
+				$("#divCP").removeClass("hidden");
+		}
+	},
+	
+
 }
 //TODO : refactor into dyfObj.inputs
 var dyFInputs = {
@@ -2765,6 +3333,33 @@ var dyFInputs = {
 		}
 		
 	},
+	formLocality :function(label, placeholder, rules) {
+		mylog.log("inputText ", inputObj);
+		var inputObj = {
+			label : label,
+	    	placeholder : ( notEmpty(placeholder) ? placeholder : "... " ),
+	        inputType : "formLocality",
+	        rules :  {}
+	    };
+
+		if(dyFObj.formInMap.countryList == null){
+			$.ajax({
+				type: "POST",
+				url: baseUrl+"/"+moduleId+"/opendata/getcountries",
+				dataType: "json",
+				success: function(data){
+					mylog.log("getcountries data",data);
+					dyFObj.formInMap.countryList = data;
+					return inputObj;
+				},
+				error: function(error){
+					mylog.log("error", error);
+				}
+			});
+		}
+	   
+    	return inputObj;
+    },
 
 	inputText :function(label, placeholder, rules, custom) { 
 		var inputObj = {
