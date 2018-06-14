@@ -154,7 +154,7 @@ return array(
 	"Neutral" => "Neutro",
 	"Against" => "Contro",
 	"I agree" => "Sono d'accordo",
-	"I disagree" => "Ich stimme nicht zu",
+	"I disagree" => "Non sono d'accordo",
 	"You must be member or contributor to participate" => "Per partecipare è necessario essere socio o collaboratore",
 	"Edit this space" => "Modifica questa camera",
 	"You are not logged" => "Non è stato effettuato il login",
