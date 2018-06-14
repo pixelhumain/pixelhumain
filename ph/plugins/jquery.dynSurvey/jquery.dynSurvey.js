@@ -322,7 +322,7 @@ var dySObj = {
 					if( typeof dySObj.surveys.scenario[sectionKey].saveElement == "object")
 					{
 						var  save = dySObj.surveys.scenario[dySObj.surveys.sections[sec].key].saveElement;
-						alert("saveElement "+sectionKey);
+						//alert("saveElement "+sectionKey);
 						saveData = {};
 						dyFObj.elementObj = dySObj.surveys.sections[sec];
 		                $.each( dyFObj.elementObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
@@ -337,7 +337,7 @@ var dySObj = {
 
 		                dyFObj.saveElement(saveData, saveP.collection, saveP.ctrl,null, function(data) { 
 		                	mylog.warn("saved",data);
-		                	alert("switch btn color to red to indicate, and disable form");
+		                	//alert("switch btn color to red to indicate, and disable form");
 		                	$("#"+sec).html("<h1>Form has been saved,<br/>to modify please go <a class='btn btn-xs btn-primary' href='"+baseUrl+"/co2/@"+data.afterSave[dySObj.surveys.sections[sec].key]["slug"]+"' target='_blank'>here</a> once you finished the survey</h1>");
 		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
 		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
@@ -448,7 +448,7 @@ var dySObj = {
 	                
 	            });
 
-	            alert("final saved it all");
+	            //alert("final saved it all");
 	            return false;
 	        }
 	    });
