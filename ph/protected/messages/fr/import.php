@@ -88,6 +88,8 @@ return array(
 	"Your mapping have been added" => "Votre mapping à bien été ajouté",
 	"Your mapping have been updated" => "Votre mapping à bien été mise à jour",
 	"You will need to complete at least one field" => "Vous devrez compléter aux moins un champ",
-	"Add" => "Ajouter"
+	"Add" => "Ajouter",
+	"Fields mandatory" => "Champs obligatoire",
+	"Grap manually my mapping"  => "Saisir manuelle de mon mapping"
 );
 ?>
