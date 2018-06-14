@@ -1927,8 +1927,7 @@ var dyFObj = {
 		/* **************************************
 		* Location type 
 		***************************************** */
-		if(  $(".locationBtn").length)
-		{
+		if(  $(".locationBtn").length){
 			//todo : for generic dynForm check if map exist 
 			$(".locationBtn").off().on( "click", function(){ 
 				
