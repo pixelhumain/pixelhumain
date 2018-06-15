@@ -113,12 +113,18 @@ onSave: (optional) overloads the generic saveProcess
 						++countProperties;
     			}
 				var inc=1;
+				var secJsonSchema = sectionObj.dynForm.jsonSchema;
+				if( typeof secJsonSchema.beforeBuild == "function" )
+			        secJsonSchema.beforeBuild();
+
 				$.each(sectionObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
 					if(fieldObj.rules)
 						form.rules[field] = fieldObj.rules;
 					mylog.log("////////SETTTINGSSSS///////");
 					mylog.log(settings.surveyValues);
+
 					dyFObj.buildInputField("#"+sectionId,field, fieldObj, settings.surveyValues,sectionObj.key);
+					
 					//Only the last section carries the submit button
 					if( sectionIndex == Object.keys(settings.surveyObj).length-1 && countProperties==inc){
 						fieldHTML = '<div class="form-actions">'+
@@ -143,8 +149,15 @@ onSave: (optional) overloads the generic saveProcess
 						$("#"+sectionId).append(fieldHTML);
 					}
 					inc++;
-						
 				});
+
+				if( typeof secJsonSchema.afterBuild == "function" )
+			        secJsonSchema.afterBuild();
+		        
+		        //incase we need a second global post process
+		        if( secJsonSchema.onLoads && typeof secJsonSchema.onLoads.onload == "function" )
+		        	secJsonSchema.onLoads.onload();
+
 				sectionIndex++;
 			})
 			numberOfSteps = sectionIndex;
@@ -337,12 +350,18 @@ var dySObj = {
 
 		                dyFObj.saveElement(saveData, saveP.collection, saveP.ctrl,null, function(data) { 
 		                	mylog.warn("saved",data);
+
+		                	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
+							if( typeof secJsonSchema.afterSave == "function" )
+						        secJsonSchema.afterSave(function() { 
+						        	$("#"+sec).html("<h1>Form has been saved,<br/>to modify please go <a class='btn btn-xs btn-primary' href='"+baseUrl+"/co2/@"+data.afterSave[dySObj.surveys.sections[sec].key]["slug"]+"' target='_blank'>here</a> once you finished the survey</h1>");
+						        }); 
 		                	//alert("switch btn color to red to indicate, and disable form");
-		                	$("#"+sec).html("<h1>Form has been saved,<br/>to modify please go <a class='btn btn-xs btn-primary' href='"+baseUrl+"/co2/@"+data.afterSave[dySObj.surveys.sections[sec].key]["slug"]+"' target='_blank'>here</a> once you finished the survey</h1>");
 		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
 		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
 		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.name;
 		                });
+		                $('html, body').stop().animate({scrollTop: 0}, 500, '');
 					}
 				} 
 				/*else 

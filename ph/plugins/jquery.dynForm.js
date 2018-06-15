@@ -393,6 +393,11 @@ var dyFObj = {
 			formData = formId;
 		else	
 			formData = $(formId).serializeFormJSON();
+
+		if( !formData.id && uploadObj.id ){
+			mylog.log("no formData id, using uploadObj.id : ",uploadObj.id);
+			formData.id = uploadObj.id;
+		}
 		mylog.log("before",formData);
 
 		if( jsonHelper.notNull( "dyFObj.elementObj.dynForm.jsonSchema.formatData","function") )
@@ -712,18 +717,15 @@ var dyFObj = {
 	},
 
 
-
-	
-
 	//generate Id for upload feature of this element 
 	setMongoId : function(type,callback) { 
 		//alert("setMongoId"+type);
 		uploadObj.type = type;
 		mylog.warn("uploadObj ",uploadObj);
-		if( !$("#ajaxFormModal #id").val() && !uploadObj.update )
+		if(  !$("#ajaxFormModal #id").val() && !uploadObj.update )
 		{
 			getAjax( null , baseUrl+"/api/tool/get/what/mongoId" , function(data){
-				mylog.log("setMongoId uploadObj.id", data.id);
+				//alert("setMongoId uploadObj.id", data.id);
 				uploadObj.set(type,data.id);
 				$("#ajaxFormModal #id").val(data.id);
 				if( typeof callback === "function" )
@@ -1913,6 +1915,14 @@ var dyFObj = {
 				        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
 				        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
 				    },
+				    finalizeChunks: function(id, responseParser) {
+						var lastChunkIdx = handler._getTotalChunks(id) - 1, xhr = handler._getXhr(id, lastChunkIdx);
+						if (responseParser) {
+							if (xhr == null) xhr = handler._getXhrs(id)[0]; // <- Added this row
+							return new qq.Promise().success(responseParser(xhr), xhr);
+						}
+						return new qq.Promise().success({}, xhr);
+					},
 		            callbacks: {
 		            	//when a img is selected
 					    onSubmit: function(id, fileName) {
@@ -1957,8 +1967,8 @@ var dyFObj = {
 					    		docListIds.push(responseJSON.id.$id);
 					    	}
 					    	if(!responseJSON.result){
-					    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
-					    		console.error(trad["somethingwentwrong"] , responseJSON.msg)
+					    		toastr.error(trad.somethingwentwrong+" : "+responseJSON.msg );		
+					    		console.error(trad.somethingwentwrong , responseJSON.msg)
 					    	}
 					    },
 					    //when all upload is complete whatever the result
@@ -2018,7 +2028,7 @@ var dyFObj = {
 					     	uploadObj.gotoUrl = null;
 					    },
 					    onError: function(id) {
-					      toastr.info(trad["somethingwentwrong"]);
+					      toastr.info(trad.somethingwentwrong);
 					    }
 					},
 		            thumbnails: {
@@ -2995,9 +3005,11 @@ var dyFInputs = {
 	    	filetypes:['jpeg', 'jpg', 'gif', 'png'],
 	    	afterUploadComplete : function(){
 	    		//alert("afterUploadComplete :: "+uploadObj.gotoUrl);
-		    	dyFObj.closeForm();
 				//alert( "image upload then goto : "+uploadObj.gotoUrl );
-	            urlCtrl.loadByHash( (uploadObj.gotoUrl) ? uploadObj.gotoUrl : location.hash );
+	            if(typeof urlCtrl != "undefined") {
+	            	dyFObj.closeForm();
+	            	urlCtrl.loadByHash( (uploadObj.gotoUrl) ? uploadObj.gotoUrl : location.hash );
+	            }
 		    }
     	}
     },
