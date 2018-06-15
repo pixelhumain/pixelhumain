@@ -23,6 +23,7 @@ return array(
 	"english" => "inglese", 
 	"spanish" => "spagnolo",
 	"italian" => "italiano",
+	"german" => "tedesco",
 	// ACTIONS
 	"Close" => "Chiudi",
 	"BACK" => "INDIETRO",
@@ -389,7 +390,7 @@ return array(
 	"Organizations" => "Organizzazioni",
 	"Projects" => "Progetti",
 	"Events" => "Eventi",
-	"Points of interest" => "luogi di interesse",
+	"Points of interest" => "Luogi di interesse",
 	"points of interest" => "luogi di interesse",
 	"cities"=>"città",
 	"Contact"=>"Contatto",
@@ -495,7 +496,7 @@ return array(
 	"<span class='text-red'>Territorial</span> search engine"=>"<span class='text-red'>Motoricerca</span> territoriale",
 	"Classified ads"=>"Annunci economici",
 	"<span class='text-red'>C</span>Ommon agenda"=>"Calendario <span class='text-red'>co</span>munale",
-	"<span class='text-red'>CO</span>mmon live"=>"Il <span class='text-red'>Gemein</span>same fil d'attualità",
+	"<span class='text-red'>CO</span>mmon live"=>"Vivere <span class='text-red'>CO</span>mune",
 	"Create a page"=>"Creare una pagina",
 	"Create a classified ad"=>"Inserisci un annuncio",
 	"Create an event"=>"Annunciare un evento",
@@ -509,7 +510,7 @@ return array(
 	//TITLE DIRECTORY ELEMENT
 	"is composed of"=>"è composto da",
 	"subevent"=>"sottoevento",
-	"takes part in"=>"partecipa",
+	"takes part in"=>"partecipa a",
 	"is member of"=> "è membro di",
 	"contributes to"=> "contribuisce a", 
 	"have been created by"=>"è stato creato da",
@@ -1285,7 +1286,7 @@ return array(
 	"Geographical filter" => "Filtro geografico",
 	"Theme filter" => "Filtro Tema",
 	"Sharing" => "Condivisione",
-	"In live" => "In tensione",
+	"In live" => "In tempo reale",
 	"Market place" => "Piazza del mercato",
 	"Documentation" => "Documentazione",
 	"An account is already registered with this email" => "Un account con questa e-mail è già registrato",
@@ -1299,7 +1300,7 @@ return array(
 	"Ressources" => "Risorse",
 	"Ressource" => "Risorsa",
 	"Recurring donation" => "Donazione regolare",
-	"pts , based on Links and Posts popularity" => "Punti basati sui link e la popolarità dei post",
+	"pts , based on Links and Posts popularity" => " Punti basati sui link e la popolarità dei post",
 	
 	"This email doesn't exist in our database. Do you want to create an account ?" => "Questa e-mail non esiste nel nostro database. Vuoi creare un account?",
 	"Open" => "Aprire",
@@ -1315,5 +1316,21 @@ return array(
 	"Add zone to news" => "Aggiungi zona alle notizie",
 	"Search on map" => "Cerca sulla mappa",	
 	
+	"Please wait while we fetch the information." => "Attendi mentre riprendiamo le informazioni",
+	"You don't find the city you want for" => "Non si trova la città desiderata",
+	"Edit informations" => "Modifica informazioni",
+	"Chat" => "Chat",
+	"New Channel" => "Nuovo chat room",
+	"Add a new channel" => "Aggiungere un nuovo chat room",
+	"Convert to Organization" => "Converti in organizzazione",
+	
+	"Invite people on" => "Invita le persone su",
+	"Invite members on" => "Invita i membri su",
+	"Invite contributors on" => "Invita i contributori su",
+	"Launch invitations" => "Invia inviti",
+	"What are you looking for" => "Cosa cerca",
+	"I don't like" => "Non mi piace",
+	"search by name or by #tag, ex: 'commun' or '#commun" => "ricerca per nome o per #tag, es: 'comune' o '#comunità'",
+		
 );
 ?>

@@ -892,6 +892,9 @@
   background-color: transparent;
 }
 .btn-directory-type{
+      width: 100%;
+    text-align: left;
+    background-color: white;
   padding-right: 15px !important;
   border-radius: 0px;
   border: 0px;
@@ -1020,4 +1023,5 @@
 }
 .headerSearchContainer{
   min-height: 30px;
+  margin-top:50px;
 }  

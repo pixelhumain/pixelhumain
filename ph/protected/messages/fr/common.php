@@ -493,6 +493,10 @@ return array(
 	"Invite people" => "Inviter des personnes",
 	"Invite members" => "Inviter des membres",
 	"Invite contributors" => "Inviter des contributeurs",
+	"Invite people on" => "Inviter des personnes sur",
+	"Invite members on" => "Inviter des membres sur",
+	"Invite contributors on" => "Inviter des contributeurs sur",
+	
 	"Invite people {what}" => "Inviter des personnes {what}",
 	"Invite {what} {where}" => "Inviter des {what} {where}",
 	"Not interested by the invitation" => "Pas intéressé(e) par l&rsquo;invitation",
@@ -524,6 +528,8 @@ return array(
 	"Edit this element"=>"Modifier cet élément",
 	"Uploaod files"=>"Ajouter des fichiers",
 	"Add bookmark"=>"Ajouter un bookmark",
+	"Start search by tags"=>"Commencer la recherche par mots-clés",
+	"Launch invitations"=> "Lancer les invitations",
 	// Menu Button - Top menu
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
@@ -534,6 +540,7 @@ return array(
 	"My notif<span class='hidden-md'>ication</span>s"=>"Mes notif<span class='hidden-md'>ication</span>s",
 	"Notif<span class='hidden-md'>ication</span>s"=>"Notif<span class='hidden-md'>ication</span>s",
 	"Search"=>"Rechercher",
+	"News feed"=>"Actualité",
 	"Classifieds"=>"Annonces",
 	"Agenda"=>"Agenda",
 	"Help"=>"Aide",
@@ -923,6 +930,12 @@ return array(
 	"Socials" => "Réseaux sociaux",
 	"Descriptions" => "Descriptions",
 	"Tags" => "Tags",
+	"Section" => "Section",
+	"Category" => "Catégorie",
+	"Subcategory" => "Sous-catégorie",
+	"Price" => "Prix",
+	"Type"=>"Type",
+	"Source data"=>"Source de donnée",
 
 	"Change password" => "Changer votre mot de passe",
 	"Download your profil" => "Télécharger votre profil",
@@ -1401,6 +1414,11 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Chat" => "Chat",
 	"New Channel" => "Nouveau canal",
 	"Add a new channel" => "Ajouter un nouveau canal",
-	"Convert to Organization" => "Convertir en organisation"
+	"Convert to Organization" => "Convertir en organisation",
+	"Add a name"=>"Ajouter un nom",
+	"Search to save"=>"Recherche à sauvegarder",
+	"Do you want to receive a mail alert of new items"=>"Voulez vous être averti par email des nouvelles annonces",
+	"Save this research as favorites and be alert"=>"Sauvegarder cette recherche dans vos favoris et être alerté-e",
+	"Name of the research"=> "Nom de la recherche",
 );
 ?>

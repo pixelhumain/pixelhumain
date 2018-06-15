@@ -514,9 +514,8 @@ jQuery(document).ready(function() {
         removeParametersWithoutReloading();
     <?php } ?>
     
-    //$(".box").hide();
-    Login.init();
-    //titleAnim();
+    if(!userConnected)
+        Login.init(); 
 
     $('.form-register #username').keyup(function(e) { 
         validateUserName();

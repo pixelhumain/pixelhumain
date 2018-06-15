@@ -17,7 +17,16 @@
  <?php  
  $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["parent"]."/default/view/page/trad/dir/..|translation/layout/empty"));
-    
+
+//tka todo : objective to not do this 
+//empty shouldnt carry all variables of all apps 
+$parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
+$me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+$communexion = CO2::getCommunexionCookies();
+        
+echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.initJs', 
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
+       
   $cssJs = array(
     '/js/api.js',
     
@@ -33,15 +42,37 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     '/plugins/toastr/toastr.js' , 
     '/plugins/toastr/toastr.min.css',
 
-    '/plugins/cryptoJS-v3.1.2/rollups/aes.js'
+    '/plugins/cryptoJS-v3.1.2/rollups/aes.js',
+
+
+
+'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
+'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
+'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
+
+
   );
   HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->request->baseUrl);
   
+  $cssJS = array(
+    '/js/dataHelpers.js',
+//tka refactor : should be loaded on demand
+    '/js/scopes/scopes.js',
+    '/js/default/globalsearch.js',
+    '/js/co.js',
+    '/js/default/index.js',
+    '/js/default/directory.js',
+    '/js/jquery.filter_input.js'
+  );
+
+  HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( Yii::app()->params["module"]["parent"] )->getAssetsUrl() );
+
   $cssJs = array(
     '/assets/css/CO2/CO2-boot.css',
     '/assets/css/CO2/CO2-color.css',
     '/assets/css/CO2/CO2.css',
     '/assets/css/plugins.css',
+    '/assets/css/default/dynForm.css',
   );
   HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->theme->baseUrl);
 
@@ -52,21 +83,26 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
   ?>
   
   <script type="text/javascript">
-  // **************************************
-  //THEME TEMPLATE : CO2 / EMPTY
-  // **************************************
-   var initT = new Object();
-   var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
-   var moduleId = "<?php echo $this->module->id?>";
-   debug = false;
+   // var initT = new Object();
+   // var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
+   // var moduleId = "<?php echo $this->module->id?>";
+   // debug = false;
    </script>
 </head>
 
 <body class="body">
+  <progress class="progressTop" max="100" value="20"></progress>   
+  <div id="mainMap">
+      <?php 
+      $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+      $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
+      $modulePath = ( @Yii::app()->params["module"]["parent"] ) ?  "../../".$parentModuleId."/views"  : "..";
+      $this->renderPartial( $layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"], array("modulePath"=>$modulePath )); ?>
+  </div>
   <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
 
 <?php 
-    $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+    
     $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
     $CO2DomainName = Yii::app()->params["CO2DomainName"];
     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
@@ -94,8 +130,7 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });
-
-      
+      themeObj.init();
   });
  
   function initNotifications(){

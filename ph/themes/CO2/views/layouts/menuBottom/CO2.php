@@ -135,10 +135,15 @@
         <i class="fa fa-map-marker"></i> 
         <span><?php echo Yii::t("common","Point of interest") ?></span>
     </a>
+    <?php 
+    if( Yii::app()->params['rocketchatMultiEnabled'] )
+    {
+    ?>
     <a href="javascript:;" data-form-type="chat" class="addBtnFoot addBtnFootChat addBtnFoot_orga addBtnFoot_project addBtnFoot_event btn-open-form btn btn-default bg-red-k margin-bottom-10"> 
         <i class="fa fa-comments"></i> 
         <span><?php echo Yii::t("common","Chat") ?></span>
     </a>
+    <?php } ?>
 </div>
 
 <script type="text/javascript">
@@ -204,7 +209,7 @@ function addBtnSwitch(){
     var fname = "<?php echo Yii::t("common", "as") ?> ";
     if ( contextData != null && contextData.type && inArray( contextData.type,[ "organizations","citoyens","events","projects" ] ) )
         fname += contextData.name;
-    else {
+    else if(userConnected) {
         fname += userConnected.name;
     }
 

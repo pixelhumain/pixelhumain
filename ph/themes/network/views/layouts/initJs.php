@@ -120,6 +120,107 @@ $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes']
         "classified" : "yellow"
     };
 
+    var searchObject={
+        text:"",
+        page:0,
+        indexMin:0,
+        indexStep:30,
+        count:true,
+        tags:[],
+        initType : "",
+        types:[],
+        countType:[],
+        locality:{}
+    };
+
+    var typeObj = {
+        addPhoto:{ titleClass : "bg-dark", color : "bg-dark" },
+        addFile:{ titleClass : "bg-dark", color : "bg-dark" },
+        person : { col : "citoyens" ,ctrl : "person",titleClass : "bg-yellow",bgClass : "bgPerson",color:"yellow",icon:"user",lbh : "#person.invite",   },
+        persons : { sameAs:"person" },
+        people : { sameAs:"person" },
+        citoyen : { sameAs:"person" },
+        citoyens : { sameAs:"person" },
+        
+        poi:{  col:"poi",ctrl:"poi",color:"green-poi", titleClass : "bg-green-poi", icon:"map-marker",
+            subTypes:["link" ,"tool","machine","software","rh","RessourceMaterielle","RessourceFinanciere",
+                   "ficheBlanche","geoJson","compostPickup","video","sharedLibrary","artPiece","recoveryCenter",
+                   "trash","history","something2See","funPlace","place","streetArts","openScene","stand","parking","other" ] },
+        
+        
+        siteurl:{ col:"siteurl",ctrl:"siteurl"},
+        organization : { col:"organizations", ctrl:"organization", icon : "group",titleClass : "bg-green",color:"green",bgClass : "bgOrga"},
+        organizations : {sameAs:"organization"},
+        LocalBusiness : {col:"organizations",color: "azure",icon: "industry"},
+        NGO : {sameAs:"organization", color:"green", icon:"users"},
+        Association : {sameAs:"organization", color:"green", icon: "group"},
+        GovernmentOrganization : {col:"organization", color: "red",icon: "university"},
+        Group : {   col:"organizations",color: "turq",icon: "circle-o"},
+        event : {col:"events",ctrl:"event",icon : "calendar",titleClass : "bg-orange", color:"orange",bgClass : "bgEvent"},
+        events : {sameAs:"event"},
+        project : {col:"projects",ctrl:"project",   icon : "lightbulb-o",color : "purple",titleClass : "bg-purple", bgClass : "bgProject"},
+        projects : {sameAs:"project"},
+        city : {sameAs:"cities"},
+        cities : {col:"cities",ctrl:"city", titleClass : "bg-red", icon : "university",color:"red"},
+        
+        entry : {   col:"surveys",  ctrl:"survey",  titleClass : "bg-dark",bgClass : "bgDDA",   icon : "gavel", color : "azure", 
+            saveUrl : baseUrl+"/" + moduleId + "/survey/saveSession"},
+        vote : {col:"actionRooms",ctrl:"survey"},
+        survey : {col:"proposals",ctrl:"proposal", color:"dark",icon:"hashtag", titleClass : "bg-turq" }, 
+        surveys : {sameAs:"survey"},
+        proposal : { col:"proposals", ctrl:"proposal", color:"dark",icon:"hashtag", titleClass : "bg-turq" }, 
+        proposals : { sameAs : "proposal" },
+        resolutions : { col:"resolutions", ctrl:"resolution", titleClass : "bg-turq", bgClass : "bgDDA", icon : "certificate", color : "turq" },
+        action : {col:"actions", ctrl:"action", titleClass : "bg-turq", bgClass : "bgDDA", icon : "cogs", color : "dark" },
+        actions : { sameAs : "action" },
+        actionRooms : {sameAs:"room"},
+        rooms : {sameAs:"room"},
+        room : {col:"rooms",ctrl:"room",color:"azure",icon:"connectdevelop",titleClass : "bg-turq"},
+        discuss : {col:"actionRooms",ctrl:"room"},
+
+        contactPoint : {col : "contact" , ctrl : "person",titleClass : "bg-blue",bgClass : "bgPerson",color:"blue",icon:"user", 
+            saveUrl : baseUrl+"/" + moduleId + "/element/saveContact"},
+        product:{ col:"products",ctrl:"product", titleClass : "bg-orange", color:"orange",  icon:"shopping-basket"},
+        products : {sameAs:"product"},
+        service:{ col:"services",ctrl:"service", titleClass : "bg-green", color:"green",    icon:"sun-o"},
+        services : {sameAs:"service"},
+        circuit:{ col:"circuits",ctrl:"circuit", titleClass : "bg-orange", color:"green",   icon:"ravelry"},
+        circuits : {sameAs:"circuit"},
+        
+        url : {col : "url" , ctrl : "url",titleClass : "bg-blue",bgClass : "bgPerson",color:"blue",icon:"user",saveUrl : baseUrl+"/" + moduleId + "/element/saveurl",   },
+        bookmark : {col : "bookmarks" , ctrl : "bookmark",titleClass : "bg-dark",bgClass : "bgPerson",color:"blue",icon:"bookmark"},
+        document : {col : "document" , ctrl : "document",titleClass : "bg-dark",bgClass : "bgPerson",color:"dark",icon:"upload",saveUrl : baseUrl+"/" + moduleId + "/element/savedocument", },
+        default : {icon:"arrow-circle-right",color:"dark"},
+        //"video" : {icon:"video-camera",color:"dark"},
+        formContact : { titleClass : "bg-yellow",bgClass : "bgPerson",color:"yellow",icon:"user", saveUrl : baseUrl+"/"+moduleId+"/app/sendmailformcontact"},
+        news : { col : "news", ctrl:"news", titleClass : "bg-dark", color:"dark",   icon:"newspaper-o"},
+        //news : { col : "news" }, 
+        config : { col:"config",color:"azure",icon:"cogs",titleClass : "bg-azure", title : tradDynForm.addconfig,
+                    sections : {
+                        network : { label: "Network Config",key:"network",icon:"map-marker"}
+                    }},
+        network : { col:"network",color:"azure",icon:"map-o",titleClass : "bg-turq"},
+        networks : {sameAs:"network"},
+        inputs : { color:"red",icon:"address-card-o",titleClass : "bg-phink", title : "All inputs"},
+        addAny : { color:"pink",icon:"plus",titleClass : "bg-phink",title : tradDynForm.wantToAddSomething,
+                    sections : {
+                        person : { label: trad["Invite your contacts"],key:"person",icon:"user"},
+                        organization : { label: trad.organization,key:"organization",icon:"group"},
+                        event : { label: trad.event,key:"event",icon:"calendar"},
+                        project : { label: trad.project ,key:"project",icon:"lightbulb-o"},
+                    }},
+        apps : { color:"pink",icon:"cubes",titleClass : "bg-phink",title : tradDynForm.appList,
+                    sections : {
+                        search : { label: "SEARCH",key:"#search",icon:"search fa-2x text-red"},
+                        agenda : { label: "AGENDA",key:"#agenda",icon:"group fa-2x text-red"},
+                        news : { label: "NEWS",key:"#news",icon:"newspaper-o fa-2x text-red"},
+                        classifieds : { label: "ANNONCEs",key:"#classifieds",icon:"bullhorn fa-2x text-red"},
+                        dda : { label: "DISCUSS DECIDE ACT" ,key:"#dda",icon:"gavel fa-2x text-red"},
+                        chat : { label: "CHAT" ,key:"#chat",icon:"comments fa-2x text-red"},
+                    }},
+        filter : { color:"azure",icon:"list",titleClass : "bg-turq",title : "Nouveau Filtre"}
+    };
+
     var directoryViewMode="block";
     var themeObj = {
         init : function(){

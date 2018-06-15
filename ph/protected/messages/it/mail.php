@@ -82,6 +82,16 @@
 		"PS: If the link does not work you can copy the address in your browser" => "PS: Se il collegamento non funziona, è possibile copiare l'indirizzo nel browser,",
 		"Mail sent from" => "Posta inviata da",
 		//"" => "" ,
+		"{who} added your contact in {where} on {website}" => "{who} ha aggiunto il proprio contatto in {where} sul {website}",
+		"Your email has been referenced on {website}" => "L'e-mail è stata referenziata su {website}",
+		"{who} indicated your email as contact on {what}" => "{who} ha indicato il proprio indirizzo e-mail come contatto su {what}",
+		"If you don't know Communecter, it is this territorial search engine and social network respectful of your data. In this open source website, every body can contribute and enrich common knowledge" => "Se non conosci Communecter. E' questo motore di ricerca territoriale e social network rispettoso dei tuoi dati.  In questo sito web open source, ogni organismo può contribuire e arricchire la conoscenza comune",
+		"If you do not have an account yet, come to discover this tools made for you and your community" => "Se non avete ancora un account utente, venite a scoprire questi strumenti creati per voi e per la vostra comunità",
+		"You will enjoy to communicate about the projects, the events of {what} in your territory. You will have the chance to express your needs and search actors around you. You will also be able to discuss and organize your community..." => "Vi divertirete a comunicare i progetti, gli eventi di {what} nel vostro territorio. Avrete la possibilità di esprimere le vostre esigenze e gli attori di ricerca intorno a voi. Potrete anche discutere nella vostra comunità e organizzarla...",
+		"And all of this into an <b>ethical</b> and <b>responsible</b> environment" => "E tutto questo in un ambiente <b>etico</b> e <b>responsabile</b>",
+		"Don't wait anymore and join us !!" => "Non aspetti più e unisciti a noi!!",
+		
+		"If the link doesn&apos;t work, you can copy it in your browser&apos;s address" => "Se il link non funziona, potete copiarlo nel vostro browser",
 		
 );
 ?> 

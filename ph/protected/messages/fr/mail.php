@@ -93,11 +93,11 @@
 		"{who} added your contact in {where} on {website}"=>"{who} a ajouté votre contact dans {where} sur {website}",
 		"Your email has been referenced on {website}"=>"Votre email a été référencé sur {website}",
 		"{who} indicated your email as contact on {what}"=>"{who} a indiqué votre email comme contact sur {what}",
-		"If you don't know Communecter, it is this territorial search engine and social network respectful of your data. In this open source website, every body can contribute and enrich common knowledge"=>"Si vous ne connaissez pas Communecter, c'est ce réseau social citoyen et local respectueux de vos données personnelles. Dans ce siteweb libre, chacun peut contribuer et enrichir la connaissance commune de nos territoires",
-		"If you do not have an account yet, come to discover this tools made for you and your community"=>"Si vous n'avez pas encore de compte, venez vite découvrir cet outil fait pour vous et votre communauté",
-		"You will enjoy to communicate about the projects, the events of {what} in your territory. You will have the chance to express your needs and search actors around you. You will also be able to discuss and organize your community..."=>"Vous pourrez profiter d'une communication efficace des projets et des événements de {what}. Vous aurez la possibilité d'exprimer vos besoins et rechercher des acteurs autour de vous. Vous pourrez même organiser et discuter avec votre communauté...",
-		"And all of this into an <b>ethical</b> and <b>responsible</b> environment"=>"Et tout cela dans un environnement <b>éthique</b> et <b>responsable</b>",
-		"Don't wait anymore and join us !!"=>"N'attendez plus une seconde et rejoignez nous !!",
+		"If you don't know Communecter, it is this territorial search engine and social network respectful of your data. In this open source website, every body can contribute and enrich common knowledge"=>"Si vous ne connaissez pas Communecter, c'est ce <b>réseau social citoyen et local</b> respectueux de vos données personnelles. Sur ce site web libre, chacun peut contribuer et enrichir la connaissance commune de nos territoires",
+		"If you do not have an account yet, come to discover this tools made for you and your community"=>"Si vous n'avez pas encore de compte, venez vite le découvrir. Cet outil est fait pour vous et votre communauté",
+		"You will enjoy to communicate about the projects, the events of {what} in your territory. You will have the chance to express your needs and search actors around you. You will also be able to discuss and organize your community..."=>"Vous pourrez dès créer des évènements et profiter des outils de communication pour faire connaître {what}. Vous aurez la possibilité d'exprimer vos besoins, et rechercher des acteurs autour de vous. Vous pourrez même discuter avec votre communauté et prendre des décisions ensemble.",
+		"And all of this into an <b>ethical</b> and <b>responsible</b> environment"=>"Et tout cela dans un environnement <b>éthique</b> et <b>responsable</b>.",
+		"Don't wait anymore and join us !!"=>"Ce réseau n'attends plus que vous !",
 
 		
 );

@@ -251,5 +251,15 @@
 	"buildingtools" => "Bauwerkzeuge",
 	"gardeningtools" => "Gartengeräte",
 	"medicalstuff" => "Sanitätsartikel",
+		
+	"Chat inside CO" => "Chat in CO",
+	"Chat outside CO" => "Chat außerhalb von CO",
+	"Channel Name" => "Name des Chatraums",
+	"Type of Chat ?" => "Art des Chats",
+	"Public channels can be searched and random people can join" => "Öffentliche Chaträume können durchsucht werden und zufällige Personen können beitreten",
+	"Private channels can only be viewed by it's members" => "Private Chaträume können nur von ihren Mitgliedern gesehen werden",
+	"public or private ?" => "öffentlich oder privat",
+	"Public" => "Öffentlich",
+	"Private" => "Privat",
 	);
 ?>
