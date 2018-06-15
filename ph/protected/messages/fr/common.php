@@ -1414,6 +1414,11 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Chat" => "Chat",
 	"New Channel" => "Nouveau canal",
 	"Add a new channel" => "Ajouter un nouveau canal",
-	"Convert to Organization" => "Convertir en organisation"
+	"Convert to Organization" => "Convertir en organisation",
+	"Add a name"=>"Ajouter un nom",
+	"Search to save"=>"Recherche à sauvegarder",
+	"Do you want to receive a mail alert of new items"=>"Voulez vous être averti par email des nouvelles annonces",
+	"Save this research as favorites and be alert"=>"Sauvegarder cette recherche dans vos favoris et être alerté-e",
+	"Name of the research"=> "Nom de la recherche",
 );
 ?>
