@@ -884,6 +884,7 @@ return array(
 	"Just a citizen wanting to give visibility to it :)" => "Juste un citoyen qui veut faire connaître cette organisation",
 	"What's your role inside this new organization ?" => "Quel est votre rôle dans cette organisation ?",
 	"Add an Organization" => "Ajouter une nouvelle organisation",
+	"Fill in your CV" => "Renseignez votre CV",
 	"Add a company" => "Ajouter une nouvelle entreprise",
 	"Add a Governemental Organization" => "Ajouter un nouveau service public",
 	"Add a governemental organization" => "Ajouter un nouveau service public",
