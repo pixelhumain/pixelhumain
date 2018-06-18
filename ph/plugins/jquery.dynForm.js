@@ -1994,14 +1994,7 @@ var dyFObj = {
 				        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
 				        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
 				    },
-				    finalizeChunks: function(id, responseParser) {
-						var lastChunkIdx = handler._getTotalChunks(id) - 1, xhr = handler._getXhr(id, lastChunkIdx);
-						if (responseParser) {
-							if (xhr == null) xhr = handler._getXhrs(id)[0]; // <- Added this row
-							return new qq.Promise().success(responseParser(xhr), xhr);
-						}
-						return new qq.Promise().success({}, xhr);
-					},
+				    
 		            callbacks: {
 		            	//when a img is selected
 					    onSubmit: function(id, fileName) {

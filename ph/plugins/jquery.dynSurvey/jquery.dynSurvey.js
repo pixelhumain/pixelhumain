@@ -114,8 +114,8 @@ onSave: (optional) overloads the generic saveProcess
     			}
 				var inc=1;
 				var secJsonSchema = sectionObj.dynForm.jsonSchema;
-				if( typeof secJsonSchema.beforeBuild == "function" )
-			        secJsonSchema.beforeBuild();
+				// if( typeof secJsonSchema.beforeBuild == "function" )
+			 //        secJsonSchema.beforeBuild();
 
 				$.each(sectionObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
 					if(fieldObj.rules)
@@ -198,6 +198,7 @@ onSave: (optional) overloads the generic saveProcess
 var dySObj = {
 	navBtnAction : false,
 	activeSection : 0,
+	activeSectionId : null,
 	//contains the structured survey by sections
 	survey : null,
 	surveys : {},
@@ -314,9 +315,19 @@ var dySObj = {
 	            	dySObj.activeSection =  context.toStep -1 ;
 					mylog.log("top wisard direct link",dySObj.activeSection);
 					$(".section"+dySObj.activeSection).removeClass("hide");	
+
 				}
 				dySObj.activeSection =  context.toStep -1 ;
 				dySObj.animateBar(dySObj.activeSection+1);
+				dySObj.activeSectionId = "#section"+(dySObj.activeSection+1);
+				dySObj.activeSectionKey = dySObj.surveys.sections["section"+(dySObj.activeSection+1)].key;
+
+				var sectionKey = "section"+(dySObj.activeSection+1);
+				mylog.warn("open Section ",dySObj.activeSectionKey,"activeSectionId", "section"+(dySObj.activeSection+1))
+				if( dySObj.surveys.sections[sectionKey].type == "dynForm" && 
+					typeof dySObj.surveys.sections[sectionKey].dynForm.jsonSchema.beforeBuild == "function" &&
+					typeof dySObj.surveys.json[ dySObj.activeSectionKey ].id == "undefined" )
+					dySObj.surveys.sections[sectionKey].dynForm.jsonSchema.beforeBuild();
             },
         });
         dySObj.animateBar();
@@ -340,7 +351,7 @@ var dySObj = {
 						dyFObj.elementObj = dySObj.surveys.sections[sec];
 		                $.each( dyFObj.elementObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
 		                    mylog.log(sectionKey+"."+field, $("#"+sec+" #"+field).val() );
-		                    if( fieldObj.inputType ){
+		                    if( fieldObj.inputType ) {
 		                        saveData[field] = {};
 		                        saveData[field] = $("#"+sec+" #"+field).val();
 		                    }
@@ -351,15 +362,16 @@ var dySObj = {
 		                dyFObj.saveElement(saveData, saveP.collection, saveP.ctrl,null, function(data) { 
 		                	mylog.warn("saved",data);
 
-		                	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
-							if( typeof secJsonSchema.afterSave == "function" )
-						        secJsonSchema.afterSave(function() { 
-						        	$("#"+sec).html("<h1>Form has been saved,<br/>to modify please go <a class='btn btn-xs btn-primary' href='"+baseUrl+"/co2/@"+data.afterSave[dySObj.surveys.sections[sec].key]["slug"]+"' target='_blank'>here</a> once you finished the survey</h1>");
-						        }); 
 		                	//alert("switch btn color to red to indicate, and disable form");
 		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
 		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
 		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.name;
+
+		                	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
+							if( typeof secJsonSchema.afterSave == "function" )
+					        secJsonSchema.afterSave( data, function() { 
+					        	$("#section"+dySObj.activeSection).html("<h1>Form has been saved,<br/>to modify please go <a class='btn btn-xs btn-primary' href='/ph/co2#@"+data.map.slug+"' target='_blank'>here</a> once you finished the survey</h1>");
+					        }); 
 		                });
 		                $('html, body').stop().animate({scrollTop: 0}, 500, '');
 					}
@@ -405,7 +417,7 @@ var dySObj = {
 	buildSurvey : function () {  
 		$("#surveyDesc").hide();
 	    mylog.log("buildSurvey sections: ",dySObj.surveys.sections);
-	    dySObj.survey = dySObj.surveys.sections;
+	    //dySObj.survey = dySObj.surveys.sections;
 	    var form = $.dynSurvey({
 	        surveyId : dySObj.surveyId,
 	        surveyObj : dySObj.surveys.sections,
@@ -634,7 +646,7 @@ var dySObj = {
 		mylog.log( "validateForm", sectionIndex, dySObj.surveyId );
 		var counter = 0;
 		var result = true;
-		$.each( dySObj.survey , function( sectionId ,sectionObj ) 
+		$.each( dySObj.surveys.sections , function( sectionId ,sectionObj ) 
 		{ 
 			mylog.log( "validateForm",sectionId, counter, sectionIndex );
 			if( counter == sectionIndex )
