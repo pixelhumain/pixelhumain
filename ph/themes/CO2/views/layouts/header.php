@@ -334,6 +334,7 @@
             if($(".menu-btn-scope-filter").hasClass("visible")){
                 showWhere(false);
             }else{
+
                 showWhere(true);
             }
         });
@@ -343,13 +344,14 @@
 
 
     function showWhere(show){
+        mylog.log("showWhere", show);
         if(show == false){
-            $(this).removeClass("visible");
+            $(".menu-btn-scope-filter").removeClass("visible");
             //$("#text-search-menu").hide();
             $("#filter-scopes-menu").hide(400);
             //headerHeightPos(true);
         }else{
-            $(this).addClass("visible");
+            $(".menu-btn-scope-filter").addClass("visible");
             $("#text-search-menu").hide();
             $("#filter-scopes-menu").show(400);
             headerHeightPos(true);
