@@ -30,10 +30,10 @@
     #filters-nav-list .dropdown .btn-news-type-filters {
         border:inherit;
     }
-    #filters-nav-list .dropdown .dropdown-menu:after{
+    /*#filters-nav-list .dropdown .dropdown-menu:after{
         width: inherit;
         right: inherit;
-    }
+    }*/
 </style>
 
 <?php 
@@ -202,7 +202,8 @@
                                         <div class="form-group filterstags col-md-12 col-sm-12 col-xs-12 no-margin no-padding">
                                             <input id="tagsFilterInput" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
                                         </div>
-                                        <button class="btn btn-success col-xs-12 margin-top-5 margin-bottom-5 btn-tags-start-search"><i class="fa fa-search"></i> <?php echo Yii::t("common", "Start search by tags") ?></button>
+                                        <button class="btn btn-success col-xs-5 col-xs-offset-1 margin-top-5 margin-bottom-5 btn-tags-start-search"><i class="fa fa-arrow-right"></i> <?php echo Yii::t("common", "Start search by tags") ?></button>
+                                        <button class="btn btn-danger col-xs-5 margin-top-5 margin-bottom-5 btn-tags-refresh"><i class="fa fa-refresh"></i> <?php echo Yii::t("common", "Refresh") ?></button>
                                          <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
                                         foreach ($filliaireCategories as $key => $cat) { 
                                             if(is_array($cat)) { ?>
