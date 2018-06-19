@@ -106,10 +106,13 @@
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
             </button> -->
-            <div class="col-sm-3 col-md-4 col-lg-4" style="">
+            <div class="col-sm-3 col-md-4 col-lg-4 margin-top-5" style="">
                 <input type="text" class="form-control pull-left" id="main-search-bar" placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
+                <span class="text-white input-group-addon pull-left" id="main-search-bar-addon">
+                    <i class="fa fa-arrow-circle-right"></i>
+                </span>
             </div>
-            <button class="btn hidden-xs pull-left menu-btn-scope-filter text-red"
+            <button class="btn hidden-xs pull-left menu-btn-scope-filter text-red elipsis"
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-map-marker"></i> <span class="header-label-scope"><?php echo Yii::t("common","where ?") ?></span>
             </button>

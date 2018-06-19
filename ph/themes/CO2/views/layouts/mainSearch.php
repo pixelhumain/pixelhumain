@@ -105,11 +105,7 @@
                                                     "placeholderMainSearch"=>"", //$placeholderMainSearch,
                                                     "type"=>@$type,
                                                     "me" => $me) );
-                if(@$_GET["city"]){
-                  $city = City::getById( $_GET["city"] );
-                  if(@$city["custom"] && $city["custom"]["bannerTpl"])
-                    $this->renderPartial( 'eco.views.custom.'.$city["custom"]["bannerTpl"] );
-                }
+                
 
             ?>
             <header>
