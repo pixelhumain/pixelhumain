@@ -506,7 +506,7 @@ var dyFObj = {
 	   	uploadObj.set();
 	    uploadObj.update = false;
 	},
-	editElement : function (type,id){
+	editElement : function (type,id, subType){
 		mylog.warn("--------------- editElement ",type,id);
 		//get ajax of the elemetn content
 		uploadObj.set(type,id);
@@ -529,7 +529,8 @@ var dyFObj = {
 				mylog.dir(data);
 				console.log("editElement", data);
 				dyFObj.elementData = data;
-				typeForm = (jsonHelper.notNull( "modules."+type+".form") ) ? type : dyFInputs.get(type).ctrl;
+				typeModules=(notNull(subType)) ? subType : type; 
+				typeForm = (jsonHelper.notNull( "modules."+typeModules+".form") ) ? typeModules : dyFInputs.get(typeModules).ctrl;
 				dyFObj.openForm( typeForm ,null, data.map);
 	        } else {
 	           toastr.error("something went wrong!! please try again.");
