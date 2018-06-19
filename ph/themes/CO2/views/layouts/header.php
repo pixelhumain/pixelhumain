@@ -30,6 +30,11 @@
     #filters-nav-list .dropdown .btn-news-type-filters {
         border:inherit;
     }
+    .dropdown-tags .btn-tags-start-search, .dropdown-tags  .btn-tags-refresh{
+        border-radius: 3px;
+        border: 1px solid #aaa;
+        padding-bottom: 9px !important;
+    }
     /*#filters-nav-list .dropdown .dropdown-menu:after{
         width: inherit;
         right: inherit;
@@ -140,7 +145,7 @@
                         <div id="text-search-menu" class="col-md-12 col-sm-12 col-xs-12 no-padding">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
                         </div>
-                        <div id="filter-scopes-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12" style="display: none;">
+                        <div id="filter-scopes-menu" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: none;">
                             <div id="scope-container" class="scope-menu no-padding">
                                 <div id="input-sec-search" class="col-xs-8 col-md-6 col-sm-6 col-lg-6">
                                     <div class="input-group shadow-input-header">
@@ -199,11 +204,13 @@
                                     <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownTags" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                                   title="<?php echo Yii::t("common","Tags") ?>" alt="<?php echo Yii::t("common","Tags") ?>"><?php echo Yii::t("common","Tags") ?> <i class="fa fa-angle-down"></i></a>
                                     <div class="dropdown-menu arrow_box" aria-labelledby="dropdownTags">
-                                        <div class="form-group filterstags col-md-12 col-sm-12 col-xs-12 no-margin no-padding">
-                                            <input id="tagsFilterInput" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
+                                        <div class="col-xs-12 no-padding margin-bottom-5">
+                                            <div class="form-group filterstags col-md-8 col-sm-8 col-xs-10 no-margin no-padding">
+                                                <input id="tagsFilterInput" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
+                                            </div>
+                                            <button class="btn btn-default letter-green col-md-2 col-sm-2 col-xs-1 btn-tags-start-search no-margin padding-10"><i class="fa fa-arrow-circle-right"></i> <span class="hidden-xs"><?php echo Yii::t("common", "Validate") ?></span></button>
+                                            <button class="btn btn-default letter-blue col-md-2 col-sm-2 btn-tags-refresh no-margin padding-10"><i class="fa fa-refresh"></i> <span class="hidden-xs"><?php echo Yii::t("common", "Refresh") ?></span></button>
                                         </div>
-                                        <button class="btn btn-success col-xs-5 col-xs-offset-1 margin-top-5 margin-bottom-5 btn-tags-start-search"><i class="fa fa-arrow-right"></i> <?php echo Yii::t("common", "Start search by tags") ?></button>
-                                        <button class="btn btn-danger col-xs-5 margin-top-5 margin-bottom-5 btn-tags-refresh"><i class="fa fa-refresh"></i> <?php echo Yii::t("common", "Refresh") ?></button>
                                          <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
                                         foreach ($filliaireCategories as $key => $cat) { 
                                             if(is_array($cat)) { ?>

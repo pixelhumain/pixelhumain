@@ -1421,5 +1421,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Do you want to receive a mail alert of new items"=>"Voulez vous être averti par email des nouvelles annonces",
 	"Save this research as favorites and be alert"=>"Sauvegarder cette recherche dans vos favoris et être alerté-e",
 	"Name of the research"=> "Nom de la recherche",
+	"Be alerted of new items"=>"Soyez avertis des nouveautés",
+	"Alert"=>"Alerte",
 );
 ?>
