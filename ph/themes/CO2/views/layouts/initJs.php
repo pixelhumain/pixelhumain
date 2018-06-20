@@ -335,7 +335,24 @@ var typeObj = {
                     }
                 });
             }
+            document.onmouseover = function() {
+                //User's mouse is inside the page.
+                window.innerDocClick = true;
+            }
+
+            document.onmouseleave = function() {
+                //User's mouse has left the page.
+                window.innerDocClick = false;
+            }
             window.onhashchange = function() {
+                if (!window.innerDocClick) {
+                    //Browser back button was clicked
+                    resetSearchObject();
+                    searchObject.text="",
+                    searchObject.tags=[];
+                    onchangeClick=true;
+                    console.log("reseeeeetObject search", searchObject);
+                }
                 mylog.warn("popstate history.state",history.state);
                 if( lastWindowUrl && "onhashchange" in window){
                     console.log("history",history);
