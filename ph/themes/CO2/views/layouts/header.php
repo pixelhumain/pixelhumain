@@ -233,6 +233,12 @@
                                     <div class="dropdown-menu arrow_box" aria-labelledby="dropdownTypes">
                                     </div>
                                 </li>
+                                <li class="dropdown dropdown-sources">
+                                    <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownSources" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
+                                  title="<?php echo Yii::t("common","Select a source of data") ?>" alt="<?php echo Yii::t("common","Select a source of data") ?>"><?php echo Yii::t("common","Source data") ?> <i class="fa fa-angle-down"></i></a>
+                                    <div class="dropdown-menu arrow_box" aria-labelledby="dropdownSources">
+                                    </div>
+                                </li>
                                 <li class="dropdown dropdown-section">
                                     <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownSection" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                                   title="<?php echo Yii::t("common","Choose a section") ?>" alt="<?php echo Yii::t("common","Choose a section") ?>"><?php echo Yii::t("common","Section") ?> <i class="fa fa-angle-down"></i></a>
@@ -255,7 +261,7 @@
                                     <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownPrice" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                                   title="<?php echo Yii::t("common","Range prices") ?>" alt="<?php echo Yii::t("common","Range prices") ?>"><?php echo Yii::t("common","Price") ?> <i class="fa fa-angle-down"></i></a>
                                     <div class="dropdown-menu arrow_box" aria-labelledby="dropdownPrice">
-                                         <div class="form-group col-md-4 col-sm-4 col-xs-6">
+                                         <div class="form-group col-md-4 col-sm-4 col-xs-6 divPriceMin">
                                             <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
                                               <i class="fa fa-angle-down"></i> <?php echo Yii::t("common","Min price") ?>
                                             </label>
@@ -263,7 +269,7 @@
                                                    placeholder="<?php echo Yii::t("common","Min price") ?>"/>
                                         </div>
 
-                                          <div class="form-group col-md-4 col-sm-4 col-xs-6">
+                                          <div class="form-group col-md-4 col-sm-4 col-xs-6 divPriceMax">
                                             <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
                                               <i class="fa fa-angle-down"></i> <?php echo Yii::t("common","Max price") ?>
                                             </label>
@@ -271,7 +277,7 @@
                                                    placeholder="<?php echo Yii::t("common","Max price") ?>"/>
                                           </div>
                                             
-                                          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+                                          <div class="form-group col-md-2 col-sm-2 col-xs-12 divMoney">
                                             <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
                                               <i class="fa fa-money"></i> <span class="hidden-xs hidden-sm"><?php echo Yii::t("common","Money"); ?></span>
                                             </label>
@@ -295,12 +301,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="dropdown dropdown-sources">
-                                    <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownSources" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
-                                  title="<?php echo Yii::t("common","Select a source of data") ?>" alt="<?php echo Yii::t("common","Select a source of data") ?>"><?php echo Yii::t("common","Source data") ?> <i class="fa fa-angle-down"></i></a>
-                                    <div class="dropdown-menu arrow_box" aria-labelledby="dropdownSources">
-                                    </div>
-                                </li>
+                                
                             </ul>
                         </div>
                     </div>
