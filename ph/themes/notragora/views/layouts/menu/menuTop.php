@@ -7,7 +7,7 @@
 	}
 
 	#poiSelectedHead {
-		font-size: 18px;
+		font-size: 16px;
 		height: 50px;
 		display : none;
 	}
@@ -133,7 +133,7 @@
 	<?php $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.'; ?>
 	<?php $this->renderPartial($layoutPath.'.menu.short_info_profil', array("me"=>$me)); ?>
 	<span class="btn-menu-top tooltips pull-right"  id="poiSelectedHead">
-		<span id="tagSelectedHead" class="text-red"></span> 
+		<span id="tagSelectedHead" class="" style="color : rgb(92,75,62)"></span> 
 		: <span id="countPoiHead" class="text-green"></span>
 		<button class="btn-menu-top tooltips text-red"  onclick="addItemsToSly()"
 				data-toggle="tooltip" data-placement="bottom" title="Supprimer le tag sélectionné" alt="Supprimer le tag sélectionné">
