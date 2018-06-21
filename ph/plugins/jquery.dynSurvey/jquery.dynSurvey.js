@@ -470,13 +470,21 @@ var dySObj = {
 	              dataType: "json"
 	            }).done( function(data){
 	            	if(data.result == true){
-	                	toastr.success("answers saved");
-	                	$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');
+	            		if( dySObj.surveys.parentSurvey && 
+	            			dySObj.surveys.parentSurvey.surveyType == "surveyList" && 
+	            			Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id) < Object.keys( dySObj.surveys.parentSurvey.scenario).length-1 ){
+	            			var ix = Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id)+1;
+	            			window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix];
+	            		} else {
+		                	toastr.success("answers saved");
+		                	if(dySObj.surveys.parentSurvey.endTpl)
+		                		window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id;
+		                	else
+		                		$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');
+		                }
 	            	}
 	                else 
-	                	toastr.success(data.result);
-	                
-	                
+	                	toastr.error(data.result);
 	            });
 
 	            //alert("final saved it all");
@@ -591,7 +599,6 @@ var dySObj = {
 	        }
 	        else 
 	            dyFObj.openForm( dySObj.surveys.scenario[key].json );
-
 	    }
 	    else if( dySObj.surveys.scenario[ key ].path ){
 

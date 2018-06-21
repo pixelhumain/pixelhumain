@@ -18,6 +18,21 @@
   border: 2px dashed transparent!important;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.btn-select-type-anc{
+  text-transform: uppercase;
+}
+.btn-select-type-anc, .btn-select-type-anc:hover, .btn-select-type-anc:active{
+  border-color: transparent;
+}
+#sub-menu-left .subsub .btn, #sub-menu-left .sourcesInterrop .btn, #sub-menu-left .sectionsFilters .btn {
+  text-transform: uppercase;
+  font-size:12px;
+  width: 95%;
+  text-align: right;
+  background-color: white;
+      font-weight: lighter !important;
+  border-color: white;
+}
 
 .btn-select-type-anc:hover, 
 .btn-select-type-anc.active, 
@@ -29,8 +44,37 @@
   border: 2px dashed #2BB0C6!important;
   background-color: white !important;
 }
-
-
+.btn-select-type-anc.dropDesign, .btn-select-category.dropDesign, .btn-select-section.dropDesign{
+  background-color: white !important;
+  color: #2C3E50;
+  border-radius: 0px !important;
+  max-width: inherit;
+  text-align: left;
+}
+.btn-select-type-anc.dropDesign, .btn-select-category.dropDesign, .btn-select-section.dropDesign{
+  border:transparent;
+}
+.keycat.dropDesign{
+  text-align: left;
+  max-width: 89%;
+}
+.btn-select-type-anc.dropDesign:hover, .btn-select-category.dropDesign:hover, .btn-select-section.dropDesign:hover,
+.btn-select-type-anc.dropDesign:focus,  .btn-select-category.dropDesign:focus, .btn-select-section.dropDesign:focus,
+.btn-select-type-anc.dropDesign.active:focus, .btn-select-category.dropDesign.active:focus, .btn-select-section.dropDesign.active:focus{
+  /*color:#2BB0C6 !important;
+  border: 2px dashed #2BB0C6!important;*/
+  background-color: #eee !important;
+  border: 0px !important;
+  font-weight: bold;
+  color:#2C3E50 !important;  
+}
+.btn-select-type-anc.dropDesign:active, .btn-select-category.dropDesign:active, .btn-select-section.dropDesign:active,
+.btn-select-type-anc.dropDesign:active:focus, .btn-select-category.dropDesign:active:hover, .btn-select-section.dropDesign:active:hover,
+.btn-select-type-anc.dropDesign.active, .btn-select-category.dropDesign.active, .btn-select-section.dropDesign.active{
+  color:#2BB0C6 !important;
+  border: 0px !important;
+  box-shadow: none;
+}
 
 #ajaxFormModal .btn-select-type-anc{
   background-color:white !important;

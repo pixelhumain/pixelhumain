@@ -19,10 +19,10 @@
         background-color: white;
     }
     #filters-nav-list .dropdown .dropdown-menu{
-        left: 5%;
-        width: 90%;
-        top: 135px;
-        position: fixed !important;
+        left: -2px;
+        /*width: 90%;*/
+        top: 40px;
+        position: absolute !important;
     }
     #filters-nav-list .dropdown .dropdown-menu:after, #filters-nav-list .dropdown .dropdown-menu:before{
         left: 5%;
@@ -30,10 +30,19 @@
     #filters-nav-list .dropdown .btn-news-type-filters {
         border:inherit;
     }
-    .dropdown-tags .btn-tags-start-search, .dropdown-tags  .btn-tags-refresh{
+    #filters-nav-list .dropdown .dropdown-menu{
+        max-height: 400px;
+        max-width: 700px;
+        min-width: 300px;
+        overflow-y: overlay;
+    }
+     #filters-nav-list .dropdown-tags .btn-tags-start-search,  #filters-nav-list .dropdown-tags  .btn-tags-refresh{
         border-radius: 3px;
         border: 1px solid #aaa;
         padding-bottom: 9px !important;
+    }
+    #filters-nav-list .dropdown-tags .dropdown-menu, #filters-nav-list .dropdown-price .dropdown-menu{
+        width: 600px;
     }
     /*#filters-nav-list .dropdown .dropdown-menu:after{
         width: inherit;
@@ -251,12 +260,6 @@
                                     <div class="dropdown-menu arrow_box" aria-labelledby="dropdownCategory">
                                     </div>
                                 </li>
-                                <li class="dropdown dropdown-subType">
-                                    <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownSubType" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
-                                  title="<?php echo Yii::t("common","Choose a subcategory") ?>" alt="<?php echo Yii::t("common","Choose a subcategory") ?>"><?php echo Yii::t("common","Subcategory") ?> <i class="fa fa-angle-down"></i></a>
-                                    <div class="dropdown-menu arrow_box" aria-labelledby="dropdownSubType">
-                                    </div>
-                                </li>
                                 <li class="dropdown dropdown-price">
                                     <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownPrice" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                                   title="<?php echo Yii::t("common","Range prices") ?>" alt="<?php echo Yii::t("common","Range prices") ?>"><?php echo Yii::t("common","Price") ?> <i class="fa fa-angle-down"></i></a>
@@ -276,7 +279,6 @@
                                             <input type="text" id="priceMax" name="priceMax" class="form-control col-md-5" 
                                                    placeholder="<?php echo Yii::t("common","Max price") ?>"/>
                                           </div>
-                                            
                                           <div class="form-group col-md-2 col-sm-2 col-xs-12 divMoney">
                                             <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
                                               <i class="fa fa-money"></i> <span class="hidden-xs hidden-sm"><?php echo Yii::t("common","Money"); ?></span>
@@ -291,9 +293,9 @@
                                               <?php } } ?>
                                             </select>
                                           </div>
-                                        <div class="form-group col-md-2 col-sm-2 col-xs-12 margin-top-10">
+                                        <div class="form-group col-md-12 col-sm-12 col-xs-12 margin-top-10 text-center">
                                         <button class="btn btn-link bg-white text-azure margin-top-15 btn-price-filter font-montserrat" data-key="reset" data-type="classifieds">
-                                            <i class="fa fa-refresh"></i>
+                                            <i class="fa fa-refresh"></i> <span class="hidden-xs hidden-sm"><?php echo Yii::t("common","Refresh") ?></span>
                                           </button>
                                           <button class="btn btn-link bg-azure margin-top-15 btn-price-filter font-montserrat" data-type="classifieds">
                                             <i class="fa fa-search"></i> <span class="hidden-xs hidden-sm"><?php echo Yii::t("common","Search") ?></span>
@@ -324,11 +326,11 @@
         initScopeMenu();
         $("#tagsFilterInput").select2({tags:[]});
         $(".tooltips").tooltip();
-        $("#filters-nav-list .dropdown .dropdown-toggle").click(function(){
+        /*$("#filters-nav-list .dropdown .dropdown-toggle").click(function(){
             offset=$(this).offset();
             $(this).parent().find(".dropdown-menu").css({"top":($("#affix-sub-menu").height()+$("#mainNav").height()+15)+"px"});
             addRule("#filters-nav-list .dropdown .dropdown-menu:after, #filters-nav-list .dropdown .dropdown-menu:before", "left:"+(offset.left-20)+"px !important");
-        });
+        });*/
         $(".btn-show-filters").click(function(){
             $("#filters-nav").show(200);
             headerHeightPos(true);
@@ -382,7 +384,7 @@
         getCommunexionLabel();
     }
     
-    (function ($) {
+    /*(function ($) {
         window.addRule = function (selector, styles, sheet) {
           if (typeof styles !== "string") {
             var clone = "";
@@ -403,5 +405,5 @@
             return this;
           };
         }
-  }(window.jQuery));
+  }(window.jQuery));*/
 </script>

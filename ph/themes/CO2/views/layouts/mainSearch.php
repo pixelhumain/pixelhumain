@@ -199,7 +199,6 @@
                 '/plugins/jquery-mentions-input-master/jquery.mentionsInput.css',
                 //'/js/cookie.js' ,
                 '/js/api.js',
-                
                 //'/plugins/animate.css/animate.min.css',
                 '/plugins/font-awesome/css/font-awesome.min.css',
                 //'/plugins/font-awesome-custom/css/font-awesome.css',
