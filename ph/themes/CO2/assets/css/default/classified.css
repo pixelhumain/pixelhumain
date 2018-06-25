@@ -44,23 +44,26 @@
   border: 2px dashed #2BB0C6!important;
   background-color: white !important;
 }
-.btn-select-type-anc.dropDesign, .btn-select-category.dropDesign, .btn-select-section.dropDesign{
+
+.btn-select-type-anc.dropDesign, .btn-select-category.dropDesign,
+.btn-select-section.dropDesign, .btn-select-source.dropDesign{
   background-color: white !important;
   color: #2C3E50;
   border-radius: 0px !important;
   max-width: inherit;
   text-align: left;
-}
-.btn-select-type-anc.dropDesign, .btn-select-category.dropDesign, .btn-select-section.dropDesign{
   border:transparent;
 }
 .keycat.dropDesign{
   text-align: left;
   max-width: 89%;
 }
-.btn-select-type-anc.dropDesign:hover, .btn-select-category.dropDesign:hover, .btn-select-section.dropDesign:hover,
-.btn-select-type-anc.dropDesign:focus,  .btn-select-category.dropDesign:focus, .btn-select-section.dropDesign:focus,
-.btn-select-type-anc.dropDesign.active:focus, .btn-select-category.dropDesign.active:focus, .btn-select-section.dropDesign.active:focus{
+.btn-select-type-anc.dropDesign:hover, .btn-select-category.dropDesign:hover, 
+.btn-select-section.dropDesign:hover, .btn-select-source.dropDesign:hover,
+.btn-select-type-anc.dropDesign:focus, .btn-select-category.dropDesign:focus, 
+.btn-select-section.dropDesign:focus,.btn-select-source.dropDesign:focus,
+.btn-select-type-anc.dropDesign.active:focus, .btn-select-category.dropDesign.active:focus,
+.btn-select-section.dropDesign.active:focus, .btn-select-source.dropDesign.active:focus{
   /*color:#2BB0C6 !important;
   border: 2px dashed #2BB0C6!important;*/
   background-color: #eee !important;
@@ -68,14 +71,21 @@
   font-weight: bold;
   color:#2C3E50 !important;  
 }
-.btn-select-type-anc.dropDesign:active, .btn-select-category.dropDesign:active, .btn-select-section.dropDesign:active,
-.btn-select-type-anc.dropDesign:active:focus, .btn-select-category.dropDesign:active:hover, .btn-select-section.dropDesign:active:hover,
-.btn-select-type-anc.dropDesign.active, .btn-select-category.dropDesign.active, .btn-select-section.dropDesign.active{
+.btn-select-type-anc.dropDesign:active, .btn-select-category.dropDesign:active,
+.btn-select-section.dropDesign:active, .btn-select-source.dropDesign:active, 
+.btn-news-type-filters.dropDesign:active,
+.btn-select-type-anc.dropDesign:active:focus, .btn-select-category.dropDesign:active:hover,
+.btn-select-section.dropDesign:active:hover, .btn-select-source.dropDesign:active:hover,
+.btn-news-type-filters.dropDesign:active:hover,
+.btn-select-type-anc.dropDesign.active, .btn-select-category.dropDesign.active,
+.btn-select-section.dropDesign.active, .btn-select-source.dropDesign.active{
   color:#2BB0C6 !important;
   border: 0px !important;
   box-shadow: none;
 }
-
+.btn-select-source.dropDesign img{
+  margin: -2px 5px 0px 5px;
+}
 #ajaxFormModal .btn-select-type-anc{
   background-color:white !important;
   color:#2BB0C6;
