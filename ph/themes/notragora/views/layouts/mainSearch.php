@@ -217,14 +217,14 @@
 	<?php
 	if(!isset($me))
 		$me="";
-	// $collectionsType=array(
-	// 	"Où sont les femmes ?",
-	// 	"Passeurs d'images",
-	// 	"MHMQ",
-	// 	"MIAA",
-	// 	"Portrait citoyens",
-	// 	"Parcours d'engagement"
-	// );
+	$collectionsType=array(
+		"Où sont les femmes ?",
+		"Passeurs d'images",
+		"MHMQ",
+		"MIAA",
+		"Portrait citoyens",
+		"Parcours d'engagement"
+	);
 
 	$genresType=array(
 		"Documentaire",
@@ -233,7 +233,7 @@
 		"Films outils",
 		"Films de commande"
 	);
-	$collectionsType = Lists::getListByName("collections");
+	//$collectionsType = Lists::getListByName("collections");
 	$topList = Poi::getPoiByTagsAndLimit();
 	if (empty($topList)) $emptyTop=true;
 	$this->renderPartial($layoutPath.'.menu.menuTop', array( "me" => $me , "topList" => $topList ));
