@@ -1669,9 +1669,9 @@ var dyFObj = {
 									"<span id='country_sumery_value'></span>"+
 								"</div>"+
 								"<hr class='col-md-12'>"+
-								"<center><button class='col-md-4 col-xs-4 btn btn-default' style='' type='text' id='btnValideAddress'>"+
+								"<center><a href='javascript:;' class='col-md-4 col-xs-4 btn btn-default' style='' type='text' id='btnValideAddress'>"+
 									tradDynForm.confirmAddress+
-								"</button></center>"+
+								"</a></center>"+
 							"</div>";
 
    //     		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
@@ -3349,13 +3349,12 @@ var dyFInputs = {
 		}
 		
 	},
-	formLocality :function(label, placeholder, rules) {
+	formLocality :function(label, placeholder) {
 		mylog.log("inputText ", inputObj);
 		var inputObj = {
 			label : label,
 	    	placeholder : ( notEmpty(placeholder) ? placeholder : "... " ),
-	        inputType : "formLocality",
-	        rules :  {}
+	        inputType : "formLocality"
 	    };
 
 		if(dyFObj.formInMap.countryList == null){

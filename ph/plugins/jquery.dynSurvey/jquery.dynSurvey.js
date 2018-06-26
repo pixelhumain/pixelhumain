@@ -661,14 +661,11 @@ var dySObj = {
 		mylog.log( "validateForm", sectionIndex, dySObj.surveyId );
 		var counter = 0;
 		var result = true;
-		$.each( dySObj.surveys.sections , function( sectionId ,sectionObj ) 
-		{ 
+		$.each( dySObj.surveys.sections , function( sectionId ,sectionObj ) { 
 			mylog.log( "validateForm",sectionId, counter, sectionIndex );
-			if( counter == sectionIndex )
-			{
+			if( counter == sectionIndex ){
 				mylog.dir(sectionObj.dynForm);
-				$.each(sectionObj.dynForm.jsonSchema.properties , function(field,fieldObj) 
-				{ 
+				$.each(sectionObj.dynForm.jsonSchema.properties , function(field,fieldObj) { 
 					if( fieldObj.rules ){
 						var res = $(dySObj.surveyId).validate().element("#"+field);
 						if(!res)
