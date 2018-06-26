@@ -362,7 +362,7 @@ var dySObj = {
 		                dyFObj.saveElement(saveData, saveP.collection, saveP.ctrl,null, function(data) { 
 		                	mylog.warn("saved",data);
 
-		                	alert("switch btn color to red to indicate, and disable form");
+		                	//alert("switch btn color to red to indicate, and disable form");
 		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
 		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
 		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.name;
@@ -370,7 +370,12 @@ var dySObj = {
 		                	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
 							if( typeof secJsonSchema.afterSave == "function" )
 					        	secJsonSchema.afterSave( data, function() { 
-						        	$("#section"+dySObj.activeSection).html("<h1>Form has been saved,<br/>to modify please go <a class='btn btn-xs btn-primary' href='/ph/co2#@"+data.map.slug+"' target='_blank'>here</a> once you finished the survey</h1>");
+						        	$("#section"+dySObj.activeSection).html(
+						        		"<h1>Form has been saved,<br/>"+
+						        		"to modify please go <a class='btn btn-xs btn-primary' href='/ph/co2#@"+data.map.slug+"' target='_blank'>here</a>"+
+						        		"once you finished the survey"+
+						        		"</h1>"+
+						        		"<button class='btn btn-primary' onclick='$(\'#section"+(dySObj.activeSection++)+"\').trigger(\'click'\)'>Next step</button>");
 						        }); 
 		                });
 		                $('html, body').stop().animate({scrollTop: 0}, 500, '');
