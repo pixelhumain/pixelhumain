@@ -1,63 +1,58 @@
 {
-    "name" : "",
-    "mode" : "server",
+    "name" : "notragora",
+    "dataSrc" : "http://www.notragora.com/api/poi/get/insee/59079/format/network",
     "skin" : {
-        "logo" : "http://animateurmultimedia.fr/partage/vege.jpg",
-        "title" : "Restaurants végé de La Réunion",
-        "shortDescription" : "Liste des restaurants végétariens et végétaliens de l'Île de la Réunion",
+        "logo" : false,
+        "title" : "Cartographie des productions sur Beuvrages",
         "displayScope" : false,
-        "docs": true,
         "displayCommunexion" : true,
-        "displayNotifications" : true,
         "profilBar" : false,
-        "breadcrum" : true,
         "displayButtonGridList" : false,
         "class" : {
             "mainContainer" : false
         },
         "iconeAdd" : false,
         "iconeSearchPlus" : false,
-        "loginTitle": "",
-        "front" : {
-            "organization" : false,
-            "project" : true,
-            "event" : true,
-            "community" : true,
-            "dda" : false,
-            "live" : false,
-            "search" : false,
-            "need" : true,
-            "poi" : true
-        },
-        "menu" : {
-            "aroundMe":false,
-            "connectLink":false,
-            "add":true,
-            "detail":true,
-            "news":true,
-            "directory":true,
-            "gallery":true
+        "loginTitle":"",
+        "geoShape" : true
+    },
+    "filter" : {
+     "types" : false,
+     "tags" : true, 
+     "paramsFiltre" : {
+        "conditionBlock" : "or",
+        "conditionTagsInBlock" : "and"
+     },
+     "linksTag" : {
+        "Se nourrir" : {
+            "tagParent" : "ensemble",
+            "background-color" : "#f5f5f5",
+            "image" : "Alimentation.png",
+            "tags" : {
+                "Amap" : "ensemble"
+            }
         }
+      }
     },
     "add" : {
-        "organization" : true
+        "organization" : true,
+        "project" : false,
+        "event" : true
     },
     "result" : {
-        "displayImage" : true,
+        "displayImage" : false,
         "displayType" : false,
         "fullLocality" : true,
-        "datesEvent" : false,
-        "displayShortDescription" : true
+        "datesEvent" : false
     },
     "request" : {
         "pagination" : 1000,
         "searchType" : [
-            "organizations"
+            "organizations",
+            "poi"
         ],
-        
-      
-    "searchTag" : ["végétarien", "vegetarien", "Végétarien", "Vegetarien", "vegan", "Vegan", "végétalien", "Végétalien"],
-    "searchLocalityREGION": ["La Réunion"],
-    "mainTag" : [""]
+        "searchLocalityINSEE" : [
+            "59079"
+        ]
     }
 }

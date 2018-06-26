@@ -339,6 +339,7 @@ var dySObj = {
 		{
 			if( dySObj.validateForm( dySObj.activeSection ) )
 			{
+				dySObj.goForward();
 				var sec = "section"+(dySObj.activeSection+1);
 				var sectionKey = dySObj.surveys.sections[sec].key;
 				if( dySObj.surveys.sections[sec].type == "dynForm")
@@ -660,14 +661,11 @@ var dySObj = {
 		mylog.log( "validateForm1", sectionIndex, dySObj.surveyId );
 		var counter = 0;
 		var result = true;
-		$.each( dySObj.surveys.sections , function( sectionId ,sectionObj ) 
-		{ 
-			mylog.log( "validateForm2",sectionId, counter, sectionIndex );
-			if( counter == sectionIndex )
-			{
-				mylog.log("sectionObj.dynForm",sectionObj.dynForm);
-				$.each(sectionObj.dynForm.jsonSchema.properties , function(field,fieldObj) 
-				{ 
+		$.each( dySObj.surveys.sections , function( sectionId ,sectionObj ) { 
+			mylog.log( "validateForm",sectionId, counter, sectionIndex );
+			if( counter == sectionIndex ){
+				mylog.dir(sectionObj.dynForm);
+				$.each(sectionObj.dynForm.jsonSchema.properties , function(field,fieldObj) { 
 					if( fieldObj.rules ){
 						var res = $(dySObj.surveyId).validate().element("#"+field);
 						if(!res)
@@ -679,5 +677,84 @@ var dySObj = {
 			counter++;
 		});
 		return result;
+	}, 
+	goForward : function (existedElementId, elementSlug, elementName){
+		var sec = "section"+(dySObj.activeSection+1);
+		var sectionKey = dySObj.surveys.sections[sec].key;
+		if( dySObj.surveys.sections[sec].type == "dynForm")
+		{
+			if( typeof dySObj.surveys.scenario[sectionKey].saveElement == "object" && existedElementId==null)
+			{
+				var  save = dySObj.surveys.scenario[dySObj.surveys.sections[sec].key].saveElement;
+				//alert("saveElement "+sectionKey);
+				saveData = {};
+				dyFObj.elementObj = dySObj.surveys.sections[sec];
+                $.each( dyFObj.elementObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
+                    mylog.log(sectionKey+"."+field, $("#"+sec+" #"+field).val() );
+                    if( fieldObj.inputType ) {
+                        saveData[field] = {};
+                        saveData[field] = $("#"+sec+" #"+field).val();
+                    }
+                });
+                mylog.dir(saveData);
+                var saveP = dySObj.surveys.scenario[sectionKey].saveElement;
+
+                dyFObj.saveElement(saveData, saveP.collection, saveP.ctrl,null, function(data) { 
+                	mylog.warn("saved",data);
+
+                	//alert("switch btn color to red to indicate, and disable form");
+                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
+                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
+                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.name;
+
+                	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
+					if( typeof secJsonSchema.afterSave == "function" )
+			        	secJsonSchema.afterSave( data, function() { 
+				        	$("#section"+dySObj.activeSection).html(
+				        		"<h1>Form has been saved,<br/>"+
+				        		"to modify please go <a class='btn btn-xs btn-primary' href='/ph/co2#@"+data.map.slug+"' target='_blank'>here</a>"+
+				        		"once you finished the survey"+
+				        		"</h1>"+
+				        		"<button class='btn btn-primary' onclick='$(\'#section"+(dySObj.activeSection++)+"\').trigger(\'click'\)'>Next step</button>");
+				        }); 
+                });
+			}else if(typeof dySObj.surveys.scenario[sectionKey].saveElement == "object" && notNull(existedElementId)){
+					dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
+                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = existedElementId;
+                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = elementName;
+
+                	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
+					if( typeof secJsonSchema.afterSave == "function" ){
+			        	var data={type: dySObj.surveys.sections[sec].key, id : existedElementId, name : elementName, slug: elementSlug };
+			        	//secJsonSchema.afterSave( data, function() { 
+				        	$("#section"+dySObj.activeSection).html(
+				        		"<h1>Form has been saved,<br/>"+
+				        		"to modify please go <a class='btn btn-xs btn-primary' href='/ph/co2#@"+elementSlug+"' target='_blank'>here</a>"+
+				        		"once you finished the survey"+
+				        		"</h1>"
+				        		/*"<button class='btn btn-primary' onclick='$(\'#section"+(dySObj.activeSection++)+"\').trigger(\'click'\)'>Next step</button>"*/);
+				        //}); 
+				    }
+			}
+			$('html, body').stop().animate({scrollTop: 0}, 500, '');
+		} 
+		/*else 
+		{
+			mylog.log ( "save "+sectionKey );
+			$.each( $("#"+sec+" textarea, #"+sec+" select, #"+sec+" input"),function(i,v){
+				mylog.log(i,$(v).attr("name"),$(v).val());
+				dySObj.surveys.answers[sectionKey][$(v).attr("name")] = $(v).val();
+			});
+		} */
+		$( ".section"+dySObj.activeSection ).addClass("hide");
+		dySObj.activeSection++;
+		mylog.log("btn-next",dySObj.activeSection);
+		$( ".section"+dySObj.activeSection ).removeClass("hide");
+		dySObj.navBtnAction = true;
+		wizardContent.smartWizard("goForward");
+		dySObj.navBtnAction = false;
+		dySObj.animateBar(dySObj.activeSection+1);
+		if( dySObj.surveys.sections["section"+dySObj.activeSection].onNext && jQuery.isFunction( dySObj.surveys.sections["section"+dySObj.activeSection].onNext ) )
+			dySObj.surveys.sections["section"+dySObj.activeSection].onNext();
 	}
 }
