@@ -89,6 +89,7 @@
             mentionsCollection = [],
             autocompleteItemCollection = {},
             inputBuffer = [],
+            isDeleted = false,
             currentDataQuery = '';
 
 	    //Mix the default setting with the users settings
@@ -140,13 +141,86 @@
         }
 
 	    //Updates the values of the main variables
-        function updateValues() {
+        function updateValues(initUpdate) {
             var syntaxMessage = getInputBoxValue(); //Get the actual value of the text area
-            _.each(mentionsCollection, function (mention) {
-                var textSyntax = settings.templates.mentionItemSyntax(mention);
-                syntaxMessage = syntaxMessage.replace(new RegExp(utils.regexpEncode(mention.value), 'g'), textSyntax);
-            });
+            var syntaxHtml= $.trim(elmInputBox.parent().find(".mentions > div").html());
+            syntaxHtml = syntaxHtml.replace(/<br>/g, ' '); //Replace the escape character for <br />
+            //syntaxHtml = syntaxHtml.replace(/ {2}/g, '&nbsp; ');
+            syntaxHtml = syntaxHtml.replace(/&nbsp; /g, '  ');
+            //console.log("que passso ici", syntaxHtml, "////////", syntaxMessage);
+            if(initUpdate==null){
+                var arrayToConstruct =syntaxHtml.split("<strong><span>");
+                var orderLabel=[];
+                var diffToMsg=0;
+                var compareHtml="";
+                var lastLabel="";
+                //console.log(arrayToConstruct);
+                $.each(arrayToConstruct, function(e,v){
+                    if(e > 0){
+                        mention=v.split("</span></strong>");
+                        //console.log(mention);
+                        posDif=syntaxMessage.indexOf(mention[0]);
 
+                        compareHtml=syntaxMessage.substring(posDif, syntaxMessage.length);
+                        if(lastLabel.length!=posDif)
+                           diffToMsg=lastLabel.length-posDif;
+                        lastLabel=lastLabel+mention[0]+mention[1];                       
+                        orderLabel.push({"value":mention[0], "diff": diffToMsg});
+                    }else{
+                        lastLabel=v;
+                        compareHtml=syntaxMessage;
+                    }
+                });
+                if(orderLabel.length!=mentionsCollection.length){
+                    $.each(mentionsCollection, function(e,v){
+                        inside=false;
+                        $.each(orderLabel, function(i,j){
+                            if(j.value==v.name)
+                                inside=true;
+                        });
+                        if(!inside)
+                            orderLabel.push({"value":v.name, "diff": diffToMsg});
+                    });
+                }
+                //console.log("order",orderLabel, "verif", mentionsCollection, compareHtml);
+                $.each(orderLabel, function(e,v){
+                    $.each(mentionsCollection, function(i,j){
+                        if(v.value == j.name){
+                            var textSyntax = settings.templates.mentionItemSyntax(mentionsCollection[i]);
+                            pos=syntaxHtml.indexOf("<strong><span>"+v.value+"</span></strong>");
+                            if(pos > -1){
+                                /*if(isDeleted){pos=pos+v.diff+1;isDeleted=false;};*/
+                                isDeleted=false;
+                                syntaxHtml = syntaxHtml.replace("<strong><span>"+v.value+"</span></strong>", textSyntax);
+                                firstPartString=syntaxMessage.substring(0, pos);
+                                stringToModify=syntaxMessage.substring(pos, syntaxMessage.length);
+                                //console.log("stringToModify",stringToModify);
+                                stringToModify=stringToModify.replace(v.value, textSyntax);
+                                syntaxMessage=firstPartString+stringToModify;
+                                //console.log("que passso ici", syntaxHtml, "////////", syntaxMessage);
+                            }else{
+                                pos=syntaxHtml.indexOf(" "+v.value+" ");
+                                syntaxHtml = syntaxHtml.replace("<strong><span>"+v.value+"</span></strong>", textSyntax);
+                                firstPartString=syntaxMessage.substring(0, pos);
+                                stringToModify=syntaxMessage.substring(pos, syntaxMessage.length);
+                                //console.log("stringToModify",stringToModify);
+                                stringToModify=stringToModify.replace(v.value, textSyntax);
+                                syntaxMessage=firstPartString+stringToModify;
+                            }
+                        }
+                    });
+                   
+                });
+            }else{
+                _.each(mentionsCollection, function (mention) {
+                    var textSyntax = settings.templates.mentionItemSyntax(mention);
+                    count=mention.count;
+                    while ( count > 0 ){
+                        syntaxMessage = syntaxMessage.replace("@"+mention.slug, textSyntax);
+                        count--;
+                    }
+                });
+            }
             var mentionText = utils.htmlEncode(syntaxMessage); //Encode the syntaxMessage
 
             _.each(mentionsCollection, function (mention) {
@@ -188,10 +262,15 @@
                 caretStart = elmInputBox[0].selectionStart,
                 shortestDistance = false,
                 bestLastIndex = false;
-
+                shortestDistanceHtml = false,
+                bestLastIndexHtml = false;
+            var currentHtml = elmInputBox.parent().find(".mentions > div").html();
+            //console.log("On select, first Message", getInputBoxValue);
             // Using a regex to figure out positions
             var regex = new RegExp("\\" + settings.triggerChar + currentDataQuery, "gi"),
                 regexMatch;
+            var regexHtml = new RegExp("\\" + settings.triggerChar + currentDataQuery, "gi"),
+                regexMatchHtml;
 
             while(regexMatch = regex.exec(currentMessage)) {
                 if (shortestDistance === false || Math.abs(regex.lastIndex - caretStart) < shortestDistance) {
@@ -199,18 +278,38 @@
                     bestLastIndex = regex.lastIndex;
                 }
             }
-
+             while(regexMatchHtml = regex.exec(currentHtml)) {
+                if (shortestDistanceHtml === false || Math.abs(regex.lastIndex - caretStart) < shortestDistanceHtml) {
+                    shortestDistanceHtml = Math.abs(regex.lastIndex - caretStart);
+                    bestLastIndexHtml = regex.lastIndex;
+                }
+            }
+        
             var startCaretPosition = bestLastIndex - currentDataQuery.length - 1; //Set the start caret position (right before the @)
             var currentCaretPosition = bestLastIndex; //Set the current caret position (right after the end of the "mention")
 
+            var startCaretPositionHtml = bestLastIndexHtml - currentDataQuery.length - 1; //Set the start caret position (right before the @)
+            var currentCaretPositionHtml = bestLastIndexHtml; //Set the current caret position (right after the end of the "mention")
 
             var start = currentMessage.substr(0, startCaretPosition);
             var end = currentMessage.substr(currentCaretPosition, currentMessage.length);
             var startEndIndex = (start + mention.value).length + 1;
 
+            var startHtml = currentHtml.substr(0, startCaretPositionHtml);
+            var endHtml = currentHtml.substr(currentCaretPositionHtml, currentHtml.length);
+            var startEndIndexHtml = (start + mention.value).length + 1;
+
             // See if there's the same mention in the list
-            if( !_.find(mentionsCollection, function (object) { return object.id == mention.id; }) ) {
-                mentionsCollection.push(mention);//Add the mention to mentionsColletions
+            if( !_.find(mentionsCollection, function (object) { 
+                if(object.id == mention.id){ 
+                    $.each(mentionsCollection, function(e,v){
+                        if(v.id == mention.id)
+                            mentionsCollection[e].count++;
+                    });
+                } 
+                return object.id == mention.id; }) ) {
+                    mention.count=1;
+                    mentionsCollection.push(mention);//Add the mention to mentionsColletions
             }
 
             // Cleaning before inserting the value, otherwise auto-complete would be triggered with "old" inputbuffer
@@ -220,8 +319,11 @@
 
             // Mentions and syntax message
             var updatedMessageText = start + mention.value + ' ' + end;
+            var updatedMessageHtml = startHtml +'<strong><span>'+ mention.value + '</span></strong> ' + endHtml;
             elmInputBox.val(updatedMessageText); //Set the value to the txt area
 	        elmInputBox.trigger('mention');
+            elmInputBox.parent().find(".mentions > div").html(updatedMessageHtml);
+            //console.log("Before send update value get value message", updatedMessageText);
             updateValues();
 
             // Set correct focus and selection
@@ -231,6 +333,7 @@
 
         //Gets the actual value of the text area without white spaces from the beginning and end of the value
         function getInputBoxValue() {
+            //return elmInputBox.parent().find(".mentions > div").html();
             return $.trim(elmInputBox.val());
         }
 
@@ -350,6 +453,7 @@
             //If the key pressed was the backspace
             if (e.keyCode === KEY.BACKSPACE) {
                 inputBuffer = inputBuffer.slice(0, -1 + inputBuffer.length); // Can't use splice, not available in IE
+                isDeleted=true;
                 return;
             }
 
@@ -547,8 +651,16 @@
             },
             update:function(mention){
                 mentionsCollection=mention;
-
-                updateValues();
+                updateValues(true);
+                text=elmInputBox.val();
+                $.each(mentionsCollection, function(e,v){
+                    count=v.count;
+                    while(count > 0){
+                        if(typeof v.slug != "undefined") text=text.replace("@"+v.slug, v.name);
+                        count--;
+                    }
+                });
+                elmInputBox.val(text);
             },
 	        //An async method which accepts a callback function and returns a value of the input field (including markup) as a first parameter of this function. This is the value you want to send to your server.
             val : function (callback) {
