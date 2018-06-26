@@ -1431,6 +1431,10 @@
       }
   </style>
   </head>
+<?php 
+  $logoUrl=(@$logo && !empty($logo)) ? $logo : Yii::app()->getRequest()->getBaseUrl(true).Yii::app()->params['logoUrl'] ;
+  $urlRedirect=(@$url && !empty($url)) ? $url : Yii::app()->getRequest()->getBaseUrl(true) ;
+?>
 <body style="min-width: 100%;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;margin: 0;padding: 0;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;text-align: left;line-height: 19px;font-size: 15px;width: 100% !important;">
 <table class="body" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;background: #f0f0f0;height: 100%;width: 100%;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;"><tr style="padding: 0;vertical-align: top;text-align: left;"><td class="center" align="center" valign="top" style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;border-collapse: collapse !important;"><center style="width: 100%;min-width: 580px;">
   <table class="container text-center" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: center;background: #fefefe;width: 580px;margin: 0 auto;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"><td style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;border-collapse: collapse !important;"> <!-- This container adds the grey gap at the top of the email -->
@@ -1456,7 +1460,7 @@
               <center style="width: 100%;min-width: 532px;">
                 <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>" align="center" class="text-center" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">
                 <!--http://localhost:8888/ph/images/logo-communecter.png-->
-                <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).Yii::app()->params['logoUrl'] ?>" class="swu-logo" alt="Logo Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 170px;max-width: 100%;clear: both;display: block;border: none;height: auto;padding: 15px 0px 0px 0px;">
+                <img src="<?php echo $logoUrl ?>" class="swu-logo" alt="Logo Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 170px;max-width: 100%;clear: both;display: block;border: none;height: auto;padding: 15px 0px 0px 0px;">
                 </a>
                </center>
                     </th>

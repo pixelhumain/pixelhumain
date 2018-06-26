@@ -18,7 +18,7 @@
 		//COMMON [FOOTER]
 		"If the link doesn&apos;t work, you can copy it in your browser&apos;s address"=> "Si le lien ne fonctionne pas vous pouvez le copier dans l&apos;adresse de votre navigateur",
 		"See you soon on" => "A tr&egrave;s bient&ocirc;t sur",
-		"The team of communecter"=> "L&apos;&eacute;quipe de Communecter",
+		"The team of {what}"=> "L&apos;&eacute;quipe de {what}",
 		"You can unsubscribe on mail received on turn off mail notication on your settings or you can choose parameters of mail notifications in the same space"=>"Vous pouvez vous d&eacute;sinscrire des mails reçu en d&eacute;sactivant les notifications par mail dans vos r&eacute;glages personnels ou vous pouvez r&eacute;gler les paramètres de notifications par mail au même lien",
 		"here" => "ici",
 		"Mail send from"=>"Mail envoy&eacute; depuis",
