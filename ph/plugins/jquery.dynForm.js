@@ -2747,9 +2747,13 @@ var dyFObj = {
 									"</a>" +
 								"</div>";
 						msg = "Verifiez si le contact est dans Communecter";
+					}else if(dySObj.surveys != null){
+						str +='<a href="javascript:;" onclick="dySObj.goForward(\''+id+'\',\''+addslashes(elem.name)+'\', \''+elem.slug+'\' );" class="btn btn-xs btn-danger col-xs-12 w50p text-left padding-5 margin-5">'+
+							"<span>"+ htmlIco +"</span> <span> " + elem.name+"</br>"+where+ "</span>"+
+						"</a>"; 
 					}else{
 						str += 	"<a target='_blank' href='#page.type."+ elem.type +".id."+ id +"' class='btn btn-xs btn-danger col-xs-12 w50p text-left padding-5 margin-5' style='height:42px' >"+
-								"<span>"+ htmlIco +"</span> <span> " + elem.name+"</br>"+where+ "</span>"
+								"<span>"+ htmlIco +"</span> <span> " + elem.name+"</br>"+where+ "</span>"+
 							"</a>";
 					}
 					//str += directory.lightPanelHtml(elem);  
@@ -5197,4 +5201,10 @@ var processUrl = {
 		content += '<div class="extracted_url padding-10">'+ inc_image +'</div>'+inputToSave;
 	    return content;
 	}
+}
+
+function addToSurvey(id, type){
+	//name = cotmp[id].name;
+	mylog.log("fillSurvey", id, type );
+	
 }
