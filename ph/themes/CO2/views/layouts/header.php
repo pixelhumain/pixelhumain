@@ -44,6 +44,10 @@
     #filters-nav-list .dropdown-tags .dropdown-menu, #filters-nav-list .dropdown-price .dropdown-menu{
         width: 600px;
     }
+    #filters-nav-list .dropdown{
+        display:none;
+        list-style: none;
+    }
     /*#filters-nav-list .dropdown .dropdown-menu:after{
         width: inherit;
         right: inherit;
