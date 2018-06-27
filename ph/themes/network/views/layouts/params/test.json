@@ -1,6 +1,5 @@
 {
-    "name" : "notragora",
-    "dataSrc" : "http://www.notragora.com/api/poi/get/insee/59079/format/network",
+    "name" : "Digital Réunion",
     "skin" : {
         "logo" : false,
         "title" : "Cartographie des productions sur Beuvrages",
@@ -13,8 +12,7 @@
         },
         "iconeAdd" : false,
         "iconeSearchPlus" : false,
-        "loginTitle":"",
-        "geoShape" : true
+        "loginTitle":""
     },
     "filter" : {
      "types" : false,
@@ -22,17 +20,7 @@
      "paramsFiltre" : {
         "conditionBlock" : "or",
         "conditionTagsInBlock" : "and"
-     },
-     "linksTag" : {
-        "Se nourrir" : {
-            "tagParent" : "ensemble",
-            "background-color" : "#f5f5f5",
-            "image" : "Alimentation.png",
-            "tags" : {
-                "Amap" : "ensemble"
-            }
-        }
-      }
+     }
     },
     "add" : {
         "organization" : true,
@@ -46,13 +34,12 @@
         "datesEvent" : false
     },
     "request" : {
-        "pagination" : 1000,
-        "searchType" : [
-            "organizations",
-            "poi"
+        "pagination" : 500,
+        "sourceKey" :[
+            "digitalreunion"
         ],
-        "searchLocalityINSEE" : [
-            "59079"
+        "searchType" : [
+            "organizations"
         ]
     }
 }
