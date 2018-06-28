@@ -708,3 +708,28 @@ function inMyContacts (type,id) {
 	}
 	return res;
 }
+
+
+
+
+
+/// ce trouve dans co/assets/default/index.js
+
+function showNotif(show){
+	if(typeof show == "undefined"){
+		if($("#notificationPanelSearch").css("display") == "none") show = true; 
+    	else show = false;
+    }
+
+    if(show){
+    	$('#notificationPanelSearch').show("fast");
+    	markAllAsSeen(false,"");
+    	refreshNotifications(userId,"citoyens","","menuTop");
+
+    }
+	else 	 $('#notificationPanelSearch').hide("fast");
+
+	
+	$("#dropdown-user, #dropdown-dda, .dropdownApps-menuTop").removeClass("open");
+    showFloopDrawer(false);
+}
