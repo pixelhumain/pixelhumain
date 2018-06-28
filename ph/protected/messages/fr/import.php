@@ -78,11 +78,11 @@ return array(
 	"You will need to select an source" => "Vous devez sélectionner une source",
 	"You will need to select an file" => "Vous devez sélectionner un fichier",
 	"You have already added this elements in the CSV column" => "Vous avez déja ajouté l'éléments de la colonne CSV",
-	"You have already add this elements in the mapping column" => "Vous avez déja ajouter l'éléments de la colonne du Mapping",
+	"You have already add this elements in the mapping column" => "Vous avez déja ajouter l'éléments de la colonne du mapping",
 	"You will need to add the Key" => "Vous devrez ajouter une Clé",
 	"You must make at least one data assignment" => "Vous devez faire au moins une assignation de données",
 	"You will need to add the elements in the mapping" => "Vous devez ajouter des éléments au mapping",
-	"You will need to select a file CSV or JSON" => "Vous devez sélectionner un fichier en CSV ou JSON",
+	"You will need to select a file CSV, JSON or XML" => "Vous devez sélectionner un fichier en CSV, JSON ou XML",
 	" element(s)" => " élément(s)",
 	"There is " => "Il y a ",
 	"Your mapping have been added" => "Votre mapping à bien été ajouté",
@@ -91,6 +91,10 @@ return array(
 	"Add" => "Ajouter",
 	"Fields mandatory" => "Champs obligatoire",
 	"Grap manually my mapping"  => "Saisir manuelle de mon mapping",
-	"Other" => "Autre"
+	"Other" => "Autre",
+	"Upload CSV, JSON or XML" => "Le format du fichier doit être en CSV, JSON ou XML",
+	"File (CSV, JSON, XML)" => "Fichier (CSV, JSON, XML)",
+	"You will need to fill field" => "Vous devrez remplir le champ",
+	"You can't to fill the source Other" => "Vous ne pouvez pas remplir le champ Autre"
 );
 ?>
