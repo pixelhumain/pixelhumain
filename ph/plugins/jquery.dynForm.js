@@ -506,7 +506,7 @@ var dyFObj = {
 	   	uploadObj.set();
 	    uploadObj.update = false;
 	},
-	editElement : function (type,id){
+	editElement : function (type,id, subType){
 		mylog.warn("--------------- editElement ",type,id);
 		//get ajax of the elemetn content
 		uploadObj.set(type,id);
@@ -529,7 +529,8 @@ var dyFObj = {
 				mylog.dir(data);
 				console.log("editElement", data);
 				dyFObj.elementData = data;
-				typeForm = (jsonHelper.notNull( "modules."+type+".form") ) ? type : dyFInputs.get(type).ctrl;
+				typeModules=(notNull(subType)) ? subType : type; 
+				typeForm = (jsonHelper.notNull( "modules."+typeModules+".form") ) ? typeModules : dyFInputs.get(typeModules).ctrl;
 				dyFObj.openForm( typeForm ,null, data.map);
 	        } else {
 	           toastr.error("something went wrong!! please try again.");
@@ -1615,70 +1616,63 @@ var dyFObj = {
         } else if ( fieldObj.inputType == "formLocality") {
         	mylog.log("build field "+field+">>>>>> formLocality");
        		
-        	fieldHTML += "<div class='form-group inline-block padding-15 form-in-map formLocality'>"+
-        					'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
-								'<i class="fa fa-chevron-down"></i> Pays' +
+        	fieldHTML += "<div class='form-group inline-block padding-15 form-in-map formLocality col-md-6'>"+
+        					'<label style="font-size: 13px;" class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+								'<i class="fa fa-chevron-down"></i> '+tradDynForm.country+
 				            '</label>'+
-							"<select class='form-group col-xs-12' name='newElement_country' id='newElement_country'>"+
-							"<option value=''>Choose a country</option>";
-							$.each(dyFObj.formInMap.countryList, function(key, v){
-								fieldHTML += "<option value='"+v.countryCode+"'>"+v.name+"</option>";
-							});
+							"<select class='form-group col-md-10 col-xs-12' name='newElement_country' id='newElement_country'>"+
+								"<option value=''>"+tradDynForm.chooseCountry+"</option>";
+								$.each(dyFObj.formInMap.countryList, function(key, v){
+									fieldHTML += "<option value='"+v.countryCode+"'>"+v.name+"</option>";
+								});
 				fieldHTML += "</select>"+
 							"<div id='divCity' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
-								'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
-									'<i class="fa fa-chevron-down"></i> Ville' +
-									"<div class='alert alert-warning' role='alert'><i class='fa fa-exclamation-triangle'></i> If a city doesn't exist on communecter, you have to write the full name to find the city </div>"+
-					            '</label>'+
-						  		"<input class='form-group col-md-12 col-xs-12' type='text' name='newElement_city' placeholder='Search a city, a town or a postal code'>"+
-								"<ul class='dropdown-menu col-md-12 col-xs-12' id='dropdown-newElement_locality-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
-									"<li><a href='javascript:' class='disabled'>Search a city, a town or a postal code</a></li>"+
+								'<label style="font-size: 13px;" class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+									'<i class="fa fa-chevron-down"></i> '+trad.city  +
+								'</label>'+
+						  		"<input autocomplete='off' class='form-group col-md-10 col-xs-12' type='text' name='newElement_city' placeholder='Search a city, a town or a postal code'>"+
+								"<ul class='dropdown-menu col-md-10 col-xs-12' id='dropdown-newElement_locality-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
+									"<li><a href='javascript:' class='disabled'>"+tradDynForm.searchACityATownOrAPostalCode +"</a></li>"+
 								"</ul>"+
 					  		"</div>"+
-					  		"<div id='divCP' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
-						  		"<input class='form-group col-md-12 col-xs-12' type='text' name='newElement_cp' placeholder='Add a postal code'>"+
-					  		"</div>"+
 							"<div id='divStreetAddress' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
-								'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
-									'<i class="fa fa-chevron-down"></i> Pays' +
+								'<label style="font-size: 13px;" class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+									'<i class="fa fa-chevron-down"></i> '+trad.streetFormInMap +
 					            '</label>'+
-								"<input class='form-group col-md-9 col-xs-9' type='text' style='margin-right:-3px;' name='newElement_street' placeholder='streetFormInMap'>"+
-								"<button class='col-md-3 col-xs-3 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></button>"+
+								"<input class='form-group col-md-9 col-xs-9'  autocomplete='off' type='text' style='margin-right:-3px;' name='newElement_street' placeholder='"+trad.streetFormInMap +"'>"+
+								"<button class='col-md-1 col-xs-1 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></button>"+
 							"</div>"+
 							"<div class='dropdown pull-left col-xs-12 no-padding'> "+
 						  		"<ul class='dropdown-menu' id='dropdown-newElement_streetAddress-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
-						  			"<li><a href='javascript:' class='disabled'>Currently researching</a></li>"+
+						  			"<li><a href='javascript:' class='disabled'>"+trad.currentlyresearching +"</a></li>"+
 						  		"</ul>"+
 							"</div>"+
 							"<div id='alertGeo' class='alert alert-warning col-xs-12 hidden' style='margin-bottom: 0px;'>"+
-							  "<strong>Warning!</strong> Do not forget to geolocate your address."+
-							"</div>"+
-							"<div id='sumery' class='text-dark col-xs-12 no-padding'>"+
-								"<h4>Address Summary : </h4>"+
+							  "<strong>Warning!</strong> "+tradDynForm.doNotForgetToGeolocateYourAddress+
+							"</div></div>"+
+							"<div id='sumery' class='text-dark col-md-6 col-xs-12 no-padding'>"+
+								"<h4 class='text-center'>"+tradDynForm.addressSummary +" : </h4>"+
 								"<div id='street_sumery' class='col-xs-12'>"+
-									"<span>streetFormInMap :</span>"+
+									"<span>"+trad.streetFormInMap +" :</span>"+
 									"<span id='street_sumery_value'></span>"+
 								"</div>"+
 								"<div id='cp_sumery' class='col-xs-12'>"+
-									"<span>Postal code :</span>"+
+									"<span>"+trad.postalCode +" :</span>"+
 									"<span id='cp_sumery_value'></span>"+
 								"</div>"+
 								"<div id='city_sumery' class='col-xs-12'>"+
-									"<span>City :</span>"+
+									"<span>"+trad.city +" :</span>"+
 									"<span id='city_sumery_value'></span>"+
 								"</div>"+
 								"<div id='country_sumery' class='col-xs-12'>"+
-									"<span>Country :</span>"+
+									"<span>"+tradDynForm.country +" :</span>"+
 									"<span id='country_sumery_value'></span>"+
 								"</div>"+
-								"<input type='hidden' name='newElement_insee'>"+
-								"<input type='hidden' name='newElement_lat'>"+
-								"<input type='hidden' name='newElement_lng'>"+
-								"<input type='hidden' name='newElement_dep'>"+
-								"<input type='hidden' name='newElement_region'>"+
 								"<hr class='col-md-12'>"+
-							"</div>"+
-						"</div>";
+								"<center><a href='javascript:;' class='col-md-4 col-xs-4 btn btn-default' style='' type='text' id='btnValideAddress'>"+
+									tradDynForm.confirmAddress+
+								"</a></center>"+
+							"</div>";
 
    //     		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
    //     		fieldHTML += '<select class="'+isSelect2+' '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px;" data-placeholder="'+placeholder+'">';
@@ -1994,14 +1988,7 @@ var dyFObj = {
 				        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
 				        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
 				    },
-				    finalizeChunks: function(id, responseParser) {
-						var lastChunkIdx = handler._getTotalChunks(id) - 1, xhr = handler._getXhr(id, lastChunkIdx);
-						if (responseParser) {
-							if (xhr == null) xhr = handler._getXhrs(id)[0]; // <- Added this row
-							return new qq.Promise().success(responseParser(xhr), xhr);
-						}
-						return new qq.Promise().success({}, xhr);
-					},
+				    
 		            callbacks: {
 		            	//when a img is selected
 					    onSubmit: function(id, fileName) {
@@ -2753,9 +2740,13 @@ var dyFObj = {
 									"</a>" +
 								"</div>";
 						msg = "Verifiez si le contact est dans Communecter";
+					}else if(dySObj.surveys != null){
+						str +='<a href="javascript:;" onclick="dySObj.goForward(\''+id+'\',\''+addslashes(elem.name)+'\', \''+elem.slug+'\' );" class="btn btn-xs btn-danger col-xs-12 w50p text-left padding-5 margin-5">'+
+							"<span>"+ htmlIco +"</span> <span> " + elem.name+"</br>"+where+ "</span>"+
+						"</a>"; 
 					}else{
 						str += 	"<a target='_blank' href='#page.type."+ elem.type +".id."+ id +"' class='btn btn-xs btn-danger col-xs-12 w50p text-left padding-5 margin-5' style='height:42px' >"+
-								"<span>"+ htmlIco +"</span> <span> " + elem.name+"</br>"+where+ "</span>"
+								"<span>"+ htmlIco +"</span> <span> " + elem.name+"</br>"+where+ "</span>"+
 							"</a>";
 					}
 					//str += directory.lightPanelHtml(elem);  
@@ -2808,13 +2799,12 @@ var dyFObj = {
 		bindActived : false,
 		init : function(){
 			mylog.log("forminmap showMarkerNewElement");
-		
-
 			mylog.log("formType", dyFObj.formInMap.formType);
-
-			if( notNull(currentUser) && notNull(currentUser.addressCountry) && dyFObj.formInMap.NE_country== "" ){
+			$(".locationBtn").addClass("hidden");
+			if ( typeof surveyCountry != "undefined" && surveyCountry != null && surveyCountry != ""){
+				dyFObj.formInMap.NE_country = surveyCountry;
+			} else if( notNull(currentUser) && notNull(currentUser.addressCountry) && dyFObj.formInMap.NE_country== "" ){
 				dyFObj.formInMap.NE_country = currentUser.addressCountry;
-				mylog.log("NE_country", dyFObj.formInMap.NE_country);
 			}
 
 			$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
@@ -2832,13 +2822,84 @@ var dyFObj = {
 			else
 				$("#divStreetAddress").removeClass("hidden");
 
-			$("#right_tool_map").removeClass("hidden-xs hidden-sm");
-			$("#right_tool_map_locality").removeClass("hidden");
-			$("#right_tool_map_search, #sub-menu-left").addClass("hidden");
-			$("#right_tool_map").removeClass("min");
+			dyFObj.formInMap.resumeLocality();
+
 			if(typeof networkJson == "undefined" || networkJson == null)
 				$("#mapLegende").addClass("hidden");
 			mylog.log("forminmap showMarkerNewElement END");
+		},
+		initVarNE : function(){
+			mylog.log("initVarNE");
+			dyFObj.formInMap.NE_insee = "";
+			dyFObj.formInMap.NE_lat = "";
+			dyFObj.formInMap.NE_lng = "";
+			dyFObj.formInMap.NE_city = "";
+			dyFObj.formInMap.NE_cp = "";
+			dyFObj.formInMap.NE_street = "";
+			dyFObj.formInMap.NE_country = "";
+			dyFObj.formInMap.NE_level4 = "";
+			dyFObj.formInMap.NE_level4Name = "";
+			dyFObj.formInMap.NE_level3 = "";
+			dyFObj.formInMap.NE_level3Name = "";
+			dyFObj.formInMap.NE_level2 = "";
+			dyFObj.formInMap.NE_level2Name = "";
+			dyFObj.formInMap.NE_level1 = "";
+			dyFObj.formInMap.NE_level1Name = "";
+			dyFObj.formInMap.NE_localityId = "";
+			dyFObj.formInMap.NE_betweenCP = false;
+
+			if ( typeof surveyCountry != "undefined" && surveyCountry != null && surveyCountry != ""){
+				dyFObj.formInMap.NE_country = surveyCountry;
+			} else if( notNull(currentUser) && notNull(currentUser.addressCountry) && dyFObj.formInMap.NE_country== "" ){
+				dyFObj.formInMap.NE_country = currentUser.addressCountry;
+			}
+		},
+		initDropdown : function(){
+			mylog.log("initDropdown");
+			$("#dropdown-newElement_cp-found").html("<li><a href='javascript:' class='disabled'>"+trad['Currently researching']+"</a></li>");
+			$("#dropdown-newElement_city-found").html("<li><a href='javascript:' class='disabled'>"+trad['Search a city, a town or a postal code'] +"</a></li>");
+		},
+		initHtml : function(){			
+			$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
+			$('[name="newElement_city"]').val("");
+			$('[name="newElement_street"]').val("");
+
+			$("#divStreetAddress").addClass("hidden");
+
+			if(dyFObj.formInMap.NE_country == ""){
+				$("#divCity").addClass("hidden");
+			}
+		},
+		resumeLocality : function(cancel){
+			if(dyFObj.formInMap.NE_street != ""){
+				$('#street_sumery_value').html(dyFObj.formInMap.NE_street );
+				$('#street_sumery').removeClass("hidden");
+			}else
+				$('#street_sumery').addClass("hidden");
+
+			if(dyFObj.formInMap.NE_cp != ""){
+				$('#cp_sumery_value').html(dyFObj.formInMap.NE_cp );
+				$('#cp_sumery').removeClass("hidden");
+			}else
+				$('#cp_sumery').addClass("hidden");
+
+			if(dyFObj.formInMap.NE_city != ""){
+				$('#city_sumery_value').html(dyFObj.formInMap.NE_city);
+				$('#city_sumery').removeClass("hidden");
+			}else
+				$('#city_sumery').addClass("hidden");
+
+			if(dyFObj.formInMap.NE_country != ""){
+				$('#country_sumery_value').html(dyFObj.formInMap.NE_country);
+				$('#country_sumery').removeClass("hidden");
+			}else
+				$('#country_sumery').addClass("hidden");
+
+
+			if(dyFObj.formInMap.NE_country != "" && dyFObj.formInMap.NE_city != ""){
+				$("#btnValideAddress").prop('disabled', false);
+			}else
+				$("#btnValideAddress").prop('disabled', true);
 		},
 		bindFormInMap : function(){
 			mylog.log("bindFormInMap");
@@ -2850,7 +2911,7 @@ var dyFObj = {
 				dyFObj.formInMap.NE_country = $('[name="newElement_country"]').val() ;
 				//dyFObj.formInMap.initHtml();
 				$("#country_sumery_value").html($('[name="newElement_country"]').val());
-				$("#newElement_btnValidateAddress").prop('disabled', true);
+				$("#btnValideAddress").prop('disabled', true);
 				$("#divStreetAddress").addClass("hidden");
 
 				dyFObj.formInMap.initDropdown();
@@ -2898,6 +2959,12 @@ var dyFObj = {
 			$('[name="newElement_street"]').keyup(function(){ 
 				dyFObj.formInMap.showWarningGeo( ( ( $('[name="newElement_street"]').val().length > 0 ) ? true : false ) );
 				dyFObj.formInMap.NE_street = $('[name="newElement_street"]').val().trim();
+				dyFObj.formInMap.resumeLocality();
+			});
+
+			// ---------------- newElement_streetAddress
+			$("#btnValideAddress").click(function(){
+				dyFObj.formInMap.valideLocality();
 			});
 
 		},
@@ -2969,9 +3036,10 @@ var dyFObj = {
 				dyFInputs.locationObj.addLocationToForm(locObj);
 			}
 			dyFObj.formInMap.initVarNE();
+			dyFObj.formInMap.resumeLocality();
 			dyFObj.formInMap.initHtml();
 
-		},	
+		},
 		// Pour effectuer une recherche a la Réunion avec Nominatim, il faut choisir le code de la France, pas celui de la Réunion
 		changeCountryForNominatim : function(country){
 			var codeCountry = {
@@ -3164,23 +3232,6 @@ var dyFObj = {
 						)
 				dyFObj.formInMap.NE_betweenCP = dyFObj.formInMap.saveCities[dyFObj.formInMap.NE_insee].betweenCP ;
 
-			//dyFObj.formInMap.initHtml();
-			
-			// Sig.markerFindPlace.setLatLng([data.data("lat"), data.data("lng")]);
-			// mylog.log("geoShape", inseeGeoSHapes);
-			// if(notEmpty(inseeGeoSHapes[dyFObj.formInMap.NE_insee])){
-			// 	var shape = inseeGeoSHapes[dyFObj.formInMap.NE_insee];
-			// 	shape = Sig.inversePolygon(shape);
-			// 	Sig.showPolygon(shape);
-			// 	setTimeout(function(){
-			// 		Sig.map.fitBounds(shape);
-			// 		Sig.map.invalidateSize();
-			// 	}, 1500);
-			// }else{
-			// 	setTimeout(function(){
-			// 		Sig.centerPopupMarker([dyFObj.formInMap.NE_lat, dyFObj.formInMap.NE_lng], 12);
-			// 	}, 2500);
-			// }
 			$("#dropdown-newElement_cp-found, #dropdown-newElement_city-found, #dropdown-newElement_streetAddress-found, #dropdown-newElement_locality-found").hide();
 			//dyFObj.formInMap.updateSummeryLocality(data);
 			mylog.log("dyFObj.formInMap.NE_betweenCP ", dyFObj.formInMap.NE_betweenCP );
@@ -3190,6 +3241,8 @@ var dyFObj = {
 				$("#divStreetAddress").addClass("hidden");
 			else
 				$("#divStreetAddress").removeClass("hidden");
+
+			dyFObj.formInMap.resumeLocality();
 		},
 		changeSelectCountrytim : function(){
 			mylog.log("changeSelectCountrytim", dyFObj.formInMap.NE_country);
@@ -3216,52 +3269,7 @@ var dyFObj = {
 		},
 		btnValideDisable : function(bool){
 			mylog.log("btnValideDisable");
-			$("#newElement_btnValidateAddress").prop('disabled', bool);
-		},
-		initVarNE : function(){
-			mylog.log("initVarNE");
-			dyFObj.formInMap.NE_insee = "";
-			dyFObj.formInMap.NE_lat = "";
-			dyFObj.formInMap.NE_lng = "";
-			dyFObj.formInMap.NE_city = "";
-			dyFObj.formInMap.NE_cp = "";
-			dyFObj.formInMap.NE_street = "";
-			dyFObj.formInMap.NE_country = "";
-			dyFObj.formInMap.NE_level4 = "";
-			dyFObj.formInMap.NE_level4Name = "";
-			dyFObj.formInMap.NE_level3 = "";
-			dyFObj.formInMap.NE_level3Name = "";
-			dyFObj.formInMap.NE_level2 = "";
-			dyFObj.formInMap.NE_level2Name = "";
-			dyFObj.formInMap.NE_level1 = "";
-			dyFObj.formInMap.NE_level1Name = "";
-			dyFObj.formInMap.NE_localityId = "";
-			dyFObj.formInMap.NE_betweenCP = false;
-		},
-		initDropdown : function(){
-			mylog.log("initDropdown");
-			$("#dropdown-newElement_cp-found").html("<li><a href='javascript:' class='disabled'>"+trad['Currently researching']+"</a></li>");
-			$("#dropdown-newElement_city-found").html("<li><a href='javascript:' class='disabled'>"+trad['Search a city, a town or a postal code'] +"</a></li>");
-		},
-		initHtml : function(){
-			mylog.log("initHtml");
-			var fieldsLocality = [	"insee", "lat", "lng", "city", "country", "cp", "street",
-									"level4", "level4Name", "level3", "level3Name", 
-									"level2", "level2Name", "level1", "level1Name" ] ;
-			$.each(fieldsLocality, function(key, value){
-				$('[name="newElement_'+value+'"]').val(formInMap["NE_"+value]);
-				if(value == "country")
-					$('#'+value+'_sumery_value').html(tradCountry[ formInMap["NE_"+value] ]);
-				else
-					$('#'+value+'_sumery_value').html(formInMap["NE_"+value]);
-
-				if(formInMap["NE_"+value] != "")
-					$('#'+value+'_sumery').removeClass("hidden");
-				else
-					$('#'+value+'_sumery').addClass("hidden");
-			});
-			if(formInMap.NE_betweenCP != false)
-				$("#divCP").removeClass("hidden");
+			$("#btnValideAddress").prop('disabled', bool);
 		}
 	},
 	
@@ -3345,13 +3353,12 @@ var dyFInputs = {
 		}
 		
 	},
-	formLocality :function(label, placeholder, rules) {
+	formLocality :function(label, placeholder) {
 		mylog.log("inputText ", inputObj);
 		var inputObj = {
 			label : label,
 	    	placeholder : ( notEmpty(placeholder) ? placeholder : "... " ),
-	        inputType : "formLocality",
-	        rules :  {}
+	        inputType : "formLocality"
 	    };
 
 		if(dyFObj.formInMap.countryList == null){
@@ -3372,7 +3379,6 @@ var dyFInputs = {
 	   
     	return inputObj;
     },
-
 	inputText :function(label, placeholder, rules, custom) { 
 		var inputObj = {
 			label : label,
@@ -5203,4 +5209,10 @@ var processUrl = {
 		content += '<div class="extracted_url padding-10">'+ inc_image +'</div>'+inputToSave;
 	    return content;
 	}
+}
+
+function addToSurvey(id, type){
+	//name = cotmp[id].name;
+	mylog.log("fillSurvey", id, type );
+	
 }

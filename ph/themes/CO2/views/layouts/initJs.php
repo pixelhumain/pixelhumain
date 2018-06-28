@@ -26,7 +26,7 @@
     var parentModuleUrl = "<?php echo ( @Yii::app()->params["module"]["parent"] )  ? Yii::app()->getModule( Yii::app()->params["module"]["parent"] )->getAssetsUrl() : Yii::app()->controller->module->assetsUrl ?>";
     var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
     var activeModuleId = "<?php echo $this->module->id?>";
-
+    var assetPath   = "<?php echo $this->module->assetsUrl; ?>";
     var modules = {
         //Configure here eco
         "classifieds":<?php echo json_encode( Classified::getConfig("classifieds") ) ?>,
@@ -139,7 +139,7 @@ var typeObj = {
 };
 
     
-
+    
     var currentScrollTop = 0;
     var isMapEnd = false;
 	//used in communecter.js dynforms
@@ -256,6 +256,7 @@ var typeObj = {
     var urlBackDocs = location.hash;
     var allReadyLoadWindow=false;
     var navInSlug=false;
+    var historyReplace=false;
     var searchObject={
         text:"",
         page:0,
@@ -336,7 +337,24 @@ var typeObj = {
                     }
                 });
             }
+            document.onmouseover = function() {
+                //User's mouse is inside the page.
+                window.innerDocClick = true;
+            }
+
+            document.onmouseleave = function() {
+                //User's mouse has left the page.
+                window.innerDocClick = false;
+            }
             window.onhashchange = function() {
+                if (!window.innerDocClick) {
+                    //Browser back button was clicked
+                    resetSearchObject();
+                    searchObject.text="",
+                    searchObject.tags=[];
+                    onchangeClick=true;
+                    console.log("reseeeeetObject search", searchObject);
+                }
                 mylog.warn("popstate history.state",history.state);
                 if( lastWindowUrl && "onhashchange" in window){
                     console.log("history",history);
@@ -409,7 +427,7 @@ var typeObj = {
         blockUi : {
             processingMsg :'<div class="lds-css ng-scope">'+
                     '<div style="width:100%;height:100%" class="lds-dual-ring">'+
-                        '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="" height=80>'+
+                        '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="loadingPageImg" height=80>'+
                         '<div></div>'+
                         '<div></div>'+
                     '</div>'+

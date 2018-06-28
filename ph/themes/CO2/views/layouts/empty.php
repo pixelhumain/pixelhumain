@@ -28,6 +28,7 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     '/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.css',
     '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' ,
     '/plugins/blockUI/jquery.blockUI.js' ,
+    '/plugins/jquery-cookie/jquery.cookie.js' ,
     
     '/plugins/font-awesome/css/font-awesome.min.css',
     '/plugins/toastr/toastr.js' , 
@@ -42,9 +43,15 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     '/assets/css/CO2/CO2-color.css',
     '/assets/css/CO2/CO2.css',
     '/assets/css/plugins.css',
+    '/assets/css/default/dynForm.css',
+    '/assets/css/freelancer.css',
   );
   HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->theme->baseUrl);
 
+  $cssAnsScriptFilesModule = array( 
+    '/assets/js/coController.js',
+  );
+  HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
   
   $cs = Yii::app()->getClientScript();
@@ -78,7 +85,7 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
                                     "type"=>@$type,
                                     "me" => $me) );
 
-
+     $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) );
     echo $content; ?> 
 </div>
 

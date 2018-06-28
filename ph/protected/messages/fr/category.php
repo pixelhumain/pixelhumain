@@ -121,6 +121,12 @@
         "Spectacle"=>"Spectacle",
         "Sport"=>"Sport",
         "Transport-Logistic"=>"Transport / Logistique",
+        // JOB CATEGORY
+        "Training"=>"Formation",
+        "Jobs offers"=>"Offres d'emploi",
+        "Internship"=>"Stage",
+        "I am looking for"=>"Je recherche",
+        "I recruit"=>"Je recrute",
 
         //POI
         "Link, Url"=>"Lien, Url",

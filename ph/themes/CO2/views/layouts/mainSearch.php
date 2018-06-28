@@ -105,11 +105,7 @@
                                                     "placeholderMainSearch"=>"", //$placeholderMainSearch,
                                                     "type"=>@$type,
                                                     "me" => $me) );
-                if(@$_GET["city"]){
-                  $city = City::getById( $_GET["city"] );
-                  if(@$city["custom"] && $city["custom"]["bannerTpl"])
-                    $this->renderPartial( 'eco.views.custom.'.$city["custom"]["bannerTpl"] );
-                }
+                
 
             ?>
             <header>
@@ -203,7 +199,6 @@
                 '/plugins/jquery-mentions-input-master/jquery.mentionsInput.css',
                 //'/js/cookie.js' ,
                 '/js/api.js',
-                
                 //'/plugins/animate.css/animate.min.css',
                 '/plugins/font-awesome/css/font-awesome.min.css',
                 //'/plugins/font-awesome-custom/css/font-awesome.css',

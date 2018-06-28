@@ -19,10 +19,10 @@
         background-color: white;
     }
     #filters-nav-list .dropdown .dropdown-menu{
-        left: 5%;
-        width: 90%;
-        top: 135px;
-        position: fixed !important;
+        left: -2px;
+        /*width: 90%;*/
+        top: 40px;
+        position: absolute !important;
     }
     #filters-nav-list .dropdown .dropdown-menu:after, #filters-nav-list .dropdown .dropdown-menu:before{
         left: 5%;
@@ -30,10 +30,28 @@
     #filters-nav-list .dropdown .btn-news-type-filters {
         border:inherit;
     }
-    #filters-nav-list .dropdown .dropdown-menu:after{
+    #filters-nav-list .dropdown .dropdown-menu{
+        max-height: 400px;
+        max-width: 700px;
+        min-width: 300px;
+        overflow-y: overlay;
+    }
+     #filters-nav-list .dropdown-tags .btn-tags-start-search,  #filters-nav-list .dropdown-tags  .btn-tags-refresh{
+        border-radius: 3px;
+        border: 1px solid #aaa;
+        padding-bottom: 9px !important;
+    }
+    #filters-nav-list .dropdown-tags .dropdown-menu, #filters-nav-list .dropdown-price .dropdown-menu{
+        width: 600px;
+    }
+    #filters-nav-list .dropdown{
+        display:none;
+        list-style: none;
+    }
+    /*#filters-nav-list .dropdown .dropdown-menu:after{
         width: inherit;
         right: inherit;
-    }
+    }*/
 </style>
 
 <?php 
@@ -140,7 +158,7 @@
                         <div id="text-search-menu" class="col-md-12 col-sm-12 col-xs-12 no-padding">
                                 <input type="text" class="form-control" id="main-search-bar" placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
                         </div>
-                        <div id="filter-scopes-menu" class="col-lg-10 col-md-12 col-sm-12 col-xs-12" style="display: none;">
+                        <div id="filter-scopes-menu" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: none;">
                             <div id="scope-container" class="scope-menu no-padding">
                                 <div id="input-sec-search" class="col-xs-8 col-md-6 col-sm-6 col-lg-6">
                                     <div class="input-group shadow-input-header">
@@ -199,10 +217,13 @@
                                     <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownTags" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                                   title="<?php echo Yii::t("common","Tags") ?>" alt="<?php echo Yii::t("common","Tags") ?>"><?php echo Yii::t("common","Tags") ?> <i class="fa fa-angle-down"></i></a>
                                     <div class="dropdown-menu arrow_box" aria-labelledby="dropdownTags">
-                                        <div class="form-group filterstags col-md-12 col-sm-12 col-xs-12 no-margin no-padding">
-                                            <input id="tagsFilterInput" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
+                                        <div class="col-xs-12 no-padding margin-bottom-5">
+                                            <div class="form-group filterstags col-md-8 col-sm-8 col-xs-10 no-margin no-padding">
+                                                <input id="tagsFilterInput" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
+                                            </div>
+                                            <button class="btn btn-default letter-green col-md-2 col-sm-2 col-xs-1 btn-tags-start-search no-margin padding-10"><i class="fa fa-arrow-circle-right"></i> <span class="hidden-xs"><?php echo Yii::t("common", "Validate") ?></span></button>
+                                            <button class="btn btn-default letter-blue col-md-2 col-sm-2 btn-tags-refresh no-margin padding-10"><i class="fa fa-refresh"></i> <span class="hidden-xs"><?php echo Yii::t("common", "Refresh") ?></span></button>
                                         </div>
-                                        <button class="btn btn-success col-xs-12 margin-top-5 margin-bottom-5 btn-tags-start-search"><i class="fa fa-search"></i> <?php echo Yii::t("common", "Start search by tags") ?></button>
                                          <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
                                         foreach ($filliaireCategories as $key => $cat) { 
                                             if(is_array($cat)) { ?>
@@ -225,6 +246,12 @@
                                     <div class="dropdown-menu arrow_box" aria-labelledby="dropdownTypes">
                                     </div>
                                 </li>
+                                <li class="dropdown dropdown-sources">
+                                    <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownSources" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
+                                  title="<?php echo Yii::t("common","Select a source of data") ?>" alt="<?php echo Yii::t("common","Select a source of data") ?>"><?php echo Yii::t("common","Source data") ?> <i class="fa fa-angle-down"></i></a>
+                                    <div class="dropdown-menu arrow_box" aria-labelledby="dropdownSources">
+                                    </div>
+                                </li>
                                 <li class="dropdown dropdown-section">
                                     <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownSection" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                                   title="<?php echo Yii::t("common","Choose a section") ?>" alt="<?php echo Yii::t("common","Choose a section") ?>"><?php echo Yii::t("common","Section") ?> <i class="fa fa-angle-down"></i></a>
@@ -237,17 +264,11 @@
                                     <div class="dropdown-menu arrow_box" aria-labelledby="dropdownCategory">
                                     </div>
                                 </li>
-                                <li class="dropdown dropdown-subType">
-                                    <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownSubType" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
-                                  title="<?php echo Yii::t("common","Choose a subcategory") ?>" alt="<?php echo Yii::t("common","Choose a subcategory") ?>"><?php echo Yii::t("common","Subcategory") ?> <i class="fa fa-angle-down"></i></a>
-                                    <div class="dropdown-menu arrow_box" aria-labelledby="dropdownSubType">
-                                    </div>
-                                </li>
                                 <li class="dropdown dropdown-price">
                                     <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownPrice" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                                   title="<?php echo Yii::t("common","Range prices") ?>" alt="<?php echo Yii::t("common","Range prices") ?>"><?php echo Yii::t("common","Price") ?> <i class="fa fa-angle-down"></i></a>
                                     <div class="dropdown-menu arrow_box" aria-labelledby="dropdownPrice">
-                                         <div class="form-group col-md-4 col-sm-4 col-xs-6">
+                                         <div class="form-group col-md-4 col-sm-4 col-xs-6 divPriceMin">
                                             <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
                                               <i class="fa fa-angle-down"></i> <?php echo Yii::t("common","Min price") ?>
                                             </label>
@@ -255,15 +276,14 @@
                                                    placeholder="<?php echo Yii::t("common","Min price") ?>"/>
                                         </div>
 
-                                          <div class="form-group col-md-4 col-sm-4 col-xs-6">
+                                          <div class="form-group col-md-4 col-sm-4 col-xs-6 divPriceMax">
                                             <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
-                                              <i class="fa fa-angle-down"></i> <?php echo Yii::t("common","Max price") ?>
+                                                <i class="fa fa-angle-down"></i>
+                                                <?php echo Yii::t("common","Max price") ?>
                                             </label>
-                                            <input type="text" id="priceMax" name="priceMax" class="form-control col-md-5" 
-                                                   placeholder="<?php echo Yii::t("common","Max price") ?>"/>
+                                            <input type="text" id="priceMax" name="priceMax" class="form-control col-md-5" placeholder="<?php echo Yii::t("common","Max price") ?>"/>
                                           </div>
-                                            
-                                          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+                                          <div class="form-group col-md-2 col-sm-2 col-xs-12 divMoney">
                                             <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
                                               <i class="fa fa-money"></i> <span class="hidden-xs hidden-sm"><?php echo Yii::t("common","Money"); ?></span>
                                             </label>
@@ -277,9 +297,9 @@
                                               <?php } } ?>
                                             </select>
                                           </div>
-                                        <div class="form-group col-md-2 col-sm-2 col-xs-12 margin-top-10">
+                                        <div class="form-group col-md-12 col-sm-12 col-xs-12 margin-top-10 text-center">
                                         <button class="btn btn-link bg-white text-azure margin-top-15 btn-price-filter font-montserrat" data-key="reset" data-type="classifieds">
-                                            <i class="fa fa-refresh"></i>
+                                            <i class="fa fa-refresh"></i> <span class="hidden-xs hidden-sm"><?php echo Yii::t("common","Refresh") ?></span>
                                           </button>
                                           <button class="btn btn-link bg-azure margin-top-15 btn-price-filter font-montserrat" data-type="classifieds">
                                             <i class="fa fa-search"></i> <span class="hidden-xs hidden-sm"><?php echo Yii::t("common","Search") ?></span>
@@ -287,12 +307,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="dropdown dropdown-sources">
-                                    <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownSources" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
-                                  title="<?php echo Yii::t("common","Select a source of data") ?>" alt="<?php echo Yii::t("common","Select a source of data") ?>"><?php echo Yii::t("common","Source data") ?> <i class="fa fa-angle-down"></i></a>
-                                    <div class="dropdown-menu arrow_box" aria-labelledby="dropdownSources">
-                                    </div>
-                                </li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -315,11 +330,11 @@
         initScopeMenu();
         $("#tagsFilterInput").select2({tags:[]});
         $(".tooltips").tooltip();
-        $("#filters-nav-list .dropdown .dropdown-toggle").click(function(){
+        /*$("#filters-nav-list .dropdown .dropdown-toggle").click(function(){
             offset=$(this).offset();
             $(this).parent().find(".dropdown-menu").css({"top":($("#affix-sub-menu").height()+$("#mainNav").height()+15)+"px"});
             addRule("#filters-nav-list .dropdown .dropdown-menu:after, #filters-nav-list .dropdown .dropdown-menu:before", "left:"+(offset.left-20)+"px !important");
-        });
+        });*/
         $(".btn-show-filters").click(function(){
             $("#filters-nav").show(200);
             headerHeightPos(true);
@@ -334,6 +349,7 @@
             if($(".menu-btn-scope-filter").hasClass("visible")){
                 showWhere(false);
             }else{
+
                 showWhere(true);
             }
         });
@@ -343,13 +359,14 @@
 
 
     function showWhere(show){
+        mylog.log("showWhere", show);
         if(show == false){
-            $(this).removeClass("visible");
+            $(".menu-btn-scope-filter").removeClass("visible");
             //$("#text-search-menu").hide();
             $("#filter-scopes-menu").hide(400);
             //headerHeightPos(true);
         }else{
-            $(this).addClass("visible");
+            $(".menu-btn-scope-filter").addClass("visible");
             $("#text-search-menu").hide();
             $("#filter-scopes-menu").show(400);
             headerHeightPos(true);
@@ -371,7 +388,7 @@
         getCommunexionLabel();
     }
     
-    (function ($) {
+    /*(function ($) {
         window.addRule = function (selector, styles, sheet) {
           if (typeof styles !== "string") {
             var clone = "";
@@ -392,5 +409,5 @@
             return this;
           };
         }
-  }(window.jQuery));
+  }(window.jQuery));*/
 </script>
