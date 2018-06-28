@@ -26,7 +26,7 @@
     var parentModuleUrl = "<?php echo ( @Yii::app()->params["module"]["parent"] )  ? Yii::app()->getModule( Yii::app()->params["module"]["parent"] )->getAssetsUrl() : Yii::app()->controller->module->assetsUrl ?>";
     var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
     var activeModuleId = "<?php echo $this->module->id?>";
-
+    var assetPath   = "<?php echo $this->module->assetsUrl; ?>";
     var modules = {
         //Configure here eco
         "classifieds":<?php echo json_encode( Classified::getConfig("classifieds") ) ?>,
@@ -137,7 +137,7 @@ var typeObj = {
 };
 
     
-
+    
     var currentScrollTop = 0;
     var isMapEnd = false;
 	//used in communecter.js dynforms
