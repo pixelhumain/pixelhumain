@@ -90,6 +90,7 @@ return array(
 	"You will need to complete at least one field" => "Vous devrez compléter aux moins un champ",
 	"Add" => "Ajouter",
 	"Fields mandatory" => "Champs obligatoire",
-	"Grap manually my mapping"  => "Saisir manuelle de mon mapping"
+	"Grap manually my mapping"  => "Saisir manuelle de mon mapping",
+	"Other" => "Autre"
 );
 ?>
