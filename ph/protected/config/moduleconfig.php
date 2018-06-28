@@ -21,5 +21,6 @@ $activeModules = array(
 	'cococarto', 
 	"survey",
 	"interop",
-	"eco"
+	"eco",
+	"custom"
 	);
