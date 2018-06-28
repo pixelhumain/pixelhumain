@@ -1457,7 +1457,7 @@
                 <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>" align="center" class="text-center" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">
                 <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo ?>" class="swu-logo" alt="Logo Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 170px;max-width: 100%;clear: both;display: block;border: none;height: auto;padding: 15px 0px 0px 0px;">
                 </a>
-                <?php echo Utils::getServerName()?>
+                <?php //echo Utils::getServerName()?>
               </center>
                     </th>
             <th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
