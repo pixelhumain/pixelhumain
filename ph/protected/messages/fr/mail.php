@@ -44,5 +44,7 @@
 		"{who} wrote a message :" => "{who} a écrit :",
 		"{who} added a new production : {what}" => "{who} a ajouté une nouvelle production : {what}",
 		"{who} commented :" => "{who} a commenté :",
+		"{who} answered to a comment posted :" => "{who} a répondu à un commentaire :",
+		"{who} answered to a new posted :" => "{who} a répondu à une actualité :",
 );
 ?> 
