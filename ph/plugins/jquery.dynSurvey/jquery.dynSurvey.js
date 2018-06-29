@@ -636,8 +636,23 @@ var dySObj = {
                         saveData[field] = $("#"+sec+" #"+field).val();
                     }
                 });
-                mylog.dir(saveData);
+                mylog.dir( saveData );
                 var saveP = dySObj.surveys.scenario[sectionKey].saveElement;
+
+                if( typeof dySObj.surveys.scenario[sectionKey].linkTo != "undefined" && answers ){
+                	linkToT = dySObj.surveys.scenario[sectionKey].linkTo.split(".");
+                	$.each( answers,function(i,a) { 
+                		if( linkToT[0] == a.formId )
+                		{
+                			if( typeof a.answers[ linkToT[1] ] != "undefined" )
+                			{
+	                			saveData.parentId = a.answers[ linkToT[1] ].id;
+	                			saveData.parentType = a.answers[ linkToT[1] ].type;
+	                		}
+                		}
+                	});
+                	mylog.log("linkTo",saveData);
+                }
 
                 dyFObj.saveElement(saveData, saveP.collection, saveP.ctrl,null, function(data) { 
                 	mylog.warn("saved",data);
@@ -649,56 +664,40 @@ var dySObj = {
 
                 	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
 					if( typeof secJsonSchema.afterSave == "function" )
-			        	secJsonSchema.afterSave( data, function() { 
-				        	
-				        }); 
+						var elemText = "<h1>Form has been saved,<br/>"+
+					        		"to modify please go <a class='btn btn-xs btn-primary' href='/ph/co2#@"+data.map.slug+"' target='_blank'>here</a>"+
+					        		"once you finished the survey"+
+					        		"</h1>"+
+					        		"<button class='btn btn-primary' onclick='$(\'#section"+( dySObj.activeSection+1 )+"\').trigger(\"click'\")'>Next step</button>";
+						
+						if( $('.fine-uploader-manual-trigger').fineUploader('getUploads').length > 0 )
+						{
+				        	secJsonSchema.afterSave( data, function() { 
+					        	$("#section"+dySObj.activeSection).html(elemText);
+					        }); 
+				        } else 
+				        	$("#section"+dySObj.activeSection).html(elemText);
+
                 });
-                dyFObj.saveElement(saveData, saveP.collection, saveP.ctrl,null, function(data) { 
-		                	mylog.warn("saved",data);
+			} else if(typeof dySObj.surveys.scenario[sectionKey].saveElement == "object" && notNull(existedElementId)){
+				dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = existedElementId;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = elementName;
 
-		                	//alert("switch btn color to red to indicate, and disable form");
-		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
-		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
-		                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.name;
-
-		                	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
-							if( typeof secJsonSchema.afterSave == "function" )
-								if( $('.fine-uploader-manual-trigger').fineUploader('getUploads').length > 0 )
-								{
-						        	secJsonSchema.afterSave( data, function() { 
-							        	$("#section"+dySObj.activeSection).html(
-							        		"<h1>Form has been saved,<br/>"+
-							        		"to modify please go <a class='btn btn-xs btn-primary' href='/ph/co2#@"+data.map.slug+"' target='_blank'>here</a>"+
-							        		"once you finished the survey"+
-							        		"</h1>"+
-							        		"<button class='btn btn-primary' onclick='$(\'#section"+(dySObj.activeSection++)+"\').trigger(\'click'\)'>Next step</button>");
-							        }); 
-						        } else 
-						        	$("#section"+dySObj.activeSection).html(
-						        		"<h1>Form has been saved,<br/>"+
-						        		"to modify please go <a class='btn btn-xs btn-primary' href='/ph/co2#@"+data.map.slug+"' target='_blank'>here</a>"+
-						        		"once you finished the survey"+
-						        		"</h1>"+
-						        		"<button class='btn btn-primary' onclick='$(\'#section"+(dySObj.activeSection++)+"\').trigger(\'click'\)'>Next step</button>");
-		                });
-			}else if(typeof dySObj.surveys.scenario[sectionKey].saveElement == "object" && notNull(existedElementId)){
-					dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
-                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = existedElementId;
-                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = elementName;
-
-                	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
-					if( typeof secJsonSchema.afterSave == "function" ){
-			        	var data={type: dySObj.surveys.sections[sec].key, id : existedElementId, name : elementName, slug: elementSlug };
-			        	//secJsonSchema.afterSave( data, function() { 
-				        	$("#section"+dySObj.activeSection).html(
-				        		"<h1>Form has been saved,<br/>"+
-				        		"to modify please go <a class='btn btn-xs btn-primary' href='/ph/co2#@"+elementSlug+"' target='_blank'>here</a>"+
-				        		"once you finished the survey"+
-				        		"</h1>"
-				        		/*"<button class='btn btn-primary' onclick='$(\'#section"+(dySObj.activeSection++)+"\').trigger(\'click'\)'>Next step</button>"*/);
-				        //}); 
-				    }
+            	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
+				if( typeof secJsonSchema.afterSave == "function" ){
+		        	var data={type: dySObj.surveys.sections[sec].key, id : existedElementId, name : elementName, slug: elementSlug };
+		        	//secJsonSchema.afterSave( data, function() { 
+			        	$("#section"+dySObj.activeSection).html(
+			        		"<h1>Form has been saved,<br/>"+
+			        		"to modify please go <a class='btn btn-xs btn-primary' href='/ph/co2#@"+elementSlug+"' target='_blank'>here</a>"+
+			        		"once you finished the survey"+
+			        		"</h1>"
+			        		/*"<button class='btn btn-primary' onclick='$(\'#section"+(dySObj.activeSection++)+"\').trigger(\'click'\)'>Next step</button>"*/);
+			        //}); 
+			    }
 			}
+
 			$('html, body').stop().animate({scrollTop: 0}, 500, '');
 		} 
 		/*else 

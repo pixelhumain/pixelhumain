@@ -12,6 +12,8 @@
 
     $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
 
+    //Network::getNetworkJson(Yii::app()->params['networkParams']);
+
     $params = CO2::getThemeParams();
     $metaTitle = @$params["metaTitle"];
     $metaDesc = @$params["metaDesc"]; 
@@ -309,7 +311,10 @@
                 
             jQuery(document).ready(function() { 
                     
-                <?php $this->renderPartial( 'co2.views.custom.init' ); ?>
+                <?php 
+                if($this->module->id == "custom"){
+                    $this->renderPartial( 'co2.views.custom.init' ); 
+                }?>
 
                 $.blockUI({ message : themeObj.blockUi.processingMsg});
                 
