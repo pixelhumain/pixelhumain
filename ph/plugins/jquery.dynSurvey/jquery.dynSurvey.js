@@ -407,6 +407,7 @@ var dySObj = {
 		            	result["answers"][sectionObj.key]["type"] = dySObj.surveys.json[sectionObj.key].type;
 		            	result["answers"][sectionObj.key]["id"] = dySObj.surveys.json[sectionObj.key].id;
 		            	result["answers"][sectionObj.key]["name"] = dySObj.surveys.json[ sectionObj.key ].name;
+		            	result["answers"][sectionObj.key]["email"] = dySObj.surveys.json[ sectionObj.key ].email;
 		            }
 	            });
 	            mylog.dir( result );
@@ -618,7 +619,7 @@ var dySObj = {
 		});
 		return result;
 	}, 
-	goForward : function (existedElementId, elementSlug, elementName){
+	goForward : function (existedElementId, elementSlug, elementName, eltMail){
 		var sec = "section"+(dySObj.activeSection+1);
 		var sectionKey = dySObj.surveys.sections[sec].key;
 		if( dySObj.surveys.sections[sec].type == "dynForm")
@@ -683,10 +684,17 @@ var dySObj = {
 				dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
             	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = existedElementId;
             	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = elementName;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].email = eltMail;
 
             	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
 				if( typeof secJsonSchema.afterSave == "function" ){
-		        	var data={type: dySObj.surveys.sections[sec].key, id : existedElementId, name : elementName, slug: elementSlug };
+		        	var data={
+		        			type: dySObj.surveys.sections[sec].key, 
+		        			id : existedElementId, 
+		        			name : elementName, 
+		        			slug: elementSlug,
+		        			email: eltMail
+		        		};
 		        	//secJsonSchema.afterSave( data, function() { 
 			        	$("#section"+dySObj.activeSection).html(
 			        		"<h1>Form has been saved,<br/>"+
