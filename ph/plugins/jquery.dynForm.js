@@ -2787,7 +2787,7 @@ var dyFObj = {
 								"</div>";
 						msg = "Verifiez si le contact est dans Communecter";
 					}else if(dySObj.surveys != null){
-						str +='<a href="javascript:;" onclick="dySObj.goForward(\''+id+'\',\''+addslashes(elem.name)+'\', \''+elem.slug+'\' );" class="btn btn-xs btn-danger col-xs-12 w50p text-left padding-5 margin-5">'+
+						str +='<a href="javascript:;" onclick="dySObj.goForward(\''+id+'\',\''+addslashes(elem.name)+'\', \''+elem.slug+'\', \''+elem.email+'\' );" class="btn btn-xs btn-danger col-xs-12 w50p text-left padding-5 margin-5">'+
 							"<span>"+ htmlIco +"</span> <span> " + elem.name+"</br>"+where+ "</span>"+
 						"</a>"; 
 					}else{
@@ -2847,8 +2847,14 @@ var dyFObj = {
 			mylog.log("forminmap showMarkerNewElement");
 			mylog.log("formType", dyFObj.formInMap.formType);
 			$(".locationBtn").addClass("hidden");
-			if ( typeof surveyCountry != "undefined" && surveyCountry != null && surveyCountry != ""){
-				dyFObj.formInMap.NE_country = surveyCountry;
+			dySObj
+			
+			if ( 	typeof dySObj != "undefined" && 
+					typeof dySObj.surveys != "undefined" && 
+					typeof dySObj.surveys.parentSurvey != "undefined" && 
+					typeof dySObj.surveys.parentSurvey.countryCode != "undefined" && 
+					dySObj.surveys.parentSurvey.countryCode != ""){
+				dyFObj.formInMap.NE_country = dySObj.surveys.parentSurvey.countryCode;
 			} else if( notNull(currentUser) && notNull(currentUser.addressCountry) && dyFObj.formInMap.NE_country== "" ){
 				dyFObj.formInMap.NE_country = currentUser.addressCountry;
 			}
@@ -3408,13 +3414,15 @@ var dyFInputs = {
 	    };
 
 		if(dyFObj.formInMap.countryList == null){
+			$("#btn-submit-form").prop('disabled', true);
 			$.ajax({
 				type: "POST",
-				url: baseUrl+"/"+moduleId+"/opendata/getcountries",
+				url: baseUrl+"/"+moduleId+"/opendata/getcountries/hasCity/true",
 				dataType: "json",
 				success: function(data){
 					mylog.log("getcountries data",data);
 					dyFObj.formInMap.countryList = data;
+					$("#btn-submit-form").prop('disabled', false);
 					return inputObj;
 				},
 				error: function(error){
