@@ -397,8 +397,15 @@ var dySObj = {
 		                $.each( sectionObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
 		                    mylog.log(sectionObj.key+"."+field, $("#"+section+" #"+field).val() );
 		                    if( fieldObj.inputType ){
-		                        result["answers"][sectionObj.key][field] = {};
-		                        result["answers"][sectionObj.key][field] = $("#"+section+" #"+field).val();
+		                        if(fieldObj.inputType=="uploader"){
+		                     		if( $('#'+section+' #'+fieldObj.domElement).fineUploader('getUploads').length > 0 ){
+		    							$('#'+section+' #'+fieldObj.domElement).fineUploader('uploadStoredFiles');
+		    							result["answers"][sectionObj.key][field] = "";
+		                        	}
+		                        }else{
+		                        	result["answers"][sectionObj.key][field] = {};
+		                        	result["answers"][sectionObj.key][field] = $("#"+section+" #"+field).val();
+		                        }
 		                    }
 		                });
 		            } else {
@@ -426,10 +433,10 @@ var dySObj = {
 	            			window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix];
 	            		} else {
 		                	toastr.success("answers saved");
-		                	if(dySObj.surveys.parentSurvey.endTpl)
+		                	/*if(dySObj.surveys.parentSurvey.endTpl)
 		                		window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id;
 		                	else
-		                		$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');
+		                		$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');*/
 		                }
 	            	}
 	                else 
@@ -533,7 +540,6 @@ var dySObj = {
 	},
 	openSurvey : function (key,type,dynType) { 
 	    $("#surveyBtn").hide();
-	    //alert(dynType);
 	    mylog.log("openSurvey",key,type,dynType);
 	    if(dynType == "oneSurvey"){
 	    	dySObj.buildSurveySections(); 
@@ -627,7 +633,6 @@ var dySObj = {
 			if( typeof dySObj.surveys.scenario[sectionKey].saveElement == "object" && existedElementId==null)
 			{
 				var  save = dySObj.surveys.scenario[dySObj.surveys.sections[sec].key].saveElement;
-				//alert("saveElement "+sectionKey);
 				saveData = {};
 				dyFObj.elementObj = dySObj.surveys.sections[sec];
                 $.each( dyFObj.elementObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
@@ -657,21 +662,32 @@ var dySObj = {
 
                 dyFObj.saveElement(saveData, saveP.collection, saveP.ctrl,null, function(data) { 
                 	mylog.warn("saved",data);
-
+                	//if( $(uploadObj.domTarget).fineUploader('getUploads').length > 0 ){
+		    		//	$(uploadObj.domTarget).fineUploader('uploadStoredFiles');
+	    			//}
                 	//alert("switch btn color to red to indicate, and disable form");
                 	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
                 	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
                 	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.name;
 
+	            	/*if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)] != "undefined"
+		        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)].dynForm != "undefined"){
+		        		$.each(dySObj.surveys.sections["section"+(dySObj.activeSection+2)].dynForm.jsonSchema.properties, function(e, v){
+		            		if(typeof v.docType != "undefined" && typeof v.linkTo != "undefined" && v.linkTo==dySObj.surveys.sections[sec].key){ 
+		            			endpoint=baseUrl+"/"+moduleId+v.endPoint+"/folder/"+v.linkTo+"s/ownerId/"+data.id;
+								$("#"+v.domElement).fineUploader('setEndpoint', endpoint);
+							}
+						});
+	        		}*/
                 	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
 					if( typeof secJsonSchema.afterSave == "function" )
 						var elemText = "<h1>Form has been saved,<br/>"+
-					        		"to modify please go <a class='btn btn-xs btn-primary' href='/ph/co2#@"+data.map.slug+"' target='_blank'>here</a>"+
+					        		"to modify please go <a class='btn btn-xs btn-primary' href='"+baseUrl+"/co2#@"+data.map.slug+"' target='_blank'>here</a>"+
 					        		"once you finished the survey"+
 					        		"</h1>"+
 					        		"<button class='btn btn-primary' onclick='$(\'#section"+( dySObj.activeSection+1 )+"\').trigger(\"click'\")'>Next step</button>";
 						
-						if( $('.fine-uploader-manual-trigger').fineUploader('getUploads').length > 0 )
+						if( $(uploadObj.domTarget).fineUploader('getUploads').length > 0 )
 						{
 				        	secJsonSchema.afterSave( data, function() { 
 					        	$("#section"+dySObj.activeSection).html(elemText);
@@ -698,16 +714,49 @@ var dySObj = {
 		        	//secJsonSchema.afterSave( data, function() { 
 			        	$("#section"+dySObj.activeSection).html(
 			        		"<h1>Form has been saved,<br/>"+
-			        		"to modify please go <a class='btn btn-xs btn-primary' href='/ph/co2#@"+elementSlug+"' target='_blank'>here</a>"+
+			        		"to modify please go <a class='btn btn-xs btn-primary' href='"+baseUrl+"/co2#@"+elementSlug+"' target='_blank'>here</a>"+
 			        		"once you finished the survey"+
 			        		"</h1>"
 			        		/*"<button class='btn btn-primary' onclick='$(\'#section"+(dySObj.activeSection++)+"\').trigger(\'click'\)'>Next step</button>"*/);
 			        //}); 
 			    }
 			}
-
+			if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)] != "undefined"
+        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)].dynForm != "undefined"){
+        		$.each(dySObj.surveys.sections["section"+(dySObj.activeSection+2)].dynForm.jsonSchema.properties, function(e, v){
+            		if(typeof v.docType != "undefined" && typeof v.linkTo != "undefined" && v.linkTo==dySObj.surveys.sections[sec].key){ 
+            			//alert("type:"+dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type);
+            			if(v.linkTo=="citoyens"){
+            				typeOwner=v.linkTo;
+            				idOwner=userId;
+            			}else{
+            				typeOwner=v.linkTo+"s";
+            				idOwner=dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id;
+            			}
+            			endpoint=baseUrl+"/"+moduleId+v.endPoint+"/folder/"+typeOwner+"/ownerId/"+idOwner;
+						$("#"+v.domElement).fineUploader('setEndpoint', endpoint);
+					}
+				});
+    		}
+			//alert(dySObj.surveys.json[v.linkTo].type);
 			$('html, body').stop().animate({scrollTop: 0}, 500, '');
 		} 
+		/*console.log("befffffffffore save fucking survey");
+		if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)] != "undefined"
+        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm != "undefined"){
+				alert();
+        		$.each(dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm.jsonSchema.properties, function(e, v){
+            		if(v.inputType=="uploader" && typeof v.docType != "undefined" && v.docType=="file"){ 
+            			if( $('#'+v.domElement).fineUploader('getUploads').length > 0 ){
+		    				$('#'+v.domElement).fineUploader('uploadStoredFiles');
+		    						
+            			//alert("type:"+dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type);
+            			//endpoint=baseUrl+"/"+moduleId+v.endPoint+"/folder/"+v.linkTo+"s/ownerId/"+dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id;
+						//$("#"+v.domElement).fineUploader('setEndpoint', endpoint);
+						}
+					}	
+				});
+    	}*/
 		/*else 
 		{
 			mylog.log ( "save "+sectionKey );

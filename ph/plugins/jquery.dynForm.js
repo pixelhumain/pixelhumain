@@ -219,12 +219,12 @@ var uploadObj = {
 	gotoUrl : null,
 	isSub : false,
 	update  : false,
+	docListIds : [],
 	folder : "communecter", //on force pour pas casser toutes les vielles images
 	contentKey : "profil",
 	path : null,
 	extra : null,
 	set : function(type,id, file){
-		//alert("uploadObj set"+type);
 		if(notNull(file) && file){
 			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
 			uploadObj.type = type;
@@ -236,6 +236,9 @@ var uploadObj = {
 			uploadObj.type = type;
 			uploadObj.id = id;
 			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/contentKey/"+uploadObj.contentKey;
+			if(typeof uploadObj.domTarget !="undefined"){
+				$(uploadObj.domTarget).fineUploader('setEndpoint', uploadObj.path);
+			}
 		} else {
 			uploadObj.type = null;
 			uploadObj.id = null;
@@ -494,7 +497,7 @@ var dyFObj = {
 			                }
 						}
 		            }
-		            uploadObj.set()
+		            //uploadObj.set()
 		    	}
 		    });
 		}
@@ -987,7 +990,8 @@ var dyFObj = {
         	if(placeholder == "")
         		placeholder="add Image";
         	mylog.log("build field "+field+">>>>>> uploader");
-        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>';
+        	var uploaderId=(fieldObj.domElement) ? fieldObj.domElement : "imageElement"; 
+        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger"  id="'+uploaderId+'" data-type="citoyens" data-id="'+userId+'"></div>';
         	if(fieldObj.docType=="image")
 			fieldHTML += 	'<script type="text/template" id="qq-template-gallery">';
 			else
@@ -1093,14 +1097,23 @@ var dyFObj = {
 							'</dialog>'+
 							'</div>'+
 							'</script>';
+			if(typeof dyFObj.init.uploader =="undefined") dyFObj.init.uploader=new Object;
+			uploadObject=new Object; 
 			if( fieldObj.showUploadBtn )
-        		dyFObj.init.initValues.showUploadBtn = fieldObj.showUploadBtn;
+        		uploadObject.showUploadBtn = fieldObj.showUploadBtn;
         	if( fieldObj.filetypes )
-        		dyFObj.init.initValues.filetypes = fieldObj.filetypes;
+        		uploadObject.filetypes = fieldObj.filetypes;
         	if( fieldObj.template )
-        		dyFObj.init.initValues.template = fieldObj.template;
-			if( $.isFunction( fieldObj.afterUploadComplete ) )
-        		dyFObj.init.initValues.afterUploadComplete = fieldObj.afterUploadComplete;
+        		uploadObject.template = fieldObj.template;
+			if( fieldObj.itemLimit )
+        		uploadObject.itemLimit = fieldObj.itemLimit;
+			if(fieldObj.endPoint){
+				uploadObject.endPoint = fieldObj.endPoint;
+			}
+			if( $.isFunction( fieldObj.afterUploadComplete ))
+        		uploadObject.afterUploadComplete = fieldObj.afterUploadComplete;
+        	dyFObj.init.uploader[uploaderId]=new Object;
+        	dyFObj.init.uploader[uploaderId]=uploadObject;
         }
 
         /* **************************************
@@ -1959,9 +1972,9 @@ var dyFObj = {
 		/* **************************************
 		* Image uploader , we use https://github.com/FineUploader/fine-uploader
 		***************************************** */
-		if(  $(".fine-uploader-manual-trigger").length)
+		if(typeof dyFObj.init.uploader != "undefined" && Object.keys(dyFObj.init.uploader).length)
 		{
-			function loadFineUploader(callback,template) {
+			/*function loadFineUploader(callback,template) {
 				if( ! jQuery.isFunction(jQuery.fineUploader) ) {
 					if(template=='qq-template-manual-trigger')
 						var cssLazy=baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css';
@@ -1971,156 +1984,188 @@ var dyFObj = {
 							  cssLazy,
 							  callback);
 			    }
-			}
-			var docListIds=[];
-			var FineUploader = function(){
-				mylog.log("init fineUploader");
-				$(".fine-uploader-manual-trigger").fineUploader({
-		            template: (dyFObj.init.initValues.template) ? dyFObj.init.initValues.template : 'qq-template-manual-trigger',
-		            request: {
-		                endpoint: uploadObj.path
-		            },
-		            validation: {
-		                allowedExtensions: (dyFObj.init.initValues.filetypes) ? dyFObj.init.initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
-		                sizeLimit: 2000000
-		            },
-		            messages: {
-				        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
-				        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
-				    },
-				    
-		            callbacks: {
-		            	//when a img is selected
-					    onSubmit: function(id, fileName) {
-					    	$('.fine-uploader-manual-trigger').fineUploader('setEndpoint',uploadObj.path);	
-					    	//$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-    					    if( dyFObj.init.initValues.showUploadBtn  ){
-						      	$('#trigger-upload').removeClass("hide").click(function(e) {
-				        			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-						        	urlCtrl.loadByHash(location.hash);
-				        			$('#ajax-modal').modal("hide");
-						        });
-
-					        }
+			}*/
+			uploadObj.docListIds=[];
+			$.each(dyFObj.init.uploader, function(e,v){
+				var domElement="#"+e;
+				//var FineUploader = function(){
+					if(typeof v.endPoint == "undefined")
+						uploadObj.domTarget=domElement;
+					mylog.log("init fineUploader");
+					var endPointUploader=(typeof v.endPoint != "undefined") ? baseUrl+"/"+moduleId+v.endPoint : uploadObj.path;
+					$(domElement).fineUploader({
+			            template: (v.template) ? v.template : 'qq-template-manual-trigger',
+			            itemLimit: (v.itemLimit) ? v.itemLimit : 0,
+			            request: {
+			                endpoint: endPointUploader
+			            },
+			            validation: {
+			                allowedExtensions: (v.filetypes) ? v.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
+			                sizeLimit: 2000000
+			            },
+			            messages: {
+					        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
+					        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
 					    },
-					    onCancel: function(id) {
-					    	if(($("ul.qq-upload-list > li").length-1)<=0)
-					    		$('#trigger-upload').addClass("hide");
-	        			},
-	        			
-					    //launches request endpoint
-					    //onUpload: function(id, fileName) {
-					      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
-					      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
-					      //console.log('onUpload uplaodObj',uploadObj);
-					      //var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-					      //console.log('onUpload getEndpoint',ex);
-					    //},
-					    //launched on upload
-					    //onProgress: function(id, fileName, uploadedBytes,totalBytes) {
-					    	/*console.log('onProgress uplaodObj',uploadObj);
-					    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-					    	console.log('onProgress getEndpoint',ex);
-					    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
-					      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
-					    //},
-					    //when every img finish upload process whatever the status
-					    onComplete: function(id, fileName,responseJSON,xhr) {
-					    	
-					    	console.log(responseJSON);
-					    	
-					    	if($("#ajaxFormModal #newsCreation").val()=="true"){
-					    		docListIds.push(responseJSON.id.$id);
-					    	}
-					    	if(!responseJSON.result){
-					    		toastr.error(trad.somethingwentwrong+" : "+responseJSON.msg );		
-					    		console.error(trad.somethingwentwrong , responseJSON.msg)
-					    	}
-					    },
-					    //when all upload is complete whatever the result
-					    onAllComplete: function(succeeded, failed) {
-					     	toastr.info( "Fichiers bien chargés !!");
-					      	if($("#ajaxFormModal #newsCreation").val()=="true"){
-					      		console.log("docslist",docListIds);
-					      		//var mentionsInput=[];
-					      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
-      								mentionsInput=data;
-    							});*/
-					      		var media=new Object;
-					      		if(uploadObj.contentKey=="file"){
-					      			media.type="gallery_files";
-					      			media.countFiles=docListIds.length;
-					      			media.files=docListIds;
-					      		}else{
-					      			media.type="gallery_images";
-					      			media.countImages=docListIds.length;
-					      			media.images=docListIds;
-					      		}
-					    		var addParams = {
-	              				  type: "news",
-	              				  parentId: uploadObj.id,
-	              				  parentType: uploadObj.type,
-	              				  scope:$("#ajaxFormModal #createNews #scope").val(),
-	              				  text:$("#ajaxFormModal #createNews textarea").val(),
-	              				  media: media
-	            				};
-	            				if ($("#ajaxFormModal #createNews #tags").val() != "")
-									addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
-								if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
-									addParams.targetIsAuthor = true;
-								/*if (mentionsResult.mentionsInput.length != 0){
-									addParams.mentions=mentionsResult.mentionsInput;
-									addParams.text=mentionsResult.text;
-								}*/
-								addParams=mentionsInit.beforeSave(addParams,'#ajaxFormModal #createNews textarea');
-								$.ajax({
-							        type: "POST",
-							        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",
-							        //dataType: "json",
-							        data: addParams,
-									type: "POST",
-							    })
-							    .done(function (data) {
+					    
+			            callbacks: {
+			            	//when a img is selected
+						    onSubmit: function(id, fileName) {
 						    		
-									return true;
-							    }).fail(function(){
-								   toastr.error("Something went wrong, contact your admin"); 
-								   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
-								   $("#btn-submit-form").prop('disabled', false);
-							    });
-							}
-					    if( jQuery.isFunction(dyFObj.init.initValues.afterUploadComplete) )
-					      	dyFObj.init.initValues.afterUploadComplete();
-					     	uploadObj.gotoUrl = null;
-					    },
-					    onError: function(id) {
-					      toastr.info(trad.somethingwentwrong);
-					    }
-					},
-		            thumbnails: {
-		                placeholders: {
-		                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
-		                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
-		                }
-		            },
-		            autoUpload: false
-		        });
-				/*console.log(params);
-				if(typeof params.formValues.images != "undefined" && params.formValues.images.length > 0){
-					var imagesArray=[];
-					$.each(params.formValues.images,function(e,v){
-						var image={
-							"name":"ressource"+e,
-							"uuid":v.id,
-							"thumbnailUrl":v.imageThumbPath
-						};
-						imagesArray.push(image);
-					});
-					uploader.addInitialFiles(imagesArray);
-				}*/
-			};
-			if(  $(".fine-uploader-manual-trigger").length)
-				loadFineUploader(FineUploader,dyFObj.init.initValues.template);
+						    	if(typeof v.endPoint == "undefined")
+						    		$(domElement).fineUploader('setEndpoint',uploadObj.path);
+						    	//	$(domElement).fineUploader('uploadStoredFiles');
+	    					    if( v.showUploadBtn  ){
+							      	$('#trigger-upload').removeClass("hide").click(function(e) {
+					        			$(domElement).fineUploader('uploadStoredFiles');
+							        	urlCtrl.loadByHash(location.hash);
+					        			$('#ajax-modal').modal("hide");
+							        });
+
+						        }
+						    },
+						    onCancel: function(id) {
+						    	if(($("ul.qq-upload-list > li").length-1)<=0)
+						    		$('#trigger-upload').addClass("hide");
+		        			},
+		        			
+						    //launches request endpoint
+						    //onUpload: function(id, fileName) {
+						      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
+						      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
+						      //console.log('onUpload uplaodObj',uploadObj);
+						      //var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+						      //console.log('onUpload getEndpoint',ex);
+						    //},
+						    //launched on upload
+						    //onProgress: function(id, fileName, uploadedBytes,totalBytes) {
+						    	/*console.log('onProgress uplaodObj',uploadObj);
+						    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+						    	console.log('onProgress getEndpoint',ex);
+						    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
+						      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
+						    //},
+						    //when every img finish upload process whatever the status
+						    onComplete: function(id, fileName,responseJSON,xhr) {
+						    	
+						    	//console.log(responseJSON);
+						    	if(typeof responseJSON.survey != "undefined" && responseJSON.survey){
+						    		//alert(responseJSON.id.$id);
+						    		data={
+						    			formId:dySObj.surveys.id,
+						    			answerSection: dySObj.activeSectionKey,
+						    			answerKey : responseJSON.survey,
+						    			documentId :responseJSON.id.$id
+						    		};
+						    		$.ajax({
+								        type: "POST",
+								        url: baseUrl+"/survey/co/updatedocumentids",
+								        //dataType: "json",
+								        data: data,
+										type: "POST",
+								    })
+								    .done(function (data) {
+							    		
+										return true;
+								    }).fail(function(){
+									   toastr.error("Something went wrong, contact your admin"); 
+									   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
+									   $("#btn-submit-form").prop('disabled', false);
+								    });
+						    	}
+						    	if($("#ajaxFormModal #newsCreation").val()=="true"){
+						    		uploadObj.docListIds.push(responseJSON.id.$id);
+						    	}
+						    	if(!responseJSON.result){
+						    		toastr.error(trad.somethingwentwrong+" : "+responseJSON.msg );		
+						    		console.error(trad.somethingwentwrong , responseJSON.msg)
+						    	}
+						    },
+						    //when all upload is complete whatever the result
+						    onAllComplete: function(succeeded, failed) {
+						    	console.log("ooooooooooooo",succeeded,failed);
+						     	toastr.info( "Fichiers bien chargés !!");
+						      	if($("#ajaxFormModal #newsCreation").val()=="true"){
+						      		//var mentionsInput=[];
+						      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
+	      								mentionsInput=data;
+	    							});*/
+						      		var media=new Object;
+						      		if(uploadObj.contentKey=="file"){
+						      			media.type="gallery_files";
+						      			media.countFiles=uploadObj.docListIds.length;
+						      			media.files=uploadObj.docListIds;
+						      		}else{
+						      			media.type="gallery_images";
+						      			media.countImages=uploadObj.docListIds.length;
+						      			media.images=uploadObj.docListIds;
+						      		}
+						    		var addParams = {
+		              				  type: "news",
+		              				  parentId: uploadObj.id,
+		              				  parentType: uploadObj.type,
+		              				  scope:$("#ajaxFormModal #createNews #scope").val(),
+		              				  text:$("#ajaxFormModal #createNews textarea").val(),
+		              				  media: media
+		            				};
+		            				if ($("#ajaxFormModal #createNews #tags").val() != "")
+										addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
+									if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
+										addParams.targetIsAuthor = true;
+									/*if (mentionsResult.mentionsInput.length != 0){
+										addParams.mentions=mentionsResult.mentionsInput;
+										addParams.text=mentionsResult.text;
+									}*/
+									addParams=mentionsInit.beforeSave(addParams,'#ajaxFormModal #createNews textarea');
+									$.ajax({
+								        type: "POST",
+								        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",
+								        //dataType: "json",
+								        data: addParams,
+										type: "POST",
+								    })
+								    .done(function (data) {
+							    		
+										return true;
+								    }).fail(function(){
+									   toastr.error("Something went wrong, contact your admin"); 
+									   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
+									   $("#btn-submit-form").prop('disabled', false);
+								    });
+								}
+						    	//if( jQuery.isFunction(v.afterUploadComplete) )
+						      	//	v.afterUploadComplete();
+						     	uploadObj.gotoUrl = null;
+						    },
+						    onError: function(id) {
+						      toastr.info(trad.somethingwentwrong);
+						    }
+						},
+			            thumbnails: {
+			                placeholders: {
+			                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
+			                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
+			                }
+			            },
+			            autoUpload: false
+			        });
+					/*console.log(params);
+					if(typeof params.formValues.images != "undefined" && params.formValues.images.length > 0){
+						var imagesArray=[];
+						$.each(params.formValues.images,function(e,v){
+							var image={
+								"name":"ressource"+e,
+								"uuid":v.id,
+								"thumbnailUrl":v.imageThumbPath
+							};
+							imagesArray.push(image);
+						});
+						uploader.addInitialFiles(imagesArray);
+					}*/
+				//};
+				//if($(domElement).length)
+				//loadFineUploader(FineUploader,v.template);
+			});
 		}
 
 		/* **************************************
@@ -2264,6 +2309,7 @@ var dyFObj = {
 		* val can be a value when type array or {"label":"","value":""} when type property
 		***************************************** */
 		initValues : {},
+		uploader : {},
 		initSelect : {},
 		initSelectNetwork : [],
 		addfield : function ( parentContainer,val,name, type ) {
@@ -3615,9 +3661,7 @@ var dyFInputs = {
 	    	template:'qq-template-gallery',
 	    	filetypes:['jpeg', 'jpg', 'gif', 'png'],
 	    	afterUploadComplete : function(){
-	    		//alert("afterUploadComplete :: "+uploadObj.gotoUrl);
-				//alert( "image upload then goto : "+uploadObj.gotoUrl );
-	            if(typeof urlCtrl != "undefined") {
+	    	    if(typeof urlCtrl != "undefined") {
 	            	dyFObj.closeForm();
 	            	urlCtrl.loadByHash( (uploadObj.gotoUrl) ? uploadObj.gotoUrl : location.hash );
 	            }
