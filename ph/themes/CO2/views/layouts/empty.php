@@ -34,7 +34,10 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     '/plugins/toastr/toastr.js' , 
     '/plugins/toastr/toastr.min.css',
 
-    '/plugins/cryptoJS-v3.1.2/rollups/aes.js'
+    '/plugins/cryptoJS-v3.1.2/rollups/aes.js',
+    '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
+    '/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js',
+    '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css'
   );
   HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->request->baseUrl);
   
