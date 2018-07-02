@@ -42,12 +42,13 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
   HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->request->baseUrl);
   
   $cssJs = array(
+    '/assets/css/freelancer.css',
     '/assets/css/CO2/CO2-boot.css',
     '/assets/css/CO2/CO2-color.css',
     '/assets/css/CO2/CO2.css',
     '/assets/css/plugins.css',
     '/assets/css/default/dynForm.css',
-    '/assets/css/freelancer.css',
+    
   );
   HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->theme->baseUrl);
 
