@@ -3362,13 +3362,15 @@ var dyFInputs = {
 	    };
 
 		if(dyFObj.formInMap.countryList == null){
+			$("#btn-submit-form").prop('disabled', true);
 			$.ajax({
 				type: "POST",
-				url: baseUrl+"/"+moduleId+"/opendata/getcountries",
+				url: baseUrl+"/"+moduleId+"/opendata/getcountries/hasCity/true",
 				dataType: "json",
 				success: function(data){
 					mylog.log("getcountries data",data);
 					dyFObj.formInMap.countryList = data;
+					$("#btn-submit-form").prop('disabled', false);
 					return inputObj;
 				},
 				error: function(error){
