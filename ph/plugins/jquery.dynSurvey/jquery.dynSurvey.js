@@ -417,8 +417,7 @@ var dySObj = {
 		            	result["answers"][sectionObj.key]["email"] = dySObj.surveys.json[ sectionObj.key ].email;
 		            }
 	            });
-	            mylog.dir( result );
-
+	            mylog.log("onsave result", params.savePath );
 	            $.ajax({
 	              type: "POST",
 	              url: params.savePath,
@@ -666,9 +665,10 @@ var dySObj = {
 		    		//	$(uploadObj.domTarget).fineUploader('uploadStoredFiles');
 	    			//}
                 	//alert("switch btn color to red to indicate, and disable form");
-                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
-                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
-                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.name;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.map.name;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].email = data.map.email;
 
 	            	/*if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)] != "undefined"
 		        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)].dynForm != "undefined"){
