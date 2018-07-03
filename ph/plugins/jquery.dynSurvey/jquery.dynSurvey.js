@@ -409,15 +409,16 @@ var dySObj = {
 		                    }
 		                });
 		            } else {
-		            	result["answers"][sectionObj.key]["parentType"] = dySObj.surveys.json[sectionObj.key].type;
-		            	result["answers"][sectionObj.key]["parentId"] = dySObj.surveys.json[sectionObj.key].id;
+		            	result["answers"][sectionObj.key]["parentType"] = dySObj.surveys.json[sectionObj.key].parentType;
+		            	result["answers"][sectionObj.key]["parentId"] = dySObj.surveys.json[sectionObj.key].parentId;
 		            	result["answers"][sectionObj.key]["type"] = dySObj.surveys.json[sectionObj.key].type;
 		            	result["answers"][sectionObj.key]["id"] = dySObj.surveys.json[sectionObj.key].id;
 		            	result["answers"][sectionObj.key]["name"] = dySObj.surveys.json[ sectionObj.key ].name;
 		            	result["answers"][sectionObj.key]["email"] = dySObj.surveys.json[ sectionObj.key ].email;
 		            }
 	            });
-	            mylog.log("onsave result", params.savePath );
+	            mylog.log("onsave result", params, result);
+	            alert("HERE");
 	            $.ajax({
 	              type: "POST",
 	              url: params.savePath,
