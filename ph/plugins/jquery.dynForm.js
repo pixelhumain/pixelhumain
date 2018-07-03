@@ -2200,7 +2200,7 @@ var dyFObj = {
 		* formLocality 
 		***************************************** */
 		if(  $(".formLocality").length ){
-			alert("formLocality");
+			//alert("formLocality");
 			dyFObj.formInMap.init();
 		}
 		
@@ -2958,7 +2958,7 @@ var dyFObj = {
 
 			$('[name="newElement_country"]').change(function(){
 				mylog.log("change country");
-				alert($(this).val());
+				//alert($(this).val());
 				dyFObj.formInMap.initVarNE()
 				dyFObj.formInMap.NE_country = $('[name="newElement_country"]').val() ;
 				//dyFObj.formInMap.initHtml();
