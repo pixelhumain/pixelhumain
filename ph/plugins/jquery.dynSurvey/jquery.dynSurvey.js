@@ -374,7 +374,7 @@ var dySObj = {
 	            //$(".description1, .description2, .description3, .description4, .description5, .description6").focus().autogrow({vertical: true, horizontal: false});
 	        },
 	        onSave : function(params) {
-	            //mylog.dir( $(params.surveyId).serializeFormJSON() );
+	            mylog.log("onSave" );
 	            var result = {
 	            	"user" : userId,
 	            	"name" : userConnected.name,
@@ -433,10 +433,10 @@ var dySObj = {
 	            			window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix];
 	            		} else {
 		                	toastr.success("answers saved");
-		                	/*if(dySObj.surveys.parentSurvey.endTpl)
+		                	if(dySObj.surveys.parentSurvey.endTpl)
 		                		window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id;
 		                	else
-		                		$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');*/
+		                		$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');
 		                }
 	            	}
 	                else 
