@@ -1110,7 +1110,7 @@ var dyFObj = {
 			if(fieldObj.endPoint){
 				uploadObject.endPoint = fieldObj.endPoint;
 			}
-			if( $.isFunction( fieldObj.afterUploadComplete ))
+			if(typeof dySObj == "undefined" && $.isFunction( fieldObj.afterUploadComplete ))
         		uploadObject.afterUploadComplete = fieldObj.afterUploadComplete;
         	dyFObj.init.uploader[uploaderId]=new Object;
         	dyFObj.init.uploader[uploaderId]=uploadObject;
@@ -2133,8 +2133,8 @@ var dyFObj = {
 									   $("#btn-submit-form").prop('disabled', false);
 								    });
 								}
-						    	//if( jQuery.isFunction(v.afterUploadComplete) )
-						      	//	v.afterUploadComplete();
+						    	if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) )
+						      		v.afterUploadComplete();
 						     	uploadObj.gotoUrl = null;
 						    },
 						    onError: function(id) {
