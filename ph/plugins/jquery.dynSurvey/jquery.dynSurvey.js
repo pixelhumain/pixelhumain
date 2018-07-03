@@ -374,7 +374,7 @@ var dySObj = {
 	            //$(".description1, .description2, .description3, .description4, .description5, .description6").focus().autogrow({vertical: true, horizontal: false});
 	        },
 	        onSave : function(params) {
-	            //mylog.dir( $(params.surveyId).serializeFormJSON() );
+	            mylog.log("onSave" );
 	            var result = {
 	            	"user" : userId,
 	            	"name" : userConnected.name,
