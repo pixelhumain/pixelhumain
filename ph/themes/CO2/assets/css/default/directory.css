@@ -1043,7 +1043,7 @@
     padding: 2px 20px;
     /* border-radius: 10px; */
 }
-.btn-news-type-filters.dropDesign{
+.btn-news-type-filters.dropDesign, .btn-directory-type.dropDesign{
   background-color: white !important;
   color: #2C3E50;
   border-radius: 0px !important;
@@ -1052,9 +1052,9 @@
   border:transparent;
 }
 
-.btn-news-type-filters.dropDesign:hover,
-.btn-news-type-filters.dropDesign:focus,
-.btn-news-type-filters.dropDesign.active:focus{
+.btn-news-type-filters.dropDesign:hover, .btn-directory-type.dropDesign:hover,
+.btn-news-type-filters.dropDesign:focus, .btn-directory-type.dropDesign:focus,
+.btn-news-type-filters.dropDesign.active:focus,.btn-directory-type.dropDesign.active:focus{
   /*color:#2BB0C6 !important;
   border: 2px dashed #2BB0C6!important;*/
   background-color: #eee !important;
@@ -1062,9 +1062,9 @@
   font-weight: bold;
   color:#2C3E50 !important;  
 }
-.btn-news-type-filters.dropDesign:active,
-.btn-news-type-filters.dropDesign:active:hover,
-.btn-news-type-filters.dropDesign.active{
+.btn-news-type-filters.dropDesign:active, .btn-directory-type.dropDesign:active,
+.btn-news-type-filters.dropDesign:active:hover, .btn-directory-type.dropDesign:active:hover,
+.btn-news-type-filters.dropDesign.active, .btn-directory-type.dropDesign.active{
   color:#2BB0C6 !important;
   border: 0px !important;
   box-shadow: none;

@@ -1653,7 +1653,8 @@ var dyFObj = {
 									'<i class="fa fa-chevron-down"></i> '+trad.streetFormInMap +
 					            '</label>'+
 								"<input class='form-group col-md-9 col-xs-9'  autocomplete='off' type='text' style='margin-right:-3px;' name='newElement_street' placeholder='"+trad.streetFormInMap +"'>"+
-								"<button class='col-md-1 col-xs-1 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></button>"+
+								//"<button class='col-md-1 col-xs-1 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></button>"+
+								"<a href='javascript:;' class='col-md-1 col-xs-1 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></a>"+
 							"</div>"+
 							"<div class='dropdown pull-left col-xs-12 no-padding'> "+
 						  		"<ul class='dropdown-menu' id='dropdown-newElement_streetAddress-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
@@ -1682,9 +1683,9 @@ var dyFObj = {
 									"<span id='country_sumery_value'></span>"+
 								"</div>"+
 								"<hr class='col-md-12'>"+
-								"<center><a href='javascript:;' class='col-md-4 col-xs-4 btn btn-default' style='' type='text' id='btnValideAddress'>"+
+								"<a href='javascript:;' class='col-md-4 col-xs-4 btn btn-default' style='' type='text' id='btnValideAddress'>"+
 									tradDynForm.confirmAddress+
-								"</a></center>"+
+								"</a>"+
 							"</div>";
 
    //     		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
@@ -2199,7 +2200,7 @@ var dyFObj = {
 		* formLocality 
 		***************************************** */
 		if(  $(".formLocality").length ){
-			alert("formLocality");
+			//alert("formLocality");
 			dyFObj.formInMap.init();
 		}
 		
@@ -2846,17 +2847,9 @@ var dyFObj = {
 			mylog.log("forminmap showMarkerNewElement");
 			mylog.log("formType", dyFObj.formInMap.formType);
 			$(".locationBtn").addClass("hidden");
-			dySObj
 			
-			if ( 	typeof dySObj != "undefined" && 
-					typeof dySObj.surveys != "undefined" && 
-					typeof dySObj.surveys.parentSurvey != "undefined" && 
-					typeof dySObj.surveys.parentSurvey.countryCode != "undefined" && 
-					dySObj.surveys.parentSurvey.countryCode != ""){
-				dyFObj.formInMap.NE_country = dySObj.surveys.parentSurvey.countryCode;
-			} else if( notNull(currentUser) && notNull(currentUser.addressCountry) && dyFObj.formInMap.NE_country== "" ){
-				dyFObj.formInMap.NE_country = currentUser.addressCountry;
-			}
+			
+			dyFObj.formInMap.initCountry();
 
 			$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
 
@@ -2879,6 +2872,19 @@ var dyFObj = {
 				$("#mapLegende").addClass("hidden");
 			mylog.log("forminmap showMarkerNewElement END");
 		},
+		initCountry : function(){
+			if ( 	typeof dySObj != "undefined" && 
+					typeof dySObj.surveys != "undefined" && 
+					typeof dySObj.surveys.parentSurvey != "undefined" && 
+					typeof dySObj.surveys.parentSurvey.countryCode != "undefined" && 
+					dySObj.surveys.parentSurvey.countryCode != ""){
+				dyFObj.formInMap.NE_country = dySObj.surveys.parentSurvey.countryCode;
+			} else if( notNull(currentUser) && notNull(currentUser.addressCountry) && dyFObj.formInMap.NE_country== "" ){
+				dyFObj.formInMap.NE_country = currentUser.addressCountry;
+			}else{
+				dyFObj.formInMap.NE_country = "";
+			}
+		},
 		initVarNE : function(){
 			mylog.log("initVarNE");
 			dyFObj.formInMap.NE_insee = "";
@@ -2899,11 +2905,7 @@ var dyFObj = {
 			dyFObj.formInMap.NE_localityId = "";
 			dyFObj.formInMap.NE_betweenCP = false;
 
-			if ( typeof surveyCountry != "undefined" && surveyCountry != null && surveyCountry != ""){
-				dyFObj.formInMap.NE_country = surveyCountry;
-			} else if( notNull(currentUser) && notNull(currentUser.addressCountry) && dyFObj.formInMap.NE_country== "" ){
-				dyFObj.formInMap.NE_country = currentUser.addressCountry;
-			}
+			dyFObj.formInMap.initCountry();
 		},
 		initDropdown : function(){
 			mylog.log("initDropdown");
@@ -2920,6 +2922,7 @@ var dyFObj = {
 			if(dyFObj.formInMap.NE_country == ""){
 				$("#divCity").addClass("hidden");
 			}
+			dyFObj.formInMap.showWarningGeo(false);
 		},
 		resumeLocality : function(cancel){
 			if(dyFObj.formInMap.NE_street != ""){
@@ -2957,7 +2960,7 @@ var dyFObj = {
 
 			$('[name="newElement_country"]').change(function(){
 				mylog.log("change country");
-				alert($(this).val());
+				//alert($(this).val());
 				dyFObj.formInMap.initVarNE()
 				dyFObj.formInMap.NE_country = $('[name="newElement_country"]').val() ;
 				//dyFObj.formInMap.initHtml();
@@ -3086,6 +3089,7 @@ var dyFObj = {
 				dyFInputs.locationObj.copyMapForm2Dynform(locObj);
 				dyFInputs.locationObj.addLocationToForm(locObj);
 			}
+
 			dyFObj.formInMap.initVarNE();
 			dyFObj.formInMap.resumeLocality();
 			dyFObj.formInMap.initHtml();

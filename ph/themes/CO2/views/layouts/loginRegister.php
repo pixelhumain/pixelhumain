@@ -515,7 +515,9 @@ jQuery(document).ready(function() {
     <?php } ?>
     
     if(!userConnected)
-        Login.init(); 
+        Login.init();
+    else
+        addCustomValidators(); 
 
     $('.form-register #username').keyup(function(e) { 
         validateUserName();

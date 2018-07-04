@@ -409,16 +409,16 @@ var dySObj = {
 		                    }
 		                });
 		            } else {
-		            	result["answers"][sectionObj.key]["parentType"] = dySObj.surveys.json[sectionObj.key].type;
-		            	result["answers"][sectionObj.key]["parentId"] = dySObj.surveys.json[sectionObj.key].id;
+		            	result["answers"][sectionObj.key]["parentType"] = dySObj.surveys.json[sectionObj.key].parentType;
+		            	result["answers"][sectionObj.key]["parentId"] = dySObj.surveys.json[sectionObj.key].parentId;
 		            	result["answers"][sectionObj.key]["type"] = dySObj.surveys.json[sectionObj.key].type;
 		            	result["answers"][sectionObj.key]["id"] = dySObj.surveys.json[sectionObj.key].id;
 		            	result["answers"][sectionObj.key]["name"] = dySObj.surveys.json[ sectionObj.key ].name;
 		            	result["answers"][sectionObj.key]["email"] = dySObj.surveys.json[ sectionObj.key ].email;
 		            }
 	            });
-	            mylog.dir( result );
-
+	            mylog.log("onsave result", params, result);
+	            alert("HERE");
 	            $.ajax({
 	              type: "POST",
 	              url: params.savePath,
@@ -666,9 +666,10 @@ var dySObj = {
 		    		//	$(uploadObj.domTarget).fineUploader('uploadStoredFiles');
 	    			//}
                 	//alert("switch btn color to red to indicate, and disable form");
-                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
-                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
-                	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.name;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.map.name;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].email = data.map.email;
 
 	            	/*if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)] != "undefined"
 		        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)].dynForm != "undefined"){
