@@ -11,7 +11,7 @@
   <meta name="robots" content="Index,Follow" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="<?php echo $this->module->assetsUrl?>/images/logo.png"/>
+  <link rel="shortcut icon" href="<?php echo $this->module->assetsUrl?>/images/logo.png"/>  
   <title><?php echo CHtml::encode( (isset($this->module->pageTitle))?$this->module->pageTitle:""); ?></title>
    
  <?php  
@@ -100,8 +100,14 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
                                  array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
 ?>
 <script type="text/javascript">
-
-  jQuery(document).ready(function() {
+var custom = {};
+                
+  jQuery(document).ready(function() { 
+          
+      <?php 
+      if($this->module->id == "custom"){
+          $this->renderPartial( 'co2.views.custom.init' ); 
+      }?>
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });
