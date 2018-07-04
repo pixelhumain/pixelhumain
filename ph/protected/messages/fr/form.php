@@ -181,6 +181,10 @@
 
 		"Select a city to share your survey with everybody in town !" => 
 			"Sélectionnez une ville si vous souhaitez partager votre sondage publiquement",
+		"Make your event publicly visible"=>"Rendre l'événement visible publiquement",
+		"Make your project publicly visible"=>"Rendre le projet visible publiquement",
+		"<b>Private :</b> Event visible only by its attendees and create contents only for attendees and admins<br/><b>Public :</b> Event visible in search engine, agenda and communication available for all"=>"<b>Privé :</b> Événement visible seulement pour les participants et le contenu sera accessible par eux et les administrateurs uniquement<br/><b>Public :</b> Événement visble depuis le moteur de recherche et dans l'agenda public ainsi que la communication faite dessus",
+		"<b>Private :</b> Project visible only by its contributors and create contents accessible only by its community<br/><b>Public :</b> Project visible in search engine and communication available for all"=>"<b>Privé :</b> Projet visible seulement pour les contributeurs et le contenu sera accessible par eux uniquement<br/><b>Public :</b> Projet visble depuis le moteur de recherche ainsi que la communication faite dessus",
 
 	)
 

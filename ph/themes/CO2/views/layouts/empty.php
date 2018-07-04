@@ -62,24 +62,29 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
   $cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' );
   ?>
   
+  <?php 
+    $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+
+    $CO2DomainName = ( $this->module->id == "survey" && strrpos(@$_GET['id'], "cte") !== false ) ? "cte" : Yii::app()->params["CO2DomainName"];
+    ?>
   <script type="text/javascript">
   // **************************************
-  //THEME TEMPLATE : CO2 / EMPTY
+  //THEME TEMPLATE : CO2 / <?php echo $CO2DomainName ?> / EMPTY
   // **************************************
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
    var moduleId = "<?php echo $this->module->id?>";
    debug = false;
+
    </script>
 </head>
 
 <body class="body">
   <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
 
-<?php 
-    $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
-    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+<?php
+
     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
                             array( "layoutPath"=>$layoutPath , 
                                     "subdomain"=>"", //$subdomain,
@@ -87,9 +92,8 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
                                     "mainTitle"=>"", //$mainTitle,
                                     "placeholderMainSearch"=>"", //$placeholderMainSearch,
                                     "type"=>@$type,
-                                    "me" => $me) );
+                                    "me" => $me ) );
 
-     $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) );
     echo $content; ?> 
 </div>
 
