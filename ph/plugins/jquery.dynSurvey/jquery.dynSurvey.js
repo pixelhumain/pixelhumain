@@ -123,7 +123,7 @@ onSave: (optional) overloads the generic saveProcess
 					mylog.log("////////SETTTINGSSSS///////");
 					mylog.log(settings.surveyValues);
 
-					dyFObj.buildInputField("#"+sectionId,field, fieldObj, settings.surveyValues,sectionObj.key);
+					dyFObj.buildInputField("#"+sectionId,field, fieldObj, settings.surveyValues);//,sectionObj.key);
 					
 					//Only the last section carries the submit button
 					if( sectionIndex == Object.keys(settings.surveyObj).length-1 && countProperties==inc){
