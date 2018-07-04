@@ -1861,7 +1861,9 @@ var dyFObj = {
 		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
 		***************************************** */
 		function loadDateTimePicker(callback) {
+			mylog.log("loadDateTimePicker");
 			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
+				mylog.log("loadDateTimePicker2");
 				lazyLoad( baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.full.min.js', 
 						  baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.min.css',
 						  callback);
@@ -1925,6 +1927,7 @@ var dyFObj = {
 	
 		var initDateTime = function(){
 			mylog.log("init dateTimeInput");
+			alert("initDateTime");
 			jQuery.datetimepicker.setLocale('fr');
 			$(".dateTimeInput").datetimepicker({
 				weekStart: 1,
@@ -1934,6 +1937,7 @@ var dyFObj = {
 			   });
 		};
 		if(  $(".dateTimeInput").length){
+			alert("dateTimeInput");
 			loadDateTimePicker(initDateTime);
 		}
 		/* **************************************
@@ -2339,13 +2343,13 @@ var dyFObj = {
 						  "tokenSeparators": [','],
 						  "placeholder" : ( $("#"+e).attr("placeholder") ) ? $("#"+e).attr("placeholder") : "",
 						};
-						mylog.log( "here3");
+						
 						if(dyFObj.init.initValues[ e ].maximumSelectionLength)
 							selectOptions.maximumSelectionLength = dyFObj.init.initValues[e]["maximumSelectionLength"];
-						mylog.log( "here3");
+						
 						if(typeof dyFObj.init.initSelectNetwork != "undefined" && typeof dyFObj.init.initSelectNetwork[e] != "undefined" && dyFObj.init.initSelectNetwork[e].length > 0)
 							selectOptions.data=dyFObj.init.initSelectNetwork[e];
-						mylog.log( "here3");
+						
 						$("#"+e).removeClass("form-control").select2(selectOptions);
 						if(typeof mainTag != "undefined")
 							$("#"+e).val([mainTag]).trigger('change');
