@@ -246,12 +246,12 @@
                                     <div class="dropdown-menu arrow_box" aria-labelledby="dropdownTypes">
                                     </div>
                                 </li>
-                                <li class="dropdown dropdown-sources">
+                                <!--<li class="dropdown dropdown-sources">
                                     <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownSources" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                                   title="<?php echo Yii::t("common","Select a source of data") ?>" alt="<?php echo Yii::t("common","Select a source of data") ?>"><?php echo Yii::t("common","Source data") ?> <i class="fa fa-angle-down"></i></a>
                                     <div class="dropdown-menu arrow_box" aria-labelledby="dropdownSources">
                                     </div>
-                                </li>
+                                </li>-->
                                 <li class="dropdown dropdown-section">
                                     <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left hidden-xs"  type="button" id="dropdownSection" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                                   title="<?php echo Yii::t("common","Choose a section") ?>" alt="<?php echo Yii::t("common","Choose a section") ?>"><?php echo Yii::t("common","Section") ?> <i class="fa fa-angle-down"></i></a>
