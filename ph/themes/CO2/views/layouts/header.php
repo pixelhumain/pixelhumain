@@ -336,7 +336,10 @@
             addRule("#filters-nav-list .dropdown .dropdown-menu:after, #filters-nav-list .dropdown .dropdown-menu:before", "left:"+(offset.left-20)+"px !important");
         });*/
         $(".btn-show-filters").click(function(){
-            $("#filters-nav").show(200);
+            if(!$("#filters-nav").is(":visible"))
+                $("#filters-nav").show(200);
+            else
+                $("#filters-nav").hide(200);
             headerHeightPos(true);
         });
         // $(".menu-btn-start-search").click(function(){
