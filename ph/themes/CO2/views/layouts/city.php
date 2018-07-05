@@ -44,11 +44,11 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 
     '/plugins/cryptoJS-v3.1.2/rollups/aes.js',
 
-    '/plugins/select2/select2.min.js' , 
 
-    '/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
-    '/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
-    '/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
+
+'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.js' , 
+'/plugins/jQuery-contextMenu/dist/jquery.contextMenu.min.css' , 
+'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
 
 
   );
@@ -61,8 +61,6 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
     '/js/default/globalsearch.js',
     '/js/co.js',
     '/js/default/index.js',
-    '/js/default/live.js',
-    '/js/floopDrawerRight.js',
     '/js/default/directory.js',
     '/js/jquery.filter_input.js'
   );
@@ -72,7 +70,6 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
   $cssJs = array(
     '/assets/css/CO2/CO2-boot.css',
     '/assets/css/CO2/CO2-color.css',
-    '/assets/css/themes/CO2/CO2.css',
     '/assets/css/CO2/CO2.css',
     '/assets/css/plugins.css',
     '/assets/css/default/dynForm.css',
@@ -103,7 +100,7 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
       $this->renderPartial( $layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"], array("modulePath"=>$modulePath )); ?>
   </div>
   <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
-  <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"]); ?>
+
 <?php 
     
     $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
@@ -118,37 +115,22 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
                                     "me" => $me) );
 
 
-
-    if(@$_GET["city"]){
-      $city = City::getById( $_GET["city"] );
-      if(@$city["custom"] && $city["custom"]["bannerTpl"])
-        $this->renderPartial( 'eco.views.custom.'.$city["custom"]["bannerTpl"] );
-    }
-
-
-
     echo $content; ?> 
 </div>
 
 <?php 
   $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
 
-  /*$this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));*/
+  $this->renderPartial($layoutPath.'initJs', 
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
 ?>
 <script type="text/javascript">
-var custom = {};
+
   jQuery(document).ready(function() {
-    
-    <?php $this->renderPartial( 'co2.views.custom.init' ); ?>
-
-    
-
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });
       themeObj.init();
-      //Login.init();
   });
  
   function initNotifications(){

@@ -145,7 +145,7 @@ function lazyLoad (js,css, callback, notBase) {
           //mylog.log("lazyLoad getScript");
           //if (typeof dynform !== undefined) alert("script has been loaded!");
           if( typeof callback === "function")
-            callback();
+            callback(data);
         });
     } else {
         mylog.log("lazyLoad notScript");
@@ -154,6 +154,41 @@ function lazyLoad (js,css, callback, notBase) {
     }
 }
 
+var countLazyLoad = null;
+function lazyLoadMany (list, callback, notBase) { 
+  mylog.warn("lazyLoadMany",list.length, callback, notBase);
+  countLazyLoad = 0;
+  $.each(list,function(i,v) { 
+    var url = (notBase==true ? v : baseUrl+v);
+    mylog.log("LLM --> url",url);
+    if( url.indexOf("js")>0 && !$('script[src="'+url+'"]').length )
+    {
+      //!mylog.log("lazyLoad  before getScript",js);
+      $.getScript( url, function( data, textStatus, jqxhr ) {
+        //mylog.log("lazyLoad getScript");
+        //if (typeof dynform !== undefined) alert("script has been loaded!");
+        countLazyLoad++; 
+        if(typeof callback === "function")
+          callback(data);
+      });
+    } else if(url.indexOf("css")>0 ){
+      $("<link/>", {
+         rel: "stylesheet",
+         type: "text/css",
+         href: url 
+      }).appendTo("head");
+      countLazyLoad++;
+      if(typeof callback === "function")
+          callback();
+    } else {
+      mylog.error("lazyLoadMany notScript");
+      if( typeof callback === "function")
+          callback();
+    }
+  })
+    
+    
+}
 
 var mylog = (function () {
     
@@ -384,6 +419,26 @@ function slugify (value,slug) {
   }
 	
 };
+
+
+function addslashes(str) {
+    //  discuss at: http://phpjs.org/functions/addslashes/
+    // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // improved by: Ates Goral (http://magnetiq.com)
+    // improved by: marrtins
+    // improved by: Nate
+    // improved by: Onno Marsman
+    // improved by: Brett Zamir (http://brett-zamir.me)
+    // improved by: Oskar Larsson Högfeldt (http://oskar-lh.name/)
+    //    input by: Denny Wardhana
+    //   example 1: addslashes("kevin's birthday");
+    //   returns 1: "kevin\\'s birthday"
+
+    return (str + '')
+    .replace(/[\\"']/g, '\\$&')
+    .replace(/\u0000/g, '\\0');
+}
+
 function checkAndCutLongString(text,limitLength,id, className,readMore){
   if(text.length > limitLength){
     allText=text;

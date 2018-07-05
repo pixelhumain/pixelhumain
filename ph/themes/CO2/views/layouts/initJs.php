@@ -20,23 +20,30 @@
         ];
 
     var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
-    var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
     var ctrlId = "<?php echo Yii::app()->controller->id;?>";
     var actionId = "<?php echo Yii::app()->controller->action->id ;?>";
     var moduleId = "<?php echo $parentModuleId?>";
-    var activeModuleId = "<?php echo $this->module->id?>";
     var parentModuleUrl = "<?php echo ( @Yii::app()->params["module"]["parent"] )  ? Yii::app()->getModule( Yii::app()->params["module"]["parent"] )->getAssetsUrl() : Yii::app()->controller->module->assetsUrl ?>";
-
+    var moduleUrl = "<?php echo Yii::app()->controller->module->assetsUrl;?>";
+    var activeModuleId = "<?php echo $this->module->id?>";
+    var assetPath   = "<?php echo $this->module->assetsUrl; ?>";
     var modules = {
-        "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
-        "classifieds": <?php echo json_encode( Classified::getConfig() ) ?>,
+        //Configure here eco
+        "classifieds":<?php echo json_encode( Classified::getConfig("classifieds") ) ?>,
+        "jobs":<?php echo json_encode( Classified::getConfig("jobs") ) ?>,
+        "ressources":<?php echo json_encode( Classified::getConfig("ressources") ) ?>,
         "places": <?php echo json_encode( Place::getConfig() ) ?>,
         "poi": <?php echo json_encode( Poi::getConfig() ) ?>,
         "chat": <?php echo json_encode( Chat::getConfig() ) ?>,
+        "interop": <?php echo json_encode( Interop::getConfig() ) ?>,
+        "eco" : <?php echo json_encode( array(
+            "module" => "eco",
+            "url"    => Yii::app()->getModule( "eco" )->assetsUrl
+        )); ?>,
         "cotools" : <?php echo json_encode( array(
-            "module"        => "cotools",
-            "init"          => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
-            "form"          => Yii::app()->getModule( "cotools" )->assetsUrl."/js/dynForm.js" ,
+            "module" => "cotools",
+            "init"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
+            "form"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/dynForm.js" ,
         )); ?>
     };
     
@@ -125,11 +132,12 @@ var typeObj = {
                     dda : { label: "DISCUSS DECIDE ACT" ,key:"#dda",icon:"gavel fa-2x text-red"},
                     chat : { label: "CHAT" ,key:"#chat",icon:"comments fa-2x text-red"},
                 }},
-    filter : { color:"azure",icon:"list",titleClass : "bg-turq",title : "Nouveau Filtre"}
+    filter : { color:"azure",icon:"list",titleClass : "bg-turq",title : "Nouveau Filtre"},
+    curiculum : { color:"dark",icon:"clipboard",titleClass : "bg-dark",title : "My CV"}
 };
 
     
-
+    
     var currentScrollTop = 0;
     var isMapEnd = false;
 	//used in communecter.js dynforms
@@ -202,12 +210,12 @@ var typeObj = {
         "cities"        : { color: "red",        icon: "university",name: trad.municipalities },
         "poi"           : { color: "green-poi",  icon: "map-marker",name: trad.pointsinterests },
         "place"           : { color: "brown",    icon: "map-marker", name: trad.pointsinterests },
-        "wikidata"    : { color: "lightblue2",   icon: "group",      name: "Wikidata" },
-        "datagouv"    : { color: "lightblue2",   icon: "bullhorn",   name: "DataGouv" },
-        "osm"         : { color: "lightblue2",   icon: "bullhorn",   name: "Open Street Map" },
-        "ods"         : { color: "lightblue2",   icon: "bullhorn",   name: "OpenDatasoft" },
+        //"interop"    : { color: "lightblue2",   icon: "group",      name: "interop" },
+        // "datagouv"    : { color: "lightblue2",   icon: "bullhorn",   name: "DataGouv" },
+        // "osm"         : { color: "lightblue2",   icon: "bullhorn",   name: "Open Street Map" },
+        // "ods"         : { color: "lightblue2",   icon: "bullhorn",   name: "OpenDatasoft" },
         "places"      : { color: "brown",        icon: "map-marker", name: trad.places },
-        "classified"  : { color: "azure",        icon: "bullhorn",   name: trad.classifieds },
+        "classifieds"  : { color: "azure",        icon: "bullhorn",   name: trad.classifieds },
         "GovernmentOrganization" : { color: "red",   icon: "university", name: "services publics" },
         "ressources"  : { color: "vine",   icon: "cubes",   name: "Ressource" },
         "news"        : { color: "blue-k",   icon: "newspaper-o",   name: "news" },
@@ -246,6 +254,7 @@ var typeObj = {
     var urlBackDocs = location.hash;
     var allReadyLoadWindow=false;
     var navInSlug=false;
+    var historyReplace=false;
     var searchObject={
         text:"",
         page:0,
@@ -326,7 +335,24 @@ var typeObj = {
                     }
                 });
             }
+            document.onmouseover = function() {
+                //User's mouse is inside the page.
+                window.innerDocClick = true;
+            }
+
+            document.onmouseleave = function() {
+                //User's mouse has left the page.
+                window.innerDocClick = false;
+            }
             window.onhashchange = function() {
+                if (!window.innerDocClick) {
+                    //Browser back button was clicked
+                    resetSearchObject();
+                    searchObject.text="",
+                    searchObject.tags=[];
+                    onchangeClick=true;
+                    console.log("reseeeeetObject search", searchObject);
+                }
                 mylog.warn("popstate history.state",history.state);
                 if( lastWindowUrl && "onhashchange" in window){
                     console.log("history",history);
@@ -399,7 +425,7 @@ var typeObj = {
         blockUi : {
             processingMsg :'<div class="lds-css ng-scope">'+
                     '<div style="width:100%;height:100%" class="lds-dual-ring">'+
-                        '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="" height=80>'+
+                        '<img src="'+themeUrl+'/assets/img/LOGOS/'+domainName+'/logo.png" class="loadingPageImg" height=80>'+
                         '<div></div>'+
                         '<div></div>'+
                     '</div>'+
@@ -463,10 +489,10 @@ function initMyScopes(){
         myScopes = JSON.parse(localStorage.getItem("myScopes"));
 
     if( notNull(myScopes) && myScopes.userId == userId )  {
+        myScopes.open={};
+        myScopes.countActive = 0;
         myScopes.search = {};
         myScopes.openNews={};
-        if(myScopes.open==null)
-            myScopes.open={};
         if(myScopes.multiscopes==null)
             myScopes.multiscopes={};
         console.log("init scope", myScopes);
@@ -477,6 +503,7 @@ function initMyScopes(){
             userId: userId,
             open : {},
             openNews : {},
+            countActive : 0,
             search : {},
             communexion : <?php echo json_encode(CO2::getCommunexionUser()) ?>,
             multiscopes : <?php echo isset($me) && isset($me["multiscopes"]) ? 

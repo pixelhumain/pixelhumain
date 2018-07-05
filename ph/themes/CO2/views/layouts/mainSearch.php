@@ -12,6 +12,8 @@
 
     $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
 
+    //Network::getNetworkJson(Yii::app()->params['networkParams']);
+
     $params = CO2::getThemeParams();
     $metaTitle = @$params["metaTitle"];
     $metaDesc = @$params["metaDesc"]; 
@@ -105,6 +107,8 @@
                                                     "placeholderMainSearch"=>"", //$placeholderMainSearch,
                                                     "type"=>@$type,
                                                     "me" => $me) );
+                
+
             ?>
             <header>
                 <div class="col-md-12 text-center main-menu-app" style="">
@@ -197,12 +201,15 @@
                 '/plugins/jquery-mentions-input-master/jquery.mentionsInput.css',
                 //'/js/cookie.js' ,
                 '/js/api.js',
-                
                 //'/plugins/animate.css/animate.min.css',
                 '/plugins/font-awesome/css/font-awesome.min.css',
                 //'/plugins/font-awesome-custom/css/font-awesome.css',
 
-                '/plugins/cryptoJS-v3.1.2/rollups/aes.js'
+                '/plugins/cryptoJS-v3.1.2/rollups/aes.js',
+                //FineUplaoder (called in jquery.dynform.js)
+                '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
+                '/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js',
+                '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css'
             );
             if(Yii::app()->language!="en")
                 array_push($cssAnsScriptFilesModule,"/plugins/jquery-validation/localization/messages_".Yii::app()->language.".js");
@@ -304,9 +311,15 @@
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             var CO2params = <?php echo json_encode($params); ?>;
-
-            jQuery(document).ready(function() { 
+            var custom = {};
                 
+            jQuery(document).ready(function() { 
+                    
+                <?php 
+                if($this->module->id == "custom"){
+                    $this->renderPartial( 'co2.views.custom.init' ); 
+                }?>
+
                 $.blockUI({ message : themeObj.blockUi.processingMsg});
                 
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
@@ -321,6 +334,7 @@
                 });
 
                 themeObj.init();
+                //Login.init();
                 $.each(modules,function(k,v) { 
                     if(v.init){
                         mylog.log("init.js for module : ",k);

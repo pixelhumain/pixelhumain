@@ -25,6 +25,7 @@
 
 
 		//Classifieds
+        "Sales & rents"=>"Ventes & locations",
         "Share"=>"Partager", 
         "To share"=>"À partager",
         "Give"=>"Donner",   
@@ -36,6 +37,7 @@
         
         "Looking for"=>"À la recherche",   
         "Jobs"=>"Emplois", 
+        "Job offers"=>"Emplois",
         "Offers"=>"Offres d'emplois", 
         //Classifieds filter
         "Technology"=>"Technologie", 
@@ -119,6 +121,12 @@
         "Spectacle"=>"Spectacle",
         "Sport"=>"Sport",
         "Transport-Logistic"=>"Transport / Logistique",
+        // JOB CATEGORY
+        "Training"=>"Formation",
+        "Jobs offers"=>"Offres d'emploi",
+        "Internship"=>"Stage",
+        "I am looking for"=>"Je recherche",
+        "I recruit"=>"Je recrute",
 
         //POI
         "Link, Url"=>"Lien, Url",
@@ -296,7 +304,12 @@
         "Private channels can only be viewed by it's members" => "Un channel privé est disponible que pour ces membres",
         "public or private ?" => "public ou privé",
         "Public" => "Public",
-        "Private" => "Privé"
+        "Private" => "Privé",
+
+        //News
+        "Only posts" => "Seulement les publications",
+        "Activity of communecters"=>"Activités des communecteurs",
+        "Surveys"=>"Sondages",
 
 	);
 ?>

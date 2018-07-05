@@ -95,8 +95,7 @@
 		"{who} is waiting for you on {what}" => "{who} wartet auf Sie bei {what}",
 		"{what} is waiting for you" => "{what} wartet auf Sie",
 		"PS: If the link does not work you can copy the address in your browser" => "PS: Wenn der Link nicht funktioniert, können Sie die Adresse in Ihren Browser kopieren.",
-		"Mail sent from" => "Mail versendet von"
-		
+		"Mail sent from" => "Mail versendet von",
 		"{who} added your contact in {where} on {website}" => "{who} hat Ihren Kontakt in {where} auf {website} hinzugefügt",
 		"Your email has been referenced on {website}" => "Ihre E-Mail wurde auf {website} verlinkt",
 		"{who} indicated your email as contact on {what}" => "{who} hat Ihre E-Mail als Kontakt auf {what} angegeben",

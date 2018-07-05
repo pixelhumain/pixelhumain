@@ -123,13 +123,17 @@
         <i class="fa fa-calendar"></i> 
         <span><?php echo Yii::t("common","Event") ?></span>
     </a><br/>
-    <a href="javascript:;" data-form-type="classifieds" class="addBtnFoot  addBtnFoot_orga  addBtnFoot_project btn-open-form btn btn-default bg-azure margin-bottom-10"> 
+    <a href="javascript:;" data-form-type="classifieds" class="addBtnFoot  addBtnFoot_orga addBtnFoot_project btn-open-form btn btn-default bg-azure margin-bottom-10"> 
         <i class="fa fa-bullhorn"></i> 
         <span><?php echo Yii::t("common","Classified") ?></span>
     </a><br/>
     <a href="javascript:;" data-form-type="ressources" class="addBtnFoot addBtnAll btn-open-form btn btn-default bg-vine margin-bottom-10"> 
         <i class="fa fa-cubes"></i> 
         <span><?php echo Yii::t("common","Ressource") ?></span>
+    </a><br/>
+    <a href="javascript:;" data-form-type="jobs" class="addBtnFoot addBtnAll addBtnFoot_orga addBtnFoot_project btn-open-form btn btn-default bg-yellow-k margin-bottom-10"> 
+        <i class="fa fa-briefcase"></i> 
+        <span><?php echo Yii::t("common","Jobs") ?></span>
     </a><br/>
     <a href="javascript:;" data-form-type="poi" class="addBtnFoot addBtnAll btn-open-form btn btn-default bg-green-k margin-bottom-10"> 
         <i class="fa fa-map-marker"></i> 
@@ -209,7 +213,7 @@ function addBtnSwitch(){
     var fname = "<?php echo Yii::t("common", "as") ?> ";
     if ( contextData != null && contextData.type && inArray( contextData.type,[ "organizations","citoyens","events","projects" ] ) )
         fname += contextData.name;
-    else {
+    else if(userConnected) {
         fname += userConnected.name;
     }
 

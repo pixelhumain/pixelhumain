@@ -435,14 +435,18 @@ li.submenucoop{
 #ajax-modal .form-group.voteDateEnddatetime,
 #ajax-modal .form-group.voteAnonymouscheckboxSimple,
 #ajax-modal .form-group.voteCanChangecheckboxSimple,
-#ajax-modal .form-group.multiChoicecheckboxSimple{
+#ajax-modal .form-group.multiChoicecheckboxSimple,
+#ajax-modal .form-group.hasVehiclecheckboxSimple,
+#ajax-modal .form-group.driverLicensecheckboxSimple{
 	padding: 0 10px 10px 10px;
 	background-color: #EDEDED;
 }
 
 #ajax-modal .form-group.voteAnonymouscheckboxSimple,
 #ajax-modal .form-group.voteCanChangecheckboxSimple,
-#ajax-modal .form-group.multiChoicecheckboxSimple{
+#ajax-modal .form-group.multiChoicecheckboxSimple,
+#ajax-modal .form-group.hasVehiclecheckboxSimple,
+#ajax-modal .form-group.driverLicensecheckboxSimple{
 	margin-top:20px;
 	display: flow-root;
 }
