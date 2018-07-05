@@ -418,7 +418,7 @@ var dySObj = {
 		            }
 	            });
 	            mylog.log("onsave result", params, result);
-	            alert("HERE");
+	            
 	            $.ajax({
 	              type: "POST",
 	              url: params.savePath,
