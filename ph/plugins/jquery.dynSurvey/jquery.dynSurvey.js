@@ -433,7 +433,7 @@ var dySObj = {
 	            			window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix];
 	            		} else {
 		                	toastr.success("answers saved");
-		                	if(dySObj.surveys.parentSurvey.endTpl)
+		                	if(dySObj.surveys.parentSurvey.custom.endTpl)
 		                		window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id;
 		                	else
 		                		$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');
