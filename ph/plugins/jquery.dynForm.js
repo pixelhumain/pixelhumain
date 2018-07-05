@@ -1667,19 +1667,19 @@ var dyFObj = {
 							"<div id='sumery' class='text-dark col-md-6 col-xs-12 no-padding'>"+
 								"<h4 class='text-center'>"+tradDynForm.addressSummary +" : </h4>"+
 								"<div id='street_sumery' class='col-xs-12'>"+
-									"<span>"+trad.streetFormInMap +" :</span>"+
+									"<span>"+trad.streetFormInMap +" : </span>"+
 									"<span id='street_sumery_value'></span>"+
 								"</div>"+
 								"<div id='cp_sumery' class='col-xs-12'>"+
-									"<span>"+trad.postalCode +" :</span>"+
+									"<span>"+trad.postalCode +" : </span>"+
 									"<span id='cp_sumery_value'></span>"+
 								"</div>"+
 								"<div id='city_sumery' class='col-xs-12'>"+
-									"<span>"+trad.city +" :</span>"+
+									"<span>"+trad.city +" : </span>"+
 									"<span id='city_sumery_value'></span>"+
 								"</div>"+
 								"<div id='country_sumery' class='col-xs-12'>"+
-									"<span>"+tradDynForm.country +" :</span>"+
+									"<span>"+tradDynForm.country +" : </span>"+
 									"<span id='country_sumery_value'></span>"+
 								"</div>"+
 								"<hr class='col-md-12'>"+
@@ -3298,8 +3298,9 @@ var dyFObj = {
 				$("#divStreetAddress").addClass("hidden");
 			else
 				$("#divStreetAddress").removeClass("hidden");
-
+			$('[name="newElement_city"]').val(dyFObj.formInMap.NE_city);
 			dyFObj.formInMap.resumeLocality();
+
 		},
 		changeSelectCountrytim : function(){
 			mylog.log("changeSelectCountrytim", dyFObj.formInMap.NE_country);
