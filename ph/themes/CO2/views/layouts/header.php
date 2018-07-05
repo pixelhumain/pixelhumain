@@ -277,7 +277,7 @@
                                             </label>
                                             <input type="text" id="priceMax" name="priceMax" class="form-control col-md-5" placeholder="<?php echo Yii::t("common","Max price") ?>"/>
                                           </div>
-                                          <div class="form-group col-md-2 col-sm-2 col-xs-12 divMoney">
+                                          <div class="form-group col-md-4 col-sm-4 col-xs-12 divMoney">
                                             <label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="sectionBtn">
                                               <i class="fa fa-money"></i> <span class="hidden-xs hidden-sm"><?php echo Yii::t("common","Money"); ?></span>
                                             </label>
