@@ -647,7 +647,6 @@ var dySObj = {
 
                 if( typeof dySObj.surveys.scenario[sectionKey].linkTo != "undefined" && answers ){
                 	linkToT = dySObj.surveys.scenario[sectionKey].linkTo.split(".");
-                	alert("linkTo : "+linkToT[0]+" , "+linkToT[1]);
                 	$.each( answers,function(i,a) { 
                 		if( linkToT[0] == a.formId )
                 		{
@@ -671,17 +670,18 @@ var dySObj = {
             	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
             	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.map.name;
             	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].email = data.map.email;
-
-	            	/*if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)] != "undefined"
-		        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)].dynForm != "undefined"){
-		        		$.each(dySObj.surveys.sections["section"+(dySObj.activeSection+2)].dynForm.jsonSchema.properties, function(e, v){
-		            		if(typeof v.docType != "undefined" && typeof v.linkTo != "undefined" && v.linkTo==dySObj.surveys.sections[sec].key){ 
-		            			endpoint=baseUrl+"/"+moduleId+v.endPoint+"/folder/"+v.linkTo+"s/ownerId/"+data.id;
-								$("#"+v.domElement).fineUploader('setEndpoint', endpoint);
-							}
-						});
-	        		}*/
-                	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
+            	if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)] != "undefined"
+	        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm != "undefined"){
+	        		$.each(dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm.jsonSchema.properties, function(e, v){
+	            		if(typeof v.docType != "undefined" && typeof v.linkTo != "undefined" && v.linkTo==dySObj.surveys.sections[sec].key){ 
+	            			typeOwner=v.linkTo+"s";
+	            			idOwner=dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id;
+	            			endpoint=baseUrl+"/"+moduleId+v.endPoint+"/folder/"+typeOwner+"/ownerId/"+idOwner;
+							$("#"+v.domElement).fineUploader('setEndpoint', endpoint);
+						}
+					});
+	    		}
+    		   	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
 					if( typeof secJsonSchema.afterSave == "function" )
 						var elemText = "<h1>Form has been saved,<br/>"+
 					        		"to modify please go <a class='btn btn-xs btn-primary' href='"+baseUrl+"/co2#@"+data.map.slug+"' target='_blank'>here</a>"+
@@ -727,7 +727,6 @@ var dySObj = {
         		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)].dynForm != "undefined"){
         		$.each(dySObj.surveys.sections["section"+(dySObj.activeSection+2)].dynForm.jsonSchema.properties, function(e, v){
             		if(typeof v.docType != "undefined" && typeof v.linkTo != "undefined" && v.linkTo==dySObj.surveys.sections[sec].key){ 
-            			//alert("type:"+dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type);
             			if(v.linkTo=="citoyens"){
             				typeOwner=v.linkTo;
             				idOwner=userId;
