@@ -135,7 +135,7 @@
                 ?>
                 <li role="separator" class="divider"></li>
                 <li class="text-admin">
-                    <a href="#admin" class="lbh bg-white">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/admin/id/cte" class="lbh bg-white">
                         <i class="fa fa-user-secret"></i> <?php echo $label ; ?>
                     </a>
                 </li>
