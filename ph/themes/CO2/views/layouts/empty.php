@@ -55,6 +55,7 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
 
   $cssAnsScriptFilesModule = array( 
     '/assets/js/coController.js',
+    '/assets/js/dataHelpers.js',
   );
   HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
@@ -85,7 +86,6 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
   <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
 
 <?php
-
     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
                             array( "layoutPath"=>$layoutPath , 
                                     "subdomain"=>"", //$subdomain,
