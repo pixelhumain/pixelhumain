@@ -29,6 +29,7 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' ,
     '/plugins/blockUI/jquery.blockUI.js' ,
     '/plugins/jquery-cookie/jquery.cookie.js' ,
+    '/plugins/jquery-validation/dist/jquery.validate.min.js',
     
     '/plugins/font-awesome/css/font-awesome.min.css',
     '/plugins/toastr/toastr.js' , 
