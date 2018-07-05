@@ -647,6 +647,7 @@ var dySObj = {
 
                 if( typeof dySObj.surveys.scenario[sectionKey].linkTo != "undefined" && answers ){
                 	linkToT = dySObj.surveys.scenario[sectionKey].linkTo.split(".");
+                	alert("linkTo : "+linkToT[0]+" , "+linkToT[1]);
                 	$.each( answers,function(i,a) { 
                 		if( linkToT[0] == a.formId )
                 		{
