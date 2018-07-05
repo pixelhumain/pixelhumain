@@ -1841,6 +1841,7 @@ var dyFObj = {
 						{
 						  "tags": dyFObj.init.initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
+						  "minimumInputLength" : 3,
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
 						if(dyFObj.init.initValues[ $(this).attr("id") ].maximumSelectionLength)
