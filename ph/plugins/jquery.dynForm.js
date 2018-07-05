@@ -1128,7 +1128,7 @@ var dyFObj = {
         		value =moment(parseInt(value)*1000).format('DD/MM/YYYY');
         		//alert("switch:"+value);
         	}
-        	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        	fieldHTML += iconOpen+'<input type="text" autocomplete="off" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
         /* **************************************
@@ -1138,7 +1138,7 @@ var dyFObj = {
         	if(placeholder == "")
         		placeholder="25/01/2014 08:30";
         	mylog.log("build field "+field+">>>>>> datetime");
-        	fieldHTML += iconOpen+'<input type="text" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        	fieldHTML += iconOpen+'<input type="text" autocomplete="off" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
         /* **************************************
 		* DATE RANGE INPUT 
