@@ -1927,7 +1927,6 @@ var dyFObj = {
 	
 		var initDateTime = function(){
 			mylog.log("init dateTimeInput");
-			alert("initDateTime");
 			jQuery.datetimepicker.setLocale('fr');
 			$(".dateTimeInput").datetimepicker({
 				weekStart: 1,
@@ -1937,7 +1936,6 @@ var dyFObj = {
 			   });
 		};
 		if(  $(".dateTimeInput").length){
-			alert("dateTimeInput");
 			loadDateTimePicker(initDateTime);
 		}
 		/* **************************************
