@@ -140,7 +140,7 @@ onSave: (optional) overloads the generic saveProcess
 					else if(countProperties==inc)
 					{
 						fieldHTML = '<div class="form-actions">';
-						fieldHTML += '<a href="javascript:;" class="btn-next btn btn-blue pull-right next-step">'+
+						fieldHTML += '<a href="javascript:;" class="btn-next btn btn-blue pull-right next-step" style="margin-bottom :40px;">'+
 										'Suivant <i class="fa fa-arrow-circle-right"></i>'+
 									'</a> ';
 						fieldHTML += (sectionIndex>0) ? ' <a href="javascript:;" class="btn-prev btn btn-blue pull-right back-step">'+

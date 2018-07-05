@@ -516,7 +516,7 @@ return array(
 	"have been created by"=>"è stato creato da",
 	"created by"=> "creato da",
 	"page"=>"pagina",
-	"is <b>following</b>"=>"è <b>seguente</b> zu",
+	"is <b>following</b>"=>"è <b>seguente</b>",
 	"no"=>"nessuno",
 	"Cover image of"=>"Immagine di copertina di",
 	"Profil image of"=>"Immagine profilo di",
