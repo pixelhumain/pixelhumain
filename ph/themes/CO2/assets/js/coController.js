@@ -52,7 +52,11 @@ function  bindLBHLinks() {
 			//smallMenu.open ( getAjax(directory.preview( mapElements[ $(this).data("modalshow") ],h ) );
 	});
 }
-
+if( custom && custom.logo ){
+	$(".topLogoAnim").remove();
+    $(".logo-menutop, .logoLoginRegister").attr({'src':custom.logo});
+}
+        
 
 var urlCtrl = {
 	afterLoad : null,

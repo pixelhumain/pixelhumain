@@ -84,7 +84,7 @@
                                 <?php  
                                 $nameTheme = ( (Yii::app()->theme->name == "network") ? "CO2" : Yii::app()->theme->name );
                                 $this->renderPartial('webroot.themes.'.$nameTheme.'.views.layouts.forms.CO2.menuTitle'); ?>
-                                     <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right" src="<?php echo $this->module->getParentAssetsUrl()?>/images/logoL.jpg"/>
+                                     <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right logoLoginRegister" src="<?php echo $this->module->getParentAssetsUrl()?>/images/logoL.jpg"/>
                                 <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
                                 </div>
                             </div>
@@ -206,7 +206,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
                                 <?php  $this->renderPartial('webroot.themes.'.$nameTheme.'.views.layouts.forms.CO2.menuTitle'); ?>
-                                     <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right" src="<?php echo $this->module->getParentAssetsUrl()?>/images/logoL.jpg"/>
+                                     <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right logoLoginRegister" src="<?php echo $this->module->getParentAssetsUrl()?>/images/logoL.jpg"/>
                                 <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
                                 </div>
                             </div>
@@ -351,7 +351,7 @@
                        <?php } else if(Yii::app()->params["CO2DomainName"] == "FI"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/FI-logo.png" height="60" class="inline margin-bottom-15">
                        <?php } else { ?>
-                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">
+                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15 logoLoginRegister">
                         <?php } ?>
                     </span>
                     <h3 class="letter-red no-margin" style="margin-top:-15px!important;"><?php echo Yii::t("login", "Forget password ?") ?></h3><br>
@@ -475,8 +475,6 @@
 </div>
 
 <script>
-    
-
 var email = '<?php echo @$_GET["email"]; ?>';
 var userValidated = '<?php echo @$_GET["userValidated"]; ?>';
 var pendingUserId = '<?php echo @$_GET["pendingUserId"]; ?>';
