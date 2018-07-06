@@ -68,9 +68,15 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
     $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
 
-    $CO2DomainName = ( $this->module->id == "survey" && strrpos(@$_GET['id'], "cte") !== false ) ? "cte" : Yii::app()->params["CO2DomainName"];
+    $CO2DomainName = Yii::app()->params["CO2DomainName"];
     ?>
   <script type="text/javascript">
+  <?php 
+    if ( $this->module->id == "survey" && strrpos(@$_GET['id'], "cte") !== false ){
+      $CO2DomainName = "cte";
+      $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.cte" ) );
+    }
+   ?>
   // **************************************
   //THEME TEMPLATE : CO2 / <?php echo $CO2DomainName ?> / EMPTY
   // **************************************
@@ -104,6 +110,7 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
   $this->renderPartial($layoutPath.'initJs', 
                                  array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
 ?>
+
 <script type="text/javascript">
 var custom = {};
                 
