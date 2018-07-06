@@ -286,6 +286,17 @@
 	"public or private ?" => "pubblico o privato ?",
 	"Public" => "Pubblico",
 	"Private" => "Privato",
+		
+	"Sales & rents" => "Vendite e affitti",
+	"Job offers" => "Offerte di lavoro",
+	"Training" => "Formazione",
+	"Jobs offers" => "Offerte di lavoro",
+	"Internship" => "Stage",
+	"I am looking for" => "Sto cercando",
+	"I recruit" => "Recluto",
+	"Only posts" => "Solo i messaggi",
+	"Activity of communecters" => "Attività dei Communecters",
+	"Surveys" => "Sondaggi",
 
 	);
 ?>
