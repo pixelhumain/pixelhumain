@@ -1643,7 +1643,7 @@ var dyFObj = {
 								'<label style="font-size: 13px;" class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
 									'<i class="fa fa-chevron-down"></i> '+trad.city  +
 								'</label>'+
-						  		"<input autocomplete='off' class='form-group col-md-10 col-xs-12' type='text' name='newElement_city' placeholder='Search a city, a town or a postal code'>"+
+						  		"<input autocomplete='off' class='form-group col-md-10 col-xs-12' type='text' name='newElement_city' placeholder='"+trad['Search a city, a town or a postal code']+"'>"+
 								"<ul class='dropdown-menu col-md-10 col-xs-12' id='dropdown-newElement_locality-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
 									"<li><a href='javascript:' class='disabled'>"+tradDynForm.searchACityATownOrAPostalCode +"</a></li>"+
 								"</ul>"+
@@ -1683,10 +1683,16 @@ var dyFObj = {
 									"<span id='country_sumery_value'></span>"+
 								"</div>"+
 								"<hr class='col-md-12'>"+
-								"<a href='javascript:;' class='col-md-4 col-xs-4 btn btn-default' style='' type='text' id='btnValideAddress'>"+
+								"<a href='javascript:;' class='btn btn-success' type='text' id='btnValideAddress'>"+
 									tradDynForm.confirmAddress+
 								"</a>"+
 							"</div>";
+				fieldHTML +="<div id='divNewAddress' class='text-dark col-xs-12 no-padding'>"+
+								"<a href='javascript:;' class='btn btn-success' type='text' id='newAddress'>"+
+									'<i class="fa fa-plus"></i> '+tradDynForm.addANewAddress +
+								"</a>"+
+							"</div>";
+
 
    //     		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
    //     		fieldHTML += '<select class="'+isSelect2+' '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px;" data-placeholder="'+placeholder+'">';
@@ -2850,8 +2856,7 @@ var dyFObj = {
 			mylog.log("forminmap showMarkerNewElement");
 			mylog.log("formType", dyFObj.formInMap.formType);
 			$(".locationBtn").addClass("hidden");
-			
-			
+			dyFObj.formInMap.newAddress(true);
 			dyFObj.formInMap.initCountry();
 
 			$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
@@ -3024,6 +3029,11 @@ var dyFObj = {
 				dyFObj.formInMap.valideLocality();
 			});
 
+
+			$("#newAddress").click(function(){
+				dyFObj.formInMap.newAddress(true);
+			});
+
 		},
 		showWarningGeo : function(bool){
 			mylog.log("showWarningGeo");
@@ -3084,6 +3094,18 @@ var dyFObj = {
 
 			return locality;
 		},
+		newAddress : function(newA){
+			mylog.log("newAddress ", newA);
+			if(notEmpty(newA) && newA == true ){
+				$('.formLocality').show();
+				$('#sumery').show();
+				$('#divNewAddress').hide();
+			}else{
+				$('.formLocality').hide();
+				$('#sumery').hide();
+				$('#divNewAddress').show();
+			}
+		},
 		valideLocality : function(country){
 			mylog.log("valideLocality ", notEmpty(dyFObj.formInMap.NE_lat));
 			if(notEmpty(dyFObj.formInMap.NE_lat)){
@@ -3096,6 +3118,8 @@ var dyFObj = {
 			dyFObj.formInMap.initVarNE();
 			dyFObj.formInMap.resumeLocality();
 			dyFObj.formInMap.initHtml();
+			dyFObj.formInMap.newAddress(false);
+
 
 		},
 		// Pour effectuer une recherche a la Réunion avec Nominatim, il faut choisir le code de la France, pas celui de la Réunion
