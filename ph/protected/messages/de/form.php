@@ -185,5 +185,11 @@
 		"Select a city to share your survey with everybody in town !" => "Wählen Sie eine Stadt aus, um Ihre Befragungsergebnisse allen in dieser Stadt zu zeigen!",
 		"Transform" => "Verändern Sie",
 		"into an Organization" => "in eine Organisation",
+		
+		"Make your event publicly visible" => "Machen Sie Ihre Veranstaltung öffentlich sichtbar",
+		"Make your project publicly visible" => "Machen Sie Ihr Projekt öffentlich sichtbar",
+		"<b>Private :</b> Event visible only by its attendees and create contents only for attendees and admins<br/><b>Public :</b> Event visible in search engine, agenda and communication available for all" => "<b>Privat :</b> Veranstaltung nur für Teilnehmer sichtbar und Inhalte nur für Teilnehmer und Administratoren<br/><b>Öffentlich :</b> Veranstaltung sichtbar in Suchmaschine, Agenda und Kommunikation für alle",
+		"<b>Private :</b> Project visible only by its contributors and create contents accessible only by its community<br/><b>Public :</b> Project visible in search engine and communication available for all" => "<b>Privat :</b> Projekt nur für seine Mitwirkenden sichtbar und Inhalte nur für seine Community zugänglich<br/><b>Öffentlich :</b> Projekt sichtbar in Suchmaschine und Kommunikation für alle zugänglich",
+		"Add a new address" => "Neue Adresse hinzufügen",
 	)
 ?>
