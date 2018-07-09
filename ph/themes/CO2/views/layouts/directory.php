@@ -138,13 +138,14 @@ echo $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layo
 ?>
 <script type="text/javascript">
 var custom = {};
+  <?php 
+    if( $this->module->id == "custom" ){
+      $this->renderPartial( 'co2.views.custom.init' ); 
+    ?>
   jQuery(document).ready(function() {
     
 
-    <?php 
-    if($this->module->id == "custom"){
-      $this->renderPartial( 'co2.views.custom.init' ); 
-    ?>
+    
 
     
 
