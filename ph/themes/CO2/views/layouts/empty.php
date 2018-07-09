@@ -112,14 +112,17 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
 ?>
 
 <script type="text/javascript">
-var custom = {};
-                
+//var custom = {};            
   jQuery(document).ready(function() { 
-          
       <?php 
       if($this->module->id == "custom"){
           $this->renderPartial( 'co2.views.custom.init' ); 
       }?>
+    if( custom && custom.logo ){
+      $(".topLogoAnim").remove();
+      
+      $(".logo-menutop, .logoLoginRegister").attr({'src':custom.logo});
+      }
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });

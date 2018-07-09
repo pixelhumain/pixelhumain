@@ -311,7 +311,7 @@
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             var CO2params = <?php echo json_encode($params); ?>;
-            var custom = {};
+            //var custom = {};
                 
             jQuery(document).ready(function() { 
                     
@@ -320,8 +320,13 @@
                     $this->renderPartial( 'co2.views.custom.init' ); 
                 }?>
 
-                $.blockUI({ message : themeObj.blockUi.processingMsg});
-                
+                $.blockUI({ message : themeObj.blockUi.processingMsg});                
+                alert(custom.logo);
+                console.log("custooooooooooooooooom",custom);
+                if( custom && custom.logo ){
+                    $(".topLogoAnim").remove();
+                    $(".logo-menutop, .logoLoginRegister").attr({'src':custom.logo});
+                }
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
                     if(typeof urlCtrl.loadableUrls[k] == "undefined")
