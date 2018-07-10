@@ -271,7 +271,14 @@ var typeObj = {
         locality:{}
     };
     var myScopes = {};
-    
+    var initLoginRegister={
+        email : '<?php echo @$_GET["email"]; ?>',
+        userValidated : '<?php echo @$_GET["userValidated"]; ?>',
+        pendingUserId : '<?php echo @$_GET["pendingUserId"]; ?>',
+        name : '<?php echo @$_GET["name"]; ?>',
+        error :'<?php echo @$_GET["error"]; ?>',
+        invitor : "<?php echo @$_GET["invitor"]?>",
+    };
     var themeObj = {
         init : function(){
             toastr.options = {

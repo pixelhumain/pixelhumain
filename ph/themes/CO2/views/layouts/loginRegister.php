@@ -501,16 +501,14 @@ var requestedUrl = "<?php echo (isset(Yii::app()->session["requestedUrl"])) ? Yi
 var REGISTER_MODE_TWO_STEPS = "<?php echo Person::REGISTER_MODE_TWO_STEPS ?>";
 
 jQuery(document).ready(function() {
-
-    //$('#email3').filter_input({regex:'/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/'});
-    //$('#registerName').filter_input({regex:'[^@#&\'\"\`\\\\]'});
-    //$('#username').filter_input({regex:'[^@#&\'\"\`\\\\]'});
-
-
     //Remove parameters from URLs in case of invitation without reloading the page
-    <?php if(@$_GET["email"]){ ?>
-        removeParametersWithoutReloading();
-    <?php } ?>
+    <?php if(@$_GET["email"]){ 
+        if(@$_GET["el"]){ ?> 
+            removeParametersWithoutReloading("<?php echo $_GET["el"] ?>");
+        <?php }else{ ?>
+            removeParametersWithoutReloading();
+        <?php } 
+        } ?>
     
     if(!userConnected)
         Login.init();
@@ -521,12 +519,12 @@ jQuery(document).ready(function() {
         validateUserName();
     });
 
-    if(email != ''){
-        $('#email-login').val(email);
+    if(typeof initLoginRegister != "undefined" &&  initLoginRegister.email != ''){
+        $('#email-login').val(initLoginRegister.email);
         $('#email-login').prop('disabled', true);
-        $('#email2').val(email);
+        $('#email2').val(initLoginRegister.email);
         $('#email2').prop('disabled', true);
-        $('#email3').val(email);
+        $('#email3').val(initLoginRegister.email);
         $('#email3').prop('disabled', true);
     }
 

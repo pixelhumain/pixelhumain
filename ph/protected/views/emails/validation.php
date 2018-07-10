@@ -4,7 +4,7 @@
   $urlValidation=Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id.'/person/activate/user/'.$user.'/validationKey/'.Person::getValidationKeyCheck($user);
   if(@$url){
     $urlRedirect=Yii::app()->getRequest()->getBaseUrl(true).$url;
-    $keyOn=(strrpos($url, "survey") !== false) ? str_replace("/", ".", $url) : $url;
+    $keyOn=(strrpos($url, "survey") !== false) ? str_replace("/", ".", $url) : ltrim($url, '/');
     $urlValidation=Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id.'/person/activate/user/'.$user.'/validationKey/'.Person::getValidationKeyCheck($user)."/redirect/".$keyOn;
   }
   $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header', array("logo"=>@$logoHeader, "url"=> $urlRedirect));

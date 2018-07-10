@@ -333,6 +333,7 @@ var urlCtrl = {
 
 	    	panelName = hash.substr(7);
 	    	mylog.log("panelName",panelName);
+	    	alert();
 	    	if( (panelName == "box-login" || panelName == "box-register") && userId != "" && userId != null ){
 	    		urlCtrl.loadByHash("#default.home");
 	    		return false;
@@ -341,12 +342,12 @@ var urlCtrl = {
 	        else
 	            title = "WELCOM MUNECT HEY !!!";
 	        if(panelName == "box-login"){
-				Login.openLogin();
 				$.unblockUI();
+				Login.openLogin();
 	        }
 			else if(panelName == "box-register"){
-				$('#modalRegister').modal("show");
 				$.unblockUI();
+				$('#modalRegister').modal("show");
 			}
 			else
 	       		showPanel(panelName,null,title);
