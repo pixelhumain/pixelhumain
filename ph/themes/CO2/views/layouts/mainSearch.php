@@ -272,7 +272,7 @@
 
                 $cssAnsScriptFilesModule = array(
                     '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
-                    '/assets/js/comments.js'
+                    '/assets/js/comments.js',
                     //'/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
                     //'/assets/js/themes/'.$CO2DomainName.'.js',
                 );
@@ -311,18 +311,13 @@
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             var CO2params = <?php echo json_encode($params); ?>;
-            //var custom = {};
-                
+            var custom = {};
+            <?php 
+            if($this->module->id == "custom"){
+                $this->renderPartial( 'co2.views.custom.init' ); 
+            }?>
             jQuery(document).ready(function() { 
-                    
-                <?php 
-                if($this->module->id == "custom"){
-                    $this->renderPartial( 'co2.views.custom.init' ); 
-                }?>
-
                 $.blockUI({ message : themeObj.blockUi.processingMsg});                
-                alert(custom.logo);
-                console.log("custooooooooooooooooom",custom);
                 if( custom && custom.logo ){
                     $(".topLogoAnim").remove();
                     $(".logo-menutop, .logoLoginRegister").attr({'src':custom.logo});
@@ -372,19 +367,8 @@
                     toastr.success("Ce bandeau ne s'affichera plus sur ce navigateur !");
                 });
             });
-            console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
         </script>
 
-
-        <?php //$this->renderPartial($layoutPath.'.rocketchat', array() ); ?>
-
-        <?php 
-            /*if( @Yii::app()->params["rocketchatEnabled"] )
-                $this->widget( 'ext.widgets.chat.Chat' ,
-                    array(
-                        "host"=>"kiki"
-                    ) );  */
-        ?>
     </body>
 
 </html>

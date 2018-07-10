@@ -121,7 +121,7 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     if( custom && custom.logo ){
       $(".topLogoAnim").remove();
       
-      $(".logo-menutop, .logoLoginRegister").attr({'src':custom.logo});
+      $(".logo-menutop, .logoLoginRegister").attr({'src':baseUrl+custom.logo});
       }
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
