@@ -1233,6 +1233,10 @@ h3.title_panel_map{
 .portfolio-modal{
 	padding-right:0px !important;
 	background-color: white;
+	z-index:20000;
+}
+#modalRegisterSuccess, #modalSendAgainSuccess, #modalNewPasswordSuccess{
+	z-index:20000;	
 }
 .portfolio-modal .close-modal{
 	z-index:10;

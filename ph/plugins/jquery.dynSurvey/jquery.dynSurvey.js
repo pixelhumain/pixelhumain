@@ -623,6 +623,12 @@ var dySObj = {
 			}
 			counter++;
 		});
+		if(!result){
+			alert("error");
+			$(".btn-next").html('<span class="text-red">Errors <i class="fa fa-warning"></i></span>');
+		}else{
+			$(".btn-next").html('<span class="text-dark">Suivant <i class="fa fa-arrow-circle-right"></i></span>');
+		}
 		return result;
 	}, 
 	goForward : function (existedElementId, elementSlug, elementName, eltMail){

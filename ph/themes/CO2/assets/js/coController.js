@@ -53,6 +53,7 @@ function  bindLBHLinks() {
 	});
 }
 
+        
 
 var urlCtrl = {
 	afterLoad : null,
@@ -332,6 +333,7 @@ var urlCtrl = {
 
 	    	panelName = hash.substr(7);
 	    	mylog.log("panelName",panelName);
+	    	alert();
 	    	if( (panelName == "box-login" || panelName == "box-register") && userId != "" && userId != null ){
 	    		urlCtrl.loadByHash("#default.home");
 	    		return false;
@@ -340,12 +342,12 @@ var urlCtrl = {
 	        else
 	            title = "WELCOM MUNECT HEY !!!";
 	        if(panelName == "box-login"){
-				Login.openLogin();
 				$.unblockUI();
+				Login.openLogin();
 	        }
 			else if(panelName == "box-register"){
-				$('#modalRegister').modal("show");
 				$.unblockUI();
+				$('#modalRegister').modal("show");
 			}
 			else
 	       		showPanel(panelName,null,title);
@@ -472,8 +474,8 @@ function showAjaxPanel (url,title,icon, mapEnd , urlObj) {
 	        		urlCtrl.afterLoad = null;
 	        	}
 
-	        	if( custom && custom.logo )
-	    			$(".logo-menutop").attr( {'src':custom.logo} ); 	
+	        	//if( custom && custom.logo )
+	    		//	$(".logo-menutop").attr( {'src':custom.logo} ); 	
 
 
 	        	/*if(debug){

@@ -1,5 +1,13 @@
 <?php
-  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header');
+  $logoHeader=(@$logoHeader) ? Yii::app()->getRequest()->getBaseUrl(true).$logoHeader : "";
+  $urlRedirect=Yii::app()->getRequest()->getBaseUrl(true);
+  $urlValidation=Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id.'/person/activate/user/'.$user.'/validationKey/'.Person::getValidationKeyCheck($user);
+  if(@$url){
+    $urlRedirect=Yii::app()->getRequest()->getBaseUrl(true).$url;
+    $keyOn=(strrpos($url, "survey") !== false) ? str_replace("/", ".", $url) : ltrim($url, '/');
+    $urlValidation=Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id.'/person/activate/user/'.$user.'/validationKey/'.Person::getValidationKeyCheck($user)."/redirect/".$keyOn;
+  }
+  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header', array("logo"=>@$logoHeader, "url"=> $urlRedirect));
 ?>
    <table class="row masthead" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;background: white;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"> <!-- Masthead -->
       <th class="small-12 large-12 columns first last" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 16px;">
@@ -37,10 +45,10 @@
                 <!--http://localhost:8888/ph/images/betatest.png-->
               <h3 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 22px;"><?php echo Yii::t("mail","Welcome on {what}",array("{what}"=>$title)) ?></h3>
              <?php echo Yii::t("mail","Please click on the following link to confirm your account") ?>:<br>
-           <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id; ?>/person/activate/user/<?php echo $user.'/validationKey/'.Person::getValidationKeyCheck($user)?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><?php echo Yii::t("mail","Validation of my account") ?></a>
+           <a href="<?php echo $urlValidation ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><?php echo Yii::t("mail","Validation of my account") ?></a>
            <br>
             <br>
             <?php echo Yii::t("mail","If the link doesn&apos;t work, you can copy it in your browser&apos;s address"); ?> :<br>  
-           <div style="word-break: break-all;"><?php echo Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id; ?>/person/activate/user/<?php echo $user.'/validationKey/'.Person::getValidationKeyCheck($user)?></div>
+           <div style="word-break: break-all;"><?php echo $urlValidation ?></div>
              
-   <?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.footer'); ?>
+   <?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.footer', array("name"=>$title, "url"=>$urlRedirect)); ?>
