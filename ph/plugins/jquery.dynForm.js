@@ -3162,7 +3162,7 @@ var dyFObj = {
 
 			dyFObj.formInMap.NE_street = $('[name="newElement_street"]').val();
 
-			$("#dropdown-newElement_streetAddress-found").html("<li><a href='javascript:'><i class='fa fa-spin fa-refresh'></i> "+trad.currentlyresearching+"</a></li>");
+			$("#dropdown-newElement_streetAddress-found").html("<li><a href='javascript:;'><i class='fa fa-spin fa-refresh'></i> "+trad.currentlyresearching+"</a></li>");
 			$("#dropdown-newElement_streetAddress-found").show();
 			mylog.log("countryCode", countryCode);
 			
