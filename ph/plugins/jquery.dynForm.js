@@ -1787,6 +1787,8 @@ var dyFObj = {
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
+				alert("error form");
+				$(".btn-next").html('<span class="text-red">Errors <i class="fa fa-warning"></i></span>');
 				// $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
 				// 	$( settings.formId ).submit();	        	
 		  //       });
