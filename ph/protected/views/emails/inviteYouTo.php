@@ -1,6 +1,15 @@
   <?php
-  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header');
-  $url = Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".$parentType.".id.".(string)$parent["_id"];
+    $logoHeader=(@$logoHeader) ? Yii::app()->getRequest()->getBaseUrl(true).$logoHeader : "";
+  $urlSite=Yii::app()->getRequest()->getBaseUrl(true);
+  $urlInvite=Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".$parentType.".id.".(string)$parent["_id"];
+  if(@$url){
+    $urlInvite=Yii::app()->getRequest()->getBaseUrl(true).$url;
+    $urlSite=$urlInvite;
+    if(strrpos($url, "custom") !== false)
+      $urlInvite=$urlSite."#page.type.".$parentType.".id.".(string)$parent["_id"];
+  }
+  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header', array("logo"=>@$logoHeader, "url"=> $urlSite));
+  //$url = Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".$parentType.".id.".(string)$parent["_id"];
   $verbAction=$verb;
   if($verb=="contribute")
     $verbAction="contribute to";
@@ -23,10 +32,10 @@
               <?php echo Yii::t("mail","Please connect you and go to the detail of {what} following link under to answer to the invitation",array("{what}"=>Yii::t("common","this ".Element::getControlerByCollection($parentType))))." ".Yii::t("common","this ".Element::getControlerByCollection($parentType)).". ".Yii::t("mail","If you validate, you will be added as {what} else the link between you and {where} will be destroyed",array("{what}"=>Yii::t("common", $typeOfDemand), "{where}"=>Yii::t("common","the ".Element::getControlerByCollection($parentType))))."." ?>
               <br>
               <br>
-              <a href="<?php echo $url?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><?php echo Yii::t("mail","Answer to the invitation") ?></a>
+              <a href="<?php echo $urlInvite?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><?php echo Yii::t("mail","Answer to the invitation") ?></a>
               <br>
               <br>
               <?php echo Yii::t("mail","If the link doesn&apos;t work, you can copy it in your browser&apos;s address"); ?> :
-              <br><div style="word-break: break-all;"><?php echo $url?></div>
+              <br><div style="word-break: break-all;"><?php echo $urlInvite?></div>
               
-  <?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.footer'); ?>
+  <?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.footer', array("name"=>$title, "url"=>$urlSite)); ?>
