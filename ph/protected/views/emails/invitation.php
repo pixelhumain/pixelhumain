@@ -1,6 +1,6 @@
 <?php
 $validationKey =Person::getValidationKeyCheck($invitedUserId);
-$url = Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."/person/validateinvitation/user/".$invitedUserId.'/validationKey/'.$validationKey.'/invitation/1';
+$url = Yii::app()->getRequest()->getBaseUrl(true).(empty($url) ? "/".$this->module->id : $url)."/person/validateinvitation/user/".$invitedUserId.'/validationKey/'.$validationKey.'/invitation/1';
 Yii::app()->language = $language;
 
 if(!empty($invitorUrl))
