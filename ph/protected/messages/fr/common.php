@@ -1406,6 +1406,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Week" => "Semaine",
 	"Ressources" => "Ressources",
 	"Ressource" => "Ressource",
+	"ressource" => "ressource",
 
 	"Recurring donation" => "Don récurrent",
 	"pts , based on Links and Posts popularity" => "pts, basés sur les liens et les publications",
