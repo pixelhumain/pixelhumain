@@ -1745,6 +1745,15 @@ var dyFObj = {
 		mylog.dir(formRules);
 		var errorHandler = $('.errorHandler', $(params.formId));
 
+		$(params.formId).unbind('keydown').keydown(function(event) 
+		  {
+		  	if ( event.keyCode == 13)
+		    {
+				event.preventDefault();
+				//alert("enter");
+			}
+		});
+
 		$(params.formId).validate({
 
 			rules : formRules,
@@ -1787,8 +1796,10 @@ var dyFObj = {
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
-				alert("error form");
-				$(".btn-next").html('<span class="text-red">Errors <i class="fa fa-warning"></i></span>');
+				
+				//alert("error form");
+				//$(".btn-next").html('<span class="text-red">Errors <i class="fa fa-warning"></i></span>');
+				
 				// $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
 				// 	$( settings.formId ).submit();	        	
 		  //       });
@@ -3164,7 +3175,7 @@ var dyFObj = {
 
 			dyFObj.formInMap.NE_street = $('[name="newElement_street"]').val();
 
-			$("#dropdown-newElement_streetAddress-found").html("<li><a href='javascript:;'><i class='fa fa-spin fa-refresh'></i> "+trad.currentlyresearching+"</a></li>");
+			$("#dropdown-newElement_streetAddress-found").html("<li><a href='javascript:'><i class='fa fa-spin fa-refresh'></i> "+trad.currentlyresearching+"</a></li>");
 			$("#dropdown-newElement_streetAddress-found").show();
 			mylog.log("countryCode", countryCode);
 			

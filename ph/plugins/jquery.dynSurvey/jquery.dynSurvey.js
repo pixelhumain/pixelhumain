@@ -269,7 +269,7 @@ var dySObj = {
 				errorHandler.hide();
 				mylog.info("form submitted "+params.surveyId);
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
-					mylog.log(params.onSave);
+					alert(params.onSave);
 					params.onSave(params);
 					return false;
 		        } 
@@ -363,6 +363,16 @@ var dySObj = {
 		$("#surveyDesc").hide();
 	    mylog.log("buildSurvey sections: ",dySObj.surveys.sections);
 	    //dySObj.survey = dySObj.surveys.sections;
+
+	    $(dySObj.surveyId).unbind('keydown').keydown(function(event) 
+		  {
+		  	if ( event.keyCode == 13)
+		    {
+				event.preventDefault();
+				//alert("enter");
+			}
+		});
+
 	    var form = $.dynSurvey({
 	        surveyId : dySObj.surveyId,
 	        surveyObj : dySObj.surveys.sections,
@@ -624,8 +634,8 @@ var dySObj = {
 			counter++;
 		});
 		if(!result){
-			alert("error");
 			$(".btn-next").html('<span class="text-red">Errors <i class="fa fa-warning"></i></span>');
+			$('html, body').stop().animate({scrollTop: 0}, 500, '');
 		}else{
 			$(".btn-next").html('<span class="text-dark">Suivant <i class="fa fa-arrow-circle-right"></i></span>');
 		}
