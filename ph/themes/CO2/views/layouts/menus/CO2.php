@@ -497,7 +497,14 @@
 
             <li role="separator" class="divider"></li>
             <li class="text-left">
-                <a href="<?php echo Yii::app()->createUrl('/co2/person/logout'); ?>" 
+                <?php 
+                    $url = '/co2/person/logout';
+                    // if(!empty(Yii::app()->session['custom'])){
+                    //     $url .= '?el='.$_GET["el"];
+                    // }
+
+                ?>
+                <a href="<?php echo Yii::app()->createUrl($url); ?>" 
                     class="bg-white letter-red logout">
                     <i class="fa fa-sign-out"></i> <?php echo Yii::t("common", "Log Out") ; ?>
                 </a>
