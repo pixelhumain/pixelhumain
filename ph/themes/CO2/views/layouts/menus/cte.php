@@ -80,7 +80,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="pull-right navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav">
                 <?php 
                     if( isset( Yii::app()->session['userId']) ){
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->getParentAssetsUrl());
