@@ -69,14 +69,20 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
 
     $CO2DomainName = Yii::app()->params["CO2DomainName"];
+      $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
+
+  $this->renderPartial($layoutPath.'initJs', 
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
+
     ?>
-  <script type="text/javascript">
+  
   <?php 
     if ( $this->module->id == "survey" && strrpos(@$_GET['id'], "cte") !== false ){
       $CO2DomainName = "cte";
       $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.cte" ) );
     }
    ?>
+ <script type="text/javascript">
   // **************************************
   //THEME TEMPLATE : CO2 / <?php echo $CO2DomainName ?> / EMPTY
   // **************************************
@@ -105,24 +111,11 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
 </div>
 
 <?php 
-  $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
-
-  $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
 ?>
 
 <script type="text/javascript">
 //var custom = {};            
   jQuery(document).ready(function() { 
-      <?php 
-      if($this->module->id == "custom"){
-          $this->renderPartial( 'co2.views.custom.init' ); 
-      }?>
-    if( custom && custom.logo ){
-      $(".topLogoAnim").remove();
-      
-      $(".logo-menutop, .logoLoginRegister").attr({'src':baseUrl+custom.logo});
-      }
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });
