@@ -261,7 +261,9 @@
     var headerScaling=false;
     jQuery(document).ready(function() {
         initScopeMenu();
-        
+        if( typeof custom != "undefined" && custom.logo ){
+            custom.initMenu("mainSearch");
+        }
         $("#tagsFilterInput").select2({tags:[]});
         $(".tooltips").tooltip();
         $(".btn-show-filters").click(function(){
