@@ -1,5 +1,5 @@
 <div class="toolbar-bottom bottom-left font-montserrat">
-    <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" id="donation-btn" class="btn btn-default">
+    <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" id="donation-btn" class="btn btn-default donation-btn">
         <i class="fa fa-heart"></i> <?php //echo Yii::t("common", "Don récurant") ?>
     </a>
 </div>
@@ -131,7 +131,7 @@
         <i class="fa fa-cubes"></i> 
         <span><?php echo Yii::t("common","Ressource") ?></span>
     </a><br/>
-    <a href="javascript:;" data-form-type="jobs" class="addBtnFoot addBtnAll addBtnFoot_orga addBtnFoot_project btn-open-form btn btn-default bg-yellow-k margin-bottom-10"> 
+    <a href="javascript:;" data-form-type="jobs" class="addBtnFoot hideBtnFoot_person addBtnFoot_orga addBtnFoot_project btn-open-form btn btn-default bg-yellow-k margin-bottom-10"> 
         <i class="fa fa-briefcase"></i> 
         <span><?php echo Yii::t("common","Jobs") ?></span>
     </a><br/>
@@ -222,6 +222,7 @@ function addBtnSwitch(){
     if( (contextData != null && contextData.type == "citoyens") || contextData == null){
         $(".addBtnFoot").removeClass("hidden");
         $(".addBtnFootChat").addClass("hidden");
+        $(".hideBtnFoot_person").addClass("hidden");
     }
     else if(contextData.type == "organizations" )
         $(".addBtnFoot_orga").removeClass("hidden");
