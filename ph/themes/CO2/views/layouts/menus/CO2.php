@@ -62,17 +62,12 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
            
-            <a href="#welcome" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" 
-                <?php //if( $subdomain != "welcome" ) { echo 'data-target="#modalMainMenu" data-toggle="modal"' } ?>
-            >
-                <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-head-search.png" 
-                     class="logo-menutop main pull-left hidden-xs hidden-sm" height=17>
-
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
-                     class="logo-menutop pull-left hidden-xs hidden-sm hidden-top" style="display: none!important;" height=20>-->
-
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGOS/CO2/logo-min.png" 
-                     class="logo-menutop pull-left" height=25>
+            <a href="#welcome" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" >
+    
+                <?php 
+                $logo = (@Yii::app()->session['custom']["logo"]) ? Yii::app()->session['custom']["logo"] : Yii::app()->theme->baseUrl."/assets/img/LOGOS/CO2/logo-min.png";
+                ?>
+                <img src="<?php echo $logo;?>" class="logo-menutop pull-left" height=25>
             </a>
            <!-- <span class="hidden-xs skills font-montserrat"><?php echo Yii::t("common",$mainTitle); ?></span>-->
             <?php 

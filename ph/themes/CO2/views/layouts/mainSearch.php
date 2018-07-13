@@ -51,6 +51,26 @@
     <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' />
 <?php } ?>
 
+    <?php 
+    if(isset(Yii::app()->session['userId'])){
+      $myContacts = Person::getPersonLinksByPersonId(Yii::app()->session['userId']);
+      $myFormContact = $myContacts; 
+      $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
+    }else{
+      $myFormContact = null;
+
+    }
+    $communexion = CO2::getCommunexionCookies();
+            
+    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+     $this->renderPartial($layoutPath.'initJs', 
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
+    if($this->module->id == "custom"){
+        $this->renderPartial( 'co2.views.custom.init' ); 
+    }?>
+
+
+
         <?php 
             $cs->registerScriptFile(Yii::app() -> createUrl($parentModuleId."/default/view/page/trad/dir/..|translation/layout/empty"));
         ?>
@@ -74,20 +94,7 @@
             $this->renderPartial( $layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"], array("modulePath"=>$modulePath )); ?>
         </div>
 
-        <?php //get all my link to put in floopDrawer
-            if(isset(Yii::app()->session['userId'])){
-              $myContacts = Person::getPersonLinksByPersonId(Yii::app()->session['userId']);
-              $myFormContact = $myContacts; 
-              $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
-            }else{
-              $myFormContact = null;
-
-            }
-            $communexion = CO2::getCommunexionCookies();
-           // error_log("load IndexDefault");
-        ?>
-        
-        <?php $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+        <?php 
               $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); 
               ?>   
         
@@ -264,8 +271,7 @@
             /* ***********************
             END theme stuff
             ************************ */
-             $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
+            
 
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
             //if($CO2DomainName != "CO2"){
@@ -311,22 +317,12 @@
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             var CO2params = <?php echo json_encode($params); ?>;
-            var custom = {};
-            <?php 
-            if($this->module->id == "custom"){
-                $this->renderPartial( 'co2.views.custom.init' ); 
-            }?>
+            
+            
             jQuery(document).ready(function() { 
                 $.blockUI({ message : themeObj.blockUi.processingMsg});                
-                if( custom && custom.logo ){
-
-                    $(".topLogoAnim").remove();
-                    setTimeout(function(){
-                        $(".logo-menutop, .logoLoginRegister").attr({'src':custom.logo});
-                        alert(baseUrl+custom.logo);
-                    }, 3500);
-                    
-                    
+                if( typeof custom != "undefined" && custom.logo ){
+                    custom.init("mainSearch");
                 }
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
