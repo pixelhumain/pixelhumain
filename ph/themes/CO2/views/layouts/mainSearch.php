@@ -321,8 +321,19 @@
             
             jQuery(document).ready(function() { 
                 $.blockUI({ message : themeObj.blockUi.processingMsg});                
+<<<<<<< HEAD
                 if( typeof custom != "undefined" && custom.logo ){
                     custom.init("mainSearch");
+=======
+                if( custom && custom.logo ){
+
+                    $(".topLogoAnim").remove();
+                    setTimeout(function(){
+                        $(".logo-menutop, .logoLoginRegister").attr({'src':custom.logo});
+                    }, 3500);
+                    
+                    
+>>>>>>> master
                 }
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
