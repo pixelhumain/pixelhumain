@@ -319,8 +319,14 @@
             jQuery(document).ready(function() { 
                 $.blockUI({ message : themeObj.blockUi.processingMsg});                
                 if( custom && custom.logo ){
+
                     $(".topLogoAnim").remove();
-                    $(".logo-menutop, .logoLoginRegister").attr({'src':custom.logo});
+                    setTimeout(function(){
+                        $(".logo-menutop, .logoLoginRegister").attr({'src':custom.logo});
+                        alert(baseUrl+custom.logo);
+                    }, 3500);
+                    
+                    
                 }
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 

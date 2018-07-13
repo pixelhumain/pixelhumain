@@ -634,7 +634,7 @@ var dySObj = {
 			counter++;
 		});
 		if(!result){
-			$(".btn-next").html('<span class="text-red">Errors <i class="fa fa-warning"></i></span>');
+			$(".btn-next").html('<span class="text-red"><i class="fa fa-warning"></i> Régler les erreurs</span>');
 			$('html, body').stop().animate({scrollTop: 0}, 500, '');
 		}else{
 			$(".btn-next").html('<span class="text-dark">Suivant <i class="fa fa-arrow-circle-right"></i></span>');
