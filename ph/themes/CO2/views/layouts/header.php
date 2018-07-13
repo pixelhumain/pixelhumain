@@ -261,36 +261,7 @@
     var headerScaling=false;
     jQuery(document).ready(function() {
         initScopeMenu();
-        if(typeof custom.menu != "undefined"){
-            $.each(custom.menu, function(e,v){
-                if(e=="all" && typeof v.label != "undefined")
-                    $(".searchModSpan").text(v.label);
-                if(e=="events" && typeof v.label != "undefined")
-                    $(".agendaModSpan").text(v.label);
-                if(e=="news" && typeof v.label != "undefined")
-                    $(".liveModSpan").text(v.label);
-                if(e=="classifieds" && typeof v.label != "undefined")
-                    $(".annoncesModSpan").text(v.label);
-            });
-        }
-        if(typeof custom.menuTop != "undefined"){
-            $.each(custom.menuTop, function(e,v){
-                if(e=="DDA")
-                    $("#dropdown-dda").remove();
-                if(e=="donate")
-                    $(".donation-btn").remove();
-                if(e=="communexion"){
-                    $(".communexion-btn").remove();
-                    //$(".communecter-btn").parent().remove();
-                }
-                if(e=="location")
-                    $(".menu-btn-scope-filter").remove();
-                if(e=="documentation")
-                    $(".documentation-btn").remove();
-                if(e=="statistics")
-                    $(".statistics-btn").remove();
-            });
-        }
+        
         $("#tagsFilterInput").select2({tags:[]});
         $(".tooltips").tooltip();
         $(".btn-show-filters").click(function(){
