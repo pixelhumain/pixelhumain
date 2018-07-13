@@ -67,7 +67,9 @@
                                  array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
     if($this->module->id == "custom"){
         $this->renderPartial( 'co2.views.custom.init' ); 
-    }?>
+    }else 
+        Yii::app()->session["custom"]=null;
+        ?>
 
 
 
@@ -321,19 +323,8 @@
             
             jQuery(document).ready(function() { 
                 $.blockUI({ message : themeObj.blockUi.processingMsg});                
-<<<<<<< HEAD
                 if( typeof custom != "undefined" && custom.logo ){
                     custom.init("mainSearch");
-=======
-                if( custom && custom.logo ){
-
-                    $(".topLogoAnim").remove();
-                    setTimeout(function(){
-                        $(".logo-menutop, .logoLoginRegister").attr({'src':custom.logo});
-                    }, 3500);
-                    
-                    
->>>>>>> master
                 }
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
