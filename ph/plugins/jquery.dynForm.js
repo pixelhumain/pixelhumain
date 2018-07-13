@@ -4119,8 +4119,9 @@ var dyFInputs = {
 				}
 				if(typeof center != "undefined" && center)
 					dyFInputs.locationObj.setAsCenter(0);
+				$(".locationBtn").html("<i class='fa fa-home'></i> "+tradDynForm.secondLocality);
 			} else{
-				$(".locationBtn").html("<i class='fa fa-home'></i> "+tradDynForm["mainLocality"]);
+				$(".locationBtn").html("<i class='fa fa-home'></i> "+tradDynForm.mainLocality);
 				//dyFInputs.locationObj.centerLocation = null;
 			}
 			
