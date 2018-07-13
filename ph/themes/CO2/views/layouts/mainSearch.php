@@ -323,7 +323,6 @@
                     $(".topLogoAnim").remove();
                     setTimeout(function(){
                         $(".logo-menutop, .logoLoginRegister").attr({'src':custom.logo});
-                        alert(baseUrl+custom.logo);
                     }, 3500);
                     
                     
