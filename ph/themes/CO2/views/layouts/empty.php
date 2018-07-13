@@ -67,7 +67,6 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
   <?php 
     $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
     $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
-
     $CO2DomainName = Yii::app()->params["CO2DomainName"];
       $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
 
@@ -88,7 +87,7 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
   // **************************************
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
-   var moduleId = "<?php echo $this->module->id?>";
+   //var moduleId = "<?php echo $this->module->id?>";
    debug = false;
 
    </script>
