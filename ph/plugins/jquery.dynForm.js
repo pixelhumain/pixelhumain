@@ -2072,7 +2072,6 @@ var dyFObj = {
 						    	
 						    	//console.log(responseJSON);
 						    	if(typeof responseJSON.survey != "undefined" && responseJSON.survey){
-						    		//alert(responseJSON.id.$id);
 						    		data={
 						    			formId:dySObj.surveys.id,
 						    			answerSection: dySObj.activeSectionKey,
@@ -2086,10 +2085,7 @@ var dyFObj = {
 								        data: data,
 										type: "POST",
 								    })
-								    .done(function (data) {
-							    		
-										return true;
-								    }).fail(function(){
+								    .done(function (data) {}).fail(function(){
 									   toastr.error("Something went wrong, contact your admin"); 
 									   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
 									   $("#btn-submit-form").prop('disabled', false);
