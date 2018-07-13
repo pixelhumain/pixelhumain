@@ -329,15 +329,3 @@ background-color: #09adef;
 	color:white!important;
 	text-decoration: none!important;
 }
-
-#affix-sub-menu{
-	position: fixed;
-	top: 65px;
-	left: 0px;
-	background-color: white;
-	-webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5)!important;
-	-moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5)!important;
-	box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5)!important;
-	width: 100%;
-	z-index: 1000;
-}
