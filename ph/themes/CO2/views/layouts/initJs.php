@@ -43,6 +43,9 @@
         "survey" : <?php echo json_encode( array(
             "url"    => Yii::app()->getModule( "survey" )->assetsUrl
         )); ?>,
+        "co2" : <?php echo json_encode( array(
+            "url"    => Yii::app()->getModule( "co2" )->assetsUrl
+        )); ?>,
         "cotools" : <?php echo json_encode( array(
             "module" => "cotools",
             "init"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
