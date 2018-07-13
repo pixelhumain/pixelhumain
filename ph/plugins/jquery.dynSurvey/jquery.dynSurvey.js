@@ -269,7 +269,6 @@ var dySObj = {
 				errorHandler.hide();
 				mylog.info("form submitted "+params.surveyId);
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
-					alert(params.onSave);
 					params.onSave(params);
 					return false;
 		        } 
