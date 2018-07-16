@@ -730,7 +730,7 @@ a, a:hover, a:focus, a:active, a.active{
     height: 40px;
     font-weight: 200;
     width: 90%;
-    border-radius: 20px 0px 0px 20px !important;
+    border-radius: 20px 0px 0px 20px;
     /*margin-top: -2px;
     margin-bottom: 0px;*/
     text-align: -webkit-center;
@@ -2033,10 +2033,7 @@ margin-right: 5px;
     .col-footer a{
     	padding:10px;
     }
-	#affix-sub-menu.affix{
-		top: 45px;
-	}
-
+	
 	.btn-menu-to-app{
 		font-size:18px;
 	}
@@ -2120,6 +2117,46 @@ margin-right: 5px;
 	.open-type-filter{
 		
 	}	
+	header{
+        min-height: initial;
+    }
+    .menu-btn-scope-filter{
+        margin: 0px;
+    	box-shadow: none !important;
+    	max-width: inherit;
+    	border-radius: 0px;
+    }
+    .menu-btn-scope-filter.active, .menu-btn-scope-filter:hover, .menu-btn-scope-filter.active:hover {
+        background-color: transparent !important;
+        color: #ea4335 !important;
+        box-shadow: none !important; 
+        border: none !important;
+    	border-bottom: 2px solid #ea4335 !important;
+    }
+    .btn-show-filters{
+        margin-top: 10px !important;
+        float: right;
+    }
+    #filters-nav{
+    	display:none;
+    }
+    #text-search-menu{
+        display: block !important;
+    }
+    #text-search-menu:after, #filter-scopes-menu:after, #text-search-menu:before, #filter-scopes-menu:before {
+        border-bottom-color: transparent;
+    }
+    .main-search-bar, .main-search-bar-addon{
+        border-radius: 0px !important;
+    }
+    .dropdown-xs-view .dropdown-menu{
+        top: 39px !important;
+        left: -22px !important;
+        right: -15px !important;
+    }   
+    .dropdown-xs-view .dropdown-menu:before, .dropdown-xs-view .dropdown-menu:after{
+        border-bottom-color:inherit !important;
+    }
 }
 
 label.error{color:red;}

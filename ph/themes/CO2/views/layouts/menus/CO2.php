@@ -101,9 +101,9 @@
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-search"></i>
             </button> -->
-            <div class="col-sm-3 col-md-4 col-lg-4 margin-top-5" style="">
-                <input type="text" class="form-control pull-left" id="main-search-bar" placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
-                <span class="text-white input-group-addon pull-left" id="main-search-bar-addon">
+            <div class="hidden-xs col-sm-4 col-md-4 col-lg-4 margin-top-5" style="">
+                <input type="text" class="form-control pull-left main-search-bar" id="main-search-bar" placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
+                <span class="text-white input-group-addon pull-left main-search-bar-addon" id="main-search-bar-addon">
                     <i class="fa fa-arrow-circle-right"></i>
                 </span>
             </div>
@@ -228,7 +228,7 @@
 
                     
                     <span class="dropdown" id="dropdown-apps">
-                        <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
+                        <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                               title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>">
                           <i class="fa <?php echo Application::ICON ?> letter-red"></i>
                         </button>
