@@ -56,8 +56,12 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 								echo Yii::t("mail","His message for you") ?> : <br/>
 							<p style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 10px;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><i><?php echo nl2br(htmlentities($message)); ?></i></p>
 							<br/>
-							<?php } else { ?>
-								<?php echo Yii::t("mail","In just a few clicks discover local activity on CO and use tools for your own organization : news feeds, agendas, classified ads, directories of initiatives towards a more sustainable world !") ?>.
+							<?php } else { 
+
+									if(!empty($msg))
+										echo nl2br(htmlentities($msg));
+									else
+										echo Yii::t("mail","In just a few clicks discover local activity on CO and use tools for your own organization : news feeds, agendas, classified ads, directories of initiatives towards a more sustainable world !") ?>.
 								<br/><br/>
 								<?php if(!empty($invitorName)){
 									echo Yii::t("mail","{who} started without you, but you can join him at any time by clicking here", array("{who}"=>$invitorName));
