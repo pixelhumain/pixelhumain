@@ -2089,7 +2089,7 @@ var dyFObj = {
 						    			answerKey : responseJSON.survey,
 						    			documentId :responseJSON.id.$id
 						    		};
-						    		if(notNull(updateForm)){
+						    		if(typeof updateForm !="undefined" && notNull(updateForm)){
 						    			documentEl.formId = updateForm.form;
 	    								documentEl.answerSection = updateForm.step; 
 	    							}
