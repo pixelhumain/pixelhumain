@@ -1122,8 +1122,10 @@ var dyFObj = {
 			}
 			if(typeof dySObj == "undefined" && $.isFunction( fieldObj.afterUploadComplete ))
         		uploadObject.afterUploadComplete = fieldObj.afterUploadComplete;
-        	else if(typeof dysObj != "undefined"){
-
+        	else if(typeof dySObj != "undefined" && typeof fieldObj.afterUploadComplete == "string"){
+        		uploadObject.afterUploadComplete = function(){
+        			window.location=baseUrl+fieldObj.afterUploadComplete;
+        		};
         	}else if(typeof updateForm != "undefined"){
         		uploadObject.afterUploadComplete = function(){
         			window.location.reload();

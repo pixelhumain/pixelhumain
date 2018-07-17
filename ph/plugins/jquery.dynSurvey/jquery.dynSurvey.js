@@ -399,7 +399,7 @@ var dySObj = {
 	            };
 	            if(dySObj.surveys.parentSurvey)
 	            	result.parentSurvey = dySObj.surveys.parentSurvey.id;
-
+	            var reloadInside= true;
 	            mylog.log(params.surveyObj);
 	            $.each( params.surveyObj,function(section,sectionObj) { 
 	            	//alert("key"+sectionObj.key);
@@ -412,6 +412,7 @@ var dySObj = {
 		                    if( fieldObj.inputType ){
 		                        if(fieldObj.inputType=="uploader"){
 		                     		if( $('#'+section+' #'+fieldObj.domElement).fineUploader('getUploads').length > 0 ){
+		                     			reloadInside=false;
 		    							$('#'+section+' #'+fieldObj.domElement).fineUploader('uploadStoredFiles');
 		    							result["answers"][sectionObj.key][field] = "";
 		                        	}
@@ -444,11 +445,14 @@ var dySObj = {
 	            			dySObj.surveys.parentSurvey.surveyType == "surveyList" && 
 	            			Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id) < Object.keys( dySObj.surveys.parentSurvey.scenario).length-1 ){
 	            			var ix = Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id)+1;
-	            			window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix];
+	            			if(reloadInside)
+	            				window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix];
 	            		} else {
 		                	toastr.success("answers saved");
-		                	if(dySObj.surveys.parentSurvey.custom.endTpl)
-		                		window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id;
+		                	if(dySObj.surveys.parentSurvey.custom.endTpl){
+		                		if(reloadInside)
+		                			window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id;
+		                	}
 		                	else
 		                		$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');
 		                }
