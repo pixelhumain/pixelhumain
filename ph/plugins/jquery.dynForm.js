@@ -2991,12 +2991,13 @@ var dyFObj = {
 		bindFormInMap : function(){
 			mylog.log("bindFormInMap");
 
-			$('[name="newElement_country"]').change(function(){
-				mylog.log("change country", $('[name="newElement_country"]').val());
-				dyFObj.formInMap.initVarNE()
-				dyFObj.formInMap.NE_country = $('[name="newElement_country"]').val() ;
-				//dyFObj.formInMap.resumeLocality();
-				dyFObj.formInMap.initHtml();
+			$('#ajaxFormModal  #newElement_country').change(function(){
+				mylog.log("formInMap.NE_country D", $(this).val(), $('#ajaxFormModal  #newElement_country').val());
+				dyFObj.formInMap.initVarNE();
+				dyFObj.formInMap.NE_country = $(this).val() ;
+				mylog.log("formInMap.NE_country M", dyFObj.formInMap.NE_country );
+				dyFObj.formInMap.resumeLocality();
+				//dyFObj.formInMap.initHtml();
 				// $("#country_sumery_value").html($('[name="newElement_country"]').val());
 				// $('[name="newElement_city"]').val("");
 				// $("#country_sumery_value").html($('[name="newElement_country"]').val());
@@ -3005,7 +3006,7 @@ var dyFObj = {
 				$("#divStreetAddress").addClass("hidden");
 
 				dyFObj.formInMap.initDropdown();
-				mylog.log("formInMap.NE_country", dyFObj.formInMap.NE_country, typeof dyFObj.formInMap.NE_country, dyFObj.formInMap.NE_country.length);
+				mylog.log("formInMap.NE_country F", dyFObj.formInMap.NE_country, typeof dyFObj.formInMap.NE_country, dyFObj.formInMap.NE_country.length);
 				if(dyFObj.formInMap.NE_country != ""){
 					$("#divCP").addClass("hidden");
 					$("#divCity").removeClass("hidden");
