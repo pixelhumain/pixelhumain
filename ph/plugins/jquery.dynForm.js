@@ -770,7 +770,7 @@ var dyFObj = {
 
 		tooltip = (tooltip) ? '<i class=" fa fa-question-circle pull-right tooltips text-red" data-toggle="tooltip" data-placement="top" title="'+tooltip+'"></i>' : '';
 		if(fieldObj.label)
-			fieldHTML += '<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="'+field+'">'+
+			fieldHTML += '<label class="col-xs-12 text-left control-label no-padding" for="'+field+'">'+
 			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+tooltip+
 			            '</label>';
 
@@ -996,14 +996,17 @@ var dyFObj = {
         		placeholder="add Image";
         	mylog.log("build field "+field+">>>>>> uploader");
         	var uploaderId=(fieldObj.domElement) ? fieldObj.domElement : "imageElement"; 
-        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger"  id="'+uploaderId+'" data-type="citoyens" data-id="'+userId+'"></div>';
+        	fieldHTML += '<div class=" col-xs-12 '+fieldClass+' fine-uploader-manual-trigger"  id="'+uploaderId+'" data-type="citoyens" data-id="'+userId+'"></div>';
+        	
         	if(fieldObj.docType=="image")
-			fieldHTML += 	'<script type="text/template" id="qq-template-gallery">';
+				fieldHTML += 	'<script type="text/template" id="qq-template-gallery">';
 			else
-			fieldHTML += 	'<script type="text/template" id="qq-template-manual-trigger">';
+				fieldHTML += 	'<script type="text/template" id="qq-template-manual-trigger">';
+
 			fieldHTML += 	'<div class="qq-uploader-selector qq-uploader';
 			if(fieldObj.docType=="image")
-			fieldHTML +=		' qq-gallery';
+				fieldHTML +=		' qq-gallery';
+
 			fieldHTML +=		'" qq-drop-area-text="'+tradDynForm.dropfileshere+'">'+
 							'<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">'+
 							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>'+
@@ -1022,61 +1025,61 @@ var dyFObj = {
 							'<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>'+
 							'</span>';
 			if(fieldObj.docType=="image"){
-			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
-							'<li>'+
-							'<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
-							'<div class="qq-progress-bar-container-selector qq-progress-bar-container">'+
-							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
-							'</div>'+
-							'<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
-							'<div class="qq-thumbnail-wrapper">'+
-							'<img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>'+
-							'</div>'+
-							'<button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>'+
-							'<button type="button" class="qq-upload-retry-selector qq-upload-retry">'+
-							'<span class="qq-btn qq-retry-icon" aria-label="Retry"></span>'+
-							'Retry'+
-							'</button>'+
-							''+
-							'<div class="qq-file-info">'+
-							'<div class="qq-file-name">'+
-							'<span class="qq-upload-file-selector qq-upload-file"></span>'+
-							//'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
-							'</div>'+
-							'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
-							'<span class="qq-upload-size-selector qq-upload-size"></span>'+
-							'<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">'+
-							'<span class="qq-btn qq-delete-icon" aria-label="Delete"></span>'+
-							'</button>'+
-							'<button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">'+
-							'<span class="qq-btn qq-pause-icon" aria-label="Pause"></span>'+
-							'</button>'+
-							'<button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">'+
-							'<span class="qq-btn qq-continue-icon" aria-label="Continue"></span>'+
-							'</button>'+
-							'</div>'+
-							'</li>'+
-							'</ul>';
+				fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
+								'<li>'+
+								'<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
+								'<div class="qq-progress-bar-container-selector qq-progress-bar-container">'+
+								'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
+								'</div>'+
+								'<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
+								'<div class="qq-thumbnail-wrapper">'+
+								'<img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>'+
+								'</div>'+
+								'<button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>'+
+								'<button type="button" class="qq-upload-retry-selector qq-upload-retry">'+
+								'<span class="qq-btn qq-retry-icon" aria-label="Retry"></span>'+
+								'Retry'+
+								'</button>'+
+								''+
+								'<div class="qq-file-info">'+
+								'<div class="qq-file-name">'+
+								'<span class="qq-upload-file-selector qq-upload-file"></span>'+
+								//'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+								'</div>'+
+								'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
+								'<span class="qq-upload-size-selector qq-upload-size"></span>'+
+								'<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">'+
+								'<span class="qq-btn qq-delete-icon" aria-label="Delete"></span>'+
+								'</button>'+
+								'<button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">'+
+								'<span class="qq-btn qq-pause-icon" aria-label="Pause"></span>'+
+								'</button>'+
+								'<button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">'+
+								'<span class="qq-btn qq-continue-icon" aria-label="Continue"></span>'+
+								'</button>'+
+								'</div>'+
+								'</li>'+
+								'</ul>';
 			}else{
-			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">'+
-				                '<li>'+
-				                    '<div class="qq-progress-bar-container-selector">'+
-				                        '<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
-				                    '</div>'+
-				                    '<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
-				                    '<img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>'+
-				                    '<span class="qq-upload-file-selector qq-upload-file"></span>'+
-				                    //'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
-				                    '<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
-				                    '<span class="qq-upload-size-selector qq-upload-size"></span>'+
-				                    '<button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>'+
-				                    '<button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>'+
-				                    '<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>'+
-				                    '<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
-				                '</li>'+
-				            '</ul>';
+				fieldHTML += '<ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">'+
+					                '<li>'+
+					                    '<div class="qq-progress-bar-container-selector">'+
+					                        '<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
+					                    '</div>'+
+					                    '<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
+					                    '<img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>'+
+					                    '<span class="qq-upload-file-selector qq-upload-file"></span>'+
+					                    //'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+					                    '<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
+					                    '<span class="qq-upload-size-selector qq-upload-size"></span>'+
+					                    '<button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>'+
+					                    '<button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>'+
+					                    '<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>'+
+					                    '<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
+					                '</li>'+
+					            '</ul>';
 			}
-			fieldHTML += 				''+
+			fieldHTML += ''+
 							'<dialog class="qq-alert-dialog-selector">'+
 							'<div class="qq-dialog-message-selector"></div>'+
 							'<div class="qq-dialog-buttons">'+
@@ -1454,27 +1457,28 @@ var dyFObj = {
         		//authorName=newsContext.authorName;
         	}
         	fieldHTML='<div id="createNews" class="form-group">'+
-        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+        			'<label class="col-xs-12 text-left control-label no-padding" for="post">'+
 			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.writenewshere+
 			        '</label>'+
-			        '<div id="mentionsText" class="col-md-12 col-sm-12 col-xs-12 no-padding">'+
+			        '<div id="mentionsText" class="col-xs-12 no-padding">'+
         				'<textarea name="newsText"></textarea>'+
         			'</div>'+
-					'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+					'<label class="col-xs-12 text-left control-label no-padding" for="post">'+
 			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.tags+
 			        '</label>'+
         			'<div class="no-padding">'+
           				'<input id="tags" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">'+
       				'</div>'+
-        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+        			'<label class="col-xs-12 text-left control-label no-padding" for="post">'+
 			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsvisibility+
 			        '</label>'+
-        			'<div class="dropdown no-padding col-md-12 col-sm-12 col-xs-12">'+
-          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12" id="btn-toogle-dropdown-scope" href="javascript:;">'+
+        			'<div class="dropdown no-padding col-xs-12">'+
+          				'<a data-toggle="dropdown" class="btn btn-default col-xs-12" id="btn-toogle-dropdown-scope" href="javascript:;">'+
           					'<i class="fa fa-connectdevelop"></i> '+tradDynForm.network+' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
           				'</a>'+
           				'<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">';
-          					if(newsContext.targetType != "events"){
+          	if(newsContext.targetType != "events")
+          	{
             fieldHTML+=		'<li>'+
               					'<a href="javascript:;" id="scope-my-network" class="scopeShare" data-value="private">'+
               						'<h4 class="list-group-item-heading"><i class="fa fa-lock"></i> '+tradDynForm.private+'</h4>'+
@@ -1497,12 +1501,13 @@ var dyFObj = {
 			            '</ul>'+
 			            '<input type="hidden" name="scope" id="scope" value="restricted"/>'+
 	        		'</div>';
-	        		if(newsContext.targetType!="citoyens"){
-	        fieldHTML+=		'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+	        if(newsContext.targetType!="citoyens")
+	        {
+	        fieldHTML+=		'<label class="col-xs-12 text-left control-label no-padding" for="post">'+
 			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsauthor+
 		            '</label>'+
         			'<div class="dropdown no-padding col-md-12">'+
-          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12 text-left" id="btn-toogle-dropdown-targetIsAuthor" href="javascript:;">'+
+          				'<a data-toggle="dropdown" class="btn btn-default col-xs-12 text-left" id="btn-toogle-dropdown-targetIsAuthor" href="javascript:;">'+
            					'<img height=20 width=20 src="'+targetImg+'">'+  
            					' '+newsContext.targetName+
 				            ' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
@@ -1540,7 +1545,7 @@ var dyFObj = {
         	mylog.log("build field "+field+">>>>>> scope");
         		//fieldClass += " select2TagsInput select2ScopeInput";				
 				fieldHTML += '<div class="col-md-12 no-padding">'+
-								'<div class="col-md-12 col-sm-12 col-xs-12">'+
+								'<div class="col-xs-12">'+
 									'<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">'+
 										'<select id="select-country"></select>'+
 									'</div>'+
@@ -1634,8 +1639,8 @@ var dyFObj = {
         } else if ( fieldObj.inputType == "formLocality") {
         	mylog.log("build field "+field+">>>>>> formLocality");
        		
-        	fieldHTML += "<div class='form-group inline-block padding-15 form-in-map formLocality col-md-6'>"+
-        					'<label style="font-size: 13px;" class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+        	fieldHTML += "<div class='col-xs-12 form-group inline-block padding-15 form-in-map formLocality col-md-6'>"+
+        					'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_country">'+
 								'<i class="fa fa-chevron-down"></i> '+tradDynForm.country+
 				            '</label>'+
 							"<select class='form-group col-md-10 col-xs-12' name='newElement_country' id='newElement_country'>"+
@@ -1645,7 +1650,7 @@ var dyFObj = {
 								});
 				fieldHTML += "</select>"+
 							"<div id='divCity' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
-								'<label style="font-size: 13px;" class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_country">'+
 									'<i class="fa fa-chevron-down"></i> '+trad.city  +
 								'</label>'+
 						  		"<input autocomplete='off' class='form-group col-md-10 col-xs-12' type='text' name='newElement_city' placeholder='"+trad['Search a city, a town or a postal code']+"'>"+
@@ -1654,7 +1659,7 @@ var dyFObj = {
 								"</ul>"+
 					  		"</div>"+
 							"<div id='divStreetAddress' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
-								'<label style="font-size: 13px;" class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_country">'+
 									'<i class="fa fa-chevron-down"></i> '+trad.streetFormInMap +
 					            '</label>'+
 								"<input class='form-group col-md-9 col-xs-9'  autocomplete='off' type='text' style='margin-right:-3px;' name='newElement_street' placeholder='"+trad.streetFormInMap +"'>"+
@@ -2597,7 +2602,7 @@ var dyFObj = {
 			var countRange=$("#hoursRange"+addToDay+" .hoursRange").length;
 			mylog.log("countRange", countRange);
 			//alert(countRange);
-			str='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+countRange+'" data-value="'+countRange+'">'+
+			str='<div class="col-xs-12 hoursRange no-padding hoursRange'+countRange+'" data-value="'+countRange+'">'+
 					'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
 	        		'<i class="fa fa-hourglass-start"></i> Start hour'+
 	    			'</label>'+
@@ -2643,8 +2648,8 @@ var dyFObj = {
 			}
 			mylog.log("allWeek", allWeek);
 			//((allWeek == true) ? "style='display:none;'" : "")
-			var str = "<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
-				"<div id='selectedDays' class='col-md-12 col-sm-12 col-xs-12 text-center margin-bottom-10' "+((allWeek == true) ? "style='display:none;'" : "")+">";
+			var str = "<div class='col-xs-12 no-padding'>"+
+				"<div id='selectedDays' class='col-xs-12 text-center margin-bottom-10' "+((allWeek == true) ? "style='display:none;'" : "")+">";
 					$.each(arrayDayKeys,function(e,v){
 						var active = ((typeof data != "object" || typeof data[e] == "object" ) ? "active"  : "");
 						str+="<div class='inline'>"+
@@ -2652,7 +2657,7 @@ var dyFObj = {
 							"</div>";
 					});
 			str+="</div>"+
-				"<div id='daysList' class='col-md-12 col-sm-12 col-xs-12 no-padding'>";
+				"<div id='daysList' class='col-xs-12 no-padding'>";
 					$.each(arrayDayKeys,function(e,v){
 
 						var noneDay = ( (typeof data != "object" || typeof data[e] == "object")  ? ""  : "display:none;");
@@ -2662,18 +2667,18 @@ var dyFObj = {
 						// mylog.log("noneDay", noneDay);
 						// mylog.log("checked", checked);
 						// mylog.log("noneHours", noneHours);
-				str+=	"<div class='col-md-12 col-sm-12 col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray; "+noneDay+"'>"+
-							"<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+				str+=	"<div class='col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray; "+noneDay+"'>"+
+							"<div class='col-xs-12 no-padding'>"+
 								'<label class="col-md-4 col-sm-5 col-xs-6 text-left control-label no-padding no-margin" for="allDaysMo">'+
 									'<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
 								'</label>'+
 								'<input type="checkbox" class="allDaysWeek" id="allDays'+v+'" value="true" data-key="'+v+'" '+checked+'/> '+tradDynForm.allday+
 							"</div>"+
-							'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" '+noneHours+'>';
+							'<div class="col-xs-12" id="hoursRange'+v+'" '+noneHours+'>';
 								if( typeof data[e] == "object" && notNull(data[e].hours) ){
 									$.each(data[e].hours,function(kHour,vHour){
 										mylog.log("hours", kHour, vHour);
-										str +='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+kHour+'" data-value="'+kHour+'">'+
+										str +='<div class="col-xs-12 hoursRange no-padding hoursRange'+kHour+'" data-value="'+kHour+'">'+
 												'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
 								        		'<i class="fa fa-hourglass-start"></i> Start hour'+
 								    			'</label>'+
@@ -2694,7 +2699,7 @@ var dyFObj = {
 
 									});
 								}else{
-									str+= '<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
+									str+= '<div class="col-xs-12 hoursRange no-padding" data-value="0">'+
 										'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
 											'<i class="fa fa-hourglass-start"></i> Start hour'+
 										'</label>'+
@@ -4027,7 +4032,7 @@ var dyFInputs = {
 			}*/
 			if(typeof index != "undefined"){
 				strHTML =  
-			        "<div class='col-md-12 col-sm-12 col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
+			        "<div class='col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
 			          "<span class='pull-left locationEl"+dyFInputs.locationObj.countLocation+" locel text-red bold'>"+ 
 			            "<i class='fa fa-home fa-2x'></i> "+ 
 			            strHTML+ 
@@ -4046,7 +4051,7 @@ var dyFInputs = {
 			        "</div>"; 
 			} else {
 				strHTML =  
-			        "<div class='col-md-12 col-sm-12 col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
+			        "<div class='col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
 			          "<span class='pull-left locationEl"+dyFInputs.locationObj.countLocation+" locel text-red bold'>"+ 
 			            "<i class='fa fa-home fa-2x'></i> "+ 
 			            strHTML+ 
