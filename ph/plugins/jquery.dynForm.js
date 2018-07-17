@@ -1642,7 +1642,7 @@ var dyFObj = {
         					'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_country">'+
 								'<i class="fa fa-chevron-down"></i> '+tradDynForm.country+
 				            '</label>'+
-							"<select class='col-md-10 col-xs-12' name='newElement_country' id='newElement_country'>";
+							"<select class='col-md-10 col-xs-12' name='newElement_country' id='newElement_country'>"+
 								"<option value=''>"+trad.chooseCountry+"</option>";
 								$.each(dyFObj.formInMap.countryList, function(key, v){
 									fieldHTML += "<option value='"+v.countryCode+"'>"+v.name+"</option>";
@@ -2992,7 +2992,7 @@ var dyFObj = {
 			mylog.log("bindFormInMap");
 
 			$('[name="newElement_country"]').change(function(){
-				mylog.log("change country", $(this).val());
+				mylog.log("change country", $('[name="newElement_country"]').val());
 				dyFObj.formInMap.initVarNE()
 				dyFObj.formInMap.NE_country = $('[name="newElement_country"]').val() ;
 				//dyFObj.formInMap.resumeLocality();
