@@ -1116,6 +1116,9 @@ var dyFObj = {
         		uploadObject.itemLimit = fieldObj.itemLimit;
 			if(fieldObj.endPoint){
 				uploadObject.endPoint = fieldObj.endPoint;
+				if(uploadObject.endPoint.indexOf("ownerId") < 0){
+					uploadObject.endPoint=uploadObject.endPoint+"/folder/citoyens/ownerId/"+userId;
+				}
 			}
 			if(typeof dySObj == "undefined" && $.isFunction( fieldObj.afterUploadComplete ))
         		uploadObject.afterUploadComplete = fieldObj.afterUploadComplete;
@@ -2080,20 +2083,24 @@ var dyFObj = {
 						    	
 						    	//mylog.log(responseJSON);
 						    	if(typeof responseJSON.survey != "undefined" && responseJSON.survey){
-						    		data={
+						    		documentEl={
 						    			formId:dySObj.surveys.id,
 						    			answerSection: dySObj.activeSectionKey,
 						    			answerKey : responseJSON.survey,
 						    			documentId :responseJSON.id.$id
 						    		};
+						    		if(notNull(updateForm)){
+						    			documentEl.formId = updateForm.form;
+	    								documentEl.answerSection = updateForm.step; 
+	    							}
 						    		$.ajax({
 								        type: "POST",
 								        url: baseUrl+"/survey/co/updatedocumentids",
 								        //dataType: "json",
-								        data: data,
+								        data: documentEl,
 										type: "POST",
 								    })
-								    .done(function (data) {}).fail(function(){
+								    .done(function (data){}).fail(function(){
 									   toastr.error("Something went wrong, contact your admin"); 
 									   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
 									   $("#btn-submit-form").prop('disabled', false);
