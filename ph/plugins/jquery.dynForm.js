@@ -268,7 +268,7 @@ var dyFObj = {
 	//ex : dyFObj.elementObj.dynForm.jsonSchema.canSubmitIf
 	canSubmitIf : function () { 
     	var valid = true;
-    	console.log("canSubmitIf");
+    	mylog.log("canSubmitIf");
     	//on peut ajouter des regles dans la map definition 
     	if(	jsonHelper.notNull("dyFObj.elementObj.dynForm.jsonSchema.canSubmitIf", "function") )
     		valid = dyFObj.elementObj.dynForm.jsonSchema.canSubmitIf();
@@ -510,7 +510,7 @@ var dyFObj = {
 	    uploadObj.update = false;
 	},
 	editStep : function ( form,data,afterLoad ){
-		console.log("step",form, data);
+		mylog.log("step",form, data);
 		dyFObj.openForm( form ,afterLoad , data);
 	},
 	editElement : function (type,id, subType){
@@ -534,7 +534,7 @@ var dyFObj = {
 				if(data.map["_id"])
 					delete data.map["_id"];
 				mylog.dir(data);
-				console.log("editElement", data);
+				mylog.log("editElement", data);
 				dyFObj.elementData = data;
 				typeModules=(notNull(subType)) ? subType : type; 
 				typeForm = (jsonHelper.notNull( "modules."+typeModules+".form") ) ? typeModules : dyFInputs.get(typeModules).ctrl;
@@ -620,7 +620,7 @@ var dyFObj = {
 			if ( type.indexOf(".js")>-1)  
 				dfPath = type;
 
-			console.log("getDynFormObj",type,dfPath);
+			mylog.log("getDynFormObj",type,dfPath);
 			lazyLoad( dfPath, 
 				null,
 				function() { 
@@ -885,9 +885,9 @@ var dyFObj = {
 		***************************************** */
 		else if ( fieldObj.inputType == "checkboxSimple" ) {
    			if(value == "") value="25/01/2014";
-   			console.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
+   			mylog.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
 			var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
-			console.log("fieldObj ??? thisValue", thisValue);
+			mylog.log("fieldObj ??? thisValue", thisValue);
 			//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
 			//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
 			mylog.log("build field "+field+">>>>>> checkbox");
@@ -1315,10 +1315,10 @@ var dyFObj = {
 				if(typeof fieldObj.initOptions != "undefined")
 					initOptions=fieldObj.initOptions;
 
-				console.log("initField", fieldObj, fieldObj.value);
+				mylog.log("initField", fieldObj, fieldObj.value);
 					
 				$.each(fieldObj.value, function(optKey,optVal) { 
-					console.log("initField", optKey, "fieldObj.value", fieldObj.value, "class ."+field+fieldObj.inputType, "optVal", optVal, "field", field, initOptions);
+					mylog.log("initField", optKey, "fieldObj.value", fieldObj.value, "class ."+field+fieldObj.inputType, "optVal", optVal, "field", field, initOptions);
 					if(optKey == 0)
 	                    $(".addmultifield").val(optVal);
 	                else {
@@ -1973,10 +1973,10 @@ var dyFObj = {
 		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
 		        if(typeof formInMap.showMarkerNewElement != "undefined"){
 		        	$("#ajax-modal").modal("hide");
-		        	console.log(".locationBtn");
+		        	mylog.log(".locationBtn");
 					formInMap.actived = true ;
 			        showMap(true);
-		        	console.log(".locationBtn showMarkerNewElement");
+		        	mylog.log(".locationBtn showMarkerNewElement");
 		        	formInMap.showMarkerNewElement(); 
 		        }
 		    });
@@ -2060,22 +2060,22 @@ var dyFObj = {
 						    //onUpload: function(id, fileName) {
 						      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
 						      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
-						      //console.log('onUpload uplaodObj',uploadObj);
+						      //mylog.log('onUpload uplaodObj',uploadObj);
 						      //var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-						      //console.log('onUpload getEndpoint',ex);
+						      //mylog.log('onUpload getEndpoint',ex);
 						    //},
 						    //launched on upload
 						    //onProgress: function(id, fileName, uploadedBytes,totalBytes) {
-						    	/*console.log('onProgress uplaodObj',uploadObj);
+						    	/*mylog.log('onProgress uplaodObj',uploadObj);
 						    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-						    	console.log('onProgress getEndpoint',ex);
-						    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
+						    	mylog.log('onProgress getEndpoint',ex);
+						    	mylog.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
 						      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
 						    //},
 						    //when every img finish upload process whatever the status
 						    onComplete: function(id, fileName,responseJSON,xhr) {
 						    	
-						    	//console.log(responseJSON);
+						    	//mylog.log(responseJSON);
 						    	if(typeof responseJSON.survey != "undefined" && responseJSON.survey){
 						    		data={
 						    			formId:dySObj.surveys.id,
@@ -2101,12 +2101,12 @@ var dyFObj = {
 						    	}
 						    	if(!responseJSON.result){
 						    		toastr.error(trad.somethingwentwrong+" : "+responseJSON.msg );		
-						    		console.error(trad.somethingwentwrong , responseJSON.msg)
+						    		mylog.error(trad.somethingwentwrong , responseJSON.msg)
 						    	}
 						    },
 						    //when all upload is complete whatever the result
 						    onAllComplete: function(succeeded, failed) {
-						    	console.log("ooooooooooooo",succeeded,failed);
+						    	mylog.log("ooooooooooooo",succeeded,failed);
 						     	toastr.info( "Fichiers bien chargés !!");
 						      	if($("#ajaxFormModal #newsCreation").val()=="true"){
 						      		//var mentionsInput=[];
@@ -2172,7 +2172,7 @@ var dyFObj = {
 			            },
 			            autoUpload: false
 			        });
-					/*console.log(params);
+					/*mylog.log(params);
 					if(typeof params.formValues.images != "undefined" && params.formValues.images.length > 0){
 						var imagesArray=[];
 						$.each(params.formValues.images,function(e,v){
@@ -2253,7 +2253,7 @@ var dyFObj = {
 		***************************************** */
 		if(  $(".wysiwygInput").length )
 		{
-			console.log("wysiwygInput wysiwygInput");
+			mylog.log("wysiwygInput wysiwygInput");
 				var initField = function(){
 					$(".wysiwygInput").summernote({
 
@@ -2291,7 +2291,7 @@ var dyFObj = {
 		***************************************** */
 		if(  $(".markdownInput").length )
 		{
-			console.log("markdownInput");
+			mylog.log("markdownInput");
 			var initField = function(){
 				$(".markdownInput").markdown({
 						savable:true,
@@ -2870,7 +2870,7 @@ var dyFObj = {
 			mylog.log("forminmap showMarkerNewElement");
 			mylog.log("formType", dyFObj.formInMap.formType);
 			$(".locationBtn").addClass("hidden");
-			dyFObj.formInMap.newAddress(true);
+			
 			dyFObj.formInMap.initCountry();
 
 			$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
@@ -2879,7 +2879,7 @@ var dyFObj = {
 				$("#divPostalCode").removeClass("hidden");
 				$("#divCity").removeClass("hidden");
 			}
-
+			mylog.log("dyFObj.formInMap.bindActived", dyFObj.formInMap.bindActived);
 			if(dyFObj.formInMap.bindActived == false)
 				dyFObj.formInMap.bindFormInMap();
 
@@ -2892,6 +2892,8 @@ var dyFObj = {
 
 			if(typeof networkJson == "undefined" || networkJson == null)
 				$("#mapLegende").addClass("hidden");
+
+			dyFObj.formInMap.newAddress(false);
 			mylog.log("forminmap showMarkerNewElement END");
 		},
 		initCountry : function(){
@@ -2934,8 +2936,9 @@ var dyFObj = {
 			$("#dropdown-newElement_cp-found").html("<li><a href='javascript:' class='disabled'>"+trad['Currently researching']+"</a></li>");
 			$("#dropdown-newElement_city-found").html("<li><a href='javascript:' class='disabled'>"+trad['Search a city, a town or a postal code'] +"</a></li>");
 		},
-		initHtml : function(){			
-			$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
+		initHtml : function(){
+			dyFObj.formInMap.initCountry();	
+			//$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
 			$('[name="newElement_city"]').val("");
 			$('[name="newElement_street"]').val("");
 
@@ -2973,21 +2976,27 @@ var dyFObj = {
 
 
 			if(dyFObj.formInMap.NE_country != "" && dyFObj.formInMap.NE_city != ""){
-				$("#btnValideAddress").prop('disabled', false);
-			}else
-				$("#btnValideAddress").prop('disabled', true);
+				//$("#btnValideAddress").prop('disabled', false);
+				$("#btnValideAddress").show();
+			}else{
+				//$("#btnValideAddress").prop('disabled', true);
+				$("#btnValideAddress").hide();
+			}
 		},
 		bindFormInMap : function(){
 			mylog.log("bindFormInMap");
 
 			$('[name="newElement_country"]').change(function(){
 				mylog.log("change country");
-				//alert($(this).val());
 				dyFObj.formInMap.initVarNE()
 				dyFObj.formInMap.NE_country = $('[name="newElement_country"]').val() ;
-				//dyFObj.formInMap.initHtml();
-				$("#country_sumery_value").html($('[name="newElement_country"]').val());
-				$("#btnValideAddress").prop('disabled', true);
+				dyFObj.formInMap.initHtml();
+				dyFObj.formInMap.resumeLocality();
+				//$("#country_sumery_value").html($('[name="newElement_country"]').val());
+				// $('[name="newElement_city"]').val("");
+				// $("#country_sumery_value").html($('[name="newElement_country"]').val());
+				//$("#btnValideAddress").prop('disabled', true);
+				$("#btnValideAddress").hide();
 				$("#divStreetAddress").addClass("hidden");
 
 				dyFObj.formInMap.initDropdown();
@@ -3303,7 +3312,7 @@ var dyFObj = {
 			});
 		},
 		add : function(complete, data, inseeGeoSHapes){
-			console.log("add", complete, data, inseeGeoSHapes);
+			mylog.log("add", complete, data, inseeGeoSHapes);
 			
 			dyFObj.formInMap.NE_insee = data.data("insee");
 			dyFObj.formInMap.NE_lat = data.data("lat");
@@ -3365,8 +3374,14 @@ var dyFObj = {
 			}
 		},
 		btnValideDisable : function(bool){
-			mylog.log("btnValideDisable");
-			$("#btnValideAddress").prop('disabled', bool);
+			mylog.log("btnValideDisable",bool);
+			//$("#btnValideAddress").prop('disabled', bool);
+
+			if(bool == true){
+				$("#btnValideAddress").show();
+			}else{
+				$("#btnValideAddress").hide();
+			}
 		}
 	},
 	
@@ -3491,7 +3506,7 @@ var dyFInputs = {
     	return inputObj;
     },
     slug :function(label, placeholder, rules) { 
-    	console.log("rooooles",rules);
+    	mylog.log("rooooles",rules);
 		var inputObj = {
 			label : label,
 	    	placeholder : ( notEmpty(placeholder) ? placeholder : "... " ),
@@ -3512,12 +3527,12 @@ var dyFInputs = {
             			var value = $(this).val();
             			if(formInMap.formType.timer != false) clearTimeout(formInMap.formType.timer);
             			formInMap.formType.timer = setTimeout(function(){ 
-        					console.log("checking slug", true);
+        					mylog.log("checking slug", true);
             				$("#ajaxFormModal #slug").data("checking", true);
             				slugUnique(value); 
             			}, 1000);
             			
-            		}else{ console.log("already checking slug"); }
+            		}else{ mylog.log("already checking slug"); }
         		} else {
             		$("#ajaxFormModal #slug").parent().removeClass("has-success").addClass("has-error");//.find("span").text("Please enter at least 3 characters.");
             	}
@@ -3798,7 +3813,7 @@ var dyFInputs = {
 	    	placeholder : ( notEmpty(placeholder) ? placeholder : "exemple@mail.com" ),
 	    	rules : ( notEmpty(rules) ? rules : { email: true } )
 	    }
-	    console.log("create form input email", inputObj);
+	    mylog.log("create form input email", inputObj);
 	    return inputObj;
 	},
 	
@@ -4143,7 +4158,7 @@ var dyFInputs = {
 			$(".centers").removeClass('btn-success');
 			$(".lblcentre").remove();
 			$.each(dyFInputs.locationObj.elementLocations,function(i, v) {
-				console.log(v); 
+				mylog.log(v); 
 				if(typeof v.center != "undefined" && v.center)
 					delete v.center;
 			})
@@ -4369,7 +4384,7 @@ var dyFInputs = {
     		$("#ajaxFormModal #url").bind("input keyup",function(e) {
             	processUrl.refUrl($(this).val());
             	/*if(result){
-            		console.log(result);
+            		mylog.log(result);
             	}*/
         	});
             //$(".urltext").css("display","none");
@@ -4385,10 +4400,10 @@ var dyFInputs = {
 	    	checked : checked, //$("#ajaxFormModal #"+id).val(),
 	    	init : function(){
 	    		//var checked = $("#ajaxFormModal #"+id).val();
-	    		console.log("checkcheck2", checked, "#ajaxFormModal #"+id);
+	    		mylog.log("checkcheck2", checked, "#ajaxFormModal #"+id);
 	    		var idTrue = "#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox[data-checkval='true']";
 	    		var idFalse = "#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox[data-checkval='false']";
-	    		console.log("checkcheck2", checked, "#ajaxFormModal #"+id);
+	    		mylog.log("checkcheck2", checked, "#ajaxFormModal #"+id);
 	    		$("#ajaxFormModal #"+id).val(checked);
 
 	    		if(typeof params["labelInformation"] != "undefined")
@@ -4422,7 +4437,7 @@ var dyFInputs = {
 	    		$("#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox").click(function(){
 	    			var checkval = $(this).data('checkval');
 	    			$("#ajaxFormModal #"+id).val(checkval);
-	    			console.log("EVENT CLICK ON CHECKSIMPLE", checkval);
+	    			mylog.log("EVENT CLICK ON CHECKSIMPLE", checkval);
 	    			
 	    			if(checkval) {
 	    				$(idTrue).addClass("bg-green-k").removeClass("letter-green");
@@ -4485,7 +4500,7 @@ var dyFInputs = {
 	    		"onChange" : function(){
 	    			var checkbox = $("#ajaxFormModal #"+id).is(':checked');
 	    			$("#ajaxFormModal #"+id).val($("#ajaxFormModal #"+id).is(':checked'));
-	    			console.log("on change checkbox",$("#ajaxFormModal #"+id).val());
+	    			mylog.log("on change checkbox",$("#ajaxFormModal #"+id).val());
 	        		//$("#ajaxFormModal #"+id+"checkbox").append("<span class='lbl-status-check'></span>");
 	    			if (checkbox) {
 	    				$("#ajaxFormModal ."+id+"checkbox .lbl-status-check").html(
@@ -4493,13 +4508,13 @@ var dyFInputs = {
 	    				$(params["inputId"]).show(400);
 	    				/*if(id=="amendementActivated"){
 	    					var am = $("#ajaxFormModal #voteActivated").val();
-	    					console.log("am", am);
+	    					mylog.log("am", am);
 	    					if(am == "true")
 	    						$("#ajaxFormModal .voteActivatedcheckbox .bootstrap-switch-handle-on").click();
 	    				}
 	    				if(id=="voteActivated"){
 	    					var am = $("#ajaxFormModal #amendementActivated").val();
-	    					console.log("vote", am);
+	    					mylog.log("vote", am);
 	    					if(am == "true")
 	    						$("#ajaxFormModal .amendementActivatedcheckbox .bootstrap-switch-handle-on").click();
 	    				}*/
@@ -4810,16 +4825,16 @@ var processUrl = {
 	        url: baseUrl+"/"+moduleId+"/app/checkurlexists",
 	        data: { url: url },
 	        dataType: "json",
-	        success: function(data){ console.log("checkUrlExists", data);
+	        success: function(data){ mylog.log("checkUrlExists", data);
 	            if(data.status == "URL_EXISTS")
 	            urlExists = true;
 	            else
 	            urlExists = false;
-	            console.log("checkUrlExists", data);
+	            mylog.log("checkUrlExists", data);
 	            refUrl(url);
 	        },
 	        error: function(data){
-	            console.log("check url exists error");
+	            mylog.log("check url exists error");
 	        }
 	    });
 	},
@@ -5010,7 +5025,7 @@ var processUrl = {
 				    if(stitle=="" || stitle=="undefined")
 				   		stitle = $('blockquote', tempDom).html();
 
-				   	//console.log("STITLE", stitle);
+				   	//mylog.log("STITLE", stitle);
 
 					if(stitle=="" || stitle=="undefined")
 				   		stitle = $('h2', tempDom).html();
@@ -5035,13 +5050,13 @@ var processUrl = {
 					var description = $(tempDom).find('meta[name=description]').attr("content");
 
 					var keywords = $(tempDom).find('meta[name=keywords]').attr("content");
-					//console.log("keywords", keywords);
+					//mylog.log("keywords", keywords);
 
 					var arrayKeywords = new Array();
 					if(typeof keywords != "undefined")
 						arrayKeywords = keywords.split(",");
 
-					//console.log("arrayKeywords", arrayKeywords);
+					//mylog.log("arrayKeywords", arrayKeywords);
 
 					//if(typeof arrayKeywords[0] != "undefined") $("#form-keywords1").val(arrayKeywords[0]); else $("#form-keywords1").val("");
 					//if(typeof arrayKeywords[1] != "undefined") $("#form-keywords2").val(arrayKeywords[1]); else $("#form-keywords2").val("");
@@ -5057,7 +5072,7 @@ var processUrl = {
 				   	params.hostname=hostname,
 				   	params.description=description,
 				   	params.tags=arrayKeywords;
-					console.log(params);
+					mylog.log(params);
 					/*$("#form-title").val(title);
 	                $("#form-favicon").val(faviconSrc);
 	                $("#form-description").val(description);*/
