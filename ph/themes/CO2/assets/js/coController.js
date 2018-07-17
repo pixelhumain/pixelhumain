@@ -734,3 +734,16 @@ function showNotif(show){
 	$("#dropdown-user, #dropdown-dda, .dropdownApps-menuTop").removeClass("open");
     showFloopDrawer(false);
 }
+
+
+function showFloopDrawer(show){ 
+	if(show){
+		if($(".floopDrawer" ).css("display") == "none"){
+			$(".floopDrawer").stop().show();
+			$(".floopDrawer" ).css("width", 0);
+			$(".floopDrawer" ).animate( { width: 300 }, 300 );
+		}
+	}else{
+		$(".floopDrawer").hide("fast");
+	}
+}

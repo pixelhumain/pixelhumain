@@ -406,7 +406,6 @@ var dyFObj = {
 		if( jsonHelper.notNull( "dyFObj.elementObj.dynForm.jsonSchema.formatData","function") )
 			formData = dyFObj.elementObj.dynForm.jsonSchema.formatData(formData);
 
-
 		formData = dyFObj.formatData(formData,collection,ctrl);
 		mylog.log("saveElement", formData);
 
@@ -1231,7 +1230,7 @@ var dyFObj = {
 				var initAddress = function(){
 					mylog.warn("init Adress location",formValues.address.addressLocality,formValues.address.postalCode);
 					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
-					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition}, -1);
+					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
 				};
 			}     
 			if( formValues.addresses ){
@@ -2899,7 +2898,9 @@ var dyFObj = {
 				$("#mapLegende").addClass("hidden");
 
 			dyFObj.formInMap.newAddress(false);
-			mylog.log("forminmap showMarkerNewElement END");
+			//mylog.log("here");
+			//dyFInputs.locationObj.init();
+			mylog.log("forminmap showMarkerNewElement END!");
 		},
 		initCountry : function(){
 			if ( 	typeof dySObj != "undefined" && 
@@ -3888,9 +3889,9 @@ var dyFInputs = {
 		    dyFInputs.locationObj.countLocation = 0 ;
 		},
 		init : function () {
-			mylog.log("init loc");
+			console.log("init loc");
 			$(".deleteLocDynForm").click(function(){
-				mylog.log("deleteLocDynForm", $(this).data("index"));
+				console.log("deleteLocDynForm", $(this).data("index"));
 				var index = $(this).data("index");
 				var indexLoc = $(this).data("indexLoc");
 				if(index == -1 && dyFInputs.locationObj.elementLocations.length > 1){
@@ -3997,7 +3998,7 @@ var dyFInputs = {
 			//elementLocation.push(positionObj);
 		},
 		addLocationToForm : function (locObj, index){
-			mylog.warn("---------------addLocationToForm----------------");
+			mylog.warn("---------------addLocationToForm----------------", locObj, index);
 			mylog.dir(locObj);
 			var strHTML = "";
 			if( locObj.address.addressCountry)
@@ -4031,14 +4032,15 @@ var dyFInputs = {
 					  "<a href='javascript:dyFInputs.locationObj.setAsCenter("+dyFInputs.locationObj.countLocation+")' class='centers center"+dyFInputs.locationObj.countLocation+" locationEl"+dyFInputs.locationObj.countLocation+" btn btn-xs "+btnSuccess+"'> <i class='fa fa-map-marker'></i>"+locCenter+"</a> <br/>";
 			}*/
 			if(typeof index != "undefined"){
+				mylog.log("---------------addLocationToForm---------------- IF", index);
 				strHTML =  
 			        "<div class='col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
 			          "<span class='pull-left locationEl"+dyFInputs.locationObj.countLocation+" locel text-red bold'>"+ 
 			            "<i class='fa fa-home fa-2x'></i> "+ 
 			            strHTML+ 
 			          "</span> "+ 
-			 
-			          "<a href='javascript:;' data-index='"+index+"' data-indexLoc='"+dyFInputs.locationObj.countLocation+"' "+ 
+
+			          "<a href='javascript:echo;' data-index='"+index+"' data-indexLoc='"+dyFInputs.locationObj.countLocation+"' "+ 
 			            "class='deleteLocDynForm locationEl"+dyFInputs.locationObj.countLocation+" btn btn-sm btn-danger pull-right'> "+ 
 			            "<i class='fa fa-times'></i> "+tradDynForm.clear+ 
 			          "</a>"+ 
@@ -4050,6 +4052,7 @@ var dyFInputs = {
 			           
 			        "</div>"; 
 			} else {
+				mylog.log("---------------addLocationToForm---------------- ESLE", index);
 				strHTML =  
 			        "<div class='col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
 			          "<span class='pull-left locationEl"+dyFInputs.locationObj.countLocation+" locel text-red bold'>"+ 

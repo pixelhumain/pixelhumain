@@ -23,6 +23,7 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     
     '/plugins/bootstrap/css/bootstrap.min.css',
     '/plugins/bootstrap/js/bootstrap.min.js' ,
+    '/plugins/bootbox/bootbox.min.js' , 
     //'/plugins/font-awesome/css/font-awesome.min.css',
     //'/plugins/font-awesome-custom/css/font-awesome.css',
     '/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.css',
