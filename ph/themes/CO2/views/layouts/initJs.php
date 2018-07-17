@@ -71,7 +71,7 @@ var typeObj = {
     siteurl:{ col:"siteurl",ctrl:"siteurl"},
     organization : { col:"organizations", ctrl:"organization", icon : "group",titleClass : "bg-green",color:"green",bgClass : "bgOrga"},
     organizations : {sameAs:"organization"},
-    organization2 : {},
+    organization2 : { col:"organizations", ctrl:"organization" },
     LocalBusiness : {col:"organizations",color: "azure",icon: "industry"},
     NGO : {sameAs:"organization", color:"green", icon:"users"},
     Association : {sameAs:"organization", color:"green", icon: "group"},
@@ -81,7 +81,7 @@ var typeObj = {
     events : {sameAs:"event"},
     project : {col:"projects",ctrl:"project",   icon : "lightbulb-o",color : "purple",titleClass : "bg-purple", bgClass : "bgProject"},
     projects : {sameAs:"project"},
-    project2 : {},
+    project2 : {col:"projects",ctrl:"project"},
     city : {sameAs:"cities"},
     cities : {col:"cities",ctrl:"city", titleClass : "bg-red", icon : "university",color:"red"},
     

@@ -1642,14 +1642,14 @@ var dyFObj = {
         					'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_country">'+
 								'<i class="fa fa-chevron-down"></i> '+tradDynForm.country+
 				            '</label>'+
-							"<select class='form-group col-md-10 col-xs-12' name='newElement_country' id='newElement_country'>"+
+							"<select class='form-group col-md-10 col-xs-12' name='newElement_country'>"+
 								"<option value=''>"+tradDynForm.chooseCountry+"</option>";
 								$.each(dyFObj.formInMap.countryList, function(key, v){
 									fieldHTML += "<option value='"+v.countryCode+"'>"+v.name+"</option>";
 								});
 				fieldHTML += "</select>"+
 							"<div id='divCity' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
-								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_city">'+
 									'<i class="fa fa-chevron-down"></i> '+trad.city  +
 								'</label>'+
 						  		"<input autocomplete='off' class='form-group col-md-10 col-xs-12' type='text' name='newElement_city' placeholder='"+trad['Search a city, a town or a postal code']+"'>"+
@@ -1658,7 +1658,7 @@ var dyFObj = {
 								"</ul>"+
 					  		"</div>"+
 							"<div id='divStreetAddress' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
-								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_street">'+
 									'<i class="fa fa-chevron-down"></i> '+trad.streetFormInMap +
 					            '</label>'+
 								"<input class='form-group col-md-9 col-xs-9'  autocomplete='off' type='text' style='margin-right:-3px;' name='newElement_street' placeholder='"+trad.streetFormInMap +"'>"+
