@@ -1104,7 +1104,7 @@ var dyFObj = {
 							'</dialog>'+
 							'</div>'+
 							'</script>';
-			if(typeof dyFObj.init.uploader =="undefined") dyFObj.init.uploader=new Object;
+			if(typeof dyFObj.init.uploader == "undefined") dyFObj.init.uploader=new Object;
 			uploadObject=new Object; 
 			if( fieldObj.showUploadBtn )
         		uploadObject.showUploadBtn = fieldObj.showUploadBtn;
@@ -1122,6 +1122,13 @@ var dyFObj = {
 			}
 			if(typeof dySObj == "undefined" && $.isFunction( fieldObj.afterUploadComplete ))
         		uploadObject.afterUploadComplete = fieldObj.afterUploadComplete;
+        	else if(typeof dysObj != "undefined"){
+
+        	}else if(typeof updateForm != "undefined"){
+        		uploadObject.afterUploadComplete = function(){
+        			window.location.reload();
+        		};
+        	}
         	dyFObj.init.uploader[uploaderId]=new Object;
         	dyFObj.init.uploader[uploaderId]=uploadObject;
         }
