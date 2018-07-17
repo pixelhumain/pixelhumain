@@ -1653,7 +1653,7 @@ var dyFObj = {
 									'<i class="fa fa-chevron-down"></i> '+trad.city  +
 								'</label>'+
 						  		"<input autocomplete='off' class='col-md-10 col-xs-12' type='text' name='newElement_city' placeholder='"+trad['Search a city, a town or a postal code']+"'>"+
-								"<ul class='dropdown-menu col-md-10 col-xs-12' id='dropdown-newElement_locality-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
+								"<ul class='dropdown-menu col-md-10 col-xs-12' id='dropdown-newElement_locality-found' style='margin-top: -2px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
 									"<li><a href='javascript:' class='disabled'>"+tradDynForm.searchACityATownOrAPostalCode +"</a></li>"+
 								"</ul>"+
 					  		"</div>"+
@@ -1662,7 +1662,7 @@ var dyFObj = {
 									'<i class="fa fa-chevron-down"></i> '+trad.streetFormInMap +
 					            '</label>'+
 								"<input class='col-md-9 col-xs-9'  autocomplete='off' type='text' style='margin-right:-3px;' name='newElement_street' placeholder='"+trad.streetFormInMap +"'>"+
-								"<a href='javascript:;' class='col-md-1 col-xs-1 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></a>"+
+								"<a href='javascript:;' class='col-md-1 col-xs-1 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0 ; height: 33px;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></a>"+
 							"</div>"+
 							"<div class='dropdown pull-left col-xs-12 no-padding'> "+
 						  		"<ul class='dropdown-menu' id='dropdown-newElement_streetAddress-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
@@ -1676,27 +1676,27 @@ var dyFObj = {
 								"<h4 class='text-center'>"+tradDynForm.addressSummary +" : </h4>"+
 								"<div id='street_sumery' class='col-xs-12'>"+
 									"<span>"+trad.streetFormInMap +" : </span>"+
-									"<span id='street_sumery_value'></span>"+
+									"<b><span id='street_sumery_value'></span></b>"+
 								"</div>"+
 								"<div id='cp_sumery' class='col-xs-12'>"+
 									"<span>"+trad.postalCode +" : </span>"+
-									"<span id='cp_sumery_value'></span>"+
+									"<b><span id='cp_sumery_value'></span></b>"+
 								"</div>"+
 								"<div id='city_sumery' class='col-xs-12'>"+
 									"<span>"+trad.city +" : </span>"+
-									"<span id='city_sumery_value'></span>"+
+									"<b><span id='city_sumery_value'></span></b>"+
 								"</div>"+
 								"<div id='country_sumery' class='col-xs-12'>"+
 									"<span>"+tradDynForm.country +" : </span>"+
-									"<span id='country_sumery_value'></span>"+
+									"<b><span id='country_sumery_value'></span></b>"+
 								"</div>"+
 								"<hr class='col-md-12'>"+
 								"<a href='javascript:;' class='btn btn-success' type='text' id='btnValideAddress'>"+
 									tradDynForm.confirmAddress+
 								"</a>"+
 							"</div>";
-				fieldHTML +="<div id='divNewAddress' class='text-dark col-xs-12 no-padding'>"+
-								"<a href='javascript:;' class='btn btn-success' type='text' id='newAddress'>"+
+				fieldHTML +="<div id='divNewAddress' class='text-dark col-xs-12 no-padding '>"+
+								"<a href='javascript:;' class='btn btn-success' style='margin-bottom: 10px;' type='text' id='newAddress'>"+
 									'<i class="fa fa-plus"></i> '+tradDynForm.addANewAddress +
 								"</a>"+
 							"</div>";
