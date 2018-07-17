@@ -2125,11 +2125,7 @@ var dyFObj = {
 						    onAllComplete: function(succeeded, failed) {
 						    	mylog.log("ooooooooooooo",succeeded,failed);
 						     	toastr.info( "Fichiers bien chargés !!");
-						     	if( typeof updateForm != "undefined"){
-							    	window.location.reload();
-							    	updateForm = null;
-							    }
-						      	if($("#ajaxFormModal #newsCreation").val()=="true"){
+						     	if($("#ajaxFormModal #newsCreation").val()=="true"){
 						      		//var mentionsInput=[];
 						      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
 	      								mentionsInput=data;
