@@ -10,6 +10,8 @@
 		"Hello {who}"=>"Bonjour {who}",
 		"We have succesfully received your application package. Our team will study it during the validation period until the 1rst September 2018<br/><br/>After this period of project's validation, we will send you new instructions to continue your participation to {what}"=>"Nous avons bien reçu votre candidature. Notre équipe va maintenant procéder à l'étude de votre projet  durant la période de  validation jusqu'au 1er Septembre 2018<br/><br/>Après cette période, nous vous tiendrons informer des prochaines étapes de l'appel à projet {what}",
 		"Thank you for your application"=>"Merci pour votre participation",
+		"This step {num} hasn't been filed yet"=> "Cette étape {num} n'a toujours pas été remplie",
+		"Go back to this form"=>"Retourner au formulaire",
 		
 	)
 ?>
