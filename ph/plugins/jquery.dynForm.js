@@ -2110,7 +2110,7 @@ var dyFObj = {
 										type: "POST",
 								    })
 								    .done(function (data){}).fail(function(){
-									   toastr.error("Something went wrong, contact your admin"); 
+									  // toastr.error("Something went wrong, contact your admin"); 
 									   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
 									   $("#btn-submit-form").prop('disabled', false);
 								    });
