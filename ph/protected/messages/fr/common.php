@@ -366,6 +366,8 @@ return array(
 	"Red" => "Rouge",
 	"Yellow" => "Jaune",
 	
+	"Question"=>"Question",
+	"Answer"=>"Réponse",
 	//Question
 	"Are you sure" => "Êtes-vous sûr",
 	"Are you sure you want to delete" => "Êtes-vous sûr de vouloir supprimer cet élément ?",

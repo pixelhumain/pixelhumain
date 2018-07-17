@@ -1669,7 +1669,7 @@ var dyFObj = {
 							"<div id='alertGeo' class='alert alert-warning col-xs-12 hidden' style='margin-bottom: 0px;'>"+
 							  "<strong>Warning!</strong> "+tradDynForm.doNotForgetToGeolocateYourAddress+
 							"</div></div>"+
-							"<div id='sumery' class='text-dark col-md-6 col-xs-12 no-padding'>"+
+							"<div id='sumery' class='text-dark col-md-12 col-xs-12 no-padding'>"+
 								"<h4 class='text-center'>"+tradDynForm.addressSummary +" : </h4>"+
 								"<div id='street_sumery' class='col-xs-12'>"+
 									"<span>"+trad.streetFormInMap +" : </span>"+
