@@ -1638,31 +1638,30 @@ var dyFObj = {
         } else if ( fieldObj.inputType == "formLocality") {
         	mylog.log("build field "+field+">>>>>> formLocality");
        		
-        	fieldHTML += "<div class='col-xs-12 form-group inline-block padding-15 form-in-map formLocality col-md-6'>"+
+        	fieldHTML += "<div class='col-md-6 col-xs-12 inline-block padding-15 form-in-map formLocality col-md-6'>"+
         					'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_country">'+
 								'<i class="fa fa-chevron-down"></i> '+tradDynForm.country+
 				            '</label>'+
-							"<select class='form-group col-md-10 col-xs-12' name='newElement_country' id='newElement_country'>"+
-								"<option value=''>"+tradDynForm.chooseCountry+"</option>";
+							"<select class='col-md-10 col-xs-12' name='newElement_country' id='newElement_country'>";
+								"<option value=''>"+trad.chooseCountry+"</option>";
 								$.each(dyFObj.formInMap.countryList, function(key, v){
 									fieldHTML += "<option value='"+v.countryCode+"'>"+v.name+"</option>";
 								});
 				fieldHTML += "</select>"+
 							"<div id='divCity' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
-								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_city">'+
 									'<i class="fa fa-chevron-down"></i> '+trad.city  +
 								'</label>'+
-						  		"<input autocomplete='off' class='form-group col-md-10 col-xs-12' type='text' name='newElement_city' placeholder='"+trad['Search a city, a town or a postal code']+"'>"+
+						  		"<input autocomplete='off' class='col-md-10 col-xs-12' type='text' name='newElement_city' placeholder='"+trad['Search a city, a town or a postal code']+"'>"+
 								"<ul class='dropdown-menu col-md-10 col-xs-12' id='dropdown-newElement_locality-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
 									"<li><a href='javascript:' class='disabled'>"+tradDynForm.searchACityATownOrAPostalCode +"</a></li>"+
 								"</ul>"+
 					  		"</div>"+
 							"<div id='divStreetAddress' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
-								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_street">'+
 									'<i class="fa fa-chevron-down"></i> '+trad.streetFormInMap +
 					            '</label>'+
-								"<input class='form-group col-md-9 col-xs-9'  autocomplete='off' type='text' style='margin-right:-3px;' name='newElement_street' placeholder='"+trad.streetFormInMap +"'>"+
-								//"<button class='col-md-1 col-xs-1 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></button>"+
+								"<input class='col-md-9 col-xs-9'  autocomplete='off' type='text' style='margin-right:-3px;' name='newElement_street' placeholder='"+trad.streetFormInMap +"'>"+
 								"<a href='javascript:;' class='col-md-1 col-xs-1 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></a>"+
 							"</div>"+
 							"<div class='dropdown pull-left col-xs-12 no-padding'> "+
@@ -1673,7 +1672,7 @@ var dyFObj = {
 							"<div id='alertGeo' class='alert alert-warning col-xs-12 hidden' style='margin-bottom: 0px;'>"+
 							  "<strong>Warning!</strong> "+tradDynForm.doNotForgetToGeolocateYourAddress+
 							"</div></div>"+
-							"<div id='sumery' class='text-dark col-md-12 col-xs-12 no-padding'>"+
+							"<div id='sumery' class='text-dark col-md-6 col-xs-12 no-padding'>"+
 								"<h4 class='text-center'>"+tradDynForm.addressSummary +" : </h4>"+
 								"<div id='street_sumery' class='col-xs-12'>"+
 									"<span>"+trad.streetFormInMap +" : </span>"+
@@ -2993,15 +2992,15 @@ var dyFObj = {
 			mylog.log("bindFormInMap");
 
 			$('[name="newElement_country"]').change(function(){
-				mylog.log("change country");
+				mylog.log("change country", $(this).val());
 				dyFObj.formInMap.initVarNE()
 				dyFObj.formInMap.NE_country = $('[name="newElement_country"]').val() ;
+				//dyFObj.formInMap.resumeLocality();
 				dyFObj.formInMap.initHtml();
-				dyFObj.formInMap.resumeLocality();
-				//$("#country_sumery_value").html($('[name="newElement_country"]').val());
+				// $("#country_sumery_value").html($('[name="newElement_country"]').val());
 				// $('[name="newElement_city"]').val("");
 				// $("#country_sumery_value").html($('[name="newElement_country"]').val());
-				//$("#btnValideAddress").prop('disabled', true);
+				// $("#btnValideAddress").prop('disabled', true);
 				$("#btnValideAddress").hide();
 				$("#divStreetAddress").addClass("hidden");
 
