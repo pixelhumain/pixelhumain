@@ -3464,6 +3464,7 @@ var dyFInputs = {
 				type: "POST",
 				url: baseUrl+"/"+moduleId+"/opendata/getcountries/hasCity/true",
 				dataType: "json",
+				async: false,
 				success: function(data){
 					mylog.log("getcountries data",data);
 					dyFObj.formInMap.countryList = data;
@@ -3475,7 +3476,7 @@ var dyFInputs = {
 				}
 			});
 		}
-	   
+	   	//alert("HERE");
     	return inputObj;
     },
 	inputText :function(label, placeholder, rules, custom) { 
