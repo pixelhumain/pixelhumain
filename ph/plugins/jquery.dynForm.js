@@ -2127,7 +2127,8 @@ var dyFObj = {
 						    onAllComplete: function(succeeded, failed) {
 						    	mylog.log("ooooooooooooo",succeeded,failed);
 						     	toastr.info( "Fichiers bien chargés !!");
-						     	if($("#ajaxFormModal #newsCreation").val()=="true"){
+						     	
+						      	if($("#ajaxFormModal #newsCreation").val()=="true"){
 						      		//var mentionsInput=[];
 						      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
 	      								mentionsInput=data;
