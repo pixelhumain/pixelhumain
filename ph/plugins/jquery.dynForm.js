@@ -509,6 +509,10 @@ var dyFObj = {
 	   	uploadObj.set();
 	    uploadObj.update = false;
 	},
+	editStep : function ( form,data,afterLoad ){
+		console.log("step",form, data);
+		dyFObj.openForm( form ,afterLoad , data);
+	},
 	editElement : function (type,id, subType){
 		mylog.warn("--------------- editElement ",type,id);
 		//get ajax of the elemetn content
@@ -566,7 +570,7 @@ var dyFObj = {
 				afterLoad : afterLoad,
 				data : data
 			};
-			toastr.error(tradDynForm["mustbeconnectforcreateform"]);
+			toastr.error(tradDynForm.mustbeconnectforcreateform);
 			$('#modalLogin').modal("show");
 		}
 	},
@@ -595,7 +599,7 @@ var dyFObj = {
 			//TODO : pouvoir surchargé le dossier dynform dans le theme
 			//via themeObj.dynForm.folder overload
 			var dfPath = moduleUrl+'/js/dynForm/'+type+'.js';
-			
+			alert(type);
 			//sometimes special forms sit in the theme obj
 			if ( jsonHelper.notNull( "themeObj.dynForm.folder") ) 
 				dfPath = themeObj.dynForm.folder+type+'.js';
@@ -616,6 +620,7 @@ var dyFObj = {
 			if ( type.indexOf(".js")>-1)  
 				dfPath = type;
 
+			console.log("getDynFormObj",type,dfPath);
 			lazyLoad( dfPath, 
 				null,
 				function() { 
@@ -626,7 +631,7 @@ var dyFObj = {
 					
 				  	dyFInputs.get(type).dynForm = dynForm;
 					dyFObj[dyFObj.activeElem] = dyFInputs.get(type);
-					if( notNull(dyFInputs.get(type).col) ) 
+					if( notNull( dyFInputs.get(type).col) ) 
 						uploadObj.type = dyFInputs.get(type).col;
     				callback( afterLoad, data );
 				});
@@ -654,7 +659,7 @@ var dyFObj = {
 	  	dyFInputs.init();
 	  	afterLoad = ( notNull(afterLoad) ) ? afterLoad : null;
 	  	data = ( notNull(data) ) ? data : {}; 
-	  	dyFObj.buildDynForm(afterLoad, data,dyFObj[dyFObj.activeElem],dyFObj.activeModal+" #ajaxFormModal");
+	  	dyFObj.buildDynForm( afterLoad, data,dyFObj[dyFObj.activeElem],dyFObj.activeModal+" #ajaxFormModal");
 	},
 	buildDynForm : function (afterLoad,data,obj,formId) { 
 		mylog.warn("--------------- buildDynForm", dyFObj[dyFObj.activeElem], afterLoad,data);
@@ -1558,7 +1563,7 @@ var dyFObj = {
 											'<button type="button" class="btn btn-default tooltips" data-scope-type="zone"'+
 												'data-toggle="tooltip" data-placement="top" '+
 												'title="'+tradDynForm["Add a zone"]+'">'+
-												'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Zone"]+
+												'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm.Zone+
 											'</button>'+
 										'</div>'+
 									'</div>'+
@@ -1583,7 +1588,7 @@ var dyFObj = {
 											'<button type="button" class="btn btn-default tooltips" data-scope-type="zone"'+
 											'data-toggle="tooltip" data-placement="top" '+
 											'title="'+tradDynForm["Add a zone"]+'">'+
-											'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Zone"]+
+											'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm.Zone+
 											'</button>'+
 										'</div>'+
 									'</div>'+
@@ -1745,14 +1750,14 @@ var dyFObj = {
 		mylog.dir(formRules);
 		var errorHandler = $('.errorHandler', $(params.formId));
 
-		$(params.formId).unbind('keydown').keydown(function(event) 
-		  {
-		  	if ( event.keyCode == 13)
-		    {
-				event.preventDefault();
-				//alert("enter");
-			}
-		});
+		// $(params.formId).unbind('keydown').keydown(function(event) 
+		//   {
+		//   	if ( event.keyCode == 13)
+		//     {
+		// 		event.preventDefault();
+		// 		//alert("enter");
+		// 	}
+		// });
 
 		$(params.formId).validate({
 
@@ -3459,6 +3464,7 @@ var dyFInputs = {
 				type: "POST",
 				url: baseUrl+"/"+moduleId+"/opendata/getcountries/hasCity/true",
 				dataType: "json",
+				async: false,
 				success: function(data){
 					mylog.log("getcountries data",data);
 					dyFObj.formInMap.countryList = data;
@@ -3470,7 +3476,7 @@ var dyFInputs = {
 				}
 			});
 		}
-	   
+	   	//alert("HERE");
     	return inputObj;
     },
 	inputText :function(label, placeholder, rules, custom) { 
@@ -3532,9 +3538,9 @@ var dyFInputs = {
 	    };
 	    if(type){
 	    	mylog.log("NAMEOFYOUR", dyFInputs.get(type).ctrl, trad[dyFInputs.get(type).ctrl]);
-	    	inputObj.label = tradDynForm["nameofyour"]+" " + trad[dyFInputs.get(type).ctrl]+" ";
+	    	inputObj.label = tradDynForm.nameofyour+" " + trad[dyFInputs.get(type).ctrl]+" ";
 	    	if(type=="classified") 
-	    		inputObj.label = tradDynForm["titleofyour"]+" "+ trad[type]+" ";
+	    		inputObj.label = tradDynForm.titleofyour+" "+ trad[type]+" ";
 
 	    	inputObj.placeholder = inputObj.label + " ...";
 
@@ -3629,8 +3635,8 @@ var dyFInputs = {
 		return inputObj;
 	},
 	organizerId : function( organizerId, organizerType ){
-		return dyFInputs.inputSelectGroup( 	tradDynForm["whoorganizedevent"]+" ?", 
-											tradDynForm["whoorganize"]+" ?", 
+		return dyFInputs.inputSelectGroup( 	tradDynForm.whoorganizedevent+" ?", 
+											tradDynForm.whoorganize+" ?", 
 											firstOptions(), 
 											parentList( ["organizations","projects"], organizerId, organizerType ), 
 											{ required : true },
@@ -3655,9 +3661,9 @@ var dyFInputs = {
     	//var tagsL = (list) ? list : tagsList;
     	return {
 			inputType : "tags",
-			placeholder : placeholder != null ? placeholder : tradDynForm["tags"],
+			placeholder : placeholder != null ? placeholder : tradDynForm.tags,
 			values : (list) ? list : tagsList,
-			label : (label != null) ? label : tradDynForm["addtags"]
+			label : (label != null) ? label : tradDynForm.addtags
 		}
 	},
 	radio : function(label,keyValues) { 
@@ -3696,7 +3702,7 @@ var dyFInputs = {
     	return {
 	    	inputType : "uploader",
 	    	docType : "image",
-	    	label : (label != null) ? label : tradDynForm["imageshere"]+" :", 
+	    	label : (label != null) ? label : tradDynForm.imageshere+" :", 
 	    	showUploadBtn : false,
 	    	template:'qq-template-gallery',
 	    	filetypes:['jpeg', 'jpg', 'gif', 'png'],
@@ -3772,7 +3778,7 @@ var dyFInputs = {
 	    return res;
 	},
     price :function(label, placeholder, rules, custom) { 
-		var inputObj = dyFInputs.inputText(tradDynForm["pricesymbole"], tradDynForm["pricesymbole"]+" ...") ;
+		var inputObj = dyFInputs.inputText(tradDynForm.pricesymbole, tradDynForm.pricesymbole+" ...") ;
 	    inputObj.init = function(){
     		$('input#price').filter_input({regex:'[0-9]'});
       	};
@@ -3788,7 +3794,7 @@ var dyFInputs = {
     text :function (label,placeholder,rules) {  
     	var inputObj = {
     		inputType : "text",
-	    	label : ( notEmpty(label) ? label : tradDynForm["mainemail"] ),
+	    	label : ( notEmpty(label) ? label : tradDynForm.mainemail ),
 	    	placeholder : ( notEmpty(placeholder) ? placeholder : "exemple@mail.com" ),
 	    	rules : ( notEmpty(rules) ? rules : { email: true } )
 	    }
@@ -3838,7 +3844,7 @@ var dyFInputs = {
 		return inputObj;  
 	},
 	location : {
-		label : tradDynForm["location"],
+		label : tradDynForm.location,
        	inputType : "location"
     },
     locationObj : {
@@ -3988,7 +3994,7 @@ var dyFInputs = {
 			if( dyFInputs.locationObj.countLocation == 0){
 				btnSuccess = "btn-success";
 				//locCenter = "<span class='lblcentre'>(localité centrale)</span>";
-				locCenter = "<span class='lblcentre'> "+tradDynForm["mainLocality"]+"</span>"; 
+				locCenter = "<span class='lblcentre'> "+tradDynForm.mainLocality+"</span>"; 
 				boolCenter=true;
 			}
 
@@ -4102,7 +4108,7 @@ var dyFInputs = {
 						if( typeof center != "undefined" && center && prop==0){
 							btnSuccess = "btn-success";
 							//locCenter = "<span class='lblcentre'>(localité centrale)</span>";
-							locCenter = "<span class='lblcentre'> "+tradDynForm["mainLocality"]+"</span>"; 
+							locCenter = "<span class='lblcentre'> "+tradDynForm.mainLocality+"</span>"; 
 							boolCenter=true;
 						}
 						domParent.find(".removeLocalityBtn").attr("href","javascript:dyFInputs.locationObj.removeLocation("+prop+","+boolCenter+")");
@@ -4149,7 +4155,7 @@ var dyFInputs = {
 		}
     },
     scope : {
-		label : tradDynForm["localization"],
+		label : tradDynForm.localization,
        	inputType : "scope",
        	init : function () {
        		mylog.log("scopeObj", dyFInputs.scopeObj.scopeObj);
@@ -4300,7 +4306,7 @@ var dyFInputs = {
 
     },
     inputUrl :function (label,placeholder,rules, custom) {  
-    	label = ( notEmpty(label) ? label : tradDynForm["mainurl"] );
+    	label = ( notEmpty(label) ? label : tradDynForm.mainurl );
     	placeholder = ( notEmpty(placeholder) ? placeholder : "http://www.exemple.org" );
     	rules = ( notEmpty(rules) ? rules : { url: true } );
     	custom = ( notEmpty(custom) ? custom : "<div class='resultGetUrl resultGetUrl0 col-sm-12'></div>" );
@@ -4316,8 +4322,8 @@ var dyFInputs = {
 	    return inputObj;
 	},
     urls : {
-    	label : tradDynForm["freeinfourl"],
-    	placeholder : tradDynForm["freeinfourl"]+" ...",
+    	label : tradDynForm.freeinfourl,
+    	placeholder : tradDynForm.freeinfourl+" ...",
         inputType : "array",
         value : [],
         init:function(){
@@ -4326,7 +4332,7 @@ var dyFInputs = {
     },
     multiChoice : {
     	label : tradDynForm["Add answers"],
-    	placeholder : tradDynForm["answer"]+" ...",
+    	placeholder : tradDynForm.answer+" ...",
         inputType : "array",
         value : [],
         init:function(){
@@ -4335,7 +4341,7 @@ var dyFInputs = {
     },
     videos : {
     	label : "Your media videos here",
-    	placeholder : tradDynForm["sharevideourl"]+" ...",
+    	placeholder : tradDynForm.sharevideourl+" ...",
         inputType : "array",
         value : [],
         initOptions : {type:"video",labelAdd:"Add video link"},
@@ -4345,7 +4351,7 @@ var dyFInputs = {
     },
     urlsOptionnel : {
         inputType : "array",
-        placeholder : tradDynForm["urlandaddinfoandaction"],
+        placeholder : tradDynForm.urlandaddinfoandaction,
         value : [],
         init:function(){
             processUrl.getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);
@@ -4519,9 +4525,9 @@ var dyFInputs = {
 	        	})
 	        },
 	    	"switch" : {
-	    		"onText" : tradDynForm["yes"],
-	    		"offText" : tradDynForm["no"],
-	    		"labelText":tradDynForm["allday"],
+	    		"onText" : tradDynForm.yes,
+	    		"offText" : tradDynForm.no,
+	    		"labelText":tradDynForm.allday,
 	    		"onChange" : function(){
 	    			var allDay = $("#ajaxFormModal #allDay").is(':checked');
 	    			var startDate = "";
@@ -4618,9 +4624,9 @@ var dyFInputs = {
 	        },
 	        options: {"allWeek" : true},
 	    	"switch" : {
-	    		"onText" : tradDynForm["yes"],
-	    		"offText" : tradDynForm["no"],
-	    		"labelText":tradDynForm["allweek"],
+	    		"onText" : tradDynForm.yes,
+	    		"offText" : tradDynForm.no,
+	    		"labelText":tradDynForm.allweek,
 	    		"css":{"min-width": "300px","margin": "10px"},
 	    		"onChange" : function(){
 	    			var allWeek = $("#ajaxFormModal #openingHours").is(':checked');

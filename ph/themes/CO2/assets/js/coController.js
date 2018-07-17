@@ -295,7 +295,7 @@ var urlCtrl = {
 			return ;
 		}
 
-		if( hash.indexOf("#default.directory") >= 0 &&
+		if( hash && hash.indexOf("#default.directory") >= 0 &&
 			location.hash.indexOf("#default.directory") >= 0 && CoAllReadyLoad==true){ 
 			var n = hash.indexOf("type=")+5;
 			var type = hash.substr(n);
@@ -333,7 +333,6 @@ var urlCtrl = {
 
 	    	panelName = hash.substr(7);
 	    	mylog.log("panelName",panelName);
-	    	alert();
 	    	if( (panelName == "box-login" || panelName == "box-register") && userId != "" && userId != null ){
 	    		urlCtrl.loadByHash("#default.home");
 	    		return false;
