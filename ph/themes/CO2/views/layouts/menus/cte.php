@@ -170,3 +170,14 @@ if(isset(Yii::app()->session['userId']))
 
 $this->renderPartial($layoutPath.'formCreateElement'); ?>
 
+
+<script>
+    
+    $(".logout").click(function(){ 
+        $.cookie("lyame", "null", { expires: 180, path : "/" });
+        $.cookie("drowsp", "null", { expires: 180, path : "/" });
+        $.cookie("remember", false, { expires: 180, path : "/" });
+        window.location.href=baseUrl+"/survey/co/index/id/cte";
+    });
+    
+</script>
