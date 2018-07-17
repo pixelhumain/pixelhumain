@@ -690,7 +690,7 @@ var dySObj = {
 	            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
 	            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.map.name;
 	            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].email = data.map.email;
-	            	if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)] != "undefined"
+	            	/*if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)] != "undefined"
 		        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm != "undefined")
 	            	{
 		        		$.each(dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm.jsonSchema.properties, function(e, v){
@@ -701,7 +701,7 @@ var dySObj = {
 								$("#"+v.domElement).fineUploader('setEndpoint', endpoint);
 							}
 						});
-		    		}
+		    		}*/
 		    		
 	    		   	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
 						if( typeof secJsonSchema.afterSave == "function" )
@@ -748,9 +748,9 @@ var dySObj = {
 			        //}); 
 			    }
 			}
-			if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)] != "undefined"
-        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+2)].dynForm != "undefined"){
-        		$.each(dySObj.surveys.sections["section"+(dySObj.activeSection+2)].dynForm.jsonSchema.properties, function(e, v){
+			/*if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)] != "undefined"
+        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm != "undefined"){
+        		$.each(dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm.jsonSchema.properties, function(e, v){
             		if(typeof v.docType != "undefined" && typeof v.linkTo != "undefined" && v.linkTo==dySObj.surveys.sections[sec].key){ 
             			if(v.linkTo=="citoyens"){
             				typeOwner=v.linkTo;
@@ -763,7 +763,7 @@ var dySObj = {
 						$("#"+v.domElement).fineUploader('setEndpoint', endpoint);
 					}
 				});
-    		}
+    		}*/
 			//alert(dySObj.surveys.json[v.linkTo].type);
 			$('html, body').stop().animate({scrollTop: 0}, 500, '');
 		} 
