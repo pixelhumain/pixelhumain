@@ -1232,8 +1232,8 @@ var dyFObj = {
 			if( formValues.address && formValues.geo && formValues.geoPosition ){
 				var initAddress = function(){
 					mylog.warn("init Adress location",formValues.address.addressLocality,formValues.address.postalCode);
-					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
-					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
+					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geoPosition:formValues.geoPosition});
+					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geoPosition:formValues.geoPosition});
 				};
 			}     
 			if( formValues.addresses ){
