@@ -599,7 +599,7 @@ var dyFObj = {
 			//TODO : pouvoir surchargé le dossier dynform dans le theme
 			//via themeObj.dynForm.folder overload
 			var dfPath = moduleUrl+'/js/dynForm/'+type+'.js';
-			alert(type);
+			
 			//sometimes special forms sit in the theme obj
 			if ( jsonHelper.notNull( "themeObj.dynForm.folder") ) 
 				dfPath = themeObj.dynForm.folder+type+'.js';
@@ -994,7 +994,7 @@ var dyFObj = {
         else if ( fieldObj.inputType == "uploader" ) {
         	if(placeholder == "")
         		placeholder="add Image";
-        	mylog.log("build field "+field+">>>>>> uploader");
+        	mylog.log("build field "+field+">>>>>> uploader" );
         	var uploaderId=(fieldObj.domElement) ? fieldObj.domElement : "imageElement"; 
         	fieldHTML += '<div class=" col-xs-12 '+fieldClass+' fine-uploader-manual-trigger"  id="'+uploaderId+'" data-type="citoyens" data-id="'+userId+'"></div>';
         	

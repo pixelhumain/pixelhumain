@@ -88,7 +88,7 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
    //var moduleId = "<?php echo $this->module->id?>";
-   debug = false;
+   var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
 
    </script>
 </head>
