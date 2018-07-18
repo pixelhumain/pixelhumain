@@ -1,5 +1,5 @@
 <?php
-$logoHeader=(@$logoHeader) ? Yii::app()->getRequest()->getBaseUrl(true).$logoHeader : "";
+$logoHeader=(@$logoHeader) ? $logoHeader : "";
 $urlRedirect=Yii::app()->getRequest()->getBaseUrl(true);
 $validationKey =Person::getValidationKeyCheck($invitedUserId);
 //$url = Yii::app()->getRequest()->getBaseUrl(true).(empty($url) ? "/".$this->module->id : $url)."/person/validateinvitation/user/".$invitedUserId.'/validationKey/'.$validationKey.'/invitation/1';
@@ -25,7 +25,9 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 						<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
 							<center style="width: 100%;min-width: 532px;">
 							<!--http://localhost:8888/ph/images/logoLTxt.jpg-->
-							<img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo2 ?>" valign="bottom" alt="Logo Communecter" align="center" class="text-center" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;margin: 0 auto;float: none;text-align: center;">
+							<?php if(!empty($logo2)){ ?> 
+								<img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true).$logo2 ?>" valign="bottom" alt="Logo Communecter" align="center" class="text-center" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;margin: 0 auto;float: none;text-align: center;">
+							<?php } ?>
 							</center>
 						</th>
 						<th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
