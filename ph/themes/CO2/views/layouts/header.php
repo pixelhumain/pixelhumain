@@ -191,7 +191,7 @@
                             <li class="dropdown dropdown-types">
                                 <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left"  type="button" id="dropdownThematics" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-label-xs="types" data-toggle="tooltip" data-placement="bottom" 
                               title="<?php echo Yii::t("common","Choose a type") ?>" alt="<?php echo Yii::t("common","type") ?>"><?php echo Yii::t("common","Type") ?> <i class="fa fa-angle-down"></i></a>
-                                <div class="dropdown-menu arrow_box hidden-xs" aria-labelledby="dropdownTypes">
+                                <div class="dropdown-menu arrow_box hidden-xs" style="overflow-y: auto;" aria-labelledby="dropdownTypes">
                                 </div>
                             </li>
                             <li class="dropdown dropdown-sources">
@@ -209,7 +209,7 @@
                             <li class="dropdown dropdown-category">
                                 <a href="javascript:;" class="dropdown-toggle menu-button btn-menu text-dark pull-left" data-label-xs="category" type="button" id="dropdownCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                               title="<?php echo Yii::t("common","Choose a category") ?>" alt="<?php echo Yii::t("common","Choose a category") ?>"><?php echo Yii::t("common","Category") ?> <i class="fa fa-angle-down"></i></a>
-                                <div class="dropdown-menu arrow_box hidden-xs" aria-labelledby="dropdownCategory">
+                                <div class="dropdown-menu arrow_box hidden-xs" aria-labelledby="dropdownCategory" style="overflow-y: auto;">
                                 </div>
                             </li>
                             <li class="dropdown dropdown-price">
