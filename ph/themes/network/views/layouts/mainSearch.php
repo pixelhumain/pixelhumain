@@ -20,6 +20,9 @@
     $metaImg = Yii::app()->getRequest()->getBaseUrl(true)."/themes/CO2".@$params["metaImg"];
     $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
 
+    if(@$_GET["el"])
+        $this->renderPartial( 'co2.views.custom.init' ); 
+    
 ?>	
 <html lang="en" class="no-js">
 	
@@ -85,10 +88,9 @@
 	      $myContacts = Person::getPersonLinksByPersonId(Yii::app()->session['userId']);
 	      $myFormContact = $myContacts; 
 	      $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
-	    }else{
+	    }else
 	      $myFormContact = null;
-
-	    }
+	    
 
 	   // error_log("load IndexDefault");
 	?>
@@ -97,7 +99,14 @@
 	******************************************* -->
 	<?php $this->renderPartial($layoutPath.'menu.menuTop', array("params" => $networkJson, "me" => $me)); ?>
 	<?php $this->renderPartial($layoutPath."menu.menuLeft", array("params" => $networkJson, "me" => $me)); ?>
-		<div class="col-md-12 col-sm-12 col-xs-12 my-main-container no-padding" style="top: 50px; display: none;">
+		
+		<?php /*if(@Yii::app()->session['custom']){ ?>
+		<div class="col-xs-12">
+			<img src="<?php echo Yii::app()->session['custom']['logo'] ?>">
+		</div>
+		<?php } */?>
+
+		<div class="col-xs-12 my-main-container no-padding" style="top: 50px; display: none;">
 
 			<?php $classMaincontener = ( empty($networkJson['filter']) ? "col-xs-12" : "col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 col-xs-12" ); ?>
 			<div class="<?php echo $classMaincontener ;?> main-col-search no-padding" style="min-height: 490px; opacity: 1;">
