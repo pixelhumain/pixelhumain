@@ -1430,5 +1430,25 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Name of the research"=> "Nom de la recherche",
 	"Be alerted of new items"=>"Soyez avertis des nouveautés",
 	"Alert"=>"Alerte",
+
+
+	"This field is required." => "Ce champ est obligatoire.",
+	"Please fix this field." => "Corrigez ce champ.",
+	"Please enter a valid email address." => "Veuillez entrer une adresse email valide.",
+	"Please enter a valid URL." => "Veuillez entrer une date valide.",
+	"Please enter a valid date." => "Veuillez entrer une date valide.",
+	"Please enter a valid date (ISO)." => "Veuillez entrer une date valide (ISO).",
+	"Please enter a valid number." => "Veuillez entrer un numéro valide.",
+	"Please enter only digits." => "Veuillez n'entrer que des chiffres.",
+	"Please enter a valid credit card number." => "Veuillez entrer un numéro de carte de crédit valide.",
+	"Please enter the same value again." => "Veuillez saisir à nouveau la même valeur.",
+	"Please enter no more than {0} characters." => "N'entrez pas plus de {0} caractères.",
+	"Please enter at least {0} characters." => "Veuillez entrer au moins {0} caractères.",
+	"Please enter a value between {0} and {1} characters long." => "Veuillez entrer une valeur entre {0} et {1} caractères.",
+	"Please enter a value between {0} and {1}." => "Veuillez entrer une valeur entre {0} et {1}.",
+	"Please enter a value less than or equal to {0}." => "Veuillez entrer une valeur inférieure ou égale à {0}.",
+	"Please enter a value greater than or equal to {0}." => "Veuillez entrer une valeur supérieure ou égale à {0}.",
+
+
 );
 ?>

@@ -55,12 +55,21 @@
         "sourceKey" :[
             "HVAorga"
         ],
+        "parent" : {
+            "type" : "organizations",
+            "id" : "56580ad2dd04521c6f943180"
+        },
         "searchType" : [
             "organizations",
             "projects"
         ],
-        "searchLocalityDEPARTEMENT": [
-            "AUDE"
+         "searchTag" : [
+            "tiers-lieux",
+            "coworking",
+            "Tiers lieu",
+            "Tiers-Lieux",
+            "Tiers Lieux",
+            "TiersLieux"
         ]
     }
 }
