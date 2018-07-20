@@ -53,6 +53,7 @@ function  bindLBHLinks() {
 	});
 }
 
+        
 
 var urlCtrl = {
 	afterLoad : null,
@@ -294,7 +295,7 @@ var urlCtrl = {
 			return ;
 		}
 
-		if( hash.indexOf("#default.directory") >= 0 &&
+		if( hash && hash.indexOf("#default.directory") >= 0 &&
 			location.hash.indexOf("#default.directory") >= 0 && CoAllReadyLoad==true){ 
 			var n = hash.indexOf("type=")+5;
 			var type = hash.substr(n);
@@ -340,12 +341,12 @@ var urlCtrl = {
 	        else
 	            title = "WELCOM MUNECT HEY !!!";
 	        if(panelName == "box-login"){
-				Login.openLogin();
 				$.unblockUI();
+				Login.openLogin();
 	        }
 			else if(panelName == "box-register"){
-				$('#modalRegister').modal("show");
 				$.unblockUI();
+				$('#modalRegister').modal("show");
 			}
 			else
 	       		showPanel(panelName,null,title);
@@ -472,8 +473,8 @@ function showAjaxPanel (url,title,icon, mapEnd , urlObj) {
 	        		urlCtrl.afterLoad = null;
 	        	}
 
-	        	if( custom && custom.logo )
-	    			$(".logo-menutop").attr( {'src':custom.logo} ); 	
+	        	//if( custom && custom.logo )
+	    		//	$(".logo-menutop").attr( {'src':custom.logo} ); 	
 
 
 	        	/*if(debug){
@@ -732,4 +733,17 @@ function showNotif(show){
 	
 	$("#dropdown-user, #dropdown-dda, .dropdownApps-menuTop").removeClass("open");
     showFloopDrawer(false);
+}
+
+
+function showFloopDrawer(show){ 
+	if(show){
+		if($(".floopDrawer" ).css("display") == "none"){
+			$(".floopDrawer").stop().show();
+			$(".floopDrawer" ).css("width", 0);
+			$(".floopDrawer" ).animate( { width: 300 }, 300 );
+		}
+	}else{
+		$(".floopDrawer").hide("fast");
+	}
 }

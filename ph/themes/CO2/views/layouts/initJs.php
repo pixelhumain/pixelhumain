@@ -40,6 +40,12 @@
             "module" => "eco",
             "url"    => Yii::app()->getModule( "eco" )->assetsUrl
         )); ?>,
+        "survey" : <?php echo json_encode( array(
+            "url"    => Yii::app()->getModule( "survey" )->assetsUrl
+        )); ?>,
+        "co2" : <?php echo json_encode( array(
+            "url"    => Yii::app()->getModule( "co2" )->assetsUrl
+        )); ?>,
         "cotools" : <?php echo json_encode( array(
             "module" => "cotools",
             "init"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
@@ -65,6 +71,7 @@ var typeObj = {
     siteurl:{ col:"siteurl",ctrl:"siteurl"},
     organization : { col:"organizations", ctrl:"organization", icon : "group",titleClass : "bg-green",color:"green",bgClass : "bgOrga"},
     organizations : {sameAs:"organization"},
+    organization2 : { col:"organizations", ctrl:"organization" },
     LocalBusiness : {col:"organizations",color: "azure",icon: "industry"},
     NGO : {sameAs:"organization", color:"green", icon:"users"},
     Association : {sameAs:"organization", color:"green", icon: "group"},
@@ -74,6 +81,7 @@ var typeObj = {
     events : {sameAs:"event"},
     project : {col:"projects",ctrl:"project",   icon : "lightbulb-o",color : "purple",titleClass : "bg-purple", bgClass : "bgProject"},
     projects : {sameAs:"project"},
+    project2 : {col:"projects",ctrl:"project"},
     city : {sameAs:"cities"},
     cities : {col:"cities",ctrl:"city", titleClass : "bg-red", icon : "university",color:"red"},
     
@@ -268,7 +276,14 @@ var typeObj = {
         locality:{}
     };
     var myScopes = {};
-    
+    var initLoginRegister={
+        email : '<?php echo @$_GET["email"]; ?>',
+        userValidated : '<?php echo @$_GET["userValidated"]; ?>',
+        pendingUserId : '<?php echo @$_GET["pendingUserId"]; ?>',
+        name : '<?php echo @$_GET["name"]; ?>',
+        error :'<?php echo @$_GET["error"]; ?>',
+        invitor : "<?php echo @$_GET["invitor"]?>",
+    };
     var themeObj = {
         init : function(){
             toastr.options = {

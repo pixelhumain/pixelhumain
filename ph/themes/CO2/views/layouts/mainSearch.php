@@ -51,6 +51,28 @@
     <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' />
 <?php } ?>
 
+    <?php 
+    if(isset(Yii::app()->session['userId'])){
+      $myContacts = Person::getPersonLinksByPersonId(Yii::app()->session['userId']);
+      $myFormContact = $myContacts; 
+      $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
+    }else{
+      $myFormContact = null;
+
+    }
+    $communexion = CO2::getCommunexionCookies();
+            
+    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+     $this->renderPartial($layoutPath.'initJs', 
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
+    if($this->module->id == "custom"){
+        $this->renderPartial( 'co2.views.custom.init' ); 
+    }else 
+        Yii::app()->session["custom"]=null;
+        ?>
+
+
+
         <?php 
             $cs->registerScriptFile(Yii::app() -> createUrl($parentModuleId."/default/view/page/trad/dir/..|translation/layout/empty"));
         ?>
@@ -74,20 +96,7 @@
             $this->renderPartial( $layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"], array("modulePath"=>$modulePath )); ?>
         </div>
 
-        <?php //get all my link to put in floopDrawer
-            if(isset(Yii::app()->session['userId'])){
-              $myContacts = Person::getPersonLinksByPersonId(Yii::app()->session['userId']);
-              $myFormContact = $myContacts; 
-              $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
-            }else{
-              $myFormContact = null;
-
-            }
-            $communexion = CO2::getCommunexionCookies();
-           // error_log("load IndexDefault");
-        ?>
-        
-        <?php $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+        <?php 
               $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); 
               ?>   
         
@@ -264,15 +273,14 @@
             /* ***********************
             END theme stuff
             ************************ */
-             $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
+            
 
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
             //if($CO2DomainName != "CO2"){
 
                 $cssAnsScriptFilesModule = array(
                     '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
-                    '/assets/js/comments.js'
+                    '/assets/js/comments.js',
                     //'/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
                     //'/assets/js/themes/'.$CO2DomainName.'.js',
                 );
@@ -311,17 +319,13 @@
             //alert("theme : <?php echo Yii::app()->theme->name?>");      
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             var CO2params = <?php echo json_encode($params); ?>;
-            var custom = {};
-                
+            
+            
             jQuery(document).ready(function() { 
-                    
-                <?php 
-                if($this->module->id == "custom"){
-                    $this->renderPartial( 'co2.views.custom.init' ); 
-                }?>
-
-                $.blockUI({ message : themeObj.blockUi.processingMsg});
-                
+                $.blockUI({ message : themeObj.blockUi.processingMsg});                
+                if( typeof custom != "undefined" && custom.logo ){
+                    custom.init("mainSearch");
+                }
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
                     if(typeof urlCtrl.loadableUrls[k] == "undefined")
@@ -367,19 +371,8 @@
                     toastr.success("Ce bandeau ne s'affichera plus sur ce navigateur !");
                 });
             });
-            console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
         </script>
 
-
-        <?php //$this->renderPartial($layoutPath.'.rocketchat', array() ); ?>
-
-        <?php 
-            /*if( @Yii::app()->params["rocketchatEnabled"] )
-                $this->widget( 'ext.widgets.chat.Chat' ,
-                    array(
-                        "host"=>"kiki"
-                    ) );  */
-        ?>
     </body>
 
 </html>

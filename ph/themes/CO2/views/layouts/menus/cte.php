@@ -63,7 +63,7 @@
         <div class="navbar-header pull-left">
             
             <a href="<?php echo Yii::app()->createUrl('/survey/co/index/id/cte'); ?>" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" >
-                <img src="<?php echo Yii::app()->getModule("survey")->assetsUrl; ?>/images/custom/cte/TCO-LOGO-WEB.png" class="logo-menutop pull-left" height=35 style="vertical-align: middle"/> <span style="display:block" class="padding-15">TCO : 1er CONTRAT DE TRANSITION ÉCOLOGIQUE</span>
+                <img src="<?php echo Yii::app()->getModule("survey")->assetsUrl; ?>/images/custom/cte/TCO-LOGO-WEB.png" class="logo-menutop pull-left" height=35 style="vertical-align: middle"/> <span style="display:block" class="padding-15 hidden-xs">TCO : 1er CONTRAT DE TRANSITION ÉCOLOGIQUE</span>
             </a>
            
         </div>
@@ -80,7 +80,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="pull-right navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav">
                 <?php 
                     if( isset( Yii::app()->session['userId']) ){
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->getParentAssetsUrl());
@@ -135,7 +135,7 @@
                 ?>
                 <li role="separator" class="divider"></li>
                 <li class="text-admin">
-                    <a href="#admin" class="lbh bg-white">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/admin/id/cte" class="lbh bg-white">
                         <i class="fa fa-user-secret"></i> <?php echo $label ; ?>
                     </a>
                 </li>
@@ -170,3 +170,14 @@ if(isset(Yii::app()->session['userId']))
 
 $this->renderPartial($layoutPath.'formCreateElement'); ?>
 
+
+<script>
+    
+    $(".logout").click(function(){ 
+        $.cookie("lyame", "null", { expires: 180, path : "/" });
+        $.cookie("drowsp", "null", { expires: 180, path : "/" });
+        $.cookie("remember", false, { expires: 180, path : "/" });
+        window.location.href=baseUrl+"/survey/co/index/id/cte";
+    });
+    
+</script>

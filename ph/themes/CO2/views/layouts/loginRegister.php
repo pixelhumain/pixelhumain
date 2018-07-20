@@ -82,10 +82,13 @@
                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
                                 <?php  
+                                $logo = (@Yii::app()->session['custom']["logo"]) ? Yii::app()->session['custom']["logo"] : $this->module->getParentAssetsUrl()."/images/logoLTxt.jpg";
+                                
                                 $nameTheme = ( (Yii::app()->theme->name == "network") ? "CO2" : Yii::app()->theme->name );
-                                $this->renderPartial('webroot.themes.'.$nameTheme.'.views.layouts.forms.CO2.menuTitle'); ?>
-                                     <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right" src="<?php echo $this->module->getParentAssetsUrl()?>/images/logoL.jpg"/>
-                                <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
+                                if(!@Yii::app()->session['custom']["logo"])
+                                    //$this->renderPartial('webroot.themes.'.$nameTheme.'.views.layouts.forms.CO2.menuTitle'); ?>
+                                <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right logoLoginRegister" src="<?php echo $logo;?>"/>
+                                
                                 </div>
                             </div>
                             <!-- <h4 class="text-dark col-md-12 margin-top-5 homestead">
@@ -205,9 +208,11 @@
                        <?php } else { ?>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
-                                <?php  $this->renderPartial('webroot.themes.'.$nameTheme.'.views.layouts.forms.CO2.menuTitle'); ?>
-                                     <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right" src="<?php echo $this->module->getParentAssetsUrl()?>/images/logoL.jpg"/>
-                                <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">-->
+                                <?php  
+                                // if(!@Yii::app()->session['custom']["logo"])
+                                //     $this->renderPartial('webroot.themes.'.$nameTheme.'.views.layouts.forms.CO2.menuTitle'); ?>
+                                     <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right logoLoginRegister" src="<?php echo $logo; ?>"/>
+                                
                                 </div>
                             </div>
                         <?php } ?>
@@ -350,12 +355,17 @@
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/KGOUGLE-logo.png" height="60" class="inline margin-bottom-15">
                        <?php } else if(Yii::app()->params["CO2DomainName"] == "FI"){ ?>
                             <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/FI-logo.png" height="60" class="inline margin-bottom-15">
-                       <?php } else { ?>
-                            <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/CO2r.png" height="100" class="inline margin-bottom-15">
+                       <?php } else { 
+                            
+                            ?>
+                            <div class="loginLogo col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 col-xs-12">
+                            
+                                <img style="width:100%; border: 10px solid white; border-bottom-width:0px;max-height: inherit;" class="pull-right logoLoginRegister" src="<?php echo $logo;?>"/>
+                                </div>
                         <?php } ?>
                     </span>
-                    <h3 class="letter-red no-margin" style="margin-top:-15px!important;"><?php echo Yii::t("login", "Forget password ?") ?></h3><br>
-                    <p><?php echo Yii::t("login","Indicate your email link to your account to recover a password") ?>.<hr></p>
+                    <br>
+                    <p class=" col-xs-12 padding-top-15"><?php echo Yii::t("login","Indicate your email link to your account to recover a password") ?>.<hr></p>
                 </div>
                 <div class="col-lg-12">
                     <p></p>
@@ -475,8 +485,6 @@
 </div>
 
 <script>
-    
-
 var email = '<?php echo @$_GET["email"]; ?>';
 var userValidated = '<?php echo @$_GET["userValidated"]; ?>';
 var pendingUserId = '<?php echo @$_GET["pendingUserId"]; ?>';
@@ -503,16 +511,14 @@ var requestedUrl = "<?php echo (isset(Yii::app()->session["requestedUrl"])) ? Yi
 var REGISTER_MODE_TWO_STEPS = "<?php echo Person::REGISTER_MODE_TWO_STEPS ?>";
 
 jQuery(document).ready(function() {
-
-    //$('#email3').filter_input({regex:'/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/'});
-    //$('#registerName').filter_input({regex:'[^@#&\'\"\`\\\\]'});
-    //$('#username').filter_input({regex:'[^@#&\'\"\`\\\\]'});
-
-
     //Remove parameters from URLs in case of invitation without reloading the page
-    <?php if(@$_GET["email"]){ ?>
-        removeParametersWithoutReloading();
-    <?php } ?>
+    <?php if(@$_GET["email"]){ 
+        if(@$_GET["el"]){ ?> 
+            removeParametersWithoutReloading("<?php echo $_GET["el"] ?>");
+        <?php }else{ ?>
+            removeParametersWithoutReloading();
+        <?php } 
+        } ?>
     
     if(!userConnected)
         Login.init();
@@ -523,12 +529,12 @@ jQuery(document).ready(function() {
         validateUserName();
     });
 
-    if(email != ''){
-        $('#email-login').val(email);
+    if(typeof initLoginRegister != "undefined" &&  initLoginRegister.email != ''){
+        $('#email-login').val(initLoginRegister.email);
         $('#email-login').prop('disabled', true);
-        $('#email2').val(email);
+        $('#email2').val(initLoginRegister.email);
         $('#email2').prop('disabled', true);
-        $('#email3').val(email);
+        $('#email3').val(initLoginRegister.email);
         $('#email3').prop('disabled', true);
     }
 

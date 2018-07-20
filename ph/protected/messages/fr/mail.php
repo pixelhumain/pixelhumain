@@ -98,7 +98,12 @@
 		"You will enjoy to communicate about the projects, the events of {what} in your territory. You will have the chance to express your needs and search actors around you. You will also be able to discuss and organize your community..."=>"Vous pourrez dès créer des évènements et profiter des outils de communication pour faire connaître {what}. Vous aurez la possibilité d'exprimer vos besoins, et rechercher des acteurs autour de vous. Vous pourrez même discuter avec votre communauté et prendre des décisions ensemble.",
 		"And all of this into an <b>ethical</b> and <b>responsible</b> environment"=>"Et tout cela dans un environnement <b>éthique</b> et <b>responsable</b>.",
 		"Don't wait anymore and join us !!"=>"Ce réseau n'attends plus que vous !",
-
-		
+		//SUBJECT
+		"A citizen ask to become {what} of {where}"=>"Un citoyen demande à devenir {what} de {where}",
+		'You have been invited to {website} by {who}'=>"Vous avez été inivité-e sur {website} par {who}",
+		"Confirm your account on {website}"=>"Confirmez votre inscription sur {website}",
+		"Retreive your password on {website}"=>'Réinitialisation du mot de passe sur {website}',
+		"New user on {website}"=>"Nouvel-le utilisateur-trice sur {website}",
+		"New professional account on {website}"=>"Nouveau compte professionel crée sur {website}",
 );
 ?> 

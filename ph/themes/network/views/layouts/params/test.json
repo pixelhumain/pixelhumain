@@ -1,45 +1,70 @@
 {
-    "name" : "Digital Réunion",
+    "name" : "Haute Vallée de l'Aude",
+    "mode" : "server",
     "skin" : {
         "logo" : false,
-        "title" : "Cartographie des productions sur Beuvrages",
+        "title" : "Haute Vallée de l'Aude",
+        "shortDescription" : "Toutes les initiatives du Haute Vallée de l'Aude",
         "displayScope" : false,
+        "docs":true,
         "displayCommunexion" : true,
+        "displayNotifications" : true,
         "profilBar" : false,
+        "breadcrum" : true,
         "displayButtonGridList" : false,
         "class" : {
             "mainContainer" : false
         },
         "iconeAdd" : false,
         "iconeSearchPlus" : false,
-        "loginTitle":""
-    },
-    "filter" : {
-     "types" : false,
-     "tags" : true, 
-     "paramsFiltre" : {
-        "conditionBlock" : "or",
-        "conditionTagsInBlock" : "and"
-     }
+        "loginTitle":"",
+        "front" : {
+            "organization" : false,
+            "project" : true,
+            "event" : true,
+            "community" : true,
+            "dda" : false,
+            "live" : false,
+            "search" : false,
+            "need" : true,
+            "poi" : true
+        },
+        "menu" : {
+            "aroundMe":false,
+            "connectLink":false,
+            "add":true,
+            "detail":true,
+            "news":true,
+            "directory":true,
+            "gallery":true
+        }
     },
     "add" : {
         "organization" : true,
-        "project" : false,
-        "event" : true
+        "project" : true
     },
     "result" : {
-        "displayImage" : false,
+        "displayImage" : true,
         "displayType" : false,
         "fullLocality" : true,
-        "datesEvent" : false
+        "datesEvent" : false,
+        "displayShortDescription" : true
     },
     "request" : {
-        "pagination" : 500,
+        "pagination" : 1000,
         "sourceKey" :[
-            "digitalreunion"
+            "HVAorga"
         ],
+        "parent" : {
+            "type" : "organizations",
+            "id" : "56580ad2dd04521c6f943180"
+        },
         "searchType" : [
-            "organizations"
+            "organizations",
+            "projects"
+        ],
+        "searchLocalityDEPARTEMENT": [
+            "AUDE"
         ]
     }
 }
